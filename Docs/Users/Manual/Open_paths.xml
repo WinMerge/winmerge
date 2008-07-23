@@ -26,9 +26,9 @@
   <section id="OpenPaths_opendialog">
     <title>Select Files or Folders dialog</title>
 
-    <para><link linkend="QuickStart">Quick start</link> describes the Select
-    Files or Folders dialog. This section provides more details, and some tips
-    for using the Select Files or Folders dialog more efficiently.</para>
+    <para><xref linkend="QuickStart" /> describes the Select Files or Folders
+    dialog. This section provides more details, and some tips for using the
+    Select Files or Folders dialog more efficiently.</para>
 
     <section>
       <title>Environment variables</title>
@@ -44,9 +44,8 @@
     <section id="OpeningArchives">
       <title>Opening archive files</title>
 
-      <para>WinMerge archive support is provided in the 7-Zip plugin. See <link
-      linkend="Installing">Installing instructions</link> to install this
-      plugin.</para>
+      <para>WinMerge archive support is provided in the 7-Zip plugin. See <xref
+      linkend="Installing" /> to install this plugin.</para>
 
       <para>Opening two archive files is similar to opening normal files:
       specify two archive files in the Open-dialog's <guilabel>Left</guilabel>
@@ -54,10 +53,9 @@
       format, it opens the contents of the archive files in the Folder Compare
       window.</para>
 
-      <para>The <link linkend="CompareDirs">Folder Compare</link> topic
-      describes how to work with archive files. For example, if an archive file
-      contains two subfolders named <filename
-      class="directory">Original/</filename> and <filename
+      <para>The <xref linkend="CompareDirs" /> topic describes how to work with
+      archive files. For example, if an archive file contains two subfolders
+      named <filename class="directory">Original/</filename> and <filename
       class="directory">Altered/</filename>, you can compare the contents of the
       two subfolders by specifying the same archive file in both sides in the
       Select Files or Folders dialog or WinMerge command line.</para>
@@ -293,8 +291,8 @@ to compare one file/folder against several files/folders.</para> </tip> -->
     while dropping paths. Another useful key when dropping paths is
     <keycap>Shift</keycap>: To open the same path in both sides of a Compare
     window, press and hold <keycap>Shift</keycap> while dropping only one path.
-    This is a handy way to open archive files (see <link
-    linkend="OpeningArchives">Opening archive files</link>).</para>
+    This is a handy way to open archive files (see <xref
+    linkend="OpeningArchives" />.</para>
 
     <para>You can drop paths into the Select Files or Folders dialog. A typical
     procedure is to drag and drop the first path into the WinMerge window, and

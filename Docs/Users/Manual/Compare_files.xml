@@ -15,9 +15,8 @@
     <caption><para>File Compare Window</para></caption>
   </mediaobject>
 
-  <para>WinMerge editor is not comparable to specialized editor programs, but
-  it has basic features like
-  <guilabel>Undo</guilabel>/<guilabel>Redo</guilabel>,
+  <para>WinMerge editor is not comparable to specialized editor programs, but it
+  has basic features like <guilabel>Undo</guilabel>/<guilabel>Redo</guilabel>,
   <guilabel>Find</guilabel>/<guilabel>Replace</guilabel> and
   <guilabel>Goto</guilabel> (to linenumber). The editor also has a syntax
   highlighting feature supporting several file formats (colors configurable).
@@ -25,8 +24,8 @@
   Syntax highlighting can be disabled from options.</para>
 
   <tip>
-    <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual
-    refresh is recommended after editing.</para>
+    <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual refresh
+    is recommended after editing.</para>
   </tip>
 
   <section>
@@ -48,8 +47,7 @@
 
         <guimenuitem>Tab Bar</guimenuitem>
       </menuchoice>. When the tab bar is shown it has one tab for every open
-    window. The tab contains last part of the folder names or file
-    names.</para>
+    window. The tab contains last part of the folder names or file names.</para>
   </section>
 
   <section>
@@ -64,24 +62,24 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>Headerbar shows full path to the open file. If the path is longer
-    than available space one part of the path is replaced with an ellipsis
-    (...). Headerbar also shows:<itemizedlist>
+    <para>Headerbar shows full path to the open file. If the path is longer than
+    available space one part of the path is replaced with an ellipsis (...).
+    Headerbar also shows:<itemizedlist>
         <listitem>
-          <simpara>the current active file with sunken border (like in the
-          above screenshot), the non-active file is shown with flat
+          <simpara>the current active file with sunken border (like in the above
+          screenshot), the non-active file is shown with flat
           headerbar.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>if the file has been modified (has unsaved changes). This
-          is indicated by adding asterisk (<guilabel>*</guilabel>) before the
+          <simpara>if the file has been modified (has unsaved changes). This is
+          indicated by adding asterisk (<guilabel>*</guilabel>) before the
           filename, like in the screenshot.</simpara>
         </listitem>
       </itemizedlist></para>
 
-    <para>Headerbar has a context menu with items to copy full path or
-    filename to clipboard.</para>
+    <para>Headerbar has a context menu with items to copy full path or filename
+    to clipboard.</para>
   </section>
 
   <section>
@@ -89,8 +87,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/filecomp_statusbar1.png"
-                     format="PNG" />
+          <imagedata fileref="screenshots/filecomp_statusbar1.png" format="PNG" />
         </imageobject>
       </inlinemediaobject></para>
 
@@ -135,8 +132,8 @@
         </listitem>
 
         <listitem>
-          <simpara>encoding: this pane shows codepage number for ANSI files
-          and Unicode encoding type for Unicode files</simpara>
+          <simpara>encoding: this pane shows codepage number for ANSI files and
+          Unicode encoding type for Unicode files</simpara>
         </listitem>
 
         <listitem>
@@ -169,8 +166,8 @@
 
         <listitem>
           <simpara><guilabel>Difference X of Y</guilabel> : amount of
-          differences (<guilabel>Y</guilabel>) and number of selected
-          difference (<guilabel>X</guilabel>)</simpara>
+          differences (<guilabel>Y</guilabel>) and number of selected difference
+          (<guilabel>X</guilabel>)</simpara>
         </listitem>
       </itemizedlist></para>
   </section>
@@ -178,8 +175,8 @@
   <section>
     <title>Editor Margin</title>
 
-    <para>The editor panes (file panes) have optional gray margin area for
-    line numbers and some symbols. This margin can be shown/hidded from menu
+    <para>The editor panes (file panes) have optional gray margin area for line
+    numbers and some symbols. This margin can be shown/hidded from menu
     <menuchoice>
         <guimenu>View</guimenu>
 
@@ -251,9 +248,9 @@
     <section>
       <title>Selecting a difference</title>
 
-      <para>Before difference can be merged, it must be selected. Selecting
-      can happen by difference navigation keys/items (see below) or by
-      selecting wanted difference directly:</para>
+      <para>Before difference can be merged, it must be selected. Selecting can
+      happen by difference navigation keys/items (see below) or by selecting
+      wanted difference directly:</para>
 
       <itemizedlist>
         <listitem>
@@ -273,8 +270,8 @@
       <para><guimenu>Merge</guimenu>-menu has items for navigating to
       next/previous and first/last difference. Navigation is always done based
       on current cursor location. So <guimenuitem>Next
-      Difference</guimenuitem>-command selects next difference from cursor,
-      not from current selected difference.</para>
+      Difference</guimenuitem>-command selects next difference from cursor, not
+      from current selected difference.</para>
 
       <note>
         <para>When difference is selected with navigation commands cursor is
@@ -305,15 +302,14 @@
       <title>Go To line or difference</title>
 
       <para>Using <guimenuitem>Go To</guimenuitem> from
-      <guimenu>Edit</guimenu>-menu user can jump to certain line or
-      difference. Go To -dialog shows current line and side when
-      opened.</para>
+      <guimenu>Edit</guimenu>-menu user can jump to certain line or difference.
+      Go To -dialog shows current line and side when opened.</para>
 
       <tip>
-        <para>Go To line number is useful if there is need to merge same
-        change to several target files from one original file. Rather than
-        using <guimenuitem>Find</guimenuitem> or difference navigation it is
-        faster to jump to first line of difference.</para>
+        <para>Go To line number is useful if there is need to merge same change
+        to several target files from one original file. Rather than using
+        <guimenuitem>Find</guimenuitem> or difference navigation it is faster to
+        jump to first line of difference.</para>
       </tip>
     </section>
   </section>
@@ -324,22 +320,20 @@
       </indexterm>Merging Differences</title>
 
     <para>Merging commands are located in <guimenu>Merge</guimenu>-menu after
-    navigation commands. Basically there are only two types of merging
-    commands - copy difference from right to left and copy difference from
-    left to right. Additional commands make merging several differences
-    easier.</para>
+    navigation commands. Basically there are only two types of merging commands
+    - copy difference from right to left and copy difference from left to right.
+    Additional commands make merging several differences easier.</para>
 
     <para><guimenuitem>Copy to Right</guimenuitem> and <guimenuitem>Copy to
-    Left</guimenuitem> copy difference from side to side. At simplest this
-    means replacing text in destination difference with text in source
-    difference. But because difference can contain also removed lines, new
-    lines may be created or some lines removed. If there are several
-    differences selected, then all fully selected differences are merged with
-    one command. This makes merging many small differences a lot
-    faster.</para>
+    Left</guimenuitem> copy difference from side to side. At simplest this means
+    replacing text in destination difference with text in source difference. But
+    because difference can contain also removed lines, new lines may be created
+    or some lines removed. If there are several differences selected, then all
+    fully selected differences are merged with one command. This makes merging
+    many small differences a lot faster.</para>
 
-    <para>WinMerge rescans files after every merging operation. This is done
-    to ensure differences were copied correctly and all changes after last
+    <para>WinMerge rescans files after every merging operation. This is done to
+    ensure differences were copied correctly and all changes after last
     rescanning are taken care of. If <guilabel>Automatic
     rescan</guilabel>-option is not set, user may have edited files and
     differences may not have shown correctly before merging. If result of
@@ -349,8 +343,8 @@
       <para>It is strongly advised to run <guimenuitem>Rescan</guimenuitem>
       (<keycap>F5</keycap>) before merging differences if <guilabel>Automatic
       rescan</guilabel> is set off. Usually files get out of sync when editing
-      and merging differences may have unpredictable results. If merging
-      result looks incorrect try undoing (<menuchoice>
+      and merging differences may have unpredictable results. If merging result
+      looks incorrect try undoing (<menuchoice>
           <guimenu>Edit</guimenu>
 
           <guimenuitem>Undo</guimenuitem>
@@ -362,8 +356,8 @@
     </important>
 
     <para><guimenuitem>Copy to Right/Left and Advance</guimenuitem>-commands
-    merge current difference and then select next difference (if there is
-    one). Using these commands makes merging several differences easier and
+    merge current difference and then select next difference (if there is one).
+    Using these commands makes merging several differences easier and
     faster.</para>
 
     <para><guimenuitem>Copy All to Right/Left</guimenuitem>-commands sync two
@@ -371,11 +365,10 @@
     operation with one undo command.</para>
 
     <tip>
-      <para>Enable <guilabel>Automatically scroll to first
-      difference</guilabel> -option from general options. This saves you from
-      scrolling to first difference and selecting it. See <link
-      linkend="Configuration">Options &amp; Configuration</link> -chapter for
-      more information.</para>
+      <para>Enable <guilabel>Automatically scroll to first difference</guilabel>
+      -option from general options. This saves you from scrolling to first
+      difference and selecting it. See <xref linkend="Configuration" /> for more
+      information.</para>
     </tip>
   </section>
 
@@ -400,9 +393,9 @@
       </listitem>
     </itemizedlist>
 
-    <para>Unlike the normal mode, in this schema the <keycap>Alt</keycap>-key
-    is not needed for these basic operations (which makes them quicker and
-    more convenient). Note that <keycombo>
+    <para>Unlike the normal mode, in this schema the <keycap>Alt</keycap>-key is
+    not needed for these basic operations (which makes them quicker and more
+    convenient). Note that <keycombo>
         <keycap>Shift</keycap>
 
         <keycap>Arrow</keycap>
@@ -418,20 +411,20 @@
         <keycap>Arrow</keycap>
       </keycombo> keys work in merge mode like in normal mode.</para>
 
-    <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown
-    in statusbar.</para>
+    <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown in
+    statusbar.</para>
   </section>
 
   <section>
     <title>Refreshing</title>
 
-    <para>Refreshing updates differences after changes are made to files. It
-    is important to do a refresh before merging changes between files.</para>
+    <para>Refreshing updates differences after changes are made to files. It is
+    important to do a refresh before merging changes between files.</para>
 
     <note>
       <para>Refresh does not reload file. That means, if another programs has
-      updated files etc, those changes are not seen. Refresh updates
-      differences according changes user has done.</para>
+      updated files etc, those changes are not seen. Refresh updates differences
+      according changes user has done.</para>
     </note>
   </section>
 
@@ -452,8 +445,8 @@
     <para>Normal editing features work in WinMerge editor. User can type and
     delete text, select text, copy, cut and paste text etc. There is some
     customisation because there can be removed lines in files (lines existing
-    only in other side). Anyway these customisations are not usually visible
-    to users otherwise that lines can sometimes "jump" when WinMerge has to
+    only in other side). Anyway these customisations are not usually visible to
+    users otherwise that lines can sometimes "jump" when WinMerge has to
     relocate matching/non-matching files.</para>
   </section>
 
@@ -477,25 +470,23 @@
       </menuchoice>.</para>
 
     <para>With default settings WinMerge uses whitespace characters (namely
-    spaces and tabulators) to separate words. WinMerge does not consider
-    commas or dots as word separators. That means WinMerge thinks "For
-    Example" is two words but "For,Example" is one word. More characters can
-    be included as word-separator characters from editor options (select from
-    menu <menuchoice>
+    spaces and tabulators) to separate words. WinMerge does not consider commas
+    or dots as word separators. That means WinMerge thinks "For Example" is two
+    words but "For,Example" is one word. More characters can be included as
+    word-separator characters from editor options (select from menu <menuchoice>
         <guimenu>Edit</guimenu>
 
         <guimenuitem>Options</guimenuitem>
-      </menuchoice> and <guilabel>Editor</guilabel> page). See <link
-    linkend="Configuration">Options &amp; Configuration</link> -chapter for
-    more information.</para>
+      </menuchoice> and <guilabel>Editor</guilabel> page). See <xref
+    linkend="Configuration" /> for more information.</para>
   </section>
 
   <section>
     <title>Line Difference Selection</title>
 
     <para>Many times it is useful to see exact differences inside lines.
-    WinMerge can highlight different area between lines. This feature is
-    called <guilabel>Select Line Difference</guilabel>. It is available in
+    WinMerge can highlight different area between lines. This feature is called
+    <guilabel>Select Line Difference</guilabel>. It is available in
     <guimenu>Edit</guimenu>-menu, toolbar and shortcut key
     (<keycap>F4</keycap>). In screenshot below there is one difference
     highlighted</para>
@@ -510,8 +501,8 @@
   <section>
     <title>Location Pane</title>
 
-    <para>Location pane is a handy side-pane showing a overall (difference)
-    map of files compared.</para>
+    <para>Location pane is a handy side-pane showing a overall (difference) map
+    of files compared.</para>
 
     <para><inlinemediaobject>
         <imageobject>
@@ -535,17 +526,17 @@
       </listitem>
 
       <listitem>
-        <simpara>area visible in editor panes is shown with different
-        background color</simpara>
+        <simpara>area visible in editor panes is shown with different background
+        color</simpara>
       </listitem>
     </itemizedlist>
 
-    <para>Clicking with mouse in Location Pane moves cursor to place clicked
-    in file. Right-clicking with mouse opens the context menu with items to
-    select line to go to. And the visible area locator (area with different
-    background color) can be used like a scrollbar thumb - after pressing down
-    the left mouse button over it can be dragged upwards and downwards to
-    scroll the files.</para>
+    <para>Clicking with mouse in Location Pane moves cursor to place clicked in
+    file. Right-clicking with mouse opens the context menu with items to select
+    line to go to. And the visible area locator (area with different background
+    color) can be used like a scrollbar thumb - after pressing down the left
+    mouse button over it can be dragged upwards and downwards to scroll the
+    files.</para>
   </section>
 
   <section>
@@ -560,9 +551,9 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>Most of these items are familiar from Main menu. Worth noting is
-    last item <guimenuitem>Open</guimenuitem>. It allows to open file with
-    (system) registered application or with external editor. Also context menu
+    <para>Most of these items are familiar from Main menu. Worth noting is last
+    item <guimenuitem>Open</guimenuitem>. It allows to open file with (system)
+    registered application or with external editor. Also context menu
     merge-commands are not relative to active file. They always merge the
     selected difference.</para>
   </section>
@@ -577,8 +568,7 @@
       </menuchoice>. Due to limitations in the editor, only fixed width fonts
     are supported in WinMerge.</para>
 
-    <para>Font suggestions for use of WinMerge with East Asian
-    languages:</para>
+    <para>Font suggestions for use of WinMerge with East Asian languages:</para>
 
     <itemizedlist>
       <listitem>
@@ -587,8 +577,8 @@
       </listitem>
 
       <listitem>
-        <simpara>Traditional Chinese texts with the
-        <guilabel>MingLiU</guilabel> fixed-width font, or</simpara>
+        <simpara>Traditional Chinese texts with the <guilabel>MingLiU</guilabel>
+        fixed-width font, or</simpara>
       </listitem>
 
       <listitem>
@@ -597,10 +587,10 @@
       </listitem>
 
       <listitem>
-        <simpara>Korean texts with the <guilabel>GulimChe</guilabel>
-        fixed-width font (not Gulim as this variant uses proportional-spacing
-        glyphs that are not centered in grid cells and then poorly aligned in
-        fixed-width mode)</simpara>
+        <simpara>Korean texts with the <guilabel>GulimChe</guilabel> fixed-width
+        font (not Gulim as this variant uses proportional-spacing glyphs that
+        are not centered in grid cells and then poorly aligned in fixed-width
+        mode)</simpara>
       </listitem>
     </itemizedlist>
   </section>
@@ -613,9 +603,9 @@
     <para>WinMerge can resolve conflict files several version control systems
     produce when merging files. Conflict file is basically two different
     versions of files embedded into one file. WinMerge reads this file and
-    separates it into its original files, and shows those files in file
-    compare. So conflicted file can be resolved using normal WinMerge file
-    compare functionality.</para>
+    separates it into its original files, and shows those files in file compare.
+    So conflicted file can be resolved using normal WinMerge file compare
+    functionality.</para>
 
     <section>
       <title>Opening Conflict Files</title>
@@ -625,13 +615,13 @@
 
           <guimenuitem>Open Conflict File...</guimenuitem>
         </menuchoice>. Conflict file to resolve can be selected using file
-      selection dialog that opens. At the moment there are no other ways to
-      open conflict files.</para>
+      selection dialog that opens. At the moment there are no other ways to open
+      conflict files.</para>
 
       <warning>
         <para>WinMerge overwrites original conflict file. If original file is
-        wanted to save, it must be copied to another folder or another
-        filename before opening it into WinMerge.</para>
+        wanted to save, it must be copied to another folder or another filename
+        before opening it into WinMerge.</para>
       </warning>
     </section>
 
@@ -639,16 +629,15 @@
       <title>Conflict Resolving</title>
 
       <para>WinMerge opens conflict file into normal file compare (see above).
-      All normal WinMerge file compare features are in use. Files in two
-      panels are:</para>
+      All normal WinMerge file compare features are in use. Files in two panels
+      are:</para>
 
       <simplelist>
         <member><emphasis>Left panel</emphasis>: this file is called
         "<emphasis>theirs</emphasis>" file. It is usually the file that is in
-        version control system's repository. This file usually cannot be
-        edited. An as such, WinMerge opens left-side file as read-only.
-        Differences can be moved only from this file to the another
-        file.</member>
+        version control system's repository. This file usually cannot be edited.
+        An as such, WinMerge opens left-side file as read-only. Differences can
+        be moved only from this file to the another file.</member>
 
         <member><emphasis>Right panel</emphasis>: this file is called
         "<emphasis>mine</emphasis>" file. It is the user's working file
@@ -657,22 +646,20 @@
       </simplelist>
 
       <para>After the wanted resolved file is in right-side panel, it can be
-      saved like normal file. WinMerge saves the file over original
-      file.</para>
+      saved like normal file. WinMerge saves the file over original file.</para>
 
-      <para>Left side "<emphasis>mine</emphasis>" file is set to modified
-      after opening conflict file. This allows fast resolve by just saving the
-      file when user's file is the wanted end result. This also prevents
-      accidentally not resolving the files. As resolving only happens when
-      file is saved. If file is no saved, original conflict file is kept
-      unmodified.</para>
+      <para>Left side "<emphasis>mine</emphasis>" file is set to modified after
+      opening conflict file. This allows fast resolve by just saving the file
+      when user's file is the wanted end result. This also prevents accidentally
+      not resolving the files. As resolving only happens when file is saved. If
+      file is no saved, original conflict file is kept unmodified.</para>
 
       <para>Many version control tools allow configuring external merge tool.
       WinMerge accepts three filenames ("T<guilabel>heirs</guilabel>",
       "<guilabel>Mine</guilabel>" and "<guilabel>Resolved</guilabel>") as
-      command line parameters. See more info from <link
-      linkend="CommandLine">Command Line</link> -chapter. Single path to the
-      conflict file is also accepted in command line.</para>
+      command line parameters. See more info from <xref
+      linkend="CommandLine" />. Single path to the conflict file is also
+      accepted in command line.</para>
     </section>
   </section>
 </article>

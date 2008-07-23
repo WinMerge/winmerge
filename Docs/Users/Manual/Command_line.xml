@@ -5,8 +5,8 @@
     </indexterm>Command Line</title>
 
   <para>WinMerge accepts several parameters from command line, in addition to
-  paths to compare. Most of these parameters are intended for using WinMerge
-  as an external compare application. Or for starting from batch files.</para>
+  paths to compare. Most of these parameters are intended for using WinMerge as
+  an external compare application. Or for starting from batch files.</para>
 
   <para>Syntax for the command line is:</para>
 
@@ -63,13 +63,13 @@
     </listitem>
 
     <listitem>
-      <simpara><option>/r</option> tells WinMerge to compare folders
-      recursively . Normally WinMerge does not compare subfolder contents but
-      does the "flat" compare showing the files in compared folders and
-      subfolders as separate items. Using /r tells WinMerge to compare all
-      files in all subfolders. When subfolders are included, only unique
-      subfolders are visible as separate items in compare results. Note that
-      including subfolders can increase compare time remarkably.</simpara>
+      <simpara><option>/r</option> tells WinMerge to compare folders recursively
+      . Normally WinMerge does not compare subfolder contents but does the
+      "flat" compare showing the files in compared folders and subfolders as
+      separate items. Using /r tells WinMerge to compare all files in all
+      subfolders. When subfolders are included, only unique subfolders are
+      visible as separate items in compare results. Note that including
+      subfolders can increase compare time remarkably.</simpara>
     </listitem>
 
     <listitem>
@@ -81,55 +81,53 @@
 
     <listitem>
       <simpara><option>/f</option> allows selecting filter used. Filter can be
-      filemask like "<filename>*.h *.cpp</filename>" or name of filefilter
-      like "<literal>XML/HTML Devel</literal>". Quotation marks must be used
-      if filter mask or name contains spaces.</simpara>
+      filemask like "<filename>*.h *.cpp</filename>" or name of filefilter like
+      "<literal>XML/HTML Devel</literal>". Quotation marks must be used if
+      filter mask or name contains spaces.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/x</option> closes WinMerge if opened files are
-      identical (after information dialog is shown). This parameter is useful
-      when WinMerge is used as an external compare application. It helps to
-      faster process and/or ignore files which don't have any differences.
-      Note that this option does not apply when files become identical when
+      <simpara><option>/x</option> closes WinMerge if opened files are identical
+      (after information dialog is shown). This parameter is useful when
+      WinMerge is used as an external compare application. It helps to faster
+      process and/or ignore files which don't have any differences. Note that
+      this option does not apply when files become identical when
       merging/editing them.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/s</option> enables single-instance behavior. If there
-      is already WinMerge running new compare is opened to that same instance.
-      Depending on other settings (if multiple windows are allowed) new
-      compare is opened to existing or new window.</simpara>
+      <simpara><option>/s</option> enables single-instance behavior. If there is
+      already WinMerge running new compare is opened to that same instance.
+      Depending on other settings (if multiple windows are allowed) new compare
+      is opened to existing or new window.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/ul</option> tells WinMerge to not add left path to
-      MRU. External applications should not add paths to Open-dialog's MRU
+      <simpara><option>/ul</option> tells WinMerge to not add left path to MRU.
+      External applications should not add paths to Open-dialog's MRU
       lists.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/ur</option> tells WinMerge to not add right path to
-      MRU. External applications should not add paths to Open-dialog's MRU
+      <simpara><option>/ur</option> tells WinMerge to not add right path to MRU.
+      External applications should not add paths to Open-dialog's MRU
       lists.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/ub</option> tells WinMerge to not add both paths to
-      MRU. External applications should not add paths to Open-dialog's MRU
+      <simpara><option>/ub</option> tells WinMerge to not add both paths to MRU.
+      External applications should not add paths to Open-dialog's MRU
       lists.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/wl</option> initially opens left side as read-only.
-      Use this when you don't want to change left-side items in
-      compare.</simpara>
+      <simpara><option>/wl</option> initially opens left side as read-only. Use
+      this when you don't want to change left-side items in compare.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><option>/wr</option> initially opens right side as read-only.
-      Use this when you don't want to change right-side items in
-      compare.</simpara>
+      <simpara><option>/wr</option> initially opens right side as read-only. Use
+      this when you don't want to change right-side items in compare.</simpara>
     </listitem>
 
     <listitem>
@@ -145,24 +143,24 @@
 
     <listitem>
       <simpara><option>/dl</option> adds a description for left side shown
-      instead of folder / filename. This allows showing version number or
-      label for compared items. Like "Version 1.0" or "Work Copy".</simpara>
+      instead of folder / filename. This allows showing version number or label
+      for compared items. Like "Version 1.0" or "Work Copy".</simpara>
     </listitem>
 
     <listitem>
       <simpara><option>/dr</option> adds a description for right side shown
-      instead of folder / filename. This allows showing version number or
-      label for compared items. Like "Version 1.0" or "Work Copy".</simpara>
+      instead of folder / filename. This allows showing version number or label
+      for compared items. Like "Version 1.0" or "Work Copy".</simpara>
     </listitem>
 
     <listitem>
-      <simpara><replaceable>leftpath</replaceable> is the folder or filename
-      to open on the left side.</simpara>
+      <simpara><replaceable>leftpath</replaceable> is the folder or filename to
+      open on the left side.</simpara>
     </listitem>
 
     <listitem>
-      <simpara><replaceable>rightpath</replaceable> is the folder or filename
-      to open on the right side.</simpara>
+      <simpara><replaceable>rightpath</replaceable> is the folder or filename to
+      open on the right side.</simpara>
     </listitem>
 
     <listitem>
@@ -183,29 +181,28 @@
       <filename>File.txt</filename> WinMerge now compares files
       <filename>C:\Folder\File.txt</filename> and C:\Folder2\File.txt</para>
     </tip>Usually WinMerge requires that both path parameters
-  (<replaceable>leftpath</replaceable> and
-  <replaceable>rightpath</replaceable>) point to folders or files. It is not
-  possible to compare folder to file (except in case described in above note).
-  If WinMerge cannot find any of given paths, it opens Open-dialog.</para>
+  (<replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable>)
+  point to folders or files. It is not possible to compare folder to file
+  (except in case described in above note). If WinMerge cannot find any of given
+  paths, it opens Open-dialog.</para>
 
   <para>Third path given in command line is rarely needed when WinMerge is
   started from command line. It is meant to be used with many version control
   tools which use third path as a "<emphasis>result</emphasis>" file. WinMerge
-  always shows two files in file compare, the third path is a path where any
-  of these files gets saved into, leaving other two paths intact.</para>
+  always shows two files in file compare, the third path is a path where any of
+  these files gets saved into, leaving other two paths intact.</para>
 
   <para>Usually these tools use terms like "<emphasis>theirs</emphasis>",
   "<emphasis>mine</emphasis>" and "<emphasis>merged</emphasis> "/ "
-  <emphasis>resolved</emphasis>" about these three files. And those paths
-  should be given in that order for WinMerge.</para>
+  <emphasis>resolved</emphasis>" about these three files. And those paths should
+  be given in that order for WinMerge.</para>
 
   <section>
     <title>Conflict File</title>
 
-    <para>Conflict file can be given to command line as one path to the
-    conflict file. There cannot be second or third path with conflict file.
-    After WinMerge opens the given conflict file, it can be resolved like
-    described in <link linkend="ResolveConflictFiles">Resolving Conflict
-    Files</link>.</para>
+    <para>Conflict file can be given to command line as one path to the conflict
+    file. There cannot be second or third path with conflict file. After
+    WinMerge opens the given conflict file, it can be resolved like described in
+    <xref linkend="ResolveConflictFiles" />.</para>
   </section>
 </article>

@@ -29,9 +29,8 @@
   <section>
     <title>Three categories of plugins</title>
 
-    <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature
-    dll or scriptlets. Plugins features are spread over three
-    categories:</para>
+    <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll
+    or scriptlets. Plugins features are spread over three categories:</para>
 
     <section>
       <title>Editor complement</title>
@@ -39,9 +38,8 @@
       <para>Operate custom operations on the currently selected text from the
       active editor pane.</para>
 
-      <para>Example plugin: <link linkend="EditorAddin"><filename>editor
-      addin.sct</filename></link> (Turn the selection to UPPER CASE or lower
-      case.)</para>
+      <para>Example plugin: <xref linkend="EditorAddin" /> (Turn the selection
+      to UPPER CASE or lower case.)</para>
     </section>
 
     <section>
@@ -52,10 +50,10 @@
       transformed file is created and loaded in WinMerge.</para>
 
       <para>Sometimes the transformed file can be packed back. (See the plugin
-      details to know if it supports packing back.) Then you may merge and
-      save the transformed file. The packing is done automatically in this
-      case. To avoid problems, you are proposed to change the filename when
-      saving a changed file.</para>
+      details to know if it supports packing back.) Then you may merge and save
+      the transformed file. The packing is done automatically in this case. To
+      avoid problems, you are proposed to change the filename when saving a
+      changed file.</para>
 
       <note>
         <para>When you compare folders, WinMerge doesn't need to display the
@@ -67,23 +65,20 @@
         folder, or when you merge two versions of a file.</para>
       </note>
 
-      <para>Example plugin: <link
-      linkend="DisplayXMLFiles"><filename>DisplayXMLFiles.dll</filename></link>
-      (Display XML files nicely, by consistently inserting tabs and
-      linebreaks.)</para>
+      <para>Example plugin: <xref linkend="DisplayXMLFiles" /> (Display XML
+      files nicely, by consistently inserting tabs and linebreaks.)</para>
     </section>
 
     <section>
       <title>Prediffer - Preprocess files to hide some differences</title>
 
-      <para>The plugin is not apply to the files displayed in the editor. It
-      is applied only to temporary copies of the files, and this copies are
-      then scanned to create the difference list.</para>
+      <para>The plugin is not apply to the files displayed in the editor. It is
+      applied only to temporary copies of the files, and this copies are then
+      scanned to create the difference list.</para>
 
-      <para>Example plugin: <link
-      linkend="IgnoreColumns"><filename>IgnoreColumns.dll</filename></link>
-      (Ignore the differences inside given columns, while displaying the
-      characters in these columns.)</para>
+      <para>Example plugin: <xref linkend="IgnoreColumns" /> (Ignore the
+      differences inside given columns, while displaying the characters in these
+      columns.)</para>
     </section>
   </section>
 
@@ -94,15 +89,15 @@
       <title>"<guilabel>Suggested plugin</guilabel>" and "<guilabel>Automatic
       mode</guilabel>"</title>
 
-      <para>Each plugin specifies a list of file extensions (see plugins
-      details for more info). When the file extension, either from the left or
-      from the right file, matches the plugin list, the plugin is called
-      "<guilabel>a suggested plugin</guilabel>".</para>
+      <para>Each plugin specifies a list of file extensions (see plugins details
+      for more info). When the file extension, either from the left or from the
+      right file, matches the plugin list, the plugin is called "<guilabel>a
+      suggested plugin</guilabel>".</para>
 
-      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge
-      searches for a suggested plugin and applies it if it is avaialble. When
-      two suggested plugins are available for a file, WinMerge applies the
-      first one only (alphabetical order).</para>
+      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge searches
+      for a suggested plugin and applies it if it is avaialble. When two
+      suggested plugins are available for a file, WinMerge applies the first one
+      only (alphabetical order).</para>
 
       <note>
         <para>"<guimenuitem>Automatic Unpacking</guimenuitem>" and
@@ -148,9 +143,9 @@
         <listitem>
           <para>Open dialog: Select the two files first and then press the
           <guibutton>Select</guibutton> button right from the field
-          "<guilabel>Unpacker</guilabel>". WinMerge displays the standard
-          dialog for unpacker selection. Use the top combobox to select the
-          plugin. Two generic choices "<guilabel>None</guilabel>" and
+          "<guilabel>Unpacker</guilabel>". WinMerge displays the standard dialog
+          for unpacker selection. Use the top combobox to select the plugin. Two
+          generic choices "<guilabel>None</guilabel>" and
           "<guilabel>Automatic</guilabel>" are also available.</para>
         </listitem>
 
@@ -160,8 +155,8 @@
 
               <guimenuitem>Automatic Unpacking</guimenuitem>
             </menuchoice> is checked: Just double click to open the file. The
-          suggested plugin used during the folder comparison is used to load
-          the file in the editor.</para>
+          suggested plugin used during the folder comparison is used to load the
+          file in the editor.</para>
         </listitem>
 
         <listitem>
@@ -170,11 +165,10 @@
               <guimenu>Plugins</guimenu>
 
               <guimenuitem>Edit with Unpacker</guimenuitem>
-            </menuchoice>. WinMerge displays the dialog for unpacker
-          selection. Select an unpacker and press <guibutton>OK</guibutton>,
-          WinMerge opens the editor view and applies this unpacker to load the
-          file. This plugin is forgotten when you close the editor
-          view.</para>
+            </menuchoice>. WinMerge displays the dialog for unpacker selection.
+          Select an unpacker and press <guibutton>OK</guibutton>, WinMerge opens
+          the editor view and applies this unpacker to load the file. This
+          plugin is forgotten when you close the editor view.</para>
         </listitem>
       </orderedlist>
     </section>
@@ -187,16 +181,16 @@
           <guimenu>Plugin Settings</guimenu>
 
           <guisubmenu>Prediffer Settings</guisubmenu>
-        </menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>"
-      or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view
+        </menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or
+      "<guimenuitem>No prediffer</guimenuitem>". Refresh the view
       (<keycap>F5</keycap>) to update the results.</para>
 
       <note>
-        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file
-        option. Some files in the same folder can be in mode "<guimenuitem>No
+        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option.
+        Some files in the same folder can be in mode "<guimenuitem>No
         prediffer</guimenuitem>" and some in mode "<guimenuitem>Auto
-        prediffer</guimenuitem>". When you change folder during a
-        non-recursive compare, the mode is always reset to "<guimenuitem>No
+        prediffer</guimenuitem>". When you change folder during a non-recursive
+        compare, the mode is always reset to "<guimenuitem>No
         prediffer</guimenuitem>".</para>
       </note>
     </section>
@@ -208,8 +202,8 @@
         <listitem>
           <para>From the folder view when "<guimenuitem>Auto
           prediffer</guimenuitem>" is checked for a file: Just double click to
-          open the file. The plugin used during the folder comparison is used
-          in the editor before the diff algorithm.</para>
+          open the file. The plugin used during the folder comparison is used in
+          the editor before the diff algorithm.</para>
         </listitem>
 
         <listitem>
@@ -235,9 +229,8 @@
       <title><filename>CompareMSExcelFiles.dll</filename></title>
 
       <para>Displays the text content of a <trademark
-      class="registered">Microsoft</trademark>
-      <application>Excel</application> file, stripping away all formatting and
-      embedded objects.</para>
+      class="registered">Microsoft</trademark> <application>Excel</application>
+      file, stripping away all formatting and embedded objects.</para>
 
       <para><segmentedlist>
           <segtitle>Categorie</segtitle>
@@ -256,9 +249,7 @@
             <seg>No</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
-            <application>Excel</application>, <link
-            linkend="MSVBVM60"><application>Visual Basic</application> runtime
-            library</link></seg>
+            <application>Excel</application>, <xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -289,8 +280,7 @@
 
             <seg><trademark
             class="registered">Microsoft</trademark><application>Word</application>,
-            <link linkend="MSVBVM60"><application>Visual Basic</application>
-            runtime library</link></seg>
+            <xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -298,9 +288,9 @@
     <section id="DisplayXMLFiles">
       <title><filename>DisplayXMLFiles.dll</filename></title>
 
-      <para>This plugin display XML files nicely, by consistently inserting
-      tabs and linebreaks. This is to fix XML files which do not have line
-      returns in convenient locations.</para>
+      <para>This plugin display XML files nicely, by consistently inserting tabs
+      and linebreaks. This is to fix XML files which do not have line returns in
+      convenient locations.</para>
 
       <para><segmentedlist>
           <segtitle>Categorie</segtitle>
@@ -330,13 +320,13 @@
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection
-          to UPPER CASE.</simpara>
+          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to
+          UPPER CASE.</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection
-          to lower case.</simpara>
+          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to
+          lower case.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -353,8 +343,8 @@
       <title><filename>IgnoreColumns.dll</filename></title>
 
       <para>The plugin ignore the characters at specified columns. It does not
-      support files with tabulations (no crash, but all tabs will be treated
-      as a normal character). The first column has number 1.</para>
+      support files with tabulations (no crash, but all tabs will be treated as
+      a normal character). The first column has number 1.</para>
 
       <para>For the parameters, you just need to rename the dll with the
       following syntax:</para>
@@ -396,8 +386,8 @@
             <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
 
             <listitem>
-              <simpara>Ignore all the characters in column 1, and in columns
-              30 to 40.</simpara>
+              <simpara>Ignore all the characters in column 1, and in columns 30
+              to 40.</simpara>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -449,8 +439,8 @@
       as delimiters (CSV files for example). It ignore the characters in the
       specified fields. First field has number 1.</para>
 
-      <para>Modify the filename to specify the fields. See <link
-      linkend="IgnoreColumns">IgnoreColumns.dll</link> for the syntax.</para>
+      <para>Modify the filename to specify the fields. See <xref
+      linkend="IgnoreColumns" /> for the syntax.</para>
 
       <para><segmentedlist>
           <segtitle>Categorie</segtitle>
@@ -471,11 +461,11 @@
       <para>The plugin is for files with fields and
       <emphasis>tabulations</emphasis> as delimiters
       (<application>Excel</application> files saved in format <filename
-      class="extension">*.txt</filename> for example). It ignore the
-      characters in the specified fields. First field has number 1.</para>
+      class="extension">*.txt</filename> for example). It ignore the characters
+      in the specified fields. First field has number 1.</para>
 
-      <para>Modify the filename to specify the fields. See <link
-      linkend="IgnoreColumns">IgnoreColumns.dll</link> for the syntax.</para>
+      <para>Modify the filename to specify the fields. See <xref
+      linkend="IgnoreColumns" /> for the syntax.</para>
 
       <para><segmentedlist>
           <segtitle>Categorie</segtitle>
@@ -508,8 +498,7 @@
 
             <seg><filename class="extension">*.nc</filename></seg>
 
-            <seg><link linkend="MSVBVM60"><application>Visual
-            Basic</application> runtime library</link></seg>
+            <seg><xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -548,9 +537,9 @@
       <title><filename>RCLocalizationHelper.dll</filename>,
       <filename>RCLocalizationHelperU.dll</filename></title>
 
-      <para>The plugin preprocesses RC files by stripping out localized
-      strings, to enable comparing differnt language versions of the same RC
-      file and ignoring the translations.</para>
+      <para>The plugin preprocesses RC files by stripping out localized strings,
+      to enable comparing differnt language versions of the same RC file and
+      ignoring the translations.</para>
 
       <para><filename>RCLocalizationHelperU.dll</filename> is the Unicode
       version.</para>
@@ -582,8 +571,8 @@
         </listitem>
 
         <listitem>
-          <simpara><filename>WatchEndOfLog.dll</filename> truncates the files
-          to the first 1/10th.</simpara>
+          <simpara><filename>WatchEndOfLog.dll</filename> truncates the files to
+          the first 1/10th.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -615,8 +604,8 @@
     <section>
       <title>Windows Script Host</title>
 
-      <para>Some editor complements need this optional component from
-      <trademark class="registered">Microsoft</trademark>.</para>
+      <para>Some editor complements need this optional component from <trademark
+      class="registered">Microsoft</trademark>.</para>
 
       <para>If the list of editor complements does not present all editor
       plugins, this component is probably missing. You can check easily.
@@ -630,8 +619,8 @@
     <section id="MSVBVM60">
       <title><application>Visual Basic</application> runtime library</title>
 
-      <para>Some plugins require <application>Visual Basic</application>
-      runtime library to work.</para>
+      <para>Some plugins require <application>Visual Basic</application> runtime
+      library to work.</para>
 
       <para>You can download the required file <filename><ulink
       url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>
