@@ -4,7 +4,7 @@
 
   <section>
     <title><indexterm>
-        <primary>Getting started with WinMerge </primary>
+        <primary>Getting started with WinMerge</primary>
       </indexterm><indexterm>
         <primary>Opening files and folders</primary>
 
@@ -147,8 +147,7 @@
                 consider enabling the <guilabel>Open-dialog
                 Auto-completion</guilabel> option. With this option, WinMerge
                 shows a list of paths available as you type in the fields. See
-                <link linkend="Configuration">Options &amp; configuration</link>
-                for details.</para>
+                <xref linkend="Configuration" /> for details.</para>
               </tip>
             </listitem>
 
@@ -212,8 +211,8 @@
               <para>File filtering is more powerful than extension filtering.
               Click the <guibutton>Select</guibutton> button next to the
               <guilabel>Filters</guilabel> field to choose from a list of
-              available filters. See <link linkend="Filters">Filters</link> for
-              full details.</para>
+              available filters. See <xref linkend="Filters" /> for full
+              details.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -271,8 +270,8 @@
             </listitem>
           </itemizedlist>
 
-          <para>See <link linkend="OpenPaths">Opening files and folders</link>
-          for more information about project files.</para>
+          <para>See <xref linkend="OpenPaths" /> for more information about
+          project files.</para>
         </listitem>
 
         <listitem>

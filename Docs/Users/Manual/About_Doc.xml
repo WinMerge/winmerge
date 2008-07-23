@@ -2,40 +2,47 @@
 <article id="AboutDoc">
   <title>About this document</title>
 
-  <para>This document is the user manual for WinMerge 2.8. It explains the capabilities and limitations of WinMerge. This manual is recommended reading for both new and experienced users.</para>
+  <para>This document is the user manual for WinMerge 2.8. It explains the
+  capabilities and limitations of WinMerge. This manual is recommended reading
+  for both new and experienced users.</para>
 
-  <para>To learn essential WinMerge basics, please read the following topics:</para>
+  <para>To learn essential WinMerge basics, please read the following
+  topics:</para>
 
   <variablelist>
     <varlistentry>
-      <term><link linkend="QuickStart">Quick start</link></term>
+      <term><xref linkend="QuickStart" /></term>
 
       <listitem>
-        <para>Gets you quickly started with WinMerge and shows its basic usage.</para>
+        <para>Gets you quickly started with WinMerge and shows its basic
+        usage.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="CompareDirs">Comparing folders</link></term>
+      <term><xref linkend="CompareDirs" /></term>
 
       <listitem>
-        <para>Explains the folder comparison window, available operations, and customizing the results display.</para>
+        <para>Explains the folder comparison window, available operations, and
+        customizing the results display.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="CompareFiles">Comparing files</link></term>
+      <term><xref linkend="CompareFiles" /></term>
 
       <listitem>
-        <para>Explains the file comparison/merge window, available operations, methods of navigation, and modes.</para>
+        <para>Explains the file comparison/merge window, available operations,
+        methods of navigation, and modes.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="Configuration">Options and configuration</link></term>
+      <term><xref linkend="Configuration" /></term>
 
       <listitem>
-        <para>Explains how to customize WinMerge, including handling whitespace, colours, and text encoding.</para>
+        <para>Explains how to customize WinMerge, including handling whitespace,
+        colours, and text encoding.</para>
       </listitem>
     </varlistentry>
   </variablelist>
@@ -44,44 +51,53 @@
 
   <variablelist>
     <varlistentry>
-      <term><link linkend="OpenPaths">Opening files and folders</link></term>
+      <term><xref linkend="OpenPaths" /></term>
 
       <listitem>
-        <para>Introduces several ways to open files and folders in WinMerge - there are many! For example, do you know how to use the Shell Extension context menu in advanced mode?</para>
+        <para>Introduces several ways to open files and folders in WinMerge -
+        there are many! For example, do you know how to use the Shell Extension
+        context menu in advanced mode?</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="Plugins">Plugins</link></term>
+      <term><xref linkend="Plugins" /></term>
 
       <listitem>
-        <para>Describes the optional, extra features that you can add to WinMerge using its plugin mechanism.</para>
+        <para>Describes the optional, extra features that you can add to
+        WinMerge using its plugin mechanism.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="Filters">Filters</link></term>
+      <term><xref linkend="Filters" /></term>
 
       <listitem>
-        <para>Explains how to control what is compared in the folder or file comparison window.</para>
+        <para>Explains how to control what is compared in the folder or file
+        comparison window.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="CommandLine">Commandline</link></term>
+      <term><xref linkend="CommandLine" /></term>
 
       <listitem>
-        <para>Lists command-line parameters for using WinMerge with other tools or from a script.</para>
+        <para>Lists command-line parameters for using WinMerge with other tools
+        or from a script.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><link linkend="Faq">FAQ</link></term>
+      <term><xref linkend="Faq" /></term>
 
       <listitem>
-        <para>Contains answers to many common questions asked of developers.</para>
+        <para>Contains answers to many common questions asked of
+        developers.</para>
 
-        <para>Before submitting questions to <ulink url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>, please check the FAQ first to see if your question is answered there.</para>
+        <para>Before submitting questions to <ulink
+        url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>,
+        please check the FAQ first to see if your question is answered
+        there.</para>
       </listitem>
     </varlistentry>
   </variablelist>
