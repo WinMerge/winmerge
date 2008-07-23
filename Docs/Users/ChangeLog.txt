@@ -10,6 +10,7 @@ WinMerge 2.11.1.2
   BugFix: Failed to compare UTF-8 files plugins disabled (#2018287)
   Bugfix: Don't warn about closing multiple windows when only one
    window is open (#2010463)
+  BugFix: Moving was allowed for protected items (#2023734)
 
 WinMerge 2.11.1.1 - 2008-07-11 (r5609)
   Manual: Introduction update (#2011365)
