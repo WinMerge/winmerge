@@ -1,68 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="CompareDirs">
-  <title>Comparing Folders</title>
+  <title>Comparing folders<indexterm>
+      <primary>comparing folders</primary>
+    </indexterm></title>
 
-  <para>The Folder compare window displays all of the files and subfolders
-  compared in a sortable list view. Files and subfolders may be synchronized
-  by copying or deleting, and actions may be performed on multiple items
-  simultaneously. The columns displayed may be changed and reordered.</para>
-
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="screenshots/foldercomp1.png" format="PNG" />
-    </imageobject>
-  </mediaobject>
-
-  <para>Folder comparison has two different modes. The mode is selected in the
-  Open dialog with the "<guilabel>Include
-  Subfolders</guilabel>"-checkbox.<itemizedlist>
-      <listitem>
-        <para>When subfolders are included, all subfolders and their contents
-        are compared. Files are displayed depending on the options on the
-        <guimenu>View</guimenu> menu (eg, <guimenuitem>Show Identical
-        Files</guimenuitem>). Common folders are never displayed (but all
-        files inside of them are). Folders only existing on one side are
-        displayed according to the <guimenu>View</guimenu> menu options (eg,
-        <guimenuitem>Show Left Unique Files</guimenuitem>).</para>
-
-        <para>This mode does not allow browsing folders and can be slow if
-        there are many subfolders and files. But it is easy to see and handle
-        different files in whole folder structure.</para>
-      </listitem>
-
-      <listitem>
-        <para>When subfolders are not included only files in selected folders
-        and names of subfolders are shown.</para>
-
-        <para>This mode allows browsing folders by opening subfolders and
-        parent folders. This mode has the advantage of speed, as it may be
-        much faster when there are many subfolders that need not be examined.
-        Also the display may be easier to manage, showing only items in one
-        folder.</para>
-      </listitem>
-    </itemizedlist></para>
-
-  <para>In WinMerge version 2.4 and later there is a <guilabel>Compare by
-  Quick Contents</guilabel> -compare method which makes possible to compare
-  big binary files. For more information about different compare methods see
-  <link linkend="Configuration">Options &amp; configuration</link> -chapter.
-  In WinMerge version 2.4 and later all files bigger than 4 MB (megabytes) are
-  automatically compared with Compare by Quick Contents -method. Downsides for
-  this method are that linefilters do not work and there is no difference
-  counts information in folder compare UI. For most cases this should not
-  matter since so big files usually are binary files.</para>
-
-  <para>For advanced users: If that limit does not feel good (you have lots of
-  big text files) it can be changed via registry value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>.
-  As usual be careful when changing values directly to registry!</para>
+  <para>This topic describes how to compare and merge folders using the Folder
+  Compare window.</para>
 
   <section>
-    <title><indexterm>
-        <primary>Folder Compare Result</primary>
-      </indexterm>Compare Results</title>
+    <title>Starting a folder compare operation</title>
 
-    <para>Files and folders are compared and divided into several categories.
-    Categories are easy to recognize from these icons:<simplelist>
+    <para>You can begin a folder compare operation from either the WinMerge
+    window or a Command Prompt window.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>From the WinMerge window</term>
+
+        <listitem>
+          <para>Click <menuchoice>
+              <guimenu>File</guimenu>
+
+              <guimenuitem>Open</guimenuitem>
+            </menuchoice>. Use the Select Files or Folders dialog to specify the
+          left and right folders to compare. By default, the compare includes
+          all files in the folders, and is nonrecursive (does not include
+          subfolders). To change any of these options and for more details about
+          the Select Files or Folder dialog, see <xref
+          linkend="OpenPaths" />.<!--This topic focuses mainly on the WinMerge window method.--></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>From a Command Prompt window</term>
+
+        <listitem>
+          <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge
+          install directory. In your command arguments, include the left and
+          right folders to compare. By default, the compare is includes all
+          files in the folders, and is nonrecursive. To change any of these
+          options and for information about other command options, see <xref
+          linkend="CommandLine" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <tip>
+      <para>Recursive mode is useful for detecting and manipulating different
+      files in an entire folder structure. However, it can be slow if there are
+      many subfolders and files.</para>
+
+      <para>Nonrecursive mode has the advantage of speed when there are many
+      subfolders that need not be examined. Also, the display can be easier to
+      manage because it shows items in only selected folders.</para>
+    </tip>
+
+    <note>
+      <title>Compare by Quick Contents option</title>
+
+      <para>WinMerge 2.4 introduced the <guilabel>Quick Contents</guilabel>
+      method for file comparison, described in <xref linkend="Configuration" />.
+      This method can be useful when you compare big binary files; and it is
+      automatically used to compare files bigger than 4 MB. Possible
+      disadvantages are that line filters do not work, and there is no
+      difference counts information in the Folder Compare window. This should
+      not matter In most cases, because such large files are usually
+      binary.</para>
+
+      <para>To use this method, configure it before your compare operation: in
+      the Compare page of the WinMerge options, click the <guilabel>File Compare
+      method</guilabel> drop-down menu and choose <guimenuitem>Quick
+      Contents</guimenuitem>.</para>
+    </note>
+
+    <note>
+      <title>For advanced users</title>
+
+      <para>You can change the 4 MB file size limit of the <guilabel>Compare by
+      Quick Contents</guilabel>, for example if you have a lot of very big text
+      files. To do so, run the Windows <command>regedit</command> command,
+      navigate to this keyword, and modify its value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>As
+      usual, be careful when changing values directly in the registry!</para>
+    </note>
+
+    <section>
+      <title>Folder Compare Progress window<indexterm>
+          <primary>Folder Compare Progress window</primary>
+        </indexterm></title>
+
+      <para>When you start a folder compare operation, WinMerge displays this
+      status window:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/foldercmp_progress.png" format="PNG" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Folder Compare Progress window</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>If the compare operation is quick, you might not notice the Progress
+      window, which closes as soon as WinMerge displays the Folder Compare
+      result. The Progress window shows the number of files and folders to be
+      included in the operation, and the number compared so far. The progress
+      bar graphically represents the Items compared.</para>
+
+      <note>
+        <para>Because the files compares are usually of different sizes, the
+        status data does not indicate the time used or remaining. For example, a
+        50/100 ratio does not necessarily mean that half of the compare
+        operation time is expired.</para>
+      </note>
+
+      <para>You can click <guibutton>Stop</guibutton> to terminate the operation
+      at any time before the compare operation finishes. The Folder Compare
+      window is displayed with the results calculated at that time, omitting any
+      uncompleted results.<!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
+I get the partial list, but no Abort indicator.--></para>
+
+      <note>
+        <title>Note to users of previous WinMerge versions</title>
+
+        <para>The new Progress window was one of most visible changes in
+        WinMerge Version 2.6. The new design is simpler, eliminating details
+        that were not useful for comparing. Also, the window is closed
+        automatically because the data is no longer needed: you can view
+        statistics for the current results by clicking <menuchoice>
+            <guimenu>View</guimenu>
+
+            <guimenuitem>Compare Statistics</guimenuitem>
+          </menuchoice>.</para>
+      </note>
+    </section>
+  </section>
+
+  <section>
+    <title>Folder Compare window<indexterm>
+        <primary>Folder Compare window</primary>
+      </indexterm></title>
+
+    <para>The Folder Compare window shows the result of a folder compare in a
+    tabular view. Each row lists a file, parent folder, or subfolder in the
+    result, and the columns show different types of data for each item. You can
+    customize the table by changing the sorting of rows or the types of column
+    data displayed. Here is an example of a folder compare result:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata contentwidth="637" fileref="screenshots/foldercomp1.png"
+                   format="PNG" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>Recursive and nonrecursive compare results<indexterm>
+          <primary>recursive folder compare</primary>
+
+          <secondary>results view</secondary>
+        </indexterm><indexterm>
+          <primary>nonrecursive folder compare</primary>
+
+          <secondary>results view</secondary>
+        </indexterm></title>
+
+      <para>The Folder Compare window looks and behaves slightly differently for
+      recursive and nonrecursive compares:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Recursive folder compare</term>
+
+          <listitem>
+            <para>The compare result includes all subfolders. You can control
+            the types of items displayed within the folders by choosing the
+            options in the <guimenu>View</guimenu> menu (for example,
+            <guimenuitem>Show Identical Items</guimenuitem>). The Folder column
+            is always empty: only the files within the folders are displayed. To
+            see an item's subfolder, look at its path in the Compare result
+            column. Folders that exist on only one side are displayed if one of
+            the <guimenu>View</guimenu> menu options, <guimenuitem>Show Left
+            Unique Files</guimenuitem> or <guimenuitem>Show Left Unique
+            Files</guimenuitem>, is enabled.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Nonrecursive folder compare</term>
+
+          <listitem>
+            <para>The result includes only the files and subfolders at the top
+            level of the selected folders. However, you can browse to any
+            subfolder that you want to compare.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>File and folder icons<indexterm>
+          <primary>icons</primary>
+
+          <secondary>Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>In the Compare Folders window, files and folders are compared and
+      divided into several categories. In each row, the category is clearly
+      identified in the left column with one of these icons :</para>
+
+      <simplelist>
         <member><inlinemediaobject>
             <imageobject>
               <imagedata fileref="screenshots/equal.png" format="PNG" />
@@ -136,537 +283,872 @@
             </imageobject>
           </inlinemediaobject> Aborted item. WinMerge did not finish comparing
         this item when compare was stopped. Result is unknown.</member>
-      </simplelist></para>
-  </section>
-
-  <section>
-    <title>Folder Compare Status</title>
-
-    <para>During the folder comparison WinMerge shows status panel:</para>
-
-    <para><mediaobject>
-        <imageobject>
-          <imagedata fileref="screenshots/foldercmp_progress.png" format="PNG" />
-        </imageobject>
-      </mediaobject></para>
-
-    <para>The panel shows approximate status and progress of the compare.
-    Status is shown as a number of items and a progressbar. Numbers show how
-    many items (files and folders) WinMerge has found to compare. Progressbar
-    shows same info graphically.</para>
-
-    <important>
-      <para>Progressbar is for item counts. As there usually are different
-      sized files in compare it does not directly map to time used/remaining.
-      So 50/100 items does not strictly mean compare is in half by time
-      used.</para>
-    </important>
-
-    <para>Folder compare can be stopped by selecting
-    <guibutton>Stop</guibutton>-button and results for files and folders
-    compared so far are shown. When compare is stopped before it finishes,
-    some files may be in middle of comparison. Those files are marked as
-    <guilabel>Aborted</guilabel> in comparison results. It means result is not
-    available for them.</para>
-
-    <para>When folder compare is ready status panel is closed and results are
-    shown.</para>
-
-    <note>
-      <para>This is one of most visible changes in WinMerge version 2.6. New
-      status panel may feel "just too simple" after using previous WinMerge
-      versions. The fact is most of the details in previous versions were
-      useless during the compare. So simplicity was choosen for new design.
-      Automatic closing may also feel weird at starters. But there is no
-      information visible that would be needed after the compare.</para>
-    </note>
-
-    <para>Compare statistics are visible in separate dialog which can be
-    opened after compare from menu: <menuchoice>
-        <guimenu>View</guimenu>
-
-        <guimenuitem>Compare Statistics</guimenuitem>
-      </menuchoice>.</para>
-  </section>
-
-  <section>
-    <title>Selecting Items to Show</title>
-
-    <para>In "<guimenu>View</guimenu>" menu there are several choices for
-    selecting which categories to show / hide.</para>
-
-    <itemizedlist>
-      <listitem>
-        <simpara><guimenuitem>Show identical files</guimenuitem> : shows and
-        hides files detected as identical</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guimenuitem>Show different files</guimenuitem> : shows and
-        hides files detected as different</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guimenuitem>Show left unique files</guimenuitem> : shows and
-        hides files and directories present only in left side</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guimenuitem>Show right unique files</guimenuitem> : shows
-        and hides files and directories present only in right side</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guimenuitem>Show binary files</guimenuitem> : shows and
-        hides files detected as binaries</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guimenuitem>Show skipped files</guimenuitem> : shows and
-        hides files and directories filtered out by file filters</simpara>
-      </listitem>
-    </itemizedlist>
-  </section>
-
-  <section>
-    <title><indexterm>
-        <primary>Folder Compare Columns</primary>
-      </indexterm>Columns in Folder Compare</title>
-
-    <para>By default these columns are visible:</para>
-
-    <itemizedlist>
-      <listitem>
-        <simpara><guilabel>Filename</guilabel></simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Folder</guilabel> : Relative folder name for
-        compare path. If subfolders are not included this is empty.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Comparison result</guilabel> : Verbose comparison
-        result (see also <guilabel>Short Result</guilabel>)</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Date</guilabel> &amp; <guilabel>Right
-        Date</guilabel>: Modification date of item. Note that newer date is
-        prefixed with asterisk "<guilabel>*</guilabel>".</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Extension</guilabel> : File's extension, handy for
-        sorting</simpara>
-      </listitem>
-    </itemizedlist>
-
-    <para>Following columns are available through "<guimenuitem>Customize
-    Columns</guimenuitem>"-dialog:</para>
-
-    <itemizedlist>
-      <listitem>
-        <simpara><guilabel>Short Result</guilabel> : Result in shorter form
-        ("Right Only").</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Binary</guilabel> : Column contains an asterisk
-        "<guilabel>*</guilabel>" when the file is a binary file. This is handy
-        for sorting and to use with "<guilabel>Short
-        Result</guilabel>"-column.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right
-        Attributes</guilabel> : Shows file attributes.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Creation Time</guilabel> &amp; <guilabel>Right
-        Creation Time</guilabel> : Item creation time.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right
-        Encoding</guilabel> : File encoding. Shows codepage number for ANSI
-        files, and Unicode encoding for Unicode files.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left File Version</guilabel> &amp; <guilabel>Right
-        File Version</guilabel> : Version number from file if present. Note
-        that this is read for only some binary file types known to usually
-        have a version resource.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Size</guilabel> &amp; <guilabel>Right
-        Size</guilabel> : File size in bytes.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left Size (Short)</guilabel> &amp; <guilabel>Right
-        Size (Short)</guilabel> : Shorter versions of file sizes, rounded to
-        kilo-, mega- or gigabytes.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Newer File</guilabel> : Shows which side is
-        newer.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Differences</guilabel> : Amount of differences
-        found between files, not including possibly ignored
-        differences.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Ignored Diff.</guilabel> : Amount of ignored
-        differences in files. These are differences ignored by line
-        filters.</simpara>
-      </listitem>
-
-      <listitem>
-        <simpara><guilabel>Left EOL &amp; Right EOL</guilabel> : Show EOL
-        style (linefeed style) of files.</simpara>
-      </listitem>
-    </itemizedlist>
-  </section>
-
-  <section>
-    <title>Browsing Folders</title>
-
-    <para>Browsing folders is only possible when subfolders are not included
-    to compare (<guilabel>Include Subfolders</guilabel> checkbox is not
-    checked in <guilabel>Open</guilabel>-dialog). Parent folders
-    ("<guilabel>..</guilabel>"-item) and subfolders existing in both sides can
-    be compared by double-clicking with mouse over them or selecting them and
-    pressing <keycap>Enter</keycap>.</para>
-
-    <para>Sometimes parent folder cannot be opened (no access to it). These
-    two icons indicate if parent folder can be opened:</para>
-
-    <simplelist type="vert">
-      <member><inlinemediaobject>
-          <imageobject>
-            <imagedata fileref="screenshots/folderup.png" format="PNG" />
-          </imageobject>
-        </inlinemediaobject> Parent folder can be opened.</member>
-
-      <member><inlinemediaobject>
-          <imageobject>
-            <imagedata fileref="screenshots/folderup_disable.png" format="PNG" />
-          </imageobject>
-        </inlinemediaobject> Parent folder cannot be opened.</member>
-    </simplelist>
-
-    <para>It is possible to browse both sides to the same folder (<filename
-    class="directory">C:\Work\</filename> and <filename
-    class="directory">C:\Work\</filename>). 2.6 and earlier versions of
-    WinMerge prevented this, but it restricted usage in some cases. In such
-    case both sides contain the exactly same files and folders.</para>
-
-    <para>It is possible to select two different folders from the folder
-    compare and open them to different sides. First selected folder becomes
-    the left-side folder and second selected folder becomes the right-side
-    folder. This can be used in situation explained in previous paragraph when
-    there is same folder compared as both sides.</para>
+      </simplelist>
+    </section>
 
     <section>
-      <title><indexterm>
-          <primary>Open Unique Folders</primary>
-        </indexterm>Unique Folders</title>
+      <title>Navigating the Folder Compare window</title>
 
-      <para>WinMerge 2.6 and earlier could not open unique folders (folders
-      existing only in other side). An error message was shown about trying to
-      open unique folder. This restriction came from a fact that WinMerge
-      cannot compare existing folder to non-existing folder. If one wanted to
-      copy contents of unique folder, then whole folder structure must been
-      copied.</para>
+      <para>You can use the mouse as well as keyboard and context menu shortcuts
+      to navigate the Folder Compare window. You can also use the toolbar
+      buttons. For example, the <inlinemediaobject>
+          <imageobject>
+            <imagedata contentdepth="15" fileref="screenshots/nextdiff_btn.png" />
+          </imageobject>
 
-      <para>Copying whole unique folder structure is many times not wanted.
-      WinMerge 2.8 allows creating the missing folder and browsing then into
-      that created folder. So that contents of original unique folder and
-      created empty folder can be compared. Now it is possible to copy just
-      one file (or subfolder) in unique folder.</para>
+          <textobject>
+            <phrase>Next Difference button</phrase>
+          </textobject>
+        </inlinemediaobject> <guimenuitem>Next Difference</guimenuitem> button
+      finds the next different file or folder and selects it.</para>
 
-      <para>To navigate into unique folder, select the folder, and browse into
-      it as normally (press <keycap>Enter</keycap> -key, double-click over
-      foldername with mouse, or select
-      <guimenu>Merge</guimenu><guimenuitem>Compare</guimenuitem> from the
-      menu. WinMerge shows a message asking if the missing folder should be
-      created. Answer <guilabel>Yes</guilabel> to create the folder, or
-      <guilabel>No</guilabel> to cancel the action.</para>
+      <note>
+        <para>Unique files and folders are navigated in the same way as
+        different ones.</para>
+      </note>
+
+      <para>You can select multiple files and folders. However, some operations
+      (like <command>Rename</command>) are not available with multiple
+      selections.</para>
+
+      <para>Use the navigation buttons (<guibutton>Next Difference</guibutton>,
+      <guibutton>Previous Difference</guibutton>, and so on) to step through
+      differences in the compared files. Use WinMerge functions to merge
+      contents by copying, moving, or delete one or more files or
+      subfolders.</para>
     </section>
   </section>
 
   <section>
-    <title>Navigation in Folder Compare</title>
+    <title>File operations in Folder Compare<indexterm>
+        <primary>file operations</primary>
 
-    <para>In addition moving selection using mouse or keyboard, also
-    <guimenu>Merge</guimenu>-menu navigation commands, toolbar buttons and
-    shortcut keys can be used. For example "<guimenuitem>Next
-    diff</guimenuitem>" finds next different file and selects it.</para>
+        <secondary>in Folder Compare window</secondary>
+      </indexterm></title>
 
-    <note>
-      <para>Unique files and folders are considered as different ones.</para>
-    </note>
+    <para>The Folder Compare window supports common operations on files, like
+    editing, copying, deleting, moving, and renaming (moving is equivalent to a
+    copy operation followed by a delete). You can use these file operations and
+    some special WinMerge functions to merge the contents of folders. You can
+    also open files using associated programs or external editors.</para>
 
-    <para>Multiple files/folders can be selected. However not all operations
-    are possible with multi-selection.</para>
-  </section>
-
-  <section>
-    <title>File Operations in Folder Compare</title>
+    <para>The most convenient way to perform most of these tasks is to
+    right-click one or more items and use the context menu, where all file
+    operations are available.</para>
 
     <section>
-      <title>Copying, moving and deleting</title>
+      <title>Copying files<indexterm>
+          <primary>copying files</primary>
 
-      <para>Folder compare allows user to copy and delete files and folders.
-      File operations are available through context menu (right-click with
-      mouse). Also files can be opened to associated program or into external
-      editor.</para>
+          <secondary>in Folder Compare window</secondary>
+        </indexterm></title>
 
-      <para>In file operation menu, there are one or two numbers shown,
-      depending on files/folders selected. If there is one number shown, for
-      example "<guimenuitem>Copy/Left to... (5)</guimenuitem>" that means
-      there is 5 items selected, and all items can be copied. But if there is
-      two numbers shown, for example "<guimenuitem>Copy/Left to... (3 of
-      5)</guimenuitem>", that means there are 5 items selected but only 3
-      items can be copied.</para>
+      <para>The most common file operation in the Folder Compare window is
+      copying files from side to side. There are several forms of the WinMerge
+      copy function: all of them copy only files that are different, because
+      copying identical files is of no use in merging. The copy functions are
+      available in the context menu, in the WinMerge menu, and in the
+      toolbar:</para>
 
-      <para>Most common operation is copying files from side to side. File can
-      be copied from side to side using <guimenu>Merge</guimenu>-menu items,
-      toolbar buttons and context menu. If multiple files are selected, or
-      file to overwrite is read-only, confirmation dialog is shown.</para>
+      <section>
+        <title>Context menu Copy shortcuts</title>
 
-      <para>Sometimes it is useful to copy certain files and/or folders to
-      another folder instead of another compared folder. This can be done
-      selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or
-      "<guimenuitem>Copy/Right to...</guimenuitem>" items.</para>
+        <para>In the Folder Compare window's context menu, the
+        <guimenuitem>Copy</guimenuitem> item has a submenu with four
+        shortcuts:</para>
 
-      <para>Another file/folder operation is deleting. Items in another or
-      both sides can be deleted. There is "<guilabel>Send deleted files into
-      Recycle Bin</guilabel>" option in system options (See <link
-      linkend="Configuration">Options &amp; Configuration</link> -chapter). It
-      is highly recommended to keep that option enabled so deletion can be
-      undone if accidents happen. Note however recycle bin does not help if
-      its disabled from Windows settings.</para>
+        <mediaobject>
+          <imageobject>
+            <imagedata contentwidth="526"
+                       fileref="screenshots/ctx_menu_copy1.png" format="PNG" />
+          </imageobject>
 
-      <para>Moving is just a shortcut for copy + delete.</para>
+          <textobject>
+            <phrase>Folder Compare window Copy context menu</phrase>
+          </textobject>
+        </mediaobject>
+
+        <itemizedlist>
+          <listitem>
+            <para><guimenuitem>Left to Right</guimenuitem> and
+            <guimenuitem>Right to Left</guimenuitem> copy the selection (or just
+            the items in the selection that can be copied) from one side to the
+            other. In the example, the suffix <guilabel>(2 of 4)</guilabel>
+            indicates that only the two files that are different will be copied;
+            the identical files will not. These shortcuts available only if any
+            of the files you select is different: if you select only identical
+            files, the shortcuts are unavailable.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem>Left to...</guimenuitem> and <guimenuitem>Right
+            to...</guimenuitem> enable you to specify a copy target directory in
+            your system, instead of a compared folder. When the Browse for
+            Folder dialog opens, navigate to the target directory on your system
+            (or create a new target folder) and click
+            <guibutton>OK</guibutton>.</para>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Toolbar and menu Copy commands</title>
+
+        <para>In the Folder Compare toolbar, <inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="17"
+                         fileref="screenshots/copyr_button.png" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Copy Right button</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Copy Right</guibutton> and
+        <inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="17"
+                         fileref="screenshots/copyl_button.png" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Copy Left button</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Copy Left</guibutton> accomplish the
+        same task as the <guimenuitem>Left to Right</guimenuitem> and
+        <guimenuitem>Right to Left</guimenuitem> context menu shortcuts: they
+        copy from side to side only files that are valid to copy. However, these
+        commands do not directly display the number of files to be copied;
+        instead, they display a confirmation dialog where you can check a list
+        of source and target file paths.</para>
+
+        <para>In the WinMerge menu, <menuchoice>
+            <guimenu>Merge</guimenu>
+
+            <guimenuitem>Copy to Right</guimenuitem>
+          </menuchoice> and <menuchoice>
+            <guimenu>Merge</guimenu>
+
+            <guimenuitem>Copy to Left</guimenuitem>
+          </menuchoice> behave the same way as the toolbar Copy commands.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Deleting files<indexterm>
+          <primary>deleting files</primary>
+
+          <secondary>in Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>You can use the <guimenuitem>Delete</guimenuitem> context menu item
+      to delete selected items in either or both sides. Like other file
+      operations, <guimenuitem>Delete</guimenuitem> has a submenu with
+      <guimenuitem>Left</guimenuitem>, <guimenuitem>Right</guimenuitem>, and
+      <guimenuitem>Both</guimenuitem> shortcuts.</para>
 
       <warning>
-        <para>File/folder deletion cannot be undone if <guilabel>Recycle
-        Bin</guilabel> is not used!</para>
+        <para>We highly recommend that you keep the <guilabel>Send deleted files
+        into Recycle Bin</guilabel> option enabled See <xref
+        linkend="Configuration" />), so that you can undo deletions in case of
+        accidents. In addition, you should keep Recycle Bin enabled: the
+        WinMerge option does not work if you disable the Recycle Bin in Windows.
+        Again, you cannot undo file or folder deletion unless you use both the
+        WinMerge <guilabel>Send deleted files into Recycle Bin</guilabel> option
+        and the Windows Recycle Bin!</para>
       </warning>
     </section>
 
     <section>
-      <title>Renaming</title>
+      <title>Renaming files<indexterm>
+          <primary>renaming files</primary>
 
-      <para>Renaming files and folders is available through context menu item
-      <guimenuitem>Rename</guimenuitem> or using <keycap>F2</keycap> -shortcut
-      key. Edit-box appears and allows editing of the name. Renaming can be
-      cancelled by pressing <keycap>Esc</keycap> -key. Note that items in both
-      sides are renamed. Renaming just other side is not currently
-      possible.</para>
+          <secondary>in Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>To rename a file or folder, choose <guimenuitem>Rename</guimenuitem>
+      in its context menu or press <keycap>F2</keycap>. Then change the name in
+      the edit box and press <keycap>Return</keycap>, or press
+      <keycap>Esc</keycap> to cancel. You can only rename a single file or
+      folder. Note that renaming changes items in both sides: it is not
+      currently possible to rename an item on just one side.</para>
     </section>
 
     <section>
-      <title>Opening files</title>
+      <title>Opening files<indexterm>
+          <primary>opening files</primary>
 
-      <para>There are three items in <guimenu>Open</guimenu>-menus:</para>
+          <secondary>in Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>In the context menu, you can use either <guimenuitem>Open
+      Left</guimenuitem> and <guimenuitem>Open Right</guimenuitem>, depending on
+      which side you want to operate on. Each <guimenuitem>Open</guimenuitem>
+      menu item has a submenu with these shortcuts:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><guimenuitem>with Registered Application</guimenuitem></term>
+
+          <listitem>
+            <para>Opens the file with the application (if any) that is
+            registered in Windows for the file's type.</para>
+
+            <tip>
+              <para>This shortcut usually opens a folder in a new Windows
+              Explorer.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>with External Editor</term>
+
+          <listitem>
+            <para>Opens the file with an external editor. The default editor is
+            Notepad, but you can configure a different one in WinMerge
+            options.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guimenuitem>with...</guimenuitem></term>
+
+          <listitem>
+            <para>Opens the <guilabel>Open With</guilabel> dialog, where you can
+            specify an application to open your file with.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Copying pathnames or filenames<indexterm>
+          <primary>pathnames</primary>
+
+          <secondary>copying from Folder Compare window</secondary>
+        </indexterm><indexterm>
+          <primary>filenames</primary>
+
+          <secondary>copying from Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>The context menu <guimenuitem>Copy Pathname</guimenuitem> and
+      <guimenuitem>Copy Filenames</guimenuitem> shortcuts copy the pathname or
+      filename of selected items to the Windows clipboard. You can then paste
+      the copied information into a file or application, for example to create a
+      list of changed files or a change log.</para>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>With Registered Application</guimenuitem> :
-          Opens file with application registered for editing filetype for
-          Windows, if there is one.</simpara>
+          <para><guimenuitem>Copy Pathnames</guimenuitem> has a menu with three
+          shortcuts, similar to other file operations. It copies the full
+          pathnames of one or more selected items to the clipboard, one per
+          line.</para>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>With External Editor</guimenuitem> : Open with
-          external editor. Default editor can be selected from options,
-          Notepad is used by default.</simpara>
-        </listitem>
-
-        <listitem>
-          <simpara><guimenuitem>With ...</guimenuitem> : Opens "<guilabel>Open
-          With...</guilabel>" dialog asking from user with which application
-          files should be opened.</simpara>
+          <para><guimenuitem>Copy Filenames</guimenuitem> copies only filenames
+          without paths.</para>
         </listitem>
       </itemizedlist>
-
-      <tip>
-        <para>Selecting <guilabel>With Registered Application</guilabel> when
-        folder is selected usually opens that folder into new Explorer
-        window.</para>
-      </tip>
     </section>
 
     <section>
-      <title>Archiving</title>
+      <title>Protecting files<indexterm>
+          <primary>Folder Compare window</primary>
 
-      <para><guimenu>Zip</guimenu>-menu in directory compare context menu
-      allows adding selected items to archive file.</para>
+          <secondary>protecting files in</secondary>
+        </indexterm></title>
+
+      <para>To protect the files and folders on either side of a compare from
+      changes, enable the <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Left Read-only</guimenuitem>
+        </menuchoice> or <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Right Read-only</guimenuitem>
+        </menuchoice> check box.</para>
+
+      <important>
+        <para>Setting the read-only option protects files and folders only in
+        the current compare view; it does not affect their Windows file
+        attributes.</para>
+      </important>
+
+      <para>This protected status is inherited by files that you open in the
+      folder compare. For example, if you compare two folders, set one side
+      read-only, and open two files for comparing, the open file on the
+      protected side is write-protected. Similarly, you cannot copy a file from
+      the unprotected side to the protected side.</para>
+
+      <para>The <guilabel>RO</guilabel> code in the left or right side's pane in
+      the status bar (near the bottom right of the window) indicates that the
+      side is currently read-only.</para>
+    </section>
+
+    <section>
+      <title>Refreshing selected items in the view<indexterm>
+          <primary>refreshing view</primary>
+        </indexterm></title>
+
+      <para>A full refresh of large folders can take a long time. In WinMerge
+      2.2 and earlier, you always had to do a full refresh to update files after
+      editing them outside WinMerge. Starting in Version 2.4, WinMerge can
+      refresh just selected items: choose <guimenuitem>Refresh</guimenuitem>
+      from the context menu or <menuchoice>
+          <guimenu>View</guimenu>
+
+          <guimenuitem>Refresh Selected</guimenuitem>
+        </menuchoice> from the main menu.</para>
+    </section>
+
+    <section>
+      <title>Archiving files<indexterm>
+          <primary>archiving files</primary>
+
+          <secondary>in Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>Use the context menu <guimenu>Zip</guimenu> menu item to create a
+      new archive file containing the items you select.</para>
 
       <note>
-        <para>Archive support requires that 7-Zip plugin is installed to
-        system.</para>
+        <para>Archive support requires that you have installed the WinMerge
+        7-Zip plugin.</para>
       </note>
 
-      <para>Zip-submenumenu has four items:</para>
+      <para>The Zip menu item has a submenu with four shortcuts:</para>
 
-      <itemizedlist>
-        <listitem>
-          <simpara><guimenuitem>Left...</guimenuitem> : Adds left-side files
-          and folders (recursively) to the archive file</simpara>
-        </listitem>
+      <variablelist>
+        <varlistentry>
+          <term>Left</term>
 
-        <listitem>
-          <simpara><guimenuitem>Right...</guimenuitem> : Adds right-side files
-          and folders (recursively) to the archive file</simpara>
-        </listitem>
+          <listitem>
+            <para>Adds left-side files and folders recursively to the archive
+            file</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <simpara><guimenuitem>Both...</guimenuitem> : Adds files and folders
-          (recursively) from both sides to the archive file. Because filenames
-          are same, files must be put to subfolders inside archive. Left-side
-          files are put to subfolder <filename
-          class="directory">Original/</filename> and right-side files are put
-          to subfolder <filename
-          class="directory">Altered/</filename>.</simpara>
-        </listitem>
+        <varlistentry>
+          <term>Right</term>
 
-        <listitem>
-          <simpara><guimenuitem>Differences...</guimenuitem> : This is like
-          above <guimenuitem>Both</guimenuitem>, but this item adds only
-          different files (including unique files) from both sides.</simpara>
-        </listitem>
-      </itemizedlist>
+          <listitem>
+            <para>Adds right-side files and folders recursively to the archive
+            file</para>
+          </listitem>
+        </varlistentry>
 
-      <para>After selecting one of <guimenu>Zip</guimenu>-menu items dialog
-      pops up asking filename and archive type from user. WinMerge cannot add
-      files to existing archive files but it always creates new archive
-      file.</para>
+        <varlistentry>
+          <term>Both</term>
+
+          <listitem>
+            <para>Adds files and folders recursively from both sides to the
+            archive file. Because the filenames are same, they are added to
+            different subfolders, named <filename
+            class="directory">Original</filename> and <filename
+            class="directory">Altered</filename>, inside the archive: left-side
+            files are put to <filename class="directory">Original</filename>,
+            and right-side files are put into <filename
+            class="directory">Altered</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Differences</term>
+
+          <listitem>
+            <para>Like <guimenuitem>Both</guimenuitem>, but adds only different
+            files (including unique files) from both sides.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>When you select one of the <guimenu>Zip</guimenu> shortcuts, the
+      Save As dialog prompts you for the archive filename and type. WinMerge
+      cannot add files to existing archive files: it always creates a new
+      archive file.</para>
+
+      <!--Original:
+WinMerge looks for subfolders Original/ and Altered/ in archive files. If archive file contains these 
+subfolders and same filename is given to both sides WinMerge compares contents of those two folders.
+ 
+If directory compare shows contents of archive files WinMerge updates changes done to files in file 
+compare into original archive file. But WinMerge does not update archive contents for files 
+added/deleted/copied. User can create a new archive file using above menuitems instead. 
+-->
 
       <tip>
-        <para>WinMerge looks for subfolders <filename
-        class="directory">Original/</filename> and <filename
-        class="directory">Altered/</filename> in archive files. If archive
-        file contains these subfolders and same filename is given to both
-        sides WinMerge compares contents of those two folders.</para>
+        <para>WinMerge can compare the contents of archive files that have the
+        same name on both sides: WinMerge looks for the <filename
+        class="directory">Original</filename> and <filename
+        class="directory">Altered</filename> subfolders, and compares the
+        contents of those two folders.</para>
       </tip>
 
-      <para>If directory compare shows contents of archive files WinMerge
-      updates changes done to files in file compare into original archive
-      file. But WinMerge does not update archive contents for files
-      added/deleted/copied. User can create a new archive file using above
-      menuitems instead.</para>
+      <para>If a folder compare includes the contents of an archive file, any
+      changes made to the included files in WinMerge (for example, using an
+      <guimenuitem>Open</guimenuitem> file operation to edit the file) are saved
+      in the archive file. But you cannot update archive contents by using the
+      WinMerge <guimenuitem>Copy</guimenuitem>, <guimenuitem>Move</guimenuitem>,
+      or <guimenuitem>Delete</guimenuitem> file operations. Instead, create a
+      new archive file using one of the <guimenuitem>Zip</guimenuitem>
+      shortcuts.</para>
     </section>
   </section>
 
   <section>
-    <title>Copying Path- or Filenames</title>
+    <title>Browsing folders in the Folder Compare window<indexterm>
+        <primary>folders</primary>
 
-    <para>In context menu there are items for copying selected items' paths or
-    filenames to clipboard. This feature makes it easy so get list of changed
-    files, for changelogs etc.</para>
+        <secondary>browsing in Folder Compare window</secondary>
+      </indexterm></title>
 
-    <itemizedlist>
-      <listitem>
-        <simpara><guimenuitem>Copy Pathnames</guimenuitem> has three
-        subchoices like other file handling functions. It copies full
-        pathnames of selected items to clipboard, one per line.</simpara>
-      </listitem>
+    <para>This section discusses ways to browse folders that are listed in a
+    Compare Folder window. When you browse a folder, you perform a completely
+    new compare operation. Its result overwrites the current result in the
+    window.</para>
 
-      <listitem>
-        <simpara><guimenuitem>Copy Filenames</guimenuitem> copies only
-        filenames without paths.</simpara>
-      </listitem>
-    </itemizedlist>
-  </section>
+    <section>
+      <title>Browsing folders in a nonrecursive compare</title>
 
-  <section>
-    <title>Customising Folder Compare</title>
+      <para>Even though a nonrecursive folder compare does not include the
+      contents of subfolders, the subfolders themselves are listed as files in
+      the result. Similarly, the compared folder's parent folder is listed as a
+      file at the top of the table. By opening these folders directly in the
+      Folder Compare window, you can selectively browse a directory tree. This
+      approach — comparing just the subdirectories you are interested in — can
+      be more efficient than performing a recursive compare on the entire
+      directory tree.</para>
 
-    <para>There are many ways to customize folder compare:<itemizedlist>
+      <variablelist>
+        <varlistentry>
+          <term>Browsing the parent folder</term>
+
+          <listitem>
+            <para>To compare the <inlinemediaobject>
+                <imageobject>
+                  <imagedata fileref="screenshots/folderup.png" format="PNG" />
+                </imageobject>
+              </inlinemediaobject> parent folder (the <guilabel>..</guilabel>
+            path at the top), double-click its row, or select the row and press
+            <keycap>Enter</keycap>.</para>
+
+            <para>Sometimes the parent folder cannot be opened (for example if
+            you do not have permissions to access it). These two icons indicate
+            whether a parent folder can be opened:</para>
+
+            <simplelist type="vert">
+              <member><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="screenshots/folderup.png" format="PNG" />
+                  </imageobject>
+                </inlinemediaobject> Parent folder can be opened.</member>
+
+              <member><inlinemediaobject>
+                  <imageobject>
+                    <imagedata fileref="screenshots/folderup_disable.png"
+                               format="PNG" />
+                  </imageobject>
+                </inlinemediaobject> Parent folder cannot be opened.</member>
+            </simplelist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Browsing a single subfolder that exists on both sides</term>
+
+          <listitem>
+            <para>To compare a single subfolder that exists on both sides,
+            double-click the folder in the folder compare window.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Browsing a single subfolder that exists only one side</term>
+
+          <listitem>
+            <para>If you browse to a subfolder that exists only the left or
+            right side, the new result has two sides with identical files and
+            folders. For example, browsing to <filename>C:\work\</filename>
+            opens <filename>C:\work\</filename> as the left file and and
+            <filename>C:\work\</filename> as the right file. (WinMerge 2.6 and
+            earlier versions prevented this usage).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Browsing two different subfolders</term>
+
+          <listitem>
+            <para>You cannot compare two subfolders (that is, selecting two
+            rows) where the subfolders on each side are different. Only if you
+            have previously compared identical folders (for example, by browsing
+            a single subfolder in a compare result) can you compare two
+            subfolders. First select the two folders in the Folder Compare
+            window, as shown in the following figure:</para>
+
+            <mediaobject>
+              <imageobject>
+                <imagedata contentwidth="572"
+                           fileref="screenshots/foldercomp_2same.png"
+                           format="PNG" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Folder Compare window, two folders selected</phrase>
+              </textobject>
+            </mediaobject>
+
+            <para>The order of selection is significant: the folder you select
+            first is the left folder in the result; the second selected folder
+            becomes the right folder in the result.</para>
+
+            <para>With the two folders selected, right-click and choose
+            <guimenuitem>Compare</guimenuitem> (or click <menuchoice>
+                <guimenu>Merge</guimenu>
+
+                <guimenuitem>Compare</guimenuitem>
+              </menuchoice> in the menu).</para>
+
+            <tip>
+              <para>Again, the <guimenuitem>Compare</guimenuitem> operation is
+              available only when the current left and right folder paths are
+              identical in the Folder Compare window, as shown in the preceding
+              screen shot. For example, it is not available if the current
+              window compares two different folders.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Browsing unique folders<indexterm>
+          <primary>unique folders</primary>
+
+          <secondary>comparing</secondary>
+        </indexterm></title>
+
+      <para>In WinMerge 2.6 and earlier, you could not browse to unique folders
+      (folders that exist only in one side of a compare result), because
+      WinMerge cannot compare an existing folder to a non-existing folder. To
+      copy anything from a unique folder in WinMerge, you had to first create a
+      copy of the entire folder structure.</para>
+
+      <para>However, you might prefer not to copy the whole folder structure.
+      Starting in Version 2.8, WinMerge provides an alternate way to create a
+      new, empty folder instead. This enables you to copy just the elements you
+      want from the original, unique folder to the created empty folder. This
+      procedure demonstrates:</para>
+
+      <orderedlist>
         <listitem>
-          <simpara>Sorting by column : Sorted by column can be selected by
-          clicking column name with mouse. Little arrow appears next to column
-          name indicating that results are sorted by this column and sort
-          order.</simpara>
+          <para>Browse to the unique folder (select the folder and press
+          <keycap>Enter,</keycap> double-click it, or right-click it and choose
+          <guimenuitem>Compare</guimenuitem>). For example:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata contentwidth="590"
+                         fileref="screenshots/foldercmp_unique1.png"
+                         format="PNG" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Folder Compare window, comparing unique folder</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>A WinMerge message informs you that the folder exists on only
+          one side and cannot be opened. The message then prompts you to confirm
+          whether you want to create a matching folder and open it as the other
+          side of the compare result.</para>
         </listitem>
 
         <listitem>
-          <simpara>Selecting visible columns : "<guilabel>Display
-          Columns</guilabel>" dialog can be opened from
-          <guimenu>Tools</guimenu>-menu or by right-clicking column header
-          with mouse.</simpara>
+          <para>Click <guibutton>Yes</guibutton> to confirm
+          (<guibutton>No</guibutton> cancels the compare). In the new compare
+          result, the unique folder is opened on the left side, and the new
+          empty created folder is on the right:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata contentwidth="590"
+                         fileref="screenshots/foldercmp_unique2.png"
+                         format="PNG" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Folder Compare window after browsing to unique and created
+              folders</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>In the compare result, you can copy or move items (for example,
+          using the right-click context menu) from the unique folder to the
+          created folder.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section>
+    <title>Customizing the Folder Compare window<indexterm>
+        <primary>Folder Compare window</primary>
+
+        <secondary>customizing</secondary>
+      </indexterm></title>
+
+    <para>This section describes how to control the way Folder Compare window
+    displays results. You can customize the view by showing, hiding, and
+    reordering the table columns.</para>
+
+    <section>
+      <title>Showing and hiding types of files<indexterm>
+          <primary>View menu</primary>
+
+          <secondary>Folder Compare window</secondary>
+        </indexterm></title>
+
+      <para>The <guimenu>View</guimenu> menu contains these shortcuts to show or
+      hide types of items. Enable (check) a menu option to show the item;
+      disable it to hide the item.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Show Identical Items</guimenuitem>: Files detected
+          as identical</para>
         </listitem>
 
         <listitem>
-          <simpara>Changing order of columns : Order can be changed in
-          "<guilabel>Display Columns</guilabel>" dialog or by drag &amp;
-          dropping column names with mouse.</simpara>
+          <para><guimenuitem>Show Different Items</guimenuitem>: Files detected
+          as different</para>
         </listitem>
-      </itemizedlist></para>
-  </section>
 
-  <section>
-    <title>Protecting Folders / Read-only Folders</title>
+        <listitem>
+          <para><guimenuitem>Show Left Unique Items</guimenuitem>: Files and
+          directories present only in left side</para>
+        </listitem>
 
-    <para>If user wants to protect one or both sides from changes, user can
-    set them to read-only from <guimenu>File</guimenu>-menu.</para>
+        <listitem>
+          <para><guimenuitem>Show Right Unique Items</guimenuitem>: Files and
+          directories present only in right side</para>
+        </listitem>
 
-    <important>
-      <para>Setting read-only protects files and folders in current compare
-      view only.</para>
-    </important>
+        <listitem>
+          <para><guimenuitem>Show Skipped Items</guimenuitem>: Files and
+          directories omitted by file filters</para>
+        </listitem>
 
-    <para>Protected status is inherited to opened files from directory
-    compare. If user compares two folders, sets another to protected and opens
-    two files for comparing, file opened from protected side has protection
-    set too.</para>
+        <listitem>
+          <para><guimenuitem>Show Binary Files</guimenuitem>: Files detected as
+          binaries</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-    <para>Protection status is shown in statusbar, there are own panes for
-    left and right side.</para>
-  </section>
+    <section>
+      <title>Changing column sorting</title>
 
-  <section>
-    <title><indexterm>
-        <primary>Hiding Files and Folders</primary>
-      </indexterm>Hiding Items</title>
+      <para>The rows in the Folder Compare window are ordered according to the
+      sort order of a particular column. This sort column is indicated by a
+      small arrow in its heading. The arrow points up if the column is sorted in
+      ascending order, down if descending. The Folder Compare example at the top
+      of this topic is sorted by the Filename column, in ascending order.</para>
 
-    <para>Selected items can be hidden from view using context menu item
-    <guimenuitem>Hide Items</guimenuitem>. Hidden items are not shown until
-    next refresh is done. All hidden items can be re-shown selecting
-    <menuchoice>
-        <guimenu>View</guimenu>
+      <para>To choose another order column, simply click in that column's
+      heading. The selected column is set to its default sort order and all the
+      rows are reordered by that column's sort order.</para>
 
-        <guimenuitem>Show Hidden Items</guimenuitem>
-      </menuchoice>.</para>
+      <para>To change the sort direction of a column that is already the sort
+      column, click in its header again. That is, clicking in a sort column
+      header reverses its order (toggling between ascending and descending
+      order).</para>
+    </section>
 
-    <para>Hiding items is handy to remove already handled items from the view.
-    So when you have merged files, use context menu item to hide them. It is a
-    lot easier to see what items are left to merge. Get used to it! It saves
-    your time!</para>
-  </section>
+    <section>
+      <title>Adding, removing, and reordering columns</title>
 
-  <section>
-    <title>Refreshing Only Selected Items</title>
+      <para>To modify the columns that are displayed in the Folder Compare
+      window:</para>
 
-    <para>Full refresh of large folders can take a long time. In 2.2 and
-    earlier versions of WinMerge user always had to do full refresh after
-    editing files outside WinMerge. WinMerge 2.4 and later can refresh just
-    selected items. Select <guimenuitem>Refresh</guimenuitem> from the context
-    menu or <menuchoice>
-        <guimenu>View</guimenu>
+      <orderedlist>
+        <listitem>
+          <para>Right-click any column heading and choose <guimenuitem>Customize
+          Columns</guimenuitem>.</para>
+        </listitem>
 
-        <guimenuitem>Refresh Selected</guimenuitem>
-      </menuchoice> from the main menu.</para>
+        <listitem>
+          <para>The Display Columns dialog contains a list of all the available
+          column names, each with a check box. Configure the columns using any
+          combination of these actions:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Check the columns you want to display (note that selecting
+              the item in the list is not enough)</para>
+            </listitem>
+
+            <listitem>
+              <para>Uncheck the columns you want to hide.</para>
+            </listitem>
+
+            <listitem>
+              <para>To change the order of columns, select one or more items and
+              click <guibutton>Move Up</guibutton> or <guibutton>Move
+              Down</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Click <guibutton>Defaults</guibutton> if you want to restore
+              the default WinMerge column configuration, overriding your custom
+              configuration.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Click <guibutton>OK</guibutton>.</para>
+        </listitem>
+      </orderedlist>
+
+      <para><indexterm>
+          <primary>Display Columns dialog</primary>
+        </indexterm>The following columns in the Display Columns dialog are
+      displayed by default in the Folder Compare window:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Filename (default)</guilabel>: Name of compared item.
+          In a nonrecursive compare, this column includes both files and
+          folders; in a recursive compare, it does not include folders: instead,
+          folders are listed in the Folder column.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Folder</guilabel>: Path of compared subfolder,
+          relative to the compared folder. For a nonrecursive compare this
+          column is always empty: folders are listed in the
+          <guilabel>Filename</guilabel> column instead.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Comparison result</guilabel>: Verbose comparison
+          result (see also <guilabel>Short Result</guilabel>).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Date</guilabel>, <guilabel>Right Date</guilabel>:
+          Modification dates of item in each side. The newer of the two dates
+          (or the date for any unique item) is prefixed with an asterisk ( *
+          ).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Extension</guilabel>: File extension, handy for
+          sorting.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The following additional columns are available in the Display
+      Columns dialog:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Short Result</guilabel>: Displays the
+          <guilabel>Comparison result</guilabel> column in a brief (Right only)
+          form.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Binary</guilabel>: Column contains an asterisk ( * )
+          when the file is a binary file. This is handy for sorting and for use
+          with the <guilabel>Short Result</guilabel> column.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Attributes</guilabel>, <guilabel>Right
+          Attributes</guilabel>: Shows file attributes.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Creation Time</guilabel>, <guilabel>Right
+          Creation Time</guilabel>: Item creation time.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Encoding</guilabel>, <guilabel>Right
+          Encoding</guilabel>: File encoding. Shows the codepage number for ANSI
+          files and Unicode encoding for Unicode files.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left File Version</guilabel>, <guilabel>Right File
+          Version</guilabel>: Version number from the file, if present. Note
+          that the version is read only for some binary file types known to
+          usually have a version resource.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Size</guilabel>, <guilabel>Right Size</guilabel>:
+          File size in bytes.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left Size (Short)</guilabel>, <guilabel>Right Size
+          (Short)</guilabel>: Shorter versions of file sizes, rounded to KB, MB,
+          or GB.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Newer File</guilabel>: Shows which side is
+          newer.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Differences</guilabel>: Number of differences found
+          between files, excluding possibly ignored differences.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Ignored Diff</guilabel>: Number of ignored differences
+          within files. These are differences ignored by line filters.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Left EOL</guilabel>, <guilabel>Right EOL</guilabel>:
+          Shows the EOL (linefeed) style of files.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Hiding items</title>
+
+      <para>You can quickly hide one or more selected items by using the
+      <guimenuitem>Hide Items</guimenuitem> context menu shortcut. The items
+      remain hidden until you refresh the view (press <keycap>F5</keycap>) or
+      click <menuchoice>
+          <guimenu>View</guimenu>
+
+          <guimenuitem>Show Hidden Items</guimenuitem>
+        </menuchoice>.</para>
+
+      <tip>
+        <para>Get to know <guimenuitem>Hide Items</guimenuitem>: it can save you
+        a lot of time by eliminating items that you already handled, or that are
+        not currently of interest, from the view. For example, you might hide
+        files after merging them, making it easier to see what items are left to
+        merge.</para>
+      </tip>
+    </section>
   </section>
 </article>
