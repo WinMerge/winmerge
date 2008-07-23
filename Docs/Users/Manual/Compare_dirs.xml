@@ -58,14 +58,13 @@
     <note>
       <title>Compare by Quick Contents option</title>
 
-      <para>WinMerge 2.4 introduced the <guilabel>Quick Contents</guilabel>
-      method for file comparison, described in <xref linkend="Configuration" />.
-      This method can be useful when you compare big binary files; and it is
-      automatically used to compare files bigger than 4 MB. Possible
-      disadvantages are that line filters do not work, and there is no
-      difference counts information in the Folder Compare window. This should
-      not matter In most cases, because such large files are usually
-      binary.</para>
+      <para>The <guilabel>Quick Contents</guilabel> method for file comparison,
+      described in <xref linkend="Configuration" />, can be useful when you
+      compare big binary files; and it is automatically used to compare files
+      bigger than 4 MB. Possible disadvantages are that line filters do not
+      work, and there is no difference counts information in the Folder Compare
+      window. This should not matter In most cases, because such large files are
+      usually binary.</para>
 
       <para>To use this method, configure it before your compare operation: in
       the Compare page of the WinMerge options, click the <guilabel>File Compare
@@ -119,20 +118,6 @@
       window is displayed with the results calculated at that time, omitting any
       uncompleted results.<!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 I get the partial list, but no Abort indicator.--></para>
-
-      <note>
-        <title>Note to users of previous WinMerge versions</title>
-
-        <para>The new Progress window was one of most visible changes in
-        WinMerge Version 2.6. The new design is simpler, eliminating details
-        that were not useful for comparing. Also, the window is closed
-        automatically because the data is no longer needed: you can view
-        statistics for the current results by clicking <menuchoice>
-            <guimenu>View</guimenu>
-
-            <guimenuitem>Compare Statistics</guimenuitem>
-          </menuchoice>.</para>
-      </note>
     </section>
   </section>
 
@@ -774,11 +759,9 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
           <listitem>
             <para>If you browse to a subfolder that exists only the left or
-            right side, the new result has two sides with identical files and
-            folders. For example, browsing to <filename>C:\work\</filename>
-            opens <filename>C:\work\</filename> as the left file and and
-            <filename>C:\work\</filename> as the right file. (WinMerge 2.6 and
-            earlier versions prevented this usage).</para>
+            right side, WinMerge can create a new, matching folder on the other
+            side. See <xref linkend="CompareDirs_browse_unique" /> for details.
+            </para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -831,7 +814,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     </section>
 
     <section>
-      <title>Browsing unique folders<indexterm>
+      <title id="CompareDirs_browse_unique">Browsing unique folders<indexterm>
           <primary>unique folders</primary>
 
           <secondary>comparing</secondary>
