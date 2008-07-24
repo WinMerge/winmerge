@@ -2220,6 +2220,10 @@ BEGIN
     IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
     IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
     IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_CONFIRM_SINGLE_MOVE "Are you sure you want to move:"
+    IDS_CONFIRM_MULTIPLE_MOVE "Are you sure you want to move %d items:"
+    IDS_CONFIRM_COPY_CAPTION "Confirm Copy"
+    IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -22,6 +22,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#ifndef _CONFIRM_FOLDER_COPY_DLG_H_
+#define _CONFIRM_FOLDER_COPY_DLG_H_
+
 #include "CMoveConstraint.h"
 
 /**
@@ -50,9 +53,12 @@ public:
 	CString m_fromPath;
 	CString m_toText;
 	CString m_toPath;
+	CString m_caption;
 	afx_msg void OnBnClickedNo();
 	afx_msg void OnBnClickedYes();
 
 private:
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 };
+
+#endif // _CONFIRM_FOLDER_COPY_DLG_H_
