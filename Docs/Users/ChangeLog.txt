@@ -10,6 +10,9 @@ WinMerge 2.11.1.2
   Add "Open Conflict" for file/folder compare menus (#2025472)
   Enable hierarchial folder compare view by default (#2025478)
   Confirmation dialog for move operations (#2026508)
+  Manual: New build system (#2015434)
+  Manual: Improve Opening Files and Folders (#2017901)
+  Manual: Improve folder compare documentation (#2024587)
   BugFix: Failed to compare UTF-8 files plugins disabled (#2018287)
   Bugfix: Don't warn about closing multiple windows when only one
    window is open (#2010463)
