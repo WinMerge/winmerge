@@ -192,6 +192,7 @@ BEGIN
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
@@ -308,6 +309,7 @@ BEGIN
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
