@@ -8,6 +8,7 @@ WinMerge 2.8.6
   BugFix: Always right side as origin side in copy confirmation dialog
     when Copy To... (#2001237)
   BugFix: Possible crash when enabling line filter (#2004160)
+  BugFix: Moving was allowed for protected items (#2023734)
   New translation: Slovenian (#1997236)
   - Chinese Traditional (#2007426)
 
