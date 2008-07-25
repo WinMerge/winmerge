@@ -2152,6 +2152,10 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
 		pCmdUI->SetRadio(FALSE);
+
+		// Don't allow selecting other EOL style for protected pane
+		if (IsReadOnly(m_nThisPane))
+			pCmdUI->Enable(FALSE);
 	}
 	else
 		pCmdUI->SetRadio(TRUE);
