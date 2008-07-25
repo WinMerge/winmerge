@@ -9,10 +9,12 @@ WinMerge 2.8.6
     when Copy To... (#2001237)
   BugFix: Possible crash when enabling line filter (#2004160)
   BugFix: Moving was allowed for protected items (#2023734)
+  BugFix: Could change EOL style for protected file (#2025781)
   New translation: Slovenian (#1997236)
+  Translation updates:
   - Chinese Traditional (#2007426)
 
-WinMerge 2.8.4 - 2008-0-06-17 (r5496)
+WinMerge 2.8.4 - 2008-06-17 (r5496)
   Release Notes update (#1995265)
   BugFix: Crash when starting a second instance (#1993835)
   BugFix: Crash when starting WinMerge with only one path (#1994402)
