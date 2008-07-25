@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-07-24 11:21+0000\n"
+"POT-Creation-Date: 2008-07-25 00:38+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3586,7 +3586,6 @@ msgstr ""
 
 #: Merge.rc:2166
 #: Merge.rc:2605
-#: Merge.rc:2793
 #, c-format
 msgid "None"
 msgstr ""
@@ -5392,6 +5391,11 @@ msgstr ""
 #: Merge.rc:2787
 #, c-format
 msgid "From MRU list"
+msgstr ""
+
+#: Merge.rc:2793
+#, c-format
+msgid "No Highlighting"
 msgstr ""
 
 #: Merge.rc:2794
