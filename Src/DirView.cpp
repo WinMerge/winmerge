@@ -2885,7 +2885,14 @@ void CDirView::OnCtxtDirMoveRightTo()
  */
 void CDirView::OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI) 
 {
-	DoUpdateCtxtDirMoveRightTo(pCmdUI);
+	// Because move deletes original item, origin side
+	// cannot be read-only
+	if (GetDocument()->GetReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		DoUpdateCtxtDirMoveRightTo(pCmdUI);
+	}
 }
 
 /**
@@ -2893,7 +2900,14 @@ void CDirView::OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI)
  */
 void CDirView::OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI) 
 {
-	DoUpdateCtxtDirMoveLeftTo(pCmdUI);
+	// Because move deletes original item, origin side
+	// cannot be read-only
+	if (GetDocument()->GetReadOnly(TRUE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		DoUpdateCtxtDirMoveLeftTo(pCmdUI);
+	}
 }
 
 /**
