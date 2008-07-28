@@ -9,6 +9,7 @@
 #ifndef __GHOSTTEXTBUFFER_H__
 #define __GHOSTTEXTBUFFER_H__
 
+#include <vector>
 #include "ccrystaltextbuffer.h"
 
 
@@ -215,10 +216,19 @@ protected:
                               LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
 private:
-	// A RealityBlock is a block of lines with no ghost lines
-	struct RealityBlock { int nStartReal; int nStartApparent; int nCount; };
-	// The array of reality blocks is kept in order
-	CArray < RealityBlock, RealityBlock& > m_RealityBlocks;
+	/**
+	 * @brief A struct mapping real lines and apparent (screen) lines.
+	 * This struct maps lines between real lines and apparent (screen) lines.
+	 * The mapping records for each text block an apparent line and matching
+	 * real line.
+	 */
+	struct RealityBlock
+	{
+		int nStartReal; /**< Start line of real block. */
+		int nStartApparent; /**< Start line of apparent block. */
+		int nCount; /**< Lines in the block. */
+	};
+	std::vector<RealityBlock> m_RealityBlocks; /**< Mapping of real and apparent lines. */
 
 	// Operations
 private:

@@ -32,6 +32,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "GhostTextBuffer.h"
 
 #ifdef _DEBUG
@@ -43,6 +44,8 @@ static char THIS_FILE[] = __FILE__;
 #ifdef _DEBUG
 #define _ADVANCED_BUGCHECK  1
 #endif
+
+using namespace std;
 
 BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
 //{{AFX_MSG_MAP(CGhostTextBuffer)
@@ -934,10 +937,10 @@ void CGhostTextBuffer::RemoveAllGhostLines()
  */
 int CGhostTextBuffer::ApparentLastRealLine() const
 {
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	if (bmax < 0)
+	const int size = m_RealityBlocks.size();
+	if (size == 0)
 		return -1;
-	const RealityBlock & block = m_RealityBlocks[bmax];
+	const RealityBlock &block = m_RealityBlocks.back();
 	return block.nStartApparent + block.nCount - 1;
 }
 
@@ -952,26 +955,26 @@ int CGhostTextBuffer::ApparentLastRealLine() const
  */
 int CGhostTextBuffer::ComputeRealLine(int nApparentLine) const
 {
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	// Empty file?
-	if (bmax < 0)
+	const int size = m_RealityBlocks.size();
+	if (size == 0)
 		return 0;
 
 	// after last apparent line ?
 	ASSERT(nApparentLine < GetLineCount());
 
 	// after last block ?
-	const RealityBlock & maxblock = m_RealityBlocks[bmax];
+	const RealityBlock &maxblock = m_RealityBlocks.back();
 	if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
 		return maxblock.nStartReal + maxblock.nCount;
 
 	// binary search to find correct (or nearest block)
-	int blo = 0, bhi = bmax;
+	int blo = 0;
+	int bhi = size - 1;
 	int i;
 	while (blo <= bhi)
 	{
 		i = (blo + bhi) / 2;
-		const RealityBlock & block = m_RealityBlocks[i];
+		const RealityBlock &block = m_RealityBlocks[i];
 		if (nApparentLine < block.nStartApparent)
 			bhi = i - 1;
 		else if (nApparentLine >= block.nStartApparent + block.nCount)
@@ -991,18 +994,18 @@ int CGhostTextBuffer::ComputeRealLine(int nApparentLine) const
  */
 int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 {
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	// first get the degenerate cases out of the way
-	// empty file ?
-	if (bmax < 0)
+	const int size = m_RealityBlocks.size();
+	if (size == 0)
 		return 0;
+
 	// after last block ?
-	const RealityBlock & maxblock = m_RealityBlocks[bmax];
+	const RealityBlock & maxblock = m_RealityBlocks.back();
 	if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
 		return GetLineCount();
 
 	// binary search to find correct (or nearest block)
-	int blo = 0, bhi = bmax;
+	int blo = 0;
+	int bhi = size - 1;
 	int i;
 	while (blo <= bhi)
 	{
@@ -1021,21 +1024,20 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 }
 
 /**
-Return underlying real line and ghost adjustment 
-as nApparentLine = apparent(nRealLine) - nGhostAdjustment 
-
-nRealLine for ghost lines is the NEXT HIGHER real line (for trailing ghost line, last real line + 1).
-If nApparentLine is greater than the last valid apparent line, ASSERT
-
-ie, lines 0->0, 1->2, 2->4,  
-for argument of 3, return 2, and decToReal = 1
-*/
-int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const
+ * @brief Get a real line for apparent (screen) line.
+ * This function returns the real line for the given apparent (screen) line.
+ * For ghost lines we return next real line. For trailing ghost line we return
+ * last real line + 1). Ie, lines 0->0, 1->2, 2->4, for argument of 3,
+ * return 2. And decToReal would be 1.
+ * @param [in] nApparentLine Apparent line for which to get the real line.
+ * @param [out] decToReal Difference of the apparent and real line.
+ * @return The real line for the apparent line.
+ */
+int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine,
+		int& decToReal) const
 {
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	// first get the degenerate cases out of the way
-	// empty file ?
-	if (bmax<0) 
+	const int size = m_RealityBlocks.size();
+	if (size == 0) 
 	{
 		decToReal = 0;
 		return 0;
@@ -1045,7 +1047,7 @@ int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& 
 	ASSERT(nApparentLine < GetLineCount());
 
 	// after last block ?
-	const RealityBlock & maxblock = m_RealityBlocks[bmax];
+	const RealityBlock & maxblock = m_RealityBlocks.back();
 	if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
 	{
 		decToReal = GetLineCount() - nApparentLine;
@@ -1053,16 +1055,17 @@ int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& 
 	}
 
 	// binary search to find correct (or nearest block)
-	int blo=0, bhi=bmax;
+	int blo = 0;
+	int bhi = size - 1;
 	int i;
-	while (blo<=bhi)
+	while (blo <= bhi)
 	{
-		i = (blo+bhi)/2;
+		i = (blo + bhi) / 2;
 		const RealityBlock & block = m_RealityBlocks[i];
 		if (nApparentLine < block.nStartApparent)
-			bhi = i-1;
+			bhi = i - 1;
 		else if (nApparentLine >= block.nStartApparent + block.nCount)
-			blo = i+1;
+			blo = i + 1;
 		else // found it inside this block
 		{
 			decToReal = 0;
@@ -1075,43 +1078,42 @@ int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& 
 }
 
 /**
-Return apparent line for this underlying real line, with adjustment : 
-nApparent = apparent(nReal) - decToReal
-
-If the previous real line has apparent number   apparent(nReal) - dec, with dec < decToReal, 
-return apparent(nReal) - dec + 1
-*/
+ * @brief Get an apparent (screen) line for the real line.
+ * @param [in] nRealLine Real line for which to get the apparent line.
+ * @param [out] decToReal Difference of the apparent and real line.
+ * @return The apparent line for the real line. If real line is out of bounds
+ *   return last valid apparent line + 1.
+ */
 int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 {
-	int blo, bhi;
 	int nPreviousBlock;
 	int nApparent;
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	// first get the degenerate cases out of the way
-	// empty file ?
-	if (bmax<0)
+
+	const int size = (int) m_RealityBlocks.size();
+	if (size == 0)
 		return 0;
+
 	// after last block ?
-	const RealityBlock & maxblock = m_RealityBlocks[bmax];
+	const RealityBlock & maxblock = m_RealityBlocks.back();
 	if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
 	{
-		nPreviousBlock = bmax;
+		nPreviousBlock = size - 1;
 		nApparent = GetLineCount();
 		goto limitWithPreviousBlock;
 	}
 
 	// binary search to find correct (or nearest block)
-	blo=0;
-	bhi=bmax;
+	int blo = 0;
+	int bhi = size - 1;
 	int i;
-	while (blo<=bhi)
+	while (blo <= bhi)
 	{
-		i = (blo+bhi)/2;
+		i = (blo + bhi) / 2;
 		const RealityBlock & block = m_RealityBlocks[i];
 		if (nRealLine < block.nStartReal)
-			bhi = i-1;
+			bhi = i - 1;
 		else if (nRealLine >= block.nStartReal + block.nCount)
-			blo = i+1;
+			blo = i + 1;
 		else
 		{
 			if (nRealLine > block.nStartReal)
@@ -1141,7 +1143,7 @@ limitWithPreviousBlock:
 	{
 		nApparent --;
 		if (nApparent == lastApparentInPreviousBlock)
-			return nApparent+1;
+			return nApparent + 1;
 	}
 	return nApparent;
 }
@@ -1156,16 +1158,16 @@ void CGhostTextBuffer::FinishLoading()
 /** Recompute the reality mapping (this is fairly naive) */
 void CGhostTextBuffer::RecomputeRealityMapping()
 {
-	m_RealityBlocks.RemoveAll();
-	int reality=-1; // last encountered real line
-	int i=0; // current line
+	m_RealityBlocks.clear();
+	int reality = -1; // last encountered real line
+	int i = 0; // current line
 	RealityBlock block; // current block being traversed (in state 2)
 
 	// This is a state machine with 2 states
 
 	// state 1, i-1 not real line
 passingGhosts:
-	if (i==GetLineCount())
+	if (i == GetLineCount())
 		return;
 	if (GetLineFlags(i) & LF_GHOST)
 	{
@@ -1174,22 +1176,22 @@ passingGhosts:
 	}
 	// this is the first line of a reality block
 	block.nStartApparent = i;
-	block.nStartReal = reality+1;
+	block.nStartReal = reality + 1;
 	++reality;
 	++i;
 	// fall through to other state
 
-	// state 2, i-1 is real line
+	// state 2, i - 1 is real line
 inReality:
-	if (i==GetLineCount() || (GetLineFlags(i) & LF_GHOST))
+	if (i == GetLineCount() || (GetLineFlags(i) & LF_GHOST))
 	{
 		// i-1 is the last line of a reality block
 		ASSERT(reality >= 0);
 		block.nCount = i - block.nStartApparent;
 		ASSERT(block.nCount > 0);
-		ASSERT(reality+1-block.nStartReal == block.nCount);
-		m_RealityBlocks.Add(block);
-		if (i==GetLineCount())
+		ASSERT(reality + 1 - block.nStartReal == block.nCount);
+		m_RealityBlocks.push_back(block);
+		if (i == GetLineCount())
 			return;
 		++i;
 		goto passingGhosts;
@@ -1261,10 +1263,9 @@ This means that this only has effect in DEBUG build
 */
 void CGhostTextBuffer::checkFlagsFromReality(BOOL bFlag) const
 {
-	int bmax = (int) m_RealityBlocks.GetUpperBound();
-	int b;
+	const int size = m_RealityBlocks.size();
 	int i = 0;
-	for (b = 0 ; b <= bmax ; b ++)
+	for (int b = 0 ; b < size ; b ++)
 	{
 		const RealityBlock & block = m_RealityBlocks[b];
 		for ( ; i < block.nStartApparent ; i++)
