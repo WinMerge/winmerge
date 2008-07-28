@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.11.1.3
   Rename color scheme menu item "None" and add separator (#2027300)
   Add -u commandline parameter as alternative to -ub (#2029275)
+  Remove RCLocalizationHelper plugin (#2029457)
 
 WinMerge 2.11.1.2 - 2008-07-24 (r5673)
   Refresh compare after changing filter (#2017426)
