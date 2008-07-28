@@ -220,8 +220,6 @@ private:
 	// The array of reality blocks is kept in order
 	CArray < RealityBlock, RealityBlock& > m_RealityBlocks;
 
-
-
 	// Operations
 private:
 	BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
@@ -242,8 +240,12 @@ public :
 
 
 	// Text modification functions
-	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
-	virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
+	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos,
+		LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
+		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory = TRUE);
+	virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine,
+		int nStartPos, int nEndLine, int nEndPos,
+		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory = TRUE);
 	BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
 	// Undo/Redo
@@ -255,12 +257,14 @@ public :
 	virtual void FlushUndoGroup (CCrystalTextView * pSource);
 
 public:
-	/** 
-	Code for mapping between file line numbers (real line numbers)
-	and screen line numbers (apparent line numbers).
-
-	This is needed to handle ghost lines (ones with no text or EOL chars)
-	which WinMerge uses for left-only or right-only lines.
+	//@{
+	/**
+	 * @name Real/apparent line number conversion functions.
+	 * These functions convert line numbers between file line numbers
+	 * (real line numbers) and screen line numbers (apparent line numbers).
+	 *
+	 * This mapping is needed to handle ghost lines (ones with no text or
+	 * EOL chars) which WinMerge uses for left-only or right-only lines.
 	*/
 	int ApparentLastRealLine() const;
 	int ComputeRealLine(int nApparentLine) const;
@@ -269,6 +273,7 @@ public:
 	int ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const;
 	/** richer position information   yApparent = apparent(yReal) - yGhost */
 	int ComputeApparentLine(int nRealLine, int decToReal) const;
+	//@}
 
 	/** for loading file */
 	void FinishLoading();

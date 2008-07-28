@@ -226,7 +226,8 @@ static bool isdoseol(LPCTSTR sz)
  *
  * @param nPosition : not defined (or -1) = add lines at the end of array
  */
-void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int nPosition /*= -1*/, int nCount /*= 1*/ )
+void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
+    int nPosition /*= -1*/, int nCount /*= 1*/ )
 {
   ASSERT(nLength != -1);
 
@@ -1088,9 +1089,20 @@ UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwUpda
     }
 }
 
-// InternalDeleteText uses only apparent line numbers
+/**
+ * @brief Delete text from the buffer.
+ * @param [in] pSource A view from which the text is deleted.
+ * @param [in] nStartLine Starting line for the deletion.
+ * @param [in] nStartChar Starting char position for the deletion.
+ * @param [in] nEndLine Ending line for the deletion.
+ * @param [in] nEndChar Ending char position for the deletion.
+ * @return TRUE if the insertion succeeded, FALSE otherwise.
+ * @note Line numbers are apparent (screen) line numbers, not real
+ * line numbers in the file.
+ */
 BOOL CCrystalTextBuffer::
-InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, int nEndLine, int nEndChar)
+InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
+    int nEndLine, int nEndChar)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1180,9 +1192,25 @@ StripTail (int i, int bytes)
 }
 
 
-// InternalInsertText uses only apparent line numbers
+/**
+ * @brief Insert text to the buffer.
+ * @param [in] pSource A view to which the text is added.
+ * @param [in] nLine Line to add the text.
+ * @param [in] nPos Position in the line to insert the text.
+ * @param [in] pszText The text to insert.
+ * @param [in] cchText The length of the text.
+ * @param [out] nEndLine Line number of last added line in the buffer.
+ * @param [out] nEndChar Character position of the end of the added text
+ *   in the buffer.
+ * @param [in] nAction Edit action.
+ * @param [in] bHistory Save insertion for undo/redo?
+ * @return TRUE if the insertion succeeded, FALSE otherwise.
+ * @note Line numbers are apparent (screen) line numbers, not real
+ * line numbers in the file.
+ */
 BOOL CCrystalTextBuffer::
-InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar)
+InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
+    LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1195,6 +1223,8 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
   CInsertContext context;
   context.m_ptStart.x = nPos;
   context.m_ptStart.y = nLine;
+  nEndLine = 0;
+  nEndChar = 0;
 
   int nRestCount = GetFullLineLength(nLine) - nPos;
   CString sTail;
@@ -1305,12 +1335,10 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
   if (!m_bModified)
     SetModified (TRUE);
-  //BEGIN SW
+
   // remember current cursor position as last editing position
   m_ptLastChange.x = nEndChar;
   m_ptLastChange.y = nEndLine;
-  //END SW
-
   return TRUE;
 }
 
@@ -1560,10 +1588,11 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   return TRUE;
 }
 
-//  [JRT] Support For Descriptions On Undo/Redo Actions
 // the CPoint parameters are apparent (on screen) line numbers
 void CCrystalTextBuffer::
-AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nActionType, CDWordArray *paSavedRevisonNumbers)
+AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
+    const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nActionType,
+    CDWordArray *paSavedRevisonNumbers)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
@@ -1651,9 +1680,26 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
   return GetStringEol(m_nCRLFMode);
 }
 
+/**
+ * @brief Insert text to the buffer.
+ * @param [in] pSource A view to which the text is added.
+ * @param [in] nLine Line to add the text.
+ * @param [in] nPos Position in the line to insert the text.
+ * @param [in] pszText The text to insert.
+ * @param [in] cchText The length of the text.
+ * @param [out] nEndLine Line number of last added line in the buffer.
+ * @param [out] nEndChar Character position of the end of the added text
+ *   in the buffer.
+ * @param [in] nAction Edit action.
+ * @param [in] bHistory Save insertion for undo/redo?
+ * @return TRUE if the insertion succeeded, FALSE otherwise.
+ * @note Line numbers are apparent (screen) line numbers, not real
+ * line numbers in the file.
+ */
 BOOL CCrystalTextBuffer::
-InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText,
-            int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
+InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
+    int cchText, int &nEndLine, int &nEndChar, int nAction,
+    BOOL bHistory /*=TRUE*/)
 {
   // save line revision numbers for undo
   CDWordArray *paSavedRevisonNumbers = new CDWordArray;
@@ -1696,6 +1742,19 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, in
   return TRUE;
 }
 
+/**
+ * @brief Delete text from the buffer.
+ * @param [in] pSource A view from which the text is deleted.
+ * @param [in] nStartLine Starting line for the deletion.
+ * @param [in] nStartChar Starting char position for the deletion.
+ * @param [in] nEndLine Ending line for the deletion.
+ * @param [in] nEndChar Ending char position for the deletion.
+ * @param [in] nAction Edit action.
+ * @param [in] bHistory Save insertion for undo/redo?
+ * @return TRUE if the insertion succeeded, FALSE otherwise.
+ * @note Line numbers are apparent (screen) line numbers, not real
+ * line numbers in the file.
+ */
 BOOL CCrystalTextBuffer::
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
