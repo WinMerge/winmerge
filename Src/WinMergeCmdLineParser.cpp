@@ -143,9 +143,9 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag,
 			// -ur to not add right path to MRU
 			m_cmdLineInfo.m_dwRightFlags |= FFILEOPEN_NOMRU;
 		}
-		else if (!lstrcmpi(pszParam, _T("ub")))
+		else if (!lstrcmpi(pszParam, _T("u")) || !lstrcmpi(pszParam, _T("ub")))
 		{
-			// -ub to add neither right nor left path to MRU
+			// -u or -ub (deprecated) to add neither right nor left path to MRU
 			m_cmdLineInfo.m_dwLeftFlags |= FFILEOPEN_NOMRU;
 			m_cmdLineInfo.m_dwRightFlags |= FFILEOPEN_NOMRU;
 		}
