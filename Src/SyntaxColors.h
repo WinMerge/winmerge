@@ -11,6 +11,7 @@
 
 #include "stdafx.h"
 #include <Windows.h>
+#include <vector>
 
 class COptionsMgr;
 
@@ -54,9 +55,6 @@ enum COLORINDEX
 
 const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
 
-typedef CArray<COLORREF, COLORREF&> ColorArray;
-typedef CArray<BOOL, BOOL&> BoolArray;
-
 /** 
  * @brief Wrapper for Syntax coloring colors.
  *
@@ -88,8 +86,8 @@ private:
 
 // Implementation data
 private:
-	ColorArray m_colors; /**< Syntax highlight colors */
-	BoolArray m_bolds; /**< Bold font enable/disable */
+	std::vector<COLORREF> m_colors; /**< Syntax highlight colors */
+	std::vector<BOOL> m_bolds; /**< Bold font enable/disable */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 

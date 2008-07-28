@@ -7,9 +7,13 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
+#include "UnicodeString.h"
 #include "SyntaxColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+
+using namespace std;
 
 /** @brief Setting name for default colors. */
 static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
@@ -22,8 +26,8 @@ static const TCHAR Section[] = _T("Custom Colors");
 SyntaxColors::SyntaxColors()
 : m_pOptionsMgr(NULL)
 {
-	m_colors.SetSize(COLORINDEX_COUNT);
-	m_bolds.SetSize(COLORINDEX_COUNT);
+	m_colors.reserve(COLORINDEX_COUNT);
+	m_bolds.reserve(COLORINDEX_COUNT);
 	SetDefaults();
 }
 
@@ -34,10 +38,10 @@ SyntaxColors::SyntaxColors()
 SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
 : m_pOptionsMgr(NULL)
 {
-	m_colors.SetSize(COLORINDEX_COUNT);
-	m_bolds.SetSize(COLORINDEX_COUNT);
-	m_colors.Copy(pColors->m_colors);
-	m_bolds.Copy(pColors->m_bolds);
+	m_colors.reserve(COLORINDEX_COUNT);
+	m_bolds.reserve(COLORINDEX_COUNT);
+	m_colors = pColors->m_colors;
+	m_bolds = pColors->m_bolds;
 }
 
 /**
@@ -46,10 +50,10 @@ SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
  */
 void SyntaxColors::Clone(const SyntaxColors *pColors)
 {
-	m_colors.SetSize(COLORINDEX_COUNT);
-	m_bolds.SetSize(COLORINDEX_COUNT);
-	m_colors.Copy(pColors->m_colors);
-	m_bolds.Copy(pColors->m_bolds);
+	m_colors.reserve(COLORINDEX_COUNT);
+	m_bolds.reserve(COLORINDEX_COUNT);
+	m_colors = pColors->m_colors;
+	m_bolds = pColors->m_bolds;
 }
 
 /**
@@ -164,12 +168,12 @@ void SyntaxColors::SetDefaults()
 			color = RGB (128, 0, 0);
 			break;
 		}
-		m_colors.SetAt(i, color);
+		m_colors[i] = color;
 
 		BOOL bBold = FALSE;
 		if (i == COLORINDEX_KEYWORD)
 			bBold = TRUE;
-		m_bolds.SetAt(i, (int)bBold);
+		m_bolds[i] = bBold;
 	}
 }
 
@@ -180,7 +184,7 @@ void SyntaxColors::SetDefaults()
  */
 void SyntaxColors::SetColor(UINT index, COLORREF color)
 {
-	m_colors.SetAt(index, color);
+	m_colors[index] = color;
 }
 
 /**
@@ -190,7 +194,7 @@ void SyntaxColors::SetColor(UINT index, COLORREF color)
  */
 void SyntaxColors::SetBold(UINT index, BOOL bold)
 {
-	m_bolds.SetAt(index, bold);
+	m_bolds[index] = bold;
 }
 
 /**
@@ -200,13 +204,13 @@ void SyntaxColors::SetBold(UINT index, BOOL bold)
 void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 {
 	ASSERT(pOptionsMgr);
-	CString valuename(DefColorsPath);
+	String valuename(DefColorsPath);
 
 	m_pOptionsMgr = pOptionsMgr;
 
 	int count = COLORINDEX_COUNT;
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename, count);
+	m_pOptionsMgr->InitOption(valuename.c_str(), count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
@@ -216,8 +220,10 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 		// from storage we must set that value to array we use.
 		int color = 0;
 		COLORREF ref;
-		valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
-		color = m_colors.GetAt(i);
+		valuename.reserve(30);
+		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
+			DefColorsPath, i);
+		color = m_colors[i];
 
 		// Special handling for themable colors
 		// These are text colors which by default follow the current system colors
@@ -228,21 +234,22 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 			if (m_pOptionsMgr->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING))
 				serializable = false;
 		}
-		m_pOptionsMgr->InitOption(valuename, color, serializable);
-		color = m_pOptionsMgr->GetInt(valuename);
+		m_pOptionsMgr->InitOption(valuename.c_str(), color, serializable);
+		color = m_pOptionsMgr->GetInt(valuename.c_str());
 		ref = color;
-		m_colors.SetAt(i, ref);
+		m_colors[i] = ref;
 	
 		int nBold = 0;
 		BOOL bBold = FALSE;
-		valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
-		bBold = m_bolds.GetAt(i);
-		m_pOptionsMgr->InitOption(valuename, (int) bBold);
-		nBold = m_pOptionsMgr->GetInt(valuename);
+		valuename.reserve(30);
+		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
+			DefColorsPath, i);
+		bBold = m_bolds[i];
+		m_pOptionsMgr->InitOption(valuename.c_str(), (int) bBold);
+		nBold = m_pOptionsMgr->GetInt(valuename.c_str());
 		bBold = nBold ? TRUE : FALSE;
-		m_bolds.SetAt(i, bBold);
+		m_bolds[i] = bBold;
 	}
-
 }
 
 /**
@@ -251,20 +258,24 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 void SyntaxColors::SaveToRegistry()
 {
 	ASSERT(m_pOptionsMgr);
-	CString valuename(DefColorsPath);
+	String valuename(DefColorsPath);
 
 	int count = COLORINDEX_COUNT;
 	valuename += _T("/Values");
-	m_pOptionsMgr->SetInt(valuename, count);
+	m_pOptionsMgr->SetInt(valuename.c_str(), count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
-		valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
-		int color = m_colors.GetAt(i);
-		m_pOptionsMgr->SetInt(valuename, color);
-		valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
-		BOOL bold = m_bolds.GetAt(i);
-		m_pOptionsMgr->SetInt(valuename, bold);
+		valuename.reserve(30);
+		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
+			DefColorsPath, i);
+		int color = m_colors[i];
+		m_pOptionsMgr->SetInt(valuename.c_str(), color);
+		valuename.reserve(30);
+		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
+			DefColorsPath, i);
+		BOOL bold = m_bolds[i];
+		m_pOptionsMgr->SetInt(valuename.c_str(), bold);
 	}
 }
 
