@@ -136,59 +136,70 @@ static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 	if (stats.ncrlfs >= stats.nlfs)
 	{
 		if (stats.ncrlfs >= stats.ncrs)
-		{
 			return CRLF_STYLE_DOS;
-		}
 		else
-		{
 			return CRLF_STYLE_MAC;
-		}
 	}
 	else
 	{
 		if (stats.nlfs >= stats.ncrs)
-		{
 			return CRLF_STYLE_UNIX;
-		}
 		else
-		{
 			return CRLF_STYLE_MAC;
-		}
 	}
 }
 
+/**
+ * @brief Constructor.
+ * @param [in] pDoc Owning CMergeDoc.
+ * @param [in] pane Pane number this buffer is associated with.
+ */
 CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
 : m_pOwnerDoc(pDoc)
 , m_nThisPane(pane)
-, unpackerSubcode(0)
+, m_unpackerSubcode(0)
 {
 }
 
+/**
+ * @brief Get a line from the buffer.
+ * @param [in] nLineIndex Index of the line to get.
+ * @param [out] strLine Returns line text in the index.
+ */
 BOOL CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine)
-{ 
-	int nLineLength = CCrystalTextBuffer::GetLineLength 
-		( nLineIndex ); 
-	
-	if( nLineLength < 0 ) 
-		return FALSE; 
-	else if( nLineLength == 0 ) 
-		strLine.Empty(); 
-	else 
-	{ 
-		_tcsncpy ( strLine.GetBuffer( nLineLength + 1 ), 
-			CCrystalTextBuffer::GetLineChars( nLineIndex ), 
-			nLineLength ); 
-		strLine.ReleaseBuffer( nLineLength ); 
-	} 
-	return TRUE; 
+{
+	int nLineLength = CCrystalTextBuffer::GetLineLength(nLineIndex);
+	if (nLineLength < 0)
+		return FALSE;
+	else if (nLineLength == 0)
+		strLine.Empty();
+	else
+	{
+		_tcsncpy(strLine.GetBuffer(nLineLength + 1),
+			CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
+		strLine.ReleaseBuffer(nLineLength);
+	}
+	return TRUE;
 }
 
+/**
+ * @brief Set the buffer modified status.
+ * @param [in] bModified New modified status, TRUE if buffer has been
+ *   modified since last saving.
+ */
 void CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
 {
 	CCrystalTextBuffer::SetModified (bModified);
 	m_pOwnerDoc->SetModifiedFlag (bModified);
 }
 
+/**
+ * @brief Get a line (with EOL bytes) from the buffer.
+ * This function is like GetLine() but it also includes line's EOL to the
+ * returned string.
+ * @param [in] nLineIndex Index of the line to get.
+ * @param [out] strLine Returns line text in the index.
+ */
 BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 {
 	int cchText = GetFullLineLength(nLineIndex);
@@ -199,9 +210,13 @@ BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 	return TRUE;
 }
 
-void CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/, CDWordArray *paSavedRevisonNumbers)
+void CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos,
+		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+		int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/,
+		CDWordArray *paSavedRevisonNumbers)
 {
-	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, cchText, nLinesToValidate, nActionType, paSavedRevisonNumbers);
+	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
+		cchText, nLinesToValidate, nActionType, paSavedRevisonNumbers);
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
@@ -220,7 +235,6 @@ BOOL CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
 
-
 /**
 Remove blank lines and clear winmerge flags
 (2003-06-21, Perry: I don't understand why this is necessary, but if this isn't 
@@ -231,7 +245,7 @@ fine, so let's go on with it)
 void CDiffTextBuffer::prepareForRescan()
 {
 	RemoveAllGhostLines();
-	for(int ct=GetLineCount()-1; ct>=0; --ct)
+	for (int ct = GetLineCount() - 1; ct >= 0; --ct)
 	{
 		SetLineFlag(ct, LF_DIFF, FALSE, FALSE, FALSE);
 		SetLineFlag(ct, LF_TRIVIAL, FALSE, FALSE, FALSE);
@@ -239,6 +253,13 @@ void CDiffTextBuffer::prepareForRescan()
 	}
 }
 
+/** 
+ * @brief Called when line has been edited.
+ * After editing a line, we don't know if there is a diff or not.
+ * So we clear the LF_DIFF flag (and it is more easy to read during edition).
+ * Rescan will set the proper color.
+ * @param [in] nLine Line that has been edited.
+ */
 
 void CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 {
@@ -249,63 +270,18 @@ void CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 }
 
 /**
- * @brief Helper to determine the most used CRLF mode in the file
- * Normal call : determine the CRLF mode of the current line
- * Final call  : parameter lpLineBegin = NULL, return the style of the file
- *
- * @note  The lowest CRL_STYLE has the priority in case of equality
+ * @brief Set the folder for temp files.
+ * @param [in] path Temp files folder.
  */
-int CDiffTextBuffer::NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen /* =0 */)
-{
-	static int count[3] = {0};
-	int iStyle = -1;
-
-	// give back the result when we ask for it
-	if (lpLineBegin == NULL)
-	{
-		iStyle = 0;
-		if (count[1] > count[iStyle])
-			iStyle = 1;
-		if (count[2] > count[iStyle])
-			iStyle = 2;
-
-		// reset the counter for the next file
-		count[0] = count[1] = count[2] = 0;
-
-		return iStyle;
-	}
-
-	if (dwLineLen >= 1)
-	{
-		if (lpLineBegin[dwLineLen-1] == _T('\r'))
-			iStyle = CRLF_STYLE_MAC;
-		if (lpLineBegin[dwLineLen-1] == _T('\n'))
-			iStyle = CRLF_STYLE_UNIX;
-	}
-	if (dwLineLen >= 2)
-	{
-		if (lpLineBegin[dwLineLen-2] == _T('\r') && lpLineBegin[dwLineLen-1] == _T('\n'))
-			iStyle = CRLF_STYLE_DOS;
-	}
-	ASSERT (iStyle != -1);
-	count[iStyle] ++;
-	return iStyle;
-}
-
-/// Reads one line from filebuffer and inserts to textbuffer
-void CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen /* =0 */)
-{
-	if (m_nSourceEncoding >= 0)
-		iconvert (lpLineBegin, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-	AppendLine(dwLineNum, lpLineBegin, dwLineLen);
-}
-
-/// Sets path for temporary files
-void CDiffTextBuffer::SetTempPath(String path)
+void CDiffTextBuffer::SetTempPath(const String &path)
 {
 	m_strTempPath = path;
 }
 
+/**
+ * @brief Is the buffer initialized?
+ * @return TRUE if the buffer is initialized, FALSE otherwise.
+ */
 bool CDiffTextBuffer::IsInitialized() const
 {
 	return !!m_bInit;
@@ -336,10 +312,11 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	ASSERT(m_aLines.GetSize() == 0);
 
 	// Unpacking the file here, save the result in a temporary file
-	String sFileName = pszFileNameInit;
+	String sFileName(pszFileNameInit);
 	if (infoUnpacker->bToBeScanned)
 	{
-		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
+		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker,
+			&m_unpackerSubcode))
 		{
 			InitNew(); // leave crystal editor in valid, empty state
 			return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -347,7 +324,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &unpackerSubcode))
+		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &m_unpackerSubcode))
 		{
 			InitNew(); // leave crystal editor in valid, empty state
 			return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -642,7 +619,6 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 	file.Close();
 
-
 	if (!bTempFile)
 	{
 		// If we are saving user files
@@ -650,7 +626,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		ASSERT(infoUnpacker != NULL);
 		// repack the file here, overwrite the temporary file we did save in
 		String csTempFileName = sIntermediateFilename;
-		infoUnpacker->subcode = unpackerSubcode;
+		infoUnpacker->subcode = m_unpackerSubcode;
 		if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
 		{
 			if (!::DeleteFile(sIntermediateFilename.c_str()))
@@ -716,8 +692,18 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		return SAVE_FAILED;
 }
 
-/// Replace text of line (no change to eol)
-void CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR pchText, int cchText, int nAction /*=CE_ACTION_UNKNOWN*/)
+/**
+ * @brief Replace a line with new text.
+ * This function replaces line's text without changing the EOL style/bytes
+ * of the line.
+ * @param [in] pSource Editor view where text is changed.
+ * @param [in] nLine Index of the line to change.
+ * @param [in] pchText New text of the line.
+ * @param [in] cchText New length of the line (not inc. EOL bytes).
+ * @param [in] nAction Edit action to use.
+ */
+void CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine,
+		LPCTSTR pchText, int cchText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
 	if (GetLineLength(nLine)>0)
 		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine), nAction);
@@ -727,6 +713,16 @@ void CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR
 }
 
 /// Replace line (removing any eol, and only including one if in strText)
+/**
+ * @brief Replace a line with new text.
+ * This function replaces line's text including EOL bytes. If the @p strText
+ * does not include EOL bytes, the "line" does not get EOL bytes.
+ * @param [in] pSource Editor view where text is changed.
+ * @param [in] nLine Index of the line to change.
+ * @param [in] pchText New text of the line.
+ * @param [in] cchText New length of the line (not inc. EOL bytes).
+ * @param [in] nAction Edit action to use.
+ */
 void CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine,
 		const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
@@ -741,17 +737,18 @@ void CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine,
 	}
 
 	// we may need a last line as the DeleteText end is (x=0,y=line+1)
-	if (nLine+1 == GetLineCount())
+	if (nLine + 1 == GetLineCount())
 		InsertGhostLine (pSource, GetLineCount());
 
 	if (GetFullLineLength(nLine))
-		DeleteText(pSource, nLine, 0, nLine+1, 0, nAction); 
-	int endl,endc;
-	if (int cchText = strText.GetLength())
-		InsertText(pSource, nLine, 0, strText, cchText, endl,endc, nAction);
+		DeleteText(pSource, nLine, 0, nLine + 1, 0, nAction); 
+	int endl, endc;
+	const int cchText = strText.GetLength();
+	if (cchText)
+		InsertText(pSource, nLine, 0, strText, cchText, endl, endc, nAction);
 }
 
 bool CDiffTextBuffer::curUndoGroup()
 {
-	return (m_aUndoBuf.GetSize()!=0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
+	return (m_aUndoBuf.GetSize() != 0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
