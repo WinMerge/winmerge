@@ -2316,6 +2316,9 @@ void CMergeEditView::RefreshOptions()
 
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
+	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
+		SetTextType(CCrystalTextView::TextType::SRC_PLAIN);
+
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
@@ -3235,7 +3238,11 @@ void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
 	pCmdUI->SetRadio(bIsCurrentScheme);
 
-	pCmdUI->Enable(TRUE);
+	BOOL syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	if (syntaxHLEnabled)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 /**
