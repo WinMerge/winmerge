@@ -26,8 +26,8 @@ static const TCHAR Section[] = _T("Custom Colors");
 SyntaxColors::SyntaxColors()
 : m_pOptionsMgr(NULL)
 {
-	m_colors.reserve(COLORINDEX_COUNT);
-	m_bolds.reserve(COLORINDEX_COUNT);
+	m_colors.resize(COLORINDEX_COUNT);
+	m_bolds.resize(COLORINDEX_COUNT);
 	SetDefaults();
 }
 
@@ -38,8 +38,8 @@ SyntaxColors::SyntaxColors()
 SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
 : m_pOptionsMgr(NULL)
 {
-	m_colors.reserve(COLORINDEX_COUNT);
-	m_bolds.reserve(COLORINDEX_COUNT);
+	m_colors.resize(COLORINDEX_COUNT);
+	m_bolds.resize(COLORINDEX_COUNT);
 	m_colors = pColors->m_colors;
 	m_bolds = pColors->m_bolds;
 }
@@ -50,8 +50,8 @@ SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
  */
 void SyntaxColors::Clone(const SyntaxColors *pColors)
 {
-	m_colors.reserve(COLORINDEX_COUNT);
-	m_bolds.reserve(COLORINDEX_COUNT);
+	m_colors.resize(COLORINDEX_COUNT);
+	m_bolds.resize(COLORINDEX_COUNT);
 	m_colors = pColors->m_colors;
 	m_bolds = pColors->m_bolds;
 }
@@ -220,7 +220,7 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 		// from storage we must set that value to array we use.
 		int color = 0;
 		COLORREF ref;
-		valuename.reserve(30);
+		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
 			DefColorsPath, i);
 		color = m_colors[i];
@@ -241,7 +241,7 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 	
 		int nBold = 0;
 		BOOL bBold = FALSE;
-		valuename.reserve(30);
+		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
 			DefColorsPath, i);
 		bBold = m_bolds[i];
@@ -266,12 +266,12 @@ void SyntaxColors::SaveToRegistry()
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
-		valuename.reserve(30);
+		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
 			DefColorsPath, i);
 		int color = m_colors[i];
 		m_pOptionsMgr->SetInt(valuename.c_str(), color);
-		valuename.reserve(30);
+		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
 			DefColorsPath, i);
 		BOOL bold = m_bolds[i];
