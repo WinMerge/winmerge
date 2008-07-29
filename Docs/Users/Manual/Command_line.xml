@@ -115,9 +115,9 @@
     </listitem>
 
     <listitem>
-      <simpara><option>/ub</option> tells WinMerge to not add both paths to MRU.
-      External applications should not add paths to Open-dialog's MRU
-      lists.</simpara>
+      <simpara><option>/u</option> (or <option>/ub</option>) tells WinMerge to
+      not add both paths to MRU. External applications should not add paths to
+      Open-dialog's MRU lists.</simpara>
     </listitem>
 
     <listitem>

@@ -12,7 +12,7 @@ WinMerge 2.9.1.6
   Add dialog listing available plugins (#2021722)
   Refresh compare after changing filter (#2017426)
   Add "Open Conflict" for file/folder compare menus (#2025472)
-  Add -u commandline parameter as alternative to -ub (#2029275)
+  Add -u commandline parameter as alternative to -ub (#2029275, #2030359)
   Remove RCLocalizationHelper plugin (#2029457)
   Clarify Supercopier caused hang in release notes (#2030040)
   BugFix: Use system codepage for paths (#1979429, #2008581)
