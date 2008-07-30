@@ -198,7 +198,8 @@ void CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
  * This function is like GetLine() but it also includes line's EOL to the
  * returned string.
  * @param [in] nLineIndex Index of the line to get.
- * @param [out] strLine Returns line text in the index.
+ * @param [out] strLine Returns line text in the index. Existing content
+ * of this string is overwritten.
  */
 BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 {
