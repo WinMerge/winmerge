@@ -12,7 +12,6 @@
 #ifndef UniFile_h_included
 #define UniFile_h_included
 
-#include "sbuffer.h"
 #include "unicoder.h"
 
 /**
@@ -191,10 +190,8 @@ public:
 protected:
 	virtual BOOL ReadString(String & line, bool * lossy);
 	virtual BOOL ReadString(String & line, String & eol, bool * lossy);
-public:
-	virtual BOOL ReadString(sbuffer & line, bool * lossy);
-	virtual BOOL ReadString(sbuffer & line, String & eol, bool * lossy);
 
+public:
 	virtual __int64 GetPosition() const;
 
 	virtual int WriteBom();

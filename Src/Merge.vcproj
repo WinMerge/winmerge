@@ -6392,9 +6392,6 @@
 				RelativePath="SaveClosingDlg.h">
 			</File>
 			<File
-				RelativePath="Common\sbuffer.h">
-			</File>
-			<File
 				RelativePath="Common\scbarcf.h">
 			</File>
 			<File

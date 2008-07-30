@@ -923,16 +923,6 @@ BOOL UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
-BOOL UniStdioFile::ReadString(sbuffer & sline, bool * lossy)
-{
-	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
-	return FALSE;
-}
-BOOL UniStdioFile::ReadString(sbuffer & sline, String & eol, bool * lossy)
-{
-	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
-	return FALSE;
-}
 
 /** @brief Write BOM (byte order mark) if Unicode file */
 int UniStdioFile::WriteBom()
