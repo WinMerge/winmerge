@@ -1153,10 +1153,21 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
  */
 BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 {
-	if (!di.diffcode.isDirectory() &&
-		(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
+	if (m_bTreeMode && GetDocument()->GetRecursive())
 	{
-		return FALSE;
+		if (di.diffcode.isDirectory() ||
+			(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
+		{
+			return FALSE;
+		}
+	}
+	else 
+	{
+		if (!di.diffcode.isDirectory() &&
+			(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
+		{
+			return FALSE;
+		}
 	}
 	return TRUE;
 }

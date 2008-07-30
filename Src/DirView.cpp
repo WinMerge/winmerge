@@ -378,10 +378,21 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	LVHITTESTINFO lvhti;
 	lvhti.pt = point;
 	m_pList->SubItemHitTest(&lvhti);
-	if (lvhti.flags != LVHT_ONITEMSTATEICON)
+	if (lvhti.iItem >= 0)
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
-		OpenSelection();
+		const DIFFITEM& di = GetDiffItem(lvhti.iItem);
+		if (m_bTreeMode && GetDocument()->GetRecursive() && di.diffcode.isDirectory())
+		{
+			if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
+				ExpandSubdir(lvhti.iItem);
+			else
+				CollapseSubdir(lvhti.iItem);
+		}
+		else
+		{
+			WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+			OpenSelection();
+		}
 	}
 	CListView::OnLButtonDblClk(nFlags, point);
 }
@@ -463,7 +474,7 @@ void CDirView::Redisplay()
 
 	DeleteAllDisplayItems();
 
-	m_pList->SetImageList(m_bTreeMode ? &m_imageState : NULL, LVSIL_STATE);
+	m_pList->SetImageList((m_bTreeMode && pDoc->GetRecursive()) ? &m_imageState : NULL, LVSIL_STATE);
 
 	// If non-recursive compare, add special item(s)
 	String leftParent, rightParent;
@@ -913,8 +924,23 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if(nChar==VK_RETURN)
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
-		OpenSelection();
+		int sel = GetFocusedItem();
+		if (sel >= 0)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (m_bTreeMode && GetDocument()->GetRecursive() && di.diffcode.isDirectory())
+			{
+				if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
+					ExpandSubdir(sel);
+				else
+					CollapseSubdir(sel);
+			}
+			else
+			{
+				WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+				OpenSelection();
+			}
+		}
 	}
 	CListView::OnChar(nChar, nRepCnt, nFlags);
 }
@@ -1007,6 +1033,8 @@ void CDirView::ExpandSubdir(int sel)
 	UINT indext = sel + 1;
 	int alldiffs;
 	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
+
+	SortColumnsAppropriately();
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }

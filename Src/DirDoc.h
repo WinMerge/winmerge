@@ -84,7 +84,7 @@ public:
 public:
 	void InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *);
 	void Rescan();
-	BOOL GetRecursive() { return m_bRecursive; }
+	BOOL GetRecursive() const { return m_bRecursive; }
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	BOOL HasDirView() { return m_pDirView != NULL; }
