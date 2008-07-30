@@ -19,13 +19,54 @@
  *
  * @brief Implementation file for DiffList class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
 #include "coretools.h"
+
+using namespace std;
+
+static void swap(int &a, int &b);
+static void swap(UINT &a, UINT &b);
+
+/**
+ * @brief Swap two integers.
+ * @param [in] a First integer.
+ * @param [in] b Second integer.
+ */
+static void swap(int &a, int &b)
+{
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+
+/**
+ * @brief Swap two UINTs.
+ * @param [in] a First UINT.
+ * @param [in] b Second UINT.
+ */
+static void swap(UINT &a, UINT &b)
+{
+	UINT tmp = a;
+	a = b;
+	b = tmp;
+}
+
+/**
+ * @brief Swap diff sides.
+ */
+void DIFFRANGE::swap_sides()
+{
+	swap(begin0, begin1);
+	swap(end0, end1);
+	swap(dbegin0, dbegin1);
+	swap(dend0, dend1);
+	swap(blank0, blank1);
+}
 
 /**
  * @brief Default constructor, initialises difflist to 64 items.
@@ -34,7 +75,7 @@ DiffList::DiffList()
 : m_firstSignificant(-1)
 , m_lastSignificant(-1)
 {
-	m_diffs.SetSize(64);
+	m_diffs.reserve(64); // Reserve some initial space to avoid allocations.
 }
 
 /**
@@ -42,7 +83,7 @@ DiffList::DiffList()
  */
 void DiffList::Clear()
 {
-	m_diffs.RemoveAll();
+	m_diffs.clear();
 	m_firstSignificant = -1;
 	m_lastSignificant = -1;
 }
@@ -55,7 +96,7 @@ void DiffList::Clear()
  */
 int DiffList::GetSize() const
 {
-	return (int) m_diffs.GetSize();
+	return m_diffs.size();
 }
 
 /**
@@ -67,7 +108,7 @@ int DiffList::GetSize() const
 int DiffList::GetSignificantDiffs() const
 {
 	int nSignificants = 0;
-	const int nDiffCount = (int) m_diffs.GetSize();
+	const int nDiffCount = m_diffs.size();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
@@ -88,7 +129,11 @@ int DiffList::GetSignificantDiffs() const
 void DiffList::AddDiff(const DIFFRANGE & di)
 {
 	DiffRangeInfo dri(di);
-	m_diffs.Add(dri);
+
+	// Allocate memory for new items exponentially
+	if (m_diffs.size() == m_diffs.capacity())
+		m_diffs.reserve(m_diffs.size() * 2);
+	m_diffs.push_back(dri);
 }
 
 /**
@@ -132,10 +177,9 @@ BOOL DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
  */
 const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 {
-	if (nDiff>=0 && nDiff < m_diffs.GetSize())
+	if (nDiff >= 0 && nDiff < m_diffs.size())
 	{
-		DiffList * pThis = const_cast<DiffList *>(this);
-		return &pThis->m_diffs.ElementAt(nDiff).diffrange;
+		return &m_diffs[nDiff].diffrange;
 	}
 	else
 	{
@@ -152,7 +196,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
  */
 BOOL DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
-	if (nDiff < m_diffs.GetSize())
+	if (nDiff < m_diffs.size())
 	{
 		m_diffs[nDiff] = di;
 		return TRUE;
@@ -201,7 +245,7 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
  */
 int DiffList::LineToDiff(UINT nLine) const
 {
-	const int nDiffCount = (int) m_diffs.GetSize();
+	const int nDiffCount = m_diffs.size();
 	if (nDiffCount == 0)
 		return -1;
 
@@ -255,7 +299,7 @@ BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
 	if (nDiff == -1)
 	{
 		bInDiff = FALSE;
-		for (int i = (int) m_diffs.GetSize() - 1; i >= 0 ; i--)
+		for (int i = (int) m_diffs.size() - 1; i >= 0 ; i--)
 		{
 			if ((int)DiffRangeAt(i)->dend0 <= nLine)
 			{
@@ -286,7 +330,7 @@ BOOL DiffList::GetNextDiff(int nLine, int & nDiff) const
 	if (numDiff == -1)
 	{
 		bInDiff = FALSE;
-		const int nDiffCount = (int) m_diffs.GetSize();
+		const int nDiffCount = m_diffs.size();
 		for (int i = 0; i < nDiffCount; i++)
 		{
 			if ((int)DiffRangeAt(i)->dbegin0 >= nLine)
@@ -320,7 +364,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
 
-	for (int i = (int) m_diffs.GetSize() - 1; i >= 0 ; i--)
+	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
@@ -340,7 +384,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
-	const int nDiffCount = (int) m_diffs.GetSize();
+	const int nDiffCount = m_diffs.size();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
@@ -363,7 +407,7 @@ void DiffList::ConstructSignificantChain()
 	m_lastSignificant = -1;
 	int prev = -1;
 	// must be called after diff list is entirely populated
-	for (int i = 0; i < m_diffs.GetSize(); ++i)
+	for (int i = 0; i < m_diffs.size(); ++i)
 	{
 		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
 		{
@@ -442,17 +486,15 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 }
 
 /**
- * @brief Swap members of diffrange
+ * @brief Swap sides in diffrange.
  */
 void DiffList::Swap()
 {
-	for (int i = 0; i < m_diffs.GetSize(); ++i)
+	vector<DiffRangeInfo>::iterator iter = m_diffs.begin();
+	while (iter != m_diffs.end())
 	{
-		swap<UINT>(&m_diffs[i].diffrange.begin0, &m_diffs[i].diffrange.begin1);
-		swap<UINT>(&m_diffs[i].diffrange.end0, &m_diffs[i].diffrange.end1);
-		swap<UINT>(&m_diffs[i].diffrange.dbegin0, &m_diffs[i].diffrange.dbegin1);
-		swap<UINT>(&m_diffs[i].diffrange.dend0, &m_diffs[i].diffrange.dend1);
-		swap<int>(&m_diffs[i].diffrange.blank0, &m_diffs[i].diffrange.blank1);
+		(*iter).diffrange.swap_sides();
+		++iter;
 	}
 }
 

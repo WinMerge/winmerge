@@ -19,11 +19,13 @@
  *
  * @brief Declaration file for DiffList class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFFLIST_H_
 #define _DIFFLIST_H_
+
+#include <vector>
 
 /**
  * @brief One difference defined by linenumbers.
@@ -50,6 +52,7 @@ struct DIFFRANGE
 	int blank1;		/**< Number of blank lines in file2 */
 	BYTE op;		/**< Operation done with this diff */
 	DIFFRANGE() { memset(this, 0, sizeof(*this)); }
+	void swap_sides();
 };
 
 /**
@@ -158,7 +161,7 @@ public:
 	void GetExtraLinesCounts(int &nLeftLines, int &nRightLines);
 
 private:
-	CArray<DiffRangeInfo,DiffRangeInfo> m_diffs; /**< Difference list */
+	std::vector<DiffRangeInfo> m_diffs; /**< Difference list. */
 	int m_firstSignificant; /**< Index of first significant diff in m_diffs */
 	int m_lastSignificant; /**< Index of last significant diff in m_diffs */
 };
