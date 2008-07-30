@@ -284,7 +284,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
   if (nLength == 0)
     return;
 
-  register SLineInfo & li = m_aLines[nLineIndex];
+  SLineInfo & li = m_aLines[nLineIndex];
   ASSERT(!li.m_nEolChars);
   int nBufNeeded = li.m_nLength + nLength+1;
   if (nBufNeeded > li.m_nMax)
@@ -800,7 +800,7 @@ GetLineEol (int nLine) const
 BOOL CCrystalTextBuffer::
 ChangeLineEol (int nLine, LPCTSTR lpEOL) 
 {
-  register SLineInfo & li = m_aLines[nLine];
+  SLineInfo & li = m_aLines[nLine];
   int nNewEolChars = (int) _tcslen(lpEOL);
   if (nNewEolChars == li.m_nEolChars)
     if (_tcscmp(li.m_pcLine + li.Length(), lpEOL) == 0)
