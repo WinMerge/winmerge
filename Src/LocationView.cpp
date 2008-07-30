@@ -236,6 +236,8 @@ void CLocationView::CalculateBlocks()
 	
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
+	if (nDiffs > 0)
+		m_diffBlocks.reserve(nDiffs); // Pre-allocate space for the list.
 
 	int nDiff = pDoc->m_diffList.FirstSignificantDiff();
 	while (nDiff != -1)
