@@ -13,6 +13,7 @@
 #ifndef __LOCATIONVIEW_H__
 #define __LOCATIONVIEW_H__
 
+#include <vector>
 
 /**
  * @brief Status for display moved block
@@ -49,9 +50,6 @@ struct DiffBlock
 	unsigned bottom_coord; /**< X-coord of diff block end. */
 	unsigned diff_index; /**< Index of difference in the original diff list. */
 };
-
-typedef CList<DiffBlock, DiffBlock&> DIFFBLOCK_LIST;
-
 
 /** 
  * @brief Class showing map of files.
@@ -109,7 +107,7 @@ private:
 	HWND m_hwndFrame; //*< Frame window handle */
 	CBitmap *m_pSavedBackgroundBitmap; //*< Saved background */
 	bool m_bDrawn; //*< Is already drawn in location pane? */
-	DIFFBLOCK_LIST m_diffBlocks; //*< List of pre-calculated diff blocks.
+	std::vector<DiffBlock> m_diffBlocks; //*< List of pre-calculated diff blocks.
 	BOOL m_bRecalculateBlocks; //*< Recalculate diff blocks in next repaint.
 	CSize m_currentSize; //*< Current size of the panel.
 

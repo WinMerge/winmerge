@@ -30,6 +30,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "merge.h"
 #include "OptionsMgr.h"
 #include "MergeEditView.h"
@@ -46,6 +47,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using namespace std;
 
 /** @brief Size of empty frame above and below bars (in pixels). */
 static const int Y_OFFSET = 5;
@@ -229,7 +232,7 @@ void CLocationView::CalculateBars()
  */
 void CLocationView::CalculateBlocks()
 {
-	m_diffBlocks.RemoveAll();
+	m_diffBlocks.clear();
 	
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
@@ -260,7 +263,7 @@ void CLocationView::CalculateBlocks()
 		block.top_coord = nBeginY;
 		block.bottom_coord = nEndY;
 		block.diff_index = nDiff;
-		m_diffBlocks.AddTail(block);
+		m_diffBlocks.push_back(block);
 
 		nDiff = pDoc->m_diffList.NextSignificantDiff(nDiff);
 	}
@@ -318,27 +321,25 @@ void CLocationView::OnDraw(CDC* pDC)
 	int nPrevEndY = -1;
 	const int nCurDiff = pDoc->GetCurrentDiff();
 
-	POSITION pos = m_diffBlocks.GetHeadPosition();
-
-	while (pos)
+	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
+	while (iter != m_diffBlocks.end())
 	{
-		const DiffBlock &block = m_diffBlocks.GetNext(pos);
 		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
-		const BOOL bInsideDiff = (nCurDiff == block.diff_index);
+		const BOOL bInsideDiff = (nCurDiff == (*iter).diff_index);
 
-		if ((nPrevEndY != block.bottom_coord) || bInsideDiff)
+		if ((nPrevEndY != (*iter).bottom_coord) || bInsideDiff)
 		{
 			// Draw left side block
-			m_view[MERGE_VIEW_LEFT]->GetLineColors2(block.top_line, 0, cr0, crt, bwh);
-			CRect r0(m_leftBar.left, block.top_coord, m_leftBar.right, block.bottom_coord);
+			m_view[MERGE_VIEW_LEFT]->GetLineColors2((*iter).top_line, 0, cr0, crt, bwh);
+			CRect r0(m_leftBar.left, (*iter).top_coord, m_leftBar.right, (*iter).bottom_coord);
 			DrawRect(&dc, r0, cr0, bInsideDiff);
 
 			// Draw right side block
-			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(block.top_line, 0, cr1, crt, bwh);
-			CRect r1(m_rightBar.left, block.top_coord, m_rightBar.right, block.bottom_coord);
+			m_view[MERGE_VIEW_RIGHT]->GetLineColors2((*iter).top_line, 0, cr1, crt, bwh);
+			CRect r1(m_rightBar.left, (*iter).top_coord, m_rightBar.right, (*iter).bottom_coord);
 			DrawRect(&dc, r1, cr1, bInsideDiff);
 		}
-		nPrevEndY = block.bottom_coord;
+		nPrevEndY = (*iter).bottom_coord;
 
 		// Test if we draw a connector
 		BOOL bDisplayConnectorFromLeft = FALSE;
@@ -364,9 +365,9 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		if (bDisplayConnectorFromLeft)
 		{
-			int apparent0 = block.top_line;
+			int apparent0 = (*iter).top_line;
 			int apparent1 = pDoc->RightLineInMovedBlock(apparent0);
-			const int nBlockHeight = block.bottom_line - block.top_line;
+			const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
 			if (apparent1 != -1)
 			{
 				MovedLine line;
@@ -392,9 +393,9 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		if (bDisplayConnectorFromRight)
 		{
-			int apparent1 = block.top_line;
+			int apparent1 = (*iter).top_line;
 			int apparent0 = pDoc->LeftLineInMovedBlock(apparent1);
-			const int nBlockHeight = block.bottom_line - block.top_line;
+			const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
 			if (apparent0 != -1)
 			{
 				MovedLine line;
@@ -417,6 +418,7 @@ void CLocationView::OnDraw(CDC* pDC)
 				m_movedLines.AddTail(line);
 			}
 		}
+		++iter;
 	}
 
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
