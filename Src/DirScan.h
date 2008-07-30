@@ -19,8 +19,8 @@ struct DiffFuncStruct;
 int DirScan_GetItems(const PathContext &paths, const String &leftsubdir, const String &rightsubdir, DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent);
 
-int DirScan_CompareItems(DiffFuncStruct *);
-int DirScan_CompareRequestedItems(DiffFuncStruct *);
+int DirScan_CompareItems(DiffFuncStruct *, POSITION parentdiffpos);
+int DirScan_CompareRequestedItems(DiffFuncStruct *, POSITION parentdiffpos);
 
 void DirScan_InitializeDefaultCodepage();
 

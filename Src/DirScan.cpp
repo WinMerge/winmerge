@@ -234,14 +234,16 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
  *
  * @param list [in] List of items to compare
  * @param pCtxt [in,out] Compare context: contains list where results are added.
- * @return 1 if compare finished, -1 if compare was aborted
+ * @param parentdiffpos [in] Position of parent diff item 
+ * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffFuncStruct *myStruct)
+int DirScan_CompareItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
-	int res = 1;
-	WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-	POSITION pos = pCtxt->GetFirstDiffPosition();
+	int res = 0;
+	if (!parentdiffpos)
+		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
+	POSITION pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos)
 	{
 		if (pCtxt->ShouldAbort())
@@ -250,8 +252,31 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct)
 			break;
 		}
 		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-		DIFFITEM &di = pCtxt->GetNextDiffRefPosition(pos);
-		CompareDiffItem(di, pCtxt);
+		POSITION curpos = pos;
+		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
+		if (di.diffcode.isDirectory() && di.diffcode.isSideBoth() && myStruct->bRecursive)
+		{
+			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+			int ndiff = DirScan_CompareItems(myStruct, curpos);
+			if (ndiff > 0)
+			{
+				di.diffcode.diffcode |= DIFFCODE::DIFF;
+				res += ndiff;
+			}
+			else if (ndiff == 0)
+			{
+				di.diffcode.diffcode |= DIFFCODE::SAME;
+			}
+		}
+		else
+		{
+			CompareDiffItem(di, pCtxt);
+			if (di.diffcode.isResultDiff() ||
+				(!di.diffcode.isSideBoth() && !di.diffcode.isResultFiltered()))
+				res++;
+		}
+		pos = curpos;
+		pCtxt->GetNextSiblingDiffRefPosition(pos);
 	}
 	return res;
 }
@@ -260,13 +285,14 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct)
  * @brief Compare DiffItems in context marked for rescan.
  *
  * @param pCtxt [in,out] Compare context: contains list of items.
- * @return 1 if compare finished, -1 if compare was aborted
+ * @param parentdiffpos [in] Position of parent diff item 
+ * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct)
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
-	int res = 1;
-	POSITION pos = pCtxt->GetFirstDiffPosition();
+	int res = 0;
+	POSITION pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
 	while (pos != NULL)
 	{
@@ -276,14 +302,36 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct)
 			break;
 		}
 
-		POSITION oldPos = pos;
-		DIFFITEM &di = pCtxt->GetNextDiffRefPosition(pos);
-		if (di.diffcode.isScanNeeded())
+		POSITION curpos = pos;
+		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
+		if (di.diffcode.isDirectory() && di.diffcode.isSideBoth() && myStruct->bRecursive)
 		{
-			BOOL bItemsExist = TRUE;
-			UpdateDiffItem(di, bItemsExist, pCtxt);
-			if (bItemsExist)
-				CompareDiffItem(di, pCtxt);
+			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
+			int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
+			if (ndiff > 0)
+			{
+				di.diffcode.diffcode |= DIFFCODE::DIFF;
+				res += ndiff;
+			}
+			else if (ndiff == 0)
+			{
+				di.diffcode.diffcode |= DIFFCODE::SAME;
+			}		
+		}
+		else
+		{
+			if (di.diffcode.isScanNeeded())
+			{
+				BOOL bItemsExist = TRUE;
+				UpdateDiffItem(di, bItemsExist, pCtxt);
+				if (bItemsExist)
+				{
+					CompareDiffItem(di, pCtxt);
+				}
+			}
+			if (di.diffcode.isResultDiff() ||
+				(!di.diffcode.isSideBoth() && !di.diffcode.isResultFiltered()))
+				res++;
 		}
 	}
 	return res;

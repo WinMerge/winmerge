@@ -257,9 +257,9 @@ UINT DiffThreadCompare(LPVOID lpParam)
 
 	// Now do all pending file comparisons
 	if (myStruct->bOnlyRequested)
-		DirScan_CompareRequestedItems(myStruct);
+		DirScan_CompareRequestedItems(myStruct, NULL);
 	else
-		DirScan_CompareItems(myStruct);
+		DirScan_CompareItems(myStruct, NULL);
 
 	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 

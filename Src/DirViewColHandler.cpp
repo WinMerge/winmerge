@@ -273,13 +273,6 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 				s.insert(0, _T("* "));
 			}
 		}
-		// Don't show result for folderitems appearing both sides
-		if ((IsColStatus(i) || IsColStatusAbbr(i)) &&
-			di.diffcode.isDirectory() && !di.diffcode.isSideLeftOnly() &&
-			!di.diffcode.isSideRightOnly())
-		{
-			s.erase();
-		}
 		pParam->item.pszText = AllocDispinfoText(s);
 	}
 	if (pParam->item.mask & LVIF_IMAGE)

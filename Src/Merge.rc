@@ -2310,6 +2310,7 @@ BEGIN
     IDS_IDENTICAL           "Identical"
     IDS_BIN_FILES_DIFF      "Binary files are different"
     IDS_FILES_ARE_DIFFERENT "Files are different"
+    IDS_FOLDERS_ARE_DIFFERENT "Folders are different"
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
     IDS_DIFFERENT           "Different"

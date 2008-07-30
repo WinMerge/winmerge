@@ -95,7 +95,7 @@ public:
 	void setSideNone() { SetSide(0); }
 	// compare result
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
-	bool isResultDiff() const { return (!isResultSame() && !isResultFiltered() && !isResultError() &&
+	bool isResultDiff() const { return (CheckCompare(diffcode, DIFFCODE::DIFF) && !isResultFiltered() &&
 			!isSideLeftOnly() && !isSideRightOnly()); }
 	static bool isResultError(UINT code) { return CheckCompare(code, DIFFCODE::CMPERR); }
 	bool isResultError() const { return isResultError(diffcode); }

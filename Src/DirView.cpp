@@ -85,6 +85,8 @@ static enum
 	DIFFIMG_RDIRUNIQUE,
 	DIFFIMG_SKIP,
 	DIFFIMG_DIRSKIP,
+	DIFFIMG_DIRDIFF,
+	DIFFIMG_DIRSAME,
 	DIFFIMG_DIR,
 	DIFFIMG_ERROR,
 	DIFFIMG_DIRUP,
@@ -287,6 +289,8 @@ void CDirView::OnInitialUpdate()
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFOLDER)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FILESKIP)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERSKIP)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALFOLDER)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALFOLDER)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDER)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ERROR)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP)));
@@ -332,11 +336,21 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 	if (di.diffcode.isSideRightOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
 	if (di.diffcode.isResultSame())
-		return (di.diffcode.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
-	if (di.diffcode.isDirectory())
-		return DIFFIMG_DIR;
+	{
+		if (di.diffcode.isDirectory())
+			return DIFFIMG_DIRSAME;
+		else
+			return (di.diffcode.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
+	}
 	// diff
-	return (di.diffcode.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
+	if (di.diffcode.isResultDiff())
+	{
+		if (di.diffcode.isDirectory())
+			return DIFFIMG_DIRDIFF;
+		else
+			return (di.diffcode.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
+	}
+	return DIFFIMG_DIR;
 }
 
 /**
@@ -383,10 +397,10 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		const DIFFITEM& di = GetDiffItem(lvhti.iItem);
 		if (m_bTreeMode && GetDocument()->GetRecursive() && di.diffcode.isDirectory())
 		{
-			if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
-				ExpandSubdir(lvhti.iItem);
-			else
+			if (di.customFlags1 & ViewCustomFlags::EXPANDED)
 				CollapseSubdir(lvhti.iItem);
+			else
+				ExpandSubdir(lvhti.iItem);
 		}
 		else
 		{
@@ -437,8 +451,8 @@ void CDirView::RedisplayChildren(POSITION diffpos, int level, UINT &index, int &
 				index++;
 				if (di.HasChildren())
 				{
-					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::COLLAPSED) ? 1 : 2), LVIS_STATEIMAGEMASK);
-					if (!(di.customFlags1 & ViewCustomFlags::COLLAPSED))
+					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
+					if (di.customFlags1 & ViewCustomFlags::EXPANDED)
 						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
 				}
 			}
@@ -930,10 +944,10 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			const DIFFITEM& di = GetDiffItem(sel);
 			if (m_bTreeMode && GetDocument()->GetRecursive() && di.diffcode.isDirectory())
 			{
-				if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
-					ExpandSubdir(sel);
-				else
+				if (di.customFlags1 & ViewCustomFlags::EXPANDED)
 					CollapseSubdir(sel);
+				else
+					ExpandSubdir(sel);
 			}
 			else
 			{
@@ -975,10 +989,10 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 	if (lvhti.flags == LVHT_ONITEMSTATEICON)
 	{
 		const DIFFITEM &di = GetItemAt(pNM->iItem);
-		if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
-			ExpandSubdir(pNM->iItem);
-		else
+		if (di.customFlags1 & ViewCustomFlags::EXPANDED)
 			CollapseSubdir(pNM->iItem);
+		else
+			ExpandSubdir(pNM->iItem);
 	}
 
 	*pResult = 0;
@@ -991,12 +1005,12 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 void CDirView::CollapseSubdir(int sel)
 {
 	DIFFITEM& dip = this->GetDiffItemRef(sel);
-	if (!m_bTreeMode || (dip.customFlags1 & ViewCustomFlags::COLLAPSED) || !dip.HasChildren())
+	if (!m_bTreeMode || !(dip.customFlags1 & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
 		return;
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
-	dip.customFlags1 |= ViewCustomFlags::COLLAPSED;
+	dip.customFlags1 &= ~ViewCustomFlags::EXPANDED;
 	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK);
 
 	int count = m_pList->GetItemCount();
@@ -1019,12 +1033,12 @@ void CDirView::CollapseSubdir(int sel)
 void CDirView::ExpandSubdir(int sel)
 {
 	DIFFITEM& dip = GetDiffItemRef(sel);
-	if (!m_bTreeMode || !(dip.customFlags1 & ViewCustomFlags::COLLAPSED) || !dip.HasChildren())
+	if (!m_bTreeMode || (dip.customFlags1 & ViewCustomFlags::EXPANDED) || !dip.HasChildren())
 		return;
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
-	dip.customFlags1 &= ~ViewCustomFlags::COLLAPSED;
+	dip.customFlags1 |= ViewCustomFlags::EXPANDED;
 	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(2), LVIS_STATEIMAGEMASK);
 
 	CDirDoc *pDoc = GetDocument();
@@ -2213,11 +2227,8 @@ bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 		return false;
 	if (di.diffcode.isResultFiltered() || di.diffcode.isResultError())
 		return false;
-	// Skip identical directories
-	if (di.diffcode.isDirectory() && !di.diffcode.isSideLeftOnly() &&
+	if (!di.diffcode.isResultDiff() && !di.diffcode.isSideLeftOnly() &&
 			!di.diffcode.isSideRightOnly())
-		return false;
-	if (di.diffcode.isResultSame())
 		return false;
 	return true;
 }
@@ -2287,8 +2298,11 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// Check if we got 'Backspace pressed' -message
 			if (pMsg->wParam == VK_BACK)
 			{
-				OpenParentDirectory();
-				return FALSE;
+				if (!GetDocument()->GetRecursive())
+				{
+					OpenParentDirectory();
+					return FALSE;
+				}
 			}
 		}
 		else
@@ -3300,7 +3314,7 @@ void CDirView::OnViewTreeMode()
 void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_bTreeMode);
-	pCmdUI->Enable(TRUE);
+	pCmdUI->Enable(GetDocument()->GetRecursive());
 }
 
 /**
@@ -3314,7 +3328,7 @@ void CDirView::OnViewExpandAllSubdirs()
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
-		di.customFlags1 &= ~ViewCustomFlags::COLLAPSED;
+		di.customFlags1 |= ViewCustomFlags::EXPANDED;
 	}
 	Redisplay();
 }
@@ -3324,7 +3338,7 @@ void CDirView::OnViewExpandAllSubdirs()
  */
 void CDirView::OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_bTreeMode);
+	pCmdUI->Enable(m_bTreeMode && GetDocument()->GetRecursive());
 }
 
 /**
@@ -3338,7 +3352,7 @@ void CDirView::OnViewCollapseAllSubdirs()
 	while (diffpos)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
-		di.customFlags1 |= ViewCustomFlags::COLLAPSED;
+		di.customFlags1 &= ~ViewCustomFlags::EXPANDED;
 	}
 	Redisplay();
 }
@@ -3348,7 +3362,7 @@ void CDirView::OnViewCollapseAllSubdirs()
  */
 void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_bTreeMode);
+	pCmdUI->Enable(m_bTreeMode && GetDocument()->GetRecursive());
 }
 
 void CDirView::OnMergeCompare()

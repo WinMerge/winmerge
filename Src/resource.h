@@ -119,6 +119,8 @@
 #define IDI_COMPARE_ABORTED             515
 #define IDI_FILEFILTER                  516
 #define IDI_LINEFILTER                  517
+#define IDI_EQUALFOLDER                 518
+#define IDI_NOTEQUALFOLDER              519
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -674,6 +676,7 @@
 #define IDS_DIFFERENT                   17739
 #define IDS_ABORTED_ITEM                17740
 #define IDS_CMPRES_ERROR                17741
+#define IDS_FOLDERS_ARE_DIFFERENT       17742
 #define IDS_ELAPSED_TIME                17744
 #define IDS_STATUS_SELITEM1             17745
 #define IDS_STATUS_SELITEMS             17746

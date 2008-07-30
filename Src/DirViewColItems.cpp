@@ -278,10 +278,12 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 		else
 			s = theApp.LoadString(IDS_IDENTICAL);
 	}
-	else // diff
+	else if (di.diffcode.isResultDiff()) // diff
 	{
 		if (di.diffcode.isBin())
 			s = theApp.LoadString(IDS_BIN_FILES_DIFF);
+		else if (di.diffcode.isDirectory())
+			s = theApp.LoadString(IDS_FOLDERS_ARE_DIFFERENT);
 		else
 			s = theApp.LoadString(IDS_FILES_ARE_DIFFERENT);
 	}
@@ -439,7 +441,7 @@ static String ColRversionGet(const CDiffContext * pCtxt, const void *p)
 static String ColStatusAbbrGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	int id;
+	int id = 0;
 
 	// Note that order of items does matter. We must check for
 	// skipped items before unique items, for example, so that
@@ -471,12 +473,12 @@ static String ColStatusAbbrGet(const CDiffContext *, const void *p)
 	{
 		id = IDS_IDENTICAL;
 	}
-	else // diff
+	else if (di.diffcode.isResultDiff())
 	{
 		id = IDS_DIFFERENT;
 	}
 
-	return theApp.LoadString(id);
+	return id ? theApp.LoadString(id) : _T("");
 }
 
 /**
