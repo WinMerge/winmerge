@@ -81,6 +81,9 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 	CStatic * pIcon = (CStatic *) GetDlgItem(IDC_FLDCONFIRM_ICON);
 	pIcon->SetIcon(icon);
 
+	if (!m_caption.IsEmpty())
+		SetWindowText(m_caption);
+
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
 	// configure how individual controls adjust when dialog resizes

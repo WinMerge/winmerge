@@ -53,6 +53,11 @@ static char THIS_FILE[] = __FILE__;
 
 static BOOL ConfirmCopy(int origin, int destination, int count,
 		LPCTSTR src, LPCTSTR dest, BOOL destIsSide);
+static BOOL ConfirmMove(int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide);
+static BOOL ConfirmDialog(const String &caption, const String &question,
+		int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide);
 
 static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
 		int allowDest, CString & failedPath);
@@ -69,18 +74,68 @@ static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
  * @param [in] src Source path.
  * @param [in] dest Destination path.
  * @param [in] destIsSide Is destination path either of compare sides?
- * @return IDYES if copy should proceed, IDNO if aborted.
+ * @return TRUE if copy should proceed, FALSE if aborted.
  */
 static BOOL ConfirmCopy(int origin, int destination, int count,
 		LPCTSTR src, LPCTSTR dest, BOOL destIsSide)
 {
-	ConfirmFolderCopyDlg dlg;
 	CString strQuestion;
-	String sOrig;
-	String sDest;
-
+	String caption = LoadResString(IDS_CONFIRM_COPY_CAPTION);
 	UINT id = count == 1 ? IDS_CONFIRM_SINGLE_COPY : IDS_CONFIRM_MULTIPLE_COPY;
 	strQuestion.Format(theApp.LoadString(id).c_str(), count);
+
+	BOOL ret = ConfirmDialog(caption, (LPCTSTR)strQuestion, origin,
+		destination, count,	src, dest, destIsSide);
+	return ret;
+}
+
+/**
+ * @brief Ask user a confirmation for moving item(s).
+ * Shows a confirmation dialog for move operation. Depending ont item count
+ * dialog shows full paths to items (single item) or base paths of compare
+ * (multiple items).
+ * @param [in] origin Origin side of the item(s).
+ * @param [in] destination Destination side of the item(s).
+ * @param [in] count Number of items.
+ * @param [in] src Source path.
+ * @param [in] dest Destination path.
+ * @param [in] destIsSide Is destination path either of compare sides?
+ * @return TRUE if copy should proceed, FALSE if aborted.
+ */
+static BOOL ConfirmMove(int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide)
+{
+	CString strQuestion;
+	String caption = LoadResString(IDS_CONFIRM_MOVE_CAPTION);
+	UINT id = count == 1 ? IDS_CONFIRM_SINGLE_MOVE : IDS_CONFIRM_MULTIPLE_MOVE;
+	strQuestion.Format(theApp.LoadString(id).c_str(), count);
+
+	BOOL ret = ConfirmDialog(caption, (LPCTSTR)strQuestion, origin,
+		destination, count,	src, dest, destIsSide);
+	return ret;
+}
+
+/**
+ * @brief Show a (copy/move) confirmation dialog.
+ * @param [in] caption Caption of the dialog.
+ * @param [in] question Guestion to ask from user.
+ * @param [in] origin Origin side of the item(s).
+ * @param [in] destination Destination side of the item(s).
+ * @param [in] count Number of items.
+ * @param [in] src Source path.
+ * @param [in] dest Destination path.
+ * @param [in] destIsSide Is destination path either of compare sides?
+ * @return TRUE if copy should proceed, FALSE if aborted.
+ */
+static BOOL ConfirmDialog(const String &caption, const String &question,
+		int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide)
+{
+	ConfirmFolderCopyDlg dlg;
+	String sOrig;
+	String sDest;
+	
+	dlg.m_caption = caption.c_str();
 	
 	if (origin == FileActionItem::UI_LEFT)
 		sOrig = theApp.LoadString(IDS_FROM_LEFT);
@@ -114,7 +169,7 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 			strDest += _T("\\");
 	}
 
-	dlg.m_question = strQuestion;
+	dlg.m_question = question.c_str();
 	dlg.m_fromText = sOrig.c_str();
 	dlg.m_toText = sDest.c_str();
 	dlg.m_fromPath = strSrc.c_str();
@@ -677,6 +732,7 @@ void CDirView::DoMoveLeftTo()
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
+			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.left.path.empty())
@@ -744,6 +800,7 @@ void CDirView::DoMoveRightTo()
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
+			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.right.path.empty())
@@ -809,7 +866,7 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 		if (actionList.GetActionItemCount() == 1)
 		{
 			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
-                actionList.GetActionItemCount(), item.src.c_str(), item.dest.c_str(),
+				actionList.GetActionItemCount(), item.src.c_str(), item.dest.c_str(),
 				bDestIsSide))
 			{
 				return FALSE;
@@ -837,8 +894,7 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 				if (!actionList.m_destBase.empty())
 					dst = actionList.m_destBase;
 				else
-					item.dest;
-
+					dst = item.dest;
 			}
 
 			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
@@ -851,8 +907,40 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 		
 	// Deleting does not need confirmation, CShellFileOp takes care of it
 	case FileAction::ACT_DEL:
-	// Moving does not need confirmation, CShellFileOp takes care of it
+		break;
+
 	case FileAction::ACT_MOVE:
+		bDestIsSide = FALSE;
+		if (actionList.GetActionItemCount() == 1)
+		{
+			if (!ConfirmMove(item.UIOrigin, item.UIDestination,
+				actionList.GetActionItemCount(), item.src.c_str(), item.dest.c_str(),
+				bDestIsSide))
+			{
+				return FALSE;
+			}
+		}
+		else
+		{
+			String src;
+			String dst;
+
+			if (item.UIOrigin == FileActionItem::UI_LEFT)
+				src = GetDocument()->GetLeftBasePath();
+			else
+				src = GetDocument()->GetRightBasePath();
+
+			if (!actionList.m_destBase.empty())
+				dst = actionList.m_destBase;
+			else
+				dst = item.dest;
+
+			if (!ConfirmMove(item.UIOrigin, item.UIDestination,
+				actionList.GetActionItemCount(), src.c_str(), dst.c_str(), bDestIsSide))
+			{
+				return FALSE;
+			}
+		}
 		break;
 
 	// Invalid operation
