@@ -11,6 +11,7 @@ WinMerge 2.11.1.3
   Improve tree mode in folder compare (#2018836)
   BugFix: Could change syntax highlight mode when highlighting was
     disabled from options (#2027325)
+  BugFix: Editing line filters updated wrong filter (#2025130)
 
 WinMerge 2.11.1.2 - 2008-07-24 (r5673)
   Refresh compare after changing filter (#2017426)
