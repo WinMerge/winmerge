@@ -901,8 +901,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// copy the selected text over
 		for (int i=cd_dbegin; i <= limit; i++)
 		{
-			// text exists on left side, so just replace
-			strLine = _T("");
+			// text exists on other side, so just replace
 			sbuf.GetFullLine(i, strLine);
 			dbuf.ReplaceFullLine(dstView, i, strLine, CE_ACTION_MERGE);
 			dbuf.FlushUndoGroup(dstView);
