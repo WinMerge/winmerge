@@ -304,9 +304,16 @@
         <secondary>basic usage</secondary>
       </indexterm>Comparing folders</title>
 
+    <para>If you selected two folders in the Open dialog, the Folder Compare
+    window is opened. The Folder Compare window is a tabular list of items found
+    in the compared folders. Each row displays information about a found file,
+    with the file name in the left column and additional information in the
+    other columns:</para>
+
     <mediaobject>
       <imageobject>
-        <imagedata fileref="screenshots/foldercomp1.png" format="PNG" />
+        <imagedata contentwidth="600" fileref="screenshots/foldercomp1.png"
+                   format="PNG" />
       </imageobject>
 
       <textobject>
@@ -314,20 +321,14 @@
       </textobject>
     </mediaobject>
 
-    <para>If you selected two folders in the Open dialog, the Folder Compare
-    window is opened. The Folder Compare window is a tabular list of items found
-    in the compared folders. Each row displays information about a found file,
-    with the file name in the left column and additional information in the
-    other columns.</para>
-
     <para>WinMerge does not have a concept of <wordasword>original</wordasword>
     and <wordasword>changed</wordasword> sides. Instead, it simply shows what is
     different between two selected folders. For example, a file or folder that
     is found only on one side is simply shown as a unique item on that side. It
-    is not shown as added or removed. In the preceding figure, notice that the
-    <guilabel>Comparison result </guilabel>column lists
-    <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> as
-    found only in the left comparison folder.</para>
+    is not shown as added or removed. For example, in the <guilabel>Comparison
+    result </guilabel>column of the preceding figure,
+    <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> are
+    each found in only one of the compared folders.</para>
 
     <para>You can manage files and folders in many ways using the
     <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click)
@@ -372,10 +373,10 @@
         </textobject>
       </inlinemediaobject> up arrow at the top of the Filename column.</para>
 
-    <para>If you compare a file, WinMerge opens File Compare window with a new
-    tab, as shown in the figure in the next section. Then, if you make changes
-    in the File Compare window, the file's data is updated in the Folder Compare
-    window.</para>
+    <para>If you compare a file, WinMerge opens the File Compare window,
+    described in the next section. If you change a file in the File Compare
+    window, and then return to the Folder Compare window, you will see the
+    file's data is updated there.</para>
   </section>
 
   <section id="QuickStart_comparingfiles">
@@ -391,7 +392,8 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata fileref="screenshots/filecomp1.png" format="PNG" />
+        <imagedata contentwidth="600" fileref="screenshots/filecomp1.png"
+                   format="PNG" />
       </imageobject>
 
       <textobject>
@@ -399,11 +401,12 @@
       </textobject>
     </mediaobject>
 
-    <para>The File Compare window shows the two versions of the selected files
-    side by side. Different lines are highlighted with a background color. One
-    or more consecutive different lines form one difference (or
-    <glossterm>diff</glossterm>). WinMerge mainly works with these differences,
-    not separate lines.</para>
+    <para>The File Compare window shows the two selected files side by side, in
+    separate document panes. Different lines are highlighted with a background
+    color. One or more consecutive different lines form one difference (or
+    <glossterm>diff</glossterm>). In the preceding example, a single difference
+    is selected in the document panes, which displays it in the Diff Pane.
+    WinMerge mainly works with these differences, not separate lines.</para>
 
     <para><important>
         <para>Notice how WinMerge fills missing lines, so that similar lines are

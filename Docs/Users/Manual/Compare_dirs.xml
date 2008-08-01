@@ -37,9 +37,9 @@
         <listitem>
           <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge
           install directory. In your command arguments, include the left and
-          right folders to compare. By default, the compare is includes all
-          files in the folders, and is nonrecursive. To change any of these
-          options and for information about other command options, see <xref
+          right folders to compare. By default, the compare includes all files
+          in the folders, and is nonrecursive. To change any of these options
+          and for information about other command options, see <xref
           linkend="CommandLine" />.</para>
         </listitem>
       </varlistentry>
@@ -134,7 +134,7 @@ I get the partial list, but no Abort indicator.--></para>
 
     <mediaobject>
       <imageobject>
-        <imagedata contentwidth="637" fileref="screenshots/foldercomp1.png"
+        <imagedata contentwidth="600" fileref="screenshots/foldercomp1.png"
                    format="PNG" />
       </imageobject>
     </mediaobject>
@@ -301,6 +301,80 @@ I get the partial list, but no Abort indicator.--></para>
       differences in the compared files. Use WinMerge functions to merge
       contents by copying, moving, or delete one or more files or
       subfolders.</para>
+    </section>
+  </section>
+
+  <section>
+    <title>Working with multiple Folder Compare windows</title>
+
+    <para>By default, the WinMerge window displays a single Folder Compare
+    window. That is, if you start another file comparison while a Folder Compare
+    window is currently open, the new Compare window replaces the current one.
+    If you prefer to work with multiple compare operations simultaneously,
+    consider setting (checking) the <guilabel>Enable multiple compare windows
+    for Folder compare</guilabel> option. </para>
+
+    <section>
+      <title>Using the Tab bar with maximized compare windows</title>
+
+      <para>If you open multiple Compare windows, they are displayed by default
+      as individually resizeable child windows within the WinMerge window, like
+      this:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata contentwidth="569"
+                     fileref="screenshots/multifoldercomp1.png" format="PNG" />
+        </imageobject>
+
+        <caption><para>Multiple Folder Compare windows: default
+        display</para></caption>
+      </mediaobject>
+
+      <para>Often, it's convenient to maximize your Compare window (by clicking
+      its Maximixe button). The window then fills all the available space in the
+      WinMerge window. The screen shot below shows a maximized Compare
+      window.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata contentwidth="569"
+                     fileref="screenshots/multifoldercomp2.png" format="PNG" />
+        </imageobject>
+
+        <caption><para>Multiple Comparison windows: maximized</para></caption>
+      </mediaobject>
+
+      <para>When you maximize one Compare window, any other Compare windows are
+      hidden, as shown in the preceding screen shot. To access those windows,
+      you could return to the default view by clicking the <inlinemediaobject>
+          <imageobject>
+            <imagedata contentwidth="15" fileref="screenshots/restore_btn.png" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Restore button</phrase>
+          </textobject>
+        </inlinemediaobject> Restore button. A better solution is to enable tabs
+      by setting (checking) <menuchoice>
+          <guimenu>View</guimenu>
+
+          <guimenuitem>Tab Bar</guimenuitem>
+        </menuchoice>.</para>
+
+      <para>When you display the Tab bar, each Compare window has a tab that
+      shows the filenames of the two compared files. Now, you can easily
+      identify and display any available Compare window, and the selected
+      Compare window remains maximized:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata contentwidth="569"
+                     fileref="screenshots/multifoldercomp3.png" format="PNG" />
+        </imageobject>
+
+        <caption><para>Multiple Comparison windows: tabbed</para></caption>
+      </mediaobject>
     </section>
   </section>
 
@@ -760,8 +834,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           <listitem>
             <para>If you browse to a subfolder that exists only the left or
             right side, WinMerge can create a new, matching folder on the other
-            side. See <xref linkend="CompareDirs_browse_unique" /> for details.
-            </para>
+            side. See <xref linkend="CompareDirs_browse_unique" /> for
+            details.</para>
           </listitem>
         </varlistentry>
       </variablelist>
