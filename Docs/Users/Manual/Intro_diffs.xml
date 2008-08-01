@@ -19,21 +19,22 @@
     difference/merging tools like WinMerge are designed make this work more
     systematic and efficient.</para>
 
-    <para>For example, a spell checker is a difference utility that most people
-    have used: it can systematically step you through a document, highlight
-    words that are different from those in its dictionary, and help you resolve
-    each spelling problem. However, looking only at characters and words is not
-    an effective way to do more complicated comparisons: many text utilities use
-    lines as the basic unit of comparison instead.</para>
+    <para>A simple difference utility that most people have used is a spell
+    checker: it systematically steps you through a document, highlights words
+    that are different from those in its dictionary, and helps you resolve each
+    spelling problem. However, looking only at characters and words is not an
+    effective way to understand differences between multiple files. For this
+    reason, many difference utilities use lines as the basic unit of comparison
+    instead.</para>
 
     <para>WinMerge also uses lines as its basic unit of difference. Words and
-    spaces are not treated individually in comparing and merging operations. To
-    illustrate, consider two files that are identical except for one line that
-    is different. If the two versions of the line have four words that are
+    characters are not treated individually in comparing and merging operations.
+    To illustrate, consider two files that are identical except for one line
+    that is different. If the two versions of the line have four words that are
     different and one version has an extra space, then we say that the file has
     one difference, not five.</para>
 
-    <para>If it's quicker to compare lines than characters, sometimes it's also
+    <para>If it's quicker to compare lines than words, sometimes it's also
     useful to treat an entire block of lines as a single difference, instead of
     comparing one line at a time. As we will see later, detecting multiple-line
     differences makes merging more efficient too.</para>
@@ -53,8 +54,8 @@
           <formalpara>
             <title>Fle1:</title>
 
-            <para><screen>It's hard to compare words
-and merge them. So instead 
+            <para><screen>It's slow comparing words 
+and characters. Instead,  
 WinMerge compares lines.
 Believe it or else.</screen></para>
           </formalpara>
@@ -62,7 +63,7 @@ Believe it or else.</screen></para>
           <formalpara>
             <title>File2:</title>
 
-            <para><screen>It's hard to compare words.
+            <para><screen>It's slow comparing words.
 WinMerge compares lines.
 Believe it or not.</screen></para>
           </formalpara>
@@ -85,11 +86,11 @@ Believe it or not.</screen></para>
           <filename>File1</filename> as the <guilabel>Left</guilabel> file and
           <filename>File2</filename> as the <guilabel>Right</guilabel> file,
           then click <guibutton>OK</guibutton>. The File Compare window displays
-          the two files in the left and right pane, like this:</para>
+          the two files in the left and right document pane, like this:</para>
 
           <mediaobject>
             <imageobject>
-              <imagedata contentwidth="592"
+              <imagedata contentwidth="600"
                          fileref="screenshots/missing_lines.png" />
             </imageobject>
 
@@ -118,7 +119,7 @@ Believe it or not.</screen></para>
               <listitem>
                 <para>WinMerge marks differences with various background colors
                 (which you can configure in WinMerge options). The basic
-                difference color is gold, by default. Within each line
+                difference color is dark yellow, by default. Within each line
                 difference, WinMerge marks words and characters that are
                 different with a lighter background color. Identical lines (like
                 the third line in the example) are unmarked: they have white
@@ -200,7 +201,7 @@ Believe it or not.</screen></para>
 
           <mediaobject>
             <imageobject>
-              <imagedata contentwidth="573"
+              <imagedata contentwidth="588"
                          fileref="screenshots/filecomp_diffpane1.png" />
             </imageobject>
 
@@ -360,7 +361,7 @@ Believe it or not.</screen></para>
 
           <mediaobject>
             <imageobject>
-              <imagedata contentwidth="592"
+              <imagedata contentwidth="600"
                          fileref="screenshots/filemerged1.png" format="PNG" />
             </imageobject>
           </mediaobject>
@@ -381,15 +382,19 @@ Believe it or not.</screen></para>
             </keycombo> to save your changes.</para>
         </listitem>
       </orderedlist>
+
+      <para>While very simple, this example demonstrates a basic methodology
+      that you can use to step through a comparison of any length, merging each
+      difference one by one until you have the result that you want.</para>
     </section>
 
     <section>
       <title>Choosing a merge result file</title>
 
-      <para>You control where your merge result is preserved. The WinMerge
-      Compare window does not have a separate result pane, unlike some merge
-      tools. So the simplest strategy is to save your changes in one or both
-      source files. Press <keycombo>
+      <para>You control where your merge result is preserved. The WinMerge File
+      Compare window does not have a separate result pane, as some merge tools
+      do. So the simplest strategy is to save your changes to one or both source
+      files. Press <keycombo>
           <keycap>Ctrl</keycap>
 
           <keycap>S</keycap>
