@@ -2296,15 +2296,14 @@ GetFont (BOOL bItalic /*= FALSE*/ , BOOL bBold /*= FALSE*/ )
           CClientDC dc (GetDesktopWindow ());
           m_lfBaseFont.lfHeight = -MulDiv (11, dc.GetDeviceCaps (LOGPIXELSY), 72);
         }
-      m_lfBaseFont.lfWeight = bBold && !_tcsnicmp (m_lfBaseFont.lfFaceName, _T ("Courier"), 7) ? FW_BOLD : FW_NORMAL;
-      m_lfBaseFont.lfItalic = (BYTE) (bItalic && !_tcsnicmp (m_lfBaseFont.lfFaceName, _T ("Courier"), 7));
+      m_lfBaseFont.lfWeight = bBold ? FW_BOLD : FW_NORMAL;
+      m_lfBaseFont.lfItalic = (BYTE) bItalic;
       if (!m_apFonts[nIndex]->CreateFontIndirect (&m_lfBaseFont))
         {
           delete m_apFonts[nIndex];
           m_apFonts[nIndex] = NULL;
           return CView::GetFont ();
         }
-
     }
   return m_apFonts[nIndex];
 }
