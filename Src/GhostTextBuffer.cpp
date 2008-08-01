@@ -80,7 +80,7 @@ BOOL CGhostTextBuffer::InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
  * @param [in] nLine Line (apparent/screen) where to insert the ghost line.
  * @return TRUE if the insertion succeeded, FALSE otherwise.
  */
-BOOL CGhostTextBuffer:: InternalInsertGhostLine (CCrystalTextView * pSource,
+BOOL CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 		int nLine)
 {
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
@@ -277,8 +277,7 @@ SetText (LPCTSTR pszText, int nLength)
 	}
 }
 
-void CGhostTextBuffer::SUndoRecord::
-FreeText ()
+void CGhostTextBuffer::SUndoRecord::FreeText ()
 {
 	// See the m_szText/m_pszText definition
 	// Check if m_pszText is a pointer by removing bits having
@@ -539,8 +538,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 /** 
 we must set both our m_bUndoBeginGroup and the one of CCrystalTextBuffer
 */
-void CGhostTextBuffer::
-BeginUndoGroup (BOOL bMergeWithPrevious /*= FALSE*/ )
+void CGhostTextBuffer::BeginUndoGroup (BOOL bMergeWithPrevious /*= FALSE*/ )
 {
 	ASSERT (!m_bUndoGroup);
 	m_bUndoGroup = TRUE;
@@ -549,8 +547,7 @@ BeginUndoGroup (BOOL bMergeWithPrevious /*= FALSE*/ )
 }
 
 /** Use ou own flushing function as we need to use our own m_aUndoBuf */
-void CGhostTextBuffer::
-FlushUndoGroup (CCrystalTextView * pSource)
+void CGhostTextBuffer::FlushUndoGroup (CCrystalTextView * pSource)
 {
 	ASSERT (m_bUndoGroup);
 	if (pSource != NULL)
@@ -558,7 +555,8 @@ FlushUndoGroup (CCrystalTextView * pSource)
 		ASSERT (m_nUndoPosition == m_aUndoBuf.GetSize ());
 		if (m_nUndoPosition > 0)
 		{
-			pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction, m_aUndoBuf[m_nUndoPosition - 1].GetText ());
+			pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction,
+				m_aUndoBuf[m_nUndoPosition - 1].GetText ());
 		}
 	}
 	m_bUndoGroup = FALSE;
@@ -566,8 +564,9 @@ FlushUndoGroup (CCrystalTextView * pSource)
 
 
 /** The CPoint received parameters are apparent (on screen) line numbers */
-void CGhostTextBuffer::
-AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
+void CGhostTextBuffer::AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
+		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
+		int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
 {
 	//  Forgot to call BeginUndoGroup()?
 	ASSERT (m_bUndoGroup);
@@ -579,45 +578,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	{
 		m_aUndoBuf.SetSize (m_nUndoPosition);
 	}
-
-	//  If undo buffer size is close to critical, remove the oldest records
-	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
-	nBufSize = (int) m_aUndoBuf.GetSize ();
-	if (nBufSize >= m_nUndoBufSize)
-	{
-		int nIndex = 0;
-		for (;;)
-		{
-			nIndex++;
-			if (nIndex == nBufSize || (m_aUndoBuf[nIndex].m_dwFlags & UNDO_BEGINGROUP) != 0)
-				break;
-		}
-		m_aUndoBuf.RemoveAt (0, nIndex);
-
-//<jtuc 2003-06-28>
-//- Keep m_nSyncPosition in sync.
-//- Ensure first undo record is flagged UNDO_BEGINGROUP since part of the code
-//..relies on this condition.
-		if (m_nSyncPosition >= 0)
-		{
-			m_nSyncPosition -= nIndex;		// за c'est bien...mais non, test inutile ? Ou Apres !
-		}
-		if (nIndex < nBufSize)
-		{
-			// Not really necessary as long as groups are discarded as a whole.
-			// Just in case some day the loop above should be changed to limit
-			// the number of discarded undo records to some reasonable value...
-			m_aUndoBuf[0].m_dwFlags |= UNDO_BEGINGROUP;		// за c'est sale
-		}
-		else
-		{
-			// No undo records left - begin a new group:
-			m_bUndoBeginGroup = TRUE;
-		}
-//</jtuc>
-
-	}
-	ASSERT (m_aUndoBuf.GetSize () < m_nUndoBufSize);
 
 	//  Add new record
 	SUndoRecord ur;
@@ -641,8 +601,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 
 	m_aUndoBuf.Add (ur);
 	m_nUndoPosition = (int) m_aUndoBuf.GetSize ();
-
-	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
 }
 
 
@@ -760,7 +718,7 @@ BOOL CGhostTextBuffer::InsertText (CCrystalTextView * pSource, int nLine,
 	}
 
 	RecomputeEOL (pSource, nLine, nEndLine);
-	if (bHistory == false)
+	if (bHistory == FALSE)
 	{
 		delete paSavedRevisonNumbers;
 		return TRUE;
@@ -796,6 +754,9 @@ BOOL CGhostTextBuffer::DeleteText (CCrystalTextView * pSource, int nStartLine,
 		int nStartChar, int nEndLine, int nEndChar, int nAction,
 		BOOL bHistory /*=TRUE*/)
 {
+	// If we want to add undo record, but haven't created undo group yet,
+	// create new group for this action. It gets flushed at end of the
+	// function.
 	BOOL bGroupFlag = FALSE;
 	if (bHistory)
 	{
@@ -863,7 +824,7 @@ BOOL CGhostTextBuffer::DeleteText (CCrystalTextView * pSource, int nStartLine,
 	}
 
 	RecomputeEOL (pSource, nStartLine, nStartLine);
-	if (bHistory == false)
+	if (bHistory == FALSE)
 	{
 		delete paSavedRevisonNumbers;
 		return TRUE;
