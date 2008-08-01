@@ -204,7 +204,7 @@ protected:
 	We share m_bUndoGroup, its utility is to check we opened the UndoBeginGroup.
 	We share m_nUndoBufSize which is the max buffer size.
 	*/
-	CArray < SUndoRecord, SUndoRecord & >m_aUndoBuf;
+	std::vector<SUndoRecord> m_aUndoBuf;
 	/** 
 	This one must be duplicated because the flag UNDO_BEGINGROUP needs to be set in both 
 	CGhostTextBuffer::m_aUndoBuf and CCrystalTextBuffer::m_aUndoBuf CArrays 

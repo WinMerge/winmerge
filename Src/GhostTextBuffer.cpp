@@ -297,7 +297,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 	while (!failed)
 	{
-		tmpPos--;;
+		--tmpPos;
 		SUndoRecord ur = m_aUndoBuf[tmpPos];
 		// Undo records are stored in file line numbers
 		// and must be converted to apparent (screen) line numbers for use
@@ -458,7 +458,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		// Not only can we not Redo the failed Undo, but the Undo
 		// may have partially completed (if in a group)
 		m_nUndoPosition = 0;
-		m_aUndoBuf.SetSize (m_nUndoPosition);
+		m_aUndoBuf.clear();
 	}
 	else
 	{
@@ -521,7 +521,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			ptCursorPos = apparent_ptStartPos;
 		}
 		m_nUndoPosition++;
-		if (m_nUndoPosition == m_aUndoBuf.GetSize ())
+		if (m_nUndoPosition == m_aUndoBuf.size ())
 			break;
 		if ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0)
 			break;
@@ -552,7 +552,7 @@ void CGhostTextBuffer::FlushUndoGroup (CCrystalTextView * pSource)
 	ASSERT (m_bUndoGroup);
 	if (pSource != NULL)
 	{
-		ASSERT (m_nUndoPosition == m_aUndoBuf.GetSize ());
+		ASSERT (m_nUndoPosition == m_aUndoBuf.size ());
 		if (m_nUndoPosition > 0)
 		{
 			pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction,
@@ -570,13 +570,13 @@ void CGhostTextBuffer::AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
 {
 	//  Forgot to call BeginUndoGroup()?
 	ASSERT (m_bUndoGroup);
-	ASSERT (m_aUndoBuf.GetSize () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
+	ASSERT (m_aUndoBuf.size () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
 	//  Strip unnecessary undo records (edit after undo wipes all potential redo records)
-	int nBufSize = (int) m_aUndoBuf.GetSize ();
+	int nBufSize = (int) m_aUndoBuf.size ();
 	if (m_nUndoPosition < nBufSize)
 	{
-		m_aUndoBuf.SetSize (m_nUndoPosition);
+		m_aUndoBuf.resize (m_nUndoPosition);
 	}
 
 	//  Add new record
@@ -599,8 +599,18 @@ void CGhostTextBuffer::AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
 	ur.SetText (pszText, cchText);
 	ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
-	m_aUndoBuf.Add (ur);
-	m_nUndoPosition = (int) m_aUndoBuf.GetSize ();
+	// Optimize memory allocation
+	if (m_aUndoBuf.capacity() == m_aUndoBuf.size())
+	{
+		if (m_aUndoBuf.size() == 0)
+			m_aUndoBuf.reserve(16);
+		else if (m_aUndoBuf.size() < 1025)
+			m_aUndoBuf.reserve(m_aUndoBuf.size() * 2);
+		else
+			m_aUndoBuf.reserve(m_aUndoBuf.size() + 1024);
+	}
+	m_aUndoBuf.push_back (ur);
+	m_nUndoPosition = (int) m_aUndoBuf.size ();
 }
 
 

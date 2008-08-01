@@ -54,8 +54,16 @@
 //		     Editor won't crash any more i.e. by selecting whole buffer and
 //		     deleting it and then executing ID_EDIT_GOTO_LAST_CHANGE-command.
 ////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file ccrystaltextbuffer.cpp
+ *
+ * @brief Code for CCrystalTextBuffer class
+ */
+// line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include <malloc.h>
 #include "editcmd.h"
 #include "ccrystaltextbuffer.h"
@@ -74,6 +82,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using namespace std;
 
 //  Line allocation granularity
 #define     CHAR_ALIGN                  16
@@ -400,7 +410,7 @@ InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
   m_nTabSize = 4;
   m_nSyncPosition = m_nUndoPosition = 0;
   m_bUndoGroup = m_bUndoBeginGroup = FALSE;
-  ASSERT (m_aUndoBuf.GetSize () == 0);
+  ASSERT (m_aUndoBuf.size () == 0);
   UpdateViews (NULL, NULL, UPDATE_RESET);
   //BEGIN SW
   m_ptLastChange.x = m_ptLastChange.y = -1;
@@ -568,7 +578,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       m_bUndoGroup = m_bUndoBeginGroup = FALSE;
       m_nUndoBufSize = UNDO_BUF_SIZE;
       m_nSyncPosition = m_nUndoPosition = 0;
-      ASSERT (m_aUndoBuf.GetSize () == 0);
+      ASSERT (m_aUndoBuf.size () == 0);
       bSuccess = TRUE;
 
       RetypeViews (pszFileName);
@@ -1342,15 +1352,15 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
 BOOL CCrystalTextBuffer::
 CanUndo ()
 {
-  ASSERT (m_nUndoPosition >= 0 && m_nUndoPosition <= m_aUndoBuf.GetSize ());
+  ASSERT (m_nUndoPosition >= 0 && m_nUndoPosition <= m_aUndoBuf.size ());
   return m_nUndoPosition > 0;
 }
 
 BOOL CCrystalTextBuffer::
 CanRedo ()
 {
-  ASSERT (m_nUndoPosition >= 0 && m_nUndoPosition <= m_aUndoBuf.GetSize ());
-  return m_nUndoPosition < m_aUndoBuf.GetSize ();
+  ASSERT (m_nUndoPosition >= 0 && m_nUndoPosition <= m_aUndoBuf.size ());
+  return m_nUndoPosition < m_aUndoBuf.size ();
 }
 
 POSITION CCrystalTextBuffer::
@@ -1375,11 +1385,15 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 
   //  Advance to next undo group
   nPosition--;
-  while ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) == 0)
-    nPosition--;
+  vector<SUndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+  while (((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
+    {
+      --iter;
+      --nPosition;
+    }
 
   //  Get description
-  nAction = m_aUndoBuf[nPosition].m_nAction;
+  nAction = (*iter).m_nAction;
 
   //  Now, if we stop at zero position, this will be the last action,
   //  since we return (POSITION) nPosition
@@ -1412,11 +1426,14 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 
   //  Advance to next undo group
   nPosition++;
-  while (nPosition < m_aUndoBuf.GetSize () &&
-        (m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) == 0)
-    nPosition--;
+  vector<SUndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+  while (iter != m_aUndoBuf.begin () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
+    {
+      --iter;
+      --nPosition;
+    }
 
-  if (nPosition >= m_aUndoBuf.GetSize ())
+  if (nPosition >= m_aUndoBuf.size ())
     return NULL;                //  No more redo actions!
 
   return (POSITION) nPosition;
@@ -1458,8 +1475,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
   while (!failed)
     {
-      tmpPos--;;
-      SUndoRecord ur = m_aUndoBuf[tmpPos];
+      --tmpPos;
+      const SUndoRecord ur = m_aUndoBuf[tmpPos];
       // Undo records are stored in file line numbers
       // and must be converted to apparent (screen) line numbers for use
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
@@ -1513,8 +1530,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         }
 
       // restore line revision numbers
-      int i, naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
-      for (i = 0; i < naSavedRevisonNumbersSize; i++)
+      int naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
+      for (int i = 0; i < naSavedRevisonNumbersSize; i++)
         m_aLines[ur.m_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
 
       if (ur.m_dwFlags & UNDO_BEGINGROUP)
@@ -1530,7 +1547,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
       // Not only can we not Redo the failed Undo, but the Undo
       // may have partially completed (if in a group)
       m_nUndoPosition = 0;
-      m_aUndoBuf.SetSize (m_nUndoPosition);
+      m_aUndoBuf.clear ();
     }
   else
     {
@@ -1548,7 +1565,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
   for (;;)
     {
-      SUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
+      const SUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
       CPoint apparent_ptEndPos = ur.m_ptEndPos;
 
@@ -1572,7 +1589,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           ptCursorPos = apparent_ptStartPos;
         }
       m_nUndoPosition++;
-      if (m_nUndoPosition == m_aUndoBuf.GetSize ())
+      if (m_nUndoPosition == m_aUndoBuf.size ())
         break;
       if ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0)
         break;
@@ -1593,13 +1610,13 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
-  ASSERT (m_aUndoBuf.GetSize () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
+  ASSERT (m_aUndoBuf.size () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   //  Strip unnecessary undo records (edit after undo wipes all potential redo records)
-  int nBufSize = (int) m_aUndoBuf.GetSize ();
+  int nBufSize = (int) m_aUndoBuf.size ();
   if (m_nUndoPosition < nBufSize)
     {
-      m_aUndoBuf.SetSize (m_nUndoPosition);
+      m_aUndoBuf.resize (m_nUndoPosition);
     }
 
   //  Add new record
@@ -1616,8 +1633,18 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
   ur.SetText (pszText, cchText);
   ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
-  m_aUndoBuf.Add (ur);
-  m_nUndoPosition = (int) m_aUndoBuf.GetSize ();
+  // Optimize memory allocation
+  if (m_aUndoBuf.capacity() == m_aUndoBuf.size())
+    {
+      if (m_aUndoBuf.size() == 0)
+        m_aUndoBuf.reserve(16);
+      else if (m_aUndoBuf.size() < 1025)
+        m_aUndoBuf.reserve(m_aUndoBuf.size() * 2);
+      else
+        m_aUndoBuf.reserve(m_aUndoBuf.size() + 1024);
+    }
+  m_aUndoBuf.push_back (ur);
+  m_nUndoPosition = (int) m_aUndoBuf.size ();
 }
 
 LPCTSTR CCrystalTextBuffer::GetStringEol(CRLFSTYLE nCRLFMode)
@@ -1855,7 +1882,7 @@ FlushUndoGroup (CCrystalTextView * pSource)
   ASSERT (m_bUndoGroup);
   if (pSource != NULL)
     {
-      ASSERT (m_nUndoPosition == m_aUndoBuf.GetSize ());
+      ASSERT (m_nUndoPosition == m_aUndoBuf.size ());
       if (m_nUndoPosition > 0)
         {
           pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction, m_aUndoBuf[m_nUndoPosition - 1].GetText ());

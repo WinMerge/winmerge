@@ -2114,8 +2114,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	m_pDetailView[1]->DetachFromBuffer();
 
 	// clear undo buffers
-	m_ptBuf[0]->m_aUndoBuf.RemoveAll();
-	m_ptBuf[1]->m_aUndoBuf.RemoveAll();
+	m_ptBuf[0]->m_aUndoBuf.clear();
+	m_ptBuf[1]->m_aUndoBuf.clear();
 
 	// free the buffers
 	m_ptBuf[0]->FreeAll();

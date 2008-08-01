@@ -23,14 +23,21 @@
 //  ... it's being edited very rapidly so sorry for non-commented
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
+/**
+ * @file  ccrystaltextbuffer.h
+ *
+ * @brief Declaration file for CCrystalTextBuffer.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
+
 
 #if !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
 #define AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
 
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
+#include <vector>
 #include "ccrystaltextview.h"
 
 #ifndef __AFXTEMPL_H__
@@ -250,7 +257,7 @@ public :
     CArray < SLineInfo, SLineInfo & >m_aLines;
 
     //  Undo
-    CArray < SUndoRecord, SUndoRecord & >m_aUndoBuf;
+    std::vector<SUndoRecord> m_aUndoBuf; /**< Undo records. */
     int m_nUndoPosition;
     int m_nSyncPosition;
     BOOL m_bUndoGroup, m_bUndoBeginGroup;
