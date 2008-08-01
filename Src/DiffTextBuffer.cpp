@@ -460,7 +460,6 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		m_bInit = TRUE;
 		m_bModified = FALSE;
 		m_bUndoGroup = m_bUndoBeginGroup = FALSE;
-		m_nUndoBufSize = 1024; // crystaltextbuffer.cpp - UNDO_BUF_SIZE;
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.GetSize() == 0);
 		m_ptLastChange.x = m_ptLastChange.y = -1;

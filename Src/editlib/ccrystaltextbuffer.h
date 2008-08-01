@@ -118,7 +118,6 @@ protected :
     CRLFSTYLE m_nCRLFMode;
     BOOL m_IgnoreEol;
     BOOL m_bCreateBackupFile;
-    int m_nUndoBufSize;
     BOOL m_bInsertTabs;
     int  m_nTabSize;
     int FindLineWithFlag (DWORD dwFlag);
