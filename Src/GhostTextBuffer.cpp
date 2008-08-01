@@ -1161,6 +1161,15 @@ inReality:
 		block.nCount = i - block.nStartApparent;
 		ASSERT(block.nCount > 0);
 		ASSERT(reality + 1 - block.nStartReal == block.nCount);
+		
+		// Optimize memory allocation
+		if (m_RealityBlocks.capacity() == m_RealityBlocks.size())
+		{
+			if (m_RealityBlocks.size() == 0)
+				m_RealityBlocks.reserve(16);
+			else
+				m_RealityBlocks.reserve(m_RealityBlocks.size() * 2);
+		}
 		m_RealityBlocks.push_back(block);
 		if (i == GetLineCount())
 			return;
