@@ -7654,6 +7654,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="editlib\LineInfo.h">
+			</File>
+			<File
 				RelativePath="editlib\lisp.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">

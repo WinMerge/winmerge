@@ -66,6 +66,7 @@
 #include <vector>
 #include <malloc.h>
 #include "editcmd.h"
+#include "LineInfo.h"
 #include "ccrystaltextbuffer.h"
 #include "ccrystaltextview.h"
 #include "filesup.h"

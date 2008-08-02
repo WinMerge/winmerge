@@ -38,14 +38,13 @@
 #pragma once
 
 #include <vector>
+#include "LineInfo.h"
 #include "ccrystaltextview.h"
 
 #ifndef __AFXTEMPL_H__
 #pragma message("Include <afxtempl.h> in your stdafx.h to avoid this message")
 #include <afxtempl.h>
 #endif
-
-#define UNDO_DESCRIP_BUF        32
 
 enum LINEFLAGS
 {
@@ -132,23 +131,6 @@ protected :
 protected :
 #pragma pack(push, 1)
     //  Nested class declarations
-    struct SLineInfo
-      {
-        TCHAR *m_pcLine;
-        int m_nLength, m_nMax;
-        int m_nEolChars; // # of eolchars
-        DWORD m_dwFlags;
-        DWORD m_dwRevisionNumber;
-
-        int FullLength() const { return m_nLength+m_nEolChars; }
-        int Length() const { return m_nLength; }
-
-        SLineInfo ()
-        {
-          memset (this, 0, sizeof (SLineInfo));
-        };
-      };
-
     enum
     {
       UNDO_INSERT = 0x0001,
