@@ -16,6 +16,7 @@ WinMerge 2.9.1.6
   Remove RCLocalizationHelper plugin (#2029457)
   Clarify Supercopier caused hang in release notes (#2030040)
   Confirmation dialog for move operations (#2026508)
+  Unlimited undo (#2033754)
   BugFix: Use system codepage for paths (#1979429, #2008581)
   BugFix: ANSI build crash in folder compare (#2010053)
   BugFix: Add insert/overtype mode indicator to statusbar (#2015174)

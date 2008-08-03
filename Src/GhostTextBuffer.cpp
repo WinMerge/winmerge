@@ -561,45 +561,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 		m_aUndoBuf.SetSize (m_nUndoPosition);
 	}
 
-	//  If undo buffer size is close to critical, remove the oldest records
-	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
-	nBufSize = (int) m_aUndoBuf.GetSize ();
-	if (nBufSize >= m_nUndoBufSize)
-	{
-		int nIndex = 0;
-		for (;;)
-		{
-			nIndex++;
-			if (nIndex == nBufSize || (m_aUndoBuf[nIndex].m_dwFlags & UNDO_BEGINGROUP) != 0)
-				break;
-		}
-		m_aUndoBuf.RemoveAt (0, nIndex);
-
-//<jtuc 2003-06-28>
-//- Keep m_nSyncPosition in sync.
-//- Ensure first undo record is flagged UNDO_BEGINGROUP since part of the code
-//..relies on this condition.
-		if (m_nSyncPosition >= 0)
-		{
-			m_nSyncPosition -= nIndex;		// за c'est bien...mais non, test inutile ? Ou Apres !
-		}
-		if (nIndex < nBufSize)
-		{
-			// Not really necessary as long as groups are discarded as a whole.
-			// Just in case some day the loop above should be changed to limit
-			// the number of discarded undo records to some reasonable value...
-			m_aUndoBuf[0].m_dwFlags |= UNDO_BEGINGROUP;		// за c'est sale
-		}
-		else
-		{
-			// No undo records left - begin a new group:
-			m_bUndoBeginGroup = TRUE;
-		}
-//</jtuc>
-
-	}
-	ASSERT (m_aUndoBuf.GetSize () < m_nUndoBufSize);
-
 	//  Add new record
 	SUndoRecord ur;
 	ur.m_dwFlags = bInsert ? UNDO_INSERT : 0;
@@ -623,7 +584,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	m_aUndoBuf.Add (ur);
 	m_nUndoPosition = (int) m_aUndoBuf.GetSize ();
 
-	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
 }
 
 
@@ -728,8 +688,6 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, in
 	}
 
 	RecomputeEOL (pSource, nLine, nEndLine);
-
-
 	if (bHistory == false)
 	{
 		delete paSavedRevisonNumbers;
@@ -821,9 +779,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	}
 
 	RecomputeEOL (pSource, nStartLine, nStartLine);
-
-
-	if (bHistory == false)
+	if (bHistory == FALSE)
 	{
 		delete paSavedRevisonNumbers;
 		return TRUE;
