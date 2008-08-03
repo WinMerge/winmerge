@@ -13,7 +13,7 @@
 
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 26
+#define DllBuild_Merge7z 27
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 

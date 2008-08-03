@@ -59,3 +59,4 @@ VERSION(2,2)
 //								No longer pass MSI files to CAB handler
 "*"//2007-09-01 Jochen Neubeck	Some refactoring to build against 7z453 beta
 "*"//2007-12-22	Jochen Neubeck	Unassociate .001 filename extension
+"*"//2008-08-03	Jochen Neubeck	Fix OpenArchive.* being taken from wrong folder
