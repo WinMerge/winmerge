@@ -409,11 +409,11 @@ SOURCE=$(SRC7Z)\7z452\CPP\7zip\FileManager\Resource\MessagesDialog\MessagesDialo
 # End Source File
 # Begin Source File
 
-SOURCE=$(SRC7Z)\7z450\CPP\7zip\UI\Common\OpenArchive.cpp
+SOURCE=$(SRC7Z)\7z452\CPP\7zip\UI\Common\OpenArchive.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=$(SRC7Z)\7z450\CPP\7zip\UI\Common\OpenArchive.h
+SOURCE=$(SRC7Z)\7z452\CPP\7zip\UI\Common\OpenArchive.h
 # End Source File
 # Begin Source File
 
