@@ -756,6 +756,9 @@ DEFINE_FORMAT(CWimHandler,		E6, "WIM.DLL",		"wim swm", "@MSWIM\x00\x00\x00");
 #if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 452
 DEFINE_FORMAT(CComHandler,		E5, "COM.DLL",		"", "@\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
 #endif
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 458
+DEFINE_FORMAT(CLzmaHandler,		0A, "LZMA.DLL",		"lzma lzma86", "");
+#endif
 
 /**
  * @brief Construct Merge7z interface.
