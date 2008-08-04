@@ -2153,6 +2153,7 @@ OnDraw (CDC * pdc)
 void CCrystalTextView::
 ResetView ()
 {
+  ResetCharWidths();
   // m_bWordWrap = FALSE;
   m_nTopLine = 0;
   m_nTopSubLine = 0;
@@ -6027,17 +6028,14 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
 #ifdef _UNICODE
 int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
 {
-  static BOOL bCalculated[65536/256];
-  static int iDoubleWidthFlags[65536/32];
-
-  if (!bCalculated[ch/256])
+  if (!m_bChWidthsCalculated[ch/256])
     {
       if (ch >= 0x4e00 && ch < 0xe000)
         {
           // CJK Unified Ideograph + Hangul
-          memset(&iDoubleWidthFlags[0x4e00/32], 0xff, ((0xe000-0x4e00)/32)*4);
+          memset(&m_iChDoubleWidthFlags[0x4e00/32], 0xff, ((0xe000-0x4e00)/32)*4);
           for (int i = 0x4e00; i < 0xe000; i+=256) 
-            bCalculated[i / 256] = TRUE;
+            m_bChWidthsCalculated[i / 256] = TRUE;
         }
       else
         {
@@ -6052,17 +6050,26 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
           for (int i = 0; i < 256; i++) 
             {
               if (nCharWidth * 15 < nWidthArray[i] * 10)
-                iDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
+                m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
             }
-          bCalculated[ch / 256] = TRUE;
+          m_bChWidthsCalculated[ch / 256] = TRUE;
         }
     }
-  if (iDoubleWidthFlags[ch / 32] & (1 << (ch % 32)))
+  if (m_iChDoubleWidthFlags[ch / 32] & (1 << (ch % 32)))
     return GetCharWidth() * 2;
   else
     return GetCharWidth();
 }
 #endif
+
+/** @brief Reset computed unicode character widths. */
+void CCrystalTextView::ResetCharWidths ()
+{
+#ifdef _UNICODE
+  ZeroMemory(m_bChWidthsCalculated, sizeof(m_bChWidthsCalculated));
+  ZeroMemory(m_iChDoubleWidthFlags, sizeof(m_iChDoubleWidthFlags));
+#endif
+}
 
 // This function assumes selection is in one line
 void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)

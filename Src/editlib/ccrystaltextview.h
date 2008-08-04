@@ -461,12 +461,15 @@ protected:
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
 
     int GetCharWidthFromChar(TCHAR ch);
-	int GetCharWidthFromString(LPCTSTR lpsz);
-	int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
+    int GetCharWidthFromString(LPCTSTR lpsz);
+    int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
 
 #ifdef _UNICODE
+    BOOL m_bChWidthsCalculated[65536/256];
+    int m_iChDoubleWidthFlags[65536/32];
     int GetCharWidthUnicodeChar(wchar_t ch);
 #endif
+    void ResetCharWidths();
 
 	//BEGIN SW
 	// word wrapping
