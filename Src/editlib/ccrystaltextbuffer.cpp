@@ -87,10 +87,6 @@ static char THIS_FILE[] = __FILE__;
 
 using namespace std;
 
-//  Line allocation granularity
-#define     CHAR_ALIGN                  16
-#define     ALIGN_BUF_SIZE(size)        ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN;
-
 const TCHAR crlf[] = _T ("\r\n");
 
 #ifdef _DEBUG
@@ -187,16 +183,6 @@ END_MESSAGE_MAP ()
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer message handlers
 
-static bool iseol(TCHAR ch)
-{
-  return ch=='\r' || ch=='\n';
-}
-
-static bool isdoseol(LPCTSTR sz)
-{
-  return sz[0]=='\r' && sz[1]=='\n';
-}
-
 /** 
  * @brief Insert the same line once or several times
  *
@@ -207,25 +193,8 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
 {
   ASSERT(nLength != -1);
 
-  SLineInfo li;
-  li.m_nLength = nLength;
-  li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength + 1);
-  ASSERT (li.m_nMax >= li.m_nLength + 1);
-  li.m_pcLine = new TCHAR[li.m_nMax];
-  if (li.m_nLength > 0)
-    {
-      DWORD dwLen = sizeof (TCHAR) * li.m_nLength;
-      CopyMemory (li.m_pcLine, pszLine, dwLen);
-    }
-  li.m_pcLine[li.m_nLength] = '\0';
-
-  int nEols = 0;
-  if (nLength>1 && isdoseol(&pszLine[nLength-2]))
-    nEols = 2;
-  else if (nLength && iseol(pszLine[nLength-1]))
-    nEols = 1;
-  li.m_nLength -= nEols;
-  li.m_nEolChars = nEols;
+  LineInfo li;
+  li.Create(pszLine, nLength);
 
   // nPosition not defined ? Insert at end of array
   if (nPosition == -1)
@@ -260,33 +229,8 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
   if (nLength == 0)
     return;
 
-  SLineInfo & li = m_aLines[nLineIndex];
-  ASSERT(!li.m_nEolChars);
-  int nBufNeeded = li.m_nLength + nLength+1;
-  if (nBufNeeded > li.m_nMax)
-    {
-      li.m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
-      ASSERT (li.m_nMax >= li.m_nLength + nLength);
-      TCHAR *pcNewBuf = new TCHAR[li.m_nMax];
-      if (li.FullLength() > 0)
-        memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * (li.FullLength()+1));
-      delete[] li.m_pcLine;
-      li.m_pcLine = pcNewBuf;
-    }
-  memcpy (li.m_pcLine + li.m_nLength, pszChars, sizeof (TCHAR) * nLength);
-  li.m_nLength += nLength;
-  li.m_pcLine[li.m_nLength] = '\0';
-  // Did line gain eol ? (We asserted above that it had none at start)
-   if (nLength>1 && isdoseol(&li.m_pcLine[li.m_nLength-2]))
-     {
-       li.m_nEolChars = 2;
-     }
-   else if (iseol(li.m_pcLine[li.m_nLength-1]))
-      {
-       li.m_nEolChars = 1;
-      }
-   li.m_nLength -= li.m_nEolChars;
-  ASSERT (li.m_nLength + li.m_nEolChars <= li.m_nMax);
+  LineInfo & li = m_aLines[nLineIndex];
+  li.Append(pszChars, nLength);
 }
 
 /**
@@ -329,18 +273,12 @@ void CCrystalTextBuffer::MoveLine(int line1, int line2, int newline1)
 
 void CCrystalTextBuffer::SetEmptyLine (int nPosition, int nCount /*= 1*/ )
 {
-	if (nCount > 0) {
-		SLineInfo li;
-		li.m_nLength = 0;
-		li.m_nEolChars = 0;
-		li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength + 1);
-		for (int ic = 0; ic < nCount; ic++) 
-		{
-			m_aLines[nPosition+ic] = li;
-			m_aLines[nPosition+ic].m_pcLine = new TCHAR[li.m_nMax];
-			m_aLines[nPosition+ic].m_pcLine[0] = _T('\0');
-		}
-	}
+  for (int i = 0; i < nCount; i++) 
+    {
+      LineInfo li;
+      li.CreateEmpty();
+      m_aLines[nPosition + i] = li;
+    }
 }
 
 void CCrystalTextBuffer::
@@ -775,7 +713,7 @@ GetLineEol (int nLine) const
 BOOL CCrystalTextBuffer::
 ChangeLineEol (int nLine, LPCTSTR lpEOL) 
 {
-  SLineInfo & li = m_aLines[nLine];
+  LineInfo & li = m_aLines[nLine];
   int nNewEolChars = (int) _tcslen(lpEOL);
   if (nNewEolChars == li.m_nEolChars)
     if (_tcscmp(li.m_pcLine + li.Length(), lpEOL) == 0)
@@ -1101,7 +1039,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   if (nStartLine == nEndLine)
     {
       // delete part of one line
-      SLineInfo & li = m_aLines[nStartLine];
+      LineInfo & li = m_aLines[nStartLine];
       if (nEndChar < li.Length() || li.m_nEolChars)
         {
           // preserve characters after deleted range by shifting up
@@ -1153,7 +1091,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 CString CCrystalTextBuffer::
 StripTail (int i, int bytes)
 {
-  SLineInfo & li = m_aLines[i];
+  LineInfo & li = m_aLines[i];
   // Must at least take off the EOL characters
   ASSERT(bytes >= li.FullLength() - li.Length());
 
@@ -1218,7 +1156,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
       int haseol = 0;
       nTextPos = 0;
       // advance to end of line
-      while (nTextPos < cchText && !iseol(pszText[nTextPos]))
+      while (nTextPos < cchText && !LineInfo::IsEol(pszText[nTextPos]))
         nTextPos++;
       // advance after EOL of line
       if (nTextPos < cchText)
@@ -1226,7 +1164,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
           haseol = 1;
           LPCTSTR eol = &pszText[nTextPos];
           nTextPos++;
-          if (nTextPos < cchText && isdoseol(eol))
+          if (nTextPos < cchText && LineInfo::IsDosEol(eol))
             nTextPos++;
         }
 

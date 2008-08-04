@@ -151,7 +151,7 @@ public :
       };
 
     //  Lines of text
-    CArray < SLineInfo, SLineInfo & >m_aLines;
+    CArray < LineInfo, LineInfo & >m_aLines;
 
     //  Undo
     std::vector<SUndoRecord> m_aUndoBuf; /**< Undo records. */

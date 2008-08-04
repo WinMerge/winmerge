@@ -1,7 +1,7 @@
 /** 
  * @file LineInfo.h
  *
- * @brief Declaration for SLineInfo structure.
+ * @brief Declaration for LineInfo class.
  *
  */
 // ID line follows -- this is updated by SVN
@@ -10,12 +10,17 @@
 #ifndef _EDITOR_LINEINFO_H_
 #define _EDITOR_LINEINFO_H_
 
+//  Line allocation granularity
+#define     CHAR_ALIGN                  16
+#define     ALIGN_BUF_SIZE(size)        ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN;
+
 /**
  * @brief Line information.
- * This structure presents one line in the editor.
+ * This class presents one line in the editor.
  */
-struct SLineInfo
+class LineInfo
   {
+public: // All public as this used to be a struct.
     TCHAR *m_pcLine; /**< Line data. */
     int m_nLength; /**< Line length (without EOL bytes). */
     int m_nMax; /**< Allocated space for line data. */
@@ -25,10 +30,23 @@ struct SLineInfo
 
     int FullLength() const { return m_nLength+m_nEolChars; }
     int Length() const { return m_nLength; }
+    void Create(LPCTSTR pszLine, int nLength);
+    void CreateEmpty();
+    void Append(LPCTSTR pszChars, int nLength);
 
-    SLineInfo ()
+    LineInfo ()
     {
-      memset (this, 0, sizeof (SLineInfo));
+      memset (this, 0, sizeof (LineInfo));
+    };
+
+    static bool IsEol(TCHAR ch)
+    {
+      return ch=='\r' || ch=='\n';
+    };
+
+    static bool IsDosEol(LPCTSTR sz)
+    {
+      return sz[0]=='\r' && sz[1]=='\n';
     };
   };
 
