@@ -719,7 +719,7 @@ msgid "&Scripts"
 msgstr "Μακ&ροεντολές"
 
 #: Merge.rc:370
-#: Merge.rc:2757
+#: Merge.rc:2758
 #, c-format
 msgid "< Empty >"
 msgstr "< ’δειο >"
@@ -2344,7 +2344,7 @@ msgid "Files:"
 msgstr "Αρχεία:"
 
 #: Merge.rc:1480
-#: Merge.rc:2315
+#: Merge.rc:2316
 #, c-format
 msgid "Different"
 msgstr "Διαφορετικά"
@@ -3372,7 +3372,7 @@ msgid "Size"
 msgstr "Μέγεθος"
 
 #: Merge.rc:2013
-#: Merge.rc:2621
+#: Merge.rc:2622
 #, c-format
 msgid "Name"
 msgstr "Όνομα"
@@ -3393,7 +3393,7 @@ msgid "[F] "
 msgstr ""
 
 #: Merge.rc:2017
-#: Merge.rc:2623
+#: Merge.rc:2624
 #, c-format
 msgid "Description"
 msgstr "Περιγραφή"
@@ -3910,8 +3910,7 @@ msgstr ""
 " Παρακαλώ, ελέγξτε προδιαγραφές ρυθμίσεων της χρησιμοποιουμένης επισκοπήσεως.\n"
 
 #: Merge.rc:2166
-#: Merge.rc:2605
-#: Merge.rc:2793
+#: Merge.rc:2606
 #, c-format
 msgid "None"
 msgstr "Χωρίς"
@@ -4343,7 +4342,7 @@ msgid "Differences"
 msgstr "Διαφορές"
 
 #: Merge.rc:2297
-#: Merge.rc:2601
+#: Merge.rc:2602
 #, c-format
 msgid "Binary"
 msgstr "Δυαδικό"
@@ -4395,190 +4394,195 @@ msgstr "Τα αρχεία είναι διαφορετικά"
 
 #: Merge.rc:2313
 #, c-format
+msgid "Folders are different"
+msgstr ""
+
+#: Merge.rc:2314
+#, c-format
 msgid "Left Only"
 msgstr "Αριστερά μόνο"
 
-#: Merge.rc:2314
+#: Merge.rc:2315
 #, c-format
 msgid "Right Only"
 msgstr "Δεξιά μόνο"
 
-#: Merge.rc:2316
+#: Merge.rc:2317
 #, c-format
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: Merge.rc:2322
+#: Merge.rc:2323
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Παρελθών χρόνος: %ld ms"
 
-#: Merge.rc:2323
+#: Merge.rc:2324
 #, c-format
 msgid "1 item selected"
 msgstr "1 αντικείμενο επιλεγμένο"
 
-#: Merge.rc:2324
+#: Merge.rc:2325
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 αντικείμενα επιλεγμένα"
 
-#: Merge.rc:2330
+#: Merge.rc:2331
 #, c-format
 msgid "Filename or folder name."
 msgstr "Όνομα αρχείου ή όνομα φακέλου."
 
-#: Merge.rc:2331
+#: Merge.rc:2332
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Όνομα υποφακέλου όταν οι υποφάκελοι περιλαμβάνονται."
 
-#: Merge.rc:2332
+#: Merge.rc:2333
 #, c-format
 msgid "Comparison result, long form."
 msgstr "Αποτέλεσμα συγκρίσεως, πλήρης ανάπτυξη"
 
-#: Merge.rc:2333
+#: Merge.rc:2334
 #, c-format
 msgid "Left side modification date."
 msgstr "Ημερομηνία τροποποιήσεως αριστερής πλευράς."
 
-#: Merge.rc:2334
+#: Merge.rc:2335
 #, c-format
 msgid "Right side modification date."
 msgstr "Ημερομηνία τροποποιήσεως δεξιάς πλευράς."
 
-#: Merge.rc:2335
+#: Merge.rc:2336
 #, c-format
 msgid "File's extension."
 msgstr "Επέκταση αρχείου."
 
-#: Merge.rc:2336
+#: Merge.rc:2337
 #, c-format
 msgid "Left file size in bytes."
 msgstr "Μέγεθος αριστερού αρχείου σε byte."
 
-#: Merge.rc:2337
+#: Merge.rc:2338
 #, c-format
 msgid "Right file size in bytes."
 msgstr "Μέγεθος δεξιού αρχείου σε byte."
 
-#: Merge.rc:2338
+#: Merge.rc:2339
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Μέγεθος αριστερού αρχείου συντομευμένο."
 
-#: Merge.rc:2339
+#: Merge.rc:2340
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Μέγεθος δεξιού αρχείου συντομευμένο."
 
-#: Merge.rc:2345
+#: Merge.rc:2346
 #, c-format
 msgid "Left side creation time."
 msgstr "Χρόνος δημιουργίας αριστερής πλευράς."
 
-#: Merge.rc:2346
+#: Merge.rc:2347
 #, c-format
 msgid "Right side creation time."
 msgstr "Χρόνος δημιουργίας δεξιάς πλευράς."
 
-#: Merge.rc:2347
+#: Merge.rc:2348
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Πληροφορεί ποια πλευρά έχει την πλέον πρόσφατη ημερομηνία τροποποιήσεως."
 
-#: Merge.rc:2348
+#: Merge.rc:2349
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Έκδοση αρχείου αριστερής πλευράς, μόνο για ορισμένους τύπους αρχείων."
 
-#: Merge.rc:2349
+#: Merge.rc:2350
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Έκδοση αρχείου δεξιάς πλευράς, μόνο για ορισμένους τύπους αρχείων."
 
-#: Merge.rc:2350
+#: Merge.rc:2351
 #, c-format
 msgid "Short comparison result."
 msgstr "Βραχύ αποτέλεσμα συγκρίσεως."
 
-#: Merge.rc:2351
+#: Merge.rc:2352
 #, c-format
 msgid "Left side attributes."
 msgstr "Ιδιότητες αριστερής πλευράς."
 
-#: Merge.rc:2352
+#: Merge.rc:2353
 #, c-format
 msgid "Right side attributes."
 msgstr "Ιδιότητες δεξιάς πλευράς."
 
-#: Merge.rc:2353
+#: Merge.rc:2354
 #, c-format
 msgid "Left side file EOL type"
 msgstr "Τύπος χαρακτήρα τερματισμού αριστερής πλευράς"
 
-#: Merge.rc:2354
+#: Merge.rc:2355
 #, c-format
 msgid "Right side file EOL type"
 msgstr "Τύπος χαρακτήρα τερματισμού δεξιάς πλευράς"
 
-#: Merge.rc:2360
+#: Merge.rc:2361
 #, c-format
 msgid "Left side encoding."
 msgstr "Κωδικοσελίδα αριστερής πλευράς."
 
-#: Merge.rc:2361
+#: Merge.rc:2362
 #, c-format
 msgid "Right side encoding."
 msgstr "Κωδικοσελίδα δεξιάς πλευράς."
 
-#: Merge.rc:2362
+#: Merge.rc:2363
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "Αριθμός αγνοηθεισών διαφορών στο αρχείο. Αυτές οι διαφορές αγνοούνται από το WinMerge και δεν είναι δυνατόν να συγχωνευθούν."
 
-#: Merge.rc:2363
+#: Merge.rc:2364
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "Αριθμός διαφορών στο αρχείο. Αυτός ο αριθμός δεν περιλαμβάνει αγνοηθείσες διαφορές."
 
-#: Merge.rc:2364
+#: Merge.rc:2365
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Εμφανίζει έναν αστερίσκο (*) εάν το αρχείο είναι δυαδικό."
 
-#: Merge.rc:2370
+#: Merge.rc:2371
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Σύγκριση %1 με %2"
 
-#: Merge.rc:2371
+#: Merge.rc:2372
 #, c-format
 msgid "Comma-separated list"
 msgstr "Κατάλογος με κόμμα ως χαρακτήρα διαχωρισμού"
 
-#: Merge.rc:2372
+#: Merge.rc:2373
 #, c-format
 msgid "Tab-separated list"
 msgstr "Κατάλογος με στηλοθέτη ως χαρακτήρα διαχωρισμού"
 
-#: Merge.rc:2373
+#: Merge.rc:2374
 #, c-format
 msgid "Simple HTML"
 msgstr "Απλό HTML"
 
-#: Merge.rc:2374
+#: Merge.rc:2375
 #, c-format
 msgid "Simple XML"
 msgstr "Απλό XML"
 
-#: Merge.rc:2376
+#: Merge.rc:2377
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "Το αρχείο αναφοράς αποτελεσμάτων υπάρχει ήδη. Επιθυμείτε να αντικαταστήσετε το υπάρχον αρχείο;"
 
-#: Merge.rc:2377
+#: Merge.rc:2378
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4587,32 +4591,32 @@ msgstr ""
 "Σφάλμα κατά τη δημιουργία της αναφοράς αποτελεσμάτων:\n"
 "%1"
 
-#: Merge.rc:2378
+#: Merge.rc:2379
 #, c-format
 msgid "The report has been created successfully."
 msgstr "Η αναφορά αποτελεσμάτων δημιουργήθηκε επιτυχώς."
 
-#: Merge.rc:2384
+#: Merge.rc:2385
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Το ίδιο αρχείο ανοίχθηκε σε αμφότερα τα πεδία."
 
-#: Merge.rc:2385
+#: Merge.rc:2386
 #, c-format
 msgid "The selected files are identical."
 msgstr "Τα επιλεγμένα αρχεία είναι πανομοιότυπα."
 
-#: Merge.rc:2386
+#: Merge.rc:2387
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "Παρουσιάσθηκε κάποιο σφάλμα κατά τη σύγκριση των αρχείων."
 
-#: Merge.rc:2387
+#: Merge.rc:2388
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Η δημιουργία προσωρινών αρχείων δεν ήταν δυνατή. Ελέγξτε τις ρυθμίσεις σας τις σχετικές με την προσωρινή διαδρομή."
 
-#: Merge.rc:2388
+#: Merge.rc:2389
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4627,7 +4631,7 @@ msgstr ""
 "\n"
 "Σημείωση: Εάν επιθυμείτε οι χαρακτήρες τερματισμού να θεωρούνται πάντοτε ισοδύναμοι, ενεργοποιείστε την επιλογή \"Διαφορές χαρακτήρων τερματισμού (Win/Unix/Mac) να αγνοούνται...\" στην καρτέλα Σύγκριση του διαλόγου επιλογών (εμφανίζεται με την επιλογή Επεξεργασία/Επιλογές)."
 
-#: Merge.rc:2389
+#: Merge.rc:2390
 #, c-format
 msgid ""
 "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
@@ -4638,22 +4642,22 @@ msgstr ""
 " Με τις ισχύουσες επιλογές, θα μετατραπούν στον κύριο τύπο.\n"
 " Επιθυμείτε να αλλάξετε τις επιλογές και να διατηρήσετε τους διαφορετικούς χαρακτήρες τερματισμού;"
 
-#: Merge.rc:2390
+#: Merge.rc:2391
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Παρουσιάσθηκε σφάλμα κατά την προεπεξεργασία διαφορών του αρχείου '%1' με το άρθρωμα '%2'. Η προεπεξεργασία διαφορών θα παύσει να εφαρμόζεται."
 
-#: Merge.rc:2391
+#: Merge.rc:2392
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "Ο επιλεγμένος φάκελος δεν είναι έγκυρος."
 
-#: Merge.rc:2392
+#: Merge.rc:2393
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "Το άνοιγμα δυαδικού αρχείου στο πεδίο επεξεργασίας δεν είναι δυνατόν."
 
-#: Merge.rc:2393
+#: Merge.rc:2394
 #, c-format
 msgid ""
 "The folder exists only in other side and cannot be opened.\n"
@@ -4668,7 +4672,7 @@ msgstr ""
 "%1\n"
 "στην άλλη πλευρά και να ανοίξετε αυτούς τους φακέλους;"
 
-#: Merge.rc:2399
+#: Merge.rc:2400
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4679,132 +4683,132 @@ msgstr ""
 "Η εμφάνιση κάθε φακέλου με τη δική του κωδικοσελίδα θα έχει εμφανισιακά καλύτερα αποτελέσματα αλλά η συγχώνευση/αντιγραφή θα είναι επικίνδυνη.\n"
 "Επιθυμείτε να θεωρηθεί ότι αμφότερα τα αρχεία χρησιμοποιούν την προκαθορισμένη κωδικοσελίδα του windows (συνιστάται);"
 
-#: Merge.rc:2400
+#: Merge.rc:2401
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "Προσοχή: Τα αρχεία χρησιμοποιούν διαφορετικές κωδικοσελίδες, αριστερό=%s και δεξιό=%s, και η συγχώνευση ενδέχεται να οδηγήσει σε απώλεια πληροφοριών."
 
-#: Merge.rc:2401
+#: Merge.rc:2402
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "Απώλεια πληροφοριών λόγω σφαλμάτος κωδικοσελίδας: αμφότερα τα αρχεία"
 
-#: Merge.rc:2402
+#: Merge.rc:2403
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr "Απώλεια πληροφοριών λόγω σφαλμάτος κωδικοσελίδας: δεξιό αρχείο"
 
-#: Merge.rc:2403
+#: Merge.rc:2404
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr "Απώλεια πληροφοριών λόγω σφαλμάτος κωδικοσελίδας: αριστερό αρχείο"
 
-#: Merge.rc:2409
+#: Merge.rc:2410
 #, c-format
 msgid "No difference"
 msgstr "Χωρίς διαφορά"
 
-#: Merge.rc:2410
+#: Merge.rc:2411
 #, c-format
 msgid "Line difference"
 msgstr "Διαφορά γραμμής"
 
-#: Merge.rc:2416
+#: Merge.rc:2417
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Αντικαταστάθηκαν %1 ακολουθίες χαρακτήρων."
 
-#: Merge.rc:2417
+#: Merge.rc:2418
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "Η ακολουθία χαρακτήρων \"%s\" δεν είναι δυνατόν να βρεθεί"
 
-#: Merge.rc:2423
+#: Merge.rc:2424
 #, c-format
 msgid "Copy Full Path"
 msgstr "Αντιγραφή πλήρους Διαδρομής"
 
-#: Merge.rc:2424
+#: Merge.rc:2425
 #, c-format
 msgid "Copy Filename"
 msgstr "Αντιγραφή Ονόματος Αρχείου"
 
-#: Merge.rc:2430
+#: Merge.rc:2431
 #, c-format
 msgid "Location Pane"
 msgstr "Πεδίο Εντοπισμού"
 
-#: Merge.rc:2431
+#: Merge.rc:2432
 #, c-format
 msgid "Diff Pane"
 msgstr "Πεδίο Διαφορών"
 
-#: Merge.rc:2437
+#: Merge.rc:2438
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Η εγγραφή του αρχείου patch ολοκληρώθηκε επιτυχώς."
 
-#: Merge.rc:2438
+#: Merge.rc:2439
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. το αντικείμενο δε βρέθηκε ή είναι φάκελος!"
 
-#: Merge.rc:2439
+#: Merge.rc:2440
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. το αντικείμενο δε βρέθηκε ή είναι φάκελος!"
 
-#: Merge.rc:2440
+#: Merge.rc:2441
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Το αρχείο patch υπάρχει ήδη. Επιθυμείτε να το αντικαταστήσετε;"
 
-#: Merge.rc:2441
+#: Merge.rc:2442
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 επιλεγμένα αρχεία]"
 
-#: Merge.rc:2442
+#: Merge.rc:2443
 #, c-format
 msgid "Normal"
 msgstr "Κανονικό"
 
-#: Merge.rc:2443
+#: Merge.rc:2444
 #, c-format
 msgid "Context"
 msgstr "Με περιβάλλον κείμενο"
 
-#: Merge.rc:2444
+#: Merge.rc:2445
 #, c-format
 msgid "Unified"
 msgstr "Ενοποιημένο"
 
-#: Merge.rc:2445
+#: Merge.rc:2446
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Η εγγραφή στο αρχείο %1 δεν ήταν δυνατή."
 
-#: Merge.rc:2446
+#: Merge.rc:2447
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Η ορισθείσα διαδρομή εξόδου δεν είναι απόλυτη διαδρομή: %1"
 
-#: Merge.rc:2447
+#: Merge.rc:2448
 #, c-format
 msgid "Specify an output file"
 msgstr "Ορίσατε ένα αρχείο εξόδου"
 
-#: Merge.rc:2448
+#: Merge.rc:2449
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Η δημιουργία αρχείου patch από δυαδικά αρχεία δεν είναι δυνατή."
 
-#: Merge.rc:2449
+#: Merge.rc:2450
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Η δημιουργία αρχείου patch από φακέλους δεν είναι δυνατή."
 
-#: Merge.rc:2450
+#: Merge.rc:2451
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4815,17 +4819,17 @@ msgstr ""
 "\n"
 "Η δημιουργία patch απαιτεί να μην υπάρχουν σε αρχεία αλλαγές οι οποίες δεν έχουν αποθηκευθεί."
 
-#: Merge.rc:2451
+#: Merge.rc:2452
 #, c-format
 msgid "Folder does not exist."
 msgstr "Ο φάκελος δεν υπάρχει."
 
-#: Merge.rc:2456
+#: Merge.rc:2457
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "Τα αποτελέσματα της τρέχουσας συγκρίσεως θα διαγραφούν."
 
-#: Merge.rc:2457
+#: Merge.rc:2458
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4836,7 +4840,7 @@ msgstr ""
 "Δεν είναι δυνατόν να βρεθούν όλα τα απαραίτητα στοιχεία (το 7-zip και/ή το Merge7z*.dll) για την υποστήριξη συμπιεσμένων αρχείων.\n"
 "Δείτε στο εγχειρίδιο για περισσότερες πληροφορίες σχετικά με την υποστήριξη συμπιεσμένων αρχείων και με τον τρόπο ενεργοποιήσεως αυτής."
 
-#: Merge.rc:2458
+#: Merge.rc:2459
 #, c-format
 msgid ""
 "\n"
@@ -4845,7 +4849,7 @@ msgstr ""
 "\n"
 "Σημείωση: Η ενσωμάτωση του 7-Zip είναι απενεργοποιημένη στις ρυθμίσεις του WinMerge."
 
-#: Merge.rc:2459
+#: Merge.rc:2460
 #, c-format
 msgid ""
 "\n"
@@ -4854,37 +4858,37 @@ msgstr ""
 "\n"
 "Σημείωση: Η ενσωμάτωση του 7-Zip είναι περιορισμένη σε αυτόνομη λειτουργία στις ρυθμίσεις του WinMerge."
 
-#: Merge.rc:2460
+#: Merge.rc:2461
 #, c-format
 msgid "Select file for export"
 msgstr "Επιλέξατε αρχείο προς εξαγωγή"
 
-#: Merge.rc:2461
+#: Merge.rc:2462
 #, c-format
 msgid "Select file for import"
 msgstr "Επιλέξατε αρχείο προς εισαγωγή"
 
-#: Merge.rc:2462
+#: Merge.rc:2463
 #, c-format
 msgid "Options imported from the file."
 msgstr "Οι ρυθμίσεις εισήχθησαν από το αρχείο."
 
-#: Merge.rc:2463
+#: Merge.rc:2464
 #, c-format
 msgid "Options exported to the file."
 msgstr "Οι ρυθμίσεις εξήχθησαν στο αρχείο."
 
-#: Merge.rc:2464
+#: Merge.rc:2465
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "Αποτυχία εισαγωγής ρυθμίσεων από το αρχείο."
 
-#: Merge.rc:2465
+#: Merge.rc:2466
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "Αποτυχία εγγραφής ρυθμίσεων στο αρχείο."
 
-#: Merge.rc:2466
+#: Merge.rc:2467
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4895,493 +4899,493 @@ msgstr ""
 "\n"
 "Επιθυμείτε να συνεχίσετε;"
 
-#: Merge.rc:2472
+#: Merge.rc:2473
 #, c-format
 msgid "Regular expression error"
 msgstr "Σφάλμα τυποποιημένων εκφράσεων"
 
-#: Merge.rc:2473
+#: Merge.rc:2474
 #, c-format
 msgid "No match"
 msgstr "Ουδεμία αντιστοιχία"
 
-#: Merge.rc:2474
+#: Merge.rc:2475
 #, c-format
 msgid "Invalid regular expression"
 msgstr "Εσφαλμένη τυποποιημένη έκφραση"
 
-#: Merge.rc:2475
+#: Merge.rc:2476
 #, c-format
 msgid "Invalid collation character"
 msgstr "Σφάλμα συγκριτικού (συνδετικού;) χαρακτήρα"
 
-#: Merge.rc:2476
+#: Merge.rc:2477
 #, c-format
 msgid "Invalid character class name"
 msgstr "Σφάλμα στο όνομα κατηγορίας χαρακτήρων"
 
-#: Merge.rc:2477
+#: Merge.rc:2478
 #, c-format
 msgid "Trailing backslash"
 msgstr "Κάθετος στο τέλος της διαδρομής"
 
-#: Merge.rc:2478
+#: Merge.rc:2479
 #, c-format
 msgid "Invalid back reference"
 msgstr "Σφάλμα ομαδοποιημένου στοιχείου τυποποιημένης εκφράσεως"
 
-#: Merge.rc:2479
+#: Merge.rc:2480
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "Ορφανή [ or [^"
 
-#: Merge.rc:2480
+#: Merge.rc:2481
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "Ορφανή ( ή \\("
 
-#: Merge.rc:2481
+#: Merge.rc:2482
 #, c-format
 msgid "Unmatched \\{"
 msgstr "Ορφανή \\{"
 
-#: Merge.rc:2482
+#: Merge.rc:2483
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "Σφάλμα στο περιεχόμενο των \\{\\}"
 
-#: Merge.rc:2483
+#: Merge.rc:2484
 #, c-format
 msgid "Invalid range end"
 msgstr "Σφάλμα τέλους ακολουθίας"
 
-#: Merge.rc:2484
+#: Merge.rc:2485
 #, c-format
 msgid "Out of memory"
 msgstr "Δεν υπάρχει διαθέσιμη μνήμη"
 
-#: Merge.rc:2485
+#: Merge.rc:2486
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "Σφάλμα στην προηγουμένη τυποποιημένη έκφραση"
 
-#: Merge.rc:2486
+#: Merge.rc:2487
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "Πρόωρος τερματισμός τυποποιημένης εκφράσεως"
 
-#: Merge.rc:2487
+#: Merge.rc:2488
 #, c-format
 msgid "Regular expression too big"
 msgstr "Η Τυποποιημένη Έκφραση είναι πολύ μεγάλη"
 
-#: Merge.rc:2492
+#: Merge.rc:2493
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "Ορφανή ) ή \\)"
 
-#: Merge.rc:2498
+#: Merge.rc:2499
 #, c-format
 msgid "Western European"
 msgstr "Δυτικοευρωπαϊκό"
 
-#: Merge.rc:2499
+#: Merge.rc:2500
 #, c-format
 msgid "Eastern European"
 msgstr "Ανατολικοευρωπαϊκό"
 
-#: Merge.rc:2500
+#: Merge.rc:2501
 #, c-format
 msgid "East Asian"
 msgstr "Ανατολικής Ασίας"
 
-#: Merge.rc:2501
+#: Merge.rc:2502
 #, c-format
 msgid "SE & SW Asian"
 msgstr "ΝΑ & ΝΔ Ασίας"
 
-#: Merge.rc:2502
+#: Merge.rc:2503
 #, c-format
 msgid "Middle Eastern"
 msgstr "Μέσης Ανατολής"
 
-#: Merge.rc:2503
-#: Merge.rc:2513
+#: Merge.rc:2504
+#: Merge.rc:2514
 #, c-format
 msgid "Not applicable"
 msgstr "’νευ Νοήματος"
 
-#: Merge.rc:2509
+#: Merge.rc:2510
 #, c-format
 msgid "MS-Windows"
 msgstr ""
 
-#: Merge.rc:2510
+#: Merge.rc:2511
 #, c-format
 msgid "MS-DOS"
 msgstr ""
 
-#: Merge.rc:2511
+#: Merge.rc:2512
 #, c-format
 msgid "Macintosh"
 msgstr ""
 
-#: Merge.rc:2512
+#: Merge.rc:2513
 #, c-format
 msgid "IBM"
 msgstr ""
 
-#: Merge.rc:2519
+#: Merge.rc:2520
 #, c-format
 msgid "EBCDIC"
 msgstr ""
 
-#: Merge.rc:2520
+#: Merge.rc:2521
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr "Κυριλλικό IBM EBCDIC"
 
-#: Merge.rc:2526
+#: Merge.rc:2527
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr "Λατινικό ΗΠΑ MS-DOS"
 
-#: Merge.rc:2527
+#: Merge.rc:2528
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr "Αραβικό MS-DOS"
 
-#: Merge.rc:2528
+#: Merge.rc:2529
 #, c-format
 msgid "MS-DOS Greek"
 msgstr "Ελληνικό MS-DOS"
 
-#: Merge.rc:2529
+#: Merge.rc:2530
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr "Βαλτικής Λεκάνης MS-DOS"
 
-#: Merge.rc:2530
+#: Merge.rc:2531
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr "Λατινικό 1 MS-DOS"
 
-#: Merge.rc:2531
+#: Merge.rc:2532
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr "Ελληνικό 2 MS-DOS"
 
-#: Merge.rc:2532
+#: Merge.rc:2533
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr "Λατινικό 2 MS-DOS"
 
-#: Merge.rc:2533
+#: Merge.rc:2534
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr "Κυριλλικό MS-DOS"
 
-#: Merge.rc:2534
+#: Merge.rc:2535
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr "Τουρκικό MS-DOS"
 
-#: Merge.rc:2535
+#: Merge.rc:2536
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr "Πορτογαλικό MS-DOS"
 
-#: Merge.rc:2541
+#: Merge.rc:2542
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr "Ισλανδικό MS-DOS"
 
-#: Merge.rc:2542
+#: Merge.rc:2543
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr "Εβραϊκό MS-DOS"
 
-#: Merge.rc:2543
+#: Merge.rc:2544
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr "Γαλλικό Καναδά MS-DOS"
 
-#: Merge.rc:2544
+#: Merge.rc:2545
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr "Βορειοευρωπαϊκό MS-DOS"
 
-#: Merge.rc:2545
+#: Merge.rc:2546
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr "Κυριλλικό CIS 1 MS-DOS"
 
-#: Merge.rc:2546
+#: Merge.rc:2547
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr "Ελληνικό 2 MS-DOS"
 
-#: Merge.rc:2552
+#: Merge.rc:2553
 #, c-format
 msgid "Windows Thai"
 msgstr "Ταϊλανδικό Windows"
 
-#: Merge.rc:2553
+#: Merge.rc:2554
 #, c-format
 msgid "Windows Japanese"
 msgstr "Ιαπωνικό Windows"
 
-#: Merge.rc:2554
+#: Merge.rc:2555
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr "Κινεζικό Απλοποιημένο Windows"
 
-#: Merge.rc:2555
+#: Merge.rc:2556
 #, c-format
 msgid "Windows Korean"
 msgstr "Κορεατικό Windows"
 
-#: Merge.rc:2556
+#: Merge.rc:2557
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr "Κινεζικό Παραδοσιακό Windows"
 
-#: Merge.rc:2557
+#: Merge.rc:2558
 #, c-format
 msgid "Windows Latin 2"
 msgstr "Λατινικό 2 Windows"
 
-#: Merge.rc:2558
+#: Merge.rc:2559
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr "Κυριλλικό Windows (Σλαυϊκό)"
 
-#: Merge.rc:2559
+#: Merge.rc:2560
 #, c-format
 msgid "Windows Latin 1"
 msgstr "Λατινικό 1 Windows"
 
-#: Merge.rc:2560
+#: Merge.rc:2561
 #, c-format
 msgid "Windows Greek"
 msgstr "Ελληνικό Windows"
 
-#: Merge.rc:2561
+#: Merge.rc:2562
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr "Λατινικό 5 Windows (Τουρκικό)"
 
-#: Merge.rc:2562
+#: Merge.rc:2563
 #, c-format
 msgid "Windows Hebrew"
 msgstr "Εβραϊκό Windows"
 
-#: Merge.rc:2563
+#: Merge.rc:2564
 #, c-format
 msgid "Windows Arabic"
 msgstr "Αραβικό Windows"
 
-#: Merge.rc:2564
+#: Merge.rc:2565
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr "Βαλτικής Λεκάνης Windows"
 
-#: Merge.rc:2565
+#: Merge.rc:2566
 #, c-format
 msgid "Windows Vietnamese"
 msgstr "Βιετνάμ Windows"
 
-#: Merge.rc:2571
+#: Merge.rc:2572
 #, c-format
 msgid "Macintosh Roman"
 msgstr ""
 
-#: Merge.rc:2572
+#: Merge.rc:2573
 #, c-format
 msgid "Macintosh Greek"
 msgstr "Ελληνικά Macintosh"
 
-#: Merge.rc:2573
+#: Merge.rc:2574
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr "Κυριλλικό Macintosh"
 
-#: Merge.rc:2574
+#: Merge.rc:2575
 #, c-format
 msgid "Macintosh "
 msgstr ""
 
-#: Merge.rc:2575
+#: Merge.rc:2576
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr "Κεντρικής Ευρώπης Macintosh"
 
-#: Merge.rc:2576
+#: Merge.rc:2577
 #, c-format
 msgid "Macintosh Turkish"
 msgstr "Τουρκικά Macintosh"
 
-#: Merge.rc:2585
+#: Merge.rc:2586
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr "Προσεγγίζει το ISO-8859-2"
 
-#: Merge.rc:2588
+#: Merge.rc:2589
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr "Προσεγγίζει το ISO-8859-1"
 
-#: Merge.rc:2589
+#: Merge.rc:2590
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr "Προσεγγίζει το ISO-8859-7"
 
-#: Merge.rc:2590
+#: Merge.rc:2591
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr "Προσεγγίζει το ISO-8859-9"
 
-#: Merge.rc:2591
+#: Merge.rc:2592
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr "Προσεγγίζει το ISO-8859-8"
 
-#: Merge.rc:2597
+#: Merge.rc:2598
 #, c-format
 msgid "Win"
 msgstr ""
 
-#: Merge.rc:2598
+#: Merge.rc:2599
 #, c-format
 msgid "Mac"
 msgstr ""
 
-#: Merge.rc:2599
+#: Merge.rc:2600
 #, c-format
 msgid "Unix"
 msgstr ""
 
-#: Merge.rc:2600
+#: Merge.rc:2601
 #, c-format
 msgid "Mixed"
 msgstr "Μικτό"
 
-#: Merge.rc:2602
+#: Merge.rc:2603
 #, c-format
 msgid "LF"
 msgstr ""
 
-#: Merge.rc:2603
+#: Merge.rc:2604
 #, c-format
 msgid "CR"
 msgstr ""
 
-#: Merge.rc:2604
+#: Merge.rc:2605
 #, c-format
 msgid "CRLF"
 msgstr ""
 
-#: Merge.rc:2611
+#: Merge.rc:2612
 #, c-format
 msgid " B"
 msgstr ""
 
-#: Merge.rc:2612
+#: Merge.rc:2613
 #, c-format
 msgid " KB"
 msgstr ""
 
-#: Merge.rc:2613
+#: Merge.rc:2614
 #, c-format
 msgid " MB"
 msgstr ""
 
-#: Merge.rc:2614
+#: Merge.rc:2615
 #, c-format
 msgid " GB"
 msgstr ""
 
-#: Merge.rc:2615
+#: Merge.rc:2616
 #, c-format
 msgid " TB"
 msgstr ""
 
-#: Merge.rc:2616
+#: Merge.rc:2617
 #, c-format
 msgid " PB"
 msgstr ""
 
-#: Merge.rc:2622
+#: Merge.rc:2623
 #, c-format
 msgid "Type"
 msgstr ""
 
-#: Merge.rc:2624
+#: Merge.rc:2625
 #, c-format
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:2625
+#: Merge.rc:2626
 #, c-format
 msgid "Prediffer"
 msgstr ""
 
-#: Merge.rc:2626
+#: Merge.rc:2627
 #, c-format
 msgid "Editor script"
 msgstr ""
 
-#: Merge.rc:2633
+#: Merge.rc:2634
 #, c-format
 msgid "Save the left file"
 msgstr "Αποθήκευση του αριστερού αρχείου"
 
-#: Merge.rc:2634
+#: Merge.rc:2635
 #, c-format
 msgid "Save the right file"
 msgstr "Αποθήκευση του δεξιού αρχείου"
 
-#: Merge.rc:2635
+#: Merge.rc:2636
 #, c-format
 msgid "Save the left file with name..."
 msgstr "Αποθήκευση του αριστερού αρχείου με όνομα..."
 
-#: Merge.rc:2636
+#: Merge.rc:2637
 #, c-format
 msgid "Save the right file with name..."
 msgstr "Αποθήκευση του δεξιού αρχείου με όνομα..."
 
-#: Merge.rc:2637
-#, c-format
-msgid "Change left file/dir read-only status"
-msgstr "Μεταβολή της ιδιότητας \"Μόνο για Ανάγνωση\" του αριστερού αρχείου/φακέλου"
-
 #: Merge.rc:2638
 #, c-format
-msgid "Change right file/dir read-only status"
-msgstr "Μεταβολή της ιδιότητας \"Μόνο για Ανάγνωση\" του δεξιού αρχείου/φακέλου"
+msgid "Change left side file/folder read-only status"
+msgstr ""
 
 #: Merge.rc:2639
+#, c-format
+msgid "Change right side file/folder read-only status"
+msgstr ""
+
+#: Merge.rc:2640
 #, c-format
 msgid "Convert EOL to Windows mode"
 msgstr "Μετατροπή των χαρακτήρων τερματισμού σε τύπου Windows (CRLF)"
 
-#: Merge.rc:2640
+#: Merge.rc:2641
 #, c-format
 msgid "Convert EOL to Unix mode"
 msgstr "Μετατροπή των χαρακτήρων τερματισμού σε τύπου Unix (LF)"
 
-#: Merge.rc:2641
+#: Merge.rc:2642
 #, c-format
 msgid "Convert EOL to Mac mode"
 msgstr "Μετατροπή των χαρακτήρων τερματισμού σε τύπου Mac (CR)"
 
-#: Merge.rc:2642
+#: Merge.rc:2643
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Εναλλαγή μεταξύ λειτουργιών επεξεργασίας και συγχωνεύσεως"
 
-#: Merge.rc:2643
+#: Merge.rc:2644
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5390,12 +5394,12 @@ msgstr ""
 "Εμφάνιση και ρύθμιση ιδιοτήτων κωδικοποιήσεως αρχείου\n"
 "Ιδιότητες κωδικοποιήσεως αρχείου"
 
-#: Merge.rc:2644
+#: Merge.rc:2645
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr "’νοιγμα και επίλυση αρχείου διενέξεων"
 
-#: Merge.rc:2650
+#: Merge.rc:2651
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5404,7 +5408,7 @@ msgstr ""
 "Επιλέξατε περιοχή διαφοράς στην τρέχουσα γραμμή\n"
 "Διαφορά στην τρέχουσα Γραμμή"
 
-#: Merge.rc:2651
+#: Merge.rc:2652
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5413,7 +5417,7 @@ msgstr ""
 "Μετάβαση σε γραμμή ή διαφορά\n"
 "Μετάβαση (Ctrl+G)"
 
-#: Merge.rc:2652
+#: Merge.rc:2653
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5422,7 +5426,7 @@ msgstr ""
 "Ρύθμιση επιλογών της εφαρμογής\n"
 "Επιλογές"
 
-#: Merge.rc:2653
+#: Merge.rc:2654
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5431,37 +5435,37 @@ msgstr ""
 "Ανανέωση Οθόνης\n"
 "Ανανέωση (F5)"
 
-#: Merge.rc:2654
+#: Merge.rc:2655
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "Αντιγραφή επιλεγμένων γραμμών στο πρόχειρο μαζί με τους αριθμούς τους στην αρχή τους"
 
-#: Merge.rc:2655
+#: Merge.rc:2656
 #, c-format
 msgid "Refresh selected items"
 msgstr "Ανανέωση επιλεγμένων αντικειμένων"
 
-#: Merge.rc:2656
+#: Merge.rc:2657
 #, c-format
 msgid "Toggle bookmark"
 msgstr "Μεταβολή σημάνσεως"
 
-#: Merge.rc:2657
+#: Merge.rc:2658
 #, c-format
 msgid "Go to next bookmark"
 msgstr "Μετάβαση στην επομένη σήμανση"
 
-#: Merge.rc:2658
+#: Merge.rc:2659
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "Μετάβαση στην προηγουμένη σήμανση"
 
-#: Merge.rc:2659
+#: Merge.rc:2660
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "Κατάργηση όλων των σημάνσεων"
 
-#: Merge.rc:2665
+#: Merge.rc:2666
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5470,7 +5474,7 @@ msgstr ""
 "Εμφάνιση πανομοιοτύπων αντικειμένων\n"
 "Εμφάνιση Πανομοιοτύπων Αντικειμένων"
 
-#: Merge.rc:2666
+#: Merge.rc:2667
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5479,7 +5483,7 @@ msgstr ""
 "Εμφάνιση αντικειμένων με διαφορές\n"
 "Εμφάνιση Διαφορετικών Αντικειμένων"
 
-#: Merge.rc:2667
+#: Merge.rc:2668
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5488,7 +5492,7 @@ msgstr ""
 "Εμφάνιση αντικειμένων υπαρχόντων μόνο στην αριστερή πλευρά\n"
 "Εμφάνιση Ορφανών Αντικειμένων στα Αριστερά"
 
-#: Merge.rc:2668
+#: Merge.rc:2669
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5497,7 +5501,7 @@ msgstr ""
 "Εμφάνιση αντικειμένων υπαρχόντων μόνο στη δεξιά πλευρά\n"
 "Εμφάνιση Ορφανών Αντικειμένων στα Δεξιά"
 
-#: Merge.rc:2669
+#: Merge.rc:2670
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5506,7 +5510,7 @@ msgstr ""
 "Εμφάνιση δυαδικών αρχείων\n"
 "Εμφάνιση Δυαδικών Αρχείων"
 
-#: Merge.rc:2670
+#: Merge.rc:2671
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5515,7 +5519,7 @@ msgstr ""
 "Εμφάνιση παραλειφθέντων αντικειμένων\n"
 "Εμφάνιση Παραλειφθέντων Αντικειμένων"
 
-#: Merge.rc:2676
+#: Merge.rc:2677
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5524,7 +5528,7 @@ msgstr ""
 "Επιλογή γραμματοσειράς για την εμφάνιση\n"
 "Επιλογή Γραμματοσειράς Εμφανίσεως"
 
-#: Merge.rc:2677
+#: Merge.rc:2678
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5533,27 +5537,27 @@ msgstr ""
 "Επιστροφή στη χρήση της προκαθορισμένης γραμματοσειράς συστήματος για την εμφάνιση"
 "Προκαθορισμένη Γραμματοσειρά"
 
-#: Merge.rc:2678
+#: Merge.rc:2679
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "Εμφανίζει χαρακτήρες διαστήματος"
 
-#: Merge.rc:2679
+#: Merge.rc:2680
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Απόκρυψη/Εμφάνιση του Πεδίου Διαφορών"
 
-#: Merge.rc:2680
+#: Merge.rc:2681
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "Το πεδίο εντοπισμού εμφανίζει μία γενική εικόνα των αρχείων"
 
-#: Merge.rc:2681
+#: Merge.rc:2682
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "Εμφάνιση διαλόγου στατιστικών συγκρίσεως φακέλων"
 
-#: Merge.rc:2682
+#: Merge.rc:2683
 #, c-format
 msgid ""
 "Select the current user interface language\n"
@@ -5561,7 +5565,7 @@ msgid ""
 msgstr ""
 "Επιλογή της χρησιμοποιουμένης γλώσσας περιβάλλοντος εργασίας"
 
-#: Merge.rc:2683
+#: Merge.rc:2684
 #, c-format
 msgid ""
 "Shows differences inside lines with different colors\n"
@@ -5570,12 +5574,12 @@ msgstr ""
 "Επισημαίνει τις διαφορές εντός των γραμμών με διαφορετικούς χρωματισμούς\n"
 "Εμφάνιση Διαφορών Γραμμών"
 
-#: Merge.rc:2684
+#: Merge.rc:2685
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "Αντιμετάθεση των δύο πεδίων"
 
-#: Merge.rc:2685
+#: Merge.rc:2686
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5584,7 +5588,7 @@ msgstr ""
 "Εμφανίζει τους αριθμούς των γραμμών\n"
 "Εμφάνιση Αριθμήσεως Γραμμών"
 
-#: Merge.rc:2686
+#: Merge.rc:2687
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5592,7 +5596,7 @@ msgid ""
 msgstr "Ενεργοποίηση αναδιπλώσεως κειμένου\n"
 "Αναδίπλωση Κειμένου"
 
-#: Merge.rc:2687
+#: Merge.rc:2688
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -5601,22 +5605,22 @@ msgstr ""
 "Εμφάνιση περιθωρίων επιλογής για αμφότερα τα πεδία\n"
 "Εμφάνιση Περιθωρίων Επιλογής"
 
-#: Merge.rc:2688
+#: Merge.rc:2689
 #, c-format
 msgid "Increase text size"
 msgstr "Αύξηση φαινομένου μεγέθους κειμένου"
 
-#: Merge.rc:2689
+#: Merge.rc:2690
 #, c-format
 msgid "Decrease text size"
 msgstr "Μείωση φαινομένου μεγέθους κειμένου"
 
-#: Merge.rc:2690
+#: Merge.rc:2691
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr "Επαναφορά φαινομένου μεγέθους κειμένου στο προεπιλεγμένο"
 
-#: Merge.rc:2696
+#: Merge.rc:2697
 #, c-format
 msgid ""
 "Scroll to the previous difference\n"
@@ -5625,7 +5629,7 @@ msgstr ""
 "Κύλιση στην προηγουμένη διαφορά\n"
 "Προηγουμένη Διαφορά (Alt+Up)"
 
-#: Merge.rc:2697
+#: Merge.rc:2698
 #, c-format
 msgid ""
 "Scroll to the next difference\n"
@@ -5634,7 +5638,7 @@ msgstr ""
 "Κύλιση στην επομένη διαφορά\n"
 "Επομένη Διαφορά (Alt+Down)"
 
-#: Merge.rc:2698
+#: Merge.rc:2699
 #, c-format
 msgid ""
 "Scroll to the first difference\n"
@@ -5643,7 +5647,7 @@ msgstr ""
 "Κύλιση στην πρώτη διαφορά\n"
 "Πρώτη Διαφορά (Alt+Home)"
 
-#: Merge.rc:2699
+#: Merge.rc:2700
 #, c-format
 msgid ""
 "Scroll to the current difference\n"
@@ -5652,7 +5656,7 @@ msgstr ""
 "Κύλιση στην τρέχουσα διαφορά\n"
 "Τρέχουσα Διαφορά (Alt+Enter)"
 
-#: Merge.rc:2700
+#: Merge.rc:2701
 #, c-format
 msgid ""
 "Scroll to the last difference\n"
@@ -5661,7 +5665,7 @@ msgstr ""
 "Κύλιση στην τελευταία διαφορά\n"
 "Τελευταία Διαφορά (Alt+End)"
 
-#: Merge.rc:2701
+#: Merge.rc:2702
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5670,7 +5674,7 @@ msgstr ""
 "Αντιγραφή του επιλεγμένου κειμένου στο δεξιό Αρχείο\n"
 "Αντιγραφή Δεξιά (Alt+Right)"
 
-#: Merge.rc:2702
+#: Merge.rc:2703
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5679,7 +5683,7 @@ msgstr ""
 "Αντιγραφή του επιλεγμένου κειμένου στο αριστερό Αρχείο\n"
 "Αντιγραφή Αριστερά (Alt+Left)"
 
-#: Merge.rc:2703
+#: Merge.rc:2704
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5688,7 +5692,7 @@ msgstr ""
 "Αντιγραφή διαφοράς δεξιά και μετάβαση σε επομένη\n"
 "Αντιγραφή Δεξιά και μετάβαση (Ctrl+Alt+Right)"
 
-#: Merge.rc:2704
+#: Merge.rc:2705
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5697,7 +5701,7 @@ msgstr ""
 "Αντιγραφή διαφοράς αριστερά και μετάβαση σε επομένη\n"
 "Αντιγραφή Αριστερά και μετάβαση (Ctrl+Alt+Left)"
 
-#: Merge.rc:2705
+#: Merge.rc:2706
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -5706,7 +5710,7 @@ msgstr ""
 "Αντιγραφή όλων των διαφορών στο δεξιό αρχείο\n"
 "Όλα Δεξιά"
 
-#: Merge.rc:2706
+#: Merge.rc:2707
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -5715,77 +5719,77 @@ msgstr ""
 "Αντιγραφή διαφοράς δεξιά και μετάβαση σε επομένη\n"
 "Αντιγραφή Δεξιά και μετάβαση (Ctrl+Alt+Right)"
 
-#: Merge.rc:2707
+#: Merge.rc:2708
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "Διαγραφή επιλεγμένων αντικειμένων από αμφοτέρους τους φακέλους"
 
-#: Merge.rc:2708
+#: Merge.rc:2709
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Σύγκριση επιλεγμένου αντικειμένου (σύγκριση πρώτου αντικειμένου εάν έχουν επιλεγεί πολλά αντικείμενα)"
 
-#: Merge.rc:2714
+#: Merge.rc:2715
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Επιλογή και αναδιάταξη στηλών συγκρίσεως φακέλων"
 
-#: Merge.rc:2715
+#: Merge.rc:2716
 #, c-format
 msgid "Generate a patch-file"
 msgstr "Δημιουργία αρχείου patch"
 
-#: Merge.rc:2716
+#: Merge.rc:2717
 #, c-format
 msgid "Select and modify filters"
 msgstr "Επιλογή και τροποποίηση φίλτρων"
 
-#: Merge.rc:2717
+#: Merge.rc:2718
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "Δημιουργεί μία αναφορά αποτελεσμάτων συγκρίσεως"
 
-#: Merge.rc:2723
+#: Merge.rc:2724
 #, c-format
 msgid "Shows a list of available plugins"
 msgstr ""
 
-#: Merge.rc:2724
+#: Merge.rc:2725
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "Ο χρήστης επιλέγει το αποσυμπιεστικό (χωρίς αποσυμπίεση κατά τη σύγκριση φακέλων)"
 
-#: Merge.rc:2725
+#: Merge.rc:2726
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "Το συνεργαζόμενο αποσυμπιεστικό ενεργεί σε αμφότερα τα αρχεία (μόνο ένα αρχείο χρειάζεται να έχει την επέκταση)"
 
-#: Merge.rc:2726
+#: Merge.rc:2727
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Επιλέξατε ένα αποσυμπιεστικό για την επεξεργασία αυτού του αρχείου"
 
-#: Merge.rc:2727
+#: Merge.rc:2728
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "Χωρίς προεπεξεργασία διαφορών (Κανονική Λειτουργία)"
 
-#: Merge.rc:2728
+#: Merge.rc:2729
 #, c-format
 msgid "Suggested plugins"
 msgstr "Προτεινόμενα Αρθρώματα"
 
-#: Merge.rc:2729
+#: Merge.rc:2730
 #, c-format
 msgid "Other plugins"
 msgstr "’λλα αρθρώματα"
 
-#: Merge.rc:2730
+#: Merge.rc:2731
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Αποσύνδεση όλων των αρθρωμάτων και επανασύνδεση αυτών (για προγραμματιστές)"
 
-#: Merge.rc:2736
+#: Merge.rc:2737
 #, c-format
 msgid ""
 "Activates next visible file\n"
@@ -5794,12 +5798,12 @@ msgstr ""
 "Ενεργοποιεί το επόμενο ορατό αρχείο\n"
 "Ενεργοποίηση του επομένου Αρχείου"
 
-#: Merge.rc:2737
+#: Merge.rc:2738
 #, c-format
 msgid "Closes all open windows"
 msgstr "Κλείνει όλα τα ανοικτά παράθυρα"
 
-#: Merge.rc:2743
+#: Merge.rc:2744
 #, c-format
 msgid ""
 "Opens the WinMerge Help\n"
@@ -5808,22 +5812,22 @@ msgstr ""
 "Ανοίγει το αρχείο βοηθείας του WinMerge\n"
 "Βοήθεια για το WinMerge"
 
-#: Merge.rc:2744
+#: Merge.rc:2745
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "Δημιουργεί ένα αρχείο (απλού) κειμένου με πληροφορίες για την έκδοση και τις ρυθμίσεις του WinMerge"
 
-#: Merge.rc:2745
+#: Merge.rc:2746
 #, c-format
 msgid "Display the GNU General Public License"
 msgstr "Εμφάνιση της Γενικής Δημοσίας Αδείας του GNU"
 
-#: Merge.rc:2746
+#: Merge.rc:2747
 #, c-format
 msgid "Private Build: %1"
 msgstr "Ιδιωτική Μεταγλώττιση: %1"
 
-#: Merge.rc:2747
+#: Merge.rc:2748
 #, c-format
 msgid ""
 "Opens the release notes document\n"
@@ -5832,7 +5836,7 @@ msgstr ""
 "Ανοίγει το έγγραφο με τις σημειώσεις εκδόσεως\n"
 "Σημειώσεις Εκδόσεως"
 
-#: Merge.rc:2748
+#: Merge.rc:2749
 #, c-format
 msgid ""
 "Opens the translations website\n"
@@ -5841,262 +5845,267 @@ msgstr ""
 "Ανοίγει την ιστοσελίδα των μεταφράσεων\n"
 "Μεταφράσεις"
 
-#: Merge.rc:2754
+#: Merge.rc:2755
 #, c-format
 msgid "Plugin Settings"
 msgstr "Ρυθμίσεις Αρθρωμάτων"
 
-#: Merge.rc:2755
+#: Merge.rc:2756
 #, c-format
 msgid "No prediffer"
 msgstr "Χωρίς προεπεξεργασία διαφορών"
 
-#: Merge.rc:2756
+#: Merge.rc:2757
 #, c-format
 msgid "Prediff if possible"
 msgstr "Προεπεξεργασία διαφορών εί δυνατόν"
 
-#: Merge.rc:2758
+#: Merge.rc:2759
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Το Περιβάλλον Διερμηνείας Windows (WSH) δε βρέθηκε - η χρήση αρχείων δέσμης ενεργειών .sct είναι απενεργοποιημένη"
 
-#: Merge.rc:2759
+#: Merge.rc:2760
 #, c-format
 msgid "<None>"
 msgstr "<Ουδέν>"
 
-#: Merge.rc:2760
+#: Merge.rc:2761
 #, c-format
 msgid "<Automatic>"
 msgstr "<Αυτόματο>"
 
-#: Merge.rc:2766
+#: Merge.rc:2767
 #, c-format
 msgid "Open the file with registered application"
 msgstr "’νοιγμα του αρχείου με την αντιστοιχισμένη εφαρμογή"
 
-#: Merge.rc:2767
+#: Merge.rc:2768
 #, c-format
 msgid "Open the file with external editor"
 msgstr "’νοιγμα του αρχείου με άλλη εφαρμογή"
 
-#: Merge.rc:2768
+#: Merge.rc:2769
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "’νοιγμα του αρχείου με συγκεκριμένη εφαρμογή"
 
-#: Merge.rc:2774
+#: Merge.rc:2775
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "Χωρίς επισήμανση μετακινηθέντων τμημάτων"
 
-#: Merge.rc:2775
+#: Merge.rc:2776
 #, c-format
 msgid "Display all moved blocks"
 msgstr "Επισήμανση πάντων των μετακινηθέντων τμημάτων"
 
-#: Merge.rc:2776
+#: Merge.rc:2777
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Επισήμανση μετακινηθέντων τμημάτων μόνο από την τρέχουσα διαφορά"
 
-#: Merge.rc:2777
+#: Merge.rc:2778
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Μετάβαση στη διαφορά όπου βρίσκεται ο δρομέας"
 
-#: Merge.rc:2778
+#: Merge.rc:2779
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "Μετάβαση στη &Διαφορά %1 από %2"
 
-#: Merge.rc:2779
+#: Merge.rc:2780
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Μετά&βαση στη Γραμμή %1"
 
-#: Merge.rc:2785
+#: Merge.rc:2786
 #, c-format
 msgid "Disabled"
 msgstr "Απενεργοποιημένη"
 
-#: Merge.rc:2786
+#: Merge.rc:2787
 #, c-format
 msgid "From file system"
 msgstr "Από Αρχειοσύστημα"
 
-#: Merge.rc:2787
+#: Merge.rc:2788
 #, c-format
 msgid "From MRU list"
 msgstr "Από Κατάλογο προσφάτως χρησιμοποιηθέντων"
 
 #: Merge.rc:2794
 #, c-format
-msgid "ASP"
+msgid "No Highlighting"
 msgstr ""
 
 #: Merge.rc:2795
 #, c-format
-msgid "Basic"
+msgid "ASP"
 msgstr ""
 
 #: Merge.rc:2796
 #, c-format
-msgid "Batch"
+msgid "Basic"
 msgstr ""
 
 #: Merge.rc:2797
 #, c-format
-msgid "C/C++"
+msgid "Batch"
 msgstr ""
 
 #: Merge.rc:2798
 #, c-format
-msgid "C#"
+msgid "C/C++"
 msgstr ""
 
 #: Merge.rc:2799
 #, c-format
-msgid "CSS"
+msgid "C#"
 msgstr ""
 
 #: Merge.rc:2800
 #, c-format
-msgid "DCL"
+msgid "CSS"
 msgstr ""
 
 #: Merge.rc:2801
 #, c-format
-msgid "Fortran"
+msgid "DCL"
 msgstr ""
 
 #: Merge.rc:2802
 #, c-format
-msgid "HTML"
+msgid "Fortran"
 msgstr ""
 
 #: Merge.rc:2803
 #, c-format
-msgid "INI"
+msgid "HTML"
 msgstr ""
 
 #: Merge.rc:2804
 #, c-format
-msgid "InnoSetup"
+msgid "INI"
 msgstr ""
 
 #: Merge.rc:2805
 #, c-format
-msgid "InstallShield"
+msgid "InnoSetup"
 msgstr ""
 
 #: Merge.rc:2806
 #, c-format
-msgid "Java"
+msgid "InstallShield"
 msgstr ""
 
 #: Merge.rc:2807
 #, c-format
-msgid "AutoLISP"
+msgid "Java"
 msgstr ""
 
 #: Merge.rc:2808
 #, c-format
-msgid "NSIS"
+msgid "AutoLISP"
 msgstr ""
 
 #: Merge.rc:2809
 #, c-format
-msgid "Pascal"
+msgid "NSIS"
 msgstr ""
 
 #: Merge.rc:2810
 #, c-format
-msgid "Perl"
+msgid "Pascal"
 msgstr ""
 
 #: Merge.rc:2811
 #, c-format
-msgid "PHP"
+msgid "Perl"
 msgstr ""
 
 #: Merge.rc:2812
 #, c-format
-msgid "Portable Object"
+msgid "PHP"
 msgstr ""
 
 #: Merge.rc:2813
 #, c-format
-msgid "PowerShell"
+msgid "Portable Object"
 msgstr ""
 
 #: Merge.rc:2814
 #, c-format
-msgid "Python"
+msgid "PowerShell"
 msgstr ""
 
 #: Merge.rc:2815
 #, c-format
-msgid "REXX"
+msgid "Python"
 msgstr ""
 
 #: Merge.rc:2816
 #, c-format
-msgid "Resources"
+msgid "REXX"
 msgstr ""
 
 #: Merge.rc:2817
 #, c-format
-msgid "Ruby"
+msgid "Resources"
 msgstr ""
 
 #: Merge.rc:2818
 #, c-format
-msgid "SGML"
+msgid "Ruby"
 msgstr ""
 
 #: Merge.rc:2819
 #, c-format
-msgid "Shell"
+msgid "SGML"
 msgstr ""
 
 #: Merge.rc:2820
 #, c-format
-msgid "SIOD"
+msgid "Shell"
 msgstr ""
 
 #: Merge.rc:2821
 #, c-format
+msgid "SIOD"
+msgstr ""
+
+#: Merge.rc:2822
+#, c-format
 msgid "SQL"
 msgstr "SQL"
 
-#: Merge.rc:2822
+#: Merge.rc:2823
 #, c-format
 msgid "TCL"
 msgstr "TCL"
 
-#: Merge.rc:2823
+#: Merge.rc:2824
 #, c-format
 msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2824
+#: Merge.rc:2825
 #, c-format
 msgid "XML"
 msgstr ""
 
-#: Merge.rc:2829
+#: Merge.rc:2830
 #, c-format
 msgid "Hide the toolbar"
 msgstr "Απόκρυψη Γραμμής Εργαλείων"
 
-#: Merge.rc:2830
+#: Merge.rc:2831
 #, c-format
 msgid "Show small toolbar"
 msgstr "Εμφάνιση Μικρής Γραμμής Εργαλείων"
 
-#: Merge.rc:2831
+#: Merge.rc:2832
 #, c-format
 msgid "Show big toolbar"
 msgstr "Εμφάνιση Μεγάλης Γραμμής Εργαλείων"
