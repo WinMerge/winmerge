@@ -14,6 +14,7 @@ WinMerge 2.11.1.3
     disabled from options (#2027325)
   BugFix: Editing line filters updated wrong filter (#2025130)
   BugFix: Boldfacing did work only for Courier font (#2000996)
+  BugFix: Shift+Backspace didn't work in editor (#1153696)
 
 WinMerge 2.11.1.2 - 2008-07-24 (r5673)
   Refresh compare after changing filter (#2017426)
