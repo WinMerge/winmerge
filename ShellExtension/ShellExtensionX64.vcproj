@@ -124,18 +124,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Detect64BitPortabilityProblems="TRUE"
 				CompileAs="0"/>
 			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT
-if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT
-regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-goto end
-:NOTNT
-echo Warning : Cannot register Unicode DLL on Windows 95
-:end
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
+				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/machine:AMD64"
