@@ -25,6 +25,7 @@ WinMerge 2.9.1.6
    window is open (#2010463)
   BugFix: Moving was allowed for protected items (#2023734)
   BugFix: Could change EOL style for protected file (#2025781)
+  BugFix: Shift+Backspace didn't work in editor (#1153696)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 
