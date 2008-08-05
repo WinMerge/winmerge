@@ -206,8 +206,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
   // duplicate the text data for lines after the first one
   for (int ic = 1; ic < nCount; ic++) 
   {
-    m_aLines[nPosition+ic].m_pcLine = new TCHAR[li.m_nMax];
-    memcpy(m_aLines[nPosition+ic].m_pcLine, li.m_pcLine, li.m_nMax * sizeof(TCHAR));
+    m_aLines[nPosition+ic].CopyFrom(li);
   }
 
 #ifdef _DEBUG
@@ -285,11 +284,10 @@ void CCrystalTextBuffer::
 FreeAll ()
 {
   //  Free text
-  int nCount = (int) m_aLines.GetSize ();
+  const int nCount = (int) m_aLines.GetSize ();
   for (int I = 0; I < nCount; I++)
     {
-      if (m_aLines[I].m_nMax > 0)
-        delete[] m_aLines[I].m_pcLine;
+      m_aLines[I].Clear();
     }
   m_aLines.RemoveAll ();
 
@@ -659,7 +657,7 @@ applyEOLMode()
 	for (i = 0 ; i < m_aLines.GetSize () ; i++)
 	{
 		// the last real line has no EOL
-		if (m_aLines[i].m_nEolChars == 0)
+		if (!m_aLines[i].HasEol())
 			continue;
 		bChanged |= ChangeLineEol(i, lpEOLtoApply);
 	}
@@ -686,7 +684,7 @@ GetLineLength (int nLine) const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  return m_aLines[nLine].m_nLength;
+  return m_aLines[nLine].Length();
 }
 
 // number of characters in line (including any trailing eol characters)
@@ -696,7 +694,7 @@ GetFullLineLength (int nLine) const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  return m_aLines[nLine].m_nLength + m_aLines[nLine].m_nEolChars;
+  return m_aLines[nLine].FullLength();
 }
 
 // get pointer to any trailing eol characters (pointer to empty string if none)
@@ -704,8 +702,8 @@ LPCTSTR CCrystalTextBuffer::
 GetLineEol (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
-  if (m_aLines[nLine].m_nEolChars)
-    return &m_aLines[nLine].m_pcLine[m_aLines[nLine].Length()];
+  if (m_aLines[nLine].HasEol())
+    return m_aLines[nLine].GetEol();
   else
     return _T("");
 }
@@ -714,38 +712,16 @@ BOOL CCrystalTextBuffer::
 ChangeLineEol (int nLine, LPCTSTR lpEOL) 
 {
   LineInfo & li = m_aLines[nLine];
-  int nNewEolChars = (int) _tcslen(lpEOL);
-  if (nNewEolChars == li.m_nEolChars)
-    if (_tcscmp(li.m_pcLine + li.Length(), lpEOL) == 0)
-      return FALSE;
-
-  int nBufNeeded = li.m_nLength + nNewEolChars+1;
-  if (nBufNeeded > li.m_nMax)
-    {
-      li.m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
-      ASSERT (li.m_nMax >= nBufNeeded);
-      TCHAR *pcNewBuf = new TCHAR[li.m_nMax];
-      if (li.FullLength() > 0)
-        memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * (li.FullLength()+1));
-      delete[] li.m_pcLine;
-      li.m_pcLine = pcNewBuf;
-    }
-  
-  // copy also the 0 to zero-terminate the line
-  memcpy (li.m_pcLine + li.m_nLength, lpEOL, sizeof (TCHAR) * (nNewEolChars+1));
-  li.m_nEolChars = nNewEolChars;
-
-	// modified
-	return TRUE;
+  return li.ChangeEol(lpEOL);
 }
 
-LPTSTR CCrystalTextBuffer::
+LPCTSTR CCrystalTextBuffer::
 GetLineChars (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  return m_aLines[nLine].m_pcLine;
+  return m_aLines[nLine].GetLine();
 }
 
 DWORD CCrystalTextBuffer::
@@ -895,9 +871,9 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
   //  You must call InitNew() or LoadFromFile() first!
 
   ASSERT (nStartLine >= 0 && nStartLine < m_aLines.GetSize ());
-  ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
+  ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].Length());
   ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
-  ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
+  ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].Length());
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
   // some edit functions (copy...) should do nothing when there is no selection.
   // assert to be sure to catch these 'do nothing' cases.
@@ -911,7 +887,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
   int nBufSize = 0;
   for (int L = nStartLine; L <= nEndLine; L++)
     {
-      nBufSize += m_aLines[L].m_nLength;
+      nBufSize += m_aLines[L].Length();
       nBufSize += nCRLFLength;
     }
 
@@ -919,20 +895,20 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
 
   if (nStartLine < nEndLine)
     {
-      int nCount = m_aLines[nStartLine].m_nLength - nStartChar;
+      int nCount = m_aLines[nStartLine].Length() - nStartChar;
       if (nCount > 0)
         {
-          memcpy (pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar, sizeof (TCHAR) * nCount);
+          memcpy (pszBuf, m_aLines[nStartLine].GetLine(nStartChar), sizeof (TCHAR) * nCount);
           pszBuf += nCount;
         }
       memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
       pszBuf += nCRLFLength;
       for (int I = nStartLine + 1; I < nEndLine; I++)
         {
-          nCount = m_aLines[I].m_nLength;
+          nCount = m_aLines[I].Length();
           if (nCount > 0)
             {
-              memcpy (pszBuf, m_aLines[I].m_pcLine, sizeof (TCHAR) * nCount);
+              memcpy (pszBuf, m_aLines[I].GetLine(), sizeof (TCHAR) * nCount);
               pszBuf += nCount;
             }
           memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
@@ -940,14 +916,14 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
         }
       if (nEndChar > 0)
         {
-          memcpy (pszBuf, m_aLines[nEndLine].m_pcLine, sizeof (TCHAR) * nEndChar);
+          memcpy (pszBuf, m_aLines[nEndLine].GetLine(), sizeof (TCHAR) * nEndChar);
           pszBuf += nEndChar;
         }
     }
   else
     {
       int nCount = nEndChar - nStartChar;
-      memcpy (pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar, sizeof (TCHAR) * nCount);
+      memcpy (pszBuf, m_aLines[nStartLine].GetLine(nStartChar), sizeof (TCHAR) * nCount);
       pszBuf += nCount;
     }
   text.ReleaseBuffer (pszBuf - text);
@@ -1021,9 +997,9 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   //  You must call InitNew() or LoadFromFile() first!
 
   ASSERT (nStartLine >= 0 && nStartLine < m_aLines.GetSize ());
-  ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
+  ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].Length());
   ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
-  ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
+  ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].Length());
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
   // some edit functions (delete...) should do nothing when there is no selection.
   // assert to be sure to catch these 'do nothing' cases.
@@ -1040,14 +1016,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     {
       // delete part of one line
       LineInfo & li = m_aLines[nStartLine];
-      if (nEndChar < li.Length() || li.m_nEolChars)
-        {
-          // preserve characters after deleted range by shifting up
-          memcpy (li.m_pcLine + nStartChar, li.m_pcLine + nEndChar,
-                  sizeof (TCHAR) * (li.FullLength() - nEndChar));
-        }
-      li.m_nLength -= (nEndChar - nStartChar);
-      li.m_pcLine[li.FullLength()] = '\0';
+      li.Delete(nStartChar, nEndChar);
 
       if (pSource!=NULL)
         UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nStartLine);
@@ -1056,17 +1025,15 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     {
       // delete multiple lines
       int nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
-      CString sTail(m_aLines[nEndLine].m_pcLine + nEndChar, nRestCount);
+      CString sTail(m_aLines[nEndLine].GetLine(nEndChar), nRestCount);
 
       int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
-        delete[] m_aLines[L].m_pcLine;
+        m_aLines[L].Clear();
       m_aLines.RemoveAt (nStartLine + 1, nDelCount);
 
       //  nEndLine is no more valid
-      m_aLines[nStartLine].m_nLength = nStartChar;
-      m_aLines[nStartLine].m_pcLine[nStartChar] = 0;
-      m_aLines[nStartLine].m_nEolChars = 0;
+      m_aLines[nStartLine].DeleteEnd(nStartChar);
       if (nRestCount > 0)
         {
           AppendLine (nStartLine, sTail, sTail.GetLength());
@@ -1099,9 +1066,9 @@ StripTail (int i, int bytes)
   // Must not take off more than exist
   ASSERT(offset >= 0);
 
-  li.m_nLength = offset;
-  li.m_nEolChars = 0;
-  return CString(li.m_pcLine + offset, bytes);
+  CString ret(li.GetLine(offset), bytes);
+  li.DeleteEnd(offset);
+  return ret;
 }
 
 
@@ -1129,7 +1096,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
   //  You must call InitNew() or LoadFromFile() first!
 
   ASSERT (nLine >= 0 && nLine < m_aLines.GetSize ());
-  ASSERT (nPos >= 0 && nPos <= m_aLines[nLine].m_nLength);
+  ASSERT (nPos >= 0 && nPos <= m_aLines[nLine].Length());
   if (m_bReadOnly)
     return FALSE;
 
@@ -1398,9 +1365,9 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           CString text;
 
           if ((apparent_ptStartPos.y < m_aLines.GetSize ()) &&
-              (apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].m_nLength) &&
+              (apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
               (apparent_ptEndPos.y < m_aLines.GetSize ()) &&
-              (apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].m_nLength))
+              (apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
             {
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
               if (_tcscmp(text, ur.GetText()) == 0)
@@ -1911,7 +1878,7 @@ void CCrystalTextBuffer::RestoreLastChangePos(CPoint pt)
 void CCrystalTextBuffer::DeleteLine(int line, int nCount /*=1*/)
 {
   for (int ic = 0; ic < nCount; ic++)
-    delete[] m_aLines[line+ic].m_pcLine;
+    m_aLines[line + ic].Clear();
   m_aLines.RemoveAt(line, nCount);
 }
 

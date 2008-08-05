@@ -20,34 +20,47 @@
  */
 class LineInfo
   {
-public: // All public as this used to be a struct.
-    TCHAR *m_pcLine; /**< Line data. */
-    int m_nLength; /**< Line length (without EOL bytes). */
-    int m_nMax; /**< Allocated space for line data. */
-    int m_nEolChars; /**< # of EOL bytes. */
+public:
     DWORD m_dwFlags; /**< Line flags. */
     DWORD m_dwRevisionNumber; /**< Edit revision (for edit tracking). */
 
-    int FullLength() const { return m_nLength+m_nEolChars; }
-    int Length() const { return m_nLength; }
+    LineInfo();
+    void Clear();
+    void FreeBuffer();
     void Create(LPCTSTR pszLine, int nLength);
     void CreateEmpty();
     void Append(LPCTSTR pszChars, int nLength);
+    void Delete(int nStartChar, int nEndChar);
+    void DeleteEnd(int nStartChar);
+    void CopyFrom(const LineInfo &li);
+    BOOL HasEol() const;
+    LPCTSTR GetEol() const;
+    BOOL ChangeEol(LPCTSTR lpEOL);
+    void RemoveEol();
+    LPCTSTR GetLine(int index = 0) const;
 
-    LineInfo ()
-    {
-      memset (this, 0, sizeof (LineInfo));
-    };
+    /** @brief Return full line length (including EOL bytes). */
+    int FullLength() const { return m_nLength + m_nEolChars; }
+    /** @brief Return line length. */
+    int Length() const { return m_nLength; }
 
+    /** @brief Is the char an EOL char? */
     static bool IsEol(TCHAR ch)
     {
       return ch=='\r' || ch=='\n';
     };
 
+    /** @brief Are the characters DOS EOL bytes? */
     static bool IsDosEol(LPCTSTR sz)
     {
       return sz[0]=='\r' && sz[1]=='\n';
     };
+
+private:
+    TCHAR *m_pcLine; /**< Line data. */
+    int m_nMax; /**< Allocated space for line data. */
+    int m_nLength; /**< Line length (without EOL bytes). */
+    int m_nEolChars; /**< # of EOL bytes. */
   };
 
 #endif // _EDITOR_LINEINFO_H_

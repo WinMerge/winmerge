@@ -221,7 +221,7 @@ public :
     int GetFullLineLength (int nLine) const; // including EOLs
     LPCTSTR GetLineEol (int nLine) const;
     BOOL ChangeLineEol (int nLine, LPCTSTR lpEOL);
-    LPTSTR GetLineChars (int nLine) const;
+    LPCTSTR GetLineChars (int nLine) const;
     DWORD GetLineFlags (int nLine) const;
     DWORD GetLineRevisionNumber (int nLine) const;
     int GetLineWithFlag (DWORD dwFlag);

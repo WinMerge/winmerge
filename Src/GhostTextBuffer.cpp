@@ -136,7 +136,7 @@ BOOL CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 	for (int i = nLine ; i < nLine + nCount; i++)
 	{
 		ASSERT (GetLineFlags(i) & LF_GHOST);
-		delete[] m_aLines[i].m_pcLine;
+		m_aLines[i].Clear();
 	}
 	m_aLines.RemoveAt (nLine, nCount);
 
@@ -210,7 +210,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			int soffset = (i == nStartLine ? nStartChar : 0);
 			int eoffset = (i == nEndLine ? nEndChar : GetLineLength(i));
 			int chars = eoffset - soffset;
-			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
+			LPCTSTR szLine = m_aLines[i].GetLine(soffset);
 			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
 			pszBuf += chars;
 
@@ -234,7 +234,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			int soffset = (i == nStartLine ? nStartChar : 0);
 			int eoffset = (i == nEndLine ? nEndChar : GetFullLineLength(i));
 			int chars = eoffset - soffset;
-			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
+			LPCTSTR szLine = m_aLines[i].GetLine(soffset);
 			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
 			pszBuf += chars;
 
@@ -340,9 +340,9 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			int bLastLineGhost = ((GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) != 0);
 
 			if ((apparent_ptStartPos.y < m_aLines.GetSize ()) &&
-					(apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].m_nLength) &&
+					(apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
 					(apparent_ptEndPos.y < m_aLines.GetSize ()) &&
-					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].m_nLength))
+					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
 			{
 				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
 				if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
@@ -884,7 +884,7 @@ void CGhostTextBuffer::RemoveAllGhostLines()
 	for(ct = 0; ct < nlines; ct++)
 	{
 		if (GetLineFlags(ct) & LF_GHOST)
-			delete[] m_aLines[ct].m_pcLine;
+			m_aLines[ct].FreeBuffer();
 	}
 	// Compact non-ghost lines
 	// (we copy the buffer address, so the buffer don't move and we don't free it)
@@ -1203,34 +1203,32 @@ void CGhostTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, 
 			if (bLastRealLine)
 			{
 				bLastRealLine = 0;
-				if (m_aLines[i].m_nEolChars != 0) 
+				if (m_aLines[i].HasEol()) 
 				{
 					// if the last real line has an EOL, remove it
-					m_aLines[i].m_pcLine[m_aLines[i].m_nLength] = '\0';
-					m_aLines[i].m_nEolChars = 0;
-					if (pSource!=NULL)
+					m_aLines[i].RemoveEol();
+					if (pSource != NULL)
 						UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
 				}
 			}
 			else
 			{
-				if (m_aLines[i].m_nEolChars == 0) 
+				if (!m_aLines[i].HasEol()) 
 				{
 					// if a real line (not the last) has no EOL, add one
 					AppendLine (i, GetDefaultEol(), (int) _tcslen(GetDefaultEol()));
-					if (pSource!=NULL)
+					if (pSource != NULL)
 						UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
 				}
 			}
 		}
 		else 
 		{
-			if (m_aLines[i].m_nEolChars != 0) 
+			if (m_aLines[i].HasEol()) 
 			{
 				// if a ghost line has an EOL, remove it
-				m_aLines[i].m_pcLine[m_aLines[i].m_nLength] = '\0';
-				m_aLines[i].m_nEolChars = 0;
-				if (pSource!=NULL)
+				m_aLines[i].RemoveEol();
+				if (pSource != NULL)
 					UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
 			}
 		}
