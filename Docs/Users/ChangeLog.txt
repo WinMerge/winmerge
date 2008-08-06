@@ -11,6 +11,7 @@ WinMerge 2.8.6
   BugFix: Possible crash when enabling line filter (#2004160)
   BugFix: Moving was allowed for protected items (#2023734)
   BugFix: Could change EOL style for protected file (#2025781)
+  BugFix: External editor command line switches did not work (#2037862)
   New translation: Slovenian (#1997236)
   Translation updates:
   - Chinese Traditional (#2007426)

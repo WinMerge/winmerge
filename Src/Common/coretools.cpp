@@ -1197,7 +1197,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 		sCmdLine.erase(clpos, clpos - sCmdLine.length());
 
 	std::string::size_type pos = sCmdLine.find(_T(" "));
-	if (pos > -1)
+	if (pos != std::string.npos)
 	{
 		// First space was before switch, we don't need "s
 		// (executable path didn't contain spaces)
@@ -1217,7 +1217,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 			prevPos = pos;
 			pos = sCmdLine.find(_T(" "), prevPos + 1);
 
-			if (pos > -1)
+			if (pos != std::string.npos)
 			{
 				if (sCmdLine[pos + 1] == '/' || sCmdLine[pos + 1] == '-')
 				{
@@ -1232,7 +1232,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 
 		if (addQuote)
 		{
-			if (pos > -1)
+			if (pos != std::string.npos)
 			{
 				sExecutable = sCmdLine.substr(0, pos);
 				sDecoratedCmdLine += sExecutable;
