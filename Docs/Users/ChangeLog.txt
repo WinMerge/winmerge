@@ -26,6 +26,7 @@ WinMerge 2.9.1.6
   BugFix: Moving was allowed for protected items (#2023734)
   BugFix: Could change EOL style for protected file (#2025781)
   BugFix: Shift+Backspace didn't work in editor (#1153696)
+  BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 

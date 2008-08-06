@@ -994,7 +994,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// doesn't invalidate our item indexes.
 		FileActionItem act = actionList.RemoveTailActionItem();
 		POSITION diffpos = GetItemKey(act.context);
-		const DIFFITEM & di = pDoc->GetDiffByKey(diffpos);
+		DIFFCODE diffcode = pDoc->GetDiffByKey(diffpos).diffcode;
 		BOOL bUpdateLeft = FALSE;
 		BOOL bUpdateRight = FALSE;
 
@@ -1021,7 +1021,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_LEFT:
-			if (di.diffcode.isSideLeftOnly())
+			if (diffcode.isSideLeftOnly())
 			{
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
@@ -1033,7 +1033,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_RIGHT:
-			if (di.diffcode.isSideRightOnly())
+			if (diffcode.isSideRightOnly())
 			{
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
