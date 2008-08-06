@@ -71,6 +71,7 @@ private:
 
 	LineFiltersList * m_pList; /**< Helper list for getting/setting filters. */
 	BOOL m_bEditing; /**< Are we editing a filter string? */
+	int m_editedIndex; /**< Index of the item being edited. */
 };
 
 //{{AFX_INSERT_LOCATION}}

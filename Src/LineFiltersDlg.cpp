@@ -34,6 +34,7 @@ LineFiltersDlg::LineFiltersDlg()
 : CPropertyPage(LineFiltersDlg::IDD)
 , m_pList(NULL)
 , m_bEditing(FALSE)
+, m_editedIndex(-1)
 {
 	//{{AFX_DATA_INIT(LineFiltersDlg)
 	m_bIgnoreRegExp = FALSE;
@@ -168,12 +169,6 @@ void LineFiltersDlg::EditSelectedFilter()
 	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
 	if (sel > -1)
 	{
-/*		CEdit * pEdit = m_filtersList.EditLabel(sel);
-		if (pEdit)
-		{
-			pEdit->SetFocus();
-		}
-*/
 		CString text = m_filtersList.GetItemText(sel, 0);
 		m_editRegexp.SetWindowText(text);
 		m_editRegexp.SetReadOnly(FALSE);
@@ -181,6 +176,7 @@ void LineFiltersDlg::EditSelectedFilter()
 		m_editRegexp.SetFocus();
 		m_editRegexp.SetSel(0, -1);
 		m_bEditing = TRUE;
+		m_editedIndex = sel;
 	}
 }
 
@@ -308,17 +304,13 @@ void LineFiltersDlg::SaveItem()
 {
 	if (m_bEditing)
 	{
-		int sel =- 1;
-		sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
-		if (sel != -1)
-		{
-			CString text;
-			m_editRegexp.GetWindowText(text);
-			m_filtersList.SetItemText(sel, 0, text);
-		}
+		CString text;
+		m_editRegexp.GetWindowText(text);
+		m_filtersList.SetItemText(m_editedIndex, 0, text);
 		m_bEditing = FALSE;
 		m_editRegexp.SetReadOnly(TRUE);
 		m_saveRegexp.EnableWindow(FALSE);
+		m_editedIndex = -1;
 	}
 }
 
