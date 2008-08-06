@@ -796,6 +796,7 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditUndo()
 {
+	WaitStatusCursor waitstatus(IDS_STATUS_UNDO);
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
@@ -1417,6 +1418,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
  */
 void CMergeEditView::OnEditRedo()
 {
+	WaitStatusCursor waitstatus(IDS_STATUS_REDO);
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
