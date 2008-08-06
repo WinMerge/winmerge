@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.4
+  Add wait cursor for undo and redo (#2039228)
   BugFix: External editor command line switches did not work (#2037862)
   BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
 

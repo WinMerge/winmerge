@@ -541,6 +541,8 @@
 #define IDS_STATUS_DELETEFILES          16823
 #define IDS_STATUS_MOVEFILES            16824
 #define IDS_STATUS_CREATEREPORT         16825
+#define IDS_STATUS_UNDO                 16826
+#define IDS_STATUS_REDO                 16827
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833
 #define IDS_LINE_STATUS_INFO            16834

@@ -2075,6 +2075,8 @@ BEGIN
     IDS_STATUS_DELETEFILES  "Deleting files..."
     IDS_STATUS_MOVEFILES    "Moving files..."
     IDS_STATUS_CREATEREPORT "Creating the report..."
+    IDS_STATUS_UNDO         "Undoing the last operation..."
+    IDS_STATUS_REDO         "Redoing the previous operation..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
