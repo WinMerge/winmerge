@@ -43,15 +43,15 @@
       $this->_tab = WINMERGE_2_8;
       /* _Stable Release */
       $this->_stablerelease = new Release;
-      $this->_stablerelease->setVersionNumber('2.8.4');
-      $this->_stablerelease->setDate('2008-06-17');
-      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-Setup.exe', 3034028);
-      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-exe.zip', 3321093);
-      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-exe.7z', 1808742);
-      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.4.zip', 1287510);
-      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.4.7z', 753831);
-      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-src.zip', 8571235);
-      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-src.7z', 4359449);
+      $this->_stablerelease->setVersionNumber('2.8.6');
+      $this->_stablerelease->setDate('2008-08-07');
+      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-Setup.exe', 3051113);
+      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-exe.zip', 3349594);
+      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-exe.7z', 1822229);
+      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.6.zip', 1287510);
+      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.6.7z', 753831);
+      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-src.zip', 8607863);
+      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-src.7z', 4377158);
     }
 
     /**

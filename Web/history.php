@@ -8,6 +8,7 @@
 <div class="infocard">
   <h3>WinMerge 2.8</h3>
   <ul>
+    <li>WinMerge 2.8.6 (2008-08-07)</li>
     <li>WinMerge 2.8.4 (2008-06-17)</li>
     <li>WinMerge 2.8.2 (2008-06-12)</li>
     <li>WinMerge 2.8.0 (2008-04-03)</li>

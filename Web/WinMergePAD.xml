@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>WinMerge</Program_Name>
-		<Program_Version>2.8.4</Program_Version>
-		<Program_Release_Month>06</Program_Release_Month>
-		<Program_Release_Day>17</Program_Release_Day>
+		<Program_Version>2.8.6</Program_Version>
+		<Program_Release_Month>08</Program_Release_Month>
+		<Program_Release_Day>07</Program_Release_Day>
 		<Program_Release_Year>2008</Program_Release_Year>
 		<Program_Cost_Dollars>0</Program_Cost_Dollars>
 		<Program_Cost_Other_Code />
@@ -84,7 +84,7 @@
 			<Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.8.4-Setup.exe</Primary_Download_URL>
+			<Primary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-Setup.exe</Primary_Download_URL>
 			<Secondary_Download_URL />
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />
