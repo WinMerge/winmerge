@@ -28,8 +28,8 @@
 // $Id$
 //
 
-#include "stdafx.h"
-#include <Shlwapi.h>		// PathFindFileName()
+#include "StdAfx.h"
+#include <shlwapi.h>		// PathFindFileName()
 #include "Merge.h"
 #include "UnicodeString.h"
 #include "CompareStats.h"
@@ -39,7 +39,7 @@
 #include "DirFrame.h"
 #include "MainFrm.h"
 #include "coretools.h"
-#include "logfile.h"
+#include "LogFile.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
@@ -216,7 +216,7 @@ CDirDoc::AllowUpwardDirectory(String &leftParent, String &rightParent)
 	{
 		LPCTSTR lname = PathFindFileName(left.c_str());
 		LPCTSTR rname = PathFindFileName(right.c_str());
-		int cchLeftRoot = m_pTempPathContext->m_strLeftRoot.length();
+        String::size_type cchLeftRoot = m_pTempPathContext->m_strLeftRoot.length();
 
 		if (left.length() <= cchLeftRoot)
 		{

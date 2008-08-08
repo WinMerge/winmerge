@@ -381,7 +381,7 @@ void DiffList::ConstructSignificantChain()
 	m_lastSignificant = -1;
 	int prev = -1;
 	// must be called after diff list is entirely populated
-	for (int i = 0; i < m_diffs.size(); ++i)
+    for (vector<DiffRangeInfo>::size_type i = 0; i < m_diffs.size(); ++i)
 	{
 		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
 		{

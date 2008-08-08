@@ -166,9 +166,9 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_pOptionsMgr = pOptionsMgr;
 
-	int count = m_items.size();
+    unsigned int count = m_items.size();
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename.c_str(), count);
+	m_pOptionsMgr->InitOption(valuename.c_str(), static_cast<int>(count));
 	count = m_pOptionsMgr->GetInt(valuename.c_str());
 
 	for (unsigned int i = 0; i < count; i++)
@@ -195,7 +195,7 @@ void LineFiltersList::SaveFilters()
 	assert(m_pOptionsMgr);
 	String valuename(FiltersRegPath);
 
-	int count = m_items.size();
+	unsigned int count = m_items.size();
 	valuename += _T("/Values");
 	m_pOptionsMgr->SetInt(valuename.c_str(), count);
 

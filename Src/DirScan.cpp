@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "LogFile.h"
@@ -112,7 +112,7 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
 		&& (rightFiles.size() == 0)
 		;
 
-	int i = 0, j = 0;
+    DirItemArray::size_type i = 0, j = 0; 
 	while (1)
 	{
 		if (pCtxt->ShouldAbort())

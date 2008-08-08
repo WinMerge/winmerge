@@ -264,7 +264,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	{
 		// Find starting locations for both sides
 		// Have to look for first valid starting location for each side
-		int i;
+        vector<wdiff*>::size_type i;
 		for (i=0; i<worddiffs.size(); ++i)
 		{
 			const wdiff * diff = worddiffs[i];
