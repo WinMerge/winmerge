@@ -214,14 +214,13 @@ static String ColPathGet(const CDiffContext *, const void *p)
 	{
 		int i_ahead = s.find('\\', i);
 		int j_ahead = t.find('\\', j);
-		int length_s = (i_ahead != -1 ? i_ahead : s.length()) - i;
-		int length_t = (j_ahead != -1 ? j_ahead : t.length()) - j;
+		int length_s = (i_ahead != std::string.npos ? i_ahead : s.length()) - i;
+		int length_t = (j_ahead != std::string.npos ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
 			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
-			//u.SetAt(length_t, '|');
 			s.insert(i, u.c_str());
 			i_ahead += u.length();
 		}
