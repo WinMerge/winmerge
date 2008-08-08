@@ -62,7 +62,7 @@
 // line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include <malloc.h>
 #include "editcmd.h"
@@ -85,7 +85,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 const TCHAR crlf[] = _T ("\r\n");
 

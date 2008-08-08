@@ -23,7 +23,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <string.h>
 #include <vector>
 #include "UnicodeString.h"
@@ -39,7 +39,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 /**
  * @brief Deletes items from filter list.

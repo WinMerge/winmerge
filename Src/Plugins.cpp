@@ -50,7 +50,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 static CStringArray theScriptletList;
 /// Need to lock the *.sct so the user can't delete them

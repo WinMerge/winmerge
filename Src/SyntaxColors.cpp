@@ -6,14 +6,14 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include "UnicodeString.h"
 #include "SyntaxColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
-using namespace std;
+using std::vector;
 
 /** @brief Setting name for default colors. */
 static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");

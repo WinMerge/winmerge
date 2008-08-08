@@ -31,7 +31,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include "GhostTextBuffer.h"
 
@@ -45,7 +45,7 @@ static char THIS_FILE[] = __FILE__;
 #define _ADVANCED_BUGCHECK  1
 #endif
 
-using namespace std;
+using std::vector;
 
 BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
 //{{AFX_MSG_MAP(CGhostTextBuffer)

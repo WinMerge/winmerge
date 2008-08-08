@@ -7,7 +7,7 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include "MergeDoc.h"
 
@@ -21,7 +21,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 /**
  * @brief Divide diff blocks to match lines in diff blocks.

@@ -26,10 +26,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include "BCMenu.h"
-#include "merge.h"
+#include "Merge.h"
 #include "LocationView.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
@@ -53,7 +53,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 /** @brief Timer ID for delayed rescan. */
 const UINT IDT_RESCAN = 2;

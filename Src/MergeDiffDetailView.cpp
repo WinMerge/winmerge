@@ -10,9 +10,9 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
-#include "merge.h"
+#include "Merge.h"
 #include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
@@ -30,7 +30,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 static const UINT NROWS_INIT = 4;
 

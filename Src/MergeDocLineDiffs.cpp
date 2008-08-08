@@ -7,7 +7,7 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include "Merge.h"
 #include "MainFrm.h"
@@ -22,7 +22,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 /**
  * @brief Display the line/word difference highlight in edit view

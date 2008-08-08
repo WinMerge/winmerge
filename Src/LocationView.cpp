@@ -29,9 +29,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
-#include "merge.h"
+#include "Merge.h"
 #include "OptionsMgr.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
@@ -48,7 +48,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 /** @brief Size of empty frame above and below bars (in pixels). */
 static const int Y_OFFSET = 5;

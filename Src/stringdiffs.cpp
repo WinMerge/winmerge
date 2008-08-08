@@ -7,7 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include <mbctype.h>
 #include "UnicodeString.h"
@@ -21,7 +21,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-using namespace std;
+using std::vector;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);

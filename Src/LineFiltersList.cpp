@@ -18,7 +18,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
-using namespace std;
+using std::vector;
 
 /** @brief Registry key for saving linefilters. */
 static const TCHAR FiltersRegPath[] =_T("LineFilters");

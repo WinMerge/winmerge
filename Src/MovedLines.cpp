@@ -11,7 +11,7 @@
 #include <map>
 #include "MovedLines.h"
 
-using namespace std;
+using std::map;
 
 /**
  * @brief clear the lists of moved blocks.
