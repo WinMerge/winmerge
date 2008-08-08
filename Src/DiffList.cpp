@@ -22,39 +22,13 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
 #include "coretools.h"
 
-using namespace std;
-
-static void swap(int &a, int &b);
-static void swap(UINT &a, UINT &b);
-
-/**
- * @brief Swap two integers.
- * @param [in] a First integer.
- * @param [in] b Second integer.
- */
-static void swap(int &a, int &b)
-{
-	int tmp = a;
-	a = b;
-	b = tmp;
-}
-
-/**
- * @brief Swap two UINTs.
- * @param [in] a First UINT.
- * @param [in] b Second UINT.
- */
-static void swap(UINT &a, UINT &b)
-{
-	UINT tmp = a;
-	a = b;
-	b = tmp;
-}
+using std::swap;
+using std::vector;
 
 /**
  * @brief Swap diff sides.

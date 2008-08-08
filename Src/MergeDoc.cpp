@@ -27,23 +27,23 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
-#include <Shlwapi.h>		// PathCompactPathEx()
+#include "StdAfx.h"
+#include <shlwapi.h>		// PathCompactPathEx()
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "DiffTextBuffer.h"
 #include "Environment.h"
 #include "Ucs2Utf8.h"
-#include "diffcontext.h"	// FILE_SAME
+#include "DiffContext.h"	// FILE_SAME
 #include "MovedLines.h"
-#include "getopt.h"
-#include "fnmatch.h"
+#include "GETOPT.H"
+#include "FNMATCH.H"
 #include "coretools.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
-#include "childFrm.h"
-#include "dirdoc.h"
+#include "ChildFrm.h"
+#include "DirDoc.h"
 #include "files.h"
 #include "WaitStatusCursor.h"
 #include "FileTransform.h"
@@ -68,6 +68,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using std::swap;
 
 /** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
@@ -2528,13 +2530,13 @@ void CMergeDoc::SwapFiles()
 	m_pDetailView[1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
-	swap<CDiffTextBuffer *>(&m_ptBuf[0], &m_ptBuf[1]);
-	swap<CMergeEditView *>(&m_pView[0], &m_pView[1]);
-	swap<CMergeDiffDetailView *>(&m_pDetailView[0], &m_pDetailView[1]);
-	swap<DiffFileInfo *>(&m_pSaveFileInfo[0], &m_pSaveFileInfo[1]);
-	swap<DiffFileInfo *>(&m_pRescanFileInfo[0], &m_pRescanFileInfo[1]);
-	swap<BUFFERTYPE>(&m_nBufferType[0], &m_nBufferType[1]);
-	swap<BOOL>(&m_bEditAfterRescan[0], &m_bEditAfterRescan[1]);
+    swap(m_ptBuf[0], m_ptBuf[1]);
+    swap(m_pView[0], m_pView[1]);
+    swap(m_pDetailView[0], m_pDetailView[1]);
+    swap(m_pSaveFileInfo[0], m_pSaveFileInfo[1]);
+    swap(m_pRescanFileInfo[0], m_pRescanFileInfo[1]);
+    swap(m_nBufferType[0], m_nBufferType[1]);
+    swap(m_bEditAfterRescan[0], m_bEditAfterRescan[1]);
 	m_strDesc[0].swap(m_strDesc[1]);
 
 	m_filePaths.Swap();
