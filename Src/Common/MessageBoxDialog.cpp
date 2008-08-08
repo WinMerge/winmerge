@@ -39,13 +39,15 @@
  *  concerned AfxMessageBox
  */
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "MessageBoxDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+using std::vector;
 
 IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
@@ -108,7 +110,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	m_sCheckbox			= CSize(0, 0);
 	m_sButton			= CSize(0, 0);
 
-	m_aButtons.RemoveAll();
+    m_aButtons.clear();
 }
 
 /*
@@ -153,7 +155,7 @@ CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
 	m_sCheckbox			= CSize(0, 0);
 	m_sButton			= CSize(0, 0);
 
-	m_aButtons.RemoveAll();
+	m_aButtons.clear();
 }
 
 /*
@@ -529,10 +531,10 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 		if ( m_bTimeoutDisabled )
 		{
 			// Run through all created buttons.
-			for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+            for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 			{
 				// Try to retrieve a handle for the button.
-				CWnd* pButtonWnd = GetDlgItem(m_aButtons.GetAt(i).nID);
+                CWnd* pButtonWnd = GetDlgItem(iter->nID);
 
 				ASSERT(pButtonWnd);
 
@@ -641,10 +643,10 @@ BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
 				int nID = pFocusWnd->GetDlgCtrlID();
 
 				// Run through the list of defined buttons.
-				for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+				for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 				{
 					// Check whether the ID is a button.
-					if ( m_aButtons.GetAt(i).nID == nID )
+					if ( iter->nID == nID )
 					{
 						// Save this ID as the default ID.
 						m_nDefaultButton = nID;
@@ -705,10 +707,10 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 			if ( m_bTimeoutDisabled )
 			{
 				// Run through all defined buttons.
-				for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+				for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 				{
 					// Try to retrieve a handle to access the button.
-					CWnd* pButtonWnd = GetDlgItem(m_aButtons.GetAt(i).nID);
+					CWnd* pButtonWnd = GetDlgItem(iter->nID);
 
 					ASSERT(pButtonWnd);
 
@@ -738,13 +740,13 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 		}
 
 		// Run through the list of defined buttons.
-		for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+		for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 		{
 			// Check whether this button is the default button.
-			if ( m_aButtons.GetAt(i).nID == m_nDefaultButton )
+			if ( iter->nID == m_nDefaultButton )
 			{
 				// Try to load the text for the button.
-				String strButtonText = LoadResString(m_aButtons.GetAt(i).nTitle);
+				String strButtonText = LoadResString(iter->nTitle);
 				// Check whether the timeout is finished.
 				if ( m_nTimeoutSeconds > 0 )
 				{
@@ -754,7 +756,7 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 					strButtonText += szTimeoutSeconds;
 				}
 				// Set the text of the button.
-				SetDlgItemText(m_aButtons.GetAt(i).nID, strButtonText.c_str());
+				SetDlgItemText(iter->nID, strButtonText.c_str());
 			}
 		}
 	}
@@ -833,7 +835,7 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
 		int nChecksum = 0;
 
 		// Run through the message string.
-		for ( int i = 0; i < m_strMessage.length(); i++ )
+        for ( String::size_type i = 0; i < m_strMessage.length(); i++ )
 		{
 			// Get the char at the given position and add it to the checksum.
 			nChecksum += (int)m_strMessage[i] * i;
@@ -860,7 +862,7 @@ void CMessageBoxDialog::AddButton ( UINT nID, UINT nTitle, BOOL bIsDefault,
 	MSGBOXBTN bButton = { nID, nTitle };
 
 	// Add the button to the list of buttons.
-	m_aButtons.Add(bButton);
+    m_aButtons.push_back(bButton);
 
 	// Check whether this button is the default button.
 	if ( bIsDefault )
@@ -1063,7 +1065,7 @@ void CMessageBoxDialog::ParseStyle ( )
 	if ( m_nStyle & MB_DEFMASK )
 	{
 		// Create a variable to store the index of the default button.
-		int nDefaultIndex = 0;
+        vector<MSGBOXBTN>::size_type nDefaultIndex = 0;
 
 		// Switch the default button.
 		switch ( m_nStyle & MB_DEFMASK )
@@ -1114,10 +1116,10 @@ void CMessageBoxDialog::ParseStyle ( )
 		}
 
 		// Check whether enough buttons are available.
-		if ( m_aButtons.GetSize() >= ( nDefaultIndex + 1 ) )
+		if ( m_aButtons.size() >= ( nDefaultIndex + 1 ) )
 		{
 			// Set the new default button.
-			m_nDefaultButton = m_aButtons.GetAt(nDefaultIndex).nID;
+			m_nDefaultButton = m_aButtons[nDefaultIndex].nID;
 		}
 	}
 
@@ -1377,10 +1379,10 @@ void CMessageBoxDialog::CreateButtonControls ( )
 	CRect rcDummy;
 
 	// Run through all buttons defined in the list of the buttons.
-	for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+	for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 	{
 		// Create a string and load the title of the button.
-		String strButtonText = LoadResString(m_aButtons.GetAt(i).nTitle);
+		String strButtonText = LoadResString(iter->nTitle);
 		// Check whether there's a timeout set.
 		if ( m_nTimeoutSeconds > 0 )
 		{
@@ -1402,7 +1404,7 @@ void CMessageBoxDialog::CreateButtonControls ( )
 
 		// Create the button.
 		btnControl.Create(strButtonText.c_str(), WS_CHILD | WS_VISIBLE | WS_TABSTOP,
-			rcDummy, this, m_aButtons.GetAt(i).nID);
+			rcDummy, this, iter->nID);
 
 		// Set the font of the control.
 		btnControl.SetFont(pWndFont);
@@ -1492,8 +1494,8 @@ void CMessageBoxDialog::DefineLayout ( )
 
 	// Calculate the width of the buttons.
 	int cxButtons =
-		( m_aButtons.GetSize() - 1 ) * XDialogUnitToPixel(CX_BUTTON_SPACE) +
-		m_aButtons.GetSize() * m_sButton.cx;
+		( m_aButtons.size() - 1 ) * XDialogUnitToPixel(CX_BUTTON_SPACE) +
+		m_aButtons.size() * m_sButton.cx;
 	int cyButtons = m_sButton.cy;
 
 	// Add the size of the buttons to the dialog.
@@ -1514,10 +1516,10 @@ void CMessageBoxDialog::DefineLayout ( )
 	}
 
 	// Run through all buttons.
-	for ( int i = 0; i < m_aButtons.GetSize(); i++ )
+	for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
 	{
 		// Try to retrieve the handle to access the button.
-		CWnd* pButton = GetDlgItem(m_aButtons.GetAt(i).nID);
+		CWnd* pButton = GetDlgItem(iter->nID);
 
 		ASSERT(pButton);
 
