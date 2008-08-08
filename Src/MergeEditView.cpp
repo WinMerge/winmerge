@@ -3196,9 +3196,13 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
 
-	for (int i = ID_COLORSCHEME_FIRST; i <= ID_COLORSCHEME_LAST; ++i)
+	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
+	DoAppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	DoAppendMenu(hSubMenu, MF_SEPARATOR, 0, NULL);
+
+	for (int i = ID_COLORSCHEME_FIRST + 1; i <= ID_COLORSCHEME_LAST; ++i)
 	{
-		String name = theApp.LoadString(i);
+		name = theApp.LoadString(i);
 		DoAppendMenu(hSubMenu, MF_STRING, i, name.c_str());
 	}
 
