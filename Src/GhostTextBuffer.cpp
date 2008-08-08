@@ -257,36 +257,6 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 ////////////////////////////////////////////////////////////////////////////
 // undo/redo functions
 
-void CGhostTextBuffer::SUndoRecord::
-SetText (LPCTSTR pszText, int nLength)
-{
-	FreeText();
-	if (nLength)
-	{
-		if (nLength > 1)
-		{
-			m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
-			m_pszText->size = nLength;
-			memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
-			m_pszText->data[nLength] = _T('?'); // debug sentinel
-		}
-		else
-		{
-			m_szText[0] = pszText[0];
-		}
-	}
-}
-
-void CGhostTextBuffer::SUndoRecord::FreeText ()
-{
-	// See the m_szText/m_pszText definition
-	// Check if m_pszText is a pointer by removing bits having
-	// possible char value
-	if (((INT_PTR)m_pszText >> 16) != 0)
-		free(m_pszText);
-	m_pszText = NULL;
-}
-
 BOOL CGhostTextBuffer::
 Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 {
@@ -298,7 +268,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 	while (!failed)
 	{
 		--tmpPos;
-		SUndoRecord ur = m_aUndoBuf[tmpPos];
+		GhostUndoRecord ur = m_aUndoBuf[tmpPos];
 		// Undo records are stored in file line numbers
 		// and must be converted to apparent (screen) line numbers for use
 		CPoint apparent_ptStartPos = ur.m_ptStartPos;
@@ -476,7 +446,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 	while(1)
 	{
-		SUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
+		GhostUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
 		CPoint apparent_ptStartPos = ur.m_redo_ptStartPos;
 		apparent_ptStartPos.y = ComputeApparentLine (ur.m_redo_ptStartPos.y, ur.m_redo_ptStartPos_nGhost);
 		CPoint apparent_ptEndPos = ur.m_redo_ptEndPos;
@@ -580,7 +550,7 @@ void CGhostTextBuffer::AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
 	}
 
 	//  Add new record
-	SUndoRecord ur;
+	GhostUndoRecord ur;
 	ur.m_dwFlags = bInsert ? UNDO_INSERT : 0;
 	ur.m_nAction = nActionType;
 	if (m_bUndoBeginGroup)

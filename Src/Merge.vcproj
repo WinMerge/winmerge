@@ -6221,6 +6221,9 @@
 				RelativePath="GhostTextView.h">
 			</File>
 			<File
+				RelativePath=".\GhostUndorecord.h">
+			</File>
+			<File
 				RelativePath="IAbortable.h">
 			</File>
 			<File

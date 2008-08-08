@@ -1258,7 +1258,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 
   //  Advance to next undo group
   nPosition--;
-  vector<SUndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+  vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
   while (((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
     {
       --iter;
@@ -1299,7 +1299,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 
   //  Advance to next undo group
   nPosition++;
-  vector<SUndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+  vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
   while (iter != m_aUndoBuf.begin () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
     {
       --iter;
@@ -1349,7 +1349,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   while (!failed)
     {
       --tmpPos;
-      const SUndoRecord ur = m_aUndoBuf[tmpPos];
+      const UndoRecord ur = m_aUndoBuf[tmpPos];
       // Undo records are stored in file line numbers
       // and must be converted to apparent (screen) line numbers for use
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
@@ -1438,7 +1438,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
   for (;;)
     {
-      const SUndoRecord ur = m_aUndoBuf[m_nUndoPosition];
+      const UndoRecord ur = m_aUndoBuf[m_nUndoPosition];
       CPoint apparent_ptStartPos = ur.m_ptStartPos;
       CPoint apparent_ptEndPos = ur.m_ptEndPos;
 
@@ -1493,7 +1493,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
     }
 
   //  Add new record
-  SUndoRecord ur;
+  UndoRecord ur;
   ur.m_dwFlags = bInsert ? UNDO_INSERT : 0;
   ur.m_nAction = nActionType;
   if (m_bUndoBeginGroup)

@@ -1,7 +1,7 @@
 /**
  * @file UndoRecord.h
  *
- * @brief Declaration for SUndoRecord structure.
+ * @brief Declaration for UndoRecord structure.
  *
  */
 // ID line follows -- this is updated by SVN
@@ -10,8 +10,9 @@
 #ifndef _EDITOR_UNDO_RECORD_H_
 #define _EDITOR_UNDO_RECORD_H_
 
-struct SUndoRecord
+class UndoRecord
 {
+public:
   DWORD m_dwFlags;
   CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
   int m_nAction;            //  For information only: action type
@@ -39,35 +40,32 @@ private:
   };
 
   public:
-  SUndoRecord () // default constructor
+  UndoRecord () // default constructor
+    : m_dwFlags(0)
+    , m_nAction(0)
+    , m_paSavedRevisonNumbers(NULL)
+    , m_pszText(NULL)
   {
-    memset (this, 0, sizeof (SUndoRecord));
   }
 
-  SUndoRecord (const SUndoRecord & src) // copy constructor
+  UndoRecord (const UndoRecord & src) // copy constructor
+    : m_dwFlags(0)
+    , m_nAction(0)
+    , m_paSavedRevisonNumbers(NULL)
+    , m_pszText(NULL)
   {
-    memset (this, 0, sizeof (SUndoRecord));
-    (*this)=src;
+    Clone(src);
   }
 
-  SUndoRecord & operator=(const SUndoRecord & src) // copy assignment
+  virtual void Clone(const UndoRecord &src);
+
+  virtual UndoRecord & operator=(const UndoRecord & src) // copy assignment
   {
-    m_dwFlags = src.m_dwFlags;
-    m_ptStartPos = src.m_ptStartPos;
-    m_ptEndPos = src.m_ptEndPos;
-    m_nAction = src.m_nAction;
-    SetText(src.GetText(), src.GetTextLength());
-    INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
-    if (!m_paSavedRevisonNumbers)
-      m_paSavedRevisonNumbers = new CDWordArray();
-    m_paSavedRevisonNumbers->SetSize(size);
-    INT_PTR i;
-    for (i = 0; i < size; i++)
-      (*m_paSavedRevisonNumbers)[i] = (*src.m_paSavedRevisonNumbers)[i];
+    Clone(src);
     return *this;
   }
 
-  ~SUndoRecord () // destructor
+  virtual ~UndoRecord () // destructor
   {
     FreeText();
     if (m_paSavedRevisonNumbers)

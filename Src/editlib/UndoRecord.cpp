@@ -9,7 +9,30 @@
 #include "stdafx.h"
 #include "UndoRecord.h"
 
-void SUndoRecord::
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+void UndoRecord::
+Clone(const UndoRecord &src)
+  {
+    m_dwFlags = src.m_dwFlags;
+    m_ptStartPos = src.m_ptStartPos;
+    m_ptEndPos = src.m_ptEndPos;
+    m_nAction = src.m_nAction;
+    SetText(src.GetText(), src.GetTextLength());
+    INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
+    if (!m_paSavedRevisonNumbers)
+      m_paSavedRevisonNumbers = new CDWordArray();
+    m_paSavedRevisonNumbers->SetSize(size);
+    INT_PTR i;
+    for (i = 0; i < size; i++)
+      (*m_paSavedRevisonNumbers)[i] = (*src.m_paSavedRevisonNumbers)[i];
+  }
+
+void UndoRecord::
 SetText (LPCTSTR pszText, int nLength)
 {
   FreeText();
@@ -29,7 +52,7 @@ SetText (LPCTSTR pszText, int nLength)
     }
 }
 
-void SUndoRecord::
+void UndoRecord::
 FreeText ()
 {
   // See the m_szText/m_pszText definition

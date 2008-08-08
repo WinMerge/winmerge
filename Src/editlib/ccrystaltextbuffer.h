@@ -154,7 +154,7 @@ public :
     CArray < LineInfo, LineInfo & >m_aLines;
 
     //  Undo
-    std::vector<SUndoRecord> m_aUndoBuf; /**< Undo records. */
+    std::vector<UndoRecord> m_aUndoBuf; /**< Undo records. */
     int m_nUndoPosition;
     int m_nSyncPosition;
     BOOL m_bUndoGroup, m_bUndoBeginGroup;
