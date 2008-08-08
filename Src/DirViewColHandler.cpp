@@ -9,7 +9,7 @@
 // $Id$
 
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Merge.h"
 #include "DirView.h"
 #include "DirDoc.h"
@@ -284,9 +284,9 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 /// store current column orders into registry
 void CDirView::SaveColumnOrders()
 {
-	ASSERT(m_colorder.GetSize() == m_numcols);
-	ASSERT(m_invcolorder.GetSize() == m_numcols);
-	for (int i=0; i < m_numcols; i++)
+	ASSERT(m_colorder.size() == m_numcols);
+	ASSERT(m_invcolorder.size() == m_numcols);
+    for (int i=0; i < m_numcols; i++)
 	{
 		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
 		int ord = m_colorder[i];
@@ -398,8 +398,8 @@ void CDirView::ResetColumnOrdering()
  */
 void CDirView::ClearColumnOrders()
 {
-	m_colorder.SetSize(m_numcols);
-	m_invcolorder.SetSize(m_numcols);
+	m_colorder.resize(m_numcols);
+	m_invcolorder.resize(m_numcols);
 	for (int i=0; i<m_numcols; ++i)
 	{
 		m_colorder[i] = -1;

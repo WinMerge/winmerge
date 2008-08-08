@@ -262,8 +262,8 @@ protected:
 	CListCtrl * m_pList;
 	int m_numcols;
 	int m_dispcols;
-	CArray<int, int> m_colorder; /**< colorder[logical#]=physical# */
-	CArray<int, int> m_invcolorder; /**< invcolorder[physical]=logical# */
+    std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
+	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */

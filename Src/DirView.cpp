@@ -26,7 +26,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirView.h"
