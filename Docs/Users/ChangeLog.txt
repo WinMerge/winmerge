@@ -7,6 +7,8 @@ WinMerge 2.11.1.4
   Add wait cursor for undo and redo (#2039228)
   BugFix: External editor command line switches did not work (#2037862)
   BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
+  Translation updates:
+  - Chinese Traditional (#2039929)
 
 WinMerge 2.11.1.3 - 2008-08-04 (r5733)
   Rename color scheme menu item "None" and add separator (#2027300)

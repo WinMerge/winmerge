@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-03-04 18:02+0000\n"
-"PO-Revision-Date: 2008-03-28 07:39+0800\n"
+"POT-Creation-Date: 2008-07-30 21:25+0000\n"
+"PO-Revision-Date: 2008-08-06 17:00+0800\n"
 "Last-Translator: 龔維正 <wck3171@pchome.com.tw>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,7 @@ msgstr "外掛(&P)"
 #: Merge.rc:454
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "列出(&L)..."
 
 # "手動解壓縮(&M)"
 #: Merge.rc:152
@@ -304,7 +304,7 @@ msgstr "手動解開非純文字檔(&M)"
 msgid "&Automatic Unpacking"
 msgstr "自動解開非純文字檔(&A)"
 
-# Is this message correct? Because the unpacker here is not a editor.
+# Is this message correct? Because the unpacker here is not a editor. Perhaps "Edit After Unpacking"?
 #: Merge.rc:155
 #: Merge.rc:276
 #: Merge.rc:459
@@ -507,17 +507,17 @@ msgstr "顯示隱藏項目(&E)"
 #: Merge.rc:224
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "樹狀模式(&M)"
 
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "展開所有子資料夾(&X)"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "收合所有子資料夾(&C)"
 
 #: Merge.rc:239
 #, c-format
@@ -829,15 +829,19 @@ msgstr "自動換行(&R)"
 msgid "Sw&ap Panes"
 msgstr "窗格換位(&A)"
 
+# I would suggest "Microview Pane"
+# 差異窗格(&P)
 #: Merge.rc:421
 #, c-format
 msgid "Diff &Pane"
-msgstr "差異窗格(&P)"
+msgstr "近察窗格(&P)"
 
+# I would suggest "Macroview Pane".
+# 位置窗格
 #: Merge.rc:422
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "位置窗格(&P)"
+msgstr "遠望窗格(&P)"
 
 #: Merge.rc:440
 #, c-format
@@ -1292,7 +1296,8 @@ msgstr "不能同時執行一個以上本程式(&O)"
 msgid "As&k when closing multiple windows"
 msgstr "關閉多重視窗時先詢問(&K)"
 
-# "比較時保留檔案時間(&P)"
+# "比較時計入檔案時間(&P)"
+# Do you want with it to say "Include file time difference in comparing" or "Do not change file time in comparing"?
 #: Merge.rc:771
 #, c-format
 msgid "&Preserve file time in file compare"
@@ -2096,11 +2101,13 @@ msgstr ""
 "除非有更新版可用，建議使用下面的\n"
 "7-Zip 介面外掛版本。"
 
+# I suggest "7-Zip Version" instead.
 #: Merge.rc:1303
 #, c-format
 msgid "Version"
 msgstr "7-Zip 版本"
 
+# I suggest "Required Interface-Plugin" instead.
 #: Merge.rc:1305
 #, c-format
 msgid ""
@@ -2142,6 +2149,7 @@ msgstr "無"
 msgid "missing"
 msgstr "不存在"
 
+# I suggest "7-Zip components only for WinMerge:" instead.
 #: Merge.rc:1319
 #, c-format
 msgid "7-Zip components for standalone operation:"
@@ -2152,6 +2160,7 @@ msgstr "WinMerge 內用的 7-Zip 核心元件："
 msgid "outdated"
 msgstr "已舊"
 
+# I suggest "Interface-Plugin on path:" instead.
 #: Merge.rc:1324
 #, c-format
 msgid "Plugins on path:"
@@ -2166,6 +2175,7 @@ msgstr ""
 "勿再顯示此訊息。(&M)\n"
 "(仍可由說明選單中叫出它)"
 
+# I suggest Interface-Plugin Download" instead.
 #: Merge.rc:1329
 #, c-format
 msgid "Plugin Download"
@@ -2303,12 +2313,14 @@ msgstr "個人篩選器(僅適用現在使用者)"
 msgid "Archive Support"
 msgstr "支援壓縮"
 
-# 「以 shared installation 安裝7-Zip 外掛才有支援壓縮之條件：」「必須先安裝 7-Zip 外掛，才支援壓縮：」I suggest "The following options shall be invalid without 7-Zip inerface plugin installed first." instead.
+# 「以 shared installation 安裝7-Zip 外掛才有支援壓縮之條件：」「必須先安裝 7-Zip 外掛，才支援壓縮：」
+# I suggest "The following options shall be invalid without 7-Zip inerface plugin installed first." instead.
 #: Merge.rc:1457
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
-msgstr "必須先安裝 7-Zip 介面外掛，才支援壓縮："
+msgstr "必須先安裝 7-Zip 介面外掛，底下選項才可行："
 
+# I suggest "Download 7-Zip Interface-Plugin" instead.
 #: Merge.rc:1459
 #, c-format
 msgid "Download 7-zip Plugin"
@@ -2319,11 +2331,14 @@ msgstr "下載 7-Zip 介面外掛"
 msgid "&Enable archive file support"
 msgstr "壓縮檔支援(&E)"
 
+# I suggest "Use installed 7-Zip software" instead.
 #: Merge.rc:1462
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
 msgstr "使用獨立的 7-Zip 軟體(&U)"
 
+# 使用以 sp in + st op 選項安裝的加掛檔(安裝7-Zip 外掛時)(&S)
+# I suggest "U&se WinMerge-dependent 7-Zip" or "U&se 7-Zip components installed by WinMerge Plugin-installer" instead.
 #: Merge.rc:1465
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
@@ -2605,12 +2620,12 @@ msgstr "否"
 #: Merge.rc:1662
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "外掛"
 
 #: Merge.rc:1665
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "啟用外掛(&E)"
 
 #. StringFileInfo.Block
 #: Merge.rc:1695
@@ -2748,17 +2763,17 @@ msgstr "使所有隱藏項目再顯示出來"
 #: Merge.rc:1757
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "切換樹狀模式"
 
 #: Merge.rc:1758
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "展開所有子資料夾"
 
 #: Merge.rc:1759
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "收合所有子資料夾"
 
 #: Merge.rc:1765
 #, c-format
@@ -2809,7 +2824,7 @@ msgid ""
 "Display program information, version number and copyright\n"
 "About"
 msgstr ""
-"顯示程式資訊，版本號碼和版權\n"
+"顯示程式資訊，版本號碼和著作權\n"
 "關於"
 
 #: Merge.rc:1777
@@ -3118,9 +3133,12 @@ msgstr "鼠右鍵點擊待複製的路徑"
 
 #: Merge.rc:1895
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
-"研發者：\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+"研發者：\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1896
 #, c-format
@@ -3401,6 +3419,7 @@ msgstr "[F] "
 msgid "Description"
 msgstr "描述"
 
+# I suggest "Add new filter filename" instead. For it must not select a name, rather give one.
 #: Merge.rc:2018
 #, c-format
 msgid "Select filename for new filter"
@@ -3489,9 +3508,16 @@ msgstr "類型表式"
 
 #: Merge.rc:2044
 #, c-format
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
+"篩選器更新過。想重整所有進行中的資料夾比較嗎？\n"
+"\n"
+"如不想現在重整，選「否」，以後再重整。"
 
+# 不確定
 #: Merge.rc:2050
 #, c-format
 msgid "&Path to cleartool.exe :"
@@ -4114,17 +4140,17 @@ msgstr ""
 #: Merge.rc:2223
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "確定要移除："
 
 #: Merge.rc:2224
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "確定要移除 %d 項目："
 
 #: Merge.rc:2226
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "確認移除"
 
 #: Merge.rc:2232
 #, c-format
@@ -4395,7 +4421,7 @@ msgstr "檔案不同"
 #: Merge.rc:2313
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "兩資料夾不同"
 
 #: Merge.rc:2314
 #, c-format
@@ -4733,15 +4759,19 @@ msgstr "複製完整路徑"
 msgid "Copy Filename"
 msgstr "複製檔名"
 
+# also refer to line 5584
+# 位置窗格
 #: Merge.rc:2431
 #, c-format
 msgid "Location Pane"
-msgstr "位置窗格"
+msgstr "遠望窗格"
 
+# also refer to line 5578
+# 差異窗格
 #: Merge.rc:2432
 #, c-format
 msgid "Diff Pane"
-msgstr "差異窗格"
+msgstr "近察窗格"
 
 #: Merge.rc:2438
 #, c-format
@@ -5319,22 +5349,23 @@ msgstr " PB"
 #: Merge.rc:2623
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "類型"
 
 #: Merge.rc:2625
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "解包器"
 
 #: Merge.rc:2626
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "先行處理器"
 
+# What does "Editor script" mean? Perhaps "editing scripts" or "scripts to edit"?
 #: Merge.rc:2627
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "編輯器隨譯即行碼"
 
 #: Merge.rc:2634
 #, c-format
@@ -5359,12 +5390,12 @@ msgstr "儲存右邊檔案以名稱..."
 #: Merge.rc:2638
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "變更左邊檔案/資料夾唯讀狀態"
 
 #: Merge.rc:2639
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "變更右邊檔案/資料夾唯讀狀態"
 
 #: Merge.rc:2640
 #, c-format
@@ -5543,15 +5574,18 @@ msgstr ""
 msgid "Shows whitespace characters"
 msgstr "顯示空白和跳格字元"
 
+# I would suggest "Toggle Microview Pane" instead.
+# "開關差異窗格"
 #: Merge.rc:2680
 #, c-format
 msgid "Toggle Diff Pane"
-msgstr "開關差異窗格"
+msgstr "開關近察窗格"
 
+# 位置窗格顯示檔案全像
 #: Merge.rc:2681
 #, c-format
 msgid "Location pane shows overall picture from files"
-msgstr "位置窗格顯示檔案全像"
+msgstr "遠望窗格顯示檔案全像"
 
 #: Merge.rc:2682
 #, c-format
@@ -5755,9 +5789,10 @@ msgstr "從比較結果產生報告"
 #: Merge.rc:2724
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "列出可用的外掛"
 
-# Instead of "The user selects the unpacker (no unpacking when comparing dir)" I would suggest "The user selects the unpacker (no automatic unpacking non-text files when comparing dir)".
+# "使用者選取解壓器(比較資料夾時不解壓)
+# " I would suggest "The user selects the unpacker (no automatic unpacking non-text files when comparing dir)" instead.
 #: Merge.rc:2725
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
@@ -5794,6 +5829,7 @@ msgstr "其他外掛"
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "卸載所有外掛再重新載入 (適用發展者)"
 
+# The original text is strange because the next file seems to be always visible. The correct one is "Activate next file" or "Change the focus to next file", etc. 
 #: Merge.rc:2737
 #, c-format
 msgid ""
@@ -5943,7 +5979,7 @@ msgstr "從 MRU 表"
 #: Merge.rc:2794
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "無高亮度顯示"
 
 #: Merge.rc:2795
 #, c-format
