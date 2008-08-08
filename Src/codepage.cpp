@@ -25,15 +25,18 @@
 // $Id$
 
 #include "StdAfx.h"
-#include "Merge.h"
+#include "Merge.h" // for theApp
 #include "codepage.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
+#include <map>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using std::map;
 
 static void initialize();
 
@@ -43,7 +46,7 @@ static int f_bInitialized = false;
 
 // map number to bit code
 enum { CP_SUPPORTED_FLAG=0x01, CP_INSTALLED_FLAG=0x10 };
-static CMap<int, int, int, int> f_codepage_status;
+static map<int, int> f_codepage_status;
 
 /**
  * @brief Update the appropriate default codepage
@@ -94,12 +97,9 @@ static BOOL CALLBACK EnumInstalledCodePagesProc(LPTSTR lpCodePageString)
 	int codepage = _ttol(lpCodePageString);
 	if (codepage)
 	{
-		int value = 0;
-		f_codepage_status.Lookup(codepage, value);
-		value |= CP_INSTALLED_FLAG; // installed
-		f_codepage_status[codepage] = value;
+		f_codepage_status[codepage] |= CP_INSTALLED_FLAG;
 	}
-	return TRUE; // continue enumeratino
+	return TRUE; // continue enumeration
 }
 
 /**
@@ -110,12 +110,9 @@ static BOOL CALLBACK EnumSupportedCodePagesProc(LPTSTR lpCodePageString)
 	int codepage = _ttol(lpCodePageString);
 	if (codepage)
 	{
-		int value = 0;
-		f_codepage_status.Lookup(codepage, value);
-		value |= CP_SUPPORTED_FLAG; // supported (but not necessarily installed)
-		f_codepage_status[codepage] = value;
+		f_codepage_status[codepage] |= CP_SUPPORTED_FLAG;
 	}
-	return TRUE; // continue enumeratino
+	return TRUE; // continue enumeration
 }
 
 /**
@@ -133,8 +130,9 @@ static void initializeCodepageStatuses()
 bool isCodepageInstalled(int codepage)
 {
 	initialize();
-	int value=0;
-	return f_codepage_status.Lookup(codepage, value) && (value & CP_INSTALLED_FLAG);
+    // the following line will insert an extra element in the map if not already present
+    // but its value will be 0 which means not installed nor supported
+	return (f_codepage_status[codepage] & CP_INSTALLED_FLAG) == CP_INSTALLED_FLAG;
 }
 
 /**
