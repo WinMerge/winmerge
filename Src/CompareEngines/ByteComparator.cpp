@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ByteComparator.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"
@@ -16,8 +16,6 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-using namespace CompareEngines;
 
 /**
  * @brief Returns if given char is EOL byte.
@@ -111,6 +109,9 @@ static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
 		}
 	}
 }
+
+namespace CompareEngines
+{
 
 /**
  * @brief Constructor taking compare options as parameters.
@@ -505,3 +506,6 @@ need_more:
 		return RESULT_SAME;
 	}
 }
+
+} //namespace namespace CompareEngines
+

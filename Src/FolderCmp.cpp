@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "DiffUtils.h"
 #include "ByteCompare.h"
 #include "LogFile.h"
@@ -16,13 +16,13 @@
 #include "DiffContext.h"
 #include "DiffWrapper.h"
 #include "FileTransform.h"
-#include "diff.h"
+#include "DIFF.H"
 #include "IAbortable.h"
 #include "FolderCmp.h"
 #include "ByteComparator.h"
 #include "codepage_detect.h"
 
-using namespace CompareEngines;
+using CompareEngines::ByteCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, String & right);
 static bool Unpack(String & filepathTransformed,
