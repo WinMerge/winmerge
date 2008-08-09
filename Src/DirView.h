@@ -374,6 +374,7 @@ protected:
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
 	afx_msg void OnMergeCompareXML();
+	afx_msg void OnMergeCompareHex();
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
@@ -395,6 +396,7 @@ protected:
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);
+	void OpenSelectionHex();
 	bool GetSelectedItems(int * sel1, int * sel2);
 	void OpenParentDirectory();
 	void DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType);

@@ -37,10 +37,12 @@
 #include "MainFrm.h"
 #include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
+#include "HexMergeFrm.h"
 #include "DirView.h"
 #include "DirDoc.h"
 #include "OpenDlg.h"
 #include "MergeEditView.h"
+#include "HexMergeDoc.h"
 #include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "SyntaxColors.h"
@@ -325,17 +327,8 @@ CMainFrame::~CMainFrame()
 	}
 
 	delete m_pLineFilters;
-
-	// BCMenu destructor calls DestroyMenu()
-	m_pMenus[MENU_DEFAULT]->Detach();
-	delete m_pMenus[MENU_DEFAULT];
-	m_pMenus[MENU_DEFAULT] = NULL;
-	m_pMenus[MENU_MERGEVIEW]->Detach();
-	delete m_pMenus[MENU_MERGEVIEW];
-	m_pMenus[MENU_MERGEVIEW] = NULL;
-	m_pMenus[MENU_DIRVIEW]->Detach();
-	delete m_pMenus[MENU_DIRVIEW];
-	m_pMenus[MENU_DIRVIEW] = NULL;
+	int i = MENU_COUNT;
+	do { delete m_pMenus[--i]; } while (i);
 	delete m_pSyntaxColors;
 }
 
@@ -581,6 +574,14 @@ HMENU CMainFrame::NewDirViewMenu()
 }
 
 /**
+ * @brief Create new File compare (CHexMergeView) menu.
+ */
+HMENU CMainFrame::NewHexMergeViewMenu()
+{
+	return NewMenu( MENU_HEXMERGEVIEW, IDR_MERGEDOCTYPE);
+}
+
+/**
  * @brief This handler ensures that the popup menu items are drawn correctly.
  */
 void CMainFrame::OnMeasureItem(int nIDCtl,
@@ -773,6 +774,14 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 			MDINext();
 	}
 	return openResults;
+}
+
+void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
+	LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bLeftRO, BOOL bRightRO)
+{
+	BOOL docNull;
+	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(pDirDoc, &docNull))
+		pHexMergeDoc->OpenDocs(pathLeft, pathRight, bLeftRO, bRightRO);
 }
 
 void CMainFrame::RedisplayAllDirDocs()
@@ -1889,6 +1898,12 @@ const DirDocList &CMainFrame::GetAllDirDocs()
 	return static_cast<const DirDocList &>(GetDocList(theApp.m_pDirTemplate));
 }
 
+/// Get list of HexMergeDocs (documents underlying edit sessions)
+const HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
+{
+	return static_cast<const HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
+}
+
 /**
  * @brief Obtain a merge doc to display a difference in files.
  * This function (usually) uses DirDoc to determine if new or existing
@@ -1912,6 +1927,31 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 	}
 	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
 	return pMergeDoc;
+}
+
+/**
+ * @brief Obtain a hex merge doc to display a difference in files.
+ * This function (usually) uses DirDoc to determine if new or existing
+ * MergeDoc is used. However there is exceptional case when DirDoc does
+ * not contain diffs. Then we have only file compare, and if we also have
+ * limited file compare windows, we always reuse existing MergeDoc.
+ * @param [in] pDirDoc Dir compare document.
+ * @param [out] pNew Did we create a new document?
+ * @return Pointer to merge doucument.
+ */
+CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
+{
+	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	const HexMergeDocList &docs = GetAllHexMergeDocs();
+
+	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
+	{
+		POSITION pos = docs.GetHeadPosition();
+		CHexMergeDoc * pHexMergeDoc = docs.GetAt(pos);
+		pHexMergeDoc->CloseNow();
+	}
+	CHexMergeDoc * pHexMergeDoc = pDirDoc->GetHexMergeDocForDiff(pNew);
+	return pHexMergeDoc;
 }
 
 /// Get pointer to a dir doc for displaying a scan
@@ -2721,9 +2761,15 @@ void CMainFrame::OnResizePanes()
 {
 	bool bResize = !GetOptionsMgr()->GetBool(OPT_RESIZE_PANES);
 	GetOptionsMgr()->SaveOption(OPT_RESIZE_PANES, bResize);
-
-	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
-	if (pFrame)
+	// TODO: Introduce a common merge frame superclass?
+	CFrameWnd *pActiveFrame = GetActiveFrame();
+	if (CChildFrame *pFrame = DYNAMIC_DOWNCAST(CChildFrame, pActiveFrame))
+	{
+		pFrame->UpdateAutoPaneResize();
+		if (bResize)
+			pFrame->UpdateSplitter();
+	}
+	else if (CHexMergeFrame *pFrame = DYNAMIC_DOWNCAST(CHexMergeFrame, pActiveFrame))
 	{
 		pFrame->UpdateAutoPaneResize();
 		if (bResize)

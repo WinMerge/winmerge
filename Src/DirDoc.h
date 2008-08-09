@@ -35,7 +35,9 @@
 
 class CDirView;
 class CMergeDoc;
+class CHexMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
+typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocPtrList;
 class DirDocFilterGlobal;
 class DirDocFilterByExtension;
 class CustomStatusCursor;
@@ -66,6 +68,7 @@ public:
 	BOOL CloseMergeDocs();
 	CDirView * GetMainView();
 	CMergeDoc * GetMergeDocForDiff(BOOL * pNew);
+	CHexMergeDoc * GetHexMergeDocForDiff(BOOL * pNew);
 	BOOL ReusingDirDoc();
 	bool CanFrameClose();
 
@@ -103,7 +106,8 @@ public:
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
 	void AddMergeDoc(CMergeDoc * pMergeDoc);
-	void MergeDocClosing(CMergeDoc * pMergeDoc);
+	void AddHexMergeDoc(CHexMergeDoc * pHexMergeDoc);
+	void MergeDocClosing(CDocument * pMergeDoc);
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
@@ -160,6 +164,7 @@ private:
 	CDirView *m_pDirView; /**< Pointer to GUI */
 	CompareStats *m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
+	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
 	BOOL m_bROLeft; /**< Is left side read-only */
 	BOOL m_bRORight; /**< Is right side read-only */
 	BOOL m_bRecursive; /**< Is current compare recursive? */

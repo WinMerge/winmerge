@@ -37,22 +37,27 @@ del %2
 REM Create build directories
 mkdir ..\Build\expat
 mkdir ..\Build\pcre
+mkdir ..\Build\heksedit
 goto %1
 
 :.\..\BuildTmp\MergeDebug
 %info% ANSI/Debug
+mkdir ..\Build\MergeDebug
 goto Debug
 
 :.\..\BuildTmp\MergeUnicodeDebug
 %info% UNICODE/Debug
+mkdir ..\Build\MergeUnicodeDebug
 goto Debug
 
 :.\..\BuildTmp\MergeRelease
 %info% ANSI/Release
+mkdir ..\Build\MergeRelease
 goto Release
 
 :.\..\BuildTmp\MergeUnicodeRelease
 %info% UNICODE/Release
+mkdir ..\Build\MergeUnicodeRelease
 goto Release
 
 :Debug
@@ -76,6 +81,14 @@ cd %2\..\..\..\Externals\pcre\Win32
 %devenv% "pcre.vcproj" /build "Debug"
 cd %2\..\..\pcre
 copy pcre.dll %2\..\
+
+REM Build heksedit
+cd %2\..\..\..\Externals\heksedit
+%msdev% "heksedit.dsp" /make "heksedit - Win32 Debug"
+%devenv% "heksedit.vcproj" /build "Debug"
+cd %2\..\..\heksedit\Debug
+copy heksedit.dll %2\..\
+
 goto Common
 
 :Release
@@ -100,6 +113,14 @@ cd %2\..\..\..\Externals\pcre\Win32
 %devenv% "pcre.vcproj" /build "MinSizeRel"
 cd %2\..\..\pcre
 copy pcre.dll %2\..\
+
+REM Build heksedit
+cd %2\..\..\..\Externals\heksedit
+%msdev% "heksedit.dsp" /make "heksedit - Win32 Release"
+%devenv% "heksedit.vcproj" /build "Release"
+cd %2\..\..\heksedit\Release
+copy heksedit.dll %2\..\
+
 goto Common
 
 :Common

@@ -31,6 +31,7 @@
 #include "StdAfx.h"
 #include <shlwapi.h>		// PathFindFileName()
 #include "Merge.h"
+#include "HexMergeDoc.h"
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
@@ -86,10 +87,17 @@ CDirDoc::~CDirDoc()
 	delete m_pCompareStats;
 
 	// Inform all of our merge docs that we're closing
-	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
+	POSITION pos = m_MergeDocs.GetHeadPosition();
+	while (pos)
 	{
 		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		pMergeDoc->DirDocClosing(this);
+	}
+	pos = m_HexMergeDocs.GetHeadPosition();
+	while (pos)
+	{
+		CHexMergeDoc * pHexMergeDoc = m_HexMergeDocs.GetNext(pos);
+		pHexMergeDoc->DirDocClosing(this);
 	}
 	// Delete all temporary folders belonging to this document
 	while (m_pTempPathContext)
@@ -113,7 +121,7 @@ static bool DocClosableCallback(void * param)
  */
 bool CDirDoc::CanFrameClose()
 {
-	return !!m_MergeDocs.IsEmpty();
+	return m_MergeDocs.IsEmpty() && m_HexMergeDocs.IsEmpty();
 }
 
 /**
@@ -579,22 +587,38 @@ void CDirDoc::AddMergeDoc(CMergeDoc * pMergeDoc)
 }
 
 /**
+ * @brief A new HexMergeDoc has been opened.
+ */
+void CDirDoc::AddHexMergeDoc(CHexMergeDoc * pHexMergeDoc)
+{
+	ASSERT(pHexMergeDoc);
+	m_HexMergeDocs.AddTail(pHexMergeDoc);
+}
+
+/**
  * @brief MergeDoc informs us it is closing.
  */
-void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
+void CDirDoc::MergeDocClosing(CDocument * pMergeDoc)
 {
 	ASSERT(pMergeDoc);
-	POSITION pos = m_MergeDocs.Find(pMergeDoc);
-	ASSERT(pos);
-	m_MergeDocs.RemoveAt(pos);
+	if (POSITION pos = m_MergeDocs.CPtrList::Find(pMergeDoc))
+		m_MergeDocs.RemoveAt(pos);
+	else if (POSITION pos = m_HexMergeDocs.CPtrList::Find(pMergeDoc))
+		m_HexMergeDocs.RemoveAt(pos);
+	else
+		ASSERT(FALSE);
 
 	// If dir compare is empty (no compare results) and we are not closing
 	// because of reuse close also dir compare
-	if (m_pCtxt == NULL && !m_bReuseCloses && m_pDirView)
-		m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-
-	if (m_MergeDocs.GetCount() == 0 && !m_pDirView)
+	if (m_pDirView)
+	{
+		if (m_pCtxt == NULL && !m_bReuseCloses)
+			m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+	}
+	else if (m_MergeDocs.GetCount() == 0 && m_HexMergeDocs.GetCount() == 0)
+	{
 		delete this;
+	}
 }
 
 /**
@@ -606,10 +630,18 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
  */
 BOOL CDirDoc::CloseMergeDocs()
 {
-	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
+	POSITION pos = m_MergeDocs.GetHeadPosition();
+	while (pos)
 	{
 		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		if (!pMergeDoc->CloseNow())
+			return FALSE;
+	}
+	pos = m_HexMergeDocs.GetHeadPosition();
+	while (pos)
+	{
+		CHexMergeDoc * pHexMergeDoc = m_HexMergeDocs.GetNext(pos);
+		if (!pHexMergeDoc->CloseNow())
 			return FALSE;
 	}
 	return TRUE;
@@ -673,6 +705,36 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 		*pNew = TRUE;
 	}
 	return pMergeDoc;
+}
+
+/**
+ * @brief Obtain a hex merge doc to display a difference in files.
+ * @param [out] pNew Set to TRUE if a new doc is created,
+ * and FALSE if an existing one reused.
+ * @return Pointer to CHexMergeDoc to use (new or existing). 
+ */
+CHexMergeDoc * CDirDoc::GetHexMergeDocForDiff(BOOL * pNew)
+{
+	CHexMergeDoc * pHexMergeDoc = 0;
+	// policy -- use an existing merge doc if available
+	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	if (!bMultiDocs && !m_HexMergeDocs.IsEmpty())
+	{
+		*pNew = FALSE;
+		pHexMergeDoc = m_HexMergeDocs.GetHead();
+	}
+	else
+	{
+		// Create a new merge doc
+		pHexMergeDoc = (CHexMergeDoc*)theApp.m_pHexMergeTemplate->OpenDocumentFile(NULL);
+		if (pHexMergeDoc)
+		{
+			AddHexMergeDoc(pHexMergeDoc);
+			pHexMergeDoc->SetDirDoc(this);
+		}
+		*pNew = TRUE;
+	}
+	return pHexMergeDoc;
 }
 
 /**

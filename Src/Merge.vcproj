@@ -113,7 +113,7 @@
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -185,7 +185,7 @@
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -2744,6 +2744,15 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\HexMergeDoc.cpp">
+			</File>
+			<File
+				RelativePath=".\HexMergeFrm.cpp">
+			</File>
+			<File
+				RelativePath=".\HexMergeView.cpp">
 			</File>
 			<File
 				RelativePath="Common\LanguageSelect.cpp">
@@ -6232,6 +6241,15 @@
 			</File>
 			<File
 				RelativePath=".\GhostUndorecord.h">
+			</File>
+			<File
+				RelativePath=".\HexMergeDoc.h">
+			</File>
+			<File
+				RelativePath=".\HexMergeFrm.h">
+			</File>
+			<File
+				RelativePath=".\HexMergeView.h">
 			</File>
 			<File
 				RelativePath="IAbortable.h">

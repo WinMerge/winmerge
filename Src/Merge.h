@@ -61,6 +61,7 @@ class CMergeApp : public CWinApp
 public:
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
+	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	CLanguageSelect * m_pLangDlg;
 	FileFilterHelper m_globalFileFilter;
@@ -133,9 +134,6 @@ extern CMergeApp theApp;
 
 COptionsMgr * GetOptionsMgr();
 CLogFile * GetLog();
-
-/////////////////////////////////////////////////////////////////////////////
-CMergeDoc *GetDoc();
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

@@ -33,6 +33,9 @@
 #include "Environment.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
+#include "HexMergeDoc.h"
+#include "HexMergeFrm.h"
+#include "HexMergeView.h"
 #include "AboutDlg.h"
 #include "MainFrm.h"
 #include "ChildFrm.h"
@@ -131,6 +134,7 @@ CLogFile * GetLog()
 CMergeApp::CMergeApp() :
   m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
+, m_pHexMergeTemplate(0)
 , m_pDirTemplate(0)
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
@@ -326,6 +330,14 @@ BOOL CMergeApp::InitInstance()
 		RUNTIME_CLASS(CMergeEditView));
 	AddDocTemplate(m_pDiffTemplate);
 
+	// Merge Edit view
+	m_pHexMergeTemplate = new CMultiDocTemplate(
+		IDR_MERGEDOCTYPE,
+		RUNTIME_CLASS(CHexMergeDoc),
+		RUNTIME_CLASS(CHexMergeFrame), // custom MDI child frame
+		RUNTIME_CLASS(CHexMergeView));
+	AddDocTemplate(m_pHexMergeTemplate);
+
 	// Directory view
 	m_pDirTemplate = new CMultiDocTemplate(
 		IDR_DIRDOCTYPE,
@@ -352,6 +364,7 @@ BOOL CMergeApp::InitInstance()
 	// Init menus -- hMenuDefault is for MainFrame, other
 	// two are for dirdoc and mergedoc (commented out for now)
 	m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMergeViewMenu();
+	m_pHexMergeTemplate->m_hMenuShared = pMainFrame->NewHexMergeViewMenu();
 	m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
 

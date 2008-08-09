@@ -32,6 +32,8 @@
 #include "DirView.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
+#include "HexMergeFrm.h"
+#include "HexMergeDoc.h"
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
@@ -219,6 +221,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
+	ON_COMMAND(ID_MERGE_COMPARE_HEX, OnMergeCompareHex)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_HEX, OnUpdateMergeCompare)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
@@ -1400,17 +1404,72 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		DWORD leftFlags = bLeftRO ? FFILEOPEN_READONLY : 0;
 		DWORD rightFlags = bRightRO ? FFILEOPEN_READONLY : 0;
 
-		int rtn = GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
+		GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
 			leftFlags, rightFlags, infoUnpacker);
-		if (rtn == OPENRESULTS_FAILED_BINARY)
-		{
-			if (di1 == di2)
-			{
-				di1->diffcode.setBin();
-				GetDocument()->ReloadItemStatus(sel1, FALSE, FALSE);
-			}
-		}
 	}
+}
+
+void CDirView::OpenSelectionHex()
+{
+	CDirDoc * pDoc = GetDocument();
+
+	// First, figure out what was selected (store into pos1 & pos2)
+	POSITION pos1 = NULL, pos2 = NULL;
+	int sel1=-1, sel2=-1;
+	if (!GetSelectedItems(&sel1, &sel2))
+	{
+		// Must have 1 or 2 items selected
+		// Not valid action
+		return;
+	}
+
+	pos1 = GetItemKey(sel1);
+	ASSERT(pos1);
+	if (sel2 != -1)
+		pos2 = GetItemKey(sel2);
+
+	// Now handle the various cases of what was selected
+
+	if (pos1 == SPECIAL_ITEM_POS)
+	{
+		ASSERT(FALSE);
+		return;
+	}
+
+	// Common variables which both code paths below are responsible for setting
+	String pathLeft, pathRight;
+	DIFFITEM *di1 = NULL, *di2 = NULL; // left & right items (di1==di2 if single selection)
+	bool isdir = false; // set if we're comparing directories
+	if (pos2)
+	{
+		bool success = OpenTwoItems(pos1, pos2, &di1, &di2,
+				pathLeft, pathRight, sel1, sel2, isdir);
+		if (!success)
+			return;
+	}
+	else
+	{
+		// Only one item selected, so perform diff on its sides
+		bool success = OpenOneItem(pos1, &di1, &di2,
+				pathLeft, pathRight, sel1, isdir);
+		if (!success)
+			return;
+	}
+
+	// Need to consider only regular file case here
+
+	// Close open documents first (ask to save unsaved data)
+	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS))
+	{
+		if (!pDoc->CloseMergeDocs())
+			return;
+	}
+
+	// Open identical and different files
+	BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
+	BOOL bRightRO = pDoc->GetReadOnly(FALSE);
+
+	GetMainFrame()->ShowHexMergeDoc(pDoc, pathLeft.c_str(), pathRight.c_str(), bLeftRO, bRightRO);
 }
 
 /// User chose (context menu) delete left
@@ -3376,6 +3435,12 @@ void CDirView::OnMergeCompareXML()
 	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
 	PackingInfo packingInfo = PLUGIN_BUILTIN_XML;
 	OpenSelection(&packingInfo);
+}
+
+void CDirView::OnMergeCompareHex()
+{
+	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	OpenSelectionHex();
 }
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
