@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "resource.h"
 #include "memcombo.h"
 #include "registry.h"
@@ -111,57 +111,6 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
   Control.SetDroppedWidth(width);
   dc.SelectObject(oldFont);
 }
-
-/*void FillComboBox(CComboBox &Control, const CList<CString, LPCTSTR> &Items, LPCTSTR lpszItem, BOOL bMustContains)
-{
-  POSITION  pos = Items.GetHeadPosition();
-  CString    item, maxitem;
-  int      maxlen = 0, len;
-
-  Control.ResetContent();
-  while(pos) {
-    item = Items.GetNext(pos);
-    len = item.GetLength();
-    if(maxlen < len) {
-      maxlen = len;
-      maxitem = item;
-    }
-    Control.AddString(item);
-  }
-  if(Items.Find(lpszItem))
-    Control.SelectString(-1, lpszItem);
-  else if(!bMustContains)
-    Control.SetWindowText(lpszItem);
-  SetComboBoxHeight(Control);
-  SetComboBoxWidth(Control, maxitem);
-}*/
-
-/*int ListToString (CString &sResult, CList<CString, LPCTSTR> listSource)
-{
-  POSITION pos = listSource.GetHeadPosition ();
-  CString item;
-  while (pos)
-    {
-      item = listSource.GetNext (pos);
-      sResult += item + _T ('\n');
-    }
-  return listSource.GetCount ();
-}*/
-
-/*int StringToList (CList<CString, LPCTSTR> listResult, CString sSource)
-{
-  int pos;
-  while ((pos = sSource.Find (_T ('\n'))) != -1)
-    {
-      listResult.AddTail (sSource.Left (pos));
-      sSource = sSource.Mid (pos + 1);
-    }
-  if (*(LPCTSTR) sSource)
-    {
-      listResult.AddTail (sSource);
-    }
-  return listResult.GetCount ();
-}*/
 
 void CMemComboBox::FillCurrent ()
 {
