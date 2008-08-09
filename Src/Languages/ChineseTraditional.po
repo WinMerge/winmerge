@@ -286,7 +286,7 @@ msgstr "外掛(&P)"
 #: Merge.rc:450
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "列出(&L)..."
 
 # "手動解壓縮(&M)"
 #: Merge.rc:152
@@ -2605,12 +2605,12 @@ msgstr "否"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "外掛"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "啟用外掛(&E)"
 
 #. StringFileInfo.Block
 #: Merge.rc:1691
@@ -2794,7 +2794,7 @@ msgid ""
 "Display program information, version number and copyright\n"
 "About"
 msgstr ""
-"顯示程式資訊，版本號碼和版權\n"
+"顯示程式資訊，版本號碼和著作權\n"
 "關於"
 
 #: Merge.rc:1770
@@ -3917,7 +3917,6 @@ msgstr ""
 
 #: Merge.rc:2161
 #: Merge.rc:2600
-#: Merge.rc:2788
 #, c-format
 msgid "None"
 msgstr "無"
@@ -4121,17 +4120,17 @@ msgstr ""
 #: Merge.rc:2218
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "確定要移除："
 
 #: Merge.rc:2219
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "確定要移除 %d 項目："
 
 #: Merge.rc:2221
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "確認移除"
 
 #: Merge.rc:2227
 #, c-format
@@ -5805,7 +5804,7 @@ msgstr "其他外掛"
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "卸載所有外掛再重新載入 (適用發展者)"
 
-# The original text is strange because the next file seems to be always visible. The correct one is "Activate next file" or "Change the focus to next file", etc. 
+# The original text is strange because the next file seems to be always visible. The correct one is "Activate next file" or "Change the focus to next file", etc.
 #: Merge.rc:2731
 #, c-format
 msgid ""
@@ -5951,6 +5950,11 @@ msgstr "從檔案系統"
 #, c-format
 msgid "From MRU list"
 msgstr "從 MRU 表"
+
+#: Merge.rc:2788
+#, c-format
+msgid "No Highlighting"
+msgstr "無高亮度顯示"
 
 #: Merge.rc:2789
 #, c-format
