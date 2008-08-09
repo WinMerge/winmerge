@@ -23,7 +23,7 @@
  * @brief Declaration of CHexMergeDoc class
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id: $
+// $Id$
 
 class IMergeEditStatus;
 class CHexMergeDoc;

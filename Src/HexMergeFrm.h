@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: ChildFrm.h 4617 2007-10-14 08:25:48Z jtuc $
+// $Id$
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"

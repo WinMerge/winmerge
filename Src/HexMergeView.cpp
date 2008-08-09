@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: $
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
