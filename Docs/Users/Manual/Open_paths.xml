@@ -125,7 +125,9 @@
                    format="PNG" />
       </imageobject>
 
-      <caption><para>Simple WinMerge context menu</para></caption>
+      <textobject>
+        <phrase>Simple WinMerge context menu</phrase>
+      </textobject>
     </mediaobject>
 
     <para>You can enable the shell integration when you install WinMerge. After
@@ -180,7 +182,9 @@
           <imagedata fileref="screenshots/ctx_menu_advanced.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Advanced WinMerge context menu</para></caption>
+        <textobject>
+          <phrase>Advanced WinMerge context menu</phrase>
+        </textobject>
       </mediaobject>
 
       <variablelist>
@@ -392,7 +396,9 @@ to compare one file/folder against several files/folders.</para> </tip> -->
           <imagedata fileref="screenshots/projfile_save.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Project File dialog</para></caption>
+        <textobject>
+          <phrase>Project File dialog</phrase>
+        </textobject>
       </mediaobject>
     </section>
 

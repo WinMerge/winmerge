@@ -6,7 +6,7 @@
   within files, and demonstrates simple file comparing and merging
   operations.</para>
 
-  <section>
+  <section id="Intro_diffs_comparing">
     <title>Comparing files</title>
 
     <para>We usually compare two files that are related in some way, such as two
@@ -86,7 +86,7 @@ Believe it or not.</screen></para>
           <filename>File1</filename> as the <guilabel>Left</guilabel> file and
           <filename>File2</filename> as the <guilabel>Right</guilabel> file,
           then click <guibutton>OK</guibutton>. The File Compare window displays
-          the two files in the left and right document pane, like this:</para>
+          the two files in the left and right File pane, like this:</para>
 
           <mediaobject>
             <imageobject>
@@ -99,7 +99,7 @@ Believe it or not.</screen></para>
             </textobject>
           </mediaobject>
 
-          <para>The window elements are described in more detail in <xref
+          <para>The elements are described in more detail in <xref
           linkend="CompareFiles" />. Here are some features you should notice in
           this example:</para>
 
@@ -108,8 +108,9 @@ Believe it or not.</screen></para>
               <term>Number of differences</term>
 
               <listitem>
-                <para>The message in the status bar (at the bottom) tells you
-                that two differences were detected.</para>
+                <para>The message in the status bar at the bottom of the
+                WinMerge window tells you that two differences were
+                detected.</para>
               </listitem>
             </varlistentry>
 
@@ -117,13 +118,9 @@ Believe it or not.</screen></para>
               <term>Difference colors</term>
 
               <listitem>
-                <para>WinMerge marks differences with various background colors
-                (which you can configure in WinMerge options). The basic
-                difference color is dark yellow, by default. Within each line
-                difference, WinMerge marks words and characters that are
-                different with a lighter background color. Identical lines (like
-                the third line in the example) are unmarked: they have white
-                backgrounds.</para>
+                <para>The basic difference color is dark yellow, by default.
+                Identical lines (like the third line in the example) are
+                unmarked: they have white backgrounds.</para>
               </listitem>
             </varlistentry>
 
@@ -239,7 +236,7 @@ Believe it or not.</screen></para>
     </section>
   </section>
 
-  <section>
+  <section id="Intro_diffs_merging">
     <title>Merging files</title>
 
     <para>The purpose of merging is to combine changes from two files into one

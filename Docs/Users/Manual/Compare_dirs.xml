@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="CompareDirs">
-  <title>Comparing folders<indexterm>
+  <title>Comparing and merging folders<indexterm>
       <primary>comparing folders</primary>
     </indexterm></title>
 
   <para>This topic describes how to compare and merge folders using the Folder
   Compare window.</para>
 
-  <section>
+  <section id="Compare_dirs_starting">
     <title>Starting a folder compare operation</title>
 
     <para>You can begin a folder compare operation from either the WinMerge
@@ -121,7 +121,7 @@ I get the partial list, but no Abort indicator.--></para>
     </section>
   </section>
 
-  <section>
+  <section id="Compare_dirs_window">
     <title>Folder Compare window<indexterm>
         <primary>Folder Compare window</primary>
       </indexterm></title>
@@ -304,7 +304,7 @@ I get the partial list, but no Abort indicator.--></para>
     </section>
   </section>
 
-  <section>
+  <section id="Compare_dirs_multiwin">
     <title>Working with multiple Folder Compare windows</title>
 
     <para>By default, the WinMerge window displays a single Folder Compare
@@ -312,10 +312,10 @@ I get the partial list, but no Abort indicator.--></para>
     window is currently open, the new Compare window replaces the current one.
     If you prefer to work with multiple compare operations simultaneously,
     consider setting (checking) the <guilabel>Enable multiple compare windows
-    for Folder compare</guilabel> option. </para>
+    for Folder compare</guilabel> option.</para>
 
     <section>
-      <title>Using the Tab bar with maximized compare windows</title>
+      <title>Using tabs with maximized Compare windows</title>
 
       <para>If you open multiple Compare windows, they are displayed by default
       as individually resizeable child windows within the WinMerge window, like
@@ -327,8 +327,9 @@ I get the partial list, but no Abort indicator.--></para>
                      fileref="screenshots/multifoldercomp1.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Multiple Folder Compare windows: default
-        display</para></caption>
+        <textobject>
+          <phrase>Multiple Folder Compare windows: default display</phrase>
+        </textobject>
       </mediaobject>
 
       <para>Often, it's convenient to maximize your Compare window (by clicking
@@ -342,7 +343,9 @@ I get the partial list, but no Abort indicator.--></para>
                      fileref="screenshots/multifoldercomp2.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Multiple Comparison windows: maximized</para></caption>
+        <textobject>
+          <phrase>Multiple Folder Compare windows: maximized</phrase>
+        </textobject>
       </mediaobject>
 
       <para>When you maximize one Compare window, any other Compare windows are
@@ -373,12 +376,14 @@ I get the partial list, but no Abort indicator.--></para>
                      fileref="screenshots/multifoldercomp3.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Multiple Comparison windows: tabbed</para></caption>
+        <textobject>
+          <phrase>Multiple Folder Compare windows: tabbed</phrase>
+        </textobject>
       </mediaobject>
     </section>
   </section>
 
-  <section>
+  <section id="Compare_dirs_fileops">
     <title>File operations in Folder Compare<indexterm>
         <primary>file operations</primary>
 
@@ -612,7 +617,7 @@ I get the partial list, but no Abort indicator.--></para>
       </itemizedlist>
     </section>
 
-    <section>
+    <section id="protectingfiles">
       <title>Protecting files<indexterm>
           <primary>Folder Compare window</primary>
 
@@ -757,7 +762,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     </section>
   </section>
 
-  <section>
+  <section id="Compare_dirs_browsing">
     <title>Browsing folders in the Folder Compare window<indexterm>
         <primary>folders</primary>
 
@@ -957,7 +962,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     </section>
   </section>
 
-  <section>
+  <section id="Compare_dirs_customizing">
     <title>Customizing the Folder Compare window<indexterm>
         <primary>Folder Compare window</primary>
 
