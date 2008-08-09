@@ -1062,17 +1062,18 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 
 	while (line <= EndPos && linesMatch == true)
 	{
-		std::string LineData(files[FileNo].linbuf[line]);
-		size_t EolPos = LineData.find_first_of(EolIndicators);
-		if (EolPos != std::string::npos)
+		char * linedata = strdup(files[FileNo].linbuf[line]);
+		int eolpos = strcspn(linedata, EolIndicators);
+		if (eolpos != strlen(linedata))
 		{
-			LineData.erase(EolPos);
+			linedata[eolpos] = '\0';
 		}
 
-		if (!m_pFilterList->Match(LineData.c_str(), m_codepage))
+		if (!m_pFilterList->Match(linedata, m_codepage))
 		{
 			linesMatch = false;
 		}
+		free(linedata);
 		++line;
 	}
 	return linesMatch;
