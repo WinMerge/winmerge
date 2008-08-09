@@ -8,7 +8,7 @@
       </indexterm><indexterm>
         <primary>Opening files and folders</primary>
 
-        <secondary>basic methods</secondary>
+        <secondary>getting started</secondary>
       </indexterm>Opening files and folders</title>
 
     <para>After you have installed WinMerge, step through the procedure and
@@ -85,7 +85,7 @@
         <para><indexterm>
             <primary>Select Files or Folders dialog</primary>
 
-            <secondary>basic usage</secondary>
+            <secondary>getting started</secondary>
           </indexterm>The Select Files or Folders dialog opens:</para>
 
         <mediaobject>
@@ -297,11 +297,11 @@
     <title><indexterm>
         <primary>comparing folders</primary>
 
-        <secondary>basic methods</secondary>
+        <secondary>getting started</secondary>
       </indexterm><indexterm>
         <primary>Folder Compare window</primary>
 
-        <secondary>basic usage</secondary>
+        <secondary>getting started</secondary>
       </indexterm>Comparing folders</title>
 
     <para>If you selected two folders in the Open dialog, the Folder Compare
@@ -383,11 +383,11 @@
     <title><indexterm>
         <primary>comparing files</primary>
 
-        <secondary>basic methods</secondary>
+        <secondary>getting started</secondary>
       </indexterm><indexterm>
         <primary>File Compare window</primary>
 
-        <secondary>basic usage</secondary>
+        <secondary>getting started</secondary>
       </indexterm>Comparing files</title>
 
     <mediaobject>
@@ -402,21 +402,19 @@
     </mediaobject>
 
     <para>The File Compare window shows the two selected files side by side, in
-    separate document panes. Different lines are highlighted with a background
+    separate File panes. Different lines are highlighted with a background
     color. One or more consecutive different lines form one difference (or
     <glossterm>diff</glossterm>). In the preceding example, a single difference
-    is selected in the document panes, which displays it in the Diff Pane.
-    WinMerge mainly works with these differences, not separate lines.</para>
+    is selected in the File panes and displayed by itself in the Diff Pane.
+    WinMerge mainly works with these differences, not separate lines. When you
+    merge a difference, you copy all of its lines from one side to the
+    other.</para>
 
     <para><important>
         <para>Notice how WinMerge fills missing lines, so that similar lines are
         always aligned vertically, side by side. This is different from most
         other compare/merge programs, and can take a while to learn.</para>
-      </important>During merging operations, lines in a difference can be copied
-    between sides. Missing lines can also be be copied. When missing lines are
-    copied from one side to the other, matching existing lines are removed. In
-    the preceding screenshot, a merge that copied lines in the second difference
-    from left to right would remove the matching lines in the left side.</para>
+      </important></para>
 
     <para>WinMerge has a simple integrated editor that features basic typing,
     copying, cutting and pasting of text. If <guilabel>Automatic
