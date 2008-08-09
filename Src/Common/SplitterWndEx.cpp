@@ -57,6 +57,24 @@ int CSplitterWndEx::HitTest(CPoint pt) const
 	return CSplitterWnd::HitTest(pt);
 }
 
+CScrollBar* CSplitterWndEx::GetScrollBarCtrl(CWnd* pWnd, int nBar) const
+{
+	UINT nID = pWnd->GetDlgCtrlID();
+	//IdFromRowCol(row, col);
+	if (nID < AFX_IDW_PANE_FIRST || nID > AFX_IDW_PANE_LAST)
+		return NULL;            // not a standard pane ID
+
+	// appropriate PANE id - look for sibling (splitter, or just frame)
+	UINT nIDScroll;
+	if (nBar == SB_HORZ)
+		nIDScroll = AFX_IDW_HSCROLL_FIRST + (nID - AFX_IDW_PANE_FIRST) % 16;
+	else
+		nIDScroll = AFX_IDW_VSCROLL_FIRST + (nID - AFX_IDW_PANE_FIRST) / 16;
+
+	// return shared scroll bars that are immediate children of splitter
+	return (CScrollBar*)GetDlgItem(nIDScroll);
+}
+
 void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
   // Ignore scroll events sent directly to the splitter (i.e. not from a
@@ -85,7 +103,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		if(col==curCol)
 			continue;
 
-		CScrollBar* curBar = GetPane(0, col)->GetScrollBarCtrl(SB_HORZ);
+		CScrollBar* curBar = GetScrollBarCtrl(GetPane(0, col), SB_HORZ);
 		int newPos = min(pScrollBar->GetScrollPos(), curBar->GetScrollLimit());
 
 		// Set the scrollbar info using SetScrollInfo(), limited to 2.000.000.000 characters,
@@ -137,7 +155,7 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		if(row==curRow)
 			continue;
 
-		CScrollBar* curBar = GetPane(curRow, 0)->GetScrollBarCtrl(SB_VERT);
+		CScrollBar* curBar = GetScrollBarCtrl(GetPane(curRow, 0), SB_VERT);
 		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
 		int newPos = (int) (temp/oldLimit);
 
@@ -183,8 +201,6 @@ void CSplitterWndEx::EqualizeRows()
 			sum -= hEqual;
 		}
 		SetRowInfo(i, sum, hmin);
-
-		RecalcLayout();
 	}
 }
 
@@ -214,8 +230,6 @@ void CSplitterWndEx::EqualizeCols()
 			sum -= vEqual;
 		}
 		SetColumnInfo(i, sum, hmin);
-
-		RecalcLayout();
 	}
 }
 
@@ -253,10 +267,7 @@ void CSplitterWndEx::RecalcLayout()
 		// but now occupies only a single monitor, then the panes are updated correctly.
 		if (bSplitPanesInHalf)
 		{
-			CRect vSplitterWndRect;
-			GetWindowRect(vSplitterWndRect);
-			SetColumnInfo(0, vSplitterWndRect.Width() / 2, 0);
-			SetColumnInfo(1, vSplitterWndRect.Width() / 2, 0);
+			EqualizeCols();
 		}
 	}
 
@@ -272,6 +283,7 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 	{
 		EqualizeCols();
 		EqualizeRows();
+		RecalcLayout();
 	}
 
 }

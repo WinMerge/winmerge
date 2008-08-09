@@ -30,6 +30,7 @@ public:
 	void EqualizeCols(); 
 
 	virtual void RecalcLayout();
+	CScrollBar* GetScrollBarCtrl(CWnd* pWnd, int nBar) const;
 
 private:
 	BOOL m_bBarLocked;
