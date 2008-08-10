@@ -6,16 +6,12 @@ body {
 
 body,th,td {
   font-family: Verdana,Helvetica,Arial,sans-serif;
-  font-size: 80%;
+  font-size: 80%; 
 }
 
 pre,code,tt {
   font-family: "Courier New",Courier,monospace;
   font-size: 100%;
-}
-
-ul {
-  list-style-type: square;
 }
 
 /* Default link style */
@@ -27,37 +23,79 @@ a:active { color:#003399; text-decoration:none; }
 
 a[name]:hover { color:black; text-decoration:none; }
 
-div.navheader,
-div.navfooter {
+/* Nav headers and footers */
+div.navheader, div.navfooter {
   background: #FFCC00;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  padding: 1px 0 1px 0; 
 }
 
-div.navheader>table>tbody>tr>th {
+div.navheader * * * th { 
   display:none;
 }
-
-div.article,
-div.section,
-div.appendix,
-div.index {
-  padding: 5px;
+div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  {
+  display: inline-block; 
+  padding: 2px 4px 2px 4px; 
+  text-decoration: none;
+  color: #ffdd700;
+  background-color: #F0E68C;
+  border: 1px solid #004080;
 }
 
-/* topic title */
-div.article>div>div>div>h2 {
+div.navheader a:hover, div.navfooter a:hover {
+  color: #000;
+  background: #fff;
+}
+
+/* Main topic divs  */
+div.book,div.article,div.appendix,div.index {
+  margin: 0 10px 0 10px;
+}
+
+div.section {
+  margin: 0 10px 0 20px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  color: #707070;
+  background-color: #707070;
+}
+
+/* Help title  page*/
+div.titlepage {
+  text-align: center;  
+}
+
+div.book h1 {
+  font-size: 200%;
+  color: #3333cc;
+  letter-spacing: 0.05em;
+}
+
+/* Topic titles */
+div.article h2, div.appendix h2, div.index h2 {
   font-size: 160%;
   text-align: center;
   color: #3333cc;
 }
 
 div.section h2 {
+  text-align: left;
   font-size: 140%;
 }
 
 div.section h3 {
+  text-align: left;
   font-size: 120%;
+  color: #3333cc;
+}
+div.section h4 {
+  text-align: left;
+  font-size: 110%;
+   color: #3333cc;
 }
 
 #ads {
@@ -168,18 +206,21 @@ div.section h3 {
   font-size: 100%;
 }
 
-/* table of contents */
+/* Table of contents */
 .toc dt {
-  margin-top: 1em;
+  line-height: 1.75em;
+  font-weight: bold;
 }
 .toc dd dl dt {
-  margin-top: 0;
+  line-height: 1.25em;
+  font-weight: normal;
 }
 
-/*.toc .sect1,*/
-.toc .article,
-.toc .appendix,
-.toc .index {
-  font-size: 120%;
-  font-weight: bold;
+/* TOC title */
+div.toc p{
+  font-size: 150%;
+}
+
+div.toc a:visited, div.toc a:link {
+  text-decoration: none;
 }
