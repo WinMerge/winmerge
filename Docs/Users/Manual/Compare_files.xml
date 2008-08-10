@@ -47,6 +47,8 @@
   <section id="Compare_files_window">
     <title>File Compare window<indexterm>
         <primary>File Compare window</primary>
+
+        <seealso>Compare windows</seealso>
       </indexterm></title>
 
     <para>The File Compare window displays compared files in two File panes,
@@ -536,7 +538,9 @@
 
         <varlistentry>
           <term>Moved differences<indexterm>
-              <primary>moved differences, in File Compare window</primary>
+              <primary>moved differences</primary>
+
+              <secondary>in File Compare window</secondary>
             </indexterm></term>
 
           <listitem>
@@ -630,7 +634,7 @@
 
           <secondary>for File Compare window</secondary>
         </indexterm><indexterm>
-          <primary>tab</primary>
+          <primary>tabs</primary>
 
           <secondary>character encoding</secondary>
         </indexterm></title>
@@ -690,7 +694,7 @@
         </varlistentry>
 
         <varlistentry>
-          <term>File encoding </term>
+          <term>File encoding</term>
 
           <listitem>
             <para>Codepage number for ANSI files, Unicode encoding type for
@@ -884,7 +888,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
       <variablelist>
         <varlistentry>
           <term>Difference in the Current Line/Select Line Difference<indexterm>
-              <primary>Difference in the Current LIne function</primary>
+              <primary>Difference in the Current Line function</primary>
             </indexterm><indexterm>
               <primary>Select Line Difference function</primary>
             </indexterm></term>
@@ -1161,7 +1165,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
       </indexterm></title>
 
     <para>Merging differences amounts to copying them from one File pane to the
-    other — either left to right, or right to left. This is different from
+    other: either left to right, or right to left. This is different from
     directly editing text using WinMerge's editing functions (described earlier
     in this topic).</para>
 

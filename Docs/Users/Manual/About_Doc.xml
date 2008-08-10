@@ -2,9 +2,11 @@
 <article id="AboutDoc">
   <title>About this document</title>
 
-  <para>This document is the user manual for WinMerge 2.8. It explains the
-  capabilities and limitations of WinMerge. This manual is recommended reading
-  for both new and experienced users.</para>
+  <para>This document is the user manual for WinMerge <xi:include
+  href="replaceables.xml" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xpointer="element(version)" />. It explains the capabilities and limitations
+  of WinMerge. This manual is recommended reading for both new and experienced
+  users.</para>
 
   <para>To learn essential WinMerge basics, please read the following
   topics:</para>

@@ -282,7 +282,7 @@
     </section>
   </section>
 
-  <section>
+  <section id="Installing_archive_support">
     <title><indexterm>
         <primary>installing archive support</primary>
       </indexterm>7-Zip and archive support</title>
