@@ -34,6 +34,7 @@ html/param.xsl  parameters
 <xsl:param name="admon.graphics.path">images/</xsl:param>
 <xsl:param name="admon.graphics.extension">.gif</xsl:param>
 <xsl:param name="section.autolabel" select="1"/>
+<xsl:param name="appendix.autolabel">A</xsl:param>
 <xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
 <xsl:param name="chunk.section.depth" select="0" />
@@ -59,6 +60,56 @@ html/docbook.xsl
 <xsl:template name="user.head.content">
   <link rel="stylesheet" type="text/css" href="css/all.css" />
   <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
+</xsl:template>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+html/autotoc.xsl
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<!-- WinMerge: turn off section numbers in TOC. 
+      Note: if we decide to set  section.autolabel to 0 above, this customization can be removed -->
+<xsl:template name="toc.line">
+  <xsl:param name="toc-context" select="."/>
+  <xsl:param name="depth" select="1"/>
+  <xsl:param name="depth.from.context" select="8"/>
+
+ <span>
+  <xsl:attribute name="class"><xsl:value-of select="local-name(.)"/></xsl:attribute>
+
+  <!-- * if $autotoc.label.in.hyperlink is zero, then output the label -->
+  <!-- * before the hyperlinked title (as the DSSSL stylesheet does) -->
+  <xsl:if test="$autotoc.label.in.hyperlink = 0">
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
+  </xsl:if>
+
+  <a>
+    <xsl:attribute name="href">
+      <xsl:call-template name="href.target">
+        <xsl:with-param name="context" select="$toc-context"/>
+        <xsl:with-param name="toc-context" select="$toc-context"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    
+  <!-- * if $autotoc.label.in.hyperlink is non-zero, then output the label -->
+  <!-- * as part of the hyperlinked title -->
+  <!-- WinMerge: add test for section -->
+  <xsl:if test="not($autotoc.label.in.hyperlink = 0) and local-name(.) != 'section'" >
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''"> 
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
+  </xsl:if>
+    <xsl:apply-templates select="." mode="titleabbrev.markup"/>
+  </a>
+  </span>
 </xsl:template>
 
 </xsl:stylesheet>
