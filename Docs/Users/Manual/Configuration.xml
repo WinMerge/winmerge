@@ -1,663 +1,1456 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Configuration">
-  <title>Options &amp; configuration</title>
+  <title>Options and configuration<indexterm>
+      <primary>options</primary>
+    </indexterm></title>
 
-  <para>Options dialog can be opened from <guimenu>Edit</guimenu>-menu or from
-  toolbar button. Changes made are saved when dialog is closed using
-  <guibutton>OK</guibutton>-button (or pressing
-  <keycap>Enter</keycap>-key).</para>
+  <para>The Options dialog enables you to customize many WinMerge features. To
+  set WinMerge options:</para>
 
-  <section>
-    <title>General options</title>
+  <orderedlist>
+    <listitem>
+      <para>Click <menuchoice>
+          <guimenu>Edit</guimenu>
 
-    <section>
-      <title>Automatically scroll to first difference</title>
+          <guimenuitem>Options</guimenuitem>
+        </menuchoice> in the menu or the <inlinemediaobject>
+          <imageobject>
+            <imagedata contentwidth="16" fileref="screenshots/options_btn.png" />
+          </imageobject>
 
-      <para>When this option is enabled:</para>
+          <textobject>
+            <phrase>WinMerge Options button</phrase>
+          </textobject>
+        </inlinemediaobject> <guibutton>Options</guibutton> button in the
+      toolbar.</para>
+
+      <para>The Options dialog contains a number of pages, each containing a
+      group of related options. You can open any page by clicking its title in
+      the <guilabel>Categories</guilabel> list, on the left side of the
+      dialog.</para>
+    </listitem>
+
+    <listitem>
+      <para>Configure the options you want to change using one or both of these
+      methods:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara>After folder compare selection is moved to first different
-          files or folders.</simpara>
+          <para>Directly in the options pages.</para>
         </listitem>
 
         <listitem>
-          <simpara>After opening files for compare first difference in files
-          is scrolled visible and selected.</simpara>
+          <para>Importing an options <filename>.ini</filename> file that you
+          exported previously (see <xref linkend="Configuration_importexport" />
+          for details).</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>When you have set all your options, click <guibutton>OK</guibutton>
+      to save them and dismiss the dialog.</para>
+    </listitem>
+  </orderedlist>
+
+  <para>This topic describes the options in detail. There is a section for each
+  page in the Options dialog.</para>
+
+  <section id="Configuration_importexport">
+    <title>Importing and Exporting options<indexterm>
+        <primary>importing options files</primary>
+      </indexterm><indexterm>
+        <primary>exporting options files</primary>
+      </indexterm></title>
+
+    <para>If you change options frequently for different compare or merge
+    scenarios, or if you want to share your settings with other WinMerge users,
+    consider saving your settings by exporting them to an options file. Then,
+    whenever you want to use those settings, you can simply import the options
+    file instead of setting options manually.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>To export options</term>
+
+        <listitem>
+          <para>When you have set your options the way you want them, click
+          <guibutton>Export</guibutton>. In the Select file for export dialog,
+          specify a path and name for your options file (the type
+          <filename>ini</filename> is automatically appended), and click
+          <guibutton>Save</guibutton>.</para>
+
+          <para>In the generated text <filename>ini</filename> file, each line
+          contains a name-value pair that defines a single option.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>To import options</term>
+
+        <listitem>
+          <para>When you want to reuse your saved options, click
+          <guibutton>Import</guibutton>. In the Select file for import dialog,
+          navigate to the saved <filename>ini</filename> file and click
+          <guibutton>Open</guibutton>.</para>
+
+          <para>The values in your imported options file replace all existing
+          settings.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Configuration_general">
+    <title>General options</title>
+
+    <para>The General page has these options:</para>
+
+    <section>
+      <title>Automatically scroll to first difference<indexterm>
+          <primary>autoscrolling to first difference</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): Compare window opens to the
+          top of the folder or file, with no difference selected.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: When it first opens, the Compare
+          window selects the first difference, scrolling to the location if
+          necessary.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>For a folder compare, selects the first different file or
+              folders.</para>
+            </listitem>
+
+            <listitem>
+              <para>For a file compare, selects the first difference block in
+              the files.</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title><indexterm>
-          <primary>Disabling splash screen</primary>
-        </indexterm>Disable splash screen</title>
+      <title>Disable splash screen<indexterm>
+          <primary>splash screen, disabling</primary>
+        </indexterm></title>
 
-      <para>User can disable splash screen appearing when WinMerge is started.
-      It does not make WinMerge start faster (splash screen can be missed by
-      clicking it with mouse) but it saves one click.</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): A splash screen is
+          displayed when you start WinMerge. You can dismiss the screen at any
+          time by clicking it; otherwise it is automatically dismissed after a
+          few seconds.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Completely omits the splash screen
+          when you start WinMerge. Note that this does not make startup
+          faster.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
-      <title><indexterm>
-          <primary>Esc key</primary>
+      <title>Close Windows with <keycap>ESC</keycap><indexterm>
+          <primary>closing windows using Esc key</primary>
+        </indexterm></title>
 
-          <secondary>Closing windows</secondary>
-        </indexterm>Close Windows with <keycap>ESC</keycap></title>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): Lets you use the
+          <keycap>ESC</keycap> key to close WinMerge windows. Pressing
+          <keycap>ESC</keycap> once closes one window, so with one File Compare
+          window open, it takes three key presses to close WinMerge: first the
+          File Compare window, then the Folder Compare window, and finally the
+          WinMerge window.</para>
 
-      <para>If this option is enabled, WinMerge closes document windows and
-      application with <keycap>ESC</keycap> key. One window is closed with one
-      keypress, so if user has file compare window open one needs three
-      keypresses to close WinMerge: file compare window, folder compare window
-      and then the application.</para>
+          <para>Note that in the WinMerge command line, the
+          <parameter>-e</parameter> parameter enables you to close WinMerge by
+          pressing <keycap>ESC</keycap> just once.</para>
+        </listitem>
 
-      <para>Note that -e command line parameter overrides this option. If -e
-      parameter is given in command line, WinMerge closes with one
-      <keycap>ESC</keycap> key press.</para>
+        <listitem>
+          <para><option>Disabled</option>: Pressing <keycap>ESC</keycap> does
+          not close any WinMerge windows.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>Automatically verify paths in Open-dialog</title>
 
-      <para>When enabled: Open-dialog checks both paths given for validity and
-      doesn't enable <guibutton>OK</guibutton> button until both paths are
-      valid. Unfortunately this checking needs little delay and some users
-      find this delay annoying.</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): The Select Files or Folders
+          dialog checks both paths as you enter them. The
+          <guibutton>OK</guibutton> button remains disabled until both paths are
+          validated. Note that this checking can cause some delay.</para>
+        </listitem>
 
-      <para>When disabled: Open-dialog enabled <guibutton>OK</guibutton>
-      button by default and lets user to try to open all paths. However error
-      message is shown if path is not valid. This is faster to use, there is
-      no any delay in enabling <guibutton>OK</guibutton>. But user must look
-      at error-dialogs.</para>
+        <listitem>
+          <para><option>Disabled</option>: The <guibutton>OK</guibutton> button
+          in the Select Files or Folders dialog is always enabled, and attempts
+          to open any paths you specify. Since there is no delay during
+          validation, this can speed up the selection of paths. However, if the
+          path cannot be opened, an error dialog is displayed.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
-      <title><indexterm>
-          <primary>Single-instance</primary>
-        </indexterm>Allow only one instance to run</title>
+      <title>Allow only one instance to run<indexterm>
+          <primary>WinMerge window</primary>
 
-      <para>Limits WinMerge program instances to one. If new instance is tried
-      to start, old instance is activated instead. If new instance is tried to
-      open with paths, new paths replace existing ones in previous instance.
-      Or, if multiple compare window support is enabled new compare windows
-      are opened for new paths. (See below.)</para>
+          <secondary>opening multiple</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): You can run multiple
+          WinMerge instances. For example, if WinMerge is currently running and
+          you click the WinMerge desktop shortcut, a new WinMerge window is
+          opened.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Limits the WinMerge program to one
+          instance:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If WinMerge is currently running and you try to start a new
+              instance, no new application window is opened: the current
+              WinMerge window is used instead.</para>
+            </listitem>
+
+            <listitem>
+              <para>If you start a new instance with paths (for example on the
+              command line), a new Compare window is opened in the existing
+              WinMerge window.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+
+      <para>Also see the related options under <xref
+      linkend="Configuration_multicompwin" />.</para>
+    </section>
+
+    <section>
+      <title>Ask when closing multiple windows</title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): If you exit WinMerge while
+          multiple Compare windows are open, WinMerge prompts you to confirm
+          whether to close all the windows.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: If you click
+          <guibutton>Exit</guibutton> and there are no pending file changes,
+          WinMerge closes immediately.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Preserve file time in file compare<indexterm>
+          <primary>timestamps</primary>
+
+          <secondary>preserving</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): If you save changes to a
+          file in WinMerge, the timestamp of the file is updated.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: If you save changes to a file in
+          WinMerge, the timestamp of the file is not changed in your file
+          system.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>Open-dialog Auto-Completion</title>
 
-      <para>This option allows user to enable auto-completion for Open-dialog
-      paths. There are two modes for auto-completion:</para>
+      <para>Choose one of these options:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>From file system</guilabel> - checks paths from
-          filesystem. I.e. It locates paths matching letters already typed and
-          if matching path is found, completes the path.</para>
+          <para><guilabel>Disabled</guilabel> (default): No autocompletion is
+          performed when you enter paths in the Select Files or Folders
+          dialog.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>From MRU list</guilabel> - checks paths only from
-          MRU list. This is handy when you have pretty limited set of paths
-          (usually in MRU lists) to compare.</para>
+          <para><guilabel>From file system</guilabel>: Checks paths as you type.
+          It attempts to locate paths in the file system that match the letters
+          you type, and if a matching path is found, completes the path.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>From MRU list</guilabel>: Checks paths only from the
+          most recently used (MRU) list. This is handy when you have a limited
+          set of paths to compare.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_multicompwin">
+      <title>Enable multiple compare windows for<indexterm>
+          <primary>Compare windows</primary>
+
+          <secondary>opening multiple</secondary>
+        </indexterm></title>
+
+      <para>Controls whether WinMerge allows you to open single or multiple
+      Compare windows. Specify the <guilabel>Folder compare</guilabel> and
+      <guilabel>File compare</guilabel> options independently:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): You can only open one
+          Folder compare or File compare window at a time.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: You can open multiple Folder or File
+          compare windows simultaneously.<note>
+              <para>File Compare windows are children of Folder Compare windows.
+              Therefore, you can open one File Compare window for every Folder
+              Compare window, even if the <guilabel>File compare</guilabel>
+              option is disabled.</para>
+            </note></para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Enable multiple compare windows for</title>
+      <title>Reset</title>
 
-      <para>Allows opening multiple folder or file compare windows into one
-      WinMerge instance. WinMerge has separate compare documents for folder-
-      and file compare and this option allows selecting multi-window support
-      for both of them independently.</para>
+      <para>WinMerge allows you to suppress some common message boxes. For
+      example, when two identical files are opened, the message box titled,
+      <guilabel>The files are identical</guilabel>, is normally opened. If you
+      don't want this box to display any more, you can enable (check) the option
+      in that message box to not show the message again.</para>
 
-      <note>
-        <para>File compare windows are always related to folder compare
-        windows. Even if you disable multiple file compare windows you still
-        can open one file compare window for every folder compare
-        window.</para>
-      </note>
-    </section>
-
-    <section>
-      <title>Reset messageboxes (Reset-button)</title>
-
-      <para>WinMerge allows user to hide (suppress) some common messageboxes.
-      For example if user doesn't want to see <guilabel>The files are
-      identical</guilabel> messagebox every time two identical files are
-      opened user can check checkbox in that messagebox and close messagebox.
-      Then that messagebox will not be shown again.</para>
-
-      <para>However sometimes user may want to see again those hidden
-      messageboxes. Selecting <guibutton>Reset</guibutton> button makes all
-      messageboxes visible again.</para>
+      <para>Later, you might decide that you want to see those messages again.
+      If so, click the <guibutton>Reset</guibutton> button to make the message
+      boxes display again.</para>
 
       <note>
-        <para>It is recommended to reset messageboxes when updating to newer
-        version of WinMerge. Installer does that automatically but if
-        installer is not used then it should be done using this
-        <guibutton>Reset</guibutton> button.</para>
+        <para>We recommend that you not suppress messages when updating WinMerge
+        to a newer version. The installer enables their display automatically,
+        but if you don't use the installer, then remember to enable message
+        display by using the <guibutton>Reset</guibutton> button.</para>
       </note>
     </section>
   </section>
 
-  <section>
+  <section id="Configuration_compare">
     <title>Compare options</title>
 
-    <para>Several compare options allow to ignore some specific type of
-    differences. This is useful in reducing insignificant differences for
-    review purposes.</para>
-
-    <para>Ignored difference is shown with different color and it cannot be
-    merged. Difference counts do not include ignored differences. So if files
-    contains only ignored differences they are shown as identical in directory
-    compare.</para>
+    <para>The options in this page enable you to change some of the ways that
+    WinMerge detects differences, such as comparing only file size, or ignoring
+    some types of differences, like case.</para>
 
     <important>
-      <para>Ignoring differences affects merging! If user ignores whitespace
-      changes, then e.g. indentation changes in source code files are ignored.
-      That means file's indentation gets messed up when merging. It is
-      strongly recommended to turn off all difference ignore options before
-      merging files!</para>
+      <para>Customizing difference detection can be useful during comparisons,
+      when you might not be interested in some differences. However, these
+      options also affect merging. For example, if you ignore whitespace
+      changes, then indentation changes in source code files are not preserved
+      when you merge.</para>
+
+      <para>For this reason, before you merge any differences, we strongly
+      recommend resetting the options on this page to their default settings,
+      especially the ignore options. To reset all the options on this page,
+      click the <guibutton>Defaults</guibutton> button.</para>
     </important>
 
     <section>
-      <title><indexterm>
-          <primary>Ignore whitespace characters</primary>
-        </indexterm>Whitespace</title>
+      <title>About ignore options<indexterm>
+          <primary>ignoring differences</primary>
+        </indexterm></title>
 
-      <para><guilabel>Compare Whitespace</guilabel>, <guilabel>Ignore
-      whitespace change</guilabel> and <guilabel>Ignore all
-      whitespace</guilabel> are three different levels for comparing/ignoring
-      whitespace characters.</para>
-
-      <para><guilabel>Ignore whitespace change</guilabel> ignores changes in
-      whitespace chars. First three lines in example below illustrate this,
-      those three lines are detected as identical if this option is set.
-      However change between zero and more whitespace characters is NOT
-      ignored. So fourth line is different from first two lines<example>
-          <title>Ignore whitespace change</title>
-
-          <para>One space between words:<screen format="linespecific">Two Words</screen></para>
-
-          <para>Two spaces between words:<screen format="linespecific">Two  Words</screen></para>
-
-          <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
-
-          <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
-        </example></para>
-
-      <para><guilabel>Ignore all whitespace</guilabel> ignores all whitespace
-      characters, except linefeeds. WinMerge compares lines, and even when
-      this option is set linefeeds are intact. All lines in example below are
-      detected as identical.<example>
-          <title>Ignore all whitespace</title>
-
-          <para>One space between words:<screen format="linespecific">Two Words</screen></para>
-
-          <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
-
-          <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
-        </example></para>
-    </section>
-
-    <section>
-      <title>Ignore blank lines</title>
-
-      <para>Ignores differences that have only blank (empty) lines. Blank
-      lines are shown in file view, but difference is shown with ignored
-      difference colors and it cannot be merged.</para>
-    </section>
-
-    <section>
-      <title>Ignore case</title>
-
-      <para>If this option is enabled WinMerge ignores differences between
-      lowercase and uppercase letters. For example "LowerCase" and "LOWERCASE"
-      and "lowercase" are same.</para>
-    </section>
-
-    <section>
-      <title>Ignore carriage return differences (Windows/Unix/Mac)</title>
-
-      <para>If this option is not set WinMerge does not detect EOL style
-      differences as differences. If two lines differ only by EOL characters
-      (e.g. Windows EOL and Unix EOL) WinMerge detects files as identical.</para>
-    </section>
-
-    <section>
-      <title>Enable moved block detection</title>
-
-      <para>When this option is enabled WinMerge tries to detect lines that
-      are moved inside file. Moved lines have own difference colors. Also
-      location pane can show moved lines with line between bars. This makes it
-      easier to visualise changes in files. However if there are a lot of
-      moved lines it may get messy looking.</para>
-    </section>
-
-    <section>
-      <title>Ignore time differences less than 3 seconds</title>
-
-      <para><emphasis>Only for "<guilabel>Modified Date</guilabel>" and
-      "<guilabel>Modified Date and Size</guilabel>" compare
-      methods.</emphasis></para>
-
-      <para>It is possible that timestamps vary by one or two seconds in
-      certain situations. This usually happens with network shares. Normally
-      WinMerge determines such items as different. So this option allows
-      WinMerge to ignore time differences smaller than three seconds to help
-      getting more reliable results.</para>
-
-      <warning>
-        <para>This option should be enabled only when the time difference is
-        detected. Otherwise it can cause wrong compare results.</para>
-      </warning>
-    </section>
-
-    <section>
-      <title>File compare method</title>
-
-      <para>File compare method has five choices:</para>
+      <para>A number of options in the Compare page (described later in this
+      section) enable you to ignore certain differences. Ignored differences are
+      treated in special ways in WinMerge:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Full Contents</guilabel> - full comparison of files
-          by content, with all the bells and whistles. This method invokes
-          plugins and uses diffutils engine for fully accurate differencing
-          and moved block detection. This is the most complete and recommended
-          method.</para>
+          <para>They are marked with the Ignored Difference color.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Quick Contents</guilabel> - slimmed down comparison
-          of files by content. This method uses streamlined file comparison
-          code which skips plugins and moved block detection. The only
-          advantage of this method over Full Contents is that this method does
-          not load the files into method, and so is faster.</para>
-
-          <para>Drawback is linefilters are not applied when comparing. Even
-          if linefilters ignore all differences in files and files are
-          considered identical by <guilabel>Full Contents</guilabel> -compare
-          method this method sees files as different.</para>
+          <para>Ignored differences cannot be merged</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Modified Date</guilabel> - comparison of
-          modification dates on files. This method only examines the
-          modification dates on the files, so it is far faster than either of
-          the contents methods, but obviously is only as accurate as the
-          modification dates.</para>
+          <para>Ignored differences are not included in difference counts</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Modified Date and Size</guilabel> - like above
-          <guilabel>Modified Date</guilabel> -comparison. But also checks file
-          sizes when dates are identical.</para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Size</guilabel> - comparison of the sizes of the
-          files. This method only examines the file sizes, so it is fast, but
-          not so accurate like the contents methods.</para>
+          <para>Files containing only ignored differences are marked as
+          identical in a folder comparison</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Stop after first difference</title>
+      <title>Whitespace<indexterm>
+          <primary>whitespace</primary>
 
-      <note>
-        <para>This option is enabled only when <guilabel>Quick
-        Contents</guilabel> -compare method is selected.</para>
-      </note>
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
 
-      <para>This option allows to optimize compare by not looking whole files,
-      but only until first difference is found.</para>
+      <para>Whitespace, the space between words and lines, is represented in
+      text files by special, nonprinting characters like spaces, tabs, and
+      linefeeds. The significance of whitespace varies a lot: spaces between
+      words are usually important; in some text documents, indents and linefeeds
+      are critical to meaning and readability; in structured code, linefeeds and
+      tabs might be significant.</para>
 
-      <para>Drawback is WinMerge may be unable to recognize binary files as
-      such. This is even likely if first difference is in begin of file. Don't
-      enable this if you don't know which kind of files you are comparing. If
-      you know your files then this is a nice way to make compare even
-      faster.</para>
-    </section>
-  </section>
+      <para>These whitespace options are available:</para>
 
-  <section>
-    <title>Editor options</title>
+      <variablelist>
+        <varlistentry>
+          <term>Compare</term>
 
-    <section>
-      <title>Syntax highlighting</title>
+          <listitem>
+            <para>Default: All whitespace is compared. If you are not sure which
+            option your document requires, this is the safest choice. In the
+            example below, all lines are detected as different.</para>
 
-      <para>From <guilabel>Editor</guilabel>-page user can enable/disable
-      syntax highlighting. WinMerge can syntax highlight many programming
-      language source codes, web formats etc. Syntax highlighting consumes
-      some processing power, so if WinMerge screen updating seems to be slow,
-      turning off this option might help.</para>
-    </section>
+            <example>
+              <title>Ignore whitespace change</title>
 
-    <section>
-      <title><indexterm>
-          <primary>Automatic rescan</primary>
-        </indexterm>Automatic rescan</title>
+              <para>One space between words:<screen format="linespecific">Two Words</screen></para>
 
-      <para>Enabling automatic rescanning forces WinMerge to rescan after
-      every change done to files, including typing. That's how WinMerge 1.7.1
-      behaves. For bigger files this can make editing files very slow. To make
-      file editing faster edit events are 'delayed'.</para>
+              <para>Two spaces between words:<screen format="linespecific">Two  Words</screen></para>
 
-      <para>Delaying means WinMerge waits one second after last edit event
-      before rescanning. If new edit event happens during that time editing is
-      done and counter reset to one second. So there should be no rescans
-      during normal typing, but only after user stops typing.</para>
+              <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
 
-      <para>When automatic rescan is disabled, rescan is done only when user
-      selects <guimenuitem>Rescan</guimenuitem> or user merges
-      difference.</para>
+              <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
+            </example>
+          </listitem>
+        </varlistentry>
 
-      <para>WinMerge 2.2 release delays more edit events than 2.0.x releases,
-      so selecting between automatic and manual rescan is mostly a matter of
-      taste.</para>
-    </section>
+        <varlistentry>
+          <term>Ignore change</term>
 
-    <section>
-      <title>Preserve original EOL chars</title>
+          <listitem>
+            <para>Compares differences in whitespace. In the preceding example,
+            the first three lines have different whitespace, but are detected as
+            identical: tabs and multiple are treated as if they are single
+            space. The last line has no whitespace, so the difference is
+            <emphasis>not</emphasis> ignored (in effect, the words in the last
+            two lines are different):</para>
+          </listitem>
+        </varlistentry>
 
-      <important>
-        <para>This is an advanced option for users who are familiar with EOL
-        bytes and who want to compare files with different EOL styles inside
-        ONE file. It is recommended that this option not be set unless this
-        advanced functionality is needed.</para>
-      </important>
+        <varlistentry>
+          <term>Ignore all</term>
 
-      <para>Setting this option allows handling and comparing files with
-      different EOL styles inside ONE file. Two files with different EOL
-      styles can be compared even without this option set! One example reveals
-      functionality behind this option.</para>
-
-      <screen format="linespecific">This is one example 
-text. To show how
-smart WinMerge
-can be handling 
-EOL differences.</screen>
-
-      <para>And same text in bytes:</para>
-
-      <screen format="linespecific">5468 6973 2069 7320 6F6E 6520 6578 616D 706C 6520 0D0A
-7465 7874 2E20 546F 2073 686F 7720 686F 7720 0D0A
-736D 6172 7420 5769 6E4D 6572 6765 0D
-6361 6E20 6265 2068 616E 646C 696E 6720 0D0A
-454F 4C20 6469 6666 6572 656E 6365 732E</screen>
-
-      <para>The example presents one simple text file with five lines of text.
-      All lines, except third, are terminated with Windows style EOL (0D0A). Third
-      line has Unix style EOL (0D).</para>
-
-      <para>If <guilabel>Preserve original EOL chars</guilabel>-option is not
-      set WinMerge determines file is meant to be Windows style file and converts
-      third line's last bytes to 0D0A before comparing. Missing EOL char is
-      usually an error in file, so WinMerge is smart and fixes this error
-      instead of reporting it as a difference. That's right, WinMerge changes
-      user's file without telling about it to user. WinMerge also shows files
-      EOL style as <guilabel>Windows</guilabel> in filecompare statusbar.</para>
-
-      <para>Advanced user might want to handle files without this automatic
-      fixing, file might be handled in systems with different EOL styles (e.g.
-      Windows and Unix). In that case, user can set this option and see
-      WinMerge showing EOL style for every line.</para>
+          <listitem>
+            <para>Ignores all whitespace characters, except linefeeds (so lines
+            are detected, and preserved in a merge). All lines in the preceding
+            example are detected as identical.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </section>
 
     <section>
-      <title>Tab options</title>
+      <title>Ignore blank lines<indexterm>
+          <primary>blank lines</primary>
 
-      <para>From <guilabel>General</guilabel>-page user can set size tabulator
-      character in spaces. Maximum value is 64.</para>
-
-      <para>Another selection is if user wants WinMerge to add tab characters
-      or spaces (amount specified by tab size -option) when
-      <keycap>Tab</keycap>-key is pressed.</para>
-    </section>
-
-    <section>
-      <title><indexterm>
-          <primary>Highlighting line differences</primary>
-        </indexterm>Line Difference Coloring</title>
-
-      <para>WinMerge can highlight exact differences in different lines. This
-      behaviour is controlled by these options First checkbox <guilabel>View
-      Line Differences</guilabel> controls if highlighting is enabled or
-      disabled.</para>
-
-      <para>Next two choices are about level of highlighting. Best choice
-      usually depends on filetypes compared.</para>
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Character level</guilabel> - this level tries to
-          find exact characters that are different. This is especially useful
-          when working with fileformats that do not have clear word-breaks.
-          This level is capable to highlight single changed character in
-          middle of word. It may save a lot of time when trying to find those
-          single-character differences.</para>
+          <para><option>Disabled</option> (default): Empty lines in the source
+          files are detected and represented in the File Compare window as blank
+          lines with the Deleted Difference colors.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Word-level</guilabel> - this is what WinMerge
-          version 2.4 and earlier had. It tries to find different words to
-          highlight. There is extra value in selecting whole words - usually
-          it is easy to select words in editor so copy/paste is easier when
-          words are selected. This is also case with WinMerge editor. You can
-          for example select word in editor by double-clicking it with the
-          mouse.</para>
+          <para><option>Enabled</option>: Empty lines in the source files are
+          ignored. They are represented in the File Compare window as blank
+          lines with the Ignored Difference colors. However the difference
+          cannot be merged.</para>
         </listitem>
       </itemizedlist>
+    </section>
 
-      <para><guilabel>Word-level</guilabel> highlighting has one additional
-      option. Dropdown control below it controls how word-breaks are detected.
-      Normally (<guilabel>Break at whitespace</guilabel> selected) words are
-      assumed to be separated by whitespace characters. This is what we have
-      in normal text.</para>
+    <section>
+      <title>Ignore case<indexterm>
+          <primary>case (letter), detecting and ignoring differences</primary>
+        </indexterm></title>
 
-      <para>When <guilabel>Break at whitespace or punctuation</guilabel> is
-      selected, also punctuation characters are considered as word-breaks.
-      When this is selected WinMerge can better handle comma separated lists
-      etc. For example, for lines:</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): Comparisons are
+          case-sensitive. For example, <literal>LowerCase</literal>,
+          <literal>LOWERCASE</literal>, and <literal>lowercase</literal> are all
+          different.</para>
+        </listitem>
 
-      <para><screen>10,20,30,40,50</screen></para>
+        <listitem>
+          <para><option>Enabled</option>: Differences between lowercase and
+          uppercase letters are ignored.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
 
-      <para>and</para>
+    <section>
+      <title>Ignore carriage return differences (Windows/Unix/Mac)<indexterm>
+          <primary>EOL</primary>
 
-      <para><screen>10,25,30,45,50</screen></para>
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
 
-      <para>WinMerge would highlight whole lines when using <guilabel>Break at
-      whitespace</guilabel> but only numbers 20/25 and 40/25 when using
-      <guilabel>Break at whitespace or punctuation</guilabel>.</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge detects end of
+          line (EOL) style differences. For example, if you compare two lines
+          that have the same contents but different line endings, the lines are
+          considered to be different. When this happens, WinMerge displays a
+          dialog prompting you to confirm whether to detect or ignore the
+          difference.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: EOL differences are ignored.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Enable moved block detection<indexterm>
+          <primary>moved differences</primary>
+
+          <secondary>enabling and disabling detection</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge does not detect
+          when differences are due to moved lines.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: WinMerge tries to detect lines that
+          are moved (in different locations in each file). Moved blocks are
+          indicated by the <guilabel>Moved</guilabel> and <guilabel>Selected
+          Moved</guilabel> difference colors. If the Location bar is displayed,
+          corresponding difference locations in the left and right location bars
+          are connected with a line. Showing moved blocks can make it easier to
+          visualize changes in files, if there are not too many.</para>
+
+          <para>For an example, see the Location pane description in <xref
+          linkend="CompareFiles" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Ignore time differences less than 3 seconds<indexterm>
+          <primary>timestamps</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): Files with different
+          timestamps are detected as different.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Sometimes (for example, when you use
+          network shares) small differences in timestamps are not significant.
+          To get more meaningful results in such situations, this option enables
+          you to ignore time differences smaller than three seconds.</para>
+
+          <para>This option works only with the <guimenuitem>Modified
+          Date</guimenuitem> and <guimenuitem>Modified Date and
+          Size</guimenuitem> compare methods (described in <xref
+          linkend="Configuration_compmethod" />). It has no effect with other
+          methods.</para>
+
+          <warning>
+            <para>This option should be enabled only when the time difference is
+            detected. Otherwise, it can cause incorrect compare results.</para>
+          </warning>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_compmethod">
+      <title>File Compare method<indexterm>
+          <primary>comparing files</primary>
+
+          <secondary>detection options</secondary>
+        </indexterm></title>
+
+      <para>This option lets you determine how complete your file comparisons
+      are. Choose one of these five choices:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Full Contents</term>
+
+          <listitem>
+            <para>Default: Full comparison of files by content, with all the
+            bells and whistles. This method invokes plugins and uses the
+            diffutils engine for fully accurate differencing and moved block
+            detection. This is the most complete and recommended method.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Quick Contents</term>
+
+          <listitem>
+            <para>Slimmed-down comparison of files by content. This method uses
+            streamlined file comparison code which skips plugins and moved block
+            detection. This method is faster than <guilabel>Full
+            Contents</guilabel>, because it does not load the files.</para>
+
+            <para>Its drawback is that line filters are not applied when
+            comparing. For example, this method sees file as different even if
+            line filters are set to ignore all differences in the files.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Modified Date<indexterm>
+              <primary>timestamps</primary>
+
+              <secondary>comparing</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Compares only the modification dates on the files, so it is
+            far faster than either of the contents methods. But obviously, it is
+            only as accurate as the modification dates.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><guilabel>Modified Date and Size</guilabel></term>
+
+          <listitem>
+            <para>Similar to <guilabel>Modified Date</guilabel>, but also checks
+            file sizes when dates are identical.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Size<indexterm>
+              <primary>file sizes</primary>
+
+              <secondary>comparing</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Compares only file sizes, so it is fast but not as accurate as
+            the contents methods.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Stop after first difference<indexterm>
+          <primary>comparing files</primary>
+
+          <secondary>stopping after first difference</secondary>
+        </indexterm><indexterm>
+          <primary>comparing folders</primary>
+
+          <secondary>stopping after first difference</secondary>
+        </indexterm></title>
+
+      <para>This option is enabled only when the <guilabel>Quick
+      Contents</guilabel> compare method is selected.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge examines all
+          differences in the files.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: This option optimizes comparisons by
+          examining files only until the first difference is found, instead
+          always scanning the entire files.</para>
+
+          <para>The drawback is that WinMerge may be unable to identify binary
+          files as binary. This is likely to happen if the first difference is
+          near the beginning of the file. If you know what kind of files you are
+          comparing (for example, which are binary files), this option can be a
+          good way to speed up comparisons. However, don't enable this option if
+          you are not sure what kind of files you are comparing.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Filter Comments<indexterm>
+          <primary>filtering</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge compares comments
+          in code, along with other content.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: This option optimizes comparisons by
+          detecting comments in certain programming language file types (such as
+          C++ and Java), and ignoring them.</para>
+
+          <para>The recognized file types and their comment markers are defined
+          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
+          of the WinMerge installation directory.</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
-  <section>
-    <title>System options</title>
+  <section id="Configuration_editor">
+    <title>Editor options<indexterm>
+        <primary>editing</primary>
 
-    <section>
-      <title>Send deleted files to Recycle Bin</title>
+        <secondary>options for File Compare window</secondary>
+      </indexterm></title>
 
-      <para>When this options is enabled files and folders deleted in
-      directory compare are moved to Recycle Bin. Note that use of Recycle Bin
-      may have disabled from system.</para>
+    <section id="Configuration_syntaxhighlight">
+      <title>Syntax highlighting<indexterm>
+          <primary>syntax highlighting</primary>
+
+          <secondary>enabling and disabling</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): WinMerge can syntax
+          highlight many programming language and web formats. To see the
+          formats that are supported by default, click <menuchoice>
+              <guimenu>View</guimenu>
+
+              <guimenuitem>Syntax Highlight</guimenuitem>
+            </menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: Syntax highlighting consumes some
+          processing power, so if WinMerge screen updating seems to be slow,
+          turning off this option might help.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
-      <title>Add to explorer context menu</title>
+      <title>Automatic rescan<indexterm>
+          <primary>rescanning files</primary>
 
-      <para>This option enables/disables shell integration. When enabled, new
-      menuitem <guimenuitem>WinMerge</guimenuitem> is added to explorer's
-      context menu. User can select one or two files/folders and then select
-      that menuitem to open files/folders to WinMerge.</para>
+          <secondary>enabling and disabling autoscan</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge rescans
+          automatically when you merge a difference, or if you manually rescan
+          (for example, click the <guibutton>Rescan</guibutton> button).</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Forces WinMerge to rescan after every
+          edit event (a change to files, like typing).</para>
+
+          <note>
+            <para>To avoid slowing down your editing, WinMerge delays automatic
+            rescanning a little: it waits one second after each edit event.
+            Because each new edit event resets the timer, no rescans occur until
+            you pause or stop editing.</para>
+          </note>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
-      <title>Enable advanced menu</title>
+      <title>Preserve original EOL chars<indexterm>
+          <primary>EOL</primary>
 
-      <para>If this option is enabled there are two items shown in explorer's
-      context menu. First item (<guimenuitem>Compare</guimenuitem>) allows
-      user to select path to "memory" and then pick another path and compare
-      those two. This means user does not need to select both paths from same
-      view, but user can select them from different drives etc. Path is
-      forgotten from memory when its compared.</para>
+          <secondary>preserving</secondary>
+        </indexterm><indexterm>
+          <primary>end of line</primary>
 
-      <para>Second item (<guimenuitem>Compare...</guimenuitem>) in menu always
-      opens WinMerge with selected path(s).</para>
+          <see>EOL</see>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): Assumes that files are
+          meant to be Windows files. If a file does not use the standard Windows
+          line ending, WinMerge considers this to be an error. It silently
+          changes the line endings to the Windows style instead of detecting
+          them as differences. Thus, the File Compare window status bar shows
+          the EOL style as <guilabel>Win</guilabel>.</para>
+
+          <para>For most situations, you should leave this option disabled: this
+          default behavior works even when comparing two files that have
+          different line ending styles.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Prevents WinMerge from automatically
+          changing line endings, so that it detects different EOL styles for
+          every line. This might be useful for handling files from systems with
+          different EOL styles (for example, Windows and Unix).</para>
+
+          <important>
+            <para>This is an advanced option for users who are familiar with EOL
+            bytes and who want to compare files with different EOL styles inside
+            <emphasis>one</emphasis> file. We recommend that you not enable this
+            option unless you need this advanced functionality. Remember, this
+            option is not required to compare two files with different EOL
+            styles.</para>
+          </important>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
-      <title>Include subfolders by default</title>
+      <title>Tab options<indexterm>
+          <primary>tabs</primary>
 
-      <para>Shell Integration by default does not include subfolders into
-      comparison. This behavior can be changed with this option. The default
-      behavior can be also changed by holding down the
-      <keycap>Control</keycap> key while selecting the
-      <guimenuitem>Compare...</guimenuitem> item from the Explorer context
-      menu.</para>
+          <secondary>editing options</secondary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Tab size</term>
+
+          <listitem>
+            <para>Width of a tab space. Specify a value
+            <replaceable>n</replaceable> : the resulting width is equivalent to
+            that of <replaceable>n</replaceable> characters. Default: 4. The
+            maximum value is 64.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Tab insert options</term>
+
+          <listitem>
+            <para>Determines what kind of character is used when you insert a
+            tab in text. Only one of these options can be enabled:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Insert Tabs</guilabel> (default): Uses a single
+                tab character.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Insert Spaces</guilabel>: Uses one or more
+                spaces (determined by the <option>Tab size</option>) instead of
+                a tab character. For example, with the default tab size, four
+                spaces are inserted.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </section>
 
     <section>
-      <title><indexterm>
-          <primary>Configuring external editor</primary>
-        </indexterm>External editor</title>
+      <title>View line differences<indexterm>
+          <primary>line differences</primary>
 
-      <para>WinMerge has a pretty good editor for most basic editing needs.
-      However, it doesn't even compare to many other editors in functionality.
-      WinMerge allows user to define one's personally preferred editor to
-      external editor. Files can be opened in the external editor from the
-      directory compare's context menu.</para>
+          <secondary>viewing options</secondary>
+        </indexterm></title>
 
-      <para>Notepad is used as the default editor, because it is found on all
-      Windows platforms.</para>
+      <para>WinMerge can highlight not only different lines, but also
+      differences within lines. You can enable and disable line difference
+      coloring using either the <guilabel>View Line Differences</guilabel>
+      option in this page, or by clicking <menuchoice>
+          <guimenu>View</guimenu>
 
-      <tip>
-        <para>Command line parameters can be given, in format:
-        <command><replaceable>&lt;path to .exe&gt;</replaceable></command>
-        <option>-option1</option> <option>-option2</option>
-        <option><replaceable>...</replaceable></option></para>
-      </tip>
-    </section>
+          <guimenuitem>View Line Differences</guimenuitem>
+        </menuchoice>. For example, when the menu item is checked, the option in
+      this page is also checked, and changing either setting automatically
+      changes the other.</para>
 
-    <section>
-      <title>Filter Folder</title>
+      <para>However, <guilabel>View Line Differences</guilabel> and the options
+      under it give you control over exactly what kinds of differences are
+      detected within lines:</para>
 
-      <indexterm>
-        <primary>Selecting filter file folder</primary>
-      </indexterm>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): WinMerge highlights
+          differences within lines (also enables the <menuchoice>
+              <guimenu>View</guimenu>
 
-      <para>This option allows user to select own (private) folder for file
-      filters. By default this folder is user's My Documents folder. When new
-      private file filter is created, it is automatically added to this
-      folder.</para>
+              <guimenuitem>View Line Differences</guimenuitem>
+            </menuchoice> menu item).</para>
+
+          <para>When this option is enabled, you can choose one of these
+          suboptions. The best choice usually depends on the file types you are
+          comparing:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Character level</guilabel>: Detects individual
+              characters that are different. This option can be useful for file
+              formats that do not have clear word breaks, or if you are looking
+              for single-character differences. For example, this level makes it
+              easy to spot a single changed character in the middle of a
+              word.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Word-level</guilabel> (default): Detects words
+              that are different. Possible advantage: making it easy to copy and
+              paste words.</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para><guilabel>Break at whitespace</guilabel> (default):
+                  Words are assumed to be separated by whitespace characters.
+                  This usually works for typical text files.</para>
+
+                  <para>For example, these two lines contain punctuation but no
+                  whitespace. So, with the <guilabel>Break at
+                  whitespace</guilabel> option, WinMerge detects no word breaks.
+                  Instead, it highlights the text as a single word-level line
+                  difference.</para>
+
+                  <para><screen>10,20,30,40,50</screen></para>
+
+                  <para><screen>10,25,30,45,50</screen></para>
+                </listitem>
+
+                <listitem>
+                  <para><guilabel>Break at whitespace or punctuation</guilabel>:
+                  Considers both whitespace and punctuation characters to be
+                  word breaks. This is useful for handling lists that are
+                  separated with punctuation (like comma-separated lists). In
+                  the preceding example, WinMerge highlights only 20 and 40 in
+                  the first line, and 25 and 45 in the second line.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: WinMerge does not highlight
+          differences within lines, and all settings for the level and
+          whitespace options are ignored (also disables the <menuchoice>
+              <guimenu>View</guimenu>
+
+              <guimenuitem>View Line Differences</guimenuitem>
+            </menuchoice> menu item).</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
-  <section>
-    <title><indexterm>
-        <primary>Backup files</primary>
-      </indexterm>Backup Files</title>
+  <section id="Configuration_colors">
+    <title>Colors options<indexterm>
+        <primary>difference colors</primary>
 
-    <para>This page allows user to select several backup-files related
-    options.</para>
+        <secondary>options</secondary>
+      </indexterm></title>
 
-    <section>
-      <title>Create backup files in</title>
+    <para>Use this page if you want to change any of the difference colors used
+    in the File Compare window. You can set the background, deleted, and text
+    color.</para>
 
-      <para>Selects if backup files are created for folder- and file-compares.
-      In file compare backup files are created whenever files are saved. In
-      folder compare backup files are created whenever files are written over
-      (copied).</para>
-    </section>
+    <para>To change a color, click in its box to open a standard Color chooser
+    dialog. Choose one of the predefined colors or define your own custom color,
+    then click <guibutton>OK</guibutton> to load the new color in the
+    box.</para>
 
-    <section>
-      <title>Create backup files into</title>
-
-      <para>Selects where backup files are created. The default is to create
-      backup files into the same folder than original file. This is usually a
-      good choice. The downside is that removing backup files from big folders
-      can take a lot of work.</para>
-
-      <para>The second option allows to define one global folder where all the
-      backup files are created. This allows easy cleanup of backup files. But
-      if there are many files with same filename in different folders, then
-      those files use the same backup file.</para>
-    </section>
-
-    <section>
-      <title>Backup filename</title>
-
-      <para>The default is to append a <filename>.bak</filename> extension to
-      the filename. Backup file of <filename>file.txt</filename> will be
-      <filename>file.txt.bak</filename>.</para>
-
-      <para>The second option allows adding a timestamp to the filename. As
-      the timestamp is almost always unique, this allows creating backups even
-      if there are files with same filename in different folders. And
-      basically this allows tracking the work with the file as every time the
-      file is saved, new backup copy is created. Beware that this can cause a
-      lot of files to be created.</para>
-    </section>
+    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
+    the installed color scheme.</para>
   </section>
 
-  <section>
-    <title>Archive Support</title>
+  <section id="Configuration_textcolors">
+    <title>Text Colors options<indexterm>
+        <primary>text colors</primary>
 
-    <para>This page contains download link to 7-zip plugin and contains option
-    related to archive support.</para>
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>Use this page to change the colors used for text. First, check the
+    option, <guilabel>Use customized text colors</guilabel>. This activates the
+    text options. There is an option for three kinds of text: whitespace,
+    regular text, and selected text. For each kind of text , you can choose a
+    color for the background and the text.</para>
+  </section>
+
+  <section id="Configuration_syntaxcolors">
+    <title>Syntax Colors options<indexterm>
+        <primary>syntax highlighting</primary>
+
+        <secondary>color options</secondary>
+      </indexterm></title>
+
+    <para>By default, the WinMerge File Compare window marks the syntax of
+    certain kinds of source code, as described in <xref
+    linkend="Configuration_syntaxhighlight" />. This page lists the syntax
+    elements that are recognized, and enables you to change their text color and
+    weight.</para>
+
+    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
+    the installed color scheme.</para>
+  </section>
+
+  <section id="Configuration_archive">
+    <title>Archive Support<indexterm>
+        <primary>archiving files</primary>
+
+        <secondary>configuring support after installation</secondary>
+      </indexterm></title>
+
+    <para>This page contains options for configuring Winzip archive support
+    using 7-Zip.</para>
+
+    <section>
+      <title>Download 7-zip Plugin<indexterm>
+          <primary>7-Zip archive support</primary>
+
+          <secondary>options</secondary>
+        </indexterm></title>
+
+      <para>If WinZip is already installed on your system, WinMerge
+      automatically detects it, and you don't need to configure anything here.
+      Otherwise, you can click this link to open the WinMerge downloads page in
+      your Web browser. There, you can download the 7-Zip Plugin installer (and
+      other WinMerge files). To install the plugin, see <xref
+      linkend="Installing_archive_support" />. Remember to close WinMerge before
+      running the 7-Zip installer.</para>
+    </section>
 
     <section>
       <title>Enable archive file support</title>
 
-      <para>Enables or disables archive file support (based on 7-Zip
-      integration).</para>
+      <para>This option controls how WinMerge handles archive files (based on
+      7-Zip integration).</para>
 
-      <para>Like described in Installation section of this manual, there are
-      two different methods how 7-zip can be integrated. Integration method
-      can be changed using this option dialog after install.</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): WinMerge recognizes 7-Zip
+          archives.</para>
+
+          <para>WinMerge can access 7-Zip from two installation sources. If you
+          specified one of these methods earlier (for example, during the
+          WinMerge installation), you can change it here:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Use stand-alone 7-Zip if available</para>
+            </listitem>
+
+            <listitem>
+              <para>Use local 7-Zip from WinMerge folder</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: Turns off 7-Zip archive
+          integration.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
       <title>Detect archive type from file signature</title>
 
-      <para>Enabling this option allows WinMerge to recognize archive files
-      even if their file extension is not known. Basically WinMerge reads
-      beginning of the file and searches for archive-specific signature
-      bytes.</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge recognizes only
+          archives whose file extension is known on your system (for example, in
+          the registry or through a file association).</para>
+        </listitem>
 
-      <tip>
-        <para>Enabling this option allows WinMerge to recognize and for
-        example Open Office files.</para>
-      </tip>
+        <listitem>
+          <para><option>Enabled</option>: WinMerge can recognize archive files
+          even if their file extension is not known. To recognize an archive,
+          WinMerge searches the beginning of the file for the archive signature
+          bytes.<tip>
+              <para>You can use this option to enable WinMerge to recognize Open
+              Office files.</para>
+            </tip></para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
-  <section>
-    <title>Codepage options</title>
+  <section id="Configuration_system">
+    <title>System options</title>
 
-    <para>These options allow selecting codepage WinMerge uses for ANSI files
-    and if codepage should be read from file contents for specific file
-    formats.</para>
+    <section>
+      <title>Send deleted files to Recycle Bin<indexterm>
+          <primary>deleting files</primary>
+
+          <secondary>options</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): Files and folders that you
+          deletein a Folder Compare window are moved to the Recycle Bin, if it
+          is available.</para>
+
+          <important>
+            <para>Remember: if the Recycle Bin on your system has been
+            deactivated, this option does not work, and deleted files are
+            lost!</para>
+          </important>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: Files and folders deleted in a
+          directory compare actually deleted.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Add to explorer context menu<indexterm>
+          <primary>shell integration</primary>
+
+          <secondary>enabling and disabling</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Enabled</option> (default): Adds one or more WinMerge
+          shortcuts to the Windows Explorer context menu. After right-clicking
+          one or more files or folders, choose a WinMerge shortcut to open the
+          items in a WinMerge compare window.</para>
+
+          <para>Two additional options are available if you use this
+          integration. Neither option is enabled by default, but you can enable
+          one or both:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Enable advanced menu</term>
+
+              <listitem>
+                <itemizedlist>
+                  <listitem>
+                    <para><option>Disabled</option> (default): The
+                    <guimenuitem>WinMerge</guimenuitem> shortcut is included in
+                    the Windows Explorer context menu when you right-click one
+                    or more files or folders. If you select a single item, the
+                    Select Files or Folders dialog opens. If you select two
+                    items, they are opened directly in a Compare window.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><option>Enabled</option>: Replaces the
+                    <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer
+                    context menu with <guimenuitem>Compare</guimenuitem>
+                    shortcuts, described in <xref
+                    linkend="OpenPaths_shell-integ" />. The
+                    <guimenuitem>Compare</guimenuitem> shortcuts enable you to
+                    add a selected path to memory, then choose the second
+                    separately (for example, in a different Explorer
+                    view).</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Include subfolders by default</term>
+
+              <listitem>
+                <itemizedlist>
+                  <listitem>
+                    <para><option>Disabled</option> (default): When you use the
+                    <guimenuitem>WinMerge</guimenuitem> or
+                    <guimenuitem>Compare</guimenuitem> shortcut, only the top
+                    level of files is selected: the compare operation is
+                    non-recursive.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><option>Enabled</option>: The selection includes
+                    subfolders, making the compare operation recursive.</para>
+
+                    <para>Another way to include subfolders is to press
+                    <keycap>Control</keycap> while selecting the
+                    <guimenuitem>WinMerge</guimenuitem> or
+                    <guimenuitem>Compare</guimenuitem> shortcut in the Windows
+                    Explorer context menu.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+
+        <listitem>
+          <para><option>Disabled</option>: The
+          <guimenuitem>WinMerge</guimenuitem> shortcut is unavailable in Windows
+          Explorer.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>External editor<indexterm>
+          <primary>external editor</primary>
+
+          <secondary>configuring</secondary>
+        </indexterm></title>
+
+      <para>The WinMerge File Compare window provides common editing functions.
+      If you prefer using your favorite, full-featured editor, you can configure
+      WinMerge to open an external editor from the Folder Compare context
+      menu.</para>
+
+      <para>By default, Notepad is configured as the default external editor,
+      because it is found on all Windows systems. To configure a different
+      external editor, enter the full path to its executable file.</para>
+
+      <tip>
+        <para>Along with the path, you can include any command line parameters
+        supported by the external tool, in this format:
+        <command><replaceable>path to executable</replaceable></command>
+        <option>-option1</option> <option>-option2</option>
+        <option><replaceable>...</replaceable></option></para>
+      </tip>
+
+      <para>To use the configured external editor, right-click a file in the
+      Folder Compare window and choose <menuchoice>
+          <guimenuitem>Open Left</guimenuitem>
+
+          <guimenuitem>with External Editor</guimenuitem>
+        </menuchoice> or <menuchoice>
+          <guimenuitem>Open Right</guimenuitem>
+
+          <guimenuitem>with External Editor</guimenuitem>
+        </menuchoice>.</para>
+    </section>
+
+    <section>
+      <title>Filter Folder<indexterm>
+          <primary>filtering, folder used</primary>
+        </indexterm></title>
+
+      <para>Use this field to specify your own private folder for file filters.
+      By default this folder is your user profile directory (for example,
+      <filename>My Documents</filename> on Windows XP, or
+      <filename>Documents</filename> on Windows Vista). When you create a file
+      filter, it is automatically added to this folder.</para>
+    </section>
+
+    <section>
+      <title>Temporary files folder<indexterm>
+          <primary>temporary files, folder used</primary>
+        </indexterm></title>
+
+      <para>Specify the folder where WinMerge stores temporary files. Either one
+      of these options is available:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>System's temp folder (default): For example, this might be
+          <filename>C:\Windows\Temp</filename> on your system.</para>
+        </listitem>
+
+        <listitem>
+          <para>Custom folder: Click <guibutton>Browse</guibutton> and select a
+          different folder where you have write access.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_backup">
+    <title>Backup Files<indexterm>
+        <primary>backup files, options</primary>
+      </indexterm></title>
+
+    <para>This page allows you to control how WinMerge creates backup
+    files.</para>
+
+    <section>
+      <title>Create backup files in</title>
+
+      <para>Specify when WinMerge should create backup files. You can enable or
+      disable each of these options independently:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Folder compare</guilabel> (disabled by default):
+          Backup files are create whenever files are overwritten
+          (copied).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>File compare</guilabel> (enabled by default): Backup
+          files are created whenever files are saved.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Create backup files into</title>
+
+      <para>Specify where backup files are created. Only one of these options
+      can be enabled:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Original file's folder</guilabel> (enabled by
+          default): Backup files are created in the same folder as the source
+          file. This is usually a good choice. The down side is that cleaning up
+          backup files in big folders can take a lot of work.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Global backup folder</guilabel> (disabled by default):
+          All backup files are created in one global folder. This makes them
+          easy to clean up. But, if there are multiple source files with same
+          file name, then the most recent backup file overwrites the previous
+          one of the same name.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Backup filename</title>
+
+      <para>When WinMerge creates a backup file, it appends an extension to the
+      source file name. You can choose either or both of these extension
+      schemes:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Append .bak -extension</guilabel> (enabled by
+          default): For example, the <filename>file.txt</filename> is backed up
+          to <filename>file.txt.bak</filename>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>File compare</guilabel> (enabled by default):
+          Timestamps are almost always unique, so this option usually avoids
+          duplicating backup file names when the source files have the same
+          names.</para>
+
+          <para>Also, storing a copy of a file each time you save it provides a
+          way to track changes to the file. However, you should consider that
+          this option can create a lot of files.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_vcs">
+    <title>Version Control options<indexterm>
+        <primary>version control systems</primary>
+
+        <secondary>integration configuration</secondary>
+      </indexterm></title>
+
+    <!--What does version control integration do for me? How do the Option page settings work with installed 
+VCS integration? My installation had an option to integrate with TortoiseSVN.-->
+
+    <para>Use this page to configure or disable the WinMerge integration with a
+    supported versioning system.</para>
+
+    <para>Choose one of these options:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><guilabel>None</guilabel> (default)</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Visual SourceSafe (less than 5.0)</guilabel></para>
+
+        <para>Also enter the path to <filename>SS.EXE</filename>.</para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Visual SourceSafe (5.0 and above)</guilabel></para>
+      </listitem>
+
+      <listitem>
+        <para><guilabel>Rational ClearCase</guilabel></para>
+
+        <para>Also enter the path to <filename>cleartool.exe</filename>.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="Configuration_codepage">
+    <title>Codepage options<indexterm>
+        <primary>codepage</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>This page allow you to specify the codepage that WinMerge uses for
+    ANSI files, and whether the codepage of certain file formats should be
+    detected from the contents of the files.</para>
 
     <section>
       <title>Default codepage for ANSI files</title>
 
-      <para>These three radiobuttons can be used to select default codepage
-      WinMerge uses when handling ANSI files. Usually default choice of
-      <guilabel>System codepage</guilabel> is best choice. However if user
-      knows that files are not in same codepage than system uses then user can
-      choose different codepage selecting <guilabel>Custom codepage</guilabel>
-      and typing codepage number to textbox next to it.</para>
+      <para>Choose one of these radio buttons to set the default codepage that
+      WinMerge uses when handling ANSI files:</para>
 
-      <important>
-        <para>This option is read only when files are loaded. Changing this
-        option when the files are open in editor can cause unpredictable
-        changes to files when saving them. <emphasis>Select codepage before
-        loading the files</emphasis>.</para>
-      </important>
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>System codepage</guilabel> (default):The codepage used
+          by your Windows system. This default is usually the best choice.
+          However if you know that you are comparing files that do not use the
+          system codepage, consider one of the other options.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>According to WinMerge User Interface</guilabel>: The
+          encoding used by your installation of WinMerge.<!--This is just a guess - don't find any info on this option.--></para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Custom codepage</guilabel>: Enter the codepage number
+          explicitly. For example, <userinput>UTF-8</userinput> or
+          <userinput>ISO-8851-1</userinput>.</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
@@ -666,46 +1459,49 @@ EOL differences.</screen>
       <important>
         <para>Uncheck this option in <filename>WinMerge.exe</filename>.
         Characters conversions can result in lossy conversions and the risk is
-        very high. <filename>WinMerge.exe</filename> can display files only
-        with your current codepage.</para>
+        very high. <filename>WinMerge.exe</filename> can display files only with
+        your current codepage.<!--What option? The one in the Options page? If it should always be unchecked, 
+why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
+or is this understood?--></para>
       </important>
 
-      <para>This option is interesting when your documents use a codepage
-      different from your current codepage (your current codepage is the
-      codepage of your Windows configuration).</para>
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge does not read
+          codepage information from the source files. It uses the default
+          codepage setting instead.</para>
+        </listitem>
 
-      <para>For example, you may merge two Slovak or two Japanese files in an
-      English environment. With the required fonts, and this option set, your
-      Slovak, or Japanese, files will be displayed with Slovak, or Japanese,
-      characters.</para>
+        <listitem>
+          <para><option>Enabled</option>: WinMerge detects the codepage for
+          these extensions : <filename class="extension">html</filename>,
+          <filename class="extension">rc</filename> (resource files for VC++)
+          and <filename class="extension">xml</filename>. The detected codepage
+          overrides the setting for the default codepage option.</para>
 
-      <para>Actually, WinMerge detects the codepage for these extensions :
-      <filename class="extension">.html</filename>, <filename
-      class="extension">.rc</filename> (resource files for VC++) and <filename
-      class="extension">.xml</filename>.</para>
+          <para>This option is of interest when your documents use a codepage
+          that is different from the codepage of your Windows
+          configuration.</para>
 
-      <para>WinMerge also detects a codepage difference between the left/right
-      files. To avoid lossy conversions during merge/copy/paste, WinMerge
-      proposes you to ignore the codepage information.</para>
+          <para>For example, you might merge two Slovak or two Japanese files in
+          an English environment. With this option enabled (and with the
+          required fonts), your Slovak, or Japanese, the files are displayed
+          using Slovak, or Japanese, characters.</para>
 
-      <caution>
-        <para>When you paste/copy text to an external application, the
-        external application must use the same codepage as WinMerge does. If
-        your external editor does not support custom codepages, disable this
-        option. Refer to the documentation for your external editor (for
-        copying to WinMerge, Internet Explorer offers codepage
-        selection).</para>
-      </caution>
+          <para>WinMerge also detects a codepage difference between the
+          left/right files. To avoid lossy conversions when you merge, copy, or
+          paste, we suggest that you ignore the codepage information.</para>
+
+          <caution>
+            <para>When you copy or paste text to an external application, the
+            external application must use the same codepage as WinMerge does.
+            Refer to the documentation for your external editor. For copying to
+            WinMerge, Internet Explorer offers codepage selection. If your
+            external editor does not support custom codepages, disable this
+            option.</para>
+          </caution>
+        </listitem>
+      </itemizedlist>
     </section>
-  </section>
-
-  <section>
-    <title>Import and Export of options</title>
-
-    <para>Options can be exported to and imported from file. Currently
-    WinMerge supports Windows ini-file formatted text files. Exporting is done
-    by selecting the <guibutton>Export...</guibutton> button. WinMerge asks
-    for location and filename and then saves the file. Importing is done by
-    selecting the <guibutton>Import...</guibutton> -button.</para>
   </section>
 </article>
