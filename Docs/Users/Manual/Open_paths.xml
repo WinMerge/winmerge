@@ -193,7 +193,11 @@
 
           <listitem>
             <para>Designates the selected path as the first
-            (<guilabel>Left</guilabel>) path in the comparison.</para>
+            (<guilabel>Left</guilabel>) path in the comparison. The path is
+            loaded in memory; meanwhile WinMerge waits for you select the second
+            path in Windows Explorer, using the
+            <guimenuitem>Compare</guimenuitem> shortcut (described next).
+            </para>
           </listitem>
         </varlistentry>
 
@@ -242,10 +246,13 @@ to compare one file/folder against several files/folders.</para> </tip> -->
         </varlistentry>
       </variablelist>
 
-      <para>The shell integration paths that you map are stored in memory only
-      until you use them to open WinMerge. They are discarded after a compare
-      operation. This means that you cannot select one <guimenuitem>Compare
-      To</guimenuitem> path and compare it against several paths.</para>
+      <para>The shell integration paths that you map are stored in memory until
+      you use them to open WinMerge. As a result, you don't need to select both
+      files at the same time or even using the same Windows Explorer view: you 
+      can choose one, open a different directory, and choose the other one. 
+      Both paths are discarded from memory after a compare operation. This means that you cannot select one
+      <guimenuitem>Compare To</guimenuitem> path and compare it against several
+      paths.</para>
 
       <para>Here is a simple method of using the advanced integration נthere are
       other scenarios, of course. In Windows Explorer:</para>

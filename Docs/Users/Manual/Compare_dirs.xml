@@ -124,6 +124,8 @@ I get the partial list, but no Abort indicator.--></para>
   <section id="Compare_dirs_window">
     <title>Folder Compare window<indexterm>
         <primary>Folder Compare window</primary>
+
+        <seealso>Compare windows</seealso>
       </indexterm></title>
 
     <para>The Folder Compare window shows the result of a folder compare in a
@@ -591,7 +593,7 @@ I get the partial list, but no Abort indicator.--></para>
 
           <secondary>copying from Folder Compare window</secondary>
         </indexterm><indexterm>
-          <primary>filenames</primary>
+          <primary>file names</primary>
 
           <secondary>copying from Folder Compare window</secondary>
         </indexterm></title>
