@@ -67,7 +67,7 @@ protected:
 	BOOL ShowDialog();
 
 private:
-	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< List of files to patch. */
+    std::vector<PATCHFILES> m_fileList; /**< List of files to patch. */
 	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
 	CPatchDlg *m_pDlgPatch; /**< Dialog for selecting files and options. */
 	String m_sPatchFile; /**< Patch file path and filename. */

@@ -22,11 +22,11 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
-#include "merge.h"
+#include "StdAfx.h"
+#include "Merge.h"
 #include "PatchTool.h"
 #include "PatchDlg.h"
-#include "diff.h"
+#include "DIFF.H"
 #include "coretools.h"
 #include "paths.h"
 #include "CompareOptions.h"
@@ -112,7 +112,7 @@ void CPatchDlg::OnOK()
 	// multiple files.  Multiple files are selected from DirView.
 	// Only if single files selected, filenames are checked here.
 	// Filenames read from Dirview must be valid ones.
-	int selectCount = m_fileList.GetCount();
+	int selectCount = m_fileList.size();
 	if (selectCount == 1)
 	{
 		BOOL file1Ok = (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE);
@@ -203,12 +203,12 @@ BOOL CPatchDlg::OnInitDialog()
 	m_ctlFile2.LoadState(_T("Files\\DiffFile2"));
 	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
 
-	int count = m_fileList.GetCount();
+	int count = m_fileList.size();
 
 	// If one file added, show filenames on dialog
 	if (count == 1)
 	{
-		PATCHFILES files = m_fileList.GetHead();
+        const PATCHFILES& files = m_fileList.front();
 		m_file1 = files.lfile.c_str();
 		m_ctlFile1.SetWindowText(files.lfile.c_str());
 		m_file2 = files.rfile.c_str();
@@ -292,8 +292,7 @@ void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
 
 	if (count == 1)
 	{
-		POSITION pos = GetFirstItem();
-		pf = GetNextItem(pos);
+		pf = GetItemAt(0);
 	}
 	else if (count > 1)
 	{
@@ -426,8 +425,7 @@ void CPatchDlg::OnDiffSwapFiles()
 	m_file2 = file1;
 
 	// Empty list
-	while (!m_fileList.IsEmpty())
-		m_fileList.RemoveTail();
+	m_fileList.clear();
 
 	// Add swapped files
 	files.lfile = file2;
@@ -439,9 +437,9 @@ void CPatchDlg::OnDiffSwapFiles()
  * @brief Add patch item to internal list.
  * @param [in] pf Patch item to add.
  */
-void CPatchDlg::AddItem(PATCHFILES pf)
+void CPatchDlg::AddItem(const PATCHFILES& pf)
 {
-	m_fileList.AddTail(pf);
+	m_fileList.push_back(pf);
 }
 
 /** 
@@ -450,38 +448,17 @@ void CPatchDlg::AddItem(PATCHFILES pf)
  */
 int CPatchDlg::GetItemCount()
 {
-	return m_fileList.GetCount();
+	return m_fileList.size();
 }
 
 /** 
- * @brief Return ref to first item in the internal list
- * @return POSITION of first item in the list.
- */
-POSITION CPatchDlg::GetFirstItem()
-{
-	return m_fileList.GetHeadPosition();
-}
-
-/** 
- * @brief Return next item in the internal list
- * @param [in, out] pos
- * - in POSITION for item to get
- * - out Next item's POSITION
+ * @brief Return item in the internal list at given position
+ * @param [in] position Zero-based index of item to get
  * @return PATCHFILES from given position.
  */
-PATCHFILES CPatchDlg::GetNextItem(POSITION &pos)
+const PATCHFILES& CPatchDlg::GetItemAt(int position)
 {
-	return m_fileList.GetNext(pos);
-}
-
-/** 
- * @brief Set files in given pos of internal list.
- * @param [in] pos POSITION of item to set.
- * @param [in] pf PATCHFILES to set in given position.
- */
-void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
-{
-	m_fileList.SetAt(pos, pf);
+	return m_fileList.at(position);
 }
 
 /** 
@@ -489,7 +466,7 @@ void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
  */
 void CPatchDlg::ClearItems()
 {
-	m_fileList.RemoveAll();
+	m_fileList.clear();
 }
 
 /** 

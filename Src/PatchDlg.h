@@ -45,11 +45,9 @@ public:
 	CPatchDlg(CWnd* pParent = NULL);   // standard constructor
 	
 	// Functions to add and get selected files (as PATCHFILEs)
-	void AddItem(PATCHFILES pf);
+	void AddItem(const PATCHFILES& pf);
 	int GetItemCount();
-	POSITION GetFirstItem();
-	PATCHFILES GetNextItem(POSITION &pos);
-	void SetItemAt(POSITION pos, PATCHFILES pf);
+    const PATCHFILES& GetItemAt(int position);
 	void ClearItems();
 
 // Dialog Data
@@ -84,7 +82,7 @@ public:
 // Implementation
 protected:
 
-	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< Source files to create patch from */
+    std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
 	
 	void ChangeFile(const CString &sFile, BOOL bLeft);
 	void UpdateSettings();
