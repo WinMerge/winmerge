@@ -2238,10 +2238,18 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			sextL = GetFileExt(sLeftFile.c_str(), m_strDesc[0].c_str());
 			sextR = GetFileExt(sRightFile.c_str(), m_strDesc[1].c_str());
 		}
-		BOOL bLeftTyped = pLeft->SetTextType(sextL.c_str());
+		
+		BOOL syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+		BOOL bLeftTyped = FALSE;
+		BOOL bRightTyped = FALSE;
+		
+		if (syntaxHLEnabled)
+		{
+			bLeftTyped = pLeft->SetTextType(sextL.c_str());
 		pLeftDetail->SetTextType(sextL.c_str());
-		BOOL bRightTyped = pRight->SetTextType(sextR.c_str());
+			bRightTyped = pRight->SetTextType(sextR.c_str());
 		pRightDetail->SetTextType(sextR.c_str());
+		}
 
 		// If other side didn't have recognized texttype, apply recognized
 		// type to unrecognized one. (comparing file.cpp and file.bak applies

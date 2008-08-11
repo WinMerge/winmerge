@@ -31,6 +31,8 @@ WinMerge 2.9.1.6
   BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
   BugFix: External editor command line switches did not work (#2037862)
   BugFix: Editing line filters updated wrong filter (#2025130)
+  BugFix: Could change syntax highlight mode when highlighting was
+    disabled from options (#2027325)
   Translation updates:
   - Chinese Traditional (#2039929)
 
