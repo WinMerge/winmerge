@@ -28,7 +28,7 @@
 
       <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/u</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
 
