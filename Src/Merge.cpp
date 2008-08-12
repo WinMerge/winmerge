@@ -141,6 +141,7 @@ CMergeApp::CMergeApp() :
 , m_bNonInteractive(false)
 , m_pOptions(NULL)
 , m_pLog(NULL)
+, m_nActiveOperations(0)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance

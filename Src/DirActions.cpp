@@ -973,8 +973,10 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 
 	actionScript.SetParentWindow(this->GetSafeHwnd());
 
+	theApp.AddOperation();
 	if (actionScript.Run())
 		UpdateAfterFileScript(actionScript);
+	theApp.RemoveOperation();
 }
 
 /**

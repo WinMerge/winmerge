@@ -1764,6 +1764,9 @@ void CMainFrame::ActivateFrame(int nCmdShow)
  */
 void CMainFrame::OnClose()
 {
+	if (theApp.GetActiveOperations())
+		return;
+
 	// Check if there are multiple windows open and ask for closing them
 	BOOL bAskClosing = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
 	if (bAskClosing)
