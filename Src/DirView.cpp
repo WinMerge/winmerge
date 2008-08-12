@@ -354,7 +354,7 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 		else
 			return (di.diffcode.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
 	}
-	return DIFFIMG_DIR;
+	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_ABORT);
 }
 
 /**

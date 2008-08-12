@@ -8,6 +8,7 @@ WinMerge 2.11.1.4
   BugFix: External editor command line switches did not work (#2037862)
   BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
   Bugfix: Lost focus after folder compare operations (#2046002)
+  Bugfix: Some files had folder icons when aborting folder compare (#2018836)
   Translation updates:
   - Chinese Traditional (#2039929)
 
