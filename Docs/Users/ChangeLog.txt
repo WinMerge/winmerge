@@ -35,6 +35,7 @@ WinMerge 2.9.1.6
   BugFix: Could change syntax highlight mode when highlighting was
     disabled from options (#2027325)
   BugFix: Boldfacing did work only for Courier font (#2000996)
+  Bugfix: Lost focus after folder compare operations (#2046002)
   Translation updates:
   - Chinese Traditional (#2039929)
 

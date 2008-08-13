@@ -113,6 +113,31 @@ protected:
 
 	void ReloadMenu();
 
+	//@{
+	/**
+	 * @name Active operations counter.
+	 * These functions implement counter for active operations. We need to
+	 * track active operations during whose user cannot exit the application.
+	 * E.g. copying files in folder compare is such an operation.
+	 */
+	/**
+	 * Increment the active operation counter.
+	 */
+	void AddOperation() { InterlockedIncrement(&m_nActiveOperations); }
+	/**
+	 * Decrement the active operation counter.
+	 */
+	void RemoveOperation()
+	{
+		ASSERT(m_nActiveOperations > 0);
+		InterlockedDecrement( &m_nActiveOperations);
+	}
+	/**
+	 * Get the active operations count.
+	 */
+	LONG GetActiveOperations() const { return m_nActiveOperations; }
+	//@}
+
 	//{{AFX_MSG(CMergeApp)
 	afx_msg BOOL OnOpenRecentFile(UINT nID);
 	afx_msg void OnAppAbout();
@@ -127,6 +152,7 @@ private:
 	CLogFile * m_pLog;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
+	LONG m_nActiveOperations; /**< Active operations count. */
 };
 
 extern CMergeApp theApp;
