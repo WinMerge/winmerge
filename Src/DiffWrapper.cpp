@@ -24,18 +24,18 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <string>
 #include <map>
 #include <shlwapi.h>
 #include "Ucs2Utf8.h"
 #include "coretools.h"
-#include "diffcontext.h"
+#include "DiffContext.h"
 #include "DiffList.h"
 #include "MovedLines.h"
 #include "FilterList.h"
-#include "diffwrapper.h"
-#include "diff.h"
+#include "DiffWrapper.h"
+#include "DIFF.H"
 #include "FileTransform.h"
 #include "LogFile.h"
 #include "paths.h"
@@ -242,7 +242,7 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
  * @brief Enables/disables moved block detection.
  * @param [in] bDetectMovedBlocks If TRUE moved blocks are detected.
  */
-void CDiffWrapper::SetDetectMovedBlocks(BOOL bDetectMovedBlocks)
+void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 {
 	if (bDetectMovedBlocks)
 	{

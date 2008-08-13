@@ -84,7 +84,7 @@ protected:
 protected:
 	CMergeDoc* GetDocument();
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected = FALSE);
-	BOOL GotoLocation(const CPoint& point, BOOL bRealLine = TRUE);
+	bool GotoLocation(const CPoint& point, bool bRealLine = true);
 	int GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine = TRUE);
 	int IsInsideBar(const CRect& rc, const POINT& pt);
 	void DrawVisibleAreaRect(CDC* pDC, int nTopLine = -1, int nBottomLine = -1);

@@ -475,7 +475,7 @@ void CLocationView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	SetCapture();
 
-	if (!GotoLocation(point, FALSE))
+	if (!GotoLocation(point, false))
 		CView::OnLButtonDown(nFlags, point);
 }
 
@@ -535,7 +535,7 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
  */
 void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	if (!GotoLocation(point, FALSE))
+	if (!GotoLocation(point, false))
 		CView::OnLButtonDblClk(nFlags, point);
 }
 
@@ -553,7 +553,7 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  * FALSE if view linenumbers are OK.
  * @return TRUE if succeeds, FALSE if point not inside bars.
  */
-BOOL CLocationView::GotoLocation(const CPoint& point, BOOL bRealLine)
+bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 {
 	CRect rc;
 	GetClientRect(rc);
@@ -572,13 +572,13 @@ BOOL CLocationView::GotoLocation(const CPoint& point, BOOL bRealLine)
 		line = GetLineFromYPos(point.y, bar, FALSE);
 	}
 	else
-		return FALSE;
+		return false;
 
 	m_view[MERGE_VIEW_LEFT]->GotoLine(line, bRealLine, bar);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 		m_view[bar]->SetFocus();
 
-	return TRUE;
+	return true;
 }
 
 /**
@@ -674,7 +674,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		m_view[MERGE_VIEW_LEFT]->GotoLine(nLine, TRUE, bar);
+		m_view[MERGE_VIEW_LEFT]->GotoLine(nLine, true, bar);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 		m_view[bar]->SetFocus();
 		break;

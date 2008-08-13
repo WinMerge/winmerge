@@ -115,13 +115,13 @@ void DiffList::AddDiff(const DIFFRANGE & di)
  * @param [in] nDiff Index of DIFFRANGE to check.
  * @return TRUE if diff is significant, FALSE if not.
  */
-BOOL DiffList::IsDiffSignificant(int nDiff) const
+bool DiffList::IsDiffSignificant(int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (dfi->op != OP_TRIVIAL)
-		return TRUE;
+		return true;
 	else
-		return FALSE;
+		return false;
 }
 
 /**
@@ -130,17 +130,17 @@ BOOL DiffList::IsDiffSignificant(int nDiff) const
  * @param [out] di DIFFRANGE returned (empty if error)
  * @return TRUE if DIFFRANGE found from given index.
  */
-BOOL DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
+bool DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (!dfi)
 	{
 		DIFFRANGE empty;
 		di = empty;
-		return FALSE;
+		return false;
 	}
 	di = *dfi;
-	return TRUE;
+	return true;
 }
 
 /**
@@ -168,15 +168,15 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
  * @param [in] di Diff to put in list.
  * @return TRUE if index was valid and diff put to list.
  */
-BOOL DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
+bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < m_diffs.size())
 	{
 		m_diffs[nDiff] = di;
-		return TRUE;
+		return true;
 	}
 	else
-		return FALSE;
+		return false;
 }
 
 /**
@@ -203,13 +203,13 @@ int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
  * @param [in] nDiff Index to diff table
  * @return TRUE if line is inside given difference.
  */
-BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
+bool DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (nLine >= dfi->dbegin0 && nLine <= dfi->dend0)
-		return TRUE;
+		return true;
 	else
-		return FALSE;
+		return false;
 }
 
 /**
@@ -264,15 +264,15 @@ int DiffList::LineToDiff(UINT nLine) const
  * @param [out] nDiff Index of diff found.
  * @return TRUE if line is inside diff, FALSE otherwise.
  */
-BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
+bool DiffList::GetPrevDiff(int nLine, int & nDiff) const
 {
-	BOOL bInDiff = TRUE;
+	bool bInDiff = true;
 	int numDiff = LineToDiff(nLine);
 
 	// Line not inside diff
 	if (nDiff == -1)
 	{
-		bInDiff = FALSE;
+		bInDiff = false;
 		for (int i = (int) m_diffs.size() - 1; i >= 0 ; i--)
 		{
 			if ((int)DiffRangeAt(i)->dend0 <= nLine)
@@ -295,15 +295,15 @@ BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
  * @param [out] nDiff Index of diff found.
  * @return TRUE if line is inside diff, FALSE otherwise.
  */
-BOOL DiffList::GetNextDiff(int nLine, int & nDiff) const
+bool DiffList::GetNextDiff(int nLine, int & nDiff) const
 {
-	BOOL bInDiff = TRUE;
+	bool bInDiff = true;
 	int numDiff = LineToDiff(nLine);
 
 	// Line not inside diff
 	if (numDiff == -1)
 	{
-		bInDiff = FALSE;
+		bInDiff = false;
 		const int nDiffCount = m_diffs.size();
 		for (int i = 0; i < nDiffCount; i++)
 		{
@@ -322,11 +322,11 @@ BOOL DiffList::GetNextDiff(int nLine, int & nDiff) const
  * @brief Check if diff-list contains significant diffs.
  * @return TRUE if list has significant diffs, FALSE otherwise.
  */
-BOOL DiffList::HasSignificantDiffs() const
+bool DiffList::HasSignificantDiffs() const
 {
 	if (m_firstSignificant == -1)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }
 
 /**

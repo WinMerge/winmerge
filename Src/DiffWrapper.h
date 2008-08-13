@@ -155,8 +155,8 @@ public:
 	void SetPrediffer(PrediffingInfo * prediffer =NULL);
 	void GetPrediffer(PrediffingInfo * prediffer);
 	void SetPatchOptions(const PATCHOPTIONS *options);
-	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
-	BOOL GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
+	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
+	bool GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	void SetPaths(const String &filepath1, const String &filepath2, BOOL tempPaths);
 	void SetAlternativePaths(const String &altPath1, const String &altPath2);
