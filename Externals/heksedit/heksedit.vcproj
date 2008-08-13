@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\../../Build/MergeDebug"
-			IntermediateDirectory=".\../../BuildTmp/heksedit/Debug"
+			OutputDirectory="..\..\Build\Heksedit\Debug"
+			IntermediateDirectory="..\..\BuildTmp\heksedit\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -55,7 +55,8 @@
 				TypeLibraryName=".\../../Build/MergeDebug/heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCPostBuildEventTool"
+				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\heksedit"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -77,8 +78,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\../../Build/MergeRelease"
-			IntermediateDirectory=".\../../BuildTmp/heksedit/Release"
+			OutputDirectory="..\..\Build\Heksedit\Release"
+			IntermediateDirectory="..\..\BuildTmp\heksedit\Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -117,7 +118,8 @@
 				TypeLibraryName=".\../../Build/MergeRelease/heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCPostBuildEventTool"
+				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\pcre"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
