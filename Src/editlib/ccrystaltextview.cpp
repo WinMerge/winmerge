@@ -104,6 +104,7 @@
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
 #include "Ucs2Utf8.h"
+#include "unicoder.h"
 #include "pcre.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -4550,8 +4551,13 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
 
       if (result >= 0)
         {
+#ifdef UNICODE
+          pos = ucr::stringlen_of_utf8(compString, ovector[0]);
+          nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
+#else
           pos = ovector[0];
           nLen = ovector[1] - ovector[0];
+#endif
         }
       else
         pos = -1;
