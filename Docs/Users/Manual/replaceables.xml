@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<section>
+  <title>Replaceable phrases</title>
+
+  <informaltable>
+    <tgroup cols="2">
+      <tbody>
+        <row>
+          <entry>WinMerge product name</entry>
+
+          <entry><phrase id="wm-prodname">WinMerge</phrase></entry>
+        </row>
+
+        <row>
+          <entry>Current version (minor)</entry>
+
+          <entry><phrase id="version-full">2.8.6</phrase></entry>
+        </row>
+
+        <row>
+          <entry>Current version (major)</entry>
+
+          <entry><phrase id="version">2.8</phrase></entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </informaltable>
+</section>
