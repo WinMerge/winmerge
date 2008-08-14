@@ -20,6 +20,7 @@ WinMerge 2.9.1.6
   Add wait cursor for undo and redo (#2039228)
   Rename color scheme menu item "None" and add separator (#2027300)
   Add icon for "Open Conflict File" menu item (#2047054)
+  Release notes update (#2050348)
   BugFix: Use system codepage for paths (#1979429, #2008581)
   BugFix: ANSI build crash in folder compare (#2010053)
   BugFix: Add insert/overtype mode indicator to statusbar (#2015174)

@@ -57,13 +57,13 @@
   <li><a href="#new2910">What Is New in 2.9.10?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>July 2008</p>
+<p>August 2008</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
 This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+the WinMerge development. This release is not recommended for the production.
 </p>
 
 <p>
@@ -98,16 +98,42 @@ environments. Now the Shell Integration is correctly enabled for all users
 after installing.
 </p>
 
+<h4>Focus losing bug has been fixed</h4>
+<p>
+WinMerge lost focus after doing folder compare operations (copy, delete, etc).
+This annoying bug has now been fixed.
+</p>
+
+<h4>Plugins disabled by default</h4>
+<p>
+Plugins are now disabled by default. One must enable plugins from new Plugins-
+dialog (Plugins/List... from the main menu). This was done because some plugins
+can cause unexpected behavior and compare results when they are run by default.
+</p>
+
+<h4>Unlimited undo</h4>
+<p>
+Undo limitation is now removed. Although the limit was high, merging large files
+with lots of differences could hit that limit. If all differences were copied
+in such files that "copy all" operation could not be undo anymore.
+</p>
+
 <h4>Changes</h4>
 <ul>
+  <li>Add ShellExtension menu for drive letters (root folders)</li>
   <li>Fix location pane flickering, optimize location pane</li>
+  <li>Refresh compare after changing filter</li>
+  <li>Add -u commandline parameter as alternative to -ub</li>
   <li>Open conflict files by drag&amp;dropping file to main window</li>
+  <li>Fix: the external editor command line switches didn't work</li>
+  <li>Fix: only Courier font had boldfacing enabled in the editor</li>
   <li>Manual improvements</li>
 </ul>
 
 <h4>Translation updates</h4>
 <ul>
   <li>New Slovenian translation</li>
+  <li>Chinese Traditional updated</li>
 </ul>
 
 <h3><a name="issues">Known Issues</a></h3>
