@@ -39,11 +39,22 @@
  * in a single thread. Either edit this line, or breakpoint & change it in
  * CompareDirectories() below.
  *
- * If you are going to debug compare procdure, you most probably need to set
+ * If you are going to debug compare procedure, you most probably need to set
  * this to true. As Visual Studio seems to have real problems with debugging
  * these threads otherwise.
  */
 static bool bSinglethreaded = false;
+
+/**
+ * @brief Walk into unique folders and add contents.
+ * This enables/disables walking into unique folders. If we don't walk into
+ * unique folders, they are shown as such in folder compare results. If we
+ * walk into unique folders, we'll show all files in the unique folder and
+ * in possible subfolders.
+ *
+ * This value is true by default.
+ */
+static bool bWalkUniques = true;
 
 /** @brief abort handler for CDiffThread -- just a gateway to CDiffThread */
 class DiffThreadAbortable : public IAbortable
@@ -221,7 +232,7 @@ UINT DiffThreadCollect(LPVOID lpParam)
 #endif
 
 	// Build results list (except delaying file comparisons until below)
-	DirScan_GetItems(paths, subdir, subdir, myStruct, casesensitive, depth, NULL);
+	DirScan_GetItems(paths, subdir, false, subdir, false, myStruct, casesensitive, depth, NULL, bWalkUniques);
 
 #ifdef _DEBUG
 	_CrtMemCheckpoint(&memStateAfter);
