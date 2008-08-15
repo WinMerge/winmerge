@@ -3,8 +3,8 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-
 WinMerge 2.10 RC
+  BugFix: Didn't select word-diff cyclically by pressing F4 key (#1989858)
   Translation updates:
   - Japanese (r5804)
 
