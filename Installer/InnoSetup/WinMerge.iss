@@ -371,6 +371,9 @@ Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Compone
 ; MergeLang.dll - translation helper dll
 Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
+; Binary file editor
+Source: ..\..\Build\heksedit\heksedit.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+
 ; Language files
 Source: ..\..\Src\Languages\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
