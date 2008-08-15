@@ -238,7 +238,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	}
 
 	// Are we continuing a cycle from the same place ?
-	if (whichdiff >= worddiffs.size())
+	if (whichdiff >= (int)worddiffs.size())
 		whichdiff = -2; // Clearly not continuing the same cycle, reset to not in cycle
 	
 	// After last diff, reset to get full line again
