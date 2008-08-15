@@ -285,7 +285,7 @@ msgstr "プラグイン(&P)"
 #: Merge.rc:450
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "リスト(&L)..."
 
 #: Merge.rc:152
 #: Merge.rc:269
@@ -2582,12 +2582,12 @@ msgstr "いいえ"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "プラグイン"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "プラグインを有効にする(&E)"
 
 #. StringFileInfo.Block
 #: Merge.rc:1691
@@ -3454,6 +3454,9 @@ msgstr "正規表現"
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
+"フィルタが更新されました。現在開いているすべてのフォルダ比較ウインドウを更新しますか?\n"
+"\n"
+"もし、いまはすべての比較ウインドウを更新したくない場合、いいえを選択し、後で比較ウインドウを更新してください。"
 
 #: Merge.rc:2043
 #, c-format
@@ -3548,12 +3551,12 @@ msgstr "レポートを生成しています..."
 #: Merge.rc:2071
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "最後の操作を元に戻しています..."
 
 #: Merge.rc:2072
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "前の操作をやり直しています..."
 
 #: Merge.rc:2078
 #, c-format
@@ -4089,17 +4092,17 @@ msgstr ""
 #: Merge.rc:2218
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "項目を移動しますか?: "
 
 #: Merge.rc:2219
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "%d個の項目を移動しますか?: "
 
 #: Merge.rc:2221
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "移動の確認"
 
 #: Merge.rc:2227
 #, c-format
@@ -5289,22 +5292,22 @@ msgstr " PB"
 #: Merge.rc:2617
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #: Merge.rc:2619
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "展開プラグイン"
 
 #: Merge.rc:2620
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "比較前処理プラグイン"
 
 #: Merge.rc:2621
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "エディタスクリプト"
 
 #: Merge.rc:2628
 #, c-format
@@ -5329,12 +5332,12 @@ msgstr "右のファイルを名前を付けて保存します..."
 #: Merge.rc:2632
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "左側のファイル/フォルダをリードオンリー状態に変更します"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "右側のファイル/フォルダをリードオンリー状態に変更します"
 
 #: Merge.rc:2634
 #, c-format
@@ -5725,7 +5728,7 @@ msgstr "比較結果からレポートを生成します"
 #: Merge.rc:2718
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "利用可能なプラグインのリストを表示します"
 
 #: Merge.rc:2719
 #, c-format
@@ -5911,7 +5914,7 @@ msgstr "最近使ったリスト"
 #: Merge.rc:2788
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "ハイライトなし"
 
 #: Merge.rc:2789
 #, c-format
