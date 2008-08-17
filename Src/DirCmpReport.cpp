@@ -223,7 +223,8 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
  */
 void DirCmpReport::WriteString(LPCTSTR pszText)
 {
-	LPCSTR pchOctets = ansiconvert_ThreadCP((LPTSTR)pszText);
+	LPCSTR pchOctets = ansiconvert_ThreadCP(pszText);
+	void *pvOctets = const_cast<char *>(pchOctets);
 	size_t cchAhead = strlen(pchOctets);
 	while (LPCSTR pchAhead = (LPCSTR)memchr(pchOctets, '\n', cchAhead))
 	{
@@ -236,7 +237,7 @@ void DirCmpReport::WriteString(LPCTSTR pszText)
 		cchAhead -= cchLine;
 	}
 	m_pFile->Write(pchOctets, cchAhead);
-	free((void*)pchOctets);
+	free(pvOctets);
 }
 
 /**

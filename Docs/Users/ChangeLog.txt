@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.10 RC
   BugFix: Didn't select word-diff cyclically by pressing F4 key (#1989858)
+  BugFix: Crash when generating a folder comparison report (#2008581)
   Translation updates:
   - Japanese (r5804)
 
