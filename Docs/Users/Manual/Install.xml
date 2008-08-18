@@ -26,7 +26,7 @@
     sites.</para>
   </section>
 
-  <section>
+  <section id="Installing_usinginstaller">
     <title>Using the installer (recommended)</title>
 
     <note>
@@ -68,9 +68,10 @@
         <simpara>In the Select Components page, choose one of the preconfigured
         installations in the top control. We recommend the
         <guilabel>Typical</guilabel> configuration for most users. The lower box
-        shows all the available components. You can modify a preconfigured
-        installation by checking or unchecking components. For example, you
-        might choose additional language files. Components are:</simpara>
+        shows all the available components. You can modify the default
+        configuration by checking or unchecking components. For example, if you
+        want to use a WinMerge localization for a different language than
+        English, select the <guilabel>Languages</guilabel> component. </simpara>
 
         <variablelist>
           <varlistentry>
@@ -102,12 +103,14 @@
             <term>Languages</term>
 
             <listitem>
-              <para>WinMerge translation files. After installing translation
-              file user interface language can be selected from menu <menuchoice>
-                  <guimenu>View</guimenu>
-
-                  <guimenuitem>Language</guimenuitem>
-                </menuchoice>.</para>
+              <para>WinMerge translation files. If you want to configure
+              WinMerge to use a different language than English, expand this
+              item and choose one or more available translations. The installer
+              creates a Languages subfolder in the WinMerge folder, containing a
+              *.po translation file for each of your selections. After
+              installation, you can open WinMerge and change its localization to
+              one of the translation file languages. See <xref
+              linkend="Locales" /> for details.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -209,8 +212,8 @@
     </orderedlist>
   </section>
 
-  <section>
-    <title id="InstallFromArchive">Installing from an archive</title>
+  <section id="InstallFromArchive">
+    <title>Installing from an archive</title>
 
     <para>WinMerge is pretty much independent of other system components. It is
     not tightly integrated with Windows, and does not use many DLLs.</para>

@@ -277,7 +277,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
       <para>By default, WinMerge does not include subfolders in compare
       operations. To change the default behavior, enable <guilabel>Include
-      subfolders by befault</guilabel> in the System page of WinMerge options.
+      subfolders by default</guilabel> in the System page of WinMerge options.
       To change include subfolders while using the shell integration, press and
       hold the <keycap>Control</keycap> key while selecting
       <guimenuitem>Compare</guimenuitem> in the Windows Explorer context

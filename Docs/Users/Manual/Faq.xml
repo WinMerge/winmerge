@@ -468,14 +468,14 @@
     </qandaset>
   </section>
 
-  <section>
+  <section id="Faq_encoding">
     <title>Text encoding (codepages)</title>
 
     <qandaset>
       <qandaentry>
-        <question>
-          <para>How do I tell if my file is coded in the local windows (ie,
-          ANSI) codepage?</para>
+        <question id="Faq_detectencoding">
+          <para id="Faq_detectencoding_text">How do I tell if my file is coded
+          in the local windows (ie, ANSI) codepage?</para>
         </question>
 
         <answer>
