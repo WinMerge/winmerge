@@ -181,7 +181,7 @@
         </tip>
       </section>
 
-      <section>
+      <section id="CompareFiles_fonts">
         <title>File pane fonts<indexterm>
             <primary>fonts</primary>
 
@@ -373,7 +373,7 @@
       your WinMerge environment. For example, if you click in a line of text
       within a difference, you might notice several navigation and merge buttons
       become enabled in the toolbar. If you click in another area of text that
-      is not within a difference, these functions become unavailable. </para>
+      is not within a difference, these functions become unavailable.</para>
 
       <para>Difference functions are available in the WinMerge toolbar,and also
       through these alternate mechanisms:</para>
@@ -662,7 +662,7 @@
                 <replaceable>n</replaceable> spaces, where
                 <replaceable>n</replaceable> is the number of characters defined
                 as the <guilabel>Tab size</guilabel> in the Editor page of
-                WinMerge options (4 by default). </para>
+                WinMerge options (4 by default).</para>
               </listitem>
 
               <listitem>
@@ -1532,7 +1532,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
         <listitem>
           <para>Use all the normal compare and merge functions described earlier
-          in this topic to resolve the conflicts in the Mine File pane. </para>
+          in this topic to resolve the conflicts in the Mine File pane.</para>
         </listitem>
 
         <listitem>
