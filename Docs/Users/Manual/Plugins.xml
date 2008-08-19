@@ -2,238 +2,329 @@
 <article id="Plugins">
   <title>Plugins</title>
 
-  <para>Plugins are extra-features for WinMerge. They are not included in the
-  basic version because they interest few users, or because they do not fit in
-  WinMerge architecture.</para>
+  <para>WinMerge plugins are custom dlls or scriptlets, written in the COM API,
+  that preprocess data before a comparison. For example, you can use a plugin to
+  extract text data from MS Word files for WinMerge to compare. Plugins are not
+  included when you install WinMerge, either because the functions that they
+  provide are of interest to only a few users, or because they do not fit into
+  the WinMerge architecture.</para>
 
-  <para>Each plugin:</para>
+  <para>Each plugin is:</para>
 
   <itemizedlist>
     <listitem>
-      <simpara>is a single file, either a dll or a scriptlet (extension
-      <filename class="extension">.sct</filename>)</simpara>
+      <para>A single dll or a scriptlet (<filename
+      class="extension">sct</filename>) file</para>
     </listitem>
 
     <listitem>
-      <simpara>is installed in the subfolder <filename
-      class="directory">MergePlugins</filename></simpara>
+      <para>Installed in the <filename class="directory">MergePlugins</filename>
+      subfolder. A number of plugins are installed for you by WinMerge.</para>
     </listitem>
 
     <listitem>
-      <simpara>is easy to install: copy the plugin file in <filename
-      class="directory">MergePlugins</filename>, close WinMerge if it is
-      running, and launch it again</simpara>
+      <para>Easy to install: To install a plugin that is not included in the
+      WinMerge installation, just copy the plugin file to <filename
+      class="directory">MergePlugins</filename>. The plugin is available the
+      next time you open WinMerge.</para>
     </listitem>
   </itemizedlist>
 
   <section>
-    <title>Three categories of plugins</title>
+    <title>Plugin Types</title>
 
-    <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll
-    or scriptlets. Plugins features are spread over three categories:</para>
+    <para>Plugins are grouped into three main categories:</para>
 
-    <section>
-      <title>Editor complement</title>
+    <variablelist>
+      <varlistentry>
+        <term>Editor complement</term>
 
-      <para>Operate custom operations on the currently selected text from the
-      active editor pane.</para>
+        <listitem>
+          <para>This type of plugin performs custom operations on selected text
+          in the active editor (File pane) of the File Compare window.</para>
+        </listitem>
+      </varlistentry>
 
-      <para>Example plugin: <xref linkend="EditorAddin" /> (Turn the selection
-      to UPPER CASE or lower case.)</para>
-    </section>
+      <varlistentry>
+        <term>Unpacker: transform a file to a text format</term>
 
-    <section>
-      <title>Unpacker - Transform a file to a text format</title>
+        <listitem>
+          <para>This type of plugin transforms a compressed file to a viewable
+          format by decompressing it. The original file is not changed: a
+          temporary transformed file is created and loaded in WinMerge.</para>
 
-      <para>The plugin transform a file in a viewable format (for example,
-      decompress a file). The original file is not changed. A temporary
-      transformed file is created and loaded in WinMerge.</para>
+          <para>Unpacker plugins operate on entire files, not to selected text
+          or diffs within files. Therefore, they are available only when you
+          launch file comparisons, from either the Folder Compare window or the
+          Select Files or Folders dialog. Unpacker plugins are not available in
+          the File Compare window.</para>
 
-      <para>Sometimes the transformed file can be packed back. (See the plugin
-      details to know if it supports packing back.) Then you may merge and save
-      the transformed file. The packing is done automatically in this case. To
-      avoid problems, you are proposed to change the filename when saving a
-      changed file.</para>
+          <para>Sometimes the unpacked file can be repacked (see the details in
+          <xref linkend="Plugins_available" /> to check whether a plugin
+          supports repacking). Then, you can merge and save the transformed
+          file. The packing is done automatically in this case. To be safe, we
+          suggest that you rename the transformed file when you save it.</para>
 
-      <note>
-        <para>When you compare folders, WinMerge doesn't need to display the
-        files, but the diffing process can give a different result when you
-        compare compressed and not compressed files (for example, uncompressed
-        files may be identical, but the compressed files may differ if they
-        include the date of creation). WinMerge applies the unpacker in all
-        situations, and you are sure to have the same result when you compare
-        folder, or when you merge two versions of a file.</para>
-      </note>
+          <note>
+            <para>When you compare folders, WinMerge can give different results
+            for compressed and uncompressed files. For example, files that are
+            identical when uncompressed might be different if they include the
+            creation date. WinMerge applies the unpacker in all situations, and
+            you are sure to have the same result when you compare a folder, or
+            when you merge two versions of a file.</para>
+          </note>
 
-      <para>Example plugin: <xref linkend="DisplayXMLFiles" /> (Display XML
-      files nicely, by consistently inserting tabs and linebreaks.)</para>
-    </section>
+          <para>Example plugin: <xref linkend="DisplayXMLFiles" /> reformats XML
+          files for readability.</para>
+        </listitem>
+      </varlistentry>
 
-    <section>
-      <title>Prediffer - Preprocess files to hide some differences</title>
+      <varlistentry>
+        <term>Prediffer: preprocess files to hide some differences</term>
 
-      <para>The plugin is not apply to the files displayed in the editor. It is
-      applied only to temporary copies of the files, and this copies are then
-      scanned to create the difference list.</para>
+        <listitem>
+          <para>This type of plugin does not operate on the source files
+          displayed in the Compare window. It operates instead on temporary
+          copies of the files, and the copies are then scanned to create the
+          difference list.</para>
 
-      <para>Example plugin: <xref linkend="IgnoreColumns" /> (Ignore the
-      differences inside given columns, while displaying the characters in these
-      columns.)</para>
-    </section>
+          <para>Example plugin: <xref linkend="IgnoreColumns" /> ignores the
+          differences inside specified columns, while displaying the characters
+          in these columns.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </section>
 
   <section>
-    <title>Select and apply a plugin</title>
+    <title>Suggested plugins and automatic modes</title>
+
+    <para>How is WinMerge able to apply the right plugin for a given file? Each
+    plugin specifies a list of file extensions (also listed in each plugin's
+    <xref linkend="Plugins_available" /> section, under <citetitle>File
+    filter</citetitle>). The extensions are used to associate one or more file
+    types with the plugin: when a compared file's extension matches an extension
+    in the plugin's list, the plugin is considered to be a <firstterm>suggested
+    plugin. </firstterm></para>
+
+    <para>There are separate WinMerge options for the unpacking and prediffer
+    types, described later in this topic, that enable you to apply the plugins
+    either manually or automatically. There is no automatic mode for editor
+    complement plugins.</para>
+
+    <para>When you apply plugins to a selected file using automatic mode,
+    WinMerge searches its list of suggested plugins for that file type, and
+    applies the first plugin whose name matches. The search is performed in
+    alphabetical order, so if there are multiple suggested plugins for a file
+    type, only the first one found is applied.</para>
+  </section>
+
+  <section>
+    <title>Applying plugins</title>
+
+    <para>The following subsections describe how to apply each type of plugin.
+    The methods are different for each type of plugin, and also vary depending
+    on whether you are comparing folders or files.</para>
 
     <section>
-      <title>"<guilabel>Suggested plugin</guilabel>" and "<guilabel>Automatic
-      mode</guilabel>"</title>
+      <title>Applying editor complement plugins in the File Compare
+      window</title>
 
-      <para>Each plugin specifies a list of file extensions (see plugins details
-      for more info). When the file extension, either from the left or from the
-      right file, matches the plugin list, the plugin is called "<guilabel>a
-      suggested plugin</guilabel>".</para>
-
-      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge searches
-      for a suggested plugin and applies it if it is avaialble. When two
-      suggested plugins are available for a file, WinMerge applies the first one
-      only (alphabetical order).</para>
-
-      <note>
-        <para>"<guimenuitem>Automatic Unpacking</guimenuitem>" and
-        "<guimenuitem>Auto prediffer</guimenuitem>" are two separate options.
-        There is no option for editor complements.</para>
-      </note>
-    </section>
-
-    <section>
-      <title>Editor complement in folder view</title>
-
-      <para><emphasis>Not available</emphasis></para>
-    </section>
-
-    <section>
-      <title>Editor complement in editor view</title>
-
-      <para>Access list from <menuchoice>
+      <para>With your cursor in either File pane of the File Compare window,
+      click <menuchoice>
           <guimenu>Edit</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
+        </menuchoice> and choose one of these functions:</para>
 
-          <guimenuitem>...</guimenuitem>
-        </menuchoice> in the main menu.</para>
-    </section>
-
-    <section>
-      <title>Unpacker in folder view</title>
-
-      <para>Check <menuchoice>
-          <guimenu>Plugins</guimenu>
-
-          <guimenuitem>Automatic Unpacking</guimenuitem>
-        </menuchoice> in the main menu. You need to update the results
-      (<keycap>F5</keycap>). Each file is loaded again with its suggested
-      unpacker and compared.</para>
-    </section>
-
-    <section>
-      <title>Unpacker in editor view</title>
-
-      <orderedlist>
+      <itemizedlist>
         <listitem>
-          <para>Open dialog: Select the two files first and then press the
-          <guibutton>Select</guibutton> button right from the field
-          "<guilabel>Unpacker</guilabel>". WinMerge displays the standard dialog
-          for unpacker selection. Use the top combobox to select the plugin. Two
-          generic choices "<guilabel>None</guilabel>" and
-          "<guilabel>Automatic</guilabel>" are also available.</para>
+          <para><function>MakeUpper</function></para>
         </listitem>
 
         <listitem>
-          <para>From the folder view when <menuchoice>
-              <guimenu>Plugins</guimenu>
-
-              <guimenuitem>Automatic Unpacking</guimenuitem>
-            </menuchoice> is checked: Just double click to open the file. The
-          suggested plugin used during the folder comparison is used to load the
-          file in the editor.</para>
+          <para><function>MakeLower</function></para>
         </listitem>
 
         <listitem>
-          <para>From the folder view, always: Select one file, then main menu
-          <menuchoice>
-              <guimenu>Plugins</guimenu>
-
-              <guimenuitem>Edit with Unpacker</guimenuitem>
-            </menuchoice>. WinMerge displays the dialog for unpacker selection.
-          Select an unpacker and press <guibutton>OK</guibutton>, WinMerge opens
-          the editor view and applies this unpacker to load the file. This
-          plugin is forgotten when you close the editor view.</para>
+          <para><function>InsertDate</function></para>
         </listitem>
-      </orderedlist>
-    </section>
 
-    <section>
-      <title>Prediffer in folder view</title>
+        <listitem>
+          <para><function>InsertTime</function></para>
+        </listitem>
+      </itemizedlist>
 
-      <para>When the files are selected, right-click to open the context menu.
-      Follow <menuchoice>
-          <guimenu>Plugin Settings</guimenu>
-
-          <guisubmenu>Prediffer Settings</guisubmenu>
-        </menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or
-      "<guimenuitem>No prediffer</guimenuitem>". Refresh the view
-      (<keycap>F5</keycap>) to update the results.</para>
+      <para>The functions are contributed to the
+      <guisubmenu>Scripts</guisubmenu> menu by the <xref
+      linkend="EditorAddin" /> and <xref linkend="Plugins_datetime" />
+      plugins.</para>
 
       <note>
-        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option.
-        Some files in the same folder can be in mode "<guimenuitem>No
-        prediffer</guimenuitem>" and some in mode "<guimenuitem>Auto
-        prediffer</guimenuitem>". When you change folder during a non-recursive
-        compare, the mode is always reset to "<guimenuitem>No
-        prediffer</guimenuitem>".</para>
+        <para>Editor complement plugins are not available in the Folder Compare
+        window.</para>
       </note>
     </section>
 
     <section>
-      <title>Prediffer in editor view</title>
+      <title>Applying unpacker plugins in the Folder Compare window</title>
 
-      <orderedlist>
-        <listitem>
-          <para>From the folder view when "<guimenuitem>Auto
-          prediffer</guimenuitem>" is checked for a file: Just double click to
-          open the file. The plugin used during the folder comparison is used in
-          the editor before the diff algorithm.</para>
-        </listitem>
+      <para>Before applying unpacker plugins, you can set its mode to either
+      automatic or manual mode.</para>
 
+      <itemizedlist>
         <listitem>
-          <para>During an editor session, access prediffer lists with menu
-          <menuchoice>
+          <para>To set automatic mode for this type of plugin, click <menuchoice>
               <guimenu>Plugins</guimenu>
 
-              <guisubmenu>Prediffer</guisubmenu>
-
-              <guimenuitem>...</guimenuitem>
-            </menuchoice>: The active prediffer is checked. Suggested plugins
-          are indicated first above the not-suggested ones. The files are
-          compared again after the selection, you don't need to rescan.</para>
+              <guimenuitem>Automatic Unpacking</guimenuitem>
+            </menuchoice>.</para>
         </listitem>
-      </orderedlist>
+
+        <listitem>
+          <para>To set manual mode, click <menuchoice>
+              <guimenu>Plugins</guimenu>
+
+              <guimenuitem>Manual Unpacking</guimenuitem>
+            </menuchoice>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Remember to click <keycap>F5</keycap> to reload the Folder Compare
+      window using the new setting.</para>
+
+      <section>
+        <title>Using automatic mode</title>
+
+        <para>To apply plugins when automatic unpacking is set, simply launch a
+        compare operation on a file in the Folder Compare window. If the file's
+        type suggested unpacker plugin (if any) preprocesses the file before
+        WinMerge opens it in the File Compare window. </para>
+
+        <para>For example, suppose you right-click an MS Word
+        <filename>doc</filename> file and choose
+        <guimenuitem>Compare</guimenuitem> (also assume that the <xref
+        linkend="Plugins_msword" /> plugin is available). WinMerge converts the
+        doc file (or rather, a copy of it ) to a plain text file and opens it in
+        the File Compare window. </para>
+      </section>
+
+      <section>
+        <title>Using manual mode</title>
+
+        <para>Manual mode enables you to choose a different unpacker plugin than
+        the one that is selected for you in automatic mode. You can also launch
+        the compare using no plugin.</para>
+
+        <para>To apply plugins when manual unpacking is set:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Select the file you want to compare. </para>
+          </listitem>
+
+          <listitem>
+            <para>Click <menuchoice>
+                <guimenu>Plugins</guimenu>
+
+                <guimenuitem>Edit with Unpacker</guimenuitem>
+              </menuchoice>. </para>
+
+            <para>This menu item is enabled only if the selected file's type is
+            supported by an available unpacking plugin.</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Select Unpacker dialog:</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>OK</guibutton> to close the Select Unpacker
+            dialog and launch the file comparison.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>Applying unpacker plugins in the Select Files or Folders
+      dialog</title>
+
+      <para>You can use the Select Unpacker dialog to apply a plugin when you
+      launch a file comparison from the Select Files or Folders dialog. See
+      <xref linkend="Open_paths_unpacker" /> for details.</para>
+    </section>
+
+    <section>
+      <title>Applying prediffer plugins in the Folder Compare window</title>
+
+      <para>With prediffer plugins, you set the mode (<firstterm>Auto
+      prediiffer</firstterm> or <firstterm>No prediffer</firstterm>) for
+      individual files. (Contrast this with unpacker plugins, where you set the
+      mode for all files.) That is, some files in the same folder have different
+      prediffer modes.</para>
+
+      <para>To set the mode for one or more files in the Folder Compare window,
+      right-click the files and choose <menuchoice>
+          <guimenu>Plugin Settings</guimenu>
+
+          <guisubmenu>Prediffer Settings</guisubmenu>
+        </menuchoice>, then choose one of the submenu options:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>Auto Prediffer</guisubmenu> selects the first
+          prediffer plugin available for the file type.</para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>No prediffer</guisubmenu> means that no prediffer
+          plugin is used.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Click <keycap>F5</keycap> to update the window.</para>
+
+      <note>
+        <para>When you open a subfolder during a non-recursive compare, the mode
+        is always reset to <guimenuitem>No prediffer</guimenuitem>.</para>
+      </note>
+
+      <para>When you open a file from the Folder Compare window, your prediffer
+      setting for that file is applied before the File Compare window is
+      opened.</para>
+    </section>
+
+    <section>
+      <title>Applying prediffer plugins in the File Compare window</title>
+
+      <para>In the File Compare winodw, you can apply a prediffer plugin by
+      clicking <menuchoice>
+          <guimenu>Plugins</guimenu>
+
+          <guisubmenu>Prediffer</guisubmenu>
+        </menuchoice> and choosing one of the plugins in the list. Suggested
+      plugins are indicated at the top of the list. The files are compared again
+      after the plugin is applied, so you don't need to rescan the files.</para>
     </section>
   </section>
 
-  <section>
+  <section id="Plugins_available">
     <title>Available plugins</title>
 
     <section>
       <title><filename>CompareMSExcelFiles.dll</filename></title>
 
-      <para>Displays the text content of a <trademark
+      <para>Displays the text contents of a <trademark
       class="registered">Microsoft</trademark> <application>Excel</application>
       file, stripping away all formatting and embedded objects.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -254,7 +345,7 @@
         </segmentedlist></para>
     </section>
 
-    <section>
+    <section id="Plugins_msword">
       <title><filename>CompareMSWordFiles.dll</filename></title>
 
       <para>Displays the text content of a <trademark
@@ -262,7 +353,7 @@
       file, stripping away all formatting and embedded objects.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -288,12 +379,12 @@
     <section id="DisplayXMLFiles">
       <title><filename>DisplayXMLFiles.dll</filename></title>
 
-      <para>This plugin display XML files nicely, by consistently inserting tabs
-      and linebreaks. This is to fix XML files which do not have line returns in
+      <para>This plugin pretty-prints XML files nicely by inserting tabs and
+      line breaks. This is useful for XML files that do not have line returns in
       convenient locations.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -312,7 +403,7 @@
     <section id="EditorAddin">
       <title><filename>editor addin.sct</filename></title>
 
-      <para>Add two functions to the <menuchoice>
+      <para>Adds two functions to the <menuchoice>
           <guimenu>Edit</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
@@ -331,7 +422,7 @@
       </itemizedlist>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
@@ -342,12 +433,14 @@
     <section id="IgnoreColumns">
       <title><filename>IgnoreColumns.dll</filename></title>
 
-      <para>The plugin ignore the characters at specified columns. It does not
-      support files with tabulations (no crash, but all tabs will be treated as
-      a normal character). The first column has number 1.</para>
+      <para>This plugin ignores characters at specified columns. The first
+      column is number 1</para>
 
-      <para>For the parameters, you just need to rename the dll with the
-      following syntax:</para>
+      <para>Note that this plugin does not support files with tabs: the plugin
+      does not fail, but all tabs are be treated as normal characters.</para>
+
+      <para>To specify columns, rename the <filename>dll</filename> using
+      following fields as parameters:</para>
 
       <itemizedlist>
         <listitem>
@@ -364,12 +457,12 @@
         </listitem>
 
         <listitem>
-          <simpara>When max = min, max may be omitted.</simpara>
+          <simpara>When max = min, max can be omitted.</simpara>
         </listitem>
       </itemizedlist>
 
       <example>
-        <title><filename>IgnoreColumns.dll</filename> syntax</title>
+        <title><filename>IgnoreColumns.dll</filename> examples</title>
 
         <variablelist>
           <varlistentry>
@@ -394,7 +487,7 @@
       </example>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -409,12 +502,12 @@
     <section>
       <title><filename>IgnoreCommentsC.dll</filename></title>
 
-      <para>The plugin ignores comments (<constant>//</constant>... and
-      <constant>/*</constant> ... <constant>*/</constant>) in C, C++, PHP and
-      JavaScript files.</para>
+      <para>The plugin ignores comments within<constant> //</constant>... and
+      <constant>/*</constant> ... <constant>*/</constant> delimiters in C, C++,
+      PHP and JavaScript files.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -435,15 +528,16 @@
     <section>
       <title><filename>IgnoreFieldsComma.dll</filename></title>
 
-      <para>The plugin is for files with fields and <emphasis>comma</emphasis>
-      as delimiters (CSV files for example). It ignore the characters in the
-      specified fields. First field has number 1.</para>
+      <para>This plugin is for files with fields and commas as delimiters (CSV
+      files, for example). It ignores the delimiter characters. The first field
+      is number 1.</para>
 
-      <para>Modify the filename to specify the fields. See <xref
-      linkend="IgnoreColumns" /> for the syntax.</para>
+      <para>To specify the delimiters, rename the <filename>dll</filename> using
+      the same parameter fields used for <xref
+      linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -458,17 +552,17 @@
     <section>
       <title><filename>IgnoreFieldsTab.dll</filename></title>
 
-      <para>The plugin is for files with fields and
-      <emphasis>tabulations</emphasis> as delimiters
-      (<application>Excel</application> files saved in format <filename
-      class="extension">*.txt</filename> for example). It ignore the characters
-      in the specified fields. First field has number 1.</para>
+      <para>This plugin is for files that use fields and tabs as delimiters
+      (<application>for examle, Excel</application> files saved in the <filename
+      class="extension">*.txt</filename> format). It ignores the delimiter
+      characters. The first field is number 1.</para>
 
-      <para>Modify the filename to specify the fields. See <xref
-      linkend="IgnoreColumns" /> for the syntax.</para>
+      <para>To specify the delimiters, rename the <filename>dll</filename> using
+      the same parameter fields used for <xref
+      linkend="IgnoreColumns" />.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -484,10 +578,10 @@
       <title><filename>IgnoreLeadingLineNumbers.dll</filename></title>
 
       <para>This plugin ignores the leading line numbers in text files (for
-      example NC and BASIC files).</para>
+      example, NC and BASIC files).</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -503,10 +597,10 @@
         </segmentedlist></para>
     </section>
 
-    <section>
+    <section id="Plugins_datetime">
       <title><filename>insert datetime.sct</filename></title>
 
-      <para>Add two functions to the <menuchoice>
+      <para>Adds two functions to the <menuchoice>
           <guimenu>Edit</guimenu>
 
           <guisubmenu>Scripts</guisubmenu>
@@ -525,7 +619,7 @@
       </itemizedlist>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <seglistitem>
             <seg>Editor complement</seg>
@@ -537,15 +631,15 @@
       <title><filename>RCLocalizationHelper.dll</filename>,
       <filename>RCLocalizationHelperU.dll</filename></title>
 
-      <para>The plugin preprocesses RC files by stripping out localized strings,
-      to enable comparing differnt language versions of the same RC file and
-      ignoring the translations.</para>
+      <para>This plugin preprocesses RC files by stripping out localized
+      strings, to enable comparing different language versions of the same RC
+      file and ignoring the translations.</para>
 
       <para><filename>RCLocalizationHelperU.dll</filename> is the Unicode
       version.</para>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -561,8 +655,8 @@
       <title><filename>WatchBeginningOfLog.dll</filename>,
       <filename>WatchEndOfLog.dll</filename></title>
 
-      <para>For long LOG files, the user is often interested only in the first
-      lines or in the last lines.</para>
+      <para>For long LOG files, often only in the first lines or in the last
+      lines are significant.</para>
 
       <itemizedlist>
         <listitem>
@@ -577,7 +671,7 @@
       </itemizedlist>
 
       <para><segmentedlist>
-          <segtitle>Categorie</segtitle>
+          <segtitle>Category</segtitle>
 
           <segtitle>File filter</segtitle>
 
@@ -592,9 +686,9 @@
           </seglistitem>
         </segmentedlist></para>
 
-      <para>Developers may find information and code of examples in the source
-      package, under the folder "<filename
-      class="directory">Plugins</filename>".</para>
+      <para>Developers can find information and code examples in the source
+      package, under the <filename class="directory">Plugins</filename>
+      folder.</para>
     </section>
   </section>
 
@@ -604,26 +698,25 @@
     <section>
       <title>Windows Script Host</title>
 
-      <para>Some editor complements need this optional component from <trademark
-      class="registered">Microsoft</trademark>.</para>
+      <para>Some editor complement plugins require this optional component from
+      <trademark class="registered">Microsoft</trademark>.</para>
 
-      <para>If the list of editor complements does not present all editor
-      plugins, this component is probably missing. You can check easily.
-      WinMerge informs you with a comment at the bottom of the list. You may
-      install WSH on any version of Windows (need IE 4.0). Download it from
-      <ulink
+      <para>If the list of editor complements does not include all editor
+      plugins, this component is probably missing. To help you verify, WinMerge
+      displays a comment at the bottom of the list. You can install WSH on any
+      version of Windows Download it from <ulink
       url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN
-      Library</ulink>.</para>
+      Library</ulink>, using IE 4.0 or later.</para>
     </section>
 
     <section id="MSVBVM60">
       <title><application>Visual Basic</application> runtime library</title>
 
-      <para>Some plugins require <application>Visual Basic</application> runtime
-      library to work.</para>
+      <para>Some plugins require <application>the Visual Basic</application>
+      runtime library to work.</para>
 
       <para>You can download the required file <filename><ulink
-      url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>
+      url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>,
       or use the <ulink
       url="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time
       Redistribution Pack</ulink> from <trademark
