@@ -2,219 +2,242 @@
 <article id="Locales">
   <title>Locale support</title>
 
-  <para>WinMerge allows translating the user interface to other languages than
-  English. Several translations have been contributed. Translations are
-  available for the following languages:</para>
+  <para>The WinMerge user interface is in English by default, but you can
+  localize your installation to other languages for which translations have been
+  have been contributed. Localizing WinMerge changes text strings that are
+  displayed in the interface, including menus, dialogs, tooltips, and messages,
+  to the language you choose.</para>
 
-  <itemizedlist>
+  <para>Note that localization does not extend beyond the translation of
+  strings. For example, it does not affect how numbers are divided or how words
+  are alphabetized. (Those issues should be addressed in the conventional
+  Windows manner by using the Regional settings in the Control Panel.)</para>
+
+  <para>Localizing your WinMerge installation involves these two basic
+  steps:</para>
+
+  <orderedlist>
     <listitem>
-      <simpara>Bulgarian</simpara>
+      <para><xref linkend="Locales_config_files" />: Make one or more language
+      files available to WinMerge.</para>
     </listitem>
 
     <listitem>
-      <simpara>Catalan</simpara>
+      <para><xref linkend="Locales_config_files" />: Choose one of the
+      configured language files.</para>
     </listitem>
+  </orderedlist>
 
-    <listitem>
-      <simpara>Chinese (both Simplified and Traditional)</simpara>
-    </listitem>
+  <section id="Locales_config_files">
+    <title>Configuring the localization</title>
 
-    <listitem>
-      <simpara>Croatian</simpara>
-    </listitem>
+    <para>Configuring a localization simply involves making its translation file
+    available to WinMerge, either during or after the installation.</para>
 
-    <listitem>
-      <simpara>Czech</simpara>
-    </listitem>
+    <itemizedlist>
+      <listitem>
+        <para>It's easiest to configure a language file during WinMerge
+        installation. The instructions in <xref
+        linkend="Installing_usinginstaller" /> describe how to use the Select
+        Components page to install one or more translation files.</para>
+      </listitem>
 
-    <listitem>
-      <simpara>Danish</simpara>
-    </listitem>
+      <listitem>
+        <para>If you did not configure a language file when you installed
+        WinMerge (or did not use the installer at all), there is no need to
+        re-install WinMerge. You can get the latest translation files from the
+        WinMerge site and configure it yourself:</para>
 
-    <listitem>
-      <simpara>Dutch</simpara>
-    </listitem>
+        <orderedlist>
+          <listitem>
+            <simpara>Create a folder named <filename
+            class="directory">Languages</filename> under the WinMerge
+            installation directory (where <filename>WinMerge.exe</filename> or
+            <filename>WinMergeU.exe</filename> is located), if it does not
+            already exist.</simpara>
+          </listitem>
 
-    <listitem>
-      <simpara>French</simpara>
-    </listitem>
+          <listitem>
+            <simpara>Go to the <ulink
+            url="http://winmerge.org/downloads/">WinMerge download</ulink> site.
+            Download one of the archived binary files (either Zip or 7z format)
+            for the current WinMerge version, and save it to your file
+            system.</simpara>
+          </listitem>
 
-    <listitem>
-      <simpara>German</simpara>
-    </listitem>
+          <listitem>
+            <simpara>Open the downloaded archive, and locate the
+            <filename>*.po</filename> files, where * is a language (for example,
+            <filename>Swedish.po</filename> for the Swedish translation).
+            Extract the language files you want to the
+            <filename>Languages</filename> subfolder in your WinMerge
+            installation directory.</simpara>
+          </listitem>
+        </orderedlist>
 
-    <listitem>
-      <simpara>Greek</simpara>
-    </listitem>
+        <para>The language files are now available the next time you run
+        WinMerge.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
 
-    <listitem>
-      <simpara>Hungarian</simpara>
-    </listitem>
+  <section id="Locales_changing">
+    <title>Changing the Winmerge interface language</title>
 
-    <listitem>
-      <simpara>Italian</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Japanese</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Korean</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Norwegian</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Polish</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Portuguese</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Portuguese (Brazilian)</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Romanian</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Russian</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Slovak</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Spanish</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Swedish</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Turkish</simpara>
-    </listitem>
-
-    <listitem>
-      <simpara>Ukrainian</simpara>
-    </listitem>
-  </itemizedlist>
-
-  <note>
-    <para>The translations cover interface content, including menus, dialogs,
-    tooltips, and messages -- essentially the translation of all the strings
-    displayed. However, they do not provide areas outside of string
-    translation; they do not handle how numbers are divided, or how words are
-    alphabetized. (These issues should be addressed in the conventional
-    Windows manner, which is via the Regional settings in the Control
-    Panel.)</para>
-  </note>
-
-  <section>
-    <title>Selecting language</title>
-
-    <para>In order to change the current user interface language, do the
-    following:</para>
+    <para>If you have configured one or more translation files, as described in
+    the preceding section, you can change the localization of WinMerge to any of
+    them:</para>
 
     <orderedlist>
       <listitem>
-        <simpara>Run WinMerge</simpara>
+        <simpara>Run WinMerge.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Select <guimenuitem>Language</guimenuitem> from the
-        <guimenu>View</guimenu> menu</simpara>
+        <guimenu>View</guimenu> menu.</simpara>
       </listitem>
 
       <listitem>
         <simpara>Select your language and click
-        <guibutton>OK</guibutton></simpara>
+        <guibutton>OK</guibutton>.</simpara>
       </listitem>
     </orderedlist>
 
-    <para>Note that the WinMerge user interface instantly updates to the
-    selected language.</para>
+    <para>The language of the WinMerge user interface is instantly
+    updated.</para>
   </section>
 
   <section>
-    <title>Installing translation</title>
+    <title>Available WinMerge localizations</title>
 
-    <para>The easiest way to install translations is to select them in the
-    installer. Translations are selected in the 4th installer dialog
-    (<guilabel>Select components</guilabel>). The default install
-    (<guilabel>Typical Installation</guilabel>) does not install translations,
-    but they can be individually selected from the list.</para>
+    <para>WinMerge localizations contributed to date include the following
+    translations:</para>
 
-    <para>If you do not want to re-run installer, or did not install WinMerge
-    with the installer in the first place, then the WinMerge translation files
-    are available in the zipped versions. To install a new translation
-    file:</para>
+    <itemizedlist>
+      <listitem>
+        <simpara>Bulgarian</simpara>
+      </listitem>
 
-    <para><orderedlist>
-        <listitem>
-          <simpara>Download the zipped release from <ulink
-          url="http://winmerge.org/downloads/">WinMerge download</ulink>
-          site.</simpara>
-        </listitem>
+      <listitem>
+        <simpara>Catalan</simpara>
+      </listitem>
 
-        <listitem>
-          <simpara>If the <filename class="directory">Languages</filename>
-          subfolder does not exist under the WinMerge directory (where
-          <filename>WinMerge.exe</filename> and/or
-          <filename>WinMergeU.exe</filename> is located) create it.</simpara>
-        </listitem>
+      <listitem>
+        <simpara>Chinese (both Simplified and Traditional)</simpara>
+      </listitem>
 
-        <listitem>
-          <simpara>Search for <filename>*.po</filename> files, where * is a
-          language name (<filename>Swedish.po</filename> for Swedish
-          translation) in the archive file. Extract that file to the
-          <filename>Languages</filename> subfolder.</simpara>
-        </listitem>
+      <listitem>
+        <simpara>Croatian</simpara>
+      </listitem>
 
-        <listitem>
-          <simpara>Run WinMerge</simpara>
-        </listitem>
+      <listitem>
+        <simpara>Czech</simpara>
+      </listitem>
 
-        <listitem>
-          <para>Select <guimenuitem>Language</guimenuitem> from the
-          <guimenu>View</guimenu> menu</para>
-        </listitem>
+      <listitem>
+        <simpara>Danish</simpara>
+      </listitem>
 
-        <listitem>
-          <simpara>Select your language and click
-          <guibutton>OK</guibutton></simpara>
-        </listitem>
-      </orderedlist></para>
+      <listitem>
+        <simpara>Dutch</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>French</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>German</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Greek</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Hungarian</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Italian</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Japanese</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Korean</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Norwegian</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Polish</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Portuguese</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Portuguese (Brazilian)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Romanian</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Russian</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Slovak</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Spanish</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Swedish</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Turkish</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Ukrainian</simpara>
+      </listitem>
+    </itemizedlist>
   </section>
 
   <section>
-    <title>Reporting error in translation</title>
+    <title>Reporting errors in translation</title>
 
-    <para>Please submit errors you find in translations as bugs to our <ulink
+    <para>Please submit any errors you find in translations as bugs to our
+    <ulink
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
-    It would be great if you can provide a corrected version of the translated
-    text also.</para>
+    It would be great if you also provide a corrected version of the translated
+    text.</para>
   </section>
 
   <section>
     <title>Submitting a new translation</title>
 
-    <para>If you would like to add your language to the list, look at the
-    <ulink url="http://winmerge.org/translations/">on-line
-    documentation</ulink> for the details on how to do it. All translations
-    are not complete so it would be nice if you can help improving them.
-    Translating (or improving translation) does not require you to have all
-    compile tools or knowledge of WinMerge internals. Just read instructions
-    from above link. And if you have problems ask help from us in one of
-    <ulink url="http://sourceforge.net/forum/?group_id=13216">WinMerge
+    <para>If you would like to add your language to the list, read the <ulink
+    url="http://winmerge.org/translations/">Translations</ulink> documentation
+    in the WinMerge Web site to learn how. All the translations are incomplete,
+    so your help improving them would be appreciated. Translating (or improving
+    translation) does not require you to have all the compile tools or to know
+    about WinMerge internals, just to follow the instructions in the preceding
+    link. And if you have problems, ask for help from us in one of the <ulink
+    url="http://sourceforge.net/forum/?group_id=13216">WinMerge
     forums</ulink>.</para>
   </section>
 </article>
