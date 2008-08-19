@@ -31,7 +31,7 @@
     Select Files or Folders dialog more efficiently.</para>
 
     <section>
-      <title>Environment variables</title>
+      <title>Using environment variables</title>
 
       <para>You can use environment variables in your paths. Windows expands the
       variable name between % (percent) delimiters. For example, if an
@@ -69,7 +69,7 @@
     </section>
 
     <section>
-      <title>Filter selection</title>
+      <title>Selecting filters</title>
 
       <para>The third edit field in the Select Files or Folders dialog,
       <guilabel>Filter</guilabel>, enables you to restrict the files that are
@@ -105,6 +105,29 @@
         is not valid, WinMerge selects all files (that is, it uses uses the
         default <filename>*.*</filename> extension list).</para>
       </note>
+    </section>
+
+    <section id="Open_paths_unpacker">
+      <title>Selecting an unpacker for file comparisons</title>
+
+      <para>Unpackers are plugins that are installed with WinMerge to provide
+      functionality that is not used by default. Plugins that can be used to
+      preprocess certain types of files before comparing them. For example,
+      WinMerge cannot normally compare MS Word doc files, but by unpacking them,
+      you can compare just the text contents. See <xref linkend="Plugins" /> for
+      details.</para>
+
+      <para>To apply a plugin to your file comparison, click the
+      <guibutton>Select</guibutton> button for the <guilabel>Unpacker</guilabel>
+      option. In the Select Unpacker dialog:</para>
+
+      <xi:include href="select_unpacker.xml"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"
+                  xpointer="element(select-unpacker-proc)" />
+
+      <para>Your choice is displayed in the <guilabel>Unpacker</guilabel> field.
+      Note that you cannot select an unpacker when launching a Folder Compare
+      operation.</para>
     </section>
   </section>
 
@@ -196,8 +219,7 @@
             (<guilabel>Left</guilabel>) path in the comparison. The path is
             loaded in memory; meanwhile WinMerge waits for you select the second
             path in Windows Explorer, using the
-            <guimenuitem>Compare</guimenuitem> shortcut (described next).
-            </para>
+            <guimenuitem>Compare</guimenuitem> shortcut (described next).</para>
           </listitem>
         </varlistentry>
 
@@ -248,11 +270,11 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
       <para>The shell integration paths that you map are stored in memory until
       you use them to open WinMerge. As a result, you don't need to select both
-      files at the same time or even using the same Windows Explorer view: you 
-      can choose one, open a different directory, and choose the other one. 
-      Both paths are discarded from memory after a compare operation. This means that you cannot select one
-      <guimenuitem>Compare To</guimenuitem> path and compare it against several
-      paths.</para>
+      files at the same time or even using the same Windows Explorer view: you
+      can choose one, open a different directory, and choose the other one. Both
+      paths are discarded from memory after a compare operation. This means that
+      you cannot select one <guimenuitem>Compare To</guimenuitem> path and
+      compare it against several paths.</para>
 
       <para>Here is a simple method of using the advanced integration נthere are
       other scenarios, of course. In Windows Explorer:</para>
