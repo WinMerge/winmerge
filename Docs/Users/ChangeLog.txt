@@ -8,6 +8,7 @@ WinMerge 2.11.1.4
   Add icon for "Open Conflict File" menu item (#2047054)
   Include unique subfolder contents in recursive folder compare (#2034259)
   Installer: Use -u switch in TortoiseSVN command line (#2060782)
+  Add icon for "Plugins->List" menu item (#2060771)
   BugFix: External editor command line switches did not work (#2037862)
   BugFix: Deleting/Moving file crashed WinMerge in debugger (#2025833)
   Bugfix: Lost focus after folder compare operations (#2046002)
