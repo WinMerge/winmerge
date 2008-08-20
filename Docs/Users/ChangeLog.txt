@@ -13,6 +13,7 @@ WinMerge 2.11.1.4
   Bugfix: Some files had folder icons when aborting folder compare (#2018836)
   BugFix: Didn't select word-diff cyclically by pressing F4 key (#1989858)
   Translation updates:
+  - Brazilian (#2059836)
   - German (#2045666)
   - Chinese Traditional (#2039929)
   - Japanese (r5805)
