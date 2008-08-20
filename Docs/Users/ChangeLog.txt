@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.10 RC
+  Add icon for "Plugins->List" menu item (#2060771)
   BugFix: Didn't select word-diff cyclically by pressing F4 key (#1989858)
   BugFix: Crash when generating a folder comparison report (#2008581)
   Translation updates:

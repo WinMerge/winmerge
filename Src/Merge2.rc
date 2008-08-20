@@ -139,6 +139,7 @@ IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
 IDB_VIEW_ZOOMIN         BITMAP                  "res\\zoom_in.bmp"
 IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
+IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
