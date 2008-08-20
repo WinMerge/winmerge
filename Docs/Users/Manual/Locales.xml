@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿xml version="1.0" encoding="UTF-8"?>
 <article id="Locales">
   <title>Locale support</title>
 
   <para>The WinMerge user interface is in English by default, but you can
-  localize your installation to other languages for which translations have been
-  have been contributed. Localizing WinMerge changes text strings that are
+  localize your installation to other languages for which translations have
+  been contributed. Localizing WinMerge changes text strings that are
   displayed in the interface, including menus, dialogs, tooltips, and messages,
   to the language you choose.</para>
 
