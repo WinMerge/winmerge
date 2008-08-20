@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-06-16 18:00+0000\n"
+"POT-Creation-Date: 2008-08-14 01:28+0000\n"
+"PO-Revision-Date: 2008-08-14 18:00+0000\n"
 "Last-Translator: Felipe Periard Lopes <felipefpl at ig.com.br>\n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -288,7 +288,7 @@ msgstr "&Plugins"
 #: Merge.rc:450
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Lista..."
 
 #: Merge.rc:152
 #: Merge.rc:269
@@ -2581,12 +2581,12 @@ msgstr "Não"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "&Ativar plugins"
 
 #. StringFileInfo.Block
 #: Merge.rc:1691
@@ -3453,8 +3453,14 @@ msgstr "Expressão regular"
 
 #: Merge.rc:2037
 #, c-format
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
+"Os filtros foram atualizados. Você quer atualizar todas as comparações das pastas abertas?\n"
+"\n"
+"Se você não quer atualizar todas as comparações agora você pode selecionar o Não e atualizar as comparações mais tarde."
 
 #: Merge.rc:2043
 #, c-format
@@ -3549,12 +3555,12 @@ msgstr "Criando o relatório..."
 #: Merge.rc:2071
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Desfazendo a última operação..."
 
 #: Merge.rc:2072
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Refazendo a operação anterior"
 
 #: Merge.rc:2078
 #, c-format
@@ -4091,17 +4097,17 @@ msgstr ""
 #: Merge.rc:2218
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Você tem certeza que você quer mover:"
 
 #: Merge.rc:2219
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Você tem certeza que você quer mover os itens %d:"
 
 #: Merge.rc:2221
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Confirmar o Movimento"
 
 #: Merge.rc:2227
 #, c-format
@@ -5290,22 +5296,22 @@ msgstr " PB"
 #: Merge.rc:2617
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: Merge.rc:2619
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "Desempacotador"
 
 #: Merge.rc:2620
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "Prediffer"
 
 #: Merge.rc:2621
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "Script do editor"
 
 #: Merge.rc:2628
 #, c-format
@@ -5330,12 +5336,12 @@ msgstr "Salvar o arquivo a direita com o nome..."
 #: Merge.rc:2632
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "Mudar o status somente-leitura do arquivo/pasta do lado esquerdo"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "Mudar o status somente-leitura do arquivo/pasta do lado direito"
 
 #: Merge.rc:2634
 #, c-format
@@ -5726,7 +5732,7 @@ msgstr "Gera um relatório dos resultados da comparação"
 #: Merge.rc:2718
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "Mostra uma lista de plugins disponíveis"
 
 #: Merge.rc:2719
 #, c-format
@@ -5912,7 +5918,7 @@ msgstr "Da lista da MRU"
 #: Merge.rc:2788
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Sem Destacamento"
 
 #: Merge.rc:2789
 #, c-format
