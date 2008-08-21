@@ -10,6 +10,7 @@ WinMerge 2.10 RC
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)
+  - Greek (#2062442)
   - Japanese (r5804)
   - Swedish (#2062107)
 
