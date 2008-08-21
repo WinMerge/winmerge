@@ -121,6 +121,9 @@ def cleanup_build():
         if os.path.exists('build/scew'):
             shutil.rmtree('build/scew', True)
 
+        if os.path.exists('build/heksedit'):
+            shutil.rmtree('build/heksedit', True)
+
         if os.path.exists('build/Manual'):
             shutil.rmtree('build/Manual',True)
 
@@ -212,6 +215,10 @@ def build_libraries():
     #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'MinSizeRel'], shell=True)
 
+    print 'Build heksedit library...'
+    solution_path = os.path.join(cur_path, 'Externals/heksedit/heksedit.vcproj')
+    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
+
 def build_targets():
     """Builds all WinMerge targets."""
 
@@ -293,6 +300,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 
     shutil.copy('build/pcre/pcre.dll', bin_folder)
     shutil.copy('build/expat/libexpat.dll', bin_folder)
+    shutil.copy('build/heksedit/heksedit.dll', bin_folder)
 
     copy_po_files(lang_folder)
     filter_orig = os.path.join(dist_src_folder, 'Filters')
