@@ -17,6 +17,7 @@ WinMerge 2.11.1.4
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)
+  - Greek (#2062442)
   - Chinese Traditional (#2039929)
   - Japanese (r5805)
   - Swedish (#2062107)
