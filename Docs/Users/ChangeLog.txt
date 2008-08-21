@@ -14,6 +14,8 @@ WinMerge 2.11.1.4
   Bugfix: Lost focus after folder compare operations (#2046002)
   Bugfix: Some files had folder icons when aborting folder compare (#2018836)
   BugFix: Didn't select word-diff cyclically by pressing F4 key (#1989858)
+  BugFix: Could not reset EOL ignore after selecting it from query
+   dialog (#2056741)
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)
