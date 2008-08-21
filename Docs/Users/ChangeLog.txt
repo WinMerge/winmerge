@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.4
+  Binary file edit/compare (#2036603)
   Add wait cursor for undo and redo (#2039228)
   Add icon for "Open Conflict File" menu item (#2047054)
   Include unique subfolder contents in recursive folder compare (#2034259)
