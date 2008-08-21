@@ -119,7 +119,7 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\pcre"/>
+				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\heksedit"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
