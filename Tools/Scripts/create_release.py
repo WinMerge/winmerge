@@ -260,8 +260,10 @@ def build_manual():
     os.chdir('Docs/Users/Manual/build')
     print 'Build HTML Help (CHM) manual...' 
     call(['build_htmlhelp.bat'])
-    print 'Build HTML manual for Web with ads...'
-    call(['build_html.bat', 'withads'])
+    
+    # HTML manual not build in trunk.
+    #print 'Build HTML manual for Web with ads...'
+    #call(['build_html.bat', 'withads'])
     print 'Manual build finished.'
     os.chdir(curdir)
 
