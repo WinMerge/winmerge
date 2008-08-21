@@ -19,6 +19,7 @@ WinMerge 2.11.1.4
   - German (#2045666)
   - Chinese Traditional (#2039929)
   - Japanese (r5805)
+  - Swedish (#2062107)
 
 WinMerge 2.11.1.3 - 2008-08-04 (r5733)
   Rename color scheme menu item "None" and add separator (#2027300)
