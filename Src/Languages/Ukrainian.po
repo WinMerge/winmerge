@@ -73,7 +73,7 @@ msgstr "Ви&різати"
 
 #: Merge.rc:81
 #: Merge.rc:103
-#: Merge.rc:508
+#: Merge.rc:509
 #, c-format
 msgid "&Copy"
 msgstr "&Копіювати"
@@ -85,7 +85,7 @@ msgid "&Paste"
 msgstr "&Вставити"
 
 #: Merge.rc:84
-#: Merge.rc:589
+#: Merge.rc:590
 #, c-format
 msgid "&Goto..."
 msgstr "Перейти до рядка..."
@@ -96,22 +96,22 @@ msgid "Op&en"
 msgstr "Відкрити"
 
 #: Merge.rc:88
-#: Merge.rc:531
-#: Merge.rc:537
+#: Merge.rc:532
+#: Merge.rc:538
 #, c-format
 msgid "with &Registered Application"
 msgstr "зареєстрованим додатком"
 
 #: Merge.rc:89
-#: Merge.rc:532
-#: Merge.rc:538
+#: Merge.rc:533
+#: Merge.rc:539
 #, c-format
 msgid "with &External Editor"
 msgstr "зовнішнім редактором"
 
 #: Merge.rc:90
-#: Merge.rc:533
-#: Merge.rc:539
+#: Merge.rc:534
+#: Merge.rc:540
 #, c-format
 msgid "&with..."
 msgstr "за допомогою..."
@@ -390,7 +390,7 @@ msgstr "&Каскад"
 #: Merge.rc:175
 #: Merge.rc:296
 #: Merge.rc:484
-#: Merge.rc:1920
+#: Merge.rc:1921
 #, c-format
 msgid "&Help"
 msgstr "&Довідка"
@@ -592,7 +592,7 @@ msgid "&Delete\tDel"
 msgstr "&Вилучити\tDel"
 
 #: Merge.rc:264
-#: Merge.rc:562
+#: Merge.rc:563
 #, c-format
 msgid "&Customize Columns..."
 msgstr "&Налаштувати стовпчики..."
@@ -721,7 +721,7 @@ msgid "&Scripts"
 msgstr "&Сценарії"
 
 #: Merge.rc:370
-#: Merge.rc:2758
+#: Merge.rc:2761
 #, c-format
 msgid "< Empty >"
 msgstr "< Немає >"
@@ -877,1166 +877,1171 @@ msgstr "Порівняти особливості"
 msgid "&XML"
 msgstr "&XML"
 
-#: Merge.rc:510
+#: Merge.rc:506
+#, c-format
+msgid "&HEX"
+msgstr ""
+
+#: Merge.rc:511
 #, c-format
 msgid "&Left to Right"
 msgstr "Зліва праворуч"
 
-#: Merge.rc:511
+#: Merge.rc:512
 #, c-format
 msgid "L&eft to..."
 msgstr "Ліворуч на ..."
 
-#: Merge.rc:512
+#: Merge.rc:513
 #, c-format
 msgid "&Right to Left"
 msgstr "Справа ліворуч"
 
-#: Merge.rc:513
+#: Merge.rc:514
 #, c-format
 msgid "R&ight to..."
 msgstr "Праворуч на ..."
 
-#: Merge.rc:515
+#: Merge.rc:516
 #, c-format
 msgid "&Move"
 msgstr "&Перемістити"
 
-#: Merge.rc:517
+#: Merge.rc:518
 #, c-format
 msgid "&Left to..."
 msgstr "&Ліворуч в..."
 
-#: Merge.rc:518
+#: Merge.rc:519
 #, c-format
 msgid "&Right to..."
 msgstr "&Праворуч в..."
 
-#: Merge.rc:520
+#: Merge.rc:521
 #, c-format
 msgid "&Delete"
 msgstr "Вилучити"
 
-#: Merge.rc:522
-#: Merge.rc:1140
-#: Merge.rc:1522
+#: Merge.rc:523
+#: Merge.rc:1141
+#: Merge.rc:1523
 #, c-format
 msgid "&Left"
 msgstr "Ліворуч"
 
-#: Merge.rc:523
-#: Merge.rc:1142
-#: Merge.rc:1525
+#: Merge.rc:524
+#: Merge.rc:1143
+#: Merge.rc:1526
 #, c-format
 msgid "&Right"
 msgstr "Праворуч"
 
-#: Merge.rc:524
+#: Merge.rc:525
 #, c-format
 msgid "&Both"
 msgstr "Обидва"
 
-#: Merge.rc:526
+#: Merge.rc:527
 #, c-format
 msgid "Re&name"
 msgstr "&Перейменувати"
 
-#: Merge.rc:527
+#: Merge.rc:528
 #, c-format
 msgid "&Hide Items"
 msgstr "&Сховати"
 
-#: Merge.rc:529
+#: Merge.rc:530
 #, c-format
 msgid "&Open Left"
 msgstr "Відкрити лівий файл"
 
-#: Merge.rc:535
+#: Merge.rc:536
 #, c-format
 msgid "O&pen Right"
 msgstr "Відкрити правий файл"
 
-#: Merge.rc:542
+#: Merge.rc:543
 #, c-format
 msgid "Cop&y Pathnames"
 msgstr "Скопіювати шляхи"
 
-#: Merge.rc:544
+#: Merge.rc:545
 #, c-format
 msgid "&Left (%1 of %2)"
 msgstr "З&ліва (%1 з %2)"
 
-#: Merge.rc:545
+#: Merge.rc:546
 #, c-format
 msgid "&Right (%1 of %2)"
 msgstr "С&права (%1 з %2)"
 
-#: Merge.rc:546
+#: Merge.rc:547
 #, c-format
 msgid "&Both (%1 of %2)"
 msgstr "О&бидва (%1 з %2)"
 
-#: Merge.rc:548
+#: Merge.rc:549
 #, c-format
 msgid "Copy &Filenames"
 msgstr "Скопіювати &імена файлів"
 
-#: Merge.rc:550
+#: Merge.rc:551
 #, c-format
 msgid "&Zip"
 msgstr "&Заархівувати"
 
-#: Merge.rc:552
+#: Merge.rc:553
 #, c-format
 msgid "&Left... (%1 of %2)"
 msgstr "З&ліва... (%1 з %2)"
 
-#: Merge.rc:553
+#: Merge.rc:554
 #, c-format
 msgid "&Right... (%1 of %2)"
 msgstr "С&права... (%1 з %2)"
 
-#: Merge.rc:554
+#: Merge.rc:555
 #, c-format
 msgid "&Both... (%1 of %2)"
 msgstr "О&бидва... (%1 з %2)"
 
-#: Merge.rc:555
+#: Merge.rc:556
 #, c-format
 msgid "&Differences... (%1 of %2)"
 msgstr "Тільки &відмінності... (%1 з %2)"
 
-#: Merge.rc:558
+#: Merge.rc:559
 #, c-format
 msgid "&Refresh"
 msgstr "&Оновити"
 
-#: Merge.rc:570
+#: Merge.rc:571
 #, c-format
 msgid "&Copy Full Path"
 msgstr "Скопіювати повний шлях"
 
-#: Merge.rc:571
+#: Merge.rc:572
 #, c-format
 msgid "Copy &Filename"
 msgstr "Скопіювати ім'я файлу"
 
-#: Merge.rc:577
+#: Merge.rc:578
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Параметри попереднього порівняння"
 
-#: Merge.rc:579
+#: Merge.rc:580
 #, c-format
 msgid "&No prediffer"
 msgstr "&Немає попереднього порівняння"
 
-#: Merge.rc:580
+#: Merge.rc:581
 #, c-format
 msgid "Auto prediffer"
 msgstr "&Автоматичне попереднє порівняння"
 
-#: Merge.rc:588
+#: Merge.rc:589
 #, c-format
 msgid "G&oto Diff"
 msgstr "Перейти до &відмінності"
 
-#: Merge.rc:591
+#: Merge.rc:592
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Без переміщених блоків"
 
-#: Merge.rc:592
+#: Merge.rc:593
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "&Всі переміщені блоки"
 
-#: Merge.rc:593
+#: Merge.rc:594
 #, c-format
 msgid "Moved Block for &Current Diff"
 msgstr "Переміщ. блок для &цієї відмінності"
 
-#: Merge.rc:662
+#: Merge.rc:663
 #, c-format
 msgid "About WinMerge"
 msgstr "Про програму WinMerge"
 
-#: Merge.rc:668
+#: Merge.rc:669
 #, c-format
 msgid "(Private Build)"
 msgstr "(Приватний білд)"
 
-#: Merge.rc:669
+#: Merge.rc:670
 #, c-format
 msgid "All rights reserved."
 msgstr "Всі права захищені."
 
-#: Merge.rc:670
+#: Merge.rc:671
 #, c-format
 msgid "Visit the WinMerge HomePage!"
 msgstr "Відвідайте домашню сторінку WinMerge !"
 
-#: Merge.rc:673
-#: Merge.rc:705
-#: Merge.rc:795
-#: Merge.rc:981
-#: Merge.rc:1059
-#: Merge.rc:1088
-#: Merge.rc:1098
-#: Merge.rc:1264
-#: Merge.rc:1328
-#: Merge.rc:1341
-#: Merge.rc:1433
-#: Merge.rc:1448
-#: Merge.rc:1670
-#, c-format
-msgid "OK"
-msgstr "ОК"
-
 #: Merge.rc:674
-#, c-format
-msgid "Contributors"
-msgstr "Меценати"
-
-#: Merge.rc:681
-#, c-format
-msgid "Select Files or Folders"
-msgstr "Виберіть файли або папки..."
-
-#: Merge.rc:684
-#: Merge.rc:1599
-#, c-format
-msgid "&Left:"
-msgstr "&Лівий:"
-
-#: Merge.rc:688
-#: Merge.rc:749
-#: Merge.rc:1002
-#: Merge.rc:1024
-#, c-format
-msgid "&Browse..."
-msgstr "&Огляд..."
-
-#: Merge.rc:689
-#: Merge.rc:1603
-#, c-format
-msgid "&Right:"
-msgstr "&Правий:"
-
-#: Merge.rc:693
-#: Merge.rc:1035
-#, c-format
-msgid "Bro&wse..."
-msgstr "О&гляд..."
-
-#: Merge.rc:694
-#: Merge.rc:1607
-#, c-format
-msgid "&Filter:"
-msgstr "&Фільтр:"
-
-#: Merge.rc:697
-#: Merge.rc:1609
-#, c-format
-msgid "Select..."
-msgstr "Вибрати..."
-
-#: Merge.rc:698
-#, c-format
-msgid "&Unpacker:"
-msgstr "&Розпакувальник:"
-
-#: Merge.rc:701
-#, c-format
-msgid "&Select..."
-msgstr "Вибрати..."
-
-#: Merge.rc:702
-#: Merge.rc:1610
-#, c-format
-msgid "&Include Subfolders"
-msgstr "&Враховуючи підпапки"
-
-#: Merge.rc:704
-#, c-format
-msgid "Status:"
-msgstr "Статус:"
-
 #: Merge.rc:706
-#: Merge.rc:736
 #: Merge.rc:796
-#: Merge.rc:826
-#: Merge.rc:858
-#: Merge.rc:868
+#: Merge.rc:982
 #: Merge.rc:1060
 #: Merge.rc:1089
 #: Merge.rc:1099
-#: Merge.rc:1150
 #: Merge.rc:1265
+#: Merge.rc:1329
 #: Merge.rc:1342
 #: Merge.rc:1434
 #: Merge.rc:1449
 #: Merge.rc:1671
 #, c-format
+msgid "OK"
+msgstr "ОК"
+
+#: Merge.rc:675
+#, c-format
+msgid "Contributors"
+msgstr "Меценати"
+
+#: Merge.rc:682
+#, c-format
+msgid "Select Files or Folders"
+msgstr "Виберіть файли або папки..."
+
+#: Merge.rc:685
+#: Merge.rc:1600
+#, c-format
+msgid "&Left:"
+msgstr "&Лівий:"
+
+#: Merge.rc:689
+#: Merge.rc:750
+#: Merge.rc:1003
+#: Merge.rc:1025
+#, c-format
+msgid "&Browse..."
+msgstr "&Огляд..."
+
+#: Merge.rc:690
+#: Merge.rc:1604
+#, c-format
+msgid "&Right:"
+msgstr "&Правий:"
+
+#: Merge.rc:694
+#: Merge.rc:1036
+#, c-format
+msgid "Bro&wse..."
+msgstr "О&гляд..."
+
+#: Merge.rc:695
+#: Merge.rc:1608
+#, c-format
+msgid "&Filter:"
+msgstr "&Фільтр:"
+
+#: Merge.rc:698
+#: Merge.rc:1610
+#, c-format
+msgid "Select..."
+msgstr "Вибрати..."
+
+#: Merge.rc:699
+#, c-format
+msgid "&Unpacker:"
+msgstr "&Розпакувальник:"
+
+#: Merge.rc:702
+#, c-format
+msgid "&Select..."
+msgstr "Вибрати..."
+
+#: Merge.rc:703
+#: Merge.rc:1611
+#, c-format
+msgid "&Include Subfolders"
+msgstr "&Враховуючи підпапки"
+
+#: Merge.rc:705
+#, c-format
+msgid "Status:"
+msgstr "Статус:"
+
+#: Merge.rc:707
+#: Merge.rc:737
+#: Merge.rc:797
+#: Merge.rc:827
+#: Merge.rc:859
+#: Merge.rc:869
+#: Merge.rc:1061
+#: Merge.rc:1090
+#: Merge.rc:1100
+#: Merge.rc:1151
+#: Merge.rc:1266
+#: Merge.rc:1343
+#: Merge.rc:1435
+#: Merge.rc:1450
+#: Merge.rc:1672
+#, c-format
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: Merge.rc:707
-#: Merge.rc:1343
+#: Merge.rc:708
+#: Merge.rc:1344
 #, c-format
 msgid "Help"
 msgstr "Довідка"
 
-#: Merge.rc:708
+#: Merge.rc:709
 #, c-format
 msgid "Files or Folders to Compare"
 msgstr "Файли або папки для порівняння"
 
-#: Merge.rc:715
+#: Merge.rc:716
 #, c-format
 msgid "Visual SourceSafe"
 msgstr "Visual SourceSafe"
 
-#: Merge.rc:720
+#: Merge.rc:721
 #, c-format
 msgid "Database:"
 msgstr "База даних:"
 
-#: Merge.rc:723
+#: Merge.rc:724
 #, c-format
 msgid "Project:"
 msgstr "Проект:"
 
-#: Merge.rc:726
+#: Merge.rc:727
 #, c-format
 msgid "User:"
 msgstr "Користувач:"
 
-#: Merge.rc:728
+#: Merge.rc:729
 #, c-format
 msgid "Password:"
 msgstr "Пароль:"
 
-#: Merge.rc:730
+#: Merge.rc:731
 #, c-format
 msgid "Link to Destination VSS project"
 msgstr "Шлях до проекту VSS"
 
-#: Merge.rc:732
-#: Merge.rc:873
+#: Merge.rc:733
+#: Merge.rc:874
 #, c-format
 msgid "Apply to all items"
 msgstr "Застосувати до всіх елементів"
 
-#: Merge.rc:734
+#: Merge.rc:735
 #, c-format
 msgid "Check Out"
 msgstr "Взяти під контроль"
 
-#: Merge.rc:735
-#: Merge.rc:869
+#: Merge.rc:736
+#: Merge.rc:870
 #, c-format
 msgid "Save As..."
 msgstr "Зберегти як..."
 
-#: Merge.rc:741
+#: Merge.rc:742
 #, c-format
 msgid "Versioning System"
 msgstr "Система контролю версій"
 
-#: Merge.rc:744
+#: Merge.rc:745
 #, c-format
 msgid "&Versioning System:"
 msgstr "&Система контролю версій:"
 
-#: Merge.rc:747
+#: Merge.rc:748
 #, c-format
 msgid "&Path to cleartool.exe:"
 msgstr "&Шлях до cleartool.exe:"
 
-#: Merge.rc:754
-#: Merge.rc:1928
+#: Merge.rc:755
+#: Merge.rc:1929
 #, c-format
 msgid "General"
 msgstr "Основні"
 
-#: Merge.rc:757
+#: Merge.rc:758
 #, c-format
 msgid "Automatically &scroll to first difference"
 msgstr "Автоматично &перемістити до першої відмінності"
 
-#: Merge.rc:760
+#: Merge.rc:761
 #, c-format
 msgid "&Disable Splash Screen"
 msgstr "Вимкнути &заставку"
 
-#: Merge.rc:762
+#: Merge.rc:763
 #, c-format
 msgid "Cl&ose windows with ESC"
 msgstr "За&кривати вікна клавішею ESC"
 
-#: Merge.rc:764
+#: Merge.rc:765
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Автоматично перевіряти шляхи в діалозі відкриття файлів"
 
-#: Merge.rc:767
+#: Merge.rc:768
 #, c-format
 msgid "All&ow only one instance to run"
 msgstr "&Дозволити запуск тільки однієї копії"
 
-#: Merge.rc:769
+#: Merge.rc:770
 #, c-format
 msgid "As&k when closing multiple windows"
 msgstr "Запитати перед закриттям декількох вікон"
 
-#: Merge.rc:771
+#: Merge.rc:772
 #, c-format
 msgid "&Preserve file time in file compare"
 msgstr "Зберігати час файлу при порівнянні"
 
-#: Merge.rc:774
+#: Merge.rc:775
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
 msgstr "Діалог Автоматичного доповнення:"
 
-#: Merge.rc:777
+#: Merge.rc:778
 #, c-format
 msgid "Enable multiple compare windows for"
 msgstr "Ввімкнути вікна множинного порівняння для"
 
-#: Merge.rc:779
-#: Merge.rc:1622
+#: Merge.rc:780
+#: Merge.rc:1623
 #, c-format
 msgid "&Folder compare"
 msgstr "Порівняння &папок"
 
-#: Merge.rc:781
-#: Merge.rc:1624
+#: Merge.rc:782
+#: Merge.rc:1625
 #, c-format
 msgid "Fil&e compare"
 msgstr "Порівняння &файлів"
 
-#: Merge.rc:783
+#: Merge.rc:784
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
 msgstr "WinMerge не показує деякі повідомлення. Натисніть Скинути, щоб демонструвалися всі повідомлення."
 
-#: Merge.rc:785
+#: Merge.rc:786
 #, c-format
 msgid "Reset"
 msgstr "Скинути"
 
-#: Merge.rc:792
+#: Merge.rc:793
 #, c-format
 msgid "Language"
 msgstr "Мова"
 
-#: Merge.rc:799
+#: Merge.rc:800
 #, c-format
 msgid "Available languages:"
 msgstr "Доступні мови:"
 
-#: Merge.rc:805
+#: Merge.rc:806
 #, c-format
 msgid "Find"
 msgstr "Знайти"
 
-#: Merge.rc:808
-#: Merge.rc:835
+#: Merge.rc:809
+#: Merge.rc:836
 #, c-format
 msgid "Fi&nd what:"
 msgstr "&Пошук:"
 
-#: Merge.rc:811
-#: Merge.rc:841
+#: Merge.rc:812
+#: Merge.rc:842
 #, c-format
 msgid "Match &whole word only"
 msgstr "Шукати слова &цілком"
 
-#: Merge.rc:813
-#: Merge.rc:843
+#: Merge.rc:814
+#: Merge.rc:844
 #, c-format
 msgid "Match &case"
 msgstr "Враховувати &регістр"
 
-#: Merge.rc:815
-#: Merge.rc:845
+#: Merge.rc:816
+#: Merge.rc:846
 #, c-format
 msgid "Regular &expression"
 msgstr "Ре&гулярні вирази"
 
-#: Merge.rc:817
+#: Merge.rc:818
 #, c-format
 msgid "D&on't wrap end of file"
 msgstr "Н&е зупинятися при досягненні кінця файлу "
 
-#: Merge.rc:820
+#: Merge.rc:821
 #, c-format
 msgid "Direction"
 msgstr "Напрямок"
 
-#: Merge.rc:821
+#: Merge.rc:822
 #, c-format
 msgid "&Up"
 msgstr "&Вгору"
 
-#: Merge.rc:823
+#: Merge.rc:824
 #, c-format
 msgid "&Down"
 msgstr "В&низ"
 
-#: Merge.rc:825
-#: Merge.rc:855
+#: Merge.rc:826
+#: Merge.rc:856
 #, c-format
 msgid "&Find Next"
 msgstr "&Далі"
 
-#: Merge.rc:832
+#: Merge.rc:833
 #, c-format
 msgid "Replace"
 msgstr "Заміна"
 
-#: Merge.rc:838
+#: Merge.rc:839
 #, c-format
 msgid "Re&place with:"
 msgstr "За&міна: "
 
-#: Merge.rc:847
+#: Merge.rc:848
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "Не зупинятися при досягненні кінця файлу"
 
-#: Merge.rc:850
+#: Merge.rc:851
 #, c-format
 msgid "Replace in"
 msgstr "Замінити"
 
-#: Merge.rc:851
+#: Merge.rc:852
 #, c-format
 msgid "&Selection"
 msgstr "В ві&дзначеному"
 
-#: Merge.rc:853
+#: Merge.rc:854
 #, c-format
 msgid "Wh&ole file"
 msgstr "В всьому &файлі"
 
-#: Merge.rc:856
+#: Merge.rc:857
 #, c-format
 msgid "&Replace"
 msgstr "&Замінити"
 
-#: Merge.rc:857
+#: Merge.rc:858
 #, c-format
 msgid "Replace &All"
 msgstr "З&амінити всюди"
 
-#: Merge.rc:864
-#: Merge.rc:2169
+#: Merge.rc:865
+#: Merge.rc:2172
 #, c-format
 msgid "Rational ClearCase"
 msgstr "Rational ClearCase"
 
-#: Merge.rc:867
+#: Merge.rc:868
 #, c-format
 msgid "CheckOut"
 msgstr "Перевірити"
 
-#: Merge.rc:872
-#: Merge.rc:1184
+#: Merge.rc:873
+#: Merge.rc:1185
 #, c-format
 msgid "Comments"
 msgstr "Коментарі"
 
-#: Merge.rc:875
+#: Merge.rc:876
 #, c-format
 msgid "CheckIn after checkout"
 msgstr "CheckIn після checkout"
 
-#: Merge.rc:881
+#: Merge.rc:882
 #, c-format
 msgid "Linefilters"
 msgstr "Фільтри рядків"
 
-#: Merge.rc:884
+#: Merge.rc:885
 #, c-format
 msgid "Enable Line Filters"
 msgstr "Дозволити фільтри рядків"
 
-#: Merge.rc:887
+#: Merge.rc:888
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Регулярні вирази (один на рядок):"
 
-#: Merge.rc:894
+#: Merge.rc:895
 #, c-format
 msgid "Save"
 msgstr "Зберегти"
 
-#: Merge.rc:895
+#: Merge.rc:896
 #, c-format
 msgid "New"
 msgstr "Новий"
 
-#: Merge.rc:896
+#: Merge.rc:897
 #, c-format
 msgid "Edit"
 msgstr "Редагувати"
 
-#: Merge.rc:897
+#: Merge.rc:898
 #, c-format
 msgid "Remove"
 msgstr "Вилучити"
 
-#: Merge.rc:902
-#: Merge.rc:1931
+#: Merge.rc:903
+#: Merge.rc:1932
 #, c-format
 msgid "Colors"
 msgstr "Кольори"
 
-#: Merge.rc:905
+#: Merge.rc:906
 #, c-format
 msgid "Difference:"
 msgstr "Відмінність:"
 
-#: Merge.rc:909
+#: Merge.rc:910
 #, c-format
 msgid "Selected Difference:"
 msgstr "Відзначена відмінність:"
 
-#: Merge.rc:913
-#: Merge.rc:1574
+#: Merge.rc:914
+#: Merge.rc:1575
 #, c-format
 msgid "Background"
 msgstr "Тло"
 
-#: Merge.rc:914
+#: Merge.rc:915
 #, c-format
 msgid "Deleted"
 msgstr "Вилучені"
 
-#: Merge.rc:927
-#: Merge.rc:1369
-#: Merge.rc:1575
+#: Merge.rc:928
+#: Merge.rc:1370
+#: Merge.rc:1576
 #, c-format
 msgid "Text"
 msgstr "Текст"
 
-#: Merge.rc:931
+#: Merge.rc:932
 #, c-format
 msgid "Ignored Difference:"
 msgstr "Ігноровані відмінності:"
 
-#: Merge.rc:941
+#: Merge.rc:942
 #, c-format
 msgid "Moved:"
 msgstr "Переміщені:"
 
-#: Merge.rc:951
+#: Merge.rc:952
 #, c-format
 msgid "Selected Moved:"
 msgstr "Відзначені переміщені:"
 
-#: Merge.rc:958
+#: Merge.rc:959
 #, c-format
 msgid "Word Difference:"
 msgstr "Словникова відмінність:"
 
-#: Merge.rc:965
+#: Merge.rc:966
 #, c-format
 msgid "Selected Word Diff:"
 msgstr "Відзначена словникова відмінність:"
 
-#: Merge.rc:972
-#: Merge.rc:1058
-#: Merge.rc:1087
-#: Merge.rc:1187
-#: Merge.rc:1415
+#: Merge.rc:973
+#: Merge.rc:1059
+#: Merge.rc:1088
+#: Merge.rc:1188
+#: Merge.rc:1416
 #, c-format
 msgid "Defaults"
 msgstr "Звичайні параметри"
 
-#: Merge.rc:978
-#: Merge.rc:1357
-#: Merge.rc:1563
+#: Merge.rc:979
+#: Merge.rc:1358
+#: Merge.rc:1564
 #, c-format
 msgid "Dialog"
 msgstr "Діалог"
 
-#: Merge.rc:988
-#: Merge.rc:1934
+#: Merge.rc:989
+#: Merge.rc:1935
 #, c-format
 msgid "System"
 msgstr "Система"
 
-#: Merge.rc:991
+#: Merge.rc:992
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr "Переміщувати вилучені файли до кошику"
 
-#: Merge.rc:993
+#: Merge.rc:994
 #, c-format
 msgid "Integration"
 msgstr "Інтеграція"
 
-#: Merge.rc:994
+#: Merge.rc:995
 #, c-format
 msgid "&Add to explorer context menu"
 msgstr "Додати в &контекстне меню провідника"
 
-#: Merge.rc:996
+#: Merge.rc:997
 #, c-format
 msgid "E&nable advanced menu"
 msgstr "В&вімкнути розширене меню"
 
-#: Merge.rc:998
+#: Merge.rc:999
 #, c-format
 msgid "In&clude subfolders by default"
 msgstr "Оброблювати підпапки завжди"
 
-#: Merge.rc:1000
+#: Merge.rc:1001
 #, c-format
 msgid "&External editor:"
 msgstr "Зовнішній редактор:"
 
-#: Merge.rc:1003
+#: Merge.rc:1004
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Фільтри:"
 
-#: Merge.rc:1005
+#: Merge.rc:1006
 #, c-format
 msgid "B&rowse..."
 msgstr "Огляд"
 
-#: Merge.rc:1006
+#: Merge.rc:1007
 #, c-format
 msgid "Temporary files folder"
 msgstr "Папка для тимчасових файлів"
 
-#: Merge.rc:1007
+#: Merge.rc:1008
 #, c-format
 msgid "S&ystem's temp folder"
 msgstr "Системна папка Temp"
 
-#: Merge.rc:1009
+#: Merge.rc:1010
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Власна папка:"
 
-#: Merge.rc:1012
-#: Merge.rc:1028
+#: Merge.rc:1013
+#: Merge.rc:1029
 #, c-format
 msgid "Br&owse..."
 msgstr "Огляд..."
 
-#: Merge.rc:1018
+#: Merge.rc:1019
 #, c-format
 msgid "Patch Generator"
 msgstr "Генератор патчів"
 
-#: Merge.rc:1021
+#: Merge.rc:1022
 #, c-format
 msgid "File&1:"
 msgstr "Файл 1:"
 
-#: Merge.rc:1025
+#: Merge.rc:1026
 #, c-format
 msgid "File&2:"
 msgstr "Файл 2:"
 
-#: Merge.rc:1029
+#: Merge.rc:1030
 #, c-format
 msgid "&Swap"
 msgstr "Поміняти"
 
-#: Merge.rc:1030
+#: Merge.rc:1031
 #, c-format
 msgid "&Append to existing file"
 msgstr "Додати в існуючий файл"
 
-#: Merge.rc:1032
+#: Merge.rc:1033
 #, c-format
 msgid "&Result:"
 msgstr "Результат:"
 
-#: Merge.rc:1036
+#: Merge.rc:1037
 #, c-format
 msgid "&Format"
 msgstr "Формат"
 
-#: Merge.rc:1037
+#: Merge.rc:1038
 #, c-format
 msgid "St&yle:"
 msgstr "Стиль:"
 
-#: Merge.rc:1040
+#: Merge.rc:1041
 #, c-format
 msgid "&Context:"
 msgstr "Контекст:"
 
-#: Merge.rc:1043
+#: Merge.rc:1044
 #, c-format
 msgid "W&hitespaces"
 msgstr "Пропуски"
 
-#: Merge.rc:1044
+#: Merge.rc:1045
 #, c-format
 msgid "Com&pare"
 msgstr "Порівняти"
 
-#: Merge.rc:1046
+#: Merge.rc:1047
 #, c-format
 msgid "I&gnore changes"
 msgstr "Ігнорувати зміни"
 
-#: Merge.rc:1048
+#: Merge.rc:1049
 #, c-format
 msgid "Ig&nore all"
 msgstr "Ігнорувати всюди"
 
-#: Merge.rc:1050
+#: Merge.rc:1051
 #, c-format
 msgid "Ignor&e blank lines"
 msgstr "Пропускати порожні рядки"
 
-#: Merge.rc:1052
+#: Merge.rc:1053
 #, c-format
 msgid "Case sensi&tive"
 msgstr "Чутливість регістру"
 
-#: Merge.rc:1054
+#: Merge.rc:1055
 #, c-format
 msgid "Inclu&de command line"
 msgstr "Ввім&кнути командний рядок"
 
-#: Merge.rc:1056
+#: Merge.rc:1057
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Відкрити у зовнішньому редакторі"
 
-#: Merge.rc:1078
+#: Merge.rc:1079
 #, c-format
 msgid "Display Columns"
 msgstr "Відображати стовпчики"
 
-#: Merge.rc:1084
+#: Merge.rc:1085
 #, fuzzy, c-format
 msgid "Move &Up"
 msgstr "&Вгору"
 
-#: Merge.rc:1085
+#: Merge.rc:1086
 #, fuzzy, c-format
 msgid "Move &Down"
 msgstr "В&низ"
 
-#: Merge.rc:1095
+#: Merge.rc:1096
 #, c-format
 msgid "Select Unpacker"
 msgstr "Вибір розпакувальника"
 
-#: Merge.rc:1100
+#: Merge.rc:1101
 #, c-format
 msgid "File unpacker:"
 msgstr "Файл розпакувальника:"
 
-#: Merge.rc:1103
+#: Merge.rc:1104
 #, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr "Показувати всі розпакувальники, не перевіряючи розширення"
 
-#: Merge.rc:1106
+#: Merge.rc:1107
 #, c-format
 msgid "Extensions list:"
 msgstr "Список розширень:"
 
-#: Merge.rc:1107
+#: Merge.rc:1108
 #, c-format
 msgid "Description:"
 msgstr "Опис:"
 
-#: Merge.rc:1118
+#: Merge.rc:1119
 #, c-format
 msgid " Folder Compare Progress"
 msgstr " Порівняння папок"
 
-#: Merge.rc:1121
-#: Merge.rc:1881
+#: Merge.rc:1122
+#: Merge.rc:1882
 #, c-format
 msgid "Stop"
 msgstr "Зупинити"
 
-#: Merge.rc:1126
+#: Merge.rc:1127
 #, c-format
 msgid "Comparing items..."
 msgstr "Триває порівняння..."
 
-#: Merge.rc:1127
+#: Merge.rc:1128
 #, c-format
 msgid "Items compared:"
 msgstr "Оброблених:"
 
-#: Merge.rc:1128
+#: Merge.rc:1129
 #, c-format
 msgid "Items total:"
 msgstr "Всього:"
 
-#: Merge.rc:1134
+#: Merge.rc:1135
 #, c-format
 msgid "Go To"
 msgstr "Перейти"
 
-#: Merge.rc:1137
+#: Merge.rc:1138
 #, c-format
 msgid "G&oto:"
 msgstr "&До:"
 
-#: Merge.rc:1139
+#: Merge.rc:1140
 #, c-format
 msgid "File"
 msgstr "Файл"
 
-#: Merge.rc:1144
+#: Merge.rc:1145
 #, c-format
 msgid "Goto what"
 msgstr "До чого"
 
-#: Merge.rc:1145
+#: Merge.rc:1146
 #, c-format
 msgid "Li&ne"
 msgstr "&Рядок"
 
-#: Merge.rc:1147
+#: Merge.rc:1148
 #, c-format
 msgid "&Difference"
 msgstr "&Відмінність"
 
-#: Merge.rc:1149
+#: Merge.rc:1150
 #, c-format
 msgid "&Go To"
 msgstr "Перейт&и"
 
-#: Merge.rc:1155
-#: Merge.rc:1929
+#: Merge.rc:1156
+#: Merge.rc:1930
 #, c-format
 msgid "Compare"
 msgstr "Порівняння"
 
-#: Merge.rc:1158
+#: Merge.rc:1159
 #, c-format
 msgid "Whitespace"
 msgstr "Пропуски"
 
-#: Merge.rc:1159
+#: Merge.rc:1160
 #, c-format
 msgid "&Compare"
 msgstr "Враховувати &пропуски"
 
-#: Merge.rc:1161
+#: Merge.rc:1162
 #, c-format
 msgid "&Ignore change"
 msgstr "Ігнорувати змінені пропуски"
 
-#: Merge.rc:1163
+#: Merge.rc:1164
 #, c-format
 msgid "I&gnore all"
 msgstr "Ігнорувати &всі пропуски"
 
-#: Merge.rc:1165
+#: Merge.rc:1166
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Ігнорувати порожні &лінії"
 
-#: Merge.rc:1167
+#: Merge.rc:1168
 #, c-format
 msgid "Ignore &case"
 msgstr "Ігнорувати р&егістр"
 
-#: Merge.rc:1169
+#: Merge.rc:1170
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Ігнорувати різницю в кінцях рядків (Win/Unix/Mac)"
 
-#: Merge.rc:1172
+#: Merge.rc:1173
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
 
-#: Merge.rc:1174
+#: Merge.rc:1175
 #, c-format
 msgid "&Match similar lines"
 msgstr "Шукати схожі рядки"
 
-#: Merge.rc:1176
+#: Merge.rc:1177
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ігнорувати різницю часу, меншу 3 секунд"
 
-#: Merge.rc:1179
+#: Merge.rc:1180
 #, c-format
 msgid "&File Compare method:"
 msgstr "Метод порівняння &файлів:"
 
-#: Merge.rc:1182
+#: Merge.rc:1183
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Зупинятися після першої відмінності"
 
-#: Merge.rc:1185
+#: Merge.rc:1186
 #, c-format
 msgid "Filter Comments"
 msgstr "Фільтр коментарів"
 
-#: Merge.rc:1192
-#: Merge.rc:1930
+#: Merge.rc:1193
+#: Merge.rc:1931
 #, c-format
 msgid "Editor"
 msgstr "Редактор"
 
-#: Merge.rc:1195
+#: Merge.rc:1196
 #, c-format
 msgid "&Highlight syntax"
 msgstr "Підсвічувати синтаксис"
 
-#: Merge.rc:1197
+#: Merge.rc:1198
 #, c-format
 msgid "&Automatic rescan"
 msgstr "Автоматичне &пересканування"
 
-#: Merge.rc:1199
+#: Merge.rc:1200
 #, c-format
 msgid "&Preserve original EOL chars"
 msgstr "Оригінальні символи закінчення рядка"
 
-#: Merge.rc:1201
+#: Merge.rc:1202
 #, c-format
 msgid "Tabs"
 msgstr "Відступи"
 
-#: Merge.rc:1202
+#: Merge.rc:1203
 #, c-format
 msgid "&Tab size:"
 msgstr "Розмір &відступу:"
 
-#: Merge.rc:1205
+#: Merge.rc:1206
 #, c-format
 msgid "&Insert Tabs"
 msgstr "&Табуляції"
 
-#: Merge.rc:1207
+#: Merge.rc:1208
 #, c-format
 msgid "Insert &Spaces"
 msgstr "&Пропуски"
 
-#: Merge.rc:1209
+#: Merge.rc:1210
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Підсвічування відмінностей у рядку"
 
-#: Merge.rc:1211
+#: Merge.rc:1212
 #, c-format
 msgid "View line differences"
 msgstr "Показувати відмінності в рядку"
 
-#: Merge.rc:1213
+#: Merge.rc:1214
 #, c-format
 msgid "&Character level"
 msgstr "За символами"
 
-#: Merge.rc:1215
+#: Merge.rc:1216
 #, c-format
 msgid "&Word-level:"
 msgstr "За словами:"
 
-#: Merge.rc:1230
+#: Merge.rc:1231
 #, c-format
 msgid "Filefilters"
 msgstr "Фільтри файлів"
 
-#: Merge.rc:1236
+#: Merge.rc:1237
 #, c-format
 msgid "Test"
 msgstr "Випробувати"
 
-#: Merge.rc:1237
+#: Merge.rc:1238
 #, c-format
 msgid "Install..."
 msgstr "Встановити"
 
-#: Merge.rc:1238
+#: Merge.rc:1239
 #, c-format
 msgid "New..."
 msgstr "Новий..."
 
-#: Merge.rc:1239
+#: Merge.rc:1240
 #, c-format
 msgid "Edit..."
 msgstr "Змінити..."
 
-#: Merge.rc:1240
+#: Merge.rc:1241
 #, c-format
 msgid "Delete..."
 msgstr "Вилучити..."
 
-#: Merge.rc:1246
+#: Merge.rc:1247
 #, c-format
 msgid "Save modified files?"
 msgstr "Зберегти зміни у файлах"
 
-#: Merge.rc:1249
+#: Merge.rc:1250
 #, c-format
 msgid "Left side file"
 msgstr "Файл з лівої сторони"
 
-#: Merge.rc:1252
+#: Merge.rc:1253
 #, c-format
 msgid "&Save changes"
 msgstr "&Зберегти зміни"
 
-#: Merge.rc:1254
+#: Merge.rc:1255
 #, c-format
 msgid "&Discard changes"
 msgstr "&Відхилити зміни"
 
-#: Merge.rc:1256
+#: Merge.rc:1257
 #, c-format
 msgid "Right side file"
 msgstr "Файл з правої сторони"
 
-#: Merge.rc:1259
+#: Merge.rc:1260
 #, c-format
 msgid "S&ave changes"
 msgstr "З&берегти зміни"
 
-#: Merge.rc:1261
+#: Merge.rc:1262
 #, c-format
 msgid "Dis&card changes"
 msgstr "Ві&дхилити зміни"
 
-#: Merge.rc:1263
+#: Merge.rc:1264
 #, c-format
 msgid "Discard All"
 msgstr "Відхилити все"
 
-#: Merge.rc:1270
-#: Merge.rc:1518
-#: Merge.rc:1936
+#: Merge.rc:1271
+#: Merge.rc:1519
+#: Merge.rc:1937
 #, c-format
 msgid "Codepage"
 msgstr "Сторінка кодування"
 
-#: Merge.rc:1273
+#: Merge.rc:1274
 #, c-format
 msgid "Default Codepage"
 msgstr "Звичайна сторінка кодування"
 
-#: Merge.rc:1274
+#: Merge.rc:1275
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
 
-#: Merge.rc:1276
+#: Merge.rc:1277
 #, c-format
 msgid ""
 "Detect codepage info for these files : .html, .rc, .xml \n"
@@ -2045,56 +2050,56 @@ msgstr ""
 "Визначати сторінку кодування для наступних файлів : .html, .rc, .xml \n"
 "(потрібно відкрити файл заново)"
 
-#: Merge.rc:1279
+#: Merge.rc:1280
 #, c-format
 msgid "System codepage"
 msgstr "Системна сторінка кодування"
 
-#: Merge.rc:1281
+#: Merge.rc:1282
 #, c-format
 msgid "According to WinMerge User Interface"
 msgstr "Залежно від інтерфейсу користувача WinMerge"
 
-#: Merge.rc:1283
+#: Merge.rc:1284
 #, c-format
 msgid "Custom codepage :"
 msgstr "Інша сторінка кодування:"
 
-#: Merge.rc:1291
+#: Merge.rc:1292
 #, c-format
 msgid "WinMerge - Archive support disabled"
 msgstr "WinMerge - Підтримка архівів вимкнена"
 
-#: Merge.rc:1294
+#: Merge.rc:1295
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
 msgstr "Неможливо визначити версію 7-Zip (не встановлений?)"
 
-#: Merge.rc:1297
+#: Merge.rc:1298
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
 msgstr "Для роботи з архівами потрібний або встановлений 7-Zip версій 3.11 і вище, або його компоненти в папці з WinMerge."
 
-#: Merge.rc:1299
+#: Merge.rc:1300
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
 msgstr "Аналогічно потрібне доповнення (Merge7z*.dll)"
 
-#: Merge.rc:1301
+#: Merge.rc:1302
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
 msgstr "Рекомендується використати наступну версію 7-Zip"
 
-#: Merge.rc:1303
+#: Merge.rc:1304
 #, c-format
 msgid "Version"
 msgstr "Версія"
 
-#: Merge.rc:1305
+#: Merge.rc:1306
 #, c-format
 msgid ""
 "Plugin required\n"
@@ -2103,551 +2108,551 @@ msgstr ""
 "Потрібне доповнення\n"
 "(dllbuild %04u)"
 
-#: Merge.rc:1307
+#: Merge.rc:1308
 #, c-format
 msgid "Recommended version of 7-Zip:"
 msgstr "Рекомендована версія  7-Zip:"
 
-#: Merge.rc:1310
-#: Merge.rc:1313
+#: Merge.rc:1311
+#: Merge.rc:1314
 #, c-format
 msgid "present"
 msgstr "є"
 
-#: Merge.rc:1311
+#: Merge.rc:1312
 #, c-format
 msgid "Merge7z000U.dll"
 msgstr "Merge7z000U.dll"
 
-#: Merge.rc:1314
+#: Merge.rc:1315
 #, c-format
 msgid "7-Zip software installed on your computer:"
 msgstr "Версія 7-Zip на вашому ПК:"
 
-#: Merge.rc:1316
-#: Merge.rc:1321
+#: Merge.rc:1317
+#: Merge.rc:1322
 #, c-format
 msgid "none"
 msgstr "немає"
 
-#: Merge.rc:1318
+#: Merge.rc:1319
 #, c-format
 msgid "missing"
 msgstr "відсутні"
 
-#: Merge.rc:1319
+#: Merge.rc:1320
 #, c-format
 msgid "7-Zip components for standalone operation:"
 msgstr "Компоненти 7-Zip у папці з WinMerge:"
 
-#: Merge.rc:1323
+#: Merge.rc:1324
 #, c-format
 msgid "outdated"
 msgstr "застарі"
 
-#: Merge.rc:1324
+#: Merge.rc:1325
 #, c-format
 msgid "Plugins on path:"
 msgstr "Доступні доповнення:"
 
-#: Merge.rc:1325
+#: Merge.rc:1326
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr "Не показувати більше це повідомлення.\n(Ви завжди можете викликати його через меню Довідка)"
 
-#: Merge.rc:1329
+#: Merge.rc:1330
 #, c-format
 msgid "Plugin Download"
 msgstr "Завантажити доповнення"
 
-#: Merge.rc:1338
+#: Merge.rc:1339
 #, c-format
 msgid "Options"
 msgstr "Налаштування"
 
-#: Merge.rc:1349
+#: Merge.rc:1350
 #, c-format
 msgid " Categories"
 msgstr " Категорії"
 
-#: Merge.rc:1351
+#: Merge.rc:1352
 #, c-format
 msgid "Import..."
 msgstr "Імпорт..."
 
-#: Merge.rc:1352
+#: Merge.rc:1353
 #, c-format
 msgid "Export..."
 msgstr "Експорт..."
 
-#: Merge.rc:1360
+#: Merge.rc:1361
 #, c-format
 msgid "Keywords:"
 msgstr "Ключові слова:"
 
-#: Merge.rc:1361
+#: Merge.rc:1362
 #, c-format
 msgid "Function names:"
 msgstr "Імена функцій:"
 
-#: Merge.rc:1362
+#: Merge.rc:1363
 #, c-format
 msgid "Comments:"
 msgstr "Коментарі:"
 
-#: Merge.rc:1363
+#: Merge.rc:1364
 #, c-format
 msgid "Numbers:"
 msgstr "Числа:"
 
-#: Merge.rc:1364
+#: Merge.rc:1365
 #, c-format
 msgid "Operators:"
 msgstr "Оператори:"
 
-#: Merge.rc:1365
+#: Merge.rc:1366
 #, c-format
 msgid "Strings:"
 msgstr "Рядки:"
 
-#: Merge.rc:1366
+#: Merge.rc:1367
 #, c-format
 msgid "Preprocessor:"
 msgstr "Поперед. обрах.:"
 
-#: Merge.rc:1367
+#: Merge.rc:1368
 #, c-format
 msgid "User 1:"
 msgstr "Користувач 1:"
 
-#: Merge.rc:1368
+#: Merge.rc:1369
 #, c-format
 msgid "User 2:"
 msgstr "Користувач 2:"
 
-#: Merge.rc:1373
-#: Merge.rc:1378
-#: Merge.rc:1383
-#: Merge.rc:1388
-#: Merge.rc:1393
-#: Merge.rc:1398
-#: Merge.rc:1403
-#: Merge.rc:1408
-#: Merge.rc:1413
+#: Merge.rc:1374
+#: Merge.rc:1379
+#: Merge.rc:1384
+#: Merge.rc:1389
+#: Merge.rc:1394
+#: Merge.rc:1399
+#: Merge.rc:1404
+#: Merge.rc:1409
+#: Merge.rc:1414
 #, c-format
 msgid "Bold"
 msgstr "Жирний"
 
-#: Merge.rc:1421
+#: Merge.rc:1422
 #, c-format
 msgid "Folder Compare Report"
 msgstr "Звіт порівняння папок"
 
-#: Merge.rc:1424
+#: Merge.rc:1425
 #, c-format
 msgid "Report &File:"
 msgstr "&Файл звіту:"
 
-#: Merge.rc:1427
-#: Merge.rc:1601
-#: Merge.rc:1605
-#: Merge.rc:1632
+#: Merge.rc:1428
+#: Merge.rc:1602
+#: Merge.rc:1606
+#: Merge.rc:1633
 #, c-format
 msgid "Browse..."
 msgstr "Огляд..."
 
-#: Merge.rc:1428
+#: Merge.rc:1429
 #, c-format
 msgid "&Style:"
 msgstr "&Стиль:"
 
-#: Merge.rc:1431
+#: Merge.rc:1432
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Копіювати в буфер обміну"
 
-#: Merge.rc:1439
+#: Merge.rc:1440
 #, c-format
 msgid "Shared or Private Filter"
 msgstr "Загальні і особисті фільтри"
 
-#: Merge.rc:1442
+#: Merge.rc:1443
 #, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "Який тип фільтру ви хочете створити?"
 
-#: Merge.rc:1444
+#: Merge.rc:1445
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "Загальний фільтр (для всіх користувачів цього ПК)"
 
-#: Merge.rc:1446
+#: Merge.rc:1447
 #, c-format
 msgid "Private Filter (only for current user)"
 msgstr "Особистий фільтр (тільки для поточного користувача)"
 
-#: Merge.rc:1454
-#: Merge.rc:1937
+#: Merge.rc:1455
+#: Merge.rc:1938
 #, c-format
 msgid "Archive Support"
 msgstr "Підтримка архівів"
 
-#: Merge.rc:1457
+#: Merge.rc:1458
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
 msgstr "Підтримка архівів вимагає наявність доповнення  7-Zip:"
 
-#: Merge.rc:1459
+#: Merge.rc:1460
 #, c-format
 msgid "Download 7-zip Plugin"
 msgstr "Завантажити доповнення 7-zip"
 
-#: Merge.rc:1460
+#: Merge.rc:1461
 #, c-format
 msgid "&Enable archive file support"
 msgstr "&Ввімкнути підтримку архівів"
 
-#: Merge.rc:1462
+#: Merge.rc:1463
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
 msgstr "&Якщо можливо, використати сторонній 7-Zip"
 
-#: Merge.rc:1465
+#: Merge.rc:1466
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
 msgstr "&Використати 7-Zip з папки WinMerge"
 
-#: Merge.rc:1467
+#: Merge.rc:1468
 #, c-format
 msgid "&Detect archive type from file signature"
 msgstr "&Визначати тип архіву за сигнатурою/заголовком файлу"
 
-#: Merge.rc:1475
+#: Merge.rc:1476
 #, c-format
 msgid "Compare Statistics"
 msgstr "Порівняння статистики"
 
-#: Merge.rc:1478
+#: Merge.rc:1479
 #, c-format
 msgid "Folders:"
 msgstr "Папки:"
 
-#: Merge.rc:1479
+#: Merge.rc:1480
 #, c-format
 msgid "Files:"
 msgstr "Файли:"
 
-#: Merge.rc:1480
-#: Merge.rc:2316
+#: Merge.rc:1481
+#: Merge.rc:2319
 #, c-format
 msgid "Different"
 msgstr "Відрізняються"
 
-#: Merge.rc:1481
+#: Merge.rc:1482
 #, c-format
 msgid "Text:"
 msgstr "Текст:"
 
-#: Merge.rc:1484
-#: Merge.rc:1503
+#: Merge.rc:1485
+#: Merge.rc:1504
 #, c-format
 msgid "Binary:"
 msgstr "Бінарні:"
 
-#: Merge.rc:1487
+#: Merge.rc:1488
 #, c-format
 msgid "Unique"
 msgstr "Унікальні"
 
-#: Merge.rc:1488
+#: Merge.rc:1489
 #, c-format
 msgid "Left:"
 msgstr "Ліворуч:"
 
-#: Merge.rc:1493
+#: Merge.rc:1494
 #, c-format
 msgid "Right:"
 msgstr "Праворуч:"
 
-#: Merge.rc:1498
-#: Merge.rc:2310
+#: Merge.rc:1499
+#: Merge.rc:2313
 #, c-format
 msgid "Identical"
 msgstr "Однакові"
 
-#: Merge.rc:1507
+#: Merge.rc:1508
 #, c-format
 msgid "Total:"
 msgstr "Всього:"
 
-#: Merge.rc:1512
+#: Merge.rc:1513
 #, c-format
 msgid "Close"
 msgstr "Закрити"
 
-#: Merge.rc:1521
+#: Merge.rc:1522
 #, c-format
 msgid "Affects"
 msgstr "Застосувати до:"
 
-#: Merge.rc:1524
-#: Merge.rc:1527
+#: Merge.rc:1525
+#: Merge.rc:1528
 #, c-format
 msgid "(Affects)"
 msgstr "(застосувати)"
 
-#: Merge.rc:1528
+#: Merge.rc:1529
 #, c-format
 msgid "Select Codepage for"
 msgstr "Вибрати сторінку кодування для"
 
-#: Merge.rc:1529
+#: Merge.rc:1530
 #, c-format
 msgid "&File Loading:"
 msgstr "Завант. файлу:"
 
-#: Merge.rc:1531
-#: Merge.rc:1534
+#: Merge.rc:1532
+#: Merge.rc:1535
 #, c-format
 msgid "..."
 msgstr "..."
 
-#: Merge.rc:1532
+#: Merge.rc:1533
 #, c-format
 msgid "File &Saving:"
 msgstr "Збереження файлу:"
 
-#: Merge.rc:1535
+#: Merge.rc:1536
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "Використати ту саму сторінку кодування"
 
-#: Merge.rc:1538
+#: Merge.rc:1539
 #, c-format
 msgid "&Apply"
 msgstr "&Застосувати"
 
-#: Merge.rc:1539
-#: Merge.rc:1903
+#: Merge.rc:1540
+#: Merge.rc:1904
 #, c-format
 msgid "&Cancel"
 msgstr "&Скасувати"
 
-#: Merge.rc:1544
+#: Merge.rc:1545
 #, c-format
 msgid "Test Filter"
 msgstr "Випробування фільтра"
 
-#: Merge.rc:1547
+#: Merge.rc:1548
 #, c-format
 msgid "Testing filter ..."
 msgstr "Випробувати фільтр ..."
 
-#: Merge.rc:1549
+#: Merge.rc:1550
 #, c-format
 msgid "&Enter text to test:"
 msgstr "Вкажіть текст для випробування:"
 
-#: Merge.rc:1551
+#: Merge.rc:1552
 #, c-format
 msgid "&Folder Name"
 msgstr "Папка"
 
-#: Merge.rc:1553
+#: Merge.rc:1554
 #, c-format
 msgid "Result:"
 msgstr "Результат:"
 
-#: Merge.rc:1557
+#: Merge.rc:1558
 #, c-format
 msgid "&Test"
 msgstr "&Випробувати"
 
-#: Merge.rc:1558
+#: Merge.rc:1559
 #, c-format
 msgid "&Close"
 msgstr "&Закрити"
 
-#: Merge.rc:1566
+#: Merge.rc:1567
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Використати особливі кольори"
 
-#: Merge.rc:1569
+#: Merge.rc:1570
 #, c-format
 msgid "Custom text colors"
 msgstr "Налаштувати кольори"
 
-#: Merge.rc:1571
+#: Merge.rc:1572
 #, c-format
 msgid "Whitespace:"
 msgstr "Пропуски:"
 
-#: Merge.rc:1572
+#: Merge.rc:1573
 #, c-format
 msgid "Regular text:"
 msgstr "Звичайний текст:"
 
-#: Merge.rc:1573
+#: Merge.rc:1574
 #, c-format
 msgid "Selection:"
 msgstr "Відзнач. текст:"
 
-#: Merge.rc:1596
+#: Merge.rc:1597
 #, c-format
 msgid "Paths"
 msgstr "Шляхи"
 
-#: Merge.rc:1602
+#: Merge.rc:1603
 #, c-format
 msgid "R&ead-only"
 msgstr "Лише читання"
 
-#: Merge.rc:1606
+#: Merge.rc:1607
 #, c-format
 msgid "Re&ad-only"
 msgstr "Лише читання"
 
-#: Merge.rc:1612
+#: Merge.rc:1613
 #, c-format
 msgid "Open..."
 msgstr "Відкрити..."
 
-#: Merge.rc:1613
+#: Merge.rc:1614
 #, c-format
 msgid "Save..."
 msgstr "Зберегти..."
 
-#: Merge.rc:1618
-#: Merge.rc:1938
+#: Merge.rc:1619
+#: Merge.rc:1939
 #, c-format
 msgid "Backup Files"
 msgstr "Резервні копії"
 
-#: Merge.rc:1621
+#: Merge.rc:1622
 #, c-format
 msgid "Create backup files in:"
 msgstr "Створити резервні файли для:"
 
-#: Merge.rc:1626
+#: Merge.rc:1627
 #, c-format
 msgid "Create backup files into:"
 msgstr "Створити резервні файли:"
 
-#: Merge.rc:1627
+#: Merge.rc:1628
 #, c-format
 msgid "&Original file's folder"
 msgstr "в папці з &оригінальним файлом"
 
-#: Merge.rc:1629
+#: Merge.rc:1630
 #, c-format
 msgid "&Global backup folder:"
 msgstr "в &загальній папці:"
 
-#: Merge.rc:1633
+#: Merge.rc:1634
 #, c-format
 msgid "Backup filename:"
 msgstr "Ім'я резервного файлу:"
 
-#: Merge.rc:1634
+#: Merge.rc:1635
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "&Додати розширення .bak"
 
-#: Merge.rc:1636
+#: Merge.rc:1637
 #, c-format
 msgid "A&ppend timestamp"
 msgstr "Додати дату"
 
-#: Merge.rc:1643
-#: Merge.rc:2225
+#: Merge.rc:1644
+#: Merge.rc:2228
 #, c-format
 msgid "Confirm Copy"
 msgstr "Підтвердження"
 
-#: Merge.rc:1647
+#: Merge.rc:1648
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr "Ви дійсно хочете скопіювати XXX елементи?"
 
-#: Merge.rc:1649
+#: Merge.rc:1650
 #, c-format
 msgid "From left"
 msgstr "Ліворуч"
 
-#: Merge.rc:1652
+#: Merge.rc:1653
 #, c-format
 msgid "To right"
 msgstr "Праворуч"
 
-#: Merge.rc:1655
+#: Merge.rc:1656
 #, c-format
 msgid "Yes"
 msgstr "Так"
 
-#: Merge.rc:1656
+#: Merge.rc:1657
 #, c-format
 msgid "No"
 msgstr "Ні"
 
-#: Merge.rc:1662
+#: Merge.rc:1663
 #, c-format
 msgid "Plugins"
 msgstr ""
 
-#: Merge.rc:1665
+#: Merge.rc:1666
 #, c-format
 msgid "&Enable plugins"
 msgstr ""
 
 #. StringFileInfo.Block
-#: Merge.rc:1695
+#: Merge.rc:1696
 #, c-format
 msgid "040904e4"
 msgstr "042204e3"
 
 #. VarFileInfo.Translation
-#: Merge.rc:1711
+#: Merge.rc:1712
 #, c-format
 msgid "0x409, 1252"
 msgstr "0x422, 1251"
 
-#: Merge.rc:1726
+#: Merge.rc:1727
 #, c-format
 msgid "Ready"
 msgstr "Готово"
 
-#: Merge.rc:1732
+#: Merge.rc:1733
 #, c-format
 msgid "EXT"
 msgstr "EXT"
 
-#: Merge.rc:1733
+#: Merge.rc:1734
 #, c-format
 msgid "CAP"
 msgstr "CAP"
 
-#: Merge.rc:1734
+#: Merge.rc:1735
 #, c-format
 msgid "NUM"
 msgstr "NUM"
 
-#: Merge.rc:1735
+#: Merge.rc:1736
 #, c-format
 msgid "SCRL"
 msgstr "SCRL"
 
-#: Merge.rc:1736
+#: Merge.rc:1737
 #, c-format
 msgid "OVR"
 msgstr "OVR"
 
-#: Merge.rc:1737
+#: Merge.rc:1738
 #, c-format
 msgid "REC"
 msgstr "REC"
 
-#: Merge.rc:1743
+#: Merge.rc:1744
 #, c-format
 msgid ""
 "Create empty documents\n"
@@ -2656,7 +2661,7 @@ msgstr ""
 "Створити порожні документи\n"
 "Створити документи (Ctrl+N)"
 
-#: Merge.rc:1744
+#: Merge.rc:1745
 #, c-format
 msgid ""
 "Open an existing document\n"
@@ -2665,7 +2670,7 @@ msgstr ""
 "Відкрити існуючий документ\n"
 "Відкрити (Ctrl+O)"
 
-#: Merge.rc:1745
+#: Merge.rc:1746
 #, c-format
 msgid ""
 "Close the active document\n"
@@ -2674,7 +2679,7 @@ msgstr ""
 "Закрити активний документ\n"
 "Закрити"
 
-#: Merge.rc:1746
+#: Merge.rc:1747
 #, c-format
 msgid ""
 "Save the active document\n"
@@ -2683,7 +2688,7 @@ msgstr ""
 "Зберегти активний документ\n"
 "Зберегти (Ctrl+S)"
 
-#: Merge.rc:1747
+#: Merge.rc:1748
 #, c-format
 msgid ""
 "Save the active document with a new name\n"
@@ -2692,7 +2697,7 @@ msgstr ""
 "Зберегти активний документ під новим ім'ям\n"
 "Зберегти під новим ім'ям"
 
-#: Merge.rc:1748
+#: Merge.rc:1749
 #, c-format
 msgid ""
 "Change the printing options\n"
@@ -2701,7 +2706,7 @@ msgstr ""
 "Змінити налаштування друку\n"
 "Налаштування сторінки"
 
-#: Merge.rc:1749
+#: Merge.rc:1750
 #, c-format
 msgid ""
 "Change the printer and printing options\n"
@@ -2710,7 +2715,7 @@ msgstr ""
 "Змінити налаштування друкача і друку\n"
 "Налаштування друку"
 
-#: Merge.rc:1750
+#: Merge.rc:1751
 #, c-format
 msgid ""
 "Print the active document\n"
@@ -2719,7 +2724,7 @@ msgstr ""
 "Друкувати активний документ\n"
 "Друкувати"
 
-#: Merge.rc:1751
+#: Merge.rc:1752
 #, c-format
 msgid ""
 "Display full pages\n"
@@ -2728,27 +2733,27 @@ msgstr ""
 "Показувати повні сторінки\n"
 "Попередній перегляд"
 
-#: Merge.rc:1756
+#: Merge.rc:1757
 #, c-format
 msgid "Make all hidden items visible again"
 msgstr "Показати всі сховані елементи"
 
-#: Merge.rc:1757
+#: Merge.rc:1758
 #, c-format
 msgid "Toggle tree mode"
 msgstr ""
 
-#: Merge.rc:1758
+#: Merge.rc:1759
 #, c-format
 msgid "Expand all subfolders"
 msgstr ""
 
-#: Merge.rc:1759
+#: Merge.rc:1760
 #, c-format
 msgid "Collapse all subfolders"
 msgstr ""
 
-#: Merge.rc:1765
+#: Merge.rc:1766
 #, c-format
 msgid ""
 "Open project file\n"
@@ -2757,32 +2762,32 @@ msgstr ""
 "Відкрити файл проекту\n"
 "Файл проекту (Ctrl+J)"
 
-#: Merge.rc:1766
+#: Merge.rc:1767
 #, c-format
 msgid "Unknown error attempting to open project file"
 msgstr "Невідома помилка при відкритті файлу проекту"
 
-#: Merge.rc:1767
+#: Merge.rc:1768
 #, c-format
 msgid "Unknown error attempting to save project file"
 msgstr "Невідома помилка при збереженні файлу проекту"
 
-#: Merge.rc:1768
+#: Merge.rc:1769
 #, c-format
 msgid "Project File"
 msgstr "Файл проекту"
 
-#: Merge.rc:1769
+#: Merge.rc:1770
 #, c-format
 msgid "Project file successfully loaded."
 msgstr "Файл проекту успішно завантажений."
 
-#: Merge.rc:1770
+#: Merge.rc:1771
 #, c-format
 msgid "Project file successfully saved."
 msgstr "Файл проекту успішно збережений."
 
-#: Merge.rc:1771
+#: Merge.rc:1772
 #, c-format
 msgid ""
 "Save current paths and options to project file\n"
@@ -2791,7 +2796,7 @@ msgstr ""
 "Зберегти поточні шляхи і налаштування в файл проекту\n"
 "Зберегти файл проекту"
 
-#: Merge.rc:1776
+#: Merge.rc:1777
 #, c-format
 msgid ""
 "Display program information, version number and copyright\n"
@@ -2800,7 +2805,7 @@ msgstr ""
 "Показати інформацію про програму, номер версії і копірайт\n"
 "Про програму"
 
-#: Merge.rc:1777
+#: Merge.rc:1778
 #, c-format
 msgid ""
 "Quit the application; prompts to save documents\n"
@@ -2809,7 +2814,6 @@ msgstr ""
 "Вийти з програми; запитати про збереження документів\n"
 "Вийти"
 
-#: Merge.rc:1783
 #: Merge.rc:1784
 #: Merge.rc:1785
 #: Merge.rc:1786
@@ -2825,11 +2829,12 @@ msgstr ""
 #: Merge.rc:1796
 #: Merge.rc:1797
 #: Merge.rc:1798
+#: Merge.rc:1799
 #, c-format
 msgid "Open this document"
 msgstr "Відкрити цей документ"
 
-#: Merge.rc:1803
+#: Merge.rc:1804
 #, c-format
 msgid ""
 "Switch to the next window pane\n"
@@ -2838,7 +2843,7 @@ msgstr ""
 "Перемкнутися на наступну віконну панель\n"
 "Наступна панель"
 
-#: Merge.rc:1804
+#: Merge.rc:1805
 #, c-format
 msgid ""
 "Switch back to the previous window pane\n"
@@ -2847,7 +2852,7 @@ msgstr ""
 "Перемкнутися на попередню віконну панель\n"
 "Попередня панель"
 
-#: Merge.rc:1810
+#: Merge.rc:1811
 #, c-format
 msgid ""
 "Arrange windows so they overlap\n"
@@ -2856,7 +2861,7 @@ msgstr ""
 "Розташувати вікна каскадом з перекриттям\n"
 "Вікна каскадом"
 
-#: Merge.rc:1811
+#: Merge.rc:1812
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
@@ -2865,7 +2870,7 @@ msgstr ""
 "Розташувати вікна горизонтальною черепицею, яка не перекривається,\n"
 "Вікна черепицею"
 
-#: Merge.rc:1812
+#: Merge.rc:1813
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
@@ -2874,7 +2879,7 @@ msgstr ""
 "Розташувати вікна вертикальною черепицею, яка не перекривається,\n"
 "Вікна вертикальною черепицею"
 
-#: Merge.rc:1818
+#: Merge.rc:1819
 #, c-format
 msgid ""
 "Copy the selection and put it on the Clipboard\n"
@@ -2883,7 +2888,7 @@ msgstr ""
 "Скопіювати в буфер обміну\n"
 "Копіювати"
 
-#: Merge.rc:1819
+#: Merge.rc:1820
 #, c-format
 msgid ""
 "Cut the selection and put it on the Clipboard\n"
@@ -2892,7 +2897,7 @@ msgstr ""
 "Вирізати і помістити в буфер обміну\n"
 "Вирізати"
 
-#: Merge.rc:1820
+#: Merge.rc:1821
 #, c-format
 msgid ""
 "Find the specified text\n"
@@ -2901,7 +2906,7 @@ msgstr ""
 "Знайти зазначений текст\n"
 "Знайти"
 
-#: Merge.rc:1821
+#: Merge.rc:1822
 #, c-format
 msgid ""
 "Insert Clipboard contents\n"
@@ -2910,7 +2915,7 @@ msgstr ""
 "Вставити вміст буфера обміну\n"
 "Вставити"
 
-#: Merge.rc:1822
+#: Merge.rc:1823
 #, c-format
 msgid ""
 "Repeat the last action\n"
@@ -2919,7 +2924,7 @@ msgstr ""
 "Повторити останню дію\n"
 "Повторити"
 
-#: Merge.rc:1823
+#: Merge.rc:1824
 #, c-format
 msgid ""
 "Replace specific text with different text\n"
@@ -2928,7 +2933,7 @@ msgstr ""
 "Замінити зазначений текст на інший\n"
 "Замінити"
 
-#: Merge.rc:1824
+#: Merge.rc:1825
 #, c-format
 msgid ""
 "Select the entire document\n"
@@ -2937,7 +2942,7 @@ msgstr ""
 "Відзначити весь документ\n"
 "Відзначити все"
 
-#: Merge.rc:1825
+#: Merge.rc:1826
 #, c-format
 msgid ""
 "Undo the last action\n"
@@ -2946,7 +2951,7 @@ msgstr ""
 "Скасувати останню дію\n"
 "Скасувати"
 
-#: Merge.rc:1826
+#: Merge.rc:1827
 #, c-format
 msgid ""
 "Redo the previously undone action\n"
@@ -2955,7 +2960,7 @@ msgstr ""
 "Повернути скасовану дію\n"
 "Відновити"
 
-#: Merge.rc:1832
+#: Merge.rc:1833
 #, c-format
 msgid ""
 "Show or hide the toolbar\n"
@@ -2964,7 +2969,7 @@ msgstr ""
 "Показати або сховати панель інструментів\n"
 "Панель інструментів"
 
-#: Merge.rc:1833
+#: Merge.rc:1834
 #, c-format
 msgid ""
 "Show or hide the status bar\n"
@@ -2973,7 +2978,7 @@ msgstr ""
 "Показати або сховати рядок стану\n"
 "Рядок стану"
 
-#: Merge.rc:1834
+#: Merge.rc:1835
 #, c-format
 msgid ""
 "Show or hide the tab bar\n"
@@ -2982,62 +2987,62 @@ msgstr ""
 "Показати або сховати панель табів\n"
 "Панель табів"
 
-#: Merge.rc:1835
+#: Merge.rc:1836
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
 msgstr "Автоматично змінювати розмір панелей\nЗаблокувати панелі"
 
-#: Merge.rc:1841
+#: Merge.rc:1842
 #, c-format
 msgid "Change the window size"
 msgstr "Змінити розмір вікна"
 
-#: Merge.rc:1842
+#: Merge.rc:1843
 #, c-format
 msgid "Change the window position"
 msgstr "Змінити положення вікна"
 
-#: Merge.rc:1843
+#: Merge.rc:1844
 #, c-format
 msgid "Reduce the window to an icon"
 msgstr "Згорнути вікно до піктограми"
 
-#: Merge.rc:1844
+#: Merge.rc:1845
 #, c-format
 msgid "Enlarge the window to full size"
 msgstr "Розгорнути вікно до максимуму"
 
-#: Merge.rc:1845
+#: Merge.rc:1846
 #, c-format
 msgid "Switch to the next document window"
 msgstr "Перемкнутися на наступний документ"
 
-#: Merge.rc:1846
+#: Merge.rc:1847
 #, c-format
 msgid "Switch to the previous document window"
 msgstr "Перемкнутися на попередній документ"
 
-#: Merge.rc:1847
+#: Merge.rc:1848
 #, c-format
 msgid "Close the active window and prompts to save the documents"
 msgstr "Закрити активне вікно і запитати про збереження документів"
 
-#: Merge.rc:1852
+#: Merge.rc:1853
 #, c-format
 msgid "Restore the window to normal size"
 msgstr "Відновити нормальні розміри вікна"
 
-#: Merge.rc:1853
+#: Merge.rc:1854
 #, c-format
 msgid "Activate Task List"
 msgstr "Активувати список завдань"
 
-#: Merge.rc:1854
+#: Merge.rc:1855
 #, c-format
 msgid "Activate this window"
 msgstr "Активувати це вікно"
 
-#: Merge.rc:1860
+#: Merge.rc:1861
 #, c-format
 msgid ""
 "Close print preview mode\n"
@@ -3046,183 +3051,183 @@ msgstr ""
 "Закрити вікно попереднього перегляду\n"
 "Скасувати попередній перегляд"
 
-#: Merge.rc:1867
+#: Merge.rc:1868
 #, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
 msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge Порівняння файлів"
 
-#: Merge.rc:1868
+#: Merge.rc:1869
 #, c-format
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Порівняння папок"
 
-#: Merge.rc:1875
+#: Merge.rc:1876
 #, c-format
 msgid "Preserve original EOL chars"
 msgstr "Зберігати оригінальні символи закінчення рядка"
 
-#: Merge.rc:1882
+#: Merge.rc:1883
 #, c-format
 msgid "Press any key"
 msgstr "Натисніть будь-яку клавішу"
 
-#: Merge.rc:1888
 #: Merge.rc:1889
+#: Merge.rc:1890
 #, c-format
 msgid "Right click on the path to copy"
 msgstr "Клацання правою по шляху, щоб скопіювати"
 
-#: Merge.rc:1895
+#: Merge.rc:1896
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr "Розробники:\nДін Грім (Dean Grimm), Крістіан Ліст (Christian List), Кімо Варіс (Kimmo Varis), Йохен Тухт (Jochen Tucht), Тім Герундт (Tim Gerundt), Такаші Саванакі (Takashi Sawanaki), Гел Хаммер (Gal Hammer), Олександр Скіннер (Alexander Skinner)"
 
-#: Merge.rc:1896
+#: Merge.rc:1897
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge поставляється БЕЗ БУДЬ-ЯКОЇ ГАРАНТІЇ. Це вільне ПО і ми привітаємо його поширення згідно деяких умов; ознайомтеся з GNU General Public License в меню Довідка для докладнішої інформації."
 
-#: Merge.rc:1902
+#: Merge.rc:1903
 #, c-format
 msgid "&Ok"
 msgstr "&OК"
 
-#: Merge.rc:1904
+#: Merge.rc:1905
 #, c-format
 msgid "&Abort"
 msgstr "&Перервати"
 
-#: Merge.rc:1905
+#: Merge.rc:1906
 #, c-format
 msgid "&Retry"
 msgstr "Пов&торювати"
 
-#: Merge.rc:1906
+#: Merge.rc:1907
 #, c-format
 msgid "&Ignore"
 msgstr "&Ігнорувати"
 
-#: Merge.rc:1907
+#: Merge.rc:1908
 #, c-format
 msgid "Ignore &all"
 msgstr "Ігнорувати &все"
 
-#: Merge.rc:1908
+#: Merge.rc:1909
 #, c-format
 msgid "&Yes"
 msgstr "&Так"
 
-#: Merge.rc:1914
+#: Merge.rc:1915
 #, c-format
 msgid "Yes to &all"
 msgstr "Т&ак для всіх"
 
-#: Merge.rc:1915
+#: Merge.rc:1916
 #, c-format
 msgid "&No"
 msgstr "&Ні"
 
-#: Merge.rc:1916
+#: Merge.rc:1917
 #, c-format
 msgid "No to a&ll"
 msgstr "Ні д&ля всіх"
 
-#: Merge.rc:1917
+#: Merge.rc:1918
 #, c-format
 msgid "&Continue"
 msgstr "Про&довжити"
 
-#: Merge.rc:1918
+#: Merge.rc:1919
 #, c-format
 msgid "&Skip"
 msgstr "П&ропустити"
 
-#: Merge.rc:1919
+#: Merge.rc:1920
 #, c-format
 msgid "Skip &all"
 msgstr "Проп&устити все"
 
-#: Merge.rc:1921
+#: Merge.rc:1922
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Не показувати &це повідомлення знову "
 
-#: Merge.rc:1922
+#: Merge.rc:1923
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Не задавати &це запитання знову"
 
-#: Merge.rc:1932
+#: Merge.rc:1933
 #, c-format
 msgid "Syntax colors"
 msgstr "Підсвічування синтаксису"
 
-#: Merge.rc:1933
+#: Merge.rc:1934
 #, c-format
 msgid "Text Colors"
 msgstr "Кольори тексту"
 
-#: Merge.rc:1935
+#: Merge.rc:1936
 #, c-format
 msgid "Version Control"
 msgstr "Контроль версій"
 
-#: Merge.rc:1945
+#: Merge.rc:1946
 #, c-format
 msgid "To:"
 msgstr "На:"
 
-#: Merge.rc:1946
+#: Merge.rc:1947
 #, c-format
 msgid "From left:"
 msgstr "Зліва:"
 
-#: Merge.rc:1947
+#: Merge.rc:1948
 #, c-format
 msgid "To left:"
 msgstr "Ліворуч:"
 
-#: Merge.rc:1948
+#: Merge.rc:1949
 #, c-format
 msgid "From right:"
 msgstr "Справа:"
 
-#: Merge.rc:1949
+#: Merge.rc:1950
 #, c-format
 msgid "To right:"
 msgstr "Праворуч:"
 
-#: Merge.rc:1955
+#: Merge.rc:1956
 #, c-format
 msgid "Version %1"
 msgstr "Версія %1"
 
-#: Merge.rc:1956
+#: Merge.rc:1957
 #, c-format
 msgid "Unicode"
 msgstr "Юнікод"
 
-#: Merge.rc:1962
+#: Merge.rc:1963
 #, c-format
 msgid "Options (%1)"
 msgstr "Налаштування (%1)"
 
-#: Merge.rc:1963
+#: Merge.rc:1964
 #, c-format
 msgid "All message boxes are now displayed again."
 msgstr "Тепер всі повідомлення знову відображатимуться."
 
-#: Merge.rc:1964
+#: Merge.rc:1965
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
 msgstr "У поточному сеансі порівняння файлів зроблені зміни. Деякі речі не набудуть  чинності, доки поточний сеанс порівняння не буде перезапущений."
 
-#: Merge.rc:1965
+#: Merge.rc:1966
 #, c-format
 msgid "The selected font change will not be applied to any currently visible difference windows."
 msgstr "Зміни для обраного шрифту не будуть застосовані для відкритих вікон відмінностей."
 
-#: Merge.rc:1967
+#: Merge.rc:1968
 #, c-format
 msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
@@ -3233,7 +3238,7 @@ msgstr ""
 "\n"
 "Використайте значення 1 - %1."
 
-#: Merge.rc:1969
+#: Merge.rc:1970
 #, c-format
 msgid ""
 "Are you sure you want to reset all WinMerge options to default values?\n"
@@ -3244,129 +3249,129 @@ msgstr ""
 "\n"
 "Потрібно запустити знову WinMerge після скидання налаштувань."
 
-#: Merge.rc:1975
+#: Merge.rc:1976
 #, c-format
 msgid "Open"
 msgstr "Відкрити"
 
-#: Merge.rc:1976
+#: Merge.rc:1977
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Програми|*.exe;*.bat;*.cmd|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1977
+#: Merge.rc:1978
 #, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1978
+#: Merge.rc:1979
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "Файли проектів WinMerge (*.WinMerge)|*.WinMerge||"
 
-#: Merge.rc:1980
+#: Merge.rc:1981
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Файли конфігурації (*.ini)|*.ini|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1986
+#: Merge.rc:1987
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Текстові файли (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1987
+#: Merge.rc:1988
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "Файли HTML (*.htm,*.html)|*.htm;*.html|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1988
+#: Merge.rc:1989
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файли XML (*.xml)|*.xml|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:1994
+#: Merge.rc:1995
 #, c-format
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: Merge.rc:1995
+#: Merge.rc:1996
 #, c-format
 msgid "UTF-8 (B)"
 msgstr "UTF-8 (B)"
 
-#: Merge.rc:1996
+#: Merge.rc:1997
 #, c-format
 msgid "UCS-2 LE"
 msgstr "UCS-2 LE"
 
-#: Merge.rc:1997
+#: Merge.rc:1998
 #, c-format
 msgid "UCS-2 BE"
 msgstr "UCS-2 BE"
 
-#: Merge.rc:2003
+#: Merge.rc:2004
 #, c-format
 msgid "Full Contents"
 msgstr "Повний пошук за вмістом"
 
-#: Merge.rc:2004
+#: Merge.rc:2005
 #, c-format
 msgid "Quick Contents"
 msgstr "Швидкий пошук за вмістом "
 
-#: Merge.rc:2005
+#: Merge.rc:2006
 #, c-format
 msgid "Modified Date"
 msgstr "За розходженнями в даті"
 
-#: Merge.rc:2006
+#: Merge.rc:2007
 #, c-format
 msgid "Modified Date and Size"
 msgstr "За датою зміни і розміру"
 
-#: Merge.rc:2007
+#: Merge.rc:2008
 #, c-format
 msgid "Size"
 msgstr "За розміром"
 
-#: Merge.rc:2013
-#: Merge.rc:2622
+#: Merge.rc:2014
+#: Merge.rc:2625
 #, c-format
 msgid "Name"
 msgstr "Ім'я"
 
-#: Merge.rc:2014
+#: Merge.rc:2015
 #, c-format
 msgid "Location"
 msgstr "Місце розташування"
 
-#: Merge.rc:2015
+#: Merge.rc:2016
 #, c-format
 msgid "Filters"
 msgstr "Фільтри"
 
-#: Merge.rc:2016
+#: Merge.rc:2017
 #, c-format
 msgid "[F] "
 msgstr "[F] "
 
-#: Merge.rc:2017
-#: Merge.rc:2624
+#: Merge.rc:2018
+#: Merge.rc:2627
 #, c-format
 msgid "Description"
 msgstr "Опис"
 
-#: Merge.rc:2018
+#: Merge.rc:2019
 #, c-format
 msgid "Select filename for new filter"
 msgstr "Вкажіть ім'я файлу для нового фільтра"
 
-#: Merge.rc:2019
+#: Merge.rc:2020
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файли фільтрів (*.flt)|*.flt|Всі файли (*.*)|*.*||"
 
-#: Merge.rc:2021
+#: Merge.rc:2022
 #, c-format
 msgid ""
 "Cannot find file filter template file!\n"
@@ -3379,7 +3384,7 @@ msgstr ""
 "Скопіюйте файл %1 у папку з фільтрами:\n"
 "%2."
 
-#: Merge.rc:2023
+#: Merge.rc:2024
 #, c-format
 msgid ""
 "Cannot copy filter template file to filter folder:\n"
@@ -3392,7 +3397,7 @@ msgstr ""
 "\n"
 "Переконайтеся, що папка існує і доступна для запису."
 
-#: Merge.rc:2025
+#: Merge.rc:2026
 #, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
@@ -3403,7 +3408,7 @@ msgstr ""
 "\n"
 "Вкажіть папку з фільтрами на вкладці Система в Налаштуваннях."
 
-#: Merge.rc:2027
+#: Merge.rc:2028
 #, c-format
 msgid ""
 "Failed to delete the filter file:\n"
@@ -3416,12 +3421,12 @@ msgstr ""
 "\n"
 "Можливо файл використовується."
 
-#: Merge.rc:2028
+#: Merge.rc:2029
 #, c-format
 msgid "Locate filter file to install"
 msgstr "Вказати  файл фільтра"
 
-#: Merge.rc:2030
+#: Merge.rc:2031
 #, c-format
 msgid ""
 "Installing filter file failed.\n"
@@ -3432,213 +3437,223 @@ msgstr ""
 "\n"
 "Неможливо скопіювати файл фільтра в папку з фільтрами."
 
-#: Merge.rc:2032
+#: Merge.rc:2033
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "Фільтр уже існує. Перезаписати?"
 
-#: Merge.rc:2038
+#: Merge.rc:2039
 #, c-format
 msgid "Regular expression"
 msgstr "Регулярний вираз"
 
-#: Merge.rc:2044
+#: Merge.rc:2045
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:2050
+#: Merge.rc:2051
 #, c-format
 msgid "&Path to cleartool.exe :"
 msgstr "&Шлях до cleartool.exe :"
 
-#: Merge.rc:2051
+#: Merge.rc:2052
 #, c-format
 msgid "&Path to SS.EXE :"
 msgstr "&Шлях до SS.EXE :"
 
-#: Merge.rc:2057
+#: Merge.rc:2058
 #, c-format
 msgid "Folder Comparison Results"
 msgstr "Результати порівняння папок"
 
-#: Merge.rc:2058
+#: Merge.rc:2059
 #, c-format
 msgid "File Comparison"
 msgstr "Порівняння файлів"
 
-#: Merge.rc:2059
+#: Merge.rc:2060
 #, c-format
 msgid "Untitled left"
 msgstr "Безіменний ліворуч"
 
-#: Merge.rc:2060
+#: Merge.rc:2061
 #, c-format
 msgid "Untitled right"
 msgstr "Безіменний праворуч"
 
-#: Merge.rc:2061
+#: Merge.rc:2062
 #, c-format
 msgid "Theirs File"
 msgstr "Їхній файл"
 
-#: Merge.rc:2062
+#: Merge.rc:2063
 #, c-format
 msgid "Mine File"
 msgstr "Мій файл"
 
-#: Merge.rc:2068
+#: Merge.rc:2069
 #, c-format
 msgid "Scanning files..."
 msgstr "Сканування файлів..."
 
-#: Merge.rc:2069
+#: Merge.rc:2070
 #, c-format
 msgid "Opening selection"
 msgstr "Відкриваю відзначене"
 
-#: Merge.rc:2070
+#: Merge.rc:2071
 #, c-format
 msgid "Copying Left to Right"
 msgstr "Копіювання зліва праворуч"
 
-#: Merge.rc:2071
+#: Merge.rc:2072
 #, c-format
 msgid "Copying Right to Left"
 msgstr "Копіювання справа ліворуч"
 
-#: Merge.rc:2072
+#: Merge.rc:2073
 #, c-format
 msgid "Copying All to Left"
 msgstr "Копіювання всіх файлів ліворуч"
 
-#: Merge.rc:2073
+#: Merge.rc:2074
 #, c-format
 msgid "Copying All to Right"
 msgstr "Копіювання всіх файлів праворуч"
 
-#: Merge.rc:2074
+#: Merge.rc:2075
 #, c-format
 msgid "Copying files..."
 msgstr "Копіювання файлів..."
 
-#: Merge.rc:2075
+#: Merge.rc:2076
 #, c-format
 msgid "Deleting files..."
 msgstr "Вилучення файлів..."
 
-#: Merge.rc:2076
+#: Merge.rc:2077
 #, c-format
 msgid "Moving files..."
 msgstr "Переміщення файлів..."
 
-#: Merge.rc:2077
+#: Merge.rc:2078
 #, c-format
 msgid "Creating the report..."
 msgstr "Створюється звіт..."
 
-#: Merge.rc:2083
+#: Merge.rc:2079
+#, c-format
+msgid "Undoing the last operation..."
+msgstr ""
+
+#: Merge.rc:2080
+#, c-format
+msgid "Redoing the previous operation..."
+msgstr ""
+
+#: Merge.rc:2086
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Ряд: %s  Стов: %d/%d  Зм: %d/%d  СКР: %s"
 
-#: Merge.rc:2084
+#: Merge.rc:2087
 #, c-format
 msgid "Line: %s"
 msgstr "Рядок: %s"
 
-#: Merge.rc:2085
+#: Merge.rc:2088
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Ряд: %s  Поз: %d/%d  Зм: %d/%d"
 
-#: Merge.rc:2086
+#: Merge.rc:2089
 #, c-format
 msgid "Merge"
 msgstr "Об'єднання"
 
-#: Merge.rc:2087
+#: Merge.rc:2090
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "Відмінність %1 з %2"
 
-#: Merge.rc:2088
+#: Merge.rc:2091
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 відмінностей знайшлося"
 
-#: Merge.rc:2089
+#: Merge.rc:2092
 #, c-format
 msgid "1 Difference Found"
 msgstr "Знайдена всього одна відмінність"
 
 #. Abbreviation from "Read Only"
-#: Merge.rc:2090
+#: Merge.rc:2093
 #, c-format
 msgid "RO"
 msgstr "RO"
 
-#: Merge.rc:2096
+#: Merge.rc:2099
 #, c-format
 msgid "Item %1 of %2"
 msgstr "Елемент %1 з %2"
 
-#: Merge.rc:2097
+#: Merge.rc:2100
 #, c-format
 msgid "Items: %1"
 msgstr "Елементів: %1"
 
-#: Merge.rc:2103
+#: Merge.rc:2106
 #, c-format
 msgid "Select two existing folders or files to compare"
 msgstr "Виберіть дві ІСНУЮЧІ папки або файли для порівняння"
 
-#: Merge.rc:2104
+#: Merge.rc:2107
 #, c-format
 msgid "Folder Selection"
 msgstr "Вибір папки"
 
-#: Merge.rc:2105
+#: Merge.rc:2108
 #, c-format
 msgid "Select two folders or two files to compare."
 msgstr "Виберіть для порівняння дві папки або файли"
 
-#: Merge.rc:2106
+#: Merge.rc:2109
 #, c-format
 msgid "Left path is invalid!"
 msgstr "Шлях зліва зазначений неправильно "
 
-#: Merge.rc:2107
+#: Merge.rc:2110
 #, c-format
 msgid "Right path is invalid!"
 msgstr "Шлях справа зазначений неправильно "
 
-#: Merge.rc:2108
+#: Merge.rc:2111
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Обидва шляхи зазначені неправильно "
 
-#: Merge.rc:2109
+#: Merge.rc:2112
 #, c-format
 msgid "Choose two files to enable unpacker selection."
 msgstr "Виберіть два файли, щоб ввімкнути вибір розпакувальника"
 
-#: Merge.rc:2110
+#: Merge.rc:2113
 #, c-format
 msgid "Cannot compare file and folder!"
 msgstr "Неможливе порівняння файлу і папки!"
 
-#: Merge.rc:2116
+#: Merge.rc:2119
 #, c-format
 msgid "File not found: %1"
 msgstr "Файл не знайдений: %1"
 
-#: Merge.rc:2117
+#: Merge.rc:2120
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "Файл не розпакований: %1"
 
-#: Merge.rc:2118
+#: Merge.rc:2121
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -3651,42 +3666,42 @@ msgstr ""
 "\n"
 "%2"
 
-#: Merge.rc:2119
+#: Merge.rc:2122
 #, c-format
 msgid "Failed to parse conflict file."
 msgstr "Помилка розбору файлу конфліктів"
 
-#: Merge.rc:2120
+#: Merge.rc:2123
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
 msgstr "Файл\n%1\nне є файлом конфліктів"
 
-#: Merge.rc:2126
+#: Merge.rc:2129
 #, c-format
 msgid "Save As"
 msgstr "Зберегти як..."
 
-#: Merge.rc:2127
+#: Merge.rc:2130
 #, c-format
 msgid "Save changes to %1?"
 msgstr "Зберегти зміни в %1?"
 
-#: Merge.rc:2128
+#: Merge.rc:2131
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
 msgstr "%1 позначений як лише для читання. Чи згодні ви замінити цей файл ? (Не дозволяє вказати нове ім'я файлу)"
 
-#: Merge.rc:2129
+#: Merge.rc:2132
 #, c-format
 msgid "Error checking destination writeability"
 msgstr "Помилка перевірки можливості запису в зазначене місце"
 
-#: Merge.rc:2130
+#: Merge.rc:2133
 #, c-format
 msgid "Error backing up file"
 msgstr "Помилка створення резервної копії"
 
-#: Merge.rc:2132
+#: Merge.rc:2135
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -3699,7 +3714,7 @@ msgstr ""
 "\n"
 "Продовжити в будь-якому випадку?"
 
-#: Merge.rc:2133
+#: Merge.rc:2136
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -3716,7 +3731,7 @@ msgstr ""
 "\t-використати інше ім'я файлу (Натисніть OК)\n"
 "\t-скасувати поточну операцію (Натисніть Скасувати)?"
 
-#: Merge.rc:2134
+#: Merge.rc:2137
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3731,7 +3746,7 @@ msgstr ""
 "\n"
 "Хочете зберегти розпаковану версію в інший файл?"
 
-#: Merge.rc:2135
+#: Merge.rc:2138
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -3746,7 +3761,7 @@ msgstr ""
 "\n"
 "Хочете зберегти розпаковану версію в інший файл?"
 
-#: Merge.rc:2136
+#: Merge.rc:2139
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3761,14 +3776,14 @@ msgstr ""
 "\n"
 "Перезаписати змінений файл?"
 
-#: Merge.rc:2137
+#: Merge.rc:2140
 #, c-format
 msgid ""
 "%1\n"
 "is marked read-only. Would you like to override the read-only item?"
 msgstr "%1 позначений як лише для читання. Чи згодні ви замінити цей файл?"
 
-#: Merge.rc:2138
+#: Merge.rc:2141
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3783,17 +3798,17 @@ msgstr ""
 "\n"
 "Якщо ви хочете оновити файли, то закрийте поточне порівняння і завантажте файли знову."
 
-#: Merge.rc:2139
+#: Merge.rc:2142
 #, c-format
 msgid "Save Left File As"
 msgstr "Зберегти файл ліворуч як..."
 
-#: Merge.rc:2140
+#: Merge.rc:2143
 #, c-format
 msgid "Save Right File As"
 msgstr "Зберегти файл праворуч як..."
 
-#: Merge.rc:2146
+#: Merge.rc:2149
 #, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -3804,42 +3819,42 @@ msgstr ""
 "\n"
 "Оновіть документи перед продовженням."
 
-#: Merge.rc:2152
+#: Merge.rc:2155
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 msgstr "Щоб продовжити, Ви маєте вказати шлях до проекту SourceSafe (наприклад:  $/MyProject)"
 
-#: Merge.rc:2153
+#: Merge.rc:2156
 #, c-format
 msgid "Checkout files from VSS..."
 msgstr "Одержуємо файли з VSS..."
 
-#: Merge.rc:2154
+#: Merge.rc:2157
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
 msgstr "Система контролю версій виявила помилку при спробі взяти файл під контроль.  Немає можливості продовжувати..."
 
-#: Merge.rc:2155
+#: Merge.rc:2158
 #, c-format
 msgid "Error executing versioning system command."
 msgstr "Помилка виконання системної команди Системи контролю версій."
 
-#: Merge.rc:2156
+#: Merge.rc:2159
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
 msgstr "Робоча папка VSS і місце розташування поточного файлу не збігаються. Продовжити ?"
 
-#: Merge.rc:2157
+#: Merge.rc:2160
 #, c-format
 msgid "No VSS database(s) found!"
 msgstr "Не знайдена база даних VSS!"
 
-#: Merge.rc:2158
+#: Merge.rc:2161
 #, c-format
 msgid "Error from VSS:"
 msgstr "Помилка VSS:"
 
-#: Merge.rc:2159
+#: Merge.rc:2162
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to check in the file.\n"
@@ -3850,7 +3865,7 @@ msgstr ""
 " Перевірте конфігурацію.\n"
 " Скасувати дію?"
 
-#: Merge.rc:2160
+#: Merge.rc:2163
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
@@ -3859,169 +3874,169 @@ msgstr ""
 "VSS знайшла помилку при спробі скасування дії.\n"
 "Перевірте конфігурацію. "
 
-#: Merge.rc:2166
-#: Merge.rc:2606
+#: Merge.rc:2169
+#: Merge.rc:2609
 #, c-format
 msgid "None"
 msgstr "Немає"
 
-#: Merge.rc:2167
+#: Merge.rc:2170
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
 msgstr "Visual SourceSafe (менше, ніж 5.0)"
 
-#: Merge.rc:2168
+#: Merge.rc:2171
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
 msgstr "Visual SourceSafe (5.0 і вище)"
 
-#: Merge.rc:2170
+#: Merge.rc:2173
 #, c-format
 msgid "Break at whitespace"
 msgstr "Розбивати по пропускам"
 
-#: Merge.rc:2171
+#: Merge.rc:2174
 #, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Розбивати по пропускам і знаках пунктуації"
 
-#: Merge.rc:2177
-#: Merge.rc:2179
+#: Merge.rc:2180
+#: Merge.rc:2182
 #, c-format
 msgid "Copy selected item to named directory"
 msgstr "Скопіювати обрані файли в зазначену папку"
 
-#: Merge.rc:2178
-#: Merge.rc:2180
+#: Merge.rc:2181
+#: Merge.rc:2183
 #, c-format
 msgid "Copy selected item to custom directory"
 msgstr "Скопіювати обрані файли в зазначену папку"
 
-#: Merge.rc:2181
+#: Merge.rc:2184
 #, c-format
 msgid "Delete selected item on left"
 msgstr "Вилучити обраний елемент ліворуч"
 
-#: Merge.rc:2182
+#: Merge.rc:2185
 #, c-format
 msgid "Delete selected item on right"
 msgstr "Вилучити обраний елемент праворуч"
 
-#: Merge.rc:2183
+#: Merge.rc:2186
 #, c-format
 msgid "Delete selected item(s) on both sides"
 msgstr "Вилучити обрані елементи з обох сторін"
 
-#: Merge.rc:2184
+#: Merge.rc:2187
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
 msgstr "Сховати обрані елементи (швидкий фільтр)"
 
-#: Merge.rc:2185
+#: Merge.rc:2188
 #, c-format
 msgid "Rename selected item on both sides"
 msgstr "Перейменувати обрані елементи з обох сторін"
 
-#: Merge.rc:2186
+#: Merge.rc:2189
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Скопіювати на ліву сторону %1 з %2 обраних елементів"
 
-#: Merge.rc:2187
+#: Merge.rc:2190
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Скопіювати на праву сторону %1 з %2 обраних елементів"
 
-#: Merge.rc:2188
+#: Merge.rc:2191
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Справа ліворуч (%1 з %2)"
 
-#: Merge.rc:2189
+#: Merge.rc:2192
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Зліва праворуч (%1 з %2)"
 
-#: Merge.rc:2190
-#: Merge.rc:2206
+#: Merge.rc:2193
+#: Merge.rc:2209
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Зліва... (%1)"
 
-#: Merge.rc:2191
-#: Merge.rc:2207
+#: Merge.rc:2194
+#: Merge.rc:2210
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Справа... (%1)"
 
-#: Merge.rc:2192
-#: Merge.rc:2208
+#: Merge.rc:2195
+#: Merge.rc:2211
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Зліва... (%1 з %2)"
 
-#: Merge.rc:2193
-#: Merge.rc:2209
+#: Merge.rc:2196
+#: Merge.rc:2212
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Справа... (%1 з %2)"
 
-#: Merge.rc:2199
+#: Merge.rc:2202
 #, c-format
 msgid "Left (%1)"
 msgstr "Ліворуч (%1)"
 
-#: Merge.rc:2200
+#: Merge.rc:2203
 #, c-format
 msgid "Right (%1)"
 msgstr "Праворуч (%1)"
 
-#: Merge.rc:2201
+#: Merge.rc:2204
 #, c-format
 msgid "Both (%1)"
 msgstr "Обидва (%1)"
 
-#: Merge.rc:2202
+#: Merge.rc:2205
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Ліворуч (%1 з %2)"
 
-#: Merge.rc:2203
+#: Merge.rc:2206
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Праворуч (%1 з %2)"
 
-#: Merge.rc:2204
+#: Merge.rc:2207
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Разом (%1 з %2)"
 
-#: Merge.rc:2205
+#: Merge.rc:2208
 #, c-format
 msgid "Select destination folder"
 msgstr "Виберіть папку призначення"
 
-#: Merge.rc:2210
+#: Merge.rc:2213
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "Ліва сторона - вибір папки призначення:"
 
-#: Merge.rc:2211
+#: Merge.rc:2214
 #, c-format
 msgid "Right side - select destination folder:"
 msgstr "Права сторона - вибір папки призначення:"
 
-#: Merge.rc:2212
+#: Merge.rc:2215
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 файлів оброблені)"
 
-#: Merge.rc:2213
+#: Merge.rc:2216
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 з %2 файлів оброблені)"
 
-#: Merge.rc:2219
+#: Merge.rc:2222
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4032,17 +4047,17 @@ msgstr ""
 "\n"
 "%1 ?"
 
-#: Merge.rc:2220
+#: Merge.rc:2223
 #, c-format
 msgid "Are you sure you want to copy:"
 msgstr "Ви впевнені, що хочете скопіювати:"
 
-#: Merge.rc:2221
+#: Merge.rc:2224
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr "Ви впевнені, що хочете скопіювати %d елементів:"
 
-#: Merge.rc:2222
+#: Merge.rc:2225
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -4061,478 +4076,478 @@ msgstr ""
 "\n"
 "Оновіть порівняння."
 
-#: Merge.rc:2223
+#: Merge.rc:2226
 #, c-format
 msgid "Are you sure you want to move:"
 msgstr ""
 
-#: Merge.rc:2224
+#: Merge.rc:2227
 #, c-format
 msgid "Are you sure you want to move %d items:"
 msgstr ""
 
-#: Merge.rc:2226
+#: Merge.rc:2229
 #, c-format
 msgid "Confirm Move"
 msgstr ""
 
-#: Merge.rc:2232
+#: Merge.rc:2235
 #, c-format
 msgid "Open left file"
 msgstr "Відкрити файл ліворуч"
 
-#: Merge.rc:2233
+#: Merge.rc:2236
 #, c-format
 msgid "Open the left file to external editor"
 msgstr "Відкрити файл ліворуч в зовнішньому редакторі"
 
-#: Merge.rc:2234
+#: Merge.rc:2237
 #, c-format
 msgid "Open left file with ..."
 msgstr "Відкрити файл ліворуч за допомогою..."
 
-#: Merge.rc:2235
+#: Merge.rc:2238
 #, c-format
 msgid "Open right file"
 msgstr "Відкрити файл праворуч"
 
-#: Merge.rc:2236
+#: Merge.rc:2239
 #, c-format
 msgid "Open the right file to external editor"
 msgstr "Відкрити файл праворуч в зовнішньому редакторі"
 
-#: Merge.rc:2237
+#: Merge.rc:2240
 #, c-format
 msgid "Open right file with..."
 msgstr "Відкрити файл праворуч за допомогою..."
 
-#: Merge.rc:2238
+#: Merge.rc:2241
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Неможливо виконати %1"
 
-#: Merge.rc:2239
+#: Merge.rc:2242
 #, c-format
 msgid "Unknown extension on external editor: %1"
 msgstr "Невідоме розширення для зовнішнього редактора: %1"
 
-#: Merge.rc:2240
+#: Merge.rc:2243
 #, c-format
 msgid "Copy filenames to clipboard"
 msgstr "Скопіювати імена файлів в буфер обміну"
 
-#: Merge.rc:2241
+#: Merge.rc:2244
 #, c-format
 msgid "Copy left side pathnames to clipboard"
 msgstr "Скопіювати імена файлів з лівої частини в буфер обміну"
 
-#: Merge.rc:2242
+#: Merge.rc:2245
 #, c-format
 msgid "Copy right side pathnames to clipboard"
 msgstr "Скопіювати імена файлів з правої частини в буфер обміну"
 
-#: Merge.rc:2243
+#: Merge.rc:2246
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
 msgstr "Скопіювати імена файлів з обох панелей у буфер обміну"
 
-#: Merge.rc:2249
+#: Merge.rc:2252
 #, c-format
 msgid "Unknown archive format"
 msgstr "Невідомий формат архіву"
 
-#: Merge.rc:2250
+#: Merge.rc:2253
 #, c-format
 msgid "Add items from left side to archive"
 msgstr "Заархівувати елементи з лівої сторони"
 
-#: Merge.rc:2251
+#: Merge.rc:2254
 #, c-format
 msgid "Add items from right side to archive"
 msgstr "Заархівувати елементи з правої сторони"
 
-#: Merge.rc:2252
+#: Merge.rc:2255
 #, c-format
 msgid "Add items from both sides to archive"
 msgstr "Заархівувати елементи з обох сторін"
 
-#: Merge.rc:2253
+#: Merge.rc:2256
 #, c-format
 msgid "Add different items to archive (both sides)"
 msgstr "Заархівувати довільні елементи з обох сторін"
 
-#: Merge.rc:2255
+#: Merge.rc:2258
 #, c-format
 msgid "Move selected file on left to custom directory"
 msgstr "Перемістити обрані ліворуч файли в іншу папку"
 
-#: Merge.rc:2257
+#: Merge.rc:2260
 #, c-format
 msgid "Move selected file on right to custom directory"
 msgstr "Перемістити обрані праворуч файли в іншу папку"
 
-#: Merge.rc:2263
+#: Merge.rc:2266
 #, c-format
 msgid "Filename"
 msgstr "Ім'я файлу"
 
-#: Merge.rc:2264
+#: Merge.rc:2267
 #, c-format
 msgid "Folder"
 msgstr "Папка"
 
-#: Merge.rc:2265
+#: Merge.rc:2268
 #, c-format
 msgid "Comparison result"
 msgstr "Результат порівняння"
 
-#: Merge.rc:2266
+#: Merge.rc:2269
 #, c-format
 msgid "Left Date"
 msgstr "Дата ліворуч"
 
-#: Merge.rc:2267
+#: Merge.rc:2270
 #, c-format
 msgid "Right Date"
 msgstr "Дата праворуч"
 
-#: Merge.rc:2268
+#: Merge.rc:2271
 #, c-format
 msgid "Extension"
 msgstr "Розширення"
 
-#: Merge.rc:2269
+#: Merge.rc:2272
 #, c-format
 msgid "Left Size"
 msgstr "Розмір ліворуч"
 
-#: Merge.rc:2270
+#: Merge.rc:2273
 #, c-format
 msgid "Right Size"
 msgstr "Розмір праворуч"
 
-#: Merge.rc:2271
+#: Merge.rc:2274
 #, c-format
 msgid "Right Size (Short)"
 msgstr "Розмір праворуч (скор.)"
 
-#: Merge.rc:2272
+#: Merge.rc:2275
 #, c-format
 msgid "Left Size (Short)"
 msgstr "Розмір ліворуч (скор.)"
 
-#: Merge.rc:2278
+#: Merge.rc:2281
 #, c-format
 msgid "Left Creation Time"
 msgstr "Час створення файлу ліворуч"
 
-#: Merge.rc:2279
+#: Merge.rc:2282
 #, c-format
 msgid "Right Creation Time"
 msgstr "Час створення файлу праворуч"
 
-#: Merge.rc:2280
+#: Merge.rc:2283
 #, c-format
 msgid "Newer File"
 msgstr "Новіший файл"
 
-#: Merge.rc:2281
+#: Merge.rc:2284
 #, c-format
 msgid "Left File Version"
 msgstr "Версія файлу ліворуч"
 
-#: Merge.rc:2282
+#: Merge.rc:2285
 #, c-format
 msgid "Right File Version"
 msgstr "Версія файлу праворуч"
 
-#: Merge.rc:2283
+#: Merge.rc:2286
 #, c-format
 msgid "Short Result"
 msgstr "Спрощений результат"
 
-#: Merge.rc:2284
+#: Merge.rc:2287
 #, c-format
 msgid "Left Attributes"
 msgstr "Атрибути файлу ліворуч"
 
-#: Merge.rc:2285
+#: Merge.rc:2288
 #, c-format
 msgid "Right Attributes"
 msgstr "Атрибути файлу праворуч"
 
-#: Merge.rc:2286
+#: Merge.rc:2289
 #, c-format
 msgid "Left EOL"
 msgstr "Ліве закінчення рядка"
 
-#: Merge.rc:2287
+#: Merge.rc:2290
 #, c-format
 msgid "Right EOL"
 msgstr "Праве закінчення рядка"
 
-#: Merge.rc:2293
+#: Merge.rc:2296
 #, c-format
 msgid "Left Encoding"
 msgstr "Кодування файлу ліворуч"
 
-#: Merge.rc:2294
+#: Merge.rc:2297
 #, c-format
 msgid "Right Encoding"
 msgstr "Кодування файлу праворуч"
 
-#: Merge.rc:2295
+#: Merge.rc:2298
 #, c-format
 msgid "Ignored Diff."
 msgstr "Ігнор. відмінності"
 
-#: Merge.rc:2296
+#: Merge.rc:2299
 #, c-format
 msgid "Differences"
 msgstr "Відмінності"
 
-#: Merge.rc:2297
-#: Merge.rc:2602
+#: Merge.rc:2300
+#: Merge.rc:2605
 #, c-format
 msgid "Binary"
 msgstr "Бінарний"
 
-#: Merge.rc:2303
+#: Merge.rc:2306
 #, c-format
 msgid "Unable to compare files"
 msgstr "Неможливо порівняти файли"
 
-#: Merge.rc:2304
+#: Merge.rc:2307
 #, c-format
 msgid "Item aborted"
 msgstr "Порівняння перерване"
 
-#: Merge.rc:2305
+#: Merge.rc:2308
 #, c-format
 msgid "File skipped"
 msgstr "Файл пропущений"
 
-#: Merge.rc:2306
+#: Merge.rc:2309
 #, c-format
 msgid "Folder skipped"
 msgstr "Папка пропущена"
 
-#: Merge.rc:2307
+#: Merge.rc:2310
 #, c-format
 msgid "Left only: %1"
 msgstr "Тільки ліворуч: %1"
 
-#: Merge.rc:2308
+#: Merge.rc:2311
 #, c-format
 msgid "Right only: %1"
 msgstr "Тільки праворуч: %1"
 
-#: Merge.rc:2309
+#: Merge.rc:2312
 #, c-format
 msgid "Binary files are identical"
 msgstr "Бінарні файли не мають відмінностей"
 
-#: Merge.rc:2311
+#: Merge.rc:2314
 #, c-format
 msgid "Binary files are different"
 msgstr "Бінарні файли відрізняються"
 
-#: Merge.rc:2312
+#: Merge.rc:2315
 #, c-format
 msgid "Files are different"
 msgstr "Файли відрізняються"
 
-#: Merge.rc:2313
+#: Merge.rc:2316
 #, c-format
 msgid "Folders are different"
 msgstr ""
 
-#: Merge.rc:2314
+#: Merge.rc:2317
 #, c-format
 msgid "Left Only"
 msgstr "Тільки ліворуч"
 
-#: Merge.rc:2315
+#: Merge.rc:2318
 #, c-format
 msgid "Right Only"
 msgstr "Тільки праворуч"
 
-#: Merge.rc:2317
+#: Merge.rc:2320
 #, c-format
 msgid "Error"
 msgstr "Помилка"
 
-#: Merge.rc:2323
+#: Merge.rc:2326
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Пройшло часу: %ld мс"
 
-#: Merge.rc:2324
+#: Merge.rc:2327
 #, c-format
 msgid "1 item selected"
 msgstr "Обраний 1 елемент"
 
-#: Merge.rc:2325
+#: Merge.rc:2328
 #, c-format
 msgid "%1 items selected"
 msgstr "Обрані елементи: %1"
 
-#: Merge.rc:2331
+#: Merge.rc:2334
 #, c-format
 msgid "Filename or folder name."
 msgstr "Ім'я файлу або папки"
 
-#: Merge.rc:2332
+#: Merge.rc:2335
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Імена підпапок, якщо підпапки включені"
 
-#: Merge.rc:2333
+#: Merge.rc:2336
 #, c-format
 msgid "Comparison result, long form."
 msgstr "Результат порівняння, довга форма."
 
-#: Merge.rc:2334
+#: Merge.rc:2337
 #, c-format
 msgid "Left side modification date."
 msgstr "Час зміни файлу ліворуч"
 
-#: Merge.rc:2335
+#: Merge.rc:2338
 #, c-format
 msgid "Right side modification date."
 msgstr "Час зміни файлу праворуч"
 
-#: Merge.rc:2336
+#: Merge.rc:2339
 #, c-format
 msgid "File's extension."
 msgstr "Розширення файлу"
 
-#: Merge.rc:2337
+#: Merge.rc:2340
 #, c-format
 msgid "Left file size in bytes."
 msgstr "Розмір файлу ліворуч у байтах"
 
-#: Merge.rc:2338
+#: Merge.rc:2341
 #, c-format
 msgid "Right file size in bytes."
 msgstr "Розмір файлу праворуч у байтах"
 
-#: Merge.rc:2339
+#: Merge.rc:2342
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Розмір лівого файлу (скор.)"
 
-#: Merge.rc:2340
+#: Merge.rc:2343
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Розмір правого файлу (скор.)"
 
-#: Merge.rc:2346
+#: Merge.rc:2349
 #, c-format
 msgid "Left side creation time."
 msgstr "Час створення файлу ліворуч"
 
-#: Merge.rc:2347
+#: Merge.rc:2350
 #, c-format
 msgid "Right side creation time."
 msgstr "Час створення файлу праворуч"
 
-#: Merge.rc:2348
+#: Merge.rc:2351
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Показати, з якої зі сторін дата зміни файлу новіша"
 
-#: Merge.rc:2349
+#: Merge.rc:2352
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Версія файлу ліворуч, тільки для деяких типів файлів."
 
-#: Merge.rc:2350
+#: Merge.rc:2353
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Версія файлу праворуч, тільки для деяких типів файлів."
 
-#: Merge.rc:2351
+#: Merge.rc:2354
 #, c-format
 msgid "Short comparison result."
 msgstr "Результат швидкого порівняння"
 
-#: Merge.rc:2352
+#: Merge.rc:2355
 #, c-format
 msgid "Left side attributes."
 msgstr "Атрибути файлу ліворуч"
 
-#: Merge.rc:2353
+#: Merge.rc:2356
 #, c-format
 msgid "Right side attributes."
 msgstr "Атрибути файлу праворуч"
 
-#: Merge.rc:2354
+#: Merge.rc:2357
 #, c-format
 msgid "Left side file EOL type"
 msgstr "Маркер закінчення рядка для лівого файлу"
 
-#: Merge.rc:2355
+#: Merge.rc:2358
 #, c-format
 msgid "Right side file EOL type"
 msgstr "Маркер закінчення рядка для правого файлу"
 
-#: Merge.rc:2361
+#: Merge.rc:2364
 #, c-format
 msgid "Left side encoding."
 msgstr "Кодування файлу ліворуч"
 
-#: Merge.rc:2362
+#: Merge.rc:2365
 #, c-format
 msgid "Right side encoding."
 msgstr "Кодування файлу праворуч"
 
-#: Merge.rc:2363
+#: Merge.rc:2366
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "Кількість ігнорованих відмінностей у файлі. Ці відмінності були ігноровані WinMerge і не можуть бути оброблені."
 
-#: Merge.rc:2364
+#: Merge.rc:2367
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "Кількість відмінностей у файлі. Ігноровані відмінності не враховані."
 
-#: Merge.rc:2365
+#: Merge.rc:2368
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Показати зірочку (*) якщо файл бінарний."
 
-#: Merge.rc:2371
+#: Merge.rc:2374
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Порівняння %1 з %2"
 
-#: Merge.rc:2372
+#: Merge.rc:2375
 #, c-format
 msgid "Comma-separated list"
 msgstr "Список, розділений комами"
 
-#: Merge.rc:2373
+#: Merge.rc:2376
 #, c-format
 msgid "Tab-separated list"
 msgstr "Список, розділений табуляторами"
 
-#: Merge.rc:2374
+#: Merge.rc:2377
 #, c-format
 msgid "Simple HTML"
 msgstr "Простий HTML"
 
-#: Merge.rc:2375
+#: Merge.rc:2378
 #, c-format
 msgid "Simple XML"
 msgstr "Простий XML"
 
-#: Merge.rc:2377
+#: Merge.rc:2380
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "Файл звіту вже існує. Перезаписати??"
 
-#: Merge.rc:2378
+#: Merge.rc:2381
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4541,32 +4556,32 @@ msgstr ""
 "Помилка при створенні звіту:\n"
 "%1"
 
-#: Merge.rc:2379
+#: Merge.rc:2382
 #, c-format
 msgid "The report has been created successfully."
 msgstr "Звіт успішно створений"
 
-#: Merge.rc:2385
+#: Merge.rc:2388
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "На обох панелях відкритий той самий файл"
 
-#: Merge.rc:2386
+#: Merge.rc:2389
 #, c-format
 msgid "The selected files are identical."
 msgstr "Обрані файли не мають відмінностей"
 
-#: Merge.rc:2387
+#: Merge.rc:2390
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "При порівнянні файлів відбулася помилка."
 
-#: Merge.rc:2388
+#: Merge.rc:2391
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Тимчасові файли не можуть бути створені. Перевірте налаштування шляхів для тимчасових файлів"
 
-#: Merge.rc:2389
+#: Merge.rc:2392
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4581,32 +4596,32 @@ msgstr ""
 "\n"
 "Увага: Якщо вас не цікавлять розходження в закінченнях рядка, налаштуйте опцію 'Ігнорувати розходження в закінченнях рядка' на вкладці Порівняння в Налаштуваннях."
 
-#: Merge.rc:2390
+#: Merge.rc:2393
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr "Позначки закінчення рядка різних типів (Windows/Unix/Mac) для файлу '%1'.\n З поточними налаштуваннями вони будуть змінені на основний тип.\n Хочете змінити налаштування, щоб зберігати кінці рядків як є, тобто різними?"
 
-#: Merge.rc:2391
+#: Merge.rc:2394
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Помилка застосування попереднього порівняння '%2' до файлу '%1'. Це повторне порівняння далі застосовуватися не буде."
 
-#: Merge.rc:2392
+#: Merge.rc:2395
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "Неможливо відкрити обрану папку."
 
-#: Merge.rc:2393
+#: Merge.rc:2396
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "Неможливо відкрити бінарний файл у редакторі."
 
-#: Merge.rc:2394
+#: Merge.rc:2397
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr "Папка існує тільки з одної сторони і не може бути відкрита.\n\nХочете створити відповідну папку:\n%1\nз іншої сторони і відкрити обидві?"
 
-#: Merge.rc:2400
+#: Merge.rc:2403
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4617,132 +4632,132 @@ msgstr ""
 "Кожний з файлів може бути показаний в своєму кодуванні, але їхнє злиття або копіювання може пошкодити інформацію.\n"
 "Показати обидва файли в системному кодуванні (рекомендується)?"
 
-#: Merge.rc:2401
+#: Merge.rc:2404
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "Увага: Файли в різних кодуваннях, лівий=%s, правий=%s. Інформація може бути пошкоджена."
 
-#: Merge.rc:2402
+#: Merge.rc:2405
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "Інформація втрачена через помилкове кодування: обидва файли"
 
-#: Merge.rc:2403
+#: Merge.rc:2406
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr "Інформація втрачена через помилкове кодування: правий файл"
 
-#: Merge.rc:2404
+#: Merge.rc:2407
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr "Інформація втрачена через помилкове кодування: лівий файл"
 
-#: Merge.rc:2410
+#: Merge.rc:2413
 #, c-format
 msgid "No difference"
 msgstr "Немає відмінностей"
 
-#: Merge.rc:2411
+#: Merge.rc:2414
 #, c-format
 msgid "Line difference"
 msgstr "Рядок відмінностей"
 
-#: Merge.rc:2417
+#: Merge.rc:2420
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Замінено %1 рядків."
 
-#: Merge.rc:2418
+#: Merge.rc:2421
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "Неможливо знайти рядок \"%s\""
 
-#: Merge.rc:2424
+#: Merge.rc:2427
 #, c-format
 msgid "Copy Full Path"
 msgstr "Скопіювати повний шлях"
 
-#: Merge.rc:2425
+#: Merge.rc:2428
 #, c-format
 msgid "Copy Filename"
 msgstr "Скопіювати ім'я файлу"
 
-#: Merge.rc:2431
+#: Merge.rc:2434
 #, c-format
 msgid "Location Pane"
 msgstr "Місця розташування"
 
-#: Merge.rc:2432
+#: Merge.rc:2435
 #, c-format
 msgid "Diff Pane"
 msgstr "Відмінності"
 
-#: Merge.rc:2438
+#: Merge.rc:2441
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Патч успішно записаний."
 
-#: Merge.rc:2439
+#: Merge.rc:2442
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. Елемент не знайдений або це папка"
 
-#: Merge.rc:2440
+#: Merge.rc:2443
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. Елемент не знайдений або це папка"
 
-#: Merge.rc:2441
+#: Merge.rc:2444
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Патч вже існує. Хочете перезаписати його ?"
 
-#: Merge.rc:2442
+#: Merge.rc:2445
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 файлів відзначені]"
 
-#: Merge.rc:2443
+#: Merge.rc:2446
 #, c-format
 msgid "Normal"
 msgstr "Нормальний"
 
-#: Merge.rc:2444
+#: Merge.rc:2447
 #, c-format
 msgid "Context"
 msgstr "Контекст"
 
-#: Merge.rc:2445
+#: Merge.rc:2448
 #, c-format
 msgid "Unified"
 msgstr "Уніфікований"
 
-#: Merge.rc:2446
+#: Merge.rc:2449
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Немає можливості записати у файл %1."
 
-#: Merge.rc:2447
+#: Merge.rc:2450
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Зазначений шлях для кінцевого файлу не є абсолютним: %1"
 
-#: Merge.rc:2448
+#: Merge.rc:2451
 #, c-format
 msgid "Specify an output file"
 msgstr "Вказати кінцевий файл"
 
-#: Merge.rc:2449
+#: Merge.rc:2452
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Неможливо створити патч з бінарних файлів"
 
-#: Merge.rc:2450
+#: Merge.rc:2453
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Неможливо створити патч з папок"
 
-#: Merge.rc:2451
+#: Merge.rc:2454
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4753,17 +4768,17 @@ msgstr ""
 "\n"
 "Створення патчу вимагає, щоб в файлах не було не збережених змін"
 
-#: Merge.rc:2452
+#: Merge.rc:2455
 #, c-format
 msgid "Folder does not exist."
 msgstr "Папка не існує"
 
-#: Merge.rc:2457
+#: Merge.rc:2460
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "Поточні результати порівняння папок будуть очищені."
 
-#: Merge.rc:2458
+#: Merge.rc:2461
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4775,7 +4790,7 @@ msgstr ""
 "Не знайдені всі необхідні компоненти (7-zip і/або Merge7z*.dll) . \n"
 "Подивіться інструкцію, щоб довідатися більше про підтримку архівів і як її ввімкнути."
 
-#: Merge.rc:2459
+#: Merge.rc:2462
 #, c-format
 msgid ""
 "\n"
@@ -4784,7 +4799,7 @@ msgstr ""
 "\n"
 "Увага: Інтеграція з 7-Zip вимкнена в налаштуваннях WinMerge."
 
-#: Merge.rc:2460
+#: Merge.rc:2463
 #, c-format
 msgid ""
 "\n"
@@ -4793,37 +4808,37 @@ msgstr ""
 "\n"
 "Увага: Задіяний тільки локальний модуль 7-Zip."
 
-#: Merge.rc:2461
+#: Merge.rc:2464
 #, c-format
 msgid "Select file for export"
 msgstr "Вибрати файл для експорту"
 
-#: Merge.rc:2462
+#: Merge.rc:2465
 #, c-format
 msgid "Select file for import"
 msgstr "Вибрати файл для імпорту"
 
-#: Merge.rc:2463
+#: Merge.rc:2466
 #, c-format
 msgid "Options imported from the file."
 msgstr "Опції, імпортовані з файлу."
 
-#: Merge.rc:2464
+#: Merge.rc:2467
 #, c-format
 msgid "Options exported to the file."
 msgstr "Опції, експортовані в файл."
 
-#: Merge.rc:2465
+#: Merge.rc:2468
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "Помилка імпорту опцій з файлу."
 
-#: Merge.rc:2466
+#: Merge.rc:2469
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "Помилка експорту опцій в файл."
 
-#: Merge.rc:2467
+#: Merge.rc:2470
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4834,493 +4849,493 @@ msgstr ""
 "\n"
 "Продовжити?"
 
-#: Merge.rc:2473
+#: Merge.rc:2476
 #, c-format
 msgid "Regular expression error"
 msgstr "Помилка в регулярному виразі"
 
-#: Merge.rc:2474
+#: Merge.rc:2477
 #, c-format
 msgid "No match"
 msgstr "Збігів немає"
 
-#: Merge.rc:2475
+#: Merge.rc:2478
 #, c-format
 msgid "Invalid regular expression"
 msgstr "Неправильний регулярний вираз"
 
-#: Merge.rc:2476
+#: Merge.rc:2479
 #, c-format
 msgid "Invalid collation character"
 msgstr "Неправильний символ об'єднання"
 
-#: Merge.rc:2477
+#: Merge.rc:2480
 #, c-format
 msgid "Invalid character class name"
 msgstr "Неправильне ім'я символьного класу"
 
-#: Merge.rc:2478
+#: Merge.rc:2481
 #, c-format
 msgid "Trailing backslash"
 msgstr "Замикаючий зворотній слеш"
 
-#: Merge.rc:2479
+#: Merge.rc:2482
 #, c-format
 msgid "Invalid back reference"
 msgstr "Неправильний зворотній лінк"
 
-#: Merge.rc:2480
+#: Merge.rc:2483
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "Не мають пари [ або [^"
 
-#: Merge.rc:2481
+#: Merge.rc:2484
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "Не мають пари ( або \\("
 
-#: Merge.rc:2482
+#: Merge.rc:2485
 #, c-format
 msgid "Unmatched \\{"
 msgstr "Не мають пари \\{"
 
-#: Merge.rc:2483
+#: Merge.rc:2486
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "Неправильний вміст \\{\\}"
 
-#: Merge.rc:2484
+#: Merge.rc:2487
 #, c-format
 msgid "Invalid range end"
 msgstr "Неправильне закінчення діапазону"
 
-#: Merge.rc:2485
+#: Merge.rc:2488
 #, c-format
 msgid "Out of memory"
 msgstr "Не вистачає пам'яті"
 
-#: Merge.rc:2486
+#: Merge.rc:2489
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "Неправильний попередній регулярний вираз"
 
-#: Merge.rc:2487
+#: Merge.rc:2490
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "Несподіване закінчення регулярного виразу"
 
-#: Merge.rc:2488
+#: Merge.rc:2491
 #, c-format
 msgid "Regular expression too big"
 msgstr "Занадто великий регулярний вираз"
 
-#: Merge.rc:2493
+#: Merge.rc:2496
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "Не мають пари ) або \\)"
 
-#: Merge.rc:2499
+#: Merge.rc:2502
 #, c-format
 msgid "Western European"
 msgstr "Західно-Європейський"
 
-#: Merge.rc:2500
+#: Merge.rc:2503
 #, c-format
 msgid "Eastern European"
 msgstr "Східно-Європейський"
 
-#: Merge.rc:2501
+#: Merge.rc:2504
 #, c-format
 msgid "East Asian"
 msgstr "Східно-Азіатський"
 
-#: Merge.rc:2502
+#: Merge.rc:2505
 #, c-format
 msgid "SE & SW Asian"
 msgstr "ПС- і ПЗ-Азіатський"
 
-#: Merge.rc:2503
+#: Merge.rc:2506
 #, c-format
 msgid "Middle Eastern"
 msgstr "Центрально-Європейський"
 
-#: Merge.rc:2504
-#: Merge.rc:2514
+#: Merge.rc:2507
+#: Merge.rc:2517
 #, c-format
 msgid "Not applicable"
 msgstr "Не застосовується"
 
-#: Merge.rc:2510
+#: Merge.rc:2513
 #, c-format
 msgid "MS-Windows"
 msgstr "MS-Windows"
 
-#: Merge.rc:2511
+#: Merge.rc:2514
 #, c-format
 msgid "MS-DOS"
 msgstr "MS-DOS"
 
-#: Merge.rc:2512
+#: Merge.rc:2515
 #, c-format
 msgid "Macintosh"
 msgstr "Macintosh"
 
-#: Merge.rc:2513
+#: Merge.rc:2516
 #, c-format
 msgid "IBM"
 msgstr "IBM"
 
-#: Merge.rc:2520
+#: Merge.rc:2523
 #, c-format
 msgid "EBCDIC"
 msgstr "EBCDIC"
 
-#: Merge.rc:2521
+#: Merge.rc:2524
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr "IBM EBCDIC Cyrillic"
 
-#: Merge.rc:2527
+#: Merge.rc:2530
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr "MS-DOS Latin US"
 
-#: Merge.rc:2528
+#: Merge.rc:2531
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr "MS-DOS Arabic"
 
-#: Merge.rc:2529
+#: Merge.rc:2532
 #, c-format
 msgid "MS-DOS Greek"
 msgstr "MS-DOS Greek"
 
-#: Merge.rc:2530
+#: Merge.rc:2533
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr "MS-DOS Baltic Rim"
 
-#: Merge.rc:2531
+#: Merge.rc:2534
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr "MS-DOS Latin 1"
 
-#: Merge.rc:2532
+#: Merge.rc:2535
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr "MS-DOS Greek 1"
 
-#: Merge.rc:2533
+#: Merge.rc:2536
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr "MS-DOS Latin 2"
 
-#: Merge.rc:2534
+#: Merge.rc:2537
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr "MS-DOS Cyrillic"
 
-#: Merge.rc:2535
+#: Merge.rc:2538
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr "MS-DOS Turkish"
 
-#: Merge.rc:2536
+#: Merge.rc:2539
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr "MS-DOS Portuguese"
 
-#: Merge.rc:2542
+#: Merge.rc:2545
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr "MS-DOS Icelandic"
 
-#: Merge.rc:2543
+#: Merge.rc:2546
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr "MS-DOS Hebrew"
 
-#: Merge.rc:2544
+#: Merge.rc:2547
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr "MS-DOS French Canada"
 
-#: Merge.rc:2545
+#: Merge.rc:2548
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr "MS-DOS Nordic"
 
-#: Merge.rc:2546
+#: Merge.rc:2549
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr "MS-DOS Cyrillic CIS 1"
 
-#: Merge.rc:2547
+#: Merge.rc:2550
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr "MS-DOS Greek 2"
 
-#: Merge.rc:2553
+#: Merge.rc:2556
 #, c-format
 msgid "Windows Thai"
 msgstr "Windows Thai"
 
-#: Merge.rc:2554
+#: Merge.rc:2557
 #, c-format
 msgid "Windows Japanese"
 msgstr "Windows Japanese"
 
-#: Merge.rc:2555
+#: Merge.rc:2558
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr "Windows Simplified Chinese"
 
-#: Merge.rc:2556
+#: Merge.rc:2559
 #, c-format
 msgid "Windows Korean"
 msgstr "Windows Korean"
 
-#: Merge.rc:2557
+#: Merge.rc:2560
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr "Windows Traditional Chinese"
 
-#: Merge.rc:2558
+#: Merge.rc:2561
 #, c-format
 msgid "Windows Latin 2"
 msgstr "Windows Latin 2"
 
-#: Merge.rc:2559
+#: Merge.rc:2562
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr "Windows Cyrillic (Slavic)"
 
-#: Merge.rc:2560
+#: Merge.rc:2563
 #, c-format
 msgid "Windows Latin 1"
 msgstr "Windows Latin 1"
 
-#: Merge.rc:2561
+#: Merge.rc:2564
 #, c-format
 msgid "Windows Greek"
 msgstr "Windows Greek"
 
-#: Merge.rc:2562
+#: Merge.rc:2565
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr "Windows Latin 5 (Turkish)"
 
-#: Merge.rc:2563
+#: Merge.rc:2566
 #, c-format
 msgid "Windows Hebrew"
 msgstr "Windows Hebrew"
 
-#: Merge.rc:2564
+#: Merge.rc:2567
 #, c-format
 msgid "Windows Arabic"
 msgstr "Windows Arabic"
 
-#: Merge.rc:2565
+#: Merge.rc:2568
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr "Windows Baltic Rim"
 
-#: Merge.rc:2566
+#: Merge.rc:2569
 #, c-format
 msgid "Windows Vietnamese"
 msgstr "Windows Vietnamese"
 
-#: Merge.rc:2572
+#: Merge.rc:2575
 #, c-format
 msgid "Macintosh Roman"
 msgstr "Macintosh Roman"
 
-#: Merge.rc:2573
+#: Merge.rc:2576
 #, c-format
 msgid "Macintosh Greek"
 msgstr "Macintosh Greek"
 
-#: Merge.rc:2574
+#: Merge.rc:2577
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr "Macintosh Cyrillic"
 
-#: Merge.rc:2575
+#: Merge.rc:2578
 #, c-format
 msgid "Macintosh "
 msgstr "Macintosh "
 
-#: Merge.rc:2576
+#: Merge.rc:2579
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr "Macintosh Central Europe"
 
-#: Merge.rc:2577
+#: Merge.rc:2580
 #, c-format
 msgid "Macintosh Turkish"
 msgstr "Macintosh Turkish"
 
-#: Merge.rc:2586
+#: Merge.rc:2589
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr "Відповідає ISO-8859-2"
 
-#: Merge.rc:2589
+#: Merge.rc:2592
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr "Відповідає ISO-8859-1"
 
-#: Merge.rc:2590
+#: Merge.rc:2593
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr "Відповідає ISO-8859-7"
 
-#: Merge.rc:2591
+#: Merge.rc:2594
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr "Відповідає ISO-8859-9"
 
-#: Merge.rc:2592
+#: Merge.rc:2595
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr "Відповідає ISO-8859-8"
 
-#: Merge.rc:2598
+#: Merge.rc:2601
 #, c-format
 msgid "Win"
 msgstr "Win"
 
-#: Merge.rc:2599
+#: Merge.rc:2602
 #, c-format
 msgid "Mac"
 msgstr "Mac"
 
-#: Merge.rc:2600
+#: Merge.rc:2603
 #, c-format
 msgid "Unix"
 msgstr "Unix"
 
-#: Merge.rc:2601
+#: Merge.rc:2604
 #, c-format
 msgid "Mixed"
 msgstr "Змішаний"
 
-#: Merge.rc:2603
+#: Merge.rc:2606
 #, c-format
 msgid "LF"
 msgstr "LF"
 
-#: Merge.rc:2604
+#: Merge.rc:2607
 #, c-format
 msgid "CR"
 msgstr "CR"
 
-#: Merge.rc:2605
+#: Merge.rc:2608
 #, c-format
 msgid "CRLF"
 msgstr "CRLF"
 
-#: Merge.rc:2612
+#: Merge.rc:2615
 #, c-format
 msgid " B"
 msgstr " Б"
 
-#: Merge.rc:2613
+#: Merge.rc:2616
 #, c-format
 msgid " KB"
 msgstr "Кб"
 
-#: Merge.rc:2614
+#: Merge.rc:2617
 #, c-format
 msgid " MB"
 msgstr "Мб"
 
-#: Merge.rc:2615
+#: Merge.rc:2618
 #, c-format
 msgid " GB"
 msgstr "Гб"
 
-#: Merge.rc:2616
+#: Merge.rc:2619
 #, c-format
 msgid " TB"
 msgstr "Тб"
 
-#: Merge.rc:2617
+#: Merge.rc:2620
 #, c-format
 msgid " PB"
 msgstr "Пб"
 
-#: Merge.rc:2623
+#: Merge.rc:2626
 #, c-format
 msgid "Type"
 msgstr ""
 
-#: Merge.rc:2625
+#: Merge.rc:2628
 #, c-format
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:2626
+#: Merge.rc:2629
 #, c-format
 msgid "Prediffer"
 msgstr ""
 
-#: Merge.rc:2627
+#: Merge.rc:2630
 #, c-format
 msgid "Editor script"
 msgstr ""
 
-#: Merge.rc:2634
+#: Merge.rc:2637
 #, c-format
 msgid "Save the left file"
 msgstr "Зберегти лівий файл"
 
-#: Merge.rc:2635
+#: Merge.rc:2638
 #, c-format
 msgid "Save the right file"
 msgstr "Зберегти правий файл"
 
-#: Merge.rc:2636
+#: Merge.rc:2639
 #, c-format
 msgid "Save the left file with name..."
 msgstr "Зберегти лівий файл як..."
 
-#: Merge.rc:2637
+#: Merge.rc:2640
 #, c-format
 msgid "Save the right file with name..."
 msgstr "Зберегти правий файл як..."
 
-#: Merge.rc:2638
+#: Merge.rc:2641
 #, c-format
 msgid "Change left side file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2639
+#: Merge.rc:2642
 #, c-format
 msgid "Change right side file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2640
+#: Merge.rc:2643
 #, c-format
 msgid "Convert EOL to Windows mode"
 msgstr "Перетворити закінчення рядків до прийнятих в Windows"
 
-#: Merge.rc:2641
+#: Merge.rc:2644
 #, c-format
 msgid "Convert EOL to Unix mode"
 msgstr "Перетворити закінчення рядків до прийнятих в Unix"
 
-#: Merge.rc:2642
+#: Merge.rc:2645
 #, c-format
 msgid "Convert EOL to Mac mode"
 msgstr "Перетворити закінчення рядків до прийнятих в Mac"
 
-#: Merge.rc:2643
+#: Merge.rc:2646
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Перемикання між режимами редагування і злиття"
 
-#: Merge.rc:2644
+#: Merge.rc:2647
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5329,12 +5344,12 @@ msgstr ""
 "Переглянути і відредагувати кодування\n"
 "Регулювання кодування"
 
-#: Merge.rc:2645
+#: Merge.rc:2648
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr "Відкрити і вирішити конфліктний файл"
 
-#: Merge.rc:2651
+#: Merge.rc:2654
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5343,7 +5358,7 @@ msgstr ""
 "Відзначити відмінність у поточному рядку\n"
 "Відмінність у поточному рядку"
 
-#: Merge.rc:2652
+#: Merge.rc:2655
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5352,7 +5367,7 @@ msgstr ""
 "Перейти до рядку або відмінності\n"
 "Перейти до (Ctrl+G)"
 
-#: Merge.rc:2653
+#: Merge.rc:2656
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5361,7 +5376,7 @@ msgstr ""
 "Встановити програмні налаштування\n"
 "Налаштування"
 
-#: Merge.rc:2654
+#: Merge.rc:2657
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5370,37 +5385,37 @@ msgstr ""
 "Оновити екран\n"
 "Оновити (F5)"
 
-#: Merge.rc:2655
+#: Merge.rc:2658
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "Скопіювати обрані рядки в буфер обміну, додаючи на початку рядка його номер"
 
-#: Merge.rc:2656
+#: Merge.rc:2659
 #, c-format
 msgid "Refresh selected items"
 msgstr "Оновити обрані елементи"
 
-#: Merge.rc:2657
+#: Merge.rc:2660
 #, c-format
 msgid "Toggle bookmark"
 msgstr "Закладка"
 
-#: Merge.rc:2658
+#: Merge.rc:2661
 #, c-format
 msgid "Go to next bookmark"
 msgstr "Перейти до наступної закладки"
 
-#: Merge.rc:2659
+#: Merge.rc:2662
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "Перейти до попередньої закладки"
 
-#: Merge.rc:2660
+#: Merge.rc:2663
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "Вилучити всі закладки"
 
-#: Merge.rc:2666
+#: Merge.rc:2669
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5409,7 +5424,7 @@ msgstr ""
 "Показувати однакові елементи\n"
 "Елементи з ідентичностями"
 
-#: Merge.rc:2667
+#: Merge.rc:2670
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5418,7 +5433,7 @@ msgstr ""
 "Показувати елементи з відмінностями\n"
 "Елементи з відмінностями"
 
-#: Merge.rc:2668
+#: Merge.rc:2671
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5427,7 +5442,7 @@ msgstr ""
 "Показувати присутні тільки ліворуч\n"
 "Унікальні елементи зліва"
 
-#: Merge.rc:2669
+#: Merge.rc:2672
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5436,7 +5451,7 @@ msgstr ""
 "Показувати присутні тільки праворуч\n"
 "Унікальні елементи справа"
 
-#: Merge.rc:2670
+#: Merge.rc:2673
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5445,7 +5460,7 @@ msgstr ""
 "Показувати бінарні файли\n"
 "Бінарні файли"
 
-#: Merge.rc:2671
+#: Merge.rc:2674
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5454,7 +5469,7 @@ msgstr ""
 "Показувати пропущені елементи\n"
 "Пропущені елементи"
 
-#: Merge.rc:2677
+#: Merge.rc:2680
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5463,7 +5478,7 @@ msgstr ""
 "Вибрати шрифт для відображення відмінностей\n"
 "Шрифт відмінностей"
 
-#: Merge.rc:2678
+#: Merge.rc:2681
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5472,42 +5487,42 @@ msgstr ""
 "Використати звичайний системний шрифт для відображення відмінностей \n"
 "Звичайний шрифт"
 
-#: Merge.rc:2679
+#: Merge.rc:2682
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "Показувати пропуски"
 
-#: Merge.rc:2680
+#: Merge.rc:2683
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Перемкнути панель відмінностей"
 
-#: Merge.rc:2681
+#: Merge.rc:2684
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "Панель локацій показує повну картину відмінностей між файлами"
 
-#: Merge.rc:2682
+#: Merge.rc:2685
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "Показати діалог порівняння статистик папок"
 
-#: Merge.rc:2683
+#: Merge.rc:2686
 #, c-format
 msgid "Select the current user interface language\nLanguage"
 msgstr "Виберіть мову інтерфейсу для поточного користувача\nМова"
 
-#: Merge.rc:2684
+#: Merge.rc:2687
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr "Показати відмінності всередині рядків іншими кольорами\nПоказати відмінності в рядку"
 
-#: Merge.rc:2685
+#: Merge.rc:2688
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "Поміняти панелі місцями"
 
-#: Merge.rc:2686
+#: Merge.rc:2689
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5516,7 +5531,7 @@ msgstr ""
 "Показувати номера рядків\n"
 "Номера рядків"
 
-#: Merge.rc:2687
+#: Merge.rc:2690
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5525,7 +5540,7 @@ msgstr ""
 "Ввімкнути перенесення рядків\n"
 "Перенесення рядків"
 
-#: Merge.rc:2688
+#: Merge.rc:2691
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -5534,47 +5549,47 @@ msgstr ""
 "Показати поля на обох панелях\n"
 "Відзначені поля"
 
-#: Merge.rc:2689
+#: Merge.rc:2692
 #, c-format
 msgid "Increase text size"
 msgstr "Збільшити розмір тексту"
 
-#: Merge.rc:2690
+#: Merge.rc:2693
 #, c-format
 msgid "Decrease text size"
 msgstr "Зменшити розмір тексту"
 
-#: Merge.rc:2691
+#: Merge.rc:2694
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr "Скинути масштаб тексту до звичайного значення"
 
-#: Merge.rc:2697
+#: Merge.rc:2700
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr "Перейти до попередньої відмінності\nПопередня відмінність (Alt+Up)"
 
-#: Merge.rc:2698
+#: Merge.rc:2701
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr "Перейти до наступної відмінності\nНаступна відмінність (Alt+Down)"
 
-#: Merge.rc:2699
+#: Merge.rc:2702
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr "Перейти до першої відмінності\nПерша відмінність (Alt+Home)"
 
-#: Merge.rc:2700
+#: Merge.rc:2703
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr "Перейти до поточної відмінності\nПоточна відмінність (Alt+Enter)"
 
-#: Merge.rc:2701
+#: Merge.rc:2704
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr "Перейти до останньої відмінності\nОстання відмінність (Alt+End)"
 
-#: Merge.rc:2702
+#: Merge.rc:2705
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5583,7 +5598,7 @@ msgstr ""
 "Скопіювати обраний текст в файл праворуч\n"
 "Скопіювати в файл праворуч (Alt+Right)"
 
-#: Merge.rc:2703
+#: Merge.rc:2706
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5592,7 +5607,7 @@ msgstr ""
 "Скопіювати обраний текст в файл ліворуч\n"
 "Скопіювати в файл ліворуч (Alt+Left)"
 
-#: Merge.rc:2704
+#: Merge.rc:2707
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5601,7 +5616,7 @@ msgstr ""
 "Скопіювати відмінність на праву панель і перейти до наступної\n"
 "Скопіювати вправо і далі (Ctrl+Alt+Right)"
 
-#: Merge.rc:2705
+#: Merge.rc:2708
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5610,7 +5625,7 @@ msgstr ""
 "Скопіювати відмінність на ліву панель і перейти до наступної\n"
 "Скопіювати вліво і далі (Ctrl+Alt+Left)"
 
-#: Merge.rc:2706
+#: Merge.rc:2709
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -5619,7 +5634,7 @@ msgstr ""
 "Скопіювати всі відмінності в файл праворуч\n"
 "Все вправо"
 
-#: Merge.rc:2707
+#: Merge.rc:2710
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -5628,377 +5643,377 @@ msgstr ""
 "Скопіювати всі відмінності в файл ліворуч\n"
 "Все вліво"
 
-#: Merge.rc:2708
+#: Merge.rc:2711
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "Вилучити обрані елементи з обох папок"
 
-#: Merge.rc:2709
+#: Merge.rc:2712
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Порівняти відзначені елементи (порівняти перший елемент, якщо відзначено більше одного)"
 
-#: Merge.rc:2715
+#: Merge.rc:2718
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Вибрати і переставити місцями стовпчики порівняння папок"
 
-#: Merge.rc:2716
+#: Merge.rc:2719
 #, c-format
 msgid "Generate a patch-file"
 msgstr "Створити патч"
 
-#: Merge.rc:2717
+#: Merge.rc:2720
 #, c-format
 msgid "Select and modify filters"
 msgstr "Вибір і редагування фільтрів"
 
-#: Merge.rc:2718
+#: Merge.rc:2721
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "Створити звіт з результатів порівняння"
 
-#: Merge.rc:2724
+#: Merge.rc:2727
 #, c-format
 msgid "Shows a list of available plugins"
 msgstr ""
 
-#: Merge.rc:2725
+#: Merge.rc:2728
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "Обраний користувачем розпакувальник (не діє при порівнянні папок)"
 
-#: Merge.rc:2726
+#: Merge.rc:2729
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "Автоматичний підбір розпакувальника (вкажіть розширення хоча б одного з файлів)"
 
-#: Merge.rc:2727
+#: Merge.rc:2730
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Виберіть розпакувальник для редагування цього файлу"
 
-#: Merge.rc:2728
+#: Merge.rc:2731
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "Без попереднього порівняння"
 
-#: Merge.rc:2729
+#: Merge.rc:2732
 #, c-format
 msgid "Suggested plugins"
 msgstr "Рекомендовані доповнення"
 
-#: Merge.rc:2730
+#: Merge.rc:2733
 #, c-format
 msgid "Other plugins"
 msgstr "Інші доповнення"
 
-#: Merge.rc:2731
+#: Merge.rc:2734
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Вивантажити всі доповнення і завантажити їх знову (для розробників)"
 
-#: Merge.rc:2737
+#: Merge.rc:2740
 #, c-format
 msgid "Activates next visible file\nActivate next File"
 msgstr "Активує наступний видимий файл\nАктивувати наступний файл"
 
-#: Merge.rc:2738
+#: Merge.rc:2741
 #, c-format
 msgid "Closes all open windows"
 msgstr "Закрити всі відкриті вікна"
 
-#: Merge.rc:2744
+#: Merge.rc:2747
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
 msgstr "Відкрити довідку WinMerge\nДовідка WinMerge"
 
-#: Merge.rc:2745
+#: Merge.rc:2748
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "Вивести інформацію про поточну версію WinMerge і налаштування у текстовий файл"
 
-#: Merge.rc:2746
+#: Merge.rc:2749
 #, c-format
 msgid "Display the GNU General Public License"
 msgstr "Показати ліцензію GNU General Public License"
 
-#: Merge.rc:2747
+#: Merge.rc:2750
 #, c-format
 msgid "Private Build: %1"
 msgstr "Приватний білд: %1"
 
-#: Merge.rc:2748
+#: Merge.rc:2751
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
 msgstr "Відкрити документ з зауваженнями до релізу\nЗауваження до релізу"
 
-#: Merge.rc:2749
+#: Merge.rc:2752
 #, c-format
 msgid "Opens the translations website\nTranslations"
 msgstr "Перейти на сторінку з перекладами\nПереклади"
 
-#: Merge.rc:2755
+#: Merge.rc:2758
 #, c-format
 msgid "Plugin Settings"
 msgstr "Налаштування доповнення"
 
-#: Merge.rc:2756
+#: Merge.rc:2759
 #, c-format
 msgid "No prediffer"
 msgstr "Попереднє порівняння відсутнє"
 
-#: Merge.rc:2757
+#: Merge.rc:2760
 #, c-format
 msgid "Prediff if possible"
 msgstr "По можливості попереднє порівняння буде виконаним"
 
-#: Merge.rc:2759
+#: Merge.rc:2762
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не знайдений - .sct скрипти вимкнені"
 
-#: Merge.rc:2760
+#: Merge.rc:2763
 #, c-format
 msgid "<None>"
 msgstr "<Немає>"
 
-#: Merge.rc:2761
+#: Merge.rc:2764
 #, c-format
 msgid "<Automatic>"
 msgstr "<Автоматично>"
 
-#: Merge.rc:2767
+#: Merge.rc:2770
 #, c-format
 msgid "Open the file with registered application"
 msgstr "Відкрити файл зареєстрованим додатком"
 
-#: Merge.rc:2768
+#: Merge.rc:2771
 #, c-format
 msgid "Open the file with external editor"
 msgstr "Відкрити файл зовнішнім редактором"
 
-#: Merge.rc:2769
+#: Merge.rc:2772
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "Відкрити файл обраною програмою"
 
-#: Merge.rc:2775
+#: Merge.rc:2778
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "Не показувати переміщені блоки"
 
-#: Merge.rc:2776
+#: Merge.rc:2779
 #, c-format
 msgid "Display all moved blocks"
 msgstr "Показувати всі переміщені блоки"
 
-#: Merge.rc:2777
+#: Merge.rc:2780
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Показувати переміщені блоки для поточної відмінності"
 
-#: Merge.rc:2778
+#: Merge.rc:2781
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Перейти до відмінності під курсором"
 
-#: Merge.rc:2779
+#: Merge.rc:2782
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "Перейти до &відмінності %1 з %2"
 
-#: Merge.rc:2780
+#: Merge.rc:2783
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Перейти до &рядка %1"
 
-#: Merge.rc:2786
+#: Merge.rc:2789
 #, c-format
 msgid "Disabled"
 msgstr "Вимкнене"
 
-#: Merge.rc:2787
+#: Merge.rc:2790
 #, c-format
 msgid "From file system"
 msgstr "Як на диску"
 
-#: Merge.rc:2788
+#: Merge.rc:2791
 #, c-format
 msgid "From MRU list"
 msgstr "Як в списку нещодавніх документів"
 
-#: Merge.rc:2794
+#: Merge.rc:2797
 #, c-format
 msgid "No Highlighting"
 msgstr ""
 
-#: Merge.rc:2795
+#: Merge.rc:2798
 #, c-format
 msgid "ASP"
 msgstr "ASP"
 
-#: Merge.rc:2796
+#: Merge.rc:2799
 #, c-format
 msgid "Basic"
 msgstr "Бейсік"
 
-#: Merge.rc:2797
+#: Merge.rc:2800
 #, c-format
 msgid "Batch"
 msgstr "Бетч"
 
-#: Merge.rc:2798
+#: Merge.rc:2801
 #, c-format
 msgid "C/C++"
 msgstr "C/C++"
 
-#: Merge.rc:2799
+#: Merge.rc:2802
 #, c-format
 msgid "C#"
 msgstr "C#"
 
-#: Merge.rc:2800
+#: Merge.rc:2803
 #, c-format
 msgid "CSS"
 msgstr "CSS"
 
-#: Merge.rc:2801
+#: Merge.rc:2804
 #, c-format
 msgid "DCL"
 msgstr "DCL"
 
-#: Merge.rc:2802
+#: Merge.rc:2805
 #, c-format
 msgid "Fortran"
 msgstr "Фортран"
 
-#: Merge.rc:2803
+#: Merge.rc:2806
 #, c-format
 msgid "HTML"
 msgstr "HTML"
 
-#: Merge.rc:2804
+#: Merge.rc:2807
 #, c-format
 msgid "INI"
 msgstr "INI"
 
-#: Merge.rc:2805
+#: Merge.rc:2808
 #, c-format
 msgid "InnoSetup"
 msgstr "InnoSetup"
 
-#: Merge.rc:2806
+#: Merge.rc:2809
 #, c-format
 msgid "InstallShield"
 msgstr "InstallShield"
 
-#: Merge.rc:2807
+#: Merge.rc:2810
 #, c-format
 msgid "Java"
 msgstr "Java"
 
-#: Merge.rc:2808
+#: Merge.rc:2811
 #, c-format
 msgid "AutoLISP"
 msgstr "AutoLISP"
 
-#: Merge.rc:2809
+#: Merge.rc:2812
 #, c-format
 msgid "NSIS"
 msgstr "NSIS"
 
-#: Merge.rc:2810
+#: Merge.rc:2813
 #, c-format
 msgid "Pascal"
 msgstr "Паскаль"
 
-#: Merge.rc:2811
+#: Merge.rc:2814
 #, c-format
 msgid "Perl"
 msgstr "Perl"
 
-#: Merge.rc:2812
+#: Merge.rc:2815
 #, c-format
 msgid "PHP"
 msgstr "PHP"
 
-#: Merge.rc:2813
+#: Merge.rc:2816
 #, c-format
 msgid "Portable Object"
 msgstr "Portable Object"
 
-#: Merge.rc:2814
+#: Merge.rc:2817
 #, c-format
 msgid "PowerShell"
 msgstr "PowerShell"
 
-#: Merge.rc:2815
+#: Merge.rc:2818
 #, c-format
 msgid "Python"
 msgstr "Пітон"
 
-#: Merge.rc:2816
+#: Merge.rc:2819
 #, c-format
 msgid "REXX"
 msgstr "REXX"
 
-#: Merge.rc:2817
+#: Merge.rc:2820
 #, c-format
 msgid "Resources"
 msgstr "Ресурси"
 
-#: Merge.rc:2818
+#: Merge.rc:2821
 #, c-format
 msgid "Ruby"
 msgstr "Ruby"
 
-#: Merge.rc:2819
+#: Merge.rc:2822
 #, c-format
 msgid "SGML"
 msgstr "SGML"
 
-#: Merge.rc:2820
+#: Merge.rc:2823
 #, c-format
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:2821
+#: Merge.rc:2824
 #, c-format
 msgid "SIOD"
 msgstr "SIOD"
 
-#: Merge.rc:2822
+#: Merge.rc:2825
 #, c-format
 msgid "SQL"
 msgstr "SQL"
 
-#: Merge.rc:2823
+#: Merge.rc:2826
 #, c-format
 msgid "TCL"
 msgstr "TCL"
 
-#: Merge.rc:2824
+#: Merge.rc:2827
 #, c-format
 msgid "TEX"
 msgstr "TEX"
 
-#: Merge.rc:2825
+#: Merge.rc:2828
 #, c-format
 msgid "XML"
 msgstr "XML"
 
-#: Merge.rc:2830
+#: Merge.rc:2833
 #, c-format
 msgid "Hide the toolbar"
 msgstr "Сховати панель інструментів"
 
-#: Merge.rc:2831
+#: Merge.rc:2834
 #, c-format
 msgid "Show small toolbar"
 msgstr "Маленькі значки"
 
-#: Merge.rc:2832
+#: Merge.rc:2835
 #, c-format
 msgid "Show big toolbar"
 msgstr "Великі значки"

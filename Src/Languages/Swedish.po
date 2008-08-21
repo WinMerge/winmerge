@@ -3454,7 +3454,6 @@ msgstr "Reguljärt uttryck"
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr "Filtren är uppdaterade Vill du uppdatera alla öppna katalogjämförelser?\n\nOm du inte vill uppdatera alla jämförelser nu kan du välja Nej och uppdatera jämförelser senare."
-m
 
 #: Merge.rc:2051
 #, c-format
