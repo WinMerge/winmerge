@@ -214,12 +214,26 @@ static void XMLCALL DefaultHandler(void *userData, const char *s, int len)
 static void XMLCALL ProcessingInstructionHandler(void *userData, const char *target, const char *data)
 {
 	CXMLData *pData = (CXMLData*)userData;
-	// Not yet implemented
+
+	// End the previous element if needed
+	if (pData->bNeedsEnding)
+	{
+		fprintf(pData->pOutput,">\n");
+		pData->bNeedsEnding = false;
+	}
+
+	// Indent
+	for (int i = 0; i < pData->iDepth; i++)
+	{
+		fprintf(pData->pOutput,"\t");
+	}
+
+	// Output processing instruction
+	fprintf(pData->pOutput, "<?%s %s?>\n", target, data);
 }
 
 static void XMLCALL CommentHandler(void *userData, const char *data)
 {
-	int i;
 	CXMLData *pData = (CXMLData*)userData;
 
 	// End the previous element if needed
@@ -230,7 +244,7 @@ static void XMLCALL CommentHandler(void *userData, const char *data)
 	}
 
 	// Indent
-	for (i = 0; i < pData->iDepth; i++)
+	for (int i = 0; i < pData->iDepth; i++)
 	{
 		fprintf(pData->pOutput,"\t");
 	}
@@ -285,7 +299,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	XML_SetUserData(parser, &oData);
 	XML_SetElementHandler(parser, StartElementHandler, EndElementHandler);
 	XML_SetDefaultHandler(parser, DefaultHandler);
-	//XML_SetProcessingInstructionHandler(parser, ProcessingInstructionHandler);
+	XML_SetProcessingInstructionHandler(parser, ProcessingInstructionHandler);
 	XML_SetCommentHandler(parser, CommentHandler);
 	XML_SetXmlDeclHandler(parser, XmlDeclHandler);
 	XML_SetUnknownEncodingHandler(parser, WinMerge_Plug_UnknownEncodingHandler, this);

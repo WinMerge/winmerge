@@ -137,7 +137,7 @@ do_maps_getMap(const XML_Char *name, XML_Encoding *info)
 		}
 	}
 	// Lets allow any encoding at all, and provide ISO-8859-1 map
-	for (i=0; i<256; ++i)
+	for (int i=0; i<256; ++i)
 	{
 		// i->i gives us identity for ASCII, and ISO-8859-1 for remainder
 		// because Unicode character set is numbered exactly like ISO-8859-1
@@ -158,7 +158,7 @@ populate_encoding_info(const map_info * mapinfo, XML_Encoding * info)
 		info->map[i] = (i<127 ? i : 0);
 	}
 	// Populate code bytes as given in our map table
-	for (i=0; mapinfo->mapdata[i] != -1; i += 2)
+	for (int i=0; mapinfo->mapdata[i] != -1; i += 2)
 	{
 		int src = mapinfo->mapdata[i];
 		int dest = mapinfo->mapdata[i+1];
