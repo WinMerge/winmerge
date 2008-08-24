@@ -144,7 +144,7 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
 			if (i<leftDirs.size() && (j == rightDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)<0))
 			{
 				UINT nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
-				if (bUniques)
+				if (depth && bUniques)
 				{
 					// Recurse into unique subfolder and get all items in it
 					String leftnewsub = leftsubprefix + leftDirs[i].filename;
@@ -174,7 +174,7 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
 			if (j<rightDirs.size() && (i == leftDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)>0))
 			{
 				UINT nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
-				if (bUniques)
+				if (depth && bUniques)
 				{
 					// Recurse into unique subfolder and get all items in it
 					String rightnewsub = rightsubprefix + rightDirs[j].filename;
