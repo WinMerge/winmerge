@@ -332,18 +332,20 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
 		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
 		POSITION curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		if (di.diffcode.isDirectory() && di.diffcode.isSideBoth() && myStruct->bRecursive)
+		if (di.diffcode.isDirectory() && myStruct->bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			int ndiff = DirScan_CompareItems(myStruct, curpos);
 			if (ndiff > 0)
 			{
-				di.diffcode.diffcode |= DIFFCODE::DIFF;
+				if (di.diffcode.isSideBoth())
+					di.diffcode.diffcode |= DIFFCODE::DIFF;
 				res += ndiff;
 			}
 			else if (ndiff == 0)
 			{
-				di.diffcode.diffcode |= DIFFCODE::SAME;
+				if (di.diffcode.isSideBoth())
+					di.diffcode.diffcode |= DIFFCODE::SAME;
 			}
 		}
 		else
@@ -382,18 +384,20 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, POSITION parentdiffp
 
 		POSITION curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		if (di.diffcode.isDirectory() && di.diffcode.isSideBoth() && myStruct->bRecursive)
+		if (di.diffcode.isDirectory() && myStruct->bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
 			if (ndiff > 0)
 			{
-				di.diffcode.diffcode |= DIFFCODE::DIFF;
+				if (di.diffcode.isSideBoth())
+					di.diffcode.diffcode |= DIFFCODE::DIFF;
 				res += ndiff;
 			}
 			else if (ndiff == 0)
 			{
-				di.diffcode.diffcode |= DIFFCODE::SAME;
+				if (di.diffcode.isSideBoth())
+					di.diffcode.diffcode |= DIFFCODE::SAME;
 			}		
 		}
 		else
