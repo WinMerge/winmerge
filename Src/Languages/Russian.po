@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-09-23 23:22-0000\n"
+"PO-Revision-Date: 2008-08-22 17:56+0300\n"
 "Last-Translator: Dmitriy S. Aleshkowskiy <wwarlock at mail.ru>\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -280,14 +280,14 @@ msgstr "&Создать патч..."
 #: Merge.rc:448
 #, c-format
 msgid "&Plugins"
-msgstr "&Плагины"
+msgstr "&Дополнения"
 
 #: Merge.rc:150
 #: Merge.rc:267
 #: Merge.rc:450
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Список"
 
 #: Merge.rc:152
 #: Merge.rc:269
@@ -315,7 +315,7 @@ msgstr "Редактировать с распаковщиком"
 #: Merge.rc:462
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Перегрузить все плагины"
+msgstr "&Перегрузить все дополнения"
 
 #: Merge.rc:159
 #: Merge.rc:276
@@ -1081,7 +1081,7 @@ msgstr "ОК"
 #: Merge.rc:670
 #, c-format
 msgid "Contributors"
-msgstr "Дарители"
+msgstr "Участники"
 
 #: Merge.rc:677
 #, c-format
@@ -2065,14 +2065,14 @@ msgstr "Для работы с архивами требуется либо установленный 7-Zip версий 3.11 и в
 #: Merge.rc:1295
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
-msgstr "Так же требуется плагин (Merge7z*.dll)"
+msgstr "Так же требуется дополнение (Merge7z*.dll)"
 
 #: Merge.rc:1297
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
-msgstr "Рекомендуется использовать следующую версию 7-Zip"
+msgstr "Рекомендуется использовать указанную версию 7-Zip, пока связующее дополнение для следующих версий не станет доступно."
 
 #: Merge.rc:1299
 #, c-format
@@ -2085,7 +2085,7 @@ msgid ""
 "Plugin required\n"
 "(dllbuild %04u)"
 msgstr ""
-"Требуемый плагин\n"
+"Требуемое дополнение\n"
 "(dllbuild %04u)"
 
 #: Merge.rc:1303
@@ -2133,17 +2133,21 @@ msgstr "устарел"
 #: Merge.rc:1320
 #, c-format
 msgid "Plugins on path:"
-msgstr "Доступные плагины:"
+msgstr "Доступные дополнения:"
 
 #: Merge.rc:1321
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr "Не показывать больше это сообщение.\n(Вы всегда можете вернуть его через меню Помощь)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
+msgstr ""
+"Не показывать больше это сообщение.\n"
+"(Вы всегда можете вернуть его через меню Помощь)"
 
 #: Merge.rc:1325
 #, c-format
 msgid "Plugin Download"
-msgstr "Скачать плагины"
+msgstr "Загрузка дополнения"
 
 #: Merge.rc:1334
 #, c-format
@@ -2280,12 +2284,12 @@ msgstr "Поддержка архивов"
 #: Merge.rc:1453
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
-msgstr "Поддержка архивов требует наличие плагина 7-Zip:"
+msgstr "Поддержка архивов требует наличие дополнения 7-Zip:"
 
 #: Merge.rc:1455
 #, c-format
 msgid "Download 7-zip Plugin"
-msgstr "Скачать плагин 7-zip"
+msgstr "Скачать дополнение 7-zip"
 
 #: Merge.rc:1456
 #, c-format
@@ -2578,12 +2582,12 @@ msgstr "Нет"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Дополнения"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "&Включить дополнения"
 
 #. StringFileInfo.Block
 #: Merge.rc:1691
@@ -2954,8 +2958,12 @@ msgstr ""
 
 #: Merge.rc:1828
 #, c-format
-msgid "Automatically resize panes\nLock Panes"
-msgstr "Автоматически изменять размер панелей\nЗаблокировать панели"
+msgid ""
+"Automatically resize panes\n"
+"Lock Panes"
+msgstr ""
+"Автоматически изменять размер панелей\n"
+"Заблокировать панели"
 
 #: Merge.rc:1834
 #, c-format
@@ -3018,13 +3026,41 @@ msgstr ""
 
 #: Merge.rc:1860
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
-msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge Сравнение Файлов"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge Сравнение Файлов"
 
 #: Merge.rc:1861
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
-msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Сравнение Папок"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Сравнение Папок"
 
 #: Merge.rc:1868
 #, c-format
@@ -3044,8 +3080,12 @@ msgstr "Правый клик на пути, чтобы скопировать"
 
 #: Merge.rc:1888
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr "Разработчики:\nДин Гримм (Dean Grimm), Кристиан Лист (Christian List), Киммо Варис (Kimmo Varis), Йохен Тухт (Jochen Tucht), Тим Герундт (Tim Gerundt), Такаши Саванаки (Takashi Sawanaki), Гэл Хаммер (Gal Hammer), Александр Скиннер (Alexander Skinner)"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgstr ""
+"Разработчики:\n"
+"Дин Гримм (Dean Grimm), Кристиан Лист (Christian List), Киммо Варис (Kimmo Varis), Йохен Тухт (Jochen Tucht), Тим Герундт (Tim Gerundt), Такаши Саванаки (Takashi Sawanaki), Гэл Хаммер (Gal Hammer), Александр Скиннер (Alexander Skinner)"
 
 #: Merge.rc:1889
 #, c-format
@@ -3414,8 +3454,13 @@ msgstr "Регулярное выражение"
 
 #: Merge.rc:2037
 #, c-format
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
+"Фильтры были обновлены. Хотите обновить все открытые сравниваемые папки?\n"
+"Если не хотите обновлять сейчас, то можете нажать \"Нет\" и обновить позже."
 
 #: Merge.rc:2043
 #, c-format
@@ -3510,12 +3555,12 @@ msgstr "Создается отчет..."
 #: Merge.rc:2071
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Отмена последней операции"
 
 #: Merge.rc:2072
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Повторение предыдущей операции"
 
 #: Merge.rc:2078
 #, c-format
@@ -3638,8 +3683,14 @@ msgstr "Ошибка разбора файла конфликтов"
 
 #: Merge.rc:2115
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
-msgstr "Файл\n%1\nне является файлом конфликтов"
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"Файл\n"
+"%1\n"
+"не является файлом конфликтов"
 
 #: Merge.rc:2121
 #, c-format
@@ -3705,7 +3756,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n"
+"Дополнение  '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n"
 "\n"
 "Оригинал останется не измененным.\n"
 "\n"
@@ -3720,7 +3771,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n"
+"Дополнение '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n"
 "\n"
 "Оригинал останется не измененным.\n"
 "\n"
@@ -4044,17 +4095,17 @@ msgstr ""
 #: Merge.rc:2218
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Уверены, что хотите переместить:"
 
 #: Merge.rc:2219
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Уверены, что хотите переместить %d элементов:"
 
 #: Merge.rc:2221
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Подтвердите перемещение"
 
 #: Merge.rc:2227
 #, c-format
@@ -4558,13 +4609,19 @@ msgstr ""
 
 #: Merge.rc:2384
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr "Признаки конца строки (EOL) разных типов (Windows/Unix/Mac) для файла '%1'.\n С текущими настройками они будут приведены к основному типу.\n Хотите изменить настройки, что бы сохранять EOL как есть, то есть различными?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
+msgstr ""
+"Признаки конца строки (EOL) разных типов (Windows/Unix/Mac) для файла '%1'.\n"
+" С текущими настройками они будут приведены к основному типу.\n"
+" Хотите изменить настройки, что бы сохранять EOL как есть, то есть различными?"
 
 #: Merge.rc:2385
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr "Ошибка применения prediffer '%2' к файлу '%1'. Этот prediffer далее применяться не будет."
+msgstr "Ошибка предсравнения файла '%1' с дополнением '%2'. Предсравнение далее применяться не будет."
 
 #: Merge.rc:2386
 #, c-format
@@ -4578,8 +4635,18 @@ msgstr "Невозможно отобразить бинарный файл в редакторе."
 
 #: Merge.rc:2388
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nХотите создать соответствующую папку:\n%1\nна другой стороне и обе открыть их?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
+msgstr ""
+"Папка существует только на одной стороне и не может быть открыта.\n"
+"\n"
+"Хотите создать соответствующую папку:\n"
+"%1\n"
+"на другой стороне и обе открыть их?"
 
 #: Merge.rc:2394
 #, c-format
@@ -5228,22 +5295,22 @@ msgstr "Пб"
 #: Merge.rc:2617
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: Merge.rc:2619
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "Распаковщик"
 
 #: Merge.rc:2620
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "Предсравнение"
 
 #: Merge.rc:2621
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "Редактор скриптов"
 
 #: Merge.rc:2628
 #, c-format
@@ -5268,12 +5335,12 @@ msgstr "Сохранить файл справа как..."
 #: Merge.rc:2632
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "Изменить статус \"только для чтения\" левого файла/каталога"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "Изменить статус \"только для чтения\" правого файла/каталога"
 
 #: Merge.rc:2634
 #, c-format
@@ -5469,13 +5536,21 @@ msgstr "Показать диалог сравнения статистик папок"
 
 #: Merge.rc:2677
 #, c-format
-msgid "Select the current user interface language\nLanguage"
-msgstr "Выберите язык интерфейса для текущего пользователя\nЯзык"
+msgid ""
+"Select the current user interface language\n"
+"Language"
+msgstr ""
+"Выберите язык интерфейса для текущего пользователя\n"
+"Язык"
 
 #: Merge.rc:2678
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr "Показать отличия внутри строк другими цветами\nПоказать отличия в строке"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
+msgstr ""
+"Показать отличия внутри строк другими цветами\n"
+"Показать отличия в строке"
 
 #: Merge.rc:2679
 #, c-format
@@ -5526,28 +5601,48 @@ msgstr "Сбросить масштаб текста к значению по умолчанию"
 
 #: Merge.rc:2691
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr "Перейти к предыдущему отличию\nПредыдующее отличие (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
+msgstr ""
+"Перейти к предыдущему отличию\n"
+"Предыдующее отличие (Alt+Up)"
 
 #: Merge.rc:2692
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr "Перейти к следующему отличию\nСледующее отличие (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"Перейти к следующему отличию\n"
+"Следующее отличие (Alt+Down)"
 
 #: Merge.rc:2693
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr "Перейти к первому отличию\nПервое отличие (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"Перейти к первому отличию\n"
+"Первое отличие (Alt+Home)"
 
 #: Merge.rc:2694
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr "Перейти к текущему отличию\nТекущее отличие (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"Перейти к текущему отличию\n"
+"Текущее отличие (Alt+Enter)"
 
 #: Merge.rc:2695
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr "Перейти к последнему отличию\nПоследнее отличие (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"Перейти к последнему отличию\n"
+"Последнее отличие (Alt+End)"
 
 #: Merge.rc:2696
 #, c-format
@@ -5636,7 +5731,7 @@ msgstr "Создать отчет из результатов сравнения"
 #: Merge.rc:2718
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "Показать список доступных дополнений"
 
 #: Merge.rc:2719
 #, c-format
@@ -5661,22 +5756,26 @@ msgstr "Без предсравнения (normal)"
 #: Merge.rc:2723
 #, c-format
 msgid "Suggested plugins"
-msgstr "Советуемые плагины"
+msgstr "Советуемые дополнения"
 
 #: Merge.rc:2724
 #, c-format
 msgid "Other plugins"
-msgstr "Другие плагины"
+msgstr "Другие дополнения"
 
 #: Merge.rc:2725
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
-msgstr "Выгрузить все плагины и загрузить их снова (для разработчиков)"
+msgstr "Выгрузить все дополнения и загрузить их снова (для разработчиков)"
 
 #: Merge.rc:2731
 #, c-format
-msgid "Activates next visible file\nActivate next File"
-msgstr "Активирует следующий видимый файл\nАктивировать следующий файл"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
+msgstr ""
+"Активирует следующий видимый файл\n"
+"Активировать следующий файл"
 
 #: Merge.rc:2732
 #, c-format
@@ -5685,8 +5784,12 @@ msgstr "Закрыть все открытые окна"
 
 #: Merge.rc:2738
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr "Открыть справку WinMerge\nСправка WinMerge"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
+msgstr ""
+"Открыть справку WinMerge\n"
+"Справка WinMerge"
 
 #: Merge.rc:2739
 #, c-format
@@ -5705,18 +5808,26 @@ msgstr "Частный билд: %1"
 
 #: Merge.rc:2742
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
-msgstr "Открыть документ с замечаниями к релизу\nЗамечания к релизу"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
+msgstr ""
+"Открыть документ с замечаниями к релизу\n"
+"Замечания к релизу"
 
 #: Merge.rc:2743
 #, c-format
-msgid "Opens the translations website\nTranslations"
-msgstr "Перейти на страницу с переводами\nПереводы"
+msgid ""
+"Opens the translations website\n"
+"Translations"
+msgstr ""
+"Перейти на страницу с переводами\n"
+"Переводы"
 
 #: Merge.rc:2749
 #, c-format
 msgid "Plugin Settings"
-msgstr "Настройки плагина"
+msgstr "Настройки дополнения"
 
 #: Merge.rc:2750
 #, c-format
@@ -5806,7 +5917,7 @@ msgstr "Как в списке недавних документов"
 #: Merge.rc:2788
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Нет выделенного"
 
 #: Merge.rc:2789
 #, c-format

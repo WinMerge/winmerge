@@ -12,6 +12,7 @@ WinMerge 2.10 RC
   - German (#2045666)
   - Greek (#2062442)
   - Japanese (r5804)
+  - Russian (#2067785)
   - Swedish (#2062107)
 
 WinMerge 2.9.10 - 2008-08-14 (r5804)
