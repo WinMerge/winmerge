@@ -5,6 +5,8 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.5
   BugFix: ClearCase checkout/commit dialog translation error (#2051069)
+  Translation updates:
+  - Russian (#2067785)
 
 WinMerge 2.11.1.4 - 2008-08-21 (r5846)
   Binary file edit/compare (#2036603)
