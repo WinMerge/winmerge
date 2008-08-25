@@ -233,21 +233,21 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag,
 	if (TRUE == bLast)
 	{
 		// NOTE: This is to fix a bug in MFC's parser!
-		// If first path ends with "\" inside parentheses (e.g. "c:\dir 1\") then
+		// If first path ends with "\" inside quotes (e.g. "c:\dir 1\") then
 		// it is not properly splitted and second path is not separated from first
 		// path. So command line like:
 		// WinMerge "C:\Dir 1\" C:\Dir2
 		// gets parsed as having one path! "C:\Dir 1" C:\Dir2"
-		// As there are no valid parentheses in paths in this stage, we just have
-		// to find parentheses and fix paths. For the second path, there may be
-		// parenthesis at the end - that we can just remove.
+		// As there are no valid quote marks in paths in this stage, we just have
+		// to find quote marks and fix paths. For the second path, there may be
+		// quote mark at the end - that we can just remove.
 		if (m_cmdLineInfo.m_nFiles == 1)
 		{
 			CString file1;
 			CString file2;
 			int pos = m_cmdLineInfo.m_Files[0].Find(_T("\""));
 
-			// If the parenthesis found from middle of first path (not end)
+			// If the quote mark found from middle of first path (not end)
 			if (pos > 0 && pos < m_cmdLineInfo.m_Files[0].GetLength() - 1)
 			{
 				file1 = m_cmdLineInfo.m_Files[0].Left(pos);
