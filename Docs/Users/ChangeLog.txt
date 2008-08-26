@@ -9,6 +9,7 @@ WinMerge 2.11.1.5
   BugFix: Table of Contents in manual (#2071625)
   Translation updates:
   - Russian (#2067785)
+  - Swedish (#2075513)
 
 WinMerge 2.11.1.4 - 2008-08-21 (r5846)
   Binary file edit/compare (#2036603)
