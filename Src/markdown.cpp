@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * OS/Libs:	Win32/MFC/shlwapi/iconv
+ * OS/Libs:	Win32/STL/shlwapi/iconv
  *			iconv.dll is loaded on demand, and is not required as long as
  *			program doesn't call iconv based methods.
  *
@@ -63,9 +63,9 @@ Please mind 2. b) of the GNU LGPL terms, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2005/01/15	Jochen Tucht		Created
-2005/02/26	Jochen Tucht		Load iconv.dll through DLLPSTUB
-2005/03/20	Jochen Tucht		Add IgnoreCase option for ASCII-7 tag/attr names.
+2005-01-15	Jochen Tucht		Created
+2005-02-26	Jochen Tucht		Load iconv.dll through DLLPSTUB
+2005-03-20	Jochen Tucht		Add IgnoreCase option for ASCII-7 tag/attr names.
 								Add HtmlUTags option to check for (potentially)
 								unbalanced HTML tags. Html option is combination
 								of the above. Using these options imposes
@@ -73,17 +73,17 @@ DATE:		BY:					DESCRIPTION:
 								New flag CMarkdown::FileImage::Handle makes
 								CMarkdown::FileImage::FileImage() accept a
 								handle rather than a filename.
-2005/06/22	Jochen Tucht		New method CMarkdown::_HSTR::Entities().
-2005/07/29	Jochen Tucht		ByteOrder detection for 16/32 bit encodings
-2005/09/09	Jochen Tucht		Patch by Takashi Sawanaka fixes crash due to
+2005-06-22	Jochen Tucht		New method CMarkdown::_HSTR::Entities().
+2005-07-29	Jochen Tucht		ByteOrder detection for 16/32 bit encodings
+2005-09-09	Jochen Tucht		Patch by Takashi Sawanaka fixes crash due to
 								reading beyond end of text with HtmlUTags option
-2005/12/04	Jochen Tucht		Fix UTF-8 signature detection
+2005-12-04	Jochen Tucht		Fix UTF-8 signature detection
 								Strip bogus trailing slash in name of empty tag
+2008-08-27	Jochen Neubeck		Replace MFC CMap by STL std::map
 */
 
 #include "stdafx.h"
-#include <afxinet.h>
-#include <shlwapi.h> // StrToIntEx
+#include <shlwapi.h> // StrToIntExW
 #include "markdown.h"
 
 ICONV::Proxy ICONV =
@@ -158,23 +158,25 @@ template<> UINT AFXAPI HashKey(BSTR B)
 	return MAKELONG(B[0], lstrlenW(B));
 }
 
-void CMarkdown::EntityMap::Load()
+void CMarkdown::Load(EntityMap &entityMap)
 {
-	SetAt(SysAllocString(L"amp"), SysAllocString(L"&"));
-	SetAt(SysAllocString(L"quot"), SysAllocString(L"\""));
-	SetAt(SysAllocString(L"apos"), SysAllocString(L"'"));
-	SetAt(SysAllocString(L"lt"), SysAllocString(L"<"));
-	SetAt(SysAllocString(L"gt"), SysAllocString(L">"));
+	entityMap[L"amp"] = L"&";
+	entityMap[L"quot"] = L"\"";
+	entityMap[L"apos"] = L"'";
+	entityMap[L"lt"] = L"<";
+	entityMap[L"gt"] = L">";
 }
 
-void CMarkdown::EntityMap::Load(CMarkdown &markup, const CMarkdown::Converter &converter)
+void CMarkdown::Load(EntityMap &entityMap, const Converter &converter)
 {
-	while (markup.Move("!ENTITY"))
+	while (Move("!ENTITY"))
 	{
-		HSTR hstrValue = 0, hstrKey = markup.GetAttribute(0, &hstrValue);
-		if (hstrKey)
+		HSTR hstrValue = 0;
+		if (HSTR hstrKey = GetAttribute(0, &hstrValue))
 		{
-			SetAt(hstrKey->Convert(converter)->B, hstrValue->Convert(converter)->B);
+			String strKey = hstrKey->Convert(converter);
+			String strValue = hstrValue->Convert(converter);
+			entityMap[strKey.B] = strValue.B;
 		}
 	}
 }
@@ -207,7 +209,7 @@ CMarkdown::HSTR CMarkdown::_HSTR::Octets(UINT codepage)
 	return H;
 }
 
-CMarkdown::HSTR CMarkdown::_HSTR::Convert(const CMarkdown::Converter &converter)
+CMarkdown::HSTR CMarkdown::_HSTR::Convert(const Converter &converter)
 {
 	HSTR H = this;
 	size_t s = SysStringByteLen(B);
@@ -220,7 +222,7 @@ CMarkdown::HSTR CMarkdown::_HSTR::Convert(const CMarkdown::Converter &converter)
 	return H;
 }
 
-CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const CMarkdown::EntityMap &map)
+CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const EntityMap &map)
 {
 	HSTR H = this;
 	BSTR p, q = H->B;
@@ -228,28 +230,24 @@ CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const CMarkdown::EntityMap &map)
 	{
 		*q = '\0';
 		OLECHAR *key = p + 1;
-		BOOL found = FALSE;
-		EntityString value;
-		int cchValue = 1;
-		OLECHAR chValue[2];
+		std::wstring value;
 		if (*key == '#')
 		{
 			int ordinal = '?';
 			*key = '0';
-			found = StrToIntExW(key, STIF_SUPPORT_HEX, &ordinal);
+			if (StrToIntExW(key, STIF_SUPPORT_HEX, &ordinal))
+				value.assign(1, (OLECHAR)ordinal);
 			*key = '#';
-			chValue[0] = (OLECHAR)ordinal;
-			chValue[1] = '\0';
-			value.B = chValue;
 		}
 		else
 		{
-			found = map.Lookup(key, value);
-			cchValue = SysStringLen(value.B);
+			EntityMap::const_iterator p = map.find(key);
+			if (p != map.end())
+				value = p->second;
 		}
 		*q = ';';
 		++q;
-		if (found)
+		if (int cchValue = value.length())
 		{
 			int i = p - H->B;
 			int j = q - H->B;
@@ -275,7 +273,7 @@ CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const CMarkdown::EntityMap &map)
 					memmove(q + cchGrow, q, cbMove);
 				}
 			}
-			memcpy(p, value.B, cchValue * sizeof(OLECHAR));
+			memcpy(p, value.c_str(), cchValue * sizeof(OLECHAR));
 			q = p + cchValue;
 		}
 	}
@@ -981,7 +979,7 @@ CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
 							pchImage += 4;
 							cchImage -= 4;
 						}
-						CMarkdown::Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
+						Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
 						cbImage = converter.Convert(pchImage, cchImage, 0, 0);
 						pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
 						if (pCopy)

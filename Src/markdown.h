@@ -1,5 +1,7 @@
 #include <oleauto.h>
-#include <afxtempl.h>
+
+#include <map>
+#include <string>
 
 #include "dllpstub.h"
 
@@ -56,60 +58,9 @@ public:
 		size_t iconv(const char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft) const;
 		size_t Convert(const char *, size_t, char *, size_t) const;
 	};
-	class EntityString
-	{
-	//	Helper class to represent an EntityMap's KEYs and VALUEs. No orthogonal
-	//	string class interface, just the methods required to make the CMap
-	//	template happy. class EntityMap takes care of freeing the BSTRs.
-	private:
-		EntityString(const EntityString &);
-	public:
-		BSTR B;
-		operator BSTR()
-		{
-			return B;
-		}
-		EntityString(BSTR B = 0):B(B)
-		{
-		}
-		void operator=(BSTR B)
-		{
-			EntityString::B = B;
-		}
-		void operator=(const EntityString &r)
-		{
-			B = r.B;
-		}
-		bool operator==(BSTR B) const
-		{
-			return lstrcmpW(EntityString::B, B) == 0;
-		}
-	};
-	class EntityMap : public CMap<EntityString, BSTR, EntityString, BSTR>
-	{
-	//	Lookup table for entity substitution
-	public:
-		void Load();
-		void Load(CMarkdown &, const Converter &);
-		~EntityMap()
-		{
-			EntityString key;
-			EntityString val;
-			POSITION pos = GetStartPosition();
-			while (pos != NULL)
-			{
-				GetNextAssoc(pos, key, val);
-				SysFreeString(key.B);
-				SysFreeString(val.B);
-			}
-		}
-		void SetAt(BSTR key, BSTR value)
-		{
-			EntityString &val = (*this)[key];
-			SysFreeString(val.B);
-			val.B = value;
-		}
-	};
+	typedef std::map<std::wstring, std::wstring> EntityMap;
+	static void Load(EntityMap &entityMap);
+	void Load(EntityMap &entityMap, const Converter &);
 	class FileImage;
 	class File;
 	// An _HSTR is a handle to a string
