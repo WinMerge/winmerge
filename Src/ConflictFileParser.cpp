@@ -48,13 +48,13 @@ static const TCHAR MineBegin[] = _T("<<<<<<< ");
  * @param [in] conflictFileName Full path to file to check.
  * @return true if given file is a conflict file, false otherwise.
  */
-bool IsConflictFile(const String &conflictFileName)
+bool IsConflictFile(LPCTSTR conflictFileName)
 {
 	UniMemFile conflictFile;
 	BOOL startFound = FALSE;
 
 	// open input file
-	BOOL success = conflictFile.OpenReadOnly(conflictFileName.c_str());
+	BOOL success = conflictFile.OpenReadOnly(conflictFileName);
 
 	// Search for a conflict marker
 	BOOL linesToRead = TRUE;
@@ -88,8 +88,8 @@ bool IsConflictFile(const String &conflictFileName)
  * @param [out] bNestedConflicts returned as true if nested conflicts found.
  * @return true if conflict file was successfully parsed, false otherwise.
  */
-bool ParseConflictFile(const String &conflictFileName,
-		const String &workingCopyFileName, const String &newRevisionFileName,
+bool ParseConflictFile(LPCTSTR conflictFileName,
+		LPCTSTR workingCopyFileName, LPCTSTR newRevisionFileName,
 		bool &bNestedConflicts)
 {
 	UniMemFile conflictFile;
@@ -106,11 +106,11 @@ bool ParseConflictFile(const String &conflictFileName,
 	bNestedConflicts = false;
 
 	// open input file
-	BOOL success = conflictFile.OpenReadOnly(conflictFileName.c_str());
+	BOOL success = conflictFile.OpenReadOnly(conflictFileName);
 
 	// Create output files
-	BOOL success2 = workingCopy.Open(workingCopyFileName.c_str(), _T("wb"));
-	BOOL success3 = newRevision.Open(newRevisionFileName.c_str(), _T("wb"));
+	BOOL success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
+	BOOL success3 = newRevision.Open(newRevisionFileName, _T("wb"));
 
 	state = 0;
 	BOOL linesToRead = TRUE;

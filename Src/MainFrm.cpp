@@ -203,7 +203,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
-	ON_MESSAGE(WM_USER, OnUser)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
@@ -352,27 +351,31 @@ protected:
 
 static StatusDisplay myStatusDisplay;
 
+#ifdef _UNICODE
+const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
+#else
+const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassA");
+#endif
 /**
  * @brief Change MainFrame window class name
  *        see http://support.microsoft.com/kb/403825/ja
  */
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
-	LPCTSTR   lpzsNewName = _T("WinMergeWindowClass");
 	WNDCLASS wndcls;
 	BOOL bRes = CMDIFrameWnd::PreCreateWindow(cs);
 	HINSTANCE hInst = AfxGetInstanceHandle();
 	// see if the class already exists
-	if (!::GetClassInfo(hInst, lpzsNewName, &wndcls))
+	if (!::GetClassInfo(hInst, szClassName, &wndcls))
 	{
 		// get default stuff
 		::GetClassInfo(hInst, cs.lpszClass, &wndcls);
 		// register a new class
-		wndcls.lpszClassName = lpzsNewName;
+		wndcls.lpszClassName = szClassName;
 		wndcls.hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(IDR_MAINFRAME));
 		::RegisterClass(&wndcls);
 	}
-	cs.lpszClass = lpzsNewName;
+	cs.lpszClass = szClassName;
 	return bRes;
 }
 
@@ -2812,51 +2815,13 @@ void CMainFrame::OnFileOpenproject()
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
-	LPWSTR p = (LPWSTR)(pCopyData->lpData);
-	int argc = pCopyData->dwData;
-	TCHAR **argv = new (TCHAR *[argc]);
-	USES_CONVERSION;
-
-	for (int i = 0; i < argc; i++)
-	{
-		argv[i] = new TCHAR[lstrlenW(p) * (sizeof(WCHAR)/sizeof(TCHAR)) + 1];
-		lstrcpy(argv[i], W2T(p));
-		while (*p) p++;
-		p++;
-	}
-
-	PostMessage(WM_USER, (WPARAM)argc, (LPARAM)argv);
-
-	return TRUE;
-}
-
-LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
-{
-	// MFC's ParseCommandLine method is working with __argc and __targv
-	// variables. We need to send MergeCmdLineInfo object rather than
-	// passing the command line as string. Until we do, we temporary
-	// change these variable values and restore then after parsing.
-
-	int argc = __argc;
-	TCHAR **argv = __targv;
-
-	__argc = wParam;
-	__targv = reinterpret_cast<TCHAR **>(lParam);
-
-	MergeCmdLineInfo cmdInfo(*__targv);
-	theApp.ParseCommandLine(cmdInfo);
+	LPCTSTR pchData = (LPCTSTR)pCopyData->lpData;
+	// Bail out if data isn't zero-terminated
+	DWORD cchData = pCopyData->cbData / sizeof(TCHAR);
+	if (cchData == 0 || pchData[cchData - 1] != _T('\0'))
+		return FALSE;
+	MergeCmdLineInfo cmdInfo = pchData;
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
-
-	// Delete memrory allocated in OnCopyData method.
-	for (int i = 0; i < __argc; ++i)
-	{
-		delete[] __targv[i];
-	}
-	delete __targv;
-
-	__argc = argc;
-	__targv = argv;
-
 	return TRUE;
 }
 
@@ -3505,15 +3470,14 @@ void CMainFrame::OnFileOpenConflict()
 BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 {
 	BOOL conflictCompared = FALSE;
-	String confl = (LPCTSTR)conflictFile;
 
 	if (!checked)
 	{
-		bool confFile = IsConflictFile(confl);
+		bool confFile = IsConflictFile(conflictFile);
 		if (!confFile)
 		{
 			CString message;
-			LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
+			LangFormatString1(message, IDS_NOT_CONFLICT_FILE, conflictFile);
 			AfxMessageBox(message, MB_ICONSTOP);
 			return FALSE;
 		}
@@ -3530,7 +3494,7 @@ BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 
 	// Parse conflict file into two files.
 	bool inners;
-	bool success = ParseConflictFile(confl, workFile, revFile, inners);
+	bool success = ParseConflictFile(conflictFile, workFile.c_str(), revFile.c_str(), inners);
 
 	if (success)
 	{

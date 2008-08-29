@@ -106,7 +106,6 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
-	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
 	// End MergeArgs.cpp
 
 	bool LoadAndOpenProjectFile(LPCTSTR sFilepath);
