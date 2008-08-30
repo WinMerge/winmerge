@@ -88,6 +88,8 @@ cd %2\..\..\..\Externals\heksedit
 %devenv% "heksedit.vcproj" /build "Debug"
 cd %2\..\..\heksedit\Debug
 copy heksedit.dll %2\..\
+mkdir %2\..\heksedit.lng
+copy heksedit.lng\*.* %2\..\heksedit.lng
 
 goto Common
 
@@ -120,6 +122,8 @@ cd %2\..\..\..\Externals\heksedit
 %devenv% "heksedit.vcproj" /build "Release"
 cd %2\..\..\heksedit\Release
 copy heksedit.dll %2\..\
+mkdir %2\..\heksedit.lng
+copy heksedit.lng\*.* %2\..\heksedit.lng
 
 goto Common
 
