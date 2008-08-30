@@ -1,4 +1,5 @@
 #include "precomp.h"
+#include "DllProxies.h"
 #include <imagehlp.h>
 #include <ctype.h>
 #include "resource.h"
@@ -8,111 +9,96 @@
 
 static PList PartitionInfoList;
 
-typedef BOOL (__stdcall* LPFNUnMapAndLoad)( PLOADED_IMAGE LoadedImage );
-typedef PVOID (__stdcall* LPFNImageRvaToVa)(
-	IN PIMAGE_NT_HEADERS NtHeaders,
-	IN PVOID Base,
-	IN ULONG Rva,
-	IN OUT PIMAGE_SECTION_HEADER *LastRvaSection
-);
-
-typedef BOOL (__stdcall* LPFNMapAndLoad)(
-	PSTR ImageName,
-	PSTR DllPath,
-	PLOADED_IMAGE LoadedImage,
-	BOOL DotDll,
-	BOOL ReadOnly
-);
-
-LPFNMapAndLoad fMapAndLoad = 0;
-LPFNImageRvaToVa fImageRvaToVa = 0;
-LPFNUnMapAndLoad fUnMapAndLoad = 0;
-
-BOOL CanUseImagehelpDll()
-{
-	if( fUnMapAndLoad && fMapAndLoad && fImageRvaToVa )
-		return TRUE;
-
-	HMODULE hModule = LoadLibrary( "IMAGEHLP.DLL" );
-	if( hModule )
-	{
-		fMapAndLoad = (LPFNMapAndLoad) GetProcAddress( hModule, "MapAndLoad" );
-		fImageRvaToVa = (LPFNImageRvaToVa) GetProcAddress( hModule, "ImageRvaToVa" );
-		fUnMapAndLoad = (LPFNUnMapAndLoad) GetProcAddress( hModule, "UnMapAndLoad" );
-
-		return fUnMapAndLoad && fMapAndLoad && fImageRvaToVa;
-	}
-	return FALSE;
-}
-
-#define IRTV(x) fImageRvaToVa( li.FileHeader, li.MappedAddress, (DWORD)x, 0 )
-
 BOOL WINAPI GetDllExportNames( LPCSTR pszFilename, ULONG* lpulOffset, ULONG* lpulSize )
 {
-	if( !CanUseImagehelpDll() )
+	struct IMAGEHLP *IMAGEHLP = ::IMAGEHLP;
+	if (IMAGEHLP == 0)
 		return FALSE;
 
 	LOADED_IMAGE li;
-	if( !fMapAndLoad( (LPSTR) pszFilename, NULL, &li, TRUE, TRUE ) )
+	if (!IMAGEHLP->MapAndLoad((LPSTR)pszFilename, NULL, &li, TRUE, TRUE))
 		return FALSE;
 
-	PIMAGE_EXPORT_DIRECTORY pExpDir = (PIMAGE_EXPORT_DIRECTORY)(li.FileHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
-	if( !pExpDir )
-		return FALSE;
-
-	pExpDir = (PIMAGE_EXPORT_DIRECTORY)IRTV(pExpDir);
-	if( !pExpDir->NumberOfNames )
-		return FALSE;
-
-	PDWORD* pExpNames = (LPDWORD*) pExpDir->AddressOfNames;
-	pExpNames = (LPDWORD*)IRTV(pExpNames);
-	ULONG ulStart = (ULONG) IRTV(*pExpNames);
-	*lpulOffset = ulStart - (ULONG) li.MappedAddress;
-	pExpNames += pExpDir->NumberOfNames-1;
-	ULONG ulStop = (ULONG) IRTV(*pExpNames);
-	*lpulSize = ulStop - ulStart + strlen((LPCSTR)ulStop);	// hihi
-
-	fUnMapAndLoad( &li );
-	return TRUE;
+	BOOL bDone = FALSE;
+	if (DWORD dw = li.FileHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress)
+	{
+		PIMAGE_EXPORT_DIRECTORY pExpDir = (PIMAGE_EXPORT_DIRECTORY)
+			IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, dw, 0);
+		DWORD firstName = pExpDir->Name;
+		DWORD lastName = pExpDir->Name;
+		if (pExpDir->NumberOfNames)
+		{
+			DWORD *pExpNames = (DWORD *)
+				IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, pExpDir->AddressOfNames, 0);
+			pExpNames += pExpDir->NumberOfNames - 1;
+			lastName = *pExpNames;
+		}
+		*lpulOffset = firstName;
+		char *name = (char *)
+			IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, lastName, 0);
+		*lpulSize = lastName + strlen(name) + 1 - firstName;
+		bDone = TRUE;
+	}
+	IMAGEHLP->UnMapAndLoad(&li);
+	return bDone;
 }
-
-// structures are undocumented
-typedef struct
-{
-	// Addr +0 = start of import declaration
-	// Addr +1,+2 are -1 always
-	// Addr +3 = virtual name-of-dll
-	// Addr +4 = ???
-	ULONG Addr[5];
-} IMPS0;
 
 BOOL WINAPI GetDllImportNames( LPCSTR pszFilename, ULONG* lpulOffset, ULONG* lpulSize )
 {
-	if( !CanUseImagehelpDll() )
+	struct IMAGEHLP *IMAGEHLP = ::IMAGEHLP;
+	if (IMAGEHLP == 0)
 		return FALSE;
 
 	LOADED_IMAGE li;
-	if( !fMapAndLoad( (LPSTR) pszFilename, NULL, &li, TRUE, TRUE ) )
+	if (!IMAGEHLP->MapAndLoad((LPSTR)pszFilename, NULL, &li, TRUE, TRUE))
 		return FALSE;
 
-	PVOID pExpDir = (LPVOID)(li.FileHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
-	if( !pExpDir )
-		return FALSE;
-
-	IMPS0* p = (IMPS0*)IRTV(pExpDir);
-	pExpDir = (PVOID)IRTV(p->Addr[0]);
-	pExpDir = (PVOID)IRTV(*(ULONG*)pExpDir);
-	*lpulOffset = (ULONG)pExpDir - (ULONG) li.MappedAddress;
-
-	LPBYTE lpbEnd = (LPBYTE) pExpDir;
-	while(!( !lpbEnd[0] && !lpbEnd[1] && !lpbEnd[2] && !lpbEnd[3] ))
+	BOOL bDone = FALSE;
+	if (DWORD dw = li.FileHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress)
 	{
-		lpbEnd++;
+		IMAGE_IMPORT_DESCRIPTOR *pDescriptor = (IMAGE_IMPORT_DESCRIPTOR *)
+			IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, dw, 0);
+		DWORD lower = ULONG_MAX;
+		DWORD upper = 0;
+		while (pDescriptor->FirstThunk)
+		{
+			if (lower > pDescriptor->Name) //OriginalFirstThunk)
+				lower = pDescriptor->Name; //OriginalFirstThunk;
+			char *name = (char *)
+				IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, pDescriptor->Name, 0);
+			DWORD end = pDescriptor->Name + strlen(name) + 1;
+			if (upper < end)
+				upper = end;
+			DWORD *pEntry = (DWORD *)
+				IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, pDescriptor->FirstThunk, 0);
+			IMAGE_THUNK_DATA *pThunk = (IMAGE_THUNK_DATA *)
+				IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, pDescriptor->OriginalFirstThunk, 0);
+			while (pThunk->u1.Function)
+			{
+				if ((*pEntry & 0x80000000) == 0)
+				{
+					IMAGE_IMPORT_BY_NAME *pImport = (IMAGE_IMPORT_BY_NAME *)
+						IMAGEHLP->ImageRvaToVa(li.FileHeader, li.MappedAddress, *pEntry, 0);
+					DWORD end = *pEntry + sizeof(IMAGE_IMPORT_BY_NAME) + strlen((char *)pImport->Name);
+					if (lower > *pEntry)
+						lower = *pEntry;
+					if (upper < end)
+						upper = end;
+				}
+				++pThunk;
+				++pEntry;
+			}
+			++pDescriptor;
+		}
+		if (lower < upper)
+		{
+			*lpulOffset = lower;
+			*lpulSize = upper - lower;
+			bDone = TRUE;
+		}
 	}
-	*lpulSize = (ULONG)lpbEnd - (ULONG) pExpDir;
-
-	fUnMapAndLoad( &li );
-	return TRUE;
+	IMAGEHLP->UnMapAndLoad(&li);
+	return bDone;
 }
 
 void WINAPI XorEncoder( MEMORY_CODING* p )
@@ -223,7 +209,7 @@ INT_PTR OpenDriveDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 	{
 	case WM_INITDIALOG:
 		{
-			HWND hListbox = GetDlgItem(hDlg, IDC_LIST1);
+			ShowWindow(hDlg, SW_SHOW);
 			if (PartitionInfoList.IsEmpty())
 			{
 				if (IPhysicalDrive *Drive = CreatePhysicalDriveInstance())
@@ -232,8 +218,11 @@ INT_PTR OpenDriveDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 					delete Drive;
 				}
 			}
-			ENUMERATE(&PartitionInfoList, PartitionInfo, pi)
+			HWND hListbox = GetDlgItem(hDlg, IDC_LIST1);
+			LIST_ENTRY *Flink = &PartitionInfoList;
+			while ((Flink = Flink->Flink) != &PartitionInfoList)
 			{
+				PartitionInfo *pi = static_cast<PartitionInfo *>(Flink);
 				int i = SendMessage(hListbox, LB_ADDSTRING, 0, (LPARAM)(LPCSTR)pi->GetNameAsString());
 				SendMessage(hListbox, LB_SETITEMDATA, i, (LPARAM)pi);
 			}

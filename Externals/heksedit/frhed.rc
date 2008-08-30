@@ -13,18 +13,13 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Deutsch (Deutschland) resources
+// Englisch (USA) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
-LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 #endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Menu
-//
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -45,56 +40,11 @@ END
 
 3 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "\r\n"
+    "#include ""version.rc""\r\n"
     "\0"
 END
 
 #endif    // APSTUDIO_INVOKED
-
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,0
- PRODUCTVERSION 1,0,0,0
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x21L
-#else
- FILEFLAGS 0x20L
-#endif
- FILEOS 0x40004L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040704b0"
-        BEGIN
-            VALUE "Comments", "Homepage: http://www.kibria.de, http://zip.to/pabs3\0"
-            VALUE "CompanyName", "(c) Raihan Kibria 2000\0"
-            VALUE "FileDescription", "frhed - free hex editor 1.1.0\0"
-            VALUE "FileVersion", "1, 1, 0\0"
-            VALUE "InternalName", "frhed\0"
-            VALUE "LegalCopyright", "GNU General Public License v2.0\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "frhed.exe\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "frhed\0"
-            VALUE "ProductVersion", "1, 1, 0\0"
-            VALUE "SpecialBuild", "\0"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x407, 1200
-    END
-END
-
-#endif    // !_MAC
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -104,9 +54,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
-
-#endif    // Deutsch (Deutschland) resources
+IDI_ICON1               ICON    DISCARDABLE     "res/icon1.ico"
+#endif    // Englisch (USA) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -116,7 +65,7 @@ IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-
+#include "version.rc"
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED

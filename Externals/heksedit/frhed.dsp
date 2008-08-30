@@ -111,15 +111,7 @@ SOURCE=.\toolbar.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=.\BinTrans.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\gktools.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\gtools.h
+SOURCE=.\heksedit.h
 # End Source File
 # Begin Source File
 
@@ -127,47 +119,7 @@ SOURCE=.\hexwnd.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ido.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ids.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\idt.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ntdiskspec.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PDrive95.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PDriveNT.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PhysicalDrive.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PMemoryBlock.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\precomp.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\RAWIO32\RAWIO32.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Simparr.h
 # End Source File
 # Begin Source File
 
@@ -187,31 +139,11 @@ SOURCE=.\frhed.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\icon1.ico
+SOURCE=.\res\icon1.ico
 # End Source File
 # Begin Source File
 
 SOURCE=.\resource.h
-# End Source File
-# End Group
-# Begin Group "Text Files"
-
-# PROP Default_Filter "txt"
-# Begin Source File
-
-SOURCE=.\Bugs.txt
-# End Source File
-# Begin Source File
-
-SOURCE=.\History.txt
-# End Source File
-# Begin Source File
-
-SOURCE=.\Readme.txt
-# End Source File
-# Begin Source File
-
-SOURCE=.\Todo.txt
 # End Source File
 # End Group
 # End Target

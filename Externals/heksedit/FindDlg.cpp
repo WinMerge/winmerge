@@ -22,36 +22,16 @@ INT_PTR FindDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 		if (bSelected)
 		{
 			// Get start offset and length (is at least =1) of selection.
-			int sel_start, select_len;
-			if (iEndOfSelection < iStartOfSelection)
-			{
-				sel_start = iEndOfSelection;
-				select_len = iStartOfSelection - iEndOfSelection + 1;
-			}
-			else
-			{
-				sel_start = iStartOfSelection;
-				select_len = iEndOfSelection - iStartOfSelection + 1;
-			}
-
+			int sel_start = iGetStartOfSelection();
+			int select_len = iGetEndOfSelection() - sel_start + 1;
 			// Get the length of the bytecode representation of the selection (including zero-byte at end).
-			/*int findlen = */Text2BinTranslator::iBytes2BytecodeDestLen( (char*) &DataArray[sel_start], select_len );
-
-			// New buffer length is at least FINDDLG_BUFLEN = 64K, bigger if findstring is bigger than 64K.
-			// iFindDlgBufLen = max( FINDDLG_BUFLEN, findlen );
-
-			// Signal dialogue function to display the text in the edit box.
-			// iFindDlgLastLen = findlen;
-
-			// Delete old buffer.
-			// if( pcFindDlgBuffer != NULL )
-			//	delete [] pcFindDlgBuffer;
-
-			// Allocate new buffer.
-			// pcFindDlgBuffer = new char[ iFindDlgBufLen ];
-			// if( pcFindDlgBuffer == NULL )
-			//	MessageBox( hwnd, "Could not allocate findstring buffer!", "Find ERROR", MB_OK | MB_ICONERROR );
-
+			int findlen = Text2BinTranslator::iBytes2BytecodeDestLen((char *)&DataArray[sel_start], select_len);
+			if (findlen > iFindDlgBufLen)
+			{
+				MessageBox(hDlg, "Selection too large.", "Find", MB_ICONERROR);
+				EndDialog(hDlg, IDCANCEL);
+				return TRUE;
+			}
 			// Translate the selection into bytecode and write it into the edit box buffer.
 			Text2BinTranslator::iTranslateBytesToBC(pcFindDlgBuffer, &DataArray[sel_start], select_len);
 		}
@@ -61,7 +41,7 @@ INT_PTR FindDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 		CheckDlgButton(hDlg, iFindDlgDirection == -1 ? IDC_RADIO1 : IDC_RADIO2, BST_CHECKED);
 		CheckDlgButton(hDlg, IDC_CHECK1, iFindDlgMatchCase);
 		CheckDlgButton(hDlg, IDC_CHECK4, iFindDlgUnicode);
-		return FALSE;
+		return TRUE;
 
 	case WM_COMMAND:
 		//GK16AUG2K
@@ -94,35 +74,28 @@ INT_PTR FindDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 					int i;
 					char (*cmp)(char) = iFindDlgMatchCase ? equal : lower_case;
 
-					SetCursor (LoadCursor (NULL, IDC_WAIT));
+					SetCursor(LoadCursor(NULL, IDC_WAIT));
 					// Find forward.
 					if (iFindDlgDirection == 1)
 					{
-						i = find_bytes ((char*) &(DataArray[iCurByte + 1]), DataArray.GetLength() - iCurByte - 1, pcFindstring, destlen, 1, cmp);
+						i = find_bytes((char *)&DataArray[iCurByte + 1], DataArray.GetLength() - iCurByte - 1, pcFindstring, destlen, 1, cmp);
 						if (i != -1)
 							iCurByte += i + 1;
 					}
 					// Find backward.
 					else
 					{
-						i = find_bytes( (char*) &(DataArray[0]),
-							min( iCurByte + (destlen - 1), DataArray.GetLength() ),
-							pcFindstring, destlen, -1, cmp );
+						i = find_bytes((char *)&DataArray[0],
+							min(iCurByte + (destlen - 1), DataArray.GetLength()),
+							pcFindstring, destlen, -1, cmp);
 						if (i != -1)
 							iCurByte = i;
 					}
-					SetCursor (LoadCursor (NULL, IDC_ARROW));
+					SetCursor(LoadCursor(NULL, IDC_ARROW));
 
 					if (i != -1)
 					{
-						// Caret will be vertically centered if line of found string is not visible.
-						/* OLD: ONLY SET CURSOR POSITION
-						if( iCurByte/iBytesPerLine < iVscrollPos || iCurByte/iBytesPerLine > iVscrollPos + cyBuffer )
-							iVscrollPos = max( 0, iCurByte/iBytesPerLine-cyBuffer/2 );
-						adjust_vscrollbar();
-						*/
-
-						// NEW: Select found interval.
+						// Select found interval.
 						bSelected = TRUE;
 						iStartOfSelection = iCurByte;
 						iEndOfSelection = iCurByte + destlen - 1;

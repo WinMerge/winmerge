@@ -7,10 +7,22 @@
 #include "toolbar.h"
 
 static const char szMainClass[] = "frhed wndclass";
-static const char szHexClass[] = "frhed hexclass";
+static const char szHexClassA[] = "hekseditA_" CURRENT_VERSION "." SUB_RELEASE_NO;
+static const char szHexClassW[] = "hekseditW_" CURRENT_VERSION "." SUB_RELEASE_NO;
 
 HINSTANCE hMainInstance;
-LRESULT CALLBACK MainWndProc (HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM);
+
+static BOOL NTAPI IsNT()
+{
+	OSVERSIONINFO osvi;
+	ZeroMemory(&osvi, sizeof osvi);
+	osvi.dwOSVersionInfoSize = sizeof osvi;
+	if (!GetVersionEx(&osvi))
+		osvi.dwPlatformId = 0;
+	return osvi.dwPlatformId == VER_PLATFORM_WIN32_NT;
+}
+
 
 static BOOL CALLBACK WndEnumProcCountInstances(HWND hwnd, LPARAM lParam)
 {
@@ -32,6 +44,7 @@ static HexEditorWindow *pHexWnd = 0;
 
 int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 {
+	OleInitialize(NULL);
 	InitCommonControls();
 
 	hMainInstance = LoadLibrary("heksedit.dll");
@@ -41,7 +54,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	MSG msg;
 
 	WNDCLASS wndclass;
-	Zero(wndclass);
+	ZeroMemory(&wndclass, sizeof wndclass);
 
 	//Register the main window class
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
@@ -53,8 +66,6 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	wndclass.lpszClassName = szMainClass;
 
 	RegisterClass(&wndclass);
-
-	OleInitialize(NULL);
 
 	int iInstCount = 0;
 	EnumWindows(WndEnumProcCountInstances, (LPARAM)&iInstCount);
@@ -85,7 +96,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	ShowWindow(hwndMain, pHexWnd->iWindowShowCmd);
 	UpdateWindow(hwndMain);
 
-	if (szCmdLine != NULL && strlen(szCmdLine) != 0)
+	if (*szCmdLine != '\0')
 	{
 		// Command line not empty: open a file on startup.
 		char *p = szCmdLine;
@@ -126,7 +137,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 		if (SUCCEEDED(hres))
 		{
 			// Trying to open a link file: decision by user required.
-			int ret = MessageBox( hwndMain,
+			int ret = MessageBox(hwndMain,
 				"You are trying to open a link file.\n"
 				"Click on Yes if you want to open the file linked to,\n"
 				"or click on No if you want to open the link file itself.\n"
@@ -148,7 +159,8 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 		{
 			pHexWnd->load_file(szCmdLine);
 		}
-		if (dwEnd) pHexWnd->CMD_setselection(dwStart, dwEnd);
+		if (dwEnd)
+			pHexWnd->CMD_setselection(dwStart, dwEnd);
 	}
 
 	while (GetMessage(&msg, NULL, 0, 0))
@@ -160,45 +172,55 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 		}
 	}
 
+	FreeLibrary(hMainInstance);
 	OleUninitialize();
-
+	_CrtDumpMemoryLeaks();
 	return msg.wParam;
 }
 
 //--------------------------------------------------------------------------------------------
 // The main window procedure.
-LRESULT CALLBACK MainWndProc( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam )
+LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
-	switch (iMsg) {
-		case WM_CREATE:
-			hwndMain = hwnd;
-			DragAcceptFiles(hwnd, TRUE); // Accept files dragged into main window.
-			hwndToolBar = CreateTBar(hwnd, hMainInstance);
-			hwndHex = CreateWindowEx(WS_EX_CLIENTEDGE, szHexClass, 0,
-				WS_TABSTOP | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL,
-				10, 10, 100, 100, hwnd, 0, hMainInstance, 0);
-			pHexWnd = (HexEditorWindow *)GetWindowLong(hwndHex, GWL_USERDATA);
-			hwndStatusBar = CreateStatusWindow(
-				CCS_BOTTOM | WS_CHILD | WS_VISIBLE | SBARS_SIZEGRIP,
-				"Ready", hwnd, 2);
-			pHexWnd->hwndMain = hwnd;
-			pHexWnd->hwndToolBar = hwndToolBar;
-			pHexWnd->hwndStatusBar = hwndStatusBar;
-			pHexWnd->bSaveIni = TRUE;
-			pHexWnd->bCenterCaret = TRUE;
-			pHexWnd->set_wnd_title();
+	switch (iMsg)
+	{
+	case WM_CREATE:
+		hwndMain = hwnd;
+		DragAcceptFiles(hwnd, TRUE); // Accept files dragged into main window.
+		hwndToolBar = CreateTBar(hwnd, hMainInstance);
+		hwndHex = CreateWindowEx(WS_EX_CLIENTEDGE,
+			IsNT() ? szHexClassW : szHexClassA, 0,
+			WS_TABSTOP | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL,
+			10, 10, 100, 100, hwnd, 0, hMainInstance, 0);
+		pHexWnd = (HexEditorWindow *)GetWindowLong(hwndHex, GWL_USERDATA);
+		hwndStatusBar = CreateStatusWindow(
+			CCS_BOTTOM | WS_CHILD | WS_VISIBLE | SBARS_SIZEGRIP,
+			"Ready", hwnd, 2);
+		pHexWnd->hwndMain = hwnd;
+		pHexWnd->hwndToolBar = hwndToolBar;
+		pHexWnd->hwndStatusBar = hwndStatusBar;
+		pHexWnd->bSaveIni = TRUE;
+		pHexWnd->bCenterCaret = TRUE;
+		pHexWnd->set_wnd_title();
+		return 0;
+	case WM_COMMAND:
+		pHexWnd->command(LOWORD(wParam));
+		break;
+	case WM_DROPFILES:
+		pHexWnd->dropfiles(reinterpret_cast<HDROP>(wParam));
+		break;
+	case WM_SETFOCUS:
+		SetFocus(hwndHex);
+		break;
+	case WM_CLOSE: 
+		if (!pHexWnd->close())
 			return 0;
-		case WM_COMMAND: return SendMessage(hwndHex, iMsg, wParam, lParam);
-		case WM_SETFOCUS: SetFocus(hwndHex); break;
-		case WM_CLOSE: 
-			if (!pHexWnd->close())
-				return 0;
-			break;
-		//return SendMessage(hwndHex, iMsg, wParam, lParam);
-		case WM_INITMENUPOPUP: pHexWnd->initmenupopup( wParam, lParam ); return 0;
-		case WM_DROPFILES: return SendMessage(hwndHex, iMsg, wParam, lParam);
-
-		case WM_SIZE:{
+		break;
+	case WM_INITMENUPOPUP:
+		pHexWnd->initmenupopup(wParam, lParam);
+		break;
+	case WM_SIZE:
+		{
 			SendMessage(hwndStatusBar, WM_SIZE, 0 , 0); //Moves status bar back to the bottom
 			SendMessage(hwndToolBar, WM_SIZE, 0 , 0); //Moves tool bar back to the top
 
@@ -215,46 +237,35 @@ LRESULT CALLBACK MainWndProc( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam
 			int iToolbarHeight = rect.bottom - rect.top;
 			GetClientRect(hwndStatusBar, &rect);
 			MoveWindow(hwndHex, 0, iToolbarHeight, LOWORD(lParam), HIWORD(lParam)-rect.bottom-iToolbarHeight, TRUE);
-			break;
 		}
-
-		case WM_NOTIFY:{
-			//See if someone sent us invalid data
-			HWND h;
-			UINT code;
-			try{
-				//Attempt to dereference
-				NMHDR& pn = *(NMHDR*)lParam;
-				h = pn.hwndFrom;
-				code = pn.code;
-			}
-			catch(...){ return 0; }
-
-			if (h == hwndStatusBar)
+		break;
+	case WM_NOTIFY:
+		{
+			NMHDR *pn = (NMHDR *)lParam;
+			HWND hwndFrom = pn->hwndFrom;
+			UINT code = pn->code;
+			if (hwndFrom == hwndStatusBar)
 			{
-				if(code == NM_CLICK || code == NM_RCLICK)
+				if (code == NM_CLICK || code == NM_RCLICK)
 					pHexWnd->status_bar_click(code == NM_CLICK);
 			}
-			else if (h == hwndToolBar)
+			else if (hwndFrom == hwndToolBar)
 			{
-				if (code == TBN_GETINFOTIPA || code == TBN_GETINFOTIPW)
+				if (code == TBN_GETINFOTIPA)
 				{
-					try{
-						if(code == TBN_GETINFOTIPA){
-							NMTBGETINFOTIPA& pi = *(NMTBGETINFOTIPA*) lParam;
-							LoadStringA(hMainInstance,pi.iItem,pi.pszText,pi.cchTextMax);
-						} else {
-							NMTBGETINFOTIPW& pi = *(NMTBGETINFOTIPW*) lParam;
-							LoadStringW(hMainInstance,pi.iItem,pi.pszText,pi.cchTextMax);
-						}
-					}
-					catch(...){}
+					NMTBGETINFOTIPA *pi = (NMTBGETINFOTIPA *)lParam;
+					LoadStringA(hMainInstance, pi->iItem, pi->pszText, pi->cchTextMax);
+				}
+				else if (code == TBN_GETINFOTIPW)
+				{
+					NMTBGETINFOTIPW *pi = (NMTBGETINFOTIPW *)lParam;
+					LoadStringW(hMainInstance, pi->iItem, pi->pszText, pi->cchTextMax);
 				}
 			}
 		}
-		return 0;
-
-		case WM_DESTROY: {
+		break;
+	case WM_DESTROY:
+		{
 			// Store window position for next startup.
 			WINDOWPLACEMENT wndpl;
 			wndpl.length = sizeof(WINDOWPLACEMENT);
@@ -268,21 +279,7 @@ LRESULT CALLBACK MainWndProc( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam
 			DragAcceptFiles(hwndMain, FALSE);
 			PostQuitMessage(0);
 		}
-		return 0;
-
+		break;
 	}
 	return DefWindowProc(hwnd, iMsg, wParam, lParam );
 }
-
-// The hex window procedure.
-/*LRESULT CALLBACK HexWndProc( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam )
-{
-	if (iMsg == WM_NCCREATE)
-		SetWindowLong(hwnd, GWL_USERDATA, (LONG)new HexEditorWindow);
-	HexEditorWindow *pHexWnd = (HexEditorWindow *)GetWindowLong(hwnd, GWL_USERDATA);
-	LRESULT lResult = pHexWnd->OnWndMsg( hwnd, iMsg, wParam, lParam );
-	if (iMsg == WM_NCDESTROY)
-		delete pHexWnd;
-	return lResult;
-}*/
-//============================================================================================

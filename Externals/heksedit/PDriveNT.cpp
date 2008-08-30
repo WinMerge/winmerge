@@ -1,7 +1,6 @@
 #include "precomp.h"
 #include "physicaldrive.h"
 #include "PDriveNT.h"
-#include <assert.h>
 
 BOOL PNtPhysicalDrive::GetDriveLayout( LPBYTE lpbMemory, DWORD dwSize )
 {

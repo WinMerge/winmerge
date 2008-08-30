@@ -1,6 +1,6 @@
 To find source-level changes use diff or a visual diff prog such as CSdiff (good for RTF files) or Araxis Merge
 
-version heksedit.dll 1.01b by Jochen Neubeck
+heksedit.dll by Jochen Neubeck
 - Compiles into a dll for use as a control in other applications
 - Thorough refactoring, plus a few fixes, plus probably a few bugs
 - Got rid of most global variables, mostly to support multiple instances per process

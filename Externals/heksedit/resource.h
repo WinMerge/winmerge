@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by heksedit.rc
 //
 #define IDC_UP                          100
@@ -85,7 +85,6 @@
 #define IDC_STATIC4                     169
 #define IDC_BUTTON1                     170
 #define IDC_FINDNEXT_BUTTON             171
-#define IDC_ST_VERSION                  171
 #define IDC_TYPE                        172
 #define IDC_FINDPREVIOUS_BUTTON         173
 #define IDC_BROWSE                      174
@@ -244,6 +243,7 @@
 #define IDC_TEXT_DISPLAY                1079
 #define IDC_ENABLE_DROP                 1080
 #define IDC_EXPORTDIGITS                1081
+#define IDC_APPICON                     1082
 #define IDM_OLE_DRAG_DROP               40142
 
 // Next default values for new objects
@@ -253,7 +253,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         40143
-#define _APS_NEXT_CONTROL_VALUE         1082
+#define _APS_NEXT_CONTROL_VALUE         1083
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

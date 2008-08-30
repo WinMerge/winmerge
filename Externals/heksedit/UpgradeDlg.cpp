@@ -1,6 +1,5 @@
 #include "precomp.h"
 #include "resource.h"
-#include <shlwapi.h>
 #include "regtools.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
@@ -20,7 +19,6 @@ BOOL UpgradeDlg::OnInitDialog(HWND hw)
 {
 	int i;
 	HKEY hk;
-	//LONG res;
 	char subkeynam[_MAX_PATH+1];
 	LVITEM item;
 	ZeroMemory(&item,sizeof(LVITEM));

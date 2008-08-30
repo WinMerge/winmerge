@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\../../Build/MergeRelease"
-			IntermediateDirectory=".\../../BuildTmp/frhed/Release"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\frhed\$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -22,13 +22,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="precomp.h"
-				PrecompiledHeaderFile=".\../../BuildTmp/frhed/Release/frhed.pch"
-				AssemblerListingLocation=".\../../BuildTmp/frhed/Release/"
-				ObjectFile=".\../../BuildTmp/frhed/Release/"
-				ProgramDataBaseFileName=".\../../BuildTmp/frhed/Release/"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\frhed\$(ConfigurationName)\frhed.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
@@ -37,10 +39,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="version.lib comctl32.lib wininet.lib odbc32.lib odbccp32.lib shlwapi.lib"
-				OutputFile="../../Build/heksedit/Release/frhed.exe"
+				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\frhed.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile="../../Build/heksedit/Release/frhed.pdb"
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\frhed.pdb"
 				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
@@ -49,7 +51,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\../../Build/MergeRelease/frhed.tlb"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\frhed.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -74,8 +76,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\../../Build/MergeDebug"
-			IntermediateDirectory=".\../../BuildTmp/frhed/Debug"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\frhed\$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -83,13 +85,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="precomp.h"
-				PrecompiledHeaderFile=".\../../BuildTmp/frhed/Debug/frhed.pch"
-				AssemblerListingLocation=".\../../BuildTmp/frhed/Debug/"
-				ObjectFile=".\../../BuildTmp/frhed/Debug/"
-				ProgramDataBaseFileName=".\../../BuildTmp/frhed/Debug/"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\frhed\$(ConfigurationName)\frhed.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\frhed\$(ConfigurationName)\"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -99,11 +103,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="imagehlp.lib version.lib comctl32.lib wininet.lib odbc32.lib odbccp32.lib shlwapi.lib"
-				OutputFile="../../Build/heksedit/Debug/frhed.exe"
+				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\frhed.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="../../Build/heksedit/Debug/frhed.pdb"
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\frhed.pdb"
 				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
@@ -112,7 +116,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\../../Build/MergeDebug/frhed.tlb"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\frhed.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -206,49 +210,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
-				RelativePath="BinTrans.h">
-			</File>
-			<File
-				RelativePath="gktools.h">
-			</File>
-			<File
-				RelativePath="gtools.h">
-			</File>
-			<File
 				RelativePath="hexwnd.h">
 			</File>
 			<File
-				RelativePath="ido.h">
-			</File>
-			<File
-				RelativePath="ids.h">
-			</File>
-			<File
-				RelativePath="idt.h">
-			</File>
-			<File
-				RelativePath="ntdiskspec.h">
-			</File>
-			<File
-				RelativePath="PDrive95.h">
-			</File>
-			<File
-				RelativePath="PDriveNT.h">
-			</File>
-			<File
-				RelativePath="PhysicalDrive.h">
-			</File>
-			<File
-				RelativePath="PMemoryBlock.h">
-			</File>
-			<File
 				RelativePath="precomp.h">
-			</File>
-			<File
-				RelativePath="..\RAWIO32\RAWIO32.h">
-			</File>
-			<File
-				RelativePath="Simparr.h">
 			</File>
 			<File
 				RelativePath="toolbar.h">
@@ -268,22 +233,6 @@
 			</File>
 			<File
 				RelativePath="resource.h">
-			</File>
-		</Filter>
-		<Filter
-			Name="Text Files"
-			Filter="txt">
-			<File
-				RelativePath="Bugs.txt">
-			</File>
-			<File
-				RelativePath="History.txt">
-			</File>
-			<File
-				RelativePath="Readme.txt">
-			</File>
-			<File
-				RelativePath="Todo.txt">
 			</File>
 		</Filter>
 	</Files>

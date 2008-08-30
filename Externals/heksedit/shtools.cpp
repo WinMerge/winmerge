@@ -1,5 +1,4 @@
 #include "precomp.h"
-#include <shlwapi.h>
 #include "shtools.h"
 /*Pabs inserted func
 Create link files for registry menu

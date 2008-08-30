@@ -28,23 +28,6 @@ TBBUTTON tbButtons[] = // Array defining the toolbar buttons
 	{ 12, ID_DISK_GOTOLASTTRACK,     0,               TBSTYLE_BUTTON, 0, 0 }
 };
 
-/*LRESULT HexEditorWindow::SetTooltipText(LPTOOLTIPTEXT lpToolTipText)
-{
-	UNREFERENCED_PARAMETER( hWnd );
-	static char szBuffer[64];
-	if ((lpToolTipText->hdr.code == TTN_NEEDTEXTA) ||
-		(lpToolTipText->hdr.code == TTN_NEEDTEXTW))
-	{
-		LoadString(hMainInstance,
-		lpToolTipText->hdr.idFrom, // string ID == command ID
-		szBuffer,
-		sizeof(szBuffer));
-
-		lpToolTipText->lpszText = szBuffer;
-	}
-	return 0;
-}*/
-
 HWND CreateTBar(HWND hWnd, HINSTANCE hInst)
 {
 	HWND hwndToolBar = CreateToolbarEx(hWnd,

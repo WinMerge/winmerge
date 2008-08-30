@@ -28,23 +28,23 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 IDR_MAINMENU MENU 
 BEGIN
-    POPUP "&File"
+    POPUP "heksedit.rc:31"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                IDM_NEW
-        MENUITEM "&Open...\tCtrl+O",            IDM_OPEN
-        MENUITEM "Open pa&rtially...\tAlt+P",   IDM_PARTIAL_OPEN
-        MENUITEM "&Save\tCtrl+S",               IDM_SAVE
-        MENUITEM "Save &As...\tCtrl+J",         IDM_SAVE_AS
-        MENUITEM "Save selec&tion as...\tCtrl+Shift+O", IDM_SAVESELAS
-        MENUITEM "Re&vert\tCtrl+Shift+R",       IDM_REVERT
-        MENUITEM "&Insert file...\tCtrl+Shift+I", IDM_INSERTFILE
-        MENUITEM "&Delete file...\tCtrl+Shift+D", IDM_DELETEFILE
-        MENUITEM "Close File\tCtrl+Shift+X",    IDM_NEW
+        MENUITEM "heksedit.rc:33",                IDM_NEW
+        MENUITEM "heksedit.rc:34",            IDM_OPEN
+        MENUITEM "heksedit.rc:35",   IDM_PARTIAL_OPEN
+        MENUITEM "heksedit.rc:36",               IDM_SAVE
+        MENUITEM "heksedit.rc:37",         IDM_SAVE_AS
+        MENUITEM "heksedit.rc:38", IDM_SAVESELAS
+        MENUITEM "heksedit.rc:39",       IDM_REVERT
+        MENUITEM "heksedit.rc:40", IDM_INSERTFILE
+        MENUITEM "heksedit.rc:41", IDM_DELETEFILE
+        MENUITEM "heksedit.rc:42",    IDM_NEW
         MENUITEM SEPARATOR
-        MENUITEM "&Export as hexdump...",       IDM_COPY_HEXDUMP
-        MENUITEM "I&mport from hexdump...\tCtrl+Shift+H", IDM_OPEN_HEXDUMP
+        MENUITEM "heksedit.rc:44",       IDM_COPY_HEXDUMP
+        MENUITEM "heksedit.rc:45", IDM_OPEN_HEXDUMP
         MENUITEM SEPARATOR
-        MENUITEM "E&xit\tAlt+F4",               IDM_EXIT
+        MENUITEM "heksedit.rc:47",               IDM_EXIT
         MENUITEM "IDM_MRU",                     IDM_MRU1
         MENUITEM "IDM_MRU",                     IDM_MRU2
         MENUITEM "IDM_MRU",                     IDM_MRU3
@@ -55,126 +55,126 @@ BEGIN
         MENUITEM "IDM_MRU",                     IDM_MRU8
         MENUITEM "IDM_MRU",                     IDM_MRU9
     END
-    POPUP "&Disk"
+    POPUP "heksedit.rc:58"
     BEGIN
-        MENUITEM "&Open drive...",              ID_DISK_OPEN_DRIVE
-        MENUITEM "&Close drive",                ID_DISK_CLOSEDRIVE
+        MENUITEM "heksedit.rc:60",              ID_DISK_OPEN_DRIVE
+        MENUITEM "heksedit.rc:61",                ID_DISK_CLOSEDRIVE
         MENUITEM SEPARATOR
-        MENUITEM "Goto First Sector",           ID_DISK_GOTOFIRSTTRACK
-        MENUITEM "Goto &Next Sector\tCtrl+Shift+PgDn", ID_DISK_GOTONEXTTRACK
-        MENUITEM "Goto &Previous Sector\tCtrl+Shift+PgUp", 
+        MENUITEM "heksedit.rc:63",           ID_DISK_GOTOFIRSTTRACK
+        MENUITEM "heksedit.rc:64", ID_DISK_GOTONEXTTRACK
+        MENUITEM "heksedit.rc:65", 
                                                 ID_DISK_GOTOPREVIOUSTRACK
-        MENUITEM "Goto Last Sector",            ID_DISK_GOTOLASTTRACK
+        MENUITEM "heksedit.rc:67",            ID_DISK_GOTOLASTTRACK
         MENUITEM SEPARATOR
-        MENUITEM "Goto Sector #...",            ID_DISK_GOTOTRACK
+        MENUITEM "heksedit.rc:69",            ID_DISK_GOTOTRACK
     END
-    POPUP "&Edit"
+    POPUP "heksedit.rc:71"
     BEGIN
-        MENUITEM "Cu&t...\tCtrl+X",             IDM_EDIT_CUT
-        MENUITEM "&Copy...\tCtrl+C",            IDM_EDIT_COPY
-        MENUITEM "&Paste...\tCtrl+V",           IDM_EDIT_PASTE
-        MENUITEM "Paste &with dialog...\tCtrl+Shift+V", IDM_PASTE_WITH_DLG
-        MENUITEM "&Move/Copy bytes...\tCtrl+Alt+M", IDM_EDIT_MOVE_COPY
-        MENUITEM "Reverse bytes...\tCtrl+Alt+R", IDM_EDIT_REVERSE
-        MENUITEM "&Append...\tCtrl+P",          IDM_EDIT_APPEND
-        MENUITEM "&Delete\tDel",                IDA_DELETEKEY
-        MENUITEM "&Select all\tCtrl+A",         IDM_SELECT_ALL
-        MENUITEM "Select &block...\tCtrl+E",    IDM_SELECT_BLOCK
-        MENUITEM "Fill selection wit&h...\tCtrl+Shift+F", IDM_FILL_WITH
+        MENUITEM "heksedit.rc:73",             IDM_EDIT_CUT
+        MENUITEM "heksedit.rc:74",            IDM_EDIT_COPY
+        MENUITEM "heksedit.rc:75",           IDM_EDIT_PASTE
+        MENUITEM "heksedit.rc:76", IDM_PASTE_WITH_DLG
+        MENUITEM "heksedit.rc:77", IDM_EDIT_MOVE_COPY
+        MENUITEM "heksedit.rc:78", IDM_EDIT_REVERSE
+        MENUITEM "heksedit.rc:79",          IDM_EDIT_APPEND
+        MENUITEM "heksedit.rc:80",                IDA_DELETEKEY
+        MENUITEM "heksedit.rc:81",         IDM_SELECT_ALL
+        MENUITEM "heksedit.rc:82",    IDM_SELECT_BLOCK
+        MENUITEM "heksedit.rc:83", IDM_FILL_WITH
         MENUITEM SEPARATOR
-        MENUITEM "Toggle h&ex/character editing\tTAB", IDM_CHANGE_MODE
-        MENUITEM "Toggle keyboard I&nsert/Overwrite mode\tIns", 
+        MENUITEM "heksedit.rc:85", IDM_CHANGE_MODE
+        MENUITEM "heksedit.rc:86", 
                                                 IDA_INSERTMODETOGGLE
-        MENUITEM "Read-only mode on/off\tAlt+R", IDM_EDIT_READONLYMODE
+        MENUITEM "heksedit.rc:88", IDM_EDIT_READONLYMODE
         MENUITEM SEPARATOR
-        MENUITEM "&Find...\tCtrl+F",            IDM_FIND
-        MENUITEM "Replace...\tCtrl+H",          IDM_REPLACE
-        MENUITEM "Find previous\tF3",           IDM_FINDPREV
-        MENUITEM "Find next\tF4",               IDM_FINDNEXT
-        MENUITEM "&Go To...\tCtrl+G",           IDM_GO_TO
+        MENUITEM "heksedit.rc:90",            IDM_FIND
+        MENUITEM "heksedit.rc:91",          IDM_REPLACE
+        MENUITEM "heksedit.rc:92",           IDM_FINDPREV
+        MENUITEM "heksedit.rc:93",               IDM_FINDNEXT
+        MENUITEM "heksedit.rc:94",           IDM_GO_TO
         MENUITEM SEPARATOR
-        MENUITEM "Enter decimal &value...\tCtrl+D", 
+        MENUITEM "heksedit.rc:96", 
                                                 IDM_EDIT_ENTERDECIMALVALUE
-        MENUITEM "Man&ipulate bits...\tCtrl+B", IDM_EDIT_MANIPULATEBITS
-        MENUITEM "C&ompare from current offset...\tCtrl+M", IDM_COMPARE
+        MENUITEM "heksedit.rc:98", IDM_EDIT_MANIPULATEBITS
+        MENUITEM "heksedit.rc:99", IDM_COMPARE
         MENUITEM SEPARATOR
-        MENUITEM "Get f&loating point value...\tCtrl+L", IDM_READFLOAT
-        MENUITEM "File p&roperties...\tAlt+Enter", IDM_PROPERTIES
-        MENUITEM "Appl&y template...\tAlt+T",   IDM_APPLYTEMPLATE
-        MENUITEM "Open in text editor\tF5",     IDM_OPEN_TEXT
+        MENUITEM "heksedit.rc:101", IDM_READFLOAT
+        MENUITEM "heksedit.rc:102", IDM_PROPERTIES
+        MENUITEM "heksedit.rc:103",   IDM_APPLYTEMPLATE
+        MENUITEM "heksedit.rc:104",     IDM_OPEN_TEXT
     END
-    POPUP "&View"
+    POPUP "heksedit.rc:106"
     BEGIN
-        MENUITEM "Scroll &left\tCtrl+Arrow Left", IDM_SCROLL_LEFT
-        MENUITEM "Scroll &right\tCtrl+Arrow Right", IDM_SCROLL_RIGHT
-        MENUITEM "Scroll &up\tCtrl+Arrow Up",   IDM_SCROLL_UP
-        MENUITEM "Scroll &down\tCtrl+Arrow Down", IDM_SCROLL_DOWN
-        MENUITEM "Scroll up a page\tCtrl+Page Up", IDM_SCROLL_PRIOR
-        MENUITEM "Scroll down a page\tCtrl+Page Down", IDM_SCROLL_NEXT
+        MENUITEM "heksedit.rc:108", IDM_SCROLL_LEFT
+        MENUITEM "heksedit.rc:109", IDM_SCROLL_RIGHT
+        MENUITEM "heksedit.rc:110",   IDM_SCROLL_UP
+        MENUITEM "heksedit.rc:111", IDM_SCROLL_DOWN
+        MENUITEM "heksedit.rc:112", IDM_SCROLL_PRIOR
+        MENUITEM "heksedit.rc:113", IDM_SCROLL_NEXT
     END
-    POPUP "&Options"
+    POPUP "heksedit.rc:115"
     BEGIN
-        MENUITEM "&View settings...\tCtrl+I",   IDM_VIEW_SETTINGS
-        POPUP "&Color settings"
+        MENUITEM "heksedit.rc:117",   IDM_VIEW_SETTINGS
+        POPUP "heksedit.rc:118"
         BEGIN
-            MENUITEM "&Text color...\tCtrl+T",      IDM_TEXT_COLOR
-            MENUITEM "&Background color...\tCtrl+K", IDM_BK_COLOR
-            MENUITEM "Separator color...\tCtrl+Q",  IDM_SEP_COLOR
-            MENUITEM "Selection text color...\tCtrl+Shift+T", 
+            MENUITEM "heksedit.rc:120",      IDM_TEXT_COLOR
+            MENUITEM "heksedit.rc:121", IDM_BK_COLOR
+            MENUITEM "heksedit.rc:122",  IDM_SEP_COLOR
+            MENUITEM "heksedit.rc:123", 
                                                     IDM_SELTEXT_COLOR
-            MENUITEM "Selection background color...\tCtrl+Shift+K", 
+            MENUITEM "heksedit.rc:125", 
                                                     IDM_SELBACK_COLOR
-            MENUITEM "Bookmark color...\tCtrl+Shift+B", IDM_BMK_COLOR
+            MENUITEM "heksedit.rc:127", IDM_BMK_COLOR
             MENUITEM SEPARATOR
-            MENUITEM "Reset colors to standard...\tCtrl+Shift+S", 
+            MENUITEM "heksedit.rc:129", 
                                                     IDM_RESET_COLORS
-            MENUITEM "&Adopt OS colour scheme...\tCtrl+Shift+A", 
+            MENUITEM "heksedit.rc:131", 
                                                     IDM_ADOPT_COLOURS
         END
-        MENUITEM "C&haracter set...\tCtrl+R",   IDM_CHARACTER_SET
-        MENUITEM "B&inary mode...\tCtrl+Y",     IDM_BINARYMODE
-        MENUITEM "&OLE Drag-drop...\tCtrl+Alt+O", IDM_OLE_DRAG_DROP
-        MENUITEM "Make backups\tCtrl+Shift+M",  IDM_MAKE_BACKUPS, CHECKED
+        MENUITEM "heksedit.rc:134",   IDM_CHARACTER_SET
+        MENUITEM "heksedit.rc:135",     IDM_BINARYMODE
+        MENUITEM "heksedit.rc:136", IDM_OLE_DRAG_DROP
+        MENUITEM "heksedit.rc:137",  IDM_MAKE_BACKUPS, CHECKED
     END
-    POPUP "&Registry"
+    POPUP "heksedit.rc:139"
     BEGIN
-        MENUITEM "In &all context menu",        IDM_CONTEXT, CHECKED
-        MENUITEM "In &unknown context menu",    IDM_UNKNOWN, CHECKED
-        MENUITEM "Is &default in unknown context", IDM_DEFAULT, CHECKED
-        MENUITEM "&Save ini when required",     IDM_SAVEINI, CHECKED
-        MENUITEM "Change &instance...",         IDM_CHANGEINST
-        MENUITEM "&Remove frhed...",            IDM_REMOVE
-        MENUITEM "Up&grade...",                 IDM_UPGRADE
-        MENUITEM "S&hortcuts to frhed...",      IDM_SHORTCUTS
+        MENUITEM "heksedit.rc:141",        IDM_CONTEXT, CHECKED
+        MENUITEM "heksedit.rc:142",    IDM_UNKNOWN, CHECKED
+        MENUITEM "heksedit.rc:143", IDM_DEFAULT, CHECKED
+        MENUITEM "heksedit.rc:144",     IDM_SAVEINI, CHECKED
+        MENUITEM "heksedit.rc:145",         IDM_CHANGEINST
+        MENUITEM "heksedit.rc:146",            IDM_REMOVE
+        MENUITEM "heksedit.rc:147",                 IDM_UPGRADE
+        MENUITEM "heksedit.rc:148",      IDM_SHORTCUTS
     END
-    POPUP "&Bookmarks"
+    POPUP "heksedit.rc:150"
     BEGIN
-        MENUITEM "&Add bookmark...\tCtrl+W",    IDM_ADDBOOKMARK
-        MENUITEM "&Remove bookmark...\tAlt+W",  IDM_REMOVE_BKM
-        MENUITEM "&Clear all bookmarks\tCtrl+Shift+W", IDM_CLEARALL_BMK
+        MENUITEM "heksedit.rc:152",    IDM_ADDBOOKMARK
+        MENUITEM "heksedit.rc:153",  IDM_REMOVE_BKM
+        MENUITEM "heksedit.rc:154", IDM_CLEARALL_BMK
         MENUITEM SEPARATOR
-        MENUITEM "bmk",                         IDM_BOOKMARK1
-        MENUITEM "bmk",                         IDM_BOOKMARK2
-        MENUITEM "bmk",                         IDM_BOOKMARK3
-        MENUITEM "bmk",                         IDM_BOOKMARK4
-        MENUITEM "bmk",                         IDM_BOOKMARK5
-        MENUITEM "bmk",                         IDM_BOOKMARK6
-        MENUITEM "bmk",                         IDM_BOOKMARK7
-        MENUITEM "bmk",                         IDM_BOOKMARK8
-        MENUITEM "bmk",                         IDM_BOOKMARK9
+        MENUITEM "heksedit.rc:156",                         IDM_BOOKMARK1
+        MENUITEM "heksedit.rc:157",                         IDM_BOOKMARK2
+        MENUITEM "heksedit.rc:158",                         IDM_BOOKMARK3
+        MENUITEM "heksedit.rc:159",                         IDM_BOOKMARK4
+        MENUITEM "heksedit.rc:160",                         IDM_BOOKMARK5
+        MENUITEM "heksedit.rc:161",                         IDM_BOOKMARK6
+        MENUITEM "heksedit.rc:162",                         IDM_BOOKMARK7
+        MENUITEM "heksedit.rc:163",                         IDM_BOOKMARK8
+        MENUITEM "heksedit.rc:164",                         IDM_BOOKMARK9
     END
-    POPUP "&Misc"
+    POPUP "heksedit.rc:166"
     BEGIN
-        MENUITEM "Goto DLL e&xport names...",   ID_MISC_GOTO_DLL_EXPORTS
-        MENUITEM "Goto DLL import names...",    ID_MISC_GOTO_DLL_IMPORTS
+        MENUITEM "heksedit.rc:168",   ID_MISC_GOTO_DLL_EXPORTS
+        MENUITEM "heksedit.rc:169",    ID_MISC_GOTO_DLL_IMPORTS
         MENUITEM SEPARATOR
-        MENUITEM "Encode / Decode...",          ID_MISC_ENCODEDECODE
+        MENUITEM "heksedit.rc:171",          ID_MISC_ENCODEDECODE
     END
-    POPUP "&Help"
+    POPUP "heksedit.rc:173"
     BEGIN
-        MENUITEM "&Help topics...\tF1",         IDM_HELP_TOPICS
+        MENUITEM "heksedit.rc:175",         IDM_HELP_TOPICS
         MENUITEM SEPARATOR
-        MENUITEM "&About frhed...",             IDM_ABOUT
+        MENUITEM "heksedit.rc:177",             IDM_ABOUT
     END
 END
 
@@ -182,25 +182,25 @@ IDR_CONTEXTMENU MENU
 BEGIN
     POPUP "0"
     BEGIN
-        MENUITEM "Cu&t...\tCtrl+X",             IDM_EDIT_CUT
-        MENUITEM "&Copy...\tCtrl+C",            IDM_EDIT_COPY
-        MENUITEM "&Paste...\tCtrl+V",           IDM_EDIT_PASTE
-        MENUITEM "&Delete\tDel",                IDA_DELETEKEY
+        MENUITEM "heksedit.rc:185",             IDM_EDIT_CUT
+        MENUITEM "heksedit.rc:186",            IDM_EDIT_COPY
+        MENUITEM "heksedit.rc:187",           IDM_EDIT_PASTE
+        MENUITEM "heksedit.rc:188",                IDA_DELETEKEY
         MENUITEM SEPARATOR
-        MENUITEM "&Find...\tCtrl+F",            IDM_FIND
-        MENUITEM "Replace...\tCtrl+H",          IDM_REPLACE
-        MENUITEM "Find next\tF3",               IDM_FINDNEXT
-        MENUITEM "Find previous\tF4",           IDM_FINDPREV
-        MENUITEM "&Go To...\tCtrl+G",           IDM_GO_TO
+        MENUITEM "heksedit.rc:190",            IDM_FIND
+        MENUITEM "heksedit.rc:191",          IDM_REPLACE
+        MENUITEM "heksedit.rc:192",               IDM_FINDNEXT
+        MENUITEM "heksedit.rc:193",           IDM_FINDPREV
+        MENUITEM "heksedit.rc:194",           IDM_GO_TO
     END
-    POPUP "1"
+    POPUP "heksedit.rc:196"
     BEGIN
-        MENUITEM "Goto First Sector",           ID_DISK_GOTOFIRSTTRACK
-        MENUITEM "Goto &Next Sector",           ID_DISK_GOTONEXTTRACK
-        MENUITEM "Goto &Previous Sector",       ID_DISK_GOTOPREVIOUSTRACK
-        MENUITEM "Goto Last Sector",            ID_DISK_GOTOLASTTRACK
+        MENUITEM "heksedit.rc:198",           ID_DISK_GOTOFIRSTTRACK
+        MENUITEM "heksedit.rc:199",           ID_DISK_GOTONEXTTRACK
+        MENUITEM "heksedit.rc:200",       ID_DISK_GOTOPREVIOUSTRACK
+        MENUITEM "heksedit.rc:201",            ID_DISK_GOTOLASTTRACK
         MENUITEM SEPARATOR
-        MENUITEM "Goto Sector #...",            ID_DISK_GOTOTRACK
+        MENUITEM "heksedit.rc:203",            ID_DISK_GOTOTRACK
     END
 END
 
@@ -329,699 +329,699 @@ END
 IDD_GOTODIALOG DIALOGEX 0, 0, 244, 66
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Go to"
+CAPTION "heksedit.rc:332"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Start with ""+"" or ""-"" (minus) for relative jump.",
+    LTEXT           "heksedit.rc:335",
                     IDC_STATIC,7,10,139,8
-    LTEXT           "Prefix offset with ""x"" to indicate hex notation.",
+    LTEXT           "heksedit.rc:337",
                     IDC_STATIC,7,19,142,8
-    LTEXT           "Go to offset:",IDC_STATIC,7,34,40,8
+    LTEXT           "heksedit.rc:339",IDC_STATIC,7,34,40,8
     EDITTEXT        IDC_EDIT1,7,44,149,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,187,20,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,187,38,50,14
+    DEFPUSHBUTTON   "heksedit.rc:341",IDOK,187,20,50,14
+    PUSHBUTTON      "heksedit.rc:342",IDCANCEL,187,38,50,14
 END
 
 IDD_FINDDIALOG DIALOGEX 0, 0, 279, 138
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Find"
+CAPTION "heksedit.rc:348"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Find what: (please refer to the online help's Using the Special Syntax section for searching for binary values)",
+    LTEXT           "heksedit.rc:351",
                     IDC_STATIC,7,7,265,16
     EDITTEXT        IDC_EDIT1,7,26,265,57,ES_MULTILINE | ES_AUTOVSCROLL
-    CONTROL         "Match &case",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "heksedit.rc:354",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,87,53,10
-    CONTROL         "Unicode",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "heksedit.rc:356",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,100,49,8
-    GROUPBOX        "Direction",IDC_STATIC,62,87,61,36
-    CONTROL         "&Up",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+    GROUPBOX        "heksedit.rc:358",IDC_STATIC,62,87,61,36
+    CONTROL         "heksedit.rc:359",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
                     WS_TABSTOP,71,98,25,10
-    CONTROL         "&Down",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,71,111,35,
+    CONTROL         "heksedit.rc:361",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,71,111,35,
                     10
-    DEFPUSHBUTTON   "OK",IDOK,222,100,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,222,117,50,14
+    DEFPUSHBUTTON   "heksedit.rc:363",IDOK,222,100,50,14,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:364",IDCANCEL,222,117,50,14
 END
 
 IDD_ABOUTDIALOG DIALOGEX 0, 0, 212, 191
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
     WS_CAPTION
-CAPTION "About frhed"
+CAPTION "heksedit.rc:370"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,80,171,50,14
+    DEFPUSHBUTTON   "heksedit.rc:373",IDOK,80,171,50,14
     ICON            32512,IDC_APPICON,7,9,20,20
     LTEXT           "",IDC_STATIC1,37,7,167,66
-    LTEXT           "eMail:",IDC_STATIC,5,71,20,8
+    LTEXT           "heksedit.rc:376",IDC_STATIC,5,71,20,8
     EDITTEXT        IDC_EDIT1,6,81,198,25,ES_MULTILINE | ES_AUTOHSCROLL | 
                     ES_READONLY
     EDITTEXT        IDC_EDIT2,22,121,167,12,ES_AUTOHSCROLL | ES_READONLY
-    GROUPBOX        "Homepage",IDC_STATIC,6,111,198,52
-    PUSHBUTTON      "Open frhed's homepage in Internet browser",IDC_BUTTON1,
+    GROUPBOX        "heksedit.rc:380",IDC_STATIC,6,111,198,52
+    PUSHBUTTON      "heksedit.rc:381",IDC_BUTTON1,
                     30,140,150,14
 END
 
 IDD_HEXDUMPDIALOG DIALOGEX 0, 0, 163, 161
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Export hexdump"
+CAPTION "heksedit.rc:387"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Use hexadecimal notation without prefix.",IDC_STATIC,7,
+    LTEXT           "heksedit.rc:390",IDC_STATIC,7,
                     7,128,8
-    LTEXT           "Start at line with offset:",IDC_STATIC,7,17,72,8
+    LTEXT           "heksedit.rc:392",IDC_STATIC,7,17,72,8
     EDITTEXT        IDC_EDIT1,6,25,149,12,ES_AUTOHSCROLL
-    LTEXT           "Up to and including line with offset:",IDC_STATIC,7,40,
+    LTEXT           "heksedit.rc:394",IDC_STATIC,7,40,
                     111,8
     EDITTEXT        IDC_EDIT2,7,49,149,13,ES_AUTOHSCROLL
-    GROUPBOX        "Export hexdump to:",IDC_STATIC,7,69,88,40,WS_GROUP
-    CONTROL         "Export to file",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    GROUPBOX        "heksedit.rc:397",IDC_STATIC,7,69,88,40,WS_GROUP
+    CONTROL         "heksedit.rc:398",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,80,55,10
-    CONTROL         "Export to clipboard",IDC_RADIO2,"Button",
+    CONTROL         "heksedit.rc:400",IDC_RADIO2,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,14,92,75,10
-    GROUPBOX        "Type:",IDC_STATIC,7,110,103,45,WS_GROUP
-    CONTROL         "frhed display as text",IDC_EXPORTDISPLAY,"Button",
+    GROUPBOX        "heksedit.rc:402",IDC_STATIC,7,110,103,45,WS_GROUP
+    CONTROL         "heksedit.rc:403",IDC_EXPORTDISPLAY,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,15,120,78,10
-    CONTROL         "Just hex digits on a line",IDC_EXPORTDIGITS,"Button",
+    CONTROL         "heksedit.rc:405",IDC_EXPORTDIGITS,"Button",
                     BS_AUTORADIOBUTTON,15,130,89,10
-    CONTROL         "frhed display as RTF",IDC_EXPORTRTF,"Button",
+    CONTROL         "heksedit.rc:407",IDC_EXPORTRTF,"Button",
                     BS_AUTORADIOBUTTON,15,140,81,10
-    DEFPUSHBUTTON   "OK",IDOK,105,70,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,105,90,50,14
+    DEFPUSHBUTTON   "heksedit.rc:409",IDOK,105,70,50,14,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:410",IDCANCEL,105,90,50,14
 END
 
 IDD_DECIMALDIALOG DIALOGEX 0, 0, 204, 111
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Enter decimal value"
+CAPTION "heksedit.rc:415"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Enter decimal value:",IDC_STATIC,7,7,65,8
+    LTEXT           "heksedit.rc:418",IDC_STATIC,7,7,65,8
     EDITTEXT        IDC_EDIT1,7,16,97,12,ES_AUTOHSCROLL
-    LTEXT           "At offset: (prefix x for hexadecimal)",IDC_STATIC,7,30,
+    LTEXT           "heksedit.rc:420",IDC_STATIC,7,30,
                     108,8
     EDITTEXT        IDC_EDIT2,7,38,98,12,ES_AUTOHSCROLL
-    LTEXT           "Number of times:",IDC_STATIC,7,54,54,8
+    LTEXT           "heksedit.rc:423",IDC_STATIC,7,54,54,8
     EDITTEXT        IDC_EDIT3,7,62,97,12,ES_AUTOHSCROLL
-    GROUPBOX        "Size of Value:",IDC_STATIC,7,79,190,25
-    CONTROL         "Byte (8 bit)",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    GROUPBOX        "heksedit.rc:425",IDC_STATIC,7,79,190,25
+    CONTROL         "heksedit.rc:426",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP,11,88,49,10
-    CONTROL         "Word (16 bit)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
+    CONTROL         "heksedit.rc:428",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
                     63,88,57,10
-    CONTROL         "Longword (32 bit)",IDC_RADIO3,"Button",
+    CONTROL         "heksedit.rc:430",IDC_RADIO3,"Button",
                     BS_AUTORADIOBUTTON,122,88,71,10
-    DEFPUSHBUTTON   "OK",IDOK,147,39,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,147,56,50,14
+    DEFPUSHBUTTON   "heksedit.rc:432",IDOK,147,39,50,14,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:433",IDCANCEL,147,56,50,14
 END
 
 IDD_PASTEDIALOG DIALOGEX 0, 0, 291, 145
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Paste with dialogue"
+CAPTION "heksedit.rc:438"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Clipboard content (text):",IDC_STATIC,7,7,76,8
+    LTEXT           "heksedit.rc:441",IDC_STATIC,7,7,76,8
     EDITTEXT        IDC_EDIT1,7,18,277,65,ES_MULTILINE | WS_VSCROLL,
                     WS_EX_TRANSPARENT
-    GROUPBOX        "Paste mode",IDC_STATIC,7,86,64,40
-    CONTROL         "Overwrite",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    GROUPBOX        "heksedit.rc:444",IDC_STATIC,7,86,64,40
+    CONTROL         "heksedit.rc:445",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,98,46,10
-    CONTROL         "Insert",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:447",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,14,109,33,10
-    LTEXT           "Paste data how many times:",IDC_STATIC,80,86,89,8
+    LTEXT           "heksedit.rc:449",IDC_STATIC,80,86,89,8
     EDITTEXT        IDC_EDIT2,79,96,67,12,ES_AUTOHSCROLL
-    CONTROL         "Paste coded binary values as text",IDC_CHECK1,"Button",
+    CONTROL         "heksedit.rc:451",IDC_CHECK1,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,80,115,122,10
-    LTEXT           " Skip how many bytes between inserts/overwrites",
+    LTEXT           "heksedit.rc:453",
                     IDC_STATIC,7,129,160,8
     EDITTEXT        IDC_EDIT3,168,126,60,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,234,96,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,234,112,50,14
+    DEFPUSHBUTTON   "heksedit.rc:456",IDOK,234,96,50,14
+    PUSHBUTTON      "heksedit.rc:457",IDCANCEL,234,112,50,14
 END
 
 IDD_CUTDIALOG DIALOGEX 0, 0, 169, 159
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Cut"
+CAPTION "heksedit.rc:462"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Start cutting at offset: (prefix offsets with x for hex)",
+    LTEXT           "heksedit.rc:465",
                     IDC_STATIC,7,7,157,8
     EDITTEXT        IDC_EDIT1,7,16,136,12,ES_AUTOHSCROLL
-    GROUPBOX        "Cut how many bytes",IDC_STATIC,7,33,155,81
-    CONTROL         "Cut up to and including offset:",IDC_RADIO1,"Button",
+    GROUPBOX        "heksedit.rc:468",IDC_STATIC,7,33,155,81
+    CONTROL         "heksedit.rc:469",IDC_RADIO1,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,48,110,10
-    CONTROL         "Number of bytes to cut:",IDC_RADIO2,"Button",
+    CONTROL         "heksedit.rc:471",IDC_RADIO2,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,15,80,89,10
     EDITTEXT        IDC_EDIT2,16,59,136,12,ES_AUTOHSCROLL | WS_GROUP
     EDITTEXT        IDC_EDIT3,15,91,136,12,ES_AUTOHSCROLL | WS_DISABLED | 
                     WS_GROUP
-    CONTROL         "Cut to clipboard",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "heksedit.rc:476",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,120,65,10
-    DEFPUSHBUTTON   "OK",IDOK,112,122,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,112,138,50,14
+    DEFPUSHBUTTON   "heksedit.rc:478",IDOK,112,122,50,14
+    PUSHBUTTON      "heksedit.rc:479",IDCANCEL,112,138,50,14
 END
 
 IDD_COPYDIALOG DIALOGEX 0, 0, 158, 154
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Copy"
+CAPTION "heksedit.rc:484"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Prefix offsets with x for hex.",IDC_STATIC,7,7,86,8
-    LTEXT           "Start copying at offset:",IDC_STATIC,7,20,72,8
+    LTEXT           "heksedit.rc:487",IDC_STATIC,7,7,86,8
+    LTEXT           "heksedit.rc:488",IDC_STATIC,7,20,72,8
     EDITTEXT        IDC_EDIT1,7,29,130,13,ES_AUTOHSCROLL
-    GROUPBOX        "Copy how many bytes",IDC_STATIC,7,51,144,73
-    CONTROL         "Copy up to and including offset:",IDC_RADIO1,"Button",
+    GROUPBOX        "heksedit.rc:490",IDC_STATIC,7,51,144,73
+    CONTROL         "heksedit.rc:491",IDC_RADIO1,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,63,115,10
-    CONTROL         "Number of bytes to copy:",IDC_RADIO2,"Button",
+    CONTROL         "heksedit.rc:493",IDC_RADIO2,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,13,93,95,10
     EDITTEXT        IDC_EDIT2,14,73,130,13,ES_AUTOHSCROLL | WS_GROUP
     EDITTEXT        IDC_EDIT3,14,103,130,13,ES_AUTOHSCROLL | WS_DISABLED | 
                     WS_GROUP
-    DEFPUSHBUTTON   "OK",IDOK,25,131,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,82,131,50,14
+    DEFPUSHBUTTON   "heksedit.rc:498",IDOK,25,131,50,14
+    PUSHBUTTON      "heksedit.rc:499",IDCANCEL,82,131,50,14
 END
 
 IDD_VIEWSETTINGSDIALOG DIALOGEX 0, 0, 229, 167
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "View Settings"
+CAPTION "heksedit.rc:504"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Number of bytes to display per line:",IDC_STATIC,7,7,
+    LTEXT           "heksedit.rc:507",IDC_STATIC,7,7,
                     110,8
     EDITTEXT        IDC_EDIT1,7,16,68,12,ES_AUTOHSCROLL
-    CONTROL         "Automatically adjust number of bytes per line (uncheck this if you want frhed to use your own choice for bytes per line)",
+    CONTROL         "heksedit.rc:510",
                     IDC_CHECK1,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
                     WS_TABSTOP,7,31,214,19
-    LTEXT           "Display length of offset in how many characters:",
+    LTEXT           "heksedit.rc:513",
                     IDC_STATIC,7,51,151,8
     EDITTEXT        IDC_EDIT2,7,61,68,12,ES_AUTOHSCROLL
-    CONTROL         "Adjust offset len to that of the max offset",IDC_CHECK2,
+    CONTROL         "heksedit.rc:516",IDC_CHECK2,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,80,
                     61,140,12
-    GROUPBOX        "Display values at caret position as:",IDC_STATIC,7,76,
+    GROUPBOX        "heksedit.rc:519",IDC_STATIC,7,76,
                     128,25,WS_GROUP
-    CONTROL         "unsigned",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:521",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,86,45,10
-    CONTROL         "signed",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,65,86,37,
+    CONTROL         "heksedit.rc:523",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,65,86,37,
                     10
-    CONTROL         "Set read-only mode on opening files",IDC_CHECK5,"Button",
+    CONTROL         "heksedit.rc:525",IDC_CHECK5,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,106,128,10
-    LTEXT           "Path and filename of the text editor to call:",
+    LTEXT           "heksedit.rc:527",
                     IDC_STATIC,7,122,133,8
     EDITTEXT        IDC_EDIT3,7,132,214,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,171,80,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,171,97,50,14
+    DEFPUSHBUTTON   "heksedit.rc:530",IDOK,171,80,50,14
+    PUSHBUTTON      "heksedit.rc:531",IDCANCEL,171,97,50,14
 END
 
 IDD_APPENDDIALOG DIALOGEX 0, 0, 192, 46
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Append"
+CAPTION "heksedit.rc:536"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Append how many bytes to end of file:",IDC_STATIC,7,7,
+    LTEXT           "heksedit.rc:539",IDC_STATIC,7,7,
                     121,8
     EDITTEXT        IDC_EDIT1,7,17,120,12,ES_AUTOHSCROLL | ES_NUMBER
-    DEFPUSHBUTTON   "OK",IDOK,135,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,135,24,50,14
+    DEFPUSHBUTTON   "heksedit.rc:542",IDOK,135,7,50,14
+    PUSHBUTTON      "heksedit.rc:543",IDCANCEL,135,24,50,14
 END
 
 IDD_MANIPBITSDIALOG DIALOGEX 0, 0, 257, 84
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Manipulate bits"
+CAPTION "heksedit.rc:548"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "statictext",IDC_STATIC1,7,7,243,8
-    CONTROL         "Bit 7",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    LTEXT           "heksedit.rc:551",IDC_STATIC1,7,7,243,8
+    CONTROL         "heksedit.rc:552",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 6",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:554",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     38,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 5",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:556",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     69,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 4",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:558",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     100,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 3",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:560",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     130,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 2",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:562",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     160,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 1",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:564",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     190,18,30,10,WS_EX_STATICEDGE
-    CONTROL         "Bit 0",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+    CONTROL         "heksedit.rc:566",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     220,18,30,10,WS_EX_STATICEDGE
-    LTEXT           "(128)",IDC_STATIC,15,29,17,8
-    LTEXT           "(64)",IDC_STATIC,48,29,13,8
-    LTEXT           "(32)",IDC_STATIC,77,29,13,8
-    LTEXT           "(16)",IDC_STATIC,108,29,13,8
-    LTEXT           "(8)",IDC_STATIC,140,29,9,8
-    LTEXT           "(4)",IDC_STATIC,171,29,9,8
-    LTEXT           "(2)",IDC_STATIC,202,29,9,8
-    LTEXT           "(1)",IDC_STATIC,231,29,9,8
-    LTEXT           "Static",IDC_STATIC2,7,43,243,8
-    DEFPUSHBUTTON   "OK",IDOK,75,63,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,132,63,50,14
+    LTEXT           "heksedit.rc:568",IDC_STATIC,15,29,17,8
+    LTEXT           "heksedit.rc:569",IDC_STATIC,48,29,13,8
+    LTEXT           "heksedit.rc:570",IDC_STATIC,77,29,13,8
+    LTEXT           "heksedit.rc:571",IDC_STATIC,108,29,13,8
+    LTEXT           "heksedit.rc:572",IDC_STATIC,140,29,9,8
+    LTEXT           "heksedit.rc:573",IDC_STATIC,171,29,9,8
+    LTEXT           "heksedit.rc:574",IDC_STATIC,202,29,9,8
+    LTEXT           "heksedit.rc:575",IDC_STATIC,231,29,9,8
+    LTEXT           "heksedit.rc:576",IDC_STATIC2,7,43,243,8
+    DEFPUSHBUTTON   "heksedit.rc:577",IDOK,75,63,50,14
+    PUSHBUTTON      "heksedit.rc:578",IDCANCEL,132,63,50,14
 END
 
 IDD_CHARACTERSETDIALOG DIALOGEX 0, 0, 172, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Character Set"
+CAPTION "heksedit.rc:584"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Choose character set",IDC_STATIC,7,7,101,40
-    CONTROL         "ANSI",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    GROUPBOX        "heksedit.rc:587",IDC_STATIC,7,7,101,40
+    CONTROL         "heksedit.rc:588",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     25,19,33,10
-    CONTROL         "OEM",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,25,32,32,10
-    LTEXT           "Font size in points:",IDC_STATIC,7,53,101,8
+    CONTROL         "heksedit.rc:590",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,25,32,32,10
+    LTEXT           "heksedit.rc:591",IDC_STATIC,7,53,101,8
     EDITTEXT        IDC_EDIT1,7,62,65,12,ES_AUTOHSCROLL | ES_NUMBER
-    DEFPUSHBUTTON   "OK",IDOK,115,24,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,115,41,50,14
+    DEFPUSHBUTTON   "heksedit.rc:593",IDOK,115,24,50,14
+    PUSHBUTTON      "heksedit.rc:594",IDCANCEL,115,41,50,14
 END
 
 IDD_CHOOSEDIFFDIALOG DIALOGEX 0, 0, 258, 231
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Choose area of difference to display"
+CAPTION "heksedit.rc:599"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "file_sizes",IDC_STATIC2,7,7,244,8
-    LTEXT           "number_of_diffs",IDC_STATIC1,7,18,244,8
+    LTEXT           "heksedit.rc:602",IDC_STATIC2,7,7,244,8
+    LTEXT           "heksedit.rc:603",IDC_STATIC1,7,18,244,8
     LISTBOX         IDC_LIST1,7,29,244,178,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
-    DEFPUSHBUTTON   "OK",IDOK,7,210,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,74,210,50,14
-    PUSHBUTTON      "Copy above list",IDCOPY,187,210,64,14
+    DEFPUSHBUTTON   "heksedit.rc:606",IDOK,7,210,50,14
+    PUSHBUTTON      "heksedit.rc:607",IDCANCEL,74,210,50,14
+    PUSHBUTTON      "heksedit.rc:608",IDCOPY,187,210,64,14
 END
 
 IDD_BINARYMODEDIALOG DIALOGEX 0, 0, 183, 58
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Binary mode setting"
+CAPTION "heksedit.rc:613"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Choose binary mode",IDC_STATIC,7,7,104,44
-    CONTROL         "Little-endian (Intel)",IDC_RADIO1,"Button",
+    GROUPBOX        "heksedit.rc:616",IDC_STATIC,7,7,104,44
+    CONTROL         "heksedit.rc:617",IDC_RADIO1,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,15,20,73,10
-    CONTROL         "Big-endian (Motorola)",IDC_RADIO2,"Button",
+    CONTROL         "heksedit.rc:619",IDC_RADIO2,"Button",
                     BS_AUTORADIOBUTTON,15,34,83,10
-    DEFPUSHBUTTON   "OK",IDOK,126,12,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,126,29,50,14
+    DEFPUSHBUTTON   "heksedit.rc:621",IDOK,126,12,50,14,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:622",IDCANCEL,126,29,50,14
 END
 
 IDD_SELECT_BLOCK_DIALOG DIALOGEX 0, 0, 207, 68
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Select block"
+CAPTION "heksedit.rc:627"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Offset of start of selection: (prefix x for hex)",
+    LTEXT           "heksedit.rc:630",
                     IDC_STATIC,7,7,134,8
     EDITTEXT        IDC_EDIT1,7,17,134,12,ES_AUTOHSCROLL
-    LTEXT           "Offset of end of selection: (prefix x for hex)",
+    LTEXT           "heksedit.rc:633",
                     IDC_STATIC2,7,36,133,8
     EDITTEXT        IDC_EDIT2,7,48,133,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,150,18,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,150,35,50,14
+    DEFPUSHBUTTON   "heksedit.rc:636",IDOK,150,18,50,14
+    PUSHBUTTON      "heksedit.rc:637",IDCANCEL,150,35,50,14
 END
 
 IDD_ADDBMK_DIALOG DIALOGEX 0, 0, 193, 65
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Add bookmark"
+CAPTION "heksedit.rc:642"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Offset of bookmark: (prefix x for hex)",IDC_STATIC,7,7,
+    LTEXT           "heksedit.rc:645",IDC_STATIC,7,7,
                     114,8
     EDITTEXT        IDC_EDIT1,7,18,118,12,ES_AUTOHSCROLL
-    LTEXT           "Name of bookmark:",IDC_STATIC,7,36,63,8
+    LTEXT           "heksedit.rc:648",IDC_STATIC,7,36,63,8
     EDITTEXT        IDC_EDIT2,7,46,118,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,136,16,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,136,33,50,14
+    DEFPUSHBUTTON   "heksedit.rc:650",IDOK,136,16,50,14
+    PUSHBUTTON      "heksedit.rc:651",IDCANCEL,136,33,50,14
 END
 
 IDD_REMOVEBMK_DIALOG DIALOGEX 0, 0, 209, 167
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Remove bookmark"
+CAPTION "heksedit.rc:656"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Remove which bookmark:",IDC_STATIC,7,7,84,8
+    LTEXT           "heksedit.rc:659",IDC_STATIC,7,7,84,8
     LISTBOX         IDC_LIST1,7,17,195,123,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "OK",IDOK,51,146,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,109,146,50,14
+    DEFPUSHBUTTON   "heksedit.rc:662",IDOK,51,146,50,14
+    PUSHBUTTON      "heksedit.rc:663",IDCANCEL,109,146,50,14
 END
 
 IDD_OPEN_PARTIAL_DIALOG DIALOGEX 0, 0, 221, 135
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Open partially"
+CAPTION "heksedit.rc:668"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Start opening partially...",IDC_STATIC,7,7,207,60
-    CONTROL         "At offset relative to beginning of file: (prefix x for hex)",
+    GROUPBOX        "heksedit.rc:671",IDC_STATIC,7,7,207,60
+    CONTROL         "heksedit.rc:672",
                     IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,21,
                     179,10
-    CONTROL         "From end of file",IDC_RADIO2,"Button",
+    CONTROL         "heksedit.rc:675",IDC_RADIO2,"Button",
                     BS_AUTORADIOBUTTON,17,50,64,10
     EDITTEXT        IDC_EDIT1,28,31,134,12,ES_AUTOHSCROLL | WS_GROUP
-    LTEXT           "how_many_bytes",IDC_STATIC2,7,73,207,8
+    LTEXT           "heksedit.rc:678",IDC_STATIC2,7,73,207,8
     EDITTEXT        IDC_EDIT2,7,82,135,13,ES_AUTOHSCROLL
-    CONTROL         "Display offsets relative to start of file (or start of loaded block)",
+    CONTROL         "heksedit.rc:680",
                     IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,100,
                     206,10
-    DEFPUSHBUTTON   "OK",IDOK,55,115,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,110,115,50,14
+    DEFPUSHBUTTON   "heksedit.rc:683",IDOK,55,115,50,14
+    PUSHBUTTON      "heksedit.rc:684",IDCANCEL,110,115,50,14
 END
 
 IDD_FASTPASTE_DIALOG DIALOGEX 0, 0, 267, 146
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Paste"
+CAPTION "heksedit.rc:689"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Paste mode",IDC_STATIC,7,7,64,35
-    CONTROL         "Overwrite",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    GROUPBOX        "heksedit.rc:692",IDC_STATIC,7,7,64,35
+    CONTROL         "heksedit.rc:693",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,18,46,10
-    CONTROL         "Insert",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:695",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,14,30,33,10
-    LTEXT           "Paste data how many times:",IDC_STATIC,80,7,89,8
+    LTEXT           "heksedit.rc:697",IDC_STATIC,80,7,89,8
     EDITTEXT        IDC_EDIT2,79,17,67,12,ES_AUTOHSCROLL
-    CONTROL         "Paste coded binary values as text",IDC_CHECK1,"Button",
+    CONTROL         "heksedit.rc:699",IDC_CHECK1,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,80,36,122,10
-    LTEXT           " Skip how many bytes between inserts/overwrites",
+    LTEXT           "heksedit.rc:701",
                     IDC_STATIC,7,49,156,12,SS_CENTERIMAGE
     EDITTEXT        IDC_EDIT3,170,49,35,12,ES_AUTOHSCROLL
-    LTEXT           "Clipboard format to use:",IDC_STATIC,5,65,75,8
+    LTEXT           "heksedit.rc:704",IDC_STATIC,5,65,75,8
     LISTBOX         IDC_LIST,5,75,255,35,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_TABSTOP
-    LTEXT           " - CF_TEXT was used by previous versions of frhed\n - Those starting w CF_ are standard formats && others are registered/private ones\n - Some formats may have been synthesized from the original.",
+    LTEXT           "heksedit.rc:707",
                     IDC_STATIC,5,115,255,25
-    DEFPUSHBUTTON   "OK",IDOK,210,11,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,210,28,50,14
-    PUSHBUTTON      "Refresh",IDC_REFRESH,210,45,50,15
+    DEFPUSHBUTTON   "heksedit.rc:709",IDOK,210,11,50,14
+    PUSHBUTTON      "heksedit.rc:710",IDCANCEL,210,28,50,14
+    PUSHBUTTON      "heksedit.rc:711",IDC_REFRESH,210,45,50,15
 END
 
 IDD_TMPL_RESULT_DIALOG DIALOGEX 0, 0, 304, 175
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Template"
+CAPTION "heksedit.rc:716"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Result of template application:",IDC_STATIC,7,7,96,8
+    LTEXT           "heksedit.rc:719",IDC_STATIC,7,7,96,8
     EDITTEXT        IDC_EDIT1,7,17,290,132,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,99,154,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,154,154,50,14
+    DEFPUSHBUTTON   "heksedit.rc:722",IDOK,99,154,50,14
+    PUSHBUTTON      "heksedit.rc:723",IDCANCEL,154,154,50,14
 END
 
 IDD_REPLACEDIALOG DIALOGEX 0, 0, 208, 226
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Replace"
+CAPTION "heksedit.rc:728"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Find what:",IDC_STATIC,7,7,34,8
+    LTEXT           "heksedit.rc:731",IDC_STATIC,7,7,34,8
     EDITTEXT        IDC_TO_REPLACE_EDIT,7,16,194,62,ES_MULTILINE | 
                     ES_AUTOHSCROLL | WS_VSCROLL
-    PUSHBUTTON      "Find next",IDC_FINDNEXT_BUTTON,7,81,39,14
-    PUSHBUTTON      "Find previous",IDC_FINDPREVIOUS_BUTTON,51,81,54,14
-    CONTROL         "Match case",IDC_MATCHCASE_CHECK,"Button",
+    PUSHBUTTON      "heksedit.rc:734",IDC_FINDNEXT_BUTTON,7,81,39,14
+    PUSHBUTTON      "heksedit.rc:735",IDC_FINDPREVIOUS_BUTTON,51,81,54,14
+    CONTROL         "heksedit.rc:736",IDC_MATCHCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,146,81,53,10
-    LTEXT           "Replace with:",IDC_STATIC,7,98,44,8
+    LTEXT           "heksedit.rc:738",IDC_STATIC,7,98,44,8
     EDITTEXT        IDC_REPLACEWITH_EDIT,7,108,194,58,ES_AUTOHSCROLL
-    GROUPBOX        "Replace all...",IDC_STATIC,7,169,105,50
-    PUSHBUTTON      "... following occurances",IDC_FOLLOCC_BUTTON,13,180,90,
+    GROUPBOX        "heksedit.rc:740",IDC_STATIC,7,169,105,50
+    PUSHBUTTON      "heksedit.rc:741",IDC_FOLLOCC_BUTTON,13,180,90,
                     14
-    PUSHBUTTON      "... previous occurances",IDC_PREVOCC_BUTTON,14,196,89,
+    PUSHBUTTON      "heksedit.rc:743",IDC_PREVOCC_BUTTON,14,196,89,
                     14
-    CONTROL         "Use special syntax",IDC_USETRANSLATION_CHECK,"Button",
+    CONTROL         "heksedit.rc:745",IDC_USETRANSLATION_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,126,172,75,10
-    PUSHBUTTON      "Replace",IDC_REPLACE_BUTTON,148,186,53,14
-    PUSHBUTTON      "Cancel",IDCANCEL,147,205,54,14
+    PUSHBUTTON      "heksedit.rc:747",IDC_REPLACE_BUTTON,148,186,53,14
+    PUSHBUTTON      "heksedit.rc:748",IDCANCEL,147,205,54,14
 END
 
 IDD_FILL_WITH DIALOGEX 0, 0, 382, 103
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Dialog"
+CAPTION "heksedit.rc:753"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Fill selection with:",IDC_STATIC,5,5,56,8
+    LTEXT           "heksedit.rc:756",IDC_STATIC,5,5,56,8
     COMBOBOX        IDC_TYPE,65,5,35,35,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
-    LTEXT           "File:",IDC_FILESTAT,105,5,14,12
+    LTEXT           "heksedit.rc:759",IDC_FILESTAT,105,5,14,12
     EDITTEXT        IDC_FN,120,5,210,12,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "&Browse...",IDC_BROWSE,335,5,40,15
-    LTEXT           "Hex version:",IDC_HEXSTAT,5,15,40,8
+    PUSHBUTTON      "heksedit.rc:761",IDC_BROWSE,335,5,40,15
+    LTEXT           "heksedit.rc:762",IDC_HEXSTAT,5,15,40,8
     EDITTEXT        IDC_HEX,5,25,370,12,ES_AUTOHSCROLL
-    GROUPBOX        "Assignment operator",IDC_STATIC,5,38,100,25
-    CONTROL         "=",IDC_EQ,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
+    GROUPBOX        "heksedit.rc:764",IDC_STATIC,5,38,100,25
+    CONTROL         "heksedit.rc:765",IDC_EQ,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
                     BS_VCENTER | WS_GROUP,10,48,20,10
-    CONTROL         "|=",IDC_OR,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
+    CONTROL         "heksedit.rc:767",IDC_OR,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
                     BS_VCENTER,30,48,21,10
-    CONTROL         "&&=",IDC_AND,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
+    CONTROL         "heksedit.rc:769",IDC_AND,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
                     BS_VCENTER,50,48,24,10
-    CONTROL         "^=",IDC_XOR,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
+    CONTROL         "heksedit.rc:771",IDC_XOR,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
                     BS_VCENTER,75,48,24,10
-    DEFPUSHBUTTON   "OK",IDOK,165,45,50,15,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,250,45,50,15
-    LTEXT           "Info:",IDC_STATIC,5,65,13,8
-    LTEXT           "Start of selection",IDC_STATIC,5,73,54,8
+    DEFPUSHBUTTON   "heksedit.rc:773",IDOK,165,45,50,15,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:774",IDCANCEL,250,45,50,15
+    LTEXT           "heksedit.rc:775",IDC_STATIC,5,65,13,8
+    LTEXT           "heksedit.rc:776",IDC_STATIC,5,73,54,8
     EDITTEXT        IDC_STS,5,84,55,12,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "End of selection",IDC_STATIC,65,73,52,8
+    LTEXT           "heksedit.rc:778",IDC_STATIC,65,73,52,8
     EDITTEXT        IDC_ES,65,84,55,12,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Size of selection",IDC_STATIC,125,73,52,8
+    LTEXT           "heksedit.rc:780",IDC_STATIC,125,73,52,8
     EDITTEXT        IDC_SS,125,84,55,12,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Size of input (Odd #s digits doubled)",IDC_STATIC,185,
+    LTEXT           "heksedit.rc:782",IDC_STATIC,185,
                     65,60,18
     EDITTEXT        IDC_SI,185,84,55,12,ES_AUTOHSCROLL | ES_READONLY
-    CTEXT           "# Times input fits in selection",IDC_STATIC,255,65,50,
+    CTEXT           "heksedit.rc:785",IDC_STATIC,255,65,50,
                     15
     EDITTEXT        IDC_IFS,245,84,75,12,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Remainder",IDC_STATIC,330,73,35,8
+    LTEXT           "heksedit.rc:788",IDC_STATIC,330,73,35,8
     EDITTEXT        IDC_R,325,84,50,12,ES_AUTOHSCROLL | ES_READONLY
 END
 
 IDD_CHANGEINST DIALOGEX 0, 0, 247, 76
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Change Instance"
+CAPTION "heksedit.rc:794"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Load the following instance data:",IDC_STATIC,5,5,105,
+    LTEXT           "heksedit.rc:797",IDC_STATIC,5,5,105,
                     15,SS_CENTERIMAGE
     EDITTEXT        IDC_EDIT1,150,5,25,15,ES_AUTOHSCROLL
-    CONTROL         "Spin1",IDC_LINST,"msctls_updown32",UDS_SETBUDDYINT | 
+    CONTROL         "heksedit.rc:800",IDC_LINST,"msctls_updown32",UDS_SETBUDDYINT | 
                     UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,175,5,11,
                     15
-    LTEXT           "and save (when quiting) to this instance data:",
+    LTEXT           "heksedit.rc:803",
                     IDC_STATIC,5,25,144,15,SS_CENTERIMAGE
     EDITTEXT        IDC_EDIT0,150,25,25,15,ES_AUTOHSCROLL
-    CONTROL         "Spin1",IDC_SINST,"msctls_updown32",UDS_SETBUDDYINT | 
+    CONTROL         "heksedit.rc:806",IDC_SINST,"msctls_updown32",UDS_SETBUDDYINT | 
                     UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,175,25,
                     11,15
-    DEFPUSHBUTTON   "OK",IDOK,190,5,50,15
-    PUSHBUTTON      "Cancel",IDCANCEL,190,25,50,15
-    LTEXT           "Remember that if any instance of frhed is running on the same instance data as this one it will overwrite the data of this one if it exits last.  Unless, that is, that the option to save ini data to the registry on exit is disabled)",
+    DEFPUSHBUTTON   "heksedit.rc:809",IDOK,190,5,50,15
+    PUSHBUTTON      "heksedit.rc:810",IDCANCEL,190,25,50,15
+    LTEXT           "heksedit.rc:811",
                     IDC_STATIC,5,45,235,25
 END
 
 IDD_ENCODE_DECODE_DIALOG DIALOGEX 0, 0, 236, 169
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Encode / Decode Data"
+CAPTION "heksedit.rc:817"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Algorithms:",IDC_STATIC,4,4,172,8
+    LTEXT           "heksedit.rc:820",IDC_STATIC,4,4,172,8
     LISTBOX         IDC_LIST1,4,16,172,108,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Arguments:",IDC_STATIC,4,128,36,8
+    LTEXT           "heksedit.rc:823",IDC_STATIC,4,128,36,8
     EDITTEXT        IDC_EDIT1,4,140,172,12,ES_AUTOHSCROLL
-    CONTROL         "Encode",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:825",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP,4,156,76,8
-    CONTROL         "Decode",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,100,156,
+    CONTROL         "heksedit.rc:827",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,100,156,
                     76,8
-    DEFPUSHBUTTON   "OK",IDOK,180,4,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,180,20,50,14
+    DEFPUSHBUTTON   "heksedit.rc:829",IDOK,180,4,50,14,WS_GROUP
+    PUSHBUTTON      "heksedit.rc:830",IDCANCEL,180,20,50,14
 END
 
 IDD_OPEN_DRIVE_DIALOG DIALOGEX 0, 0, 236, 133
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Open Drive"
+CAPTION "heksedit.rc:835"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LISTBOX         IDC_LIST1,4,4,172,124,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "OK",IDOK,180,4,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,180,20,50,14
+    DEFPUSHBUTTON   "heksedit.rc:840",IDOK,180,4,50,14
+    PUSHBUTTON      "heksedit.rc:841",IDCANCEL,180,20,50,14
 END
 
 IDD_GOTO_TRACK_DIALOG DIALOGEX 0, 0, 244, 133
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Go to Track"
+CAPTION "heksedit.rc:847"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Drive Information:",-1,4,4,168,12
+    LTEXT           "heksedit.rc:850",-1,4,4,168,12
     EDITTEXT        IDC_EDIT3,4,20,172,80,ES_MULTILINE | ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "&Go to track:",-1,4,104,38,8
+    LTEXT           "heksedit.rc:853",-1,4,104,38,8
     EDITTEXT        IDC_EDIT1,4,114,100,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,184,8,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,184,26,50,14
+    DEFPUSHBUTTON   "heksedit.rc:855",IDOK,184,8,50,14
+    PUSHBUTTON      "heksedit.rc:856",IDCANCEL,184,26,50,14
 END
 
 IDD_SHORTCUTS DIALOGEX 0, 0, 217, 166
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Shortcuts"
+CAPTION "heksedit.rc:861"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Paths of shortcuts to frhed:",IDC_STATIC,5,5,86,8
-    CONTROL         "Links to frhed",IDC_LIST,"SysListView32",LVS_REPORT | 
+    LTEXT           "heksedit.rc:864",IDC_STATIC,5,5,86,8
+    CONTROL         "heksedit.rc:865",IDC_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_TABSTOP,5,15,
                     105,120,WS_EX_CLIENTEDGE
-    PUSHBUTTON      "&Find links to any frhed.exe, fix them and list them here.",
+    PUSHBUTTON      "heksedit.rc:868",
                     IDC_FIND_AND_FIX,5,140,205,20,BS_CENTER | BS_VCENTER | 
                     BS_MULTILINE
-    LTEXT           "Create link in/on:",IDC_STATIC,115,5,55,8
-    PUSHBUTTON      "&Desktop",IDC_DESKTOP,115,15,40,15,BS_CENTER | 
+    LTEXT           "heksedit.rc:871",IDC_STATIC,115,5,55,8
+    PUSHBUTTON      "heksedit.rc:872",IDC_DESKTOP,115,15,40,15,BS_CENTER | 
                     BS_VCENTER | BS_MULTILINE
-    PUSHBUTTON      "S&tart Menu",IDC_START,160,15,50,15,BS_CENTER | 
+    PUSHBUTTON      "heksedit.rc:874",IDC_START,160,15,50,15,BS_CENTER | 
                     BS_VCENTER | BS_MULTILINE
-    PUSHBUTTON      "&Send To",IDC_SENDTO,115,35,40,15,BS_CENTER | 
+    PUSHBUTTON      "heksedit.rc:876",IDC_SENDTO,115,35,40,15,BS_CENTER | 
                     BS_VCENTER | BS_MULTILINE
-    PUSHBUTTON      "&Programs",IDC_PROGRAMS,160,35,50,15,BS_CENTER | 
+    PUSHBUTTON      "heksedit.rc:878",IDC_PROGRAMS,160,35,50,15,BS_CENTER | 
                     BS_VCENTER | BS_MULTILINE
-    LTEXT           "Link management:",IDC_STATIC,115,55,59,8
-    PUSHBUTTON      "<< &Add...",IDC_ADD,115,65,45,20
-    PUSHBUTTON      "&Update list",IDC_UPDATE,165,65,45,20,BS_CENTER | 
+    LTEXT           "heksedit.rc:880",IDC_STATIC,115,55,59,8
+    PUSHBUTTON      "heksedit.rc:881",IDC_ADD,115,65,45,20
+    PUSHBUTTON      "heksedit.rc:882",IDC_UPDATE,165,65,45,20,BS_CENTER | 
                     BS_VCENTER | BS_MULTILINE
-    PUSHBUTTON      ">> &Delete",IDC_DELETE,115,90,45,20
-    PUSHBUTTON      "&Move",IDC_MOVE,165,90,45,20,BS_CENTER | BS_VCENTER | 
+    PUSHBUTTON      "heksedit.rc:884",IDC_DELETE,115,90,45,20
+    PUSHBUTTON      "heksedit.rc:885",IDC_MOVE,165,90,45,20,BS_CENTER | BS_VCENTER | 
                     BS_MULTILINE
-    PUSHBUTTON      "&Reload",IDC_RELOAD,115,115,45,20
-    DEFPUSHBUTTON   "&Close",IDCANCEL,165,115,45,20
+    PUSHBUTTON      "heksedit.rc:887",IDC_RELOAD,115,115,45,20
+    DEFPUSHBUTTON   "heksedit.rc:888",IDCANCEL,165,115,45,20
 END
 
 IDD_UPGRADE DIALOGEX 0, 0, 377, 242
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Upgrade"
+CAPTION "heksedit.rc:893"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Version list:",IDC_STATIC,5,5,36,8
-    CONTROL         "Versions",IDC_VERS,"SysListView32",LVS_REPORT | 
+    LTEXT           "heksedit.rc:896",IDC_STATIC,5,5,36,8
+    CONTROL         "heksedit.rc:897",IDC_VERS,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
                     WS_TABSTOP,5,15,115,80,WS_EX_CLIENTEDGE
-    LTEXT           "Instance list:",IDC_STATIC,125,5,40,8
-    CONTROL         "Instances",IDC_INSTS,"SysListView32",LVS_REPORT | 
+    LTEXT           "heksedit.rc:900",IDC_STATIC,125,5,40,8
+    CONTROL         "heksedit.rc:901",IDC_INSTS,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | 
                     LVS_NOSORTHEADER | WS_TABSTOP,125,15,85,80,
                     WS_EX_CLIENTEDGE
-    LTEXT           "Instance data:",IDC_STATIC,215,5,46,8
-    CONTROL         "Data",IDC_INSTDATA,"SysListView32",LVS_REPORT | 
+    LTEXT           "heksedit.rc:905",IDC_STATIC,215,5,46,8
+    CONTROL         "heksedit.rc:906",IDC_INSTDATA,"SysListView32",LVS_REPORT | 
                     LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_TABSTOP,215,15,
                     155,80,WS_EX_CLIENTEDGE
-    CONTROL         "Links",IDC_LINKS,"SysListView32",LVS_REPORT | 
+    CONTROL         "heksedit.rc:909",IDC_LINKS,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
                     WS_TABSTOP,5,100,110,90,WS_EX_CLIENTEDGE
     CONTROL         "",IDC_DISPLAY,"Button",BS_OWNERDRAW | WS_DISABLED | 
                     WS_SYSMENU | WS_GROUP | WS_TABSTOP,120,100,115,90,
                     WS_EX_DLGMODALFRAME
-    CONTROL         "MRU Files",IDC_MRU,"SysListView32",LVS_REPORT | 
+    CONTROL         "heksedit.rc:915",IDC_MRU,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
                     WS_TABSTOP,240,100,130,90,WS_EX_CLIENTEDGE
-    PUSHBUTTON      "Copy",IDC_COPY,5,195,75,15
-    PUSHBUTTON      "Read",IDC_READ,95,195,75,15
-    PUSHBUTTON      "Delete",IDC_DELETE,185,195,75,15
-    DEFPUSHBUTTON   "Close",IDCANCEL,275,195,75,15
-    CTEXT           "'Copy' copies the checked instances of the selected version to the current version.\n'Read' reads data from the selected version and the selected instance of that version.\n'Delete' removes the checked instances of the checked versions.",
+    PUSHBUTTON      "heksedit.rc:918",IDC_COPY,5,195,75,15
+    PUSHBUTTON      "heksedit.rc:919",IDC_READ,95,195,75,15
+    PUSHBUTTON      "heksedit.rc:920",IDC_DELETE,185,195,75,15
+    DEFPUSHBUTTON   "heksedit.rc:921",IDCANCEL,275,195,75,15
+    CTEXT           "heksedit.rc:922",
                     IDC_STATIC,45,215,270,25
 END
 
 IDD_MOVE_COPY DIALOGEX 0, 0, 163, 156
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Move/Copy bytes"
+CAPTION "heksedit.rc:928"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Offset of one end of the block:",IDC_STATIC,5,15,97,8,
+    LTEXT           "heksedit.rc:931",IDC_STATIC,5,15,97,8,
                     SS_CENTERIMAGE
     EDITTEXT        IDC_1STOFFSET,5,25,150,12,ES_AUTOHSCROLL | WS_GROUP
-    LTEXT           "2nd block delimiter:",IDC_STATIC,5,45,62,8,SS_NOTIFY | 
+    LTEXT           "heksedit.rc:934",IDC_STATIC,5,45,62,8,SS_NOTIFY | 
                     SS_CENTERIMAGE
-    CONTROL         "Other end",IDC_OTHEREND,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:936",IDC_OTHEREND,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,70,45,47,10
-    CONTROL         "Length",IDC_LEN,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:938",IDC_LEN,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,120,45,38,10
     EDITTEXT        IDC_2NDDELIM,5,55,150,12,ES_AUTOHSCROLL | WS_GROUP
-    LTEXT           "Distance specification:",IDC_STATIC,5,75,72,8,SS_NOTIFY | 
+    LTEXT           "heksedit.rc:941",IDC_STATIC,5,75,72,8,SS_NOTIFY | 
                     SS_CENTERIMAGE
-    LTEXT           "Position",IDC_STATIC,5,85,28,8
-    CONTROL         "n bytes forward: or",IDC_FORWARD,"Button",
+    LTEXT           "heksedit.rc:943",IDC_STATIC,5,85,28,8
+    CONTROL         "heksedit.rc:944",IDC_FORWARD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,85,75,74,10
-    CONTROL         "first or",IDC_FPOS,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:946",IDC_FPOS,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,35,85,35,10
-    CONTROL         "last byte at offset:",IDC_LPOS,"Button",
+    CONTROL         "heksedit.rc:948",IDC_LPOS,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,70,85,71,10
     EDITTEXT        IDC_MOVEMENT,5,96,150,12,ES_AUTOHSCROLL | WS_GROUP
-    LTEXT           "Start with (-) for negative length or movement backwards. Prefix with x for hex notation.",
+    LTEXT           "heksedit.rc:951",
                     IDC_STATIC,5,115,150,18
-    DEFPUSHBUTTON   "OK",IDOK,5,136,70,14
-    PUSHBUTTON      "Cancel",IDCANCEL,90,136,65,14
-    LTEXT           "Operation:",IDC_STATIC,5,5,34,8
-    CONTROL         "Move",IDC_MOVE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    DEFPUSHBUTTON   "heksedit.rc:953",IDOK,5,136,70,14
+    PUSHBUTTON      "heksedit.rc:954",IDCANCEL,90,136,65,14
+    LTEXT           "heksedit.rc:955",IDC_STATIC,5,5,34,8
+    CONTROL         "heksedit.rc:956",IDC_MOVE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     45,5,34,10
-    CONTROL         "Copy",IDC_COPY,"Button",BS_AUTORADIOBUTTON,80,5,32,10
+    CONTROL         "heksedit.rc:958",IDC_COPY,"Button",BS_AUTORADIOBUTTON,80,5,32,10
 END
 
 IDD_DRAG_DROP DIALOGEX 0, 0, 202, 121
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Drag-drop"
+CAPTION "heksedit.rc:963"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "Clipboard format[s] to use:",-1,5,5,82,8
-    CONTROL         "List1",IDC_LIST,"SysListView32",LVS_REPORT | 
+    LTEXT           "heksedit.rc:966",-1,5,5,82,8
+    CONTROL         "heksedit.rc:967",IDC_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | WS_TABSTOP,5,15,
                     135,100,WS_EX_CLIENTEDGE
-    DEFPUSHBUTTON   "OK",IDOK,145,15,50,15
-    PUSHBUTTON      "Cancel",IDCANCEL,145,35,50,15
-    PUSHBUTTON      "Up",IDC_UP,145,55,50,15
-    PUSHBUTTON      "Down",IDC_DOWN,145,75,50,15
-    CONTROL         "Move",IDC_MOVE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    DEFPUSHBUTTON   "heksedit.rc:970",IDOK,145,15,50,15
+    PUSHBUTTON      "heksedit.rc:971",IDCANCEL,145,35,50,15
+    PUSHBUTTON      "heksedit.rc:972",IDC_UP,145,55,50,15
+    PUSHBUTTON      "heksedit.rc:973",IDC_DOWN,145,75,50,15
+    CONTROL         "heksedit.rc:974",IDC_MOVE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     145,95,34,10
-    CONTROL         "Copy",IDC_COPY,"Button",BS_AUTORADIOBUTTON,145,105,32,
+    CONTROL         "heksedit.rc:976",IDC_COPY,"Button",BS_AUTORADIOBUTTON,145,105,32,
                     10
 END
 
 IDD_DRAG_DROP_OPTIONS DIALOGEX 0, 0, 312, 116
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "OLE Drag-drop options"
+CAPTION "heksedit.rc:982"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "General",IDC_STATIC,5,0,145,75
-    CONTROL         "Enable drop input",IDC_ENABLE_DROP,"Button",
+    GROUPBOX        "heksedit.rc:985",IDC_STATIC,5,0,145,75
+    CONTROL         "heksedit.rc:986",IDC_ENABLE_DROP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,10,71,10
-    CONTROL         "Enable drag output",IDC_ENABLE_DRAG,"Button",
+    CONTROL         "heksedit.rc:988",IDC_ENABLE_DRAG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,20,76,10
-    CONTROL         "Enable scroll-delaying for drag-drop",IDC_EN_SD_DD,
+    CONTROL         "heksedit.rc:990",IDC_EN_SD_DD,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,30,126,10
-    CONTROL         "Enable scroll-delaying for selecting",IDC_EN_SD_SEL,
+    CONTROL         "heksedit.rc:992",IDC_EN_SD_SEL,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,40,124,10
-    CONTROL         "Always give the opportunity to change between move and copy after a drop.",
+    CONTROL         "heksedit.rc:994",
                     IDC_ALWAYS_CHOOSE,"Button",BS_AUTOCHECKBOX | BS_LEFT | 
                     BS_VCENTER | BS_MULTILINE | WS_TABSTOP,10,50,135,20
-    GROUPBOX        "Input",IDC_STATIC,155,0,150,45
-    CONTROL         "CF_HDROP opens the files dropped.",IDC_DROP_CF_HDROP,
+    GROUPBOX        "heksedit.rc:997",IDC_STATIC,155,0,150,45
+    CONTROL         "heksedit.rc:998",IDC_DROP_CF_HDROP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,165,10,132,10
-    CONTROL         "Drop ""BinaryData"" if present",IDC_DROP_BIN_DATA,
+    CONTROL         "heksedit.rc:1000",IDC_DROP_BIN_DATA,
                     "Button",BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | 
                     WS_TABSTOP,165,20,105,10
-    CONTROL         "Drop CF_TEXT if present",IDC_DROP_CF_TEXT,"Button",
+    CONTROL         "heksedit.rc:1003",IDC_DROP_CF_TEXT,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_TABSTOP,165,
                     30,95,10
-    GROUPBOX        "Output",IDC_STATIC,155,45,150,65
-    CONTROL         "Drag ""BinaryData""",IDC_DRAG_BIN_DATA,"Button",
+    GROUPBOX        "heksedit.rc:1006",IDC_STATIC,155,45,150,65
+    CONTROL         "heksedit.rc:1007",IDC_DRAG_BIN_DATA,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_GROUP | 
                     WS_TABSTOP,165,55,75,10
-    CONTROL         "Drag CF_TEXT as:",IDC_DRAG_CF_TEXT,"Button",
+    CONTROL         "heksedit.rc:1010",IDC_DRAG_CF_TEXT,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_GROUP | 
                     WS_TABSTOP,165,65,76,10
-    CONTROL         "Hexdump",IDC_TEXT_HEXDUMP,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "heksedit.rc:1013",IDC_TEXT_HEXDUMP,"Button",BS_AUTORADIOBUTTON | 
                     BS_LEFT | BS_VCENTER | WS_GROUP,175,75,46,10
-    CONTROL         "Special syntax (<bh:ff>...)",IDC_TEXT_SPECIAL,"Button",
+    CONTROL         "heksedit.rc:1015",IDC_TEXT_SPECIAL,"Button",
                     BS_AUTORADIOBUTTON | BS_LEFT | BS_VCENTER,175,85,95,10
-    CONTROL         "display (else digits)",IDC_TEXT_DISPLAY,"Button",
+    CONTROL         "heksedit.rc:1017",IDC_TEXT_DISPLAY,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | WS_GROUP | 
                     WS_TABSTOP,225,75,74,10
-    CONTROL         "Drag ""Rich Text Format"" (as hexdump)",IDC_DRAG_RTF,
+    CONTROL         "heksedit.rc:1020",IDC_DRAG_RTF,
                     "Button",BS_AUTOCHECKBOX | BS_LEFT | BS_VCENTER | 
                     WS_GROUP | WS_TABSTOP,165,95,138,10
-    DEFPUSHBUTTON   "OK",IDOK,15,85,55,20
-    PUSHBUTTON      "Cancel",IDCANCEL,85,85,55,20
+    DEFPUSHBUTTON   "heksedit.rc:1023",IDOK,15,85,55,20
+    PUSHBUTTON      "heksedit.rc:1024",IDCANCEL,85,85,55,20
 END
 
 
@@ -1269,7 +1269,7 @@ END
 // Bitmap
 //
 
-IDB_TOOLBAR             BITMAP                  "res/Toolbar.bmp"
+//IDB_TOOLBAR             BITMAP                  "res/Toolbar.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1278,31 +1278,31 @@ IDB_TOOLBAR             BITMAP                  "res/Toolbar.bmp"
 
 STRINGTABLE 
 BEGIN
-    IDM_OPEN                "Open"
-    IDM_NEW                 "New"
+    IDM_OPEN                "heksedit.rc:1281"
+    IDM_NEW                 "heksedit.rc:1282"
 END
 
 STRINGTABLE 
 BEGIN
-    IDM_SAVE                "Save"
-    IDM_FIND                "Find"
-    IDM_EDIT_COPY           "Copy"
-    IDM_EDIT_PASTE          "Paste"
-    IDM_HELP_TOPICS         "Help"
-    IDM_EDIT_CUT            "Cut"
+    IDM_SAVE                "heksedit.rc:1287"
+    IDM_FIND                "heksedit.rc:1288"
+    IDM_EDIT_COPY           "heksedit.rc:1289"
+    IDM_EDIT_PASTE          "heksedit.rc:1290"
+    IDM_HELP_TOPICS         "heksedit.rc:1291"
+    IDM_EDIT_CUT            "heksedit.rc:1292"
 END
 
 STRINGTABLE 
 BEGIN
-    IDM_REPLACE             "Replace"
+    IDM_REPLACE             "heksedit.rc:1297"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_DISK_GOTONEXTTRACK   "Goto next sector"
-    ID_DISK_GOTOPREVIOUSTRACK "Goto previous sector"
-    ID_DISK_GOTOFIRSTTRACK  "Goto first sector"
-    ID_DISK_GOTOLASTTRACK   "Goto last sector"
+    ID_DISK_GOTONEXTTRACK   "heksedit.rc:1302"
+    ID_DISK_GOTOPREVIOUSTRACK "heksedit.rc:1303"
+    ID_DISK_GOTOFIRSTTRACK  "heksedit.rc:1304"
+    ID_DISK_GOTOLASTTRACK   "heksedit.rc:1305"
 END
 
 #endif    // Englisch (USA) resources
@@ -1310,13 +1310,5 @@ END
 
 
 
-#ifndef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 3 resource.
-//
 #include "version.rc"
-
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
-
+en-US.pot RCDATA "en-US.pot"

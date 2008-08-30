@@ -19,12 +19,8 @@ BOOL CopyHexdumpDlg::OnInitDialog(HWND hDlg)
 	{
 		// Assume selected area is to be hexdumped.
 		// Make sure end of selection is greater than start of selection.
-//Pabs changed - line remove & insert - works better now for both exporting types
-		iCopyHexdumpDlgStart = iStartOfSelection ;
-		iCopyHexdumpDlgEnd = iEndOfSelection ;
-		if (iCopyHexdumpDlgEnd < iCopyHexdumpDlgStart)
-			swap(iCopyHexdumpDlgStart, iCopyHexdumpDlgEnd);
-//end
+		iCopyHexdumpDlgStart = iGetStartOfSelection();
+		iCopyHexdumpDlgEnd = iGetEndOfSelection();
 	}
 	char buf[16];
 	sprintf(buf, "%x", iCopyHexdumpDlgStart);

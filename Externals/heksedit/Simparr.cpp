@@ -5,7 +5,7 @@
 #include "simparr.h"
 
 //-------------------------------------------------------------------
-int SimpleString::AppendString( char* ps )
+int SimpleString::AppendString( const char* ps )
 {
 	if( m_nUpperBound == -1 )
 		return SetToString( ps );
@@ -17,28 +17,28 @@ int SimpleString::AppendString( char* ps )
 }
 
 //-------------------------------------------------------------------
-int SimpleString::SetToString( char* ps )
+int SimpleString::SetToString( const char* ps )
 {
 	Clear();
 	return AppendString( ps );
 }
 
 //-------------------------------------------------------------------
-char* SimpleString::operator=( char* ps )
+SimpleString& SimpleString::operator=( const char* ps )
 {
 	SetToString( ps );
-	return ps;
+	return *this;
 }
 
 //-------------------------------------------------------------------
-SimpleString& SimpleString::operator=( SimpleString str )
+SimpleString& SimpleString::operator=( const SimpleString &str )
 {
 	SetToString( &str[0] );
 	return *this;
 }
 
 //-------------------------------------------------------------------
-char* SimpleString::operator+=( char* ps )
+SimpleString& SimpleString::operator+=( const char* ps )
 {
 	if( m_nUpperBound == -1 )
 		SetToString( ps );
@@ -46,7 +46,7 @@ char* SimpleString::operator+=( char* ps )
 	{
 		InsertAtGrow( m_nUpperBound, ps, 0, strlen( ps ) );
 	}
-	return ps;
+	return *this;
 }
 
 //-------------------------------------------------------------------
@@ -67,7 +67,7 @@ SimpleString::SimpleString()
 }
 
 //-------------------------------------------------------------------
-SimpleString::SimpleString( char* ps )
+SimpleString::SimpleString( const char* ps )
 {
 	// Create a SimpleString from a normal char array-string.
 	m_nGrowBy = 64;
@@ -83,7 +83,7 @@ void SimpleString::Clear()
 }
 
 //-------------------------------------------------------------------
-SimpleString SimpleString::operator+( SimpleString& str1 )
+SimpleString SimpleString::operator+( const SimpleString& str1 )
 {
 	SimpleString t1;
 	t1.SetToString( m_pT );
@@ -98,7 +98,7 @@ int SimpleString::IsEmpty()
 }
 
 //-------------------------------------------------------------------
-SimpleString operator+( SimpleString ps1, char* ps2 )
+SimpleString operator+( const SimpleString &ps1, const char* ps2 )
 {
 	SimpleString s1;
 	s1 += ps1;
@@ -107,7 +107,7 @@ SimpleString operator+( SimpleString ps1, char* ps2 )
 }
 
 //-------------------------------------------------------------------
-SimpleString operator+( char* ps1, SimpleString ps2 )
+SimpleString operator+( const char* ps1, const SimpleString &ps2 )
 {
 	SimpleString s1;
 	s1 += ps1;

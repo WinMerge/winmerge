@@ -260,9 +260,8 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 
 				if (bSelected)
 				{
-					int x = swapxor(iStartOfSelection, iEndOfSelection);
-					iStartOfSelSetting = x ^ iStartOfSelection;
-					iEndOfSelSetting = x ^ iEndOfSelection;
+					iStartOfSelSetting = iGetStartOfSelection();
+					iEndOfSelSetting = iGetEndOfSelection();
 				}
 				else
 				{
@@ -332,23 +331,13 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 				//prepare OPENFILENAME for the file open common dlg box
 				szFWFileName[0] = '\0';
 				OPENFILENAME ofn;
-				ofn.lStructSize = sizeof (OPENFILENAME);
+				ZeroMemory(&ofn, sizeof ofn);
+				ofn.lStructSize = sizeof ofn;
 				ofn.hwndOwner = hDlg;
-				ofn.hInstance = NULL;
 				ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-				ofn.lpstrCustomFilter = NULL;
-				ofn.nMaxCustFilter = 0;
-				ofn.nFilterIndex = 0;
 				ofn.lpstrFile = szFWFileName;
 				ofn.nMaxFile = _MAX_PATH;
-				ofn.lpstrFileTitle = NULL;
-				ofn.lpstrInitialDir = NULL;
-				ofn.lpstrTitle = NULL;
 				ofn.Flags = OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
-				ofn.lpstrDefExt = NULL;
-				ofn.lCustData = 0L;
-				ofn.lpfnHook = NULL;
-				ofn.lpTemplateName = NULL;
 				//show open dlgbox and if file good save name & path in edit box
 				if (GetOpenFileName(&ofn))
 					SetDlgItemText(hDlg, IDC_FN, ofn.lpstrFile);

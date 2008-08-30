@@ -3,9 +3,15 @@
 
 #include "IDT.h"
 
-// This is frhed vCURRENT_VERSION.SUB_RELEASE_NO
-#include "version.h"
 #include "heksedit.h"
+
+#define SHARPEN_A(X) #X
+#define SHARPEN_W(X) L#X
+#define SHARPEN(T,X) SHARPEN_##T(X)
+
+#define CURRENT_VERSION SHARPEN(A,FRHED_MAJOR_VERSION) "." SHARPEN(A,FRHED_MINOR_VERSION)
+#define SUB_RELEASE_NO SHARPEN(A,FRHED_SUB_RELEASE_NO)
+
 #include "PhysicalDrive.h"
 #include "PMemoryBlock.h"
 
@@ -17,10 +23,8 @@ BOOL CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
 
 //--------------------------------------------------------------------------------------------
 
-#define swapxor(x, y) ((x) < (y) ? 0 : (x) ^ (y))
-#define bitval(base,pos) ((base)[(pos)/8]&(1<<((pos)%8)))
 #define ANSI_SET ANSI_FIXED_FONT
-#define OEM_SET  OEM_FIXED_FONT
+#define OEM_SET OEM_FIXED_FONT
 #define LITTLEENDIAN_MODE 0
 #define BIGENDIAN_MODE 1
 #define SCROLL_TIMER_ID 1
@@ -31,7 +35,6 @@ BOOL CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
 #define BMKTEXTMAX 256
 #define TPL_TYPE_MAXLEN 16
 #define TPL_NAME_MAXLEN 128
-#define FINDDLG_BUFLEN (64*1024)
 
 typedef struct
 {
@@ -43,10 +46,10 @@ typedef struct
 // Global variables.
 #include "simparr.h"
 
-HRESULT ResolveIt( HWND hwnd, LPCSTR lpszLinkFile, LPSTR lpszPath );
 //--------------------------------------------------------------------------------------------
 enum ClickArea { AREA_NONE, AREA_OFFSETS, AREA_BYTES, AREA_CHARS };
 enum SCROLL_TYPE { SCROLL_NONE, SCROLL_BACK, SCROLL_FORWARD };
+enum EnteringMode { BYTES, CHARS };
 
 class hexfile_stream;
 class load_hexfile_0;
@@ -124,14 +127,9 @@ public:
 	void set_drag_caret(long x, long y, bool Copying, bool Overwrite );
 	void fix_scroll_timers(long x, long y);
 	void kill_scroll_timers();
-	int lbd_pos; //ClickArea lbd_area;
+	int lbd_pos;
 	int nibblenum, bytenum, column, line, new_pos, old_pos, old_col, old_row;
 	int bMouseOpDelayTimerSet;
-	//int ScrollInset;
-	int ScrollDelay;
-	int ScrollInterval;
-	int MouseOpDist;
-	int MouseOpDelay;
 	SCROLL_TYPE prev_vert;
 	SCROLL_TYPE prev_horz;
 
@@ -151,7 +149,7 @@ public:
 	void apply_template_on_memory( char* pcTpl, int tpl_len, SimpleArray<char>& ResultArray );
 	void apply_template(char *pcTemplate);
 	void CMD_apply_template();
-	void dropfiles(HDROP);
+	virtual void STDMETHODCALLTYPE dropfiles(HDROP);
 	void CMD_open_partially();
 	void CMD_clear_all_bmk();
 	void CMD_remove_bkm();
@@ -225,6 +223,7 @@ public:
 	Settings *STDMETHODCALLTYPE get_settings();
 	Status *STDMETHODCALLTYPE get_status();
 	int STDMETHODCALLTYPE translate_accelerator(MSG *);
+	BOOL STDMETHODCALLTYPE load_lang(LANGID);
 
 	virtual int STDMETHODCALLTYPE load_file(const char* fname);
 	int file_is_loadable(const char* fname);
@@ -238,10 +237,10 @@ public:
 	void vscroll(int cmd);
 	void hscroll(int cmd);
 	int paint();
-	int command(int cmd);
+	virtual void STDMETHODCALLTYPE command(int cmd);
 	int destroy_window();
 	virtual void STDMETHODCALLTYPE set_wnd_title();
-	void set_caret_pos ();
+	void set_caret_pos();
 	void print_text(HDC hdc, int x, int y, char *pch, int cch);
 	virtual HRESULT STDMETHODCALLTYPE ResolveIt(LPCSTR lpszLinkFile, LPSTR lpszPath);
 
@@ -257,6 +256,10 @@ protected:
 //Pabs inserted
 	int bMakeBackups;//Backup the file when saving
 //end
+	static int ScrollDelay;
+	static int ScrollInterval;
+	static int MouseOpDist;
+	static int MouseOpDelay;
 	static SimpleString TexteditorName;
 	static SimpleString EncodeDlls;
 	static int iPasteAsText;
@@ -267,7 +270,7 @@ protected:
 	int iBmkCount;
 	bookmark pbmkList[BMKMAX];
 	int iMRU_count;
-	char strMRU[MRUMAX][_MAX_PATH+1];
+	char strMRU[MRUMAX][_MAX_PATH];
 	int bFilestatusChanged;
 	int bScrollTimerSet;
 	int iMouseX, iMouseY;
@@ -297,6 +300,9 @@ protected:
 
 void reverse_bytes(BYTE *, BYTE *);
 
+void NTAPI TranslateDialog(HWND);
+INT_PTR NTAPI ShowModalDialog(UINT, HWND, DLGPROC, LPVOID);
+
 class WaitCursor
 {
 private:
@@ -318,13 +324,16 @@ class dialog : public T
 	static INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		if (uMsg == WM_INITDIALOG)
+		{
 			SetWindowLong(hWnd, DWL_USER, lParam);
+			TranslateDialog(hWnd);
+		}
 		return ((T *)GetWindowLong(hWnd, DWL_USER))->DlgProc(hWnd, uMsg, wParam, lParam);
 	}
 public:
 	INT_PTR DoModal(HWND hWnd)
 	{
-		return DialogBoxParam(hMainInstance, MAKEINTRESOURCE(IDD), hWnd, DlgProc, (LPARAM)this);
+		return ShowModalDialog(IDD, hWnd, DlgProc, this);
 	}
 };
 
@@ -334,25 +343,6 @@ template<class T> inline void swap(T& x, T& y)
 	x = y;
 	y = temp;
 }
-
-//--------------------------------------------------------------------------------------------
-// MAKROS
-//Pabs replaced iOffsetLen w iMaxOffsetLen
-#define CHARSTART (iMaxOffsetLen + iByteSpace + iBytesPerLine * 3 + iCharSpace)
-#define BYTEPOS (iCurByte % iBytesPerLine)
-#define BYTELINE (iCurByte / iBytesPerLine)
-#define BYTES_LOGICAL_COLUMN (iMaxOffsetLen + iByteSpace + BYTEPOS * 3 + iCurNibble)
-//end
-#define CHARS_LOGICAL_COLUMN (CHARSTART + BYTEPOS)
-#define STARTSELECTION_LINE (iStartOfSelection / iBytesPerLine)
-#define ENDSELECTION_LINE (iEndOfSelection / iBytesPerLine)
-#define IN_BOUNDS( i, a, b ) ( ( i >= a && i <= b ) || ( i >= b && i <= a ) )
-#define BYTES 0 // for EnteringMode
-#define CHARS 1
-#define WM_F1DOWN (WM_USER+1)
-
-//============================================================================================
-// The main window object.
 
 extern HINSTANCE hMainInstance;
 extern int iMovePos;

@@ -35,7 +35,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 			if (numformatetcs && formatetcs)
 			{
 				LVCOLUMN col;
-				Zero(col);
+				ZeroMemory(&col, sizeof col);
 				ListView_InsertColumn(list, 0, &col);
 				char szFormatName[100];
 				UINT i;
@@ -105,26 +105,26 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 		{
 		case IDOK:
 			{
-				effect = IsDlgButtonChecked( h, IDC_MOVE ) ? false : true;
+				effect = !IsDlgButtonChecked(h, IDC_MOVE);
 				HWND list = GetDlgItem(h, IDC_LIST);
 				numformats = ListView_GetSelectedCount(list);
-				if( numformats ){
-					for(;;)
+				if (numformats)
+				{
+					formats = (UINT*)malloc(numformats * sizeof *formats);
+					if (formats == 0)
 					{
-						formats = (UINT*)malloc( numformats*sizeof(*formats) );
-						if(formats) break;
-						numformats--; //numformats/=2; //Or this
+						MessageBox(h, "Not enough memory", "Drag-drop", MB_ICONERROR);
+						return TRUE;
 					}
-					if( formats ){
-						LVITEM temp;
-						Zero(temp);
-						temp.mask = LVIF_PARAM;
-						temp.iItem = -1;
-						for( UINT i = 0; i < numformats; i++ ){
-							temp.iItem = ListView_GetNextItem(list, temp.iItem, LVNI_SELECTED);
-							ListView_GetItem(list,&temp);
-							formats[i] = temp.lParam;
-						}
+					LVITEM temp;
+					ZeroMemory(&temp, sizeof temp);
+					temp.mask = LVIF_PARAM;
+					temp.iItem = -1;
+					for (UINT i = 0 ; i < numformats ; i++)
+					{
+						temp.iItem = ListView_GetNextItem(list, temp.iItem, LVNI_SELECTED);
+						ListView_GetItem(list, &temp);
+						formats[i] = temp.lParam;
 					}
 				}
 				EndDialog (h, 1);
@@ -138,8 +138,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 			{
 				HWND list = GetDlgItem(h, IDC_LIST);
 				LVITEM item[2];
-				Zero(item[0]);
-				Zero(item[1]);
+				ZeroMemory(item, sizeof item);
 				//If anyone knows a better way to swap two items please send a patch
 				item[0].iItem = ListView_GetNextItem(list, (UINT)-1, LVNI_SELECTED);
 				if(item[0].iItem==-1) item[0].iItem = ListView_GetNextItem(list, (UINT)-1, LVNI_FOCUSED);
@@ -652,12 +651,11 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 				//Get data
 				switch( stm.tymed ){
 					case TYMED_HGLOBAL:{
-						LPVOID pmem = GlobalLock( stm.hGlobal );
-						if( pmem ){
-							try{ memcpy( data, pmem, len ); }
-							catch(...){}
+						if (LPVOID pmem = GlobalLock(stm.hGlobal))
+						{
+							memcpy(data, pmem, len);
 							gotdata = true;
-							GlobalUnlock( stm.hGlobal );
+							GlobalUnlock(stm.hGlobal);
 						}
 					} break;
 #ifndef __CYGWIN__
@@ -691,15 +689,12 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 						}
 					} break;//HBITMAP
 					case TYMED_MFPICT:{
-						METAFILEPICT*pMFP=(METAFILEPICT*)GlobalLock( stm.hMetaFilePict );
-						if( pMFP ){
-							try{
-								memcpy( data, pMFP, sizeof(*pMFP) );
-								GetMetaFileBitsEx( pMFP->hMF, len - sizeof(*pMFP), &data[sizeof(*pMFP)] );
-								GlobalUnlock( stm.hMetaFilePict );
-								gotdata = true;
-							}
-							catch(...){}
+						if (METAFILEPICT *pMFP = (METAFILEPICT *)GlobalLock(stm.hMetaFilePict))
+						{
+							memcpy(data, pMFP, sizeof *pMFP);
+							GetMetaFileBitsEx( pMFP->hMF, len - sizeof(*pMFP), &data[sizeof(*pMFP)] );
+							GlobalUnlock( stm.hMetaFilePict );
+							gotdata = true;
 						}
 					} break;//HMETAFILE
 #ifndef __CYGWIN__
@@ -736,9 +731,9 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 						len = *(DWORD*)data;
 						DataToInsert += 4;
 					} else if( fe.cfFormat == CF_TEXT || fe.cfFormat == CF_OEMTEXT ){
-						try { len = strlen( (char*)data ); } catch(...){}
+						len = strlen( (char*)data );
 					} else if( fe.cfFormat == CF_UNICODETEXT ){
-						try { len = sizeof(wchar_t)*wcslen( (wchar_t*)data ); } catch(...){}
+						len = sizeof(wchar_t)*wcslen( (wchar_t*)data );
 					}
 
 					//Insert/overwrite data into DataArray

@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\Build\Heksedit\Debug"
-			IntermediateDirectory="..\..\BuildTmp\heksedit\Debug"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\heksedit\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -22,13 +22,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="precomp.h"
-				PrecompiledHeaderFile=".\../../BuildTmp/heksedit/Debug/heksedit.pch"
-				AssemblerListingLocation=".\../../BuildTmp/heksedit/Debug/"
-				ObjectFile=".\../../BuildTmp/heksedit/Debug/"
-				ProgramDataBaseFileName=".\../../BuildTmp/heksedit/Debug/"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\heksedit.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -38,13 +40,13 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="imagehlp.lib version.lib comctl32.lib wininet.lib odbc32.lib odbccp32.lib shlwapi.lib"
-				OutputFile="../../Build/heksedit/Debug/heksedit.dll"
+				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="../../Build/heksedit/Debug/heksedit.pdb"
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
 				SubSystem="2"
-				ImportLibrary=".\../../Build/MergeDebug/heksedit.lib"
+				ImportLibrary=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -52,7 +54,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\../../Build/MergeDebug/heksedit.tlb"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -60,7 +62,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="PreLink.bat $(IntDir) $(TargetPath)"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -78,8 +81,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\Build\Heksedit\Release"
-			IntermediateDirectory="..\..\BuildTmp\heksedit\Release"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\heksedit\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE">
@@ -87,13 +90,15 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="precomp.h"
-				PrecompiledHeaderFile=".\../../BuildTmp/heksedit/Release/heksedit.pch"
-				AssemblerListingLocation=".\../../BuildTmp/heksedit/Release/"
-				ObjectFile=".\../../BuildTmp/heksedit/Release/"
-				ProgramDataBaseFileName=".\../../BuildTmp/heksedit/Release/"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\heksedit.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
@@ -102,12 +107,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib odbc32.lib odbccp32.lib"
-				OutputFile="../../Build/heksedit/Release/heksedit.dll"
+				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile="../../Build/heksedit/Release/heksedit.pdb"
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
 				SubSystem="2"
-				ImportLibrary=".\../../Build/MergeRelease/heksedit.lib"
+				ImportLibrary=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -115,7 +120,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\../../Build/MergeRelease/heksedit.tlb"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -123,7 +128,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCPreLinkEventTool"
+				CommandLine="PreLink.bat $(IntDir) $(TargetPath)"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -153,7 +159,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -161,7 +167,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -172,7 +178,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -180,7 +186,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -191,7 +197,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -199,7 +205,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -210,7 +216,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -218,7 +224,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -229,7 +235,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -237,7 +243,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -248,7 +254,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -256,7 +262,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -267,7 +273,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -275,7 +281,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -286,7 +292,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -294,7 +300,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -305,7 +311,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -313,7 +319,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -324,7 +330,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -332,9 +338,12 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\DllProxies.cpp">
 			</File>
 			<File
 				RelativePath="EnterDecimalValueDlg.cpp">
@@ -343,7 +352,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -351,7 +360,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -362,7 +371,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -370,7 +379,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -381,7 +390,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -389,7 +398,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -400,7 +409,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -408,7 +417,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -419,7 +428,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -427,7 +436,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -438,7 +447,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -446,7 +455,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -457,7 +466,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -465,7 +474,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -476,7 +485,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -484,7 +493,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -495,7 +504,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -503,7 +512,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -514,7 +523,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -522,7 +531,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -533,7 +542,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -541,7 +550,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -552,7 +561,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -560,7 +569,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -571,7 +580,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -579,9 +588,12 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\LangArray.cpp">
 			</File>
 			<File
 				RelativePath="LoadHexFile.cpp">
@@ -590,7 +602,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -598,7 +610,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -609,7 +621,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -617,7 +629,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -628,7 +640,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -636,7 +648,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -647,7 +659,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -655,7 +667,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -666,7 +678,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -674,7 +686,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -685,7 +697,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -693,7 +705,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -704,7 +716,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -712,7 +724,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -723,7 +735,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -731,7 +743,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -742,7 +754,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						UsePrecompiledHeader="1"
 						BrowseInformation="1"/>
 				</FileConfiguration>
@@ -751,7 +763,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						UsePrecompiledHeader="1"
 						BrowseInformation="1"/>
 				</FileConfiguration>
@@ -763,7 +775,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -771,7 +783,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -782,7 +794,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -790,7 +802,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -801,7 +813,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -809,7 +821,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -820,7 +832,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -828,7 +840,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -839,7 +851,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -847,7 +859,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -858,7 +870,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -866,7 +878,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -877,7 +889,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -885,7 +897,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -896,7 +908,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -904,7 +916,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -915,7 +927,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -923,7 +935,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
-						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 			</File>
@@ -936,6 +948,9 @@
 			</File>
 			<File
 				RelativePath="clipboard.h">
+			</File>
+			<File
+				RelativePath=".\DllProxies.h">
 			</File>
 			<File
 				RelativePath="gktools.h">
@@ -965,10 +980,10 @@
 				RelativePath="idt.h">
 			</File>
 			<File
-				RelativePath="LoadHexFile.h">
+				RelativePath=".\LangArray.h">
 			</File>
 			<File
-				RelativePath="ntdiskspec.h">
+				RelativePath="LoadHexFile.h">
 			</File>
 			<File
 				RelativePath="PDrive95.h">
@@ -1005,6 +1020,9 @@
 			</File>
 			<File
 				RelativePath="version.h">
+			</File>
+			<File
+				RelativePath=".\VersionData.h">
 			</File>
 		</Filter>
 		<Filter

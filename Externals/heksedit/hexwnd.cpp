@@ -2,10 +2,7 @@
 // Frhed main definition file.
 #include "precomp.h"
 #include "resource.h"
-#include <shlwapi.h>
-#include <assert.h>
-#include <ctype.h>
-#include "toolbar.h"
+#include "VersionData.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
 #include "shtools.h"
@@ -15,6 +12,7 @@
 #include "clipboard.h"
 #include "BinTrans.h"
 #include "LoadHexFile.h"
+#include "LangArray.h"
 
 /*In the following headers:
 	ULONG m_cRefCount; //The reference count that all objects based on IUnknown must have
@@ -25,7 +23,7 @@
 #include "ids.h"
 #include "ido.h"
 
-static const char appname[] = "heksedit";
+static const char appname[] = "frhed";
 
 //CF_RTF defined in Richedit.h, but we don't include it cause that would be overkill
 #ifndef CF_RTF
@@ -37,7 +35,12 @@ const CLIPFORMAT CF_RICH_TEXT_FORMAT = (CLIPFORMAT)RegisterClipboardFormat(CF_RT
 
 BOOL ShowHtmlHelp(UINT uCommand, DWORD dwData, HWND hParentWindow);
 
-//unsigned int iStartPL, iNumBytesPl, iPLFileLen, bShowFileStatsPL;
+int HexEditorWindow::MouseOpDist = GetProfileInt("Windows", "DragMinDist", DD_DEFDRAGMINDIST);
+int HexEditorWindow::MouseOpDelay = GetProfileInt("Windows", "DragDelay", DD_DEFDRAGDELAY);
+//We use the size of the font instead
+//int HexEditorWindow::ScrollInset = GetProfileInt("Windows", "DragScrollInset", DD_DEFSCROLLINSET);
+int HexEditorWindow::ScrollDelay = GetProfileInt("Windows", "DragScrollDelay", DD_DEFSCROLLDELAY);
+int HexEditorWindow::ScrollInterval = GetProfileInt("Windows", "DragScrollInterval", DD_DEFSCROLLINTERVAL);
 
 int HexEditorWindow::iPasteAsText = 0;
 int HexEditorWindow::iPasteTimes = 1;
@@ -74,13 +77,6 @@ HexEditorWindow::HexEditorWindow()
 	bSaveIni = FALSE;
 	bCenterCaret = FALSE;
 	bMakeBackups = 0;
-
-	MouseOpDist = GetProfileInt( "Windows", "DragMinDist", DD_DEFDRAGMINDIST );
-	MouseOpDelay = GetProfileInt( "Windows", "DragDelay", DD_DEFDRAGDELAY );
-	//We use the size of the font instead
-	//ScrollInset = GetProfileInt( "Windows", "DragScrollInset", DD_DEFSCROLLINSET );
-	ScrollDelay = GetProfileInt( "Windows", "DragScrollDelay", DD_DEFSCROLLDELAY );
-	ScrollInterval = GetProfileInt( "Windows", "DragScrollInterval", DD_DEFSCROLLINTERVAL );
 
 	enable_drop = TRUE;
 	enable_drag = TRUE;
@@ -218,48 +214,52 @@ int HexEditorWindow::translate_accelerator(MSG *pMsg)
 	return TranslateAccelerator(hwnd, hAccel, pMsg);
 }
 
+static LangArray langArray;
+
+BOOL HexEditorWindow::load_lang(LANGID langid)
+{
+	return langArray.Load(hMainInstance, langid);
+}
+
 //--------------------------------------------------------------------------------------------
 int HexEditorWindow::load_file(const char *fname)
 {
 	WaitCursor wc;
 	int bLoaded = FALSE;
-	if (file_is_loadable(fname))
+	int filehandle = _open(fname, _O_RDONLY|_O_BINARY);
+	if (filehandle != -1)
 	{
-		int filehandle = _open (fname,_O_RDONLY|_O_BINARY,_S_IREAD|_S_IWRITE);
-		if (filehandle != -1)
+		int filelen = _filelength(filehandle);
+		DataArray.ClearAll();
+		// Try to allocate memory for the file.
+		if (DataArray.SetSize(filelen))
 		{
-			int filelen = _filelength(filehandle);
-			DataArray.ClearAll();
-			// Try to allocate memory for the file.
-			if (DataArray.SetSize(filelen))
+			DataArray.ExpandToSize();
+			// If read-only mode on opening is enabled or the file is read only:
+			bReadOnly = bOpenReadOnly || -1 == _access(fname, 02); //Pabs added call to _access
+			// Load the file.
+			if (filelen == 0 || _read(filehandle, DataArray, filelen) != -1)
 			{
-				DataArray.ExpandToSize();
-				// If read-only mode on opening is enabled or the file is read only:
-				bReadOnly = bOpenReadOnly || -1 == _access(fname, 02); //Pabs added call to _access
-				// Load the file.
-				if (filelen == 0 || _read(filehandle, DataArray, filelen) != -1)
-				{
-					// This is an empty file. Don't need to read anything.
-					GetLongPathNameWin32(fname, filename);
-					bLoaded = TRUE;
-				}
-				else
-				{
-					MessageBox(hwnd, "Error while reading from file.", "Load error", MB_ICONERROR);
-				}
+				// This is an empty file. Don't need to read anything.
+				GetLongPathNameWin32(fname, filename);
+				bLoaded = TRUE;
 			}
 			else
 			{
-				MessageBox(hwnd, "Not enough memory to load file.", "Load error", MB_ICONERROR);
+				MessageBox(hwnd, "Error while reading from file.", "Load error", MB_ICONERROR);
 			}
-			_close(filehandle);
 		}
 		else
 		{
-			char buf[500];
-			sprintf(buf, "Error code 0x%x occured while opening file %s.", errno, fname);
-			MessageBox(hwnd, buf, "Load error", MB_ICONERROR);
+			MessageBox(hwnd, "Not enough memory to load file.", "Load error", MB_ICONERROR);
 		}
+		_close(filehandle);
+	}
+	else
+	{
+		char buf[500];
+		sprintf(buf, "Error code 0x%x occured while opening file %s.", errno, fname);
+		MessageBox(hwnd, buf, "Load error", MB_ICONERROR);
 	}
 	if (bLoaded)
 	{
@@ -283,20 +283,17 @@ int HexEditorWindow::load_file(const char *fname)
 }
 
 //--------------------------------------------------------------------------------------------
-int HexEditorWindow::file_is_loadable (const char* fname)
+int HexEditorWindow::file_is_loadable(const char *fname)
 {
-	int filehandle;
-	if ((filehandle = _open (fname,_O_RDONLY|_O_BINARY,_S_IREAD|_S_IWRITE)) != -1)
-	{
-		_close (filehandle);
-		return TRUE;
-	}
-	else
+	int filehandle = _open(fname, _O_RDONLY|_O_BINARY);
+	if (filehandle == -1)
 		return FALSE;
+	_close(filehandle);
+	return TRUE;
 }
 
 //--------------------------------------------------------------------------------------------
-int HexEditorWindow::at_window_create (HWND hw, HINSTANCE hI)
+int HexEditorWindow::at_window_create(HWND hw, HINSTANCE hI)
 {
 	hwnd = hw;
 	hInstance = hI;
@@ -311,14 +308,12 @@ int HexEditorWindow::at_window_create (HWND hw, HINSTANCE hI)
 	iCurNibble = 0;
 
 	target = new CDropTarget(*this);
-	if( target )
+	if (target)
 	{
-		CoLockObjectExternal( target, TRUE, FALSE );
-		if( enable_drop )
-			RegisterDragDrop( hwnd, target );
+		CoLockObjectExternal(target, TRUE, FALSE);
+		if (enable_drop)
+			RegisterDragDrop(hwnd, target);
 	}
-	if( !target || !enable_drop || ( enable_drop && prefer_CF_HDROP ) )
-		DragAcceptFiles( hwnd, TRUE ); // Accept files dragged into window.
 	return TRUE;
 }
 
@@ -477,19 +472,18 @@ int HexEditorWindow::snap_caret()
 	int adjusth = 0;
 	int adjustv = 0;
 
-	int column;
-
+	int col = iMaxOffsetLen + iByteSpace;
 	if (bSelecting ? area == AREA_BYTES : iEnteringMode == BYTES)
-		column = BYTES_LOGICAL_COLUMN;
+		col += (iCurByte % iBytesPerLine) * 3 + iCurNibble; //BYTES_LOGICAL_COLUMN;
 	else
-		column = CHARS_LOGICAL_COLUMN;
+		col += iBytesPerLine * 3 + iCharSpace + iCurByte % iBytesPerLine; //CHARS_LOGICAL_COLUMN;
 
-	if (column >= iHscrollPos + cxBuffer)
+	if (col >= iHscrollPos + cxBuffer)
 	{
-		iHscrollPos = column - (cxBuffer - 1);
+		iHscrollPos = col - (cxBuffer - 1);
 		adjusth = 1;
 	}
-	else if (column < iHscrollPos)
+	else if (col < iHscrollPos)
 	{
 		iHscrollPos = column;
 		adjusth = 1;
@@ -501,15 +495,15 @@ int HexEditorWindow::snap_caret()
 		repall = 1;
 	}
 
-	int line = iCurByte / iBytesPerLine;
-	if (line < iVscrollPos)
+	int row = iCurByte / iBytesPerLine;
+	if (row < iVscrollPos)
 	{
-		iVscrollPos = line;
+		iVscrollPos = row;
 		adjustv = 1;
 	}
-	else if (line >= iVscrollPos + cyBuffer)
+	else if (row >= iVscrollPos + cyBuffer)
 	{
-		iVscrollPos = line - (cyBuffer - 1);
+		iVscrollPos = row - (cyBuffer - 1);
 		if (iVscrollPos < 0)
 			iVscrollPos = 0;
 		adjustv = 1;
@@ -914,7 +908,7 @@ void HexEditorWindow::hscroll(int cmd)
 int HexEditorWindow::paint()
 {
 	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint (hwnd, &ps);
+	HDC hdc = BeginPaint(hwnd, &ps);
 	//-------------------------------------------------------
 	HideCaret (hwnd);
 	// Delete remains of last position.
@@ -922,7 +916,7 @@ int HexEditorWindow::paint()
 	int b = iVscrollPos + ps.rcPaint.bottom / cyChar;
 	if (b >= iNumlines)
 		b = iNumlines - 1;
-	int iBkColor = PALETTERGB (GetRValue(iBkColorValue),GetGValue(iBkColorValue),GetBValue(iBkColorValue));
+	int iBkColor = PALETTERGB(GetRValue(iBkColorValue), GetGValue(iBkColorValue), GetBValue(iBkColorValue));
 	RECT rc;
 	HBRUSH hbr = CreateSolidBrush(iBkColor);
 	// Delete lower border if there are empty lines on screen.
@@ -954,18 +948,18 @@ int HexEditorWindow::paint()
 	SelectObject(hdc, oldpen);
 	DeleteObject(sep_pen);
 	SelectObject(hdc, oldfont);
-	ShowCaret (hwnd);
-	EndPaint (hwnd, &ps);
+	ShowCaret(hwnd);
+	EndPaint(hwnd, &ps);
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 // Receives WM_COMMAND messages and passes either them to their handler functions or
 // processes them here.
-int HexEditorWindow::command(int cmd)
+void HexEditorWindow::command(int cmd)
 {
 	if (!queryCommandEnabled(cmd))
-		return 0;
+		return;
 	HMENU hMenu = GetMenu(hwndMain);
 	switch (cmd)
 	{
@@ -1020,7 +1014,7 @@ int HexEditorWindow::command(int cmd)
 		int res,r,r0;r=r0=0;//r&r0 used to determine if the user has removed all frhed data
 		res = MessageBox(hwnd, "Are you sure you want to remove frhed ?", "Remove frhed", MB_YESNO);
 		if (res != IDYES)
-			return 0;
+			return;
 		//Can assume registry data exists
 		res = linkspresent();
 		if (res)
@@ -1142,56 +1136,65 @@ int HexEditorWindow::command(int cmd)
 		static_cast<dialog<ChangeInstDlg>*>(this)->DoModal(hwnd);
 		break;
 	case IDM_CONTEXT:
-		if(MF_CHECKED==GetMenuState(hMenu,IDM_CONTEXT,0)){
-			RegDeleteKey( HKEY_CLASSES_ROOT, "*\\shell\\Open in frhed\\command" ); //WinNT requires the key to have no subkeys
-			RegDeleteKey( HKEY_CLASSES_ROOT, "*\\shell\\Open in frhed" );
+		if (MF_CHECKED == GetMenuState(hMenu, IDM_CONTEXT, 0))
+		{
+			RegDeleteKey(HKEY_CLASSES_ROOT, "*\\shell\\Open in frhed\\command"); //WinNT requires the key to have no subkeys
+			RegDeleteKey(HKEY_CLASSES_ROOT, "*\\shell\\Open in frhed");
 		}
-		else{
+		else
+		{
 			HKEY key1;
-			LONG res = RegCreateKey( HKEY_CLASSES_ROOT,
+			LONG res = RegCreateKey(HKEY_CLASSES_ROOT,
 				"*\\shell\\Open in frhed\\command",
-				&key1 );
-			if( res == ERROR_SUCCESS ){
-				char cmd[_MAX_PATH];
-				strcpy(cmd, _pgmptr );
-				strcat(cmd," %1");
-				RegSetValue( key1, NULL, REG_SZ, cmd, strlen(cmd));
+				&key1);
+			if (res == ERROR_SUCCESS)
+			{
+				char cmd[MAX_PATH];
+				int len = sprintf(cmd, "%s %%1", _pgmptr);
+				RegSetValue(key1, NULL, REG_SZ, cmd, len);
 			}
 		}
 		break;
 	case IDM_UNKNOWN:
-		if(MF_CHECKED==GetMenuState(hMenu,IDM_UNKNOWN,0)){
+		if (MF_CHECKED == GetMenuState(hMenu, IDM_UNKNOWN, 0))
+		{
 			HKEY hk;
-			RegDeleteKey( HKEY_CLASSES_ROOT, "Unknown\\shell\\Open in frhed\\command" ); //WinNT requires the key to have no subkeys
-			RegDeleteKey( HKEY_CLASSES_ROOT, "Unknown\\shell\\Open in frhed" );
-			if(ERROR_SUCCESS==RegOpenKey(HKEY_CLASSES_ROOT,"Unknown\\shell",&hk)){
-				RegDeleteValue(hk,NULL);
-				RegCloseKey(hk);
-			}
-		}
-		else{
-			HKEY key1;
-			LONG res = RegCreateKey( HKEY_CLASSES_ROOT,
-				"Unknown\\shell\\Open in frhed\\command",
-				&key1 );
-			if( res == ERROR_SUCCESS ){
-				char cmd[_MAX_PATH];
-				strcpy(cmd, _pgmptr );
-				strcat(cmd," %1");
-				RegSetValue( key1, NULL, REG_SZ, cmd, strlen(cmd));
-			}
-		}
-		break;
-	case IDM_DEFAULT:
-		if(MF_CHECKED==GetMenuState(hMenu,IDM_DEFAULT,0)){
-			HKEY hk;
-			if(ERROR_SUCCESS==RegOpenKey(HKEY_CLASSES_ROOT,"Unknown\\shell",&hk)){
-				RegDeleteValue(hk,NULL);
+			RegDeleteKey(HKEY_CLASSES_ROOT, "Unknown\\shell\\Open in frhed\\command"); //WinNT requires the key to have no subkeys
+			RegDeleteKey(HKEY_CLASSES_ROOT, "Unknown\\shell\\Open in frhed");
+			if (ERROR_SUCCESS == RegOpenKey(HKEY_CLASSES_ROOT, "Unknown\\shell", &hk))
+			{
+				RegDeleteValue(hk, NULL);
 				RegCloseKey(hk);
 			}
 		}
 		else
-			RegSetValue( HKEY_CLASSES_ROOT, "Unknown\\shell", REG_SZ, "Open in frhed", 13);
+		{
+			HKEY key1;
+			LONG res = RegCreateKey(HKEY_CLASSES_ROOT,
+				"Unknown\\shell\\Open in frhed\\command",
+				&key1);
+			if (res == ERROR_SUCCESS)
+			{
+				char cmd[MAX_PATH];
+				int len = sprintf(cmd, "%s %%1", _pgmptr);
+				RegSetValue(key1, NULL, REG_SZ, cmd, len);
+			}
+		}
+		break;
+	case IDM_DEFAULT:
+		if (MF_CHECKED == GetMenuState(hMenu, IDM_DEFAULT, 0))
+		{
+			HKEY hk;
+			if (ERROR_SUCCESS == RegOpenKey(HKEY_CLASSES_ROOT, "Unknown\\shell", &hk))
+			{
+				RegDeleteValue(hk, NULL);
+				RegCloseKey(hk);
+			}
+		}
+		else
+		{
+			RegSetValue(HKEY_CLASSES_ROOT, "Unknown\\shell", REG_SZ, "Open in frhed", 13);
+		}
 		break;
 //end
 	case IDM_REPLACE:
@@ -1213,7 +1216,7 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDM_BMK_COLOR:
-		CMD_color_settings( &iBmkColor );
+		CMD_color_settings(&iBmkColor);
 		break;
 
 	case IDM_RESET_COLORS:
@@ -1221,11 +1224,8 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDM_EDIT_READONLYMODE:
-		if( bReadOnly == FALSE )
-			bReadOnly = TRUE;
-		else
-			bReadOnly = FALSE;
-		resize_window();
+		bReadOnly = !bReadOnly;
+		set_wnd_title();
 		break;
 
 	case IDM_APPLYTEMPLATE:
@@ -1273,53 +1273,43 @@ int HexEditorWindow::command(int cmd)
 
 	case IDM_READFLOAT:
 		{
-//Pabs optimized - since sprintf returns the string len we can use a pointer, save 46 bytes & not call strcat so many times
-			char buf[500],* buf2 = buf;
-			buf[0] = 0;
-			float floatval;//Pabs replaced 4 with sizeof(floatval)
-			if (DataArray.GetLength()-iCurByte >= sizeof(floatval))
+			char buf[500];
+			char *buf2 = buf;
+			buf[0] = '\0';
+			union
+			{
+				float fval;
+				double dval;
+				BYTE bytes[1];
+			} u;
+			int iBytesAhead = DataArray.GetLength() - iCurByte;
+			if (iBytesAhead >= sizeof u.fval)
 			{
 				// Space enough for float.
-				if (iBinaryMode == LITTLEENDIAN_MODE)
-				{
-					floatval = *((float*)&(DataArray[iCurByte]));
-				}
-				else // BIGENDIAN_MODE
-				{
-					char* pf = (char*) &floatval;
-					int i;//Pabs replaced 4 with sizeof(floatval)
-					for (i=0; i<sizeof(floatval); i++)//Pabs replaced 3 with sizeof(floatval)-1
-						pf[i] = DataArray[iCurByte+(int)sizeof(floatval)-1-i];
-				}
-				buf2 += sprintf (buf2, "float size value:\n%f\n", floatval);
+				memcpy(&u, &DataArray[iCurByte], sizeof u.fval);
+				if (iBinaryMode != LITTLEENDIAN_MODE) // BIGENDIAN_MODE
+					reverse_bytes(u.bytes, u.bytes + sizeof u.fval - 1);
+				buf2 += sprintf(buf2, "float size value:\n%g\n", u.fval);
 			}
 			else
-				buf2 += sprintf (buf2, "Not enough space for float size value.\n");
-			double dval;//Pabs replaced 8 with sizeof(dval) - portability
-			if (DataArray.GetLength()-iCurByte >= sizeof(dval))
+			{
+				buf2 += sprintf(buf2, "Not enough space for float size value.\n");
+			}
+			if (iBytesAhead >= sizeof u.dval)
 			{
 				// Space enough for double.
-				if (iBinaryMode == LITTLEENDIAN_MODE)
-				{
-					dval = *((double*)&(DataArray[iCurByte]));
-				}
-				else // BIGENDIAN_MODE
-				{
-					char* pd = (char*) &dval;
-					int i;//Pabs replaced 8 with sizeof(dval) - portability
-					for (i=0; i<sizeof(dval); i++)//Pabs replaced 7 with (int)sizeof(dval)-1 - portability
-						pd[i] = DataArray[iCurByte+(int)sizeof(dval)-1-i];
-				}
-				buf2 += sprintf (buf2, "\ndouble size value:\n%g\n", dval);
+				memcpy(&u, &DataArray[iCurByte], sizeof u.dval);
+				if (iBinaryMode != LITTLEENDIAN_MODE) // BIGENDIAN_MODE
+					reverse_bytes(u.bytes, u.bytes + sizeof u.dval - 1);
+				buf2 += sprintf(buf2, "\ndouble size value:\n%g\n", u.dval);
 			}
 			else
 			{
-				buf2 += sprintf (buf2, "\nNot enough space for double size value.\n");
-//end
-			}//Pabs replaced NULL w hwnd
+				buf2 += sprintf(buf2, "\nNot enough space for double size value.\n");
+			}
 			MessageCopyBox(hwnd, buf, "Floating point values", MB_ICONINFORMATION);
-			break;//end
 		}
+		break;
 
 	case IDM_PROPERTIES:
 		CMD_properties();
@@ -1334,7 +1324,7 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDA_INSERTMODETOGGLE:
-		CMD_toggle_insertmode ();
+		CMD_toggle_insertmode();
 		break;
 
 	case IDA_DELETEKEY:
@@ -1342,7 +1332,7 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDM_CHARACTER_SET:
-		CMD_character_set ();
+		CMD_character_set();
 		break;
 
 	case IDM_EDIT_MANIPULATEBITS:
@@ -1354,78 +1344,65 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDM_SELTEXT_COLOR:
-		CMD_color_settings( &iSelTextColorValue );
+		CMD_color_settings(&iSelTextColorValue);
 		break;
 
 	case IDM_SELBACK_COLOR:
-		CMD_color_settings( &iSelBkColorValue );
+		CMD_color_settings(&iSelBkColorValue);
 		break;
 
 	case IDM_SEP_COLOR:
-		CMD_color_settings (&iSepColorValue);
+		CMD_color_settings(&iSepColorValue);
 		break;
 
 	case IDM_TEXT_COLOR:
-		CMD_color_settings (&iTextColorValue);
+		CMD_color_settings(&iTextColorValue);
 		break;
 
 	case IDM_BK_COLOR:
-		CMD_color_settings (&iBkColorValue);
+		CMD_color_settings(&iBkColorValue);
 		break;
 
 	case IDM_VIEW_SETTINGS:
-		CMD_view_settings ();
+		CMD_view_settings();
 		break;
 
+#ifdef _DEBUG
 	case IDM_INTERNALSTATUS:
 		{
-			// Remove break for internal information on F2.
-//Pabs inserted
-#ifndef _DEBUG
-			break;
-#endif
-//end
-//Pabs optimized - since sprintf returns the string len we can use a pointer, save 296 bytes & not call strcat so many times
-			/*Used to do this
-			char buf[4000], buf2[300];
-			for each bit of status info{
-				sprintf (buf2, "<status string>\n", <status data>);
-				strcat(buf,buf2);
-			}*/
-			char buf[4000],* buf2 = buf;
-			buf2 += sprintf (buf2, "Data length: %d\n", DataArray.GetLength ());
-			buf2 += sprintf (buf2, "Upper Bound: %d\n", DataArray.GetUpperBound ());
-			buf2 += sprintf (buf2, "Data size: %d\n", DataArray.GetSize ());
-			buf2 += sprintf (buf2, "cxChar: %d\n", cxChar );
-			buf2 += sprintf (buf2, "cyChar: %d\n", cyChar );
-			buf2 += sprintf (buf2, "iNumlines: %d\n", iNumlines);
-			buf2 += sprintf (buf2, "iVscrollPos: %d\n", iVscrollPos);
-			buf2 += sprintf (buf2, "iCurByte: %d\n", iCurByte);
-			buf2 += sprintf (buf2, "cyBuffer: %d\n", cyBuffer );
-//Pabs inserted
-			buf2 += sprintf (buf2, "cxBuffer: %d\n", cxBuffer );
-//end
-			buf2 += sprintf (buf2, "iMRU_count: %d\n", iMRU_count);
+			char buf[4000];
+			char *buf2 = buf;
+			buf2 += sprintf(buf2, "Data length: %d\n", DataArray.GetLength());
+			buf2 += sprintf(buf2, "Upper Bound: %d\n", DataArray.GetUpperBound());
+			buf2 += sprintf(buf2, "Data size: %d\n", DataArray.GetSize());
+			buf2 += sprintf(buf2, "cxChar: %d\n", cxChar);
+			buf2 += sprintf(buf2, "cyChar: %d\n", cyChar);
+			buf2 += sprintf(buf2, "iNumlines: %d\n", iNumlines);
+			buf2 += sprintf(buf2, "iVscrollPos: %d\n", iVscrollPos);
+			buf2 += sprintf(buf2, "iCurByte: %d\n", iCurByte);
+			buf2 += sprintf(buf2, "cyBuffer: %d\n", cyBuffer);
+			buf2 += sprintf(buf2, "cxBuffer: %d\n", cxBuffer);
+			buf2 += sprintf(buf2, "iMRU_count: %d\n", iMRU_count);
 			int i;
-			for (i=0; i<MRUMAX; i++)
+			for (i = 0 ; i < MRUMAX ; i++)
 			{
-				buf2 += sprintf (buf2, "MRU %d=%s\n", i, &(strMRU[i][0]));
-//end
-			}//Pabs replaced NULL w hwnd
-			MessageBox (hwnd, buf, "Internal status", MB_OK);
-			break;//end
+				buf2 += sprintf(buf2, "MRU %d=%s\n", i + 1, strMRU[i]);
+			}
+			MessageBox(hwnd, buf, "Internal status", MB_OK);
 		}
+		break;
+#endif
 
 	case IDM_EDIT_CUT:
 		CMD_edit_cut();
 		break;
 
 	case IDM_HELP_TOPICS:
-		ShowHtmlHelp ( HELP_CONTENTS, 0, hwnd);
+		ShowHtmlHelp(HELP_CONTENTS, 0, hwnd);
 		break;
 
 	case IDM_EDIT_ENTERDECIMALVALUE:
-		CMD_edit_enterdecimalvalue ();
+		CMD_edit_enterdecimalvalue();
 		break;
 
 	case IDM_COPY_HEXDUMP:
@@ -1445,7 +1422,7 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	case IDM_ABOUT:
-		DialogBox(hInstance, MAKEINTRESOURCE(IDD_ABOUTDIALOG), hwnd, AboutDlgProc);
+		ShowModalDialog(IDD_ABOUTDIALOG, hwnd, AboutDlgProc, this);
 		break;
 
 	case IDM_FIND:
@@ -1468,70 +1445,28 @@ int HexEditorWindow::command(int cmd)
 		CMD_save();
 		break;
 
-	case IDM_EXIT:
-		SendMessage (hwnd, WM_CLOSE, 0, 0);
+	case IDM_SCROLL_PRIOR:
+		vscroll(SB_PAGEUP);
 		break;
 
-	case IDM_SCROLL_PRIOR:{
-		int icl = iVscrollPos;
-		iVscrollPos-=cyBuffer;
-		if (iVscrollPos < 0)
-			iVscrollPos = 0;
-		if (icl != iVscrollPos){
-			adjust_vscrollbar ();
-			repaint ();
-		}
-	}
-	break;
-
-	case IDM_SCROLL_NEXT:{
-		int icl = iVscrollPos;
-		iVscrollPos+=cyBuffer;
-		if (iVscrollPos > iNumlines-cyBuffer)
-			iVscrollPos=iNumlines-cyBuffer;
-		if (iVscrollPos < 0)
-			iVscrollPos=0;
-		if (icl != iVscrollPos){
-			adjust_vscrollbar();
-			repaint();
-		}
-	}
-	break;
+	case IDM_SCROLL_NEXT:
+		vscroll(SB_PAGEDOWN);
+		break;
 
 	case IDM_SCROLL_UP:
-		if (iVscrollPos > 0)
-		{
-			iVscrollPos--;
-			adjust_vscrollbar ();
-			repaint ();
-		}
+		vscroll(SB_LINEUP);
 		break;
 
 	case IDM_SCROLL_DOWN:
-		if (iVscrollPos < iNumlines-cyBuffer)
-		{
-			iVscrollPos++;
-			adjust_vscrollbar ();
-			repaint ();
-		}
+		vscroll(SB_LINEDOWN);
 		break;
 
 	case IDM_SCROLL_LEFT:
-		if (iHscrollPos > 0)
-		{
-			iHscrollPos--;
-			adjust_hscrollbar ();
-			repaint ();
-		}
+		hscroll(SB_LINELEFT);
 		break;
 
 	case IDM_SCROLL_RIGHT:
-		if (iHscrollPos < iGetCharsPerLine() - cxBuffer)
-		{
-			iHscrollPos++;
-			adjust_hscrollbar ();
-			repaint();
-		}
+		hscroll(SB_LINERIGHT);
 		break;
 
 	case IDM_OPEN:
@@ -1575,23 +1510,21 @@ int HexEditorWindow::command(int cmd)
 		break;
 
 	default:
-		{//Pabs replaced NULL w hwnd
+		{
 			char buf[500];
-			sprintf (buf, "Unknown COMMAND-ID %d.", cmd);
-			MessageBox (hwnd, buf, "frhed ERROR", MB_OK);
-		}//end
+			sprintf(buf, "Unknown COMMAND-ID %d.", cmd);
+			MessageBox(hwnd, buf, "frhed ERROR", MB_OK);
+		}
 		break;
 	}
-	return 0;
 }
 
-
 //--------------------------------------------------------------------------------------------
-int HexEditorWindow::destroy_window ()
+int HexEditorWindow::destroy_window()
 {
-	DragAcceptFiles(hwnd,FALSE);
 	RevokeDragDrop(hwnd);
-	if (target) CoLockObjectExternal(target, FALSE, TRUE);
+	if (target)
+		CoLockObjectExternal(target, FALSE, TRUE);
 	return 0;
 }
 
@@ -2042,9 +1975,11 @@ void HexEditorWindow::print_line(HDC hdc, int line, HBRUSH hbr)
 	int i = sprintf(linbuf, "%*.*x", iMinOffsetLen, iMinOffsetLen, bPartialStats ? startpos + iPartialOffset : startpos);
 	memset(linbuf + i, ' ', m - i);
 
-	SetTextColor (hdc, iTextColor);
-	SetBkColor (hdc, iBkColor);
+	SetTextColor(hdc, iTextColor);
+	SetBkColor(hdc, iBkColor);
 	print_text(hdc, x, y, linbuf, m);
+
+	RECT r;
 
 	x += m;
 	int z = x + (iByteSpace + 1) * iBytesPerLine + iCharSpace;
@@ -2085,24 +2020,20 @@ void HexEditorWindow::print_line(HDC hdc, int line, HBRUSH hbr)
 				u = '.';
 			}
 		}
-		else if (i > length)
-		{
-			linbuf[0] = linbuf[1] = ' ';
-		}
 		else
 		{
-			linbuf[0] = linbuf[1] = '_';
+			linbuf[0] = linbuf[1] = i == length ? '_' : ' ';
 		}
 		bool bDiff = i < length && i < sibling_length && buffer[i] != sibling_buffer[i];
 		if (bSelected && i >= iSelLower && i <= iSelUpper)
 		{
-			SetTextColor (hdc, bDiff ? iSelDiffTextColor : iSelTextColor);
-			SetBkColor (hdc, bDiff ? iSelDiffBkColor : iSelBkColor);
+			SetTextColor(hdc, bDiff ? iSelDiffTextColor : iSelTextColor);
+			SetBkColor(hdc, bDiff ? iSelDiffBkColor : iSelBkColor);
 		}
 		else
 		{
-			SetTextColor (hdc, bDiff ? iDiffTextColor : iTextColor);
-			SetBkColor (hdc, bDiff ? iDiffBkColor : iBkColor);
+			SetTextColor(hdc, bDiff ? iDiffTextColor : iTextColor);
+			SetBkColor(hdc, bDiff ? iDiffBkColor : iBkColor);
 		}
 		m = iByteSpace;
 		if (i < endpos)
@@ -2115,27 +2046,24 @@ void HexEditorWindow::print_line(HDC hdc, int line, HBRUSH hbr)
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Separators.
-	for (i = 0; i <= iBytesPerLine / 4 ; i++)
+	r.top = (line - iVscrollPos) * cyChar;
+	r.bottom = r.top + cyChar;
+	for (i = 0 ; i <= iBytesPerLine ; i += 4)
 	{
-//Pabs replaced "iOffsetLen" with "iMaxOffsetLen"
-		m = (iMaxOffsetLen+iByteSpace)*cxChar - cxChar/2 + 3*cxChar*4*i - cxChar*iHscrollPos;
-//end
-		MoveToEx (hdc, m, (line-iVscrollPos)*cyChar, NULL);
-		LineTo (hdc, m, (line-iVscrollPos+1)*cyChar);
+		r.left = r.right = (iMaxOffsetLen + iByteSpace - iHscrollPos + i * 3) * cxChar - cxChar / 2;
+		Polyline(hdc, (LPPOINT)&r, 2);
 	}
 	// Separator for chars.
-	m = CHARSTART*cxChar - cxChar*iHscrollPos - 2;
-	MoveToEx (hdc, m, (line-iVscrollPos)*cyChar, NULL);
-	LineTo (hdc, m, (line-iVscrollPos+1)*cyChar);
+	r.left = r.right = (iMaxOffsetLen + iByteSpace - iHscrollPos + iBytesPerLine * 3 + iCharSpace) * cxChar - cxChar / 2 - 1;
+	Polyline(hdc, (LPPOINT)&r, 2);
 	// Second separator.
-	MoveToEx (hdc, m+2, (line-iVscrollPos)*cyChar, NULL);
-	LineTo (hdc, m+2, (line-iVscrollPos+1)*cyChar);
+	OffsetRect(&r, 2, 0);
+	Polyline(hdc, (LPPOINT)&r, 2);
 
 	// Print bookmark indicators.
 	// Are there bookmarks in this line?
 	int el = startpos + iBytesPerLine - 1;
 	int chpos;
-	RECT r;
 	// Brush for bookmark borders.
 	for( i = 0; i < iBmkCount; i++ )
 	{
@@ -2170,29 +2098,32 @@ void HexEditorWindow::print_line(HDC hdc, int line, HBRUSH hbr)
 
 //--------------------------------------------------------------------------------------------
 // Set horizontal scroll position so that caret is visible.
-void HexEditorWindow::adjust_view_for_caret ()
+void HexEditorWindow::adjust_view_for_caret()
 {
-	int log_column;
+	int col = iMaxOffsetLen + iByteSpace;
 	if (iEnteringMode == BYTES)
-		log_column = BYTES_LOGICAL_COLUMN;
+		col += (iCurByte % iBytesPerLine) * 3 + iCurNibble; //BYTES_LOGICAL_COLUMN;
 	else
-		log_column = CHARS_LOGICAL_COLUMN;
+		col += iBytesPerLine * 3 + iCharSpace + iCurByte % iBytesPerLine; //CHARS_LOGICAL_COLUMN;
 
 //Pabs changed to put cursor in center of screen
-	if ( log_column >= iHscrollPos + cxBuffer
-	  || log_column < iHscrollPos )
-		iHscrollPos = log_column - cxBuffer/2;
+	if ( col < iHscrollPos
+	  || col >= iHscrollPos + cxBuffer )
+		iHscrollPos = col - cxBuffer / 2;
 	if( iHscrollPos > iHscrollMax - cxBuffer + 1 )
 		iHscrollPos = iHscrollMax - cxBuffer + 1;
-	if( iHscrollPos < 0 ) iHscrollPos = 0;
-	adjust_hscrollbar ();
-	if( BYTELINE < iVscrollPos
-	 || BYTELINE > iVscrollPos + cyBuffer - 1 )
-		iVscrollPos = BYTELINE - cyBuffer/2;
+	if( iHscrollPos < 0 )
+		iHscrollPos = 0;
+	adjust_hscrollbar();
+	int row = iCurByte / iBytesPerLine;
+	if( row < iVscrollPos
+	 || row >= iVscrollPos + cyBuffer )
+		iVscrollPos = row - cyBuffer / 2;
 	if( iVscrollPos > iVscrollMax - cyBuffer + 1 )
 		iVscrollPos = iVscrollMax - cyBuffer + 1;
-	if( iVscrollPos < 0 ) iVscrollPos = 0;
-	adjust_vscrollbar ();
+	if( iVscrollPos < 0 )
+		iVscrollPos = 0;
+	adjust_vscrollbar();
 //end
 }
 
@@ -2359,7 +2290,6 @@ int HexEditorWindow::initmenupopup(WPARAM w, LPARAM l)
 // Handler on window closing.
 int HexEditorWindow::close(const char *caption)
 {
-//Pabs changed - restructured so that help file is always closed on exit & the user can save&exit, exit | not exit if file changed
 	if (iFileChanged)
 	{
 		int res = MessageBox(hwnd, "Do you want to save your changes?",
@@ -2368,15 +2298,6 @@ int HexEditorWindow::close(const char *caption)
 			//User doesn't want to quit or User wants to save and the save was unsuccessful
 			return 0;//Don't exit
 	}
-//	else
-//	{
-	// If help was open close it.
-//	ShowHtmlHelp(HELP_QUIT, 0, hwnd);
-//	}
-//end
-
-	// Destroy window.
-//	DestroyWindow( hwnd );
 	return 1;
 }
 
@@ -2386,41 +2307,24 @@ BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 	switch (iMsg)
 	{
 	case WM_INITDIALOG:
-		if (HRSRC hRes = ::FindResource(hMainInstance, MAKEINTRESOURCE(VS_VERSION_INFO), RT_VERSION))
-		{
-			struct VersionData
-			{ 
-				WORD wLength; 
-				WORD wValueLength; 
-				WORD wType;
-				WCHAR szKey[sizeof"VS_VERSION_INFO"];
-				VS_FIXEDFILEINFO FixedFileInfo;
-			};
-			C_ASSERT(sizeof(struct VersionData) % sizeof(int) == 0);
-			if (struct VersionData *pRes = (struct VersionData *)::LoadResource(hMainInstance, hRes))
-			{
-				TCHAR szVersion[40];
-				int cch = wsprintf(szVersion, TEXT("heksedit %u.%02u"), UINT HIWORD(pRes->FixedFileInfo.dwFileVersionMS), UINT LOWORD(pRes->FixedFileInfo.dwFileVersionMS));
-				if (pRes->FixedFileInfo.dwFileFlags & VS_FF_PRERELEASE)
-					szVersion[cch++] = 'b';
-				if (pRes->FixedFileInfo.dwFileFlags & VS_FF_DEBUG)
-					szVersion[cch++] = 'D';
-				szVersion[cch] = '\0';
-				::SetDlgItemText(hDlg, IDC_ST_VERSION, szVersion);
-			}
-		}
+		TranslateDialog(hDlg);
 		// Set the version information.
 		SetDlgItemText(hDlg, IDC_STATIC1,
 			"frhed - free hex editor for 32-bit Windows\nVersion "CURRENT_VERSION"."
-			SUB_RELEASE_NO "\n(c) Raihan Kibria 2000"
+			SUB_RELEASE_NO"\n(c) Raihan Kibria 2000"
 			"\nFill with by Pabs Dec 1999"
-			"\nDisk-Access, Code/Decode Extension and some other bits by Gerson Kurz.");
+			"\nDisk-Access, Code/Decode Extension and some other bits by Gerson Kurz."
+			"\nDLL interface by Jochen Neubeck.");
 		// Set the email-addresses.
 		SetDlgItemText(hDlg, IDC_EDIT1,
 			"rkibria@hrz1.hrz.tu-darmstadt.de"
 			"\r\nPabs: pabs3@zip.to");
 		// Set the homepage URL.
 		SetDlgItemText(hDlg, IDC_EDIT2, "http://www.kibria.de");
+		// Set the icon.
+		if (HWND hwndParent = GetParent(hDlg))
+			if (DWORD dwIcon = GetClassLong(hwndParent, GCL_HICON))
+				SendDlgItemMessage(hDlg, IDC_APPICON, STM_SETICON, dwIcon, 0);
 		return TRUE;
 
 	case WM_COMMAND:
@@ -2434,7 +2338,7 @@ BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 		case IDC_BUTTON1:
 			{
 				HINSTANCE hi = ShellExecute(hDlg, "open", "http://www.kibria.de", 0, NULL, SW_SHOWNORMAL);
-				if ((UINT)hi <= 32)
+				if ((UINT)hi <= HINSTANCE_ERROR)
 					MessageBox(hDlg, "Could not call browser.", "Go to homepage", MB_ICONERROR);
 			}
 		}
@@ -2588,19 +2492,19 @@ int HexEditorWindow::mousemove(int xPos, int yPos)
 
 	if (bLButtonDown)
 	{
-
 		if (bSelecting)
 		{
 			fix_scroll_timers(xPos, yPos);
 
 			int lastbyte = DataArray.GetUpperBound();
-			if( new_pos > lastbyte ) new_pos = lastbyte;
-			if( iEndOfSelection != new_pos )
+			if (new_pos > lastbyte)
+				new_pos = lastbyte;
+			if (iEndOfSelection != new_pos)
 			{
 				bSelected = TRUE;
 				int oeos = iEndOfSelection;
 				iEndOfSelection = new_pos;
-				repaint(oeos/iBytesPerLine,new_pos/iBytesPerLine);
+				repaint(oeos / iBytesPerLine, new_pos / iBytesPerLine);
 			}
 		}
 		/*else if (bPullScrolling)
@@ -2622,7 +2526,9 @@ int HexEditorWindow::mousemove(int xPos, int yPos)
 	else
 	{
 		SetCursor(LoadCursor(NULL,
-			enable_drag && bSelected && IN_BOUNDS(new_pos, iStartOfSelection, iEndOfSelection) ?
+			enable_drag && bSelected &&
+			new_pos >= iGetStartOfSelection() &&
+			new_pos <= iGetEndOfSelection() ?
 			IDC_ARROW : IDC_IBEAM));
 	}
 
@@ -3075,14 +2981,13 @@ int HexEditorWindow::CMD_copy_hexdump(int iCopyHexdumpMode, int iCopyHexdumpType
 	}
 	else
 		return 0;
-	if(mem)
+	if (mem)
 		return 1;
 	if (iCopyHexdumpMode == 0)
 	{
 		// to file.
 		char szFileName[_MAX_PATH];
-		char szTitleName[_MAX_FNAME + _MAX_EXT];
-		strcpy (szFileName, "hexdump.txt");
+		strcpy(szFileName, "hexdump.txt");
 		HGLOBAL hg = NULL;
 		if( iCopyHexdumpType == IDC_EXPORTRTF ){
 			hg = (HGLOBAL)pMem;
@@ -3096,42 +3001,27 @@ int HexEditorWindow::CMD_copy_hexdump(int iCopyHexdumpMode, int iCopyHexdumpType
 
 		// to file.
 		OPENFILENAME ofn;
-		ofn.lStructSize = sizeof (OPENFILENAME);
+		ZeroMemory(&ofn, sizeof ofn);
+		ofn.lStructSize = sizeof ofn;
 		ofn.hwndOwner = hwnd;
-		ofn.hInstance = NULL;
 		ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-		ofn.lpstrCustomFilter = NULL;
-		ofn.nMaxCustFilter = 0;
-		ofn.nFilterIndex = 0;
 		ofn.lpstrFile = szFileName;
 		ofn.nMaxFile = _MAX_PATH;
-		ofn.lpstrFileTitle = szTitleName;
-		ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-		ofn.lpstrInitialDir = NULL;
-		ofn.lpstrTitle = NULL;
 		ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-		ofn.nFileOffset = 0;
-		ofn.nFileExtension = 0;
-		ofn.lpstrDefExt = NULL;
-		ofn.lCustData = 0L;
-		ofn.lpfnHook = NULL;
-		ofn.lpTemplateName = NULL;
-		if (GetSaveFileName (&ofn))
+		if (GetSaveFileName(&ofn))
 		{
-			int filehandle;
-			if ((filehandle = _open (szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY,_S_IREAD|_S_IWRITE)) != -1)
+			int filehandle = _open(szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY, _S_IREAD|_S_IWRITE);
+			if (filehandle != -1)
 			{
 				// Write file.
-				if ((_write (filehandle, pMem, buflen-1)) != -1)
-				{//Pabs replaced NULL w hwnd
-					MessageBox (hwnd, "Hexdump saved.", "Export hexdump", MB_ICONINFORMATION);
-				}
+				if (_write(filehandle, pMem, buflen - 1) != -1)
+					MessageBox(hwnd, "Hexdump saved.", "Export hexdump", MB_ICONINFORMATION);
 				else
-					MessageBox (hwnd, "Could not save Hexdump.", "Export hexdump", MB_ICONERROR);
-				_close (filehandle);
+					MessageBox(hwnd, "Could not save Hexdump.", "Export hexdump", MB_ICONERROR);
+				_close(filehandle);
 			}
 			else
-				MessageBox (hwnd, "Could not save Hexdump.", "Export hexdump", MB_ICONERROR);
+				MessageBox(hwnd, "Could not save Hexdump.", "Export hexdump", MB_ICONERROR);
 		}//end
 		if (iCopyHexdumpType == IDC_EXPORTRTF)
 		{
@@ -3197,7 +3087,7 @@ void HexEditorWindow::CMD_edit_enterdecimalvalue()
 // Return: Length of resulting string.
 // ppd = pointer to pointer to result, must be delete[]-ed later.
 // If the input string was empty, no translated array is created and zero is returned.
-int HexEditorWindow::create_bc_translation (char** ppd, char* src, int srclen)
+int HexEditorWindow::create_bc_translation(char **ppd, char *src, int srclen)
 {
 	int destlen = Text2BinTranslator::iLengthOfTransToBin(src, srclen);
 	if (destlen > 0)
@@ -3268,35 +3158,22 @@ int HexEditorWindow::CMD_new(const char *title)
 //-------------------------------------------------------------------
 int HexEditorWindow::CMD_save_as()
 {
-	char szFileName[_MAX_PATH] = "";
-	char szTitleName[_MAX_FNAME + _MAX_EXT] = "";
+	char szFileName[_MAX_PATH];
+	szFileName[0] = '\0';
 	if (Drive == 0)
 		strcpy(szFileName, filename);
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
-	ofn.lpstrTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (!GetSaveFileName(&ofn))
 		return 0;
 	WaitCursor w1;
-	int filehandle = _open(szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY,_S_IREAD|_S_IWRITE);
+	int filehandle = _open(szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY, _S_IREAD|_S_IWRITE);
 	if (filehandle == -1)
 	{
 		MessageBox(hwnd, "Could not save file.", "Save as", MB_ICONERROR);
@@ -3354,7 +3231,7 @@ int HexEditorWindow::CMD_save()
 	// File is partially loaded => must be saved partially or saved as.
 	if (bPartialOpen)
 	{
-		int filehandle = _open (filename, _O_RDWR|_O_BINARY,_S_IREAD|_S_IWRITE);
+		int filehandle = _open(filename, _O_RDWR|_O_BINARY);
 		if (filehandle == -1)
 		{
 			MessageBox(hwnd, "Could not save partially opened file.", "Save", MB_ICONERROR);
@@ -3417,15 +3294,15 @@ int HexEditorWindow::CMD_save()
 		return done;
 	}
 
-	int filehandle = _open(filename, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY,_S_IREAD|_S_IWRITE);
+	int filehandle = _open(filename, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY, _S_IREAD|_S_IWRITE);
 	if (filehandle == -1)
 	{
-		MessageBox (hwnd, "Could not save file.", "Save", MB_ICONERROR);
+		MessageBox(hwnd, "Could not save file.", "Save", MB_ICONERROR);
 		return 0;
 	}
 	if (_write(filehandle, DataArray, DataArray.GetLength()) == -1)
 	{
-		MessageBox (hwnd, "Could not write data to file.", "Save", MB_ICONERROR);
+		MessageBox(hwnd, "Could not write data to file.", "Save", MB_ICONERROR);
 	}
 	else
 	{
@@ -3446,29 +3323,15 @@ void HexEditorWindow::CMD_open()
 	if (!close("Open"))
 		return;
 	char szFileName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
 	szFileName[0] = '\0';
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
-	ofn.lpstrTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (GetOpenFileName(&ofn))
 		load_file(szFileName);
 }
@@ -3478,6 +3341,7 @@ void HexEditorWindow::adjust_view_for_selection()
 {
 	if( bSelected )
 	{
+		int iCharStart = iMaxOffsetLen + iByteSpace + iBytesPerLine * 3 + iCharSpace;
 //Pabs changed to put selection in center of screen
 		int iStartOfSelSetting = iStartOfSelection;
 		int iEndOfSelSetting = iEndOfSelection;
@@ -3496,8 +3360,8 @@ void HexEditorWindow::adjust_view_for_selection()
 		}
 		else
 		{
-			soscol = CHARSTART + ( iStartOfSelSetting % iBytesPerLine );
-			eoscol = CHARSTART + ( iEndOfSelSetting % iBytesPerLine );
+			soscol = iCharStart + iStartOfSelSetting % iBytesPerLine;
+			eoscol = iCharStart + iEndOfSelSetting % iBytesPerLine;
 			maxcols = iBytesPerLine;
 		}
 
@@ -3527,8 +3391,8 @@ void HexEditorWindow::adjust_view_for_selection()
 					maxcol = iMaxOffsetLen + iByteSpace + ( iBytesPerLine - 1 ) * 3 + 2;
 				}
 				else{
-					mincol = CHARSTART;
-					maxcol = CHARSTART + iBytesPerLine;
+					mincol = iCharStart;
+					maxcol = iCharStart + iBytesPerLine;
 				}
 			}
 			iHscrollPos = mincol - (cxBuffer - (maxcol-mincol) )/2;
@@ -3554,7 +3418,7 @@ void HexEditorWindow::CMD_view_settings()
 
 //-------------------------------------------------------------------
 // Change the color indicated by pColor.
-void HexEditorWindow::CMD_color_settings (COLORREF* pColor)
+void HexEditorWindow::CMD_color_settings(COLORREF *pColor)
 {
 	CHOOSECOLOR cc;
 	COLORREF crCustColors[16];
@@ -3642,18 +3506,13 @@ void HexEditorWindow::read_ini_data(char *key)
 
 		res = RegQueryValueEx( key1, "iMRU_count", NULL, NULL, (BYTE*) &iMRU_count, &datasize );
 		int i;
-		char fname[64];
-		for( i = 1; i <= MRUMAX; i++ )
+		for (i = 0 ; i < MRUMAX ; i++)
 		{
-			sprintf( fname, "MRU_File%d", i );
-			datasize = _MAX_PATH + 1;
-			res = RegQueryValueEx( key1, fname, NULL, NULL, (BYTE*) &szPath, &datasize );
-			strcpy( &( strMRU[i-1][0] ), szPath );
+			char fname[64];
+			sprintf(fname, "MRU_File%d", i + 1);
+			datasize = _MAX_PATH;
+			res = RegQueryValueEx(key1, fname, NULL, NULL, (BYTE*) strMRU[i], &datasize);
 		}
-
-		// if( res != ERROR_SUCCESS )//Pabs replaced NULL w hwnd
-		//	MessageBox( hwnd, "Could not read value", appname, MB_OK );
-
 		// Close registry.
 		RegCloseKey(key1);
 	}
@@ -4230,32 +4089,18 @@ void HexEditorWindow::CMD_open_partially()
 	if (!close("Open partially"))
 		return;
 	char szFileName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
 	szFileName[0] = '\0';
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
-	ofn.lpstrTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (!GetOpenFileName(&ofn))
 		return;
-	OpenPartiallyDlg::filehandle = _open(szFileName,_O_RDONLY|_O_BINARY,_S_IREAD|_S_IWRITE);
+	OpenPartiallyDlg::filehandle = _open(szFileName, _O_RDONLY|_O_BINARY);
 	if (OpenPartiallyDlg::filehandle == -1)
 	{
 		char buf[500];
@@ -4335,7 +4180,7 @@ void HexEditorWindow::dropfiles(HDROP hDrop)
 	UINT i = 0;
 	if (numfiles > 1)
 	{
-		i = DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_REMOVEBMK_DIALOG), hwnd, MultiDropDlgProc, (LPARAM)hDrop);
+		i = ShowModalDialog(IDD_REMOVEBMK_DIALOG, hwnd, MultiDropDlgProc, hDrop);
 		if (i >= numfiles)
 		{
 			DragFinish(hDrop);
@@ -4386,29 +4231,16 @@ void HexEditorWindow::CMD_apply_template()
 	}
 	// Get name of template file.
 	char szTemplateName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
 	szTemplateName[0] = '\0';
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "Template files (*.tpl)\0*.tpl\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szTemplateName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
 	ofn.lpstrTitle = "Choose template file";
 	ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (GetOpenFileName(&ofn))
 	{
 		// szTemplateName contains name of chosen tpl file.
@@ -4420,7 +4252,7 @@ void HexEditorWindow::CMD_apply_template()
 void HexEditorWindow::apply_template(char *pcTemplate)
 {
 	// Load template file.
-	int filehandle = _open(pcTemplate, _O_RDONLY|_O_BINARY, _S_IREAD|_S_IWRITE);
+	int filehandle = _open(pcTemplate, _O_RDONLY|_O_BINARY);
 	if (filehandle == -1)
 	{
 		char buf[500];
@@ -4453,7 +4285,7 @@ void HexEditorWindow::apply_template(char *pcTemplate)
 			TplResult.Append('\0');
 			// Display template data.
 			char *pcTmplText = TplResult;
-			DialogBoxParam(hInstance, MAKEINTRESOURCE(IDD_TMPL_RESULT_DIALOG), hwnd, TmplDisplayDlgProc, (LPARAM)pcTmplText);
+			ShowModalDialog(IDD_TMPL_RESULT_DIALOG, hwnd, TmplDisplayDlgProc, pcTmplText);
 		}
 		else//Pabs replaced NULL w hwnd
 			MessageBox(hwnd, "Template file could not be loaded.", "Template error", MB_ICONERROR);
@@ -4822,11 +4654,28 @@ HRESULT HexEditorWindow::ResolveIt(LPCSTR lpszLinkFile, LPSTR lpszPath)
 	return ::ResolveIt(hwndMain, lpszLinkFile, lpszPath);
 }
 
+void NTAPI TranslateDialog(HWND hwnd)
+{
+	if (IsWindowUnicode(hwnd))
+		langArray.TranslateDialogW(hwnd);
+	else
+		langArray.TranslateDialogA(hwnd);
+}
+
+INT_PTR NTAPI ShowModalDialog(UINT idd, HWND hwnd, DLGPROC dlgproc, LPVOID param)
+{
+	HINSTANCE hinst = langArray.m_hLangDll ? langArray.m_hLangDll : hMainInstance;
+	return IsWindowUnicode(hwnd)
+	? DialogBoxParamW(hinst, MAKEINTRESOURCEW(idd), hwnd, dlgproc, (LPARAM)param)
+	: DialogBoxParamA(hinst, MAKEINTRESOURCEA(idd), hwnd, dlgproc, (LPARAM)param);
+}
+
 //-------------------------------------------------------------------
 void HexEditorWindow::CMD_colors_to_default()
-{//Pabs replaced NULL w hwnd
-	if( MessageBox( hwnd, "Really reset colors to default values?", appname, MB_YESNO | MB_ICONQUESTION ) == IDYES )
-	{//end
+{
+	if (MessageBox(hwnd, "Really reset colors to default values?",
+			appname, MB_YESNO | MB_ICONQUESTION) == IDYES)
+	{
 		iBmkColor = RGB( 255, 0, 0 );
 		iSelBkColorValue = RGB( 255, 255, 0 );
 		iSelTextColorValue = RGB( 0, 0, 0 );
@@ -4837,7 +4686,6 @@ void HexEditorWindow::CMD_colors_to_default()
 		repaint();
 	}
 }
-
 
 void HexEditorWindow::CMD_GotoDllExports()
 {
@@ -5016,29 +4864,19 @@ void HexEditorWindow::CMD_findnext()
 	if (FindDlg::pcFindDlgBuffer)
 	{
 		// There is a findstring. Create its translation.
-		char* pcFindstring;
+		char *pcFindstring;
 		int srclen = strlen(FindDlg::pcFindDlgBuffer);
 		if (int destlen = create_bc_translation(&pcFindstring, FindDlg::pcFindDlgBuffer, srclen))
 		{
 			SetCursor(LoadCursor(NULL, IDC_WAIT));
-			int i = find_bytes(
-				(char *)&DataArray[iCurByte + 1],
+			int i = find_bytes((char *)&DataArray[iCurByte + 1],
 				DataArray.GetLength() - iCurByte - 1,
 				pcFindstring, destlen, 1,
 				FindDlg::iFindDlgMatchCase ? equal : lower_case);
-			if (i != -1)
-				iCurByte += i + 1;
-
 			SetCursor(LoadCursor(NULL, IDC_ARROW));
-			if( i != -1 )
+			if (i != -1)
 			{
-				/* OLD
-				// Caret will be vertically centered if line of found string is not visible.
-				if( iCurByte/iBytesPerLine < iVscrollPos || iCurByte/iBytesPerLine > iVscrollPos + cyBuffer )
-					iVscrollPos = max( 0, iCurByte/iBytesPerLine-cyBuffer/2 );
-				adjust_vscrollbar();
-				*/
-
+				iCurByte += i + 1;
 				bSelected = TRUE;
 				iStartOfSelection = iCurByte;
 				iEndOfSelection = iCurByte + destlen - 1;
@@ -5046,8 +4884,9 @@ void HexEditorWindow::CMD_findnext()
 				repaint();
 			}
 			else
+			{
 				MessageBox(hwnd, "Could not find any more occurances.", "Find next", MB_ICONERROR);
-
+			}
 			delete [] pcFindstring;
 		}
 		else
@@ -5104,32 +4943,23 @@ void HexEditorWindow::CMD_findprev()
 	if (FindDlg::pcFindDlgBuffer)
 	{
 		// There is a findstring. Create its translation.
-		char* pcFindstring;
+		char *pcFindstring;
 		int srclen = strlen(FindDlg::pcFindDlgBuffer);
 		if (int destlen = create_bc_translation(&pcFindstring, FindDlg::pcFindDlgBuffer, srclen))
 		{
-			SetCursor( LoadCursor( NULL, IDC_WAIT ) );
+			SetCursor(LoadCursor(NULL, IDC_WAIT));
 			// Search the array starting at index 0 to the current byte,
 			// plus the findstring-length minus 1. If
 			// you are somewhere in the middle of the findstring with the caret
 			// and you choose "find previous" you usually want to find the beginning
 			// of the findstring in the file.
-			int i = find_bytes((char *) &DataArray[0],
-				min( iCurByte + (destlen - 1), DataArray.GetLength() ),
+			int i = find_bytes((char *)&DataArray[0],
+				min(iCurByte + (destlen - 1), DataArray.GetLength()),
 				pcFindstring, destlen, -1, FindDlg::iFindDlgMatchCase ? equal : lower_case);
+			SetCursor(LoadCursor(NULL, IDC_ARROW));
 			if (i != -1)
-				iCurByte = i;
-
-			SetCursor( LoadCursor( NULL, IDC_ARROW ) );
-			if( i != -1 )
 			{
-				/* OLD
-				// Caret will be vertically centered if line of found string is not visible.
-				if( iCurByte/iBytesPerLine < iVscrollPos || iCurByte/iBytesPerLine > iVscrollPos + cyBuffer )
-					iVscrollPos = max( 0, iCurByte/iBytesPerLine-cyBuffer/2 );
-				adjust_vscrollbar();
-				*/
-
+				iCurByte = i;
 				bSelected = TRUE;
 				iStartOfSelection = iCurByte;
 				iEndOfSelection = iCurByte + destlen - 1;
@@ -5137,7 +4967,9 @@ void HexEditorWindow::CMD_findprev()
 				repaint();
 			}
 			else
+			{
 				MessageBox(hwnd, "Could not find any more occurances.", "Find previous", MB_ICONERROR);
+			}
 			delete [] pcFindstring;
 		}
 		else
@@ -5192,11 +5024,11 @@ int HexEditorWindow::OnWndMsg( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 		break;
 
 	case WM_LBUTTONDOWN:
-		lbuttondown( wParam, LOWORD( lParam ), HIWORD( lParam ) );
+		lbuttondown(wParam, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
 
 	case WM_LBUTTONUP:
-		lbuttonup( LOWORD( lParam ), HIWORD( lParam ) );
+		lbuttonup(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
 
 	// GK20AUG2K
@@ -5205,15 +5037,15 @@ int HexEditorWindow::OnWndMsg( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 		break;
 
 	case WM_MOUSEMOVE:
-		mousemove( (int) (short) LOWORD( lParam ), (int) (short) HIWORD( lParam ) );
+		mousemove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
 
 	case WM_KEYDOWN:
-		keydown( wParam );
+		keydown(wParam);
 		break;
 
 	case WM_CHAR:
-		character( (char) wParam );
+		character((char)wParam);
 		break;
 
 	case WM_VSCROLL:
@@ -5229,7 +5061,7 @@ int HexEditorWindow::OnWndMsg( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 		return 0;
 
 	case WM_COMMAND:
-		command( LOWORD( wParam ) );
+		command(LOWORD(wParam));
 		break;
 
 	case WM_TIMER:
@@ -5240,7 +5072,7 @@ int HexEditorWindow::OnWndMsg( HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPara
 		destroy_window();
 		break;
 	}
-	return DefWindowProc (hwnd, iMsg, wParam, lParam);
+	return DefWindowProc(hwnd, iMsg, wParam, lParam);
 }
 
 //Pabs changed - removed CMD_explorersettings
@@ -5345,7 +5177,7 @@ void HexEditorWindow::CMD_revert()
 	}
 	if (bPartialOpen)
 	{
-		int filehandle = _open (filename,_O_RDONLY|_O_BINARY,_S_IREAD|_S_IWRITE);
+		int filehandle = _open(filename, _O_RDONLY|_O_BINARY);
 		if (filehandle != -1)
 		{
 			_lseek(filehandle, iPartialOffset, 0);
@@ -5405,29 +5237,15 @@ void HexEditorWindow::CMD_deletefile()
 void HexEditorWindow::CMD_insertfile()
 {
 	char szFileName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
 	szFileName[0] = '\0';
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
-	ofn.lpstrTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (!GetOpenFileName(&ofn))
 		return;
 	// RK: don't allow inserting same file we're editing right now.
@@ -5520,53 +5338,31 @@ void HexEditorWindow::CMD_insertfile()
 void HexEditorWindow::CMD_saveselas()
 {
 	char szFileName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
+	szFileName[0] = '\0';
 	OPENFILENAME ofn;
-	szTitleName[0] = szFileName[0] = '\0';
-	ofn.lStructSize = sizeof (OPENFILENAME);
+	ZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hwnd;
-	ofn.hInstance = NULL;
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nMaxCustFilter = 0;
-	ofn.nFilterIndex = 0;
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-	ofn.lpstrInitialDir = NULL;
-	ofn.lpstrTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-	ofn.nFileOffset = 0;
-	ofn.nFileExtension = 0;
-	ofn.lpstrDefExt = NULL;
-	ofn.lCustData = 0L;
-	ofn.lpfnHook = NULL;
-	ofn.lpTemplateName = NULL;
 	if (GetSaveFileName(&ofn))
 	{
 		const char *complain = "Could not save file.";
-		int filehandle = _open(szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY,_S_IREAD|_S_IWRITE);
+		int filehandle = _open(szFileName, _O_RDWR|_O_CREAT|_O_TRUNC|_O_BINARY, _S_IREAD|_S_IWRITE);
 		if (filehandle != -1)
 		{
-			SetCursor (LoadCursor (NULL, IDC_WAIT));
-			int iStartOfSelSetting;
-			int iEndOfSelSetting;
+			WaitCursor wc;
+			int lower = 0;
+			int upper = DataArray.GetUpperBound();
 			if (bSelected)
 			{
-				iStartOfSelSetting = iStartOfSelection;
-				iEndOfSelSetting = iEndOfSelection;
+				lower = iGetStartOfSelection();
+				upper = iGetEndOfSelection();
 			}
-			else
-			{
-				iStartOfSelSetting = 0;
-				iEndOfSelSetting = DataArray.GetUpperBound();
-			}
-			if (iStartOfSelSetting > iEndOfSelSetting)
-				swap(iStartOfSelSetting, iEndOfSelSetting);
-			if (_write(filehandle, &DataArray[iStartOfSelSetting], iEndOfSelSetting - iStartOfSelSetting + 1) != -1)
+			if (_write(filehandle, &DataArray[lower], upper - lower + 1) != -1)
 				complain = 0;
-			SetCursor (LoadCursor (NULL, IDC_ARROW));
 			_close(filehandle);
 		}
 		if (complain)
@@ -5689,29 +5485,15 @@ void HexEditorWindow::CMD_open_hexdump()
 		//Import from file
 		//Initialize the struct
 		char szFileName[_MAX_PATH];
-		char szTitleName[_MAX_FNAME + _MAX_EXT];
 		szFileName[0] = '\0';
 		OPENFILENAME ofn;
-		ofn.lStructSize = sizeof (OPENFILENAME);
+		ZeroMemory(&ofn, sizeof ofn);
+		ofn.lStructSize = sizeof ofn;
 		ofn.hwndOwner = hwnd;
-		ofn.hInstance = NULL;
 		ofn.lpstrFilter = "Hex Dump files(*.txt,*.hex)\0*.txt;*.hex\0All Files (*.*)\0*.*\0";
-		ofn.lpstrCustomFilter = NULL;
-		ofn.nMaxCustFilter = 0;
-		ofn.nFilterIndex = 0;
 		ofn.lpstrFile = szFileName;
 		ofn.nMaxFile = _MAX_PATH;
-		ofn.lpstrFileTitle = szTitleName;
-		ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
-		ofn.lpstrInitialDir = NULL;
-		ofn.lpstrTitle = NULL;
 		ofn.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
-		ofn.nFileOffset = 0;
-		ofn.nFileExtension = 0;
-		ofn.lpstrDefExt = NULL;
-		ofn.lCustData = 0L;
-		ofn.lpfnHook = NULL;
-		ofn.lpTemplateName = NULL;
 		if (!GetOpenFileName(&ofn))
 			return;
 		//Set up variables for the function
@@ -6079,7 +5861,8 @@ void HexEditorWindow::status_bar_click(bool left)
 					{
 						//In bits section
 						//Find the end of " Bits="
-						for ( ; i < len && st[i] != '=' ; i++);
+						while (i < len && st[i] != '=')
+							++i;
 
 						//Are we in the actual bits or " Bits="
 						if (cn <= i)
@@ -6096,7 +5879,6 @@ void HexEditorWindow::status_bar_click(bool left)
 							len = i + 1;
 							GetTextExtentPoint32(dc, text, len, &s);
 							r = rt.left + s.cx;
-
 							//Flip the equivalent of a "bit"
 							for (i = 0 ; i < 7 ; i++)
 							{
@@ -6104,21 +5886,19 @@ void HexEditorWindow::status_bar_click(bool left)
 								if (p.x <= r + s.cx + 1)
 									break;
 							}
-							if (st[i] == '0')
-								st[i] = '1';
-							else if (st[i] == '1')
-								st[i] = '0';
-
+							st[i] ^= '0' ^ '1';
 							//Assemble all the "bits"
-							DataArray[iCurByte] = 0x00;
-							for( i = 0; i < 8; i++){
-								if( st[i] == '1' ) DataArray[iCurByte] |= 0x01;
-								if( i < 7 ) DataArray[iCurByte] <<= 1;
+							BYTE c = 0x00;
+							for (i = 0 ; i < 8 ; i++)
+							{
+								c <<= 1;
+								if (st[i] == '1')
+									c |= 0x01;
 							}
-
+							DataArray[iCurByte] = c;
 							//Redraw the data & status bar etc
 							bFilestatusChanged = iFileChanged = TRUE;
-							repaint(BYTELINE);
+							repaint(iCurByte / iBytesPerLine);
 
 						}//In actual bits
 					}//In bits section
@@ -6648,7 +6428,8 @@ HGLOBAL HexEditorWindow::RTF_hexdump(int start, int end, DWORD* plen){
 			//If the current line contains a bookmark
 			else for (bi = 0 ; bi < iBmkCount ; bi++)
 			{
-				if (IN_BOUNDS(pbmkList[i].offset, l, l + iBytesPerLine - 1))
+				int offset = pbmkList[i].offset;
+				if (offset >= l && offset < l + iBytesPerLine)
 				{
 					highlights_in_this_line = true;
 					break;

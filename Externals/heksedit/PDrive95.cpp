@@ -1,5 +1,6 @@
 #include "precomp.h"
 #include "pdrive95.h"
+#include "DllProxies.h"
 
 #define SIZE_OF_ONE_BLOCK 512
 #define SIZE_OF_ONE_BLOCKL 512L
@@ -26,16 +27,17 @@ typedef struct
 } MBR;
 
 // RAW functions
-LPFNResetDisk m_ResetDisk = NULL;
-LPFNReadPhysicalSector m_ReadPhysicalSector = NULL;
-LPFNWritePhysicalSector m_WritePhysicalSector = NULL;
-LPFNReadDiskGeometry m_ReadDiskGeometry = NULL;
-LPFNEI13GetDriveParameters m_EI13GetDriveParameters = NULL;
-LPFNEI13ReadSector m_EI13ReadSector = NULL;
-LPFNEI13WriteSector m_EI13WriteSector = NULL;
+struct RAWIO32 *P9xPhysicalDrive::RAWIO32 = 0;
 
 P9xPhysicalDrive::P9xPhysicalDrive()
 {
+	// Load the RAWIO32.DLL if not yet done
+	if (RAWIO32 == 0 && (RAWIO32 = ::RAWIO32) == 0)
+	{
+		TCHAR buf[1024];
+		::RAWIO32.Proxy.FormatMessage(buf);
+		::MessageBox(::GetActiveWindow(), buf, 0, MB_ICONSTOP);
+	}
 	m_hDevice = 0;
 }
 
@@ -114,30 +116,9 @@ BOOL P9xPhysicalDrive::ReadPartitionInfoRecursive(DWORD dwSector,INT64 TotalOffs
 BOOL P9xPhysicalDrive::Open( int iDrive )
 {
 	Close();
-	if( m_ResetDisk == NULL )
-	{
-		HINSTANCE hLibrary = (HINSTANCE)LoadLibrary( "RAWIO32.DLL" );
-		if( !hLibrary )
-		{
-			printf("ERROR %s, unable to load RAWIO32.DLL.\n", (LPCSTR) GetLastErrorString() );
-			return FALSE;
-		}
-
-	#define GETPROC(__NAME__) \
-		m_##__NAME__ = (LPFN##__NAME__) GetProcAddress(hLibrary,#__NAME__); \
-		if( !m_##__NAME__ ) { \
-			printf("ERROR, missing export " #__NAME__ " IN DISKIO32.DLL\n" ); \
-			return FALSE; \
-		}
-
-		GETPROC( ResetDisk )
-		GETPROC( ReadPhysicalSector )
-		GETPROC( WritePhysicalSector )
-		GETPROC( ReadDiskGeometry )
-		GETPROC( EI13GetDriveParameters )
-		GETPROC( EI13ReadSector )
-		GETPROC( EI13WriteSector )
-	}
+	// Cannot open if RAWIO32.DLL is not in place
+	if (RAWIO32 == 0)
+		return FALSE;
 
 	TRACE("About to get geometry\n");
 	m_bDriveNumber = (BYTE)(128 + iDrive);
@@ -186,7 +167,7 @@ BOOL P9xPhysicalDrive::GetDriveGeometry( DISK_GEOMETRY* lpDG )
 	ZeroMemory(&edi,sizeof(edi));
 	edi.drive = m_bDriveNumber;
 
-	if( m_EI13GetDriveParameters(&edi) > 0 )
+	if (RAWIO32->EI13GetDriveParameters(&edi) > 0)
 	{
 		lpDG->Cylinders.QuadPart = *(INT64*)&(edi.sectorsLo);
 		lpDG->TracksPerCylinder = 1; //edi.heads;
@@ -198,7 +179,7 @@ BOOL P9xPhysicalDrive::GetDriveGeometry( DISK_GEOMETRY* lpDG )
 	ZeroMemory(&si,sizeof(si));
 	si.bDrive = m_bDriveNumber;
 
-	if( m_ReadDiskGeometry(&si) > 0 )
+	if (RAWIO32->ReadDiskGeometry(&si) > 0)
 	{
 		lpDG->Cylinders.QuadPart = si.wCylinder;
 		lpDG->TracksPerCylinder = si.bHead;
@@ -215,7 +196,7 @@ BOOL P9xPhysicalDrive::ReadAbsolute( LPBYTE lpbMemory, DWORD dwSize, INT64 Secto
 	*((INT64*)&(bi.scheiss[0])) = Sector;
 	bi.count = (WORD) (dwSize / SIZE_OF_ONE_BLOCK);
 
-	if( m_EI13ReadSector (&bi, lpbMemory, dwSize) > 0 )
+	if (RAWIO32->EI13ReadSector(&bi, lpbMemory, dwSize) > 0)
 		return TRUE;
 
 /* ***** NOT SUPPORTED *******
@@ -235,36 +216,32 @@ struct SectorInfo
 	return FALSE;
 }
 
-BOOL P9xPhysicalDrive::GetDriveGeometryEx( DISK_GEOMETRY_EX* lpDG, DWORD dwSize )
+BOOL P9xPhysicalDrive::GetDriveGeometryEx(DISK_GEOMETRY_EX *, DWORD)
 {
-	UNREFERENCED_PARAMETER( lpDG );
-	UNREFERENCED_PARAMETER( dwSize );
 	return FALSE;
 }
 
-BOOL P9xPhysicalDrive::GetDriveLayoutEx( LPBYTE lpbMemory, DWORD dwSize )
+BOOL P9xPhysicalDrive::GetDriveLayoutEx(LPBYTE, DWORD)
 {
-	UNREFERENCED_PARAMETER( lpbMemory );
-	UNREFERENCED_PARAMETER( dwSize );
 	return FALSE;
 }
 
 BOOL P9xPhysicalDrive::GetDriveLayout( LPBYTE lpbMemory, DWORD dwSize )
 {
-	DWORD dwBytesRequired = sizeof(DRIVE_LAYOUT_INFORMATION) + sizeof(PARTITION_INFORMATION)*(m_PartitionInfo.m_lCount-1);
+	DWORD dwBytesRequired = sizeof(DRIVE_LAYOUT_INFORMATION) + sizeof(PARTITION_INFORMATION) * (m_PartitionInfo.Count - 1);
 
-	if( dwSize < dwBytesRequired )
+	if (dwSize < dwBytesRequired)
 		return FALSE;
 
 	PDRIVE_LAYOUT_INFORMATION pli = (PDRIVE_LAYOUT_INFORMATION) lpbMemory;
-	pli->PartitionCount = m_PartitionInfo.m_lCount;
+	pli->PartitionCount = m_PartitionInfo.Count;
 	pli->Signature = 0;
 	int index = 0;
-	ENUMERATE( &m_PartitionInfo, P9xPartitionInfo, pI )
+	LIST_ENTRY *Flink = &m_PartitionInfo;
+	while ((Flink = Flink->Flink) != &m_PartitionInfo)
 	{
-		pli->PartitionEntry[index++] = pI->m_pi;
+		P9xPartitionInfo *pi = static_cast<P9xPartitionInfo *>(Flink);
+		pli->PartitionEntry[index++] = pi->m_pi;
 	}
 	return TRUE;
 }
-
-

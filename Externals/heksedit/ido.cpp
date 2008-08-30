@@ -1,7 +1,6 @@
 #include "precomp.h"
 #include "ido.h"
 #include "hexwnd.h"
-#include <shlwapi.h>
 
 /*The #ifndef __CYGWIN__s are there because cygwin/mingw doesn't yet have
 certain APIs in their import libraries. Specifically _wremove, _wopen & GetEnhMetaFileBits.*/

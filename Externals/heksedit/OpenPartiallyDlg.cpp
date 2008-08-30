@@ -55,7 +55,7 @@ BOOL OpenPartiallyDlg::Apply(HWND hDlg)
 		MessageBox(hDlg, "Too many bytes to load.", "Open partially", MB_ICONERROR);
 		return FALSE;
 	}
-	//int filehandle = _open(szFileName, _O_RDONLY|_O_BINARY, _S_IREAD|_S_IWRITE);
+	//int filehandle = _open(szFileName, _O_RDONLY|_O_BINARY);
 	/*if (filehandle == -1)
 	{
 		char buf[500];

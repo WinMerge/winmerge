@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
-CFG=heksedit - Win32 Release
+CFG=heksedit - Win32 Debug
 !MESSAGE Dies ist kein gültiges Makefile. Zum Erstellen dieses Projekts mit NMAKE
 !MESSAGE verwenden Sie den Befehl "Makefile exportieren" und führen Sie den Befehl
 !MESSAGE 
@@ -13,7 +13,7 @@ CFG=heksedit - Win32 Release
 !MESSAGE Sie können beim Ausführen von NMAKE eine Konfiguration angeben
 !MESSAGE durch Definieren des Makros CFG in der Befehlszeile. Zum Beispiel:
 !MESSAGE 
-!MESSAGE NMAKE /f "heksedit.mak" CFG="heksedit - Win32 Release"
+!MESSAGE NMAKE /f "heksedit.mak" CFG="heksedit - Win32 Debug"
 !MESSAGE 
 !MESSAGE Für die Konfiguration stehen zur Auswahl:
 !MESSAGE 
@@ -55,6 +55,12 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
 # ADD LINK32 version.lib comctl32.lib wininet.lib shlwapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
 # SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+IntDir=.\../../BuildTmp/heksedit/Release
+TargetPath=\svnroot2\trunk\Build\heksedit\Release\heksedit.dll
+SOURCE="$(InputPath)"
+PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "heksedit - Win32 Debug"
 
@@ -82,6 +88,12 @@ LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 imagehlp.lib version.lib comctl32.lib wininet.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib shlwapi.lib /nologo /subsystem:windows /dll /incremental:no /debug /machine:I386 /pdbtype:sept
 # SUBTRACT LINK32 /nodefaultlib
+# Begin Special Build Tool
+IntDir=.\../../BuildTmp/heksedit/Debug
+TargetPath=\svnroot2\trunk\Build\heksedit\Debug\heksedit.dll
+SOURCE="$(InputPath)"
+PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
+# End Special Build Tool
 
 !ENDIF 
 
@@ -134,6 +146,10 @@ SOURCE=.\dllmain.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DllProxies.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\EnterDecimalValueDlg.cpp
 # End Source File
 # Begin Source File
@@ -183,6 +199,10 @@ SOURCE=.\idt.cpp
 # Begin Source File
 
 SOURCE=.\InvokeHtmlHelp.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\LangArray.cpp
 # End Source File
 # Begin Source File
 
@@ -271,6 +291,10 @@ SOURCE=.\clipboard.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DllProxies.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\gktools.h
 # End Source File
 # Begin Source File
@@ -304,6 +328,10 @@ SOURCE=.\ids.h
 # Begin Source File
 
 SOURCE=.\idt.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LangArray.h
 # End Source File
 # Begin Source File
 
@@ -360,6 +388,10 @@ SOURCE=.\UpgradeDlg.h
 # Begin Source File
 
 SOURCE=.\version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\VersionData.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

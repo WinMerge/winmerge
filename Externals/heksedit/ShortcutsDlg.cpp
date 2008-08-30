@@ -1,5 +1,4 @@
 #include "precomp.h"
-#include <shlwapi.h>
 #include "shtools.h"
 #include "resource.h"
 #include "hexwnd.h"

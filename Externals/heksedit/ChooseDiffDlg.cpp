@@ -1,6 +1,5 @@
 #include "precomp.h"
 #include "resource.h"
-#include <shlwapi.h>
 #include "clipboard.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
@@ -8,10 +7,12 @@
 void ChooseDiffDlg::add_diff(HWND hwndList, int diff, int lower, int upper)
 {
 	char buf[100];
-	sprintf(buf, "%d) 0x%x=%d to 0x%x=%d (%d bytes)", diff, lower, lower,
-		upper, upper, upper - lower + 1);
+	sprintf(buf, "%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)", diff,
+		lower, &lower, lower,
+		upper, &upper, upper,
+		upper - lower + 1);
 	int i = SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
-	SendMessage(hwndList, LB_SETITEMDATA, i, lower);
+	SendMessage(hwndList, LB_SETITEMDATA, i, MAKELONG(lower, upper));
 }
 
 //-------------------------------------------------------------------
@@ -59,7 +60,6 @@ int ChooseDiffDlg::get_diffs(HWND hwndList, char *ps, int sl, char *pd, int dl)
 BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 {
 	char szFileName[_MAX_PATH];
-	char szTitleName[_MAX_FNAME + _MAX_EXT];
 	szFileName[0] = '\0';
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof ofn);
@@ -68,22 +68,22 @@ BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrFileTitle = szTitleName;
-	ofn.nMaxFileTitle = _MAX_FNAME + _MAX_EXT;
 	ofn.lpstrTitle = "Choose file to compare with";
-	if (GetOpenFileName(&ofn))
+	if (!GetOpenFileName(&ofn))
+		return FALSE;
+	int filehandle = _open(szFileName, _O_RDONLY|_O_BINARY);
+	if (filehandle == -1)
 	{
-		int filehandle = _open(szFileName, _O_RDONLY|_O_BINARY,_S_IREAD|_S_IWRITE);
-		if (filehandle == -1)
+		MessageBox(hDlg, "Error while opening file.", "Compare", MB_ICONERROR);
+		return FALSE;
+	}
+	BOOL bDone = FALSE;
+	if (int filelen = _filelength(filehandle))
+	{
+		int iDestFileLen = filelen;
+		int iSrcFileLen = DataArray.GetLength() - iCurByte;
+		if (char *cmpdata = new char[filelen])
 		{
-			MessageBox(hDlg, "Error while opening file.", "Compare", MB_ICONERROR);
-			EndDialog(hDlg, IDCANCEL);
-		}
-		else if (int filelen = _filelength(filehandle))
-		{
-			int iDestFileLen = filelen;
-			int iSrcFileLen = DataArray.GetLength() - iCurByte;
-			char *cmpdata = new char[filelen];
 			// Read data.
 			if (_read(filehandle, cmpdata, filelen) != -1)
 			{
@@ -96,28 +96,27 @@ BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 					sprintf(buf, "Remaining loaded data size: %d, size of file on disk: %d.", iSrcFileLen, iDestFileLen);
 					SetDlgItemText(hDlg, IDC_STATIC2, buf);
 					SendMessage(hwndList, LB_SETCURSEL, 0, 0);
+					bDone = TRUE;
 				}
 				else
 				{
 					// No difference.
 					MessageBox(hDlg, "Data matches exactly.", "Compare", MB_ICONINFORMATION);
-					EndDialog(hDlg, IDCANCEL);
 				}
 			}
 			else
 			{
 				MessageBox(hDlg, "Error while reading from file.", "Compare", MB_ICONERROR);
-				EndDialog(hDlg, IDCANCEL);
 			}
 			delete[] cmpdata;
 		}
-		_close(filehandle);
+		else
+		{
+			MessageBox(hDlg, "Not enough memory.", "Compare", MB_ICONERROR);
+		}
 	}
-	else
-	{
-		EndDialog(hDlg, IDCANCEL);
-	}
-	return TRUE;
+	_close(filehandle);
+	return bDone;
 }
 
 //-------------------------------------------------------------------
@@ -126,7 +125,9 @@ INT_PTR ChooseDiffDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPara
 	switch (iMsg)
 	{
 	case WM_INITDIALOG:
-		return OnInitDialog(hDlg);
+		if (!OnInitDialog(hDlg))
+			EndDialog(hDlg, IDCANCEL);
+		return TRUE;
 	case WM_COMMAND:
 		switch (wParam)
 		{
@@ -167,15 +168,13 @@ INT_PTR ChooseDiffDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPara
 				if (i != -1)
 				{
 					SendMessage(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-					if (LPTSTR p = StrRChr(buf, 0, '('))
-					{
-						iCurByte += SendMessage(hwndList, LB_GETITEMDATA, i, 0);
-						iStartOfSelection = iCurByte;
-						iEndOfSelection = iCurByte + StrToInt(p + 1) - 1;
-						bSelected = TRUE;
-						adjust_view_for_selection();
-						repaint();
-					}
+					DWORD dw = SendMessage(hwndList, LB_GETITEMDATA, i, 0);
+					iStartOfSelection = iCurByte + StrToInt(buf + LOWORD(dw));
+					iEndOfSelection = iCurByte + StrToInt(buf + HIWORD(dw));
+					iCurByte = iStartOfSelection;
+					bSelected = TRUE;
+					adjust_view_for_selection();
+					repaint();
 				}
 			}
 			// fall through

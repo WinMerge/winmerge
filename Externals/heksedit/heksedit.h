@@ -1,3 +1,6 @@
+// This is frhed vCURRENT_VERSION.SUB_RELEASE_NO
+#include "version.h"
+
 class IHexEditorWindow
 {
 public:
@@ -58,4 +61,5 @@ public:
 	virtual void STDMETHODCALLTYPE CMD_edit_clear() = 0;
 	virtual BOOL STDMETHODCALLTYPE select_next_diff(BOOL bFromStart) = 0;
 	virtual BOOL STDMETHODCALLTYPE select_prev_diff(BOOL bFromEnd) = 0;
+	virtual BOOL STDMETHODCALLTYPE load_lang(LANGID) = 0;
 };
