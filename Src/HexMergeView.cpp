@@ -42,7 +42,14 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /**
- * @brief Turn bool api result into success/error code.
+ * @brief Macros to help build version dependent window class names
+ */
+#define SHARPEN_A(X) #X
+#define SHARPEN_W(X) L#X
+#define SHARPEN(T,X) SHARPEN_##T(X)
+
+/**
+ * @brief Turn bool api result into success/error code
  */
 static HRESULT NTAPI SE(BOOL f)
 {
@@ -121,7 +128,17 @@ void CHexMergeView::OnDraw(CDC *)
 BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	static const TCHAR szFileName[] = _T("heksedit.dll");
-	static const TCHAR szClassName[] = _T("frhed hexclass");
+#ifdef _UNICODE
+	static const TCHAR szClassName[] = L"hekseditW_"
+		SHARPEN(W,FRHED_MAJOR_VERSION) L"."
+		SHARPEN(W,FRHED_MINOR_VERSION) L"."
+		SHARPEN(W,FRHED_SUB_RELEASE_NO);
+#else
+	static const TCHAR szClassName[] = "hekseditA_"
+		SHARPEN(A,FRHED_MAJOR_VERSION) "."
+		SHARPEN(A,FRHED_MINOR_VERSION) "."
+		SHARPEN(A,FRHED_SUB_RELEASE_NO);
+#endif
 	if ((cs.hInstance = ::GetModuleHandle(szFileName)) == 0 &&
 		(cs.hInstance = ::LoadLibrary(szFileName)) == 0)
 	{

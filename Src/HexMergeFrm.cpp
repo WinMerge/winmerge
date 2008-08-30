@@ -138,6 +138,8 @@ static void Customize(IHexEditorWindow *pif)
 {
 	Customize(pif->get_settings());
 	Customize(pif->get_colors());
+	LANGID wLangID = (LANGID)GetThreadLocale();
+	pif->load_lang(wLangID);
 }
 
 /**
