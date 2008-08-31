@@ -1,150 +1,51 @@
-body,th,td {
+@import url("all.css") print;
+body {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 77%;
+}
+
+
+.navheader,.navfooter, div#ads {
+  display: none;
+}
+
+h1, h2 {
   font-family: Verdana,Helvetica,Arial,sans-serif;
-  font-size: 80%;
 }
 
-pre,code,tt {
-  font-family: "Courier New",Courier,monospace;
-  font-size: 100%;
+h1 {
+  font-size: 160%;
+  letter-spacing: inherit;
 }
 
-ul {
-  list-style-type: square;
+div.article h2, div.appendix h2, div.index h2 {
+  font-size: 140%;
 }
 
-/* Default link style */
-a:link { color:black; text-decoration:underline; }
-a:visited { color:black; text-decoration:underline; }
-a:focus { color:black; text-decoration:none; }
-a:hover { color:black; text-decoration:none; }
-a:active { color:black; text-decoration:none; }
 
-.navheader {
-  display: none;
+div.section h3 {
+  font-size: 120%;
 }
-.navfooter {
-  display: none;
+div.section h4 {
+  font-size: 110%;
 }
 
-#ads {
-  display: none;
+div.toc p{
+  color: #000;
 }
 
-.mediaobject {
-  margin-top: 10px;
-}
 
 .screen {
-  padding: 0;
-  background-color: white;
-  border: 0;
+  padding: 5px;
+  background-color: inherit;
+  border: 0.5px solid #BEBEBE;
 }
 
-.caution {
-  background-color: white;
-  border: 1px solid black;
-}
-.important {
-  background-color: white;
-  border: 1px solid black;
-}
-.note {
-  background-color: white;
-  border: 1px solid black;
-}
-.tip {
-  background-color: white;
-  border: 1px solid black;
-}
-.warning {
-  background-color: white;
-  border: 1px solid black;
+.caution,.important,.note,.tip,.warning {
+  background-color: none;
+  border: 1px solid #808080;
 }
 
-/* Examples */
-.example,.informalexample {
-  padding-left: 7px;
-  border-left: 3px solid black;
-}
-
-/* Command synopsis */
-.cmdsynopsis p {
-  padding: 0;
-  color: black;
-  background-color: white;
-  border: 0;
-}
-
-.command,.option,.replaceable {
-  color: black;
-}
-
-/* GUI elements */
-.guimenu,.guisubmenu,.guimenuitem,.guilabel {
-  font-style: italic;
-}
-
-/* FAQ */
-.question {
-  font-weight: bold;
-}
-
-/* tables */
-.table table {
-  border-collapse: collapse;
-  border: 1px solid black;
-}
-
-.table th {
-  padding: 2px;
-  text-align: left;
-  color: black;
-  background: white;
-  border: 1px solid black;
-  border-bottom: 2px solid black;
-}
-
-.table td {
-  padding: 2px;
-  border: 1px solid black;
-}
-
-/* variablelist */
-.variablelist dl {
-  margin-left: 2em;
-}
-.variablelist dt {
-  font-weight: bold;
-}
-.variablelist dd {
-  margin-left: 2em;
-}
-.variablelist dd p {
-  margin-top: 0.5em;
-}
-
-/* authorgroup */
-.authorgroup {
-  margin-left: 2em;
-}
-.author h3 {
-  margin: 0;
-  margin-bottom: 0.25em;
-  padding: 0;
-  font-size: 100%;
-}
-
-/* table of contents */
-.toc dt {
-  margin-top: 1em;
-}
-.toc dd dl dt {
-  margin-top: 0;
-}
-
-.toc .sect1,
-.toc .appendix,
-.toc .index {
-  font-size: 120%;
-  font-weight: bold;
-}
+/* links */
+a:link { color:black; text-decoration:underline; }
+a:visited { color:black; text-decoration:underline; }

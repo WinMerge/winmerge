@@ -31,10 +31,22 @@ div.navheader, div.navfooter {
   padding: 1px 0 1px 0; 
 }
 
+div.navheader {
+  height: 50px;
+  background-image: url("../images/head.gif"); 
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+div.navheader table {
+  height: 50px;
+}
+
 div.navheader * * * th { 
   display:none;
 }
-div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  {
+
+div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  { 
   display: inline-block; 
   padding: 2px 4px 2px 4px; 
   text-decoration: none;
@@ -50,7 +62,7 @@ div.navheader a:hover, div.navfooter a:hover {
 
 /* Main topic divs  */
 div.book,div.article,div.appendix,div.index {
-  margin: 0 10px 0 10px;
+  margin: 0 10px 10px 10px;
 }
 
 div.section {
@@ -64,38 +76,27 @@ hr {
   background-color: #707070;
 }
 
-/* Help title  page*/
-div.titlepage {
-  text-align: center;  
-}
-
-div.book h1 {
+/* Manual title */
+h1 {
   font-size: 200%;
-  color: #3333cc;
   letter-spacing: 0.05em;
 }
 
 /* Topic titles */
-div.article h2, div.appendix h2, div.index h2 {
-  font-size: 160%;
-  text-align: center;
-  color: #3333cc;
+h2 {
+  font-size: 180%;
 }
 
+/* Section titles */
 div.section h2 {
-  text-align: left;
   font-size: 140%;
 }
 
 div.section h3 {
-  text-align: left;
   font-size: 120%;
-  color: #3333cc;
 }
 div.section h4 {
-  text-align: left;
   font-size: 110%;
-   color: #3333cc;
 }
 
 #ads {
@@ -157,18 +158,21 @@ div.section h4 {
   font-style: italic;
 }
 
+.guibutton, .keycap {
+  font-weight: bold;
+}
 /* FAQ */
 .question {
   font-weight: bold;
 }
 
 /* tables */
-.table table {
+.table table, .informaltable table {
   border-collapse: collapse;
   border: 1px solid black;
 }
 
-.table th {
+.table th, .informaltable th {
   padding: 2px;
   text-align: left;
   color: white;
@@ -176,7 +180,7 @@ div.section h4 {
   border: 1px solid black;
 }
 
-.table td {
+.table td, .informaltable td {
   padding: 2px;
   border: 1px solid black;
 }
