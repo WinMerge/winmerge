@@ -9213,6 +9213,31 @@
 				RelativePath="CompareEngines\DiffUtils.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="Batch files"
+			Filter="">
+			<File
+				RelativePath=".\Languages\BuildMergeLangDll.bat">
+			</File>
+			<File
+				RelativePath=".\Languages\CreateMasterPotFile.vbs">
+			</File>
+			<File
+				RelativePath=".\Languages\GetTranslationsStatus.vbs">
+			</File>
+			<File
+				RelativePath=".\PostBuild.bat">
+			</File>
+			<File
+				RelativePath=".\PreLink.bat">
+			</File>
+			<File
+				RelativePath=".\SetResourceVersions.bat">
+			</File>
+			<File
+				RelativePath=".\Languages\UpdatePoFilesFromPotFile.vbs">
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
