@@ -130,7 +130,6 @@ public:
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
 	void ApplyViewWhitespace();
-	void OpenFileToExternalEditor(LPCTSTR file);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void ShowVSSError(CException *e, LPCTSTR strItem);
@@ -143,6 +142,8 @@ public:
 	bool AskCloseConfirmation();
 	BOOL DoOpenConflict(LPCTSTR conflictFile, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
+
+	static void OpenFileToExternalEditor(LPCTSTR file);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
