@@ -11,6 +11,7 @@ WinMerge 2.10 RC
   BugFix: Crash when generating a folder comparison report (#2008581)
   BugFix: Table of Contents in manual (#2071625)
   BugFix: ClearCase checkout/commit dialog translation error (#2051069)
+  BugFix: Highlight ShowUnInstDetails keyword for NSIS files (#2084879)
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)
