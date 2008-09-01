@@ -51,6 +51,7 @@
 
 [Setup]
 AppName=WinMerge
+AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
 AppPublisherURL=http://WinMerge.org/
@@ -60,13 +61,10 @@ AppUpdatesURL=http://WinMerge.org/
 ; Installer executable's version resource info
 VersionInfoCompany=http://winmerge.org
 VersionInfoDescription=WinMerge Installer
-VersionInfoTextVersion={#AppVersion}
+VersionInfoVersion={#AppVersion}
 
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=no
-
-;This requires IS Pack 4.18(full install).
-AppVersion={#AppVersion}
 
 ;Tells the installer to only display a select language dialog if the an exact match wasn't found
 ShowLanguageDialog=auto
@@ -84,9 +82,6 @@ OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 PrivilegesRequired=admin
 
 UninstallDisplayIcon={app}\{code:ExeName}
-
-;File Version Info
-VersionInfoVersion={#AppVersion}
 
 ;Artwork References
 WizardImageFile=Art\Large Logo.bmp
