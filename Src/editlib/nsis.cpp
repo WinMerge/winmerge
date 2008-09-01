@@ -229,7 +229,7 @@ static LPTSTR s_apszNsisKeywordList[] =
     _T ("SetStaticBkColor"),
     _T ("SetWindowLong"),
     _T ("ShowInstDetails"),
-    _T ("ShowUninstDetails"),
+    _T ("ShowUnInstDetails"),
     _T ("ShowWindow"),
     _T ("SilentInstall"),
     _T ("SilentUnInstall"),
