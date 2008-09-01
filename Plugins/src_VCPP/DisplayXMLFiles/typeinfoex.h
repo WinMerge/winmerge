@@ -89,7 +89,8 @@ public:
 			for (int i=0; i<(int)cNames; i++)
 			{
 				int n = ocslen(rgszNames[i]);
-				for (int j=m_nCount-1; j>=0; j--)
+				int j;
+				for (j=m_nCount-1; j>=0; j--)
 				{
 					if ((n == m_pMap[j].nLen) &&
 						(memcmp(m_pMap[j].bstr, rgszNames[i], m_pMap[j].nLen * sizeof(OLECHAR)) == 0))
