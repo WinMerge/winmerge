@@ -52,6 +52,7 @@ Sub Main
     Select Case UCase(oFSO.GetExtensionName(sFile))
     Case "UPDATEPOFILESFROMPOTFILE"
       If oFile.Name <> sBuild Then oFile.Name = sBuild
+      sBuild = ""
     Case "PO"
       If bPotChanged Or GetArchiveBit(sFile) Then 'If update necessary...
         If bRunFromCmd Then 'If run from command line...
@@ -65,7 +66,8 @@ Sub Main
       End If
     End Select
   Next
-  
+  If sBuild <> "" Then oFSO.CreateTextFile sBuild
+
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   

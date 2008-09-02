@@ -45,9 +45,11 @@ Sub Main
       Select Case UCase(oFSO.GetExtensionName(oFile.Name))
       Case "CREATEMASTERPOTFILE"
         oFile.Name = sBuild
+        sBuild = ""
       End Select
     Next
-    
+    If sBuild <> "" Then oFSO.CreateTextFile sBuild
+
     EndTime = Time
     Seconds = DateDiff("s", StartTime, EndTime)
     
