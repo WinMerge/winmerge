@@ -2,6 +2,20 @@
 #include "resource.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
+#include "LangArray.h"
+
+void GetWindowText(HWND hwnd, SimpleString &str)
+{
+	int len = GetWindowTextLength(hwnd) + 1;
+	str.SetSize(len);
+	GetWindowText(hwnd, str, len);
+}
+
+void GetDlgItemText(HWND hwnd, int id, SimpleString &str)
+{
+	hwnd = GetDlgItem(hwnd, id);
+	GetWindowText(hwnd, str);
+}
 
 C_ASSERT(sizeof(DragDropOptionsDlg) == sizeof(HexEditorWindow)); // disallow instance members
 
@@ -53,57 +67,6 @@ INT_PTR DragDropOptionsDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 			// fall through
 		case IDCANCEL:
 			EndDialog(h, w);
-			return TRUE;
-		}
-		break;
-	}
-	return FALSE;
-}
-
-INT_PTR ViewSettingsDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
-{
-	char buf[512];
-	switch (iMsg)
-	{
-	case WM_INITDIALOG:
-		SetDlgItemInt(hDlg, IDC_EDIT1, iBytesPerLine, TRUE);
-		SetDlgItemInt(hDlg, IDC_EDIT2, iMinOffsetLen, TRUE);
-		CheckDlgButton(hDlg, IDC_CHECK1, iAutomaticBPL);
-		CheckDlgButton(hDlg, bUnsignedView ? IDC_RADIO1 : IDC_RADIO2, BST_CHECKED);
-		CheckDlgButton(hDlg, IDC_CHECK5, bOpenReadOnly);
-//Pabs inserted
-		CheckDlgButton( hDlg, IDC_CHECK2, bAutoOffsetLen);
-//end
-		SetDlgItemText(hDlg, IDC_EDIT3, TexteditorName);
-		return TRUE;
-
-	case WM_COMMAND:
-		switch (wParam)
-		{
-		case IDOK:
-			iBytesPerLine = GetDlgItemInt(hDlg, IDC_EDIT1, 0, TRUE);
-			if (iBytesPerLine < 1)
-				iBytesPerLine = 1;
-			iMinOffsetLen = GetDlgItemInt(hDlg, IDC_EDIT2, 0, TRUE);
-			if (iMinOffsetLen < 1)
-				iMinOffsetLen = 1;
-			// Get the text editor path and name.
-			if (GetDlgItemText(hDlg, IDC_EDIT3, buf, 512))
-				TexteditorName.SetToString(buf);
-			else
-				MessageBox(hDlg, "Field for text editor name was empty: name not changed.", "View settings", MB_OK | MB_ICONERROR);
-//end
-			iAutomaticBPL = IsDlgButtonChecked(hDlg, IDC_CHECK1);
-//Pabs inserted
-			bAutoOffsetLen = IsDlgButtonChecked(hDlg, IDC_CHECK2);
-//end
-			bUnsignedView = IsDlgButtonChecked(hDlg, IDC_RADIO1);
-			bOpenReadOnly = IsDlgButtonChecked(hDlg, IDC_CHECK5);
-			save_ini_data();
-			resize_window();
-			// fall through
-		case IDCANCEL:
-			EndDialog(hDlg, wParam);
 			return TRUE;
 		}
 		break;
@@ -202,11 +165,11 @@ INT_PTR ChangeInstDlg::DlgProc(HWND hw, UINT m, WPARAM w, LPARAM l)
 			LONG range = MAKELONG(iLoadInst, iSaveInst);
 			LONG pos = MAKELONG(iInstCount, 0);
 			HWND hWndUpDown = GetDlgItem(hw, IDC_SINST);
-			SendMessage( hWndUpDown, UDM_SETRANGE, 0L, range);
-			SendMessage( hWndUpDown, UDM_SETPOS, 0L, pos);
+			SendMessage(hWndUpDown, UDM_SETRANGE, 0L, range);
+			SendMessage(hWndUpDown, UDM_SETPOS, 0L, pos);
 			hWndUpDown = GetDlgItem(hw, IDC_LINST);
-			SendMessage( hWndUpDown, UDM_SETRANGE, 0L, range);
-			SendMessage( hWndUpDown, UDM_SETPOS, 0L, pos);
+			SendMessage(hWndUpDown, UDM_SETRANGE, 0L, range);
+			SendMessage(hWndUpDown, UDM_SETPOS, 0L, pos);
 			return TRUE;
 		}
 	case WM_COMMAND:

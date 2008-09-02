@@ -11,12 +11,14 @@ LRESULT CALLBACK HexWndProc(HWND, UINT, WPARAM, LPARAM);
 static const char szHexClassA[] = "hekseditA_"
 	SHARPEN(A,FRHED_MAJOR_VERSION) "."
 	SHARPEN(A,FRHED_MINOR_VERSION) "."
-	SHARPEN(A,FRHED_SUB_RELEASE_NO);
+	SHARPEN(A,FRHED_SUB_RELEASE_NO) "."
+	SHARPEN(A,FRHED_BUILD_NO);
 
 static const WCHAR szHexClassW[] = L"hekseditW_"
 	SHARPEN(W,FRHED_MAJOR_VERSION) L"."
 	SHARPEN(W,FRHED_MINOR_VERSION) L"."
-	SHARPEN(W,FRHED_SUB_RELEASE_NO);
+	SHARPEN(W,FRHED_SUB_RELEASE_NO) L"."
+	SHARPEN(W,FRHED_BUILD_NO);
 
 //--------------------------------------------------------------------------------------------
 // WinMain: the starting point.
@@ -40,7 +42,12 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 		RegisterClassExA(&wndclass.a);
 		wndclass.w.lpszClassName = szHexClassW;
 		RegisterClassExW(&wndclass.w);
+		HexEditorWindow::LoadStringTable();
 		return TRUE;
+	}
+	if (dwReason == DLL_PROCESS_DETACH)
+	{
+		HexEditorWindow::FreeStringTable();
 	}
 	return FALSE;
 }

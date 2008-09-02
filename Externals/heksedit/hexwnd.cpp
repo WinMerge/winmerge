@@ -2,6 +2,7 @@
 // Frhed main definition file.
 #include "precomp.h"
 #include "resource.h"
+#include "StringTable.h"
 #include "VersionData.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
@@ -14,11 +15,6 @@
 #include "LoadHexFile.h"
 #include "LangArray.h"
 
-/*In the following headers:
-	ULONG m_cRefCount; //The reference count that all objects based on IUnknown must have
-	//The following have to do with the automatic destruction IUnknown::Release is supposed to do
-	bool deleteself; //Should we delete ourself on zero reference count
-	C<SomeObject>** pthis; //A pointer to a pointer that we should set to NULL on destruction*/
 #include "idt.h"
 #include "ids.h"
 #include "ido.h"
@@ -52,12 +48,6 @@ SimpleString HexEditorWindow::EncodeDlls;
 //Temporary stuff for CMD_move_copy
 int iMovePos;
 OPTYP iMoveOpTyp;
-//end
-//inserted to allow 32-bit scrolling
-//end
-//Pabs inserted
-//char bPasteBinary, bPasteUnicode;
-//end
 
 // RK: function by pabs.
 BOOL contextpresent();
@@ -99,20 +89,20 @@ HexEditorWindow::HexEditorWindow()
 	iWindowHeight = CW_USEDEFAULT;
 	iWindowShowCmd = SW_SHOW;
 
-	// iClipboardEncode = TRUE;
-	iBmkColor = RGB( 255, 0, 0 );
-	iSelBkColorValue = RGB( 255, 255, 0 );
-	iSelTextColorValue = RGB( 0, 0, 0 );
+	iBmkColor = RGB(255, 0, 0);
+	iSelBkColorValue = RGB(255, 255, 0);
+	iSelTextColorValue = RGB(0, 0, 0);
 
 	bOpenReadOnly = bReadOnly = FALSE;
 	iPartialOffset = 0;
 	bPartialStats = 0;
 	bPartialOpen = FALSE;
 	iBmkCount = 0;
-	int i;
-	for (i = 0 ; i < MRUMAX ; i++)
-		sprintf(strMRU[i], "dummy%d", i);
-	iMRU_count = 0;
+
+	iMRU_count = MRUMAX;
+	while (iMRU_count)
+		sprintf(strMRU[--iMRU_count], "dummy%d", iMRU_count);
+
 	bFilestatusChanged = TRUE;
 	iBinaryMode = LITTLEENDIAN_MODE;
 	bUnsignedView = TRUE;
@@ -214,11 +204,86 @@ int HexEditorWindow::translate_accelerator(MSG *pMsg)
 	return TranslateAccelerator(hwnd, hAccel, pMsg);
 }
 
-static LangArray langArray;
+LangArray langArray;
 
+static LPWSTR NTAPI LoadStringResource(HMODULE hModule, UINT uStringID)
+{
+	LPWSTR pwchMem = 0;
+	HRSRC hResource = FindResourceEx(
+		hModule, RT_STRING,
+		MAKEINTRESOURCE(uStringID / 16 + 1),
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT));
+	if (hResource)
+	{
+		pwchMem = (LPWSTR)LoadResource(hModule, hResource);
+		if (pwchMem)
+		{
+			while (uStringID & 15)
+			{
+				pwchMem += *pwchMem + 1;
+				--uStringID;
+			}
+		}
+	}
+	return pwchMem;
+}
+
+static LPWSTR NTAPI LoadResString(UINT uStringID)
+{
+	HINSTANCE hinst = langArray.m_hLangDll ? langArray.m_hLangDll : hMainInstance;
+	LPWSTR text = LoadStringResource(hinst, uStringID);
+	if (text)
+	{
+		text = SysAllocStringLen(text + 1, (WORD)*text);
+		if (langArray.m_hLangDll)
+		{
+			int line = 0;
+			if (LPWSTR p = wcschr(text, L':'))
+				line = _wtoi(p + 1);
+			SysFreeString(text);
+			text = langArray.TranslateStringW(line);
+		}
+	}
+	return text;
+}
+
+void HexEditorWindow::LoadStringTable()
+{
+	for (int i = 0 ; i < RTL_NUMBER_OF(S) ; ++i)
+		S[i] = LoadResString(IDS[i]);
+}
+
+void HexEditorWindow::FreeStringTable()
+{
+	for (int i = 0 ; i < RTL_NUMBER_OF(S) ; ++i)
+		SysFreeString(S[i]);
+}
+
+/**
+ * @brief Load translations for given language if present.
+ */
 BOOL HexEditorWindow::load_lang(LANGID langid)
 {
-	return langArray.Load(hMainInstance, langid);
+	FreeStringTable();
+	BOOL bDone = langArray.Load(hMainInstance, langid);
+	LoadStringTable();
+	return bDone;
+}
+
+/**
+ * @brief Load a string.
+ */
+BSTR HexEditorWindow::load_string(UINT uStringID)
+{
+	return LoadResString(uStringID);
+}
+
+/**
+ * @brief Free a string obtained through load_string().
+ */
+void HexEditorWindow::free_string(BSTR text)
+{
+	SysFreeString(text);
 }
 
 //--------------------------------------------------------------------------------------------
@@ -2311,7 +2376,7 @@ BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 		// Set the version information.
 		SetDlgItemText(hDlg, IDC_STATIC1,
 			"frhed - free hex editor for 32-bit Windows\nVersion "CURRENT_VERSION"."
-			SUB_RELEASE_NO"\n(c) Raihan Kibria 2000"
+			SUB_RELEASE_NO"."BUILD_NO"\n(c) Raihan Kibria 2000"
 			"\nFill with by Pabs Dec 1999"
 			"\nDisk-Access, Code/Decode Extension and some other bits by Gerson Kurz."
 			"\nDLL interface by Jochen Neubeck.");
@@ -3485,8 +3550,12 @@ void HexEditorWindow::read_ini_data(char *key)
 		res = RegQueryValueEx( key1, "output_CF_TEXT", NULL, NULL, (BYTE*) &output_CF_TEXT, &datasize );
 		res = RegQueryValueEx( key1, "output_text_special", NULL, NULL, (BYTE*) &output_text_special, &datasize );
 		res = RegQueryValueEx( key1, "output_text_hexdump_display", NULL, NULL, (BYTE*) &output_text_hexdump_display, &datasize );
-		res = RegQueryValueEx( key1, "output_CF_RTF", NULL, NULL, (BYTE*) &output_CF_RTF, &datasize );
 //end
+		res = RegQueryValueEx( key1, "always_pick_move_copy", NULL, NULL, (BYTE*) &always_pick_move_copy, &datasize );
+
+		LCID lcid = 0;
+		res = RegQueryValueEx( key1, "locale", NULL, NULL, (BYTE*) &lcid, &datasize );
+		load_lang((LANGID)lcid);
 
 		char szPath[ _MAX_PATH + 1 ];
 		datasize = _MAX_PATH + 1;
@@ -3534,11 +3603,11 @@ void HexEditorWindow::save_ini_data()
 	HKEY key1;
 
 	char keyname[64];
-	sprintf( keyname, "Software\\frhed\\v"CURRENT_VERSION"." SUB_RELEASE_NO "\\%d", iInstCount );
+	sprintf(keyname, "Software\\frhed\\v" CURRENT_VERSION "." SUB_RELEASE_NO "\\%d", iInstCount);
 
-	LONG res = RegCreateKey( HKEY_CURRENT_USER, keyname, &key1 );
+	LONG res = RegCreateKey(HKEY_CURRENT_USER, keyname, &key1);
 
-	if( res == ERROR_SUCCESS )
+	if (res == ERROR_SUCCESS)
 	{
 		RegSetValueEx( key1, "iTextColorValue", 0, REG_DWORD, (CONST BYTE*) &iTextColorValue, sizeof( int ) );
 		RegSetValueEx( key1, "iBkColorValue", 0, REG_DWORD, (CONST BYTE*) &iBkColorValue, sizeof( int ) );
@@ -3571,6 +3640,9 @@ void HexEditorWindow::save_ini_data()
 		RegSetValueEx( key1, "output_text_hexdump_display", 0, REG_DWORD, (CONST BYTE*) &output_text_hexdump_display, sizeof( int ) );
 		RegSetValueEx( key1, "output_CF_RTF", 0, REG_DWORD, (CONST BYTE*) &output_CF_RTF, sizeof( int ) );
 //end
+		LCID lcid = MAKELCID(langArray.m_langid, 0);
+		RegSetValueEx( key1, "locale", 0, REG_DWORD, (CONST BYTE*) &lcid, sizeof lcid);
+
 		RegSetValueEx( key1, "TexteditorName", 0, REG_SZ, (CONST BYTE*) (char*) TexteditorName, TexteditorName.StrLen() + 1 );
 
 		RegSetValueEx( key1, "iWindowShowCmd", 0, REG_DWORD, (CONST BYTE*) &iWindowShowCmd, sizeof( int ) );

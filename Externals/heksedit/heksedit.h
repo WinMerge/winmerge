@@ -62,4 +62,6 @@ public:
 	virtual BOOL STDMETHODCALLTYPE select_next_diff(BOOL bFromStart) = 0;
 	virtual BOOL STDMETHODCALLTYPE select_prev_diff(BOOL bFromEnd) = 0;
 	virtual BOOL STDMETHODCALLTYPE load_lang(LANGID) = 0;
+	virtual BSTR STDMETHODCALLTYPE load_string(UINT) = 0;
+	virtual void STDMETHODCALLTYPE free_string(BSTR) = 0;
 };

@@ -9,19 +9,6 @@ SimpleString ReplaceDlg::strToReplaceData;
 // String containing data to replace with.
 SimpleString ReplaceDlg::strReplaceWithData;
 
-static void GetWindowText(HWND hwnd, SimpleString &str)
-{
-	int len = GetWindowTextLength(hwnd) + 1;
-	str.SetSize(len);
-	GetWindowText(hwnd, str, len);
-}
-
-static void GetDlgItemText(HWND hwnd, int id, SimpleString &str)
-{
-	hwnd = GetDlgItem(hwnd, id);
-	GetWindowText(hwnd, str);
-}
-
 //-------------------------------------------------------------------
 // Translate the text in the string to binary data and store in the array.
 int ReplaceDlg::transl_text_to_binary(SimpleArray<char> &out)

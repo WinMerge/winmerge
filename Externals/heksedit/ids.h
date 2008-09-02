@@ -6,22 +6,20 @@ class CDropSource: public IDropSource
 {
 private:
 	ULONG m_cRefCount;
-	bool deleteself;
-	CDropSource** pthis;
 
 public:
 	//Members
-	CDropSource( bool delself = false, CDropSource** p = NULL);
-	~CDropSource( void );
+	CDropSource();
+	~CDropSource();
 
 	//IUnknown members
-	STDMETHODIMP QueryInterface( REFIID iid, void** ppvObject );
-	STDMETHODIMP_(ULONG) AddRef( void );
-	STDMETHODIMP_(ULONG) Release( void );
+	STDMETHODIMP QueryInterface(REFIID iid, void **ppvObject);
+	STDMETHODIMP_(ULONG) AddRef();
+	STDMETHODIMP_(ULONG) Release();
 
 	//IDataObject members
-	STDMETHODIMP GiveFeedback( DWORD dwEffect );
-	STDMETHODIMP QueryContinueDrag( BOOL fEscapePressed,DWORD grfKeyState );
+	STDMETHODIMP GiveFeedback(DWORD dwEffect);
+	STDMETHODIMP QueryContinueDrag(BOOL fEscapePressed, DWORD grfKeyState);
 };
 
 

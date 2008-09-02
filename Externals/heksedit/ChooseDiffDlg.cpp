@@ -1,17 +1,32 @@
 #include "precomp.h"
 #include "resource.h"
+#include "StringTable.h"
 #include "clipboard.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
 
 void ChooseDiffDlg::add_diff(HWND hwndList, int diff, int lower, int upper)
 {
-	char buf[100];
-	sprintf(buf, "%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)", diff,
+	wchar_t buf[100];
+	swprintf(buf,
+		S.DiffListItemFormat, //"%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)",
+		diff,
 		lower, &lower, lower,
 		upper, &upper, upper,
 		upper - lower + 1);
-	int i = SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
+	int i;
+	if (IsWindowUnicode(hwndList))
+	{
+		i = SendMessageW(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
+	}
+	else
+	{
+		char bufA[100];
+		WideCharToMultiByte(CP_ACP, 0, buf, -1, bufA, sizeof bufA, 0, 0);
+		lower = WideCharToMultiByte(CP_ACP, 0, buf, lower, 0, 0, 0, 0);
+		upper = WideCharToMultiByte(CP_ACP, 0, buf, upper, 0, 0, 0, 0);
+		i = SendMessageA(hwndList, LB_ADDSTRING, 0, (LPARAM)bufA);
+	}
 	SendMessage(hwndList, LB_SETITEMDATA, i, MAKELONG(lower, upper));
 }
 
@@ -119,6 +134,93 @@ BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 	return bDone;
 }
 
+BOOL ChooseDiffDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
+{
+	switch (wParam)
+	{
+	// By pabs.
+	case IDCOPY:
+		{//copy button was pressed
+			if (!OpenClipboard(hwnd)) //open clip
+			{
+				MessageBox(hwnd,"Cannot get access to clipboard.", "Copy", MB_ICONERROR);
+				return TRUE;
+			}
+			EmptyClipboard(); //empty clip
+			IStream *piStream = 0;
+			if (SUCCEEDED(CreateStreamOnHGlobal(0, FALSE, &piStream)))
+			{
+				HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);//get the list
+				CLIPFORMAT cf = IsWindowUnicode(hwndList) ? CF_UNICODETEXT : CF_TEXT;
+				int num = SendMessage(hwndList, LB_GETCOUNT, 0, 0);//get the # items in the list
+				for (int i = 0 ; i < num ; i++)
+				{
+					//add '\r\n' to the end of each line - this is '\r\n' rather than '\n' so that it can be pasted into notepad & dos programs
+					if (cf == CF_UNICODETEXT)
+					{
+						wchar_t buf[100];
+						int cch = SendMessageW(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+						piStream->Write(buf, cch * sizeof *buf, 0);
+						static const wchar_t eol[] = L"\r\n";
+						piStream->Write(eol, i < num ? sizeof eol - sizeof *eol : sizeof eol, 0);
+					}
+					else
+					{
+						char buf[100];
+						int cch = SendMessageA(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+						piStream->Write(buf, cch * sizeof *buf, 0);
+						static const char eol[] = "\r\n";
+						piStream->Write(eol, i < num ? sizeof eol - sizeof *eol : sizeof eol, 0);
+					}
+				}
+				HGLOBAL hMem = 0;
+				if (SUCCEEDED(GetHGlobalFromStream(piStream, &hMem)))
+				{
+					SetClipboardData(cf, hMem); //copy to clip
+				}
+				piStream->Release();
+			}
+			CloseClipboard(); //close clip
+		}
+		return TRUE;
+
+	case IDOK:
+		{
+			HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);
+			int i = SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+			if (i != -1)
+			{
+				DWORD dw = SendMessage(hwndList, LB_GETITEMDATA, i, 0);
+				if (IsWindowUnicode(hwndList))
+				{
+					wchar_t buf[100];
+					SendMessageW(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+					iStartOfSelection = StrToIntW(buf + LOWORD(dw));
+					iEndOfSelection = StrToIntW(buf + HIWORD(dw));
+				}
+				else
+				{
+					char buf[100];
+					SendMessageA(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+					iStartOfSelection = StrToIntA(buf + LOWORD(dw));
+					iEndOfSelection = StrToIntA(buf + HIWORD(dw));
+				}
+				iStartOfSelection += iCurByte;
+				iEndOfSelection += iCurByte;
+				iCurByte = iStartOfSelection;
+				bSelected = TRUE;
+				adjust_view_for_selection();
+				repaint();
+			}
+		}
+		// fall through
+	case IDCANCEL:
+		EndDialog(hDlg, wParam);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 //-------------------------------------------------------------------
 INT_PTR ChooseDiffDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -129,60 +231,7 @@ INT_PTR ChooseDiffDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPara
 			EndDialog(hDlg, IDCANCEL);
 		return TRUE;
 	case WM_COMMAND:
-		switch (wParam)
-		{
-			// By pabs.
-			case IDCOPY:
-				{//copy button was pressed
-					int sumlen=1;//length of buffer initially is 1 for the '\0'
-					int len=0;//length of current string
-					char*buf=(char*)malloc(1);//buffer = '\0'
-					buf[0]=0;//init buffer with '\0'
-					char*bt=NULL;//temporary pointer - used so that if realloc returns NULL buf does not lose its value
-					HWND hwndList = GetDlgItem (hDlg, IDC_LIST1);//get the list
-					int num = SendMessage(hwndList,LB_GETCOUNT,0,0);//get the # items in the list
-					for(int i=0;i<num;i++)
-					{	//loop num times
-						len=SendMessage(hwndList,LB_GETTEXTLEN,i,0)+2;//get sise of next line +2 is for '\r\n' at the end of each line
-						sumlen+=len;//add len to the buffer sise
-						bt = (char*)realloc(buf,sumlen);//resise buffer
-						if (bt == NULL)//not enough mem to re-alloc buffer
-							break;//exit loop without changing buffer address
-						buf = bt;//realloc succesful overwrite buffer address
-						// the -1 is to counteract the initialisation of sumlen
-						SendMessage(hwndList,LB_GETTEXT,i,(LPARAM)&buf[sumlen-len-1]);//get the string & add it to the end of the buffer
-						strcat(buf,"\r\n");//add '\r\n' to the end of the line - this is '\r\n' rather than '\n' so that it can be pasted into notepad & dos programs
-					}//end of the loop
-					TextToClipboard(hwnd, buf);//copy the stuff to the clip ( this function needs work to clean it up )(len=1+strlen)
-					free(buf);//free the buffer mem
-					return TRUE;//yes we did process the message
-				}
-				break;
-
-
-		case IDOK:
-			{
-				TCHAR buf[100];
-				HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);
-				int i = SendMessage(hwndList, LB_GETCURSEL, 0, 0);
-				if (i != -1)
-				{
-					SendMessage(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-					DWORD dw = SendMessage(hwndList, LB_GETITEMDATA, i, 0);
-					iStartOfSelection = iCurByte + StrToInt(buf + LOWORD(dw));
-					iEndOfSelection = iCurByte + StrToInt(buf + HIWORD(dw));
-					iCurByte = iStartOfSelection;
-					bSelected = TRUE;
-					adjust_view_for_selection();
-					repaint();
-				}
-			}
-			// fall through
-		case IDCANCEL:
-			EndDialog(hDlg, wParam);
-			return TRUE;
-		}
-		break;
+		return OnCommand(hDlg, wParam, lParam);
 	}
 	return FALSE;
 }

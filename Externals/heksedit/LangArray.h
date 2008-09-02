@@ -1,6 +1,7 @@
 class LangArray : public SimpleArray<char *>
 {
 public:
+	static const LANGID DefLangId;
 	struct StringData
 	{
 		int refcount;
@@ -21,4 +22,6 @@ public:
 	BSTR TranslateStringW(int line);
 	void TranslateDialogA(HWND);
 	void TranslateDialogW(HWND);
+	static int LangCodeMajor(LANGID, LPTSTR);
+	static int LangCodeMinor(LANGID, LPTSTR);
 };

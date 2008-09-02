@@ -1,3 +1,6 @@
+void GetWindowText(HWND, SimpleString &);
+void GetDlgItemText(HWND, int, SimpleString &);
+
 class DragDropOptionsDlg : public HexEditorWindow
 {
 public:
@@ -10,6 +13,14 @@ class ViewSettingsDlg : public HexEditorWindow
 public:
 	enum { IDD = IDD_VIEWSETTINGSDIALOG };
 	INT_PTR DlgProc(HWND, UINT, WPARAM, LPARAM);
+private:
+	static HWND hCbLang;
+	static BOOL CALLBACK EnumLocalesProc(LPTSTR);
+	static int FormatLangId(LPWSTR, LANGID, int verbose = 0);
+	void OnDrawitemLangId(DRAWITEMSTRUCT *);
+	INT_PTR OnCompareitemLangId(COMPAREITEMSTRUCT *);
+	BOOL OnInitDialog(HWND);
+	BOOL Apply(HWND);
 };
 
 class CharacterSetDlg : public HexEditorWindow
@@ -123,6 +134,7 @@ public:
 	INT_PTR DlgProc(HWND, UINT, WPARAM, LPARAM);
 private:
 	BOOL OnInitDialog(HWND);
+	BOOL OnCommand(HWND, WPARAM, LPARAM);
 	void add_diff(HWND hwndList, int diff, int lower, int upper);
 	int get_diffs(HWND hwndList, char *ps, int sl, char *pd, int dl);
 };

@@ -921,6 +921,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\StringTable.cpp">
+			</File>
+			<File
 				RelativePath="UpgradeDlg.cpp">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -938,6 +941,9 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\ViewSettingsDlg.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -1013,6 +1019,9 @@
 				RelativePath="Simparr.h">
 			</File>
 			<File
+				RelativePath=".\StringTable.h">
+			</File>
+			<File
 				RelativePath="toolbar.h">
 			</File>
 			<File
@@ -1032,13 +1041,10 @@
 				RelativePath="heksedit.rc">
 			</File>
 			<File
-				RelativePath="icon1.ico">
-			</File>
-			<File
 				RelativePath="resource.h">
 			</File>
 			<File
-				RelativePath="Toolbar.bmp">
+				RelativePath=".\res\Toolbar.bmp">
 			</File>
 		</Filter>
 		<Filter
@@ -1059,5 +1065,8 @@
 		</Filter>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="heksedit.rc"/>
 	</Globals>
 </VisualStudioProject>

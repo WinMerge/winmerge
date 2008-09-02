@@ -3,11 +3,11 @@
 #include "resource.h"
 
 #define IMAGEWIDTH 16
-#define IMAGEHEIGHT 17
+#define IMAGEHEIGHT 16
 #define BUTTONWIDTH 0
 #define BUTTONHEIGHT 0
 
-TBBUTTON tbButtons[] = // Array defining the toolbar buttons
+static const TBBUTTON tbButtons[] = // Array defining the toolbar buttons
 {
 	{  0, IDM_NEW,                   TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0 },
 	{  1, IDM_OPEN,                  TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0 },
@@ -31,18 +31,18 @@ TBBUTTON tbButtons[] = // Array defining the toolbar buttons
 HWND CreateTBar(HWND hWnd, HINSTANCE hInst)
 {
 	HWND hwndToolBar = CreateToolbarEx(hWnd,
-		WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT | TBSTYLE_WRAPABLE,
+		WS_CHILD | WS_VISIBLE | CCS_NORESIZE |
+		TBSTYLE_TOOLTIPS | TBSTYLE_FLAT | TBSTYLE_WRAPABLE,
 		0,
-		sizeof(tbButtons)/sizeof(TBBUTTON),
+		RTL_NUMBER_OF(tbButtons) - 4,
 		hInst,
 		IDB_TOOLBAR,
 		tbButtons,
-		sizeof(tbButtons)/sizeof(TBBUTTON),
+		RTL_NUMBER_OF(tbButtons),
 		BUTTONWIDTH,
 		BUTTONHEIGHT,
 		IMAGEWIDTH,
 		IMAGEHEIGHT,
 		sizeof(TBBUTTON));
-
 	return hwndToolBar;
 }

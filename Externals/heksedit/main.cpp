@@ -7,10 +7,11 @@
 #include "toolbar.h"
 
 static const char szMainClass[] = "frhed wndclass";
-static const char szHexClassA[] = "hekseditA_" CURRENT_VERSION "." SUB_RELEASE_NO;
-static const char szHexClassW[] = "hekseditW_" CURRENT_VERSION "." SUB_RELEASE_NO;
+static const char szHexClassA[] = "hekseditA_" CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO;
+static const char szHexClassW[] = "hekseditW_" CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO;
 
 HINSTANCE hMainInstance;
+
 LRESULT CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM);
 
 static BOOL NTAPI IsNT()
@@ -22,7 +23,6 @@ static BOOL NTAPI IsNT()
 		osvi.dwPlatformId = 0;
 	return osvi.dwPlatformId == VER_PLATFORM_WIN32_NT;
 }
-
 
 static BOOL CALLBACK WndEnumProcCountInstances(HWND hwnd, LPARAM lParam)
 {
@@ -78,11 +78,10 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	pHexWnd->iInstCount = iInstCount;
 	pHexWnd->read_ini_data();
 
-	/*The if prevents the window from being resized to 0x0
-	 it becomes just a title bar*/
+	// The if prevents the window from being resized to 0x0 it becomes just a title bar
 	if (pHexWnd->iWindowX != CW_USEDEFAULT)
 	{
-		//Prevent window creep when Taskbar is at top or left of screen
+		// Prevent window creep when Taskbar is at top or left of screen
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof wp;
 		GetWindowPlacement(hwndMain, &wp);
@@ -188,6 +187,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		hwndMain = hwnd;
 		DragAcceptFiles(hwnd, TRUE); // Accept files dragged into main window.
 		hwndToolBar = CreateTBar(hwnd, hMainInstance);
+		SendMessage(hwndToolBar, CCM_SETUNICODEFORMAT, TRUE, 0);
 		hwndHex = CreateWindowEx(WS_EX_CLIENTEDGE,
 			IsNT() ? szHexClassW : szHexClassA, 0,
 			WS_TABSTOP | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL,
@@ -201,6 +201,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		pHexWnd->hwndStatusBar = hwndStatusBar;
 		pHexWnd->bSaveIni = TRUE;
 		pHexWnd->bCenterCaret = TRUE;
+		pHexWnd->load_lang((LANGID)GetThreadLocale());
 		pHexWnd->set_wnd_title();
 		return 0;
 	case WM_COMMAND:
@@ -221,22 +222,29 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		{
-			SendMessage(hwndStatusBar, WM_SIZE, 0 , 0); //Moves status bar back to the bottom
-			SendMessage(hwndToolBar, WM_SIZE, 0 , 0); //Moves tool bar back to the top
-
+			int cx = GET_X_LPARAM(lParam);
+			int cy = GET_Y_LPARAM(lParam);
+			RECT rect;
+			// Adjust tool bar width so buttons will wrap accordingly.
+			MoveWindow(hwndToolBar, 0, 0, cx, 0, TRUE);
+			// Set tool bar height to bottom of last button plus some padding.
+			if (int n = SendMessage(hwndToolBar, TB_BUTTONCOUNT, 0, 0))
+			{
+				SendMessage(hwndToolBar, TB_GETITEMRECT, n - 1, (LPARAM)&rect);
+				MoveWindow(hwndToolBar, 0, 0, cx, rect.bottom + 2, TRUE);
+			}
+			GetWindowRect(hwndToolBar, &rect);
+			int cyToolBar = rect.bottom - rect.top;
+			// Moves status bar back to the bottom
+			SendMessage(hwndStatusBar, WM_SIZE, 0, 0);
+			GetWindowRect(hwndStatusBar, &rect);
+			int cyStatusBar = rect.bottom - rect.top;
 			//--------------------------------------------
 			// Set statusbar divisions.
-			int statbarw = LOWORD(lParam);
 			// Calculate the right edge coordinate for each part
-			int parts[] = { statbarw * 4 / 6, statbarw * 5 / 6, statbarw };
-
-			SendMessage(hwndStatusBar, SB_SETPARTS, (WPARAM) 3, (LPARAM)parts);
-
-			RECT rect;
-			GetClientRect(hwndToolBar, &rect);
-			int iToolbarHeight = rect.bottom - rect.top;
-			GetClientRect(hwndStatusBar, &rect);
-			MoveWindow(hwndHex, 0, iToolbarHeight, LOWORD(lParam), HIWORD(lParam)-rect.bottom-iToolbarHeight, TRUE);
+			int parts[] = { MulDiv(cx, 4, 6), MulDiv(cx, 5, 6), cx };
+			SendMessage(hwndStatusBar, SB_SETPARTS, RTL_NUMBER_OF(parts), (LPARAM)parts);
+			MoveWindow(hwndHex, 0, cyToolBar, cx, cy - cyToolBar - cyStatusBar, TRUE);
 		}
 		break;
 	case WM_NOTIFY:
@@ -251,15 +259,14 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			}
 			else if (hwndFrom == hwndToolBar)
 			{
-				if (code == TBN_GETINFOTIPA)
-				{
-					NMTBGETINFOTIPA *pi = (NMTBGETINFOTIPA *)lParam;
-					LoadStringA(hMainInstance, pi->iItem, pi->pszText, pi->cchTextMax);
-				}
-				else if (code == TBN_GETINFOTIPW)
+				if (code == TBN_GETINFOTIPW)
 				{
 					NMTBGETINFOTIPW *pi = (NMTBGETINFOTIPW *)lParam;
-					LoadStringW(hMainInstance, pi->iItem, pi->pszText, pi->cchTextMax);
+					if (BSTR text = pHexWnd->load_string(pi->iItem))
+					{
+						StrCpyNW(pi->pszText, text, pi->cchTextMax);
+						pHexWnd->free_string(text);
+					}
 				}
 			}
 		}

@@ -229,7 +229,7 @@
 				RelativePath="frhed.rc">
 			</File>
 			<File
-				RelativePath="icon1.ico">
+				RelativePath=".\res\icon1.ico">
 			</File>
 			<File
 				RelativePath="resource.h">

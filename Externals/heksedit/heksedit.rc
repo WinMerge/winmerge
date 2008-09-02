@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// Englisch (USA) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -499,8 +499,9 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,82,131,50,14
 END
 
-IDD_VIEWSETTINGSDIALOG DIALOGEX 0, 0, 229, 167
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_VIEWSETTINGSDIALOG DIALOGEX 0, 0, 249, 167
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "View Settings"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
@@ -509,13 +510,13 @@ BEGIN
     EDITTEXT        IDC_EDIT1,7,16,68,12,ES_AUTOHSCROLL
     CONTROL         "Automatically adjust number of bytes per line (uncheck this if you want frhed to use your own choice for bytes per line)",
                     IDC_CHECK1,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
-                    WS_TABSTOP,7,31,214,19
+                    WS_TABSTOP,7,31,234,19
     LTEXT           "Display length of offset in how many characters:",
                     IDC_STATIC,7,51,151,8
     EDITTEXT        IDC_EDIT2,7,61,68,12,ES_AUTOHSCROLL
     CONTROL         "Adjust offset len to that of the max offset",IDC_CHECK2,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,80,
-                    61,140,12
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,78,
+                    61,163,12
     GROUPBOX        "Display values at caret position as:",IDC_STATIC,7,76,
                     128,25,WS_GROUP
     CONTROL         "unsigned",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
@@ -526,9 +527,12 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,106,128,10
     LTEXT           "Path and filename of the text editor to call:",
                     IDC_STATIC,7,122,133,8
-    EDITTEXT        IDC_EDIT3,7,132,214,13,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,171,80,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,171,97,50,14
+    EDITTEXT        IDC_EDIT3,7,132,234,13,ES_AUTOHSCROLL
+    LTEXT           "Language:",IDC_STATIC,7,151,50,8
+    COMBOBOX        IDC_COMBO1,69,147,172,189,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,191,80,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,191,97,50,14
 END
 
 IDD_APPENDDIALOG DIALOGEX 0, 0, 192, 46
@@ -1054,7 +1058,6 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 205
         TOPMARGIN, 7
-        BOTTOMMARGIN, 192
     END
 
     IDD_HEXDUMPDIALOG, DIALOG
@@ -1100,7 +1103,7 @@ BEGIN
     IDD_VIEWSETTINGSDIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 221
+        RIGHTMARGIN, 241
         TOPMARGIN, 7
         BOTTOMMARGIN, 160
     END
@@ -1264,6 +1267,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
@@ -1303,6 +1307,11 @@ BEGIN
     ID_DISK_GOTOPREVIOUSTRACK "Goto previous sector"
     ID_DISK_GOTOFIRSTTRACK  "Goto first sector"
     ID_DISK_GOTOLASTTRACK   "Goto last sector"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DiffListItemFormat  "%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)"
 END
 
 #endif    // Englisch (USA) resources

@@ -244,6 +244,8 @@
 #define IDC_ENABLE_DROP                 1080
 #define IDC_EXPORTDIGITS                1081
 #define IDC_APPICON                     1082
+#define IDC_COMBO1                      1083
+#define IDS_DiffListItemFormat          10001
 #define IDM_OLE_DRAG_DROP               40142
 
 // Next default values for new objects
@@ -253,7 +255,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         40143
-#define _APS_NEXT_CONTROL_VALUE         1083
+#define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

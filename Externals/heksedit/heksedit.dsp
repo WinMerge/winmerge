@@ -275,7 +275,15 @@ SOURCE=.\Simparr.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\StringTable.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\UpgradeDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ViewSettingsDlg.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -376,6 +384,10 @@ SOURCE=.\shtools.h
 # Begin Source File
 
 SOURCE=.\Simparr.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\StringTable.h
 # End Source File
 # Begin Source File
 

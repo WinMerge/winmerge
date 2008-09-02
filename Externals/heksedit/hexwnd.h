@@ -11,6 +11,7 @@
 
 #define CURRENT_VERSION SHARPEN(A,FRHED_MAJOR_VERSION) "." SHARPEN(A,FRHED_MINOR_VERSION)
 #define SUB_RELEASE_NO SHARPEN(A,FRHED_SUB_RELEASE_NO)
+#define BUILD_NO SHARPEN(A,FRHED_BUILD_NO)
 
 #include "PhysicalDrive.h"
 #include "PMemoryBlock.h"
@@ -54,6 +55,9 @@ enum EnteringMode { BYTES, CHARS };
 class hexfile_stream;
 class load_hexfile_0;
 class load_hexfile_1;
+
+class LangArray;
+extern LangArray langArray;
 
 interface CDropTarget;
 
@@ -224,6 +228,8 @@ public:
 	Status *STDMETHODCALLTYPE get_status();
 	int STDMETHODCALLTYPE translate_accelerator(MSG *);
 	BOOL STDMETHODCALLTYPE load_lang(LANGID);
+	BSTR STDMETHODCALLTYPE load_string(UINT);
+	void STDMETHODCALLTYPE free_string(BSTR);
 
 	virtual int STDMETHODCALLTYPE load_file(const char* fname);
 	int file_is_loadable(const char* fname);
@@ -243,6 +249,9 @@ public:
 	void set_caret_pos();
 	void print_text(HDC hdc, int x, int y, char *pch, int cch);
 	virtual HRESULT STDMETHODCALLTYPE ResolveIt(LPCSTR lpszLinkFile, LPSTR lpszPath);
+
+	static void LoadStringTable();
+	static void FreeStringTable();
 
 public:
 	int iWindowShowCmd, iWindowX, iWindowY, iWindowWidth, iWindowHeight;
@@ -265,6 +274,7 @@ protected:
 	static int iPasteAsText;
 	static int iPasteTimes;
 	static int iPasteSkip;
+
 	int bOpenReadOnly;//Pabs inserted ", iPartialOpenLen, iPartialFileLen, bPartialStats"
 	int iPartialOffset, bPartialOpen, iPartialOpenLen, iPartialFileLen, bPartialStats;
 	int iBmkCount;

@@ -3,6 +3,8 @@
 #include "LangArray.h"
 #include "VersionData.h"
 
+const LANGID LangArray::DefLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
+
 /**
  * @brief Remove prefix from the string.
  * @param [in] text String from which to jump over prefix.
@@ -139,7 +141,7 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 	int unresolved = 0;
 	int mismatched = 0;
 	FILE *f = 0;
-	if (langid)
+	if (langid && langid != DefLangId)
 	{
 		TCHAR path[MAX_PATH];
 		GetModuleFileName(hMainInstance, path, MAX_PATH);
@@ -232,9 +234,9 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 		// (3) Country inspecific translation, e.g. de.po
 		do
 		{
-			if (int i = GetLocaleInfo(langid, LOCALE_SISO639LANGNAME, name, 4))
+			if (int i = LangCodeMajor(langid, name))
 			{
-				int j = GetLocaleInfo(langid, LOCALE_SISO3166CTRYNAME, name + i, 4);
+				int j = LangCodeMinor(langid, name + i);
 				name[--i] = '-';
 				do
 				{
@@ -448,4 +450,29 @@ void LangArray::TranslateDialogW(HWND h)
 		h = ::GetWindow(h, gw);
 		gw = GW_HWNDNEXT;
 	} while (h);
+}
+
+int LangArray::LangCodeMajor(LANGID langid, LPTSTR name)
+{
+	return GetLocaleInfo(langid, LOCALE_SISO639LANGNAME, name, 4);
+}
+
+int LangArray::LangCodeMinor(LANGID langid, LPTSTR name)
+{
+	static const TCHAR cyrl[] = _T("Cyrl");
+	static const TCHAR latn[] = _T("Latn");
+	switch (langid)
+	{
+	case MAKELANGID(LANG_AZERI, SUBLANG_AZERI_LATIN):
+	case MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_LATIN):
+	case MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_LATIN):
+		memcpy(name, latn, sizeof latn);
+		return sizeof latn;
+	case MAKELANGID(LANG_AZERI, SUBLANG_AZERI_CYRILLIC):
+	case MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC):
+	case MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_CYRILLIC):
+		memcpy(name, cyrl, sizeof cyrl);
+		return sizeof cyrl;
+	}
+	return GetLocaleInfo(langid, LOCALE_SISO3166CTRYNAME, name, 4);
 }

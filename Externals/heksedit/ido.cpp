@@ -7,96 +7,69 @@ certain APIs in their import libraries. Specifically _wremove, _wopen & GetEnhMe
 
 //CDataObject
 //Members
-CDataObject::CDataObject( bool delself, CDataObject** p )//When using C++ new need to call like so someptr = new CDataObject(1,someptr);
+CDataObject::CDataObject()
 {
-#ifdef _DEBUG
-	printf("IDataObject::IDataObject\n");
-#endif //_DEBUG
 	m_cRefCount = 0;
-	deleteself = delself;
-	pthis = p;
-
 	allowSetData = true;
 	data = NULL;
 	enums = NULL;
 	numdata = numenums = 0;
 }
 
-CDataObject::~CDataObject( void )
+CDataObject::~CDataObject()
 {
-#ifdef _DEBUG
-	printf("IDataObject::~IDataObject\n");
-	if( m_cRefCount != 0 )
-		printf("Deleting %s too early 0x%x.m_cRefCount = %d\n", "IDataObject", this, m_cRefCount);
-#endif //_DEBUG
+	assert(m_cRefCount == 0);
 	Empty();
-	if(enums){
-		for(UINT i = 0;i<numenums;i++)
-			if(enums[i]) delete enums[i];
+	if (enums)
+	{
+		while (numenums)
+			delete enums[--numenums];
 		free(enums);
-		enums = NULL; numenums = 0;
 	}
-	if( pthis ) *pthis = NULL;
 }
 
-void CDataObject::DisableSetData( void ){
+void CDataObject::DisableSetData()
+{
 	allowSetData = false;
 }
 
-void CDataObject::Empty( void ){
-	if(data){
-		for( UINT i = 0;i<numdata;i++)
-			ReleaseStgMedium(&data[i].medium);
+void CDataObject::Empty()
+{
+	if (data)
+	{
+		while (numdata)
+			ReleaseStgMedium(&data[--numdata].medium);
 		free(data);
 		data = NULL;
 	}
 }
 
-
 //IUnknown members
-STDMETHODIMP CDataObject::QueryInterface( REFIID iid, void** ppvObject )
+STDMETHODIMP CDataObject::QueryInterface(REFIID iid, void **ppvObject)
 {
-#ifdef _DEBUG
-	printf("IDataObject::QueryInterface\n");
-#endif //_DEBUG
-
-	*ppvObject = NULL;
-
-	if ( iid == IID_IUnknown ) *ppvObject = (IUnknown*)this;
-	else if ( iid == IID_IDataObject ) *ppvObject = (IDataObject*)this;
-
-	if(*ppvObject){
-		((IUnknown*)*ppvObject)->AddRef();
+	if (iid == IID_IUnknown || iid == IID_IDataObject)
+	{
+		*ppvObject = static_cast<IDataObject *>(this);
+		AddRef();
 		return S_OK;
 	}
-
+	*ppvObject = NULL;
 	return E_NOINTERFACE;
 }
 
-STDMETHODIMP_(ULONG) CDataObject::AddRef( void )
+STDMETHODIMP_(ULONG) CDataObject::AddRef()
 {
-#ifdef _DEBUG
-	printf("IDataObject::AddRef\n");
-#endif //_DEBUG
 	return ++m_cRefCount;
 }
 
-STDMETHODIMP_(ULONG) CDataObject::Release( void )
+STDMETHODIMP_(ULONG) CDataObject::Release()
 {
-#ifdef _DEBUG
-	printf("IDataObject::Release\n");
-#endif //_DEBUG
-	if( --m_cRefCount == 0 && deleteself ) delete this;
-	return m_cRefCount;
+	return --m_cRefCount;
 }
-
 
 //IDataObject members
 STDMETHODIMP CDataObject::GetData( FORMATETC* pFormatetc, STGMEDIUM* pmedium )
 {
-#ifdef _DEBUG
-	printf("IDataObject::GetData\n");
-#endif //_DEBUG
 	//Error handling
 	if (pFormatetc == 0 || pmedium == 0)
 		return E_INVALIDARG;
@@ -123,48 +96,28 @@ STDMETHODIMP CDataObject::GetData( FORMATETC* pFormatetc, STGMEDIUM* pmedium )
 	return hr;
 }
 
-STDMETHODIMP CDataObject::GetDataHere( FORMATETC* pFormatetc, STGMEDIUM* pmedium )
+STDMETHODIMP CDataObject::GetDataHere(FORMATETC *, STGMEDIUM *pmedium)
 {
-	UNREFERENCED_PARAMETER( pFormatetc );
-	UNREFERENCED_PARAMETER( pmedium );
-#ifdef _DEBUG
-	printf("IDataObject::GetDataHere\n");
-#endif //_DEBUG
 	pmedium->pUnkForRelease = NULL;
 	return E_NOTIMPL;
 }
 
-STDMETHODIMP CDataObject::QueryGetData( FORMATETC* pFormatetc )
+STDMETHODIMP CDataObject::QueryGetData(FORMATETC *pFormatetc)
 {
-#ifdef _DEBUG
-	printf("IDataObject::QueryGetData\n");
-#endif //_DEBUG
-	for( UINT i = 0; i < numdata; i++ ){
-		if( data[i].format.cfFormat == pFormatetc->cfFormat ){
-			if( data[i].format.dwAspect == pFormatetc->dwAspect){
+	for (UINT i = 0 ; i < numdata ; i++)
+		if (data[i].format.cfFormat == pFormatetc->cfFormat)
+			if (data[i].format.dwAspect == pFormatetc->dwAspect)
 				return S_OK;
-			}
-		}
-	}
 	return DV_E_FORMATETC;
 }
 
-STDMETHODIMP CDataObject::GetCanonicalFormatEtc( FORMATETC* pFormatetcIn, FORMATETC* pFormatetcOut )
+STDMETHODIMP CDataObject::GetCanonicalFormatEtc(FORMATETC *, FORMATETC *)
 {
-	UNREFERENCED_PARAMETER( pFormatetcIn );
-	UNREFERENCED_PARAMETER( pFormatetcOut );
-#ifdef _DEBUG
-	printf("IDataObject::GetCanonicalFormatEtc\n");
-#endif //_DEBUG
 	return E_NOTIMPL;
 }
 
-STDMETHODIMP CDataObject::SetData(FORMATETC* pFormatetc, STGMEDIUM* pmedium, BOOL fRelease)
+STDMETHODIMP CDataObject::SetData(FORMATETC *pFormatetc, STGMEDIUM *pmedium, BOOL fRelease)
 {
-#ifdef _DEBUG
-	printf("IDataObject::SetData\n");
-#endif //_DEBUG
-
 	if (!allowSetData)
 		return E_NOTIMPL;
 
@@ -190,10 +143,6 @@ STDMETHODIMP CDataObject::SetData(FORMATETC* pFormatetc, STGMEDIUM* pmedium, BOO
 
 STDMETHODIMP CDataObject::EnumFormatEtc( DWORD dwDirection, IEnumFORMATETC** ppenumFormatetc )
 {
-#ifdef _DEBUG
-	printf("IDataObject::EnumFormatEtc\n");
-#endif //_DEBUG
-
 	//Don't support DATADIR_SET since we accept any format
 	if(dwDirection!=DATADIR_GET) return E_NOTIMPL;
 
@@ -203,90 +152,66 @@ STDMETHODIMP CDataObject::EnumFormatEtc( DWORD dwDirection, IEnumFORMATETC** ppe
 	  or resize the array to make space for one*/
 	unsigned int i = numenums;
 	if(enums) for( i = 0; i < numenums && enums[i] != NULL; i++ );
-	CEnumFORMATETC** t;
-	if( i == numenums ) t = (CEnumFORMATETC**) realloc(enums,sizeof(CEnumFORMATETC*)*(numenums+1));
-	else t = enums;
-	if(t){
-		enums = t; t[i] = new CEnumFORMATETC(this,true,&t[i]);
-		if(t[i]){
-			HRESULT ret = t[i]->QueryInterface(IID_IEnumFORMATETC,(void**)ppenumFormatetc);
-			if( i == numenums ) numenums++;
-			if( ret != S_OK || *ppenumFormatetc == NULL )
-				//FIXME: Should we return E_INVALIDARG or E_OUTOFMEMORY or what?
-				return E_OUTOFMEMORY;
-		}
-		else return E_OUTOFMEMORY;
-	} else return E_OUTOFMEMORY;
+	CEnumFORMATETC **t;
+	if (i == numenums)
+		t = (CEnumFORMATETC**) realloc(enums, sizeof(CEnumFORMATETC *) * (numenums + 1));
+	else
+		t = enums;
+	if (t == 0)
+		return E_OUTOFMEMORY;
+	enums = t;
+	t[i] = new CEnumFORMATETC(this);
+	if (t[i] == 0)
+		return E_OUTOFMEMORY;
+	HRESULT ret = t[i]->QueryInterface(IID_IEnumFORMATETC, (void**)ppenumFormatetc);
+	if (i == numenums)
+		numenums++;
+	if (ret != S_OK || *ppenumFormatetc == NULL)
+		//FIXME: Should we return E_INVALIDARG or E_OUTOFMEMORY or what?
+		return E_OUTOFMEMORY;
 	return S_OK;
 }
 
 //CEnumFORMATETC
 //Members
-CEnumFORMATETC::CEnumFORMATETC( CDataObject*par, bool delself, CEnumFORMATETC** p )
+CEnumFORMATETC::CEnumFORMATETC(CDataObject *par)
 {
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::IEnumFORMATETC\n");
-#endif //_DEBUG
 	m_cRefCount = 0;
-	deleteself = delself;
-	pthis = p;
-
 	parent = par;
 	index = 0;
 }
 
-CEnumFORMATETC::~CEnumFORMATETC( void )
+CEnumFORMATETC::~CEnumFORMATETC()
 {
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::~IEnumFORMATETC\n");
-	if( m_cRefCount != 0 )
-		printf("Deleting %s too early 0x%x.m_cRefCount = %d\n", "IEnumFORMATETC", this, m_cRefCount);
-#endif //_DEBUG
-	if( pthis ) *pthis = NULL;
+	assert(m_cRefCount == 0);
 }
 
 //IUnknown members
-STDMETHODIMP CEnumFORMATETC::QueryInterface( REFIID iid, void** ppvObject )
+STDMETHODIMP CEnumFORMATETC::QueryInterface(REFIID iid, void **ppvObject)
 {
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::QueryInterface\n");
-#endif //_DEBUG
-
-	*ppvObject = NULL;
-
-	if ( iid == IID_IUnknown ) *ppvObject = (IUnknown*)this;
-	else if ( iid == IID_IEnumFORMATETC ) *ppvObject = (IEnumFORMATETC*)this;
-
-	if(*ppvObject){
-		((IUnknown*)*ppvObject)->AddRef();
+	if (iid == IID_IUnknown || iid == IID_IEnumFORMATETC)
+	{
+		*ppvObject = static_cast<IEnumFORMATETC *>(this);
+		AddRef();
 		return S_OK;
 	}
-
+	*ppvObject = NULL;
 	return E_NOINTERFACE;
 }
 
-STDMETHODIMP_(ULONG) CEnumFORMATETC::AddRef( void )
+STDMETHODIMP_(ULONG) CEnumFORMATETC::AddRef()
 {
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::AddRef\n");
-#endif //_DEBUG
 	return ++m_cRefCount;
 }
 
-STDMETHODIMP_(ULONG) CEnumFORMATETC::Release( void )
+STDMETHODIMP_(ULONG) CEnumFORMATETC::Release()
 {
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::Release\n");
-#endif //_DEBUG
-	if( --m_cRefCount == 0 && deleteself ) delete this;
-	return m_cRefCount;
+	return --m_cRefCount;
 }
 
 //IEnumFORMATETC members
-STDMETHODIMP CEnumFORMATETC::Next( ULONG celt, FORMATETC* rgelt, ULONG* pceltFetched ){
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::Next\n");
-#endif //_DEBUG
+STDMETHODIMP CEnumFORMATETC::Next(ULONG celt, FORMATETC *rgelt, ULONG *pceltFetched)
+{
 	if (rgelt == 0)
 		return E_INVALIDARG;
 	ULONG fetched = 0;
@@ -300,57 +225,35 @@ STDMETHODIMP CEnumFORMATETC::Next( ULONG celt, FORMATETC* rgelt, ULONG* pceltFet
 	return fetched == celt ? S_OK : S_FALSE;
 }
 
-STDMETHODIMP CEnumFORMATETC::Skip( ULONG celt ){
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::Skip\n");
-#endif //_DEBUG
+STDMETHODIMP CEnumFORMATETC::Skip(ULONG celt)
+{
 	index += celt;
 	return S_FALSE;
 }
 
-STDMETHODIMP CEnumFORMATETC::Reset( void ){
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::Reset\n");
-#endif //_DEBUG
+STDMETHODIMP CEnumFORMATETC::Reset()
+{
 	index = 0;
 	return S_OK;
 }
 
-STDMETHODIMP CEnumFORMATETC::Clone( IEnumFORMATETC** ppenum ){
-#ifdef _DEBUG
-	printf("IEnumFORMATETC::Clone\n");
-#endif //_DEBUG
-	return parent->EnumFormatEtc( DATADIR_GET, ppenum );
+STDMETHODIMP CEnumFORMATETC::Clone(IEnumFORMATETC **ppenum)
+{
+	return parent->EnumFormatEtc(DATADIR_GET, ppenum);
 }
-
 
 //Following methods not implemented yet
-STDMETHODIMP CDataObject::DAdvise( FORMATETC* pFormatetc, DWORD advf, IAdviseSink* pAdvSink, DWORD* pdwConnection )
+STDMETHODIMP CDataObject::DAdvise(FORMATETC *, DWORD, IAdviseSink *, DWORD *)
 {
-	UNREFERENCED_PARAMETER( pFormatetc );
-	UNREFERENCED_PARAMETER( advf );
-	UNREFERENCED_PARAMETER( pAdvSink );
-	UNREFERENCED_PARAMETER( pdwConnection );
-#ifdef _DEBUG
-	printf("IDataObject::DAdvise\n");
-#endif //_DEBUG
 	return E_NOTIMPL;
 }
 
-STDMETHODIMP CDataObject::DUnadvise( DWORD dwConnection )
+STDMETHODIMP CDataObject::DUnadvise(DWORD)
 {
-	UNREFERENCED_PARAMETER( dwConnection );
-#ifdef _DEBUG
-	printf("IDataObject::DUnadvise\n");
-#endif //_DEBUG
 	return E_NOTIMPL;
 }
 
-STDMETHODIMP CDataObject::EnumDAdvise( IEnumSTATDATA** ppenumAdvise )
+STDMETHODIMP CDataObject::EnumDAdvise(IEnumSTATDATA **)
 {
-	UNREFERENCED_PARAMETER( ppenumAdvise );
-#ifdef _DEBUG
-	printf("IDataObject::EnumDAdvise\n");
-#endif //_DEBUG
 	return E_NOTIMPL;
 }
