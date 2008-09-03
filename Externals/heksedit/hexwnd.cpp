@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  hexwnd.cpp
+ *
+ * @brief Implementation of the hex window.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: hexwnd.cpp 19 2008-08-18 15:03:12Z kimmov $
+
 //============================================================================================
 // Frhed main definition file.
 #include "precomp.h"
@@ -10,6 +35,7 @@
 #include "gktools.h"
 #include "regtools.h"
 #include "hgstream.h"
+#include "InvokeHtmlHelp.h"
 #include "clipboard.h"
 #include "BinTrans.h"
 #include "LoadHexFile.h"
@@ -29,7 +55,6 @@ static const char appname[] = "frhed";
 const CLIPFORMAT CF_BINARYDATA = (CLIPFORMAT)RegisterClipboardFormat("BinaryData");
 const CLIPFORMAT CF_RICH_TEXT_FORMAT = (CLIPFORMAT)RegisterClipboardFormat(CF_RTF);
 
-BOOL ShowHtmlHelp(UINT uCommand, DWORD dwData, HWND hParentWindow);
 
 int HexEditorWindow::MouseOpDist = GetProfileInt("Windows", "DragMinDist", DD_DEFDRAGMINDIST);
 int HexEditorWindow::MouseOpDelay = GetProfileInt("Windows", "DragDelay", DD_DEFDRAGDELAY);

@@ -1,5 +1,11 @@
-//=========================================================
-// File: simparr.cpp
+/** 
+ * @file  Simparr.cpp
+ *
+ * @brief Implementation file for SimpleArray and SimpleString classes.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: Simparr.cpp 42 2008-09-01 20:40:28Z kimmov $
 
 #include "precomp.h"
 #include "simparr.h"
@@ -115,3 +121,4 @@ SimpleString operator+( const char* ps1, const SimpleString &ps2 )
 	return SimpleString(s1);
 }
 
+//-------------------------------------------------------------------

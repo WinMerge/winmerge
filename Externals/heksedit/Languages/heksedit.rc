@@ -526,7 +526,7 @@ BEGIN
     CONTROL         "heksedit.rc:526",IDC_CHECK5,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,106,128,10
     LTEXT           "heksedit.rc:528",
-                    IDC_STATIC,7,122,133,8
+                    IDC_STATIC,7,122,172,8
     EDITTEXT        IDC_EDIT3,7,132,234,13,ES_AUTOHSCROLL
     LTEXT           "heksedit.rc:531",IDC_STATIC,7,151,50,8
     COMBOBOX        IDC_COMBO1,69,147,172,189,CBS_DROPDOWNLIST | 

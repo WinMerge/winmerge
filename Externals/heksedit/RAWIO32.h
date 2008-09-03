@@ -5,7 +5,8 @@
 extern "C" {
 #endif
 
-/*    Interface of the RAWIO32.DLL
+/*
+    Interface of the RAWIO32.DLL
     
     */
 struct SectorInfo

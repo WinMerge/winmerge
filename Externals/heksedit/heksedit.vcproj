@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="imagehlp.lib version.lib comctl32.lib wininet.lib odbc32.lib odbccp32.lib shlwapi.lib"
+				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib htmlhelp.lib"
 				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -106,7 +106,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib htmlhelp.lib"
 				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -984,6 +984,9 @@
 			</File>
 			<File
 				RelativePath="idt.h">
+			</File>
+			<File
+				RelativePath=".\InvokeHtmlHelp.h">
 			</File>
 			<File
 				RelativePath=".\LangArray.h">

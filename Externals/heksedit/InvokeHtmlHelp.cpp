@@ -1,94 +1,62 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  InvokeHtmlHelp.cpp
+ *
+ * @brief Implementation for helper function to start HtmlHelp.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: InvokeHtmlHelp.cpp 15 2008-08-15 16:43:32Z kimmov $
+
 #include "precomp.h"
-
-
 #include <htmlhelp.h>
 
-typedef struct tagHH_LAST_ERROR
+/** @brief HtmlHelp file to open from Frhed program folder. */
+static const char HtmlHelpFile[] = "frhed.chm";
+
+/**
+ * @brief Show HTML help.
+ * This function shows HTML help, with given command and path.
+ * @param [in] uCommand How/what to open in help (TOC etc).
+ * @param [in] path Additional relative path inside help file to open.
+ * @param [in] hParentWindow Window opening this help.
+ */
+void ShowHtmlHelp( UINT uCommand, LPCTSTR path, HWND hParentWindow )
 {
-	int cbStruct;
-	HRESULT hr;
-	BSTR description;
-} HH_LAST_ERROR;
-
-
-typedef HWND (WINAPI* LPFNHtmlHelpA)(
-	HWND hwndCaller,
-	LPCSTR pszFile,
-	UINT uCommand,
-	DWORD_PTR dwData
-	);
-
-static LPFNHtmlHelpA pfnHtmlHelpA;
-static HMODULE hHtmlHelpLibrary = 0;
-
-#define HELPFILENAME "frhed.chm"
-
-BOOL ShowHtmlHelp( UINT uCommand, DWORD dwData, HWND hParentWindow )
-{
-	if( !hHtmlHelpLibrary )
+	if( uCommand == HELP_CONTEXT )
 	{
-		hHtmlHelpLibrary = LoadLibrary("hhctrl.ocx");
-		if( hHtmlHelpLibrary )
+		if (path != NULL)
 		{
-			pfnHtmlHelpA = (LPFNHtmlHelpA)GetProcAddress(hHtmlHelpLibrary,"HtmlHelpA");
-			if( !pfnHtmlHelpA )
-			{
-				CloseHandle(hHtmlHelpLibrary);
-				hHtmlHelpLibrary = 0;
-			}
+			char fullpath[MAX_PATH] = {0};
+			_snprintf(fullpath, MAX_PATH, "%s::/%s", HtmlHelpFile, path);
+			HtmlHelp(hParentWindow, fullpath, HH_DISPLAY_TOPIC, NULL);
+		}
+		else
+		{
+			HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_TOPIC, NULL);
 		}
 	}
-	if( pfnHtmlHelpA )
+	else if( uCommand == HELP_FINDER )
 	{
-		HWND ret = NULL;
-		// Annahme: Aufruf erfolgt mit WinHelp-Befehlen !!!!!
-		if( uCommand == HELP_CONTEXT )
-		{
-			CHAR szContext[256];
-			sprintf( szContext, HELPFILENAME "::/%d.htm", dwData );
-			ret = pfnHtmlHelpA( hParentWindow, HELPFILENAME, HH_DISPLAY_TOPIC, 0 );
-		}
-		else if( uCommand == HELP_FINDER )
-		{
-			ret = pfnHtmlHelpA( hParentWindow, HELPFILENAME, HH_DISPLAY_SEARCH, dwData );
-		}
-		else if( uCommand == HELP_CONTENTS )
-		{
-			ret = pfnHtmlHelpA( hParentWindow, HELPFILENAME, HH_DISPLAY_TOC, dwData );
-		}
-		else if( uCommand == HELP_QUIT )
-		{
-			pfnHtmlHelpA( NULL, NULL, HH_CLOSE_ALL, 0 );
-			CloseHandle(hHtmlHelpLibrary);
-			hHtmlHelpLibrary = 0;
-			ret = (HWND)1;//We don't care
-		}
-		if( ret == NULL ){
-			HH_LAST_ERROR lasterror;
-			lasterror.cbStruct = sizeof(lasterror);
-
-			ret = pfnHtmlHelpA( hParentWindow, NULL, HH_GET_LAST_ERROR, reinterpret_cast<DWORD>(&lasterror)) ;
-
-			// Make sure that HH_GET_LAST_ERROR succeeded.
-			if ( ret != 0 )
-			{
-				// Only report an error if we found one:
-				if (FAILED(lasterror.hr))
-				{
-					// Is there a text message to display...
-					if (lasterror.description)
-					{
-						// Display
-						MessageBoxW( hParentWindow, lasterror.description, L"Help Error", MB_OK) ;
-						SysFreeString( lasterror.description );
-					}
-				}
-			}
-			return FALSE;
-		}
-		return TRUE;
+		HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_SEARCH, NULL);
 	}
-	return FALSE;
+	else if( uCommand == HELP_CONTENTS )
+	{
+		HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_TOC, NULL);
+	}
 }
-
-

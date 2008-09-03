@@ -1,5 +1,11 @@
-//=========================================================
-// File: simparr.h
+/** 
+ * @file  Simparr.h
+ *
+ * @brief Declaration file for SimpleArray and SimpleString classes.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: Simparr.h 42 2008-09-01 20:40:28Z kimmov $
 
 #ifndef simplearr_h
 #define simplearr_h

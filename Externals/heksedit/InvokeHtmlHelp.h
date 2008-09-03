@@ -15,23 +15,17 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  regtools.h
+ * @file  InvokeHtmlHelp.h
  *
- * @brief Registry helper functions declaration.
+ * @brief Definition for helper function to start HtmlHelp.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: regtools.h 19 2008-08-18 15:03:12Z kimmov $
+// $Id: InvokeHtmlHelp.h 16 2008-08-18 08:19:10Z kimmov $
 
-#ifndef _REGTOOLS_H_
-#define _REGTOOLS_H_
+#ifndef _INVOKE_HTML_HELP_H_
+#define _INVOKE_HTML_HELP_H_
 
-/*Recursively delete key for WinNT
-Don't use this under Win9x
-Don't use this to delete keys you know will have no subkeys or should not have subkeys
-This recursively deletes subkeys of the key and then
-returns the return value of RegDeleteKey(basekey,keynam)*/
-LONG RegDeleteWinNTKey(HKEY basekey, const char *keynam);
-LONG RegCopyValues(HKEY src, const char *skey, HKEY dst, const char *dkey);
+void ShowHtmlHelp( UINT uCommand, LPCTSTR path, HWND hParentWindow );
 
-#endif // _REGTOOLS_H_
+#endif // _INVOKE_HTML_HELP_H_
