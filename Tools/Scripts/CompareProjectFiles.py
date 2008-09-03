@@ -157,7 +157,7 @@ def main(argv):
     regexes = [re.compile(r'^ExpatMapLib\\'),
                re.compile(r'^Languages\\'),
                re.compile(r'^res\\.*\.bmp$'),]
-    fromInstance.Compare2(toInstance, regexes)
+    fromInstance.Compare(toInstance, regexes)
 
 ### MAIN ###
 if __name__ == "__main__":
