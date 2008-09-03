@@ -1,331 +1,1179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Filters">
-  <title>Filters</title>
+  <title>Using Filters<indexterm>
+      <primary>filtering</primary>
+    </indexterm></title>
 
-  <para>There are two kinds of filters in WinMerge: file filters for filtering
-  files and folders in folder compare and line filters for ignoring lines from
-  files before comparing.</para>
+  <para>When you compare files or folders, you can use filters to narrow the
+  scope of the comparison. This can be useful when you want to simplify the
+  comparison result by eliminating differences that you are not interested in.
+  Filters are rules based on regular expressions. WinMerge uses the popular PCRE
+  (Perl Compatible Regular Expressions) regular expression engine.<indexterm>
+      <primary>regular expressions</primary>
 
-  <section>
-    <title>Regular expressions</title>
+      <secondary>supported engine</secondary>
+    </indexterm><indexterm>
+      <primary>PCRE regular expression engine</primary>
+    </indexterm><indexterm>
+      <primary>regexp</primary>
 
-    <para>Filters are based on regular expressions (regexps). Each line filter
-    or file filter rule is regexp which is matched against file/folder name or
-    line.</para>
+      <see>regular expressions</see>
+    </indexterm></para>
 
-    <para>Regexps can be very complex to read. Luckily most file filtering
-    needs are for file extensions. File filters installed with WinMerge have
-    many useful examples.</para>
+  <para>The basic function of filtering is simple: evaluate each item that would
+  normally be compared (a folder, file, or line within a file), and if the
+  filter expression matches the target item, apply the filter. Depending on the
+  type of filter, the item is either included or excluded in the
+  comparison.</para>
 
-    <para>WinMerge uses popular PCRE (Perl Compatible Regular Expressions)
-    regular expression engine. There are lots of resources for help with Perl
-    regular expression.</para>
+  <para>There are different WinMerge filters for folder compare and file compare
+  operations:</para>
 
-    <section>
-      <title>Help with regexps</title>
+  <variablelist>
+    <varlistentry>
+      <term>Folder comparison: File masks and file filters<indexterm>
+          <primary>comparing folders</primary>
 
-      <para>There are many guides and help sites in Web, for example:</para>
+          <secondary>filtering</secondary>
+        </indexterm></term>
 
-      <variablelist>
-        <varlistentry>
-          <term>Good site devoted for regexps:</term>
+      <listitem>
+        <para>You can specify files to include in a folder comparison by using
+        simple file masks, or, for more complex filtering, by applying multiple
+        rules specified in a file filter. You cannot apply both a file mask and
+        a file filter in the same operation.</para>
 
-          <listitem>
-            <simpara><ulink
-            url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
-          </listitem>
-        </varlistentry>
+        <para>Files and folders that are filtered are hidden in the result by
+        default, which is typically what you want. You can click <menuchoice>
+            <guimenu>View</guimenu>
 
-        <varlistentry>
-          <term>Good HOWTO document for regexps:</term>
+            <guimenuitem>Show Skipped Items</guimenuitem>
+          </menuchoice> to unhide filtered items, but the Folder Compare window
+        shows only minimal information about them. For example, you cannot tell
+        whether a skipped file is a text file or binary.</para>
+      </listitem>
+    </varlistentry>
 
-          <listitem>
-            <simpara><ulink
-            url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></simpara>
-          </listitem>
-        </varlistentry>
+    <varlistentry>
+      <term>File comparisons: Line filters<indexterm>
+          <primary>comparing files</primary>
 
-        <varlistentry>
-          <term>Tutorial:</term>
+          <secondary>filtering</secondary>
+        </indexterm></term>
 
-          <listitem>
-            <simpara><ulink
-            url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></simpara>
-          </listitem>
-        </varlistentry>
+      <listitem>
+        <para>Line filters are applied only to file compare operations. They let
+        you ignore single line differences.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
 
-        <varlistentry>
-          <term>PDF quick reference:</term>
+  <section id="Filters_Mask">
+    <title>Using file masks<indexterm>
+        <primary>file masks</primary>
+      </indexterm><indexterm>
+        <primary>filters</primary>
 
-          <listitem>
-            <simpara><ulink
-            url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></simpara>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-    </section>
-  </section>
+        <secondary>file masks</secondary>
+      </indexterm><indexterm>
+        <primary>filtering</primary>
 
-  <section>
-    <title>File filters</title>
+        <secondary>in folder comparisons</secondary>
+      </indexterm></title>
 
-    <para>A file filter is a set of rules saved to one file. Every file and
-    folder is tested against all these rules before comparing. Files and
-    folders that match the rules are excluded if it is an inclusive filter, or
-    included if it is an exclusive filter.</para>
+    <para>You can use one or more <glossterm>file masks</glossterm> that specify
+    file extensions to include in a folder comparison. All other files are
+    omitted from your selection.</para>
 
-    <tip>
-      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in folder
-      compare. User can select them to visible or hidden from
-      <guimenu>View</guimenu> menu. Usually its wise to keep skipped items
-      hidden.</para>
-    </tip>
+    <section id="Filters_MaskApply">
+      <title>Defining and applying file masks</title>
 
-    <para>WinMerge's filtering system allows only one filter set to be active
-    at a time. Active filter set can be selected from Open-dialog or from
-    menu: <menuchoice>
-        <guimenu>Tools</guimenu>
-
-        <guimenuitem>Filters</guimenuitem>
-      </menuchoice>. Also empty filter can be selected when no folders or
-    files are ignored.</para>
-
-    <para>Filtered out files get only minimal needed attention by the folder
-    compare. This means that WinMerge misses a lot of information it gets for
-    non-ignored files. For example there is no way to know if filtered file is
-    a text file or a binary file. The reason is simple: as user tolds WinMerge
-    one does not care about the file, WinMerge tries to minimize the effort
-    and time for the file.</para>
-
-    <section>
-      <title>Filter files</title>
-
-      <para>Filter files are normal text files, with an extension of <filename
-      class="extension">.flt</filename>. Files have defined format which is
-      explained later in this chapter. Filters-dialog allows creating new
-      filter files based on template file. Filter files can be created from
-      the scratch but using template file is the recommended way to create a
-      new filter. The template file is named
-      <filename>FileFilter.tmpl</filename> and can be modified if needed. The
-      template file is located in <filename
-      class="directory">WinMerge/Filters</filename> -folder.</para>
-
-      <para>Filter files have two possible locations:</para>
+      <para>Define and apply a file mask at the time you launch your folder
+      compare operation:</para>
 
       <itemizedlist>
         <listitem>
-          <para>"<filename class="directory">Filters</filename>" subfolder in
-          the WinMerge program folder. E.g. <filename
-          class="directory">C:\Program
-          Files\WinMerge\Filters</filename>.</para>
+          <para>If you are using the Select Files or Folders dialog, after
+          choosing the <guilabel>Left</guilabel> and <guilabel>Right</guilabel>
+          folders, enter one or more file masks in the
+          <guilabel>Filter</guilabel> field. The masks are applied when you
+          start the folder compare operation.</para>
         </listitem>
 
         <listitem>
-          <para>User-defined folder. Selected in Options (<menuchoice>
-              <guimenu>Edit</guimenu>
-
-              <guimenuitem>Options</guimenuitem>
-
-              <guimenuitem>System</guimenuitem>
-
-              <guilabel>Filter Folder</guilabel>
-            </menuchoice>). By default it is <filename class="directory"> My
-          Documents\WinMerge\Filters</filename> folder.</para>
+          <para>If you are using the WinMerge command line, use the
+          <option>-f</option> flag to specify file masks (see the example in the
+          next section).</para>
         </listitem>
       </itemizedlist>
 
-      <important>
-        <para>With WinMerge 2.6.0 and later filter files are not anymore
-        loaded from profile folder like with earlier versions. Using
-        user-defined folder for filter files provides more flexibility and
-        easier access to filter files.</para>
-      </important>
+      <para>Remember, you cannot specify both a file mask and a file filter in
+      the field or command line.</para>
+    </section>
 
-      <para>First part of filter file defines name and basic functionality of
-      the filter:</para>
+    <section id="Filters_MaskSyntax">
+      <title>File mask syntax and example<indexterm>
+          <primary>rules</primary>
 
-      <para><screen>name: Example filter
-def: include</screen>where <constant>def</constant>: is:<itemizedlist>
-          <listitem>
-            <para><constant>include</constant> - inclusive filter. This filter
-            type filters out files and folders that match rules in
-            filter.</para>
-          </listitem>
+          <secondary>file masks</secondary>
+        </indexterm><indexterm>
+          <primary>filters</primary>
 
-          <listitem>
-            <para><constant>exclude</constant> - exclusive filter. This filter
-            type lets through files and folders that match rules in
-            filter.</para>
-          </listitem>
-        </itemizedlist>When using exclusive filter its worth noting that the
-      filter must contain rule to include all wanted subfolders. Usually its
-      wise to use this rule to include all subfolders:</para>
+          <secondary>file mask syntax</secondary>
+        </indexterm><indexterm>
+          <primary>regular expressions</primary>
 
-      <screen>d: \\*$ ## Subfolders</screen>
+          <secondary>in file masks</secondary>
+        </indexterm></title>
 
-      <para>There can be one filter rule in one line. And rule cannot be split
-      to several lines. Common format for one filter line is like this:</para>
+      <para>Use this syntax for file masks:</para>
 
-      <screen>f: \.ext$ ## Match files *.ext</screen>
+      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
 
-      <para>or</para>
+      <para>Valid delimiters are spaces, commas, colons or semicolons.</para>
 
-      <screen>d: \\folder$ ## Match given folder name</screen>
-
-      <para>Rule begins with "<constant>f:</constant>" if it matches for
-      filenames and "<constant>d:</constant>" if it matches for folder names.
-      (d comes from "folder".) Filenames are given to filter as is, there are
-      no special characters added. Folder names have preceding backslash
-      before them (e.g. "\Folder name"). So if folder names are matched by the
-      beginning of the name, the filter must start with "\\" to match the
-      first backslash. "<constant>##</constant>" is a comment separator, all
-      characters in line after that are ignored by WinMerge.</para>
-
-      <para><note>
-          <para>File filter rules are case-insensitive. Rule
-          <constant>.\bat$</constant> matches to
-          <filename>winmerge.bat</filename> and
-          <filename>compare.BAT</filename>.</para>
-        </note></para>
-
-      <para>So simple filters can be for example:</para>
+      <para>A mask with no extension ( <filename>*.</filename> ) selects files
+      without any extension, such as
+      <filename><filename>README</filename></filename>.</para>
 
       <example>
-        <title>Simple filefilter rules</title>
+        <title>File mask</title>
 
-        <screen>f: \.cpp$ ## Match *.cpp files
-f: \.h$ ## Match *.h files
-f: ^My ## Match My*.* files
-f: Dlg\. ## Match *Dlg.* files
-d: \\test$ ## Match 'test' folders
-d: ^\\Build$ ## Match 'Build' folders
-d: Temp$ ## Match *Temp folders (e.g. FirstTemp)
-d: Src ## Match *Src* folders</screen>
+        <para>In this command-line example, the folder compare operation
+        includes only files with <filename>xml</filename> or
+        <filename>txt</filename> extensions. All other files are omitted:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f
+        *.xml;*.txt</userinput></para>
       </example>
-
-      <para>Line begin or -end marker (<constant>"^"</constant> or
-      <constant>"$"</constant>) is usually required filter to work correctly.
-      Dot in filename must be "escaped" with <constant>"\"</constant> so
-      <constant>"\."</constant> means dot in filename.</para>
-
-      <note>
-        <para>Don't forget "<constant>$</constant>" at end. It marks end of
-        folder- or filename and without it rule may not work like expected.
-        While "<literal>\.c$</literal>" matches with only filenames having
-        extension <filename class="extension">.c</filename>
-        "<literal>\.c</literal>" matches all extensions beginning with
-        "<literal>c</literal>" (<filename class="extension">.cpp</filename>,
-        <filename class="extension">.com</filename>, etc).</para>
-      </note>
-
-      <para>Since file filter rules are regular expressions more complex rules
-      are also possible. Following few rules show some possibilities for more
-      complex rules:</para>
-
-      <example>
-        <title>More complex file filter rules</title>
-
-        <screen format="linespecific">f: ^\.#.*$ ## .#filename.version files
-f: Dlg\.c(pp)?$ ## *Dlg.c &amp; *Dlg.cpp files
-f: ^I.*\.h$ ## I*.h files
-f: Srv[1-9]\.def$ ## *Srv1.def - *Srv9.def files
-f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
-      </example>
-
-      <para>WinMerge ignores most whitespace characters in rules definition
-      lines. However comment must always start with one or more whitespace
-      character (space or tabulator) and comment-marker
-      (<constant>##</constant>). <constant>##</constant> can be used as part
-      of rule if there is no whitespace character before it.</para>
     </section>
   </section>
 
-  <section>
-    <title>Line filters</title>
+  <section id="Filters_FileFilter">
+    <title>Using File filters<indexterm>
+        <primary>filters</primary>
 
-    <para>Line filters can be used to ignore single lines from compared files.
-    Line filters are handy when user doesn't want to compare comments or
-    certain generated code. For example version control system
-    (time)stamps.</para>
+        <secondary>file filters</secondary>
+      </indexterm><indexterm>
+        <primary>filtering</primary>
 
-    <important>
-      <para>Line filter rule ignores single line it matches. It is not
-      possible to ignore partial lines or several lines with file filter rule.
-      Also, all lines in difference must match the filter so that difference
-      is ignored. If only one line of several matches, the difference is not
-      ignored.</para>
-    </important>
+        <secondary>in folder comparisons</secondary>
+      </indexterm></title>
 
-    <para>In file compare ignored differences are shown with own colors to
-    differentiate them from other differences. User can see these differences
-    but cannot select or merge them.</para>
+    <para><glossterm>File filters</glossterm> are text files with an extension
+    of <filename>flt</filename>. They enable you to apply multiple filtering
+    rules to a folder comparison. Unlike file masks, file filters can either
+    include or exclude matches.</para>
 
-    <para>Line filter rules are regular expressions like file filter rules.
-    Since filter matches if any part of line matches it is usually recommended
-    to add begin (<constant>"^"</constant>) or end (<constant>"$"</constant>)
-    marker to rule. Or both markers if exact line is wanted to
-    filtered.</para>
+    <para><indexterm>
+        <primary>file filters</primary>
 
-    <para>Rules can be added and edited in Filters-dialog (Menu: <menuchoice>
-        <guimenu>Tools</guimenu>
+        <secondary>template</secondary>
+      </indexterm>WinMerge installs a number of predefined file filters. If
+    these file filters do not provide the filtering you need, you can create
+    your own. To make that task easier, WinMerge also provides a template file
+    named <filename>FileFilter.tmpl</filename>. This section describes how to
+    apply file filters to comparisons, and documents the file filter syntax.
+    <xref linkend="Filters_Dlg" /> describes how to add, edit, and manage
+    filters.</para>
 
-        <guimenuitem>Filters</guimenuitem>
-      </menuchoice>). Type one rule per row to the list. At the beginning of
-    the row is a checkbox for enabling / disabling single rules.</para>
+    <section id="Filters_FileFilterLoc">
+      <title>File filter locations<indexterm>
+          <primary>Filters folders</primary>
 
-    <para>Compare results are not updated automatically after changing line
-    filter rules. User can update compare results by selecting <menuchoice>
-        <guimenu>Edit</guimenu>
+          <secondary>locations</secondary>
+        </indexterm><indexterm>
+          <primary>file filters</primary>
 
-        <guimenuitem>Refresh</guimenuitem>
-      </menuchoice> or <keycap>F5</keycap>.</para>
+          <secondary>locations</secondary>
+        </indexterm></title>
 
-    <example>
-      <title>Some example line filters</title>
+      <para>WinMerge automatically detects file filters in these
+      locations:</para>
 
-      <screen format="linespecific">^MYTAG$</screen>
+      <variablelist>
+        <varlistentry>
+          <term>Filters subfolder in the WinMerge installation folder</term>
 
-      <para>- Filters out lines being exactly
-      <constant>"MYTAG"</constant></para>
+          <listitem>
+            <para>This is where the predefined file filters are installed. For
+            example, <filename>C:\Program Files\WinMerge\Filters</filename>. You
+            can create or copy filter files in this location to make them
+            available to all users on your system.</para>
 
-      <screen format="linespecific">^::</screen>
+            <para>Before creating a new file filter, see if the predefined ones
+            already contain what you need. If not, you might find useful rule
+            examples in the existing files.</para>
+          </listitem>
+        </varlistentry>
 
-      <para>- Filters out lines beginning with
-      <constant>"::"</constant></para>
+        <varlistentry>
+          <term>Default private filter folder</term>
 
-      <screen format="linespecific">^/\**.\*/$</screen>
+          <listitem>
+            <para>The location of this folder is defined in the System page of
+            WinMerge options. By default, it is specified as a subfolder in your
+            user profile folder (for example, <filename>My
+            Documents\WinMerge\Filters</filename> in Windows XP). Filters that
+            are created or copied here are normally visible only to you. If you
+            create new file filters, you can copy them here to keep them
+            private.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
 
-      <para>- Filters out lines beginning with <constant>"/*"</constant> and
-      ending with <constant>"*/"</constant></para>
+      <para>Before you can apply file filters that exist in any other folder,
+      you must first install them.</para>
+    </section>
 
-      <screen format="linespecific">^[1-5]00</screen>
+    <section id="Filters_FileFilterApply">
+      <title>Applying file filters</title>
 
-      <para>- Filters out lines beginning with numbers 100, 200, 300, 400
-      &amp; 500</para>
-    </example>
+      <para>You can apply a file filter using any of these methods:</para>
 
-    <example>
-      <title>Line filter rule matching CVS "Id:" -lines:</title>
+      <itemizedlist>
+        <listitem>
+          <para>When you launch a folder compare from the Select Files or
+          Folders dialog:</para>
 
-      <para>Id-lines are like this:</para>
+          <orderedlist>
+            <listitem>
+              <para>After choosing the <guilabel>Left</guilabel> and
+              <guilabel>Right</guilabel> folders, click
+              <guibutton>Select</guibutton> next to the
+              <guilabel>Filter</guilabel> field.</para>
+            </listitem>
 
-      <screen>// $Id$</screen>
+            <listitem>
+              <para>In the Filters dialog, use the Filefilters tab to choose a
+              file filter and load it in the <guilabel>Filter</guilabel>
+              field.</para>
 
-      <para>And they can be filtered with rule:</para>
+              <note>
+                <para>If a file filter is currently enabled, the selected file
+                filter is already loaded in the <guilabel>Filter</guilabel>
+                field.</para>
+              </note>
+            </listitem>
 
-      <screen>^// \WId: .*\$</screen>
-    </example>
+            <listitem>
+              <para>Proceed with the compare operation. The file in the
+              <guilabel>Filter</guilabel> field is applied when you start the
+              operation.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
 
-    <example>
-      <title>Filter out line number comments in po files:</title>
+        <listitem>
+          <para>To change file filtering after you have already launched a
+          folder compare operation (for example, applying a different filter or
+          disabling filtering):</para>
 
-      <para>po line number comments are like this:</para>
+          <orderedlist>
+            <listitem>
+              <para>Click <menuchoice>
+                  <guimenu>Tools</guimenu>
 
-      <screen>#: src/filename.c:766</screen>
+                  <guimenuitem>Filters</guimenuitem>
+                </menuchoice>.</para>
+            </listitem>
 
-      <para>And they can be filtered out with rule:</para>
+            <listitem>
+              <para>In the Filters dialog, configure your new file filter
+              setting, and click <guibutton>OK</guibutton>.</para>
+            </listitem>
 
-      <screen>^#</screen>
-    </example>
+            <listitem>
+              <para>The new filtering is not automatically applied when you
+              close the Filters dialog: press <keycap>F5</keycap> to see the new
+              results in the Folder Compare window.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>When you launch a folder compare from the WinMerge command line,
+          use the <option>-f</option> flag to specify a file filter.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Remember, you cannot apply both a file mask and a file filter in the
+      field or command line.</para>
+    </section>
+
+    <section id="Filters_FileFilterSyntax">
+      <title>File filter syntax<indexterm>
+          <primary>rules</primary>
+
+          <secondary>file filter</secondary>
+        </indexterm><indexterm>
+          <primary>filters</primary>
+
+          <secondary>file filter syntax</secondary>
+        </indexterm></title>
+
+      <para>This section describes the syntax of WinMerge file filters and
+      provides guidelines for writing them.</para>
+
+      <para>The comment delimiter is <code>##</code>. After a comment delimiter,
+      all characters in a line are ignored. WinMerge ignores most whitespace
+      characters in rules. However, a comment must always be preceded by one or
+      more whitespace (space or tab) characters. To use <code>##</code> as
+      characters in a rule, omit the whitespace prefix.</para>
+
+      <para>The first two required lines of a file filter are:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>name</term>
+
+          <listitem>
+            <para>The filter name that is listed in the Files dialog</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>def</term>
+
+          <listitem>
+            <para>The type of filtering to be applied. Specify one of these
+            values:</para>
+
+            <variablelist>
+              <varlistentry>
+                <term>include</term>
+
+                <listitem>
+                  <para>Includes everything except items matching the specified
+                  rule.</para>
+                </listitem>
+              </varlistentry>
+
+              <varlistentry>
+                <term>exclude</term>
+
+                <listitem>
+                  <para>Excludes everything except items matching the specified
+                  rule.</para>
+
+                  <para>When you choose the exclude method, you must also add a
+                  <guilabel>d</guilabel> (directory) rule that specifies the
+                  subfolders. It's usually a good idea to specify all
+                  subfolders, like this:</para>
+
+                  <screen>d: \\*$ ## Subfolders</screen>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+
+            <tip>
+              <para>Don't confuse these terms. Remember, in file filters, an
+              <guilabel>include</guilabel> rule does not specify what to
+              include, it specifies what <emphasis>not</emphasis> to include.
+              Similarly, <guilabel>exclude</guilabel> does not specify what to
+              exclude, it specifies what not to exclude.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Next, your file should contain one or more filter rules. You can add
+      as many rules as you like. There must be one rule per line, and each rule
+      must be entirely on one line (no line breaks are allowed in a rule). Each
+      rule consists of either an <guilabel>f:</guilabel> or a
+      <guilabel>d:</guilabel> type designator, followed by a reqular expression,
+      where:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>f: <replaceable>regexp</replaceable></term>
+
+          <listitem>
+            <para>matches for files, or</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>d: <replaceable>regexp</replaceable></term>
+
+          <listitem>
+            <para>matches for folders</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Among the many regexp special characters, the following are
+      particularly important in file filter rules:<indexterm>
+          <primary>regular expressions</primary>
+
+          <secondary>special characters in filters</secondary>
+        </indexterm><indexterm>
+          <primary>regular expressions</primary>
+
+          <secondary>in file filters</secondary>
+        </indexterm></para>
+
+      <variablelist>
+        <varlistentry>
+          <term>^ (beginning of line)</term>
+
+          <listitem>
+            <para>Frequently required for rules to work correctly.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>$ (end of line)</term>
+
+          <listitem>
+            <para>Frequently required for rules to work correctly. For
+            example:</para>
+
+            <screen>\.c$ ## matches only file names with the extension, <filename>c</filename>.
+\.c  ## matches any extension beginning with <filename>c</filename>, like <filename>cpp</filename> and <filename>com</filename>.</screen>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>\ (escape)</term>
+
+          <listitem>
+            <para>Forces special characters to match normal characters. For
+            example, to match a folder name, precede the folder backslash
+            delimiter with a backslash (<code>\\</code>). To match the dot in a
+            file name, specify a backslash followed by a dot
+            (<code>\.</code>).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>No special characters or wildcards are used to match file names. To
+      match all filenames of a certain type, simply omit the filename.</para>
+
+      <para>Rules are case-insensitive. For example, <code>f: \.bat&amp;</code>
+      matches <filename>winmerge.bat</filename> and
+      <filename>compare.BAT</filename>.</para>
+
+      <example>
+        <title>File filter rule examples</title>
+
+        <para>Some simple file filter rules:</para>
+
+        <screen>f: \.cpp$ ## Match <filename>*.cpp</filename> files
+f: \.h$ ## Match <filename>*.h</filename> files
+f: ^My ## Match <filename>My*.*</filename> files
+f: Dlg\. ## Match <filename>*Dlg.*</filename> files
+d: \\test$ ## Match <filename>test</filename> folders
+d: ^\\Build$ ## Match <filename>Build</filename> folders
+d: Temp$ ## Match <filename>*Temp</filename> folders (for example, <filename>FirstTemp</filename>)
+d: Src ## Match <filename>*Src*</filename> folders</screen>
+
+        <para>Some rules with more complex regular expressions:</para>
+
+        <screen format="linespecific">f: ^\.#.*$ ## <filename>.#filename.version</filename> files
+f: Dlg\.c(pp)?$ ## <filename>*Dlg.c</filename> and <filename>*Dlg.cpp</filename> files
+f: ^I.*\.h$ ## <filename>I*.h</filename> files
+f: Srv[1-9]\.def$ ## <filename>*Srv1.def</filename> to <filename>*Srv9.def</filename> files
+f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filename>m*.*</filename> files</screen>
+      </example>
+    </section>
+  </section>
+
+  <section id="Filters_LineFilter">
+    <title>Using Line filters<indexterm>
+        <primary>filters</primary>
+
+        <secondary>line filters</secondary>
+      </indexterm><indexterm>
+        <primary>filtering</primary>
+
+        <secondary>in file comparisons</secondary>
+      </indexterm></title>
+
+    <para>In a file comparison, you can use line filters to ignore single lines.
+    For example, you might use line filters to ignore comments or certain type
+    of generated code, like version control system timestamps. Each line filter
+    is a rule, and you can apply any number of line filters to a file
+    comparison.</para>
+
+    <para>To learn how to add, edit, and manage filters, see <xref
+    linkend="Filters_Dlg" />.</para>
+
+    <section id="Filters_LineFilterApply">
+      <title>Applying line filters</title>
+
+      <para>You can apply line filters using any of these methods:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>When you launch a file compare from the Select Files or Folders
+          dialog</para>
+
+          <orderedlist>
+            <listitem>
+              <para>After choosing the <guilabel>Left</guilabel> and
+              <guilabel>Right</guilabel> files, click
+              <guibutton>Select</guibutton> next to the
+              <guilabel>Filter</guilabel> field.</para>
+            </listitem>
+
+            <listitem>
+              <para>In the Filters dialog, use the Linefilters tab to enable the
+              line filters you want to use (if any), or to see what line filters
+              are currently enabled.</para>
+
+              <note>
+                <para>The <guilabel>Filter</guilabel> field does not indicate
+                what line filters are enabled.</para>
+              </note>
+            </listitem>
+
+            <listitem>
+              <para>Proceed with the file compare operation. The enabled line
+              filters are applied when you start the operation.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>After you have already launched a file compare operation (for
+          example, to apply different filters or disabling filtering)</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Click <menuchoice>
+                  <guimenu>Tools</guimenu>
+
+                  <guimenuitem>Filters</guimenuitem>
+                </menuchoice>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Open the Filefilters tab.</para>
+            </listitem>
+
+            <listitem>
+              <para>Check the individual line filters you want to apply, and
+              uncheck filters that you don't want to apply.</para>
+
+              <para>You can also add, edit, and remove filters from the list by
+              using the <guibutton>New</guibutton>, <guibutton>Edit</guibutton>,
+              and <guibutton>Remove</guibutton> buttons.</para>
+            </listitem>
+
+            <listitem>
+              <para>To turn on line filtering, check the <guilabel>Enable Line
+              Filters</guilabel>. To turn line filtering off, uncheck the
+              option.</para>
+            </listitem>
+
+            <listitem>
+              <para>Click <guibutton>OK</guibutton> to dismiss the File Filters
+              dialog.</para>
+            </listitem>
+
+            <listitem>
+              <para>Click <keycap>F5</keycap> to apply your changes and refresh
+              the File Compare window.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Filters_LineFilterSyntax">
+      <title>Line filter syntax<indexterm>
+          <primary>rules</primary>
+
+          <secondary>line filter</secondary>
+        </indexterm><indexterm>
+          <primary>filters</primary>
+
+          <secondary>line filter syntax</secondary>
+        </indexterm><indexterm>
+          <primary>regular expressions</primary>
+
+          <secondary>in line filters</secondary>
+        </indexterm></title>
+
+      <para>A line filter is a rule that is evaluated against each single-line
+      difference in your compared files, if line filter rules are enabled. When
+      a rule matches a single-line difference, the difference is ignored.</para>
+
+      <para>Ignored differences are marked in the File Compare window with the
+      <guilabel>Ignored Difference</guilabel> color (as defined in the Colors
+      page of WinMerge Options). This enables you to distinguish ignored
+      differences from other types. However, you cannot select or merge ignored
+      difference.</para>
+
+      <para>Line filter matching can be described in terms of two ideas:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>When a rule matches any part of the line, the entire difference
+          is ignored. Therefore, you cannot filter just part of a line. For
+          example, suppose two files have the following single-line
+          difference:</para>
+
+          <formalpara>
+            <title>File1:</title>
+
+            <para><screen># Jean Sibelius</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>File2:</title>
+
+            <para><screen># Janne Sibelius</screen></para>
+          </formalpara>
+
+          <para>With no filtering, the line is detected as a difference. But if
+          we apply a line filter rule with the expression, <code>^#</code>, the
+          lines are reported as identical, because the expression specifies only
+          the first character, which matches in both files.</para>
+        </listitem>
+
+        <listitem>
+          <para>A rule is applied to a multi-line difference only if all the
+          lines match. For example, consider this two-line difference:</para>
+
+          <formalpara>
+            <title>File1:</title>
+
+            <para><screen># Jean Sibelius
+# Pekka Himanen</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>File2:</title>
+
+            <para><screen># Janne Sibelius
+Pekka Himanen</screen></para>
+          </formalpara>
+
+          <para>The same <code>^#</code> rule matches the first line, but not
+          the second line. Therefore, the difference is not ignored.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>It's usually good practice to use the beginning of line (
+        <code>^</code> ) and end of line ( <code>&amp;</code> ) of line markers
+        to control your patterns precisely, because the rule is applied if any
+        part of a line matches the expression.</para>
+      </tip>
+
+      <example>
+        <title>Sample line filters</title>
+
+        <screen format="linespecific">^MYTAG$</screen>
+
+        <para>Filters lines that exactly match <literal>MYTAG</literal></para>
+
+        <screen format="linespecific">^::</screen>
+
+        <para>Filters lines beginning with <literal>::</literal></para>
+
+        <screen format="linespecific">^/\**.\*/$</screen>
+
+        <para>Filters lines beginning with
+        <literal><constant>/*</constant></literal> and ending with
+        <literal>*/</literal></para>
+
+        <screen format="linespecific">^[1-5]00</screen>
+
+        <para>Filters lines beginning with numbers 100, 200, 300, 400, and
+        500</para>
+      </example>
+
+      <example>
+        <title>Line filter rule matching CVS Id lines</title>
+
+        <para>Id lines look like this:</para>
+
+        <screen>// $Id$</screen>
+
+        <para>... and can be filtered with this rule:</para>
+
+        <screen>^// \WId: .*\$</screen>
+      </example>
+
+      <example>
+        <title>Filter line number comments in po files</title>
+
+        <para>po line number comments look like this:</para>
+
+        <screen>#: src/filename.c:766</screen>
+
+        <para>... and can be filtered with this rule:</para>
+
+        <screen>^#</screen>
+      </example>
+    </section>
+  </section>
+
+  <section id="Filters_Dlg">
+    <title>Using the Filters dialog<indexterm>
+        <primary>Filters dialog</primary>
+      </indexterm><indexterm>
+        <primary>filters</primary>
+
+        <secondary>managing and enabling</secondary>
+      </indexterm></title>
+
+    <para>This section describes the Filters dialog, which provides functions to
+    create and manage file filters and line filters.</para>
+
+    <para>To open the Filters dialog, use either of these methods:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>In the Select Files or Folders dialog, click
+        <guibutton>Select</guibutton> to the right of the
+        <guilabel>Filter</guilabel> field. You use this method when you want to
+        apply a file filter to a folder compare operation.</para>
+      </listitem>
+
+      <listitem>
+        <para>Click <menuchoice>
+            <guimenu>Tools</guimenu>
+
+            <guimenuitem>Filters</guimenuitem>
+          </menuchoice>. This method can be used at any time except when the
+        Select Files or Folders dialog is open.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The Filters dialog has a tab for each type of WinMerge filter:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Filefilters</term>
+
+        <listitem>
+          <para>Choose this tab to work with file filters for folder compare
+          operations.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Linefilters</term>
+
+        <listitem>
+          <para>Choose this tab to work with line filters for file compare
+          operations.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <section id="Filters_FileFiltersTab">
+      <title>Using the Filefilters tab<indexterm>
+          <primary>file filters</primary>
+
+          <secondary>enabling</secondary>
+        </indexterm></title>
+
+      <para>The main part of this tab is a list of file filters that are
+      available for folder compare operations. The list includes shared,
+      private, and installed file filters that WinMerge knows about, as
+      described in <xref linkend="Filters_FileFilterLoc" />.</para>
+
+      <section id="Filters_FileFilterEnabling">
+        <title>Enabling and disabling file filters</title>
+
+        <para>You must enable a file filter to make it available in a folder
+        comparison operation, or to disable a current filter to stop it from
+        being used:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Open the Filters dialog, if it is not already open.</para>
+          </listitem>
+
+          <listitem>
+            <para>Select a file filter or
+            <guimenuitem>&lt;None&gt;</guimenuitem> from the list.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>OK</guibutton> to dismiss the Filters
+            dialog.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>There are several ways to apply file filters after enabling them.
+        For details, see <xref linkend="Filters_FileFilterApply" />.</para>
+      </section>
+
+      <section id="Filters_FileFilterCfg">
+        <title>Configuring file filters</title>
+
+        <para>Use these buttons to manage your <guilabel>Filefilters</guilabel>
+        list and create new file filters:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Test</term>
+
+            <listitem>
+              <para>Select a file filter in the list and click
+              <guibutton>Test</guibutton> to quickly see how the filter works.
+              See <xref linkend="Filters_TestingDlg" /> for details.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Install</term>
+
+            <listitem>
+              <para>Enables you to locate a file filter and adds it to the
+              Filters list. File filters that are not in either the shared or
+              default private folder are not detected unless you install
+              them.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>New</term>
+
+            <listitem>
+              <para>Creates a new copy of a file template in either the shared
+              or private filter folders, and opens it in your default editor.
+              Edit the template and add your rules, as described in <xref
+              linkend="Filters_CreatingFile" />.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Edit</term>
+
+            <listitem>
+              <para>Select a file filter in the list and click
+              <guibutton>Edit</guibutton> to open the file in your default
+              editor.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Delete</term>
+
+            <listitem>
+              <para>Select a file filter in the list and click
+              <guibutton>Delete</guibutton> to delete the file and remove it
+              from the list. Yes, the file is really deleted!</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Your changes are saved when you click <guibutton>OK</guibutton> to
+        dismiss the Filters dialog.</para>
+      </section>
+
+      <section id="Filters_CreatingFile">
+        <title>Creating a file filter</title>
+
+        <para>If the file filters that are installed with WinMerge do not
+        provide the filtering you need, you can create your own:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Click <menuchoice>
+                <guimenu>Tools</guimenu>
+
+                <guimenuitem>Filters</guimenuitem>
+              </menuchoice>. Or, from the Select Files or Folders dialog, click
+            <guibutton>Select</guibutton> to the right of the
+            <guilabel>Filter</guilabel> field.</para>
+          </listitem>
+
+          <listitem id="Filters_New_step">
+            <para>In the Filters dialog Filefilters tab, click
+            <guibutton>New</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Shared or Private Filter dialog, choose
+            <guilabel>Shared Filter</guilabel> or <guilabel>Private
+            Filter</guilabel> (see <xref linkend="Filters_FileFilterLoc" /> for
+            their uses) and click <keycap>OK</keycap>.</para>
+
+            <para>The Select filename for new filter dialog opens in the shared
+            or private files folder on your system (if the private folder does
+            not exist, WinMerge creates it).</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Select filename for new filter dialog, enter a new file
+            name and click <guibutton>Save</guibutton>.</para>
+
+            <note>
+              <para>Don't choose an existing file name: to edit an existing
+              file, go back to Step <xref linkend="Filters_New_step" /> and
+              click Edit instead of New.</para>
+            </note>
+
+            <para>WinMerge initializes the new file with the contents of the
+            <filename>FileFilter.tmpl</filename> tempate, and opens it in your
+            default text editor.</para>
+          </listitem>
+
+          <listitem>
+            <para>Follow the template instructions to edit the template,
+            updating the placeholder name and description and adding filter
+            rules as described in <xref linkend="Filters_FileFilterSyntax" />.
+            Save the file in your text editor.</para>
+
+            <tip>
+              <para>If you want to quickly test a rule that you are defining,
+              try clicking Test in the Filters dialog. See <xref
+              linkend="Filters_TestingDlg" /> for details.</para>
+            </tip>
+          </listitem>
+
+          <listitem>
+            <para>If you created your file filter in one of the standard
+            <filename>Filters</filename> folders, and the Filters dialog does
+            not list your new file filter, try clicking
+            <guibutton>OK</guibutton> to close it, then click <menuchoice>
+                <guimenu>Tools</guimenu>
+
+                <guimenuitem>Filters</guimenuitem>
+              </menuchoice> again to reopen it. The
+            <guilabel>Filefilters</guilabel> list should now include the new
+            file filter.</para>
+
+            <para>If you saved the file in an alternate location on your file
+            system), WinMerge cannot detect it unless you install it. To make a
+            file filter detectable anywhere on your system:</para>
+
+            <orderedlist numeration="loweralpha">
+              <listitem>
+                <para>Click <guibutton>Install</guibutton> in the Filters
+                dialog.</para>
+              </listitem>
+
+              <listitem>
+                <para>In the Locate filter file to install dialog, navigate to
+                the <filename>flt</filename> file on your system, and click
+                <guibutton>Open</guibutton>. The Filefilters list should now
+                include the installed file filter.</para>
+              </listitem>
+            </orderedlist>
+          </listitem>
+        </orderedlist>
+      </section>
+
+      <section id="Filters_TestingDlg">
+        <title>Testing file filter rules<indexterm>
+            <primary>file filters</primary>
+
+            <secondary>testing</secondary>
+          </indexterm><indexterm>
+            <primary>testing file filters</primary>
+          </indexterm></title>
+
+        <para>Use the Test Filter dialog to quickly test a file filter against
+        sample data, to help you develop new rules or to understand how existing
+        rules work. It can be easier than running a full compare
+        operation.</para>
+
+        <para>Starting from the Filters dialog:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>In the Filefilters tab, choose the file filter you want to
+            test.</para>
+          </listitem>
+
+          <listitem>
+            <para>If you want to see the rules you will be testing,click
+            <guibutton>Edit</guibutton> now to open the file so that you can
+            view it during the next steps.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>Test</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Test Filter dialog, choose the type of rule to
+            test:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>To test an <guilabel>f:</guilabel> file rule in your file
+                filter, uncheck the <guilabel>Folder Name</guilabel>
+                option.</para>
+              </listitem>
+
+              <listitem>
+                <para>To test a <guilabel>d:</guilabel> folder rule, check the
+                <guilabel>Folder Name</guilabel> option.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Enter the text to test.</para>
+
+            <para>The text should be appropriate for the type of rule you are
+            testing. For example, if you have checked the <guilabel>Folder
+            Name</guilabel> option, you probably want to enter a folder name,
+            such as \temp.</para>
+
+            <para>The <guilabel>Result</guilabel> box displays your entry,
+            followed by its status: either
+            <computeroutput>passed</computeroutput> or
+            <computeroutput>failed</computeroutput>.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section id="Filters_LineFiltersTab">
+      <title>Using the Linefilters tab<indexterm>
+          <primary>line filters</primary>
+
+          <secondary>enabling</secondary>
+        </indexterm></title>
+
+      <para>Use this tab to configure and enable line filters for file compare
+      operations. The tab features a list of rules. Each rule contains a single
+      regular expression. You can apply any combination of rules from the list
+      to a file comparison.</para>
+
+      <section id="Filters_LineFilterCfg">
+        <title>Configuring line filters</title>
+
+        <para>Below the <guilabel>Regular Expressions</guilabel> list is an edit
+        box and buttons that you can use to maintain the list at any time by
+        adding, editing, and removing rules.</para>
+
+        <para>To add a new rule:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Click <guibutton>New</guibutton>. Your edit cursor is
+            automatically enabled in the edit box.</para>
+          </listitem>
+
+          <listitem>
+            <para>Enter an expression in the edit box below the
+            <guilabel>Regular Expressions</guilabel> list.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>Save</guibutton> to load the expression in a
+            new line in the list.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>To edit an existing rule:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Select the line and click <guibutton>Edit</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>Edit the expression in the edit box.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>Save</guibutton><guibutton> </guibutton>when
+            you're done.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>To delete an existing rule, select (check) the rule and click
+        <guibutton>Remove</guibutton>.</para>
+      </section>
+
+      <section id="Filters_LineFilterEnabling">
+        <title>Enabling and disabling line filters<indexterm>
+            <primary>line filters</primary>
+
+            <secondary>list of available</secondary>
+          </indexterm></title>
+
+        <orderedlist>
+          <listitem>
+            <para>In the <guilabel>Regular Expressions</guilabel> list, check
+            just the filters that you want to apply, and uncheck any filters you
+            do not want to apply.</para>
+          </listitem>
+
+          <listitem>
+            <para>Check or uncheck the <guilabel>Enable Line Filters</guilabel>
+            option. If you turn filtering on, all the rules that are currently
+            checked in the <guilabel>Regular Expression</guilabel> list are
+            used. If filtering is off, no rules are used even if they are
+            checked.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <guibutton>OK</guibutton> to dismiss the Filters dialog
+            and save your settings.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>There are several ways to apply file filters after enabling them.
+        For details, see <xref linkend="Filters_LineFilterApply" />.</para>
+      </section>
+    </section>
+  </section>
+
+  <section id="AboutFilters_regexp">
+    <title>Getting help with regular expressions<indexterm>
+        <primary>regular expressions</primary>
+
+        <secondary>getting help</secondary>
+      </indexterm></title>
+
+    <para>Regular expressions can be very complex. Fortunately, most file
+    filters in WinMerge involve simple extension expressions, as shown in the
+    examples in this topic. The filter files installed with WinMerge include
+    many other useful examples.</para>
+
+    <para>Finally, there are lots of resources on the Web for help with regexps,
+    including these sites:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Good site devoted to regexps:</term>
+
+        <listitem>
+          <simpara><ulink
+          url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Good HOWTO for regexps:</term>
+
+        <listitem>
+          <simpara><ulink
+          url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Tutorial:</term>
+
+        <listitem>
+          <simpara><ulink
+          url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>PDF quick reference:</term>
+
+        <listitem>
+          <simpara><ulink
+          url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </section>
 </article>
