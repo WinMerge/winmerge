@@ -21,7 +21,9 @@
 ]>
 <book id="index">
   <bookinfo>
-    <title>WinMerge 2.8 Manual</title>
+    <title>WinMerge <xi:include href="replaceables.xml"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" />
+    Help</title>
 
     <productname>WinMerge</productname>
 
