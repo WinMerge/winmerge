@@ -2197,7 +2197,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// All lines will differ, that is not very interesting and probably not wanted.
 		// Propose to turn off the option 'sensitive to EOL'
 		String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
-		if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
+		if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
 			diffOptions.bIgnoreEol = TRUE;
 			m_diffWrapper.SetOptions(&diffOptions);

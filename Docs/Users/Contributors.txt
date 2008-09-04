@@ -134,6 +134,7 @@ Other Contributors (code, ideas, testing..):
 * Marvin Gouw
 * Robert Grange
 * Jan Hryz
+* jwdevel
 * Ed_K
 * Alberto Kalb
 * Robert Knienider

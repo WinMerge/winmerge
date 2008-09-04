@@ -12,6 +12,8 @@ WinMerge 2.10 RC
   BugFix: Table of Contents in manual (#2071625)
   BugFix: ClearCase checkout/commit dialog translation error (#2051069)
   BugFix: Highlight ShowUnInstDetails keyword for NSIS files (#2084879)
+  BugFix: Could not reset EOL ignore after selecting it from query
+   dialog (#2056741)
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)

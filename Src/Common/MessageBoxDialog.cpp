@@ -400,6 +400,9 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 		// Check whether a result was retrieved.
 		if ( nFormerResult != (-1) )
 		{
+			if ( ( m_nStyle & MB_IGNORE_IF_SILENCED ) )
+				return IDIGNORE;
+
 			// Return the former result without displaying the dialog.
 			return nFormerResult;
 		}
