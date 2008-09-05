@@ -962,9 +962,9 @@ static struct _charsetInfo
   {   0, NULL,                                                0,  no }
 };
 
-static struct _charsetInfo **index1;
-static struct _charsetInfo **index2;
-static struct _charsetInfo **index3;
+static struct _charsetInfo const **index1;
+static struct _charsetInfo const **index2;
+static struct _charsetInfo const **index3;
 
 enum { numCharsetInfo = sizeof charsetInfo / sizeof *charsetInfo - 1 };
 
@@ -1061,17 +1061,17 @@ void charsets_cleanup(void)
 {
 	if (index1)
 	{
-		free(index1);
+		free((void *)index1);
 		index1 = NULL;
 	}
 	if (index2)
 	{
-		free(index2);
+		free((void *)index2);
 		index2 = NULL;
 	}
 	if (index3)
 	{
-		free(index3);
+		free((void *)index3);
 		index3 = NULL;
 	}
 }
