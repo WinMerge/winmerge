@@ -68,43 +68,33 @@
       </tip>
     </section>
 
-    <section>
-      <title>Selecting filters</title>
+    <section id="Open_paths_filters">
+      <title>Specifying filters</title>
 
-      <para>The third edit field in the Select Files or Folders dialog,
-      <guilabel>Filter</guilabel>, enables you to restrict the files that are
-      included in a folder compare. You can specify a list of file extensions to
-      include, or a file filter. A list is one or more extensions separated by
-      spaces, commas, colons or semicolons, using this syntax:</para>
+      <para>The <guilabel>Filter</guilabel> edit field enables you to restrict
+      the files to be included in your folder compare. You can specify one or
+      more file masks, or a single file filter (not both).</para>
 
-      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
+      <para>A mask is a simple expression based on file extensions. For example,
+      this list of file masks includes only files with the specified extensions;
+      all others are excluded from the selection when the compare operation
+      starts:</para>
 
-      <example>
-        <title>Extension list</title>
+      <screen>*.h;*.cpp *.txt,*.ini</screen>
 
-        <screen>*.h;*.cpp *.txt,*.ini</screen>
-      </example>
+      <para>File masks are practical for simple filtering; for more advanced
+      selecting, use filter files. Filter files are collections of regular
+      expressions that can either include or exclude files. WinMerge installs a
+      number of predefined filter files in its <filename>Filters</filename>
+      folder, and you can create your own, too. </para>
 
-      <tip>
-        <para><filename>*.</filename> (star, dot and no extension) selects files
-        without any extension, for example "<filename>README</filename>".</para>
-      </tip>
+      <para>To specify a filter, click the <guibutton>Select</guibutton> button
+      next to the <guilabel>Filters</guilabel> field to choose from a list of
+      available filters. Or, click the Filter drop-down list and choose a
+      recently-used filter file.</para>
 
-      <para>A file extension list can be used only for simple selections; for
-      more advanced selecting, use file filters. Different extensions can be
-      separated by spaces, commas, colons, or semicolons.</para>
-
-      <para>You can also enter a file filter name in the
-      <guilabel>Filter</guilabel> field. The easiest way is to click
-      <guibutton>Select</guibutton> and use the Filters dialog to select a file
-      filter. You can also create, edit, and delete filter files using the
-      Filters dialog.</para>
-
-      <note>
-        <para>If the specified filter cannot be found or if the extension list
-        is not valid, WinMerge selects all files (that is, it uses uses the
-        default <filename>*.*</filename> extension list).</para>
-      </note>
+      <para>For full information about filter masks and filter files, see <xref
+      linkend="Filters" />.</para>
     </section>
 
     <section id="Open_paths_unpacker">
@@ -299,7 +289,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
       <para>By default, WinMerge does not include subfolders in compare
       operations. To change the default behavior, enable <guilabel>Include
-      subfolders by befault</guilabel> in the System page of WinMerge options.
+      subfolders by default</guilabel> in the System page of WinMerge options.
       To change include subfolders while using the shell integration, press and
       hold the <keycap>Control</keycap> key while selecting
       <guimenuitem>Compare</guimenuitem> in the Windows Explorer context

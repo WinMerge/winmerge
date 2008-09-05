@@ -1125,7 +1125,7 @@
       <itemizedlist>
         <listitem>
           <para><option>Enabled</option> (default): Files and folders that you
-          deletein a Folder Compare window are moved to the Recycle Bin, if it
+          delete in a Folder Compare window are moved to the Recycle Bin, if it
           is available.</para>
 
           <important>
@@ -1265,7 +1265,7 @@
 
     <section>
       <title>Filter Folder<indexterm>
-          <primary>filtering, folder used</primary>
+          <primary> Filter folders, specifying default private folder</primary>
         </indexterm></title>
 
       <para>Use this field to specify your own private folder for file filters.
