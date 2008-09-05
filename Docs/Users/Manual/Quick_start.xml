@@ -25,15 +25,7 @@
 
         <itemizedlist>
           <listitem>
-            <para>Double-click the <inlinemediaobject>
-                <imageobject>
-                  <imagedata contentwidth="32" fileref="screenshots/wm_icon.png" />
-                </imageobject>
-
-                <textobject>
-                  <phrase>WinMerge desktop shortcut</phrase>
-                </textobject>
-              </inlinemediaobject> WinMerge desktop shortcut.</para>
+            <para>Double-click the WinMerge desktop shortcut.</para>
           </listitem>
 
           <listitem>
@@ -173,30 +165,45 @@
         <para>If you are comparing folders, you can use the
         <guilabel>Filter</guilabel> field to eliminate some files from the
         operation. The field specifies a subset of files in the selected paths
-        that are to be included; all unspecified files are excluded. There are
-        two methods of filtering:</para>
+        that are to be included; all unspecified files are excluded.</para>
 
+        <para>You can enter file masks to filter files with certain extensions.
+        For example, this expression includes only C and C++ source files; all
+        other file types are eliminated from your selection.</para>
+
+        <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
+
+        <para>For more robust filtering, enter a filter file instead of file
+        masks: click the <guibutton>Select</guibutton> button next to the
+        <guilabel>Filters</guilabel> field to choose from a list of available
+        filters. File filters contain any number of rules to either include or
+        exclude files. WinMerge installs a set of filter files, which you can
+        edit or augment with your own files.</para>
+
+        <para>See <xref linkend="Filters" /> for full details about file masks
+        and filter files.</para>
+
+        <!--
         <variablelist>
           <varlistentry>
-            <term>File extension</term>
+            <term>File masks</term>
 
             <listitem>
               <para>In this method, you specify the types of files to include in
               the operation; all other files are excluded (filtered). With no
-              filter value or a value of <literal>*.*</literal>, all files in
-              the paths are included, so no filtering is performed. To add
-              filtering, enter one or more file extension specifications.
-              Separate multiple items with spaces or semicolons.</para>
+              file mask or the default mask of <literal>*.*</literal>, all files
+              in the paths are included, so no filtering is performed. To add
+              filtering, enter one or more masks. Separate multiple masks with
+              spaces, commas, colons or semicolons.</para>
 
               <para>For example, this expression filters all files from the
               operation except C and C++ source files:</para>
 
               <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
 
-              <para>You cannot filter by file name, which is represented in the
-              file extension expression only by the <literal>*</literal>
-              wildcard character. For example, these expressions are not
-              valid:</para>
+              <para>File names cannot be filtered: they are represented in the
+              masks only by the <literal>*</literal> wildcard character. For
+              example, these expressions are not valid masks:</para>
 
               <para><userinput>mybook.xml</userinput></para>
 
@@ -211,11 +218,11 @@
               <para>File filtering is more powerful than extension filtering.
               Click the <guibutton>Select</guibutton> button next to the
               <guilabel>Filters</guilabel> field to choose from a list of
-              available filters. See <xref linkend="Filters" /> for full
-              details.</para>
+              available filters. </para>
             </listitem>
           </varlistentry>
         </variablelist>
+-->
       </listitem>
 
       <listitem>
