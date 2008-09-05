@@ -44,7 +44,7 @@ THE SOFTWARE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static int Append(String &strBuffer, int cchHead, LPCTSTR pchTail, int cchTail,
+static void Append(String &strBuffer, LPCTSTR pchTail, int cchTail,
 		int cchBufferMin = 1024);
 
 /**
@@ -69,9 +69,9 @@ bool UniFile::UniError::HasError() const
  */
 void UniFile::UniError::ClearError()
 {
-	apiname.clear();
+	apiname.erase();
 	syserrnum = ERROR_SUCCESS;
-	desc.clear();
+	desc.erase();
 }
 
 /**
@@ -103,8 +103,8 @@ void UniLocalFile::Clear()
 {
 	m_statusFetched = 0;
 	m_filesize = 0;
-	m_filepath.clear();
-	m_filename.clear();
+	m_filepath.erase();
+	m_filename.erase();
 	m_lineno = -1;
 	m_unicoding = ucr::NONE;
 	m_charsize = 1;
@@ -423,22 +423,22 @@ BOOL UniMemFile::ReadString(String & line, bool * lossy)
  * @param [in] cchBufferMin Minimum size for the buffer.
  * @return New length of the string.
  */
-static int Append(String &strBuffer, int cchHead, LPCTSTR pchTail,
+static void Append(String &strBuffer, LPCTSTR pchTail,
 		int cchTail, int cchBufferMin)
 {
-	int cchBuffer = strBuffer.length();
+	int cchBuffer = strBuffer.capacity();
+	int cchHead = strBuffer.length();
 	int cchLength = cchHead + cchTail;
 	while (cchBuffer < cchLength)
 	{
+		ASSERT((cchBufferMin & cchBufferMin - 1) == 0); // must be a power of 2
+		cchBuffer &= ~(cchBufferMin - 1); // truncate to a multiple of cchBufferMin
 		cchBuffer += cchBuffer;
 		if (cchBuffer < cchBufferMin)
 			cchBuffer = cchBufferMin;
 	}
 	strBuffer.reserve(cchBuffer);
-	strBuffer.resize(cchLength);
-	LPTSTR pBuffer = &*strBuffer.begin() + cchHead;
-	CopyMemory(pBuffer, pchTail, cchTail * sizeof(TCHAR));
-	return cchLength;
+	strBuffer.append(pchTail, cchTail);
 }
 
 /**
@@ -461,9 +461,8 @@ static void RecordZero(UniFile::txtstats & txstats, int offset)
  */
 BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 {
-	line.clear();
-	eol.clear();
-	int cchLine = 0;
+	line.erase();
+	eol.erase();
 	LPCTSTR pchLine = (LPCTSTR)m_current;
 	
 	// shortcut methods in case file is in the same encoding as our Strings
@@ -471,6 +470,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 #ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 	{
+		int cchLine = 0;
 		// If there aren't any wchars left in the file, return FALSE to indicate EOF
 		if (m_current - m_base + 1 >= m_filesize)
 			return FALSE;
@@ -516,6 +516,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 #else
 	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 	{
+		int cchLine = 0;
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
 		if (m_current - m_base >= m_filesize)
 			return FALSE;
@@ -706,7 +707,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 				++m_lineno;
 			return TRUE;
 		}
-		cchLine = Append(line, cchLine, sch.c_str(), sch.length());
+		Append(line, sch.c_str(), sch.length());
 	}
 	return TRUE;
 }
