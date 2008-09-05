@@ -86,7 +86,6 @@ private:
 	//{{AFX_MSG(CLanguageSelect)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog();
-	afx_msg void OnDblclkLanguageList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

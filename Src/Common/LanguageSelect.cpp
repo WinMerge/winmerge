@@ -497,6 +497,7 @@ CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMe
 , m_bReloadMenu(bReloadMenu)
 , m_bUpdateTitle(bUpdateTitle)
 {
+	SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
 }
 
 void CLanguageSelect::DoDataExchange(CDataExchange* pDX)
@@ -509,7 +510,7 @@ void CLanguageSelect::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CLanguageSelect, CDialog)
 //{{AFX_MSG_MAP(CLanguageSelect)
-	ON_LBN_DBLCLK(IDC_LANGUAGE_LIST, OnDblclkLanguageList)
+	ON_LBN_DBLCLK(IDC_LANGUAGE_LIST, OnOK)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1206,11 +1207,6 @@ void CLanguageSelect::OnOK()
 	}
 	
 	EndDialog(IDOK);
-}
-
-void CLanguageSelect::OnDblclkLanguageList()
-{
-	OnOK();
 }
 
 BOOL CLanguageSelect::OnInitDialog()
