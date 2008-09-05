@@ -35,6 +35,21 @@ CheckVCProj.vbs
 ---------------
 Script for checking the file "Merge.vcproj".
 
+CompareProjectFiles.py
+----------------------
+
+ This script compares the project files of different versions of VisualStudio
+ as well as the list of files on disk and displays the discrepencies.
+
+ Usage: CompareProjectFiles [-h] [-b <basepath>] <from> <to>
+  where:
+    -h, --help              print this help
+    -b, --base-path <ARG>   set the base path to search for files
+                            defaults to ../../Src
+    <from> and <to>         either of:
+                             disk: files on disk
+                             2003: VisualStudio 2003 project file
+                             2008: VisualStudio 2008 project file
 
 create_release.py
 -----------------
@@ -50,6 +65,17 @@ create_release.py
   For example:
    create_release -v 2.7.7.1
 
+
+IncludeFileDependencyAnalyzer.py
+--------------------------------
+ Script for finding all the files included (directly or indirectly) by
+ a C/C++ source file.
+ 
+ Usage: IncludeFileDependencyAnalyzer.py <file.i>
+  where:
+    <file.i>            is the preprocessor output of the compiler for a given C/C++ file.
+                        Look at http://c2.com/cgi/wiki?CppDependencyAnalysis to learn how to
+                        generate it.
 
 tsvn_patch.py
 -------------
