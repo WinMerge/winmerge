@@ -108,7 +108,7 @@ public:
 	BOOL m_bShowErrors; /**< Show folder compare error items? */
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
-
+	static const TCHAR szClassName[];
 // Operations
 public:
 	HMENU NewDirViewMenu();
@@ -318,7 +318,6 @@ protected:
 	afx_msg void OnResizePanes();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnUser(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);

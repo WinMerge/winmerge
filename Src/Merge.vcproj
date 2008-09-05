@@ -588,43 +588,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ClearCaseCmdLineParser.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="Common\ClipBoard.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -5940,43 +5903,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="WinMergeCmdLineParser.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="WMGotoDlg.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6040,9 +5966,6 @@
 			</File>
 			<File
 				RelativePath="ChildFrm.h">
-			</File>
-			<File
-				RelativePath="ClearCaseCmdLineParser.h">
 			</File>
 			<File
 				RelativePath="Common\ClipBoard.h">
@@ -6499,9 +6422,6 @@
 			</File>
 			<File
 				RelativePath="Common\WinClasses.h">
-			</File>
-			<File
-				RelativePath="WinMergeCmdLineParser.h">
 			</File>
 			<File
 				RelativePath="WMGotoDlg.h">

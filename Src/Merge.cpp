@@ -223,14 +223,11 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	// Parse command-line arguments.
-	MergeCmdLineInfo cmdInfo(*__targv);
-	ParseCommandLine(cmdInfo);
+	MergeCmdLineInfo cmdInfo = GetCommandLine();
 
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).
-	BOOL bCommandLineInvoke = FALSE;
-	if (cmdInfo.m_nFiles > 0)
-		bCommandLineInvoke = TRUE;
+	BOOL bCommandLineInvoke = cmdInfo.m_Files.size() > 0;
 
 	// Set default codepage
 	DirScan_InitializeDefaultCodepage();
@@ -256,32 +253,16 @@ BOOL CMergeApp::InitInstance()
 		WaitForSingleObject(hMutex, INFINITE);
 	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		USES_CONVERSION;
-
 		// Activate previous instance and send commandline to it
-		HWND hWnd = FindWindow(_T("WinMergeWindowClass"), NULL);
+		HWND hWnd = FindWindow(CMainFrame::szClassName, NULL);
 		if (hWnd)
 		{
 			if (IsIconic(hWnd))
 				ShowWindow(hWnd, SW_RESTORE);
 			SetForegroundWindow(GetLastActivePopup(hWnd));
-			
-			WCHAR *pszArgs = new WCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
-			WCHAR *p = pszArgs;
-			for (int i = 0; i < __argc; i++)
-			{
-				wcscpy(p, T2W(__targv[i]));
-				p += lstrlenW(p) + 1;
-			}
-			*p++ = _T('\0');
-			COPYDATASTRUCT data = {0};
-			data.cbData = (DWORD)(p - pszArgs) * sizeof(WCHAR);
-			data.lpData = pszArgs;
-			data.dwData = __argc;
-			SetLastError(ERROR_SUCCESS);
-			SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data);
-			delete[] pszArgs;
-			if (GetLastError() == ERROR_SUCCESS)
+			LPTSTR cmdLine = GetCommandLine();
+			COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine};
+			if (SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
 			{
 				ReleaseMutex(hMutex);
 				CloseHandle(hMutex);
@@ -305,7 +286,7 @@ BOOL CMergeApp::InitInstance()
 		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
-	CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
+	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);
 
 	// Initialize i18n (multiple language) support
 
@@ -557,21 +538,10 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	BOOL bCompared = FALSE;
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
-	SetOptionsFromCmdLine(cmdInfo);
-
-	// Do not load or remember options (preferences).
-	if (cmdInfo.m_bNoPrefs)
-	{
-		// Turn off serializing to registry.
-		GetOptionsMgr()->SetSerializing(false);
-		// Load all default settings.
-		ResetOptions();
-	}
-
 	// Set the global file filter.
-	if (!cmdInfo.m_sFileFilter.IsEmpty())
+	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		m_globalFileFilter.SetFilter(cmdInfo.m_sFileFilter);
+		m_globalFileFilter.SetFilter(cmdInfo.m_sFileFilter.c_str());
 	}
 
 	// Unless the user has requested to see WinMerge's usage open files for
@@ -593,69 +563,44 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		pMainFrame->m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
 		pMainFrame->m_strDescriptions[1] = cmdInfo.m_sRightDesc;
 
-		if (cmdInfo.m_nFiles > 2)
+		if (cmdInfo.m_Files.size() > 2)
 		{
-			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2];
-			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0],
-				cmdInfo.m_Files[1],	cmdInfo.m_dwLeftFlags,
+			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2].c_str();
+			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0].c_str(),
+				cmdInfo.m_Files[1].c_str(),	cmdInfo.m_dwLeftFlags,
 				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
-				cmdInfo.m_sPreDiffer);
+				cmdInfo.m_sPreDiffer.c_str());
 		}
-		else if (cmdInfo.m_nFiles > 1)
+		else if (cmdInfo.m_Files.size() > 1)
 		{
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
-			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0],
-				cmdInfo.m_Files[1],	cmdInfo.m_dwLeftFlags,
+			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0].c_str(),
+				cmdInfo.m_Files[1].c_str(),	cmdInfo.m_dwLeftFlags,
 				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
-				cmdInfo.m_sPreDiffer);
+				cmdInfo.m_sPreDiffer.c_str());
 		}
-		else if (cmdInfo.m_nFiles == 1)
+		else if (cmdInfo.m_Files.size() == 1)
 		{
-			CString sFilepath = cmdInfo.m_Files[0];
-			if (IsProjectFile(sFilepath))
+			String sFilepath = cmdInfo.m_Files[0];
+			if (IsProjectFile(sFilepath.c_str()))
 			{
-				bCompared = LoadAndOpenProjectFile(sFilepath);
+				bCompared = LoadAndOpenProjectFile(sFilepath.c_str());
 			}
-			else if (IsConflictFile((LPCTSTR)sFilepath))
+			else if (IsConflictFile(sFilepath.c_str()))
 			{
-				bCompared = pMainFrame->DoOpenConflict(sFilepath);
+				bCompared = pMainFrame->DoOpenConflict(sFilepath.c_str());
 			}
 			else
 			{
 				cmdInfo.m_dwRightFlags = FFILEOPEN_NONE;
-				bCompared = pMainFrame->DoFileOpen(sFilepath, _T(""),
+				bCompared = pMainFrame->DoFileOpen(sFilepath.c_str(), _T(""),
 					cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags,
-					cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+					cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer.c_str());
 			}
 		}
 	}
 	return bCompared;
-}
-
-/** @brief Handle all command line arguments which are mapped to WinMerge options. */
-void CMergeApp::SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo)
-{
-	static const ArgSetting f_ArgSettings[] = 
-	{
-		{ _T("ignorews"), OPT_CMP_IGNORE_WHITESPACE },
-		{ _T("ignoreblanklines"), OPT_CMP_IGNORE_BLANKLINES },
-		{ _T("ignorecase"), OPT_CMP_IGNORE_CASE },
-		{ _T("ignoreeol"), OPT_CMP_IGNORE_EOL }
-	};
-
-	for (int i = 0; i < countof(f_ArgSettings); ++i)
-	{
-		const ArgSetting& argSetting = f_ArgSettings[i];
-		LPCTSTR szCmdArgName = argSetting.CmdArgName;
-		LPCTSTR szOptionName = argSetting.WinMergeOptionName;
-		CString	sValue;
-
-		if (cmdInfo.m_Settings.Lookup(szCmdArgName, sValue))
-		{
-			GetOptionsMgr()->SaveOption(szOptionName, sValue);
-		}
-	}
 }
 
 /** @brief Open help from mainframe when user presses F1*/
@@ -663,7 +608,6 @@ void CMergeApp::OnHelp()
 {
 	GetMainFrame()->ShowHelp();
 }
-
 
 /**
  * @brief Is specified file a project file?

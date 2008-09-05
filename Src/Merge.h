@@ -105,7 +105,6 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
-	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
 	// End MergeArgs.cpp
 
 	bool LoadAndOpenProjectFile(LPCTSTR sFilepath);
@@ -159,9 +158,6 @@ extern CMergeApp theApp;
 
 COptionsMgr * GetOptionsMgr();
 CLogFile * GetLog();
-
-/////////////////////////////////////////////////////////////////////////////
-CMergeDoc *GetDoc();
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
