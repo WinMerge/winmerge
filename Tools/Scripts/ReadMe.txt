@@ -1,5 +1,6 @@
 Some useful scripts:
 
+
 BuildManualChm.bat
 ------------------
 Batch file for creating HTML help (.chm) manual.
@@ -35,6 +36,7 @@ CheckVCProj.vbs
 ---------------
 Script for checking the file "Merge.vcproj".
 
+
 CompareProjectFiles.py
 ----------------------
 
@@ -51,6 +53,7 @@ CompareProjectFiles.py
                              2003: VisualStudio 2003 project file
                              2008: VisualStudio 2008 project file
 
+
 create_release.py
 -----------------
  Script for creating a release. Builds WinMerge components, exports sources,
@@ -66,6 +69,20 @@ create_release.py
    create_release -v 2.7.7.1
 
 
+HeaderFileAutonomyVerificator.py
+--------------------------------
+
+ Script that verifies if a C++ header file is missing #include directives or
+ forward declarations.
+
+ Usage: HeaderFileAutonomyVerificator.py [-h] [-c commandfile] <headerfile>
+  where:
+    -h, --help              print this help
+    -c, --commandfile <ARG> override the default compilation command with the one
+                            defined in the file <ARG>
+    <headerfile>            header file to test
+
+
 IncludeFileDependencyAnalyzer.py
 --------------------------------
  Script for finding all the files included (directly or indirectly) by
@@ -76,6 +93,7 @@ IncludeFileDependencyAnalyzer.py
     <file.i>            is the preprocessor output of the compiler for a given C/C++ file.
                         Look at http://c2.com/cgi/wiki?CppDependencyAnalysis to learn how to
                         generate it.
+
 
 tsvn_patch.py
 -------------
