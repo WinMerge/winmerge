@@ -57,7 +57,7 @@ static void fetch_verinfo()
  * returns length of byte string written
  * Does not zero-terminate!
  */
-int Ucs4_to_Utf8(UINT unich, unsigned char * utf8)
+int Ucs4_to_Utf8(unsigned int unich, unsigned char * utf8)
 {
 #pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (unich <= 0x7f)
@@ -135,7 +135,7 @@ int Utf8len_fromLeadByte(unsigned char ch)
 /**
  * @brief return #bytes required to represent Unicode codepoint as UTF-8 
  */
-int Utf8len_fromCodepoint(UINT ch)
+int Utf8len_fromCodepoint(unsigned int ch)
 {
 	if (ch <= 0x7F) return 1;
 	if (ch <= 0x7FF) return 2;
@@ -153,9 +153,9 @@ int Utf8len_fromCodepoint(UINT ch)
  *
  * @bug Fails for files larger than 2gigs
  */
-UINT Utf8len_of_string(LPCWSTR text, int size)
+unsigned int Utf8len_of_string(const wchar_t* text, int size)
 {
-	UINT len=0;
+	unsigned int len=0;
 	for (int i=0; i<size; ++i)
 	{
 		int chlen = Utf8len_fromCodepoint(text[i]);
@@ -171,9 +171,9 @@ UINT Utf8len_of_string(LPCWSTR text, int size)
  *
  * @bug Fails for files larger than 2gigs
  */
-UINT stringlen_of_utf8(LPCSTR text, int size)
+unsigned int stringlen_of_utf8(const char* text, int size)
 {
-	UINT len=0;
+	unsigned int len=0;
 	for (int i=0; i<size; )
 	{
 		int chlen = Utf8len_fromLeadByte(text[i]);
@@ -187,39 +187,39 @@ UINT stringlen_of_utf8(LPCSTR text, int size)
 /**
  * @brief Read UTF-8 character and return as Unicode
  */
-UINT GetUtf8Char(unsigned char * str)
+unsigned int GetUtf8Char(unsigned char * str)
 {
 	/* test short cases first, as probably much more common */
 	if (!(*str & 0x80 && *str & 0x40)) {
 		return str[0];
 	}
 	if (!(*str & 0x20)) {
-		UINT ch = ((str[0] & 0x1F) << 6)
+		unsigned int ch = ((str[0] & 0x1F) << 6)
 			+ (str[1] & 0x3F);
 		return ch;
 	}
 	if (!(*str & 0x10)) {
-		UINT ch = ((str[0] & 0x0f) << 12)
+		unsigned int ch = ((str[0] & 0x0f) << 12)
 			+ ((str[1] & 0x3F) << 6)
 			+ (str[2] & 0x3F);
 		return ch;
 	}
 	if (!(*str & 0x08)) {
-		UINT ch = ((str[0] & 0x0F) << 18)
+		unsigned int ch = ((str[0] & 0x0F) << 18)
 			+ ((str[1] & 0x3F) << 12)
 			+ ((str[2] & 0x3F) << 6)
 			+ (str[3] & 0x3F);
 		return ch;
 	}
 	if (!(*str & 0x04)) {
-		UINT ch = ((str[0] & 0x0F) << 24)
+		unsigned int ch = ((str[0] & 0x0F) << 24)
 			+ ((str[1] & 0x3F) << 18)
 			+ ((str[2] & 0x3F) << 12)
 			+ ((str[3] & 0x3F) << 6)
 			+ (str[4] & 0x3F);
 		return ch;
 	} else {
-		UINT ch = ((str[0] & 0x0F) << 30)
+		unsigned int ch = ((str[0] & 0x0F) << 30)
 			+ ((str[1] & 0x3F) << 24)
 			+ ((str[2] & 0x3F) << 18)
 			+ ((str[3] & 0x3F) << 12)
@@ -234,7 +234,7 @@ UINT GetUtf8Char(unsigned char * str)
  *
  * Returns number of bytes written (or -1 for error, in which case it writes '?')
  */
-int to_utf8_advance(UINT u, unsigned char * &lpd)
+int to_utf8_advance(unsigned int u, unsigned char * &lpd)
 {
 #pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (u < 0x80)
@@ -293,9 +293,9 @@ int to_utf8_advance(UINT u, unsigned char * &lpd)
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-String maketchar(UINT unich, bool & lossy)
+String maketchar(unsigned int unich, bool & lossy)
 {
-	static UINT codepage = CP_ACP;
+	static unsigned int codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
 	return maketchar(unich, lossy, codepage);
@@ -304,7 +304,7 @@ String maketchar(UINT unich, bool & lossy)
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-String maketchar(UINT unich, bool & lossy, UINT codepage)
+String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
 {
 #ifdef _UNICODE
 	if (unich < 0x10000)
@@ -360,9 +360,9 @@ String maketchar(UINT unich, bool & lossy, UINT codepage)
 /**
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
-UINT byteToUnicode (unsigned char ch)
+unsigned int byteToUnicode (unsigned char ch)
 {
-	static UINT codepage = CP_ACP;
+	static unsigned int codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
 	return byteToUnicode(ch, codepage);
@@ -371,7 +371,7 @@ UINT byteToUnicode (unsigned char ch)
 /**
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
-UINT byteToUnicode (unsigned char ch, UINT codepage)
+unsigned int byteToUnicode (unsigned char ch, unsigned int codepage)
 {
 
 	if (ch < 0x80)
@@ -379,7 +379,7 @@ UINT byteToUnicode (unsigned char ch, UINT codepage)
 
 	DWORD flags = 0;
 	wchar_t wbuff;
-	int n = MultiByteToWideChar(codepage, flags, (LPCSTR)&ch, 1, &wbuff, 1);
+	int n = MultiByteToWideChar(codepage, flags, (const char*)&ch, 1, &wbuff, 1);
 	if (n>0)
 		return wbuff;
 	else
@@ -405,7 +405,7 @@ void getInternalEncoding(UNICODESET * unicoding, int * codepage)
  * @brief Write appropriate BOM (Unicode byte order marker)
  * returns #bytes written
  */
-int writeBom(LPVOID dest, UNICODESET unicoding)
+int writeBom(void* dest, UNICODESET unicoding)
 {
 	unsigned char * lpd = reinterpret_cast<unsigned char *>(dest);
 	// write Unicode byte order marker (BOM)
@@ -436,9 +436,9 @@ int writeBom(LPVOID dest, UNICODESET unicoding)
  *  This does not handle MBCS or UTF-8 codepages correctly!
  *  Client should not use this except for Unicode or SBCS codepages.
  */
-UINT get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
+unsigned int get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
 {
-	UINT ch;
+	unsigned int ch;
 	switch (codeset)
 	{
 	case UCS2LE:
@@ -462,7 +462,7 @@ UINT get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
  *  In fact, this doesn't even know. Probably going to have to make
  *  two passes, the first with MB_ERR_INVALID_CHARS. Ugh. :(
  */
-String maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
+String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy)
 {
 	int defcodepage = getDefaultCodepage();
 
@@ -527,13 +527,13 @@ String maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
  * @brief (ANSI build only) Convert from one 8 bit codepage to another
  */
 #ifndef UNICODE
-String CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy)
+String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy)
 {
 	int wlen = srclen*2+6;
 	int clen = wlen * 2 + 6;
 	String str;
 	str.resize(clen);
-	LPSTR cbuff = &*str.begin();
+	char* cbuff = &*str.begin();
 	int nbytes = CrossConvert(src, srclen, cbuff, clen, cpin, cpout, lossy);
 	str.resize(nbytes);
 	return str;
@@ -545,7 +545,7 @@ String CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool 
  *
  * destsize must be at least 2
  */
-int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int cpout, bool * lossy)
+int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy)
 {
 	ASSERT(destsize > 1);
 
@@ -553,7 +553,7 @@ int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, i
 	DWORD flags = 0;
 	int wlen = srclen*2+6;
 	wchar_t * wbuff = new wchar_t[wlen];
-	int n = MultiByteToWideChar(cpin, flags, (LPCSTR)src, srclen, wbuff, wlen-1);
+	int n = MultiByteToWideChar(cpin, flags, (const char*)src, srclen, wbuff, wlen-1);
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
@@ -672,10 +672,10 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 
 		int destcp = (unicoding2 == UTF8 ? CP_UTF8 : codepage2);
 		DWORD flags = 0;
-		int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, 0, 0, NULL, NULL);
+		int bytes = WideCharToMultiByte(destcp, flags, (const wchar_t*)src, srcbytes/2, 0, 0, NULL, NULL);
 		dest->resize(bytes);
 		int losses = 0;
-		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->capacity, NULL, NULL);
+		bytes = WideCharToMultiByte(destcp, flags, (const wchar_t*)src, srcbytes/2, (char *)dest->ptr, dest->capacity, NULL, NULL);
 		dest->size = bytes;
 		return losses==0;
 	}
@@ -684,9 +684,9 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		// From 8-bit (or UTF-8) to UCS-2LE
 		int srccp = (unicoding1 == UTF8 ? CP_UTF8 : codepage1);
 		DWORD flags = 0;
-		int wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, 0, 0);
+		int wchars = MultiByteToWideChar(srccp, flags, (const char*)src, srcbytes, 0, 0);
 		dest->resize(wchars*2);
-		wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, (LPWSTR)dest->ptr, dest->capacity/2);
+		wchars = MultiByteToWideChar(srccp, flags, (const char*)src, srcbytes, (LPWSTR)dest->ptr, dest->capacity/2);
 		dest->size = wchars * 2;
 		return true;
 	}
@@ -699,7 +699,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
  * @param [out] pBom Returns true if buffer had BOM bytes, false otherwise.
  * @return One of UNICODESET values as encoding.
  */
-UNICODESET DetermineEncoding(LPBYTE pBuffer, int size, bool * pBom)
+UNICODESET DetermineEncoding(unsigned char* pBuffer, int size, bool * pBom)
 {
 	UNICODESET unicoding = ucr::NONE;
 	*pBom = false;

@@ -12,6 +12,8 @@
 #ifndef unicoder_h_included
 #define unicoder_h_included
 
+#include "UnicodeString.h"
+
 namespace ucr {
 
 /**
@@ -36,32 +38,32 @@ enum UNICODESET
 	UTF8,      /**< UTF-8. */
 };
 
-int Ucs4_to_Utf8(UINT unich, unsigned char * utf8);
+int Ucs4_to_Utf8(unsigned int unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);
-int Utf8len_fromCodepoint(UINT ch);
-UINT Utf8len_of_string(LPCWSTR text, int size);
-UINT stringlen_of_utf8(LPCSTR text, int size);
-UINT GetUtf8Char(unsigned char * str);
-int to_utf8_advance(UINT u, unsigned char * &lpd);
-String maketchar(UINT ch, bool & lossy);
-int writeBom(LPVOID dest, UNICODESET unicoding);
-UINT get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
-String maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy);
-String maketchar(UINT unich, bool & lossy);
-String maketchar(UINT unich, bool & lossy, UINT codepage);
-UINT byteToUnicode(unsigned char ch);
-UINT byteToUnicode(unsigned char ch, UINT codepage);
+int Utf8len_fromCodepoint(unsigned int ch);
+unsigned int Utf8len_of_string(const wchar_t* text, int size);
+unsigned int stringlen_of_utf8(const char* text, int size);
+unsigned int GetUtf8Char(unsigned char * str);
+int to_utf8_advance(unsigned int u, unsigned char * &lpd);
+String maketchar(unsigned int ch, bool & lossy);
+int writeBom(void* dest, UNICODESET unicoding);
+unsigned int get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
+String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy);
+String maketchar(unsigned int unich, bool & lossy);
+String maketchar(unsigned int unich, bool & lossy, unsigned int codepage);
+unsigned int byteToUnicode(unsigned char ch);
+unsigned int byteToUnicode(unsigned char ch, unsigned int codepage);
 void getInternalEncoding(UNICODESET * unicoding, int * codepage);
 
 // generic function to do all conversions
 bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
 
-int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int cpout, bool * lossy);
+int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy);
 #ifndef UNICODE
-String CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy);
+String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy);
 #endif
 
-UNICODESET DetermineEncoding(LPBYTE pBuffer, int size, bool * pBom);
+UNICODESET DetermineEncoding(unsigned char* pBuffer, int size, bool * pBom);
 
 } // namespace ucr
 
