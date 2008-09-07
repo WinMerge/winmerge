@@ -7,7 +7,7 @@
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SortHeaderCtrl.h"
 #include "dllver.h"
 

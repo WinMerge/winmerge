@@ -10,7 +10,7 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "WinClasses.h"
 #include "wclassdefines.h"
 

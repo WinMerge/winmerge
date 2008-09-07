@@ -12,7 +12,7 @@ DEPENDENCIES:
 	mpr.lib
 */
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "dirtools.h"
 
 #ifdef _DEBUG

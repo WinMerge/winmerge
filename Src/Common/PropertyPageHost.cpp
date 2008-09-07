@@ -8,7 +8,7 @@
  * WinMerge.
  */
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "PropertyPageHost.h"
 
 #if _MSC_VER > 1200

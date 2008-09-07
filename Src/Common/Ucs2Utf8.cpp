@@ -20,7 +20,7 @@
  * @brief UCS-2 <--> UTF-8 conversion routines implementation.
  */
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "unicoder.h"
 #include "Ucs2Utf8.h"
 

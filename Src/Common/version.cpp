@@ -7,7 +7,7 @@
 // $Id$
 
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "version.h"
 
 /** 

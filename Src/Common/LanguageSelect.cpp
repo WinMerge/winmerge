@@ -6,9 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "OptionsDef.h"
-#include "merge.h"
+#include "Merge.h"
 #include "version.h"
 #include "resource.h"
 #include "LanguageSelect.h"

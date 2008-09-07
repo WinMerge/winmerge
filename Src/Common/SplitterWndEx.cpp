@@ -10,7 +10,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SplitterWndEx.h"
 
 #ifdef COMPILE_MULTIMON_STUBS

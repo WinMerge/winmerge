@@ -7,7 +7,7 @@
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "varprop.h"
 
 #ifdef _DEBUG

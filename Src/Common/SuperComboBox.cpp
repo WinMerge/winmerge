@@ -1,7 +1,7 @@
 // ComboBoxEx.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SuperComboBox.h"
 
 #include <shlwapi.h>

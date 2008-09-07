@@ -10,7 +10,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "resource.h"
 #include "UnicodeString.h"
 #include "OptionsDef.h"
@@ -22,7 +22,7 @@
 #include "coretools.h" //SplitFilename()
 #include "FileOrFolderSelect.h"
 
-#include "winclasses.h"
+#include "WinClasses.h"
 #include "wclassdefines.h"
 
 #ifdef _DEBUG

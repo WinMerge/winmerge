@@ -38,7 +38,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "shlobj.h"
 #include "objbase.h"
 #include "CShellFileOp.h"

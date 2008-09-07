@@ -30,7 +30,7 @@
 #include "PropArchive.h"
 #include "PropBackups.h"
 
-#include "propertypagehost.h"
+#include "PropertyPageHost.h"
 
 class COptionsMgr;
 class SyntaxColors;
