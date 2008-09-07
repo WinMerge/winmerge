@@ -143,11 +143,13 @@ String TimeString(const __int64 * tim)
 		return String();
 	if (odt.GetStatus() == COleDateTime::invalid)
 		return theApp.LoadString(AFX_IDS_INVALID_DATETIME);
-	COleVariant var;
-	// Don't need to trap error. Should not fail due to type mismatch
-	AfxCheckError(VarBstrFromDate(odt.m_dt, LANG_USER_DEFAULT, 0, &V_BSTR(&var)));
-	var.vt = VT_BSTR;
-	return OLE2CT(V_BSTR(&var));
+	SYSTEMTIME sysTime;
+	odt.GetAsSystemTime(sysTime);
+	TCHAR buff[128];
+	int len = GetDateFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE, &sysTime, NULL, buff, countof(buff));
+	buff[len - 1] = ' ';
+	GetTimeFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE, &sysTime, NULL, buff + len, countof(buff) - len - 1);
+	return buff;
 }
 
 }; // namespace locality
