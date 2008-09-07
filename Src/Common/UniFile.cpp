@@ -405,11 +405,10 @@ void UniMemFile::SetBom(bool bom)
  * @param [out] lossy TRUE if there were lossy encoding.
  * @return TRUE if there is more lines to read, TRUE when last line is read.
  */
-BOOL UniMemFile::ReadString(String & line, bool * lossy)
+bool UniMemFile::ReadString(String & line, bool * lossy)
 {
 	String eol;
-	BOOL ok = ReadString(line, eol, lossy);
-	return ok;
+	return ReadString(line, eol, lossy);
 }
 
 /**
@@ -459,7 +458,7 @@ static void RecordZero(UniFile::txtstats & txstats, int offset)
  * @param [out] lossy TRUE if there were lossy encoding.
  * @return TRUE if there is more lines to read, TRUE when last line is read.
  */
-BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
+bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 {
 	line.erase();
 	eol.erase();
@@ -473,7 +472,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		int cchLine = 0;
 		// If there aren't any wchars left in the file, return FALSE to indicate EOF
 		if (m_current - m_base + 1 >= m_filesize)
-			return FALSE;
+			return false;
 		// Loop through wchars, watching for eol chars or zero
 		while (m_current - m_base + 1 < m_filesize)
 		{
@@ -502,7 +501,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 				}
 				++m_lineno;
 				line.assign(pchLine, cchLine);
-				return TRUE;
+				return true;
 			}
 			if (!wch)
 			{
@@ -511,7 +510,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			++cchLine;
 		}
 		line.assign(pchLine, cchLine);
-		return TRUE;
+		return true;
 	}
 #else
 	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
@@ -519,7 +518,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		int cchLine = 0;
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
 		if (m_current - m_base >= m_filesize)
-			return FALSE;
+			return false;
 		// Loop through chars, watching for eol chars or zero
 		while (m_current - m_base < m_filesize)
 		{
@@ -548,7 +547,7 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 				}
 				++m_lineno;
 				line.assign(pchLine, cchLine);
-				return TRUE;
+				return true;
 			}
 			if (!ch)
 			{
@@ -557,12 +556,12 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			++cchLine;
 		}
 		line.assign(pchLine, cchLine);
-		return TRUE;
+		return true;
 	}
 #endif
 
 	if (m_current - m_base + (m_charsize-1) >= m_filesize)
-		return FALSE;
+		return false;
 
 	// Handle 8-bit strings in line chunks because of multibyte codings (eg, 936)
 	if (m_unicoding == ucr::NONE)
@@ -705,20 +704,20 @@ BOOL UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		{
 			if (!eol.empty())
 				++m_lineno;
-			return TRUE;
+			return true;
 		}
 		Append(line, sch.c_str(), sch.length());
 	}
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Write one line (doing any needed conversions)
  */
-BOOL UniMemFile::WriteString(const String & line)
+bool UniMemFile::WriteString(const String & line)
 {
 	ASSERT(0); // unimplemented -- currently cannot write to a UniMemFile!
-	return FALSE;
+	return false;
 }
 
 /////////////
@@ -913,16 +912,16 @@ void UniStdioFile::SetBom(bool bom)
 }
 
 
-BOOL UniStdioFile::ReadString(String & line, bool * lossy)
+bool UniStdioFile::ReadString(String & line, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
-	return FALSE;
+	return false;
 }
 
-BOOL UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
+bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
-	return FALSE;
+	return false;
 }
 
 /** @brief Write BOM (byte order mark) if Unicode file */
@@ -959,7 +958,7 @@ int UniStdioFile::WriteBom()
 /**
  * @brief Write one line (doing any needed conversions)
  */
-BOOL UniStdioFile::WriteString(const String & line)
+bool UniStdioFile::WriteString(const String & line)
 {
 	// shortcut the easy cases
 #ifdef _UNICODE
@@ -971,8 +970,8 @@ BOOL UniStdioFile::WriteString(const String & line)
 		unsigned int bytes = line.length() * sizeof(TCHAR);
 		unsigned int wbytes = fwrite(line.c_str(), 1, bytes, m_fp);
 		if (wbytes != bytes)
-			return FALSE;
-		return TRUE;
+			return false;
+		return true;
 	}
 
 	ucr::buffer * buff = (ucr::buffer *)m_pucrbuff;
@@ -985,8 +984,8 @@ BOOL UniStdioFile::WriteString(const String & line)
 	// TODO: What to do about lossy conversion ?
 	unsigned int wbytes = fwrite(buff->ptr, 1, buff->size, m_fp);
 	if (wbytes != buff->size)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }
 
 __int64 UniStdioFile::GetPosition() const

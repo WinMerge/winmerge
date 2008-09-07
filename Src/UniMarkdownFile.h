@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "Common/UniFile.h"
+#include "UniFile.h"
 
 class CMarkdown;
 
@@ -17,7 +17,7 @@ class UniMarkdownFile : public UniMemFile
 {
 public:
 	UniMarkdownFile();
-	virtual BOOL ReadString(String & line, String & eol, bool * lossy);
+	virtual bool ReadString(String & line, String & eol, bool * lossy);
 	virtual void Close();
 	virtual bool ReadBom();
 

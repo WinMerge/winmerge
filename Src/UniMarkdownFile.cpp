@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UnicodeString.h"
 #include "UniMarkdownFile.h"
 #include "markdown.h"
@@ -133,7 +133,7 @@ void UniMarkdownFile::Move()
 	}
 }
 
-BOOL UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
+bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 {
 	line.erase();
 	eol.erase();

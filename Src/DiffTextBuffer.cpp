@@ -7,7 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "UniFile.h"
 #include "files.h"
 #include "cs2cs.h"

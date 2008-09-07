@@ -51,14 +51,14 @@ static const TCHAR MineBegin[] = _T("<<<<<<< ");
 bool IsConflictFile(LPCTSTR conflictFileName)
 {
 	UniMemFile conflictFile;
-	BOOL startFound = FALSE;
+	bool startFound = false;
 
 	// open input file
-	BOOL success = conflictFile.OpenReadOnly(conflictFileName);
+	bool success = conflictFile.OpenReadOnly(conflictFileName);
 
 	// Search for a conflict marker
-	BOOL linesToRead = TRUE;
-	while (linesToRead && startFound == FALSE)
+	bool linesToRead = true;
+	while (linesToRead && !startFound)
 	{
 		String line;
 		bool lossy;
@@ -68,13 +68,11 @@ bool IsConflictFile(LPCTSTR conflictFileName)
 		std::string::size_type pos;
 		pos = line.find(MineBegin);
 		if (pos == 0)
-			startFound = TRUE;
+			startFound = true;
 	}
 	conflictFile.Close();
 
-	if (startFound)
-		return TRUE;
-	return FALSE;
+	return startFound;
 }
 
 /**
@@ -106,14 +104,14 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 	bNestedConflicts = false;
 
 	// open input file
-	BOOL success = conflictFile.OpenReadOnly(conflictFileName);
+	bool success = conflictFile.OpenReadOnly(conflictFileName);
 
 	// Create output files
-	BOOL success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
-	BOOL success3 = newRevision.Open(newRevisionFileName, _T("wb"));
+	bool success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
+	bool success3 = newRevision.Open(newRevisionFileName, _T("wb"));
 
 	state = 0;
-	BOOL linesToRead = TRUE;
+	bool linesToRead = true;
 	do
 	{
 		bool lossy;

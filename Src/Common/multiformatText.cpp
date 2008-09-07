@@ -79,7 +79,7 @@ void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*=
 }
 void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
 {
-	BOOL bIsUnicode = FALSE;
+	bool bIsUnicode = false;
 	UniMemFile ufile;
 	if (ufile.OpenReadOnly(filename))
 	{

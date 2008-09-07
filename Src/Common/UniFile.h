@@ -55,11 +55,11 @@ public:
 	virtual void SetCodepage(int codepage) = 0;
 
 public:
-	virtual BOOL ReadString(String & line, bool * lossy) = 0;
-	virtual BOOL ReadString(String & line, String & eol, bool * lossy) = 0;
+	virtual bool ReadString(String & line, bool * lossy) = 0;
+	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
-	virtual BOOL WriteString(const String & line) = 0;
+	virtual bool WriteString(const String & line) = 0;
 
 	struct txtstats
 	{
@@ -144,10 +144,10 @@ public:
 	virtual void SetBom(bool bom);
 
 public:
-	virtual BOOL ReadString(String & line, bool * lossy);
-	virtual BOOL ReadString(String & line, String & eol, bool * lossy);
+	virtual bool ReadString(String & line, bool * lossy);
+	virtual bool ReadString(String & line, String & eol, bool * lossy);
 	virtual __int64 GetPosition() const { return m_current - m_base; }
-	virtual BOOL WriteString(const String & line);
+	virtual bool WriteString(const String & line);
 
 // Implementation methods
 protected:
@@ -188,14 +188,14 @@ public:
 	virtual void SetBom(bool bom);
 
 protected:
-	virtual BOOL ReadString(String & line, bool * lossy);
-	virtual BOOL ReadString(String & line, String & eol, bool * lossy);
+	virtual bool ReadString(String & line, bool * lossy);
+	virtual bool ReadString(String & line, String & eol, bool * lossy);
 
 public:
 	virtual __int64 GetPosition() const;
 
 	virtual int WriteBom();
-	virtual BOOL WriteString(const String & line);
+	virtual bool WriteString(const String & line);
 
 // Implementation methods
 protected:

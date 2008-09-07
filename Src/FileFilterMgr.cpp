@@ -261,7 +261,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 
 	CString sLine;
 	bool lossy = false;
-	BOOL bLinesLeft = TRUE;
+	bool bLinesLeft = true;
 	do
 	{
 		// Returns false when last line is read
@@ -309,7 +309,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 			CString str = sLine.Mid(2);
 			AddFilterPattern(&pfilter->dirfilters, str);
 		}
-	} while (bLinesLeft == TRUE);
+	} while (bLinesLeft);
 
 	return pfilter;
 }
