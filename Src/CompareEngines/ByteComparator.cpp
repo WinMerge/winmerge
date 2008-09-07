@@ -164,8 +164,8 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
  * @return COMP_RESULT telling result of the compare.
  */
 ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
-	FileTextStats & stats0, FileTextStats & stats1, LPCSTR &ptr0, LPCSTR &ptr1,
-	LPCSTR end0, LPCSTR end1, bool eof0, bool eof1, __int64 offset0, __int64 offset1)
+	FileTextStats & stats0, FileTextStats & stats1, const char* &ptr0, const char* &ptr1,
+	const char* end0, const char* end1, bool eof0, bool eof1, __int64 offset0, __int64 offset1)
 {
 	// First, update file text statistics by doing a full scan
 	// for 0s and all types of line delimiters

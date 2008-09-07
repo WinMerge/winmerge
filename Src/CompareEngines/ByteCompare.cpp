@@ -172,15 +172,16 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			}
 		}
 		// where to start comparing right now
-		LPCSTR ptr0 = &buff[0][bfstart[0]];
-		LPCSTR ptr1 = &buff[1][bfstart[1]];
+		const char* ptr0 = &buff[0][bfstart[0]];
+		const char* ptr1 = &buff[1][bfstart[1]];
 
 		// remember where we started
-		LPCSTR orig0 = ptr0, orig1 = ptr1;
+		const char* orig0 = ptr0;
+        const char* orig1 = ptr1;
 
 		// how far can we go right now?
-		LPCSTR end0 = &buff[0][bfend[0]];
-		LPCSTR end1 = &buff[1][bfend[1]];
+		const char* end0 = &buff[0][bfend[0]];
+		const char* end1 = &buff[1][bfend[1]];
 
 		__int64 offset0 = (ptr0 - &buff[0][0]);
 		__int64 offset1 = (ptr1 - &buff[1][0]);
