@@ -823,12 +823,12 @@ msgstr "ロケーションペイン(&C)"
 #: Merge.rc:436
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "左にコピーして次に進む(&T)\tAlt+Ctrl+Left"
+msgstr "右にコピーして次に進む(&O)\tAlt+Ctrl+Right"
 
 #: Merge.rc:437
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "右にコピーして次に進む(&O)\tAlt+Ctrl+Right"
+msgstr "左にコピーして次に進む(&T)\tAlt+Ctrl+Left"
 
 #: Merge.rc:439
 #, c-format
