@@ -26,7 +26,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <vector>
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
@@ -51,7 +51,7 @@
 #include "coretools.h"
 #include "Splash.h"
 #include "LineFiltersDlg.h"
-#include "logfile.h"
+#include "LogFile.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "PatchTool.h"
@@ -2355,6 +2355,25 @@ LoadConfigIntSetting(int * cfgval, COptionsMgr * options, const CString & name, 
  */
 static void
 LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr * options, const CString & name, ConfigLogDirection cfgdir)
+{
+	if (options == NULL)
+		return;
+
+	if (cfgdir == ToConfigLog)
+	{
+			*cfgval = options->GetBool(name);
+	}
+	else
+	{
+		options->SetBool(name, !!(*cfgval));
+	}
+}
+
+/**
+ * @brief Copy one piece of data from options object to config log, or vice-versa
+ */
+static void
+LoadConfigBoolSetting(bool * cfgval, COptionsMgr * options, const CString & name, ConfigLogDirection cfgdir)
 {
 	if (options == NULL)
 		return;

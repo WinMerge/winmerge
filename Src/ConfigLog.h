@@ -119,6 +119,7 @@ private:
 	void FileWriteString(LPCTSTR lpsz);
 	void CloseFile();
 	void WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue);
+    void WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue);
 	void WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue);
 	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
 	bool ParseSettings(const CString & Filepath);

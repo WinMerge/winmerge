@@ -22,7 +22,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #ifndef UNICODE
 #include <mbctype.h>
 #endif
@@ -35,12 +35,13 @@
 #include "paths.h"
 #include "unicoder.h"
 #include "codepage.h"
-#include "7zcommon.h"
+#include "7zCommon.h"
 #include "CompareOptions.h"
 #include "Environment.h"
 
 // Static function declarations
 static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag);
+static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag);
 
 
 
@@ -161,6 +162,23 @@ static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
  * @brief Write boolean item using keywords (Yes|No)
  */
 void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue)
+{
+	if (m_writing)
+	{
+		CString text;
+		text.Format(_T("%*.0s%s: %s\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
+		m_file.WriteString(text);
+	}
+	else
+	{
+		LoadYesNoFromConfig(m_pCfgSettings, key, pvalue);
+	}
+}
+
+/**
+ * @brief Write boolean item using keywords (Yes|No)
+ */
+void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 {
 	if (m_writing)
 	{
@@ -838,7 +856,28 @@ LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag)
 	return false;
 }
 
-
+/**
+ * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
+ */
+static bool
+LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag)
+{
+	CString value;
+	if (cfgSettings->Lookup(name, value))
+	{
+		if (value == _T("Yes"))
+		{
+			*pbflag = true;
+			return true;
+		}
+		else if (value == _T("No"))
+		{
+			*pbflag = false;
+			return true;
+		}
+	}
+	return false;
+}
 
 BOOL
 CConfigLog::WriteLogFile(CString &sError)

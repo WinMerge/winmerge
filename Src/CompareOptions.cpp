@@ -56,9 +56,9 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 		_RPTF0(_CRT_ERROR, "Unknown whitespace ignore value!");
 		break;
 	}
-	m_bIgnoreBlankLines = !!options.bIgnoreBlankLines;
-	m_bIgnoreCase = !!options.bIgnoreCase;
-	m_bIgnoreEOLDifference = !!options.bIgnoreEol;
+	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
+	m_bIgnoreCase = options.bIgnoreCase;
+	m_bIgnoreEOLDifference = options.bIgnoreEol;
 }
 
 /**
@@ -76,7 +76,7 @@ QuickCompareOptions::QuickCompareOptions()
 DiffutilsOptions::DiffutilsOptions()
 : m_outputStyle(DIFF_OUTPUT_NORMAL)
 , m_contextLines(0)
-, m_filterCommentsLines(0)
+, m_filterCommentsLines(false)
 {
 }
 
@@ -88,7 +88,7 @@ DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
 : CompareOptions(options)
 , m_outputStyle(DIFF_OUTPUT_NORMAL)
 , m_contextLines(0)
-, m_filterCommentsLines(0)
+, m_filterCommentsLines(false)
 {
 }
 
