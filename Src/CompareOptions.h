@@ -124,7 +124,7 @@ public:
 	QuickCompareOptions();
 	QuickCompareOptions(const CompareOptions& options);
 
-	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
+	bool m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 };
 
 #endif // CompareOptions_h_included

@@ -27,7 +27,7 @@
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <shlwapi.h>
 #include "UnicodeString.h"
 #include "Merge.h"
@@ -66,7 +66,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_bIgnoreSmallTimeDiff(FALSE)
 , m_pCompareStats(NULL)
 , m_piAbortable(NULL)
-, m_bStopAfterFirstDiff(FALSE)
+, m_bStopAfterFirstDiff(false)
 , m_pFilterList(NULL)
 , m_pCompareOptions(NULL)
 , m_pOptions(NULL)

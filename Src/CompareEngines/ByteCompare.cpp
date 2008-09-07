@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <io.h>
 #include "FileLocation.h"
 #include "UnicodeString.h"
@@ -15,7 +15,7 @@
 #include "FilterList.h"
 #include "DiffContext.h"
 #include "FileTransform.h"
-#include "diff.h"
+#include "DIFF.H"
 #include "ByteComparator.h"
 #include "ByteCompare.h"
 #include "DiffFileData.h"
@@ -77,7 +77,7 @@ void ByteCompare::ClearCompareOptions()
  * @brief Set compare-type specific options.
  * @param [in] stopAfterFirstDiff Do we stop compare after first found diff.
  */
-void ByteCompare::SetAdditionalOptions(BOOL stopAfterFirstDiff)
+void ByteCompare::SetAdditionalOptions(bool stopAfterFirstDiff)
 {
 	m_pOptions->m_bStopAfterFirstDiff = stopAfterFirstDiff;
 }

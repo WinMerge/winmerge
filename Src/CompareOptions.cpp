@@ -6,8 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: ByteComparator.h 3397 2006-07-27 10:41:24Z kimmov $
 
-#include "stdafx.h"
-#include "Diff.h"
+#include "StdAfx.h"
+#include "DIFF.H"
 #include "CompareOptions.h"
 
 // Global defined in diffutils code
@@ -65,7 +65,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
  * @brief Default constructor.
  */
 QuickCompareOptions::QuickCompareOptions()
-: m_bStopAfterFirstDiff(FALSE)
+: m_bStopAfterFirstDiff(false)
 {
 
 }
@@ -202,6 +202,6 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options)
 
 QuickCompareOptions::QuickCompareOptions(const CompareOptions& options)
 : CompareOptions(options)
-, m_bStopAfterFirstDiff(FALSE)
+, m_bStopAfterFirstDiff(false)
 {
 }

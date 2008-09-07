@@ -27,7 +27,7 @@ public:
 
 	bool SetCompareOptions(const CompareOptions & options);
 	void ClearCompareOptions();
-	void SetAdditionalOptions(BOOL stopAfterFirstDiff);
+	void SetAdditionalOptions(bool stopAfterFirstDiff);
 	void SetAbortable(const IAbortable * piAbortable);
 	void SetFileData(int items, file_data *data);
 	int CompareFiles(FileLocation *location);

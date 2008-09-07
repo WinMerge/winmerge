@@ -143,7 +143,7 @@ public:
 	 * compare right after finding the first difference. This speeds up the
 	 * compare, but also causes compare statistics to be inaccurate.
 	 */
-	BOOL m_bStopAfterFirstDiff;
+	bool m_bStopAfterFirstDiff;
 
 	/**
 	 * Threshold size for switching to quick compare.
