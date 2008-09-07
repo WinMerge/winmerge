@@ -10,6 +10,8 @@ WinMerge 2.11.1.5
   BugFix: ClearCase checkout/commit dialog translation error (#2051069)
   BugFix: Table of Contents in manual (#2071625)
   BugFix: Highlight ShowUnInstDetails keyword for NSIS files (#2084879)
+  BugFix: Displayed a blank time when file last modified time is 00:00:00
+   (#2098626)
   Translation updates:
   - Russian (#2067785)
   - Swedish (#2075513)
