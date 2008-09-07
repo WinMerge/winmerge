@@ -13,8 +13,8 @@
 //	- LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "CrystalTextBlock.h"
+#include "StdAfx.h"
+#include "crystaltextblock.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

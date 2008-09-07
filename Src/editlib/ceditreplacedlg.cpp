@@ -32,7 +32,7 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "resource.h"
 #include "ceditreplacedlg.h"
 #include "ccrystaleditview.h"

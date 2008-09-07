@@ -26,7 +26,7 @@
 #ifndef __CCrystalTextView_INL_INCLUDED
 #define __CCrystalTextView_INL_INCLUDED
 
-#include "CCrystalTextView.h"
+#include "ccrystaltextview.h"
 
 inline BOOL CCrystalTextView::
 IsDraggingText ()

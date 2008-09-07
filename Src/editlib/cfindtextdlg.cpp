@@ -25,7 +25,7 @@
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "cfindtextdlg.h"
 #include "ccrystaltextview.h"
 

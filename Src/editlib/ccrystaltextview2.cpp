@@ -44,7 +44,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "editcmd.h"
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"

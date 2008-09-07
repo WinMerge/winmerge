@@ -13,8 +13,8 @@
 //	- LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "CrystalParser.h"
+#include "StdAfx.h"
+#include "crystalparser.h"
 #include "ccrystaltextview.h"
 
 #ifdef _DEBUG

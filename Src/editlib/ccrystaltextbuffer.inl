@@ -26,7 +26,7 @@
 #ifndef __CCrystalTextBuffer_INL_INCLUDED
 #define __CCrystalTextBuffer_INL_INCLUDED
 
-#include "CCrystalTextBuffer.h"
+#include "ccrystaltextbuffer.h"
 
 inline BOOL CCrystalTextBuffer::
 IsModified ()

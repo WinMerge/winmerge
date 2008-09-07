@@ -1,6 +1,6 @@
 /* Ferda Prantl - character coding conversion engine  */
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "cs2cs.h"
 #include <string.h>
 #include <malloc.h>

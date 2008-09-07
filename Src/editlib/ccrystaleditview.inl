@@ -26,7 +26,7 @@
 #ifndef __CCrystalEditView_INL_INCLUDED
 #define __CCrystalEditView_INL_INCLUDED
 
-#include "CCrystalEditView.h"
+#include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
 
 inline BOOL CCrystalEditView::

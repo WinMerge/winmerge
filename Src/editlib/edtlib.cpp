@@ -1,7 +1,7 @@
 // edtlib.cpp : Defines the initialization routines for the DLL.
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ccrystaltextview.h"
 #include <afxdllx.h>
 

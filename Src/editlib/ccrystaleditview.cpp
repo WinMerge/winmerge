@@ -67,7 +67,7 @@
 // $Id$
 
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaleditview.h"

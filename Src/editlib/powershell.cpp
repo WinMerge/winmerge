@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include "SyntaxColors.h"

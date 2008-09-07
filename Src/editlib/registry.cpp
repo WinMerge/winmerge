@@ -19,7 +19,7 @@
 //  + FIX: closing null handle (Michael A. Barnhart)
 ////////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "registry.h"
 
 #ifdef _DEBUG

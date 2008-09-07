@@ -20,7 +20,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "CrystalTextBlock.h"
+#include "crystaltextblock.h"
 
 /**
 Objects of this class are used to describe language properties. At this time

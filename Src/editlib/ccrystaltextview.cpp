@@ -87,7 +87,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include <mbctype.h>
