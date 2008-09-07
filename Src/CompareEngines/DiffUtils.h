@@ -40,8 +40,8 @@ public:
 	bool RegExpFilter(int StartPos, int EndPos, int FileNo);
 	void GetDiffCounts(int & diffs, int & trivialDiffs);
 	void GetTextStats(int side, FileTextStats *stats);
-	BOOL Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, BOOL bMovedBlocks, int * bin_file);
+	bool Diff2Files(struct change ** diffs, int depth,
+		int * bin_status, bool bMovedBlocks, int * bin_file);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 protected:

@@ -7,12 +7,12 @@
 // $Id$
 
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "CompareOptions.h"
 #include "FilterList.h"
 #include "DiffContext.h"
 #include "FileTransform.h"
-#include "diff.h"
+#include "DIFF.H"
 #include "DiffUtils.h"
 
 namespace CompareEngines
@@ -106,7 +106,7 @@ int DiffUtils::diffutils_compare_files()
 
 	// Do the actual comparison (generating a change script)
 	struct change *script = NULL;
-	BOOL success = Diff2Files(&script, 0, &bin_flag, FALSE, &bin_file);
+	bool success = Diff2Files(&script, 0, &bin_flag, false, &bin_file);
 	if (!success)
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
@@ -276,10 +276,10 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
     second file if first is binary).
  * @return TRUE when compare succeeds, FALSE if error happened during compare.
  */
-BOOL DiffUtils::Diff2Files(struct change ** diffs, int depth,
-	int * bin_status, BOOL bMovedBlocks, int * bin_file)
+bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
+	int * bin_status, bool bMovedBlocks, int * bin_file)
 {
-	BOOL bRet = TRUE;
+	bool bRet = true;
 	__try
 	{
 		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks, bin_file);
@@ -287,7 +287,7 @@ BOOL DiffUtils::Diff2Files(struct change ** diffs, int depth,
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
 		*diffs = NULL;
-		bRet = FALSE;
+		bRet = false;
 	}
 	return bRet;
 }
