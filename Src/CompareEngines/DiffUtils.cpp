@@ -11,7 +11,6 @@
 #include "CompareOptions.h"
 #include "FilterList.h"
 #include "DiffContext.h"
-#include "FileTransform.h"
 #include "DIFF.H"
 #include "DiffUtils.h"
 

@@ -12,13 +12,10 @@
 #include "UnicodeString.h"
 #include "IAbortable.h"
 #include "CompareOptions.h"
-#include "FilterList.h"
 #include "DiffContext.h"
-#include "FileTransform.h"
 #include "DIFF.H"
 #include "ByteComparator.h"
 #include "ByteCompare.h"
-#include "DiffFileData.h"
 
 namespace CompareEngines
 {
