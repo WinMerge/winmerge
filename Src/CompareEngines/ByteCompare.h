@@ -9,12 +9,13 @@
 #ifndef _BYTE_COMPARE_H_
 #define _BYTE_COMPARE_H_
 
-#include "UnicodeString.h"
 #include "FileTextStats.h"
 
+class CompareOptions;
 class QuickCompareOptions;
 class IAbortable;
 struct FileLocation;
+struct file_data;
 
 namespace CompareEngines
 {
