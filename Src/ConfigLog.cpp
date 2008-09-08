@@ -195,6 +195,16 @@ void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 /**
  * @brief Same as WriteItemYesNo, except store Yes/No in reverse
  */
+void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue)
+{
+	bool tempval = !(*pvalue);
+	WriteItemYesNo(indent, key, &tempval);
+	*pvalue = !(tempval);
+}
+
+/**
+ * @brief Same as WriteItemYesNo, except store Yes/No in reverse
+ */
 void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue)
 {
 	BOOL tempval = !(*pvalue);
@@ -381,7 +391,7 @@ WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 /** 
  * @brief Write logfile
  */
-BOOL CConfigLog::DoFile(bool writing, CString &sError)
+bool CConfigLog::DoFile(bool writing, CString &sError)
 {
 	CFileException e;
 	CVersionInfo version;
@@ -401,7 +411,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 			TCHAR szError[1024];
 			e.GetErrorMessage(szError, 1024);
 			sError = szError;
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -548,7 +558,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 
 	CloseFile();
 
-	return TRUE;
+	return true;
 }
 
 /** @brief osvi.wProductType that works with MSVC6 headers */
@@ -879,7 +889,7 @@ LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag)
 	return false;
 }
 
-BOOL
+bool
 CConfigLog::WriteLogFile(CString &sError)
 {
 	CloseFile();

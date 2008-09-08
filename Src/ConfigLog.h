@@ -33,7 +33,7 @@ class CfgSettings;
 struct COMPARESETTINGS
 {
 	int nCompareMethod;
-	BOOL bStopAfterFirst;
+	bool bStopAfterFirst;
 };
 
 /** 
@@ -41,12 +41,12 @@ struct COMPARESETTINGS
  */
 struct VIEWSETTINGS
 {
-	BOOL bShowIdent;
-	BOOL bShowDiff;
-	BOOL bShowUniqueLeft;
-	BOOL bShowUniqueRight;
-	BOOL bShowBinaries;
-	BOOL bShowSkipped;
+	bool bShowIdent;
+	bool bShowDiff;
+	bool bShowUniqueLeft;
+	bool bShowUniqueRight;
+	bool bShowBinaries;
+	bool bShowSkipped;
 };
 
 /** 
@@ -54,20 +54,20 @@ struct VIEWSETTINGS
  */
 struct MISCSETTINGS
 {
-	BOOL bAutomaticRescan;
-	BOOL bAllowMixedEol;
-	BOOL bScrollToFirst;
-	BOOL bBackup;
-	BOOL bViewWhitespace;
-	BOOL bMovedBlocks;
-	BOOL bDetectCodepage;
-	BOOL bShowLinenumbers;
-	BOOL bWrapLines;
-	BOOL bMergeMode;
-	BOOL bSyntaxHighlight;
+	bool bAutomaticRescan;
+	bool bAllowMixedEol;
+	bool bScrollToFirst;
+	bool bBackup;
+	bool bViewWhitespace;
+	bool bMovedBlocks;
+	bool bDetectCodepage;
+	bool bShowLinenumbers;
+	bool bWrapLines;
+	bool bMergeMode;
+	bool bSyntaxHighlight;
 	BOOL bInsertTabs;
-	INT  nTabSize;
-	BOOL bPluginsEnabled;
+	int  nTabSize;
+	bool bPluginsEnabled;
 };
 
 /** 
@@ -77,7 +77,7 @@ struct CPSETTINGS
 {
 	int nDefaultMode;
 	int nDefaultCustomValue;
-	BOOL bDetectCodepage;
+	bool bDetectCodepage;
 };
 
 /** 
@@ -106,13 +106,13 @@ public:
 	FONTSETTINGS m_fontSettings;
 
 	CString GetFileName() const;
-	BOOL WriteLogFile(CString &sError);
+	bool WriteLogFile(CString &sError);
 	void ReadLogFile(const CString & Filepath);
 
 
 	// Implementation methods
 private:
-	BOOL DoFile(bool writing, CString &sError);
+	bool DoFile(bool writing, CString &sError);
 	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
 	CString GetWindowsVer();
 	CString GetBuildFlags();
@@ -120,7 +120,8 @@ private:
 	void CloseFile();
 	void WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue);
     void WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue);
-	void WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue);
+	void WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue);
+    void WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue);
 	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
 	bool ParseSettings(const CString & Filepath);
 	CString GetValueFromConfig(const CString & key);
