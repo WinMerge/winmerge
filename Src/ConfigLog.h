@@ -65,7 +65,7 @@ struct MISCSETTINGS
 	bool bWrapLines;
 	bool bMergeMode;
 	bool bSyntaxHighlight;
-	BOOL bInsertTabs;
+	int  nInsertTabs;
 	int  nTabSize;
 	bool bPluginsEnabled;
 };
@@ -118,10 +118,9 @@ private:
 	CString GetBuildFlags();
 	void FileWriteString(LPCTSTR lpsz);
 	void CloseFile();
-	void WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue);
     void WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue);
 	void WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue);
-    void WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue);
+    void WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue);
 	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
 	bool ParseSettings(const CString & Filepath);
 	CString GetValueFromConfig(const CString & key);

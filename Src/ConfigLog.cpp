@@ -40,7 +40,6 @@
 #include "Environment.h"
 
 // Static function declarations
-static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag);
 static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag);
 
 
@@ -161,23 +160,6 @@ static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
 /**
  * @brief Write boolean item using keywords (Yes|No)
  */
-void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue)
-{
-	if (m_writing)
-	{
-		CString text;
-		text.Format(_T("%*.0s%s: %s\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
-		m_file.WriteString(text);
-	}
-	else
-	{
-		LoadYesNoFromConfig(m_pCfgSettings, key, pvalue);
-	}
-}
-
-/**
- * @brief Write boolean item using keywords (Yes|No)
- */
 void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 {
 	if (m_writing)
@@ -205,9 +187,9 @@ void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue)
 /**
  * @brief Same as WriteItemYesNo, except store Yes/No in reverse
  */
-void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue)
+void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue)
 {
-	BOOL tempval = !(*pvalue);
+	bool tempval = !(*pvalue);
 	WriteItemYesNo(indent, key, &tempval);
 	*pvalue = !(tempval);
 }
@@ -515,7 +497,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
 	WriteItemYesNo(2, _T("Syntax Highlight"), &m_miscSettings.bSyntaxHighlight);
 	WriteItem(m_file, 2, _T("Tab size"), m_miscSettings.nTabSize);
-	WriteItemYesNoInverted(2, _T("Insert tabs"), &m_miscSettings.bInsertTabs);
+	WriteItemYesNoInverted(2, _T("Insert tabs"), &m_miscSettings.nInsertTabs);
 	
 // Font settings
 	FileWriteString(_T("\n Font:\n"));
@@ -842,29 +824,6 @@ public:
 private:
 	CMapStringToString m_settings;
 };
-
-/**
- * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
- */
-static bool
-LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag)
-{
-	CString value;
-	if (cfgSettings->Lookup(name, value))
-	{
-		if (value == _T("Yes"))
-		{
-			*pbflag = TRUE;
-			return true;
-		}
-		else if (value == _T("No"))
-		{
-			*pbflag = FALSE;
-			return true;
-		}
-	}
-	return false;
-}
 
 /**
  * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
