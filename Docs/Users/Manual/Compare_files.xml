@@ -9,6 +9,8 @@
   used here, we suggest you read read <xref linkend="IntroductDiffing" />
   first.</para>
 
+  <xi:include href="Text_encoding.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
   <section id="Compare_files_starting">
     <title>Starting a file compare operation</title>
 

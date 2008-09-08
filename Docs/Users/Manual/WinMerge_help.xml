@@ -10,7 +10,6 @@
 <!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
 <!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
-<!ENTITY TextEncoding SYSTEM "Text_encoding.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
 <!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY Filters SYSTEM "Filters.xml">
@@ -102,8 +101,6 @@
   &CompareFiles;
 
   &Configuration;
-
-  &TextEncoding;
 
   &Locales;
 

@@ -71,14 +71,16 @@
         shows all the available components. You can modify the default
         configuration by checking or unchecking components. For example, if you
         want to use a WinMerge localization for a different language than
-        English, select the <guilabel>Languages</guilabel> component. </simpara>
+        English, select the <guilabel>Languages</guilabel> component.</simpara>
 
         <variablelist>
           <varlistentry>
             <term>WinMerge core files</term>
 
             <listitem>
-              <para>WinMerge executable, Help, and other needed files. Cannot be
+              <para>WinMerge executable (<filename>WinMerge.exe</filename> on
+              Windows 9X and WME; <filename>WinMergeU.exe</filename> on all
+              other Windows versions), Help, and other needed files. Cannot be
               unchecked.</para>
             </listitem>
           </varlistentry>

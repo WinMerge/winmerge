@@ -712,7 +712,7 @@
 
     <section>
       <title>Filter Comments<indexterm>
-          <primary>filtering</primary>
+          <primary>filters</primary>
 
           <secondary>comments</secondary>
         </indexterm></title>
@@ -1265,7 +1265,9 @@
 
     <section>
       <title>Filter Folder<indexterm>
-          <primary> Filter folders, specifying default private folder</primary>
+          <primary>Filters folders</primary>
+
+          <secondary>specifying default private folder</secondary>
         </indexterm></title>
 
       <para>Use this field to specify your own private folder for file filters.
@@ -1422,9 +1424,40 @@ VCS integration? My installation had an option to integrate with TortoiseSVN.-->
         <secondary>options</secondary>
       </indexterm></title>
 
-    <para>This page allow you to specify the codepage that WinMerge uses for
-    ANSI files, and whether the codepage of certain file formats should be
-    detected from the contents of the files.</para>
+    <para>This page allows you to specify the codepage that the ANSI version of
+    WinMerge uses for ANSI files. , and whether the codepage of certain file
+    formats should be detected from the contents of the files.</para>
+
+    <important>
+      <para>The ANSI version of WinMerge (<filename>WinMerge.exe</filename>) is
+      normally installed only on Windows 9X and WME. On all other, newer Windows
+      systems, the Unicode version (<filename>WinMergeU.exe</filename>) is
+      installed. The Unicode version of WinMerge handles encoding transparently.
+      You should not need to change any settings in this page unless you are
+      running the ANSI version.</para>
+    </important>
+
+    <note>
+      <para>A full explanation of text encoding and Windows codepages is beyond
+      the scope of WinMerge documentation. Fortunately, there is lots of
+      information about them on the Internet. For example, here are some places
+      to start:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><ulink url="http://en.wikipedia.org/wiki/Code_pages">Wikipedia:
+          Code pages</ulink>, <ulink
+          url="http://en.wikipedia.org/wiki/Character_encoding">Character
+          encoding</ulink></para>
+        </listitem>
+
+        <listitem>
+          <para><ulink
+          url="http://www.microsoft.com/globaldev/reference/wincp.mspx">Microsoft:
+          Code Pages Supported by Windows</ulink></para>
+        </listitem>
+      </itemizedlist>
+    </note>
 
     <section>
       <title>Default codepage for ANSI files</title>
