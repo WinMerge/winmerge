@@ -7,6 +7,8 @@
   <para>This topic describes how to compare and merge folders using the Folder
   Compare window.</para>
 
+  <xi:include href="Text_encoding.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
   <section id="Compare_dirs_starting">
     <title>Starting a folder compare operation</title>
 
@@ -46,41 +48,57 @@
     </variablelist>
 
     <tip>
-      <para>Recursive mode is useful for detecting and manipulating different
-      files in an entire folder structure. However, it can be slow if there are
-      many subfolders and files.</para>
+      <title>Tips</title>
 
-      <para>Nonrecursive mode has the advantage of speed when there are many
-      subfolders that need not be examined. Also, the display can be easier to
-      manage because it shows items in only selected folders.</para>
+      <variablelist>
+        <varlistentry>
+          <term>Recursive mode</term>
+
+          <listitem>
+            <para>Recursive mode is useful for detecting and manipulating
+            different files in an entire folder structure. However, it can be
+            slow if there are many subfolders and files.</para>
+
+            <para>Nonrecursive mode has the advantage of speed when there are
+            many subfolders that need not be examined. Also, the display can be
+            easier to manage because it shows items in only selected
+            folders.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Quick Contents comparisons</term>
+
+          <listitem>
+            <para>The <guilabel>Quick Contents</guilabel> method for file
+            comparison, described in <xref linkend="Configuration" />, can be
+            useful when you compare big binary files; and it is automatically
+            used to compare files bigger than 4 MB. Possible disadvantages are
+            that line filters do not work, and there is no difference counts
+            information in the Folder Compare window. This should not matter In
+            most cases, because such large files are usually binary.</para>
+
+            <para>To use this method, configure it before your compare
+            operation: in the Compare page of the WinMerge options, click the
+            <guilabel>File Compare method</guilabel> drop-down menu and choose
+            <guimenuitem>Quick Contents</guimenuitem>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>For advanced users</term>
+
+          <listitem>
+            <para>You can change the 4 MB file size limit of the
+            <guilabel>Compare by Quick Contents</guilabel>, for example if you
+            have a lot of very big text files. To do so, run the Windows
+            <command>regedit</command> command, navigate to this keyword, and
+            modify its value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>As
+            usual, be careful when editing the registry!</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </tip>
-
-    <note>
-      <title>Compare by Quick Contents option</title>
-
-      <para>The <guilabel>Quick Contents</guilabel> method for file comparison,
-      described in <xref linkend="Configuration" />, can be useful when you
-      compare big binary files; and it is automatically used to compare files
-      bigger than 4 MB. Possible disadvantages are that line filters do not
-      work, and there is no difference counts information in the Folder Compare
-      window. This should not matter In most cases, because such large files are
-      usually binary.</para>
-
-      <para>To use this method, configure it before your compare operation: in
-      the Compare page of the WinMerge options, click the <guilabel>File Compare
-      method</guilabel> drop-down menu and choose <guimenuitem>Quick
-      Contents</guimenuitem>.</para>
-    </note>
-
-    <note>
-      <title>For advanced users</title>
-
-      <para>You can change the 4 MB file size limit of the <guilabel>Compare by
-      Quick Contents</guilabel>, for example if you have a lot of very big text
-      files. To do so, run the Windows <command>regedit</command> command,
-      navigate to this keyword, and modify its value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>As
-      usual, be careful when changing values directly in the registry!</para>
-    </note>
 
     <section>
       <title>Folder Compare Progress window<indexterm>
