@@ -203,7 +203,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
-	ON_MESSAGE(WM_USER, OnUser)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
@@ -2835,22 +2834,14 @@ void CMainFrame::OnFileOpenproject()
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
+	LPCTSTR pchData = (LPCTSTR)pCopyData->lpData;
 	// Bail out if data isn't zero-terminated
 	DWORD cchData = pCopyData->cbData / sizeof(TCHAR);
-	if (cchData == 0 || ((LPCTSTR)(pCopyData->lpData))[cchData - 1] != _T('\0'))
+	if (cchData == 0 || pchData[cchData - 1] != _T('\0'))
 		return FALSE;
-	LPTSTR pchData = new TCHAR[cchData];
-	memcpy(pchData, pCopyData->lpData, pCopyData->cbData);
-	PostMessage(WM_USER, (WPARAM)pchData, (LPARAM)0);
-	return TRUE;
-}
-
-LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
-{
-	LPCTSTR pchData = (LPCTSTR)wParam;
+	ReplyMessage(TRUE);
 	MergeCmdLineInfo cmdInfo = pchData;
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
-	delete pchData;
 	return TRUE;
 }
 
