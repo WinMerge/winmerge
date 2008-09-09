@@ -3562,15 +3562,17 @@ msgstr "Verschiebe Dateien..."
 msgid "Creating the report..."
 msgstr "Erzeugt den Bericht..."
 
+# Use action instead operation, like the rest of the undo/redo system.
 #: Merge.rc:2079
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Rückgängigmachen der letzten Aktion..."
 
+# Use action instead operation, like the rest of the undo/redo system.
 #: Merge.rc:2080
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Wiederholen der vorherigen Aktion..."
 
 #: Merge.rc:2086
 #, c-format
