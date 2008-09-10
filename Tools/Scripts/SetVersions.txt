@@ -1,0 +1,63 @@
+SetVersions.py
+==============
+$Id$
+
+WinMerge version numbers are managed by the versions.ini file and
+Tools/Scripts/SetVersions.py script. When the script is run it sets version
+numbers for all resources listed in the ini file.
+
+SetVersions.py script usage:
+
+!!! This script is work in progress !!!
+
+The SetVersions.py script sets versions numbers in different components.
+Components and version numbers to set are defined in configuration file. The
+configuration file is Windows INI-file kind of file, with sections and values.
+
+The section name is only descriptive for the resource to process. It gets
+printed by the script when running.
+
+All sections have these values:
+- type
+  Resource type to set
+- description
+  Short description of the resource (e.g. Installer) to set version
+- path
+  Relative path to the resource to process
+- version
+  Version string/number to set
+
+Available types are:
+CS-AssemblyInfo:
+  Set version number to C# AssemblyInfo file. The script searches for line
+  having assembly: AssemblyVersion -text and sets the version number.
+
+InnoSetup:
+  Set version number to InnoSetup installer script. The installer script
+  must have preprocessor define for the version number. The script replaces
+  value of this macro.
+
+NSIS: 
+  Set version number to NSIS installer script. The installer script must have
+  version defined with PRODUCT_VERSION -macro. For example:
+  !define PRODUCT_VERSION "1.2.3"
+
+WinRC:
+  Set file- and product-version into the Windows RC file. The script searches
+  for version numbers in version resource. The script also makes sure that
+  numeric version number has always four numbers. If less numbers are given,
+  zeros are added to the end.
+
+For example:
+[Installer]
+type = NSIS
+description = ChecksumTool NSIS Installer
+path = Installer/NSIS/CheckSumTool.nsi
+version = "0.6.0"
+
+[Installer]
+type = InnoSetup
+description = WinMerge InnoSetup installer
+path = Installer/InnoSetup/WinMerge.iss
+macro = AppVersion
+version = "2.9.12"
