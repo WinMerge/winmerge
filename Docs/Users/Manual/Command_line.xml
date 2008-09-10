@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="CommandLine">
-  <title><indexterm>
-      <primary>Command line</primary>
-    </indexterm>Command Line</title>
+  <title>Command line<indexterm>
+      <primary>command line</primary>
 
-  <para>WinMerge accepts several parameters from command line, in addition to
+      <secondary>syntax</secondary>
+    </indexterm><indexterm>
+      <primary>WinMerge command line</primary>
+    </indexterm></title>
+
+  <para>The WinMerge command line accepts several parameters in addition to the
   paths to compare. Most of these parameters are intended for using WinMerge as
-  an external compare application. Or for starting from batch files.</para>
+  an external compare application or starting a compare operation from a batch
+  file.</para>
 
-  <para>Syntax for the command line is:</para>
+  <para>Use one of these formats for the WinMerge command:</para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command moreinfo="none">WinMerge</command>
+      <command>WinMerge<optional>U</optional></command>
+
+      <arg choice="opt" rep="norepeat"><option>/?</option></arg>
+    </cmdsynopsis></para>
+
+  <para><cmdsynopsis sepchar=" ">
+      <command>WinMerge<optional>U</optional></command>
 
       <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
@@ -54,155 +65,251 @@
       rep="norepeat"><replaceable>outputpath</replaceable></arg>
     </cmdsynopsis></para>
 
-  <para>All parameters start with "/" or with "-" prefix character. Pathnames
-  don't have any prefix character.</para>
+  <cmdsynopsis sepchar=" ">
+    <command>WinMerge<optional>U</optional></command>
+
+    <arg choice="plain"
+    rep="norepeat"><replaceable>conflictfile</replaceable></arg>
+  </cmdsynopsis>
+
+  <para>The command has two forms:</para>
+
+  <variablelist>
+    <varlistentry>
+      <term>WinMergeU</term>
+
+      <listitem>
+        <para>Use <command>WinMergeU</command> if you are running the Unicode
+        version of WinMerge, typically installed on recent Windows
+        systems.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>WinMerge</term>
+
+      <listitem>
+        <para>Use <command>WinMerge</command> only if you are running the ANSI
+        version of WinMerge, typically installed only on Windows
+        9<replaceable>x</replaceable> and WME systems.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>Entering the command with no parameters or pathnames simply opens the
+  WinMerge window. Parameters are prefixed with either a forward slash (
+  <literal>/</literal> ) or dash ( <literal>-</literal> ) character. Pathnames
+  have no prefix character.</para>
 
   <itemizedlist>
     <listitem>
-      <simpara><option>/?</option> opens this help.</simpara>
+      <para><option>/?</option> opens WinMerge Help at this topic.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/r</option> tells WinMerge to compare folders recursively
-      . Normally WinMerge does not compare subfolder contents but does the
-      "flat" compare showing the files in compared folders and subfolders as
-      separate items. Using /r tells WinMerge to compare all files in all
-      subfolders. When subfolders are included, only unique subfolders are
-      visible as separate items in compare results. Note that including
-      subfolders can increase compare time remarkably.</simpara>
+      <indexterm>
+        <primary>recursive folder compare</primary>
+      </indexterm>
+
+      <para><option>/r</option> compares all files in all subfolders (recursive
+      compare). Unique folders (occurring only on one side) are listed in the
+      compare result as separate items. Note that including subfolders can
+      increase compare time significantly. Without this parameter, WinMerge
+      lists only files and subfolders at the top level of the two target
+      folders. It does not compare the subfolders.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/e</option> allows WinMerge to be closed with a single
-      <keycap>Esc</keycap> keypress. This is useful when using WinMerge as an
-      external compare application. WinMerge can act like an dialog which is
-      easy and fast to close.</simpara>
+      <indexterm>
+        <primary>WinMerge window</primary>
+
+        <secondary>closing</secondary>
+      </indexterm>
+
+      <para><option>/e</option> enables you to close WinMerge with a single
+      <keycap>Esc</keycap> key press. This is useful when you use WinMerge as an
+      external compare application: you can close WinMerge quickly, like a
+      dialog. Without this parameter, you might have to press
+      <keycap>Esc</keycap> multiple times to close all its windows.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/f</option> allows selecting filter used. Filter can be
-      filemask like "<filename>*.h *.cpp</filename>" or name of filefilter like
-      "<literal>XML/HTML Devel</literal>". Quotation marks must be used if
-      filter mask or name contains spaces.</simpara>
+      <indexterm>
+        <primary>filters</primary>
+
+        <secondary>applying</secondary>
+      </indexterm>
+
+      <para><option>/f</option> applies a specified filter to restrict the
+      comparison. The filter can be a filemask like <filename><userinput>*.h
+      *.cpp</userinput></filename>, or the name of a file filter like
+      <userinput>XML/HTML Devel</userinput>. Add quotation marks around a filter
+      mask or name that contains spaces.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/x</option> closes WinMerge if opened files are identical
-      (after information dialog is shown). This parameter is useful when
-      WinMerge is used as an external compare application. It helps to faster
-      process and/or ignore files which don't have any differences. Note that
-      this option does not apply when files become identical when
-      merging/editing them.</simpara>
+      <para><option>/x</option> closes WinMerge (after displaying an information
+      dialog) when you start a comparison of identical files. The parameter has
+      no effect after the comparison, for example if the files become identical
+      as a result of merging or editing. This parameter is useful when you use
+      WinMerge as an external compare application, or when you want to eliminate
+      unnecessary steps by ignoring files that don't have any
+      differences.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/s</option> enables single-instance behavior. If there is
-      already WinMerge running new compare is opened to that same instance.
-      Depending on other settings (if multiple windows are allowed) new compare
-      is opened to existing or new window.</simpara>
+      <indexterm>
+        <primary>WinMerge window</primary>
+
+        <secondary>limiting instances</secondary>
+      </indexterm>
+
+      <para><option>/s</option> limits WinMerge windows to a single instance.
+      For example, if WinMerge is already running, a new compare opens in the
+      same instance. Without this parameter, multiple windows are allowed:
+      depending on other settings, a new compare might open in the existing
+      window or in a new window.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/ul</option> tells WinMerge to not add left path to MRU.
-      External applications should not add paths to Open-dialog's MRU
-      lists.</simpara>
+      <indexterm>
+        <primary>MRU list</primary>
+      </indexterm>
+
+      <para><option>/ul</option> prevents WinMerge from adding the left path to
+      the Most Recently Used (MRU) list. External applications should not add
+      paths to the MRU list in the Select Files or Folders dialog.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/ur</option> tells WinMerge to not add right path to MRU.
-      External applications should not add paths to Open-dialog's MRU
-      lists.</simpara>
+      <para><option>/ur</option> prevents WinMerge from adding the right path to
+      the Most Recently Used (MRU) list. External applications should not add
+      paths to the MRU list in the Select Files or Folders dialog.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/u</option> (or <option>/ub</option>) tells WinMerge to
-      not add both paths to MRU. External applications should not add paths to
-      Open-dialog's MRU lists.</simpara>
+      <para><option>/u</option> prevents WinMerge from adding either path (left
+      or right) to the Most Recently Used (MRU) list. External applications
+      should not add paths to the MRU list in the Select Files or Folders
+      dialog.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/wl</option> initially opens left side as read-only. Use
-      this when you don't want to change left-side items in compare.</simpara>
+      <indexterm>
+        <primary>protecting files</primary>
+      </indexterm>
+
+      <para><option>/wl</option> opens the left side as read-only. Use this when
+      you don't want to change left side items in the compare.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/wr</option> initially opens right side as read-only. Use
-      this when you don't want to change right-side items in compare.</simpara>
+      <para><option>/wr</option> opens the right side as read-only. Use this
+      when you don't want to change right side items in the compare.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/minimize</option> starts WinMerge as minimized. This
-      option can be used to start WinMerge minimized for lengthy
-      compares.</simpara>
+      <indexterm>
+        <primary>WinMerge window</primary>
+
+        <secondary>opening minimized or maximized</secondary>
+      </indexterm>
+
+      <para><option>/minimize</option> starts WinMerge as a minimized window.
+      This option can be useful during lengthy compares.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/maximize</option> starts WinMerge as
-      maximized.</simpara>
+      <para><option>/maximize</option> starts WinMerge as a maximized
+      window.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/dl</option> adds a description for left side shown
-      instead of folder / filename. This allows showing version number or label
-      for compared items. Like "Version 1.0" or "Work Copy".</simpara>
+      <para><option>/dl</option> specifies a description in the left side title
+      bar, overriding the default folder or filename text. For example:
+      <userinput>/dl "Version 1.0</userinput>" or <userinput>/dl
+      WorkingCopy</userinput>. Use quotation marks around descriptions that
+      contain spaces.</para>
     </listitem>
 
     <listitem>
-      <simpara><option>/dr</option> adds a description for right side shown
-      instead of folder / filename. This allows showing version number or label
-      for compared items. Like "Version 1.0" or "Work Copy".</simpara>
+      <para><option>/dr</option> specifies a description in the right side title
+      bar, just like <option>/dl</option>.</para>
     </listitem>
 
     <listitem>
-      <simpara><replaceable>leftpath</replaceable> is the folder or filename to
-      open on the left side.</simpara>
+      <para><option><replaceable>leftpath</replaceable></option> specifies the
+      folder, file, or project file to open on the left side.</para>
     </listitem>
 
     <listitem>
-      <simpara><replaceable>rightpath</replaceable> is the folder or filename to
-      open on the right side.</simpara>
+      <para><option><replaceable>rightpath</replaceable></option> specifies the
+      folder, file, or project file to open on the right side.</para>
+
+      <para>WinMerge cannot compare files to folders, so both path parameters
+      (<option><replaceable>leftpath</replaceable></option> and
+      <option><replaceable>rightpath</replaceable></option>) must point to the
+      same target type (either folders or files). If WinMerge cannot find either
+      of the specified paths, it opens the Select Files or Folders dialog, where
+      you can browse for the correct paths.</para>
+
+      <tip>
+        <para>In file comparisons, you can specify a folder name in one of the
+        path parameters, as long as the folder contains a file with the same
+        name as the one specified in the other, file path.</para>
+
+        <para>For example, consider this command:</para>
+
+        <para><userinput>WinMergeU <filename>C:\Folder\File.txt</filename>
+        <filename class="directory">C:\Folder2</filename> </userinput></para>
+
+        <para>If <filename class="directory">C:\Folder2</filename> contains a
+        file named <filename>File.txt</filename>: WinMerge implicitly resolves
+        the second path as a file specification, and compares the two files. Of
+        course, the command is invalid if <filename
+        class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
+        contain a file named <filename>File.txt</filename>.</para>
+      </tip>
     </listitem>
 
     <listitem>
-      <simpara><replaceable>outputpath</replaceable> is an optional output
-      folder where you want merged files to be saved.</simpara>
+      <indexterm>
+        <primary>merging differences</primary>
+
+        <secondary>result file</secondary>
+      </indexterm>
+
+      <para><option><replaceable>outputpath</replaceable></option> Specifies an
+      optional output folder where you want merged result files to be
+      saved.</para>
+
+      <para>The third, output path is rarely needed when you start WinMerge from
+      the command line. It is meant to be used with version control tools, where
+      you might need to specify a third path for the
+      <wordasword>result</wordasword> file. If you specify a third path,
+      WinMerge still shows only two files in the File Compare window. However,
+      if you save either of these files, it is written to the third path,
+      leaving the two source files intact.</para>
+
+      <para>Version control systems typically refer to the source and result
+      files using terms like <glossterm>theirs</glossterm>,
+      <glossterm>mine</glossterm>, and either <glossterm>merged</glossterm> or
+      <glossterm>resolved</glossterm>. If you specify a third path on the
+      WinMerge command line, and are working with a version control system, you
+      should list the files in that order.</para>
+    </listitem>
+
+    <listitem>
+      <indexterm>
+        <primary>conflict files</primary>
+      </indexterm>
+
+      <para><option><replaceable>conflictfile</replaceable></option> Specifies a
+      conflict file, typically generated by a Version control system. The
+      conflict file opens in the File Compare window, where you can merge and
+      resolve conflicts, as described in <xref
+      linkend="ResolveConflictFiles" />. Note that no other paths can be used
+      with a conflict file.</para>
     </listitem>
   </itemizedlist>
-
-  <para><tip>
-      <para>WinMerge accepts filename and folder name as path parameters, as
-      long as the given folder contains file with same name than in first
-      parameter.</para>
-
-      <para>For example, one can give a command: WinMerge
-      <filename>C:\Folder\File.txt</filename> <filename
-      class="directory">C:\Folder2</filename>. If <filename
-      class="directory">C:\Folder2</filename> contains file named
-      <filename>File.txt</filename> WinMerge now compares files
-      <filename>C:\Folder\File.txt</filename> and C:\Folder2\File.txt</para>
-    </tip>Usually WinMerge requires that both path parameters
-  (<replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable>)
-  point to folders or files. It is not possible to compare folder to file
-  (except in case described in above note). If WinMerge cannot find any of given
-  paths, it opens Open-dialog.</para>
-
-  <para>Third path given in command line is rarely needed when WinMerge is
-  started from command line. It is meant to be used with many version control
-  tools which use third path as a "<emphasis>result</emphasis>" file. WinMerge
-  always shows two files in file compare, the third path is a path where any of
-  these files gets saved into, leaving other two paths intact.</para>
-
-  <para>Usually these tools use terms like "<emphasis>theirs</emphasis>",
-  "<emphasis>mine</emphasis>" and "<emphasis>merged</emphasis> "/ "
-  <emphasis>resolved</emphasis>" about these three files. And those paths should
-  be given in that order for WinMerge.</para>
-
-  <section>
-    <title>Conflict File</title>
-
-    <para>Conflict file can be given to command line as one path to the conflict
-    file. There cannot be second or third path with conflict file. After
-    WinMerge opens the given conflict file, it can be resolved like described in
-    <xref linkend="ResolveConflictFiles" />.</para>
-  </section>
 </article>
