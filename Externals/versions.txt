@@ -1,0 +1,10 @@
+Versions of external components
+-------------------------------
+
+This file lists versions of the external components we are using.
+
+CppUnit: 1.12.0
+Expat: 2.0.1
+PCRE: 7.7
+Heksedit: Frhed SVN trunk r 45
+SCEW: 0.4.0
