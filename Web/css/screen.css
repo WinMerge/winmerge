@@ -266,6 +266,43 @@ ul.inline li {
 	list-style: none;
 }
 
+/* "What is WinMerge?" box */
+.whatisbox {
+	width: 45em;
+	background: #f9f9f9;
+	border: 1px solid #aaaaaa;
+}
+
+.whatisbox h2 {
+	margin: 0;
+	padding: 0.25em;
+	background: #f2f2f2;
+	border-bottom: 1px solid #aaaaaa;
+	font-size: 140%;
+}
+
+.whatisimage {
+	float: right;
+	margin: 0.25em;
+	padding: 0.25em;
+	text-align: center;
+}
+
+.whatistext {
+	margin: 0.25em;
+	padding: 0.25em;
+	line-height: 1.5em;
+	/*text-align: justify;*/
+}
+
+.whatistext strong {
+	font-size: larger;
+}
+
+.whatisclear {
+	clear: both;
+}
+
 /* Info card (Mailing lists, History) */
 .infocard {
 	width: 40em;

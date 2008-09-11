@@ -16,6 +16,7 @@
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
   define ('WINMERGE_2_8', '2.8');
+  define ('TAB_ABOUT', 'about');
   define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
   define ('TAB_TRANSLATIONS', 'translations');
@@ -129,7 +130,7 @@
       $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
       $temp .= "</p>\n";
-      $temp .= "</div>\n";
+      $temp .= "</div> <!-- #head -->\n";
       $temp .= $this->getTabs();
       $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
@@ -149,7 +150,7 @@
      * print the foot from the page
      */
     function printFoot() {
-      $temp = "</div>\n";
+      $temp = "</div> <!-- #content -->\n";
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);
@@ -188,6 +189,12 @@
       }
       else { //if NOT "Home" ...
         $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
+      }
+      if ($this->_tab == TAB_ABOUT) { //if "About" ...
+        $temp .= "  <li><a href=\"/about/index.php\" id=\"current\">About</a></li>\n";
+      }
+      else { //if NOT "About" ...
+        $temp .= "  <li><a href=\"/about/index.php\">About</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
         $temp .= "  <li><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></li>\n";
@@ -238,6 +245,12 @@
           $temp .= "  <li><a href=\"/history.php\">History</a></li>\n";
           $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
           $temp .= "  <li><a href=\"/WinMergePAD.php\">PAD&nbsp;file</a></li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case TAB_ABOUT: //if "About" ...
+          $temp .= "<ul id=\"subtabs\">\n";
+          $temp .= "  <li><a href=\"/about/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/about/screenshots/index.php\" title=\"Screenshots\">Screenshots</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_1_7: //if WinMerge 1.7 ...
@@ -331,7 +344,7 @@
       $temp .= "<script type=\"text/javascript\"\n";
       $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
       $temp .= "</script>\n";
-      $temp .= "</div>\n";
+      $temp .= "</div> <!-- #ads -->\n";
       return $temp;
     }
 

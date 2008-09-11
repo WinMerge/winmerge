@@ -82,6 +82,8 @@ http://winmerge.org/2.8/manual/screenshots
 http://winmerge.org/2.8/manual/Shortcuts.html
 http://winmerge.org/2.8/manual/TextEncoding.html
 http://winmerge.org/2.8/manual/VersionControl.html
+http://winmerge.org/about/index.php
+http://winmerge.org/about/screenshots/index.php
 http://winmerge.org/downloads/index.php
 http://winmerge.org/support/index.php
 http://winmerge.org/support/mailing-lists.php
