@@ -49,6 +49,7 @@ a[name]:hover { color:black; text-decoration:none; }
 }
 
 #rightcorner {
+	margin-top: 0;
 	text-align: right;
 }
 
@@ -120,7 +121,11 @@ a[name]:hover { color:black; text-decoration:none; }
 	padding: 1em;
 }
 
-#content h2, p {
+#content h2 {
+	margin-top: 0;
+}
+
+#content p {
 	margin-top: 0;
 }
 
@@ -269,6 +274,7 @@ ul.inline li {
 /* "What is WinMerge?" box */
 .whatisbox {
 	width: 45em;
+	margin-bottom: 1em;
 	background: #f9f9f9;
 	border: 1px solid #aaaaaa;
 }

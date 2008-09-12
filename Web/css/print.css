@@ -63,10 +63,6 @@ a[name]:hover { color:black; text-decoration:none; }
 	padding: 5px;
 }
 
-#content h2, p {
-	margin-top: 0;
-}
-
 /* Heading list */
 .headinglist dt {
 	font-weight: bold;
