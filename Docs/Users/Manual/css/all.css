@@ -185,6 +185,11 @@ div.section h4 {
   border: 1px solid black;
 }
 
+/* for Firefox quirks mode: eliminate line break */
+tr.question p {
+  margin-top: 0;
+}
+
 /* variablelist */
 .variablelist dl {
   margin-left: 2em;
