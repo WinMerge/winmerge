@@ -1,235 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="VersionControl">
-  <title>Version control integration<indexterm>
-      <primary>version control systems</primary>
-
-      <secondary>integration with</secondary>
-    </indexterm><indexterm>
+  <title>Using WinMerge with other tools<indexterm>
       <primary>integration</primary>
-
-      <secondary>with version control systems</secondary>
     </indexterm></title>
 
-  <para>WinMerge provides optional, basic integration with some version control
-  system (VCS) tools. By default, WinMerge is not integrated with any version
-  control system. You can configure VCS integration both during and after
-  installing WinMerge:</para>
+  <para>Comparing and merging files are often subtasks in a larger change
+  management process. For that reason, WinMerge is often not used by itself, but
+  in conjunction with other tools. In addition, even though many programs have
+  built-in diff and merge utilities, none provides all the features their users
+  need, so it's sometimes handy to combine different tools. This topic describes
+  the two important WinMerge features that facilitate working with other
+  tools.</para>
 
-  <para>If the WinMerge installer detects whether TortoiseSVN, TortoiseCVS, or
-  Rational ClearCase are present on your system, the Setup Additional Tasks page
-  contains options to enable any of the WinMerge integrations.</para>
+  <section>
+    <title>Using the command-line interface (CLI) </title>
 
-  <para>After installation, you can open the Options dialog and configure either
-  the ClearCase or Visual SourceSafe integration, as described in <xref
-  linkend="Configuration_vcs" />.</para>
+    <para>The WinMerge command-line interface (CLI), described in <xref
+    linkend="CommandLine" />, enables you to run WinMerge from a Command Prompt
+    window, from scripts, or from another tool or program. Basically, any
+    program that allows you to call an external executable with at least one
+    path, can be used to launch a WinMerge operation. </para>
 
-  <note>
-    <para>Only the ClearCase integration can be configured using both methods.
-    You can configure TortoiseSVN and TortoiseCVS only during installation;
-    conversely, you can configure Visual SourceSafe (which is not detected by
-    the installer) only in the Options dialog.</para>
-  </note>
-
-  <para>Each WinMerge version control integration has one of these basic types
-  of interaction:</para>
-
-  <variablelist>
-    <varlistentry>
-      <term>WinMerge launches VCS file checkout</term>
-
-      <listitem>
-        <para>With version control systems that lock files (ClearCase and Visual
-        Source Safe), WinMerge opens the VCS's checkout dialog before saving a
-        file. It is up to you to check out the file, and then to check in the
-        file later using the version control system's tools. WinMerge does not
-        provide checkin or history tools.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>VCS use WinMerge as its diff tool</term>
-
-      <listitem>
-        <para>When you start a diff operation using TortoiseSVN and TortoiseCVS,
-        the integration opens WinMerge instead of the native VCS diff
-        utility.</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-
-  <example>
-    <title>TortoiseSVN integration<indexterm>
-        <primary>TortoiseSVN integration</primary>
-      </indexterm></title>
-
-    <para>TortoiseSVN is a Windows client for Subversion (SVN), an open source
-    version control system. TortoiseSVN provides its own diff utility. The
-    WinMerge integration with this VCS enables you to use WinMerge to compare
-    files instead of the TortoiseSVN diff tool.</para>
-
-    <para>One of the main uses of TortoiseSVN's diff is to see the most recent
-    changes to a file that is under version control: that is, a file that you
-    have checked out into a working copy. The following procedure illustrates
-    such an operation using the WinMerge integration with TortoiseSVN. The
-    integration with TortoiseCVS is similar.</para>
-
-    <orderedlist>
-      <listitem>
-        <para>In Windows Explorer, navigate to a Subversion working copy that
-        you have checked out.</para>
-      </listitem>
-
-      <listitem>
-        <para>Right-click a file that is under Subversion management (usually
-        indicated by a distinct TortoiseSVN icon), and click
-        <guimenu>TortoiseSVN</guimenu> in the context menu.</para>
-
-        <itemizedlist>
-          <listitem>
-            <para>If the file has not been modified, the context menu contains
-            the shortcut, <guimenuitem>Diff with previous version</guimenuitem>.
-            This command compares the checked-out version of the file with the
-            previous version that was checked in to the repository.</para>
-          </listitem>
-
-          <listitem>
-            <para>If you have modified the file, the context menu contains the
-            same <guimenuitem>Diff with previous version</guimenuitem> shortcut,
-            plus the <guimenuitem>Diff</guimenuitem> shortcut. This command
-            compares your revision to the current version (the one you checked
-            out). It is useful for reviewing the changes you have made.</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-
-      <listitem>
-        <para>Choose either the <guimenuitem>Diff with previous
-        version</guimenuitem> or <guimenuitem>Diff</guimenuitem> shortcut. The
-        WinMerge window opens, with the target file versions loaded In the File
-        Compare window.</para>
-      </listitem>
-    </orderedlist>
-
-    <para>The <menuchoice>
-        <guimenu>TortoiseSVN</guimenu>
-
-        <guimenuitem>Diff</guimenuitem>
-      </menuchoice> shortcut is available for comparing any two files in your
-    file system, not just files that are managed by Subversion. To illustrate
-    how the WinMerge integration works in this case:</para>
-
-    <orderedlist>
-      <listitem>
-        <para>In Windows explorer, hold <keycap>Ctrl</keycap>, select any two
-        files, and right-click.</para>
-      </listitem>
-
-      <listitem>
-        <para>Choose <menuchoice>
-            <guimenu>TortoiseSVN</guimenu>
-
-            <guimenuitem>Diff</guimenuitem>
-          </menuchoice> in the context menu.</para>
-
-        <para>The WinMerge window opens, with the selected files loaded In the
-        File Compare window.</para>
-      </listitem>
-    </orderedlist>
-  </example>
-
-  <example>
-    <title>Visual Source Safe integration<indexterm>
-        <primary>Visual SourceSafe integration</primary>
-      </indexterm></title>
-
-    <para>This example demonstrates the file checkout type of VCS
-    integration.</para>
-
-    <orderedlist>
-      <listitem>
-        <para>Launch a WinMerge file or folder comparison whose left or right
-        target is under version control</para>
-      </listitem>
-
-      <listitem>
-        <para>In WinMerge, edit a version-controlled file</para>
-      </listitem>
-
-      <listitem>
-        <para>Save your changes. WinMerge detects that the file is read-only,
-        and assumes that it is under Visual Source Safe version control.
-        WinMerge opens a Visual Source Save dialog, like this:</para>
-
-        <mediaobject>
-          <imageobject>
-            <imagedata fileref="screenshots/sourcesafe1.png" format="PNG" />
-          </imageobject>
-        </mediaobject>
-      </listitem>
-
-      <listitem>
-        <para>In the <guilabel>Database</guilabel> dropdown list, choose the
-        correct Visual SourceSafe database if there is more than one on your
-        system.</para>
-      </listitem>
-
-      <listitem>
-        <para>The <guilabel>Project</guilabel> field shows the selected file's
-        location relative to the Visual SourceSafe database path. Verify that
-        the path is correct: most errors are caused by the wrong project path.
-        If you change folders, remember to change the project path, too!</para>
-      </listitem>
-
-      <listitem>
-        <para>Enter your password if required. WinMerge remembers your password
-        for the current session, but for your security does not store it.
-        Therefore, you don't need to retype the password during a session, but
-        you must retype the password each time you open WinMerge.</para>
-      </listitem>
-
-      <listitem>
-        <para>Optionally, enable one or both of these options:</para>
-
-        <itemizedlist>
-          <listitem>
-            <para><guilabel>Link to Destination VSS project</guilabel></para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Apply to all items</guilabel>. This option enables
-            you to check out multiple files in a single directory when you copy
-            files in a folder compare operation.</para>
-          </listitem>
-        </itemizedlist>
-      </listitem>
-    </orderedlist>
-
-    <para>Unfortunately, VSS provides very little information about error
-    conditions beyond the fact that they occurr. If an operation fails, causes
-    might include any of the following conditions:</para>
+    <para>Here are just a few examples:</para>
 
     <itemizedlist>
       <listitem>
-        <para>Another user might have the file checked out with exclusive
-        access.</para>
+        <para>A batch file can launch WinMerge and enable users to specify
+        parameters interactively:</para>
+
+        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /ub /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
 
       <listitem>
-        <para>You might have specified the wrong project.</para>
-      </listitem>
+        <para>The Subversion client allows you to call an external diff program
+        and pass parameters, like this:</para>
 
-      <listitem>
-        <para>You might have entered the project name incorrectly.</para>
-      </listitem>
-
-      <listitem>
-        <para>You might not have used a valid VSS path (for example, this is
-        incorrect: <userinput>$/MyProject/res</userinput>).</para>
-      </listitem>
-
-      <listitem>
-        <para>Your connection to the VSS server computer might be broken.</para>
+        <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" myfile </literallayout>
       </listitem>
     </itemizedlist>
-  </example>
+
+    <tip>
+      <para>Similarly, many GUI tools (like version control clients and IDEs)
+      that include built-in diff tools enable you to configure WinMerge as their
+      default diff tool, instead. Examples include TortoiseSVN, Eclipse, and
+      Perforce. Check their documentation or search the Internet for details and
+      examples.</para>
+    </tip>
+  </section>
+
+  <section>
+    <title>Integration with version control tools<indexterm>
+        <primary>version control systems</primary>
+
+        <secondary>integration with</secondary>
+      </indexterm></title>
+
+    <para>WinMerge can integrate some key functions with a few, specific version
+    control system (VCS) tools. You can configure the optional VCS integrations
+    during or after WinMerge installation.</para>
+
+    <para>If the WinMerge installer detects that TortoiseSVN, TortoiseCVS, or
+    Rational ClearCase are present on your system, the Setup Additional Tasks
+    page contains options to enable any of the WinMerge integrations.</para>
+
+    <para>After installation, you can open the Options dialog and configure
+    either the ClearCase or Visual SourceSafe integration, as described in <xref
+    linkend="Configuration_vcs" />.</para>
+
+    <note>
+      <para>Only the ClearCase integration can be configured using both methods.
+      You can configure TortoiseSVN and TortoiseCVS only during installation;
+      conversely, you can configure Visual SourceSafe (which is not detected by
+      the installer) only in the Options dialog.</para>
+    </note>
+
+    <para>Each WinMerge version control integration has one of these basic types
+    of interaction:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>WinMerge launches VCS file checkout</term>
+
+        <listitem>
+          <para>With version control systems that lock files (for example,
+          ClearCase and Visual Source Safe), WinMerge opens the VCS's checkout
+          dialog before saving a file. It is up to you to check out the file,
+          and then to check in the file later using the version control system's
+          tools. WinMerge does not provide checkin or history tools.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>VCS use WinMerge as its diff tool</term>
+
+        <listitem>
+          <para>When you start a diff operation using TortoiseSVN and
+          TortoiseCVS, the integration opens WinMerge instead of the VCS
+          client's own diff utility.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <example>
+      <title>TortoiseSVN integration<indexterm>
+          <primary>TortoiseSVN integration</primary>
+        </indexterm></title>
+
+      <para>TortoiseSVN is a Windows client for Subversion (SVN), an open source
+      version control system. TortoiseSVN provides its own diff utility. The
+      WinMerge integration with this VCS enables you to use WinMerge to compare
+      files instead of the TortoiseSVN diff tool.</para>
+
+      <para>One of the main uses of TortoiseSVN's diff is to see the most recent
+      changes to a file that is under version control: that is, a file that you
+      have checked out into a working copy. The following procedure illustrates
+      such an operation using the WinMerge integration with TortoiseSVN. The
+      integration with TortoiseCVS is similar.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>In Windows Explorer, navigate to a Subversion working copy that
+          you have checked out.</para>
+        </listitem>
+
+        <listitem>
+          <para>Right-click a file that is under Subversion management (usually
+          indicated by a distinct TortoiseSVN icon), and click
+          <guimenu>TortoiseSVN</guimenu> in the context menu.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If the file has not been modified, the context menu contains
+              the shortcut, <guimenuitem>Diff with previous
+              version</guimenuitem>. This command compares the checked-out
+              version of the file with the previous version that was checked in
+              to the repository.</para>
+            </listitem>
+
+            <listitem>
+              <para>If you have modified the file, the context menu contains the
+              same <guimenuitem>Diff with previous version</guimenuitem>
+              shortcut, plus the <guimenuitem>Diff</guimenuitem> shortcut. This
+              command compares your revision to the current version (the one you
+              checked out). It is useful for reviewing the changes you have
+              made.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Choose either the <guimenuitem>Diff with previous
+          version</guimenuitem> or <guimenuitem>Diff</guimenuitem> shortcut. The
+          WinMerge window opens, with the target file versions loaded In the
+          File Compare window.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>The <menuchoice>
+          <guimenu>TortoiseSVN</guimenu>
+
+          <guimenuitem>Diff</guimenuitem>
+        </menuchoice> shortcut is available for comparing any two files in your
+      file system, not just files that are managed by Subversion. To illustrate
+      how the WinMerge integration works in this case:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>In Windows explorer, hold <keycap>Ctrl</keycap>, select any two
+          files, and right-click.</para>
+        </listitem>
+
+        <listitem>
+          <para>Choose <menuchoice>
+              <guimenu>TortoiseSVN</guimenu>
+
+              <guimenuitem>Diff</guimenuitem>
+            </menuchoice> in the context menu.</para>
+
+          <para>The WinMerge window opens, with the selected files loaded In the
+          File Compare window.</para>
+        </listitem>
+      </orderedlist>
+    </example>
+
+    <example>
+      <title>Visual Source Safe integration<indexterm>
+          <primary>Visual SourceSafe integration</primary>
+        </indexterm></title>
+
+      <para>This example demonstrates the file checkout type of VCS
+      integration.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Launch a WinMerge file or folder comparison whose left or right
+          target is under version control</para>
+        </listitem>
+
+        <listitem>
+          <para>In WinMerge, edit a version-controlled file</para>
+        </listitem>
+
+        <listitem>
+          <para>Save your changes. WinMerge detects that the file is read-only,
+          and assumes that it is under Visual Source Safe version control.
+          WinMerge opens a Visual Source Save dialog, like this:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/sourcesafe1.png" format="PNG" />
+            </imageobject>
+          </mediaobject>
+        </listitem>
+
+        <listitem>
+          <para>In the <guilabel>Database</guilabel> dropdown list, choose the
+          correct Visual SourceSafe database if there is more than one on your
+          system.</para>
+        </listitem>
+
+        <listitem>
+          <para>The <guilabel>Project</guilabel> field shows the selected file's
+          location relative to the Visual SourceSafe database path. Verify that
+          the path is correct: most errors are caused by the wrong project path.
+          If you change folders, remember to change the project path,
+          too!</para>
+        </listitem>
+
+        <listitem>
+          <para>Enter your password if required. WinMerge remembers your
+          password for the current session, but for your security does not store
+          it. Therefore, you don't need to retype the password during a session,
+          but you must retype the password each time you open WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>Optionally, enable one or both of these options:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>Link to Destination VSS project</guilabel></para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Apply to all items</guilabel>. This option enables
+              you to check out multiple files in a single directory when you
+              copy files in a folder compare operation.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </orderedlist>
+
+      <para>Unfortunately, VSS provides very little information about error
+      conditions beyond the fact that they occur. If an operation fails, causes
+      might include any of the following conditions:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Another user might have the file checked out with exclusive
+          access.</para>
+        </listitem>
+
+        <listitem>
+          <para>You might have specified the wrong project.</para>
+        </listitem>
+
+        <listitem>
+          <para>You might have entered the project name incorrectly.</para>
+        </listitem>
+
+        <listitem>
+          <para>You might not have used a valid VSS path (for example, this is
+          incorrect: <userinput>$/MyProject/res</userinput>).</para>
+        </listitem>
+
+        <listitem>
+          <para>Your connection to the VSS server computer might be
+          broken.</para>
+        </listitem>
+      </itemizedlist>
+    </example>
+  </section>
 </article>
