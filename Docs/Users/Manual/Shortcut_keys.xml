@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <appendix id="Shortcuts">
-  <title>Shortcut keys</title>
+  <title>Shortcut keys<indexterm>
+      <primary>shortcut keys</primary>
+    </indexterm></title>
 
-  <para>Most common shortcut keys familiar from other Windows applications
-  work in WinMerge.</para>
+  <para>WinMerge includes most of the familiar shortcut keys commonly used in
+  other Windows applications.</para>
 
   <table>
     <title>Folder compare</title>
@@ -11,7 +13,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -21,14 +23,14 @@
         <row>
           <entry><keycap>Enter</keycap></entry>
 
-          <entry>Open selected item (if folder, open it)</entry>
+          <entry>Open selected file or folder</entry>
         </row>
 
         <row>
           <entry><keycap>Backspace</keycap></entry>
 
-          <entry>Open parent folder if possible (only available when
-          subfolders are not included in compare)</entry>
+          <entry>Open parent folder if possible (available only when subfolders
+          are not included in compare)</entry>
         </row>
 
         <row>
@@ -44,7 +46,7 @@
               <keycap>Home</keycap>
             </keycombo></entry>
 
-          <entry>Go to first different file/folder</entry>
+          <entry>Go to first different file or folder</entry>
         </row>
 
         <row>
@@ -54,7 +56,7 @@
               <keycap>End</keycap>
             </keycombo></entry>
 
-          <entry>Go to last different file/folder</entry>
+          <entry>Go to last different file or folder</entry>
         </row>
 
         <row>
@@ -64,8 +66,7 @@
               <keycap>Enter</keycap>
             </keycombo></entry>
 
-          <entry>Go to currently selected item (if scrolled
-          off-screen)</entry>
+          <entry>Go to currently selected item (if scrolled off-screen)</entry>
         </row>
 
         <row>
@@ -75,7 +76,7 @@
               <keycap>Up Arrow</keycap>
             </keycombo></entry>
 
-          <entry>Go to previous different file/folder</entry>
+          <entry>Go to previous different file or folder</entry>
         </row>
 
         <row>
@@ -85,7 +86,7 @@
               <keycap>Down Arrow</keycap>
             </keycombo></entry>
 
-          <entry>Go to next different file/folder</entry>
+          <entry>Go to next different file or folder</entry>
         </row>
 
         <row>
@@ -117,7 +118,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -163,7 +164,7 @@
         <row>
           <entry><keycap>F9</keycap></entry>
 
-          <entry>Turn Merge mode on/off</entry>
+          <entry>Merge Mode on or off (toggle)</entry>
         </row>
 
         <row>
@@ -205,7 +206,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -317,7 +318,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -383,7 +384,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -397,7 +398,7 @@
               <keycap>F</keycap>
             </keycombo></entry>
 
-          <entry>Find text</entry>
+          <entry>Find text (opens Find dialog)</entry>
         </row>
 
         <row>
@@ -407,13 +408,13 @@
               <keycap>H</keycap>
             </keycombo></entry>
 
-          <entry>Replace text with another text</entry>
+          <entry>Replace text (opens Replace dialog)</entry>
         </row>
 
         <row>
           <entry><keycap>F3</keycap></entry>
 
-          <entry>Find/Replace again.</entry>
+          <entry>Find next</entry>
         </row>
 
         <row>
@@ -423,7 +424,7 @@
               <keycap>F3</keycap>
             </keycombo></entry>
 
-          <entry>Find/Replace upwards in file</entry>
+          <entry>Find previous</entry>
         </row>
 
         <row>
@@ -457,7 +458,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
@@ -501,7 +502,7 @@
               <keycap>F2</keycap>
             </keycombo></entry>
 
-          <entry>Clear All Bookmarks</entry>
+          <entry>Clear all Bookmarks</entry>
         </row>
 
         <row>
@@ -713,7 +714,7 @@
     <tgroup cols="2">
       <thead>
         <row>
-          <entry>Key</entry>
+          <entry>Keys</entry>
 
           <entry>Function</entry>
         </row>
