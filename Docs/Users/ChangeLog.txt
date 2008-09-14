@@ -13,6 +13,7 @@ WinMerge 2.11.1.5
   BugFix: Displayed a blank time when file last modified time is 00:00:00
    (#2098626)
   BugFix: Customized colors weren't used in some areas (#2110218)
+  BugFix: Zip files were extracted into wrong folder (#2110350)
   Translation updates:
   - German (r5934)
   - Russian (#2067785)
