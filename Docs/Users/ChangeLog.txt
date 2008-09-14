@@ -3,6 +3,10 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.10
+  BugFix: Customized colors weren't used in some areas (#2110218)
+  BugFix: Zip files were extracted into wrong folder (#2110350)
+
 WinMerge 2.10 RC - 2008-09-09 (r5933)
   Add icon for "Plugins->List" menu item (#2060771)
   Use external editor to edit file filters (#2082774)
@@ -18,7 +22,6 @@ WinMerge 2.10 RC - 2008-09-09 (r5933)
    dialog (#2056741)
   BugFix: Displayed a blank time when file last modified time is 00:00:00
    (#2098626)
-  BugFix: Customized colors weren't used in some areas (#2110218)
   Translation updates:
   - Brazilian (#2059836)
   - German (#2045666)

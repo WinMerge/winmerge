@@ -45,6 +45,8 @@ LPCTSTR env_GetTempPath(int * pnerr)
 		else
 		{
 			strTempPath = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH);
+			if (!paths_EndsWithSlash(strTempPath.c_str()))
+				strTempPath += '\\';
 		}
 		strTempPath = paths_GetLongPath(strTempPath.c_str());
 	}
