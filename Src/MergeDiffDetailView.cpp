@@ -290,8 +290,8 @@ void CMergeDiffDetailView::GetLineColors2(int nLineIndex, DWORD ignoreFlags,
 		// If no syntax hilighting
 		if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
-			crBkgnd = GetSysColor (COLOR_WINDOW);
-			crText = GetSysColor (COLOR_WINDOWTEXT);
+			crBkgnd = GetColor (COLORINDEX_BKGND);
+			crText = GetColor (COLORINDEX_NORMALTEXT);
 			bDrawWhitespace = FALSE;
 		}
 		else
@@ -301,8 +301,8 @@ void CMergeDiffDetailView::GetLineColors2(int nLineIndex, DWORD ignoreFlags,
 	}
 	if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
 		{
-			crBkgnd = GetSysColor (COLOR_WINDOW);
-			crText = GetSysColor (COLOR_WINDOW);
+			crBkgnd = GetColor (COLORINDEX_WHITESPACE);
+			crText = GetColor (COLORINDEX_WHITESPACE);
 			bDrawWhitespace = FALSE;
 	}
 }
