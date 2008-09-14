@@ -510,8 +510,8 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 		if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
 			// If no syntax hilighting, get windows default colors
-			crBkgnd = GetSysColor (COLOR_WINDOW);
-			crText = GetSysColor (COLOR_WINDOWTEXT);
+			crBkgnd = GetColor (COLORINDEX_BKGND);
+			crText = GetColor (COLORINDEX_NORMALTEXT);
 			bDrawWhitespace = FALSE;
 		}
 		else

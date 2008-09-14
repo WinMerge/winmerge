@@ -40,6 +40,7 @@
 #include "MergeLineFlags.h"
 #include "Bitmap.h"
 #include "memdc.h"
+#include "SyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -303,8 +304,11 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)dc.SelectStockObject(BLACK_PEN);
+	CBrush brush(m_view[0]->GetColor(COLORINDEX_WHITESPACE));
+	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
 	dc.Rectangle(m_leftBar);
 	dc.Rectangle(m_rightBar);
+	dc.SelectObject(oldBrush);
 	dc.SelectObject(oldObj);
 
 	// Iterate the differences list and draw differences as colored blocks.
