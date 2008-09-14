@@ -67,8 +67,8 @@ LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 			*flag = false;
 			flag = 0;
 		}
+		param.assign(p, q - p);
 	}
-	param.assign(p, q - p);
 	if (q > p && flag)
 	{
 		CharLower(&*param.begin());
