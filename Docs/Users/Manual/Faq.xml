@@ -60,9 +60,7 @@
 
       <qandaentry>
         <question>
-          <para>That splash screen is annoying, how do I turn it off?<indexterm>
-              <primary>splash screen, turning off</primary>
-            </indexterm></para>
+          <para>That splash screen is annoying, how do I turn it off?</para>
         </question>
 
         <answer>
@@ -169,20 +167,30 @@
         <question>
           <para>Can WinMerge open OpenOffice files?<indexterm>
               <primary>OpenOffice, opening files in WinMerge</primary>
-            </indexterm><indexterm>
-              <primary>detecting archive types</primary>
             </indexterm></para>
         </question>
 
         <answer>
-          <para>Yes: click the <guibutton>Options</guibutton> button (or click
-          <menuchoice>
-              <guimenu>Edit</guimenu>
+          <para>OpenOffice files are archives. To be able to open them in
+          WinMerge, you have to configure archive support: </para>
 
-              <guimenuitem>Options</guimenuitem>
-            </menuchoice>). In the Archive Support page, enable the
-          <guilabel>Detect archive type from file signature</guilabel>
-          option.</para>
+          <itemizedlist>
+            <listitem>
+              <para>Install archive support, as described in <xref
+              linkend="Installing_archive_support" />.</para>
+            </listitem>
+
+            <listitem>
+              <para>In WinMerge, click the <guibutton>Options</guibutton> button
+              (or click <menuchoice>
+                  <guimenu>Edit</guimenu>
+
+                  <guimenuitem>Options</guimenuitem>
+                </menuchoice>). In the Archive Support page, enable the
+              <guilabel>Detect archive type from file signature</guilabel>
+              option</para>
+            </listitem>
+          </itemizedlist>
         </answer>
       </qandaentry>
 
@@ -270,7 +278,7 @@
   </section>
 
   <section>
-    <title>File Comparing</title>
+    <title>File comparing</title>
 
     <qandaset>
       <qandaentry>
@@ -497,7 +505,7 @@
         <question>
           <para>How can I open the Perry-style patch files that WinMerge
           developers use when submitting patches?<indexterm>
-              <primary>patches, Perry-style</primary>
+              <primary>patch files, Perry-style</primary>
             </indexterm></para>
         </question>
 
@@ -594,63 +602,6 @@
               <para><guilabel>Unicode big endian</guilabel>: The file is in a
               different Unicode encoding that is little used or supported in
               Windows, probably UCS-2BE.</para>
-            </listitem>
-          </itemizedlist>
-        </answer>
-      </qandaentry>
-
-      <qandaentry>
-        <question>
-          <para>How do I compare UTF-8 files? WinMerge is not showing them
-          correctly.<indexterm>
-              <primary>UTF-8</primary>
-
-              <secondary>comparing files</secondary>
-            </indexterm></para>
-        </question>
-
-        <answer>
-          <para>Try one of these solutions:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para>Use WinMerge encoding detection:</para>
-
-              <itemizedlist>
-                <listitem>
-                  <para>XML files should have an encoding attribute in the XML
-                  declaration that specifies UTF-8. For example: <screen>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</screen></para>
-                </listitem>
-
-                <listitem>
-                  <para>HTML files should specify the encoding in the content
-                  attribute of a header meta tag. For example: <screen>&lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;</screen></para>
-                </listitem>
-
-                <listitem>
-                  <para>To read encodings specified in XML or HTML (or Windows
-                  RC resource) files, WinMerge requires the option,
-                  <guilabel>Detect codepage info for...</guilabel> to be
-                  enabled. You can click <menuchoice>
-                      <guimenu>Edit</guimenu>
-
-                      <guimenuitem>Options</guimenuitem>
-                    </menuchoice>, open the Codepage page, and enable the option
-                  if it is not already checked.</para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-
-            <listitem>
-              <para>Tell WinMerge to assume that all documents are UTF-8: click
-              <menuchoice>
-                  <guimenu>Edit</guimenu>
-
-                  <guimenuitem>Options</guimenuitem>
-                </menuchoice> and open the Codepage page. Choose the
-              <guilabel>Custom Codepage</guilabel> option, and specify
-              <userinput>65001</userinput> (Microsoft's code for UTF-8) as the
-              default WinMerge codepage.</para>
             </listitem>
           </itemizedlist>
         </answer>
