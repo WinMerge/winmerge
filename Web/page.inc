@@ -17,6 +17,7 @@
   define ('WINMERGE_2_6', '2.6');
   define ('WINMERGE_2_8', '2.8');
   define ('TAB_ABOUT', 'about');
+  define ('TAB_DOCS', 'docs');
   define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
   define ('TAB_TRANSLATIONS', 'translations');
@@ -217,6 +218,12 @@
       if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></li>\n";
       }
+      if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
+        $temp .= "  <li><a href=\"/docs/index.php\" id=\"current\">Documentation</a></li>\n";
+      }
+      //else { //if NOT "Documentation" ...
+      //  $temp .= "  <li><a href=\"/docs/index.php\">Documentation</a></li>\n";
+      //}
       if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
         $temp .= "  <li><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></li>\n";
       }
@@ -299,6 +306,14 @@
           $temp .= "  <li><a href=\"/2.8/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/2.8/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
           $temp .= "  <li><a href=\"/2.8/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
           $temp .= "  <li><a href=\"/2.8/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case TAB_DOCS: //if "Documentation" ...
+          $temp .= "<ul id=\"subtabs\">\n";
+          $temp .= "  <li><a href=\"/docs/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/manual/\" title=\"Manual\">Manual</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
+          $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...
