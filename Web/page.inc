@@ -186,58 +186,58 @@
       /* Main Tabs */
       $temp = "<ul id=\"tabs\">\n";
       if ($this->_tab == TAB_HOME) { //if "Home" ...
-        $temp .= "  <li><a href=\"/index.php\" id=\"current\">Home</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/index.php\" id=\"current\">Home</a></strong></li>\n";
       }
       else { //if NOT "Home" ...
         $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
       }
       if ($this->_tab == TAB_ABOUT) { //if "About" ...
-        $temp .= "  <li><a href=\"/about/index.php\" id=\"current\">About</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/about/index.php\" id=\"current\">About</a></strong></li>\n";
       }
       else { //if NOT "About" ...
         $temp .= "  <li><a href=\"/about/index.php\">About</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
-        $temp .= "  <li><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></strong></li>\n";
       }
       else { //if NOT WinMerge 2.8 ...
         $temp .= "  <li><a href=\"/2.8/index.php\">WinMerge&nbsp;2.8</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
-        $temp .= "  <li><a href=\"/2.6/index.php\" id=\"current\">WinMerge&nbsp;2.6</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/2.6/index.php\" id=\"current\">WinMerge&nbsp;2.6</a></strong></li>\n";
       }
       if ($this->_tab == WINMERGE_2_4) { //if WinMerge 2.4 ...
-        $temp .= "  <li><a href=\"/2.4/index.php\" id=\"current\">WinMerge&nbsp;2.4</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/2.4/index.php\" id=\"current\">WinMerge&nbsp;2.4</a></strong></li>\n";
       }
       if ($this->_tab == WINMERGE_2_2) { //if WinMerge 2.2 ...
-        $temp .= "  <li><a href=\"/2.2/index.php\" id=\"current\">WinMerge&nbsp;2.2</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/2.2/index.php\" id=\"current\">WinMerge&nbsp;2.2</a></strong></li>\n";
       }
       if ($this->_tab == WINMERGE_2_0) { //if WinMerge 2.0 ...
-        $temp .= "  <li><a href=\"/2.0/index.php\" id=\"current\">WinMerge&nbsp;2.0</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/2.0/index.php\" id=\"current\">WinMerge&nbsp;2.0</a></strong></li>\n";
       }
       if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "  <li><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></strong></li>\n";
       }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
-        $temp .= "  <li><a href=\"/docs/index.php\" id=\"current\">Documentation</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/docs/index.php\" id=\"current\">Documentation</a></strong></li>\n";
       }
       //else { //if NOT "Documentation" ...
       //  $temp .= "  <li><a href=\"/docs/index.php\">Documentation</a></li>\n";
       //}
       if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
-        $temp .= "  <li><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></strong></li>\n";
       }
       else { //if NOT "Downloads" ...
         $temp .= "  <li><a href=\"/downloads/index.php\">Downloads</a></li>\n";
       }
       if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
-        $temp .= "  <li><a href=\"/support/index.php\" id=\"current\">Support</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/support/index.php\" id=\"current\">Support</a></strong></li>\n";
       }
       else { //if NOT "Support" ...
         $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
       }
       if ($this->_tab == TAB_TRANSLATIONS) { //if "Translations" ...
-        $temp .= "  <li><a href=\"/translations/index.php\" id=\"current\">Translations</a></li>\n";
+        $temp .= "  <li><strong><a href=\"/translations/index.php\" id=\"current\">Translations</a></strong></li>\n";
       }
       else { //if NOT "Translations" ...
         $temp .= "  <li><a href=\"/translations/index.php\">Translations</a></li>\n";
