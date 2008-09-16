@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.10
   Change Manual url to http://winmerge.org/docs/manual/ (r5957)
+  Manual updates
   BugFix: Customized colors weren't used in some areas (#2110218)
   BugFix: Zip files were extracted into wrong folder (#2110350)
 

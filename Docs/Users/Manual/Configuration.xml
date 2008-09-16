@@ -139,7 +139,7 @@
 
     <section>
       <title>Disable splash screen<indexterm>
-          <primary>splash screen, disabling</primary>
+          <primary>splash screen, enabling and disabling</primary>
         </indexterm></title>
 
       <itemizedlist>
@@ -209,7 +209,7 @@
       <title>Allow only one instance to run<indexterm>
           <primary>WinMerge window</primary>
 
-          <secondary>opening multiple</secondary>
+          <secondary>limiting instances</secondary>
         </indexterm></title>
 
       <itemizedlist>
@@ -284,7 +284,9 @@
     </section>
 
     <section>
-      <title>Open-dialog Auto-Completion</title>
+      <title>Open-dialog Auto-Completion<indexterm>
+          <primary>MRU list</primary>
+        </indexterm></title>
 
       <para>Choose one of these options:</para>
 
@@ -1042,9 +1044,9 @@
 
     <section>
       <title>Download 7-zip Plugin<indexterm>
-          <primary>7-Zip archive support</primary>
+          <primary>7-Zip archives</primary>
 
-          <secondary>options</secondary>
+          <secondary>configuring support after installation</secondary>
         </indexterm></title>
 
       <para>If WinZip is already installed on your system, WinMerge
@@ -1057,7 +1059,11 @@
     </section>
 
     <section>
-      <title>Enable archive file support</title>
+      <title>Enable archive file support<indexterm>
+          <primary>7-Zip archives</primary>
+
+          <secondary>enabling and disabling integration</secondary>
+        </indexterm></title>
 
       <para>This option controls how WinMerge handles archive files (based on
       7-Zip integration).</para>
@@ -1090,7 +1096,9 @@
     </section>
 
     <section>
-      <title>Detect archive type from file signature</title>
+      <title>Detect archive type from file signature<indexterm>
+          <primary>detecting archive types</primary>
+        </indexterm></title>
 
       <itemizedlist>
         <listitem>
@@ -1144,9 +1152,9 @@
 
     <section>
       <title>Add to explorer context menu<indexterm>
-          <primary>shell integration</primary>
+          <primary>integration</primary>
 
-          <secondary>enabling and disabling</secondary>
+          <secondary>with Windows shell</secondary>
         </indexterm></title>
 
       <itemizedlist>
@@ -1383,7 +1391,11 @@
     <title>Version Control options<indexterm>
         <primary>version control systems</primary>
 
-        <secondary>integration configuration</secondary>
+        <secondary>configuring after installation</secondary>
+      </indexterm><indexterm>
+        <primary>integration</primary>
+
+        <secondary>with version control systems</secondary>
       </indexterm></title>
 
     <!--What does version control integration do for me? How do the Option page settings work with installed 

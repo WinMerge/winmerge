@@ -7,7 +7,11 @@
   operations.</para>
 
   <section id="Intro_diffs_comparing">
-    <title>Comparing files</title>
+    <title>Comparing files<indexterm>
+        <primary>comparing files</primary>
+
+        <secondary>overview</secondary>
+      </indexterm></title>
 
     <para>We usually compare two files that are related in some way, such as two
     versions that were edited at different times, or by different people. If you
@@ -52,7 +56,7 @@
           breaks exactly:</para>
 
           <formalpara>
-            <title>Fle1:</title>
+            <title>File1:</title>
 
             <para><screen>It's slow comparing words 
 and characters. Instead,  
@@ -237,7 +241,11 @@ Believe it or not.</screen></para>
   </section>
 
   <section id="Intro_diffs_merging">
-    <title>Merging files</title>
+    <title>Merging files<indexterm>
+        <primary>merging differences</primary>
+
+        <secondary>overview and example</secondary>
+      </indexterm></title>
 
     <para>The purpose of merging is to combine changes from two files into one
     file. Merging extends the concepts and functions used in comparing
@@ -386,7 +394,13 @@ Believe it or not.</screen></para>
     </section>
 
     <section>
-      <title>Choosing a merge result file</title>
+      <title>Choosing a merge result file <indexterm>
+          <primary>merging differences</primary>
+
+          <secondary>result file</secondary>
+        </indexterm><indexterm>
+          <primary>result file, in merge</primary>
+        </indexterm></title>
 
       <para>You control where your merge result is preserved. The WinMerge File
       Compare window does not have a separate result pane, as some merge tools

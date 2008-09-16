@@ -35,7 +35,9 @@
   the advantage of all WinMerge users.</para>
 
   <section>
-    <title>WinMerge versions</title>
+    <title>WinMerge versions<indexterm>
+        <primary>WinMerge versions</primary>
+      </indexterm></title>
 
     <para>There are three kind of versions available in the <ulink
     url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
@@ -43,7 +45,7 @@
 
     <section>
       <title><indexterm>
-          <primary>Stable versions</primary>
+          <primary>stable WinMerge versions</primary>
         </indexterm>Stable versions</title>
 
       <para><ulink
@@ -55,7 +57,7 @@
 
     <section>
       <title><indexterm>
-          <primary>Beta versions</primary>
+          <primary>beta WinMerge versions</primary>
         </indexterm>Beta versions</title>
 
       <para><ulink
@@ -73,7 +75,7 @@
 
     <section>
       <title><indexterm>
-          <primary>Experimental versions</primary>
+          <primary>experimental WinMerge versions</primary>
         </indexterm>Experimental versions</title>
 
       <para><ulink
@@ -145,7 +147,7 @@
 
   <section>
     <title><indexterm>
-        <primary>support</primary>
+        <primary>WinMerge support</primary>
 
         <secondary>reporting bugs</secondary>
       </indexterm>Getting support and reporting bugs</title>

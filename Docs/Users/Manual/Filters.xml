@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Filters">
   <title>Using Filters<indexterm>
-      <primary>filtering</primary>
+      <primary>filters</primary>
+
+      <seealso>file filters</seealso>
+
+      <seealso>file masks</seealso>
+
+      <seealso>line filters</seealso>
     </indexterm></title>
 
   <para>When you compare files or folders, you can use filters to narrow the
@@ -76,7 +82,7 @@
 
         <secondary>file masks</secondary>
       </indexterm><indexterm>
-        <primary>filtering</primary>
+        <primary>filters</primary>
 
         <secondary>in folder comparisons</secondary>
       </indexterm></title>
@@ -86,7 +92,11 @@
     omitted from your selection.</para>
 
     <section id="Filters_MaskApply">
-      <title>Defining and applying file masks</title>
+      <title>Defining and applying file masks<indexterm>
+          <primary>command line</primary>
+
+          <secondary>applying file masks</secondary>
+        </indexterm></title>
 
       <para>Define and apply a file mask at the time you launch your folder
       compare operation:</para>
@@ -119,7 +129,7 @@
         </indexterm><indexterm>
           <primary>filters</primary>
 
-          <secondary>file mask syntax</secondary>
+          <secondary>file masks</secondary>
         </indexterm><indexterm>
           <primary>regular expressions</primary>
 
@@ -150,12 +160,12 @@
   </section>
 
   <section id="Filters_FileFilter">
-    <title>Using File filters<indexterm>
+    <title>Using file filters<indexterm>
         <primary>filters</primary>
 
         <secondary>file filters</secondary>
       </indexterm><indexterm>
-        <primary>filtering</primary>
+        <primary>filters</primary>
 
         <secondary>in folder comparisons</secondary>
       </indexterm></title>
@@ -227,7 +237,11 @@
     </section>
 
     <section id="Filters_FileFilterApply">
-      <title>Applying file filters</title>
+      <title>Applying file filters<indexterm>
+          <primary>file filters</primary>
+
+          <secondary>applying</secondary>
+        </indexterm></title>
 
       <para>You can apply a file filter using any of these methods:</para>
 
@@ -292,8 +306,13 @@
         </listitem>
 
         <listitem>
-          <para>When you launch a folder compare from the WinMerge command line,
-          use the <option>-f</option> flag to specify a file filter.</para>
+          <para><indexterm>
+              <primary>command line</primary>
+
+              <secondary>applying file filters</secondary>
+            </indexterm>When you launch a folder compare from the WinMerge
+          command line, use the <option>-f</option> flag to specify a file
+          filter.</para>
         </listitem>
       </itemizedlist>
 
@@ -307,9 +326,9 @@
 
           <secondary>file filter</secondary>
         </indexterm><indexterm>
-          <primary>filters</primary>
+          <primary>file filters</primary>
 
-          <secondary>file filter syntax</secondary>
+          <secondary>syntax</secondary>
         </indexterm></title>
 
       <para>This section describes the syntax of WinMerge file filters and
@@ -480,12 +499,12 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
   </section>
 
   <section id="Filters_LineFilter">
-    <title>Using Line filters<indexterm>
+    <title>Using line filters<indexterm>
         <primary>filters</primary>
 
-        <secondary>line filters</secondary>
+        <secondary>line</secondary>
       </indexterm><indexterm>
-        <primary>filtering</primary>
+        <primary>filters</primary>
 
         <secondary>in file comparisons</secondary>
       </indexterm></title>
@@ -589,7 +608,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
         </indexterm><indexterm>
           <primary>filters</primary>
 
-          <secondary>line filter syntax</secondary>
+          <secondary>line</secondary>
         </indexterm><indexterm>
           <primary>regular expressions</primary>
 
@@ -658,9 +677,9 @@ Pekka Himanen</screen></para>
 
       <tip>
         <para>It's usually good practice to use the beginning of line (
-        <code>^</code> ) and end of line ( <code>&amp;</code> ) of line markers
-        to control your patterns precisely, because the rule is applied if any
-        part of a line matches the expression.</para>
+        <code>^</code> ) and end of line ( <code>&amp;</code> ) markers to
+        control your patterns precisely, because the rule is applied if any part
+        of a line matches the expression.</para>
       </tip>
 
       <example>
@@ -689,7 +708,7 @@ Pekka Himanen</screen></para>
       <example>
         <title>Line filter rule matching CVS Id lines</title>
 
-        <para>Id lines look like this:</para>
+        <para>CVS Id lines look like this:</para>
 
         <screen>// $Id$</screen>
 

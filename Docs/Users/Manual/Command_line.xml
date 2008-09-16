@@ -2,10 +2,10 @@
 <article id="CommandLine">
   <title>Command line<indexterm>
       <primary>command line</primary>
-
-      <secondary>syntax</secondary>
     </indexterm><indexterm>
       <primary>WinMerge command line</primary>
+
+      <see>command line</see>
     </indexterm></title>
 
   <para>The WinMerge command line accepts several parameters in addition to the
@@ -137,7 +137,7 @@
       <indexterm>
         <primary>filters</primary>
 
-        <secondary>applying</secondary>
+        <secondary>applying in command line</secondary>
       </indexterm>
 
       <para><option>/f</option> applies a specified filter to restrict the
@@ -302,6 +302,8 @@
     <listitem>
       <indexterm>
         <primary>conflict files</primary>
+
+        <secondary>specifying on command line</secondary>
       </indexterm>
 
       <para><option><replaceable>conflictfile</replaceable></option> Specifies a

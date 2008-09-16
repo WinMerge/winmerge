@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Plugins">
-  <title>Plugins</title>
+  <title>Plugins<indexterm>
+      <primary>plugins</primary>
+    </indexterm></title>
 
   <para>WinMerge plugins are custom dlls or scriptlets, written in the COM API,
   that preprocess data before a comparison. For example, you can use a plugin to
@@ -9,7 +11,9 @@
   provide are of interest to only a few users, or because they do not fit into
   the WinMerge architecture.</para>
 
-  <para>Each plugin is:</para>
+  <para>Each plugin is:<indexterm>
+      <primary>installing plugins</primary>
+    </indexterm></para>
 
   <itemizedlist>
     <listitem>
@@ -37,7 +41,9 @@
 
     <variablelist>
       <varlistentry>
-        <term>Editor complement</term>
+        <term>Editor complement<indexterm>
+            <primary>editor complement plugins</primary>
+          </indexterm></term>
 
         <listitem>
           <para>This type of plugin performs custom operations on selected text
@@ -46,7 +52,9 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Unpacker: transform a file to a text format</term>
+        <term>Unpacker: transform a file to a text format<indexterm>
+            <primary>unpacker plugins</primary>
+          </indexterm></term>
 
         <listitem>
           <para>This type of plugin transforms a compressed file to a viewable
@@ -80,7 +88,9 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Prediffer: preprocess files to hide some differences</term>
+        <term>Prediffer: preprocess files to hide some differences<indexterm>
+            <primary>prediffer plugins</primary>
+          </indexterm></term>
 
         <listitem>
           <para>This type of plugin does not operate on the source files
@@ -199,14 +209,14 @@
         <para>To apply plugins when automatic unpacking is set, simply launch a
         compare operation on a file in the Folder Compare window. If the file's
         type suggested unpacker plugin (if any) preprocesses the file before
-        WinMerge opens it in the File Compare window. </para>
+        WinMerge opens it in the File Compare window.</para>
 
         <para>For example, suppose you right-click an MS Word
         <filename>doc</filename> file and choose
         <guimenuitem>Compare</guimenuitem> (also assume that the <xref
         linkend="Plugins_msword" /> plugin is available). WinMerge converts the
         doc file (or rather, a copy of it ) to a plain text file and opens it in
-        the File Compare window. </para>
+        the File Compare window.</para>
       </section>
 
       <section>
@@ -220,7 +230,7 @@
 
         <orderedlist>
           <listitem>
-            <para>Select the file you want to compare. </para>
+            <para>Select the file you want to compare.</para>
           </listitem>
 
           <listitem>
@@ -228,7 +238,7 @@
                 <guimenu>Plugins</guimenu>
 
                 <guimenuitem>Edit with Unpacker</guimenuitem>
-              </menuchoice>. </para>
+              </menuchoice>.</para>
 
             <para>This menu item is enabled only if the selected file's type is
             supported by an available unpacking plugin.</para>
@@ -314,10 +324,18 @@
   </section>
 
   <section id="Plugins_available">
-    <title>Available plugins</title>
+    <title>Available plugins<indexterm>
+        <primary>Visual Basic dlls for plugins</primary>
+      </indexterm><indexterm>
+        <primary>plugins</primary>
+
+        <secondary>Visual Basic dlls</secondary>
+      </indexterm></title>
 
     <section>
-      <title><filename>CompareMSExcelFiles.dll</filename></title>
+      <title><filename>CompareMSExcelFiles.dll<indexterm>
+          <primary>CompareMSExcelFiles.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>Displays the text contents of a <trademark
       class="registered">Microsoft</trademark> <application>Excel</application>
@@ -346,7 +364,9 @@
     </section>
 
     <section id="Plugins_msword">
-      <title><filename>CompareMSWordFiles.dll</filename></title>
+      <title><filename>CompareMSWordFiles.dll<indexterm>
+          <primary>CompareMSWordFiles.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>Displays the text content of a <trademark
       class="registered">Microsoft</trademark> <application>Word</application>
@@ -377,7 +397,9 @@
     </section>
 
     <section id="DisplayXMLFiles">
-      <title><filename>DisplayXMLFiles.dll</filename></title>
+      <title><filename>DisplayXMLFiles.dll<indexterm>
+          <primary>DisplayXMLFiles.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>This plugin pretty-prints XML files nicely by inserting tabs and
       line breaks. This is useful for XML files that do not have line returns in
@@ -401,7 +423,9 @@
     </section>
 
     <section id="EditorAddin">
-      <title><filename>editor addin.sct</filename></title>
+      <title><filename>editor addin.sct<indexterm>
+          <primary>editor addin.sct plugin file</primary>
+        </indexterm></filename></title>
 
       <para>Adds two functions to the <menuchoice>
           <guimenu>Edit</guimenu>
@@ -431,7 +455,9 @@
     </section>
 
     <section id="IgnoreColumns">
-      <title><filename>IgnoreColumns.dll</filename></title>
+      <title><filename>IgnoreColumns.dll<indexterm>
+          <primary>IgnoreColumns.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>This plugin ignores characters at specified columns. The first
       column is number 1</para>
@@ -500,7 +526,9 @@
     </section>
 
     <section>
-      <title><filename>IgnoreCommentsC.dll</filename></title>
+      <title><filename>IgnoreCommentsC.dll<indexterm>
+          <primary>IgnoreCommentsC.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>The plugin ignores comments within<constant> //</constant>... and
       <constant>/*</constant> ... <constant>*/</constant> delimiters in C, C++,
@@ -526,7 +554,9 @@
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsComma.dll</filename></title>
+      <title><filename>IgnoreFieldsComma.dll<indexterm>
+          <primary>IgnoreFieldsComma.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>This plugin is for files with fields and commas as delimiters (CSV
       files, for example). It ignores the delimiter characters. The first field
@@ -550,7 +580,9 @@
     </section>
 
     <section>
-      <title><filename>IgnoreFieldsTab.dll</filename></title>
+      <title><filename>IgnoreFieldsTab.dll<indexterm>
+          <primary>IgnoreFieldsTab.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>This plugin is for files that use fields and tabs as delimiters
       (<application>for examle, Excel</application> files saved in the <filename
@@ -575,7 +607,9 @@
     </section>
 
     <section>
-      <title><filename>IgnoreLeadingLineNumbers.dll</filename></title>
+      <title><filename>IgnoreLeadingLineNumbers.dll<indexterm>
+          <primary>IgnoreLeadingLineNumbers.dll plugin file</primary>
+        </indexterm></filename></title>
 
       <para>This plugin ignores the leading line numbers in text files (for
       example, NC and BASIC files).</para>
@@ -598,7 +632,9 @@
     </section>
 
     <section id="Plugins_datetime">
-      <title><filename>insert datetime.sct</filename></title>
+      <title><filename>insert datetime.sct<indexterm>
+          <primary>insert datetime.sct plugin file</primary>
+        </indexterm></filename></title>
 
       <para>Adds two functions to the <menuchoice>
           <guimenu>Edit</guimenu>
@@ -629,7 +665,10 @@
 
     <section>
       <title><filename>RCLocalizationHelper.dll</filename>,
-      <filename>RCLocalizationHelperU.dll</filename></title>
+      <filename>RCLocalizationHelperU.dll<indexterm>
+          <primary>RCLocalizationHelper.dll, RCLocalizationHelperU.dll plugin
+          files</primary>
+        </indexterm></filename></title>
 
       <para>This plugin preprocesses RC files by stripping out localized
       strings, to enable comparing different language versions of the same RC
@@ -653,7 +692,10 @@
 
     <section>
       <title><filename>WatchBeginningOfLog.dll</filename>,
-      <filename>WatchEndOfLog.dll</filename></title>
+      <filename>WatchEndOfLog.dll<indexterm>
+          <primary>WatchBeginningOfLog.dll, WatchEndOfLog.dll plugin
+          files</primary>
+        </indexterm></filename></title>
 
       <para>For long LOG files, often only in the first lines or in the last
       lines are significant.</para>
@@ -693,7 +735,11 @@
   </section>
 
   <section>
-    <title>Requirements</title>
+    <title>Requirements<indexterm>
+        <primary>plugins</primary>
+
+        <secondary>Windows Script Host requirement</secondary>
+      </indexterm></title>
 
     <section>
       <title>Windows Script Host</title>
@@ -710,7 +756,18 @@
     </section>
 
     <section id="MSVBVM60">
-      <title><application>Visual Basic</application> runtime library</title>
+      <title><application>Visual Basic</application> runtime library<indexterm>
+          <primary>Visual Basic dlls for plugins</primary>
+        </indexterm><indexterm>
+          <primary>plugins</primary>
+
+          <secondary>Visual Basic dlls</secondary>
+        </indexterm><indexterm>
+          <primary>msvbvm60.dll plugin file</primary>
+        </indexterm><indexterm>
+          <primary>Run-Time Redistribution Pack, for Visual Basic
+          library</primary>
+        </indexterm></title>
 
       <para>Some plugins require <application>the Visual Basic</application>
       runtime library to work.</para>
