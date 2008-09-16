@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="OpenPaths">
-  <title>Opening files and folders</title>
+  <title>Opening files and folders<indexterm>
+      <primary>opening files and folders</primary>
+    </indexterm></title>
 
   <para>WinMerge provides several ways to specify paths and open files or
-  folders:</para>
+  folders:<indexterm>
+      <primary>folders</primary>
+
+      <secondary>selecting in Select Files or Folders dialog</secondary>
+    </indexterm><indexterm>
+      <primary>files</primary>
+
+      <secondary>selecting in Select Files or Folders dialog</secondary>
+    </indexterm></para>
 
   <itemizedlist>
     <listitem>
@@ -24,14 +34,18 @@
   </itemizedlist>
 
   <section id="OpenPaths_opendialog">
-    <title>Select Files or Folders dialog</title>
+    <title>Select Files or Folders dialog<indexterm>
+        <primary>Select Files or Folders dialog</primary>
+      </indexterm></title>
 
     <para><xref linkend="QuickStart" /> describes the Select Files or Folders
     dialog. This section provides more details, and some tips for using the
     Select Files or Folders dialog more efficiently.</para>
 
     <section>
-      <title>Using environment variables</title>
+      <title>Using environment variables<indexterm>
+          <primary>environment variables, in compare target paths</primary>
+        </indexterm></title>
 
       <para>You can use environment variables in your paths. Windows expands the
       variable name between % (percent) delimiters. For example, if an
@@ -42,7 +56,11 @@
     </section>
 
     <section id="OpeningArchives">
-      <title>Opening archive files</title>
+      <title>Opening archive files<indexterm>
+          <primary>7-Zip archives</primary>
+
+          <secondary>opening</secondary>
+        </indexterm></title>
 
       <para>WinMerge archive support is provided in the 7-Zip plugin. See <xref
       linkend="Installing" /> to install this plugin.</para>
@@ -69,7 +87,11 @@
     </section>
 
     <section id="Open_paths_filters">
-      <title>Specifying filters</title>
+      <title>Applying filters<indexterm>
+          <primary>filters</primary>
+
+          <secondary>applying in Select Files or Folders dialog</secondary>
+        </indexterm></title>
 
       <para>The <guilabel>Filter</guilabel> edit field enables you to restrict
       the files to be included in your folder compare. You can specify one or
@@ -86,7 +108,7 @@
       selecting, use filter files. Filter files are collections of regular
       expressions that can either include or exclude files. WinMerge installs a
       number of predefined filter files in its <filename>Filters</filename>
-      folder, and you can create your own, too. </para>
+      folder, and you can create your own, too.</para>
 
       <para>To specify a filter, click the <guibutton>Select</guibutton> button
       next to the <guilabel>Filters</guilabel> field to choose from a list of
@@ -98,7 +120,9 @@
     </section>
 
     <section id="Open_paths_unpacker">
-      <title>Selecting an unpacker for file comparisons</title>
+      <title>Selecting an unpacker for file comparisons<indexterm>
+          <primary>unpacker plugins</primary>
+        </indexterm></title>
 
       <para>Unpackers are plugins that are installed with WinMerge to provide
       functionality that is not used by default. Plugins that can be used to
@@ -123,10 +147,12 @@
 
   <section id="OpenPaths_shell-integ">
     <title><indexterm>
-        <primary>shell integration</primary>
+        <primary>Windows shell integration</primary>
+      </indexterm><indexterm>
+        <primary>context menu, WinMerge shortcuts in Windows Explorer</primary>
       </indexterm>Shell integration</title>
 
-    <para>The WinMerge shell Integration is a convenient way to select paths and
+    <para>The Windows shell Integration is a convenient way to select paths and
     open WinMerge directly from Windows Explorer. It adds a
     <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer context menu
     (available when you right-click one or two files or folders in Explorer).
@@ -285,7 +311,15 @@ to compare one file/folder against several files/folders.</para> </tip> -->
     </section>
 
     <section>
-      <title>Including Subfolders</title>
+      <title>Including Subfolders<indexterm>
+          <primary>recursive folder compare</primary>
+
+          <secondary>specifying in Select Files or Folders dialog</secondary>
+        </indexterm><indexterm>
+          <primary>subfolders</primary>
+
+          <seealso>recursive folder compare</seealso>
+        </indexterm></title>
 
       <para>By default, WinMerge does not include subfolders in compare
       operations. To change the default behavior, enable <guilabel>Include
@@ -299,7 +333,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
   <section id="OpenPaths_dragndrop">
     <title><indexterm>
-        <primary>drag and drop</primary>
+        <primary>drag and drop, in WinMerge window</primary>
       </indexterm>Drag and drop</title>
 
     <para>From any Windows source that allows you to drag objects, such as
@@ -346,6 +380,10 @@ to compare one file/folder against several files/folders.</para> </tip> -->
   <section id="OpenPaths_project">
     <title><indexterm>
         <primary>project files</primary>
+      </indexterm><indexterm>
+        <primary>command line</primary>
+
+        <secondary>specifying project files</secondary>
       </indexterm>Project files</title>
 
     <para>You can save the currently open paths and filters in a project file.
@@ -353,20 +391,17 @@ to compare one file/folder against several files/folders.</para> </tip> -->
     Project files are handy if you compare the same files repeatedly.</para>
 
     <section>
-      <title>Project files</title>
+      <title>Using project files</title>
 
-      <para>You can specify a project file as a command line argument, just like
-      a normal file. In the WinMerge window, click <menuchoice>
+      <para>To use a project file In the WinMerge window, click <menuchoice>
           <guimenu>File</guimenu>
 
           <guimenuitem>Open Project</guimenuitem>
         </menuchoice>. WinMerge reads the paths from the project file. If the
       project file has two paths, both paths are opened. If only one path is
       given or one of paths is invalid, WinMerge opens the Select Files or
-      Folders dialog, where you can add or correct the path information.</para>
-
-      <para>A project file can also be opened in the Select Files or Folders
-      dialog. Here are a few things to consider:</para>
+      Folders dialog, where you can add or correct the path information. Here
+      are a few things to consider:</para>
 
       <itemizedlist>
         <listitem>
@@ -390,6 +425,9 @@ to compare one file/folder against several files/folders.</para> </tip> -->
           file are compared.</simpara>
         </listitem>
       </itemizedlist>
+
+      <para>To specify a project file on the command line, simply enter it as a
+      single file path.</para>
     </section>
 
     <section>

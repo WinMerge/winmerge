@@ -6,10 +6,10 @@
     <title><indexterm>
         <primary>getting started with WinMerge</primary>
       </indexterm><indexterm>
-        <primary>opening files and folders</primary>
+        <primary>choosing files and folders</primary>
 
         <secondary>getting started</secondary>
-      </indexterm>Opening files and folders</title>
+      </indexterm>Selecting files and folders to compare</title>
 
     <para>After you have installed WinMerge, step through the procedure and
     discussions in this topic to learn basic WinMerge operations and concepts.
@@ -21,7 +21,9 @@
     <orderedlist>
       <listitem>
         <para>Open the WinMerge window. Here are some of the methods you can
-        use:</para>
+        use:<indexterm>
+            <primary>WinMerge window</primary>
+          </indexterm></para>
 
         <itemizedlist>
           <listitem>
@@ -241,7 +243,13 @@
     </orderedlist>
 
     <section>
-      <title>Other ways to open files and folders</title>
+      <title>Other ways to open files and folders<indexterm>
+          <primary>project files</primary>
+        </indexterm><indexterm>
+          <primary>command line</primary>
+
+          <secondary>opening files and folders</secondary>
+        </indexterm></title>
 
       <para>The Select Files or Folders dialog is the main interface for opening
       files and folders. But you can use many other ways, too:</para>

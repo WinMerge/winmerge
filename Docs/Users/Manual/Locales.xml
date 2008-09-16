@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <article id="Locales">
-  <title>Locale support</title>
+  <title>Locale support<indexterm>
+      <primary>localizing WinMerge </primary>
+    </indexterm></title>
 
   <para>The WinMerge user interface is in English by default, but you can
-  localize your installation to other languages for which translations have
-  been contributed. Localizing WinMerge changes text strings that are
-  displayed in the interface, including menus, dialogs, tooltips, and messages,
-  to the language you choose.</para>
+  localize your installation to other languages for which translations have been
+  contributed. Localizing WinMerge changes text strings that are displayed in
+  the interface, including menus, dialogs, tooltips, and messages, to the
+  language you choose.</para>
 
   <para>Note that localization does not extend beyond the translation of
   strings. For example, it does not affect how numbers are divided or how words
@@ -109,7 +111,9 @@
   </section>
 
   <section>
-    <title>Available WinMerge localizations</title>
+    <title>Available WinMerge localizations<indexterm>
+        <primary>localizations, available</primary>
+      </indexterm></title>
 
     <para>WinMerge localizations contributed to date include the following
     translations:</para>
@@ -222,7 +226,9 @@
   </section>
 
   <section>
-    <title>Reporting errors in translation</title>
+    <title>Reporting errors in translation<indexterm>
+        <primary>translations, reporting errors</primary>
+      </indexterm></title>
 
     <para>Please submit any errors you find in translations as bugs to our
     <ulink
@@ -232,7 +238,9 @@
   </section>
 
   <section>
-    <title>Submitting a new translation</title>
+    <title>Submitting a new translation<indexterm>
+        <primary>submitting translations</primary>
+      </indexterm></title>
 
     <para>If you would like to add your language to the list, read the <ulink
     url="http://winmerge.org/translations/">Translations</ulink> documentation

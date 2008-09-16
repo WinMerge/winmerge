@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="AboutDoc">
-  <title>About WinMerge online Help</title>
+  <title>About WinMerge Help</title>
 
-  <para>This is online Help for WinMerge <xi:include href="replaceables.xml"
+  <para>This is Help for WinMerge <xi:include href="replaceables.xml"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xpointer="element(version)" />.</para>
 
   <section>
-    <title>Audience</title>
+    <title>Audience and scope</title>
 
     <para>WinMerge Help is intended for both new and experienced users. It
     explains how to use WinMerge, and documents its capabilities and
@@ -180,7 +180,9 @@
   </section>
 
   <section>
-    <title>Documentation conventions</title>
+    <title>Documentation conventions<indexterm>
+        <primary>conventions, documentation</primary>
+      </indexterm></title>
 
     <informaltable>
       <tgroup cols="2">

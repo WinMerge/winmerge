@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Installing">
-  <title>Getting and installing WinMerge</title>
+  <title>Getting and installing WinMerge<indexterm>
+      <primary>installing WinMerge</primary>
+    </indexterm></title>
 
   <para>WinMerge can be installed using the installer or by unzipping files from
   an archive. Using the installer is the recommended method.</para>
@@ -75,7 +77,9 @@
 
         <variablelist>
           <varlistentry>
-            <term>WinMerge core files</term>
+            <term>WinMerge core files<indexterm>
+                <primary>WinMerge executables, Unicode and ANSI</primary>
+              </indexterm></term>
 
             <listitem>
               <para>WinMerge executable (<filename>WinMerge.exe</filename> on
@@ -141,7 +145,15 @@
 
       <listitem>
         <para>In the Select Additional Tasks page, specify any additional
-        tasks:</para>
+        tasks:<indexterm>
+            <primary>integration</primary>
+
+            <secondary>with version control system</secondary>
+          </indexterm><indexterm>
+            <primary>VCS</primary>
+
+            <see>version control systems</see>
+          </indexterm></para>
 
         <variablelist>
           <varlistentry>
@@ -154,7 +166,9 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with TortoiseCVS</term>
+            <term>Integrate with TortoiseCVS<indexterm>
+                <primary>TortoiseCVS integration</primary>
+              </indexterm></term>
 
             <listitem>
               <para>Sets WinMerge to be the TortoiseCVS diff application.</para>
@@ -162,7 +176,9 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with TortoiseSVN</term>
+            <term>Integrate with TortoiseSVN<indexterm>
+                <primary>TortoiseSVN integration</primary>
+              </indexterm></term>
 
             <listitem>
               <para>Sets WinMerge to be the TortoiseSVN diff application</para>
@@ -170,7 +186,11 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with ClearCase</term>
+            <term>Integrate with ClearCase<indexterm>
+                <primary>ClearCase integration</primary>
+
+                <secondary>configuring during installation</secondary>
+              </indexterm></term>
 
             <listitem>
               <para>Sets WinMerge to be the ClearCase diff and merge
@@ -215,7 +235,15 @@
   </section>
 
   <section id="InstallFromArchive">
-    <title>Installing from an archive</title>
+    <title>Installing from an archive<indexterm>
+        <primary>archive, installing Winmerge from</primary>
+      </indexterm><indexterm>
+        <primary>mfc71[u].dll runtime file</primary>
+      </indexterm><indexterm>
+        <primary>msvcr71.dll runtime file</primary>
+      </indexterm><indexterm>
+        <primary>msvcp71.dll runtime file</primary>
+      </indexterm></title>
 
     <para>WinMerge is pretty much independent of other system components. It is
     not tightly integrated with Windows, and does not use many DLLs.</para>
@@ -248,7 +276,13 @@
   </section>
 
   <section>
-    <title>Shell integration</title>
+    <title>Shell integration<indexterm>
+        <primary>integration</primary>
+
+        <secondary>with Windows shell</secondary>
+      </indexterm><indexterm>
+        <primary>Windows shell integration</primary>
+      </indexterm></title>
 
     <para>The installer enables shell integration when you choose the
     <guilabel>Enable Explorer context menu integration</guilabel> option in the
@@ -272,7 +306,9 @@
     Windows updates all its references.</para>
 
     <section>
-      <title>64-bit shell integration</title>
+      <title>64-bit shell integration<indexterm>
+          <primary>Windows 64-bit versions, WinMerge support</primary>
+        </indexterm></title>
 
       <para>Starting with Version 2.6, WinMerge supports 64-bit Windows versions
       by including 64-bit shell integration. The WinMerge installer recognizes
@@ -290,6 +326,10 @@
   <section id="Installing_archive_support">
     <title><indexterm>
         <primary>installing archive support</primary>
+      </indexterm><indexterm>
+        <primary>7-Zip archives</primary>
+
+        <secondary>configuring support during installation</secondary>
       </indexterm>7-Zip and archive support</title>
 
     <para>WinMerge uses <ulink url="http://www.7-zip.org/">7-Zip</ulink> for
@@ -334,7 +374,9 @@
       </menuchoice>.</para>
 
     <section id="Install_merge7zinstaller">
-      <title>Merge7zInstaller</title>
+      <title>Merge7z Installer<indexterm>
+          <primary>Merge7z installer</primary>
+        </indexterm></title>
 
       <para><filename>Merge7zInstaller</filename> is a stand-alone installer for
       7-Zip integration.</para>

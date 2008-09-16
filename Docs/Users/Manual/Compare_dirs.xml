@@ -7,7 +7,8 @@
   <para>This topic describes how to compare and merge folders using the Folder
   Compare window.</para>
 
-  <xi:include href="Text_encoding.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="Text_encoding.xml"
+              xmlns:xi="http://www.w3.org/2001/XInclude" />
 
   <section id="Compare_dirs_starting">
     <title>Starting a folder compare operation</title>
@@ -29,7 +30,7 @@
           all files in the folders, and is nonrecursive (does not include
           subfolders). To change any of these options and for more details about
           the Select Files or Folder dialog, see <xref
-          linkend="OpenPaths" />.<!--This topic focuses mainly on the WinMerge window method.--></para>
+          linkend="OpenPaths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -52,7 +53,9 @@
 
       <variablelist>
         <varlistentry>
-          <term>Recursive mode</term>
+          <term>Recursive mode<indexterm>
+              <primary>recursive folder compare</primary>
+            </indexterm></term>
 
           <listitem>
             <para>Recursive mode is useful for detecting and manipulating
@@ -144,6 +147,14 @@ I get the partial list, but no Abort indicator.--></para>
         <primary>Folder Compare window</primary>
 
         <seealso>Compare windows</seealso>
+      </indexterm><indexterm>
+        <primary>Compare windows</primary>
+
+        <secondary>Folder</secondary>
+      </indexterm><indexterm>
+        <primary>subfolders</primary>
+
+        <secondary>in Folder Compare window</secondary>
       </indexterm></title>
 
     <para>The Folder Compare window shows the result of a folder compare in a
@@ -325,7 +336,11 @@ I get the partial list, but no Abort indicator.--></para>
   </section>
 
   <section id="Compare_dirs_multiwin">
-    <title>Working with multiple Folder Compare windows</title>
+    <title>Working with multiple Folder Compare windows<indexterm>
+        <primary>Folder Compare window</primary>
+
+        <secondary>using multiple</secondary>
+      </indexterm></title>
 
     <para>By default, the WinMerge window displays a single Folder Compare
     window. That is, if you start another file comparison while a Folder Compare
@@ -408,6 +423,10 @@ I get the partial list, but no Abort indicator.--></para>
         <primary>file operations</primary>
 
         <secondary>in Folder Compare window</secondary>
+      </indexterm><indexterm>
+        <primary>Folder Compare window</primary>
+
+        <secondary>file operations</secondary>
       </indexterm></title>
 
     <para>The Folder Compare window supports common operations on files, like
@@ -642,6 +661,12 @@ I get the partial list, but no Abort indicator.--></para>
           <primary>Folder Compare window</primary>
 
           <secondary>protecting files in</secondary>
+        </indexterm><indexterm>
+          <primary>protecting files</primary>
+        </indexterm><indexterm>
+          <primary>read-only files</primary>
+
+          <see>protecting files</see>
         </indexterm></title>
 
       <para>To protect the files and folders on either side of a compare from

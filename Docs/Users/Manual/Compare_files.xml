@@ -6,10 +6,11 @@
 
   <para>This topic describes how to use the WinMerge File Compare window to
   compare and merge files. To understand the basic concepts about differences
-  used here, we suggest you read read <xref linkend="IntroductDiffing" />
+  used here, we suggest you read <xref linkend="IntroductDiffing" />
   first.</para>
 
-  <xi:include href="Text_encoding.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+  <xi:include href="Text_encoding.xml"
+              xmlns:xi="http://www.w3.org/2001/XInclude" />
 
   <section id="Compare_files_starting">
     <title>Starting a file compare operation</title>
@@ -51,6 +52,10 @@
         <primary>File Compare window</primary>
 
         <seealso>Compare windows</seealso>
+      </indexterm><indexterm>
+        <primary>Compare windows</primary>
+
+        <secondary>File</secondary>
       </indexterm></title>
 
     <para>The File Compare window displays compared files in two File panes,
@@ -1162,7 +1167,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
   </section>
 
   <section id="Compare_files_merge">
-    <title>Merging Differences<indexterm>
+    <title>Merging differences<indexterm>
         <primary>merging differences</primary>
       </indexterm></title>
 
@@ -1483,7 +1488,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
     </section>
 
     <section id="ResolveConflictFiles">
-      <title>Resolving Conflict Files<indexterm>
+      <title>Resolving conflict files<indexterm>
           <primary>conflict files</primary>
         </indexterm></title>
 
