@@ -14,7 +14,6 @@ http://winmerge.org/2.4/manual/comparefiles.html
 http://winmerge.org/2.4/manual/configuration.html
 http://winmerge.org/2.4/manual/faq.html
 http://winmerge.org/2.4/manual/filters.html
-http://winmerge.org/2.4/manual/images
 http://winmerge.org/2.4/manual/index.html
 http://winmerge.org/2.4/manual/installing.html
 http://winmerge.org/2.4/manual/introdiff.html
@@ -23,7 +22,6 @@ http://winmerge.org/2.4/manual/locales.html
 http://winmerge.org/2.4/manual/openpaths.html
 http://winmerge.org/2.4/manual/plugins.html
 http://winmerge.org/2.4/manual/quickstart.html
-http://winmerge.org/2.4/manual/screenshots
 http://winmerge.org/2.4/manual/shortcuts.html
 http://winmerge.org/2.4/manual/textencoding.html
 http://winmerge.org/2.4/manual/versioncontrol.html
@@ -34,14 +32,12 @@ http://winmerge.org/2.6/index.php
 http://winmerge.org/2.6/limitations.php
 http://winmerge.org/2.6/screenshots.php
 http://winmerge.org/2.6/manual/AboutDoc.html
-http://winmerge.org/2.6/manual/art
 http://winmerge.org/2.6/manual/CommandLine.html
 http://winmerge.org/2.6/manual/CompareDirs.html
 http://winmerge.org/2.6/manual/CompareFiles.html
 http://winmerge.org/2.6/manual/Configuration.html
 http://winmerge.org/2.6/manual/Faq.html
 http://winmerge.org/2.6/manual/Filters.html
-http://winmerge.org/2.6/manual/images
 http://winmerge.org/2.6/manual/index.html
 http://winmerge.org/2.6/manual/Installing.html
 http://winmerge.org/2.6/manual/IntroDiff.html
@@ -51,7 +47,6 @@ http://winmerge.org/2.6/manual/Locales.html
 http://winmerge.org/2.6/manual/OpenPaths.html
 http://winmerge.org/2.6/manual/Plugins.html
 http://winmerge.org/2.6/manual/QuickStart.html
-http://winmerge.org/2.6/manual/screenshots
 http://winmerge.org/2.6/manual/Shortcuts.html
 http://winmerge.org/2.6/manual/TextEncoding.html
 http://winmerge.org/2.6/manual/VersionControl.html
@@ -61,14 +56,12 @@ http://winmerge.org/2.8/index.php
 http://winmerge.org/2.8/releasenotes.php
 http://winmerge.org/2.8/screenshots.php
 http://winmerge.org/2.8/manual/AboutDoc.html
-http://winmerge.org/2.8/manual/art
 http://winmerge.org/2.8/manual/CommandLine.html
 http://winmerge.org/2.8/manual/CompareDirs.html
 http://winmerge.org/2.8/manual/CompareFiles.html
 http://winmerge.org/2.8/manual/Configuration.html
 http://winmerge.org/2.8/manual/Faq.html
 http://winmerge.org/2.8/manual/Filters.html
-http://winmerge.org/2.8/manual/images
 http://winmerge.org/2.8/manual/index.html
 http://winmerge.org/2.8/manual/Installing.html
 http://winmerge.org/2.8/manual/IntroDiff.html
@@ -78,7 +71,6 @@ http://winmerge.org/2.8/manual/Locales.html
 http://winmerge.org/2.8/manual/OpenPaths.html
 http://winmerge.org/2.8/manual/Plugins.html
 http://winmerge.org/2.8/manual/QuickStart.html
-http://winmerge.org/2.8/manual/screenshots
 http://winmerge.org/2.8/manual/Shortcuts.html
 http://winmerge.org/2.8/manual/TextEncoding.html
 http://winmerge.org/2.8/manual/VersionControl.html
