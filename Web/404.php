@@ -14,12 +14,17 @@
 
 <h3>Were you looking for...</h3>
 <ul>
-  <li><a href="/2.8/manual/index.html">Manual</a>?</li>
-  <li><a href="/2.8/screenshots.php">Screenshots</a>?</li>
-  <!--<li><a href="/docs">Documentation</a>?</li>-->
-  <li><a href="/downloads">Downloads</a>?</li>
-  <li><a href="/support">Support</a>?</li>
-  <li><a href="/translations">Translations</a>?</li>
+  <li><a href="/about/screenshots/">Screenshots</a>?</li>
+  <li><a href="/docs/">Documentation</a>?
+    <ul>
+      <li><a href="/docs/manual/">Manual</a>?</li>
+      <li><a href="/docs/releasenotes.php">Release Notes</a>?</li>
+      <li><a href="/docs/changelog.php">Change Log</a>?</li>
+    </ul>
+  </li>
+  <li><a href="/downloads/">Downloads</a>?</li>
+  <li><a href="/support/">Support</a>?</li>
+  <li><a href="/translations/">Translations</a>?</li>
 </ul>
 <?php
   $page->printFoot();

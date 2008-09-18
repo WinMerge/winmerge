@@ -19,8 +19,8 @@
 </div>
 
 <h3>WinMerge <?php echo $stablerelease->getVersionNumber();?> - latest stable version</h3>
-<p><a href="2.8/index.php">WinMerge <?php echo $stablerelease->getVersionNumber();?></a> is the latest stable version, and is recommended for most users.</p>
-<p><a href="<?php echo $stablerelease->getDownload('setup.exe');?>">Download WinMerge <?php echo $stablerelease->getVersionNumber();?> Installer</a></p>
+<p><a href="downloads/">WinMerge <?php echo $stablerelease->getVersionNumber();?></a> is the latest stable version, and is recommended for most users.</p>
+<?php $page->printDownloadNow(); ?>
 
 <h3>Support</h3>
 <p>If you need support, look at our <a href="support/index.php">support page</a> for more information how you can get it.</p>

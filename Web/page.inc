@@ -37,23 +37,23 @@
      * Constructor
      */
     function Page() {
-      $this->_title = 'WinMerge 2.8';
+      $this->_title = 'WinMerge';
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
       $this->_rssfeeds = array();
-      $this->_tab = WINMERGE_2_8;
+      $this->_tab = TAB_HOME;
       /* _Stable Release */
       $this->_stablerelease = new Release;
-      $this->_stablerelease->setVersionNumber('2.8.6');
-      $this->_stablerelease->setDate('2008-08-07');
-      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-Setup.exe', 3051113);
-      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-exe.zip', 3349594);
-      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-exe.7z', 1822229);
-      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.6.zip', 1287510);
-      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.8.6.7z', 753831);
-      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-src.zip', 8607863);
-      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-src.7z', 4377158);
+      $this->_stablerelease->setVersionNumber('2.10.0');
+      $this->_stablerelease->setDate('2008-09-17');
+      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.0-Setup.exe', 3232299);
+      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.0-exe.zip', 3413050);
+      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.0-exe.7z', 2006316);
+      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.0.zip', 1287520);
+      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.0.7z', 753835);
+      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.0-src.zip', 9730347);
+      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.0-src.7z', 5090123);
     }
 
     /**
@@ -141,7 +141,8 @@
         case WINMERGE_2_2: //if WinMerge 2.2 ...
         case WINMERGE_2_4: //if WinMerge 2.4 ...
         case WINMERGE_2_6: //if WinMerge 2.6 ...
-          $temp .= "<p class=\"important\">This is an old version of WinMerge, for the latest version go to the <a href=\"/index.php\">main site</a>.</p>\n";
+        case WINMERGE_2_8: //if WinMerge 2.8 ...
+          $temp .= "<p class=\"important\">This is an old version of WinMerge, for the latest version go to the <a href=\"/downloads/\">download page</a>.</p>\n";
           break;
       }
       print($temp);
@@ -200,9 +201,6 @@
       if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
         $temp .= "  <li><strong><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></strong></li>\n";
       }
-      else { //if NOT WinMerge 2.8 ...
-        $temp .= "  <li><a href=\"/2.8/index.php\">WinMerge&nbsp;2.8</a></li>\n";
-      }
       if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
         $temp .= "  <li><strong><a href=\"/2.6/index.php\" id=\"current\">WinMerge&nbsp;2.6</a></strong></li>\n";
       }
@@ -221,9 +219,9 @@
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
         $temp .= "  <li><strong><a href=\"/docs/index.php\" id=\"current\">Documentation</a></strong></li>\n";
       }
-      //else { //if NOT "Documentation" ...
-      //  $temp .= "  <li><a href=\"/docs/index.php\">Documentation</a></li>\n";
-      //}
+      else { //if NOT "Documentation" ...
+        $temp .= "  <li><a href=\"/docs/index.php\">Documentation</a></li>\n";
+      }
       if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
         $temp .= "  <li><strong><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></strong></li>\n";
       }

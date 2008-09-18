@@ -3,6 +3,7 @@
 
   $page = new Page;
   $page->printHead('About WinMerge', TAB_ABOUT);
+  $stablerelease = $page->getStableRelease();
 ?>
 <h2>About WinMerge</h2>
 <p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
@@ -25,7 +26,7 @@
   <li>Archive file support using 7-Zip</li>
   <li>Plugin support</li>
   <li>Localizable interface</li>
-  <li><a href="/2.8/manual/index.html">Online manual</a> and installed HTML Help manual</li>
+  <li><a href="/docs/manual/">Online manual</a> and installed HTML Help manual</li>
 </ul>
 
 <h3>Screenshots</h3>
@@ -34,16 +35,16 @@
 <p>See the <a href="screenshots/index.php">screenshots page</a> for more screenshots.</p>
 
 <h3>Installation</h3>
-<p>Just download the <a href="http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://downloads.sourceforge.net/winmerge/WinMerge-2.8.6-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="<?php echo $stablerelease->getDownload('setup.exe');?>">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="<?php echo $stablerelease->getDownload('exe.zip');?>">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
-<p>For more information, please see the <a href="/2.8/manual/Installing.html">Installation section</a> of the <a href="/2.8/manual/index.html">Manual</a>.</p>
+<p>For more information, please see the <a href="/docs/manual/Installing.html">Installation section</a> of the <a href="/docs/manual/">Manual</a>.</p>
 
 <h3>Using WinMerge</h3>
-<p>For information on using WinMerge, see our <a href="/2.8/manual/index.html">online Manual</a>,
+<p>For information on using WinMerge, see our <a href="/docs/manual/">online Manual</a>,
 or you can use the local help file (just press <code>F1</code> inside WinMerge) for offline use.</p>
 
-<p>Here is the current <a href="/2.8/changelog.php">change log</a>.</p>
+<p>Here is the current <a href="/docs/changelog.php">change log</a>.</p>
 <?php
   $page->printFoot();
 ?>
