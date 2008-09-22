@@ -103,6 +103,7 @@
 #define IDB_TREE_STATE                  360
 #define IDB_FILE_OPENCONFLICT           361
 #define IDB_PLUGINS_LIST                362
+#define IDB_MERGE_COMPARE               363
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502

@@ -143,7 +143,7 @@ IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
 IDB_TREE_STATE          BITMAP                  "res\\treestate.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
 IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
-
+IDB_MERGE_COMPARE       BITMAP                  "res\\compare.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
