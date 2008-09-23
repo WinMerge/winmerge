@@ -240,7 +240,6 @@
       else { //if NOT "Translations" ...
         $temp .= "  <li><a href=\"/translations/index.php\">Translations</a></li>\n";
       }
-      $temp .= "  <li><a href=\"/Wiki/\">Developer&nbsp;Wiki</a></li>\n";
       $temp .= "</ul>\n";
       /* Sub Tabs */
       switch ($this->_tab) {
@@ -312,6 +311,7 @@
           $temp .= "  <li><a href=\"/docs/manual/\" title=\"Manual\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
           $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
+          $temp .= "  <li><a href=\"/Wiki/\" title=\"Developer Wiki\">Developer Wiki</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...
