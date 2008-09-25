@@ -300,6 +300,7 @@ Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('
 Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs')
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
+Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
 Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
 
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
@@ -445,9 +446,11 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Ukrainian.txt; IconFileNa
 Name: {commondesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
 
 ;Quick Launch Icon
-Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
+Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
 
 [Registry]
+Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty
+Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 Root: HKLM; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 
@@ -491,20 +494,20 @@ Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension; Check: not ShellMenuEnabled()
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
-Root: HKLM; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS\Prefs\External Diff Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS\Prefs\External Diff2 Params; ValueType: string; ValueName: _; ValueData: """%1"" ""%2"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Diff Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Diff2 Params; ValueType: string; ValueName: _; ValueData: """%1"" ""%2"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 
 ;Tells TortoiseCVS to use WinMerge as its differencing application (this happens whether or not Tortoise is current installed, that way
 ;if it is installed at a later date this will automatically support it)
-Root: HKLM; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS\Prefs\External Merge Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
-Root: HKLM; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType: string; ValueName: _; ValueData: """%mine"" ""%yours"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge Application; ValueType: string; ValueName: _; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType: string; ValueName: _; ValueData: """%mine"" ""%yours"""; Flags: uninsdeletevalue dontcreatekey; Tasks: TortoiseCVS
 
 ;Set WinMerge as TortoiseSVN diff tool
-Root: HKLM; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -x -u -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -x -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
 
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
 ;(unless the user already has a startup language specified)

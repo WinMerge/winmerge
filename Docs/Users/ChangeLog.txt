@@ -18,6 +18,8 @@ WinMerge 2.11.1.5
   BugFix: Customized colors weren't used in some areas (#2110218)
   BugFix: Zip files were extracted into wrong folder (#2110350)
   BugFix: Case-sensitive regexp search didn't work (#1991259)
+  BugFix: There were some installer regressions
+         (eg. Installer didn't create Quick Launch icon) (#1460517)
   Translation updates:
   - German (r5934)
   - Russian (#2067785)

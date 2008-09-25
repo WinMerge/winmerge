@@ -16,8 +16,8 @@
 
 // Functions to copy values set by installer from HKLM to HKCU.
 static void CopyHKLMValues();
-static bool OpenHKLM(HKEY *key);
-static bool OpenHKCU(HKEY *key);
+static bool OpenHKLM(HKEY *key, LPCTSTR relpath = NULL);
+static bool OpenHKCU(HKEY *key, LPCTSTR relpath = NULL);
 static bool IsFirstRun(HKEY key);
 static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname);
 static void ResetFirstRun(HKEY key);
@@ -235,7 +235,15 @@ static void CopyHKLMValues()
 		{
 			CopyFromLMtoCU(LMKey, CUKey, _T("ContextMenuEnabled"));
 			CopyFromLMtoCU(LMKey, CUKey, _T("Executable"));
-			CopyFromLMtoCU(LMKey, CUKey, _T("Locale\\LanguageId"));
+			RegCloseKey(CUKey);
+		}
+		RegCloseKey(LMKey);
+	}
+	if (OpenHKLM(&LMKey, _T("Locale")))
+	{
+		if (OpenHKCU(&CUKey, _T("Locale")))
+		{
+			CopyFromLMtoCU(LMKey, CUKey, _T("LanguageId"));
 			RegCloseKey(CUKey);
 		}
 		RegCloseKey(LMKey);
@@ -245,13 +253,16 @@ static void CopyHKLMValues()
 /**
  * @brief Open HKLM registry key.
  * @param [out] key Pointer to open HKLM key.
+ * @param [in] relative registry path to open.
  * @return true if opening succeeded.
  */
-static bool OpenHKLM(HKEY *key)
+static bool OpenHKLM(HKEY *key, LPCTSTR relpath)
 {
+	TCHAR valuename[256] = _T("Software\\Thingamahoochie\\WinMerge\\");
+	if (relpath)
+		lstrcat(valuename, relpath);
 	LONG retval = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-			_T("Software\\Thingamahoochie\\WinMerge\\"),
-			0, KEY_READ, key);
+			valuename, 0, KEY_READ, key);
 	if (retval == ERROR_SUCCESS)
 	{
 		return true;
@@ -263,13 +274,16 @@ static bool OpenHKLM(HKEY *key)
  * @brief Open HKCU registry key.
  * Opens the HKCU key for WinMerge. If the key does not exist, creates one.
  * @param [out] key Pointer to open HKCU key.
+ * @param [in] relative registry path to open.
  * @return true if opening succeeded.
  */
-static bool OpenHKCU(HKEY *key)
+static bool OpenHKCU(HKEY *key, LPCTSTR relpath)
 {
+	TCHAR valuename[256] = _T("Software\\Thingamahoochie\\WinMerge\\");
+	if (relpath)
+		lstrcat(valuename, relpath);
 	LONG retval = RegOpenKeyEx(HKEY_CURRENT_USER,
-			_T("Software\\Thingamahoochie\\WinMerge\\"),
-			0, KEY_ALL_ACCESS, key);
+			valuename, 0, KEY_ALL_ACCESS, key);
 	if (retval == ERROR_SUCCESS)
 	{
 		return true;
@@ -277,8 +291,7 @@ static bool OpenHKCU(HKEY *key)
 	else if (retval == ERROR_FILE_NOT_FOUND)
 	{
 		retval = RegCreateKeyEx(HKEY_CURRENT_USER,
-			_T("Software\\Thingamahoochie\\WinMerge\\"),
-			0, NULL, 0, KEY_ALL_ACCESS, NULL, key, NULL);
+			valuename, 0, NULL, 0, KEY_ALL_ACCESS, NULL, key, NULL);
 		if (retval == ERROR_SUCCESS)
 			return true;
 	}
