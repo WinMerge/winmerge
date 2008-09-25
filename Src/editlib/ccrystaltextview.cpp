@@ -4532,22 +4532,21 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
         }
 
       int ovector[30];
-      char compString[200] = {0};
+      int compStringBufLen = _tcslen(pszFindWhere) * sizeof(TCHAR) + 1;
+      char *compString = new char[compStringBufLen];
       int stringLen = 0;
-      TCHAR * tempName = _tcsdup(pszFindWhere); // Create temp copy for conversions
-      TCHAR * cmpStr = _tcsupr(tempName);
 
 #ifdef UNICODE
-      stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
-          compString, sizeof(compString));
+      stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
+          compString, compStringBufLen);
+      compString[stringLen] = '\0';
 #else
-      strcpy(compString, cmpStr);
+      strncpy(compString, pszFindWhere, compStringBufLen);
       stringLen = strlen(compString);
 #endif
 
       int result = pcre_exec(regexp, pe, compString, stringLen,
           0, 0, ovector, 30);
-      free(tempName);
 
       if (result >= 0)
         {
@@ -4562,6 +4561,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       else
         pos = -1;
 
+      delete [] compString;
       pcre_free(regexp);
       pcre_free(pe);
       return pos;
