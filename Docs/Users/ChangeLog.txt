@@ -5,6 +5,8 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.10.2
   BugFix: Case-sensitive regexp search didn't work (#1991259)
+  Translation updates:
+  - Ukrainian (#2131753)
 
 WinMerge 2.10 - 2008-09-17 (r5967)
   Change Manual url to http://winmerge.org/docs/manual/ (r5957)
