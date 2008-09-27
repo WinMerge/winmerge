@@ -246,7 +246,6 @@
         case TAB_HOME: //if "Home" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge\">Project&nbsp;Page</a></li>\n";
-          $temp .= "  <li><a href=\"/history.php\">History</a></li>\n";
           $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
           $temp .= "  <li><a href=\"/WinMergePAD.php\">PAD&nbsp;file</a></li>\n";
           $temp .= "</ul>\n";
@@ -255,6 +254,7 @@
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/about/index.php\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/about/screenshots/index.php\" title=\"Screenshots\">Screenshots</a></li>\n";
+          $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_1_7: //if WinMerge 1.7 ...

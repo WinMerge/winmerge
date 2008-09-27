@@ -1,5 +1,4 @@
 http://winmerge.org/index.php
-http://winmerge.org/history.php
 http://winmerge.org/links.php
 http://winmerge.org/WinMergePAD.php
 http://winmerge.org/2.4/changes.php
@@ -75,6 +74,7 @@ http://winmerge.org/2.8/manual/Shortcuts.html
 http://winmerge.org/2.8/manual/TextEncoding.html
 http://winmerge.org/2.8/manual/VersionControl.html
 http://winmerge.org/about/index.php
+http://winmerge.org/about/history.php
 http://winmerge.org/about/screenshots/index.php
 http://winmerge.org/docs/changelog.php
 http://winmerge.org/docs/index.php
