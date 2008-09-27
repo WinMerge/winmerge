@@ -970,9 +970,12 @@ Var
     MapFile: TStringList;
     FileName: String;
     I: Integer;
+    BakFile: String;
 
 Begin
     FileName := ClearCaseMapFile();
+    BakFile := FileName + '.bak';
+    FileCopy(FileName, BakFile, True);
     MapFile := TStringList.Create();
     {Read the entire map file to a string list}
     MapFile.LoadFromFile(FileName);
