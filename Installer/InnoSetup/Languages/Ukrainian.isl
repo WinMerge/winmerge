@@ -341,6 +341,7 @@
    DanishLanguage=Меню і діалогові вікна датською мовою
    DutchLanguage=Меню і діалогові вікна голландською мовою
    FrenchLanguage=Меню і діалогові вікна французькою мовою
+   GalicianLanguage=Galician menus and dialogs
    GermanLanguage=Меню і діалогові вікна німецькою мовою
    GreekLanguage=Greek menus and dialogs
    HungarianLanguage=Меню і діалогові вікна болгарською мовою

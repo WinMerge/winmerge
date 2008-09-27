@@ -21,6 +21,7 @@ WinMerge 2.11.1.5
   BugFix: Case-sensitive regexp search didn't work (#1991259)
   BugFix: There were some installer regressions
          (eg. Installer didn't create Quick Launch icon) (#1460517)
+  New translation: Galician (#2120685)
   Translation updates:
   - German (r5934)
   - Russian (#2067785)

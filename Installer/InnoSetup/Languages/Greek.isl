@@ -345,6 +345,7 @@ CzechLanguage=Τσεχικά επιλογές και διάλογοι
 DanishLanguage=Δανέζικα επιλογές και διάλογοι
 DutchLanguage=Ολλανδικά επιλογές και διάλογοι
 FrenchLanguage=Γαλλικά επιλογές και διάλογοι
+GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Γερμανικά επιλογές και διάλογοι
 GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Ουγγρικά επιλογές και διάλογοι
