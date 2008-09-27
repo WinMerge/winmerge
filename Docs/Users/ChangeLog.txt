@@ -24,6 +24,7 @@ WinMerge 2.11.1.5
   - German (r5934)
   - Russian (#2067785)
   - Swedish (#2075513)
+  - Ukrainian (#2131753)
 
 WinMerge 2.11.1.4 - 2008-08-21 (r5846)
   Binary file edit/compare (#2036603)
