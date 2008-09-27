@@ -80,7 +80,7 @@ You can <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">browse th
   <dt>Developer Version</dt>
   <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></dd>
   <dt>WinMerge 2.10</dt>
-  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_8">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10</a></dd>
+  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10</a></dd>
 </dl>
 <?php
   $page->printFoot();
