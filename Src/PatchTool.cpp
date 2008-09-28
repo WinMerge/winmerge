@@ -204,7 +204,7 @@ BOOL CPatchTool::ShowDialog()
 
 		// These are from checkboxes and radiobuttons - can't be wrong
 		diffOptions.nIgnoreWhitespace = m_pDlgPatch->m_whitespaceCompare;
-		diffOptions.bIgnoreBlankLines = m_pDlgPatch->m_ignoreBlanks;
+		diffOptions.bIgnoreBlankLines = !!m_pDlgPatch->m_ignoreBlanks;
 		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
 
 		// Use this because non-sensitive setting can't write
