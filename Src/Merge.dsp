@@ -191,6 +191,10 @@ SOURCE=.\AboutDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\AnsiConvert.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
@@ -314,6 +318,10 @@ SOURCE=.\DiffList.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffTextBuffer.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DiffThread.cpp
 # End Source File
 # Begin Source File
@@ -430,10 +438,6 @@ SOURCE=.\DirViewColItems.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\dlgutil.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\dllproxy.c
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -515,11 +519,40 @@ SOURCE=.\GhostTextView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\HexMergeDoc.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\HexMergeFrm.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\HexMergeView.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\LanguageSelect.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LineFiltersDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\LineFiltersList.cpp
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -657,6 +690,19 @@ SOURCE=.\MovedBlocks.cpp
 # Begin Source File
 
 SOURCE=.\MovedLines.cpp
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -690,6 +736,19 @@ SOURCE=.\OptionsInit.cpp
 # Begin Source File
 
 SOURCE=.\common\OptionsMgr.cpp
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -723,6 +782,10 @@ SOURCE=.\PluginManager.cpp
 # Begin Source File
 
 SOURCE=.\Plugins.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\PluginsListDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -787,10 +850,6 @@ SOURCE=.\PropGeneral.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\PropLineFilter.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\PropRegistry.cpp
 # End Source File
 # Begin Source File
@@ -826,6 +885,10 @@ SOURCE=.\PropVss.cpp
 
 SOURCE=.\Common\RegKey.cpp
 # SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\RegOptionsMgr.cpp
 # End Source File
 # Begin Source File
 
@@ -1040,6 +1103,10 @@ SOURCE=.\AboutDlg.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\AnsiConvert.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\BCMenu.h
 # End Source File
 # Begin Source File
@@ -1149,6 +1216,10 @@ SOURCE=.\DiffItemList.h
 # Begin Source File
 
 SOURCE=.\DiffList.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffTextBuffer.h
 # End Source File
 # Begin Source File
 
@@ -1308,6 +1379,22 @@ SOURCE=.\GhostTextView.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\GhostUndorecord.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HexMergeDoc.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HexMergeFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HexMergeView.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\IAbortable.h
 # End Source File
 # Begin Source File
@@ -1321,6 +1408,10 @@ SOURCE=.\IOptionsPanel.h
 # Begin Source File
 
 SOURCE=.\Common\LanguageSelect.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LineFiltersDlg.h
 # End Source File
 # Begin Source File
 
@@ -1452,6 +1543,10 @@ SOURCE=.\Plugins.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PluginsListDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\PreferencesDlg.h
 # End Source File
 # Begin Source File
@@ -1517,6 +1612,10 @@ SOURCE=.\PropVss.h
 # Begin Source File
 
 SOURCE=.\Common\RegKey.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\RegOptionsMgr.h
 # End Source File
 # Begin Source File
 
@@ -2068,6 +2167,14 @@ SOURCE=.\editlib\java.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\LineInfo.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\editlib\LineInfo.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\lisp.cpp
 # End Source File
 # Begin Source File
@@ -2165,6 +2272,14 @@ SOURCE=.\editlib\tcl.cpp
 # Begin Source File
 
 SOURCE=.\editlib\tex.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\editlib\UndoRecord.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\editlib\UndoRecord.h
 # End Source File
 # Begin Source File
 
