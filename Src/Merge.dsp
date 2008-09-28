@@ -233,10 +233,6 @@ SOURCE=.\ChildFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ClearCaseCmdLineParser.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\ClipBoard.cpp
 # End Source File
 # Begin Source File
@@ -1083,10 +1079,6 @@ SOURCE=.\Common\WinClasses.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\WinMergeCmdLineParser.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\WMGotoDlg.cpp
 # End Source File
 # End Group
@@ -1124,10 +1116,6 @@ SOURCE=.\charsets.h
 # Begin Source File
 
 SOURCE=.\ChildFrm.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ClearCaseCmdLineParser.h
 # End Source File
 # Begin Source File
 
@@ -1756,10 +1744,6 @@ SOURCE=.\Common\wclassdefines.h
 # Begin Source File
 
 SOURCE=.\Common\WinClasses.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\WinMergeCmdLineParser.h
 # End Source File
 # Begin Source File
 
