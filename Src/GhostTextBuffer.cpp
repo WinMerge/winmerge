@@ -1031,6 +1031,9 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 	int nApparent;
 
 	const int size = (int) m_RealityBlocks.size();
+	int blo = 0;
+	int bhi = size - 1;
+	int i;
 	if (size == 0)
 		return 0;
 
@@ -1044,9 +1047,6 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 	}
 
 	// binary search to find correct (or nearest block)
-	int blo = 0;
-	int bhi = size - 1;
-	int i;
 	while (blo <= bhi)
 	{
 		i = (blo + bhi) / 2;
