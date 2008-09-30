@@ -26,7 +26,7 @@ const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
 const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 
 /** @brief WinMerge download page URL. */
-const TCHAR DownloadUrl[] = _T("http://winmerge.org/downloads.php");
+const TCHAR DownloadUrl[] = _T("http://winmerge.org/downloads/");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
 const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
