@@ -329,6 +329,17 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 			q = SetOption(q, OPT_CMP_IGNORE_EOL);
 		}
 	}
+	// If "compare file dir" make it "compare file dir\file".
+	if (m_Files.size() >= 2)
+	{
+		PATH_EXISTENCE p1 = paths_DoesPathExist(m_Files[0].c_str());
+		PATH_EXISTENCE p2 = paths_DoesPathExist(m_Files[1].c_str());
+
+		if ((p1 == IS_EXISTING_FILE) && (p2 == IS_EXISTING_DIR))
+		{
+			m_Files[1] = paths_ConcatPath(m_Files[1], paths_FindFileName(m_Files[0].c_str()));
+		}
+	}
 	if (m_bShowUsage)
 	{
 		m_bNonInteractive = false;
