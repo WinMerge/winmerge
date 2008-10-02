@@ -23,6 +23,8 @@ WinMerge 2.11.1.5
   BugFix: There were some installer regressions
          (eg. Installer didn't create Quick Launch icon) (#1460517)
   BugFix: Whitespace ignore options didn't work with quick compare (#2120174)
+  BugFix: Giving path to file and folder to command line
+   did not work (#2138560)
   New translation: Galician (#2120685)
   Translation updates:
   - German (r5934)
