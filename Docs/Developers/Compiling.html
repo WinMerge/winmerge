@@ -69,23 +69,16 @@ Subversion repository. See <a href="readme-Subversion.html">readme-Subversion.ht
 
 <h3><a name="Environment">Environment</a></h3>
 <h4>Supported Compilers</h4>
+
+<p>Compiling WinMerge requires commercial edition of the Visual Studio. Free
+Express Editions cannot be used since they don't include MFC. WinMerge uses
+MFC for the GUI.</p>
+
 <ul>
   <li>Visual Studio 2003.Net + Service Pack 1 (used for releases)</li>
   <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1 recommended)</li>
-  <li>Visual Studio 2008</li>
+  <li>Visual Studio 2008 (Service Pack 1 recommended)</li>
 </ul>
-<h4>Perhaps also supported</h4>
-<ul>
-  <li>Visual Studio 6 + Service Pack 6</li>
-</ul>
-We don't really (after 2.8.x) support Visual Studio 6. We don't break compiling
-with VS6 purposely, but we don't check it still works. And we don't necessarily
-update old project files. Building with VS6 is probably still possible, after
-some tweaks. Of course we commit fixes for building with VS6 if/when somebody
-sents them to us.
-
-<p>Note that WinMerge uses MFC heavily. So free (Express) editions of Visual Studio cannot
-compile WinMerge, unless you have MFC installed separately.</p>
 
 <h4>Libraries</h4>
 <p>WinMerge executable depends on Expat XML parser, SCEW and PCRE libraries.
@@ -109,12 +102,13 @@ let the Visual Studio to convert. Files are:
   <li>HTML Help Workshop (either stand-alone or from Platform SDK)<br>
     Download it from :<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
     HTMLHelp download</a>.</li>
-  <li>Platform SDK - be sure to use version that works with your version of Visual Studio:
+  <li>Platform SDK or Windows SDK:
     <ul>
-      <li><strong>VC6</strong>: Platform SDK February 2003 - <a href="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/psdk-full.htm">
-        Download and install</a></li>
-      <li><strong>VS2003.Net and later</strong>: Platform SDK Windows 2003 SP1 -
+      <li>Platform SDK Windows 2003 SP1 -
        <a href="http://www.microsoft.com/downloads/details.aspx?familyid=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB">
+       Download and install</a></li>
+      <li>Windows SDK -
+       <a href="http://msdn.microsoft.com/en-us/windowsserver/bb980924.aspx">
        Download and install</a></li>
     </ul>
     Visual Studio 2003.Net and later come with Platform SDK but you may still want more recent version...</li>
@@ -123,13 +117,7 @@ let the Visual Studio to convert. Files are:
 </ul>
 
 <h5>Platform SDK components</h5>
-<p>With Feb 2003 Platform SDK (and VC6) following components are needed:</p>
-<ul>
-  <li>Core SDK - obviously..</li>
-  <li>MDAC SDK - for some ODBC etc headers needed by other PSDK headers..</li>
-  <li>Internet Devlopment SDK - for IE/Shell headers</li>
-</ul>
-<p>Basically same components are needed for Windows 2003 SP1 PSDK, but with a different name:</p>
+<p>Needed Platform SDK components:</p>
 <ul>
   <li>Microsoft Windows Core SDK - obviously..</li>
   <li>Microsoft Data Access Services (MDAC) SDK - for some ODBC etc headers needed by other PSDK headers..</li>
@@ -239,7 +227,7 @@ for compiling releases are:<br>
 
 <h4>Needed tools</h4>
 <ul>
-  <li>Visual Studio 2003 or later (Might work for earlier, but I haven't tried it)</li>
+  <li>Visual Studio 2003 or later</li>
   <li>Platform SDK (for Windows 2003 SP1) with at least following components installed:
     <ul>
       <li>Configuration Options</li>
