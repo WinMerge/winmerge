@@ -4689,7 +4689,7 @@ int HexEditorWindow::ignore_non_code( char* pcTpl, int tpl_len, int& index )
 //-------------------------------------------------------------------
 // Writes all non-space characters from index to dest and closes dest
 // with a zero-byte. index is set to position of the first space-
-// character. Return is false úƒ there is only the array end after the
+// character. Return is false if there is only the array end after the
 // keyword. In that case index is set to tpl_len.
 int HexEditorWindow::read_tpl_token( char* pcTpl, int tpl_len, int& index, char* dest )
 {
