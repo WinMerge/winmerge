@@ -2392,7 +2392,7 @@ int HexEditorWindow::close(const char *caption)
 }
 
 //--------------------------------------------------------------------------------------------
-BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
+INT_PTR CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 {
 	switch (iMsg)
 	{
@@ -2413,7 +2413,7 @@ BOOL CALLBACK AboutDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 		SetDlgItemText(hDlg, IDC_EDIT2, "http://www.kibria.de");
 		// Set the icon.
 		if (HWND hwndParent = GetParent(hDlg))
-			if (DWORD dwIcon = GetClassLong(hwndParent, GCL_HICON))
+			if (DWORD dwIcon = GetClassLong(hwndParent, GCLP_HICON))
 				SendDlgItemMessage(hDlg, IDC_APPICON, STM_SETICON, dwIcon, 0);
 		return TRUE;
 
@@ -4227,7 +4227,7 @@ void HexEditorWindow::CMD_fast_paste()
 
 //-------------------------------------------------------------------
 //Pabs inserted
-BOOL CALLBACK MultiDropDlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
+INT_PTR CALLBACK MultiDropDlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 {
 	switch (m)
 	{
@@ -4689,7 +4689,7 @@ int HexEditorWindow::ignore_non_code( char* pcTpl, int tpl_len, int& index )
 //-------------------------------------------------------------------
 // Writes all non-space characters from index to dest and closes dest
 // with a zero-byte. index is set to position of the first space-
-// character. Return is false íf there is only the array end after the
+// character. Return is false úƒ there is only the array end after the
 // keyword. In that case index is set to tpl_len.
 int HexEditorWindow::read_tpl_token( char* pcTpl, int tpl_len, int& index, char* dest )
 {
@@ -4715,7 +4715,7 @@ int HexEditorWindow::read_tpl_token( char* pcTpl, int tpl_len, int& index, char*
 
 //-------------------------------------------------------------------
 // TmplDisplayDlgProc
-BOOL CALLBACK TmplDisplayDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK TmplDisplayDlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (iMsg)
 	{

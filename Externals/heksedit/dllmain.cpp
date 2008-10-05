@@ -56,8 +56,8 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 LRESULT CALLBACK HexWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (iMsg == WM_NCCREATE)
-		SetWindowLong(hwnd, GWL_USERDATA, (LONG)new HexEditorWindow);
-	HexEditorWindow *pHexWnd = (HexEditorWindow *)GetWindowLong(hwnd, GWL_USERDATA);
+		SetWindowLong(hwnd, GWLP_USERDATA, (LONG)new HexEditorWindow);
+	HexEditorWindow *pHexWnd = (HexEditorWindow *)GetWindowLong(hwnd, GWLP_USERDATA);
 	LRESULT lResult = pHexWnd->OnWndMsg(hwnd, iMsg, wParam, lParam);
 	if (iMsg == WM_NCDESTROY)
 		delete pHexWnd;

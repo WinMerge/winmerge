@@ -158,7 +158,7 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	m_pif = reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(m_hWnd, GWL_USERDATA));
+	m_pif = reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(m_hWnd, GWLP_USERDATA));
 	if (m_pif == 0)
 		return -1;
 	return 0;

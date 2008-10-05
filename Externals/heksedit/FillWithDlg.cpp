@@ -160,7 +160,7 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 			SetWindowText(hEditt, pcFWText);//init hex text
 			SetFocus(hEditt);//give the hex box focus
 			EnableWindow(hEditt,!curtyp);
-			oldproc = SetWindowLong(hEditt, GWL_WNDPROC, (LONG)HexProc);//override the old proc to be HexProc
+			oldproc = SetWindowLong(hEditt, GWLP_WNDPROC, (LONG)HexProc);//override the old proc to be HexProc
 			EnableWindow(GetDlgItem(hDlg, IDC_HEXSTAT),!curtyp);
 
 			HWND typ = GetDlgItem(hDlg, IDC_TYPE);

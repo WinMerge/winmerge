@@ -8,7 +8,7 @@
 
 static WNDPROC NTAPI SubclassAW(HWND hWnd, WNDPROC wndproc)
 {
-	return (WNDPROC)AW(hWnd, SetWindowLong)(hWnd, GWL_WNDPROC, (LONG)wndproc);
+	return (WNDPROC)AW(hWnd, SetWindowLong)(hWnd, GWLP_WNDPROC, (LONG)wndproc);
 }
 
 static WNDPROC DefWndProcDroppedComboBox = 0;

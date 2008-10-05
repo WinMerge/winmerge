@@ -18,9 +18,9 @@
 
 //--------------------------------------------------------------------------------------------
 // Callback functions for dialogue boxes.
-BOOL CALLBACK MultiDropDlgProc(HWND, UINT, WPARAM, LPARAM);
-BOOL CALLBACK AboutDlgProc(HWND, UINT, WPARAM, LPARAM);
-BOOL CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK MultiDropDlgProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK AboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
 
 //--------------------------------------------------------------------------------------------
 
@@ -335,10 +335,10 @@ class dialog : public T
 	{
 		if (uMsg == WM_INITDIALOG)
 		{
-			SetWindowLong(hWnd, DWL_USER, lParam);
+			SetWindowLong(hWnd, DWLP_USER, lParam);
 			TranslateDialog(hWnd);
 		}
-		return ((T *)GetWindowLong(hWnd, DWL_USER))->DlgProc(hWnd, uMsg, wParam, lParam);
+		return ((T *)GetWindowLong(hWnd, DWLP_USER))->DlgProc(hWnd, uMsg, wParam, lParam);
 	}
 public:
 	INT_PTR DoModal(HWND hWnd)

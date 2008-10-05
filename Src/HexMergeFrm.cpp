@@ -210,9 +210,9 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CHexMergeView *pRight = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0,1));
 
 	IHexEditorWindow *pifLeft = reinterpret_cast<IHexEditorWindow *>(
-		::GetWindowLongPtr(pLeft->m_hWnd, GWL_USERDATA));
+		::GetWindowLongPtr(pLeft->m_hWnd, GWLP_USERDATA));
 	IHexEditorWindow *pifRight = reinterpret_cast<IHexEditorWindow *>(
-		::GetWindowLongPtr(pRight->m_hWnd, GWL_USERDATA));
+		::GetWindowLongPtr(pRight->m_hWnd, GWLP_USERDATA));
 
 	if (pifLeft && pifRight)
 	{
