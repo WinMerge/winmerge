@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('About WinMerge', TAB_ABOUT);
+  $page->printHead('WinMerge: About', TAB_ABOUT);
   $stablerelease = $page->getStableRelease();
 ?>
 <h2>About WinMerge</h2>

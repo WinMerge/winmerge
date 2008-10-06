@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge History', TAB_ABOUT);
+  $page->printHead('WinMerge: History', TAB_ABOUT);
 ?>
 <h2>History</h2>
 <div class="infocard">
