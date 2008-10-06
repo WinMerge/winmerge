@@ -335,6 +335,7 @@ CzechLanguage=Czeski interfejs
 DanishLanguage=Dunski interfejs
 DutchLanguage=Holenderski interfejs
 FrenchLanguage=Francuski interfejs
+GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Niemiecki interfejs
 GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Wegierski interfejs

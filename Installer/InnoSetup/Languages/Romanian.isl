@@ -346,6 +346,7 @@ CzechLanguage=Meniuri si dialoguri în  Ceha
 DanishLanguage=Meniuri si dialoguri în Daneza
 DutchLanguage=Meniuri si dialoguri în Olandeza
 FrenchLanguage=Meniuri si dialoguri în Franceza
+GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Meniuri si dialoguri în Germana
 GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Meniuri si dialoguri în Maghiara

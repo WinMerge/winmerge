@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.10.2
   Change download URL to current URL (#2136765)
   BugFix: Case-sensitive regexp search didn't work (#1991259)
+  New translation: Galician (#2120685)
   Translation updates:
   - Ukrainian (#2131753)
 

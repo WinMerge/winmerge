@@ -329,6 +329,7 @@ CzechLanguage=Menús i diàlegs en Txec
 DanishLanguage=Menús i diàlegs en Danès
 DutchLanguage=Menús i diàlegs en Neerlandès
 FrenchLanguage=Menús i diàlegs en Francès
+GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Menús i diàlegs en Alemany
 GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Menús i diàlegs en Hongarès

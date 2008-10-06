@@ -349,6 +349,7 @@ CzechLanguage=Menu e finestre di dialogo in ceco
 DanishLanguage=Menu e finestre di dialogo in danese
 DutchLanguage=Menu e finestre di dialogo in olandese
 FrenchLanguage=Menu e finestre di dialogo in francese
+GalicianLanguage=Galician menus and dialogs
 GermanLanguage=Menu e finestre di dialogo in tedesco
 GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Menu e finestre di dialogo in ungherese
