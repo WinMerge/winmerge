@@ -26,6 +26,7 @@
   <li><a href="/support/">Support</a>?</li>
   <li><a href="/translations/">Translations</a>?</li>
 </ul>
+<?php $page->printDownloadNow(); ?>
 <?php
   $page->printFoot();
 ?>
