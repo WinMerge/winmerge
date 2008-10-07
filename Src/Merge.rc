@@ -1274,14 +1274,14 @@ BEGIN
     GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,91
     LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
                     IDC_STATIC,14,20,208,19
-    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
+    CONTROL         "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,104,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,68,210,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,26,80,56,13,ES_AUTOHSCROLL
 END
@@ -2048,8 +2048,8 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "&Path to cleartool.exe :"
-    IDS_VSS_CMD             "&Path to SS.EXE :"
+    IDS_CC_CMD              "&Path to cleartool.exe:"
+    IDS_VSS_CMD             "&Path to SS.EXE:"
 END
 
 // WINDOWS TITLES

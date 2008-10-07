@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-08-21 18:29+0000\n"
+"POT-Creation-Date: 2008-10-07 21:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1250,6 +1250,7 @@ msgid "&Versioning System:"
 msgstr ""
 
 #: Merge.rc:748
+#: Merge.rc:2051
 #, c-format
 msgid "&Path to cleartool.exe:"
 msgstr ""
@@ -2038,7 +2039,7 @@ msgstr ""
 
 #: Merge.rc:1277
 #, c-format
-msgid "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session"
+msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
 msgstr ""
 
 #: Merge.rc:1280
@@ -2053,7 +2054,7 @@ msgstr ""
 
 #: Merge.rc:1284
 #, c-format
-msgid "Custom codepage :"
+msgid "Custom codepage:"
 msgstr ""
 
 #: Merge.rc:1292
@@ -3263,14 +3264,9 @@ msgstr ""
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:2051
-#, c-format
-msgid "&Path to cleartool.exe :"
-msgstr ""
-
 #: Merge.rc:2052
 #, c-format
-msgid "&Path to SS.EXE :"
+msgid "&Path to SS.EXE:"
 msgstr ""
 
 #: Merge.rc:2058

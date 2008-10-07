@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.6
   Use 24bit icons for "Bookmarks" and "Delete" menu items (#2141184)
+  BugFix: Translatable strings having space before colon (#1971868)
 
 WinMerge 2.11.1.5 2008-10-02 (r5995)
   Use external editor to edit file filters (#2082774)
