@@ -4290,9 +4290,10 @@ SetSelectionMargin (BOOL bSelMargin)
       m_bSelMargin = bSelMargin;
       if (::IsWindow (m_hWnd))
         {
-          m_nScreenChars = -1;
-          Invalidate ();
+          InvalidateScreenRect ();
+          m_nTopSubLine = GetSubLineIndex(m_nTopLine);
           RecalcHorzScrollBar ();
+          UpdateCaret ();
         }
     }
 }
