@@ -10,8 +10,6 @@
 // GNU General Public License for more details.
 
   define ('TAB_HOME', 'home');
-  define ('WINMERGE_1_7', '1.7');
-  define ('WINMERGE_2_0', '2.0');
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
@@ -136,8 +134,6 @@
       $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
       switch ($this->_tab) {
-        case WINMERGE_1_7: //if WinMerge 1.7 ...
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
         case WINMERGE_2_2: //if WinMerge 2.2 ...
         case WINMERGE_2_4: //if WinMerge 2.4 ...
         case WINMERGE_2_6: //if WinMerge 2.6 ...
@@ -210,12 +206,6 @@
       if ($this->_tab == WINMERGE_2_2) { //if WinMerge 2.2 ...
         $temp .= "  <li><strong><a href=\"/2.2/index.php\" id=\"current\">WinMerge&nbsp;2.2</a></strong></li>\n";
       }
-      if ($this->_tab == WINMERGE_2_0) { //if WinMerge 2.0 ...
-        $temp .= "  <li><strong><a href=\"/2.0/index.php\" id=\"current\">WinMerge&nbsp;2.0</a></strong></li>\n";
-      }
-      if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "  <li><strong><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></strong></li>\n";
-      }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
         $temp .= "  <li><strong><a href=\"/docs/index.php\" id=\"current\">Documentation</a></strong></li>\n";
       }
@@ -255,19 +245,6 @@
           $temp .= "  <li><a href=\"/about/index.php\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/about/screenshots/index.php\" title=\"Screenshots\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/1.7/docs/index.html\">User's Guide</a></li>\n";
-          $temp .= "  <li><a href=\"/1.7/changes.php\">Change History</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/2.0/docs/index.html\">User's Guide</a></li>\n";
-          $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
-          $temp .= "  <li><a href=\"/2.0/docs/faq.htm\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...

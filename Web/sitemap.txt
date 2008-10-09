@@ -79,6 +79,7 @@ http://winmerge.org/about/screenshots/index.php
 http://winmerge.org/docs/changelog.php
 http://winmerge.org/docs/index.php
 http://winmerge.org/docs/releasenotes.php
+http://winmerge.org/docs/old/index.php
 http://winmerge.org/downloads/index.php
 http://winmerge.org/support/index.php
 http://winmerge.org/support/mailing-lists.php
