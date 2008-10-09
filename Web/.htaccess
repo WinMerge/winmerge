@@ -13,12 +13,12 @@ Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gi
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
 
 #Move "WinMerge 1.7 - User's Guide" to "Documentation" tab...
-Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7/
-Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7/
+Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7
+Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
 
 #Move "WinMerge 2.0 - User's Guide" to "Documentation" tab...
-Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0/
-Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0/
+Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0
+Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
 
 #Move history page to "About" tab...
 Redirect permanent /history.php http://winmerge.org/about/history.php
