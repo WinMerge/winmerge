@@ -10,7 +10,7 @@
 ?>
 <h2>Page Not Found...</h2>
 <p>For some reason (mis-typed URL, faulty referral from another site, out-of-date search engine listing or we simply deleted a file) the page you were looking for could not be found.
-<!--This site has recently undergone a major re-working, so that might explain why you got this page instead.--></p>
+This site has recently undergone a major re-working, so that might explain why you got this page instead.</p>
 
 <h3>Were you looking for...</h3>
 <ul>
