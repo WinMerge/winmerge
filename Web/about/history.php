@@ -79,8 +79,7 @@
     <li>WinMerge 2.0.0 (2003-08-04)</li>
   </ul>
   <ul class="inline">
-    <li><a href="/2.0/docs/index.html">User's Guide</a></li>
-    <li><a href="/2.0/changes.php">Change History</a></li>
+    <li><a href="/docs/old/usersguide-2.0/index.html">User's Guide</a></li>
   </ul>
 </div>
 <div class="infocard">
@@ -89,8 +88,7 @@
     <li>WinMerge 1.7.1 (2000-11-03)</li>
   </ul>
   <ul class="inline">
-    <li><a href="/1.7/docs/index.html">User's Guide</a></li>
-    <li><a href="/1.7/changes.php">Change History</a></li>
+    <li><a href="/docs/old/usersguide-1.7/index.html">User's Guide</a></li>
   </ul>
 </div>
 <?php
