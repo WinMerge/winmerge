@@ -10,7 +10,6 @@
 // GNU General Public License for more details.
 
   define ('TAB_HOME', 'home');
-  define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
   define ('WINMERGE_2_8', '2.8');
@@ -134,7 +133,6 @@
       $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
       switch ($this->_tab) {
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
         case WINMERGE_2_4: //if WinMerge 2.4 ...
         case WINMERGE_2_6: //if WinMerge 2.6 ...
         case WINMERGE_2_8: //if WinMerge 2.8 ...
@@ -203,9 +201,6 @@
       if ($this->_tab == WINMERGE_2_4) { //if WinMerge 2.4 ...
         $temp .= "  <li><strong><a href=\"/2.4/index.php\" id=\"current\">WinMerge&nbsp;2.4</a></strong></li>\n";
       }
-      if ($this->_tab == WINMERGE_2_2) { //if WinMerge 2.2 ...
-        $temp .= "  <li><strong><a href=\"/2.2/index.php\" id=\"current\">WinMerge&nbsp;2.2</a></strong></li>\n";
-      }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
         $temp .= "  <li><strong><a href=\"/docs/index.php\" id=\"current\">Documentation</a></strong></li>\n";
       }
@@ -245,14 +240,6 @@
           $temp .= "  <li><a href=\"/about/index.php\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/about/screenshots/index.php\" title=\"Screenshots\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/2.2/manual/index.html\">Manual</a></li>\n";
-          $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
-          $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
-          $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_4: //if WinMerge 2.4 ...
