@@ -39,12 +39,12 @@ Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/index.php
 #Tracker shortcuts...
 RewriteEngine On
 RewriteBase   /
-RewriteRule   ^bug/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
-RewriteRule   ^patch/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
-RewriteRule   ^support/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
-RewriteRule   ^rfe/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
-RewriteRule   ^todo/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
-RewriteRule   ^tracker/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
+RewriteRule   ^bug/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
+RewriteRule   ^patch/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
+RewriteRule   ^support/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
+RewriteRule   ^rfe/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
+RewriteRule   ^todo/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
+RewriteRule   ^tracker/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
 
 #Nicer Wiki URLs...
 RewriteEngine On
