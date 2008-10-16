@@ -1,0 +1,31 @@
+## This is a directory/file filter for WinMerge
+name: Frontpage
+desc: Suppresses _vti and other system directories in Frontpage websites
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+d: \\fpdb$
+d: \\stats$
+d: \\_borders$
+d: \\_derived$
+d: \\_fpclass$
+d: \\_overlay$
+d: \\_private$
+d: \\_contentindex$
+d: \\_themes$
+d: \\_vti_bin$
+d: \\_vti_cnf$
+d: \\_vti_log$
+d: \\_vti_map$
+d: \\_vti_pvt$
+d: \\_vti_txt$
+d: \\_vti_script$
+d: \\_vti*$
+d: \\cvs$ ## CVS control directory
+d: \\.svn$ ## Subversion control directory
