@@ -979,8 +979,12 @@ Var
 
 Begin
     FileName := ClearCaseMapFile();
-    BakFile := FileName + '.bak';
-    FileCopy(FileName, BakFile, True);
+    {Create a backup file of the original file first time it gets modified}
+    BakFile := FileName + '.original';
+    if not FileExists(BakFile) then
+    begin
+        FileCopy(FileName, BakFile, True);
+    end;
     MapFile := TStringList.Create();
     {Read the entire map file to a string list}
     MapFile.LoadFromFile(FileName);

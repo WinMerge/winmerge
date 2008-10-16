@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.6
   Use 24bit icons for "Bookmarks" and "Delete" menu items (#2141184)
+  Installer: create backup of ClearCase config file (#2129095)
   BugFix: Translatable strings having space before colon (#1971868)
   BugFix: Wrong cursor position when disabling selection margin (#2138555)
   BugFix: Showed a black line when disabling selection margin (#2068790)
