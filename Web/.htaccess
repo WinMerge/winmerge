@@ -12,6 +12,9 @@ ErrorDocument 404 /404.php
 #Use PHP5 instead of PHP4
 AddType x-mapp-php5 .php
 
+#Fix wrong wiki.winmerge.org frame redirect...
+Redirect permanent /wiki http://winmerge.org/Wiki/
+
 #Move "WinMerge 1.7 - User's Guide" to "Documentation" tab...
 Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7
 Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
