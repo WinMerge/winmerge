@@ -292,9 +292,9 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				nTimeDiff -= SmallTimeDiff;
 			}
 			if (nTimeDiff <= 0)
-				code = DIFFCODE::TEXT | DIFFCODE::SAME;
+				code = DIFFCODE::SAME;
 			else
-				code = DIFFCODE::TEXT | DIFFCODE::DIFF;
+				code = DIFFCODE::DIFF;
 		}
 		else
 		{
@@ -302,9 +302,9 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// set error status, unless we have DATE_SIZE -compare
 			// when we have still hope for size compare..
 			if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
-				code = DIFFCODE::TEXT | DIFFCODE::SAME;
+				code = DIFFCODE::SAME;
 			else
-				code = DIFFCODE::TEXT | DIFFCODE::CMPERR;
+				code = DIFFCODE::CMPERR;
 		}
 		
 		// This is actual CMP_DATE_SIZE method..

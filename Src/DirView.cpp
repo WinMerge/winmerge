@@ -94,6 +94,8 @@ static enum
 	DIFFIMG_DIRUP,
 	DIFFIMG_DIRUP_DISABLE,
 	DIFFIMG_ABORT,
+	DIFFIMG_TEXTDIFF,
+	DIFFIMG_TEXTSAME,
 };
 
 
@@ -282,6 +284,8 @@ void CDirView::OnInitialUpdate()
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
 	// Load the icons used for the list view (to reflect diff status)
+	// NOTE: these must be in the exactly the same order than in enum
+	// definition in begin of this file!
 	VERIFY (m_imageList.Create (iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFILE)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFILE)));
@@ -300,6 +304,8 @@ void CDirView::OnInitialUpdate()
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP_DISABLE)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ABORTED)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE)));
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Load the icons used for the list view (expanded/collapsed state icons)
@@ -344,7 +350,14 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 		if (di.diffcode.isDirectory())
 			return DIFFIMG_DIRSAME;
 		else
-			return (di.diffcode.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
+		{
+			if (di.diffcode.isText())
+				return DIFFIMG_TEXTSAME;
+			else if (di.diffcode.isBin())
+				return DIFFIMG_BINSAME;
+			else
+				return DIFFIMG_SAME;
+		}
 	}
 	// diff
 	if (di.diffcode.isResultDiff())
@@ -352,7 +365,14 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 		if (di.diffcode.isDirectory())
 			return DIFFIMG_DIRDIFF;
 		else
-			return (di.diffcode.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
+		{
+			if (di.diffcode.isText())
+				return DIFFIMG_TEXTDIFF;
+			else if (di.diffcode.isBin())
+				return DIFFIMG_BINDIFF;
+			else
+				return DIFFIMG_DIFF;
+		}
 	}
 	return (di.diffcode.isDirectory() ? DIFFIMG_DIR : DIFFIMG_ABORT);
 }

@@ -259,11 +259,11 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			}
 		}
 
-
-		// did we finish both files?
+		// Did we finish both files?
+		// We set the text/binary status only for fully compared files. Only
+		// then the result is reliable.
 		if (eof[0] && eof[1])
 		{
-
 			BOOL bBin0 = (m_textStats[0].nzeros>0);
 			BOOL bBin1 = (m_textStats[1].nzeros>0);
 
@@ -273,6 +273,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				diffcode |= DIFFCODE::BINSIDE1;
 			else if (bBin1)
 				diffcode |= DIFFCODE::BINSIDE2;
+			else
+				diffcode |= DIFFCODE::TEXT;
 
 			// If either unfinished, they differ
 			if (ptr0 != end0 || ptr1 != end1)

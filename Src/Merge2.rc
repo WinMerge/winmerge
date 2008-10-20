@@ -45,6 +45,8 @@ IDI_SIGMA               ICON                    "res\\sigma.ico"
 IDI_COMPARE_ABORTED     ICON                    "res\\aborted.ico"
 IDI_FILEFILTER          ICON                    "res\\FileFilter.ico"
 IDI_LINEFILTER          ICON                    "res\\LineFilter.ico"
+IDI_EQUALTEXTFILE       ICON                    "res\\equaltextfile.ico"
+IDI_NOTEQUALTEXTFILE    ICON                    "res\\notequaltextfile.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////

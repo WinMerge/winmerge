@@ -272,14 +272,18 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	}
 	else if (di.diffcode.isResultSame())
 	{
-		if (di.diffcode.isBin())
+		if (di.diffcode.isText())
+			s = theApp.LoadString(IDS_TEXT_FILES_SAME);
+		else if (di.diffcode.isBin())
 			s = theApp.LoadString(IDS_BIN_FILES_SAME);
 		else
 			s = theApp.LoadString(IDS_IDENTICAL);
 	}
 	else if (di.diffcode.isResultDiff()) // diff
 	{
-		if (di.diffcode.isBin())
+		if (di.diffcode.isText())
+			s = theApp.LoadString(IDS_TEXT_FILES_DIFF);
+		else if (di.diffcode.isBin())
 			s = theApp.LoadString(IDS_BIN_FILES_DIFF);
 		else if (di.diffcode.isDirectory())
 			s = theApp.LoadString(IDS_FOLDERS_ARE_DIFFERENT);

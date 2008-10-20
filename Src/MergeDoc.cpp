@@ -2135,9 +2135,12 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	DWORD nRightSuccess = LoadOneFile(1, sRightFile.c_str(), bRORight,
 		filelocRight.encoding);
 
+	const BOOL bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
+
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one
-	if (m_nBufferType[0] == BUFFER_UNNAMED && m_nBufferType[1] == BUFFER_UNNAMED)
+	if (bFiltersEnabled && m_nBufferType[0] == BUFFER_UNNAMED &&
+			m_nBufferType[1] == BUFFER_UNNAMED)
 		m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
 
 	// Bail out if either side failed
@@ -2212,9 +2215,12 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	// Define the prediffer
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;
-	m_pDirDoc->FetchPluginInfos(m_strBothFilenames.c_str(), &infoUnpacker, &infoPrediffer);
-	m_diffWrapper.SetPrediffer(infoPrediffer);
-	m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
+	if (bFiltersEnabled)
+	{
+		m_pDirDoc->FetchPluginInfos(m_strBothFilenames.c_str(), &infoUnpacker, &infoPrediffer);
+		m_diffWrapper.SetPrediffer(infoPrediffer);
+		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
+	}
 
 	BOOL bBinary = FALSE;
 	nRescanResult = Rescan(bBinary, bIdentical);
@@ -2234,7 +2240,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
 		String sextL, sextR;
-		if (m_pInfoUnpacker->textType.length())
+		if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
 		{
 			sextL = sextR = m_pInfoUnpacker->textType;
 		}

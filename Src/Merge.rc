@@ -2318,6 +2318,12 @@ BEGIN
     IDS_RIGHTONLY           "Right Only"
     IDS_DIFFERENT           "Different"
     IDS_CMPRES_ERROR        "Error"
+    IDS_TEXT_FILES_SAME     "Text files are identical"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TEXT_FILES_DIFF     "Text files are different"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

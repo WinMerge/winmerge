@@ -124,6 +124,8 @@
 #define IDI_LINEFILTER                  517
 #define IDI_EQUALFOLDER                 518
 #define IDI_NOTEQUALFOLDER              519
+#define IDI_EQUALTEXTFILE               520
+#define IDI_NOTEQUALTEXTFILE            521
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -682,9 +684,11 @@
 #define IDS_ABORTED_ITEM                17740
 #define IDS_CMPRES_ERROR                17741
 #define IDS_FOLDERS_ARE_DIFFERENT       17742
-#define IDS_ELAPSED_TIME                17744
-#define IDS_STATUS_SELITEM1             17745
-#define IDS_STATUS_SELITEMS             17746
+#define IDS_TEXT_FILES_SAME             17743
+#define IDS_TEXT_FILES_DIFF             17744
+#define IDS_ELAPSED_TIME                17750
+#define IDS_STATUS_SELITEM1             17751
+#define IDS_STATUS_SELITEMS             17752
 #define IDS_COLDESC_FILENAME            17760
 #define IDS_COLDESC_DIR                 17761
 #define IDS_COLDESC_RESULT              17762
