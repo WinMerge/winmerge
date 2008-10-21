@@ -10,6 +10,7 @@ WinMerge 2.11.1.6
   BugFix: Translatable strings having space before colon (#1971868)
   BugFix: Wrong cursor position when disabling selection margin (#2138555)
   BugFix: Showed a black line when disabling selection margin (#2068790)
+  BugFix: Fix manual URL in Readme.txt (#2181628)
 
 WinMerge 2.11.1.5 2008-10-02 (r5995)
   Use external editor to edit file filters (#2082774)
