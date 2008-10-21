@@ -1009,7 +1009,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,17,142,199,10
     CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,
                     17,152,199,10
-    EDITTEXT        IDC_TMPFOLDER_NAME,27,164,136,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TMPFOLDER_NAME,27,164,136,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Br&owse...",IDC_TMPFOLDER_BROWSE,167,164,50,14
 END
 
@@ -1208,7 +1208,7 @@ BEGIN
     CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,14,90,201,10
     GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,
-                    221,61
+                    221,61,WS_GROUP
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,125,201,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
@@ -1283,7 +1283,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,68,210,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,26,80,56,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,26,80,56,13,ES_AUTOHSCROLL | WS_GROUP
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
@@ -1467,7 +1467,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,19,58,209,10
     CONTROL         "&Detect archive type from file signature",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,70,221,10
+                    WS_TABSTOP | WS_GROUP,7,70,221,10
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
@@ -1629,7 +1629,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
     CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
-    EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
     LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
     CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
