@@ -390,7 +390,7 @@ void CDirDoc::Rescan()
 BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 {
 	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
-		return 0;
+		return FALSE;
 
 	if (di.diffcode.isResultFiltered())
 	{
@@ -399,40 +399,43 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 		return GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
 	}
 
-	// Subfolders in non-recursive compare can only be skipped or unique
-	if (!m_bRecursive && di.diffcode.isDirectory())
+	if (di.diffcode.isDirectory())
 	{
-		// result filters
-		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-			return 0;
+		// Subfolders in non-recursive compare can only be skipped or unique
+		if (!m_bRecursive)
+		{
+			// result filters
+			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+				return FALSE;
 
-		// left/right filters
-		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-			return 0;
-		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-			return 0;
+			// left/right filters
+			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+				return FALSE;
+			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+				return FALSE;
+		}
 	}
 	else
 	{
 		// file type filters
 		if (di.diffcode.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
-			return 0;
+			return FALSE;
 
 		// result filters
 		if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
-			return 0;
+			return FALSE;
 		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-			return 0;
+			return FALSE;
 		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-			return 0;
+			return FALSE;
 
 		// left/right filters
 		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-			return 0;
+			return FALSE;
 		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-			return 0;
+			return FALSE;
 	}
-	return 1;
+	return TRUE;
 }
 
 /**
