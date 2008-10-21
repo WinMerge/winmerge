@@ -887,7 +887,7 @@ CDirView::GetColDefaultOrder(int col) const
 const DirColInfo *
 CDirView::DirViewColItems_GetDirColInfo(int col) const
 {
-	if (col < 0 || col >= sizeof(f_cols)/sizeof(f_cols[0]))
+	if (col < 0 || col >= countof(f_cols))
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
 		return 0;
@@ -901,7 +901,7 @@ CDirView::DirViewColItems_GetDirColInfo(int col) const
 static bool
 IsColById(int col, int id)
 {
-	if (col < 0 || col >= sizeof(f_cols)/sizeof(f_cols[0]))
+	if (col < 0 || col >= countof(f_cols))
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
 		return false;
