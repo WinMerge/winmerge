@@ -209,6 +209,16 @@ static String ColPathGet(const CDiffContext *, const void *p)
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	String s = di.right.path;
 	const String &t = di.left.path;
+
+	// If we have unique path, just print the existing path name
+	if (s.length() == 0 || t.length() == 0)
+	{
+		if (s.length() == 0)
+			return t;
+		else
+			return s;
+	}
+
 	int i = 0, j = 0;
 	do
 	{
