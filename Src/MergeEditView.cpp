@@ -2762,12 +2762,13 @@ void CMergeEditView::OnOpenFileWithEditor()
 }
 
 /**
- * @brief Force repaint of location pane
+ * @brief Force repaint of the location pane.
  */
 void CMergeEditView::RepaintLocationPane()
 {
+	// Must force recalculation due to caching of data in location pane.
 	if (m_pLocationView)
-		m_pLocationView->Invalidate();
+		m_pLocationView->ForceRecalculate();
 }
 
 /**

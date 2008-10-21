@@ -147,6 +147,18 @@ CMergeDoc* CLocationView::GetDocument() // non-debug version is inline
 /////////////////////////////////////////////////////////////////////////////
 // CLocationView message handlers
 
+/**
+ * @brief Force recalculation and update of location pane.
+ * This method forces location pane to first recalculate its data and
+ * then repaint itself. This method bypasses location pane's caching
+ * of the diff data.
+ */
+void CLocationView::ForceRecalculate()
+{
+	m_bRecalculateBlocks = TRUE;
+	Invalidate();
+}
+
 /** 
  * @brief Update view.
  */
