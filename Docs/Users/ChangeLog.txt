@@ -8,6 +8,7 @@ WinMerge 2.10.2
   BugFix: Case-sensitive regexp search didn't work (#1991259)
   BugFix: Wrong cursor position when disabling selection margin (#2138555)
   BugFix: Showed a black line when disabling selection margin (#2068790)
+  BugFix: Fix manual URL in Readme.txt (#2181628)
   New translation: Galician (#2120685)
   Translation updates:
   - Ukrainian (#2131753)
