@@ -9,6 +9,8 @@ WinMerge 2.10.2
   BugFix: Wrong cursor position when disabling selection margin (#2138555)
   BugFix: Showed a black line when disabling selection margin (#2068790)
   BugFix: Fix manual URL in Readme.txt (#2181628)
+  BugFix: There were some installer regressions
+         (eg. Installer didn't create Quick Launch icon) (#1460517)
   New translation: Galician (#2120685)
   Translation updates:
   - Ukrainian (#2131753)
