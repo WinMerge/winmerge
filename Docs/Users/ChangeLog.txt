@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.11.1.6
+WinMerge 2.11.1.6 - 2008-10-23 (r6033)
   General compare status for files (not known if text/binary) (#2175736)
   Change icons for the new general compare status (#2185302)
   Use 24bit icons for "Bookmarks" and "Delete" menu items (#2141184)
@@ -17,7 +17,7 @@ WinMerge 2.11.1.6
   BugFix: If messagebox was shown during file loading location pane
     didn't show any differences (#2101780)
 
-WinMerge 2.11.1.5 2008-10-02 (r5995)
+WinMerge 2.11.1.5 - 2008-10-02 (r5995)
   Use external editor to edit file filters (#2082774)
   Improved command line handling (#2081779)
   Change Manual url to http://winmerge.org/docs/manual/ (r5956)
