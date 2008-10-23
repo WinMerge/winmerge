@@ -2,7 +2,7 @@ Option Explicit
 ''
 ' This script updates the language PO files from the master POT file.
 '
-' Copyright (C) 2007 by Tim Gerundt
+' Copyright (C) 2007-2008 by Tim Gerundt
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
@@ -123,6 +123,8 @@ Function GetContentFromPoFile(ByVal sPoPath)
       Else 'If comment line...
         iMsgStarted = -1
         Select Case Left(sLine, 2)
+          Case "#~" 'Obsolete message...
+            iMsgStarted = 0
           Case "#." 'Extracted comment...
             oSubContent.sExtractedComments = oSubContent.sExtractedComments & sLine & vbCrLf
           Case "#:" 'Reference...
@@ -136,7 +138,9 @@ Function GetContentFromPoFile(ByVal sPoPath)
     ElseIf iMsgStarted <> 0 Then 'If empty line AND there is pending translation...
       iMsgStarted = 0 'Don't process same translation twice
       If sMsgId = "" Then sMsgId = "__head__"
-      oContent.Add sMsgCtxt & sMsgId, oSubContent
+      If (oContent.Exists(sMsgCtxt & sMsgId) = False) Then 'If the key is NOT already used...
+        oContent.Add sMsgCtxt & sMsgId, oSubContent
+      End If
       sMsgCtxt = ""
       Set oSubContent = New CSubContent
     End If
