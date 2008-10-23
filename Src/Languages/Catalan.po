@@ -719,7 +719,7 @@ msgid "&Scripts"
 msgstr "&Seqüències d'ordres"
 
 #: Merge.rc:370
-#: Merge.rc:2761
+#: Merge.rc:2767
 #, c-format
 msgid "< Empty >"
 msgstr "< Buit >"
@@ -1253,6 +1253,7 @@ msgid "&Versioning System:"
 msgstr "Sistema de control de &versions"
 
 #: Merge.rc:748
+#: Merge.rc:2051
 #, c-format
 msgid "&Path to cleartool.exe:"
 msgstr "&Camí al cleartool.exe:"
@@ -2041,12 +2042,8 @@ msgstr "Selecciona la pàgina de codis predeterminada assumida en carregar fitxer
 
 #: Merge.rc:1277
 #, c-format
-msgid ""
-"Detect codepage info for these files : .html, .rc, .xml \n"
-"need to restart session"
+msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
 msgstr ""
-"Detecta la informació de pàgina de codis per a fitxers : .html, .rc, .xml\n"
-"Cal reiniciar la sessió"
 
 #: Merge.rc:1280
 #, c-format
@@ -2060,8 +2057,8 @@ msgstr "En funció de l'idioma de l'interfície d'usuari del WinMerge"
 
 #: Merge.rc:1284
 #, c-format
-msgid "Custom codepage :"
-msgstr "Pàgina de codis personalitzada:"
+msgid "Custom codepage:"
+msgstr ""
 
 #: Merge.rc:1292
 #, c-format
@@ -3338,7 +3335,7 @@ msgid "Size"
 msgstr "Mida"
 
 #: Merge.rc:2014
-#: Merge.rc:2625
+#: Merge.rc:2631
 #, c-format
 msgid "Name"
 msgstr "Nom"
@@ -3359,7 +3356,7 @@ msgid "[F] "
 msgstr ""
 
 #: Merge.rc:2018
-#: Merge.rc:2627
+#: Merge.rc:2633
 #, c-format
 msgid "Description"
 msgstr "Descripció"
@@ -3455,15 +3452,10 @@ msgstr "Expressió regular"
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
-#: Merge.rc:2051
-#, c-format
-msgid "&Path to cleartool.exe :"
-msgstr "&Camí al cleartool.exe :"
-
 #: Merge.rc:2052
 #, c-format
-msgid "&Path to SS.EXE :"
-msgstr "&Camí al SS.EXE :"
+msgid "&Path to SS.EXE:"
+msgstr ""
 
 #: Merge.rc:2058
 #, c-format
@@ -3880,7 +3872,7 @@ msgstr ""
 "Reviseu les especificacions de configuració de la vista emprada."
 
 #: Merge.rc:2169
-#: Merge.rc:2609
+#: Merge.rc:2615
 #, c-format
 msgid "None"
 msgstr "Cap"
@@ -4312,7 +4304,7 @@ msgid "Differences"
 msgstr "Diferències"
 
 #: Merge.rc:2300
-#: Merge.rc:2605
+#: Merge.rc:2611
 #, c-format
 msgid "Binary"
 msgstr "Binari"
@@ -4382,177 +4374,187 @@ msgstr "Només el dret"
 msgid "Error"
 msgstr ""
 
+#: Merge.rc:2321
+#, c-format
+msgid "Text files are identical"
+msgstr ""
+
 #: Merge.rc:2326
+#, c-format
+msgid "Text files are different"
+msgstr ""
+
+#: Merge.rc:2332
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Temps transcorregut: %ld ms"
 
-#: Merge.rc:2327
+#: Merge.rc:2333
 #, c-format
 msgid "1 item selected"
 msgstr "1 element seleccionat"
 
-#: Merge.rc:2328
+#: Merge.rc:2334
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 elements seleccionats"
 
-#: Merge.rc:2334
+#: Merge.rc:2340
 #, c-format
 msgid "Filename or folder name."
 msgstr "Nom del fitxer o directori."
 
-#: Merge.rc:2335
+#: Merge.rc:2341
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Nom del subdirectori quan s'incloguin els subdirectoris."
 
-#: Merge.rc:2336
+#: Merge.rc:2342
 #, c-format
 msgid "Comparison result, long form."
 msgstr "Resultat de la comparació, en forma llarga."
 
-#: Merge.rc:2337
+#: Merge.rc:2343
 #, c-format
 msgid "Left side modification date."
 msgstr "Data de modificació del costat esquerre."
 
-#: Merge.rc:2338
+#: Merge.rc:2344
 #, c-format
 msgid "Right side modification date."
 msgstr "Data de modificació del costat dret."
 
-#: Merge.rc:2339
+#: Merge.rc:2345
 #, c-format
 msgid "File's extension."
 msgstr "Extensió del fitxer."
 
-#: Merge.rc:2340
+#: Merge.rc:2346
 #, c-format
 msgid "Left file size in bytes."
 msgstr "Mida en bytes del fitxer esquerre."
 
-#: Merge.rc:2341
+#: Merge.rc:2347
 #, c-format
 msgid "Right file size in bytes."
 msgstr "Mida en bytes del fitxer dret."
 
-#: Merge.rc:2342
+#: Merge.rc:2348
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Mida del fitxer esquerre en format abreujat."
 
-#: Merge.rc:2343
+#: Merge.rc:2349
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Mida del fitxer dret en format abreujat."
 
-#: Merge.rc:2349
+#: Merge.rc:2355
 #, c-format
 msgid "Left side creation time."
 msgstr "Data de creació del fitxer esquerre."
 
-#: Merge.rc:2350
+#: Merge.rc:2356
 #, c-format
 msgid "Right side creation time."
 msgstr "Data de creació del fitxer dret."
 
-#: Merge.rc:2351
+#: Merge.rc:2357
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Diu quin costat te una data de modificació més recent."
 
-#: Merge.rc:2352
+#: Merge.rc:2358
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Versió del fitxer del costat esquerre, només per a alguns tipus de fitxer."
 
-#: Merge.rc:2353
+#: Merge.rc:2359
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Versió del fitxer del costat dret. només per a alguns tipus de fitxer."
 
-#: Merge.rc:2354
+#: Merge.rc:2360
 #, c-format
 msgid "Short comparison result."
 msgstr "Resultat breu de la comparació."
 
-#: Merge.rc:2355
+#: Merge.rc:2361
 #, c-format
 msgid "Left side attributes."
 msgstr "Atributs del costat esquerre."
 
-#: Merge.rc:2356
+#: Merge.rc:2362
 #, c-format
 msgid "Right side attributes."
 msgstr "Atributs del costat dret."
 
-#: Merge.rc:2357
+#: Merge.rc:2363
 #, c-format
 msgid "Left side file EOL type"
 msgstr "Tipus de salt de línia del fitxer del costat esquerre"
 
-#: Merge.rc:2358
+#: Merge.rc:2364
 #, c-format
 msgid "Right side file EOL type"
 msgstr "Tipus de salt de línia del fitxer del costat dret"
 
-#: Merge.rc:2364
+#: Merge.rc:2370
 #, c-format
 msgid "Left side encoding."
 msgstr "Codificació del costat esquerre."
 
-#: Merge.rc:2365
+#: Merge.rc:2371
 #, c-format
 msgid "Right side encoding."
 msgstr "Codificació del costat dret."
 
-#: Merge.rc:2366
+#: Merge.rc:2372
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "Nombre de diferències ignorades al fitxer. Aquestes diferències són ignorades pel WinMerge i no es poden combinar."
 
-#: Merge.rc:2367
+#: Merge.rc:2373
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "Nombre de diferències al fitxer. Aquest nombre no inclou les diferències ignorades.."
 
-#: Merge.rc:2368
+#: Merge.rc:2374
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Mostra un asterisc (*) si el fitxer és binari."
 
-#: Merge.rc:2374
+#: Merge.rc:2380
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Compara %1 amb %2"
 
-#: Merge.rc:2375
+#: Merge.rc:2381
 #, c-format
 msgid "Comma-separated list"
 msgstr "Llista delimitada per comes"
 
-#: Merge.rc:2376
+#: Merge.rc:2382
 #, c-format
 msgid "Tab-separated list"
 msgstr "Llista delimitada per tabulacions"
 
-#: Merge.rc:2377
+#: Merge.rc:2383
 #, c-format
 msgid "Simple HTML"
 msgstr "HTML símple"
 
-#: Merge.rc:2378
+#: Merge.rc:2384
 #, c-format
 msgid "Simple XML"
 msgstr "XML símple"
 
-#: Merge.rc:2380
+#: Merge.rc:2386
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "El fitxer d'informe ja existeix. Voleu sobreescriure'l?"
 
-#: Merge.rc:2381
+#: Merge.rc:2387
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4561,32 +4563,32 @@ msgstr ""
 "Hi ha hagut un error creant l'informe:\n"
 "%1"
 
-#: Merge.rc:2382
+#: Merge.rc:2388
 #, c-format
 msgid "The report has been created successfully."
 msgstr "L'informe s'ha creat satisfactòriament."
 
-#: Merge.rc:2388
+#: Merge.rc:2394
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "El mateix fitxer és obert a ambdues subfinestres."
 
-#: Merge.rc:2389
+#: Merge.rc:2395
 #, c-format
 msgid "The selected files are identical."
 msgstr "Els fitxers seleccionats són idèntics."
 
-#: Merge.rc:2390
+#: Merge.rc:2396
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "S'ha produït un error en comparar els fitxers."
 
-#: Merge.rc:2391
+#: Merge.rc:2397
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
 
-#: Merge.rc:2392
+#: Merge.rc:2398
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4601,32 +4603,32 @@ msgstr ""
 "\n"
 "Nota: Si voleu tractar els salts de línia sempre com a equivalents, especifiqueu l'opció 'Ignora diferències de salt de línia...' al quadre d'opcions (disponible des del menú Edita/Opcions...)."
 
-#: Merge.rc:2393
+#: Merge.rc:2399
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
 
-#: Merge.rc:2394
+#: Merge.rc:2400
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
 
-#: Merge.rc:2395
+#: Merge.rc:2401
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "La carpeta seleccionada és invàlida."
 
-#: Merge.rc:2396
+#: Merge.rc:2402
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "No es poden obrir fitxers binaris a l'editor."
 
-#: Merge.rc:2397
+#: Merge.rc:2403
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr ""
 
-#: Merge.rc:2403
+#: Merge.rc:2409
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4637,132 +4639,132 @@ msgstr ""
 "En mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\n"
 "Voleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
 
-#: Merge.rc:2404
+#: Merge.rc:2410
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "Advertiment: Els fitxers empren codificacions diferents, l'esquerre=%s i el dret=%s, i en combinar-los es podria perdre informació."
 
-#: Merge.rc:2405
+#: Merge.rc:2411
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "S'ha perdut informació degut a errors de codificació: ambdós fitxers"
 
-#: Merge.rc:2406
+#: Merge.rc:2412
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr "S'ha perdut informació degut a errors de codificació: fitxer dret"
 
-#: Merge.rc:2407
+#: Merge.rc:2413
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr "S'ha perdut informació degut a errors de codificació: fitxer esquerre"
 
-#: Merge.rc:2413
+#: Merge.rc:2419
 #, c-format
 msgid "No difference"
 msgstr "Sense diferències"
 
-#: Merge.rc:2414
+#: Merge.rc:2420
 #, c-format
 msgid "Line difference"
 msgstr "Diferència de línia"
 
-#: Merge.rc:2420
+#: Merge.rc:2426
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "S'ha(n) substituït %1 cadena(s)."
 
-#: Merge.rc:2421
+#: Merge.rc:2427
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "No s'ha trobat la cadena \"%s\""
 
-#: Merge.rc:2427
+#: Merge.rc:2433
 #, c-format
 msgid "Copy Full Path"
 msgstr "Copia el camí sencer del fitxer"
 
-#: Merge.rc:2428
+#: Merge.rc:2434
 #, c-format
 msgid "Copy Filename"
 msgstr "Copia el nom del fixer"
 
-#: Merge.rc:2434
+#: Merge.rc:2440
 #, c-format
 msgid "Location Pane"
 msgstr "Subfinestra d'ubicació"
 
-#: Merge.rc:2435
+#: Merge.rc:2441
 #, c-format
 msgid "Diff Pane"
 msgstr "Subfinestra de diferències"
 
-#: Merge.rc:2441
+#: Merge.rc:2447
 #, c-format
 msgid "Patch file successfully written."
 msgstr "El pedaç s'ha generat satisfactòriament."
 
-#: Merge.rc:2442
+#: Merge.rc:2448
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. no s'ha trobat l'element o aquest és un directori!"
 
-#: Merge.rc:2443
+#: Merge.rc:2449
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. no s'ha trobat l'element o aquest és un directori!"
 
-#: Merge.rc:2444
+#: Merge.rc:2450
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "El fitxer de pedaç ja existeix. El voleu sobreescriure?"
 
-#: Merge.rc:2445
+#: Merge.rc:2451
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 fitxers seleccionats]"
 
-#: Merge.rc:2446
+#: Merge.rc:2452
 #, c-format
 msgid "Normal"
 msgstr ""
 
-#: Merge.rc:2447
+#: Merge.rc:2453
 #, c-format
 msgid "Context"
 msgstr ""
 
-#: Merge.rc:2448
+#: Merge.rc:2454
 #, c-format
 msgid "Unified"
 msgstr "Unificat"
 
-#: Merge.rc:2449
+#: Merge.rc:2455
 #, c-format
 msgid "Could not write to file %1."
 msgstr "No s'ha pogut escriure al fitxer  %1."
 
-#: Merge.rc:2450
+#: Merge.rc:2456
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "El camí de sortida especificat no és un camí absolut: %1"
 
-#: Merge.rc:2451
+#: Merge.rc:2457
 #, c-format
 msgid "Specify an output file"
 msgstr "Especifiqueu un fitxer de sortida"
 
-#: Merge.rc:2452
+#: Merge.rc:2458
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "No es pot crear un pedaç de fitxers binaris."
 
-#: Merge.rc:2453
+#: Merge.rc:2459
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "No es pot crear un pedaç de directoris."
 
-#: Merge.rc:2454
+#: Merge.rc:2460
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4773,17 +4775,17 @@ msgstr ""
 "\n"
 "Cal que no hi hagi cap fitxer pendent de salvar per tal de crear un pedaç."
 
-#: Merge.rc:2455
+#: Merge.rc:2461
 #, c-format
 msgid "Folder does not exist."
 msgstr "La carpeta no existeix."
 
-#: Merge.rc:2460
+#: Merge.rc:2466
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "S'esborraran els resulats actuals de la comparació de directoris."
 
-#: Merge.rc:2461
+#: Merge.rc:2467
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4794,7 +4796,7 @@ msgstr ""
 "Els components necessaris (7-zip i/o Merge7z*.dll) per al suport d'arxivament no s'han pogut trobar.\n"
 "Vegeu el manual per a més informació quan al suport per a arxivament i com habilitar-lo."
 
-#: Merge.rc:2462
+#: Merge.rc:2468
 #, c-format
 msgid ""
 "\n"
@@ -4803,7 +4805,7 @@ msgstr ""
 "\n"
 "Nota: La integració del 7-Zip està desabilitada des dels ajustos del WinMerge."
 
-#: Merge.rc:2463
+#: Merge.rc:2469
 #, c-format
 msgid ""
 "\n"
@@ -4812,37 +4814,37 @@ msgstr ""
 "\n"
 "Nota: La integració del 7-Zip està restringida com a operació independent des dels ajustos del WinMerge."
 
-#: Merge.rc:2464
+#: Merge.rc:2470
 #, c-format
 msgid "Select file for export"
 msgstr "Trieu el fitxer per a exportar"
 
-#: Merge.rc:2465
+#: Merge.rc:2471
 #, c-format
 msgid "Select file for import"
 msgstr "Trieu el fitxer per a importar"
 
-#: Merge.rc:2466
+#: Merge.rc:2472
 #, c-format
 msgid "Options imported from the file."
 msgstr "S'ha importat les opcions des del fitxer."
 
-#: Merge.rc:2467
+#: Merge.rc:2473
 #, c-format
 msgid "Options exported to the file."
 msgstr "S'ha exportat les opcions al fitxer."
 
-#: Merge.rc:2468
+#: Merge.rc:2474
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "No s'ha pogut importar les opcions del fitxer."
 
-#: Merge.rc:2469
+#: Merge.rc:2475
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "No s'ha pogut escriure les opcions al fitxer."
 
-#: Merge.rc:2470
+#: Merge.rc:2476
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4850,493 +4852,493 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: Merge.rc:2476
+#: Merge.rc:2482
 #, c-format
 msgid "Regular expression error"
 msgstr "Hi ha un error a l'expressió regular"
 
-#: Merge.rc:2477
+#: Merge.rc:2483
 #, c-format
 msgid "No match"
 msgstr "No s'ha trobat cap coincidència"
 
-#: Merge.rc:2478
+#: Merge.rc:2484
 #, c-format
 msgid "Invalid regular expression"
 msgstr "L'expressió regular és invàlida"
 
-#: Merge.rc:2479
+#: Merge.rc:2485
 #, c-format
 msgid "Invalid collation character"
 msgstr "El caràcter de col·lació és invàlid"
 
-#: Merge.rc:2480
+#: Merge.rc:2486
 #, c-format
 msgid "Invalid character class name"
 msgstr "El nom de la classe de caràcter és invàlid"
 
-#: Merge.rc:2481
+#: Merge.rc:2487
 #, c-format
 msgid "Trailing backslash"
 msgstr "Hi ha una barra inversa al final"
 
-#: Merge.rc:2482
+#: Merge.rc:2488
 #, c-format
 msgid "Invalid back reference"
 msgstr "La referència vers enrere és invàlida"
 
-#: Merge.rc:2483
+#: Merge.rc:2489
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "Una construcció [ o [^ està desaparellada"
 
-#: Merge.rc:2484
+#: Merge.rc:2490
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "Una construcció ( o \\( està desaparellada"
 
-#: Merge.rc:2485
+#: Merge.rc:2491
 #, c-format
 msgid "Unmatched \\{"
 msgstr "Una construcció \\{ està desaparellada"
 
-#: Merge.rc:2486
+#: Merge.rc:2492
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "El contingut de la construcció \\{\\} és invàlid"
 
-#: Merge.rc:2487
+#: Merge.rc:2493
 #, c-format
 msgid "Invalid range end"
 msgstr "El final del rang és invàlid"
 
-#: Merge.rc:2488
+#: Merge.rc:2494
 #, c-format
 msgid "Out of memory"
 msgstr "Sense memòria"
 
-#: Merge.rc:2489
+#: Merge.rc:2495
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "L'expressió regular precedent és invàlida"
 
-#: Merge.rc:2490
+#: Merge.rc:2496
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "L'expressió regular acaba prematurament"
 
-#: Merge.rc:2491
+#: Merge.rc:2497
 #, c-format
 msgid "Regular expression too big"
 msgstr "L'expressió regular és massa llarga"
 
-#: Merge.rc:2496
+#: Merge.rc:2502
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "Una construcció ) o \\) està desaparellada"
 
-#: Merge.rc:2502
+#: Merge.rc:2508
 #, c-format
 msgid "Western European"
 msgstr "Europeu occidental"
 
-#: Merge.rc:2503
+#: Merge.rc:2509
 #, c-format
 msgid "Eastern European"
 msgstr "Europeu oriental"
 
-#: Merge.rc:2504
+#: Merge.rc:2510
 #, c-format
 msgid "East Asian"
 msgstr "Est asiàtic"
 
-#: Merge.rc:2505
+#: Merge.rc:2511
 #, c-format
 msgid "SE & SW Asian"
 msgstr "Sudest i sudoest asiàtic"
 
-#: Merge.rc:2506
+#: Merge.rc:2512
 #, c-format
 msgid "Middle Eastern"
 msgstr "Orient Mitjà"
 
-#: Merge.rc:2507
-#: Merge.rc:2517
+#: Merge.rc:2513
+#: Merge.rc:2523
 #, c-format
 msgid "Not applicable"
 msgstr "No aplicable"
 
-#: Merge.rc:2513
+#: Merge.rc:2519
 #, c-format
 msgid "MS-Windows"
 msgstr ""
 
-#: Merge.rc:2514
+#: Merge.rc:2520
 #, c-format
 msgid "MS-DOS"
 msgstr ""
 
-#: Merge.rc:2515
+#: Merge.rc:2521
 #, c-format
 msgid "Macintosh"
 msgstr ""
 
-#: Merge.rc:2516
+#: Merge.rc:2522
 #, c-format
 msgid "IBM"
 msgstr ""
 
-#: Merge.rc:2523
+#: Merge.rc:2529
 #, c-format
 msgid "EBCDIC"
 msgstr ""
 
-#: Merge.rc:2524
+#: Merge.rc:2530
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr "IBM EBCDIC Ciríl·lic"
 
-#: Merge.rc:2530
+#: Merge.rc:2536
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr "MS-DOS Llatí US"
 
-#: Merge.rc:2531
+#: Merge.rc:2537
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr "MS-DOS Àrab"
 
-#: Merge.rc:2532
+#: Merge.rc:2538
 #, c-format
 msgid "MS-DOS Greek"
 msgstr "MS-DOS Grec"
 
-#: Merge.rc:2533
+#: Merge.rc:2539
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr "MS-DOS Bàltic Rim"
 
-#: Merge.rc:2534
+#: Merge.rc:2540
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr "MS-DOS Llatí 1"
 
-#: Merge.rc:2535
+#: Merge.rc:2541
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr "MS-DOS Grec 1"
 
-#: Merge.rc:2536
+#: Merge.rc:2542
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr "MS-DOS Llatí 2"
 
-#: Merge.rc:2537
+#: Merge.rc:2543
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr "MS-DOS Ciril·lic"
 
-#: Merge.rc:2538
+#: Merge.rc:2544
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr "MS-DOS Turc"
 
-#: Merge.rc:2539
+#: Merge.rc:2545
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr "MS-DOS Portuguès"
 
-#: Merge.rc:2545
+#: Merge.rc:2551
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr "MS-DOS Islandès"
 
-#: Merge.rc:2546
+#: Merge.rc:2552
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr "MS-DOS Hebreu"
 
-#: Merge.rc:2547
+#: Merge.rc:2553
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr "MS-DOS Canada francès"
 
-#: Merge.rc:2548
+#: Merge.rc:2554
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr "MS-DOS Nòrdic"
 
-#: Merge.rc:2549
+#: Merge.rc:2555
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr "MS-DOS Ciril·lic CIS 1"
 
-#: Merge.rc:2550
+#: Merge.rc:2556
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr "MS-DOS Grec 2"
 
-#: Merge.rc:2556
+#: Merge.rc:2562
 #, c-format
 msgid "Windows Thai"
 msgstr "Windows Tai"
 
-#: Merge.rc:2557
+#: Merge.rc:2563
 #, c-format
 msgid "Windows Japanese"
 msgstr "Windows Japonès"
 
-#: Merge.rc:2558
+#: Merge.rc:2564
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr "Windows Xinès simplificat"
 
-#: Merge.rc:2559
+#: Merge.rc:2565
 #, c-format
 msgid "Windows Korean"
 msgstr "Windows Koreà"
 
-#: Merge.rc:2560
+#: Merge.rc:2566
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr "Windows Xinès tradicional"
 
-#: Merge.rc:2561
+#: Merge.rc:2567
 #, c-format
 msgid "Windows Latin 2"
 msgstr "Windows Llatí 2"
 
-#: Merge.rc:2562
+#: Merge.rc:2568
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr "Windows Ciril·lic (Eslau)"
 
-#: Merge.rc:2563
+#: Merge.rc:2569
 #, c-format
 msgid "Windows Latin 1"
 msgstr "Windows Llatí 1"
 
-#: Merge.rc:2564
+#: Merge.rc:2570
 #, c-format
 msgid "Windows Greek"
 msgstr "Windows Grec"
 
-#: Merge.rc:2565
+#: Merge.rc:2571
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr "Windows Llatí 5 (Turc)"
 
-#: Merge.rc:2566
+#: Merge.rc:2572
 #, c-format
 msgid "Windows Hebrew"
 msgstr "Windows Hebreu"
 
-#: Merge.rc:2567
+#: Merge.rc:2573
 #, c-format
 msgid "Windows Arabic"
 msgstr "Windows Àrab"
 
-#: Merge.rc:2568
+#: Merge.rc:2574
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr "Windows Bàltic Rim"
 
-#: Merge.rc:2569
+#: Merge.rc:2575
 #, c-format
 msgid "Windows Vietnamese"
 msgstr "Windows Vietnamita"
 
-#: Merge.rc:2575
+#: Merge.rc:2581
 #, c-format
 msgid "Macintosh Roman"
 msgstr "Macintosh Romà"
 
-#: Merge.rc:2576
+#: Merge.rc:2582
 #, c-format
 msgid "Macintosh Greek"
 msgstr "Macintosh Grec"
 
-#: Merge.rc:2577
+#: Merge.rc:2583
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr "Macintosh Ciril·lic"
 
-#: Merge.rc:2578
+#: Merge.rc:2584
 #, c-format
 msgid "Macintosh "
 msgstr ""
 
-#: Merge.rc:2579
+#: Merge.rc:2585
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr "Macintosh Europa central"
 
-#: Merge.rc:2580
+#: Merge.rc:2586
 #, c-format
 msgid "Macintosh Turkish"
 msgstr "Macintosh Turc"
 
-#: Merge.rc:2589
+#: Merge.rc:2595
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr "Semblant a ISO-8859-2"
 
-#: Merge.rc:2592
+#: Merge.rc:2598
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr "Semblant a ISO-8859-1"
 
-#: Merge.rc:2593
+#: Merge.rc:2599
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr "Semblant a ISO-8859-7"
 
-#: Merge.rc:2594
+#: Merge.rc:2600
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr "Semblant a ISO-8859-9"
 
-#: Merge.rc:2595
+#: Merge.rc:2601
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr "Semblant a ISO-8859-8"
 
-#: Merge.rc:2601
+#: Merge.rc:2607
 #, c-format
 msgid "Win"
 msgstr ""
 
-#: Merge.rc:2602
+#: Merge.rc:2608
 #, c-format
 msgid "Mac"
 msgstr ""
 
-#: Merge.rc:2603
+#: Merge.rc:2609
 #, c-format
 msgid "Unix"
 msgstr ""
 
-#: Merge.rc:2604
+#: Merge.rc:2610
 #, c-format
 msgid "Mixed"
 msgstr "Barrejat"
 
-#: Merge.rc:2606
+#: Merge.rc:2612
 #, c-format
 msgid "LF"
 msgstr ""
 
-#: Merge.rc:2607
+#: Merge.rc:2613
 #, c-format
 msgid "CR"
 msgstr ""
 
-#: Merge.rc:2608
+#: Merge.rc:2614
 #, c-format
 msgid "CRLF"
 msgstr ""
 
-#: Merge.rc:2615
+#: Merge.rc:2621
 #, c-format
 msgid " B"
 msgstr ""
 
-#: Merge.rc:2616
+#: Merge.rc:2622
 #, c-format
 msgid " KB"
 msgstr ""
 
-#: Merge.rc:2617
+#: Merge.rc:2623
 #, c-format
 msgid " MB"
 msgstr ""
 
-#: Merge.rc:2618
+#: Merge.rc:2624
 #, c-format
 msgid " GB"
 msgstr ""
 
-#: Merge.rc:2619
+#: Merge.rc:2625
 #, c-format
 msgid " TB"
 msgstr ""
 
-#: Merge.rc:2620
+#: Merge.rc:2626
 #, c-format
 msgid " PB"
 msgstr ""
 
-#: Merge.rc:2626
+#: Merge.rc:2632
 #, c-format
 msgid "Type"
 msgstr ""
 
-#: Merge.rc:2628
+#: Merge.rc:2634
 #, c-format
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:2629
+#: Merge.rc:2635
 #, c-format
 msgid "Prediffer"
 msgstr ""
 
-#: Merge.rc:2630
+#: Merge.rc:2636
 #, c-format
 msgid "Editor script"
 msgstr ""
 
-#: Merge.rc:2637
+#: Merge.rc:2643
 #, c-format
 msgid "Save the left file"
 msgstr "Desa el fitxer de l'esquerra"
 
-#: Merge.rc:2638
+#: Merge.rc:2644
 #, c-format
 msgid "Save the right file"
 msgstr "Desa el fitxer de la dreta"
 
-#: Merge.rc:2639
+#: Merge.rc:2645
 #, c-format
 msgid "Save the left file with name..."
 msgstr "Desa i anomena el fitxer de l'esquerra..."
 
-#: Merge.rc:2640
+#: Merge.rc:2646
 #, c-format
 msgid "Save the right file with name..."
 msgstr "Desa i anomena el fitxer de la dreta..."
 
-#: Merge.rc:2641
+#: Merge.rc:2647
 #, c-format
 msgid "Change left side file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2642
+#: Merge.rc:2648
 #, c-format
 msgid "Change right side file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2643
+#: Merge.rc:2649
 #, c-format
 msgid "Convert EOL to Windows mode"
 msgstr ""
 
-#: Merge.rc:2644
+#: Merge.rc:2650
 #, c-format
 msgid "Convert EOL to Unix mode"
 msgstr ""
 
-#: Merge.rc:2645
+#: Merge.rc:2651
 #, c-format
 msgid "Convert EOL to Mac mode"
 msgstr ""
 
-#: Merge.rc:2646
+#: Merge.rc:2652
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Commuta entre els modes d'edició i el de combinació"
 
-#: Merge.rc:2647
+#: Merge.rc:2653
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5345,12 +5347,12 @@ msgstr ""
 "Mostra i ajusta les propietats de codificació de fixter\n"
 "Propietats de codificació de fitxer"
 
-#: Merge.rc:2648
+#: Merge.rc:2654
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr ""
 
-#: Merge.rc:2654
+#: Merge.rc:2660
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5359,7 +5361,7 @@ msgstr ""
 "Selecciona l'àrea de diferència a la línia actual\n"
 "Diferència a la línia actual (F4)"
 
-#: Merge.rc:2655
+#: Merge.rc:2661
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5368,7 +5370,7 @@ msgstr ""
 "Va fins a una línia o una diferència\n"
 "Vés a (Control+G)"
 
-#: Merge.rc:2656
+#: Merge.rc:2662
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5377,7 +5379,7 @@ msgstr ""
 "Especifica opcions del programa\n"
 "Opcions"
 
-#: Merge.rc:2657
+#: Merge.rc:2663
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5386,37 +5388,37 @@ msgstr ""
 "Actualitza la visualització\n"
 "Actualitza (F5)"
 
-#: Merge.rc:2658
+#: Merge.rc:2664
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "Copia les línies seleccionades al Porta-retalls afegint-hi els números de línia al inici de línia"
 
-#: Merge.rc:2659
+#: Merge.rc:2665
 #, c-format
 msgid "Refresh selected items"
 msgstr "Actualitza els elements seleccionats"
 
-#: Merge.rc:2660
+#: Merge.rc:2666
 #, c-format
 msgid "Toggle bookmark"
 msgstr "Activa/desactiva el punt d'interès"
 
-#: Merge.rc:2661
+#: Merge.rc:2667
 #, c-format
 msgid "Go to next bookmark"
 msgstr "Va al següent punt d'interès"
 
-#: Merge.rc:2662
+#: Merge.rc:2668
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "Va al punt d'interès anterior"
 
-#: Merge.rc:2663
+#: Merge.rc:2669
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "Esborra tots els punts d'interès"
 
-#: Merge.rc:2669
+#: Merge.rc:2675
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5425,7 +5427,7 @@ msgstr ""
 "Visualitza els elements que singuin exactament iguals\n"
 "Mostra elements idèntics"
 
-#: Merge.rc:2670
+#: Merge.rc:2676
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5434,7 +5436,7 @@ msgstr ""
 "Visualitza els elements que tinguin diferències\n"
 "Mostra elements diferents"
 
-#: Merge.rc:2671
+#: Merge.rc:2677
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5443,7 +5445,7 @@ msgstr ""
 "Visualitza els elements existents únicament a l'esquerra\n"
 "Mostra elements únics de l'esquerra"
 
-#: Merge.rc:2672
+#: Merge.rc:2678
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5452,7 +5454,7 @@ msgstr ""
 "Visualitza els elements existents únicament a la dreta\n"
 "Mostra elements únics de la dreta"
 
-#: Merge.rc:2673
+#: Merge.rc:2679
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5461,7 +5463,7 @@ msgstr ""
 "Visualitza els elements binaris\n"
 "Mostra elements binaris"
 
-#: Merge.rc:2674
+#: Merge.rc:2680
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5470,7 +5472,7 @@ msgstr ""
 "Visualitza els elements omesos\n"
 "Mostra elements omesos"
 
-#: Merge.rc:2680
+#: Merge.rc:2686
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5479,7 +5481,7 @@ msgstr ""
 "Selecciona el tipus de lletra per a les visualitzacions de diferències\n"
 "Selecciona tipus de lletra per a diferències"
 
-#: Merge.rc:2681
+#: Merge.rc:2687
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5488,42 +5490,42 @@ msgstr ""
 "Recupera el tipus de lletra del sistema per a la visualització de diferències\n"
 "Tipus de lletra del sistema"
 
-#: Merge.rc:2682
+#: Merge.rc:2688
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "Mostra els caràcters d'espais"
 
-#: Merge.rc:2683
+#: Merge.rc:2689
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Mostra la subfinestra de diferències"
 
-#: Merge.rc:2684
+#: Merge.rc:2690
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "Mostra la subfinestra d'ubicació amb una image general dels fitxers"
 
-#: Merge.rc:2685
+#: Merge.rc:2691
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "Mostra el quadre de diàleg d'estadístiques de comparació de carpeta"
 
-#: Merge.rc:2686
+#: Merge.rc:2692
 #, c-format
 msgid "Select the current user interface language\nLanguage"
 msgstr ""
 
-#: Merge.rc:2687
+#: Merge.rc:2693
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
 
-#: Merge.rc:2688
+#: Merge.rc:2694
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "Intercanvia la posició d'ambdues subfinestres"
 
-#: Merge.rc:2689
+#: Merge.rc:2695
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5532,7 +5534,7 @@ msgstr ""
 "Mostra els números de línia\n"
 "Mostra els números de línia"
 
-#: Merge.rc:2690
+#: Merge.rc:2696
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5541,7 +5543,7 @@ msgstr ""
 "Permet l'ajustament de paraules\n"
 "Ajusta les línies"
 
-#: Merge.rc:2691
+#: Merge.rc:2697
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -5550,47 +5552,47 @@ msgstr ""
 "Mostra els marges de selecció per a ambdós subfinestres\n"
 "Mostra els marges de selecció"
 
-#: Merge.rc:2692
+#: Merge.rc:2698
 #, c-format
 msgid "Increase text size"
 msgstr ""
 
-#: Merge.rc:2693
+#: Merge.rc:2699
 #, c-format
 msgid "Decrease text size"
 msgstr ""
 
-#: Merge.rc:2694
+#: Merge.rc:2700
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr ""
 
-#: Merge.rc:2700
+#: Merge.rc:2706
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
 
-#: Merge.rc:2701
+#: Merge.rc:2707
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
 
-#: Merge.rc:2702
+#: Merge.rc:2708
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
 
-#: Merge.rc:2703
+#: Merge.rc:2709
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
 
-#: Merge.rc:2704
+#: Merge.rc:2710
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
 
-#: Merge.rc:2705
+#: Merge.rc:2711
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5599,7 +5601,7 @@ msgstr ""
 "Copia el text seleccionat al fitxer de la dreta\n"
 "Copia al fitxer de la dreta (Alt+Dreta)"
 
-#: Merge.rc:2706
+#: Merge.rc:2712
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5608,7 +5610,7 @@ msgstr ""
 "Copia el text seleccionat al fitxer de l'esquerra\n"
 "Copia al fitxer de l'esquerra (Alt+Esquerra)"
 
-#: Merge.rc:2707
+#: Merge.rc:2713
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5617,7 +5619,7 @@ msgstr ""
 "Copia la diferència a la dreta i avança a al següent\n"
 "Copia a la dreta i avança (Control+Alt+Dreta)"
 
-#: Merge.rc:2708
+#: Merge.rc:2714
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5626,7 +5628,7 @@ msgstr ""
 "Copia la diferència a l'esquerra i avança a la següent\n"
 "Copia a l'esquerra i avança (Control+Alt+Esquerra)"
 
-#: Merge.rc:2709
+#: Merge.rc:2715
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -5635,7 +5637,7 @@ msgstr ""
 "Copia totes les diferènces al fitxer de la dreta\n"
 "Tot a la dreta"
 
-#: Merge.rc:2710
+#: Merge.rc:2716
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -5644,377 +5646,377 @@ msgstr ""
 "Copia totes les diferènces al fitxer de l'esquerra\n"
 "Tot a l'esquerra"
 
-#: Merge.rc:2711
+#: Merge.rc:2717
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "Suprimeix els elements seleccionats d'ambdós directoris"
 
-#: Merge.rc:2712
+#: Merge.rc:2718
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Compara l'element seleccionat (compara el primer element en cas de selecció múltiple)"
 
-#: Merge.rc:2718
+#: Merge.rc:2724
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Tria i reordena les columnes de comparació de directoris"
 
-#: Merge.rc:2719
+#: Merge.rc:2725
 #, c-format
 msgid "Generate a patch-file"
 msgstr "Genera un fitxer de pedaços"
 
-#: Merge.rc:2720
+#: Merge.rc:2726
 #, c-format
 msgid "Select and modify filters"
 msgstr "Tria i modifica els filtres"
 
-#: Merge.rc:2721
+#: Merge.rc:2727
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "Genera un informe a partir dels resultats de comparació"
 
-#: Merge.rc:2727
+#: Merge.rc:2733
 #, c-format
 msgid "Shows a list of available plugins"
 msgstr ""
 
-#: Merge.rc:2728
+#: Merge.rc:2734
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "L'usuari tria el desempaquetador (no hi ha desempaquetament en comparar directoris)"
 
-#: Merge.rc:2729
+#: Merge.rc:2735
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "El desempaquetador adaptat s'aplica a ambdós fitxers (només hi cal l'extensió en un fitxer)"
 
-#: Merge.rc:2730
+#: Merge.rc:2736
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Tria un desempaquetador per a editar aquest fitxer"
 
-#: Merge.rc:2731
+#: Merge.rc:2737
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "No prediferencia (normal)"
 
-#: Merge.rc:2732
+#: Merge.rc:2738
 #, c-format
 msgid "Suggested plugins"
 msgstr "Connectors suggerits"
 
-#: Merge.rc:2733
+#: Merge.rc:2739
 #, c-format
 msgid "Other plugins"
 msgstr "Altres connectors"
 
-#: Merge.rc:2734
+#: Merge.rc:2740
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Descarrega el connectoris i els torna a carregar (per a desenvolupadors)"
 
-#: Merge.rc:2740
+#: Merge.rc:2746
 #, c-format
 msgid "Activates next visible file\nActivate next File"
 msgstr ""
 
-#: Merge.rc:2741
+#: Merge.rc:2747
 #, c-format
 msgid "Closes all open windows"
 msgstr "Tanca totes les finestres obertes"
 
-#: Merge.rc:2747
+#: Merge.rc:2753
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
 msgstr ""
 
-#: Merge.rc:2748
+#: Merge.rc:2754
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "Treu informació de versió i configuració actuals del WinMerge en un fitxer de text"
 
-#: Merge.rc:2749
+#: Merge.rc:2755
 #, c-format
 msgid "Display the GNU General Public License"
 msgstr ""
 
-#: Merge.rc:2750
+#: Merge.rc:2756
 #, c-format
 msgid "Private Build: %1"
 msgstr "Muntatge privat: %1"
 
-#: Merge.rc:2751
+#: Merge.rc:2757
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
 msgstr ""
 
-#: Merge.rc:2752
+#: Merge.rc:2758
 #, c-format
 msgid "Opens the translations website\nTranslations"
 msgstr ""
 
-#: Merge.rc:2758
+#: Merge.rc:2764
 #, c-format
 msgid "Plugin Settings"
 msgstr "Ajustos del connector"
 
-#: Merge.rc:2759
+#: Merge.rc:2765
 #, c-format
 msgid "No prediffer"
 msgstr "No prediferenciïs"
 
-#: Merge.rc:2760
+#: Merge.rc:2766
 #, c-format
 msgid "Prediff if possible"
 msgstr "Prediferencia quan sigui possible"
 
-#: Merge.rc:2762
+#: Merge.rc:2768
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "No s'ha trobat el WSH - seqüències d'ordres .sct inhabilitades"
 
-#: Merge.rc:2763
+#: Merge.rc:2769
 #, c-format
 msgid "<None>"
 msgstr "<Cap>"
 
-#: Merge.rc:2764
+#: Merge.rc:2770
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automàtic>"
 
-#: Merge.rc:2770
+#: Merge.rc:2776
 #, c-format
 msgid "Open the file with registered application"
 msgstr "Obre el fitxer amb l'apliació registrada"
 
-#: Merge.rc:2771
+#: Merge.rc:2777
 #, c-format
 msgid "Open the file with external editor"
 msgstr "Obre el fitxer amb l'editor extern"
 
-#: Merge.rc:2772
+#: Merge.rc:2778
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "Obre el fitxer amb una aplicació particular"
 
-#: Merge.rc:2778
+#: Merge.rc:2784
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "No mostra els blocs moguts"
 
-#: Merge.rc:2779
+#: Merge.rc:2785
 #, c-format
 msgid "Display all moved blocks"
 msgstr ""
 
-#: Merge.rc:2780
+#: Merge.rc:2786
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Mostra només els blocs moguts des de la diferència actual"
 
-#: Merge.rc:2781
+#: Merge.rc:2787
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Va fins a la diferència sota la busca"
 
-#: Merge.rc:2782
+#: Merge.rc:2788
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "Va fins a la diferència %1 de %2"
 
-#: Merge.rc:2783
+#: Merge.rc:2789
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Va fins a la línia %1"
 
-#: Merge.rc:2789
+#: Merge.rc:2795
 #, c-format
 msgid "Disabled"
 msgstr "Inhabilitat"
 
-#: Merge.rc:2790
+#: Merge.rc:2796
 #, c-format
 msgid "From file system"
 msgstr "Des del sistema de fitxers"
 
-#: Merge.rc:2791
+#: Merge.rc:2797
 #, c-format
 msgid "From MRU list"
 msgstr "Des de la llista de recents"
 
-#: Merge.rc:2797
+#: Merge.rc:2803
 #, c-format
 msgid "No Highlighting"
 msgstr ""
 
-#: Merge.rc:2798
+#: Merge.rc:2804
 #, c-format
 msgid "ASP"
 msgstr ""
 
-#: Merge.rc:2799
+#: Merge.rc:2805
 #, c-format
 msgid "Basic"
 msgstr ""
 
-#: Merge.rc:2800
+#: Merge.rc:2806
 #, c-format
 msgid "Batch"
 msgstr ""
 
-#: Merge.rc:2801
+#: Merge.rc:2807
 #, c-format
 msgid "C/C++"
 msgstr ""
 
-#: Merge.rc:2802
+#: Merge.rc:2808
 #, c-format
 msgid "C#"
 msgstr ""
 
-#: Merge.rc:2803
+#: Merge.rc:2809
 #, c-format
 msgid "CSS"
 msgstr ""
 
-#: Merge.rc:2804
+#: Merge.rc:2810
 #, c-format
 msgid "DCL"
 msgstr ""
 
-#: Merge.rc:2805
+#: Merge.rc:2811
 #, c-format
 msgid "Fortran"
 msgstr ""
 
-#: Merge.rc:2806
+#: Merge.rc:2812
 #, c-format
 msgid "HTML"
 msgstr ""
 
-#: Merge.rc:2807
+#: Merge.rc:2813
 #, c-format
 msgid "INI"
 msgstr ""
 
-#: Merge.rc:2808
+#: Merge.rc:2814
 #, c-format
 msgid "InnoSetup"
 msgstr ""
 
-#: Merge.rc:2809
+#: Merge.rc:2815
 #, c-format
 msgid "InstallShield"
 msgstr ""
 
-#: Merge.rc:2810
+#: Merge.rc:2816
 #, c-format
 msgid "Java"
 msgstr ""
 
-#: Merge.rc:2811
+#: Merge.rc:2817
 #, c-format
 msgid "AutoLISP"
 msgstr ""
 
-#: Merge.rc:2812
+#: Merge.rc:2818
 #, c-format
 msgid "NSIS"
 msgstr ""
 
-#: Merge.rc:2813
+#: Merge.rc:2819
 #, c-format
 msgid "Pascal"
 msgstr ""
 
-#: Merge.rc:2814
+#: Merge.rc:2820
 #, c-format
 msgid "Perl"
 msgstr ""
 
-#: Merge.rc:2815
+#: Merge.rc:2821
 #, c-format
 msgid "PHP"
 msgstr ""
 
-#: Merge.rc:2816
+#: Merge.rc:2822
 #, c-format
 msgid "Portable Object"
 msgstr ""
 
-#: Merge.rc:2817
+#: Merge.rc:2823
 #, c-format
 msgid "PowerShell"
 msgstr ""
 
-#: Merge.rc:2818
+#: Merge.rc:2824
 #, c-format
 msgid "Python"
 msgstr ""
 
-#: Merge.rc:2819
+#: Merge.rc:2825
 #, c-format
 msgid "REXX"
 msgstr ""
 
-#: Merge.rc:2820
+#: Merge.rc:2826
 #, c-format
 msgid "Resources"
 msgstr ""
 
-#: Merge.rc:2821
+#: Merge.rc:2827
 #, c-format
 msgid "Ruby"
 msgstr ""
 
-#: Merge.rc:2822
+#: Merge.rc:2828
 #, c-format
 msgid "SGML"
 msgstr ""
 
-#: Merge.rc:2823
+#: Merge.rc:2829
 #, c-format
 msgid "Shell"
 msgstr ""
 
-#: Merge.rc:2824
+#: Merge.rc:2830
 #, c-format
 msgid "SIOD"
 msgstr ""
 
-#: Merge.rc:2825
+#: Merge.rc:2831
 #, c-format
 msgid "SQL"
 msgstr ""
 
-#: Merge.rc:2826
+#: Merge.rc:2832
 #, c-format
 msgid "TCL"
 msgstr ""
 
-#: Merge.rc:2827
+#: Merge.rc:2833
 #, c-format
 msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2828
+#: Merge.rc:2834
 #, c-format
 msgid "XML"
 msgstr ""
 
-#: Merge.rc:2833
+#: Merge.rc:2839
 #, c-format
 msgid "Hide the toolbar"
 msgstr "Amaga la barra d'eines"
 
-#: Merge.rc:2834
+#: Merge.rc:2840
 #, c-format
 msgid "Show small toolbar"
 msgstr "Mostra la barra d'eines petita"
 
-#: Merge.rc:2835
+#: Merge.rc:2841
 #, c-format
 msgid "Show big toolbar"
 msgstr "Mostra la barra d'eines gran"
