@@ -286,7 +286,7 @@ msgstr "&Pluginy"
 #: Merge.rc:450
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Seznam..."
 
 #: Merge.rc:152
 #: Merge.rc:269
@@ -1842,7 +1842,7 @@ msgstr "Ignorovat &malá a velká písmena"
 #: Merge.rc:1165
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Ignorovat rozdíly v &koncích øádkù (Windows/Unix/Mac)"
 
 #: Merge.rc:1168
 #, c-format
@@ -2139,7 +2139,7 @@ msgstr "Cesty pluginù:"
 #: Merge.rc:1321
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr ""
+msgstr "T&uto zprávu již pøíštì nezobrazovat.\n(Tuto zprávu mùžete vždy znovu vyvolat z nabídky Nápovìda.)"
 
 #: Merge.rc:1325
 #, c-format
@@ -2579,12 +2579,12 @@ msgstr "Ne"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Pluginy"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "&Povolit pluginy"
 
 #. StringFileInfo.Block
 #: Merge.rc:1691
@@ -3416,7 +3416,7 @@ msgstr "Regulérní výraz"
 #: Merge.rc:2037
 #, c-format
 msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr ""
+msgstr "Filtry byly aktualizovány. Chcete obnovit všechna porovnání složek?\n\nPokud nechcete obnovit všechna porovnání teï, zvolte Ne a obnovte porovnání pozdìji."
 
 #: Merge.rc:2043
 #, c-format
@@ -3511,12 +3511,12 @@ msgstr "Vytváøení protokolu..."
 #: Merge.rc:2071
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Vracení poslední operace..."
 
 #: Merge.rc:2072
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Opakování pøedchozí operace..."
 
 #: Merge.rc:2078
 #, c-format
@@ -4042,17 +4042,17 @@ msgstr ""
 #: Merge.rc:2218
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Opravdu chcete pøesunout:"
 
 #: Merge.rc:2219
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Opravdu chcete pøesunout %d položek:"
 
 #: Merge.rc:2221
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Potvrdit pøesunutí"
 
 #: Merge.rc:2227
 #, c-format
@@ -4557,7 +4557,7 @@ msgstr ""
 #: Merge.rc:2384
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr ""
+msgstr "Konce øádkù v souboru '%1' jsou rozdílných typù (Windows/Unix/Mac).\nPodle aktuálních možností budou sjednoceny do hlavního typu.\nChcete zmìnit možnosti a zachovat rozdílné konce øádkù?"
 
 #: Merge.rc:2385
 #, c-format
@@ -5226,12 +5226,12 @@ msgstr ""
 #: Merge.rc:2617
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: Merge.rc:2619
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "Pøevadìè"
 
 #: Merge.rc:2620
 #, c-format
@@ -5266,27 +5266,27 @@ msgstr "Uloží pravý soubor pod názvem..."
 #: Merge.rc:2632
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "Zmìní pro soubor/složku vlevo stav pouze pro ètení"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "Zmìní pro soubor/složku vpravo stav pouze pro ètení"
 
 #: Merge.rc:2634
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Pøevede konce øádkù na typ Windows"
 
 #: Merge.rc:2635
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Pøevede konce øádkù na typ Unix"
 
 #: Merge.rc:2636
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Pøevede konce øádkù na typ Mac"
 
 #: Merge.rc:2637
 #, c-format
@@ -5468,12 +5468,12 @@ msgstr "Zobrazí statistiku porovnání složek"
 #: Merge.rc:2677
 #, c-format
 msgid "Select the current user interface language\nLanguage"
-msgstr ""
+msgstr "Umožní zvolit jazyk uživatelského prostøedí aplikace\nJazyk"
 
 #: Merge.rc:2678
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr ""
+msgstr "Ukáže rozdíly v øádcích odlišnou barvou\nRozdíly v øádcích"
 
 #: Merge.rc:2679
 #, c-format
@@ -5525,27 +5525,27 @@ msgstr "Vrátí písmo na pùvodní velikost"
 #: Merge.rc:2691
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr ""
+msgstr "Posune na pøedchozí rozdíl\nPøedchozí rozdíl (Alt+Up)"
 
 #: Merge.rc:2692
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr ""
+msgstr "Posune na další rozdíl\nDalší rozdíl (Alt+Down)"
 
 #: Merge.rc:2693
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr ""
+msgstr "Posune na první rozdíl\nPrvní rozdíl (Alt+Home)"
 
 #: Merge.rc:2694
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr ""
+msgstr "Posune na aktuální rozdíl\nAktuální rozdíl (Alt+Enter)"
 
 #: Merge.rc:2695
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr ""
+msgstr "Posune na poslední rozdíl\nPoslední rozdíl (Alt+End)"
 
 #: Merge.rc:2696
 #, c-format
@@ -5634,7 +5634,7 @@ msgstr "Vytvoøí protokol o výsledku porovnání složek"
 #: Merge.rc:2718
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "Zobrazí seznam dostupných pluginù"
 
 #: Merge.rc:2719
 #, c-format
@@ -5674,7 +5674,7 @@ msgstr "Uvolní všechny pluginy a znovu je naète (pro vývojáøe)"
 #: Merge.rc:2731
 #, c-format
 msgid "Activates next visible file\nActivate next File"
-msgstr ""
+msgstr "Aktivovat následující viditelný soubor\nAktivovat následující soubor"
 
 #: Merge.rc:2732
 #, c-format
@@ -5804,7 +5804,7 @@ msgstr "Naposledy použité"
 #: Merge.rc:2788
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Žádné zvýraznìní"
 
 #: Merge.rc:2789
 #, c-format

@@ -13,6 +13,7 @@ WinMerge 2.10.2
          (eg. Installer didn't create Quick Launch icon) (#1460517)
   New translation: Galician (#2120685)
   Translation updates:
+  - Czech (r6038)
   - Ukrainian (#2131753)
 
 WinMerge 2.10 - 2008-09-17 (r5967)
