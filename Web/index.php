@@ -23,7 +23,7 @@
 <?php $page->printDownloadNow(); ?>
 
 <h3>Support</h3>
-<p>If you need support, look at our <a href="support/index.php">support page</a> for more information how you can get it.</p>
+<p>If you need support, look at our <a href="support/">support page</a> for more information how you can get it.</p>
 
 <h3>Developers</h3>
 <p>WinMerge is an open source project, which means that the program is maintained and developed by

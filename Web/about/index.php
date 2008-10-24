@@ -32,7 +32,7 @@
 <h3>Screenshots</h3>
 <p><a href="screenshots/screenshot.png" target="_blank"><img class="thumbnail" src="screenshots/screenshot_small.png" alt="File Comparison" border="0"></a>
 <a href="screenshots/foldercmp.png" target="_blank"><img class="thumbnail" src="screenshots/foldercmp_small.png" alt="Folder Comparison Results" border="0"></a></p>
-<p>See the <a href="screenshots/index.php">screenshots page</a> for more screenshots.</p>
+<p>See the <a href="screenshots/">screenshots page</a> for more screenshots.</p>
 
 <h3>Installation</h3>
 <p>Just download the <a href="<?php echo $stablerelease->getDownload('setup.exe');?>">installer</a> and double-click it.</p>

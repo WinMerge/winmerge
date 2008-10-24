@@ -30,9 +30,9 @@ Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
 Redirect permanent /history.php http://winmerge.org/about/history.php
 
 #Centralize download pages...
-Redirect permanent /downloads.php http://winmerge.org/downloads/index.php
-Redirect permanent /2.4/downloads.php http://winmerge.org/downloads/index.php
-Redirect permanent /2.2/downloads.php http://winmerge.org/downloads/index.php
+Redirect permanent /downloads.php http://winmerge.org/downloads/
+Redirect permanent /2.4/downloads.php http://winmerge.org/downloads/
+Redirect permanent /2.2/downloads.php http://winmerge.org/downloads/
 
 #Move developer pages to Wiki...
 Redirect permanent /developer/index.php http://winmerge.org/Wiki/index.php?title=Developers

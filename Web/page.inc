@@ -181,16 +181,16 @@
       /* Main Tabs */
       $temp = "<ul id=\"tabs\">\n";
       if ($this->_tab == TAB_HOME) { //if "Home" ...
-        $temp .= "  <li><strong><a href=\"/index.php\" id=\"current\">Home</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/\" id=\"current\">Home</a></strong></li>\n";
       }
       else { //if NOT "Home" ...
-        $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
+        $temp .= "  <li><a href=\"/\">Home</a></li>\n";
       }
       if ($this->_tab == TAB_ABOUT) { //if "About" ...
-        $temp .= "  <li><strong><a href=\"/about/index.php\" id=\"current\">About</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/about/\" id=\"current\">About</a></strong></li>\n";
       }
       else { //if NOT "About" ...
-        $temp .= "  <li><a href=\"/about/index.php\">About</a></li>\n";
+        $temp .= "  <li><a href=\"/about/\">About</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
         $temp .= "  <li><strong><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></strong></li>\n";
@@ -202,28 +202,28 @@
         $temp .= "  <li><strong><a href=\"/2.4/index.php\" id=\"current\">WinMerge&nbsp;2.4</a></strong></li>\n";
       }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
-        $temp .= "  <li><strong><a href=\"/docs/index.php\" id=\"current\">Documentation</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/docs/\" id=\"current\">Documentation</a></strong></li>\n";
       }
       else { //if NOT "Documentation" ...
-        $temp .= "  <li><a href=\"/docs/index.php\">Documentation</a></li>\n";
+        $temp .= "  <li><a href=\"/docs/\">Documentation</a></li>\n";
       }
       if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
-        $temp .= "  <li><strong><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/downloads/\" id=\"current\">Downloads</a></strong></li>\n";
       }
       else { //if NOT "Downloads" ...
-        $temp .= "  <li><a href=\"/downloads/index.php\">Downloads</a></li>\n";
+        $temp .= "  <li><a href=\"/downloads/\">Downloads</a></li>\n";
       }
       if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
-        $temp .= "  <li><strong><a href=\"/support/index.php\" id=\"current\">Support</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/support/\" id=\"current\">Support</a></strong></li>\n";
       }
       else { //if NOT "Support" ...
-        $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
+        $temp .= "  <li><a href=\"/support/\">Support</a></li>\n";
       }
       if ($this->_tab == TAB_TRANSLATIONS) { //if "Translations" ...
-        $temp .= "  <li><strong><a href=\"/translations/index.php\" id=\"current\">Translations</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/translations/\" id=\"current\">Translations</a></strong></li>\n";
       }
       else { //if NOT "Translations" ...
-        $temp .= "  <li><a href=\"/translations/index.php\">Translations</a></li>\n";
+        $temp .= "  <li><a href=\"/translations/\">Translations</a></li>\n";
       }
       $temp .= "</ul>\n";
       /* Sub Tabs */
@@ -237,8 +237,8 @@
           break;
         case TAB_ABOUT: //if "About" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/about/index.php\" title=\"Index\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/about/screenshots/index.php\" title=\"Screenshots\">Screenshots</a></li>\n";
+          $temp .= "  <li><a href=\"/about/\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/about/screenshots/\" title=\"Screenshots\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
           $temp .= "</ul>\n";
           break;
@@ -271,7 +271,7 @@
           break;
         case TAB_DOCS: //if "Documentation" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/docs/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/docs/manual/\" title=\"Manual\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
           $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
@@ -290,7 +290,7 @@
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/translations/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/translations/instructions.php\" title=\"Translations instructions\">Instructions</a></li>\n";
           $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
           $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
