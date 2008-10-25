@@ -37,10 +37,24 @@ InnoSetup:
   must have preprocessor define for the version number. The script replaces
   value of this macro.
 
+  [Installer]
+  type = InnoSetup
+  description = WinMerge InnoSetup installer
+  path = Installer/InnoSetup/WinMerge.iss
+  macro = AppVersion
+  version = "2.9.12"
+
 NSIS: 
   Set version number to NSIS installer script. The installer script must have
   version defined with PRODUCT_VERSION -macro. For example:
   !define PRODUCT_VERSION "1.2.3"
+
+  For example:
+  [Installer]
+  type = NSIS
+  description = ChecksumTool NSIS Installer
+  path = Installer/NSIS/CheckSumTool.nsi
+  version = "0.6.0"
 
 WinRC:
   Set file- and product-version into the Windows RC file. The script searches
@@ -48,16 +62,17 @@ WinRC:
   numeric version number has always four numbers. If less numbers are given,
   zeros are added to the end.
 
-For example:
-[Installer]
-type = NSIS
-description = ChecksumTool NSIS Installer
-path = Installer/NSIS/CheckSumTool.nsi
-version = "0.6.0"
+C-Define:
+  Set version numbers to C/C++ file which has #define lines with macros for
+  each part of the version number. Version number is given as one number. Macro
+  names for each part must be present, but can be empty.
 
-[Installer]
-type = InnoSetup
-description = WinMerge InnoSetup installer
-path = Installer/InnoSetup/WinMerge.iss
-macro = AppVersion
-version = "2.9.12"
+  [Executable]
+  type = C-Define
+  description = Frhed executable
+  path = Frhed/version.h
+  version = "1.3.6.2"
+  define-major = FRHED_MAJOR_VERSION
+  define-minor = FRHED_MINOR_VERSION
+  define-subrelease = FRHED_SUB_RELEASE_NO
+  define-buildnumber = FRHED_BUILD_NO

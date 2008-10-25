@@ -25,8 +25,10 @@
 # SetVersions.py
 # A Python script to set various component's version numbers in the project.
 
-# This script originates fro CheckSum Tool project at (http://checksumtool.sourceforge.net). Please submit fixes and
-# updates to the script for the originating project so other projects using the script can use them too.
+# This script originates from CheckSum Tool project at
+# (http://checksumtool.sourceforge.net). Please submit fixes and updates to the
+# script for the originating project so other projects using the script can use
+# them too.
 
 import ConfigParser
 import getopt
@@ -255,6 +257,112 @@ def set_InnoSetup_ver(file, version, macro):
   shutil.move(outfile, file)
   return True
 
+def process_CDefine(filename, config, sect):
+  '''Read version number information for setting it into C/C++ #defines.'''
+
+  ver = config.get(sect, 'version')
+  file = config.get(sect, 'path')
+  desc = config.get(sect, 'description')
+  
+  # Macro names to use
+  major = config.get(sect, 'define-major')
+  minor = config.get(sect, 'define-minor')
+  subrel = config.get(sect, 'define-subrelease')
+  buildnum = config.get(sect, 'define-buildnumber')
+
+  if len(major) == 0 and len(minor) == 0 and len(subrel) == 0:
+   print '  ERROR: You must set at least one of major/minor/subrelease version numbers.'
+   return False
+
+  print '%s : %s' % (sect, desc)
+  print '  File: ' + file
+  print '  Version: ' + ver
+  print '  Macros:'
+  print '    Major: ' + major
+  print '    Minor: ' + minor
+  print '    Subrelease: ' + subrel
+  print '    Buildnumber: ' + buildnum
+
+  inidir = os.path.dirname(filename)
+  cfile = os.path.join(inidir, file)
+
+  ret = set_CDefine_ver(cfile, ver, major, minor, subrel, buildnum)
+  return ret
+
+def set_CDefine_ver(file, version, major, minor, subrelease, buildnumber):
+  '''Set version into C/C++ file with version number #define lines. Each
+     part of the version number has own line and own #define macro name.
+  '''
+
+  outfile = file + '.bak'
+  try:
+    fread = open(file, 'r')
+  except IOError, (errno, strerror):
+    print 'Cannot open file ' + file + ' for reading'
+    print 'Error: ' + strerror
+    return False
+
+  try:
+    fwrite = open(outfile, 'w')
+  except IOError, (errno, strerror):
+    print 'Cannot open file ' + infile + ' for writing'
+    print 'Error: ' + strerror
+    fread.close()
+    return False
+
+  # Init to zero so missing version numbers are zero
+  maj_ver = 0
+  min_ver = 0
+  sub_ver = 0
+  build_ver = 0
+
+  ind = version.find('.')
+  if ind == -1:
+    # Only major versio number given, e.g. "5"
+    maj_ver = int(version[1:len(version) - 1])
+  else:
+    maj_ver = int(version[1:ind])
+
+  if ind != -1:
+    ind2 = version.find('.', ind + 1)
+    if ind2 != -1:
+      # Set minor number
+      min_ver = int(version[ind + 1:ind2])
+      ind = ind2
+    else:
+      # Only major and minor given, e.g. "2.7"
+      min_ver = int(version[ind + 1:len(version) - 1])
+      ind = ind2
+
+  if ind != -1:
+    ind2 = version.find('.', ind + 1)
+    if ind2 != -1:
+      # Set sub release number and build number "x.x.2.8"
+      sub_ver = int(version[ind + 1:ind2])
+      build_ver = int(version[ind2 + 1:len(version) - 1])
+    else:
+      # Only major, minor and sub number given, e.g. "4.2.8"
+      sub_ver = int(version[ind + 1:len(version) - 1])
+
+  # Replace version macro values with new values
+  for line in fread:
+    macroline = '#define '
+    if line.startswith(macroline + major):
+      line = line[:len(macroline + major)] + ' ' + str(maj_ver) + '\n'
+    if line.startswith(macroline + minor):
+      line = line[:len(macroline + minor)] + ' ' + str(min_ver) + '\n'
+    if line.startswith(macroline + subrelease):
+      line = line[:len(macroline + subrelease)] + ' ' + str(sub_ver) + '\n'
+    if line.startswith(macroline + buildnumber):
+      line = line[:len(macroline + buildnumber)] + ' ' + str(build_ver) + '\n'
+    fwrite.write(line)
+
+  fread.close()
+  fwrite.close()
+  
+  shutil.move(outfile, file)
+  return True
+
 def replace_rc_ver_at_end(line, version):
   '''Replace plain version number at the end of the line in RC file.
      Also make sure we have four numbers.
@@ -307,6 +415,8 @@ def process_versions(filename):
       ret = process_WinRC(filename, config, sect)
     if vertype == 'InnoSetup':
       ret = process_InnoSetup(filename, config, sect)
+    if vertype == 'C-Define':
+      ret = process_CDefine(filename, config, sect)
   return ret
 
 def usage():
