@@ -41,7 +41,6 @@ class MergeCmdLineInfo
 {
 public:
 	MergeCmdLineInfo(LPCTSTR);
-	~MergeCmdLineInfo();
 
 public:
 
