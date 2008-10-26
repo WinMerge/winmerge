@@ -189,7 +189,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		if (!pHexWnd->translate_accelerator(&msg))
+		if (!pHexWnd || !pHexWnd->translate_accelerator(&msg))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -309,6 +309,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			pHexWnd->iWindowHeight = wndpl.rcNormalPosition.bottom - pHexWnd->iWindowY;
 			pHexWnd->save_ini_data();
 			DragAcceptFiles(hwndMain, FALSE);
+			pHexWnd = 0;
 			PostQuitMessage(0);
 		}
 		break;
