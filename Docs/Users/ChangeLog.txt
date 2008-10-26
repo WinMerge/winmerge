@@ -11,6 +11,8 @@ WinMerge 2.10.2
   BugFix: Fix manual URL in Readme.txt (#2181628)
   BugFix: There were some installer regressions
          (eg. Installer didn't create Quick Launch icon) (#1460517)
+  BugFix: Giving path to file and folder to command line
+   did not work (#2138560)
   New translation: Galician (#2120685)
   Translation updates:
   - Czech (r6038)
