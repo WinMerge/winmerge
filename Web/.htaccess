@@ -35,13 +35,13 @@ Redirect permanent /2.4/downloads.php http://winmerge.org/downloads/
 Redirect permanent /2.2/downloads.php http://winmerge.org/downloads/
 
 #Move developer pages to Wiki...
-Redirect permanent /developer/index.php http://winmerge.org/Wiki/index.php?title=Developers
-Redirect permanent /developer/needed.php http://winmerge.org/Wiki/index.php?title=Help_Needed
+Redirect permanent /developer/index.php http://winmerge.org/Wiki/Developers
+Redirect permanent /developer/needed.php http://winmerge.org/Wiki/Help_Needed
 Redirect permanent /developer/tracker-shortcuts.php http://winmerge.org/support/tracker-shortcuts.php
-Redirect permanent /developer/translate.php http://winmerge.org/Wiki/index.php?title=Translations
-Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/index.php?title=Translations
+Redirect permanent /developer/translate.php http://winmerge.org/Wiki/Translations
+Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/Translations
 Redirect permanent /developer/l10n/instructions.php http://svn.sourceforge.net/viewvc/*checkout*/winmerge/trunk/Docs/Developers/Translations.html
-Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/index.php?title=Translations
+Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/Translations
 
 #Tracker shortcuts...
 RewriteEngine On
