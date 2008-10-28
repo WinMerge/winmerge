@@ -1049,7 +1049,7 @@ BEGIN
     CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,134,142,10
     CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",
