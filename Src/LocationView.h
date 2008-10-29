@@ -72,6 +72,7 @@ public:
 	void SetConnectMovedBlocks(int displayMovedBlocks);
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
 	void SetFrameHwnd(HWND hwndFrame);
+	void ForceRecalculate();
 
 protected:
 

@@ -14,6 +14,8 @@ WinMerge 2.10.2
          (eg. Installer didn't create Quick Launch icon) (#1460517)
   BugFix: Giving path to file and folder to command line
    did not work (#2138560)
+  BugFix: If messagebox was shown during file loading location pane
+    didn't show any differences (#2101780)
   New translation: Galician (#2120685)
   Translation updates:
   - Czech (r6038)
