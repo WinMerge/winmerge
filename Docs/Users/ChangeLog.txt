@@ -16,6 +16,7 @@ WinMerge 2.10.2
    did not work (#2138560)
   BugFix: If messagebox was shown during file loading location pane
     didn't show any differences (#2101780)
+  BugFix: Some calls made to plugins when plugins were disabled (#2182788)
   New translation: Galician (#2120685)
   Translation updates:
   - Czech (r6038)
