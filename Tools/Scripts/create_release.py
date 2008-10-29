@@ -29,6 +29,7 @@
 # - builds WinMerge.exe and WinMergeU.exe
 # - builds 32-bit ShellExtension targets
 # - builds user manual
+# - builds the InnoSetup installer
 # - creates per-version distribution folder
 # - exports SVN sources to distribution folder
 # - creates binary distribution folder
@@ -36,7 +37,6 @@
 #Tasks not done (TODO?):
 # - building 64-bit ShellExtension
 # - creating packages from source and binary folders
-# - creating installer
 # - running virus check
 # - creating SHA-1 hashes for distributed files
 
@@ -51,6 +51,8 @@
 svn_binary = 'C:\\Program Files\\Subversion\\bin\\svn.exe'
 # Visual Studio path
 vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003'
+# InnoSetup installation path
+innosetup_path = 'C:\\Program Files\\Inno Setup 5'
 # Relative path where to create a release folder
 dist_root_folder = 'distrib'
 
@@ -267,6 +269,19 @@ def build_manual():
     print 'Manual build finished.'
     os.chdir(curdir)
 
+def build_innosetup_installer(target_folder):
+    """Builds the InnoSetup installer for the WinMerge."""
+
+    innosetup_exe = os.path.join(innosetup_path, 'iscc.exe')
+    cur_path = os.getcwd()
+    winmerge_iss = os.path.join(cur_path, 'Installer\\InnoSetup\\WinMerge.iss')
+    #output_switch = '/O"' + target_folder + '"'
+
+    print 'Build Innosetup installer...'
+    # Should be able to give folder for created file and Q switch to make build quiet
+    #call([innosetup_exe, '/Q', output_switch, winmerge_iss])
+    call([innosetup_exe, winmerge_iss])
+
 def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
 
@@ -468,10 +483,11 @@ def main(argv):
 
     set_resource_version(version)
     setup_translations()
-    
+
     build_targets()
     build_manual()
-    
+    build_innosetup_installer(dist_folder)
+
     dist_bin_folder = get_and_create_bin_folder(dist_folder, version_folder)
     create_bin_folders(dist_bin_folder, dist_src_folder)
 
