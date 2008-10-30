@@ -332,86 +332,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 			else // don't skip blank lines, but still ignore eol difference
 			{
-				if (m_cr0)
-				{
-					// finish split CR/LF pair on 0-side
-					if (ptr0 < end0 && *ptr0 == '\n')
-					{
-						// m_bol0 not used because m_ignore_eol_diff
-						++ptr0;
-					}
-					m_eol0 = true;
-					m_cr0 = false;
-				}
-				if (ptr0 < end0)
-				{
-					if (*ptr0 == '\n')
-					{
-						// m_bol0 not used because m_ignore_eol_diff
-						++ptr0;
-						m_eol0 = true;
-					}
-					else if (*ptr0 == '\r')
-					{
-						// m_bol0 not used because m_ignore_eol_diff
-						++ptr0;
-						m_eol0 = true;
-						if (ptr0 == end0 && !eof0)
-						{
-							// can't tell if a CR/LF pair yet
-							m_cr0 = true;
-							m_eol0 = true;
-						}
-						else if (ptr0 < end0 && *ptr0 == '\n')
-						{
-							++ptr0;
-						}
-					}
-					else
-					{
-						m_eol0 = false;
-					}
-				}
-				if (m_cr1)
-				{
-					// finish split CR/LF pair on 1-side
-					if (ptr1 < end1 && *ptr1 == '\n')
-					{
-						// m_bol1 not used because m_ignore_eol_diff
-						++ptr1;
-					}
-					m_eol1 = true;
-					m_cr1 = false;
-				}
-				if (ptr1 < end1)
-				{
-					if (*ptr1 == '\n')
-					{
-						// m_bol1 not used because m_ignore_eol_diff
-						++ptr1;
-						m_eol1 = true;
-					}
-					else if (*ptr1 == '\r')
-					{
-						// m_bol1 not used because m_ignore_eol_diff
-						++ptr1;
-						m_eol1 = true;
-						if (ptr1 == end1 && !eof1)
-						{
-							// can't tell if a CR/LF pair yet
-							m_cr1 = true;
-							m_eol1 = true;
-						}
-						else if (ptr1 < end1 && *ptr1 == '\n')
-						{
-							++ptr1;
-						}
-					}
-					else
-					{
-						m_eol1 = false;
-					}
-				}
+				HandleSide0Eol((char **) &ptr0, end0, eof0);
+				HandleSide1Eol((char **) &ptr1, end1, eof1);
+
 				if (m_cr0 || m_cr1)
 				{
 					// these flags mean possible split CR/LF 
@@ -505,6 +428,111 @@ need_more:
 	{
 		return RESULT_SAME;
 	}
+}
+
+/**
+ * Brief Handle EOL bytes and differences in them.
+ * @param [in, out] ptr Pointer to the buffer begin.
+ * @param [in] end Pointer to the buffer end.
+ * @param [in] eof Are we at end of the buffer?
+ */
+void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof)
+{
+	char * pbuf = *ptr;
+	if (m_cr0)
+	{
+		// finish split CR/LF pair on 0-side
+		if (pbuf < end && *pbuf == '\n')
+		{
+			// m_bol0 not used because m_ignore_eol_diff
+			++pbuf;
+		}
+		m_eol0 = true;
+		m_cr0 = false;
+	}
+	if (pbuf < end)
+	{
+		if (*pbuf == '\n')
+		{
+			// m_bol0 not used because m_ignore_eol_diff
+			++pbuf;
+			m_eol0 = true;
+		}
+		else if (*pbuf == '\r')
+		{
+			// m_bol0 not used because m_ignore_eol_diff
+			++pbuf;
+			m_eol0 = true;
+			if (pbuf == end && !eof)
+			{
+				// can't tell if a CR/LF pair yet
+				m_cr0 = true;
+				m_eol0 = true;
+			}
+			else if (pbuf < end && *pbuf == '\n')
+			{
+				++pbuf;
+			}
+		}
+		else
+		{
+			m_eol0 = false;
+		}
+	}
+	*ptr = pbuf;
+}
+
+/**
+ * Brief Handle EOL bytes and differences in them.
+ * @param [in, out] ptr Pointer to the buffer begin.
+ * @param [in] end Pointer to the buffer end.
+ * @param [in] eof Are we at end of the buffer?
+ */
+void ByteComparator::HandleSide1Eol(char **ptr, const char *end, bool eof)
+{
+	char * pbuf = *ptr;
+
+	if (m_cr1)
+	{
+		// finish split CR/LF pair on 1-side
+		if (pbuf < end && *pbuf == '\n')
+		{
+			// m_bol1 not used because m_ignore_eol_diff
+			++pbuf;
+		}
+		m_eol1 = true;
+		m_cr1 = false;
+	}
+	if (pbuf < end)
+	{
+		if (*pbuf == '\n')
+		{
+			// m_bol1 not used because m_ignore_eol_diff
+			++pbuf;
+			m_eol1 = true;
+		}
+		else if (*pbuf == '\r')
+		{
+			// m_bol1 not used because m_ignore_eol_diff
+			++pbuf;
+			m_eol1 = true;
+			if (pbuf == end && !eof)
+			{
+				// can't tell if a CR/LF pair yet
+				m_cr1 = true;
+				m_eol1 = true;
+			}
+			else if (pbuf < end && *pbuf == '\n')
+			{
+				++pbuf;
+			}
+		}
+		else
+		{
+			m_eol1 = false;
+		}
+	}
+	*ptr = pbuf;
 }
 
 } //namespace namespace CompareEngines
