@@ -5,7 +5,7 @@
   $page->printHead('WinMerge 2.4', WINMERGE_2_4);
 ?>
 <h2>WinMerge 2.4</h2>
-<p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
+<p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determining what has changed between project versions, and then merging changes between versions.</p>
 <h3>Features</h3>
 <ul>
   <li>Visual differencing and merging of text files</li>

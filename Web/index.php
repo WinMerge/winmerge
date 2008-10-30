@@ -12,7 +12,7 @@
     <a href="about/screenshots/">More Screenshots...</a>
   </p>
   <div class="whatistext">
-    <p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
+    <p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determining what has changed between project versions, and then merging changes between versions.</p>
     <p><strong><a href="about/">Learn More</a> or <a href="downloads/">Download Now!</a></strong></p>
   </div>
   <br class="whatisclear" />
