@@ -26,6 +26,7 @@
 #            built by default with Configure and Make.
 # 2008-01-23 PH removed the automatic build of pcredemo.
 # 2008-04-22 PH modified READLINE support so it finds NCURSES when needed.
+# 2008-07-03 PH updated for revised UCP property support (change of files)
 
 PROJECT(PCRE C CXX)
 
@@ -294,7 +295,7 @@ SET(PCRE_SOURCES
   pcre_study.c
   pcre_tables.c
   pcre_try_flipped.c
-  pcre_ucp_searchfuncs.c
+  pcre_ucd.c
   pcre_valid_utf8.c
   pcre_version.c
   pcre_xclass.c

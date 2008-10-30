@@ -94,10 +94,11 @@ appropriately for an application, not for building PCRE. */
 #include "pcre.h"
 #include "pcre_internal.h"
 
-/* We need access to the data tables that PCRE uses. So as not to have to keep
-two copies, we include the source file here, changing the names of the external
-symbols to prevent clashes. */
+/* We need access to some of the data tables that PCRE uses. So as not to have
+to keep two copies, we include the source file here, changing the names of the
+external symbols to prevent clashes. */
 
+#define _pcre_ucp_gentype      ucp_gentype
 #define _pcre_utf8_table1      utf8_table1
 #define _pcre_utf8_table1_size utf8_table1_size
 #define _pcre_utf8_table2      utf8_table2
@@ -1805,9 +1806,19 @@ while (!done)
             {
             unsigned char buff8[8];
             int ii, utn;
-            utn = ord2utf8(c, buff8);
-            for (ii = 0; ii < utn - 1; ii++) *q++ = buff8[ii];
-            c = buff8[ii];   /* Last byte */
+            if (use_utf8)
+              {
+              utn = ord2utf8(c, buff8);
+              for (ii = 0; ii < utn - 1; ii++) *q++ = buff8[ii];
+              c = buff8[ii];   /* Last byte */
+              }
+            else
+             {
+             if (c > 255)
+               fprintf(outfile, "** Character \\x{%x} is greater than 255 and "
+                 "UTF-8 mode is not enabled.\n"
+                 "** Truncation will probably give the wrong result.\n", c);
+             }
             p = pt + 1;
             break;
             }
@@ -2016,6 +2027,23 @@ while (!done)
       }
     *q = 0;
     len = q - dbuffer;
+
+    /* Move the data to the end of the buffer so that a read over the end of
+    the buffer will be seen by valgrind, even if it doesn't cause a crash. If
+    we are using the POSIX interface, we must include the terminating zero. */
+
+#if !defined NOPOSIX
+    if (posix || do_posix)
+      {
+      memmove(bptr + buffer_size - len - 1, bptr, len + 1);
+      bptr += buffer_size - len - 1;
+      }
+    else
+#endif
+      {
+      memmove(bptr + buffer_size - len, bptr, len);
+      bptr += buffer_size - len;
+      }
 
     if ((all_use_dfa || use_dfa) && find_match_limit)
       {

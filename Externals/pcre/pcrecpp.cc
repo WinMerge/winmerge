@@ -372,7 +372,7 @@ static int NewlineMode(int pcre_options) {
     else if (newline == -2)
       newline_mode = PCRE_NEWLINE_ANYCRLF;
     else
-      assert("" == "Unexpected return value from pcre_config(NEWLINE)");
+      assert(NULL == "Unexpected return value from pcre_config(NEWLINE)");
   }
   return newline_mode;
 }

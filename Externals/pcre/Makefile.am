@@ -178,13 +178,11 @@ libpcre_la_SOURCES = \
   pcre_study.c \
   pcre_tables.c \
   pcre_try_flipped.c \
-  pcre_ucp_searchfuncs.c \
+  pcre_ucd.c \
   pcre_valid_utf8.c \
   pcre_version.c \
   pcre_xclass.c \
-  ucp.h \
-  ucpinternal.h \
-  ucptable.h
+  ucp.h
 
 ## This file is generated as part of the building process, so don't distribute.
 nodist_libpcre_la_SOURCES = \
@@ -316,7 +314,7 @@ DLL_OBJS= pcre_compile.o pcre_config.o \
 	pcre_globals.o pcre_info.o pcre_maketables.o \
 	pcre_newline.o pcre_ord2utf8.o pcre_refcount.o \
 	pcre_study.o pcre_tables.o pcre_try_flipped.o \
-	pcre_ucp_searchfuncs.o pcre_valid_utf8.o pcre_version.o \
+	pcre_ucd.o pcre_valid_utf8.o pcre_version.o \
 	pcre_chartables.o \
 	pcre_xclass.o
 

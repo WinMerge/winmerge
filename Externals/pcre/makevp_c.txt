@@ -14,7 +14,7 @@ pcre_refcount.c
 pcre_study.c
 pcre_tables.c
 pcre_try_flipped.c
-pcre_ucp_searchfuncs.c
+pcre_ucd.c
 pcre_valid_utf8.c
 pcre_version.c
 pcre_xclass.c

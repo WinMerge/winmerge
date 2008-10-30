@@ -354,7 +354,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				RelativePath="..\pcre_try_flipped.c">
 			</File>
 			<File
-				RelativePath="..\pcre_ucp_searchfuncs.c">
+				RelativePath="..\pcre_ucd.c">
 			</File>
 			<File
 				RelativePath="..\pcre_valid_utf8.c">

@@ -77,6 +77,9 @@ This example shows that one way of avoiding stack problems when matching long
 subject strings is to write repeated parenthesized subpatterns to match more
 than one character whenever possible.
 </P>
+<br><b>
+Compiling PCRE to use heap instead of stack
+</b><br>
 <P>
 In environments where stack memory is constrained, you might want to compile
 PCRE to use heap memory instead of stack for remembering back-up points. This
@@ -91,6 +94,30 @@ cause PCRE to use your own functions. Since the block sizes are always the
 same, and are always freed in reverse order, it may be possible to implement
 customized memory handlers that are more efficient than the standard functions.
 </P>
+<br><b>
+Limiting PCRE's stack usage
+</b><br>
+<P>
+PCRE has an internal counter that can be used to limit the depth of recursion,
+and thus cause <b>pcre_exec()</b> to give an error code before it runs out of
+stack. By default, the limit is very large, and unlikely ever to operate. It
+can be changed when PCRE is built, and it can also be set when
+<b>pcre_exec()</b> is called. For details of these interfaces, see the
+<a href="pcrebuild.html"><b>pcrebuild</b></a>
+and
+<a href="pcreapi.html"><b>pcreapi</b></a>
+documentation.
+</P>
+<P>
+As a very rough rule of thumb, you should reckon on about 500 bytes per
+recursion. Thus, if you want to limit your stack usage to 8Mb, you
+should set the limit at 16000 recursions. A 64Mb stack, on the other hand, can
+support around 128000 recursions. The <b>pcretest</b> test program has a command
+line option (<b>-S</b>) that can be used to increase the size of its stack.
+</P>
+<br><b>
+Changing stack size in Unix-like systems
+</b><br>
 <P>
 In Unix-like environments, there is not often a problem with the stack unless
 very long strings are involved, though the default limit on stack size varies
@@ -112,23 +139,14 @@ This reads the current limits (soft and hard) using <b>getrlimit()</b>, then
 attempts to increase the soft limit to 100Mb using <b>setrlimit()</b>. You must
 do this before calling <b>pcre_exec()</b>.
 </P>
+<br><b>
+Changing stack size in Mac OS X
+</b><br>
 <P>
-PCRE has an internal counter that can be used to limit the depth of recursion,
-and thus cause <b>pcre_exec()</b> to give an error code before it runs out of
-stack. By default, the limit is very large, and unlikely ever to operate. It
-can be changed when PCRE is built, and it can also be set when
-<b>pcre_exec()</b> is called. For details of these interfaces, see the
-<a href="pcrebuild.html"><b>pcrebuild</b></a>
-and
-<a href="pcreapi.html"><b>pcreapi</b></a>
-documentation.
-</P>
-<P>
-As a very rough rule of thumb, you should reckon on about 500 bytes per
-recursion. Thus, if you want to limit your stack usage to 8Mb, you
-should set the limit at 16000 recursions. A 64Mb stack, on the other hand, can
-support around 128000 recursions. The <b>pcretest</b> test program has a command
-line option (<b>-S</b>) that can be used to increase the size of its stack.
+Using <b>setrlimit()</b>, as described above, should also work on Mac OS X. It
+is also possible to set a stack size when linking a program. There is a
+discussion about stack sizes in Mac OS X at this web site:
+<a href="http://developer.apple.com/qa/qa2005/qa1419.html">http://developer.apple.com/qa/qa2005/qa1419.html.</a>
 </P>
 <br><b>
 AUTHOR
@@ -145,9 +163,9 @@ Cambridge CB2 3QH, England.
 REVISION
 </b><br>
 <P>
-Last updated: 05 June 2007
+Last updated: 09 July 2008
 <br>
-Copyright &copy; 1997-2007 University of Cambridge.
+Copyright &copy; 1997-2008 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

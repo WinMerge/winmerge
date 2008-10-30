@@ -24,9 +24,10 @@
       19-02-06 - added SearchOfs(): let PCRE use the complete string and offset
 		 into the string itself
       20-12-06 - support for version 7.0
+      27.08.08 - support for v7.7
 }
 
-{$H+} {$DEFINE PCRE_3_7} {$DEFINE PCRE_5_0} {$DEFINE PCRE_7_0}
+{$H+} {$DEFINE PCRE_3_7} {$DEFINE PCRE_5_0} {$DEFINE PCRE_7_0} {$DEFINE PCRE_7_7}
 
 Unit pcregexp;
 
@@ -105,6 +106,14 @@ Const { Options }
  PCRE_NEWLINE_CRLF     = $00300000;
  PCRE_NEWLINE_ANY      = $00400000;
  PCRE_NEWLINE_ANYCRLF  = $00500000;
+
+ PCRE_NEWLINE_BITS     = PCRE_NEWLINE_CR or PCRE_NEWLINE_LF or PCRE_NEWLINE_ANY;
+
+{$ENDIF}
+{$IFDEF PCRE_7_7}
+ PCRE_BSR_ANYCRLF      = $00800000;
+ PCRE_BSR_UNICODE      = $01000000;
+ PCRE_JAVASCRIPT_COMPAT= $02000000;
 {$ENDIF}
 
  PCRE_COMPILE_ALLOWED_OPTIONS = PCRE_ANCHORED + PCRE_AUTO_CALLOUT + PCRE_CASELESS  +
@@ -112,15 +121,20 @@ Const { Options }
 				PCRE_EXTRA + PCRE_MULTILINE + PCRE_NO_AUTO_CAPTURE +
 				PCRE_UNGREEDY + PCRE_UTF8 + PCRE_NO_UTF8_CHECK
 				{$IFDEF PCRE_7_0}
-				+ PCRE_DUPNAMES + PCRE_FIRSTLINE + PCRE_NEWLINE_CRLF
-				+ PCRE_NEWLINE_ANY + PCRE_NEWLINE_CRLF
+				+ PCRE_DUPNAMES + PCRE_FIRSTLINE + PCRE_NEWLINE_BITS
+				{$ENDIF}
+				{$IFDEF PCRE_7_7}
+				+ PCRE_BSR_ANYCRLF + PCRE_BSR_UNICODE + PCRE_JAVASCRIPT_COMPAT
 				{$ENDIF}
 				;
 
  PCRE_EXEC_ALLOWED_OPTIONS = PCRE_ANCHORED + PCRE_NOTBOL + PCRE_NOTEOL +
 			     PCRE_NOTEMPTY + PCRE_NO_UTF8_CHECK + PCRE_PARTIAL
 			     {$IFDEF PCRE_7_0}
-                             + PCRE_NEWLINE_CRLF + PCRE_NEWLINE_ANY +PCRE_NEWLINE_ANYCRLF
+			     + PCRE_NEWLINE_BITS
+			     {$ENDIF}
+			     {$IFDEF PCRE_7_7}
+			     + PCRE_BSR_ANYCRLF + PCRE_BSR_UNICODE
 			     {$ENDIF}
 			     ;
 
@@ -128,8 +142,11 @@ Const { Options }
  PCRE_DFA_EXEC_ALLOWED_OPTIONS = PCRE_ANCHORED + PCRE_NOTBOL + PCRE_NOTEOL +
 				 PCRE_NOTEMPTY + PCRE_NO_UTF8_CHECK + PCRE_PARTIAL +
 				 PCRE_DFA_SHORTEST + PCRE_DFA_RESTART +
-				 PCRE_NEWLINE_CR + PCRE_NEWLINE_LF + PCRE_NEWLINE_CRLF +
-				 PCRE_NEWLINE_ANY + PCRE_NEWLINE_ANYCRLF
+				 PCRE_NEWLINE_BITS
+				 {$IFDEF PCRE_7_7}
+				 + PCRE_BSR_ANYCRLF + PCRE_BSR_UNICODE
+				 {$ENDIF}
+				 ;
 {$ENDIF}
 
 { Exec-time and get/set-time error codes }
@@ -164,7 +181,7 @@ Const { Options }
 { Request types for pcre_fullinfo() }
 
  PCRE_INFO_OPTIONS         =  0;
- PCRE_INFO_SIZE		   =  1;
+ PCRE_INFO_SIZE 	   =  1;
  PCRE_INFO_CAPTURECOUNT    =  2;
  PCRE_INFO_BACKREFMAX      =  3;
  PCRE_INFO_FIRSTBYTE       =  4;
@@ -178,12 +195,17 @@ Const { Options }
  PCRE_INFO_STUDYSIZE       = 10;
  PCRE_INFO_DEFAULT_TABLES  = 11;
 {$ENDIF PCRE_5_0}
+{$IFDEF PCRE_7_7}
+ PCRE_INFO_OKPARTIAL       = 12;
+ PCRE_INFO_JCHANGED        = 13;
+ PCRE_INFO_HASCRORLF       = 14;
+{$ENDIF}
 
 { Request types for pcre_config() }
 {$IFDEF PCRE_5_0}
- PCRE_CONFIG_UTF8		    = 0;
- PCRE_CONFIG_NEWLINE		    = 1;
- PCRE_CONFIG_LINK_SIZE		    = 2;
+ PCRE_CONFIG_UTF8       	    = 0;
+ PCRE_CONFIG_NEWLINE    	    = 1;
+ PCRE_CONFIG_LINK_SIZE  	    = 2;
  PCRE_CONFIG_POSIX_MALLOC_THRESHOLD = 3;
  PCRE_CONFIG_MATCH_LIMIT	    = 4;
  PCRE_CONFIG_STACKRECURSE           = 5;
@@ -192,13 +214,16 @@ Const { Options }
 {$IFDEF PCRE_7_0}
  PCRE_CONFIG_MATCH_LIMIT_RECURSION  = 7;
 {$ENDIF}
+{$IFDEF PCRE_7_7}
+ PCRE_CONFIG_BSR		    = 8;
+{$ENDIF}
 
 { Bit flags for the pcre_extra structure }
 {$IFDEF PCRE_5_0}
- PCRE_EXTRA_STUDY_DATA		  = $0001;
- PCRE_EXTRA_MATCH_LIMIT		  = $0002;
+ PCRE_EXTRA_STUDY_DATA  	  = $0001;
+ PCRE_EXTRA_MATCH_LIMIT 	  = $0002;
  PCRE_EXTRA_CALLOUT_DATA	  = $0004;
- PCRE_EXTRA_TABLES		  = $0008;
+ PCRE_EXTRA_TABLES      	  = $0008;
 {$ENDIF PCRE_5_0}
 {$IFDEF PCRE_7_0}
  PCRE_EXTRA_MATCH_LIMIT_RECURSION = $0010;
@@ -215,7 +240,7 @@ remain compatible. }
 
 type ppcre_extra = ^tpcre_extra;
      tpcre_extra = record
-       flags : longint;		       { Bits for which fields are set }
+       flags : longint; 	       { Bits for which fields are set }
        study_data : pointer;           { Opaque data from pcre_study() }
        match_limit : longint;          { Maximum number of calls to match() }
        callout_data : pointer;         { Data passed back in callouts }
@@ -392,9 +417,21 @@ data is not zero. *)
 {$IFDEF VIRTUALPASCAL} {&Cdecl-} {$ENDIF VIRTUALPASCAL}
 
 // Always include the newest version of the library
-{$IFDEF PCRE_3_7} {$IFNDEF PCRE_5_0} {$IFNDEF PCRE_7_0} {$L pcre37.lib} {$ENDIF PCRE_7_0} {$ENDIF PCRE_5_0} {$ENDIF PCRE_3_7}
-{$IFDEF PCRE_5_0}		     {$IFNDEF PCRE_7_0} {$L pcre50.lib} {$ENDIF PCRE_7_0}		    {$ENDIF PCRE_5_0}
-{$IFDEF PCRE_7_0}					{$L pcre70.lib}					    {$ENDIF PCRE_7_0}
+{$IFDEF PCRE_7_7}
+  {$L pcre77.lib}
+{$ELSE}
+  {$IFDEF PCRE_7_0}
+    {$L pcre70.lib}
+  {$ELSE}
+    {$IFDEF PCRE_5_0}
+      {$L pcre50.lib}
+    {$ELSE}
+      {$IFDEF PCRE_3_7}
+	{$L pcre37.lib}
+      {$ENDIF PCRE_3_7}
+    {$ENDIF PCRE_5_0}
+  {$ENDIF PCRE_7_0}
+{$ENDIF PCRE_7_7}
 
 {TpcRegExp}
 
@@ -646,7 +683,7 @@ begin
 //   l1:=length(PpcRegExp(P1)^.RegExp);
 //   l2:=length(PpcRegExp(P2)^.RegExp);
 //   if l1 > l2 then l:=l2 else
-//		     l:=l1;
+//      	     l:=l1;
 //   for i:=1 to l do
 //     if PpcRegExp(P1).RegExp[i] <> PpcRegExp(P2).RegExp[i] then break;
 //   if i <=l then
@@ -659,7 +696,7 @@ begin
 //   l1:=length(PpcRegExp(P1)^.RegExp);
 //   l2:=length(SearchRegExp);
 //   if l1 > l2 then l:=l2 else
-//		     l:=l1;
+//      	     l:=l1;
 //   for i:=1 to l do
 //     if PpcRegExp(P1).RegExp[i] <> SearchRegExp[i] then
 //     begin

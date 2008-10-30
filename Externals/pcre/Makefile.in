@@ -100,9 +100,8 @@ am_libpcre_la_OBJECTS = pcre_compile.lo pcre_config.lo \
 	pcre_dfa_exec.lo pcre_exec.lo pcre_fullinfo.lo pcre_get.lo \
 	pcre_globals.lo pcre_info.lo pcre_maketables.lo \
 	pcre_newline.lo pcre_ord2utf8.lo pcre_refcount.lo \
-	pcre_study.lo pcre_tables.lo pcre_try_flipped.lo \
-	pcre_ucp_searchfuncs.lo pcre_valid_utf8.lo pcre_version.lo \
-	pcre_xclass.lo
+	pcre_study.lo pcre_tables.lo pcre_try_flipped.lo pcre_ucd.lo \
+	pcre_valid_utf8.lo pcre_version.lo pcre_xclass.lo
 nodist_libpcre_la_OBJECTS = pcre_chartables.lo
 libpcre_la_OBJECTS = $(am_libpcre_la_OBJECTS) \
 	$(nodist_libpcre_la_OBJECTS)
@@ -476,13 +475,11 @@ libpcre_la_SOURCES = \
   pcre_study.c \
   pcre_tables.c \
   pcre_try_flipped.c \
-  pcre_ucp_searchfuncs.c \
+  pcre_ucd.c \
   pcre_valid_utf8.c \
   pcre_version.c \
   pcre_xclass.c \
-  ucp.h \
-  ucpinternal.h \
-  ucptable.h
+  ucp.h
 
 nodist_libpcre_la_SOURCES = \
   pcre_chartables.c
@@ -520,7 +517,7 @@ DLL_OBJS = pcre_compile.o pcre_config.o \
 	pcre_globals.o pcre_info.o pcre_maketables.o \
 	pcre_newline.o pcre_ord2utf8.o pcre_refcount.o \
 	pcre_study.o pcre_tables.o pcre_try_flipped.o \
-	pcre_ucp_searchfuncs.o pcre_valid_utf8.o pcre_version.o \
+	pcre_ucd.o pcre_valid_utf8.o pcre_version.o \
 	pcre_chartables.o \
 	pcre_xclass.o
 
@@ -769,7 +766,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_study.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_tables.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_try_flipped.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_ucp_searchfuncs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_ucd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_valid_utf8.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_version.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pcre_xclass.Plo@am__quote@

@@ -1376,11 +1376,11 @@ The string to be matched by <b>pcre_exec()</b>
 </b><br>
 <P>
 The subject string is passed to <b>pcre_exec()</b> as a pointer in
-<i>subject</i>, a length in <i>length</i>, and a starting byte offset in
-<i>startoffset</i>. In UTF-8 mode, the byte offset must point to the start of a
-UTF-8 character. Unlike the pattern string, the subject may contain binary zero
-bytes. When the starting offset is zero, the search for a match starts at the
-beginning of the subject, and this is by far the most common case.
+<i>subject</i>, a length (in bytes) in <i>length</i>, and a starting byte offset
+in <i>startoffset</i>. In UTF-8 mode, the byte offset must point to the start of
+a UTF-8 character. Unlike the pattern string, the subject may contain binary
+zero bytes. When the starting offset is zero, the search for a match starts at
+the beginning of the subject, and this is by far the most common case.
 </P>
 <P>
 A non-zero starting offset is useful when searching for another match in the
@@ -1418,32 +1418,36 @@ a fragment of a pattern that picks out a substring. PCRE supports several other
 kinds of parenthesized subpattern that do not cause substrings to be captured.
 </P>
 <P>
-Captured substrings are returned to the caller via a vector of integer offsets
-whose address is passed in <i>ovector</i>. The number of elements in the vector
-is passed in <i>ovecsize</i>, which must be a non-negative number. <b>Note</b>:
-this argument is NOT the size of <i>ovector</i> in bytes.
+Captured substrings are returned to the caller via a vector of integers whose
+address is passed in <i>ovector</i>. The number of elements in the vector is
+passed in <i>ovecsize</i>, which must be a non-negative number. <b>Note</b>: this
+argument is NOT the size of <i>ovector</i> in bytes.
 </P>
 <P>
 The first two-thirds of the vector is used to pass back captured substrings,
 each substring using a pair of integers. The remaining third of the vector is
 used as workspace by <b>pcre_exec()</b> while matching capturing subpatterns,
-and is not available for passing back information. The length passed in
+and is not available for passing back information. The number passed in
 <i>ovecsize</i> should always be a multiple of three. If it is not, it is
 rounded down.
 </P>
 <P>
 When a match is successful, information about captured substrings is returned
 in pairs of integers, starting at the beginning of <i>ovector</i>, and
-continuing up to two-thirds of its length at the most. The first element of a
-pair is set to the offset of the first character in a substring, and the second
-is set to the offset of the first character after the end of a substring. The
-first pair, <i>ovector[0]</i> and <i>ovector[1]</i>, identify the portion of the
-subject string matched by the entire pattern. The next pair is used for the
-first capturing subpattern, and so on. The value returned by <b>pcre_exec()</b>
-is one more than the highest numbered pair that has been set. For example, if
-two substrings have been captured, the returned value is 3. If there are no
-capturing subpatterns, the return value from a successful match is 1,
-indicating that just the first pair of offsets has been set.
+continuing up to two-thirds of its length at the most. The first element of
+each pair is set to the byte offset of the first character in a substring, and
+the second is set to the byte offset of the first character after the end of a
+substring. <b>Note</b>: these values are always byte offsets, even in UTF-8
+mode. They are not character counts.
+</P>
+<P>
+The first pair of integers, <i>ovector[0]</i> and <i>ovector[1]</i>, identify the
+portion of the subject string matched by the entire pattern. The next pair is
+used for the first capturing subpattern, and so on. The value returned by
+<b>pcre_exec()</b> is one more than the highest numbered pair that has been set.
+For example, if two substrings have been captured, the returned value is 3. If
+there are no capturing subpatterns, the return value from a successful match is
+1, indicating that just the first pair of offsets has been set.
 </P>
 <P>
 If a capturing subpattern is matched repeatedly, it is the last portion of the
@@ -1452,8 +1456,8 @@ string that it matched that is returned.
 <P>
 If the vector is too small to hold all the captured substring offsets, it is
 used as far as possible (up to two-thirds of its length), and the function
-returns a value of zero. In particular, if the substring offsets are not of
-interest, <b>pcre_exec()</b> may be called with <i>ovector</i> passed as NULL and
+returns a value of zero. If the substring offsets are not of interest,
+<b>pcre_exec()</b> may be called with <i>ovector</i> passed as NULL and
 <i>ovecsize</i> as zero. However, if the pattern contains back references and
 the <i>ovector</i> is not big enough to remember the related substrings, PCRE
 has to get additional memory for use during matching. Thus it is usually
@@ -1972,7 +1976,7 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC22" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 12 April 2008
+Last updated: 24 August 2008
 <br>
 Copyright &copy; 1997-2008 University of Cambridge.
 <br>

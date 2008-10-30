@@ -144,7 +144,14 @@ if [ $do2 = yes ] ; then
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput2 testtry
     if [ $? != 0 ] ; then exit 1; fi
-  else exit 1
+  else
+    echo " "
+    echo "** Test 2 requires a lot of stack. If it has crashed with a"
+    echo "** segmentation fault, it may be that you do not have enough"
+    echo "** stack available by default. Please see the 'pcrestack' man"
+    echo "** page for a discussion of PCRE's stack usage."
+    echo " "
+    exit 1
   fi
   echo "OK"
 fi
