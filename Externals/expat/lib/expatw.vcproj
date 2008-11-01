@@ -51,11 +51,7 @@
 				TypeLibraryName=".\../../../Build/expat/lib/Release-w/expatw.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\Release-w\libexpatw.dll ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\Release-w\libexpatw.lib ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -117,11 +113,7 @@ copy ..\..\..\Build\expat\lib\Release-w\libexpatw.lib ..\..\..\Build\expat
 				TypeLibraryName=".\../../../Build/expat/lib/Debug-w/expatw.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\Debug-w\libexpatw.dll ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\Debug-w\libexpatw.lib ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool

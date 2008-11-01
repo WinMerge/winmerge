@@ -63,10 +63,7 @@
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\pcre.dll ..\..\..\Build\pcre
-copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -133,10 +130,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\pcre.dll ..\..\..\Build\pcre
-copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -203,10 +197,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\pcre.dll ..\..\..\Build\pcre
-copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -275,10 +266,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\pcre.dll ..\..\..\Build\pcre
-copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool

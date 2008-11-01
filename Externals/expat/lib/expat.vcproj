@@ -52,11 +52,7 @@
 				TypeLibraryName=".\../../../Build/expat/lib/Debug/expat.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\debug\libexpat.lib ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\debug\libexpat.dll ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -117,11 +113,7 @@ copy ..\..\..\Build\expat\lib\debug\libexpat.dll ..\..\..\Build\expat
 				TypeLibraryName=".\../../../Build/expat/lib/Release/expat.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\release\libexpat.lib ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\release\libexpat.dll ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool

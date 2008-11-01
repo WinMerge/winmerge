@@ -57,8 +57,7 @@
 				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\heksedit"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -123,8 +122,7 @@
 				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\heksedit.dll ..\..\Build\heksedit"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool

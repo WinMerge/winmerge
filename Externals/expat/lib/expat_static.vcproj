@@ -41,10 +41,7 @@
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\Debug_static\libexpatMT.lib ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -93,10 +90,7 @@ copy ..\..\..\Build\expat\lib\Debug_static\libexpatMT.lib ..\..\..\Build\expat
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat
-copy ..\..\..\Build\expat\lib\release_static\libexpatMT.lib ..\..\..\Build\expat
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
