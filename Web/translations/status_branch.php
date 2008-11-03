@@ -11,7 +11,7 @@
   $page->printRssFeedLink('status_branch_rss.php');
   print("</h2>\n");
   if (!empty($status)) {
-    printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branch/R2_8/Src/Languages/');
+    printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/R2_10/Src/Languages/');
     printTranslationsStatusGraphLegend();
     print("<h3>Translators</h3>\n");
     printTranslationsTranslators($status);

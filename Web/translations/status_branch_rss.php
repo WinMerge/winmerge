@@ -6,5 +6,5 @@
   
   $page = new Page;
   $status = $page->convertXml2Array('status_branch.xml');
-  printTranslationsStatusRSS($status, 'Branch', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branch/R2_8/Src/Languages/');
+  printTranslationsStatusRSS($status, 'Branch', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/R2_10/Src/Languages/');
 ?>
