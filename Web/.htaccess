@@ -46,9 +46,12 @@ Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/Translati
 #Move old "X.Y" version tabs to homepage...
 RewriteEngine On
 RewriteBase   /
-RewriteRule   ^1.7/(|index.php)$ http://winmerge.org/ [R=permanent]
-RewriteRule   ^2.0/(|index.php)$ http://winmerge.org/ [R=permanent]
-RewriteRule   ^2.2/(|index.php)$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^1.7/$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^1.7/index.php$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.0/$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.0/index.php$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.2/$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.2/index.php$ http://winmerge.org/ [R=permanent]
 
 #Tracker shortcuts...
 RewriteEngine On
