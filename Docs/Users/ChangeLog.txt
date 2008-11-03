@@ -7,6 +7,7 @@ WinMerge 2.11.1.7
   Update PCRE to version 7.8 (#2209911)
   Translation updates:
   - Czech (r6034)
+  - Swedish (#2215167)
 
 WinMerge 2.11.1.6 - 2008-10-23 (r6033)
   General compare status for files (not known if text/binary) (#2175736)
