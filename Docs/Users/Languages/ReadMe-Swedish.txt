@@ -5,22 +5,22 @@ alla moderna Windowsversioner. Några funktioner kräver ytterligare
 installationer eller komponenter.
 
 Senaste versionen av WinMerge och annan WinMerge information finns på
-http://www.winmerge.org
+http://winmerge.org
 
 Snabbstart för WinMerge (Quick start to WinMerge):
 Läs online-manualens Quick start-kapitel för att starta med WinMerge:
-http://www.winmerge.org/2.6/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 HTML Manual:
 Manual finns tillgängling online på
-http://www.winmerge.org/2.6/manual/
+http://winmerge.org/docs/manual/
 det är också möjligtvis installerat (om detta är valt) lokalt och 
-nerladdningsbart separat från http://www.winmerge.org/ (se dokumentation).
+nerladdningsbart separat från http://winmerge.org/ (se dokumentation).
 
 Arkivstöd (Archive Support):
 WinMerge använder 7-Zip för arkivfilstöd. 7-Zip (http://www.7-zip.org)
 är ett Open Source arkivprogram. För att installera arkivstöd , ladda ner
-7-Zip plugininstalleraren från http://www.winmerge.org/.
+7-Zip plugininstalleraren från http://winmerge.org/.
 
 Installera arkivstöd (Installing archive support):
 Det är rekommenderat att installera 7-Zip programmet. Om detta inte kan göras av

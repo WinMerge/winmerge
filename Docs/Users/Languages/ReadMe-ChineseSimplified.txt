@@ -7,15 +7,15 @@ Windows平台上的开源软件。有些功能需要额外安装组件。
 
 WinMerge 快速入门：
 请阅读在线手册的“Quick-start”章节来了解并开始即用 WinMerge ：
-http://www.winmerge.org/2.8/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 HTML 手册：
-用户手册可以从 http://www.winmerge.org/2.8/manual/ 得到，也可以在安装时选择
-安装到本地，或者也可以单独从 http://www.winmerge.org/ 下载。(参见文档)
+用户手册可以从 http://winmerge.org/docs/manual/ 得到，也可以在安装时选择
+安装到本地，或者也可以单独从 http://winmerge.org/ 下载。(参见文档)
 
 压缩包支持：
 WinMerge 使用 7-Zip 支持压缩包。7-Zip (http://www.7-zip.org) 是一个开源的打
-包软件。要安装压缩包支持，请从 http://www.winmerge.org/ 下载 7-Zip 插件安装
+包软件。要安装压缩包支持，请从 http://winmerge.org/ 下载 7-Zip 插件安装
 程序。
 
 安装压缩包支持：

@@ -9,19 +9,19 @@ http://winmerge.org
 
 Початок роботи з WinMerge:
 Щодо цього читайте відповідний розділ онлайн-довідки WinMerge:
-http://www.winmerge.org/2.8/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 HTML-довідка:
 Довідка доступна онлайн
-http://www.winmerge.org/2.8/manual/
+http://winmerge.org/docs/manual/
 її також можна встановити (якщо обрано) локально та завантажити окремо з
-http://www.winmerge.org/ (див. документацію)
+http://winmerge.org/ (див. документацію)
 
 Підтримка архівів:
 Для підтримки файлів архівів WinMerge використовує 7-Zip. 7-Zip 
 (http://www.7-zip.org) є вільним (Open Source) інструментом архівування. Щоб
 встановити підтримку заархівованих файлів, завантажте інсталятор модуля 7-Zip з
-сайту http://www.winmerge.org/
+сайту http://winmerge.org/
 
 Встановлення підтримки архівів:
 Бажано встановити програму 7-Zip. Якщо з певних причин цього неможливо зробити,

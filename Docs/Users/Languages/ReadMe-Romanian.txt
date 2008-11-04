@@ -12,20 +12,20 @@ http://winmerge.org
 Start rapid către utilizarea WinMerge:
 Citiţi capitolul Quick-start din manualul on-line pentru a vă
 familiariza cu WinMerge:
-http://www.winmerge.org/2.8/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 Manualul HTML:
 Manualul este disponibil la
-http://www.winmerge.org/2.8/manual/
+http://winmerge.org/docs/manual/
 este posibil să-l aveţi instalat (dacă s-a optat pentru aceasta) local,
-dar este şi copiabil separat de la http://www.winmerge.org/
+dar este şi copiabil separat de la http://winmerge.org/
 (vezi documentaţia)
 
 Suport arhivare:
 WinMerge foloseşte 7-Zip pentru a suporta accesul la arhive de fişiere.
 7-Zip (http://www.7-zip.org) este o unealtă de arhivare cu Sursă Deschisă.
 Pentru a instala suportul de arhivare, copiaţi kit-ul plug-in-ului 7-Zip
-de la http://www.winmerge.org/ .
+de la http://winmerge.org/ .
 
 Instalarea suportului de arhivare:
 Este recomandat să instalaţi aplicaţia 7-Zip. Dacă acest lucru nu poate fi
