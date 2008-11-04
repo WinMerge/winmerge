@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.11.1.7
   Update PCRE to version 7.8 (#2209911)
   Translation updates:
+  - Brazilian (#2219568)
   - Czech (r6034)
   - Swedish (#2215167)
 

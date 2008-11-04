@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-08-14 01:28+0000\n"
-"PO-Revision-Date: 2008-08-14 18:00+0000\n"
+"POT-Creation-Date: 2008-10-20 21:03+0000\n"
+"PO-Revision-Date: 2008-11-01 07:59-0300\n"
 "Last-Translator: Felipe Periard Lopes <felipefpl at ig.com.br>\n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2045,8 +2045,12 @@ msgstr "Selecionar o código de página padrão assumido quando carregar arquivos n
 
 #: Merge.rc:1277
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Detectar a info do código de página para estes arquivos : .html, .rc, .xml \n"
+"precisa reiniciar a sessão"
 
 #: Merge.rc:1280
 #, c-format
@@ -2061,7 +2065,7 @@ msgstr "De Acordo com a Interface do Usuário do WinMerge"
 #: Merge.rc:1284
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Código de página personalizado:"
 
 #: Merge.rc:1292
 #, c-format
@@ -2864,7 +2868,7 @@ msgstr ""
 "Janelas em Cascata"
 
 #: Merge.rc:1812
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
@@ -2873,7 +2877,7 @@ msgstr ""
 "Janelas Lado a Lado Horizontalmente"
 
 #: Merge.rc:1813
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
@@ -3499,7 +3503,7 @@ msgstr ""
 #: Merge.rc:2052
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Caminho para o SS.EXE:"
 
 #: Merge.rc:2058
 #, c-format
@@ -4427,12 +4431,12 @@ msgstr "Erro"
 #: Merge.rc:2321
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Os arquivos texto são idênticos"
 
 #: Merge.rc:2326
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Os arquivos texto são diferentes"
 
 #: Merge.rc:2332
 #, c-format
@@ -6133,4 +6137,7 @@ msgstr "Mostrar barra de ferramentas pequena"
 #, c-format
 msgid "Show big toolbar"
 msgstr "Mostrar barra de ferramentas grande"
+
+#~ msgid "&Path to cleartool.exe :"
+#~ msgstr "&Caminho para o cleartool.exe :"
 
