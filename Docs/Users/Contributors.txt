@@ -3,19 +3,19 @@ People who have contributed to WinMerge
 ---------------------------------------
 
 Original developer, project admin:
-* Dean Grimm
+* Dean Grimm <grimmdp@yahoo.com>
 
 Project lead:
-* Christian List
+* Christian List <list1974@hotmail.com>
 
 Developers:
-* Tim Gerundt
-* Marcel Gosselin
-* Gal Hammer
-* Takashi Sawanaka
-* Alexander Skinner (Graphic Design)
-* Jochen Tucht
-* Kimmo Varis
+* Tim Gerundt <tim@gerundt.de>
+* Marcel Gosselin <marcelgosselin@users.sourceforge.net>
+* Gal Hammer <galh@users.sourceforge.net>
+* Takashi Sawanaka <sdottaka@users.sourceforge.net>
+* Alexander Skinner (Graphic Design) <neonapple@users.sourceforge.net>
+* Jochen Tucht <jtuc@users.sourceforge.net>
+* Kimmo Varis <kimmov@winmerge.org>
 
 Inactive/past developers:
 * Laurent Ganier
