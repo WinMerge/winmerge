@@ -15,17 +15,6 @@ AddType x-mapp-php5 .php
 #Fix wrong wiki.winmerge.org frame redirect...
 Redirect permanent /wiki http://winmerge.org/Wiki/
 
-#Move "WinMerge 1.7 - User's Guide" to "Documentation" tab...
-Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7
-Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
-
-#Move "WinMerge 2.0 - User's Guide" to "Documentation" tab...
-Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0
-Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
-
-#Move "WinMerge 2.2 - Manual" to "Documentation" tab...
-Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
-
 #Move history page to "About" tab...
 Redirect permanent /history.php http://winmerge.org/about/history.php
 
@@ -42,6 +31,13 @@ Redirect permanent /developer/translate.php http://winmerge.org/Wiki/Translation
 Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/Translations
 Redirect permanent /developer/l10n/instructions.php http://svn.sourceforge.net/viewvc/*checkout*/winmerge/trunk/Docs/Developers/Translations.html
 Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/Translations
+
+#Move old user's guides and manuals to /docs/old/...
+Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7
+Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
+Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0
+Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
+Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
 
 #Move old changes pages to new changelog page...
 Redirect permanent /1.7/changes.php http://winmerge.org/docs/changelog.php
