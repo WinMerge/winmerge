@@ -165,13 +165,11 @@ CString FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
  * @brief Set User's filter folder.
  * @param [in] filterPath Location of User's filters.
  */
-void FileFilterHelper::SetUserFilterPath(const CString & filterPath)
+void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
-	CString path(filterPath);
-
-	if (path[path.GetLength() - 1] != '\\')
-		path += _T("\\");
-	m_sUserSelFilterPath = path;
+	m_sUserSelFilterPath = filterPath;
+	if (*filterPath.end() != '\\')
+		m_sUserSelFilterPath += _T("\\");
 }
 
 /** 

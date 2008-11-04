@@ -533,7 +533,7 @@ void CMergeApp::InitializeFileFilters()
 
 	if (!filterPath.IsEmpty())
 	{
-		m_globalFileFilter.SetUserFilterPath(filterPath);
+		m_globalFileFilter.SetUserFilterPath((LPCTSTR)filterPath);
 	}
 	m_globalFileFilter.LoadAllFileFilters();
 }

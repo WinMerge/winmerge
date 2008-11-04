@@ -1024,7 +1024,7 @@ void CMainFrame::OnOptions()
 	{
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_globalFileFilter.SetUserFilterPath(filterPath.c_str());
+		theApp.m_globalFileFilter.SetUserFilterPath(filterPath);
 
 		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)

@@ -108,7 +108,7 @@ public:
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
 	CString GetFileFilterName(LPCTSTR filterPath) const;
 	CString GetFileFilterPath(LPCTSTR filterName) const;
-	void SetUserFilterPath(const CString & filterPath);
+	void SetUserFilterPath(const String & filterPath);
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
