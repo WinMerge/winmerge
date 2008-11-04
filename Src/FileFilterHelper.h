@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for FileFilterHelper
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _FILEFILTERHELPER_H_
@@ -102,7 +102,7 @@ public:
 	String GetGlobalFilterPathWithCreate() const;
 	String GetUserFilterPathWithCreate() const;
 
-	FileFilterMgr * GetManager();
+	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
@@ -119,17 +119,15 @@ public:
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
 
-	BOOL IsUsingMask();
-	CString GetFilterNameOrMask();
+	BOOL IsUsingMask() const;
+	CString GetFilterNameOrMask() const;
 	BOOL SetFilter(const String &filter);
 
 	BOOL includeFile(LPCTSTR szFileName);
 	BOOL includeDir(LPCTSTR szDirName);
 
 protected:
-	CString ParseExtensions(CString extensions);
-	void TestCandidateFilterPath(const CString & sPath);
-
+	CString ParseExtensions(CString extensions) const;
 
 private:
 	FilterList * m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */

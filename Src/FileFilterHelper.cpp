@@ -61,7 +61,7 @@ FileFilterHelper::~FileFilterHelper()
 /** 
  * @brief Return filtermanager used.
  */
-FileFilterMgr * FileFilterHelper::GetManager()
+FileFilterMgr * FileFilterHelper::GetManager() const
 {
 	return m_fileFilterMgr;
 }
@@ -324,9 +324,11 @@ void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoa
 }
 
 /** 
- * @brief Parse user-given extension list to valid regexp for diffengine.
+ * @brief Convert user-given extension list to valid regular expression.
+ * @param [in] Extension list/mask to convert to regular expression.
+ * @return Regular expression that matches extension list.
  */
-CString FileFilterHelper::ParseExtensions(CString extensions)
+CString FileFilterHelper::ParseExtensions(CString extensions) const
 {
 	CString strParsed;
 	CString strPattern;
@@ -369,17 +371,18 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 }
 
 /** 
- * @brief Returns TRUE if active filter is mask.
+ * @brief Returns TRUE if active filter is a mask.
  */
-BOOL FileFilterHelper::IsUsingMask()
+BOOL FileFilterHelper::IsUsingMask() const
 {
 	return m_bUseMask;
 }
 
 /** 
  * @brief Returns active filter (or mask string)
+ * @return The active filter.
  */
-CString FileFilterHelper::GetFilterNameOrMask()
+CString FileFilterHelper::GetFilterNameOrMask() const
 {
 	CString sFilter;
 
