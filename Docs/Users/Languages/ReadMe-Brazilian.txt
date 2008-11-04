@@ -4,11 +4,11 @@ WinMerge é um utilitário de comparação e união de arquivos com o código fonte ab
 http://winmerge.org
 
  Início rápido para o WinMerge: Leia o capítulo do início rápido do manual online para se iniciar com o WinMerge:
- http://www.winmerge.org/2.8/manual/quickstart.html
+ http://winmerge.org/docs/manual/QuickStart.html
 
  Manual em HTML: O manual está disponível online em 
-http://www.winmerge.org/2.8/manual/ ele está também possivelmente instalado (se escolhido assim) localmente e descarregável separadamente de http://www.winmerge.org/ (veja a documentação) Suporte para Arquivos: O 
-WinMerge usa o 7-Zip para o suporte para arquivos dentro de arquivos. 7-Zip (http://www.7-zip.org) é uma ferramenta para arquivos com o código fonte aberto. Para instalar o suporte para arquivos dentro de arquivos, baixe o instalador do plugin do 7-Zip de http://www.winmerge.org/ 
+http://winmerge.org/docs/manual/ ele está também possivelmente instalado (se escolhido assim) localmente e descarregável separadamente de http://winmerge.org/ (veja a documentação) Suporte para Arquivos: O 
+WinMerge usa o 7-Zip para o suporte para arquivos dentro de arquivos. 7-Zip (http://www.7-zip.org) é uma ferramenta para arquivos com o código fonte aberto. Para instalar o suporte para arquivos dentro de arquivos, baixe o instalador do plugin do 7-Zip de http://winmerge.org/ 
 
 Instalando o suporte para arquivos: É recomendado instalar o aplicativo 7-Zip. Se isto não pode ser feito por alguma razão, o instalador do plugin do 7-Zip pode instalar apenas os arquivos necessários para ativar o suporte para arquivos dentro dos arquivos. Note que NÃO permite o uso isolado do 7-Zip, apenas o suporte para arquivos para oWinMerge.
 

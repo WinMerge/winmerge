@@ -9,19 +9,19 @@ http://winmerge.org
 
 Guía rápida de WinMerge:
 Lea el capítulo Quick-start del manual on-line para comenzar con WinMerge;
-http://www.winmerge.org/2.6/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 Manual HTML:
 el manual está disponible online en:
-http://www.winmerge.org/2.6/manual/
+http://winmerge.org/docs/manual/
 Posiblemente también esté instalado (si se eligió así) localmente, y se puede 
-descargar por separado desde http://www.winmerge.org/ (ver Documentación)
+descargar por separado desde http://winmerge.org/ (ver Documentación)
 
 Soporte de archivado:
 WinMerge usa 7-Zip para soporte de archivado. 7-Zip (http://www.7-zip.org)
 es una utilidad de código abierto de compresión. Para instalar el soporte de 
 archivado, descargue el instalador del plugin de 7-Zip desde
-http://www.winmerge.org/.
+http://winmerge.org/.
 
 Instalación del soporte de archivado:
 Se recomienda instalar la aplicación 7-Zip. Si no pudiera ser por alguna razón,

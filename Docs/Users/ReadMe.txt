@@ -15,12 +15,12 @@ HTML Manual:
 Manual is available online at
 http://winmerge.org/docs/manual/
 it is also possibly installed (if choosed so) locally and downloadable
-separately from http://www.winmerge.org/ (see documentation)
+separately from http://winmerge.org/ (see documentation)
 
 Archive Support:
 WinMerge uses 7-Zip for archive file support. 7-Zip (http://www.7-zip.org)
 is Open Source archive tool. To install archive file support, download
-7-Zip plugin installer from http://www.winmerge.org/.
+7-Zip plugin installer from http://winmerge.org/.
 
 Installing archive support:
 It is recommended to Install 7-Zip application. If this cannot be done for

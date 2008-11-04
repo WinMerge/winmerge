@@ -9,20 +9,20 @@ http://winmerge.org
 
 Pour débuter rapidement avec WinMerge:
 Lisez le manuel en ligne au chapitre du démarrage rapide de WinMerge:
-http://www.winmerge.org/2.6/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 Documentation HTML:
 Elle est disponible en ligne à
-http://www.winmerge.org/2.6/manual/
+http://winmerge.org/docs/manual/
 Il est également possible de l'installée localement (si désiré) 
 et de la télécharger séparément à l'adresse (voir la documentation):
-http://www.winmerge.org/
+http://winmerge.org/
 
 Support d'archive:
 WinMerge utilise 7-Zip pour le support d'archivage de fichier. 
 7-Zip (http://www.7-zip.org) est un logiciel d'archivage libre.
 Pour installer le support d'archive de fichier, télécharger le programme 
-d'installation plugiciel 7-Zip à l'adresse http://www.winmerge.org/.
+d'installation plugiciel 7-Zip à l'adresse http://winmerge.org/.
 
 Installer le support d'archive:
 Il est recommandé d'installer l'application 7-Zip. Si cela ne peut être 

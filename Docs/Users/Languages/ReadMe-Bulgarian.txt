@@ -9,19 +9,19 @@ http://winmerge.org
 
 Бързо въведение в WinMerge:
 Моля, прочетете помощната онлайн информация за кратко въведение в WinMerge:
-http://www.winmerge.org/2.6/manual/quickstart.html
+http://winmerge.org/docs/manual/QuickStart.html
 
 HTML ръководство:
 Ръководството е достъпно онлайн на адрес:
-http://www.winmerge.org/2.6/manual/
+http://winmerge.org/docs/manual/
 може да е инсталирано на Вашият компютър (ако е избрано) или да го
-свалите от http://www.winmerge.org/ (вижте документацията)
+свалите от http://winmerge.org/ (вижте документацията)
 
 Поддръжка на архиви:
 WinMerge използва 7-Zip за поддръжката на архиви. 7-Zip (http://www.7-zip.org)
 е интрумент за работа с архиви с Отворен Код. За да инсталирате поддръжката на
 архиви, свалете инсталатора за добавката (plugin) на 7-Zip от
-http://www.winmerge.org/.
+http://winmerge.org/.
 
 Инсталиране на поддръжката на архиви:
 Препоръчително е да инсталирате програмата 7-Zip. Ако това не може да
