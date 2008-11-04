@@ -43,6 +43,14 @@ Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/Translatio
 Redirect permanent /developer/l10n/instructions.php http://svn.sourceforge.net/viewvc/*checkout*/winmerge/trunk/Docs/Developers/Translations.html
 Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/Translations
 
+#Move old changes pages to new changelog page...
+Redirect permanent /1.7/changes.php http://winmerge.org/docs/changelog.php
+Redirect permanent /2.0/changes.php http://winmerge.org/docs/changelog.php
+Redirect permanent /2.2/changes.php http://winmerge.org/docs/changelog.php
+
+#Move old screenshot pages to new screenshot page...
+Redirect permanent /2.2/screenshots.php http://winmerge.org/about/screenshots/
+
 #Move old "X.Y" version tabs to homepage...
 RewriteEngine On
 RewriteBase   /
