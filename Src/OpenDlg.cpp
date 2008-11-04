@@ -285,7 +285,7 @@ void COpenDlg::OnRightButton()
  */
 void COpenDlg::OnOK() 
 {
-	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	const String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 
 	UpdateData(TRUE);
 	TrimPaths();
@@ -328,28 +328,28 @@ void COpenDlg::OnOK()
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 
-	m_strExt.TrimLeft();
-	m_strExt.TrimRight();
+	String filter((LPCTSTR)m_strExt);
+	filter = string_trim_ws(filter);
 
 	// If prefix found from start..
-	if (m_strExt.Find(filterPrefix.c_str(), 0) == 0)
+	if (filter.find(filterPrefix, 0) == 0)
 	{
 		// Remove prefix + space
-		m_strExt.Delete(0, filterPrefix.length());
-		if (!theApp.m_globalFileFilter.SetFilter((LPCTSTR)m_strExt))
+		filter.erase(0, filterPrefix.length());
+		if (!theApp.m_globalFileFilter.SetFilter(filter))
 		{
 			// If filtername is not found use default *.* mask
 			theApp.m_globalFileFilter.SetFilter(_T("*.*"));
-			m_strExt = _T("*.*");
+			filter = _T("*.*");
 		}
-		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
 	}
 	else
 	{
-		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter((LPCTSTR)m_strExt);
+		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filter);
 		if (!bFilterSet)
 			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask();
-		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
 	}
 
 	SaveComboboxStates();
