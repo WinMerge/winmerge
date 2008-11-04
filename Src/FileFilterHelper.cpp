@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "Ucs2Utf8.h"
+#include "UnicodeString.h"
 #include "MainFrm.h"
 #include "FilterList.h"
 #include "DirItem.h"
@@ -401,10 +402,10 @@ CString FileFilterHelper::GetFilterNameOrMask()
  * @note If function returns FALSE, you should ask filter set with
  * GetFilterNameOrMask().
  */
-BOOL FileFilterHelper::SetFilter(CString filter)
+BOOL FileFilterHelper::SetFilter(const String &filter)
 {
 	// If filter is empty string set default filter
-	if (filter.IsEmpty())
+	if (filter.empty())
 	{
 		UseMask(TRUE);
 		SetMask(_T("*.*"));
@@ -413,19 +414,18 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 	}
 
 	// Remove leading and trailing whitespace characters from the string.
-	filter.TrimLeft();
-	filter.TrimRight();
+	String flt = string_trim_ws(filter);
 
 	// Star means we have a file extension mask
-	if (filter[0] == '*')
+	if (flt[0] == '*')
 	{
 		UseMask(TRUE);
-		SetMask(filter);
+		SetMask(flt.c_str());
 		SetFileFilterPath(_T(""));
 	}
 	else
 	{
-		CString path = GetFileFilterPath(filter);
+		CString path = GetFileFilterPath(flt.c_str());
 		if (!path.IsEmpty())
 		{
 			UseMask(FALSE);

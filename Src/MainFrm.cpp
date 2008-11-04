@@ -2560,9 +2560,9 @@ void CMainFrame::OnToolsFilters()
 			// Don't overwrite mask we already have
 			if (!theApp.m_globalFileFilter.IsUsingMask())
 			{
-				CString sFilter = _T("*.*");
+				String sFilter(_T("*.*"));
 				theApp.m_globalFileFilter.SetFilter(sFilter);
-				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter.c_str());
 			}
 		}
 		else

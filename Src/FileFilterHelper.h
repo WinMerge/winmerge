@@ -121,7 +121,7 @@ public:
 
 	BOOL IsUsingMask();
 	CString GetFilterNameOrMask();
-	BOOL SetFilter(CString filter);
+	BOOL SetFilter(const String &filter);
 
 	BOOL includeFile(LPCTSTR szFileName);
 	BOOL includeDir(LPCTSTR szDirName);

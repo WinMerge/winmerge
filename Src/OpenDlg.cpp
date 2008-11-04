@@ -336,7 +336,7 @@ void COpenDlg::OnOK()
 	{
 		// Remove prefix + space
 		m_strExt.Delete(0, filterPrefix.length());
-		if (!theApp.m_globalFileFilter.SetFilter(m_strExt))
+		if (!theApp.m_globalFileFilter.SetFilter((LPCTSTR)m_strExt))
 		{
 			// If filtername is not found use default *.* mask
 			theApp.m_globalFileFilter.SetFilter(_T("*.*"));
@@ -346,7 +346,7 @@ void COpenDlg::OnOK()
 	}
 	else
 	{
-		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_strExt);
+		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter((LPCTSTR)m_strExt);
 		if (!bFilterSet)
 			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);

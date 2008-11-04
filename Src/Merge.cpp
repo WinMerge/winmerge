@@ -668,9 +668,8 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 	sRight = project.GetRight(&bRightReadOnly);
 	if (project.HasFilter())
 	{
-		CString filter = project.GetFilter();
-		filter.TrimLeft();
-		filter.TrimRight();
+		String filter = (LPCTSTR)project.GetFilter();
+		filter = string_trim_ws(filter);
 		m_globalFileFilter.SetFilter(filter);
 	}
 	if (project.HasSubfolders())

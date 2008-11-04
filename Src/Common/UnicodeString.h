@@ -42,4 +42,7 @@ void string_replace(String &target, const String &find, const String &replace);
 // Comparing
 int string_compare_nocase(const String &str1, const String &str2);
 
+// Trimming
+String string_trim_ws(const String & str);
+
 #endif // _UNICODE_STRING_

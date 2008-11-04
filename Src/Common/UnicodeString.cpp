@@ -64,3 +64,27 @@ int string_compare_nocase(const String &str1, const String &str2)
 
 	return s1.compare(s2);
 }
+
+/**
+ * @brief Trims whitespace chars from begin and end of the string.
+ * @param [in] str the original string.
+ * @return Trimmed string.
+ */
+String string_trim_ws(const String & str)
+{
+	String result(str);
+	String::iterator it = result.begin();
+	while (_istspace(*it))
+		++it;
+	
+	if (it != result.begin())
+		result.erase(result.begin(), it);
+
+	it = result.end() - 1;
+	while (_istspace(*it))
+		--it;
+
+	if (it != result.end() - 1)
+		result.erase(it + 1, result.end());
+	return result;
+}
