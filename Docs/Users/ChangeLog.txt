@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.10.2
+WinMerge 2.10.2 - 2008-11-06 (r6075)
   Change download URL to current URL (#2136765)
   Installer: create backup of ClearCase config file (#2129095)
   Release notes update (#2222871)
