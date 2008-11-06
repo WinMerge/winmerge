@@ -20,6 +20,7 @@ WinMerge 2.10.2
   New translation: Galician (#2120685)
   Translation updates:
   - Czech (r6038)
+  - Swedish (#2227131)
   - Ukrainian (#2131753)
 
 WinMerge 2.10 - 2008-09-17 (r5967)

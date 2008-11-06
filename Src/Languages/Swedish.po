@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-08-20 13:00+0100\n"
+"PO-Revision-Date: 2008-10-05 23:40+0100\n"
 "Last-Translator: Hans Eriksson <hans.ericson at bredband.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1304,7 +1304,9 @@ msgstr "Jäm&för filer"
 #: Merge.rc:779
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge tillåter att vissa meddelanderutor döljs. Klicka på Återställ-knappen för att göra alla meddelanderutor synliga igen."
+msgstr ""
+"WinMerge tillåter att vissa meddelanderutor döljs.\n"
+"Klicka på Återställ-knappen för att göra alla meddelanderutor synliga igen."
 
 #: Merge.rc:781
 #, c-format
@@ -2140,8 +2142,12 @@ msgstr "Plugins i sökväg:"
 
 #: Merge.rc:1321
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr "Visa inte detta &meddelande igen.\n(Du kan alltid få tillbaka detta meddelande från Hjälp-menyn.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
+msgstr ""
+"Visa inte detta &meddelande igen.\n"
+"(Du kan alltid få tillbaka detta meddelande från Hjälp-menyn.)"
 
 #: Merge.rc:1325
 #, c-format
@@ -3047,8 +3053,12 @@ msgstr "Högerklicka på sökvägen för att kopiera"
 
 #: Merge.rc:1888
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr "Utvecklare:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgstr ""
+"Utvecklare:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1889
 #, c-format
@@ -3417,8 +3427,14 @@ msgstr "Reguljärt uttryck"
 
 #: Merge.rc:2037
 #, c-format
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
-msgstr "Filtren är uppdaterade Vill du uppdatera alla öppna katalogjämförelser?\n\nOm du inte vill uppdatera alla jämförelser nu kan du välja Nej och uppdatera jämförelser senare."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
+msgstr ""
+"Filtren är uppdaterade Vill du uppdatera alla öppna katalogjämförelser?\n"
+"\n"
+"Om du inte vill uppdatera alla jämförelser nu kan du välja Nej och uppdatera jämförelser senare."
 
 #: Merge.rc:2043
 #, c-format
@@ -3510,15 +3526,17 @@ msgstr "Flyttar filer..."
 msgid "Creating the report..."
 msgstr "Skapar rapport..."
 
+# Use action instead operation, like the rest of the undo/redo system.
 #: Merge.rc:2071
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Ångrar den förra åtgärden"
 
+# Use action instead operation, like the rest of the undo/redo system.
 #: Merge.rc:2072
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Gör om den tidigare åtgärden"
 
 #: Merge.rc:2078
 #, c-format
@@ -3641,8 +3659,14 @@ msgstr "Kunde inte tolka Konfliktfilen."
 
 #: Merge.rc:2115
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
-msgstr "Filen\n%1\när inte en Konfliktfil."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"Filen\n"
+"%1\n"
+"är inte en Konfliktfil."
 
 #: Merge.rc:2121
 #, c-format
@@ -4015,7 +4039,8 @@ msgid ""
 msgstr ""
 "Är du säker på du att vill ta bort\n"
 "\n"
-"%1 ?"
+"%1\n"
+"?"
 
 #: Merge.rc:2215
 #, c-format
@@ -4563,8 +4588,14 @@ msgstr ""
 
 #: Merge.rc:2384
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr "Radsluten är av olika typer (Windows/Unix/Mac) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
+msgstr ""
+"Radsluten är av olika typer (Windows/Unix/Mac) i filen '%1'.\n"
+" Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n"
+" Vill du ändra i inställningarna och bevara de olika radsluten ?"
 
 #: Merge.rc:2385
 #, c-format
@@ -4583,8 +4614,18 @@ msgstr "Kan inte öppna en binär fil för att editera."
 
 #: Merge.rc:2388
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "Katalogen finns bara på andra sidan och kan inte öppnas.\n\nVill du skapa en matchande katalog:\n%1\npå andra sidan och öppna dessa kataloger?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
+msgstr ""
+"Katalogen finns bara på andra sidan och kan inte öppnas.\n"
+"\n"
+"Vill du skapa en matchande katalog:\n"
+"%1\n"
+"på andra sidan och öppna dessa kataloger?"
 
 #: Merge.rc:2394
 #, c-format
@@ -5473,13 +5514,21 @@ msgstr "Visar dialog med katalogjämförelsestatistik"
 
 #: Merge.rc:2677
 #, c-format
-msgid "Select the current user interface language\nLanguage"
-msgstr "Väljer språk för användargränssnittet\nSpråk"
+msgid ""
+"Select the current user interface language\n"
+"Language"
+msgstr ""
+"Väljer språk för användargränssnittet\n"
+"Språk"
 
 #: Merge.rc:2678
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr "Visar skillnader inom rader med olika färg\nVisa radskillnad"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
+msgstr ""
+"Visar skillnader inom rader med olika färg\n"
+"Visa radskillnad"
 
 #: Merge.rc:2679
 #, c-format
@@ -5530,28 +5579,48 @@ msgstr "Återställ textzoomning till standardstorlek"
 
 #: Merge.rc:2691
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr "Går till föregående skillnad\nFöregående skillnad (Alt+Upp)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
+msgstr ""
+"Går till föregående skillnad\n"
+"Föregående skillnad (Alt+Upp)"
 
 #: Merge.rc:2692
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr "Går till nästa skillnad\nNästa skillnad (Alt+Ner)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"Går till nästa skillnad\n"
+"Nästa skillnad (Alt+Ner)"
 
 #: Merge.rc:2693
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr "Går till första skillnaden\nFörsta skillnad (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"Går till första skillnaden\n"
+"Första skillnad (Alt+Home)"
 
 #: Merge.rc:2694
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr "Går till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"Går till aktuell skillnad\n"
+"Aktuell skillnad (Alt+Enter)"
 
 #: Merge.rc:2695
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr "Går till sista skillnaden\nSista skillnad (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"Går till sista skillnaden\n"
+"Sista skillnad (Alt+End)"
 
 #: Merge.rc:2696
 #, c-format
@@ -5679,9 +5748,12 @@ msgstr "Stäng alla plugins och öppna dem igen (för utvecklare)"
 
 #: Merge.rc:2731
 #, c-format
-msgid "Activates next visible file\nActivate next File"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
 msgstr ""
-"Aktiverar nästa synliga fil\nAktivera nästa fil"
+"Aktiverar nästa synliga fil\n"
+"Aktivera nästa fil"
 
 #: Merge.rc:2732
 #, c-format
@@ -5690,8 +5762,12 @@ msgstr "Stänger alla öppna fönster"
 
 #: Merge.rc:2738
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr "Öppnar WinMerge Hjälp\nWinMerge Hjälp"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
+msgstr ""
+"Öppnar WinMerge Hjälp\n"
+"WinMerge Hjälp"
 
 #: Merge.rc:2739
 #, c-format
@@ -5710,13 +5786,21 @@ msgstr "Privat Kompilering: %1"
 
 #: Merge.rc:2742
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
-msgstr "Öppnar Releasenoteringsdokumentet\nReleasenoteringar"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
+msgstr ""
+"Öppnar Releasenoteringsdokumentet\n"
+"Releasenoteringar"
 
 #: Merge.rc:2743
 #, c-format
-msgid "Opens the translations website\nTranslations"
-msgstr "Öppnar Översättningssidan\nÖversättningar"
+msgid ""
+"Opens the translations website\n"
+"Translations"
+msgstr ""
+"Öppnar Översättningssidan\n"
+"Översättningar"
 
 #: Merge.rc:2749
 #, c-format
