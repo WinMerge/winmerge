@@ -38,14 +38,31 @@ Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
 Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0
 Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
 Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
+Redirect permanent /2.4/manual http://winmerge.org/docs/old/manual-2.4
 
-#Move old changes pages to new changelog page...
+#Move old "Changes" pages to new "Change Log" page...
 Redirect permanent /1.7/changes.php http://winmerge.org/docs/changelog.php
 Redirect permanent /2.0/changes.php http://winmerge.org/docs/changelog.php
 Redirect permanent /2.2/changes.php http://winmerge.org/docs/changelog.php
+Redirect permanent /2.4/changes.php http://winmerge.org/docs/changelog.php
+
+#Move old "Known Limitations" pages to new "Known Issues" page...
+Redirect permanent /2.4/limitations.php http://winmerge.org/docs/releasenotes.php#issues
 
 #Move old screenshot pages to new screenshot page...
 Redirect permanent /2.2/screenshots.php http://winmerge.org/about/screenshots/
+Redirect permanent /2.4/screenshots.php http://winmerge.org/about/screenshots/
+
+#Move old icon image to new icon image...
+Redirect permanent /1.7/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
+Redirect permanent /2.0/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
+Redirect permanent /2.2/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
+Redirect permanent /2.4/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
+
+#Move old screenshot image to new screenshot image...
+Redirect permanent /2.0/images/screenshot.png http://winmerge.org/about/screenshots/screenshot.png
+Redirect permanent /2.2/images/screenshot.gif http://winmerge.org/about/screenshots/screenshot.png
+Redirect permanent /2.4/images/screenshot.gif http://winmerge.org/about/screenshots/screenshot.png
 
 #Move old "X.Y" version tabs to homepage...
 RewriteEngine On
@@ -56,6 +73,8 @@ RewriteRule   ^2.0/$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.0/index.php$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.2/$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.2/index.php$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.4/$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.4/index.php$ http://winmerge.org/ [R=permanent]
 
 #Tracker shortcuts...
 RewriteEngine On
