@@ -168,7 +168,7 @@ CString FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
 void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
 	m_sUserSelFilterPath = filterPath;
-	if (*filterPath.end() != '\\')
+	if (filterPath[filterPath.length() - 1] != '\\')
 		m_sUserSelFilterPath += _T("\\");
 }
 
