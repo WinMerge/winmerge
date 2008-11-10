@@ -15,6 +15,13 @@ AddType x-mapp-php5 .php
 #Fix wrong wiki.winmerge.org frame redirect...
 Redirect permanent /wiki http://winmerge.org/Wiki/
 
+#Redirect winmerge.info to winmerge.org...
+#TODO: Don't work for www.winmerge.info!
+#TODO: Should be done with own .htaccess file!
+RewriteEngine On
+RewriteCond   %{HTTP_HOST} ^winmerge\.info$ [NC]
+RewriteRule   ^(.*)$ http://winmerge.org/$1 [R=permanent,L]
+
 #Move history page to "About" tab...
 Redirect permanent /history.php http://winmerge.org/about/history.php
 
