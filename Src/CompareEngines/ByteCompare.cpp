@@ -210,22 +210,22 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		else if (result == ByteComparator::NEED_MORE_0)
 		{
 			const int m = ptr0 - &buff[0][0];
-			const int l = end0 - ptr0 - 1;
+			const int l = end0 - ptr0;
 			//move uncompared data to begin of buff0
 			memcpy( &buff[0][0], &buff[0][m], l );
 			bfstart[0] = 0;
 			bfstart[1] = ptr1 - orig1;
-			bfend[0] = l + 1;
+			bfend[0] = l;
 		}
 		else if (result == ByteComparator::NEED_MORE_1)
 		{
 			const int m = ptr1 - &buff[1][0];
-			const int l = end1 - ptr1 - 1;
+			const int l = end1 - ptr1;
 			//move uncompared data to begin of buff1
-			memcpy( &buff[1][0], &buff[0][m], l );
+			memcpy( &buff[1][0], &buff[1][m], l );
 			bfstart[1]=0;
 			bfstart[0]=ptr0 - orig0;
-			bfend[1] = l + 1;
+			bfend[1] = l;
 		}
 		else if (result == ByteComparator::NEED_MORE_BOTH)
 		{
@@ -241,20 +241,20 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				if (ptr0 < end0)
 				{
 					const int m = ptr0 - orig0;
-					const int l = end0 - ptr0 - 1;
+					const int l = end0 - ptr0;
 					//move uncompared data to begin of buff0
 					memcpy( &buff[0][0], &buff[0][m], l );
 					bfstart[0] = 0;
-					bfend[0] = l + 1;
+					bfend[0] = l;
 				}
 				if (ptr1 < end1)
 				{
 					const int m = ptr1 - orig1;
-					const int l = end1 - ptr1 - 1;
+					const int l = end1 - ptr1;
 					//move uncompared data to begin of buff1
 					memcpy( &buff[1][0], &buff[1][ m], l );
 					bfstart[1] = 0;
-					bfend[1] = l + 1;
+					bfend[1] = l;
 				}
 			}
 		}
