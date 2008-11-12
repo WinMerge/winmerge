@@ -8,7 +8,7 @@ WinMerge 2.11.1.7
   Translation updates:
   - Brazilian (#2219568)
   - Czech (r6034)
-  - Swedish (#2215167)
+  - Swedish (#2215167, #2236651)
 
 WinMerge 2.11.1.6 - 2008-10-23 (r6033)
   General compare status for files (not known if text/binary) (#2175736)
