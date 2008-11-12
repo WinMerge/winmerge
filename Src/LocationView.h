@@ -93,6 +93,8 @@ protected:
 	void DrawDiffMarker(CDC* pDC, int yCoord);
 	void CalculateBars();
 	void CalculateBlocks();
+	void CalculateBlocksPixel(int nBlockStart, int nBlockEnd, int nBlockLength,
+			int &nBeginY, int &nEndY);
 	void DrawBackground(CDC* pDC);
 
 private:

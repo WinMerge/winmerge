@@ -245,8 +245,12 @@ void CLocationView::CalculateBars()
  */
 void CLocationView::CalculateBlocks()
 {
+	// lineposition in pixels.
+	int nBeginY;
+	int nEndY;
+
 	m_diffBlocks.clear();
-	
+
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
 	if (nDiffs > 0)
@@ -258,33 +262,111 @@ void CLocationView::CalculateBlocks()
 		DIFFRANGE diff;
 		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
 
-		// Find end of diff. If first side has blank lines use other side.
-		const int nLineEndDiff = (diff.blank0 > 0) ? diff.dend1 : diff.dend0;
-
 		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
 
-		// Count how many line does the diff block have.
-		const int nBlockStart = pView->GetSubLineIndex(diff.dbegin0);
-		const int nBlockEnd = pView->GetSubLineIndex(nLineEndDiff);
-		const int nBlockHeight = nBlockEnd - nBlockStart + pView->GetSubLines(nLineEndDiff);
-
-		// Convert diff block size from lines to pixels.
-		const int nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
-		const int nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
-
 		DiffBlock block;
-		block.top_line = diff.dbegin0;
-		block.bottom_line = nLineEndDiff;
-		block.top_coord = nBeginY;
-		block.bottom_coord = nEndY;
-		block.diff_index = nDiff;
-		m_diffBlocks.push_back(block);
+		//there are no blanks on both side
+		if ((diff.blank0 < 0) && (diff.blank1 < 0))
+		{
+			CalculateBlocksPixel(
+				pView->GetSubLineIndex(diff.dbegin0),
+				pView->GetSubLineIndex(diff.dend0),
+				pView->GetSubLines(diff.dend0),	nBeginY, nEndY);
+
+			block.top_line = diff.dbegin0;
+			block.bottom_line = diff.dend0;
+			block.top_coord = nBeginY;
+			block.bottom_coord = nEndY;
+			block.diff_index = nDiff;
+			m_diffBlocks.push_back(block);
+		}
+		//side0 has blank lines?
+		else if (diff.blank0 > 0)
+		{
+			//Is there a common block on side0?
+			if ((int)diff.dbegin0 < diff.blank0)
+			{
+				CalculateBlocksPixel(
+					pView->GetSubLineIndex(diff.dbegin0),
+					pView->GetSubLineIndex(diff.blank0 - 1),
+					pView->GetSubLines(diff.blank0 - 1), nBeginY, nEndY);
+
+				block.top_line = diff.dbegin0;
+				block.bottom_line = diff.blank0 - 1;
+				block.top_coord = nBeginY;
+				block.bottom_coord = nEndY;
+				block.diff_index = nDiff;
+				m_diffBlocks.push_back(block);
+				}
+			// Now the block for blank lines side0!
+			CalculateBlocksPixel(
+				pView->GetSubLineIndex(diff.blank0),
+				pView->GetSubLineIndex(diff.dend1),
+				pView->GetSubLines(diff.dend1), nBeginY, nEndY);
+
+			block.top_line = diff.blank0;
+			block.bottom_line = diff.dend1;
+			block.top_coord = nBeginY;
+			block.bottom_coord = nEndY;
+			block.diff_index = nDiff;
+			m_diffBlocks.push_back(block);
+		}
+		//side1 has blank lines?
+		else
+		{
+			// Is there a common block on side1?
+			if ((int)diff.dbegin0 < diff.blank1)
+			{
+				CalculateBlocksPixel(
+					pView->GetSubLineIndex(diff.dbegin0),
+					pView->GetSubLineIndex(diff.blank1 - 1),
+					pView->GetSubLines(diff.blank1 - 1), nBeginY, nEndY);
+
+				block.top_line = diff.dbegin0;
+				block.bottom_line = diff.blank1 - 1;
+				block.top_coord = nBeginY;
+				block.bottom_coord = nEndY;
+				block.diff_index = nDiff;
+				m_diffBlocks.push_back(block);
+			}
+			// Now the block for blank lines side1!
+			CalculateBlocksPixel(
+				pView->GetSubLineIndex(diff.blank1),
+				pView->GetSubLineIndex(diff.dend0),
+				pView->GetSubLines(diff.dend0), nBeginY, nEndY);
+
+			block.top_line = diff.blank1;
+			block.bottom_line = diff.dend0;
+			block.top_coord = nBeginY;
+			block.bottom_coord = nEndY;
+			block.diff_index = nDiff;
+			m_diffBlocks.push_back(block);
+		}
 
 		nDiff = pDoc->m_diffList.NextSignificantDiff(nDiff);
 	}
 	m_bRecalculateBlocks = FALSE;
 }
 
+/**
+ * @brief Calculate Blocksize to pixel.
+ * @param [in] nBlockStart line where block starts
+ * @param [in] nBlockEnd   line where block ends 
+ * @param [in] nBlockLength length of the block
+ * @param [in,out] nBeginY pixel in y  where block starts
+ * @param [in,out] nEndY   pixel in y  where block ends
+
+ */
+void CLocationView::CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
+		int nBlockLength, int &nBeginY, int &nEndY)
+{
+	// Count how many line does the diff block have.
+	const int nBlockHeight = nBlockEnd - nBlockStart + nBlockLength;
+
+	// Convert diff block size from lines to pixels.
+	nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
+	nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
+}
 /** 
  * @brief Draw maps of files.
  *
