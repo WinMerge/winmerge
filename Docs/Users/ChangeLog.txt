@@ -7,6 +7,7 @@ WinMerge 2.11.1.7
   Update PCRE to version 7.8 (#2209911)
   Show missing lines in location pane for diffs having both different
     and missing lines (#2119235)
+  Readme update (#2234689)
   Translation updates:
   - Brazilian (#2219568)
   - Czech (r6034)
