@@ -179,8 +179,9 @@ public:
 	LPVOID pImage;
 	enum
 	{
-		Handle = 1,
-		Octets = 2 + 4,
+		Handle = 0x01,
+		Octets = 0x02 + 0x04,
+		Mapping = 0x40
 	};
 	int nByteOrder;
 	FileImage(LPCTSTR, DWORD trunc = 0, int flags = 0);

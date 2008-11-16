@@ -897,110 +897,115 @@ int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
 }
 
 CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
-: pImage(NULL), nByteOrder(0)
+: pImage(NULL), cbImage(0), nByteOrder(0)
 {
-	HANDLE hFile
-	(
-		flags & Handle
-	?	HANDLE(path)
-	:	CreateFile(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0)
-	);
-	if (hFile != INVALID_HANDLE_VALUE)
+	HANDLE hFile = 0;
+	if (flags & Mapping)
 	{
-		cbImage = GetFileSize(hFile, 0);
-		if (cbImage != INVALID_FILE_SIZE)
+		pImage = LPVOID(path);
+		cbImage = trunc;
+	}
+	else
+	{
+		hFile = flags & Handle ? HANDLE(path) :
+			CreateFile(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
+		if (hFile != INVALID_HANDLE_VALUE)
 		{
-			if (trunc && cbImage > trunc)
+			cbImage = GetFileSize(hFile, 0);
+			if (cbImage != INVALID_FILE_SIZE)
 			{
-				cbImage = trunc;
-			}
-			pImage = MapFile(hFile, cbImage);
-			if (pImage && cbImage >= 4 && (flags & Octets & (nByteOrder = GuessByteOrder(*(LPDWORD)pImage))))
-			{
-				LPVOID pCopy;
-				switch (nByteOrder)
+				if (trunc && cbImage > trunc)
 				{
-				case 2 + 1:
-				case 2 + 1 + 8:
-					// big endian: swab first
-					cbImage &= ~1UL;
-					pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-					if (pCopy)
-					{
-						_swab((char *)pImage, (char *)pCopy, cbImage);
-					}
-					UnmapViewOfFile(pImage);
-					pImage = pCopy;
-					if (pImage)
-					{
-					case 2 + 0:
-					case 2 + 0 + 8:
-						// little endian
-						int cchImage = cbImage / 2;
-						LPWCH pchImage = (LPWCH)pImage;
-						if (nByteOrder & 8)
-						{
-							++pchImage;
-							--cchImage;
-						}
-						cbImage = WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, 0, 0, 0, 0);
-						pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-						if (pCopy)
-						{
-							WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, (LPCH)pCopy, cbImage, 0, 0);
-						}
-						UnmapViewOfFile(pImage);
-						pImage = pCopy;
-					}
-					break;
-				case 4 + 1:
-				case 4 + 1 + 8:
-				case 4 + 2:
-				case 4 + 2 + 8:
-					// odd word endianness: swab first
-					cbImage &= ~3UL;
-					pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-					if (pCopy)
-					{
-						_swab((char *)pImage, (char *)pCopy, cbImage);
-					}
-					UnmapViewOfFile(pImage);
-					pImage = pCopy;
-					if (pImage)
-					{
-					case 4 + 0:
-					case 4 + 0 + 8:
-					case 4 + 3:
-					case 4 + 3 + 8:
-						int cchImage = cbImage;
-						LPCH pchImage = (LPCH)pImage;
-						if (nByteOrder & 8)
-						{
-							pchImage += 4;
-							cchImage -= 4;
-						}
-						Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
-						cbImage = converter.Convert(pchImage, cchImage, 0, 0);
-						pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-						if (pCopy)
-						{
-							converter.Convert(pchImage, cchImage, (LPCH)pCopy, cbImage);
-						}
-						UnmapViewOfFile(pImage);
-						pImage = pCopy;
-					}
-					break;
+					cbImage = trunc;
+				}
+				pImage = MapFile(hFile, cbImage);
+				if (!(flags & Handle))
+				{
+					CloseHandle(hFile);
 				}
 			}
-		}
-		if (!(flags & Handle))
-		{
-			CloseHandle(hFile);
 		}
 	}
 	if (pImage == NULL)
 	{
 		cbImage = 0;
+	}
+	else if (cbImage >= 4 && (flags & Octets & (nByteOrder = GuessByteOrder(*(LPDWORD)pImage))))
+	{
+		LPVOID pCopy;
+		switch (nByteOrder)
+		{
+		case 2 + 1:
+		case 2 + 1 + 8:
+			// big endian: swab first
+			cbImage &= ~1UL;
+			pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+			if (pCopy)
+			{
+				_swab((char *)pImage, (char *)pCopy, cbImage);
+			}
+			UnmapViewOfFile(pImage);
+			pImage = pCopy;
+			if (pImage)
+			{
+			case 2 + 0:
+			case 2 + 0 + 8:
+				// little endian
+				int cchImage = cbImage / 2;
+				LPWCH pchImage = (LPWCH)pImage;
+				if (nByteOrder & 8)
+				{
+					++pchImage;
+					--cchImage;
+				}
+				cbImage = WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, 0, 0, 0, 0);
+				pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+				if (pCopy)
+				{
+					WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, (LPCH)pCopy, cbImage, 0, 0);
+				}
+				UnmapViewOfFile(pImage);
+				pImage = pCopy;
+			}
+			break;
+		case 4 + 1:
+		case 4 + 1 + 8:
+		case 4 + 2:
+		case 4 + 2 + 8:
+			// odd word endianness: swab first
+			cbImage &= ~3UL;
+			pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+			if (pCopy)
+			{
+				_swab((char *)pImage, (char *)pCopy, cbImage);
+			}
+			UnmapViewOfFile(pImage);
+			pImage = pCopy;
+			if (pImage)
+			{
+			case 4 + 0:
+			case 4 + 0 + 8:
+			case 4 + 3:
+			case 4 + 3 + 8:
+				int cchImage = cbImage;
+				LPCH pchImage = (LPCH)pImage;
+				if (nByteOrder & 8)
+				{
+					pchImage += 4;
+					cchImage -= 4;
+				}
+				Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
+				cbImage = converter.Convert(pchImage, cchImage, 0, 0);
+				pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+				if (pCopy)
+				{
+					converter.Convert(pchImage, cchImage, (LPCH)pCopy, cbImage);
+				}
+				UnmapViewOfFile(pImage);
+				pImage = pCopy;
+			}
+			break;
+		}
 	}
 }
 
