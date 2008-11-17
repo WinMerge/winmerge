@@ -1051,8 +1051,9 @@
 #define IDS_COLORSCHEME_SQL             33150
 #define IDS_COLORSCHEME_TCL             33151
 #define IDS_COLORSCHEME_TEX             33152
-#define IDS_COLORSCHEME_XML             33153
-#define ID_COLORSCHEME_LAST             33153 // = IDS_COLORSCHEME_XML
+#define IDS_COLORSCHEME_VERILOG         33153
+#define IDS_COLORSCHEME_XML             33154
+#define ID_COLORSCHEME_LAST             33154 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33164
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166

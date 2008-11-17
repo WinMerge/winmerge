@@ -2831,6 +2831,7 @@ BEGIN
     IDS_COLORSCHEME_SQL             "SQL"
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
+    IDS_COLORSCHEME_VERILOG         "Verilog"
     IDS_COLORSCHEME_XML             "XML"
 END
 

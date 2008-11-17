@@ -2267,6 +2267,10 @@ SOURCE=.\editlib\UndoRecord.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\verilog.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\wispelld.h
 # End Source File
 # Begin Source File
