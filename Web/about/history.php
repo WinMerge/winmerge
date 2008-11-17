@@ -42,8 +42,7 @@
     <li>WinMerge 2.6.0 (2006-10-12)</li>
   </ul>
   <ul class="inline">
-    <li><a href="/2.6/manual/index.html">Manual</a></li>
-    <li><a href="/2.6/changes.php">Change History</a></li>
+    <li><a href="/docs/old/manual-2.6/">Manual</a></li>
   </ul>
 </div>
 <div class="infocard">
