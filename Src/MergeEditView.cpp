@@ -2314,7 +2314,7 @@ void CMergeEditView::RefreshOptions()
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
-		SetTextType(CCrystalTextView::TextType::SRC_PLAIN);
+		SetTextType(CCrystalTextView::SRC_PLAIN);
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
