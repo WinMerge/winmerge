@@ -6,6 +6,7 @@
 ?>
 <h2>Older Documentation</h2>
 <ul>
+  <li><a href="manual-2.8/">WinMerge 2.8 - Manual</a></li>
   <li><a href="manual-2.6/">WinMerge 2.6 - Manual</a></li>
   <li><a href="manual-2.4/">WinMerge 2.4 - Manual</a></li>
   <li><a href="manual-2.2/">WinMerge 2.2 - Manual</a></li>

@@ -52,6 +52,7 @@ Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
 Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
 Redirect permanent /2.4/manual http://winmerge.org/docs/old/manual-2.4
 Redirect permanent /2.6/manual http://winmerge.org/docs/old/manual-2.6
+Redirect permanent /2.8/manual http://winmerge.org/docs/old/manual-2.8
 
 #Move old "Changes" pages to new "Change Log" page...
 Redirect permanent /1.7/changes.php http://winmerge.org/docs/changelog.php
@@ -59,15 +60,20 @@ Redirect permanent /2.0/changes.php http://winmerge.org/docs/changelog.php
 Redirect permanent /2.2/changes.php http://winmerge.org/docs/changelog.php
 Redirect permanent /2.4/changes.php http://winmerge.org/docs/changelog.php
 Redirect permanent /2.6/changes.php http://winmerge.org/docs/changelog.php
+Redirect permanent /2.8/changelog.php http://winmerge.org/docs/changelog.php
 
 #Move old "Known Limitations" pages to new "Known Issues" page...
 Redirect permanent /2.4/limitations.php http://winmerge.org/docs/releasenotes.php#issues
 Redirect permanent /2.6/limitations.php http://winmerge.org/docs/releasenotes.php#issues
 
+#Move old "Release Notes" pages to new "Release Notes" page...
+Redirect permanent /2.8/releasenotes.php http://winmerge.org/docs/releasenotes.php
+
 #Move old screenshot pages to new screenshot page...
 Redirect permanent /2.2/screenshots.php http://winmerge.org/about/screenshots/
 Redirect permanent /2.4/screenshots.php http://winmerge.org/about/screenshots/
 Redirect permanent /2.6/screenshots.php http://winmerge.org/about/screenshots/
+Redirect permanent /2.8/screenshots.php http://winmerge.org/about/screenshots/
 
 #Move old icon image to new icon image...
 Redirect permanent /1.7/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
@@ -75,6 +81,7 @@ Redirect permanent /2.0/images/icon.gif http://winmerge.org/about/screenshots/ic
 Redirect permanent /2.2/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
 Redirect permanent /2.4/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
 Redirect permanent /2.6/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
+Redirect permanent /2.8/images/icon.gif http://winmerge.org/about/screenshots/icon.gif
 
 #Move old screenshot image to new screenshot image...
 Redirect permanent /2.0/images/screenshot.png http://winmerge.org/about/screenshots/screenshot.png
@@ -83,6 +90,7 @@ Redirect permanent /2.4/images/screenshot.gif http://winmerge.org/about/screensh
 
 #Move old screenshot images to new screenshot images...
 Redirect permanent /2.6/images/ http://winmerge.org/about/screenshots/
+Redirect permanent /2.8/images/ http://winmerge.org/about/screenshots/
 
 #Move old "X.Y" version tabs to homepage...
 RewriteEngine On
@@ -97,6 +105,8 @@ RewriteRule   ^2.4/$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.4/index.php$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.6/$ http://winmerge.org/ [R=permanent]
 RewriteRule   ^2.6/index.php$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.8/$ http://winmerge.org/ [R=permanent]
+RewriteRule   ^2.8/index.php$ http://winmerge.org/ [R=permanent]
 
 #Tracker shortcuts...
 RewriteEngine On

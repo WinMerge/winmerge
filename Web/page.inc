@@ -10,7 +10,6 @@
 // GNU General Public License for more details.
 
   define ('TAB_HOME', 'home');
-  define ('WINMERGE_2_8', '2.8');
   define ('TAB_ABOUT', 'about');
   define ('TAB_DOCS', 'docs');
   define ('TAB_DOWNLOADS', 'downloads');
@@ -130,11 +129,6 @@
       $temp .= $this->getTabs();
       $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
-      switch ($this->_tab) {
-        case WINMERGE_2_8: //if WinMerge 2.8 ...
-          $temp .= "<p class=\"important\">This is an old version of WinMerge, for the latest version go to the <a href=\"/downloads/\">download page</a>.</p>\n";
-          break;
-      }
       print($temp);
     }
 
@@ -188,9 +182,6 @@
       else { //if NOT "About" ...
         $temp .= "  <li><a href=\"/about/\">About</a></li>\n";
       }
-      if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
-        $temp .= "  <li><strong><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></strong></li>\n";
-      }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
         $temp .= "  <li><strong><a href=\"/docs/\" id=\"current\">Documentation</a></strong></li>\n";
       }
@@ -230,15 +221,6 @@
           $temp .= "  <li><a href=\"/about/\" title=\"Index\">Index</a></li>\n";
           $temp .= "  <li><a href=\"/about/screenshots/\" title=\"Screenshots\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_2_8: //if WinMerge 2.8 ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/2.8/manual/index.html\" title=\"Manual\">Manual</a></li>\n";
-          $temp .= "  <li><a href=\"/2.8/screenshots.php\" title=\"Screenshots\">Screenshots</a></li>\n";
-          $temp .= "  <li><a href=\"/2.8/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/2.8/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
-          $temp .= "  <li><a href=\"/2.8/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
-          $temp .= "  <li><a href=\"/2.8/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_DOCS: //if "Documentation" ...

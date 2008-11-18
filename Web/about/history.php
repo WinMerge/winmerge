@@ -25,8 +25,7 @@
     <li>WinMerge 2.8.0 (2008-04-03)</li>
   </ul>
   <ul class="inline">
-    <li><a href="/2.8/manual/index.html">Manual</a></li>
-    <li><a href="/2.8/changelog.php">Change Log</a></li>
+    <li><a href="/docs/old/manual-2.8/">Manual</a></li>
   </ul>
 </div>
 <div class="infocard">
