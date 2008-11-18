@@ -54,7 +54,7 @@ struct DIFFCODE
 		// to make debugging easier
 		// These can always be packed down in the future
 		TEXTFLAGS=0x7, TEXT=0x1, BINSIDE1=0x2, BINSIDE2=0x3, BIN=0x4,
-		DIRFLAGS=0x30, FILE=0x10, DIR=0x20,
+		TYPEFLAGS=0x30, FILE=0x10, DIR=0x20,
 		SIDEFLAGS=0x300, LEFT=0x100, RIGHT=0x200, BOTH=0x300,
 		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x3000, CMPABORT=0x4000,
 		FILTERFLAGS=0x30000, INCLUDED=0x10000, SKIPPED=0x20000,
@@ -82,7 +82,7 @@ protected:
 public:
 
 	// file/directory
-	bool isDirectory() const { return Check(diffcode, DIFFCODE::DIRFLAGS, DIFFCODE::DIR); }
+	bool isDirectory() const { return Check(diffcode, DIFFCODE::TYPEFLAGS, DIFFCODE::DIR); }
 	// left/right
 	bool isSideLeftOnly() const { return CheckSide(diffcode, DIFFCODE::LEFT); }
 	bool isSideLeftOrBoth() const { return isSideLeftOnly() || isSideBoth(); }
