@@ -9,6 +9,7 @@ WinMerge 2.11.1.7
   Show missing lines in location pane for diffs having both different
     and missing lines (#2119235)
   Syntax highlighting for Verilog files (#2231145)
+  Tweak new "equal file" icon a little bit (#2312381)
   Readme update (#2234689)
   Translation updates:
   - Brazilian (#2219568)
