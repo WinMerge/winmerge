@@ -177,8 +177,8 @@ private:
 	LPCONTEXTMENU m_pPreferredMenu; /**< Shell context menu for group of files. 
 										 Points either to IContextMenu, IContextMenu2 or IContextMenu3 interface, 
 										 the highest available. Used to process command in InvokeCommand() */
-	IContextMenu2Ptr m_pShellContextMenu2; /**< IContextMenu2 interface of current preferred context menu */
-	IContextMenu3Ptr m_pShellContextMenu3; /**< IContextMenu3 interface of current preferred context menu */
+	IContextMenu2 *m_pShellContextMenu2; /**< IContextMenu2 interface of current preferred context menu */
+	IContextMenu3 *m_pShellContextMenu3; /**< IContextMenu3 interface of current preferred context menu */
 
 	HMENU m_hShellContextMenu; /**< HMENU handle of shell context menu for group of files */
 

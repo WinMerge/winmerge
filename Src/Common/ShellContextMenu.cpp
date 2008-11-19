@@ -193,7 +193,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 		return false;
 	}
 
-	IContextMenuPtr pCMenu1;
+	IContextMenu *pCMenu1;
 	if (FAILED(hr = pCurrFolder->GetUIObjectOf(NULL,
 											   pidls.Size(),
 											   pidls.GetList(),
@@ -206,13 +206,13 @@ bool CShellContextMenu::QueryShellContextMenu()
 
 	m_pPreferredMenu = pCMenu1;
 
-	IContextMenu2Ptr pCMenu2(pCMenu1);
+	IContextMenu2 *pCMenu2((IContextMenu2 *)pCMenu1);
 	if (pCMenu2)
 	{
 		m_pPreferredMenu = pCMenu2;
 	}
 
-	IContextMenu3Ptr pCMenu3(pCMenu1);
+	IContextMenu3 *pCMenu3((IContextMenu3 *)pCMenu1);
 	if (pCMenu3)
 	{
 		m_pPreferredMenu = pCMenu3;
