@@ -442,6 +442,7 @@
 #define IDC_TMPFOLDER_NAME              1340
 #define IDC_PLUGINS_ENABLE              1341
 #define IDC_PLUGINSLIST_LIST            1342
+#define IDC_ENABLE_SHELL_CONTEXT_MENU   1343
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1054,6 +1055,8 @@
 #define IDS_COLORSCHEME_VERILOG         33153
 #define IDS_COLORSCHEME_XML             33154
 #define ID_COLORSCHEME_LAST             33154 // = IDS_COLORSCHEME_XML
+#define IDS_SHELL_CONTEXT_MENU_LEFT     33162
+#define IDS_SHELL_CONTEXT_MENU_RIGHT    33163
 #define ID_TOOLBAR_NONE                 33164
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166

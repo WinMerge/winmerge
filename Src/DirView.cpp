@@ -50,6 +50,7 @@
 #include "DirCompProgressDlg.h"
 #include "CompareStatisticsDlg.h"
 #include "PluginsListDlg.h"
+#include "ShellContextMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -98,6 +99,11 @@ static enum
 	DIFFIMG_TEXTSAME,
 };
 
+// The resource ID constants/limits for the Shell context menu
+const UINT LeftCmdFirst = 0x9000; // this should be greater than any of already defined command IDs
+const UINT RightCmdLast = 0xffff; // maximum available value
+const UINT LeftCmdLast = (LeftCmdFirst + RightCmdLast) / 2; // divide available range equally between two context menus
+const UINT RightCmdFirst = LeftCmdLast + 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
@@ -114,6 +120,9 @@ CDirView::CDirView()
 , m_pCmpProgressDlg(NULL)
 , m_compareStart(0)
 , m_bTreeMode(false)
+, m_pShellContextMenuLeft(NULL)
+, m_pShellContextMenuRight(NULL)
+, m_hCurrentMenu(NULL)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -126,6 +135,8 @@ CDirView::CDirView()
 
 CDirView::~CDirView()
 {
+	delete m_pShellContextMenuRight;
+	delete m_pShellContextMenuLeft;
 	delete m_pCmpProgressDlg;
 }
 
@@ -630,6 +641,32 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	String s = theApp.LoadString(ID_TITLE_PLUGINS_SETTINGS);
 	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
 
+	bool bEnableShellContextMenu = GetOptionsMgr()->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
+	if (bEnableShellContextMenu)
+	{
+		if (!m_pShellContextMenuLeft)
+			m_pShellContextMenuLeft = new CShellContextMenu(LeftCmdFirst, LeftCmdLast);
+		if (!m_pShellContextMenuRight)
+			m_pShellContextMenuRight = new CShellContextMenu(RightCmdFirst, RightCmdLast);
+
+		bool leftContextMenuOk = ListShellContextMenu(SIDE_LEFT);
+		bool rightContextMenuOk = ListShellContextMenu(SIDE_RIGHT);
+
+		if (leftContextMenuOk || rightContextMenuOk)
+			pPopup->AppendMenu(MF_SEPARATOR);
+
+		if (leftContextMenuOk)
+		{
+			s = theApp.LoadString(IDS_SHELL_CONTEXT_MENU_LEFT);
+			pPopup->AppendMenu(MF_POPUP, (UINT_PTR)m_pShellContextMenuLeft->GetHMENU(), s.c_str());
+		}
+		if (rightContextMenuOk)
+		{
+			s = theApp.LoadString(IDS_SHELL_CONTEXT_MENU_RIGHT);
+			pPopup->AppendMenu(MF_POPUP, (UINT_PTR)m_pShellContextMenuRight->GetHMENU(), s.c_str());
+		}
+	}
+
 	// set the menu items with the proper directory names
 	String sl, sr;
 	GetSelectedDirNames(sl, sr);
@@ -730,8 +767,16 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	pFrame->m_bAutoMenuEnable = FALSE;
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
-	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
+	BOOL nCmd = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y,
 		AfxGetMainWnd());
+	if (nCmd)
+	{
+		HWND hWnd = AfxGetMainWnd()->GetSafeHwnd();
+		( m_pShellContextMenuLeft && m_pShellContextMenuLeft->InvokeCommand(nCmd, hWnd) )
+			|| ( m_pShellContextMenuRight && m_pShellContextMenuRight->InvokeCommand(nCmd, hWnd) )
+			// we have called TrackPopupMenu with TPM_RETURNCMD flag so we have to post message ourselves
+			|| PostMessage(WM_COMMAND, MAKEWPARAM(nCmd, 0), 0);
+	}
 	pFrame->m_bAutoMenuEnable = TRUE;
 }
 
@@ -753,6 +798,40 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 		AfxGetMainWnd());
 }	
+
+/**
+ * @brief Gets Explorer's context menu for a group of selected files.
+ *
+ * @param [in] Side whether to get context menu for the files from the left or
+ *   right side.
+ * @retval true menu successfully retrieved.
+ * @retval falsea an error occurred while retrieving the menu.
+ */
+bool CDirView::ListShellContextMenu(SIDE_TYPE side)
+{
+	CShellContextMenu* shellContextMenu = (side == SIDE_LEFT) ? m_pShellContextMenuLeft : m_pShellContextMenuRight;
+	shellContextMenu->Initialize();
+
+	CDirDoc *pDoc = GetDocument();
+	String parentDir; // use it to track that all selected files are in the same parent directory
+
+	int i = -1;
+	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(i);
+		if (di.diffcode.diffcode == 0) // Invalid value, this must be special item
+			continue;
+
+		String currentDir = (side == SIDE_LEFT) ?
+			di.getLeftFilepath(pDoc->GetLeftBasePath()) :
+			di.getRightFilepath(pDoc->GetRightBasePath());
+
+		String filename = ((side == SIDE_LEFT) ? di.left.filename : di.right.filename);
+
+		shellContextMenu->AddItem(currentDir, filename);
+	}
+	return shellContextMenu->RequeryShellContextMenu();
+}
 
 /**
  * @brief Convert number to string.
@@ -3587,4 +3666,67 @@ void CDirView::OnPluginsList()
 {
 	PluginsListDlg dlg;
 	dlg.DoModal();
+}
+
+/**
+ * @brief Returns CShellContextMenu object that owns given HMENU.
+ *
+ * @param [in] hMenu Handle to the menu to check ownership of.
+ * @return Either m_pShellContextMenuLeft, m_pShellContextMenuRight 
+ *   or NULL if hMenu is not owned by these two.
+ */
+CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
+{
+	CShellContextMenu* pMenu = NULL;
+	if (hMenu == m_pShellContextMenuLeft->GetHMENU())
+		pMenu = m_pShellContextMenuLeft;
+	else if (hMenu == m_pShellContextMenuRight->GetHMENU())
+		pMenu = m_pShellContextMenuRight;
+
+	return pMenu;
+}
+
+/**
+ * @brief Handle messages related to correct menu working.
+ *
+ * We need to requery shell context menu each time we switch from context menu
+ * for one side to context menu for other side. Here we check whether we need to
+ * requery and call ShellContextMenuHandleMenuMessage.
+ */
+LRESULT CDirView::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	if (!m_pShellContextMenuLeft || !m_pShellContextMenuRight)
+		return false;
+
+	while (message == WM_INITMENUPOPUP)
+	{
+		HMENU hMenu = (HMENU)wParam;
+		if (CShellContextMenu* pMenu = GetCorrespondingShellContextMenu(hMenu))
+		{
+			if (m_hCurrentMenu != hMenu)
+			{
+				// re-query context menu once more, because if context menu was queried for right
+				// group of files and we are showing menu for left group (or vice versa) menu will
+				// be shown incorrectly
+				// also, if context menu was last queried for right group of files and we are
+				// invoking command for left command will be executed for right group (the last
+				// group that menu was requested for)
+				// may be a "feature" of Shell
+
+				pMenu->RequeryShellContextMenu();
+				m_hCurrentMenu = hMenu;
+			}
+		}
+		break;
+	}
+
+	CShellContextMenu* pMenu = GetCorrespondingShellContextMenu(m_hCurrentMenu);
+
+	LRESULT res = 0;
+	if (pMenu)
+	{
+		pMenu->HandleMenuMessage(message, wParam, lParam, res);
+	}
+
+	return res;
 }

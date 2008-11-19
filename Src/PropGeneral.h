@@ -43,6 +43,7 @@ public:
 	BOOL	m_bMultipleDirCmp;
 	int		m_nAutoCompleteSource;
 	BOOL	m_bPreserveFiletime;
+	BOOL	m_bEnableShellContextMenu;
 	//}}AFX_DATA
 
 

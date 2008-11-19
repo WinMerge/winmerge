@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.7
+  Add shell context menu to folder compare context menu (#2189315)
   Update PCRE to version 7.8 (#2209911)
   Show missing lines in location pane for diffs having both different
     and missing lines (#2119235)

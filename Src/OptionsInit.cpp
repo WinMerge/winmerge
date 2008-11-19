@@ -74,6 +74,7 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
+	m_pOptions->InitOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, false);
 
 	m_pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	m_pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);

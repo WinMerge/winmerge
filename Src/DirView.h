@@ -50,6 +50,7 @@ class DirCompProgressDlg;
 class CompareStats;
 struct DirColInfo;
 class CLoadSaveCodepageDlg;
+class CShellContextMenu;
 
 struct ViewCustomFlags
 {
@@ -121,6 +122,8 @@ public:
 	DIFFITEM & GetItemAt(int ind);
 	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
+
+	LRESULT HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam);
 
 // Implementation types
 private:
@@ -271,6 +274,10 @@ protected:
 	DirCompProgressDlg * m_pCmpProgressDlg;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	BOOL m_bUserCancelEdit; /**< TRUE if the user cancels rename */
+
+	CShellContextMenu* m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
+	CShellContextMenu* m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -427,6 +434,8 @@ private:
 	void FixReordering();
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
+	bool ListShellContextMenu(SIDE_TYPE side);
+	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	void ResetColumnWidths();
 	BOOL IsLabelEdit();

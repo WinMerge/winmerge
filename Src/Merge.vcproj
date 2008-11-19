@@ -3960,6 +3960,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="Common\PidlContainer.cpp">
+			</File>
+			<File
 				RelativePath="PluginManager.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -4895,6 +4898,9 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Common\ShellContextMenu.cpp">
 			</File>
 			<File
 				RelativePath="Common\sizecbar.cpp">
@@ -6280,6 +6286,9 @@
 				RelativePath="Common\Picture.h">
 			</File>
 			<File
+				RelativePath="Common\PidlContainer.h">
+			</File>
+			<File
 				RelativePath="PluginManager.h">
 			</File>
 			<File
@@ -6356,6 +6365,9 @@
 			</File>
 			<File
 				RelativePath="SharedFilterDlg.h">
+			</File>
+			<File
+				RelativePath="Common\ShellContextMenu.h">
 			</File>
 			<File
 				RelativePath="Common\sizecbar.h">

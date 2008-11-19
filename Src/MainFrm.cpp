@@ -3564,3 +3564,30 @@ void CMainFrame::OnPluginsList()
 	PluginsListDlg dlg;
 	dlg.DoModal();
 }
+
+LRESULT CMainFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_DRAWITEM:
+	case WM_INITMENUPOPUP:
+	case WM_MEASUREITEM:
+	case WM_MENUCHAR:
+		{
+			if (GetOptionsMgr()->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU))
+			{
+				// in case of folder comparison we need to pass these messages to shell context menu
+				CFrameWnd * pFrame = GetActiveFrame();
+				FRAMETYPE frame = GetFrameType(pFrame);
+				if (frame == FRAME_FOLDER)
+				{
+					CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
+					CDirView *pView = pDoc->GetMainView();
+					pView->HandleMenuMessage(message, wParam, lParam);
+				}
+			}
+		}
+	}
+
+	return CMDIFrameWnd::WindowProc(message, wParam, lParam);
+}

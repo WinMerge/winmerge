@@ -154,6 +154,7 @@ Other Contributors (code, ideas, testing..):
 * Ryan Mott
 * Tim Musschoot
 * Marco De Paoli
+* Paul <pavel_kv@users.sourceforge.net>
 * Dan Pidcock
 * Vincent Osele
 * Scott Rasmussen
