@@ -64,6 +64,7 @@ import os.path
 import sys
 import getopt
 import shutil
+import SetVersions
 
 def get_vs_ide_bin():
     """Gets a full path to the Visual Studio IDE executable to run."""
@@ -139,11 +140,17 @@ def cleanup_build():
         return False
     return True
 
-def set_resource_version(version):
+def get_product_version(file):
+    """Get the product version number from config file."""
+
+    version = SetVersions.get_product_version(file)
+    return version
+
+def set_resource_version(file):
     """Sets the version number to the resource."""
 
     print 'Update version number to resource(s)...'
-    call(['cscript', 'Src/SetResourceVersions.wsf', version])
+    SetVersions.process_versions(file)
 
 def setup_translations():
     """Updates translation files by running scripts in Src/Languages."""
@@ -422,13 +429,14 @@ def usage():
     print '    -v: n, --version= n set release version'
     print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
     print '    -l, --libraries build libraries (expat, scew, pcre) only'
-    print '  For example: create_release -v: 2.7.7.1'
+    print '    -f:, --file= filename set the version number ini file'
+    print '  For example: create_release -f: versions.ini'
 
 def main(argv):
     version = '0.0.0.0'
     if len(argv) > 0:
-        opts, args = getopt.getopt(argv, "hclv:", [ "help", "cleanup", "libraries",
-                                                    "version="])
+        opts, args = getopt.getopt(argv, "hclv:f:", [ "help", "cleanup", "libraries",
+                                                    "version=", "file="])
         
         for opt, arg in opts:
             if opt in ("-h", "--help"):
@@ -444,6 +452,8 @@ def main(argv):
             if opt in ("-l", "--libraries"):
                 build_libraries()
                 sys.exit()
+            if opt in ("-f", "--file"):
+                ver_file = arg
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
@@ -474,6 +484,12 @@ def main(argv):
     if cleanup_build() == False:
         sys.exit()
 
+    if len(ver_file) > 0:
+        version_read = get_product_version(ver_file)
+        if len(version_read) > 0:
+          version = version_read
+        set_resource_version(ver_file)
+
     version_folder = 'WinMerge-' + version
     dist_folder = get_and_create_dist_folder(version_folder)
     if dist_folder == '':
@@ -481,7 +497,6 @@ def main(argv):
     dist_src_folder = get_src_dist_folder(dist_folder, version_folder)
     svn_export(dist_src_folder)
 
-    set_resource_version(version)
     setup_translations()
 
     build_targets()
