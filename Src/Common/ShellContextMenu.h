@@ -30,8 +30,17 @@
 #define _SHELLCONTEXTMENU_H_
 
 #include <comdef.h>
+#include <ShlObj.h>
 #include <list>
 #include "UnicodeString.h"
+
+struct __declspec(uuid("000214e4-0000-0000-c000-000000000046")) IContextMenu;
+struct __declspec(uuid("000214f4-0000-0000-c000-000000000046")) IContextMenu2;
+struct __declspec(uuid("bcfce0a0-ec17-11d0-8d10-00a0c90f2719")) IContextMenu3;
+
+_COM_SMARTPTR_TYPEDEF(IContextMenu, __uuidof(IContextMenu));
+_COM_SMARTPTR_TYPEDEF(IContextMenu2, __uuidof(IContextMenu2));
+_COM_SMARTPTR_TYPEDEF(IContextMenu3, __uuidof(IContextMenu3));
 
 /**
  * @brief Explorer's context menu
@@ -177,8 +186,8 @@ private:
 	LPCONTEXTMENU m_pPreferredMenu; /**< Shell context menu for group of files. 
 										 Points either to IContextMenu, IContextMenu2 or IContextMenu3 interface, 
 										 the highest available. Used to process command in InvokeCommand() */
-	IContextMenu2 *m_pShellContextMenu2; /**< IContextMenu2 interface of current preferred context menu */
-	IContextMenu3 *m_pShellContextMenu3; /**< IContextMenu3 interface of current preferred context menu */
+	IContextMenu2Ptr m_pShellContextMenu2; /**< IContextMenu2 interface of current preferred context menu */
+	IContextMenu3Ptr m_pShellContextMenu3; /**< IContextMenu3 interface of current preferred context menu */
 
 	HMENU m_hShellContextMenu; /**< HMENU handle of shell context menu for group of files */
 
