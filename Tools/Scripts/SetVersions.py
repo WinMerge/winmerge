@@ -36,6 +36,31 @@ import os
 import shutil
 import sys
 
+# The version of the script
+script_version = 0.6
+
+def get_product_version(filename):
+  '''Get product version used in archive paths etc.
+     TODO: add new section. At the moment this gets executable version.
+  '''
+  config = ConfigParser.ConfigParser()
+  config.readfp(open(filename))
+
+  # First try RC file, then define-macro
+  version = ''
+  try:
+    version = config.get('Executable', 'version')
+  except ConfigParser.NoSectionError:
+    print 'Executable version not found, using default.'
+
+  # Remove quotation marks
+  if len(version) > 0:
+    if version[0] == '"':
+      version = version[1:]
+    if version[len(version) - 1] == '"':
+      version = version[:len(version) - 1]
+  return version
+
 def process_NSIS(filename, config, sect):
   '''Process NSIS section in the ini file.'''
 
@@ -421,7 +446,7 @@ def process_versions(filename):
 
 def usage():
   '''Print script usage information.'''
-
+  print 'SetVersions.py - version ' + script_version
   print 'Script to set program component version numbers.'
   print 'Usage: SetVersions.py [-h] filename'
   print 'Where:'
