@@ -230,11 +230,23 @@ I get the partial list, but no Abort indicator.--></para>
             <imageobject>
               <imagedata fileref="screenshots/equal.png" format="PNG" />
             </imageobject>
-          </inlinemediaobject> Identical text files</member>
+          </inlinemediaobject> Identical files</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata fileref="screenshots/notequal.png" format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Differing files</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/equaltextfile.png" format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Identical text files</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/notequaltextfile.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Differing text files</member>
 
