@@ -1303,7 +1303,7 @@ msgstr "Z&achovávat pùvodní èas souboru"
 #: Merge.rc:775
 #, c-format
 msgid "Enable Shell &Context Menu"
-msgstr ""
+msgstr "Povolit systémové &místní nabídky"
 
 #: Merge.rc:777
 #, c-format
@@ -4149,12 +4149,12 @@ msgstr "Zkopíruje cesty položek na obou stranách do schránky"
 #: Merge.rc:2254
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Levá systémová nabídka"
 
 #: Merge.rc:2255
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Pravá systémová nabídka"
 
 #: Merge.rc:2261
 #, c-format
