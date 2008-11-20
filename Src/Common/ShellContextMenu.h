@@ -128,7 +128,9 @@ public:
 	 *
 	 * @return	Handle to shell context menu.
 	 *			Menu is created in constructor and does not normally change when requesting context menu via RequeryShellContextMenu()
-	 *			It may though change if destroyed by someone. In this case it is recreated in RequeryShellContextMenu()
+	 *			It may though change if destroyed by someone. In this case it should be recreated in RequeryShellContextMenu()
+	 *
+	 * @retval	NULL	If handle is destroyed by parent menu, but not yet recreated by RequeryShellContextMenu()
 	 */
 	HMENU GetHMENU() const;
 

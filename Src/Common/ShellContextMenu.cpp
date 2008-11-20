@@ -76,8 +76,7 @@ void CShellContextMenu::AddItem(const String& path,
 
 HMENU CShellContextMenu::GetHMENU() const
 {
-	ASSERT(::IsMenu(m_hShellContextMenu));
-	return m_hShellContextMenu;
+	return ::IsMenu(m_hShellContextMenu) ? m_hShellContextMenu : NULL;
 }
 
 bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& retval)
