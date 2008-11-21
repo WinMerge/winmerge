@@ -235,7 +235,7 @@
         case TAB_SUPPORT: //if "Support" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/support/mailing-lists.php\" title=\"Mailing Lists\">Mailing&nbsp;Lists</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\" title=\"Discussion Forums\">Discussion&nbsp;Forums</a></li>\n";
+          $temp .= "  <li><a href=\"http://forums.winmerge.org\" title=\"Discussion Forums\">Discussion&nbsp;Forums</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\" title=\"Submit a Bug Report\">Bug&nbsp;Reports</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\" title=\"Submit a Feature Request\">Feature&nbsp;Requests</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\" title=\"Submit a Support Request\">Support&nbsp;Requests</a></li>\n";
