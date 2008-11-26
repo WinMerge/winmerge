@@ -748,6 +748,7 @@ void CDirView::DoMoveLeftTo()
 			act.dirflag = di.diffcode.isDirectory();
 			act.context = sel;
 			act.atype = actType;
+			act.UIOrigin = FileActionItem::UI_LEFT;
 			act.UIResult = FileActionItem::UI_DEL_LEFT;
 			actionScript.AddActionItem(act);
 			++selCount;
@@ -816,6 +817,7 @@ void CDirView::DoMoveRightTo()
 			act.dirflag = di.diffcode.isDirectory();
 			act.context = sel;
 			act.atype = actType;
+			act.UIOrigin = FileActionItem::UI_RIGHT;
 			act.UIResult = FileActionItem::UI_DEL_RIGHT;
 			actionScript.AddActionItem(act);
 			++selCount;
