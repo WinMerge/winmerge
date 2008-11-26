@@ -1303,7 +1303,7 @@ msgstr "&Bevara Filtidsuppgifter i Filjämförelse"
 #: Merge.rc:775
 #, c-format
 msgid "Enable Shell &Context Menu"
-msgstr ""
+msgstr "Starta Gränssnitt och Kontextmeny"
 
 #: Merge.rc:777
 #, c-format
@@ -2049,7 +2049,7 @@ msgstr "Välj den Codepage som används som standard när icke-Unicodefiler öppnas:
 #: Merge.rc:1279
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr ""
+msgstr "Detektera Codepage-info för dessa filer: .html, .rc, .xml \nbehöver omstarta sessionen"
 
 #: Merge.rc:1282
 #, c-format
@@ -2064,7 +2064,7 @@ msgstr "Enligt WinMerges användargränssnitt"
 #: Merge.rc:1286
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Anpassad Codepage:"
 
 #: Merge.rc:1294
 #, c-format
@@ -2713,7 +2713,7 @@ msgstr "Minimera alla underkataloger"
 #: Merge.rc:1768
 #, c-format
 msgid "Open project file\nProject file (Ctrl+J)"
-msgstr ""
+msgstr "Öppna projektfil\nProjektfil (Ctrl+J)"
 
 #: Merge.rc:1769
 #, c-format
@@ -3276,7 +3276,7 @@ msgstr "Filtren är uppdaterade Vill du uppdatera alla öppna katalogjämförelser?\
 #: Merge.rc:2054
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Sökväg till SS.EXE"
 
 #: Merge.rc:2060
 #, c-format
@@ -3864,12 +3864,12 @@ msgstr "Kopiera båda sidors sökvägar till klippbordet"
 #: Merge.rc:2254
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Vänster Gränssnittsmeny"
 
 #: Merge.rc:2255
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Höger Gränssnittsmeny"
 
 #: Merge.rc:2261
 #, c-format
@@ -4315,7 +4315,7 @@ msgstr "Dessa filer har olika radslutstyper.\n\nVill du betrakta alla radslutsty
 #: Merge.rc:2408
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr ""
+msgstr "Radsluten är av olika typer (Windows/Unix/Mac) i filen '%1'.\n Med de aktuella inställningarna, kommer de att bli till den vanligaste typen.\n Vill du ändra inställningarna och bevara de olika radsluten ?"
 
 #: Merge.rc:2409
 #, c-format
@@ -5596,7 +5596,7 @@ msgstr "TEX"
 #: Merge.rc:2843
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2844
 #, c-format
