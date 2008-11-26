@@ -50,7 +50,7 @@ for WinMerge development issues.
 Bugs and feature requests
 =========================
 If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to http://project.winmerge.org, and click a link in the Trackers
+trackers: go to http://project.winmerge.org/, and click a link in the Trackers
 menu, like Bugs and Feature Requests, where you can browse or submit items.
 
 If you submit a bug, please include the WinMerge version number in your
