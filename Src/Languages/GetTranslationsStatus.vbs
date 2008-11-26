@@ -92,8 +92,9 @@ Class CStatus
     Set Translators = CreateObject("Scripting.Dictionary")
   End Sub
   
-  Public Sub AddTranslator(ByVal sTranslator)
+  Public Sub AddTranslator(ByVal sTranslator, ByVal bMaintainer)
     Set Translator = New CTranslator
+    Translator.Maintainer = bMaintainer
     Translator.Mail = Trim(GetRegExpSubMatch(sTranslator, "<(.*)>"))
     If (Translator.Mail <> "") Then 'If mail address exists...
       Translator.Name = Trim(GetRegExpSubMatch(sTranslator, "(.*) <.*>"))
@@ -107,14 +108,14 @@ End Class
 ''
 ' ...
 Class CTranslator
-  Public Name, Mail
+  Public Name, Mail, Maintainer
 End Class
 
 ''
 ' ...
 Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
   Dim oStatus, oTextFile, sLine
-  Dim oMatch, iMsgStarted, sMsgId, sMsgStr, bFuzzy
+  Dim oMatch, iMsgStarted, sMsgId, sMsgStr, bFuzzy, bMaintainer
   Dim reMsgId, reMsgStr, reMsgContinued
   
   Set reMsgId = New RegExp
@@ -135,6 +136,7 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
     sMsgId = ""
     sMsgStr = ""
     bFuzzy = False
+    bMaintainer = False
     Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
     Do Until oTextFile.AtEndOfStream = True 'For all lines...
       sLine = Trim(oTextFile.ReadLine)
@@ -163,8 +165,12 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
             If (InStr(sLine, "fuzzy") > 0) Then 'If "fuzzy"...
               bFuzzy = True
             End If
-          ElseIf (Left(sLine, 4) = "# * ") Then 'If translator...
-            oStatus.AddTranslator Trim(Mid(sLine, 5))
+          ElseIf (sLine = "# Maintainer:") Then 'If maintainer list starts...
+            bMaintainer = True
+          ElseIf (sLine = "# Translators:") Then 'If translators list starts...
+            bMaintainer = False
+          ElseIf (Left(sLine, 4) = "# * ") Then 'If translator/maintainer...
+            oStatus.AddTranslator Trim(Mid(sLine, 5)), bMaintainer
           End If
         End If
       Else 'If empty line
@@ -201,6 +207,7 @@ End Function
 ' ...
 Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   Dim oHtmlFile, sLanguage, oLanguageStatus, i
+  Dim sMaintainerStart, sMaintainerEnd
   
   Set oHtmlFile = oFSO.CreateTextFile(sHtmlPath, True)
   
@@ -288,10 +295,16 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
       oHtmlFile.WriteLine "    <td>" & sLanguage & "</td>"
       oHtmlFile.WriteLine "    <td>"
       For i = 0 To oLanguageStatus.Translators.Count - 1 'For all translators...
+        sMaintainerStart = ""
+        sMaintainerEnd = ""
+        If (oLanguageStatus.Translators(i).Maintainer = True) Then 'If maintainer...
+          sMaintainerStart = "<strong title=""Maintainer"">"
+          sMaintainerEnd = "</strong>"
+        End If
         If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
-          oHtmlFile.WriteLine "      <a href=""mailto:" & oLanguageStatus.Translators(i).Mail & """>" & oLanguageStatus.Translators(i).Name & "</a><br>"
+          oHtmlFile.WriteLine "      " & sMaintainerStart & "<a href=""mailto:" & oLanguageStatus.Translators(i).Mail & """>" & oLanguageStatus.Translators(i).Name & "</a>" & sMaintainerEnd & "<br>"
         Else 'If mail address NOT exists...
-          oHtmlFile.WriteLine "      " & oLanguageStatus.Translators(i).Name & "<br>"
+          oHtmlFile.WriteLine "      " & sMaintainerStart & oLanguageStatus.Translators(i).Name & sMaintainerEnd & "<br>"
         End If
       Next
       oHtmlFile.WriteLine "    </td>"
@@ -368,7 +381,11 @@ Sub CreateTranslationsStatusXmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
       oXmlFile.WriteLine "    </strings>"
       oXmlFile.WriteLine "    <translators>"
       For i = 0 To oLanguageStatus.Translators.Count - 1 'For all translators...
-        oXmlFile.WriteLine "      <translator>"
+        If (oLanguageStatus.Translators(i).Maintainer = True) Then 'If maintainer...
+          oXmlFile.WriteLine "      <translator maintainer=""1"">"
+        Else 'If NOT maintainer...
+          oXmlFile.WriteLine "      <translator>"
+        End If
         oXmlFile.WriteLine "        <name>" & oLanguageStatus.Translators(i).Name & "</name>"
         If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
           oXmlFile.WriteLine "        <mail>" & oLanguageStatus.Translators(i).Mail & "</mail>"
