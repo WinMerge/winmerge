@@ -10,13 +10,13 @@
   print("<h2>Translations Status (Branch) ");
   $page->printRssFeedLink('status_branch_rss.php');
   print("</h2>\n");
-  if (!empty($status)) {
+  if (!empty($status)) { //If translations status available...
     printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/R2_10/Src/Languages/');
     printTranslationsStatusGraphLegend();
     print("<h3>Translators</h3>\n");
     printTranslationsTranslators($status);
   }
-  else {
+  else { //If translations status NOT available...
     print("<p>The translations status is currently not available...</p>\n");
   }
   $page->printFoot();

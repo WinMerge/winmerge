@@ -11,13 +11,18 @@
 <?php
   $status = $page->convertXml2Array('status_trunk.xml');
   print("<ul class=\"inline\">\n");
-  $translations = $status['TRANSLATIONS'][0]['TRANSLATION'];
-  $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
-  for ($i = 0; $i < count($translations); $i++) { //For all translations...
-    $translation = $translations[$i];
-    $language_name = $translation['LANGUAGE'][0]['VALUE'];
-    
-    print("  <li>" . $language_name . "</li>\n");
+  if (!empty($status)) { //If translations status available...
+    $translations = $status['TRANSLATIONS'][0]['TRANSLATION'];
+    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+    for ($i = 0; $i < count($translations); $i++) { //For all translations...
+      $translation = $translations[$i];
+      $language_name = $translation['LANGUAGE'][0]['VALUE'];
+      
+      print("  <li>" . $language_name . "</li>\n");
+    }
+  }
+  else { //If translations status NOT available...
+    print("  <li>...</li>\n");
   }
   print("</ul>\n");
 ?>
