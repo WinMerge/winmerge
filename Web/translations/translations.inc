@@ -188,20 +188,25 @@
       $translation = $translations[$i];
       $language_name = $translation['LANGUAGE'][0]['VALUE'];
       if ($language_name != 'English') { //If NOT English...
-        $translators = $translation['TRANSLATORS'][0]['TRANSLATOR'];
+        $translators = @$translation['TRANSLATORS'][0]['TRANSLATOR'];
         
         $temp .= "  <tr>\n";
         $temp .= "    <td class=\"left\">" . $language_name . "</td>\n";
         $temp .= "    <td class=\"left\">";
         for ($j = 0; $j < count($translators); $j++) { //For all translators...
           $translator = $translators[$j];
-          $translator_name = $translator['NAME'][0]['VALUE'];
-          $translator_mail = $translator['MAIL'][0]['VALUE'];
+          $translator_name = @$translator['NAME'][0]['VALUE'];
+          $translator_mail = @$translator['MAIL'][0]['VALUE'];
+          $maintainer = @$translator['ATTRIBUTES']['MAINTAINER'];
           
+          if ($maintainer == '1')
+            $temp .= "<strong title=\"Maintainer\">";
           if ($translator_mail != '')
             $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name) . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name) . "</a>";
           else
             $temp .= $translator_name;
+          if ($maintainer == '1')
+            $temp .= "</strong>";
           $temp .= "<br>";
         }
         $temp .= "</td>\n";
