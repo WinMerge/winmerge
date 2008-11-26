@@ -42,17 +42,16 @@ support. See the Help topic, "7-Zip and archive support" for details.
 WinMerge Support
 ================
 Questions or suggestions about WinMerge? A good place to start is the WinMerge
-community bulletin board at http://apps.sourceforge.net/phpbb/winmerge/.
-Developers frequently read and respond to questions in both forums. Use the Open
-Discussion forum for general WinMerge issues, such as questions about usage. Use
-the Developers forum for WinMerge development issues.
+community bulletin board at http://forums.winmerge.org/. Developers frequently
+read and respond to questions in both forums. Use the Open Discussion forum for
+general WinMerge issues, such as questions about usage. Use the Developers forum
+for WinMerge development issues.
 
 Bugs and feature requests
 =========================
 If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to http://sourceforge.net/projects/winmerge/, and click a link in
-the Trackers menu, like Bugs and Feature Requests, where you can browse or
-submit items.
+trackers: go to http://project.winmerge.org, and click a link in the Trackers
+menu, like Bugs and Feature Requests, where you can browse or submit items.
 
 If you submit a bug, please include the WinMerge version number in your
 report. You can generate a configuration log by clicking Help>Configuration.
