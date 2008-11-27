@@ -1,10 +1,12 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Maintainer:
+# * Tim Gerundt <tim at gerundt.de>
+#
 # Translators:
 # * Winfried Peter <winfried.peter at omicron.at>
 # * Jörg Schneider <tonda at users.sourceforge.net>
-# * Tim Gerundt <tim at gerundt.de>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -14,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-08-11 00:18+0100\n"
+"PO-Revision-Date: 2008-11-27 23:03+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -880,7 +882,7 @@ msgstr "&XML"
 #: Merge.rc:506
 #, c-format
 msgid "&HEX"
-msgstr ""
+msgstr "&HEX"
 
 #: Merge.rc:511
 #, c-format
@@ -2051,8 +2053,12 @@ msgstr "Wählen Sie den Standard-Zeichensatz, der angenommen wird, wenn man Nicht
 
 #: Merge.rc:1279
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Ermitteln des Zeichensatzes für folgende Dateien: .html, .rc, .xml \n"
+"Benötigt einen Neustart des Programmes."
 
 #: Merge.rc:1282
 #, c-format
@@ -2067,7 +2073,7 @@ msgstr "Entsprechend der WinMerge Benutzeroberfläche"
 #: Merge.rc:1286
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Benutzerdefinierter Zeichensatz:"
 
 #: Merge.rc:1294
 #, c-format
@@ -3477,7 +3483,7 @@ msgstr ""
 #: Merge.rc:2054
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Pfad zu SS.EXE:"
 
 #: Merge.rc:2060
 #, c-format
@@ -4418,12 +4424,12 @@ msgstr "Fehler"
 #: Merge.rc:2330
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Textdateien sind identisch"
 
 #: Merge.rc:2335
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Textdateien sind unterschiedlich"
 
 #: Merge.rc:2341
 #, c-format
@@ -6108,7 +6114,7 @@ msgstr "TEX"
 #: Merge.rc:2843
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2844
 #, c-format
