@@ -7,6 +7,7 @@ WinMerge 2.11.1.8
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Translation updates:
+  - German (r6130)
   - Swedish (#2318778)
 
 WinMerge 2.11.1.7 - 2008-11-20 (r6112)
