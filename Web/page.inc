@@ -137,6 +137,7 @@
      */
     function printFoot() {
       $temp = "</div> <!-- #content -->\n";
+      $temp .= $this->getPiwikCode();
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);
@@ -276,6 +277,25 @@
       $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
       $temp .= "</script>\n";
       $temp .= "</div> <!-- #ads -->\n";
+      return $temp;
+    }
+
+    /**
+     * get the Piwik java script code
+     */
+    function getPiwikCode() {
+      $temp = "<!-- Piwik -->\n";
+      $temp .= "<script type=\"text/javascript\">\n";
+      $temp .= "var pkBaseURL = ((\"https:\" == document.location.protocol) ? \"https://apps.sourceforge.net/piwik/winmerge/\" : \"http://apps.sourceforge.net/piwik/winmerge/\");\n";
+      $temp .= "document.write(unescape(\"%3Cscript src='\" + pkBaseURL + \"piwik.js' type='text/javascript'%3E%3C/script%3E\"));\n";
+      $temp .= "</script><script type=\"text/javascript\">\n";
+      $temp .= "piwik_action_name = '';\n";
+      $temp .= "piwik_idsite = 1;\n";
+      $temp .= "piwik_url = pkBaseURL + \"piwik.php\";\n";
+      $temp .= "piwik_log(piwik_action_name, piwik_idsite, piwik_url);\n";
+      $temp .= "</script>\n";
+      $temp .= "<object><noscript><p><img src=\"http://apps.sourceforge.net/piwik/winmerge/piwik.php?idsite=1\" alt=\"piwik\"/></p></noscript></object>\n";
+      $temp .= "<!-- End Piwik Tag -->\n";
       return $temp;
     }
 
