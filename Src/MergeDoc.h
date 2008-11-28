@@ -146,6 +146,7 @@ public:
 	void UpdateResources();
 	OPENRESULTS_TYPE OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		BOOL bROLeft, BOOL bRORight);
+	OPENRESULTS_TYPE ReloadDoc(int index);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
 	void ShowRescanError(int nRescanResult, BOOL bIdentical);
