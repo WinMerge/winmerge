@@ -613,6 +613,12 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 					cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer.c_str());
 			}
 		}
+		else if (cmdInfo.m_Files.size() == 0) // if there are no input args, we can check the display file dialog flag
+		{
+			BOOL showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+			if (showFiles)
+				pMainFrame->DoFileOpen();
+		}
 	}
 	return bCompared;
 }

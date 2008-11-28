@@ -44,6 +44,7 @@ public:
 	int		m_nAutoCompleteSource;
 	BOOL	m_bPreserveFiletime;
 	BOOL	m_bEnableShellContextMenu;
+	BOOL	m_bShowSelectFolderOnStartup;
 	//}}AFX_DATA
 
 

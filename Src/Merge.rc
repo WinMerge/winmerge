@@ -774,18 +774,20 @@ BEGIN
                     WS_TABSTOP,7,67,220,10
     CONTROL         "Enable Shell &Context Menu",IDC_ENABLE_SHELL_CONTEXT_MENU,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,220,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,92,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,101,147,41,CBS_DROPDOWNLIST | 
+    CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,86,176,13
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,103,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,111,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,120,
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,130,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,131,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,142,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,141,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,151,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,173,168,31
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,179,50,14,NOT
+                    IDC_STATIC,7,183,168,31
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,190,50,14,NOT
                     WS_TABSTOP
 END
 

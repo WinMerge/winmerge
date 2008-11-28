@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.8
+  Add option to show Open-dialog on WinMerge startup (#2327424)
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Translation updates:

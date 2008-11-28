@@ -156,6 +156,9 @@ const TCHAR OPT_ARCHIVE_PROBETYPE[] = _T("Merge7z/ProbeSignature");
 // Plugins
 const TCHAR OPT_PLUGINS_ENABLED[] = _T("Settings/PluginsEnabled");
 
+// Startup options
+const TCHAR OPT_SHOW_SELECT_FILES_AT_STARTUP[] = _T("Settings/ShowFileDialog");
+
 // Font options
 const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
 const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");

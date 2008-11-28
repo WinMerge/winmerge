@@ -3,6 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
+#define IDB_TOOLBAR_ENABLED             100  // = IDR_MAINFRAME
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -85,7 +86,6 @@
 #define IDB_EDIT_GOTO_NEXT_BOOKMARK     343
 #define IDB_EDIT_GOTO_PREV_BOOKMARK     344
 #define IDB_EDIT_CLEAR_ALL_BOOKMARKS    345
-#define IDB_TOOLBAR_ENABLED             100  // = IDR_MAINFRAME
 #define IDB_TOOLBAR_DISABLED            346
 #define IDB_LEFT                        347
 #define IDB_RIGHT                       348
@@ -443,6 +443,7 @@
 #define IDC_PLUGINS_ENABLE              1341
 #define IDC_PLUGINSLIST_LIST            1342
 #define IDC_ENABLE_SHELL_CONTEXT_MENU   1343
+#define IDC_STARTUP_FOLDER_SELECT       1344
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1075,7 +1076,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
 #define _APS_NEXT_COMMAND_VALUE         33174
-#define _APS_NEXT_CONTROL_VALUE         1344
+#define _APS_NEXT_CONTROL_VALUE         1345
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif
