@@ -77,6 +77,11 @@ BOOL CAboutDlg::OnInitDialog()
 	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
 #endif
 
+#ifdef WIN64
+	m_strVersion += _T(" ");
+	m_strVersion += theApp.LoadString(IDS_WINX64).c_str();
+#endif
+
 	CString sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.IsEmpty())
 	{
