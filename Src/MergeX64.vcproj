@@ -3030,6 +3030,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -9296,6 +9298,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Common\PidlContainer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="PluginManager.cpp"
 				>
 				<FileConfiguration
@@ -11398,6 +11404,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Common\ShellContextMenu.cpp"
+				>
 			</File>
 			<File
 				RelativePath="Common\sizecbar.cpp"
@@ -14288,6 +14298,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Common\PidlContainer.h"
+				>
+			</File>
+			<File
 				RelativePath="PluginManager.h"
 				>
 			</File>
@@ -14393,6 +14407,10 @@
 			</File>
 			<File
 				RelativePath="SharedFilterDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Common\ShellContextMenu.h"
 				>
 			</File>
 			<File
@@ -18990,6 +19008,10 @@
 			</File>
 			<File
 				RelativePath=".\editlib\UndoRecord.h"
+				>
+			</File>
+			<File
+				RelativePath=".\editlib\verilog.cpp"
 				>
 			</File>
 			<File

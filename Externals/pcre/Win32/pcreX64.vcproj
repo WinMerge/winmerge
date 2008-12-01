@@ -881,7 +881,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\pcre_ucp_searchfuncs.c"
+				RelativePath="..\pcre_ucd.c"
 				>
 			</File>
 			<File
