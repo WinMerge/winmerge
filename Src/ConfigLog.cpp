@@ -809,6 +809,10 @@ CString CConfigLog::GetBuildFlags()
 	flags += " _MBCS ";
 #endif
 
+#ifdef WIN64
+	flags += " WIN64 ";
+#endif
+
 	return flags;
 }
 
