@@ -473,7 +473,7 @@ CDirView * CDirDoc::GetMainView()
  * @param [in] bLeft If TRUE left-side item is updated.
  * @param [in] bRight If TRUE right-side item is updated.
  */
-void CDirDoc::UpdateStatusFromDisk(POSITION diffPos, BOOL bLeft, BOOL bRight)
+void CDirDoc::UpdateStatusFromDisk(UINT_PTR diffPos, BOOL bLeft, BOOL bRight)
 {
 	m_pCtxt->UpdateStatusFromDisk(diffPos, bLeft, bRight);
 }
@@ -490,7 +490,7 @@ void CDirDoc::UpdateStatusFromDisk(POSITION diffPos, BOOL bLeft, BOOL bRight)
 void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
 {
 	// Get position of item in DiffContext
-	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
+	UINT_PTR diffpos = m_pDirView->GetItemKey(nIdx);
 
 	// in case just copied (into existence) or modified
 	UpdateStatusFromDisk(diffpos, bLeft, bRight);
@@ -522,7 +522,7 @@ void CDirDoc::UpdateResources()
  * @return POSITION to item, NULL if not found.
  * @note Filenames must be same, if they differ NULL is returned.
  */
-POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
+UINT_PTR CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 {
 	LPCTSTR file1 = paths_FindFileName(pathLeft);
 	LPCTSTR file2 = paths_FindFileName(pathRight);
@@ -553,8 +553,8 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 	if (String::size_type length = path2.length())
 		path2.resize(length - 1); // remove trailing backslash
 
-	POSITION pos = m_pCtxt->GetFirstDiffPosition();
-	while (POSITION currentPos = pos) // Save our current pos before getting next
+	UINT_PTR pos = m_pCtxt->GetFirstDiffPosition();
+	while (UINT_PTR currentPos = pos) // Save our current pos before getting next
 	{
 		const DIFFITEM &di = m_pCtxt->GetNextDiffPosition(pos);
 		if (di.left.path == path1 &&
@@ -565,7 +565,7 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 			return currentPos;
 		}
 	}
-	return NULL;
+	return 0;
 }
 
 /**
@@ -750,7 +750,7 @@ CHexMergeDoc * CDirDoc::GetHexMergeDocForDiff(BOOL * pNew)
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	POSITION pos = FindItemFromPaths(paths.GetLeft().c_str(), paths.GetRight().c_str());
+	UINT_PTR pos = FindItemFromPaths(paths.GetLeft().c_str(), paths.GetRight().c_str());
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
 		pos = FindItemFromPaths(paths.GetRight().c_str(), paths.GetLeft().c_str());
@@ -854,7 +854,7 @@ void CDirDoc::SetDiffCompare(UINT diffcode, int idx)
 void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
 {
 	// Get position of item in DiffContext 
-	POSITION diffpos = m_pDirView->GetItemKey(idx);
+	UINT_PTR diffpos = m_pDirView->GetItemKey(idx);
 
 	// TODO: Why is the update broken into these pieces ?
 	// Someone could figure out these pieces and probably simplify this.
@@ -1008,7 +1008,7 @@ void CDirDoc::FetchPluginInfos(LPCTSTR filteredFilenames,
 void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
 {
 	// Get position of item in DiffContext 
-	POSITION diffpos = m_pDirView->GetItemKey(idx);
+	UINT_PTR diffpos = m_pDirView->GetItemKey(idx);
 
 	// Update diff counts
 	m_pCtxt->SetDiffCounts(diffpos, diffs, ignored);
@@ -1020,7 +1020,7 @@ void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
  * @param [in] act Action that was done.
  * @param [in] pos List position for DIFFITEM affected.
  */
-void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
+void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, UINT_PTR pos)
 {
 	ASSERT(pos != NULL);
 	const DIFFITEM &di = GetDiffByKey(pos);
@@ -1112,7 +1112,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
  * @param [in] flag Flag value to set.
  * @param [in] mask Mask for possible flag values.
  */
-void CDirDoc::SetItemViewFlag(POSITION key, UINT flag, UINT mask)
+void CDirDoc::SetItemViewFlag(UINT_PTR key, UINT flag, UINT mask)
 {
 	UINT curFlags = m_pCtxt->GetCustomFlags1(key);
 	curFlags &= ~mask; // Zero bits masked
@@ -1127,7 +1127,7 @@ void CDirDoc::SetItemViewFlag(POSITION key, UINT flag, UINT mask)
  */
 void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
 {
-	POSITION pos = m_pCtxt->GetFirstDiffPosition();
+	UINT_PTR pos = m_pCtxt->GetFirstDiffPosition();
 
 	while (pos != NULL)
 	{

@@ -997,7 +997,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Start handling from tail of list, so removing items
 		// doesn't invalidate our item indexes.
 		FileActionItem act = actionList.RemoveTailActionItem();
-		POSITION diffpos = GetItemKey(act.context);
+		UINT_PTR diffpos = GetItemKey(act.context);
 		DIFFCODE diffcode = pDoc->GetDiffByKey(diffpos).diffcode;
 		BOOL bUpdateLeft = FALSE;
 		BOOL bUpdateRight = FALSE;
@@ -1272,8 +1272,8 @@ String CDirView::GetSelectedFileName(SIDE_TYPE stype) const
  */
 void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) const
 {
-	POSITION diffpos = GetItemKey(sel);
-	if (diffpos == (POSITION)SPECIAL_ITEM_POS)
+	UINT_PTR diffpos = GetItemKey(sel);
+	if (diffpos == (UINT_PTR)SPECIAL_ITEM_POS)
 	{
 		strLeft.empty();
 		strRight.empty();
@@ -1589,7 +1589,7 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 		return FALSE;
 	}
 
-	POSITION key = GetItemKey(nSelItem);
+	UINT_PTR key = GetItemKey(nSelItem);
 	ASSERT(key != SPECIAL_ITEM_POS);
 	ASSERT(&di == &GetDocument()->GetDiffRefByKey(key));
 

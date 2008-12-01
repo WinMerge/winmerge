@@ -20,8 +20,8 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
 		bool bLeftUniq, const String &rightsubdir, bool bRightUniq, DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent, bool bUniques);
 
-int DirScan_CompareItems(DiffFuncStruct *, POSITION parentdiffpos);
-int DirScan_CompareRequestedItems(DiffFuncStruct *, POSITION parentdiffpos);
+int DirScan_CompareItems(DiffFuncStruct *, UINT_PTR parentdiffpos);
+int DirScan_CompareRequestedItems(DiffFuncStruct *, UINT_PTR parentdiffpos);
 
 void DirScan_InitializeDefaultCodepage();
 

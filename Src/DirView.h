@@ -68,7 +68,7 @@ struct ViewCustomFlags
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const POSITION SPECIAL_ITEM_POS = (POSITION)-1L;
+const UINT_PTR SPECIAL_ITEM_POS = (UINT_PTR)-1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -105,11 +105,11 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(POSITION diffpos, int level, UINT &index, int &alldiffs);
+	void RedisplayChildren(UINT_PTR diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
-	POSITION GetItemKey(int idx) const;
-	int GetItemIndex(POSITION key);
+	UINT_PTR GetItemKey(int idx) const;
+	int GetItemIndex(UINT_PTR key);
 	// for populating list
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();
@@ -198,7 +198,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(int id, int subitem);
-	int AddNewItem(int i, POSITION diffpos, int iImage, int iIndent);
+	int AddNewItem(int i, UINT_PTR diffpos, int iImage, int iIndent);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
@@ -249,10 +249,10 @@ protected:
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(CStringArray & colKeys);
 	void WarnContentsChanged(const CString & failedPath);
-	void OpenSpecialItems(POSITION pos1, POSITION pos2);
-	bool OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
+	void OpenSpecialItems(UINT_PTR pos1, UINT_PTR pos2);
+	bool OpenOneItem(UINT_PTR pos1, DIFFITEM **di1, DIFFITEM **di2,
 		String &path1, String &path2, int & sel1, bool & isDir);
-	bool OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFITEM **di2,
+	bool OpenTwoItems(UINT_PTR pos1, UINT_PTR pos2, DIFFITEM **di1, DIFFITEM **di2,
 		String &path1, String &path2, int & sel1, int & sel2, bool & isDir);
 	bool CreateFoldersPair(DIFFITEM & di, bool side1);
 
@@ -423,7 +423,7 @@ private:
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
-	POSITION GetItemKeyFromData(DWORD_PTR dw) const;
+	UINT_PTR GetItemKeyFromData(UINT_PTR dw) const;
 	const DIFFITEM & GetDiffItem(int sel) const;
 	DIFFITEM & GetDiffItemRef(int sel);
 	int GetSingleSelectedItem() const;

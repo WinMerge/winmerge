@@ -91,7 +91,7 @@ public:
 
 	// change an existing difference
 	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft);
-	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
+	void UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight);
 
 	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);

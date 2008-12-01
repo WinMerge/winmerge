@@ -167,7 +167,7 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 		const String &pathLeft = m_filePaths.GetLeft();
 		const String &pathRight = m_filePaths.GetRight();
 		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
-		if (POSITION pos = pDirDoc->FindItemFromPaths(pathLeft.c_str(), pathRight.c_str()))
+		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft.c_str(), pathRight.c_str()))
 		{
 			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
 			::UpdateDiffItem(di, &ctxt);

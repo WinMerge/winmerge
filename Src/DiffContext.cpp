@@ -94,7 +94,7 @@ CDiffContext::~CDiffContext()
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
  */
-void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight)
+void CDiffContext::UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	if (bLeft)

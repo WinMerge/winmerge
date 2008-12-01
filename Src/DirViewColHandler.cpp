@@ -189,8 +189,8 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	if (lParam2 == -1)
 		return 1;
 
-	POSITION diffposl = pThis->pView->GetItemKeyFromData(lParam1);
-	POSITION diffposr = pThis->pView->GetItemKeyFromData(lParam2);
+	UINT_PTR diffposl = pThis->pView->GetItemKeyFromData(lParam1);
+	UINT_PTR diffposr = pThis->pView->GetItemKeyFromData(lParam2);
 	const DIFFITEM &ldi = pThis->pCtxt->GetDiffAt(diffposl);
 	const DIFFITEM &rdi = pThis->pCtxt->GetDiffAt(diffposr);
 	// compare 'left' and 'right' parameters as appropriate
@@ -200,7 +200,7 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i, POSITION diffpos, int iImage, int iIndent)
+int CDirView::AddNewItem(int i, UINT_PTR diffpos, int iImage, int iIndent)
 {
 	LV_ITEM lvItem;
 	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
@@ -248,7 +248,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 {
 	int nIdx = pParam->item.iItem;
 	int i = ColPhysToLog(pParam->item.iSubItem);
-	POSITION key = GetItemKey(nIdx);
+	UINT_PTR key = GetItemKey(nIdx);
 	if (key == SPECIAL_ITEM_POS)
 	{
 		if (IsColName(i))

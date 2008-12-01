@@ -315,13 +315,13 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
+int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	if (!parentdiffpos)
 		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-	POSITION pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	UINT_PTR pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos)
 	{
 		if (pCtxt->ShouldAbort())
@@ -330,7 +330,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
 			break;
 		}
 		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-		POSITION curpos = pos;
+		UINT_PTR curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		if (di.diffcode.isDirectory() && myStruct->bRecursive)
 		{
@@ -368,11 +368,11 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, POSITION parentdiffpos)
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
-	POSITION pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	UINT_PTR pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
 	while (pos != NULL)
 	{
@@ -382,7 +382,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, POSITION parentdiffp
 			break;
 		}
 
-		POSITION curpos = pos;
+		UINT_PTR curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		if (di.diffcode.isDirectory() && myStruct->bRecursive)
 		{
