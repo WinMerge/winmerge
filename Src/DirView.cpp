@@ -1808,22 +1808,11 @@ void CDirView::OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
  */
 UINT_PTR CDirView::GetItemKey(int idx) const
 {
-	return GetItemKeyFromData(m_pList->GetItemData(idx));
+	return (UINT_PTR) m_pList->GetItemData(idx);
 }
 
 // SetItemKey & GetItemKey encapsulate how the display list items
 // are mapped to DiffItems, which in turn are DiffContext keys to the actual DIFFITEM data
-
-/**
- * @brief Convert item's data to item's key.
- * Use this function to get item's key when item's data is known.
- * @param [in] dw Item's data.
- * @return Item's key.
- */
-UINT_PTR CDirView::GetItemKeyFromData(UINT_PTR dw) const
-{
-	return (UINT_PTR)dw;
-}
 
 /**
  * @brief Get DIFFITEM data for item.

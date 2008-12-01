@@ -423,7 +423,6 @@ private:
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
-	UINT_PTR GetItemKeyFromData(UINT_PTR dw) const;
 	const DIFFITEM & GetDiffItem(int sel) const;
 	DIFFITEM & GetDiffItemRef(int sel);
 	int GetSingleSelectedItem() const;
