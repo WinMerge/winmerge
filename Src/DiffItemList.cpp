@@ -6,14 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+#include <assert.h>
 #include "DiffItemList.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 /**
  * @brief Constructor
@@ -163,9 +158,9 @@ DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(UINT_PTR & diffpos)
  */
 void DiffItemList::SetDiffStatusCode(UINT_PTR diffpos, UINT diffcode, UINT mask)
 {
-	ASSERT(diffpos);
+	assert(diffpos);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
-	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
+	assert(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
 }
@@ -175,7 +170,7 @@ void DiffItemList::SetDiffStatusCode(UINT_PTR diffpos, UINT diffcode, UINT mask)
  */
 void DiffItemList::SetDiffCounts(UINT_PTR diffpos, UINT diffs, UINT ignored)
 {
-	ASSERT(diffpos);
+	assert(diffpos);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
@@ -188,7 +183,7 @@ void DiffItemList::SetDiffCounts(UINT_PTR diffpos, UINT diffs, UINT ignored)
  */
 UINT DiffItemList::GetCustomFlags1(UINT_PTR diffpos) const
 {
-	ASSERT(diffpos);
+	assert(diffpos);
 	const DIFFITEM & di = GetDiffAt(diffpos);
 	return di.customFlags1;
 }
@@ -200,7 +195,7 @@ UINT DiffItemList::GetCustomFlags1(UINT_PTR diffpos) const
  */
 void DiffItemList::SetCustomFlags1(UINT_PTR diffpos, UINT flag)
 {
-	ASSERT(diffpos);
+	assert(diffpos);
 	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.customFlags1 = flag;
 }

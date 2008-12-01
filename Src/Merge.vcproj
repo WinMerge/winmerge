@@ -1274,6 +1274,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
