@@ -1,59 +1,68 @@
 WINMERGE
 
-WinMerge är ett Open Source Filjämförelse och Mergeprogram som fungerar på
-alla moderna Windowsversioner. Några funktioner kräver ytterligare 
-installationer eller komponenter.
+WinMerge är ett Open Source jämför- och sammanslagningsverktyg för Windows. 
+WinMerge kan jämföra både kataloger och filer visande skillnader i ett visuellt 
+textformat,som är enkelt att förstå och hantera. WinMerge kan användas som ett 
+externt skillnads/sammanslagnings-verktyg eller som en självständig applikation.
 
-Senaste versionen av WinMerge och annan WinMerge information finns på
-http://winmerge.org
+WinMerge har många hjälpsamma stödfunktioner för att göra jämförelser, 
+synkroniseringar och sammanslagningar så lätt och användbart som möjligt. 
+Flera programmeringsspråk och andra filformat är syntax-markerade.
 
-Snabbstart för WinMerge (Quick start to WinMerge):
-Läs online-manualens Quick start-kapitel för att starta med WinMerge:
-http://winmerge.org/docs/manual/QuickStart.html
+Den senaste WinMerge-versionen och WinMerge-information finns tillgänglig på
+http://winmerge.org/.
 
-HTML Manual:
-Manual finns tillgängling online på
-http://winmerge.org/docs/manual/
-det är också möjligtvis installerat (om detta är valt) lokalt och 
-nerladdningsbart separat från http://winmerge.org/ (se dokumentation).
+Quick start (Snabbstart)
+===========
+För att lära sig hur man ska utföra grundläggande uppgifter efter att ha 
+installerat WinMerge, klicka på "Hjälp>WinMerge Hjälp") 
+och navigera till "Quick start"-ämnet.  Eller, gå till Internetversionen på
+http://winmerge.org/docs/manual/QuickStart.html.
 
-Arkivstöd (Archive Support):
-WinMerge använder 7-Zip för arkivfilstöd. 7-Zip (http://www.7-zip.org)
-är ett Open Source arkivprogram. För att installera arkivstöd , ladda ner
-7-Zip plugininstalleraren från http://winmerge.org/.
+WinMerge Help (WinMerges Hjälp)
+============= 
+WinMerges Hjälp är installerat lokalt som en Microsoft HTML-hjälpfil, 
+WinMerge.chm,när du installerar WinMerge. För att öppna Hjälpen, klicka på 
+"Hjälp>WinMerge Hjälp" eller tryck på F1 i WinMerges fönster. På kommandoraden, 
+kör WinMerge-programmet med  /? hjälpparametern.
 
-Installera arkivstöd (Installing archive support):
-Det är rekommenderat att installera 7-Zip programmet. Om detta inte kan göras av
-någon anledning, kan 7-zip plugininstalleraren installera bara krävda filer för
-att stödja arkivfilstöd. Notera att detta INTE tillåter självständigt användande 
-av 7-Zip utan att det bara ger arkivstöd för WinMerge.
+Du kan också bläddra i HTML-versionen av WinMerges Hjälp på 
+http://winmerge.org/docs/manual/.
 
-Skript-support (Script Support):
-Om du vill arbeta med skript måste du ha Windows
-Script Host ('wscript.exe') installerat. Om du får fel relaterade till dina
-skript var god och besök
-http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-för att vara säker på att din Windows Script Host är både uppdaterad och inte
-trasig.
+Archive Support (Arkivsupport)
+===============
+WinMerge använder 7-Zip (http://www.7-zip.org) Open Source arkivverktyget för
+arkivfilstöd. Vi rekommenderar att 7-zip applikationen installeras genom att
+ladda ner och köra 7-Zip plugininstallationsprogrammet på 
+http://winmerge.org/downloads/.
 
-Support:
-Utvecklare besvarar frågor i Sourceforge.nets WinMerge forum:
-http://sourceforge.net/forum/?group_id=13216
+Om du inte av någon anledning kan installera 7-Zip-verktyget kan du använda 
+7-zips plugin-installationsprogram för att installera bara de filer som krävs 
+för arkivfilestöd. Se Hjälpämnet, "7-Zip and archive support"
+("7-zip och arkivstöd") för detaljer.
 
-Fel och funktionsförfrågningar (Bugs and feature requests):
-Fel och förslag på nya funktioner ska skickas till Felspårare (Bug tracker) och 
-Funktionsbegäransspårare (RFE) på sourceforge.net
+WinMerge Support (WinMerge-support)
+================
+Frågor eller synpunkter om WinMerge? Ett bra ställe att starta på är WinMerges
+samhällsbulletinboard på http://forums.winmerge.org/. Utvecklare läser ofta
+och svarar på frågor i båda forumen. Använd "Open Discussion forum"
+("Öppet Diskussionsforum") för generella WinMergeämnen, som frågor om 
+användning. Använd "Developers forum" ("Utvecklarforum")
+för WinMerge utvecklingsämnen.
 
-Felspårare (Bug tracker):
-http://sourceforge.net/tracker/?group_id=13216&atid=113216
-När du rapporterar ett fel, var god och tala om för oss WinMerges versionsnummer!
-WinMerge-versionerna 2.2.0 och senare kan producera 'WinMerge Configuration Log'
-från menyn Hjälp/Konfiguration. Var god och bifoga denna information 
-(som en bifogad fil) till felrapporten, då den har mycket användbar information
-för utvecklare.
+Bugs and feature requests (Buggar och funktionsäskanden)
+=========================
+Om ett ämne inte löses i WinMerges forum, kontrollera i "Project trackers" 
+("Projektspårarna"): gå till http://project.winmerge.org/, och klicka på en länk
+i "Tracker menu" ("Spårmenyn"), som "Bugs and Feature Requests" 
+("Buggar och funktionsäskanden"), där du kan bläddra i eller skicka ämnen.
 
-Funktionsbegäransspårare (RFE):
-http://sourceforge.net/tracker/?group_id=13216&atid=363216
+Om du skickar en felrapport, var god och inkludera WinMerge-versionsnumret i din
+felrapport. Du kan generera en konfigurationslogg genom att klicka på 
+"Hjälp>Konfiguration".
+Var god och bifoga konfigurationsloggen till felrapporten; den har mycket 
+användbar information för utvecklare.
 
 
-WinMerges utvecklare
+- WinMerges Utvecklare
+
