@@ -12,6 +12,7 @@ WinMerge 2.11.1.8
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Translation updates:
   - German (r6130)
+  - Greek (#2379356)
   - Swedish (#2318778, #2374278)
 
 WinMerge 2.11.1.7 - 2008-11-20 (r6112)
