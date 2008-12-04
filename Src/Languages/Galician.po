@@ -1,6 +1,9 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Medulio <medulio@ciberirmandade.org>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -9,16 +12,16 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2008-09-20 15:42+0100\n"
 "Last-Translator: Medulio <medulio@ciberirmandade.org>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=CP1252\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Galician\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
-"X-Generator: CreateMasterPotFile.vbs\n"
+"X-Poedit-SourceCharset: CP1252\n"
 "X-Poedit-Country: Galiza\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
