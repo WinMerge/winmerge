@@ -9,6 +9,7 @@ Option Explicit
 ' $Id$
 
 Const ForReading = 1
+Const SvnWebUrlLanguages = "http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/"
 
 Dim oFSO, bRunFromCmd
 
@@ -52,6 +53,8 @@ Sub Main
   CreateTranslationsStatusWikiFile "TranslationsStatus.wiki", oTranslationsStatus
   
   CreateTranslationsStatusXmlFile "TranslationsStatus.xml", oTranslationsStatus
+  
+  CreateTranslatorsListFile "../../Docs/Users/Translators.html", oTranslationsStatus
   
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
@@ -359,10 +362,10 @@ End Sub
 
 ''
 ' ...
-Sub CreateTranslationsStatusXmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
+Sub CreateTranslationsStatusXmlFile(ByVal sXmlPath, ByVal oTranslationsStatus)
   Dim oXmlFile, sLanguage, oLanguageStatus, i
   
-  Set oXmlFile = oFSO.CreateTextFile(sHtmlPath, True)
+  Set oXmlFile = oFSO.CreateTextFile(sXmlPath, True)
   
   oXmlFile.WriteLine "<translations>"
   oXmlFile.WriteLine "  <update>" & GetCreationDate() & "</update>"
@@ -410,6 +413,96 @@ Sub CreateTranslationsStatusXmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oXmlFile.WriteLine "  </translation>"
   oXmlFile.WriteLine "</translations>"
   oXmlFile.Close
+End Sub
+
+''
+' ...
+Sub CreateTranslatorsListFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
+  Dim oHtmlFile, sLanguage, oLanguageStatus, i
+  Dim sLastUpdated, sMaintainer, sTranslators
+  
+  Set oHtmlFile = oFSO.CreateTextFile(sHtmlPath, True)
+  
+  oHtmlFile.WriteLine "<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"""
+  oHtmlFile.WriteLine "  ""http://www.w3.org/TR/html4/loose.dtd"">"
+  oHtmlFile.WriteLine "<html>"
+  oHtmlFile.WriteLine "<head>"
+  oHtmlFile.WriteLine "  <title>WinMerge Translators</title>"
+  oHtmlFile.WriteLine "  <meta http-equiv=""content-type"" content=""text/html; charset=ISO-8859-1"">"
+  oHtmlFile.WriteLine "  <style type=""text/css"">"
+  oHtmlFile.WriteLine "  <!--"
+  oHtmlFile.WriteLine "    body {"
+  oHtmlFile.WriteLine "      font-family: Verdana,Helvetica,Arial,sans-serif;"
+  oHtmlFile.WriteLine "      font-size: small;"
+  oHtmlFile.WriteLine "    }"
+  oHtmlFile.WriteLine "    dl {"
+  oHtmlFile.WriteLine "      width: 30em;"
+  oHtmlFile.WriteLine "      margin: 1em;"
+  oHtmlFile.WriteLine "      padding: .5em;"
+  oHtmlFile.WriteLine "      background: #F9F9F9;"
+  oHtmlFile.WriteLine "      border: 1px solid #AAAAAA;"
+  oHtmlFile.WriteLine "    }"
+  oHtmlFile.WriteLine "    dt {"
+  oHtmlFile.WriteLine "      margin-top: .5em;"
+  oHtmlFile.WriteLine "      font-weight: bold;"
+  oHtmlFile.WriteLine "    }"
+  oHtmlFile.WriteLine "  -->"
+  oHtmlFile.WriteLine "  </style>"
+  oHtmlFile.WriteLine "</head>"
+  oHtmlFile.WriteLine "<body>"
+  oHtmlFile.WriteLine "<h1>WinMerge Translators</h1>"
+  oHtmlFile.WriteLine "<ul>"
+  For Each sLanguage In oTranslationsStatus.Keys 'For all languages...
+    If (sLanguage <> "English") Then 'If NOT English...
+      oHtmlFile.WriteLine "  <li><a href=""#" & sLanguage & """>" & sLanguage & "</a></li>"
+    End If
+  Next
+  oHtmlFile.WriteLine "</ul>"
+  For Each sLanguage In oTranslationsStatus.Keys 'For all languages...
+    If (sLanguage <> "English") Then 'If NOT English...
+      sMaintainer = ""
+      sTranslators = ""
+      
+      Set oLanguageStatus = oTranslationsStatus(sLanguage)
+      oHtmlFile.WriteLine "<h2><a name=""" & sLanguage & """>" & sLanguage & "</a></h2>"
+      oHtmlFile.WriteLine "<dl>"
+      For i = 0 To oLanguageStatus.Translators.Count - 1 'For all translators...
+        If (oLanguageStatus.Translators(i).Maintainer = True) Then 'If maintainer...
+          If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
+            sMaintainer = "<dd><strong><a href=""mailto:" & oLanguageStatus.Translators(i).Mail & """>" & oLanguageStatus.Translators(i).Name & "</a></strong></dd>"
+          Else 'If mail address NOT exists...
+            sMaintainer = "<dd><strong>" & oLanguageStatus.Translators(i).Name & "</strong></dd>"
+          End If
+        Else 'If NO maintainer...
+          If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
+            sTranslators = sTranslators & "<dd><a href=""mailto:" & oLanguageStatus.Translators(i).Mail & """>" & oLanguageStatus.Translators(i).Name & "</a></dd>"
+          Else 'If mail address NOT exists...
+            sTranslators = sTranslators & "<dd>" & oLanguageStatus.Translators(i).Name & "</dd>"
+          End If
+        End If
+      Next
+      If (sMaintainer <> "") Then 'If maintainer exists...
+        oHtmlFile.WriteLine "  <dt>Maintainer:</dt>"
+        oHtmlFile.WriteLine "  " & sMaintainer
+      End If
+      If (sTranslators <> "") Then 'If translators exists...
+        oHtmlFile.WriteLine "  <dt>Translators:</dt>"
+        oHtmlFile.WriteLine "  " & sTranslators
+      End If
+      sLastUpdated = Left(oLanguageStatus.PoRevisionDate, 10)
+      If (sLastUpdated <> "") Then 'If PO revision date exists...
+        oHtmlFile.WriteLine "  <dt>Last Update:</dt>"
+        oHtmlFile.WriteLine "  <dd>" & Left(oLanguageStatus.PoRevisionDate, 10) & "</dd>"
+      End If
+      oHtmlFile.WriteLine "  <dt>Translation File:</dt>"
+      oHtmlFile.WriteLine "  <dd><a href=""" & SvnWebUrlLanguages & sLanguage & ".po"" rel=""nofollow"">" & sLanguage & ".po</a></dd>"
+      oHtmlFile.WriteLine "</dl>"
+    End If
+  Next
+  oHtmlFile.WriteLine "<p>Status from <strong>" & GetCreationDate() & "</strong>. Look at <a href=""http://winmerge.org/translations/"">winmerge.org</a> for updates.</p>"
+  oHtmlFile.WriteLine "</body>"
+  oHtmlFile.WriteLine "</html>"
+  oHtmlFile.Close
 End Sub
 
 ''
