@@ -11,6 +11,7 @@ WinMerge 2.11.1.8
   Add build identifier for 64-bit builds to About-dialog (r6142)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Translation updates:
+  - Croatian (#2390558)
   - German (r6130)
   - Greek (#2379356)
   - Swedish (#2318778, #2374278)
