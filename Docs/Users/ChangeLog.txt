@@ -10,6 +10,7 @@ WinMerge 2.11.1.8
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Add build identifier for 64-bit builds to About-dialog (r6142)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
+  Bugfix: Use translated version of readme.txt for Chinese Simplified (#2391000)
   Translation updates:
   - Croatian (#2390558)
   - German (r6130)
