@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.10.4
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
+  Bugfix: Use translated version of readme.txt for Chinese Simplified (#2391000)
   Translation updates:
   - Swedish (#2236651)
 
