@@ -144,6 +144,13 @@
     }
 
     /**
+     * print a <h2> heading with a RSS feed link
+     */
+    function printRssHeading($title, $rssfeedurl) {
+      print("<h2>" . $title . " " . $this->getRssFeedLink($rssfeedurl) . "</h2>\n");
+    }
+
+    /**
      * print the "Download Now!" link
      */
     function printDownloadNow() {
@@ -155,14 +162,21 @@
     }
 
     /**
-     * print a RSS feed link
+     * get a RSS feed link
      */
-    function printRssFeedLink($url, $text = '') {
+    function getRssFeedLink($url, $text = '') {
       $temp = "<a href=\"" . $url . "\"><img src=\"/images/rss.png\" alt=\"RSS\" border=\"0\"></a>";
       if ($text != '') { //if WITH text...
         $temp .= " <a href=\"" . $url . "\"> " . $text . "</a>";
       }
-      print($temp);
+      return $temp;
+    }
+
+    /**
+     * print a RSS feed link
+     */
+    function printRssFeedLink($url, $text = '') {
+      print($this->getRssFeedLink($url, $text));
     }
 
     /**

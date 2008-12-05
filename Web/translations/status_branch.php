@@ -7,9 +7,7 @@
   $page->printHead('WinMerge: Translations Status (Branch)', TAB_TRANSLATIONS);
   
   $status = $page->convertXml2Array('status_branch.xml');
-  print("<h2>Translations Status (Branch) ");
-  $page->printRssFeedLink('status_branch_rss.php');
-  print("</h2>\n");
+  $page->printRssHeading('Translations Status (Branch)', 'status_branch_rss.php');
   if (!empty($status)) { //If translations status available...
     printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/R2_10/Src/Languages/');
     printTranslationsStatusGraphLegend();
