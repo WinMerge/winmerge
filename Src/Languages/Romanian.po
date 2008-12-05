@@ -20,8 +20,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Romanian\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Generator: CreateMasterPotFile.vbs\n"
 "X-Poedit-Country: ROMANIA\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
