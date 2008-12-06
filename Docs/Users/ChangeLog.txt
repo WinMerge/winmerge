@@ -15,6 +15,7 @@ WinMerge 2.11.1.8
   - Croatian (#2390558)
   - German (r6130)
   - Greek (#2379356)
+  - Japanese (r6154)
   - Swedish (#2318778, #2374278)
 
 WinMerge 2.11.1.7 - 2008-11-20 (r6112)
