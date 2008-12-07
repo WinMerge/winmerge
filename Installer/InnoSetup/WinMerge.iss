@@ -376,13 +376,16 @@ Source: ..\..\Build\heksedit\heksedit.dll; DestDir: {app}; Flags: promptifolder;
 
 ; Language files
 Source: ..\..\Src\Languages\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
 Source: ..\..\Src\Languages\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
 Source: ..\..\Src\Languages\Catalan.po; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
 Source: ..\..\Src\Languages\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Simplified
 Source: ..\..\Src\Languages\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt; DestDir: {app}\Docs; Components: Languages\Croatian
 Source: ..\..\Src\Languages\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
@@ -401,6 +404,7 @@ Source: ..\..\Src\Languages\Norwegian.po; DestDir: {app}\Languages; Components: 
 Source: ..\..\Src\Languages\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
 Source: ..\..\Src\Languages\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
