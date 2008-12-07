@@ -1,7 +1,9 @@
 <?php
   include('page.inc');
+  include('engine/simplepie/simplepie.inc');
 
   $page = new Page;
+  $page->addRssFeed('http://sourceforge.net/export/rss2_projnews.php?group_id=13216', 'Project News');
   $page->printHead('WinMerge', TAB_HOME);
   $stablerelease = $page->getStableRelease();
 ?>
@@ -21,6 +23,20 @@
 <h3>WinMerge <?php echo $stablerelease->getVersionNumber();?> - latest stable version</h3>
 <p><a href="downloads/">WinMerge <?php echo $stablerelease->getVersionNumber();?></a> is the latest stable version, and is recommended for most users.</p>
 <?php $page->printDownloadNow(); ?>
+
+<?php
+  $page->printRssSubHeading('Project News', 'http://sourceforge.net/export/rss2_projnews.php?group_id=13216');
+  $feed = new SimplePie();
+  $feed->set_feed_url('http://sourceforge.net/export/rss2_projnews.php?group_id=13216');
+  $feed->set_cache_location('./engine/simplepie/cache');
+  $feed->init();
+  print("<ul class=\"rssfeeditems\">\n");
+  foreach ($feed->get_items(0, 5) as $item) { //for the last 5 news items...
+    print("  <li><a href=\"".$item->get_link()."\">".$item->get_title()."</a> <em>".$item->get_date('Y-m-d')."</em></li>\n");
+  }
+  print("  <li><a href=\"http://sourceforge.net/news/?group_id=13216\">View all news &hellip;</a></li>\n");
+  print("</ul>\n");
+?>
 
 <h3>Support</h3>
 <p>If you need support, look at our <a href="support/">support page</a> for more information how you can get it.</p>

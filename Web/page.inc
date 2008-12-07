@@ -151,6 +151,13 @@
     }
 
     /**
+     * print a <h3> heading with a RSS feed link
+     */
+    function printRssSubHeading($title, $rssfeedurl) {
+      print("<h3>" . $title . " " . $this->getRssFeedLink($rssfeedurl) . "</h3>\n");
+    }
+
+    /**
      * print the "Download Now!" link
      */
     function printDownloadNow() {

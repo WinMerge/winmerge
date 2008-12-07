@@ -309,6 +309,17 @@ ul.inline li {
 	clear: both;
 }
 
+/* RSS feed items */
+.rssfeeditems li {
+	margin-bottom: .5em;
+}
+
+.rssfeeditems em {
+	margin-left: .5em;
+	color: gray;
+	font-size: smaller;
+}
+
 /* Info card (Mailing lists, History) */
 .infocard {
 	width: 40em;
