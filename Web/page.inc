@@ -118,17 +118,18 @@
       }
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
-      $temp .= "<div id=\"head\">\n";
+      $temp .= "<div id=\"wrap\">\n";
+      $temp .= "  <div id=\"head\">\n";
       $temp .= "<h1>WinMerge</h1>\n";
       $temp .= "<p id=\"rightcorner\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216\" width=\"88\" height=\"31\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
       $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
       $temp .= "</p>\n";
-      $temp .= "</div> <!-- #head -->\n";
+      $temp .= "  </div> <!-- #head -->\n";
       $temp .= $this->getTabs();
       $temp .= $this->getAds();
-      $temp .= "<div id=\"content\">\n";
+      $temp .= "  <div id=\"content\">\n";
       print($temp);
     }
 
@@ -136,7 +137,8 @@
      * print the foot from the page
      */
     function printFoot() {
-      $temp = "</div> <!-- #content -->\n";
+      $temp = "  </div> <!-- #content -->\n";
+      $temp .= "</div> <!-- #wrap -->\n";
       $temp .= $this->getPiwikCode();
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
@@ -252,6 +254,14 @@
           $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
           $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
           $temp .= "  <li><a href=\"/Wiki/\" title=\"WinMerge Development Wiki\">Development Wiki</a></li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case TAB_DOWNLOADS: //if "Downloads" ...
+          $temp .= "<ul id=\"subtabs\">\n";
+          $temp .= "  <li><a href=\"#current\" title=\"Current Version\">Current Version</a></li>\n";
+          $temp .= "  <li><a href=\"#other\" title=\"Other Versions\">Other Versions</a></li>\n";
+          $temp .= "  <li><a href=\"#plugins\" title=\"Plugins\">Plugins</a></li>\n";
+          $temp .= "  <li><a href=\"#sourcecode\" title=\"Source Code\">Source Code</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...

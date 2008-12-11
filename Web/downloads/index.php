@@ -7,14 +7,8 @@
   $stablerelease = $page->getStableRelease();
 ?>
 <h2>Downloads <?php $page->printRssFeedLink('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216'); ?></h2>
-<ul>
-  <li><a href="#current">Current Version</a></li>
-  <li><a href="#other">Other Versions</a></li>
-  <li><a href="#plugins">Plugins</a></li>
-  <li><a href="#sourcecode">Source Code</a></li>
-</ul>
-<h3><a name="current">Current Version</a></h3>
 <?php $page->printDownloadNow(); ?>
+<h3><a name="current">Current Version</a></h3>
 <p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>

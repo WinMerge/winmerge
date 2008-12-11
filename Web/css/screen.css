@@ -1,9 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	min-width: 40em;
 	color: black;
-	background: white;
+	background: #FFFFCC url(/images/body-bg.png) repeat-x;
+	text-align: center;
 	font-family: Verdana,Helvetica,Arial,sans-serif;
 	font-size: small;
 }
@@ -31,11 +31,18 @@ a:active { color:#003399; text-decoration:none; }
 
 a[name]:hover { color:black; text-decoration:none; }
 
+#wrap {
+	width: 60em;
+	margin: 0 auto;
+	padding: 1em;
+	text-align: left;
+}
+
 #head {
 	margin: 0;
 	padding: 5px;
 	padding-left: 1em;
-	background: #FFCC00;
+	background: transparent;
 }
 
 #head h1 {
@@ -58,7 +65,7 @@ a[name]:hover { color:black; text-decoration:none; }
 #tabs {
 	margin: 0;
 	padding: 3px 1em;
-	background: #FFCC00;
+	background: transparent;
 	border-bottom: 1px solid black;
 }
 
@@ -88,15 +95,18 @@ a[name]:hover { color:black; text-decoration:none; }
 }
 
 #tabs li a#current {
-	background: white;
+	background: #F2F2F2;
 	border: 1px solid black;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid #F2F2F2;
 }
 
 #subtabs {
 	margin: 0;
 	padding: 5px;
-	background: white;
+	background: #F2F2F2 url(/images/subtabs-bg.png) repeat-x bottom;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	/*border-bottom: 1px solid #D2D2D2;*/
 }
 
 #subtabs li {
@@ -114,11 +124,17 @@ a[name]:hover { color:black; text-decoration:none; }
 	margin: 0;
 	padding: 10px 5px 10px 5px;
 	text-align: center;
+	background: white;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 }
 
 #content {
 	margin: 0;
 	padding: 1em;
+	background: white;
+	border: 1px solid black;
+	border-top: 0;
 }
 
 #content h2 {
@@ -274,7 +290,7 @@ ul.inline li {
 /* "What is WinMerge?" box */
 .whatisbox {
 	width: 45em;
-	margin-bottom: 1em;
+	margin: 0 auto;
 	background: #f9f9f9;
 	border: 1px solid #aaaaaa;
 }
