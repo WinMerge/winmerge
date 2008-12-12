@@ -358,6 +358,28 @@ ul.inline li {
 	padding-top: 0;
 }
 
+/* Screenshots */
+.screenshots {
+  height: 1%; /* IE fix */
+}
+
+.screenshots h3 {
+	clear: left;
+	margin: 0;
+	margin-bottom: .5em;
+}
+
+.screenshots img {
+	float: left;
+	margin-right: 1em;
+	margin-bottom: 1.5em;
+	padding: 0;
+}
+
+.screenshots br {
+	clear: left;
+}
+
 /* Translations Status */
 .status {
 	border-collapse: collapse;
