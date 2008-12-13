@@ -76,3 +76,14 @@ C-Define:
   define-minor = FRHED_MINOR_VERSION
   define-subrelease = FRHED_SUB_RELEASE_NO
   define-buildnumber = FRHED_BUILD_NO
+
+DocBook:
+  Set release info tag for the DocBook formatted file. This isn't very
+  flexible as it only replaces the text inside <releaseinfo> tag.
+
+  [Manual]
+  type = Docbook
+  description = Frhed manual
+  path = Docs/Users/Manual/Frhed_Help.xml
+  tag = releaseinfo
+  versionstring = <emphasis>Revision 0.2.0</emphasis>
