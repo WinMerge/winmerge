@@ -15,68 +15,48 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  GotoDlg.cpp
+ * @file  CharacterSetDlg.cpp
  *
- * @brief Implementation of the Go To-dialog.
+ * @brief Implementation of the Character set selection dialog.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: GoToDlg.cpp 190 2008-12-04 23:13:41Z kimmov $
+// $Id: CharacterSetDlg.cpp 200 2008-12-09 20:29:21Z kimmov $
 
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
 
-TCHAR GoToDlg::buffer[16];
-
-BOOL GoToDlg::Apply(HWND hDlg)
-{
-	int offset, i = 0, r = 0;
-	GetDlgItemText(hDlg, IDC_GOTO_OFFSET, buffer, RTL_NUMBER_OF(buffer));
-	// For a relative jump, read offset from 2nd character on.
-	if (buffer[0] == _T('+') || buffer[0] == _T('-'))
-		r = 1;
-	if (_stscanf(buffer + r, _T("x%x"), &offset) == 0 &&
-		_stscanf(buffer + r, _T("%d"), &offset) == 0)
-	{
-		MessageBox(hDlg, _T("Offset not recognized."), _T("Go to"), MB_ICONERROR);
-		return FALSE;
-	}
-	if (r)
-	{
-		// Relative jump.
-		if (buffer[0] == '-' )
-			offset = -offset;
-		offset += iCurByte;
-	}
-	// Absolute jump.
-	if (offset < 0 || offset >= DataArray.GetLength())
-	{
-		MessageBox(hDlg, _T("Invalid offset."), _T("Go to"), MB_ICONERROR);
-		return FALSE;
-	}
-	iCurByte = offset;
-	snap_caret();
-	return TRUE;
-}
-
-INT_PTR GoToDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CharacterSetDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (iMsg)
 	{
 	case WM_INITDIALOG:
-		SetDlgItemText(hDlg, IDC_GOTO_OFFSET, buffer);
+		SetDlgItemInt(hDlg, IDC_CHSET_FONTSIZE, iFontSize, TRUE);
+		switch (iCharacterSet)
+		{
+		case ANSI_FIXED_FONT:
+			CheckDlgButton(hDlg, IDC_CHSET_ANSI, BST_CHECKED);
+			break;
+		case OEM_FIXED_FONT:
+			CheckDlgButton(hDlg, IDC_CHSET_OEM, BST_CHECKED);
+			break;
+		}
 		return TRUE;
 	case WM_COMMAND:
 		switch (wParam)
 		{
 		case IDOK:
-			if (Apply(hDlg))
-			{
-			case IDCANCEL:
-				EndDialog(hDlg, wParam);
-			}
+			iFontSize = GetDlgItemInt(hDlg, IDC_CHSET_FONTSIZE, 0, TRUE);
+			iFontZoom = 0;
+			iCharacterSet = IsDlgButtonChecked(hDlg, IDC_CHSET_ANSI) ?
+				ANSI_FIXED_FONT : OEM_FIXED_FONT;
+			save_ini_data();
+			resize_window();
+			// fall through
+		case IDCANCEL:
+			EndDialog(hDlg, wParam);
 			return TRUE;
 		}
 		break;

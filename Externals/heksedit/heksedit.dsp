@@ -1,24 +1,24 @@
 # Microsoft Developer Studio Project File - Name="heksedit" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
-# ** NICHT BEARBEITEN **
+# ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Dynamic-Link Library" 0x0102
 
 CFG=heksedit - Win32 Debug
-!MESSAGE Dies ist kein gültiges Makefile. Zum Erstellen dieses Projekts mit NMAKE
-!MESSAGE verwenden Sie den Befehl "Makefile exportieren" und führen Sie den Befehl
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
 !MESSAGE 
 !MESSAGE NMAKE /f "heksedit.mak".
 !MESSAGE 
-!MESSAGE Sie können beim Ausführen von NMAKE eine Konfiguration angeben
-!MESSAGE durch Definieren des Makros CFG in der Befehlszeile. Zum Beispiel:
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
 !MESSAGE NMAKE /f "heksedit.mak" CFG="heksedit - Win32 Debug"
 !MESSAGE 
-!MESSAGE Für die Konfiguration stehen zur Auswahl:
+!MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "heksedit - Win32 Release" (basierend auf  "Win32 (x86) Dynamic-Link Library")
-!MESSAGE "heksedit - Win32 Debug" (basierend auf  "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "heksedit - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "heksedit - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
 !MESSAGE 
 
 # Begin Project
@@ -106,7 +106,15 @@ PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\AboutDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\AddBmkDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\AnsiConvert.cpp
 # End Source File
 # Begin Source File
 
@@ -206,6 +214,10 @@ SOURCE=.\LangArray.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LangTools.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\LoadHexFile.cpp
 # End Source File
 # Begin Source File
@@ -291,6 +303,10 @@ SOURCE=.\ViewSettingsDlg.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\AnsiConvert.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\BinTrans.h
 # End Source File
 # Begin Source File
@@ -307,10 +323,6 @@ SOURCE=.\gktools.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\GlobalStream.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\gtools.h
 # End Source File
 # Begin Source File
@@ -324,6 +336,10 @@ SOURCE=.\hexwdlg.h
 # Begin Source File
 
 SOURCE=.\hexwnd.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\hgstream.h
 # End Source File
 # Begin Source File
 
@@ -344,6 +360,10 @@ SOURCE=.\InvokeHtmlHelp.h
 # Begin Source File
 
 SOURCE=.\LangArray.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LangTools.h
 # End Source File
 # Begin Source File
 
@@ -391,6 +411,10 @@ SOURCE=.\Simparr.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Simparr_imp.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\StringTable.h
 # End Source File
 # Begin Source File
@@ -415,11 +439,11 @@ SOURCE=.\VersionData.h
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
-SOURCE=.\heksedit.rc
+SOURCE=.\res\Frhed.ico
 # End Source File
 # Begin Source File
 
-SOURCE=.\icon1.ico
+SOURCE=.\heksedit.rc
 # End Source File
 # Begin Source File
 
@@ -430,24 +454,24 @@ SOURCE=.\resource.h
 SOURCE=.\Toolbar.bmp
 # End Source File
 # End Group
-# Begin Group "Text Files"
+# Begin Group "Documents"
 
 # PROP Default_Filter "txt"
 # Begin Source File
 
-SOURCE=.\Bugs.txt
+SOURCE=..\Docs\Users\ChangeLog.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\History.txt
+SOURCE=..\Docs\Users\Contributors.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\Readme.txt
+SOURCE=..\Docs\Users\History.txt
 # End Source File
 # Begin Source File
 
-SOURCE=.\Todo.txt
+SOURCE=..\Docs\Developers\SVN_Organisation.txt
 # End Source File
 # End Group
 # End Target

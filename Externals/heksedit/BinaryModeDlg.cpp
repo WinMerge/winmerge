@@ -15,68 +15,36 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  GotoDlg.cpp
+ * @file  BinaryModeDlg.cpp
  *
- * @brief Implementation of the Go To-dialog.
+ * @brief Implementation of the Binary mode selection dialog.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: GoToDlg.cpp 190 2008-12-04 23:13:41Z kimmov $
+// $Id: BinaryModeDlg.cpp 203 2008-12-10 16:49:54Z kimmov $
 
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
 
-TCHAR GoToDlg::buffer[16];
-
-BOOL GoToDlg::Apply(HWND hDlg)
-{
-	int offset, i = 0, r = 0;
-	GetDlgItemText(hDlg, IDC_GOTO_OFFSET, buffer, RTL_NUMBER_OF(buffer));
-	// For a relative jump, read offset from 2nd character on.
-	if (buffer[0] == _T('+') || buffer[0] == _T('-'))
-		r = 1;
-	if (_stscanf(buffer + r, _T("x%x"), &offset) == 0 &&
-		_stscanf(buffer + r, _T("%d"), &offset) == 0)
-	{
-		MessageBox(hDlg, _T("Offset not recognized."), _T("Go to"), MB_ICONERROR);
-		return FALSE;
-	}
-	if (r)
-	{
-		// Relative jump.
-		if (buffer[0] == '-' )
-			offset = -offset;
-		offset += iCurByte;
-	}
-	// Absolute jump.
-	if (offset < 0 || offset >= DataArray.GetLength())
-	{
-		MessageBox(hDlg, _T("Invalid offset."), _T("Go to"), MB_ICONERROR);
-		return FALSE;
-	}
-	iCurByte = offset;
-	snap_caret();
-	return TRUE;
-}
-
-INT_PTR GoToDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR BinaryModeDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (iMsg)
 	{
 	case WM_INITDIALOG:
-		SetDlgItemText(hDlg, IDC_GOTO_OFFSET, buffer);
+		CheckDlgButton(hDlg, iBinaryMode == ENDIAN_LITTLE ?
+				IDC_BINMODE_LITTLEEND : IDC_BINMODE_BIGEND, BST_CHECKED);
 		return TRUE;
 	case WM_COMMAND:
 		switch (wParam)
 		{
 		case IDOK:
-			if (Apply(hDlg))
-			{
-			case IDCANCEL:
-				EndDialog(hDlg, wParam);
-			}
+			iBinaryMode = IsDlgButtonChecked(hDlg, IDC_BINMODE_LITTLEEND) ?
+					ENDIAN_LITTLE : ENDIAN_BIG;
+			// fall through
+		case IDCANCEL:
+			EndDialog(hDlg, wParam);
 			return TRUE;
 		}
 		break;

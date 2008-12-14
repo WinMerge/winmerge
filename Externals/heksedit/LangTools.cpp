@@ -15,22 +15,27 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  StringTable.cpp
+ * @file  LangTools.cpp
  *
- * @brief Implementation of the translation Stringtable.
+ * @brief A few functions related to UI translation.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: StringTable.cpp 173 2008-12-03 17:29:30Z kimmov $
-
+// $Id: LangTools.cpp 0 0000-00-00 00:00:00Z jtuc $
 #include "precomp.h"
-#include "StringTable.h"
-#include "resource.h"
+#include "hexwnd.h"
+#include "AnsiConvert.h"
+#include "LangArray.h"
 
-StringTable<LPTSTR> S;
+LangArray langArray;
 
-StringTable<WORD> IDS =
+void NTAPI TranslateDialog(HWND hwnd)
 {
-	IDS_DIFFLISTITEMFORMAT,
-	IDS_ABOUTFRHEDVER,
-};
+	langArray.TranslateDialog(hwnd);
+}
+
+INT_PTR NTAPI ShowModalDialog(UINT idd, HWND hwnd, DLGPROC dlgproc, LPVOID param)
+{
+	HINSTANCE hinst = langArray.m_hLangDll ? langArray.m_hLangDll : hMainInstance;
+	return DialogBoxParam(hinst, MAKEINTRESOURCE(idd), hwnd, dlgproc, (LPARAM)param);
+}

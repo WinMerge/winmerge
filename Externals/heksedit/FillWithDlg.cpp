@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  FillWithDlg.cpp
+ *
+ * @brief Implementation of the Fill dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: FillWithDlg.cpp 143 2008-11-11 05:32:54Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -9,7 +34,7 @@ C_ASSERT(sizeof(FillWithDialog) == sizeof(HexEditorWindow)); // disallow instanc
 char FillWithDialog::pcFWText[FW_MAX];//hex representation of bytes to fill with
 char FillWithDialog::buf[FW_MAX];//bytes to fill with
 int FillWithDialog::buflen;//number of bytes to fill with
-char FillWithDialog::szFWFileName[_MAX_PATH];//fill with file name
+TCHAR FillWithDialog::szFWFileName[MAX_PATH];//fill with file name
 int FillWithDialog::FWFile;//fill with file
 int FillWithDialog::FWFilelen;//fill with file len
 LONG FillWithDialog::oldproc;//old hex box proc
@@ -34,40 +59,40 @@ void FillWithDialog::inittxt(HWND hDlg)
 		iEndOfSelSetting = DataArray.GetUpperBound();
 	}
 	//init all the readonly boxes down below
-	char bufff[250];
+	TCHAR bufff[250];
 	int tteemmpp = 1 + abs(iStartOfSelSetting - iEndOfSelSetting);
-	sprintf(bufff,"%d=0x%x", iStartOfSelSetting, iStartOfSelSetting);
+	_stprintf(bufff, _T("%d=0x%x"), iStartOfSelSetting, iStartOfSelSetting);
 	SetDlgItemText(hDlg, IDC_STS,bufff);
-	sprintf(bufff,"%d=0x%x", iEndOfSelSetting, iEndOfSelSetting);
+	_stprintf(bufff, _T("%d=0x%x"), iEndOfSelSetting, iEndOfSelSetting);
 	SetDlgItemText(hDlg, IDC_ES,bufff);
-	sprintf(bufff,"%d=0x%x",tteemmpp,tteemmpp);
+	_stprintf(bufff, _T("%d=0x%x"),tteemmpp, tteemmpp);
 	SetDlgItemText(hDlg, IDC_SS,bufff);
 	if (curtyp)
 	{//1-file
-		SetDlgItemText(hDlg,IDC_SI, "???");
-		SetDlgItemText(hDlg,IDC_IFS, "???");
-		SetDlgItemText(hDlg,IDC_R, "???");
+		SetDlgItemText(hDlg,IDC_SI, _T("???"));
+		SetDlgItemText(hDlg,IDC_IFS, _T("???"));
+		SetDlgItemText(hDlg,IDC_R, _T("???"));
 	}
 	else
 	{//0-input
-		sprintf(bufff, "%d=0x%x", buflen, buflen);
+		_stprintf(bufff, _T("%d=0x%x"), buflen, buflen);
 		SetDlgItemText(hDlg,IDC_SI, bufff);
 		if (buflen)
 		{
 			int d = tteemmpp / buflen;
 			int m = tteemmpp % buflen;
-			sprintf(bufff,"%d=0x%x", d, d);
+			_stprintf(bufff, _T("%d=0x%x"), d, d);
 			SetDlgItemText(hDlg,IDC_IFS, bufff);
 			HFONT hfdef = (HFONT)SendMessage(hDlg, WM_GETFONT, 0, 0);
-			SendDlgItemMessage(hDlg,IDC_IFS,WM_SETFONT,(WPARAM) hfdef, MAKELPARAM(TRUE, 0));
-			sprintf(bufff,"%d=0x%x", m, m);
-			SetDlgItemText(hDlg,IDC_R, bufff);
+			SendDlgItemMessage(hDlg, IDC_IFS,WM_SETFONT, (WPARAM)hfdef, TRUE);
+			_stprintf(bufff, _T("%d=0x%x"), m, m);
+			SetDlgItemText(hDlg, IDC_R, bufff);
 		}
 		else
 		{
-			SetDlgItemText(hDlg,IDC_IFS, "\xa5");//set to infinity symbol
-			SendDlgItemMessage(hDlg,IDC_IFS,WM_SETFONT,(WPARAM) hfon,MAKELPARAM(TRUE, 0));
-			SetDlgItemText(hDlg,IDC_R, "0=0x0");
+			SetDlgItemText(hDlg,IDC_IFS, _T("\xa5"));//set to infinity symbol
+			SendDlgItemMessage(hDlg, IDC_IFS, WM_SETFONT, (WPARAM)hfon, TRUE);
+			SetDlgItemText(hDlg, IDC_R, _T("0=0x0"));
 		}
 	}
 }
@@ -118,14 +143,18 @@ void FillWithDialog::hexstring2charstring()
 //used to delete non-hex chars after the user pastes into the hexbox
 void FillWithDialog::deletenonhex(HWND hEd)
 {
-	GetWindowText(hEd,pcFWText,FW_MAX);
-	int ii=0;
-	for (int i =0;pcFWText[i]!='\0';i++)
+	GetWindowTextA(hEd, pcFWText, FW_MAX);
+	int ii = 0;
+	for (int i = 0 ; pcFWText[i] != '\0' ; i++)
 	{
-		if(isxdigit(pcFWText[i])){pcFWText[ii]=pcFWText[i];ii++;}
+		if (isxdigit(pcFWText[i]))
+		{
+			pcFWText[ii] = pcFWText[i];
+			ii++;
+		}
 	}
-	pcFWText[ii]='\0';
-	SetWindowText(hEd,pcFWText);
+	pcFWText[ii] = '\0';
+	SetWindowTextA(hEd, pcFWText);
 }
 
 //hex box msg handler
@@ -157,15 +186,15 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 		{
 			HWND hEditt=GetDlgItem(hDlg, IDC_HEX);//get the handle to the hex edit box
 			SendMessage(hEditt, EM_SETLIMITTEXT, (WPARAM)FW_MAX, 0);//limit the amount of text the user can enter
-			SetWindowText(hEditt, pcFWText);//init hex text
+			SetWindowTextA(hEditt, pcFWText);//init hex text
 			SetFocus(hEditt);//give the hex box focus
-			EnableWindow(hEditt,!curtyp);
+			EnableWindow(hEditt, !curtyp);
 			oldproc = SetWindowLong(hEditt, GWLP_WNDPROC, (LONG)HexProc);//override the old proc to be HexProc
 			EnableWindow(GetDlgItem(hDlg, IDC_HEXSTAT),!curtyp);
 
 			HWND typ = GetDlgItem(hDlg, IDC_TYPE);
-			SendMessage(typ, CB_ADDSTRING ,0, (LPARAM)"Input");
-			SendMessage(typ, CB_ADDSTRING ,0, (LPARAM)"File");
+			SendMessage(typ, CB_ADDSTRING ,0, (LPARAM)_T("Input"));
+			SendMessage(typ, CB_ADDSTRING ,0, (LPARAM)_T("File"));
 			SendMessage(typ, CB_SETCURSEL, (WPARAM)curtyp,0);//set cursel to previous
 
 			//en/disable filename box and browse button
@@ -175,7 +204,7 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 			EnableWindow(GetDlgItem(hDlg, IDC_BROWSE), curtyp);
 			EnableWindow(GetDlgItem(hDlg, IDC_FILESTAT), curtyp);
 
-			hfon = CreateFont(16,0,0,0,FW_NORMAL,0,0,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_DONTCARE,"Symbol");
+			hfon = CreateFont(16,0,0,0,FW_NORMAL,0,0,0,DEFAULT_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_DONTCARE,_T("Symbol"));
 			inittxt(hDlg);
 			switch (asstyp)
 			{
@@ -195,22 +224,22 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 				if (curtyp)
 				{//1-file
 					GetDlgItemText(hDlg, IDC_FN, szFWFileName, _MAX_PATH);//get file name
-					FWFile = _open(szFWFileName,_O_RDONLY|_O_BINARY);
+					FWFile = _topen(szFWFileName,_O_RDONLY|_O_BINARY);
 					if (FWFile == -1)
 					{//if there is error opening
-						MessageBox(hDlg,"Error opening file","Error", MB_ICONERROR);//tell user but don't close dlgbox
+						MessageBox(hDlg, _T("Error opening file"), _T("Error"), MB_ICONERROR);//tell user but don't close dlgbox
 						return 1;//didn't process this message
 					}//if
 					FWFilelen = _filelength(FWFile);
 					if (FWFilelen == 0)
 					{//if filelen is zero
-						MessageBox(hDlg, "Can't fill a selection with a file of zero size.", "Error", MB_ICONERROR);//tell user but don't close dlgbox
+						MessageBox(hDlg, _T("Can't fill a selection with a file of zero size."), _T("Error"), MB_ICONERROR);//tell user but don't close dlgbox
 						_close(FWFile);//close file
 						return 1;//didn't process this message
 					}//if
 					else if (FWFilelen == -1)
 					{//error returned by _filelength
-						MessageBox(hDlg, "Error opening file", "Error", MB_ICONERROR);//tell user but don't close dlgbox
+						MessageBox(hDlg, _T("Error opening file"), _T("Error"), MB_ICONERROR);//tell user but don't close dlgbox
 						_close(FWFile);//close file
 						return 1;//didn't process this message
 					}//elseif
@@ -219,13 +248,13 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 				{//0-input
 					if (!buflen)
 					{//no hex input
-						MessageBox(hDlg, "Can't fill a selection with a string of zero size.", "Error", MB_ICONERROR);//tell user but don't close dlgbox
+						MessageBox(hDlg, _T("Can't fill a selection with a string of zero size."), _T("Error"), MB_ICONERROR);//tell user but don't close dlgbox
 						return 1;//didn't process this message
 					}//if
-					int i = GetDlgItemText(hDlg, IDC_HEX, pcFWText, FW_MAX);
+					int i = GetDlgItemTextA(hDlg, IDC_HEX, pcFWText, FW_MAX);
 					if (i == 0 || i == FW_MAX - 1)
 					{//error
-						MessageBox(hDlg, "Too great a number of bytes to fill with or some other error.", "Error", MB_ICONERROR);//tell user but don't close dlgbox
+						MessageBox(hDlg, _T("Too great a number of bytes to fill with or some other error."), _T("Error"), MB_ICONERROR);//tell user but don't close dlgbox
 						return 1;//didn't process this message
 					}//if
 					hexstring2charstring();//just in case
@@ -329,12 +358,12 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 		case IDC_BROWSE:
 			{
 				//prepare OPENFILENAME for the file open common dlg box
-				szFWFileName[0] = '\0';
+				szFWFileName[0] = _T('\0');
 				OPENFILENAME ofn;
 				ZeroMemory(&ofn, sizeof ofn);
 				ofn.lStructSize = sizeof ofn;
 				ofn.hwndOwner = hDlg;
-				ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
+				ofn.lpstrFilter = _T("All Files (*.*)\0*.*\0\0");
 				ofn.lpstrFile = szFWFileName;
 				ofn.nMaxFile = _MAX_PATH;
 				ofn.Flags = OFN_PATHMUSTEXIST | OFN_HIDEREADONLY | OFN_FILEMUSTEXIST;
@@ -344,7 +373,7 @@ INT_PTR FillWithDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPar
 			}
 			return TRUE;
 		case MAKEWPARAM(IDC_HEX, EN_UPDATE): //hexedit updated
-			GetWindowText(GetDlgItem(hDlg, IDC_HEX), pcFWText, FW_MAX);//gettext
+			GetDlgItemTextA(hDlg, IDC_HEX, pcFWText, FW_MAX);//gettext
 			hexstring2charstring();//convert to char string
 			//set text in boxes down below
 			inittxt(hDlg);

@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  BitManipDlg.cpp
+ *
+ * @brief Implementation of bit manipulation dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: BitManipDlg.cpp 173 2008-12-03 17:29:30Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -5,9 +30,9 @@
 
 BOOL BitManipDlg::OnInitDialog(HWND hDlg)
 {
-	char buf[64];
-	sprintf(buf, "Manipulate bits at offset 0x%x=%d", iCurByte, iCurByte);
-	SetDlgItemText(hDlg, IDC_STATIC1, buf);
+	TCHAR buf[64];
+	_stprintf(buf, _T("Manipulate bits at offset 0x%x=%d"), iCurByte, iCurByte);
+	SetDlgItemText(hDlg, IDC_MANIPBITS, buf);
 	BYTE cBitValue = DataArray[iCurByte];
 	if (cBitValue & 1)
 		CheckDlgButton(hDlg, IDC_CHECK1, BST_CHECKED);
@@ -56,8 +81,8 @@ BOOL BitManipDlg::Apply(HWND hDlg, WPARAM wParam)
 		repaint();
 		return TRUE;
 	}
-	char buf[64];
-	sprintf(buf, "Value: 0x%x , %d signed, %u unsigned.",
+	TCHAR buf[64];
+	_stprintf(buf, _T("Value: 0x%x , %d signed, %u unsigned."),
 		(unsigned char)cBitValue, (signed char)cBitValue, (unsigned char)cBitValue);
 	SetDlgItemText(hDlg, IDC_STATIC2, buf);
 	return FALSE;

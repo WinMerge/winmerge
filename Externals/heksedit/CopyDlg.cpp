@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  CopyDlg.cpp
+ *
+ * @brief Copy dialog implementation.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: CopyDlg.cpp 197 2008-12-09 19:17:06Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -8,45 +33,45 @@ BOOL CopyDlg::OnInitDialog(HWND hDlg)
 {
 	int iStart = iGetStartOfSelection();
 	int iEnd = iGetEndOfSelection();
-	char buf[32];
-	sprintf(buf, "x%x", iStart);
-	SetDlgItemText(hDlg, IDC_EDIT1, buf);
-	sprintf(buf, "x%x", iEnd);
-	SetDlgItemText(hDlg, IDC_EDIT2, buf);
-	SetDlgItemInt(hDlg, IDC_EDIT3, iEnd - iStart + 1, TRUE);
-	CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
+	TCHAR buf[32];
+	_stprintf(buf, _T("x%x"), iStart);
+	SetDlgItemText(hDlg, IDC_COPY_STARTOFFSET, buf);
+	_stprintf(buf, _T("x%x"), iEnd);
+	SetDlgItemText(hDlg, IDC_COPY_OFFSETEDIT, buf);
+	SetDlgItemInt(hDlg, IDC_COPY_BYTECOUNT, iEnd - iStart + 1, TRUE);
+	CheckDlgButton(hDlg, IDC_COPY_OFFSET, BST_CHECKED);
 	return TRUE;
 }
 
 BOOL CopyDlg::Apply(HWND hDlg)
 {
-	char buf[64];
+	TCHAR buf[32];
 	int iOffset;
 	int iNumberOfBytes;
-	if (GetDlgItemText(hDlg, IDC_EDIT1, buf, 64) &&
-		sscanf(buf, "x%x", &iOffset) == 0 &&
-		sscanf(buf, "%d", &iOffset) == 0)
+	if (GetDlgItemText(hDlg, IDC_COPY_STARTOFFSET, buf, RTL_NUMBER_OF(buf)) &&
+		_stscanf(buf, _T("x%x"), &iOffset) == 0 &&
+		_stscanf(buf, _T("%d"), &iOffset) == 0)
 	{
-		MessageBox(hDlg, "Start offset not recognized.", "Copy", MB_ICONERROR);
+		MessageBox(hDlg, _T("Start offset not recognized."), _T("Copy"), MB_ICONERROR);
 		return FALSE;
 	}
-	if (IsDlgButtonChecked(hDlg, IDC_RADIO1))
+	if (IsDlgButtonChecked(hDlg, IDC_COPY_OFFSET))
 	{
-		if (GetDlgItemText(hDlg, IDC_EDIT2, buf, 64) &&
-			sscanf(buf, "x%x", &iNumberOfBytes) == 0 &&
-			sscanf(buf, "%d", &iNumberOfBytes) == 0)
+		if (GetDlgItemText(hDlg, IDC_COPY_OFFSETEDIT, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("x%x"), &iNumberOfBytes) == 0 &&
+			_stscanf(buf, _T("%d"), &iNumberOfBytes) == 0)
 		{
-			MessageBox(hDlg, "End offset not recognized.", "Copy", MB_ICONERROR);
+			MessageBox(hDlg, _T("End offset not recognized."), _T("Copy"), MB_ICONERROR);
 			return FALSE;
 		}
 		iNumberOfBytes = iNumberOfBytes - iOffset + 1;
 	}
 	else
 	{// Get number of bytes.
-		if (GetDlgItemText(hDlg, IDC_EDIT3, buf, 64) &&
-			sscanf(buf, "%d", &iNumberOfBytes) == 0)
+		if (GetDlgItemText(hDlg, IDC_COPY_BYTECOUNT, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("%d"), &iNumberOfBytes) == 0)
 		{
-			MessageBox(hDlg, "Number of bytes not recognized.", "Copy", MB_ICONERROR);
+			MessageBox(hDlg, _T("Number of bytes not recognized."), _T("Copy"), MB_ICONERROR);
 			return FALSE;
 		}
 	}
@@ -54,7 +79,7 @@ BOOL CopyDlg::Apply(HWND hDlg)
 	// DataArray.GetLength ()-iCutOffset = number of bytes from current pos. to end.
 	if (DataArray.GetLength() - iOffset < iNumberOfBytes)
 	{
-		MessageBox(hDlg, "Can't copy more bytes than are present.", "Copy", MB_ICONERROR);
+		MessageBox(hDlg, _T("Can't copy more bytes than are present."), _T("Copy"), MB_ICONERROR);
 		return FALSE;
 	}
 	// Transfer to cipboard.
@@ -63,7 +88,7 @@ BOOL CopyDlg::Apply(HWND hDlg)
 	if (hGlobal == 0)
 	{
 		// Not enough memory for clipboard.
-		MessageBox(hDlg, "Not enough memory for copying.", "Copy", MB_ICONERROR);
+		MessageBox(hDlg, _T("Not enough memory for copying."), _T("Copy"), MB_ICONERROR);
 		return FALSE;
 	}
 	WaitCursor wc;
@@ -93,10 +118,12 @@ INT_PTR CopyDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				EndDialog(hDlg, wParam);
 			}
 			return TRUE;
-		case IDC_RADIO1:
-		case IDC_RADIO2:
-			EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), IsDlgButtonChecked(hDlg, IDC_RADIO1));
-			EnableWindow(GetDlgItem(hDlg, IDC_EDIT3), IsDlgButtonChecked(hDlg, IDC_RADIO2));
+		case IDC_COPY_OFFSET:
+		case IDC_COPY_BYTES:
+			EnableWindow(GetDlgItem(hDlg, IDC_COPY_OFFSETEDIT),
+					IsDlgButtonChecked(hDlg, IDC_COPY_OFFSET));
+			EnableWindow(GetDlgItem(hDlg, IDC_COPY_BYTECOUNT),
+					IsDlgButtonChecked(hDlg, IDC_COPY_BYTES));
 			return TRUE;
 		}
 		break;

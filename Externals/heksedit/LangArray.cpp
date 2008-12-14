@@ -1,7 +1,34 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  LangArray.cpp
+ *
+ * @brief Implementation for translated text array class.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: LangArray.cpp 127 2008-11-09 14:09:53Z jtuc $
+
 #include "precomp.h"
-#include "simparr.h"
+#include "Simparr.h"
 #include "LangArray.h"
 #include "VersionData.h"
+
+static const UINT ModifyableMenuFlags = MF_POPUP | MF_BITMAP | MF_DISABLED | MF_GRAYED | MF_MENUBARBREAK | MF_MENUBREAK;
 
 const LANGID LangArray::DefLangId = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 
@@ -145,11 +172,13 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 	{
 		TCHAR path[MAX_PATH];
 		GetModuleFileName(hMainInstance, path, MAX_PATH);
-		LPTSTR name = PathFindFileName(path); 
-		LPTSTR ext = PathFindExtension(name);
-		*ext = _T('\0');
-		wsprintf(ext + 1, _T("lng\\%s.lng"), name);
-		*ext = _T('.');
+		PathRemoveFileSpec(path);
+		PathAppend(path, _T("heksedit.lng\\heksedit.lng"));
+		//LPTSTR name = PathFindFileName(path); 
+		//LPTSTR ext = PathFindExtension(name);
+		//*ext = _T('\0');
+		//wsprintf(name, _T("lng\\%s.lng"), name);
+		//*ext = _T('.');
 		if (m_hLangDll == 0)
 		{
 			m_hLangDll = LoadLibrary(path);
@@ -226,7 +255,7 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 			}
 		}
 		PathRemoveFileSpec(path);
-		name = PathAddBackslash(path);
+		LPTSTR name = PathAddBackslash(path);
 		// Look for a .po file that matches the given langid.
 		// Possible cases in order of precedence:
 		// (1) Country specific translation for given country, e.g. de-CH.po
@@ -240,8 +269,8 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 				name[--i] = '-';
 				do
 				{
-					strcpy(name + i + j, ".po");
-					f = fopen(path, "r");
+					_tcscpy(name + i + j, _T(".po"));
+					f = _tfopen(path, _T("r"));
 					if (j == 0 || SUBLANGID(langid) != SUBLANG_DEFAULT)
 						break;
 					j = 0;
@@ -280,12 +309,12 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 		}
 		else if (char *p = EatPrefix(buf, "#,"))
 		{
-			StrTrim(p, " \t\r\n");
+			StrTrimA(p, " \t\r\n");
 			format = p;
 		}
 		else if (char *p = EatPrefix(buf, "#."))
 		{
-			StrTrim(p, " \t\r\n");
+			StrTrimA(p, " \t\r\n");
 			directive = p;
 		}
 		else if (EatPrefix(buf, "msgid "))
@@ -357,9 +386,25 @@ BOOL LangArray::Load(HINSTANCE hMainInstance, LANGID langid)
 	return TRUE;
 }
 
-BSTR LangArray::TranslateStringA(int line)
+PTSTR LangArray::TranslateString(int line)
 {
-	BSTR t = 0;
+#ifdef UNICODE
+	BSTR ws = 0;
+	if (line > 0 && line < GetLength())
+	{
+		if (char *s = GetAt(line))
+		{
+			if (int len = strlen(s))
+			{
+				ws = SysAllocStringLen(0, len);
+				len = MultiByteToWideChar(m_codepage, 0, s, -1, ws, len + 1);
+				SysReAllocStringLen(&ws, ws, len - 1);
+			}
+		}
+	}
+	return ws;
+#else
+	PTSTR t = 0;
 	if (line > 0 && line < GetLength())
 	{
 		if (char *s = GetAt(line))
@@ -378,78 +423,84 @@ BSTR LangArray::TranslateStringA(int line)
 						len = WideCharToMultiByte(codepage, 0, ws, -1, 0, 0, 0, 0);
 						if (len)
 						{
-							t = SysAllocStringByteLen(0, len - 1);
-							WideCharToMultiByte(codepage, 0, ws, -1, (PSTR)t, len, 0, 0);
+							t = (PTSTR)SysAllocStringByteLen(0, len - 1);
+							WideCharToMultiByte(codepage, 0, ws, -1, t, len, 0, 0);
 						}
 					}
 					SysFreeString(ws);
 				}
 				else
 				{
-					t = SysAllocStringByteLen(s, len);
+					t = (PTSTR)SysAllocStringByteLen(s, len);
 				}
 			}
 		}
 	}
 	return t;
+#endif
 }
 
-BSTR LangArray::TranslateStringW(int line)
-{
-	BSTR ws = 0;
-	if (line > 0 && line < GetLength())
-	{
-		if (char *s = GetAt(line))
-		{
-			if (int len = strlen(s))
-			{
-				ws = SysAllocStringLen(0, len);
-				len = MultiByteToWideChar(m_codepage, 0, s, -1, ws, len + 1);
-				SysReAllocStringLen(&ws, ws, len - 1);
-			}
-		}
-	}
-	return ws;
-}
-
-void LangArray::TranslateDialogA(HWND h)
+void LangArray::TranslateDialog(HWND h)
 {
 	UINT gw = GW_CHILD;
 	do
 	{
 		TCHAR text[80];
-		::GetWindowTextA(h, text, RTL_NUMBER_OF(text));
+		::GetWindowText(h, text, RTL_NUMBER_OF(text));
 		int line = 0;
-		if (LPTSTR p = _tcschr(text, _T(':')))
+		if (PTSTR p = _tcschr(text, _T(':')))
 			line = _ttoi(p + 1);
-		if (BSTR t = TranslateStringA(line))
+		if (PTSTR t = TranslateString(line))
 		{
-			::SetWindowTextA(h, (PSTR)t);
-			::SysFreeString(t);
+			::SetWindowText(h, t);
+			::SysFreeString((BSTR)t);
 		}
 		h = ::GetWindow(h, gw);
 		gw = GW_HWNDNEXT;
 	} while (h);
 }
 
-void LangArray::TranslateDialogW(HWND h)
+void LangArray::TranslateMenu(HMENU h)
 {
-	UINT gw = GW_CHILD;
-	do
+	if (h)
 	{
-		WCHAR text[80];
-		::GetWindowTextW(h, text, RTL_NUMBER_OF(text));
-		int line = 0;
-		if (LPWSTR p = wcschr(text, L':'))
-			line = _wtoi(p + 1);
-		if (BSTR t = TranslateStringW(line))
+		int i = GetMenuItemCount(h);
+		while (i > 0)
 		{
-			::SetWindowTextW(h, t);
-			::SysFreeString(t);
+			--i;
+			UINT state = GetMenuState(h, i, MF_BYPOSITION);
+			UINT id;
+			if (state & MF_POPUP)
+			{
+				id = reinterpret_cast<UINT>(GetSubMenu(h, i));
+				TranslateMenu(reinterpret_cast<HMENU>(id));
+			}
+			else
+			{
+				id = GetMenuItemID(h, i);
+			}
+			TCHAR text[80];
+			if (GetMenuString(h, i, text, RTL_NUMBER_OF(text), MF_BYPOSITION))
+			{
+				int line = 0;
+				if (PTSTR p = _tcschr(text, _T(':')))
+					line = _ttoi(p + 1);
+				if (PTSTR t = TranslateString(line))
+				{
+					::ModifyMenu(h, i, state & ModifyableMenuFlags | MF_BYPOSITION, id, t);
+					::SysFreeString((BSTR)t);
+				}
+			}
 		}
-		h = ::GetWindow(h, gw);
-		gw = GW_HWNDNEXT;
-	} while (h);
+	}
+}
+
+HMENU LangArray::LoadMenu(HINSTANCE hMainInstance, LPTSTR idr)
+{
+	HMENU h = ::LoadMenu(m_hLangDll ? m_hLangDll : hMainInstance, idr);
+	if (m_hLangDll)
+		TranslateMenu(h);
+	return h;
 }
 
 int LangArray::LangCodeMajor(LANGID langid, LPTSTR name)
@@ -467,12 +518,12 @@ int LangArray::LangCodeMinor(LANGID langid, LPTSTR name)
 	case MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_LATIN):
 	case MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_LATIN):
 		memcpy(name, latn, sizeof latn);
-		return sizeof latn;
+		return RTL_NUMBER_OF(latn);
 	case MAKELANGID(LANG_AZERI, SUBLANG_AZERI_CYRILLIC):
 	case MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC):
 	case MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_CYRILLIC):
 		memcpy(name, cyrl, sizeof cyrl);
-		return sizeof cyrl;
+		return RTL_NUMBER_OF(cyrl);
 	}
 	return GetLocaleInfo(langid, LOCALE_SISO3166CTRYNAME, name, 4);
 }

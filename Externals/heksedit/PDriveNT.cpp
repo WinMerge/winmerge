@@ -54,14 +54,14 @@ BOOL PNtPhysicalDrive::Open( int iDrive )
 {
 	Close();
 
-	CHAR szPath[256];
-	sprintf( szPath, "\\\\.\\PhysicalDrive%d", iDrive );
+	TCHAR szPath[256];
+	_stprintf(szPath, _T("\\\\.\\PhysicalDrive%d"), iDrive);
 
-	m_hDevice = CreateFile( szPath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0 );
-	if(m_hDevice != INVALID_HANDLE_VALUE)
+	m_hDevice = CreateFile(szPath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
+	if (m_hDevice != INVALID_HANDLE_VALUE)
 	{
 		DISK_GEOMETRY dg;
-		if( GetDriveGeometry(&dg) )
+		if (GetDriveGeometry(&dg))
 		{
 			m_BytesPerSector = dg.BytesPerSector;
 			return TRUE;

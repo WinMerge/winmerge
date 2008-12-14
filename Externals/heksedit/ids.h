@@ -21,7 +21,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: ids.h 26 2008-08-21 19:36:04Z kimmov $
+// $Id: ids.h 45 2008-09-04 14:05:26Z jtuc $
 
 #ifndef ids_h
 #define ids_h

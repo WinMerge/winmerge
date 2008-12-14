@@ -1,13 +1,42 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  LoadHexFile.cpp
+ *
+ * @brief Hex file loader class implementation.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: LoadHexFile.cpp 106 2008-11-05 23:00:33Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
+#include "Simparr.h"
 #include "hexwnd.h"
 #include "LoadHexFile.h"
 
 int hexfile_stream::lheatwhite()
 {
 	int c;
-	do c = lhgetc();
-		while (isspace(c));
+	do
+	{
+		c = lhgetc();
+	} while (isspace(c));
+
 	lhungetc(c);
 	return c;
 }
@@ -37,7 +66,7 @@ bool load_hexfile_0::StreamIn(hexfile_stream &hexin)
 			if (!flnd)
 			{
 				if (!SetSize(ii + 1))
-					return IDYES == MessageBox(hwnd, "Not enough memory to import data.\nCannot continue!\nDo you want to keep what has been found so far?", "Import Hexdump", MB_YESNO | MB_ICONERROR);
+					return IDYES == MessageBox(hwnd, _T("Not enough memory to import data.\nCannot continue!\nDo you want to keep what has been found so far?"), _T("Import Hexdump"), MB_YESNO | MB_ICONERROR);
 				ExpandToSize();
 				m_pT[ii] = 0;
 			}
@@ -50,7 +79,7 @@ bool load_hexfile_0::StreamIn(hexfile_stream &hexin)
 		}
 		else if (!isspace(temp[0]) && diio)
 		{
-			switch (MessageBox(hwnd, "Illegal character found.\nIgnore further illegal characters?", "Import Hexdump", MB_YESNOCANCEL | MB_ICONERROR))
+			switch (MessageBox(hwnd, _T("Illegal character found.\nIgnore further illegal characters?"), _T("Import Hexdump"), MB_YESNOCANCEL | MB_ICONERROR))
 			{
 			case IDYES:
 				diio = 0;
@@ -86,7 +115,7 @@ bool load_hexfile_1::StreamIn(hexfile_stream &hexin)
 				break;
 			if (!isxdigit(c[0]) && diio)
 			{
-				switch (MessageBox(hwnd, "Illegal character in offset.\nIgnore further invalid offsets?","Import Hexdump",MB_YESNOCANCEL | MB_ICONERROR))
+				switch (MessageBox(hwnd, _T("Illegal character in offset.\nIgnore further invalid offsets?"), _T("Import Hexdump"), MB_YESNOCANCEL | MB_ICONERROR))
 				{
 				case IDYES:
 					diio = 0;
@@ -112,11 +141,11 @@ bool load_hexfile_1::StreamIn(hexfile_stream &hexin)
 			hexin.scanf("%x", &tmp);
 			if (flnd && tmp)
 			{
-				char msg[150];
-				sprintf(msg,
-					"The first offset found was 0x%x, which is greater than zero.\n"
-					"Do you want to insert %d null bytes at the start of the data?", tmp, tmp);
-				if (IDYES == MessageBox(hwnd, msg, "Import Hexdump", MB_YESNO | MB_ICONWARNING))
+				TCHAR msg[150];
+				_stprintf(msg,
+					_T("The first offset found was 0x%x, which is greater than zero.\n")
+					_T("Do you want to insert %d null bytes at the start of the data?"), tmp, tmp);
+				if (IDYES == MessageBox(hwnd, msg, _T("Import Hexdump"), MB_YESNO | MB_ICONWARNING))
 				{
 					ii = tmp;
 					if (!SetSize(ii))
@@ -133,7 +162,7 @@ bool load_hexfile_1::StreamIn(hexfile_stream &hexin)
 			}
 			else if (ii + fo != tmp)
 			{
-				switch (MessageBox(hwnd, "Invalid offset found.\nIgnore further invalid offsets?","Import Hexdump",MB_YESNOCANCEL | MB_ICONWARNING))
+				switch (MessageBox(hwnd, _T("Invalid offset found.\nIgnore further invalid offsets?"), _T("Import Hexdump"), MB_YESNOCANCEL | MB_ICONWARNING))
 				{
 				case IDYES:
 					diio = 0;
@@ -261,7 +290,7 @@ bool load_hexfile_1::StreamIn(hexfile_stream &hexin)
 BadData:
 					if (dim)
 					{
-						switch (MessageBox(hwnd, "Character data does not agree with hex data.\nIgnore further mismatched data?\nNB: Hex data will be used when ignoring.", "Import Hexdump", MB_YESNOCANCEL | MB_ICONWARNING))
+						switch (MessageBox(hwnd, _T("Character data does not agree with hex data.\nIgnore further mismatched data?\nNB: Hex data will be used when ignoring."), _T("Import Hexdump"), MB_YESNOCANCEL | MB_ICONWARNING))
 						{
 						case IDYES:
 							dim = 0;
@@ -295,11 +324,11 @@ NextLine:
 IllegalCharacter:
 	//someone has been buggering with the file & the syntax is screwed up
 	//the next digit is not hex ' ' or '_'
-	return IDYES == MessageBox(hwnd, "Illegal character in hex data.\nCannot continue!\nDo you want to keep what has been found so far?", "Import Hexdump", MB_YESNO | MB_ICONERROR);//bad file
+	return IDYES == MessageBox(hwnd, _T("Illegal character in hex data.\nCannot continue!\nDo you want to keep what has been found so far?"), _T("Import Hexdump"), MB_YESNO | MB_ICONERROR);//bad file
 UnexpectedEndOfData:
-	return IDYES == MessageBox(hwnd, "Unexpected end of data found\nCannot continue!\nDo you want to keep what has been found so far?", "Import Hexdump", MB_YESNO | MB_ICONERROR);
+	return IDYES == MessageBox(hwnd, _T("Unexpected end of data found\nCannot continue!\nDo you want to keep what has been found so far?"), _T("Import Hexdump"), MB_YESNO | MB_ICONERROR);
 OutOfMemory:
-	return IDYES == MessageBox(hwnd, "Not enough memory to import data.\nCannot continue!\nDo you want to keep what has been found so far?", "Import Hexdump", MB_YESNO | MB_ICONERROR);
+	return IDYES == MessageBox(hwnd, _T("Not enough memory to import data.\nCannot continue!\nDo you want to keep what has been found so far?"), _T("Import Hexdump"), MB_YESNO | MB_ICONERROR);
 }
 
 bool load_hexfile_1::StreamIn(HexEditorWindow &hexwnd, hexfile_stream &hexin)
@@ -308,8 +337,8 @@ bool load_hexfile_1::StreamIn(HexEditorWindow &hexwnd, hexfile_stream &hexin)
 	if (!instance.StreamIn(hexin))
 		return false;
 	if (IDYES == MessageBox(hexwnd.hwnd,
-		"Would you like display settings found in the data to replace current ones?",
-		"Import Hexdump", MB_YESNO))
+		_T("Would you like display settings found in the data to replace current ones?"),
+		_T("Import Hexdump"), MB_YESNO))
 	{
 		hexwnd.iMinOffsetLen = instance.iMinOffsetLen;
 		hexwnd.bAutoOffsetLen = instance.bAutoOffsetLen;

@@ -21,7 +21,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: main.cpp 18 2008-08-18 14:46:22Z kimmov $
+// $Id: main.cpp 123 2008-11-08 11:50:38Z jtuc $
 
 //============================================================================================
 // frhed - free hex editor
@@ -32,8 +32,8 @@
 #include "toolbar.h"
 
 static const char szMainClass[] = "frhed wndclass";
-static const char szHexClassA[] = "hekseditA_" CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO;
-static const char szHexClassW[] = "hekseditW_" CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO;
+static const char szHexClassA[] = "hekseditA_" SHARPEN(FRHED_VERSION_4);
+static const char szHexClassW[] = "hekseditW_" SHARPEN(FRHED_VERSION_4);
 
 HINSTANCE hMainInstance;
 
@@ -51,29 +51,42 @@ static BOOL NTAPI IsNT()
 
 static BOOL CALLBACK WndEnumProcCountInstances(HWND hwnd, LPARAM lParam)
 {
-	char buf[64];
-	if (GetClassName(hwnd, buf, 64) != 0)
-		if (strcmp(buf, szMainClass) == 0)
+	TCHAR buf[64];
+	if (GetClassName(hwnd, buf, RTL_NUMBER_OF(buf)))
+		if (StrCmp(buf, szMainClass) == 0)
 			++*(int *)lParam;
 	return TRUE;
 }
-
-//--------------------------------------------------------------------------------------------
-// WinMain: the starting point.
 
 static HWND hwndMain = 0;
 static HWND hwndHex = 0;
 static HWND hwndToolBar = 0;
 static HWND hwndStatusBar = 0;
 static HexEditorWindow *pHexWnd = 0;
+static BOOL bIsNT = FALSE;
 
-int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
+//--------------------------------------------------------------------------------------------
+// WinMain: the starting point.
+int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, LPTSTR, int)
 {
 	OleInitialize(NULL);
 	InitCommonControls();
 
-	hMainInstance = LoadLibrary("heksedit.dll");
+	LPWSTR szExePath = GetCommandLineW();
+	LPWSTR szCmdLine = PathGetArgsW(szExePath);
+	
+	bIsNT = IsNT();
 
+	// Load the heksedit component.
+	LPCTSTR pe_heksedit = bIsNT ? _T("hekseditU.dll") : _T("heksedit.dll");
+	hMainInstance = LoadLibrary(pe_heksedit);
+	if (hMainInstance == NULL)
+	{
+		TCHAR complain[100];
+		wsprintf(complain, _T("Unable to load the %s"), pe_heksedit);
+		MessageBox(NULL, complain, NULL, MB_ICONSTOP);
+		return 3;
+	}
 	// Register window class and open window.
 
 	MSG msg;
@@ -84,7 +97,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	//Register the main window class
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
 	wndclass.lpfnWndProc = MainWndProc;
-	wndclass.hIcon = LoadIcon(hIconInstance, MAKEINTRESOURCE(IDI_ICON1));
+	wndclass.hIcon = LoadIcon(hIconInstance, MAKEINTRESOURCE(IDI_FRHED));
 	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wndclass.hInstance = hMainInstance;
 	wndclass.lpszMenuName = MAKEINTRESOURCE(IDR_MAINMENU);
@@ -123,8 +136,8 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 	if (*szCmdLine != '\0')
 	{
 		// Command line not empty: open a file on startup.
-		char *p = szCmdLine;
-		char *q = szCmdLine;
+		LPWSTR p = szCmdLine;
+		LPWSTR q = szCmdLine;
 		DWORD dwStart = 0, dwLength = 0, dwEnd = 0; // MF cmd line parms
 		while ((*p = *q) != '\0')
 		{
@@ -135,15 +148,15 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 				{
 				case 'S': // Start offset
 				case 's':
-					dwStart = strtoul(++q, &q, 0);
+					dwStart = wcstoul(++q, &q, 0);
 					break;
 				case 'L': // Length of selection
 				case 'l':
-					dwLength = strtoul(++q, &q, 0);
+					dwLength = wcstoul(++q, &q, 0);
 					break;
 				case 'E': // End of selection
 				case 'e':
-					dwEnd = strtoul(++q, &q, 0);
+					dwEnd = wcstoul(++q, &q, 0);
 					break;
 				}
 				// fall through
@@ -156,33 +169,7 @@ int WINAPI WinMain(HINSTANCE hIconInstance, HINSTANCE, char *szCmdLine, int)
 		}
 		if (dwLength)
 			dwEnd = dwStart + dwLength - 1;
-		char lpszPath[MAX_PATH];
-		HRESULT hres = pHexWnd->ResolveIt(szCmdLine, lpszPath);
-		if (SUCCEEDED(hres))
-		{
-			// Trying to open a link file: decision by user required.
-			int ret = MessageBox(hwndMain,
-				"You are trying to open a link file.\n"
-				"Click on Yes if you want to open the file linked to,\n"
-				"or click on No if you want to open the link file itself.\n"
-				"Choose Cancel if you want to abort opening.",
-				"frhed", MB_YESNOCANCEL | MB_ICONQUESTION );
-			switch( ret )
-			{
-			case IDYES:
-				pHexWnd->load_file(lpszPath);
-				break;
-			case IDNO:
-				pHexWnd->load_file(szCmdLine);
-				break;
-			case IDCANCEL:
-				break;
-			}
-		}
-		else
-		{
-			pHexWnd->load_file(szCmdLine);
-		}
+		pHexWnd->open_file(szCmdLine);
 		if (dwEnd)
 			pHexWnd->CMD_setselection(dwStart, dwEnd);
 	}
@@ -212,9 +199,9 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		hwndMain = hwnd;
 		DragAcceptFiles(hwnd, TRUE); // Accept files dragged into main window.
 		hwndToolBar = CreateTBar(hwnd, hMainInstance);
-		SendMessage(hwndToolBar, CCM_SETUNICODEFORMAT, TRUE, 0);
+		SendMessage(hwndToolBar, CCM_SETUNICODEFORMAT, bIsNT, 0);
 		hwndHex = CreateWindowEx(WS_EX_CLIENTEDGE,
-			IsNT() ? szHexClassW : szHexClassA, 0,
+			bIsNT ? szHexClassW : szHexClassA, 0,
 			WS_TABSTOP | WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL,
 			10, 10, 100, 100, hwnd, 0, hMainInstance, 0);
 		pHexWnd = (HexEditorWindow *)GetWindowLong(hwndHex, GWL_USERDATA);
@@ -230,7 +217,12 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		pHexWnd->set_wnd_title();
 		return 0;
 	case WM_COMMAND:
-		pHexWnd->command(LOWORD(wParam));
+		// Exit command must be handled in Frhed executable,
+		// not in heksedit dll.
+		if (LOWORD(wParam) == IDM_EXIT)
+			SendMessage(hwnd, WM_CLOSE, 0, 0);
+		else
+			pHexWnd->command(LOWORD(wParam));
 		break;
 	case WM_DROPFILES:
 		pHexWnd->dropfiles(reinterpret_cast<HDROP>(wParam));
@@ -287,9 +279,18 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				if (code == TBN_GETINFOTIPW)
 				{
 					NMTBGETINFOTIPW *pi = (NMTBGETINFOTIPW *)lParam;
-					if (BSTR text = pHexWnd->load_string(pi->iItem))
+					if (PSTR text = pHexWnd->load_string(pi->iItem))
 					{
-						StrCpyNW(pi->pszText, text, pi->cchTextMax);
+						StrCpyNW(pi->pszText, (PWSTR)text, pi->cchTextMax);
+						pHexWnd->free_string(text);
+					}
+				}
+				else if (code == TBN_GETINFOTIPA)
+				{
+					NMTBGETINFOTIPA *pi = (NMTBGETINFOTIPA *)lParam;
+					if (PSTR text = pHexWnd->load_string(pi->iItem))
+					{
+						StrCpyNA(pi->pszText, text, pi->cchTextMax);
 						pHexWnd->free_string(text);
 					}
 				}

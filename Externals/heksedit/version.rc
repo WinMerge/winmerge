@@ -1,13 +1,5 @@
 #include "version.h"
 
-#define SHARPEN_A(X) #X
-#define SHARPEN_W(X) L#X
-#define SHARPEN(T,X) SHARPEN_##T(X)
-
-#define CURRENT_VERSION SHARPEN(A,FRHED_MAJOR_VERSION) "." SHARPEN(A,FRHED_MINOR_VERSION)
-#define SUB_RELEASE_NO SHARPEN(A,FRHED_SUB_RELEASE_NO)
-#define BUILD_NO SHARPEN(A,FRHED_BUILD_NO)
-
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION FRHED_MAJOR_VERSION,FRHED_MINOR_VERSION,FRHED_SUB_RELEASE_NO,FRHED_BUILD_NO
  PRODUCTVERSION FRHED_MAJOR_VERSION,FRHED_MINOR_VERSION,FRHED_SUB_RELEASE_NO,FRHED_BUILD_NO
@@ -25,17 +17,17 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "Comments", "Homepage: http://www.kibria.de, http://zip.to/pabs3\0"
+            VALUE "Comments", "Homepage: http://frhed.sourceforge.net\0"
             VALUE "CompanyName", "(c) Raihan Kibria 2000\0"
-            VALUE "FileDescription", "frhed - free hex editor " CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO
-            VALUE "FileVersion", CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO
+            VALUE "FileDescription", "Frhed - Free hex editor " SHARPEN(FRHED_VERSION_4)
+            VALUE "FileVersion", SHARPEN(FRHED_VERSION_4)
             VALUE "InternalName", "frhed\0"
             VALUE "LegalCopyright", "GNU General Public License v2.0\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "frhed.exe\0"
+            VALUE "OriginalFilename", "Frhed.exe\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "frhed\0"
-            VALUE "ProductVersion", CURRENT_VERSION "." SUB_RELEASE_NO "." BUILD_NO
+            VALUE "ProductName", "Frhed\0"
+            VALUE "ProductVersion", SHARPEN(FRHED_VERSION_4)
             VALUE "SpecialBuild", "\0"
         END
     END

@@ -21,6 +21,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
 				StringPooling="TRUE"
 				ExceptionHandling="FALSE"
@@ -40,9 +41,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib htmlhelp.lib"
-				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
+				OutputFile="..\..\Build\heksedit\Debug\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
 				SubSystem="2"
@@ -88,6 +90,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 				StringPooling="TRUE"
 				ExceptionHandling="FALSE"
@@ -109,6 +112,143 @@
 				OutputFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="PreLink.bat $(IntDir) $(TargetPath)"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1031"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="UnicodeDebug|Win32"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\heksedit\$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;UNICODE;_UNICODE"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="precomp.h"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\heksedit.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="1"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib htmlhelp.lib"
+				OutputFile="..\..\Build\heksedit\Debug\hekseditU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="PreLink.bat $(IntDir) $(TargetPath)"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1031"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="UnicodeRelease|Win32"
+			OutputDirectory=".\..\..\Build\heksedit\$(ConfigurationName)"
+			IntermediateDirectory=".\..\..\BuildTmp\heksedit\$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;UNICODE;_UNICODE"
+				StringPooling="TRUE"
+				ExceptionHandling="FALSE"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="precomp.h"
+				PrecompiledHeaderFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\heksedit.pch"
+				AssemblerListingLocation=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ObjectFile=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				ProgramDataBaseFileName=".\..\..\BuildTmp\heksedit\$(ConfigurationName)\"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="version.lib comctl32.lib wininet.lib shlwapi.lib htmlhelp.lib"
+				OutputFile="..\..\Build\heksedit\Release\hekseditU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				ProgramDatabaseFile="..\..\Build\heksedit\$(ConfigurationName)\heksedit.pdb"
 				SubSystem="2"
 				ImportLibrary=".\..\..\Build\heksedit\$(ConfigurationName)\heksedit.lib"
@@ -151,6 +291,9 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\AboutDlg.cpp">
+			</File>
+			<File
 				RelativePath="AddBmkDlg.cpp">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -168,6 +311,25 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\AnsiConvert.cpp">
 			</File>
 			<File
 				RelativePath="AppendDlg.cpp">
@@ -187,6 +349,25 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\BinaryModeDlg.cpp">
 			</File>
 			<File
 				RelativePath="BinTrans.cpp">
@@ -200,6 +381,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -225,6 +422,25 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\CharacterSetDlg.cpp">
 			</File>
 			<File
 				RelativePath="ChooseDiffDlg.cpp">
@@ -238,6 +454,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -263,6 +495,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="CopyDlg.cpp">
@@ -276,6 +524,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -301,6 +565,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="CutDlg.cpp">
@@ -320,6 +600,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="dllmain.cpp">
@@ -333,6 +629,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -361,6 +673,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="FillWithDlg.cpp">
@@ -374,6 +702,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -399,6 +743,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="gktools.cpp">
@@ -412,6 +772,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -437,6 +813,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="gtools.cpp">
@@ -450,6 +842,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -475,6 +883,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="hexwnd.cpp">
@@ -488,6 +912,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -513,6 +953,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ido.cpp">
@@ -526,6 +982,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -551,6 +1023,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="idt.cpp">
@@ -564,6 +1052,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -589,9 +1093,28 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\LangArray.cpp">
+			</File>
+			<File
+				RelativePath=".\LangTools.cpp">
 			</File>
 			<File
 				RelativePath="LoadHexFile.cpp">
@@ -605,6 +1128,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -630,6 +1169,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="OpenPartiallyDlg.cpp">
@@ -643,6 +1198,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -668,6 +1239,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="PDrive95.cpp">
@@ -681,6 +1268,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -706,6 +1309,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="PhysicalDrive.cpp">
@@ -725,6 +1344,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="PMemoryBlock.cpp">
@@ -738,6 +1373,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -765,6 +1416,27 @@
 						UsePrecompiledHeader="1"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						UsePrecompiledHeader="1"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						UsePrecompiledHeader="1"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Registry.cpp">
 			</File>
 			<File
 				RelativePath="regtools.cpp">
@@ -778,6 +1450,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -803,6 +1491,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ReplaceDlg.cpp">
@@ -816,6 +1520,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -841,6 +1561,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="SelectBlockDlg.cpp">
@@ -854,6 +1590,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -879,6 +1631,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="shtools.cpp">
@@ -898,6 +1666,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Simparr.cpp">
@@ -911,6 +1695,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -939,6 +1739,22 @@
 						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
 						BrowseInformation="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS"
+						BrowseInformation="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\ViewSettingsDlg.cpp">
@@ -948,10 +1764,16 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath=".\AnsiConvert.h">
+			</File>
+			<File
 				RelativePath="BinTrans.h">
 			</File>
 			<File
 				RelativePath="clipboard.h">
+			</File>
+			<File
+				RelativePath=".\cowtools.h">
 			</File>
 			<File
 				RelativePath=".\DllProxies.h">
@@ -990,6 +1812,9 @@
 				RelativePath=".\LangArray.h">
 			</File>
 			<File
+				RelativePath=".\LangTools.h">
+			</File>
+			<File
 				RelativePath="LoadHexFile.h">
 			</File>
 			<File
@@ -1011,6 +1836,9 @@
 				RelativePath="..\RAWIO32\RAWIO32.h">
 			</File>
 			<File
+				RelativePath=".\Registry.h">
+			</File>
+			<File
 				RelativePath="regtools.h">
 			</File>
 			<File
@@ -1018,6 +1846,9 @@
 			</File>
 			<File
 				RelativePath="Simparr.h">
+			</File>
+			<File
+				RelativePath=".\Simparr_imp.h">
 			</File>
 			<File
 				RelativePath=".\StringTable.h">

@@ -21,24 +21,31 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: PMemoryBlock.h 27 2008-08-21 19:52:33Z kimmov $
+// $Id: PMemoryBlock.h 182 2008-12-03 22:59:51Z kimmov $
 
 #ifndef PMemoryBlock_h
 #define PMemoryBlock_h
 
+/**
+ * @brief A class handling dynamically allocated memory block. The maximum
+ * block size is 4 GB.
+ */
 class PMemoryBlock
 {
 public:
 	PMemoryBlock();
-	PMemoryBlock( DWORD dwSize, LPBYTE lpbSource = NULL, DWORD dwPadBytes = 0 );
-	PMemoryBlock( const PMemoryBlock& objectSrc );
-	PMemoryBlock& operator=( const PMemoryBlock& objectSrc );
-	virtual BOOL Create( DWORD dwSize, LPBYTE lpbSource = NULL, DWORD dwPadBytes = 0 );
-	virtual BOOL CreateAligned( DWORD dwUnalignedSize, DWORD dwAlignment, LPBYTE lpbSource = NULL, DWORD dwPadBytes = 0 );
-	virtual void Delete();
+	PMemoryBlock(DWORD dwSize, LPBYTE lpbSource = NULL, DWORD dwPadBytes = 0);
+	PMemoryBlock(const PMemoryBlock& objectSrc);
 	virtual ~PMemoryBlock();
-	DWORD GetObjectSize();
-	LPBYTE GetObjectMemory();
+
+	PMemoryBlock& operator=(const PMemoryBlock& objectSrc);
+	virtual BOOL Create(DWORD dwSize, LPBYTE lpbSource = NULL,
+			DWORD dwPadBytes = 0);
+	virtual BOOL CreateAligned(DWORD dwUnalignedSize, DWORD dwAlignment,
+			LPBYTE lpbSource = NULL, DWORD dwPadBytes = 0);
+	virtual void Delete();
+	DWORD GetObjectSize() const;
+	LPBYTE GetObjectMemory() const;
 
 protected:
 	LPBYTE m_lpbMemory;

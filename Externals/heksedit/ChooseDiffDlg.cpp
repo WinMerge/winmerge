@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ChooseDiffDlg.cpp
+ *
+ * @brief Implementation of the difference choosing dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: ChooseDiffDlg.cpp 201 2008-12-10 16:15:27Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "StringTable.h"
@@ -7,26 +32,14 @@
 
 void ChooseDiffDlg::add_diff(HWND hwndList, int diff, int lower, int upper)
 {
-	wchar_t buf[100];
-	swprintf(buf,
+	TCHAR buf[100];
+	_stprintf(buf,
 		S.DiffListItemFormat, //"%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)",
 		diff,
 		lower, &lower, lower,
 		upper, &upper, upper,
 		upper - lower + 1);
-	int i;
-	if (IsWindowUnicode(hwndList))
-	{
-		i = SendMessageW(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
-	}
-	else
-	{
-		char bufA[100];
-		WideCharToMultiByte(CP_ACP, 0, buf, -1, bufA, sizeof bufA, 0, 0);
-		lower = WideCharToMultiByte(CP_ACP, 0, buf, lower, 0, 0, 0, 0);
-		upper = WideCharToMultiByte(CP_ACP, 0, buf, upper, 0, 0, 0, 0);
-		i = SendMessageA(hwndList, LB_ADDSTRING, 0, (LPARAM)bufA);
-	}
+	int i = SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
 	SendMessage(hwndList, LB_SETITEMDATA, i, MAKELONG(lower, upper));
 }
 
@@ -74,22 +87,22 @@ int ChooseDiffDlg::get_diffs(HWND hwndList, char *ps, int sl, char *pd, int dl)
 
 BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 {
-	char szFileName[_MAX_PATH];
-	szFileName[0] = '\0';
+	TCHAR szFileName[MAX_PATH];
+	szFileName[0] = _T('\0');
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof ofn);
 	ofn.lStructSize = sizeof ofn;
 	ofn.hwndOwner = hDlg;
-	ofn.lpstrFilter = "All Files (*.*)\0*.*\0\0";
+	ofn.lpstrFilter = _T("All Files (*.*)\0*.*\0\0");
 	ofn.lpstrFile = szFileName;
 	ofn.nMaxFile = _MAX_PATH;
-	ofn.lpstrTitle = "Choose file to compare with";
+	ofn.lpstrTitle = _T("Choose file to compare with");
 	if (!GetOpenFileName(&ofn))
 		return FALSE;
-	int filehandle = _open(szFileName, _O_RDONLY|_O_BINARY);
+	int filehandle = _topen(szFileName, _O_RDONLY|_O_BINARY);
 	if (filehandle == -1)
 	{
-		MessageBox(hDlg, "Error while opening file.", "Compare", MB_ICONERROR);
+		MessageBox(hDlg, _T("Error while opening file."), _T("Compare"), MB_ICONERROR);
 		return FALSE;
 	}
 	BOOL bDone = FALSE;
@@ -102,32 +115,32 @@ BOOL ChooseDiffDlg::OnInitDialog(HWND hDlg)
 			// Read data.
 			if (_read(filehandle, cmpdata, filelen) != -1)
 			{
-				HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);
+				HWND hwndList = GetDlgItem(hDlg, IDC_CHOOSEDIFF_DIFFLIST);
 				if (int diff = get_diffs(hwndList, (char *)&DataArray[iCurByte], DataArray.GetLength() - iCurByte, cmpdata, filelen))
 				{
-					char buf[100];
-					sprintf(buf, "%d areas of difference found.", diff);
-					SetDlgItemText(hDlg, IDC_STATIC1, buf);
-					sprintf(buf, "Remaining loaded data size: %d, size of file on disk: %d.", iSrcFileLen, iDestFileLen);
-					SetDlgItemText(hDlg, IDC_STATIC2, buf);
+					TCHAR buf[100];
+					_stprintf(buf, _T("%d areas of difference found."), diff);
+					SetDlgItemText(hDlg, IDC_NUMDIFFS, buf);
+					_stprintf(buf, _T("Remaining loaded data size: %d, size of file on disk: %d."), iSrcFileLen, iDestFileLen);
+					SetDlgItemText(hDlg, IDC_CHOOSEDIFF_FSIZES, buf);
 					SendMessage(hwndList, LB_SETCURSEL, 0, 0);
 					bDone = TRUE;
 				}
 				else
 				{
 					// No difference.
-					MessageBox(hDlg, "Data matches exactly.", "Compare", MB_ICONINFORMATION);
+					MessageBox(hDlg, _T("Data matches exactly."), _T("Compare"), MB_ICONINFORMATION);
 				}
 			}
 			else
 			{
-				MessageBox(hDlg, "Error while reading from file.", "Compare", MB_ICONERROR);
+				MessageBox(hDlg, _T("Error while reading from file."), _T("Compare"), MB_ICONERROR);
 			}
 			delete[] cmpdata;
 		}
 		else
 		{
-			MessageBox(hDlg, "Not enough memory.", "Compare", MB_ICONERROR);
+			MessageBox(hDlg, _T("Not enough memory."), _T("Compare"), MB_ICONERROR);
 		}
 	}
 	_close(filehandle);
@@ -143,40 +156,28 @@ BOOL ChooseDiffDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
 		{//copy button was pressed
 			if (!OpenClipboard(hwnd)) //open clip
 			{
-				MessageBox(hwnd,"Cannot get access to clipboard.", "Copy", MB_ICONERROR);
+				MessageBox(hwnd, _T("Cannot get access to clipboard."), _T("Copy"), MB_ICONERROR);
 				return TRUE;
 			}
 			EmptyClipboard(); //empty clip
 			IStream *piStream = 0;
 			if (SUCCEEDED(CreateStreamOnHGlobal(0, FALSE, &piStream)))
 			{
-				HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);//get the list
-				CLIPFORMAT cf = IsWindowUnicode(hwndList) ? CF_UNICODETEXT : CF_TEXT;
+				HWND hwndList = GetDlgItem(hDlg, IDC_CHOOSEDIFF_DIFFLIST);//get the list
 				int num = SendMessage(hwndList, LB_GETCOUNT, 0, 0);//get the # items in the list
 				for (int i = 0 ; i < num ; i++)
 				{
 					//add '\r\n' to the end of each line - this is '\r\n' rather than '\n' so that it can be pasted into notepad & dos programs
-					if (cf == CF_UNICODETEXT)
-					{
-						wchar_t buf[100];
-						int cch = SendMessageW(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-						piStream->Write(buf, cch * sizeof *buf, 0);
-						static const wchar_t eol[] = L"\r\n";
-						piStream->Write(eol, i < num ? sizeof eol - sizeof *eol : sizeof eol, 0);
-					}
-					else
-					{
-						char buf[100];
-						int cch = SendMessageA(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-						piStream->Write(buf, cch * sizeof *buf, 0);
-						static const char eol[] = "\r\n";
-						piStream->Write(eol, i < num ? sizeof eol - sizeof *eol : sizeof eol, 0);
-					}
+					TCHAR buf[100];
+					int cch = SendMessage(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+					piStream->Write(buf, cch * sizeof *buf, 0);
+					static const TCHAR eol[] = _T("\r\n");
+					piStream->Write(eol, i < num ? sizeof eol - sizeof *eol : sizeof eol, 0);
 				}
 				HGLOBAL hMem = 0;
 				if (SUCCEEDED(GetHGlobalFromStream(piStream, &hMem)))
 				{
-					SetClipboardData(cf, hMem); //copy to clip
+					SetClipboardData(CF_PLAINTEXT, hMem); //copy to clip
 				}
 				piStream->Release();
 			}
@@ -186,25 +187,15 @@ BOOL ChooseDiffDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
 
 	case IDOK:
 		{
-			HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);
+			HWND hwndList = GetDlgItem(hDlg, IDC_CHOOSEDIFF_DIFFLIST);
 			int i = SendMessage(hwndList, LB_GETCURSEL, 0, 0);
 			if (i != -1)
 			{
 				DWORD dw = SendMessage(hwndList, LB_GETITEMDATA, i, 0);
-				if (IsWindowUnicode(hwndList))
-				{
-					wchar_t buf[100];
-					SendMessageW(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-					iStartOfSelection = StrToIntW(buf + LOWORD(dw));
-					iEndOfSelection = StrToIntW(buf + HIWORD(dw));
-				}
-				else
-				{
-					char buf[100];
-					SendMessageA(hwndList, LB_GETTEXT, i, (LPARAM)buf);
-					iStartOfSelection = StrToIntA(buf + LOWORD(dw));
-					iEndOfSelection = StrToIntA(buf + HIWORD(dw));
-				}
+				TCHAR buf[100];
+				SendMessage(hwndList, LB_GETTEXT, i, (LPARAM)buf);
+				iStartOfSelection = StrToInt(buf + LOWORD(dw));
+				iEndOfSelection = StrToInt(buf + HIWORD(dw));
 				iStartOfSelection += iCurByte;
 				iEndOfSelection += iCurByte;
 				iCurByte = iStartOfSelection;

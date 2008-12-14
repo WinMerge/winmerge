@@ -15,22 +15,40 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  StringTable.cpp
+ * @file  AnsiConvert.cpp
  *
- * @brief Implementation of the translation Stringtable.
+ * @brief Implementation of the AnsiConvert class.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: StringTable.cpp 173 2008-12-03 17:29:30Z kimmov $
-
+// $Id: AnsiConvert.cpp 0 0000-00-00 00:00:00Z jtuc $
 #include "precomp.h"
-#include "StringTable.h"
-#include "resource.h"
+#include "AnsiConvert.h"
 
-StringTable<LPTSTR> S;
-
-StringTable<WORD> IDS =
+MakeAnsi::MakeAnsi(PCWSTR text, UINT codepage, int textlen)
+: m_bstr(0)
 {
-	IDS_DIFFLISTITEMFORMAT,
-	IDS_ABOUTFRHEDVER,
-};
+	if (text)
+	{
+		int len = WideCharToMultiByte(codepage, 0, text, textlen, 0, 0, 0, 0);
+		if (len)
+		{
+			m_bstr = SysAllocStringByteLen(0, len - 1);
+			WideCharToMultiByte(codepage, 0, text, textlen, (PSTR)m_bstr, len, 0, 0);
+		}
+	}
+}
+
+MakeWide::MakeWide(PCSTR text, UINT codepage, int textlen)
+: m_bstr(0)
+{
+	if (text)
+	{
+		int len = MultiByteToWideChar(codepage, 0, text, textlen, 0, 0);
+		if (len)
+		{
+			m_bstr = SysAllocStringLen(0, len - 1);
+			MultiByteToWideChar(codepage, 0, text, textlen, m_bstr, len);
+		}
+	}
+}

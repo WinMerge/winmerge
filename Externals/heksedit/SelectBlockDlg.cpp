@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  SelectBlockDlg.cpp
+ *
+ * @brief Implementation of the Block selecting dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: SelectBlockDlg.cpp 204 2008-12-10 16:53:30Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -5,35 +30,35 @@
 
 BOOL SelectBlockDlg::OnInitDialog(HWND hDlg)
 {
-	char buf[128];
-	sprintf(buf, "x%x", bSelected ? iStartOfSelection : iCurByte);
-	SetDlgItemText(hDlg, IDC_EDIT1, buf);
-	sprintf(buf, "x%x", bSelected ? iEndOfSelection : iCurByte);
-	SetDlgItemText(hDlg, IDC_EDIT2, buf);
+	TCHAR buf[32];
+	_stprintf(buf, _T("x%x"), bSelected ? iStartOfSelection : iCurByte);
+	SetDlgItemText(hDlg, IDC_BLOCKSEL_OFFSET, buf);
+	_stprintf(buf, _T("x%x"), bSelected ? iEndOfSelection : iCurByte);
+	SetDlgItemText(hDlg, IDC_BLOCKSEL_OFFSETEND, buf);
 	return TRUE;
 }
 
 BOOL SelectBlockDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 {
-	char buf[128];
+	TCHAR buf[32];
 	int iStartOfSelSetting;
 	int iEndOfSelSetting;
 	int maxb;
 	switch (wParam)
 	{
 	case IDOK:
-		if (GetDlgItemText(hDlg, IDC_EDIT1, buf, 128) &&
-			sscanf(buf, "x%x", &iStartOfSelSetting) == 0 &&
-			sscanf(buf, "%d", &iStartOfSelSetting) == 0)
+		if (GetDlgItemText(hDlg, IDC_BLOCKSEL_OFFSET, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("x%x"), &iStartOfSelSetting) == 0 &&
+			_stscanf(buf, _T("%d"), &iStartOfSelSetting) == 0)
 		{
-			MessageBox(hDlg, "Start offset not recognized.", "Select block", MB_ICONERROR);
+			MessageBox(hDlg, _T("Start offset not recognized."), _T("Select block"), MB_ICONERROR);
 			return TRUE;
 		}
-		if (GetDlgItemText(hDlg, IDC_EDIT2, buf, 128) &&
-			sscanf(buf, "x%x", &iEndOfSelSetting) == 0 &&
-			sscanf(buf, "%d", &iEndOfSelSetting) == 0)
+		if (GetDlgItemText(hDlg, IDC_BLOCKSEL_OFFSETEND, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("x%x"), &iEndOfSelSetting) == 0 &&
+			_stscanf(buf, _T("%d"), &iEndOfSelSetting) == 0)
 		{
-			MessageBox(hDlg, "End offset not recognized.", "Select block", MB_ICONERROR);
+			MessageBox(hDlg, _T("End offset not recognized."), _T("Select block"), MB_ICONERROR);
 			return TRUE;
 		}
 		//make the selection valid if it is not

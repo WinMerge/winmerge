@@ -1,5 +1,47 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  hexwdlg.h
+ *
+ * @brief Dialog class declarations.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: hexwdlg.h 138 2008-11-10 22:06:07Z kimmov $
+
+#ifndef _HEXW_DLG_H_
+#define _HEXW_DLG_H_
+
 void GetWindowText(HWND, SimpleString &);
 void GetDlgItemText(HWND, int, SimpleString &);
+
+/**
+ * @brief About-dialog for Frhed application.
+ * This dialog shows program name, version and contributor info.
+ */
+class AboutDlg : public HexEditorWindow
+{
+public:
+	enum { IDD = IDD_ABOUTDIALOG };
+	INT_PTR DlgProc(HWND, UINT, WPARAM, LPARAM);
+protected:
+	BOOL OnInitDialog(HWND);
+	BOOL OnCommand(HWND, WPARAM, LPARAM);
+};
 
 class DragDropOptionsDlg : public HexEditorWindow
 {
@@ -16,7 +58,7 @@ public:
 private:
 	static HWND hCbLang;
 	static BOOL CALLBACK EnumLocalesProc(LPTSTR);
-	static int FormatLangId(LPWSTR, LANGID, int verbose = 0);
+	static int FormatLangId(LPTSTR, LANGID, int verbose = 0);
 	void OnDrawitemLangId(DRAWITEMSTRUCT *);
 	INT_PTR OnCompareitemLangId(COMPAREITEMSTRUCT *);
 	BOOL OnInitDialog(HWND);
@@ -47,7 +89,7 @@ private:
 	static char pcFWText[FW_MAX];//hex representation of bytes to fill with
 	static char buf[FW_MAX];//bytes to fill with
 	static int buflen;//number of bytes to fill with
-	static char szFWFileName[_MAX_PATH];//fill with file name
+	static TCHAR szFWFileName[_MAX_PATH];//fill with file name
 	static int FWFile,FWFilelen;//fill with file and len
 	static LONG oldproc;//old hex box proc
 	static HFONT hfon;//needed so possible to display infinity char in fill with dlg box
@@ -64,7 +106,7 @@ private:
 class ReverseDlg : public HexEditorWindow
 {
 public:
-	enum { IDD = IDD_SELECT_BLOCK_DIALOG };
+	enum { IDD = IDD_REVERSE_BYTES_DIALOG };
 	INT_PTR DlgProc(HWND, UINT, WPARAM, LPARAM);
 };
 
@@ -98,8 +140,8 @@ private:
 	BOOL OnCommand(HWND, WPARAM, LPARAM);
 	BOOL OnNotify(HWND, WPARAM, LPARAM);
 	BOOL OnDrawitem(HWND, WPARAM, LPARAM);
-	void ChangeSelVer(HWND hw, char* text);
-	void ChangeSelInst(HWND hw, char* text);
+	void ChangeSelVer(HWND hw, LPTSTR text);
+	void ChangeSelInst(HWND hw, LPTSTR text);
 };
 
 class FindDlg : public HexEditorWindow
@@ -225,12 +267,19 @@ private:
 	BOOL Apply(HWND);
 };
 
+/**
+ * @brief A Goto-dialog.
+ * This dialog allows user to jump to certain position in the file. The jump
+ * can be absolute or relative. An absolute jump goes to the position counted
+ * from the begin of the file. The relative jump goes given amount backwards
+ * or forward in the file.
+ */
 class GoToDlg : public HexEditorWindow
 {
 public:
 	enum { IDD = IDD_GOTODIALOG };
 	INT_PTR DlgProc(HWND, UINT, WPARAM, LPARAM);
-	static char buffer[];
+	static TCHAR buffer[];
 private:
 	BOOL Apply(HWND);
 };
@@ -287,3 +336,5 @@ private:
 	BOOL OnInitDialog(HWND);
 	BOOL Apply(HWND);
 };
+
+#endif // _HEXW_DLG_H_

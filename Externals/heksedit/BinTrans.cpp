@@ -21,9 +21,10 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: BinTrans.cpp 41 2008-09-01 20:15:54Z kimmov $
+// $Id: BinTrans.cpp 203 2008-12-10 16:49:54Z kimmov $
 
 #include "precomp.h"
+#include "Simparr.h"
 #include "hexwnd.h"
 #include "BinTrans.h"
 
@@ -219,7 +220,7 @@ int Text2BinTranslator::iTranslateOneBytecode( char* dest, char* src, int srclen
 		break;
 	}
 
-	if (binmode == LITTLEENDIAN_MODE)
+	if (binmode == HexEditorWindow::ENDIAN_LITTLE)
 	{
 		switch (src[1])
 		{
@@ -393,7 +394,7 @@ int Text2BinTranslator::iCreateBcTranslation( char* dest, char* src, int srclen,
 					dest[di++] = src[i];
 					break;
 				case OEM_SET:
-					CharToOemBuff(&src[i], &dest[di++], 1);
+					CharToOemBuffA(&src[i], &dest[di++], 1);
 					break;
 				}
 			}
@@ -403,7 +404,7 @@ int Text2BinTranslator::iCreateBcTranslation( char* dest, char* src, int srclen,
 }
 
 //-------------------------------------------------------------------
-Text2BinTranslator::Text2BinTranslator( char* ps )
+Text2BinTranslator::Text2BinTranslator(char* ps)
 {
 	// Create a Text2BinTranslator from a normal char array-string.
 	m_nGrowBy = 64;
@@ -412,7 +413,7 @@ Text2BinTranslator::Text2BinTranslator( char* ps )
 }
 
 //-------------------------------------------------------------------
-int Text2BinTranslator::bCompareBin( Text2BinTranslator& tr2, int charmode, int binmode )
+int Text2BinTranslator::bCompareBin(Text2BinTranslator& tr2, int charmode, int binmode)
 {
 	SimpleArray<char> sa1, sa2;
 	GetTrans2Bin( sa1, charmode, binmode );
@@ -423,7 +424,7 @@ int Text2BinTranslator::bCompareBin( Text2BinTranslator& tr2, int charmode, int 
 //-------------------------------------------------------------------
 // Translate an array of bytes to a text string using special syntax.
 // Return: Length of string including zero-byte.
-int Text2BinTranslator::iTranslateBytesToBC (char* pd, unsigned char* src, int srclen)
+int Text2BinTranslator::iTranslateBytesToBC(char* pd, unsigned char* src, int srclen)
 {
 	int i, k = 0;
 	char buf[16];

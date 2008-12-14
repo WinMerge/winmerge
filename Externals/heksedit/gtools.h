@@ -21,7 +21,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: gtools.h 21 2008-08-18 17:16:39Z kimmov $
+// $Id: gtools.h 45 2008-09-04 14:05:26Z jtuc $
 
 #ifndef gtools_h
 #define gtools_h

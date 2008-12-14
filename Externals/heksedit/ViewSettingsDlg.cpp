@@ -1,15 +1,33 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ViewSettingsDlg.cpp
+ *
+ * @brief Implementation of the View settings -dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: ViewSettingsDlg.cpp 198 2008-12-09 19:53:33Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
 #include "LangArray.h"
-
-#define AW(h, f) (IsWindowUnicode(h) ? f##W : f##A)
-
-static WNDPROC NTAPI SubclassAW(HWND hWnd, WNDPROC wndproc)
-{
-	return (WNDPROC)AW(hWnd, SetWindowLong)(hWnd, GWLP_WNDPROC, (LONG)wndproc);
-}
 
 static WNDPROC DefWndProcDroppedComboBox = 0;
 
@@ -31,7 +49,7 @@ static LRESULT CALLBACK WndProcDroppedComboBox(HWND hWnd, UINT uMsg, WPARAM wPar
 		}
 		break;
 	}
-	return AW(hWnd, CallWindowProc)(DefWndProcDroppedComboBox, hWnd, uMsg, wParam, lParam);
+	return CallWindowProc(DefWndProcDroppedComboBox, hWnd, uMsg, wParam, lParam);
 }
 
 HWND ViewSettingsDlg::hCbLang;
@@ -40,10 +58,11 @@ BOOL ViewSettingsDlg::EnumLocalesProc(LPTSTR lpLocaleString)
 {
 	TCHAR path[MAX_PATH];
 	GetModuleFileName(hMainInstance, path, MAX_PATH);
-	PathRenameExtension(path, _T(".lng"));
+	PathRemoveFileSpec(path);
+	PathAppend(path, _T("heksedit.lng"));
 	LPTSTR name = PathAddBackslash(path);
 	LCID lcid = 0;
-	if (sscanf(lpLocaleString, "%x", &lcid) == 1)
+	if (_stscanf(lpLocaleString, _T("%x"), &lcid) == 1)
 	{
 		LANGID langid = (LANGID)lcid;
 		if (int i = GetLocaleInfo(langid, LOCALE_SISO639LANGNAME, name, 4))
@@ -53,7 +72,7 @@ BOOL ViewSettingsDlg::EnumLocalesProc(LPTSTR lpLocaleString)
 			BOOL f = langid == LangArray::DefLangId;
 			while (f == 0)
 			{
-				strcpy(name + i + j, ".po");
+				_tcscpy(name + i + j, _T(".po"));
 				f = PathFileExists(path);
 				if (j == 0 || SUBLANGID(langid) != SUBLANG_DEFAULT)
 					break;
@@ -67,46 +86,30 @@ BOOL ViewSettingsDlg::EnumLocalesProc(LPTSTR lpLocaleString)
 	return TRUE;
 }
 
-int ViewSettingsDlg::FormatLangId(LPWSTR bufW, LANGID langid, int verbose)
+int ViewSettingsDlg::FormatLangId(LPTSTR buf, LANGID langid, int verbose)
 {
-	char bufA[200];
-	int i = LangArray::LangCodeMajor(langid, bufA);
+	//char bufA[200];
+	int i = LangArray::LangCodeMajor(langid, buf);
 	if (i)
 	{
-		bufA[i - 1] = '-';
-		i += LangArray::LangCodeMinor(langid, bufA + i);
-		switch (verbose)
+		buf[i - 1] = '-';
+		i += LangArray::LangCodeMinor(langid, buf + i);
+		if (verbose)
 		{
-		case sizeof(WCHAR):
-			MultiByteToWideChar(CP_ACP, 0, bufA, i, bufW, i);
-			bufW[i - 1] = '\t';
-			i += GetLocaleInfoW(langid, LOCALE_SNATIVELANGNAME|LOCALE_USE_CP_ACP, bufW + i, 40);
-			bufW[i - 1] = '\t';
-			i += GetLocaleInfoW(langid, LOCALE_SNATIVECTRYNAME|LOCALE_USE_CP_ACP, bufW + i, 40);
-			bufW[i - 1] = '\t';
-			i += GetLocaleInfoW(langid, LOCALE_SENGLANGUAGE, bufW + i, 40);
-			bufW[i - 1] = '\t';
-			i += GetLocaleInfoW(langid, LOCALE_SENGCOUNTRY, bufW + i, 40);
-			break;
-		case sizeof(CHAR):
-			bufA[i - 1] = '\t';
-			i += GetLocaleInfoA(langid, LOCALE_SNATIVELANGNAME|LOCALE_USE_CP_ACP, bufA + i, 40);
-			bufA[i - 1] = '\t';
-			i += GetLocaleInfoA(langid, LOCALE_SNATIVECTRYNAME|LOCALE_USE_CP_ACP, bufA + i, 40);
-			bufA[i - 1] = '\t';
-			i += GetLocaleInfoA(langid, LOCALE_SENGLANGUAGE, bufA + i, 40);
-			bufA[i - 1] = '\t';
-			i += GetLocaleInfoA(langid, LOCALE_SENGCOUNTRY, bufA + i, 40);
-			// fall through
-		case 0:
-			MultiByteToWideChar(CP_ACP, 0, bufA, i, bufW, i);
-			break;
+			buf[i - 1] = '\t';
+			i += GetLocaleInfo(langid, LOCALE_SNATIVELANGNAME|LOCALE_USE_CP_ACP, buf + i, 40);
+			buf[i - 1] = '\t';
+			i += GetLocaleInfo(langid, LOCALE_SNATIVECTRYNAME|LOCALE_USE_CP_ACP, buf + i, 40);
+			buf[i - 1] = '\t';
+			i += GetLocaleInfo(langid, LOCALE_SENGLANGUAGE, buf + i, 40);
+			buf[i - 1] = '\t';
+			i += GetLocaleInfo(langid, LOCALE_SENGCOUNTRY, buf + i, 40);
 		}
 		--i;
 	}
 	else
 	{
-		i = swprintf(bufW, L"%04x", langid);
+		i = _stprintf(buf, _T("%04x"), langid);
 	}
 	return i;
 }
@@ -131,18 +134,17 @@ void ViewSettingsDlg::OnDrawitemLangId(DRAWITEMSTRUCT *pdis)
 	static const int rgcx[] = { 50, 120, 180, 120, 220, 0 };
 	const int *pcx = rgcx;
 	UINT flags = ETO_OPAQUE;
-	WCHAR buffer[200];
-	int length = FormatLangId(buffer, LOWORD(pdis->itemData),
-		IsWindowUnicode(pdis->hwndItem) ? sizeof(WCHAR) : sizeof(CHAR));
-	LPWSTR p = buffer;
-	while (LPWSTR q = StrChrW(p, L'\t'))
+	TCHAR buffer[200];
+	int length = FormatLangId(buffer, LOWORD(pdis->itemData), TRUE);
+	LPTSTR p = buffer;
+	while (LPTSTR q = StrChr(p, _T('\t')))
 	{
-		ExtTextOutW(pdis->hDC, x, y, flags, &pdis->rcItem, p, q - p, 0);
+		ExtTextOut(pdis->hDC, x, y, flags, &pdis->rcItem, p, q - p, 0);
 		x += *pcx ? *pcx++ : 100;
 		p = q + 1;
 		flags = 0;
 	}
-	ExtTextOutW(pdis->hDC, x, y, flags, &pdis->rcItem, p, length - (p - buffer), 0);
+	ExtTextOut(pdis->hDC, x, y, flags, &pdis->rcItem, p, length - (p - buffer), 0);
 	if (pdis->itemState & ODS_FOCUS)
 	{
 		DrawFocusRect(pdis->hDC, &pdis->rcItem);
@@ -151,11 +153,11 @@ void ViewSettingsDlg::OnDrawitemLangId(DRAWITEMSTRUCT *pdis)
 
 INT_PTR ViewSettingsDlg::OnCompareitemLangId(COMPAREITEMSTRUCT *pcis)
 {
-	WCHAR name1[20];
+	TCHAR name1[20];
 	FormatLangId(name1, LOWORD(pcis->itemData1));
-	WCHAR name2[20];
+	TCHAR name2[20];
 	FormatLangId(name2, LOWORD(pcis->itemData2));
-	int cmp = StrCmpIW(name1, name2);
+	int cmp = lstrcmpi(name1, name2);
 	return cmp < 0 ? -1 : cmp > 0 ? +1 : 0;
 	//Code below would yield numeric sort order by first PRIMARYLANGID, then SUBLANGID
 	/*WORD w1 = LOWORD(pcis->itemData1);
@@ -167,33 +169,39 @@ INT_PTR ViewSettingsDlg::OnCompareitemLangId(COMPAREITEMSTRUCT *pcis)
 
 BOOL ViewSettingsDlg::OnInitDialog(HWND hDlg)
 {
-	SetDlgItemInt(hDlg, IDC_EDIT1, iBytesPerLine, TRUE);
-	SetDlgItemInt(hDlg, IDC_EDIT2, iMinOffsetLen, TRUE);
-	CheckDlgButton(hDlg, IDC_CHECK1, iAutomaticBPL);
-	CheckDlgButton(hDlg, bUnsignedView ? IDC_RADIO1 : IDC_RADIO2, BST_CHECKED);
-	CheckDlgButton(hDlg, IDC_CHECK5, bOpenReadOnly);
-	CheckDlgButton(hDlg, IDC_CHECK2, bAutoOffsetLen);
-	SetDlgItemText(hDlg, IDC_EDIT3, TexteditorName);
-	hCbLang = GetDlgItem(hDlg, IDC_COMBO1);
+	SetDlgItemInt(hDlg, IDC_SETTINGS_BYTESPERLINE, iBytesPerLine, TRUE);
+	SetDlgItemInt(hDlg, IDC_SETTINGS_OFFSETLEN, iMinOffsetLen, TRUE);
+	CheckDlgButton(hDlg, IDC_SETTINGS_ADJUST_BYTELINE, iAutomaticBPL);
+	CheckDlgButton(hDlg, bUnsignedView ? IDC_SETTINGS_CARETUNSIGN :
+			IDC_SETTINGS_CARETSIGN, BST_CHECKED);
+	CheckDlgButton(hDlg, IDC_SETTINGS_OPENRO, bOpenReadOnly);
+	CheckDlgButton(hDlg, IDC_SETTINGS_ADJOFFSET, bAutoOffsetLen);
+	SetDlgItemText(hDlg, IDC_SETTINGS_EDITOR, TexteditorName);
+	hCbLang = GetDlgItem(hDlg, IDC_SETTINGS_LANGUAGE);
 	SendMessage(hCbLang, CB_SETDROPPEDWIDTH, 698, 0);
+	RECT rc;
+	GetWindowRect(hCbLang, &rc);
+	int cyItem = SendMessage(hCbLang, CB_GETITEMHEIGHT, -1, 0) - 2;
+	int cyScreen = ::GetSystemMetrics(SM_CYSCREEN);
+	SetWindowPos(hCbLang, 0, 0, 0, rc.right - rc.left, (cyScreen - 10) / 2 / cyItem * cyItem + 10, SWP_NOMOVE | SWP_NOZORDER);
 	EnumSystemLocales(EnumLocalesProc, LCID_SUPPORTED);
 	return TRUE;
 }
 
 BOOL ViewSettingsDlg::Apply(HWND hDlg)
 {
-	iBytesPerLine = GetDlgItemInt(hDlg, IDC_EDIT1, 0, TRUE);
+	iBytesPerLine = GetDlgItemInt(hDlg, IDC_SETTINGS_BYTESPERLINE, 0, TRUE);
 	if (iBytesPerLine < 1)
 		iBytesPerLine = 1;
-	iMinOffsetLen = GetDlgItemInt(hDlg, IDC_EDIT2, 0, TRUE);
+	iMinOffsetLen = GetDlgItemInt(hDlg, IDC_SETTINGS_OFFSETLEN, 0, TRUE);
 	if (iMinOffsetLen < 1)
 		iMinOffsetLen = 1;
 	// Get the text editor path and name.
-	GetDlgItemText(hDlg, IDC_EDIT3, TexteditorName);
-	iAutomaticBPL = IsDlgButtonChecked(hDlg, IDC_CHECK1);
-	bAutoOffsetLen = IsDlgButtonChecked(hDlg, IDC_CHECK2);
-	bUnsignedView = IsDlgButtonChecked(hDlg, IDC_RADIO1);
-	bOpenReadOnly = IsDlgButtonChecked(hDlg, IDC_CHECK5);
+	GetDlgItemText(hDlg, IDC_SETTINGS_EDITOR, TexteditorName, RTL_NUMBER_OF(TexteditorName));
+	iAutomaticBPL = IsDlgButtonChecked(hDlg, IDC_SETTINGS_ADJUST_BYTELINE);
+	bAutoOffsetLen = IsDlgButtonChecked(hDlg, IDC_SETTINGS_ADJOFFSET);
+	bUnsignedView = IsDlgButtonChecked(hDlg, IDC_SETTINGS_CARETUNSIGN);
+	bOpenReadOnly = IsDlgButtonChecked(hDlg, IDC_SETTINGS_OPENRO);
 	int i = SendMessage(hCbLang, CB_GETCURSEL, 0, 0);
 	if (i != -1)
 	{
@@ -221,16 +229,16 @@ INT_PTR ViewSettingsDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 				EndDialog(hDlg, wParam);
 			}
 			return TRUE;
-		case MAKEWPARAM(IDC_COMBO1, CBN_DROPDOWN):
+		case MAKEWPARAM(IDC_SETTINGS_LANGUAGE, CBN_DROPDOWN):
 			if (DefWndProcDroppedComboBox == 0)
 			{
-				DefWndProcDroppedComboBox = SubclassAW((HWND)lParam, WndProcDroppedComboBox);
+				DefWndProcDroppedComboBox = SubclassWindow((HWND)lParam, WndProcDroppedComboBox);
 			}
 			return TRUE;
-		case MAKEWPARAM(IDC_COMBO1, CBN_CLOSEUP):
+		case MAKEWPARAM(IDC_SETTINGS_LANGUAGE, CBN_CLOSEUP):
 			if (DefWndProcDroppedComboBox)
 			{
-				SubclassAW((HWND)lParam, DefWndProcDroppedComboBox);
+				SubclassWindow((HWND)lParam, DefWndProcDroppedComboBox);
 				DefWndProcDroppedComboBox = 0;
 			}
 			return TRUE;
@@ -239,7 +247,7 @@ INT_PTR ViewSettingsDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 	case WM_DRAWITEM:
 		switch (wParam)
 		{
-		case IDC_COMBO1:
+		case IDC_SETTINGS_LANGUAGE:
 			OnDrawitemLangId(reinterpret_cast<DRAWITEMSTRUCT *>(lParam));
 			return TRUE;
 		}
@@ -247,7 +255,7 @@ INT_PTR ViewSettingsDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 	case WM_COMPAREITEM:
 		switch (wParam)
 		{
-		case IDC_COMBO1:
+		case IDC_SETTINGS_LANGUAGE:
 			return OnCompareitemLangId(reinterpret_cast<COMPAREITEMSTRUCT *>(lParam));
 		}
 		break;

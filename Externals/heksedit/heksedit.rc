@@ -1,5 +1,7 @@
-// Microsoft Visual C++ generated resource script.
+// heksedit resource script (for English only).
 //
+// $Id: heksedit.rc 204 2008-12-10 16:53:30Z kimmov $
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -21,6 +23,12 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 #endif //_WIN32
 
+// Include the manifest file for VC6 and VS2003.Net
+#if _MSC_VER < 1400
+  CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "res\\heksedit.dll.manifest"
+#endif // MSC_VER
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
@@ -33,9 +41,11 @@ BEGIN
         MENUITEM "&New\tCtrl+N",                IDM_NEW
         MENUITEM "&Open...\tCtrl+O",            IDM_OPEN
         MENUITEM "Open pa&rtially...\tAlt+P",   IDM_PARTIAL_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "&Save\tCtrl+S",               IDM_SAVE
         MENUITEM "Save &As...\tCtrl+J",         IDM_SAVE_AS
         MENUITEM "Save selec&tion as...\tCtrl+Shift+O", IDM_SAVESELAS
+        MENUITEM SEPARATOR
         MENUITEM "Re&vert\tCtrl+Shift+R",       IDM_REVERT
         MENUITEM "&Insert file...\tCtrl+Shift+I", IDM_INSERTFILE
         MENUITEM "&Delete file...\tCtrl+Shift+D", IDM_DELETEFILE
@@ -44,7 +54,6 @@ BEGIN
         MENUITEM "&Export as hexdump...",       IDM_COPY_HEXDUMP
         MENUITEM "I&mport from hexdump...\tCtrl+Shift+H", IDM_OPEN_HEXDUMP
         MENUITEM SEPARATOR
-        MENUITEM "E&xit\tAlt+F4",               IDM_EXIT
         MENUITEM "IDM_MRU",                     IDM_MRU1
         MENUITEM "IDM_MRU",                     IDM_MRU2
         MENUITEM "IDM_MRU",                     IDM_MRU3
@@ -54,19 +63,21 @@ BEGIN
         MENUITEM "IDM_MRU",                     IDM_MRU7
         MENUITEM "IDM_MRU",                     IDM_MRU8
         MENUITEM "IDM_MRU",                     IDM_MRU9
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               IDM_EXIT
     END
     POPUP "&Disk"
     BEGIN
         MENUITEM "&Open drive...",              ID_DISK_OPEN_DRIVE
         MENUITEM "&Close drive",                ID_DISK_CLOSEDRIVE
         MENUITEM SEPARATOR
-        MENUITEM "Goto First Sector",           ID_DISK_GOTOFIRSTTRACK
+        MENUITEM "Goto &First Sector",          ID_DISK_GOTOFIRSTTRACK
         MENUITEM "Goto &Next Sector\tCtrl+Shift+PgDn", ID_DISK_GOTONEXTTRACK
         MENUITEM "Goto &Previous Sector\tCtrl+Shift+PgUp", 
                                                 ID_DISK_GOTOPREVIOUSTRACK
-        MENUITEM "Goto Last Sector",            ID_DISK_GOTOLASTTRACK
+        MENUITEM "Goto &Last Sector",           ID_DISK_GOTOLASTTRACK
         MENUITEM SEPARATOR
-        MENUITEM "Goto Sector #...",            ID_DISK_GOTOTRACK
+        MENUITEM "Goto &Sector #...",           ID_DISK_GOTOTRACK
     END
     POPUP "&Edit"
     BEGIN
@@ -111,6 +122,10 @@ BEGIN
         MENUITEM "Scroll &down\tCtrl+Arrow Down", IDM_SCROLL_DOWN
         MENUITEM "Scroll up a page\tCtrl+Page Up", IDM_SCROLL_PRIOR
         MENUITEM "Scroll down a page\tCtrl+Page Down", IDM_SCROLL_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Zoom in\tCtrl++", IDM_ZOOMIN
+		MENUITEM "Zoom out\tCtrl+-", IDM_ZOOMOUT
+		MENUITEM "Zoom normal\tCtrl+*", IDM_ZOOMNORMAL
     END
     POPUP "&Options"
     BEGIN
@@ -174,7 +189,7 @@ BEGIN
     BEGIN
         MENUITEM "&Help topics...\tF1",         IDM_HELP_TOPICS
         MENUITEM SEPARATOR
-        MENUITEM "&About frhed...",             IDM_ABOUT
+        MENUITEM "&About Frhed...",             IDM_ABOUT
     END
 END
 
@@ -195,12 +210,19 @@ BEGIN
     END
     POPUP "1"
     BEGIN
-        MENUITEM "Goto First Sector",           ID_DISK_GOTOFIRSTTRACK
+        MENUITEM "Goto &First Sector",          ID_DISK_GOTOFIRSTTRACK
         MENUITEM "Goto &Next Sector",           ID_DISK_GOTONEXTTRACK
         MENUITEM "Goto &Previous Sector",       ID_DISK_GOTOPREVIOUSTRACK
-        MENUITEM "Goto Last Sector",            ID_DISK_GOTOLASTTRACK
+        MENUITEM "Goto &Last Sector",           ID_DISK_GOTOLASTTRACK
         MENUITEM SEPARATOR
-        MENUITEM "Goto Sector #...",            ID_DISK_GOTOTRACK
+        MENUITEM "Goto &Sector #...",           ID_DISK_GOTOTRACK
+    END
+    POPUP "2"
+    BEGIN
+        MENUITEM "Move",                        1
+        MENUITEM "Copy",                        2
+        MENUITEM SEPARATOR
+        MENUITEM "Cancel",                      0
     END
 END
 
@@ -318,6 +340,9 @@ BEGIN
     "X",            IDM_NEW,                VIRTKEY, SHIFT, CONTROL, 
                                                     NOINVERT
     "Y",            IDM_BINARYMODE,         VIRTKEY, CONTROL, NOINVERT
+    VK_ADD,         IDM_ZOOMIN,             VIRTKEY, CONTROL, NOINVERT
+    VK_SUBTRACT,    IDM_ZOOMOUT,            VIRTKEY, CONTROL, NOINVERT
+    VK_MULTIPLY,    IDM_ZOOMNORMAL,         VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -337,7 +362,7 @@ BEGIN
     LTEXT           "Prefix offset with ""x"" to indicate hex notation.",
                     IDC_STATIC,7,19,142,8
     LTEXT           "Go to offset:",IDC_STATIC,7,34,40,8
-    EDITTEXT        IDC_EDIT1,7,44,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GOTO_OFFSET,7,44,149,13,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "OK",IDOK,187,20,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,187,38,50,14
 END
@@ -350,36 +375,40 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Find what: (please refer to the online help's Using the Special Syntax section for searching for binary values)",
                     IDC_STATIC,7,7,265,16
-    EDITTEXT        IDC_EDIT1,7,26,265,57,ES_MULTILINE | ES_AUTOVSCROLL
-    CONTROL         "Match &case",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+    EDITTEXT        IDC_FIND_TEXT,7,26,265,57,ES_MULTILINE | ES_AUTOVSCROLL
+    CONTROL         "Match &case",IDC_FIND_MATCHCASE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,87,53,10
-    CONTROL         "Unicode",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Unicode",IDC_FIND_UNICODE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,100,49,8
     GROUPBOX        "Direction",IDC_STATIC,62,87,61,36
-    CONTROL         "&Up",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
+    CONTROL         "&Up",IDC_FIND_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP | 
                     WS_TABSTOP,71,98,25,10
-    CONTROL         "&Down",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,71,111,35,
+    CONTROL         "&Down",IDC_FIND_DOWN,"Button",BS_AUTORADIOBUTTON,71,111,35,
                     10
     DEFPUSHBUTTON   "OK",IDOK,222,100,50,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,222,117,50,14
 END
 
-IDD_ABOUTDIALOG DIALOGEX 0, 0, 212, 191
+IDD_ABOUTDIALOG DIALOGEX 0, 0, 212, 170
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
     WS_CAPTION
-CAPTION "About frhed"
+CAPTION "About Frhed"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,80,171,50,14
-    ICON            32512,IDC_APPICON,7,9,20,20
-    LTEXT           "",IDC_STATIC1,37,7,167,66
-    LTEXT           "eMail:",IDC_STATIC,5,71,20,8
-    EDITTEXT        IDC_EDIT1,6,81,198,25,ES_MULTILINE | ES_AUTOHSCROLL | 
-                    ES_READONLY
-    EDITTEXT        IDC_EDIT2,22,121,167,12,ES_AUTOHSCROLL | ES_READONLY
-    GROUPBOX        "Homepage",IDC_STATIC,6,111,198,52
-    PUSHBUTTON      "Open frhed's homepage in Internet browser",IDC_BUTTON1,
-                    30,140,150,14
+    ICON            IDI_FRHED,IDC_APPICON,7,9,20,20
+    LTEXT           "Frhed - Free hex editor for 32-bit Windows",IDC_STATIC,
+                    37,7,167,8
+    LTEXT           "",IDC_ABOUT_VER,37,17,167,8
+    LTEXT           "(c) Raihan Kibria 2000-2008",IDC_STATIC,37,27,167,8
+    LTEXT           "All rights reserved.",IDC_STATIC,37,37,167,8
+    LTEXT           "Contributors are listed in Contributors.txt.",IDC_STATIC,
+                    37,55,167,8
+    PUSHBUTTON      "Open contributors list",IDC_ABOUTCONTRIBS,37,65,150,14
+    GROUPBOX        "Homepage",IDC_STATIC,6,90,198,52
+    EDITTEXT        IDC_ABOUT_URL,22,100,167,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Open Frhed's homepage in browser",IDC_ABOUT_OPENURL,
+                    30,120,150,14
+    DEFPUSHBUTTON   "OK",IDOK,80,148,50,14
 END
 
 IDD_HEXDUMPDIALOG DIALOGEX 0, 0, 163, 161
@@ -390,14 +419,14 @@ BEGIN
     LTEXT           "Use hexadecimal notation without prefix.",IDC_STATIC,7,
                     7,128,8
     LTEXT           "Start at line with offset:",IDC_STATIC,7,17,72,8
-    EDITTEXT        IDC_EDIT1,6,25,149,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HEXDUMP_OFFSET,6,25,149,12,ES_AUTOHSCROLL
     LTEXT           "Up to and including line with offset:",IDC_STATIC,7,40,
                     111,8
-    EDITTEXT        IDC_EDIT2,7,49,149,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HEXDUMP_OFFSET2,7,49,149,13,ES_AUTOHSCROLL
     GROUPBOX        "Export hexdump to:",IDC_STATIC,7,69,88,40,WS_GROUP
-    CONTROL         "Export to file",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Export to file",IDC_HEXDUMP_EXPORTFILE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,80,55,10
-    CONTROL         "Export to clipboard",IDC_RADIO2,"Button",
+    CONTROL         "Export to clipboard",IDC_HEXDUMP_EXPORTCLIPB,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,14,92,75,10
     GROUPBOX        "Type:",IDC_STATIC,7,110,103,45,WS_GROUP
     CONTROL         "frhed display as text",IDC_EXPORTDISPLAY,"Button",
@@ -410,27 +439,27 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,105,90,50,14
 END
 
-IDD_DECIMALDIALOG DIALOGEX 0, 0, 204, 111
+IDD_DECIMALDIALOG DIALOGEX 0, 0, 224, 111
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Enter decimal value"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Enter decimal value:",IDC_STATIC,7,7,65,8
-    EDITTEXT        IDC_EDIT1,7,16,97,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DECIMAL_VALUE,7,16,97,12,ES_AUTOHSCROLL
     LTEXT           "At offset: (prefix x for hexadecimal)",IDC_STATIC,7,30,
                     108,8
-    EDITTEXT        IDC_EDIT2,7,38,98,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DECIMAL_OFFSET,7,38,98,12,ES_AUTOHSCROLL
     LTEXT           "Number of times:",IDC_STATIC,7,54,54,8
-    EDITTEXT        IDC_EDIT3,7,62,97,12,ES_AUTOHSCROLL
-    GROUPBOX        "Size of Value:",IDC_STATIC,7,79,190,25
-    CONTROL         "Byte (8 bit)",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    EDITTEXT        IDC_DECIMAL_TIMES,7,62,97,12,ES_AUTOHSCROLL
+    GROUPBOX        "Size of Value:",IDC_STATIC,7,79,210,25
+    CONTROL         "Byte (8 bit)",IDC_DECIMAL_BYTE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP,11,88,49,10
-    CONTROL         "Word (16 bit)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,
+    CONTROL         "Word (16 bit)",IDC_DECIMAL_WORD,"Button",BS_AUTORADIOBUTTON,
                     63,88,57,10
-    CONTROL         "Longword (32 bit)",IDC_RADIO3,"Button",
-                    BS_AUTORADIOBUTTON,122,88,71,10
-    DEFPUSHBUTTON   "OK",IDOK,147,39,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,147,56,50,14
+    CONTROL         "Double word (32 bit)",IDC_DECIMAL_DWORD,"Button",
+                    BS_AUTORADIOBUTTON,122,88,91,10
+    DEFPUSHBUTTON   "OK",IDOK,167,39,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,167,56,50,14
 END
 
 IDD_PASTEDIALOG DIALOGEX 0, 0, 291, 145
@@ -439,20 +468,20 @@ CAPTION "Paste with dialogue"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Clipboard content (text):",IDC_STATIC,7,7,76,8
-    EDITTEXT        IDC_EDIT1,7,18,277,65,ES_MULTILINE | WS_VSCROLL,
+    EDITTEXT        IDC_PASTE_CLIPBOARD,7,18,277,65,ES_MULTILINE | WS_VSCROLL,
                     WS_EX_TRANSPARENT
     GROUPBOX        "Paste mode",IDC_STATIC,7,86,64,40
-    CONTROL         "Overwrite",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Overwrite",IDC_PASTE_OVERWRITE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,98,46,10
-    CONTROL         "Insert",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Insert",IDC_PASTE_INSERT,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,14,109,33,10
     LTEXT           "Paste data how many times:",IDC_STATIC,80,86,89,8
-    EDITTEXT        IDC_EDIT2,79,96,67,12,ES_AUTOHSCROLL
-    CONTROL         "Paste coded binary values as text",IDC_CHECK1,"Button",
+    EDITTEXT        IDC_PASTE_TIMES,79,96,67,12,ES_AUTOHSCROLL
+    CONTROL         "Paste coded binary values as text",IDC_PASTE_BINARY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,80,115,122,10
     LTEXT           " Skip how many bytes between inserts/overwrites",
                     IDC_STATIC,7,129,160,8
-    EDITTEXT        IDC_EDIT3,168,126,60,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASTE_SKIPBYTES,168,126,60,12,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "OK",IDOK,234,96,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,234,112,50,14
 END
@@ -464,16 +493,17 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Start cutting at offset: (prefix offsets with x for hex)",
                     IDC_STATIC,7,7,157,8
-    EDITTEXT        IDC_EDIT1,7,16,136,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CUT_STARTOFFSET,7,16,136,12,ES_AUTOHSCROLL
     GROUPBOX        "Cut how many bytes",IDC_STATIC,7,33,155,81
-    CONTROL         "Cut up to and including offset:",IDC_RADIO1,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,48,110,10
-    CONTROL         "Number of bytes to cut:",IDC_RADIO2,"Button",
+    CONTROL         "Cut up to and including offset:",IDC_CUT_INCLUDEOFFSET,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,48,
+                    110,10
+    CONTROL         "Number of bytes to cut:",IDC_CUT_NUMBEROFBYTES,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,15,80,89,10
-    EDITTEXT        IDC_EDIT2,16,59,136,12,ES_AUTOHSCROLL | WS_GROUP
-    EDITTEXT        IDC_EDIT3,15,91,136,12,ES_AUTOHSCROLL | WS_DISABLED | 
+    EDITTEXT        IDC_CUT_NUMBYTES,16,59,136,12,ES_AUTOHSCROLL | WS_GROUP
+    EDITTEXT        IDC_CUT_NUMBYTES2,15,91,136,12,ES_AUTOHSCROLL | WS_DISABLED | 
                     WS_GROUP
-    CONTROL         "Cut to clipboard",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Cut to clipboard",IDC_CUT_CLIPBOARD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,120,65,10
     DEFPUSHBUTTON   "OK",IDOK,112,122,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,112,138,50,14
@@ -486,15 +516,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Prefix offsets with x for hex.",IDC_STATIC,7,7,86,8
     LTEXT           "Start copying at offset:",IDC_STATIC,7,20,72,8
-    EDITTEXT        IDC_EDIT1,7,29,130,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COPY_STARTOFFSET,7,29,130,13,ES_AUTOHSCROLL
     GROUPBOX        "Copy how many bytes",IDC_STATIC,7,51,144,73
-    CONTROL         "Copy up to and including offset:",IDC_RADIO1,"Button",
+    CONTROL         "Copy up to and including offset:",IDC_COPY_OFFSET,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,63,115,10
-    CONTROL         "Number of bytes to copy:",IDC_RADIO2,"Button",
+    CONTROL         "Number of bytes to copy:",IDC_COPY_BYTES,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,13,93,95,10
-    EDITTEXT        IDC_EDIT2,14,73,130,13,ES_AUTOHSCROLL | WS_GROUP
-    EDITTEXT        IDC_EDIT3,14,103,130,13,ES_AUTOHSCROLL | WS_DISABLED | 
-                    WS_GROUP
+    EDITTEXT        IDC_COPY_OFFSETEDIT,14,73,130,13,ES_AUTOHSCROLL | WS_GROUP
+    EDITTEXT        IDC_COPY_BYTECOUNT,14,103,130,13,ES_AUTOHSCROLL |
+                    WS_DISABLED | WS_GROUP
     DEFPUSHBUTTON   "OK",IDOK,25,131,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,82,131,50,14
 END
@@ -507,30 +537,31 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Number of bytes to display per line:",IDC_STATIC,7,7,
                     110,8
-    EDITTEXT        IDC_EDIT1,7,16,68,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SETTINGS_BYTESPERLINE,7,16,68,12,ES_AUTOHSCROLL
     CONTROL         "Automatically adjust number of bytes per line (uncheck this if you want frhed to use your own choice for bytes per line)",
-                    IDC_CHECK1,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
-                    WS_TABSTOP,7,31,234,19
+                    IDC_SETTINGS_ADJUST_BYTELINE,"Button",BS_AUTOCHECKBOX |
+                    BS_MULTILINE | WS_TABSTOP,7,31,234,19
     LTEXT           "Display length of offset in how many characters:",
                     IDC_STATIC,7,51,151,8
-    EDITTEXT        IDC_EDIT2,7,61,68,12,ES_AUTOHSCROLL
-    CONTROL         "Adjust offset len to that of the max offset",IDC_CHECK2,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,78,
-                    61,163,12
+    EDITTEXT        IDC_SETTINGS_OFFSETLEN,7,61,68,12,ES_AUTOHSCROLL
+    CONTROL         "Adjust offset len to that of the max offset",
+                    IDC_SETTINGS_ADJOFFSET,"Button",BS_AUTOCHECKBOX |
+                    BS_MULTILINE | WS_TABSTOP,78,61,163,12
     GROUPBOX        "Display values at caret position as:",IDC_STATIC,7,76,
                     128,25,WS_GROUP
-    CONTROL         "unsigned",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP | WS_TABSTOP,14,86,45,10
-    CONTROL         "signed",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,65,86,37,
+    CONTROL         "unsigned",IDC_SETTINGS_CARETUNSIGN,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,86,45,10
+    CONTROL         "signed",IDC_SETTINGS_CARETSIGN,"Button",BS_AUTORADIOBUTTON,
+                    65,86,37,10
+    CONTROL         "Set read-only mode on opening files",IDC_SETTINGS_OPENRO,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,106,128,
                     10
-    CONTROL         "Set read-only mode on opening files",IDC_CHECK5,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,106,128,10
     LTEXT           "Path and filename of the text editor to call:",
                     IDC_STATIC,7,122,172,8
-    EDITTEXT        IDC_EDIT3,7,132,234,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SETTINGS_EDITOR,7,132,234,13,ES_AUTOHSCROLL
     LTEXT           "Language:",IDC_STATIC,7,151,50,8
-    COMBOBOX        IDC_COMBO1,69,147,172,189,CBS_DROPDOWNLIST | 
-                    CBS_OWNERDRAWFIXED | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SETTINGS_LANGUAGE,69,147,172,240,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | CBS_SORT | WS_VSCROLL | WS_TABSTOP | CBS_NOINTEGRALHEIGHT
     DEFPUSHBUTTON   "OK",IDOK,191,80,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,191,97,50,14
 END
@@ -542,7 +573,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Append how many bytes to end of file:",IDC_STATIC,7,7,
                     121,8
-    EDITTEXT        IDC_EDIT1,7,17,120,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_APPEND_BYTES,7,17,120,12,ES_AUTOHSCROLL | ES_NUMBER
     DEFPUSHBUTTON   "OK",IDOK,135,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,135,24,50,14
 END
@@ -552,7 +583,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Manipulate bits"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "statictext",IDC_STATIC1,7,7,243,8
+    LTEXT           "statictext",IDC_MANIPBITS,7,7,243,8
     CONTROL         "Bit 7",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,18,30,10,WS_EX_STATICEDGE
     CONTROL         "Bit 6",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
@@ -589,11 +620,11 @@ CAPTION "Character Set"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Choose character set",IDC_STATIC,7,7,101,40
-    CONTROL         "ANSI",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    CONTROL         "ANSI",IDC_CHSET_ANSI,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     25,19,33,10
-    CONTROL         "OEM",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,25,32,32,10
+    CONTROL         "OEM",IDC_CHSET_OEM,"Button",BS_AUTORADIOBUTTON,25,32,32,10
     LTEXT           "Font size in points:",IDC_STATIC,7,53,101,8
-    EDITTEXT        IDC_EDIT1,7,62,65,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_CHSET_FONTSIZE,7,62,65,12,ES_AUTOHSCROLL | ES_NUMBER
     DEFPUSHBUTTON   "OK",IDOK,115,24,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,115,41,50,14
 END
@@ -603,10 +634,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Choose area of difference to display"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    LTEXT           "file_sizes",IDC_STATIC2,7,7,244,8
-    LTEXT           "number_of_diffs",IDC_STATIC1,7,18,244,8
-    LISTBOX         IDC_LIST1,7,29,244,178,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
-                    WS_TABSTOP
+    LTEXT           "file_sizes",IDC_CHOOSEDIFF_FSIZES,7,7,244,8
+    LTEXT           "number_of_diffs",IDC_NUMDIFFS,7,18,244,8
+    LISTBOX         IDC_CHOOSEDIFF_DIFFLIST,7,29,244,178,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,7,210,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,74,210,50,14
     PUSHBUTTON      "Copy above list",IDCOPY,187,210,64,14
@@ -618,9 +649,9 @@ CAPTION "Binary mode setting"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Choose binary mode",IDC_STATIC,7,7,104,44
-    CONTROL         "Little-endian (Intel)",IDC_RADIO1,"Button",
+    CONTROL         "Little-endian (Intel)",IDC_BINMODE_LITTLEEND,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,15,20,73,10
-    CONTROL         "Big-endian (Motorola)",IDC_RADIO2,"Button",
+    CONTROL         "Big-endian (Motorola)",IDC_BINMODE_BIGEND,"Button",
                     BS_AUTORADIOBUTTON,15,34,83,10
     DEFPUSHBUTTON   "OK",IDOK,126,12,50,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,126,29,50,14
@@ -633,10 +664,25 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     LTEXT           "Offset of start of selection: (prefix x for hex)",
                     IDC_STATIC,7,7,134,8
-    EDITTEXT        IDC_EDIT1,7,17,134,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BLOCKSEL_OFFSET,7,17,134,12,ES_AUTOHSCROLL
     LTEXT           "Offset of end of selection: (prefix x for hex)",
-                    IDC_STATIC2,7,36,133,8
-    EDITTEXT        IDC_EDIT2,7,48,133,13,ES_AUTOHSCROLL
+                    IDC_STATIC,7,36,133,8
+    EDITTEXT        IDC_BLOCKSEL_OFFSETEND,7,48,133,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,150,18,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,150,35,50,14
+END
+
+IDD_REVERSE_BYTES_DIALOG DIALOGEX 0, 0, 207, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Reverse bytes"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    LTEXT           "Offset of first byte involved: (prefix x for hex)",
+                    IDC_STATIC,7,7,150,8
+    EDITTEXT        IDC_BLOCKSEL_OFFSET,7,17,134,12,ES_AUTOHSCROLL
+    LTEXT           "Offset of last byte involved: (prefix x for hex)",
+                    IDC_STATIC,7,36,150,8
+    EDITTEXT        IDC_BLOCKSEL_OFFSETEND,7,48,133,13,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "OK",IDOK,150,18,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,150,35,50,14
 END
@@ -694,17 +740,17 @@ CAPTION "Paste"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Paste mode",IDC_STATIC,7,7,64,35
-    CONTROL         "Overwrite",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Overwrite",IDC_PASTE_OVERWRITE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,14,18,46,10
-    CONTROL         "Insert",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Insert",IDC_PASTE_INSERT,"Button",BS_AUTORADIOBUTTON | 
                     WS_TABSTOP,14,30,33,10
     LTEXT           "Paste data how many times:",IDC_STATIC,80,7,89,8
-    EDITTEXT        IDC_EDIT2,79,17,67,12,ES_AUTOHSCROLL
-    CONTROL         "Paste coded binary values as text",IDC_CHECK1,"Button",
+    EDITTEXT        IDC_PASTE_TIMES,79,17,67,12,ES_AUTOHSCROLL
+    CONTROL         "Paste coded binary values as text",IDC_PASTE_BINARY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,80,36,122,10
     LTEXT           " Skip how many bytes between inserts/overwrites",
                     IDC_STATIC,7,49,156,12,SS_CENTERIMAGE
-    EDITTEXT        IDC_EDIT3,170,49,35,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASTE_SKIPBYTES,170,49,35,12,ES_AUTOHSCROLL
     LTEXT           "Clipboard format to use:",IDC_STATIC,5,65,75,8
     LISTBOX         IDC_LIST,5,75,255,35,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_TABSTOP
@@ -1311,7 +1357,8 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_DiffListItemFormat  "%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)"
+    IDS_ABOUTFRHEDVER          "Version %u.%u.%u.%u"
+    IDS_DIFFLISTITEMFORMAT  "%d) 0x%x=%n%d to 0x%x=%n%d (%d bytes)"
 END
 
 #endif    // Englisch (USA) resources

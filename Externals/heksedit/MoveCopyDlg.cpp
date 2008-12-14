@@ -5,15 +5,15 @@
 
 BOOL MoveCopyDlg::OnInitDialog(HWND hw)
 {
-	char buf[30];
+	TCHAR buf[30];
 	int iMove1stEnd = iGetStartOfSelection();
 	int iMove2ndEndorLen = iGetEndOfSelection();
-	sprintf(buf, "x%x", iMove1stEnd);
+	_stprintf(buf, _T("x%x"), iMove1stEnd);
 	SetDlgItemText (hw, IDC_1STOFFSET, buf);
-	sprintf(buf, "x%x", iMove2ndEndorLen);
+	_stprintf(buf, _T("x%x"), iMove2ndEndorLen);
 	SetDlgItemText (hw, IDC_2NDDELIM, buf);
 	CheckDlgButton (hw, IDC_OTHEREND, BST_CHECKED);
-	sprintf(buf, "x%x", iMovePos);
+	_stprintf(buf, _T("x%x"), iMovePos);
 	SetDlgItemText(hw, IDC_MOVEMENT, buf);
 	CheckDlgButton(hw, IDC_FPOS, BST_CHECKED);
 	if (iMoveOpTyp == OPTYP_MOVE)
@@ -25,35 +25,35 @@ BOOL MoveCopyDlg::OnInitDialog(HWND hw)
 
 BOOL MoveCopyDlg::Apply(HWND hw)
 {
-	char buf[30];
+	TCHAR buf[30];
 	const int dlgitems[3] = { IDC_1STOFFSET, IDC_2NDDELIM, IDC_MOVEMENT };
 	const int check[3] = { 0, IDC_LEN, IDC_FORWARD };
 	int vals[3];
 	for (int n = 0 ; n < 3; n++)
 	{
 		HWND cntrl = GetDlgItem(hw, dlgitems[n]);
-		GetWindowText(cntrl, buf, sizeof buf);
+		GetWindowText(cntrl, buf, RTL_NUMBER_OF(buf));
 		int i = 0;
-		if (n && buf[i] == '-')
+		if (n && buf[i] == _T('-'))
 		{
 			if (!IsDlgButtonChecked(hw, check[n]))
 			{
-				MessageBox(hw, "You have chosen an offset but it is negative, which is invalid.", "Move/Copy", MB_ICONERROR);
+				MessageBox(hw, _T("You have chosen an offset but it is negative, which is invalid."), _T("Move/Copy"), MB_ICONERROR);
 				return FALSE;
 			}
 			// Relative jump. Read offset from next character on.
 			i++;
 		}
-		if (sscanf(&buf[i], "x%x", &vals[n]) == 0 &&
-			sscanf(&buf[i], "%d", &vals[n]) == 0)
+		if (_stscanf(&buf[i], _T("x%x"), &vals[n]) == 0 &&
+			_stscanf(&buf[i], _T("%d"), &vals[n]) == 0)
 		{
 			// No fields assigned: badly formed number.
-			char msg[80];
-			sprintf(msg, "The value in box number %d cannot be recognized.", n + 1);
-			MessageBox(hw, msg, "Move/Copy", MB_ICONERROR);
+			TCHAR msg[80];
+			_stprintf(msg, _T("The value in box number %d cannot be recognized."), n + 1);
+			MessageBox(hw, msg, _T("Move/Copy"), MB_ICONERROR);
 			return FALSE;
 		}
-		if (buf[0] == '-')
+		if (buf[0] == _T('-'))
 			vals[n] = -vals[n]; //Negate
 	}
 	int clen = DataArray.GetLength();
@@ -63,7 +63,7 @@ BOOL MoveCopyDlg::Apply(HWND hw)
 	{
 		if (iMove2ndEndorLen == 0)
 		{
-			MessageBox(hw, "Cannot move/copy a block of zero length", "Move/Copy", MB_OK | MB_ICONERROR);
+			MessageBox(hw, _T("Cannot move/copy a block of zero length"), _T("Move/Copy"), MB_ICONERROR);
 			return 0;
 		}
 		if (iMove2ndEndorLen > 0)
@@ -78,7 +78,7 @@ BOOL MoveCopyDlg::Apply(HWND hw)
 		iMove2ndEndorLen < 0 ||
 		iMove2ndEndorLen >= clen)
 	{
-		MessageBox(hw, "The chosen block extends into non-existant data.", "Move/Copy", MB_ICONERROR);
+		MessageBox(hw, _T("The chosen block extends into non-existant data."), _T("Move/Copy"), MB_ICONERROR);
 		return FALSE;
 	}
 
@@ -96,7 +96,7 @@ BOOL MoveCopyDlg::Apply(HWND hw)
 
 	if (iMovePos == iMove1stEnd && iMoveOpTyp == OPTYP_MOVE)
 	{
-		MessageBox(hw, "The block was not moved!", "Move/Copy", MB_ICONEXCLAMATION);
+		MessageBox(hw, _T("The block was not moved!"), _T("Move/Copy"), MB_ICONEXCLAMATION);
 		EndDialog(hw,0);
 		return FALSE;
 	}
@@ -105,7 +105,7 @@ BOOL MoveCopyDlg::Apply(HWND hw)
 		iMovePos + iMove2ndEndorLen - iMove1stEnd >= clen :
 		iMovePos > clen))
 	{
-		MessageBox(hw, "Cannot move/copy the block outside the data", "Move/Copy", MB_OK | MB_ICONERROR);
+		MessageBox(hw, _T("Cannot move/copy the block outside the data"), _T("Move/Copy"), MB_ICONERROR);
 		return FALSE;
 	}
 	CMD_move_copy(iMove1stEnd, iMove2ndEndorLen, true);

@@ -1,6 +1,7 @@
 #include "precomp.h"
 #include "idt.h"
 #include "hexwnd.h"
+#include "AnsiConvert.h"
 #include "resource.h"
 
 /*The #ifndef __CYGWIN__s are there because cygwin/mingw doesn't yet have
@@ -37,7 +38,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 				LVCOLUMN col;
 				ZeroMemory(&col, sizeof col);
 				ListView_InsertColumn(list, 0, &col);
-				char szFormatName[100];
+				TCHAR szFormatName[100];
 				UINT i;
 				for (i = 0 ; i < numformatetcs ; i++)
 				{
@@ -52,7 +53,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 						//Get the name of the standard clipboard format.
 						switch (temp)
 						{
-							#define CASE(a) case a: lvi.pszText = #a; break;
+							#define CASE(a) case a: lvi.pszText = _T(#a); break;
 								CASE(+CF_TEXT)
 								CASE(CF_BITMAP) CASE(CF_METAFILEPICT) CASE(CF_SYLK)
 								CASE(CF_DIF) CASE(CF_TIFF) CASE(CF_OEMTEXT)
@@ -68,11 +69,11 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 							default:
 								if (temp >= CF_PRIVATEFIRST && temp <= CF_PRIVATELAST)
 								{
-									sprintf(szFormatName, "CF_PRIVATE_%d", temp - CF_PRIVATEFIRST);
+									_stprintf(szFormatName, _T("CF_PRIVATE_%d"), temp - CF_PRIVATEFIRST);
 								}
 								else if (temp >= CF_GDIOBJFIRST && temp <= CF_GDIOBJLAST)
 								{
-									sprintf(szFormatName, "CF_GDIOBJ_%d", temp - CF_GDIOBJFIRST);
+									_stprintf(szFormatName, _T("CF_GDIOBJ_%d"), temp - CF_GDIOBJFIRST);
 								}
 								//Format ideas for future: hex number, system/msdn constant, registered format, WM_ASKFORMATNAME, tickbox for delay rendered or not*/
 								/*else if(temp>0xC000&&temp<0xFFFF)
@@ -81,7 +82,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 								}*/
 								else
 								{
-									sprintf(szFormatName, "0x%.8x", temp);
+									_stprintf(szFormatName, _T("0x%.8x"), temp);
 								}
 							break;
 						}
@@ -113,7 +114,7 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 					formats = (UINT*)malloc(numformats * sizeof *formats);
 					if (formats == 0)
 					{
-						MessageBox(h, "Not enough memory", "Drag-drop", MB_ICONERROR);
+						MessageBox(h, _T("Not enough memory"), _T("Drag-drop"), MB_ICONERROR);
 						return TRUE;
 					}
 					LVITEM temp;
@@ -140,31 +141,38 @@ INT_PTR DragDropDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 				LVITEM item[2];
 				ZeroMemory(item, sizeof item);
 				//If anyone knows a better way to swap two items please send a patch
-				item[0].iItem = ListView_GetNextItem(list, (UINT)-1, LVNI_SELECTED);
-				if(item[0].iItem==-1) item[0].iItem = ListView_GetNextItem(list, (UINT)-1, LVNI_FOCUSED);
-				if(item[0].iItem==-1)
+				item[0].iItem = ListView_GetNextItem(list, -1, LVNI_SELECTED);
+				if (item[0].iItem == -1)
+					item[0].iItem = ListView_GetNextItem(list, -1, LVNI_FOCUSED);
+				if (item[0].iItem == -1)
 				{
-					MessageBox(h, "Select an item to move.", "Drag-drop", MB_OK);
+					MessageBox(h, _T("Select an item to move."), _T("Drag-drop"), MB_OK);
 					SetFocus(list);
 					return TRUE;
 				}
 				item[0].mask = LVIF_TEXT|LVIF_PARAM|LVIF_STATE;
 				item[0].stateMask = (UINT)-1;
-				char text[2][100];
+				TCHAR text[2][100];
 				item[0].pszText = text[0];
-				item[0].cchTextMax = sizeof(text[0]);
+				item[0].cchTextMax = RTL_NUMBER_OF(text[0]);
 				item[1] = item[0];
 				item[1].pszText = text[1];
-				if(LOWORD(w)==IDC_UP){
-					if(item[1].iItem==0) item[1].iItem=numformatetcs-1;
-					else item[1].iItem--;
-				} else {
-					if( (UINT)item[1].iItem==numformatetcs-1 ) item[1].iItem = 0;
-					else item[1].iItem++;
+				item[1].cchTextMax = RTL_NUMBER_OF(text[1]);
+				if (LOWORD(w) == IDC_UP)
+				{
+					if (item[1].iItem == 0)
+						item[1].iItem = numformatetcs;
+					--item[1].iItem;
+				}
+				else
+				{
+					++item[1].iItem;
+					if (item[1].iItem == numformatetcs)
+						item[1].iItem = 0;
 				}
 				ListView_GetItem(list, &item[0]);
 				ListView_GetItem(list, &item[1]);
-				swap(item[0].iItem,item[1].iItem);
+				swap(item[0].iItem, item[1].iItem);
 				item[0].state |= LVIS_FOCUSED|LVIS_SELECTED;
 				item[1].state &= ~(LVIS_FOCUSED|LVIS_SELECTED);
 				ListView_SetItem(list, &item[0]);
@@ -379,13 +387,8 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 		hexwnd.dragging = FALSE;
 		if (NeedToChooseMoveorCopy)
 		{
-			HMENU hm = CreatePopupMenu();
-			InsertMenu( hm, 0, MF_BYPOSITION|MF_STRING, 1, "Move" );
-			InsertMenu( hm, 1, MF_BYPOSITION|MF_STRING, 2, "Copy" );
-			InsertMenu( hm, 2, MF_BYPOSITION|MF_SEPARATOR, 0, 0 );
-			InsertMenu( hm, 3, MF_BYPOSITION|MF_STRING, 0, "Cancel" );
-			BOOL mi = TrackPopupMenuEx( hm, TPM_NONOTIFY|TPM_RIGHTBUTTON|TPM_RETURNCMD, pt.x, pt.y, hexwnd.hwnd, NULL );
-			DestroyMenu(hm);
+			HMENU hm = GetSubMenu(hexwnd.hMenuContext, 2);
+			BOOL mi = TrackPopupMenuEx(hm, TPM_NONOTIFY|TPM_RIGHTBUTTON|TPM_RETURNCMD, pt.x, pt.y, hexwnd.hwnd, NULL);
 			if (mi == 0)
 			{
 				pDataObject->Release();
@@ -483,7 +486,7 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 		/*Check which format should be inserted according to user preferences*/
 		if (numfe == 0)
 		{
-			MessageBox( hexwnd.hwnd, "No data to insert", "Drag-drop", MB_OK );
+			MessageBox(hexwnd.hwnd, _T("No data to insert"), _T("Drag-drop"), MB_OK);
 			err = S_OK;
 			*pdwEffect = DROPEFFECT_NONE;
 			goto ERR_ENUM;
@@ -556,13 +559,8 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 		}
 		else if (NeedToChooseMoveorCopy)
 		{
-			HMENU hm = CreatePopupMenu();
-			InsertMenu( hm, 0, MF_BYPOSITION|MF_STRING, 1, "Move" );
-			InsertMenu( hm, 1, MF_BYPOSITION|MF_STRING, 2, "Copy" );
-			InsertMenu( hm, 2, MF_BYPOSITION|MF_SEPARATOR, 0, 0 );
-			InsertMenu( hm, 3, MF_BYPOSITION|MF_STRING, 0, "Cancel" );
-			BOOL mi = TrackPopupMenuEx( hm, TPM_NONOTIFY|TPM_RIGHTBUTTON|TPM_RETURNCMD, pt.x, pt.y, hexwnd.hwnd, NULL );
-			DestroyMenu( hm );
+			HMENU hm = GetSubMenu(hexwnd.hMenuContext, 2);
+			BOOL mi = TrackPopupMenuEx(hm, TPM_NONOTIFY|TPM_RIGHTBUTTON|TPM_RETURNCMD, pt.x, pt.y, hexwnd.hwnd, NULL);
 			if (mi == 0)
 			{
 				err = S_OK;
@@ -590,50 +588,65 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 			{
 				//Get len
 				size_t len = 0;
-				switch( stm.tymed ){
-					case TYMED_HGLOBAL: len = GlobalSize( stm.hGlobal ); break;
+				switch (stm.tymed)
+				{
+				case TYMED_HGLOBAL:
+					len = GlobalSize( stm.hGlobal );
+					break;
 #ifndef __CYGWIN__
-					case TYMED_FILE:{
-						int fh = _wopen( stm.lpszFileName, _O_BINARY | _O_RDONLY );
-						if( fh != -1 ){
-							len = _filelength( fh );
-							if( len == (size_t)-1 ) len = 0;
-							_close( fh );
+				case TYMED_FILE:
+					{
+						int fh = _topen(static_cast<W2T>(stm.lpszFileName), _O_BINARY | _O_RDONLY);
+						if (fh != -1)
+						{
+							len = _filelength(fh);
+							if (len == (size_t)-1)
+								len = 0;
+							_close(fh);
 						}
-					} break;
+					}
+					break;
 #endif //__CYGWIN__
-					case TYMED_ISTREAM:{
+				case TYMED_ISTREAM:
+					{
 						STATSTG stat;
-						if( S_OK == stm.pstm->Stat( &stat, STATFLAG_NONAME ) ) len = (size_t)stat.cbSize.LowPart;
-					} break;
+						if (S_OK == stm.pstm->Stat(&stat, STATFLAG_NONAME))
+							len = (size_t)stat.cbSize.LowPart;
+					}
+					break;
 					//This case is going to be a bitch to implement so it can wait for a while
 					//It will need to be a recursive method that stores the STATSTG structures (+ the name), contents/the bytes of data in streams/property sets
-					case TYMED_ISTORAGE:{ MessageBox( hexwnd.hwnd, "TYMED_ISTORAGE is not yet supported for drag-drop.\nPlease don't hesitate to write a patch & send in a diff.", "Drag-drop", MB_OK ); } break;//IStorage*
-					case TYMED_GDI:{
-						len = GetObject( stm.hBitmap, 0, NULL );
-						if( len ){
-							DIBSECTION t;
-							GetObject( stm.hBitmap, len, &t );
-							len += t.dsBm.bmHeight*t.dsBm.bmWidthBytes*t.dsBm.bmPlanes;
-						}
-					} break;//HBITMAP
-					case TYMED_MFPICT:{
-						len = GlobalSize( stm.hMetaFilePict );
-						METAFILEPICT*pMFP=(METAFILEPICT*)GlobalLock( stm.hMetaFilePict );
-						if( pMFP ){
-							len += GetMetaFileBitsEx( pMFP->hMF, 0, NULL );
-							GlobalUnlock( stm.hMetaFilePict );
-						}
-					} break;//HMETAFILE
+				case TYMED_ISTORAGE:
+					MessageBox(hexwnd.hwnd, _T("TYMED_ISTORAGE is not yet supported for drag-drop.\nPlease don't hesitate to write a patch & send in a diff."), _T("Drag-drop"), MB_OK);
+					break;//IStorage*
+				case TYMED_GDI:
+					len = GetObject(stm.hBitmap, 0, NULL);
+					if (len)
+					{
+						DIBSECTION t;
+						GetObject(stm.hBitmap, len, &t);
+						len += t.dsBm.bmHeight * t.dsBm.bmWidthBytes * t.dsBm.bmPlanes;
+					}
+					break;//HBITMAP
+				case TYMED_MFPICT:
+					len = GlobalSize(stm.hMetaFilePict);
+					if (METAFILEPICT *pMFP = (METAFILEPICT*)GlobalLock(stm.hMetaFilePict))
+					{
+						len += GetMetaFileBitsEx(pMFP->hMF, 0, NULL);
+						GlobalUnlock(stm.hMetaFilePict);
+					}
+					break;//HMETAFILE
 #ifndef __CYGWIN__
-					case TYMED_ENHMF:{
+				case TYMED_ENHMF:
+					{
 						len = GetEnhMetaFileHeader( stm.hEnhMetaFile, 0, NULL );
 						DWORD n = GetEnhMetaFileDescriptionW( stm.hEnhMetaFile, 0, NULL );
 						if( n && n != GDI_ERROR ) len += sizeof(WCHAR)*n;
 						len += GetEnhMetaFileBits( stm.hEnhMetaFile, 0, NULL );
 						n = GetEnhMetaFilePaletteEntries( stm.hEnhMetaFile, 0, NULL );
 						if( n && n != GDI_ERROR ) len += sizeof(LOGPALETTE)+(n-1)*sizeof(PALETTEENTRY);
-					} break;//HENHMETAFILE
+					}
+					break;//HENHMETAFILE
 #endif //__CYGWIN__
 					//case TYMED_NULL:break;
 				}
@@ -649,25 +662,31 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 				memset( data, 0, len );
 
 				//Get data
-				switch( stm.tymed ){
-					case TYMED_HGLOBAL:{
-						if (LPVOID pmem = GlobalLock(stm.hGlobal))
-						{
-							memcpy(data, pmem, len);
-							gotdata = true;
-							GlobalUnlock(stm.hGlobal);
-						}
-					} break;
+				switch (stm.tymed)
+				{
+				case TYMED_HGLOBAL:
+					if (LPVOID pmem = GlobalLock(stm.hGlobal))
+					{
+						memcpy(data, pmem, len);
+						gotdata = true;
+						GlobalUnlock(stm.hGlobal);
+					}
+					break;
 #ifndef __CYGWIN__
-					case TYMED_FILE:{
-						int fh = _wopen( stm.lpszFileName, _O_BINARY | _O_RDONLY );
-						if( fh != -1 ){
-							if( 0 < _read( fh, data, len ) ) gotdata = true;
-							_close( fh );
+				case TYMED_FILE:
+					{
+						int fh = _topen(static_cast<W2T>(stm.lpszFileName), _O_BINARY | _O_RDONLY);
+						if (fh != -1)
+						{
+							if (0 < _read(fh, data, len))
+								gotdata = true;
+							_close(fh);
 						}
-					} break;
+					}
+					break;
 #endif //__CYGWIN__
-					case TYMED_ISTREAM:{
+				case TYMED_ISTREAM:
+					{
 						LARGE_INTEGER zero = { 0 };
 						ULARGE_INTEGER pos;
 						if( S_OK == stm.pstm->Seek( zero, STREAM_SEEK_CUR, &pos ) ){
@@ -675,30 +694,40 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 							if( S_OK == stm.pstm->Read( data, len, NULL ) ) gotdata = true;
 							stm.pstm->Seek( *(LARGE_INTEGER*)&pos, STREAM_SEEK_SET, NULL );
 						}
-					} break;
+					}
+					break;
 					//This case is going to be a bitch to implement so it can wait for a while
 					//It will need to be a recursive method that stores the STATSTG structures (+ the name), contents/the bytes of data in streams/property sets
-					case TYMED_ISTORAGE:{ MessageBox( hexwnd.hwnd, "TYMED_ISTORAGE is not yet supported for drag-drop.\nPlease don't hesitate to write a patch & send in a diff.", "Drag-drop", MB_OK ); goto ERR_ENUM; } break;//IStorage*
-					case TYMED_GDI:{
-						int l = GetObject( stm.hBitmap, len, data );
-						if( l ){
-							BITMAP* bm = (BITMAP*)data;
-							if( bm->bmBits ) memcpy( &data[l], bm->bmBits, len-l );
-							else GetBitmapBits( stm.hBitmap, len-l, &data[l] );
-							gotdata = true;
-						}
-					} break;//HBITMAP
-					case TYMED_MFPICT:{
-						if (METAFILEPICT *pMFP = (METAFILEPICT *)GlobalLock(stm.hMetaFilePict))
+				case TYMED_ISTORAGE:
+					MessageBox(hexwnd.hwnd, _T("TYMED_ISTORAGE is not yet supported for drag-drop.\nPlease don't hesitate to write a patch & send in a diff."), _T("Drag-drop"), MB_OK );
+					goto ERR_ENUM;//IStorage*
+
+				case TYMED_GDI:
+					{
+						int l = GetObject(stm.hBitmap, len, data);
+						if (l)
 						{
-							memcpy(data, pMFP, sizeof *pMFP);
-							GetMetaFileBitsEx( pMFP->hMF, len - sizeof(*pMFP), &data[sizeof(*pMFP)] );
-							GlobalUnlock( stm.hMetaFilePict );
+							BITMAP* bm = (BITMAP*)data;
+							if (bm->bmBits)
+								memcpy(&data[l], bm->bmBits, len - l);
+							else
+								GetBitmapBits(stm.hBitmap, len - l, &data[l]);
 							gotdata = true;
 						}
-					} break;//HMETAFILE
+					}
+					break;//HBITMAP
+				case TYMED_MFPICT:
+					if (METAFILEPICT *pMFP = (METAFILEPICT *)GlobalLock(stm.hMetaFilePict))
+					{
+						memcpy(data, pMFP, sizeof *pMFP);
+						GetMetaFileBitsEx( pMFP->hMF, len - sizeof(*pMFP), &data[sizeof(*pMFP)] );
+						GlobalUnlock( stm.hMetaFilePict );
+						gotdata = true;
+					}
+					break;//HMETAFILE
 #ifndef __CYGWIN__
-					case TYMED_ENHMF:{
+				case TYMED_ENHMF:
+					{
 						DWORD i = 0, n = 0, l = len;
 						n = GetEnhMetaFileHeader( stm.hEnhMetaFile, l, (ENHMETAHEADER*)&data[i] );
 						l -= n; i += n;
@@ -718,54 +747,67 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 							i += n*sizeof(PALETTEENTRY);
 						}
 						if( i ) gotdata = true;
-					} break;//HENHMETAFILE
+					}
+					break;//HENHMETAFILE
 #endif //__CYGWIN__
 					//case TYMED_NULL:break;
 				}
 
-				ReleaseStgMedium( &stm );
+				ReleaseStgMedium(&stm);
 
-				if(gotdata){
+				if (gotdata)
+				{
 					BYTE* DataToInsert = data;
-					if( fe.cfFormat == CF_BINARYDATA ){
+					if (fe.cfFormat == CF_BINARYDATA)
+					{
 						len = *(DWORD*)data;
 						DataToInsert += 4;
-					} else if( fe.cfFormat == CF_TEXT || fe.cfFormat == CF_OEMTEXT ){
-						len = strlen( (char*)data );
-					} else if( fe.cfFormat == CF_UNICODETEXT ){
-						len = sizeof(wchar_t)*wcslen( (wchar_t*)data );
 					}
-
+					else if (fe.cfFormat == CF_TEXT || fe.cfFormat == CF_OEMTEXT)
+					{
+						len = strlen((char*)data);
+					}
+					else if (fe.cfFormat == CF_UNICODETEXT)
+					{
+						len = sizeof(wchar_t) * wcslen((wchar_t*)data);
+					}
 					//Insert/overwrite data into DataArray
-					if( /*Overwite*/ grfKeyState&MK_SHIFT ){
+					if (/*Overwite*/ grfKeyState & MK_SHIFT)
+					{
 						DWORD upper = 1+hexwnd.DataArray.GetUpperBound();
-						if( /*Need more space*/ hexwnd.new_pos+len > upper ){
-							if( hexwnd.DataArray.SetSize( hexwnd.new_pos+totallen+len ) ){
+						if( /*Need more space*/ hexwnd.new_pos+len > upper )
+						{
+							if (hexwnd.DataArray.SetSize(hexwnd.new_pos + totallen + len))
+							{
 								hexwnd.DataArray.ExpandToSize();
-								memcpy(&hexwnd.DataArray[hexwnd.new_pos+(int)totallen],DataToInsert,len);
+								memcpy(&hexwnd.DataArray[hexwnd.new_pos + totallen], DataToInsert, len);
 								gotdata = true;
 								totallen += len;
 							}
-						} else /*Enough space*/ {
-							memcpy(&hexwnd.DataArray[hexwnd.new_pos+(int)totallen],DataToInsert,len);
+						}
+						else /*Enough space*/
+						{
+							memcpy(&hexwnd.DataArray[hexwnd.new_pos + totallen], DataToInsert, len);
 							gotdata = true;
 							totallen += len;
 						}
-					} else /*Insert*/ if( 0 != hexwnd.DataArray.InsertAtGrow( hexwnd.new_pos+totallen, DataToInsert, 0, len ) ){
-							gotdata = true;
-							totallen += len;
+					}
+					else /*Insert*/ if (hexwnd.DataArray.InsertAtGrow(hexwnd.new_pos + totallen, DataToInsert, 0, len))
+					{
+						gotdata = true;
+						totallen += len;
 					}
 				}
-
 			}
-
 		} //for each selected format
 
 		//Release the data
 		free(data);
 		data = NULL;
-		if (IndexOfDataToInsert < 0) {
-			free( formats ); formats = NULL;
+		if (IndexOfDataToInsert < 0)
+		{
+			free(formats);
+			formats = NULL;
 		}
 
 		if (gotdata)
@@ -783,14 +825,11 @@ STDMETHODIMP CDropTarget::Drop( IDataObject* pDataObject, DWORD grfKeyState, POI
 
 ERR_ENUM:
 		iefe->Release();
-		free( fel );
+		free(fel);
 ERR:
 		pDataObject->Release();
 		return err;
 	}
 	pDataObject->Release();
-
 	return S_OK;
 }
-
-

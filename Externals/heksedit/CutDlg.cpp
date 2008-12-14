@@ -10,55 +10,55 @@ BOOL CutDlg::OnInitDialog(HWND hDlg)
 {
 	int iStart = iGetStartOfSelection();
 	int iEnd = iGetEndOfSelection();
-	char buf[32];
-	sprintf(buf, "x%x", iStart);
-	SetDlgItemText(hDlg, IDC_EDIT1, buf);
-	sprintf(buf, "x%x", iEnd);
-	SetDlgItemText(hDlg, IDC_EDIT2, buf);
-	SetDlgItemInt(hDlg, IDC_EDIT3, iEnd - iStart + 1, TRUE);
-	CheckDlgButton(hDlg, IDC_CHECK1, iCutMode);
-	CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
+	TCHAR buf[32];
+	_stprintf(buf, _T("x%x"), iStart);
+	SetDlgItemText(hDlg, IDC_CUT_STARTOFFSET, buf);
+	_stprintf(buf, _T("x%x"), iEnd);
+	SetDlgItemText(hDlg, IDC_CUT_NUMBYTES, buf);
+	SetDlgItemInt(hDlg, IDC_CUT_NUMBYTES2, iEnd - iStart + 1, TRUE);
+	CheckDlgButton(hDlg, IDC_CUT_CLIPBOARD, iCutMode);
+	CheckDlgButton(hDlg, IDC_CUT_INCLUDEOFFSET, BST_CHECKED);
 	return TRUE;
 }
 
 BOOL CutDlg::Apply(HWND hDlg)
 {
-	char buf[64];
+	TCHAR buf[32];
 	int iOffset;
 	int iNumberOfBytes;
-	if (GetDlgItemText(hDlg, IDC_EDIT1, buf, 64) &&
-		sscanf(buf, "x%x", &iOffset) == 0 &&
-		sscanf(buf, "%d", &iOffset) == 0)
+	if (GetDlgItemText(hDlg, IDC_CUT_STARTOFFSET, buf, RTL_NUMBER_OF(buf)) &&
+		_stscanf(buf, _T("x%x"), &iOffset) == 0 &&
+		_stscanf(buf, _T("%d"), &iOffset) == 0)
 	{
-		MessageBox(hDlg, "Start offset not recognized.", "Cut", MB_ICONERROR);
+		MessageBox(hDlg, _T("Start offset not recognized."), _T("Cut"), MB_ICONERROR);
 		return FALSE;
 	}
-	if (IsDlgButtonChecked(hDlg, IDC_RADIO1))
+	if (IsDlgButtonChecked(hDlg, IDC_CUT_INCLUDEOFFSET))
 	{
-		if (GetDlgItemText(hDlg, IDC_EDIT2, buf, 64) &&
-			sscanf(buf, "x%x", &iNumberOfBytes) == 0 &&
-			sscanf(buf, "%d", &iNumberOfBytes) == 0)
+		if (GetDlgItemText(hDlg, IDC_CUT_NUMBYTES, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("x%x"), &iNumberOfBytes) == 0 &&
+			_stscanf(buf, _T("%d"), &iNumberOfBytes) == 0)
 		{
-			MessageBox(hDlg, "End offset not recognized.", "Cut", MB_ICONERROR);
+			MessageBox(hDlg, _T("End offset not recognized."), _T("Cut"), MB_ICONERROR);
 			return FALSE;
 		}
 		iNumberOfBytes = iNumberOfBytes - iOffset + 1;
 	}
 	else
 	{// Get number of bytes.
-		if (GetDlgItemText(hDlg, IDC_EDIT3, buf, 64) &&
-			sscanf(buf, "%d", &iNumberOfBytes) == 0)
+		if (GetDlgItemText(hDlg, IDC_CUT_NUMBYTES2, buf, RTL_NUMBER_OF(buf)) &&
+			_stscanf(buf, _T("%d"), &iNumberOfBytes) == 0)
 		{
-			MessageBox(hDlg, "Number of bytes not recognized.", "Cut", MB_ICONERROR);
+			MessageBox(hDlg, _T("Number of bytes not recognized."), _T("Cut"), MB_ICONERROR);
 			return FALSE;
 		}
 	}
-	iCutMode = IsDlgButtonChecked(hDlg, IDC_CHECK1);
+	iCutMode = IsDlgButtonChecked(hDlg, IDC_CUT_CLIPBOARD);
 	// Can requested number be cut?
 	// DataArray.GetLength ()-iCutOffset = number of bytes from current pos. to end.
 	if (DataArray.GetLength() - iOffset < iNumberOfBytes)
 	{
-		MessageBox(hDlg, "Can't cut more bytes than are present.", "Cut", MB_ICONERROR);
+		MessageBox(hDlg, _T("Can't cut more bytes than are present."), _T("Cut"), MB_ICONERROR);
 		return FALSE;
 	}
 	// OK
@@ -72,7 +72,7 @@ BOOL CutDlg::Apply(HWND hDlg)
 		if (hGlobal == 0)
 		{
 			// Not enough memory for clipboard.
-			MessageBox(hDlg, "Not enough memory for cutting to clipboard.", "Cut", MB_ICONERROR);
+			MessageBox(hDlg, _T("Not enough memory for cutting to clipboard."), _T("Cut"), MB_ICONERROR);
 			return FALSE;
 		}
 		WaitCursor wc;
@@ -87,7 +87,7 @@ BOOL CutDlg::Apply(HWND hDlg)
 	// Cut data.
 	if (!DataArray.RemoveAt(iOffset, iNumberOfBytes))
 	{
-		MessageBox(hDlg, "Could not cut data.", "Cut", MB_ICONERROR);
+		MessageBox(hDlg, _T("Could not cut data."), _T("Cut"), MB_ICONERROR);
 		return FALSE;
 	}
 	iCurByte = iOffset;
@@ -118,10 +118,10 @@ INT_PTR CutDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				EndDialog(hDlg, wParam);
 			}
 			return TRUE;
-		case IDC_RADIO1:
-		case IDC_RADIO2:
-			EnableWindow(GetDlgItem(hDlg, IDC_EDIT2), IsDlgButtonChecked(hDlg, IDC_RADIO1));
-			EnableWindow(GetDlgItem(hDlg, IDC_EDIT3), IsDlgButtonChecked(hDlg, IDC_RADIO2));
+		case IDC_CUT_INCLUDEOFFSET:
+		case IDC_CUT_NUMBYTES:
+			EnableWindow(GetDlgItem(hDlg, IDC_CUT_NUMBYTES), IsDlgButtonChecked(hDlg, IDC_CUT_INCLUDEOFFSET));
+			EnableWindow(GetDlgItem(hDlg, IDC_CUT_NUMBYTES2), IsDlgButtonChecked(hDlg, IDC_CUT_NUMBYTES));
 			return TRUE;
 		}
 		break;

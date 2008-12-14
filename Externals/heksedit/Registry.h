@@ -15,22 +15,24 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  StringTable.cpp
+ * @file  Registry.h
  *
- * @brief Implementation of the translation Stringtable.
+ * @brief Frhed registry functions.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: StringTable.cpp 173 2008-12-03 17:29:30Z kimmov $
+// $Id: Registry.h 159 2008-11-14 18:16:58Z kimmov $
 
-#include "precomp.h"
-#include "StringTable.h"
-#include "resource.h"
+#ifndef _REGISTRY_H_
+#define _REGISTRY_H_
 
-StringTable<LPTSTR> S;
+BOOL contextpresent();
+BOOL linkspresent();
+BOOL defaultpresent();
+BOOL unknownpresent();
+BOOL oldpresent();
+BOOL frhedpresent();
 
-StringTable<WORD> IDS =
-{
-	IDS_DIFFLISTITEMFORMAT,
-	IDS_ABOUTFRHEDVER,
-};
+BOOL registry_RemoveFrhed(HWND);
+
+#endif // _REGISTRY_H_

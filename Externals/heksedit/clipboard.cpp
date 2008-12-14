@@ -28,13 +28,13 @@
 
 //============================================================================================
 
-void TextToClipboard(HWND hwnd, char *text, int len)
+void TextToClipboard(HWND hwnd, LPTSTR text, int len)
 {
 	// Changed for pabs's patch to compare files command.
-	if (HGLOBAL hGlobal = GlobalAlloc(GHND, len))
+	if (HGLOBAL hGlobal = GlobalAlloc(GHND, len * sizeof(TCHAR)))
 	{
 		SetCursor (LoadCursor (NULL, IDC_WAIT)); //tell user to wait
-		if (char *pd = (char *)GlobalLock(hGlobal)) // get pointer to clip data
+		if (LPTSTR pd = (LPTSTR)GlobalLock(hGlobal)) // get pointer to clip data
 		{
 			//succesfuly got pointer
 			lstrcpyn(pd, text, len);//copy Text into global mem
@@ -43,27 +43,31 @@ void TextToClipboard(HWND hwnd, char *text, int len)
 			{
 				// open clip
 				EmptyClipboard(); //empty clip
-				SetClipboardData(CF_TEXT, hGlobal);//copy to clip
+				SetClipboardData(CF_PLAINTEXT, hGlobal);//copy to clip
 				CloseClipboard(); //close clip
 			}
-			else //failed to open clip
-				MessageBox(hwnd,"Cannot get access to clipboard.", "Copy", MB_ICONERROR);
+			else
+			{//failed to open clip
+				MessageBox(hwnd, _T("Cannot get access to clipboard."), _T("Copy"), MB_ICONERROR);
+			}
 		}
 		else
 		{//failed to get pointer to global mem
 			GlobalFree(hGlobal);
-			MessageBox(hwnd,"Cannot lock clipboard.", "Copy", MB_ICONERROR);
+			MessageBox(hwnd, _T("Cannot lock clipboard."), _T("Copy"), MB_ICONERROR);
 		}
 		SetCursor (LoadCursor (NULL, IDC_ARROW));//user can stop waiting
 	}
-	else// failed to allocate global mem
-		MessageBox(hwnd, "Not enough memory for copying.", "Copy", MB_ICONERROR);
+	else
+	{// failed to allocate global mem
+		MessageBox(hwnd, _T("Not enough memory for copying."), _T("Copy"), MB_ICONERROR);
+	}
 }
 
 //Pabs changed - mutated TextToClipboard into two functions
-void TextToClipboard(HWND hwnd, char *text)
+void TextToClipboard(HWND hwnd, LPTSTR text)
 {
-	int len = 1 + strlen(text);
+	int len = 1 + lstrlen(text);
 	TextToClipboard(hwnd, text, len);
 }
 
@@ -72,7 +76,7 @@ void MessageCopyBox(HWND hwnd, LPTSTR text, LPCTSTR caption, UINT type)
 	int len = lstrlen(text);//get the # bytes needed to store the string (not counting '\0')
 	//& get where we have to put a '\0' character later
 	// RK: Added "?" to end of string.
-	lstrcat(text, "\nDo you want the above output to be copied to the clipboard?\n");
+	lstrcat(text, _T("\nDo you want the above output to be copied to the clipboard?\n"));
 	if (IDYES == MessageBox(hwnd, text, caption, MB_YESNO | type))
 	{
 		//user wants to copy output

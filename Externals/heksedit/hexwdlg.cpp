@@ -6,9 +6,9 @@
 
 void GetWindowText(HWND hwnd, SimpleString &str)
 {
-	int len = GetWindowTextLength(hwnd) + 1;
+	int len = GetWindowTextLengthA(hwnd) + 1;
 	str.SetSize(len);
-	GetWindowText(hwnd, str, len);
+	GetWindowTextA(hwnd, str, len);
 }
 
 void GetDlgItemText(HWND hwnd, int id, SimpleString &str)
@@ -74,63 +74,6 @@ INT_PTR DragDropOptionsDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)
 	return FALSE;
 }
 
-INT_PTR CharacterSetDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
-{
-	switch (iMsg)
-	{
-	case WM_INITDIALOG:
-		SetDlgItemInt(hDlg, IDC_EDIT1, iFontSize, TRUE);
-		switch (iCharacterSet)
-		{
-		case ANSI_FIXED_FONT:
-			CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
-			break;
-		case OEM_FIXED_FONT:
-			CheckDlgButton(hDlg, IDC_RADIO2, BST_CHECKED);
-			break;
-		}
-		return TRUE;
-	case WM_COMMAND:
-		switch (wParam)
-		{
-		case IDOK:
-			iFontSize = GetDlgItemInt(hDlg, IDC_EDIT1, 0, TRUE);
-			iCharacterSet = IsDlgButtonChecked(hDlg, IDC_RADIO1) ?
-				ANSI_FIXED_FONT : OEM_FIXED_FONT;
-			save_ini_data();
-			resize_window();
-			// fall through
-		case IDCANCEL:
-			EndDialog(hDlg, wParam);
-			return TRUE;
-		}
-		break;
-	}
-	return FALSE;
-}
-
-INT_PTR BinaryModeDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
-{
-	switch (iMsg)
-	{
-	case WM_INITDIALOG:
-		CheckDlgButton(hDlg, iBinaryMode == LITTLEENDIAN_MODE ? IDC_RADIO1 : IDC_RADIO2, BST_CHECKED);
-		return TRUE;
-	case WM_COMMAND:
-		switch (wParam)
-		{
-		case IDOK:
-			iBinaryMode = IsDlgButtonChecked(hDlg, IDC_RADIO1) ? LITTLEENDIAN_MODE : BIGENDIAN_MODE;
-			// fall through
-		case IDCANCEL:
-			EndDialog(hDlg, wParam);
-			return TRUE;
-		}
-		break;
-	}
-	return FALSE;
-}
-
 INT_PTR ChangeInstDlg::DlgProc(HWND hw, UINT m, WPARAM w, LPARAM l)
 {
 	//God damn spinners make life easy
@@ -145,8 +88,8 @@ INT_PTR ChangeInstDlg::DlgProc(HWND hw, UINT m, WPARAM w, LPARAM l)
 			for (;;)
 			{
 				int i = iLoadInst + 1;
-				char num[64];
-				sprintf(num, "Software\\frhed\\v"CURRENT_VERSION"." SUB_RELEASE_NO "\\%d", i);
+				TCHAR num[64];
+				_stprintf(num, _T("Software\\frhed\\") FRHED_SETTINGS _T("\\%d"), i);
 				if (ERROR_SUCCESS != RegOpenKeyEx(HKEY_CURRENT_USER, num, 0, KEY_EXECUTE, &hk))
 					break;
 				RegCloseKey(hk);//Close the key - just testing if it exists
@@ -154,7 +97,7 @@ INT_PTR ChangeInstDlg::DlgProc(HWND hw, UINT m, WPARAM w, LPARAM l)
 			}
 			if (iLoadInst == -1)
 			{
-				MessageBox(hwnd,"No instance data present","Change Instance",MB_OK);
+				MessageBox(hwnd, _T("No instance data present"), _T("Change Instance"), MB_OK);
 				EndDialog(hw, IDCANCEL);
 				return TRUE;
 			}

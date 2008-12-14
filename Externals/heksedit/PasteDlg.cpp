@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  PasteDlg.cpp
+ *
+ * @brief Implementation of the Paste dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: PasteDlg.cpp 195 2008-12-09 19:00:27Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -7,38 +32,38 @@ BOOL PasteDlg::OnInitDialog(HWND hDlg)
 {
 	if (bSelected) // iPasteMode = 0
 	{
-		EnableWindow(GetDlgItem(hDlg, IDC_RADIO1), FALSE);
-		EnableWindow(GetDlgItem(hDlg, IDC_RADIO2), FALSE);
+		EnableWindow(GetDlgItem(hDlg, IDC_PASTE_OVERWRITE), FALSE);
+		EnableWindow(GetDlgItem(hDlg, IDC_PASTE_INSERT), FALSE);
 	}
 	else if (iInsertMode) // iPasteMode = 2
 	{
-		CheckDlgButton(hDlg, IDC_RADIO2, BST_CHECKED);
+		CheckDlgButton(hDlg, IDC_PASTE_INSERT, BST_CHECKED);
 	}
 	else // iPasteMode = 1
 	{
-		CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
+		CheckDlgButton(hDlg, IDC_PASTE_OVERWRITE, BST_CHECKED);
 	}
-	SendDlgItemMessage(hDlg, IDC_EDIT1, WM_PASTE, 0, 0);
-	SetDlgItemInt(hDlg, IDC_EDIT2, iPasteTimes, TRUE);
-	SetDlgItemInt(hDlg, IDC_EDIT3, iPasteSkip, TRUE);
-	CheckDlgButton(hDlg, IDC_CHECK1, iPasteAsText);
+	SendDlgItemMessage(hDlg, IDC_PASTE_CLIPBOARD, WM_PASTE, 0, 0);
+	SetDlgItemInt(hDlg, IDC_PASTE_TIMES, iPasteTimes, TRUE);
+	SetDlgItemInt(hDlg, IDC_PASTE_SKIPBYTES, iPasteSkip, TRUE);
+	CheckDlgButton(hDlg, IDC_PASTE_BINARY, iPasteAsText);
 	return TRUE;
 }
 
 BOOL PasteDlg::Apply(HWND hDlg)
 {
-	iPasteAsText = IsDlgButtonChecked(hDlg, IDC_CHECK1);
-	iPasteTimes = GetDlgItemInt(hDlg, IDC_EDIT2, 0, TRUE);
+	iPasteAsText = IsDlgButtonChecked(hDlg, IDC_PASTE_BINARY);
+	iPasteTimes = GetDlgItemInt(hDlg, IDC_PASTE_TIMES, 0, TRUE);
 	if (iPasteTimes <= 0)
 	{
-		MessageBox(hDlg, "Number of times to paste must be at least 1.", "Paste", MB_ICONERROR);
+		MessageBox(hDlg, _T("Number of times to paste must be at least 1."), _T("Paste"), MB_ICONERROR);
 		return FALSE;
 	}
-	iPasteSkip = GetDlgItemInt(hDlg, IDC_EDIT3, 0, TRUE);
-	HWND hwndEdit1 = GetDlgItem(hDlg, IDC_EDIT1);
+	iPasteSkip = GetDlgItemInt(hDlg, IDC_PASTE_SKIPBYTES, 0, TRUE);
+	HWND hwndEdit1 = GetDlgItem(hDlg, IDC_PASTE_CLIPBOARD);
 	int destlen = GetWindowTextLength(hwndEdit1) + 1;
 	char *pcPastestring = new char[destlen];
-	destlen = GetWindowText(hwndEdit1, pcPastestring, destlen);
+	destlen = GetWindowTextA(hwndEdit1, pcPastestring, destlen);
 	if (iPasteAsText == 0)
 	{
 		char *pc = 0;
@@ -48,12 +73,12 @@ BOOL PasteDlg::Apply(HWND hDlg)
 	}
 	if (destlen == 0)
 	{
-		MessageBox(hDlg, "Tried to paste zero-length array.", "Paste", MB_ICONERROR);
+		MessageBox(hDlg, _T("Tried to paste zero-length array."), _T("Paste"), MB_ICONERROR);
 		delete [] pcPastestring;
 		return FALSE;
 	}
 	WaitCursor wc1;
-	if (bSelected || IsDlgButtonChecked(hDlg, IDC_RADIO2))
+	if (bSelected || IsDlgButtonChecked(hDlg, IDC_PASTE_INSERT))
 	{
 		// Insert at iCurByte. Bytes there will be pushed up.
 		if (bSelected)
@@ -68,7 +93,7 @@ BOOL PasteDlg::Apply(HWND hDlg)
 		{
 			if (!DataArray.InsertAtGrow(i, (unsigned char*)pcPastestring, 0, destlen))
 			{
-				MessageBox(hDlg, "Not enough memory for inserting.", "Paste", MB_ICONERROR);
+				MessageBox(hDlg, _T("Not enough memory for inserting."), _T("Paste"), MB_ICONERROR);
 				break;
 			}
 			i += destlen + iPasteSkip;
@@ -84,7 +109,7 @@ BOOL PasteDlg::Apply(HWND hDlg)
 		// DataArray.GetLength()-iCurByte = number of bytes from including curbyte to end.
 		if (DataArray.GetLength() - iCurByte < (iPasteSkip + destlen) * iPasteTimes)
 		{
-			MessageBox(hDlg, "Not enough space for overwriting.", "Paste", MB_ICONERROR);
+			MessageBox(hDlg, _T("Not enough space for overwriting."), _T("Paste"), MB_ICONERROR);
 			delete [] pcPastestring;
 			return TRUE;
 		}
@@ -137,41 +162,41 @@ BOOL FastPasteDlg::OnInitDialog(HWND hDlg)
 {
 	SendMessage(hDlg, WM_COMMAND, IDC_REFRESH, 0);
 	hwndNextViewer = SetClipboardViewer(hDlg);
-	SetDlgItemInt(hDlg, IDC_EDIT2, iPasteTimes, TRUE);
-	SetDlgItemInt(hDlg, IDC_EDIT3, iPasteSkip, TRUE);
+	SetDlgItemInt(hDlg, IDC_PASTE_TIMES, iPasteTimes, TRUE);
+	SetDlgItemInt(hDlg, IDC_PASTE_SKIPBYTES, iPasteSkip, TRUE);
 	// Depending on INS or OVR mode, set the radio button.
 	if (bSelected) // iPasteMode = 0
 	{
-		EnableWindow(GetDlgItem(hDlg, IDC_RADIO1), FALSE);
-		EnableWindow(GetDlgItem(hDlg, IDC_RADIO2), FALSE);
+		EnableWindow(GetDlgItem(hDlg, IDC_PASTE_OVERWRITE), FALSE);
+		EnableWindow(GetDlgItem(hDlg, IDC_PASTE_INSERT), FALSE);
 	}
 	else if (iInsertMode) // iPasteMode = 2
 	{
-		CheckDlgButton(hDlg, IDC_RADIO2, BST_CHECKED);
+		CheckDlgButton(hDlg, IDC_PASTE_INSERT, BST_CHECKED);
 	}
 	else // iPasteMode = 1
 	{
-		CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
+		CheckDlgButton(hDlg, IDC_PASTE_OVERWRITE, BST_CHECKED);
 	}
-	CheckDlgButton(hDlg, IDC_CHECK1, iPasteAsText);
+	CheckDlgButton(hDlg, IDC_PASTE_BINARY, iPasteAsText);
 	return TRUE;
 }
 
 BOOL FastPasteDlg::Apply(HWND hDlg)
 {
-	iPasteAsText = IsDlgButtonChecked(hDlg, IDC_CHECK1);
-	iPasteTimes = GetDlgItemInt(hDlg, IDC_EDIT2, 0, TRUE);
+	iPasteAsText = IsDlgButtonChecked(hDlg, IDC_PASTE_BINARY);
+	iPasteTimes = GetDlgItemInt(hDlg, IDC_PASTE_TIMES, 0, TRUE);
 	if (iPasteTimes <= 0)
 	{
-		MessageBox(hDlg, "Number of times to paste must be at least 1.", "Paste", MB_ICONERROR);
+		MessageBox(hDlg, _T("Number of times to paste must be at least 1."), _T("Paste"), MB_ICONERROR);
 		return FALSE;
 	}
-	iPasteSkip = GetDlgItemInt(hDlg, IDC_EDIT3, 0, TRUE);
+	iPasteSkip = GetDlgItemInt(hDlg, IDC_PASTE_SKIPBYTES, 0, TRUE);
 	HWND list = GetDlgItem(hDlg, IDC_LIST);
 	int i = SendMessage(list, LB_GETCURSEL, 0, 0);
 	if (i == LB_ERR)
 	{
-		MessageBox(hDlg, "You need to select a clipboard format to use.", "Paste", MB_ICONERROR);
+		MessageBox(hDlg, _T("You need to select a clipboard format to use."), _T("Paste"), MB_ICONERROR);
 		return FALSE;
 	}
 	UINT uFormat = SendMessage(list, LB_GETITEMDATA, i, 0);
@@ -188,7 +213,7 @@ BOOL FastPasteDlg::Apply(HWND hDlg)
 			{
 				char *pClipMemory = (char *)GlobalLock(hClipMemory);
 				pcPastestring = new char[gsize];
-				memcpy (pcPastestring, pClipMemory, gsize);
+				memcpy(pcPastestring, pClipMemory, gsize);
 				GlobalUnlock(hClipMemory);
 			}
 			switch (uFormat)
@@ -223,12 +248,12 @@ BOOL FastPasteDlg::Apply(HWND hDlg)
 	}
 	if (destlen == 0)
 	{
-		MessageBox(hDlg, "Tried to paste zero-length array.", "Paste", MB_ICONERROR);
+		MessageBox(hDlg, _T("Tried to paste zero-length array."), _T("Paste"), MB_ICONERROR);
 		delete [] pcPastestring;
 		return FALSE;
 	}
 	WaitCursor wc1;
-	if (bSelected || IsDlgButtonChecked(hDlg, IDC_RADIO2))
+	if (bSelected || IsDlgButtonChecked(hDlg, IDC_PASTE_INSERT))
 	{
 		// Insert at iCurByte. Bytes there will be pushed up.
 		if (bSelected)
@@ -243,7 +268,7 @@ BOOL FastPasteDlg::Apply(HWND hDlg)
 		{
 			if (!DataArray.InsertAtGrow(i, (unsigned char*)pcPastestring, 0, destlen))
 			{
-				MessageBox(hDlg, "Not enough memory for inserting.", "Paste", MB_ICONERROR);
+				MessageBox(hDlg, _T("Not enough memory for inserting."), _T("Paste"), MB_ICONERROR);
 				break;
 			}
 			i += destlen + iPasteSkip;
@@ -258,7 +283,7 @@ BOOL FastPasteDlg::Apply(HWND hDlg)
 		// Enough space for writing?
 		if (DataArray.GetLength() - iCurByte < (iPasteSkip + destlen) * iPasteTimes)
 		{
-			MessageBox(hDlg, "Not enough space for overwriting.", "Paste", MB_ICONERROR);
+			MessageBox(hDlg, _T("Not enough space for overwriting."), _T("Paste"), MB_ICONERROR);
 			delete [] pcPastestring;
 			return TRUE;
 		}
@@ -293,28 +318,33 @@ BOOL FastPasteDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
 		{
 			//Get all the Clipboard formats
 			HWND list = GetDlgItem(hDlg, IDC_LIST);
-			SendMessage( list, LB_RESETCONTENT, 0, 0 );
+			SendMessage(list, LB_RESETCONTENT, 0, 0);
 			if (CountClipboardFormats() && OpenClipboard(NULL))
 			{
 				UINT uFormat;
 				int i;
-				char szFormatName[100], SetSel = 0;
-				LPCSTR lpFormatName;
+				TCHAR szFormatName[100];
+				int SetSel = 0;
+				LPCTSTR lpFormatName;
 
 				uFormat = EnumClipboardFormats(0);
-				while (uFormat){
+				while (uFormat)
+				{
 					lpFormatName = NULL;
-
 					// For registered formats, get the registered name.
-					if (GetClipboardFormatName(uFormat, szFormatName, sizeof(szFormatName)))
+					if (GetClipboardFormatName(uFormat, szFormatName, RTL_NUMBER_OF(szFormatName)))
+					{
 						lpFormatName = szFormatName;
-					else{
+					}
+					else
+					{
 						//Get the name of the standard clipboard format.
-						switch(uFormat){
-							#define CASE(a,b) case a: lpFormatName = #a; SetSel = b; break;
+						switch (uFormat)
+						{
+							#define CASE(a,b) case a: lpFormatName = _T(#a); SetSel = b; break;
 								CASE(CF_TEXT,1)
 							#undef CASE
-							#define CASE(a) case a: lpFormatName = #a; break;
+							#define CASE(a) case a: lpFormatName = _T(#a); break;
 								CASE(CF_BITMAP) CASE(CF_METAFILEPICT) CASE(CF_SYLK)
 								CASE(CF_DIF) CASE(CF_TIFF) CASE(CF_OEMTEXT)
 								CASE(CF_DIB) CASE(CF_PALETTE) CASE(CF_PENDATA)
@@ -327,31 +357,30 @@ BOOL FastPasteDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
 								CASE(CF_GDIOBJLAST) CASE(CF_DIBV5)
 							#undef CASE
 							default:
-								if(i!=i);
-								#define CASE(a) else if(uFormat>a##FIRST&&uFormat<a##LAST) sprintf(szFormatName,#a "%d",uFormat-a##FIRST);
-									CASE(CF_PRIVATE) CASE(CF_GDIOBJ)
+								#define CASE(a) if (uFormat>a##FIRST&&uFormat<a##LAST) _stprintf(szFormatName, _T(#a) _T("%d"), uFormat - a##FIRST);
+								CASE(CF_PRIVATE) else CASE(CF_GDIOBJ) else break;
 								#undef CASE
 								/*Format ideas for future: hex number, system/msdn constant, registered format, WM_ASKFORMATNAME, tickbox for delay rendered or not*/
 								/*else if(uFormat>0xC000&&uFormat<0xFFFF){
 									sprintf(szFormatName,"CF_REGISTERED%d",uFormat-0xC000);
 								}*/
-								else break;
 								lpFormatName = szFormatName;
 							break;
 						}
 					}
-
-					if (lpFormatName == NULL){
-						sprintf(szFormatName,"0x%.8x",uFormat);
+					if (lpFormatName == NULL)
+					{
+						_stprintf(szFormatName, _T("0x%.8x"), uFormat);
 						lpFormatName = szFormatName;
 					}
-
 					//Insert into the list
-					if(lpFormatName){
-						i = SendMessage(list, LB_ADDSTRING, 0, (LPARAM) lpFormatName);
-						if(SetSel == 1){SetSel = 2; SendMessage(list, LB_SETCURSEL, i, 0);}
-						SendMessage(list, LB_SETITEMDATA, i, uFormat);
+					i = SendMessage(list, LB_ADDSTRING, 0, (LPARAM) lpFormatName);
+					if (SetSel == 1)
+					{
+						SetSel = 2;
+						SendMessage(list, LB_SETCURSEL, i, 0);
 					}
+					SendMessage(list, LB_SETITEMDATA, i, uFormat);
 
 					uFormat = EnumClipboardFormats(uFormat);
 				}
@@ -367,7 +396,7 @@ BOOL FastPasteDlg::OnCommand(HWND hDlg, WPARAM wParam, LPARAM)
 			int i = SendMessage(list, LB_GETCURSEL, 0, 0);
 			UINT f = SendMessage(list, LB_GETITEMDATA, i, 0);
 			if (f == CF_UNICODETEXT)
-				CheckDlgButton(hDlg, IDC_CHECK1, BST_CHECKED);
+				CheckDlgButton(hDlg, IDC_PASTE_BINARY, BST_CHECKED);
 		}
 		return TRUE;
 	}

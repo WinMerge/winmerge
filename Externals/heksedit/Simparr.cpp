@@ -1,17 +1,17 @@
 /** 
  * @file  Simparr.cpp
  *
- * @brief Implementation file for SimpleArray and SimpleString classes.
+ * @brief Implementation file for SimpleString class.
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: Simparr.cpp 42 2008-09-01 20:40:28Z kimmov $
+// $Id: Simparr.cpp 104 2008-11-05 22:43:37Z kimmov $
 
 #include "precomp.h"
-#include "simparr.h"
+#include "Simparr.h"
 
 //-------------------------------------------------------------------
-int SimpleString::AppendString( const char* ps )
+int SimpleString::AppendString(const char* ps)
 {
 	if( m_nUpperBound == -1 )
 		return SetToString( ps );
@@ -23,28 +23,28 @@ int SimpleString::AppendString( const char* ps )
 }
 
 //-------------------------------------------------------------------
-int SimpleString::SetToString( const char* ps )
+int SimpleString::SetToString(const char* ps)
 {
 	Clear();
 	return AppendString( ps );
 }
 
 //-------------------------------------------------------------------
-SimpleString& SimpleString::operator=( const char* ps )
+SimpleString& SimpleString::operator=(const char* ps)
 {
 	SetToString( ps );
 	return *this;
 }
 
 //-------------------------------------------------------------------
-SimpleString& SimpleString::operator=( const SimpleString &str )
+SimpleString& SimpleString::operator=(const SimpleString &str)
 {
 	SetToString( &str[0] );
 	return *this;
 }
 
 //-------------------------------------------------------------------
-SimpleString& SimpleString::operator+=( const char* ps )
+SimpleString& SimpleString::operator+=(const char* ps)
 {
 	if( m_nUpperBound == -1 )
 		SetToString( ps );
@@ -56,7 +56,7 @@ SimpleString& SimpleString::operator+=( const char* ps )
 }
 
 //-------------------------------------------------------------------
-int SimpleString::StrLen()
+int SimpleString::StrLen() const
 {
 	if( m_pT != NULL )
 		return strlen( m_pT );
@@ -98,7 +98,7 @@ SimpleString SimpleString::operator+( const SimpleString& str1 )
 }
 
 //-------------------------------------------------------------------
-int SimpleString::IsEmpty()
+int SimpleString::IsEmpty() const
 {
 	return !StrLen();
 }

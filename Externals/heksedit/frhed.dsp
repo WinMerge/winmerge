@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="frhed" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="Frhed" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
-# ** NICHT BEARBEITEN **
+# ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=frhed - Win32 Debug
-!MESSAGE Dies ist kein gültiges Makefile. Zum Erstellen dieses Projekts mit NMAKE
-!MESSAGE verwenden Sie den Befehl "Makefile exportieren" und führen Sie den Befehl
+CFG=Frhed - Win32 Debug
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
 !MESSAGE 
 !MESSAGE NMAKE /f "frhed.mak".
 !MESSAGE 
-!MESSAGE Sie können beim Ausführen von NMAKE eine Konfiguration angeben
-!MESSAGE durch Definieren des Makros CFG in der Befehlszeile. Zum Beispiel:
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "frhed.mak" CFG="frhed - Win32 Debug"
+!MESSAGE NMAKE /f "frhed.mak" CFG="Frhed - Win32 Debug"
 !MESSAGE 
-!MESSAGE Für die Konfiguration stehen zur Auswahl:
+!MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "frhed - Win32 Release" (basierend auf  "Win32 (x86) Application")
-!MESSAGE "frhed - Win32 Debug" (basierend auf  "Win32 (x86) Application")
+!MESSAGE "Frhed - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "Frhed - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "frhed - Win32 Release"
+!IF  "$(CFG)" == "Frhed - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -56,7 +56,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib comctl32.lib wininet.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib shlwapi.lib /nologo /subsystem:windows /machine:I386
 # SUBTRACT LINK32 /pdb:none
 
-!ELSEIF  "$(CFG)" == "frhed - Win32 Debug"
+!ELSEIF  "$(CFG)" == "Frhed - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -87,8 +87,8 @@ LINK32=link.exe
 
 # Begin Target
 
-# Name "frhed - Win32 Release"
-# Name "frhed - Win32 Debug"
+# Name "Frhed - Win32 Release"
+# Name "Frhed - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -139,7 +139,7 @@ SOURCE=.\frhed.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\icon1.ico
+SOURCE=.\res\Frhed.ico
 # End Source File
 # Begin Source File
 

@@ -28,6 +28,8 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2007-02-03	Jochen Neubeck		Created
 2008-08-24	Jochen Neubeck		FormatMessage
+2008-10-15	Kimmo Varis			Rename 'export' variable to 'strExport' to avoid
+								compiler warnings.
 */
 #include "precomp.h"
 #include "DllProxies.h"
@@ -59,19 +61,19 @@ LPVOID DllProxy::Load()
 			Names[1] = 0;
 			return 0;
 		}
-		LPCSTR *export = Names;
+		LPCSTR *strExport = Names;
 		*Names = 0;
-		while (LPCSTR name = *++export)
+		while (LPCSTR name = *++strExport)
 		{
-			*export = (LPCSTR)GetProcAddress(handle, name);
-			if (*export == 0)
+			*strExport = (LPCSTR)GetProcAddress(handle, name);
+			if (*strExport == 0)
 			{
 				Names[0] = Names[1] = name;
 				Names[2] = (LPCSTR)handle;
 				return 0;
 			}
 		}
-		*export = (LPCSTR)handle;
+		*strExport = (LPCSTR)handle;
 	}
 	return this + 1;
 }

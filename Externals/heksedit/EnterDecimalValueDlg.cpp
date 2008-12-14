@@ -1,3 +1,28 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  EnterDecimalValueDlg.cpp
+ *
+ * @brief Implementation of the dialog for entering decimal value.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: EnterDecimalValueDlg.cpp 203 2008-12-10 16:49:54Z kimmov $
+
 #include "precomp.h"
 #include "resource.h"
 #include "hexwnd.h"
@@ -22,15 +47,15 @@ BOOL EnterDecimalValueDlg::OnInitDialog(HWND hDlg)
 		else
 			iDecValDlgValue = (int)DataArray[iCurByte];
 	}
-	char buf[16];
-	SetDlgItemInt(hDlg, IDC_EDIT1, iDecValDlgValue, TRUE);
-	sprintf(buf, "x%x", iCurByte);
-	SetDlgItemText(hDlg, IDC_EDIT2, buf);
-	SetDlgItemInt(hDlg, IDC_EDIT3, 1, TRUE);
+	TCHAR buf[16];
+	SetDlgItemInt(hDlg, IDC_DECIMAL_VALUE, iDecValDlgValue, TRUE);
+	_stprintf(buf, _T("x%x"), iCurByte);
+	SetDlgItemText(hDlg, IDC_DECIMAL_OFFSET, buf);
+	SetDlgItemInt(hDlg, IDC_DECIMAL_TIMES, 1, TRUE);
 	CheckDlgButton(hDlg,
-		iDecValDlgSize == 4 ? IDC_RADIO3 :
-		iDecValDlgSize == 2 ? IDC_RADIO2 :
-		IDC_RADIO1,
+		iDecValDlgSize == 4 ? IDC_DECIMAL_DWORD :
+		iDecValDlgSize == 2 ? IDC_DECIMAL_WORD :
+		IDC_DECIMAL_BYTE,
 		BST_CHECKED);
 	return TRUE;
 }
@@ -38,45 +63,45 @@ BOOL EnterDecimalValueDlg::OnInitDialog(HWND hDlg)
 BOOL EnterDecimalValueDlg::Apply(HWND hDlg)
 {
 	iDecValDlgSize =
-		IsDlgButtonChecked(hDlg, IDC_RADIO3) ? 4 :
-		IsDlgButtonChecked(hDlg, IDC_RADIO2) ? 2 :
+		IsDlgButtonChecked(hDlg, IDC_DECIMAL_DWORD) ? 4 :
+		IsDlgButtonChecked(hDlg, IDC_DECIMAL_WORD) ? 2 :
 		1;
-	char buf[16];
+	TCHAR buf[16];
 	BOOL translated;
-	int iDecValDlgValue = GetDlgItemInt(hDlg, IDC_EDIT1, &translated, TRUE);
+	int iDecValDlgValue = GetDlgItemInt(hDlg, IDC_DECIMAL_VALUE, &translated, TRUE);
 	if (!translated)
 	{
-		MessageBox(hDlg, "Decimal value not recognized.", "Enter decimal value", MB_ICONERROR);
+		MessageBox(hDlg, _T("Decimal value not recognized."), _T("Enter decimal value"), MB_ICONERROR);
 		return FALSE;
 	}
 	int iDecValDlgOffset;
-	if (GetDlgItemText(hDlg, IDC_EDIT2, buf, 16) &&
-		sscanf(buf, "%d", &iDecValDlgOffset) == 0 && 
-		sscanf(buf, "x%x", &iDecValDlgOffset) == 0)
+	if (GetDlgItemText(hDlg, IDC_DECIMAL_OFFSET, buf, 16) &&
+		_stscanf(buf, _T("%d"), &iDecValDlgOffset) == 0 && 
+		_stscanf(buf, _T("x%x"), &iDecValDlgOffset) == 0)
 	{
-		MessageBox(hDlg, "Offset not recognized.", "Enter decimal value", MB_ICONERROR);
+		MessageBox(hDlg, _T("Offset not recognized."), _T("Enter decimal value"), MB_ICONERROR);
 		return FALSE;
 	}
-	int iDecValDlgTimes = GetDlgItemInt(hDlg, IDC_EDIT3, &translated, TRUE);
+	int iDecValDlgTimes = GetDlgItemInt(hDlg, IDC_DECIMAL_TIMES, &translated, TRUE);
 	if (!translated)
 	{
-		MessageBox(hDlg, "Number of times not recognized.", "Enter decimal value", MB_ICONERROR);
+		MessageBox(hDlg, _T("Number of times not recognized."), _T("Enter decimal value"), MB_ICONERROR);
 		return FALSE;
 	}
 	if (iDecValDlgOffset < 0 || iDecValDlgOffset > DataArray.GetUpperBound())
 	{
-		MessageBox(hDlg, "Invalid start offset.", "Enter decimal value", MB_ICONERROR);
+		MessageBox(hDlg, _T("Invalid start offset."), _T("Enter decimal value"), MB_ICONERROR);
 		return FALSE;
 	}
 	if (iDecValDlgOffset + iDecValDlgSize * iDecValDlgTimes > DataArray.GetLength())
 	{
-		MessageBox(hDlg, "Not enough space for writing decimal values.", "Enter decimal value", MB_ICONERROR);
+		MessageBox(hDlg, _T("Not enough space for writing decimal values."), _T("Enter decimal value"), MB_ICONERROR);
 		return FALSE;
 	}
 	WaitCursor wc;
 	while (iDecValDlgTimes)
 	{
-		if (iBinaryMode == LITTLEENDIAN_MODE)
+		if (iBinaryMode == ENDIAN_LITTLE)
 		{
 			switch (iDecValDlgSize)
 			{

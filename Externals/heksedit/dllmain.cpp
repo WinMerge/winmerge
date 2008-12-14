@@ -8,17 +8,7 @@
 HINSTANCE hMainInstance;
 LRESULT CALLBACK HexWndProc(HWND, UINT, WPARAM, LPARAM);
 
-static const char szHexClassA[] = "hekseditA_"
-	SHARPEN(A,FRHED_MAJOR_VERSION) "."
-	SHARPEN(A,FRHED_MINOR_VERSION) "."
-	SHARPEN(A,FRHED_SUB_RELEASE_NO) "."
-	SHARPEN(A,FRHED_BUILD_NO);
-
-static const WCHAR szHexClassW[] = L"hekseditW_"
-	SHARPEN(W,FRHED_MAJOR_VERSION) L"."
-	SHARPEN(W,FRHED_MINOR_VERSION) L"."
-	SHARPEN(W,FRHED_SUB_RELEASE_NO) L"."
-	SHARPEN(W,FRHED_BUILD_NO);
+static const TCHAR szHexClass[] = WC_HEKSEDIT;
 
 //--------------------------------------------------------------------------------------------
 // WinMain: the starting point.
@@ -27,21 +17,15 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{
 		hMainInstance = hInstance;
-		union
-		{
-			WNDCLASSEXA a;
-			WNDCLASSEXW w;
-		} wndclass;
+		WNDCLASSEX wndclass;
 		ZeroMemory(&wndclass, sizeof wndclass);
-		wndclass.a.cbSize = sizeof wndclass;
-		wndclass.a.style = CS_HREDRAW | CS_VREDRAW | CS_GLOBALCLASS;
-		wndclass.a.lpfnWndProc = HexWndProc;
-		wndclass.a.hInstance = hInstance;
-		wndclass.a.hCursor = 0;
-		wndclass.a.lpszClassName = szHexClassA;
-		RegisterClassExA(&wndclass.a);
-		wndclass.w.lpszClassName = szHexClassW;
-		RegisterClassExW(&wndclass.w);
+		wndclass.cbSize = sizeof wndclass;
+		wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_GLOBALCLASS;
+		wndclass.lpfnWndProc = HexWndProc;
+		wndclass.hInstance = hInstance;
+		wndclass.hCursor = 0;
+		wndclass.lpszClassName = szHexClass;
+		RegisterClassEx(&wndclass);
 		HexEditorWindow::LoadStringTable();
 		return TRUE;
 	}

@@ -1,17 +1,40 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  hexwnd.h
+ *
+ * @brief Declaration of the hex editor window class.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: hexwnd.h 203 2008-12-10 16:49:54Z kimmov $
+
 #ifndef hexwnd_h
 #define hexwnd_h
 
+#include "Simparr.h"
 #include "IDT.h"
 
 #include "heksedit.h"
 
-#define SHARPEN_A(X) #X
-#define SHARPEN_W(X) L#X
-#define SHARPEN(T,X) SHARPEN_##T(X)
+// This is frhed vCURRENT_VERSION.SUB_RELEASE_NO
+#include "version.h"
 
-#define CURRENT_VERSION SHARPEN(A,FRHED_MAJOR_VERSION) "." SHARPEN(A,FRHED_MINOR_VERSION)
-#define SUB_RELEASE_NO SHARPEN(A,FRHED_SUB_RELEASE_NO)
-#define BUILD_NO SHARPEN(A,FRHED_BUILD_NO)
+#include "LangTools.h"
 
 #include "PhysicalDrive.h"
 #include "PMemoryBlock.h"
@@ -26,8 +49,6 @@ INT_PTR CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
 
 #define ANSI_SET ANSI_FIXED_FONT
 #define OEM_SET OEM_FIXED_FONT
-#define LITTLEENDIAN_MODE 0
-#define BIGENDIAN_MODE 1
 #define SCROLL_TIMER_ID 1
 #define SCROLL_DELAY_TIMER_ID 2
 #define MOUSE_OP_DELAY_TIMER_ID 3
@@ -40,12 +61,8 @@ INT_PTR CALLBACK TmplDisplayDlgProc(HWND, UINT, WPARAM, LPARAM);
 typedef struct
 {
 	int offset;
-	char* name;
+	LPTSTR name;
 } bookmark;
-
-//--------------------------------------------------------------------------------------------
-// Global variables.
-#include "simparr.h"
 
 //--------------------------------------------------------------------------------------------
 enum ClickArea { AREA_NONE, AREA_OFFSETS, AREA_BYTES, AREA_CHARS };
@@ -55,9 +72,6 @@ enum EnteringMode { BYTES, CHARS };
 class hexfile_stream;
 class load_hexfile_0;
 class load_hexfile_1;
-
-class LangArray;
-extern LangArray langArray;
 
 interface CDropTarget;
 
@@ -148,10 +162,10 @@ public:
 	BOOL STDMETHODCALLTYPE select_prev_diff(BOOL bFromEnd);
 	void CMD_colors_to_default();
 	void CMD_goto();
-	int read_tpl_token( char* pcTpl, int tpl_len, int& index, char* name );
-	int ignore_non_code( char* pcTpl, int tpl_len, int& index );
-	void apply_template_on_memory( char* pcTpl, int tpl_len, SimpleArray<char>& ResultArray );
-	void apply_template(char *pcTemplate);
+	int read_tpl_token(LPSTR pcTpl, int tpl_len, int& index, LPTSTR dest);
+	int ignore_non_code(LPSTR pcTpl, int tpl_len, int& index);
+	void apply_template_on_memory(LPSTR pcTpl, int tpl_len, SimpleArray<TCHAR>& ResultArray);
+	void apply_template(LPCTSTR);
 	void CMD_apply_template();
 	virtual void STDMETHODCALLTYPE dropfiles(HDROP);
 	void CMD_open_partially();
@@ -169,7 +183,6 @@ public:
 	void CMD_compare();
 	void CMD_properties();
 	void make_font();
-	void CMD_select_all();
 	void CMD_on_backspace ();
 	void CMD_toggle_insertmode();
 	void CMD_character_set();
@@ -177,7 +190,7 @@ public:
 	void CMD_edit_append();
 	virtual void STDMETHODCALLTYPE save_ini_data();
 //Pabs inserted "char* key = NULL"
-	virtual void STDMETHODCALLTYPE read_ini_data(char *key = 0);
+	virtual void STDMETHODCALLTYPE read_ini_data(LPCTSTR key = 0);
 //end
 	void CMD_color_settings(COLORREF* pColor);
 	void CMD_view_settings();
@@ -186,7 +199,7 @@ public:
 	void CMD_open();
 	int CMD_save();
 	int CMD_save_as();
-	int CMD_new(const char *title = 0);
+	int CMD_new(LPCTSTR title = 0);
 	int create_bc_translation(char** ppd, char* src, int srclen);
 	void CMD_edit_enterdecimalvalue();
 	int CMD_copy_hexdump(int iCopyHexdumpMode, int iCopyHexdumpType, int iCopyHexdumpDlgStart, int iCopyHexdumpDlgEnd, char *mem = 0, int memlen = 0);
@@ -197,13 +210,15 @@ public:
 	void STDMETHODCALLTYPE CMD_edit_paste();
 	void STDMETHODCALLTYPE CMD_edit_clear();
 	void STDMETHODCALLTYPE CMD_fast_paste();
-	int mousemove(int xPos, int yPos);
-	int lbuttonup(int xPos, int yPos);
+	void STDMETHODCALLTYPE CMD_select_all();
+	void STDMETHODCALLTYPE CMD_zoom(int);
+	void mousemove(int xPos, int yPos);
+	void mousewheel(int delta);
 
 	void EnableDriveButtons(BOOL bEnable);
 	BOOL queryCommandEnabled(UINT id);
 
-	virtual int STDMETHODCALLTYPE close(const char *caption = 0);
+	virtual int STDMETHODCALLTYPE close(LPCTSTR caption = 0);
 	virtual int STDMETHODCALLTYPE initmenupopup(WPARAM w, LPARAM l);
 	void adjust_view_for_caret();
 	void print_line(HDC hdc, int line, HBRUSH hbr);
@@ -228,18 +243,22 @@ public:
 	Status *STDMETHODCALLTYPE get_status();
 	int STDMETHODCALLTYPE translate_accelerator(MSG *);
 	BOOL STDMETHODCALLTYPE load_lang(LANGID);
-	BSTR STDMETHODCALLTYPE load_string(UINT);
-	void STDMETHODCALLTYPE free_string(BSTR);
+	LPTSTR STDMETHODCALLTYPE load_string(UINT);
+	void STDMETHODCALLTYPE free_string(LPTSTR);
+	HMENU STDMETHODCALLTYPE load_menu(UINT);
 
-	virtual int STDMETHODCALLTYPE load_file(const char* fname);
-	int file_is_loadable(const char* fname);
+	virtual int STDMETHODCALLTYPE load_file(LPCTSTR);
+	virtual int STDMETHODCALLTYPE open_file(LPCWSTR);
+	int file_is_loadable(LPCTSTR fname);
 	int at_window_create(HWND hw, HINSTANCE hI);
 	void set_focus();
 	void kill_focus();
-	int lbuttondown( int nFlags, int xPos, int yPos);
-	int snap_caret();
+	void lbuttondown(int nFlags, int xPos, int yPos);
+	void lbuttonup(int xPos, int yPos);
+	void snap_caret();
 	void keydown(int key);
 	void character(char ch);
+	void scroll_window(int dx, int dy);
 	void vscroll(int cmd);
 	void hscroll(int cmd);
 	int paint();
@@ -247,8 +266,8 @@ public:
 	int destroy_window();
 	virtual void STDMETHODCALLTYPE set_wnd_title();
 	void set_caret_pos();
-	void print_text(HDC hdc, int x, int y, char *pch, int cch);
-	virtual HRESULT STDMETHODCALLTYPE ResolveIt(LPCSTR lpszLinkFile, LPSTR lpszPath);
+	void print_text(HDC hdc, int x, int y, LPCSTR pch, int cch);
+	virtual HRESULT STDMETHODCALLTYPE ResolveIt(LPCTSTR lpszLinkFile, LPTSTR lpszPath);
 
 	static void LoadStringTable();
 	static void FreeStringTable();
@@ -269,18 +288,20 @@ protected:
 	static int ScrollInterval;
 	static int MouseOpDist;
 	static int MouseOpDelay;
-	static SimpleString TexteditorName;
-	static SimpleString EncodeDlls;
+	static TCHAR TexteditorName[MAX_PATH];
+	static TCHAR EncodeDlls[MAX_PATH];
 	static int iPasteAsText;
 	static int iPasteTimes;
 	static int iPasteSkip;
+	static HMENU hMenuContext;
 
 	int bOpenReadOnly;//Pabs inserted ", iPartialOpenLen, iPartialFileLen, bPartialStats"
-	int iPartialOffset, bPartialOpen, iPartialOpenLen, iPartialFileLen, bPartialStats;
+	__int64 iPartialOffset, iPartialFileLen;
+	int bPartialOpen, iPartialOpenLen, bPartialStats;
 	int iBmkCount;
 	bookmark pbmkList[BMKMAX];
 	int iMRU_count;
-	char strMRU[MRUMAX][_MAX_PATH];
+	TCHAR strMRU[MRUMAX][_MAX_PATH];
 	int bFilestatusChanged;
 	int bScrollTimerSet;
 	int iMouseX, iMouseY;
@@ -292,7 +313,7 @@ protected:
 	int bLButtonDown, bSelecting, iLBDownX, iLBDownY;
 	int cxChar, cxCaps, cyChar, cxClient, cyClient, cxBuffer, cyBuffer, iNumlines;
 	int iByteSpace, iCharSpace;
-	char filename[_MAX_PATH];
+	TCHAR filename[MAX_PATH];
 	HWND hwnd;
 	HINSTANCE hInstance;
 	IHexEditorWindow *sibling;
@@ -309,9 +330,6 @@ protected:
 };
 
 void reverse_bytes(BYTE *, BYTE *);
-
-void NTAPI TranslateDialog(HWND);
-INT_PTR NTAPI ShowModalDialog(UINT, HWND, DLGPROC, LPVOID);
 
 class WaitCursor
 {

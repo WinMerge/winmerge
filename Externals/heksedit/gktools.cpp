@@ -6,6 +6,7 @@
 #include "hexwnd.h"
 #include "gktools.h"
 #include "simparr.h"
+#include "AnsiConvert.h"
 
 static PList PartitionInfoList;
 
@@ -128,7 +129,7 @@ void AddEncoders(HWND hListbox, LPMEMORY_CODING_DESCRIPTION lpEncoders)
 {
 	for ( ; lpEncoders->lpszDescription ; ++lpEncoders)
 	{
-		int i = SendMessage(hListbox, LB_ADDSTRING, 0, (LPARAM)lpEncoders->lpszDescription);
+		int i = SendMessage(hListbox, LB_ADDSTRING, 0, (LPARAM)&*static_cast<A2T>(lpEncoders->lpszDescription));
 		SendMessage(hListbox, LB_SETITEMDATA, i, (LPARAM)lpEncoders->fpEncodeFunc);
 	}
 }
@@ -139,15 +140,16 @@ INT_PTR EncodeDecodeDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 	{
 	case WM_INITDIALOG:
 		{
-			SimpleString buffer((LPSTR)(LPCSTR)EncodeDlls);
-			LPCSTR lpszToken = strtok(buffer, ";");
-			HWND hListbox = GetDlgItem(hDlg,IDC_LIST1);
+			HWND hListbox = GetDlgItem(hDlg, IDC_LIST1);
 			AddEncoders(hListbox, BuiltinEncoders);
-			while (lpszToken)
+			LPTSTR pszToken = EncodeDlls;
+			while (int cchToken = StrCSpn(pszToken += StrSpn(pszToken, _T(";")), _T(";")))
 			{
-				HMODULE hLibrary = GetModuleHandle(lpszToken);
+				TCHAR z = pszToken[cchToken];
+				pszToken[cchToken] = _T('\0');
+				HMODULE hLibrary = GetModuleHandle(pszToken);
 				if (hLibrary == 0)
-					hLibrary = LoadLibrary(lpszToken);
+					hLibrary = LoadLibrary(pszToken);
 				if (hLibrary)
 				{
 					if (LPFNGetMemoryCodings callback = (LPFNGetMemoryCodings)
@@ -156,7 +158,7 @@ INT_PTR EncodeDecodeDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 						AddEncoders(hListbox, callback());
 					}
 				}
-				lpszToken = strtok(0, ";");
+				*(pszToken += cchToken) = z;
 			}
 			SendMessage(hListbox, LB_SETCURSEL, 0, 0);
 			CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
@@ -170,14 +172,14 @@ INT_PTR EncodeDecodeDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 			{
 				MEMORY_CODING mc;
 				CHAR szBuffer[1024];
-				GetDlgItemText(hDlg, IDC_EDIT1, szBuffer, sizeof(szBuffer));
+				GetDlgItemTextA(hDlg, IDC_EDIT1, szBuffer, RTL_NUMBER_OF(szBuffer));
 				mc.bEncode = IsDlgButtonChecked(hDlg, IDC_RADIO1);
 				mc.lpszArguments = szBuffer;
-				HWND hListbox = GetDlgItem(hDlg,IDC_LIST1);
+				HWND hListbox = GetDlgItem(hDlg, IDC_LIST1);
 				int nCurSel = SendMessage(hListbox, LB_GETCURSEL, 0, 0);
 				if (nCurSel < 0)
 					return TRUE;
-				mc.fpEncodeFunc = (LPFNEncodeMemoryFunction) SendMessage(hListbox,LB_GETITEMDATA,nCurSel,0);
+				mc.fpEncodeFunc = (LPFNEncodeMemoryFunction) SendMessage(hListbox, LB_GETITEMDATA, nCurSel, 0);
 				if (bSelected)
 				{
 					mc.lpbMemory = &DataArray[iStartOfSelection];
@@ -223,7 +225,7 @@ INT_PTR OpenDriveDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 			while ((Flink = Flink->Flink) != &PartitionInfoList)
 			{
 				PartitionInfo *pi = static_cast<PartitionInfo *>(Flink);
-				int i = SendMessage(hListbox, LB_ADDSTRING, 0, (LPARAM)(LPCSTR)pi->GetNameAsString());
+				int i = SendMessage(hListbox, LB_ADDSTRING, 0, (LPARAM)pi->GetNameAsString());
 				SendMessage(hListbox, LB_SETITEMDATA, i, (LPARAM)pi);
 			}
 			SendMessage(hListbox, LB_SETCURSEL, 0, 0);
@@ -244,7 +246,7 @@ INT_PTR OpenDriveDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 				IPhysicalDrive *Drive = CreatePhysicalDriveInstance();
 				if (Drive == 0 || !Drive->Open(SelectedPartitionInfo->m_dwDrive))
 				{
-					MessageBox(hwnd, "Unable to open drive", "Open Drive", MB_ICONERROR);
+					MessageBox(hwnd, _T("Unable to open drive"), _T("Open Drive"), MB_ICONERROR);
 					delete Drive;
 					return TRUE;
 				}
@@ -274,9 +276,9 @@ INT_PTR GotoTrackDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 	{
 	case WM_INITDIALOG:
 		{
-			CHAR szTempBuffer[10240];
+			TCHAR szTempBuffer[10240];
 
-			sprintf(szTempBuffer, "%I64d", CurrentSectorNumber);
+			_stprintf(szTempBuffer, _T("%I64d"), CurrentSectorNumber);
 			SetDlgItemText(hDlg, IDC_EDIT1, szTempBuffer);
 
 			DISK_GEOMETRY dg;
@@ -287,13 +289,13 @@ INT_PTR GotoTrackDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 			TotalSizeInBytes *= dg.TracksPerCylinder;
 			TotalSizeInBytes *= dg.Cylinders.QuadPart;
 
-			sprintf(szTempBuffer,
-				"Cylinders = %I64d\r\n"
-				"Sectors = %I64d\r\n"
-				"TracksPerCylinder = %ld\r\n"
-				"SectorsPerTrack = %ld\r\n"
-				"BytesPerSector = %ld\r\n"
-				"TotalSizeInBytes = %I64d\r\n",
+			_stprintf(szTempBuffer,
+				_T("Cylinders = %I64d\r\n")
+				_T("Sectors = %I64d\r\n")
+				_T("TracksPerCylinder = %ld\r\n")
+				_T("SectorsPerTrack = %ld\r\n")
+				_T("BytesPerSector = %ld\r\n")
+				_T("TotalSizeInBytes = %I64d\r\n"),
 				dg.Cylinders.QuadPart,
 				SelectedPartitionInfo->m_NumberOfSectors,
 				dg.TracksPerCylinder,
@@ -310,11 +312,11 @@ INT_PTR GotoTrackDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lPa
 		{
 		case IDOK:
 			{
-				CHAR szBuffer[256];
-				GetDlgItemText(hDlg,IDC_EDIT1, szBuffer, sizeof(szBuffer) );
+				TCHAR szBuffer[256];
+				GetDlgItemText(hDlg, IDC_EDIT1, szBuffer, RTL_NUMBER_OF(szBuffer));
 
 				INT64 TempCurrentSectorNumber = 0;
-				sscanf(szBuffer, "%I64d", &TempCurrentSectorNumber);
+				_stscanf(szBuffer, _T("%I64d"), &TempCurrentSectorNumber);
 				if (TempCurrentSectorNumber < 0 ||
 					TempCurrentSectorNumber >= SelectedPartitionInfo->m_NumberOfSectors)
 				{

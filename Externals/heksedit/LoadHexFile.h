@@ -1,3 +1,33 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  LoadHexFile.h
+ *
+ * @brief Hex file loader class declaration.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: LoadHexFile.h 105 2008-11-05 22:57:48Z kimmov $
+
+#ifndef _LOADHEXFILE_H_
+#define _LOADHEXFILE_H_
+
+#include "Simparr.h"
+
 class hexfile_stream
 {
 public:
@@ -115,3 +145,5 @@ private:
 public:
 	static bool StreamIn(HexEditorWindow &, hexfile_stream &);
 };
+
+#endif // _LOADHEXFILE_H_

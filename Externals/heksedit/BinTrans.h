@@ -21,12 +21,12 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: BinTrans.h 41 2008-09-01 20:15:54Z kimmov $
+// $Id: BinTrans.h 102 2008-11-05 22:16:31Z kimmov $
 
 #ifndef BinTrans_h
 #define BinTrans_h
 
-#include "simparr.h"
+#include "Simparr.h"
 
 //-------------------------------------------------------------------
 class Text2BinTranslator : public SimpleString

@@ -1,4 +1,6 @@
-HRESULT CreateLink(LPCSTR lpszPathObj, LPCSTR lpszPathLink);
-HRESULT ResolveIt(HWND hwnd, LPCSTR lpszLinkFile, LPSTR lpszPath);
-HRESULT PathsEqual(LPCSTR, LPCSTR);
-void GetLongPathNameWin32(LPCSTR lpszShortPath, LPSTR lpszLongPath);
+HRESULT NTAPI CreateLink(LPCTSTR lpszPathObj, LPCTSTR lpszPathLink);
+HRESULT NTAPI CreateLink(LPCTSTR lpszPathLink);
+HRESULT NTAPI ResolveIt(HWND hwnd, LPCTSTR lpszLinkFile, LPTSTR lpszPath);
+HRESULT NTAPI PathsEqual(LPCTSTR, LPCTSTR);
+HRESULT NTAPI PathsEqual(LPCTSTR);
+void NTAPI GetLongPathNameWin32(LPCTSTR lpszShortPath, LPTSTR lpszLongPath);

@@ -1,4 +1,30 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ReplaceDlg.cpp
+ *
+ * @brief Implementation of the replace dialog.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id: ReplaceDlg.cpp 102 2008-11-05 22:16:31Z kimmov $
+
 #include "precomp.h"
+#include "Simparr.h"
 #include "resource.h"
 #include "hexwnd.h"
 #include "hexwdlg.h"
@@ -83,7 +109,7 @@ int ReplaceDlg::replace_selected_data(HWND hDlg)
 {
 	if (!bSelected)
 	{
-		MessageBox(hDlg, "Data to replace must be selected.", "Replace", MB_ICONERROR);
+		MessageBox(hDlg, _T("Data to replace must be selected."), _T("Replace"), MB_ICONERROR);
 		return FALSE;
 	}
 	int i = iGetStartOfSelection();
@@ -93,7 +119,7 @@ int ReplaceDlg::replace_selected_data(HWND hDlg)
 		// Selected data is to be deleted, since replace-with data is empty string.
 		if (!DataArray.Replace(i, n, 0, 0))
 		{
-			MessageBox(hDlg, "Could not delete selected data.", "Replace", MB_ICONERROR);
+			MessageBox(hDlg, _T("Could not delete selected data."), _T("Replace"), MB_ICONERROR);
 			return FALSE;
 		}
 		bSelected = FALSE;
@@ -104,7 +130,7 @@ int ReplaceDlg::replace_selected_data(HWND hDlg)
 		// Replace with non-zero-length data.
 		if (!DataArray.Replace(i, n, (unsigned char *)(char *)strReplaceWithData, strReplaceWithData.StrLen()))
 		{
-			MessageBox(hDlg, "Replacing failed.", "Replace", MB_ICONERROR);
+			MessageBox(hDlg, _T("Replacing failed."), _T("Replace"), MB_ICONERROR);
 			return FALSE;
 		}
 		iEndOfSelection = iStartOfSelection + strReplaceWithData.StrLen() - 1;
@@ -115,12 +141,12 @@ int ReplaceDlg::replace_selected_data(HWND hDlg)
 		SimpleArray<char> out;
 		if (!transl_text_to_binary(out))
 		{
-			MessageBox(hDlg, "Could not translate text to binary.", "Replace", MB_ICONERROR);
+			MessageBox(hDlg, _T("Could not translate text to binary."), _T("Replace"), MB_ICONERROR);
 			return FALSE;
 		}
 		if (!DataArray.Replace(i, n, (unsigned char*)(char*)out, out.GetLength()))
 		{
-			MessageBox(hDlg, "Replacing failed.", "Replace", MB_ICONERROR);
+			MessageBox(hDlg, _T("Replacing failed."), _T("Replace"), MB_ICONERROR);
 			return FALSE;
 		}
 		iEndOfSelection = iStartOfSelection + out.GetLength() - 1;
@@ -139,33 +165,20 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		// If there is selected data then make it the data to find.
 		if (bSelected)
 		{
-			int sel_start, select_len;
-			if( iEndOfSelection < iStartOfSelection )
+			int sel_start = iGetStartOfSelection();
+			int select_len = iGetEndOfSelection() - sel_start + 1;
+			if (!transl_binary_to_text((char *)&DataArray[sel_start], select_len))
 			{
-				sel_start = iEndOfSelection;
-				select_len = iStartOfSelection - iEndOfSelection + 1;
-			}
-			else
-			{
-				sel_start = iStartOfSelection;
-				select_len = iEndOfSelection - iStartOfSelection + 1;
-			}
-
-			if (transl_binary_to_text((char *)&DataArray[sel_start], select_len))
-			{
-			}
-			else
-			{
-				MessageBox(hDlg, "Could not use selection as replace target.", "Replace", MB_OK);
+				MessageBox(hDlg, _T("Could not use selection as replace target."), _T("Replace"), MB_OK);
 				EndDialog(hDlg, IDCANCEL);
 				return TRUE;
 			}
 		}
 		CheckDlgButton(hDlg, IDC_USETRANSLATION_CHECK, !iPasteAsText);
 		if (char *pstr = strToReplaceData)
-			SetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, pstr);
+			SetDlgItemTextA(hDlg, IDC_TO_REPLACE_EDIT, pstr);
 		if (char *pstr = strReplaceWithData)
-			SetDlgItemText(hDlg, IDC_REPLACEWITH_EDIT, pstr);
+			SetDlgItemTextA(hDlg, IDC_REPLACEWITH_EDIT, pstr);
 		return TRUE;
 
 	case WM_COMMAND:
@@ -188,7 +201,7 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				}
 				else
 				{
-					MessageBox(hDlg, "Could not find data.", "Replace/Find backward", MB_ICONWARNING);
+					MessageBox(hDlg, _T("Could not find data."), _T("Replace/Find backward"), MB_ICONWARNING);
 				}
 			}
 			break;
@@ -205,7 +218,7 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				}
 				else
 				{
-					MessageBox(hDlg, "Could not find data.", "Replace/Find forward", MB_ICONWARNING);
+					MessageBox(hDlg, _T("Could not find data."), _T("Replace/Find forward"), MB_ICONWARNING);
 				}
 			}
 			break;
@@ -223,7 +236,7 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				Text2BinTranslator tr_find(strToReplaceData), tr_replace(strReplaceWithData);
 				if (tr_find.bCompareBin(tr_replace, iCharacterSet, iBinaryMode))
 				{
-					MessageBox(hDlg, "To-replace and replace-with data are same.", "Replace all following occurances", MB_ICONERROR);
+					MessageBox(hDlg, _T("To-replace and replace-with data are same."), _T("Replace all following occurances"), MB_ICONERROR);
 					break;
 				}
 
@@ -240,9 +253,9 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				resize_window();
 				synch_sibling();
 
-				char tbuf[80];
-				sprintf(tbuf, "%d occurences replaced.", occ_num);
-				MessageBox(hDlg, tbuf, "Replace/Replace all following", MB_ICONINFORMATION);
+				TCHAR tbuf[80];
+				_stprintf(tbuf, _T("%d occurences replaced."), occ_num);
+				MessageBox(hDlg, tbuf, _T("Replace/Replace all following"), MB_ICONINFORMATION);
 			}
 			break;
 
@@ -258,7 +271,7 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				Text2BinTranslator tr_find(strToReplaceData), tr_replace(strReplaceWithData);
 				if (tr_find.bCompareBin(tr_replace, iCharacterSet, iBinaryMode))
 				{
-					MessageBox(hDlg, "To-replace and replace-with data are same.", "Replace all following occurances", MB_ICONERROR);
+					MessageBox(hDlg, _T("To-replace and replace-with data are same."), _T("Replace all following occurances"), MB_ICONERROR);
 					break;
 				}
 
@@ -275,9 +288,9 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				resize_window();
 				synch_sibling();
 
-				char tbuf[32];
-				sprintf(tbuf, "%d occurances replaced.", occ_num);
-				MessageBox(hDlg, tbuf, "Replace/Replace all following", MB_ICONINFORMATION);
+				TCHAR tbuf[32];
+				_stprintf(tbuf, _T("%d occurances replaced."), occ_num);
+				MessageBox(hDlg, tbuf, _T("Replace/Replace all following"), MB_ICONINFORMATION);
 			}
 			break;
 

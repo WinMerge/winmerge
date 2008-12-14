@@ -21,42 +21,51 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: InvokeHtmlHelp.cpp 15 2008-08-15 16:43:32Z kimmov $
+// $Id: InvokeHtmlHelp.cpp 45 2008-09-04 14:05:26Z jtuc $
 
 #include "precomp.h"
 #include <htmlhelp.h>
-
-/** @brief HtmlHelp file to open from Frhed program folder. */
-static const char HtmlHelpFile[] = "frhed.chm";
+#include "Constants.h"
+#include "InvokeHtmlHelp.h"
 
 /**
  * @brief Show HTML help.
  * This function shows HTML help, with given command and path.
  * @param [in] uCommand How/what to open in help (TOC etc).
- * @param [in] path Additional relative path inside help file to open.
+ * @param [in] context Additional relative path inside help file to open.
  * @param [in] hParentWindow Window opening this help.
  */
-void ShowHtmlHelp( UINT uCommand, LPCTSTR path, HWND hParentWindow )
+void ShowHtmlHelp(UINT uCommand, LPCTSTR context, HWND hParentWindow)
 {
-	if( uCommand == HELP_CONTEXT )
+	TCHAR path[MAX_PATH + 100];
+	GetModuleFileName(0, path, MAX_PATH);
+	PathRemoveFileSpec(path);
+	PathAppend(path, HtmlHelpFile);
+	switch (uCommand)
 	{
-		if (path != NULL)
+	case HELP_CONTEXT:
+		if (context)
 		{
-			char fullpath[MAX_PATH] = {0};
-			_snprintf(fullpath, MAX_PATH, "%s::/%s", HtmlHelpFile, path);
-			HtmlHelp(hParentWindow, fullpath, HH_DISPLAY_TOPIC, NULL);
+			lstrcat(path, _T("::/"));
+			lstrcat(path, context);
 		}
-		else
-		{
-			HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_TOPIC, NULL);
-		}
+		uCommand = HH_DISPLAY_TOPIC;
+		break;
+	case HELP_FINDER:
+		uCommand = HH_DISPLAY_SEARCH;
+		break;
+	case HELP_CONTENTS:
+		uCommand = HH_DISPLAY_TOC;
+		break;
+	default:
+		assert(FALSE);
+		return;
 	}
-	else if( uCommand == HELP_FINDER )
+	if (HtmlHelp(hParentWindow, path, uCommand, NULL) == NULL)
 	{
-		HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_SEARCH, NULL);
-	}
-	else if( uCommand == HELP_CONTENTS )
-	{
-		HtmlHelp(hParentWindow, HtmlHelpFile, HH_DISPLAY_TOC, NULL);
+		TCHAR msg[500];
+		msg[RTL_NUMBER_OF(msg) - 1] = '\0';
+		_sntprintf(msg, RTL_NUMBER_OF(msg) - 1, _T("Help file\n%s\nnot found!"), HtmlHelpFile);
+		MessageBox(hParentWindow, msg, ApplicationName, MB_ICONERROR);
 	}
 }

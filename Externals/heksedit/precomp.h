@@ -21,7 +21,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: precomp.h 22 2008-08-18 19:20:44Z kimmov $
+// $Id: precomp.h 45 2008-09-04 14:05:26Z jtuc $
 
 // Needed to include
 // DISK_GEOMETRY_EX, PARTITION_INFORMATION_EX
