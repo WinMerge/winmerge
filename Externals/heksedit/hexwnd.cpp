@@ -69,8 +69,8 @@ int HexEditorWindow::iPasteAsText = 0;
 int HexEditorWindow::iPasteTimes = 1;
 int HexEditorWindow::iPasteSkip = 0;
 
-TCHAR HexEditorWindow::TexteditorName[MAX_PATH];
-TCHAR HexEditorWindow::EncodeDlls[MAX_PATH];
+TCHAR HexEditorWindow::TexteditorName[MAX_PATH] = _T("NOTEPAD.EXE");
+TCHAR HexEditorWindow::EncodeDlls[MAX_PATH] = _T("FRHEXDES.DLL;FRHEDX.DLL");
 
 HMENU HexEditorWindow::hMenuContext = 0;
 
@@ -3514,11 +3514,9 @@ void HexEditorWindow::read_ini_data(LPCTSTR key)
 		load_lang((LANGID)lcid);
 
 		datasize = sizeof TexteditorName;
-		_tcscpy(TexteditorName, _T("NOTEPAD.EXE")); // default
 		res = SHGetValue(key1, 0, _T("TexteditorName"), 0, TexteditorName, &datasize);
 
 		datasize = sizeof EncodeDlls;
-		_tcscpy(EncodeDlls, _T("FRHEXDES.DLL;FRHEDX.DLL")); // default
 		res = SHGetValue(key1, 0, _T("EncodeDlls"), 0, EncodeDlls, &datasize);
 
 		res = RegQueryValueEx(key1, _T("iWindowShowCmd"), NULL, NULL, (BYTE*) &iWindowShowCmd, &datasize );
@@ -3599,6 +3597,7 @@ void HexEditorWindow::save_ini_data()
 		RegSetValueEx(key1, _T("locale"), 0, REG_DWORD, (CONST BYTE*) &lcid, sizeof lcid);
 
 		SHSetValue(key1, 0, _T("TexteditorName"), REG_SZ, TexteditorName, _tcslen(TexteditorName) * sizeof(TCHAR));
+		SHSetValue(key1, 0, _T("EncodeDlls"), REG_SZ, EncodeDlls, _tcslen(EncodeDlls) * sizeof(TCHAR));
 
 		RegSetValueEx(key1, _T("iWindowShowCmd"), 0, REG_DWORD, (CONST BYTE*) &iWindowShowCmd, sizeof( int ) );
 		RegSetValueEx(key1, _T("iWindowX"), 0, REG_DWORD, (CONST BYTE*) &iWindowX, sizeof( int ) );
