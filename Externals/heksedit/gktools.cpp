@@ -180,16 +180,15 @@ INT_PTR EncodeDecodeDialog::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM)
 				if (nCurSel < 0)
 					return TRUE;
 				mc.fpEncodeFunc = (LPFNEncodeMemoryFunction) SendMessage(hListbox, LB_GETITEMDATA, nCurSel, 0);
+				int lower = 0;
+				int upper = DataArray.GetUpperBound();
 				if (bSelected)
 				{
-					mc.lpbMemory = &DataArray[iStartOfSelection];
-					mc.dwSize = iEndOfSelection - iStartOfSelection + 1;
+					lower = iGetStartOfSelection();
+					upper = iGetEndOfSelection();
 				}
-				else
-				{
-					mc.lpbMemory = DataArray;
-					mc.dwSize = DataArray.GetLength();
-				}
+				mc.lpbMemory = &DataArray[lower];
+				mc.dwSize = upper - lower + 1;
 				mc.fpEncodeFunc(&mc);
 				iFileChanged = TRUE;
 				bFilestatusChanged = TRUE;
