@@ -129,6 +129,9 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
+	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
+	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
+	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -633,4 +636,31 @@ void CHexMergeDoc::OnAllRight()
 void CHexMergeDoc::OnAllLeft()
 {
 	CopyAll(m_pView[MERGE_VIEW_RIGHT], m_pView[MERGE_VIEW_LEFT]);
+}
+
+/**
+ * @brief Called when user selects View/Zoom In from menu.
+ */
+void CHexMergeDoc::OnViewZoomIn()
+{
+	m_pView[MERGE_VIEW_LEFT]->ZoomText(1);
+	m_pView[MERGE_VIEW_RIGHT]->ZoomText(1);
+}
+
+/**
+ * @brief Called when user selects View/Zoom Out from menu.
+ */
+void CHexMergeDoc::OnViewZoomOut()
+{
+	m_pView[MERGE_VIEW_LEFT]->ZoomText(-1);
+	m_pView[MERGE_VIEW_RIGHT]->ZoomText(-1);
+}
+
+/**
+ * @brief Called when user selects View/Zoom Normal from menu.
+ */
+void CHexMergeDoc::OnViewZoomNormal()
+{
+	m_pView[MERGE_VIEW_LEFT]->ZoomText(0);
+	m_pView[MERGE_VIEW_RIGHT]->ZoomText(0);
 }

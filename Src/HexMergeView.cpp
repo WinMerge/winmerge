@@ -34,19 +34,13 @@
 #include "HexMergeView.h"
 #include "OptionsDef.h"
 #include "Environment.h"
+#include "../externals/heksedit/version.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-/**
- * @brief Macros to help build version dependent window class names
- */
-#define SHARPEN_A(X) #X
-#define SHARPEN_W(X) L#X
-#define SHARPEN(T,X) SHARPEN_##T(X)
 
 /**
  * @brief Turn bool api result into success/error code
@@ -92,6 +86,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_CLEAR, OnEditClear)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
 	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
@@ -127,26 +122,14 @@ void CHexMergeView::OnDraw(CDC *)
  */
 BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	static const TCHAR szFileName[] = _T("heksedit.dll");
-#ifdef _UNICODE
-	static const TCHAR szClassName[] = L"hekseditW_"
-		SHARPEN(W,FRHED_MAJOR_VERSION) L"."
-		SHARPEN(W,FRHED_MINOR_VERSION) L"."
-		SHARPEN(W,FRHED_SUB_RELEASE_NO) L"."
-		SHARPEN(W,FRHED_BUILD_NO);
-#else
-	static const TCHAR szClassName[] = "hekseditA_"
-		SHARPEN(A,FRHED_MAJOR_VERSION) "."
-		SHARPEN(A,FRHED_MINOR_VERSION) "."
-		SHARPEN(A,FRHED_SUB_RELEASE_NO) "."
-		SHARPEN(A,FRHED_BUILD_NO);
-#endif
-	if ((cs.hInstance = ::GetModuleHandle(szFileName)) == 0 &&
-		(cs.hInstance = ::LoadLibrary(szFileName)) == 0)
+	static const TCHAR pe[] = PE_HEKSEDIT;
+	static const TCHAR wc[] = WC_HEKSEDIT;
+	if ((cs.hInstance = ::GetModuleHandle(pe)) == 0 &&
+		(cs.hInstance = ::LoadLibrary(pe)) == 0)
 	{
 		return FALSE;
 	}
-	cs.lpszClass = szClassName;
+	cs.lpszClass = wc;
 	cs.style |= WS_HSCROLL | WS_VSCROLL;
 	return TRUE;
 }
@@ -468,6 +451,14 @@ void CHexMergeView::OnEditPaste()
 }
 
 /**
+ * @brief Select entire content
+ */
+void CHexMergeView::OnEditSelectAll()
+{
+	m_pif->CMD_select_all();
+}
+
+/**
  * @brief Clear selected content
  */
 void CHexMergeView::OnEditClear()
@@ -524,4 +515,9 @@ void CHexMergeView::OnNextdiff()
 void CHexMergeView::OnPrevdiff()
 {
 	m_pif->select_prev_diff(FALSE);
+}
+
+void CHexMergeView::ZoomText(int amount)
+{
+	m_pif->CMD_zoom(amount);
 }

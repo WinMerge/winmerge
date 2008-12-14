@@ -57,6 +57,7 @@ public:
 	void ResizeWindow();
 	void RepaintRange(int, int);
 	BOOL IsFileChangedOnDisk(LPCTSTR);
+	void ZoomText(int amount);
 	// Overrides
 protected:
 	virtual void OnDraw(CDC*);
@@ -86,6 +87,7 @@ protected:
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditClear();
+	afx_msg void OnEditSelectAll();
 	afx_msg void OnFirstdiff();
 	afx_msg void OnLastdiff();
 	afx_msg void OnNextdiff();

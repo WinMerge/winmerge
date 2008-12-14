@@ -99,6 +99,9 @@ protected:
 	afx_msg void OnR2l();
 	afx_msg void OnAllRight();
 	afx_msg void OnAllLeft();
+	afx_msg void OnViewZoomIn();
+	afx_msg void OnViewZoomOut();
+	afx_msg void OnViewZoomNormal();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
