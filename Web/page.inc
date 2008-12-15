@@ -258,10 +258,9 @@
           break;
         case TAB_DOWNLOADS: //if "Downloads" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"#current\" title=\"Current Version\">Current Version</a></li>\n";
-          $temp .= "  <li><a href=\"#other\" title=\"Other Versions\">Other Versions</a></li>\n";
-          $temp .= "  <li><a href=\"#plugins\" title=\"Plugins\">Plugins</a></li>\n";
-          $temp .= "  <li><a href=\"#sourcecode\" title=\"Source Code\">Source Code</a></li>\n";
+          $temp .= "  <li><a href=\"/downloads/\" title=\"Download WinMerge\">WinMerge</a></li>\n";
+          $temp .= "  <li><a href=\"/downloads/plugins.php\" title=\"Download Plugins\">Plugins</a></li>\n";
+          $temp .= "  <li><a href=\"/downloads/source-code.php\" title=\"Download Source Code\">Source Code</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...

@@ -1,14 +1,15 @@
 <?php
   include('../page.inc');
+  include('../engine/simplepie/simplepie.inc');
 
   $page = new Page;
   $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
   $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS);
   $stablerelease = $page->getStableRelease();
 ?>
-<h2>Downloads <?php $page->printRssFeedLink('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216'); ?></h2>
+<h2>Downloads</h2>
+<h3>WinMerge <?php echo $stablerelease->getVersionNumber();?></h3>
 <?php $page->printDownloadNow(); ?>
-<h3><a name="current">Current Version</a></h3>
 <p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
@@ -29,15 +30,10 @@
       <li><a href="<?php echo $stablerelease->getDownload('rt.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('rt.7z');?> MB)</a></li>
     </ul>
   </li>
-  <li><strong>Source Code</strong>
-    <ul>
-      <li><a href="<?php echo $stablerelease->getDownload('src.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('src.zip');?> MB)</a></li>
-      <li><a href="<?php echo $stablerelease->getDownload('src.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('src.7z');?> MB)</a></li>
-    </ul>
-  </li>
 </ul>
 </div>
 <p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="/docs/manual/Installing.html">online manual</a> for help using it.</p>
+<p>You can also download additional <a href="plugins.php">plugins</a> and the whole <a href="source-code.php">source code</a> from WinMerge.</p>
 <h3><a name="other">Other Versions</a></h3>
 <ul>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable Versions</a></li>
@@ -45,37 +41,28 @@
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental Builds</a></li>
   <li><a href="http://portableapps.com/apps/utilities/winmerge_portable">WinMerge Portable</a> (by PortableApps.com)</li>
 </ul>
-<h3><a name="plugins">Plugins</a></h3>
-<h4>7-Zip Plugin</h4>
-<p>This is the 7-Zip plugin for WinMerge and the current version <strong>DllBuild 0026</strong> was released at <strong>2007-12-23</strong>.</p>
-<div class="downloadmatrix">
-<ul>
-  <li><strong>Installer</strong>
-    <ul>
-      <li><a href="http://downloads.sourceforge.net/winmerge/Merge7zInstaller0026-432-457.exe">Exe-Format (1.05 MB)</a></li>
-    </ul>
-  </li>
-  <li><strong>Binaries</strong>
-    <ul>
-      <li><a href="http://downloads.sourceforge.net/winmerge/Merge7z0026-432-457.7z">7z-Format (0.91 MB)</a></li>
-    </ul>
-  </li>
-</ul>
-</div>
-<p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?release_id=563695&amp;group_id=13216">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
-<h4>xdocdiff Plugin</h4>
-<p>With this plugin you can compare Word, Excel, PowerPoint, PDF and some more files.</p>
-<p>For more details and the download go to the <a href="http://freemind.s57.xrea.com/xdocdiffPlugin/en/index.html">xdocdiff plugin homepage</a>.</p>
-<h3><a name="sourcecode">Source Code</a></h3>
-<p>WinMerge is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.<br />
-The source code is hosted on <a href="http://sourceforge.net/">SourceForge.net</a> in a <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> repository.<br />
-You can <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">browse the source code</a> with a web browser or you can check out the whole code by clicking on one of the following links (if you have <a href="http://tortoisesvn.net/">TortoiseSVN</a> installed):</p>
-<dl class="headinglist">
-  <dt>Developer Version</dt>
-  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></dd>
-  <dt>WinMerge 2.10</dt>
-  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10</a></dd>
-</dl>
+<?php
+  $page->printRssSubHeading('Project File Releases', 'http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
+  $feed = new SimplePie();
+  $feed->set_feed_url('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
+  $feed->set_cache_location('../engine/simplepie/cache');
+  $feed->init();
+  print("<ul class=\"rssfeeditems\">\n");
+  foreach ($feed->get_items(0, 5) as $item) { //for the last 5 file releases...
+    $title = $item->get_title();
+    $title = preg_replace('#(\([A-Z][a-z][a-z],.*GMT\))#si', '', $title);
+    $title = str_replace('1. Stable versions', 'Stable version', $title);
+    $title = str_replace('2. Documentation', 'Documentation', $title);
+    $title = str_replace('3. 7-Zip plugin', '7-Zip plugin', $title);
+    $title = str_replace('4. Beta versions', 'Beta version', $title);
+    $title = str_replace('5. Experimental builds', 'Experimental build', $title);
+    $title = str_replace('6. Developer tools', 'Developer tool', $title);
+    print("  <li><a href=\"".$item->get_link()."\">".$title."</a> <em>".$item->get_date('Y-m-d')."</em></li>\n");
+  }
+  print("  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216\">View all file releases &hellip;</a></li>\n");
+  print("</ul>\n");
+?>
+
 <?php
   $page->printFoot();
 ?>
