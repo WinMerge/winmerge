@@ -17,6 +17,18 @@ void GetDlgItemText(HWND hwnd, int id, SimpleString &str)
 	GetWindowText(hwnd, str);
 }
 
+BOOL EnableDlgItem(HWND hwnd, int id, BOOL enable)
+{
+	hwnd = GetDlgItem(hwnd, id);
+	return EnableWindow(hwnd, enable);
+}
+
+BOOL IsDlgItemEnabled(HWND hwnd, int id)
+{
+	hwnd = GetDlgItem(hwnd, id);
+	return IsWindowEnabled(hwnd);
+}
+
 C_ASSERT(sizeof(DragDropOptionsDlg) == sizeof(HexEditorWindow)); // disallow instance members
 
 INT_PTR DragDropOptionsDlg::DlgProc(HWND h, UINT m, WPARAM w, LPARAM l)

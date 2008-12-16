@@ -28,6 +28,8 @@
 
 void GetWindowText(HWND, SimpleString &);
 void GetDlgItemText(HWND, int, SimpleString &);
+BOOL EnableDlgItem(HWND, int, BOOL);
+BOOL IsDlgItemEnabled(HWND, int);
 
 /**
  * @brief About-dialog for Frhed application.
@@ -165,6 +167,8 @@ public:
 	static int transl_binary_to_text(char *, int);
 	int find_and_select_data(int finddir, char (*cmp)(char));
 	int replace_selected_data(HWND);
+	void find_directed(HWND, int finddir, LPCTSTR title);
+	void replace_directed(HWND, int finddir, LPCTSTR title);
 	static SimpleString strToReplaceData;
 	static SimpleString strReplaceWithData;
 };

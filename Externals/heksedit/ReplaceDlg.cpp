@@ -71,32 +71,35 @@ int ReplaceDlg::find_and_select_data(int finddir, char (*cmp)(char))
 	char *tofind;
 	// Create a translation from bytecode to char array of finddata.
 	int destlen = create_bc_translation(&tofind, strToReplaceData, strToReplaceData.StrLen());
-	int i;
+	int i = iGetStartOfSelection();
+	int n = iGetEndOfSelection() - i + 1;
+	int j;
 	if (finddir >= 0)
 	{
+		i += finddir * n;
 		// Find forward.
-		i = find_bytes((char *)&DataArray[iCurByte + finddir],
-			DataArray.GetLength() - iCurByte - 1,
-			tofind,	destlen, 1, cmp );
-		if (i != -1)
-			iCurByte += i + finddir;
+		j = find_bytes((char *)&DataArray[i],
+			DataArray.GetLength() - i - 1,
+			tofind,	destlen, 1, cmp);
+		if (j != -1)
+			i += j;
 	}
 	else
 	{
 		// Find backward.
-		i = find_bytes((char *)&DataArray[0],
+		j = find_bytes((char *)&DataArray[0],
 			min(iCurByte + (destlen - 1), DataArray.GetLength()),
 			tofind, destlen, -1, cmp );
-		if (i != -1)
-			iCurByte = i;
+		if (j != -1)
+			i = j;
 	}
 	int done = 0;
-	if (i != -1)
+	if (j != -1)
 	{
 		// NEW: Select found interval.
 		bSelected = TRUE;
-		iStartOfSelection = iCurByte;
-		iEndOfSelection = iCurByte + destlen - 1;
+		iStartOfSelection = iCurByte = i;
+		iEndOfSelection = iStartOfSelection + destlen - 1;
 		done = 1;
 	}
 	delete [] tofind;
@@ -156,6 +159,71 @@ int ReplaceDlg::replace_selected_data(HWND hDlg)
 	return TRUE;
 }
 
+void ReplaceDlg::find_directed(HWND hDlg, int finddir, LPCTSTR title)
+{
+	char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
+	GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
+	if (find_and_select_data(finddir, cmp))
+	{
+		adjust_view_for_selection();
+		repaint();
+		synch_sibling();
+		EnableDlgItem(hDlg, IDC_REPLACE_BUTTON, TRUE);
+	}
+	else
+	{
+		MessageBox(hDlg, _T("Could not find data."), title, MB_ICONWARNING);
+	}
+}
+
+void ReplaceDlg::replace_directed(HWND hDlg, int finddir, LPCTSTR title)
+{
+	char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
+	GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
+	GetDlgItemText(hDlg, IDC_REPLACEWITH_EDIT, strReplaceWithData);
+	iPasteAsText = !IsDlgButtonChecked(hDlg, IDC_USETRANSLATION_CHECK);
+	//------------------
+	// Don't do anything if to-replace and replace-with data are same.
+	Text2BinTranslator tr_find(strToReplaceData), tr_replace(strReplaceWithData);
+	if (tr_find.bCompareBin(tr_replace, iCharacterSet, iBinaryMode))
+	{
+		MessageBox(hDlg, _T("To-replace and replace-with data are same."), _T("Replace all following occurances"), MB_ICONERROR);
+		return;
+	}
+	WaitCursor wc;
+	int occ_num = 0;
+	HWND hwndFocus = GetFocus();
+	if (EnableDlgItem(hDlg, IDC_REPLACE_BUTTON, FALSE) == FALSE)
+	{
+		// Don't lose focus.
+		if (!IsWindowEnabled(hwndFocus))
+			SetFocus(hDlg);
+		occ_num++;
+		replace_selected_data(hDlg);
+	}
+	if (finddir)
+	{
+		while (find_and_select_data(finddir, cmp))
+		{
+			occ_num++;
+			replace_selected_data(hDlg);
+		};
+	}
+	if (occ_num)
+	{
+		set_wnd_title();
+		adjust_view_for_selection();
+		resize_window();
+		synch_sibling();
+		if (title)
+		{
+			TCHAR tbuf[80];
+			_stprintf(tbuf, _T("%d occurences replaced."), occ_num);
+			MessageBox(hDlg, tbuf, title, MB_ICONINFORMATION);
+		}
+	}
+}
+
 //-------------------------------------------------------------------
 INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -189,120 +257,24 @@ INT_PTR ReplaceDlg::DlgProc(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			EndDialog(hDlg, wParam);
 			return TRUE;
 
-		case IDC_FINDPREVIOUS_BUTTON:
-			{
-				char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
-				GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
-				if (find_and_select_data(-1, cmp))
-				{
-					adjust_view_for_selection();
-					repaint();
-					synch_sibling();
-				}
-				else
-				{
-					MessageBox(hDlg, _T("Could not find data."), _T("Replace/Find backward"), MB_ICONWARNING);
-				}
-			}
-			break;
-
 		case IDC_FINDNEXT_BUTTON:
-			{
-				char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
-				GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
-				if (find_and_select_data(1, cmp))
-				{
-					adjust_view_for_selection();
-					repaint();
-					synch_sibling();
-				}
-				else
-				{
-					MessageBox(hDlg, _T("Could not find data."), _T("Replace/Find forward"), MB_ICONWARNING);
-				}
-			}
+			find_directed(hDlg, 1, _T("Replace/Find forward"));
 			break;
 
-		// Replace all following occurances of the findstring.
+		case IDC_FINDPREVIOUS_BUTTON:
+			find_directed(hDlg, -1, _T("Replace/Find backward"));
+			break;
+
 		case IDC_FOLLOCC_BUTTON:
-			{
-				char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
-				GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
-				GetDlgItemText(hDlg, IDC_REPLACEWITH_EDIT, strReplaceWithData);
-				int occ_num = 0;
-				iPasteAsText = !IsDlgButtonChecked(hDlg, IDC_USETRANSLATION_CHECK);
-				//------------------
-				// Don't do anything if to-replace and replace-with data are same.
-				Text2BinTranslator tr_find(strToReplaceData), tr_replace(strReplaceWithData);
-				if (tr_find.bCompareBin(tr_replace, iCharacterSet, iBinaryMode))
-				{
-					MessageBox(hDlg, _T("To-replace and replace-with data are same."), _T("Replace all following occurances"), MB_ICONERROR);
-					break;
-				}
-
-				SetCursor( LoadCursor( NULL, IDC_WAIT ) );
-				while (find_and_select_data(0, cmp))
-				{
-					occ_num++;
-					replace_selected_data(hDlg);
-				};
-				SetCursor( LoadCursor( NULL, IDC_ARROW ) );
-
-				set_wnd_title();
-				adjust_view_for_selection();
-				resize_window();
-				synch_sibling();
-
-				TCHAR tbuf[80];
-				_stprintf(tbuf, _T("%d occurences replaced."), occ_num);
-				MessageBox(hDlg, tbuf, _T("Replace/Replace all following"), MB_ICONINFORMATION);
-			}
+			replace_directed(hDlg, 1, _T("Replace/Replace all following"));
 			break;
 
 		case IDC_PREVOCC_BUTTON:
-			{
-				// Replace all previous occurances of the findstring.
-				char (*cmp)(char) = IsDlgButtonChecked(hDlg, IDC_MATCHCASE_CHECK) ? equal : lower_case;
-				GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
-				GetDlgItemText(hDlg, IDC_REPLACEWITH_EDIT, strReplaceWithData);
-				int occ_num = 0;
-				iPasteAsText = !IsDlgButtonChecked(hDlg, IDC_USETRANSLATION_CHECK);
-				// Don't do anything if to-replace and replace-with data are same.
-				Text2BinTranslator tr_find(strToReplaceData), tr_replace(strReplaceWithData);
-				if (tr_find.bCompareBin(tr_replace, iCharacterSet, iBinaryMode))
-				{
-					MessageBox(hDlg, _T("To-replace and replace-with data are same."), _T("Replace all following occurances"), MB_ICONERROR);
-					break;
-				}
-
-				SetCursor( LoadCursor( NULL, IDC_WAIT ) );
-				while (find_and_select_data(-1, cmp))
-				{
-					occ_num++;
-					replace_selected_data(hDlg);
-				};
-				SetCursor( LoadCursor( NULL, IDC_ARROW ) );
-
-				set_wnd_title();
-				adjust_view_for_selection();
-				resize_window();
-				synch_sibling();
-
-				TCHAR tbuf[32];
-				_stprintf(tbuf, _T("%d occurances replaced."), occ_num);
-				MessageBox(hDlg, tbuf, _T("Replace/Replace all following"), MB_ICONINFORMATION);
-			}
+			replace_directed(hDlg, -1, _T("Replace/Replace all previous"));
 			break;
 
 		case IDC_REPLACE_BUTTON:
-			iPasteAsText = !IsDlgButtonChecked(hDlg, IDC_USETRANSLATION_CHECK);
-			GetDlgItemText(hDlg, IDC_TO_REPLACE_EDIT, strToReplaceData);
-			GetDlgItemText(hDlg, IDC_REPLACEWITH_EDIT, strReplaceWithData);
-			replace_selected_data(hDlg);
-			set_wnd_title();
-			adjust_view_for_selection();
-			resize_window();
-			synch_sibling();
+			replace_directed(hDlg, 0, NULL);
 			break;
 		}
 		break;
