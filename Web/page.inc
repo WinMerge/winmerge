@@ -121,11 +121,6 @@
       $temp .= "<div id=\"wrap\">\n";
       $temp .= "  <div id=\"head\">\n";
       $temp .= "<h1>WinMerge</h1>\n";
-      $temp .= "<p id=\"rightcorner\">\n";
-      $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216\" width=\"88\" height=\"31\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
-      $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
-      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
-      $temp .= "</p>\n";
       $temp .= "  </div> <!-- #head -->\n";
       $temp .= $this->getTabs();
       $temp .= $this->getAds();
@@ -138,6 +133,11 @@
      */
     function printFoot() {
       $temp = "  </div> <!-- #content -->\n";
+      $temp .= "<p id=\"poweredby\">\n";
+      $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216&amp;type=3\" width=\"125\" height=\"37\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
+      $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
+      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
+      $temp .= "</p>\n";
       $temp .= "</div> <!-- #wrap -->\n";
       $temp .= $this->getPiwikCode();
       $temp .= "</body>\n\n";

@@ -46,18 +46,12 @@ a[name]:hover { color:black; text-decoration:none; }
 }
 
 #head h1 {
-	float: left;
 	margin: 0;
 	padding: 0;
 	width: 266px;
 	height: 50px;
 	background: url(/images/head.gif) no-repeat;
 	text-indent: -999em;
-}
-
-#rightcorner {
-	margin-top: 0;
-	text-align: right;
 }
 
 /* Based on "Eric Meyer's tabbed navbar" from Eric Meyer:
@@ -143,6 +137,13 @@ a[name]:hover { color:black; text-decoration:none; }
 
 #content p {
 	margin-top: 0;
+}
+
+#poweredby {
+	margin: 0;
+	margin-top: 1em;
+	padding: 0;
+	text-align: center;
 }
 
 /* "Download Now!" link */
