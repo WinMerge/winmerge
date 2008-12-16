@@ -207,11 +207,16 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 {
 	String param;
 	bool flag;
+
 	while ((q = EatParam(q, param, &flag)) != 0)
 	{
 		if (!flag)
 		{
-			// Not a flag
+			// Its not a flag so it is a path
+			// Convert paths given in Linux-style ('/' as separator) given from
+			// Cygwin to Windows style ('\' as separator)
+			string_replace(param, String(_T("/")), String(_T("\\"))); 
+
 			// If shortcut, expand it first
 			if (paths_IsShortcut(param.c_str()))
 				param = ExpandShortcut(param.c_str());
