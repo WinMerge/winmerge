@@ -366,6 +366,7 @@ ExplorerContextMenu=&Aktiver integrasjon i Windows utforsker sin kontekstmeny
 IntegrateTortoiseCVS=Integrer med &TortoiseCVS
 IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
 IntegrateClearCase=Integrer med Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=LesMeg

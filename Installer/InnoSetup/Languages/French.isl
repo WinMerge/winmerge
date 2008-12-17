@@ -362,6 +362,7 @@ ExplorerContextMenu=&Permetre l'intégration au menu contextuel de l'explorateur
 IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
 IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
 IntegrateClearCase=Integrer avec Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Lisez moi

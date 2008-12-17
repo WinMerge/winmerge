@@ -363,6 +363,7 @@ ExplorerContextMenu=&Integracija u Explorer kontekst izbornik
 IntegrateTortoiseCVS=Integracija s &TortoiseCVS
 IntegrateTortoiseSVN=Integracija s T&ortoiseSVN
 IntegrateClearCase=Integracija s Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Proèitaj

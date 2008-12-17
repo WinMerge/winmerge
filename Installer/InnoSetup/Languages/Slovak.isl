@@ -298,6 +298,7 @@ ExplorerContextMenu=&Zapni integráciu do kontextovej ponuky Prieskumníka
 IntegrateTortoiseCVS=Integrácia s &TortoiseCVS
 IntegrateTortoiseSVN=Integrácia s T&ortoiseSVN
 IntegrateClearCase=Integrácia s Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=súbor Èítaj ma!

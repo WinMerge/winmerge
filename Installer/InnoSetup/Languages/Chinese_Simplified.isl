@@ -360,6 +360,7 @@ ExplorerContextMenu=集成到资源管理器右键菜单(&E)
 IntegrateTortoiseCVS=集成到 &TortoiseCVS
 IntegrateTortoiseSVN=集成到 T&ortoiseSVN
 IntegrateClearCase=集成到 Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=说明文件

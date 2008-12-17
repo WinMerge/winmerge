@@ -389,6 +389,7 @@ ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
 IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
 IntegrateClearCase=Integrálás a Rational &ClearCase programmal
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Olvass el

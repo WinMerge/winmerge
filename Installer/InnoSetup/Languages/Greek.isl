@@ -370,6 +370,7 @@ ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευν
 IntegrateTortoiseCVS=Ενσωμάτωση του &TortoiseCVS
 IntegrateTortoiseSVN=Ενσωμάτωση του T&ortoiseSVN
 IntegrateClearCase=Ενσωμάτωση του Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Απαραίτητες Πληροφορίες (Read Me)

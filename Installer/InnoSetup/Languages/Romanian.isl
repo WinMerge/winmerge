@@ -370,6 +370,7 @@ ExplorerContextMenu=&Activeaza integrarea in meniurile contextuale Explorer
 IntegrateTortoiseCVS=Integrare cu &TortoiseCVS
 IntegrateTortoiseSVN=Integrare cu T&ortoiseSVN
 IntegrateClearCase=Integrare cu Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Citeste

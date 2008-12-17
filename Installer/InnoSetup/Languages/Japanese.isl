@@ -362,6 +362,7 @@ ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
 IntegrateClearCase=Rational ClearCaseとの連携(&C)
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=Read Me

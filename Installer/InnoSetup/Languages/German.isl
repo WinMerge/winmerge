@@ -359,6 +359,7 @@ ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
 IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
 IntegrateTortoiseSVN=Integrieren in T&ortoiseSVN
 IntegrateClearCase=Integrieren in Rational &ClearCase
+AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
 ReadMe=LIESMICH-Datei

@@ -366,6 +366,7 @@
    IntegrateTortoiseCVS=Інтегруватися в &TortoiseCVS
    IntegrateTortoiseSVN=Інтегруватися в T&ortoiseSVN
    IntegrateClearCase=Інтегруватися в Rational &ClearCase
+   AddToPath=&Add WinMerge folder to your system path
 
    ;Icon Labels
    ReadMe=Прочитати Read Me
