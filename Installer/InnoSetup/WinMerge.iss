@@ -48,7 +48,6 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
-
 [Setup]
 AppName=WinMerge
 AppVersion={#AppVersion}
@@ -101,6 +100,8 @@ SolidCompression=true
 
 ; Update file associations for shell (project files)
 ChangesAssociations=true
+; Updates PATH
+ChangesEnvironment=true
 OutputDir=..\..\Build
 AlwaysShowComponentsList=true
 
@@ -250,6 +251,7 @@ Name: Languages\Ukrainian; Description: {cm:UkrainianLanguage}; Flags: disableno
 
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: {cm:OptionalFeatures}
+Name: modifypath; Description: {cm:AddToPath}; GroupDescription: {cm:OptionalFeatures}; Flags: unchecked
 Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseCVSInstalled
 Name: TortoiseSVN; Description: {cm:IntegrateTortoiseSVN}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseSVNInstalled; MinVersion: 0,5.0.2195sp3
 Name: ClearCase; Description: {cm:IntegrateClearCase}; GroupDescription: {cm:OptionalFeatures}; Check: ClearCaseInstalled
@@ -1013,10 +1015,29 @@ Begin
 	end;
 End;
 
+// Add WinMerge to system path.
+// This requires certain order of things to work:
+// #1 ModPathDir function must be first (it gets called by others)
+// #2 include of modpath.iss so modpath code gets included
+// #3 CurStepChanged and CurUninstallStepChanged procedures as they call
+//    ModPath (in modpath.iss)
+function ModPathDir(): TArrayOfString;
+var
+    Dir:	TArrayOfString;
+begin
+    setArrayLength(Dir, 1)
+	Dir[0] := ExpandConstant('{app}');
+	Result := Dir;
+end;
+
+#include "modpath.iss"
+
 procedure CurStepChanged(CurStep: TSetupStep);
 Begin
     if CurStep = ssPostInstall then
     begin
+		if IsTaskSelected('modifypath') then
+			ModPath();
         if IsTaskSelected('ClearCase') then
         begin
             IntegrateClearCase('..\..\bin\cleardiffmrg.exe', WinMergeExeName());
@@ -1025,7 +1046,18 @@ Begin
 End;
 
 Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+	appdir:			String;
+	selectedTasks:	String;
 Begin
+	appdir := ExpandConstant('{app}')
+	if CurUninstallStep = usUninstall then begin
+		if LoadStringFromFile(appdir + '\uninsTasks.txt', selectedTasks) then
+			if Pos('modifypath', selectedTasks) > 0 then
+				ModPath();
+		DeleteFile(appdir + '\uninsTasks.txt')
+	end;
+
     if CurUninstallStep = usPostUninstall then
     begin
       if ClearCaseInstalled() then
