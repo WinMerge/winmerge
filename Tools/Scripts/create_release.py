@@ -386,8 +386,13 @@ def create_runtime_folder(runtimes_folder):
     shutil.copy('Installer/Runtimes/msvcr71.dll', runtimes_folder)
 
 def find_winmerge_root():
-    """Find WinMerge tree root folder from where to run rest of the script."""
-    
+    """Find WinMerge tree root folder from where to run rest of the script.
+
+    This function checks if we are in WinMerge root folder. If we are in some
+    other folder then we must try to find the WinMerge root folder. Because all
+    other code assumes we are in WinMerge root folder. If the root folder is
+    found current folder is changed into it."""
+
     # If we find Src and Filters -subfolders we are in root 
     if os.path.exists('Src') and os.path.exists('Filters'):
         return True
@@ -470,16 +475,16 @@ def main(argv):
     if check_tools() == False:
         sys.exit()
 
-    # Check 64-bit ShellExtension is compiled
-    if check_x64shellext() == False:
-        sys.exit()
-
     # Check we are running from correct folder (and go to root if found)
     if find_winmerge_root() == False:
         print 'ERROR: Cannot find WinMerge root folder!'
         print 'The script must be run from WinMerge tree\'s root folder'
         print '(which has Src- and Filter -folders as subfolders) or from'
         print 'Tools/Scripts -folder (where this script is located).'
+        sys.exit()
+
+    # Check 64-bit ShellExtension is compiled
+    if check_x64shellext() == False:
         sys.exit()
 
     # Create the distribution folder if it doesn't exist
