@@ -108,8 +108,9 @@ cd %2\..\..\..\Externals\expat\lib
 %msdev% "expat.dsp" /make "expat - Win32 Debug"
 %devenv% "expat.vcproj" /build "Debug"
 cd %2\..\..\expat
-copy lib\debug\libexpat.dll %2\..\
+copy lib\debug\libexpat.dll
 copy lib\debug\libexpat.lib
+copy libexpat.dll %2\..\
 
 REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
@@ -121,8 +122,9 @@ cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Debug"
 %devenv% "pcre.vcproj" /build "Debug"
 cd %2\..\..\pcre
-copy Debug\pcre.dll %2\..\
+copy Debug\pcre.dll 
 copy Debug\pcre.lib
+copy pcre.dll %2\..\
 
 goto Common
 
@@ -134,21 +136,25 @@ cd %2\..\..\..\Externals\expat\lib
 %msdev% "expat.dsp" /make "expat - Win32 Release"
 %devenv% "expat.vcproj" /build "Release"
 cd %2\..\..\expat
-copy lib\release\libexpat.dll %2\..\
+copy lib\release\libexpat.dll
 copy lib\release\libexpat.lib
+copy libexpat.dll %2\..\
+
 
 REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
 %msdev% "scew.dsp" /make "scew - Win32 Release"
 %devenv% "scew.vcproj" /build "Release"
 
+
 REM Build PCRE
 cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Release"
 %devenv% "pcre.vcproj" /build "MinSizeRel"
 cd %2\..\..\pcre
-copy MinSizeRel\pcre.dll %2\..\
+copy MinSizeRel\pcre.dll
 copy MinSizeRel\pcre.lib
+copy pcre.dll %2\..\
 
 goto Common
 
