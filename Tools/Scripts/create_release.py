@@ -20,7 +20,7 @@
 
 # $Id$
 
-# This script prepares a WinMerge release
+# This is a script for creating a WinMerge release.
 # Tasks it does:
 # - cleans previous build files from folders
 # - sets version number for resources
@@ -39,10 +39,21 @@
 # - creating packages from source and binary folders
 # - running virus check
 # - creating SHA-1 hashes for distributed files
+# - create installer to correct folder
+# - make installer compile less verbose
+# - make building exes and dlls also less verbose
 
 # Tools needed:
 # - Python 2.5 :)
 # - Subversion command line binaries
+# - InnoSetup 5
+# There are lots of other dependencies, they are documented in /Docs/Developers documents. Especially be sure to read:
+# - Compiling.html for compiling executables and dlls
+# - readme-manual.html for building the manual
+# - readme-InnoSetup.html for creating the installer
+
+# Please note that this script is only tested in kimmov's environment. It simply may not work in other environments and
+# configurations. If you find problems, please report them so we can improve the script.
 
 # CONFIGURATION:
 # Set these variables to match your environment and folders you want to use
