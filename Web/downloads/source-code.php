@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Source Code', TAB_DOWNLOADS);
+  $page->printHead('WinMerge: Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
 ?>
 <h2>Source Code</h2>
@@ -16,7 +16,16 @@
     </ul>
   </li>
 </ul>
-</div>
+</div> <!-- .downloadmatrix -->
+<div id="checksums">
+  <h3><a href="javascript:toggle('checksumslist')">SHA-1 Checksums</a></h3>
+<pre id="checksumslist">
+<?php
+  echo $stablerelease->getDownloadSha1Sum('src.zip') . ' ' . $stablerelease->getDownloadFileName('src.zip') . "\n";
+  echo $stablerelease->getDownloadSha1Sum('src.7z') . ' ' . $stablerelease->getDownloadFileName('src.7z') . "\n";
+?>
+</pre>
+</div> <!-- #checksums -->
 <p>The source code is hosted on <a href="http://sourceforge.net/">SourceForge.net</a> in a <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> repository.</p>
 <p>You can <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">browse the source code</a> with a web browser or you can check out the whole code by clicking on one of the following links (if you have <a href="http://tortoisesvn.net/">TortoiseSVN</a> installed):</p>
 <dl class="headinglist">

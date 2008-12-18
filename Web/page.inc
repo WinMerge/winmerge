@@ -41,13 +41,13 @@
       $this->_stablerelease = new Release;
       $this->_stablerelease->setVersionNumber('2.10.2');
       $this->_stablerelease->setDate('2008-11-06');
-      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-Setup.exe', 3243855);
-      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-exe.zip', 3441767);
-      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-exe.7z', 2015200);
-      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.2.zip', 1287520);
-      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.2.7z', 753833);
-      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-src.zip', 9767957);
-      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-src.7z', 5106442);
+      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-Setup.exe', 3243855, 'ccef6cbb1436e82924b58fdf193fb9fba1887130');
+      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-exe.zip', 3441767, '7b07b131304c450136a5de591985c6cb823fb8a3');
+      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-exe.7z', 2015200, '7b73243f7b72daae277ca6984e4acd4ccdff00e4');
+      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.2.zip', 1287520, '0634a46cb8893c41fa759d2b43ca3ae50645cdf3');
+      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.10.2.7z', 753833, '6e4b2edae0becae50cb3ba9d6fe68ef2a6b003aa');
+      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-src.zip', 9767957, 'bd1efe95f324bbe608bdb969eea1fb852cec1a68');
+      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.10.2-src.7z', 5106442, '0d19fda436bb2938f6e6e76753a4644c65da3cd5');
     }
 
     /**
@@ -95,7 +95,7 @@
     /**
      * print the head from the page
      */
-    function printHead($title = '', $tab = '') {
+    function printHead($title = '', $tab = '', $onload = '') {
       if ($title != '') {
         $this->_title = $title;
       }
@@ -112,12 +112,16 @@
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
       $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/screen.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
+      $temp .= "  <script src=\"/engine/javascript/winmerge.js\" type=\"text/javascript\"></script>\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       foreach ($this->_rssfeeds as $rssurl => $rsstitle) { //for all RSS feeds...
         $temp .= "  <link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . $rsstitle . "\" href=\"" . $rssurl . "\">\n";
       }
       $temp .= "</head>\n\n";
-      $temp .= "<body>\n";
+      if ($onload != '')
+        $temp .= "<body onload=\"".$onload."\">\n";
+      else
+        $temp .= "<body>\n";
       $temp .= "<div id=\"wrap\">\n";
       $temp .= "  <div id=\"head\">\n";
       $temp .= "<h1>WinMerge</h1>\n";

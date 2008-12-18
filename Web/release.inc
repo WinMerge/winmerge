@@ -15,7 +15,7 @@
   class Release {
     var $_versionnumber;
     var $_date;
-    var $_downloads, $_downloadsizes;
+    var $_downloads, $_downloadsizes, $_downloadsha1sums;
 
     /**
      * Constructor
@@ -58,9 +58,10 @@
     /**
      * add a download from the release
      */
-    function addDownload($id, $url, $size) {
+    function addDownload($id, $url, $size, $sha1 = '') {
       $this->_downloads[$id] = $url;
       $this->_downloadsizes[$id] = $size;
+      $this->_downloadsha1sums[$id] = $sha1;
     }
 
     /**
@@ -96,6 +97,20 @@
      */
     function getDownloadSizeFormatted($id, $unit = '') {
       return $this->formatSize($this->_downloadsizes[$id], $unit);
+    }
+
+    /**
+     * get a download SHA-1 sum from the release
+     */
+    function getDownloadSha1Sum($id) {
+      return $this->_downloadsha1sums[$id];
+    }
+
+    /**
+     * get a download filename from the release
+     */
+    function getDownloadFileName($id) {
+      return basename($this->_downloads[$id]);
     }
 
     /**

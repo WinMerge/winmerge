@@ -4,7 +4,7 @@
 
   $page = new Page;
   $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
-  $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS);
+  $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
 ?>
 <h2>Downloads</h2>
@@ -31,7 +31,19 @@
     </ul>
   </li>
 </ul>
-</div>
+</div> <!-- .downloadmatrix -->
+<div id="checksums">
+  <h4><a href="javascript:toggle('checksumslist')">SHA-1 Checksums</a></h4>
+<pre id="checksumslist">
+<?php
+  echo $stablerelease->getDownloadSha1Sum('setup.exe') . ' ' . $stablerelease->getDownloadFileName('setup.exe') . "\n";
+  echo $stablerelease->getDownloadSha1Sum('exe.zip') . ' ' . $stablerelease->getDownloadFileName('exe.zip') . "\n";
+  echo $stablerelease->getDownloadSha1Sum('exe.7z') . ' ' . $stablerelease->getDownloadFileName('exe.7z') . "\n";
+  echo $stablerelease->getDownloadSha1Sum('rt.zip') . ' ' . $stablerelease->getDownloadFileName('rt.zip') . "\n";
+  echo $stablerelease->getDownloadSha1Sum('rt.7z') . ' ' . $stablerelease->getDownloadFileName('rt.7z') . "\n";
+?>
+</pre>
+</div> <!-- #checksums -->
 <p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="/docs/manual/Installing.html">online manual</a> for help using it.</p>
 <p>You can also download additional <a href="plugins.php">plugins</a> and the whole <a href="source-code.php">source code</a> from WinMerge.</p>
 <h3><a name="other">Other Versions</a></h3>

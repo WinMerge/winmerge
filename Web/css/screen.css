@@ -232,6 +232,26 @@ a.downloadnow em {
 	color: #FFFFFF;
 }
 
+/* SHA-1 Checksums */
+#checksums {
+	margin-bottom: 1em;
+}
+
+#checksums h3,
+#checksums h4 {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+#checksumslist {
+	margin: 0;
+	margin-top: .5em;
+	padding: .5em;
+	background: #f2f2f2;
+	border: 1px solid #aaaaaa;
+}
+
 /* Heading list */
 .headinglist dt {
 	font-weight: bold;
