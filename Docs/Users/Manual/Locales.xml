@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Locales">
   <title>Locale support<indexterm>
-      <primary>localizing WinMerge </primary>
+      <primary>localizing WinMerge</primary>
     </indexterm></title>
 
   <para>The WinMerge user interface is in English by default, but you can
@@ -25,8 +25,8 @@
     </listitem>
 
     <listitem>
-      <para><xref linkend="Locales_config_files" />: Choose one of the
-      configured language files.</para>
+      <para><xref linkend="Locales_changing" />: Choose one of the configured
+      language files.</para>
     </listitem>
   </orderedlist>
 
@@ -84,7 +84,7 @@
   </section>
 
   <section id="Locales_changing">
-    <title>Changing the Winmerge interface language</title>
+    <title>Changing the WinMerge interface language</title>
 
     <para>If you have configured one or more translation files, as described in
     the preceding section, you can change the localization of WinMerge to any of
