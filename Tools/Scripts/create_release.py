@@ -455,9 +455,12 @@ def usage():
     print '    -l, --libraries build libraries (expat, scew, pcre) only'
     print '    -f:, --file= filename set the version number ini file'
     print '  For example: create_release -f: versions.ini'
+    print '  If no version number (-v) or INI file (-f) given, 0.0.0.0 will be'
+    print '    used as version number.'
 
 def main(argv):
-    version = '0.0.0.0'
+    version = ''
+    ver_file = ''
     if len(argv) > 0:
         opts, args = getopt.getopt(argv, "hclv:f:", [ "help", "cleanup", "libraries",
                                                     "version=", "file="])
@@ -478,6 +481,11 @@ def main(argv):
                 sys.exit()
             if opt in ("-f", "--file"):
                 ver_file = arg
+
+    if ver_file == '' and version == '':
+        print 'WARNING: No version number or INI file given, using default'
+        print '    version number of 0.0.0.0 where applicable in this script.'
+        version = '0.0.0.0'
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
