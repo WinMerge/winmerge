@@ -446,15 +446,17 @@ def check_x64shellext():
         return True
 
 def usage():
+    """Print script usage information."""
+
     print 'WinMerge release script.'
-    print 'Usage: create_release [-h] [-v: n] [-c] [-l]'
+    print 'Usage: create_release [-h] [-f file] [-v n] [-c] [-l]'
     print '  where:'
     print '    -h, --help print this help'
-    print '    -v: n, --version= n set release version'
+    print '    -v n, --version=n set release version'
     print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
     print '    -l, --libraries build libraries (expat, scew, pcre) only'
-    print '    -f:, --file= filename set the version number ini file'
-    print '  For example: create_release -f: versions.ini'
+    print '    -f file, --file=filename set the version number ini file'
+    print '  For example: create_release -f versions.ini'
     print '  If no version number (-v) or INI file (-f) given, 0.0.0.0 will be'
     print '    used as version number.'
 
