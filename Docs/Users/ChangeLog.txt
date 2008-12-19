@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.11.1.8
+WinMerge 2.11.1.8 - 2008-12-19 (r6200)
   Allow reloading the file if it has been changed on the disk
     behind WinMerge (#2354125)
   Add option to show Open-dialog on WinMerge startup (#2327424)
