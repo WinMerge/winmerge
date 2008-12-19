@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Releasing WinMerge</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
+    h5 {
+      font-size: small;
+    }
+    pre {
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 5px;
+      background-color: #EEEEEE;
+      border: 1px solid black;
+    }
+    p.note {
+      padding: 5px;
+      background-color: #DDDDFF;
+      border: 1px solid blue;
+    }
+    acronym {
+      cursor: help;
+      border-bottom: 1px dotted black;
+    }
+  -->
+  </style>
+</head>
+<body>
+<h2>Creating a WinMerge release</h2>
+
+<p>Creating a release means building installer, executable- and source-packages
+that can be distributed for users. <b>RELEASING IS A TASK WITH BIG
+RESPONSIBILITY!</b> Making errors mean (lots of) users have non-working
+WinMerge installations. And users are not happy about that!</p>
+
+<h3>Table of Contents</h3>
+<ol>
+  <li><a href="#Environment">Environment</a></li>
+  <li><a href="#StepsInReleasing">Steps to do a release (without scripts)</a></li>
+  <li><a href="#UsingScripts">Using the scripts</a></li>
+</ol>
+
+<h3><a name="Environment">Environment</a></h3>
+
+<p>Before starting releasing, you must make sure you have all tools available:
+</p>
+
+<ol>
+  <li>Executable and libraries build tools are documented in <a href="Compiling.html">Compiling.html</a></li>
+  <li>Installer building is explained in <a href="readme-InnoSetup.html">readme-manual.html</a></li>
+  <li>Manual building is explained in <a href="readme-manual.html">readme-manual.html</a></li>
+</ol>
+
+<p>If you want to use the Python scripts for making creating release easier
+you'll need <a href="http://www.python.org/">Python</a> version 2.5 or later.
+The scripts also require <a href="http://subversion.tigris.org/">Subversion</a>
+<i>command line</i> binaries.</p> TortoiseSVN binaries don't work.
+
+<h3><a name="StepsInReleasing">Steps to do a release (without scripts)</a></h3>
+
+<p>There are many steps in creating full release. Doing a release without using
+the helper scripts may take <i>hours</i>! If you are doing a release for a first
+time, reserve few hours of time for this...</p>
+
+<p>The list of steps is:</p>
+<ol>
+  <li>Verify that sources are ones you want to build as release.
+    <ol><li>If you have a pristine copy (no modifications/build files etc) of
+      sources make a copy of them before building etc. You can use this
+      pristine copy as source distribution.
+    </li></ol>
+  </li>
+  <li>Set version numbers:
+   <ol><li><code>Src/Merge.rc</code> for executables</li>
+    <li><code>ShellExtension/ShellExtension.rc</code> for Shell Extension</li>
+    <li><code>Docs/Users/Manual/WinMerge_help.xml</code> for the manual</li>
+   </ol>
+  </li>
+  <li>Build executables and libraries (see <a href="Compiling.html">Compiling
+   instructions</a>)</li>
+  <li>Build manual (see <a href="readme-manual.html">readme-manual.html</a>)</li>
+  <li>Build installer (see <a href="readme-InnoSetup.html">readme-manual.html</a>)</li>
+  <li>Create binary distribution folder:
+    <ol><li>Copy executables and libraries to distribution folder</li>
+      <li>Copy manual to <code>Docs</code> -subfolder</li>
+      <li>Copy filter files to <code>Filters</code> -subfolder</li>
+      <li>Copy plugin files to <code>MergePlugins</code> -subfolder</li>
+    </ol>
+  </li>
+  <li>Create source distribution folder from pristine sources (see 1.1 in the list)
+    <ol><li>Remove plugin dlls from sources</li></ol>
+  </li>
+  <li>Create packages from binary- and source-folders</li>
+  <li>Create checksums (MD5 or SHA1) from packages <b>and</b> installer</li>
+  <li>Run virus check for all files</li>
+</ol>
+
+<h3><a name="UsingScripts">Using the scripts</a></h3>
+
+<p>Since creating the release is quite a tedious and error-prone task, there
+are couple of scripts helping this task:</p>
+
+<ul>
+  <li><code>Tools/Scripts/SetVersions.py</code> is a script for setting version
+    numbers<li>
+  <li><code>Tools/Scripts/create_release.py</code> does many of the tasks of
+    building the release.</li>
+</ul>
+
+<p>When using the <code>create_release.py</code> -script the tasks for releasing
+are:</p>
+
+<ol>
+  <li>Verify you have sources you want to build</li>
+  <li>Build 64-bit shell extension (script doesn't build it and requires it)
+    </li>
+  <li>Update version numbers into INI file</li>
+  <li>Run the <code>create_release.py</code> -script</li>
+  <li>Copy the installer file to release folder (its now created into <code>
+   /Build</code> -folder</li>
+  <li>Create checksums (MD5 or SHA1) from packages <b>and</b> installer</li>
+  <li>Run virus check for all files</li>
+</ol>
+
+<h4>SetVersions.py</h4>
+
+<p>The <code>SetVersions.py</code> -script is documented in <code>
+SetVersions.txt</code> -file in the same folder. It reads version numbers and
+files to modify from INI file and sets the version numbers.</p>
+
+<p>Running the script is easy, just give the INI file to use as a parameter.</p>
+
+<h4>create_release.py</h4>
+
+<p>The <code> </code> -script does much of the releasing work. It does:
+
+<ol>
+  <li>cleans previous build files from folders</li>
+  <li>sets version number for resources (using <code>SetVersions.py</code>
+   -script)</li>
+  <li>updates POT and PO files</li>
+  <li>builds libraries (expat, scew, pcre)</li>
+  <li>builds WinMerge.exe and WinMergeU.exe</li>
+  <li>builds 32-bit ShellExtension targets</li>
+  <li>builds user manual</li>
+  <li>builds the InnoSetup installer</li>
+  <li>creates per-version distribution folder</li>
+  <li>exports SVN sources to distribution folder</li>
+  <li>creates binary distribution folder</li>
+</ol>
+
+
+</body>
+</html>
