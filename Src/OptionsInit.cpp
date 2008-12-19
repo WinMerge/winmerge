@@ -134,7 +134,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
 
 	m_pOptions->InitOption(OPT_MULTIDOC_DIRDOCS, false);
-	m_pOptions->InitOption(OPT_MULTIDOC_MERGEDOCS, false);
+	m_pOptions->InitOption(OPT_MULTIDOC_MERGEDOCS, true);
 
 	// Overwrite WinMerge 2.0 default colors with new colors
 	if (m_pOptions->GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
