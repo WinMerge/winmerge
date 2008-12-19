@@ -10,11 +10,13 @@ WinMerge 2.11.1.8
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Add build identifier for 64-bit builds to About-dialog (r6142)
   Installer: Option to add WinMerge to system path (#2435175)
+  Add Unicode version of heksedit (#2036603)
   Allow multiple file compare documents by default (#2445749)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Bugfix: Use translated version of readme.txt for Chinese Simplified (#2391000)
   Bugfix: Installer didn't install readme.txt for all translations (#2396437)
   Bugfix: Could not give paths to commandline when started WinMerge
+  Bugfix: Infinite loop in heksedit's Replace-dialog (r6176)
     from Cygwin prompt (#2427946)
   Translation updates:
   - Croatian (#2390558)
