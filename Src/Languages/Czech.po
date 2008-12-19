@@ -1308,7 +1308,7 @@ msgstr "Povolit systémové &místní nabídky"
 #: Merge.rc:777
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "&Po spuštìní vybrat soubory nebo složky"
 
 #: Merge.rc:779
 #, c-format
@@ -3796,7 +3796,7 @@ msgstr ""
 #: Merge.rc:2146
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Jiná aplikace provedla zmìny v souboru\n%1\nod jeho posledního prozkoumání aplikací WinMerge.\n\nChcete soubor naèíst znovu?"
 
 #: Merge.rc:2147
 #, c-format
