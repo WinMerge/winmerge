@@ -61,12 +61,30 @@ create_release.py
 
  Run from root folder (Src, Filters etc are subfolders).
 
- Usage: python create_release.py [-h] [--help] [-v n.n.n.n] [-version n.n.n.n]
+ Usage: create_release [-h] [-f file] [-v n] [-c] [-l]
   Where:
    -h, --help print usage help
-   -v, --version n.n.n.n sets the version number
+   -v n, --version=n set release version
+   -c, --cleanup clean up build files (temp files, libraries, executables)
+   -l, --libraries build libraries (expat, scew, pcre) only
+   -f file, --file=filename set the version number ini file
   For example:
    create_release -v 2.7.7.1
+   create_release -f versions.ini
+
+
+fix_manifest.py
+---------------
+
+ Script that fixes manifest options for VS2005 and VS2008 project files after
+ converting from VS2003 project. The XML the script (Python) writes is quite
+ differently formatted that VS does it. Opening the project file once in VS
+ and saving it fixes this formatting issue.
+ 
+  Usage: fix_manifest.py [-h] filename
+   Where:
+    filename is absolute or relative path to the project file.
+    -h, --help Print usage help.
 
 
 HeaderFileAutonomyVerificator.py
