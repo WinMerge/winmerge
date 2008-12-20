@@ -45,8 +45,8 @@
 # - builds libraries twice: as independent project and from executable project (by prelink.bat)
 
 # Tools needed:
-# - Python 2.5 :)
-# - Subversion command line binaries
+# - Python 2.5 or 2.6 :)
+# - Subversion command line binaries from http://subversion.tigris.org/
 # - InnoSetup 5
 # There are lots of other dependencies, they are documented in /Docs/Developers documents. Especially be sure to read:
 # - Compiling.html for compiling executables and dlls
