@@ -17,8 +17,8 @@ WinMerge 2.11.1.8 - 2008-12-19 (r6200)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
   Bugfix: Use translated version of readme.txt for Chinese Simplified (#2391000)
   Bugfix: Installer didn't install readme.txt for all translations (#2396437)
-  Bugfix: Could not give paths to commandline when started WinMerge
   Bugfix: Infinite loop in heksedit's Replace-dialog (r6176)
+  Bugfix: Could not give paths to commandline when started WinMerge
     from Cygwin prompt (#2427946)
   Translation updates:
   - Croatian (#2390558)
