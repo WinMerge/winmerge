@@ -18,8 +18,8 @@ WinMerge 2.11.1.8 - 2008-12-19 (r6200)
   Bugfix: Use translated version of readme.txt for Chinese Simplified (#2391000)
   Bugfix: Installer didn't install readme.txt for all translations (#2396437)
   Bugfix: Could not give paths to commandline when started WinMerge
-  Bugfix: Infinite loop in heksedit's Replace-dialog (r6176)
     from Cygwin prompt (#2427946)
+  Bugfix: Infinite loop in heksedit's Replace-dialog (r6176)
   Translation updates:
   - Croatian (#2390558)
   - German (r6130)
