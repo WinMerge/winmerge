@@ -86,6 +86,12 @@ RewriteRule   ^rfe/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [
 RewriteRule   ^todo/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
 RewriteRule   ^tracker/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R=permanent]
 
+RewriteRule   ^bug/?$ http://sourceforge.net/tracker/?atid=113216&group_id=13216 [R=permanent]
+RewriteRule   ^patch/?$ http://sourceforge.net/tracker/?group_id=13216&atid=313216 [R=permanent]
+RewriteRule   ^rfe/?$ http://sourceforge.net/tracker/?group_id=13216&atid=363216 [R=permanent]
+RewriteRule   ^todo/?$ http://sourceforge.net/tracker/?group_id=13216&atid=759426 [R=permanent]
+RewriteRule   ^tracker/?$ http://sourceforge.net/tracker/?group_id=13216 [R=permanent]
+
 #Nicer Wiki URLs...
 RewriteEngine On
 RewriteBase   /
