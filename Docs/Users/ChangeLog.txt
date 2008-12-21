@@ -8,6 +8,7 @@ WinMerge 2.13.1.1
     character in folder names (#2372000)
   Bugfix: File compare method "Modified Date and Size" ignored file size
     (#2455595)
+  BugFix: Quick compare didn't ignore EOL differences (#2433677)
 
 WinMerge 2.12.x (R2_12) branch created (r6202)
 

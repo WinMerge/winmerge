@@ -389,7 +389,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 			else
 			{
-				return RESULT_DIFF;
+				if (!eof0 || !eof1)
+					goto need_more;
+				else
+					return RESULT_DIFF;
 			}
 		}
 
