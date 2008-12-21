@@ -10,6 +10,8 @@ WinMerge 2.10.4
   Bugfix: Installer didn't install readme.txt for all translations (#2396437)
   Bugfix: Could not give paths to commandline when started WinMerge
     from Cygwin prompt (#2427946)
+  Bugfix: Cound not open project file that contains an ampersand 
+    character in folder names (#2372000)
   Translation updates:
   - Swedish (#2236651)
 

@@ -288,6 +288,20 @@ scew_element* ProjectFile::AddPathsElement(scew_element * parent)
 }
 
 /**
+ * @brief Covert characters that are unsafe for use in XML
+ * @param [in] str The string to be converted
+ * @return The converted string
+ */
+static String EscapeXML(const String &str)
+{
+	String escapedStr = str;
+	string_replace(escapedStr, _T("&"), _T("&amp;"));
+	string_replace(escapedStr, _T("<"), _T("&lt;"));
+	string_replace(escapedStr, _T(">"), _T("&gt;"));
+	return escapedStr;
+}
+
+/**
  * @brief Add paths data to the XML tree.
  * This function adds our paths data to the XML tree.
  * @param [in] parent Parent element for paths data.
@@ -300,29 +314,23 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 
 	if (!m_leftFile.IsEmpty())
 	{
-		LPCTSTR path;
 		element = scew_element_add(parent, Left_element_name);
-		path = m_leftFile.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, T2UTF8(path));
-		m_leftFile.ReleaseBuffer();
+		String path = m_leftFile;
+		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
 	}
 
 	if (!m_rightFile.IsEmpty())
 	{
-		LPCTSTR path;
 		element = scew_element_add(parent, Right_element_name);
-		path = m_rightFile.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, T2UTF8(path));
-		m_rightFile.ReleaseBuffer();
+		String path = m_rightFile;
+		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
 	}
 
 	if (!m_filter.IsEmpty())
 	{
-		LPCTSTR filter;
 		element = scew_element_add(parent, Filter_element_name);
-		filter = m_filter.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, T2UTF8(filter));
-		m_filter.ReleaseBuffer();
+		String filter = m_filter;
+		scew_element_set_contents(element, T2UTF8(EscapeXML(filter).c_str()));
 	}
 
 	element = scew_element_add(parent, Subfolders_element_name);
