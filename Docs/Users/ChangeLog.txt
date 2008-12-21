@@ -6,6 +6,8 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.1.1
   Bugfix: Cound not open project file that contains an ampersand 
     character in folder names (#2372000)
+  Bugfix: File compare method "Modified Date and Size" ignored file size
+    (#2455595)
 
 WinMerge 2.12.x (R2_12) branch created (r6202)
 
