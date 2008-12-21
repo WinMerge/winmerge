@@ -1308,7 +1308,7 @@ msgstr "Starta Gränssnitt och Kontextmeny"
 #: Merge.rc:777
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Visa \"Välj Filer eller Kataloger\" Dialogen vid Uppstart"
 
 #: Merge.rc:779
 #, c-format
@@ -3084,7 +3084,7 @@ msgstr "Unicode"
 #: Merge.rc:1962
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1968
 #, c-format
@@ -3552,7 +3552,7 @@ msgstr "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
 #: Merge.rc:2146
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Ett annat program har uppdaterat filen\n%1\nsedan WinMerge scannade den förra gången.\n\nVill du öppna filen igen?"
 
 #: Merge.rc:2147
 #, c-format
