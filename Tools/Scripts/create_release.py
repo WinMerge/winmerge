@@ -60,13 +60,18 @@
 # Set these variables to match your environment and folders you want to use
 
 # Subversion binary - set this to absolute path to svn.exe
-svn_binary = 'C:\\Program Files\\Subversion\\bin\\svn.exe'
+svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
 # Visual Studio path
-vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003'
+vs_path = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
 # InnoSetup installation path
 innosetup_path = 'C:\\Program Files\\Inno Setup 5'
 # Relative path where to create a release folder
 dist_root_folder = 'distrib'
+# Source location
+# Give URL to SVN repository to export source from SVN or 'workspace' to export
+# from workspace
+source_location = 'https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk'
+#source_location ='workspace'
 
 # END CONFIGURATION - you don't need to edit anything below...
 
@@ -204,7 +209,11 @@ def svn_export(dist_src_folder):
     """Exports sources to distribution folder."""
 
     print 'Exporting sources to ' + dist_src_folder
-    call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
+    print 'Exporting from: ' + source_location
+    if source_location == 'workspace':
+        call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
+    else:
+        call([svn_binary, 'export', '--non-interactive', source_location, dist_src_folder]) 
 
 def cleanup_dlls_from_plugins(dist_src_folder):
     """Remove compiled plugin dll files from source distribution folders."""
