@@ -110,8 +110,8 @@
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
       $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
-      $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/screen.css\";</style>\n";
-      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
+      $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/engine/css/screen.css\";</style>\n";
+      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/engine/css/print.css\">\n";
       $temp .= "  <script src=\"/engine/javascript/winmerge.js\" type=\"text/javascript\"></script>\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       foreach ($this->_rssfeeds as $rssurl => $rsstitle) { //for all RSS feeds...
