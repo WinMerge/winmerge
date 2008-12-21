@@ -1,5 +1,6 @@
 <?php
   include('../page.inc');
+  include('../engine/simplepie/simplepie.inc');
 
   $page = new Page;
   $page->printHead('WinMerge: Support', TAB_SUPPORT);
@@ -19,6 +20,24 @@ public and free), so that you may get email notifications if we post follow-up q
 It is not at this time required that you register to post a bug report (although, we do generally
 give less priority to unregistered bug reports, because it has been our experience that unregistered
 posters often do not remember to return and check to answer follow-on questions).</p>
+<h3>Tracker Statistics</h3>
+<?php
+  $feed = new SimplePie();
+  $feed->set_feed_url('http://sourceforge.net/export/rss2_projsummary.php?group_id=13216');
+  $feed->set_cache_location('../engine/simplepie/cache');
+  $feed->enable_order_by_date(false);
+  $feed->init();
+  print("<ul class=\"rssfeeditems\">\n");
+  foreach ($feed->get_items() as $item) { //for all project summary items...
+    $title = $item->get_title();
+    if (stristr($title, "Tracker:")) {
+      $title = str_replace('Tracker: ', '', $title);
+      print("  <li><a href=\"".$item->get_link()."\">".$title."</a></li>\n");
+    }
+  }
+  print("</ul>\n");
+?>
+<h3>Donate</h3>
 <p>Since WinMerge is an Open Source project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>
 to support the continued development of WinMerge.</p>
