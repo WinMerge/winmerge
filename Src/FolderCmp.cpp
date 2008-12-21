@@ -309,7 +309,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		
 		// This is actual CMP_DATE_SIZE method..
 		// If file sizes differ mark them different
-		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.diffcode.isResultSame())
+		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
 		{
 			if (di.left.size != di.right.size)
 			{
