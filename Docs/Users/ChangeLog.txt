@@ -12,6 +12,8 @@ WinMerge 2.10.4
     from Cygwin prompt (#2427946)
   Bugfix: Cound not open project file that contains an ampersand 
     character in folder names (#2372000)
+  Bugfix: File compare method "Modified Date and Size" ignored file size
+    (#2455595)
   Translation updates:
   - Swedish (#2236651)
 
