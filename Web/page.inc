@@ -246,9 +246,10 @@
           break;
         case TAB_ABOUT: //if "About" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/about/\" title=\"Index\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/about/screenshots/\" title=\"Screenshots\">Screenshots</a></li>\n";
-          $temp .= "  <li><a href=\"/about/history.php\">History</a></li>\n";
+          $temp .= "  <li><a href=\"/about/\" title=\"About WinMerge\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/about/screenshots/\" title=\"WinMerge Screenshots\">Screenshots</a></li>\n";
+          $temp .= "  <li><a href=\"/about/history.php\" title=\"WinMerge History\">History</a></li>\n";
+          $temp .= "  <li><a href=\"/about/license.php\" title=\"WinMerge License\">License</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_DOCS: //if "Documentation" ...
