@@ -6,9 +6,12 @@
   $stablerelease = $page->getStableRelease();
 ?>
 <h2>About WinMerge</h2>
-<p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determining what has changed between project versions, and then merging changes between versions.</p>
+<p>WinMerge is an <a href="license.php">Open Source</a> differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle.</p>
+<p>WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application.</p>
 <?php $page->printDownloadNow(); ?>
+
 <h3>Features</h3>
+<p>In addition, WinMerge has many helpful supporting features that make comparing, synchronising, and merging as easy and useful as possible:</p>
 <ul>
   <li>Visual differencing and merging of text files</li>
   <li>Flexible editor with syntax highlighting, line numbers and word-wrap</li>
