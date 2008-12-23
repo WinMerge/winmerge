@@ -297,7 +297,13 @@ void CLocationView::CalculateBlocks()
 				block.bottom_coord = nEndY;
 				block.diff_index = nDiff;
 				m_diffBlocks.push_back(block);
-				}
+			}
+
+			// First diff having only blank lines in other side causes the
+			// blank value be -1. Set it to 0 as top line of diff.
+			if (diff.blank0 == -1)
+				diff.blank0 = 0;
+
 			// Now the block for blank lines side0!
 			CalculateBlocksPixel(
 				pView->GetSubLineIndex(diff.blank0),
@@ -329,6 +335,12 @@ void CLocationView::CalculateBlocks()
 				block.diff_index = nDiff;
 				m_diffBlocks.push_back(block);
 			}
+
+			// First diff having only blank lines in other side causes the
+			// blank value be -1. Set it to 0 as top line of diff.
+			if (diff.blank1 == -1)
+				diff.blank1 = 0;
+
 			// Now the block for blank lines side1!
 			CalculateBlocksPixel(
 				pView->GetSubLineIndex(diff.blank1),

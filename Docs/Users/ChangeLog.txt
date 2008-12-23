@@ -9,6 +9,7 @@ WinMerge 2.13.1
   Bugfix: File compare method "Modified Date and Size" ignored file size
     (#2455595)
   BugFix: Quick compare didn't ignore EOL differences (#2433677)
+  Bugfix: Location pane was empty for some files with diffs (#2459234)
   Translation updates:
   - Swedish (#2452467)
 
