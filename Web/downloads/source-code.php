@@ -2,6 +2,8 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->setDescription('Download the source code of WinMerge.');
+  $page->setKeywords('WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN');
   $page->printHead('WinMerge: Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
 ?>

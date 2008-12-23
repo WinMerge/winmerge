@@ -33,8 +33,8 @@
     function Page() {
       $this->_title = 'WinMerge';
       $this->_charset = 'ISO-8859-1';
-      $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
-      $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
+      $this->_description = '';
+      $this->_keywords = '';
       $this->_rssfeeds = array();
       $this->_tab = TAB_HOME;
       /* _Stable Release */
