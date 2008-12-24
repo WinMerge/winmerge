@@ -108,8 +108,12 @@
       $temp .= "<head>\n";
       $temp .= "  <title>" . $this->_title . "</title>\n";
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
-      $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
-      $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
+      if ($this->_description != '') {
+        $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
+      }
+      if ($this->_keywords != '') {
+        $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
+      }
       $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/engine/css/screen.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/engine/css/print.css\">\n";
       $temp .= "  <script src=\"/engine/javascript/winmerge.js\" type=\"text/javascript\"></script>\n";
