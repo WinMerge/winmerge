@@ -55,6 +55,7 @@
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta Versions</a></li>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental Builds</a></li>
   <li><a href="http://portableapps.com/apps/utilities/winmerge_portable">WinMerge Portable</a> (by PortableApps.com)</li>
+  <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">Japanese WinMerge Version</a> (by Takashi Sawanaka)</li>
 </ul>
 <?php
   $page->printRssSubHeading('Project File Releases', 'http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
