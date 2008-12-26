@@ -50,7 +50,7 @@
  */
 LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 {
-	if (p && *(p += StrSpn(p, _T(" \t"))) == '\0')
+	if (p && *(p += StrSpn(p, _T(" \t\r\n"))) == '\0')
 		p = 0;
 	LPCTSTR q = PathGetArgs(p);
 	if (q > p && flag)
@@ -74,8 +74,8 @@ LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 		CharLower(&*param.begin());
 	}
 	// Strip any leading or trailing whitespace or quotes
-	param.erase(0, param.find_first_not_of(_T(" \t\"")));
-	param.erase(param.find_last_not_of(_T(" \t\"")) + 1);
+	param.erase(0, param.find_first_not_of(_T(" \t\r\n\"")));
+	param.erase(param.find_last_not_of(_T(" \t\r\n\"")) + 1);
 	return q;
 }
 
@@ -215,7 +215,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 			// Its not a flag so it is a path
 			// Convert paths given in Linux-style ('/' as separator) given from
 			// Cygwin to Windows style ('\' as separator)
-			string_replace(param, String(_T("/")), String(_T("\\"))); 
+			string_replace(param, _T("/"), _T("\\"));
 
 			// If shortcut, expand it first
 			if (paths_IsShortcut(param.c_str()))
