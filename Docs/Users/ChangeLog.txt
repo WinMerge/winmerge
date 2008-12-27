@@ -12,6 +12,7 @@ WinMerge 2.13.1
   Bugfix: Location pane was empty for some files with diffs (#2459234)
   Translation updates:
   - Brazilian (#2461443)
+  - Czech (r6201)
   - Swedish (#2452467, #2465385)
 
 WinMerge 2.12.x (R2_12) branch created (r6202)
