@@ -11,6 +11,7 @@ WinMerge 2.13.1
   BugFix: Quick compare didn't ignore EOL differences (#2433677)
   Bugfix: Location pane was empty for some files with diffs (#2459234)
   Bugfix: Remove EOL characters from command line (#2458728)
+  Bugfix: Merging one line diff to empty other side didn't work (#2456399)
   Translation updates:
   - Brazilian (#2461443)
   - Czech (r6201)
