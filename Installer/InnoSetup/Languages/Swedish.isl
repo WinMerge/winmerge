@@ -360,7 +360,7 @@ ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
 IntegrateClearCase=Integrera med Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Lägg till WinMerge-katalogen till din systemsökväg
 
 ;Icon Labels
 ReadMe=Läs Mig
