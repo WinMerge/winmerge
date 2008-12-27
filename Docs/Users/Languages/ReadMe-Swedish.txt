@@ -38,7 +38,7 @@ http://winmerge.org/downloads/.
 
 Om du inte av någon anledning kan installera 7-Zip-verktyget kan du använda 
 7-zips plugin-installationsprogram för att installera bara de filer som krävs 
-för arkivfilestöd. Se Hjälpämnet, "7-Zip and archive support"
+för arkivfilstöd. Se Hjälpämnet, "7-Zip and archive support"
 ("7-zip och arkivstöd") för detaljer.
 
 WinMerge Support (WinMerge-support)

@@ -11,7 +11,7 @@ WinMerge 2.11.1.9
   BugFix: Quick compare didn't ignore EOL differences (#2433677)
   Translation updates:
   - Brazilian (#2461443)
-  - Swedish (#2452467)
+  - Swedish (#2452467, #2465385)
 
 WinMerge 2.12.x (R2_12) branch created (r6202)
 
