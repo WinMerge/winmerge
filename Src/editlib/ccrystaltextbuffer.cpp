@@ -1298,14 +1298,16 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ )
   nAction = m_aUndoBuf[nPosition].m_nAction;
 
   //  Advance to next undo group
-  nPosition++;
-  vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
-  while (iter != m_aUndoBuf.begin () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
+  if (m_aUndoBuf.size () > 1)
     {
-      --iter;
-      --nPosition;
+      nPosition++;
+      vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+      while (iter != m_aUndoBuf.begin () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
+        {
+          --iter;
+          --nPosition;
+        }
     }
-
   if (nPosition >= m_aUndoBuf.size ())
     return NULL;                //  No more redo actions!
 

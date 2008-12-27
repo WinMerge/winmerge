@@ -10,6 +10,7 @@ WinMerge 2.11.1.9
     (#2455595)
   BugFix: Quick compare didn't ignore EOL differences (#2433677)
   Bugfix: Remove EOL characters from command line (#2458728)
+  Bugfix: Merging one line diff to empty other side didn't work (#2456399)
   Translation updates:
   - Brazilian (#2461443)
   - Czech (r6201)
