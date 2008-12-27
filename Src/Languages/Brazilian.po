@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-10-20 21:03+0000\n"
-"PO-Revision-Date: 2008-11-01 07:59-0300\n"
-"Last-Translator: Felipe Periard Lopes <felipefpl at ig.com.br>\n"
+"POT-Creation-Date: 2008-12-05 00:52+0000\n"
+"PO-Revision-Date: 2008-12-20 01:06-0300\n"
+"Last-Translator: Felipe <felipefpl@ig.com.br>\n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1252\n"
@@ -1305,12 +1305,12 @@ msgstr "&Preservar a hora do arquivo na comparação dos arquivos"
 #: Merge.rc:775
 #, c-format
 msgid "Enable Shell &Context Menu"
-msgstr ""
+msgstr "Ativar o Menu de &Contexto do Shell"
 
 #: Merge.rc:777
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Mostrar o Diálogo \"Selecionar Arquivos ou Pastas\" ao Iniciar"
 
 #: Merge.rc:779
 #, c-format
@@ -3262,7 +3262,7 @@ msgstr "Unicode"
 #: Merge.rc:1962
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1968
 #, c-format
@@ -3851,8 +3851,18 @@ msgstr ""
 
 #: Merge.rc:2146
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"Outro aplicativo atualizou o arquivo\n"
+"%1\n"
+"desde que o WinMerge o escaneou pela última vez.\n"
+"\n"
+"Você quer recarregar o arquivo?"
 
 #: Merge.rc:2147
 #, c-format
@@ -4210,12 +4220,12 @@ msgstr "Copiar os nomes dos caminhos de ambos os lados para a área de transferên
 #: Merge.rc:2257
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Menu do Shell Esquerdo"
 
 #: Merge.rc:2258
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Menu do Shell Direito"
 
 #: Merge.rc:2264
 #, c-format
@@ -6136,7 +6146,7 @@ msgstr "TEX"
 #: Merge.rc:2846
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2847
 #, c-format
