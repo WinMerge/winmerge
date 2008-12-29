@@ -48,6 +48,13 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
+; Runtime files
+#define Runtime_MFC  "..\Runtimes\mfc71.dll"
+#define Runtime_MFCU "..\Runtimes\mfc71u.dll"
+#define Runtime_C    "..\Runtimes\msvcr71.dll"
+#define Runtime_CPP  "..\Runtimes\msvcp71.dll"
+
+
 [Setup]
 AppName=WinMerge
 AppVersion={#AppVersion}
@@ -353,10 +360,10 @@ Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifol
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Microsoft runtime libraries (C-runtime, MFC)
-Source: ..\Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
-Source: ..\Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
-Source: ..\Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: ..\Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: {#Runtime_MFC}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
+Source: {#Runtime_MFCU}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
+Source: {#Runtime_C}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: {#Runtime_CPP}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
