@@ -1,5 +1,5 @@
 /** 
- * @file  FolderCmp.cpp
+ * @file  DiffUtils.cpp
  *
  * @brief Implementation file for DiffUtils class.
  */
