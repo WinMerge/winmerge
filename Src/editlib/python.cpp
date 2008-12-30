@@ -25,11 +25,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  Python 2.6 keywords
 static LPTSTR s_apszPythonKeywordList[] =
   {
-    _T ("access"),
     _T ("and"),
+    _T ("as"),
+    _T ("assert"),
     _T ("break"),
     _T ("class"),
     _T ("continue"),
@@ -56,6 +57,8 @@ static LPTSTR s_apszPythonKeywordList[] =
     _T ("return"),
     _T ("try"),
     _T ("while"),
+    _T ("whith"),
+    _T ("yield"),
     NULL
   };
 
@@ -63,15 +66,19 @@ static LPTSTR s_apszUser1KeywordList[] =
   {
     _T ("argv"),
     _T ("builtin_module_names"),
+    _T ("Ellipsis"),
     _T ("exc_type"),
     _T ("exc_value"),
     _T ("exc_traceback"),
     _T ("exit"),
     _T ("exitfunc"),
+    _T ("False"),
     _T ("last_type"),
     _T ("last_value"),
     _T ("last_traceback"),
     _T ("modules"),
+    _T ("None"),
+    _T ("NotImplemented"),
     _T ("path"),
     _T ("ps1"),
     _T ("ps2"),
@@ -95,9 +102,11 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("SyntaxError"),
     _T ("SystemError"),
     _T ("SystemExit"),
+    _T ("True"),
     _T ("TypeError"),
     _T ("ValueError"),
     _T ("ZeroDivisionError"),
+    _T ("__debug__"),
     NULL
   };
 
