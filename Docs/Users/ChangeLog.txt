@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.1
+  Update Python syntax highlight keywords for Python 2.6 (#2473375)  
   Bugfix: Could not open project file that contains an ampersand 
     character in folder names (#2372000)
   Bugfix: File compare method "Modified Date and Size" ignored file size
