@@ -143,7 +143,6 @@
       $temp = "  </div> <!-- #content -->\n";
       $temp .= "<p id=\"poweredby\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216&amp;type=3\" width=\"125\" height=\"37\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
-      $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
       $temp .= "</p>\n";
       $temp .= "</div> <!-- #wrap -->\n";
