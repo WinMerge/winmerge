@@ -88,7 +88,7 @@ import ConfigParser
 
 class settings:
     def __init__(self):
-        self.callpath = ' '
+        self.rootpath = ''
         self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
         self.vs_path = ' '
         self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
@@ -128,13 +128,17 @@ class settings:
         # Writing our configuration file to 'Tools.ini'
         with open(filename, 'w') as configfile:
             config.write(configfile)
-        return
 
-    def read_ini(self):
-        filename ='Tools.ini'
+    def read_ini(self, filename):
         config = ConfigParser.RawConfigParser()
         if not os.path.exists(filename):
+            # If the config file didn't exist, we create a new file and ask
+            # user to edit the config and re-run the script. This is because
+            # our defaults probably don't match user's environment.
             self.create_ini(filename)
+            print 'New configuration file created: ' + filename
+            print 'Please edit the file to match your configuration and re-run the script.'
+            sys.exit()
 
         config.readfp(open(filename))
         self.svn_binary = config.get('RUNTIME', 'svn_binary') #r'C:\Program Files\Subversion\bin\svn.exe'
@@ -579,9 +583,13 @@ def main(argv):
         print 'Tools/Scripts -folder (where this script is located).'
         sys.exit()
 
-    # now read settings from Tools.ini
-    prog.read_ini()
+    # Now read settings from Tools.ini
+    prog.read_ini('Tools.ini')
     print 'Compiler: ' + prog.vs_path
+    print 'Path:' + os.getcwd()
+
+    # Remember the rootfolder
+    prog.rootpath = os.getcwd()
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
