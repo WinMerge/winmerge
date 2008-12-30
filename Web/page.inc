@@ -143,7 +143,7 @@
       $temp = "  </div> <!-- #content -->\n";
       $temp .= "<p id=\"poweredby\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216&amp;type=3\" width=\"125\" height=\"37\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
-      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
+      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/engine/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
       $temp .= "</p>\n";
       $temp .= "</div> <!-- #wrap -->\n";
       $temp .= $this->getPiwikCode();
@@ -181,7 +181,7 @@
      * get a RSS feed link
      */
     function getRssFeedLink($url, $text = '') {
-      $temp = "<a href=\"" . $url . "\"><img src=\"/images/rss.png\" alt=\"RSS\" border=\"0\"></a>";
+      $temp = "<a href=\"" . $url . "\"><img src=\"/engine/images/rss.png\" alt=\"RSS\" border=\"0\"></a>";
       if ($text != '') { //if WITH text...
         $temp .= " <a href=\"" . $url . "\"> " . $text . "</a>";
       }

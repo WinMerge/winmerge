@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: black;
-	background: #FFFFCC url(/images/body-bg.png) repeat-x;
+	background: #FFFFCC url(/engine/images/body-bg.png) repeat-x;
 	text-align: center;
 	font-family: Verdana,Helvetica,Arial,sans-serif;
 	font-size: small;
@@ -50,7 +50,7 @@ a[name]:hover { color:black; text-decoration:none; }
 	padding: 0;
 	width: 266px;
 	height: 50px;
-	background: url(/images/head.gif) no-repeat;
+	background: url(/engine/images/head.gif) no-repeat;
 	text-indent: -999em;
 }
 
@@ -97,7 +97,7 @@ a[name]:hover { color:black; text-decoration:none; }
 #subtabs {
 	margin: 0;
 	padding: 5px;
-	background: #F2F2F2 url(/images/subtabs-bg.png) repeat-x bottom;
+	background: #F2F2F2 url(/engine/images/subtabs-bg.png) repeat-x bottom;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	/*border-bottom: 1px solid #D2D2D2;*/
@@ -155,7 +155,7 @@ a.downloadnow {
 	text-align: center;
 	text-decoration: none;
 	color: white;
-	background: #006600 url(/images/downloadnow.png) repeat-x top;
+	background: #006600 url(/engine/images/downloadnow.png) repeat-x top;
 	border: 1px solid #006600;
 }
 
@@ -169,7 +169,7 @@ a.downloadnow:focus,
 a.downloadnow:hover {
 	text-decoration: none;
 	color: white;
-	background: #00CC00 url(/images/downloadnow-focus.png) repeat-x top;
+	background: #00CC00 url(/engine/images/downloadnow-focus.png) repeat-x top;
 }
 
 a.downloadnow strong {
