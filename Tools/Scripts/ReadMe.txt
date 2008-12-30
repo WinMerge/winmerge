@@ -133,3 +133,17 @@ Batch file for updating PO template (.pot) file and merging changes to
 all PO files.
 
 Remember to call this batch file after every Merge.rc file change!
+
+
+UpgradeProjects.py
+------------------
+ A script for updating Visual Studio solution- and project-files from VS2003
+ to newer versions (VS2005 or VS2008).
+ 
+ Usage: UpgradeProjects.py [-h] [path]
+ Where:
+   -h, --help Print this help.
+   path Root path for WinMerge.
+ For example: UpgradeProjects.py ../..
+   which upgrades current project when run from Scripts folder.
+ 
