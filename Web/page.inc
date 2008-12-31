@@ -273,12 +273,11 @@
           break;
         case TAB_SUPPORT: //if "Support" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/support/mailing-lists.php\" title=\"Mailing Lists\">Mailing&nbsp;Lists</a></li>\n";
-          $temp .= "  <li><a href=\"http://forums.winmerge.org\" title=\"Discussion Forums\">Discussion&nbsp;Forums</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\" title=\"Submit a Bug Report\">Bug&nbsp;Reports</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\" title=\"Submit a Feature Request\">Feature&nbsp;Requests</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\" title=\"Submit a Support Request\">Support&nbsp;Requests</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\" title=\"Submit a Patch\">Patches</a></li>\n";
+          $temp .= "  <li><a href=\"/support/\" title=\"WinMerge Support\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"http://forums.winmerge.org\" title=\"WinMerge Discussion Forums\">Discussion&nbsp;Forums</a></li>\n";
+          $temp .= "  <li><a href=\"/support/mailing-lists.php\" title=\"WinMerge Mailing Lists\">Mailing&nbsp;Lists</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216\" title=\"WinMerge Tracker\">Tracker</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" title=\"Donate money to WinMerge\">Donate</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
