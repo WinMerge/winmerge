@@ -96,7 +96,7 @@ class settings:
     def __init__(self):
         self.rootpath = ''
         self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
-        self.vs_path = ' '
+        self.vs_path = ''
         self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
         self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8.0'
         self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
@@ -117,19 +117,19 @@ class settings:
         if not config.has_option(sect, 'type'):
             config.set(sect, 'type', 'VSXXXX')
         if not config.has_option(sect, 'VSStudio'):
-            config.set(sect, 'VSStudio', '2003')
+            config.set(sect, 'VSStudio', self.vs_version)
         if not config.has_option(sect, 'Source'):
-            config.set(sect, 'Source', 'workspace')
+            config.set(sect, 'Source', self.source)
         if not config.has_option(sect, 'svn_binary'):
-            config.set(sect, 'svn_binary', r'C:\Program Files\Subversion\bin\svn.exe')
+            config.set(sect, 'svn_binary', self.svn_binary)
         if not config.has_option(sect, 'vs_path7'):
-            config.set(sect, 'vs_path7', r'C:\Program Files\Microsoft Visual Studio .NET 2003')
+            config.set(sect, 'vs_path7', self.vs_path7)
         if not config.has_option(sect, 'vs_path8'):
-            config.set(sect, 'vs_path8', r'C:\Programme\Microsoft Visual Studio 8.0')
+            config.set(sect, 'vs_path8', self.vs_path8)
         if not config.has_option(sect, 'vs_path9'):
-            config.set(sect, 'vs_path9', r'C:\Programme\Microsoft Visual Studio 9.0')
+            config.set(sect, 'vs_path9', self.vs_path9)
         if not config.has_option(sect, 'innosetup_path'):
-            config.set(sect, 'innosetup_path', r'C:\Programme\Inno Setup 5')
+            config.set(sect, 'innosetup_path', self.innosetup_path)
 
         # Writing our configuration file to 'Tools.ini'
         with open(filename, 'w') as configfile:
@@ -147,13 +147,13 @@ class settings:
             sys.exit()
 
         config.readfp(open(filename))
-        self.svn_binary = config.get('RUNTIME', 'svn_binary') #r'C:\Program Files\Subversion\bin\svn.exe'
-        self.vs_path7 = config.get('RUNTIME', 'vs_path7') #r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-        self.vs_path8 = config.get('RUNTIME', 'vs_path8') #r'C:\Programme\Microsoft Visual Studio 8.0'
-        self.vs_path9 = config.get('RUNTIME', 'vs_path9') #r'C:\Programme\Microsoft Visual Studio 9.0'
-        self.innosetup_path = config.get('RUNTIME', 'innosetup_path') #r'C:\Programme\Inno Setup 5'
-        self.source = config.get('RUNTIME', 'Source') # 'workspace'
-        self.vs_version = config.getint('RUNTIME', 'VSStudio') #2003
+        self.svn_binary = config.get('RUNTIME', 'svn_binary')
+        self.vs_path7 = config.get('RUNTIME', 'vs_path7')
+        self.vs_path8 = config.get('RUNTIME', 'vs_path8')
+        self.vs_path9 = config.get('RUNTIME', 'vs_path9')
+        self.innosetup_path = config.get('RUNTIME', 'innosetup_path')
+        self.source = config.get('RUNTIME', 'Source') 
+        self.vs_version = config.getint('RUNTIME', 'VSStudio')
 
         if self.vs_version ==2003:
             self.vs_path =self.vs_path7
