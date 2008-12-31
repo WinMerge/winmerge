@@ -45,11 +45,17 @@
 # - make installer compile less verbose
 # - make building exes and dlls also less verbose
 # - builds libraries twice: as independent project and from executable project (by prelink.bat)
+# - check Python version
+# - check JRE is installed
+# - check InnoSetup is installed
 
 # Tools needed:
+# - Visual Studio 2003 or later
 # - Python 2.5 or 2.6 :)
 # - Subversion command line binaries from http://subversion.tigris.org/
 # - InnoSetup 5
+# - Manual build tools (in Developer tools at downloads)
+# - Java runtime environment (JRE) (Manual build tools need it)
 # There are lots of other dependencies, they are documented in /Docs/Developers documents. Especially be sure to read:
 # - Compiling.html for compiling executables and dlls
 # - readme-manual.html for building the manual
@@ -62,7 +68,7 @@
 # Set these variables to match your environment and folders you want to use
 
 # Subversion binary - set this to absolute path to svn.exe
-svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
+#svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
 # Visual Studio path
 #vs_path = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
 # InnoSetup installation path
@@ -72,7 +78,7 @@ dist_root_folder = 'distrib'
 # Source location
 # Give URL to SVN repository to export source from SVN or 'workspace' to export
 # from workspace
-source_location = 'https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk'
+#source_location = 'https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk'
 #source_location ='workspace'
 
 # END CONFIGURATION - you don't need to edit anything below...
@@ -513,6 +519,21 @@ def check_tools():
         print 'Cannot find Visual Studio IDE binary from:'
         print vs_cmd
         print 'Please check script configuration.'
+        return False
+
+    pathhhc = os.path.join(prog.callpath, '/Docs/Users/Manual/build/hhc/hhc.exe')
+    folderdtd = os.path.join(prog.callpath, '/Docs/Users/Manual/build/dtd')
+    foldersaxon = os.path.join(prog.callpath, '/Docs/Users/Manual/build/saxon')
+    folderxerc = os.path.join(prog.callpath, '/Docs/Users/Manual/build/xerces')
+    folderxsl = os.path.join(prog.callpath, '/Docs/Users/Manual/build/xsl')
+
+    if not os.path.exist(pathhhc) or not os.path.exist(folderdtd) or \
+            not os.path.exist(foldersaxon) or not os.path.exist(folderxerc) or \
+            not os.path.exist(folderxsl):
+        print 'Cannot find manual build tools'
+        print 'Please download and install manual build tools from:'
+        print 'https://sourceforge.net/project/showfiles.php?group_id=13216'
+        print 'See also Docs/Developers/readme-manual.html'
         return False
     return True
 
