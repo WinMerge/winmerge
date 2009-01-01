@@ -88,6 +88,7 @@ sip (current, skip_test)
      struct file_data *current;
      int skip_test;
 {
+  int isbinary;
   /* If we have a nonexistent file at this stage, treat it as empty.  */
   if (current->desc < 0)
     {
@@ -129,7 +130,9 @@ sip (current, skip_test)
             current->buffered_chars);
           if (current->buffered_chars == -1)
             pfatal_with_name (current->name);
-          return binary_file_p (current->buffer, current->buffered_chars);
+          isbinary = binary_file_p (current->buffer, current->buffered_chars);
+          isbinary &= !isunicode(current->buffer, current->buffered_chars);
+          return isbinary;
         }
     }
   

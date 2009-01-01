@@ -957,3 +957,51 @@ memchr (s, c, n)
   return 0;
 }
 #endif
+/**
+ * @brief Check if buffer contains Unicode encoded data.
+ * This function checks if the data in the buffer starts
+ * with BOM bytes.
+ * @param [in] pBuffer pointer to data.
+ * @return true if unicode, false binary.
+ * EF BB BF UTF-8 
+ * FF FE UTF-16, little endian 
+ * FE FF UTF-16, big endian 
+ * FF FE 00 00 UTF-32, little endian 
+ * 00 00 FE FF UTF-32, big-endian 
+ */
+isunicode(unsigned char *pBuffer, int size)
+{
+  int unicoding = 0;
+  if (size >= 2)
+    {
+      if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE)
+        {
+          unicoding = 1; //UNI little endian
+        }
+      else if (pBuffer[0] == 0xFE && pBuffer[1] == 0xFF)
+        {
+          unicoding = 1; //UNI big endian
+        }
+    }
+  if (size >= 3)
+    {
+      if (pBuffer[0] == 0xEF && pBuffer[1] == 0xBB && pBuffer[2] == 0xBF)
+        {
+          unicoding = 1;
+        }
+    }
+  if (size >= 4)
+    {
+      if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE && 
+          pBuffer[2] == 0x00 && pBuffer[3] == 0x00)
+        {
+          unicoding = 1; //UTF-32, little endian 
+        }
+      else if (pBuffer[0] == 0x00 && pBuffer[1] == 0x00 && 
+           pBuffer[2] == 0xFE && pBuffer[3] == 0xFF)
+        {
+          unicoding = 1; //UTF-32, big endian 
+        }
+    }
+  return unicoding;
+}

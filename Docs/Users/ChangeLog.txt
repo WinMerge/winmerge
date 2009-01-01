@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.1
   Update Python syntax highlight keywords for Python 2.6 (#2473375)
   More accurate visible area indicator in location pane (#2479804)
+  Better Unicode file detection for full contents compare (2477657)
   Bugfix: Could not open project file that contains an ampersand 
     character in folder names (#2372000)
   Bugfix: File compare method "Modified Date and Size" ignored file size
