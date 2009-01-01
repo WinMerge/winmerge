@@ -969,7 +969,7 @@ memchr (s, c, n)
  * FF FE 00 00 UTF-32, little endian 
  * 00 00 FE FF UTF-32, big-endian 
  */
-isunicode(unsigned char *pBuffer, int size)
+int isunicode(unsigned char *pBuffer, int size)
 {
   int unicoding = 0;
   if (size >= 2)
