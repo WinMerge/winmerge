@@ -44,26 +44,26 @@ IPhysicalDrive *CreatePhysicalDriveInstance()
 	return 0;
 }
 
-LPTSTR PartitionInfo::GetNameAsString(LPTSTR szFormat)
+LPTSTR PartitionInfo::GetNameAsString(PFormat *pFormat)
 {
 	if (m_bIsPartition)
-		_stprintf(szFormat, _T("Drive %d, Partition %d (%s)"), m_dwDrive + 1, m_dwPartition + 1, GetSizeAsString());
+		pFormat->Format(_T("Drive %d, Partition %d (%s)"), m_dwDrive + 1, m_dwPartition + 1, GetSizeAsString());
 	else
-		_stprintf(szFormat, _T("Drive %d (%s)"), m_dwDrive + 1, GetSizeAsString());
-	return szFormat;
+		pFormat->Format(_T("Drive %d (%s)"), m_dwDrive + 1, GetSizeAsString());
+	return pFormat->buffer;
 }
 
-LPTSTR PartitionInfo::GetSizeAsString(LPTSTR szFormat)
+LPTSTR PartitionInfo::GetSizeAsString(PFormat *pFormat)
 {
 	double SizeInMB = (double) m_PartitionLength;
 	SizeInMB /= (1000*1000);
 	double SizeInGB = SizeInMB;
 	SizeInGB /= (1000);
-	if( SizeInGB >= 1.0 )
-		_stprintf(szFormat, _T("%.2f GB"), SizeInGB);
+	if (SizeInGB >= 1.0)
+		pFormat->Format(_T("%.2f GB"), SizeInGB);
 	else
-		_stprintf(szFormat, _T("%.2f MB"), SizeInMB);
-	return szFormat;
+		pFormat->Format(_T("%.2f MB"), SizeInMB);
+	return pFormat->buffer;
 }
 
 void IPhysicalDrive::GetPartitionInfo(PList* lpList)

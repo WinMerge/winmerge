@@ -57,12 +57,42 @@ public:
 	long Count;
 };
 
-template<size_t n>
+union PFormat
+{
+	size_t capacity; // capacity in TCHARs - must be set prior to Format()
+	TCHAR buffer[1];
+	int Format(LPCTSTR, ...);
+private:
+	PFormat(); // disallow construction
+};
+
+template<size_t capacity>
 class PString
 {
-	TCHAR buffer[n];
+	TCHAR buffer[capacity];
 public:
 	operator LPTSTR() { return buffer; }
+	PFormat &operator[](size_t position)
+	{
+		// only remaining capacity (minus padding to store it) is ours
+		PFormat &r = reinterpret_cast<PFormat &>(buffer[position]);
+		r.capacity = capacity - position - sizeof(size_t) / sizeof(TCHAR) + 1;
+		return r;
+	}
+	operator PFormat *()
+	{
+		// total capacity is ours
+		PFormat *p = reinterpret_cast<PFormat *>(buffer);
+		p->capacity = capacity;
+		return p;
+	}
+	PFormat *operator->()
+	{
+		// total capacity is ours
+		PFormat *p = reinterpret_cast<PFormat *>(buffer);
+		p->capacity = capacity;
+		return p;
+	}
 };
 
 void TRACE(const char* pszFormat,...);

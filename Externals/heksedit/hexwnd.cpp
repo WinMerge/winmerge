@@ -1440,23 +1440,23 @@ void HexEditorWindow::command(int cmd)
 #ifdef _DEBUG
 	case IDM_INTERNALSTATUS:
 		{
-			TCHAR buf[4000];
-			LPTSTR buf2 = buf;
-			buf2 += _stprintf(buf2, _T("Data length: %d\n"), DataArray.GetLength());
-			buf2 += _stprintf(buf2, _T("Upper Bound: %d\n"), DataArray.GetUpperBound());
-			buf2 += _stprintf(buf2, _T("Data size: %d\n"), DataArray.GetSize());
-			buf2 += _stprintf(buf2, _T("cxChar: %d\n"), cxChar);
-			buf2 += _stprintf(buf2, _T("cyChar: %d\n"), cyChar);
-			buf2 += _stprintf(buf2, _T("iNumlines: %d\n"), iNumlines);
-			buf2 += _stprintf(buf2, _T("iVscrollPos: %d\n"), iVscrollPos);
-			buf2 += _stprintf(buf2, _T("iCurByte: %d\n"), iCurByte);
-			buf2 += _stprintf(buf2, _T("cyBuffer: %d\n"), cyBuffer);
-			buf2 += _stprintf(buf2, _T("cxBuffer: %d\n"), cxBuffer);
-			buf2 += _stprintf(buf2, _T("iMRU_count: %d\n"), iMRU_count);
+			PString<4000> buf;
+			size_t n = 0;
+			n += buf[n].Format(_T("Data length: %d\n"), DataArray.GetLength());
+			n += buf[n].Format(_T("Upper Bound: %d\n"), DataArray.GetUpperBound());
+			n += buf[n].Format(_T("Data size: %d\n"), DataArray.GetSize());
+			n += buf[n].Format(_T("cxChar: %d\n"), cxChar);
+			n += buf[n].Format(_T("cyChar: %d\n"), cyChar);
+			n += buf[n].Format(_T("iNumlines: %d\n"), iNumlines);
+			n += buf[n].Format(_T("iVscrollPos: %d\n"), iVscrollPos);
+			n += buf[n].Format(_T("iCurByte: %d\n"), iCurByte);
+			n += buf[n].Format(_T("cyBuffer: %d\n"), cyBuffer);
+			n += buf[n].Format(_T("cxBuffer: %d\n"), cxBuffer);
+			n += buf[n].Format(_T("iMRU_count: %d\n"), iMRU_count);
 			int i;
 			for (i = 0 ; i < MRUMAX ; i++)
 			{
-				buf2 += _stprintf(buf2, _T("MRU %d=%s\n"), i + 1, strMRU[i]);
+				n += buf[n].Format(_T("MRU %d=%s\n"), i + 1, strMRU[i]);
 			}
 			MessageBox(hwnd, buf, _T("Internal status"), MB_OK);
 		}

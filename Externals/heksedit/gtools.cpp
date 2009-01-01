@@ -26,6 +26,20 @@ void PList::AddTail(PNode *p)
 	++Count;
 }
 
+/**
+ * @brief Simple wrapper around _vsntprintf.
+ * @note The capacity is read from the passed-in buffer.
+ */
+int PFormat::Format(LPCTSTR fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	size_t count = capacity - 1;
+	int n = _vsntprintf(buffer, count, fmt, args);
+	buffer[count] = _T('\0');
+	return n >= 0 ? n : count;
+}
+
 void TRACE(const char* pszFormat,...)
 {
 #ifdef _DEBUG

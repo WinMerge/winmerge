@@ -40,8 +40,8 @@ public:
 	INT64 m_StartingSector;
 	INT64 m_PartitionLength;
 
-	LPTSTR GetNameAsString(LPTSTR = PString<80>());
-	LPTSTR GetSizeAsString(LPTSTR = PString<80>());
+	LPTSTR GetNameAsString(PFormat * = PString<80>());
+	LPTSTR GetSizeAsString(PFormat * = PString<80>());
 };
 
 
