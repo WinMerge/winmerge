@@ -45,7 +45,7 @@ BOOL UpgradeDlg::OnInitDialog(HWND hw)
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, _T("Software\\frhed"), 0, KEY_ALL_ACCESS, &hk) == 0)
 	{
 		i = 0;
-		while (RegEnumKey(hk, i, subkeynam, _MAX_PATH+1) != ERROR_NO_MORE_ITEMS)
+		while (RegEnumKey(hk, i, subkeynam, MAX_PATH) != ERROR_NO_MORE_ITEMS)
 		{
 			item.iItem = i++;
 			ListView_InsertItem(list, &item);
@@ -648,8 +648,9 @@ void UpgradeDlg::ChangeSelInst(HWND hw, LPTSTR text)
 				mrucount = *(int*)databuf;
 			if(i<6)
 			{
+				COLORREF &cr = reinterpret_cast<COLORREF &>(databuf);
 				_stprintf(szText, _T("RGB - %u,%u,%u"),
-					(unsigned)databuf[0], (unsigned)databuf[1], (unsigned)databuf[2]);
+					(unsigned)GetRValue(cr), (unsigned)GetGValue(cr), (unsigned)GetBValue(cr));
 			}
 			else if(i<6+8)
 			{
@@ -657,7 +658,7 @@ void UpgradeDlg::ChangeSelInst(HWND hw, LPTSTR text)
 			}
 			else if(i<6+8+4)
 			{
-				_tcscpy(szText, databuf[0] ? _T("True") : _T("False"));
+				_tcscpy(szText, *(int*)databuf ? _T("True") : _T("False"));
 			}
 			else if(i<6+8+4+1)
 			{
