@@ -13,23 +13,47 @@
 <h3>Features</h3>
 <p>In addition, WinMerge has many helpful supporting features that make comparing, synchronising, and merging as easy and useful as possible:</p>
 <ul>
-  <li>Visual differencing and merging of text files</li>
-  <li>Flexible editor with syntax highlighting, line numbers and word-wrap</li>
-  <li>Handles Windows, Unix and Mac text file formats</li>
-  <li>Unicode support</li>
-  <li>Difference pane shows current difference in two vertical panes</li>
-  <li>Location pane shows map of files compared</li>
-  <li>Highlights differences inside lines in file compare</li>
-  <li>Regular Expression based file filters in directory compare allow excluding and including items</li>
-  <li>Moved lines detection in file compare</li>
-  <li>Creates patch files</li>
-  <li>Resolve conflict files</li>
-  <li>Shell Integration (supports 64-bit Windows versions)</li>
-  <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
-  <li>Archive file support using 7-Zip</li>
-  <li>Plugin support</li>
-  <li>Localizable interface</li>
-  <li><a href="/docs/manual/">Online manual</a> and installed HTML Help manual</li>
+  <li><strong>General</strong>
+    <ul>
+      <li>Supports Microsoft Windows 98/2000/XP/2003/Vista/2008</li>
+      <li>Handles Windows, Unix and Mac text file formats</li>
+      <li>Unicode support</li>
+      <li>Tabbed interface</li>
+    </ul>
+  </li>
+  <li><strong>File Compare</strong>
+    <ul>
+      <li>Visual differencing and merging of text files</li>
+      <li>Flexible editor with syntax highlighting, line numbers and word-wrap</li>
+      <li>Highlights differences inside lines</li>
+      <li>Difference pane shows current difference in two vertical panes</li>
+      <li>Location pane shows map of files compared</li>
+      <li>Moved lines detection</li>
+    </ul>
+  </li>
+  <li><strong>Folder Compare</strong>
+    <ul>
+      <li>Regular Expression based file filters allow excluding and including items</li>
+      <li>Fast compare using file sizes and dates</li>
+      <li>Compares one folder or includes all subfolders</li>
+    </ul>
+  </li>
+  <li><strong>Version Control</strong>
+    <ul>
+      <li>Creates patch files</li>
+      <li>Resolve conflict files</li>
+      <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
+    </ul>
+  </li>
+  <li><strong>Other</strong>
+    <ul>
+      <li>Shell Integration (supports 64-bit Windows versions)</li>
+      <li>Archive file support using 7-Zip</li>
+      <li>Plugin support</li>
+      <li>Localizable interface</li>
+      <li><a href="/docs/manual/">Online manual</a> and installed HTML Help manual</li>
+    </ul>
+  </li>
 </ul>
 
 <h3>Screenshots</h3>
