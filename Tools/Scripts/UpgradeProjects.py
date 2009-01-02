@@ -43,7 +43,7 @@ projects = [r'Externals\heksedit\heksedit.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
 
 # TODO: read this from Tools.ini
-vs_path = r'C:\Program Files\Microsoft Visual Studio 9.0'
+vs_path = r'C:\Program Files\Microsoft Visual Studio 8'
 
 def upgrade_projects(root_path):
     vs_binary = os.path.join(vs_path, 'Common7/IDE')
@@ -83,14 +83,18 @@ def main(argv):
          
         if len(args) == 1:
             rel_path = args[0]
-            abs_path = os.path.abspath(rel_path)
+            root_path = os.path.abspath(rel_path)
 
-    if not os.path.exists(abs_path):
-        print 'ERROR: Cannot find path: ' + abs_path
+    # If not root path given, use current folder as root path
+    if root_path == '':
+        root_path = os.getcwd()
+
+    if not os.path.exists(root_path):
+        print 'ERROR: Cannot find path: ' + root_path
         sys.exit()
     
-    print 'Upgrading VS solution- and project-file in folder: ' + abs_path
-    upgrade_projects(abs_path)
+    print 'Upgrading VS solution- and project-file in folder: ' + root_path
+    upgrade_projects(root_path)
 
 # MAIN #
 if __name__ == "__main__":
