@@ -977,30 +977,35 @@ int isunicode(unsigned char *pBuffer, int size)
       if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE)
         {
           unicoding = 1; //UNI little endian
+          return unicoding;
         }
       else if (pBuffer[0] == 0xFE && pBuffer[1] == 0xFF)
         {
           unicoding = 1; //UNI big endian
+          return unicoding;
         }
     }
-  if (size >= 3)
+  if (!unicoding && (size >= 3))
     {
       if (pBuffer[0] == 0xEF && pBuffer[1] == 0xBB && pBuffer[2] == 0xBF)
         {
-          unicoding = 1;
+          unicoding = 1; //UTF-8
+          return unicoding;
         }
     }
-  if (size >= 4)
+  if (!unicoding && (size >= 4))
     {
       if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE && 
           pBuffer[2] == 0x00 && pBuffer[3] == 0x00)
         {
           unicoding = 1; //UTF-32, little endian 
+          return unicoding;
         }
       else if (pBuffer[0] == 0x00 && pBuffer[1] == 0x00 && 
            pBuffer[2] == 0xFE && pBuffer[3] == 0xFF)
         {
           unicoding = 1; //UTF-32, big endian 
+          return unicoding;
         }
     }
   return unicoding;
