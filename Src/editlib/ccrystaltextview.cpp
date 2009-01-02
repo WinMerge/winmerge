@@ -1616,7 +1616,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
  * @brief Escape special characters
  * @param [in]      strText The text to escape
  * @param [in, out] bLastCharSpace Whether last char processed was white space
- * @param [in, out] nNonBreakChars The number of non-break characters in the text
+ * @param [in, out] nNonbreakChars The number of non-break characters in the text
  * @param [in]      nScreenChars   The maximum number of characters to display per line
  * @return The escaped text
  */

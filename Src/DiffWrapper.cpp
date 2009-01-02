@@ -322,13 +322,13 @@ static bool IsTrivialLine(const std::string &Line,
 
 /**
 	@brief Performs post-filtering, by setting comment blocks to trivial
-	@param[in]  StartPos			- First line number to read
-	@param[in]  EndPos				- The line number PASS the last line number to read
-	@param[in]  QtyLinesInBlock		- Number of lines in diff block.  Not needed in backward direction.
-	@param[in]  Direction			- This should be 1 or -1, to indicate which direction to read (backward or forward)
-	@param[in/out]  Op				- This variable is set to trivial if block should be ignored.
-	@param[in]  FileNo				- Should be 0 or 1, to indicate left or right file.
-	@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
+	@param [in]  StartPos			- First line number to read
+	@param [in]  EndPos				- The line number PASS the last line number to read
+	@param [in]  QtyLinesInBlock		- Number of lines in diff block.  Not needed in backward direction.
+	@param [in]  Direction			- This should be 1 or -1, to indicate which direction to read (backward or forward)
+	@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
+	@param [in]  FileNo				- Should be 0 or 1, to indicate left or right file.
+	@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 	@return		Always returns true in reverse direction.
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
@@ -454,10 +454,10 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 
 /**
 @brief Performs post-filtering on single line comments, by setting comment blocks to trivial
-@param[in]  LineStr				- Line of string to check that must be NULL terminated.
-@param[in/out]  Op				- This variable is set to trivial if block should be ignored.
-@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
-@param[in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
+@param [in]  LineStr				- Line of string to check that must be NULL terminated.
+@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
+@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
+@param [in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
 */
 static void PostFilterSingleLine(const char* LineStr, int &Op,
 	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
@@ -493,13 +493,13 @@ static void PostFilterSingleLine(const char* LineStr, int &Op,
 
 /**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
-@param[in]  LineNumberLeft		- First line number to read from left file
-@param[in]  QtyLinesLeft		- Number of lines in the block for left file
-@param[in]  LineNumberRight		- First line number to read from right file
-@param[in]  QtyLinesRight		- Number of lines in the block for right file
-@param[in/out]  Op				- This variable is set to trivial if block should be ignored.
-@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
-@param[in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
+@param [in]  LineNumberLeft		- First line number to read from left file
+@param [in]  QtyLinesLeft		- Number of lines in the block for left file
+@param [in]  LineNumberRight		- First line number to read from right file
+@param [in]  QtyLinesRight		- Number of lines in the block for right file
+@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
+@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
+@param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,

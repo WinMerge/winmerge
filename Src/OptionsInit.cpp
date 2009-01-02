@@ -255,7 +255,7 @@ static void CopyHKLMValues()
 /**
  * @brief Open HKLM registry key.
  * @param [out] key Pointer to open HKLM key.
- * @param [in] relative registry path to open.
+ * @param [in] relpath Relative registry path (to WinMerge reg path) to open, or NULL.
  * @return true if opening succeeded.
  */
 static bool OpenHKLM(HKEY *key, LPCTSTR relpath)
@@ -276,7 +276,7 @@ static bool OpenHKLM(HKEY *key, LPCTSTR relpath)
  * @brief Open HKCU registry key.
  * Opens the HKCU key for WinMerge. If the key does not exist, creates one.
  * @param [out] key Pointer to open HKCU key.
- * @param [in] relative registry path to open.
+ * @param [in] relpath Relative registry path (to WinMerge reg path) to open, or NULL.
  * @return true if opening succeeded.
  */
 static bool OpenHKCU(HKEY *key, LPCTSTR relpath)

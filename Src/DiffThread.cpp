@@ -200,7 +200,7 @@ UINT CDiffThread::GetThreadState() const
  *
  * This thread is responsible for finding and collecting all items to compare
  * to the item list.
- * @param [in] lParam Pointer to parameter structure.
+ * @param [in] lpParam Pointer to parameter structure.
  * @return Thread's return value.
  */
 UINT DiffThreadCollect(LPVOID lpParam)
@@ -250,7 +250,7 @@ UINT DiffThreadCollect(LPVOID lpParam)
  *
  * Compares items in item list. After compare is ready
  * sends message to UI so UI can update itself.
- * @param [in] lParam Pointer to parameter structure.
+ * @param [in] lpParam Pointer to parameter structure.
  * @return Thread's return value.
  */
 UINT DiffThreadCompare(LPVOID lpParam)
