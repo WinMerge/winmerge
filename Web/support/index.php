@@ -6,20 +6,28 @@
   $page->printHead('WinMerge: Support', TAB_SUPPORT);
 ?>
 <h2>Support</h2>
-<p>WinMerge is an Open Source project, that is covered
-under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>.
-As such, your main form of support for WinMerge will be through
-subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
-In addition, SourceForge has bug tracking capabilities, so please report any
-bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>. Wish list items on the
-<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">feature request list</a> will also be considered, but we make
-absolutely no promises.</p>
-<p>We prefer that you <a href="https://sourceforge.net/account/registration/">register</a>
-with <a href="http://sourceforge.net/">SourceForge</a> before posting a bug report (registration is
-public and free), so that you may get email notifications if we post follow-up questions to your bug.
-It is not at this time required that you register to post a bug report (although, we do generally
-give less priority to unregistered bug reports, because it has been our experience that unregistered
-posters often do not remember to return and check to answer follow-on questions).</p>
+<p>The <a href="http://apps.sourceforge.net/phpbb/winmerge/viewforum.php?f=4">Open
+Discussion forum</a> is the fastest way to get help. Please be patient, it may take
+some time for somebody to answer. A other way is a subscription to the
+<a href="mailing-lists.php#support">support mailing list</a>.</p>
+
+<p>If you find a bug, please submit it as a <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
+report</a>. Please attach as much information as you can: at a minimum,
+the version number of WinMerge that you are using. If you can, also attach a
+configuration log which, you can display by clicking <span class="guimenu">Help</span>
+&#8594; <span class="guimenuitem">Configuration</span> in the WinMerge window.
+Good information in a bug report makes it more likely that your bug will be fixed quickly.</p>
+
+<p>You must <a href="https://sourceforge.net/account/registration/">register
+with SourceForge.net</a> before posting a bug report (registration is free).
+We require registering because anonymous submissions caused a lot of spam and
+also because there were no possibility to contact people for asking more
+information. We rarely sent direct emails but you'll get notifications when we
+ask questions in the bug item.</p>
+
+<p>Wish list items on the <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">feature
+request list</a> will also be considered, but we make absolutely no promises.</p>
+
 <h3>Tracker Statistics</h3>
 <?php
   $feed = new SimplePie();
@@ -37,6 +45,7 @@ posters often do not remember to return and check to answer follow-on questions)
   }
   print("</ul>\n");
 ?>
+
 <h3>Donate</h3>
 <p>Since WinMerge is an Open Source project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>
