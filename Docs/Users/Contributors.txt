@@ -50,6 +50,7 @@ Localization:
 
 * Dutch:
   Michel Coene
+  Thomas De Rocker <thomasderocker@yahoo.com>
   Ronald Schaap <ronald@schaap.demon.nl>
 
 * French:
