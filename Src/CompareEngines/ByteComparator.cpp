@@ -167,6 +167,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	FileTextStats & stats0, FileTextStats & stats1, const char* &ptr0, const char* &ptr1,
 	const char* end0, const char* end1, bool eof0, bool eof1, __int64 offset0, __int64 offset1)
 {
+	ByteComparator::COMP_RESULT result = RESULT_SAME;
+
 	// First, update file text statistics by doing a full scan
 	// for 0s and all types of line delimiters
 	TextScan(stats0, ptr0, end0, eof0, m_cr0, offset0);
@@ -390,7 +392,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			else
 			{
 				if (!eof0 || !eof1)
+				{
+					result = RESULT_DIFF;
 					goto need_more;
+				}
 				else
 					return RESULT_DIFF;
 			}
@@ -429,7 +434,7 @@ need_more:
 	}
 	else
 	{
-		return RESULT_SAME;
+		return result;
 	}
 }
 
