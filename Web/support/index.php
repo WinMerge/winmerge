@@ -47,7 +47,7 @@ request list</a> will also be considered, but we make absolutely no promises.</p
 ?>
 
 <h3>Donate</h3>
-<p>Since WinMerge is an Open Source project, you may use it free of charge.
+<p>Since WinMerge is an <a href="/about/license.php">Open Source</a> project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>
 to support the continued development of WinMerge.</p>
 <?php

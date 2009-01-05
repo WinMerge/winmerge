@@ -16,7 +16,7 @@
     <a href="about/screenshots/">More Screenshots...</a>
   </p>
   <div class="whatistext">
-    <p>WinMerge is an Open Source differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle.</p>
+    <p>WinMerge is an <a href="about/license.php">Open Source</a> differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle.</p>
     <p><strong><a href="about/">Learn More</a> or <a href="downloads/">Download Now!</a></strong></p>
   </div>
   <br class="whatisclear" />
