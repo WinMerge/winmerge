@@ -242,9 +242,9 @@
       switch ($this->_tab) {
         case TAB_HOME: //if "Home" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge\">Project&nbsp;Page</a></li>\n";
-          $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
-          $temp .= "  <li><a href=\"/WinMergePAD.php\">PAD&nbsp;file</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge\" title=\"WinMerge Project Page\">Project&nbsp;Page</a></li>\n";
+          $temp .= "  <li><a href=\"/links.php\" title=\"WinMerge Links\">Links</a></li>\n";
+          $temp .= "  <li><a href=\"/WinMergePAD.php\" title=\"WinMerge PAD File\">PAD&nbsp;File</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_ABOUT: //if "About" ...
@@ -257,18 +257,18 @@
           break;
         case TAB_DOCS: //if "Documentation" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/docs/\" title=\"Index\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/docs/manual/\" title=\"Manual\">Manual</a></li>\n";
-          $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
-          $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/\" title=\"WinMerge Documentation\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/manual/\" title=\"WinMerge Manual\">Manual</a></li>\n";
+          $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"WinMerge Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
+          $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"WinMerge Change Log\">Change Log</a></li>\n";
           $temp .= "  <li><a href=\"/Wiki/\" title=\"WinMerge Development Wiki\">Development Wiki</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_DOWNLOADS: //if "Downloads" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/downloads/\" title=\"Download WinMerge\">WinMerge</a></li>\n";
-          $temp .= "  <li><a href=\"/downloads/plugins.php\" title=\"Download Plugins\">Plugins</a></li>\n";
-          $temp .= "  <li><a href=\"/downloads/source-code.php\" title=\"Download Source Code\">Source Code</a></li>\n";
+          $temp .= "  <li><a href=\"/downloads/plugins.php\" title=\"Download WinMerge Plugins\">Plugins</a></li>\n";
+          $temp .= "  <li><a href=\"/downloads/source-code.php\" title=\"Download WinMerge Source Code\">Source Code</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...
@@ -282,10 +282,10 @@
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/translations/\" title=\"Index\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/instructions.php\" title=\"Translations instructions\">Instructions</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/\" title=\"WinMerge Translations\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/instructions.php\" title=\"WinMerge Translations Instructions\">Instructions</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"WinMerge Translations Status (Branch)\">Status (Branch)</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"WinMerge Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
           $temp .= "</ul>\n";
           break;
       }
