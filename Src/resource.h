@@ -55,6 +55,7 @@
 #define IDD_PROPPAGE_BACKUPS            234
 #define IDD_CONFIRM_COPY                235
 #define IDD_PLUGINS_LIST                236
+#define IDD_PROPPAGE_SHELL              237
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -490,6 +491,7 @@
 #define IDS_OPTIONSPG_CODEPAGE          9049
 #define IDS_OPTIONSPG_ARCHIVE           9050
 #define IDS_OPTIONSPG_BACKUPS           9051
+#define IDS_OPTIONSPG_SHELL             9052
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
