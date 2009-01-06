@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->setDescription('Download additional plugins for WinMerge.');
+  $page->setDescription('Download additional plugins for WinMerge, like the 7-Zip plugin or the xdocdiff Plugin.');
   $page->setKeywords('WinMerge, free, download, plugins, plugin, plug-in, setup, installer, binaries, 7-Zip, xdocdiff, Word, Excel, PowerPoint, PDF');
   $page->printHead('WinMerge: Plugins', TAB_DOWNLOADS);
 ?>

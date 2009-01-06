@@ -3,12 +3,11 @@
   include('../engine/simplepie/simplepie.inc');
 
   $page = new Page;
-  //latest stable version
-  $page->setDescription('Download the current WinMerge version.');
+  $stablerelease = $page->getStableRelease();
+  $page->setDescription('Download the current WinMerge version ' . $stablerelease->getVersionNumber() . ', which was released at ' . $stablerelease->getDate() . '. For detailed info on what\'s new, read the change log and the release notes.');
   $page->setKeywords('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable');
   $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
   $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
-  $stablerelease = $page->getStableRelease();
 ?>
 <h2>Downloads</h2>
 <h3>WinMerge <?php echo $stablerelease->getVersionNumber();?></h3>

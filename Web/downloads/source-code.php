@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->setDescription('Download the source code of WinMerge.');
+  $page->setDescription('Download the source code of WinMerge, which is released under the GNU General Public License.');
   $page->setKeywords('WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN');
   $page->printHead('WinMerge: Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
