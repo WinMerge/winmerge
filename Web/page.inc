@@ -202,40 +202,40 @@
       /* Main Tabs */
       $temp = "<ul id=\"tabs\">\n";
       if ($this->_tab == TAB_HOME) { //if "Home" ...
-        $temp .= "  <li><strong><a href=\"/\" id=\"current\">Home</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/\" id=\"current\" title=\"WinMerge Home\">Home</a></strong></li>\n";
       }
       else { //if NOT "Home" ...
-        $temp .= "  <li><a href=\"/\">Home</a></li>\n";
+        $temp .= "  <li><a href=\"/\" title=\"WinMerge Home\">Home</a></li>\n";
       }
       if ($this->_tab == TAB_ABOUT) { //if "About" ...
-        $temp .= "  <li><strong><a href=\"/about/\" id=\"current\">About</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/about/\" id=\"current\" title=\"About WinMerge\">About</a></strong></li>\n";
       }
       else { //if NOT "About" ...
-        $temp .= "  <li><a href=\"/about/\">About</a></li>\n";
+        $temp .= "  <li><a href=\"/about/\" title=\"About WinMerge\">About</a></li>\n";
       }
       if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
-        $temp .= "  <li><strong><a href=\"/docs/\" id=\"current\">Documentation</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/docs/\" id=\"current\" title=\"WinMerge Documentation\">Documentation</a></strong></li>\n";
       }
       else { //if NOT "Documentation" ...
-        $temp .= "  <li><a href=\"/docs/\">Documentation</a></li>\n";
+        $temp .= "  <li><a href=\"/docs/\" title=\"WinMerge Documentation\">Documentation</a></li>\n";
       }
       if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
-        $temp .= "  <li><strong><a href=\"/downloads/\" id=\"current\">Downloads</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/downloads/\" id=\"current\" title=\"WinMerge Downloads\">Downloads</a></strong></li>\n";
       }
       else { //if NOT "Downloads" ...
-        $temp .= "  <li><a href=\"/downloads/\">Downloads</a></li>\n";
+        $temp .= "  <li><a href=\"/downloads/\" title=\"WinMerge Downloads\">Downloads</a></li>\n";
       }
       if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
-        $temp .= "  <li><strong><a href=\"/support/\" id=\"current\">Support</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/support/\" id=\"current\" title=\"WinMerge Support\">Support</a></strong></li>\n";
       }
       else { //if NOT "Support" ...
-        $temp .= "  <li><a href=\"/support/\">Support</a></li>\n";
+        $temp .= "  <li><a href=\"/support/\" title=\"WinMerge Support\">Support</a></li>\n";
       }
       if ($this->_tab == TAB_TRANSLATIONS) { //if "Translations" ...
-        $temp .= "  <li><strong><a href=\"/translations/\" id=\"current\">Translations</a></strong></li>\n";
+        $temp .= "  <li><strong><a href=\"/translations/\" id=\"current\" title=\"WinMerge Translations\">Translations</a></strong></li>\n";
       }
       else { //if NOT "Translations" ...
-        $temp .= "  <li><a href=\"/translations/\">Translations</a></li>\n";
+        $temp .= "  <li><a href=\"/translations/\" title=\"WinMerge Translations\">Translations</a></li>\n";
       }
       $temp .= "</ul>\n";
       /* Sub Tabs */
