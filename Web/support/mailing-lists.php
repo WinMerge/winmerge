@@ -2,9 +2,11 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Mailing lists', TAB_SUPPORT);
+  $page->setDescription('Subscribe or unsubscribe to one of the following mailing lists: Announce, Support, User, Translate, Development and SVN');
+  $page->setKeywords('WinMerge, mailing lists, announce, support, user, translate, development, SVN');
+  $page->printHead('WinMerge: Mailing Lists', TAB_SUPPORT);
 ?>
-<h2>Mailing lists</h2>
+<h2>Mailing Lists</h2>
 <ul>
   <li><a href="#announce">Announce List</a></li>
   <li><a href="#support">Support List</a></li>
@@ -13,7 +15,6 @@
   <li><a href="#development">Development List</a></li>
   <li><a href="#svn">SVN List</a></li>
 </ul>
-<p>You should read the "<a href="http://sourceforge.net/docman/display_doc.php?docid=12983&amp;group_id=1">Guide to SourceForge.net Mailing List Services</a>" before subscribing and posting to any of the lists below.</p>
 <div class="infocard">
   <h3><a name="announce">Announce List</a></h3>
   <ul>

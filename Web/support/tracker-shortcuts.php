@@ -2,12 +2,14 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->setDescription('Tracker Shortcuts are shorter and nicer URLs to Tracker items from our SF.net project page. And you can use this page to create a shortcut.');
+  $page->setKeywords('WinMerge, tracker, shortcuts, sourceforge, project page, bug, patch, support request, feature request, todo item');
   $page->printHead('WinMerge: Tracker Shortcuts', TAB_SUPPORT);
 ?>
 <h2>Tracker Shortcuts</h2>
 <p><em>Tracker Shortcuts</em> are shorter and nicer URLs to <a href="http://sourceforge.net/tracker/?group_id=13216">Tracker</a>
 items from our <a href="http://sourceforge.net/projects/winmerge">SF.net project page</a>.</p>
-<p>You can use this page, to create a shortcut:</p>
+<p>You can use this page to create a shortcut:</p>
 <?php
   $types['bug'] = 'Bug';
   $types['patch'] = 'Patch';

@@ -3,6 +3,8 @@
   include('../engine/simplepie/simplepie.inc');
 
   $page = new Page;
+  $page->setDescription('The Open Discussion forum is the fastest way to get help. Please be patient, it may take some time for somebody to answer. A other way is a subscription to the support mailing list.');
+  $page->setKeywords('WinMerge, support, discussion forums, mailing lists, tracker, donate, bugs, support requests, patches, feature requests, todo, open source, sourceforge.net');
   $page->printHead('WinMerge: Support', TAB_SUPPORT);
 ?>
 <h2>Support</h2>
