@@ -177,15 +177,12 @@
         </menuchoice>.</para>
     </important>
 
-    <para>We prefer that you <ulink
-    url="https://sourceforge.net/account/registration/">register</ulink> with
-    <ulink url="http://sourceforge.net/">SourceForge.net</ulink> before posting
-    a bug report (registration is public and free), so that you receive email
-    notifications if we post follow-up questions to your bug. Registration is
-    not currently required for you to post a bug report. However, we generally
-    give less priority to unregistered bug reports, because it has been our
-    experience that unregistered posters often do not return to answer follow-up
-    questions.</para>
+    <para>You must <ulink url="https://sourceforge.net/account/registration/">register
+    with SourceForge.net</ulink> before posting a bug report (registration is
+    free). We require registering because anonymous submissions caused a lot of
+    spam and also because there were no possibility to contact people for asking
+    more information. We rarely sent direct emails but you'll get notifications
+    when we ask questions in the bug item.</para>
   </section>
 
   <section>
