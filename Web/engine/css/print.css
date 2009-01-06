@@ -145,6 +145,11 @@ ul.inline li {
 .fuzzy { color: black; }
 .untranslated { color: black; }
 
+/* GUI elements */
+.guimenu,.guisubmenu,.guimenuitem,.guilabel {
+  font-style: italic;
+}
+
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }

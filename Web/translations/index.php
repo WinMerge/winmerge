@@ -26,10 +26,13 @@
   }
   print("</ul>\n");
 ?>
-<p>To change languages, select the desired language from the <em>View-&gt;Languages</em> menu choice.</p>
+<p>To change languages, select the desired language from the <span class="guimenu">View</span>
+&#8594; <span class="guimenuitem">Languages</span> menu choice.</p>
+
 <h3>Translating</h3>
 <p>If you would like to update any of these translations or add another translation, then please follow <a href="instructions.php">these instructions</a>.<br />
 You can find a more technical view about the <a href="http://winmerge.org/Wiki/Translation_System">translation system</a> in our <a href="http://winmerge.org/Wiki/">Developer Wiki</a>.</p>
+
 <h3><a name="status">Status</a></h3>
 <p>The following two pages inform you about the translations status of the stable and developer version of WinMerge:</p>
 <ul>
