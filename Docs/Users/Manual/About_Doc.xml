@@ -70,10 +70,9 @@
         <listitem>
           <para>Open your Web browser to <ulink
           url="http://winmerge.org/">winmerge.org</ulink>. Under
-          <citetitle>Features</citetitle>, follow the <citetitle>Online
-          manual</citetitle> link to the latest Help version.</para>
-
-          <!--If there were a "latest" symbolic link on the site, we could add a link to it here.-->
+          <ulink url="http://winmerge.org/docs/">Documentation</ulink>,
+          follow the <ulink url="http://winmerge.org/docs/manual/">Manual</ulink>
+          link to the latest Help version.</para>
         </listitem>
       </varlistentry>
     </variablelist>
