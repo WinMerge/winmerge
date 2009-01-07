@@ -2,6 +2,8 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->setDescription('WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application.');
+  $page->setKeywords('WinMerge, about, features, file compare, folder compare, version control, screenshots, installation');
   $page->printHead('WinMerge: About', TAB_ABOUT);
   $stablerelease = $page->getStableRelease();
 ?>

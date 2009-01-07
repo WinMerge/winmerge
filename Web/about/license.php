@@ -2,6 +2,8 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->setDescription('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify them.');
+  $page->setKeywords('WinMerge, license, open source, GNU General Public License, GPL, free software');
   $page->printHead('WinMerge: License', TAB_ABOUT);
 ?>
 <h2>License</h2>

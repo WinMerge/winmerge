@@ -2,6 +2,8 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->setDescription('History of WinMerge releases with version numbers, release dates and manuals.');
+  $page->setKeywords('WinMerge, history, version number, release date, manual, user\'s guide');
   $page->printHead('WinMerge: History', TAB_ABOUT);
 ?>
 <h2>History</h2>
