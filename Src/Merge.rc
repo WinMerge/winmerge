@@ -502,8 +502,8 @@ BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
         POPUP "Co&mpare Special"
         BEGIN
-            MENUITEM "&XML"                         ID_MERGE_COMPARE_XML
-            MENUITEM "&HEX"                         ID_MERGE_COMPARE_HEX
+            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "&HEX",                        ID_MERGE_COMPARE_HEX
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
