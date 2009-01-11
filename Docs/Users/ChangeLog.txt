@@ -17,7 +17,7 @@ WinMerge 2.10.4
     (#2455595)
   Bugfix: Remove EOL characters from command line (#2458728)
   Translation updates:
-  - Dutch (#2481022)
+  - Dutch (#2481022, #2494378)
   - Swedish (#2236651)
 
 WinMerge 2.10.2 - 2008-11-06 (r6075)

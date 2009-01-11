@@ -4,6 +4,7 @@
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
+# * Thomas De Rocker <thomasderocker@yahoo.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -1085,7 +1086,7 @@ msgstr "Medewerkers"
 #: Merge.rc:677
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Bestanden of mappen selecteren"
+msgstr "Bestanden of Mappen Selecteren"
 
 #: Merge.rc:680
 #: Merge.rc:1595
@@ -1267,7 +1268,7 @@ msgstr "Paden automatisch controleren in het venster Openen"
 #: Merge.rc:763
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "&Allow only one instance to run"
+msgstr "Slechts één draaiende toepassing toestaan"
 
 #: Merge.rc:765
 #, c-format
@@ -1304,7 +1305,7 @@ msgstr "B&estanden vergelijken"
 #: Merge.rc:779
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden. Druk de Reset-knop om alle berichtvensters terug zichtbaar te maken."
+msgstr "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden. Druk de Herstellen-knop om alle berichtvensters terug zichtbaar te maken."
 
 #: Merge.rc:781
 #, c-format
@@ -3093,7 +3094,7 @@ msgstr ""
 #: Merge.rc:1889
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is gratis software, en u mag het herverdelen onder bepaalde omstandigheden; zie de GNU General Public License in het Help-menu voor details."
+msgstr "WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is vrije software, en u mag het herverdelen onder bepaalde omstandigheden; zie de GNU General Public License in het Help-menu voor details."
 
 #: Merge.rc:1895
 #, c-format
@@ -3469,12 +3470,12 @@ msgstr ""
 #: Merge.rc:2043
 #, c-format
 msgid "&Path to cleartool.exe :"
-msgstr "&Pad naar cleartool.exe :"
+msgstr "&Pad naar cleartool.exe:"
 
 #: Merge.rc:2044
 #, c-format
 msgid "&Path to SS.EXE :"
-msgstr "&Pad naar SS.EXE :"
+msgstr "&Pad naar SS.EXE:"
 
 #: Merge.rc:2050
 #, c-format
@@ -3812,11 +3813,11 @@ msgid ""
 "\n"
 "If you want to refresh files close current file compare and load files again."
 msgstr ""
-"Een ander programma heeft bestand\n"
-"%1\n"
-"gewijzigd nadat WinMerge het voor de laatste keer heeft gescand.\n"
+"Een andere toepassing heeft bestand\n"
+"%1 geüpdated\n"
+"sinds WinMerge het de laatste keer scande.\n"
 "\n"
-"Als u de bestanden wilt verversen, sluit dan de huidige bestandsvergelijking en laad de bestanden opnieuw."
+"Wilt u het bestand opnieuw laden?"
 
 #: Merge.rc:2134
 #, c-format
@@ -5526,7 +5527,7 @@ msgstr "Toont tekens witruimte"
 #: Merge.rc:2674
 #, c-format
 msgid "Toggle Diff Pane"
-msgstr "Omschakelen verschilvenster"
+msgstr "Verschilvenster Aan/Uit"
 
 #: Merge.rc:2675
 #, c-format
@@ -5755,7 +5756,7 @@ msgstr "Selecteer een uitpakker om dit bestand te wijzigen"
 #: Merge.rc:2722
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Geen voorvergelijking (normal)"
+msgstr "Geen voorvergelijking (normaal)"
 
 #: Merge.rc:2723
 #, c-format
