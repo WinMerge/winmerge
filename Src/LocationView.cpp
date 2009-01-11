@@ -919,7 +919,16 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 		if (nTopCoord < Y_OFFSET + 20)
 			nBottomCoord += INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord);
 		else
-			nTopCoord -= INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord);
+		{
+			// Make sure locationbox has min hight
+			if ((nBottomCoord - nTopCoord) < INDICATOR_MIN_HEIGHT)
+			{
+				int iPos = (INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord) )/2;
+				nTopCoord -= iPos;
+				nBottomCoord +=iPos;
+			}
+		}
+
 	}
 
 	// Store current values for later use (to check if area changes)
