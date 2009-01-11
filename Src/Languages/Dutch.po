@@ -505,17 +505,17 @@ msgstr "Toon Verborgen Items"
 #: Merge.rc:224
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "Tree-&modus"
 
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "Alle Submappen Uitklappen"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "Alle Submappen Inklappen"
 
 #: Merge.rc:239
 #, c-format
@@ -880,7 +880,7 @@ msgstr "&XML"
 #: Merge.rc:506
 #, c-format
 msgid "&HEX"
-msgstr ""
+msgstr "&HEX"
 
 #: Merge.rc:511
 #, c-format
@@ -1106,7 +1106,7 @@ msgstr "Medewerkers"
 #: Merge.rc:682
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Bestanden of mappen selecteren"
+msgstr "Bestanden of Mappen Selecteren"
 
 #: Merge.rc:685
 #: Merge.rc:1604
@@ -1289,7 +1289,7 @@ msgstr "Paden automatisch controleren in het venster Openen"
 #: Merge.rc:768
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "&Allow only one instance to run"
+msgstr "Slechts één draaiende toepassing toestaan"
 
 #: Merge.rc:770
 #, c-format
@@ -1309,7 +1309,7 @@ msgstr ""
 #: Merge.rc:777
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Toon \"Bestanden of Mappen Selecteren\"-dialoog bij Opstarten"
 
 #: Merge.rc:779
 #, c-format
@@ -1336,7 +1336,7 @@ msgstr "B&estanden vergelijken"
 #: Merge.rc:788
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden. Druk de Reset-knop om alle berichtvensters terug zichtbaar te maken."
+msgstr "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden. Druk de Herstellen-knop om alle berichtvensters terug zichtbaar te maken."
 
 #: Merge.rc:790
 #, c-format
@@ -2055,10 +2055,10 @@ msgstr "Selecteer de standaard veronderstelde codetabel bij laden van niet-Unico
 #: Merge.rc:1281
 #, c-format
 msgid ""
-"Detect codepage info for these files : .html, .rc, .xml \n"
+"Detect codepage info for these files: .html, .rc, .xml \n"
 "need to restart session"
 msgstr ""
-"Tekenset detecteren voor deze bestanden: .html, .rc \n"
+"Tekenset detecteren voor deze bestanden: .html, .rc, .xml \n"
 "Herstarten sessie noodzakelijk"
 
 #: Merge.rc:1284
@@ -2073,7 +2073,7 @@ msgstr "Volgens WinMerge-gebruikersinterface"
 
 #: Merge.rc:1288
 #, c-format
-msgid "Custom codepage :"
+msgid "Custom codepage:"
 msgstr "Aangepaste tekenset:"
 
 #: Merge.rc:1296
@@ -2760,17 +2760,17 @@ msgstr "Maak alle verborgen items terug zichtbaar"
 #: Merge.rc:1762
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "Tree-modus aan/uit"
 
 #: Merge.rc:1763
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Alle submappen uitklappen"
 
 #: Merge.rc:1764
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "Alle submappen inklappen"
 
 #: Merge.rc:1770
 #, c-format
@@ -3140,7 +3140,7 @@ msgstr ""
 #: Merge.rc:1901
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is gratis software, en u mag het herverdelen onder bepaalde omstandigheden; zie de GNU General Public License in het Help-menu voor details."
+msgstr "WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is vrije software, en u mag het herverdelen onder bepaalde omstandigheden; zie de GNU General Public License in het Help-menu voor details."
 
 #: Merge.rc:1907
 #, c-format
@@ -3265,7 +3265,7 @@ msgstr "Unicode"
 #: Merge.rc:1962
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1968
 #, c-format
@@ -3852,8 +3852,18 @@ msgstr ""
 
 #: Merge.rc:2146
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"Een andere toepassing heeft bestand\n"
+"%1 geüpdated\n"
+"sinds WinMerge het de laatste keer scande.\n"
+"\n"
+"Wilt u het bestand opnieuw laden?"
 
 #: Merge.rc:2147
 #, c-format
@@ -4212,12 +4222,12 @@ msgstr "Padnamen van beide kanten naar het klembord kopiëren"
 #: Merge.rc:2257
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Linker Shellmenu"
 
 #: Merge.rc:2258
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Rechter Shellmenu"
 
 #: Merge.rc:2264
 #, c-format
@@ -4428,7 +4438,7 @@ msgstr "Bestanden zijn niet gelijk"
 #: Merge.rc:2328
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Mappen zijn verschillend"
 
 #: Merge.rc:2329
 #, c-format
@@ -4448,12 +4458,12 @@ msgstr "Fout"
 #: Merge.rc:2333
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Tekstbestanden zijn identiek"
 
 #: Merge.rc:2338
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Tekstbestanden zijn verschillend"
 
 #: Merge.rc:2344
 #, c-format
@@ -5588,7 +5598,7 @@ msgstr "Toont tekens witruimte"
 #: Merge.rc:2701
 #, c-format
 msgid "Toggle Diff Pane"
-msgstr "Omschakelen verschilvenster"
+msgstr "Verschilvenster Aan/Uit"
 
 #: Merge.rc:2702
 #, c-format
@@ -5817,7 +5827,7 @@ msgstr "Selecteer een uitpakker om dit bestand te wijzigen"
 #: Merge.rc:2749
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Geen voorvergelijking (normal)"
+msgstr "Geen voorvergelijking (normaal)"
 
 #: Merge.rc:2750
 #, c-format
@@ -6138,7 +6148,7 @@ msgstr "TEX"
 #: Merge.rc:2846
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2847
 #, c-format
