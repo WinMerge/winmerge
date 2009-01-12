@@ -118,7 +118,7 @@ Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Croatian; MessagesFile: Languages\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt
 Name: Czech; MessagesFile: Languages\Czech.isl
 Name: Danish; MessagesFile: Languages\Danish.isl
-Name: Dutch; MessagesFile: Languages\Dutch.isl
+Name: Dutch; MessagesFile: Languages\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt
 Name: French; MessagesFile: Languages\French.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-French.txt
 Name: Galician; MessagesFile: Languages\Galician.isl
 Name: German; MessagesFile: Languages\German.isl
@@ -392,6 +392,7 @@ Source: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt; DestDir: {app}\Docs; Com
 Source: ..\..\Src\Languages\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt; DestDir: {app}\Docs; Components: Languages\Dutch
 Source: ..\..\Src\Languages\French.po; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
 Source: ..\..\Src\Languages\Galician.po; DestDir: {app}\Languages; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
@@ -450,6 +451,7 @@ Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Bulgarian.txt; IconFileNa
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Catalan.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Catalan
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-ChineseSimplified.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Chinese_Simplified
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Croatian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Croatian
+Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Dutch.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Dutch
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-French.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: French
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Greek.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Greek
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Japanese.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Japanese

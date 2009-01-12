@@ -288,7 +288,7 @@ StatusUninstalling=Verwijderen van %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 versie %2
 AdditionalIcons=Extra snelkoppelingen:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Optionele Functies:
 CreateDesktopIcon=Maak een snelkoppeling op het &bureaublad
 CreateQuickLaunchIcon=Maak een snelkoppeling op de &Snel starten werkbalk
 ProgramOnTheWeb=%1 op het Web
@@ -301,61 +301,61 @@ AssocingFileExtension=Bezig met koppelen van %1 aan de %2 bestandsextensie...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Standaard Installatie
+FullInstallation=Volledige Installatie
+CompactInstallation=Compacte Installatie
+CustomInstallation=Persoonlijke Installatie
 
 ;Components
-AppCoreFiles=WinMerge Core Files
+AppCoreFiles=WinMerge Basisbestanden
 Filters=Filters
 Plugins=Plugins
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages=Talen
+BulgarianLanguage=Bulgaarse menu’s en vensters
+CatalanLanguage=Catalaanse menu’s en vensters
+ChineseSimplifiedLanguage=Chinese (versimpeld) menu’s en vensters
+ChineseTraditionalLanguage=Chinese (traditioneel) menu’s en vensters
+CroatianLanguage=Kroatische menu’s en vensters
+CzechLanguage=Tsjechische menu’s en vensters
+DanishLanguage=Deense menu’s en vensters
+DutchLanguage=Nederlandstalige menu’s en vensters
+FrenchLanguage=Franse menu’s en vensters
+GalicianLanguage=Galicische menu’s en vensters
+GermanLanguage=Duitse menu’s en vensters
+GreekLanguage=Griekse menu’s en vensters
+HungarianLanguage=Hongaarse menu’s en vensters
+ItalianLanguage=Italiaanse menu’s en vensters
+JapaneseLanguage=Japanse menu’s en vensters
+KoreanLanguage=Koreaanse menu’s en vensters
+NorwegianLanguage=Noorse menu’s en vensters
+PolishLanguage=Poolse menu’s en vensters
+PortugueseBrazilLanguage=Portugese (Braziliaanse) menu’s en vensters
+PortugueseLanguage=Portugese menu’s en vensters
+RomanianLanguage=Roemeense menu’s en vensters
+RussianLanguage=Russische menu’s en vensters
+SlovakLanguage=Slovaakse menu’s en vensters
+SlovenianLanguage=Sloveense menu’s en vensters
+SpanishLanguage=Spaanse menu’s en vensters
+SwedishLanguage=Zweedse menu’s en vensters
+TurkishLanguage=Turkse menu’s en vensters
+UkrainianLanguage=Oekraïense menu’s en vensters
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
+ExplorerContextMenu=&Activeer integratie in contextmenu van Verkenner
+IntegrateTortoiseCVS=Integreren met &TortoiseCVS
+IntegrateTortoiseSVN= Integreren met T&ortoiseSVN
+IntegrateClearCase= Integreren met Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Lees Mij
+UsersGuide=Gebruikershandleiding
+ViewStartMenuFolder=Bekijk de WinMerge startmenu-map
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=De installer heeft ontdekt dat u de locatie van uw startmenu veranderd heeft van "%s" naar "%s". Wilt u de vorige startmenu-map wissen?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge Projectbestand
