@@ -277,15 +277,18 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 		}
 		// Find ending locations for both sides
 		// Have to look for last valid starting location for each side
-		for (i=worddiffs.size() - 1; i>=0; --i)
+		if (worddiffs.size() >1)
 		{
-			const wdiff * diff = worddiffs[i];
-			if (end1 == -1 && diff->end[0] != -1)
-				end1 = diff->end[0];
-			if (end2 == -1 && diff->end[1] != -1)
-				end2 = diff->end[1];
-			if (end1 != -1 && end2 != -1)
-				break; // found both
+			for (i=worddiffs.size() - 1; i>=0; --i)
+			{
+				const wdiff * diff = worddiffs[i];
+				if (end1 == -1 && diff->end[0] != -1)
+					end1 = diff->end[0];
+				if (end2 == -1 && diff->end[1] != -1)
+					end2 = diff->end[1];
+				if (end1 != -1 && end2 != -1)
+					break; // found both
+			}
 		}
 		SetLineHighlightRect(begin1, end1, line, width1, rc1);
 		SetLineHighlightRect(begin2, end2, line, width2, rc2);
