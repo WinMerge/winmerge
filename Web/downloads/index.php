@@ -12,7 +12,7 @@
 <h2>Downloads</h2>
 <h3>WinMerge <?php echo $stablerelease->getVersionNumber();?></h3>
 <?php $page->printDownloadNow(); ?>
-<p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>
+<p>The current WinMerge version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
   <li><strong>Installer</strong>
