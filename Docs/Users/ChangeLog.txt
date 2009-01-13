@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.10.4
+WinMerge 2.10.4 - 2009-01-13 (r6318)
   Add Git to Source Control filter and fix ignore file rules (#2329381)
   Release notes update for 2.10.4 release (#2490137)
   Bugfix: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)
