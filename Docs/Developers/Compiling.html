@@ -277,6 +277,11 @@ additional manifest.</p>
   <code>$(InputDir)\res\$(TargetFileName).manifest</code>
 </p>
 
+<p>There is a Python script <code>Tools/Scripts/fix_manifest.py</code> which
+does the conversion. Note that the script re-formats the project file XML
+structure when saving so do not generate patches without first opening and
+saving the project file with Visual Studio.</p>
+
 <p>See also <a href="http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=143306&SiteID=1">
 Manifests in VS2005-- What are they?</a> -thread in Microsoft forum.
 </p>
