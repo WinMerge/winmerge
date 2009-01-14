@@ -2412,6 +2412,7 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueRight, options, OPT_SHOW_UNIQUE_RIGHT, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowBinaries, options, OPT_SHOW_BINARIES, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowSkipped, options, OPT_SHOW_SKIPPED, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bTreeView, options, OPT_TREE_MODE, cfgdir);
 
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);

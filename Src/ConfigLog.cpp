@@ -482,13 +482,14 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Automatic scroll to 1st difference"), &m_miscSettings.bScrollToFirst);
 	WriteItemYesNo(2, _T("Backup original file"), &m_miscSettings.bBackup);
 
-	FileWriteString(_T("\n Show:\n"));
+	FileWriteString(_T("\n Folder compare:\n"));
 	WriteItemYesNo(2, _T("Identical files"), &m_viewSettings.bShowIdent);
 	WriteItemYesNo(2, _T("Different files"), &m_viewSettings.bShowDiff);
 	WriteItemYesNo(2, _T("Left Unique files"), &m_viewSettings.bShowUniqueLeft);
 	WriteItemYesNo(2, _T("Right Unique files"), &m_viewSettings.bShowUniqueRight);
 	WriteItemYesNo(2, _T("Binary files"), &m_viewSettings.bShowBinaries);
 	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
+	WriteItemYesNo(2, _T("Tree-mode enabled"), &m_viewSettings.bTreeView);
 
 	FileWriteString(_T("\n Editor settings:\n"));
 	WriteItemYesNo(2, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
