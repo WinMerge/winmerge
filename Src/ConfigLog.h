@@ -47,6 +47,7 @@ struct VIEWSETTINGS
 	bool bShowUniqueRight;
 	bool bShowBinaries;
 	bool bShowSkipped;
+	bool bTreeView;
 };
 
 /** 
