@@ -164,9 +164,8 @@ int LineFiltersDlg::AddRow(LPCTSTR filter /*= NULL*/, BOOL enabled /*=FALSE*/)
  */
 void LineFiltersDlg::EditSelectedFilter()
 {
-	int sel =- 1;
 	m_filtersList.SetFocus();
-	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
+	int sel = m_filtersList.GetNextItem(-1, LVNI_SELECTED);
 	if (sel > -1)
 	{
 		CString text = m_filtersList.GetItemText(sel, 0);
@@ -273,6 +272,12 @@ BOOL LineFiltersDlg::PreTranslateMessage(MSG* pMsg)
 			m_editRegexp.SetReadOnly(TRUE);
 			m_bEditing = FALSE;
 			m_filtersList.SetFocus();
+			int sel = m_filtersList.GetNextItem(-1, LVNI_SELECTED);
+			if (sel > -1)
+			{
+				CString text = m_filtersList.GetItemText(sel, 0);
+				m_editRegexp.SetWindowText(text);
+			}
 			return TRUE;
 		}
 	}
