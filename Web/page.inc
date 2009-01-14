@@ -16,6 +16,7 @@
   define ('TAB_SUPPORT', 'support');
   define ('TAB_TRANSLATIONS', 'translations');
 
+  include 'engine/tabnav.inc';
   include 'engine/release.inc';
 
   /**
@@ -200,94 +201,78 @@
      */
     function getTabs() {
       /* Main Tabs */
+      $tabs[0] = new Tab(TAB_HOME, '/', 'Home', 'WinMerge Home');
+      $tabs[1] = new Tab(TAB_ABOUT, '/about/', 'About', 'About WinMerge');
+      $tabs[2] = new Tab(TAB_DOCS, '/docs/', 'Documentation', 'WinMerge Documentation');
+      $tabs[3] = new Tab(TAB_DOWNLOADS, '/downloads/', 'Downloads', 'WinMerge Downloads');
+      $tabs[4] = new Tab(TAB_SUPPORT, '/support/', 'Support', 'WinMerge Support');
+      $tabs[5] = new Tab(TAB_TRANSLATIONS, '/translations/', 'Translations', 'WinMerge Translations');
+      
       $temp = "<ul id=\"tabs\">\n";
-      if ($this->_tab == TAB_HOME) { //if "Home" ...
-        $temp .= "  <li><strong><a href=\"/\" id=\"current\" title=\"WinMerge Home\">Home</a></strong></li>\n";
-      }
-      else { //if NOT "Home" ...
-        $temp .= "  <li><a href=\"/\" title=\"WinMerge Home\">Home</a></li>\n";
-      }
-      if ($this->_tab == TAB_ABOUT) { //if "About" ...
-        $temp .= "  <li><strong><a href=\"/about/\" id=\"current\" title=\"About WinMerge\">About</a></strong></li>\n";
-      }
-      else { //if NOT "About" ...
-        $temp .= "  <li><a href=\"/about/\" title=\"About WinMerge\">About</a></li>\n";
-      }
-      if ($this->_tab == TAB_DOCS) { //if "Documentation" ...
-        $temp .= "  <li><strong><a href=\"/docs/\" id=\"current\" title=\"WinMerge Documentation\">Documentation</a></strong></li>\n";
-      }
-      else { //if NOT "Documentation" ...
-        $temp .= "  <li><a href=\"/docs/\" title=\"WinMerge Documentation\">Documentation</a></li>\n";
-      }
-      if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
-        $temp .= "  <li><strong><a href=\"/downloads/\" id=\"current\" title=\"WinMerge Downloads\">Downloads</a></strong></li>\n";
-      }
-      else { //if NOT "Downloads" ...
-        $temp .= "  <li><a href=\"/downloads/\" title=\"WinMerge Downloads\">Downloads</a></li>\n";
-      }
-      if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
-        $temp .= "  <li><strong><a href=\"/support/\" id=\"current\" title=\"WinMerge Support\">Support</a></strong></li>\n";
-      }
-      else { //if NOT "Support" ...
-        $temp .= "  <li><a href=\"/support/\" title=\"WinMerge Support\">Support</a></li>\n";
-      }
-      if ($this->_tab == TAB_TRANSLATIONS) { //if "Translations" ...
-        $temp .= "  <li><strong><a href=\"/translations/\" id=\"current\" title=\"WinMerge Translations\">Translations</a></strong></li>\n";
-      }
-      else { //if NOT "Translations" ...
-        $temp .= "  <li><a href=\"/translations/\" title=\"WinMerge Translations\">Translations</a></li>\n";
+      foreach ($tabs as $tab) { //for all tabs...
+        if ($this->_tab == $tab->getId()) { //if current tab...
+          $temp .= "  <li><strong><a href=\"" . $tab->getLink() . "\" id=\"current\" title=\"" . $tab->getToolTipText() . "\">" . $tab->getTitle() . "</a></strong></li>\n";
+        }
+        else { //if NOT current tab...
+          $temp .= "  <li><a href=\"" . $tab->getLink() . "\" title=\"" . $tab->getToolTipText() . "\">" . $tab->getTitle() . "</a></li>\n";
+        }
       }
       $temp .= "</ul>\n";
+      
       /* Sub Tabs */
+      $subtabs = array();
       switch ($this->_tab) {
         case TAB_HOME: //if "Home" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge\" title=\"WinMerge Project Page\">Project&nbsp;Page</a></li>\n";
-          $temp .= "  <li><a href=\"/links.php\" title=\"WinMerge Links\">Links</a></li>\n";
-          $temp .= "  <li><a href=\"/WinMergePAD.php\" title=\"WinMerge PAD File\">PAD&nbsp;File</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/', 'Index', 'WinMerge Home');
+          $subtabs[1] = new Subtab('/links.php', 'Links', 'WinMerge Links');
+          $subtabs[2] = new Subtab('/WinMergePAD.php', 'PAD File', 'WinMerge PAD File');
+          $subtabs[3] = new Subtab('http://sourceforge.net/projects/winmerge', 'Project Page', 'WinMerge Project Page');
           break;
         case TAB_ABOUT: //if "About" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/about/\" title=\"About WinMerge\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/about/screenshots/\" title=\"WinMerge Screenshots\">Screenshots</a></li>\n";
-          $temp .= "  <li><a href=\"/about/history.php\" title=\"WinMerge History\">History</a></li>\n";
-          $temp .= "  <li><a href=\"/about/license.php\" title=\"WinMerge License\">License</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/about/', 'Index', 'About WinMerge');
+          $subtabs[1] = new Subtab('/about/screenshots/', 'Screenshots', 'WinMerge Screenshots');
+          $subtabs[2] = new Subtab('/about/history.php', 'History', 'WinMerge History');
+          $subtabs[3] = new Subtab('/about/license.php', 'License', 'WinMerge License');
           break;
         case TAB_DOCS: //if "Documentation" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/docs/\" title=\"WinMerge Documentation\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/docs/manual/\" title=\"WinMerge Manual\">Manual</a></li>\n";
-          $temp .= "  <li><a href=\"/docs/releasenotes.php\" title=\"WinMerge Release Notes\">Release Notes</a> (<a href=\"/docs/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
-          $temp .= "  <li><a href=\"/docs/changelog.php\" title=\"WinMerge Change Log\">Change Log</a></li>\n";
-          $temp .= "  <li><a href=\"/Wiki/\" title=\"WinMerge Development Wiki\">Development Wiki</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/docs/', 'Index', 'WinMerge Documentation');
+          $subtabs[1] = new Subtab('/docs/manual/', 'Manual', 'WinMerge Manual');
+          $subtabs[2] = new Subtab('/docs/releasenotes.php', 'Release Notes', 'WinMerge Release Notes');
+          $subtabs[3] = new Subtab('/docs/releasenotes.php#issues', 'Known Issues', 'WinMerge Known Issues');
+          $subtabs[4] = new Subtab('/docs/changelog.php', 'Change Log', 'WinMerge Change Log');
+          $subtabs[5] = new Subtab('/Wiki/', 'Development Wiki', 'WinMerge Development Wiki');
           break;
         case TAB_DOWNLOADS: //if "Downloads" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/downloads/\" title=\"Download WinMerge\">WinMerge</a></li>\n";
-          $temp .= "  <li><a href=\"/downloads/plugins.php\" title=\"Download WinMerge Plugins\">Plugins</a></li>\n";
-          $temp .= "  <li><a href=\"/downloads/source-code.php\" title=\"Download WinMerge Source Code\">Source Code</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/downloads/', 'WinMerge', 'Download WinMerge');
+          $subtabs[1] = new Subtab('/downloads/plugins.php', 'Plugins', 'Download WinMerge Plugins');
+          $subtabs[2] = new Subtab('/downloads/source-code.php', 'Source Code', 'Download WinMerge Source Code');
           break;
         case TAB_SUPPORT: //if "Support" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/support/\" title=\"WinMerge Support\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"http://forums.winmerge.org\" title=\"WinMerge Discussion Forums\">Discussion&nbsp;Forums</a></li>\n";
-          $temp .= "  <li><a href=\"/support/mailing-lists.php\" title=\"WinMerge Mailing Lists\">Mailing&nbsp;Lists</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216\" title=\"WinMerge Tracker\">Tracker</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" title=\"Donate money to WinMerge\">Donate</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/support/', 'Index', 'WinMerge Support');
+          $subtabs[1] = new Subtab('http://forums.winmerge.org/', 'Discussion Forums', 'WinMerge Discussion Forums');
+          $subtabs[2] = new Subtab('/support/mailing-lists.php', 'Mailing Lists', 'WinMerge Mailing Lists');
+          $subtabs[3] = new Subtab('http://sourceforge.net/tracker/?group_id=13216', 'Tracker', 'WinMerge Tracker');
+          $subtabs[4] = new Subtab('http://sourceforge.net/donate/index.php?group_id=13216', 'Donate', 'Donate money to WinMerge');
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"/translations/\" title=\"WinMerge Translations\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/instructions.php\" title=\"WinMerge Translations Instructions\">Instructions</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"WinMerge Translations Status (Branch)\">Status (Branch)</a></li>\n";
-          $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"WinMerge Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
-          $temp .= "</ul>\n";
+          $subtabs[0] = new Subtab('/translations/', 'Index', 'WinMerge Translations');
+          $subtabs[1] = new Subtab('/translations/instructions.php', 'Instructions', 'WinMerge Translations Instructions');
+          $subtabs[2] = new Subtab('/translations/status_branch.php', 'Status (Branch)', 'WinMerge Translations Status (Branch)');
+          $subtabs[3] = new Subtab('/translations/status_trunk.php', 'Status (Trunk)', 'WinMerge Translations Status (Trunk)');
           break;
+      }
+      
+      if (count($subtabs) > 0) { //if subtabs exists...
+        $temp .= "<ul id=\"subtabs\">\n";
+        foreach ($subtabs as $subtab) { //for all subtabs...
+          if ($subtab->isCurrent() == true) { //if current subtab...
+            $temp .= "  <li><strong><a href=\"" . $subtab->getLink() . "\" title=\"" . $subtab->getToolTipText() . "\">" . $subtab->getTitle() . "</a></strong></li>\n";
+          }
+          else { //if NOT current subtab...
+            $temp .= "  <li><a href=\"" . $subtab->getLink() . "\" title=\"" . $subtab->getToolTipText() . "\">" . $subtab->getTitle() . "</a></li>\n";
+          }
+        }
+        $temp .= "</ul>\n";
       }
       return $temp;
     }
