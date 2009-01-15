@@ -59,6 +59,7 @@ WinMerge installations. And users are not happy about that!</p>
   <li><a href="#Environment">Environment</a></li>
   <li><a href="#StepsInReleasing">Steps to do a release (without scripts)</a></li>
   <li><a href="#UsingScripts">Using the scripts</a></li>
+  <li><a href="#Checksums">Calculating checksums</a></li>
 </ol>
 
 <h3><a name="Environment">Environment</a></h3>
@@ -153,7 +154,8 @@ files to modify from INI file and sets the version numbers.</p>
 
 <h4>create_release.py</h4>
 
-<p>The <code> </code> -script does much of the releasing work. It does:
+<p>The <code>create_release.py</code> -script does much of the releasing work.
+It does:
 
 <ol>
   <li>cleans previous build files from folders</li>
@@ -170,6 +172,36 @@ files to modify from INI file and sets the version numbers.</p>
   <li>creates binary distribution folder</li>
 </ol>
 
+<h5>Configuring the script</h5>
+
+<p>The <code>create_release.py</code> -script is meant to run from command line.
+Before running the script you may need to modify the configuration variables in
+the beginning of the script file. Variables to modify are:
+
+<ul>
+  <li><b>svn_binary</b>: This must be a full path to the SVN <b>command line</b>
+    binaries. TortoiseSVN or other GUI tool binaries DO NOT work.</li>
+  <li><b>vs_path</b>: Points to the root folder of Visual Studio installation.</li>
+  <li><b>innosetup_path</b>: Innosetup installation folder.</li>
+  <li><b>dist_root_folder</b>: Relative path to folder where WinMerge release
+    will be created. The script creates version-specific release folder inside
+	this folder.</li>
+  <li><b>source_location</b>: SVN repository URL from where to export the
+    sources. Can be also 'workspace' if sources are exported from local
+	workspace folder.</li>
+</ul>
+
+<h3><a name="Checksums">Calculating checksums</a></h3>
+
+<p>Checksums must be calculated and published for all released files. Using
+checksums downloaders can verify the files are downloaded without erros and
+more importantly the files are the same files that were published. This very
+efficiently removes the possibility somebody has modified the files.</p>
+
+<p>It is recommended that SHA-1 checksums are used.</p>
+
+<p>There are several tools that can calculate SHA-1 checksums. One such tool
+is <a href="http://checksumtool.sourceforge.net/">Checksum Tool</a>.</p>
 
 </body>
 </html>
