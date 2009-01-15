@@ -29,6 +29,7 @@
 
 #include "StdAfx.h"
 #include <shlwapi.h>		// PathCompactPathEx()
+#include <io.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
