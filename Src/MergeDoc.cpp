@@ -384,8 +384,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	DiffFileInfo fileInfo;
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
-	bool bLeftFileChanged = false;
-	bool bRightFileChanged = false;
+	FileChange leftFileChanged;
+	FileChange rightFileChanged;
 
 	if (!bForced)
 	{
@@ -403,11 +403,36 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_diffWrapper.SetFilterList(_T(""));
 	}
 
-	bLeftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft().c_str(), fileInfo,
+	leftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft().c_str(), fileInfo,
 		false, 0);
-	bRightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight().c_str(), fileInfo,
+	rightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight().c_str(), fileInfo,
 		false, 1);
 	m_LastRescan = COleDateTime::GetCurrentTime();
+
+	if (leftFileChanged == FileRemoved)
+	{
+		CString msg;
+		LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths.GetLeft().c_str());
+		AfxMessageBox(msg);
+		BOOL bSaveResult = FALSE;
+		bool ok = DoSaveAs(m_filePaths.GetLeft().c_str(), bSaveResult, 0);
+		if (!ok || !bSaveResult)
+		{
+			return RESCAN_FILE_ERR;
+		}
+	}
+	if (rightFileChanged == FileRemoved)
+	{
+		CString msg;
+		LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths.GetRight().c_str());
+		AfxMessageBox(msg);
+		BOOL bSaveResult = FALSE;
+		bool ok = DoSaveAs(m_filePaths.GetRight().c_str(), bSaveResult, 0);
+		if (!ok || !bSaveResult)
+		{
+			return RESCAN_FILE_ERR;
+		}
+	}
 
 	String temp1 = m_tempFiles[0].GetPath();
 	if (temp1.empty())
@@ -539,7 +564,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_pRescanFileInfo[0]->Update(m_filePaths.GetLeft().c_str());
 	m_pRescanFileInfo[1]->Update(m_filePaths.GetRight().c_str());
 
-	if (bLeftFileChanged)
+	if (leftFileChanged == FileChanged)
 	{
 		CString msg;
 		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetLeft().c_str());
@@ -548,7 +573,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 			ReloadDoc(0);
 		}
 	}
-	else if (bRightFileChanged)
+	else if (rightFileChanged == FileChanged)
 	{
 		CString msg;
 		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetRight().c_str());
@@ -1065,12 +1090,12 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 {
 	DiffFileInfo fileInfo;
 	CString strSavePath(szPath);
-	bool bFileChanged = false;
+	FileChange fileChanged;
 	BOOL bApplyToAll = FALSE;	
 	int nRetVal = -1;
 
-	bFileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);
-	if (bFileChanged)
+	fileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);
+	if (fileChanged == FileChanged)
 	{
 		CString msg;
 		LangFormatString1(msg, IDS_FILECHANGED_ONDISK, szPath);
@@ -1789,7 +1814,7 @@ void CMergeDoc::PrimeTextBuffers()
  * @param [in] nBuffer Index (0-based) of buffer
  * @return TRUE if file is changed.
  */
-bool CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
+CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 	bool bSave, int nBuffer)
 {
 	DiffFileInfo *fileInfo = NULL;
@@ -1804,6 +1829,10 @@ bool CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 	else
 		fileInfo = m_pRescanFileInfo[nBuffer];
 
+	// We assume file existed, so disappearing means removal
+	if (_taccess(szPath, 0) == -1)
+		return FileRemoved;
+
 	dfi.Update(szPath);
 
 	__int64 timeDiff = dfi.mtime - fileInfo->mtime;
@@ -1813,7 +1842,10 @@ bool CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 		bFileChanged = true;
 	}
 
-	return bFileChanged;
+	if (bFileChanged)
+		return FileChanged;
+	else
+		return FileNoChange;
 }
 
 /**

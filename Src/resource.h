@@ -590,6 +590,7 @@
 #define IDS_FILECHANGED_RESCAN          17243
 #define IDS_SAVE_LEFT_AS                17244
 #define IDS_SAVE_RIGHT_AS               17245
+#define IDS_FILE_DISAPPEARED            17246
 #define IDS_NOPROJECT                   17264
 #define IDS_VSS_CHECKOUT_STATUS         17265
 #define IDS_VSSERROR                    17266
