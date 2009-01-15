@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.1
+WinMerge 2.13.1 - 2009-01-15 (r6334)
   Update Python syntax highlight keywords for Python 2.6 (#2473375)
   More accurate visible area indicator in location pane (#2479804)
   Better Unicode file detection for full contents compare (#2477657)
