@@ -6,7 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.1
   Update Python syntax highlight keywords for Python 2.6 (#2473375)
   More accurate visible area indicator in location pane (#2479804)
-  Better Unicode file detection for full contents compare (2477657)
+  Better Unicode file detection for full contents compare (#2477657)
   New options page for Shell Integration options (#2433648)
   Bugfix: Could not open project file that contains an ampersand 
     character in folder names (#2372000)
@@ -18,6 +18,7 @@ WinMerge 2.13.1
   Bugfix: Merging one line diff to empty other side didn't work (#2456399)
   Bugfix: Line filter editing didn't update edit box when editing was
    canceled by ESC key (#2493935)
+  Bugfix: Wrong number shown for difference when using line filters (#2493980)
   Translation updates:
   - Brazilian (#2461443)
   - Czech (r6201)
