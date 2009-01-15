@@ -508,6 +508,7 @@ def find_winmerge_root():
 def check_tools():
     """Check that needed external tools can be found."""
 
+    global prog
     if not os.path.exists(prog.svn_binary):
         print 'Subversion binary could not be found from:'
         print prog.svn_binary
@@ -521,15 +522,15 @@ def check_tools():
         print 'Please check script configuration.'
         return False
 
-    pathhhc = os.path.join(prog.callpath, '/Docs/Users/Manual/build/hhc/hhc.exe')
-    folderdtd = os.path.join(prog.callpath, '/Docs/Users/Manual/build/dtd')
-    foldersaxon = os.path.join(prog.callpath, '/Docs/Users/Manual/build/saxon')
-    folderxerc = os.path.join(prog.callpath, '/Docs/Users/Manual/build/xerces')
-    folderxsl = os.path.join(prog.callpath, '/Docs/Users/Manual/build/xsl')
+    pathhhc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/hhc/hhc.exe')
+    folderdtd = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/dtd')
+    foldersaxon = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/saxon')
+    folderxerc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xerces')
+    folderxsl = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xsl')
 
-    if not os.path.exist(pathhhc) or not os.path.exist(folderdtd) or \
-            not os.path.exist(foldersaxon) or not os.path.exist(folderxerc) or \
-            not os.path.exist(folderxsl):
+    if not os.path.exists(pathhhc) or not os.path.exists(folderdtd) or \
+            not os.path.exists(foldersaxon) or not os.path.exists(folderxerc) or \
+            not os.path.exists(folderxsl):
         print 'Cannot find manual build tools'
         print 'Please download and install manual build tools from:'
         print 'https://sourceforge.net/project/showfiles.php?group_id=13216'
@@ -569,6 +570,7 @@ def usage():
     print '    used as version number.'
 
 def main(argv):
+    global prog
     ver_file = ''
     if len(argv) > 0:
         opts, args = getopt.getopt(argv, "hclv:f:", [ "help", "cleanup", "libraries",
