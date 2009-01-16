@@ -48,7 +48,7 @@
 		<Program_Language>Bulgarian,Catalan,ChineseSimplified,ChineseTraditional,Croatian,Czech,Danish,Dutch,English,French,Galician,German,Greek,Hungarian,Italian,Japanese,Korean,Norwegian,Polish,Portuguese,Romanian,Russian,Slovak,Spanish,Swedish,Turkish,Ukrainian</Program_Language>
 		<Program_Change_Info />
 		<Program_Specific_Category>Utilities</Program_Specific_Category>
-		<Program_Category_Class>System Utilities::File Compression</Program_Category_Class>
+		<Program_Category_Class>System Utilities::File &amp; Disk Management</Program_Category_Class>
 		<Program_System_Requirements />
 		<File_Info>
 			<File_Size_Bytes>3253491</File_Size_Bytes>
@@ -58,7 +58,7 @@
 		<Expire_Info>
 			<Has_Expire_Info>N</Has_Expire_Info>
 			<Expire_Count />
-			<Expire_Based_On>Days</Expire_Based_On>
+			<Expire_Based_On />
 			<Expire_Other_Info />
 			<Expire_Month />
 			<Expire_Day />
