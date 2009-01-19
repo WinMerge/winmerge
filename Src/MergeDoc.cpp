@@ -385,8 +385,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	DiffFileInfo fileInfo;
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
-	FileChange leftFileChanged;
-	FileChange rightFileChanged;
+	FileChange leftFileChanged = FileNoChange;
+	FileChange rightFileChanged = FileNoChange;
 
 	if (!bForced)
 	{
@@ -404,17 +404,25 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_diffWrapper.SetFilterList(_T(""));
 	}
 
-	leftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft().c_str(), fileInfo,
-		false, 0);
-	rightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight().c_str(), fileInfo,
-		false, 1);
+	// Check if files have been modified since last rescan
+	// Ignore checking in case of scratchpads (empty filenames)
+	if (!m_filePaths.GetLeft().empty())
+	{
+		leftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft().c_str(),
+				fileInfo, false, 0);
+	}
+	if (!m_filePaths.GetRight().empty())
+	{
+		rightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight().c_str(),
+				fileInfo, false, 1);
+	}
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	if (leftFileChanged == FileRemoved)
 	{
 		CString msg;
 		LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths.GetLeft().c_str());
-		AfxMessageBox(msg);
+		AfxMessageBox(msg, MB_ICONWARNING);
 		BOOL bSaveResult = FALSE;
 		bool ok = DoSaveAs(m_filePaths.GetLeft().c_str(), bSaveResult, 0);
 		if (!ok || !bSaveResult)
