@@ -2582,12 +2582,12 @@ msgstr "&Starta Plugins"
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Gränssnittsintegration"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: Merge.rc:1676
 #, c-format
@@ -2602,17 +2602,17 @@ msgstr "In&kludera underkataloger som standard"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Lägg till i kontextmeny"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Katalogjämförelse"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Lägg till &gränssnittsmeny i kontextmeny"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
