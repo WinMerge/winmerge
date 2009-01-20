@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Unit Testing</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
+    h5 {
+      font-size: small;
+    }
+    pre {
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 5px;
+      background-color: #EEEEEE;
+      border: 1px solid black;
+    }
+    p.note {
+      padding: 5px;
+      background-color: #DDDDFF;
+      border: 1px solid blue;
+    }
+    acronym {
+      cursor: help;
+      border-bottom: 1px dotted black;
+    }
+  -->
+  </style>
+</head>
+<body>
+<h2>Unit Testing</h2>
+<p><i>Unit testing</i> means running automated tests for the certain block of
+the code. These tests are run either by scripts or unit testing framework. The
+result is a list os passed and/or failed tests.</p>
+
+<p>Unit testing framework used with WinMerge development is the Google Test,
+available from <a href"http://code.google.com/p/googletest/">
+http://code.google.com/p/googletest/</a>. Other frameworks can be used when
+need arises. However we don't want to use every known framework so the reason
+for adding new framework needs to be good, like new technology or language
+used that current framework does not support.</p>
+
+<p>Earlier we tried to start using CppUnit but unfortunately even compiling
+CppUnit seemed to be too hard for many people. And creating tests is just a
+mess. So CppUnit usage is discouraged nowadays.</p>
+
+<h3>Policy</h3>
+<p><b>Existing unit tests must be run without errors.</b> For every error
+there must be a known explanation. It is a good practice to document errors
+into unit tests so others know what is going on. It is also recommended to
+submit bug reports of failing tests if the fix is not imminent.</p>
+
+<p>When changing the code which has unit tests, test must be always run before
+the patch is submitted to patch tracker and before the patch is committed to
+SVN. Possible known failures must be explained. Failing unit can be a blocker
+preventing committing the patch.</p>
+
+<p><b>Failing unit tests may be (and most likely are) blockers for the beta and
+stable releases.</b> Experimental releases can be released with known errors.
+
+<h3>Adding new tests</h3>
+<p>Unit tests by nature rarely are and can be complete. Adding more tests and
+improving current tests is highly encouraged. It is the easiest way to improve
+WinMerge quality!</p>
+
+<h4>Modfying existing tests</h4>
+<p>There must be some care when altering existing tests though. It may be that
+there was a reason the existing test were done as it was. If that reason is not
+obvious, it is better to create new improved test and leave the old test
+untouched.</p>
+
+<p>Fixing a failing unit testing by modifying the test is highly questionable.
+The test must be <i>buggy</i> for this to be allowed.</p>
+
+<h2>Quick guide to Google Test</h2>
+
+<p><i>Google Test</i> is an external library/framework that must be compiled
+before using with unit tests.</p>
+
+<h3>Unzip and compile Google Test library</h3>
+
+<p>Unzip the Google Test sources to some folder. Pick a folder you can keep
+around (not some temp folder) because you'll need the header files every time
+you compile unit tests.</p>
+
+<p>Open solution file <code>msvc\gtest.sln</code> to the Visual Studio.
+Depending on Visual Studio version the project/solution file may need to be
+updated for later version before usage. Visual Studio asks about the conversion
+when opening the solution file.</p>
+
+<p>Build the <i>Release</i> target of <i>gtest</i> project. You don't need to
+build other projects or targets. Indeed, <i>rebuild all</i> for the solution
+does not work. Some of the projects in the solution are unit tests for the
+framework itself.</p>
+
+<p>Copy the compiled <code>gtest.lib</code> file from <code>msvc\Release</code>
+subfolder to <code>Testing\GoogleTest</code> - folder in WinMerge source tree.
+</p>
+
+<h3>Setup Visual Studio for Google Test</h3>
+
+<p>As mentioned earlier Google Test header files are needed to compile the
+tests. As the Google Test was unzipped to separate folder we must first tell
+Visual Studio where to find those headers.</p>
+
+<p>Add the <code>gtest-[version]\include</code> -folder to Visual Studio's
+include file folders:
+
+<ul>
+  <li>Open Options -dialog in Visual Studio</li>
+  <li>Select Projects and solutions</li>
+  <li>Select VC++ Directories</li>
+  <li>Select Include files</li>
+  <li>Add <code>gtest-[version]\include</code> -folder as <b>LAST</b> folder in
+    that list</li>
+</ul>
+</p>
+
+<h3>Open the test project into Visual Studio and compile</h3>
+
+<p>Open the testing project to Visual Studio (VS 2003 and later work) and
+compile <i>Release</i> -target of the project.</p>
+
+<h3>Run the tests</h3>
+
+<p>Open the Command Prompt and CD to folder where executable were build,
+usually <code>[projectname]/Release</code>.</p>
+
+<h3>Run the executable.</h3>
+
+<p>While the testing runs it prints progress information and info about
+<i>passed</i>/<i>failed</i> tests.</p>
+
+</body>
+</html>
