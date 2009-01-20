@@ -1,7 +1,20 @@
 #include <gtest/gtest.h>
 #include <windows.h>
 #include <tchar.h>
+#include <io.h>
+#include <direct.h>
 #include "paths.h"
+
+// Expects that C:\Temp exists for creating temporary testing files.
+
+// TODO:
+// paths_normalize() with rel path returns drive letter? how to test?
+// paths_GetLongPath() - how to test?
+// GetPairComparability() tests
+// paths_IsShortcut() how to test so that test data is in SVN?
+// ExpandShortcut() how to test so that test data is in SVN?
+// paths_EnsurePathExist() tests
+
 
 namespace
 {
@@ -119,6 +132,226 @@ namespace
 		EXPECT_EQ(IS_EXISTING_FILE, paths_DoesPathExist(path1));
 		EXPECT_EQ(DOES_NOT_EXIST, paths_DoesPathExist(path2));
 	}
+
+	TEST_F(PathTest, FindName_absfiles)
+	{
+		char path[] = "c:\\abc.txt";
+		EXPECT_EQ(path + 3, paths_FindFileName(path));
+	}
+
+	TEST_F(PathTest, FindName_absfiles2)
+	{
+		char path[] = "c:\\temp\\abc.txt";
+		EXPECT_EQ(path + 8, paths_FindFileName(path));
+	}
+
+	TEST_F(PathTest, Normalize_abspath)
+	{
+		String path = "c:\\abc.txt";
+		String path_orig = path;
+		paths_normalize(path);
+		EXPECT_EQ(path_orig, path);
+	}
+	TEST_F(PathTest, Normalize_abspath2)
+	{
+		String path = "c:\\temp\\abc.txt";
+		String path_orig = path;
+		paths_normalize(path);
+		EXPECT_EQ(path_orig, path);
+	}
+/*	TEST_F(PathTest, Normalize_abspath3)
+	{
+		String path = "c:";
+		String path_orig = path;
+		paths_normalize(path);
+		EXPECT_EQ(path_orig, path);
+	}
+*/
+	TEST_F(PathTest, Normalize_abspath4)
+	{
+		String path = "c:\\";
+		String path_orig = path;
+		paths_normalize(path);
+		EXPECT_EQ(path_orig, path);
+	}
+	TEST_F(PathTest, Normalize_abspath5)
+	{
+		String path = "c:\\Temp\\";
+		String path_orig = "c:\\Temp";
+		paths_normalize(path);
+		EXPECT_EQ(path_orig, path);
+	}
+
+	TEST_F(PathTest, Create_abspath1)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp"));
+	}
+	TEST_F(PathTest, Create_abspath2)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\\wm_test"));
+		EXPECT_EQ(0, _access("c:\\Temp\\wm_test", 0));
+	}
+	TEST_F(PathTest, Create_abspath3)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\\wm_test"));
+		EXPECT_EQ(0, _access("c:\\Temp\\wm_test", 0));
+		EXPECT_EQ(0, rmdir("c:\\Temp\\wm_test"));
+		EXPECT_NE(0, _access("c:\\Temp\\wm_test", 0));
+	}
+	TEST_F(PathTest, Create_abspath4)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\\wm_test\\abc\\dce"));
+		EXPECT_EQ(0, _access("c:\\Temp\\wm_test\\abc\\dce", 0));
+	}
+	TEST_F(PathTest, Create_abspath5)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\wm_test\\abc\\dce"));
+		EXPECT_EQ(0, _access("c:\\Temp\\wm_test\\abc\\dce", 0));
+		EXPECT_EQ(0, rmdir("c:\\Temp\\wm_test\\abc\\dce"));
+		EXPECT_NE(0, _access("c:\\Temp\\wm_test\\abc\\dce", 0));
+		EXPECT_EQ(0, rmdir("c:\\Temp\\wm_test\\abc"));
+		EXPECT_NE(0, _access("c:\\Temp\\wm_test\\abc", 0));
+		EXPECT_EQ(0, rmdir("c:\\Temp\\wm_test"));
+		EXPECT_NE(0, _access("c:\\Temp\\wm_test", 0));
+	}
+
+	TEST_F(PathTest, Concat_abspath1)
+	{
+		EXPECT_EQ("c:\\Temp\\wm_test", paths_ConcatPath("c:\\Temp", "wm_test"));
+	}
+	TEST_F(PathTest, Concat_abspath2)
+	{
+		EXPECT_EQ("c:\\Temp\\wm_test", paths_ConcatPath("c:\\Temp\\", "wm_test"));
+	}
+	TEST_F(PathTest, Concat_abspath3)
+	{
+		EXPECT_EQ("c:\\Temp\\wm_test", paths_ConcatPath("c:\\Temp", "\\wm_test"));
+	}
+	TEST_F(PathTest, Concat_abspath4)
+	{
+		EXPECT_EQ("c:\\Temp\\wm_test", paths_ConcatPath("c:\\Temp\\", "\\wm_test"));
+	}
+	TEST_F(PathTest, Concat_relpath1)
+	{
+		EXPECT_EQ("\\Temp\\wm_test", paths_ConcatPath("\\Temp", "wm_test"));
+	}
+	TEST_F(PathTest, Concat_relpath2)
+	{
+		EXPECT_EQ("\\Temp\\wm_test", paths_ConcatPath("\\Temp\\", "wm_test"));
+	}
+	TEST_F(PathTest, Concat_relpath3)
+	{
+		EXPECT_EQ("\\Temp\\wm_test", paths_ConcatPath("\\Temp", "\\wm_test"));
+	}
+	TEST_F(PathTest, Concat_relpath4)
+	{
+		EXPECT_EQ("\\Temp\\wm_test", paths_ConcatPath("\\Temp\\", "\\wm_test"));
+	}
+
+	TEST_F(PathTest, Parent_abspath1)
+	{
+		EXPECT_EQ("c:\\Temp", paths_GetParentPath("c:\\Temp\\wm_test"));
+	}
+	TEST_F(PathTest, Parent_abspath2)
+	{
+		EXPECT_EQ("c:\\Temp\\abc", paths_GetParentPath("c:\\Temp\\abc\\wm_test"));
+	}
+	
+	// FAILS!
+	// paths_GetParentPath("c:\\Temp") "returns c:"
+	TEST_F(PathTest, Parent_abspath3)
+	{
+		EXPECT_EQ("c:\\", paths_GetParentPath("c:\\Temp"));
+	}
+
+	// FAILS!
+	// paths_GetParentPath("c:\\Temp\\") "returns c:"
+	TEST_F(PathTest, Parent_abspath4)
+	{
+		EXPECT_EQ("c:\\", paths_GetParentPath("c:\\Temp\\"));
+	}
+	TEST_F(PathTest, Parent_relpath1)
+	{
+		EXPECT_EQ("\\temp", paths_GetParentPath("\\temp\\abc"));
+	}
+	TEST_F(PathTest, Parent_relpath2)
+	{
+		EXPECT_EQ("\\temp\\abc", paths_GetParentPath("\\temp\\abc\\cde"));
+	}
+
+	TEST_F(PathTest, LastSubdir_abspath1)
+	{
+		EXPECT_EQ("\\abc", paths_GetLastSubdir("c:\\temp\\abc"));
+	}
+	
+	// FAILS!
+	// paths_GetLastSubdir("c:\\temp") returns "c:\\temp"
+	TEST_F(PathTest, LastSubdir_abspath2)
+	{
+		EXPECT_EQ("\\temp", paths_GetLastSubdir("c:\\temp"));
+	}
+
+	// FAILS!
+	// paths_GetLastSubdir("c:\\temp") returns "c:\\temp"
+	TEST_F(PathTest, LastSubdir_abspath3)
+	{
+		EXPECT_EQ("\\temp", paths_GetLastSubdir("c:\\temp\\"));
+	}
+	TEST_F(PathTest, LastSubdir_relpath1)
+	{
+		EXPECT_EQ("\\temp", paths_GetLastSubdir("abc\\temp\\"));
+	}
+	TEST_F(PathTest, LastSubdir_relpath2)
+	{
+		EXPECT_EQ("\\dce", paths_GetLastSubdir("abc\\temp\\dce"));
+	}
+
+	TEST_F(PathTest, IsAbsolute_abspath1)
+	{
+		EXPECT_TRUE(paths_IsPathAbsolute("c:\\abc"));
+	}
+	TEST_F(PathTest, IsAbsolute_abspath2)
+	{
+		EXPECT_TRUE(paths_IsPathAbsolute("c:\\abc\\"));
+	}
+	TEST_F(PathTest, IsAbsolute_abspath3)
+	{
+		EXPECT_TRUE(paths_IsPathAbsolute("c:\\abc\\cde"));
+	}
+	TEST_F(PathTest, IsAbsolute_abspath4)
+	{
+		EXPECT_TRUE(paths_IsPathAbsolute("c:\\abc\\cde\\"));
+	}
+	TEST_F(PathTest, IsAbsolute_abspath5)
+	{
+		EXPECT_TRUE(paths_IsPathAbsolute("c:\\"));
+	}
+	TEST_F(PathTest, IsAbsolute_relpath1)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("\\cde"));
+	}
+	TEST_F(PathTest, IsAbsolute_relpath2)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("\\cde\\"));
+	}
+	TEST_F(PathTest, IsAbsolute_relpath3)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("\\cde\\abd"));
+	}
+	TEST_F(PathTest, IsAbsolute_relpath4)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("\\cde\\abd\\"));
+	}
+	TEST_F(PathTest, IsAbsolute_relpath5)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("cde\\abd"));
+	}
+
+	TEST_F(PathTest, IsAbsolute_relpath6)
+	{
+		EXPECT_FALSE(paths_IsPathAbsolute("cde\\abd"));
+	}
+
 }  // namespace
 
 int main(int argc, char **argv)
