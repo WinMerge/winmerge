@@ -123,6 +123,18 @@ ul.inline li {
 	list-style: none;
 }
 
+/* PAD file */
+.padfile dt {
+	margin: 0 0 0 2em;
+	padding: 0;
+	font-weight: bold;
+}
+
+.padfile dd {
+	margin: 0 0 1em 4em;
+	padding: 0;
+}
+
 /* Translations Status */
 .status {
 	border-collapse: collapse;

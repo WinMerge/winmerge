@@ -2,9 +2,11 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: PAD file', TAB_HOME);
+  $page->setDescription('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.');
+  $page->setKeywords('WinMerge, PAD file, Portable Application Description');
+  $page->printHead('WinMerge: PAD File', TAB_HOME);
 ?>
-<h2>PAD file</h2>
+<h2>PAD File</h2>
 <p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>
 <pre class="code"><a href="http://winmerge.org/WinMergePAD.xml">http://winmerge.org/WinMergePAD.xml</a></pre>
 <p>If you can't work with the <a href="WinMergePAD.xml">PAD file</a>, you can use the following informations:</p>
@@ -27,19 +29,20 @@
   $program_os_support = $program_info['PROGRAM_OS_SUPPORT'][0]['VALUE'];
   $program_language = $program_info['PROGRAM_LANGUAGE'][0]['VALUE'];
   $program_type = $program_info['PROGRAM_TYPE'][0]['VALUE'];
+  print("<div class=\"padfile\">\n");
   print("<h2>" . $program_name . " " . $program_version . "</h2>\n");
   print("<dl>\n");
-  print("  <dt>Release Date:</dt>\n");
+  print("  <dt>Release Date</dt>\n");
   print("  <dd>" . $release_date_month . "/" . $release_date_day . "/" . $release_date_year . "</dd>\n");
-  print("  <dt>Release Status:</dt>\n");
+  print("  <dt>Release Status</dt>\n");
   print("  <dd>" . $release_status . "</dd>\n");
-  print("  <dt>Download:</dt>\n");
+  print("  <dt>Download</dt>\n");
   print("  <dd><a href=\"" . $download . "\">" . $download . "</a> (" . $file_size_mb . " MB)</dd>\n");
-  print("  <dt>Operating Systems:</dt>\n");
+  print("  <dt>Operating Systems</dt>\n");
   print("  <dd>" . str_replace(',', ', ', $program_os_support) . "</dd>\n");
-  print("  <dt>Supported Languages:</dt>\n");
+  print("  <dt>Supported Languages</dt>\n");
   print("  <dd>" . str_replace(',', ', ', $program_language) . "</dd>\n");
-  print("  <dt>Type:</dt>\n");
+  print("  <dt>Type</dt>\n");
   print("  <dd>" . $program_type . "</dd>\n");
   print("</dl>\n");
 
@@ -49,13 +52,13 @@
   $keywords = $program_descriptions['KEYWORDS'][0]['VALUE'];
   print("<h3>Descriptions</h3>\n");
   print("<dl>\n");
-  print("  <dt>Description (80 chars):</dt>\n");
+  print("  <dt>Description (80 chars)</dt>\n");
   print("  <dd>" . $description_80 . "</dd>\n");
-  print("  <dt>Description (250 chars):</dt>\n");
+  print("  <dt>Description (250 chars)</dt>\n");
   print("  <dd>" . $description_250 . "</dd>\n");
-  print("  <dt>Description (450 chars):</dt>\n");
+  print("  <dt>Description (450 chars)</dt>\n");
   print("  <dd>" . $description_450 . "</dd>\n");
-  print("  <dt>Keywords:</dt>\n");
+  print("  <dt>Keywords</dt>\n");
   print("  <dd>" . str_replace(',', ', ', $keywords) . "</dd>\n");
   print("</dl>\n");
 
@@ -65,13 +68,13 @@
   $pad_url = $web_info['APPLICATION_URLS'][0]['APPLICATION_XML_FILE_URL'][0]['VALUE'];
   print("<h3>Web Addresses</h3>\n");
   print("<dl>\n");
-  print("  <dt>Information:</dt>\n");
+  print("  <dt>Information</dt>\n");
   print("  <dd><a href=\"" . $info_url . "\">" . $info_url . "</a></dd>\n");
-  print("  <dt>Screenshot:</dt>\n");
+  print("  <dt>Screenshot</dt>\n");
   print("  <dd><a href=\"" . $screenshot_url . "\">" . $screenshot_url . "</a></dd>\n");
-  print("  <dt>Icon:</dt>\n");
+  print("  <dt>Icon</dt>\n");
   print("  <dd><a href=\"" . $icon_url . "\">" . $icon_url . "</a></dd>\n");
-  print("  <dt>PAD file:</dt>\n");
+  print("  <dt>PAD file</dt>\n");
   print("  <dd><a href=\"" . $pad_url . "\">" . $pad_url . "</a></dd>\n");
   print("</dl>\n");
 
@@ -82,13 +85,14 @@
   $support_email = $company_info['SUPPORT_INFO'][0]['SUPPORT_EMAIL'][0]['VALUE'];
   print("<h3>Company</h3>\n");
   print("<dl>\n");
-  print("  <dt>Name:</dt>\n");
+  print("  <dt>Name</dt>\n");
   print("  <dd><a href=\"" . $company_website_url . "\">" . $company_name . "</a></dd>\n");
-  print("  <dt>Contact:</dt>\n");
+  print("  <dt>Contact</dt>\n");
   print("  <dd><a href=\"mailto:" . $contact_email . "\">" . $contact_first_name . "</a></dd>\n");
-  print("  <dt>Support:</dt>\n");
+  print("  <dt>Support</dt>\n");
   print("  <dd><a href=\"mailto:" . $support_email . "\">" . $support_email . "</a></dd>\n");
   print("</dl>\n");
+  print("</div> <!-- .padfile -->\n");
 
   $page->printFoot();
 ?>
