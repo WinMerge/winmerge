@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-12-05 00:52+0000\n"
-"PO-Revision-Date: 2008-12-20 01:06-0300\n"
+"POT-Creation-Date: 2009-01-15 20:39+0000\n"
+"PO-Revision-Date: 2009-01-17 03:26-0300\n"
 "Last-Translator: Felipe <felipefpl@ig.com.br>\n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2600,12 +2600,12 @@ msgstr "&Ativar plugins"
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Integração com o Shell"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: Merge.rc:1676
 #, c-format
@@ -2620,17 +2620,17 @@ msgstr "In&cluir as sub-pastas por padrão"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Adicionar ao menu de contexto"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Comparar as pastas"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Adicionar o &menu do Shell ao menu de contexto"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
@@ -3887,8 +3887,14 @@ msgstr "Salvar o Arquivo a Direita Como"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"disappeared. Please save a copy of the file to continue."
 msgstr ""
+"O arquivo\n"
+"%1\n"
+"desapareceu. Por favor salve uma cópia do arquivo para continuar."
 
 #: Merge.rc:2165
 #, c-format
