@@ -383,6 +383,12 @@ void CDirDoc::Rescan()
 
 /**
  * @brief Determines if the user wants to see given item.
+ * This function determines what items to show and what items to hide. There
+ * are lots of combinations, but basically we check if menuitem is enabled or
+ * disabled and show/hide matching items. For non-recursive compare we never
+ * hide folders as that would disable user browsing into them. And we even
+ * don't really know if folders are identical or different as we haven't
+ * compared them.
  * @param [in] di Item to check.
  * @return TRUE if item should be shown, FALSE if not.
  * @sa CDirDoc::Redisplay()
@@ -413,6 +419,24 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 				return FALSE;
 			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 				return FALSE;
+		}
+		else // recursive (perhaps tree?) mode
+		{
+			// result filters
+			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+				return FALSE;
+
+			// result filters
+			if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
+				return FALSE;
+			if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
+				return FALSE;
+			// left/right filters
+			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+				return FALSE;
+			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+				return FALSE;
+
 		}
 	}
 	else

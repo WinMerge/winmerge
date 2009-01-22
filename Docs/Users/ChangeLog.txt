@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.2
   Bugfix: Creating new files caused message about missing files (#2515875)
+  Bugfix: Could not hide folders in recursive compare (#2528749)
   Translation updates:
   - Brazilian (#2524796)
   - Swedish (#2511043)
