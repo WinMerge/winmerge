@@ -4522,6 +4522,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="PropShell.cpp">
+			</File>
+			<File
 				RelativePath="PropSyntaxColors.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6336,6 +6339,9 @@
 			</File>
 			<File
 				RelativePath="PropRegistry.h">
+			</File>
+			<File
+				RelativePath="PropShell.h">
 			</File>
 			<File
 				RelativePath="PropSyntaxColors.h">

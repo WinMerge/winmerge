@@ -52,11 +52,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
 	enum { IDD = IDD_PROPPAGE_SYSTEM };
-	BOOL m_bContextAdded;
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
-	BOOL	m_bContextAdvanced;
-	BOOL	m_bContextSubfolders;
 	CString m_strUserFilterPath;
 	int		m_tempFolderType;
 	CString m_tempFolder;
@@ -74,17 +71,11 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
-	afx_msg void OnAddToExplorer();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();
 	afx_msg void OnBrowseTmpFolder();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-	void GetContextRegValues();
-	void SaveMergePath();
-	void AdvancedContextMenuCheck();
-	void SubfolderOptionCheck();
 
 // Implementation data
 private:

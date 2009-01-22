@@ -29,6 +29,7 @@
 #include "PropCodepage.h"
 #include "PropArchive.h"
 #include "PropBackups.h"
+#include "PropShell.h"
 
 #include "PropertyPageHost.h"
 
@@ -68,6 +69,7 @@ protected:
 	CPropSyntaxColors m_pageSyntaxColors;
 	CPropArchive m_pageArchive;
 	CPropBackups m_pageBackups;
+	PropShell m_pageShell;
 
 	SyntaxColors *m_pSyntaxColors;
 

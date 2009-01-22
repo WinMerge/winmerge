@@ -57,7 +57,6 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral
 , m_bMultipleDirCmp(FALSE)
 , m_nAutoCompleteSource(0)
 , m_bPreserveFiletime(FALSE)
-, m_bEnableShellContextMenu(FALSE)
 , m_bShowSelectFolderOnStartup(FALSE)
 {
 }
@@ -97,7 +96,6 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
-	DDX_Check(pDX, IDC_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
 	DDX_Check(pDX, IDC_STARTUP_FOLDER_SELECT, m_bShowSelectFolderOnStartup);
 	//}}AFX_DATA_MAP
 }
@@ -124,7 +122,6 @@ void CPropGeneral::ReadOptions()
 	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
 	m_nAutoCompleteSource = m_pOptionsMgr->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	m_bPreserveFiletime = m_pOptionsMgr->GetBool(OPT_PRESERVE_FILETIMES);
-	m_bEnableShellContextMenu = m_pOptionsMgr->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
 	m_bShowSelectFolderOnStartup = m_pOptionsMgr->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 }
 
@@ -143,7 +140,6 @@ void CPropGeneral::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	m_pOptionsMgr->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
-	m_pOptionsMgr->SaveOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
 	m_pOptionsMgr->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
 }
 
