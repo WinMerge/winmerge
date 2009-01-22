@@ -6,7 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+#include <tchar.h>
+#include "coretypes.h"
 #include "UnicodeString.h"
 #include "FileVersion.h"
 
