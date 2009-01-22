@@ -58,8 +58,8 @@ void FileVersion::SetFileVersion(DWORD versionMS, DWORD versionLS)
 void FileVersion::SetProductVersion(DWORD versionMS, DWORD versionLS)
 {
 	m_bProductVersionSet = TRUE;
-	m_fileVersionMS = versionMS;
-	m_fileVersionLS = versionLS;
+	m_productVersionMS = versionMS;
+	m_productVersionLS = versionLS;
 }
 
 /**
