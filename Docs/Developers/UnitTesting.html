@@ -150,5 +150,75 @@ usually <code>[projectname]/Release</code>.</p>
 <p>While the testing runs it prints progress information and info about
 <i>passed</i>/<i>failed</i> tests.</p>
 
+<h2>Creating new test project</h2>
+<p>Initial creation of new test project takes some effort and time for the
+first time. It is still pretty straightforward so nobody should have any real
+problems with it. If somebody has, please tell Kimmo about it and we'll
+improve the documentation!</p>
+
+<h3>Create new VS project</h3>
+<p>Open the Visual Studio and select creating new project. Select <i>Win32
+Console Project</i> as the project type. You can create some other type too and
+then just fix the properties. But console project selects many properties
+correctly for you.</p>
+
+<p><b>Note:</b> If you are creating tests for class depending on MFC, then
+remember to include MFC (libraries) to the project.</p>
+
+<p>Add new test projects into subfolders to folder <code>Testing\GoogleTest
+</code>. E.g. <code>Testing\GoogleTest\CommandLine</code>. The project (folder)
+name should somehow relate the to the code/functionality/class you are testing.
+</p>
+
+<h3>Set the project properties</h3>
+<p>Several project settings need to be changed to make test project compile
+(properly). There might be better choises and practices, but this is the
+best setup we currently know. If you have ideas for improving, let us know!</p>
+
+<p>Set the C/C++ properties according list below:</p>
+<ul>
+  <li><b>General/Additional include folders:</b>
+    "..\..\..\Src";"..\..\..\Src\Common" (note three "dir up"s)</li>
+</ul>
+
+<p>Set the Linker properties according list below:</p>
+<ul>
+  <li><b>Input/Additional dependencies:</b> gtest.lib (note: you may use
+    debug version of gtest.lib in debug target)
+</ul>
+
+<h3>Add test file(s)</h3>
+<p>Next you need to add new C++ code (<code>.cpp</code>) file to the project.
+Name the file as [projectname]<code>_test.cpp</code> and make sure the file
+name does not overlap with the C++ files you are testing! <code>_test</code> as
+part of the filen name helps.</p>
+
+<p>Copy/paste the beginning of existing test file to the new <code>.cpp
+</code> -file. Copy e.g. from <code>Testing\GoogleTest\Paths\paths_test.cpp
+</code>. Copy the content to the first test function (<code>TEST_F()</code>).
+Don't copy the test functions, but copy the namespace closing brace and <code>
+main()</code> function from the end of the file.</p>
+
+<p>Rename the test class to desribe your tests (e.g. <code>CommandLineTest
+</code>. Remember to rename constructor/destructor methods too!
+
+<h3>Add tests</h3>
+<p>Now you can start adding tests. Look Google Test documentation and existing
+unit tests for help on that.</p>
+
+<p>The simple test method looks like this:
+<pre>
+	TEST_F(PathTest, Create_abspath1)
+	{
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp"));
+	}
+</pre>
+The <code>TEST_F</code> macro defines a new test function, having test class
+(<code>PathTest</code>) and test name (<code>Create_abspath1</code>) as
+parameters. Then there is a function call done inside test macro. The framework
+defines several macros for the tests. The <code>EXPECT_TRUE</code> macro makes
+the test succeed if the parameter (funtion return value) is true, otherwise the
+test fails.</p>
+
 </body>
 </html>
