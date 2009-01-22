@@ -21,7 +21,7 @@ WinMerge 2.11.1.9
   - Brazilian (#2461443)
   - Czech (r6201)
   - Dutch (#2481022, #2494378, #2499994)
-  - Swedish (#2452467, #2465385)
+  - Swedish (#2452467, #2465385, #2511043)
 
 WinMerge 2.12.x (R2_12) branch created (r6202)
 
