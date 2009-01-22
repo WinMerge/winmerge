@@ -9,6 +9,8 @@
 #ifndef _FILE_VERSION_H_
 #define _FILE_VERSION_H_
 
+#include "UnicodeString.h"
+
 /**
  * @brief A class that contains file version information.
  * This class contains file version information that Windows allows
