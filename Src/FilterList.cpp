@@ -6,8 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include <vector>
+#include <crtdbg.h>
 #include "FilterList.h"
 #include "pcre.h"
 #include "unicoder.h"
