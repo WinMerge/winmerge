@@ -663,7 +663,6 @@ static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
 
 /**
  * @brief Compare compare results.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM having first result to compare.
  * @param [in] q Pointer to DIFFITEM having second result to compare.
  * @return Compare result.
@@ -677,7 +676,6 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 
 /**
  * @brief Compare file times.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p First time to compare.
  * @param [in] q Second time to compare.
  * @return Compare result.
@@ -691,7 +689,6 @@ static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 
 /**
  * @brief Compare file sizes.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p First size to compare.
  * @param [in] q Second size to compare.
  * @return Compare result.
@@ -705,7 +702,6 @@ static int ColSizeSort(const CDiffContext *, const void *p, const void *q)
 
 /**
  * @brief Compare difference counts.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p First count to compare.
  * @param [in] q Second count to compare.
  * @return Compare result.
@@ -756,7 +752,6 @@ static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void 
 /**
  * @brief Compare binary statuses.
  * This function returns a comparison of binary results.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM having first status to compare.
  * @param [in] q Pointer to DIFFITEM having second status to compare.
  * @return Compare result:
@@ -783,7 +778,6 @@ static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 
 /**
  * @brief Compare file flags.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to first flag structure to compare.
  * @param [in] q Pointer to second flag structure to compare.
  * @return Compare result.
@@ -797,7 +791,6 @@ static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 
 /**
  * @brief Compare file encodings.
- * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to first structure to compare.
  * @param [in] q Pointer to second structure to compare.
  * @return Compare result.
