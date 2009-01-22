@@ -310,8 +310,7 @@ int DirScan_GetItems(const PathContext &paths, const String &leftsubdir,
 /**
  * @brief Compare DiffItems in list and add results to compare context.
  *
- * @param list [in] List of items to compare
- * @param pCtxt [in,out] Compare context: contains list where results are added.
+ * @param myStruct [in] A structure containing compare-related data.
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
@@ -364,7 +363,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
 /**
  * @brief Compare DiffItems in context marked for rescan.
  *
- * @param pCtxt [in,out] Compare context: contains list of items.
+ * @param myStruct [in,out] A structure containing compare-related data.
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */

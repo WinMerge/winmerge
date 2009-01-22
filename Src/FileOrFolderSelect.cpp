@@ -60,7 +60,7 @@ static void ConvertFilter(LPTSTR filterStr);
  *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected path is returned in this string
  * @param [in] initialPath Initial path (and file) shown when dialog is opened
- * @param [in] title Title for path selection dialog
+ * @param [in] titleid Resource string ID for dialog title.
  * @param [in] filterid 0 or STRING ID for filter string
  *     - 0 means "All files (*.*)". Note the string formatting!
  * @param [in] is_open Selects Open/Save -dialog (mode).
@@ -140,7 +140,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
  * @brief Helper function for selecting directory
  * @param [out] path Selected path is returned in this string
  * @param [in] root_path Initial path shown when dialog is opened
- * @param [in] title Title for path selection dialog
+ * @param [in] titleid Resource string ID for dialog title.
  * @param [in] hwndOwner Handle to owner window or NULL
  * @return TRUE if valid folder selected (not cancelled)
  */

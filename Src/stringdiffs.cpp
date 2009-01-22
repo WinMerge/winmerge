@@ -63,8 +63,8 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 }
 
 /**
- * @bried Destructor.
- * The desctuctor frees all diffs added to the vectors.
+ * @brief Destructor.
+ * The destructor frees all diffs added to the vectors.
  */
 stringdiffs::~stringdiffs()
 {
