@@ -25,6 +25,7 @@
 #ifndef _DIFFLIST_H_
 #define _DIFFLIST_H_
 
+#include <map>
 #include <vector>
 
 /**
@@ -60,31 +61,30 @@ struct DIFFRANGE
  *
  * Map lines from file1 to file2
  */
-struct DiffMap : public CArray<int, int>
+class DiffMap
 {
-	enum { BAD_MAP_ENTRY = -999999999, GHOST_MAP_ENTRY = 888888888 };
+public:
+	enum
+	{
+		BAD_MAP_ENTRY = -999999999,
+		GHOST_MAP_ENTRY = 888888888
+	};
+
+	std::map<int, int> m_map;
 
 	// boilerplate ctr, copy ctr
 	DiffMap() { }
-	DiffMap(const DiffMap & src) { *this = src; }
-	// Simple copy assignment
-	DiffMap & operator=(const DiffMap & src)
-	{
-		this->SetSize(src.GetSize());
-		for (int i=0; i<this->GetSize(); ++i)
-			this->SetAt(i, src.GetAt(i));
-		return *this;
-	}
+	DiffMap(const DiffMap & src) { m_map = src.m_map; }
+
 	/**
 	 * @brief Put DiffMap into known. starting, unfilled state
 	 */
 	void InitDiffMap(int nlines)
 	{
-		SetSize(nlines);
-		for (int i=0; i<nlines; ++i)
+		for (int i = 0; i < nlines; ++i)
 		{
 			// sentry value so we can check later that we set them all
-			SetAt(i, BAD_MAP_ENTRY);
+			m_map[i] = BAD_MAP_ENTRY;
 		}
 	}
 };

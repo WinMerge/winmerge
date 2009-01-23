@@ -52,10 +52,11 @@ void CMergeDoc::AdjustDiffBlocks()
 
 #ifdef _DEBUG
 			int i;
-			for (i = 0; i < diffmap.GetSize(); i++)
+			for (i = 0; i < diffmap.m_map.size(); i++)
 			{
 				TCHAR buf[256];
-				wsprintf(buf, _T("begin0=%d begin1=%d diffmap[%d]=%d\n"), diffrange.begin0, diffrange.begin1, i, diffmap[i]);
+				wsprintf(buf, _T("begin0=%d begin1=%d diffmap[%d]=%d\n"),
+						diffrange.begin0, diffrange.begin1, i, diffmap.m_map[i]);
 				OutputDebugString(buf);
 			}
 #endif
@@ -65,11 +66,14 @@ void CMergeDoc::AdjustDiffBlocks()
 			int line0, line1, lineend0;
 			for (line0 = 0, line1 = 0; line0 < nlines0;)
 			{
-				if (diffmap[line0] == DiffMap::GHOST_MAP_ENTRY || diffmap[line0] == DiffMap::BAD_MAP_ENTRY)
+				const int map_line0 = diffmap.m_map[line0];
+				if (map_line0 == DiffMap::GHOST_MAP_ENTRY ||
+						map_line0 == DiffMap::BAD_MAP_ENTRY)
 				{
 					for (lineend0 = line0; lineend0 < nlines0; lineend0++)
 					{
-						if (diffmap[lineend0] != DiffMap::GHOST_MAP_ENTRY && diffmap[lineend0] != DiffMap::BAD_MAP_ENTRY)
+						if (map_line0 != DiffMap::GHOST_MAP_ENTRY &&
+								map_line0 != DiffMap::BAD_MAP_ENTRY)
 							break;
 					}
 					dr.begin0  = diffrange.begin0 + line0;
@@ -83,32 +87,32 @@ void CMergeDoc::AdjustDiffBlocks()
 				}
 				else
 				{
-					if (diffmap[line0] > line1)
+					if (map_line0 > line1)
 					{
 						dr.begin0  = diffrange.begin0 + line0;
 						dr.begin1  = diffrange.begin1 + line1;
 						dr.end0    = dr.begin0 - 1;
-						dr.end1    = diffrange.begin1 + diffmap[line0] - 1;
+						dr.end1    = diffrange.begin1 + map_line0 - 1;
 						dr.blank0  = dr.blank1 = -1;
 						dr.op      = OP_DIFF;
 						newDiffList.AddDiff(dr);
-						line1 = diffmap[line0];
+						line1 = map_line0;
 					} 
 
 					for (lineend0 = line0 + 1; lineend0 < nlines0; lineend0++)
 					{
-						if (diffmap[lineend0] != diffmap[lineend0 - 1] + 1)
+						if (map_line0 != diffmap.m_map[lineend0 - 1] + 1)
 							break;
 					}
 					dr.begin0  = diffrange.begin0 + line0;
 					dr.begin1  = diffrange.begin1 + line1;
 					dr.end0    = diffrange.begin0 + lineend0 - 1;
-					dr.end1    = diffrange.begin1 + diffmap[lineend0 - 1];
+					dr.end1    = diffrange.begin1 + diffmap.m_map[lineend0 - 1];
 					dr.blank0  = dr.blank1 = -1;
 					dr.op      = diffrange.op == OP_TRIVIAL ? OP_TRIVIAL : OP_DIFF;
 					newDiffList.AddDiff(dr);
 					line0 = lineend0;
-					line1 = diffmap[lineend0 - 1] + 1;
+					line1 = diffmap.m_map[lineend0 - 1] + 1;
 				}
 			}
 			if (line1 <= hi1)
@@ -136,7 +140,8 @@ void CMergeDoc::AdjustDiffBlocks()
 #ifdef _DEBUG
 		TCHAR buf[256];
 		DIFFRANGE di = *newDiffList.DiffRangeAt(nDiff);
-		wsprintf(buf, _T("%d: begin0=%d end0=%d begin1=%d end1=%d\n"), nDiff, di.begin0, di.end0, di.begin1, di.end1);
+		wsprintf(buf, _T("%d: begin0=%d end0=%d begin1=%d end1=%d\n"), nDiff,
+				di.begin0, di.end0, di.begin1, di.end1);
 		OutputDebugString(buf);
 #endif
 		m_diffList.AddDiff(*newDiffList.DiffRangeAt(nDiff));
@@ -208,7 +213,7 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	// shortcut special case
 	if (lines0 == 1 && lines1 == 1)
 	{
-		diffMap[lo0] = hi1;
+		diffMap.m_map[lo0] = hi1;
 		return;
 	}
 
@@ -236,9 +241,9 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 		for (int w=0; w<lines0; ++w)
 		{
 			if (w < lines1)
-				diffMap.SetAt(w, w+tlo);
+				diffMap.m_map[w] = w + tlo;
 			else
-				diffMap.SetAt(w, DiffMap::GHOST_MAP_ENTRY);
+				diffMap.m_map[w] = DiffMap::GHOST_MAP_ENTRY;
 		}
 		return;
 	}
@@ -269,9 +274,9 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	// so cost is always nonnegative
 	ASSERT(ibest >= 0);
 
-	ASSERT(diffMap[ibest] == DiffMap::BAD_MAP_ENTRY);
+	ASSERT(diffMap.m_map[ibest] == DiffMap::BAD_MAP_ENTRY);
 
-	diffMap[ibest] = itarget;
+	diffMap.m_map[ibest] = itarget;
 
 	// Half of the remaining problem is below our match
 	if (lo0 < ibest)
@@ -283,9 +288,9 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 		else
 		{
 			// No target space for the ones below our match
-			for (int x=lo0; x<ibest; ++x)
+			for (int x = lo0; x < ibest; ++x)
 			{
-				diffMap[x] = DiffMap::GHOST_MAP_ENTRY;
+				diffMap.m_map[x] = DiffMap::GHOST_MAP_ENTRY;
 			}
 		}
 	}
@@ -295,16 +300,16 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 	{
 		if (itarget < hi1)
 		{
-			AdjustDiffBlock(diffMap, diffrange, ibest+1, hi0, itarget+1, hi1);
+			AdjustDiffBlock(diffMap, diffrange, ibest + 1, hi0,
+					itarget + 1, hi1);
 		}
 		else
 		{
 			// No target space for the ones above our match
-			for (int x=ibest+1; x<=hi0; ++x)
+			for (int x = ibest + 1; x <= hi0; ++x)
 			{
-				diffMap[x] = DiffMap::GHOST_MAP_ENTRY;
+				diffMap.m_map[x] = DiffMap::GHOST_MAP_ENTRY;
 			}
 		}
 	}
-
 }
