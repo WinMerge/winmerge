@@ -125,6 +125,28 @@ bool DiffList::IsDiffSignificant(int nDiff) const
 }
 
 /**
+ * @brief Get significant difference index of the diff.
+ * This function returns the index of diff when only significant differences
+ * are calculated.
+ * @param [in] nDiff Index of difference to check.
+ * @return Significant difference index of the diff.
+ */
+int DiffList::GetSignificantIndex(int nDiff) const
+{
+	int significants = -1;
+
+	for (int i = 0; i <= nDiff; i++)
+	{
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		if (dfi->op != OP_TRIVIAL)
+		{
+			++significants;
+		}
+	}
+	return significants;
+}
+
+/**
  * @brief Returns copy of DIFFRANGE from diff-list.
  * @param [in] nDiff Index of DIFFRANGE to return.
  * @param [out] di DIFFRANGE returned (empty if error)

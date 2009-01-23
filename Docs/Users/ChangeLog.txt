@@ -17,6 +17,7 @@ WinMerge 2.11.1.9
   Bugfix: Location pane was empty for some files with diffs (#2459234)
   Bugfix: Line filter editing didn't update edit box when editing was
    canceled by ESC key (#2493935)
+  Bugfix: Wrong number shown for difference when using line filters (#2493980)
   Translation updates:
   - Brazilian (#2461443, #2524796)
   - Czech (r6201)

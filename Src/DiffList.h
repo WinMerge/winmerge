@@ -137,6 +137,7 @@ public:
 	int GetSignificantDiffs() const;
 	void AddDiff(const DIFFRANGE & di);
 	bool IsDiffSignificant(int nDiff) const;
+	int GetSignificantIndex(int nDiff) const;
 	bool GetDiff(int nDiff, DIFFRANGE & di) const;
 	bool SetDiff(int nDiff, const DIFFRANGE & di);
 	int LineRelDiff(UINT nLine, UINT nDiff) const;
