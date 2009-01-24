@@ -264,31 +264,33 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	{
 		// Find starting locations for both sides
 		// Have to look for first valid starting location for each side
-		vector<wdiff*>::size_type i;
-		for (i=0; i<worddiffs.size(); ++i)
+		vector<wdiff*>::const_iterator it = worddiffs.begin();
+		while (it != worddiffs.end())
 		{
-			const wdiff * diff = worddiffs[i];
-			if (begin1 == -1 && diff->start[0] != -1)
-				begin1 = diff->start[0];
-			if (begin2 == -1 && diff->start[1] != -1)
-				begin2 = diff->start[1];
+			//const wdiff * diff = *it;
+			if (begin1 == -1 && (*it)->start[0] != -1)
+				begin1 = (*it)->start[0];
+			if (begin2 == -1 && (*it)->start[1] != -1)
+				begin2 = (*it)->start[1];
 			if (begin1 != -1 && begin2 != -1)
 				break; // found both
+			it++;
 		}
 		// Find ending locations for both sides
 		// Have to look for last valid starting location for each side
 		if (worddiffs.size() > 1)
 		{
-			for (i = worddiffs.size() - 1; i >= 0; --i)
+			vector<wdiff*>::const_iterator it = worddiffs.end();
+			do
 			{
-				const wdiff * diff = worddiffs[i];
-				if (end1 == -1 && diff->end[0] != -1)
-					end1 = diff->end[0];
-				if (end2 == -1 && diff->end[1] != -1)
-					end2 = diff->end[1];
+				it--;
+				if (end1 == -1 && (*it)->end[0] != -1)
+					end1 = (*it)->end[0];
+				if (end2 == -1 && (*it)->end[1] != -1)
+					end2 = (*it)->end[1];
 				if (end1 != -1 && end2 != -1)
 					break; // found both
-			}
+			} while (it != worddiffs.begin());
 		}
 		SetLineHighlightRect(begin1, end1, line, width1, rc1);
 		SetLineHighlightRect(begin2, end2, line, width2, rc2);
