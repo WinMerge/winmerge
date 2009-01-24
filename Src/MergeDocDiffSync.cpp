@@ -51,13 +51,16 @@ void CMergeDoc::AdjustDiffBlocks()
 			AdjustDiffBlock(diffmap, diffrange, lo0, hi0, lo1, hi1);
 
 #ifdef _DEBUG
-			int i;
-			for (i = 0; i < diffmap.m_map.size(); i++)
+			std::vector<int>::const_iterator iter = diffmap.m_map.begin();
+			int i = 0;
+			while (iter != diffmap.m_map.end())
 			{
 				TCHAR buf[256];
 				wsprintf(buf, _T("begin0=%d begin1=%d diffmap[%d]=%d\n"),
-						diffrange.begin0, diffrange.begin1, i, diffmap.m_map[i]);
+						diffrange.begin0, diffrange.begin1, i, iter);
 				OutputDebugString(buf);
+				iter++;
+				i++;
 			}
 #endif
 

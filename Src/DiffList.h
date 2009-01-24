@@ -70,7 +70,7 @@ public:
 		GHOST_MAP_ENTRY = 888888888
 	};
 
-	std::map<int, int> m_map;
+	std::vector<int> m_map;
 
 	// boilerplate ctr, copy ctr
 	DiffMap() { }
@@ -81,10 +81,14 @@ public:
 	 */
 	void InitDiffMap(int nlines)
 	{
-		for (int i = 0; i < nlines; ++i)
+		m_map.reserve(nlines);
+
+		// sentry value so we can check later that we set them all
+		std::vector<int>::iterator iter = m_map.begin();
+		while (iter != m_map.end())
 		{
-			// sentry value so we can check later that we set them all
-			m_map[i] = BAD_MAP_ENTRY;
+			*iter = BAD_MAP_ENTRY;
+			iter++;
 		}
 	}
 };
