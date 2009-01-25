@@ -6,15 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include "DiffItem.h"
 #include "paths.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
 
 DIFFITEM DIFFITEM::emptyitem;
 
