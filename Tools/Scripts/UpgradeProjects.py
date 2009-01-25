@@ -43,7 +43,7 @@ projects = [r'Externals\heksedit\heksedit.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
 
 # TODO: read this from Tools.ini
-vs_path = r'C:\Program Files\Microsoft Visual Studio 8'
+vs_path = r'C:\Program Files\Microsoft Visual Studio 9.0'
 
 def upgrade_projects(root_path):
     vs_binary = os.path.join(vs_path, 'Common7/IDE')
