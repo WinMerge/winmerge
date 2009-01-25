@@ -10,6 +10,7 @@
 #define VERSIONTOOLS_H
 
 #include <shlwapi.h>
+#include "UnicodeString.h"
 
 /**
  * @brief Class providing access to version information of a file.
@@ -29,20 +30,20 @@ private:
 	WORD m_wLanguage; /**< Language-ID to use (if given) */
 	BOOL m_bVersionFound; /**< Was version info found from file? */
 
-	CString m_strFileName;
-	CString m_strLanguage;
-	CString m_strCodepage;
-	CString m_strCompanyName;
-	CString m_strFileDescription;
-	CString m_strFileVersion;
-	CString m_strInternalName; 
-	CString m_strLegalCopyright; 
-	CString m_strOriginalFilename; 
-	CString m_strProductName; 
-	CString m_strProductVersion; 
-	CString m_strComments;
-	CString m_strSpecialBuild;
-	CString m_strPrivateBuild;
+	String m_strFileName;
+	String m_strLanguage;
+	String m_strCodepage;
+	String m_strCompanyName;
+	String m_strFileDescription;
+	String m_strFileVersion;
+	String m_strInternalName; 
+	String m_strLegalCopyright; 
+	String m_strOriginalFilename; 
+	String m_strProductName; 
+	String m_strProductVersion; 
+	String m_strComments;
+	String m_strSpecialBuild;
+	String m_strPrivateBuild;
 
 public:
 	CVersionInfo(BOOL bVersionOnly);
@@ -53,18 +54,18 @@ public:
 				   LPCTSTR szLanguage = NULL,
 				   LPCTSTR szCodepage = NULL);
 	CVersionInfo(HINSTANCE hModule);
-	CString GetFileVersion() const;
-	CString GetCompanyName() const;
-	CString GetFileDescription() const;
-	CString GetInternalName() const;
-	CString GetLegalCopyright() const;
-	CString GetOriginalFilename() const;
-	CString GetProductVersion() const;
-	CString GetComments() const;
-	CString GetSpecialBuild() const;
-	CString GetPrivateBuild() const;
-	CString GetFixedProductVersion();
-	CString GetFixedFileVersion();
+	String GetFileVersion() const;
+	String GetCompanyName() const;
+	String GetFileDescription() const;
+	String GetInternalName() const;
+	String GetLegalCopyright() const;
+	String GetOriginalFilename() const;
+	String GetProductVersion() const;
+	String GetComments() const;
+	String GetSpecialBuild() const;
+	String GetPrivateBuild() const;
+	String GetFixedProductVersion();
+	String GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
 	BOOL GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS);
 
@@ -72,7 +73,7 @@ protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();
 	void QueryStrings();
-	void QueryValue(LPCTSTR szId, CString& s);
+	void QueryValue(LPCTSTR szId, String& s);
 	BOOL GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };
 

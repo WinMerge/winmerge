@@ -6,8 +6,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-
-#include "StdAfx.h"
+#include <windows.h>
+#include <tchar.h>
+#include <assert.h>
+#include "coretypes.h"
 #include "version.h"
 
 /** 
@@ -103,7 +105,7 @@ CVersionInfo::CVersionInfo(HINSTANCE hModule)
  * @brief Return file version string.
  * @return File version as string.
  */
-CString CVersionInfo::GetFileVersion() const
+String CVersionInfo::GetFileVersion() const
 {
 	return m_strFileVersion;
 }
@@ -112,7 +114,7 @@ CString CVersionInfo::GetFileVersion() const
  * @brief Return private build number.
  * @return Private build number as string.
  */
-CString CVersionInfo::GetPrivateBuild() const
+String CVersionInfo::GetPrivateBuild() const
 {
 	return m_strPrivateBuild;
 }
@@ -121,7 +123,7 @@ CString CVersionInfo::GetPrivateBuild() const
  * @brief Return special build number.
  * @return Special build number as string.
  */
-CString CVersionInfo::GetSpecialBuild() const
+String CVersionInfo::GetSpecialBuild() const
 {
 	return m_strSpecialBuild;
 }
@@ -130,7 +132,7 @@ CString CVersionInfo::GetSpecialBuild() const
  * @brief Return company name.
  * @return Company name.
  */
-CString CVersionInfo::GetCompanyName() const
+String CVersionInfo::GetCompanyName() const
 {
 	return m_strCompanyName;
 }
@@ -139,7 +141,7 @@ CString CVersionInfo::GetCompanyName() const
  * @brief Return file description string.
  * @return File description string.
  */
-CString CVersionInfo::GetFileDescription() const
+String CVersionInfo::GetFileDescription() const
 {
 	return m_strFileDescription;
 }
@@ -148,7 +150,7 @@ CString CVersionInfo::GetFileDescription() const
  * @brief Return internal name.
  * @return Internal name.
  */
-CString CVersionInfo::GetInternalName() const
+String CVersionInfo::GetInternalName() const
 {
 	return m_strInternalName;
 }
@@ -157,7 +159,7 @@ CString CVersionInfo::GetInternalName() const
  * @brief Return copyright info.
  * @return Copyright info.
  */
-CString CVersionInfo::GetLegalCopyright() const
+String CVersionInfo::GetLegalCopyright() const
 {
 	return m_strLegalCopyright;
 }
@@ -166,7 +168,7 @@ CString CVersionInfo::GetLegalCopyright() const
  * @brief Return original filename.
  * @return Original filename.
  */
-CString CVersionInfo::GetOriginalFilename() const
+String CVersionInfo::GetOriginalFilename() const
 {
 	return m_strOriginalFilename;
 }
@@ -175,7 +177,7 @@ CString CVersionInfo::GetOriginalFilename() const
  * @brief Return product's version number.
  * @return Product's version number as string.
  */
-CString CVersionInfo::GetProductVersion() const
+String CVersionInfo::GetProductVersion() const
 {
 	return m_strProductVersion;
 }
@@ -189,10 +191,12 @@ CString CVersionInfo::GetProductVersion() const
  * @param [in] Last two numbers for version number.
  * @return Formatted version string.
  */
-static CString MakeVersionString(DWORD hi, DWORD lo)
+static String MakeVersionString(DWORD hi, DWORD lo)
 {
-	CString sver;
-	sver.Format(_T("%d.%d.%d.%d"), HIWORD(hi), LOWORD(hi), HIWORD(lo), LOWORD(lo));
+	TCHAR ver[50];
+	_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
+			LOWORD(hi), HIWORD(lo), LOWORD(lo));
+	String sver(ver);
 	return sver;
 }
 
@@ -201,7 +205,7 @@ static CString MakeVersionString(DWORD hi, DWORD lo)
  * This function returns version number given as a number in version info.
  * @return Product's version number as string.
  */
-CString CVersionInfo::GetFixedProductVersion()
+String CVersionInfo::GetFixedProductVersion()
 {
 	if (!m_bVersionFound)
 		return _T("");
@@ -214,7 +218,7 @@ CString CVersionInfo::GetFixedProductVersion()
  * This function returns version number given as a number in version info.
  * @return File's version number as string.
  */
-CString CVersionInfo::GetFixedFileVersion()
+String CVersionInfo::GetFixedFileVersion()
 {
 	if (!m_bVersionFound)
 		return _T("");
@@ -244,7 +248,7 @@ BOOL CVersionInfo::GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS)
  * @brief Return comment string.
  * @return Comment string.
  */
-CString CVersionInfo::GetComments() const
+String CVersionInfo::GetComments() const
 {
 	return m_strComments;
 }
@@ -263,10 +267,10 @@ void CVersionInfo::GetVersionInfo()
 	DWORD dwVerHnd = 0;			// An 'ignored' parameter, always '0'
 	TCHAR szFileName[MAX_PATH];
 
-	if (m_strFileName.IsEmpty())
+	if (m_strFileName.empty())
 		GetModuleFileName(NULL, szFileName, MAX_PATH);
 	else
-		_tcsncpy(szFileName, m_strFileName, MAX_PATH - 1);
+		_tcsncpy(szFileName, m_strFileName.c_str(), MAX_PATH - 1);
 	
 	DWORD dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
 	if (dwVerInfoSize)
@@ -311,20 +315,28 @@ void CVersionInfo::QueryStrings()
 	{
 		WORD codepage;
 		GetCodepageForLanguage(m_wLanguage, codepage);
-		m_strLanguage.Format(_T("%04x"), m_wLanguage);
-		m_strCodepage.Format(_T("%04x"), codepage);
+		TCHAR temp[20];
+		_sntprintf(temp, countof(temp) - 1, _T("%04x"), m_wLanguage);
+		m_strLanguage = temp;
+		_sntprintf(temp, countof(temp) - 1, _T("%04x"), codepage);
+		m_strCodepage = temp;
 	}
-	else if (m_strLanguage.IsEmpty()
-		|| m_strCodepage.IsEmpty())
+	else if (m_strLanguage.empty()
+		|| m_strCodepage.empty())
 	{
 		LANGUAGEANDCODEPAGE *lpTranslate;
 		DWORD langLen;
 		if (VerQueryValue((LPVOID)m_pVffInfo,
-			_T("\\VarFileInfo\\Translation"),
-			(LPVOID *)&lpTranslate, (UINT *)&langLen))
+				_T("\\VarFileInfo\\Translation"),
+				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
-			m_strLanguage.Format(_T("%4.4X"), lpTranslate[0].wLanguage);
-			m_strCodepage.Format(_T("%4.4X"), lpTranslate[0].wCodePage);
+			TCHAR temp[20];
+			_sntprintf(temp, countof(temp) - 1, _T("%4.4X"),
+					lpTranslate[0].wLanguage);
+			m_strLanguage = temp;
+			_sntprintf(temp, countof(temp) - 1, _T("%4.4X"),
+					lpTranslate[0].wCodePage);
+			m_strCodepage = temp;
 		}
 	}
 	QueryValue(_T("CompanyName"), m_strCompanyName);
@@ -345,15 +357,16 @@ void CVersionInfo::QueryStrings()
  * @param [in] szId Name of value/string to read.
  * @param [out] Value read.
  */
-void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
+void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 {
-	ASSERT(m_pVffInfo != NULL);
+	assert(m_pVffInfo != NULL);
 	LPTSTR   lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
 	BOOL    bRetCode;
 
 	TCHAR szSelector[256];
-	_sntprintf(szSelector, countof(szSelector), _T("\\StringFileInfo\\%s%s\\%s"),
+	_sntprintf(szSelector, countof(szSelector) - 1,
+			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage, m_strCodepage, szId);
 	bRetCode = VerQueryValue((LPVOID)m_pVffInfo,
 		szSelector,
@@ -363,11 +376,10 @@ void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 	if (bRetCode)
 	{
 		s = lpVersion;
-		s.TrimLeft();
-		s.TrimRight();
+		s = string_trim_ws(s);
 	}
 	else
-		s.Empty();
+		s.clear();
 }
 
 /** 

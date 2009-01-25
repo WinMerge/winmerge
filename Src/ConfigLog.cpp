@@ -409,13 +409,13 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 // Platform stuff
 	FileWriteString(_T("\n\nVersion information:\n"));
 	FileWriteString(_T(" WinMerge.exe: "));
-	FileWriteString(version.GetFixedProductVersion());
+	FileWriteString(version.GetFixedProductVersion().c_str());
 
-	CString privBuild = version.GetPrivateBuild();
-	if (!privBuild.IsEmpty())
+	String privBuild = version.GetPrivateBuild();
+	if (!privBuild.empty())
 	{
 		FileWriteString(_T(" - Private build: "));
-		FileWriteString(privBuild);
+		FileWriteString(privBuild.c_str());
 	}
 
 	text = GetBuildFlags();

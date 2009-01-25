@@ -69,8 +69,8 @@ BOOL CAboutDlg::OnInitDialog()
 	}
 
 	CVersionInfo version(AfxGetResourceHandle());
-	CString sVersion = version.GetFixedProductVersion();
-	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
+	String sVersion = version.GetFixedProductVersion();
+	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion.c_str());
 
 #ifdef _UNICODE
 	m_strVersion += _T(" ");
@@ -82,14 +82,15 @@ BOOL CAboutDlg::OnInitDialog()
 	m_strVersion += theApp.LoadString(IDS_WINX64).c_str();
 #endif
 
-	CString sPrivateBuild = version.GetPrivateBuild();
-	if (!sPrivateBuild.IsEmpty())
+	String sPrivateBuild = version.GetPrivateBuild();
+	if (!sPrivateBuild.empty())
 	{
-		LangFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
+		LangFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT,
+				sPrivateBuild.c_str());
 	}
 
-	CString copyright = version.GetLegalCopyright();
-	m_ctlCompany.SetWindowText(copyright);
+	String copyright = version.GetLegalCopyright();
+	m_ctlCompany.SetWindowText(copyright.c_str());
 	m_ctlWWW.m_link = WinMergeURL;
 
 	UpdateData(FALSE);

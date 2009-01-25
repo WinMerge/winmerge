@@ -236,7 +236,7 @@ void CSplashWnd::OnPaint()
 	if (fontSuccess)
 		oldfont = dc.SelectObject(&versionFont);
 
-	CString sVersion = version.GetFixedProductVersion();
+	CString sVersion = version.GetFixedProductVersion().c_str();
 	LangFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
 	
