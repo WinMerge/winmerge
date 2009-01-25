@@ -22,9 +22,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
+#include <windows.h>
+#include <crtdbg.h>
+#include <assert.h>
 #include "DiffList.h"
-#include "DiffWrapper.h"
 #include "coretools.h"
 
 using std::swap;
@@ -179,7 +180,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 	}
 	else
 	{
-		ASSERT(0);
+		assert(0);
 		return NULL;
 	}
 }
@@ -508,10 +509,10 @@ void DiffList::GetExtraLinesCounts(int &nLeftLines, int &nRightLines)
 	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
 	{
 		DIFFRANGE curDiff;
-		VERIFY(GetDiff(nDiff, curDiff));
+		GetDiff(nDiff, curDiff);
 
 		// this guarantees that all the diffs are synchronized
-		ASSERT(curDiff.begin0 + nLeftLines == curDiff.begin1 + nRightLines);
+		assert(curDiff.begin0 + nLeftLines == curDiff.begin1 + nRightLines);
 		int nline0 = curDiff.end0 - curDiff.begin0 + 1;
 		int nline1 = curDiff.end1 - curDiff.begin1 + 1;
 		int nextra = nline0 - nline1;
