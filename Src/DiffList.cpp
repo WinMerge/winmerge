@@ -44,6 +44,24 @@ void DIFFRANGE::swap_sides()
 }
 
 /**
+ * @brief Initialize DiffMap.
+ * @param [in] nlines Lines to add to the list.
+ */
+void DiffMap::InitDiffMap(int nlines)
+{
+	m_map.resize(nlines);
+
+	// sentry value so we can check later that we set them all
+	std::vector<int>::iterator iter = m_map.begin();
+	while (iter != m_map.end())
+	{
+		*iter = BAD_MAP_ENTRY;
+		iter++;
+	}
+}
+
+
+/**
  * @brief Default constructor, initialises difflist to 64 items.
  */
 DiffList::DiffList()

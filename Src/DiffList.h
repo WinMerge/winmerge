@@ -75,22 +75,7 @@ public:
 	// boilerplate ctr, copy ctr
 	DiffMap() { }
 	DiffMap(const DiffMap & src) { m_map = src.m_map; }
-
-	/**
-	 * @brief Put DiffMap into known. starting, unfilled state
-	 */
-	void InitDiffMap(int nlines)
-	{
-		m_map.reserve(nlines);
-
-		// sentry value so we can check later that we set them all
-		std::vector<int>::iterator iter = m_map.begin();
-		while (iter != m_map.end())
-		{
-			*iter = BAD_MAP_ENTRY;
-			iter++;
-		}
-	}
+	void InitDiffMap(int nlines);
 };
 
 /**
