@@ -367,7 +367,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	TCHAR szSelector[256];
 	_sntprintf(szSelector, countof(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
-			m_strLanguage, m_strCodepage, szId);
+			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
 	bRetCode = VerQueryValue((LPVOID)m_pVffInfo,
 		szSelector,
 		(LPVOID *)&lpVersion,
@@ -376,7 +376,8 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	if (bRetCode)
 	{
 		s = lpVersion;
-		s = string_trim_ws(s);
+		if (!s.empty())
+			s = string_trim_ws(s);
 	}
 	else
 		s.clear();
