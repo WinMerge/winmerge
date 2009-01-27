@@ -19,8 +19,11 @@
  *
  * @brief Declaration file ProjectFile class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by CVS
 // $Id$
+
+#ifndef _PROJECT_FILE_H_
+#define _PROJECT_FILE_H_
 
 #include <scew/scew.h>
 
@@ -46,19 +49,17 @@ public:
 	BOOL HasFilter() const;
 	BOOL HasSubfolders() const;
 
-	CString GetLeft(BOOL * pReadOnly = NULL) const;
+	String GetLeft(BOOL * pReadOnly = NULL) const;
 	BOOL GetLeftReadOnly() const;
-	CString GetRight(BOOL * pReadOnly = NULL) const;
+	String GetRight(BOOL * pReadOnly = NULL) const;
 	BOOL GetRightReadOnly() const;
-	CString GetFilter() const;
+	String GetFilter() const;
 	int GetSubfolders() const;
 
-	CString SetLeft(const CString& sLeft, const BOOL * pReadOnly = NULL);
-	CString SetRight(const CString& sRight, const BOOL * pReadOnly = NULL);
-	CString SetFilter(const CString& sFilter);
-	int SetSubfolders(int iSubfolder);
-
-	void GetPaths(CString & sLeft, CString & sRight, BOOL & bSubFolders) const;
+	void SetLeft(const String& sLeft, const BOOL * pReadOnly = NULL);
+	void SetRight(const String& sRight, const BOOL * pReadOnly = NULL);
+	void SetFilter(const String& sFilter);
+	void SetSubfolders(int iSubfolder);
 
 protected:
 	scew_element* GetRootElement(scew_tree * tree);
@@ -69,13 +70,15 @@ protected:
 
 private:
 	BOOL m_bHasLeft; /**< Has left path? */
-	CString m_leftFile; /**< Left path */
+	String m_leftFile; /**< Left path */
 	BOOL m_bHasRight; /**< Has right path? */
-	CString m_rightFile; /**< Right path */
+	String m_rightFile; /**< Right path */
 	BOOL m_bHasFilter; /**< Has filter? */
-	CString m_filter; /**< Filter name or mask */
+	String m_filter; /**< Filter name or mask */
 	BOOL m_bHasSubfolders; /**< Has subfolders? */
 	int m_subfolders; /**< Are subfolders included (recursive scan) */
 	BOOL m_bLeftReadOnly; /**< Is left path opened as read-only */
 	BOOL m_bRightReadOnly; /**< Is right path opened as read-only */
 };
+
+#endif // #ifdef _PROJECT_FILE_H_

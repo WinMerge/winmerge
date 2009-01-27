@@ -610,10 +610,12 @@ BOOL COpenDlg::LoadProjectFile(const CString &path)
 	}
 	else
 	{
-		m_pProjectFile->GetPaths(m_strLeft, m_strRight, m_bRecurse);
+		m_strLeft = m_pProjectFile->GetLeft().c_str();
+		m_strRight = m_pProjectFile->GetRight().c_str();
+		m_bRecurse = m_pProjectFile->GetSubfolders();
 		if (m_pProjectFile->HasFilter())
 		{
-			m_strExt = m_pProjectFile->GetFilter();
+			m_strExt = m_pProjectFile->GetFilter().c_str();
 			m_strExt.TrimLeft();
 			m_strExt.TrimRight();
 			if (m_strExt[0] != '*')

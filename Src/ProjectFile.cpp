@@ -19,12 +19,12 @@
  *
  * @brief Implementation file for ProjectFile class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
 #include <scew/scew.h>
-
+#include "UnicodeString.h"
 #include "ProjectFile.h"
 #include "Merge.h"
 
@@ -312,21 +312,21 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 	USES_CONVERSION;
 	scew_element* element = NULL;
 
-	if (!m_leftFile.IsEmpty())
+	if (!m_leftFile.empty())
 	{
 		element = scew_element_add(parent, Left_element_name);
 		String path = m_leftFile;
 		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
 	}
 
-	if (!m_rightFile.IsEmpty())
+	if (!m_rightFile.empty())
 	{
 		element = scew_element_add(parent, Right_element_name);
 		String path = m_rightFile;
 		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
 	}
 
-	if (!m_filter.IsEmpty())
+	if (!m_filter.empty())
 	{
 		element = scew_element_add(parent, Filter_element_name);
 		String filter = m_filter;
@@ -393,8 +393,9 @@ BOOL ProjectFile::HasSubfolders() const
 /** 
  * @brief Returns left path.
  * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @return Left path.
  */
-CString ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
+String ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bLeftReadOnly;
@@ -403,6 +404,7 @@ CString ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if left path is specified read-only.
+ * @return TRUE if left path is read-only, FALSE otherwise.
  */
 BOOL ProjectFile::GetLeftReadOnly() const
 {
@@ -414,21 +416,19 @@ BOOL ProjectFile::GetLeftReadOnly() const
  * @param [in] sLeft Left path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-CString ProjectFile::SetLeft(const CString& sLeft, const BOOL * pReadOnly /*=NULL*/)
+void ProjectFile::SetLeft(const String& sLeft, const BOOL * pReadOnly /*=NULL*/)
 {
-	CString sLeftOld = GetLeft();
 	m_leftFile = sLeft;
 	if (pReadOnly)
 		m_bLeftReadOnly = *pReadOnly;
-
-	return sLeftOld;
 }
 
 /** 
  * @brief Returns right path.
  * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @return Right path.
  */
-CString ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
+String ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bRightReadOnly;
@@ -437,6 +437,7 @@ CString ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if right path is specified read-only.
+ * @return TRUE if right path is read-only, FALSE otherwise.
  */
 BOOL ProjectFile::GetRightReadOnly() const
 {
@@ -448,37 +449,34 @@ BOOL ProjectFile::GetRightReadOnly() const
  * @param [in] sRight Right path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-CString ProjectFile::SetRight(const CString& sRight, const BOOL * pReadOnly /*=NULL*/)
+void ProjectFile::SetRight(const String& sRight, const BOOL * pReadOnly /*=NULL*/)
 {
-	CString sRightOld = GetRight();
 	m_rightFile = sRight;
 	if (pReadOnly)
 		m_bRightReadOnly = *pReadOnly;
-
-	return sRightOld;
 }
 
 /** 
  * @brief Returns filter.
+ * @return Filter string.
  */
-CString ProjectFile::GetFilter() const
+String ProjectFile::GetFilter() const
 {
 	return m_filter;
 }
 
 /** 
- * @brief Set filter, returns old filter.
+ * @brief Set filter.
+ * @param [in] sFilter New filter string to set.
  */
-CString ProjectFile::SetFilter(const CString& sFilter)
+void ProjectFile::SetFilter(const String& sFilter)
 {
-	CString sFilterOld = GetFilter();
 	m_filter = sFilter;
-
-	return sFilterOld;
 }
 
 /** 
  * @brief Returns subfolder included -setting.
+ * @return != 0 if subfolders are included.
  */
 int ProjectFile::GetSubfolders() const
 {
@@ -486,30 +484,10 @@ int ProjectFile::GetSubfolders() const
 }
 
 /** 
- * @brief set subfolder, returns old subfolder value.
+ * @brief set subfolder.
+ * @param [in] iSubfolder New value for subfolder inclusion.
  */
-int ProjectFile::SetSubfolders(const int iSubfolder)
+void ProjectFile::SetSubfolders(int iSubfolder)
 {
-	int iSubfoldersOld = GetSubfolders(); 
 	m_subfolders = iSubfolder ? 1 : 0;
-
-	return iSubfoldersOld;
-}
-
-/** 
- * @brief Returns left and right paths and recursive from project file
- * 
- * @param [out] sLeft Left path
- * @param [out] sRight Right path
- * @param [out] bSubFolders If TRUE subfolders included (recursive compare)
- */
-void ProjectFile::GetPaths(CString & sLeft, CString & sRight,
-	BOOL & bSubfolders) const
-{
-	if (HasLeft())
-		sLeft = GetLeft();
-	if (HasRight())
-		sRight = GetRight();
-	if (HasSubfolders())
-		bSubfolders = (GetSubfolders() == 1);
 }

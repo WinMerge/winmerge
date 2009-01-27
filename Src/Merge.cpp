@@ -666,7 +666,7 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 		AfxMessageBox(msg, MB_ICONSTOP);
 		return false;
 	}
-	CString sLeft, sRight;
+	String sLeft, sRight;
 	BOOL bLeftReadOnly = FALSE;
 	BOOL bRightReadOnly = FALSE;
 	BOOL bRecursive = FALSE;
@@ -674,7 +674,7 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 	sRight = project.GetRight(&bRightReadOnly);
 	if (project.HasFilter())
 	{
-		String filter = (LPCTSTR)project.GetFilter();
+		String filter = project.GetFilter();
 		filter = string_trim_ws(filter);
 		m_globalFileFilter.SetFilter(filter);
 	}
@@ -683,13 +683,13 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 
 	DWORD dwLeftFlags = FFILEOPEN_NONE;
 	DWORD dwRightFlags = FFILEOPEN_NONE;
-	if (!sLeft.IsEmpty())
+	if (!sLeft.empty())
 	{	
 		dwLeftFlags = FFILEOPEN_PROJECT;
 		if (bLeftReadOnly)
 			dwLeftFlags |= FFILEOPEN_READONLY;
 	}
-	if (!sRight.IsEmpty())
+	if (!sRight.empty())
 	{	
 		dwRightFlags = FFILEOPEN_PROJECT;
 		if (bRightReadOnly)
@@ -698,7 +698,8 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 
 	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
 
-	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft, sRight, dwLeftFlags, dwRightFlags, bRecursive);
+	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft.c_str(), sRight.c_str(),
+			dwLeftFlags, dwRightFlags, bRecursive);
 
 	AddToRecentProjectsMRU(sProject);
 	return !!rtn;

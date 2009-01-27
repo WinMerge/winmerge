@@ -146,9 +146,9 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 	}
 	else
 	{
-		m_sLeftFile = project.GetLeft(&m_bLeftPathReadOnly);
-		m_sRightFile = project.GetRight(&m_bRightPathReadOnly);
-		m_sFilter = project.GetFilter();
+		m_sLeftFile = project.GetLeft(&m_bLeftPathReadOnly).c_str();
+		m_sRightFile = project.GetRight(&m_bRightPathReadOnly).c_str();
+		m_sFilter = project.GetFilter().c_str();
 		m_bIncludeSubfolders = project.GetSubfolders();
 
 		UpdateData(FALSE);
@@ -177,9 +177,9 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	ProjectFile project;
 
 	if (!m_sLeftFile.IsEmpty())
-		project.SetLeft(m_sLeftFile, &m_bLeftPathReadOnly);
+		project.SetLeft((LPCTSTR)m_sLeftFile, &m_bLeftPathReadOnly);
 	if (!m_sRightFile.IsEmpty())
-		project.SetRight(m_sRightFile, &m_bRightPathReadOnly);
+		project.SetRight((LPCTSTR)m_sRightFile, &m_bRightPathReadOnly);
 	if (!m_sFilter.IsEmpty())
 	{
 		// Remove possbile prefix from the filter name
@@ -190,7 +190,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 			m_sFilter.Delete(0, prefix.length());
 		}
 		m_sFilter.TrimLeft();
-		project.SetFilter(m_sFilter);
+		project.SetFilter((LPCTSTR)m_sFilter);
 	}
 	project.SetSubfolders(m_bIncludeSubfolders);
 
