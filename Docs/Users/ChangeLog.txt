@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.2
+  Register.bat should use Find with full path (#2536582)
   Bugfix: Creating new files caused message about missing files (#2515875)
   Bugfix: Could not hide folders in recursive compare (#2528749)
   Bugfix: Folder Compare:Copy Right/Left don't create folder

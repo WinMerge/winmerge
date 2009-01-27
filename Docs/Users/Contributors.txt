@@ -141,6 +141,7 @@ Other Contributors (code, ideas, testing..):
 * jwdevel
 * Ed_K
 * Alberto Kalb
+* Joe Kidd <cassiusdrow@sourceforge.net>
 * Robert Knienider
 * Ferenc Kubatovics
 * René Leonhardt
