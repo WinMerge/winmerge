@@ -120,6 +120,14 @@ class CDirDoc;
  */
 class CMergeDoc : public CDocument
 {
+public:
+	enum FileChange
+	{
+		FileNoChange,
+		FileChanged,
+		FileRemoved,
+	};
+
 // Attributes
 public:
 	CDiffTextBuffer *m_ptBuf[2]; /**< Left/Right side text buffer */
@@ -212,7 +220,7 @@ public:
 
 // Implementation
 public:
-	bool IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
+	FileChange IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 		bool bSave, int nBuffer);
 	bool PromptAndSaveIfNeeded(BOOL bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
