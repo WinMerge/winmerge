@@ -23,6 +23,7 @@ WinMerge 2.11.1.9
   Bugfix: Crashed if compared file disappeared during file compare (#2493945)
   Bugfix: Creating new files caused message about missing files (#2515875)
   Bugfix: Could not hide folders in recursive compare (#2528749)
+  Bugfix: Folder Compare:Copy Right/Left don't create folder
   Translation updates:
   - Brazilian (#2461443, #2524796)
   - Chinese Traditional (#2540115)

@@ -271,8 +271,23 @@ void CDirView::DoCopyRightToLeft()
 			}
 
 			FileActionItem act;
+			String sDest(srFile);
+
+			if (GetDocument()->GetRecursive())
+			{
+				// If destination sides's relative path is empty it means we
+				// are copying unique items and need to get the real relative
+				// path from original side.
+				if (di.right.path.empty())
+				{
+					sDest = GetDocument()->GetRightBasePath();
+					sDest = paths_ConcatPath(sDest, di.left.path);
+					sDest = paths_ConcatPath(sDest, di.left.filename);
+				}
+			}
+
 			act.src = srFile;
-			act.dest = slFile;
+			act.dest = sDest;
 			act.context = sel;
 			act.dirflag = di.diffcode.isDirectory();
 			act.atype = actType;
@@ -317,8 +332,23 @@ void CDirView::DoCopyLeftToRight()
 			}
 
 			FileActionItem act;
+			String sDest(srFile);
+
+			if (GetDocument()->GetRecursive())
+			{
+				// If destination sides's relative path is empty it means we
+				// are copying unique items and need to get the real relative
+				// path from original side.
+				if (di.right.path.empty())
+				{
+					sDest = GetDocument()->GetRightBasePath();
+					sDest = paths_ConcatPath(sDest, di.left.path);
+					sDest = paths_ConcatPath(sDest, di.left.filename);
+				}
+			}
+
 			act.src = slFile;
-			act.dest = srFile;
+			act.dest = sDest;
 			act.dirflag = di.diffcode.isDirectory();
 			act.context = sel;
 			act.atype = actType;
