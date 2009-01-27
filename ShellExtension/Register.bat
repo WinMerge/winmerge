@@ -32,7 +32,7 @@ Call :ExecuteRegSvr32 /u "%DLLPATH%"
 Goto End
 
 :ExecuteRegSvr32
-Ver | Find "Version 6." > NUL
+Ver | %WINDIR%\System32\Find "Version 6." > NUL
 IF NOT ERRORLEVEL 1 (
   rem Windows Vista, Server 2008?
   Echo args="": For Each a in WScript.Arguments: args = args ^& """" ^& a ^& """ ": Next: CreateObject^("Shell.Application"^).ShellExecute "RegSvr32", args, "", "runas" > "%TEMP%\RegSvr32Elevated.vbs"

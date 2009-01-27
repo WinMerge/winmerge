@@ -8,6 +8,7 @@ WinMerge 2.11.1.9
   More accurate visible area rect in location pane (#2479804)
   New options page for Shell Integration options (#2433648)
   Remove Frhed hex editor from GUI (context menu) (r6376)
+  Register.bat should use Find with full path (#2536582)
   Bugfix: Could not open project file that contains an ampersand 
     character in folder names (#2372000)
   Bugfix: File compare method "Modified Date and Size" ignored file size
