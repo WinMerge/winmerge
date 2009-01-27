@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-07-30 21:25+0000\n"
-"PO-Revision-Date: 2008-08-06 17:00+0800\n"
-"Last-Translator: 龔維正 <wck3171@pchome.com.tw>\n"
+"POT-Creation-Date: 2009-01-15 20:39+0000\n"
+"PO-Revision-Date: 2009-01-27 19:11+0800\n"
+"Last-Translator: wck <wck3171@pchome.com.tw>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP950\n"
@@ -680,7 +680,7 @@ msgstr "檔案編碼(&F)..."
 #: Merge.rc:355
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "復原(&U)\tCtrl+Z"
+msgstr "撤回(&U)\tCtrl+Z"
 
 #: Merge.rc:356
 #, c-format
@@ -771,7 +771,7 @@ msgstr "移至(&G)...\tCtrl+G"
 #: Merge.rc:393
 #, c-format
 msgid "&Zoom"
-msgstr "拉近拉遠(&Z)"
+msgstr "拉近推遠(&Z)"
 
 #: Merge.rc:395
 #, c-format
@@ -886,7 +886,7 @@ msgstr "&XML"
 #: Merge.rc:506
 #, c-format
 msgid "&HEX"
-msgstr ""
+msgstr "HEX(&H)"
 
 #: Merge.rc:511
 #, c-format
@@ -1312,7 +1312,7 @@ msgstr "比較檔案時保留檔案時間(&P)"
 #: Merge.rc:775
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
 
 #: Merge.rc:777
 #, c-format
@@ -2037,8 +2037,12 @@ msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成"
 
 #: Merge.rc:1272
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
+"重啟動後才偵測"
 
 #: Merge.rc:1275
 #, c-format
@@ -2053,7 +2057,7 @@ msgstr "WinMerge 使用者介面用的編碼頁"
 #: Merge.rc:1279
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "自訂編碼頁："
 
 #: Merge.rc:1287
 #, c-format
@@ -2618,12 +2622,12 @@ msgstr "啟用外掛(&E)"
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "併入檔案總管介面"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "檔案總管"
 
 #: Merge.rc:1676
 #, c-format
@@ -2638,17 +2642,17 @@ msgstr "自動包括子目錄(&C)"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "加到右鍵選單(&A)"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "資料夾比較"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "將 WinMerge 選單加到右鍵選單(&S)"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
@@ -3002,8 +3006,8 @@ msgid ""
 "Redo the previously undone action\n"
 "Redo (Ctrl+Y)"
 msgstr ""
-"重做上次撤回的動作\n"
-"重做"
+"再做上次的撤回\n"
+"再做"
 
 #: Merge.rc:1846
 #, c-format
@@ -3291,7 +3295,7 @@ msgstr "萬國碼"
 #: Merge.rc:1972
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1978
 #, c-format
@@ -3548,7 +3552,7 @@ msgstr ""
 #: Merge.rc:2067
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "至 SS.EXE 的路徑(&P)"
 
 #: Merge.rc:2073
 #, c-format
@@ -3633,12 +3637,12 @@ msgstr "正產生報告..."
 #: Merge.rc:2094
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "撤回上次的操作..."
 
 #: Merge.rc:2095
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "再做上次的操作..."
 
 #: Merge.rc:2101
 #, c-format
@@ -3881,8 +3885,18 @@ msgstr ""
 
 #: Merge.rc:2156
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"WinMerge上次掃描過檔案\n"
+"%1\n"
+"後，其他應用程式又再更新它\n"
+"\n"
+"要重新載入它嗎？"
 
 #: Merge.rc:2157
 #, c-format
@@ -3896,8 +3910,14 @@ msgstr "儲存右邊檔案為"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"disappeared. Please save a copy of the file to continue."
 msgstr ""
+"檔案\n"
+"%1\n"
+"消失。請儲存檔案副本再繼續。"
 
 #: Merge.rc:2165
 #, c-format
@@ -4242,12 +4262,12 @@ msgstr "複製兩邊徑名到剪貼簿"
 #: Merge.rc:2268
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "左邊介面選單"
 
 #: Merge.rc:2269
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "右邊介面選單"
 
 #: Merge.rc:2275
 #, c-format
@@ -4478,12 +4498,12 @@ msgstr "錯誤"
 #: Merge.rc:2344
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "文字檔內容相同"
 
 #: Merge.rc:2349
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "文字檔內容不同"
 
 #: Merge.rc:2355
 #, c-format
@@ -5697,7 +5717,7 @@ msgstr "加大文字"
 #: Merge.rc:2722
 #, c-format
 msgid "Decrease text size"
-msgstr "減小文字"
+msgstr "縮小文字"
 
 #: Merge.rc:2723
 #, c-format
@@ -6181,7 +6201,7 @@ msgstr "TEX"
 #: Merge.rc:2857
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2858
 #, c-format
