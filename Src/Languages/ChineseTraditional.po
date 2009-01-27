@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-07-30 21:25+0000\n"
-"PO-Revision-Date: 2008-08-06 17:00+0800\n"
-"Last-Translator: 龔維正 <wck3171@pchome.com.tw>\n"
+"POT-Creation-Date: 2009-01-15 20:39+0000\n"
+"PO-Revision-Date: 2009-01-27 19:11+0800\n"
+"Last-Translator: wck <wck3171@pchome.com.tw>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP950\n"
@@ -680,7 +680,7 @@ msgstr "檔案編碼(&F)..."
 #: Merge.rc:355
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "復原(&U)\tCtrl+Z"
+msgstr "撤回(&U)\tCtrl+Z"
 
 #: Merge.rc:356
 #, c-format
@@ -771,7 +771,7 @@ msgstr "移至(&G)...\tCtrl+G"
 #: Merge.rc:393
 #, c-format
 msgid "&Zoom"
-msgstr "拉近拉遠(&Z)"
+msgstr "拉近推遠(&Z)"
 
 #: Merge.rc:395
 #, c-format
@@ -886,7 +886,7 @@ msgstr "&XML"
 #: Merge.rc:506
 #, c-format
 msgid "&HEX"
-msgstr ""
+msgstr "HEX(&H)"
 
 #: Merge.rc:511
 #, c-format
@@ -1317,7 +1317,7 @@ msgstr ""
 #: Merge.rc:777
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
 
 #: Merge.rc:779
 #, c-format
@@ -2062,8 +2062,12 @@ msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成"
 
 #: Merge.rc:1281
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"偵測後面檔案的編碼頁資訊：.html, .rc, .xml \n"
+"重啟動後才偵測"
 
 #: Merge.rc:1284
 #, c-format
@@ -2078,7 +2082,7 @@ msgstr "WinMerge 使用者介面用的編碼頁"
 #: Merge.rc:1288
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "自訂編碼頁："
 
 #: Merge.rc:1296
 #, c-format
@@ -2991,8 +2995,8 @@ msgid ""
 "Redo the previously undone action\n"
 "Redo (Ctrl+Y)"
 msgstr ""
-"重做上次撤回的動作\n"
-"重做"
+"再做上次的撤回\n"
+"再做"
 
 #: Merge.rc:1837
 #, c-format
@@ -3280,7 +3284,7 @@ msgstr "萬國碼"
 #: Merge.rc:1962
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1968
 #, c-format
@@ -3537,7 +3541,7 @@ msgstr ""
 #: Merge.rc:2057
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "至 SS.EXE 的路徑(&P)"
 
 #: Merge.rc:2063
 #, c-format
@@ -3622,12 +3626,12 @@ msgstr "正產生報告..."
 #: Merge.rc:2084
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "撤回上次的操作..."
 
 #: Merge.rc:2085
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "再做上次的操作..."
 
 #: Merge.rc:2091
 #, c-format
@@ -3870,8 +3874,18 @@ msgstr ""
 
 #: Merge.rc:2146
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"WinMerge上次掃描過檔案\n"
+"%1\n"
+"後，其他應用程式又再更新它\n"
+"\n"
+"要重新載入它嗎？"
 
 #: Merge.rc:2147
 #, c-format
@@ -4226,12 +4240,12 @@ msgstr "複製兩邊徑名到剪貼簿"
 #: Merge.rc:2257
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "左邊介面選單"
 
 #: Merge.rc:2258
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "右邊介面選單"
 
 #: Merge.rc:2264
 #, c-format
@@ -4462,12 +4476,12 @@ msgstr "錯誤"
 #: Merge.rc:2333
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "文字檔內容相同"
 
 #: Merge.rc:2338
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "文字檔內容不同"
 
 #: Merge.rc:2344
 #, c-format
@@ -5681,7 +5695,7 @@ msgstr "加大文字"
 #: Merge.rc:2711
 #, c-format
 msgid "Decrease text size"
-msgstr "減小文字"
+msgstr "縮小文字"
 
 #: Merge.rc:2712
 #, c-format
@@ -6165,7 +6179,7 @@ msgstr "TEX"
 #: Merge.rc:2846
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2847
 #, c-format

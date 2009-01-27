@@ -22,6 +22,7 @@ WinMerge 2.11.1.9
   Bugfix: Wrong number shown for difference when using line filters (#2493980)
   Translation updates:
   - Brazilian (#2461443, #2524796)
+  - Chinese Traditional (#2540115)
   - Czech (r6201)
   - Dutch (#2481022, #2494378, #2499994)
   - Swedish (#2452467, #2465385, #2511043)
