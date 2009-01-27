@@ -11,6 +11,7 @@ WinMerge 2.13.2
     structure (#2529517)
   Translation updates:
   - Brazilian (#2524796)
+  - Dutch (#2531307)
   - Swedish (#2511043)
 
 WinMerge 2.13.1 - 2009-01-15 (r6334)
