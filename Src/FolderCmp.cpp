@@ -33,6 +33,7 @@ FolderCmp::FolderCmp()
 , m_pByteCompare(NULL)
 , m_ndiffs(CDiffContext::DIFFS_UNKNOWN)
 , m_ntrivialdiffs(CDiffContext::DIFFS_UNKNOWN)
+, m_pCtx(NULL)
 {
 }
 
