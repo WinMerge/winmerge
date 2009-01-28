@@ -9,6 +9,7 @@ WinMerge 2.13.2
   Bugfix: Could not hide folders in recursive compare (#2528749)
   Bugfix: Folder Compare:Copy Right/Left don't create folder
     structure (#2529517)
+  Bugfix: Must Show Different to Show L/R Unique (#2129561)
   Translation updates:
   - Brazilian (#2524796)
   - Chinese Traditional (#2540115)

@@ -410,18 +410,24 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 		// Subfolders in non-recursive compare can only be skipped or unique
 		if (!m_bRecursive)
 		{
-			// result filters
-			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-				return FALSE;
-
 			// left/right filters
 			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 				return FALSE;
 			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 				return FALSE;
+
+			// result filters
+			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+				return FALSE;
 		}
 		else // recursive (perhaps tree?) mode
 		{
+			// left/right filters
+			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+				return FALSE;
+			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+				return FALSE;
+
 			// result filters
 			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
 				return FALSE;
@@ -431,16 +437,16 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 				return FALSE;
 			if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 				return FALSE;
-			// left/right filters
-			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-				return FALSE;
-			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-				return FALSE;
-
 		}
 	}
 	else
 	{
+		// left/right filters
+		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+			return FALSE;
+		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+			return FALSE;
+
 		// file type filters
 		if (di.diffcode.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
 			return FALSE;
@@ -451,12 +457,6 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
 			return FALSE;
 		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-			return FALSE;
-
-		// left/right filters
-		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-			return FALSE;
-		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return FALSE;
 	}
 	return TRUE;
