@@ -24,7 +24,7 @@ public:
 	DiffItemList();
 	~DiffItemList();
 	// add & remove differences
-	DIFFITEM &AddDiff(DIFFITEM *parent);
+	DIFFITEM *AddDiff(DIFFITEM *parent);
 	void RemoveDiff(UINT_PTR diffpos);
 	void RemoveAll();
 

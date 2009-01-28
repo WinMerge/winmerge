@@ -26,9 +26,11 @@ DiffItemList::~DiffItemList()
 }
 
 /**
- * @brief Add new diffitem to structured DIFFITEM tree
+ * @brief Add new diffitem to structured DIFFITEM tree.
+ * @param [in] parent Parent item, or NULL if no parent.
+ * @return Pointer to the added item.
  */
-DIFFITEM &DiffItemList::AddDiff(DIFFITEM *parent)
+DIFFITEM* DiffItemList::AddDiff(DIFFITEM *parent)
 {
 	DIFFITEM *p = new DIFFITEM;
 	if (parent)
@@ -36,7 +38,7 @@ DIFFITEM &DiffItemList::AddDiff(DIFFITEM *parent)
 	else
 		m_root.Append(p);
 	p->parent = parent;
-	return *p;
+	return p;
 }
 
 /**
