@@ -205,7 +205,7 @@ namespace
 	}
 	TEST_F(PathTest, Create_abspath5)
 	{
-		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\wm_test\\abc\\dce"));
+		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp\\wm_test\\abc\\dce"));
 		EXPECT_EQ(0, _access("c:\\Temp\\wm_test\\abc\\dce", 0));
 		EXPECT_EQ(0, rmdir("c:\\Temp\\wm_test\\abc\\dce"));
 		EXPECT_NE(0, _access("c:\\Temp\\wm_test\\abc\\dce", 0));
