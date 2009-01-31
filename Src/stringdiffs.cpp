@@ -8,9 +8,8 @@
 // $Id$
 
 #include "StdAfx.h"
-#include <vector>
 #include <mbctype.h>
-#include "UnicodeString.h"
+
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"

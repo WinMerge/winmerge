@@ -10,6 +10,7 @@
 #ifndef stringdiffs_h_included
 #define stringdiffs_h_included
 
+#include "UnicodeString.h"
 #include <vector>
 
 /** @brief One difference between two strings */
@@ -39,7 +40,7 @@ void sd_ComputeWordDiffs(const String & str1, const String & str2,
 		bool case_sensitive, int whitespace, int breakType, bool byte_level,
 		std::vector<wdiff*> * pDiffs);
 
-void sd_ComputeByteDiff(String & str1, CString & str2, 
+void sd_ComputeByteDiff(String & str1, String & str2, 
 			bool casitive, int xwhite, 
 			int &begin1, int &begin2, int &end1, int &end2);
 
