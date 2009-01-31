@@ -53,7 +53,7 @@ the code. These tests are run either by scripts or unit testing framework. The
 result is a list os passed and/or failed tests.</p>
 
 <p>Unit testing framework used with WinMerge development is the Google Test,
-available from <a href"http://code.google.com/p/googletest/">
+available from <a href="http://code.google.com/p/googletest/">
 http://code.google.com/p/googletest/</a>. Other frameworks can be used when
 need arises. However we don't want to use every known framework so the reason
 for adding new framework needs to be good, like new technology or language
@@ -133,7 +133,6 @@ include file folders:
   <li>Add <code>gtest-[version]\include</code> -folder as <b>LAST</b> folder in
     that list</li>
 </ul>
-</p>
 
 <h3>Open the test project into Visual Studio and compile</h3>
 
@@ -206,14 +205,14 @@ main()</code> function from the end of the file.</p>
 <p>Now you can start adding tests. Look Google Test documentation and existing
 unit tests for help on that.</p>
 
-<p>The simple test method looks like this:
+<p>The simple test method looks like this:</p>
 <pre>
 	TEST_F(PathTest, Create_abspath1)
 	{
 		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp"));
 	}
 </pre>
-The <code>TEST_F</code> macro defines a new test function, having test class
+<p>The <code>TEST_F</code> macro defines a new test function, having test class
 (<code>PathTest</code>) and test name (<code>Create_abspath1</code>) as
 parameters. Then there is a function call done inside test macro. The framework
 defines several macros for the tests. The <code>EXPECT_TRUE</code> macro makes
