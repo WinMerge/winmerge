@@ -5,9 +5,10 @@ http://winmerge.org/about/
 http://winmerge.org/about/history.php
 http://winmerge.org/about/license.php
 http://winmerge.org/about/screenshots/
-http://winmerge.org/docs/changelog.php
 http://winmerge.org/docs/
+http://winmerge.org/docs/changelog.php
 http://winmerge.org/docs/releasenotes.php
+http://winmerge.org/docs/manual/
 http://winmerge.org/docs/manual/AboutDoc.html
 http://winmerge.org/docs/manual/CommandLine.html
 http://winmerge.org/docs/manual/CompareDirs.html
@@ -26,7 +27,6 @@ http://winmerge.org/docs/manual/QuickStart.html
 http://winmerge.org/docs/manual/Shortcuts.html
 http://winmerge.org/docs/manual/VersionControl.html
 http://winmerge.org/docs/manual/word_index.html
-http://winmerge.org/docs/old/
 http://winmerge.org/downloads/
 http://winmerge.org/downloads/plugins.php
 http://winmerge.org/downloads/source-code.php
