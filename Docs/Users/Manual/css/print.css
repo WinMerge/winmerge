@@ -37,8 +37,9 @@ div.toc p{
 
 .screen {
   padding: 5px;
-  background-color: inherit;
-  border: 0.5px solid #BEBEBE;
+  background-color: none;
+  border: 1px solid #CCCCCC;
+  border-left: 10px solid #CCCCCC;
 }
 
 .caution,.important,.note,.tip,.warning {
