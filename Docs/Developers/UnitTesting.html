@@ -107,13 +107,14 @@ Depending on Visual Studio version the project/solution file may need to be
 updated for later version before usage. Visual Studio asks about the conversion
 when opening the solution file.</p>
 
-<p>Build the <i>Release</i> target of <i>gtest</i> project. You don't need to
-build other projects or targets. Indeed, <i>rebuild all</i> for the solution
+<p>Build both <i>Debug> and <i>Release</i> targets of <i>gtest</i> project. You
+don't need to build other projects. Indeed, <i>rebuild all</i> for the solution
 does not work. Some of the projects in the solution are unit tests for the
 framework itself.</p>
 
-<p>Copy the compiled <code>gtest.lib</code> file from <code>msvc\Release</code>
-subfolder to <code>Testing\GoogleTest</code> - folder in WinMerge source tree.
+<p>Copy the compiled <code>gtest.lib</code> and <code>gtestd.lib</code> files
+from <code>msvc\Release</code> and <code>msvc\Debug</code> subfolders to
+<code>Testing\GoogleTest</code> - folder in WinMerge source tree.
 </p>
 
 <h3>Setup Visual Studio for Google Test</h3>
@@ -137,12 +138,13 @@ include file folders:
 <h3>Open the test project into Visual Studio and compile</h3>
 
 <p>Open the testing project to Visual Studio (VS 2003 and later work) and
-compile <i>Release</i> -target of the project.</p>
+compile <i>Debug</i> or <i>Release</i> -target of the project.</p>
 
 <h3>Run the tests</h3>
 
 <p>Open the Command Prompt and CD to folder where executable were build,
-usually <code>[projectname]/Release</code>.</p>
+usually <code>[projectname]/Debug</code> or <code>[projectname]/Release</code>.
+</p>
 
 <h3>Run the executable.</h3>
 
@@ -182,8 +184,8 @@ best setup we currently know. If you have ideas for improving, let us know!</p>
 
 <p>Set the Linker properties according list below:</p>
 <ul>
-  <li><b>Input/Additional dependencies:</b> gtest.lib (note: you may use
-    debug version of gtest.lib in debug target)
+  <li><b>Input/Additional dependencies:</b> <code>gtest.lib</code> (note: you
+    may use debug version <code>gtestd.lib</code> in debug target)
 </ul>
 
 <h3>Add test file(s)</h3>
