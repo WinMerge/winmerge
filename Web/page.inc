@@ -141,7 +141,8 @@
      * print the foot from the page
      */
     function printFoot() {
-      $temp = "  </div> <!-- #content -->\n";
+      $temp = $this->getSocialBookmarks();
+      $temp .= "  </div> <!-- #content -->\n";
       $temp .= "<p id=\"poweredby\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216&amp;type=3\" width=\"125\" height=\"37\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/engine/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
@@ -299,6 +300,17 @@
       $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
       $temp .= "</script>\n";
       $temp .= "</div> <!-- #ads -->\n";
+      return $temp;
+    }
+
+    /**
+     * get the social bookmarks code
+     */
+    function getSocialBookmarks() {
+      $temp = "<div id=\"bookmarks\">\n";
+      $temp .= "<img src=\"http://static.delicious.com/img/delicious.small.gif\" height=\"10\" width=\"10\" alt=\"Delicious\">\n";
+      $temp .= "<a href=\"http://delicious.com/save\" onclick=\"window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;\"> Bookmark this on Delicious</a>\n";
+      $temp .= "</div> <!-- #bookmarks -->\n";
       return $temp;
     }
 

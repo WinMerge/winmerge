@@ -59,6 +59,10 @@ a[name]:hover { color:black; text-decoration:none; }
 	padding: 5px;
 }
 
+#bookmarks {
+	display: none;
+}
+
 #poweredby {
 	display: none;
 }

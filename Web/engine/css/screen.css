@@ -139,6 +139,10 @@ a[name]:hover { color:black; text-decoration:none; }
 	margin-top: 0;
 }
 
+#bookmarks {
+	text-align: right;
+}
+
 #poweredby {
 	margin: 0;
 	margin-top: 1em;
