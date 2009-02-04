@@ -3,6 +3,10 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.13.3
+  Bugfix: Could not copy files from right to left (#2556904)
+
+
 WinMerge 2.13.2 - 2009-01-28 (r6395)
   Register.bat should use Find with full path (#2536582)
   Bugfix: Creating new files caused message about missing files (#2515875)

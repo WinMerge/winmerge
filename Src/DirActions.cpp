@@ -271,18 +271,18 @@ void CDirView::DoCopyRightToLeft()
 			}
 
 			FileActionItem act;
-			String sDest(srFile);
+			String sDest(slFile);
 
 			if (GetDocument()->GetRecursive())
 			{
 				// If destination sides's relative path is empty it means we
 				// are copying unique items and need to get the real relative
 				// path from original side.
-				if (di.right.path.empty())
+				if (di.left.path.empty())
 				{
 					sDest = GetDocument()->GetRightBasePath();
-					sDest = paths_ConcatPath(sDest, di.left.path);
-					sDest = paths_ConcatPath(sDest, di.left.filename);
+					sDest = paths_ConcatPath(sDest, di.right.path);
+					sDest = paths_ConcatPath(sDest, di.right.filename);
 				}
 			}
 
