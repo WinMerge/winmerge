@@ -25,6 +25,7 @@ WinMerge 2.11.1.9
   Bugfix: Could not hide folders in recursive compare (#2528749)
   Bugfix: Folder Compare:Copy Right/Left don't create folder
   Bugfix: Must Show Different to Show L/R Unique (#2129561)
+  Bugfix: Could not copy files from right to left (#2556904)
   Translation updates:
   - Brazilian (#2461443, #2524796)
   - Chinese Traditional (#2540115)
