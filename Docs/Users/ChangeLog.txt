@@ -6,7 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.3
   Bugfix: Could not copy files from right to left (#2556904)
   Translation updates:
-  - French (#2551043)
+  - French (#2551043, #2551066)
 
 
 WinMerge 2.13.2 - 2009-01-28 (r6395)
