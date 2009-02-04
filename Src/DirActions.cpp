@@ -280,7 +280,7 @@ void CDirView::DoCopyRightToLeft()
 				// path from original side.
 				if (di.left.path.empty())
 				{
-					sDest = GetDocument()->GetRightBasePath();
+					sDest = GetDocument()->GetLeftBasePath();
 					sDest = paths_ConcatPath(sDest, di.right.path);
 					sDest = paths_ConcatPath(sDest, di.right.filename);
 				}
