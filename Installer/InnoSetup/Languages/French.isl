@@ -319,7 +319,7 @@ CompanyName=Thingamahoochie Software
 TypicalInstallation=Installation Typique
 FullInstallation=Installation Complète
 CompactInstallation=Installation Compacte
-CustomInstallation=Installation Personnaliser
+CustomInstallation=Installation Personalisée
 
 ;Components
 AppCoreFiles=Fichiers Vitaux Winmerge
