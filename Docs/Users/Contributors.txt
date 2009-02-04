@@ -57,6 +57,7 @@ Localization:
   Jean-F Jolin <jean-f-j@users.sourceforge.net>
   Gil Andre <gil_andre@compuserve.com>
   Laurent Ganier <ccganier@club-internet.fr>
+  Dominique Saussereau <redguff@users.sourceforge.net>
   Matthieu Pupat
 
 * Galician:

@@ -5,6 +5,7 @@
 # * Gil Andre <gil_andre at compuserve.com>
 # * Laurent Ganier <ccganier at club-internet.fr>
 # * Jean-F Jolin <jean-f-j at users.sourceforge.net>
+# * Dominique Saussereau <redguff at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -1289,7 +1290,7 @@ msgstr "&Vérifier automatiquement les chemins de la fenêtre-Ouvrir"
 #: Merge.rc:768
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "&Permetre une seule instance en exécution"
+msgstr "&Permettre une seule instance en exécution"
 
 #: Merge.rc:770
 #, c-format
