@@ -189,12 +189,16 @@ static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 
 /**
  * @brief Format Extension column data.
- * @param [in] p Pointer to String having extension string.
+ * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
  */
 static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 {
-	const String &r = *static_cast<const String*>(p);
+	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
+	// We don't show extension for folder names
+	if (di.diffcode.isDirectory())
+		return _T("");
+	const String &r = di.left.path;
 	LPCTSTR s = PathFindExtension(r.c_str());
 	return s + _tcsspn(s, _T("."));
 }
@@ -827,7 +831,7 @@ static DirColInfo f_cols[] =
 	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, IDS_COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.mtime), 4, false, LVCFMT_LEFT },
 	{ _T("Lctime"), IDS_COLHDR_LTIMEC, IDS_COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.ctime), -1, false, LVCFMT_LEFT },
 	{ _T("Rctime"), IDS_COLHDR_RTIMEC, IDS_COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, left.filename), 5, true, LVCFMT_LEFT },
+	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 5, true, LVCFMT_LEFT },
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false, LVCFMT_RIGHT },
 	{ _T("LsizeShort"), IDS_COLHDR_LSIZE_SHORT, IDS_COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
