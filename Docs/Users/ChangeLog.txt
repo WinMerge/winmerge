@@ -8,7 +8,7 @@ WinMerge 2.13.3
   Bugfix: Don't show file name extension for folders (#2563314)
   Translation updates:
   - French (#2551043, #2551066)
-
+  - Greek (#2550911)
 
 WinMerge 2.13.2 - 2009-01-28 (r6395)
   Register.bat should use Find with full path (#2536582)

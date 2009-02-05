@@ -2027,8 +2027,12 @@ msgstr "Επιλέξατε την προκαθορισμένη κωδικοσελίδα νοουμένη κατά το άνοιγμα αρχεί
 
 #: Merge.rc:1272
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files : .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Ανίχνευση πληροφορίας κωδικοσελίδας εντός των ακολούθων αρχείων : .html, .rc, .xml \n"
+"Χρειάζεται επανεκκίνηση της εργασίας"
 
 #: Merge.rc:1275
 #, c-format
@@ -2042,8 +2046,8 @@ msgstr "Σύμφωνα με το Περιβάλλον Εργασίας του WinMerge"
 
 #: Merge.rc:1279
 #, c-format
-msgid "Custom codepage:"
-msgstr ""
+msgid "Custom codepage :"
+msgstr "Προτιμώμενη κωδικοσελίδα:"
 
 #: Merge.rc:1287
 #, c-format
@@ -3519,8 +3523,8 @@ msgstr "Τα φίλτρα ενημερώθηκαν. Επιθυμείτε να ανανεωθούν όλες οι ανοικτές συγκρί
 
 #: Merge.rc:2067
 #, c-format
-msgid "&Path to SS.EXE:"
-msgstr ""
+msgid "&Path to SS.EXE :"
+msgstr "&Διαδρομή του SS.EXE :"
 
 #: Merge.rc:2073
 #, c-format
