@@ -3578,7 +3578,7 @@ msgstr "Spara höger fil som"
 #: Merge.rc:2159
 #, c-format
 msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
-msgstr ""
+msgstr "Filen\n%1\nfinns inte nu. Var god och spara en kopia av filen för att fortsätta."
 
 #: Merge.rc:2165
 #, c-format
