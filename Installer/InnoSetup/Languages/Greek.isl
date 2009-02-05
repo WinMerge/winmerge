@@ -345,9 +345,9 @@ CzechLanguage=Τσεχικά επιλογές και διάλογοι
 DanishLanguage=Δανέζικα επιλογές και διάλογοι
 DutchLanguage=Ολλανδικά επιλογές και διάλογοι
 FrenchLanguage=Γαλλικά επιλογές και διάλογοι
-GalicianLanguage=Galician menus and dialogs
+GalicianLanguage=Γαλικιανά επιλογές και διάλογοι
 GermanLanguage=Γερμανικά επιλογές και διάλογοι
-GreekLanguage=Greek menus and dialogs
+GreekLanguage=Ελληνικά επιλογές και διάλογοι
 HungarianLanguage=Ουγγρικά επιλογές και διάλογοι
 ItalianLanguage=Ιταλικά επιλογές και διάλογοι
 JapaneseLanguage=Ιαπωνικά επιλογές και διάλογοι
@@ -356,14 +356,14 @@ NorwegianLanguage=Νορβηγικά επιλογές και διάλογοι
 PolishLanguage=Πολωνικά επιλογές και διάλογοι
 PortugueseBrazilLanguage=Πορτογαλικά (Βραζιλίας) επιλογές και διάλογοι
 PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι
-RomanianLanguage=Romanian menus and dialogs
+RomanianLanguage=Ρουμανικά επιλογές και διάλογοι
 RussianLanguage=Ρωσσικά επιλογές και διάλογοι
 SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
-SlovenianLanguage=Slovenian menus and dialogs
+SlovenianLanguage=Σλοβενικά επιλογές και διάλογοι
 SpanishLanguage=Ισπανικά επιλογές και διάλογοι
 SwedishLanguage=Σουηδικά επιλογές και διάλογοι
 TurkishLanguage=Τουρκικά επιλογές και διάλογοι
-UkrainianLanguage=Ukrainian menus and dialogs
+UkrainianLanguage=Ουκρανικά επιλογές και διάλογοι
 
 ;Tasks
 ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευνήσεως
@@ -375,10 +375,10 @@ AddToPath=&Add WinMerge folder to your system path
 ;Icon Labels
 ReadMe=Απαραίτητες Πληροφορίες (Read Me)
 UsersGuide=Οδηγίες Χρήσεως
-ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στο Έναρξη
+ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στην Έναρξη
 
 ;Code Dialogs
-DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στο Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από το Έναρξη;
+DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στην Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από την Έναρξη;
 
 ; Project file description
 ProjectFileDesc=Αρχείο Έργου του WinMerge
