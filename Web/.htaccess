@@ -12,6 +12,9 @@ ErrorDocument 404 /404.php
 #Use PHP5 instead of PHP4
 AddType x-mapp-php5 .php
 
+#Redirect PAD download URL to current WinMerge version...
+Redirect permanent /downloads/WinMerge-Setup.exe http://downloads.sourceforge.net/winmerge/WinMerge-2.10.4-Setup.exe
+
 #Redirect www.winmerge.org to winmerge.org...
 RewriteEngine On
 RewriteCond   %{HTTP_HOST} ^www\.winmerge\.org$ [NC]
