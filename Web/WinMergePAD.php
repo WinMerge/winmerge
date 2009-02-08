@@ -81,6 +81,7 @@
   $company_name = $company_info['COMPANY_NAME'][0]['VALUE'];
   $company_website_url = $company_info['COMPANY_WEBSITE_URL'][0]['VALUE'];
   $contact_first_name = $company_info['CONTACT_INFO'][0]['CONTACT_FIRST_NAME'][0]['VALUE'];
+  $contact_last_name = $company_info['CONTACT_INFO'][0]['CONTACT_LAST_NAME'][0]['VALUE'];
   $contact_email = $company_info['CONTACT_INFO'][0]['CONTACT_EMAIL'][0]['VALUE'];
   $support_email = $company_info['SUPPORT_INFO'][0]['SUPPORT_EMAIL'][0]['VALUE'];
   print("<h3>Company</h3>\n");
@@ -88,7 +89,7 @@
   print("  <dt>Name</dt>\n");
   print("  <dd><a href=\"" . $company_website_url . "\">" . $company_name . "</a></dd>\n");
   print("  <dt>Contact</dt>\n");
-  print("  <dd><a href=\"mailto:" . $contact_email . "\">" . $contact_first_name . "</a></dd>\n");
+  print("  <dd><a href=\"mailto:" . $contact_email . "\">" . $contact_first_name . " " . $contact_last_name . "</a></dd>\n");
   print("  <dt>Support</dt>\n");
   print("  <dd><a href=\"mailto:" . $support_email . "\">" . $support_email . "</a></dd>\n");
   print("</dl>\n");
