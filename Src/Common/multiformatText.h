@@ -132,7 +132,12 @@ private:
 /// Convert any unicode file to UCS-2LE
 BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged);
 /// Convert UCS-2LE file to UTF-8 (for diffutils)
-BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
 
+/// Convert UCS-2BE file to UTF-8 (for diffutils)
+BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+
+/// Convert Ansi file to UTF-8 (for diffutils)
+BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
 
 #endif //__MULTIFORMATTEXT_H__

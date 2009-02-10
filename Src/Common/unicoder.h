@@ -33,9 +33,11 @@ struct buffer {
 enum UNICODESET
 {
 	NONE = 0,  /**< No unicode. */
-	UCS2LE,    /**< UCS-2 little endian. */
-	UCS2BE,    /**< UCS-2 big endian. */
+	UCS2LE,    /**< UCS-2 / UTF-16 little endian. */
+	UCS2BE,    /**< UCS-2 / UTF-16 big endian. */
 	UTF8,      /**< UTF-8. */
+	UCS4LE,    /**< UTF-32 little endian */
+	UCS4BE,    /**< UTF-32 big-endian */
 };
 
 int Ucs4_to_Utf8(unsigned int unich, unsigned char * utf8);

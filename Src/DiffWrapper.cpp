@@ -684,7 +684,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	if (m_bPluginsEnabled)
 	{
 		// Do the preprocessing now, overwrite the temp files
-		// NOTE: FileTransform_UCS2ToUTF8() may create new temp
+		// NOTE: FileTransform_ToUTF8() may create new temp
 		// files and return new names, those created temp files
 		// are deleted in end of function.
 		if (m_infoPrediffer->bToBeScanned)
@@ -728,12 +728,11 @@ BOOL CDiffWrapper::RunFileDiff()
 		}
 	}
 
-	// Comparing UTF-8 files seems to require this conversion?
-	// I'm still very confused about why, as what the functions
-	// document doing is UCS2 to UTF-8 conversion, nothing else.
-	// Something is wrong here. - Kimmo
-	FileTransform_UCS2ToUTF8(strFile1Temp, m_bPathsAreTemp);
-	FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
+	// check for both are same (Ansi or UTF8)
+	// otherwise convert both to UTF8
+	// WM is using inside UCS2LE
+	// Analyze is using UTF8, other unicodes are marked as binary
+	Transform2FilesToUTF8(strFile1Temp, strFile2Temp, m_bPathsAreTemp);
 
 	DiffFileData diffdata;
 	diffdata.SetDisplayFilepaths(filepath1.c_str(), filepath2.c_str()); // store true names for diff utils patch file

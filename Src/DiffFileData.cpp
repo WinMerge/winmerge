@@ -232,7 +232,7 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const String & filep
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
 		BOOL bMayOverwrite = 0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str());
-		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
+		if (!FileTransform_ToUTF8(filepathTransformed, bMayOverwrite))
 			return false;
 	}
 	return true;

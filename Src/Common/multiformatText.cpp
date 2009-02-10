@@ -686,29 +686,36 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 }
 
 /**
- * @brief  If file is OLECHAR, then convert it to UTF-8
+ * @brief  If file is Ansi, then convert it to UTF8
  *
- * If file has UCS-2LE BOM (is Olechar), then convert it to UTF-8.
- * (No other file conversions are done here; nothing is done to UCS-2BE files)
+ * If file has Ansi (is ascii), then convert it to UTF8.
+ * (No other file conversions are done here; 
  * (UCS-2LE is the Windows standard Unicode encoding)
  *
  * Returns FALSE if file is Unicode but opening it fails.
- * Returns FALSE if file has Unicode BOM but is not UCS-2LE.
+ * Returns FALSE if file has Unicode BOM but is not Ansi.
  * Returns TRUE if file is not Unicode, or if converted file successfully.
  */
-BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
 	UniMemFile ufile;
-	if (!ufile.OpenReadOnly(filepath) || !ufile.IsUnicode())
-		return TRUE; // not unicode file, nothing to do
-	ucr::UNICODESET unicoding = ufile.GetUnicoding();
+	if (!ufile.OpenReadOnly(filepath))
+		return FALSE; // error
+	if (ufile.IsUnicode())
+	{
+		// Finished with examing file contents
+		ufile.Close();
+		return FALSE; // no ansi file
+	}
+
+	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
 	// Finished with examing file contents
 	ufile.Close();
 
-	// OlecharToUTF8 only converts UCS-2LE files to UTF-8
-	if (unicoding != ucr::UCS2LE)
+	// AnsiToUTF16 only converts Ascii files to UTF-16
+	if (unicoding != ucr::NONE)
 		return FALSE;
-	
+
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;
 	MAPPEDFILEDATA fileDataIn = {0};
@@ -723,11 +730,19 @@ BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BO
 	UINT nBufSize = fileDataIn.dwSize;
 
 	// first pass : get the size of the destination file
-	UINT nSizeOldBOM = 2;
-	UINT nchars = (nBufSize - nSizeOldBOM)/sizeof(WCHAR);
+	UINT nSizeOldBOM = 0;
+	UINT nchars = (nBufSize - nSizeOldBOM)/sizeof(CHAR);
 
 	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
-	UINT nDstSize = TransformUcs2ToUtf8((WCHAR*)(pszBuf + nSizeOldBOM), nchars, NULL, 0);
+	DWORD flags =0;
+	UINT nDstSize;
+	//First convert to unicode UCS16
+	nDstSize = MultiByteToWideChar(CP_ACP, flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
+	wchar_t *szTemp = new wchar_t[nDstSize]; 
+	nDstSize = MultiByteToWideChar(CP_ACP, flags, (const char*)(pszBuf + nSizeOldBOM),nchars,szTemp,nDstSize);
+
+	//now convert to unicode UTF8
+	nDstSize = WideCharToMultiByte(CP_UTF8, flags, szTemp, nDstSize, NULL, 0, NULL, NULL);
 
 	// create the destination file
 	MAPPEDFILEDATA fileDataOut = {0};
@@ -745,15 +760,181 @@ BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BO
 			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
 
 		// write data
-		TransformUcs2ToUtf8((WCHAR*)(pszBuf + nSizeOldBOM), nchars, (char *)fileDataOut.pMapBase+nSizeBOM, nDstSize);
-
-		files_closeFileMapped(&fileDataOut, nDstSize + nSizeBOM, FALSE);
+		WideCharToMultiByte(CP_UTF8, flags, szTemp, nDstSize,
+			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
+		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
 	}
-
+	delete [] szTemp;
 	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 
 	nFileChanged ++;
 	return bSuccess;
 }
+/**
+ * @brief From UCS-2LE to 8-bit (or UTF-8)
+ *
+ * (No other file conversions are done here; 
+ * (UCS-2LE is the Windows standard Unicode encoding)
+ *
+ * Returns FALSE if file is Unicode but opening it fails.
+ * Returns FALSE if file has Unicode BOM but is not Ansi.
+ * Returns TRUE if file is not Unicode, or if converted file successfully.
+ */
+BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+{
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(filepath))
+		return FALSE; // error
+	if (!ufile.IsUnicode())
+	{
+		// Finished with examing file contents
+		ufile.Close();
+		return FALSE; // no ansi file
+	}
 
+	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
+	// Finished with examing file contents
+	ufile.Close();
 
+	// UCS-2LE to 8-bit (or UTF-8)
+	if (unicoding != ucr::UCS2LE)
+		return FALSE;
+
+	// Init filedataIn struct and open file as memory mapped (input)
+	BOOL bSuccess;
+	MAPPEDFILEDATA fileDataIn = {0};
+	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
+	fileDataIn.bWritable = FALSE;
+	fileDataIn.dwOpenFlags = OPEN_EXISTING;
+	bSuccess = files_openFileMapped(&fileDataIn);
+	if (!bSuccess)
+		return FALSE;
+
+	wchar_t * pszBuf = (wchar_t *)fileDataIn.pMapBase;
+	UINT nBufSize = fileDataIn.dwSize;
+
+	// first pass : get the size of the destination file
+	UINT nSizeOldBOM = 1;
+	UINT nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
+
+	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
+	DWORD flags =0;
+	UINT nDstSize;
+
+	//now convert to unicode UTF8
+	nDstSize = WideCharToMultiByte(CP_UTF8, flags, (pszBuf + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+
+	// create the destination file
+	MAPPEDFILEDATA fileDataOut = {0};
+	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst) + 1);
+	fileDataOut.bWritable = TRUE;
+	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
+	fileDataOut.dwSize = nDstSize + nSizeBOM;
+	bSuccess = files_openFileMapped(&fileDataOut);
+
+	// second pass : write the file
+	if (bSuccess)
+	{
+		// write BOM
+		if (bWriteBOM)
+			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+
+		// write data 
+		WideCharToMultiByte(CP_UTF8, flags, (pszBuf + nSizeOldBOM), nchars,
+			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
+		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
+	}
+	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+
+	nFileChanged ++;
+	return bSuccess;
+}
+/**
+ * @brief  From UCS-2BE to 8-bit (or UTF-8)
+ *
+ * (No other file conversions are done here; 
+ * (UCS-2LE is the Windows standard Unicode encoding)
+ *
+ * Returns FALSE if file is Unicode but opening it fails.
+ * Returns FALSE if file has Unicode BOM but is not Ansi.
+ * Returns TRUE if file is not Unicode, or if converted file successfully.
+ */
+BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+{
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(filepath))
+		return FALSE; // error
+	if (!ufile.IsUnicode())
+	{
+		// Finished with examing file contents
+		ufile.Close();
+		return FALSE; // no ansi file
+	}
+
+	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
+	// Finished with examing file contents
+	ufile.Close();
+
+	// UCS-2BE to 8-bit (or UTF-8)
+	if (unicoding != ucr::UCS2BE)
+		return FALSE;
+
+	// Init filedataIn struct and open file as memory mapped (input)
+	BOOL bSuccess;
+	MAPPEDFILEDATA fileDataIn = {0};
+	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
+	fileDataIn.bWritable = FALSE;
+	fileDataIn.dwOpenFlags = OPEN_EXISTING;
+	bSuccess = files_openFileMapped(&fileDataIn);
+	if (!bSuccess)
+		return FALSE;
+
+	char * pszBuf = (char *)fileDataIn.pMapBase;
+	UINT nBufSize = fileDataIn.dwSize;
+
+	// first pass : get the size of the destination file
+	UINT nSizeOldBOM = 2;
+	UINT nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
+
+	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
+	DWORD flags =0;
+	UINT nDstSize;
+	char *szTemp = new char[nDstSize]; 
+
+	// simple byte swap BE->LE
+	for (int i = 0; i < nDstSize * 2; i += 2)
+	{
+		// Byte-swap into destination
+		szTemp[i] = pszBuf[i + 1];
+		szTemp[i + 1] = pszBuf[i];
+	}
+
+	//now convert to unicode UTF8
+	nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+
+	// create the destination file
+	MAPPEDFILEDATA fileDataOut = {0};
+	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst) + 1);
+	fileDataOut.bWritable = TRUE;
+	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
+	fileDataOut.dwSize = nDstSize + nSizeBOM;
+	bSuccess = files_openFileMapped(&fileDataOut);
+
+	// second pass : write the file
+	if (bSuccess)
+	{
+		// write BOM
+		if (bWriteBOM)
+			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+
+		// write data 
+		WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars,
+			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
+		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
+	}
+	delete [] szTemp;
+	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+
+	nFileChanged++;
+	return bSuccess;
+}

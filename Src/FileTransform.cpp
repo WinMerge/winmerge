@@ -483,7 +483,7 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	BOOL bSuccess = OlecharToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
+	BOOL bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
 	if (!bSuccess)
 		return FALSE;
 
@@ -579,4 +579,163 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int 
 
 	return bChanged;
 }
+////////////////////////////////////////////////////////////////////////////////
 
+// for OLECHAR files, transform to UTF8 for diffutils
+// convert all Ansi or unicode-files to UTF8 
+// if other file is unicode or uses a different codepage
+BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
+{
+	BOOL bSuccess = false;
+	String tempDir = env_GetTempPath();
+	if (tempDir.empty())
+		return FALSE;
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	if (tempFilepath.empty())
+		return FALSE;
+
+	int nFileChanged = 0;
+
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(filepath.c_str()))
+		return FALSE; // error
+	ufile.IsUnicode();
+	ucr::UNICODESET unicoding = ufile.GetUnicoding();
+	// Finished with examing file contents
+	ufile.Close();
+
+	// TODO : is it better with the BOM or without (just change the last argument)
+
+	switch (unicoding)
+	{
+	// AnsiToUTF16 only converts Ascii files to UTF-16
+	case ( ucr::NONE):
+		bSuccess = AnsiToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false); 
+		break;
+	case (ucr::UCS2LE):
+		bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		break;
+	case (ucr::UCS2BE):
+		bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		break;
+	case (ucr::UCS4LE):
+		bSuccess = FALSE;
+		break;
+	case (ucr::UCS4BE):
+		bSuccess = FALSE;
+		break;
+		
+	}
+
+	if (!bSuccess)
+		return FALSE;
+
+	if (nFileChanged)
+	{
+		// we do not overwrite so we delete the old file
+		if (bMayOverwrite)
+		{
+			if (!::DeleteFile(filepath.c_str()))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					filepath.c_str(), GetSysError(GetLastError())));
+			}
+		}
+		// and change the filepath if everything works
+		filepath = tempFilepath;
+	}
+	else
+	{
+		if (!::DeleteFile(tempFilepath.c_str()))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				tempFilepath.c_str(), GetSysError(GetLastError())));
+		}
+	}
+	return TRUE;
+}
+
+/**
+ * @brief check for both are same (Ansi or UTF8)
+ * otherwise convert both to UTF8
+ * @param [in,out] filepath Most plugins change this filename
+ */
+BOOL Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,BOOL m_bPathsAreTemp)
+{
+	BOOL bSuccess = false;
+	int nFileChanged = 0;
+	//check first file for unicodeing
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(strFile1Temp.c_str()))
+		return FALSE; // error
+	ufile.IsUnicode();
+	ucr::UNICODESET unicoding1 = ufile.GetUnicoding();
+	// Finished with examing file contents
+	ufile.Close();
+
+	//check second file for unicodeing
+	if (!ufile.OpenReadOnly(strFile2Temp.c_str()))
+		return FALSE; // error
+	ufile.IsUnicode();
+
+	ucr::UNICODESET unicoding2 = ufile.GetUnicoding();
+	ufile.Close();
+
+	if ((unicoding1==ucr::NONE)&&(unicoding2==ucr::NONE))
+		return TRUE; //OK do nothing both are ansi
+	if ((unicoding1==ucr::UTF8)&&(unicoding2==ucr::UTF8))
+		return TRUE; //OK do nothing both are UTF16
+	// now both are different, convert to UTF8
+	if (unicoding1!=ucr::UTF8)
+		FileTransform_ToUTF8(strFile1Temp, m_bPathsAreTemp);
+	if (unicoding2!=ucr::UTF8)
+		FileTransform_ToUTF8(strFile2Temp, m_bPathsAreTemp);
+	return TRUE;
+	}
+
+////////////////////////////////////////////////////////////////////////////////
+
+// for OLECHAR files, transform to UTF8 for diffutils
+// TODO : convert Ansi to UTF8 if other file is unicode or uses a different codepage
+BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite)
+{
+	BOOL bSuccess = false;
+
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(filepath.c_str()))
+		return FALSE; // error
+	ufile.IsUnicode();
+	ucr::UNICODESET unicoding = ufile.GetUnicoding();
+	// Finished with examing file contents
+	ufile.Close();
+
+	int nFileChanged = 0;
+
+	// TODO : is it better with the BOM or without (just change the last argument)
+
+	switch (unicoding)
+	{
+	// AnsiToUTF16 only converts Ascii files to UTF-16
+	case ( ucr::NONE):
+		bSuccess = AnsiToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false); 
+		break;
+	case (ucr::UCS2LE):
+		bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		break;
+	case (ucr::UCS2BE):
+		bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		break;
+	case (ucr::UCS4LE):
+		bSuccess = FALSE;
+		break;
+	case (ucr::UCS4BE):
+		bSuccess = FALSE;
+		break;
+		
+	}
+
+	if (!bSuccess)
+		return FALSE;
+
+	return TRUE;
+}

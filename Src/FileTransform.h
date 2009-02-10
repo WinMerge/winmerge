@@ -82,6 +82,7 @@ public:
 		// init functions as a valid "do nothing" unpacker
 		bWithFile = FALSE;
 		// and init bAutomatic flag and name according to global variable
+		bMode = 1; //allways on
 		if (bMode != PLUGIN_AUTO)
 		{
 			pluginName.erase();
@@ -213,21 +214,29 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
  * @param filepath : [in, out] Most plugins change this filename
  */
 BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite);
+/**
+ * @brief check for both are same (Ansi or UTF8)
+ * otherwise convert both to UTF8
+ * @param [in,out] filepath Most plugins change this filename
+ */
+BOOL Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,BOOL m_bPathsAreTemp);
+/**
+ * @brief Copy a Ansi or UCS2LE to UTF8)
+ */
+BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite);
 
 
 /**
- * @brief Transform OLECHAR files to UTF8
+ * @brief Transform all files to UTF8 aslong possible
  *
  * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is FALSE
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
  *
  * @return Tells if we can go on with diffutils
- *
- * @todo Convert Ansi files to UTF8 if other file is unicode or uses a different codepage
+ * convert all Ansi or unicode-files to UTF8 
+ * if other file is unicode or uses a different codepage
  */
-BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite);
-
-
+BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite);
 
 
 /**
