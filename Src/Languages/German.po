@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-11-27 23:03+0100\n"
+"PO-Revision-Date: 2009-02-10 21:59+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1301,7 +1301,7 @@ msgstr "Datei&zeit beim Dateivergleich bewahren"
 #: Merge.rc:774
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Öffnen-Dialog beim Programmstart anzeigen"
 
 #: Merge.rc:776
 #, c-format
@@ -1892,7 +1892,7 @@ msgstr "&Syntax hervorheben"
 #: Merge.rc:1192
 #, c-format
 msgid "&Automatic rescan"
-msgstr "&Automatisches Aktualisieren"
+msgstr "&Automatisch aktualisieren"
 
 #: Merge.rc:1194
 #, c-format
@@ -2602,12 +2602,12 @@ msgstr "&Plugins aktivieren"
 #: Merge.rc:1952
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Shell-Integration"
 
 #: Merge.rc:1674
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: Merge.rc:1675
 #, c-format
@@ -2622,17 +2622,17 @@ msgstr "Standardmäßig &Unterordner einbeziehen"
 #: Merge.rc:1679
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Zum Kontextmenü &hinzufügen"
 
 #: Merge.rc:1681
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Ordnervergleich"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "&Shell-Menü zum Kontextmenü hinzufügen"
 
 #. StringFileInfo.Block
 #: Merge.rc:1708
@@ -3243,7 +3243,7 @@ msgstr "Unicode"
 #: Merge.rc:1971
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1977
 #, c-format
@@ -3835,7 +3835,7 @@ msgstr ""
 #: Merge.rc:2155
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie das letzte Mal geprüft hat.\n\nMöchten Sie die Datei neu laden?"
 
 #: Merge.rc:2156
 #, c-format
@@ -3849,8 +3849,8 @@ msgstr "Speichere rechte Datei unter"
 
 #: Merge.rc:2158
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
-msgstr ""
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgstr "Die Datei\n%1\nist verlorengegangen. Bitte speichern Sie eine Kopie der Datei, um fortzufahren."
 
 #: Merge.rc:2164
 #, c-format
@@ -4199,12 +4199,12 @@ msgstr "Kopiere beide Pfade in die Zwischenablage"
 #: Merge.rc:2267
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Linkes Shell-Menü"
 
 #: Merge.rc:2268
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Rechtes Shell-Menü"
 
 #: Merge.rc:2274
 #, c-format
