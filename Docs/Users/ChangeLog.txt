@@ -8,6 +8,7 @@ WinMerge 2.13.3
   Bugfix: Don't show file name extension for folders (#2563314)
   Translation updates:
   - French (#2551043, #2551066)
+  - German (#2586497)
   - Greek (#2550911)
   - Swedish (#2557881)
 
