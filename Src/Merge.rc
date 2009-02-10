@@ -2156,7 +2156,7 @@ BEGIN
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
     IDS_SAVE_LEFT_AS        "Save Left File As"
     IDS_SAVE_RIGHT_AS       "Save Right File As"
-    IDS_FILE_DISAPPEARED    "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+    IDS_FILE_DISAPPEARED    "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 END
 
 // Editing/Merging file
