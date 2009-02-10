@@ -82,7 +82,6 @@ public:
 		// init functions as a valid "do nothing" unpacker
 		bWithFile = FALSE;
 		// and init bAutomatic flag and name according to global variable
-		bMode = 1; //allways on
 		if (bMode != PLUGIN_AUTO)
 		{
 			pluginName.erase();
