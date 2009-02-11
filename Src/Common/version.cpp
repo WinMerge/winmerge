@@ -186,7 +186,7 @@ String CVersionInfo::GetProductVersion() const
  * @brief Format version string from numbers.
  * Version number consists of four WORD (16-bit) numbers. This function
  * formats those numbers to string, where numbers are separated by
- * dots.
+ * dots. If the last number is zero it is not printed.
  * @param [in] First two (most significant) numbers for version number.
  * @param [in] Last two numbers for version number.
  * @return Formatted version string.
@@ -194,8 +194,16 @@ String CVersionInfo::GetProductVersion() const
 static String MakeVersionString(DWORD hi, DWORD lo)
 {
 	TCHAR ver[50];
-	_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
-			LOWORD(hi), HIWORD(lo), LOWORD(lo));
+	if (LOWORD(lo) == 0)
+	{
+		_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
+				LOWORD(hi), HIWORD(lo));
+	}
+	else
+	{
+		_sntprintf(ver, countof(ver) - 1, _T("%d.%d.%d.%d"), HIWORD(hi),
+				LOWORD(hi), HIWORD(lo), LOWORD(lo));
+	}
 	String sver(ver);
 	return sver;
 }

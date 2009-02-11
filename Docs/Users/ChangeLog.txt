@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.3
+  Use three-digit version numbers in GUI (#2585662)
   Bugfix: Could not copy files from right to left (#2556904)
   Bugfix: Don't show file name extension for folders (#2563314)
   Translation updates:
