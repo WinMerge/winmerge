@@ -321,7 +321,7 @@ String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
 		lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL,
 			&dwType, (LPBYTE) stringVal, &dwSize);
 		retString = stringVal;
-		delete stringVal;
+		delete [] stringVal;
 	}
 	if (lReturn == ERROR_SUCCESS)
 		return retString;
