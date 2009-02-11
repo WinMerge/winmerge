@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.0
   Translation updates:
+  - Dutch (#2586422)
   - German (#2586497)
   - Swedish (#2586274)
 

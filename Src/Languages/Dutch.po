@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-08-09 00:09+0000\n"
+"POT-Creation-Date: 2009-02-05 20:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Thomas De Rocker <thomasderocker@yahoo.com>\n"
 "Language-Team: Dutch <winmerge-translate@lists.sourceforge.net>\n"
@@ -273,7 +273,7 @@ msgstr "&Filters..."
 #: Merge.rc:449
 #, c-format
 msgid "&Generate Patch..."
-msgstr "Patch &Genereren..."
+msgstr "Patch &genereren..."
 
 #: Merge.rc:148
 #: Merge.rc:269
@@ -329,14 +329,14 @@ msgstr "&Debug"
 #: Merge.rc:470
 #, c-format
 msgid "&Load Config..."
-msgstr "Configuratie &Laden..."
+msgstr "Configuratie &laden..."
 
 #: Merge.rc:162
 #: Merge.rc:283
 #: Merge.rc:471
 #, c-format
 msgid "&Reset Options"
-msgstr "Instellingen &Resetten"
+msgstr "Instellingen &resetten"
 
 #: Merge.rc:164
 #: Merge.rc:285
@@ -357,7 +357,7 @@ msgstr "Sluiten"
 #: Merge.rc:476
 #, c-format
 msgid "Clo&se All"
-msgstr "Alles &Sluiten"
+msgstr "Alles &sluiten"
 
 #: Merge.rc:169
 #: Merge.rc:290
@@ -448,13 +448,13 @@ msgstr "I&nfo..."
 #: Merge.rc:337
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Links all&een lezen"
+msgstr "Links all&een-lezen"
 
 #: Merge.rc:201
 #: Merge.rc:338
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Re&chts alleen lezen"
+msgstr "Re&chts alleen-lezen"
 
 #: Merge.rc:203
 #, c-format
@@ -470,37 +470,37 @@ msgstr "&Alles selecteren\tCtrl+A"
 #: Merge.rc:215
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Toon &Identieke Items"
+msgstr "Toon &identieke items"
 
 #: Merge.rc:216
 #, c-format
 msgid "Show &Different Items"
-msgstr "Toon Verschillen&de Items"
+msgstr "Toon verschillen&de items"
 
 #: Merge.rc:217
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Toon Linkse Unieke Items"
+msgstr "Toon linkse unieke items"
 
 #: Merge.rc:218
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Toon Rechtse Unieke Items"
+msgstr "Toon rechtse unieke items"
 
 #: Merge.rc:219
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Toon Overgeslagen Items"
+msgstr "Toon overgeslagen items"
 
 #: Merge.rc:220
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Toon Binary Files"
+msgstr "Toon binary files"
 
 #: Merge.rc:222
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "Toon Verborgen Items"
+msgstr "Toon verborgen items"
 
 #: Merge.rc:224
 #, c-format
@@ -510,17 +510,17 @@ msgstr "Tree-&modus"
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr "Alle Submappen Uitklappen"
+msgstr "Alle submappen uitklappen"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "Alle Submappen Inklappen"
+msgstr "Alle submappen inklappen"
 
 #: Merge.rc:239
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Ve&rgelijk Statistieken"
+msgstr "Ve&rgelijk statistieken"
 
 #: Merge.rc:243
 #: Merge.rc:426
@@ -531,7 +531,7 @@ msgstr "Verver&sen\tF5"
 #: Merge.rc:244
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Selectie Ve&rversen\tCtrl+F5"
+msgstr "Selectie ve&rversen\tCtrl+F5"
 
 #: Merge.rc:246
 #: Merge.rc:428
@@ -572,19 +572,19 @@ msgstr "&Huidig verschil\tAlt+Enter"
 #: Merge.rc:435
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "&Laatste Verschil\tAlt+End"
+msgstr "&Laatste verschil\tAlt+End"
 
 #: Merge.rc:257
 #: Merge.rc:437
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Kopieer naar &Rechts\tAlt+Right"
+msgstr "Kopieer naar &rechts\tAlt+Right"
 
 #: Merge.rc:258
 #: Merge.rc:438
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Kopieer naar &Links\tAlt+left"
+msgstr "Kopieer naar &links\tAlt+left"
 
 #: Merge.rc:260
 #, c-format
@@ -601,7 +601,7 @@ msgstr "&Kolommen aanpassen..."
 #: Merge.rc:450
 #, c-format
 msgid "Generate &Report..."
-msgstr "&Rapport Genereren..."
+msgstr "&Rapport genereren..."
 
 #: Merge.rc:321
 #, c-format
@@ -703,7 +703,7 @@ msgstr "Pl&akken\tCtrl+V"
 #: Merge.rc:362
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Selecteer Regelverschillen\tF4"
+msgstr "Selecteer regelverschillen\tF4"
 
 #: Merge.rc:365
 #, c-format
@@ -734,7 +734,7 @@ msgstr "Geavanceerd"
 #: Merge.rc:375
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "&Kopieer Met Regelnummers\tCtrl+Shift+C"
+msgstr "&Kopieer met regelnummers\tCtrl+Shift+C"
 
 #: Merge.rc:378
 #, c-format
@@ -744,27 +744,27 @@ msgstr "&Bladwijzers"
 #: Merge.rc:380
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "Bladwijzer Aan/Uit\tCtrl+F2"
+msgstr "Bladwijzer aan/uit\tCtrl+F2"
 
 #: Merge.rc:381
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "Volge&nde Bladwijzer\tF2"
+msgstr "Volge&nde bladwijzer\tF2"
 
 #: Merge.rc:382
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "Vo&rige Bladwijzer\tShift+F2"
+msgstr "Vo&rige bladwijzer\tShift+F2"
 
 #: Merge.rc:383
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "Alle Bladwijzers Wissen"
+msgstr "Alle bladwijzers wissen"
 
 #: Merge.rc:385
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "&Ga Naar...\tCtrl+G"
+msgstr "&Ga naar...\tCtrl+G"
 
 #: Merge.rc:393
 #, c-format
@@ -795,7 +795,7 @@ msgstr "Syntaxmarkering"
 #: Merge.rc:404
 #, c-format
 msgid "&Lock Panes"
-msgstr "Vensters Vastzetten"
+msgstr "Vensters vastzetten"
 
 #: Merge.rc:405
 #, c-format
@@ -805,27 +805,27 @@ msgstr "Wit&ruimte tonen"
 #: Merge.rc:406
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Bekijk Regelverschillen"
+msgstr "Bekijk regelverschillen"
 
 #: Merge.rc:407
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Bekijk Regel&nummers"
+msgstr "Bekijk regel&nummers"
 
 #: Merge.rc:408
 #, c-format
 msgid "View &Margins"
-msgstr "Bekijk &Marges"
+msgstr "Bekijk &marges"
 
 #: Merge.rc:409
 #, c-format
 msgid "W&rap Lines"
-msgstr "Automatische Te&rugloop"
+msgstr "Automatische te&rugloop"
 
 #: Merge.rc:411
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Wissel Vensters"
+msgstr "Wissel vensters"
 
 #: Merge.rc:421
 #, c-format
@@ -835,7 +835,7 @@ msgstr "Verschilvenster"
 #: Merge.rc:422
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "Location &Pane"
+msgstr "Location &pane"
 
 #: Merge.rc:440
 #, c-format
@@ -944,7 +944,7 @@ msgstr "&Naam wijzigen"
 #: Merge.rc:527
 #, c-format
 msgid "&Hide Items"
-msgstr "Items Verbergen"
+msgstr "Items verbergen"
 
 #: Merge.rc:529
 #, c-format
@@ -1101,7 +1101,7 @@ msgstr "Medewerkers"
 #: Merge.rc:681
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Bestanden of Mappen Selecteren"
+msgstr "Bestanden of mappen selecteren"
 
 #: Merge.rc:684
 #: Merge.rc:1594
@@ -1299,12 +1299,12 @@ msgstr "Behoud bestandstijd bij bestandsvergelijking"
 #: Merge.rc:774
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Toon \"Bestanden of Mappen Selecteren\"-dialoog bij Opstarten"
+msgstr "Toon \"Bestanden of mappen selecteren\"-dialoog bij Opstarten"
 
 #: Merge.rc:776
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "Auto-Aanvullen O&penen-venster:"
+msgstr "Auto-aanvullen O&penen-venster:"
 
 #: Merge.rc:779
 #, c-format
@@ -1468,12 +1468,12 @@ msgstr "Regelfilters"
 #: Merge.rc:886
 #, c-format
 msgid "Enable Line Filters"
-msgstr "Activeer Regelfilters"
+msgstr "Activeer regelfilters"
 
 #: Merge.rc:889
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "Reguliere Expressies (één per regel):"
+msgstr "Reguliere expressies (één per regel):"
 
 #: Merge.rc:896
 #, c-format
@@ -1552,7 +1552,7 @@ msgstr "Woordverschil:"
 #: Merge.rc:967
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Geselect. Woordverschil:"
+msgstr "Geselect. woordverschil:"
 
 #: Merge.rc:974
 #: Merge.rc:1053
@@ -1710,12 +1710,12 @@ msgstr "Kolommen weergeven"
 #: Merge.rc:1079
 #, c-format
 msgid "Move &Up"
-msgstr "Verplaats Omhoog"
+msgstr "Verplaats omhoog"
 
 #: Merge.rc:1080
 #, c-format
 msgid "Move &Down"
-msgstr "Verplaats Omlaag"
+msgstr "Verplaats omlaag"
 
 #: Merge.rc:1090
 #, c-format
@@ -1745,7 +1745,7 @@ msgstr "Beschrijving:"
 #: Merge.rc:1113
 #, c-format
 msgid " Folder Compare Progress"
-msgstr "Voortgang Mapvergelijking"
+msgstr "Voortgang mapvergelijking"
 
 #: Merge.rc:1116
 #: Merge.rc:1894
@@ -1918,7 +1918,7 @@ msgstr "&Spaties invoegen"
 #: Merge.rc:1204
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Kleur van Regelverschillen"
+msgstr "Kleur van regelverschillen"
 
 #: Merge.rc:1206
 #, c-format
@@ -2015,7 +2015,7 @@ msgstr "Tekenset"
 #: Merge.rc:1268
 #, c-format
 msgid "Default Codepage"
-msgstr "Standaard Codetabel"
+msgstr "Standaard codetabel"
 
 #: Merge.rc:1269
 #, c-format
@@ -2235,12 +2235,12 @@ msgstr "Vet"
 #: Merge.rc:1416
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Directory Compare Report"
+msgstr "Mapvergelijkingsrapport"
 
 #: Merge.rc:1419
 #, c-format
 msgid "Report &File:"
-msgstr "Rapporteer &Bestand"
+msgstr "Rapporteer &bestand"
 
 #: Merge.rc:1422
 #: Merge.rc:1596
@@ -2258,12 +2258,12 @@ msgstr "&Stijl:"
 #: Merge.rc:1426
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "Naar Klembord Kopiëren"
+msgstr "Naar klembord kopiëren"
 
 #: Merge.rc:1434
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "Gedeelde of Persoonlijke Filter"
+msgstr "Gedeelde of persoonlijke filter"
 
 #: Merge.rc:1437
 #, c-format
@@ -2273,12 +2273,12 @@ msgstr "Welk type filter wilt u maken?"
 #: Merge.rc:1439
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "Gedeelde Filter (voor alle gebruikers op deze pc)"
+msgstr "Gedeelde filter (voor alle gebruikers op deze pc)"
 
 #: Merge.rc:1441
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "Private Filter (alleen voor huidige gebruiker)"
+msgstr "Persoonlijke filter (alleen voor huidige gebruiker)"
 
 #: Merge.rc:1449
 #: Merge.rc:1950
@@ -2393,12 +2393,12 @@ msgstr "(Aanpassingen)"
 #: Merge.rc:1523
 #, c-format
 msgid "Select Codepage for"
-msgstr "Selecteer Codetabel voor"
+msgstr "Selecteer codetabel voor"
 
 #: Merge.rc:1524
 #, c-format
 msgid "&File Loading:"
-msgstr "Bestanden Laden:"
+msgstr "Bestanden laden:"
 
 #: Merge.rc:1526
 #: Merge.rc:1529
@@ -2409,7 +2409,7 @@ msgstr "..."
 #: Merge.rc:1527
 #, c-format
 msgid "File &Saving:"
-msgstr "Bestanden Op&slaan:"
+msgstr "Bestanden op&slaan:"
 
 #: Merge.rc:1530
 #, c-format
@@ -2430,7 +2430,7 @@ msgstr "Annuleren"
 #: Merge.rc:1539
 #, c-format
 msgid "Test Filter"
-msgstr "Test Filter"
+msgstr "Test filter"
 
 #: Merge.rc:1542
 #, c-format
@@ -2557,7 +2557,7 @@ msgstr "Voeg tijdstem&pel toe"
 #: Merge.rc:2243
 #, c-format
 msgid "Confirm Copy"
-msgstr "Bevestig Kopiëren"
+msgstr "Bevestig kopiëren"
 
 #: Merge.rc:1642
 #, c-format
@@ -2598,12 +2598,12 @@ msgstr "Plugins activeren"
 #: Merge.rc:1952
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Shell-integratie"
 
 #: Merge.rc:1674
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Verkenner"
 
 #: Merge.rc:1675
 #, c-format
@@ -2618,17 +2618,17 @@ msgstr "Submappen standaard bijvoegen"
 #: Merge.rc:1679
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Toevoegen &aan contextmenu"
 
 #: Merge.rc:1681
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Mappen vergelijken"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "&Shell-menu toevoegen aan contextmenu"
 
 #. StringFileInfo.Block
 #: Merge.rc:1708
@@ -2728,8 +2728,8 @@ msgid ""
 "Change the printing options\n"
 "Page Setup"
 msgstr ""
-"De paginainstellingen wijzigen.\n"
-"Paginainstellingen"
+"De pagina-instellingen wijzigen.\n"
+"Pagina-instellingen"
 
 #: Merge.rc:1762
 #, c-format
@@ -3009,7 +3009,7 @@ msgid ""
 "Show or hide the tab bar\n"
 "Toggle TabBar"
 msgstr ""
-"Toon of verberg de tab-balk\n"
+"Tab-balk tonen of verbergen\n"
 "Tab-balk aan/uit"
 
 #: Merge.rc:1848
@@ -3552,12 +3552,12 @@ msgstr "Geen titel rechts"
 #: Merge.rc:2076
 #, c-format
 msgid "Theirs File"
-msgstr "Hun Bestand"
+msgstr "Hun bestand"
 
 #: Merge.rc:2077
 #, c-format
 msgid "Mine File"
-msgstr "Mijn Bestand"
+msgstr "Mijn bestand"
 
 #: Merge.rc:2083
 #, c-format
@@ -3811,7 +3811,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plug-in '%2' kan de wijzigingen aan de linker kant niet opslaan in '%1'.\n"
+"Plugin '%2' kan de wijzigingen aan de linker kant niet opslaan in '%1'.\n"
 "\n"
 "Het originele bestand zal niet worden gewijzigd.\n"
 "\n"
@@ -3826,7 +3826,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plug-in '%2' kan de wijzigingen aan de rechter kant niet opslaan in '%1'.\n"
+"Plugin '%2' kan de wijzigingen aan de rechter kant niet opslaan in '%1'.\n"
 "\n"
 "Het originele bestand zal niet worden gewijzigd.\n"
 "\n"
@@ -3883,8 +3883,14 @@ msgstr "Rechter bestand opslaan als"
 
 #: Merge.rc:2158
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
 msgstr ""
+"Het bestand\n"
+"%1\n"
+"is verdwenen. Sla een kopie van het bestand op om door te gaan."
 
 #: Merge.rc:2164
 #, c-format
@@ -4233,12 +4239,12 @@ msgstr "Padnamen van beide kanten naar het klembord kopiëren"
 #: Merge.rc:2267
 #, c-format
 msgid "Left Shell menu"
-msgstr "Linker Shellmenu"
+msgstr "Linker shellmenu"
 
 #: Merge.rc:2268
 #, c-format
 msgid "Right Shell menu"
-msgstr "Rechter Shellmenu"
+msgstr "Rechter shellmenu"
 
 #: Merge.rc:2274
 #, c-format
@@ -4288,7 +4294,7 @@ msgstr "Map"
 #: Merge.rc:2290
 #, c-format
 msgid "Comparison result"
-msgstr "Vergelijkings resultaat"
+msgstr "Vergelijkingsresultaat"
 
 #: Merge.rc:2291
 #, c-format
@@ -4318,12 +4324,12 @@ msgstr "Grootte rechts"
 #: Merge.rc:2296
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Rechtse Grootte (Kort)"
+msgstr "Grootte rechts (Kort)"
 
 #: Merge.rc:2297
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Linkse Grootte (Kort)"
+msgstr "Grootte links (Kort)"
 
 #: Merge.rc:2303
 #, c-format
@@ -4750,7 +4756,7 @@ msgstr ""
 #: Merge.rc:2432
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
-msgstr "Waarschuwing: Bestanden gebruiken verschillende coderingen, links=%s en rechts=%s, en samenvoegen kan leiden tot verlies van informatie."
+msgstr "Waarschuwing: bestanden gebruiken verschillende coderingen, links=%s en rechts=%s, en samenvoegen kan leiden tot verlies van informatie."
 
 #: Merge.rc:2433
 #, c-format
@@ -4815,7 +4821,7 @@ msgstr "Patch-bestand met succes weggeschreven."
 #: Merge.rc:2470
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1e item niet gevonden! (is het een map?)"
+msgstr "1ste item niet gevonden! (is het een map?)"
 
 #: Merge.rc:2471
 #, c-format
