@@ -7,6 +7,7 @@ WinMerge 2.13.3
   Use three-digit version numbers in GUI (#2585662)
   Bugfix: Could not copy files from right to left (#2556904)
   Bugfix: Don't show file name extension for folders (#2563314)
+  Bugfix: Help window opened from WinMerge was modal (#2590079)
   Translation updates:
   - French (#2551043, #2551066)
   - German (#2586497)
