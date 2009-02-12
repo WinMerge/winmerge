@@ -9,6 +9,7 @@ WinMerge 2.13.3
   Bugfix: Don't show file name extension for folders (#2563314)
   Bugfix: Help window opened from WinMerge was modal (#2590079)
   Translation updates:
+  - Dutch (#2590430)
   - French (#2551043, #2551066)
   - German (#2586497)
   - Greek (#2550911)
