@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.0
+  Bugfix: Help window opened from WinMerge was modal (#2590079)
   Translation updates:
   - Dutch (#2586422)
   - German (#2586497)
