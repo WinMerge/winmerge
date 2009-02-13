@@ -1302,10 +1302,10 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ )
     {
       nPosition++;
       vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
-      while (iter != m_aUndoBuf.begin () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
+      while (iter != m_aUndoBuf.end () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
         {
-          --iter;
-          --nPosition;
+          ++iter;
+          ++nPosition;
         }
     }
   if (nPosition >= m_aUndoBuf.size ())
