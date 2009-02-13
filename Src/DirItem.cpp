@@ -22,9 +22,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <tchar.h>
 #include "UnicodeString.h"
 #include "coretools.h"
 #include "DirItem.h"
