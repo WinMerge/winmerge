@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-05-04 22:14+0100\n"
-"Last-Translator: Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>\n"
+"PO-Revision-Date: 2009-02-13 09:15+0100\n"
+"Last-Translator: Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1250\n"
@@ -286,7 +286,7 @@ msgstr "Doda&ci"
 #: Merge.rc:454
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Popis..."
 
 #: Merge.rc:152
 #: Merge.rc:273
@@ -399,7 +399,7 @@ msgstr "&Pomoæ"
 #: Merge.rc:486
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge Pomoæ\tF1"
 
 #: Merge.rc:179
 #: Merge.rc:300
@@ -504,17 +504,17 @@ msgstr "Prikaži skri&vene stavke"
 #: Merge.rc:224
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "Prikaz &stabla"
 
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "&Otvori sve podmape"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "&Zatvori sve podmape"
 
 #: Merge.rc:239
 #, c-format
@@ -1303,7 +1303,7 @@ msgstr "&Zadrži oznake vremena i datuma u usporedbi"
 #: Merge.rc:775
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Pri pokretanju prikaži dijalog\"Odabir datoteke ili mape\""
 
 #: Merge.rc:777
 #, c-format
@@ -2028,8 +2028,12 @@ msgstr "Odaberite standardnu kodnu stranicu za uèitanje ne-Unicode datoteka:"
 
 #: Merge.rc:1272
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Odredi info kodne stranice za datoteke: .html, .rc, .xml \n"
+"Nije potrebno ponovno pokretanje"
 
 #: Merge.rc:1275
 #, c-format
@@ -2044,7 +2048,7 @@ msgstr "Prema korisnikovom suèelju WinMerge-a"
 #: Merge.rc:1279
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Kodna stranica prema želji:"
 
 #: Merge.rc:1287
 #, c-format
@@ -2138,8 +2142,12 @@ msgstr "Staza do dodataka:"
 
 #: Merge.rc:1321
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr "Ne prikazuj &više ovu poruku.\n(Uvijek je dostupna preko izbornika pomoæi.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
+msgstr ""
+"Ne prikazuj &više ovu poruku.\n"
+"(Uvijek je dostupna preko izbornika pomoæi.)"
 
 #: Merge.rc:1325
 #, c-format
@@ -2579,23 +2587,23 @@ msgstr "Ne"
 #: Merge.rc:1658
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Dodaci"
 
 #: Merge.rc:1661
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "&Omoguæi dodatke"
 
 #: Merge.rc:1672
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Shell integracija"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Explorer"
 
 #: Merge.rc:1676
 #, c-format
@@ -2610,17 +2618,17 @@ msgstr "Uvijek ukljuèi i &podmape"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Dodaj u kontekstni izbornik"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Usporedba mapa"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Dodaj &Shall izbornik u kontekstni izbornik"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
@@ -2758,17 +2766,17 @@ msgstr "Ponovo prikaži sve skrivene stsvke"
 #: Merge.rc:1771
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "Zatvori prikaz stabla"
 
 #: Merge.rc:1772
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Otvara sve podmape"
 
 #: Merge.rc:1773
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "Zatvara sve podmape"
 
 #: Merge.rc:1779
 #, c-format
@@ -3074,13 +3082,41 @@ msgstr ""
 
 #: Merge.rc:1881
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
-msgstr "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge Usporedba datoteka"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge Usporedba datoteka"
 
 #: Merge.rc:1882
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
-msgstr "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Usporedba mapa"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Usporedba mapa"
 
 #: Merge.rc:1889
 #, c-format
@@ -3100,8 +3136,12 @@ msgstr "Desni klik na stazu koju trba kopirati"
 
 #: Merge.rc:1909
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr "Razvojni tim:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgstr ""
+"Razvojni tim:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1910
 #, fuzzy, c-format
@@ -3231,7 +3271,7 @@ msgstr "Unicode"
 #: Merge.rc:1972
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1978
 #, c-format
@@ -3475,13 +3515,19 @@ msgstr "Algoritam"
 
 #: Merge.rc:2060
 #, c-format
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
+"Filtari su dograðeni. Želite li osvježiti sve otvorene usporedbe?\n"
+"\n"
+"Ako odaberete 'Ne', to možete uæiniti i kasnije.."
 
 #: Merge.rc:2067
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Staza do SS.EXE:"
 
 #: Merge.rc:2073
 #, c-format
@@ -3566,12 +3612,12 @@ msgstr "Stvaranje izvještaja..."
 #: Merge.rc:2094
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Poništenje zadnje operacije..."
 
 #: Merge.rc:2095
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Ponavljanje prethodne operacije..."
 
 #: Merge.rc:2101
 #, c-format
@@ -3637,17 +3683,17 @@ msgstr "Izbor mape"
 #: Merge.rc:2123
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Izbor dviju datoteka ili mapa za usporedbu."
+msgstr "Odabir dvije datoteke ili mape za usporedbu."
 
 #: Merge.rc:2124
 #, c-format
 msgid "Left path is invalid!"
-msgstr "Lijeva staza je kriva!"
+msgstr "Nedostaje staza do lijeve datoteke!"
 
 #: Merge.rc:2125
 #, c-format
 msgid "Right path is invalid!"
-msgstr "Desna staza je kriva!"
+msgstr "Nedostaje staza do desne datoteke!"
 
 #: Merge.rc:2126
 #, c-format
@@ -3694,8 +3740,14 @@ msgstr "Ne mogu podjeliti konfliktnu datoteku."
 
 #: Merge.rc:2138
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
-msgstr "Datoteka\n%1\nnije konfliktna."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"Datoteka\n"
+"%1\n"
+"nije konfliktna."
 
 #: Merge.rc:2144
 #, c-format
@@ -3808,8 +3860,18 @@ msgstr ""
 
 #: Merge.rc:2156
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"Drugi program je izmijenio datoteku\n"
+"%1\n"
+"od zadnjeg WinMerge pregleda.\n"
+"\n"
+"Želite li ponovno uèitanje datoteke?"
 
 #: Merge.rc:2157
 #, c-format
@@ -3823,8 +3885,14 @@ msgstr "Pohrani desnu datoteku kao"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
 msgstr ""
+"Datoteka\n"
+"%1\n"
+"je nestala. Za nastavak, pohranite kopiju."
 
 #: Merge.rc:2165
 #, c-format
@@ -4097,17 +4165,17 @@ msgstr ""
 #: Merge.rc:2242
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Premjestiti?"
 
 #: Merge.rc:2243
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Premjestiti %d stavku?"
 
 #: Merge.rc:2245
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Potvrdite premještanje"
 
 #: Merge.rc:2251
 #, c-format
@@ -4172,12 +4240,12 @@ msgstr "Kopiraj staze obiju strana u meðumemoriju"
 #: Merge.rc:2268
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Lijevi Shell izbornik"
 
 #: Merge.rc:2269
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Desni Shell izbornik"
 
 #: Merge.rc:2275
 #, c-format
@@ -4388,7 +4456,7 @@ msgstr "Datoteke su razlièite"
 #: Merge.rc:2339
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Mape su razlièite"
 
 #: Merge.rc:2340
 #, c-format
@@ -4408,12 +4476,12 @@ msgstr "Greška"
 #: Merge.rc:2344
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Tekstovi su identièni"
 
 #: Merge.rc:2349
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Tekstovi su razlièiti"
 
 #: Merge.rc:2355
 #, c-format
@@ -4636,8 +4704,14 @@ msgstr ""
 
 #: Merge.rc:2422
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr "Reci završavaju na razlièit naèin (Windows/Unix/Mac) u datoteci '%1'.\n Prema postavkama, promijenit æe se kako je odabrano.\n Izmijeniti ovu postavku i zadržati razlièit naèin završetaka?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
+msgstr ""
+"Reci završavaju na razlièit naèin (Windows/Unix/Mac) u datoteci '%1'.\n"
+" Prema postavkama, promijenit æe se kako je odabrano.\n"
+" Izmijeniti ovu postavku i zadržati razlièit naèin završetaka?"
 
 #: Merge.rc:2423
 #, c-format
@@ -4656,8 +4730,18 @@ msgstr "Ne mogu otvoriti binarnu datoteku u ureðivaèu"
 
 #: Merge.rc:2426
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "Mapa postoji samo na jednoj strani i ne može se otvoriti.\n\nŽelite li stvoriti mapu:\n%1\nna drugoj strani i otvoriti je?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
+msgstr ""
+"Mapa postoji samo na jednoj strani i ne može se otvoriti.\n"
+"\n"
+"Želite li stvoriti mapu:\n"
+"%1\n"
+"na drugoj strani i otvoriti je?"
 
 #: Merge.rc:2432
 #, c-format
@@ -5305,22 +5389,22 @@ msgstr " PB"
 #: Merge.rc:2655
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: Merge.rc:2657
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "Raspakiravaè"
 
 #: Merge.rc:2658
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "Prediffer"
 
 #: Merge.rc:2659
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "Ureðivaè skripti"
 
 #: Merge.rc:2666
 #, c-format
@@ -5345,12 +5429,12 @@ msgstr "Pohrani desnu datoteku pod nazivom..."
 #: Merge.rc:2670
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "Izmjena lijeve datoteke/mapa je samo za èitanje"
 
 #: Merge.rc:2671
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "Izmjena desne datoteke/mapa je samo za èitanje"
 
 #: Merge.rc:2672
 #, c-format
@@ -5713,7 +5797,7 @@ msgstr "Stvaranje izvještaja iz usporedbe"
 #: Merge.rc:2756
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "Prikaži popis dobavljivih dodataka."
 
 #: Merge.rc:2757
 #, c-format
@@ -5752,8 +5836,12 @@ msgstr "Ponovo uèitaj sve dodatke (za znalce)"
 
 #: Merge.rc:2769
 #, c-format
-msgid "Activates next visible file\nActivate next File"
-msgstr "Aktiviranje slijedeæe datoteke - vidljiva\nAktiviraj slijedeæu datoteku"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
+msgstr ""
+"Aktiviranje slijedeæe datoteke - vidljiva\n"
+"Aktiviraj slijedeæu datoteku"
 
 #: Merge.rc:2770
 #, c-format
@@ -5762,8 +5850,12 @@ msgstr "Zatvori sve panele"
 
 #: Merge.rc:2776
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr "Prkaz WinMerge pomoæi\nWinMerge Pomoæ"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
+msgstr ""
+"Prkaz WinMerge pomoæi\n"
+"WinMerge Pomoæ"
 
 #: Merge.rc:2777
 #, c-format
@@ -5782,13 +5874,21 @@ msgstr "Osobni uradak: %1"
 
 #: Merge.rc:2780
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
-msgstr "Otvori datoteku napomena uz inaèicu\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
+msgstr ""
+"Otvori datoteku napomena uz inaèicu\n"
+"Release Notes"
 
 #: Merge.rc:2781
 #, c-format
-msgid "Opens the translations website\nTranslations"
-msgstr "OtvoriWeb lokaciju prevoditelja\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
+msgstr ""
+"OtvoriWeb lokaciju prevoditelja\n"
+"Translations"
 
 #: Merge.rc:2787
 #, c-format
@@ -5883,7 +5983,7 @@ msgstr "Popis zadnje korištenih"
 #: Merge.rc:2826
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Nije oznaèeno"
 
 #: Merge.rc:2827
 #, c-format
@@ -6038,7 +6138,7 @@ msgstr "TEX"
 #: Merge.rc:2857
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2858
 #, c-format

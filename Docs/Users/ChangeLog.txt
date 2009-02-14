@@ -10,6 +10,7 @@ WinMerge 2.13.3
   Bugfix: Help window opened from WinMerge was modal (#2590079)
   Bugfix: Crash in editor when undoing (#2590212)
   Translation updates:
+  - Croatian (#2596949)
   - Dutch (#2590430)
   - French (#2551043, #2551066)
   - German (#2586497)
