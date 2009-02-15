@@ -7,18 +7,14 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
+#include <windows.h>
+#include <tchar.h>
+#include <assert.h>
 #include <mbctype.h>
 #include "string_util.h"
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 using std::vector;
 
@@ -407,7 +403,7 @@ stringdiffs::PopulateDiffs()
 		if (!skipIt)
 		{
 			// Should never have a pair where both are missing
-			ASSERT(m_wdiffs[i]->start[0]>=0 || m_wdiffs[i]->start[1]>=0);
+			assert(m_wdiffs[i]->start[0]>=0 || m_wdiffs[i]->start[1]>=0);
 
 			// Store the diff[i] in the caller list (m_pDiffs)
 			wdiff *dr = new wdiff(*m_wdiffs[i]);
