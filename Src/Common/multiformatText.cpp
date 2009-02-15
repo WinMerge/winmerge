@@ -898,11 +898,10 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 
 	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
 	DWORD flags =0;
-	UINT nDstSize;
-	char *szTemp = new char[nDstSize]; 
+	char *szTemp = new char[nBufSize]; 
 
 	// simple byte swap BE->LE
-	for (int i = 0; i < nDstSize * 2; i += 2)
+	for (int i = 0; i < nBufSize; i += 2)
 	{
 		// Byte-swap into destination
 		szTemp[i] = pszBuf[i + 1];
@@ -910,7 +909,7 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 	}
 
 	//now convert to unicode UTF8
-	nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+	UINT nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
 
 	// create the destination file
 	MAPPEDFILEDATA fileDataOut = {0};
