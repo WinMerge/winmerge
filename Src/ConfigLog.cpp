@@ -659,7 +659,10 @@ static CString GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
 }
 
 /** 
- * @brief Parse Windows version data to string
+ * @brief Parse Windows version data to string.
+ * See info about how to determine Windows versions from URL:
+ * http://msdn.microsoft.com/en-us/library/ms724833(VS.85).aspx
+ * @return String describing Windows version.
  */
 CString CConfigLog::GetWindowsVer()
 {
@@ -694,7 +697,19 @@ CString CConfigLog::GetWindowsVer()
 		else if ( osvi.dwMajorVersion <= 4 )
 			sVersion = _T("Microsoft Windows NT ");
 		else if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
-			sVersion = _T("Microsoft Windows Vista ");
+		{
+			if (osvi.wProductType == VER_NT_WORKSTATION)
+				sVersion = _T("Microsoft Windows Vista ");
+			else
+				sVersion = _T("Microsoft Windows Server 2008 ");
+		}
+		else if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
+		{
+			if (osvi.wProductType == VER_NT_WORKSTATION)
+				sVersion = _T("Microsoft Windows 7 ");
+			else
+				sVersion = _T("Microsoft Windows Server 2008 R2 ");
+		}
 		else
 			sVersion.Format(_T("[? WindowsNT %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
