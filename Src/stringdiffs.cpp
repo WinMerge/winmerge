@@ -9,7 +9,7 @@
 
 #include "StdAfx.h"
 #include <mbctype.h>
-
+#include "string_util.h"
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"

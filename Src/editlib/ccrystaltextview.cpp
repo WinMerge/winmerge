@@ -105,6 +105,7 @@
 #include "SyntaxColors.h"
 #include "Ucs2Utf8.h"
 #include "unicoder.h"
+#include "string_util.h"
 #include "pcre.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage

@@ -29,6 +29,7 @@
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include "SyntaxColors.h"
+#include "string_util.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

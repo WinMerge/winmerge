@@ -107,13 +107,6 @@ enum MERGE_VIEW_ID
 /// Seconds ignored in filetime differences if option enabled
 static const UINT SmallTimeDiff = 2;
 
-// Miscellaneous functions defined in StdAfx.cpp
-
-int xisspecial (wint_t c);
-int xisalpha (wint_t c);
-int xisalnum (wint_t c);
-int xisspace (wint_t c);
-
 #include "UnicodeString.h"
 
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
