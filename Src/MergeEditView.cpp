@@ -2033,6 +2033,13 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Create the menu and populate it with the available functions
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
+
+	// Remove copying item copying from active side
+	if (m_nThisPane == 0) // left?
+		menu.RemoveMenu(ID_R2L, MF_BYCOMMAND);
+	else
+		menu.RemoveMenu(ID_L2R, MF_BYCOMMAND);
+
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 	theApp.TranslateMenu(menu.m_hMenu);
 

@@ -6,6 +6,8 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.3
   Use three-digit version numbers in GUI (#2585662)
   Detect Windows 7 and Windows 2008 in config log (#2599256)
+  Show only "Copy to other side" item in file compare
+    context menu (#2600787)
   Bugfix: Could not copy files from right to left (#2556904)
   Bugfix: Don't show file name extension for folders (#2563314)
   Bugfix: Help window opened from WinMerge was modal (#2590079)
