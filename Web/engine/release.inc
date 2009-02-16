@@ -25,6 +25,7 @@
       $this->_date = '';
       $this->_downloads = array();
       $this->_downloadsizes = array();
+      $this->_downloadsha1sums = array();
     }
 
     /**
