@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-12-06 10:06+0900\n"
+"PO-Revision-Date: 2009-02-16 23:52+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2599,12 +2599,12 @@ msgstr "プラグインを有効にする(&E)"
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "シェル統合"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "エクスプローラ"
 
 #: Merge.rc:1676
 #, c-format
@@ -2619,17 +2619,17 @@ msgstr "「サブフォルダを含む」をデフォルトとする(&C)"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "コンテキストメニューに追加(&A)"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "フォルダ比較"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "シェルメニューをコンテキストメニューに追加(&S)"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
@@ -3881,8 +3881,14 @@ msgstr "名前を付けて右側のファイルを保存"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
 msgstr ""
+"ファイル\n"
+"%1\n"
+"は消滅しました。続行するためにファイルのコピーを保存してください。"
 
 #: Merge.rc:2165
 #, c-format

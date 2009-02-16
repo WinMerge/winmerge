@@ -18,6 +18,7 @@ WinMerge 2.13.3
   - French (#2551043, #2551066)
   - German (#2586497)
   - Greek (#2550911)
+  - Japanese (r6461)
   - Swedish (#2557881)
 
 WinMerge 2.13.2 - 2009-01-28 (r6395)
