@@ -1,62 +1,74 @@
 WINMERGE
 
-WinMerge est un logiciel libre pour comparer et fusionner des fichiers
-qui tourne sur toutes versions modernes de Windows. Certaines caracté-
-ristiques requièrent des installations ou des composantes additionnelles.
+WinMerge est un outil en logiciel libre pour comparer et fusionner des fichiers
+sur Windows. WinMerge peut comparer des répertoires et des fichiers en présentant 
+les différences de texte dans un format visuel facile à comprendre et manipuler. 
+WinMerge peut être utilisé comme un outil externe de comparaison/fusion ou 
+comme application autonome.
+
+WinMerge possède de nombreuses fonctionnalités utiles pour rendre la comparaison, 
+la synchronisation, et la fusion aussi facile et pratique que possible. Plusieurs 
+langages de programmation et autres formats de fichiers ont une syntaxe mise en 
+évidence.
 
 La dernière version de WinMerge et d'autre information sont disponible a:
 http://winmerge.org
 
-Pour débuter rapidement avec WinMerge:
-Lisez le manuel en ligne au chapitre du démarrage rapide de WinMerge:
+Démarrage rapide
+================
+Pour apprendre comment effectuer des opérations de base après l'installation
+de WinMerge, cliquez sur Aide > Rubrique d'aide WinMerge et accédez à la 
+rubrique Démarrage rapide. Ou lisez le manuel en ligne à:
 http://winmerge.org/docs/manual/QuickStart.html
 
-Documentation HTML:
-Elle est disponible en ligne à
+Aide WinMerge
+=============
+L'aide WinMerge est installé localement comme un fichier d'aide HTML de 
+Microsoft, WinMerge.chm, lorsque vous installez WinMerge. Pour ouvrir l'aide, 
+cliquez sur Aide > Rubrique d'aide WinMerge ou appuyez sur F1 dans la fenêtre
+WinMerge. Avec la ligne de commande, lancez l'exécutable WinMerge 
+suivi du commutateur d'aide /?.
+
+Vous pouvez aussi consulter la version en ligne de l'aide WinMerge à:
 http://winmerge.org/docs/manual/
-Il est également possible de l'installée localement (si désiré) 
-et de la télécharger séparément à l'adresse (voir la documentation):
-http://winmerge.org/
 
-Support d'archive:
-WinMerge utilise 7-Zip pour le support d'archivage de fichier. 
-7-Zip (http://www.7-zip.org) est un logiciel d'archivage libre.
-Pour installer le support d'archive de fichier, télécharger le programme 
-d'installation plugiciel 7-Zip à l'adresse http://winmerge.org/.
 
-Installer le support d'archive:
-Il est recommandé d'installer l'application 7-Zip. Si cela ne peut être 
-fait, le programme d'installation de plugiciel 7-Zip peut installer
-seulement les fichiers requis pour permetre le support d'archivage de 
-fichier. Notez bien que cela NE PERMET PAS l'usage complet de 7-Zip, 
-seulement le support d'archivage de fichier pour WinMerge.
+Support d'archive
+=================
+WinMerge utilise le logiciel libre 7-Zip (http://www.7-zip.org) comme 
+l'outil d'archivage pour le support d'archivage de fichier. 
 
-Support de scripts:
-Si vous souhaitez travailler avec les scripts vous devrez installer Windows
-Scripting Host. Si vous éprouvez des difficultées relatives à vos
-scripts veuillez visiter
-http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-pour vous assurer que le Scripting Host est: à jour et non-corrompu.
+Nous recommandons l'installation de l'application 7-Zip en  
+téléchargeant et exécutant le plugiciel d'installation 7-Zip depuis
+http://winmerge.org/downloads/
 
-Support:
-Les développeurs répondent aux questions dans les forums de discussion
-WinMerge de Sourceforge.net:
-http://sourceforge.net/forum/?group_id=13216
+Si vous ne pouvez pas installer l'outil 7-Zip pour une raison quelconque.
+Vous pouvez utiliser le plugiciel d'installation 7-Zip pour installer 
+uniquement les fichiers nécessaires au support d'archivage de fichier.
+Voir la rubrique d'aide "7-Zip et support d'archives" pour plus de détails.
 
-Bogues et nouvelles requêtes:
-Les bogues et suggestions de nouvelles requêtes doivent être transmis via
-l'outil de suivi (tracker) à sourceforge.net.
+Support WinMerge
+================
+Questions ou suggestions à propos de WinMerge? Une bonne place pour débuter 
+est le groupe de discussion WinMerge au http://forums.winmerge.org/. Les
+développeurs lisent et répondent fréquemment aux questions des deux forums.
+Utilisez le forum de discussion ouverte pour des questions d'ordre général 
+comme l'utilisation. Utilisez le forum des développeurs pour des questions
+de développement WinMerge.
 
-Suivi des Bogues:
-http://sourceforge.net/tracker/?group_id=13216&atid=113216
-Lorsque vous rapporter un bogue, veuillez nous indiquer le numéro de version 
-de WinMerge! A partir de la version 2.2.0 et plus récent vous pouvez obtenir
-une trace de configuration via le menu Aide/Configuration.
-Veuillez joindre cette information (comme pièce-jointe) à votre rapport.
-Elle contient une mine d'informations pour les développeurs.
 
-Suivi des nouvelles requêtes:
-http://sourceforge.net/tracker/?group_id=13216&atid=363216
+Bogues et nouvelles requêtes
+============================
+Si un problème n'est pas résolu dans les forums WinMerge, vérifiez le traqueur 
+de projet à: http://project.winmerge.org/, et cliquez sur un des lien du menu 
+du traqueur, comme bogues et nouvelles requêtes, où vous pouvez consulter ou 
+soumettre des articles.
+
+Si vous soumettez un bogue, veuillez inclure le numéro de version de WinMerge
+dans votre rapport. Vous pouvez générer un journal de configuration en cliquant 
+sur Aide > Configuration. S'il vous plaît joignez le journal de configuration 
+à votre rapport de bogue, il contient beaucoup d'informations utiles 
+pour les développeurs.
 
 
 - Les Développeurs de WinMerge

@@ -15,7 +15,7 @@ WinMerge 2.13.3
   Translation updates:
   - Croatian (#2596949)
   - Dutch (#2590430)
-  - French (#2551043, #2551066)
+  - French (#2551043, #2551066, #2603591)
   - German (#2586497)
   - Greek (#2550911)
   - Japanese (r6461)
