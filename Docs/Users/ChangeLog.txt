@@ -12,6 +12,8 @@ WinMerge 2.13.3
   Bugfix: Don't show file name extension for folders (#2563314)
   Bugfix: Help window opened from WinMerge was modal (#2590079)
   Bugfix: Crash in editor when undoing (#2590212)
+  Bugfix: Browse button in Option dialog reverted to previous settings
+    (#2606153)  
   Translation updates:
   - Croatian (#2596949)
   - Dutch (#2590430)

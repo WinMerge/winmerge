@@ -115,7 +115,6 @@ void CPropBackups::OnBnClickedBackupBrowse()
 	CString path;
 	if (SelectFolder(path, NULL, 0, GetSafeHwnd()))
 	{
-		m_sGlobalFolder = path;
-		UpdateData(FALSE);
+		SetDlgItemText(IDC_BACKUP_FOLDER, path);
 	}
 }
