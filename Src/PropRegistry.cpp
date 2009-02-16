@@ -140,8 +140,7 @@ void CPropRegistry::OnBrowseEditor()
 	CString path;
 	if (SelectFile(GetSafeHwnd(), path, NULL, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
 	{
-		m_strEditorPath = path;
-		UpdateData(FALSE);
+		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
 	}
 }
 
@@ -151,8 +150,7 @@ void CPropRegistry::OnBrowseFilterPath()
 	CString path;
 	if (SelectFolder(path, NULL, IDS_OPEN_TITLE, GetSafeHwnd()))
 	{
-		m_strUserFilterPath = path;
-		UpdateData(FALSE);
+		SetDlgItemText(IDC_FILTER_USER_PATH, path);
 	}
 }
 
@@ -162,7 +160,6 @@ void CPropRegistry::OnBrowseTmpFolder()
 	CString path;
 	if (SelectFolder(path, NULL, NULL, GetSafeHwnd()))
 	{
-		m_tempFolder = path;
-		UpdateData(FALSE);
+		SetDlgItemText(IDC_TMPFOLDER_NAME, path);
 	}
 }

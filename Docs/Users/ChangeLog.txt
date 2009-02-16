@@ -7,6 +7,8 @@ WinMerge 2.12.0
   Detect Windows 7 and Windows 2008 in config log (#2599256)
   Bugfix: Help window opened from WinMerge was modal (#2590079)
   Bugfix: Crash in editor when undoing (#2590212)
+  Bugfix: Browse button in Option dialog reverted to previous settings
+    (#2606153)
   Translation updates:
   - Croatian (#2596949)
   - Dutch (#2586422, #2590430)
