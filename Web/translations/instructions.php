@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Translations instructions', TAB_TRANSLATIONS);
+  $page->printHead('Translations instructions', TAB_TRANSLATIONS);
   $instructions = $page->getContentFromHtmlFile('Translations.html', '#/winmerge/trunk/#si', '/winmerge/branches/R2_10/');
   if ($instructions == '') {
     print("<h2>Translations instructions</h2>\n");

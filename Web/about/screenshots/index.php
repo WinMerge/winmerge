@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('Screenshots from WinMerge features like file comparison, folder comparison results and location pane.');
   $page->setKeywords('WinMerge, screenshots, file comparison, open-dialog, folder comparison results, highlight line diff, location pane, splash screen');
-  $page->printHead('WinMerge: Screenshots', TAB_ABOUT);
+  $page->printHead('Screenshots', TAB_ABOUT);
 ?>
 <h2>Screenshots</h2>
 <div class="screenshots">

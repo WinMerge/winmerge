@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('Manuals and user\'s guides from older WinMerge versions.');
   $page->setKeywords('WinMerge, old, documentation, manual, user\'s guide');
-  $page->printHead('WinMerge: Older Documentation', TAB_DOCS);
+  $page->printHead(Older Documentation', TAB_DOCS);
 ?>
 <h2>Older Documentation</h2>
 <ul>

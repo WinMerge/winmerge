@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('Subscribe or unsubscribe to one of the following mailing lists: Announce, Support, User, Translate, Development and SVN');
   $page->setKeywords('WinMerge, mailing lists, announce, support, user, translate, development, SVN');
-  $page->printHead('WinMerge: Mailing Lists', TAB_SUPPORT);
+  $page->printHead('Mailing Lists', TAB_SUPPORT);
 ?>
 <h2>Mailing Lists</h2>
 <ul>

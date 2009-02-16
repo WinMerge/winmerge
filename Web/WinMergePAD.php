@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.');
   $page->setKeywords('WinMerge, PAD file, Portable Application Description');
-  $page->printHead('WinMerge: PAD File', TAB_HOME);
+  $page->printHead('PAD File', TAB_HOME);
 ?>
 <h2>PAD File</h2>
 <p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>

@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify them.');
   $page->setKeywords('WinMerge, license, open source, GNU General Public License, GPL, free software');
-  $page->printHead('WinMerge: License', TAB_ABOUT);
+  $page->printHead('License', TAB_ABOUT);
 ?>
 <h2>License</h2>
 <p>WinMerge is <a href="http://www.opensource.org/">Open Source</a> software under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>.</p>

@@ -4,7 +4,7 @@
 
   $page = new Page;
   $page->addRssFeed('status_trunk_rss.php');
-  $page->printHead('WinMerge: Translations Status (Trunk)', TAB_TRANSLATIONS);
+  $page->printHead('Translations Status (Trunk)', TAB_TRANSLATIONS);
   
   $status = $page->convertXml2Array('status_trunk.xml');
   $page->printRssHeading('Translations Status (Trunk)', 'status_trunk_rss.php');

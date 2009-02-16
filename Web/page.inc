@@ -32,7 +32,7 @@
      * Constructor
      */
     function Page() {
-      $this->_title = 'WinMerge';
+      $this->_title = '';
       $this->_charset = 'ISO-8859-1';
       $this->_description = '';
       $this->_keywords = '';
@@ -97,9 +97,7 @@
      * print the head from the page
      */
     function printHead($title = '', $tab = '', $onload = '') {
-      if ($title != '') {
-        $this->_title = $title;
-      }
+      $this->_title = $title;
       if ($tab != '') {
         $this->_tab = $tab;
       }
@@ -107,7 +105,12 @@
       $temp .= "  \"http://www.w3.org/TR/html4/loose.dtd\">\n";
       $temp .= "<html>\n\n";
       $temp .= "<head>\n";
-      $temp .= "  <title>" . $this->_title . "</title>\n";
+      if ($this->_title != '') {
+        $temp .= "  <title>" . $this->_title . " - WinMerge</title>\n";
+      }
+      else {
+        $temp .= "  <title>WinMerge</title>\n";
+      }
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
       if ($this->_description != '') {
         $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";

@@ -7,9 +7,9 @@
   $page->setDescription('Download the current WinMerge version ' . $stablerelease->getVersionNumber() . ', which was released at ' . $stablerelease->getDate() . '. For detailed info on what\'s new, read the change log and the release notes.');
   $page->setKeywords('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable');
   $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
-  $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
+  $page->printHead('Download WinMerge', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
 ?>
-<h2>Downloads</h2>
+<h2>Download WinMerge</h2>
 <h3>WinMerge <?php echo $stablerelease->getVersionNumber();?></h3>
 <?php $page->printDownloadNow(); ?>
 <p>The current WinMerge version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>

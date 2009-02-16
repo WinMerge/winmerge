@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('Documentation from WinMerge like manual, release notes, change log and development wiki.');
   $page->setKeywords('WinMerge, documentation, manual, release notes, known issues, change log, development wiki');
-  $page->printHead('WinMerge: Documentation', TAB_DOCS);
+  $page->printHead('Documentation', TAB_DOCS);
 ?>
 <h2>Documentation</h2>
 <h3><a href="manual/">Manual</a></h3>

@@ -6,7 +6,7 @@
   $page->setDescription('WinMerge is an Open Source differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle.');
   $page->setKeywords('WinMerge, free, open source, Windows, windiff, diff, merge, compare, tool, utility, text, file, folder, directory, compare files, compare folders, merge files, merge folders, diff tool, merge tool, compare tool');
   $page->addRssFeed('http://sourceforge.net/export/rss2_projnews.php?group_id=13216', 'Project News');
-  $page->printHead('WinMerge', TAB_HOME);
+  $page->printHead('', TAB_HOME);
   $stablerelease = $page->getStableRelease();
 ?>
 <div class="whatisbox">

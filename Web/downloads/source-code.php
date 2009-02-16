@@ -4,10 +4,10 @@
   $page = new Page;
   $page->setDescription('Download the source code of WinMerge, which is released under the GNU General Public License.');
   $page->setKeywords('WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN');
-  $page->printHead('WinMerge: Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
+  $page->printHead('Download Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
 ?>
-<h2>Source Code</h2>
+<h2>Download Source Code</h2>
 <p>WinMerge is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.</p>
 <div class="downloadmatrix">
 <ul>

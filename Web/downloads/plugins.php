@@ -4,9 +4,9 @@
   $page = new Page;
   $page->setDescription('Download additional plugins for WinMerge, like the 7-Zip plugin or the xdocdiff Plugin.');
   $page->setKeywords('WinMerge, free, download, plugins, plugin, plug-in, setup, installer, binaries, 7-Zip, xdocdiff, Word, Excel, PowerPoint, PDF');
-  $page->printHead('WinMerge: Plugins', TAB_DOWNLOADS);
+  $page->printHead('Download Plugins', TAB_DOWNLOADS);
 ?>
-<h2>Plugins</h2>
+<h2>Download Plugins</h2>
 <h3>7-Zip Plugin</h3>
 <p>This is the 7-Zip plugin for WinMerge and the current version <strong>DllBuild 0026</strong> was released at <strong>2007-12-23</strong>.</p>
 <div class="downloadmatrix">

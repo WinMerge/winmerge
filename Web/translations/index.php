@@ -4,7 +4,7 @@
   $page = new Page;
   $page->addRssFeed('status_branch_rss.php', 'Translations Status (Branch)');
   $page->addRssFeed('status_trunk_rss.php', 'Translations Status (Trunk)');
-  $page->printHead('WinMerge: Translations', TAB_TRANSLATIONS);
+  $page->printHead('Translations', TAB_TRANSLATIONS);
 ?>
 <h2>Translations</h2>
 <p>We currently have WinMerge translated into the languages listed below:</p>

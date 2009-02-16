@@ -6,7 +6,7 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Error 404 (Page Not Found)', TAB_HOME);
+  $page->printHead('Error 404 (Page Not Found)', TAB_HOME);
 ?>
 <h2>Page Not Found...</h2>
 <p>For some reason (mis-typed URL, faulty referral from another site, out-of-date search engine listing or we simply deleted a file) the page you were looking for could not be found.

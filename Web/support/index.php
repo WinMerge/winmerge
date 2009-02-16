@@ -5,7 +5,7 @@
   $page = new Page;
   $page->setDescription('The Open Discussion forum is the fastest way to get help. A other way is a subscription to the support mailing list.');
   $page->setKeywords('WinMerge, support, discussion forums, mailing lists, tracker, donate, bugs, support requests, patches, feature requests, todo, open source, sourceforge.net');
-  $page->printHead('WinMerge: Support', TAB_SUPPORT);
+  $page->printHead('Support', TAB_SUPPORT);
 ?>
 <h2>Support</h2>
 <p>The <a href="http://apps.sourceforge.net/phpbb/winmerge/viewforum.php?f=4">Open

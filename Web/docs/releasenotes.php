@@ -4,7 +4,7 @@
   $page = new Page;
   $page->setDescription('The release notes are a short summary of important changes, enhancements, bug fixes and known issues in the current WinMerge release.');
   $page->setKeywords('WinMerge, release notes, summary, changes, enhancements, bug fixes, known issues, release');
-  $page->printHead('WinMerge: Release Notes', TAB_DOCS);
+  $page->printHead('Release Notes', TAB_DOCS);
   $releasenotes = $page->getContentFromHtmlFile('ReleaseNotes.html', '#href="ChangeLog.txt"#si', 'href="changelog.php"');
   if ($releasenotes == '') {
     print("<h2>Release Notes</h2>\n");
