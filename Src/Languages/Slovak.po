@@ -3847,7 +3847,7 @@ msgstr "Uloi pravı súbor ako"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 msgstr ""
 
 #: Merge.rc:2165
