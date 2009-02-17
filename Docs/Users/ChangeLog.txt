@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.3
+WinMerge 2.13.3 - 2009-02-17 (r6479)
   Use three-digit version numbers in GUI (#2585662)
   Detect Windows 7 and Windows 2008 in config log (#2599256)
   Show only "Copy to other side" item in file compare
