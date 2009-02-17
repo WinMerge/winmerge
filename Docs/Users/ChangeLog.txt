@@ -23,6 +23,7 @@ WinMerge 2.13.3
   - Greek (#2550911)
   - Japanese (r6461)
   - Swedish (#2557881)
+  - Ukrainian (#2609242)
 
 WinMerge 2.13.2 - 2009-01-28 (r6395)
   Register.bat should use Find with full path (#2536582)
