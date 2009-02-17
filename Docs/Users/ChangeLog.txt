@@ -15,6 +15,7 @@ WinMerge 2.13.3
   Bugfix: Browse button in Option dialog reverted to previous settings
     (#2606153)  
   Translation updates:
+  - Chinese Traditional (#2608190)
   - Croatian (#2596949)
   - Dutch (#2590430)
   - French (#2551043, #2551066, #2603591)
