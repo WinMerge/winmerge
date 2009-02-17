@@ -319,7 +319,7 @@ CompanyName=Thingamahoochie Software
 TypicalInstallation=Installation Typique
 FullInstallation=Installation Complète
 CompactInstallation=Installation Compacte
-CustomInstallation=Installation Personalisée
+CustomInstallation=Installation Personnalisée
 
 ;Components
 AppCoreFiles=Fichiers Vitaux Winmerge
@@ -337,9 +337,9 @@ CzechLanguage=Menus et dialogues Tchécoslovaque
 DanishLanguage=Menus et dialogues Danois
 DutchLanguage=Menus et dialogues Néerlandais
 FrenchLanguage=Menus et dialogues Français
-GalicianLanguage=Galician menus and dialogs
+GalicianLanguage=Menus et dialogues Galicien
 GermanLanguage=Menus et dialogues Allemand
-GreekLanguage=Greek menus and dialogs
+GreekLanguage=Menus et dialogues Grec
 HungarianLanguage=Menus et dialogues Hongrois
 ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais
@@ -351,18 +351,18 @@ PortugueseLanguage=Menus et dialogues Portugais
 RomanianLanguage=Menus et dialogues Roumain
 RussianLanguage=Menus et dialogues Russe
 SlovakLanguage=Menus et dialogues Slovaque
-SlovenianLanguage=Slovenian menus and dialogs
+SlovenianLanguage=Menus et dialogues Slovène
 SpanishLanguage=Menus et dialogues Espagnol
 SwedishLanguage=Menus et dialogues Suédois
 TurkishLanguage=Menus et dialogues Turque
-UkrainianLanguage=Ukrainian menus and dialogs
+UkrainianLanguage=Menus et dialogues Ukrainien
 
 ;Tasks
 ExplorerContextMenu=&Permetre l'intégration au menu contextuel de l'explorateur
 IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
 IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
 IntegrateClearCase=Integrer avec Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=&Ajouter le répertoire WinMerge au chemin du système
 
 ;Icon Labels
 ReadMe=Lisez moi
