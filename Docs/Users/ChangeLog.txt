@@ -17,6 +17,7 @@ WinMerge 2.12.0
   - German (#2586497)
   - Japanese (r6456)
   - Swedish (#2586274)
+  - Ukrainian (#2609242)
 
 WinMerge 2.11.2 - 2009-02-05 (r6428)
   Update Python syntax highlight keywords for Python 2.6 (#2473375)
