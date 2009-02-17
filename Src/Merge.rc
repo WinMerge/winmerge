@@ -772,8 +772,8 @@ BEGIN
                     IDC_PRESERVE_FILETIME,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,67,220,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,176,13
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,91,125,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,220,13
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,91,208,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,101,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,120,
