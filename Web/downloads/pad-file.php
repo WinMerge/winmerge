@@ -1,17 +1,17 @@
 <?php
-  include('page.inc');
+  include('../page.inc');
 
   $page = new Page;
   $page->setDescription('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.');
   $page->setKeywords('WinMerge, PAD file, Portable Application Description');
-  $page->printHead('PAD File', TAB_HOME);
+  $page->printHead('PAD File', TAB_DOWNLOADS);
 ?>
 <h2>PAD File</h2>
 <p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>
 <pre class="code"><a href="http://winmerge.org/WinMergePAD.xml">http://winmerge.org/WinMergePAD.xml</a></pre>
 <p>If you can't work with the <a href="WinMergePAD.xml">PAD file</a>, you can use the following informations:</p>
 <?php
-  $padfile = $page->convertXml2Array('WinMergePAD.xml');
+  $padfile = $page->convertXml2Array('../WinMergePAD.xml');
   $company_info = $padfile['XML_DIZ_INFO'][0]['COMPANY_INFO'][0];
   $program_info = $padfile['XML_DIZ_INFO'][0]['PROGRAM_INFO'][0];
   $file_info = $program_info['FILE_INFO'][0];

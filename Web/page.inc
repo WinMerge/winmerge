@@ -229,8 +229,7 @@
         case TAB_HOME: //if "Home" ...
           $subtabs[0] = new Subtab('/', 'Index', 'WinMerge Home');
           $subtabs[1] = new Subtab('/links.php', 'Links', 'WinMerge Links');
-          $subtabs[2] = new Subtab('/WinMergePAD.php', 'PAD File', 'WinMerge PAD File');
-          $subtabs[3] = new Subtab('http://sourceforge.net/projects/winmerge', 'Project Page', 'WinMerge Project Page');
+          $subtabs[2] = new Subtab('http://sourceforge.net/projects/winmerge', 'Project Page', 'WinMerge Project Page');
           break;
         case TAB_ABOUT: //if "About" ...
           $subtabs[0] = new Subtab('/about/', 'Index', 'About WinMerge');
@@ -250,6 +249,7 @@
           $subtabs[0] = new Subtab('/downloads/', 'WinMerge', 'Download WinMerge');
           $subtabs[1] = new Subtab('/downloads/plugins.php', 'Plugins', 'Download WinMerge Plugins');
           $subtabs[2] = new Subtab('/downloads/source-code.php', 'Source Code', 'Download WinMerge Source Code');
+          $subtabs[3] = new Subtab('/downloads/pad-file.php', 'PAD File', 'WinMerge PAD File');
           break;
         case TAB_SUPPORT: //if "Support" ...
           $subtabs[0] = new Subtab('/support/', 'Index', 'WinMerge Support');

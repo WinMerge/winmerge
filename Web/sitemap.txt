@@ -1,6 +1,5 @@
 http://winmerge.org/
 http://winmerge.org/links.php
-http://winmerge.org/WinMergePAD.php
 http://winmerge.org/about/
 http://winmerge.org/about/history.php
 http://winmerge.org/about/license.php
@@ -28,6 +27,7 @@ http://winmerge.org/docs/manual/Shortcuts.html
 http://winmerge.org/docs/manual/VersionControl.html
 http://winmerge.org/docs/manual/word_index.html
 http://winmerge.org/downloads/
+http://winmerge.org/downloads/pad-file.php
 http://winmerge.org/downloads/plugins.php
 http://winmerge.org/downloads/source-code.php
 http://winmerge.org/support/
