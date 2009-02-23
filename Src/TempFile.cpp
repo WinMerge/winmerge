@@ -7,7 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "Windows.h"
+#include <windows.h>
 #include "UnicodeString.h"
 #include "TempFile.h"
 #include "paths.h"
