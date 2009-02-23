@@ -244,6 +244,9 @@ static const UINT ID_TIMER_FLASH = 1;
 /** @brief Timeout for window flashing timer, in milliseconds. */
 static const UINT WINDOW_FLASH_TIMEOUT = 500;
 
+/** @brief Backup file extension. */
+static const TCHAR BACKUP_FILE_EXT[] = _T("bak");
+
 /**
   * @brief Return a const reference to a CMultiDocTemplate's list of documents.
   */
@@ -1347,12 +1350,17 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			_RPTF0(_CRT_ERROR, "Unknown backup location!");
 		}
 
-		if (bakPath[bakPath.length() - 1] != '\\')
+		if (!paths_EndsWithSlash(bakPath.c_str()))
 			bakPath += _T("\\");
 
 		BOOL success = FALSE;
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
+		{
+			// Don't add dot if there is no existing extension
+			if (ext.size() > 0)
+				ext += _T(".");
 			ext += BACKUP_FILE_EXT;
+		}
 
 		// Append time to filename if wanted so
 		// NOTE just adds timestamp at the moment as I couldn't figure out
@@ -2720,7 +2728,7 @@ void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 		if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
-			::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
+			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
 		}
 	}
 }
