@@ -36,8 +36,6 @@
 #include "VSSHelper.h"
 struct FileLocation;
 
-#define BACKUP_FILE_EXT   _T(".bak")
-
 /**
  * @brief Flags used when opening files
  */
