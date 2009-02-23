@@ -10,6 +10,7 @@
 #include <tchar.h>
 #include <assert.h>
 #include "coretypes.h"
+#include "UnicodeString.h"
 #include "version.h"
 
 /** 
@@ -59,11 +60,12 @@ CVersionInfo::CVersionInfo(WORD wLanguage)
  */
 CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion, 
 						   BOOL bDllVersion)
-: m_strFileName(szFileToVersion)
-, m_wLanguage(0)
+: m_wLanguage(0)
 , m_bVersionOnly(FALSE)
 , m_bDllVersion(bDllVersion)
 {
+	if (szFileToVersion != NULL)
+		m_strFileName = szFileToVersion;
 	GetVersionInfo();
 }
 
@@ -76,13 +78,16 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
 CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/, 
 						   LPCTSTR szLanguage /* = NULL*/,
 						   LPCTSTR szCodepage /* = NULL*/)
-: m_strFileName(szFileToVersion)
-, m_strLanguage(szLanguage)
-, m_strCodepage(szCodepage)
-, m_wLanguage(0)
+: m_wLanguage(0)
 , m_bVersionOnly(FALSE)
 , m_bDllVersion(FALSE)
 {
+	if (szFileToVersion != NULL)
+		m_strFileName = szFileToVersion;
+	if (szLanguage != NULL)
+		m_strLanguage = szLanguage;
+	if (szCodepage != NULL)
+		m_strCodepage = szCodepage;
 	GetVersionInfo();
 }
 

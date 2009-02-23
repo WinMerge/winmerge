@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.4
   Bugfix: Files without extension get backed up to name..bak (#2627752)
+  Bugfix: Crash opening config log (#2630027)
   Translation updates:
   - Greek (#2615285)
 
