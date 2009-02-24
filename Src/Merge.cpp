@@ -797,13 +797,11 @@ CString CMergeApp::GetDefaultEditor()
  */
 CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 {
-	CString pathMyFolders = env_GetMyDocuments(NULL).c_str();
-	CString pathFilters(pathMyFolders);
-	if (pathFilters.Right(1) != _T("\\"))
-		pathFilters += _T("\\");
-	pathFilters += DefaultRelativeFilterPath;
+	String pathMyFolders = env_GetMyDocuments(NULL);
+	String pathFilters(pathMyFolders);
+	pathFilters = paths_ConcatPath(pathFilters, DefaultRelativeFilterPath);
 
-	if (bCreate && !paths_CreateIfNeeded(pathFilters))
+	if (bCreate && !paths_CreateIfNeeded(pathFilters.c_str()))
 	{
 		// Failed to create a folder, check it didn't already
 		// exist.
@@ -816,7 +814,7 @@ CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 			pathFilters = pathMyFolders;
 		}
 	}
-	return pathFilters;
+	return pathFilters.c_str();
 }
 
 

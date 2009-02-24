@@ -344,24 +344,23 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	return code;
 }
 
-
 /**
  * @brief Get actual compared paths from DIFFITEM.
+ * @param [in] pCtx Pointer to compare context.
+ * @param [in] di DiffItem from which the paths are created.
+ * @param [out] left Gets the left compare path.
+ * @param [out] right Gets the right compare path.
  * @note If item is unique, same path is returned for both.
  */
 void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, String & right)
 {
-	static const TCHAR backslash[] = _T("\\");
-
 	if (!di.diffcode.isSideRightOnly())
 	{
 		// Compare file to itself to detect encoding
 		left = pCtxt->GetNormalizedLeft();
-		if (!paths_EndsWithSlash(left.c_str()))
-			left += backslash;
 		if (!di.left.path.empty())
-			left += di.left.path + backslash;
-		left += di.left.filename;
+			left = paths_ConcatPath(left, di.left.path);
+		left = paths_ConcatPath(left, di.left.filename);
 		if (di.diffcode.isSideLeftOnly())
 			right = left;
 	}
@@ -369,11 +368,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, St
 	{
 		// Compare file to itself to detect encoding
 		right = pCtxt->GetNormalizedRight();
-		if (!paths_EndsWithSlash(right.c_str()))
-			right += backslash;
 		if (!di.right.path.empty())
-			right += di.right.path + backslash;
-		right += di.right.filename;
+			right = paths_ConcatPath(right, di.right.path);
+		right = paths_ConcatPath(right, di.right.filename);
 		if (di.diffcode.isSideRightOnly())
 			left = right;
 	}
