@@ -81,13 +81,17 @@ static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
 static const TCHAR f_LanguageId[] = _T("LanguageId");
 /*@}*/
 
-/// Shown menustate
+/**
+ * @brief The states in which the menu can be.
+ * These states define what items are added to the menu and how those
+ * items work.
+ */
 enum
 {
-	MENU_SIMPLE = 0,
-	MENU_ONESEL_NOPREV,
-	MENU_ONESEL_PREV,
-	MENU_TWOSEL,
+	MENU_SIMPLE = 0,  /**< Simple menu, only "Compare item" is shown. */
+	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
+	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */
+	MENU_TWOSEL,  /**< Two items are selected. */
 };
 
 #define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
