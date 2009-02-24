@@ -212,6 +212,10 @@ BOOL CMergeApp::InitInstance()
 	m_pOptions = new CRegOptionsMgr;
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
+	// Initialize temp folder
+	String instTemp = env_GetPerInstanceString(_T("WM_"));
+	env_SetInstanceFolder(instTemp.c_str());
+
 	m_pLog = new CLogFile();
 
 	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
@@ -433,6 +437,8 @@ void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 int CMergeApp::ExitInstance() 
 {
 	charsets_cleanup();
+	// Remove tempfolder
+	ClearTempfolder(env_GetTempPath(NULL));
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
 	return 0;

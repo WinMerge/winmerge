@@ -29,4 +29,6 @@ private:
 	String m_path; /**< Temporary file path. */
 };
 
+BOOL ClearTempfolder(const String &pathName);
+
 #endif // _TEMP_FILE_

@@ -12,8 +12,14 @@
 #include "OptionsDef.h"
 #include "Merge.h"
 
-// Static string used by paths_GetTempPath() for storing temp path.
+/**
+ * @brief Temp path.
+ * Static string used by paths_GetTempPath() for storing temp path.
+ */
 static String strTempPath;
+
+/** @brief Per-instance part of the temp path. */
+static String strTempPathInstance;
 
 /** 
  * @brief Get folder for temporary files.
@@ -48,7 +54,11 @@ LPCTSTR env_GetTempPath(int * pnerr)
 			if (!paths_EndsWithSlash(strTempPath.c_str()))
 				strTempPath += '\\';
 		}
+
+		if (!strTempPathInstance.empty())
+			strTempPath = paths_ConcatPath(strTempPath, strTempPathInstance);
 		strTempPath = paths_GetLongPath(strTempPath.c_str());
+		paths_CreateIfNeeded(strTempPath.c_str());
 	}
 	return strTempPath.c_str();
 }
@@ -116,4 +126,34 @@ String env_GetMyDocuments(HWND hWindow)
 		pMalloc->Release();
 	}
 	return path;
+}
+
+/**
+ * @brief Return unique string for the instance.
+ * This function formats an unique string for WinMerge instance. The string
+ * is quaranteed to be unique for instance asking it.
+ * @param [in] name Additional name used as part of the string.
+ * @return Unique string for the instance.
+ */
+String env_GetPerInstanceString(LPCTSTR name)
+{
+	// Get processId as string
+	TCHAR buffer[65] = {0};
+	_itot(GetCurrentProcessId(), buffer, 10);
+
+	String cPId(buffer);
+	String folder(name);
+	folder += cPId;
+	return folder;
+}
+
+/**
+ * @brief Set per-instance part of the temp folder.
+ * @param [in] lpPathname Per-instance part of the folder name.
+ */
+void env_SetInstanceFolder(LPCTSTR lpPathName)
+{
+	// Instance folder must not be changed once set.
+	ASSERT(strTempPathInstance.empty());
+	strTempPathInstance = lpPathName;
 }

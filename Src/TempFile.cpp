@@ -108,3 +108,15 @@ bool TempFile::Delete()
 		m_path = TEXT("");
 	return !!success;
 }
+
+/**
+ * @brief Remove the temp folder.
+ * @param [in] pathName Folder to remove.
+ * @return TRUE if removal succeeds, FALSE if fails.
+ */
+BOOL ClearTempfolder(const String &pathName)
+{
+	// Remove '\' to get foldername
+	String path = pathName.substr(0, pathName.length() - 1);
+	return RemoveDirectory(path.c_str());
+}

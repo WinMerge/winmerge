@@ -16,4 +16,7 @@ String env_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString,
 String env_GetWindowsDirectory();
 String env_GetMyDocuments(HWND hWindow);
 
+String env_GetPerInstanceString(LPCTSTR name);
+void env_SetInstanceFolder(LPCTSTR lpPathName);
+
 #endif // _ENVIRONMENT_H_
