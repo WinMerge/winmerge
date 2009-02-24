@@ -8,6 +8,7 @@ WinMerge 2.13.4
   Bugfix: Files without extension get backed up to name..bak (#2627752)
   Bugfix: Crash opening config log (#2630027)
   Translation updates:
+  - Galician (#2632173)
   - Greek (#2615285)
 
 WinMerge 2.13.3 - 2009-02-17 (r6479)
