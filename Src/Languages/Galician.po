@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-09-20 15:42+0100\n"
+"PO-Revision-Date: 2009-02-15 03:22+0100\n"
 "Last-Translator: Medulio <medulio@ciberirmandade.org>\n"
 "Language-Team: Galician-CiberIrmandade <traducions@ciberirmandade.org>\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "coa Aplicación &Rexistrada"
 #: Merge.rc:539
 #, c-format
 msgid "with &External Editor"
-msgstr "cun editor externo"
+msgstr "cun &Editor Externo"
 
 #: Merge.rc:90
 #: Merge.rc:534
@@ -155,7 +155,7 @@ msgstr "Abrir Pro&xecto...\tCtrl+J"
 #: Merge.rc:319
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Gar&dar proxecto..."
+msgstr "Gar&dar Proxecto..."
 
 #: Merge.rc:119
 #, c-format
@@ -209,21 +209,21 @@ msgstr "Empregar fonte pr&edefinida"
 #: Merge.rc:413
 #, c-format
 msgid "&Toolbar"
-msgstr "&Barra de ferramentas"
+msgstr "Ba&rra de ferramentas"
 
 #: Merge.rc:134
 #: Merge.rc:233
 #: Merge.rc:415
 #, c-format
 msgid "&None"
-msgstr "&Ningún"
+msgstr "&Ningunha"
 
 #: Merge.rc:135
 #: Merge.rc:234
 #: Merge.rc:416
 #, c-format
 msgid "&Small"
-msgstr "&Pequeno"
+msgstr "&Pequena"
 
 #: Merge.rc:136
 #: Merge.rc:235
@@ -479,12 +479,12 @@ msgstr "Amosar os elementos &diferentes"
 #: Merge.rc:217
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Amosar os &elementos únicos da esquerda"
+msgstr "Amosar &elementos únicos da esquerda"
 
 #: Merge.rc:218
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Amosar elementos únicos da dereita"
+msgstr "Amosar e&lementos únicos da dereita"
 
 #: Merge.rc:219
 #, c-format
@@ -504,17 +504,17 @@ msgstr "Amosar os elementos ocu&ltos"
 #: Merge.rc:224
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "&Modo Árbore"
 
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "E&xpandir Todos os Subcartafoles"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "&Colapsar Todos os Subcartafoles"
 
 #: Merge.rc:239
 #, c-format
@@ -707,7 +707,7 @@ msgstr "Seleccionar &diferenzas de liña\tF4"
 #: Merge.rc:365
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "B&uscar...\tCtrl+F"
+msgstr "Pr&ocurar...\tCtrl+F"
 
 #: Merge.rc:366
 #, c-format
@@ -1119,7 +1119,7 @@ msgstr "&Esquerda"
 #: Merge.rc:1020
 #, c-format
 msgid "&Browse..."
-msgstr "&Buscar..."
+msgstr "&Explorar..."
 
 #: Merge.rc:690
 #: Merge.rc:1599
@@ -1131,7 +1131,7 @@ msgstr "&Dereita"
 #: Merge.rc:1031
 #, c-format
 msgid "Bro&wse..."
-msgstr "Bus&car..."
+msgstr "Procu&rar..."
 
 #: Merge.rc:695
 #: Merge.rc:1603
@@ -1283,12 +1283,12 @@ msgstr "Pechar as fiestras con ESC"
 #: Merge.rc:765
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "&Verificar automaticamente os camiños no dialogo Abrir"
+msgstr "&Verificar automaticamente os camiños no diálogo Abrir"
 
 #: Merge.rc:768
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Per&mitir só unha instacia en curso"
+msgstr "Per&mitir só unha instancia en curso"
 
 #: Merge.rc:770
 #, c-format
@@ -1303,7 +1303,7 @@ msgstr "&Preservar data e hora do arquivo nas comparacións de ficheiros"
 #: Merge.rc:775
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Amosar o Diálogo \"Selecciona Arquivos ou Cartafoles\" no Inicio "
 
 #: Merge.rc:777
 #, c-format
@@ -1400,7 +1400,7 @@ msgstr "&Abaixo"
 #: Merge.rc:858
 #, c-format
 msgid "&Find Next"
-msgstr "&Procurar o seguinte"
+msgstr "&Procurar seguinte"
 
 #: Merge.rc:835
 #, c-format
@@ -1551,12 +1551,12 @@ msgstr "Seleccionadas movidas:"
 #: Merge.rc:961
 #, c-format
 msgid "Word Difference:"
-msgstr "Diferenza de palabras:"
+msgstr "Diferenza de palabra:"
 
 #: Merge.rc:968
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "Dif. de palabras seleccionadas:"
+msgstr "Diferenza de palabra seleccionada:"
 
 #: Merge.rc:975
 #: Merge.rc:1054
@@ -1583,7 +1583,7 @@ msgstr "Sistema"
 #: Merge.rc:994
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "&Enviar os arquivos eliminados para a papeleira"
+msgstr "&Enviar os arquivos eliminados para o lixo"
 
 #: Merge.rc:996
 #, c-format
@@ -1780,7 +1780,7 @@ msgstr "Ir a"
 #: Merge.rc:1133
 #, c-format
 msgid "G&oto:"
-msgstr "Ir&a:"
+msgstr "Ir &a:"
 
 #: Merge.rc:1135
 #, c-format
@@ -1790,7 +1790,7 @@ msgstr "Arquivo"
 #: Merge.rc:1140
 #, c-format
 msgid "Goto what"
-msgstr "Ir para"
+msgstr "Ir á"
 
 #: Merge.rc:1141
 #, c-format
@@ -2028,8 +2028,12 @@ msgstr "Selecciona a páxina de códigos predeterminada cando se carguen arquivos 
 
 #: Merge.rc:1272
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Detectar a información de páxina de códigos para estes arquivos: .html, .rc, .xml \n"
+"Precísase reiniciar a sesión"
 
 #: Merge.rc:1275
 #, c-format
@@ -2039,12 +2043,12 @@ msgstr "Páxina de códigos do sistema"
 #: Merge.rc:1277
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "Igual á que emprega a interfaz de usuario de Winmerge"
+msgstr "Igual á que emprega a interface de usuario de Winmerge"
 
 #: Merge.rc:1279
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Páxina de códigos á medida: "
 
 #: Merge.rc:1287
 #, c-format
@@ -2062,7 +2066,7 @@ msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
 msgstr ""
-"O soporte de arquivos precisa ter instalado no PC 7-Zip ou posterior, ou ben os seus\n"
+"O soporte de arquivos precisa ter instalado no teu ordenador o 7-Zip 3.11 ou posterior, ou ben os seus\n"
 "compoñentes esenciais copiados no cartafol do programa para operar independentemente."
 
 #: Merge.rc:1295
@@ -2128,7 +2132,7 @@ msgstr "falta"
 #: Merge.rc:1315
 #, c-format
 msgid "7-Zip components for standalone operation:"
-msgstr "Compoñentes para que 7-Zip funcione independente:"
+msgstr "Compoñentes para que o 7-Zip funcione independente:"
 
 #: Merge.rc:1319
 #, c-format
@@ -2249,7 +2253,7 @@ msgstr "Arquivo do &Informe"
 #: Merge.rc:1628
 #, c-format
 msgid "Browse..."
-msgstr "Procurar..."
+msgstr "Explorar..."
 
 #: Merge.rc:1424
 #, c-format
@@ -2399,7 +2403,7 @@ msgstr "Selecciona a páxina de códigos para"
 #: Merge.rc:1525
 #, c-format
 msgid "&File Loading:"
-msgstr "&A cargar o arquivo:"
+msgstr "&Cargar o arquivo:"
 
 #: Merge.rc:1527
 #: Merge.rc:1530
@@ -2410,7 +2414,7 @@ msgstr "..."
 #: Merge.rc:1528
 #, c-format
 msgid "File &Saving:"
-msgstr "A gardar o &arquivo:"
+msgstr "Gardar o &arquivo:"
 
 #: Merge.rc:1531
 #, c-format
@@ -2522,12 +2526,12 @@ msgstr "Copias de seguridade(backups)"
 #: Merge.rc:1617
 #, c-format
 msgid "Create backup files in:"
-msgstr "Crear as copias de seguridade en:"
+msgstr "Crear copias de seguridade na:"
 
 #: Merge.rc:1622
 #, c-format
 msgid "Create backup files into:"
-msgstr "Crear as copias de seguridade en: "
+msgstr "Crear as copias de seguridade no: "
 
 #: Merge.rc:1623
 #, c-format
@@ -2599,12 +2603,12 @@ msgstr "&Activar plugins"
 #: Merge.rc:1953
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Integración na Shell"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Explorador"
 
 #: Merge.rc:1676
 #, c-format
@@ -2619,17 +2623,17 @@ msgstr "In&cluír sub-cartafoles por defecto"
 #: Merge.rc:1680
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Eng&adir ao menú de contexto"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Comparación de cartafoles"
 
 #: Merge.rc:1683
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Engadir menú &Shell ao menú de contexto"
 
 #. StringFileInfo.Block
 #: Merge.rc:1709
@@ -2767,17 +2771,17 @@ msgstr "Facer visibles outra vez todos os elementos agochados"
 #: Merge.rc:1771
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "Conmutar modo árbore"
 
 #: Merge.rc:1772
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Expandir todos os subcartafoles"
 
 #: Merge.rc:1773
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "Colapsar todos os subcartafoles"
 
 #: Merge.rc:1779
 #, c-format
@@ -2956,7 +2960,7 @@ msgid ""
 "Replace specific text with different text\n"
 "Replace"
 msgstr ""
-"Substituir o texto especificado por outro\n"
+"Substituír o texto especificado por outro\n"
 "Substituír"
 
 #: Merge.rc:1838
@@ -3272,7 +3276,7 @@ msgstr "Unicode"
 #: Merge.rc:1972
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1978
 #, c-format
@@ -3528,7 +3532,7 @@ msgstr ""
 #: Merge.rc:2067
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Ruta ao SS.EXE:"
 
 #: Merge.rc:2073
 #, c-format
@@ -3861,8 +3865,18 @@ msgstr ""
 
 #: Merge.rc:2156
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"Outra aplicación actualizou o arquivo\n"
+"%1\n"
+"logo da última comprobación que fixo o WinMerge.\n"
+"\n"
+"Queres recargar o arquivo?"
 
 #: Merge.rc:2157
 #, c-format
@@ -3876,8 +3890,14 @@ msgstr "Gardar o arquivo dereito como"
 
 #: Merge.rc:2159
 #, c-format
-msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"disappeared. Please save a copy of the file to continue."
 msgstr ""
+"O arquivo\n"
+"%1\n"
+"desapareceu. Por favor, garda unha copia do arquivo para poderes continuar."
 
 #: Merge.rc:2165
 #, c-format
@@ -4225,12 +4245,12 @@ msgstr "Copiar ao portapapeis os camiños de ambas as bandas"
 #: Merge.rc:2268
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Menú Shell Esquerdo"
 
 #: Merge.rc:2269
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Menú Shell Dereito"
 
 #: Merge.rc:2275
 #, c-format
@@ -4441,7 +4461,7 @@ msgstr "Os arquivos son diferentes"
 #: Merge.rc:2339
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Os cartafoles son diferentes"
 
 #: Merge.rc:2340
 #, c-format
@@ -4461,12 +4481,12 @@ msgstr "Erro"
 #: Merge.rc:2344
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Os arquivos de texto son idénticos"
 
 #: Merge.rc:2349
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Os arquivos de texto son diferentes"
 
 #: Merge.rc:2355
 #, c-format
@@ -5728,7 +5748,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "Copiar o texto seleccionado para a banda dereita\n"
-"Copiar á dereita (Alt+Right)"
+"Copiar para a dereita (Alt+Right)"
 
 #: Merge.rc:2735
 #, c-format
@@ -5737,7 +5757,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "Copiar o texto seleccionado para a banda esquerda\n"
-"Copiar á esquerda (Alt+Left)"
+"Copiar para a esquerda (Alt+Left)"
 
 #: Merge.rc:2736
 #, c-format
@@ -5746,7 +5766,7 @@ msgid ""
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "Copiar a diferenza para a banda dereita e ir á seguinte diferenza\n"
-"Copiar á dereita e avanzar (Ctrl+Alt+Right)"
+"Copiar para a dereita e avanzar (Ctrl+Alt+Right)"
 
 #: Merge.rc:2737
 #, c-format
@@ -5755,7 +5775,7 @@ msgid ""
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "Copiar a diferenza para a banda esquerda e avanzar á seguinte diferenza\n"
-"Copiar á esquerda e avanzar (Ctrl+Alt+Left)"
+"Copiar para a esquerda e avanzar (Ctrl+Alt+Left)"
 
 #: Merge.rc:2738
 #, c-format
@@ -5764,7 +5784,7 @@ msgid ""
 "All Right"
 msgstr ""
 "Copiar todas as diferenzas para o arquivo dereito\n"
-"Todas á dereita"
+"Todas para a dereita"
 
 #: Merge.rc:2739
 #, c-format
@@ -5773,7 +5793,7 @@ msgid ""
 "All Left"
 msgstr ""
 "Copiar todas as diferenzas para o arquivo esquerdo\n"
-"Todas á esquerda"
+"Todas para a esquerda"
 
 #: Merge.rc:2740
 #, c-format
@@ -6149,7 +6169,7 @@ msgstr "TEX"
 #: Merge.rc:2857
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2858
 #, c-format
