@@ -127,7 +127,8 @@ get_coding (LPCTSTR name, type_codes *codes, int *coding)
 long
 fget_coding (LPCTSTR text, int *coding)
 {
-  long posit, i;
+  long posit = 0;
+  long i = 0;
   LPCTSTR s, s1;
 
   while ((i = str_pos (text, FD_ENCODING_LBRACKET)) >= 0)
