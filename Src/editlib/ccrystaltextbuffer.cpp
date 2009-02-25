@@ -1831,8 +1831,6 @@ IsMBSLead (int nLine, int nCol)
   //  You must call InitNew() or LoadFromFile() first!
 
 #ifdef _UNICODE
-  LPCTSTR string = (LPCTSTR) GetLineChars (nLine);
-  LPCTSTR current = string + nCol;
   return FALSE;
 #else // _UNICODE
   const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
@@ -1850,8 +1848,6 @@ IsMBSTrail (int nLine, int nCol)
   //  You must call InitNew() or LoadFromFile() first!
 
 #ifdef _UNICODE
-  LPCTSTR string = (LPCTSTR) GetLineChars (nLine);
-  LPCTSTR current = string + nCol;
   return FALSE;
 #else // _UNICODE
   const unsigned char *string = (const unsigned char *) GetLineChars (nLine);

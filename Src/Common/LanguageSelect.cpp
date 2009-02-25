@@ -978,7 +978,6 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 	while (i > 0)
 	{
 		--i;
-		UINT id = 0;
 		MENUITEMINFO mii;
 		mii.cbSize = sizeof mii;
 		mii.fMask = MIIM_STATE|MIIM_ID|MIIM_SUBMENU|MIIM_DATA;
@@ -1088,10 +1087,6 @@ void CLanguageSelect::ReloadMenu()
 		HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
 		if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
 		{
-			CMenu* pOldDefaultMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
-			CMenu* hOldMergeMenu = CMenu::FromHandle(pApp->m_pDiffTemplate->m_hMenuShared);
-			CMenu* hOldDirMenu = CMenu::FromHandle(pApp->m_pDirTemplate->m_hMenuShared);
-
 			// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
 			CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
 			CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);

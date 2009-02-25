@@ -662,8 +662,6 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
  */
 BOOL Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,BOOL m_bPathsAreTemp)
 {
-	BOOL bSuccess = false;
-	int nFileChanged = 0;
 	//check first file for unicodeing
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(strFile1Temp.c_str()))

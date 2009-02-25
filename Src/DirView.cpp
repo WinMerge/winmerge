@@ -534,7 +534,6 @@ void CDirView::Redisplay()
 	}
 
 	int alldiffs = 0;
-	int level = 0;
 	UINT_PTR diffpos = ctxt.GetFirstDiffPosition();
 	RedisplayChildren(diffpos, 0, cnt, alldiffs);
 	theApp.SetLastCompareResult(alldiffs);

@@ -356,7 +356,6 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 			LineData.erase(EolPos);
 		}
 
-		int Len = LineData.size();
 		const char * StartOfComment		= strstr(LineData.c_str(), filtercommentsset.StartMarker.c_str());
 		const char * EndOfComment		= strstr(LineData.c_str(), filtercommentsset.EndMarker.c_str());
 		const char * InLineComment		= strstr(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
