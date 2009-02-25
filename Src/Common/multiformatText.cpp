@@ -193,8 +193,8 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
-	CHAR * pchar;
-	WCHAR * pwchar;
+	CHAR * pchar = NULL;
+	WCHAR * pwchar = NULL;
 
 	// Get source data
 	if (m_bCurrentIsFile)
@@ -625,8 +625,8 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 	UINT nBufSize = fileDataIn.dwSize;
 
 	// first pass : get the size of the destination file
-	UINT nSizeOldBOM;
-	UINT nchars;
+	UINT nSizeOldBOM = 0;
+	UINT nchars = 0;
 	switch (codeOldBOM)
 	{
 	case ucr::UTF8:

@@ -287,7 +287,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			return;
 
 		// compute the beginning of the text to copy (in OriginalText)
-		int iBegin;
+		int iBegin = 0;
 		switch (command)
 		{
 		case ID_EDITOR_COPY_FILENAME:
