@@ -66,7 +66,6 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	LONG retValReg = 0;
 	LPBYTE pData = NULL;
 	DWORD type = 0;
-	TCHAR * valueBuf = NULL;
 	DWORD size = 0;
 	int valType = value.GetType();
 	int retVal = OPT_OK;
@@ -237,7 +236,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 			retVal = SaveValueToReg(hKey, strValueName.c_str(), defaultValue);
 		}
 		// Value already exists so read it.
-		else if (retValReg == ERROR_SUCCESS || ERROR_MORE_DATA)
+		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
 		{
 			retVal = LoadValueFromReg(hKey, name, defaultValue);
 			if (retVal == OPT_OK)
