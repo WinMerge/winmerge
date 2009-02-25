@@ -202,8 +202,8 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CSize size = m_wndLeftStatusBar.CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALBINARY);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_BINARYDIFF);
 
 	// stash left & right pointers into the mergedoc
 	CHexMergeView *pLeft = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0,0));
