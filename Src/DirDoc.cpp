@@ -420,7 +420,7 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
 				return FALSE;
 		}
-		else // recursive (perhaps tree?) mode
+		else // recursive mode (including tree-mode)
 		{
 			// left/right filters
 			if (di.diffcode.isSideLeftOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
@@ -428,15 +428,23 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 				return FALSE;
 
-			// result filters
-			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-				return FALSE;
+			// ONLY filter folders by result (identical/different) for tree-view.
+			// In the tree-view we show subfolders with identical/different
+			// status. The flat view only shows files inside folders. So if we
+			// filter by status the files inside folder are filtered too and
+			// users see files appearing/disappearing without clear logic.		
+			if (GetOptionsMgr()->GetBool(OPT_TREE_MODE))
+			{
+				// result filters
+				if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+					return FALSE;
 
-			// result filters
-			if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
-				return FALSE;
-			if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-				return FALSE;
+				// result filters
+				if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
+					return FALSE;
+				if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
+					return FALSE;
+			}
 		}
 	}
 	else

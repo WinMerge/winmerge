@@ -7,6 +7,7 @@ WinMerge 2.13.4
   Put temp files to per-instance subfolder in temp folder (#2582768)
   Bugfix: Files without extension get backed up to name..bak (#2627752)
   Bugfix: Crash opening config log (#2630027)
+  Bugfix: Must Show Different to Show L/R Unique (#2129561)
   Translation updates:
   - Galician (#2632173)
   - Greek (#2615285)
