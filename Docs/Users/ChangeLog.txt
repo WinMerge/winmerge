@@ -10,6 +10,7 @@ WinMerge 2.12.0
   Bugfix: Browse button in Option dialog reverted to previous settings
     (#2606153)
   Bugfix: Files without extension get backed up to name..bak (#2627752)
+  Bugfix: Must Show Different to Show L/R Unique (#2129561)
   Translation updates:
   - Chinese Traditional (#2608190)
   - Croatian (#2596949)
