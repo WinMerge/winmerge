@@ -93,7 +93,7 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace1)
+	TEST_F(StringDiffsTest, IgnoreWhitespace1)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde ", "abcde", true, 0, 0, false, &diffs);
@@ -101,7 +101,7 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace2)
+	TEST_F(StringDiffsTest, IgnoreWhitespace2)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde", " abcde", true, 0, 0, false, &diffs);
@@ -109,7 +109,7 @@ namespace
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace3)
+	TEST_F(StringDiffsTest, IgnoreWhitespace3)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde abcde", "abcde abcde", false, 1, 0, false, &diffs);
@@ -117,7 +117,7 @@ namespace
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace4)
+	TEST_F(StringDiffsTest, IgnoreWhitespace4)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "  abcde abcde", false, 1, 0, false, &diffs);
@@ -125,7 +125,7 @@ namespace
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace5)
+	TEST_F(StringDiffsTest, IgnoreWhitespace5)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "	abcde abcde", false, 1, 0, false, &diffs);
@@ -133,10 +133,66 @@ namespace
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
-	TEST_F(StringDiffsTest, CaseignoreWhitespace6)
+	TEST_F(StringDiffsTest, IgnoreWhitespace6)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "abcde	abcde", false, 1, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde", "abcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs(" abcde", "abcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("	abcde", "abcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace4)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs(" abcde", "  abcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace5)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde abcde", "abcdeabcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 1);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace6)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde abcde", "abcde	abcde", true, 2, 0, false, &diffs);
+		EXPECT_TRUE(diffs.size() == 0);
+	}
+
+	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
+	TEST_F(StringDiffsTest, IgnoreAllWhitespace7)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde\nabcde", "abcde	abcde", true, 2, 0, false, &diffs);
 		EXPECT_TRUE(diffs.size() == 0);
 	}
 
