@@ -10,6 +10,7 @@ WinMerge 2.13.4
   Bugfix: Crash opening config log (#2630027)
   Bugfix: Must Show Different to Show L/R Unique (#2129561)
   Translation updates:
+  - Danish (#2648183)
   - Galician (#2632173)
   - Greek (#2615285)
 

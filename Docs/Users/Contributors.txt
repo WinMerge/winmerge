@@ -46,6 +46,7 @@ Localization:
   Jan Hryz <janhryz@users.sourceforge.net>
 
 * Danish:
+  Rolf Egmose
   Christian List <list1974@hotmail.com>
 
 * Dutch:
