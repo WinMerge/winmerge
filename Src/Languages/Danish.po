@@ -3,6 +3,7 @@
 #
 # Translators:
 # * Christian List <list1974 at hotmail.com>
+# * Rolf Egmose <R.Egmose@gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
