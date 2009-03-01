@@ -543,7 +543,7 @@ String paths_GetLastSubdir(const String & path)
 
 	// Find last part of path
 	int pos = parentPath.find_last_of('\\');
-	if (pos > 2)
+	if (pos >= 2)
 		parentPath.erase(0, pos);
 	return parentPath;
 }
