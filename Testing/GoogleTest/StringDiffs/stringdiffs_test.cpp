@@ -197,7 +197,7 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
-	TEST_F(StringDiffsTest, WordBreak1)
+	TEST_F(StringDiffsTest, WordBreak2Words1)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde fghij", "abcde fghij", true, 0, 0, false, &diffs);
@@ -211,7 +211,7 @@ namespace
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// Last word is different
-	TEST_F(StringDiffsTest, WordBreak2)
+	TEST_F(StringDiffsTest, WordBreak2Words2)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij", "abcde fGhij", true, 0, 0, false, &diffs);
@@ -224,8 +224,22 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
+	// Last word is different
+	TEST_F(StringDiffsTest, WordBreak2Words3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde fghij", "ABcde fGhij", true, 0, 0, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(10, pDiff->end[0]);
+		EXPECT_EQ(10, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// Middle word is different
-	TEST_F(StringDiffsTest, WordBreak3)
+	TEST_F(StringDiffsTest, WordBreak3Words1)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fgHIj klmno", "abcde fghij klmno", true, 0, 0, false, &diffs);
@@ -239,7 +253,7 @@ namespace
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// Middle word is different
-	TEST_F(StringDiffsTest, WordBreak4)
+	TEST_F(StringDiffsTest, WordBreak3Words2)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij klmno", "abcde fGHij klmno", true, 0, 0, false, &diffs);
@@ -253,7 +267,7 @@ namespace
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// First two words are different
-	TEST_F(StringDiffsTest, WordBreak5)
+	TEST_F(StringDiffsTest, WordBreak3Words3)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcDE fGHij klmno", "abcde fghij klmno", true, 0, 0, false, &diffs);
@@ -267,7 +281,7 @@ namespace
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// First two words are different
-	TEST_F(StringDiffsTest, WordBreak6)
+	TEST_F(StringDiffsTest, WordBreak3Words4)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij klmno", "abcDE fGHij klmno", true, 0, 0, false, &diffs);
@@ -281,7 +295,7 @@ namespace
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	// First and last words are different generating two diffs
-	TEST_F(StringDiffsTest, WordBreak7)
+	TEST_F(StringDiffsTest, WordBreak3Words5)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij KLmno", "abcDE fghij klmno", true, 0, 0, false, &diffs);
