@@ -312,20 +312,216 @@ namespace
 		EXPECT_EQ(16, pDiff->end[1]);
 	}
 
-	// Identical strings, case sensitivity, no whitespace, words, word-level
-	TEST_F(StringDiffsTest, Identical2)
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak2Words1)
 	{
 		std::vector<wdiff*> diffs;
-		sd_ComputeWordDiffs("abcde", "abcde", true, 0, 0, false, &diffs);
+		sd_ComputeWordDiffs("abcde,fghij", "ABcde,fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak2Words2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// Both words are different
+	TEST_F(StringDiffsTest, PunctBreak2Words3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fGHij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
+		EXPECT_EQ(10, pDiff->end[0]);
+		EXPECT_EQ(10, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak3Words1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij,klmno", "abcde,fghij,klmno", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak3Words2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij,klmno", "abcde,fGHij,klmno", true, 0, 1, false, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
+		EXPECT_EQ(10, pDiff->end[0]);
+		EXPECT_EQ(10, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak3Words3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij,klmno", "abcde,fGHij,klmNO", true, 0, 1, false, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
+		EXPECT_EQ(10, pDiff->end[0]);
+		EXPECT_EQ(10, pDiff->end[1]);
+		pDiff = diffs[2];
+		EXPECT_EQ(12, pDiff->start[0]);
+		EXPECT_EQ(12, pDiff->start[1]);
+		EXPECT_EQ(16, pDiff->end[0]);
+		EXPECT_EQ(16, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, PunctBreak3Words4)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("Abcde,fghij,klmno", "abcde,fghij,klmNO", true, 0, 1, false, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(12, pDiff->start[0]);
+		EXPECT_EQ(12, pDiff->start[1]);
+		EXPECT_EQ(16, pDiff->end[0]);
+		EXPECT_EQ(16, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	TEST_F(StringDiffsTest, ByteLevel1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde", "abcde", true, 0, 0, true, &diffs);
 		EXPECT_TRUE(diffs.size() == 0);
 	}
 
-	// Case-differing strings, no case sensitivity, no whitespace, words, word-level
-	TEST_F(StringDiffsTest, Identical3)
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	TEST_F(StringDiffsTest, ByteLevel2)
 	{
 		std::vector<wdiff*> diffs;
-		sd_ComputeWordDiffs("aBcde", "abcDe", false, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		sd_ComputeWordDiffs("aBcde", "abcde", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(1, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	TEST_F(StringDiffsTest, ByteLevel3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBCde", "abcde", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(2, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	TEST_F(StringDiffsTest, ByteLevel4)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBcde", "abCde", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(2, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	// NOTE NOTE: This is questionable?
+	TEST_F(StringDiffsTest, ByteLevel5)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBcDe", "abcde", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(3, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	// NOTE NOTE: This is questionable?
+	TEST_F(StringDiffsTest, ByteLevel6)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBcde", "abcDe", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(3, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	// NOTE NOTE: This is questionable?
+	TEST_F(StringDiffsTest, ByteLevel7)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBcdE", "abcde", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(4, pDiff->end[0]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, words, byte-level
+	// NOTE NOTE: This is questionable?
+	TEST_F(StringDiffsTest, ByteLevel8)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("aBcde", "abcdE", true, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(1, pDiff->start[0]);
+		EXPECT_EQ(4, pDiff->end[0]);
 	}
 
 }  // namespace
