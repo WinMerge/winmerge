@@ -159,14 +159,14 @@ namespace
 		paths_normalize(path);
 		EXPECT_EQ(path_orig, path);
 	}
-/*	TEST_F(PathTest, Normalize_abspath3)
+	TEST_F(PathTest, Normalize_abspath3)
 	{
-		String path = "c:";
+		String path = "C:";
 		String path_orig = path;
 		paths_normalize(path);
 		EXPECT_EQ(path_orig, path);
 	}
-*/
+
 	TEST_F(PathTest, Normalize_abspath4)
 	{
 		String path = "c:\\";
