@@ -224,7 +224,7 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
-	// Last word is different
+	// Both words are different
 	TEST_F(StringDiffsTest, WordBreak2Words3)
 	{
 		std::vector<wdiff*> diffs;
