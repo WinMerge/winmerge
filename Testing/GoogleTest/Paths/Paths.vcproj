@@ -33,7 +33,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="gtest.lib"
+				AdditionalDependencies="gtestd.lib"
 				OutputFile="$(OutDir)/Paths_test.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..&quot;"
