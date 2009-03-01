@@ -14,6 +14,7 @@ WinMerge 2.12.0
   Translation updates:
   - Chinese Traditional (#2608190)
   - Croatian (#2596949)
+  - Danish (#2648183)
   - Dutch (#2586422, #2590430)
   - French (#2603591)
   - Galician (#2632173)
