@@ -2419,6 +2419,8 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowSkipped, options, OPT_SHOW_SKIPPED, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bTreeView, options, OPT_TREE_MODE, cfgdir);
 
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bPreserveFiletimes, options, OPT_PRESERVE_FILETIMES, cfgdir);
+
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bScrollToFirst, options, OPT_SCROLL_TO_FIRST, cfgdir);

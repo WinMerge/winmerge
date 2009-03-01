@@ -69,6 +69,7 @@ struct MISCSETTINGS
 	int  nInsertTabs;
 	int  nTabSize;
 	bool bPluginsEnabled;
+	bool bPreserveFiletimes;
 };
 
 /** 

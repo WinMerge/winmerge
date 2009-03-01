@@ -491,6 +491,9 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
 	WriteItemYesNo(2, _T("Tree-mode enabled"), &m_viewSettings.bTreeView);
 
+	FileWriteString(_T("\n File compare:\n"));
+	WriteItemYesNo(2, _T("Preserve filetimes"), &m_miscSettings.bPreserveFiletimes);
+
 	FileWriteString(_T("\n Editor settings:\n"));
 	WriteItemYesNo(2, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
 	WriteItemYesNo(2, _T("Merge Mode enabled"), &m_miscSettings.bMergeMode);
