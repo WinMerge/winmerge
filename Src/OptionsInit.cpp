@@ -136,12 +136,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_MULTIDOC_DIRDOCS, false);
 	m_pOptions->InitOption(OPT_MULTIDOC_MERGEDOCS, true);
 
-	// Overwrite WinMerge 2.0 default colors with new colors
-	if (m_pOptions->GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
-		m_pOptions->SaveOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
-	if (m_pOptions->GetInt(OPT_CLR_SELECTED_DIFF) == RGB(255,0,92))
-		m_pOptions->SaveOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
-
 	m_pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
 	m_pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
