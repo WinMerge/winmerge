@@ -1954,7 +1954,7 @@ msgstr "Na úrovni &slov:"
 #: Merge.rc:1218
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "Zn&aky oddìlující slova:"
 
 #: Merge.rc:1231
 #, c-format
