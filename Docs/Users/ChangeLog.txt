@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.4
+WinMerge 2.13.4 - 2009-03-03 (r6529)
   Add option for setting line difference wordbreak characters (#2655563)
   Put temp files to per-instance subfolder in temp folder (#2582768)
   Use new compare status icons for editor windows (#2205583)
