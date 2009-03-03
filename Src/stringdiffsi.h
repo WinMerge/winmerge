@@ -35,7 +35,9 @@ private:
 		int start; // index of first character of word in original string
 		int end;   // index of last character of word in original string
 		int hash;
-		word(int s=0, int e=0, int h=0) : start(s), end(e), hash(h) { }
+		bool bBreak; //is it a isWordBreak
+		word(int s = 0, int e = 0, bool b = false, int h = 0) :
+				start(s), end(e), bBreak(b), hash(h) { }
 		int length() const { return end+1-start; }
 	};
 
@@ -49,6 +51,7 @@ private:
 
 	int hash(const String & str, int begin, int end) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
+	bool isBreak(const word & word1) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
 
 // Implementation data
@@ -58,6 +61,7 @@ private:
 	bool m_case_sensitive;
 	int m_whitespace;
 	int m_breakType;
+	bool m_matchblock;
 	std::vector<wdiff*> * m_pDiffs;
 	std::vector<word*> m_words1;
 	std::vector<word*> m_words2;
