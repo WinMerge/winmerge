@@ -1073,14 +1073,15 @@
 #define ID_HELP_TRANSLATIONS            33171
 #define ID_VIEW_ZOOMNORMAL              33172
 #define ID_PLUGINS_LIST                 33173
-
+#define ID_PREDIFFER_MANUAL				33174
+#define ID_PREDIFFER_AUTO				33175
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
-#define _APS_NEXT_COMMAND_VALUE         33174
+#define _APS_NEXT_COMMAND_VALUE         33176
 #define _APS_NEXT_CONTROL_VALUE         1346
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

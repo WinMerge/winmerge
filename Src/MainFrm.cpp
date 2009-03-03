@@ -190,6 +190,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
+	ON_COMMAND_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnPluginPrediffMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnUpdatePluginPrediffMode)
 	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdateReloadPlugins)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
@@ -285,8 +287,7 @@ CMainFrame::CMainFrame()
 
 	InitializeSourceControlMembers();
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
-	// uncomment this when the GUI allows to toggle the mode
-//	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
@@ -1089,6 +1090,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	CString strLeft = pszLeft;
 	CString strRight = pszRight;
+	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
+	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+
 	PackingInfo infoUnpacker;
 
 	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
@@ -2226,7 +2230,27 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
 		pCmdUI->SetRadio(PLUGIN_AUTO == g_bUnpackerMode);
 }
+void CMainFrame::OnPluginPrediffMode(UINT nID )
+{
+	switch (nID)
+	{
+	case ID_PREDIFFER_MANUAL:
+		g_bPredifferMode = PLUGIN_MANUAL;
+		break;
+	case ID_PREDIFFER_AUTO:
+		g_bPredifferMode = PLUGIN_AUTO;
+		break;
+	}
+	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), g_bPredifferMode);
+}
 
+void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
+{
+	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
+		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bPredifferMode);
+	if (pCmdUI->m_nID == ID_PREDIFFER_AUTO)
+		pCmdUI->SetRadio(PLUGIN_AUTO == g_bPredifferMode);
+}
 /**
  * @brief Called when "Reload Plugins" item is updated
  */
