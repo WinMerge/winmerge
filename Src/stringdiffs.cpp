@@ -18,10 +18,43 @@
 
 using std::vector;
 
+static bool Initialized;
+static bool CustomChars;
+static TCHAR *BreakChars;
+static TCHAR BreakCharDefaults[] = _T(",.;:");
+
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);
 static void wordLevelToByteLevel(vector<wdiff*> * pDiffs, const String& str1,
 		const String& str2, bool casitive, int xwhite);
+
+void sd_Init()
+{
+	BreakChars = &BreakCharDefaults[0];
+	Initialized = true;
+}
+
+void sd_Close()
+{
+	if (CustomChars)
+	{
+		delete [] BreakChars;
+		BreakChars = NULL;
+		CustomChars = false;
+	}
+	Initialized = false;
+}
+
+void sd_SetBreakChars(const TCHAR *breakChars)
+{
+	assert(Initialized);
+
+	if (CustomChars)
+		delete [] BreakChars;
+
+	CustomChars = true;
+	BreakChars = _tcsdup(breakChars);
+}
 
 /**
  * @brief Construct our worker object and tell it to do the work
@@ -31,6 +64,8 @@ sd_ComputeWordDiffs(const String & str1, const String & str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	vector<wdiff*> * pDiffs)
 {
+	assert(Initialized);
+
 	stringdiffs sdiffs(str1, str2, case_sensitive, whitespace, breakType, pDiffs);
 	// Hash all words in both lines and then compare them word by word
 	// storing differences into m_wdiffs
@@ -512,9 +547,10 @@ static bool
 isWordBreak(int breakType, TCHAR ch)
 {
 	// breakType==0 means whitespace only
-	if (!breakType) return false;
+	if (!breakType)
+		return false;
 	// breakType==1 means break also on punctuation
-	return ch==',' || ch==';' || ch==':' || ch=='.';
+	return _tcschr(BreakChars, ch) != 0;
 }
 
 

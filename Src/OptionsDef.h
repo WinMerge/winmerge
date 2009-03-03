@@ -3,7 +3,7 @@
  *
  * @brief Constants for option-names
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _OPTIONS_DEF_H_
@@ -31,11 +31,16 @@ const TCHAR OPT_TOOLBAR_SIZE[] = _T("Settings/ToolbarSize");
 const TCHAR OPT_RESIZE_PANES[] = _T("Settings/AutoResizePanes");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
-const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");
 const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
 const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
 const TCHAR OPT_CONNECT_MOVED_BLOCKS[] = _T("Settings/ConnectMovedBlocks");
 const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
+
+// Difference (in-line) highlight
+const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");
+const TCHAR OPT_BREAK_ON_WORDS[] = _T("Settings/BreakOnWords");
+const TCHAR OPT_BREAK_TYPE[] = _T("Settings/BreakType");
+const TCHAR OPT_BREAK_SEPARATORS[] = _T("Settings/HiliteBreakSeparators");
 
 // Backup options
 const TCHAR OPT_BACKUP_FOLDERCMP[] = _T("Backup/EnableFolder");
@@ -54,8 +59,6 @@ const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
 const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
 const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");
 const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
-const TCHAR OPT_BREAK_ON_WORDS[] = _T("Settings/BreakOnWords");
-const TCHAR OPT_BREAK_TYPE[] = _T("Settings/BreakType");
 const TCHAR OPT_WORDWRAP[] = _T("Settings/WordWrap");
 const TCHAR OPT_VIEW_LINENUMBERS[] = _T("Settings/ViewLineNumbers");
 const TCHAR OPT_VIEW_FILEMARGIN[] = _T("Settings/ViewFileMargin");

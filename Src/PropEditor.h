@@ -44,6 +44,7 @@ public:
 	BOOL    m_bViewLineDifferences;
 	BOOL    m_bBreakOnWords;
 	int     m_nBreakType;
+	CString m_breakChars;
 	//}}AFX_DATA
 
 private:

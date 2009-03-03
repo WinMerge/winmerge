@@ -54,7 +54,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_RESIZE_PANES, false);
 
 	m_pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
-	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
 	m_pOptions->InitOption(OPT_WORDWRAP, false);
 	m_pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
 	m_pOptions->InitOption(OPT_DISABLE_SPLASH, false);
@@ -64,6 +63,11 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
 	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)0);
 	m_pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
+
+	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, true);
+	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
+	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
+	m_pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;"));
 
 	m_pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
 	m_pOptions->InitOption(OPT_BACKUP_FILECMP, true);
@@ -86,9 +90,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
 	m_pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
 	m_pOptions->InitOption(OPT_MERGE_MODE, false);
-	// OPT_WORDDIFF_HIGHLIGHT is initialized above
-	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, true);
-	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
 
 	m_pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_pOptions->InitOption(OPT_LOGGING, 0);

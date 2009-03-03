@@ -3,7 +3,7 @@
  *
  * @brief Implementation of CPropEditor propertysheet
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -56,6 +56,7 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
 	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
+	DDX_Text(pDX, IDC_BREAK_CHARS, m_breakChars);
 	//}}AFX_DATA_MAP
 }
 
@@ -82,6 +83,7 @@ void CPropEditor::ReadOptions()
 	m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
+	m_breakChars = m_pOptionsMgr->GetString(OPT_BREAK_SEPARATORS).c_str();
 }
 
 /** 
@@ -102,6 +104,7 @@ void CPropEditor::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
 	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
 	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
+	m_pOptionsMgr->SaveOption(OPT_BREAK_SEPARATORS, m_breakChars);
 }
 
 /////////////////////////////////////////////////////////////////////////////

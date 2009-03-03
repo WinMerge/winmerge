@@ -74,6 +74,7 @@
 #include "FileOrFolderSelect.h"
 #include "PropBackups.h"
 #include "PluginsListDlg.h"
+#include "stringdiffs.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -313,6 +314,9 @@ CMainFrame::CMainFrame()
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
 		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
+
+	sd_Init(); // String diff init
+	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 }
 
 CMainFrame::~CMainFrame()
@@ -335,6 +339,8 @@ CMainFrame::~CMainFrame()
 	int i = MENU_COUNT;
 	do { delete m_pMenus[--i]; } while (i);
 	delete m_pSyntaxColors;
+
+	sd_Close();
 }
 
 // This is a bridge to implement IStatusDisplay for WaitStatusCursor
@@ -1032,6 +1038,8 @@ void CMainFrame::OnOptions()
 		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+
+		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 		// make an attempt at rescanning any open diff sessions
 		const MergeDocList &docs = GetAllMergeDocs();

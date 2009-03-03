@@ -18,11 +18,13 @@ namespace
 		StringDiffsTest()
 		{
 			// You can do set-up work for each test	here.
+			sd_Init();
 		}
 
 		virtual ~StringDiffsTest()
 		{
 			// You can do clean-up work	that doesn't throw exceptions here.
+			sd_Close();
 		}
 
 		// If	the	constructor	and	destructor are not enough for setting up
@@ -433,6 +435,36 @@ namespace
 		EXPECT_EQ(12, pDiff->start[1]);
 		EXPECT_EQ(16, pDiff->end[0]);
 		EXPECT_EQ(16, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, CustomPunctBreak1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(":");
+		sd_ComputeWordDiffs("Abcde:fghij", "abcde:fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+	}
+
+	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
+	// First word is different
+	TEST_F(StringDiffsTest, CustomPunctBreak2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(";");
+		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		wdiff *pDiff = diffs[0];
+		EXPECT_EQ(0, pDiff->start[0]);
+		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(10, pDiff->end[0]);
+		EXPECT_EQ(10, pDiff->end[1]);
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
