@@ -438,7 +438,8 @@ int CMergeApp::ExitInstance()
 {
 	charsets_cleanup();
 	// Remove tempfolder
-	ClearTempfolder(env_GetTempPath(NULL));
+	const String temp = env_GetTempPath(NULL);
+	ClearTempfolder(temp);
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
 	return 0;

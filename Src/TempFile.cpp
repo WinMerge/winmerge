@@ -8,6 +8,8 @@
 // $Id$
 
 #include <windows.h>
+#include <tchar.h>
+#include <shlwapi.h>
 #include "UnicodeString.h"
 #include "TempFile.h"
 #include "paths.h"
@@ -116,7 +118,16 @@ bool TempFile::Delete()
  */
 BOOL ClearTempfolder(const String &pathName)
 {
-	// Remove '\' to get foldername
-	String path = pathName.substr(0, pathName.length() - 1);
-	return RemoveDirectory(path.c_str());
+	// SHFileOperation expects a ZZ terminated list of paths!
+	const int pathSize = pathName.length() + 2;
+	TCHAR *path = new TCHAR[pathSize];
+	ZeroMemory(path, pathSize * sizeof(TCHAR));
+	_tcscpy(path, pathName.c_str());
+
+	SHFILEOPSTRUCT fileop = {0, FO_DELETE, path, 0, FOF_NOCONFIRMATION |
+			FOF_SILENT | FOF_NOERRORUI, 0, 0, 0};
+	SHFileOperation(&fileop);
+
+	delete [] path;
+	return TRUE;
 }
