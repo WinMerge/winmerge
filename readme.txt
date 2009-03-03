@@ -46,7 +46,9 @@ Subfolders include:
    menu for comparing files and folders.
 
  - Testing
-    A suite of test diff files and a script to run them and report the results
+    A suite of test diff files and a script to run them and report the results.
+    This folder also has 'Google Test' subfolder containing unit tests made
+    with Google Test -framework.
 
  - Build
     This folder gets created by compiler when WinMerge is compiled. It
