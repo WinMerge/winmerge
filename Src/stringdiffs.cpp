@@ -123,8 +123,6 @@ stringdiffs::~stringdiffs()
 void
 stringdiffs::BuildWordDiffList()
 {
-	bool m_matchblock (true); // change to false to get word to word compare
-
 	BuildWordsArray(m_str1, &m_words1);
 	BuildWordsArray(m_str2, &m_words2);
 
@@ -213,17 +211,8 @@ startdiff:
 // Currently in a difference
 // Actually we don't have a label here, because we don't loop to here
 // We always find the end of the difference and jump straight to it
-	bool lword =  ((w1 + 1 == m_words1.size()) ||
-			(w2 + 1 == m_words2.size()));
-	if (!m_matchblock)
-	{
-		if (w1 + 1 < m_words1.size())
-			w1++;
-		if (w2 + 1 < m_words2.size())
-			w2++;
-	}
 
-	if ((m_matchblock || lword) && !findSync(&w1, &w2))
+	if (!findSync(&w1, &w2))
 	{
 		// Add a diff from bw1 & bw2 to end of both lines
 		int s1 = m_words1[bw1]->start;
@@ -251,37 +240,14 @@ startdiff:
 		int e1 = 0; // placeholder, set below
 		int s2 = m_words2[bw2]->start;
 		int e2 = 0; // placeholder, set below
-		bool lbreak =  false;
-		if (w1 > 0)
-			lbreak = isWordBreak(m_breakType, m_str1[m_words1[w1 - 1]->end]);
-		if (w2 > 0)
-			lbreak = lbreak && isWordBreak(m_breakType, m_str2[m_words2[w2 - 1]->end]);
-
-		if (w1 < 0 || w2 < 0)
-			lbreak =lbreak;
-
-		if ((m_whitespace == 0)|| lbreak)
+		if (m_whitespace == 0)
 		{
-			int pe1 = 0;
-			int pe2 = 0;
-			if (w1 != m_words1.size() || w1 != m_words2.size())
-			{
-				// Grab all the trailing whitespace for our diff
-				e1 = m_words1[w1]->start - 1;
-				e2 = m_words2[w2]->start - 1;
-				// Now backtrack over matching whitespace
-				pe1 = (w1 ? m_words1[w1 - 1]->end : -1);
-				pe2 = (w2 ? m_words2[w2 - 1]->end : -1);
-			}
-			else
-			{
-				// Grab all the trailing whitespace for our diff
-				e1 = m_words1[w1]->end - 1;
-				e2 = m_words2[w2]->end - 1;
-				// Now backtrack over matching whitespace
-				pe1 = (w1 ? m_words1[w1]->start : -1);
-				pe2 = (w2 ? m_words2[w2]->start : -1);
-			}
+			// Grab all the trailing whitespace for our diff
+			e1 = m_words1[w1]->start-1;
+			e2 = m_words2[w2]->start-1;
+			// Now backtrack over matching whitespace
+			int pe1 = (w1 ? m_words1[w1-1]->end : -1);
+			int pe2 = (w2 ? m_words2[w2-1]->end : -1);
 			while (e1 > pe1
 				&& e2 > pe2
 				&& m_str1[e1] == m_str2[e2])
@@ -299,11 +265,8 @@ startdiff:
 		wdiff *wdf = new wdiff(s1, e1, s2, e2);
 		m_wdiffs.push_back(wdf);
 		// skip past sync words (which we already know match)
-		if (m_matchblock)
-		{
-			++w1;
-			++w2;
-		}
+		++w1;
+		++w2;
 		// go process sync
 		goto insame; // safe even if at the end of one line's words
 	}
@@ -315,130 +278,49 @@ startdiff:
 bool
 stringdiffs::findSync(int *w1, int *w2) const
 {
-	//keep old w1, w2
-	int ow1 = *w1;
-	int ow2 = *w2;
-	int isize1 = m_words1.size();
-	int isize2 = m_words2.size();
-
-	// Adjust max distance to 20% of min size of each string
-	int maxdiff = int(0.2 * min(isize1, isize2)) + 1;
 	// Look among remaining words in m_words2 for a word that matches w1
 	int cw2 = -1;
-	while (*w1 < isize1 - 1)
+	while (*w1 < m_words1.size())
 	{
-		cw2 = FindNextMatchInWords2(*m_words1[*w1], ow2);
+		cw2 = FindNextMatchInWords2(*m_words1[*w1], *w2);
 		if (cw2>=0)
 			break;
 		// No word matches w1
 		++(*w1);
-		// If next block is a isWordBreak block? Then use next
-		if (isBreak(*m_words1[*w1]))
-			++(*w1);
 	}
 	// Look among remaining words in m_words1 for a word that matches w2
 	int cw1 = -1;
-	while (*w2 < isize2-1)
+	while (*w2 < m_words2.size())
 	{
-		cw1 = FindNextMatchInWords1(*m_words2[*w2], ow1);
+		cw1 = FindNextMatchInWords1(*m_words2[*w2], *w1);
 		if (cw1>=0)
 			break;
 		// No word matches w2
 		++(*w2);
-
-		// If next block is a isWordBreak block? than use next
-		if (isBreak(*m_words2[*w2]))
-			++(*w2);
 	}
-
-	// Now check diagonal backwards
-	// Look among next words in m_words2 for a word that matches w1
-	int cw2r = -1;
-	int iSuch = ow1 + maxdiff;
-	if (iSuch > isize1 - 1)
-		iSuch = isize1 - 1;
-	// If this block is a isWordBreak block? Then use pre one
-	if (isBreak(*m_words1[iSuch]))
-		--(iSuch);
-
-	while (iSuch > ow1 + 1)
+	if (cw1 == -1)
 	{
-		cw2r = FindNextMatchInWords2(*m_words1[iSuch], ow2);
-		if (cw2r < 0)
-		{
-			iSuch++;
-			break;
-		}
-		// Word matches in w2
-		--iSuch;
-		// If this block is a isWordBreak block? Then use pre one
-		if (isBreak(*m_words1[iSuch]))
-			--(iSuch);
-	}
-
-	if ((cw2 > iSuch) && (iSuch > ow2))
-		cw2 = iSuch;
-	// Look among next words in m_words2 for a word that matches w1
-	int cw1r = -1;
-	iSuch = ow2 + maxdiff;
-	if (iSuch > isize2 - 1)
-		iSuch = isize2 - 1;
-	// If this block is a isWordBreak block? than use pre one
-	if (isBreak(*m_words2[iSuch]))
-		--(iSuch);
-
-	while (iSuch > ow2+1)
-	{
-		cw1r = FindNextMatchInWords1(*m_words2[iSuch], ow1);
-		if (cw1r < 0)
-		{
-			iSuch++;
-			break; 
-	}
-		// Word matches in w1
-		--iSuch;
-		// If this block is a isWordBreak block? Then use pre one
-		if (isBreak(*m_words2[iSuch]))
-			--(iSuch);
-	}
-
-	if ((cw1 > iSuch )&&(iSuch > ow1))
-		cw1 = iSuch;
-
-	// Min one side is on end
-	if ((cw1 == -1)||(cw2 ==-1))
-	{
-		if (cw1 < 0)
-		{
-			// Side 2 is on end
-			*w1 = cw1;
+		if (cw2 ==-1)
 			return false;
-		}
-		if (cw2 < 0)
-		{
-			// Side 1 is on end
-			*w2 = cw2;
-			return false;
-	}
-
-		//both sides are on end
-		return false;
-	}
-
-	// Now decide where diff starts and ends
-	if (*w1 == ow1)
-	{
 		*w2 = cw2;
-	}
-	else if (*w2 == ow2)
-	{
-		*w1 = cw1;
 	}
 	else
 	{
-		// Set end of diff to the word found for both
-		*w1 = cw1;
-		*w2 = cw2;
+		if (cw2 ==-1)
+		{
+			*w1 = cw1;
+		}
+		else
+		{
+			// We have candidates advancing along either string
+			// Pick closer
+			int len1 = m_words1[cw1]->end - m_words1[*w1]->start;
+			int len2 = m_words2[cw2]->end - m_words2[*w2]->start;
+			if (len1 < len2)
+				*w1 = cw1;
+			else
+				*w2 = cw2;
+		}
 	}
 	return true;
 }
@@ -496,15 +378,14 @@ inspace:
 	// state when we are inside a word
 inword:
 	bool atspace=false;
-	if (i == str.length() || ((atspace = isSafeWhitespace(str[i])) != 0) ||
-			isWordBreak(m_breakType, str[i]))
+	if (i==str.length() || (atspace=isSafeWhitespace(str[i])) || isWordBreak(m_breakType, str[i]))
 	{
 		if (begin<i)
 		{
 			// just finished a word
 			// e is first non-word character (space or at end)
 			int e = i-1;
-			word *wd  = new word(begin, e, false, hash(str, begin, e));
+			word *wd  = new word(begin, e, hash(str, begin, e));
 			words->push_back(wd);
 		}
 		if (i == str.length())
@@ -519,7 +400,7 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			word *wd  = new word(i, i, true, hash(str, i, i));
+			word *wd  = new word(i, i, hash(str, i, i));
 			words->push_back(wd);
 			++i;
 			begin = i;
@@ -611,15 +492,6 @@ stringdiffs::AreWordsSame(const word & word1, const word & word2) const
 			return false;
 	}
 	return true;
-}
-
-/**
- * @brief Is this block a breakblock.
- */
-bool
-stringdiffs::isBreak(const word & word1) const
-{
-	return word1.bBreak;
 }
 
 /**
