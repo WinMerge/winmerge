@@ -5,6 +5,8 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.5
   Remember last target folder for Copy/Move to in folder compare (#2659228)
+  Translation updates:
+  - Czech (r6530)
 
 WinMerge 2.13.4 - 2009-03-03 (r6529)
   Add option for setting line difference wordbreak characters (#2655563)
