@@ -48,7 +48,12 @@
 #define BIF_USENEWUI           (BIF_NEWDIALOGSTYLE | BIF_EDITBOX)
 #endif
 
+static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
+		LPARAM lpData);
 static void ConvertFilter(LPTSTR filterStr);
+
+/** @brief Last selected folder for folder selection dialog. */
+static String LastSelectedFolder;
 
 /**
  * @brief Helper function for selecting folder or file.
@@ -155,13 +160,14 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 	TCHAR szPath[MAX_PATH] = {0};
 	BOOL bRet = FALSE;
 	String title = theApp.LoadString(titleid);
+	LastSelectedFolder = root_path;
 
 	bi.hwndOwner = hwndOwner;
 	bi.pidlRoot = NULL;  // Start from desktop folder
 	bi.pszDisplayName = szPath;
 	bi.lpszTitle = title.c_str();
-	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI;
-	bi.lpfn = NULL;
+	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI | BIF_VALIDATE;
+	bi.lpfn = BrowseCallbackProc;
 	bi.lParam = NULL;
 
 	pidl = SHBrowseForFolder(&bi);
@@ -180,6 +186,21 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 	}
 	return bRet;
 }
+
+/**
+ * @brief Callback function for setting selected folder for folder dialog.
+ */
+static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
+		LPARAM lpData)
+{
+	// Look for BFFM_INITIALIZED
+	if (uMsg == BFFM_INITIALIZED)
+	{
+		SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
+	}
+	return 0;
+}
+
 
 /** 
  * @brief Shows file/folder selection dialog.
