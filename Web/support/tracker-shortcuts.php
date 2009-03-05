@@ -25,8 +25,10 @@ items from our <a href="http://sourceforge.net/projects/winmerge">SF.net project
     <td>
       <select name="type" id="type" size="1">
 <?php
+  $post_type = isset($_POST['type']) ? $_POST['type'] : '';
+  $post_id = isset($_POST['id']) ? $_POST['id'] : '';
   foreach ($types as $value => $name) { //For all types...
-    if ($value == $_POST['type']) $selected = ' selected="selected"'; else $selected = '';
+    if ($value == $post_type) $selected = ' selected="selected"'; else $selected = '';
     echo "        <option value=\"" . $value . "\"" . $selected . ">" . $name . "</option>\n";
   }
 ?>
@@ -39,16 +41,27 @@ items from our <a href="http://sourceforge.net/projects/winmerge">SF.net project
   <tr>
     <td><label for="id">ID:</label></td>
     <td>
-      <input type="text" name="id" id="id" size="8" maxlength="8" value="<?php echo htmlentities($_POST['id']); ?>" />
+      <input type="text" name="id" id="id" size="8" maxlength="8" value="<?php echo htmlentities($post_id); ?>" />
     </td>
   </tr>
 </table>
 </form>
 <?php
-  if (isset($_POST['type']) && ($_POST['type'] != '') && isset($_POST['id']) && ($_POST['id'] > 0)) {
+  if (($post_type != '') && ($post_id > 0)) {
     echo "<p />\n";
-    echo "<p style=\"font-size:larger;\"><code>http://winmerge.org/" . htmlentities($_POST['type']) . "/" . htmlentities($_POST['id']) . "</code></p>\n";
+    echo "<pre class=\"code\">http://winmerge.org/" . htmlentities($post_type) . "/" . htmlentities($post_id) . "</pre>\n";
     echo "<p />\n";
   }
+?>
+<h3>Subdomains</h3>
+<ul class="rssfeeditems">
+  <li><a href="http://bugs.winmerge.org/">bugs.winmerge.org</a></li>
+  <li><a href="http://forums.winmerge.org/">forums.winmerge.org</a></li>
+  <li><a href="http://lists.winmerge.org/">lists.winmerge.org</a></li>
+  <li><a href="http://patches.winmerge.org/">patches.winmerge.org</a></li>
+  <li><a href="http://project.winmerge.org/">project.winmerge.org</a></li>
+  <li><a href="http://wiki.winmerge.org/">wiki.winmerge.org</a></li>
+</ul>
+<?php
   $page->printFoot();
 ?>

@@ -256,7 +256,8 @@
           $subtabs[1] = new Subtab('http://forums.winmerge.org/', 'Discussion Forums', 'WinMerge Discussion Forums');
           $subtabs[2] = new Subtab('/support/mailing-lists.php', 'Mailing Lists', 'WinMerge Mailing Lists');
           $subtabs[3] = new Subtab('http://sourceforge.net/tracker/?group_id=13216', 'Tracker', 'WinMerge Tracker');
-          $subtabs[4] = new Subtab('http://sourceforge.net/donate/index.php?group_id=13216', 'Donate', 'Donate money to WinMerge');
+          $subtabs[4] = new Subtab('/support/tracker-shortcuts.php', 'Tracker Shortcuts', 'WinMerge Tracker Shortcuts');
+          $subtabs[5] = new Subtab('http://sourceforge.net/donate/index.php?group_id=13216', 'Donate', 'Donate money to WinMerge');
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
           $subtabs[0] = new Subtab('/translations/', 'Index', 'WinMerge Translations');
