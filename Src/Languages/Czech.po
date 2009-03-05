@@ -2587,12 +2587,12 @@ msgstr "&Povolit pluginy"
 #: Merge.rc:1952
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Systémová integrace"
 
 #: Merge.rc:1674
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Prùzkumník"
 
 #: Merge.rc:1675
 #, c-format
@@ -2602,22 +2602,22 @@ msgstr "Povolit &rozšíøenou nabídku"
 #: Merge.rc:1677
 #, c-format
 msgid "In&clude subfolders by default"
-msgstr "Výchozí porovnání vèetnì pod&složek"
+msgstr "&Výchozí porovnání vèetnì podsložek"
 
 #: Merge.rc:1679
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Pøidat do &systémové místní nabídky"
 
 #: Merge.rc:1681
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Porovnání složek"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Pøidat systémovou &místní nabídku"
 
 #. StringFileInfo.Block
 #: Merge.rc:1708
@@ -3816,8 +3816,8 @@ msgstr "Uložit pravý soubor jako"
 
 #: Merge.rc:2158
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
-msgstr ""
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgstr "Soubor\n%1\nse ztratil. Pro pokraèování prosím uložte kopii souboru."
 
 #: Merge.rc:2164
 #, c-format
