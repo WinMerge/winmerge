@@ -3818,7 +3818,7 @@ msgstr "Запиши десния файл като"
 
 #: Merge.rc:2158
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 msgstr ""
 
 #: Merge.rc:2164

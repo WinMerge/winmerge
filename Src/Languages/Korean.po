@@ -3850,7 +3850,7 @@ msgstr "오른쪽 파일 다른 이름으로 저장"
 
 #: Merge.rc:2158
 #, c-format
-msgid "The file\n%1\ndisappeared. Please save a copy of the file to continue."
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
 msgstr ""
 
 #: Merge.rc:2164
