@@ -274,6 +274,7 @@ protected:
 	DirCompProgressDlg * m_pCmpProgressDlg;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	BOOL m_bUserCancelEdit; /**< TRUE if the user cancels rename */
+	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
 	CShellContextMenu* m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
 	CShellContextMenu* m_pShellContextMenuRight; /**< Shell context menu for group of right files */

@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.0
+  Remember last target folder for Copy/Move to in folder compare (#2659228)
   Detect Windows 7 and Windows 2008 in config log (#2599256)
   Bugfix: Help window opened from WinMerge was modal (#2590079)
   Bugfix: Crash in editor when undoing (#2590212)

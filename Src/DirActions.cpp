@@ -587,11 +587,12 @@ void CDirView::DoDelAll()
 void CDirView::DoCopyLeftTo()
 {
 	CString destPath;
-	CString startPath;
+	CString startPath(m_lastCopyFolder.c_str());
 
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
+	m_lastCopyFolder = destPath;
 	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	FileActionScript actionScript;
@@ -658,11 +659,12 @@ void CDirView::DoCopyLeftTo()
 void CDirView::DoCopyRightTo()
 {
 	CString destPath;
-	CString startPath;
+	CString startPath(m_lastCopyFolder.c_str());
 
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
+	m_lastCopyFolder = destPath;
 	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	FileActionScript actionScript;
@@ -729,11 +731,12 @@ void CDirView::DoCopyRightTo()
 void CDirView::DoMoveLeftTo()
 {
 	CString destPath;
-	CString startPath;
+	CString startPath(m_lastCopyFolder.c_str());
 
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
+	m_lastCopyFolder = destPath;
 	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
 
 	FileActionScript actionScript;
@@ -798,11 +801,12 @@ void CDirView::DoMoveLeftTo()
 void CDirView::DoMoveRightTo()
 {
 	CString destPath;
-	CString startPath;
+	CString startPath(m_lastCopyFolder.c_str());
 
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
+	m_lastCopyFolder = destPath;
 	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
 
 	FileActionScript actionScript;
