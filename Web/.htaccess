@@ -13,7 +13,7 @@ ErrorDocument 404 /404.php
 AddType x-mapp-php5 .php
 
 #Redirect PAD download URL to current WinMerge version...
-Redirect permanent /downloads/WinMerge-Setup.exe http://downloads.sourceforge.net/winmerge/WinMerge-2.10.4-Setup.exe
+Redirect permanent /downloads/WinMerge-Setup.exe http://downloads.sourceforge.net/winmerge/WinMerge-2.12.0-Setup.exe
 
 #Redirect www.winmerge.org to winmerge.org...
 RewriteEngine On
