@@ -33,8 +33,8 @@
 <dl class="headinglist">
   <dt>Developer Version</dt>
   <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></dd>
-  <dt>WinMerge 2.12</dt>
-  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_12">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_12</a></dd>
+  <dt>WinMerge <?php echo $stablerelease->getVersionNumberMajor();?></dt>
+  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/<?php echo $stablerelease->getBranchName();?>">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/<?php echo $stablerelease->getBranchName();?></a></dd>
 </dl>
 <?php
   $page->printFoot();

@@ -16,6 +16,7 @@
     var $_versionnumber;
     var $_date;
     var $_downloads, $_downloadsizes, $_downloadsha1sums;
+    var $_branchname;
 
     /**
      * Constructor
@@ -40,6 +41,14 @@
      */
     function getVersionNumber() {
       return $this->_versionnumber;
+    }
+
+    /**
+     * get the (major) version number from the release
+     */
+    function getVersionNumberMajor() {
+      $version = explode('.', $this->_versionnumber);
+      return $version[0] . '.' . $version[1];
     }
 
     /**
@@ -112,6 +121,20 @@
      */
     function getDownloadFileName($id) {
       return basename($this->_downloads[$id]);
+    }
+
+    /**
+     * set the branch name from the release
+     */
+    function setBranchName($name) {
+      $this->_branchname = $name;
+    }
+
+    /**
+     * get the branch name from the release
+     */
+    function getBranchName() {
+      return $this->_branchname;
     }
 
     /**
