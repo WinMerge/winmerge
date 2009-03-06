@@ -18,7 +18,7 @@
 <xsl:import href="../build/xsl/html/chunk.xsl"/>
 <xsl:import href="build_common.xsl"/>
 <!-- Define suffix to appear after title text in head/title element of every topic -->
-<xsl:param name="headtitle.suffix" select="' - WinMerge 2.10 Manual'"/>
+<xsl:param name="headtitle.suffix" select="' - WinMerge 2.12 Manual'"/>
 
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
