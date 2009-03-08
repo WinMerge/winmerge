@@ -291,12 +291,12 @@ msgstr "&Lista..."
 #: Merge.rc:152
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "Ma&nuell Prediffer"
 
 #: Merge.rc:153
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "A&utomatisk Prediffer"
 
 #: Merge.rc:155
 #: Merge.rc:276
@@ -1952,7 +1952,7 @@ msgstr "&Ordnivå:"
 #: Merge.rc:1218
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "O&rdbrytningstecken:"
 
 #: Merge.rc:1231
 #, c-format
