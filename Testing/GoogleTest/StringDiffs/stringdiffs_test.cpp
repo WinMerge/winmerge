@@ -395,7 +395,7 @@ namespace
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
-	// First word is different
+	// All three words are different
 	TEST_F(StringDiffsTest, PunctBreak3Words3)
 	{
 		std::vector<wdiff*> diffs;
