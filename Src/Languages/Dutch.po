@@ -292,12 +292,12 @@ msgstr "&Lijst..."
 #: Merge.rc:152
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "Ha&ndmatig voorvergelijken"
 
 #: Merge.rc:153
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "A&utomatisch voorvergelijken"
 
 #: Merge.rc:155
 #: Merge.rc:276
@@ -1089,7 +1089,7 @@ msgstr "Alle rechten voorbehouden."
 #: Merge.rc:674
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "Bezoek deWinMerge HomePage!"
+msgstr "Bezoek de WinMerge homepage!"
 
 #: Merge.rc:677
 #: Merge.rc:709
@@ -1116,7 +1116,7 @@ msgstr "Medewerkers"
 #: Merge.rc:685
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Bestanden of Mappen Selecteren"
+msgstr "Bestanden of mappen selecteren"
 
 #: Merge.rc:688
 #: Merge.rc:1600
@@ -1953,7 +1953,7 @@ msgstr "&Woordniveau:"
 #: Merge.rc:1218
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "W&oordafbrekingstekens:"
 
 #: Merge.rc:1231
 #, c-format
@@ -2035,7 +2035,7 @@ msgstr "Tekenset"
 #: Merge.rc:1274
 #, c-format
 msgid "Default Codepage"
-msgstr "Standaard Codetabel"
+msgstr "Standaard codetabel"
 
 #: Merge.rc:1275
 #, c-format
@@ -2324,7 +2324,7 @@ msgstr "Activeer archiefbestand-ondersteuning"
 #: Merge.rc:1463
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
-msgstr "Gebr&uik stand-alone 7-Zip indien beschikbaar"
+msgstr "Gebr&uik standalone 7-Zip indien beschikbaar"
 
 #: Merge.rc:1466
 #, c-format
