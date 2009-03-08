@@ -50,7 +50,7 @@ namespace
 	// String & str2 - the second string to compare
 	// bool case_sensitive - is the compare case-sensitive?
 	// int whitespace - do we ignore whitespace and how
-	// int breakType - word (0) or char (1) break
+	// int breakType - Space (0) or punctuations (1) break
 	// bool byte_level - are we word (false) or byte-level (true) diffing
 	// std::vector<wdiff*> * pDiffs - resultting diff list
 
@@ -59,7 +59,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde", "abcde", false, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
@@ -67,7 +67,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcdef", "abcde", false, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 1);
+		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
@@ -75,7 +75,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde ", "abcde", false, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 1);
+		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -83,7 +83,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde", "abcde", true, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -91,7 +91,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde", "abcde", true, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 1);
+		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -99,7 +99,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde ", "abcde", true, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 2);
+		EXPECT_EQ(2, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -107,7 +107,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde", " abcde", true, 0, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 2);
+		EXPECT_EQ(2, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
@@ -115,7 +115,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde abcde", "abcde abcde", false, 1, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
@@ -123,7 +123,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "  abcde abcde", false, 1, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
@@ -131,7 +131,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "	abcde abcde", false, 1, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
@@ -139,7 +139,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "abcde	abcde", false, 1, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -147,7 +147,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde", "abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -155,7 +155,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde", "abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -163,7 +163,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("	abcde", "abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -171,7 +171,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde", "  abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -187,7 +187,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde abcde", "abcde	abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -195,7 +195,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde\nabcde", "abcde	abcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 0);
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
