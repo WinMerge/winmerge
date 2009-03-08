@@ -205,10 +205,13 @@ namespace
 		sd_ComputeWordDiffs("aBcde fghij", "abcde fghij", true, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -219,10 +222,14 @@ namespace
 		sd_ComputeWordDiffs("abcde fghij", "abcde fGhij", true, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(6, pDiff->start[0]);
-		EXPECT_EQ(6, pDiff->start[1]);
-		EXPECT_EQ(10, pDiff->end[0]);
-		EXPECT_EQ(10, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(6, pDiff->start[0]);
+			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
+
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -247,10 +254,13 @@ namespace
 		sd_ComputeWordDiffs("abcde fgHIj klmno", "abcde fghij klmno", true, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(6, pDiff->start[0]);
-		EXPECT_EQ(6, pDiff->start[1]);
-		EXPECT_EQ(10, pDiff->end[0]);
-		EXPECT_EQ(10, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(6, pDiff->start[0]);
+			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -261,10 +271,13 @@ namespace
 		sd_ComputeWordDiffs("abcde fghij klmno", "abcde fGHij klmno", true, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(6, pDiff->start[0]);
-		EXPECT_EQ(6, pDiff->start[1]);
-		EXPECT_EQ(10, pDiff->end[0]);
-		EXPECT_EQ(10, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(6, pDiff->start[0]);
+			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -303,15 +316,18 @@ namespace
 		sd_ComputeWordDiffs("abcde fghij KLmno", "abcDE fghij klmno", true, 0, 0, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
-		pDiff = diffs[1];
-		EXPECT_EQ(12, pDiff->start[0]);
-		EXPECT_EQ(12, pDiff->start[1]);
-		EXPECT_EQ(16, pDiff->end[0]);
-		EXPECT_EQ(16, pDiff->end[1]);
+		if (diffs.size() == 2)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(12, pDiff->start[0]);
+			EXPECT_EQ(12, pDiff->start[1]);
+			EXPECT_EQ(16, pDiff->end[0]);
+			EXPECT_EQ(16, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -322,10 +338,13 @@ namespace
 		sd_ComputeWordDiffs("abcde,fghij", "ABcde,fghij", true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -336,10 +355,13 @@ namespace
 		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fghij", true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -350,15 +372,18 @@ namespace
 		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fGHij", true, 0, 1, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
-		pDiff = diffs[1];
-		EXPECT_EQ(6, pDiff->start[0]);
-		EXPECT_EQ(6, pDiff->start[1]);
-		EXPECT_EQ(10, pDiff->end[0]);
-		EXPECT_EQ(10, pDiff->end[1]);
+		if (diffs.size() == 2)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(6, pDiff->start[0]);
+			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -369,10 +394,13 @@ namespace
 		sd_ComputeWordDiffs("Abcde,fghij,klmno", "abcde,fghij,klmno", true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -446,10 +474,13 @@ namespace
 		sd_ComputeWordDiffs("Abcde:fghij", "abcde:fghij", true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(4, pDiff->end[0]);
-		EXPECT_EQ(4, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
@@ -461,10 +492,13 @@ namespace
 		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fghij", true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(0, pDiff->start[0]);
-		EXPECT_EQ(0, pDiff->start[1]);
-		EXPECT_EQ(10, pDiff->end[0]);
-		EXPECT_EQ(10, pDiff->end[1]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -482,8 +516,13 @@ namespace
 		sd_ComputeWordDiffs("aBcde", "abcde", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(1, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(1, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(1, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -493,8 +532,13 @@ namespace
 		sd_ComputeWordDiffs("aBCde", "abcde", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(2, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(2, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -504,8 +548,13 @@ namespace
 		sd_ComputeWordDiffs("aBcde", "abCde", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(2, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(2, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -516,8 +565,13 @@ namespace
 		sd_ComputeWordDiffs("aBcDe", "abcde", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(3, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(3, pDiff->end[0]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -528,8 +582,13 @@ namespace
 		sd_ComputeWordDiffs("aBcde", "abcDe", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(3, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->end[1]);
+		}	
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -540,8 +599,13 @@ namespace
 		sd_ComputeWordDiffs("aBcdE", "abcde", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(4, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
@@ -552,8 +616,13 @@ namespace
 		sd_ComputeWordDiffs("aBcde", "abcdE", true, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff = diffs[0];
-		EXPECT_EQ(1, pDiff->start[0]);
-		EXPECT_EQ(4, pDiff->end[0]);
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->end[1]);
+		}
 	}
 
 }  // namespace
