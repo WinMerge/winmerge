@@ -198,7 +198,7 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 	// We don't show extension for folder names
 	if (di.diffcode.isDirectory())
 		return _T("");
-	const String &r = di.left.path;
+	const String &r = di.left.filename;
 	LPCTSTR s = PathFindExtension(r.c_str());
 	return s + _tcsspn(s, _T("."));
 }
