@@ -3,6 +3,9 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.12.2
+  Bugfix: Filename extension column was empty for files (#2670046)
+
 WinMerge 2.12.0 - 2009-03-05 (r6542)
   Remember last target folder for Copy/Move to in folder compare (#2659228)
   Detect Windows 7 and Windows 2008 in config log (#2599256)
