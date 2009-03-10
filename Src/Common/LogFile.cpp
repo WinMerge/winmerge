@@ -38,7 +38,10 @@ CLogFile::CLogFile(LPCTSTR szLogName /*= NULL*/,
 	, m_nDefaultLevel(LMSG)
 	, m_nMaskLevel(LALL)
 {
-	SetFile(szLogName, bDeleteExisting);
+	String path;
+	if (szLogName != NULL)
+		path = szLogName;
+	SetFile(path, bDeleteExisting);
 	m_hLogMutex = CreateMutex(NULL, FALSE, MutexName);
 }
 
