@@ -49,12 +49,10 @@ public:
 		LDEBUG = 0x4000,  /**< Append message to debug window as well */
 	};
 
-	CLogFile(LPCTSTR szLogName = NULL, LPCTSTR szLogPath = NULL,
-		BOOL bDeleteExisting = FALSE);
+	CLogFile(LPCTSTR szLogName = NULL, BOOL bDeleteExisting = FALSE);
 	virtual ~CLogFile();
 
-	CString SetFile(const CString & strFile, const CString & strPath = _T(""),
-		BOOL bDelExisting = FALSE);
+	void SetFile(const CString & strFile, BOOL bDelExisting = FALSE);
 	void EnableLogging(BOOL bEnable);
 	UINT GetDefaultLevel() const;
 	void SetDefaultLevel(UINT logLevel);

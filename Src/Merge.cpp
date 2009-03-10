@@ -222,7 +222,9 @@ BOOL CMergeApp::InitInstance()
 	if (logging > 0)
 	{
 		m_pLog->EnableLogging(TRUE);
-		m_pLog->SetFile(_T("WinMerge.log"));
+		String logfile(instTemp);
+		logfile = paths_ConcatPath(logfile, _T("WinMerge.log"));
+		m_pLog->SetFile(logfile.c_str());
 
 		if (logging == 1)
 			m_pLog->SetMaskLevel(CLogFile::LALL);

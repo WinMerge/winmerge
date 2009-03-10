@@ -28,18 +28,17 @@ static const int MEGA = 1024 * 1024;
 
 /**
  * @brief Constructor
- * @param [in] szLogName Logfile name (not including path).
- * @param [in] szLogPath Folder for log file.
+ * @param [in] szLogName Logfile name (including path).
  * @param [in] bDeleteExisting Do we delete existing log file with same name?
  */
 CLogFile::CLogFile(LPCTSTR szLogName /*= NULL*/,
-	 LPCTSTR szLogPath /*= NULL*/, BOOL bDeleteExisting /*=FALSE*/)
+	 BOOL bDeleteExisting /*=FALSE*/)
 	: m_nMaxSize(MEGA)
 	, m_bEnabled(FALSE)
 	, m_nDefaultLevel(LMSG)
 	, m_nMaskLevel(LALL)
 {
-	SetFile(szLogName, szLogPath, bDeleteExisting);
+	SetFile(szLogName, bDeleteExisting);
 	m_hLogMutex = CreateMutex(NULL, FALSE, MutexName);
 }
 
@@ -54,34 +53,17 @@ CLogFile::~CLogFile()
 
 /**
  * @brief Set logfilename.
- * @param [in] strFile Filename of logfile.
- * @param [in] strPath Folder for logfile.
+ * @param [in] strFile Filename and path of logfile.
  * @param bDelExisting If TRUE, existing logfile with same name
  * is deleted.
- * @return Full path to logfile.
  * @note If strPath param is empty then system TEMP folder is used.
  */
-CString CLogFile::SetFile(const CString & strFile, const CString & strPath,
-	BOOL bDelExisting /*= FALSE*/)
+void CLogFile::SetFile(const CString & strFile,	BOOL bDelExisting /*= FALSE*/)
 {
-	// build the path to the logfile
-	if (!strPath.IsEmpty())
-		m_strLogPath = strFile;
-	else
-	{
-		String temp = env_GetTempPath();
-		m_strLogPath = temp.c_str();
-	}
-	
-	if (m_strLogPath.Right(1) != _T('\\'))
-		m_strLogPath += _T('\\');
-
-	m_strLogPath += strFile;
+	m_strLogPath = strFile;
 
 	if (bDelExisting)
 		DeleteFile(m_strLogPath);
-	
-	return m_strLogPath;
 }
 
 /**
