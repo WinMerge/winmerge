@@ -647,10 +647,13 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
  */
 static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	const String &r = *static_cast<const String*>(p);
-	const String &s = *static_cast<const String*>(q);
-	return lstrcmpi(PathFindExtension(r.c_str()), PathFindExtension(s.c_str()));
-	//return ColExtGet(pCtxt, p).CompareNoCase(ColExtGet(pCtxt, q));
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+	if (ldi.diffcode.isDirectory() && !rdi.diffcode.isDirectory())
+		return -1;
+	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
+		return 1;
+	return lstrcmpi(ColExtGet(pCtxt, p).c_str(), ColExtGet(pCtxt, q).c_str());
 }
 
 /**
