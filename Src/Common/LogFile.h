@@ -52,7 +52,7 @@ public:
 	CLogFile(LPCTSTR szLogName = NULL, BOOL bDeleteExisting = FALSE);
 	virtual ~CLogFile();
 
-	void SetFile(const CString & strFile, BOOL bDelExisting = FALSE);
+	void SetFile(const String & strFile, BOOL bDelExisting = FALSE);
 	void EnableLogging(BOOL bEnable);
 	UINT GetDefaultLevel() const;
 	void SetDefaultLevel(UINT logLevel);
@@ -67,7 +67,7 @@ public:
 	UINT DeleteFileFailed(LPCTSTR path);
 
 	void SetMaxLogSize(DWORD dwMax) { m_nMaxSize = dwMax; }
-	CString GetPath() const { return m_strLogPath; }
+	String GetPath() const { return m_strLogPath; }
 
 
 protected:
@@ -80,7 +80,7 @@ private:
 	HANDLE    m_hLogMutex; /**< Mutex protecting log writing */
 	DWORD     m_nMaxSize; /**< Max size of the log file */
 	BOOL      m_bEnabled; /**< Is logging enabled? */
-	CString   m_strLogPath; /**< Full path to log file */
+	String    m_strLogPath; /**< Full path to log file */
 	UINT      m_nDefaultLevel; /**< Default level for log messages */
 	UINT      m_nMaskLevel; /**< Level to mask messages written to log */
 };

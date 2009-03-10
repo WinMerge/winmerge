@@ -58,12 +58,12 @@ CLogFile::~CLogFile()
  * is deleted.
  * @note If strPath param is empty then system TEMP folder is used.
  */
-void CLogFile::SetFile(const CString & strFile,	BOOL bDelExisting /*= FALSE*/)
+void CLogFile::SetFile(const String & strFile, BOOL bDelExisting /*= FALSE*/)
 {
 	m_strLogPath = strFile;
 
 	if (bDelExisting)
-		DeleteFile(m_strLogPath);
+		DeleteFile(m_strLogPath.c_str());
 }
 
 /**
@@ -240,7 +240,7 @@ void CLogFile::WriteRaw(LPCTSTR msg)
 	if (dwWaitRes == WAIT_OBJECT_0)
 	{
 		FILE *f;
-		if ((f=_tfopen(m_strLogPath, _T("a"))) != NULL)
+		if ((f=_tfopen(m_strLogPath.c_str(), _T("a"))) != NULL)
 		{
 			_fputts(msg, f);
 
@@ -275,8 +275,8 @@ void CLogFile::Prune(FILE *f)
 			fwrite(buf, amt, 1, tf);
 		fclose(tf);
 		fclose(f);
-		DeleteFile(m_strLogPath);
-		MoveFile(tempfile.c_str(), m_strLogPath);
+		DeleteFile(m_strLogPath.c_str());
+		MoveFile(tempfile.c_str(), m_strLogPath.c_str());
 	}
 }
 
