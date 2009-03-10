@@ -56,6 +56,7 @@ items from our <a href="http://sourceforge.net/projects/winmerge">SF.net project
 <h3>Subdomains</h3>
 <ul class="rssfeeditems">
   <li><a href="http://bugs.winmerge.org/">bugs.winmerge.org</a></li>
+  <li><a href="http://feature-requests.winmerge.org/">feature-requests.winmerge.org</a></li>
   <li><a href="http://forums.winmerge.org/">forums.winmerge.org</a></li>
   <li><a href="http://lists.winmerge.org/">lists.winmerge.org</a></li>
   <li><a href="http://patches.winmerge.org/">patches.winmerge.org</a></li>
