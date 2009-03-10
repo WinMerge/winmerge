@@ -222,8 +222,8 @@ BOOL CMergeApp::InitInstance()
 	if (logging > 0)
 	{
 		m_pLog->EnableLogging(TRUE);
-		String logfile(instTemp);
-		logfile = paths_ConcatPath(logfile, _T("WinMerge.log"));
+		String logfile = env_GetMyDocuments(NULL);
+		logfile = paths_ConcatPath(logfile, _T("WinMerge\\WinMerge.log"));
 		m_pLog->SetFile(logfile);
 
 		if (logging == 1)
