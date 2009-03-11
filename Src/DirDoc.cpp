@@ -325,7 +325,7 @@ void CDirDoc::Rescan()
 	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, IDS_STATUS_RESCANNING);
 
 	GetLog()->Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
-			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
+			m_pCtxt->GetLeftPath().c_str(), m_pCtxt->GetRightPath().c_str());
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats);
 
