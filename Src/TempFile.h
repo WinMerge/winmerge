@@ -29,6 +29,9 @@ private:
 	String m_path; /**< Temporary file path. */
 };
 
+void CleanupWMtemp();
+BOOL CleanupWMtempfolder(std::vector <int> processIDs);
+BOOL WMrunning(std::vector <int> processIDs, int iPI);
 BOOL ClearTempfolder(const String &pathName);
 
 #endif // _TEMP_FILE_

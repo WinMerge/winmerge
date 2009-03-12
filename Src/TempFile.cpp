@@ -8,12 +8,17 @@
 // $Id$
 
 #include <windows.h>
+#include <tlhelp32.h> 
 #include <tchar.h>
 #include <shlwapi.h>
+#include <vector>
 #include "UnicodeString.h"
 #include "TempFile.h"
 #include "paths.h"
 #include "Environment.h"
+#include "Constants.h"
+
+using std::vector;
 
 /**
  * @brief Delete the temp file when instance is deleted.
@@ -110,6 +115,107 @@ bool TempFile::Delete()
 		m_path = TEXT("");
 	return !!success;
 }
+/** 
+ * @brief Cleanup tempfiles created by WinMerge.
+ * This function finds temp folders which don't have WinMerge instance using
+ * them anymore.
+ */
+void CleanupWMtemp()
+{
+	vector<int> processIDs;
+
+	// Get the snapshot of the system
+	HANDLE hSnapShot;
+	hSnapShot = CreateToolhelp32Snapshot (TH32CS_SNAPALL, NULL);
+	PROCESSENTRY32 pEntry;
+	pEntry.dwSize = sizeof(pEntry);
+
+	// Get first process
+	BOOL hRes = Process32First (hSnapShot, &pEntry);
+
+	// Iterate through all processes to get
+	// the ProcessIDs of all running WM instances
+	while (hRes)
+	{
+		if ((_tcscmp( pEntry.szExeFile, ExecuteFilenameU) == 0) ||
+			(_tcscmp( pEntry.szExeFile, ExecuteFilename) == 0))
+		{
+			processIDs.push_back(pEntry.th32ProcessID);
+		}
+		hRes = Process32Next (hSnapShot, &pEntry);
+	}
+
+	// Now remove temp folders that are not used.
+	CleanupWMtempfolder(processIDs);
+}
+
+/** 
+ * @brief Remove temp folders having process Ids in name.
+ * This function removes temp folders whose name contains process ID from the
+ * given list. These folders must have been earlier detected as unused.
+ * @param [in] processIDs List of process IDs.
+ * @return TRUE if all temp folders were deleted, FALSE otherwise.
+ */
+BOOL CleanupWMtempfolder(vector <int> processIDs)
+{
+	String foldername;
+	String tempfolderPID;
+	String filepattern(TempFolderPrefix);
+	filepattern += _T("*.*");
+	String pattern = paths_GetParentPath(env_GetTempPath(NULL));
+	pattern = paths_ConcatPath(pattern, filepattern.c_str());
+	WIN32_FIND_DATA ff;
+	HANDLE h = INVALID_HANDLE_VALUE;
+	BOOL res = TRUE;
+	BOOL bok = TRUE;
+
+	h = FindFirstFile (pattern.c_str(), &ff);
+	if (h == INVALID_HANDLE_VALUE)
+		bok = FALSE;
+
+	while (bok & res)
+	{
+		foldername = ff.cFileName;
+		if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			// Remove leading "WM_" from filename to get the ProcessID
+			tempfolderPID = foldername.substr(_tcslen(TempFolderPrefix));
+
+			// Check if this instance of WM is still running
+			if (!WMrunning(processIDs, _ttoi (tempfolderPID.c_str())))
+			{
+				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern.c_str()), ff.cFileName); 
+				if (res = ClearTempfolder(tempfolderPID.c_str()))
+				{
+					if (!res)
+						break;
+					bok = FindNextFile(h, &ff) ;
+				}
+				continue;
+			}
+			bok = FindNextFile(h, &ff) ;
+		}
+	}
+	if (h)
+		FindClose(h);
+	return res;
+}
+
+/**
+ * @brief Is WinMerge with given processID running?
+ * @param [in] 
+BOOL WMrunning(std::vector <int>  ProcessIDs, int iPI )
+{
+	vector<int>::iterator iter = ProcessIDs.begin();
+	while (iter != ProcessIDs.end())
+	{
+		if (*iter == iPI)
+			return TRUE;
+		iter++;
+	}
+	return FALSE;
+}
+
 
 /**
  * @brief Remove the temp folder.
