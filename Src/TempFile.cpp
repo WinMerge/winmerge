@@ -203,11 +203,14 @@ BOOL CleanupWMtempfolder(vector <int> processIDs)
 
 /**
  * @brief Is WinMerge with given processID running?
- * @param [in] 
-BOOL WMrunning(std::vector <int>  ProcessIDs, int iPI )
+ * @param [in] processIDs List of WinMerge processes.
+ * @param [in] iPI ProcessID to check.
+ * @return TRUE if processID was found from the list, FALSE otherwise.
+ */
+BOOL WMrunning(vector<int> processIDs, int iPI)
 {
-	vector<int>::iterator iter = ProcessIDs.begin();
-	while (iter != ProcessIDs.end())
+	vector<int>::iterator iter = processIDs.begin();
+	while (iter != processIDs.end())
 	{
 		if (*iter == iPI)
 			return TRUE;
@@ -215,7 +218,6 @@ BOOL WMrunning(std::vector <int>  ProcessIDs, int iPI )
 	}
 	return FALSE;
 }
-
 
 /**
  * @brief Remove the temp folder.
