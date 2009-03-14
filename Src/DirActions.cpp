@@ -1568,8 +1568,7 @@ BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
 		String sFullName;
 
 		SplitFilename(szOldFileName, &sFullName, NULL, NULL);
-		sFullName += _T('\\');
-		sFullName += szNewFileName;
+		sFullName = paths_ConcatPath(sFullName, szNewFileName);
 
 		// No need to rename if new file already exist.
 		if ((sFullName.compare(szOldFileName)) ||
