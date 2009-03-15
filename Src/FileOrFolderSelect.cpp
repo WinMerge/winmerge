@@ -153,14 +153,16 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 			UINT titleid /*=0*/, 
 			HWND hwndOwner /*=NULL*/) 
 {
-	UNREFERENCED_PARAMETER(root_path);
 	BROWSEINFO bi;
 	LPMALLOC pMalloc;
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH] = {0};
 	BOOL bRet = FALSE;
 	String title = theApp.LoadString(titleid);
-	LastSelectedFolder = root_path;
+	if (root_path == NULL)
+		LastSelectedFolder.clear();
+	else
+		LastSelectedFolder = root_path;
 
 	bi.hwndOwner = hwndOwner;
 	bi.pidlRoot = NULL;  // Start from desktop folder

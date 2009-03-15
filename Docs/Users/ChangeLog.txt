@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.2
   Bugfix: Filename extension column was empty for files (#2670046)
+  Bugfix: Crash when selecting backup folder (#2686382)
 
 WinMerge 2.12.0 - 2009-03-05 (r6542)
   Remember last target folder for Copy/Move to in folder compare (#2659228)
