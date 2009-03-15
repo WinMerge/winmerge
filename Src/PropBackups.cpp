@@ -113,7 +113,7 @@ BOOL CPropBackups::OnInitDialog()
 void CPropBackups::OnBnClickedBackupBrowse()
 {
 	CString path;
-	if (SelectFolder(path, NULL, 0, GetSafeHwnd()))
+	if (SelectFolder(path, m_sGlobalFolder, 0, GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_BACKUP_FOLDER, path);
 	}

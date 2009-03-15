@@ -6,6 +6,8 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.5
   Remember last target folder for Copy/Move to in folder compare (#2659228)
   Add shortcut for Discard All in save confirmation dialog (#2559560)
+  Initialize folder selection dialog to currently selected folder in
+    options dialog (r6570)
   Bugfix: Filename extension column was empty for files (#2670046)
   Bugfix: Crash when selecting backup folder (#2686382)
   Translation updates:
