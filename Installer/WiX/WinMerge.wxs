@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!--
+    TODO:
+      * Install all files
+      * Make a different between 32bit and 64bit
+      * Register shell extension
+      * Create start menu items
+      * Mutli-language support
+      * GUI
+      * ...
+  -->
+  <Product Id="055366D2-F7D1-4888-A923-C3DC004E55E4" 
+    Codepage="1252" 
+    Language="1033" 
+    Manufacturer="Thingamahoochie Software" 
+    Name="WinMerge" 
+    UpgradeCode="3C974FF6-9076-46EB-A65F-A53931EAF942" 
+    Version="0.0.1">
+    
+    <Package Id="*" 
+      Comments="WinMerge" 
+      Compressed="yes" 
+      Description="WinMerge Installer" 
+      InstallerVersion="200" 
+      Keywords="Installer" 
+      Languages="1033" 
+      Manufacturer="Thingamahoochie Software" 
+      SummaryCodepage="1252" />
+    
+    <Media Id="1"
+      Cabinet="winmerge.cab"
+      EmbedCab="yes" />
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLDIR" Name="WinMerge">
+          <Directory Id="DOCSDIR" Name="Docs" />
+          <Directory Id="LANGDIR" Name="Languages" />
+        </Directory>
+      </Directory>
+    </Directory>
+    
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="WinMergeU" Guid="*">
+        <File Id="WinMergeUEXE" 
+          Name="WinMergeU.exe" 
+          Source="..\..\Build\MergeUnicodeRelease\WinMergeU.exe" 
+          Vital="yes" />
+      </Component>
+      
+      <!--TODO: Windows 32bit -->
+      <Component Id="ShellExtension" Guid="*">
+        <File Id="ShellExtensionUDLL" 
+          Name="ShellExtensionU.dll" 
+          Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <!--TODO: Windows 64bit -->
+      <Component Id="ShellExtensionX64" Guid="*">
+        <File Id="ShellExtensionX64DLL" 
+          Name="ShellExtensionX64.dll" 
+          Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="libexpat" Guid="*">
+        <File Id="libexpatDLL" 
+          Name="libexpat.dll" 
+          Source="..\..\Build\expat\libexpat.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="pcre" Guid="*">
+        <File Id="pcreDLL" 
+          Name="pcre.dll" 
+          Source="..\..\Build\pcre\pcre.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="MergeLang" Guid="*">
+        <File Id="MergeLangDLL" 
+          Name="MergeLang.dll" 
+          Source="..\..\Build\MergeUnicodeRelease\MergeLang.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="heksedit" Guid="*">
+        <File Id="hekseditUDLL" 
+          Name="hekseditU.dll" 
+          Source="..\..\Build\heksedit\hekseditU.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="Files" Guid="*">
+        <File Id="FilesTXT" 
+          Name="Files.txt" 
+          Source="..\..\Docs\Users\Files.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Contributors" Guid="*">
+        <File Id="ContributorsTXT" 
+          Name="Contributors.txt" 
+          Source="..\..\Docs\Users\Contributors.txt" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="DOCSDIR">
+      <Component Id="ReadMe" Guid="*">
+        <File Id="ReadMeTXT" 
+          Name="ReadMe.txt" 
+          Source="..\..\Docs\Users\ReadMe.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ReleaseNotes" Guid="*">
+        <File Id="ReleaseNotesHTML" 
+          Name="ReleaseNotes.html" 
+          Source="..\..\Docs\Users\ReleaseNotes.html" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ChangeLog" Guid="*">
+        <File Id="ChangeLogTXT" 
+          Name="ChangeLog.txt" 
+          Source="..\..\Docs\Users\ChangeLog.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="WinMergeHelp" Guid="*">
+        <File Id="WinMergeCHM" 
+          Name="WinMerge.chm" 
+          Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="LANGDIR">
+      <Component Id="Brazilian" Guid="*">
+        <File Id="BrazilianPO" 
+          Name="Brazilian.po" 
+          Source="..\..\Src\Languages\Brazilian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Bulgarian" Guid="*">
+        <File Id="BulgarianPO" 
+          Name="Bulgarian.po" 
+          Source="..\..\Src\Languages\Bulgarian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Catalan" Guid="*">
+        <File Id="CatalanPO" 
+          Name="Catalan.po" 
+          Source="..\..\Src\Languages\Catalan.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ChineseSimplified" Guid="*">
+        <File Id="ChineseSimplifiedPO" 
+          Name="ChineseSimplified.po" 
+          Source="..\..\Src\Languages\ChineseSimplified.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ChineseTraditional" Guid="*">
+        <File Id="ChineseTraditionalPO" 
+          Name="ChineseTraditional.po" 
+          Source="..\..\Src\Languages\ChineseTraditional.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Croatian" Guid="*">
+        <File Id="CroatianPO" 
+          Name="Croatian.po" 
+          Source="..\..\Src\Languages\Croatian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Czech" Guid="*">
+        <File Id="CzechPO" 
+          Name="Czech.po" 
+          Source="..\..\Src\Languages\Czech.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Danish" Guid="*">
+        <File Id="DanishPO" 
+          Name="Danish.po" 
+          Source="..\..\Src\Languages\Danish.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Dutch" Guid="*">
+        <File Id="DutchPO" 
+          Name="Dutch.po" 
+          Source="..\..\Src\Languages\Dutch.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="French" Guid="*">
+        <File Id="FrenchPO" 
+          Name="French.po" 
+          Source="..\..\Src\Languages\French.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Galician" Guid="*">
+        <File Id="GalicianPO" 
+          Name="Galician.po" 
+          Source="..\..\Src\Languages\Galician.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="German" Guid="*">
+        <File Id="GermanPO" 
+          Name="German.po" 
+          Source="..\..\Src\Languages\German.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Greek" Guid="*">
+        <File Id="GreekPO" 
+          Name="Greek.po" 
+          Source="..\..\Src\Languages\Greek.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Hungarian" Guid="*">
+        <File Id="HungarianPO" 
+          Name="Hungarian.po" 
+          Source="..\..\Src\Languages\Hungarian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Italian" Guid="*">
+        <File Id="ItalianPO" 
+          Name="Italian.po" 
+          Source="..\..\Src\Languages\Italian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Japanese" Guid="*">
+        <File Id="JapanesePO" 
+          Name="Japanese.po" 
+          Source="..\..\Src\Languages\Japanese.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Korean" Guid="*">
+        <File Id="KoreanPO" 
+          Name="Korean.po" 
+          Source="..\..\Src\Languages\Korean.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Norwegian" Guid="*">
+        <File Id="NorwegianPO" 
+          Name="Norwegian.po" 
+          Source="..\..\Src\Languages\Norwegian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Polish" Guid="*">
+        <File Id="PolishPO" 
+          Name="Polish.po" 
+          Source="..\..\Src\Languages\Polish.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Portuguese" Guid="*">
+        <File Id="PortuguesePO" 
+          Name="Portuguese.po" 
+          Source="..\..\Src\Languages\Portuguese.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Romanian" Guid="*">
+        <File Id="RomanianPO" 
+          Name="Romanian.po" 
+          Source="..\..\Src\Languages\Romanian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Russian" Guid="*">
+        <File Id="RussianPO" 
+          Name="Russian.po" 
+          Source="..\..\Src\Languages\Russian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Slovak" Guid="*">
+        <File Id="SlovakPO" 
+          Name="Slovak.po" 
+          Source="..\..\Src\Languages\Slovak.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Slovenian" Guid="*">
+        <File Id="SlovenianPO" 
+          Name="Slovenian.po" 
+          Source="..\..\Src\Languages\Slovenian.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Spanish" Guid="*">
+        <File Id="SpanishPO" 
+          Name="Spanish.po" 
+          Source="..\..\Src\Languages\Spanish.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Swedish" Guid="*">
+        <File Id="SwedishPO" 
+          Name="Swedish.po" 
+          Source="..\..\Src\Languages\Swedish.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Turkish" Guid="*">
+        <File Id="TurkishPO" 
+          Name="Turkish.po" 
+          Source="..\..\Src\Languages\Turkish.po" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Ukrainian" Guid="*">
+        <File Id="UkrainianPO" 
+          Name="Ukrainian.po" 
+          Source="..\..\Src\Languages\Ukrainian.po" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <Feature Id="Complete" Level="1">
+      <Feature Id="Core" Level="1">
+        <ComponentRef Id="WinMergeU" />
+        <ComponentRef Id="ShellExtension" />
+        <ComponentRef Id="ShellExtensionX64" />
+        <ComponentRef Id="libexpat" />
+        <ComponentRef Id="pcre" />
+        <ComponentRef Id="MergeLang" />
+        <ComponentRef Id="heksedit" />
+      </Feature>
+      <Feature Id="Documentation" Level="1">
+        <ComponentRef Id="Files" />
+        <ComponentRef Id="Contributors" />
+        <ComponentRef Id="ReadMe" />
+        <ComponentRef Id="ReleaseNotes" />
+        <ComponentRef Id="ChangeLog" />
+        <ComponentRef Id="WinMergeHelp" />
+      </Feature>
+      <Feature Id="Languages" Level="1">
+        <ComponentRef Id="Brazilian" />
+        <ComponentRef Id="Bulgarian" />
+        <ComponentRef Id="Catalan" />
+        <ComponentRef Id="ChineseSimplified" />
+        <ComponentRef Id="ChineseTraditional" />
+        <ComponentRef Id="Croatian" />
+        <ComponentRef Id="Czech" />
+        <ComponentRef Id="Danish" />
+        <ComponentRef Id="Dutch" />
+        <ComponentRef Id="French" />
+        <ComponentRef Id="Galician" />
+        <ComponentRef Id="German" />
+        <ComponentRef Id="Greek" />
+        <ComponentRef Id="Hungarian" />
+        <ComponentRef Id="Italian" />
+        <ComponentRef Id="Japanese" />
+        <ComponentRef Id="Korean" />
+        <ComponentRef Id="Norwegian" />
+        <ComponentRef Id="Polish" />
+        <ComponentRef Id="Portuguese" />
+        <ComponentRef Id="Romanian" />
+        <ComponentRef Id="Russian" />
+        <ComponentRef Id="Slovak" />
+        <ComponentRef Id="Slovenian" />
+        <ComponentRef Id="Spanish" />
+        <ComponentRef Id="Swedish" />
+        <ComponentRef Id="Turkish" />
+        <ComponentRef Id="Ukrainian" />
+      </Feature>
+    </Feature>
+    
+    <!-- TODO: Works this really? -->
+    <Condition Message="WinMerge requires Windows 2000/XP/2003/Vista/2008 or later to install.">
+      <![CDATA[( VersionNT <= 500 ) OR ( Version9x <> 0 )]]>
+    </Condition>
+    
+    <UI />
+    
+  </Product>
+</Wix>
