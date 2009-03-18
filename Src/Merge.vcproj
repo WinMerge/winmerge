@@ -1048,43 +1048,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Common\CShellFileOp.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="Common\CSubclass.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -4982,6 +4945,41 @@
 				RelativePath="Common\ShellContextMenu.cpp">
 			</File>
 			<File
+				RelativePath=".\Common\ShellFileOperations.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Common\sizecbar.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6166,9 +6164,6 @@
 				RelativePath="Common\coretypes.h">
 			</File>
 			<File
-				RelativePath="Common\CShellFileOp.h">
-			</File>
-			<File
 				RelativePath="Common\CSubclass.h">
 			</File>
 			<File
@@ -6509,6 +6504,9 @@
 			</File>
 			<File
 				RelativePath="Common\ShellContextMenu.h">
+			</File>
+			<File
+				RelativePath=".\Common\ShellFileOperations.h">
 			</File>
 			<File
 				RelativePath="Common\sizecbar.h">

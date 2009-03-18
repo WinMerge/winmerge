@@ -24,7 +24,7 @@
 #include "coretools.h"
 #include "paths.h"
 #include "7zCommon.h"
-#include "CShellFileOp.h"
+#include "ShellFileOperations.h"
 #include "OptionsDef.h"
 #include "WaitStatusCursor.h"
 #include "LogFile.h"
@@ -582,7 +582,6 @@ void CDirView::DoDelAll()
  *
  * When copying files from recursive compare file subdirectory is also
  * read so directory structure is preserved.
- * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoCopyLeftTo()
 {
@@ -654,7 +653,6 @@ void CDirView::DoCopyLeftTo()
  *
  * When copying files from recursive compare file subdirectory is also
  * read so directory structure is preserved.
- * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoCopyRightTo()
 {
@@ -726,7 +724,6 @@ void CDirView::DoCopyRightTo()
  *
  * When moving files from recursive compare file subdirectory is also
  * read so directory structure is preserved.
- * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoMoveLeftTo()
 {
@@ -796,7 +793,6 @@ void CDirView::DoMoveLeftTo()
  *
  * When moving files from recursive compare file subdirectory is also
  * read so directory structure is preserved.
- * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoMoveRightTo()
 {
@@ -941,7 +937,6 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 		}
 		break;
 		
-	// Deleting does not need confirmation, CShellFileOp takes care of it
 	case FileAction::ACT_DEL:
 		break;
 
@@ -1574,14 +1569,10 @@ BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
 		if ((sFullName.compare(szOldFileName)) ||
 			(DOES_NOT_EXIST == paths_DoesPathExist(sFullName.c_str())))
 		{
-			CShellFileOp fileOp;
-
-			fileOp.SetOperationFlags(FO_RENAME, this->GetSafeHwnd(), 0);
-			fileOp.AddSourceFile(szOldFileName);
-			fileOp.AddDestFile(sFullName.c_str());
-			
-			BOOL bOpStarted = FALSE;
-			bSuccess = fileOp.Go(&bOpStarted);
+			ShellFileOperations fileOp;
+			fileOp.SetOperation(FO_RENAME, 0, this->GetSafeHwnd());
+			fileOp.AddSourceAndDestination(szOldFileName, sFullName);
+			bSuccess = fileOp.Run();
 		}
 		else
 		{

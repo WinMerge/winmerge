@@ -28,7 +28,7 @@
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "FileActionScript.h"
-#include "CShellFileOp.h"
+#include "ShellFileOperations.h"
 #include "paths.h"
 
 /**
@@ -41,9 +41,9 @@ FileActionScript::FileActionScript()
 , m_bHasDelOperations(FALSE)
 , m_hParentWindow(NULL)
 {
-	m_pCopyOperations = new CShellFileOp();
-	m_pMoveOperations = new CShellFileOp();
-	m_pDelOperations = new CShellFileOp();
+	m_pCopyOperations = new ShellFileOperations();
+	m_pMoveOperations = new ShellFileOperations();
+	m_pDelOperations = new ShellFileOperations();
 }
 
 /**
@@ -117,10 +117,10 @@ int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
 }
 
 /**
- * @brief Create CShellFileOp operation lists from our scripts.
+ * @brief Create ShellFileOperations operation lists from our scripts.
  *
- * We use CShellFileOp internally to do actual file operations.
- * CShellFileOp can do only one type of operation (copy, move, delete)
+ * We use ShellFileOperations internally to do actual file operations.
+ * ShellFileOperations can do only one type of operation (copy, move, delete)
  * with one instance at a time, so we use own instance for every
  * type of action.
  * @return One of CreateScriptReturn values.
@@ -174,8 +174,7 @@ int FileActionScript::CreateOperationsScripts()
 		if (act.atype == FileAction::ACT_COPY &&
 			bSkip == FALSE && bContinue == TRUE)
 		{
-			m_pCopyOperations->AddSourceFile(act.src.c_str());
-			m_pCopyOperations->AddDestFile(act.dest.c_str());
+			m_pCopyOperations->AddSourceAndDestination(act.src, act.dest);
 			m_bHasCopyOperations = TRUE;
 		}
 	}
@@ -187,7 +186,7 @@ int FileActionScript::CreateOperationsScripts()
 	}
 	
 	if (m_bHasCopyOperations)
-		m_pCopyOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
+		m_pCopyOperations->SetOperation(operation, operFlags, m_hParentWindow);
 
 	// Move operations next
 	operation = FO_MOVE;
@@ -201,13 +200,12 @@ int FileActionScript::CreateOperationsScripts()
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_MOVE)
 		{
-			m_pMoveOperations->AddSourceFile(act.src.c_str());
-			m_pMoveOperations->AddDestFile(act.dest.c_str());
+			m_pMoveOperations->AddSourceAndDestination(act.src, act.dest);
 			m_bHasMoveOperations = TRUE;
 		}
 	}
 	if (m_bHasMoveOperations)
-		m_pMoveOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
+		m_pMoveOperations->SetOperation(operation, operFlags,  m_hParentWindow);
 
 	// Delete operations last
 	operation = FO_DELETE;
@@ -221,14 +219,14 @@ int FileActionScript::CreateOperationsScripts()
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_DEL)
 		{
-			m_pDelOperations->AddSourceFile(act.src.c_str());
+			m_pDelOperations->AddSource(act.src);
 			if (!act.dest.empty())
-				m_pDelOperations->AddSourceFile(act.dest.c_str());
+				m_pDelOperations->AddSource(act.dest);
 			m_bHasDelOperations = TRUE;
 		}
 	}
 	if (m_bHasDelOperations)
-		m_pDelOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
+		m_pDelOperations->SetOperation(operation, operFlags, m_hParentWindow);
 	return SCRIPT_SUCCESS;
 }
 
@@ -239,9 +237,8 @@ int FileActionScript::CreateOperationsScripts()
 BOOL FileActionScript::Run()
 {
 	// Now process files/directories that got added to list
-	BOOL bOpStarted = FALSE;
-	BOOL bFileOpSucceed = TRUE;
-	BOOL bUserCancelled = FALSE;
+	bool bFileOpSucceed = true;
+	bool bUserCancelled = false;
 	BOOL bRetVal = TRUE;
 	int apiRetVal = 0;
 
@@ -259,15 +256,17 @@ BOOL FileActionScript::Run()
 					paths_CreateIfNeeded(act.dest.c_str());
 			}
 
-			bFileOpSucceed = m_pCopyOperations->Go(&bOpStarted,
-					&apiRetVal, &bUserCancelled);
+			bFileOpSucceed = m_pCopyOperations->Run();
+			bUserCancelled = m_pCopyOperations->IsCanceled();
 		}
 
 		if (m_bHasMoveOperations)
 		{
 			if (bFileOpSucceed && !bUserCancelled)
-				bFileOpSucceed = m_pMoveOperations->Go(&bOpStarted, &apiRetVal,
-						 &bUserCancelled);
+			{
+				bFileOpSucceed = m_pMoveOperations->Run();
+				bUserCancelled = m_pCopyOperations->IsCanceled();
+			}
 			else
 				bRetVal = FALSE;
 		}
@@ -275,7 +274,10 @@ BOOL FileActionScript::Run()
 		if (m_bHasDelOperations)
 		{
 			if (bFileOpSucceed && !bUserCancelled)
-				bFileOpSucceed = m_pDelOperations->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+			{
+				bFileOpSucceed = m_pDelOperations->Run();
+				bUserCancelled = m_pCopyOperations->IsCanceled();
+			}
 			else
 				bRetVal = FALSE;
 		}

@@ -25,7 +25,7 @@
 #ifndef _FILEACTIONSCRIPT_H_
 #define _FILEACTIONSCRIPT_H_
 
-class CShellFileOp;
+class ShellFileOperations;
 
 /** 
  * @brief Return values for FileActionScript functions.
@@ -153,11 +153,11 @@ protected:
 
 private:
 	FileActionList m_actions; /**< List of all actions for this script. */
-	CShellFileOp * m_pCopyOperations; /**< Copy operations. */
+	ShellFileOperations * m_pCopyOperations; /**< Copy operations. */
 	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
-	CShellFileOp * m_pMoveOperations; /**< Move operations. */
+	ShellFileOperations * m_pMoveOperations; /**< Move operations. */
 	BOOL m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
-	CShellFileOp * m_pDelOperations; /**< Delete operations. */
+	ShellFileOperations * m_pDelOperations; /**< Delete operations. */
 	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */
