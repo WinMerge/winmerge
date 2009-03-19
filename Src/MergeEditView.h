@@ -184,6 +184,7 @@ public:
 	virtual void GetPrintHeaderText(int nPageNum, CString & text);
 	virtual void PrintHeader(CDC * pdc, int nPageNum);
 	virtual void PrintFooter(CDC * pdc, int nPageNum);
+	void UpdateStatusbar();
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);

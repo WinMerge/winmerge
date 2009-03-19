@@ -11,6 +11,7 @@ WinMerge 2.13.5
   Expand/collapse folders from keyboard (#2203904)
   Bugfix: Filename extension column was empty for files (#2670046)
   Bugfix: Crash when selecting backup folder (#2686382)
+  bugfix: Swapping panes did not update statusbar (#2661838)
   Translation updates:
   - Czech (r6530)
   - Dutch (#2672852)
