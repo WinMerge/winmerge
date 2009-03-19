@@ -2024,7 +2024,7 @@ msgstr "Zr&ušit zmìny"
 #: Merge.rc:1266
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "Zrušit &vše"
 
 #: Merge.rc:1273
 #: Merge.rc:1521
