@@ -8,6 +8,7 @@ WinMerge 2.13.5
   Add shortcut for Discard All in save confirmation dialog (#2559560)
   Initialize folder selection dialog to currently selected folder in
     options dialog (r6570)
+  Expand/collapse folders from keyboard (#2203904)
   Bugfix: Filename extension column was empty for files (#2670046)
   Bugfix: Crash when selecting backup folder (#2686382)
   Translation updates:
