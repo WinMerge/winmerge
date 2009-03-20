@@ -179,7 +179,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde abcde", "abcdeabcde", true, 2, 0, false, &diffs);
-		EXPECT_TRUE(diffs.size() == 1);
+		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
