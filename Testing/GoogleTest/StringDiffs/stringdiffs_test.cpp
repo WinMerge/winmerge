@@ -135,11 +135,12 @@ namespace
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
+	// Whitespace at begin of first string is a difference
 	TEST_F(StringDiffsTest, IgnoreWhitespace6)
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs(" abcde abcde", "abcde	abcde", false, 1, 0, false, &diffs);
-		EXPECT_EQ(0, diffs.size());
+		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -179,7 +180,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde abcde", "abcdeabcde", true, 2, 0, false, &diffs);
-		EXPECT_EQ(1, diffs.size());
+		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
@@ -229,7 +230,6 @@ namespace
 			EXPECT_EQ(10, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->end[1]);
 		}
-
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
@@ -238,10 +238,15 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij", "ABcde fGhij", true, 0, 0, false, &diffs);
-		EXPECT_EQ(1, diffs.size());
+		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff = diffs[0];
 		EXPECT_EQ(0, pDiff->start[0]);
 		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
 		EXPECT_EQ(10, pDiff->end[0]);
 		EXPECT_EQ(10, pDiff->end[1]);
 	}
@@ -286,10 +291,15 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcDE fGHij klmno", "abcde fghij klmno", true, 0, 0, false, &diffs);
-		EXPECT_EQ(1, diffs.size());
+		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff = diffs[0];
 		EXPECT_EQ(0, pDiff->start[0]);
 		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
 		EXPECT_EQ(10, pDiff->end[0]);
 		EXPECT_EQ(10, pDiff->end[1]);
 	}
@@ -300,10 +310,15 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("abcde fghij klmno", "abcDE fGHij klmno", true, 0, 0, false, &diffs);
-		EXPECT_EQ(1, diffs.size());
+		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff = diffs[0];
 		EXPECT_EQ(0, pDiff->start[0]);
 		EXPECT_EQ(0, pDiff->start[1]);
+		EXPECT_EQ(4, pDiff->end[0]);
+		EXPECT_EQ(4, pDiff->end[1]);
+		pDiff = diffs[1];
+		EXPECT_EQ(6, pDiff->start[0]);
+		EXPECT_EQ(6, pDiff->start[1]);
 		EXPECT_EQ(10, pDiff->end[0]);
 		EXPECT_EQ(10, pDiff->end[1]);
 	}
