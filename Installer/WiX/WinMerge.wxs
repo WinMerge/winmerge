@@ -36,6 +36,7 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLDIR" Name="WinMerge">
           <Directory Id="DOCSDIR" Name="Docs" />
+          <Directory Id="FILTERSDIR" Name="Filters" />
           <Directory Id="LANGDIR" Name="Languages" />
         </Directory>
       </Directory>
@@ -134,6 +135,99 @@
         <File Id="WinMergeCHM" 
           Name="WinMerge.chm" 
           Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="FILTERSDIR">
+      <Component Id="ADAMulti" Guid="*">
+        <File Id="ADAMultiFLT" 
+          Name="ADAMulti.flt" 
+          Source="..\..\Filters\ADAMulti.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ASPNET" Guid="*">
+        <File Id="ASPNETFLT" 
+          Name="ASPNET.flt" 
+          Source="..\..\Filters\ASPNET.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="CSharp_loose" Guid="*">
+        <File Id="CSharp_looseFLT" 
+          Name="CSharp_loose.flt" 
+          Source="..\..\Filters\CSharp_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Delphi" Guid="*">
+        <File Id="DelphiFLT" 
+          Name="Delphi.flt" 
+          Source="..\..\Filters\Delphi.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="FileFilter" Guid="*">
+        <File Id="FileFilterTMPL" 
+          Name="FileFilter.tmpl" 
+          Source="..\..\Filters\FileFilter.tmpl" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Frontpage" Guid="*">
+        <File Id="FrontpageFLT" 
+          Name="Frontpage.flt" 
+          Source="..\..\Filters\Frontpage.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="MASM" Guid="*">
+        <File Id="MASMFLT" 
+          Name="MASM.flt" 
+          Source="..\..\Filters\MASM.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_GnuC_loose" Guid="*">
+        <File Id="Merge_GnuC_looseFLT" 
+          Name="Merge_GnuC_loose.flt" 
+          Source="..\..\Filters\Merge_GnuC_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_VB_loose" Guid="*">
+        <File Id="Merge_VB_looseFLT" 
+          Name="Merge_VB_loose.flt" 
+          Source="..\..\Filters\Merge_VB_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_VC_loose" Guid="*">
+        <File Id="Merge_VC_looseFLT" 
+          Name="Merge_VC_loose.flt" 
+          Source="..\..\Filters\Merge_VC_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="SourceControl" Guid="*">
+        <File Id="SourceControlFLT" 
+          Name="SourceControl.flt" 
+          Source="..\..\Filters\SourceControl.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Symbian" Guid="*">
+        <File Id="SymbianFLT" 
+          Name="Symbian.flt" 
+          Source="..\..\Filters\Symbian.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="XML_html" Guid="*">
+        <File Id="XML_htmlFLT" 
+          Name="XML_html.flt" 
+          Source="..\..\Filters\XML_html.flt" 
           Vital="no" />
       </Component>
     </DirectoryRef>
@@ -353,6 +447,21 @@
         <ComponentRef Id="ReleaseNotes" />
         <ComponentRef Id="ChangeLog" />
         <ComponentRef Id="WinMergeHelp" />
+      </Feature>
+      <Feature Id="Filters" Level="1">
+        <ComponentRef Id="ADAMulti" />
+        <ComponentRef Id="ASPNET" />
+        <ComponentRef Id="CSharp_loose" />
+        <ComponentRef Id="Delphi" />
+        <ComponentRef Id="FileFilter" />
+        <ComponentRef Id="Frontpage" />
+        <ComponentRef Id="MASM" />
+        <ComponentRef Id="Merge_GnuC_loose" />
+        <ComponentRef Id="Merge_VB_loose" />
+        <ComponentRef Id="Merge_VC_loose" />
+        <ComponentRef Id="SourceControl" />
+        <ComponentRef Id="Symbian" />
+        <ComponentRef Id="XML_html" />
       </Feature>
       <Feature Id="Languages" Level="1">
         <ComponentRef Id="Brazilian" />
