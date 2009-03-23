@@ -8,7 +8,7 @@ using std::vector;
 
 namespace
 {
-	// The fixture for testing paths functions.
+	// The fixture for testing string differencing functions.
 	class StringDiffsTest : public testing::Test
 	{
 	protected:
