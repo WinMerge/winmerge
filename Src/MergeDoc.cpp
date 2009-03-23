@@ -2823,11 +2823,14 @@ void CMergeDoc::SwapFiles()
 	m_ptBuf[1]->m_nThisPane = 1;
 	m_pView[MERGE_VIEW_RIGHT]->m_nThisPane = 1;
 	m_pDetailView[1]->m_nThisPane = 1;
+	swap(m_pView[MERGE_VIEW_LEFT]->m_piMergeEditStatus, m_pView[MERGE_VIEW_RIGHT]->m_piMergeEditStatus);
 
 	// Update views
 	UpdateHeaderPath(0);
 	UpdateHeaderPath(1);
 	GetParentFrame()->UpdateSplitter();
+	m_pView[MERGE_VIEW_LEFT]->UpdateStatusbar();
+	m_pView[MERGE_VIEW_RIGHT]->UpdateStatusbar();
 
 	UpdateAllViews(NULL);
 }

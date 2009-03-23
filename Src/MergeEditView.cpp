@@ -1756,6 +1756,14 @@ void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 }
 
 /**
+ * @brief Update status bar contents.
+ */
+void CMergeEditView::UpdateStatusbar()
+{
+	OnUpdateCaret();
+}
+
+/**
  * @brief Update statusbar info, Override from CCrystalTextView
  * @note we tab-expand column, but we don't tab-expand char count,
  * since we want to show how many chars there are and tab is just one
