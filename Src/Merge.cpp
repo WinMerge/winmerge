@@ -216,6 +216,11 @@ BOOL CMergeApp::InitInstance()
 	String instTemp = env_GetPerInstanceString(_T("WM_"));
 	env_SetInstanceFolder(instTemp.c_str());
 
+	// Cleanup left over tempfiles from previous instances.
+	// Normally this should not neet to do anything - but if for some reason
+	// WinMerge did not delete temp files this makes sure they are removed.
+	CleanupWMtemp();
+
 	m_pLog = new CLogFile();
 
 	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
