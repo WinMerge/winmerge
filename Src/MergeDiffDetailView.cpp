@@ -658,7 +658,7 @@ void CMergeDiffDetailView::PopCursors()
 		{
 		// just check that all positions all valid
 		m_lineEnd = min(m_lineEnd, GetLineCount()-1);
-		m_diffLength = m_lineEnd - m_lineBegin + 1;
+		m_diffLength = GetLineCount() - m_lineBegin;
 		m_ptCursorPos.y = min(m_ptCursorPos.y, GetLineCount()-1);
 		m_ptCursorPos.x = min(m_ptCursorPos.x, GetLineLength(m_ptCursorPos.y));
 	}

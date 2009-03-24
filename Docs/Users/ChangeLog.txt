@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.6
   Bugfix: Says files are identical after making files different in another
     application and re-loading them (#2672737)
+  Bugfix: Difference pane didn't show added lines (#2710146)
 
 WinMerge 2.13.5 - 2009-03-19 (r6579)
   Remember last target folder for Copy/Move to in folder compare (#2659228)
