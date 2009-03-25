@@ -65,9 +65,9 @@ namespace
 				"LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4",
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		if (diffs.size() > 0)
 		{
+			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(0, pDiff->start[0]);
 			EXPECT_EQ(0, pDiff->start[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
@@ -84,9 +84,9 @@ namespace
 				"LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4",
 				false, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		if (diffs.size() > 0)
 		{
+			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(0, pDiff->start[0]);
 			EXPECT_EQ(0, pDiff->start[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
@@ -103,12 +103,12 @@ namespace
 				"LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4",
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		if (diffs.size() > 0)
 		{
+			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(0, pDiff->start[0]);
-			EXPECT_EQ(-1, pDiff->start[1]);
-			EXPECT_EQ(46, pDiff->end[0]);
+			EXPECT_EQ(47, pDiff->start[1]);
+			EXPECT_EQ(-1, pDiff->end[0]);
 			EXPECT_EQ(47, pDiff->end[1]);
 		}
 	}
@@ -123,9 +123,9 @@ namespace
 				"LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4",
 				false, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		if (diffs.size() > 0)
 		{
+			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(44, pDiff->start[0]);
 			EXPECT_EQ(44, pDiff->start[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
