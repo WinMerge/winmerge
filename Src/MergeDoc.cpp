@@ -443,6 +443,25 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		}
 	}
 
+	if (leftFileChanged == FileChanged)
+	{
+		CString msg;
+		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetLeft().c_str());
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
+		{
+			ReloadDoc(0);
+		}
+	}
+	else if (rightFileChanged == FileChanged)
+	{
+		CString msg;
+		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetRight().c_str());
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
+		{
+			ReloadDoc(1);
+		}
+	}
+
 	String temp1 = m_tempFiles[0].GetPath();
 	if (temp1.empty())
 	{
@@ -573,24 +592,6 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_pRescanFileInfo[0]->Update(m_filePaths.GetLeft().c_str());
 	m_pRescanFileInfo[1]->Update(m_filePaths.GetRight().c_str());
 
-	if (leftFileChanged == FileChanged)
-	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetLeft().c_str());
-		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
-		{
-			ReloadDoc(0);
-		}
-	}
-	else if (rightFileChanged == FileChanged)
-	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetRight().c_str());
-		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
-		{		
-			ReloadDoc(1);
-		}
-	}
 	return nResult;
 }
 
