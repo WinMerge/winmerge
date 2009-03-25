@@ -7,6 +7,7 @@ WinMerge 2.13.6
   Bugfix: Says files are identical after making files different in another
     application and re-loading them (#2672737)
   Bugfix: Difference pane didn't show added lines (#2710146)
+  Bugfix: Did not show difference at end of line (#2638045)
   Translation updates:
   - Czech (r6581)
 

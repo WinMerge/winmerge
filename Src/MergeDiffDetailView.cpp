@@ -204,8 +204,9 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 	vector<wdiff*> worddiffs;
 	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
 	if (worddiffs.size() == 0 || (worddiffs[0]->end[0] == -1 &&
-			worddiffs[0]->end[1] + 1 == nLineLength) ||
-			(worddiffs[0]->end[1] == -1 && worddiffs[0]->end[0] + 1 == nLineLength))
+			worddiffs[0]->start[1] == 0 && worddiffs[0]->end[1] + 1 == nLineLength) ||
+			(worddiffs[0]->end[1] == -1 && 
+			worddiffs[0]->start[0] == 0 && worddiffs[0]->end[0] + 1 == nLineLength))
 	{
 		while (!worddiffs.empty())
 		{
