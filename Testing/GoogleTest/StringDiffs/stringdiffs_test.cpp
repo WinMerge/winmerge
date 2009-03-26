@@ -488,6 +488,42 @@ namespace
 		EXPECT_EQ(16, pDiff->end[1]);
 	}
 
+	// Empty custom punct string
+	// Match whole strings
+	TEST_F(StringDiffsTest, CustomPunct1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars("");
+		sd_ComputeWordDiffs("Abcde:fghij", "abcde:fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		if (diffs.size() > 0)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
+	}
+
+	// Empty custom punct string
+	// Match whole strings
+	TEST_F(StringDiffsTest, CustomPunct2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars("");
+		sd_ComputeWordDiffs("Abcde,fghij", "abcde,fghij", true, 0, 1, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		if (diffs.size() > 0)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+		}
+	}
+
 	// Identical strings, case sensitivity, no whitespace, punctuations, word-level
 	// First word is different
 	TEST_F(StringDiffsTest, CustomPunctBreak1)
