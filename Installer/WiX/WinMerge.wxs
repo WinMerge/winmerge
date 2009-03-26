@@ -38,6 +38,7 @@
           <Directory Id="DOCSDIR" Name="Docs" />
           <Directory Id="FILTERSDIR" Name="Filters" />
           <Directory Id="LANGDIR" Name="Languages" />
+          <Directory Id="PLUGINSDIR" Name="MergePlugins" />
         </Directory>
       </Directory>
     </Directory>
@@ -430,6 +431,92 @@
       </Component>
     </DirectoryRef>
     
+    <DirectoryRef Id="PLUGINSDIR">
+      <Component Id="editoraddin" Guid="*">
+        <File Id="editoraddinSCT" 
+          Name="editor addin.sct" 
+          Source="..\..\Plugins\dlls\editor addin.sct" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="insertdatetime" Guid="*">
+        <File Id="insertdatetimeSCT" 
+          Name="insert datetime.sct" 
+          Source="..\..\Plugins\dlls\insert datetime.sct" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="CompareMSExcelFiles" Guid="*">
+        <File Id="CompareMSExcelFilesDLL" 
+          Name="CompareMSExcelFiles.dll" 
+          Source="..\..\Plugins\dlls\CompareMSExcelFiles.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="CompareMSWordFiles" Guid="*">
+        <File Id="CompareMSWordFilesDLL" 
+          Name="CompareMSWordFiles.dll" 
+          Source="..\..\Plugins\dlls\CompareMSWordFiles.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="DisplayXMLFiles" Guid="*">
+        <File Id="DisplayXMLFilesDLL" 
+          Name="DisplayXMLFiles.dll" 
+          Source="..\..\Plugins\dlls\DisplayXMLFiles.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="IgnoreColumns" Guid="*">
+        <File Id="IgnoreColumnsDLL" 
+          Name="IgnoreColumns.dll" 
+          Source="..\..\Plugins\dlls\IgnoreColumns.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="IgnoreCommentsC" Guid="*">
+        <File Id="IgnoreCommentsCDLL" 
+          Name="IgnoreCommentsC.dll" 
+          Source="..\..\Plugins\dlls\IgnoreCommentsC.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="IgnoreFieldsComma" Guid="*">
+        <File Id="IgnoreFieldsCommaDLL" 
+          Name="IgnoreFieldsComma.dll" 
+          Source="..\..\Plugins\dlls\IgnoreFieldsComma.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="IgnoreFieldsTab" Guid="*">
+        <File Id="IgnoreFieldsTabDLL" 
+          Name="IgnoreFieldsTab.dll" 
+          Source="..\..\Plugins\dlls\IgnoreFieldsTab.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="IgnoreLeadingLineNumbers" Guid="*">
+        <File Id="IgnoreLeadingLineNumbersDLL" 
+          Name="IgnoreLeadingLineNumbers.dll" 
+          Source="..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="WatchBeginningOfLog" Guid="*">
+        <File Id="WatchBeginningOfLogDLL" 
+          Name="WatchBeginningOfLog.dll" 
+          Source="..\..\Plugins\dlls\WatchBeginningOfLog.dll" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="WatchEndOfLog" Guid="*">
+        <File Id="WatchEndOfLogDLL" 
+          Name="WatchEndOfLog.dll" 
+          Source="..\..\Plugins\dlls\WatchEndOfLog.dll" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
     <Feature Id="Complete" Level="1">
       <Feature Id="Core" Level="1">
         <ComponentRef Id="WinMergeU" />
@@ -492,6 +579,20 @@
         <ComponentRef Id="Swedish" />
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
+      </Feature>
+      <Feature Id="Plugins" Level="1">
+        <ComponentRef Id="editoraddin" />
+        <ComponentRef Id="insertdatetime" />
+        <ComponentRef Id="CompareMSExcelFiles" />
+        <ComponentRef Id="CompareMSWordFiles" />
+        <ComponentRef Id="DisplayXMLFiles" />
+        <ComponentRef Id="IgnoreColumns" />
+        <ComponentRef Id="IgnoreCommentsC" />
+        <ComponentRef Id="IgnoreFieldsComma" />
+        <ComponentRef Id="IgnoreFieldsTab" />
+        <ComponentRef Id="IgnoreLeadingLineNumbers" />
+        <ComponentRef Id="WatchBeginningOfLog" />
+        <ComponentRef Id="WatchEndOfLog" />
       </Feature>
     </Feature>
     
