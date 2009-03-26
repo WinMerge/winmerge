@@ -54,6 +54,30 @@ namespace
 	// bool byte_level - are we word (false) or byte-level (true) diffing
 	// std::vector<wdiff*> * pDiffs - resultting diff list
 
+	// Both strings empty
+	TEST_F(StringDiffsTest, EmptyBoth)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("", "", false, 0, 0, false, &diffs);
+		EXPECT_EQ(0, diffs.size());
+	}
+
+	// First string empty
+	TEST_F(StringDiffsTest, EmptyFirst)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("", "abcde", false, 0, 0, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+	}
+
+	// Second string empty
+	TEST_F(StringDiffsTest, EmptySecond)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde", "", false, 0, 0, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+	}
+
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, Default1)
 	{
