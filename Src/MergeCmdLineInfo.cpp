@@ -32,7 +32,7 @@
 #include "StdAfx.h"
 
 #include <shlwapi.h> // Required for PathFindFileName
-
+#include "Constants.h"
 #include "Paths.h"
 #include "Merge.h"
 #include "MainFrm.h"
