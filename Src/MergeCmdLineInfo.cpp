@@ -29,13 +29,11 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
-
+#include <windows.h>
+#include <tchar.h>
 #include <shlwapi.h> // Required for PathFindFileName
 #include "Constants.h"
 #include "Paths.h"
-#include "Merge.h"
-#include "MainFrm.h"
 #include "MergeCmdLineInfo.h"
 #include "OptionsDef.h"
 
@@ -94,7 +92,7 @@ LPCTSTR MergeCmdLineInfo::SetOption(LPCTSTR q, LPCTSTR key, LPCTSTR value)
 		q = EatParam(q, s);
 		value = s.c_str() + 1;
 	}
-	GetOptionsMgr()->SaveOption(key, value);
+//	GetOptionsMgr()->SaveOption(key, value);
 	return q;
 }
 
@@ -267,9 +265,9 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 		{
 			// -noprefs means do not load or remember options (preferences)
 			// Turn off serializing to registry.
-			GetOptionsMgr()->SetSerializing(false);
+//			GetOptionsMgr()->SetSerializing(false);
 			// Load all default settings.
-			theApp.ResetOptions();
+//			theApp.ResetOptions();
 		}
 		else if (param == _T("minimize"))
 		{

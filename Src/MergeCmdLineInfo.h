@@ -18,19 +18,20 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-
-#ifndef _MERGE_CMD_LINE_INFO_INCLUDED_
-#define _MERGE_CMD_LINE_INFO_INCLUDED_
-
 /** 
  * @file  MergeCmdLineInfo.h
  *
  * @brief MergeCmdLineInfo class declaration.
  *
  */
-
 // ID line follows -- this is updated by SVN
 // $Id$
+
+#ifndef _MERGE_CMD_LINE_INFO_INCLUDED_
+#define _MERGE_CMD_LINE_INFO_INCLUDED_
+
+#include <vector>
+#include "UnicodeString.h"
 
 /** 
  * @brief WinMerge's command line handler.
