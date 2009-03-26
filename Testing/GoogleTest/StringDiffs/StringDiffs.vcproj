@@ -134,6 +134,9 @@
 				RelativePath=".\stringdiffs_test_bugs.cpp">
 			</File>
 			<File
+				RelativePath=".\stringdiffs_test_bytelevel.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
 			</File>
 		</Filter>

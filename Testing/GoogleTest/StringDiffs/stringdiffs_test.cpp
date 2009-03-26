@@ -143,6 +143,14 @@ namespace
 		EXPECT_EQ(1, diffs.size());
 	}
 
+	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
+	TEST_F(StringDiffsTest, IgnoreWhitespace7)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abcde abcde", "abcde	abcde", false, 1, 0, false, &diffs);
+		EXPECT_EQ(0, diffs.size());
+	}
+
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace1)
 	{
