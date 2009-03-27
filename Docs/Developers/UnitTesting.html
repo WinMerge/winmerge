@@ -200,8 +200,8 @@ part of the filen name helps.</p>
 Don't copy the test functions, but copy the namespace closing brace and <code>
 main()</code> function from the end of the file.</p>
 
-<p>Rename the test class to desribe your tests (e.g. <code>CommandLineTest
-</code>. Remember to rename constructor/destructor methods too!
+<p>Rename the test class to desribe your tests (e.g. <code>CommandLineTest</code>
+). Remember to rename constructor/destructor methods too!
 
 <h3>Add tests</h3>
 <p>Now you can start adding tests. Look Google Test documentation and existing
@@ -220,6 +220,13 @@ parameters. Then there is a function call done inside test macro. The framework
 defines several macros for the tests. The <code>EXPECT_TRUE</code> macro makes
 the test succeed if the parameter (funtion return value) is true, otherwise the
 test fails.</p>
+
+<h3>Split tests to several cases/files</h3>
+<p>GoogleTests allows splitting tests to several cases and several files.
+Adding new test case is easy: just add new file and create new test class
+there. Don't copy <code>main()</code> function. Eatch test project should have
+only one <code>main()</code>.
+</p>
 
 </body>
 </html>
