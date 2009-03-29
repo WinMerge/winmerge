@@ -89,6 +89,7 @@ Localization:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
 
 * Polish:
+  M.T <mtrz@users.sourceforge.net>
   Skiff <skiffatsf@users.sourceforge.net>
   Pawel Wawrzysko <traduc@kki.pl>
 

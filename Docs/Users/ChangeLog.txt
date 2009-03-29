@@ -11,6 +11,7 @@ WinMerge 2.13.6
   Bugfix: Did not show difference at end of line (#2638045)
   Translation updates:
   - Czech (r6581)
+  - Polish (#2717382)
 
 WinMerge 2.13.5 - 2009-03-19 (r6579)
   Remember last target folder for Copy/Move to in folder compare (#2659228)
