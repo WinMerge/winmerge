@@ -90,9 +90,9 @@ namespace
 		{
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(83, pDiff->start[0]);
-			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(83, pDiff->start[1]);
 			EXPECT_EQ(114, pDiff->end[0]);
-			EXPECT_EQ(-1, pDiff->end[1]);
+			EXPECT_EQ(97, pDiff->end[1]);
 		}
 	}
 
@@ -109,9 +109,9 @@ namespace
 		{
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(39, pDiff->start[0]);
-			EXPECT_EQ(41, pDiff->start[1]);
+			EXPECT_EQ(21, pDiff->start[1]);
 			EXPECT_EQ(39, pDiff->end[0]);
-			EXPECT_EQ(56, pDiff->end[1]);
+			EXPECT_EQ(20, pDiff->end[1]);
 		}
 	}
 
