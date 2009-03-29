@@ -62,17 +62,18 @@ namespace
 	TEST_F(StringDiffsBugsTest, Bug_1685466_1)
 	{
 		std::vector<wdiff*> diffs;
-		sd_ComputeWordDiffs("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)",
-			"if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)",
+		sd_ComputeWordDiffs(
+				"if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)",
+				"if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)",
 				false, 0, 1, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(83, pDiff->start[0]);
-			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(83, pDiff->start[1]);
 			EXPECT_EQ(99, pDiff->end[0]);
-			EXPECT_EQ(-1, pDiff->end[1]);
+			EXPECT_EQ(82, pDiff->end[1]);
 		}
 	}
 
