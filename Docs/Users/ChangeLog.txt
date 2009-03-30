@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.2
+  Disable folder compare tree-view by default (#2714968)
   Bugfix: Filename extension column was empty for files (#2670046)
   Bugfix: Crash when selecting backup folder (#2686382)
   bugfix: Swapping panes did not update statusbar (#2661838)
