@@ -10,6 +10,7 @@ WinMerge 2.12.2
   bugfix: Swapping panes did not update statusbar (#2661838)
   Bugfix: Says files are identical after making files different in another
     application and re-loading them (#2672737)
+  Bugfix: Files with missing last EOL weren't merged correctly (#2712120)
   Translation updates:
   - Polish (#2717382)
 

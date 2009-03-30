@@ -211,7 +211,10 @@ BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 {
 	int cchText = GetFullLineLength(nLineIndex);
 	if (cchText == 0)
+	{
+		strLine.Empty();
 		return FALSE;
+	}
 	LPTSTR pchText = strLine.GetBufferSetLength(cchText);
 	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(TCHAR));
 	return TRUE;
