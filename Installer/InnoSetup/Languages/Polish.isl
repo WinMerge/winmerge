@@ -300,7 +300,7 @@ StatusUninstalling=Deinstalacja %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 wersja %2
 AdditionalIcons=Dodatkowe ikony:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Funkcje opcjonalne:
 CreateDesktopIcon=Utwórz ikonê na &pulpicie
 CreateQuickLaunchIcon=Utwórz ikonê na pasku &szybkiego uruchamiania
 ProgramOnTheWeb=Strona WWW programu %1
@@ -359,15 +359,15 @@ ExplorerContextMenu=&W³¹cz integracjê z menu Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
 IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
 IntegrateClearCase=Integracja z Rational &ClearCase
-AddToPath=&Dodaj katalog WinMerge do œcie¿ki systemowej
+AddToPath=&Dodaj folder WinMerge do sciezki systemowej
 
 ;Icon Labels
 ReadMe=Czytaj to
 UsersGuide=Przewodnik u¿ytkownika
-ViewStartMenuFolder=&Podgl¹d katalogu menu Start programu WinMerge
+ViewStartMenuFolder=&Podglad folderu menu Start programu WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=Instalator wykry³, ¿e zmieni³eœ lokalizacjê menu startowego z "%s" na "%s". Czy usun¹æ poprzedni katalog menu startowego?
+DeletePreviousStartMenu=Instalator wykryl, ze zmieniles lokalizacje menu startowego z "%s" na "%s". Czy usunac poprzedni folder menu startowego?
 
 ; Project file description
 ProjectFileDesc=Plik projektu WinMerge
