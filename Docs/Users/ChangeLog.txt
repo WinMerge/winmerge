@@ -12,7 +12,7 @@ WinMerge 2.13.6
   Bugfix: Files with missing last EOL weren't merged correctly (#2712120)
   Translation updates:
   - Czech (r6581)
-  - Polish (#2717382)
+  - Polish (#2717382, #2720875)
 
 WinMerge 2.13.5 - 2009-03-19 (r6579)
   Remember last target folder for Copy/Move to in folder compare (#2659228)
