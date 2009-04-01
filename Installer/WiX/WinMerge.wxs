@@ -11,7 +11,6 @@
       * Register shell extension
       * Create start menu items
       * Mutli-language support
-      * GUI
       * ...
   -->
   <Product Id="055366D2-F7D1-4888-A923-C3DC004E55E4" 
@@ -609,6 +608,8 @@
     </Condition>
     
     <WixVariable Id="WixUILicenseRtf" Value="..\..\Docs\users\GPL.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Bitmaps\banner.bmp" /> 
+    <WixVariable Id="WixUIDialogBmp" Value="Bitmaps\dialog.bmp" />
     
     <UIRef Id="WixUI_WinMerge" />
     
