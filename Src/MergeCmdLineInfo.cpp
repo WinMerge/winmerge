@@ -109,8 +109,8 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
 	m_bNonInteractive(false),
 	m_bSingleInstance(false),
 	m_bShowUsage(false),
-	m_dwLeftFlags(FFILEOPEN_CMDLINE),
-	m_dwRightFlags(FFILEOPEN_CMDLINE)
+	m_dwLeftFlags(FFILEOPEN_NONE),
+	m_dwRightFlags(FFILEOPEN_NONE)
 {
 	m_Files.reserve(2);
 

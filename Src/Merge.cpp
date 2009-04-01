@@ -593,6 +593,8 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 		if (cmdInfo.m_Files.size() > 2)
 		{
+			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
+			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
 			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2].c_str();
 			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0].c_str(),
 				cmdInfo.m_Files[1].c_str(),	cmdInfo.m_dwLeftFlags,
@@ -610,6 +612,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 		else if (cmdInfo.m_Files.size() == 1)
 		{
+			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 			String sFilepath = cmdInfo.m_Files[0];
 			if (IsProjectFile(sFilepath.c_str()))
 			{
