@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    candleArgs: "WinMerge.wxs" "WixUI_WinMerge.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+-->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!--
     TODO:
@@ -603,6 +607,10 @@
     <Condition Message="WinMerge requires Windows 2000/XP/2003/Vista/2008 or later to install.">
       <![CDATA[( VersionNT <= 500 ) OR ( Version9x <> 0 )]]>
     </Condition>
+    
+    <WixVariable Id="WixUILicenseRtf" Value="..\..\Docs\users\GPL.rtf" />
+    
+    <UIRef Id="WixUI_WinMerge" />
     
     <UI />
     
