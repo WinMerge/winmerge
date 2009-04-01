@@ -34,15 +34,15 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>WinMerge</Program_Name>
-		<Program_Version>2.12.0</Program_Version>
-		<Program_Release_Month>03</Program_Release_Month>
-		<Program_Release_Day>05</Program_Release_Day>
+		<Program_Version>2.12.2</Program_Version>
+		<Program_Release_Month>04</Program_Release_Month>
+		<Program_Release_Day>01</Program_Release_Day>
 		<Program_Release_Year>2009</Program_Release_Year>
 		<Program_Cost_Dollars>0</Program_Cost_Dollars>
 		<Program_Cost_Other_Code />
 		<Program_Cost_Other />
 		<Program_Type>Freeware</Program_Type>
-		<Program_Release_Status>Major Update</Program_Release_Status>
+		<Program_Release_Status>Minor Update</Program_Release_Status>
 		<Program_Install_Support>Install and Uninstall</Program_Install_Support>
 		<Program_OS_Support>Win95,Win98,WinME,WinNT 4.x,Windows2000,WinXP,Windows2003,Windows Vista Starter,Windows Vista Home Basic,Windows Vista Home Premium,Windows Vista Business,Windows Vista Enterprise,Windows Vista Ultimate,Windows Vista Home Basic x64,Windows Vista Home Premium x64,Windows Vista Business x64,Windows Vista Enterprise x64,Windows Vista Ultimate x64</Program_OS_Support>
 		<Program_Language>Bulgarian,Catalan,ChineseSimplified,ChineseTraditional,Croatian,Czech,Danish,Dutch,English,French,Galician,German,Greek,Hungarian,Italian,Japanese,Korean,Norwegian,Polish,Portuguese,Romanian,Russian,Slovak,Spanish,Swedish,Turkish,Ukrainian</Program_Language>
@@ -51,8 +51,8 @@
 		<Program_Category_Class>System Utilities::File &amp; Disk Management</Program_Category_Class>
 		<Program_System_Requirements />
 		<File_Info>
-			<File_Size_Bytes>3170721</File_Size_Bytes>
-			<File_Size_K>3096</File_Size_K>
+			<File_Size_Bytes>3173554</File_Size_Bytes>
+			<File_Size_K>3099</File_Size_K>
 			<File_Size_MB>3</File_Size_MB>
 		</File_Info>
 		<Expire_Info>
@@ -85,7 +85,7 @@
 		</Application_URLs>
 		<Download_URLs>
 			<Primary_Download_URL>http://winmerge.org/downloads/WinMerge-Setup.exe</Primary_Download_URL>
-			<Secondary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.12.0-Setup.exe</Secondary_Download_URL>
+			<Secondary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.12.2-Setup.exe</Secondary_Download_URL>
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />
 		</Download_URLs>

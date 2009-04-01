@@ -10,6 +10,7 @@
 <div class="infocard">
   <h3>WinMerge 2.12</h3>
   <ul>
+    <li>WinMerge 2.12.2 (2009-04-01)</li>
     <li>WinMerge 2.12.0 (2009-03-05)</li>
   </ul>
   <ul class="inline">
