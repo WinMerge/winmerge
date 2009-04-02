@@ -72,6 +72,7 @@ private:
 	static LPCTSTR SetOption(LPCTSTR, LPCTSTR key, LPCTSTR value = _T("1"));
 	void ParseClearCaseCmdLine(LPCTSTR);
 	void ParseWinMergeCmdLine(LPCTSTR);
+	void AddPath(const String &path);
 
 	/** Operator= is not implemented. */
 	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);

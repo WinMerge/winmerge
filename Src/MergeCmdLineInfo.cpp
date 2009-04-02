@@ -198,6 +198,35 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q)
 }
 
 /**
+ * @brief Add path to list of paths.
+ * This method adds given string as a path to the list of paths. Path
+ * are converted if needed, shortcuts expanded etc.
+ * @param [in] path Path string to add.
+ */
+void MergeCmdLineInfo::AddPath(const String &path)
+{
+	String param(path);
+
+	// Convert paths given in Linux-style ('/' as separator) given from
+	// Cygwin to Windows style ('\' as separator)
+	string_replace(param, _T("/"), _T("\\"));
+
+	// If shortcut, expand it first
+	if (paths_IsShortcut(param.c_str()))
+		param = ExpandShortcut(param.c_str());
+	param = paths_GetLongPath(param.c_str());
+
+	// Set flag indicating path is from command line
+	const int ord = m_Files.size();
+	if (ord == 0)
+		m_dwLeftFlags |= FFILEOPEN_CMDLINE;
+	else if (ord == 1)
+		m_dwRightFlags |= FFILEOPEN_CMDLINE;
+
+	m_Files.push_back(param);
+}
+
+/**
  * @brief Parse native WinMerge command line.
  * @param [in] p Points into the command line.
  */
@@ -211,15 +240,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 		if (!flag)
 		{
 			// Its not a flag so it is a path
-			// Convert paths given in Linux-style ('/' as separator) given from
-			// Cygwin to Windows style ('\' as separator)
-			string_replace(param, _T("/"), _T("\\"));
-
-			// If shortcut, expand it first
-			if (paths_IsShortcut(param.c_str()))
-				param = ExpandShortcut(param.c_str());
-			param = paths_GetLongPath(param.c_str());
-			m_Files.push_back(param);
+			AddPath(param);
 		}
 		else if (param == _T("?"))
 		{
