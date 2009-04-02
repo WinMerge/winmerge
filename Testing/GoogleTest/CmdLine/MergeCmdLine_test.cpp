@@ -134,7 +134,7 @@ namespace
 	// Command line with left path
 	TEST_F(MergeCmdLineInfoTest, LeftPath1)
 	{
-		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\");
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp");
 		EXPECT_EQ(1, cmdInfo.m_Files.size());
 		EXPECT_EQ("C:\\Temp", cmdInfo.m_Files[0]);
 		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
@@ -260,6 +260,350 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths
+	TEST_F(MergeCmdLineInfoTest, LeftRightPath1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ C:\\Temp2\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths
+	TEST_F(MergeCmdLineInfoTest, LeftRightPath2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ C:\\Temp2");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths, spaces between
+	TEST_F(MergeCmdLineInfoTest, PathMid1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\  C:\\Temp2\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths, spaces between
+	TEST_F(MergeCmdLineInfoTest, PathMid2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\        C:\\Temp2\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+// BUG!!! This crashes the test!
+#if 0
+	// Command line with left and right paths, tab between
+	TEST_F(MergeCmdLineInfoTest, PathMid3)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\\tC:\\Temp2\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths, EOL between
+	TEST_F(MergeCmdLineInfoTest, PathMid4)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\\nC:\\Temp2\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+#endif
+
+	// Command line with left path, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathLeftLinux1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp/");
+		EXPECT_EQ(1, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left path, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathLeftLinux2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp");
+		EXPECT_EQ(1, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp", cmdInfo.m_Files[0]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathLeftRightLinux1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp/ C:/Temp2/");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right paths, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathLeftRightLinux2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp/ C:/Temp2");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left quoted path
+	TEST_F(MergeCmdLineInfoTest, PathQuote1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe \"C:\\Temp\\\"");
+		EXPECT_EQ(1, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left quoted path
+	TEST_F(MergeCmdLineInfoTest, PathQuote2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe \"C:\\Program Files\\\"");
+		EXPECT_EQ(1, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left quoted and right non-quoted path
+	TEST_F(MergeCmdLineInfoTest, PathQuote3)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe \"C:\\Program Files\\\" C:\\Temp\\");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left non-quoted and right quoted path
+	TEST_F(MergeCmdLineInfoTest, PathQuote4)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ \"C:\\Program Files\\\"");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with left and right quoted paths
+	TEST_F(MergeCmdLineInfoTest, PathQuote5)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe \"C:\\Program Files\\\" \"C:\\Program Files2\\\"");
+		EXPECT_EQ(2, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Program Files2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
 		EXPECT_EQ("", cmdInfo.m_sRightDesc);
 		EXPECT_EQ("", cmdInfo.m_sFileFilter);
