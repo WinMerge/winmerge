@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.6
+  Show deleted differences in difference highlight with own
+    color (#2669526)
   Disable folder compare tree-view by default (#2714968)
   Bugfix: Says files are identical after making files different in another
     application and re-loading them (#2672737)

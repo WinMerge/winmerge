@@ -55,6 +55,7 @@ void CPropMergeColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_WORDDIFFERENCE_TEXT_COLOR, m_cWordDiffText);
 	DDX_Control(pDX, IDC_SEL_WORDDIFFERENCE_COLOR, m_cSelWordDiff);
 	DDX_Control(pDX, IDC_WORDDIFFERENCE_COLOR, m_cWordDiff);
+	DDX_Control(pDX, IDC_WORDDIFFERENCE_DELETED_COLOR, m_cWordDiffDeleted);
 	//}}AFX_DATA_MAP
 }
 
@@ -78,6 +79,7 @@ BEGIN_MESSAGE_MAP(CPropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
 	ON_BN_CLICKED(IDC_WORDDIFFERENCE_COLOR, OnWordDifferenceColor)
+	ON_BN_CLICKED(IDC_WORDDIFFERENCE_DELETED_COLOR, OnWordDifferenceDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_COLOR, OnSelWordDifferenceColor)
 	ON_BN_CLICKED(IDC_WORDDIFFERENCE_TEXT_COLOR, OnWordDifferenceTextColor)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, OnSelWordDifferenceTextColor)
@@ -234,6 +236,13 @@ void CPropMergeColors::OnWordDifferenceColor()
 {
 	BrowseColor(m_cWordDiff, m_clrWordDiff);
 }
+/** 
+ * @brief User wants to change word difference deleted color
+ */
+void CPropMergeColors::OnWordDifferenceDeletedColor() 
+{
+	BrowseColor(m_cWordDiffDeleted, m_clrWordDiffDeleted);
+}
 
 /** 
  * @brief User wants to change selected word difference color
@@ -282,6 +291,7 @@ void CPropMergeColors::SerializeColors(OPERATION op)
 	SerializeColor(op, m_cSelMovedText, OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
 	
 	SerializeColor(op, m_cWordDiff, OPT_CLR_WORDDIFF, m_clrWordDiff);
+	SerializeColor(op, m_cWordDiffDeleted, OPT_CLR_WORDDIFF_DELETED, m_clrWordDiffDeleted);
 	SerializeColor(op, m_cSelWordDiff, OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff);
 	
 	SerializeColor(op, m_cWordDiffText, OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText);

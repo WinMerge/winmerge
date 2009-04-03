@@ -446,6 +446,7 @@
 #define IDC_ENABLE_SHELL_CONTEXT_MENU   1343
 #define IDC_STARTUP_FOLDER_SELECT       1344
 #define IDC_BREAK_CHARS                 1345
+#define IDC_WORDDIFFERENCE_DELETED_COLOR 1346
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1084,7 +1085,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
 #define _APS_NEXT_COMMAND_VALUE         33178
-#define _APS_NEXT_CONTROL_VALUE         1346
+#define _APS_NEXT_CONTROL_VALUE         1347
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

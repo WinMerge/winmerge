@@ -94,6 +94,7 @@ CMergeEditView::CMergeEditView()
 	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
 	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
 	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
 	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
@@ -375,7 +376,16 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 		else
 		{
 			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
-			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
+			if (worddiffs[i]->start[0] == worddiffs[i]->end[0] + 1 ||
+				worddiffs[i]->start[1] == worddiffs[i]->end[1] + 1)
+			{
+				// Case on one side char/words are inserted or deleted 
+				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
+			}
+			else
+			{
+				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
+			}
 		}
 		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
 		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
@@ -402,6 +412,9 @@ COLORREF CMergeEditView::GetColor(int nColorIndex)
 		return m_cachedColors.clrWordDiff;
 	case COLORINDEX_HIGHLIGHTTEXT2:
 		return m_cachedColors.clrWordDiffText;
+	case COLORINDEX_HIGHLIGHTBKGND3:
+		return m_cachedColors.clrWordDiffDeleted;
+
 	default:
 		return CCrystalTextView::GetColor(nColorIndex);
 	}
@@ -2350,6 +2363,7 @@ void CMergeEditView::RefreshOptions()
 	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
 	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
 	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
 	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);

@@ -195,18 +195,17 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
 	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
-		return 0;
+		return 0; // No diff
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
-		return 0;
+		return 0; // No coloring
 
 	int nLineLength = GetLineLength(nLineIndex);
 	vector<wdiff*> worddiffs;
 	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
-	if (worddiffs.size() == 0 || (worddiffs[0]->end[0] == -1 &&
-			worddiffs[0]->start[1] == 0 && worddiffs[0]->end[1] + 1 == nLineLength) ||
-			(worddiffs[0]->end[1] == -1 && 
-			worddiffs[0]->start[0] == 0 && worddiffs[0]->end[0] + 1 == nLineLength))
+	if (worddiffs.size() == 0 || // Both sides are empty
+			(worddiffs[0]->end[0] == -1 && worddiffs[0]->end[1] + 1 == nLineLength) || // Side0 is empty
+			(worddiffs[0]->end[1] == -1 && worddiffs[0]->end[0] + 1 == nLineLength))  // Side1 is empty
 	{
 		while (!worddiffs.empty())
 		{
@@ -226,7 +225,13 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 		pBuf[1 + i * 2].m_nCharPos = worddiffs[i]->start[m_nThisPane];
 		pBuf[2 + i * 2].m_nCharPos = worddiffs[i]->end[m_nThisPane] + 1;
 		pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
-		pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
+		if (worddiffs[i]->start[0] == worddiffs[i]->end[0] + 1 ||
+			worddiffs[i]->start[1] == worddiffs[i]->end[1] + 1)
+			// Case on one side char/words are inserted or deleted 
+			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
+		else
+			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
+
 		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
 		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
 	}
@@ -252,6 +257,8 @@ COLORREF CMergeDiffDetailView::GetColor(int nColorIndex)
 		return GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
 	case COLORINDEX_HIGHLIGHTTEXT2:
 		return GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
+	case COLORINDEX_HIGHLIGHTBKGND3:
+		return GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
 	default:
 		return CCrystalTextView::GetColor(nColorIndex);
 	}

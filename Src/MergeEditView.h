@@ -50,6 +50,7 @@ struct COLORSETTINGS
 	COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
 	COLORREF	clrSelMovedText;	/**< Selected moved block text color */
 	COLORREF	clrWordDiff;		/**< Word difference color */
+	COLORREF	clrWordDiffDeleted;	/**< Word differenceDeleted color */
 	COLORREF	clrWordDiffText;	/**< Word difference text color */
 	COLORREF	clrSelWordDiff;		/**< Selected word difference color */
 	COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */

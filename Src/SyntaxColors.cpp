@@ -163,6 +163,9 @@ void SyntaxColors::SetDefaults()
 		case COLORINDEX_HIGHLIGHTTEXT2:
 			color = RGB (0, 0, 0);
 			break;
+		case COLORINDEX_HIGHLIGHTBKGND3:
+			color = RGB (255, 255, 0);
+			break;
 		default:
 		//  return RGB(255, 0, 0);
 			color = RGB (128, 0, 0);
