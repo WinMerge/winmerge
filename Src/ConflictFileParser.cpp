@@ -98,8 +98,6 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 	int state;
 	int iNestingLevel = 0;
 	bool bResult = false;
-	bool bFirstLineNR = true;
-	bool bFirstLineWC = true;
 	String revision = _T("none");
 	bNestedConflicts = false;
 
@@ -132,17 +130,11 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			else
 			{
 				// we're in the common section, so write to both files
-				if (!bFirstLineNR)
-					newRevision.WriteString(eol);
-				else
-					bFirstLineNR = false;
 				newRevision.WriteString(line);
+				newRevision.WriteString(eol);
 
-				if (!bFirstLineWC)
-					workingCopy.WriteString(eol);
-				else
-					bFirstLineWC = false;
 				workingCopy.WriteString(line);
+				workingCopy.WriteString(eol);
 			}
 			break;
 
@@ -154,11 +146,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			{
 				// nested conflict section starts
 				state = 3;
-				if(!bFirstLineWC)
-					workingCopy.WriteString(eol);
-				else
-					bFirstLineWC = false;
 				workingCopy.WriteString(line);
+				workingCopy.WriteString(eol);
 			}
 			else
 			{
@@ -168,11 +157,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					line = line.substr(0, pos);
 					if (!line.empty())
 					{
-						if (!bFirstLineWC)
-							workingCopy.WriteString(eol);
-						else
-							bFirstLineWC = false;
 						workingCopy.WriteString(line);
+						workingCopy.WriteString(eol);
 					}
 
 					//  new revision section
@@ -180,11 +166,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 				}
 				else
 				{
-					if (!bFirstLineWC)
-						workingCopy.WriteString(eol);
-					else
-						bFirstLineWC = false;
 					workingCopy.WriteString(line);
+					workingCopy.WriteString(eol);
 				}
 			}
 			break;
@@ -197,11 +180,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			{
 				// nested conflict section starts
 				state = 4;
-				if (!bFirstLineNR)
-					newRevision.WriteString(eol);
-				else
-					bFirstLineNR = false;
 				newRevision.WriteString(line);
+				newRevision.WriteString(eol);
 			}
 			else
 			{
@@ -212,11 +192,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					line = line.substr(0, pos);
 					if (!line.empty())
 					{
-						if (!bFirstLineNR)
-							newRevision.WriteString(eol);
-						else
-							bFirstLineNR = false;
 						newRevision.WriteString(line);
+						newRevision.WriteString(eol);
 					}
 
 					//  common section
@@ -224,11 +201,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 				}
 				else
 				{
-					if (!bFirstLineNR)
-						newRevision.WriteString(eol);
-					else
-						bFirstLineNR = false;
 					newRevision.WriteString(line);
+					newRevision.WriteString(eol);
 				}
 			}
 			break;
@@ -258,11 +232,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					}
 				}
 			}
-			if (!bFirstLineWC)
-				workingCopy.WriteString(eol);
-			else
-				bFirstLineWC = false;
 			workingCopy.WriteString(line);
+			workingCopy.WriteString(eol);
 			break;
 
 			// in nested section in new revision section
@@ -288,11 +259,8 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					}
 				}
 			}
-			if (!bFirstLineNR)
-				newRevision.WriteString(eol);
-			else
-				bFirstLineNR = false;
 			newRevision.WriteString(line);
+			newRevision.WriteString(eol);
 			break;
 		}
 	} while (linesToRead);

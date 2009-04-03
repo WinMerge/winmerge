@@ -12,6 +12,7 @@ WinMerge 2.13.6
   Bugfix: Difference pane didn't show added lines (#2710146)
   Bugfix: Did not show difference at end of line (#2638045)
   Bugfix: Files with missing last EOL weren't merged correctly (#2712120)
+  Bugfix: When conflict file saved trailing line-ending was lost (#2550412)
   Translation updates:
   - Czech (r6581)
   - Polish (#2717382, #2720875)
