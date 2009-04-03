@@ -383,8 +383,8 @@ BOOL CMergeDiffDetailView::EnsureInDiff(CPoint & pt)
 		pt.x = 0;
 		return TRUE;
 	}
-	// not below diff
-	if (pt.y > m_lineEnd)
+	// diff is defined and not below diff
+	if (m_lineEnd > -1 && pt.y > m_lineEnd)
 	{
 		pt.y = m_lineEnd;
 		pt.x = GetLineLength(pt.y);
