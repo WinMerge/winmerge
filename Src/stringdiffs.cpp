@@ -18,6 +18,10 @@
 
 using std::vector;
 
+// Uncomment this to see stringdiff log messages
+// We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge
+// #define STRINGDIFF_LOGGING
+
 static bool Initialized;
 static bool CustomChars;
 static TCHAR *BreakChars;
@@ -382,13 +386,13 @@ stringdiffs::BuildWordDiffList()
 			}
 		}
 		// Remove empty records on both side
-#ifdef _DEBUG
+#ifdef Process32First
 		OutputDebugString(_T("remove empty records on both side \n"));
 #endif
 		i = 0; 
 		while ((i < m_words1.size()) && (i < m_words2.size()))
 		{
-#ifdef _DEBUG
+#ifdef STRINGDIFF_LOGGING
 			wsprintf(buf, _T("left=%d, op=%d, right=%d, op=%d\n"),
 				m_words1[i]->hash, m_words1[i]->bBreak, m_words2[i]->hash, m_words2[i]->bBreak);
 			OutputDebugString(buf);
@@ -490,7 +494,7 @@ stringdiffs::BuildWordDiffList()
 		}
 
 		// Final run create diff
-#ifdef _DEBUG
+#ifdef STRINGDIFF_LOGGING
 		OutputDebugString(_T("final run create diff \n"));
 		wsprintf(buf, _T("left=  %d,   right=  %d \n"),
 					m_str1.length(), m_str2.length());
@@ -510,7 +514,7 @@ stringdiffs::BuildWordDiffList()
 				int e2 =  m_words2[i]->end ;
 				int len2 = e2 - s2 + 1;
 
-#ifdef _DEBUG
+#ifdef STRINGDIFF_LOGGING
 				if (IsInsert(*m_words1[i]))
 					str1.clear();
 				else
