@@ -386,7 +386,7 @@ stringdiffs::BuildWordDiffList()
 			}
 		}
 		// Remove empty records on both side
-#ifdef Process32First
+#ifdef STRINGDIFF_LOGGING
 		OutputDebugString(_T("remove empty records on both side \n"));
 #endif
 		i = 0; 
