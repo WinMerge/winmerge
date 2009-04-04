@@ -48,9 +48,9 @@ const TCHAR LicenseFile[] = _T("\\Copying");
 const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
 
 /** @brief Executable Filename for ANSI build. */
-const TCHAR ExecuteFilename[] = _T("WinMerge.exe");
+const TCHAR ExecutableFilename[] = _T("WinMerge.exe");
 /** @brief Executable Filename for Unicode build. */
-const TCHAR ExecuteFilenameU[] = _T("WinMergeU.exe");
+const TCHAR ExecutableFilenameU[] = _T("WinMergeU.exe");
 
 /** @brief Temp folder name prefix for WinMerge temp folders. */
 const TCHAR TempFolderPrefix[] = _T("WM_");

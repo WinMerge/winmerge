@@ -137,8 +137,8 @@ void CleanupWMtemp()
 	// the ProcessIDs of all running WM instances
 	while (hRes)
 	{
-		if ((_tcscmp( pEntry.szExeFile, ExecuteFilenameU) == 0) ||
-			(_tcscmp( pEntry.szExeFile, ExecuteFilename) == 0))
+		if ((_tcscmp(pEntry.szExeFile, ExecutableFilenameU) == 0) ||
+			(_tcscmp(pEntry.szExeFile, ExecutableFilename) == 0))
 		{
 			processIDs.push_back(pEntry.th32ProcessID);
 		}
