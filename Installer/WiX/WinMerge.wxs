@@ -520,6 +520,10 @@
       </Component>
     </DirectoryRef>
     
+    <!--
+      * Level <= 3 is "Typical"
+      * Level <= 1000 is "Complete"
+    -->
     <Feature Id="WinMerge" 
       Absent="disallow" 
       ConfigurableDirectory="INSTALLDIR" 
@@ -586,7 +590,7 @@
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
       </Feature>
-      <Feature Id="Plugins" Level="1" Title="Plugins">
+      <Feature Id="Plugins" Level="4" Title="Plugins">
         <ComponentRef Id="editoraddin" />
         <ComponentRef Id="insertdatetime" />
         <ComponentRef Id="CompareMSExcelFiles" />
