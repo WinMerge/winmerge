@@ -60,6 +60,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -81,6 +82,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -102,6 +104,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -123,6 +126,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -145,6 +149,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -167,6 +172,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -189,6 +195,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -213,6 +220,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -236,6 +244,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -258,6 +267,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -281,6 +291,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -304,6 +315,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -327,6 +339,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -350,6 +363,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -375,6 +389,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -398,6 +413,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -421,6 +437,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -443,6 +460,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -466,6 +484,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -489,6 +508,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -511,6 +531,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -533,6 +554,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -556,6 +578,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -579,6 +602,7 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
@@ -602,8 +626,120 @@ namespace
 		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
 		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
 		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
 		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with a correct codepage 
+	TEST_F(MergeCmdLineInfoTest, CorrectCodepage)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe -cp 1251");
+		EXPECT_EQ(0, cmdInfo.m_Files.size());
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(1251,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with a wrong specified codepage
+	TEST_F(MergeCmdLineInfoTest, IncorrectCodepage)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe -cp windows1251");
+		EXPECT_EQ(0, cmdInfo.m_Files.size());
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with a missed codepage
+	TEST_F(MergeCmdLineInfoTest, MissedCodepage)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe -cp ");
+		EXPECT_EQ(0, cmdInfo.m_Files.size());
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with a missed codepage and with left path
+	TEST_F(MergeCmdLineInfoTest, MissedCodepageWithLeftPath)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe -cp C:\\Temp ");
+		EXPECT_EQ(0, cmdInfo.m_Files.size());
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+	
+	// Missed codepage with both paths
+	TEST_F(MergeCmdLineInfoTest, MissedCodepageWithBothPaths)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe -cp C:\\Temp C:\\Temp2");
+		EXPECT_EQ(1, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[0]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
 		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
 		EXPECT_EQ("", cmdInfo.m_sRightDesc);
 		EXPECT_EQ("", cmdInfo.m_sFileFilter);
