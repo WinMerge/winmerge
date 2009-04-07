@@ -303,10 +303,60 @@ namespace
 	// Command line with left and right paths
 	TEST_F(MergeCmdLineInfoTest, LeftRightPath2)
 	{
-		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ C:\\Temp2");
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp C:\\Temp2");
 		EXPECT_EQ(2, cmdInfo.m_Files.size());
-		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp", cmdInfo.m_Files[0]);
 		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with three paths
+	TEST_F(MergeCmdLineInfoTest, ThreePaths1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp C:\\Temp2 C:\\Temp3");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Temp3", cmdInfo.m_Files[2]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with three paths
+	TEST_F(MergeCmdLineInfoTest, ThreePaths2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ C:\\Temp2\\ C:\\Temp3\\");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Temp3\\", cmdInfo.m_Files[2]);
 		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
@@ -517,6 +567,56 @@ namespace
 		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
 	}
 
+	// Command line with three paths, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathThreeLinux1)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp/ C:/Temp2/ C:/Temp3/");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Temp3\\", cmdInfo.m_Files[2]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with three paths, Linux separators
+	TEST_F(MergeCmdLineInfoTest, PathThreeLinux2)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:/Temp/ C:/Temp2 C:/Temp3");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Temp3", cmdInfo.m_Files[2]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
 	// Command line with left quoted path
 	TEST_F(MergeCmdLineInfoTest, PathQuote1)
 	{
@@ -618,6 +718,56 @@ namespace
 		EXPECT_EQ(2, cmdInfo.m_Files.size());
 		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[0]);
 		EXPECT_EQ("C:\\Program Files2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with third path quoted
+	TEST_F(MergeCmdLineInfoTest, PathQuote6)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe C:\\Temp\\ C:\\Temp2\\ \"C:\\Program Files\\\" ");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Temp\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Temp2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[2]);
+		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_bSingleInstance);
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_CMDLINE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ("", cmdInfo.m_sLeftDesc);
+		EXPECT_EQ("", cmdInfo.m_sRightDesc);
+		EXPECT_EQ("", cmdInfo.m_sFileFilter);
+		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
+	}
+
+	// Command line with three quoted paths
+	TEST_F(MergeCmdLineInfoTest, PathQuote7)
+	{
+		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe \"C:\\Program Files\\\" \"C:\\Program Files2\\\" \"C:\\Program Files3\\\"");
+		EXPECT_EQ(3, cmdInfo.m_Files.size());
+		EXPECT_EQ("C:\\Program Files\\", cmdInfo.m_Files[0]);
+		EXPECT_EQ("C:\\Program Files2\\", cmdInfo.m_Files[1]);
+		EXPECT_EQ("C:\\Program Files3\\", cmdInfo.m_Files[2]);
 		EXPECT_EQ(SW_SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bClearCaseTool);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
