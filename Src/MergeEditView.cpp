@@ -371,6 +371,10 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 		if (lineInCurrentDiff)
 		{
 			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+			if (worddiffs[i]->start[0] == worddiffs[i]->end[0] + 1 ||
+				worddiffs[i]->start[1] == worddiffs[i]->end[1] + 1)
+				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
+			else
 			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
 		}
 		else
