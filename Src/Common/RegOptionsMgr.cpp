@@ -13,6 +13,7 @@
 #endif
 #include <windows.h>
 #include <tchar.h>
+#include "varprop.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
 
