@@ -134,6 +134,9 @@
 				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
 			</File>
 			<File
+				RelativePath=".\VariantValue_test.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\varprop.cpp">
 			</File>
 		</Filter>
