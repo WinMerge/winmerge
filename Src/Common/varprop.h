@@ -10,6 +10,8 @@
 #ifndef varprop_h_included
 #define varprop_h_included
 
+#include "UnicodeString.h"
+
 namespace varprop
 {
 
