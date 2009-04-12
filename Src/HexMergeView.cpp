@@ -34,7 +34,6 @@
 #include "HexMergeView.h"
 #include "OptionsDef.h"
 #include "Environment.h"
-#include "../externals/heksedit/version.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -122,14 +121,14 @@ void CHexMergeView::OnDraw(CDC *)
  */
 BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	static const TCHAR pe[] = PE_HEKSEDIT;
-	static const TCHAR wc[] = WC_HEKSEDIT;
-	if ((cs.hInstance = ::GetModuleHandle(pe)) == 0 &&
-		(cs.hInstance = ::LoadLibrary(pe)) == 0)
+	static void *pv = NULL;
+	if (pv == NULL)
 	{
-		return FALSE;
+		static const CLSID clsid = { 0xBCA3CA6B, 0xCC6B, 0x4F79,
+			{ 0xA2, 0xC2, 0xDD, 0xBE, 0x86, 0x4B, 0x1C, 0x90 } };
+		CoGetClassObject(clsid, CLSCTX_INPROC_SERVER, NULL, IID_IUnknown, &pv);
 	}
-	cs.lpszClass = wc;
+	cs.lpszClass = _T("heksedit");
 	cs.style |= WS_HSCROLL | WS_VSCROLL;
 	return TRUE;
 }
@@ -142,7 +141,7 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	m_pif = reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(m_hWnd, GWLP_USERDATA));
-	if (m_pif == 0)
+	if (m_pif == 0 || m_pif->get_interface_version() < HEKSEDIT_INTERFACE_VERSION)
 		return -1;
 	return 0;
 }

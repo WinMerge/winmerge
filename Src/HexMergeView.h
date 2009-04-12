@@ -47,6 +47,7 @@ protected: // create from serialization only
 public:
 	HRESULT LoadFile(LPCTSTR);
 	HRESULT SaveFile(LPCTSTR);
+	IHexEditorWindow *GetInterface() const { return m_pif; }
 	IHexEditorWindow::Status *GetStatus();
 	BYTE *GetBuffer(int);
 	int GetLength();
