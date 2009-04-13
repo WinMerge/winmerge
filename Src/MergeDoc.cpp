@@ -2315,6 +2315,17 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			pRightDetail->SetTextType(sextR.c_str());
 		}
 
+		// If textypes of the files aren't recogzined by their extentions,
+		// try to recognize them using their first lines 
+		if (!bLeftTyped && !bRightTyped)
+		{
+			CString sFirstLine;
+			m_ptBuf[0]->GetLine(0, sFirstLine);
+			bLeftTyped = pLeft->SetTextTypeByContent(sFirstLine);
+			m_ptBuf[1]->GetLine(0, sFirstLine);
+			bRightTyped = pRight->SetTextTypeByContent(sFirstLine);
+		}
+
 		// If other side didn't have recognized texttype, apply recognized
 		// type to unrecognized one. (comparing file.cpp and file.bak applies
 		// cpp file type to .bak file.
