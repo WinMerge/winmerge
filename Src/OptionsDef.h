@@ -118,10 +118,12 @@ const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_TEXT[] = _T("Settings/SelectedMovedBlock
 const TCHAR OPT_CLR_WORDDIFF[] = _T("Settings/WordDifferenceColor");
 // The word difference deleted color
 const TCHAR OPT_CLR_WORDDIFF_DELETED[] = _T("Settings/WordDifferenceDeletedColor");
-// The selected word difference color
-const TCHAR OPT_CLR_SELECTED_WORDDIFF[] = _T("Settings/SelectedWordDifferenceColor");
 // The word difference text color
 const TCHAR OPT_CLR_WORDDIFF_TEXT[] = _T("Settings/WordDifferenceTextColor");
+// The selected word difference color
+const TCHAR OPT_CLR_SELECTED_WORDDIFF[] = _T("Settings/SelectedWordDifferenceColor");
+// The word difference deleted color
+const TCHAR OPT_CLR_SELECTED_WORDDIFF_DELETED[] = _T("Settings/SelectedWordDifferenceDeletedColor");
 // The selected word difference text color
 const TCHAR OPT_CLR_SELECTED_WORDDIFF_TEXT[] = _T("Settings/SelectedWordDifferenceTextColor");
 // Whether to use default (theme) text colors

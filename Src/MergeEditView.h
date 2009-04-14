@@ -53,6 +53,7 @@ struct COLORSETTINGS
 	COLORREF	clrWordDiffDeleted;	/**< Word differenceDeleted color */
 	COLORREF	clrWordDiffText;	/**< Word difference text color */
 	COLORREF	clrSelWordDiff;		/**< Selected word difference color */
+	COLORREF	clrSelWordDiffDeleted;	/**< Selected word difference deleted color */
 	COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
 };
 

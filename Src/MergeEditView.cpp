@@ -96,6 +96,7 @@ CMergeEditView::CMergeEditView()
 	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
 	m_cachedColors.clrWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
 	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_cachedColors.clrSelWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_DELETED);
 	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
@@ -345,7 +346,8 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 	int nLineLength = GetLineLength(nLineIndex);
 	vector<wdiff*> worddiffs;
 	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
-	if (worddiffs.size() == 0 || (worddiffs[0]->end[0] == -1 &&
+
+	if (nLineLength == 0 || worddiffs.size() == 0 || (worddiffs[0]->end[0] == -1 &&
 			worddiffs[0]->start[1] == 0 && worddiffs[0]->end[1] + 1 == nLineLength) ||
 			(worddiffs[0]->end[1] == -1 && 
 			worddiffs[0]->start[0] == 0 && worddiffs[0]->end[0] + 1 == nLineLength))
@@ -373,9 +375,9 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
 			if (worddiffs[i]->start[0] == worddiffs[i]->end[0] + 1 ||
 				worddiffs[i]->start[1] == worddiffs[i]->end[1] + 1)
-				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
+				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND4 | COLORINDEX_APPLYFORCE;
 			else
-			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
+				pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
 		}
 		else
 		{
@@ -418,6 +420,8 @@ COLORREF CMergeEditView::GetColor(int nColorIndex)
 		return m_cachedColors.clrWordDiffText;
 	case COLORINDEX_HIGHLIGHTBKGND3:
 		return m_cachedColors.clrWordDiffDeleted;
+	case COLORINDEX_HIGHLIGHTBKGND4:
+		return m_cachedColors.clrSelWordDiffDeleted;
 
 	default:
 		return CCrystalTextView::GetColor(nColorIndex);

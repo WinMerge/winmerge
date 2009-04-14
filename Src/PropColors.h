@@ -51,11 +51,12 @@ private:
 	CColorButton	m_cSelMoved;
 	CColorButton	m_cSelMovedDeleted;
 	CColorButton	m_cSelMovedText;
-	CColorButton	m_cSelWordDiffText;
-	CColorButton	m_cWordDiffText;
-	CColorButton	m_cSelWordDiff;
 	CColorButton	m_cWordDiff;
 	CColorButton	m_cWordDiffDeleted;
+	CColorButton	m_cWordDiffText;
+	CColorButton	m_cSelWordDiff;
+	CColorButton	m_cSelWordDiffDeleted;
+	CColorButton	m_cSelWordDiffText;
 	//}}AFX_DATA
 
 
@@ -78,6 +79,7 @@ private:
 	COLORREF	m_clrWordDiffDeleted;
 	COLORREF	m_clrWordDiffText;
 	COLORREF	m_clrSelWordDiff;
+	COLORREF	m_clrSelWordDiffDeleted;
 	COLORREF	m_clrSelWordDiffText;
 
 	// Overrides
@@ -121,6 +123,7 @@ protected:
 	afx_msg void OnWordDifferenceColor();
 	afx_msg void OnWordDifferenceDeletedColor();
 	afx_msg void OnSelWordDifferenceColor();
+	afx_msg void OnSelWordDifferenceDeletedColor();
 	afx_msg void OnWordDifferenceTextColor();
 	afx_msg void OnSelWordDifferenceTextColor();
 	afx_msg void OnDefaults();

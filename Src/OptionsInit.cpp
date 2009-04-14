@@ -110,10 +110,10 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 
 	m_pOptions->InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
-	m_pOptions->InitOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
 	m_pOptions->InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
-	m_pOptions->InitOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)RGB(240, 192, 192));
 	m_pOptions->InitOption(OPT_CLR_DIFF_TEXT, (int)RGB(0,0,0));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)RGB(240, 192, 192));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_TRIVIAL_DIFF, (int)RGB(251,242,191));
 	m_pOptions->InitOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)RGB(233,233,233));
@@ -126,8 +126,9 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF, (int)RGB(241,226,173));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF_DELETED, (int)RGB(241,226,173));
-	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, (int)RGB(255,160,160));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_DEFAULT_TEXT_COLORING, true);
 
