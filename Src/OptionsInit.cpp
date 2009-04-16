@@ -125,10 +125,10 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF, (int)RGB(241,226,173));
-	m_pOptions->InitOption(OPT_CLR_WORDDIFF_DELETED, (int)RGB(241,226,173));
+	m_pOptions->InitOption(OPT_CLR_WORDDIFF_DELETED, (int)RGB(255,170,130));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
-	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, (int)RGB(255,160,160));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, (int)RGB(200,129,108));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_DEFAULT_TEXT_COLORING, true);
 
