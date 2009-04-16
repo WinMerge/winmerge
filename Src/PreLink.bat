@@ -43,65 +43,21 @@ goto %1
 :.\..\BuildTmp\MergeDebug
 %info% ANSI/Debug
 mkdir ..\Build\MergeDebug
-
-REM Build heksedit
-cd %2\..\..\..\Externals\heksedit
-%msdev% "heksedit.dsp" /make "heksedit - Win32 Debug"
-%devenv% "heksedit.vcproj" /build "Debug"
-cd %2\..\..\heksedit\Debug
-copy heksedit.dll %2\..\
-copy heksedit.dll ..\
-mkdir %2\..\heksedit.lng
-copy heksedit.lng\*.* %2\..\heksedit.lng
-
 goto Debug
 
 :.\..\BuildTmp\MergeUnicodeDebug
 %info% UNICODE/Debug
 mkdir ..\Build\MergeUnicodeDebug
-
-REM Build heksedit
-cd %2\..\..\..\Externals\heksedit
-%msdev% "heksedit.dsp" /make "heksedit - Win32 UnicodeDebug"
-%devenv% "heksedit.vcproj" /build "UnicodeDebug"
-cd %2\..\..\heksedit\Debug
-copy hekseditU.dll %2\..\
-copy hekseditU.dll ..\
-mkdir %2\..\heksedit.lng
-copy heksedit.lng\*.* %2\..\heksedit.lng
-
 goto Debug
 
 :.\..\BuildTmp\MergeRelease
 %info% ANSI/Release
 mkdir ..\Build\MergeRelease
-
-REM Build heksedit
-cd %2\..\..\..\Externals\heksedit
-%msdev% "heksedit.dsp" /make "heksedit - Win32 Release"
-%devenv% "heksedit.vcproj" /build "Release"
-cd %2\..\..\heksedit\Release
-copy heksedit.dll %2\..\
-copy heksedit.dll ..\
-mkdir %2\..\heksedit.lng
-copy heksedit.lng\*.* %2\..\heksedit.lng
-
 goto Release
 
 :.\..\BuildTmp\MergeUnicodeRelease
 %info% UNICODE/Release
 mkdir ..\Build\MergeUnicodeRelease
-
-REM Build heksedit
-cd %2\..\..\..\Externals\heksedit
-%msdev% "heksedit.dsp" /make "heksedit - Win32 UnicodeRelease"
-%devenv% "heksedit.vcproj" /build "UnicodeRelease"
-cd %2\..\..\heksedit\Release
-copy hekseditU.dll %2\..\
-copy hekseditU.dll ..\
-mkdir %2\..\heksedit.lng
-copy heksedit.lng\*.* %2\..\heksedit.lng
-
 goto Release
 
 :Debug
