@@ -9,7 +9,7 @@ WinMerge 2.13.6
   Disable folder compare tree-view by default (#2714968)
   Allow setting codepage from command line (#2725549)
   Improve detecting XML files in file compare (#2726531)
-  Installer: make including heksedit in installer optional (r6656)
+  Installer: Don't install heksedit (r6659)
   Bugfix: Says files are identical after making files different in another
     application and re-loading them (#2672737)
   Bugfix: Difference pane didn't show added lines (#2710146)
