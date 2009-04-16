@@ -91,13 +91,6 @@
           Vital="yes" />
       </Component>
       
-      <Component Id="heksedit" Guid="*">
-        <File Id="hekseditUDLL" 
-          Name="hekseditU.dll" 
-          Source="..\..\Build\heksedit\hekseditU.dll" 
-          Vital="yes" />
-      </Component>
-      
       <Component Id="Files" Guid="*">
         <File Id="FilesTXT" 
           Name="Files.txt" 
@@ -536,7 +529,6 @@
       <ComponentRef Id="libexpat" />
       <ComponentRef Id="pcre" />
       <ComponentRef Id="MergeLang" />
-      <ComponentRef Id="heksedit" />
       <Feature Id="Documentation" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />
         <ComponentRef Id="Contributors" />
