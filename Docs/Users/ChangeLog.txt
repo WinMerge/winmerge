@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.6 - 2009-04-16 (r6663)
+WinMerge 2.13.6 - 2009-04-16 (r6665)
   Show deleted differences in difference highlight with own
     color (#2669526)
   Disable folder compare tree-view by default (#2714968)
