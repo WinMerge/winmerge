@@ -1,0 +1,23 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DefineSolutionProperties>false</DefineSolutionProperties>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <WixToolPath Condition="'$(WixToolPath)' == ''">$(PROGRAMFILES)\Windows Installer XML v3\bin\</WixToolPath>
+    <WixTargetsPath Condition="'$(WixTargetsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.0\Wix.targets</WixTargetsPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <OutputName>WinMerge</OutputName>
+    <OutputType>package</OutputType>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <WixExtension Include="$(WixToolPath)WixUIExtension.dll" />
+    <Compile Include="WinMerge.wxs"/>
+    <Compile Include="WixUI_WinMerge.wxs"/>
+  </ItemGroup>
+  
+  <Import Project="$(WixTargetsPath)"/>
+</Project>
