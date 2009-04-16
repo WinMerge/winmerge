@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!-- -->
+  <?define Manufacturer = "Thingamahoochie Software" ?>
+  <?define ProductName = "WinMerge" ?>
+  <?define ProductVersion = "0.0.1" ?>
+  
+  <?define PackageDescription = "WinMerge Installer" ?>
+  <?define PackageKeywords = "Installer" ?>
+  <?define PackageComments = "WinMerge" ?>
+  
+  <?define ProductGuid = "055366D2-F7D1-4888-A923-C3DC004E55E4" ?>
+  <?define UpgradeGuid = "3C974FF6-9076-46EB-A65F-A53931EAF942" ?>
+</Include>

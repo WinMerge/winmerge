@@ -4,6 +4,7 @@
     lightArgs: "WinMerge.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Config.wxi ?>
   <!--
     TODO:
       * Install all files
@@ -13,22 +14,22 @@
       * Mutli-language support
       * ...
   -->
-  <Product Id="055366D2-F7D1-4888-A923-C3DC004E55E4" 
+  <Product Id="$(var.ProductGuid)" 
     Codepage="1252" 
     Language="1033" 
-    Manufacturer="Thingamahoochie Software" 
-    Name="WinMerge" 
-    UpgradeCode="3C974FF6-9076-46EB-A65F-A53931EAF942" 
-    Version="0.0.1">
+    Manufacturer="$(var.Manufacturer)" 
+    Name="$(var.ProductName)" 
+    UpgradeCode="$(var.UpgradeGuid)" 
+    Version="$(var.ProductVersion)">
     
     <Package Id="*" 
-      Comments="WinMerge" 
+      Comments="$(var.PackageComments)" 
       Compressed="yes" 
-      Description="WinMerge Installer" 
+      Description="$(var.Manufacturer)" 
       InstallerVersion="200" 
-      Keywords="Installer" 
+      Keywords="$(var.PackageKeywords)" 
       Languages="1033" 
-      Manufacturer="Thingamahoochie Software" 
+      Manufacturer="$(var.PackageDescription)" 
       SummaryCodepage="1252" />
     
     <Media Id="1"
