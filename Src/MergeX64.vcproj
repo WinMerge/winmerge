@@ -2756,6 +2756,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2777,6 +2779,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -2799,6 +2803,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -2820,6 +2826,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2841,6 +2849,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -2862,6 +2872,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -3658,136 +3670,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="common\CShellFileOp.cpp"
-				>
-				<FileConfiguration
-					Name="UnicodeRelease|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeRelease|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="Common\CSubclass.cpp"
 				>
 				<FileConfiguration
@@ -4328,6 +4210,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4349,6 +4233,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4371,6 +4257,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4392,6 +4280,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4413,6 +4303,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4434,6 +4326,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -4598,6 +4492,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4619,6 +4515,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4641,6 +4539,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4662,6 +4562,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4683,6 +4585,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4704,6 +4608,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -6032,6 +5938,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6053,6 +5961,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -6075,6 +5985,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -6096,6 +6008,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6117,6 +6031,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -6138,6 +6054,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -8656,6 +8574,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -8677,6 +8597,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8699,6 +8621,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8720,6 +8644,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -8741,6 +8667,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8762,6 +8690,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -8916,6 +8846,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -8937,6 +8869,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8959,6 +8893,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8980,6 +8916,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -9001,6 +8939,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -9022,6 +8962,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -11132,6 +11074,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11153,6 +11097,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -11175,6 +11121,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -11196,6 +11144,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11217,6 +11167,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -11238,6 +11190,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -16862,6 +16816,64 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Common\ShellFileOperations.cpp"
+				>
+				<FileConfiguration
+					Name="UnicodeRelease|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Common\sizecbar.cpp"
 				>
 				<FileConfiguration
@@ -17934,6 +17946,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17955,6 +17969,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -17977,6 +17993,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -17998,6 +18016,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -18019,6 +18039,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -18040,6 +18062,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -19467,6 +19491,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -19488,6 +19514,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19510,6 +19538,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19531,6 +19561,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -19552,6 +19584,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19573,6 +19607,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -19597,6 +19633,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -19618,6 +19656,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19640,6 +19680,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19661,6 +19703,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -19682,6 +19726,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -19703,6 +19749,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -20584,10 +20632,6 @@
 				>
 			</File>
 			<File
-				RelativePath="common\CShellFileOp.h"
-				>
-			</File>
-			<File
 				RelativePath="Common\CSubclass.h"
 				>
 			</File>
@@ -21033,6 +21077,10 @@
 			</File>
 			<File
 				RelativePath=".\Common\ShellContextMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Common\ShellFileOperations.h"
 				>
 			</File>
 			<File
