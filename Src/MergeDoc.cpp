@@ -2934,7 +2934,7 @@ void CMergeDoc::OnToolsGenerateReport()
 		if (!m_strDesc[0].empty())
 			left = m_strDesc[0];
 		if (!m_strDesc[1].empty())
-			right = m_strDesc[0];
+			right = m_strDesc[1];
 	}
 
 	// left and right title

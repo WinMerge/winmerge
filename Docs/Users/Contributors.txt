@@ -140,6 +140,7 @@ Other Contributors (code, ideas, testing..):
 * Jim Fougeron
 * Marvin Gouw
 * Robert Grange
+* black hero <black-hero@users.sourceforge.net>
 * Jan Hryz
 * jwdevel
 * Ed_K
