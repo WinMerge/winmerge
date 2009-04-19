@@ -205,8 +205,6 @@ namespace
 	}
 
 	// Command line with left path
-	// CRASHES! The tab in command line causes a crash!
-#if 0
 	TEST_F(MergeCmdLineInfoTest, LeftPath4)
 	{
 		MergeCmdLineInfo cmdInfo("C:\\WinMerge\\WinMerge.exe\tC:\\Temp\\");
@@ -228,7 +226,6 @@ namespace
 		EXPECT_EQ("", cmdInfo.m_sFileFilter);
 		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
 	}
-#endif
 
 	// Command line with left path
 	TEST_F(MergeCmdLineInfoTest, LeftPath5)
@@ -422,8 +419,6 @@ namespace
 		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
 	}
 
-// BUG!!! This crashes the test!
-#if 0
 	// Command line with left and right paths, tab between
 	TEST_F(MergeCmdLineInfoTest, PathMid3)
 	{
@@ -471,7 +466,6 @@ namespace
 		EXPECT_EQ("", cmdInfo.m_sFileFilter);
 		EXPECT_EQ("", cmdInfo.m_sPreDiffer);
 	}
-#endif
 
 	// Command line with left path, Linux separators
 	TEST_F(MergeCmdLineInfoTest, PathLeftLinux1)
