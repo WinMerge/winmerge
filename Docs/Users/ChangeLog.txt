@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.4
   Bugfix: Reports had same left/right descriptions (#2772646)
+  Bugfix: When conflict file saved trailing line-ending was lost (#2550412)
 
 WinMerge 2.12.2 - 2009-04-01 (r6625)
   Disable folder compare tree-view by default (#2714968)
