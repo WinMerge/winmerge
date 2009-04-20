@@ -14,7 +14,7 @@
       * Mutli-language support
       * ...
   -->
-  <Product Id="$(var.ProductGuid)" 
+  <Product Id="*" 
     Codepage="1252" 
     Language="1033" 
     Manufacturer="$(var.Manufacturer)" 
