@@ -48,7 +48,7 @@
     </Directory>
     
     <DirectoryRef Id="INSTALLDIR">
-      <Component Id="WinMergeU" Guid="*">
+      <Component Id="WinMergeU" Guid="*" Win64="no">
         <File Id="WinMergeUEXE" 
           Name="WinMergeU.exe" 
           Source="..\..\Build\MergeUnicodeRelease\WinMergeU.exe" 
@@ -56,7 +56,7 @@
       </Component>
       
       <!--TODO: Windows 32bit -->
-      <Component Id="ShellExtension" Guid="*">
+      <Component Id="ShellExtension" Guid="*" Win64="no">
         <File Id="ShellExtensionUDLL" 
           Name="ShellExtensionU.dll" 
           Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
@@ -71,35 +71,35 @@
           Vital="yes" />
       </Component>
       
-      <Component Id="libexpat" Guid="*">
+      <Component Id="libexpat" Guid="*" Win64="no">
         <File Id="libexpatDLL" 
           Name="libexpat.dll" 
           Source="..\..\Build\expat\libexpat.dll" 
           Vital="yes" />
       </Component>
       
-      <Component Id="pcre" Guid="*">
+      <Component Id="pcre" Guid="*" Win64="no">
         <File Id="pcreDLL" 
           Name="pcre.dll" 
           Source="..\..\Build\pcre\pcre.dll" 
           Vital="yes" />
       </Component>
       
-      <Component Id="MergeLang" Guid="*">
+      <Component Id="MergeLang" Guid="*" Win64="no">
         <File Id="MergeLangDLL" 
           Name="MergeLang.dll" 
           Source="..\..\Build\MergeUnicodeRelease\MergeLang.dll" 
           Vital="yes" />
       </Component>
       
-      <Component Id="Files" Guid="*">
+      <Component Id="Files" Guid="*" Win64="no">
         <File Id="FilesTXT" 
           Name="Files.txt" 
           Source="..\..\Docs\Users\Files.txt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Contributors" Guid="*">
+      <Component Id="Contributors" Guid="*" Win64="no">
         <File Id="ContributorsTXT" 
           Name="Contributors.txt" 
           Source="..\..\Docs\Users\Contributors.txt" 
@@ -108,28 +108,28 @@
     </DirectoryRef>
     
     <DirectoryRef Id="DOCSDIR">
-      <Component Id="ReadMe" Guid="*">
+      <Component Id="ReadMe" Guid="*" Win64="no">
         <File Id="ReadMeTXT" 
           Name="ReadMe.txt" 
           Source="..\..\Docs\Users\ReadMe.txt" 
           Vital="no" />
       </Component>
       
-      <Component Id="ReleaseNotes" Guid="*">
+      <Component Id="ReleaseNotes" Guid="*" Win64="no">
         <File Id="ReleaseNotesHTML" 
           Name="ReleaseNotes.html" 
           Source="..\..\Docs\Users\ReleaseNotes.html" 
           Vital="no" />
       </Component>
       
-      <Component Id="ChangeLog" Guid="*">
+      <Component Id="ChangeLog" Guid="*" Win64="no">
         <File Id="ChangeLogTXT" 
           Name="ChangeLog.txt" 
           Source="..\..\Docs\Users\ChangeLog.txt" 
           Vital="no" />
       </Component>
       
-      <Component Id="WinMergeHelp" Guid="*">
+      <Component Id="WinMergeHelp" Guid="*" Win64="no">
         <File Id="WinMergeCHM" 
           Name="WinMerge.chm" 
           Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
@@ -138,91 +138,91 @@
     </DirectoryRef>
     
     <DirectoryRef Id="FILTERSDIR">
-      <Component Id="ADAMulti" Guid="*">
+      <Component Id="ADAMulti" Guid="*" Win64="no">
         <File Id="ADAMultiFLT" 
           Name="ADAMulti.flt" 
           Source="..\..\Filters\ADAMulti.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="ASPNET" Guid="*">
+      <Component Id="ASPNET" Guid="*" Win64="no">
         <File Id="ASPNETFLT" 
           Name="ASPNET.flt" 
           Source="..\..\Filters\ASPNET.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="CSharp_loose" Guid="*">
+      <Component Id="CSharp_loose" Guid="*" Win64="no">
         <File Id="CSharp_looseFLT" 
           Name="CSharp_loose.flt" 
           Source="..\..\Filters\CSharp_loose.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Delphi" Guid="*">
+      <Component Id="Delphi" Guid="*" Win64="no">
         <File Id="DelphiFLT" 
           Name="Delphi.flt" 
           Source="..\..\Filters\Delphi.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="FileFilter" Guid="*">
+      <Component Id="FileFilter" Guid="*" Win64="no">
         <File Id="FileFilterTMPL" 
           Name="FileFilter.tmpl" 
           Source="..\..\Filters\FileFilter.tmpl" 
           Vital="no" />
       </Component>
       
-      <Component Id="Frontpage" Guid="*">
+      <Component Id="Frontpage" Guid="*" Win64="no">
         <File Id="FrontpageFLT" 
           Name="Frontpage.flt" 
           Source="..\..\Filters\Frontpage.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="MASM" Guid="*">
+      <Component Id="MASM" Guid="*" Win64="no">
         <File Id="MASMFLT" 
           Name="MASM.flt" 
           Source="..\..\Filters\MASM.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Merge_GnuC_loose" Guid="*">
+      <Component Id="Merge_GnuC_loose" Guid="*" Win64="no">
         <File Id="Merge_GnuC_looseFLT" 
           Name="Merge_GnuC_loose.flt" 
           Source="..\..\Filters\Merge_GnuC_loose.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Merge_VB_loose" Guid="*">
+      <Component Id="Merge_VB_loose" Guid="*" Win64="no">
         <File Id="Merge_VB_looseFLT" 
           Name="Merge_VB_loose.flt" 
           Source="..\..\Filters\Merge_VB_loose.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Merge_VC_loose" Guid="*">
+      <Component Id="Merge_VC_loose" Guid="*" Win64="no">
         <File Id="Merge_VC_looseFLT" 
           Name="Merge_VC_loose.flt" 
           Source="..\..\Filters\Merge_VC_loose.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="SourceControl" Guid="*">
+      <Component Id="SourceControl" Guid="*" Win64="no">
         <File Id="SourceControlFLT" 
           Name="SourceControl.flt" 
           Source="..\..\Filters\SourceControl.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="Symbian" Guid="*">
+      <Component Id="Symbian" Guid="*" Win64="no">
         <File Id="SymbianFLT" 
           Name="Symbian.flt" 
           Source="..\..\Filters\Symbian.flt" 
           Vital="no" />
       </Component>
       
-      <Component Id="XML_html" Guid="*">
+      <Component Id="XML_html" Guid="*" Win64="no">
         <File Id="XML_htmlFLT" 
           Name="XML_html.flt" 
           Source="..\..\Filters\XML_html.flt" 
@@ -231,196 +231,196 @@
     </DirectoryRef>
     
     <DirectoryRef Id="LANGDIR">
-      <Component Id="Brazilian" Guid="*">
+      <Component Id="Brazilian" Guid="*" Win64="no">
         <File Id="BrazilianPO" 
           Name="Brazilian.po" 
           Source="..\..\Src\Languages\Brazilian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Bulgarian" Guid="*">
+      <Component Id="Bulgarian" Guid="*" Win64="no">
         <File Id="BulgarianPO" 
           Name="Bulgarian.po" 
           Source="..\..\Src\Languages\Bulgarian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Catalan" Guid="*">
+      <Component Id="Catalan" Guid="*" Win64="no">
         <File Id="CatalanPO" 
           Name="Catalan.po" 
           Source="..\..\Src\Languages\Catalan.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="ChineseSimplified" Guid="*">
+      <Component Id="ChineseSimplified" Guid="*" Win64="no">
         <File Id="ChineseSimplifiedPO" 
           Name="ChineseSimplified.po" 
           Source="..\..\Src\Languages\ChineseSimplified.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="ChineseTraditional" Guid="*">
+      <Component Id="ChineseTraditional" Guid="*" Win64="no">
         <File Id="ChineseTraditionalPO" 
           Name="ChineseTraditional.po" 
           Source="..\..\Src\Languages\ChineseTraditional.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Croatian" Guid="*">
+      <Component Id="Croatian" Guid="*" Win64="no">
         <File Id="CroatianPO" 
           Name="Croatian.po" 
           Source="..\..\Src\Languages\Croatian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Czech" Guid="*">
+      <Component Id="Czech" Guid="*" Win64="no">
         <File Id="CzechPO" 
           Name="Czech.po" 
           Source="..\..\Src\Languages\Czech.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Danish" Guid="*">
+      <Component Id="Danish" Guid="*" Win64="no">
         <File Id="DanishPO" 
           Name="Danish.po" 
           Source="..\..\Src\Languages\Danish.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Dutch" Guid="*">
+      <Component Id="Dutch" Guid="*" Win64="no">
         <File Id="DutchPO" 
           Name="Dutch.po" 
           Source="..\..\Src\Languages\Dutch.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="French" Guid="*">
+      <Component Id="French" Guid="*" Win64="no">
         <File Id="FrenchPO" 
           Name="French.po" 
           Source="..\..\Src\Languages\French.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Galician" Guid="*">
+      <Component Id="Galician" Guid="*" Win64="no">
         <File Id="GalicianPO" 
           Name="Galician.po" 
           Source="..\..\Src\Languages\Galician.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="German" Guid="*">
+      <Component Id="German" Guid="*" Win64="no">
         <File Id="GermanPO" 
           Name="German.po" 
           Source="..\..\Src\Languages\German.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Greek" Guid="*">
+      <Component Id="Greek" Guid="*" Win64="no">
         <File Id="GreekPO" 
           Name="Greek.po" 
           Source="..\..\Src\Languages\Greek.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Hungarian" Guid="*">
+      <Component Id="Hungarian" Guid="*" Win64="no">
         <File Id="HungarianPO" 
           Name="Hungarian.po" 
           Source="..\..\Src\Languages\Hungarian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Italian" Guid="*">
+      <Component Id="Italian" Guid="*" Win64="no">
         <File Id="ItalianPO" 
           Name="Italian.po" 
           Source="..\..\Src\Languages\Italian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Japanese" Guid="*">
+      <Component Id="Japanese" Guid="*" Win64="no">
         <File Id="JapanesePO" 
           Name="Japanese.po" 
           Source="..\..\Src\Languages\Japanese.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Korean" Guid="*">
+      <Component Id="Korean" Guid="*" Win64="no">
         <File Id="KoreanPO" 
           Name="Korean.po" 
           Source="..\..\Src\Languages\Korean.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Norwegian" Guid="*">
+      <Component Id="Norwegian" Guid="*" Win64="no">
         <File Id="NorwegianPO" 
           Name="Norwegian.po" 
           Source="..\..\Src\Languages\Norwegian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Polish" Guid="*">
+      <Component Id="Polish" Guid="*" Win64="no">
         <File Id="PolishPO" 
           Name="Polish.po" 
           Source="..\..\Src\Languages\Polish.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Portuguese" Guid="*">
+      <Component Id="Portuguese" Guid="*" Win64="no">
         <File Id="PortuguesePO" 
           Name="Portuguese.po" 
           Source="..\..\Src\Languages\Portuguese.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Romanian" Guid="*">
+      <Component Id="Romanian" Guid="*" Win64="no">
         <File Id="RomanianPO" 
           Name="Romanian.po" 
           Source="..\..\Src\Languages\Romanian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Russian" Guid="*">
+      <Component Id="Russian" Guid="*" Win64="no">
         <File Id="RussianPO" 
           Name="Russian.po" 
           Source="..\..\Src\Languages\Russian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Slovak" Guid="*">
+      <Component Id="Slovak" Guid="*" Win64="no">
         <File Id="SlovakPO" 
           Name="Slovak.po" 
           Source="..\..\Src\Languages\Slovak.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Slovenian" Guid="*">
+      <Component Id="Slovenian" Guid="*" Win64="no">
         <File Id="SlovenianPO" 
           Name="Slovenian.po" 
           Source="..\..\Src\Languages\Slovenian.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Spanish" Guid="*">
+      <Component Id="Spanish" Guid="*" Win64="no">
         <File Id="SpanishPO" 
           Name="Spanish.po" 
           Source="..\..\Src\Languages\Spanish.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Swedish" Guid="*">
+      <Component Id="Swedish" Guid="*" Win64="no">
         <File Id="SwedishPO" 
           Name="Swedish.po" 
           Source="..\..\Src\Languages\Swedish.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Turkish" Guid="*">
+      <Component Id="Turkish" Guid="*" Win64="no">
         <File Id="TurkishPO" 
           Name="Turkish.po" 
           Source="..\..\Src\Languages\Turkish.po" 
           Vital="no" />
       </Component>
       
-      <Component Id="Ukrainian" Guid="*">
+      <Component Id="Ukrainian" Guid="*" Win64="no">
         <File Id="UkrainianPO" 
           Name="Ukrainian.po" 
           Source="..\..\Src\Languages\Ukrainian.po" 
@@ -429,84 +429,84 @@
     </DirectoryRef>
     
     <DirectoryRef Id="PLUGINSDIR">
-      <Component Id="editoraddin" Guid="*">
+      <Component Id="editoraddin" Guid="*" Win64="no">
         <File Id="editoraddinSCT" 
           Name="editor addin.sct" 
           Source="..\..\Plugins\dlls\editor addin.sct" 
           Vital="no" />
       </Component>
       
-      <Component Id="insertdatetime" Guid="*">
+      <Component Id="insertdatetime" Guid="*" Win64="no">
         <File Id="insertdatetimeSCT" 
           Name="insert datetime.sct" 
           Source="..\..\Plugins\dlls\insert datetime.sct" 
           Vital="no" />
       </Component>
       
-      <Component Id="CompareMSExcelFiles" Guid="*">
+      <Component Id="CompareMSExcelFiles" Guid="*" Win64="no">
         <File Id="CompareMSExcelFilesDLL" 
           Name="CompareMSExcelFiles.dll" 
           Source="..\..\Plugins\dlls\CompareMSExcelFiles.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="CompareMSWordFiles" Guid="*">
+      <Component Id="CompareMSWordFiles" Guid="*" Win64="no">
         <File Id="CompareMSWordFilesDLL" 
           Name="CompareMSWordFiles.dll" 
           Source="..\..\Plugins\dlls\CompareMSWordFiles.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="DisplayXMLFiles" Guid="*">
+      <Component Id="DisplayXMLFiles" Guid="*" Win64="no">
         <File Id="DisplayXMLFilesDLL" 
           Name="DisplayXMLFiles.dll" 
           Source="..\..\Plugins\dlls\DisplayXMLFiles.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="IgnoreColumns" Guid="*">
+      <Component Id="IgnoreColumns" Guid="*" Win64="no">
         <File Id="IgnoreColumnsDLL" 
           Name="IgnoreColumns.dll" 
           Source="..\..\Plugins\dlls\IgnoreColumns.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="IgnoreCommentsC" Guid="*">
+      <Component Id="IgnoreCommentsC" Guid="*" Win64="no">
         <File Id="IgnoreCommentsCDLL" 
           Name="IgnoreCommentsC.dll" 
           Source="..\..\Plugins\dlls\IgnoreCommentsC.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="IgnoreFieldsComma" Guid="*">
+      <Component Id="IgnoreFieldsComma" Guid="*" Win64="no">
         <File Id="IgnoreFieldsCommaDLL" 
           Name="IgnoreFieldsComma.dll" 
           Source="..\..\Plugins\dlls\IgnoreFieldsComma.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="IgnoreFieldsTab" Guid="*">
+      <Component Id="IgnoreFieldsTab" Guid="*" Win64="no">
         <File Id="IgnoreFieldsTabDLL" 
           Name="IgnoreFieldsTab.dll" 
           Source="..\..\Plugins\dlls\IgnoreFieldsTab.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="IgnoreLeadingLineNumbers" Guid="*">
+      <Component Id="IgnoreLeadingLineNumbers" Guid="*" Win64="no">
         <File Id="IgnoreLeadingLineNumbersDLL" 
           Name="IgnoreLeadingLineNumbers.dll" 
           Source="..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="WatchBeginningOfLog" Guid="*">
+      <Component Id="WatchBeginningOfLog" Guid="*" Win64="no">
         <File Id="WatchBeginningOfLogDLL" 
           Name="WatchBeginningOfLog.dll" 
           Source="..\..\Plugins\dlls\WatchBeginningOfLog.dll" 
           Vital="no" />
       </Component>
       
-      <Component Id="WatchEndOfLog" Guid="*">
+      <Component Id="WatchEndOfLog" Guid="*" Win64="no">
         <File Id="WatchEndOfLogDLL" 
           Name="WatchEndOfLog.dll" 
           Source="..\..\Plugins\dlls\WatchEndOfLog.dll" 
