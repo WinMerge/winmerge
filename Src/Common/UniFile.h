@@ -67,8 +67,8 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
-		int first_zero; // byte offset, initially -1
-		int last_zero; // byte offset, initially -1
+		INT64 first_zero; // byte offset, initially -1
+		INT64 last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
 		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }

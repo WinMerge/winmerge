@@ -425,9 +425,9 @@ bool UniMemFile::ReadString(String & line, bool * lossy)
 static void Append(String &strBuffer, LPCTSTR pchTail,
 		int cchTail, int cchBufferMin)
 {
-	int cchBuffer = strBuffer.capacity();
-	int cchHead = strBuffer.length();
-	int cchLength = cchHead + cchTail;
+	size_t cchBuffer = strBuffer.capacity();
+	size_t cchHead = strBuffer.length();
+	size_t cchLength = cchHead + cchTail;
 	while (cchBuffer < cchLength)
 	{
 		ASSERT((cchBufferMin & cchBufferMin - 1) == 0); // must be a power of 2
@@ -443,7 +443,7 @@ static void Append(String &strBuffer, LPCTSTR pchTail,
 /**
  * @brief Record occurrence of binary zero to stats
  */
-static void RecordZero(UniFile::txtstats & txstats, int offset)
+static void RecordZero(UniFile::txtstats & txstats, INT64 offset)
 {
 	++txstats.nzeros;
 	if (txstats.first_zero == -1)
@@ -477,7 +477,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		while (m_current - m_base + 1 < m_filesize)
 		{
 			wchar_t wch = *(wchar_t *)m_current;
-			int wch_offset = (m_current - m_base);
+			INT64 wch_offset = (m_current - m_base);
 			m_current += 2;
 			if (wch == '\n' || wch == '\r')
 			{
@@ -577,7 +577,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			}
 			if (*eolptr == 0)
 			{
-				int offset = (eolptr - m_base);
+				INT64 offset = (eolptr - m_base);
 				RecordZero(m_txtstats, offset);
 			}
 		}
@@ -688,7 +688,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		}
 		else if (!ch)
 		{
-			int offset = (m_current - m_base);
+			INT64 offset = (m_current - m_base);
 			RecordZero(m_txtstats, offset);
 		}
 		// always advance to next character
@@ -861,7 +861,7 @@ bool UniStdioFile::ReadBom()
 	if (buff == NULL)
 		return false;
 
-	int bytes = fread(buff, 1, max_size, m_fp);
+	size_t bytes = fread(buff, 1, max_size, m_fp);
 	m_data = 0;
 	m_charsize = 1;
 	bool unicode = false;
@@ -967,8 +967,8 @@ bool UniStdioFile::WriteString(const String & line)
 	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 #endif
 	{
-		unsigned int bytes = line.length() * sizeof(TCHAR);
-		unsigned int wbytes = fwrite(line.c_str(), 1, bytes, m_fp);
+		size_t bytes = line.length() * sizeof(TCHAR);
+		size_t wbytes = fwrite(line.c_str(), 1, bytes, m_fp);
 		if (wbytes != bytes)
 			return false;
 		return true;
@@ -979,10 +979,10 @@ bool UniStdioFile::WriteString(const String & line)
 	int codepage1=0;
 	ucr::getInternalEncoding(&unicoding1, &codepage1); // What String & TCHARs represent
 	const unsigned char * src = (const UCHAR *)line.c_str();
-	int srcbytes = line.length() * sizeof(TCHAR);
+	size_t srcbytes = line.length() * sizeof(TCHAR);
 	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, buff);
 	// TODO: What to do about lossy conversion ?
-	unsigned int wbytes = fwrite(buff->ptr, 1, buff->size, m_fp);
+	size_t wbytes = fwrite(buff->ptr, 1, buff->size, m_fp);
 	if (wbytes != buff->size)
 		return false;
 	return true;
