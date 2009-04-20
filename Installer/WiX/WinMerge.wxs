@@ -30,6 +30,7 @@
       Keywords="$(var.PackageKeywords)" 
       Languages="1033" 
       Manufacturer="$(var.PackageDescription)" 
+      Platform="$(var.PackagePlatform)" 
       SummaryCodepage="1252" />
     
     <Media Id="1"
@@ -45,6 +46,11 @@
           <Directory Id="PLUGINSDIR" Name="MergePlugins" />
         </Directory>
       </Directory>
+      <?if $(var.Platform) = "x64" ?>
+        <Directory Id="ProgramFiles64Folder">
+          <Directory Id="INSTALLDIR64" Name="WinMerge" />
+        </Directory>
+      <?endif ?>
     </Directory>
     
     <DirectoryRef Id="INSTALLDIR">
@@ -52,22 +58,6 @@
         <File Id="WinMergeUEXE" 
           Name="WinMergeU.exe" 
           Source="..\..\Build\MergeUnicodeRelease\WinMergeU.exe" 
-          Vital="yes" />
-      </Component>
-      
-      <!--TODO: Windows 32bit -->
-      <Component Id="ShellExtension" Guid="*" Win64="no">
-        <File Id="ShellExtensionUDLL" 
-          Name="ShellExtensionU.dll" 
-          Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
-          Vital="yes" />
-      </Component>
-      
-      <!--TODO: Windows 64bit -->
-      <Component Id="ShellExtensionX64" Guid="*">
-        <File Id="ShellExtensionX64DLL" 
-          Name="ShellExtensionX64.dll" 
-          Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
           Vital="yes" />
       </Component>
       
@@ -106,6 +96,26 @@
           Vital="no" />
       </Component>
     </DirectoryRef>
+    
+    <?if $(var.Platform) = "x64" ?>
+      <DirectoryRef Id="INSTALLDIR64">
+        <Component Id="ShellExtension" Guid="*" Win64="yes">
+          <File Id="ShellExtensionX64DLL" 
+            Name="ShellExtensionX64.dll" 
+            Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
+            Vital="yes" />
+        </Component>
+      </DirectoryRef>
+    <?else ?>
+      <DirectoryRef Id="INSTALLDIR">
+        <Component Id="ShellExtension" Guid="*" Win64="no">
+          <File Id="ShellExtensionUDLL" 
+            Name="ShellExtensionU.dll" 
+            Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
+            Vital="yes" />
+        </Component>
+      </DirectoryRef>
+    <?endif ?>
     
     <DirectoryRef Id="DOCSDIR">
       <Component Id="ReadMe" Guid="*" Win64="no">
@@ -526,7 +536,6 @@
       Title="WinMerge">
       <ComponentRef Id="WinMergeU" />
       <ComponentRef Id="ShellExtension" />
-      <ComponentRef Id="ShellExtensionX64" />
       <ComponentRef Id="libexpat" />
       <ComponentRef Id="pcre" />
       <ComponentRef Id="MergeLang" />
