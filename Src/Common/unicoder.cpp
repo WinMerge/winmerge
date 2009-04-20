@@ -703,7 +703,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
  * FF FE 00 00 UTF-32, little endian 
  * 00 00 FE FF UTF-32, big-endian 
  */
-UNICODESET DetermineEncoding(unsigned char* pBuffer, int size, bool * pBom)
+UNICODESET DetermineEncoding(PBYTE pBuffer, __int64 size, bool * pBom)
 {
 	UNICODESET unicoding = ucr::NONE;
 	*pBom = false;

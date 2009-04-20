@@ -349,7 +349,7 @@ bool UniMemFile::ReadBom()
 	if (!IsOpen())
 		return false;
 
-	unsigned char * lpByte = m_base;
+	PBYTE lpByte = m_base;
 	m_current = m_data = m_base;
 	m_charsize = 1;
 	bool unicode = false;

@@ -65,7 +65,7 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
 String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy);
 #endif
 
-UNICODESET DetermineEncoding(unsigned char* pBuffer, int size, bool * pBom);
+UNICODESET DetermineEncoding(PBYTE pBuffer, __int64 size, bool * pBom);
 
 } // namespace ucr
 
