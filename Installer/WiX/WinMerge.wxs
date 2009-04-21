@@ -535,10 +535,15 @@
       Level="1" 
       Title="WinMerge">
       <ComponentRef Id="WinMergeU" />
-      <ComponentRef Id="ShellExtension" />
       <ComponentRef Id="libexpat" />
       <ComponentRef Id="pcre" />
       <ComponentRef Id="MergeLang" />
+      <Feature Id="ShellExtension" 
+        Description="Explorer context menu integration" 
+        Level="1" 
+        Title="Shell Extension">
+        <ComponentRef Id="ShellExtension" />
+      </Feature>
       <Feature Id="Documentation" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />
         <ComponentRef Id="Contributors" />
