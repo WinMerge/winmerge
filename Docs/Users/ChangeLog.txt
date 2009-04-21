@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.7
+  Add more C/C++ types to syntax highlight (#2776705)
   Bugfix: Crash if tabs or EOLs in command line (#2726995)
   Bugfix: Reports had same left/right descriptions (#2772646)
 
