@@ -166,7 +166,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_pOptionsMgr = pOptionsMgr;
 
-    unsigned int count = m_items.size();
+	size_t count = m_items.size();
 	valuename += _T("/Values");
 	m_pOptionsMgr->InitOption(valuename.c_str(), static_cast<int>(count));
 	count = m_pOptionsMgr->GetInt(valuename.c_str());
