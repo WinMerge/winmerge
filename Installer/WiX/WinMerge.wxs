@@ -530,6 +530,7 @@
     -->
     <Feature Id="WinMerge" 
       Absent="disallow" 
+      AllowAdvertise="no" 
       ConfigurableDirectory="INSTALLDIR" 
       Display="expand" 
       Level="1" 
@@ -539,12 +540,13 @@
       <ComponentRef Id="pcre" />
       <ComponentRef Id="MergeLang" />
       <Feature Id="ShellExtension" 
+        AllowAdvertise="no" 
         Description="Explorer context menu integration" 
         Level="1" 
         Title="Shell Extension">
         <ComponentRef Id="ShellExtension" />
       </Feature>
-      <Feature Id="Documentation" Level="1" Title="Documentation">
+      <Feature Id="Documentation" AllowAdvertise="no" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />
         <ComponentRef Id="Contributors" />
         <ComponentRef Id="ReadMe" />
@@ -552,7 +554,7 @@
         <ComponentRef Id="ChangeLog" />
         <ComponentRef Id="WinMergeHelp" />
       </Feature>
-      <Feature Id="Filters" Level="1" Title="Filters">
+      <Feature Id="Filters" AllowAdvertise="no" Level="1" Title="Filters">
         <ComponentRef Id="ADAMulti" />
         <ComponentRef Id="ASPNET" />
         <ComponentRef Id="CSharp_loose" />
@@ -567,7 +569,7 @@
         <ComponentRef Id="Symbian" />
         <ComponentRef Id="XML_html" />
       </Feature>
-      <Feature Id="Languages" Level="1" Title="Languages">
+      <Feature Id="Languages" AllowAdvertise="no" Level="1" Title="Languages">
         <ComponentRef Id="Brazilian" />
         <ComponentRef Id="Bulgarian" />
         <ComponentRef Id="Catalan" />
@@ -597,7 +599,7 @@
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
       </Feature>
-      <Feature Id="Plugins" Level="4" Title="Plugins">
+      <Feature Id="Plugins" AllowAdvertise="no" Level="4" Title="Plugins">
         <ComponentRef Id="editoraddin" />
         <ComponentRef Id="insertdatetime" />
         <ComponentRef Id="CompareMSExcelFiles" />
