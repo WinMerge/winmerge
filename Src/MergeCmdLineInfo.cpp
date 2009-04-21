@@ -230,7 +230,7 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	param = paths_GetLongPath(param.c_str());
 
 	// Set flag indicating path is from command line
-	const int ord = m_Files.size();
+	const size_t ord = m_Files.size();
 	if (ord == 0)
 		m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 	else if (ord == 1)

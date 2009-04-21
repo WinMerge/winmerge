@@ -155,7 +155,7 @@ static bool GetInt(LPCTSTR str, int & val)
 {
 	if (str == NULL)
 		return false;
-	int len = _tcslen(str);
+	const size_t len = _tcslen(str);
 	if (len == 0)
 		return false;
 
@@ -519,8 +519,8 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		BOOL succeeded = m_optionsMap.erase(name);
-		if (!succeeded)
+		size_t nr_removed = m_optionsMap.erase(name);
+		if (nr_removed == 0)
 			retVal = OPT_NOTFOUND;
 	}
 	else

@@ -110,8 +110,8 @@ bool FilterList::HasRegExps()
 bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
 {
 	bool retval = false;
-	unsigned int count = m_list.size();
-	int stringlen = strlen(string);
+	const size_t count = m_list.size();
+	size_t stringlen = strlen(string);
 
 	// convert string into UTF-8
 	ucr::buffer buf(stringlen * 2);
