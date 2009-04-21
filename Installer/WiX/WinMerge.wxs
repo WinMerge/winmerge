@@ -9,7 +9,6 @@
     TODO:
       * Install all files
       * Make a different between 32bit and 64bit
-      * Register shell extension
       * Create start menu items
       * Mutli-language support
       * ...
@@ -102,6 +101,7 @@
         <Component Id="ShellExtension" Guid="*" Win64="yes">
           <File Id="ShellExtensionX64DLL" 
             Name="ShellExtensionX64.dll" 
+            SelfRegCost="1" 
             Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
             Vital="yes" />
         </Component>
@@ -111,6 +111,7 @@
         <Component Id="ShellExtension" Guid="*" Win64="no">
           <File Id="ShellExtensionUDLL" 
             Name="ShellExtensionU.dll" 
+            SelfRegCost="1" 
             Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
             Vital="yes" />
         </Component>
