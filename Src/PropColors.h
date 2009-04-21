@@ -120,12 +120,12 @@ protected:
 	afx_msg void OnSelMovedColor();
 	afx_msg void OnSelMovedDeletedColor();
 	afx_msg void OnSelMovedTextColor();
-	afx_msg void OnWordDifferenceColor();
-	afx_msg void OnWordDifferenceDeletedColor();
-	afx_msg void OnSelWordDifferenceColor();
-	afx_msg void OnSelWordDifferenceDeletedColor();
-	afx_msg void OnWordDifferenceTextColor();
-	afx_msg void OnSelWordDifferenceTextColor();
+	afx_msg void OnWordDiffColor();
+	afx_msg void OnWordDiffDeletedColor();
+	afx_msg void OnWordDiffTextColor();
+	afx_msg void OnSelWordDiffColor();
+	afx_msg void OnSelWordDiffDeletedColor();
+	afx_msg void OnSelWordDiffTextColor();
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

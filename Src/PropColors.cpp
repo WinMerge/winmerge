@@ -51,12 +51,12 @@ void CPropMergeColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_COLOR, m_cSelMoved);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_DELETED_COLOR, m_cSelMovedDeleted);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_TEXT_COLOR, m_cSelMovedText);
-	DDX_Control(pDX, IDC_WORDDIFFERENCE_COLOR, m_cWordDiff);
+	DDX_Control(pDX, IDC_WORDDIFF_COLOR, m_cWordDiff);
 	DDX_Control(pDX, IDC_WORDDIFF_DELETED_COLOR, m_cWordDiffDeleted);
-	DDX_Control(pDX, IDC_WORDDIFFERENCE_TEXT_COLOR, m_cWordDiffText);
-	DDX_Control(pDX, IDC_SEL_WORDDIFFERENCE_COLOR, m_cSelWordDiff);
-	DDX_Control(pDX, IDC_WORDDIFF_SEL_DELETED_COLOR, m_cSelWordDiffDeleted);
-	DDX_Control(pDX, IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, m_cSelWordDiffText);
+	DDX_Control(pDX, IDC_WORDDIFF_TEXT_COLOR, m_cWordDiffText);
+	DDX_Control(pDX, IDC_SEL_WORDDIFF_COLOR, m_cSelWordDiff);
+	DDX_Control(pDX, IDC_SEL_WORDDIFF_DELETED_COLOR, m_cSelWordDiffDeleted);
+	DDX_Control(pDX, IDC_SEL_WORDDIFF_TEXT_COLOR, m_cSelWordDiffText);
 	//}}AFX_DATA_MAP
 }
 
@@ -79,12 +79,12 @@ BEGIN_MESSAGE_MAP(CPropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_COLOR, OnSelMovedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
-	ON_BN_CLICKED(IDC_WORDDIFFERENCE_COLOR, OnWordDifferenceColor)
-	ON_BN_CLICKED(IDC_WORDDIFF_DELETED_COLOR, OnWordDifferenceDeletedColor)
-	ON_BN_CLICKED(IDC_WORDDIFFERENCE_TEXT_COLOR, OnWordDifferenceTextColor)
-	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_COLOR, OnSelWordDifferenceColor)
-	ON_BN_CLICKED(IDC_WORDDIFF_SEL_DELETED_COLOR, OnSelWordDifferenceDeletedColor)
-	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, OnSelWordDifferenceTextColor)
+	ON_BN_CLICKED(IDC_WORDDIFF_COLOR, OnWordDiffColor)
+	ON_BN_CLICKED(IDC_WORDDIFF_DELETED_COLOR, OnWordDiffDeletedColor)
+	ON_BN_CLICKED(IDC_WORDDIFF_TEXT_COLOR, OnWordDiffTextColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFF_COLOR, OnSelWordDiffColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFF_DELETED_COLOR, OnSelWordDiffDeletedColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFF_TEXT_COLOR, OnSelWordDiffTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -234,14 +234,14 @@ void CPropMergeColors::OnSelMovedTextColor()
 /** 
  * @brief User wants to change word difference color
  */
-void CPropMergeColors::OnWordDifferenceColor() 
+void CPropMergeColors::OnWordDiffColor() 
 {
 	BrowseColor(m_cWordDiff, m_clrWordDiff);
 }
 /** 
  * @brief User wants to change word difference deleted color
  */
-void CPropMergeColors::OnWordDifferenceDeletedColor() 
+void CPropMergeColors::OnWordDiffDeletedColor() 
 {
 	BrowseColor(m_cWordDiffDeleted, m_clrWordDiffDeleted);
 }
@@ -249,7 +249,7 @@ void CPropMergeColors::OnWordDifferenceDeletedColor()
 /** 
  * @brief User wants to change selected word difference color
  */
-void CPropMergeColors::OnSelWordDifferenceColor() 
+void CPropMergeColors::OnSelWordDiffColor() 
 {
 	BrowseColor(m_cSelWordDiff, m_clrSelWordDiff);
 }
@@ -257,7 +257,7 @@ void CPropMergeColors::OnSelWordDifferenceColor()
 /** 
  * @brief User wants to change word difference deleted color
  */
-void CPropMergeColors::OnSelWordDifferenceDeletedColor()
+void CPropMergeColors::OnSelWordDiffDeletedColor()
 {
 	BrowseColor(m_cSelWordDiffDeleted, m_clrSelWordDiffDeleted);
 }
@@ -265,7 +265,7 @@ void CPropMergeColors::OnSelWordDifferenceDeletedColor()
 /** 
  * @brief User wants to change word difference text color
  */
-void CPropMergeColors::OnWordDifferenceTextColor() 
+void CPropMergeColors::OnWordDiffTextColor() 
 {
 	BrowseColor(m_cWordDiffText, m_clrWordDiffText);
 }
@@ -273,7 +273,7 @@ void CPropMergeColors::OnWordDifferenceTextColor()
 /** 
  * @brief User wants to change selected word difference text color
  */
-void CPropMergeColors::OnSelWordDifferenceTextColor() 
+void CPropMergeColors::OnSelWordDiffTextColor() 
 {
 	BrowseColor(m_cSelWordDiffText, m_clrSelWordDiffText);
 }
