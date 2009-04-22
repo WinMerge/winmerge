@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Building WinMerge MSI Installer</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+    pre {
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 5px;
+      background-color: #EEEEEE;
+      border-left: 10px solid #CCCCCC;
+    }
+    p.note {
+      padding: 5px;
+      background-color: #DDDDFF;
+      border: 1px solid #6666FF;
+    }
+  -->
+  </style>
+</head>
+<body>
+
+<h2>Building WinMerge MSI Installer</h2>
+
+<p class="note">MSI installer is still in heavy development and is highly
+experimental. DO NOT use it to install WinMerge to production environment!
+</p>
+
+<h3>Needed programs:</h3>
+<ul>
+  <li>
+    <a href="http://wix.sourceforge.net/">Wix</a> version 3.0 or later.
+  </li>
+  <li>
+    <a href="http://msdn.microsoft.com/en-us/library/0k6kkbsd.aspx">MSBuild</a>.
+     MSBuild is part of .NET 2.0 or later SDK.
+  </li>
+</ul>
+
+<h3>Installer script:</h3>
+<p>The main installer script is in <code>Installer/WIX</code> folder:
+<code>WinMerge.wxs</code>. This file includes other needed files.</p>
+
+<h3>Folder structure and files needed:</h3>
+
+<p>These files are produced by compiling WinMerge, documentation etc, but
+that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
+
+<p>Copy or move the files into the following layout:</p>
+
+<ul>
+ <li>
+  <code>Build/</code>
+  <ul>
+    <li>
+     <code>expat</code>
+     <ul>
+      <li><code>libexpat.dll</code></li>
+      <li><code>libexpatw.dll</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>Languages</code>
+     <ul>
+      <li><code>*.lang</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>Manual/htmlhelp</code>
+     <ul>
+      <li><code>WinMerge.chm</code></li>
+     </ul>
+    </li>
+   <li>
+    <code>MergeRelease/</code>
+    <ul>
+     <li><code>ShellExtension.dll</code></li>
+     <li><code>WinMerge.exe</code></li>
+    </ul>
+   </li>
+   <li>
+    <code>MergeUnicodeRelease/</code>
+    <ul>
+     <li><code>ShellExtensionU.dll</code></li>
+     <li><code>WinMergeU.exe</code></li>
+    </ul>
+   </li>
+   <li>
+    <code>pcre/</code>
+    <ul>
+      <li><code>pcre.dll</code></li>
+    </ul>
+   </li>
+   <li>
+    <code>ShellExtensionX64/</code>
+    <ul>
+      <li><code>ShellExtensionX64.dll</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>Docs/</code>
+  <ul>
+   <li>
+    <code>Users</code>
+    <ul>
+     <li><em>Copy the entire <code>Docs/Users</code> folder to here</em></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>Filters/</code>
+  <ul>
+   <li><code>FileFilter.tmpl</code></li>
+   <li><code>*.flt</code></li>
+  </ul>
+ </li>
+ <li>
+  <code>Installer/</code>
+  <ul>
+   <li>
+    <code>WIX/</code>
+     <ul>
+      <li><em>Copy the entire Installer/WIX folder to here</em></li>
+     </ul>
+   </li>
+   <li>
+    <code>Runtimes/</code>
+     <ul>
+      <li><em>Copy the entire Installer/Runtimes folder to here</em></li>
+     </ul>
+    </li>
+  </ul>
+ </li>
+ <li>
+  <code>Plugins/</code>
+  <ul>
+   <li>
+    <code>dlls/</code>
+     <ul>
+      <li><em>Copy the entire Plugins/dlls folder to here</em></li>
+     </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+<h3>Running WIX tools to create installer</h3>
+
+<p><code>WinMerge.wxs</code> (in <code>WIX</code> folder)
+is script used to create WinMerge MSI installer.</p> Other tools and IDEs can
+be used also. For example WixEdit or SharpDevelop.
+
+<h4>Building with MSBuild</h4>
+
+<p>Open the DOS prompt and CD to <code>Installer/WIX</code> -folder. Run
+command:
+<pre>
+ msbuild.exe WinMerge.wixproj
+</pre>
+or with platform parameter:
+<pre>
+ msbuild.exe WinMerge.wixproj /p:Platform=x86
+</pre>
+and to build 64-bit installer:
+<pre>
+ msbuild.exe WinMerge.wixproj /p:Platform=x64
+</pre>
+</p>
+
+<p>If the compile succeeds you have <code>WinMerge-[version]-Setup.exe</code> in
+folder <code>/Build</code>.
+
+<p><strong>Test installer!</strong></p>
+
+</body>
+</html>
