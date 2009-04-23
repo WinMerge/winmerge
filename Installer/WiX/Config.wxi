@@ -11,8 +11,16 @@
   <?if $(var.Platform) = "x64" ?>
     <?define PackagePlatform = "x64" ?>
     <?define UpgradeGuid = "79F16C51-8485-426E-BF23-F4D3D0D431D7" ?>
+    
+    <?define MergeBuildDir = "..\..\Build\MergeUnicodeRelease" ?>
+    <?define ExpatBuildDir = "..\..\Build\expat" ?>
+    <?define PcreBuildDir = "..\..\Build\pcre" ?>
   <?else ?>
     <?define PackagePlatform = "x86" ?>
     <?define UpgradeGuid = "3C974FF6-9076-46EB-A65F-A53931EAF942" ?>
+    
+    <?define MergeBuildDir = "..\..\Build\MergeUnicodeRelease" ?>
+    <?define ExpatBuildDir = "..\..\Build\expat" ?>
+    <?define PcreBuildDir = "..\..\Build\pcre" ?>
   <?endif ?>
 </Include>

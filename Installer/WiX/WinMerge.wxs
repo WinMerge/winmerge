@@ -56,28 +56,28 @@
       <Component Id="WinMergeU" Guid="*" Win64="no">
         <File Id="WinMergeUEXE" 
           Name="WinMergeU.exe" 
-          Source="..\..\Build\MergeUnicodeRelease\WinMergeU.exe" 
+          Source="$(var.MergeBuildDir)\WinMergeU.exe" 
           Vital="yes" />
       </Component>
       
       <Component Id="libexpat" Guid="*" Win64="no">
         <File Id="libexpatDLL" 
           Name="libexpat.dll" 
-          Source="..\..\Build\expat\libexpat.dll" 
+          Source="$(var.ExpatBuildDir)\libexpat.dll" 
           Vital="yes" />
       </Component>
       
       <Component Id="pcre" Guid="*" Win64="no">
         <File Id="pcreDLL" 
           Name="pcre.dll" 
-          Source="..\..\Build\pcre\pcre.dll" 
+          Source="$(var.PcreBuildDir)\pcre.dll" 
           Vital="yes" />
       </Component>
       
       <Component Id="MergeLang" Guid="*" Win64="no">
         <File Id="MergeLangDLL" 
           Name="MergeLang.dll" 
-          Source="..\..\Build\MergeUnicodeRelease\MergeLang.dll" 
+          Source="$(var.MergeBuildDir)\MergeLang.dll" 
           Vital="yes" />
       </Component>
       
@@ -112,7 +112,7 @@
           <File Id="ShellExtensionUDLL" 
             Name="ShellExtensionU.dll" 
             SelfRegCost="1" 
-            Source="..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll" 
+            Source="$(var.MergeBuildDir)\ShellExtensionU.dll" 
             Vital="yes" />
         </Component>
       </DirectoryRef>
