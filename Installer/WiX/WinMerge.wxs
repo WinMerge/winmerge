@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    candleArgs: "WinMerge.wxs" "WixUI_WinMerge.wxs" <extensions>
-    lightArgs: "WinMerge.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+    candleArgs: "WinMerge.wxs" "WixUI_WinMerge.wxs" "Features.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "WixUI_WinMerge.wixobj" "Features.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Config.wxi ?>
@@ -518,98 +518,7 @@
     </DirectoryRef>
     <?endif ?>
     
-    <!--
-      * Level <= 3 is "Typical"
-      * Level <= 1000 is "Complete"
-    -->
-    <Feature Id="WinMerge" 
-      Absent="disallow" 
-      AllowAdvertise="no" 
-      ConfigurableDirectory="INSTALLDIR" 
-      Display="expand" 
-      Level="1" 
-      Title="WinMerge">
-      <ComponentRef Id="WinMergeU" />
-      <ComponentRef Id="libexpat" />
-      <ComponentRef Id="pcre" />
-      <ComponentRef Id="MergeLang" />
-      <Feature Id="ShellExtension" 
-        AllowAdvertise="no" 
-        Description="Explorer context menu integration" 
-        Level="1" 
-        Title="Shell Extension">
-        <ComponentRef Id="ShellExtension" />
-      </Feature>
-      <Feature Id="Documentation" AllowAdvertise="no" Level="1" Title="Documentation">
-        <ComponentRef Id="Files" />
-        <ComponentRef Id="Contributors" />
-        <ComponentRef Id="ReadMe" />
-        <ComponentRef Id="ReleaseNotes" />
-        <ComponentRef Id="ChangeLog" />
-        <ComponentRef Id="WinMergeHelp" />
-      </Feature>
-      <Feature Id="Filters" AllowAdvertise="no" Level="1" Title="Filters">
-        <ComponentRef Id="ADAMulti" />
-        <ComponentRef Id="ASPNET" />
-        <ComponentRef Id="CSharp_loose" />
-        <ComponentRef Id="Delphi" />
-        <ComponentRef Id="FileFilter" />
-        <ComponentRef Id="Frontpage" />
-        <ComponentRef Id="MASM" />
-        <ComponentRef Id="Merge_GnuC_loose" />
-        <ComponentRef Id="Merge_VB_loose" />
-        <ComponentRef Id="Merge_VC_loose" />
-        <ComponentRef Id="SourceControl" />
-        <ComponentRef Id="Symbian" />
-        <ComponentRef Id="XML_html" />
-      </Feature>
-      <Feature Id="Languages" AllowAdvertise="no" Level="1" Title="Languages">
-        <ComponentRef Id="Brazilian" />
-        <ComponentRef Id="Bulgarian" />
-        <ComponentRef Id="Catalan" />
-        <ComponentRef Id="ChineseSimplified" />
-        <ComponentRef Id="ChineseTraditional" />
-        <ComponentRef Id="Croatian" />
-        <ComponentRef Id="Czech" />
-        <ComponentRef Id="Danish" />
-        <ComponentRef Id="Dutch" />
-        <ComponentRef Id="French" />
-        <ComponentRef Id="Galician" />
-        <ComponentRef Id="German" />
-        <ComponentRef Id="Greek" />
-        <ComponentRef Id="Hungarian" />
-        <ComponentRef Id="Italian" />
-        <ComponentRef Id="Japanese" />
-        <ComponentRef Id="Korean" />
-        <ComponentRef Id="Norwegian" />
-        <ComponentRef Id="Polish" />
-        <ComponentRef Id="Portuguese" />
-        <ComponentRef Id="Romanian" />
-        <ComponentRef Id="Russian" />
-        <ComponentRef Id="Slovak" />
-        <ComponentRef Id="Slovenian" />
-        <ComponentRef Id="Spanish" />
-        <ComponentRef Id="Swedish" />
-        <ComponentRef Id="Turkish" />
-        <ComponentRef Id="Ukrainian" />
-      </Feature>
-      <?if not $(var.Platform) = "x64" ?>
-      <Feature Id="Plugins" AllowAdvertise="no" Level="4" Title="Plugins">
-        <ComponentRef Id="editoraddin" />
-        <ComponentRef Id="insertdatetime" />
-        <ComponentRef Id="CompareMSExcelFiles" />
-        <ComponentRef Id="CompareMSWordFiles" />
-        <ComponentRef Id="DisplayXMLFiles" />
-        <ComponentRef Id="IgnoreColumns" />
-        <ComponentRef Id="IgnoreCommentsC" />
-        <ComponentRef Id="IgnoreFieldsComma" />
-        <ComponentRef Id="IgnoreFieldsTab" />
-        <ComponentRef Id="IgnoreLeadingLineNumbers" />
-        <ComponentRef Id="WatchBeginningOfLog" />
-        <ComponentRef Id="WatchEndOfLog" />
-      </Feature>
-      <?endif ?>
-    </Feature>
+    <FeatureRef Id="WinMerge" />
     
     <!-- TODO: Works this really? -->
     <Condition Message="WinMerge requires Windows 2000/XP/2003/Vista/2008 or later to install.">

@@ -17,6 +17,7 @@
   <ItemGroup>
     <WixExtension Include="$(WixToolPath)WixUIExtension.dll" />
     <Compile Include="WinMerge.wxs"/>
+    <Compile Include="Features.wxs"/>
     <Compile Include="WixUI_WinMerge.wxs"/>
   </ItemGroup>
   
