@@ -18,6 +18,7 @@
     <WixExtension Include="$(WixToolPath)WixUIExtension.dll" />
     <Compile Include="WinMerge.wxs"/>
     <Compile Include="Filters.wxs"/>
+    <Compile Include="Languages.wxs"/>
     <Compile Include="Plugins.wxs"/>
     <Compile Include="Features.wxs"/>
     <Compile Include="WixUI_WinMerge.wxs"/>
