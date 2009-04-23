@@ -232,7 +232,7 @@ void SplitFilename(LPCTSTR pathLeft, String* pPath, String* pFile, String* pExt)
 			if (pPath)
 			{
 				// Grab directory (omit trailing slash)
-				int len = pszChar - pathLeft;
+				size_t len = pszChar - pathLeft;
 				if (*pszChar == ':')
 					++len; // Keep trailing colon ( eg, C:filename.txt)
 				*pPath = pathLeft;
@@ -260,7 +260,7 @@ endSplit:
 
 	if (pFile && pExt && extptr)
 	{
-		int extlen = pend - extptr;
+		size_t extlen = pend - extptr;
 		pFile->erase(pFile->length() - extlen);
 	}
 }
@@ -269,7 +269,7 @@ endSplit:
 void SplitViewName(LPCTSTR s, String * path, String * name, String * ext)
 {
 	String sViewName(s);
-	int nOffset = sViewName.find(_T("@@"));
+	size_t nOffset = sViewName.find(_T("@@"));
 	if (nOffset != std::string::npos)
 	{
 		sViewName.erase(nOffset);
@@ -751,7 +751,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 {
 	BOOL pathEndFound = FALSE;
 	BOOL addQuote = FALSE;
-	int prevPos = 0;
+	size_t prevPos = 0;
 
 	sDecoratedCmdLine.erase();
 	sExecutable.erase();
