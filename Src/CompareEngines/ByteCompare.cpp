@@ -120,8 +120,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 	UINT diffcode = 0;
 
 	// area of buffer currently holding data
-	__int64 bfstart[2]; // offset into buff[i] where current data resides
-	__int64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
+	INT64 bfstart[2]; // offset into buff[i] where current data resides
+	INT64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
 	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
 
 	bool eof[2]; // if we've finished file
@@ -154,8 +154,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			}
 			if (!eof[i] && bfend[i]<countof(buff[i])-1)
 			{
-				// Assume our blocks are in range of unsigned int
-				int space = countof(buff[i]) - bfend[i];
+				// Assume our blocks are in range of int
+				int space = RTL_NUMBER_OF(buff[i]) - (int) bfend[i];
 				int rtn = read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned int)space);
 				if (rtn == -1)
 					return DIFFCODE::CMPERR;
@@ -181,8 +181,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		const char* end0 = &buff[0][bfend[0]];
 		const char* end1 = &buff[1][bfend[1]];
 
-		__int64 offset0 = (ptr0 - &buff[0][0]);
-		__int64 offset1 = (ptr1 - &buff[1][0]);
+		INT64 offset0 = (ptr0 - &buff[0][0]);
+		INT64 offset1 = (ptr1 - &buff[1][0]);
 
 		// are these two buffers the same?
 		result = comparator.CompareBuffers(m_textStats[0], m_textStats[1],
@@ -209,8 +209,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		}
 		else if (result == ByteComparator::NEED_MORE_0)
 		{
-			const int m = ptr0 - &buff[0][0];
-			const int l = end0 - ptr0;
+			const int m = (int)(ptr0 - &buff[0][0]);
+			const int l = (int)(end0 - ptr0);
 			//move uncompared data to begin of buff0
 			memcpy( &buff[0][0], &buff[0][m], l );
 			bfstart[0] = 0;
@@ -219,8 +219,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		}
 		else if (result == ByteComparator::NEED_MORE_1)
 		{
-			const int m = ptr1 - &buff[1][0];
-			const int l = end1 - ptr1;
+			const int m = (int)(ptr1 - &buff[1][0]);
+			const int l = (int)(end1 - ptr1);
 			//move uncompared data to begin of buff1
 			memcpy( &buff[1][0], &buff[1][m], l );
 			bfstart[1]=0;
@@ -240,8 +240,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			{
 				if (ptr0 < end0)
 				{
-					const int m = ptr0 - orig0;
-					const int l = end0 - ptr0;
+					const int m = (int)(ptr0 - orig0);
+					const int l = (int)(end0 - ptr0);
 					//move uncompared data to begin of buff0
 					memcpy( &buff[0][0], &buff[0][m], l );
 					bfstart[0] = 0;
@@ -249,8 +249,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				}
 				if (ptr1 < end1)
 				{
-					const int m = ptr1 - orig1;
-					const int l = end1 - ptr1;
+					const int m = (int)(ptr1 - orig1);
+					const int l = (int)(end1 - ptr1);
 					//move uncompared data to begin of buff1
 					memcpy( &buff[1][0], &buff[1][ m], l );
 					bfstart[1] = 0;
