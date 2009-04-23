@@ -8,7 +8,6 @@
   <!--
     TODO:
       * Install all files
-      * Make a different between 32bit and 64bit
       * Create start menu items
       * Mutli-language support
       * ...
@@ -37,7 +36,7 @@
       EmbedCab="yes" />
     
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="$(var.ProgramFilesFolder)">
         <Directory Id="INSTALLDIR" Name="WinMerge">
           <Directory Id="DOCSDIR" Name="Docs" />
           <Directory Id="FILTERSDIR" Name="Filters" />
@@ -45,11 +44,6 @@
           <Directory Id="PLUGINSDIR" Name="MergePlugins" />
         </Directory>
       </Directory>
-      <?if $(var.Platform) = "x64" ?>
-        <Directory Id="ProgramFiles64Folder">
-          <Directory Id="INSTALLDIR64" Name="WinMerge" />
-        </Directory>
-      <?endif ?>
     </Directory>
     
     <DirectoryRef Id="INSTALLDIR">
@@ -96,8 +90,8 @@
       </Component>
     </DirectoryRef>
     
-    <?if $(var.Platform) = "x64" ?>
-      <DirectoryRef Id="INSTALLDIR64">
+    <DirectoryRef Id="INSTALLDIR">
+      <?if $(var.Platform) = "x64" ?>
         <Component Id="ShellExtension" Guid="*" Win64="yes">
           <File Id="ShellExtensionX64DLL" 
             Name="ShellExtensionX64.dll" 
@@ -105,9 +99,7 @@
             Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
             Vital="yes" />
         </Component>
-      </DirectoryRef>
-    <?else ?>
-      <DirectoryRef Id="INSTALLDIR">
+      <?else ?>
         <Component Id="ShellExtension" Guid="*" Win64="$(var.Win64)">
           <File Id="ShellExtensionUDLL" 
             Name="ShellExtensionU.dll" 
@@ -115,8 +107,8 @@
             Source="$(var.MergeBuildDir)\ShellExtensionU.dll" 
             Vital="yes" />
         </Component>
-      </DirectoryRef>
-    <?endif ?>
+      <?endif ?>
+    </DirectoryRef>
     
     <DirectoryRef Id="DOCSDIR">
       <Component Id="ReadMe" Guid="*" Win64="$(var.Win64)">
@@ -439,6 +431,7 @@
       </Component>
     </DirectoryRef>
     
+    <?if not $(var.Platform) = "x64" ?>
     <DirectoryRef Id="PLUGINSDIR">
       <Component Id="editoraddin" Guid="*" Win64="no">
         <File Id="editoraddinSCT" 
@@ -524,6 +517,7 @@
           Vital="no" />
       </Component>
     </DirectoryRef>
+    <?endif ?>
     
     <!--
       * Level <= 3 is "Typical"
@@ -600,6 +594,7 @@
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
       </Feature>
+      <?if not $(var.Platform) = "x64" ?>
       <Feature Id="Plugins" AllowAdvertise="no" Level="4" Title="Plugins">
         <ComponentRef Id="editoraddin" />
         <ComponentRef Id="insertdatetime" />
@@ -614,6 +609,7 @@
         <ComponentRef Id="WatchBeginningOfLog" />
         <ComponentRef Id="WatchEndOfLog" />
       </Feature>
+      <?endif ?>
     </Feature>
     
     <!-- TODO: Works this really? -->
