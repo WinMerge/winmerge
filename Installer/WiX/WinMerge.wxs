@@ -90,24 +90,23 @@
       </Component>
     </DirectoryRef>
     
+    <!-- Shell Extension -->
     <DirectoryRef Id="INSTALLDIR">
-      <?if $(var.Platform) = "x64" ?>
-        <Component Id="ShellExtension" Guid="*" Win64="yes">
+      <Component Id="ShellExtension" Guid="*" Win64="$(var.Win64)">
+        <?if $(var.Platform) = "x64" ?>
           <File Id="ShellExtensionX64DLL" 
             Name="ShellExtensionX64.dll" 
             SelfRegCost="1" 
             Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
             Vital="yes" />
-        </Component>
-      <?else ?>
-        <Component Id="ShellExtension" Guid="*" Win64="$(var.Win64)">
+        <?else ?>
           <File Id="ShellExtensionUDLL" 
             Name="ShellExtensionU.dll" 
             SelfRegCost="1" 
             Source="$(var.MergeBuildDir)\ShellExtensionU.dll" 
             Vital="yes" />
-        </Component>
-      <?endif ?>
+        <?endif ?>
+      </Component>
     </DirectoryRef>
     
     <DirectoryRef Id="DOCSDIR">
