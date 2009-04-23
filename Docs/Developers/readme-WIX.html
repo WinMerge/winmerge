@@ -72,7 +72,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
      <code>expat</code>
      <ul>
       <li><code>libexpat.dll</code></li>
-      <li><code>libexpatw.dll</code></li>
      </ul>
     </li>
     <li>
@@ -87,13 +86,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
       <li><code>WinMerge.chm</code></li>
      </ul>
     </li>
-   <li>
-    <code>MergeRelease/</code>
-    <ul>
-     <li><code>ShellExtension.dll</code></li>
-     <li><code>WinMerge.exe</code></li>
-    </ul>
-   </li>
    <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
@@ -186,8 +178,8 @@ and to build 64-bit installer:
 </pre>
 </p>
 
-<p>If the compile succeeds you have <code>WinMerge-[version]-Setup.exe</code> in
-folder <code>/Build</code>.
+<p>If the compile succeeds you have <code>WinMerge-[platform]-Setup.msi</code>
+files in <code>Build\WiX\Release\</code>folder's subfolders.
 
 <p><strong>Test installer!</strong></p>
 
