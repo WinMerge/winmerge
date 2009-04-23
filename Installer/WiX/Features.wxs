@@ -24,7 +24,7 @@
         Title="Shell Extension">
         <ComponentRef Id="ShellExtension" />
       </Feature>
-      <Feature Id="Documentation" AllowAdvertise="no" Level="1" Title="Documentation">
+      <Feature Id="Documentation" Absent="disallow" AllowAdvertise="no" Display="hidden" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />
         <ComponentRef Id="Contributors" />
         <ComponentRef Id="ReadMe" />
