@@ -89,7 +89,7 @@ void DiffList::Clear()
  */
 int DiffList::GetSize() const
 {
-	return m_diffs.size();
+	return (int) m_diffs.size();
 }
 
 /**
@@ -101,7 +101,7 @@ int DiffList::GetSize() const
 int DiffList::GetSignificantDiffs() const
 {
 	int nSignificants = 0;
-	const int nDiffCount = m_diffs.size();
+	const int nDiffCount = (int) m_diffs.size();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
@@ -192,7 +192,7 @@ bool DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
  */
 const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 {
-	if (nDiff >= 0 && nDiff < m_diffs.size())
+	if (nDiff >= 0 && nDiff < (int) m_diffs.size())
 	{
 		return &m_diffs[nDiff].diffrange;
 	}
@@ -211,7 +211,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
  */
 bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
-	if (nDiff < m_diffs.size())
+	if (nDiff < (int) m_diffs.size())
 	{
 		m_diffs[nDiff] = di;
 		return true;
@@ -260,7 +260,7 @@ bool DiffList::LineInDiff(UINT nLine, UINT nDiff) const
  */
 int DiffList::LineToDiff(UINT nLine) const
 {
-	const int nDiffCount = m_diffs.size();
+	const int nDiffCount = (int) m_diffs.size();
 	if (nDiffCount == 0)
 		return -1;
 
@@ -345,7 +345,7 @@ bool DiffList::GetNextDiff(int nLine, int & nDiff) const
 	if (numDiff == -1)
 	{
 		bInDiff = false;
-		const int nDiffCount = m_diffs.size();
+		const int nDiffCount = (int) m_diffs.size();
 		for (int i = 0; i < nDiffCount; i++)
 		{
 			if ((int)DiffRangeAt(i)->dbegin0 >= nLine)
@@ -379,7 +379,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
 
-	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
+	for (int i = (int) m_diffs.size() - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
@@ -399,7 +399,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
-	const int nDiffCount = m_diffs.size();
+	const int nDiffCount = (int) m_diffs.size();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
@@ -422,7 +422,7 @@ void DiffList::ConstructSignificantChain()
 	m_lastSignificant = -1;
 	int prev = -1;
 	// must be called after diff list is entirely populated
-    for (vector<DiffRangeInfo>::size_type i = 0; i < m_diffs.size(); ++i)
+    for (int i = 0; i < (int) m_diffs.size(); ++i)
 	{
 		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
 		{
@@ -433,7 +433,7 @@ void DiffList::ConstructSignificantChain()
 		{
 			m_diffs[i].prev = prev;
 			if (prev != -1)
-				m_diffs[prev].next = i;
+				m_diffs[prev].next = (size_t) i;
 			prev = i;
 			if (m_firstSignificant == -1)
 				m_firstSignificant = i;
@@ -458,7 +458,7 @@ int DiffList::FirstSignificantDiff() const
  */
 int DiffList::NextSignificantDiff(int nDiff) const
 {
-	return m_diffs[nDiff].next;
+	return (int)m_diffs[nDiff].next;
 }
 
 /**
@@ -468,7 +468,7 @@ int DiffList::NextSignificantDiff(int nDiff) const
  */
 int DiffList::PrevSignificantDiff(int nDiff) const
 {
-	return m_diffs[nDiff].prev;
+	return (int)m_diffs[nDiff].prev;
 }
 
 /**

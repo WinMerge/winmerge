@@ -86,8 +86,8 @@ public:
 struct DiffRangeInfo
 {
 	DIFFRANGE diffrange;
-	int next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
-	int prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+	size_t next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+	size_t prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
 
 	DiffRangeInfo() { InitLinks(); }
 	DiffRangeInfo(const DIFFRANGE & di) : diffrange(di) { InitLinks(); }
@@ -116,6 +116,9 @@ enum
  * There are two kinds of diffs:
  * - significant diffs are 'normal' diffs we want to merge and browse
  * - non-significant diffs are diffs ignored by linefilters
+ * 
+ * The code assumes diff lists don't grow bigger than 32-bit int type's
+ * range. And what a trouble we'd have if we have so many diffs...
  */
 class DiffList
 {
