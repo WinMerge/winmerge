@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    candleArgs: "WinMerge.wxs" "WixUI_WinMerge.wxs" "Features.wxs" <extensions>
-    lightArgs: "WinMerge.wixobj" "WixUI_WinMerge.wixobj" "Features.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+    candleArgs: "WinMerge.wxs" "Plugins.wxs" "Features.wxs" "WixUI_WinMerge.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "Plugins.wxs" "Features.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Config.wxi ?>
@@ -429,94 +429,6 @@
           Vital="no" />
       </Component>
     </DirectoryRef>
-    
-    <?if not $(var.Platform) = "x64" ?>
-    <DirectoryRef Id="PLUGINSDIR">
-      <Component Id="editoraddin" Guid="*" Win64="no">
-        <File Id="editoraddinSCT" 
-          Name="editor addin.sct" 
-          Source="..\..\Plugins\dlls\editor addin.sct" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="insertdatetime" Guid="*" Win64="no">
-        <File Id="insertdatetimeSCT" 
-          Name="insert datetime.sct" 
-          Source="..\..\Plugins\dlls\insert datetime.sct" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="CompareMSExcelFiles" Guid="*" Win64="no">
-        <File Id="CompareMSExcelFilesDLL" 
-          Name="CompareMSExcelFiles.dll" 
-          Source="..\..\Plugins\dlls\CompareMSExcelFiles.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="CompareMSWordFiles" Guid="*" Win64="no">
-        <File Id="CompareMSWordFilesDLL" 
-          Name="CompareMSWordFiles.dll" 
-          Source="..\..\Plugins\dlls\CompareMSWordFiles.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="DisplayXMLFiles" Guid="*" Win64="no">
-        <File Id="DisplayXMLFilesDLL" 
-          Name="DisplayXMLFiles.dll" 
-          Source="..\..\Plugins\dlls\DisplayXMLFiles.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="IgnoreColumns" Guid="*" Win64="no">
-        <File Id="IgnoreColumnsDLL" 
-          Name="IgnoreColumns.dll" 
-          Source="..\..\Plugins\dlls\IgnoreColumns.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="IgnoreCommentsC" Guid="*" Win64="no">
-        <File Id="IgnoreCommentsCDLL" 
-          Name="IgnoreCommentsC.dll" 
-          Source="..\..\Plugins\dlls\IgnoreCommentsC.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="IgnoreFieldsComma" Guid="*" Win64="no">
-        <File Id="IgnoreFieldsCommaDLL" 
-          Name="IgnoreFieldsComma.dll" 
-          Source="..\..\Plugins\dlls\IgnoreFieldsComma.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="IgnoreFieldsTab" Guid="*" Win64="no">
-        <File Id="IgnoreFieldsTabDLL" 
-          Name="IgnoreFieldsTab.dll" 
-          Source="..\..\Plugins\dlls\IgnoreFieldsTab.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="IgnoreLeadingLineNumbers" Guid="*" Win64="no">
-        <File Id="IgnoreLeadingLineNumbersDLL" 
-          Name="IgnoreLeadingLineNumbers.dll" 
-          Source="..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="WatchBeginningOfLog" Guid="*" Win64="no">
-        <File Id="WatchBeginningOfLogDLL" 
-          Name="WatchBeginningOfLog.dll" 
-          Source="..\..\Plugins\dlls\WatchBeginningOfLog.dll" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="WatchEndOfLog" Guid="*" Win64="no">
-        <File Id="WatchEndOfLogDLL" 
-          Name="WatchEndOfLog.dll" 
-          Source="..\..\Plugins\dlls\WatchEndOfLog.dll" 
-          Vital="no" />
-      </Component>
-    </DirectoryRef>
-    <?endif ?>
     
     <FeatureRef Id="WinMerge" />
     
