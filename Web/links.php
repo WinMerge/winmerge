@@ -18,6 +18,8 @@
   <dd><b>External diff Tool</b> is an <a href="http://www.eclipse.org/">Eclipse</a> Plugin</a> that allows the launch of WinMerge (or an other external diff tool) for file compares rather than the default built-in Eclipse diff tool.</dd>
   <dt><a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a></dt>
   <dd><b>TortoiseSVN</b> lets you work with files under <em>Subversion</em> version control directly from Windows Explorer.</dd>
+  <dt><a href="http://frhed.sourceforge.net/">Frhed</a></dt>
+  <dd><b>Frhed</b> is an binary file editor for Windows. It is small but has many advanced features like ability to load big files partially.</dd>
 </dl>
 <h3>Regular expressions</h3>
 <dl>
