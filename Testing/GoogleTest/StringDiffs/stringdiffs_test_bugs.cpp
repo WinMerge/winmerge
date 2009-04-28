@@ -268,4 +268,45 @@ namespace
 			EXPECT_EQ(17, pDiff->end[1]);
 		}
 	}
+
+	// Sf.net bug #2783185
+	// 'private' added to right-side
+	// char-diff
+	TEST_F(StringDiffsBugsTest, Bug_2783185_1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("const string ManualFolder = \"Manual\";",
+				"private const string ManualFolder = \"Manual\";",
+				false, 0, 0, true, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		if (diffs.size() > 0)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(0, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2783185
+	// 'private' added to right-side
+	// word-diff
+	TEST_F(StringDiffsBugsTest, Bug_2783185_2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("const string ManualFolder = \"Manual\";",
+				"private const string ManualFolder = \"Manual\";",
+				false, 0, 0, false, &diffs);
+		EXPECT_EQ(1, diffs.size());
+		if (diffs.size() > 0)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(0, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
+		}
+	}
+
 }  // namespace
