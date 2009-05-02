@@ -24,6 +24,12 @@
         Title="Shell Extension">
         <ComponentRef Id="ShellExtension" />
       </Feature>
+      <Feature Id="StartMenuShortcuts" 
+        AllowAdvertise="no" 
+        Level="1" 
+        Title="Startmenu shortcut">
+        <ComponentRef Id="StartMenuShortcuts" />
+      </Feature>
       <Feature Id="Documentation" Absent="disallow" AllowAdvertise="no" Display="hidden" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />
         <ComponentRef Id="Contributors" />

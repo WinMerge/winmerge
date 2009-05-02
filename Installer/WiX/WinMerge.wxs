@@ -8,7 +8,6 @@
   <!--
     TODO:
       * Install all files
-      * Create start menu items
       * Mutli-language support
       * ...
   -->
@@ -43,6 +42,9 @@
           <Directory Id="LANGDIR" Name="Languages" />
           <Directory Id="PLUGINSDIR" Name="MergePlugins" />
         </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="WinMergeMenuFolder" Name="WinMerge" />
       </Directory>
     </Directory>
     
@@ -136,6 +138,26 @@
           Name="WinMerge.chm" 
           Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
           Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Startmenu shortcuts -->
+    <DirectoryRef Id="WinMergeMenuFolder">
+      <Component Id="StartMenuShortcuts" Guid="$(var.StartMenuShortcutsGuid)" Win64="$(var.Win64)">
+        <Shortcut Id="WinMergeStartMenuShortcut" 
+          Name="WinMerge" 
+          Target="[INSTALLDIR]WinMergeU.exe"
+          WorkingDirectory="INSTALLDIR" />
+        <Shortcut Id="ReadMeStartMenuShortcut" 
+          Name="Read Me" 
+          Target="[INSTALLDIR]Docs\ReadMe.txt"
+          WorkingDirectory="INSTALLDIR" />
+        <Shortcut Id="HelpStartMenuShortcut" 
+          Name="WinMerge Help" 
+          Target="[INSTALLDIR]Docs\WinMerge.chm"
+          WorkingDirectory="INSTALLDIR" />
+        <RemoveFolder Id="WinMergeMenuFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </DirectoryRef>
     
