@@ -9,6 +9,7 @@ Project lead:
 * Christian List <list1974@hotmail.com>
 
 Developers:
+* Denis Bradford <denisbradford@users.sourceforge.net>
 * Tim Gerundt <tim@gerundt.de>
 * Marcel Gosselin <marcelgosselin@users.sourceforge.net>
 * Gal Hammer <galh@users.sourceforge.net>
@@ -133,7 +134,6 @@ Localization:
 Other Contributors (code, ideas, testing..):
 * Andre Arpin
 * Steve Beaudoin
-* Denis Bradford
 * bulklodd <bulklodd@users.sourceforge.net>
 * Adam Carrivick
 * Hern Chen
