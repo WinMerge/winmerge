@@ -51,9 +51,9 @@
     <title>File Compare window<indexterm>
         <primary>File Compare window</primary>
 
-        <seealso>Compare windows</seealso>
+        <seealso>Compare window</seealso>
       </indexterm><indexterm>
-        <primary>Compare windows</primary>
+        <primary>Compare window</primary>
 
         <secondary>File</secondary>
       </indexterm></title>
@@ -129,34 +129,341 @@
         </variablelist>
       </section>
 
-      <section>
-        <title>Difference colors in File panes<indexterm>
+      <section id="CompareFiles_diffcolors">
+        <title>Difference highlighting<indexterm>
             <primary>difference colors</primary>
 
             <secondary>in File panes</secondary>
           </indexterm></title>
 
-        <para>Unless your files are identical, the content of the File panes
-        includes some differences. Difference blocks are marked with background
-        colors, which you can configure in WinMerge options. The basic
-        difference color is dark yellow, by default. When selected, the
-        difference color is red. Identical lines (like the second line in the
-        preceding screen shot) have white backgrounds.</para>
+        <para>WinMerge highlights several types of differences in the File
+        panes. The Colors page in the Options dialog defines a set of background
+        and text colors for each difference type, depending on whether it is
+        unselected, selected, or deleted. This section describes each of the
+        basic difference types and the configuration options that affect their
+        detection.</para>
 
-        <para>WinMerge inserts one or more gray blank lines in one version of a
-        difference when the other version has more lines. These empty lines
-        (which change from gray to light red when the difference is selected) do
-        not represent blank lines in the source file; they are only placeholders
-        in the display. The purpose of placeholder lines is to keep the left and
-        right versions of differences vertically aligned.</para>
+        <variablelist>
+          <varlistentry>
+            <term>Difference</term>
 
-        <para>By default, different words within difference lines are also
-        marked with a background color. You can disable this coloring, or (for
-        even more granular highlighting) add character-level difference
-        coloring. Both are controlled by the Line Difference Coloring settings
-        in the Editing page of WinMerge options. To change the various
-        difference colors used, edit the values in the Colors page of WinMerge
-        options.</para>
+            <listitem>
+              <para>A difference block contains one or more contiguous lines
+              that are different. The default difference background color is
+              gold, but blank lines are marked with the deleted color.</para>
+
+              <para>For this and other screens in this section, we enabled
+              <option>View line numbers</option> to show which lines in the
+              source files are compared.</para>
+
+              <mediaobject>
+                <imageobject>
+                  <imagedata contentwidth="489"
+                             fileref="screenshots/diff-blocks-01.png"
+                             format="PNG" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Difference block background colors</phrase>
+                </textobject>
+              </mediaobject>
+
+              <para>This comparison detects three difference blocks:</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>The first difference is a single line.</para>
+                </listitem>
+
+                <listitem>
+                  <para>The blank line in <filename>file2</filename> has no
+                  corresponding blank line in <filename>file1</filename>.
+                  WinMerge treats the missing blank line as a deleted
+                  difference, marked here with the default gray color.</para>
+                </listitem>
+
+                <listitem>
+                  <para>The last difference block includes two lines.</para>
+                </listitem>
+              </orderedlist>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Ignored Difference</term>
+
+            <listitem>
+              <para>This color marks content that you have configured WinMerge
+              to ignore. In contrast to difference blocks, ignored content is
+              not compared, it is simply highlighted to help you see what has
+              been ignored. Ignored differences include:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Blank lines, if you have enabled <option>Ignore blank
+                  lines</option> in the Options dialog Compare page.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Differences that match patterns in line filters that you
+                  have defined (see <xref linkend="Filters" /> to learn
+                  how).</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>The next example repeats the previous comparison, this time
+              with <option>Ignore blank lines</option> enabled. There are now
+              only two differences. The blank line on the right side is marked
+              with the Ignored Differences color. </para>
+
+              <mediaobject>
+                <imageobject>
+                  <imagedata contentwidth="492"
+                             fileref="screenshots/ignore-blank-lines.png"
+                             format="PNG" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Difference block colors with ignored diff</phrase>
+                </textobject>
+              </mediaobject>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Moved</term>
+
+            <listitem>
+              <para>Moved differences are identical lines found in different
+              locations in the compared files, if <option>Moved block
+              detection</option> is enabled in the Options dialog Compare page.
+              The next screen shot repeats the previous comparison, this time
+              with moved block detection enabled.</para>
+
+              <mediaobject>
+                <imageobject>
+                  <imagedata contentwidth="490"
+                             fileref="screenshots/moved-01.png" format="PNG" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Difference block colors with moved block
+                  detection</phrase>
+                </textobject>
+              </mediaobject>
+
+              <para>Notice that the two identical lines (containing
+              <literal>a</literal> and <literal>c</literal>) that are in
+              different locations are marked with the default orange moved
+              color. Another effect of moved block detection in this case is
+              that the last two lines are now two separate differences instead
+              of a single difference block.</para>
+
+              <para>In some cases, showing moved differences can make it easier
+              to visualize changes in files. However, too many moved lines might
+              make your comparison hard to navigate. Use your own
+              judgement!</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Word Difference</term>
+
+            <listitem>
+              <para>WinMerge can mark the text that is changed with difference
+              blocks. Line differences are marked with the word difference
+              color. See <xref linkend="CompareFiles_linediff-highlight" /> for
+              details.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_linediff-highlight">
+        <title>Line difference highlighting<indexterm>
+            <primary>line differences</primary>
+
+            <secondary>detection</secondary>
+          </indexterm><indexterm>
+            <primary>whitespace</primary>
+
+            <secondary>in line differences</secondary>
+          </indexterm></title>
+
+        <para>Sometimes it's useful to highlight not just difference blocks, but
+        also the text within them that is changed. You can disable or enable
+        them in two ways:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Set all <option>View line differences</option> options in the
+            Options dialog Editor page.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click <menuchoice>
+                <guimenu>View</guimenu>
+
+                <guimenuitem>View line differences</guimenuitem>
+              </menuchoice> to toggle line differences on or off.</para>
+          </listitem>
+        </itemizedlist>
+
+        <note>
+          <para>Remember that WinMerge navigation and merging functions (like
+          Next Difference or Copy Left) work on difference blocks, not on line
+          differences within them.</para>
+        </note>
+
+        <para>This section describes how line differences are detected and
+        marked. Note that the effect of these options is also affected by your
+        current whitespace settings in the Options dialog Compare page.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term id="wordlevel-linediffs">Word-level line differences</term>
+
+            <listitem>
+              <indexterm>
+                <primary>word-level line difference</primary>
+              </indexterm>
+
+              <para>The following examples show how word-level line differences
+              are displayed with each of the whitespace settings:</para>
+
+              <example>
+                <title>Line differences with Whitespace: Compare</title>
+
+                <para>WinMerge detects all different words and spaces:</para>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata contentwidth="530"
+                               fileref="screenshots/word-diff-allwhite.png"
+                               format="PNG" />
+                  </imageobject>
+
+                  <textobject>
+                    <phrase>Word-level line diff comparing whitespace</phrase>
+                  </textobject>
+                </mediaobject>
+              </example>
+
+              <example>
+                <title>Line differences with Whitespace: Ignore change</title>
+
+                <para>Multiple spaces and tabs are treated the same as a single
+                space. In the example, the extra space between the last two
+                words is not marked:</para>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata contentwidth="530"
+                               fileref="screenshots/word-diff-nochange.png"
+                               format="PNG" />
+                  </imageobject>
+
+                  <textobject>
+                    <phrase>Word-level line diff comparing no whitespace
+                    changes</phrase>
+                  </textobject>
+                </mediaobject>
+              </example>
+
+              <example>
+                <title>Line differences with Whitespace: Ignoring all</title>
+
+                <para>No spaces between words are compared, so these lines are
+                treated as identical:</para>
+
+                <mediaobject>
+                  <imageobject>
+                    <imagedata contentwidth="530"
+                               fileref="screenshots/word-diff-nowhite.png"
+                               format="PNG" />
+                  </imageobject>
+
+                  <textobject>
+                    <phrase>Word-level line diff comparing no
+                    whitespace</phrase>
+                  </textobject>
+                </mediaobject>
+              </example>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Character-level line differences</term>
+
+            <listitem>
+              <indexterm>
+                <primary>character-level line difference</primary>
+              </indexterm>
+
+              <para>A character-level line difference includes the first and
+              last different characters in a word, and all the characters
+              between them. A single character-level difference can span
+              adjacent words. The following example illustrates:</para>
+
+              <mediaobject>
+                <imageobject>
+                  <imagedata contentwidth="485"
+                             fileref="screenshots/char-diff-01.png" format="PNG" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Character-level line diff comparing no
+                  whitespace</phrase>
+                </textobject>
+              </mediaobject>
+
+              <note>
+                <para>As with word-level line differences, character
+                highlighting varies according to how WinMerge is configured to
+                detect word breaks. In the example, the extra space after the
+                word <literal>cure</literal> in <filename>file2</filename> is
+                highlighted only if whitespace is compared.</para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Breaks for words or character</term>
+
+            <listitem>
+              <indexterm>
+                <primary>word breaks in line differences</primary>
+              </indexterm>
+
+              <para>Words and characters in line differences can be separated by
+              whitespace, or by a combination of whitespace and punctuation.
+              Whitespace (the default) is the typical choice for comparing most
+              text files. All the preceding line difference examples use
+              whitespace to break words and characters.</para>
+
+              <para>In some cases it's useful to break at punctuation. For
+              example, the next screen shot compares a comma-separated list. To
+              highlight meaningful line differences, we have enabled
+              <option>Break at whitespace or punctuation</option> in the Options
+              dialog Editor page.</para>
+
+              <mediaobject>
+                <imageobject>
+                  <imagedata contentwidth="494"
+                             fileref="screenshots/line-diff-punctuation.png"
+                             format="PNG" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Character-level line diff comparing no
+                  whitespace</phrase>
+                </textobject>
+              </mediaobject>
+            </listitem>
+          </varlistentry>
+        </variablelist>
       </section>
 
       <section id="CompareFiles_editing">
@@ -414,7 +721,7 @@
         <para><menuchoice>
             <guimenu>File</guimenu>
 
-            <guimenu>Merge Mode</guimenu>
+            <guimenuitem>Merge Mode</guimenuitem>
           </menuchoice> restores these WinMerge 1.7.1 single keyboard shortcuts
         for difference merging and navigating functions:</para>
 
@@ -551,13 +858,13 @@
             </indexterm></term>
 
           <listitem>
-            <para>The Location pane can indicate difference blocks that are
-            moved. Moved blocks are two sides of a difference that are in
-            different locations. Moved blocks are indicated by the
-            <guilabel>Moved</guilabel> and <guilabel>Selected Moved</guilabel>
-            difference colors (configurable in WinMerge Options) and by lines
-            connecting their locations in the left and right location bars. For
-            example:</para>
+            <para>Moved differences are identical lines in different locations,
+            shown only if the Enable moved block detection is checked in the
+            Options dialog Compare page. See <xref
+            linkend="CompareFiles_diffcolors" /> for more details about moved
+            differences in the File pane. The Location pane draws a line
+            connecting moved differences in the left and right location bars.
+            For example:</para>
 
             <mediaobject>
               <imageobject>
@@ -570,10 +877,6 @@
                 <phrase>Location pane with moved diff</phrase>
               </textobject>
             </mediaobject>
-
-            <para>Showing moved blocks can make it easier to visualize changes
-            in files. However, if there are too many moved lines it can appear
-            cluttered. Use your own judgement!</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -751,7 +1054,7 @@
       <title>Working with multiple File Compare windows<indexterm>
           <primary>File Compare window</primary>
 
-          <secondary>multiple</secondary>
+          <secondary>using multiple</secondary>
         </indexterm></title>
 
       <para>By default, the WinMerge window displays a single File Compare
