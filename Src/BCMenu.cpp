@@ -2237,35 +2237,33 @@ void BCMenu::GetFadedBitmap(CBitmap &bmp)
 void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 {
 	CDC ddc;
-	COLORREF bgcol,col,newcol;
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
 	ddc.CreateCompatibleDC(NULL);
 	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
 
-	// use this to get the background color, takes into account color shifting
-	CDC ddc2;
-	CBrush brush;
-	CBitmap bmp2;
-	ddc2.CreateCompatibleDC(NULL);
-	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
-	col=RGB(255,0,255); // Original was RGB(192,192,192)
-	brush.CreateSolidBrush(col);
-	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
-	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
-	ddc2.FillRect(rect,&brush);
-	bgcol=ddc2.GetPixel(1,1);
-	brush.DeleteObject();
-	ddc2.SelectObject(pddcOldBmp2);
-	newcol=GetSysColor(COLOR_3DFACE);
+	CDC ddcMask;
+	CBitmap bmpMask;
+	ddcMask.CreateCompatibleDC(NULL);
+	bmpMask.CreateBitmap(BitMap.bmWidth, BitMap.bmHeight, 1, 1, NULL);
+	CBitmap * pddcMaskOldBmp = ddcMask.SelectObject(&bmpMask);
 
-	for(int i=0;i<BitMap.bmWidth;++i){
-		for(int j=0;j<BitMap.bmHeight;++j){
-			col=ddc.GetPixel(i,j);
-			if(col==bgcol)ddc.SetPixel(i,j,newcol);
-		}
-	}
+	/* Generate mask */
+	ddc.SetBkColor(RGB(255, 0, 255));
+	ddcMask.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddc, 0, 0, SRCCOPY);
+
+	/* Remove transparent areas from bmp */
+	ddc.SetBkColor(RGB(0, 0, 0));
+	ddc.SetTextColor(RGB(255, 255, 255));
+	ddc.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddcMask, 0, 0, SRCAND);
+
+	/* Fill transparent areas with COLOR_3DFACE */
+	ddc.SetBkColor(GetSysColor(COLOR_3DFACE));
+	ddc.SetTextColor(RGB(0, 0, 0));
+	ddc.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddcMask, 0, 0, SRCPAINT);
+
+	ddcMask.SelectObject(pddcMaskOldBmp);
 	ddc.SelectObject(pddcOldBmp);
 }
 

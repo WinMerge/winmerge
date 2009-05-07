@@ -132,6 +132,7 @@ Localization:
 
 
 Other Contributors (code, ideas, testing..):
+* James Abbatiello <abbeyj@users.sourceforge.net>
 * Andre Arpin
 * Steve Beaudoin
 * bulklodd <bulklodd@users.sourceforge.net>
