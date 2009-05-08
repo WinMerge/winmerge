@@ -10,6 +10,7 @@ WinMerge 2.13.7
   Bugfix: Reports had same left/right descriptions (#2772646)
   Bugfix: Diff view highlighted last char diff incorrectly (#2785186)
   Bugfix: Could select prediffer when plugins were disabled (#2787131)
+  Bugfix: File compare HTML reports use invald DOCTYPE (#2783477)
 
 WinMerge 2.13.6 - 2009-04-16 (r6665)
   Show deleted differences in difference highlight with own
