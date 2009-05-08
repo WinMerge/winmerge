@@ -384,7 +384,7 @@
 
     <section>
       <title>About ignore options<indexterm>
-          <primary>ignoring differences</primary>
+          <primary>ignored differences</primary>
         </indexterm></title>
 
       <para>A number of options in the Compare page (described later in this
@@ -547,9 +547,9 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge detects end of
-          line (EOL) style differences. For example, if you compare two lines
-          that have the same contents but different line endings, the lines are
+          <para><option>Disabled</option> (default): End of line (EOL) style
+          differences are detected. For example, if you compare two lines that
+          have the same contents but different line endings, the lines are
           considered to be different. When this happens, WinMerge displays a
           dialog prompting you to confirm whether to detect or ignore the
           difference.</para>
@@ -564,8 +564,6 @@
     <section>
       <title>Enable moved block detection<indexterm>
           <primary>moved differences</primary>
-
-          <secondary>enabling and disabling detection</secondary>
         </indexterm></title>
 
       <itemizedlist>
@@ -585,6 +583,29 @@
 
           <para>For an example, see the Location pane description in <xref
           linkend="CompareFiles" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Match similar lines<indexterm>
+          <primary>similar lines, matching</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): Lines within difference
+          blocks are shown as they occur in the source files.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: WinMerge tries to detect lines within
+          a difference blocks that are similar, and adds blank lines in the File
+          panes to align them. This option is most effective when lines are
+          quite similar; less effective if lines are too different.</para>
+
+          <para>For an example, see the <citetitle>Similar lines</citetitle>
+          description in <xref linkend="CompareFiles_diffcolors" />.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -939,8 +960,8 @@
             </listitem>
 
             <listitem>
-              <para><guilabel>Word-level</guilabel> (default): Highlights entire
-              words that are different.</para>
+              <para><guilabel>simiWord-level</guilabel> (default): Highlights
+              entire words that are different.</para>
 
               <itemizedlist>
                 <listitem>
