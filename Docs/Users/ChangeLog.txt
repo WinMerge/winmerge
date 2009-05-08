@@ -7,6 +7,7 @@ WinMerge 2.12.4
   Add more C/C++ types to syntax highlight (#2776705)
   Bugfix: Reports had same left/right descriptions (#2772646)
   Bugfix: When conflict file saved trailing line-ending was lost (#2550412)
+  Bugfix: File compare HTML reports use invald DOCTYPE (#2783477)
 
 WinMerge 2.12.2 - 2009-04-01 (r6625)
   Disable folder compare tree-view by default (#2714968)

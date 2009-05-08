@@ -2897,8 +2897,8 @@ void CMergeDoc::OnToolsGenerateReport()
 
 	String header = 
 		Fmt(
-		_T("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"\n")
-		_T("\t\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n")
+		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
+		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n")
 		_T("<head>\n")
 		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
