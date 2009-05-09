@@ -48,6 +48,12 @@
 </div> <!-- #checksums -->
 <p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="/docs/manual/Installing.html">online manual</a> for help using it.</p>
 <p>You can also download additional <a href="plugins.php">plugins</a> and the whole <a href="source-code.php">source code</a> from WinMerge.</p>
+<h4>Requirements</h4>
+<ul>
+  <li>Microsoft Windows 98/2000/XP/2003/Vista/2008</li>
+  <li>Microsoft Visual C++ 2003 Runtime Components (included in the installer)</li>
+  <li>Admin rights for the installer</li>
+</ul>
 <h3><a name="other">Other Versions</a></h3>
 <ul>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable Versions</a></li>
