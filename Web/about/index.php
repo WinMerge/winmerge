@@ -38,6 +38,7 @@
       <li>Regular Expression based file filters allow excluding and including items</li>
       <li>Fast compare using file sizes and dates</li>
       <li>Compares one folder or includes all subfolders</li>
+      <li>Can show folder compare results in a tree-style view</li>
     </ul>
   </li>
   <li><strong>Version Control</strong>
