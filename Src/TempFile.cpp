@@ -193,8 +193,8 @@ BOOL CleanupWMtempfolder(vector <int> processIDs)
 				}
 				continue;
 			}
-			bok = FindNextFile(h, &ff) ;
 		}
+		bok = FindNextFile(h, &ff) ;
 	}
 	if (h)
 		FindClose(h);
