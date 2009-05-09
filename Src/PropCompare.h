@@ -9,7 +9,7 @@
 #ifndef _PROPPAGE_COMPARE_H_
 #define _PROPPAGE_COMPARE_H_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
@@ -30,10 +30,8 @@ class COptionsMgr;
  *  - compare by file size
  *  - compare by date and size
  *  - compare by quick contents
- *
- * @author Tim Musschoot, several modifications by others
  */
-class CPropCompare : public CPropertyPage, public IOptionsPanel
+class CPropCompare : public OptionsPanel
 {
 // Construction
 public:
@@ -75,9 +73,6 @@ protected:
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

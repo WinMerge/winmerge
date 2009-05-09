@@ -4,13 +4,13 @@
  * @brief Declaration file for CPropEditor propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_)
 #define AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
@@ -23,7 +23,7 @@ class COptionsMgr;
  * Editor options affect to editor behavior. For example syntax highlighting
  * and tabs.
  */
-class CPropEditor : public CPropertyPage, public IOptionsPanel
+class CPropEditor : public OptionsPanel
 {
 // Construction
 public:
@@ -72,9 +72,6 @@ protected:
 	afx_msg void OnEnKillfocusTabEdit();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr; /**< Options manager used for loading/saving values. */
 };
 
 //{{AFX_INSERT_LOCATION}}

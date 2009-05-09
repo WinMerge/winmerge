@@ -31,6 +31,7 @@
 #include "Merge.h" // GetDefaultEditor()
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -50,8 +51,7 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 
 
 CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
-	: CPropertyPage(CPropRegistry::IDD)
-, m_pOptionsMgr(optionsMgr)
+: OptionsPanel(optionsMgr, CPropRegistry::IDD)
 , m_bUseRecycleBin(TRUE)
 , m_tempFolderType(0)
 {
@@ -82,11 +82,11 @@ END_MESSAGE_MAP()
  */
 void CPropRegistry::ReadOptions()
 {
-	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD).c_str();
-	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
-	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH).c_str();
-	m_tempFolderType = m_pOptionsMgr->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
-	m_tempFolder = m_pOptionsMgr->GetString(OPT_CUSTOM_TEMP_PATH).c_str();
+	m_strEditorPath = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
+	m_bUseRecycleBin = GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN);
+	m_strUserFilterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH).c_str();
+	m_tempFolderType = GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
+	m_tempFolder = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH).c_str();
 }
 
 /** 
@@ -97,27 +97,27 @@ void CPropRegistry::WriteOptions()
 	CMergeApp *app = static_cast<CMergeApp*>(AfxGetApp());
 	CString sDefaultEditor = app->GetDefaultEditor();
 
-	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 
 	CString sExtEditor = m_strEditorPath;
 	sExtEditor.TrimLeft();
 	sExtEditor.TrimRight();
 	if (sExtEditor.IsEmpty())
 		sExtEditor = sDefaultEditor;
-	m_pOptionsMgr->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
+	GetOptionsMgr()->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
 	CString sFilterPath = m_strUserFilterPath;
 	sFilterPath.TrimLeft();
 	sFilterPath.TrimRight();
-	m_pOptionsMgr->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
+	GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
 
 	bool useSysTemp = m_tempFolderType == 0;
-	m_pOptionsMgr->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
+	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
 
 	CString tempFolder = m_tempFolder;
 	tempFolder.TrimLeft();
 	tempFolder.TrimRight();
-	m_pOptionsMgr->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
+	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 
 /////////////////////////////////////////////////////////////////////////////

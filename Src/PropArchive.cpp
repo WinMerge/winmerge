@@ -12,6 +12,7 @@
 #include "PropArchive.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,15 +23,10 @@ static char THIS_FILE[] = __FILE__;
 // CPropArchive dialog
 
 CPropArchive::CPropArchive(COptionsMgr *optionsMgr)
-: CPropertyPage(CPropArchive::IDD)
-, m_pOptionsMgr(optionsMgr)
+: OptionsPanel(optionsMgr, CPropArchive::IDD)
 , m_bEnableSupport(false)
 , m_nInstallType(0)
 , m_bProbeType(false)
-{
-}
-
-CPropArchive::~CPropArchive()
 {
 }
 
@@ -56,10 +52,10 @@ END_MESSAGE_MAP()
  */
 void CPropArchive::ReadOptions()
 {
-	int enable = m_pOptionsMgr->GetInt(OPT_ARCHIVE_ENABLE);
+	int enable = GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE);
 	m_bEnableSupport = enable > 0;
 	m_nInstallType = enable > 1 ? enable - 1 : 0;
-	m_bProbeType = m_pOptionsMgr->GetBool(OPT_ARCHIVE_PROBETYPE);
+	m_bProbeType = GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE);
 }
 
 /** 
@@ -68,10 +64,10 @@ void CPropArchive::ReadOptions()
 void CPropArchive::WriteOptions()
 {
 	if (m_bEnableSupport)
-		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, m_nInstallType + 1);
+		GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, m_nInstallType + 1);
 	else
-		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, (int)0);
-	m_pOptionsMgr->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType == TRUE);
+		GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, (int)0);
+	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType == TRUE);
 }
 
 /** 

@@ -11,6 +11,7 @@
 #include "PropBackups.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 #include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
@@ -19,28 +20,17 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-// CPropBackups dialog
-
 /** 
  * @brief Constructor taking OptionsManager parameter.
  * @param [in] optionsMgr Pointer to OptionsManager.
  */
 CPropBackups::CPropBackups(COptionsMgr *optionsMgr)
-	: CPropertyPage(CPropBackups::IDD)
-	, m_pOptionsMgr(optionsMgr)
+	: OptionsPanel(optionsMgr, CPropBackups::IDD)
 	, m_bCreateForFolderCmp(FALSE)
 	, m_bCreateForFileCmp(FALSE)
 	, m_bAppendBak(FALSE)
 	, m_bAppendTime(FALSE)
 	, m_nBackupFolder(0)
-{
-}
-
-/** 
- * @brief Destructor.
- */
-CPropBackups::~CPropBackups()
 {
 }
 
@@ -66,12 +56,12 @@ END_MESSAGE_MAP()
  */
 void CPropBackups::ReadOptions()
 {
-	m_bCreateForFolderCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FOLDERCMP);
-	m_bCreateForFileCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FILECMP);
-	m_nBackupFolder = m_pOptionsMgr->GetInt(OPT_BACKUP_LOCATION);
-	m_sGlobalFolder = m_pOptionsMgr->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
-	m_bAppendBak = m_pOptionsMgr->GetBool(OPT_BACKUP_ADD_BAK);
-	m_bAppendTime = m_pOptionsMgr->GetBool(OPT_BACKUP_ADD_TIME);
+	m_bCreateForFolderCmp = GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP);
+	m_bCreateForFileCmp = GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP);
+	m_nBackupFolder = GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION);
+	m_sGlobalFolder = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
+	m_bAppendBak = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK);
+	m_bAppendTime = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME);
 }
 
 /** 
@@ -87,12 +77,12 @@ void CPropBackups::WriteOptions()
 		m_sGlobalFolder += "\\";
 	}
 
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_LOCATION, m_nBackupFolder);
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder);
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_LOCATION, m_nBackupFolder);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime == TRUE);
 }
 
 /** 

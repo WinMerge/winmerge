@@ -24,7 +24,7 @@
  * @brief Implementation file for CPropCodepage propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -32,6 +32,7 @@
 #include "PropCodepage.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -43,15 +44,10 @@ static char THIS_FILE[] = __FILE__;
 // CPropCodepage property page
 
 CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr)
- : CPropertyPage(CPropCodepage::IDD)
-, m_pOptionsMgr(optionsMgr)
+ : OptionsPanel(optionsMgr, CPropCodepage::IDD)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)
 , m_bDetectCodepage(FALSE)
-{
-}
-
-CPropCodepage::~CPropCodepage()
 {
 }
 
@@ -79,9 +75,9 @@ END_MESSAGE_MAP()
  */
 void CPropCodepage::ReadOptions()
 {
-	m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
-	m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_bDetectCodepage = m_pOptionsMgr->GetBool(OPT_CP_DETECT);
+	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
+	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
+	m_bDetectCodepage = GetOptionsMgr()->GetBool(OPT_CP_DETECT);
 }
 
 /** 
@@ -89,9 +85,9 @@ void CPropCodepage::ReadOptions()
  */
 void CPropCodepage::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
-	m_pOptionsMgr->SaveOption(OPT_CP_DETECT, m_bDetectCodepage == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
+	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
+	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, m_bDetectCodepage == TRUE);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -13,6 +13,7 @@
 #include "PropTextColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,14 +31,9 @@ static const TCHAR Section[] = _T("Custom Colors");
  * @brief Default constructor.
  */
 CPropTextColors::CPropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
- : CPropertyPage(CPropTextColors::IDD)
-, m_pOptionsMgr(optionsMgr)
+ : OptionsPanel(optionsMgr, CPropTextColors::IDD)
 , m_bCustomColors(FALSE)
 , m_pTempColors(pColors)
-{
-}
-
-CPropTextColors::~CPropTextColors()
 {
 }
 
@@ -99,7 +95,7 @@ void CPropTextColors::ReadOptions()
  */
 void CPropTextColors::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
+	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors

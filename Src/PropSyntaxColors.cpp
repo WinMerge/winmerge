@@ -11,6 +11,7 @@
 #include "SyntaxColors.h"
 #include "PropSyntaxColors.h"
 #include "Merge.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,8 +25,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNAMIC(CPropSyntaxColors, CPropertyPage)
 
 CPropSyntaxColors::CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
-: CPropertyPage(CPropSyntaxColors::IDD)
-, m_pOptionsMgr(optionsMgr)
+: OptionsPanel(optionsMgr, CPropSyntaxColors::IDD)
 , m_nKeywordsBold(0)
 , m_nFunctionsBold(0)
 , m_nCommentsBold(0)
@@ -58,10 +58,6 @@ CPropSyntaxColors::CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pCol
 	m_nPreProcessorBold = GetCheckVal(COLORINDEX_PREPROCESSOR);
 	m_nUser1Bold = GetCheckVal(COLORINDEX_USER1);
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
-}
-
-CPropSyntaxColors::~CPropSyntaxColors()
-{
 }
 
 void CPropSyntaxColors::DoDataExchange(CDataExchange* pDX)
@@ -318,4 +314,3 @@ void CPropSyntaxColors::UpdateBoldStatus(CButton &btn, UINT colorIndex)
 	else
 		m_pTempColors->SetBold(colorIndex, FALSE);
 }
-

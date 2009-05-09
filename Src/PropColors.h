@@ -4,7 +4,7 @@
  * @brief Declaration file for CPropMergeColors propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
@@ -12,17 +12,14 @@
 
 
 #include "ColorButton.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
 const int CustomColorsAmount = 16;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropMergeColors dialog
-
 /** @brief Property page for colors options; used in options property sheet */
-class CPropMergeColors : public CPropertyPage, public IOptionsPanel
+class CPropMergeColors : public OptionsPanel
 {
 // Construction
 public:
@@ -129,9 +126,6 @@ protected:
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

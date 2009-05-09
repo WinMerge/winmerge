@@ -32,6 +32,7 @@
 #include "PropGeneral.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,8 +46,8 @@ static char THIS_FILE[] = __FILE__;
 /** 
  * @brief Constructor initialising members.
  */
-CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral::IDD)
-, m_pOptionsMgr(optionsMgr)
+CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, CPropGeneral::IDD)
 , m_bScroll(FALSE)
 , m_bDisableSplash(FALSE)
 , m_bSingleInstance(FALSE)
@@ -112,17 +113,17 @@ END_MESSAGE_MAP()
  */
 void CPropGeneral::ReadOptions()
 {
-	m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
-	m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
-	m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
-	m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
-	m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
-	m_bAskMultiWindowClose = m_pOptionsMgr->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
-	m_bMultipleFileCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
-	m_nAutoCompleteSource = m_pOptionsMgr->GetInt(OPT_AUTO_COMPLETE_SOURCE);
-	m_bPreserveFiletime = m_pOptionsMgr->GetBool(OPT_PRESERVE_FILETIMES);
-	m_bShowSelectFolderOnStartup = m_pOptionsMgr->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
+	m_bDisableSplash = GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
+	m_bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
+	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
+	m_bCloseWindowWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_bAskMultiWindowClose = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
+	m_bMultipleFileCmp = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	m_bMultipleDirCmp = GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS);
+	m_nAutoCompleteSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
+	m_bPreserveFiletime = GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES);
+	m_bShowSelectFolderOnStartup = GetOptionsMgr()->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 }
 
 /** 
@@ -130,17 +131,17 @@ void CPropGeneral::ReadOptions()
  */
 void CPropGeneral::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
-	m_pOptionsMgr->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
-	m_pOptionsMgr->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
+	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
+	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
 }
 
 /////////////////////////////////////////////////////////////////////////////

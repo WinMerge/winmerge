@@ -9,12 +9,12 @@
 #ifndef _PROP_SHELL_H_
 #define _PROP_SHELL_H_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 /**
  * @brief Class for Shell options -propertypage.
  */
-class PropShell : public CPropertyPage, public IOptionsPanel
+class PropShell : public OptionsPanel
 {
 // Construction
 public:
@@ -47,10 +47,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	void SaveMergePath();
-
-private:
-	COptionsMgr *m_pOptionsMgr;
-
 };
 
 #endif // _PROP_SHELL_H_

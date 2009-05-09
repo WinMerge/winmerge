@@ -25,7 +25,7 @@
 #ifndef PropRegistry_h_included
 #define PropRegistry_h_included
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
@@ -39,7 +39,7 @@ class COptionsMgr;
  * It allows user to select options like whether to use Recycle Bin for
  * deleted files and External text editor.
  */
-class CPropRegistry : public CPropertyPage, public IOptionsPanel
+class CPropRegistry : public OptionsPanel
 {
 // Construction
 public:
@@ -76,10 +76,6 @@ protected:
 	afx_msg void OnBrowseTmpFolder();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-// Implementation data
-private:
-	COptionsMgr * m_pOptionsMgr; /**< Pointer to options manager */
 };
 
 //{{AFX_INSERT_LOCATION}}

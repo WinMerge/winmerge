@@ -11,18 +11,17 @@
 #define _PROP_ARCHIVE_H_
 
 #include "StatLink.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
 /** 
  * @brief Class for Archive Support options page.
  */
-class CPropArchive : public CPropertyPage
+class CPropArchive : public OptionsPanel
 {
 public:
 	CPropArchive(COptionsMgr *optionsMgr);
-	virtual ~CPropArchive();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -44,8 +43,5 @@ public:
 	BOOL m_bEnableSupport;
 	int m_nInstallType;
 	BOOL m_bProbeType;
-
-private:
-	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 #endif // _PROP_ARCHIVE_H_

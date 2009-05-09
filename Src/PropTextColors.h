@@ -4,14 +4,14 @@
  * @brief Declaration file for CPropTextColors propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(PropTextColors_h_included)
 #define PropTextColors_h_included
 
 #include "ColorButton.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 class SyntaxColors;
@@ -21,14 +21,13 @@ class SyntaxColors;
 // CPropTextColors dialog
 
 /** @brief Property page for colors options; used in options property sheet */
-class CPropTextColors : public CPropertyPage, public IOptionsPanel
+class CPropTextColors : public OptionsPanel
 {
 
 // Construction
 public:
 
 	CPropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
-	virtual ~CPropTextColors();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -39,7 +38,6 @@ private:
 
 	SyntaxColors *m_pTempColors;
 	COLORREF m_cCustColors[COLORINDEX_COUNT];
-	COptionsMgr * m_pOptionsMgr;
 
 	//{{AFX_DATA(CPropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };

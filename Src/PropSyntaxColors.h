@@ -11,20 +11,19 @@
 #define _PROP_SYNTAX_COLORS_H_
 
 #include "ColorButton.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class SyntaxColors;
 
 const int NumCustomColors = 16;
 
-class CPropSyntaxColors : public CPropertyPage, public IOptionsPanel
+class CPropSyntaxColors : public OptionsPanel
 {
 	DECLARE_DYNAMIC(CPropSyntaxColors)
 
 // Construction & Destruction
 public:
 	CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
-	virtual ~CPropSyntaxColors();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -100,6 +99,5 @@ private:
 
 	SyntaxColors *m_pTempColors;
 	COLORREF m_cCustColors[COLORINDEX_COUNT];
-	COptionsMgr * m_pOptionsMgr;
 };
 #endif // _PROP_SYNTAX_COLORS_H_
