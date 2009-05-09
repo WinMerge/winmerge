@@ -191,7 +191,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, CString & s
 
 	// Find possible comment-separator '<whitespace>##'
 	while (pos > 0 && !_istspace(str[pos - 1]))
-		pos = str.Find(commentLeader, pos);	
+		pos = str.Find(commentLeader, pos + 1);
 
 	// Remove comment and whitespaces before it
 	if (pos > 0)
