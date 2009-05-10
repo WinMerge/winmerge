@@ -8,7 +8,7 @@
 // $Id$
 
 /* The MIT License
-Copyright (c) 2004-2007 Kimmo Varis
+Copyright (c) 2004-2009 Kimmo Varis
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction, including
@@ -93,10 +93,11 @@ public:
 	varprop::VariantValue Get(LPCTSTR name) const;
 	String GetString(LPCTSTR name) const;
 	int GetInt(LPCTSTR name) const;
-	void SetInt(LPCTSTR name, int value) { SaveOption(name, value); }
 	bool GetBool(LPCTSTR name) const;
-	void SetBool(LPCTSTR name, bool value) { SaveOption(name, value); }
 	int Set(LPCTSTR name, varprop::VariantValue value);
+	int Set(LPCTSTR name, LPCTSTR value);
+	int Set(LPCTSTR name, bool value);
+	int Set(LPCTSTR name, int value);
 	int Reset(LPCTSTR name);
 	int GetDefault(LPCTSTR name, String & value) const;
 	int GetDefault(LPCTSTR name, DWORD & value) const;
