@@ -2397,7 +2397,7 @@ LoadConfigIntSetting(int * cfgval, COptionsMgr * options, const CString & name, 
 	}
 	else
 	{
-		options->SetInt(name, *cfgval);
+		options->SaveOption(name, *cfgval);
 	}
 }
 

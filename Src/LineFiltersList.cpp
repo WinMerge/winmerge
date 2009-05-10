@@ -197,7 +197,7 @@ void LineFiltersList::SaveFilters()
 
 	unsigned int count = m_items.size();
 	valuename += _T("/Values");
-	m_pOptionsMgr->SetInt(valuename.c_str(), count);
+	m_pOptionsMgr->SaveOption(valuename.c_str(), count);
 
 	for (unsigned int i = 0; i < count; i++)
 	{
