@@ -2216,6 +2216,11 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
+	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
@@ -2227,7 +2232,10 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(TRUE);
+	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMainFrame::OnReloadPlugins()

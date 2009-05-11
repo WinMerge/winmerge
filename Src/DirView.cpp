@@ -2764,6 +2764,12 @@ void CDirView::OnCtxtOpenWithUnpacker()
 
 void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
 {
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
 	// we need one selected file, existing on both side
 	if (m_pList->GetSelectedCount() != 1)
 		pCmdUI->Enable(FALSE);
@@ -3013,6 +3019,11 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	// as a group of files may be selected
 	// and they may not all have the same setting
 	// so I'm not trying this right now
+
+	if (GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 /**
