@@ -122,9 +122,15 @@ Believe it or not.</screen></para>
               <term>Difference colors</term>
 
               <listitem>
-                <para>The basic difference color is dark yellow, by default.
-                Identical lines (like the third line in the example) are
-                unmarked: they have white backgrounds.</para>
+                <para>Difference blocks are marked with the difference
+                background color (gold, by default). </para>
+
+                <para>Line differences can be enabled to mark changed text
+                within differences blocks, using the word background color
+                (light yellow, by default).</para>
+
+                <para>Identical lines are unmarked: they have white backgrounds,
+                like the third line in the example.</para>
               </listitem>
             </varlistentry>
 

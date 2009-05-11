@@ -313,7 +313,7 @@
 
     <section id="Configuration_multicompwin">
       <title>Enable multiple compare windows for<indexterm>
-          <primary>Compare windows</primary>
+          <primary>Compare window</primary>
 
           <secondary>opening multiple</secondary>
         </indexterm></title>
@@ -418,35 +418,44 @@
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
 
-      <para>Whitespace, the space between words and lines, is represented in
-      text files by special, nonprinting characters like spaces, tabs, and
-      linefeeds. The significance of whitespace varies a lot: spaces between
-      words are usually important; in some text documents, indents and linefeeds
-      are critical to meaning and readability; in structured code, linefeeds and
-      tabs might be significant.</para>
+      <para>Whitespace is the space between words and lines. It is represented
+      in text files by special, nonprinting characters like spaces, tabs, and
+      linefeeds. The significance of whitespace depends on how you want to read
+      or process differences. It might be important to detect all changes in
+      whitespace. Conversely, you might prefer to treat all whitespace the same
+      whether one space, two spaces, an indent, or a tab. And in some structured
+      documents (like comma-separated lists), you might want to disregard all
+      whitespace.</para>
 
-      <para>These whitespace options are available:</para>
+      <note>
+        <para>The effects of whitespace on changes within lines are visible only
+        when <option>View line differences</option> is enabled. This is in
+        contrast to difference blocks, which are always highlighted.</para>
+      </note>
+
+      <example>
+        <title>Lines with different whitespace</title>
+
+        <para>One space between words:<screen format="linespecific">Two Words</screen></para>
+
+        <para>Two spaces between words:<screen format="linespecific">Two  Words</screen></para>
+
+        <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
+
+        <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
+      </example>
+
+      <para>You can control whitespace detection by choosing one of these
+      options:</para>
 
       <variablelist>
         <varlistentry>
           <term>Compare</term>
 
           <listitem>
-            <para>Default: All whitespace is compared. If you are not sure which
-            option your document requires, this is the safest choice. In the
-            example below, all lines are detected as different.</para>
-
-            <example>
-              <title>Ignore whitespace change</title>
-
-              <para>One space between words:<screen format="linespecific">Two Words</screen></para>
-
-              <para>Two spaces between words:<screen format="linespecific">Two  Words</screen></para>
-
-              <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
-
-              <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
-            </example>
+            <para>All whitespace is compared (default). If you are not sure
+            which option your document requires, this is probably the safest
+            choice. In the example, all lines are detected as different.</para>
           </listitem>
         </varlistentry>
 
@@ -454,8 +463,8 @@
           <term>Ignore change</term>
 
           <listitem>
-            <para>Compares differences in whitespace. In the preceding example,
-            the first three lines have different whitespace, but are detected as
+            <para>Compares differences in whitespace. In the example, the first
+            three lines have different whitespace, but are detected as
             identical: tabs and multiple are treated as if they are single
             space. The last line has no whitespace, so the difference is
             <emphasis>not</emphasis> ignored (in effect, the words in the last
@@ -468,11 +477,22 @@
 
           <listitem>
             <para>Ignores all whitespace characters, except linefeeds (so lines
-            are detected, and preserved in a merge). All lines in the preceding
-            example are detected as identical.</para>
+            are detected and preserved in a merge). All lines in the example are
+            detected as identical.</para>
           </listitem>
         </varlistentry>
       </variablelist>
+
+      <note>
+        <title>Related topics</title>
+
+        <para>The effects of whitespace settings on line differences is
+        described in <xref linkend="CompareFiles_linediff-highlight" />.</para>
+
+        <para>The Options dialog Editor page contains related options that
+        control how whitespace is used to detect breaks between words. See <xref
+        linkend="Configuration_viewlinediffs" /> for details.</para>
+      </note>
     </section>
 
     <section>
@@ -821,7 +841,7 @@
           them as differences. Thus, the File Compare window status bar shows
           the EOL style as <guilabel>Win</guilabel>.</para>
 
-          <para>For most situations, you should leave this option disabled: this
+          <para>For most situations you should leave this option disabled: the
           default behavior works even when comparing two files that have
           different line ending styles.</para>
         </listitem>
@@ -888,80 +908,53 @@
       </variablelist>
     </section>
 
-    <section>
+    <section id="Configuration_viewlinediffs">
       <title>View line differences<indexterm>
           <primary>line differences</primary>
 
           <secondary>viewing options</secondary>
         </indexterm></title>
 
-      <para>WinMerge can highlight not only different lines, but also
-      differences within lines. You can enable and disable line difference
-      coloring using either the <guilabel>View Line Differences</guilabel>
-      option in this page, or by clicking <menuchoice>
-          <guimenu>View</guimenu>
-
-          <guimenuitem>View Line Differences</guimenuitem>
-        </menuchoice>. For example, when the menu item is checked, the option in
-      this page is also checked, and changing either setting automatically
-      changes the other.</para>
-
-      <para>However, <guilabel>View Line Differences</guilabel> and the options
-      under it give you control over exactly what kinds of differences are
-      detected within lines:</para>
+      <para>These settings enable and configure the detection of <glossterm>line
+      differences</glossterm> (changes within the lines of difference
+      blocks):</para>
 
       <itemizedlist>
         <listitem>
           <para><option>Enabled</option> (default): WinMerge highlights
-          differences within lines (also enables the <menuchoice>
+          differences within lines. Also enables the <menuchoice>
               <guimenu>View</guimenu>
 
               <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item).</para>
+            </menuchoice> menu item.</para>
 
-          <para>When this option is enabled, you can choose one of these
-          suboptions. The best choice usually depends on the file types you are
-          comparing:</para>
+          <para>Choose one of these suboptions:</para>
 
           <itemizedlist>
             <listitem>
-              <para><guilabel>Character level</guilabel>: Detects individual
-              characters that are different. This option can be useful for file
-              formats that do not have clear word breaks, or if you are looking
-              for single-character differences. For example, this level makes it
-              easy to spot a single changed character in the middle of a
-              word.</para>
+              <para><guilabel>Character level</guilabel>: Highlights individual
+              characters that are different. This option can be useful if you
+              are looking for changes within words, or for file formats that do
+              not have clear word breaks.</para>
             </listitem>
 
             <listitem>
-              <para><guilabel>Word-level</guilabel> (default): Detects words
-              that are different. Possible advantage: making it easy to copy and
-              paste words.</para>
+              <para><guilabel>Word-level</guilabel> (default): Highlights entire
+              words that are different.</para>
 
               <itemizedlist>
                 <listitem>
                   <para><guilabel>Break at whitespace</guilabel> (default):
                   Words are assumed to be separated by whitespace characters.
                   This usually works for typical text files.</para>
-
-                  <para>For example, these two lines contain punctuation but no
-                  whitespace. So, with the <guilabel>Break at
-                  whitespace</guilabel> option, WinMerge detects no word breaks.
-                  Instead, it highlights the text as a single word-level line
-                  difference.</para>
-
-                  <para><screen>10,20,30,40,50</screen></para>
-
-                  <para><screen>10,25,30,45,50</screen></para>
                 </listitem>
 
                 <listitem>
                   <para><guilabel>Break at whitespace or punctuation</guilabel>:
                   Considers both whitespace and punctuation characters to be
-                  word breaks. This is useful for handling lists that are
-                  separated with punctuation (like comma-separated lists). In
-                  the preceding example, WinMerge highlights only 20 and 40 in
-                  the first line, and 25 and 45 in the second line.</para>
+                  word breaks. This can useful for handling lists that are
+                  separated with punctuation (like comma-separated
+                  lists).</para>
                 </listitem>
               </itemizedlist>
             </listitem>
@@ -969,15 +962,22 @@
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: WinMerge does not highlight
-          differences within lines, and all settings for the level and
-          whitespace options are ignored (also disables the <menuchoice>
+          <para><option>Disabled</option>: WinMerge does not highlight line
+          differences, and all settings for the level and whitespace options are
+          ignored. Also disables the <menuchoice>
               <guimenu>View</guimenu>
 
               <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item).</para>
+            </menuchoice> menu item.</para>
         </listitem>
       </itemizedlist>
+
+      <note>
+        <title>Related topic</title>
+
+        <para><xref linkend="CompareFiles_linediff-highlight" /> explains in
+        more detail how WinMerge detects and marks line differences.</para>
+      </note>
     </section>
   </section>
 
