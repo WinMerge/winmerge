@@ -26,6 +26,7 @@
 #ifndef UNICODE
 #include <mbctype.h>
 #endif
+#include "Constants.h"
 #include "version.h"
 #include "dllver.h"
 #include "DiffWrapper.h"
@@ -383,7 +384,8 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 
 	if (writing)
 	{
-		String sFileName = paths_ConcatPath(env_GetTempPath(), _T("WinMerge.txt"));
+		String sFileName = paths_ConcatPath(env_GetMyDocuments(NULL), WinMergeDocumentsFolder);
+		sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 		m_sFileName = sFileName.c_str();
 
 		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
