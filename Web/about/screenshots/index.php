@@ -17,6 +17,9 @@
   <h3>Folder Comparison Results</h3>
   <a href="foldercmp.png" target="_blank"><img src="foldercmp_small.png" alt="Folder Comparison Results" width="316" height="200" border="0"></a>
   <p>Folder compare shows all files and subfolders found from compared folders as list. Folder compare allows synchronising folders by copying and deleting files and subfolders. Folder compare view can be versatile customised.</p>
+  <h3>Folder Compare Tree View</h3>
+  <a href="foldercmp_treeview.png" target="_blank"><img src="foldercmp_treeview_small.png" alt="Folder Compare Tree View" width="285" height="200" border="0"></a>
+  <p>In the tree view, folders are expandable and collapsible, containing files and subfolders. This is useful for an easier navigation in deeply nested directory structures. <em>The tree view is available only in recursive compares.</em></p>
   <h3>Highlight Line Diff</h3>
   <a href="filecmp_inlinediff.png" target="_blank"><img src="filecmp_inlinediff_small.png" alt="Highlight Line Diff" width="294" height="200" border="0"></a>
   <p>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines.</p>
