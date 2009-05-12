@@ -27,6 +27,7 @@ private :
 	int m_nThisPane; /**< Left/Right side */
 	String m_strTempPath; /**< Temporary files folder. */
 	int m_unpackerSubcode; /**< Plugin information. */
+	bool m_bMixedEOL; /**< EOL style of this buffer is mixed? */
 
 	/** 
 	 * @brief Unicode encoding from ucr::UNICODESET.
@@ -66,6 +67,8 @@ public :
 	int getCodepage() const { return m_encoding.m_codepage; }
 	void setCodepage(int value) { m_encoding.m_codepage = value; }
 	const FileTextEncoding & getEncoding() const { return m_encoding; }
+	bool IsMixedEOL() const { return m_bMixedEOL; }
+	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
 	// If line has text (excluding eol), set strLine to text (excluding eol)
 	BOOL GetLine(int nLineIndex, CString &strLine);

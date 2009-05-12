@@ -14,6 +14,8 @@ WinMerge 2.13.7
   Bugfix: File compare HTML reports use invald DOCTYPE (#2783477)
   Bugfix: "##" in file filter pattern caused an infinite loop (#2789345)
   Bugfix: File wm_*.* in temporary folder caused an infinite loop (#2789348)
+  Bugfix: Opening mixed-EOL file one side forced both files to be handled as
+    mixed-eol files (#2022312)
 
 WinMerge 2.13.6 - 2009-04-16 (r6665)
   Show deleted differences in difference highlight with own

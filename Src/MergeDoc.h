@@ -233,7 +233,7 @@ public:
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
-	bool IsMixedEOL() const { return m_bMixedEol; }
+	bool IsMixedEOL(int nBuffer) const;
 
 // implementation methods
 private:
