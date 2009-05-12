@@ -2091,12 +2091,12 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 }
 
 /**
- * @brief Update left EOL mode in status bar
+ * @brief Update left EOL mode in status bar.
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL(m_nThisPane) )
+			GetDocument()->IsMixedEOL(0))
 	{
 		String eol = LoadResString(IDS_EOL_MIXED);
 		pCmdUI->SetText(eol.c_str());
@@ -2106,12 +2106,12 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Update right EOL mode in status bar
+ * @brief Update right EOL mode in status bar.
  */
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL(m_nThisPane))
+			GetDocument()->IsMixedEOL(1))
 	{
 		String eol = LoadResString(IDS_EOL_MIXED);
 		pCmdUI->SetText(eol.c_str());
