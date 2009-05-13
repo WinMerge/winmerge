@@ -4,10 +4,10 @@
 
   $page = new Page;
   $page->addRssFeed('status_trunk_rss.php');
-  $page->printHead('Translations Status (Trunk)', TAB_TRANSLATIONS);
+  $page->printHead('Translations Status (Unstable Trunk)', TAB_TRANSLATIONS);
   
   $status = $page->convertXml2Array('status_trunk.xml');
-  $page->printRssHeading('Translations Status (Trunk)', 'status_trunk_rss.php');
+  $page->printRssHeading('Translations Status (Unstable Trunk)', 'status_trunk_rss.php');
   if (!empty($status)) { //If translations status available...
     printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/');
     printTranslationsStatusGraphLegend();

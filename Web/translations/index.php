@@ -2,8 +2,8 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->addRssFeed('status_branch_rss.php', 'Translations Status (Branch)');
-  $page->addRssFeed('status_trunk_rss.php', 'Translations Status (Trunk)');
+  $page->addRssFeed('status_branch_rss.php', 'Translations Status (Stable Branch)');
+  $page->addRssFeed('status_trunk_rss.php', 'Translations Status (Unstable Trunk)');
   $page->printHead('Translations', TAB_TRANSLATIONS);
 ?>
 <h2>Translations</h2>
@@ -37,7 +37,7 @@ You can find a more technical view about the <a href="http://winmerge.org/Wiki/T
 <p>The following two pages inform you about the translations status of the stable and developer version of WinMerge:</p>
 <ul>
   <li><a href="status_branch.php">Stable Version (Branch)</a> <?php $page->printRssFeedLink('status_branch_rss.php'); ?></li>
-  <li><a href="status_trunk.php">Developer Version (Trunk)</a> <?php $page->printRssFeedLink('status_trunk_rss.php'); ?></li>
+  <li><a href="status_trunk.php">Unstable Version (Trunk)</a> <?php $page->printRssFeedLink('status_trunk_rss.php'); ?></li>
 </ul>
 <?php
   $page->printFoot();

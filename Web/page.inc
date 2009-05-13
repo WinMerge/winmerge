@@ -263,8 +263,8 @@
         case TAB_TRANSLATIONS: //if "Translations" ...
           $subtabs[0] = new Subtab('/translations/', 'Index', 'WinMerge Translations');
           $subtabs[1] = new Subtab('/translations/instructions.php', 'Instructions', 'WinMerge Translations Instructions');
-          $subtabs[2] = new Subtab('/translations/status_branch.php', 'Status (Branch)', 'WinMerge Translations Status (Branch)');
-          $subtabs[3] = new Subtab('/translations/status_trunk.php', 'Status (Trunk)', 'WinMerge Translations Status (Trunk)');
+          $subtabs[2] = new Subtab('/translations/status_branch.php', 'Status (Stable Branch)', 'WinMerge Translations Status (Stable Branch)');
+          $subtabs[3] = new Subtab('/translations/status_trunk.php', 'Status (Unstable Trunk)', 'WinMerge Translations Status (Unstable Trunk)');
           break;
       }
       
