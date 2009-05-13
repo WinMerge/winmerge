@@ -1390,6 +1390,8 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 		{
 			success = TRUE;
 			bakPath = paths_ConcatPath(bakPath, filename);
+			if (!paths_EndsWithSlash(bakPath.c_str()))
+				bakPath += _T("\\");
 			bakPath += _T(".");
 			bakPath += ext;
 		}
