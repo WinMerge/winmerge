@@ -8,6 +8,7 @@ WinMerge 2.13.7
   Improve startup time (#2788142)
   Create config log file to My Documents-folder (#2789839)
   Installer: Do not install DLL plugins (#2783915)
+  Installer: Don't set -x for TSVN command line (#2791093)
   Bugfix: Crash if tabs or EOLs in command line (#2726995)
   Bugfix: Reports had same left/right descriptions (#2772646)
   Bugfix: Diff view highlighted last char diff incorrectly (#2785186)
