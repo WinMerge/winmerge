@@ -53,7 +53,10 @@ namespace
 		// Objects declared here can be used by all tests in the test case for Foo.
 	};
 
-	// Test the paths_EndsWithSlash() function
+	//*************************
+	// paths_EndsWithSlash()
+	//*************************
+
 	TEST_F(PathTest, EndsWithSlash_rootfolders)
 	{
 		const TCHAR path[] = "c:";
@@ -78,7 +81,10 @@ namespace
 		EXPECT_TRUE(paths_EndsWithSlash(path2));
 	}
 
-	// Test the paths_DoesPathExist() function
+	//*************************
+	// paths_DoesPathExist()
+	//*************************
+
 	TEST_F(PathTest, Exists_specialfolders)
 	{
 		const TCHAR path[] = ".";
@@ -133,6 +139,10 @@ namespace
 		EXPECT_EQ(DOES_NOT_EXIST, paths_DoesPathExist(path2));
 	}
 
+	//*************************
+	// paths_FindFileName()
+	//*************************
+
 	TEST_F(PathTest, FindName_absfiles)
 	{
 		char path[] = "c:\\abc.txt";
@@ -144,6 +154,10 @@ namespace
 		char path[] = "c:\\temp\\abc.txt";
 		EXPECT_EQ(path + 8, paths_FindFileName(path));
 	}
+
+	//*************************
+	// paths_normalize()
+	//*************************
 
 	TEST_F(PathTest, Normalize_abspath)
 	{
@@ -182,6 +196,10 @@ namespace
 		EXPECT_EQ(path_orig, path);
 	}
 
+	//*************************
+	// paths_CreateIfNeeded()
+	//*************************
+
 	TEST_F(PathTest, Create_abspath1)
 	{
 		EXPECT_TRUE(paths_CreateIfNeeded("c:\\Temp"));
@@ -215,6 +233,10 @@ namespace
 		EXPECT_NE(0, _access("c:\\Temp\\wm_test", 0));
 	}
 
+	//*********************
+	// paths_ConcatPath()
+	//*********************
+
 	TEST_F(PathTest, Concat_abspath1)
 	{
 		EXPECT_EQ("c:\\Temp\\wm_test", paths_ConcatPath("c:\\Temp", "wm_test"));
@@ -247,6 +269,18 @@ namespace
 	{
 		EXPECT_EQ("\\Temp\\wm_test", paths_ConcatPath("\\Temp\\", "\\wm_test"));
 	}
+	TEST_F(PathTest, Concat_missingFilename1)
+	{
+		EXPECT_EQ("c:\\Temp", paths_ConcatPath("c:\\Temp", ""));
+	}
+	TEST_F(PathTest, Concat_missingFilename2)
+	{
+		EXPECT_EQ("\\Temp\\", paths_ConcatPath("\\Temp\\", ""));
+	}
+
+	//*************************
+	// paths_GetParentPath()
+	//*************************
 
 	TEST_F(PathTest, Parent_abspath1)
 	{
@@ -279,6 +313,10 @@ namespace
 		EXPECT_EQ("\\temp\\abc", paths_GetParentPath("\\temp\\abc\\cde"));
 	}
 
+	//*************************
+	// paths_GetLastSubdir()
+	//*************************
+
 	TEST_F(PathTest, LastSubdir_abspath1)
 	{
 		EXPECT_EQ("\\abc", paths_GetLastSubdir("c:\\temp\\abc"));
@@ -305,6 +343,10 @@ namespace
 	{
 		EXPECT_EQ("\\dce", paths_GetLastSubdir("abc\\temp\\dce"));
 	}
+
+	//*************************
+	// paths_IsPathAbsolute()
+	//*************************
 
 	TEST_F(PathTest, IsAbsolute_abspath1)
 	{
