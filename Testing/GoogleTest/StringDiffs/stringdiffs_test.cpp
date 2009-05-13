@@ -227,7 +227,7 @@ namespace
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace7)
 	{
 		std::vector<wdiff*> diffs;
-		sd_ComputeWordDiffs("abcde\nabcde", "abcde	abcde", true, 2, 0, false, &diffs);
+		sd_ComputeWordDiffs("abcde\tabcde", "abcde	abcde", true, 2, 0, false, &diffs);
 		EXPECT_EQ(0, diffs.size());
 	}
 

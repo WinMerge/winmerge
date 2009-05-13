@@ -59,7 +59,7 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_SetBreakChars(",;");
-		sd_ComputeWordDiffs( "				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d \n),",
+		sd_ComputeWordDiffs( "				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),",
 				"					if (len2 < 50)",
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(10, diffs.size());
