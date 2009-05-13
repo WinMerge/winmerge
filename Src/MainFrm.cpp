@@ -1389,9 +1389,9 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			bakPath = paths_ConcatPath(bakPath, filename);
 			if (!paths_EndsWithSlash(bakPath.c_str()))
 				bakPath += _T("\\");
+			bakPath = paths_ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
 		}
