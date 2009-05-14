@@ -385,6 +385,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	if (writing)
 	{
 		String sFileName = paths_ConcatPath(env_GetMyDocuments(NULL), WinMergeDocumentsFolder);
+		paths_CreateIfNeeded(sFileName.c_str());
 		sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 		m_sFileName = sFileName.c_str();
 
