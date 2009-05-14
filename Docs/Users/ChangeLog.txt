@@ -11,6 +11,8 @@ WinMerge 2.12.4
   Bugfix: File compare HTML reports use invald DOCTYPE (#2783477)
   Bugfix: "##" in file filter pattern caused an infinite loop (#2789345)
   Bugfix: Could select prediffer when plugins were disabled (#2787131)
+  Bugfix: Opening mixed-EOL file one side forced both files to be handled as
+    mixed-eol files (#2022312)
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
 

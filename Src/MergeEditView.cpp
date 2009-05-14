@@ -1803,7 +1803,7 @@ void CMergeEditView::OnUpdateCaret()
 		columns = CalculateActualOffset(nScreenLine, chars, true) + 1;
 		chars++;
 		if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-				GetDocument()->IsMixedEOL())
+				GetDocument()->IsMixedEOL(m_nThisPane))
 		{
 			sEol = GetTextBufferEol(nScreenLine);
 		}
@@ -2069,7 +2069,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL() )
+			GetDocument()->IsMixedEOL(0))
 	{
 		String eol = LoadResString(IDS_EOL_MIXED);
 		pCmdUI->SetText(eol.c_str());
@@ -2084,7 +2084,7 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL())
+			GetDocument()->IsMixedEOL(1))
 	{
 		String eol = LoadResString(IDS_EOL_MIXED);
 		pCmdUI->SetText(eol.c_str());
@@ -2151,7 +2151,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 	}
 
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		GetDocument()->IsMixedEOL() ||
+		GetDocument()->IsMixedEOL(m_nThisPane) ||
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
 		pCmdUI->SetRadio(false);
@@ -3106,8 +3106,8 @@ void CMergeEditView::DocumentsLoaded()
 	// SetTextType will revert to language dependent defaults for tab
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		GetDocument()->IsMixedEOL();
+	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));

@@ -819,7 +819,7 @@ void CMergeDiffDetailView::DocumentsLoaded()
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 	BOOL bMixedEOL = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-		GetDocument()->IsMixedEOL();
+		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), bMixedEOL);
 	SetWordWrapping(FALSE);
 }

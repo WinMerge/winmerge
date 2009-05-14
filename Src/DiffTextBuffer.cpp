@@ -164,6 +164,7 @@ CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
 : m_pOwnerDoc(pDoc)
 , m_nThisPane(pane)
 , m_unpackerSubcode(0)
+, m_bMixedEOL(false)
 {
 }
 

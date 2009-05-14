@@ -2045,7 +2045,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 		// If mixed EOLs are not enabled, enable them for this doc.
 		if (!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 		{
-			m_bMixedEol = true;
+			pBuf->SetMixedEOL(true);
 		}
 	}
 
@@ -2703,6 +2703,17 @@ void CMergeDoc::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, bDetectMovedBlocks);
 	m_diffWrapper.SetDetectMovedBlocks(bDetectMovedBlocks);
 	FlushAndRescan();
+}
+
+/**
+ * @brief Check if given buffer has mixed EOL style.
+ * @param [in] nBuffer Buffer to check.
+ * @return true if buffer's EOL style is mixed, false otherwise.
+ */
+bool CMergeDoc::IsMixedEOL(int nBuffer) const
+{
+	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer];
+	return pBuf->IsMixedEOL();
 }
 
 void CMergeDoc::SetEditedAfterRescan(int nBuffer)
