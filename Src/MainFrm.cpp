@@ -1867,25 +1867,29 @@ void CMainFrame::ApplyViewWhitespace()
 		{
 			pLeft->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 			pLeft->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+				pLeft->GetDocument()->IsMixedEOL(pLeft->m_nThisPane));
 		}
 		if (pRight)
 		{
 			pRight->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 			pRight->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+				pRight->GetDocument()->IsMixedEOL(pRight->m_nThisPane));
 		}
 		if (pLeftDetail)
 		{
 			pLeftDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 			pLeftDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+				pLeft->GetDocument()->IsMixedEOL(pLeft->m_nThisPane));
 		}
 		if (pRightDetail)
 		{
 			pRightDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 			pRightDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+				pRight->GetDocument()->IsMixedEOL(pRight->m_nThisPane));
 		}
 	}
 }
