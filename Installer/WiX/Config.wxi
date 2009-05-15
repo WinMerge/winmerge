@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
+  <?ifndef Platform ?> <!-- if platform NOT defined -->
+    <?define Platform = "x86" ?>
+  <?endif ?>
   <?define Manufacturer = "Thingamahoochie Software" ?>
   <?define ProductName = "WinMerge" ?>
-  <?define ProductVersion = "0.0.1" ?>
+  <?ifndef ProductVersion ?> <!-- if product version NOT defined -->
+    <?define ProductVersion = "0.0.1" ?>
+  <?endif ?>
   
   <?define PackageDescription = "WinMerge Installer" ?>
   <?define PackageKeywords = "Installer" ?>
   <?define PackageComments = "WinMerge" ?>
   
-  <?if $(var.Platform) = "x64" ?>
+  <?if $(var.Platform) = "x64" ?> <!-- if "x64" platform -->
     <?define Win64 = "yes" ?>
     <?define PackagePlatform = "x64" ?>
     <?define UpgradeGuid = "79F16C51-8485-426E-BF23-F4D3D0D431D7" ?>
@@ -19,7 +24,7 @@
     <?define PcreBuildDir = "..\..\Build\pcre\lib\x64\Release" ?>
     
     <?define StartMenuShortcutsGuid = "CDC49AA0-DC37-439d-8358-68E2EA9EF909" ?>
-  <?else ?>
+  <?else ?> <!-- if "x86" platform -->
     <?define Win64 = "no" ?>
     <?define PackagePlatform = "x86" ?>
     <?define UpgradeGuid = "3C974FF6-9076-46EB-A65F-A53931EAF942" ?>
