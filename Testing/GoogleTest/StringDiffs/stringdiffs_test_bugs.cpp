@@ -309,4 +309,53 @@ namespace
 		}
 	}
 
+	// Sf.net bug #2791879
+	// 'x' added in right side at end of second and fourth words
+	// char-diff
+	TEST_F(StringDiffsBugsTest, Bug_2791879_1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno",
+				"abc defx ghi jklx mno",
+				false, 0, 0, true, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(7, pDiff->start[0]);
+			EXPECT_EQ(7, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(8, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(15, pDiff->start[0]);
+			EXPECT_EQ(16, pDiff->start[1]);
+			EXPECT_EQ(15, pDiff->end[0]);
+			EXPECT_EQ(17, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2791879
+	// 'x' added in right side at end of second and fourth words
+	// word-diff
+	TEST_F(StringDiffsBugsTest, Bug_2791879_2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno",
+				"abc defx ghi jklx mno",
+				false, 0, 0, false, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(4, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->start[1]);
+			EXPECT_EQ(6, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(12, pDiff->start[0]);
+			EXPECT_EQ(13, pDiff->start[1]);
+			EXPECT_EQ(14, pDiff->end[0]);
+			EXPECT_EQ(16, pDiff->end[1]);
+		}
+	}
 }  // namespace
