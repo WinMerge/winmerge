@@ -11,6 +11,16 @@
 #define stringdiffsi_h_included
 
 #include <vector>
+/**
+ * @brief kind of diff blocks.
+ */
+enum
+{
+	dlword = 0,
+	dlspace,
+	dlbreak, 
+	dlinsert,
+};
 
 struct wdiff;
 
@@ -44,11 +54,12 @@ private:
 private:
 
 	void BuildWordsArray(const String & str, std::vector<word*> * words);
-	int FindNextMatchInWords2(const word & needword1, int bw2) const;
 	int FindNextMatchInWords1(const word & needword2, int bw1) const;
+	int FindNextMatchInWords2(const word & needword1, int bw2) const;
 	int FindNextSpaceInWords1(int bw1) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
+	bool IsWord(const word & word1) const;
 	bool IsSpace(const word & word1) const;
 	bool IsInsert(const word & word1) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;

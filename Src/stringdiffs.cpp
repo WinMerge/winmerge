@@ -142,34 +142,34 @@ stringdiffs::BuildWordDiffList()
 	if (m_whitespace == 2 && m_matchblock)
 	{
 		// Remove a leading whitespace
-		if ((m_words1.size() > 0) && (IsSpace(*m_words1[0])))
+		if (((int) m_words1.size() > 0) && (IsSpace(*m_words1[0])))
 		{
 			RemoveItem1(0);
 		}
-		if (m_words1.size() > 0)
+		if ((int)m_words1.size() > 0)
 		{
 			// Remove a ending whitespace
 			if (IsSpace(*m_words1[m_words1.size() - 1]))
 				RemoveItem1(m_words1.size() - 1);
 		}
 		// Remove a leading whitespace
-		if ((m_words2.size() > 0) && (IsSpace(*m_words2[0])))
+		if (((int)m_words2.size() > 0) && (IsSpace(*m_words2[0])))
 		{
 			RemoveItem2(0);
-			if	(m_words2.size() > 0)
-			{
-				// Remove a ending whitespace
-				if (IsSpace(*m_words2[ m_words2.size() - 1]))
-					RemoveItem2(m_words2.size() - 1);
-			}
+		}
+		if ((int)m_words2.size() > 0)
+		{
+			// Remove a ending whitespace
+			if (IsSpace(*m_words2[m_words2.size() - 1]))
+				RemoveItem2(m_words2.size() - 1);
 		}
 		// Now lets remove all space inbetween and put the words to 
 		// one síngle word as it was break by space
 		// doit for word1
 		i = 0;
-		while (m_words1.size() > i + 2)
+		while ((int)m_words1.size() > i + 1)
 		{
-			if (IsSpace(*m_words1[i + 1]) && m_words1[i + 2]->bBreak == 0)
+			if (IsSpace(*m_words1[i + 1]) && IsWord(*m_words1[i + 2]))
 			{
 				m_words1[i]->hash =
 					Hash(m_str1, m_words1[i + 2]->start, m_words1[i+2]->end, m_words1[i]->hash);
@@ -182,9 +182,9 @@ stringdiffs::BuildWordDiffList()
 		}
 		// Doit for word2
 		i = 0;
-		while (m_words2.size() > i + 2)
+		while ((int)m_words2.size() > i + 1)
 		{
-			if (IsSpace(*m_words2[i + 1]) && m_words2[i + 2]->bBreak == 0)
+			if (IsSpace(*m_words2[i + 1]) && IsWord(*m_words2[i + 2]))
 			{
 				m_words2[i]->hash =
 					Hash(m_str2, m_words2[i + 2]->start, m_words2[i + 2]->end, m_words2[i]->hash);
@@ -201,54 +201,56 @@ stringdiffs::BuildWordDiffList()
 	// if distance to far, crosscheck match word1 in word2
 	// whatever is shorter, it's result.
 	int w1 = 0, w2 = 0;		// position found in array
-	int bw1 = 0;			// start position in array
+	int bw1 = 0;			// start position in m_words1
+	int bw2 = 0;			// start position in m_words2
 
-	if (m_matchblock && m_words1.size() > 0 && m_words2.size() > 0)
+	if (m_matchblock && (int)m_words1.size() > 0 && (int)m_words2.size() > 0)
 	{
-		i = 0;
 		bw1 = 0;
-		while (i < m_words2.size())
+		bw2 = 0;
+		while (bw2 < (int)m_words2.size())
 		{
 			w2 = 0;
-			if (bw1 >= m_words1.size())
+			if (bw1 >= (int)m_words1.size())
 				break;
+
 			// Are we looking for a spacebreak, so just look for word->bBreak
-			if (IsSpace(*m_words2[i]))
+			if (IsSpace(*m_words2[bw2]))
 				w1 = FindNextSpaceInWords1(bw1);
 			else
-				w1 = FindNextMatchInWords1(*m_words2[i], bw1);
-			// Found at same position, so go on wuth next word 
+				w1 = FindNextMatchInWords1(*m_words2[bw2], bw1);
+			// Found at same position, so go on with next word 
 			if (w1 == bw1)
 			{
 				bw1++;
-				i++;
+				bw2++;
 				continue;
 			}
 			w2 = w1;
 			// Not found, not same, check whitch distance is shorter
 			if (w1 == -1 || (w1 - bw1) > 0)
 			{
-				w2 = FindNextMatchInWords2(*m_words1[i], bw1);
+				w2 = FindNextMatchInWords2(*m_words1[bw2], bw1);
 				// Execption both are not found in other string
 				// so all between keep as a differ
 				if (w1 == -1 && w2 == -1)
 				{
 					bw1++;
-					i++;
+					bw2++;
 					continue;
 				}
 				// Check if in distance 2 and 3 is equal again
-				if (w2 == -1)
+				if ((w1 == -1) || (w2 == -1))
 				{
-					if (i + 2 < m_words1.size() && (i + 2 < m_words2.size()))
+					if (bw2 + 2 < (int)m_words1.size() && (bw2 + 2 < (int)m_words2.size()))
 					{
-						if (AreWordsSame(*m_words1[i + 1], *m_words2[i + 1]))
+						if (AreWordsSame(*m_words1[bw2 + 1], *m_words2[bw2 + 1]))
 						{
-							if (AreWordsSame(*m_words1[i + 2], *m_words2[i + 2]))
+							if (AreWordsSame(*m_words1[bw2 + 2], *m_words2[bw2 + 2]))
 							{
 								// Ok than keep it as a differ
 								bw1 = bw1 + 2;
-								i = i + 2;
+								bw2 = bw2 + 2;
 								continue;
 							}
 						}
@@ -258,7 +260,7 @@ stringdiffs::BuildWordDiffList()
 
 			// Not found in word1, or distance from word1 to word2 is shorter
 			// or too far away from both
-			if ((w1 == -1) || (w1 < w2) || (w2 - bw1 > 4))
+			if (((w1 == -1) && (w2 == 0)) || ((w1 < w2)&& (w1 >= 0)) || (w2 - bw1 > 4))
 			{
 				// Not found in word1 or to far away
 				// so insert an empty record in word1 
@@ -267,7 +269,7 @@ stringdiffs::BuildWordDiffList()
 				if (bw1)
 				{
 					// Last word is a insert? So use same positions
-					if (m_words1[bw1 - 1]->bBreak == -2)
+					if (IsInsert(*m_words1[bw1 - 1]))
 					{
 						end = m_words1[bw1 - 1]->end;
 						start =  m_words1[bw1 - 1]->start;
@@ -285,104 +287,147 @@ stringdiffs::BuildWordDiffList()
 					end = -1;
 					start = 0;
 				}
-
 				vector<word*>::iterator iter = m_words1.begin() + bw1;
-				word *wd  = new word(start, end, -2, 0);
+				word *wd  = new word(start, end, dlinsert, 0);
 				m_words1.insert(iter, wd);
-				i = i + 1; // Next record
+				// check if a space is following
+				if ((bw2 + 1) < (int)m_words2.size() && IsSpace(*m_words2[bw2 + 1]))
+				{
+					// Add a second insert
+					iter = m_words1.begin() + bw1;
+					word *wd  = new word(start, end, dlinsert, 0);
+					m_words1.insert(iter, wd);
+					bw1 = bw1 + 1; 
+					bw2 = bw2 + 1; // Next record
+				}
 				bw1 = bw1 + 1; 
+				bw2 = bw2 + 1; // Next record
 				continue;
 			}
-			else if (w1 < i)
+			else if (w2 > bw2)
 			{
-				int k = i- w1;
+				int k = w2 - bw2;
 				for (int l = 0; l < k; l++)
 				{
 					// Remember last start end
-					if (w1)
+					if (bw1)
 					{
-						end = m_words1[w1 - 1]->end;
+						end = m_words1[bw1 - 1]->end;
 					}
 					else
 					{
 						end = -1;
 					}
 					start = end + 1;
-					vector<word*>::iterator iter = m_words1.begin() + w1;
-					word *wd  = new word(start, end, -2, 0);
+					vector<word*>::iterator iter = m_words1.begin() + bw1;
+					word *wd  = new word(start, end, dlinsert, 0);
 					m_words1.insert(iter, wd);
 				}
-				i =i + k; // Next record
-				bw1 = w1 + k;
+				bw1 = bw1 + k + 1;
+				bw2 = bw2 + k + 1; // Next record
 				continue;
 			}
-			else if (w1 > i)
+			else if (w1 > bw2)
 			{
-				int k = w1 - i;
+				int k = w1 - bw2;
 
 				for (int l = 0; l < k; l++)
 				{
 					// Remember last start end
-					if (i)
+					if (bw2)
 					{
-						end = m_words2[i - 1]->end;
+						end = m_words2[bw2 - 1]->end;
 					}
 					else
 					{
 						end = -1;
 					}
 					start = end + 1;
-					vector<word*>::iterator iter = m_words2.begin() + i;
-					word *wd  = new word(start, end, -2, 0);
+					vector<word*>::iterator iter = m_words2.begin() + bw2;
+					word *wd  = new word(start, end, dlinsert, 0);
 					m_words2.insert(iter, wd);
 				}
 				bw1 = w1 + 1;
-				i = i + k + 1; // Next record
+				bw2 = bw2 + k + 1; // Next record
 				continue;
 			}
-			else if (w1 == i)
+			else if (w1 == bw2)
 			{
 				bw1++;
-				i++;
+				bw2++;
 			}
 		}
 	}
-
 	// If needed, this is the place to merge from back again
 	// to get more acurated matches
-	if (m_words1.size() > 0 || m_words2.size() > 0)
-	{
-		// Make both array to same length
-		i = 0; 
-		int length1 = m_words1.size();
-		int length2 = m_words2.size();
 
-		if (length1 == 0 || length2 == 0)
-			i = i;
-		if (length1 < length2)
+	// Make both array to same length
+	if ((int) m_words1.size() > 0 || (int) m_words2.size() > 0)
+	{
+		if ((int)m_words1.size() != (int)m_words2.size())
 		{
-			end =  m_str1.length() - 1;
-			start = end + 1;
-			word *wd  = new word(start, end, -2, 0);
-			m_words1.push_back(wd);
-			m_words2[length1]->end = m_words2[length2 - 1]->end;
-			while ((length1 + 1) < m_words2.size())
+			i = 0;
+			int length1 = (int)m_words1.size() - 1;
+			int length2 = (int)m_words2.size() - 1;
+
+			if (length1 < length2)
 			{
-				delete m_words2.back();
-				m_words2.pop_back();
+				// Mark char on side2 as inserted
+				if (length1 == -1)
+				{
+					end = - 1;
+					start = end + 1;
+					word *wd  = new word(start, end, dlinsert, 0);
+					m_words1.push_back(wd);
+					// connect inserted char to one diff
+					m_words2[0]->start = 0;
+					m_words2[0]->end = m_words2[(int)m_words2.size() - 1]->end;
+					length1++;
+				}
+				else
+				{
+					start = m_words1[length1]->end + 1;
+					end = start - 1;
+					word *wd = new word(start, end, dlinsert, 0);
+					m_words1.push_back(wd);
+					length1++;
+					// connect inserted char to on diff
+					m_words2[length1]->end = m_words2[length2]->end;
+				}
+				while ((length1 + 2) < (int)m_words2.size())
+				{
+					RemoveItem2(length1 + 1);
+				}
 			}
-		}
-		if (length1 > length2)
-		{
-			end =  m_str2.length() - 1;
-			start = end + 1;
-			word *wd  = new word(start, end, -2, 0);
-			m_words2.push_back(wd);
-			m_words1[length2]->end = m_words1[length1 - 1]->end;
-			while ((length2 + 1) < m_words1.size())
+			else if (length1 > length2)
 			{
-				delete m_words1.back();
-				m_words1.pop_back();
+				// Mark char on side1 as inserted
+				if (length2 == -1)
+				{
+					end = - 1;
+					start = 0;
+					word *wd = new word(start, end, dlinsert, 0);
+					m_words2.push_back(wd);
+					// connect inserted char to one diff
+					m_words1[0]->start = 0;
+					m_words1[0]->end = m_words1[(int)m_words1.size() - 1]->end;
+					length2++;
+				}
+				else
+				{
+					start =  m_words2[length2]->end + 1;
+					end = start - 1;
+					word *wd  = new word(start, end, dlinsert, 0);
+					m_words2.push_back(wd);
+					length2++;
+					// connect inserted char to one diff
+					m_words1[length2]->end = m_words1[length1]->end;
+				}
+
+				while ((length2 + 2) < (int)m_words1.size())
+				{
+					RemoveItem1(length2 + 1);
+				}
 			}
 		}
 		// Remove empty records on both side
@@ -390,7 +435,7 @@ stringdiffs::BuildWordDiffList()
 		OutputDebugString(_T("remove empty records on both side \n"));
 #endif
 		i = 0; 
-		while ((i < m_words1.size()) && (i < m_words2.size()))
+		while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()))
 		{
 #ifdef STRINGDIFF_LOGGING
 			wsprintf(buf, _T("left=%d, op=%d, right=%d, op=%d\n"),
@@ -410,7 +455,7 @@ stringdiffs::BuildWordDiffList()
 		// Remove empty records on both side
 		// in case on the otherside +1 is also an empty one
 		i = 0;  
-		while ((i < m_words1.size() - 1) && (i < m_words2.size() - 1))
+		while ((i < ((int)m_words1.size() - 2)) && (i < ((int)m_words2.size() - 2)))
 		{
 			if (IsInsert(*m_words1[i]) && IsInsert(*m_words2[i + 1]))
 			{
@@ -430,7 +475,7 @@ stringdiffs::BuildWordDiffList()
 		// remove equal records on both side
 		// even diff is close together
 		i = 0; 
-		while ((i < m_words1.size() - 1) && (i < m_words2.size() - 1))
+		while ((i < (int) m_words1.size() - 1) && (i < (int) m_words2.size() - 1))
 		{
 			if  (AreWordsSame(*m_words1[i], *m_words2[i]))
 			{
@@ -446,7 +491,7 @@ stringdiffs::BuildWordDiffList()
 		if (m_whitespace != 0)
 		{
 			i = 0; 
-			while ((i < m_words1.size()) && (i < m_words2.size()))
+			while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()))
 			{
 				if (IsSpace(*m_words1[i]) && IsSpace(*m_words2[i]) )
 				{
@@ -462,7 +507,7 @@ stringdiffs::BuildWordDiffList()
 		// are also words at a block
 		// doit for word1
 		i = 0;
-		while (m_words1.size() > i + 2 )
+		while ((int)m_words1.size() > i + 2)
 		{
 			if (IsInsert(*m_words1[i]) && IsInsert(*m_words1[i+1]))
 			{
@@ -478,7 +523,7 @@ stringdiffs::BuildWordDiffList()
 		}
 		// Doit for word2
 		i = 0;
-		while (m_words2.size() > i + 2 )
+		while ((int)m_words2.size() > i + 2)
 		{
 			if (IsInsert(*m_words2[i]) && IsInsert(*m_words2[i+1]))
 			{
@@ -497,13 +542,13 @@ stringdiffs::BuildWordDiffList()
 #ifdef STRINGDIFF_LOGGING
 		OutputDebugString(_T("final run create diff \n"));
 		wsprintf(buf, _T("left=  %d,   right=  %d \n"),
-					m_str1.length(), m_str2.length());
+			m_str1.length(), m_str2.length());
 		OutputDebugString(buf);		
 #endif
 		// Be aware, do not create more wdiffs as shortest line has chars!
 		int imaxcount = min(m_str1.length(), m_str2.length());
 		i = 0;
-		while ((i < m_words1.size()) && (i < m_words2.size()) && (m_wdiffs.size() <= imaxcount))
+		while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()) && (m_wdiffs.size() <= imaxcount))
 		{
 			if (!AreWordsSame(*m_words1[i], *m_words2[i]))
 			{
@@ -551,13 +596,29 @@ stringdiffs::BuildWordDiffList()
 		}
 	}
 }
+
+/**
+ * @brief Find next word in m_words1 (starting at bw1) that matches needword2 (in m_words2)
+ */
+int 
+stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
+{
+	while (bw1 < (int) m_words1.size())
+	{
+		if (AreWordsSame(*m_words1[bw1], needword2))
+			return bw1;
+		++bw1;
+	}
+	return -1;
+}
+
 /**
  * @brief Find next word in m_words2 (starting at bw2) that matches needword1 (in m_words1)
  */
 int 
 stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 {
-	while (bw2 < m_words2.size())
+	while (bw2 < (int)m_words2.size())
 	{
 		if (AreWordsSame(needword1, *m_words2[bw2]))
 			return bw2;
@@ -566,20 +627,6 @@ stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 	return -1;
 }
 
-/**
- * @brief Find next word in m_words1 (starting at bw1) that matches needword2 (in m_words2)
- */
-int 
-stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
-{
-	while (bw1 < m_words1.size())
-	{
-		if (AreWordsSame(*m_words1[bw1], needword2))
-			return bw1;
-		++bw1;
-	}
-	return -1;
-}
 /**
  * @brief Find next space in m_words1 (starting at bw1)
  */
@@ -600,7 +647,7 @@ stringdiffs::FindNextSpaceInWords1(int bw1) const
 bool
 stringdiffs::RemoveItem1(int bw1)
 {
-	if (m_words1.size()== bw1 + 1)
+	if ((int)m_words1.size()== bw1 + 1)
 	{
 		delete m_words1.back();
 		m_words1.pop_back();
@@ -619,7 +666,7 @@ stringdiffs::RemoveItem1(int bw1)
 bool
 stringdiffs::RemoveItem2(int bw1)
 {
-	if (m_words2.size()== bw1 + 1)
+	if ((int)m_words2.size()== bw1 + 1)
 	{
 		delete m_words2.back();
 		m_words2.pop_back();
@@ -653,9 +700,9 @@ inspace:
 		// e is first word character (space or at end)
 		int e = i - 1;
 
-		word *wd  = new word(begin, e, -1, Hash(str, begin, e, 0));
-		words->push_back(wd);
-	}
+		word *wd  = new word(begin, e, dlspace, Hash(str, begin, e, 0));
+			words->push_back(wd);
+		}
 	if (i == str.length())
 		return;
 	begin = i;
@@ -672,7 +719,7 @@ inword:
 			// e is first non-word character (space or at end)
 			int e = i-1;
 			
-			word *wd  = new word(begin, e, 0, Hash(str, begin, e, 0));
+			word *wd  = new word(begin, e, dlword, Hash(str, begin, e, 0));
 			words->push_back(wd);
 		}
 		if (i == str.length())
@@ -688,7 +735,7 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			word *wd  = new word(i, i, 1, Hash(str, i, i, 0));
+			word *wd  = new word(i, i, dlbreak, Hash(str, i, i, 0));
 			words->push_back(wd);
 			++i;
 			begin = i;
@@ -783,21 +830,32 @@ stringdiffs::AreWordsSame(const word & word1, const word & word2) const
 	}
 	return true;
 }
+
 /**
- * @brief Is this block an space or whitespace one
+ * @brief Is this block a word one?
+ */
+bool
+stringdiffs::IsWord(const word & word1) const
+{
+	return (word1.bBreak == dlword);
+}
+
+/**
+ * @brief Is this block an space or whitespace one?
  */
 bool
 stringdiffs::IsSpace(const word & word1) const
 {
-	return (word1.bBreak == -1);
+	return (word1.bBreak == dlspace);
 }
+
 /**
- * @brief Is this block an empty (insert) one
+ * @brief Is this block an empty (insert) one?
  */
 bool
 stringdiffs::IsInsert(const word & word1) const
 {
-	return (word1.bBreak == -2);
+	return (word1.bBreak == dlinsert);
 }
 
 /**

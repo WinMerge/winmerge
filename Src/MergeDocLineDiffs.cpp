@@ -180,6 +180,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	static int lastLine = -1;
 	static CRect lastRc1, lastRc2;
 	static int whichdiff=-2; // last diff highlighted (-2==none, -1=whole line)
+	int i1 = 0, i2 = 0;
 
 	// Only remember place in cycle if same line and same view
 	if (lastView != pView1 || lastLine != line)
@@ -195,26 +196,23 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	CString str1(pView1->GetLineChars(line), pView1->GetFullLineLength(line));
 	CString str2(pView2->GetLineChars(line), pView2->GetFullLineLength(line));
 
-	if (diffOptions.bIgnoreEol)
-	{
-		/* Commented out code because GetLineActualLength is buggy
-		// Chop of eol (end of line) characters
-		int len1 = pView1->GetLineActualLength(line);
-		str1 = str1.Left(len1);
-		int len2 = pView2->GetLineActualLength(line);
-		str2 = str2.Left(len2);
-		*/
-		int i = str1.GetLength()-1;
-		while (i>=0 && (str1[i]=='\r' || str1[i]=='\n'))
-			--i;
-		if (i+1 < str1.GetLength())
-			str1 = str1.Left(i+1);
-		i = str2.GetLength()-1;
-		while (i>=0 && (str2[i]=='\r' || str2[i]=='\n'))
-			--i;
-		if (i+1 < str2.GetLength())
-			str2 = str2.Left(i+1);
-	}
+	/* Commented out code because GetLineActualLength is buggy
+	// Chop of eol (end of line) characters
+	int len1 = pView1->GetLineActualLength(line);
+	str1 = str1.Left(len1);
+	int len2 = pView2->GetLineActualLength(line);
+	str2 = str2.Left(len2);
+	*/
+	i1 = str1.GetLength() - 1;
+	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
+		--i1;
+	if (i1 + 1 < str1.GetLength())
+		str1 = str1.Left(i1 + 1);
+	i2 = str2.GetLength() - 1;
+	while (i2 >= 0 && (str2[i2] == '\r' || str2[i2] == '\n'))
+		--i2;
+	if (i2+1 < str2.GetLength())
+		str2 = str2.Left(i2 + 1);
 
 	// We truncate diffs to remain inside line (ie, to not flag eol characters)
 	int width1 = pView1->GetLineLength(line);
@@ -228,7 +226,15 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	vector<wdiff*> worddiffs;
 	bool breakType = GetBreakType();
 	sd_ComputeWordDiffs((LPCTSTR)str1, (LPCTSTR)str2, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
-
+	//Add a diff in case of EOL difference
+	if (!diffOptions.bIgnoreEol)
+	{
+		if (pView1->GetTextBufferEol(line) != pView1->GetTextBufferEol(line))
+		{
+			wdiff *wdf = new wdiff(++i1, i1, ++i2, i2);
+			worddiffs.push_back(wdf);
+		}
+	}
 	if (worddiffs.empty())
 	{
 		// signal to caller that there was no diff
@@ -322,6 +328,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
  */
 void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 {
+	int i1 = 0, i2 = 0;
 	if (nLineIndex >= m_pView[0]->GetLineCount()) return;
 	if (nLineIndex >= m_pView[1]->GetLineCount()) return;
 
@@ -331,26 +338,23 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	CString str1(m_pView[0]->GetLineChars(nLineIndex), m_pView[0]->GetFullLineLength(nLineIndex));
 	CString str2(m_pView[1]->GetLineChars(nLineIndex), m_pView[1]->GetFullLineLength(nLineIndex));
 
-	if (diffOptions.bIgnoreEol)
-	{
-		/* Commented out code because GetLineActualLength is buggy
-		// Chop of eol (end of line) characters
-		int len1 = pView1->GetLineActualLength(line);
-		str1 = str1.Left(len1);
-		int len2 = pView2->GetLineActualLength(line);
-		str2 = str2.Left(len2);
-		*/
-		int i = str1.GetLength()-1;
-		while (i>=0 && (str1[i]=='\r' || str1[i]=='\n'))
-			--i;
-		if (i+1 < str1.GetLength())
-			str1 = str1.Left(i+1);
-		i = str2.GetLength()-1;
-		while (i>=0 && (str2[i]=='\r' || str2[i]=='\n'))
-			--i;
-		if (i+1 < str2.GetLength())
-			str2 = str2.Left(i+1);
-	}
+	/* Commented out code because GetLineActualLength is buggy
+	// Chop of eol (end of line) characters
+	int len1 = pView1->GetLineActualLength(line);
+	str1 = str1.Left(len1);
+	int len2 = pView2->GetLineActualLength(line);
+	str2 = str2.Left(len2);
+	*/
+	i1 = str1.GetLength() - 1;
+	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
+		--i1;
+	if (i1 + 1 < str1.GetLength())
+		str1 = str1.Left(i1 + 1);
+	i2 = str2.GetLength() - 1;
+	while (i2 >= 0 && (str2[i2]=='\r' || str2[i2]=='\n'))
+		--i2;
+	if (i2+1 < str2.GetLength())
+		str2 = str2.Left(i2 + 1);
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
@@ -358,9 +362,17 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-		// Make the call to stringdiffs, which does all the hard & tedious computations
+	// Make the call to stringdiffs, which does all the hard & tedious computations
 	sd_ComputeWordDiffs((LPCTSTR)str1, (LPCTSTR)str2, casitive, xwhite, breakType, byteColoring, pworddiffs);
-
+	//Add a diff in case of EOL difference
+	if (!diffOptions.bIgnoreEol)
+	{
+		if (m_pView[0]->GetTextBufferEol(nLineIndex) != m_pView[1]->GetTextBufferEol(nLineIndex))
+		{
+			wdiff *wdf = new wdiff(++i1, i1, ++i2, i2);
+			pworddiffs->push_back(wdf);
+		}
+	}
 	return;
 }
 
