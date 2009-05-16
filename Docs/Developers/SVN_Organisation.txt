@@ -34,7 +34,6 @@ WinMerge Folder Structure
    - diffutils
    - editlib
    - ExpatMapLib
-   - Languages
    - res
  - Testing
    - CppUnit
@@ -43,6 +42,8 @@ WinMerge Folder Structure
  - Tools
    - diff2winmerge
    - MakePatchDirs
+ - Translations
+   - WinMerge
  - Web
 
 
@@ -146,9 +147,6 @@ WinMerge/Src/editlib/
 WinMerge/Src/ExpatMapLib/
  - Plugin to Expat XML parser for handling character encodings
 
-WinMerge/Src/Languages/
- - WinMerge translations sources.
-
 WinMerge/Src/res/
  - Bitmaps, icons etc.
 
@@ -173,6 +171,12 @@ WinMerge/Tools/MakePatchDirs/
    altered directories
  - Used to create patches to WinMerge source tree, for upload to
    sourceforge patch board
+
+WinMerge/Translations
+ - Translation files for WinMerge components and documents
+
+WinMerge/Translations/WinMerge
+ - WinMerge executable translations
 
 WinMerge/Web/
  - Homepages.
