@@ -41,13 +41,13 @@ Sub Main
   
   bNecessary = True
   If (oFSO.FileExists("English.pot") = True) And (oFSO.FileExists("MergeLang.rc") = True) Then 'If the POT and RC file exists...
-    bNecessary = GetArchiveBit("../Merge.rc") Or GetArchiveBit("English.pot") Or GetArchiveBit("MergeLang.rc") 'RCs or POT file changed?
+    bNecessary = GetArchiveBit("../../Src/Merge.rc") Or GetArchiveBit("English.pot") Or GetArchiveBit("MergeLang.rc") 'RCs or POT file changed?
   End If
   
   If (bNecessary = True) Then 'If update necessary...
-    Set oStrings = GetStringsFromRcFile("../Merge.rc", sCodePage)
+    Set oStrings = GetStringsFromRcFile("../../Src/Merge.rc", sCodePage)
     CreateMasterPotFile "English.pot", oStrings, sCodePage
-    SetArchiveBit "../Merge.rc", False
+    SetArchiveBit "../../Src/Merge.rc", False
     SetArchiveBit "English.pot", False
     SetArchiveBit "MergeLang.rc", False
     For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...

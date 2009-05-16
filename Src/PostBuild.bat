@@ -8,15 +8,15 @@ REM echo %0
 REM echo $(IntDir) = %1
 REM echo $(TargetPath) = %2
 REM Create English.pot and MergeLang.rc from Merge.rc
-cd Languages
+cd ..\Translations\WinMerge
 cscript CreateMasterPotFile.vbs
-cd ..
+
 REM Create MergeLang.dll from MergeLang.rc
-rc /fo%1\MergeLang.res /i.. Languages\MergeLang.rc
-link /DLL /NOENTRY /MACHINE:IX86 /OUT:%2\..\MergeLang.dll %1\MergeLang.res
+rc /fo..\%1\MergeLang.res /i..\..\Src MergeLang.rc
+link /DLL /NOENTRY /MACHINE:IX86 /OUT:%2\..\MergeLang.dll ..\%1\MergeLang.res
 REM Copy PO files to where WinMerge expects them
 mkdir %2\..\Languages
-copy Languages\*.po %2\..\Languages
+copy *.po %2\..\Languages
 exit
 
 :_MSDEV_BLD_ENV_()
