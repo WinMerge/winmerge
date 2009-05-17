@@ -102,9 +102,6 @@ WinMerge/Installer/InnoSetup/
 WinMerge/Installer/InnoSetup/Art/
  - Graphics files installer needs
 
-WinMerge/Installer/InnoSetup/Languages/
- - Installer translations
-
 WinMerge/Installer/Runtimes/
  - Libraries for WinMerge added to install package
 
@@ -174,6 +171,9 @@ WinMerge/Tools/MakePatchDirs/
 
 WinMerge/Translations
  - Translation files for WinMerge components and documents
+
+WinMerge/Translations/InnoSetup
+ - InnoSetup installer translations
 
 WinMerge/Translations/WinMerge
  - WinMerge executable translations
