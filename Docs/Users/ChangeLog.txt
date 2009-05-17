@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.8
   Move executable translations to /Translations/WinMerge (r6754)
+  Move InnoSetup translations to /Translations/InnoSetup (r6759)
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
 

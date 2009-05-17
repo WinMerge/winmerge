@@ -115,37 +115,37 @@ AlwaysShowComponentsList=true
 
 [Languages]
 ;Inno Setup's Native Language
-Name: English; MessagesFile: Languages\English.isl
+Name: English; MessagesFile: ..\..\Translations\InnoSetup\English.isl
 
 ;Localizations:
-Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt
-Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
-Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt
-Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseTraditional.txt
-Name: Croatian; MessagesFile: Languages\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt
-Name: Czech; MessagesFile: Languages\Czech.isl
-Name: Danish; MessagesFile: Languages\Danish.isl
-Name: Dutch; MessagesFile: Languages\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt
-Name: French; MessagesFile: Languages\French.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-French.txt
-Name: Galician; MessagesFile: Languages\Galician.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Galician.txt
-Name: German; MessagesFile: Languages\German.isl
-Name: Greek; MessagesFile: Languages\Greek.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Greek.txt
-Name: Hungarian; MessagesFile: Languages\Hungarian.isl
-Name: Italian; MessagesFile: Languages\Italian.isl
-Name: Japanese; MessagesFile: Languages\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt
-Name: Korean; MessagesFile: Languages\Korean.isl
-Name: Norwegian; MessagesFile: Languages\Norwegian.isl
-Name: Polish; MessagesFile: Languages\Polish.isl
-Name: Portuguese; MessagesFile: Languages\Portuguese.isl
-Name: PortugueseBrazilian; MessagesFile: Languages\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt
-Name: Romanian; MessagesFile: Languages\Romanian.isl
-Name: Russian; MessagesFile: Languages\Russian.isl
-Name: Slovak; MessagesFile: Languages\Slovak.isl
-Name: Slovenian; MessagesFile: Languages\Slovenian.isl
-Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
-Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt
-Name: Turkish; MessagesFile: Languages\Turkish.isl
-Name: Ukrainian; MessagesFile: Languages\Ukrainian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Ukrainian.txt
+Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt
+Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
+Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt
+Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseTraditional.txt
+Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt
+Name: Czech; MessagesFile: ..\..\Translations\InnoSetup\Czech.isl
+Name: Danish; MessagesFile: ..\..\Translations\InnoSetup\Danish.isl
+Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt
+Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-French.txt
+Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Galician.txt
+Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
+Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Greek.txt
+Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
+Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt
+Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
+Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
+Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
+Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
+Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt
+Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl
+Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
+Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Slovak.isl
+Name: Slovenian; MessagesFile: ..\..\Translations\InnoSetup\Slovenian.isl
+Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
+Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt
+Name: Turkish; MessagesFile: ..\..\Translations\InnoSetup\Turkish.isl
+Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Ukrainian.txt
 
 
 [Messages]
