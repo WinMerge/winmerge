@@ -358,4 +358,56 @@ namespace
 			EXPECT_EQ(16, pDiff->end[1]);
 		}
 	}
+
+	// Sf.net bug #2793479
+	// ' ' (space) added before '(TCHAR' in left
+	// 'const' added before 'BYTE' in right
+	// char-diff
+	TEST_F(StringDiffsBugsTest, Bug_2793479_1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);",
+				"static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);",
+				false, 0, 0, true, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(30, pDiff->start[0]);
+			EXPECT_EQ(7, pDiff->start[1]);
+			EXPECT_EQ(38, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(12, pDiff->start[0]);
+			EXPECT_EQ(42, pDiff->start[1]);
+			EXPECT_EQ(43, pDiff->end[0]);
+			EXPECT_EQ(47, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2793479
+	// ' ' (space) added before '(TCHAR' in left
+	// 'const' added before 'BYTE' in right
+	// word-diff
+	TEST_F(StringDiffsBugsTest, Bug_2793479_2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);",
+				"static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);",
+				false, 0, 0, false, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(11, pDiff->start[0]);
+			EXPECT_EQ(11, pDiff->start[1]);
+			EXPECT_EQ(29, pDiff->end[0]);
+			EXPECT_EQ(36, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(31, pDiff->start[0]);
+			EXPECT_EQ(42, pDiff->start[1]);
+			EXPECT_EQ(38, pDiff->end[0]);
+			EXPECT_EQ(47, pDiff->end[1]);
+		}
+	}
 }  // namespace
