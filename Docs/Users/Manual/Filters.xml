@@ -885,7 +885,8 @@ Pekka Himanen</screen></para>
         </variablelist>
 
         <para>Your changes are saved when you click <guibutton>OK</guibutton> to
-        dismiss the Filters dialog.</para>
+        dismiss the Filters dialog. Line filters are stored in the Windows
+        registry.</para>
       </section>
 
       <section id="Filters_CreatingFile">

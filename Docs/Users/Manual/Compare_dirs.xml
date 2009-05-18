@@ -424,9 +424,16 @@ I get the partial list, but no Abort indicator.--></para>
     <section>
       <title>Navigating the Folder Compare window</title>
 
-      <para>You can use the mouse as well as keyboard and context menu shortcuts
-      to navigate the Folder Compare window. You can also use the toolbar
-      buttons. For example, the <inlinemediaobject>
+      <indexterm>
+        <primary>navigation functions</primary>
+
+        <secondary>folder compare</secondary>
+      </indexterm>
+
+      <para>You can use the mouse as well as <link
+      linkend="Shortcuts">keyboard</link> and context menu shortcuts to navigate
+      the Folder Compare window. You can also use the toolbar buttons. For
+      example, the <inlinemediaobject>
           <imageobject>
             <imagedata contentdepth="15" fileref="screenshots/nextdiff_btn.png" />
           </imageobject>
@@ -1103,8 +1110,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       </variablelist>
     </section>
 
-    <section>
-      <title id="CompareDirs_browse_unique">Browsing unique folders<indexterm>
+    <section id="CompareDirs_browse_unique">
+      <title>Browsing unique folders<indexterm>
           <primary>unique folders</primary>
 
           <secondary>comparing</secondary>
@@ -1256,7 +1263,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <orderedlist>
         <listitem>
           <para>Right-click any column heading and choose <guimenuitem>Customize
-          Columns</guimenuitem>.</para>
+          Columns</guimenuitem>. Or, click <menuchoice>
+              <guimenu>Tools</guimenu>
+
+              <guimenuitem>Customize Columns</guimenuitem>
+            </menuchoice></para>
         </listitem>
 
         <listitem>
@@ -1423,5 +1434,30 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         merge.</para>
       </tip>
     </section>
+  </section>
+
+  <section id="CompareDirs_winshell">
+    <title>Using Windows shell commands from the Folder Compare window</title>
+
+    <para>If you have <link linkend="Configuration_foldercompare">enabled
+    <option>Add Shell menu to context menu</option></link> in the Shell
+    Integration page of WinMerge options, you can right-click a selection in the
+    Folder Compare window and launch Windows shell commands directly from the
+    context menu.</para>
+
+    <para>If the selection occurs on both sides, you can choose either the
+    <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>;
+    if the item occurs only on one side, only that side's shell menu is
+    available.</para>
+
+    <caution>
+      <para>Please consider that shell menu commands run entirely outside of
+      WinMerge. Consequently, WinMerge might not respond to some operations in
+      the same way as operations performed inside WinMerge. For example, if you
+      delete a file through this integration instead of using the Winmerge
+      <command>Delete</command> command, the change is not automatically shown
+      in the Folder Compare window (you have to manually refresh the window to
+      see the change).</para>
+    </caution>
   </section>
 </article>

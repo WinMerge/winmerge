@@ -102,7 +102,7 @@
   </section>
 
   <section id="Configuration_general">
-    <title>General options</title>
+    <title>General page</title>
 
     <para>The General page has these options:</para>
 
@@ -363,7 +363,7 @@
   </section>
 
   <section id="Configuration_compare">
-    <title>Compare options</title>
+    <title>Compare page</title>
 
     <para>The options in this page enable you to change some of the ways that
     WinMerge detects differences, such as comparing only file size, or ignoring
@@ -782,7 +782,7 @@
   </section>
 
   <section id="Configuration_editor">
-    <title>Editor options<indexterm>
+    <title>Editor page<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1003,7 +1003,7 @@
   </section>
 
   <section id="Configuration_colors">
-    <title>Colors options<indexterm>
+    <title>Colors page<indexterm>
         <primary>difference colors</primary>
 
         <secondary>options</secondary>
@@ -1023,7 +1023,7 @@
   </section>
 
   <section id="Configuration_textcolors">
-    <title>Text Colors options<indexterm>
+    <title>Text Colors page<indexterm>
         <primary>text colors</primary>
 
         <secondary>options</secondary>
@@ -1037,7 +1037,7 @@
   </section>
 
   <section id="Configuration_syntaxcolors">
-    <title>Syntax Colors options<indexterm>
+    <title>Syntax Colors page<indexterm>
         <primary>syntax highlighting</primary>
 
         <secondary>color options</secondary>
@@ -1054,7 +1054,7 @@
   </section>
 
   <section id="Configuration_archive">
-    <title>Archive Support<indexterm>
+    <title>Archive Support page<indexterm>
         <primary>archiving files</primary>
 
         <secondary>configuring support after installation</secondary>
@@ -1142,7 +1142,7 @@
   </section>
 
   <section id="Configuration_system">
-    <title>System options</title>
+    <title>System page</title>
 
     <section>
       <title>Send deleted files to Recycle Bin<indexterm>
@@ -1171,92 +1171,7 @@
       </itemizedlist>
     </section>
 
-    <section>
-      <title>Add to explorer context menu<indexterm>
-          <primary>integration</primary>
-
-          <secondary>with Windows shell</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Enabled</option> (default): Adds one or more WinMerge
-          shortcuts to the Windows Explorer context menu. After right-clicking
-          one or more files or folders, choose a WinMerge shortcut to open the
-          items in a WinMerge compare window.</para>
-
-          <para>Two additional options are available if you use this
-          integration. Neither option is enabled by default, but you can enable
-          one or both:</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>Enable advanced menu</term>
-
-              <listitem>
-                <itemizedlist>
-                  <listitem>
-                    <para><option>Disabled</option> (default): The
-                    <guimenuitem>WinMerge</guimenuitem> shortcut is included in
-                    the Windows Explorer context menu when you right-click one
-                    or more files or folders. If you select a single item, the
-                    Select Files or Folders dialog opens. If you select two
-                    items, they are opened directly in a Compare window.</para>
-                  </listitem>
-
-                  <listitem>
-                    <para><option>Enabled</option>: Replaces the
-                    <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer
-                    context menu with <guimenuitem>Compare</guimenuitem>
-                    shortcuts, described in <xref
-                    linkend="OpenPaths_shell-integ" />. The
-                    <guimenuitem>Compare</guimenuitem> shortcuts enable you to
-                    add a selected path to memory, then choose the second
-                    separately (for example, in a different Explorer
-                    view).</para>
-                  </listitem>
-                </itemizedlist>
-              </listitem>
-            </varlistentry>
-
-            <varlistentry>
-              <term>Include subfolders by default</term>
-
-              <listitem>
-                <itemizedlist>
-                  <listitem>
-                    <para><option>Disabled</option> (default): When you use the
-                    <guimenuitem>WinMerge</guimenuitem> or
-                    <guimenuitem>Compare</guimenuitem> shortcut, only the top
-                    level of files is selected: the compare operation is
-                    non-recursive.</para>
-                  </listitem>
-
-                  <listitem>
-                    <para><option>Enabled</option>: The selection includes
-                    subfolders, making the compare operation recursive.</para>
-
-                    <para>Another way to include subfolders is to press
-                    <keycap>Control</keycap> while selecting the
-                    <guimenuitem>WinMerge</guimenuitem> or
-                    <guimenuitem>Compare</guimenuitem> shortcut in the Windows
-                    Explorer context menu.</para>
-                  </listitem>
-                </itemizedlist>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-
-        <listitem>
-          <para><option>Disabled</option>: The
-          <guimenuitem>WinMerge</guimenuitem> shortcut is unavailable in Windows
-          Explorer.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
+    <section id="Configuration_external_editor">
       <title>External editor<indexterm>
           <primary>external editor</primary>
 
@@ -1268,7 +1183,7 @@
       WinMerge to open an external editor from the Folder Compare context
       menu.</para>
 
-      <para>By default, Notepad is configured as the default external editor,
+      <para>Installation configures Notepad as the default external editor,
       because it is found on all Windows systems. To configure a different
       external editor, enter the full path to its executable file.</para>
 
@@ -1329,7 +1244,7 @@
   </section>
 
   <section id="Configuration_backup">
-    <title>Backup Files<indexterm>
+    <title>Backup Files page<indexterm>
         <primary>backup files, options</primary>
       </indexterm></title>
 
@@ -1409,7 +1324,7 @@
   </section>
 
   <section id="Configuration_vcs">
-    <title>Version Control options<indexterm>
+    <title>Version Control page<indexterm>
         <primary>version control systems</primary>
 
         <secondary>configuring after installation</secondary>
@@ -1451,7 +1366,7 @@ VCS integration? My installation had an option to integrate with TortoiseSVN.-->
   </section>
 
   <section id="Configuration_codepage">
-    <title>Codepage options<indexterm>
+    <title>Codepage page<indexterm>
         <primary>codepage</primary>
 
         <secondary>options</secondary>
@@ -1566,6 +1481,110 @@ or is this understood?--></para>
             external editor does not support custom codepages, disable this
             option.</para>
           </caution>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_shell-integ">
+    <title>Shell Integration page</title>
+
+    <section id="Configuration_winexplorer-integ">
+      <title>Explorer<indexterm>
+          <primary>integration</primary>
+
+          <secondary>with Windows shell</secondary>
+        </indexterm></title>
+
+      <para>The <option>Add to context menu</option> option enables you to
+      launch WinMerge directly from Windows Explorer, comparing items that you
+      have selected there. It is enabled or disabled by default during WinMerge
+      installation. If enabled, you can also enable one or both of these
+      options:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Enable advanced menu</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>Disabled</option> (default): Only the
+                <guimenuitem>WinMerge</guimenuitem> shortcut is included in the
+                Windows Explorer context menu.</para>
+              </listitem>
+
+              <listitem>
+                <para><option>Enabled</option>: Replaces the
+                <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer
+                context menu with <guimenuitem>Compare</guimenuitem>
+                shortcuts.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Include subfolders by default</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>Disabled</option> (default): folder compare
+                operations are non-recursive.</para>
+              </listitem>
+
+              <listitem>
+                <para><option>Enabled</option>: The selection includes
+                subfolders, making the compare operation recursive.</para>
+              </listitem>
+            </itemizedlist>
+
+            <note>
+              <para>This option does not change the <option>Include
+              Subfolders</option> setting for the Select Files or Folders
+              dialog.</para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><xref linkend="OpenPaths_shell-integ" /> describes how to use the
+      WinMerge and Compare shortcuts.</para>
+    </section>
+
+    <section id="Configuration_foldercompare">
+      <title>Folder compare</title>
+
+      <para>The <option>Add Shell menu to context menu</option> option enables
+      you to launch some Windows shell commands from the WinMerge window:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default). No shell menus are
+          available in the Folder Compare context menu.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Adds a <guimenu>Left shell
+          menu</guimenu> or <guimenu>Right shell menu</guimenu>, or both, to the
+          Folder Compare context menu. The shell menu (if added) is identical to
+          the path's context menu in Windows Explorer, and enables you to launch
+          its commands in the same way.</para>
+
+          <para>If you right-click an item that occurs on both sides, both the
+          left and right shell menus are available; if the item occurs only on
+          one side, only that side's shell menu appears.</para>
+
+          <note>
+            <para>Using the shell menu is just like launching Windows commands
+            outside of WinMerge. Consequently, WinMerge might not respond to
+            some operations in the same way as operations performed inside
+            WinMerge.</para>
+          </note>
+
+          <para> <xref linkend="CompareDirs_winshell" /> has more information
+          about using the shell menus.</para>
         </listitem>
       </itemizedlist>
     </section>
