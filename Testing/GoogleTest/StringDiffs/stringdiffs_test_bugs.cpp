@@ -322,15 +322,15 @@ namespace
 		if (diffs.size() > 1)
 		{
 			wdiff *pDiff = diffs[0];
-			EXPECT_EQ(7, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->start[0]);
 			EXPECT_EQ(7, pDiff->start[1]);
-			EXPECT_EQ(7, pDiff->end[0]);
-			EXPECT_EQ(8, pDiff->end[1]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
 			pDiff = diffs[1];
-			EXPECT_EQ(15, pDiff->start[0]);
+			EXPECT_EQ(12, pDiff->start[0]);
 			EXPECT_EQ(16, pDiff->start[1]);
-			EXPECT_EQ(15, pDiff->end[0]);
-			EXPECT_EQ(17, pDiff->end[1]);
+			EXPECT_EQ(11, pDiff->end[0]);
+			EXPECT_EQ(16, pDiff->end[1]);
 		}
 	}
 
