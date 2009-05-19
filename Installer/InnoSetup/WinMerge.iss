@@ -118,34 +118,34 @@ AlwaysShowComponentsList=true
 Name: English; MessagesFile: ..\..\Translations\InnoSetup\English.isl
 
 ;Localizations:
-Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt
-Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
-Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt
-Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseTraditional.txt
-Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt
+Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt
+Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
+Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt
+Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt
+Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt
 Name: Czech; MessagesFile: ..\..\Translations\InnoSetup\Czech.isl
 Name: Danish; MessagesFile: ..\..\Translations\InnoSetup\Danish.isl
-Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt
-Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-French.txt
-Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Galician.txt
+Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Dutch.txt
+Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-French.txt
+Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
 Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
-Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Greek.txt
+Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
-Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
 Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
-Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt
+Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
 Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Slovak.isl
 Name: Slovenian; MessagesFile: ..\..\Translations\InnoSetup\Slovenian.isl
-Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
-Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt
+Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
+Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: ..\..\Translations\InnoSetup\Turkish.isl
-Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Ukrainian.txt
+Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
 
 
 [Messages]
@@ -382,48 +382,48 @@ Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: pr
 
 ; Language files
 Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
+Source: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
 Source: ..\..\Translations\WinMerge\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
+Source: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
 Source: ..\..\Translations\WinMerge\Catalan.po; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
+Source: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
 Source: ..\..\Translations\WinMerge\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Simplified
+Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Simplified
 Source: ..\..\Translations\WinMerge\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-ChineseTraditional.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Traditional
+Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt; DestDir: {app}\Docs; Components: Languages\Chinese_Traditional
 Source: ..\..\Translations\WinMerge\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Croatian.txt; DestDir: {app}\Docs; Components: Languages\Croatian
+Source: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt; DestDir: {app}\Docs; Components: Languages\Croatian
 Source: ..\..\Translations\WinMerge\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Dutch.txt; DestDir: {app}\Docs; Components: Languages\Dutch
+Source: ..\..\Translations\Docs\Readme\ReadMe-Dutch.txt; DestDir: {app}\Docs; Components: Languages\Dutch
 Source: ..\..\Translations\WinMerge\French.po; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
+Source: ..\..\Translations\Docs\Readme\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
 Source: ..\..\Translations\WinMerge\Galician.po; DestDir: {app}\Languages; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Galician.txt; DestDir: {app}\Docs; Components: Languages\Galician
+Source: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt; DestDir: {app}\Docs; Components: Languages\Galician
 Source: ..\..\Translations\WinMerge\German.po; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
+Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
+Source: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
 Source: ..\..\Translations\WinMerge\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
+Source: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
 Source: ..\..\Translations\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish
+Source: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish
 Source: ..\..\Translations\WinMerge\Turkish.po; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Docs\Users\Languages\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
+Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
 
 Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
