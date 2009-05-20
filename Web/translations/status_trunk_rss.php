@@ -6,5 +6,5 @@
   
   $page = new Page;
   $status = $page->convertXml2Array('status_trunk.xml');
-  printTranslationsStatusRSS($status, 'Trunk', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/');
+  printTranslationsStatusRSS($status, 'Trunk', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Translations/WinMerge/');
 ?>
