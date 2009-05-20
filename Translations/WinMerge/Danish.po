@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Danish\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../Src/\n"
 "X-Poedit-Country: DENMARK\n"
 
 #. LANGUAGE, SUBLANGUAGE

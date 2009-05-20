@@ -255,7 +255,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.WriteLine """Content-Transfer-Encoding: 8bit\n"""
   oPotFile.WriteLine """X-Poedit-Language: English\n"""
   oPotFile.WriteLine """X-Poedit-SourceCharset: CP" & sCodePage & "\n"""
-  oPotFile.WriteLine """X-Poedit-Basepath: ../\n"""
+  oPotFile.WriteLine """X-Poedit-Basepath: ../../Src/\n"""
   'oPotFile.WriteLine """X-Generator: CreateMasterPotFile.vbs\n"""
   oPotFile.WriteLine
   For Each sKey In oStrings.Keys 'For all strings...

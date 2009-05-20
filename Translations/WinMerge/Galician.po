@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-Language: Galician\n"
 "X-Poedit-SourceCharset: CP1252\n"
 "X-Poedit-Country: Galiza\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../Src/\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
