@@ -24,6 +24,7 @@
     <?define PcreBuildDir = "..\..\Build\pcre\lib\x64\Release" ?>
     
     <?define StartMenuShortcutsGuid = "CDC49AA0-DC37-439d-8358-68E2EA9EF909" ?>
+    <?define DesktopShortcutGuid = "CFF6BDA0-483F-496e-819F-0FC8874C2B9C" ?>
   <?else ?> <!-- if "x86" platform -->
     <?define Win64 = "no" ?>
     <?define PackagePlatform = "x86" ?>
@@ -35,5 +36,6 @@
     <?define PcreBuildDir = "..\..\Build\pcre" ?>
     
     <?define StartMenuShortcutsGuid = "12413436-9929-453c-870B-03146CE11960" ?>
+    <?define DesktopShortcutGuid = "36035411-C6BE-43e8-B569-B1EC325D180C" ?>
   <?endif ?>
 </Include>

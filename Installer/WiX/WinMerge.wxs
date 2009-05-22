@@ -7,6 +7,17 @@
   <?include Config.wxi ?>
   <!--
     TODO:
+      * Tasks
+        * Shortcuts
+          * Quick Launch
+        * Integrate to...
+          * TortoiseCVS
+          * TortoiseSVN
+          * ClearCase
+        * Modify Path
+      * Don't install 32 bit version von Windows x64
+      * Install C++ Runtime files
+      * Separate page for tasks (shortcuts, TortoiseSVN, ...)
       * Install all files
       * Mutli-language support
       * ...
@@ -46,6 +57,7 @@
       <Directory Id="ProgramMenuFolder">
         <Directory Id="WinMergeMenuFolder" Name="WinMerge" />
       </Directory>
+      <Directory Id="DesktopFolder" />
     </Directory>
     
     <DirectoryRef Id="INSTALLDIR">
@@ -157,6 +169,17 @@
           Target="[INSTALLDIR]Docs\WinMerge.chm"
           WorkingDirectory="INSTALLDIR" />
         <RemoveFolder Id="WinMergeMenuFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Desktop shortcut -->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="$(var.DesktopShortcutGuid)" Win64="$(var.Win64)">
+        <Shortcut Id="WinMergeDesktopShortcut" 
+          Name="WinMerge" 
+          Target="[INSTALLDIR]WinMergeU.exe"
+          WorkingDirectory="INSTALLDIR" />
         <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </DirectoryRef>
