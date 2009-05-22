@@ -1,0 +1,84 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"POT-Creation-Date: 2008-03-04 18:02+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Românã <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1250\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Romanian\n"
+"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-Country: ROMANIA\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_ROMANIAN, SUBLANG_DEFAULT"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:28
+#, c-format
+msgid "1252"
+msgstr "1250"
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "ShellExtension"
+msgstr "ShellExtension"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "WinMerge"
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Deschide cu WinMerge"
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr "Selectati nu mai mult de 2 elemente"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare"
+msgstr "Compara"
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare..."
+msgstr "Compara..."
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Compare To"
+msgstr "Compara cu"
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr "Salveaza calea aceasta. Selecteaza alta cale pentru a o compara cu aceasta."
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr "Compara cu calea salvata (%1)"
+
+#: ShellExtensionTemplate.rc:51
+#, c-format
+msgid "Re-select First"
+msgstr "Re-selecteaza prima cale"
+

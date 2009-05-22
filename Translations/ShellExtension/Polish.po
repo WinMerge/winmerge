@@ -1,0 +1,83 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Polish <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1250\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-SourceCharset: CP1250\n"
+"X-Poedit-Basepath: ../\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_POLISH, SUBLANG_DEFAULT"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:28
+#, c-format
+msgid "1252"
+msgstr "1250"
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "ShellExtension"
+msgstr "ShellExtension"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "WinMerge"
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Otwórz w WinMerge"
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr "Proszê wybraæ nie wiêcej ni¿ 2 pliki"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare"
+msgstr "Porównaj"
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare..."
+msgstr "Porównaj..."
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Compare To"
+msgstr "Porównaj z"
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr "Zapisz œcie¿kê. Wybierz kolejn¹ œcie¿kê do porównania z obecn¹."
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr "Porównaj z zapisan¹ œcie¿k¹ (%1)"
+
+#: ShellExtensionTemplate.rc:51
+#, c-format
+msgid "Re-select First"
+msgstr "Wybierz pwtórnie"
+

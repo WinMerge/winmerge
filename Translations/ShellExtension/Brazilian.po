@@ -1,0 +1,84 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Brazilian\n"
+"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:28
+#, c-format
+msgid "1252"
+msgstr "1252"
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "ShellExtension"
+msgstr "Extensão do Shell"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "WinMerge"
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Abrir com o WinMerge"
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr "Por favor não selecione mais do que 2 itens"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare"
+msgstr "Comparar"
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare..."
+msgstr "Comparar..."
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Compare To"
+msgstr "Comparar Com"
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr "Salvar este caminho. Selecione outro caminho para comparar com este caminho."
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr "Comparar com o caminho salvo (%1)"
+
+#: ShellExtensionTemplate.rc:51
+#, c-format
+msgid "Re-select First"
+msgstr "Re-selecionar Primeiro"
+

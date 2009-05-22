@@ -1,0 +1,83 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:28
+#, c-format
+msgid "1252"
+msgstr "1252"
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "ShellExtension"
+msgstr "ShellExtension"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "WinMerge"
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Abrr com WinMerge"
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr "Não seleccione mais de 2 itens"
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare"
+msgstr "Comparar"
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare..."
+msgstr "Comparar..."
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Compare To"
+msgstr "Comparar com"
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr "Guardar esta localização. Seleccione outra localização para comparar com esta."
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr "Comparar com localização guardada (%1)"
+
+#: ShellExtensionTemplate.rc:51
+#, c-format
+msgid "Re-select First"
+msgstr "Seleccione novamente a primeira"
+

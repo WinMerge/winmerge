@@ -7,6 +7,7 @@ WinMerge 2.13.8
   Move executable translations to /Translations/WinMerge (r6754)
   Move InnoSetup translations to /Translations/InnoSetup (r6759)
   Move Readme translations to /Translations/Docs/Readme (r6764)
+  Create translated ShellExtension RC files from PO files (#2794514)
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
 
