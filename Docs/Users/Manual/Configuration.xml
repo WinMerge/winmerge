@@ -284,6 +284,30 @@
     </section>
 
     <section>
+      <title>Show "Select Files or Folders" Dialog on Startup<indexterm>
+          <primary>Select Files or Folders dialog</primary>
+
+          <secondary>opening automatically</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): The WinMerge window opens
+          when you launch WinMerge. You must then click <menuchoice>
+              <guimenu>File</guimenu>
+
+              <guimenuitem>Open</guimenuitem>
+            </menuchoice> to open Select Files or Folders.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: The Select Files or Folders dialog
+          opens along with the WinMerge window when you launch WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Open-dialog Auto-Completion<indexterm>
           <primary>MRU list</primary>
         </indexterm></title>
@@ -1583,7 +1607,7 @@ or is this understood?--></para>
             WinMerge.</para>
           </note>
 
-          <para> <xref linkend="CompareDirs_winshell" /> has more information
+          <para><xref linkend="CompareDirs_winshell" /> has more information
           about using the shell menus.</para>
         </listitem>
       </itemizedlist>

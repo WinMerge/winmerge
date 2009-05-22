@@ -94,7 +94,7 @@
 
             <listitem>
               <para>File filter files enable you to narrow the scope of
-              comparisons. </para>
+              comparisons.</para>
             </listitem>
           </varlistentry>
 
@@ -181,6 +181,15 @@
           </varlistentry>
 
           <varlistentry>
+            <term>Add WinMerge folder to your system path</term>
+
+            <listitem>
+              <para>Adds the WinMerge installation folder to your system's Path
+              environment variable.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
             <term>Integrate with TortoiseCVS<indexterm>
                 <primary>TortoiseCVS integration</primary>
               </indexterm></term>
@@ -201,7 +210,7 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with ClearCase<indexterm>
+            <term>Integrate with Rational ClearCase<indexterm>
                 <primary>ClearCase integration</primary>
 
                 <secondary>configuring during installation</secondary>

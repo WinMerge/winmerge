@@ -13,13 +13,13 @@
   tools.</para>
 
   <section>
-    <title>Using the command-line interface (CLI) </title>
+    <title>Using the command-line interface (CLI)</title>
 
     <para>The WinMerge command-line interface (CLI), described in <xref
     linkend="CommandLine" />, enables you to run WinMerge from a Command Prompt
     window, from scripts, or from another tool or program. Basically, any
     program that allows you to call an external executable with at least one
-    path, can be used to launch a WinMerge operation. </para>
+    path, can be used to launch a WinMerge operation.</para>
 
     <para>Here are just a few examples:</para>
 
@@ -166,7 +166,7 @@
 
       <orderedlist>
         <listitem>
-          <para>In Windows explorer, hold <keycap>Ctrl</keycap>, select any two
+          <para>In Windows Explorer, hold <keycap>Ctrl</keycap>, select any two
           files, and right-click.</para>
         </listitem>
 
