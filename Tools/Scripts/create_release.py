@@ -253,7 +253,7 @@ def setup_translations():
 
     # Scripts must be run from the directory where they reside
     curdir = os.getcwd()
-    os.chdir('Src/Languages')
+    os.chdir('Translations/WinMerge')
     call(['cscript', '/nologo', 'CreateMasterPotFile.vbs'])
     call(['cscript', '/nologo', 'UpdatePoFilesFromPotFile.vbs'])
     os.chdir(curdir)
@@ -444,7 +444,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 def copy_po_files(dest_folder):
     """Copies all PO files to destination folder."""
 
-    lang_folder = 'Src/Languages'
+    lang_folder = 'Translations/WinMerge'
     files = os.listdir(lang_folder)
 
     print 'Copying PO files to binary folder...'
