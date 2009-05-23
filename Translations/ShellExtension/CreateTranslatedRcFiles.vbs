@@ -146,7 +146,11 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
   Dim oMasterRcFile, sMasterLine
   Dim oLanguageRcFile, sLanguageLine
   Dim iBlockType, oMatches, oMatch, sMsgId, sMsgStr
-  Dim reLanguage, reCodePage, reString, sTemp
+  Dim reAfxTarg, reLanguage, reCodePage, reString, sTemp
+  
+  Set reAfxTarg = New RegExp
+  reAfxTarg.Pattern = "defined\((AFX_TARG_\w*)\)"
+  reAfxTarg.IgnoreCase = True
   
   Set reLanguage = New RegExp
   reLanguage.Pattern = "LANGUAGE (LANG_\w*, SUBLANG_\w*)"
@@ -182,7 +186,14 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
       ElseIf (sMasterLine <> "") Then 'If NOT empty line...
         Select Case iBlockType
           Case NO_BLOCK:
-            If reLanguage.Test(sMasterLine) Then 'LANGUAGE...
+            If reAfxTarg.Test(sMasterLine) Then 'AFX_TARG_*...
+              Set oMatch = reAfxTarg.Execute(sMasterLine)(0)
+              sMsgId = oMatch.SubMatches(0)
+              If (sMsgId <> "") And (oTranslations.Exists(sMsgId) = True) Then 'If translation located...
+                sMsgStr = oTranslations(sMsgId)
+                sLanguageLine = Replace(sLanguageLine, "defined(" & sMsgId, "defined(" & sMsgStr)
+              End If
+            ElseIf reLanguage.Test(sMasterLine) Then 'LANGUAGE...
               Set oMatch = reLanguage.Execute(sMasterLine)(0)
               sMsgId = oMatch.SubMatches(0)
               If (sMsgId <> "") And (oTranslations.Exists(sMsgId) = True) Then 'If translation located...

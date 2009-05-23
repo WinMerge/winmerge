@@ -20,6 +20,12 @@ msgstr ""
 "X-Poedit-Country: ROMANIA\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
+#. AFX_TARG
+#: ShellExtensionTemplate.rc:25
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_ROM"
+
 #. LANGUAGE, SUBLANGUAGE
 #: ShellExtensionTemplate.rc:27
 #, c-format

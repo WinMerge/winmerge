@@ -26,6 +26,12 @@ msgstr ""
 "X-Poedit-SourceCharset: CP1252\n"
 "X-Poedit-Basepath: ../\n"
 
+#. AFX_TARG
+#: ShellExtensionTemplate.rc:25
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_DEU"
+
 #. LANGUAGE, SUBLANGUAGE
 #: ShellExtensionTemplate.rc:27
 #, c-format
