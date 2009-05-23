@@ -10,6 +10,7 @@ WinMerge 2.13.8
   Create translated ShellExtension RC files from PO files (#2794514)
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
+  Bugfix: Wrong whitespace character highlighted in difference (#2795599)
 
 WinMerge 2.13.7 - 2009-05-13 (r6744)
   Add more C/C++ types to syntax highlight (#2776705)

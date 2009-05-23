@@ -235,6 +235,48 @@ stringdiffs::BuildWordDiffList()
 				// so all between keep as a differ
 				if (w1 == -1 && w2 == -1)
 				{
+					// check if it would be same if we remove the spaceblock
+					// we must only ckeck on the side with the shortes word
+					if ((m_words1[bw1]->end - m_words1[bw1]->start) > (m_words2[bw2]->end - m_words2[bw2]->start))
+					{
+						// first we check for size word2 and next word as space
+						if ((bw2 < (int)m_words2.size() - 2) && IsSpace(*m_words2[bw2 + 1]))
+						{
+							// Are the contents same
+							if (m_words1[bw1]->hash ==
+								Hash(m_str2, m_words2[bw2 + 2]->start, m_words2[bw2 + 2]->end, m_words2[bw2]->hash))
+							{
+								m_words2[bw2]->end = m_words2[bw2 + 2]->end;
+								// Now remove the detected blocks on side2.
+								RemoveItem2(bw2 + 1);
+								RemoveItem2(bw2 + 1);
+								bw1++;
+								bw2++;
+								continue;
+							}
+						}
+					}
+					else if ((m_words1[bw1]->end - m_words1[bw1]->start) < (m_words2[bw2]->end - m_words2[bw2]->start))
+
+					{
+						// first we check for size  word1 and next word as space
+						if ((bw1 < (int)m_words1.size() - 2) && IsSpace(*m_words1[bw1 + 1]))
+						{
+							// Are the contents same
+							if (m_words2[bw2]->hash ==
+								Hash(m_str1, m_words1[bw1 + 2]->start, m_words1[bw1 + 2]->end, m_words1[bw1]->hash))
+							{
+								m_words1[bw1]->end = m_words1[bw1 + 2]->end;
+								// Now remove the detected blocks on side2.
+								RemoveItem1(bw1 + 1);
+								RemoveItem1(bw1 + 1);
+								bw1++;
+								bw2++;
+								continue;
+							}
+						}
+					}
+					// Otherwise keep as diff
 					bw1++;
 					bw2++;
 					continue;
