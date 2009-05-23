@@ -104,7 +104,7 @@ namespace
 		sd_ComputeWordDiffs("[overlay_oid_origin, overlay_oid_target], [nil, nil]",
 			"[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\", \"target.txt\"]",
 				false, 0, 1, true, &diffs);
-		EXPECT_EQ(6, diffs.size());
+		EXPECT_EQ(4, diffs.size());
 		if (diffs.size() > 0)
 		{
 			wdiff *pDiff = diffs[0];
@@ -123,7 +123,7 @@ namespace
 		sd_ComputeWordDiffs("[overlay_oid_origin, overlay_oid_target], [nil, nil]",
 			"[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\", \"target.txt\"]",
 				false, 0, 1, false, &diffs);
-		EXPECT_EQ(6, diffs.size());
+		EXPECT_EQ(4, diffs.size());
 		if (diffs.size() > 0)
 		{
 			wdiff *pDiff = diffs[0];
@@ -284,7 +284,7 @@ namespace
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(0, pDiff->start[0]);
 			EXPECT_EQ(0, pDiff->start[1]);
-			EXPECT_EQ(0, pDiff->end[0]);
+			EXPECT_EQ(-1, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->end[1]);
 		}
 	}
@@ -304,7 +304,7 @@ namespace
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(0, pDiff->start[0]);
 			EXPECT_EQ(0, pDiff->start[1]);
-			EXPECT_EQ(0, pDiff->end[0]);
+			EXPECT_EQ(-1, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->end[1]);
 		}
 	}
@@ -374,13 +374,13 @@ namespace
 		{
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(30, pDiff->start[0]);
-			EXPECT_EQ(7, pDiff->start[1]);
-			EXPECT_EQ(38, pDiff->end[0]);
-			EXPECT_EQ(7, pDiff->end[1]);
+			EXPECT_EQ(30, pDiff->start[1]);
+			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(29, pDiff->end[1]);
 			pDiff = diffs[1];
-			EXPECT_EQ(12, pDiff->start[0]);
+			EXPECT_EQ(43, pDiff->start[0]);
 			EXPECT_EQ(42, pDiff->start[1]);
-			EXPECT_EQ(43, pDiff->end[0]);
+			EXPECT_EQ(42, pDiff->end[0]);
 			EXPECT_EQ(47, pDiff->end[1]);
 		}
 	}
@@ -405,9 +405,9 @@ namespace
 			EXPECT_EQ(36, pDiff->end[1]);
 			pDiff = diffs[1];
 			EXPECT_EQ(31, pDiff->start[0]);
-			EXPECT_EQ(42, pDiff->start[1]);
+			EXPECT_EQ(38, pDiff->start[1]);
 			EXPECT_EQ(38, pDiff->end[0]);
-			EXPECT_EQ(47, pDiff->end[1]);
+			EXPECT_EQ(37, pDiff->end[1]);
 		}
 	}
 }  // namespace
