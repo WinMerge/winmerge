@@ -27,7 +27,6 @@ WinMerge Folder Structure
    - Src_VB
    - Src_VCPP
  - ShellExtension
-   - Languages
  - Src
    - Common
    - CompareEngines
@@ -43,6 +42,9 @@ WinMerge Folder Structure
    - diff2winmerge
    - MakePatchDirs
  - Translations
+   - Docs
+   - InnoSetup
+   - ShellExtension
    - WinMerge
  - Web
 
@@ -123,9 +125,6 @@ WinMerge/Plugins/Src_VCPP/
 WinMerge/ShellExtension/
  - Files for ShellExtension for WinMerge. Needs also /Src/Common.
 
-WinMerge/ShellExtension/Languages/
- - ShellExtension translations
-
 WinMerge/Src/
  - WinMerge executable sources.
 
@@ -172,8 +171,14 @@ WinMerge/Tools/MakePatchDirs/
 WinMerge/Translations
  - Translation files for WinMerge components and documents
 
+WinMerge/Translations/Docs
+ - Translated documents, e.g. Readme
+
 WinMerge/Translations/InnoSetup
  - InnoSetup installer translations
+
+WinMerge/Translations/ShellExtension
+ - ShellExtension translations
 
 WinMerge/Translations/WinMerge
  - WinMerge executable translations
