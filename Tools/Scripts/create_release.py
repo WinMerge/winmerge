@@ -254,9 +254,16 @@ def setup_translations():
     # Scripts must be run from the directory where they reside
     curdir = os.getcwd()
     os.chdir('Translations/WinMerge')
-    call(['cscript', '/nologo', 'CreateMasterPotFile.vbs'])
-    call(['cscript', '/nologo', 'UpdatePoFilesFromPotFile.vbs'])
+    retval = call(['cscript', '/nologo', 'CreateMasterPotFile.vbs'])
+    if retval == 0:
+        retval = call(['cscript', '/nologo', 'UpdatePoFilesFromPotFile.vbs'])
     os.chdir(curdir)
+
+    if retval == 0:
+        return True
+    else:
+        print 'ERROR: Updating translations failed!'
+        return False
 
 def get_and_create_dist_folder(folder):
     """Formats a folder name for version-specific distribution folder
@@ -284,10 +291,16 @@ def svn_export(dist_src_folder):
 
     print 'Exporting sources to ' + dist_src_folder
     print 'Exporting from: ' + prog.source
+    retval = 0
     if prog.source == 'workspace':
-        call([prog.svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
+        retval = call([prog.svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
     else:
-        call([prog.svn_binary, 'export', '--non-interactive', source_location, dist_src_folder]) 
+        retval = call([prog.svn_binary, 'export', '--non-interactive', source_location, dist_src_folder])
+    if retval == 0:
+        return True
+    else:
+        print 'Error exporting sources! SVN return value: ' + retval
+        return False
 
 def cleanup_dlls_from_plugins(dist_src_folder):
     """Remove compiled plugin dll files from source distribution folders."""
@@ -331,8 +344,10 @@ def build_targets():
 
     vs_cmd = get_vs_ide_bin()
 
-    build_winmerge(vs_cmd)
-    build_shellext(vs_cmd)
+    ret = build_winmerge(vs_cmd)
+    if ret:
+        ret = build_shellext(vs_cmd)
+    return ret
 
 def build_winmerge(vs_cmd):
     """Builds WinMerge executable targets."""
@@ -343,8 +358,18 @@ def build_winmerge(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build WinMerge executables...'
-    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
-    call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell=True)
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Release'], shell = True)
+    if ret == 0:
+        ret = call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell = True)
+    else:
+        print 'ERROR: Failed to build ANSI release target of WinMerge!'
+        return False
+
+    if ret == 0:
+        return True
+    else:
+        print 'ERROR: Failed to build Unicode release target of WinMerge!'
+        return False
 
 def build_shellext(vs_cmd):
     """Builds 32-bit ShellExtension."""
@@ -354,8 +379,18 @@ def build_shellext(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build ShellExtension dlls...'
-    call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
-    call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
+    if ret == 0:
+        ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
+    else:
+        print 'ERROR: Failed to build ANSI target of ShellExtension!'
+        return False
+
+    if ret == 0:
+        return True
+    else:
+        print 'ERROR: Failed to build Unicode target of ShellExtension!'
+        return False
 
 def build_manual():
     """Builds manual's HTML Help (CHM) version for user install and
@@ -615,11 +650,14 @@ def main(argv):
     if dist_folder == '':
         sys.exit(1)
     dist_src_folder = get_src_dist_folder(dist_folder, version_folder)
-    svn_export(dist_src_folder)
+    if svn_export(dist_src_folder) == False:
+        sys.exit(1)
 
-    setup_translations()
+    if setup_translations() == False:
+        sys.exit(1)
 
-    build_targets()
+    if build_targets() == False:
+        sys.exit(1)
     build_manual()
     build_innosetup_installer(dist_folder)
 
