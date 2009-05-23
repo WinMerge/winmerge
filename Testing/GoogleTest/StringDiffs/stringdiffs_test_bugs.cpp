@@ -396,18 +396,19 @@ namespace
 				"static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);",
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
-		if (diffs.size() > 1)
+		wdiff *pDiff;
+		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			pDiff = diffs[0];
 			EXPECT_EQ(11, pDiff->start[0]);
 			EXPECT_EQ(11, pDiff->start[1]);
-			EXPECT_EQ(29, pDiff->end[0]);
+			EXPECT_EQ(37, pDiff->end[0]);
 			EXPECT_EQ(36, pDiff->end[1]);
 			pDiff = diffs[1];
-			EXPECT_EQ(31, pDiff->start[0]);
-			EXPECT_EQ(38, pDiff->start[1]);
-			EXPECT_EQ(38, pDiff->end[0]);
-			EXPECT_EQ(37, pDiff->end[1]);
+			EXPECT_EQ(43, pDiff->start[0]);
+			EXPECT_EQ(42, pDiff->start[1]);
+			EXPECT_EQ(42, pDiff->end[0]);
+			EXPECT_EQ(47, pDiff->end[1]);
 		}
 	}
 }  // namespace
