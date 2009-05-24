@@ -11,6 +11,7 @@ WinMerge 2.13.8
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
   Bugfix: Wrong whitespace character highlighted in difference (#2795599)
+  Bugfix: Generated patch had wrong file time for UTF-16 files (#2791506)
 
 WinMerge 2.13.7 - 2009-05-13 (r6744)
   Add more C/C++ types to syntax highlight (#2776705)

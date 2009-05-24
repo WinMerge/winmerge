@@ -25,6 +25,8 @@
 // $Id$
 
 #include "StdAfx.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <string>
 #include <map>
 #include <shlwapi.h>
@@ -45,6 +47,7 @@
 #include "FilterCommentsManager.h"
 #include "Environment.h"
 #include "AnsiConvert.h"
+#include "UnicodeString.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1223,6 +1226,19 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	replace_char(&*path2.begin(), '\\', '/');
 	inf_patch[0].name = ansiconvert_SystemCP(path1.c_str());
 	inf_patch[1].name = ansiconvert_SystemCP(path2.c_str());
+
+	// Fix timestamps for generated patch files
+	// If there are translations needed (e.g. when comparing UTF-16 files)
+	// then the stats in 'inf' are read from temp files. If the original
+	// file's and read timestamps differ, use original file's timestamps.
+	// See also sf.net bug item #2791506.
+	struct __stat64 st;
+	_tstat64(path1.c_str(), &st);
+	if (st.st_mtime != inf_patch[0].stat.st_mtime)
+		inf_patch[0].stat.st_mtime = st.st_mtime;
+	_tstat64(path2.c_str(), &st);
+	if (st.st_mtime != inf_patch[1].stat.st_mtime)
+		inf_patch[1].stat.st_mtime = st.st_mtime;
 
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())
