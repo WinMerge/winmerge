@@ -43,18 +43,18 @@ class CPatchDlg : public CDialog
 // Construction
 public:
 	CPatchDlg(CWnd* pParent = NULL);   // standard constructor
-	
+
 	// Functions to add and get selected files (as PATCHFILEs)
 	void AddItem(const PATCHFILES& pf);
 	int GetItemCount();
-    const PATCHFILES& GetItemAt(int position);
+	const PATCHFILES& GetItemAt(int position);
 	void ClearItems();
 
 // Dialog Data
 	//{{AFX_DATA(CPatchDlg)
 	enum { IDD = IDD_GENERATE_PATCH };
 	CComboBox m_comboStyle;
-	CComboBox m_comboContext;
+	CSuperComboBox m_comboContext;
 	BOOL m_caseSensitive;
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
@@ -82,8 +82,8 @@ public:
 // Implementation
 protected:
 
-    std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
-	
+	std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
+
 	void ChangeFile(const CString &sFile, BOOL bLeft);
 	void UpdateSettings();
 	void LoadSettings();
