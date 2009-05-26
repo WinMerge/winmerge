@@ -6,196 +6,196 @@
       <Component Id="Brazilian" Guid="*" Win64="$(var.Win64)">
         <File Id="BrazilianPO" 
           Name="Brazilian.po" 
-          Source="..\..\Src\Languages\Brazilian.po" 
+          Source="..\..\Translations\WinMerge\Brazilian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Bulgarian" Guid="*" Win64="$(var.Win64)">
         <File Id="BulgarianPO" 
           Name="Bulgarian.po" 
-          Source="..\..\Src\Languages\Bulgarian.po" 
+          Source="..\..\Translations\WinMerge\Bulgarian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Catalan" Guid="*" Win64="$(var.Win64)">
         <File Id="CatalanPO" 
           Name="Catalan.po" 
-          Source="..\..\Src\Languages\Catalan.po" 
+          Source="..\..\Translations\WinMerge\Catalan.po" 
           Vital="no" />
       </Component>
       
       <Component Id="ChineseSimplified" Guid="*" Win64="$(var.Win64)">
         <File Id="ChineseSimplifiedPO" 
           Name="ChineseSimplified.po" 
-          Source="..\..\Src\Languages\ChineseSimplified.po" 
+          Source="..\..\Translations\WinMerge\ChineseSimplified.po" 
           Vital="no" />
       </Component>
       
       <Component Id="ChineseTraditional" Guid="*" Win64="$(var.Win64)">
         <File Id="ChineseTraditionalPO" 
           Name="ChineseTraditional.po" 
-          Source="..\..\Src\Languages\ChineseTraditional.po" 
+          Source="..\..\Translations\WinMerge\ChineseTraditional.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Croatian" Guid="*" Win64="$(var.Win64)">
         <File Id="CroatianPO" 
           Name="Croatian.po" 
-          Source="..\..\Src\Languages\Croatian.po" 
+          Source="..\..\Translations\WinMerge\Croatian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Czech" Guid="*" Win64="$(var.Win64)">
         <File Id="CzechPO" 
           Name="Czech.po" 
-          Source="..\..\Src\Languages\Czech.po" 
+          Source="..\..\Translations\WinMerge\Czech.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Danish" Guid="*" Win64="$(var.Win64)">
         <File Id="DanishPO" 
           Name="Danish.po" 
-          Source="..\..\Src\Languages\Danish.po" 
+          Source="..\..\Translations\WinMerge\Danish.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Dutch" Guid="*" Win64="$(var.Win64)">
         <File Id="DutchPO" 
           Name="Dutch.po" 
-          Source="..\..\Src\Languages\Dutch.po" 
+          Source="..\..\Translations\WinMerge\Dutch.po" 
           Vital="no" />
       </Component>
       
       <Component Id="French" Guid="*" Win64="$(var.Win64)">
         <File Id="FrenchPO" 
           Name="French.po" 
-          Source="..\..\Src\Languages\French.po" 
+          Source="..\..\Translations\WinMerge\French.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Galician" Guid="*" Win64="$(var.Win64)">
         <File Id="GalicianPO" 
           Name="Galician.po" 
-          Source="..\..\Src\Languages\Galician.po" 
+          Source="..\..\Translations\WinMerge\Galician.po" 
           Vital="no" />
       </Component>
       
       <Component Id="German" Guid="*" Win64="$(var.Win64)">
         <File Id="GermanPO" 
           Name="German.po" 
-          Source="..\..\Src\Languages\German.po" 
+          Source="..\..\Translations\WinMerge\German.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Greek" Guid="*" Win64="$(var.Win64)">
         <File Id="GreekPO" 
           Name="Greek.po" 
-          Source="..\..\Src\Languages\Greek.po" 
+          Source="..\..\Translations\WinMerge\Greek.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Hungarian" Guid="*" Win64="$(var.Win64)">
         <File Id="HungarianPO" 
           Name="Hungarian.po" 
-          Source="..\..\Src\Languages\Hungarian.po" 
+          Source="..\..\Translations\WinMerge\Hungarian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Italian" Guid="*" Win64="$(var.Win64)">
         <File Id="ItalianPO" 
           Name="Italian.po" 
-          Source="..\..\Src\Languages\Italian.po" 
+          Source="..\..\Translations\WinMerge\Italian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Japanese" Guid="*" Win64="$(var.Win64)">
         <File Id="JapanesePO" 
           Name="Japanese.po" 
-          Source="..\..\Src\Languages\Japanese.po" 
+          Source="..\..\Translations\WinMerge\Japanese.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Korean" Guid="*" Win64="$(var.Win64)">
         <File Id="KoreanPO" 
           Name="Korean.po" 
-          Source="..\..\Src\Languages\Korean.po" 
+          Source="..\..\Translations\WinMerge\Korean.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Norwegian" Guid="*" Win64="$(var.Win64)">
         <File Id="NorwegianPO" 
           Name="Norwegian.po" 
-          Source="..\..\Src\Languages\Norwegian.po" 
+          Source="..\..\Translations\WinMerge\Norwegian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Polish" Guid="*" Win64="$(var.Win64)">
         <File Id="PolishPO" 
           Name="Polish.po" 
-          Source="..\..\Src\Languages\Polish.po" 
+          Source="..\..\Translations\WinMerge\Polish.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Portuguese" Guid="*" Win64="$(var.Win64)">
         <File Id="PortuguesePO" 
           Name="Portuguese.po" 
-          Source="..\..\Src\Languages\Portuguese.po" 
+          Source="..\..\Translations\WinMerge\Portuguese.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Romanian" Guid="*" Win64="$(var.Win64)">
         <File Id="RomanianPO" 
           Name="Romanian.po" 
-          Source="..\..\Src\Languages\Romanian.po" 
+          Source="..\..\Translations\WinMerge\Romanian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Russian" Guid="*" Win64="$(var.Win64)">
         <File Id="RussianPO" 
           Name="Russian.po" 
-          Source="..\..\Src\Languages\Russian.po" 
+          Source="..\..\Translations\WinMerge\Russian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Slovak" Guid="*" Win64="$(var.Win64)">
         <File Id="SlovakPO" 
           Name="Slovak.po" 
-          Source="..\..\Src\Languages\Slovak.po" 
+          Source="..\..\Translations\WinMerge\Slovak.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Slovenian" Guid="*" Win64="$(var.Win64)">
         <File Id="SlovenianPO" 
           Name="Slovenian.po" 
-          Source="..\..\Src\Languages\Slovenian.po" 
+          Source="..\..\Translations\WinMerge\Slovenian.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Spanish" Guid="*" Win64="$(var.Win64)">
         <File Id="SpanishPO" 
           Name="Spanish.po" 
-          Source="..\..\Src\Languages\Spanish.po" 
+          Source="..\..\Translations\WinMerge\Spanish.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Swedish" Guid="*" Win64="$(var.Win64)">
         <File Id="SwedishPO" 
           Name="Swedish.po" 
-          Source="..\..\Src\Languages\Swedish.po" 
+          Source="..\..\Translations\WinMerge\Swedish.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Turkish" Guid="*" Win64="$(var.Win64)">
         <File Id="TurkishPO" 
           Name="Turkish.po" 
-          Source="..\..\Src\Languages\Turkish.po" 
+          Source="..\..\Translations\WinMerge\Turkish.po" 
           Vital="no" />
       </Component>
       
       <Component Id="Ukrainian" Guid="*" Win64="$(var.Win64)">
         <File Id="UkrainianPO" 
           Name="Ukrainian.po" 
-          Source="..\..\Src\Languages\Ukrainian.po" 
+          Source="..\..\Translations\WinMerge\Ukrainian.po" 
           Vital="no" />
       </Component>
     </DirectoryRef>
