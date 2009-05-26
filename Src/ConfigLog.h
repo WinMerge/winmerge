@@ -70,6 +70,7 @@ struct MISCSETTINGS
 	int  nTabSize;
 	bool bPluginsEnabled;
 	bool bPreserveFiletimes;
+	bool bMatchSimilarLines;
 };
 
 /** 
