@@ -411,4 +411,124 @@ namespace
 			EXPECT_EQ(47, pDiff->end[1]);
 		}
 	}
+
+	// Sf.net bug #2797067
+	// '123' and '456  added in right side and 'x' separated from 'vwx'
+	// char-diff
+	TEST_F(StringDiffsBugsTest, Bug_2797067_1)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno pqr stu vwx yz",
+				"abc def 123 ghi jkl mno pqr stu 456 vw x yz",
+				false, 0, 0, true, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		if (diffs.size() > 2)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(11, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(28, pDiff->start[0]);
+			EXPECT_EQ(32, pDiff->start[1]);
+			EXPECT_EQ(28, pDiff->end[0]);
+			EXPECT_EQ(35, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(31, pDiff->start[0]);
+			EXPECT_EQ(38, pDiff->start[1]);
+			EXPECT_EQ(32, pDiff->end[0]);
+			EXPECT_EQ(39, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2797067
+	// '123' and '456  added in right side and 'x' separated from 'vwx'
+	// word-diff
+	TEST_F(StringDiffsBugsTest, Bug_2797067_2)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno pqr stu vwx yz",
+				"abc def 123 ghi jkl mno pqr stu 456 vw x yz",
+				false, 0, 0, false, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		if (diffs.size() > 2)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(11, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(28, pDiff->start[0]);
+			EXPECT_EQ(32, pDiff->start[1]);
+			EXPECT_EQ(28, pDiff->end[0]);
+			EXPECT_EQ(35, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(31, pDiff->start[0]);
+			EXPECT_EQ(38, pDiff->start[1]);
+			EXPECT_EQ(32, pDiff->end[0]);
+			EXPECT_EQ(39, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2797067
+	// '123', '456' and last 'r' added to right side
+	// char-diff
+	TEST_F(StringDiffsBugsTest, Bug_2797067_3)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno pqr stu vwx yzr",
+				"abc def 123ghi jkl mno pqr stu 456vwx yzrr",
+				false, 0, 0, true, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		if (diffs.size() > 2)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(28, pDiff->start[0]);
+			EXPECT_EQ(32, pDiff->start[1]);
+			EXPECT_EQ(28, pDiff->end[0]);
+			EXPECT_EQ(34, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(35, pDiff->start[0]);
+			EXPECT_EQ(41, pDiff->start[1]);
+			EXPECT_EQ(35, pDiff->end[0]);
+			EXPECT_EQ(42, pDiff->end[1]);
+		}
+	}
+
+	// Sf.net bug #2797067
+	// '123', '456' and last 'r' added to right side
+	// word-diff
+	TEST_F(StringDiffsBugsTest, Bug_2797067_4)
+	{
+		std::vector<wdiff*> diffs;
+		sd_ComputeWordDiffs("abc def ghi jkl mno pqr stu vwx yzr",
+				"abc def 123ghi jkl mno pqr stu 456vwx yzrr",
+				false, 0, 0, false, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		if (diffs.size() > 2)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(10, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(28, pDiff->start[0]);
+			EXPECT_EQ(32, pDiff->start[1]);
+			EXPECT_EQ(28, pDiff->end[0]);
+			EXPECT_EQ(34, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(35, pDiff->start[0]);
+			EXPECT_EQ(41, pDiff->start[1]);
+			EXPECT_EQ(35, pDiff->end[0]);
+			EXPECT_EQ(42, pDiff->end[1]);
+		}
+	}
 }  // namespace
