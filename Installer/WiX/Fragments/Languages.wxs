@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?include Config.wxi ?>
+  <?include ..\Config.wxi ?>
   <Fragment>
     <DirectoryRef Id="LANGDIR">
       <Component Id="Brazilian" Guid="*" Win64="$(var.Win64)">

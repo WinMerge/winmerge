@@ -17,13 +17,13 @@
   <ItemGroup>
     <WixExtension Include="$(WixToolPath)WixUIExtension.dll" />
     <Compile Include="WinMerge.wxs"/>
-    <Compile Include="Core.wxs"/>
-    <Compile Include="Docs.wxs"/>
-    <Compile Include="Filters.wxs"/>
-    <Compile Include="Languages.wxs"/>
-    <Compile Include="Plugins.wxs"/>
-    <Compile Include="Features.wxs"/>
-    <Compile Include="WixUI_WinMerge.wxs"/>
+    <Compile Include="Fragments\Core.wxs"/>
+    <Compile Include="Fragments\Docs.wxs"/>
+    <Compile Include="Fragments\Filters.wxs"/>
+    <Compile Include="Fragments\Languages.wxs"/>
+    <Compile Include="Fragments\Plugins.wxs"/>
+    <Compile Include="Fragments\Features.wxs"/>
+    <Compile Include="Fragments\WixUI_WinMerge.wxs"/>
   </ItemGroup>
   
   <Import Project="$(WixTargetsPath)"/>

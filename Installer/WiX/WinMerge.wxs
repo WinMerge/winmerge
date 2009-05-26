@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    candleArgs: "WinMerge.wxs" "Core.wxs" "Docs.wxs" "Filters.wxs" "Plugins.wxs" "Languages.wxs" "Features.wxs" "WixUI_WinMerge.wxs" <extensions>
-    lightArgs: "WinMerge.wixobj" "Core.wixobj" "Docs.wixobj" "Filters.wixobj" "Plugins.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+    candleArgs: "WinMerge.wxs" "Fragments\Core.wxs" "Fragments\Docs.wxs" "Fragments\Filters.wxs" "Fragments\Plugins.wxs" "Fragments\Languages.wxs" "Fragments\Features.wxs" "Fragments\WixUI_WinMerge.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "Fragments\Core.wixobj" "Fragments\Docs.wixobj" "Fragments\Filters.wixobj" "Fragments\Plugins.wixobj" "Fragments\Languages.wixobj" "Fragments\Features.wixobj" "Fragments\WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Config.wxi ?>
