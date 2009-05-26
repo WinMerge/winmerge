@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    candleArgs: "WinMerge.wxs" "Filters.wxs" "Plugins.wxs" "Languages.wxs" "Features.wxs" "WixUI_WinMerge.wxs" <extensions>
-    lightArgs: "WinMerge.wixobj" "Filters.wixobj" "Plugins.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+    candleArgs: "WinMerge.wxs" "Core.wxs" "Docs.wxs" "Filters.wxs" "Plugins.wxs" "Languages.wxs" "Features.wxs" "WixUI_WinMerge.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "Core.wixobj" "Docs.wixobj" "Filters.wixobj" "Plugins.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Config.wxi ?>
@@ -18,7 +18,8 @@
       * Don't install 32 bit version von Windows x64
       * Install C++ Runtime files
       * Separate page for tasks (shortcuts, TortoiseSVN, ...)
-      * Install all files
+      * Install translated readme files
+      * Set WinMerge language
       * Mutli-language support
       * ...
   -->
@@ -59,130 +60,6 @@
       </Directory>
       <Directory Id="DesktopFolder" />
     </Directory>
-    
-    <DirectoryRef Id="INSTALLDIR">
-      <Component Id="WinMergeU" Guid="*" Win64="$(var.Win64)">
-        <File Id="WinMergeUEXE" 
-          Name="WinMergeU.exe" 
-          Source="$(var.MergeBuildDir)\WinMergeU.exe" 
-          Vital="yes" />
-      </Component>
-      
-      <Component Id="libexpat" Guid="*" Win64="$(var.Win64)">
-        <File Id="libexpatDLL" 
-          Name="libexpat.dll" 
-          Source="$(var.ExpatBuildDir)\libexpat.dll" 
-          Vital="yes" />
-      </Component>
-      
-      <Component Id="pcre" Guid="*" Win64="$(var.Win64)">
-        <File Id="pcreDLL" 
-          Name="pcre.dll" 
-          Source="$(var.PcreBuildDir)\pcre.dll" 
-          Vital="yes" />
-      </Component>
-      
-      <Component Id="MergeLang" Guid="*" Win64="$(var.Win64)">
-        <File Id="MergeLangDLL" 
-          Name="MergeLang.dll" 
-          Source="$(var.MergeBuildDir)\MergeLang.dll" 
-          Vital="yes" />
-      </Component>
-      
-      <Component Id="Files" Guid="*" Win64="$(var.Win64)">
-        <File Id="FilesTXT" 
-          Name="Files.txt" 
-          Source="..\..\Docs\Users\Files.txt" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="Contributors" Guid="*" Win64="$(var.Win64)">
-        <File Id="ContributorsTXT" 
-          Name="Contributors.txt" 
-          Source="..\..\Docs\Users\Contributors.txt" 
-          Vital="no" />
-      </Component>
-    </DirectoryRef>
-    
-    <!-- Shell Extension -->
-    <DirectoryRef Id="INSTALLDIR">
-      <Component Id="ShellExtension" Guid="*" Win64="$(var.Win64)">
-        <?if $(var.Platform) = "x64" ?>
-          <File Id="ShellExtensionX64DLL" 
-            Name="ShellExtensionX64.dll" 
-            SelfRegCost="1" 
-            Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
-            Vital="yes" />
-        <?else ?>
-          <File Id="ShellExtensionUDLL" 
-            Name="ShellExtensionU.dll" 
-            SelfRegCost="1" 
-            Source="$(var.MergeBuildDir)\ShellExtensionU.dll" 
-            Vital="yes" />
-        <?endif ?>
-      </Component>
-    </DirectoryRef>
-    
-    <DirectoryRef Id="DOCSDIR">
-      <Component Id="ReadMe" Guid="*" Win64="$(var.Win64)">
-        <File Id="ReadMeTXT" 
-          Name="ReadMe.txt" 
-          Source="..\..\Docs\Users\ReadMe.txt" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="ReleaseNotes" Guid="*" Win64="$(var.Win64)">
-        <File Id="ReleaseNotesHTML" 
-          Name="ReleaseNotes.html" 
-          Source="..\..\Docs\Users\ReleaseNotes.html" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="ChangeLog" Guid="*" Win64="$(var.Win64)">
-        <File Id="ChangeLogTXT" 
-          Name="ChangeLog.txt" 
-          Source="..\..\Docs\Users\ChangeLog.txt" 
-          Vital="no" />
-      </Component>
-      
-      <Component Id="WinMergeHelp" Guid="*" Win64="$(var.Win64)">
-        <File Id="WinMergeCHM" 
-          Name="WinMerge.chm" 
-          Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
-          Vital="no" />
-      </Component>
-    </DirectoryRef>
-    
-    <!-- Startmenu shortcuts -->
-    <DirectoryRef Id="WinMergeMenuFolder">
-      <Component Id="StartMenuShortcuts" Guid="$(var.StartMenuShortcutsGuid)" Win64="$(var.Win64)">
-        <Shortcut Id="WinMergeStartMenuShortcut" 
-          Name="WinMerge" 
-          Target="[INSTALLDIR]WinMergeU.exe"
-          WorkingDirectory="INSTALLDIR" />
-        <Shortcut Id="ReadMeStartMenuShortcut" 
-          Name="Read Me" 
-          Target="[INSTALLDIR]Docs\ReadMe.txt"
-          WorkingDirectory="INSTALLDIR" />
-        <Shortcut Id="HelpStartMenuShortcut" 
-          Name="WinMerge Help" 
-          Target="[INSTALLDIR]Docs\WinMerge.chm"
-          WorkingDirectory="INSTALLDIR" />
-        <RemoveFolder Id="WinMergeMenuFolder" On="uninstall" />
-        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
-    
-    <!-- Desktop shortcut -->
-    <DirectoryRef Id="DesktopFolder">
-      <Component Id="DesktopShortcut" Guid="$(var.DesktopShortcutGuid)" Win64="$(var.Win64)">
-        <Shortcut Id="WinMergeDesktopShortcut" 
-          Name="WinMerge" 
-          Target="[INSTALLDIR]WinMergeU.exe"
-          WorkingDirectory="INSTALLDIR" />
-        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
     
     <FeatureRef Id="WinMerge" />
     
