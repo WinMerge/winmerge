@@ -2448,6 +2448,7 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigIntSetting(&configLog.m_miscSettings.nInsertTabs, options, OPT_TAB_TYPE, cfgdir);
 	LoadConfigIntSetting(&configLog.m_miscSettings.nTabSize, options, OPT_TAB_SIZE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bPluginsEnabled, options, OPT_PLUGINS_ENABLED, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bMatchSimilarLines, options, OPT_CMP_MATCH_SIMILAR_LINES, cfgdir);	
 
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultMode, options, OPT_CP_DEFAULT_MODE, cfgdir);
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultCustomValue, options, OPT_CP_DEFAULT_CUSTOM, cfgdir);
