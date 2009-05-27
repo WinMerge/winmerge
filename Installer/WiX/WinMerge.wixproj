@@ -8,7 +8,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     
-    <OutputName>WinMerge-$(Platform)-Setup</OutputName>
+    <OutputName Condition=" '$(ProductVersion)' != '' ">WinMerge-$(ProductVersion)-$(Platform)-Setup</OutputName>
+    <OutputName Condition=" '$(ProductVersion)' == '' ">WinMerge-$(Platform)-Setup</OutputName>
     <OutputPath>..\..\Build\WiX\$(Configuration)\$(Platform)\</OutputPath>
     <IntermediateOutputPath>..\..\BuildTmp\WiX\$(Configuration)\$(Platform)\</IntermediateOutputPath>
     <OutputType>package</OutputType>
