@@ -43,7 +43,7 @@
   </li>
   <li><strong>Version Control</strong>
     <ul>
-      <li>Creates patch files</li>
+      <li>Creates patch files (Normal-, Context- and Unified formats)</li>
       <li>Resolve conflict files</li>
       <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
     </ul>
