@@ -285,28 +285,28 @@ Name: {app}\WinMergeU.exe.manifest; Type: files
 
 ; Remove existing .lang files - we don't need them anymore as we are
 ; using PO files now.
-Name: {app}\Languages\MergeBrazilian.lang; Type: files; Check: not IsComponentSelected('PortugueseBrazilian')
-Name: {app}\Languages\MergeBulgarian.lang; Type: files; Check: not IsComponentSelected('Bulgarian')
-Name: {app}\Languages\MergeCatalan.lang; Type: files; Check: not IsComponentSelected('Catalan')
-Name: {app}\Languages\MergeChineseSimplified.lang; Type: files; Check: not IsComponentSelected('Chinese_Simplified')
-Name: {app}\Languages\MergeChineseTraditional.lang; Type: files; Check: not IsComponentSelected('Chinese_Traditional')
-Name: {app}\Languages\MergeCzech.lang; Type: files; Check: not IsComponentSelected('Czech')
-Name: {app}\Languages\MergeDanish.lang; Type: files; Check: not IsComponentSelected('Danish')
-Name: {app}\Languages\MergeDutch.lang; Type: files; Check: not IsComponentSelected('Dutch')
-Name: {app}\Languages\MergeFrench.lang; Type: files; Check: not IsComponentSelected('French')
-Name: {app}\Languages\MergeGerman.lang; Type: files; Check: not IsComponentSelected('German')
-Name: {app}\Languages\MergeHungarian.lang; Type: files; Check: not IsComponentSelected('Hungarian')
-Name: {app}\Languages\MergeItalian.lang; Type: files; Check: not IsComponentSelected('Italian')
-Name: {app}\Languages\MergeJapanese.lang; Type: files; Check: not IsComponentSelected('Japanese')
-Name: {app}\Languages\MergeKorean.lang; Type: files; Check: not IsComponentSelected('Korean')
-Name: {app}\Languages\MergeNorwegian.lang; Type: files; Check: not IsComponentSelected('Norwegian')
-Name: {app}\Languages\MergePolish.lang; Type: files; Check: not IsComponentSelected('Polish')
-Name: {app}\Languages\MergePortuguese.lang; Type: files; Check: not IsComponentSelected('Portuguese')
-Name: {app}\Languages\MergeSlovak.lang; Type: files; Check: not IsComponentSelected('Slovak')
-Name: {app}\Languages\MergeSpanish.lang; Type: files; Check: not IsComponentSelected('Spanish')
-Name: {app}\Languages\MergeRussian.lang; Type: files; Check: not IsComponentSelected('Russian')
-Name: {app}\Languages\MergeSwedish.lang; Type: files; Check: not IsComponentSelected('Swedish')
-Name: {app}\Languages\MergeTurkish.lang; Type: files; Check: not IsComponentSelected('Turkish')
+Name: {app}\Languages\MergeBrazilian.lang; Type: files
+Name: {app}\Languages\MergeBulgarian.lang; Type: files
+Name: {app}\Languages\MergeCatalan.lang; Type: files
+Name: {app}\Languages\MergeChineseSimplified.lang
+Name: {app}\Languages\MergeChineseTraditional.lang
+Name: {app}\Languages\MergeCzech.lang; Type: files
+Name: {app}\Languages\MergeDanish.lang; Type: files
+Name: {app}\Languages\MergeDutch.lang; Type: files
+Name: {app}\Languages\MergeFrench.lang; Type: files
+Name: {app}\Languages\MergeGerman.lang; Type: files
+Name: {app}\Languages\MergeHungarian.lang; Type: files
+Name: {app}\Languages\MergeItalian.lang; Type: files
+Name: {app}\Languages\MergeJapanese.lang; Type: files
+Name: {app}\Languages\MergeKorean.lang; Type: files
+Name: {app}\Languages\MergeNorwegian.lang; Type: files
+Name: {app}\Languages\MergePolish.lang; Type: files
+Name: {app}\Languages\MergePortuguese.lang; Type: files
+Name: {app}\Languages\MergeSlovak.lang; Type: files
+Name: {app}\Languages\MergeSpanish.lang; Type: files
+Name: {app}\Languages\MergeRussian.lang; Type: files
+Name: {app}\Languages\MergeSwedish.lang; Type: files
+Name: {app}\Languages\MergeTurkish.lang; Type: files
 Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('Plugins')
 
 ;Removes the user's guide icon if the user deselects the user's guide component.
