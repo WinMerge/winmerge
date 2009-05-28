@@ -397,7 +397,7 @@ namespace
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff;
-		if (diffs.size() >= 1)
+		if (diffs.size() > 1)
 		{
 			pDiff = diffs[0];
 			EXPECT_EQ(11, pDiff->start[0]);
@@ -432,13 +432,13 @@ namespace
 			pDiff = diffs[1];
 			EXPECT_EQ(28, pDiff->start[0]);
 			EXPECT_EQ(32, pDiff->start[1]);
-			EXPECT_EQ(28, pDiff->end[0]);
-			EXPECT_EQ(35, pDiff->end[1]);
+			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(34, pDiff->end[1]);
 			pDiff = diffs[2];
-			EXPECT_EQ(31, pDiff->start[0]);
-			EXPECT_EQ(38, pDiff->start[1]);
-			EXPECT_EQ(32, pDiff->end[0]);
-			EXPECT_EQ(39, pDiff->end[1]);
+			EXPECT_EQ(32, pDiff->start[0]);
+			EXPECT_EQ(36, pDiff->start[1]);
+			EXPECT_EQ(31, pDiff->end[0]);
+			EXPECT_EQ(40, pDiff->end[1]);
 		}
 	}
 
@@ -462,13 +462,13 @@ namespace
 			pDiff = diffs[1];
 			EXPECT_EQ(28, pDiff->start[0]);
 			EXPECT_EQ(32, pDiff->start[1]);
-			EXPECT_EQ(28, pDiff->end[0]);
-			EXPECT_EQ(35, pDiff->end[1]);
+			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(34, pDiff->end[1]);
 			pDiff = diffs[2];
-			EXPECT_EQ(31, pDiff->start[0]);
-			EXPECT_EQ(38, pDiff->start[1]);
-			EXPECT_EQ(32, pDiff->end[0]);
-			EXPECT_EQ(39, pDiff->end[1]);
+			EXPECT_EQ(32, pDiff->start[0]);
+			EXPECT_EQ(36, pDiff->start[1]);
+			EXPECT_EQ(31, pDiff->end[0]);
+			EXPECT_EQ(40, pDiff->end[1]);
 		}
 	}
 
@@ -491,14 +491,14 @@ namespace
 			EXPECT_EQ(10, pDiff->end[1]);
 			pDiff = diffs[1];
 			EXPECT_EQ(28, pDiff->start[0]);
-			EXPECT_EQ(32, pDiff->start[1]);
-			EXPECT_EQ(28, pDiff->end[0]);
-			EXPECT_EQ(34, pDiff->end[1]);
+			EXPECT_EQ(31, pDiff->start[1]);
+			EXPECT_EQ(27, pDiff->end[0]);
+			EXPECT_EQ(33, pDiff->end[1]);
 			pDiff = diffs[2];
-			EXPECT_EQ(35, pDiff->start[0]);
+			EXPECT_EQ(32, pDiff->start[0]);
 			EXPECT_EQ(41, pDiff->start[1]);
-			EXPECT_EQ(35, pDiff->end[0]);
-			EXPECT_EQ(42, pDiff->end[1]);
+			EXPECT_EQ(31, pDiff->end[0]);
+			EXPECT_EQ(41, pDiff->end[1]);
 		}
 	}
 
@@ -517,18 +517,18 @@ namespace
 			wdiff *pDiff = diffs[0];
 			EXPECT_EQ(8, pDiff->start[0]);
 			EXPECT_EQ(8, pDiff->start[1]);
-			EXPECT_EQ(7, pDiff->end[0]);
-			EXPECT_EQ(10, pDiff->end[1]);
+			EXPECT_EQ(10, pDiff->end[0]);
+			EXPECT_EQ(13, pDiff->end[1]);
 			pDiff = diffs[1];
 			EXPECT_EQ(28, pDiff->start[0]);
-			EXPECT_EQ(32, pDiff->start[1]);
-			EXPECT_EQ(28, pDiff->end[0]);
-			EXPECT_EQ(34, pDiff->end[1]);
+			EXPECT_EQ(31, pDiff->start[1]);
+			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(36, pDiff->end[1]);
 			pDiff = diffs[2];
-			EXPECT_EQ(35, pDiff->start[0]);
-			EXPECT_EQ(41, pDiff->start[1]);
-			EXPECT_EQ(35, pDiff->end[0]);
-			EXPECT_EQ(42, pDiff->end[1]);
+			EXPECT_EQ(32, pDiff->start[0]);
+			EXPECT_EQ(38, pDiff->start[1]);
+			EXPECT_EQ(34, pDiff->end[0]);
+			EXPECT_EQ(41, pDiff->end[1]);
 		}
 	}
 }  // namespace
