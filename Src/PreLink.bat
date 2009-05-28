@@ -6,8 +6,17 @@ set info=echo *
 
 REM _ACP_ATLPROV was introduced in VC7. If not set, assume VC6.
 REM _MSDEV_BLD_ENV_ was removed in VC8. Don't care about it if _ACP_ATLPROV is set.
+REM _ACP_ATLPROV is set by VS2005/VS2008 when compiling in IDE. But it is NOT
+REM set when calling devenv from command line.
 
-if "%_ACP_ATLPROV%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
+REM This detects if the script is called from VS2003 or from IDE
+if NOT "%_ACP_ATLPROV%" == "" goto IDEBuild
+
+REM This detects if the script is called from VS2005/VS2008 cmd line env
+if "%VCBuildHelper_Command%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
+
+:IDEBuild
+
 set msdev=rem
 set devenv=devenv
 goto Configure
