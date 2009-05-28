@@ -5,12 +5,11 @@
     </indexterm></title>
 
   <para>Comparing and merging files are often subtasks in a larger change
-  management process. For that reason, WinMerge is often not used by itself, but
-  in conjunction with other tools. In addition, even though many programs have
-  built-in diff and merge utilities, none provides all the features their users
-  need, so it's sometimes handy to combine different tools. This topic describes
-  the two important WinMerge features that facilitate working with other
-  tools.</para>
+  management process. For that reason, WinMerge is often used not just by
+  itself, but also in conjunction with other tools. In addition, diff and merge
+  utilities provide different features, so it's sometimes handy to combine
+  different tools. This topic describes the primary methods for using WinMerge
+  with other tools.</para>
 
   <section>
     <title>Using the command-line interface (CLI)</title>
@@ -56,23 +55,24 @@
       </indexterm></title>
 
     <para>WinMerge can integrate some key functions with a few, specific version
-    control system (VCS) tools. You can configure the optional VCS integrations
-    during or after WinMerge installation.</para>
+    control system (VCS) tools. There are two methods for configuring optional
+    VCS integrations: either during WinMerge installation or after
+    installation:</para>
 
-    <para>If the WinMerge installer detects that TortoiseSVN, TortoiseCVS, or
-    Rational ClearCase are present on your system, the Setup Additional Tasks
-    page contains options to enable any of the WinMerge integrations.</para>
+    <itemizedlist>
+      <listitem>
+        <para>If the WinMerge installer detects that TortoiseSVN, TortoiseCVS,
+        or Rational ClearCase is present on your system, the Setup Additional
+        Tasks page contains options to enable its WinMerge integration. The
+        installer does not detect Visual SourceSafe.</para>
+      </listitem>
 
-    <para>After installation, you can open the Options dialog and configure
-    either the ClearCase or Visual SourceSafe integration, as described in <xref
-    linkend="Configuration_vcs" />.</para>
-
-    <note>
-      <para>Only the ClearCase integration can be configured using both methods.
-      You can configure TortoiseSVN and TortoiseCVS only during installation;
-      conversely, you can configure Visual SourceSafe (which is not detected by
-      the installer) only in the Options dialog.</para>
-    </note>
+      <listitem>
+        <para>After installation, you can open the Options dialog and configure
+        either the ClearCase or Visual SourceSafe integration, as described in
+        <xref linkend="Configuration_vcs" />.</para>
+      </listitem>
+    </itemizedlist>
 
     <para>Each WinMerge version control integration has one of these basic types
     of interaction:</para>
@@ -85,8 +85,8 @@
           <para>With version control systems that lock files (for example,
           ClearCase and Visual Source Safe), WinMerge opens the VCS's checkout
           dialog before saving a file. It is up to you to check out the file,
-          and then to check in the file later using the version control system's
-          tools. WinMerge does not provide checkin or history tools.</para>
+          and then to check in the file later using the VCS tools. WinMerge does
+          not provide checkin or history tools.</para>
         </listitem>
       </varlistentry>
 
@@ -101,10 +101,64 @@
       </varlistentry>
     </variablelist>
 
-    <example>
-      <title>TortoiseSVN integration<indexterm>
-          <primary>TortoiseSVN integration</primary>
-        </indexterm></title>
+    <note>
+      <para>If you enable the ClearCase integration</para>
+    </note>
+
+    <section id="VersionControl_cc">
+      <title>About the ClearCase integration</title>
+
+      <para>If you use choose the option to integrate with Rational ClearCase
+      during WinMerge installation, the installer:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Creates a backup copy of the ClearCase <filename>map</filename>
+          file, <filename>map.bak</filename>, in the
+          <filename><replaceable>ccase-home-dir</replaceable>\lib\mgrs</filename>
+          directory. The <filename>map</filename> file is a user-configurable
+          file that associates ClearCase methods with the programs that carry
+          them out.</para>
+        </listitem>
+
+        <listitem>
+          <para>In the the <filename>map</filename> file, modifies the
+          <guilabel>text_file_delta</guilabel> field to specify WinMerge instead
+          of the default <filename>cleardiff.exe</filename> when running the
+          <command>cleartool diff</command> command.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>If you later want to disable the ClearCase integration, click
+      <menuchoice>
+          <guimenu>Edit</guimenu>
+
+          <guimenuitem>Options</guimenuitem>
+        </menuchoice>, open the Version Control integration page, and choose the
+      option, <option>None</option>. If for some reason ClearCase still uses
+      WinMerge for diff operations, try one of these methods:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Replace the ClearCase <filename>map</filename> file created by
+          the WinMerge installer with the <filename>map.bak</filename> backup
+          file or </para>
+        </listitem>
+
+        <listitem>
+          <para>Edit the ClearCase <filename>map</filename> file to run
+          <filename>cleardiff.exe</filename> for the <command>cleartool
+          diff</command> command. </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Tortoise SVN integration: example</title>
+
+      <indexterm>
+        <primary>TortoiseSVN integration</primary>
+      </indexterm>
 
       <para>TortoiseSVN is a Windows client for Subversion (SVN), an open source
       version control system. TortoiseSVN provides its own diff utility. The
@@ -181,14 +235,16 @@
           File Compare window.</para>
         </listitem>
       </orderedlist>
-    </example>
+    </section>
 
-    <example>
-      <title>Visual Source Safe integration<indexterm>
-          <primary>Visual SourceSafe integration</primary>
-        </indexterm></title>
+    <section>
+      <title>Visual Source Safe integration: example</title>
 
-      <para>This example demonstrates the file checkout type of VCS
+      <indexterm>
+        <primary>Visual SourceSafe integration</primary>
+      </indexterm>
+
+      <para>This example demonstrates a file checkout using the VSS
       integration.</para>
 
       <orderedlist>
@@ -279,6 +335,6 @@
           broken.</para>
         </listitem>
       </itemizedlist>
-    </example>
+    </section>
   </section>
 </article>

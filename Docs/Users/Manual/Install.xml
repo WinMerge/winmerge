@@ -218,7 +218,8 @@
 
             <listitem>
               <para>Sets WinMerge to be the ClearCase diff and merge
-              application</para>
+              application. <xref linkend="VersionControl_cc" /> has details
+              about changes to your ClearCase installation.</para>
             </listitem>
           </varlistentry>
 

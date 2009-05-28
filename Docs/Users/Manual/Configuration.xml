@@ -1384,9 +1384,14 @@ VCS integration? My installation had an option to integrate with TortoiseSVN.-->
       <listitem>
         <para><guilabel>Rational ClearCase</guilabel></para>
 
-        <para>Also enter the path to <filename>cleartool.exe</filename>.</para>
+        <para>Also enter the path to <filename>cleartool.exe</filename>. </para>
       </listitem>
     </itemizedlist>
+
+    <note>
+      <para>If you are changing the WinMerge integration with ClearCase, please
+      see <xref linkend="VersionControl_cc" /> for details.</para>
+    </note>
   </section>
 
   <section id="Configuration_codepage">
