@@ -49,10 +49,12 @@
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
 ; Runtime files
-#define Runtime_MFC  "..\Runtimes\mfc71.dll"
-#define Runtime_MFCU "..\Runtimes\mfc71u.dll"
-#define Runtime_C    "..\Runtimes\msvcr71.dll"
-#define Runtime_CPP  "..\Runtimes\msvcp71.dll"
+#define Runtime_MFC  "..\..\..\Runtimes\mfc80.dll"
+#define Runtime_MFCU "..\..\..\Runtimes\mfc80u.dll"
+#define Runtime_C    "..\..\..\Runtimes\msvcr80.dll"
+#define Runtime_CPP  "..\..\..\Runtimes\msvcp80.dll"
+#define Runtime_CPP_Manifest "..\..\..\Runtimes\Microsoft.VC80.CRT.manifest"
+#define Runtime_MFC_Manifest "..\..\..\Runtimes\Microsoft.VC80.MFC.manifest"
 
 
 [Setup]
@@ -288,8 +290,8 @@ Name: {app}\WinMergeU.exe.manifest; Type: files
 Name: {app}\Languages\MergeBrazilian.lang; Type: files
 Name: {app}\Languages\MergeBulgarian.lang; Type: files
 Name: {app}\Languages\MergeCatalan.lang; Type: files
-Name: {app}\Languages\MergeChineseSimplified.lang
-Name: {app}\Languages\MergeChineseTraditional.lang
+Name: {app}\Languages\MergeChineseSimplified.lang; Type: files
+Name: {app}\Languages\MergeChineseTraditional.lang; Type: files
 Name: {app}\Languages\MergeCzech.lang; Type: files
 Name: {app}\Languages\MergeDanish.lang; Type: files
 Name: {app}\Languages\MergeDutch.lang; Type: files
@@ -364,6 +366,8 @@ Source: {#Runtime_MFC}; DestDir: {sys}; Flags: restartreplace uninsneveruninstal
 Source: {#Runtime_MFCU}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
 Source: {#Runtime_C}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 Source: {#Runtime_CPP}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: {#Runtime_CPP_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: {#Runtime_MFC_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
