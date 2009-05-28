@@ -98,14 +98,14 @@ class settings:
         self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
         self.vs_path = ''
         self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-        self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8.0'
+        self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8'
         self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
         self.innosetup_path = r'C:\Program Files\Inno Setup 5'
         self.winmerge_iss = 'WinMerge.iss' #filename only
         self.winmerge_iss_path = 'WinMerge.iss' #including path
         self.source = 'workspace'
         self.version = ''
-        self.vs_version = 2003
+        self.vs_version = 2005
 
     def create_ini(self, filename):
         config = ConfigParser.RawConfigParser()
@@ -613,7 +613,7 @@ def main(argv):
     # Now read settings from Tools.ini
     prog.read_ini('Tools.ini')
     print 'Compiler: ' + prog.vs_path
-    print 'Path:' + os.getcwd()
+    print 'Path: ' + os.getcwd()
 
     # Remember the rootfolder
     prog.rootpath = os.getcwd()
