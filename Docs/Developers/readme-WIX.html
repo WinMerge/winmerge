@@ -58,9 +58,38 @@ experimental. DO NOT use it to install WinMerge to production environment!
 <code>WinMerge.wxs</code>. This file includes other needed files.</p>
 
 <h3>Folder structure and files needed:</h3>
+<p>First make sure you have all needed files compiled and available:
+<ul>
+  <li>WinMerge executables: <code>WinMerge.exe</code> and <code>WinMergeU.exe</code></li>
+  <li>Translation library: <code>MergeLang.dll</code></li>
+  <li>Executable translations: <code>/Translations/WinMerge/*.po</code></li>
+  <li>Libraries: <code>libexpat.dll</code> and <code>pcre.dll</code></li>
+  <li>Manual: <code>WinMerge.chm</code></li>
+  <li>ShellExtension: <code>ShellExtension.dll</code>, <code>ShellExtensionU.dll</code>
+    and <code>ShellExtensionX64.dll</code>
+  <li>Documents: <code>/Docs/Users/*</code>
+  <li>Filters: <code>/Filters/*</code>
+</ul></p>
 
 <p>These files are produced by compiling WinMerge, documentation etc, but
-that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
+that's not subject of this document, refer to <a href="Compiling.html">Compiling.html</a>,
+<a href="readme-manual.html">readme-manual.html</a> and
+<a href="Translations.html">Translations.html</a>.</p>
+
+<p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
+not distributes with WinMerge. You get these files from Visual Studio
+installation folder or can download them from internet. By default we use VS2005
+runtime files:
+<ul>
+  <li><code>msvcr80.dll</code></li>
+  <li><code>msvcp80.dll</code></li>
+  <li><code>mfc80.dll</code></li>
+  <li><code>mfc80u.dll</code></li>
+  <li><code>Microsoft.VC80.CRT.manifest</code></li>
+  <li><code>Microsoft.VC80.MFC.manifest</code></li>
+</ul></li>
+
+<h4>Folder structure</h4>
 
 <p>Copy or move the files into the following layout:</p>
 
@@ -72,12 +101,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
      <code>expat</code>
      <ul>
       <li><code>libexpat.dll</code></li>
-     </ul>
-    </li>
-    <li>
-     <code>Languages</code>
-     <ul>
-      <li><code>*.lang</code></li>
      </ul>
     </li>
     <li>
@@ -134,12 +157,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
       <li><em>Copy the entire Installer/WIX folder to here</em></li>
      </ul>
    </li>
-   <li>
-    <code>Runtimes/</code>
-     <ul>
-      <li><em>Copy the entire Installer/Runtimes folder to here</em></li>
-     </ul>
-    </li>
   </ul>
  </li>
  <li>
@@ -153,7 +170,29 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
    </li>
   </ul>
  </li>
+ <li>
+   <code>Translations/</code>
+   <ul>
+    <li>
+     <code>Docs</code>
+     <ul>
+      <li><code>*.*</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>WinMerge</code>
+     <ul>
+      <li><code>*.po</code></li>
+     </ul>
+    </li>
+   </ul>
+ </li>
 </ul>
+
+<h4>Runtime files</h4>
+<p>Runtime files must be copied to the <code>Runtimes</code>-folder in same level
+than WinMerge source tree folder is. Not <i>inside</i> source tree but
+<i>outside</i> of the source tree.</p>
 
 <h3>Running WIX tools to create installer</h3>
 
@@ -168,13 +207,16 @@ command:
 <pre>
  msbuild.exe WinMerge.wixproj
 </pre>
-or with platform parameter:
+There are two commonly used parameters:
+<ul>
+  <li>Platform: <code>/p:Platform=x86</code> or <code>/p:Platform=x64</code></li>
+  <li>Version: <code>/p:ProductVersion=x.x.x</code>. If the version number
+    is not given it is read from <code>Config.wxi</code>. But then filename
+    does not contain version number.</li>
+</ul>
+For example:
 <pre>
- msbuild.exe WinMerge.wixproj /p:Platform=x86
-</pre>
-and to build 64-bit installer:
-<pre>
- msbuild.exe WinMerge.wixproj /p:Platform=x64
+ msbuild.exe WinMerge.wixproj /p:Platform=x86,ProductVersion=1.0.2
 </pre>
 </p>
 
