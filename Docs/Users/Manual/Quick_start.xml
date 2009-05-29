@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="QuickStart">
+<article id="Quick_start">
   <title>Quick start</title>
 
   <section>
@@ -278,7 +278,7 @@
               file in the <guilabel>Left</guilabel> field.</para>
 
               <note>
-                <para>If you specify project files in both the the
+                <para>If you specify project files in both the
                 <guilabel>Left</guilabel> and <guilabel>Right</guilabel> fields,
                 WinMerge does not open either project file; it simply compares
                 the XML content of the two files.</para>
@@ -292,7 +292,7 @@
         </listitem>
 
         <listitem>
-          <simpara>Use the <xref linkend="CommandLine" /> interface to start
+          <simpara>Use the <xref linkend="Command_line" /> interface to start
           WinMerge from other applications, from a command prompt, or a batch or
           script file.</simpara>
         </listitem>

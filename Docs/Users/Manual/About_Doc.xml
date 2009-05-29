@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="AboutDoc">
+<article id="About_Doc">
   <title>About WinMerge Help</title>
 
   <para>This is Help for WinMerge <xi:include href="replaceables.xml"
@@ -69,10 +69,10 @@
 
         <listitem>
           <para>Open your Web browser to <ulink
-          url="http://winmerge.org/">winmerge.org</ulink>. Under
-          <ulink url="http://winmerge.org/docs/">Documentation</ulink>,
-          follow the <ulink url="http://winmerge.org/docs/manual/">Manual</ulink>
-          link to the latest Help version.</para>
+          url="http://winmerge.org/">winmerge.org</ulink>. Under <ulink
+          url="http://winmerge.org/docs/">Documentation</ulink>, follow the
+          <ulink url="http://winmerge.org/docs/manual/">Manual</ulink> link to
+          the latest Help version.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -86,7 +86,7 @@
 
     <variablelist>
       <varlistentry>
-        <term><xref linkend="QuickStart" /></term>
+        <term><xref linkend="Quick_start" /></term>
 
         <listitem>
           <para>Gets you quickly started with WinMerge and shows its basic
@@ -95,7 +95,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="CompareDirs" /></term>
+        <term><xref linkend="Compare_dirs" /></term>
 
         <listitem>
           <para>Explains the folder comparison window, available operations, and
@@ -104,7 +104,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="CompareFiles" /></term>
+        <term><xref linkend="Compare_files" /></term>
 
         <listitem>
           <para>Explains the file comparison/merge window, available operations,
@@ -126,7 +126,7 @@
 
     <variablelist>
       <varlistentry>
-        <term><xref linkend="OpenPaths" /></term>
+        <term><xref linkend="Open_paths" /></term>
 
         <listitem>
           <para>Introduces several ways to open files and folders in WinMerge -
@@ -154,7 +154,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term><xref linkend="CommandLine" /></term>
+        <term><xref linkend="Command_line" /></term>
 
         <listitem>
           <para>Lists command-line parameters for using WinMerge with other

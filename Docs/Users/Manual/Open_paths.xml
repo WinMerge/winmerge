@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="OpenPaths">
+<article id="Open_paths">
   <title>Opening files and folders<indexterm>
       <primary>opening files and folders</primary>
     </indexterm></title>
@@ -38,7 +38,7 @@
         <primary>Select Files or Folders dialog</primary>
       </indexterm></title>
 
-    <para><xref linkend="QuickStart" /> describes the Select Files or Folders
+    <para><xref linkend="Quick_start" /> describes the Select Files or Folders
     dialog. This section provides more details, and some tips for using the
     Select Files or Folders dialog more efficiently.</para>
 
@@ -63,7 +63,7 @@
         </indexterm></title>
 
       <para>WinMerge archive support is provided in the 7-Zip plugin. See <xref
-      linkend="Installing" /> to install this plugin.</para>
+      linkend="Install" /> to install this plugin.</para>
 
       <para>Opening two archive files is similar to opening normal files:
       specify two archive files in the Open-dialog's <guilabel>Left</guilabel>
@@ -71,7 +71,7 @@
       format, it opens the contents of the archive files in the Folder Compare
       window.</para>
 
-      <para>The <xref linkend="CompareDirs" /> topic describes how to work with
+      <para>The <xref linkend="Compare_dirs" /> topic describes how to work with
       archive files. For example, if an archive file contains two subfolders
       named <filename class="directory">Original/</filename> and <filename
       class="directory">Altered/</filename>, you can compare the contents of the
@@ -317,7 +317,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
       <note>
         <para>These settings for the Windows Explorer integration do not change
         the <option>Include Subfolders</option> setting for the Select Files or
-        Folders dialog, described in <xref linkend="QuickStart" />.</para>
+        Folders dialog, described in <xref linkend="Quick_start" />.</para>
       </note>
     </section>
   </section>

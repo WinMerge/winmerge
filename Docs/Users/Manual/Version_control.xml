@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="VersionControl">
+<article id="Version_control">
   <title>Using WinMerge with other tools<indexterm>
       <primary>integration</primary>
     </indexterm></title>
@@ -15,7 +15,7 @@
     <title>Using the command-line interface (CLI)</title>
 
     <para>The WinMerge command-line interface (CLI), described in <xref
-    linkend="CommandLine" />, enables you to run WinMerge from a Command Prompt
+    linkend="Command_line" />, enables you to run WinMerge from a Command Prompt
     window, from scripts, or from another tool or program. Basically, any
     program that allows you to call an external executable with at least one
     path, can be used to launch a WinMerge operation.</para>

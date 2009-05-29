@@ -153,9 +153,9 @@
       </indexterm>Getting support and reporting bugs</title>
 
     <para>The <ulink
-    url="http://apps.sourceforge.net/phpbb/winmerge/viewforum.php?f=4">Open Discussion
-    forum</ulink> is the fastest way to get help. Please be patient, it may take
-    some time for somebody to answer.</para>
+    url="http://apps.sourceforge.net/phpbb/winmerge/viewforum.php?f=4">Open
+    Discussion forum</ulink> is the fastest way to get help. Please be patient,
+    it may take some time for somebody to answer.</para>
 
     <para>If you find a bug, please submit it as a <ulink
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
@@ -177,12 +177,13 @@
         </menuchoice>.</para>
     </important>
 
-    <para>You must <ulink url="https://sourceforge.net/account/registration/">register
-    with SourceForge.net</ulink> before posting a bug report (registration is
-    free). We require registering because anonymous submissions caused a lot of
-    spam and also because there were no possibility to contact people for asking
-    more information. We rarely sent direct emails but you'll get notifications
-    when we ask questions in the bug item.</para>
+    <para>You must <ulink
+    url="https://sourceforge.net/account/registration/">register with
+    SourceForge.net</ulink> before posting a bug report (registration is free).
+    We require registering because anonymous submissions caused a lot of spam
+    and also because there were no possibility to contact people for asking more
+    information. We rarely sent direct emails but you'll get notifications when
+    we ask questions in the bug item.</para>
   </section>
 
   <section>

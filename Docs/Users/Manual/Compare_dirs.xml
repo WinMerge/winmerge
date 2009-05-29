@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="CompareDirs">
+<article id="Compare_dirs">
   <title>Comparing and merging folders<indexterm>
       <primary>comparing folders</primary>
     </indexterm></title>
@@ -30,7 +30,7 @@
           all files in the folders, and is nonrecursive (does not include
           subfolders). To change any of these options and for more details about
           the Select Files or Folder dialog, see <xref
-          linkend="OpenPaths" />.</para>
+          linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -43,7 +43,7 @@
           right folders to compare. By default, the compare includes all files
           in the folders, and is nonrecursive. To change any of these options
           and for information about other command options, see <xref
-          linkend="CommandLine" />.</para>
+          linkend="Command_line" />.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -431,9 +431,9 @@ I get the partial list, but no Abort indicator.--></para>
       </indexterm>
 
       <para>You can use the mouse as well as <link
-      linkend="Shortcuts">keyboard</link> and context menu shortcuts to navigate
-      the Folder Compare window. You can also use the toolbar buttons. For
-      example, the <inlinemediaobject>
+      linkend="Shortcut_keys">keyboard</link> and context menu shortcuts to
+      navigate the Folder Compare window. You can also use the toolbar buttons.
+      For example, the <inlinemediaobject>
           <imageobject>
             <imagedata contentdepth="15" fileref="screenshots/nextdiff_btn.png" />
           </imageobject>
@@ -1454,7 +1454,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <para>Please consider that shell menu commands run entirely outside of
       WinMerge. Consequently, WinMerge might not respond to some operations in
       the same way as operations performed inside WinMerge. For example, if you
-      delete a file through this integration instead of using the Winmerge
+      delete a file through this integration instead of using the WinMerge
       <command>Delete</command> command, the change is not automatically shown
       in the Folder Compare window (you have to manually refresh the window to
       see the change).</para>
