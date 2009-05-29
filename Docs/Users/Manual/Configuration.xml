@@ -1358,17 +1358,16 @@
         <secondary>with version control systems</secondary>
       </indexterm></title>
 
-    <!--What does version control integration do for me? How do the Option page settings work with installed 
-VCS integration? My installation had an option to integrate with TortoiseSVN.-->
-
-    <para>Use this page to configure or disable the WinMerge integration with a
-    supported versioning system.</para>
-
-    <para>Choose one of these options:</para>
+    <para>Use this page to enable or disable checkouts through an installed
+    version control system (VCS) that you select here. If you enable this
+    integration with one of the supported systems, WinMerge opens the checkout
+    dialog for that VCS when you save a versioned file in WinMerge.</para>
 
     <itemizedlist>
       <listitem>
-        <para><guilabel>None</guilabel> (default)</para>
+        <para><guilabel>None</guilabel> (default): When you save a file in
+        WinMerge, there are no interactions with any version control
+        system.</para>
       </listitem>
 
       <listitem>
@@ -1384,14 +1383,12 @@ VCS integration? My installation had an option to integrate with TortoiseSVN.-->
       <listitem>
         <para><guilabel>Rational ClearCase</guilabel></para>
 
-        <para>Also enter the path to <filename>cleartool.exe</filename>. </para>
+        <para>Also enter the path to <filename>cleartool.exe</filename>.</para>
       </listitem>
     </itemizedlist>
 
-    <note>
-      <para>If you are changing the WinMerge integration with ClearCase, please
-      see <xref linkend="VersionControl_cc" /> for details.</para>
-    </note>
+    <para>See <xref linkend="VersionControl_vcs" /> for details about using this
+    feature.</para>
   </section>
 
   <section id="Configuration_codepage">

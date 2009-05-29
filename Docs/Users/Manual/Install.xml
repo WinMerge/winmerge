@@ -205,7 +205,7 @@
               </indexterm></term>
 
             <listitem>
-              <para>Sets WinMerge to be the TortoiseSVN diff application</para>
+              <para>Sets WinMerge to be the TortoiseSVN diff application.</para>
             </listitem>
           </varlistentry>
 
@@ -217,9 +217,11 @@
               </indexterm></term>
 
             <listitem>
-              <para>Sets WinMerge to be the ClearCase diff and merge
-              application. <xref linkend="VersionControl_cc" /> has details
-              about changes to your ClearCase installation.</para>
+              <para>Sets WinMerge to be the ClearCase diff application.</para>
+
+              <para>For more information about the three integrations in this
+              list and related WinMerge options, see <xref
+              linkend="VersionControl_vcs" />.</para>
             </listitem>
           </varlistentry>
 
@@ -262,7 +264,7 @@
 
   <section id="InstallFromArchive">
     <title>Installing from an archive<indexterm>
-        <primary>archive, installing Winmerge from</primary>
+        <primary>archive, installing WinMerge from</primary>
       </indexterm><indexterm>
         <primary>mfc71[u].dll runtime file</primary>
       </indexterm><indexterm>
