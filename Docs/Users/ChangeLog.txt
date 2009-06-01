@@ -15,6 +15,7 @@ WinMerge 2.12.4
     mixed-eol files (#2022312)
   Bugfix: Didn't show correct EOL chars if whitespace chars were turned off
     and again on (#2791402)
+  Bugfix: Generated patch had wrong file time for UTF-16 files (#2791506)
 
 WinMerge 2.12.2 - 2009-04-01 (r6625)
   Disable folder compare tree-view by default (#2714968)
