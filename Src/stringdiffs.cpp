@@ -163,38 +163,6 @@ stringdiffs::BuildWordDiffList()
 			if (IsSpace(*m_words2[m_words2.size() - 1]))
 				RemoveItem2(m_words2.size() - 1);
 		}
-		// Now lets remove all space inbetween and put the words to 
-		// one síngle word as it was break by space
-		// doit for word1
-		i = 0;
-		while ((int)m_words1.size() > i + 1)
-		{
-			if (IsSpace(*m_words1[i + 1]) && IsWord(*m_words1[i + 2]))
-			{
-				m_words1[i]->hash =
-					Hash(m_str1, m_words1[i + 2]->start, m_words1[i+2]->end, m_words1[i]->hash);
-				m_words1[i]->end = m_words1[i + 2]->end;
-				RemoveItem1(i + 1);
-				RemoveItem1(i + 1);
-				continue;
-			}
-			i++;
-		}
-		// Doit for word2
-		i = 0;
-		while ((int)m_words2.size() > i + 1)
-		{
-			if (IsSpace(*m_words2[i + 1]) && IsWord(*m_words2[i + 2]))
-			{
-				m_words2[i]->hash =
-					Hash(m_str2, m_words2[i + 2]->start, m_words2[i + 2]->end, m_words2[i]->hash);
-				m_words2[i]->end = m_words2[i + 2]->end;
-				RemoveItem2(i + 1);
-				RemoveItem2(i + 1);
-				continue;
-			}
-			i++;
-		}
 	}
 	// Look for a match of word2 in word1
 	// not found put an empty record at beginn of word1
@@ -203,7 +171,7 @@ stringdiffs::BuildWordDiffList()
 	int w1 = 0, w2 = 0;		// position found in array
 	int bw1 = 0;			// start position in m_words1
 	int bw2 = 0;			// start position in m_words2
-
+	bool lbreak = false;	// repeat
 	if (m_matchblock && (int)m_words1.size() > 0 && (int)m_words2.size() > 0)
 	{
 		bw1 = 0;
@@ -211,9 +179,24 @@ stringdiffs::BuildWordDiffList()
 		while (bw2 < (int)m_words2.size())
 		{
 			w2 = 0;
+			lbreak = false;
 			if (bw1 >= (int)m_words1.size())
 				break;
-
+			if (m_whitespace == 2)
+			{
+				if (IsSpace(*m_words1[bw1]))
+				{
+					RemoveItem1(bw1);
+					lbreak = true;
+				}
+				if (IsSpace(*m_words2[bw2]))
+				{
+					RemoveItem2(bw2);
+					lbreak = true;
+				}
+				if (lbreak)
+					continue;
+			}
 			// Are we looking for a spacebreak, so just look for word->bBreak
 			if (IsSpace(*m_words2[bw2]))
 				w1 = FindNextSpaceInWords1(bw1);
@@ -247,6 +230,7 @@ stringdiffs::BuildWordDiffList()
 								Hash(m_str2, m_words2[bw2 + 2]->start, m_words2[bw2 + 2]->end, m_words2[bw2]->hash))
 							{
 								m_words2[bw2]->end = m_words2[bw2 + 2]->end;
+								m_words2[bw1]->hash = m_words1[bw1]->hash;
 								// Now remove the detected blocks on side2.
 								RemoveItem2(bw2 + 1);
 								RemoveItem2(bw2 + 1);
@@ -267,6 +251,7 @@ stringdiffs::BuildWordDiffList()
 								Hash(m_str1, m_words1[bw1 + 2]->start, m_words1[bw1 + 2]->end, m_words1[bw1]->hash))
 							{
 								m_words1[bw1]->end = m_words1[bw1 + 2]->end;
+								m_words1[bw1]->hash = m_words2[bw1]->hash;
 								// Now remove the detected blocks on side2.
 								RemoveItem1(bw1 + 1);
 								RemoveItem1(bw1 + 1);
