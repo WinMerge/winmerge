@@ -334,6 +334,10 @@ void CPreferencesDlg::OnExportButton()
 		if (extension.empty())
 			settingsFile += _T(".ini");
 
+		// Save all new settings before exporting
+		m_pphost.UpdatePagesData();
+		SaveOptions();
+
 		if (m_pOptionsMgr->ExportOptions(settingsFile) == OPT_OK)
 			LangMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
