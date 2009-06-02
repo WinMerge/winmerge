@@ -58,7 +58,7 @@ experimental. DO NOT use it to install WinMerge to production environment!
 <code>WinMerge.wxs</code>. This file includes other needed files.</p>
 
 <h3>Folder structure and files needed:</h3>
-<p>First make sure you have all needed files compiled and available:
+<p>First make sure you have all needed files compiled and available:</p>
 <ul>
   <li>WinMerge executables: <code>WinMergeU.exe</code></li>
   <li>Translation library: <code>MergeLang.dll</code></li>
@@ -66,9 +66,9 @@ experimental. DO NOT use it to install WinMerge to production environment!
   <li>Libraries: <code>libexpat.dll</code> and <code>pcre.dll</code></li>
   <li>Manual: <code>WinMerge.chm</code></li>
   <li>ShellExtension: <code>ShellExtensionU.dll</code> and <code>ShellExtensionX64.dll</code></li>
-  <li>Documents: <code>/Docs/Users/*</code>
-  <li>Filters: <code>/Filters/*</code>
-</ul></p>
+  <li>Documents: <code>/Docs/Users/*</code></li>
+  <li>Filters: <code>/Filters/*</code></li>
+</ul>
 
 <p>These files are produced by compiling WinMerge, documentation etc, but
 that's not subject of this document, refer to <a href="Compiling.html">Compiling.html</a>,
@@ -78,7 +78,7 @@ that's not subject of this document, refer to <a href="Compiling.html">Compiling
 <p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
 not distributes with WinMerge. You get these files from Visual Studio
 installation folder or can download them from internet. By default we use VS2005
-runtime files:
+runtime files:</p>
 <ul>
   <li><code>msvcr80.dll</code></li>
   <li><code>msvcp80.dll</code></li>
@@ -86,7 +86,7 @@ runtime files:
   <li><code>mfc80u.dll</code></li>
   <li><code>Microsoft.VC80.CRT.manifest</code></li>
   <li><code>Microsoft.VC80.MFC.manifest</code></li>
-</ul></li>
+</ul>
 
 <h4>Folder structure</h4>
 
@@ -196,8 +196,8 @@ than WinMerge source tree folder is. Not <i>inside</i> source tree but
 <h3>Running WIX tools to create installer</h3>
 
 <p><code>WinMerge.wxs</code> (in <code>WIX</code> folder)
-is script used to create WinMerge MSI installer.</p> Other tools and IDEs can
-be used also. For example WixEdit or SharpDevelop.
+is script used to create WinMerge MSI installer. Other tools and IDEs can
+be used also. For example WixEdit or SharpDevelop.</p>
 
 <h4>Building with MSBuild</h4>
 
@@ -217,7 +217,6 @@ For example:
 <pre>
  msbuild.exe WinMerge.wixproj /p:Platform=x86,ProductVersion=1.0.2
 </pre>
-</p>
 
 <p>If the compile succeeds you have <code>WinMerge-[platform]-Setup.msi</code>
 files in <code>Build\WiX\Release\</code>folder's subfolders.
