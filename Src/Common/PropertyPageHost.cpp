@@ -324,6 +324,24 @@ void CPropertyPageHost::OnOK()
 	}
 }
 
+/**
+ * @brief Update all PropertyPages.
+ */
+void CPropertyPageHost::UpdatePagesData()
+{
+	int nPage = m_aPages.GetSize();
+
+	while (nPage--)
+	{
+		CPropertyPage* pPage = m_aPages[nPage].pPage;
+
+		if (pPage && pPage->GetSafeHwnd())
+		{
+			pPage->UpdateData();
+		}
+	}
+}
+
 int CPropertyPageHost::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
 	if (CWnd::OnCreate(lpCreateStruct) == -1)

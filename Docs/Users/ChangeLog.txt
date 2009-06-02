@@ -3,6 +3,9 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
+WinMerge 2.13.9
+  Bugfix: Did not export changed options values (#2799149)
+
 WinMerge 2.13.8 - 2009-05-26 (r6791)
   Move executable translations to /Translations/WinMerge (r6754)
   Move InnoSetup translations to /Translations/InnoSetup (r6759)

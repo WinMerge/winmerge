@@ -41,6 +41,7 @@ public:
 	BOOL Create(LPRECT lpRect, CWnd* pParent, UINT uCtrlID = AFX_IDW_PANE_FIRST);
 	BOOL Create(UINT nRefCtrlID, CWnd* pParent, UINT uCtrlID = AFX_IDW_PANE_FIRST);
 	void OnOK();
+	void UpdatePagesData();
 	
 	int GetActiveIndex();
 	CPropertyPage* GetActivePage();
