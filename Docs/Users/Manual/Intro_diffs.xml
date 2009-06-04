@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="IntroductDiffing">
+<article id="Intro_diffs">
   <title>Overview of file comparing and merging</title>
 
   <para>This topic describes how WinMerge detects and displays differences
@@ -104,8 +104,8 @@ Believe it or not.</screen></para>
           </mediaobject>
 
           <para>The elements are described in more detail in <xref
-          linkend="CompareFiles" />. Here are some features you should notice in
-          this example:</para>
+          linkend="Compare_files" />. Here are some features you should notice
+          in this example:</para>
 
           <variablelist>
             <varlistentry>
@@ -123,7 +123,7 @@ Believe it or not.</screen></para>
 
               <listitem>
                 <para>Difference blocks are marked with the difference
-                background color (gold, by default). </para>
+                background color (gold, by default).</para>
 
                 <para>Line differences can be enabled to mark changed text
                 within differences blocks, using the word background color
@@ -367,7 +367,7 @@ Believe it or not.</screen></para>
           Difference 2 from <filename>File2</filename> to
           <filename>File1</filename>.</para>
 
-          <para>The message that the the files are identical tells you that the
+          <para>The message that the files are identical tells you that the
           merge is complete:</para>
 
           <mediaobject>
@@ -436,7 +436,7 @@ Believe it or not.</screen></para>
 
       <para>Similarly, in the WinMerge command line, you can leave both source
       versions unchanged by using the optional <option>outputfile</option>
-      argument, as described in <xref linkend="CommandLine" />.</para>
+      argument, as described in <xref linkend="Command_line" />.</para>
     </section>
   </section>
 </article>

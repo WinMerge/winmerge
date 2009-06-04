@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="CompareFiles">
+<article id="Compare_files">
   <title>Comparing and merging files<indexterm>
       <primary>comparing files</primary>
     </indexterm></title>
 
   <para>This topic describes how to use the WinMerge File Compare window to
   compare and merge files. To understand the basic concepts about differences
-  used here, we suggest you read <xref linkend="IntroductDiffing" />
-  first.</para>
+  used here, we suggest you read <xref linkend="Intro_diffs" /> first.</para>
 
   <xi:include href="Text_encoding.xml"
               xmlns:xi="http://www.w3.org/2001/XInclude" />
@@ -30,7 +29,7 @@
             </menuchoice>. Use the Select Files or Folders dialog to specify the
           left and right source files to compare. For more details about the
           Select Files or Folder dialog, see <xref
-          linkend="OpenPaths" />.</para>
+          linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -41,7 +40,7 @@
           <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge
           install directory. In your command arguments, include the left and
           right files to compare. For more information about using the command
-          line, see <xref linkend="CommandLine" />.</para>
+          line, see <xref linkend="Command_line" />.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,10 +137,9 @@
 
         <para>WinMerge highlights several types of differences in the File
         panes. The Colors page in the Options dialog defines a set of background
-        and text colors for each difference type, depending on whether it is
-        unselected, selected, or deleted. This section describes each of the
-        basic difference types and the configuration options that affect their
-        detection.</para>
+        and text colors for most difference types, with variations indicating
+        their state: unselected, selected, or deleted. This section describes
+        how each of the basic difference types is detected and displayed.</para>
 
         <variablelist>
           <varlistentry>
@@ -190,7 +188,9 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Ignored Difference</term>
+            <term>Ignored Difference<indexterm>
+                <primary>ignored differences</primary>
+              </indexterm></term>
 
             <listitem>
               <para>This color marks content that you have configured WinMerge
@@ -214,7 +214,7 @@
               <para>The next example repeats the previous comparison, this time
               with <option>Ignore blank lines</option> enabled. There are now
               only two differences. The blank line on the right side is marked
-              with the Ignored Differences color. </para>
+              with the Ignored Differences color.</para>
 
               <mediaobject>
                 <imageobject>
@@ -231,7 +231,9 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Moved</term>
+            <term>Moved<indexterm>
+                <primary>moved differences</primary>
+              </indexterm></term>
 
             <listitem>
               <para>Moved differences are identical lines found in different
@@ -274,6 +276,54 @@
               blocks. Line differences are marked with the word difference
               color. See <xref linkend="CompareFiles_linediff-highlight" /> for
               details.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Similar lines<indexterm>
+                <primary>similar lines, in differences</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>WinMerge tries to match similar lines within difference
+              blocks when you enable <option>Match similar lines</option> in the
+              Options dialog Compare page. What does <quote>similar</quote>
+              mean? Generally, this feature works best in simple cases, for
+              example where lines that have strong similarities. When detected,
+              similar lines are adjusted to align in the File pane. The next
+              figure shows comparisons of the same two files, before and after
+              enabling the <option>Match similar lines</option> option:</para>
+
+              <simplelist columns="2" type="horiz">
+                <member><emphasis role="strong">Disabled</emphasis>:
+                <inlinemediaobject>
+                    <imageobject>
+                      <imagedata contentwidth="273"
+                                 fileref="screenshots/simlines-diffs-off.png" />
+                    </imageobject>
+
+                    <textobject>
+                      <phrase>Compare without matching similar lines</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+
+                <member><emphasis role="strong">Enabled</emphasis>:
+                <inlinemediaobject>
+                    <imageobject>
+                      <imagedata contentwidth="273"
+                                 fileref="screenshots/simlines-diffs-on.png" />
+                    </imageobject>
+
+                    <textobject>
+                      <phrase>Compare matching similar lines</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+              </simplelist>
+
+              <para>In the second comparison, the lines <quote>blind</quote> and
+              <quote>blonde</quote> are detected as similar. WinMerge adds blank
+              lines in the display to make these lines appear at the same level
+              within the difference block.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -321,13 +371,11 @@
 
         <variablelist>
           <varlistentry>
-            <term id="wordlevel-linediffs">Word-level line differences</term>
+            <term id="wordlevel-linediffs">Word-level line differences<indexterm>
+                <primary>word differences</primary>
+              </indexterm></term>
 
             <listitem>
-              <indexterm>
-                <primary>word-level line difference</primary>
-              </indexterm>
-
               <para>The following examples show how word-level line differences
               are displayed with each of the whitespace settings:</para>
 
@@ -393,13 +441,11 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Character-level line differences</term>
+            <term>Character-level line differences<indexterm>
+                <primary>character-level line difference</primary>
+              </indexterm></term>
 
             <listitem>
-              <indexterm>
-                <primary>character-level line difference</primary>
-              </indexterm>
-
               <para>A character-level line difference includes the first and
               last different characters in a word, and all the characters
               between them. A single character-level difference can span
@@ -430,13 +476,11 @@
 
         <variablelist>
           <varlistentry>
-            <term>Breaks for words or character</term>
+            <term>Breaks for words or character<indexterm>
+                <primary>word breaks in line differences</primary>
+              </indexterm></term>
 
             <listitem>
-              <indexterm>
-                <primary>word breaks in line differences</primary>
-              </indexterm>
-
               <para>Words and characters in line differences can be separated by
               whitespace, or by a combination of whitespace and punctuation.
               Whitespace (the default) is the typical choice for comparing most
@@ -550,17 +594,23 @@
             <guimenuitem>View Margins</guimenuitem>
           </menuchoice>. If you are using multiple File Compare windows, you can
         control margins for each window independently. The margin can show any
-        or all of these features:<indexterm>
-            <primary>line numbers</primary>
+        or all of these features:</para>
 
-            <secondary>in File panes</secondary>
-          </indexterm><indexterm>
-            <primary>bookmarks</primary>
-          </indexterm><indexterm>
-            <primary>word wrapping</primary>
+        <indexterm>
+          <primary>line numbers</primary>
 
-            <secondary>in File panes</secondary>
-          </indexterm></para>
+          <secondary>in File panes</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>bookmarks</primary>
+        </indexterm>
+
+        <indexterm>
+          <primary>word wrapping</primary>
+
+          <secondary>in File panes</secondary>
+        </indexterm>
 
         <itemizedlist>
           <listitem>
@@ -709,9 +759,8 @@
 
       <para>Difference functions are described in <xref
       linkend="Compare_files_nav" /> and <xref linkend="Compare_files_merge" />,
-      later in this topic. <xref linkend="QuickStart" /> and <xref
-      linkend="IntroductDiffing" /> provide examples of comparing and
-      merging.</para>
+      later in this topic. <xref linkend="Quick_start" /> and <xref
+      linkend="Intro_diffs" /> provide examples of comparing and merging.</para>
 
       <section>
         <title>Merge Mode<indexterm>
@@ -751,9 +800,15 @@
     </section>
 
     <section>
-      <title>Location pane<indexterm>
-          <primary>Location pane, File Compare window</primary>
-        </indexterm></title>
+      <title>Location pane</title>
+
+      <indexterm>
+        <primary>Location pane, File Compare window</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>difference navigation</primary>
+      </indexterm>
 
       <para>The Location pane, to the left of the File panes, maps the entire
       length of the compared files into two vertical bars (corresponding to the
@@ -853,14 +908,12 @@
         <varlistentry>
           <term>Moved differences<indexterm>
               <primary>moved differences</primary>
-
-              <secondary>in File Compare window</secondary>
             </indexterm></term>
 
           <listitem>
-            <para>Moved differences are identical lines in different locations,
-            shown only if the Enable moved block detection is checked in the
-            Options dialog Compare page. See <xref
+            <para>Moved differences are identical lines in different locations.
+            They are shown only if the Enable moved block detection is checked
+            in the Options dialog Compare page. See <xref
             linkend="CompareFiles_diffcolors" /> for more details about moved
             differences in the File pane. The Location pane draws a line
             connecting moved differences in the left and right location bars.
@@ -1190,6 +1243,10 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
           <primary>WinMerge functions</primary>
 
           <secondary>difference navigation in File Compare window</secondary>
+        </indexterm><indexterm>
+          <primary>navigation functions</primary>
+
+          <secondary>file compare</secondary>
         </indexterm></title>
 
       <para>Here are the functions for navigating differences in the File
@@ -1204,22 +1261,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
-            <para>Shortcuts: <inlinemediaobject>
-                <imageobject>
-                  <imagedata contentdepth="15"
-                             fileref="screenshots/diff_inline_btn.png" />
-                </imageobject>
-
-                <textobject>
-                  <phrase>Difference in the Current Line button</phrase>
-                </textobject>
-              </inlinemediaobject> button, <menuchoice>
-                <guimenu>Edit</guimenu>
-
-                <guimenuitem>Select Line Difference</guimenuitem>
-              </menuchoice>, <keycap>F4</keycap>, context menu in File pane
-            within a difference.</para>
-
             <para>Enabled if you have clicked in (or selected) text within a
             difference in a File pane. Selects the word differences within the
             line. For example:</para>
@@ -1237,6 +1278,22 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
             <para>If you want to select the difference block itself, use
             <command>Current Difference</command> instead.</para>
+
+            <para>Shortcuts: <inlinemediaobject>
+                <imageobject>
+                  <imagedata contentdepth="15"
+                             fileref="screenshots/diff_inline_btn.png" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Difference in the Current Line button</phrase>
+                </textobject>
+              </inlinemediaobject> button, <menuchoice>
+                <guimenu>Edit</guimenu>
+
+                <guimenuitem>Select Line Difference</guimenuitem>
+              </menuchoice>, <keycap>F4</keycap>, context menu in File pane
+            within a difference.</para>
           </listitem>
         </varlistentry>
 
@@ -1248,6 +1305,12 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Selects the next difference below your current cursor location
+            in the document (not necessarily relative to the current
+            difference). Use to step through differences sequentially from any
+            point. Available except when the last difference is currently
+            selected.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1266,12 +1329,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Down</keycap>
               </keycombo> (or <keycap>Down</keycap> in merge mode).</para>
-
-            <para>Selects the next difference below your current cursor location
-            in the document (not necessarily relative to the current
-            difference). Use to step through differences sequentially from any
-            point. Available except when the last difference is currently
-            selected.</para>
           </listitem>
         </varlistentry>
 
@@ -1283,6 +1340,11 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Selects the previous difference above your current cursor
+            location (not necessarily relative to the current difference). Use
+            to step backwards sequentially through differences. Available except
+            when the first difference is currently selected.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1301,11 +1363,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Up</keycap>
               </keycombo> (or <keycap>Up</keycap> in merge mode).</para>
-
-            <para>Selects the previous difference above your current cursor
-            location (not necessarily relative to the current difference). Use
-            to step backwards sequentially through differences. Available except
-            when the first difference is currently selected.</para>
           </listitem>
         </varlistentry>
 
@@ -1317,6 +1374,11 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Use this to begin comparing or merging differences, or to
+            locate the first difference from any other location. Available
+            except when the first difference is currently selected. You can also
+            select a difference by double-clicking its text.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1335,11 +1397,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Home</keycap>
               </keycombo>.</para>
-
-            <para>Use this to begin comparing or merging differences, or to
-            locate the first difference from any other location. Available
-            except when the first difference is currently selected. You can also
-            select a difference by double-clicking its text.</para>
           </listitem>
         </varlistentry>
 
@@ -1351,6 +1408,24 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>This function has two modes of action:</para>
+
+            <para><itemizedlist>
+                <listitem>
+                  <simpara>If your cursor is inside a difference but no
+                  difference is selected, this function selects the entire
+                  difference. This is a very handy way to select a difference
+                  using the keyboard.</simpara>
+                </listitem>
+
+                <listitem>
+                  <simpara>When there is a current difference, the function
+                  jumps to that location. This is handy if you have scrolled the
+                  selected difference out of view, and want to quickly return to
+                  its location.</simpara>
+                </listitem>
+              </itemizedlist></para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1369,24 +1444,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Enter</keycap>
               </keycombo>.</para>
-
-            <para>This function has two modes of action:</para>
-
-            <para><itemizedlist>
-                <listitem>
-                  <simpara>If your cursor is inside a difference but no
-                  difference is selected, this function selects the entire
-                  difference. This is a very handy way to select a difference
-                  using the keyboard.</simpara>
-                </listitem>
-
-                <listitem>
-                  <simpara>When there is a current difference, the function
-                  jumps to that location. This is handy if you have scrolled the
-                  selected difference out of view, and want to quickly return to
-                  its location.</simpara>
-                </listitem>
-              </itemizedlist></para>
           </listitem>
         </varlistentry>
 
@@ -1402,6 +1459,9 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Enabled except when the last difference is currently
+            selected.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1420,9 +1480,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>End</keycap>
               </keycombo>.</para>
-
-            <para>Enabled except when the last difference is currently
-            selected.</para>
           </listitem>
         </varlistentry>
 
@@ -1432,16 +1489,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
-            <para>Shortcuts: <menuchoice>
-                <guimenu>Edit</guimenu>
-
-                <guimenuitem>Go to</guimenuitem>
-              </menuchoice>, <keycombo>
-                <keycap>Ctrl</keycap>
-
-                <keycap>G</keycap>
-              </keycombo>, context menu in File pane and Location pane.</para>
-
             <para>Enables you to jump to either a line number or a difference
             number (for example, difference 2 is the second difference). Opens
             the Go To dialog, where you specify the number, which file to use
@@ -1455,6 +1502,16 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
               <guimenuitem>Find</guimenuitem> to search text, or stepping
               through differences.</para>
             </tip>
+
+            <para>Shortcuts: <menuchoice>
+                <guimenu>Edit</guimenu>
+
+                <guimenuitem>Go to</guimenuitem>
+              </menuchoice>, <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>G</keycap>
+              </keycombo>, context menu in File pane and Location pane.</para>
           </listitem>
         </varlistentry>
 
@@ -1474,10 +1531,10 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
         <primary>merging differences</primary>
       </indexterm></title>
 
-    <para>Merging differences amounts to copying them from one File pane to the
-    other: either left to right, or right to left. This is different from
-    directly editing text using WinMerge's editing functions (described earlier
-    in this topic).</para>
+    <para>Merging copies differences from one File pane to the other: either
+    left to right, or right to left. This is different from directly editing
+    text using WinMerge's editing functions (described earlier in this
+    topic).</para>
 
     <section id="Compare_files_scan">
       <title>Rescanning files<indexterm>
@@ -1485,22 +1542,25 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
         </indexterm></title>
 
       <para>By default, the <guilabel>Automatic rescan</guilabel> option is
-      enabled in the Editor page of WinMerge options. WinMerge rescans your
-      files after every change to update its difference mapping. Without
-      rescanning, WinMerge differences might not be synchronized with the
-      current content of the files, causing unpredictable merge results.</para>
+      enabled in the Editor page of WinMerge options. Rescanning keeps your your
+      compare and merge operations up to date. Without rescanning, WinMerge
+      differences does not detect changes that might occur to files while you
+      are comparing them, for example in an external editor.</para>
 
-      <note>
-        <para>Rescanning does not reload files. Therefore, if an external
-        program has updated a file, those changes are not seen in WinMerge: only
-        changes made in WinMerge are used to update differences.</para>
-      </note>
+      <para>Rescanning occurs when you perform certain actions (like merging a
+      difference or editing a file) during a file compare. If a file has
+      changed, WinMerge displays a dialog advising you that another application
+      has updated the file, and asks whether you want to reload the file.</para>
+
+      <para>Click <guibutton>Yes</guibutton> to reload the file before
+      proceeding, or <guibutton>No</guibutton> to ignore the changes and work
+      with the earlier loaded version of the file.</para>
 
       <important>
-        <para>If <guilabel>Automatic rescan</guilabel> is disabled, we strongly
-        advise that you run <guimenuitem>Refresh</guimenuitem>
-        <emphasis>before</emphasis> performing any merge operation: click
-        <menuchoice>
+        <para>If <guilabel>Automatic rescan</guilabel> is disabled, or if you
+        suspect that a file might have changed, we strongly advise that you run
+        <guimenuitem>Refresh</guimenuitem> <emphasis>before</emphasis>
+        performing any merge operation: click <menuchoice>
             <guimenu>Edit</guimenu>
 
             <guimenuitem>Refresh</guimenuitem>
@@ -1556,6 +1616,12 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Copies one or more difference from left to right. Note that
+            differences do not need to be fully selected: At its simplest, this
+            means replacing text in the target difference with text in source
+            difference. But because differences can also contain empty lines,
+            new lines may be created or removed.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentwidth="17"
@@ -1575,12 +1641,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
                 <keycap>Right</keycap>
               </keycombo> ( or <keycap>Right</keycap> in merge mode), context
             menu in File pane within a difference, and in Diff pane.</para>
-
-            <para>Copies one or more difference from left to right. Note that
-            differences do not need to be fully selected: At its simplest, this
-            means replacing text in the target difference with text in source
-            difference. But because differences can also contain empty lines,
-            new lines may be created or removed.</para>
           </listitem>
         </varlistentry>
 
@@ -1590,6 +1650,10 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Copies the current difference from the right to the left File
+            pane. See <command>Copy Righ</command>t description for
+            details.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentwidth="17"
@@ -1609,10 +1673,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
                 <keycap>Left</keycap>
               </keycombo> (or <keycap>Left</keycap> in merge mode), context menu
             in File pane within a difference, and in Diff pane.</para>
-
-            <para>Copies the current difference from the right to the left File
-            pane. See <command>Copy Righ</command>t description for
-            details.</para>
           </listitem>
         </varlistentry>
 
@@ -1622,6 +1682,11 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Merges the current difference from the right to the left File
+            pane, then selects the next difference (if one exists). Equivalent
+            to <command>Copy Right</command> and <command>Next
+            Difference</command> in one step.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1642,11 +1707,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Right</keycap>
               </keycombo>, context menu in File pane within a difference.</para>
-
-            <para>Merges the current difference from the right to the left File
-            pane, then selects the next difference (if one exists). Equivalent
-            to <command>Copy Right</command> and <command>Next
-            Difference</command> in one step.</para>
           </listitem>
         </varlistentry>
 
@@ -1656,6 +1716,11 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Merges the current difference from left to right, then selects
+            the next difference (if one exists). Equivalent to <command>Copy
+            Left</command> and <command>Next Difference</command> in one
+            step.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1676,11 +1741,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Left</keycap>
               </keycombo>, context menu in File pane within a difference.</para>
-
-            <para>Merges the current difference from left to right, then selects
-            the next difference (if one exists). Equivalent to <command>Copy
-            Left</command> and <command>Next Difference</command> in one
-            step.</para>
           </listitem>
         </varlistentry>
 
@@ -1690,6 +1750,23 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Copies all differences from the left to the right File pane.
+            Use to synchronize two files with one command. Similarly, you can
+            back out the entire merge by clicking the<inlinemediaobject>
+                <imageobject>
+                  <imagedata contentdepth="11"
+                             fileref="screenshots/undo_btn.png" />
+                </imageobject>
+
+                <textobject>
+                  <phrase>Refresh button</phrase>
+                </textobject>
+              </inlinemediaobject> Undo or pressing <keycombo>
+                <keycap>Ctrl</keycap>
+
+                <keycap>Z</keycap>
+              </keycombo>.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1708,23 +1785,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Left</keycap>
               </keycombo>, context menu in File pane within a difference.</para>
-
-            <para>Copies all differences from the left to the right File pane.
-            Use to synchronize two files with one command. Similarly, you can
-            back out the entire merge by clicking the<inlinemediaobject>
-                <imageobject>
-                  <imagedata contentdepth="11"
-                             fileref="screenshots/undo_btn.png" />
-                </imageobject>
-
-                <textobject>
-                  <phrase>Refresh button</phrase>
-                </textobject>
-              </inlinemediaobject> Undo or pressing <keycombo>
-                <keycap>Ctrl</keycap>
-
-                <keycap>Z</keycap>
-              </keycombo>.</para>
           </listitem>
         </varlistentry>
 
@@ -1734,6 +1794,10 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Copies all differences from the right to the left File pane.
+            Effectively, replaces the content of the left File pane. See similar
+            to <command>All Right</command>.</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentdepth="15"
@@ -1752,10 +1816,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <keycap>Left</keycap>
               </keycombo>, context menu in File pane within a difference.</para>
-
-            <para>Copies all differences from the right to the left File pane.
-            Effectively, replaces the content of the left File pane. See similar
-            to <command>All Right</command>.</para>
           </listitem>
         </varlistentry>
 
@@ -1767,6 +1827,10 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
             </indexterm></term>
 
           <listitem>
+            <para>Rescans files to update differences. Use after changes are
+            made to files, if automatic scanning is disabled (see <xref
+            linkend="Compare_files_scan" /> for details).</para>
+
             <para>Shortcuts: <inlinemediaobject>
                 <imageobject>
                   <imagedata contentwidth="16"
@@ -1781,10 +1845,6 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
 
                 <guimenuitem>Refresh</guimenuitem>
               </menuchoice>, <keycap>F5</keycap>.</para>
-
-            <para>Rescans files to update differences. Use after changes are
-            made to files, if automatic scanning is disabled (see <xref
-            linkend="Compare_files_scan" /> for details).</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1850,8 +1910,8 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
               <keycap>Ctrl</keycap>
 
               <keycap>S</keycap>
-            </keycombo> to save the the <guilabel>Mine File</guilabel> side as
-          the result file. By default, the new version overwrites the original
+            </keycombo> to save the <guilabel>Mine File</guilabel> side as the
+          result file. By default, the new version overwrites the original
           conflict file. Alternatively, you can click <menuchoice>
               <guimenu>File</guimenu>
 
@@ -1870,7 +1930,7 @@ https://sourceforge.net/forum/forum.php?thread_id=2001747&forum_id=41637-->
       which accepts three filename parameters: <option>Theirs</option>,
       <option>Mine</option>, and optionally, <option>Resolved</option> (if you
       want a different result file from the conflict file). For more
-      information, see <xref linkend="CommandLine" />. Single path to the
+      information, see <xref linkend="Command_line" />. Single path to the
       conflict file is also accepted in command line.</para>
     </section>
   </section>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="Installing">
+<article id="Install">
   <title>Getting and installing WinMerge<indexterm>
       <primary>installing WinMerge</primary>
     </indexterm></title>
@@ -93,7 +93,8 @@
             <term>Filters</term>
 
             <listitem>
-              <para>File filter files</para>
+              <para>File filter files enable you to narrow the scope of
+              comparisons.</para>
             </listitem>
           </varlistentry>
 
@@ -101,7 +102,9 @@
             <term>Plugins</term>
 
             <listitem>
-              <para>Plugins and scripts</para>
+              <para>WinMerge plugins are custom dlls or scriptlets, written in
+              the COM API, that you can use to preprocess data before a
+              comparison.</para>
             </listitem>
           </varlistentry>
 
@@ -160,8 +163,29 @@
             <term>Enable Explorer context menu integration</term>
 
             <listitem>
-              <para>Enables basic WinMerge shell integration (can be enabled
-              later in WinMerge options).</para>
+              <indexterm>
+                <primary>integration</primary>
+
+                <secondary>with Windows shell</secondary>
+              </indexterm>
+
+              <indexterm>
+                <primary>Windows shell integration</primary>
+              </indexterm>
+
+              <para>Enables you to <link linkend="OpenPaths_shell-integ">launch
+              WinMerge compare operations from Windows Explorer</link> (this
+              integration can be enabled or disabled later in WinMerge
+              options).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Add WinMerge folder to your system path</term>
+
+            <listitem>
+              <para>Adds the WinMerge installation folder to your system's Path
+              environment variable.</para>
             </listitem>
           </varlistentry>
 
@@ -181,20 +205,23 @@
               </indexterm></term>
 
             <listitem>
-              <para>Sets WinMerge to be the TortoiseSVN diff application</para>
+              <para>Sets WinMerge to be the TortoiseSVN diff application.</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term>Integrate with ClearCase<indexterm>
+            <term>Integrate with Rational ClearCase<indexterm>
                 <primary>ClearCase integration</primary>
 
                 <secondary>configuring during installation</secondary>
               </indexterm></term>
 
             <listitem>
-              <para>Sets WinMerge to be the ClearCase diff and merge
-              application</para>
+              <para>Sets WinMerge to be the ClearCase diff application.</para>
+
+              <para>For more information about the three integrations in this
+              list and related WinMerge options, see <xref
+              linkend="VersionControl_vcs" />.</para>
             </listitem>
           </varlistentry>
 
@@ -202,7 +229,7 @@
             <term>Create a Desktop shortcut</term>
 
             <listitem>
-              <para>Adds the WinMerge shortcut to your Desktop.</para>
+              <para>Adds the WinMerge shortcut to your Windows Desktop.</para>
             </listitem>
           </varlistentry>
 
@@ -210,7 +237,8 @@
             <term>Create a Quick Launch shortcut</term>
 
             <listitem>
-              <para>Adds the WinMerge shortcut to Quick Launch bar.</para>
+              <para>Adds the WinMerge shortcut to the Windows Quick Launch
+              bar.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -236,7 +264,7 @@
 
   <section id="InstallFromArchive">
     <title>Installing from an archive<indexterm>
-        <primary>archive, installing Winmerge from</primary>
+        <primary>archive, installing WinMerge from</primary>
       </indexterm><indexterm>
         <primary>mfc71[u].dll runtime file</primary>
       </indexterm><indexterm>
@@ -276,7 +304,8 @@
   </section>
 
   <section>
-    <title>Shell integration<indexterm>
+    <title>Enabling Windows Explorer shell integration without the installer
+    <indexterm>
         <primary>integration</primary>
 
         <secondary>with Windows shell</secondary>
@@ -284,10 +313,8 @@
         <primary>Windows shell integration</primary>
       </indexterm></title>
 
-    <para>The installer enables shell integration when you choose the
-    <guilabel>Enable Explorer context menu integration</guilabel> option in the
-    Select Additional Tasks page. If you do not use the install program: you
-    must register the shell integration DLL
+    <para>If you do not use the install program and you want to enable Windows
+    Explorer shell integration, you must register the shell integration DLL
     (<filename>ShellExtension*.dll</filename>) separately.</para>
 
     <note>
@@ -306,14 +333,14 @@
     Windows updates all its references.</para>
 
     <section>
-      <title>64-bit shell integration<indexterm>
+      <title>64-bit Windows Explorer shell integration<indexterm>
           <primary>Windows 64-bit versions, WinMerge support</primary>
         </indexterm></title>
 
-      <para>Starting with Version 2.6, WinMerge supports 64-bit Windows versions
-      by including 64-bit shell integration. The WinMerge installer recognizes
-      64-bit versions of Windows and can install the correct shell integration
-      version.</para>
+      <para>Starting with Version 2.6, WinMerge supports Windows Explorer shell
+      integration for 64-bit Windows versions. The WinMerge installer recognizes
+      the 64-bit versions of Windows and can install the correct shell
+      integration.</para>
 
       <para>When you install shell integration manually from an archive file,
       the shell integration DLL is named

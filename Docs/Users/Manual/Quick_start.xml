@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="QuickStart">
+<article id="Quick_start">
   <title>Quick start</title>
 
   <section>
@@ -256,8 +256,9 @@
 
       <itemizedlist>
         <listitem>
-          <para>Project files are the easiest and fastest way to open frequently
-          used paths. To open a project file, use one of these methods:</para>
+          <para><xref linkend="OpenPaths_project" /> are the easiest and fastest
+          way to open frequently used paths. To open a project file, use one of
+          these methods:</para>
 
           <itemizedlist>
             <listitem>
@@ -277,32 +278,28 @@
               file in the <guilabel>Left</guilabel> field.</para>
 
               <note>
-                <para>If you specify project files in both the the
+                <para>If you specify project files in both the
                 <guilabel>Left</guilabel> and <guilabel>Right</guilabel> fields,
                 WinMerge does not open either project file; it simply compares
                 the XML content of the two files.</para>
               </note>
             </listitem>
           </itemizedlist>
-
-          <para>See <xref linkend="OpenPaths" /> for more information about
-          project files.</para>
         </listitem>
 
         <listitem>
-          <simpara>Right-clicking files or folders in Windows Explorer, choosing
-          WinMerge in the context menu.</simpara>
+          <simpara><xref linkend="OpenPaths_shell-integ" />.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>The command line allows you to start WinMerge from other
-          applications, from a command prompt, or a batch or script
-          file.</simpara>
+          <simpara>Use the <xref linkend="Command_line" /> interface to start
+          WinMerge from other applications, from a command prompt, or a batch or
+          script file.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>You can drag and drop files and folders directly into the
-          WinMerge window or on the WinMerge desktop shortcut.</simpara>
+          <simpara>Drag and drop files and folders directly into the WinMerge
+          window or on the WinMerge desktop shortcut.</simpara>
         </listitem>
       </itemizedlist>
     </section>
@@ -338,12 +335,12 @@
 
     <para>WinMerge does not have a concept of <wordasword>original</wordasword>
     and <wordasword>changed</wordasword> sides. Instead, it simply shows what is
-    different between two selected folders. For example, a file or folder that
-    is found only on one side is simply shown as a unique item on that side. It
-    is not shown as added or removed. For example, in the <guilabel>Comparison
-    result </guilabel>column of the preceding figure,
-    <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> are
-    each found in only one of the compared folders.</para>
+    different between two selected folders. A file or folder that is found only
+    on one side is simply shown as a unique item on that side, not as added or
+    removed. For example, in the <guilabel>Comparison result </guilabel>column
+    of the preceding figure, <filename>Merge.aps</filename> and
+    <filename>Merge.rc.bak</filename> are each found in only one of the compared
+    folders.</para>
 
     <para>You can manage files and folders in many ways using the
     <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click)

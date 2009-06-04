@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="OpenPaths">
+<article id="Open_paths">
   <title>Opening files and folders<indexterm>
       <primary>opening files and folders</primary>
     </indexterm></title>
@@ -38,7 +38,7 @@
         <primary>Select Files or Folders dialog</primary>
       </indexterm></title>
 
-    <para><xref linkend="QuickStart" /> describes the Select Files or Folders
+    <para><xref linkend="Quick_start" /> describes the Select Files or Folders
     dialog. This section provides more details, and some tips for using the
     Select Files or Folders dialog more efficiently.</para>
 
@@ -63,7 +63,7 @@
         </indexterm></title>
 
       <para>WinMerge archive support is provided in the 7-Zip plugin. See <xref
-      linkend="Installing" /> to install this plugin.</para>
+      linkend="Install" /> to install this plugin.</para>
 
       <para>Opening two archive files is similar to opening normal files:
       specify two archive files in the Open-dialog's <guilabel>Left</guilabel>
@@ -71,7 +71,7 @@
       format, it opens the contents of the archive files in the Folder Compare
       window.</para>
 
-      <para>The <xref linkend="CompareDirs" /> topic describes how to work with
+      <para>The <xref linkend="Compare_dirs" /> topic describes how to work with
       archive files. For example, if an archive file contains two subfolders
       named <filename class="directory">Original/</filename> and <filename
       class="directory">Altered/</filename>, you can compare the contents of the
@@ -150,71 +150,75 @@
         <primary>Windows shell integration</primary>
       </indexterm><indexterm>
         <primary>context menu, WinMerge shortcuts in Windows Explorer</primary>
-      </indexterm>Shell integration</title>
+      </indexterm>Launching WinMerge operations in Windows Explorer</title>
 
-    <para>The Windows shell Integration is a convenient way to select paths and
-    open WinMerge directly from Windows Explorer. It adds a
-    <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer context menu
-    (available when you right-click one or two files or folders in Explorer).
-    For example:</para>
+    <para>The optional Windows shell integration enables you to run WinMerge
+    compare operations directly from Windows Explorer, using WinMerge shortcuts
+    in the context menu.</para>
 
-    <mediaobject>
-      <imageobject>
-        <imagedata contentwidth="140" fileref="screenshots/ctx_menu_simple.png"
-                   format="PNG" />
-      </imageobject>
-
-      <textobject>
-        <phrase>Simple WinMerge context menu</phrase>
-      </textobject>
-    </mediaobject>
-
-    <para>You can enable the shell integration when you install WinMerge. After
-    installing WinMerge, you can enable or disable the shell integration in the
-    System page of the Options dialog.</para>
-
-    <para>To use the shell integration, begin by selecting either one or two
-    paths in Windows Explorer:</para>
-
-    <itemizedlist>
-      <listitem>
-        <para>If you select a single path, WinMerge opens the Select Files or
-        Folders dialog. It places the selected file or folder in the
-        <guilabel>Left</guilabel> field, leaving the <guilabel>Right</guilabel>
-        path for you to specify.</para>
-      </listitem>
-
-      <listitem>
-        <para>If you select two files or folders, WinMerge opens them directly
-        in the File Compare or Folder Compare window. However, if one or more
-        paths cannot be opened for any reason, WinMerge opens the Select Files
-        or Folders dialog for you to reselect the paths.</para>
-      </listitem>
-    </itemizedlist>
+    <!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
 
     <section>
-      <title>Advanced shell integration</title>
+      <title>Enabling the Windows Explorer integration</title>
 
-      <para>The advanced shell integration enables you to control the order in
-      which paths are compared when you launch WinMerge from the Windows
-      Explorer context menu. To configure the advanced shell integration, select
-      <guilabel>Enable advanced menu</guilabel> in the System page of WinMerge
-      options.</para>
+      <para>The Windows Explorer shell integration is available only if enabled.
+      You can enable it either <link linkend="Installing_usinginstaller">during
+      WinMerge installation</link> or later, using the <xref
+      linkend="Configuration_shell-integ" /> in the Options window. In the
+      Options window, configure the <option>Add to context menu</option> option,
+      including its suboptions if you like.</para>
+    </section>
 
-      <para>In the standard shell integration, when you select two paths in
-      Windows Explorer and then right-click and choose
-      <guimenuitem>WinMerge</guimenuitem>, the order of comparison in WinMerge
-      is determined by the sort order in Windows Explorer. For example, if your
-      Windows Explorer file list is sorted by name descending, and you select
-      <filename>File1</filename> and <filename>File2</filename>, WinMerge opens
-      with <filename>File1</filename> on the left side and
-      <filename>File2</filename> on the right. You can change the order only
-      within WinMerge, after it opens.</para>
+    <section>
+      <title>Using the WinMerge shortcut</title>
 
-      <para>The advanced shell integration replaces the standard
-      <guimenuitem>WinMerge</guimenuitem> shortcut in the Windows Explorer
-      context menu with a set of shortcuts that enable you to control the
-      comparison order before launching WinMerge:</para>
+      <para>If you enable <option>Add to context menu</option> without the
+      advanced menu suboption, the <guimenuitem>WinMerge</guimenuitem> shortcut
+      is added to the Explorer context menu. For example:</para>
+
+      <para>To use the basic shell integration, begin by selecting two paths in
+      Windows Explorer. Then, right-click and choose WinMerge in the context
+      menu. For example:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/ctx_menu_simple.png" format="PNG" />
+        </imageobject>
+
+        <textobject>
+          <phrase>WinMerge command in Windows Explorer context menu</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>WinMerge opens the paths directly in the File Compare or Folder
+      Compare window.</para>
+
+      <para>The left and right sides are determined by the sort order in Windows
+      Explorer. In the preceding screen shot, the Windows Explorer file list is
+      in ascending order, so WinMerge opens with <filename>File2</filename> on
+      the left side and <filename>File1</filename> on the right..</para>
+
+      <note>
+        <para>If either path cannot be opened for any reason, WinMerge opens the
+        Select Files or Folders dialog, where you can specify new paths.
+        Similarly, if you select only a single path, the Select Files or Folders
+        dialog opens with the selected file or folder in the
+        <guilabel>Left</guilabel> field, leaving the <guilabel>Right</guilabel>
+        path for you to specify.</para>
+      </note>
+
+      <para>The <guimenuitem>WinMerge</guimenuitem> shortcut is quick and easy
+      to use, but you can compare only files or folders that you are able to
+      select concurrently in Windows Explorer. For more flexible selections,
+      consider enabling the advanced menu, described in the next section.</para>
+    </section>
+
+    <section>
+      <title>Using the advanced menu</title>
+
+      <para>If you choose the <option>Enable advanced menu</option>, the
+      <guimenuitem>WinMerge</guimenuitem> shortcut is replaced with two
+      <guimenuitem>Compare</guimenuitem> shortcuts:</para>
 
       <mediaobject>
         <imageobject>
@@ -226,92 +230,61 @@
         </textobject>
       </mediaobject>
 
-      <variablelist>
-        <varlistentry>
-          <term>Compare To</term>
-
-          <listitem>
-            <para>Designates the selected path as the first
-            (<guilabel>Left</guilabel>) path in the comparison. The path is
-            loaded in memory; meanwhile WinMerge waits for you select the second
-            path in Windows Explorer, using the
-            <guimenuitem>Compare</guimenuitem> shortcut (described next).</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Compare</term>
-
-          <listitem>
-            <para>Designates the selected path as the second
-            (<guilabel>Right</guilabel>) path in the comparison, and opens
-            WinMerge in one of these ways:</para>
-
-            <itemizedlist>
-              <listitem>
-                <para>If you previously designated the first path (using
-                <guimenu>Compare To</guimenu>), WinMerge opens the File Compare
-                or Folder Compare window, and compares the first and second
-                paths you have specified.</para>
-              </listitem>
-
-              <listitem>
-                <para>If you click <guimenuitem>Compare</guimenuitem> before
-                designating the first path, the Select Files or Folders dialog
-                is opened, with your selection as the first
-                (<guilabel>Left</guilabel>) path. Specify the second path in the
-                <guilabel>Right</guilabel> field to continue with the
-                comparison.</para>
-              </listitem>
-            </itemizedlist>
-
-            <!--              <tip><para>When you use this method, take advantage 
-of the Select Files or Folders dialog's MRU list. This is very handy when you need 
-to compare one file/folder against several files/folders.</para> </tip> -->
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>Re-select First</term>
-
-          <listitem>
-            <para>Available in the context menu only after you apply
-            <guimenu>Compare To</guimenu>. Designates the selected path as the
-            first path, overriding the previous <guimenu>Compare To</guimenu>
-            selection. This is useful, for example, if you accidentally select
-            the wrong first path.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-
-      <para>The shell integration paths that you map are stored in memory until
-      you use them to open WinMerge. As a result, you don't need to select both
-      files at the same time or even using the same Windows Explorer view: you
-      can choose one, open a different directory, and choose the other one. Both
-      paths are discarded from memory after a compare operation. This means that
-      you cannot select one <guimenuitem>Compare To</guimenuitem> path and
-      compare it against several paths.</para>
-
-      <para>Here is a simple method of using the advanced integration נthere are
-      other scenarios, of course. In Windows Explorer:</para>
+      <para>Use the <guimenuitem>Compare</guimenuitem> shortcuts in this
+      order:</para>
 
       <orderedlist>
         <listitem>
-          <simpara>Right-click the first item you want to compare and choose the
-          <guimenuitem>Compare To</guimenuitem> shortcut in the context menu.
-          The path is now in memory.</simpara>
+          <para>Right-click the first path and choose <guimenuitem>Compare
+          To</guimenuitem>. WinMerge stores the path in memory until you select
+          the second path.</para>
         </listitem>
 
         <listitem>
-          <simpara>Locate the second item you want to compare. Right-click the
-          item and choose <guimenuitem>Compare</guimenuitem> to launch WinMerge
-          and perform the comparison.</simpara>
+          <para>If you decide that you have chosen the wrong first path, you can
+          change it before choosing the second path:</para>
+
+          <para>Right-click the new path and choose the <guimenuitem>Re-select
+          First</guimenuitem> shortcut. The new selection overrides your
+          previous path, and you can go on to the next step.</para>
+        </listitem>
+
+        <listitem>
+          <para>Navigate to the second file or folder that you want to compare.
+          The second path can be in any folder, or even in a different Windows
+          Explorer window from the first path. Right-click the second path and
+          choose <guimenuitem>Compare</guimenuitem>.</para>
+
+          <para>WinMerge opens the File Compare or Folder Compare window,
+          loading the first and second paths in the left and right sides,
+          respectively.</para>
         </listitem>
       </orderedlist>
+
+      <note>
+        <para>If you click <guimenuitem>Compare</guimenuitem> before designating
+        the first path, the Select Files or Folders dialog is opened, with your
+        selection as the first (<guilabel>Left</guilabel>) path. Specify the
+        second path in the <guilabel>Right</guilabel> field to continue with the
+        comparison.</para>
+      </note>
+
+      <!--              <tip><para>When you use this method, take advantage 
+of the Select Files or Folders dialog's MRU list. This is very handy when you need 
+to compare one file/folder against several files/folders.</para> </tip> -->
+
+      <para>The <guimenuitem>Compare To</guimenuitem> paths is stored in memory
+      until WinMerge is opened. As a result, you don't need to select both files
+      at the same time or even using the same Windows Explorer view: you can
+      choose one, open a different directory, and choose the other one. Both
+      paths are discarded from memory after a compare operation. This means that
+      you cannot select one <guimenuitem>Compare To</guimenuitem> path and
+      compare it against several paths.</para>
     </section>
 
     <section>
-      <title>Including Subfolders<indexterm>
+      <title>Including subfolders when using the Windows Explorer
+      integration<indexterm>
           <primary>recursive folder compare</primary>
 
           <secondary>specifying in Select Files or Folders dialog</secondary>
@@ -321,20 +294,38 @@ to compare one file/folder against several files/folders.</para> </tip> -->
           <seealso>recursive folder compare</seealso>
         </indexterm></title>
 
-      <para>By default, WinMerge does not include subfolders in compare
-      operations. To change the default behavior, enable <guilabel>Include
-      subfolders by default</guilabel> in the System page of WinMerge options.
-      To change include subfolders while using the shell integration, press and
-      hold the <keycap>Control</keycap> key while selecting
-      <guimenuitem>Compare</guimenuitem> in the Windows Explorer context
-      menu.</para>
+      <para>By default, folder compares that you do using the
+      <guimenuitem>WinMerge</guimenuitem> or <guimenuitem>Compare</guimenuitem>
+      shortcut are not recursive: only files in the top level are included.
+      There are two ways to launch recursive compares with the Windows Explorer
+      integration:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Enable <guilabel>Include subfolders by default</guilabel> in the
+          Shell Integration page of the WinMerge Options dialog.</para>
+        </listitem>
+
+        <listitem>
+          <para>Press <keycap>Control</keycap> while selecting the
+          <guimenuitem>WinMerge</guimenuitem> or
+          <guimenuitem>Compare</guimenuitem> shortcut in the Windows Explorer
+          context menu.</para>
+        </listitem>
+      </itemizedlist>
+
+      <note>
+        <para>These settings for the Windows Explorer integration do not change
+        the <option>Include Subfolders</option> setting for the Select Files or
+        Folders dialog, described in <xref linkend="Quick_start" />.</para>
+      </note>
     </section>
   </section>
 
   <section id="OpenPaths_dragndrop">
     <title><indexterm>
         <primary>drag and drop, in WinMerge window</primary>
-      </indexterm>Drag and drop</title>
+      </indexterm>Using Drag and drop</title>
 
     <para>From any Windows source that allows you to drag objects, such as
     Windows Explorer or the Desktop, you can drag and drop one or two paths into
@@ -405,7 +396,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
       <itemizedlist>
         <listitem>
-          <simpara>If you specifiy two project files, the project files
+          <simpara>If you specify two project files, the project files
           themselves are compared.</simpara>
         </listitem>
 

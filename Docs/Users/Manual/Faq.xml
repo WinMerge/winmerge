@@ -108,7 +108,7 @@
           but have no plans to implement it in near future. You can work around
           this limitation somewhat by using two WinMerge instances, or by using
           a third path parameter on the command line. See <xref
-          linkend="CommandLine" /> for more information.</para>
+          linkend="Command_line" /> for more information.</para>
         </answer>
       </qandaentry>
 
@@ -144,7 +144,7 @@
           because there already are so many good CVS clients. However, WinMerge
           does provide an integration with the diff function of one of those
           clients, TortoiseCVS (as described in <xref
-          linkend="VersionControl" />). Also, WinMerge can resolve conflict
+          linkend="Version_control" />). Also, WinMerge can resolve conflict
           files (see <xref linkend="ResolveConflictFiles" />).</para>
         </answer>
       </qandaentry>
@@ -172,7 +172,7 @@
 
         <answer>
           <para>OpenOffice files are archives. To be able to open them in
-          WinMerge, you have to configure archive support: </para>
+          WinMerge, you have to configure archive support:</para>
 
           <itemizedlist>
             <listitem>

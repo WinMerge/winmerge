@@ -12,7 +12,7 @@
         <listitem>
           <para>To use automatic mode (which applies the first available
           plugin), verify that <guilabel>&lt;None&gt;</guilabel> is displayed in
-          the the <guilabel>File unpacker</guilabel> control.</para>
+          the <guilabel>File unpacker</guilabel> control.</para>
         </listitem>
 
         <listitem>

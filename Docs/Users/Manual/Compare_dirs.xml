@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="CompareDirs">
+<article id="Compare_dirs">
   <title>Comparing and merging folders<indexterm>
       <primary>comparing folders</primary>
     </indexterm></title>
@@ -30,7 +30,7 @@
           all files in the folders, and is nonrecursive (does not include
           subfolders). To change any of these options and for more details about
           the Select Files or Folder dialog, see <xref
-          linkend="OpenPaths" />.</para>
+          linkend="Open_paths" />.</para>
         </listitem>
       </varlistentry>
 
@@ -43,7 +43,7 @@
           right folders to compare. By default, the compare includes all files
           in the folders, and is nonrecursive. To change any of these options
           and for information about other command options, see <xref
-          linkend="CommandLine" />.</para>
+          linkend="Command_line" />.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -60,7 +60,10 @@
           <listitem>
             <para>Recursive mode is useful for detecting and manipulating
             different files in an entire folder structure. However, it can be
-            slow if there are many subfolders and files.</para>
+            slow if there are many subfolders and files. For deeply nested
+            directory structures, consider enabling the <xref
+            linkend="Compare_dirs_treeview" /> for easier navigation of the
+            Compare window.</para>
 
             <para>Nonrecursive mode has the advantage of speed when there are
             many subfolders that need not be examined. Also, the display can be
@@ -146,9 +149,9 @@ I get the partial list, but no Abort indicator.--></para>
     <title>Folder Compare window<indexterm>
         <primary>Folder Compare window</primary>
 
-        <seealso>Compare windows</seealso>
+        <seealso>Compare window</seealso>
       </indexterm><indexterm>
-        <primary>Compare windows</primary>
+        <primary>Compare window</primary>
 
         <secondary>Folder</secondary>
       </indexterm><indexterm>
@@ -157,18 +160,94 @@ I get the partial list, but no Abort indicator.--></para>
         <secondary>in Folder Compare window</secondary>
       </indexterm></title>
 
-    <para>The Folder Compare window shows the result of a folder compare in a
-    tabular view. Each row lists a file, parent folder, or subfolder in the
-    result, and the columns show different types of data for each item. You can
-    customize the table by changing the sorting of rows or the types of column
-    data displayed. Here is an example of a folder compare result:</para>
+    <para>The Folder Compare window shows the result of a folder compare. Two
+    different views are available:</para>
 
-    <mediaobject>
-      <imageobject>
-        <imagedata contentwidth="600" fileref="screenshots/foldercomp1.png"
-                   format="PNG" />
-      </imageobject>
-    </mediaobject>
+    <variablelist>
+      <varlistentry id="Compare_dirs_tabview">
+        <term>Tabular view<indexterm>
+            <primary>tabular view, Compare window</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>In tabular view, each file or folder in the result is listed in
+          a row. This is the default view. Here's an example:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata contentwidth="600"
+                         fileref="screenshots/foldercomp1.png" format="PNG" />
+            </imageobject>
+          </mediaobject>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="Compare_dirs_treeview">
+        <term remap="" xreflabel="tree view">Tree view<indexterm>
+            <primary>tree view, Compare window</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>In the tree view, folders are expandable and collapsible,
+          containing files and subfolders. The tree view is available only in
+          recursive compares. For example:</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata contentwidth="599"
+                         fileref="screenshots/treeview-01.png" format="PNG" />
+            </imageobject>
+          </mediaobject>
+
+          <itemizedlist>
+            <listitem>
+              <para>To expand or collapse a single folder, click the plus or
+              minus control beside the folder icon, or double-click anywhere in
+              the row.</para>
+            </listitem>
+
+            <listitem>
+              <para>To expand or collapse all folders in the view, click
+              <menuchoice>
+                  <guimenu>View</guimenu>
+
+                  <guimenuitem>Expand All Subfolders</guimenuitem>
+                </menuchoice> or <menuchoice>
+                  <guimenu>View</guimenu>
+
+                  <guimenuitem>Collapse All Subfolders</guimenuitem>
+                </menuchoice> in the menu.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>During a recursive compare (that is, if you enabled the
+    <option>Include Subfolders</option> option in the Select Files or Folders
+    dialog when you launched the compare), you can click <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Tree Mode</guimenuitem>
+      </menuchoice> command to switch between the two views. The <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Tree Mode</guimenuitem>
+      </menuchoice> command is disabled for non-recursive compares.</para>
+
+    <para>In both views, the columns show different types of data for each
+    result item. You can control the sorting of items in the view by clicking a
+    column heading. This changes the sorting in two ways:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Toggles (reverses) the sort order of the column.</para>
+      </listitem>
+
+      <listitem>
+        <para>Resorts all the rows in the view by the column.</para>
+      </listitem>
+    </itemizedlist>
 
     <section>
       <title>Recursive and nonrecursive compare results<indexterm>
@@ -228,98 +307,133 @@ I get the partial list, but no Abort indicator.--></para>
       <simplelist>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/equal.png" format="PNG" />
-            </imageobject>
-          </inlinemediaobject> Identical files</member>
-
-        <member><inlinemediaobject>
-            <imageobject>
-              <imagedata fileref="screenshots/notequal.png" format="PNG" />
-            </imageobject>
-          </inlinemediaobject> Differing files</member>
-
-        <member><inlinemediaobject>
-            <imageobject>
-              <imagedata fileref="screenshots/equaltextfile.png" format="PNG" />
+              <imagedata contentwidth="16"
+                         fileref="screenshots/equaltextfile.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Identical text files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/notequaltextfile.png" format="PNG" />
-            </imageobject>
-          </inlinemediaobject> Differing text files</member>
-
-        <member><inlinemediaobject>
-            <imageobject>
-              <imagedata fileref="screenshots/binary.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/binary.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Identical binary files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binarydiff.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/equal.png"
+                         format="PNG" />
             </imageobject>
-          </inlinemediaobject> Differing binary files</member>
+          </inlinemediaobject> Identical files (type undetermined)</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfolder.png" format="PNG" />
+              <imagedata contentwidth="16"
+                         fileref="screenshots/notequaltextfile.png" format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Different text files</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/binarydiff.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Different binary files</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/notequal.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Different files (type undetermined)</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/foldersame.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Identical folders (in tree view only)</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/folderdiff.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Different folders (in tree view only)</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Left-only folders</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfolder.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Right-only folders</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfile.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/lfile.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Left-only files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfile.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/rfile.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Right-only files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/folderskip.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/folderskip.png"
+                         format="PNG" />
             </imageobject>
-          </inlinemediaobject> Skipped directories (filtered out)</member>
+          </inlinemediaobject> Skipped (filtered) directories</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/fileskip.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/fileskip.png"
+                         format="PNG" />
             </imageobject>
-          </inlinemediaobject> Skipped files (filtered out)</member>
+          </inlinemediaobject> Skipped (filtered) files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/error.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/error.png"
+                         format="PNG" />
             </imageobject>
-          </inlinemediaobject> Items that couldn't be compared. This usually
-        happens when other program has locked the file.</member>
+          </inlinemediaobject> Items that can't be compared; for example when
+        another program has locked the file.</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/aborted.png" format="PNG" />
+              <imagedata contentwidth="16" fileref="screenshots/aborted.png"
+                         format="PNG" />
             </imageobject>
           </inlinemediaobject> Aborted item. WinMerge did not finish comparing
-        this item when compare was stopped. Result is unknown.</member>
+        this item when the compare was stopped. The result is unknown.</member>
       </simplelist>
     </section>
 
     <section>
       <title>Navigating the Folder Compare window</title>
 
-      <para>You can use the mouse as well as keyboard and context menu shortcuts
-      to navigate the Folder Compare window. You can also use the toolbar
-      buttons. For example, the <inlinemediaobject>
+      <indexterm>
+        <primary>navigation functions</primary>
+
+        <secondary>folder compare</secondary>
+      </indexterm>
+
+      <para>You can use the mouse as well as <link
+      linkend="Shortcut_keys">keyboard</link> and context menu shortcuts to
+      navigate the Folder Compare window. You can also use the toolbar buttons.
+      For example, the <inlinemediaobject>
           <imageobject>
             <imagedata contentdepth="15" fileref="screenshots/nextdiff_btn.png" />
           </imageobject>
@@ -345,28 +459,50 @@ I get the partial list, but no Abort indicator.--></para>
       contents by copying, moving, or delete one or more files or
       subfolders.</para>
     </section>
-  </section>
-
-  <section id="Compare_dirs_multiwin">
-    <title>Working with multiple Folder Compare windows<indexterm>
-        <primary>Folder Compare window</primary>
-
-        <secondary>using multiple</secondary>
-      </indexterm></title>
-
-    <para>By default, the WinMerge window displays a single Folder Compare
-    window. That is, if you start another file comparison while a Folder Compare
-    window is currently open, the new Compare window replaces the current one.
-    If you prefer to work with multiple compare operations simultaneously,
-    consider setting (checking) the <guilabel>Enable multiple compare windows
-    for Folder compare</guilabel> option.</para>
 
     <section>
-      <title>Using tabs with maximized Compare windows</title>
+      <title>Working with multiple Compare windows</title>
 
-      <para>If you open multiple Compare windows, they are displayed by default
-      as individually resizeable child windows within the WinMerge window, like
-      this:</para>
+      <indexterm>
+        <primary>Compare window</primary>
+
+        <secondary>using multiple</secondary>
+      </indexterm>
+
+      <para>By default, the WinMerge window displays a single File Compare or
+      Folder Compare window.</para>
+
+      <para>In single compare mode, of you start a file or folder comparison
+      while a Compare window is currently open, the current File Compare window
+      is closed if there are no changes in either side. But if WinMerge detects
+      unsaved changes (for example, if you have merged or edited a
+      file),.WinMerge prompts you to save or discard your changes before opening
+      a new File Compare window.</para>
+
+      <para>For example, in the next screen shot WinMerge gives you a chance to
+      save changes detected in the right side file:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata contentwidth="400" fileref="screenshots/save_mod1.png"
+                     format="PNG" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Save modifed files dialog</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>If you want to work with multiple compare operations simultaneously,
+      consider setting (checking) the <guilabel>Enable multiple compare windows
+      for Folder compare</guilabel> option, which is disabled by default. With
+      this option enabled, you can open multiple File Compare windows without
+      the intervening Save step.</para>
+
+      <para>When you open multiple Compare windows, they're displayed by default
+      as individually resizeable child windows within the WinMerge window. This
+      example shows a Folder Compare window — the File Compare window has
+      similar child windows:</para>
 
       <mediaobject>
         <imageobject>
@@ -379,54 +515,79 @@ I get the partial list, but no Abort indicator.--></para>
         </textobject>
       </mediaobject>
 
-      <para>Often, it's convenient to maximize your Compare window (by clicking
-      its Maximixe button). The window then fills all the available space in the
-      WinMerge window. The screen shot below shows a maximized Compare
-      window.</para>
+      <para>You can control the layering of multiple windows in either of two
+      ways:</para>
 
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569"
-                     fileref="screenshots/multifoldercomp2.png" format="PNG" />
-        </imageobject>
+      <itemizedlist>
+        <listitem>
+          <para>Control the windows directly, for example by clicking a title
+          bar to bring its window to the top, or minimizing a window.</para>
+        </listitem>
 
-        <textobject>
-          <phrase>Multiple Folder Compare windows: maximized</phrase>
-        </textobject>
-      </mediaobject>
+        <listitem>
+          <para>Click the <guimenu>Window</guimenu> menu, which lists the
+          windows that are currently open, and choose the window that you want
+          to bring to the top.</para>
+        </listitem>
+      </itemizedlist>
 
-      <para>When you maximize one Compare window, any other Compare windows are
-      hidden, as shown in the preceding screen shot. To access those windows,
-      you could return to the default view by clicking the <inlinemediaobject>
+      <section>
+        <title>Using tabs with maximized Compare windows<indexterm>
+            <primary>Compare window</primary>
+
+            <secondary>using tabs when maximizing</secondary>
+          </indexterm></title>
+
+        <para>Often, it's convenient to maximize your Compare window (by
+        clicking its Maximixe button). The window then fills all the available
+        space in the WinMerge window. The screen shot below shows a maximized
+        Compare window.</para>
+
+        <mediaobject>
           <imageobject>
-            <imagedata contentwidth="15" fileref="screenshots/restore_btn.png" />
+            <imagedata contentwidth="569"
+                       fileref="screenshots/multifoldercomp2.png" format="PNG" />
           </imageobject>
 
           <textobject>
-            <phrase>Restore button</phrase>
+            <phrase>Multiple Folder Compare windows: maximized</phrase>
           </textobject>
-        </inlinemediaobject> Restore button. A better solution is to enable tabs
-      by setting (checking) <menuchoice>
-          <guimenu>View</guimenu>
+        </mediaobject>
 
-          <guimenuitem>Tab Bar</guimenuitem>
-        </menuchoice>.</para>
+        <para>When you maximize one Compare window, any other Compare windows
+        are hidden, as shown in the preceding screen shot. To access those
+        windows, you could return to the default view by clicking the
+        <inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="15" fileref="screenshots/restore_btn.png" />
+            </imageobject>
 
-      <para>When you display the Tab bar, each Compare window has a tab that
-      shows the filenames of the two compared files. Now, you can easily
-      identify and display any available Compare window, and the selected
-      Compare window remains maximized:</para>
+            <textobject>
+              <phrase>Restore button</phrase>
+            </textobject>
+          </inlinemediaobject> Restore button. A better solution is to enable
+        tabs by setting (checking) <menuchoice>
+            <guimenu>View</guimenu>
 
-      <mediaobject>
-        <imageobject>
-          <imagedata contentwidth="569"
-                     fileref="screenshots/multifoldercomp3.png" format="PNG" />
-        </imageobject>
+            <guimenuitem>Tab Bar</guimenuitem>
+          </menuchoice>.</para>
 
-        <textobject>
-          <phrase>Multiple Folder Compare windows: tabbed</phrase>
-        </textobject>
-      </mediaobject>
+        <para>When you display the Tab bar, each Compare window has a tab that
+        shows the filenames of the two compared files. Now, you can easily
+        identify and display any available Compare window, and the selected
+        Compare window remains maximized:</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata contentwidth="569"
+                       fileref="screenshots/multifoldercomp3.png" format="PNG" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Multiple Folder Compare windows: tabbed</phrase>
+          </textobject>
+        </mediaobject>
+      </section>
     </section>
   </section>
 
@@ -949,8 +1110,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       </variablelist>
     </section>
 
-    <section>
-      <title id="CompareDirs_browse_unique">Browsing unique folders<indexterm>
+    <section id="CompareDirs_browse_unique">
+      <title>Browsing unique folders<indexterm>
           <primary>unique folders</primary>
 
           <secondary>comparing</secondary>
@@ -1102,7 +1263,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <orderedlist>
         <listitem>
           <para>Right-click any column heading and choose <guimenuitem>Customize
-          Columns</guimenuitem>.</para>
+          Columns</guimenuitem>. Or, click <menuchoice>
+              <guimenu>Tools</guimenu>
+
+              <guimenuitem>Customize Columns</guimenuitem>
+            </menuchoice></para>
         </listitem>
 
         <listitem>
@@ -1269,5 +1434,30 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         merge.</para>
       </tip>
     </section>
+  </section>
+
+  <section id="CompareDirs_winshell">
+    <title>Using Windows shell commands from the Folder Compare window</title>
+
+    <para>If you have <link linkend="Configuration_foldercompare">enabled
+    <option>Add Shell menu to context menu</option></link> in the Shell
+    Integration page of WinMerge options, you can right-click a selection in the
+    Folder Compare window and launch Windows shell commands directly from the
+    context menu.</para>
+
+    <para>If the selection occurs on both sides, you can choose either the
+    <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>;
+    if the item occurs only on one side, only that side's shell menu is
+    available.</para>
+
+    <caution>
+      <para>Please consider that shell menu commands run entirely outside of
+      WinMerge. Consequently, WinMerge might not respond to some operations in
+      the same way as operations performed inside WinMerge. For example, if you
+      delete a file through this integration instead of using the WinMerge
+      <command>Delete</command> command, the change is not automatically shown
+      in the Folder Compare window (you have to manually refresh the window to
+      see the change).</para>
+    </caution>
   </section>
 </article>

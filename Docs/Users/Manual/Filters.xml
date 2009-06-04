@@ -184,7 +184,7 @@
     your own. To make that task easier, WinMerge also provides a template file
     named <filename>FileFilter.tmpl</filename>. This section describes how to
     apply file filters to comparisons, and documents the file filter syntax.
-    <xref linkend="Filters_Dlg" /> describes how to add, edit, and manage
+    <xref linkend="Filters_dlg" /> describes how to add, edit, and manage
     filters.</para>
 
     <section id="Filters_FileFilterLoc">
@@ -516,7 +516,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
     comparison.</para>
 
     <para>To learn how to add, edit, and manage filters, see <xref
-    linkend="Filters_Dlg" />.</para>
+    linkend="Filters_dlg" />.</para>
 
     <section id="Filters_LineFilterApply">
       <title>Applying line filters</title>
@@ -731,7 +731,7 @@ Pekka Himanen</screen></para>
     </section>
   </section>
 
-  <section id="Filters_Dlg">
+  <section id="Filters_dlg">
     <title>Using the Filters dialog<indexterm>
         <primary>Filters dialog</primary>
       </indexterm><indexterm>
@@ -885,7 +885,8 @@ Pekka Himanen</screen></para>
         </variablelist>
 
         <para>Your changes are saved when you click <guibutton>OK</guibutton> to
-        dismiss the Filters dialog.</para>
+        dismiss the Filters dialog. Line filters are stored in the Windows
+        registry.</para>
       </section>
 
       <section id="Filters_CreatingFile">
