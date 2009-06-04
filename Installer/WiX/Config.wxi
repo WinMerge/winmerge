@@ -27,6 +27,7 @@
     <?define DesktopShortcutGuid = "CFF6BDA0-483F-496e-819F-0FC8874C2B9C" ?>
     
     <?define CrtMergeModule = "$(env.CommonProgramFiles)\Merge Modules\Microsoft_VC80_CRT_x86_x64.msm" ?>
+    <?define MfcMergeModule = "$(env.CommonProgramFiles)\Merge Modules\Microsoft_VC80_MFC_x86_x64.msm" ?>
   <?else ?> <!-- if "x86" platform -->
     <?define Win64 = "no" ?>
     <?define PackagePlatform = "x86" ?>
@@ -41,5 +42,6 @@
     <?define DesktopShortcutGuid = "36035411-C6BE-43e8-B569-B1EC325D180C" ?>
     
     <?define CrtMergeModule = "$(env.CommonProgramFiles)\Merge Modules\Microsoft_VC80_CRT_x86.msm" ?>
+    <?define MfcMergeModule = "$(env.CommonProgramFiles)\Merge Modules\Microsoft_VC80_MFC_x86.msm" ?>
   <?endif ?>
 </Include>

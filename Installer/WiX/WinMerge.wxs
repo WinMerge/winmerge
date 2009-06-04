@@ -60,6 +60,7 @@
       </Directory>
       <Directory Id="DesktopFolder" />
       <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
+      <Merge Id="MFC" Language="0" SourceFile="$(var.MfcMergeModule)" DiskId="1" />
     </Directory>
     
     <FeatureRef Id="WinMerge" />
