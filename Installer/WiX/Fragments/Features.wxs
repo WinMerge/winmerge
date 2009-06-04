@@ -105,6 +105,9 @@
           <ComponentRef Id="WatchEndOfLog" />
         </Feature>
       <?endif ?>
+      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 Runtime Components ">
+        <MergeRef Id="CRT"/>
+      </Feature>
     </Feature>
   </Fragment>
 </Wix>

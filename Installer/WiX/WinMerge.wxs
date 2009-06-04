@@ -35,7 +35,7 @@
       Comments="$(var.PackageComments)" 
       Compressed="yes" 
       Description="$(var.Manufacturer)" 
-      InstallerVersion="200" 
+      InstallerVersion="300" 
       Keywords="$(var.PackageKeywords)" 
       Languages="1033" 
       Manufacturer="$(var.PackageDescription)" 
@@ -59,6 +59,7 @@
         <Directory Id="WinMergeMenuFolder" Name="WinMerge" />
       </Directory>
       <Directory Id="DesktopFolder" />
+      <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
     </Directory>
     
     <FeatureRef Id="WinMerge" />
