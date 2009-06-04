@@ -40,16 +40,6 @@ Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/Translatio
 Redirect permanent /developer/l10n/instructions.php http://svn.sourceforge.net/viewvc/*checkout*/winmerge/trunk/Docs/Developers/Translations.html
 Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/Translations
 
-#Move old user's guides and manuals to /docs/old/...
-Redirect permanent /1.7/docs http://winmerge.org/docs/old/usersguide-1.7
-Redirect permanent /WinMerge17/docs http://winmerge.org/docs/old/usersguide-1.7
-Redirect permanent /2.0/docs http://winmerge.org/docs/old/usersguide-2.0
-Redirect permanent /docs20 http://winmerge.org/docs/old/usersguide-2.0
-Redirect permanent /2.2/manual http://winmerge.org/docs/old/manual-2.2
-Redirect permanent /2.4/manual http://winmerge.org/docs/old/manual-2.4
-Redirect permanent /2.6/manual http://winmerge.org/docs/old/manual-2.6
-Redirect permanent /2.8/manual http://winmerge.org/docs/old/manual-2.8
-
 #Move old "Changes" pages to new "Change Log" page...
 RedirectMatch permanent /[0-9]\.[0-9]/changes.php http://winmerge.org/docs/changelog.php
 RedirectMatch permanent /[0-9]\.[0-9]/changelog.php http://winmerge.org/docs/changelog.php

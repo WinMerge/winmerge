@@ -25,9 +25,6 @@
     <li>WinMerge 2.10.2 (2008-11-06)</li>
     <li>WinMerge 2.10.0 (2008-09-17)</li>
   </ul>
-  <ul class="inline">
-    <li><a href="/docs/manual/manual-2.10/">Manual</a></li>
-  </ul>
 </div>
 <div class="infocard">
   <h3>WinMerge 2.8</h3>
@@ -36,9 +33,6 @@
     <li>WinMerge 2.8.4 (2008-06-17)</li>
     <li>WinMerge 2.8.2 (2008-06-12)</li>
     <li>WinMerge 2.8.0 (2008-04-03)</li>
-  </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/manual-2.8/">Manual</a></li>
   </ul>
 </div>
 <div class="infocard">
@@ -53,9 +47,6 @@
     <li>WinMerge 2.6.2 (2006-12-14)</li>
     <li>WinMerge 2.6.0 (2006-10-12)</li>
   </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/manual-2.6/">Manual</a></li>
-  </ul>
 </div>
 <div class="infocard">
   <h3>WinMerge 2.4</h3>
@@ -67,9 +58,6 @@
     <li>WinMerge 2.4.2 (2005-11-10)</li>
     <li>WinMerge 2.4.0 (2005-09-29)</li>
   </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/manual-2.4/">Manual</a></li>
-  </ul>
 </div>
 <div class="infocard">
   <h3>WinMerge 2.2</h3>
@@ -78,9 +66,6 @@
     <li>WinMerge 2.2.2 (2005-03-23)</li>
     <li>WinMerge 2.2.0 (2004-11-10)</li>
   </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/manual-2.2/">Manual</a></li>
-  </ul>
 </div>
 <div class="infocard">
   <h3>WinMerge 2.0</h3>
@@ -88,17 +73,11 @@
     <li>WinMerge 2.0.2 (2003-12-10)</li>
     <li>WinMerge 2.0.0 (2003-08-04)</li>
   </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/usersguide-2.0/">User's Guide</a></li>
-  </ul>
 </div>
 <div class="infocard">
   <h3>WinMerge 1.7</h3>
   <ul>
     <li>WinMerge 1.7.1 (2000-11-03)</li>
-  </ul>
-  <ul class="inline">
-    <li><a href="/docs/old/usersguide-1.7/">User's Guide</a></li>
   </ul>
 </div>
 <?php
