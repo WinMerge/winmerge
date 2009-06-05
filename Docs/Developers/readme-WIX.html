@@ -75,17 +75,14 @@ that's not subject of this document, refer to <a href="Compiling.html">Compiling
 <a href="readme-manual.html">readme-manual.html</a> and
 <a href="Translations.html">Translations.html</a>.</p>
 
-<p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
-not distributes with WinMerge. You get these files from Visual Studio
-installation folder or can download them from internet. By default we use VS2005
-runtime files:</p>
+<p>In addition you will need Microsoft C- and MFC-runtime <em>merge modules</em>.
+Those files are not distributes with WinMerge. By default we use VS2005
+merge modules from the <code>%CommonProgramFiles%\Merge Modules</code> folder:</p>
 <ul>
-  <li><code>msvcr80.dll</code></li>
-  <li><code>msvcp80.dll</code></li>
-  <li><code>mfc80.dll</code></li>
-  <li><code>mfc80u.dll</code></li>
-  <li><code>Microsoft.VC80.CRT.manifest</code></li>
-  <li><code>Microsoft.VC80.MFC.manifest</code></li>
+  <li><code>Microsoft_VC80_CRT_x86.msm</code></li>
+  <li><code>Microsoft_VC80_MFC_x86.msm</code></li>
+  <li><code>Microsoft_VC80_CRT_x86_x64.msm</code></li>
+  <li><code>Microsoft_VC80_MFC_x86_x64.msm</code></li>
 </ul>
 
 <h4>Folder structure</h4>
@@ -187,11 +184,6 @@ runtime files:</p>
    </ul>
  </li>
 </ul>
-
-<h4>Runtime files</h4>
-<p>Runtime files must be copied to the <code>Runtimes</code>-folder in same level
-than WinMerge source tree folder is. Not <i>inside</i> source tree but
-<i>outside</i> of the source tree.</p>
 
 <h3>Running WIX tools to create installer</h3>
 
