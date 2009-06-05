@@ -67,19 +67,10 @@
 # CONFIGURATION:
 # Set these variables to match your environment and folders you want to use
 
-# Subversion binary - set this to absolute path to svn.exe
-#svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
-# Visual Studio path
-#vs_path = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-# InnoSetup installation path
-#innosetup_path = 'C:\\Program Files\\Inno Setup 5'
 # Relative path where to create a release folder
 dist_root_folder = 'distrib'
-# Source location
-# Give URL to SVN repository to export source from SVN or 'workspace' to export
-# from workspace
-#source_location = 'https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk'
-#source_location ='workspace'
+root_path = ''
+prog_ver = ''
 
 # END CONFIGURATION - you don't need to edit anything below...
 
@@ -154,7 +145,7 @@ def cleanup_build():
             shutil.rmtree('build/scew', True)
 
         if os.path.exists('build/Manual'):
-            shutil.rmtree('build/Manual',True)
+            shutil.rmtree('build/Manual', True)
 
     except EnvironmentError, einst:
         print 'Error deleting files: '
@@ -179,7 +170,7 @@ def set_resource_version(file):
     SetVersions.process_versions(file)
 
 def setup_translations():
-    """Updates translation files by running scripts in Src/Languages."""
+    """Updates translation files by running scripts in Translations/WinMerge."""
 
     # Scripts must be run from the directory where they reside
     curdir = os.getcwd()
@@ -330,7 +321,7 @@ def build_manual():
     os.chdir('Docs/Users/Manual/build')
     print 'Build HTML Help (CHM) manual...' 
     call(['build_htmlhelp.bat'])
-    
+
     # HTML manual not build in trunk.
     #print 'Build HTML manual for Web with ads...'
     #call(['build_html.bat', 'withads'])
@@ -456,11 +447,11 @@ def check_tools():
         print 'Please check script configuration.'
         return False
 
-    pathhhc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/hhc/hhc.exe')
-    folderdtd = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/dtd')
-    foldersaxon = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/saxon')
-    folderxerc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xerces')
-    folderxsl = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xsl')
+    pathhhc = os.path.join(root_path, 'Docs/Users/Manual/build/hhc/hhc.exe')
+    folderdtd = os.path.join(root_path, 'Docs/Users/Manual/build/dtd')
+    foldersaxon = os.path.join(root_path, 'Docs/Users/Manual/build/saxon')
+    folderxerc = os.path.join(root_path, 'Docs/Users/Manual/build/xerces')
+    folderxsl = os.path.join(root_path, 'Docs/Users/Manual/build/xsl')
 
     if not os.path.exists(pathhhc) or not os.path.exists(folderdtd) or \
             not os.path.exists(foldersaxon) or not os.path.exists(folderxerc) or \
@@ -515,8 +506,8 @@ def main(argv):
                 usage()
                 sys.exit()
             if opt in ("-v", "--version"):
-                prog.version = arg
-                print "Start building WinMerge release version " + prog.version
+                prog_version = arg
+                print "Start building WinMerge release version " + prog_version
             if opt in ("-c", "--cleanup"):
                 if cleanup_build() == True:
                     print 'Cleanup done.'
@@ -527,10 +518,10 @@ def main(argv):
             if opt in ("-f", "--file"):
                 ver_file = arg
         
-    if ver_file == '' and prog.version == '':
+    if ver_file == '' and prog_version == '':
         print 'WARNING: No version number or INI file given, using default'
         print '    version number of 0.0.0.0 where applicable in this script.'
-        prog.version = '0.0.0.0'
+        prog_version = '0.0.0.0'
 
     # Check we are running from correct folder (and go to root if found)
     if find_winmerge_root() == False:
@@ -546,7 +537,7 @@ def main(argv):
     print 'Path: ' + os.getcwd()
 
     # Remember the rootfolder
-    prog.rootpath = os.getcwd()
+    root_path = os.getcwd()
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
@@ -572,10 +563,10 @@ def main(argv):
     if len(ver_file) > 0:
         version_read = get_product_version(ver_file)
         if len(version_read) > 0:
-            prog.version = version_read
+            prog_version = version_read
         set_resource_version(ver_file)
 
-    version_folder = 'WinMerge-' + prog.version
+    version_folder = 'WinMerge-' + prog_version
     dist_folder = get_and_create_dist_folder(version_folder)
     if dist_folder == '':
         sys.exit(1)
