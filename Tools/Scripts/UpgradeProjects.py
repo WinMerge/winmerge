@@ -31,6 +31,8 @@ import os
 import subprocess
 import sys
 
+import fix_manifest
+
 # The version of the script
 script_version = 0.2
 
@@ -40,6 +42,9 @@ solutions = [r'Externals\expat\expat.sln',
 
 projects = [r'Externals\scew\win32\scew.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
+    
+# These projects need the manifest file fix
+manifest_projects = [r'Src\Merge.vcproj']
 
 # TODO: read this from Tools.ini
 vs_path = r'C:\Program Files\Microsoft Visual Studio 9.0'
@@ -57,6 +62,11 @@ def upgrade_projects(root_path):
         proj_file = os.path.join(root_path, project)
         print 'Upgrading project file: ' + proj_file
         subprocess.call([vs_binary, proj_file, '/Upgrade'], shell = True)
+
+def fix_proj_manifests(root_path):
+    for project in manifest_projects:
+        proj_file = os.path.join(root_path, project)
+        fix_manifest.process_project_file(proj_file)
 
 def usage():
     '''Print script usage information.'''
@@ -94,6 +104,7 @@ def main(argv):
     
     print 'Upgrading VS solution- and project-file in folder: ' + root_path
     upgrade_projects(root_path)
+    fix_proj_manifests(root_path)
 
 # MAIN #
 if __name__ == "__main__":
