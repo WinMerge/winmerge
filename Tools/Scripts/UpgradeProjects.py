@@ -15,7 +15,7 @@
 ##    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #############################################################################
 
-# Copyright (c) 2008 Kimmo Varis <kimmov@winmerge.org>
+# Copyright (c) 2008-2009 Kimmo Varis <kimmov@winmerge.org>
 
 # $Id$
 
@@ -32,14 +32,13 @@ import subprocess
 import sys
 
 # The version of the script
-script_version = 0.1
+script_version = 0.2
 
 solutions = [r'Externals\expat\expat.sln',
     r'Externals\pcre\Win32\PCRE.sln',
     r'WinMerge.sln']
 
-projects = [r'Externals\heksedit\heksedit.vcproj',
-    r'Externals\scew\win32\scew.vcproj',
+projects = [r'Externals\scew\win32\scew.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
 
 # TODO: read this from Tools.ini
