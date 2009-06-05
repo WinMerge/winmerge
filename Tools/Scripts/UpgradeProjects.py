@@ -31,10 +31,14 @@ import os
 import subprocess
 import sys
 
+import ToolSettings
 import fix_manifest
 
 # The version of the script
-script_version = 0.2
+script_version = 0.3
+
+# global settings class instance
+tools = ToolSettings.ToolSettings()
 
 solutions = [r'Externals\expat\expat.sln',
     r'Externals\pcre\Win32\PCRE.sln',
@@ -46,11 +50,8 @@ projects = [r'Externals\scew\win32\scew.vcproj',
 # These projects need the manifest file fix
 manifest_projects = [r'Src\Merge.vcproj']
 
-# TODO: read this from Tools.ini
-vs_path = r'C:\Program Files\Microsoft Visual Studio 9.0'
-
 def upgrade_projects(root_path):
-    vs_binary = os.path.join(vs_path, 'Common7/IDE')
+    vs_binary = os.path.join(tools.vs_path, 'Common7/IDE')
     vs_binary = os.path.join(vs_binary, 'devenv.com')
     
     for solution in solutions:
@@ -101,7 +102,9 @@ def main(argv):
     if not os.path.exists(root_path):
         print 'ERROR: Cannot find path: ' + root_path
         sys.exit()
-    
+
+    tools.read_ini('Tools.ini')
+
     print 'Upgrading VS solution- and project-file in folder: ' + root_path
     upgrade_projects(root_path)
     fix_proj_manifests(root_path)
