@@ -40,8 +40,6 @@ class ToolSettings:
         self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8'
         self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
         self.innosetup_path = r'C:\Program Files\Inno Setup 5'
-        self.winmerge_iss = 'WinMerge.iss' #filename only
-        self.winmerge_iss_path = 'WinMerge.iss' #including path
         # Checkout sources from local workspace or from SVN server (give URL)
         self.source = 'workspace'
         self.vs_version = 2005

@@ -334,14 +334,14 @@ def build_innosetup_installer(target_folder):
     innosetup_exe = os.path.join(prog.innosetup_path, 'iscc.exe')
     cur_path = os.getcwd()
 
-    prog.winmerge_iss_path = os.path.join(cur_path, 'Installer\\InnoSetup\\' + prog.winmerge_iss)
+    winmerge_iss_path = os.path.join(cur_path, 'Installer\\InnoSetup\\WinMerge.iss')
 
     #output_switch = '/O"' + target_folder + '"'
 
     print 'Build Innosetup installer...'
     # Should be able to give folder for created file and Q switch to make build quiet
     #call([innosetup_exe, '/Q', output_switch, winmerge_iss])
-    call([innosetup_exe, prog.winmerge_iss_path])
+    call([innosetup_exe, winmerge_iss_path])
 
 def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
