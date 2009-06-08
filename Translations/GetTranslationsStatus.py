@@ -33,7 +33,89 @@ import string
 import re
 import time
 
-class PoStatus1(object):
+class TranslationsStatus(object):
+    def __init__(self):
+        self.__projects = []
+    
+    @property
+    def projects(self):
+        return self.__projects
+    
+    def clear(self):
+        self.__projects = []
+    
+    def addProject(self, project):
+        self.__projects.append(project)
+    
+    def addProject(self, name, potfile, podir):
+        self.__projects.append(TranslationsStatusProject(name, potfile, podir))
+    
+    def writeToXmlFile(self, xmlpath):
+        xmlfile = open(xmlpath, 'w')
+        for project in self.__projects: #For all projects...
+            xmlfile.write('<translations project="%s">\n' % (project.name))
+            xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
+            for status1 in project.status: #For all ...
+                xmlfile.write('  <translation>\n')
+                xmlfile.write('    <language>%s</language>\n' % (status1.language))
+                xmlfile.write('    <file>%s</file>\n' % (status1.filename))
+                if status1.filetype == 'PO': #If a PO file...
+                    xmlfile.write('    <update>%s</update>\n' % (status1.porevisiondate[0:10]))
+                    xmlfile.write('    <strings>\n')
+                    xmlfile.write('      <count>%u</count>\n' % (status1.count))
+                    xmlfile.write('      <translated>%u</translated>\n' % (status1.translated))
+                    xmlfile.write('      <fuzzy>%u</fuzzy>\n' % (status1.fuzzy))
+                    xmlfile.write('      <untranslated>%u</untranslated>\n' % (status1.untranslated))
+                    xmlfile.write('    </strings>\n')
+                else: #If a POT file...
+                    xmlfile.write('    <update>%s</update>\n' % (status1.potcreationdate[0:10]))
+                    xmlfile.write('    <strings>\n')
+                    xmlfile.write('      <count>%u</count>\n' % (status1.count))
+                    xmlfile.write('      <translated>%u</translated>\n' % (status1.count))
+                    xmlfile.write('      <fuzzy>0</fuzzy>\n')
+                    xmlfile.write('      <untranslated>0</untranslated>\n')
+                    xmlfile.write('    </strings>\n')
+                if status1.translators: #If translators exists...
+                    xmlfile.write('    <translators>\n')
+                    for translator in status1.translators: #For all translators...
+                        if (translator.ismaintainer): #If maintainer...
+                            xmlfile.write('      <translator maintainer="1">\n')
+                        else: #If NOT maintainer...
+                            xmlfile.write('      <translator>\n')
+                        xmlfile.write('        <name>%s</name>\n' % (translator.name))
+                        if (translator.mail): #If mail address exists...
+                            xmlfile.write('        <mail>%s</mail>\n' % (translator.mail))
+                        xmlfile.write('      </translator>\n')
+                    xmlfile.write('    </translators>\n')
+                xmlfile.write('  </translation>\n')
+            xmlfile.write('</translations>\n')
+        xmlfile.close()
+
+class TranslationsStatusProject(object):
+    def __init__(self, name, potfile, podir):
+        self.__name = name
+        self.__status = []
+        
+        #PO files...
+        for itemname in os.listdir(podir): #For all dir items...
+            fullitempath = os.path.abspath(os.path.join(podir, itemname))
+            if os.path.isfile(fullitempath): #If a file...
+                filename = os.path.splitext(itemname)
+                if str.lower(filename[1]) == '.po': #If a PO file...
+                    self.__status.append(PoStatus(fullitempath))
+        
+        #POT file...
+        self.__status.append(PoStatus(os.path.abspath(potfile)))
+    
+    @property
+    def name(self):
+        return self.__name
+    
+    @property
+    def status(self):
+        return self.__status
+
+class PoStatus(object):
     def __init__(self, filepath):
         self.__filepath = filepath
         self.__count = 0
@@ -176,64 +258,11 @@ class PoTranslator(object):
         self.mail = mail
         self.ismaintainer = ismaintainer
 
-def getPoFiles(path):
-    ''' Get all PO files from a folder '''
-    pofiles = []
-    for itemname in os.listdir(path): #For all dir items...
-        fullitempath = os.path.abspath(os.path.join(path, itemname))
-        if os.path.isfile(fullitempath): #If a file...
-            filename = os.path.splitext(itemname)
-            if str.lower(filename[1]) == '.po': #If a PO file...
-                pofiles.append(fullitempath)
-    return pofiles
-
-def createTranslationsStatusXmlFile(xmlpath, status):
-    xmlfile = open(xmlpath, 'w')
-    xmlfile.write('<translations>\n')
-    xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
-    for status1 in status: #...
-        xmlfile.write('  <translation>\n')
-        xmlfile.write('    <language>%s</language>\n' % (status1.language))
-        xmlfile.write('    <file>%s</file>\n' % (status1.filename))
-        if status1.filetype == 'PO': #If a PO file...
-            xmlfile.write('    <update>%s</update>\n' % (status1.porevisiondate[0:10]))
-            xmlfile.write('    <strings>\n')
-            xmlfile.write('      <count>%u</count>\n' % (status1.count))
-            xmlfile.write('      <translated>%u</translated>\n' % (status1.translated))
-            xmlfile.write('      <fuzzy>%u</fuzzy>\n' % (status1.fuzzy))
-            xmlfile.write('      <untranslated>%u</untranslated>\n' % (status1.untranslated))
-            xmlfile.write('    </strings>\n')
-        else: #If a POT file...
-            xmlfile.write('    <update>%s</update>\n' % (status1.potcreationdate[0:10]))
-            xmlfile.write('    <strings>\n')
-            xmlfile.write('      <count>%u</count>\n' % (status1.count))
-            xmlfile.write('      <translated>%u</translated>\n' % (status1.count))
-            xmlfile.write('      <fuzzy>0</fuzzy>\n')
-            xmlfile.write('      <untranslated>0</untranslated>\n')
-            xmlfile.write('    </strings>\n')
-        if status1.translators: #If translators exists...
-            xmlfile.write('    <translators>\n')
-            for translator in status1.translators: #For all translators...
-                if (translator.ismaintainer): #If maintainer...
-                    xmlfile.write('      <translator maintainer="1">\n')
-                else: #If NOT maintainer...
-                    xmlfile.write('      <translator>\n')
-                xmlfile.write('        <name>%s</name>\n' % (translator.name))
-                if (translator.mail): #If mail address exists...
-                    xmlfile.write('        <mail>%s</mail>\n' % (translator.mail))
-                xmlfile.write('      </translator>\n')
-            xmlfile.write('    </translators>\n')
-        xmlfile.write('  </translation>\n')
-    xmlfile.write('</translations>\n')
-    xmlfile.close()
-
 def main():
-    po_files = getPoFiles('WinMerge')
-    po_status = []
-    for po_file in po_files: #For all PO files...
-        po_status.append(PoStatus1(po_file))
-    po_status.append(PoStatus1('WinMerge/English.pot'))
-    createTranslationsStatusXmlFile('TranslationsStatus.xml', po_status)
+    status = TranslationsStatus()
+    status.addProject('WinMerge', 'WinMerge/English.pot', 'WinMerge')
+    status.addProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension')
+    status.writeToXmlFile('TranslationsStatus.xml')
 
 # MAIN #
 if __name__ == "__main__":
