@@ -51,25 +51,46 @@
 </head>
 <body>
 
-<h2>WinMerge 2.12.2 Release Notes</h2>
+<h2>WinMerge 2.12.4 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
+  <li><a href="#new2124">What Is New in 2.12.4?</a></li>
   <li><a href="#new2122">What Is New in 2.12.2?</a></li>
   <li><a href="#new2120">What Is New in 2.12.0?</a></li>
   <li><a href="#new2112">What Is New in 2.11.2 beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>April 2009</p>
+<p>June 2009</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.12.2 stable release. This release replaces earlier WinMerge
+This is a WinMerge 2.12.4 stable release. This release replaces earlier WinMerge
 stable releases as a recommended release.
 </p>
 
 <p>
 Please submit bug reports to our <a href="http://bugs.winmerge.org">bug-tracker</a>.
+</p>
+
+<h3><a name="#new2124">What Is New in 2.12.4?</a></h3>
+<p>
+WinMerge 2.12.4 is an bug-fix release fixing few important bugs found
+from the 2.12.2 release. For a complete changelog history, see the
+<code><a href="ChangeLog.txt">ChangeLog.txt</a></code> file located in the
+<code>Docs</code> folder under the WinMerge program folder.</p>
+
+<h4>Bugs fixed</h4>
+<ul>
+  <li>When folder compare method changed during the compare it was not reset
+    back to original. This caused some surprising behavior and missing info.</li>
+  <li>Reports had same left/right description</li>
+  <li>When conflict file was saved trailing line-ending was lost</li>
+  <li>Opening mixed-EOL file one side forced both files to be handled as
+    mixed-eol files</li>
+  <li>Generated patch had wrong file time for UTF-16 files</li>
+  <li>"##" in file filter pattern caused an infinite loop</li>
+</ul>
 
 <h3><a name="#new2122">What Is New in 2.12.2?</a></h3>
 <p>
