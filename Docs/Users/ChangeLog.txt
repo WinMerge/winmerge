@@ -17,6 +17,7 @@ WinMerge 2.12.4
     and again on (#2791402)
   Bugfix: Generated patch had wrong file time for UTF-16 files (#2791506)
   Bugfix: Did not export changed options values (#2799149)
+  Bugfix: Reset the compare method to original if it was changed (#2802427)
 
 WinMerge 2.12.2 - 2009-04-01 (r6625)
   Disable folder compare tree-view by default (#2714968)

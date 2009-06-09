@@ -159,6 +159,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	PluginsContext plugCtxt;
 	int nCompMethod = pCtxt->m_nCompMethod;
+	const int origCompMethod = pCtxt->m_nCompMethod;
 	m_pCtx = pCtxt;
 
 	// Reset text stats
@@ -333,6 +334,8 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		di.errorDesc = _T("Bad compare type");
 	}
 
+	// Reset the compare method to original (could have been changed)
+	m_pCtx->GetCompareOptions(origCompMethod);
 	m_diffFileData.Reset();
 	if (pCtxt->m_bPluginsEnabled && (pCtxt->m_nCompMethod == CMP_CONTENT ||
 		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT))
