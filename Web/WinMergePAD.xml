@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>WinMerge</Program_Name>
-		<Program_Version>2.12.2</Program_Version>
-		<Program_Release_Month>04</Program_Release_Month>
-		<Program_Release_Day>01</Program_Release_Day>
+		<Program_Version>2.12.4</Program_Version>
+		<Program_Release_Month>06</Program_Release_Month>
+		<Program_Release_Day>09</Program_Release_Day>
 		<Program_Release_Year>2009</Program_Release_Year>
 		<Program_Cost_Dollars>0</Program_Cost_Dollars>
 		<Program_Cost_Other_Code />
@@ -51,8 +51,8 @@
 		<Program_Category_Class>System Utilities::File &amp; Disk Management</Program_Category_Class>
 		<Program_System_Requirements />
 		<File_Info>
-			<File_Size_Bytes>3173554</File_Size_Bytes>
-			<File_Size_K>3099</File_Size_K>
+			<File_Size_Bytes>3212078</File_Size_Bytes>
+			<File_Size_K>3136</File_Size_K>
 			<File_Size_MB>3</File_Size_MB>
 		</File_Info>
 		<Expire_Info>
@@ -85,7 +85,7 @@
 		</Application_URLs>
 		<Download_URLs>
 			<Primary_Download_URL>http://winmerge.org/downloads/WinMerge-Setup.exe</Primary_Download_URL>
-			<Secondary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.12.2-Setup.exe</Secondary_Download_URL>
+			<Secondary_Download_URL>http://downloads.sourceforge.net/winmerge/WinMerge-2.12.4-Setup.exe</Secondary_Download_URL>
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />
 		</Download_URLs>
