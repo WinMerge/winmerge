@@ -497,9 +497,9 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 			// We must compare unique files to itself to detect encoding
 			if (di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly())
 			{
-				if (pCtxt->m_nCompMethod != CMP_DATE &&
-					pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
-					pCtxt->m_nCompMethod != CMP_SIZE)
+				if (pCtxt->m_nCurrentCompMethod != CMP_DATE &&
+					pCtxt->m_nCurrentCompMethod != CMP_DATE_SIZE &&
+					pCtxt->m_nCurrentCompMethod != CMP_SIZE)
 				{
 					FolderCmp folderCmp;
 					UINT diffCode = folderCmp.prepAndCompareTwoFiles(pCtxt, di);

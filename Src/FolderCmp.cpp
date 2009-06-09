@@ -159,7 +159,7 @@ void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
 UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	PluginsContext plugCtxt;
-	int nCompMethod = pCtxt->m_nCompMethod;
+	int nCompMethod = pCtxt->GetCompareMethod();
 	m_pCtx = pCtxt;
 
 	// Reset text stats
@@ -168,8 +168,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 	UINT code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
-	if (pCtxt->m_nCompMethod == CMP_CONTENT ||
-		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
+	if (nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT)
 	{
 		GetComparePaths(pCtxt, di, plugCtxt.origFileName1, plugCtxt.origFileName2);
 		m_diffFileData.SetDisplayFilepaths(plugCtxt.origFileName1.c_str(),
@@ -206,7 +205,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 	// If either file is larger than limit compare files by quick contents
 	// This allows us to (faster) compare big binary files
-	if (pCtxt->m_nCompMethod == CMP_CONTENT && 
+	if (nCompMethod == CMP_CONTENT && 
 		(di.left.size > pCtxt->m_nQuickCompareLimit ||
 		di.right.size > pCtxt->m_nQuickCompareLimit))
 	{
@@ -276,8 +275,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		di.left.m_textStats = m_diffFileData.m_textStats0;
 		di.right.m_textStats = m_diffFileData.m_textStats1;
 	}
-	else if (pCtxt->m_nCompMethod == CMP_DATE ||
-		pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE)
 	{
 		// Compare by modified date
 		// Check that we have both filetimes
@@ -302,7 +300,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			// Filetimes for item(s) could not be read. So we have to
 			// set error status, unless we have DATE_SIZE -compare
 			// when we have still hope for size compare..
-			if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+			if (nCompMethod == CMP_DATE_SIZE)
 				code = DIFFCODE::SAME;
 			else
 				code = DIFFCODE::CMPERR;
@@ -310,7 +308,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		
 		// This is actual CMP_DATE_SIZE method..
 		// If file sizes differ mark them different
-		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+		if (nCompMethod == CMP_DATE_SIZE)
 		{
 			if (di.left.size != di.right.size)
 			{
@@ -319,7 +317,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			}
 		}
 	}
-	else if (pCtxt->m_nCompMethod == CMP_SIZE)
+	else if (nCompMethod == CMP_SIZE)
 	{
 		// Compare by size
 		if (di.left.size == di.right.size)
@@ -335,8 +333,8 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	}
 
 	m_diffFileData.Reset();
-	if (pCtxt->m_bPluginsEnabled && (pCtxt->m_nCompMethod == CMP_CONTENT ||
-		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT))
+	if (pCtxt->m_bPluginsEnabled && (nCompMethod == CMP_CONTENT ||
+		nCompMethod == CMP_QUICK_CONTENT))
 	{
 		CleanupAfterPlugins(&plugCtxt);
 	}

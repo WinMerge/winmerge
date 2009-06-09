@@ -80,9 +80,9 @@ static void UpdateDiffItem(DIFFITEM &di, CDiffContext *pCtxt)
 	// We must compare unique files to itself to detect encoding
 	if (di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly())
 	{
-		if (pCtxt->m_nCompMethod != CMP_DATE &&
-			pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
-			pCtxt->m_nCompMethod != CMP_SIZE)
+		int compareMethod = pCtxt->GetCompareMethod();
+		if (compareMethod != CMP_DATE && compareMethod != CMP_DATE_SIZE &&
+			compareMethod != CMP_SIZE)
 		{
 			di.diffcode.diffcode |= DIFFCODE::SAME;
 			FolderCmp folderCmp;

@@ -181,7 +181,8 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathC
 	if (m_pCompareStats == NULL)
 		m_pCompareStats = new CompareStats();
 
-	m_pCtxt = new CDiffContext(paths.GetLeft().c_str(), paths.GetRight().c_str());
+	m_pCtxt = new CDiffContext(paths.GetLeft().c_str(), paths.GetRight().c_str(),
+			GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
 
 	if (pTempPathContext)
 	{
@@ -345,7 +346,7 @@ void CDirDoc::Rescan()
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
-	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
+	m_pCtxt->CreateCompareOptions(options);
 
 	m_pCtxt->m_bGuessEncoding = GetOptionsMgr()->GetBool(OPT_CP_DETECT);
 	m_pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);

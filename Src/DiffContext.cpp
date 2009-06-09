@@ -58,11 +58,14 @@ static char THIS_FILE[]=__FILE__;
  *
  * @param [in] pszLeft Initial left-side path.
  * @param [in] pszRight Initial right-side path.
+ * @param [in] compareMethod Main compare method for this compare.
  */
-CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
+CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
+		int compareMethod)
 : m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
-, m_nCompMethod(-1)
+, m_nCompMethod(compareMethod)
+, m_nCurrentCompMethod(compareMethod)
 , m_bIgnoreSmallTimeDiff(FALSE)
 , m_pCompareStats(NULL)
 , m_piAbortable(NULL)
@@ -210,13 +213,12 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 /**
  * @brief Create compare-method specific compare options class.
  * This function creates a compare options class that is specific for
- * selected compare method. Compare options class is initialized from
+ * main compare method. Compare options class is initialized from
  * given set of options.
- * @param [in] compareMethod Selected compare method.
  * @param [in] options Initial set of compare options.
  * @return TRUE if creation succeeds.
  */
-BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
+BOOL CDiffContext::CreateCompareOptions(const DIFFOPTIONS & options)
 {
 	if (m_pOptions != NULL)
 		delete m_pOptions;
@@ -226,20 +228,19 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	else
 		return FALSE;
 
-	m_pCompareOptions = GetCompareOptions(compareMethod);
+	m_pCompareOptions = GetCompareOptions(m_nCompMethod);
 	if (m_pCompareOptions == NULL)
 	{
 		// For Date and Date+Size compare NULL is ok since they don't have actual
 		// compare options.
-		if (compareMethod == CMP_DATE || compareMethod == CMP_DATE_SIZE ||
-			compareMethod == CMP_SIZE)
+		if (m_nCompMethod == CMP_DATE || m_nCompMethod == CMP_DATE_SIZE ||
+			m_nCompMethod == CMP_SIZE)
 		{
 			return TRUE;
 		}
 		else
 			return FALSE;
 	}
-
 	return TRUE;
 }
 
@@ -255,7 +256,7 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 {
 	// If compare method is same than in previous time, return cached value
-	if (compareMethod == m_nCompMethod && m_pCompareOptions != NULL)
+	if (compareMethod == m_nCurrentCompMethod && m_pCompareOptions != NULL)
 		return m_pCompareOptions;
 
 	// Otherwise we have to create new options
@@ -277,7 +278,7 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 		break;
 	}
 
-	m_nCompMethod = compareMethod;
+	m_nCurrentCompMethod = compareMethod;
 
 	if (m_pCompareOptions == NULL)
 		return NULL;

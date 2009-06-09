@@ -53,10 +53,16 @@ public:
 		DIFFS_UNKNOWN_QUICKCOMPARE = -9, /**< Unknown because of quick-compare method. */
 	};
 
-	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
+	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, int compareMethod);
 	~CDiffContext();
 
 	void UpdateVersion(DIFFITEM & di, BOOL bLeft) const;
+
+	/**
+	 * Get the main compare method used in this compare.
+	 * @return Compare method used.
+	 */
+	int GetCompareMethod(void) const { return m_nCompMethod; }
 
 	//@{
 	/**
@@ -93,7 +99,7 @@ public:
 	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft);
 	void UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight);
 
-	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
+	BOOL CreateCompareOptions(const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
 
 	// retrieve or manufacture plugin info for specified file comparison
@@ -128,12 +134,13 @@ public:
 	BOOL m_bGuessEncoding;
 
 	/**
-	 * The main compare method used.
-	 * This is the main compare method set when compare is started. There
-	 * can be temporary switches to other method (e.g. for large file) but
-	 * this main method must be set back for next file.
+	 * The current and effective compare method.
+	 * During the compare we may change compare method per file. This may
+	 * happen for various reasons. But the change is always temporarily and
+	 * we must return to the main method indicated by m_nCompMethod.
 	 */
-	int m_nCompMethod;
+	int m_nCurrentCompMethod;
+
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
 
@@ -156,6 +163,14 @@ public:
 	FilterList * m_pFilterList; /**< Filter list for line filters */
 
 private:
+	/**
+	 * The main compare method used.
+	 * This is the main compare method set when compare is started. There
+	 * can be temporary switches to other method (e.g. for large file) but
+	 * this main method must be set back for next file.
+	 */
+	const int m_nCompMethod;
+
 	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
 	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
