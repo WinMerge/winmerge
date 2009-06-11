@@ -4,10 +4,6 @@
 # Maintainer:
 # * Tim Gerundt <tim at gerundt.de>
 #
-# Translators:
-# * Winfried Peter <winfried.peter at omicron.at>
-# * Jörg Schneider <tonda at users.sourceforge.net>
-#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -24,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25

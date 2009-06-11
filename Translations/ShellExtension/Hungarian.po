@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-SourceCharset: CP1250\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
