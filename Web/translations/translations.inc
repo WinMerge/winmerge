@@ -101,14 +101,14 @@
           $temp .= "  </tr>\n";
         }
         else { //If English...
-          $english = $translations[$i];
+          $english = $translations[$j];
           $english_file_name = $english['FILE'][0]['VALUE'];
           $english_translation_update = $english['UPDATE'][0]['VALUE'];
           $english_strings_count = $english['STRINGS'][0]['COUNT'][0]['VALUE'];
         }
       }
       $temp .= "  <tr>\n";
-      $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">English (Template)</a></td>\n";
+      $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $project . '/' . $english_file_name . "\" rel=\"nofollow\">English (Template)</a></td>\n";
       $temp .= "    <td class=\"center\"></td>\n";
       $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $english_strings_count . "</td>\n";
       $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
