@@ -53,9 +53,9 @@ class TranslationsStatus(object):
     def writeToXmlFile(self, xmlpath):
         xmlfile = open(xmlpath, 'w')
         xmlfile.write('<status>\n')
+        xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
         for project in self.__projects: #For all projects...
             xmlfile.write('  <translations project="%s">\n' % (project.name))
-            xmlfile.write('    <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
             for status1 in project.status: #For all ...
                 xmlfile.write('    <translation>\n')
                 xmlfile.write('      <language>%s</language>\n' % (status1.language))
