@@ -139,17 +139,23 @@
     $update = $xmlarray['STATUS'][0]['UPDATE'][0]['VALUE'];
     $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
     
+    switch ($version) {
+      case 'Trunk': $version_title = 'Unstable Trunk'; break;
+      case 'Branch': $version_title = 'Stable Branch'; break;
+      default: $version_title = $version;
+    }
+    
     $temp = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
     $temp .= "<rss version=\"2.0\">\n";
     $temp .= "  <channel>\n";
-    $temp .= "    <title>WinMerge Translations Status (" . $version . ")</title>\n";
+    $temp .= "    <title>WinMerge Translations Status (" . $version_title . ")</title>\n";
     $temp .= "    <link>http://winmerge.org/</link>\n";
     $temp .= "    <description>...</description>\n";
     $temp .= "    <item>\n";
     $temp .= "      <title>Status from " . $update . "</title>\n";
     $temp .= "      <description>\n";
     $temp .= "        <![CDATA[\n";
-    $temp .= "<h1>WinMerge Translations Status (" . $version . ")</h1>\n";
+    $temp .= "<h1>WinMerge Translations Status (" . $version_title . ")</h1>\n";
     $temp .= "<p>Status from <strong>" . $update . "</strong>:</p>\n";
     for ($i = 0; $i < count($status); $i++) { //For all projects...
       $project = $status[$i]['ATTRIBUTES']['PROJECT'];

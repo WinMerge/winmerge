@@ -130,11 +130,17 @@
   function printTranslationsStatusRSS($xmlarray, $version, $svnurl) {
     global $page;
     
+    switch ($version) {
+      case 'Trunk': $version_title = 'Unstable Trunk'; break;
+      case 'Branch': $version_title = 'Stable Branch'; break;
+      default: $version_title = $version;
+    }
+    
     $update = $xmlarray['TRANSLATIONS'][0]['UPDATE'][0]['VALUE'];
     $temp = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
     $temp .= "<rss version=\"2.0\">\n";
     $temp .= "  <channel>\n";
-    $temp .= "    <title>WinMerge Translations Status (" . $version . ")</title>\n";
+    $temp .= "    <title>WinMerge Translations Status (" . $version_title . ")</title>\n";
     $temp .= "    <link>http://winmerge.org/</link>\n";
     $temp .= "    <description>...</description>\n";
     $temp .= "    <item>\n";
