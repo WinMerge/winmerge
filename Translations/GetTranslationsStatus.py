@@ -52,43 +52,45 @@ class TranslationsStatus(object):
     
     def writeToXmlFile(self, xmlpath):
         xmlfile = open(xmlpath, 'w')
+        xmlfile.write('<status>\n')
         for project in self.__projects: #For all projects...
-            xmlfile.write('<translations project="%s">\n' % (project.name))
-            xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
+            xmlfile.write('  <translations project="%s">\n' % (project.name))
+            xmlfile.write('    <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
             for status1 in project.status: #For all ...
-                xmlfile.write('  <translation>\n')
-                xmlfile.write('    <language>%s</language>\n' % (status1.language))
-                xmlfile.write('    <file>%s</file>\n' % (status1.filename))
+                xmlfile.write('    <translation>\n')
+                xmlfile.write('      <language>%s</language>\n' % (status1.language))
+                xmlfile.write('      <file>%s</file>\n' % (status1.filename))
                 if status1.filetype == 'PO': #If a PO file...
-                    xmlfile.write('    <update>%s</update>\n' % (status1.porevisiondate[0:10]))
-                    xmlfile.write('    <strings>\n')
-                    xmlfile.write('      <count>%u</count>\n' % (status1.count))
-                    xmlfile.write('      <translated>%u</translated>\n' % (status1.translated))
-                    xmlfile.write('      <fuzzy>%u</fuzzy>\n' % (status1.fuzzy))
-                    xmlfile.write('      <untranslated>%u</untranslated>\n' % (status1.untranslated))
-                    xmlfile.write('    </strings>\n')
+                    xmlfile.write('      <update>%s</update>\n' % (status1.porevisiondate[0:10]))
+                    xmlfile.write('      <strings>\n')
+                    xmlfile.write('        <count>%u</count>\n' % (status1.count))
+                    xmlfile.write('        <translated>%u</translated>\n' % (status1.translated))
+                    xmlfile.write('        <fuzzy>%u</fuzzy>\n' % (status1.fuzzy))
+                    xmlfile.write('        <untranslated>%u</untranslated>\n' % (status1.untranslated))
+                    xmlfile.write('      </strings>\n')
                 else: #If a POT file...
-                    xmlfile.write('    <update>%s</update>\n' % (status1.potcreationdate[0:10]))
-                    xmlfile.write('    <strings>\n')
-                    xmlfile.write('      <count>%u</count>\n' % (status1.count))
-                    xmlfile.write('      <translated>%u</translated>\n' % (status1.count))
-                    xmlfile.write('      <fuzzy>0</fuzzy>\n')
-                    xmlfile.write('      <untranslated>0</untranslated>\n')
-                    xmlfile.write('    </strings>\n')
+                    xmlfile.write('      <update>%s</update>\n' % (status1.potcreationdate[0:10]))
+                    xmlfile.write('      <strings>\n')
+                    xmlfile.write('        <count>%u</count>\n' % (status1.count))
+                    xmlfile.write('        <translated>%u</translated>\n' % (status1.count))
+                    xmlfile.write('        <fuzzy>0</fuzzy>\n')
+                    xmlfile.write('        <untranslated>0</untranslated>\n')
+                    xmlfile.write('      </strings>\n')
                 if status1.translators: #If translators exists...
-                    xmlfile.write('    <translators>\n')
+                    xmlfile.write('      <translators>\n')
                     for translator in status1.translators: #For all translators...
                         if (translator.ismaintainer): #If maintainer...
-                            xmlfile.write('      <translator maintainer="1">\n')
+                            xmlfile.write('        <translator maintainer="1">\n')
                         else: #If NOT maintainer...
-                            xmlfile.write('      <translator>\n')
-                        xmlfile.write('        <name>%s</name>\n' % (translator.name))
+                            xmlfile.write('        <translator>\n')
+                        xmlfile.write('          <name>%s</name>\n' % (translator.name))
                         if (translator.mail): #If mail address exists...
-                            xmlfile.write('        <mail>%s</mail>\n' % (translator.mail))
-                        xmlfile.write('      </translator>\n')
-                    xmlfile.write('    </translators>\n')
-                xmlfile.write('  </translation>\n')
-            xmlfile.write('</translations>\n')
+                            xmlfile.write('          <mail>%s</mail>\n' % (translator.mail))
+                        xmlfile.write('        </translator>\n')
+                    xmlfile.write('      </translators>\n')
+                xmlfile.write('    </translation>\n')
+            xmlfile.write('  </translations>\n')
+        xmlfile.write('</status>\n')
         xmlfile.close()
 
 class TranslationsStatusProject(object):
