@@ -12,7 +12,7 @@
   $status = $page->convertXml2Array('status_trunk.xml');
   print("<ul class=\"inline\">\n");
   if (!empty($status)) { //If translations status available...
-    $translations = $status['TRANSLATIONS'][0]['TRANSLATION'];
+    $translations = $status['STATUS'][0]['TRANSLATIONS'][0]['TRANSLATION'];
     $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
     for ($i = 0; $i < count($translations); $i++) { //For all translations...
       $translation = $translations[$i];

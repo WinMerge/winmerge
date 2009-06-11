@@ -2,7 +2,7 @@
   header('Content-type: application/rss+xml');
   
   include('../page.inc');
-  include('translations.inc');
+  include('translations_branch.inc');
   
   $page = new Page;
   $status = $page->convertXml2Array('status_branch.xml');

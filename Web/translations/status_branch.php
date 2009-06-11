@@ -1,6 +1,6 @@
 <?php
   include('../page.inc');
-  include('translations.inc');
+  include('translations_branch.inc');
 
   $page = new Page;
   $page->addRssFeed('status_branch_rss.php');

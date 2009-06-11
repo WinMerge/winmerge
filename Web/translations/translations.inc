@@ -61,54 +61,60 @@
   function printTranslationsStatus($xmlarray, $svnurl) {
     global $page;
     
-    $update = $xmlarray['TRANSLATIONS'][0]['UPDATE'][0]['VALUE'];
+    $update = $xmlarray['STATUS'][0]['UPDATE'][0]['VALUE'];
+    $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
+    
     $temp = "<p>Status from <strong>" . $update . "</strong>:</p>\n";
-    $temp .= "<table class=\"status\">\n";
-    $temp .= "  <tr>\n";
-    $temp .= "    <th class=\"left\">Language</th>\n";
-    $temp .= "    <th class=\"center\">Graph</th>\n";
-    $temp .= "    <th class=\"right translated\">Translated</th>\n";
-    $temp .= "    <th class=\"right fuzzy\">Fuzzy</th>\n";
-    $temp .= "    <th class=\"right untranslated\">Untranslated</th>\n";
-    $temp .= "    <th class=\"center\">Last Update</th>\n";
-    $temp .= "  </tr>\n";
-    $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
-    for ($i = 0; $i < count($translations); $i++) { //For all translations...
-      $translation = $translations[$i];
-      $language_name = $translation['LANGUAGE'][0]['VALUE'];
-      if ($language_name != 'English') { //If NOT English...
-        $file_name = $translation['FILE'][0]['VALUE'];
-        $translation_update = $translation['UPDATE'][0]['VALUE'];
-        $strings = $translation['STRINGS'][0];
-        $strings_count = $strings['COUNT'][0]['VALUE'];
-        $strings_translated = $strings['TRANSLATED'][0]['VALUE'];
-        $strings_fuzzy = $strings['FUZZY'][0]['VALUE'];
-        $strings_untranslated = $strings['UNTRANSLATED'][0]['VALUE'];
-        
-        $temp .= "  <tr>\n";
-        $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $file_name . "\" rel=\"nofollow\">" . $language_name . "</a></td>\n";
-        $temp .= "    <td class=\"center\">" . get_status_graph($strings_count, $strings_translated, $strings_fuzzy, $strings_untranslated) . "</td>\n";
-        $temp .= "    <td class=\"right translated\">" . $strings_translated . "</td>\n";
-        $temp .= "    <td class=\"right fuzzy\">" . $strings_fuzzy . "</td>\n";
-        $temp .= "    <td class=\"right untranslated\">" . $strings_untranslated . "</td>\n";
-        $temp .= "    <td class=\"center\">" . $translation_update . "</td>\n";
-        $temp .= "  </tr>\n";
+    for ($i = 0; $i < count($status); $i++) { //For all projects...
+      $project = $status[$i]['ATTRIBUTES']['PROJECT'];
+      $temp .= "<h3>" . $project .  "</h3>\n";
+      $temp .= "<table class=\"status\">\n";
+      $temp .= "  <tr>\n";
+      $temp .= "    <th class=\"left\">Language</th>\n";
+      $temp .= "    <th class=\"center\">Graph</th>\n";
+      $temp .= "    <th class=\"right translated\">Translated</th>\n";
+      $temp .= "    <th class=\"right fuzzy\">Fuzzy</th>\n";
+      $temp .= "    <th class=\"right untranslated\">Untranslated</th>\n";
+      $temp .= "    <th class=\"center\">Last Update</th>\n";
+      $temp .= "  </tr>\n";
+      $translations = $status[$i]['TRANSLATION'];
+      $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+      for ($j = 0; $j < count($translations); $j++) { //For all translations...
+        $translation = $translations[$j];
+        $language_name = $translation['LANGUAGE'][0]['VALUE'];
+        if ($language_name != 'English') { //If NOT English...
+          $file_name = $translation['FILE'][0]['VALUE'];
+          $translation_update = $translation['UPDATE'][0]['VALUE'];
+          $strings = $translation['STRINGS'][0];
+          $strings_count = $strings['COUNT'][0]['VALUE'];
+          $strings_translated = $strings['TRANSLATED'][0]['VALUE'];
+          $strings_fuzzy = $strings['FUZZY'][0]['VALUE'];
+          $strings_untranslated = $strings['UNTRANSLATED'][0]['VALUE'];
+          
+          $temp .= "  <tr>\n";
+          $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $project . '/' . $file_name . "\" rel=\"nofollow\">" . $language_name . "</a></td>\n";
+          $temp .= "    <td class=\"center\">" . get_status_graph($strings_count, $strings_translated, $strings_fuzzy, $strings_untranslated) . "</td>\n";
+          $temp .= "    <td class=\"right translated\">" . $strings_translated . "</td>\n";
+          $temp .= "    <td class=\"right fuzzy\">" . $strings_fuzzy . "</td>\n";
+          $temp .= "    <td class=\"right untranslated\">" . $strings_untranslated . "</td>\n";
+          $temp .= "    <td class=\"center\">" . $translation_update . "</td>\n";
+          $temp .= "  </tr>\n";
+        }
+        else { //If English...
+          $english = $translations[$i];
+          $english_file_name = $english['FILE'][0]['VALUE'];
+          $english_translation_update = $english['UPDATE'][0]['VALUE'];
+          $english_strings_count = $english['STRINGS'][0]['COUNT'][0]['VALUE'];
+        }
       }
-      else { //If English...
-        $english = $translations[$i];
-        $english_file_name = $english['FILE'][0]['VALUE'];
-        $english_translation_update = $english['UPDATE'][0]['VALUE'];
-        $english_strings_count = $english['STRINGS'][0]['COUNT'][0]['VALUE'];
-      }
+      $temp .= "  <tr>\n";
+      $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">English (Template)</a></td>\n";
+      $temp .= "    <td class=\"center\"></td>\n";
+      $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $english_strings_count . "</td>\n";
+      $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
+      $temp .= "  </tr>\n";
+      $temp .= "</table>\n";
     }
-    $temp .= "  <tr>\n";
-    $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">English (Template)</a></td>\n";
-    $temp .= "    <td class=\"center\"></td>\n";
-    $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $english_strings_count . "</td>\n";
-    $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
-    $temp .= "  </tr>\n";
-    $temp .= "</table>\n";
     print($temp);
   }
   
@@ -130,7 +136,9 @@
   function printTranslationsStatusRSS($xmlarray, $version, $svnurl) {
     global $page;
     
-    $update = $xmlarray['TRANSLATIONS'][0]['UPDATE'][0]['VALUE'];
+    $update = $xmlarray['STATUS'][0]['UPDATE'][0]['VALUE'];
+    $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
+    
     $temp = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
     $temp .= "<rss version=\"2.0\">\n";
     $temp .= "  <channel>\n";
@@ -141,26 +149,31 @@
     $temp .= "      <title>Status from " . $update . "</title>\n";
     $temp .= "      <description>\n";
     $temp .= "        <![CDATA[\n";
-    
-    $temp .= "<ul>\n";
-    $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
-    for ($i = 0; $i < count($translations); $i++) { //For all translations...
-      $translation = $translations[$i];
-      $language_name = $translation['LANGUAGE'][0]['VALUE'];
-      if ($language_name != 'English') { //If NOT English...
-        $file_name = $translation['FILE'][0]['VALUE'];
-        $translation_update = $translation['UPDATE'][0]['VALUE'];
-        $strings = $translation['STRINGS'][0];
-        $strings_untranslated = $strings['UNTRANSLATED'][0]['VALUE'];
-        
-        $temp .= "  <li>\n";
-        $temp .= "    <a href=\"" . $svnurl . $file_name . "\">" . $language_name . "</a> (" . $strings_untranslated . " Untranslated)\n";
-        $temp .= "  </li>\n";
+    $temp .= "<h1>WinMerge Translations Status (" . $version . ")</h1>\n";
+    $temp .= "<p>Status from <strong>" . $update . "</strong>:</p>\n";
+    for ($i = 0; $i < count($status); $i++) { //For all projects...
+      $project = $status[$i]['ATTRIBUTES']['PROJECT'];
+      
+      $temp .= "<h2>" . $project . "</h2>\n";
+      $temp .= "<ul>\n";
+      $translations = $status[$i]['TRANSLATION'];
+      $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+      for ($j = 0; $j < count($translations); $j++) { //For all translations...
+        $translation = $translations[$j];
+        $language_name = $translation['LANGUAGE'][0]['VALUE'];
+        if ($language_name != 'English') { //If NOT English...
+          $file_name = $translation['FILE'][0]['VALUE'];
+          $translation_update = $translation['UPDATE'][0]['VALUE'];
+          $strings = $translation['STRINGS'][0];
+          $strings_untranslated = $strings['UNTRANSLATED'][0]['VALUE'];
+          
+          $temp .= "  <li>\n";
+          $temp .= "    <a href=\"" . $svnurl . $project . '/' . $file_name . "\">" . $language_name . "</a> (" . $strings_untranslated . " Untranslated)\n";
+          $temp .= "  </li>\n";
+        }
       }
+      $temp .= "</ul>\n";
     }
-    $temp .= "</ul>\n";
-    
     $temp .= "        ]]>\n";
     $temp .= "      </description>\n";
     $temp .= "      <guid>" . $update . "</guid>\n";
@@ -177,41 +190,59 @@
   function printTranslationsTranslators($xmlarray) {
     global $page;
     
+    $projects = array();
+    $languages = array();
+    
+    $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
+    for ($i = 0; $i < count($status); $i++) { //For all projects...
+      $projects[$i] = $status[$i]['ATTRIBUTES']['PROJECT'];
+      
+      $translations = $status[$i]['TRANSLATION'];
+      $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+      for ($j = 0; $j < count($translations); $j++) { //For all translations...
+        $translation = $translations[$j];
+        $language_name = $translation['LANGUAGE'][0]['VALUE'];
+        
+        if ($language_name != 'English') { //If NOT English...
+          $translators = @$translation['TRANSLATORS'][0]['TRANSLATOR'];
+          
+          $temp = '';
+          for ($k = 0; $k < count($translators); $k++) { //For all translators...
+            $translator = $translators[$k];
+            $translator_name = @$translator['NAME'][0]['VALUE'];
+            $translator_mail = @$translator['MAIL'][0]['VALUE'];
+            $maintainer = @$translator['ATTRIBUTES']['MAINTAINER'];
+            
+            if ($maintainer == '1')
+              $temp .= "<strong title=\"Maintainer\">";
+            if ($translator_mail != '')
+              $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name) . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name) . "</a>";
+            else
+              $temp .= $translator_name;
+            if ($maintainer == '1')
+              $temp .= "</strong>";
+            $temp .= "<br>";
+          }
+        }
+        
+        $languages[$language_name][$i] = $temp;
+      }
+    }
+    
     $temp = "<table class=\"status\">\n";
     $temp .= "  <tr>\n";
     $temp .= "    <th class=\"left\">Language</th>\n";
-    $temp .= "    <th class=\"left\">Translator(s)</th>\n";
+    foreach ($projects as $project) { //For all projects...
+      $temp .= "    <th class=\"left\">" . $project . "</th>\n";
+    }
     $temp .= "  </tr>\n";
-    $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
-    for ($i = 0; $i < count($translations); $i++) { //For all translations...
-      $translation = $translations[$i];
-      $language_name = $translation['LANGUAGE'][0]['VALUE'];
-      if ($language_name != 'English') { //If NOT English...
-        $translators = @$translation['TRANSLATORS'][0]['TRANSLATOR'];
-        
-        $temp .= "  <tr>\n";
-        $temp .= "    <td class=\"left\">" . $language_name . "</td>\n";
-        $temp .= "    <td class=\"left\">";
-        for ($j = 0; $j < count($translators); $j++) { //For all translators...
-          $translator = $translators[$j];
-          $translator_name = @$translator['NAME'][0]['VALUE'];
-          $translator_mail = @$translator['MAIL'][0]['VALUE'];
-          $maintainer = @$translator['ATTRIBUTES']['MAINTAINER'];
-          
-          if ($maintainer == '1')
-            $temp .= "<strong title=\"Maintainer\">";
-          if ($translator_mail != '')
-            $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name) . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name) . "</a>";
-          else
-            $temp .= $translator_name;
-          if ($maintainer == '1')
-            $temp .= "</strong>";
-          $temp .= "<br>";
-        }
-        $temp .= "</td>\n";
-        $temp .= "  </tr>\n";
+    foreach ($languages as $language_name => $language_translators) { //For all languages...
+      $temp .= "  <tr>\n";
+      $temp .= "    <td class=\"left\">" . $language_name . "</td>\n";
+      foreach ($projects as $project_key => $project_name) { //For all projects...
+        $temp .= "    <td class=\"left\">" . @$language_translators[$project_key] . "</td>";
       }
+      $temp .= "  </tr>\n";
     }
     $temp .= "</table>\n";
     print($temp);
