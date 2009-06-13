@@ -58,16 +58,45 @@
   /**
    * ...
    */
-  function printTranslationsStatus($xmlarray, $svnurl) {
-    global $page;
-    
+  function getTranslationsStatusGraphLegend() {
+    $temp = "<ul class=\"inline\">\n";
+    $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> Translated</li>\n";
+    $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> Fuzzy</li>\n";
+    $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> Untranslated</li>\n";
+    $temp .= "</ul>\n";
+    return $temp;
+  }
+  
+    /**
+   * ...
+   */
+  function printTranslationsTOC($xmlarray) {
     $update = $xmlarray['STATUS'][0]['UPDATE'][0]['VALUE'];
     $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
     
     $temp = "<p>Status from <strong>" . $update . "</strong>:</p>\n";
+    $temp .= "<ul>\n";
     for ($i = 0; $i < count($status); $i++) { //For all projects...
       $project = $status[$i]['ATTRIBUTES']['PROJECT'];
-      $temp .= "<h3>" . $project .  "</h3>\n";
+      $temp .= "  <li><a href=\"#" . $project ."\">" . $project . "</a></li>\n";
+    }
+    $temp .= "  <li><a href=\"#translators\">Translators</a></li>\n";
+    $temp .= "</ul>\n";
+    print($temp);
+  }
+  
+  /**
+   * ...
+   */
+  function printTranslationsStatus($xmlarray, $svnurl) {
+    global $page;
+    
+    $status = $xmlarray['STATUS'][0]['TRANSLATIONS'];
+    
+    $temp = '';
+    for ($i = 0; $i < count($status); $i++) { //For all projects...
+      $project = $status[$i]['ATTRIBUTES']['PROJECT'];
+      $temp .= "<h3><a name=\"" . $project . "\">" . $project .  "</a></h3>\n";
       $temp .= "<table class=\"status\">\n";
       $temp .= "  <tr>\n";
       $temp .= "    <th class=\"left\">Language</th>\n";
@@ -114,19 +143,8 @@
       $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
       $temp .= "  </tr>\n";
       $temp .= "</table>\n";
+      $temp .= getTranslationsStatusGraphLegend();
     }
-    print($temp);
-  }
-  
-  /**
-   * ...
-   */
-  function printTranslationsStatusGraphLegend() {
-    $temp = "<ul class=\"inline\">\n";
-    $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> Translated</li>\n";
-    $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> Fuzzy</li>\n";
-    $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> Untranslated</li>\n";
-    $temp .= "</ul>\n";
     print($temp);
   }
   
@@ -235,7 +253,8 @@
       }
     }
     
-    $temp = "<table class=\"status\">\n";
+    $temp = "<h3><a name=\"translators\">Translators</a></h3>\n";
+    $temp .= "<table class=\"status\">\n";
     $temp .= "  <tr>\n";
     $temp .= "    <th class=\"left\">Language</th>\n";
     foreach ($projects as $project) { //For all projects...
