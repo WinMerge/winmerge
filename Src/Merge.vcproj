@@ -5573,6 +5573,43 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="CompareEngines\TimeSizeCompare.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Common\ToolBarXPThemes.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6621,6 +6658,9 @@
 			</File>
 			<File
 				RelativePath="TestFilterDlg.h">
+			</File>
+			<File
+				RelativePath="CompareEngines\TimeSizeCompare.h">
 			</File>
 			<File
 				RelativePath="Common\ToolbarXPThemes.h">

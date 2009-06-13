@@ -12,6 +12,7 @@
 #include "DiffFileData.h"
 #include "DiffUtils.h"
 #include "ByteCompare.h"
+#include "TimeSizeCompare.h"
 
 class CDiffContext;
 class PackingInfo;
@@ -56,6 +57,7 @@ public:
 private:
 	CompareEngines::DiffUtils *m_pDiffUtilsEngine;
 	CompareEngines::ByteCompare *m_pByteCompare;
+	CompareEngines::TimeSizeCompare *m_pTimeSizeCompare;
 };
 
 
