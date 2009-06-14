@@ -52,11 +52,12 @@ class TranslationsStatus(object):
     
     def writeToXmlFile(self, xmlpath):
         xmlfile = open(xmlpath, 'w')
+        xmlfile.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
         xmlfile.write('<status>\n')
         xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
         for project in self.__projects: #For all projects...
             xmlfile.write('  <translations project="%s">\n' % (project.name))
-            for status1 in project.status: #For all ...
+            for status1 in project.status: #For all status...
                 xmlfile.write('    <translation>\n')
                 xmlfile.write('      <language>%s</language>\n' % (status1.language))
                 xmlfile.write('      <file>%s</file>\n' % (status1.filename))
