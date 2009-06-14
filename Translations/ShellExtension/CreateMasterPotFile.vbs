@@ -186,7 +186,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.WriteLine "msgid """""
   oPotFile.WriteLine "msgstr """""
   oPotFile.WriteLine """Project-Id-Version: WinMerge Shell Extension\n"""
-  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"""
+  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"""
   oPotFile.WriteLine """POT-Creation-Date: " & GetPotCreationDate() & "\n"""
   oPotFile.WriteLine """PO-Revision-Date: \n"""
   oPotFile.WriteLine """Last-Translator: \n"""

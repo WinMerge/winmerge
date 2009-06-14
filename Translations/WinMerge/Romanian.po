@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2008-03-04 18:02+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Cristian Arghiroiu <cristiarg@users.sourceforge.net>\n"

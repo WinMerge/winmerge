@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-01-15 20:39+0000\n"
 "PO-Revision-Date: 2009-01-27 19:11+0800\n"
 "Last-Translator: wck <wck3171@pchome.com.tw>\n"
