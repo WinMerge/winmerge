@@ -151,7 +151,7 @@
   /**
    * ...
    */
-  function printTranslationsStatusRSS($xmlarray, $version, $svnurl) {
+  function printTranslationsStatusRSS($xmlarray, $version, $svnurl, $link) {
     global $page;
     
     $update = $xmlarray['STATUS'][0]['UPDATE'][0]['VALUE'];
@@ -169,16 +169,13 @@
     $temp .= "    <title>WinMerge Translations Status (" . $version_title . ")</title>\n";
     $temp .= "    <link>http://winmerge.org/</link>\n";
     $temp .= "    <description>...</description>\n";
-    $temp .= "    <item>\n";
-    $temp .= "      <title>Status from " . $update . "</title>\n";
-    $temp .= "      <description>\n";
-    $temp .= "        <![CDATA[\n";
-    $temp .= "<h1>WinMerge Translations Status (" . $version_title . ")</h1>\n";
-    $temp .= "<p>Status from <strong>" . $update . "</strong>:</p>\n";
     for ($i = 0; $i < count($status); $i++) { //For all projects...
       $project = $status[$i]['ATTRIBUTES']['PROJECT'];
       
-      $temp .= "<h2>" . $project . "</h2>\n";
+      $temp .= "    <item>\n";
+      $temp .= "      <title>" . $project ." Status [" . $update . "]</title>\n";
+      $temp .= "      <description>\n";
+      $temp .= "        <![CDATA[\n";
       $temp .= "<ul>\n";
       $translations = $status[$i]['TRANSLATION'];
       $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
@@ -197,12 +194,12 @@
         }
       }
       $temp .= "</ul>\n";
+      $temp .= "        ]]>\n";
+      $temp .= "      </description>\n";
+      $temp .= "      <guid>" . $project . "_" . $update . "</guid>\n";
+      $temp .= "      <link>" . $link . "#" . $project . "</link>\n";
+      $temp .= "    </item>\n";
     }
-    $temp .= "        ]]>\n";
-    $temp .= "      </description>\n";
-    $temp .= "      <guid>" . $update . "</guid>\n";
-    $temp .= "      <link>http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . "</link>\n";
-    $temp .= "    </item>\n";
     $temp .= "  </channel>\n";
     $temp .= "</rss>\n";
     print($temp);
