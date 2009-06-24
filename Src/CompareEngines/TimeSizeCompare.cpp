@@ -7,8 +7,6 @@
 // $Id$
 
 #include "stdafx.h"
-#include "DiffContext.h"
-#include "DIFF.H"
 #include "DiffItem.h"
 #include "TimeSizeCompare.h"
 #include "DiffWrapper.h"
