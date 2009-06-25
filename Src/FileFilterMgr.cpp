@@ -39,6 +39,8 @@ static char THIS_FILE[] = __FILE__;
 
 using std::vector;
 
+static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str);
+
 /**
  * @brief Destructor, frees all filters.
  */
@@ -130,25 +132,25 @@ void FileFilterMgr::DeleteAllFilters()
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
  */
-static void AddFilterPattern(vector<FileFilterElement*> *filterList, CString & str)
+static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str)
 {
 	LPCTSTR commentLeader = _T("##"); // Starts comment
-	str.TrimLeft();
+	str = string_trim_ws_begin(str);
 
 	// Ignore lines beginning with '##'
-	int pos = str.Find(commentLeader);
+	size_t pos = str.find(commentLeader);
 	if (pos == 0)
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
 	while (pos > 0 && !_istspace(str[pos - 1]))
-		pos = str.Find(commentLeader, pos + 1);
+		pos = str.find(commentLeader, pos + 1);
 
 	// Remove comment and whitespaces before it
 	if (pos > 0)
-		str = str.Left(pos);
-	str.TrimRight();
-	if (str.IsEmpty())
+		str = str.substr(0, pos);
+	str = string_trim_ws_end(str);
+	if (str.empty())
 		return;
 
 	const char * errormsg = NULL;
@@ -160,7 +162,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, CString & s
 #ifdef UNICODE
 	// For unicode builds, use UTF-8.
 	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-	regexLen = TransformUcs2ToUtf8((LPCTSTR)str, _tcslen(str),
+	regexLen = TransformUcs2ToUtf8(str.c_str(), str.length(),
 		regexString, sizeof(regexString));
 	pcre_opts |= PCRE_UTF8;
 #else
@@ -210,7 +212,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 	pfilter->fullpath = szFilepath;
 	pfilter->name = fileName.c_str(); // Filename is the default name
 
-	CString sLine;
+	String sLine;
 	bool lossy = false;
 	bool bLinesLeft = true;
 	do
@@ -218,46 +220,45 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 		// Returns false when last line is read
 		String tmpLine;
 		bLinesLeft = file.ReadString(tmpLine, &lossy);
-		sLine = tmpLine.c_str();
-		sLine.TrimLeft();
-		sLine.TrimRight();
+		sLine = tmpLine;
+		sLine = string_trim_ws(sLine);
 
-		if (0 == _tcsncmp(sLine, _T("name:"), 5))
+		if (0 == _tcsncmp(sLine.c_str(), _T("name:"), 5))
 		{
 			// specifies display name
-			CString str = sLine.Mid(5);
-			str.TrimLeft();
-			if (!str.IsEmpty())
+			String str = sLine.substr(5);
+			str = string_trim_ws_begin(str);
+			if (!str.empty())
 				pfilter->name = str;
 		}
-		else if (0 == _tcsncmp(sLine, _T("desc:"), 5))
+		else if (0 == _tcsncmp(sLine.c_str(), _T("desc:"), 5))
 		{
 			// specifies display name
-			CString str = sLine.Mid(5);
-			str.TrimLeft();
-			if (!str.IsEmpty())
+			String str = sLine.substr(5);
+			str = string_trim_ws_begin(str);
+			if (!str.empty())
 				pfilter->description = str;
 		}
-		else if (0 == _tcsncmp(sLine, _T("def:"), 4))
+		else if (0 == _tcsncmp(sLine.c_str(), _T("def:"), 4))
 		{
 			// specifies default
-			CString str = sLine.Mid(4);
-			str.TrimLeft();
+			String str = sLine.substr(4);
+			str = string_trim_ws_begin(str);
 			if (str == _T("0") || str == _T("no") || str == _T("exclude"))
 				pfilter->default_include = false;
 			else if (str == _T("1") || str == _T("yes") || str == _T("include"))
 				pfilter->default_include = true;
 		}
-		else if (0 == _tcsncmp(sLine, _T("f:"), 2))
+		else if (0 == _tcsncmp(sLine.c_str(), _T("f:"), 2))
 		{
 			// file filter
-			CString str = sLine.Mid(2);
+			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->filefilters, str);
 		}
-		else if (0 == _tcsncmp(sLine, _T("d:"), 2))
+		else if (0 == _tcsncmp(sLine.c_str(), _T("d:"), 2))
 		{
 			// directory filter
-			CString str = sLine.Mid(2);
+			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str);
 		}
 	} while (bLinesLeft);

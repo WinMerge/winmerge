@@ -37,6 +37,8 @@
 
 typedef std_tchar(string) String;
 
+String string_makelower(const String &str);
+
 void string_replace(String &target, const String &find, const String &replace);
 
 // Comparing
@@ -44,5 +46,7 @@ int string_compare_nocase(const String &str1, const String &str2);
 
 // Trimming
 String string_trim_ws(const String & str);
+String string_trim_ws_begin(const String & str);
+String string_trim_ws_end(const String & str);
 
 #endif // _UNICODE_STRING_

@@ -205,16 +205,16 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 		return;
 	}
 	m_sMask = strMask;
-	CString regExp = ParseExtensions(strMask);
+	String regExp = ParseExtensions(strMask);
 
 	char * regexp_str;
 	FilterList::EncodingType type;
 
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(regExp);
+	regexp_str = UCS2UTF8_ConvertToUtf8(regExp.c_str());
 	type = FilterList::ENC_UTF8;
 #else
-	regexp_str = regExp.LockBuffer();
+	regexp_str = &*regExp.begin();
 	type = FilterList::ENC_ANSI;
 #endif
 
@@ -223,8 +223,6 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 
 #ifdef UNICODE
 	UCS2UTF8_Dealloc(regexp_str);
-#else
-	regExp.UnlockBuffer();
 #endif
 }
 
@@ -245,15 +243,15 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 		}
 
 		// preprend a backslash if there is none
-		CString strFileName = szFileName;
-		strFileName.MakeLower();
+		String strFileName = szFileName;
+		strFileName = string_makelower(strFileName);
 		if (strFileName[0] != _T('\\'))
 			strFileName = _T('\\') + strFileName;
 		// append a point if there is no extension
-		if (strFileName.Find(_T('.')) == -1)
+		if (strFileName.find(_T('.')) == -1)
 			strFileName = strFileName + _T('.');
 
-		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName);
+		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
 		bool match = m_pMaskFilter->Match(name_utf);
 		UCS2UTF8_Dealloc(name_utf);
 		return match;
@@ -285,10 +283,10 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 			return TRUE;
 
 		// Add a backslash
-		CString strDirName(_T("\\"));
+		String strDirName(_T("\\"));
 		strDirName += szDirName;
 
-		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
+		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName.c_str());
 	}
 }
 
@@ -326,43 +324,45 @@ void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoa
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-CString FileFilterHelper::ParseExtensions(CString extensions) const
+String FileFilterHelper::ParseExtensions(const String &extensions) const
 {
-	CString strParsed;
-	CString strPattern;
+	String strParsed;
+	String strPattern;
+	String ext(extensions);
 	BOOL bFilterAdded = FALSE;
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
-	extensions += _T(";"); // Add one separator char to end
-	int pos = extensions.FindOneOf(pszSeps);
+	ext += _T(";"); // Add one separator char to end
+	size_t pos = ext.find_first_of(pszSeps);
 	
 	while (pos >= 0)
 	{
-		CString token = extensions.Left(pos); // Get first extension
-		extensions.Delete(0, pos + 1); // Remove extension + separator
+		String token = ext.substr(0, pos); // Get first extension
+		ext = ext.substr(pos + 2); // Remove extension + separator
 		
 		// Only "*." or "*.something" allowed, other ignored
-		if (token.GetLength() >= 2 && token[0] == '*' && token[1] == '.')
+		if (token.length() >= 2 && token[0] == '*' && token[1] == '.')
 		{
 			bFilterAdded = TRUE;
 			strPattern += _T(".*\\.");
-			strPattern += token.Mid(2);
+			strPattern += token.substr(2);
 			strPattern += _T("$");
 		}
 		else
 			bFilterAdded = FALSE;
 
-		pos = extensions.FindOneOf(pszSeps); 
+		pos = ext.find_first_of(pszSeps); 
 		if (bFilterAdded && pos >= 0)
 			strPattern += _T("|");
 	}
 
-	if (strPattern.IsEmpty())
+	if (strPattern.empty())
 		strParsed = _T(".*"); // Match everything
 	else
 	{
 		strParsed = _T("^");
-		strPattern.MakeLower();
+
+		strPattern = string_makelower(strPattern);
 		strParsed = strPattern; //+ _T("$");
 	}
 	return strParsed;

@@ -27,6 +27,20 @@
 #include "UnicodeString.h"
 
 /**
+ * @brief Convert a string to lower case string.
+ * @param [in] str String to convert to lower case.
+ * @return Lower case string.
+ */
+String string_makelower(const String &str)
+{
+	String ret(str);
+	String::size_type i = 0;
+	for (i = 0; i < ret.length(); i++)
+		ret[i] = _totlower(ret[i]);
+	return ret;
+}
+
+/**
  * @brief Replace a string inside a string with another string.
  * This function searches for a string inside another string an if found,
  * replaces it with another string. Function can replace several instances
@@ -81,6 +95,40 @@ String string_trim_ws(const String & str)
 		result.erase(result.begin(), it);
 
 	it = result.end() - 1;
+	while (_istspace(*it))
+		--it;
+
+	if (it != result.end() - 1)
+		result.erase(it + 1, result.end());
+	return result;
+}
+
+/**
+ * @brief Trims whitespace chars from begin of the string.
+ * @param [in] str the original string.
+ * @return Trimmed string.
+ */
+String string_trim_ws_begin(const String & str)
+{
+	String result(str);
+	String::iterator it = result.begin();
+	while (_istspace(*it))
+		++it;
+	
+	if (it != result.begin())
+		result.erase(result.begin(), it);
+	return result;
+}
+
+/**
+ * @brief Trims whitespace chars from end of the string.
+ * @param [in] str the original string.
+ * @return Trimmed string.
+ */
+String string_trim_ws_end(const String & str)
+{
+	String result(str);
+	String::iterator it = result.end() - 1;
 	while (_istspace(*it))
 		--it;
 

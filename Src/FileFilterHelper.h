@@ -129,7 +129,7 @@ public:
 	BOOL includeDir(LPCTSTR szDirName);
 
 protected:
-	CString ParseExtensions(CString extensions) const;
+	String ParseExtensions(const String &extensions) const;
 
 private:
 	FilterList * m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */

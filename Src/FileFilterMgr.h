@@ -23,8 +23,6 @@
 #ifndef FileFilterMgr_h_included
 #define FileFilterMgr_h_included
 
-// Uses MFC C++ template containers
-#include <afxtempl.h>
 #include <vector>
 #include "UnicodeString.h"
 #include "pcre.h"
