@@ -7,8 +7,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#if !defined(AFX_LOGFILE_H__803A3641_FE03_11D0_95CD_444553540000__INCLUDED_)
-#define AFX_LOGFILE_H__803A3641_FE03_11D0_95CD_444553540000__INCLUDED_
+#ifndef _LOGFILE_H_
+#define _LOGFILE_H_
+
+#include "UnicodeString.h"
 
 /**
  * @brief Class for writing log files.
@@ -86,4 +88,4 @@ private:
 };
 
 
-#endif // !defined(AFX_LOGFILE_H__803A3641_FE03_11D0_95CD_444553540000__INCLUDED_)
+#endif // _LOGFILE_H_
