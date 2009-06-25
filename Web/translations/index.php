@@ -1,5 +1,6 @@
 <?php
   include('../page.inc');
+  include('translations.inc');
 
   $page = new Page;
   $page->addRssFeed('status_branch_rss.php', 'Translations Status (Stable Branch)');
@@ -8,24 +9,21 @@
 ?>
 <h2>Translations</h2>
 <p>We currently have WinMerge translated into the languages listed below:</p>
+<ul class="inline">
 <?php
-  $status = $page->convertXml2Array('status_trunk.xml');
-  print("<ul class=\"inline\">\n");
-  if (!empty($status)) { //If translations status available...
-    $translations = $status['STATUS'][0]['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
-    for ($i = 0; $i < count($translations); $i++) { //For all translations...
-      $translation = $translations[$i];
-      $language_name = $translation['LANGUAGE'][0]['VALUE'];
-      
-      print("  <li>" . $language_name . "</li>\n");
+  try {
+    $status = New TranslationsStatus('status_trunk.xml');
+    
+    $languages = $status->getLanguagesArray();
+    foreach ($languages as $language) { //for all languages...
+      print("  <li>" . $language . "</li>\n");
     }
   }
-  else { //If translations status NOT available...
-    print("  <li>...</li>\n");
+  catch (Exception $ex) { //If problems with translations status...
+    print("  <li>English</li>\n");
   }
-  print("</ul>\n");
 ?>
+</ul>
 <p>To change languages, select the desired language from the <span class="guimenu">View</span>
 &#8594; <span class="guimenuitem">Languages</span> menu choice.</p>
 
