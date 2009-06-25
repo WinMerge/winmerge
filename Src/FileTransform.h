@@ -33,11 +33,6 @@
 
 class UniFile;
 
-class CRegExp;
-typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
-
-
-
 /**
  * @brief Modes for plugin (Modes for prediffing included)
  */
