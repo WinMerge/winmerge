@@ -95,10 +95,66 @@ class TranslationsStatus(object):
         xmlfile.write('</status>\n')
         xmlfile.close()
 
-class PoProject(object):
+class IProject(object):
+    @property
+    def name(self):
+        return self._name
+    
+    @property
+    def status(self):
+        return self._status
+
+class IStatus(object):
+    @property
+    def filepath(self):
+        return self._filepath
+    
+    @property
+    def filename(self):
+        return os.path.basename(self._filepath)
+    
+    @property
+    def template(self):
+        return self._template
+    
+    @property
+    def language(self):
+        return os.path.splitext(self.filename)[0]
+    
+    @property
+    def count(self):
+        return self._count
+    
+    @property
+    def translated(self):
+        return self._translated
+    
+    @property
+    def untranslated(self):
+        return self._untranslated
+    
+    @property
+    def fuzzy(self):
+        return self._fuzzy
+    
+    @property
+    def updatedate(self):
+        return self._updatedate
+    
+    @property
+    def translators(self):
+        return self._translators
+
+class Translator(object):
+    def __init__(self, name, mail, ismaintainer):
+        self.name = name
+        self.mail = mail
+        self.ismaintainer = ismaintainer
+
+class PoProject(IProject):
     def __init__(self, name, potfile, podir):
-        self.__name = name
-        self.__status = []
+        self._name = name
+        self._status = []
         
         #PO files...
         for itemname in os.listdir(podir): #For all dir items...
@@ -106,30 +162,22 @@ class PoProject(object):
             if os.path.isfile(fullitempath): #If a file...
                 filename = os.path.splitext(itemname)
                 if str.lower(filename[1]) == '.po': #If a PO file...
-                    self.__status.append(PoStatus(fullitempath, False))
+                    self._status.append(PoStatus(fullitempath, False))
         
         #POT file...
-        self.__status.append(PoStatus(os.path.abspath(potfile), True))
-    
-    @property
-    def name(self):
-        return self.__name
-    
-    @property
-    def status(self):
-        return self.__status
+        self._status.append(PoStatus(os.path.abspath(potfile), True))
 
-class PoStatus(object):
+class PoStatus(IStatus):
     def __init__(self, filepath, template):
-        self.__filepath = filepath
-        self.__template = template
-        self.__count = 0
-        self.__translated = 0
-        self.__untranslated = 0
-        self.__fuzzy = 0
-        self.__porevisiondate = ''
-        self.__potcreationdate = ''
-        self.__translators = []
+        self._filepath = filepath
+        self._template = template
+        self._count = 0
+        self._translated = 0
+        self._untranslated = 0
+        self._fuzzy = 0
+        self._porevisiondate = ''
+        self._potcreationdate = ''
+        self._translators = []
         
         if os.access(filepath, os.R_OK): #If PO(T) file can read...
           reMsgId = re.compile('^msgid "(.*)"$', re.IGNORECASE)
@@ -182,82 +230,40 @@ class PoStatus(object):
                           else: #If mail address NOT exists...
                               sName = translator[0]
                               sMail = ''
-                          self.__translators.append(Translator(sName, sMail, bIsMaintainer))
+                          self._translators.append(Translator(sName, sMail, bIsMaintainer))
               else: #If empty line...
                   iMsgStarted = 0
               
               if iMsgStarted == 0: #If NOT inside a translation...
                   if sMsgId != '':
-                      self.__count += 1
+                      self._count += 1
                       if bIsFuzzy == False: #If NOT a fuzzy translation...
                           if sMsgStr != '':
-                              self.__translated += 1
+                              self._translated += 1
                           else:
-                              self.__untranslated += 1
+                              self._untranslated += 1
                       else: #If a fuzzy translation...
-                          self.__fuzzy += 1
+                          self._fuzzy += 1
                   elif sMsgStr != '':
                       tmp = rePoRevisionDate.findall(sMsgStr)
                       if tmp: #If "PO-Revision-Date"...
                           #TODO: Convert to date!
-                          self.__porevisiondate = tmp[0]
+                          self._porevisiondate = tmp[0]
                       tmp = rePotCreationDate.findall(sMsgStr)
                       if tmp: #If "POT-Creation-Date"...
                           #TODO: Convert to date!
-                          self.__potcreationdate = tmp[0]
+                          self._potcreationdate = tmp[0]
                   sMsgId = ''
                   sMsgStr = ''
                   bIsFuzzy = False
           pofile.close()
     
     @property
-    def filepath(self):
-        return self.__filepath
-    
-    @property
-    def filename(self):
-        return os.path.basename(self.__filepath)
-    
-    @property
-    def template(self):
-        return self.__template
-    
-    @property
-    def language(self):
-        return os.path.splitext(self.filename)[0]
-    
-    @property
-    def count(self):
-        return self.__count
-    
-    @property
-    def translated(self):
-        return self.__translated
-    
-    @property
-    def untranslated(self):
-        return self.__untranslated
-    
-    @property
-    def fuzzy(self):
-        return self.__fuzzy
-    
-    @property
     def updatedate(self):
-        if self.__template: #if template...
-            return self.__potcreationdate
+        if self._template: #if template...
+            return self._potcreationdate
         else: #if NOT template...
-            return self.__porevisiondate
-    
-    @property
-    def translators(self):
-        return self.__translators
-
-class Translator(object):
-    def __init__(self, name, mail, ismaintainer):
-        self.name = name
-        self.mail = mail
-        self.ismaintainer = ismaintainer
+            return self._porevisiondate
 
 def main():
     status = TranslationsStatus()
