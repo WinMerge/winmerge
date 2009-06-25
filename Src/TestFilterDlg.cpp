@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 #include "resource.h"
+#include "UnicodeString.h"
 #include "TestFilterDlg.h"
 #include "FileFilterMgr.h"
 
@@ -60,8 +61,8 @@ BOOL CTestFilterDlg::OnInitDialog()
 
 	GetDlgItem(IDC_TEST_TEXT)->SetFocus();
 
-	CString name = m_pFileFilterMgr->GetFilterName(m_pFileFilter);
-	SetDlgItemText(IDC_HEADER_FILTER_NAME, name);
+	String name = m_pFileFilterMgr->GetFilterName(m_pFileFilter);
+	SetDlgItemText(IDC_HEADER_FILTER_NAME, name.c_str());
 	
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

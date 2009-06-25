@@ -101,7 +101,7 @@ void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
 	vector<FileFilter*>::iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
-		if ((*iter)->fullpath.CompareNoCase(szFilterFile) == 0)
+		if (string_compare_nocase((*iter)->fullpath, szFilterFile) == 0)
 		{
 			delete (*iter);
 			m_filters.erase(iter);
@@ -277,7 +277,7 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 	vector<FileFilter*>::const_iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
-		if ((*iter)->fullpath.CompareNoCase(szFilterPath) == 0)
+		if (string_compare_nocase((*iter)->fullpath, szFilterPath) == 0)
 			return (*iter);
 		++iter;
 	}
@@ -375,7 +375,7 @@ BOOL FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
  * @param [in] i Index of filter.
  * @return Name of filter in given index.
  */
-CString FileFilterMgr::GetFilterName(int i) const
+String FileFilterMgr::GetFilterName(int i) const
 {
 	return m_filters[i]->name; 
 }
@@ -385,7 +385,7 @@ CString FileFilterMgr::GetFilterName(int i) const
  * @param [in] pFilter Filter to get name for.
  * @return Given filter's name.
  */
-CString FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
+String FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
 {
 	return pFilter->name; 
 }
@@ -396,7 +396,7 @@ CString FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
  * @param [in] i Index of filter.
  * @return Description of filter in given index.
  */
-CString FileFilterMgr::GetFilterDesc(int i) const
+String FileFilterMgr::GetFilterDesc(int i) const
 {
 	return m_filters[i]->description; 
 }
@@ -406,7 +406,7 @@ CString FileFilterMgr::GetFilterDesc(int i) const
  * @param [in] pFilter Filter to get description for.
  * @return Given filter's description.
  */
-CString FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
+String FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
 {
 	return pFilter->description;
 }
@@ -417,7 +417,7 @@ CString FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
  * @param [in] i Index of filter.
  * @return Full path of filter in given index.
  */
-CString FileFilterMgr::GetFilterPath(int i) const
+String FileFilterMgr::GetFilterPath(int i) const
 {
 	return m_filters[i]->fullpath;
 }
@@ -428,7 +428,7 @@ CString FileFilterMgr::GetFilterPath(int i) const
  * @param [in] pFilter Pointer to filter.
  * @return Full path of filter.
  */
-CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const
+String FileFilterMgr::GetFullpath(FileFilter * pfilter) const
 {
 	return pfilter->fullpath;
 }
@@ -446,7 +446,7 @@ CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const
 int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 {
 	int errorcode = FILTER_OK;
-	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, errorcode);
+	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath.c_str(), errorcode);
 
 	if (newfilter == NULL)
 	{

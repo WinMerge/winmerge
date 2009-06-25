@@ -25,6 +25,8 @@
 #ifndef _FILEFILTERHELPER_H_
 #define _FILEFILTERHELPER_H_
 
+#include "UnicodeString.h"
+
 class FileFilterMgr;
 class FilterList;
 struct FileFilter;
@@ -44,9 +46,9 @@ const TCHAR FileFilterExt[] = _T(".flt");
  */
 struct FileFilterInfo
 {
-	CString name; 			/**< Name of filter */
-	CString description; 	/**< Description of filter (shown in UI) */
-	CString fullpath;		/**< Full path to filter file */
+	String name; 			/**< Name of filter */
+	String description; 	/**< Description of filter (shown in UI) */
+	String fullpath;		/**< Full path to filter file */
 	DirItem fileinfo;		/**< For tracking if file has been modified */
 };
 
@@ -105,9 +107,9 @@ public:
 	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
-	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
-	CString GetFileFilterName(LPCTSTR filterPath) const;
-	CString GetFileFilterPath(LPCTSTR filterName) const;
+	void GetFileFilters(FILEFILTER_INFOLIST * filters, String & selected) const;
+	String GetFileFilterName(LPCTSTR filterPath) const;
+	String GetFileFilterPath(LPCTSTR filterName) const;
 	void SetUserFilterPath(const String & filterPath);
 
 	void ReloadUpdatedFilters();
@@ -120,7 +122,7 @@ public:
 	void SetMask(LPCTSTR strMask);
 
 	BOOL IsUsingMask() const;
-	CString GetFilterNameOrMask() const;
+	String GetFilterNameOrMask() const;
 	BOOL SetFilter(const String &filter);
 
 	BOOL includeFile(LPCTSTR szFileName);
@@ -133,8 +135,8 @@ private:
 	FilterList * m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	FileFilterMgr * m_fileFilterMgr;  /*< Associated FileFilterMgr */
-	CString m_sFileFilterPath;        /*< Path to current filter */
-	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
+	String m_sFileFilterPath;        /*< Path to current filter */
+	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */

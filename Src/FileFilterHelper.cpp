@@ -76,7 +76,7 @@ FileFilterMgr * FileFilterHelper::GetManager() const
 void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
 {
 	// Use none as default path
-	m_sFileFilterPath.Empty();
+	m_sFileFilterPath.clear();
 
 	if (!m_fileFilterMgr)
 		return;
@@ -96,7 +96,7 @@ void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
  * @param [out] filters Filter list to receive found filters.
  * @param [out] selected Filepath of currently selected filter.
  */
-void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const
+void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, String & selected) const
 {
 	if (m_fileFilterMgr)
 	{
@@ -120,11 +120,11 @@ void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & s
  * @param [in] filterPath Path to filterfile.
  * @sa FileFilterHelper::GetFileFilterPath()
  */
-CString FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
+String FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
 {
 	FILEFILTER_INFOLIST filters;
-	CString selected;
-	CString name;
+	String selected;
+	String name;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
@@ -143,11 +143,11 @@ CString FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
  * @param [in] filterName Name of filter.
  * @sa FileFilterHelper::GetFileFilterName()
  */
-CString FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
+String FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
 {
 	FILEFILTER_INFOLIST filters;
-	CString selected;
-	CString path;
+	String selected;
+	String path;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
@@ -380,12 +380,12 @@ BOOL FileFilterHelper::IsUsingMask() const
  * @brief Returns active filter (or mask string)
  * @return The active filter.
  */
-CString FileFilterHelper::GetFilterNameOrMask() const
+String FileFilterHelper::GetFilterNameOrMask() const
 {
-	CString sFilter;
+	String sFilter;
 
 	if (!IsUsingMask())
-		sFilter = GetFileFilterName(m_sFileFilterPath);
+		sFilter = GetFileFilterName(m_sFileFilterPath.c_str());
 	else
 		sFilter = m_sMask;
 
@@ -426,11 +426,11 @@ BOOL FileFilterHelper::SetFilter(const String &filter)
 	}
 	else
 	{
-		CString path = GetFileFilterPath(flt.c_str());
-		if (!path.IsEmpty())
+		String path = GetFileFilterPath(flt.c_str());
+		if (!path.empty())
 		{
 			UseMask(FALSE);
-			SetFileFilterPath(path);
+			SetFileFilterPath(path.c_str());
 		}
 		// If filter not found with given name, use default filter
 		else
@@ -457,27 +457,27 @@ void FileFilterHelper::ReloadUpdatedFilters()
 	DirItem fileInfo;
 	DirItem *fileInfoStored = NULL;
 	FileFilterInfo filter;
-	CString selected;
+	String selected;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
 	{
 		filter = filters.GetAt(i);
-		CString path = filter.fullpath;
+		String path = filter.fullpath;
 		fileInfoStored = &filter.fileinfo;
 
-		fileInfo.Update((LPCTSTR)path);
+		fileInfo.Update(path);
 		if (fileInfo.mtime != fileInfoStored->mtime ||
 			fileInfo.size != fileInfoStored->size)
 		{
 			// Reload filter after changing it
-			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path);
+			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path.c_str());
 			
 			if (retval == FILTER_OK)
 			{
 				// If it was active filter we have to re-set it
 				if (path == selected)
-					SetFileFilterPath(path);
+					SetFileFilterPath(path.c_str());
 			}
 		}
 	}

@@ -299,8 +299,8 @@ BOOL CMergeApp::InitInstance()
 	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filterString.c_str());
 	if (!bFilterSet)
 	{
-		CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
+		String filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
 	}
 
 	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);

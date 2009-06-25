@@ -24,6 +24,7 @@
 
 #include <vector>
 #include "pcre.h"
+#include "UnicodeString.h"
 
 /**
  * @brief FileFilter rule.
@@ -56,9 +57,9 @@ struct FileFilterElement
 struct FileFilter
 {
 	bool default_include;	/**< If true, filter rules are inclusive by default */
-	CString name;			/**< Filter name (shown in UI) */
-	CString description;	/**< Filter description text */
-	CString fullpath;		/**< Full path to filter file */
+	String name;			/**< Filter name (shown in UI) */
+	String description;	/**< Filter description text */
+	String fullpath;		/**< Full path to filter file */
 	std::vector<FileFilterElement*> filefilters; /**< List of rules for files */
 	std::vector<FileFilterElement*> dirfilters;  /**< List of rules for directories */
 	FileFilter() : default_include(true) { }

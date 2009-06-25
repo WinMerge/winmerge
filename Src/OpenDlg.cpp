@@ -168,21 +168,21 @@ BOOL COpenDlg::OnInitDialog()
 		m_ctlRight.SetAutoComplete(nSource);
 	}
 
-	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
 
 	if (!bMask)
 	{
 		String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
-		FilterNameOrMask.Insert(0, filterPrefix.c_str());
+		filterNameOrMask = filterPrefix + filterNameOrMask;
 	}
 
-	int ind = m_ctlExt.FindStringExact(0, FilterNameOrMask);
+	int ind = m_ctlExt.FindStringExact(0, filterNameOrMask.c_str());
 	if (ind != CB_ERR)
 		m_ctlExt.SetCurSel(ind);
 	else
 	{
-		ind = m_ctlExt.InsertString(0, FilterNameOrMask);
+		ind = m_ctlExt.InsertString(0, filterNameOrMask.c_str());
 		if (ind != CB_ERR)
 			m_ctlExt.SetCurSel(ind);
 		else
@@ -348,7 +348,7 @@ void COpenDlg::OnOK()
 	{
 		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filter);
 		if (!bFilterSet)
-			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask().c_str();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
 	}
 
@@ -563,19 +563,19 @@ void COpenDlg::OnSelectFilter()
 
 	GetMainFrame()->SelectFilter();
 	
-	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	if (theApp.m_globalFileFilter.IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
 		{
-			SetDlgItemText(IDC_EXT_COMBO, FilterNameOrMask);
+			SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask.c_str());
 		}
 	}
 	else
 	{
-		FilterNameOrMask.Insert(0, filterPrefix.c_str());
-		SetDlgItemText(IDC_EXT_COMBO, FilterNameOrMask);
+		filterNameOrMask = filterPrefix + filterNameOrMask;
+		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask.c_str());
 	}
 }
 

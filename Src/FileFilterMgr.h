@@ -26,6 +26,7 @@
 // Uses MFC C++ template containers
 #include <afxtempl.h>
 #include <vector>
+#include "UnicodeString.h"
 #include "pcre.h"
 
 struct FileFilterElement;
@@ -71,13 +72,13 @@ public:
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.size(); }
-	CString GetFilterName(int i) const;
-	CString GetFilterName(const FileFilter *pFilter) const;
-	CString GetFilterPath(int i) const;
-	CString GetFilterDesc(int i) const;
-	CString GetFilterDesc(const FileFilter *pFilter) const;
+	String GetFilterName(int i) const;
+	String GetFilterName(const FileFilter *pFilter) const;
+	String GetFilterPath(int i) const;
+	String GetFilterDesc(int i) const;
+	String GetFilterDesc(const FileFilter *pFilter) const;
 	FileFilter * GetFilterByPath(LPCTSTR szFilterName);
-	CString GetFullpath(FileFilter * pfilter) const;
+	String GetFullpath(FileFilter * pfilter) const;
 
 	// methods to actually use filter
 	BOOL TestFileNameAgainstFilter(const FileFilter * pFilter, LPCTSTR szFileName) const;

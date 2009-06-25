@@ -1802,8 +1802,8 @@ void CMainFrame::OnClose()
 	}
 
 	// Save last selected filter
-	CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
+	String filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
 
 	// save main window position
 	WINDOWPLACEMENT wp;
@@ -2593,8 +2593,8 @@ void CMainFrame::OnToolsFilters()
 	FileFiltersDlg fileFiltersDlg;
 	FILEFILTER_INFOLIST fileFilters;
 	LineFiltersList * lineFilters = new LineFiltersList();
-	CString selectedFilter;
-	const CString origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String selectedFilter;
+	const String origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
@@ -2604,7 +2604,7 @@ void CMainFrame::OnToolsFilters()
 
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
-	fileFiltersDlg.SetSelected(selectedFilter);
+	fileFiltersDlg.SetSelected(selectedFilter.c_str());
 	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
@@ -2629,8 +2629,8 @@ void CMainFrame::OnToolsFilters()
 		{
 			theApp.m_globalFileFilter.SetFileFilterPath(path);
 			theApp.m_globalFileFilter.UseMask(FALSE);
-			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+			String sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter.c_str());
 		}
 		BOOL linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled == TRUE);
@@ -2650,7 +2650,7 @@ void CMainFrame::OnToolsFilters()
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const CString newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			const String newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
 			{
@@ -3201,8 +3201,8 @@ void CMainFrame::OnSaveProject()
 		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(FALSE);
 	}
 
-	CString filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	pathsDlg.m_sFilter = filterNameOrMask;
+	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	pathsDlg.m_sFilter = filterNameOrMask.c_str();
 	sht.DoModal();
 }
 

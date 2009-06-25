@@ -108,19 +108,19 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 
 	GetMainFrame()->SelectFilter();
 	
-	CString filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	if (theApp.m_globalFileFilter.IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
 		{
-			SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask);
+			SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask.c_str());
 		}
 	}
 	else
 	{
-		filterNameOrMask.Insert(0, filterPrefix.c_str());
-		SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask);
+		filterNameOrMask = filterPrefix + filterNameOrMask;
+		SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask.c_str());
 	}
 }
 

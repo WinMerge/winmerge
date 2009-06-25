@@ -370,7 +370,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_piFilterGlobal = &theApp.m_globalFileFilter;
 
 	// Show active filter name in statusbar
-	pf->SetFilterStatusDisplay(theApp.m_globalFileFilter.GetFilterNameOrMask());
+	pf->SetFilterStatusDisplay(theApp.m_globalFileFilter.GetFilterNameOrMask().c_str());
 
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt);

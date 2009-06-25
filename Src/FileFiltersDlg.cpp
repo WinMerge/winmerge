@@ -204,9 +204,9 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
 	const FileFilterInfo & filterinfo = m_Filters->GetAt(filterIndex);
 	const int item = filterIndex + 1;
 
-	m_listFilters.InsertItem(item, filterinfo.name);
-	m_listFilters.SetItemText(item, 1, filterinfo.description);
-	m_listFilters.SetItemText(item, 2, filterinfo.fullpath);
+	m_listFilters.InsertItem(item, filterinfo.name.c_str());
+	m_listFilters.SetItemText(item, 1, filterinfo.description.c_str());
+	m_listFilters.SetItemText(item, 2, filterinfo.fullpath.c_str());
 }
 
 /**
@@ -468,7 +468,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		if (retval == FILTER_OK)
 		{
 			// Remove all from filterslist and re-add so we can update UI
-			CString selected;
+			String selected;
 			m_Filters->RemoveAll();
 			theApp.m_globalFileFilter.LoadAllFileFilters();
 			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
@@ -505,7 +505,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 				pMgr->RemoveFilter(path);
 				
 				// Remove all from filterslist and re-add so we can update UI
-				CString selected;
+				String selected;
 				m_Filters->RemoveAll();
 				theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
@@ -597,7 +597,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 			pMgr->AddFilter(userPath.c_str());
 
 			// Remove all from filterslist and re-add so we can update UI
-			CString selected;
+			String selected;
 			m_Filters->RemoveAll();
 			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
