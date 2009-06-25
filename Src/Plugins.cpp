@@ -43,6 +43,7 @@
 #include "Exceptions.h"
 #include "RegKey.h"
 #include "paths.h"
+#include "FileFilter.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -697,7 +698,7 @@ static void FreeAllScripts(PluginArray *& pArray)
 	{
 		pArray->GetAt(i).m_lpDispatch->Release();
 		if (pArray->GetAt(i).m_filters)
-			EmptyFilterList(pArray->GetAt(i).m_filters);
+			FileFilter::EmptyFilterList(pArray->GetAt(i).m_filters);
 		delete pArray->GetAt(i).m_filters;
 	}
 

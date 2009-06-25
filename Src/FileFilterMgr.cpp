@@ -1,7 +1,4 @@
 /////////////////////////////////////////////////////////////////////////////
-// FileFilterMgr.cpp : implementation file
-// see FileFilterMgr.h for description
-/////////////////////////////////////////////////////////////////////////////
 //    License (GPLv2+):
 //    This program is free software; you can redistribute it and/or modify it
 //    under the terms of the GNU General Public License as published by the
@@ -27,6 +24,7 @@
 #include <string.h>
 #include <vector>
 #include "UnicodeString.h"
+#include "FileFilter.h"
 #include "pcre.h"
 #include "FileFilterMgr.h"
 #include "UniFile.h"
@@ -40,53 +38,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using std::vector;
-
-/**
- * @brief Deletes items from filter list.
- *
- * @param [in] filterList List to empty.
- */
-void EmptyFilterList(vector<FileFilterElement*> *filterList)
-{
-	while (!filterList->empty())
-	{
-		FileFilterElement *elem = filterList->back();
-		pcre_free(elem->pRegExp);
-		pcre_free(elem->pRegExpExtra);
-		delete elem;
-		filterList->pop_back();
-	}
-}
-
-/**
- * @brief One actual filter.
- *
- * For example, this might be a GNU C filter, excluding *.o files and CVS
- * directories. That is to say, a filter is a set of file masks and
- * directory masks. Usually FileFilter contains rules from one filter
- * definition file. So it can be thought as filter file contents.
- * @sa FileFilterList
- */
-struct FileFilter
-{
-	bool default_include;	/**< If true, filter rules are inclusive by default */
-	CString name;			/**< Filter name (shown in UI) */
-	CString description;	/**< Filter description text */
-	CString fullpath;		/**< Full path to filter file */
-	vector<FileFilterElement*> filefilters; /**< List of rules for files */
-	vector<FileFilterElement*> dirfilters;  /**< List of rules for directories */
-	FileFilter() : default_include(true) { }
-	~FileFilter();
-};
-
-/**
- * @brief Destructor, frees created filter lists.
- */
-FileFilter::~FileFilter()
-{
-	EmptyFilterList(&filefilters);
-	EmptyFilterList(&dirfilters);
-}
 
 /**
  * @brief Destructor, frees all filters.

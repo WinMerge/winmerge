@@ -29,6 +29,7 @@
 #include "pcre.h"
 
 struct FileFilterElement;
+struct FileFilter;
 
 /**
  * @brief Return values for many filter functions.
@@ -39,27 +40,6 @@ enum FILTER_RETVALUE
 	FILTER_ERROR_FILEACCESS,  /**< File could not be opened etc. */
 	FILTER_NOTFOUND, /**< Filter not found */
 };
-
-/**
- * @brief FileFilter rule.
- *
- * Contains one filtering element definition (rule). In addition to
- * regular expression there is boolean value for defining if rule
- * is inclusive or exclusive. File filters have global inclusive/exclusive
- * selection but this per-rule setting overwrites it.
- *
- * We are using PCRE for regular expressions and pRegExp points to compiled
- * regular expression. pRegExpExtra contains additional information about
- * the expression used to optimize matching.
- */
-struct FileFilterElement
-{
-	pcre *pRegExp; /**< Compiled regular expression */
-	pcre_extra *pRegExpExtra; /**< Additional information got from regex study */
-	FileFilterElement() : pRegExp(NULL), pRegExpExtra(NULL) { };
-};
-
-struct FileFilter;
 
 /**
  * @brief File filter manager for handling filefilters.
