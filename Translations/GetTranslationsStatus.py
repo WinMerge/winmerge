@@ -265,6 +265,42 @@ class PoStatus(IStatus):
         else: #if NOT template...
             return self._porevisiondate
 
+class InnoSetupProject(IProject):
+    def __init__(self, name, templatefile, translationsdir):
+        self._name = name
+        self._status = []
+        
+        #Translations files...
+        for itemname in os.listdir(translationsdir): #For all dir items...
+            fullitempath = os.path.abspath(os.path.join(translationsdir, itemname))
+            if os.path.isfile(fullitempath): #If a file...
+                filename = os.path.splitext(itemname)
+                if str.lower(filename[1]) == '.isl': #If a ISL file...
+                    if filename[0] != 'English': #If NOT the English file...
+                        self._status.append(InnoSetupStatus(fullitempath, False))
+        
+        #Template file...
+        self._status.append(InnoSetupStatus(os.path.abspath(templatefile), True))
+
+class InnoSetupStatus(IStatus):
+    def __init__(self, filepath, template):
+        self._filepath = filepath
+        self._template = template
+        self._count = 0
+        self._translated = 0
+        self._untranslated = 0
+        self._fuzzy = 0
+        self._updatedate = ''
+        self._translators = []
+    
+    @property
+    def language(self):
+        if self._template: #if template...
+            return 'English'
+        else: #if NOT template...
+            filename = os.path.splitext(self.filename)
+            return filename[0].replace('_', '')
+
 class ReadmeProject(IProject):
     def __init__(self, name, templatefile, translationsdir):
         self._name = name
@@ -304,6 +340,7 @@ def main():
     status = TranslationsStatus()
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
+    status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/Readme.txt', 'Docs/Readme'))
     status.writeToXmlFile('TranslationsStatus.xml')
 
