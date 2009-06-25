@@ -47,9 +47,6 @@ class TranslationsStatus(object):
     def addProject(self, project):
         self.__projects.append(project)
     
-    def addProject(self, name, potfile, podir):
-        self.__projects.append(TranslationsStatusProject(name, potfile, podir))
-    
     def writeToXmlFile(self, xmlpath):
         xmlfile = open(xmlpath, 'w')
         xmlfile.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
@@ -58,11 +55,11 @@ class TranslationsStatus(object):
         for project in self.__projects: #For all projects...
             xmlfile.write('  <translations project="%s">\n' % (project.name))
             for status1 in project.status: #For all status...
-                if status1.filetype == 'POT': #If a POT file...
+                if status1.template: #If a template file...
                     xmlfile.write('    <translation template="1">\n')
                     xmlfile.write('      <language>%s</language>\n' % (status1.language))
                     xmlfile.write('      <file>%s</file>\n' % (status1.filename))
-                    xmlfile.write('      <update>%s</update>\n' % (status1.potcreationdate[0:10]))
+                    xmlfile.write('      <update>%s</update>\n' % (status1.updatedate[0:10]))
                     xmlfile.write('      <strings>\n')
                     xmlfile.write('        <count>%u</count>\n' % (status1.count))
                     xmlfile.write('        <translated>%u</translated>\n' % (status1.count))
@@ -70,11 +67,11 @@ class TranslationsStatus(object):
                     xmlfile.write('        <untranslated>0</untranslated>\n')
                     xmlfile.write('      </strings>\n')
                     xmlfile.write('    </translation>\n')
-                else: #If a PO file...
+                else: #If NOT a template file...
                     xmlfile.write('    <translation>\n')
                     xmlfile.write('      <language>%s</language>\n' % (status1.language))
                     xmlfile.write('      <file>%s</file>\n' % (status1.filename))
-                    xmlfile.write('      <update>%s</update>\n' % (status1.porevisiondate[0:10]))
+                    xmlfile.write('      <update>%s</update>\n' % (status1.updatedate[0:10]))
                     xmlfile.write('      <strings>\n')
                     xmlfile.write('        <count>%u</count>\n' % (status1.count))
                     xmlfile.write('        <translated>%u</translated>\n' % (status1.translated))
@@ -98,7 +95,7 @@ class TranslationsStatus(object):
         xmlfile.write('</status>\n')
         xmlfile.close()
 
-class TranslationsStatusProject(object):
+class PoProject(object):
     def __init__(self, name, potfile, podir):
         self.__name = name
         self.__status = []
@@ -109,10 +106,10 @@ class TranslationsStatusProject(object):
             if os.path.isfile(fullitempath): #If a file...
                 filename = os.path.splitext(itemname)
                 if str.lower(filename[1]) == '.po': #If a PO file...
-                    self.__status.append(PoStatus(fullitempath))
+                    self.__status.append(PoStatus(fullitempath, False))
         
         #POT file...
-        self.__status.append(PoStatus(os.path.abspath(potfile)))
+        self.__status.append(PoStatus(os.path.abspath(potfile), True))
     
     @property
     def name(self):
@@ -123,8 +120,9 @@ class TranslationsStatusProject(object):
         return self.__status
 
 class PoStatus(object):
-    def __init__(self, filepath):
+    def __init__(self, filepath, template):
         self.__filepath = filepath
+        self.__template = template
         self.__count = 0
         self.__translated = 0
         self.__untranslated = 0
@@ -184,7 +182,7 @@ class PoStatus(object):
                           else: #If mail address NOT exists...
                               sName = translator[0]
                               sMail = ''
-                          self.__translators.append(PoTranslator(sName, sMail, bIsMaintainer))
+                          self.__translators.append(Translator(sName, sMail, bIsMaintainer))
               else: #If empty line...
                   iMsgStarted = 0
               
@@ -221,13 +219,8 @@ class PoStatus(object):
         return os.path.basename(self.__filepath)
     
     @property
-    def filetype(self):
-        filename = os.path.splitext(self.__filepath)
-        if str.lower(filename[1]) == '.po': #If a PO file...
-            return 'PO'
-        elif str.lower(filename[1]) == '.pot': #If a POT file...
-            return 'POT'
-        return None
+    def template(self):
+        return self.__template
     
     @property
     def language(self):
@@ -250,18 +243,17 @@ class PoStatus(object):
         return self.__fuzzy
     
     @property
-    def porevisiondate(self):
-        return self.__porevisiondate
-    
-    @property
-    def potcreationdate(self):
-        return self.__potcreationdate
+    def updatedate(self):
+        if self.__template: #if template...
+            return self.__potcreationdate
+        else: #if NOT template...
+            return self.__porevisiondate
     
     @property
     def translators(self):
         return self.__translators
 
-class PoTranslator(object):
+class Translator(object):
     def __init__(self, name, mail, ismaintainer):
         self.name = name
         self.mail = mail
@@ -269,8 +261,8 @@ class PoTranslator(object):
 
 def main():
     status = TranslationsStatus()
-    status.addProject('WinMerge', 'WinMerge/English.pot', 'WinMerge')
-    status.addProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension')
+    status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
+    status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.writeToXmlFile('TranslationsStatus.xml')
 
 # MAIN #
