@@ -41,6 +41,16 @@ class TranslationsStatus(object):
     def projects(self):
         return self.__projects
     
+    @property
+    def languages(self):
+        temp = []
+        for project in self.__projects: #For all projects...
+            for language in project.languages: #For all languages...
+                if language not in temp: #If language NOT in list...
+                    temp.append(language)
+        temp.sort()
+        return temp
+    
     def clear(self):
         self.__projects = []
     
@@ -103,6 +113,14 @@ class IProject(object):
     @property
     def status(self):
         return self._status
+    
+    @property
+    def languages(self):
+        temp = []
+        for status in self._status: #For all status...
+            temp.append(status.language)
+        temp.sort()
+        return temp
 
 class IStatus(object):
     @property
