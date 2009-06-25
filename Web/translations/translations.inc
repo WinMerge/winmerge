@@ -151,10 +151,18 @@
             
             $temp .= "  <tr>\n";
             $temp .= "    <td class=\"left\"><a href=\"" . $this->svnUrl . $project . '/' . $file_name . "\" rel=\"nofollow\">" . $language_name . "</a></td>\n";
-            $temp .= "    <td class=\"center\">" . $this->getStatusGraph($strings_count, $strings_translated, $strings_fuzzy, $strings_untranslated) . "</td>\n";
-            $temp .= "    <td class=\"right translated\">" . $strings_translated . "</td>\n";
-            $temp .= "    <td class=\"right fuzzy\">" . $strings_fuzzy . "</td>\n";
-            $temp .= "    <td class=\"right untranslated\">" . $strings_untranslated . "</td>\n";
+            if ($strings_count > 0) { //if KNOWN status...
+              $temp .= "    <td class=\"center\">" . $this->getStatusGraph($strings_count, $strings_translated, $strings_fuzzy, $strings_untranslated) . "</td>\n";
+              $temp .= "    <td class=\"right translated\">" . $strings_translated . "</td>\n";
+              $temp .= "    <td class=\"right fuzzy\">" . $strings_fuzzy . "</td>\n";
+              $temp .= "    <td class=\"right untranslated\">" . $strings_untranslated . "</td>\n";
+            }
+            else { //if UNKNOWN status...
+              $temp .= "    <td class=\"center\">-</td>\n";
+              $temp .= "    <td class=\"right translated\">-</td>\n";
+              $temp .= "    <td class=\"right fuzzy\">-</td>\n";
+              $temp .= "    <td class=\"right untranslated\">-</td>\n";
+            }
             $temp .= "    <td class=\"center\">" . $translation_update . "</td>\n";
             $temp .= "  </tr>\n";
           }
@@ -168,7 +176,10 @@
         $temp .= "  <tr>\n";
         $temp .= "    <td class=\"left\"><a href=\"" . $this->svnUrl . $project . '/' . $template_file_name . "\" rel=\"nofollow\">" . $template_language_name . " (Template)</a></td>\n";
         $temp .= "    <td class=\"center\"></td>\n";
-        $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $template_strings_count . "</td>\n";
+        if ($template_strings_count > 0) //if KNOWN status...
+          $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $template_strings_count . "</td>\n";
+        else //if UNKNOWN status...
+          $temp .= "    <td colspan=\"3\" class=\"center\">Total: Unknown</td>\n";
         $temp .= "    <td class=\"center\">" . $template_translation_update . "</td>\n";
         $temp .= "  </tr>\n";
         $temp .= "</table>\n";
@@ -205,10 +216,14 @@
           if ($template == false) { //If NO template...
             $file_name = (string)$translation->file;
             $translation_update = (string)$translation->update;
+            $strings_count = (int)$translation->strings->count;
             $strings_untranslated = (int)$translation->strings->untranslated;
             
             $temp .= "  <li>\n";
-            $temp .= "    <a href=\"" . $this->svnUrl . $project . '/' . $file_name . "\">" . $language_name . "</a> (" . $strings_untranslated . " Untranslated)\n";
+            if ($strings_count > 0) //if KNOWN status...
+              $temp .= "    <a href=\"" . $this->svnUrl . $project . '/' . $file_name . "\">" . $language_name . "</a> (" . $strings_untranslated . " Untranslated)\n";
+            else //if UNKNOWN status...
+              $temp .= "    <a href=\"" . $this->svnUrl . $project . '/' . $file_name . "\">" . $language_name . "</a> (Unknown)\n";
             $temp .= "  </li>\n";
           }
         }
@@ -265,6 +280,7 @@
           }
         }
       }
+      ksort($languages, SORT_STRING);
       
       $temp = "<h3><a name=\"translators\">Translators</a></h3>\n";
       $temp .= "<table class=\"status\">\n";
