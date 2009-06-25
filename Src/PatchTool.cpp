@@ -123,7 +123,7 @@ int CPatchTool::CreatePatch()
 		}
 
 		// Select patch create -mode
-		m_diffWrapper.SetCreatePatchFile(m_pDlgPatch->m_fileResult);
+		m_diffWrapper.SetCreatePatchFile((LPCTSTR)m_pDlgPatch->m_fileResult);
 		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
 		m_diffWrapper.SetPrediffer(NULL);
 
@@ -169,7 +169,7 @@ int CPatchTool::CreatePatch()
 			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
 				            IDS_DIFF_SUCCEEDED);
 			
-			m_sPatchFile = m_pDlgPatch->m_fileResult;
+			m_sPatchFile = (LPCTSTR)m_pDlgPatch->m_fileResult;
 			m_bOpenToEditor = m_pDlgPatch->m_openToEditor;
 			retVal = 1;
 		}

@@ -146,7 +146,7 @@ class CDiffWrapper
 public:
 	CDiffWrapper();
 	~CDiffWrapper();
-	void SetCreatePatchFile(const CString &filename);
+	void SetCreatePatchFile(const String &filename);
 	void SetCreateDiffList(DiffList *diffList);
 	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options);
@@ -188,7 +188,7 @@ private:
 	String m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
 	String m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
 	String m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
-	CString m_sPatchFile; /**< Full path to created patch file. */
+	String m_sPatchFile; /**< Full path to created patch file. */
 	BOOL m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;

@@ -127,18 +127,18 @@ void CDiffWrapper::EnablePlugins(bool enable)
  * @p filename is empty, patch files are disabled.
  * @param [in] filename Filename for patch file, or empty string.
  */
-void CDiffWrapper::SetCreatePatchFile(const CString &filename)
+void CDiffWrapper::SetCreatePatchFile(const String &filename)
 {
-	if (filename.IsEmpty())
+	if (filename.empty())
 	{
 		m_bCreatePatchFile = FALSE;
-		m_sPatchFile.Empty();
+		m_sPatchFile.clear();
 	}
 	else
 	{
 		m_bCreatePatchFile = TRUE;
 		m_sPatchFile = filename;
-		m_sPatchFile.Replace('/', '\\');
+		string_replace(m_sPatchFile, L"/", L"\\");
 	}
 }
 
@@ -1241,10 +1241,10 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		inf_patch[1].stat.st_mtime = st.st_mtime;
 
 	outfile = NULL;
-	if (!m_sPatchFile.IsEmpty())
+	if (!m_sPatchFile.empty())
 	{
 		LPCTSTR mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
-		outfile = _tfopen(m_sPatchFile, mode);
+		outfile = _tfopen(m_sPatchFile.c_str(), mode);
 	}
 
 	if (!outfile)
