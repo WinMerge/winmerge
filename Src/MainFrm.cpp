@@ -76,6 +76,8 @@
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 
+using std::vector;
+
 /*
  One source file must compile the stubs for multimonitor
  by defining the symbol COMPILE_MULTIMON_STUBS & including <multimon.h>
@@ -2591,7 +2593,7 @@ void CMainFrame::OnToolsFilters()
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
-	FILEFILTER_INFOLIST fileFilters;
+	vector<FileFilterInfo> fileFilters;
 	LineFiltersList * lineFilters = new LineFiltersList();
 	String selectedFilter;
 	const String origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();

@@ -143,11 +143,11 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
-	while (pos > 0 && !_istspace(str[pos - 1]))
+	while (pos != std::string::npos && !_istspace(str[pos - 1]))
 		pos = str.find(commentLeader, pos + 1);
 
 	// Remove comment and whitespaces before it
-	if (pos > 0)
+	if (pos != std::string::npos)
 		str = str.substr(0, pos);
 	str = string_trim_ws_end(str);
 	if (str.empty())

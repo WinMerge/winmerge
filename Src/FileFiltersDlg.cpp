@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "UnicodeString.h"
 #include "merge.h"
 #include "MainFrm.h"
@@ -34,6 +35,8 @@
 #include "SharedFilterDlg.h"
 #include "TestFilterDlg.h"
 #include "FileOrFolderSelect.h"
+
+using std::vector;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -95,7 +98,7 @@ END_MESSAGE_MAP()
  * @param [in] fileFilters Array of filters to show in the dialog.
  * @note Call this before actually showing the dialog.
  */
-void FileFiltersDlg::SetFilterArray(FILEFILTER_INFOLIST * fileFilters)
+void FileFiltersDlg::SetFilterArray(vector<FileFilterInfo> * fileFilters)
 {
 	m_Filters = fileFilters;
 }
@@ -145,7 +148,7 @@ void FileFiltersDlg::InitList()
 	m_listFilters.SetItemText(0, 1, title.c_str());
 	m_listFilters.SetItemText(0, 2, title.c_str());
 
-	int count = m_Filters->GetSize();
+	const int count = m_Filters->size();
 
 	for (int i = 0; i < count; i++)
 	{
@@ -201,7 +204,7 @@ BOOL FileFiltersDlg::OnInitDialog()
  */
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
-	const FileFilterInfo & filterinfo = m_Filters->GetAt(filterIndex);
+	const FileFilterInfo & filterinfo = m_Filters->at(filterIndex);
 	const int item = filterIndex + 1;
 
 	m_listFilters.InsertItem(item, filterinfo.name.c_str());
@@ -469,7 +472,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		{
 			// Remove all from filterslist and re-add so we can update UI
 			String selected;
-			m_Filters->RemoveAll();
+			m_Filters->clear();
 			theApp.m_globalFileFilter.LoadAllFileFilters();
 			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
@@ -506,7 +509,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 				
 				// Remove all from filterslist and re-add so we can update UI
 				String selected;
-				m_Filters->RemoveAll();
+				m_Filters->clear();
 				theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
 				UpdateFiltersList();
@@ -524,7 +527,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
  */
 void FileFiltersDlg::UpdateFiltersList()
 {
-	int count = m_Filters->GetSize();
+	int count = m_Filters->size();
 
 	m_listFilters.DeleteAllItems();
 
@@ -598,7 +601,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 
 			// Remove all from filterslist and re-add so we can update UI
 			String selected;
-			m_Filters->RemoveAll();
+			m_Filters->clear();
 			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
 			UpdateFiltersList();

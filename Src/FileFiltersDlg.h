@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for File Filters dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_FILTERSDLG_H__6180CBC3_99BB_4C85_B0EA_BA85D219285E__INCLUDED_)
@@ -28,6 +28,8 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
+
+#include <vector>
 
 /**
  * @brief Class for dialog allowing user to select
@@ -40,7 +42,7 @@ class FileFiltersDlg : public CPropertyPage
 // Construction
 public:
 	FileFiltersDlg();   // standard constructor
-	void SetFilterArray(FILEFILTER_INFOLIST * fileFilters);
+	void SetFilterArray(std::vector<FileFilterInfo> * fileFilters);
 	CString GetSelected();
 	void SetSelected(const CString & selected);
 
@@ -48,7 +50,7 @@ public:
 private:
 	CString m_sFileFilterPath;
 	CPoint m_ptLastMousePos;
-	FILEFILTER_INFOLIST * m_Filters;
+	std::vector<FileFilterInfo> * m_Filters;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)

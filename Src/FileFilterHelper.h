@@ -25,6 +25,7 @@
 #ifndef _FILEFILTERHELPER_H_
 #define _FILEFILTERHELPER_H_
 
+#include <vector>
 #include "UnicodeString.h"
 
 class FileFilterMgr;
@@ -52,7 +53,6 @@ struct FileFilterInfo
 	DirItem fileinfo;		/**< For tracking if file has been modified */
 };
 
-typedef CArray<FileFilterInfo, FileFilterInfo&> FILEFILTER_INFOLIST;
 typedef CMap<CString, LPCTSTR, int, int> FILEFILTER_FILEMAP;
 
 /// Interface for testing files & directories for exclusion, as diff traverses file tree
@@ -107,7 +107,7 @@ public:
 	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
-	void GetFileFilters(FILEFILTER_INFOLIST * filters, String & selected) const;
+	void GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const;
 	String GetFileFilterName(LPCTSTR filterPath) const;
 	String GetFileFilterPath(LPCTSTR filterName) const;
 	void SetUserFilterPath(const String & filterPath);

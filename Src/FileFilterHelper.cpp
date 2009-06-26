@@ -33,6 +33,8 @@
 #include "Coretools.h"
 #include "paths.h"
 
+using std::vector;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -96,19 +98,19 @@ void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
  * @param [out] filters Filter list to receive found filters.
  * @param [out] selected Filepath of currently selected filter.
  */
-void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, String & selected) const
+void FileFilterHelper::GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const
 {
 	if (m_fileFilterMgr)
 	{
-		int count = m_fileFilterMgr->GetFilterCount();
-		filters->SetSize(count);
-		for (int i=0; i<count; ++i)
+		const int count = m_fileFilterMgr->GetFilterCount();
+		filters->reserve(count);
+		for (int i = 0; i < count; ++i)
 		{
 			FileFilterInfo filter;
 			filter.fullpath = m_fileFilterMgr->GetFilterPath(i);
 			filter.name = m_fileFilterMgr->GetFilterName(i);
 			filter.description = m_fileFilterMgr->GetFilterDesc(i);
-			filters->SetAt(i, filter);
+			filters->push_back(filter);
 		}
 	}
 	selected = m_sFileFilterPath;
@@ -122,18 +124,20 @@ void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, String & se
  */
 String FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
 {
-	FILEFILTER_INFOLIST filters;
+	vector<FileFilterInfo> filters;
 	String selected;
 	String name;
 
 	GetFileFilters(&filters, selected);
-	for (int i = 0; i < filters.GetSize(); i++)
+	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	while (iter != filters.end())
 	{
-		if (filters.GetAt(i).fullpath == filterPath)
+		if ((*iter).fullpath == filterPath)
 		{
-			name = filters.GetAt(i).name;
+			name = (*iter).name;
 			break;
 		}
+		iter++;
 	}
 	return name;
 }
@@ -145,18 +149,20 @@ String FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
  */
 String FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
 {
-	FILEFILTER_INFOLIST filters;
+	vector<FileFilterInfo> filters;
 	String selected;
 	String path;
 
 	GetFileFilters(&filters, selected);
-	for (int i = 0; i < filters.GetSize(); i++)
+	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	while (iter != filters.end())
 	{
-		if (filters.GetAt(i).name == filterName)
+		if ((*iter).name == filterName)
 		{
-			path = filters.GetAt(i).fullpath;
+			path = (*iter).fullpath;
 			break;
 		}
+		iter++;
 	}
 	return path;
 }
@@ -335,7 +341,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 	ext += _T(";"); // Add one separator char to end
 	size_t pos = ext.find_first_of(pszSeps);
 	
-	while (pos >= 0)
+	while (pos != String::npos)
 	{
 		String token = ext.substr(0, pos); // Get first extension
 		ext = ext.substr(pos + 2); // Remove extension + separator
@@ -453,22 +459,19 @@ BOOL FileFilterHelper::SetFilter(const String &filter)
  */
 void FileFilterHelper::ReloadUpdatedFilters()
 {
-	FILEFILTER_INFOLIST filters;
+	vector<FileFilterInfo> filters;
 	DirItem fileInfo;
-	DirItem *fileInfoStored = NULL;
-	FileFilterInfo filter;
 	String selected;
 
 	GetFileFilters(&filters, selected);
-	for (int i = 0; i < filters.GetSize(); i++)
+	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	while (iter != filters.end())
 	{
-		filter = filters.GetAt(i);
-		String path = filter.fullpath;
-		fileInfoStored = &filter.fileinfo;
+		String path = (*iter).fullpath;
 
 		fileInfo.Update(path);
-		if (fileInfo.mtime != fileInfoStored->mtime ||
-			fileInfo.size != fileInfoStored->size)
+		if (fileInfo.mtime != (*iter).fileinfo.mtime ||
+			fileInfo.size != (*iter).fileinfo.size)
 		{
 			// Reload filter after changing it
 			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path.c_str());
@@ -480,6 +483,7 @@ void FileFilterHelper::ReloadUpdatedFilters()
 					SetFileFilterPath(path.c_str());
 			}
 		}
+		iter++;
 	}
 }
 
