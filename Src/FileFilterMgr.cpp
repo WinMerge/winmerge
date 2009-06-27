@@ -31,6 +31,7 @@
 #include "UniFile.h"
 #include "coretools.h"
 #include "Ucs2Utf8.h"
+#include "paths.h"
 
 using std::vector;
 
@@ -60,15 +61,16 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
 
 /**
  * @brief Load all filter files matching pattern from disk into internal filter set.
- *
- * @param [in] szPattern Pattern from where to load filters, for example "\\Filters\\*.flt"
- * @param [in] szExt File-extension of filter files
+ * @param [in] dir Directory from where filters are loaded.
+ * @param [in] szPattern Pattern for filters to load filters, for example "*.flt".
+ * @param [in] szExt File-extension of filter files.
  */
-void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
+void FileFilterMgr::LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR szExt)
 {
-	int extlen = szExt ? _tcslen(szExt) : 0;
+	const int extlen = szExt ? _tcslen(szExt) : 0;
+	const String pattern = paths_ConcatPath(dir, szPattern);
 	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(szPattern, &ff);
+	HANDLE h = FindFirstFile(pattern.c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do
@@ -82,10 +84,12 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 				// (This is really a workaround for brokenness in windows, which
 				//  doesn't screen correctly on extension in pattern)
 				String ext = filename.substr(filename.length() - extlen);
-				if (string_compare_nocase(szExt, ext) == 0)
+				if (string_compare_nocase(szExt, ext) != 0)
 					return;
 			}
-			AddFilter(ff.cFileName);
+
+			String filterpath = paths_ConcatPath(dir, ff.cFileName);
+			AddFilter(filterpath.c_str());
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}

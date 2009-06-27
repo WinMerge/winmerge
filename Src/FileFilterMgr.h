@@ -59,7 +59,7 @@ private:
 public:
 	~FileFilterMgr();
 	// Reload filter array from specified directory (passed to CFileFind)
-	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
+	void LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR szExt);
 	// Reload an edited filter
 	int ReloadFilterFromDisk(FileFilter * pfilter);
 	int ReloadFilterFromDisk(LPCTSTR szFullPath);

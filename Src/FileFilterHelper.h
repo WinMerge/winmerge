@@ -112,7 +112,7 @@ public:
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
-	void LoadFileFilterDirPattern(LPCTSTR szPattern);
+	void LoadFileFilterDirPattern(LPCTSTR dir, LPCTSTR szPattern);
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);

@@ -291,16 +291,14 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 }
 
 /**
- * @brief Load in all filter patterns in a directory (unless already in map).
- * @param [in] sPattern Directory wildcard defining files to add to map as filter files.
- * It is directoryname + filemask, for example, for a filter for all users:
- * "C:\Program Files\WinMerge\Filters\*.flt"
- * Examples of user-specific filters:
- * "C:\Documents and Settings\User\My Documents\WinMergeFilters\*.flt"
+ * @brief Load in all filters in a folder.
+ * @param [in] dir Folder from where to load filters.
+ * @param [in] sPattern Wildcard defining files to add to map as filter files.
+ *   It is filemask, for example, "*.flt"
  */
-void FileFilterHelper::LoadFileFilterDirPattern(LPCTSTR szPattern)
+void FileFilterHelper::LoadFileFilterDirPattern(LPCTSTR dir, LPCTSTR szPattern)
 {
-	m_fileFilterMgr->LoadFromDirectory(szPattern, FileFilterExt);
+	m_fileFilterMgr->LoadFromDirectory(dir, szPattern, FileFilterExt);
 }
 
 /** 
@@ -322,7 +320,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 	while (pos != String::npos)
 	{
 		String token = ext.substr(0, pos); // Get first extension
-		ext = ext.substr(pos + 2); // Remove extension + separator
+		ext = ext.substr(pos + 1); // Remove extension + separator
 		
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 2 && token[0] == '*' && token[1] == '.')
@@ -476,8 +474,10 @@ void FileFilterHelper::LoadAllFileFilters()
 
 	// Program application directory
 	m_sGlobalFilterPath = GetModulePath() + L"\\Filters";
-	LoadFileFilterDirPattern((m_sGlobalFilterPath + L"\\*" + FileFilterExt).c_str());
-	LoadFileFilterDirPattern((m_sUserSelFilterPath + L"\\*" + FileFilterExt).c_str());
+	String pattern(L"*");
+	pattern += FileFilterExt;
+	LoadFileFilterDirPattern(m_sGlobalFilterPath.c_str(), pattern.c_str());
+	LoadFileFilterDirPattern(m_sUserSelFilterPath.c_str(), pattern.c_str());
 }
 
 /**
