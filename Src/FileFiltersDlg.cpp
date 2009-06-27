@@ -245,8 +245,17 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	if (sel > 0)
 	{
 		CString path = m_listFilters.GetItemText(sel, 2);
-		theApp.m_globalFileFilter.EditFileFilter(path);
+		EditFileFilter(path);
 	}
+}
+
+/**
+ * @brief Edit file filter in external editor.
+ * @param [in] path Full path to file filter to edit.
+ */
+void FileFiltersDlg::EditFileFilter(LPCTSTR path)
+{
+	CMainFrame::OpenFileToExternalEditor(path);
 }
 
 /**
@@ -465,7 +474,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath.c_str(), MB_ICONERROR);
 			return;
 		}
-		theApp.m_globalFileFilter.EditFileFilter(s);
+		EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
 		int retval = pMgr->AddFilter(s);
 		if (retval == FILTER_OK)

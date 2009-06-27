@@ -104,7 +104,6 @@ public:
 
 	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
-	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const;
 	String GetFileFilterName(LPCTSTR filterPath) const;
 	String GetFileFilterPath(LPCTSTR filterName) const;
