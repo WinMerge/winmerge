@@ -307,22 +307,15 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 
 /**
  * @brief Load in all filter patterns in a directory (unless already in map).
- * @param [in,out] patternsLoaded Map where found filterfiles are added.
  * @param [in] sPattern Directory wildcard defining files to add to map as filter files.
  * It is directoryname + filemask, for example, for a filter for all users:
  * "C:\Program Files\WinMerge\Filters\*.flt"
  * Examples of user-specific filters:
  * "C:\Documents and Settings\User\My Documents\WinMergeFilters\*.flt"
  */
-void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
-		LPCTSTR szPattern)
+void FileFilterHelper::LoadFileFilterDirPattern(LPCTSTR szPattern)
 {
-	int n=0;
-	if (!patternsLoaded.Lookup(szPattern, n))
-	{
-		m_fileFilterMgr->LoadFromDirectory(szPattern, FileFilterExt);
-	}
-	patternsLoaded[szPattern] = ++n;
+	m_fileFilterMgr->LoadFromDirectory(szPattern, FileFilterExt);
 }
 
 /** 
@@ -493,16 +486,13 @@ void FileFilterHelper::ReloadUpdatedFilters()
  */
 void FileFilterHelper::LoadAllFileFilters()
 {
-	// Load filters from all possible subdirectories
-	FILEFILTER_FILEMAP patternsLoaded;
-
 	// First delete existing filters
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
 	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
-	LoadFileFilterDirPattern(patternsLoaded, (m_sGlobalFilterPath + _T("\\*") + FileFilterExt).c_str());
-	LoadFileFilterDirPattern(patternsLoaded, (m_sUserSelFilterPath + _T("\\*") + FileFilterExt).c_str());
+	LoadFileFilterDirPattern((m_sGlobalFilterPath + _T("\\*") + FileFilterExt).c_str());
+	LoadFileFilterDirPattern((m_sUserSelFilterPath + _T("\\*") + FileFilterExt).c_str());
 }
 
 /**

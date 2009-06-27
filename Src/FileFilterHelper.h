@@ -53,8 +53,6 @@ struct FileFilterInfo
 	DirItem fileinfo;		/**< For tracking if file has been modified */
 };
 
-typedef CMap<CString, LPCTSTR, int, int> FILEFILTER_FILEMAP;
-
 /// Interface for testing files & directories for exclusion, as diff traverses file tree
 class IDiffFilter
 {
@@ -115,8 +113,7 @@ public:
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
-	void LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
-		LPCTSTR szPattern);
+	void LoadFileFilterDirPattern(LPCTSTR szPattern);
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
