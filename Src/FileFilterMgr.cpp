@@ -20,9 +20,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
+#include <windows.h>
 #include <string.h>
 #include <vector>
+#include <tchar.h>
 #include "UnicodeString.h"
 #include "FileFilter.h"
 #include "pcre.h"
@@ -30,12 +31,6 @@
 #include "UniFile.h"
 #include "coretools.h"
 #include "Ucs2Utf8.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 using std::vector;
 
@@ -71,24 +66,28 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
  */
 void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 {
-	CFileFind finder;
-	BOOL bWorking = finder.FindFile(szPattern);
 	int extlen = szExt ? _tcslen(szExt) : 0;
-	while (bWorking)
+	WIN32_FIND_DATA ff;
+	HANDLE h = FindFirstFile(szPattern, &ff);
+	if (h != INVALID_HANDLE_VALUE)
 	{
-		bWorking = finder.FindNextFile();
-		if (finder.IsDots() || finder.IsDirectory())
-			continue;
-		CString sFilename = finder.GetFileName();
-		if (szExt)
+		do
 		{
-			// caller specified a specific extension
-			// (This is really a workaround for brokenness in windows, which
-			//  doesn't screen correctly on extension in pattern)
-			if (sFilename.Right(extlen).CompareNoCase(szExt))
-				return;
-		}
-		AddFilter(finder.GetFilePath());
+			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				continue;
+			String filename = ff.cFileName;
+			if (szExt)
+			{
+				// caller specified a specific extension
+				// (This is really a workaround for brokenness in windows, which
+				//  doesn't screen correctly on extension in pattern)
+				String ext = filename.substr(filename.length() - extlen);
+				if (string_compare_nocase(szExt, ext) == 0)
+					return;
+			}
+			AddFilter(ff.cFileName);
+		} while (FindNextFile(h, &ff));
+		FindClose(h);
 	}
 }
 

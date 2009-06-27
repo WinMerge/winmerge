@@ -22,7 +22,8 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+#include <tchar.h>
 #include "Ucs2Utf8.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
@@ -33,12 +34,6 @@
 #include "paths.h"
 
 using std::vector;
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 /** 
  * @brief Constructor, creates new filtermanager.
@@ -174,7 +169,7 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
 	m_sUserSelFilterPath = filterPath;
 	if (filterPath[filterPath.length() - 1] != '\\')
-		m_sUserSelFilterPath += _T("\\");
+		m_sUserSelFilterPath += L"\\";
 }
 
 /** 
@@ -250,11 +245,11 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 		// preprend a backslash if there is none
 		String strFileName = szFileName;
 		strFileName = string_makelower(strFileName);
-		if (strFileName[0] != _T('\\'))
-			strFileName = _T('\\') + strFileName;
+		if (strFileName[0] != '\\')
+			strFileName = L"\\" + strFileName;
 		// append a point if there is no extension
-		if (strFileName.find(_T('.')) == -1)
-			strFileName = strFileName + _T('.');
+		if (strFileName.find('.') == -1)
+			strFileName = strFileName + L".";
 
 		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
 		bool match = m_pMaskFilter->Match(name_utf);
@@ -480,9 +475,9 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
-	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
-	LoadFileFilterDirPattern((m_sGlobalFilterPath + _T("\\*") + FileFilterExt).c_str());
-	LoadFileFilterDirPattern((m_sUserSelFilterPath + _T("\\*") + FileFilterExt).c_str());
+	m_sGlobalFilterPath = GetModulePath() + L"\\Filters";
+	LoadFileFilterDirPattern((m_sGlobalFilterPath + L"\\*" + FileFilterExt).c_str());
+	LoadFileFilterDirPattern((m_sUserSelFilterPath + L"\\*" + FileFilterExt).c_str());
 }
 
 /**
