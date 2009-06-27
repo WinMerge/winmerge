@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OptionsDef.h"
@@ -30,6 +31,8 @@
 #include "FileActionScript.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
+
+using std::vector;
 
 /**
  * @brief Standard constructor.
@@ -54,6 +57,16 @@ FileActionScript::~FileActionScript()
 	delete m_pCopyOperations;
 	delete m_pMoveOperations;
 	delete m_pDelOperations;
+}
+/**
+ * @brief Remove last action item from the list.
+ * @return Item removed from the list.
+ */
+FileActionItem FileActionScript::RemoveTailActionItem()
+{
+	FileActionItem item = m_actions.back();
+	m_actions.pop_back();
+	return item;
 }
 
 /**
@@ -80,7 +93,7 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
  */
 int FileActionScript::GetActionItemCount() const
 {
-	return m_actions.GetCount();
+	return m_actions.size();
 }
 
 /**
@@ -138,12 +151,11 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	POSITION pos = m_actions.GetHeadPosition();
-	while (pos != NULL && bContinue == TRUE)
+	vector<FileActionItem>::const_iterator iter = m_actions.begin();
+	while (iter != m_actions.end() && bContinue == TRUE)
 	{
 		BOOL bSkip = FALSE;
-		const FileActionItem act = m_actions.GetNext(pos);
-		if (act.atype == FileAction::ACT_COPY && !act.dirflag)
+		if ((*iter).atype == FileAction::ACT_COPY && !(*iter).dirflag)
 		{
 			// Handle VCS checkout
 			// Before we can write over destination file, we must unlock
@@ -151,7 +163,7 @@ int FileActionScript::CreateOperationsScripts()
 			// has been modified.
 			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
 			{
-				int retVal = VCSCheckOut(act.dest, bApplyToAll);
+				int retVal = VCSCheckOut((*iter).dest, bApplyToAll);
 				if (retVal == SCRIPT_USERCANCEL)
 					bContinue = FALSE;
 				else if (retVal == SCRIPT_USERSKIP)
@@ -162,7 +174,7 @@ int FileActionScript::CreateOperationsScripts()
 
 			if (bContinue)
 			{
-				if (!GetMainFrame()->CreateBackup(TRUE, act.dest.c_str()))
+				if (!GetMainFrame()->CreateBackup(TRUE, (*iter).dest.c_str()))
 				{
 					String strErr = theApp.LoadString(IDS_ERROR_BACKUP);
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
@@ -171,12 +183,13 @@ int FileActionScript::CreateOperationsScripts()
 			}
 		}
 
-		if (act.atype == FileAction::ACT_COPY &&
+		if ((*iter).atype == FileAction::ACT_COPY &&
 			bSkip == FALSE && bContinue == TRUE)
 		{
-			m_pCopyOperations->AddSourceAndDestination(act.src, act.dest);
+			m_pCopyOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
 			m_bHasCopyOperations = TRUE;
 		}
+		iter++;
 	}
 	if (bContinue == FALSE)
 	{
@@ -194,15 +207,15 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	pos = m_actions.GetHeadPosition();
-	while (pos != NULL)
+	iter = m_actions.begin();
+	while (iter != m_actions.end())
 	{
-		const FileActionItem act = m_actions.GetNext(pos);
-		if (act.atype == FileAction::ACT_MOVE)
+		if ((*iter).atype == FileAction::ACT_MOVE)
 		{
-			m_pMoveOperations->AddSourceAndDestination(act.src, act.dest);
+			m_pMoveOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
 			m_bHasMoveOperations = TRUE;
 		}
+		iter++;
 	}
 	if (m_bHasMoveOperations)
 		m_pMoveOperations->SetOperation(operation, operFlags,  m_hParentWindow);
@@ -213,21 +226,42 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	pos = m_actions.GetHeadPosition();
-	while (pos != NULL)
+	iter = m_actions.begin();
+	while (iter != m_actions.end())
 	{
-		const FileActionItem act = m_actions.GetNext(pos);
-		if (act.atype == FileAction::ACT_DEL)
+		if ((*iter).atype == FileAction::ACT_DEL)
 		{
-			m_pDelOperations->AddSource(act.src);
-			if (!act.dest.empty())
-				m_pDelOperations->AddSource(act.dest);
+			m_pDelOperations->AddSource((*iter).src);
+			if (!(*iter).dest.empty())
+				m_pDelOperations->AddSource((*iter).dest);
 			m_bHasDelOperations = TRUE;
 		}
+		iter++;
 	}
 	if (m_bHasDelOperations)
 		m_pDelOperations->SetOperation(operation, operFlags, m_hParentWindow);
 	return SCRIPT_SUCCESS;
+}
+
+/**
+ * @brief Run one operation set.
+ * @param [in] oplist List of operations to run.
+ * @param [out] userCancelled Did user cancel the operation?
+ * @return true if the operation succeeded and finished.
+ */
+bool FileActionScript::RunOp(ShellFileOperations *oplist, bool & userCancelled)
+{
+	bool fileOpSucceed = false;
+	__try
+	{
+		fileOpSucceed = oplist->Run();
+		userCancelled = oplist->IsCanceled();
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		fileOpSucceed = false;
+	}
+	return fileOpSucceed;
 }
 
 /**
@@ -244,48 +278,36 @@ BOOL FileActionScript::Run()
 
 	CreateOperationsScripts();
 
-	__try
+	if (m_bHasCopyOperations)
 	{
-		if (m_bHasCopyOperations)
+		vector<FileActionItem>::const_iterator iter = m_actions.begin();
+		while (iter != m_actions.end())
 		{
-			POSITION pos = m_actions.GetHeadPosition();
-			while (pos != NULL)
-			{
-				const FileActionItem &act = m_actions.GetNext(pos);
-				if (act.dirflag)
-					paths_CreateIfNeeded(act.dest.c_str());
-			}
-
-			bFileOpSucceed = m_pCopyOperations->Run();
-			bUserCancelled = m_pCopyOperations->IsCanceled();
+			if ((*iter).dirflag)
+				paths_CreateIfNeeded((*iter).dest.c_str());
+			iter++;
 		}
-
-		if (m_bHasMoveOperations)
-		{
-			if (bFileOpSucceed && !bUserCancelled)
-			{
-				bFileOpSucceed = m_pMoveOperations->Run();
-				bUserCancelled = m_pCopyOperations->IsCanceled();
-			}
-			else
-				bRetVal = FALSE;
-		}
-
-		if (m_bHasDelOperations)
-		{
-			if (bFileOpSucceed && !bUserCancelled)
-			{
-				bFileOpSucceed = m_pDelOperations->Run();
-				bUserCancelled = m_pCopyOperations->IsCanceled();
-			}
-			else
-				bRetVal = FALSE;
-		}
+		bFileOpSucceed = RunOp(m_pCopyOperations, bUserCancelled);
 	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
+
+	if (m_bHasMoveOperations)
 	{
-		bFileOpSucceed = FALSE;
-		bRetVal = FALSE;
+		if (bFileOpSucceed && !bUserCancelled)
+		{
+			bFileOpSucceed = RunOp(m_pMoveOperations, bUserCancelled);
+		}
+		else
+			bRetVal = FALSE;
+	}
+
+	if (m_bHasDelOperations)
+	{
+		if (bFileOpSucceed && !bUserCancelled)
+		{
+			bFileOpSucceed = RunOp(m_pDelOperations, bUserCancelled);
+		}
+		else
+			bRetVal = FALSE;
 	}
 
 	if (!bFileOpSucceed || bUserCancelled)

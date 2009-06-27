@@ -25,6 +25,8 @@
 #ifndef _FILEACTIONSCRIPT_H_
 #define _FILEACTIONSCRIPT_H_
 
+#include <vector>
+
 class ShellFileOperations;
 
 /** 
@@ -107,8 +109,6 @@ struct FileActionItem : public FileAction
 	UI_SIDE UIDestination; /**< Destination UI-side */
 };
 
-typedef CList<FileActionItem, FileActionItem&> FileActionList;
-
 /** 
  * @brief FileActionScript holds list of fileactions and runs those actions.
  *
@@ -133,26 +133,25 @@ public:
 	 * Add new item to the action list.
 	 * @param [in] item Item to add to the list.
 	 */
-	void AddActionItem(FileActionItem & item) { m_actions.AddTail(item); }
-	/**
-	 * Remove last action item from the list.
-	 * @return Item removed from the list.
-	 */
-	FileActionItem RemoveTailActionItem() { return m_actions.RemoveTail(); }
+	void AddActionItem(FileActionItem & item) { m_actions.push_back(item); }
+
+	FileActionItem RemoveTailActionItem();
+
 	/**
 	 * Get first action item in the list.
 	 * @return First item in the list.
 	 */
-	FileActionItem GetHeadActionItem() const { return m_actions.GetHead(); }
+	FileActionItem GetHeadActionItem() const { return m_actions[0]; }
 
 	String m_destBase; /**< Base destination path for some operations */
 
 protected:
 	int VCSCheckOut(const String &path, BOOL &bApplyToAll);
 	int CreateOperationsScripts();
+	bool RunOp(ShellFileOperations *oplist, bool & userCancelled);
 
 private:
-	FileActionList m_actions; /**< List of all actions for this script. */
+	std::vector<FileActionItem> m_actions; /**< List of all actions for this script. */
 	ShellFileOperations * m_pCopyOperations; /**< Copy operations. */
 	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
 	ShellFileOperations * m_pMoveOperations; /**< Move operations. */
