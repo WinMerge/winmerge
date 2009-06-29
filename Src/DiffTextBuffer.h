@@ -40,7 +40,7 @@ private :
 	 */
 	FileTextEncoding m_encoding;
 
-	BOOL FlagIsSet(UINT line, DWORD flag);
+	BOOL FlagIsSet(UINT line, DWORD flag) const;
 
 public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
@@ -71,10 +71,10 @@ public :
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
 	// If line has text (excluding eol), set strLine to text (excluding eol)
-	BOOL GetLine(int nLineIndex, CString &strLine);
+	BOOL GetLine(int nLineIndex, CString &strLine) const;
 
 	// if line has any text (including eol), set strLine to text (including eol)
-	BOOL GetFullLine(int nLineIndex, CString &strLine);
+	BOOL GetFullLine(int nLineIndex, CString &strLine) const;
 
 	virtual void SetModified (BOOL bModified = TRUE);
 	void prepareForRescan();

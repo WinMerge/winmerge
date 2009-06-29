@@ -127,7 +127,7 @@ protected :
     BOOL m_bCreateBackupFile;
     BOOL m_bInsertTabs;
     int  m_nTabSize;
-    int FindLineWithFlag (DWORD dwFlag);
+    int FindLineWithFlag (DWORD dwFlag) const;
 
 protected :
     enum
@@ -183,7 +183,7 @@ public :
                                 LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
     //  Overridable: provide action description
-    virtual BOOL GetActionDescription (int nAction, CString & desc);
+    virtual BOOL GetActionDescription (int nAction, CString & desc) const;
 
     // Operations
 public :
@@ -224,13 +224,17 @@ public :
     LPCTSTR GetLineChars (int nLine) const;
     DWORD GetLineFlags (int nLine) const;
     DWORD GetLineRevisionNumber (int nLine) const;
-    int GetLineWithFlag (DWORD dwFlag);
-    void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
-    void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF = NULL);
-    virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+    int GetLineWithFlag (DWORD dwFlag) const;
+    void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet,
+            BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate = TRUE);
+    void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
+            CString & text, LPCTSTR pszCRLF = NULL) const;
+    virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
+            int nEndLine, int nEndChar, CString &text,
+            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC) const;
 
     //  Attributes
-    CRLFSTYLE GetCRLFMode ();
+    CRLFSTYLE GetCRLFMode () const;
     void SetCRLFMode (CRLFSTYLE nCRLFMode);
     /// Adjust all the lines in the buffer to the buffer default EOL Mode
     virtual BOOL applyEOLMode();
@@ -246,8 +250,8 @@ public :
     virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 
     //  Undo/Redo
-    BOOL CanUndo ();
-    BOOL CanRedo ();
+    BOOL CanUndo () const;
+    BOOL CanRedo () const;
     virtual BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
     virtual BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
@@ -266,10 +270,10 @@ public :
 
 
     //  Browse undo sequence
-    POSITION GetUndoActionCode (int & nAction, POSITION pos = NULL);
-    POSITION GetRedoActionCode (int & nAction, POSITION pos = NULL);
-    POSITION GetUndoDescription (CString & desc, POSITION pos = NULL);
-    POSITION GetRedoDescription (CString & desc, POSITION pos = NULL);
+    POSITION GetUndoActionCode (int & nAction, POSITION pos = NULL) const;
+    POSITION GetRedoActionCode (int & nAction, POSITION pos = NULL) const;
+    POSITION GetUndoDescription (CString & desc, POSITION pos = NULL) const;
+    POSITION GetRedoDescription (CString & desc, POSITION pos = NULL) const;
 
     //  Notify all connected views about changes in name of file
     CCrystalTextView::TextDefinition *RetypeViews (LPCTSTR lpszFileName);
@@ -282,15 +286,15 @@ public :
     void SetInsertTabs(BOOL bInsertTabs);
 
     // Tabbing
-    int  GetTabSize();
+    int  GetTabSize() const;
     void SetTabSize(int nTabSize);
 
     // More bookmarks
-    int FindNextBookmarkLine (int nCurrentLine = 0);
-    int FindPrevBookmarkLine (int nCurrentLine = 0);
+    int FindNextBookmarkLine (int nCurrentLine = 0) const;
+    int FindPrevBookmarkLine (int nCurrentLine = 0) const;
 
-    BOOL IsMBSLead (int nLine, int nCol);
-    BOOL IsMBSTrail (int nLine, int nCol);
+    BOOL IsMBSLead (int nLine, int nCol) const;
+    BOOL IsMBSTrail (int nLine, int nCol) const;
 
     // Overrides
     // ClassWizard generated virtual function overrides

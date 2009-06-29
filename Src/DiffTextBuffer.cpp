@@ -173,7 +173,7 @@ CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
  * @param [in] nLineIndex Index of the line to get.
  * @param [out] strLine Returns line text in the index.
  */
-BOOL CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine)
+BOOL CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
 {
 	int nLineLength = CCrystalTextBuffer::GetLineLength(nLineIndex);
 	if (nLineLength < 0)
@@ -208,7 +208,7 @@ void CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
  * @param [out] strLine Returns line text in the index. Existing content
  * of this string is overwritten.
  */
-BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
+BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 {
 	int cchText = GetFullLineLength(nLineIndex);
 	if (cchText == 0)
@@ -241,7 +241,7 @@ void CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos,
  * @param [in] flag Flag to check.
  * @return TRUE if flag is set, FALSE otherwise.
  */
-BOOL CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
+BOOL CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag) const
 {
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
