@@ -88,6 +88,7 @@
 // $Id$
 
 #include "StdAfx.h"
+#include <vector>
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include <mbctype.h>
@@ -107,6 +108,8 @@
 #include "unicoder.h"
 #include "string_util.h"
 #include "pcre.h"
+
+using std::vector;
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -522,7 +525,7 @@ CCrystalTextView::CCrystalTextView ()
   m_pstrIncrementalSearchStringOld = new CString;
   ASSERT( m_pstrIncrementalSearchStringOld );
   //END SW
-  m_ParseCookies = new CArray<DWORD, DWORD>;
+  m_ParseCookies = new vector<DWORD>;
   m_pnActualLineLength = new CArray<int, int>;
   ResetView ();
   SetTextType (SRC_PLAIN);
@@ -1209,21 +1212,21 @@ DWORD CCrystalTextView::
 GetParseCookie (int nLineIndex)
 {
   int nLineCount = GetLineCount ();
-  if (!m_ParseCookies->GetSize())
+  if (!m_ParseCookies->size())
     {
-      m_ParseCookies->SetSize(nLineCount);
+      m_ParseCookies->resize(nLineCount);
       // must be initialized to invalid value (DWORD) -1
       for (int i=0; i<nLineCount; ++i)
-        m_ParseCookies->SetAt(i, -1);
+        (*m_ParseCookies)[i] = -1;
     }
 
   if (nLineIndex < 0)
     return 0;
-  if (m_ParseCookies->GetAt(nLineIndex) != - 1)
-    return m_ParseCookies->GetAt(nLineIndex);
+  if ((*m_ParseCookies)[nLineIndex] != - 1)
+    return (*m_ParseCookies)[nLineIndex];
 
   int L = nLineIndex;
-  while (L >= 0 && m_ParseCookies->GetAt(L) == - 1)
+  while (L >= 0 && (*m_ParseCookies)[L] == - 1)
     L--;
   L++;
 
@@ -1232,14 +1235,14 @@ GetParseCookie (int nLineIndex)
     {
       DWORD dwCookie = 0;
       if (L > 0)
-        dwCookie = m_ParseCookies->GetAt(L - 1);
+        dwCookie = (*m_ParseCookies)[L - 1];
       ASSERT (dwCookie != - 1);
-      m_ParseCookies->SetAt(L, ParseLine (dwCookie, L, NULL, nBlocks));
-      ASSERT (m_ParseCookies->GetAt(L) != - 1);
+      (*m_ParseCookies)[L] = ParseLine (dwCookie, L, NULL, nBlocks);
+      ASSERT ((*m_ParseCookies)[L] != - 1);
       L++;
     }
 
-  return m_ParseCookies->GetAt(nLineIndex);
+  return (*m_ParseCookies)[nLineIndex];
 }
 
 int CCrystalTextView::
@@ -1527,8 +1530,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
 
-  m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
-  ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
+  (*m_ParseCookies)[nLineIndex] = ParseLine (dwCookie, nLineIndex, pBuf, nBlocks);
+  ASSERT ((*m_ParseCookies)[nLineIndex] != - 1);
 
   // Allocate table for max possible diff count:
   // every char might be a diff (empty line has one char) and every diff
@@ -1807,8 +1810,8 @@ GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
   pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
-  m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
-  ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
+  (*m_ParseCookies)[nLineIndex] = ParseLine (dwCookie, nLineIndex, pBuf, nBlocks);
+  ASSERT ((*m_ParseCookies)[nLineIndex] != - 1);
 
 ////////
   // Allocate table for max possible diff count:
@@ -2074,8 +2077,8 @@ OnDraw (CDC * pdc)
 
   // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
-  if (m_ParseCookies->GetSize())
-    ASSERT(m_ParseCookies->GetSize() == nLineCount);
+  if (m_ParseCookies->size())
+    ASSERT(m_ParseCookies->size() == nLineCount);
   if (m_pnActualLineLength->GetSize())
     ASSERT(m_pnActualLineLength->GetSize() == nLineCount);
 
@@ -2182,7 +2185,7 @@ ResetView ()
         }
     }
   InvalidateLineCache( 0, -1 );
-  m_ParseCookies->RemoveAll();
+  m_ParseCookies->clear();
   m_pnActualLineLength->RemoveAll();
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
@@ -4068,12 +4071,12 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      if (m_ParseCookies->GetSize())
+      if (m_ParseCookies->size())
         {
-          ASSERT (m_ParseCookies->GetSize() == nLineCount);
+          ASSERT (m_ParseCookies->size() == nLineCount);
           // must be reinitialized to invalid value (DWORD) - 1
-          for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
-            m_ParseCookies->SetAt(i, -1);
+          for (int i = nLineIndex; i < m_ParseCookies->size(); ++i)
+            (*m_ParseCookies)[i] = -1;
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->GetSize())
@@ -4098,18 +4101,18 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         nLineIndex = 0;         //  Refresh all text
 
       //  All text below this line should be reparsed
-      if (m_ParseCookies->GetSize())
+      if (m_ParseCookies->size())
         {
-          if (m_ParseCookies->GetSize() != nLineCount)
+          if (m_ParseCookies->size() != nLineCount)
             {
-              int oldsize = m_ParseCookies->GetSize(); 
-              m_ParseCookies->SetSize(nLineCount);
+              int oldsize = m_ParseCookies->size(); 
+              m_ParseCookies->resize(nLineCount);
               // must be initialized to invalid value (DWORD) - 1
-              for (int i=oldsize; i<m_ParseCookies->GetSize(); ++i)
-                m_ParseCookies->SetAt(i, -1);
+              for (int i = oldsize; i < m_ParseCookies->size(); ++i)
+                (*m_ParseCookies)[i] = -1;
             }
-          for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
-            m_ParseCookies->SetAt(i, -1);
+          for (int i = nLineIndex; i < m_ParseCookies->size(); ++i)
+            (*m_ParseCookies)[i] = -1;
         }
 
       //  Recalculate actual length for all lines below this

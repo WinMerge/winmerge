@@ -38,6 +38,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
+#include <vector>
 #include "crystalparser.h"
 
 ////////////////////////////////////////////////////////////////////////////
@@ -156,7 +157,7 @@ private:
     It would be a loss of time to recompute all these values after each action.
     So we just set all these values to invalid code (DWORD) - 1.
     */
-    CArray<DWORD, DWORD> *m_ParseCookies;
+    std::vector<DWORD> *m_ParseCookies;
     DWORD GetParseCookie (int nLineIndex);
 
     /**
