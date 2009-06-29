@@ -1635,8 +1635,8 @@ void CMergeDoc::PrimeTextBuffers()
 	UINT lcount1new = lcount1 + RightExtras;
 // this ASSERT may be false because of empty last line (see function's note)
 //	ASSERT(lcount0new == lcount1new);
-	m_ptBuf[0]->m_aLines.SetSize(lcount0new);
-	m_ptBuf[1]->m_aLines.SetSize(lcount1new);
+	m_ptBuf[0]->m_aLines.resize(lcount0new);
+	m_ptBuf[1]->m_aLines.resize(lcount1new);
 
 	// walk the diff list backward, move existing lines to proper place,
 	// add ghost lines, and set flags

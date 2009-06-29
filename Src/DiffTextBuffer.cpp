@@ -320,7 +320,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
-	ASSERT(m_aLines.GetSize() == 0);
+	ASSERT(m_aLines.size() == 0);
 
 	// Unpacking the file here, save the result in a temporary file
 	String sFileName(pszFileNameInit);
@@ -391,7 +391,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 		// Manually grow line array exponentially
 		UINT arraysize = 500;
-		m_aLines.SetSize(arraysize);
+		m_aLines.resize(arraysize);
 		
 		// preveol must be initialized for empty files
 		preveol = _T("\n");
@@ -415,7 +415,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 					arraysize *= 2;
 				else
 					arraysize += 100 * 1024;
-				m_aLines.SetSize(arraysize);
+				m_aLines.resize(arraysize);
 			}
 
 			sline += eol; // TODO: opportunity for optimization, as CString append is terrible
@@ -458,7 +458,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 #endif // _DEBUG
 
 		// fix array size (due to our manual exponential growth
-		m_aLines.SetSize(lineno);
+		m_aLines.resize(lineno);
 	
 		
 		//Try to determine current CRLF mode (most frequent)
@@ -471,7 +471,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		
 		//  At least one empty line must present
 		// (view does not work for empty buffers)
-		ASSERT(m_aLines.GetSize() > 0);
+		ASSERT(m_aLines.size() > 0);
 		
 		m_bInit = TRUE;
 		m_bModified = FALSE;
@@ -592,7 +592,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	// line loop : get each real line and write it in the file
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
-	int nLineCount = m_aLines.GetSize();
+	int nLineCount = m_aLines.size();
 	for (int line = 0; line < nLineCount; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)

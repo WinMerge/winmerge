@@ -198,10 +198,11 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
 
   // nPosition not defined ? Insert at end of array
   if (nPosition == -1)
-    nPosition = (int) m_aLines.GetSize();
+    nPosition = (int) m_aLines.size();
 
   // insert all lines in one pass
-  m_aLines.InsertAt (nPosition, li, nCount);
+  vector<LineInfo>::iterator iter = m_aLines.begin() + nPosition;
+  m_aLines.insert(iter, nCount, li);
 
   // duplicate the text data for lines after the first one
   for (int ic = 1; ic < nCount; ic++) 
@@ -212,7 +213,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
 #ifdef _DEBUG
   // Warning : this function is also used during rescan
   // and this trace will appear even after the initial load
-  int nLines = (int) m_aLines.GetSize ();
+  int nLines = (int) m_aLines.size();
   if (nLines / 5000 != (nLines-nCount) / 5000)
     TRACE1 ("%d lines loaded!\n", nLines);
 #endif
@@ -284,12 +285,13 @@ void CCrystalTextBuffer::
 FreeAll ()
 {
   //  Free text
-  const int nCount = (int) m_aLines.GetSize ();
-  for (int I = 0; I < nCount; I++)
+  vector<LineInfo>::iterator iter = m_aLines.begin();
+  while (iter != m_aLines.end())
     {
-      m_aLines[I].Clear();
+      (*iter).Clear();
+      iter++;
     }
-  m_aLines.RemoveAll ();
+  m_aLines.clear();
 
   // Undo buffer will be cleared by its destructor
 
@@ -303,7 +305,7 @@ BOOL CCrystalTextBuffer::
 InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
 {
   ASSERT (!m_bInit);
-  ASSERT (m_aLines.GetSize () == 0);
+  ASSERT (m_aLines.size() == 0);
   ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
   InsertLine (_T (""), 0);
   m_bInit = TRUE;
@@ -355,7 +357,7 @@ BOOL CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
   ASSERT (!m_bInit);
-  ASSERT (m_aLines.GetSize () == 0);
+  ASSERT (m_aLines.size() == 0);
 
   HANDLE hFile = NULL;
   int nCurrentMax = 256;
@@ -422,7 +424,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
       m_nCRLFMode = nCrlfStyle;
 
-      m_aLines.SetSize (0, 4096);
+      m_aLines.setsize(4096);
 
       DWORD dwBufPtr = 0;
       while (dwBufPtr < dwCurSize)
@@ -474,7 +476,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       pcLineBuf[nCurrentLength] = 0;
       InsertLine (pcLineBuf);
 
-      ASSERT (m_aLines.GetSize () > 0);   //  At least one empty line must present
+      ASSERT (m_aLines.size() > 0);   //  At least one empty line must present
 
       m_bInit = TRUE;
       m_bReadOnly = (dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0;
@@ -545,7 +547,7 @@ BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
           LPCTSTR pszCRLF = crlfs[nCrlfStyle];
           int nCRLFLength = _tcslen (pszCRLF);
 
-          int nLineCount = m_aLines.GetSize ();
+          int nLineCount = m_aLines.size();
           for (int nLine = 0; nLine < nLineCount; nLine++)
             {
               int nLength = m_aLines[nLine].m_nLength;
@@ -654,7 +656,7 @@ applyEOLMode()
 	LPCTSTR lpEOLtoApply = GetDefaultEol();
 	BOOL bChanged = FALSE;
 	int i;
-	for (i = 0 ; i < m_aLines.GetSize () ; i++)
+	for (i = 0 ; i < m_aLines.size () ; i++)
 	{
 		// the last real line has no EOL
 		if (!m_aLines[i].HasEol())
@@ -674,7 +676,7 @@ GetLineCount () const
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  return (int) m_aLines.GetSize ();
+  return (int) m_aLines.size ();
 }
 
 // number of characters in line (excluding any trailing eol characters)
@@ -768,7 +770,7 @@ FlagToIndex (DWORD dwFlag)
 int CCrystalTextBuffer::
 FindLineWithFlag (DWORD dwFlag)
 {
-  int nSize = (int) m_aLines.GetSize ();
+  int nSize = (int) m_aLines.size ();
   for (int L = 0; L < nSize; L++)
     {
       if ((m_aLines[L].m_dwFlags & dwFlag) != 0)
@@ -870,9 +872,9 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  ASSERT (nStartLine >= 0 && nStartLine < m_aLines.GetSize ());
+  ASSERT (nStartLine >= 0 && nStartLine < m_aLines.size ());
   ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].Length());
-  ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
+  ASSERT (nEndLine >= 0 && nEndLine < m_aLines.size ());
   ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].Length());
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
   // some edit functions (copy...) should do nothing when there is no selection.
@@ -996,9 +998,9 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  ASSERT (nStartLine >= 0 && nStartLine < m_aLines.GetSize ());
+  ASSERT (nStartLine >= 0 && nStartLine < m_aLines.size ());
   ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].Length());
-  ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
+  ASSERT (nEndLine >= 0 && nEndLine < m_aLines.size ());
   ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].Length());
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
   // some edit functions (delete...) should do nothing when there is no selection.
@@ -1030,7 +1032,9 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
         m_aLines[L].Clear();
-      m_aLines.RemoveAt (nStartLine + 1, nDelCount);
+      vector<LineInfo>::iterator iterBegin = m_aLines.begin() + nStartLine + 1;
+      vector<LineInfo>::iterator iterEnd = iterBegin + nDelCount;
+      m_aLines.erase(iterBegin, iterEnd);
 
       //  nEndLine is no more valid
       m_aLines[nStartLine].DeleteEnd(nStartChar);
@@ -1095,7 +1099,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-  ASSERT (nLine >= 0 && nLine < m_aLines.GetSize ());
+  ASSERT (nLine >= 0 && nLine < m_aLines.size ());
   ASSERT (nPos >= 0 && nPos <= m_aLines[nLine].Length());
   if (m_bReadOnly)
     return FALSE;
@@ -1366,9 +1370,9 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           // we need to put the cursor before the deleted section
           CString text;
 
-          if ((apparent_ptStartPos.y < m_aLines.GetSize ()) &&
+          if ((apparent_ptStartPos.y < m_aLines.size()) &&
               (apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
-              (apparent_ptEndPos.y < m_aLines.GetSize ()) &&
+              (apparent_ptEndPos.y < m_aLines.size()) &&
               (apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
             {
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
@@ -1774,7 +1778,7 @@ FindNextBookmarkLine (int nCurrentLine)
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine++;
 
-  int nSize = (int) m_aLines.GetSize ();
+  int nSize = (int) m_aLines.size ();
   for (;;)
     {
       while (nCurrentLine < nSize)
@@ -1803,7 +1807,7 @@ FindPrevBookmarkLine (int nCurrentLine)
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine--;
 
-  int nSize = (int) m_aLines.GetSize ();
+  int nSize = (int) m_aLines.size ();
   for (;;)
     {
       while (nCurrentLine >= 0)
@@ -1877,7 +1881,9 @@ void CCrystalTextBuffer::DeleteLine(int line, int nCount /*=1*/)
 {
   for (int ic = 0; ic < nCount; ic++)
     m_aLines[line + ic].Clear();
-  m_aLines.RemoveAt(line, nCount);
+  vector<LineInfo>::iterator iterBegin = m_aLines.begin() + line;
+  vector<LineInfo>::iterator iterEnd = iterBegin + nCount;
+  m_aLines.erase(iterBegin, iterEnd);
 }
 
 int CCrystalTextBuffer::GetTabSize()

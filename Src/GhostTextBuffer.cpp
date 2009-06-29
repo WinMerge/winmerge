@@ -86,7 +86,7 @@ BOOL CGhostTextBuffer::InternalInsertGhostLine (CCrystalTextView * pSource,
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
 	//  You must call InitNew() or LoadFromFile() first!
 
-	ASSERT (nLine >= 0 && nLine <= m_aLines.GetSize ());
+	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
 	if (m_bReadOnly)
 		return FALSE;
 
@@ -120,7 +120,7 @@ BOOL CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 {
 	ASSERT (m_bInit);             //  Text buffer not yet initialized.
 	//  You must call InitNew() or LoadFromFile() first!
-	ASSERT (nLine >= 0 && nLine <= m_aLines.GetSize ());
+	ASSERT (nLine >= 0 && nLine <= m_aLines.size ());
 
 	if (m_bReadOnly)
 		return FALSE;
@@ -138,7 +138,10 @@ BOOL CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 		ASSERT (GetLineFlags(i) & LF_GHOST);
 		m_aLines[i].Clear();
 	}
-	m_aLines.RemoveAt (nLine, nCount);
+
+	vector<LineInfo>::iterator iterBegin = m_aLines.begin() + nLine;
+	vector<LineInfo>::iterator iterEnd = iterBegin + nCount;
+	m_aLines.erase(iterBegin, iterEnd);
 
 	if (pSource != NULL)
 	{
@@ -178,7 +181,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  int nEndLine, int nEndChar, 
                  CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
-	int lines = (int) m_aLines.GetSize();
+	int lines = (int) m_aLines.size();
 	ASSERT(nStartLine >= 0 && nStartLine < lines);
 	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
 	ASSERT(nEndLine >= 0 && nEndLine < lines);
@@ -278,7 +281,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 		if (ur.m_ptStartPos_nGhost > 0)
 			// if we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptStartPos.y >= m_aLines.GetSize() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
+			if (apparent_ptStartPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
 			{
 				// if we don't find it, we insert it 
 				InsertGhostLine (pSource, apparent_ptStartPos.y);
@@ -289,7 +292,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		// EndPos defined only for UNDO_INSERT (when we delete)
 		if (ur.m_dwFlags & UNDO_INSERT && ur.m_ptEndPos_nGhost > 0)
 			// if we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptEndPos.y >= m_aLines.GetSize() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
+			if (apparent_ptEndPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
 			{
 				// if we don't find it, we insert it
 				InsertGhostLine (pSource, apparent_ptEndPos.y);
@@ -309,9 +312,9 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			// flags are going to be deleted so we store them now
 			int bLastLineGhost = ((GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) != 0);
 
-			if ((apparent_ptStartPos.y < m_aLines.GetSize ()) &&
+			if ((apparent_ptStartPos.y < m_aLines.size ()) &&
 					(apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
-					(apparent_ptEndPos.y < m_aLines.GetSize ()) &&
+					(apparent_ptEndPos.y < m_aLines.size ()) &&
 					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
 			{
 				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
@@ -454,7 +457,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 		if (ur.m_redo_ptStartPos_nGhost > 0) 
 			// we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptStartPos.y >= m_aLines.GetSize() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
+			if (apparent_ptStartPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptStartPos.y) & LF_GHOST) == 0)
 			{
 				// if we don't find it, we insert it 
 				InsertGhostLine (pSource, apparent_ptStartPos.y);
@@ -465,7 +468,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		// EndPos defined only for UNDO_DELETE (when we delete)
 		if ((ur.m_dwFlags & UNDO_INSERT) == 0 && ur.m_redo_ptEndPos_nGhost > 0)
 			// we need a ghost line at position apparent_ptStartPos.y
-			if (apparent_ptEndPos.y >= m_aLines.GetSize() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
+			if (apparent_ptEndPos.y >= m_aLines.size() || (GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) == 0)
 			{
 				// if we don't find it, we insert it
 				InsertGhostLine (pSource, apparent_ptEndPos.y);
@@ -865,7 +868,7 @@ void CGhostTextBuffer::RemoveAllGhostLines()
 	}
 
 	// Discard unused entries in one shot
-	m_aLines.SetSize(newnl);
+	m_aLines.resize(newnl);
 	RecomputeRealityMapping();
 }
 
