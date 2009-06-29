@@ -1211,13 +1211,11 @@ GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 DWORD CCrystalTextView::
 GetParseCookie (int nLineIndex)
 {
-  int nLineCount = GetLineCount ();
-  if (!m_ParseCookies->size())
+  const int nLineCount = GetLineCount ();
+  if (m_ParseCookies->size() == 0)
     {
-      m_ParseCookies->resize(nLineCount);
       // must be initialized to invalid value (DWORD) -1
-      for (int i=0; i<nLineCount; ++i)
-        (*m_ParseCookies)[i] = -1;
+      m_ParseCookies->assign(nLineCount, -1);
     }
 
   if (nLineIndex < 0)
@@ -4071,11 +4069,12 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      if (m_ParseCookies->size())
+      const int cookiesSize = m_ParseCookies->size();
+      if (cookiesSize > 0)
         {
-          ASSERT (m_ParseCookies->size() == nLineCount);
+          ASSERT (cookiesSize == nLineCount);
           // must be reinitialized to invalid value (DWORD) - 1
-          for (int i = nLineIndex; i < m_ParseCookies->size(); ++i)
+          for (int i = nLineIndex; i < cookiesSize; ++i)
             (*m_ParseCookies)[i] = -1;
         }
       //  This line'th actual length must be recalculated
@@ -4103,15 +4102,17 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       //  All text below this line should be reparsed
       if (m_ParseCookies->size())
         {
-          if (m_ParseCookies->size() != nLineCount)
+          int arrSize = m_ParseCookies->size();
+          if (arrSize != nLineCount)
             {
-              int oldsize = m_ParseCookies->size(); 
+              int oldsize = arrSize; 
               m_ParseCookies->resize(nLineCount);
+              arrSize = nLineCount;
               // must be initialized to invalid value (DWORD) - 1
-              for (int i = oldsize; i < m_ParseCookies->size(); ++i)
+              for (int i = oldsize; i < arrSize; ++i)
                 (*m_ParseCookies)[i] = -1;
             }
-          for (int i = nLineIndex; i < m_ParseCookies->size(); ++i)
+          for (int i = nLineIndex; i < arrSize; ++i)
             (*m_ParseCookies)[i] = -1;
         }
 
