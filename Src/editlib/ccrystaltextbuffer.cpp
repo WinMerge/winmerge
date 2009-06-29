@@ -286,10 +286,11 @@ FreeAll ()
 {
   //  Free text
   vector<LineInfo>::iterator iter = m_aLines.begin();
-  while (iter != m_aLines.end())
+  vector<LineInfo>::iterator end = m_aLines.end();
+  while (iter != end)
     {
       (*iter).Clear();
-      iter++;
+      ++iter;
     }
   m_aLines.clear();
 
@@ -655,8 +656,8 @@ applyEOLMode()
 {
 	LPCTSTR lpEOLtoApply = GetDefaultEol();
 	BOOL bChanged = FALSE;
-	int i;
-	for (i = 0 ; i < m_aLines.size () ; i++)
+	const int size = m_aLines.size();
+	for (int i = 0 ; i < size; i++)
 	{
 		// the last real line has no EOL
 		if (!m_aLines[i].HasEol())
@@ -770,11 +771,11 @@ FlagToIndex (DWORD dwFlag)
 int CCrystalTextBuffer::
 FindLineWithFlag (DWORD dwFlag)
 {
-  int nSize = (int) m_aLines.size ();
-  for (int L = 0; L < nSize; L++)
+  const size_t nSize = m_aLines.size();
+  for (size_t L = 0; L < nSize; L++)
     {
       if ((m_aLines[L].m_dwFlags & dwFlag) != 0)
-        return L;
+        return (int) L;
     }
   return -1;
 }
@@ -895,22 +896,24 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
 
   LPTSTR pszBuf = text.GetBuffer (nBufSize);
 
+  const LineInfo &startLine = m_aLines[nStartLine];
   if (nStartLine < nEndLine)
     {
-      int nCount = m_aLines[nStartLine].Length() - nStartChar;
+      int nCount = startLine.Length() - nStartChar;
       if (nCount > 0)
         {
-          memcpy (pszBuf, m_aLines[nStartLine].GetLine(nStartChar), sizeof (TCHAR) * nCount);
+          memcpy (pszBuf, startLine.GetLine(nStartChar), sizeof (TCHAR) * nCount);
           pszBuf += nCount;
         }
       memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
       pszBuf += nCRLFLength;
       for (int I = nStartLine + 1; I < nEndLine; I++)
         {
-          nCount = m_aLines[I].Length();
+          const LineInfo &li = m_aLines[I];
+          nCount = li.Length();
           if (nCount > 0)
             {
-              memcpy (pszBuf, m_aLines[I].GetLine(), sizeof (TCHAR) * nCount);
+              memcpy (pszBuf, li.GetLine(), sizeof (TCHAR) * nCount);
               pszBuf += nCount;
             }
           memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
@@ -925,7 +928,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
   else
     {
       int nCount = nEndChar - nStartChar;
-      memcpy (pszBuf, m_aLines[nStartLine].GetLine(nStartChar), sizeof (TCHAR) * nCount);
+      memcpy (pszBuf, startLine.GetLine(nStartChar), sizeof (TCHAR) * nCount);
       pszBuf += nCount;
     }
   text.ReleaseBuffer (pszBuf - text);
@@ -1017,8 +1020,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   if (nStartLine == nEndLine)
     {
       // delete part of one line
-      LineInfo & li = m_aLines[nStartLine];
-      li.Delete(nStartChar, nEndChar);
+      m_aLines[nStartLine].Delete(nStartChar, nEndChar);
 
       if (pSource!=NULL)
         UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nStartLine);
@@ -1026,10 +1028,10 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   else
     {
       // delete multiple lines
-      int nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
+      const int nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
       CString sTail(m_aLines[nEndLine].GetLine(nEndChar), nRestCount);
 
-      int nDelCount = nEndLine - nStartLine;
+      const int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
         m_aLines[L].Clear();
       vector<LineInfo>::iterator iterBegin = m_aLines.begin() + nStartLine + 1;
@@ -1066,7 +1068,7 @@ StripTail (int i, int bytes)
   // Must at least take off the EOL characters
   ASSERT(bytes >= li.FullLength() - li.Length());
 
-  int offset = li.FullLength()-bytes;
+  const int offset = li.FullLength() - bytes;
   // Must not take off more than exist
   ASSERT(offset >= 0);
 
@@ -1370,9 +1372,10 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           // we need to put the cursor before the deleted section
           CString text;
 
-          if ((apparent_ptStartPos.y < m_aLines.size()) &&
+          const size_t size = m_aLines.size();
+          if ((apparent_ptStartPos.y < size) &&
               (apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
-              (apparent_ptEndPos.y < m_aLines.size()) &&
+              (apparent_ptEndPos.y < size) &&
               (apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
             {
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
@@ -1576,8 +1579,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
   // update line revision numbers of modified lines
   m_dwCurrentRevisionNumber++;
-  int i;
-  for (i = nLine ; i < nEndLine; i++)
+  for (int i = nLine ; i < nEndLine; i++)
     m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
   if (nPos != 0 || nEndChar != 0)
     m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
@@ -1778,7 +1780,7 @@ FindNextBookmarkLine (int nCurrentLine)
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine++;
 
-  int nSize = (int) m_aLines.size ();
+  const size_t nSize = m_aLines.size ();
   for (;;)
     {
       while (nCurrentLine < nSize)
@@ -1807,7 +1809,7 @@ FindPrevBookmarkLine (int nCurrentLine)
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine--;
 
-  int nSize = (int) m_aLines.size ();
+  const size_t nSize = m_aLines.size ();
   for (;;)
     {
       while (nCurrentLine >= 0)

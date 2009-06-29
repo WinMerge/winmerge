@@ -592,7 +592,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	// line loop : get each real line and write it in the file
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
-	int nLineCount = m_aLines.size();
+	const size_t nLineCount = m_aLines.size();
 	for (int line = 0; line < nLineCount; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)

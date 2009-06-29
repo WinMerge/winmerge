@@ -181,7 +181,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  int nEndLine, int nEndChar, 
                  CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
-	int lines = (int) m_aLines.size();
+	const size_t lines = m_aLines.size();
 	ASSERT(nStartLine >= 0 && nStartLine < lines);
 	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
 	ASSERT(nEndLine >= 0 && nEndLine < lines);
@@ -312,9 +312,10 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			// flags are going to be deleted so we store them now
 			int bLastLineGhost = ((GetLineFlags(apparent_ptEndPos.y) & LF_GHOST) != 0);
 
-			if ((apparent_ptStartPos.y < m_aLines.size ()) &&
+			const size_t size = m_aLines.size();
+			if ((apparent_ptStartPos.y < size) &&
 					(apparent_ptStartPos.x <= m_aLines[apparent_ptStartPos.y].Length()) &&
-					(apparent_ptEndPos.y < m_aLines.size ()) &&
+					(apparent_ptEndPos.y < size) &&
 					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
 			{
 				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
@@ -412,8 +413,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		}
 
 		// restore line revision numbers
-		int i, naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
-		for (i = 0; i < naSavedRevisonNumbersSize; i++)
+		int naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
+		for (int i = 0; i < naSavedRevisonNumbersSize; i++)
 			m_aLines[apparent_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
 
 		m_aUndoBuf[tmpPos] = ur;
@@ -1168,8 +1169,7 @@ void CGhostTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, 
 			nStartLine = nRealBeforeStart;
 	}
 	int bLastRealLine = (ApparentLastRealLine() <= nEndLine);
-	int i;
-	for (i = nEndLine ; i >= nStartLine ; i --)
+	for (int i = nEndLine ; i >= nStartLine ; i --)
 	{
 		if ((GetLineFlags(i) & LF_GHOST) == 0)
 		{
