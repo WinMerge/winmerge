@@ -664,10 +664,7 @@ GetLineActualLength (int nLineIndex)
   ASSERT (nLineIndex >= 0 && nLineIndex < nLineCount);
   if (!m_pnActualLineLength->size())
     {
-      m_pnActualLineLength->resize(nLineCount);
-      // must be initialized to invalid code -1
-      for (int i=0; i<nLineCount; ++i)
-        (*m_pnActualLineLength)[i] = -1;
+      m_pnActualLineLength->assign(nLineCount, -1);
     }
 
   if ((*m_pnActualLineLength)[nLineIndex] != - 1)
@@ -4102,33 +4099,35 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       //  All text below this line should be reparsed
       if (m_ParseCookies->size())
         {
-          int arrSize = m_ParseCookies->size();
+          size_t arrSize = m_ParseCookies->size();
           if (arrSize != nLineCount)
             {
-              int oldsize = arrSize; 
+              size_t oldsize = arrSize; 
               m_ParseCookies->resize(nLineCount);
               arrSize = nLineCount;
               // must be initialized to invalid value (DWORD) - 1
-              for (int i = oldsize; i < arrSize; ++i)
+              for (size_t i = oldsize; i < arrSize; ++i)
                 (*m_ParseCookies)[i] = -1;
             }
-          for (int i = nLineIndex; i < arrSize; ++i)
+          for (size_t i = nLineIndex; i < arrSize; ++i)
             (*m_ParseCookies)[i] = -1;
         }
 
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength->size())
         {
-          if (m_pnActualLineLength->size() != nLineCount)
+			size_t arrsize = m_pnActualLineLength->size();
+			if (arrsize != nLineCount)
             {
               //  Reallocate actual length array
-              int oldsize = m_pnActualLineLength->size(); 
+              size_t oldsize = arrsize; 
               m_pnActualLineLength->resize(nLineCount);
+			  arrsize = nLineCount;
               // must be initialized to invalid code -1
-              for (int i = oldsize; i < m_pnActualLineLength->size(); ++i)
+              for (size_t i = oldsize; i < arrsize; ++i)
                 (*m_pnActualLineLength)[i] = -1;
             }
-          for (int i = nLineIndex; i < m_pnActualLineLength->size(); ++i)
+          for (size_t i = nLineIndex; i < arrsize; ++i)
             (*m_pnActualLineLength)[i] = -1;
         }
     //BEGIN SW
