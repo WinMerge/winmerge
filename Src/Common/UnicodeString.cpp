@@ -91,14 +91,17 @@ String string_trim_ws(const String & str)
 
 	String result(str);
 	String::iterator it = result.begin();
-	while (_istspace(*it))
+	while (it != result.end() && _istspace(*it))
 		++it;
 	
 	if (it != result.begin())
 		result.erase(result.begin(), it);
 
+	if (result.empty())
+		return result;
+
 	it = result.end() - 1;
-	while (_istspace(*it))
+	while (it != result.begin() &&_istspace(*it))
 		--it;
 
 	if (it != result.end() - 1)
