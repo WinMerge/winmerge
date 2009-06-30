@@ -526,7 +526,7 @@ CCrystalTextView::CCrystalTextView ()
   ASSERT( m_pstrIncrementalSearchStringOld );
   //END SW
   m_ParseCookies = new vector<DWORD>;
-  m_pnActualLineLength = new CArray<int, int>;
+  m_pnActualLineLength = new vector<int>;
   ResetView ();
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
@@ -662,16 +662,16 @@ GetLineActualLength (int nLineIndex)
   const int nLineCount = GetLineCount ();
   ASSERT (nLineCount > 0);
   ASSERT (nLineIndex >= 0 && nLineIndex < nLineCount);
-  if (!m_pnActualLineLength->GetSize())
+  if (!m_pnActualLineLength->size())
     {
-      m_pnActualLineLength->SetSize(nLineCount);
+      m_pnActualLineLength->resize(nLineCount);
       // must be initialized to invalid code -1
       for (int i=0; i<nLineCount; ++i)
-        m_pnActualLineLength->SetAt(i, - 1);
+        (*m_pnActualLineLength)[i] = -1;
     }
 
-  if (m_pnActualLineLength->GetAt(nLineIndex) != - 1)
-    return m_pnActualLineLength->GetAt(nLineIndex);
+  if ((*m_pnActualLineLength)[nLineIndex] != - 1)
+      return (*m_pnActualLineLength)[nLineIndex];
 
   //  Actual line length is not determined yet, let's calculate a little
   int nActualLength = 0;
@@ -693,7 +693,7 @@ GetLineActualLength (int nLineIndex)
         }
     }
 
-  m_pnActualLineLength->SetAt(nLineIndex, nActualLength);
+  (*m_pnActualLineLength)[nLineIndex] = nActualLength;
   return nActualLength;
 }
 
@@ -2077,8 +2077,8 @@ OnDraw (CDC * pdc)
   // are defined, check they are in phase with the text buffer
   if (m_ParseCookies->size())
     ASSERT(m_ParseCookies->size() == nLineCount);
-  if (m_pnActualLineLength->GetSize())
-    ASSERT(m_pnActualLineLength->GetSize() == nLineCount);
+  if (m_pnActualLineLength->size())
+    ASSERT(m_pnActualLineLength->size() == nLineCount);
 
   CDC cacheDC;
   VERIFY (cacheDC.CreateCompatibleDC (pdc));
@@ -2184,7 +2184,7 @@ ResetView ()
     }
   InvalidateLineCache( 0, -1 );
   m_ParseCookies->clear();
-  m_pnActualLineLength->RemoveAll();
+  m_pnActualLineLength->clear();
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
   m_ptSelStart = m_ptSelEnd = m_ptCursorPos;
@@ -2274,7 +2274,7 @@ SetTabSize (int nTabSize)
     {
       m_pTextBuffer->SetTabSize( nTabSize );
 
-      m_pnActualLineLength->RemoveAll();
+      m_pnActualLineLength->clear();
       m_nMaxLineLength = -1;
       RecalcHorzScrollBar ();
       Invalidate ();
@@ -4078,11 +4078,11 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
             (*m_ParseCookies)[i] = -1;
         }
       //  This line'th actual length must be recalculated
-      if (m_pnActualLineLength->GetSize())
+      if (m_pnActualLineLength->size())
         {
-          ASSERT (m_pnActualLineLength->GetSize() == nLineCount);
+          ASSERT (m_pnActualLineLength->size() == nLineCount);
           // must be initialized to invalid code -1
-          m_pnActualLineLength->SetAt(nLineIndex, - 1);
+          (*m_pnActualLineLength)[nLineIndex] = -1;
       //BEGIN SW
       InvalidateLineCache( nLineIndex, nLineIndex );
       //END SW
@@ -4117,19 +4117,19 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         }
 
       //  Recalculate actual length for all lines below this
-      if (m_pnActualLineLength->GetSize())
+      if (m_pnActualLineLength->size())
         {
-          if (m_pnActualLineLength->GetSize() != nLineCount)
+          if (m_pnActualLineLength->size() != nLineCount)
             {
               //  Reallocate actual length array
-              int oldsize = m_pnActualLineLength->GetSize(); 
-              m_pnActualLineLength->SetSize(nLineCount);
+              int oldsize = m_pnActualLineLength->size(); 
+              m_pnActualLineLength->resize(nLineCount);
               // must be initialized to invalid code -1
-              for (int i=oldsize; i<m_pnActualLineLength->GetSize(); ++i)
-                m_pnActualLineLength->SetAt(i, -1);
+              for (int i = oldsize; i < m_pnActualLineLength->size(); ++i)
+                (*m_pnActualLineLength)[i] = -1;
             }
-          for (int i=nLineIndex; i<m_pnActualLineLength->GetSize(); ++i)
-            m_pnActualLineLength->SetAt(i, -1);
+          for (int i = nLineIndex; i < m_pnActualLineLength->size(); ++i)
+            (*m_pnActualLineLength)[i] = -1;
         }
     //BEGIN SW
     InvalidateLineCache( nLineIndex, -1 );

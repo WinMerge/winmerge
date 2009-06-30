@@ -166,7 +166,7 @@ private:
     and must be initialized to - 1, code for invalid values (not yet computed).
     for the same reason.
     */
-    CArray<int, int> *m_pnActualLineLength;
+    std::vector<int> *m_pnActualLineLength;
 
 protected:
     BOOL m_bPreparingToDrag;
