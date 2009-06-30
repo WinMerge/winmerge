@@ -125,6 +125,9 @@
 				RelativePath=".\FileVersion_test.cpp">
 			</File>
 			<File
+				RelativePath=".\test_main.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
 			</File>
 		</Filter>
