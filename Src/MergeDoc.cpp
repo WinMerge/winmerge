@@ -775,9 +775,8 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	// Note we don't care about m_nDiffs count to become zero,
 	// because we don't rescan() so it does not change
 
-	SetCurrentDiff(lastDiff);
 	bool bGroupWithPrevious = false;
-	if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
+	if (!ListCopy(srcPane, dstPane, lastDiff, bGroupWithPrevious))
 		return; // sync failure
 
 	// copy from bottom up is more efficient
@@ -785,10 +784,9 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	{
 		if (m_diffList.IsDiffSignificant(i))
 		{
-			SetCurrentDiff(i);
 			// Group merge with previous (merge undo data to one action)
 			bGroupWithPrevious = true;
-			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
+			if (!ListCopy(srcPane, dstPane, i, bGroupWithPrevious))
 				return; // sync failure
 		}
 	}
