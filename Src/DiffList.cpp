@@ -49,15 +49,8 @@ void DIFFRANGE::swap_sides()
  */
 void DiffMap::InitDiffMap(int nlines)
 {
-	m_map.resize(nlines);
-
 	// sentry value so we can check later that we set them all
-	std::vector<int>::iterator iter = m_map.begin();
-	while (iter != m_map.end())
-	{
-		*iter = BAD_MAP_ENTRY;
-		iter++;
-	}
+	m_map.assign(nlines, BAD_MAP_ENTRY);
 }
 
 
@@ -314,7 +307,8 @@ bool DiffList::GetPrevDiff(int nLine, int & nDiff) const
 	if (nDiff == -1)
 	{
 		bInDiff = false;
-		for (int i = (int) m_diffs.size() - 1; i >= 0 ; i--)
+		const int size = (int) m_diffs.size();
+		for (int i = (int) size - 1; i >= 0 ; i--)
 		{
 			if ((int)DiffRangeAt(i)->dend0 <= nLine)
 			{
@@ -378,8 +372,9 @@ bool DiffList::HasSignificantDiffs() const
 int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
+	const int size = (int) m_diffs.size();
 
-	for (int i = (int) m_diffs.size() - 1; i >= 0 ; i--)
+	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
@@ -421,8 +416,10 @@ void DiffList::ConstructSignificantChain()
 	m_firstSignificant = -1;
 	m_lastSignificant = -1;
 	int prev = -1;
+	const int size = (int) m_diffs.size();
+
 	// must be called after diff list is entirely populated
-    for (int i = 0; i < (int) m_diffs.size(); ++i)
+    for (int i = 0; i < size; ++i)
 	{
 		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
 		{
@@ -486,7 +483,8 @@ int DiffList::LastSignificantDiff() const
  */
 const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 {
-	if (m_firstSignificant == -1) return NULL;
+	if (m_firstSignificant == -1)
+		return NULL;
 	return DiffRangeAt(m_firstSignificant);
 }
 
@@ -496,7 +494,8 @@ const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
  */
 const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 {
-	if (m_lastSignificant == -1) return NULL;
+	if (m_lastSignificant == -1)
+		return NULL;
 	return DiffRangeAt(m_lastSignificant);
 }
 
@@ -506,7 +505,8 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 void DiffList::Swap()
 {
 	vector<DiffRangeInfo>::iterator iter = m_diffs.begin();
-	while (iter != m_diffs.end())
+	vector<DiffRangeInfo>::const_iterator iterEnd = m_diffs.end();
+	while (iter != iterEnd)
 	{
 		(*iter).diffrange.swap_sides();
 		++iter;
@@ -522,7 +522,7 @@ void DiffList::GetExtraLinesCounts(int &nLeftLines, int &nRightLines)
 {
 	nLeftLines = 0;
 	nRightLines = 0;
-	int nDiffCount = GetSize();
+	const int nDiffCount = GetSize();
 
 	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
 	{
