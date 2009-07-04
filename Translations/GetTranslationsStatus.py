@@ -35,16 +35,16 @@ import time
 
 class TranslationsStatus(object):
     def __init__(self):
-        self.__projects = []
+        self._projects = []
     
     @property
     def projects(self):
-        return self.__projects
+        return self._projects
     
     @property
     def languages(self):
         temp = []
-        for project in self.__projects: #For all projects...
+        for project in self._projects: #For all projects...
             for language in project.languages: #For all languages...
                 if language not in temp: #If language NOT in list...
                     temp.append(language)
@@ -52,17 +52,17 @@ class TranslationsStatus(object):
         return temp
     
     def clear(self):
-        self.__projects = []
+        self._projects = []
     
     def addProject(self, project):
-        self.__projects.append(project)
+        self._projects.append(project)
     
     def writeToXmlFile(self, xmlpath):
         xmlfile = open(xmlpath, 'w')
         xmlfile.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
         xmlfile.write('<status>\n')
         xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
-        for project in self.__projects: #For all projects...
+        for project in self._projects: #For all projects...
             xmlfile.write('  <translations project="%s">\n' % (project.name))
             for status1 in project.status: #For all status...
                 if status1.template: #If a template file...
@@ -105,7 +105,13 @@ class TranslationsStatus(object):
         xmlfile.write('</status>\n')
         xmlfile.close()
 
-class IProject(object):
+class Project(object):
+    def __getitem__(self, key):
+        for status in self._status: #For all status...
+            if status.language == key:
+                return status
+        return None
+    
     @property
     def name(self):
         return self._name
@@ -122,7 +128,7 @@ class IProject(object):
         temp.sort()
         return temp
 
-class IStatus(object):
+class Status(object):
     @property
     def filepath(self):
         return self._filepath
@@ -169,7 +175,7 @@ class Translator(object):
         self.mail = mail
         self.ismaintainer = ismaintainer
 
-class PoProject(IProject):
+class PoProject(Project):
     def __init__(self, name, potfile, podir):
         self._name = name
         self._status = []
@@ -185,7 +191,7 @@ class PoProject(IProject):
         #POT file...
         self._status.append(PoStatus(os.path.abspath(potfile), True))
 
-class PoStatus(IStatus):
+class PoStatus(Status):
     def __init__(self, filepath, template):
         self._filepath = filepath
         self._template = template
@@ -283,7 +289,7 @@ class PoStatus(IStatus):
         else: #if NOT template...
             return self._porevisiondate
 
-class InnoSetupProject(IProject):
+class InnoSetupProject(Project):
     def __init__(self, name, templatefile, translationsdir):
         self._name = name
         self._status = []
@@ -300,7 +306,7 @@ class InnoSetupProject(IProject):
         #Template file...
         self._status.append(InnoSetupStatus(os.path.abspath(templatefile), True))
 
-class InnoSetupStatus(IStatus):
+class InnoSetupStatus(Status):
     def __init__(self, filepath, template):
         self._filepath = filepath
         self._template = template
@@ -319,7 +325,7 @@ class InnoSetupStatus(IStatus):
             filename = os.path.splitext(self.filename)
             return filename[0].replace('_', '')
 
-class ReadmeProject(IProject):
+class ReadmeProject(Project):
     def __init__(self, name, templatefile, translationsdir):
         self._name = name
         self._status = []
@@ -335,7 +341,7 @@ class ReadmeProject(IProject):
         #Template file...
         self._status.append(ReadmeStatus(os.path.abspath(templatefile), True))
 
-class ReadmeStatus(IStatus):
+class ReadmeStatus(Status):
     def __init__(self, filepath, template):
         self._filepath = filepath
         self._template = template
