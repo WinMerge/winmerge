@@ -104,6 +104,126 @@ class TranslationsStatus(object):
             xmlfile.write('  </translations>\n')
         xmlfile.write('</status>\n')
         xmlfile.close()
+    
+    def writeToHtmlFile(self, htmlpath):
+        htmlfile = open(htmlpath, 'w')
+        
+        htmlfile.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"\n')
+        htmlfile.write('  "http://www.w3.org/TR/html4/loose.dtd">\n')
+        htmlfile.write('<html>\n')
+        htmlfile.write('<head>\n')
+        htmlfile.write('  <title>Translations Status</title>\n')
+        htmlfile.write('  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">\n')
+        htmlfile.write('  <style type="text/css">\n')
+        htmlfile.write('  <!--\n')
+        htmlfile.write('    body {\n')
+        htmlfile.write('      font-family: Verdana,Helvetica,Arial,sans-serif;\n')
+        htmlfile.write('      font-size: small;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    code,pre {\n')
+        htmlfile.write('      font-family: "Courier New",Courier,monospace;\n')
+        htmlfile.write('      font-size: 1em;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    .status {\n')
+        htmlfile.write('      border-collapse: collapse;\n')
+        htmlfile.write('      border: 1px solid #aaaaaa;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    .status th {\n')
+        htmlfile.write('      padding: 3px;\n')
+        htmlfile.write('      background: #f2f2f2;\n')
+        htmlfile.write('      border: 1px solid #aaaaaa;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    .status td {\n')
+        htmlfile.write('      padding: 3px;\n')
+        htmlfile.write('      background: #f9f9f9;\n')
+        htmlfile.write('      border: 1px solid #aaaaaa;\n')
+        htmlfile.write('    }\n')
+        htmlfile.write('    .left { text-align: left; }\n')
+        htmlfile.write('    .center { text-align: center; }\n')
+        htmlfile.write('    .right { text-align: right; }\n')
+        htmlfile.write('  -->\n')
+        htmlfile.write('  </style>\n')
+        htmlfile.write('</head>\n')
+        htmlfile.write('<body>\n')
+        htmlfile.write('<h1>Translations Status</h1>\n')
+        htmlfile.write('<p>Status from <strong>%s</strong>:</p>\n' % (time.strftime('%Y-%m-%d')))
+        for project in self._projects: #For all projects...
+            htmlfile.write('<h2>%s</h2>\n' % (project.name))
+            htmlfile.write('<table class="status">\n')
+            htmlfile.write('  <tr>\n')
+            htmlfile.write('    <th class="left">Language</th>\n')
+            htmlfile.write('    <th class="right">Total</th>\n')
+            htmlfile.write('    <th class="right">Translated</th>\n')
+            htmlfile.write('    <th class="right">Fuzzy</th>\n')
+            htmlfile.write('    <th class="right">Untranslated</th>\n')
+            htmlfile.write('    <th class="center">Last Update</th>\n')
+            htmlfile.write('  </tr>\n')
+            for status1 in project.status: #For all status...
+                htmlfile.write('  <tr>\n')
+                htmlfile.write('    <td class="left">%s</td>\n' % (status1.language))
+                if status1.template: #If a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
+                        htmlfile.write('    <td class="right">0</td>\n')
+                        htmlfile.write('    <td class="right">0</td>\n')
+                    else: #If UNKNOWN status...
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                    htmlfile.write('    <td class="center">%s</td>\n' % (status1.updatedate[0:10]))
+                else: #If NOT a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.translated))
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.fuzzy))
+                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.untranslated))
+                    else: #If UNKNOWN status...
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right">-</td>\n')
+                    htmlfile.write('    <td class="center">%s</td>\n' % (status1.updatedate[0:10]))
+                htmlfile.write('  </tr>\n')
+            htmlfile.write('</table>\n')
+        
+        #Translators...
+        htmlfile.write('<h2>Translators</h2>\n')
+        htmlfile.write('<table class="status">\n')
+        htmlfile.write('  <tr>\n')
+        htmlfile.write('    <th class="left">Language</th>\n')
+        for project in self._projects: #For all projects...
+            htmlfile.write('    <th class="left">%s</th>\n' % project.name)
+        htmlfile.write('  </tr>\n')
+        for language in self.languages: #For all languages...
+            htmlfile.write('  <tr>\n')
+            htmlfile.write('    <td>%s</td>\n' % language)
+            for project in self._projects: #For all projects...
+                status1 = project[language]
+                if status1:
+                    htmlfile.write('    <td>')
+                    if status1.translators: #If translators exists...
+                        for translator in status1.translators: #For all translators...
+                            if (translator.ismaintainer): #If maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    htmlfile.write('<strong title="Maintainer"><a href="mailto:%s">%s</a></strong><br>' % (translator.mail, translator.name))
+                                else: #If NO mail address exists...
+                                    htmlfile.write('<strong title="Maintainer">%s</strong><br>' % (translator.name))
+                            else: #If NOT maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    htmlfile.write('<a href="mailto:%s">%s</a><br>' % (translator.mail, translator.name))
+                                else: #If NO mail address exists...
+                                    htmlfile.write('%s<br>' % (translator.name))
+                    htmlfile.write('</td>\n')
+                else:
+                    htmlfile.write('    <td></td>\n')
+            htmlfile.write('  </tr>\n')
+        htmlfile.write('</table>\n')
+        
+        htmlfile.write('</body>\n')
+        htmlfile.write('</html>\n')
+        htmlfile.close()
 
 class Project(object):
     def __getitem__(self, key):
@@ -367,6 +487,7 @@ def main():
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/Readme.txt', 'Docs/Readme'))
     status.writeToXmlFile('TranslationsStatus.xml')
+    status.writeToHtmlFile('TranslationsStatus.html')
 
 # MAIN #
 if __name__ == "__main__":
