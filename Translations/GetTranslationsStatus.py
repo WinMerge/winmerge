@@ -43,9 +43,21 @@ class TranslationsStatus(object):
     
     @property
     def languages(self):
+        ''' Return a list with all languages '''
         temp = []
         for project in self._projects: #For all projects...
             for language in project.languages: #For all languages...
+                if language not in temp: #If language NOT in list...
+                    temp.append(language)
+        temp.sort()
+        return temp
+    
+    @property
+    def noneTemplateLanguages(self):
+        ''' Return a list with all NONE template languages '''
+        temp = []
+        for project in self._projects: #For all projects...
+            for language in project.noneTemplateLanguages: #For all NONE template languages...
                 if language not in temp: #If language NOT in list...
                     temp.append(language)
         temp.sort()
@@ -196,7 +208,7 @@ class TranslationsStatus(object):
         for project in self._projects: #For all projects...
             htmlfile.write('    <th class="left">%s</th>\n' % project.name)
         htmlfile.write('  </tr>\n')
-        for language in self.languages: #For all languages...
+        for language in self.noneTemplateLanguages: #For all NONE template languages...
             htmlfile.write('  <tr>\n')
             htmlfile.write('    <td>%s</td>\n' % language)
             for project in self._projects: #For all projects...
@@ -242,9 +254,20 @@ class Project(object):
     
     @property
     def languages(self):
+        ''' Return a list with all languages '''
         temp = []
         for status in self._status: #For all status...
             temp.append(status.language)
+        temp.sort()
+        return temp
+    
+    @property
+    def noneTemplateLanguages(self):
+        ''' Return a list with all NONE template languages '''
+        temp = []
+        for status in self._status: #For all status...
+            if not status.template: #If NOT a template...
+                temp.append(status.language)
         temp.sort()
         return temp
 
