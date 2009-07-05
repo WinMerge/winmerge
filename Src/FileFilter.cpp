@@ -20,7 +20,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include <vector>
 #include "pcre.h"
 #include "FileFilter.h"
