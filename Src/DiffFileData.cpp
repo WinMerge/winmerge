@@ -5,11 +5,12 @@
  *
  * @date  Created: 2003-08-22
  */
-// line follows -- this is updated by SVN
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "io.h"
+#include "coretypes.h"
 #include "DiffItem.h"
 #include "FileLocation.h"
 #include "Diff.h"
@@ -32,13 +33,13 @@ static int f_defcp = 0; // default codepage
 DiffFileData::DiffFileData()
 {
 	m_inf = new file_data[2];
-	int i=0;
-	for (i=0; i<2; ++i)
+	int i = 0;
+	for (i = 0; i < 2; ++i)
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	m_used = false;
 	Reset();
 	// Set default codepages
-	for (i=0; i<sizeof(m_FileLocation)/sizeof(m_FileLocation[0]); ++i)
+	for (i = 0; i < countof(m_FileLocation); ++i)
 	{
 		m_FileLocation[i].encoding.SetCodepage(f_defcp);
 	}
@@ -81,7 +82,7 @@ bool DiffFileData::DoOpenFiles()
 {
 	Reset();
 
-	for (int i=0; i<2; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
 		// Actual paths are m_FileLocation[i].filepath
@@ -131,7 +132,7 @@ void DiffFileData::Reset()
 	}
 	// clean up any open file handles, and zero stuff out
 	// open file handles might be leftover from a failure in DiffFileData::OpenFiles
-	for (int i=0; i<2; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		if (m_inf[1].desc == m_inf[0].desc)
 		{
@@ -191,14 +192,16 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const String & filepath, String & filepathTransformed,
+bool DiffFileData::Filepath_Transform(FileLocation & fpenc,
+	const String & filepath, String & filepathTransformed,
 	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
 	if (fpenc.encoding.m_unicoding && fpenc.encoding.m_unicoding != ucr::UCS2LE)
 	{
-		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
+		// second step : normalize Unicode to OLECHAR (most of time, do nothing)
+		// (OLECHAR = UCS-2LE in Windows)
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
 		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite))
 			return false;
@@ -237,7 +240,3 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const String & filep
 	}
 	return true;
 }
-
-
-
-
