@@ -22,7 +22,6 @@
     <Compile Include="Fragments\Docs.wxs"/>
     <Compile Include="Fragments\Filters.wxs"/>
     <Compile Include="Fragments\Languages.wxs"/>
-    <Compile Include="Fragments\Plugins.wxs"/>
     <Compile Include="Fragments\Features.wxs"/>
     <Compile Include="Fragments\WixUI_WinMerge.wxs"/>
   </ItemGroup>

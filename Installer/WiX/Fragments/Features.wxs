@@ -89,22 +89,6 @@
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
       </Feature>
-      <?if not $(var.Platform) = "x64" ?>
-        <Feature Id="Plugins" AllowAdvertise="no" Level="4" Title="Plugins">
-          <ComponentRef Id="editoraddin" />
-          <ComponentRef Id="insertdatetime" />
-          <ComponentRef Id="CompareMSExcelFiles" />
-          <ComponentRef Id="CompareMSWordFiles" />
-          <ComponentRef Id="DisplayXMLFiles" />
-          <ComponentRef Id="IgnoreColumns" />
-          <ComponentRef Id="IgnoreCommentsC" />
-          <ComponentRef Id="IgnoreFieldsComma" />
-          <ComponentRef Id="IgnoreFieldsTab" />
-          <ComponentRef Id="IgnoreLeadingLineNumbers" />
-          <ComponentRef Id="WatchBeginningOfLog" />
-          <ComponentRef Id="WatchEndOfLog" />
-        </Feature>
-      <?endif ?>
       <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 Runtime Components ">
         <MergeRef Id="CRT"/>
       </Feature>
