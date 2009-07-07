@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.12.6
   Translation updates:
   - Dutch (#2804979)
+  - Ukrainian (#2817835)
 
 WinMerge 2.12.4 - 2009-06-09 (r6833)
   Add more C/C++ types to syntax highlight (#2776705)

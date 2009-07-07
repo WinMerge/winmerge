@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-13 23:24+0200\n"
+"PO-Revision-Date: 2009-06-13 00:58+0200\n"
 "Last-Translator: Warrior <warr11r@rambler.ru>\n"
 "Language-Team: Ukrainian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Ukrainian\n"
 "X-Poedit-SourceCharset: CP1251\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../Src/\n"
 "X-Poedit-Country: UKRAINE\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1708,12 +1708,12 @@ msgid "Display Columns"
 msgstr "Відображати стовпчики"
 
 #: Merge.rc:1079
-#, fuzzy, c-format
+#, c-format
 msgid "Move &Up"
 msgstr "&Вгору"
 
 #: Merge.rc:1080
-#, fuzzy, c-format
+#, c-format
 msgid "Move &Down"
 msgstr "В&низ"
 
@@ -2002,8 +2002,8 @@ msgstr "Ві&дхилити зміни"
 
 #: Merge.rc:1258
 #, c-format
-msgid "Discard All"
-msgstr "Скасувати все"
+msgid "Disca&rd All"
+msgstr "Скасу&вати все"
 
 #: Merge.rc:1265
 #: Merge.rc:1513
@@ -2883,7 +2883,7 @@ msgstr ""
 "Вікна каскадом"
 
 #: Merge.rc:1824
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
@@ -2892,7 +2892,7 @@ msgstr ""
 "Вікна черепицею"
 
 #: Merge.rc:1825
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
