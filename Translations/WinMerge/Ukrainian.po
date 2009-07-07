@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-13 23:24+0200\n"
+"PO-Revision-Date: 2009-06-13 00:58+0200\n"
 "Last-Translator: Warrior <warr11r@rambler.ru>\n"
 "Language-Team: Ukrainian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgid "&Goto..."
 msgstr "Перейти до рядка..."
 
 #: Merge.rc:86
-#, fuzzy, c-format
+#, c-format
 msgid "Op&en"
 msgstr "&Відкрити"
 
@@ -292,12 +292,12 @@ msgstr "&Список..."
 #: Merge.rc:152
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "Ручний шаблон розбіжностей"
 
 #: Merge.rc:153
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "Автоматичний шаблон розбіжностей"
 
 #: Merge.rc:155
 #: Merge.rc:276
@@ -1723,12 +1723,12 @@ msgid "Display Columns"
 msgstr "Відображати стовпчики"
 
 #: Merge.rc:1091
-#, fuzzy, c-format
+#, c-format
 msgid "Move &Up"
 msgstr "&Вгору"
 
 #: Merge.rc:1092
-#, fuzzy, c-format
+#, c-format
 msgid "Move &Down"
 msgstr "В&низ"
 
@@ -1953,7 +1953,7 @@ msgstr "За словами:"
 #: Merge.rc:1226
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "Символи, якимми розбиваються слова"
 
 #: Merge.rc:1239
 #, c-format
@@ -2023,7 +2023,7 @@ msgstr "Ві&дхилити зміни"
 #: Merge.rc:1272
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "Скасу&вати все"
 
 #: Merge.rc:1279
 #: Merge.rc:1527
@@ -2903,7 +2903,7 @@ msgstr ""
 "Вікна каскадом"
 
 #: Merge.rc:1838
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
@@ -2912,7 +2912,7 @@ msgstr ""
 "Вікна черепицею"
 
 #: Merge.rc:1839
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
