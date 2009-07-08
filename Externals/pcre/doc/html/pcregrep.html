@@ -78,17 +78,30 @@ Patterns are limited to 8K or BUFSIZ characters, whichever is the greater.
 BUFSIZ is defined in <b>&#60;stdio.h&#62;</b>. When there is more than one pattern
 (specified by the use of <b>-e</b> and/or <b>-f</b>), each pattern is applied to
 each line in the order in which they are defined, except that all the <b>-e</b>
-patterns are tried before the <b>-f</b> patterns. As soon as one pattern matches
-(or fails to match when <b>-v</b> is used), no further patterns are considered.
+patterns are tried before the <b>-f</b> patterns.
 </P>
 <P>
-When <b>--only-matching</b>, <b>--file-offsets</b>, or <b>--line-offsets</b>
-is used, the output is the part of the line that matched (either shown
-literally, or as an offset). In this case, scanning resumes immediately
-following the match, so that further matches on the same line can be found.
-If there are multiple patterns, they are all tried on the remainder of the
-line. However, patterns that follow the one that matched are not tried on the
-earlier part of the line.
+By default, as soon as one pattern matches (or fails to match when <b>-v</b> is
+used), no further patterns are considered. However, if <b>--colour</b> (or
+<b>--color</b>) is used to colour the matching substrings, or if
+<b>--only-matching</b>, <b>--file-offsets</b>, or <b>--line-offsets</b> is used to
+output only the part of the line that matched (either shown literally, or as an
+offset), scanning resumes immediately following the match, so that further
+matches on the same line can be found. If there are multiple patterns, they are
+all tried on the remainder of the line, but patterns that follow the one that
+matched are not tried on the earlier part of the line.
+</P>
+<P>
+This is the same behaviour as GNU grep, but it does mean that the order in
+which multiple patterns are specified can affect the output when one of the
+above options is used.
+</P>
+<P>
+Patterns that can match an empty string are accepted, but empty string
+matches are not recognized. An example is the pattern "(super)?(man)?", in
+which all components are optional. This pattern finds all occurrences of both
+"super" and "man"; the output differs from matching with "super|man" when only
+the matching substrings are being shown.
 </P>
 <P>
 If the <b>LC_ALL</b> or <b>LC_CTYPE</b> environment variable is set,
@@ -149,16 +162,21 @@ equals sign.
 </P>
 <P>
 <b>--colour=</b><i>value</i>, <b>--color=</b><i>value</i>
-This option specifies under what circumstances the part of a line that matched
-a pattern should be coloured in the output. The value may be "never" (the
-default), "always", or "auto". In the latter case, colouring happens only if
-the standard output is connected to a terminal. The colour can be specified by
-setting the environment variable PCREGREP_COLOUR or PCREGREP_COLOR. The value
-of this variable should be a string of two numbers, separated by a semicolon.
-They are copied directly into the control string for setting colour on a
-terminal, so it is your responsibility to ensure that they make sense. If
-neither of the environment variables is set, the default is "1;31", which gives
-red.
+This option specifies under what circumstances the parts of a line that matched
+a pattern should be coloured in the output. By default, the output is not
+coloured. The value (which is optional, see above) may be "never", "always", or
+"auto". In the latter case, colouring happens only if the standard output is
+connected to a terminal. More resources are used when colouring is enabled,
+because <b>pcregrep</b> has to search for all possible matches in a line, not
+just one, in order to colour them all.
+</P>
+<P>
+The colour that is used can be specified by setting the environment variable
+PCREGREP_COLOUR or PCREGREP_COLOR. The value of this variable should be a
+string of two numbers, separated by a semicolon. They are copied directly into
+the control string for setting colour on a terminal, so it is your
+responsibility to ensure that they make sense. If neither of the environment
+variables is set, the default is "1;31", which gives red.
 </P>
 <P>
 <b>-D</b> <i>action</i>, <b>--devices=</b><i>action</i>
@@ -247,17 +265,16 @@ and <b>--only-matching</b>.
 <b>-H</b>, <b>--with-filename</b>
 Force the inclusion of the filename at the start of output lines when searching
 a single file. By default, the filename is not shown in this case. For matching
-lines, the filename is followed by a colon and a space; for context lines, a
-hyphen separator is used. If a line number is also being output, it follows the
-file name without a space.
+lines, the filename is followed by a colon; for context lines, a hyphen
+separator is used. If a line number is also being output, it follows the file
+name.
 </P>
 <P>
 <b>-h</b>, <b>--no-filename</b>
 Suppress the output filenames when searching multiple files. By default,
 filenames are shown when multiple files are searched. For matching lines, the
-filename is followed by a colon and a space; for context lines, a hyphen
-separator is used. If a line number is also being output, it follows the file
-name without a space.
+filename is followed by a colon; for context lines, a hyphen separator is used.
+If a line number is also being output, it follows the file name.
 </P>
 <P>
 <b>--help</b>
@@ -362,9 +379,9 @@ being scanned does not agree with the convention set by this option,
 <P>
 <b>-n</b>, <b>--line-number</b>
 Precede each output line by its line number in the file, followed by a colon
-and a space for matching lines or a hyphen and a space for context lines. If
-the filename is also being output, it precedes the line number. This option is
-forced if <b>--line-offsets</b> is used.
+for matching lines or a hyphen for context lines. If the filename is also being
+output, it precedes the line number. This option is forced if
+<b>--line-offsets</b> is used.
 </P>
 <P>
 <b>-o</b>, <b>--only-matching</b>
@@ -507,9 +524,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC13" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 08 March 2008
+Last updated: 01 March 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

@@ -63,8 +63,15 @@ description of PCRE's regular expressions is intended as reference material.
 The original operation of PCRE was on strings of one-byte characters. However,
 there is now also support for UTF-8 character strings. To use this, you must
 build PCRE to include UTF-8 support, and then call <b>pcre_compile()</b> with
-the PCRE_UTF8 option. How this affects pattern matching is mentioned in several
-places below. There is also a summary of UTF-8 features in the
+the PCRE_UTF8 option. There is also a special sequence that can be given at the
+start of a pattern:
+<pre>
+  (*UTF8)
+</pre>
+Starting a pattern with this sequence is equivalent to setting the PCRE_UTF8
+option. This feature is not Perl-compatible. How setting UTF-8 mode affects
+pattern matching is mentioned in several places below. There is also a summary
+of UTF-8 features in the
 <a href="pcre.html#utf8support">section on UTF-8 support</a>
 in the main
 <a href="pcre.html"><b>pcre</b></a>
@@ -368,7 +375,8 @@ In UTF-8 mode, characters with values greater than 128 never match \d, \s, or
 \w, and always match \D, \S, and \W. This is true even when Unicode
 character property support is available. These sequences retain their original
 meanings from before UTF-8 support was available, mainly for efficiency
-reasons.
+reasons. Note that this also affects \b, because it is defined in terms of \w
+and \W.
 </P>
 <P>
 The sequences \h, \H, \v, and \V are Perl 5.10 features. In contrast to the
@@ -1030,11 +1038,11 @@ changed in the same way as the Perl-compatible options by using the characters
 J, U and X respectively.
 </P>
 <P>
-When an option change occurs at top level (that is, not inside subpattern
-parentheses), the change applies to the remainder of the pattern that follows.
-If the change is placed right at the start of a pattern, PCRE extracts it into
-the global options (and it will therefore show up in data extracted by the
-<b>pcre_fullinfo()</b> function).
+When one of these option changes occurs at top level (that is, not inside
+subpattern parentheses), the change applies to the remainder of the pattern
+that follows. If the change is placed right at the start of a pattern, PCRE
+extracts it into the global options (and it will therefore show up in data
+extracted by the <b>pcre_fullinfo()</b> function).
 </P>
 <P>
 An option change within a subpattern (see below for a description of
@@ -1057,10 +1065,12 @@ behaviour otherwise.
 <P>
 <b>Note:</b> There are other PCRE-specific options that can be set by the
 application when the compile or match functions are called. In some cases the
-pattern can contain special leading sequences to override what the application
-has set or what has been defaulted. Details are given in the section entitled
+pattern can contain special leading sequences such as (*CRLF) to override what
+the application has set or what has been defaulted. Details are given in the
+section entitled
 <a href="#newlineseq">"Newline sequences"</a>
-above.
+above. There is also the (*UTF8) leading sequence that can be used to set UTF-8
+mode; this is equivalent to setting the PCRE_UTF8 option.
 <a name="subpattern"></a></P>
 <br><a name="SEC12" href="#TOC1">SUBPATTERNS</a><br>
 <P>
@@ -1201,6 +1211,11 @@ pattern, the one that corresponds to the lowest number is used. For further
 details of the interfaces for handling named subpatterns, see the
 <a href="pcreapi.html"><b>pcreapi</b></a>
 documentation.
+</P>
+<P>
+<b>Warning:</b> You cannot use different names to distinguish between two
+subpatterns with the same number (see the previous section) because PCRE uses
+only the numbers when matching.
 </P>
 <br><a name="SEC15" href="#TOC1">REPETITION</a><br>
 <P>
@@ -2238,9 +2253,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC28" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 19 April 2008
+Last updated: 11 April 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

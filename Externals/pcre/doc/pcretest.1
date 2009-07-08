@@ -49,6 +49,11 @@ Output a brief summary these options and then exit.
 Behave as if each regex has the \fB/I\fP modifier; information about the
 compiled pattern is given after compilation.
 .TP 10
+\fB-M\fP
+Behave as if each data line contains the \eM escape sequence; this causes
+PCRE to discover the minimum MATCH_LIMIT and MATCH_LIMIT_RECURSION settings by
+calling \fBpcre_exec()\fP repeatedly with different limits.
+.TP 10
 \fB-m\fP
 Output the size of each compiled pattern after it has been compiled. This is
 equivalent to adding \fB/M\fP to each regular expression. For compatibility
@@ -718,6 +723,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 12 April 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 10 March 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

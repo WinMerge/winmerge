@@ -38,7 +38,7 @@ to the \fBconfigure\fP command.
 .SH "UTF-8 SUPPORT"
 .rs
 .sp
-To build PCRE with support for UTF-8 character strings, add
+To build PCRE with support for UTF-8 Unicode character strings, add
 .sp
   --enable-utf8
 .sp
@@ -46,6 +46,12 @@ to the \fBconfigure\fP command. Of itself, this does not make PCRE treat
 strings as UTF-8. As well as compiling PCRE with this option, you also have
 have to set the PCRE_UTF8 option when you call the \fBpcre_compile()\fP
 function.
+.P
+If you set --enable-utf8 when compiling in an EBCDIC environment, PCRE expects
+its input to be either ASCII or UTF-8 (depending on the runtime option). It is
+not possible to support both EBCDIC and UTF-8 codes in the same version of the
+library. Consequently, --enable-utf8 and --enable-ebcdic are mutually
+exclusive.
 .
 .SH "UNICODE CHARACTER PROPERTY SUPPORT"
 .rs
@@ -72,9 +78,9 @@ documentation.
 .SH "CODE VALUE OF NEWLINE"
 .rs
 .sp
-By default, PCRE interprets character 10 (linefeed, LF) as indicating the end
+By default, PCRE interprets the linefeed (LF) character as indicating the end
 of a line. This is the normal newline character on Unix-like systems. You can
-compile PCRE to use character 13 (carriage return, CR) instead, by adding
+compile PCRE to use carriage return (CR) instead, by adding
 .sp
   --enable-newline-is-cr
 .sp
@@ -254,7 +260,8 @@ EBCDIC environment by adding
 .sp
 to the \fBconfigure\fP command. This setting implies
 --enable-rebuild-chartables. You should only use it if you know that you are in
-an EBCDIC environment (for example, an IBM mainframe operating system).
+an EBCDIC environment (for example, an IBM mainframe operating system). The
+--enable-ebcdic option is incompatible with --enable-utf8.
 .
 .SH "PCREGREP OPTIONS FOR COMPRESSED FILE SUPPORT"
 .rs
@@ -322,6 +329,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 13 April 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 17 March 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

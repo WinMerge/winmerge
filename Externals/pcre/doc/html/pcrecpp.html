@@ -118,6 +118,11 @@ If you need more, consider using the more general interface
 <b>pcrecpp::RE::DoMatch</b>. See <b>pcrecpp.h</b> for the signature for
 <b>DoMatch</b>.
 </P>
+<P>
+NOTE: Do not use <b>no_arg</b>, which is used internally to mark the end of a
+list of optional arguments, as a placeholder for missing arguments, as this can
+lead to segfaults.
+</P>
 <br><a name="SEC4" href="#TOC1">QUOTING METACHARACTERS</a><br>
 <P>
 You can use the "QuoteMeta" operation to insert backslashes before all
@@ -358,7 +363,7 @@ Copyright &copy; 2007 Google Inc.
 </P>
 <br><a name="SEC12" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 12 November 2007
+Last updated: 17 March 2009
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

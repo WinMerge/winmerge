@@ -15,11 +15,11 @@
 #                PCRE_SUPPORT_LIBBZ2.
 # 2008-01-20 Brought up to date to include several new features by Christian
 #            Ehrlicher.
-# 2008-01-22 Sheri added options for backward compatibility of library names when
-#            building with minGW:
+# 2008-01-22 Sheri added options for backward compatibility of library names
+#            when building with minGW:
 #            if "ON", NON_STANDARD_LIB_PREFIX causes shared libraries to
-#            be built without "lib" as prefix. (The libraries will be named pcre.dll,
-#            pcreposix.dll and pcrecpp.dll).
+#            be built without "lib" as prefix. (The libraries will be named
+#            pcre.dll, pcreposix.dll and pcrecpp.dll).
 #            if "ON", NON_STANDARD_LIB_SUFFIX causes shared libraries to
 #            be built with suffix of "-0.dll". (The libraries will be named
 #            libpcre-0.dll, libpcreposix-0.dll and libpcrecpp-0.dll - same names
@@ -27,12 +27,20 @@
 # 2008-01-23 PH removed the automatic build of pcredemo.
 # 2008-04-22 PH modified READLINE support so it finds NCURSES when needed.
 # 2008-07-03 PH updated for revised UCP property support (change of files)
+# 2009-03-23 PH applied Steven Van Ingelgem's patch to change the name
+#            CMAKE_BINARY_DIR to PROJECT_BINARY_DIR so that it works when PCRE
+#            is included within another project.
+# 2009-03-23 PH applied a modified version of Steven Van Ingelgem's patches to
+#            add options to stop the building of pcregrep and the tests, and
+#            to disable the final configuration report.
+# 2009-04-11 PH applied Christian Ehrlicher's patch to show compiler flags that
+#            are set by specifying a release type.
 
 PROJECT(PCRE C CXX)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.6)
 
-SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake) # for FindReadline.cmake
+SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake) # for FindReadline.cmake
 
 # external packages
 FIND_PACKAGE( BZip2 )
@@ -105,6 +113,16 @@ SET(PCRE_SUPPORT_UTF8 OFF CACHE BOOL
 SET(PCRE_SUPPORT_BSR_ANYCRLF OFF CACHE BOOL
     "ON=Backslash-R matches only LF CR and CRLF, OFF=Backslash-R matches all Unicode Linebreaks")
 
+OPTION(PCRE_SHOW_REPORT    "Show the final configuration report" ON)
+OPTION(PCRE_BUILD_PCREGREP "Build pcregrep" ON)
+OPTION(PCRE_BUILD_TESTS    "Build the tests" ON)
+
+IF (PCRE_BUILD_TESTS)
+  IF (NOT PCRE_BUILD_PCREGREP)
+    MESSAGE(STATUS "** Building tests requires pcregrep: PCRE_BUILD_PCREGREP forced ON")
+    SET(PCRE_BUILD_PCREGREP ON)
+  ENDIF(NOT PCRE_BUILD_PCREGREP)
+ENDIF(PCRE_BUILD_TESTS)
 
 IF (MINGW)
   OPTION(NON_STANDARD_LIB_PREFIX
@@ -232,24 +250,23 @@ IF(PCRE_NO_RECURSE)
 ENDIF(PCRE_NO_RECURSE)
 
 # Output files
-
 CONFIGURE_FILE(config-cmake.h.in
-               ${CMAKE_BINARY_DIR}/config.h
+               ${PROJECT_BINARY_DIR}/config.h
                @ONLY)
 
 CONFIGURE_FILE(pcre.h.generic
-               ${CMAKE_BINARY_DIR}/pcre.h
+               ${PROJECT_BINARY_DIR}/pcre.h
                COPYONLY)
 
 # What about pcre-config and libpcre.pc?
 
 IF(PCRE_BUILD_PCRECPP)
         CONFIGURE_FILE(pcre_stringpiece.h.in
-                       ${CMAKE_BINARY_DIR}/pcre_stringpiece.h
+                       ${PROJECT_BINARY_DIR}/pcre_stringpiece.h
                        @ONLY)
 
         CONFIGURE_FILE(pcrecpparg.h.in
-                       ${CMAKE_BINARY_DIR}/pcrecpparg.h
+                       ${PROJECT_BINARY_DIR}/pcrecpparg.h
                        @ONLY)
 ENDIF(PCRE_BUILD_PCRECPP)
 
@@ -265,21 +282,21 @@ IF(PCRE_REBUILD_CHARTABLES)
     COMMENT "Generating character tables (pcre_chartables.c) for current locale"
     DEPENDS dftables
     COMMAND ${DFTABLES_EXE}
-    ARGS        ${CMAKE_BINARY_DIR}/pcre_chartables.c
-    OUTPUT      ${CMAKE_BINARY_DIR}/pcre_chartables.c
+    ARGS        ${PROJECT_BINARY_DIR}/pcre_chartables.c
+    OUTPUT      ${PROJECT_BINARY_DIR}/pcre_chartables.c
   )
 ELSE(PCRE_REBUILD_CHARTABLES)
-  CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/pcre_chartables.c.dist
-                    ${CMAKE_BINARY_DIR}/pcre_chartables.c
+  CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/pcre_chartables.c.dist
+                    ${PROJECT_BINARY_DIR}/pcre_chartables.c
                     COPYONLY)
 ENDIF(PCRE_REBUILD_CHARTABLES)
 
 # Source code
 
-SET(PCRE_HEADERS ${CMAKE_BINARY_DIR}/pcre.h)
+SET(PCRE_HEADERS ${PROJECT_BINARY_DIR}/pcre.h)
 
 SET(PCRE_SOURCES
-  ${CMAKE_BINARY_DIR}/pcre_chartables.c
+  ${PROJECT_BINARY_DIR}/pcre_chartables.c
   pcre_compile.c
   pcre_config.c
   pcre_dfa_exec.c
@@ -308,8 +325,8 @@ SET(PCREPOSIX_SOURCES pcreposix.c)
 SET(PCRECPP_HEADERS
   pcrecpp.h
   pcre_scanner.h
-  ${CMAKE_BINARY_DIR}/pcrecpparg.h
-  ${CMAKE_BINARY_DIR}/pcre_stringpiece.h
+  ${PROJECT_BINARY_DIR}/pcrecpparg.h
+  ${PROJECT_BINARY_DIR}/pcre_stringpiece.h
 )
 
 SET(PCRECPP_SOURCES
@@ -333,10 +350,14 @@ IF(WIN32)
   SET(CMAKE_DEBUG_POSTFIX "d")
 ENDIF(WIN32)
 
+SET(targets)
+
 # Libraries
 # pcre
-ADD_LIBRARY(pcre ${PCRE_HEADERS} ${PCRE_SOURCES} ${CMAKE_BINARY_DIR}/config.h)
+ADD_LIBRARY(pcre ${PCRE_HEADERS} ${PCRE_SOURCES} ${PROJECT_BINARY_DIR}/config.h)
+SET(targets ${targets} pcre)
 ADD_LIBRARY(pcreposix ${PCREPOSIX_HEADERS} ${PCREPOSIX_SOURCES})
+SET(targets ${targets} pcreposix)
 TARGET_LINK_LIBRARIES(pcreposix pcre)
 IF(MINGW AND NOT PCRE_STATIC)
   IF(NON_STANDARD_LIB_PREFIX)
@@ -356,6 +377,7 @@ ENDIF(MINGW AND NOT PCRE_STATIC)
 # pcrecpp
 IF(PCRE_BUILD_PCRECPP)
   ADD_LIBRARY(pcrecpp ${PCRECPP_HEADERS} ${PCRECPP_SOURCES})
+SET(targets ${targets} pcrecpp)
   TARGET_LINK_LIBRARIES(pcrecpp pcre)
 
   IF(MINGW AND NOT PCRE_STATIC)
@@ -376,12 +398,6 @@ ENDIF(PCRE_BUILD_PCRECPP)
 
 # Executables
 
-ADD_EXECUTABLE(pcretest pcretest.c)
-TARGET_LINK_LIBRARIES(pcretest pcreposix ${PCRETEST_LIBS})
-
-ADD_EXECUTABLE(pcregrep pcregrep.c)
-TARGET_LINK_LIBRARIES(pcregrep pcreposix ${PCREGREP_LIBS})
-
 # Removed by PH (2008-01-23) because pcredemo shouldn't really be built
 # automatically, and it gave trouble in some environments anyway.
 # ADD_EXECUTABLE(pcredemo pcredemo.c)
@@ -391,84 +407,94 @@ TARGET_LINK_LIBRARIES(pcregrep pcreposix ${PCREGREP_LIBS})
 #         SET_TARGET_PROPERTIES(pcredemo PROPERTIES COMPILE_FLAGS "-DPCRE_STATIC")
 # ENDIF(NOT BUILD_SHARED_LIBS)
 
-IF(PCRE_BUILD_PCRECPP)
-        ADD_EXECUTABLE(pcrecpp_unittest pcrecpp_unittest.cc)
-        TARGET_LINK_LIBRARIES(pcrecpp_unittest pcrecpp)
-IF(MINGW AND NON_STANDARD_LIB_NAMES AND NOT PCRE_STATIC)
-SET_TARGET_PROPERTIES(pcrecpp
-                        PROPERTIES PREFIX ""
-)
-ENDIF(MINGW AND NON_STANDARD_LIB_NAMES AND NOT PCRE_STATIC)
+IF(PCRE_BUILD_PCREGREP)
+  ADD_EXECUTABLE(pcregrep pcregrep.c)
+  SET(targets ${targets} pcregrep)
+  TARGET_LINK_LIBRARIES(pcregrep pcreposix ${PCREGREP_LIBS})
+ENDIF(PCRE_BUILD_PCREGREP)
 
-
-        ADD_EXECUTABLE(pcre_scanner_unittest pcre_scanner_unittest.cc)
-        TARGET_LINK_LIBRARIES(pcre_scanner_unittest pcrecpp)
-
-        ADD_EXECUTABLE(pcre_stringpiece_unittest pcre_stringpiece_unittest.cc)
-        TARGET_LINK_LIBRARIES(pcre_stringpiece_unittest pcrecpp)
-ENDIF(PCRE_BUILD_PCRECPP)
 
 # Testing
+IF(PCRE_BUILD_TESTS)
+  ENABLE_TESTING()
 
-ENABLE_TESTING()
+  ADD_EXECUTABLE(pcretest pcretest.c)
+  SET(targets ${targets} pcretest)
+  TARGET_LINK_LIBRARIES(pcretest pcreposix ${PCRETEST_LIBS})
 
-GET_TARGET_PROPERTY(PCREGREP_EXE pcregrep DEBUG_LOCATION)
-GET_TARGET_PROPERTY(PCRETEST_EXE pcretest DEBUG_LOCATION)
+  IF(PCRE_BUILD_PCRECPP)
+    ADD_EXECUTABLE(pcrecpp_unittest pcrecpp_unittest.cc)
+    SET(targets ${targets} pcrecpp_unittest)
+    TARGET_LINK_LIBRARIES(pcrecpp_unittest pcrecpp)
+    IF(MINGW AND NON_STANDARD_LIB_NAMES AND NOT PCRE_STATIC)
+      SET_TARGET_PROPERTIES(pcrecpp
+                        PROPERTIES PREFIX ""
+      )
+    ENDIF(MINGW AND NON_STANDARD_LIB_NAMES AND NOT PCRE_STATIC)
 
-# Write out a CTest configuration file that sets some needed environment
-# variables for the test scripts.
-#
-FILE(WRITE ${CMAKE_BINARY_DIR}/CTestCustom.ctest
-"# This is a generated file.
-SET(ENV{srcdir} ${CMAKE_SOURCE_DIR})
-SET(ENV{pcregrep} ${PCREGREP_EXE})
-SET(ENV{pcretest} ${PCRETEST_EXE})
-")
 
-IF(UNIX)
-        ADD_TEST(pcre_test      ${CMAKE_SOURCE_DIR}/RunTest)
-        ADD_TEST(pcre_grep_test ${CMAKE_SOURCE_DIR}/RunGrepTest)
-ENDIF(UNIX)
-IF(WIN32)
-        ADD_TEST(pcre_test cmd /C ${CMAKE_SOURCE_DIR}/RunTest.bat)
-ENDIF(WIN32)
+    ADD_EXECUTABLE(pcre_scanner_unittest pcre_scanner_unittest.cc)
+    SET(targets ${targets} pcre_scanner_unittest)
+    TARGET_LINK_LIBRARIES(pcre_scanner_unittest pcrecpp)
 
-GET_TARGET_PROPERTY(PCRECPP_UNITTEST_EXE
-                    pcrecpp_unittest
-                    DEBUG_LOCATION)
+    ADD_EXECUTABLE(pcre_stringpiece_unittest pcre_stringpiece_unittest.cc)
+    SET(targets ${targets} pcre_stringpiece_unittest)
+    TARGET_LINK_LIBRARIES(pcre_stringpiece_unittest pcrecpp)
+  ENDIF(PCRE_BUILD_PCRECPP)
 
-GET_TARGET_PROPERTY(PCRE_SCANNER_UNITTEST_EXE
-                    pcre_scanner_unittest
-                    DEBUG_LOCATION)
+  GET_TARGET_PROPERTY(PCREGREP_EXE pcregrep DEBUG_LOCATION)
+  GET_TARGET_PROPERTY(PCRETEST_EXE pcretest DEBUG_LOCATION)
 
-GET_TARGET_PROPERTY(PCRE_STRINGPIECE_UNITTEST_EXE
-                    pcre_stringpiece_unittest
-                    DEBUG_LOCATION)
+  # Write out a CTest configuration file that sets some needed environment
+  # variables for the test scripts.
+  #
+  FILE(WRITE ${PROJECT_BINARY_DIR}/CTestCustom.ctest
+  "# This is a generated file.
+  SET(ENV{srcdir} ${PROJECT_SOURCE_DIR})
+  SET(ENV{pcregrep} ${PCREGREP_EXE})
+  SET(ENV{pcretest} ${PCRETEST_EXE})
+  ")
 
-ADD_TEST(pcrecpp_test          ${PCRECPP_UNITTEST_EXE})
-ADD_TEST(pcre_scanner_test     ${PCRE_SCANNER_UNITTEST_EXE})
-ADD_TEST(pcre_stringpiece_test ${PCRE_STRINGPIECE_UNITTEST_EXE})
+  IF(UNIX)
+          ADD_TEST(pcre_test      ${PROJECT_SOURCE_DIR}/RunTest)
+          ADD_TEST(pcre_grep_test ${PROJECT_SOURCE_DIR}/RunGrepTest)
+  ENDIF(UNIX)
+  IF(WIN32)
+          ADD_TEST(pcre_test cmd /C ${PROJECT_SOURCE_DIR}/RunTest.bat)
+  ENDIF(WIN32)
+
+  GET_TARGET_PROPERTY(PCRECPP_UNITTEST_EXE
+                      pcrecpp_unittest
+                      DEBUG_LOCATION)
+
+  GET_TARGET_PROPERTY(PCRE_SCANNER_UNITTEST_EXE
+                      pcre_scanner_unittest
+                      DEBUG_LOCATION)
+
+  GET_TARGET_PROPERTY(PCRE_STRINGPIECE_UNITTEST_EXE
+                      pcre_stringpiece_unittest
+                      DEBUG_LOCATION)
+
+  ADD_TEST(pcrecpp_test          ${PCRECPP_UNITTEST_EXE})
+  ADD_TEST(pcre_scanner_test     ${PCRE_SCANNER_UNITTEST_EXE})
+  ADD_TEST(pcre_stringpiece_test ${PCRE_STRINGPIECE_UNITTEST_EXE})
+ENDIF(PCRE_BUILD_TESTS)
 
 # Installation
-
 SET(CMAKE_INSTALL_ALWAYS 1)
 
-INSTALL(TARGETS pcre pcreposix pcregrep pcretest
+INSTALL(TARGETS ${targets}
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
 INSTALL(FILES ${PCRE_HEADERS} ${PCREPOSIX_HEADERS} DESTINATION include)
 
-FILE(GLOB html ${CMAKE_SOURCE_DIR}/doc/html/*.html)
-FILE(GLOB man1 ${CMAKE_SOURCE_DIR}/doc/*.1)
-FILE(GLOB man3 ${CMAKE_SOURCE_DIR}/doc/*.3)
+FILE(GLOB html ${PROJECT_SOURCE_DIR}/doc/html/*.html)
+FILE(GLOB man1 ${PROJECT_SOURCE_DIR}/doc/*.1)
+FILE(GLOB man3 ${PROJECT_SOURCE_DIR}/doc/*.3)
 
 IF(PCRE_BUILD_PCRECPP)
-        INSTALL(TARGETS pcrecpp
-                RUNTIME DESTINATION bin
-                LIBRARY DESTINATION lib
-                ARCHIVE DESTINATION lib)
         INSTALL(FILES ${PCRECPP_HEADERS} DESTINATION include)
 ELSE(PCRE_BUILD_PCRECPP)
         # Remove pcrecpp.3
@@ -493,49 +519,60 @@ ELSE(BUILD_SHARED_LIBS)
   SET(BUILD_STATIC_LIBS ON)
 ENDIF(BUILD_SHARED_LIBS)
 
-MESSAGE(STATUS "")
-MESSAGE(STATUS "")
-MESSAGE(STATUS "PCRE configuration summary:")
-MESSAGE(STATUS "")
-MESSAGE(STATUS "  Install prefix .................. : " ${CMAKE_INSTALL_PREFIX})
-MESSAGE(STATUS "  C compiler ...................... : " ${CMAKE_C_COMPILER})
-MESSAGE(STATUS "  C++ compiler .................... : " ${CMAKE_CXX_COMPILER})
-MESSAGE(STATUS "  C compiler flags ................ : " ${CMAKE_C_FLAGS})   #FIXME
-MESSAGE(STATUS "  C++ compiler flags .............. : " ${CMAKE_CXX_FLAGS}) #FIXME
-MESSAGE(STATUS "")
-MESSAGE(STATUS "  Build C++ library ............... : " ${PCRE_BUILD_PCRECPP})
-MESSAGE(STATUS "  Enable UTF-8 support ............ : " ${PCRE_SUPPORT_UNICODE_PROPERTIES})
-MESSAGE(STATUS "  Unicode properties .............. : " ${PCRE_SUPPORT_UNICODE_PROPERTIES})
-MESSAGE(STATUS "  Newline char/sequence ........... : " ${PCRE_NEWLINE})
-MESSAGE(STATUS "  \\R matches only ANYCRLF ......... : " ${PCRE_SUPPORT_BSR_ANYCRLF})
-MESSAGE(STATUS "  EBCDIC coding ................... : " ${PCRE_EBCDIC})
-MESSAGE(STATUS "  Rebuild char tables ............. : " ${PCRE_REBUILD_CHARTABLES})
-MESSAGE(STATUS "  No stack recursion .............. : " ${PCRE_NO_RECURSE})
-MESSAGE(STATUS "  POSIX mem threshold ............. : " ${PCRE_POSIX_MALLOC_THRESHOLD})
-MESSAGE(STATUS "  Internal link size .............. : " ${PCRE_LINK_SIZE})
-MESSAGE(STATUS "  Match limit ..................... : " ${PCRE_MATCH_LIMIT})
-MESSAGE(STATUS "  Match limit recursion ........... : " ${PCRE_MATCH_LIMIT_RECURSION})
-MESSAGE(STATUS "  Build shared libs ............... : " ${BUILD_SHARED_LIBS})
-MESSAGE(STATUS "  Build static libs ............... : " ${BUILD_STATIC_LIBS})
-IF(ZLIB_FOUND)
-  MESSAGE(STATUS "  Link pcregrep with libz ......... : " ${PCRE_SUPPORT_LIBZ})
-ELSE(ZLIB_FOUND)
-  MESSAGE(STATUS "  Link pcregrep with libz ......... : None" )
-ENDIF(ZLIB_FOUND)
-IF(BZIP2_FOUND)
-  MESSAGE(STATUS "  Link pcregrep with libbz2 ....... : " ${PCRE_SUPPORT_LIBBZ2})
-ELSE(BZIP2_FOUND)
-  MESSAGE(STATUS "  Link pcregrep with libbz2 ....... : None" )
-ENDIF(BZIP2_FOUND)
-IF(NOT PCRE_SUPPORT_LIBREADLINE)
-  MESSAGE(STATUS "  Link pcretest with libreadline .. : None" )
-ELSE(NOT PCRE_SUPPORT_LIBREADLINE)
-  MESSAGE(STATUS "  Link pcretest with libreadline .. : " ${PCRE_SUPPORT_LIBREADLINE})
-ENDIF(NOT PCRE_SUPPORT_LIBREADLINE)
-IF(MINGW AND NOT PCRE_STATIC)
-  MESSAGE(STATUS "  Non-standard dll names (prefix) . : " ${NON_STANDARD_LIB_PREFIX})
-  MESSAGE(STATUS "  Non-standard dll names (suffix) . : " ${NON_STANDARD_LIB_SUFFIX})
-ENDIF(MINGW AND NOT PCRE_STATIC)
-MESSAGE(STATUS "")
+IF(PCRE_SHOW_REPORT)
+  STRING(TOUPPER "${CMAKE_BUILD_TYPE}" buildtype)
+  IF (CMAKE_C_FLAGS)
+    SET(cfsp " ")
+  ENDIF(CMAKE_C_FLAGS)
+  IF (CMAKE_CXX_FLAGS)
+    SET(cxxfsp " ")
+  ENDIF(CMAKE_CXX_FLAGS)
+  MESSAGE(STATUS "")
+  MESSAGE(STATUS "")
+  MESSAGE(STATUS "PCRE configuration summary:")
+  MESSAGE(STATUS "")
+  MESSAGE(STATUS "  Install prefix .................. : ${CMAKE_INSTALL_PREFIX}")
+  MESSAGE(STATUS "  C compiler ...................... : ${CMAKE_C_COMPILER}")
+  MESSAGE(STATUS "  C++ compiler .................... : ${CMAKE_CXX_COMPILER}")
+  MESSAGE(STATUS "  C compiler flags ................ : ${CMAKE_C_FLAGS}${cfsp}${CMAKE_C_FLAGS_${buildtype}}")
+  MESSAGE(STATUS "  C++ compiler flags .............. : ${CMAKE_CXX_FLAGS}${cxxfsp}${CMAKE_CXX_FLAGS_${buildtype}}")
+  MESSAGE(STATUS "")
+  MESSAGE(STATUS "  Build C++ library ............... : ${PCRE_BUILD_PCRECPP}")
+  MESSAGE(STATUS "  Enable UTF-8 support ............ : ${PCRE_SUPPORT_UNICODE_PROPERTIES}")
+  MESSAGE(STATUS "  Unicode properties .............. : ${PCRE_SUPPORT_UNICODE_PROPERTIES}")
+  MESSAGE(STATUS "  Newline char/sequence ........... : ${PCRE_NEWLINE}")
+  MESSAGE(STATUS "  \\R matches only ANYCRLF ......... : ${PCRE_SUPPORT_BSR_ANYCRLF}")
+  MESSAGE(STATUS "  EBCDIC coding ................... : ${PCRE_EBCDIC}")
+  MESSAGE(STATUS "  Rebuild char tables ............. : ${PCRE_REBUILD_CHARTABLES}")
+  MESSAGE(STATUS "  No stack recursion .............. : ${PCRE_NO_RECURSE}")
+  MESSAGE(STATUS "  POSIX mem threshold ............. : ${PCRE_POSIX_MALLOC_THRESHOLD}")
+  MESSAGE(STATUS "  Internal link size .............. : ${PCRE_LINK_SIZE}")
+  MESSAGE(STATUS "  Match limit ..................... : ${PCRE_MATCH_LIMIT}")
+  MESSAGE(STATUS "  Match limit recursion ........... : ${PCRE_MATCH_LIMIT_RECURSION}")
+  MESSAGE(STATUS "  Build shared libs ............... : ${BUILD_SHARED_LIBS}")
+  MESSAGE(STATUS "  Build static libs ............... : ${BUILD_STATIC_LIBS}")
+  MESSAGE(STATUS "  Build pcregrep .................. : ${PCRE_BUILD_PCREGREP}")
+  MESSAGE(STATUS "  Build tests (implies pcretest) .. : ${PCRE_BUILD_TESTS}")
+  IF(ZLIB_FOUND)
+    MESSAGE(STATUS "  Link pcregrep with libz ......... : ${PCRE_SUPPORT_LIBZ}")
+  ELSE(ZLIB_FOUND)
+    MESSAGE(STATUS "  Link pcregrep with libz ......... : None" )
+  ENDIF(ZLIB_FOUND)
+  IF(BZIP2_FOUND)
+    MESSAGE(STATUS "  Link pcregrep with libbz2 ....... : ${PCRE_SUPPORT_LIBBZ2}")
+  ELSE(BZIP2_FOUND)
+    MESSAGE(STATUS "  Link pcregrep with libbz2 ....... : None" )
+  ENDIF(BZIP2_FOUND)
+  IF(NOT PCRE_SUPPORT_LIBREADLINE)
+    MESSAGE(STATUS "  Link pcretest with libreadline .. : None" )
+  ELSE(NOT PCRE_SUPPORT_LIBREADLINE)
+    MESSAGE(STATUS "  Link pcretest with libreadline .. : ${PCRE_SUPPORT_LIBREADLINE}")
+  ENDIF(NOT PCRE_SUPPORT_LIBREADLINE)
+  IF(MINGW AND NOT PCRE_STATIC)
+    MESSAGE(STATUS "  Non-standard dll names (prefix) . : ${NON_STANDARD_LIB_PREFIX}")
+    MESSAGE(STATUS "  Non-standard dll names (suffix) . : ${NON_STANDARD_LIB_SUFFIX}")
+  ENDIF(MINGW AND NOT PCRE_STATIC)
+  MESSAGE(STATUS "")
+ENDIF(PCRE_SHOW_REPORT)
 
 # end CMakeLists.txt

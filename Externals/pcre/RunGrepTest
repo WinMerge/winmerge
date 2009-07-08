@@ -214,6 +214,9 @@ echo "---------------------------- Test 52 ------------------------------" >>tes
 echo "---------------------------- Test 53 ------------------------------" >>testtry
 (cd $srcdir; $valgrind $pcregrep --line-offsets 'before|zero|after' ./testdata/grepinput) >>testtry
 
+echo "---------------------------- Test 54 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep -f./testdata/greplist --color=always ./testdata/grepinputx) >>testtry
+
 # Now compare the results.
 
 $cf $srcdir/testdata/grepoutput testtry

@@ -3,10 +3,11 @@
 *************************************************/
 
 /* PCRE is a library of functions to support regular expressions whose syntax
-and semantics are as close as possible to those of the Perl 5 language.
+and semantics are as close as possible to those of the Perl 5 language (but see
+below for why this module is different).
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2008 University of Cambridge
+           Copyright (c) 1997-2009 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -58,7 +59,6 @@ applications. */
 /* For use to indent debugging output */
 
 #define SP "                   "
-
 
 
 /*************************************************
@@ -511,7 +511,7 @@ for (;;)
     stateblock *current_state = active_states + i;
     const uschar *code;
     int state_offset = current_state->offset;
-    int count, codevalue;
+    int count, codevalue, rrc;
 
 #ifdef DEBUG
     printf ("%.*sProcessing state %d c=", rlevel*2-2, SP, state_offset);
@@ -757,7 +757,7 @@ for (;;)
       if ((md->moptions & PCRE_NOTEOL) == 0)
         {
         if (clen == 0 ||
-            (IS_NEWLINE(ptr) &&
+            ((md->poptions & PCRE_DOLLAR_ENDONLY) == 0 && IS_NEWLINE(ptr) &&
                ((ims & PCRE_MULTILINE) != 0 || ptr == end_subject - md->nllen)
             ))
           { ADD_ACTIVE(state_offset + 1, 0); }
@@ -2200,7 +2200,38 @@ for (;;)
         {
         int local_offsets[1000];
         int local_workspace[1000];
-        int condcode = code[LINK_SIZE+1];
+        int codelink = GET(code, 1);
+        int condcode;
+
+        /* Because of the way auto-callout works during compile, a callout item
+        is inserted between OP_COND and an assertion condition. This does not
+        happen for the other conditions. */
+
+        if (code[LINK_SIZE+1] == OP_CALLOUT)
+          {
+          rrc = 0;
+          if (pcre_callout != NULL)
+            {
+            pcre_callout_block cb;
+            cb.version          = 1;   /* Version 1 of the callout block */
+            cb.callout_number   = code[LINK_SIZE+2];
+            cb.offset_vector    = offsets;
+            cb.subject          = (PCRE_SPTR)start_subject;
+            cb.subject_length   = end_subject - start_subject;
+            cb.start_match      = current_subject - start_subject;
+            cb.current_position = ptr - start_subject;
+            cb.pattern_position = GET(code, LINK_SIZE + 3);
+            cb.next_item_length = GET(code, 3 + 2*LINK_SIZE);
+            cb.capture_top      = 1;
+            cb.capture_last     = -1;
+            cb.callout_data     = md->callout_data;
+            if ((rrc = (*pcre_callout)(&cb)) < 0) return rrc;   /* Abandon */
+            }
+          if (rrc > 0) break;                      /* Fail this thread */
+          code += _pcre_OP_lengths[OP_CALLOUT];    /* Skip callout data */
+          }
+
+        condcode = code[LINK_SIZE+1];
 
         /* Back reference conditions are not supported */
 
@@ -2209,9 +2240,7 @@ for (;;)
         /* The DEFINE condition is always false */
 
         if (condcode == OP_DEF)
-          {
-          ADD_ACTIVE(state_offset + GET(code, 1) + LINK_SIZE + 1, 0);
-          }
+          { ADD_ACTIVE(state_offset + codelink + LINK_SIZE + 1, 0); }
 
         /* The only supported version of OP_RREF is for the value RREF_ANY,
         which means "test if in any recursion". We can't test for specifically
@@ -2221,8 +2250,9 @@ for (;;)
           {
           int value = GET2(code, LINK_SIZE+2);
           if (value != RREF_ANY) return PCRE_ERROR_DFA_UCOND;
-          if (recursing > 0) { ADD_ACTIVE(state_offset + LINK_SIZE + 4, 0); }
-            else { ADD_ACTIVE(state_offset + GET(code, 1) + LINK_SIZE + 1, 0); }
+          if (recursing > 0)
+            { ADD_ACTIVE(state_offset + LINK_SIZE + 4, 0); }
+          else { ADD_ACTIVE(state_offset + codelink + LINK_SIZE + 1, 0); }
           }
 
         /* Otherwise, the condition is an assertion */
@@ -2252,7 +2282,7 @@ for (;;)
                 (condcode == OP_ASSERT || condcode == OP_ASSERTBACK))
             { ADD_ACTIVE(endasscode + LINK_SIZE + 1 - start_code, 0); }
           else
-            { ADD_ACTIVE(state_offset + GET(code, 1) + LINK_SIZE + 1, 0); }
+            { ADD_ACTIVE(state_offset + codelink + LINK_SIZE + 1, 0); }
           }
         }
       break;
@@ -2404,9 +2434,9 @@ for (;;)
       /* Handle callouts */
 
       case OP_CALLOUT:
+      rrc = 0;
       if (pcre_callout != NULL)
         {
-        int rrc;
         pcre_callout_block cb;
         cb.version          = 1;   /* Version 1 of the callout block */
         cb.callout_number   = code[1];
@@ -2421,8 +2451,9 @@ for (;;)
         cb.capture_last     = -1;
         cb.callout_data     = md->callout_data;
         if ((rrc = (*pcre_callout)(&cb)) < 0) return rrc;   /* Abandon */
-        if (rrc == 0) { ADD_ACTIVE(state_offset + 2 + 2*LINK_SIZE, 0); }
         }
+      if (rrc == 0)
+        { ADD_ACTIVE(state_offset + _pcre_OP_lengths[OP_CALLOUT], 0); }
       break;
 
 
@@ -2614,10 +2645,10 @@ switch ((((options & PCRE_NEWLINE_BITS) == 0)? re->options : (pcre_uint32)option
          PCRE_NEWLINE_BITS)
   {
   case 0: newline = NEWLINE; break;   /* Compile-time default */
-  case PCRE_NEWLINE_CR: newline = '\r'; break;
-  case PCRE_NEWLINE_LF: newline = '\n'; break;
+  case PCRE_NEWLINE_CR: newline = CHAR_CR; break;
+  case PCRE_NEWLINE_LF: newline = CHAR_NL; break;
   case PCRE_NEWLINE_CR+
-       PCRE_NEWLINE_LF: newline = ('\r' << 8) | '\n'; break;
+       PCRE_NEWLINE_LF: newline = (CHAR_CR << 8) | CHAR_NL; break;
   case PCRE_NEWLINE_ANY: newline = -1; break;
   case PCRE_NEWLINE_ANYCRLF: newline = -2; break;
   default: return PCRE_ERROR_BADNEWLINE;
@@ -2713,9 +2744,8 @@ if ((re->flags & PCRE_REQCHSET) != 0)
   }
 
 /* Call the main matching function, looping for a non-anchored regex after a
-failed match. Unless restarting, optimize by moving to the first match
-character if possible, when not anchored. Then unless wanting a partial match,
-check for a required later character. */
+failed match. If not restarting, perform certain optimizations at the start of
+a match. */
 
 for (;;)
   {
@@ -2725,11 +2755,10 @@ for (;;)
     {
     const uschar *save_end_subject = end_subject;
 
-    /* Advance to a unique first char if possible. If firstline is TRUE, the
-    start of the match is constrained to the first line of a multiline string.
-    Implement this by temporarily adjusting end_subject so that we stop
-    scanning at a newline. If the match fails at the newline, later code breaks
-    this loop. */
+    /* If firstline is TRUE, the start of the match is constrained to the first
+    line of a multiline string. Implement this by temporarily adjusting
+    end_subject so that we stop scanning at a newline. If the match fails at
+    the newline, later code breaks this loop. */
 
     if (firstline)
       {
@@ -2749,60 +2778,73 @@ for (;;)
       end_subject = t;
       }
 
-    if (first_byte >= 0)
-      {
-      if (first_byte_caseless)
-        while (current_subject < end_subject &&
-               lcc[*current_subject] != first_byte)
-          current_subject++;
-      else
-        while (current_subject < end_subject && *current_subject != first_byte)
-          current_subject++;
-      }
+    /* There are some optimizations that avoid running the match if a known
+    starting point is not found, or if a known later character is not present.
+    However, there is an option that disables these, for testing and for
+    ensuring that all callouts do actually occur. */
 
-    /* Or to just after a linebreak for a multiline match if possible */
-
-    else if (startline)
+    if ((options & PCRE_NO_START_OPTIMIZE) == 0)
       {
-      if (current_subject > md->start_subject + start_offset)
+
+      /* Advance to a known first byte. */
+
+      if (first_byte >= 0)
         {
-#ifdef SUPPORT_UTF8
-        if (utf8)
-          {
-          while (current_subject < end_subject && !WAS_NEWLINE(current_subject))
-            {
+        if (first_byte_caseless)
+          while (current_subject < end_subject &&
+                 lcc[*current_subject] != first_byte)
             current_subject++;
-            while(current_subject < end_subject &&
-                  (*current_subject & 0xc0) == 0x80)
-              current_subject++;
-            }
-          }
         else
-#endif
-        while (current_subject < end_subject && !WAS_NEWLINE(current_subject))
-          current_subject++;
-
-        /* If we have just passed a CR and the newline option is ANY or
-        ANYCRLF, and we are now at a LF, advance the match position by one more
-        character. */
-
-        if (current_subject[-1] == '\r' &&
-             (md->nltype == NLTYPE_ANY || md->nltype == NLTYPE_ANYCRLF) &&
-             current_subject < end_subject &&
-             *current_subject == '\n')
-          current_subject++;
+          while (current_subject < end_subject &&
+                 *current_subject != first_byte)
+            current_subject++;
         }
-      }
 
-    /* Or to a non-unique first char after study */
+      /* Or to just after a linebreak for a multiline match if possible */
 
-    else if (start_bits != NULL)
-      {
-      while (current_subject < end_subject)
+      else if (startline)
         {
-        register unsigned int c = *current_subject;
-        if ((start_bits[c/8] & (1 << (c&7))) == 0) current_subject++;
-          else break;
+        if (current_subject > md->start_subject + start_offset)
+          {
+#ifdef SUPPORT_UTF8
+          if (utf8)
+            {
+            while (current_subject < end_subject &&
+                   !WAS_NEWLINE(current_subject))
+              {
+              current_subject++;
+              while(current_subject < end_subject &&
+                    (*current_subject & 0xc0) == 0x80)
+                current_subject++;
+              }
+            }
+          else
+#endif
+          while (current_subject < end_subject && !WAS_NEWLINE(current_subject))
+            current_subject++;
+
+          /* If we have just passed a CR and the newline option is ANY or
+          ANYCRLF, and we are now at a LF, advance the match position by one
+          more character. */
+
+          if (current_subject[-1] == CHAR_CR &&
+               (md->nltype == NLTYPE_ANY || md->nltype == NLTYPE_ANYCRLF) &&
+               current_subject < end_subject &&
+               *current_subject == CHAR_NL)
+            current_subject++;
+          }
+        }
+
+      /* Or to a non-unique first char after study */
+
+      else if (start_bits != NULL)
+        {
+        while (current_subject < end_subject)
+          {
+          register unsigned int c = *current_subject;
+          if ((start_bits[c/8] & (1 << (c&7))) == 0) current_subject++;
+            else break;
+          }
         }
       }
 
@@ -2824,10 +2866,11 @@ for (;;)
   showed up when somebody was matching /^C/ on a 32-megabyte string... so we
   don't do this when the string is sufficiently long.
 
-  ALSO: this processing is disabled when partial matching is requested.
-  */
+  ALSO: this processing is disabled when partial matching is requested, and can
+  also be explicitly deactivated. */
 
-  if (req_byte >= 0 &&
+  if ((options & PCRE_NO_START_OPTIMIZE) == 0 &&
+      req_byte >= 0 &&
       end_subject - current_subject < REQ_BYTE_MAX &&
       (options & PCRE_PARTIAL) == 0)
     {
@@ -2903,9 +2946,9 @@ for (;;)
   not contain any explicit matches for \r or \n, and the newline option is CRLF
   or ANY or ANYCRLF, advance the match position by one more character. */
 
-  if (current_subject[-1] == '\r' &&
+  if (current_subject[-1] == CHAR_CR &&
       current_subject < end_subject &&
-      *current_subject == '\n' &&
+      *current_subject == CHAR_NL &&
       (re->flags & PCRE_HASCRORLF) == 0 &&
         (md->nltype == NLTYPE_ANY ||
          md->nltype == NLTYPE_ANYCRLF ||

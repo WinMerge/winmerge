@@ -243,13 +243,13 @@ dist_noinst_SCRIPTS += RunTest
 EXTRA_DIST += RunTest.bat
 bin_PROGRAMS += pcretest
 pcretest_SOURCES = pcretest.c
-pcretest_LDADD = libpcreposix.la
+pcretest_LDADD = libpcreposix.la $(LIBREADLINE)
 
 TESTS += RunGrepTest
 dist_noinst_SCRIPTS += RunGrepTest
 bin_PROGRAMS += pcregrep
 pcregrep_SOURCES = pcregrep.c
-pcregrep_LDADD = libpcreposix.la
+pcregrep_LDADD = libpcreposix.la $(LIBZ) $(LIBBZ2)
 
 EXTRA_DIST += \
   testdata/grepinput \

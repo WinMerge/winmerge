@@ -59,11 +59,11 @@ command for linking an application that uses them. Because the POSIX functions
 call the native ones, it is also necessary to add <b>-lpcre</b>.
 </P>
 <P>
-I have implemented only those option bits that can be reasonably mapped to PCRE
-native options. In addition, the option REG_EXTENDED is defined with the value
-zero. This has no effect, but since programs that are written to the POSIX
-interface often use it, this makes it easier to slot in PCRE as a replacement
-library. Other POSIX options are not even defined.
+I have implemented only those POSIX option bits that can be reasonably mapped
+to PCRE native options. In addition, the option REG_EXTENDED is defined with
+the value zero. This has no effect, but since programs that are written to the
+POSIX interface often use it, this makes it easier to slot in PCRE as a
+replacement library. Other POSIX options are not even defined.
 </P>
 <P>
 When PCRE is called via these functions, it is only the API that is POSIX-like
@@ -189,6 +189,12 @@ be:
 The PCRE_NOTBOL option is set when calling the underlying PCRE matching
 function.
 <pre>
+  REG_NOTEMPTY
+</pre>
+The PCRE_NOTEMPTY option is set when calling the underlying PCRE matching
+function. Note that REG_NOTEMPTY is not part of the POSIX standard. However,
+setting this option can give more POSIX-like behaviour in some situations.
+<pre>
   REG_NOTEOL
 </pre>
 The PCRE_NOTEOL option is set when calling the underlying PCRE matching
@@ -251,9 +257,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC9" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 05 April 2008
+Last updated: 11 March 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

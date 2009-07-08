@@ -77,6 +77,12 @@ Behave as if each regex has the <b>/I</b> modifier; information about the
 compiled pattern is given after compilation.
 </P>
 <P>
+<b>-M</b>
+Behave as if each data line contains the \M escape sequence; this causes
+PCRE to discover the minimum MATCH_LIMIT and MATCH_LIMIT_RECURSION settings by
+calling <b>pcre_exec()</b> repeatedly with different limits.
+</P>
+<P>
 <b>-m</b>
 Output the size of each compiled pattern after it has been compiled. This is
 equivalent to adding <b>/M</b> to each regular expression. For compatibility
@@ -697,9 +703,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC15" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 12 April 2008
+Last updated: 10 March 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

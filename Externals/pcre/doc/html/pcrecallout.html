@@ -62,7 +62,8 @@ trying to optimize the performance of a particular pattern.
 <br><a name="SEC2" href="#TOC1">MISSING CALLOUTS</a><br>
 <P>
 You should be aware that, because of optimizations in the way PCRE matches
-patterns, callouts sometimes do not happen. For example, if the pattern is
+patterns by default, callouts sometimes do not happen. For example, if the
+pattern is
 <pre>
   ab(?C4)cd
 </pre>
@@ -70,6 +71,12 @@ PCRE knows that any matching string must contain the letter "d". If the subject
 string is "abyz", the lack of "d" means that matching doesn't ever start, and
 the callout is never reached. However, with "abyd", though the result is still
 no match, the callout is obeyed.
+</P>
+<P>
+You can disable these optimizations by passing the PCRE_NO_START_OPTIMIZE
+option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>. This slows down the
+matching process, but does ensure that callouts such as the example above are
+obeyed.
 </P>
 <br><a name="SEC3" href="#TOC1">THE CALLOUT INTERFACE</a><br>
 <P>
@@ -192,9 +199,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC6" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 29 May 2007
+Last updated: 15 March 2009
 <br>
-Copyright &copy; 1997-2007 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

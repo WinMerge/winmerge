@@ -317,8 +317,10 @@ properties is available; otherwise it is set to zero.
 .sp
 The output is an integer whose value specifies the default character sequence
 that is recognized as meaning "newline". The four values that are supported
-are: 10 for LF, 13 for CR, 3338 for CRLF, -2 for ANYCRLF, and -1 for ANY. The
-default should normally be the standard sequence for your operating system.
+are: 10 for LF, 13 for CR, 3338 for CRLF, -2 for ANYCRLF, and -1 for ANY.
+Though they are derived from ASCII, the same values are returned in EBCDIC
+environments. The default should normally correspond to the standard sequence
+for your operating system.
 .sp
   PCRE_CONFIG_BSR
 .sp
@@ -347,13 +349,13 @@ documentation.
 .sp
   PCRE_CONFIG_MATCH_LIMIT
 .sp
-The output is an integer that gives the default limit for the number of
+The output is a long integer that gives the default limit for the number of
 internal matching function calls in a \fBpcre_exec()\fP execution. Further
 details are given with \fBpcre_exec()\fP below.
 .sp
   PCRE_CONFIG_MATCH_LIMIT_RECURSION
 .sp
-The output is an integer that gives the default limit for the depth of
+The output is a long integer that gives the default limit for the depth of
 recursion when calling the internal matching function in a \fBpcre_exec()\fP
 execution. Further details are given with \fBpcre_exec()\fP below.
 .sp
@@ -404,16 +406,17 @@ argument, which is an address (see below).
 .P
 The \fIoptions\fP argument contains various bit settings that affect the
 compilation. It should be zero if no options are required. The available
-options are described below. Some of them, in particular, those that are
-compatible with Perl, can also be set and unset from within the pattern (see
-the detailed description in the
+options are described below. Some of them (in particular, those that are
+compatible with Perl, but also some others) can also be set and unset from
+within the pattern (see the detailed description in the
 .\" HREF
 \fBpcrepattern\fP
 .\"
-documentation). For these options, the contents of the \fIoptions\fP argument
-specifies their initial settings at the start of compilation and execution. The
-PCRE_ANCHORED and PCRE_NEWLINE_\fIxxx\fP options can be set at the time of
-matching as well as at compile time.
+documentation). For those options that can be different in different parts of
+the pattern, the contents of the \fIoptions\fP argument specifies their initial
+settings at the start of compilation and execution. The PCRE_ANCHORED and
+PCRE_NEWLINE_\fIxxx\fP options can be set at the time of matching as well as at
+compile time.
 .P
 If \fIerrptr\fP is NULL, \fBpcre_compile()\fP returns NULL immediately.
 Otherwise, if compilation of a pattern fails, \fBpcre_compile()\fP returns
@@ -1237,7 +1240,8 @@ documentation for a discussion of saving compiled patterns for later use.
 .sp
 The unused bits of the \fIoptions\fP argument for \fBpcre_exec()\fP must be
 zero. The only bits that may be set are PCRE_ANCHORED, PCRE_NEWLINE_\fIxxx\fP,
-PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NO_UTF8_CHECK and PCRE_PARTIAL.
+PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NO_START_OPTIMIZE,
+PCRE_NO_UTF8_CHECK and PCRE_PARTIAL.
 .sp
   PCRE_ANCHORED
 .sp
@@ -1323,6 +1327,16 @@ matching a null string by first trying the match again at the same offset with
 PCRE_NOTEMPTY and PCRE_ANCHORED, and then if that fails by advancing the
 starting offset (see below) and trying an ordinary match again. There is some
 code that demonstrates how to do this in the \fIpcredemo.c\fP sample program.
+.sp
+  PCRE_NO_START_OPTIMIZE
+.sp
+There are a number of optimizations that \fBpcre_exec()\fP uses at the start of
+a match, in order to speed up the process. For example, if it is known that a
+match must start with a specific character, it searches the subject for that
+character, and fails immediately if it cannot find it, without actually running
+the main matching function. When callouts are in use, these optimizations can
+cause them to be skipped. This option disables the "start-up" optimizations,
+causing performance to suffer, but ensuring that the callouts do occur.
 .sp
   PCRE_NO_UTF8_CHECK
 .sp
@@ -1729,7 +1743,11 @@ These functions call \fBpcre_get_stringnumber()\fP, and if it succeeds, they
 then call \fBpcre_copy_substring()\fP or \fBpcre_get_substring()\fP, as
 appropriate. \fBNOTE:\fP If PCRE_DUPNAMES is set and there are duplicate names,
 the behaviour may not be what you want (see the next section).
-.
+.P
+\fBWarning:\fP If the pattern uses the "(?|" feature to set up multiple
+subpatterns with the same number, you cannot use names to distinguish them,
+because names are not included in the compiled code. The matching process uses
+only numbers.
 .
 .SH "DUPLICATE SUBPATTERN NAMES"
 .rs
@@ -1978,6 +1996,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 24 August 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 11 April 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

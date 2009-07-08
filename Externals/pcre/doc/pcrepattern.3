@@ -23,8 +23,15 @@ description of PCRE's regular expressions is intended as reference material.
 The original operation of PCRE was on strings of one-byte characters. However,
 there is now also support for UTF-8 character strings. To use this, you must
 build PCRE to include UTF-8 support, and then call \fBpcre_compile()\fP with
-the PCRE_UTF8 option. How this affects pattern matching is mentioned in several
-places below. There is also a summary of UTF-8 features in the
+the PCRE_UTF8 option. There is also a special sequence that can be given at the
+start of a pattern:
+.sp
+  (*UTF8)
+.sp
+Starting a pattern with this sequence is equivalent to setting the PCRE_UTF8
+option. This feature is not Perl-compatible. How setting UTF-8 mode affects
+pattern matching is mentioned in several places below. There is also a summary
+of UTF-8 features in the
 .\" HTML <a href="pcre.html#utf8support">
 .\" </a>
 section on UTF-8 support
@@ -364,7 +371,8 @@ In UTF-8 mode, characters with values greater than 128 never match \ed, \es, or
 \ew, and always match \eD, \eS, and \eW. This is true even when Unicode
 character property support is available. These sequences retain their original
 meanings from before UTF-8 support was available, mainly for efficiency
-reasons.
+reasons. Note that this also affects \eb, because it is defined in terms of \ew
+and \eW.
 .P
 The sequences \eh, \eH, \ev, and \eV are Perl 5.10 features. In contrast to the
 other sequences, these do match certain high-valued codepoints in UTF-8 mode.
@@ -1031,11 +1039,11 @@ The PCRE-specific options PCRE_DUPNAMES, PCRE_UNGREEDY, and PCRE_EXTRA can be
 changed in the same way as the Perl-compatible options by using the characters
 J, U and X respectively.
 .P
-When an option change occurs at top level (that is, not inside subpattern
-parentheses), the change applies to the remainder of the pattern that follows.
-If the change is placed right at the start of a pattern, PCRE extracts it into
-the global options (and it will therefore show up in data extracted by the
-\fBpcre_fullinfo()\fP function).
+When one of these option changes occurs at top level (that is, not inside
+subpattern parentheses), the change applies to the remainder of the pattern
+that follows. If the change is placed right at the start of a pattern, PCRE
+extracts it into the global options (and it will therefore show up in data
+extracted by the \fBpcre_fullinfo()\fP function).
 .P
 An option change within a subpattern (see below for a description of
 subpatterns) affects only that part of the current pattern that follows it, so
@@ -1056,13 +1064,15 @@ behaviour otherwise.
 .P
 \fBNote:\fP There are other PCRE-specific options that can be set by the
 application when the compile or match functions are called. In some cases the
-pattern can contain special leading sequences to override what the application
-has set or what has been defaulted. Details are given in the section entitled
+pattern can contain special leading sequences such as (*CRLF) to override what
+the application has set or what has been defaulted. Details are given in the
+section entitled
 .\" HTML <a href="#newlineseq">
 .\" </a>
 "Newline sequences"
 .\"
-above.
+above. There is also the (*UTF8) leading sequence that can be used to set UTF-8
+mode; this is equivalent to setting the PCRE_UTF8 option.
 .
 .
 .\" HTML <a name="subpattern"></a>
@@ -1211,6 +1221,10 @@ details of the interfaces for handling named subpatterns, see the
 \fBpcreapi\fP
 .\"
 documentation.
+.P
+\fBWarning:\fP You cannot use different names to distinguish between two
+subpatterns with the same number (see the previous section) because PCRE uses
+only the numbers when matching.
 .
 .
 .SH REPETITION
@@ -2240,6 +2254,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 19 April 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 11 April 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

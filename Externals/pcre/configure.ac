@@ -7,9 +7,9 @@ dnl be defined as -RC2, for example. For real releases, it should be defined
 dnl empty.
 
 m4_define(pcre_major, [7])
-m4_define(pcre_minor, [8])
+m4_define(pcre_minor, [9])
 m4_define(pcre_prerelease, [])
-m4_define(pcre_date, [2008-09-05])
+m4_define(pcre_date, [2009-04-11])
 
 # Libtool shared library interface versions (current:revision:age)
 m4_define(libpcre_version, [0:1:0])
@@ -102,7 +102,7 @@ AC_ARG_ENABLE(rebuild-chartables,
 # Handle --enable-utf8 (disabled by default)
 AC_ARG_ENABLE(utf8,
               AS_HELP_STRING([--enable-utf8],
-                             [enable UTF-8 support]),
+                             [enable UTF-8 support (incompatible with --enable-ebcdic)]),
               , enable_utf8=unset)
 
 # Handle --enable-unicode-properties
@@ -150,7 +150,7 @@ AC_ARG_ENABLE(bsr-anycrlf,
 # Handle --enable-ebcdic
 AC_ARG_ENABLE(ebcdic,
               AS_HELP_STRING([--enable-ebcdic],
-                             [assume EBCDIC coding rather than ASCII; use this only in (uncommon) EBCDIC environments; it implies --enable-rebuild-chartables]),
+                             [assume EBCDIC coding rather than ASCII; incompatible with --enable-utf8; use only in (uncommon) EBCDIC environments; it implies --enable-rebuild-chartables]),
               , enable_ebcdic=no)
 
 # Handle --disable-stack-for-recursion
@@ -226,10 +226,17 @@ then
 fi
 
 # Make sure that if enable_ebcdic is set, rebuild_chartables is also enabled.
+# Also check that UTF-8 support is not requested, because PCRE cannot handle
+# EBCDIC and UTF-8 in the same build. To do so it would need to use different
+# character constants depending on the mode.
 #
 if test "x$enable_ebcdic" = "xyes"
 then
   enable_rebuild_chartables=yes
+  if test "x$enable_utf8" = "xyes"
+  then
+    AC_MSG_ERROR([support for EBCDIC and UTF-8 cannot be enabled at the same time])
+  fi
 fi
 
 # Convert the newline identifier into the appropriate integer value.
@@ -381,7 +388,10 @@ fi
 
 if test "$enable_utf8" = "yes"; then
   AC_DEFINE([SUPPORT_UTF8], [], [
-    Define to enable support for the UTF-8 Unicode encoding.])
+    Define to enable support for the UTF-8 Unicode encoding. This will
+    work even in an EBCDIC environment, but it is incompatible with
+    the EBCDIC macro. That is, PCRE can support *either* EBCDIC code
+    *or* ASCII/UTF-8, but not both at once.])
 fi
 
 if test "$enable_unicode_properties" = "yes"; then
@@ -502,7 +512,11 @@ if test "$enable_ebcdic" = "yes"; then
   AC_DEFINE_UNQUOTED([EBCDIC], [], [
     If you are compiling for a system that uses EBCDIC instead of ASCII
     character codes, define this macro as 1. On systems that can use
-    "configure", this can be done via --enable-ebcdic.])
+    "configure", this can be done via --enable-ebcdic. PCRE will then
+    assume that all input strings are in EBCDIC. If you do not define
+    this macro, PCRE will assume input strings are ASCII or UTF-8 Unicode.
+    It is not possible to build a version of PCRE that supports both
+    EBCDIC and UTF-8.])
 fi
 
 # Platform specific issues
@@ -539,7 +553,7 @@ DISTCHECK_CONFIGURE_FLAGS="--enable-cpp --enable-unicode-properties"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
 # Check that, if --enable-pcregrep-libz or --enable-pcregrep-libbz2 is
-# specified, the relevant library is available. If so, add it to LIBS.
+# specified, the relevant library is available.
 
 if test "$enable_pcregrep_libz" = "yes"; then
   if test "$HAVE_ZLIB_H" != "1"; then
@@ -550,8 +564,9 @@ if test "$enable_pcregrep_libz" = "yes"; then
     echo "** Cannot --enable-pcregrep-libz because libz was not found"
     exit 1
   fi
-  if test "$LIBS" = ""; then LIBS=-lz; else LIBS="$LIBS -lz"; fi
+  LIBZ="-lz"
 fi
+AC_SUBST(LIBZ)
 
 if test "$enable_pcregrep_libbz2" = "yes"; then
   if test "$HAVE_BZLIB_H" != "1"; then
@@ -562,8 +577,9 @@ if test "$enable_pcregrep_libbz2" = "yes"; then
     echo "** Cannot --enable-pcregrep-libbz2 because libbz2 was not found"
     exit 1
   fi
-  if test "$LIBS" = ""; then LIBS=-lbz2; else LIBS="$LIBS -lbz2"; fi
+  LIBBZ2="-lbz2"
 fi
+AC_SUBST(LIBBZ2)
 
 # Similarly for --enable-pcretest-readline
 
@@ -576,8 +592,9 @@ if test "$enable_pcretest_libreadline" = "yes"; then
     echo "** Cannot --enable-pcretest-readline because readline/history.h was not found."
     exit 1
   fi
-  if test "$LIBS" = ""; then LIBS=-lreadline; else LIBS="$LIBS -lreadline"; fi
+  LIBREADLINE="-lreadline"
 fi
+AC_SUBST(LIBREADLINE)
 
 # Produce these files, in addition to config.h.
 AC_CONFIG_FILES(

@@ -71,8 +71,13 @@ input mode under Windows. */
 #define INPUT_MODE   "r"
 #define OUTPUT_MODE  "wb"
 
-#define isatty _isatty         /* This is what Windows calls them, I'm told */
+#ifndef isatty
+#define isatty _isatty         /* This is what Windows calls them, I'm told, */
+#endif                         /* though in some environments they seem to   */
+                               /* be already defined, hence the #ifndefs.    */
+#ifndef fileno
 #define fileno _fileno
+#endif
 
 #else
 #include <sys/time.h>          /* These two includes are needed */
@@ -785,6 +790,7 @@ printf("  -dfa     force DFA matching for all subjects\n");
 #endif
 printf("  -help    show usage information\n");
 printf("  -i       show information about compiled patterns\n"
+       "  -M       find MATCH_LIMIT minimum for each subject\n"
        "  -m       output memory used information\n"
        "  -o <n>   set size of offsets vector to <n>\n");
 #if !defined NOPOSIX
@@ -814,6 +820,7 @@ int main(int argc, char **argv)
 FILE *infile = stdin;
 int options = 0;
 int study_options = 0;
+int default_find_match_limit = FALSE;
 int op = 1;
 int timeit = 0;
 int timeitm = 0;
@@ -873,6 +880,7 @@ while (argc > 1 && argv[op][0] == '-')
   else if (strcmp(argv[op], "-b") == 0) debug = 1;
   else if (strcmp(argv[op], "-i") == 0) showinfo = 1;
   else if (strcmp(argv[op], "-d") == 0) showinfo = debug = 1;
+  else if (strcmp(argv[op], "-M") == 0) default_find_match_limit = TRUE;
 #if !defined NODFA
   else if (strcmp(argv[op], "-dfa") == 0) all_use_dfa = 1;
 #endif
@@ -925,6 +933,7 @@ while (argc > 1 && argv[op][0] == '-')
   else if (strcmp(argv[op], "-C") == 0)
     {
     int rc;
+    unsigned long int lrc;
     printf("PCRE version %s\n", pcre_version());
     printf("Compiled with\n");
     (void)pcre_config(PCRE_CONFIG_UTF8, &rc);
@@ -932,8 +941,10 @@ while (argc > 1 && argv[op][0] == '-')
     (void)pcre_config(PCRE_CONFIG_UNICODE_PROPERTIES, &rc);
     printf("  %sUnicode properties support\n", rc? "" : "No ");
     (void)pcre_config(PCRE_CONFIG_NEWLINE, &rc);
-    printf("  Newline sequence is %s\n", (rc == '\r')? "CR" :
-      (rc == '\n')? "LF" : (rc == ('\r'<<8 | '\n'))? "CRLF" :
+    /* Note that these values are always the ASCII values, even
+    in EBCDIC environments. CR is 13 and NL is 10. */
+    printf("  Newline sequence is %s\n", (rc == 13)? "CR" :
+      (rc == 10)? "LF" : (rc == (13<<8 | 10))? "CRLF" :
       (rc == -2)? "ANYCRLF" :
       (rc == -1)? "ANY" : "???");
     (void)pcre_config(PCRE_CONFIG_BSR, &rc);
@@ -943,10 +954,10 @@ while (argc > 1 && argv[op][0] == '-')
     printf("  Internal link size = %d\n", rc);
     (void)pcre_config(PCRE_CONFIG_POSIX_MALLOC_THRESHOLD, &rc);
     printf("  POSIX malloc threshold = %d\n", rc);
-    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT, &rc);
-    printf("  Default match limit = %d\n", rc);
-    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT_RECURSION, &rc);
-    printf("  Default recursion depth limit = %d\n", rc);
+    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT, &lrc);
+    printf("  Default match limit = %ld\n", lrc);
+    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT_RECURSION, &lrc);
+    printf("  Default recursion depth limit = %ld\n", lrc);
     (void)pcre_config(PCRE_CONFIG_STACKRECURSE, &rc);
     printf("  Match recursion uses %s\n", rc? "stack" : "heap");
     goto EXIT;
@@ -1314,6 +1325,8 @@ while (!done)
 #endif  /* !defined NOPOSIX */
 
     {
+    unsigned long int get_options;
+
     if (timeit > 0)
       {
       register int i;
@@ -1357,9 +1370,16 @@ while (!done)
       goto CONTINUE;
       }
 
-    /* Compilation succeeded; print data if required. There are now two
-    info-returning functions. The old one has a limited interface and
-    returns only limited data. Check that it agrees with the newer one. */
+    /* Compilation succeeded. It is now possible to set the UTF-8 option from
+    within the regex; check for this so that we know how to process the data
+    lines. */
+
+    new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
+    if ((get_options & PCRE_UTF8) != 0) use_utf8 = 1;
+
+    /* Print information if required. There are now two info-returning
+    functions. The old one has a limited interface and returns only limited
+    data. Check that it agrees with the newer one. */
 
     if (log_store)
       fprintf(outfile, "Memory allocation (code space): %d\n",
@@ -1444,9 +1464,11 @@ while (!done)
       pcre_printint(re, outfile, debug_lengths);
       }
 
+    /* We already have the options in get_options (see above) */
+
     if (do_showinfo)
       {
-      unsigned long int get_options, all_options;
+      unsigned long int all_options;
 #if !defined NOINFOCHECK
       int old_first_char, old_options, old_count;
 #endif
@@ -1455,7 +1477,6 @@ while (!done)
       int nameentrysize, namecount;
       const uschar *nametable;
 
-      new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
       new_info(re, NULL, PCRE_INFO_SIZE, &size);
       new_info(re, NULL, PCRE_INFO_CAPTURECOUNT, &count);
       new_info(re, NULL, PCRE_INFO_BACKREFMAX, &backrefmax);
@@ -1708,7 +1729,7 @@ while (!done)
     int callout_data_set = 0;
     int count, c;
     int copystrings = 0;
-    int find_match_limit = 0;
+    int find_match_limit = default_find_match_limit;
     int getstrings = 0;
     int getlist = 0;
     int gmatched = 0;
@@ -2006,6 +2027,10 @@ while (!done)
         show_malloc = 1;
         continue;
 
+        case 'Y':
+        options |= PCRE_NO_START_OPTIMIZE;
+        continue;
+
         case 'Z':
         options |= PCRE_NOTEOL;
         continue;
@@ -2064,6 +2089,7 @@ while (!done)
         pmatch = (regmatch_t *)malloc(sizeof(regmatch_t) * use_size_offsets);
       if ((options & PCRE_NOTBOL) != 0) eflags |= REG_NOTBOL;
       if ((options & PCRE_NOTEOL) != 0) eflags |= REG_NOTEOL;
+      if ((options & PCRE_NOTEMPTY) != 0) eflags |= REG_NOTEMPTY;
 
       rc = regexec(&preg, (const char *)bptr, use_size_offsets, pmatch, eflags);
 
@@ -2371,9 +2397,11 @@ while (!done)
             {
             int d;
             (void)pcre_config(PCRE_CONFIG_NEWLINE, &d);
-            obits = (d == '\r')? PCRE_NEWLINE_CR :
-                    (d == '\n')? PCRE_NEWLINE_LF :
-                    (d == ('\r'<<8 | '\n'))? PCRE_NEWLINE_CRLF :
+            /* Note that these values are always the ASCII ones, even in
+            EBCDIC environments. CR = 13, NL = 10. */
+            obits = (d == 13)? PCRE_NEWLINE_CR :
+                    (d == 10)? PCRE_NEWLINE_LF :
+                    (d == (13<<8 | 10))? PCRE_NEWLINE_CRLF :
                     (d == -2)? PCRE_NEWLINE_ANYCRLF :
                     (d == -1)? PCRE_NEWLINE_ANY : 0;
             }

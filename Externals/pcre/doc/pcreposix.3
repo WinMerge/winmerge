@@ -39,11 +39,11 @@ header file, and on Unix systems the library itself is called
 command for linking an application that uses them. Because the POSIX functions
 call the native ones, it is also necessary to add \fB-lpcre\fP.
 .P
-I have implemented only those option bits that can be reasonably mapped to PCRE
-native options. In addition, the option REG_EXTENDED is defined with the value
-zero. This has no effect, but since programs that are written to the POSIX
-interface often use it, this makes it easier to slot in PCRE as a replacement
-library. Other POSIX options are not even defined.
+I have implemented only those POSIX option bits that can be reasonably mapped
+to PCRE native options. In addition, the option REG_EXTENDED is defined with
+the value zero. This has no effect, but since programs that are written to the
+POSIX interface often use it, this makes it easier to slot in PCRE as a
+replacement library. Other POSIX options are not even defined.
 .P
 When PCRE is called via these functions, it is only the API that is POSIX-like
 in style. The syntax and semantics of the regular expressions themselves are
@@ -166,6 +166,12 @@ be:
 The PCRE_NOTBOL option is set when calling the underlying PCRE matching
 function.
 .sp
+  REG_NOTEMPTY
+.sp
+The PCRE_NOTEMPTY option is set when calling the underlying PCRE matching
+function. Note that REG_NOTEMPTY is not part of the POSIX standard. However,
+setting this option can give more POSIX-like behaviour in some situations.
+.sp
   REG_NOTEOL
 .sp
 The PCRE_NOTEOL option is set when calling the underlying PCRE matching
@@ -233,6 +239,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 05 April 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 11 March 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

@@ -6,7 +6,7 @@
 and semantics are as close as possible to those of the Perl 5 language.
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2008 University of Cambridge
+           Copyright (c) 1997-2009 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -274,6 +274,7 @@ BOOL nosub =
 
 if ((eflags & REG_NOTBOL) != 0) options |= PCRE_NOTBOL;
 if ((eflags & REG_NOTEOL) != 0) options |= PCRE_NOTEOL;
+if ((eflags & REG_NOTEMPTY) != 0) options |= PCRE_NOTEMPTY;
 
 ((regex_t *)preg)->re_erroffset = (size_t)(-1);  /* Only has meaning after compile */
 

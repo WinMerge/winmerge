@@ -162,6 +162,12 @@ PCRE_BINARY_DIR:STATIC=G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32
 //Build the PCRE C++ library (pcrecpp).
 PCRE_BUILD_PCRECPP:BOOL=ON
 
+//Build pcregrep
+PCRE_BUILD_PCREGREP:BOOL=ON
+
+//Build the tests
+PCRE_BUILD_TESTS:BOOL=ON
+
 //Use EBCDIC coding instead of ASCII. (This is rarely used outside
 // of mainframe systems)
 PCRE_EBCDIC:BOOL=OFF
@@ -191,6 +197,9 @@ PCRE_POSIX_MALLOC_THRESHOLD:STRING=10
 
 //Rebuild char tables
 PCRE_REBUILD_CHARTABLES:BOOL=OFF
+
+//Show the final configuration report
+PCRE_SHOW_REPORT:BOOL=ON
 
 //Value Computed by CMake
 PCRE_SOURCE_DIR:STATIC=G:/WinMerge/WinMerge_SVN/Externals/pcre
@@ -238,6 +247,8 @@ ALL_BUILD_GUID_CMAKE:INTERNAL=A0E541DB-A9FD-4A27-AC5C-C542673083E3
 BZIP2_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //Advanced flag for variable: BZIP2_LIBRARIES
 BZIP2_LIBRARIES-ADVANCED:INTERNAL=1
+//Advanced flag for variable: CMAKE_BUILD_TOOL
+CMAKE_BUILD_TOOL-ADVANCED:INTERNAL=1
 //What is the target build tool cmake is generating for.
 CMAKE_BUILD_TOOL:INTERNAL=C:/PROGRA~1/MICROS~2.NET/Common7/IDE/devenv.com
 //This is the directory where this CMakeCahe.txt was created
@@ -247,7 +258,7 @@ CMAKE_CACHE_MAJOR_VERSION:INTERNAL=2
 //Minor version of cmake used to create the current loaded cache
 CMAKE_CACHE_MINOR_VERSION:INTERNAL=6
 //Major version of cmake used to create the current loaded cache
-CMAKE_CACHE_RELEASE_VERSION:INTERNAL=patch 0
+CMAKE_CACHE_RELEASE_VERSION:INTERNAL=patch 4
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=C:/Program Files/CMake 2.6/bin/cmake.exe
 //Advanced flag for variable: CMAKE_CONFIGURATION_TYPES

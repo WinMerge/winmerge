@@ -67,7 +67,7 @@ to the <b>configure</b> command.
 </P>
 <br><a name="SEC3" href="#TOC1">UTF-8 SUPPORT</a><br>
 <P>
-To build PCRE with support for UTF-8 character strings, add
+To build PCRE with support for UTF-8 Unicode character strings, add
 <pre>
   --enable-utf8
 </pre>
@@ -75,6 +75,13 @@ to the <b>configure</b> command. Of itself, this does not make PCRE treat
 strings as UTF-8. As well as compiling PCRE with this option, you also have
 have to set the PCRE_UTF8 option when you call the <b>pcre_compile()</b>
 function.
+</P>
+<P>
+If you set --enable-utf8 when compiling in an EBCDIC environment, PCRE expects
+its input to be either ASCII or UTF-8 (depending on the runtime option). It is
+not possible to support both EBCDIC and UTF-8 codes in the same version of the
+library. Consequently, --enable-utf8 and --enable-ebcdic are mutually
+exclusive.
 </P>
 <br><a name="SEC4" href="#TOC1">UNICODE CHARACTER PROPERTY SUPPORT</a><br>
 <P>
@@ -98,9 +105,9 @@ documentation.
 </P>
 <br><a name="SEC5" href="#TOC1">CODE VALUE OF NEWLINE</a><br>
 <P>
-By default, PCRE interprets character 10 (linefeed, LF) as indicating the end
+By default, PCRE interprets the linefeed (LF) character as indicating the end
 of a line. This is the normal newline character on Unix-like systems. You can
-compile PCRE to use character 13 (carriage return, CR) instead, by adding
+compile PCRE to use carriage return (CR) instead, by adding
 <pre>
   --enable-newline-is-cr
 </pre>
@@ -270,7 +277,8 @@ EBCDIC environment by adding
 </pre>
 to the <b>configure</b> command. This setting implies
 --enable-rebuild-chartables. You should only use it if you know that you are in
-an EBCDIC environment (for example, an IBM mainframe operating system).
+an EBCDIC environment (for example, an IBM mainframe operating system). The
+--enable-ebcdic option is incompatible with --enable-utf8.
 </P>
 <br><a name="SEC14" href="#TOC1">PCREGREP OPTIONS FOR COMPRESSED FILE SUPPORT</a><br>
 <P>
@@ -331,9 +339,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC18" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 13 April 2008
+Last updated: 17 March 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.
