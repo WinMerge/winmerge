@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.9
   Update PCRE to version 7.9 (r6903)
+  Improve color options organization (#2818451)
   Bugfix: Did not export changed options values (#2799149)
   Bugfix: Don't highlight identical words if whitespaces are ignored (#2798360)
   Bugfix: Did not reset folder compare method back to original (#2803152)

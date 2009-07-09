@@ -495,6 +495,7 @@
 #define IDS_OPTIONSPG_ARCHIVE           9050
 #define IDS_OPTIONSPG_BACKUPS           9051
 #define IDS_OPTIONSPG_SHELL             9052
+#define IDS_OPTIONSPG_MERGECOLORS       9053
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002

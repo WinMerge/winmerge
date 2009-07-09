@@ -102,9 +102,9 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageGeneral, IDS_OPTIONSPG_GENERAL);
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
-	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS);
-	AddPage(&m_pageTextColors, IDS_OPTIONSPG_TEXTCOLORS);
-	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_SYNTAXCOLORS);
+	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MERGECOLORS);
+	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_SYNTAXCOLORS);
+	AddPage(&m_pageTextColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_TEXTCOLORS);
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
 	AddPage(&m_pageBackups, IDS_OPTIONSPG_BACKUPS);
@@ -148,6 +148,14 @@ void CPreferencesDlg::OnHelpButton()
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)
 {
 	String sPath = theApp.LoadString(nResourceID);
+	AddPage(pPage, sPath.c_str());
+}
+
+void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubHeading)
+{
+	String sPath = theApp.LoadString(nTopHeading);
+	sPath += _T(">");
+	sPath += theApp.LoadString(nSubHeading);
 	AddPage(pPage, sPath.c_str());
 }
 
