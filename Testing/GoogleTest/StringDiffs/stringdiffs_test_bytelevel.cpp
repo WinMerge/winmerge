@@ -62,7 +62,7 @@ namespace
 		sd_ComputeWordDiffs( "				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),",
 				"					if (len2 < 50)",
 				true, 0, 1, true, &diffs);
-		EXPECT_EQ(10, diffs.size());
+		EXPECT_EQ(11, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, byte-level
@@ -160,14 +160,6 @@ namespace
 			EXPECT_EQ(5, pDiff->start[1]);
 			EXPECT_EQ(37, pDiff->end[1]);
 		}	
-		if (diffs.size() >=5 )
-		{
-			pDiff = diffs[4];
-			EXPECT_EQ(40, pDiff->start[0]);
-			EXPECT_EQ(40, pDiff->end[0]);
-			EXPECT_EQ(37, pDiff->start[1]);
-			EXPECT_EQ(37, pDiff->end[1]);
-		}	
 	}
 	// NoneIdentical strings, case sensitivity, no whitespace, punctuations, byte-level
 	// Second word is different
@@ -178,7 +170,7 @@ namespace
 		sd_ComputeWordDiffs(",;+ der abcdef,der,Thomas,abcdef,abcdef,;",
 				",;+ der abcdef,Thomas,accdgf,abcdef,-+",
 				true, 0, 1, true, &diffs);
-		EXPECT_EQ(4, diffs.size());
+		EXPECT_EQ(5, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
@@ -192,21 +184,29 @@ namespace
 		{
 			pDiff = diffs[1];
 			EXPECT_EQ(27, pDiff->start[0]);
-			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(27, pDiff->end[0]);
 			EXPECT_EQ(23, pDiff->start[1]);
-			EXPECT_EQ(26, pDiff->end[1]);
+			EXPECT_EQ(23, pDiff->end[1]);
 		}	
 		if (diffs.size() >=3 )
 		{
 			pDiff = diffs[2];
+			EXPECT_EQ(30, pDiff->start[0]);
+			EXPECT_EQ(30, pDiff->end[0]);
+			EXPECT_EQ(26, pDiff->start[1]);
+			EXPECT_EQ(26, pDiff->end[1]);
+		}	
+		if (diffs.size() >=4 )
+		{
+			pDiff = diffs[3];
 			EXPECT_EQ(40, pDiff->start[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
 			EXPECT_EQ(36, pDiff->start[1]);
 			EXPECT_EQ(36, pDiff->end[1]);
 		}	
-		if (diffs.size() >=4 )
+		if (diffs.size() >=5 )
 		{
-			pDiff = diffs[3];
+			pDiff = diffs[4];
 			EXPECT_EQ(41, pDiff->start[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
 			EXPECT_EQ(37, pDiff->start[1]);

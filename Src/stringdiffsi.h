@@ -21,6 +21,16 @@ enum
 	dlbreak, 
 	dlinsert,
 };
+/**
+ * @brief kind of synchronaction
+ */
+enum
+{
+	synbegin1 = 0, 
+	synbegin2,
+	synend1, 
+	synend2 
+};
 
 struct wdiff;
 

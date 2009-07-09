@@ -32,6 +32,13 @@ static bool isWordBreak(int breakType, TCHAR ch);
 static void wordLevelToByteLevel(vector<wdiff*> * pDiffs, const String& str1,
 		const String& str2, bool casitive, int xwhite);
 
+static bool
+sd_findsyn(wdiff* pDiff, const String & str1, const String & str2, 
+            bool casitive, int xwhite, 
+            int &begin1, int &begin2, int &end1, int &end2, bool equal, int func,
+            int &s1,int &e1,int &s2,int &e2);
+
+
 void sd_Init()
 {
 	BreakChars = &BreakCharDefaults[0];
@@ -136,7 +143,9 @@ stringdiffs::BuildWordDiffList()
 	int end = 0;
 	String str1;
 	String str2;
+#ifdef STRINGDIFF_LOGGING
 	TCHAR buf[256];
+#endif
 	// If we have to ignore all whitespace change,
 	// just remove leading and ending if one is there
 	if (m_whitespace == 2 && m_matchblock)
@@ -575,7 +584,7 @@ stringdiffs::BuildWordDiffList()
 		// Be aware, do not create more wdiffs as shortest line has chars!
 		int imaxcount = min(m_str1.length(), m_str2.length());
 		i = 0;
-		while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()) && (m_wdiffs.size() <= imaxcount))
+		while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()) && ((int)m_wdiffs.size() <= imaxcount))
 		{
 			if (!AreWordsSame(*m_words1[i], *m_words2[i]))
 			{
@@ -781,11 +790,11 @@ inword:
 void
 stringdiffs::PopulateDiffs()
 {
-	for (int i=0; i<m_wdiffs.size(); ++i)
+	for (int i=0; i< (int)m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
 		// combine it with next ?
-		if (i+1<m_wdiffs.size())
+		if (i+1< (int)m_wdiffs.size())
 		{
 			if (m_wdiffs[i]->end[0] == m_wdiffs[i+1]->start[0]
 				&& m_wdiffs[i]->end[1] == m_wdiffs[i+1]->start[1])
@@ -1004,15 +1013,21 @@ RetreatOverWhitespace(LPCTSTR * pcurrent, LPCTSTR start)
 
 /**
  * @brief Compute begin1,begin2,end1,end2 to display byte difference between strings str1 & str2
- * @param casitive [in] true for case-sensitive, false for case-insensitive
- * @param xwhite [in] This governs whether we handle whitespace specially (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
+ * @param [in] casitive true for case-sensitive, false for case-insensitive
+ * @param [in] xwhite This governs whether we handle whitespace specially
+ * (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
+ * @param [out] begin1 return -1 if not found or pos of equal
+ * @param [out] begin2 return -1 if not found or pos of equal
+ * @param [out] end1 return -1 if not found or pos of equal valid if begin1 >=0
+ * @param [out] end2 return -1 if not found or pos of equal valid if begin2 >=0
+ * @param [in] equal false surch for a diff, true surch for equal
  *
  * Assumes whitespace is never leadbyte or trailbyte!
  */
 void
 sd_ComputeByteDiff(String & str1, String & str2, 
 		   bool casitive, int xwhite, 
-		   int &begin1, int &begin2, int &end1, int &end2)
+		   int &begin1, int &begin2, int &end1, int &end2, bool equal)
 {
 	// Set to sane values
 	// Also this way can distinguish if we set begin1 to -1 for no diff in line
@@ -1023,6 +1038,12 @@ sd_ComputeByteDiff(String & str1, String & str2,
 
 	LPCTSTR pbeg1 = str1.c_str();
 	LPCTSTR pbeg2 = str2.c_str();
+	// cursors from front, which we advance to beginning of difference
+	LPCTSTR py1 = 0;
+	LPCTSTR py2 = 0;
+	// cursors from front, which we advance to ending of difference
+	LPCTSTR pz1 = 0;
+	LPCTSTR pz2 = 0;
 
 	if (len1 == 0 || len2 == 0)
 	{
@@ -1037,8 +1058,8 @@ sd_ComputeByteDiff(String & str1, String & str2,
 	}
 
 	// cursors from front, which we advance to beginning of difference
-	LPCTSTR py1 = pbeg1;
-	LPCTSTR py2 = pbeg2;
+	py1 = pbeg1;
+	py2 = pbeg2;
 
 	// pen1,pen2 point to the last valid character (broken multibyte lead chars don't count)
 	LPCTSTR pen1 = LastChar(py1, len1);
@@ -1068,6 +1089,8 @@ sd_ComputeByteDiff(String & str1, String & str2,
 	}
 
 	bool alldone = false;
+	bool found = false;
+
 	// Advance over matching beginnings of lines
 	// Advance py1 & py2 from beginning until find difference or end
 	while (1)
@@ -1124,8 +1147,30 @@ sd_ComputeByteDiff(String & str1, String & str2,
 			if (!IsLeadByte(*py2))
 				break; // done with forward search
 			// DBCS (we assume if a lead byte, then character is 2-byte)
-			if (!(py1[0] == py2[0] && py1[1] == py2[1]))
-				break; // done with forward search
+			if (!equal)
+			{
+				if (!(py1[0] == py2[0] && py1[1] == py2[1]))
+					break; // done with forward search
+			}
+			else
+			{
+				if ((py1[0] == py2[0] && py1[1] == py2[1]))
+				{
+					// check at least two chars are identical
+					if (!found)
+					{
+						found = true;
+					}
+					else
+					{
+						break; // done with forward search
+					}
+				}
+				else
+				{
+					found = false;
+				}
+			}
 			py1 += 2; // DBCS specific
 			py2 += 2; // DBCS specific
 		}
@@ -1133,8 +1178,32 @@ sd_ComputeByteDiff(String & str1, String & str2,
 		{
 			if (IsLeadByte(*py2))
 				break; // done with forward search
-			if (!matchchar(py1[0], py2[0], casitive))
-				break; // done with forward search
+			if (!equal)
+			{
+				if (!matchchar(py1[0], py2[0], casitive))
+					break; // done with forward search
+			}
+			else 
+			{
+				if (matchchar(py1[0], py2[0], casitive))
+				{
+					// check at least two chars are identical
+					if (!found)
+					{
+						found = true;
+					}
+					else
+					{
+						py1 = CharPrev(pbeg1, py1);
+						py2 = CharPrev(pbeg2, py2);
+						break; // done with forward search
+					}
+				}
+				else
+				{
+					found = false;
+				}
+			}
 			++py1; // DBCS safe b/c we checked above
 			++py2; // DBCS safe b/c we checked above
 		}
@@ -1154,11 +1223,12 @@ sd_ComputeByteDiff(String & str1, String & str2,
 	}
 	else
 	{
-		LPCTSTR pz1 = pen1;
-		LPCTSTR pz2 = pen2;
+		pz1 = pen1;
+		pz2 = pen2;
 
 		// Retreat over matching ends of lines
 		// Retreat pz1 & pz2 from end until find difference or beginning
+		found = false;
 		while (1)
 		{
 			// Potential difference extends from py1 to pz1 and from py2 to pz2
@@ -1171,6 +1241,7 @@ sd_ComputeByteDiff(String & str1, String & str2,
 			}
 			if (pz1 < py1 || pz2 < py2)
 			{
+				found = true;
 				break;
 			}
 
@@ -1187,8 +1258,11 @@ sd_ComputeByteDiff(String & str1, String & str2,
 				// gobble up all whitespace in current area
 				RetreatOverWhitespace(&pz1, py1); // will not go over beginning
 				RetreatOverWhitespace(&pz2, py2); // will not go over beginning
+				if (((pz1 == py1) && isSafeWhitespace(*pz1)) || ((pz2 == py2) && isSafeWhitespace(*pz2)))
+				{
+					break;
+				}
 				continue;
-
 			}
 			if (xwhite!=WHITESPACE_COMPARE_ALL && isSafeWhitespace(*pz2))
 			{
@@ -1202,6 +1276,10 @@ sd_ComputeByteDiff(String & str1, String & str2,
 				// gobble up all whitespace in current area
 				RetreatOverWhitespace(&pz1, py1); // will not go over beginning
 				RetreatOverWhitespace(&pz2, py2); // will not go over beginning
+				if (((pz1 == py1) && isSafeWhitespace(*pz1)) || ((pz2 == py2) && isSafeWhitespace(*pz2)))
+				{
+					break;
+				}
 				continue;
 			}
 
@@ -1211,15 +1289,67 @@ sd_ComputeByteDiff(String & str1, String & str2,
 				if (!IsLeadByte(*pz2))
 					break; // done with forward search
 				// DBCS (we assume if a lead byte, then character is 2-byte)
-				if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
-					break; // done with forward search
+				if (!equal)
+				{
+					if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
+					{
+						found = true;
+						break; // done with forward search
+					}
+				}
+				else
+				{
+					if ((pz1[0] == pz2[0] && pz1[1] == pz2[1]))
+					{
+						// check at least two chars are identical
+						if (!found)
+						{
+							found = true;
+						}
+						else
+						{
+							break; // done with forward search
+						}
+					}
+					else
+					{
+						found = false;
+					}
+                }
 			}
 			else
 			{
 				if (IsLeadByte(*pz2))
 					break; // done with forward search
-				if (!matchchar(pz1[0], pz2[0], casitive))
-					break; // done with forward search
+				if (!equal)
+				{
+					if (!matchchar(pz1[0], pz2[0], casitive))
+					{
+						found = true;
+						break; // done with forward search
+					}
+				}
+				else 
+				{
+					if (matchchar(pz1[0], pz2[0], casitive))
+					{
+						// check at least two chars are identical
+						if (!found)
+						{
+							found = true;
+						}
+						else
+						{
+							pz1++;
+							pz2++;
+							break; // done with forward search
+						}
+					}
+					else
+					{
+						found = false;
+					}
+				}
 			}
 			// decrement pz1 and pz2
 			if (pz1 == pbeg1)
@@ -1233,15 +1363,37 @@ sd_ComputeByteDiff(String & str1, String & str2,
 		}
 
 		// Store results of advance into return variables (end1 & end2)
-		if (pz1 < pbeg1)
-			begin1 = -1; // no visible diff in line 1
+		// return -1 for Not found, otherwise distance from begin
+		if (found && pz1 == pbeg1 ) 
+		{
+			// Found on begin
+			end1 = 0;
+		}
+		else if (pz1 <= pbeg1 || pz1 < py1) 
+		{
+			// No visible diff in line 1
+			end1 = -1; 
+		}
 		else
+		{
+			// Found on distance line 1
 			end1 = pz1 - pbeg1;
-		if (pz2 < pbeg2)
-			begin2 = -1; // no visible diff in line 2
+		}
+		if (found && pz2 == pbeg2 ) 
+		{
+			// Found on begin
+			end2 = 0;
+		}
+		else if (pz2 <= pbeg2 || pz2 < py2)
+		{
+			// No visible diff in line 2
+			end2 = -1; 
+		}
 		else
+		{
+			// Found on distance line 2
 			end2 = pz2 - pbeg2;
-		
+		}
 	}
 }
 
@@ -1255,37 +1407,342 @@ sd_ComputeByteDiff(String & str1, String & str2,
 static void wordLevelToByteLevel(vector<wdiff*> * pDiffs, const String& str1,
 		const String& str2, bool casitive, int xwhite)
 {
-	for (int i = 0; i < pDiffs->size(); i++)
+	bool bRepeat = true;
+	int iLen1 = 0;
+	int iLen2 = 0;
+	String str1_2, str2_2;
+	int s1 = 0,e1 = 0,s2 = 0,e2 = 0; 
+
+#ifdef STRINGDIFF_LOGGING
+	TCHAR buf[256];
+#endif
+
+	for (int i = 0; i < (int)pDiffs->size(); i++)
 	{
 		int begin1, begin2, end1, end2;
 		wdiff *pDiff = (*pDiffs)[i];
-		String str1_2, str2_2;
+		bRepeat = true;
+
+		// Something to differ?
+		if (pDiff->start[0] > pDiff->end[0] || pDiff->start[1] > pDiff->end[1])
+			continue;
+#ifdef STRINGDIFF_LOGGING
+		wsprintf(buf, _T("actuell \n left=  %d,%d\n right=  %d,%d \n"),
+			pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+		OutputDebugString(buf);
+#endif	
+
+		// Check for first and last difference in word
 		str1_2 = str1.substr(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
 		str2_2 = str2.substr(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);
-		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2);
+		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2, false);
 		if (begin1 == -1)
 		{
 			// no visible diff on side1
 			pDiff->end[0] = pDiff->start[0] - 1;
+			bRepeat = false;
 		}
 		else
 		{
-			pDiff->end[0] = pDiff->start[0] + end1;
-			pDiff->start[0] += begin1;
+			if (end1 == -1)
+			{
+				pDiff->start[0] += begin1;
+				pDiff->end[0] = pDiff->start[0] + end1;
+			}
+			else
+			{
+				pDiff->end[0] = pDiff->start[0] + end1;
+				pDiff->start[0] += begin1;
+			}
 		}
 		if (begin2 == -1)
 		{
 			// no visible diff on side2
 			pDiff->end[1] = pDiff->start[1] - 1;
+			bRepeat = false;
 		}
 		else
 		{
-			pDiff->end[1] = pDiff->start[1] + end2;
-			pDiff->start[1] += begin2;
+			if (end2 == -1)
+			{
+				pDiff->start[1] += begin2;
+				pDiff->end[1] = pDiff->start[1] + end2;
+			}
+			else
+			{
+				pDiff->end[1] = pDiff->start[1] + end2;
+				pDiff->start[1] += begin2;
+			}
+		}
+#ifdef STRINGDIFF_LOGGING
+		wsprintf(buf, _T("changed \n left=  %d,%d\n right=  %d,%d \n"),
+			pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+		OutputDebugString(buf);
+#endif	
+
+		// Nothing to display, remove item
+		if (pDiff->start[0] > pDiff->end[0] && pDiff->start[1] > pDiff->end[1])
+		{
+			vector<wdiff*>::iterator iter = pDiffs->begin() + i;
+			delete *iter;
+			pDiffs->erase(iter);
+			i--;
+			continue;
+		}
+		// Nothing more todo
+		if (((pDiff->end[0] - pDiff->start[0])< 3) ||
+			((pDiff->end[1] - pDiff->start[1])< 3))
+		{
+			continue;
+		}
+		// Now check if possiblity to get more details
+		// We have to check if there is again a synchronisation inside the pDiff
+		if (bRepeat && pDiff->start[0] < pDiff->end[0] && pDiff->start[1] < pDiff->end[1])
+		{
+			// define offset to zero
+			s1 = 0,e1 = 0,s2 = 0,e2 = 0; 
+			bool bsynchron = false;
+			// Try to synchron side1 from begin
+			bsynchron = sd_findsyn(pDiff, str1, str2, casitive, xwhite,
+				begin1, begin2, end1, end2,
+				true, synbegin1, s1, e1, s2, e2);
+
+			if (!bsynchron)
+			{
+				// Try to synchron side2 from begin
+				s1 = 0;
+				bsynchron = sd_findsyn(pDiff, str1, str2, casitive, xwhite,
+					begin1, begin2, end1, end2,
+					true, synbegin2, s1, e1, s2, e2);
+			}
+			if (bsynchron)
+			{
+				// Try to synchron side1 from end
+				bsynchron = sd_findsyn(pDiff, str1, str2, casitive, xwhite,
+					begin1, begin2, end1, end2,
+					true, synend1, s1, e1, s2, e2);
+				if (!bsynchron)
+				{
+					// Try to synchron side1 from end
+					e1 = 0;
+					bsynchron = sd_findsyn(pDiff, str1, str2, casitive, xwhite,
+						begin1, begin2, end1, end2,
+						true, synend2, s1, e1, s2, e2);
+				}
+			}
+
+			// Do we have more details?
+			if ((begin1 == -1) && (begin2 == -1) || (!bsynchron))
+			{
+				// No visible synchcron on side1 and side2
+				bRepeat = false;
+			}
+			else if ((begin1 >= 0) && (begin2 >= 0) && (end1 >= 0) && (end2 >= 0))
+			{
+				// Visible sync on side1 and side2
+				// Now split in two diff
+				vector<wdiff*>::iterator iter = pDiffs->begin() + i + 1;
+				// New behind actual diff
+				// wdf->start diff->start + offset + end + 1 (zerobased)
+				wdiff *wdf = new wdiff(pDiff->start[0] + s1 + end1 + 1, pDiff->end[0],
+					pDiff->start[1] + s2 + end2 + 1, pDiff->end[1]);
+				pDiffs->insert(iter, wdf);
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("org\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+				wsprintf(buf, _T("insert\n left=  %d,%d\n right=  %d,%d \n"),
+					wdf->start[0], wdf->end[0],wdf->start[1], wdf->end[1]);
+				OutputDebugString(buf);
+#endif
+				// change end of actual diff
+				pDiff->end[0] = pDiff->start[0] + s1 + begin1 - 1;
+				pDiff->end[1] = pDiff->start[1] + s2 + begin2 - 1;
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("changed\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+#endif			
+				// visible sync on side1 and side2
+				// new in middle with diff
+				wdiff *wdfm = new wdiff(pDiff->end[0]  + 1, wdf->start[0] - 1,
+					pDiff->end[1] + 1, wdf->start[1] - 1);
+				iter = pDiffs->begin() + i + 1;
+				pDiffs->insert(iter, wdfm);
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("insert\n left=  %d,%d\n right=  %d,%d \n"),
+					wdf->start[0], wdf->end[0],wdf->start[1], wdf->end[1]);
+				OutputDebugString(buf);
+#endif
+			}
+			else if ((begin1 >= 0) && (begin1 < end1))
+			{
+				// insert side2
+				// Visible sync on side1 and side2
+				// Now split in two diff
+				vector<wdiff*>::iterator iter = pDiffs->begin() + i + 1;
+				// New behind actual diff
+				wdiff *wdf = new wdiff(pDiff->start[0] + s1 + e1 + end1, pDiff->end[0],
+					pDiff->start[1] + s2 + e2 , pDiff->end[1]);
+				pDiffs->insert(iter, wdf);
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("org\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+				wsprintf(buf, _T("insert\n left=  %d,%d\n right=  %d,%d \n"),
+					wdf->start[0], wdf->end[0],wdf->start[1], wdf->end[1]);
+				OutputDebugString(buf);
+#endif
+				// change end of actual diff
+				pDiff->end[0] = pDiff->start[0] + s1 + begin1;
+				pDiff->end[1] = pDiff->start[1] + s2 + begin2;
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("changed\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+#endif	
+			}
+			else if ((begin2 >= 0) && (begin2 < end2))
+			{
+				// insert side1
+				// Visible sync on side1 and side2
+				// Now split in two diff
+				vector<wdiff*>::iterator iter = pDiffs->begin() + i + 1;
+				// New behind actual diff
+				wdiff *wdf = new wdiff(pDiff->start[0] + s1 + e1, pDiff->end[0],
+					pDiff->start[1] + s2 + e2 + end2, pDiff->end[1]);
+				pDiffs->insert(iter, wdf);
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("org\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+				wsprintf(buf, _T("insert\n left=  %d,%d\n right=  %d,%d \n"),
+					wdf->start[0], wdf->end[0],wdf->start[1], wdf->end[1]);
+				OutputDebugString(buf);
+#endif	
+				// change end of actual diff
+				pDiff->end[0] = pDiff->start[0] + s1 + begin1;
+				pDiff->end[1] = pDiff->start[1] + s2 + begin2;
+#ifdef STRINGDIFF_LOGGING
+				wsprintf(buf, _T("changed\n left=  %d,%d\n right=  %d,%d \n"),
+					pDiff->start[0], pDiff->end[0],pDiff->start[1], pDiff->end[1]);
+				OutputDebugString(buf);
+#endif	
+			}
 		}
 	}
 }
 
+/**
+ * @brief Compute begin1,begin2,end1,end2 to display byte difference between strings str1 & str2
+ *
+ * @param [in] casitive true for case-sensitive, false for case-insensitive
+ * @param [in] xwhite This governs whether we handle whitespace specially
+ * (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
+ * @param [out] begin1 return -1 if not found or pos of equal
+ * @param [out] begin2 return -1 if not found or pos of equal
+ * @param [out] end1 return -1 if not found or pos of equal valid if begin1 >=0
+ * @param [out] end2 return -1 if not found or pos of equal valid if begin2 >=0
+ * @param [in] equal false surch for a diff, true surch for equal
+ * @param [in] func 0-3 how to synchron,0,2 str1, 1,3 str2
+ * @param [in,out] s1 offset str1 begin
+ * @param [in,out] e1 offset str1 end
+ * @param [in,out] s2 offset str2 begin
+ * @param [in,out] e2 offset str2 end
+ *
+ * Assumes whitespace is never leadbyte or trailbyte!
+ */
+bool
+sd_findsyn(wdiff*  pDiff, const String & str1, const String & str2, 
+		   bool casitive, int xwhite, 
+		   int &begin1, int &begin2, int &end1, int &end2, bool equal, int func,
+		   int &s1,int &e1,int &s2,int &e2)
+{
+	String str1_2, str2_2;
+	int max1 = pDiff->end[0] - pDiff->start[0];
+	int max2 = pDiff->end[1] - pDiff->start[1];
+	while((s1 + e1) < max1 && (s2 + e2) < max2)
+	{
+		// Get substrings for both sides
+		str1_2 = str1.substr(pDiff->start[0] + s1,
+			pDiff->end[0] - e1 - (pDiff->start[0] + s1) + 1);
+		str2_2 = str2.substr(pDiff->start[1] + s2,
+			pDiff->end[1] - e2 - (pDiff->start[1] + s2) + 1);
+		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2, equal);
+
+		if (func == synbegin1)
+        {
+			if ((begin1 == -1) || (begin2 == -1))
+			{
+				s1++;
+			}
+			else
+			{
+				// Found a synchronisation
+				return true;
+			}
+        }
+		else if (func == synbegin2)
+        {
+			if ((begin1 == -1) || (begin2 == -1))
+			{
+				s2++;
+			}
+			else
+			{
+				// Found a synchronisation
+				return true;
+			}
+        }
+		else if (func == synend1)
+        {
+			if ((begin1 == -1) || (begin2 == -1))
+			{
+				// Found no synchronisation
+				return false;
+			}
+			else
+			{
+				if ((end1 == -1) || (end2 == -1))
+				{
+					e1++;
+				}
+				else
+				{
+					// Found a synchronisation
+					return true;
+				}
+			}
+        }
+		else if (func == synend2)
+        {
+			if ((begin1 == -1) || (begin2 == -1))
+			{
+				// Found no synchronisation
+				return false;
+			}
+			else
+			{
+				if ((end1 == -1) || (end2 == -1))
+				{
+					e2++;
+				}
+				else
+				{
+					// Found a synchronisation
+					return true;
+				}
+			}
+			if ((begin1 > -1) && (begin2 > -1) && (0 <= end1) && (0 <= end2))
+			{
+				// Found a synchronisation
+				return true;
+			}
+        }
+	}
+	// No synchronisation found
+	return false;
+}
 /**
  * @brief Check if first side is identical.
  * @param [in] worddiffs Diffs from sd_ComputeWordDiffs.

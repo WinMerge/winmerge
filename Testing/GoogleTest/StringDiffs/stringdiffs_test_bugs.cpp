@@ -104,7 +104,7 @@ namespace
 		sd_ComputeWordDiffs("[overlay_oid_origin, overlay_oid_target], [nil, nil]",
 			"[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\", \"target.txt\"]",
 				false, 0, 1, true, &diffs);
-		EXPECT_EQ(4, diffs.size());
+		EXPECT_EQ(5, diffs.size());
 		if (diffs.size() > 0)
 		{
 			wdiff *pDiff = diffs[0];
@@ -397,18 +397,29 @@ namespace
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		wdiff *pDiff;
-		if (diffs.size() > 1)
+		if (diffs.size() > 0)
 		{
 			pDiff = diffs[0];
 			EXPECT_EQ(11, pDiff->start[0]);
 			EXPECT_EQ(11, pDiff->start[1]);
 			EXPECT_EQ(37, pDiff->end[0]);
 			EXPECT_EQ(36, pDiff->end[1]);
+		}
+		if (diffs.size() > 1)
+		{
 			pDiff = diffs[1];
 			EXPECT_EQ(43, pDiff->start[0]);
 			EXPECT_EQ(42, pDiff->start[1]);
 			EXPECT_EQ(42, pDiff->end[0]);
 			EXPECT_EQ(47, pDiff->end[1]);
+		}
+		if (diffs.size() > 2)
+		{
+			pDiff = diffs[2];
+			EXPECT_EQ(43, pDiff->start[0]);
+			EXPECT_EQ(42, pDiff->start[1]);
+			EXPECT_EQ(42, pDiff->end[0]);
+			EXPECT_EQ(57, pDiff->end[1]);
 		}
 	}
 

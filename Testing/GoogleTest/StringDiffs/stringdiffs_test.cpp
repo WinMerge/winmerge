@@ -680,13 +680,19 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcdE", "abcde", true, 0, 0, true, &diffs);
-		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		EXPECT_EQ(2, diffs.size());
+		wdiff *pDiff;
+		if (diffs.size() > 1 )
 		{
+			pDiff = diffs[0];
 			EXPECT_EQ(1, pDiff->start[0]);
-			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->end[0]);
 			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(1, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(4, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->start[1]);
 			EXPECT_EQ(4, pDiff->end[1]);
 		}
 	}
@@ -697,13 +703,19 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_ComputeWordDiffs("aBcde", "abcdE", true, 0, 0, true, &diffs);
-		EXPECT_EQ(1, diffs.size());
-		wdiff *pDiff = diffs[0];
-		if (diffs.size() == 1)
+		EXPECT_EQ(2, diffs.size());
+		wdiff *pDiff;
+		if (diffs.size() > 1)
 		{
+            pDiff = diffs[0];
 			EXPECT_EQ(1, pDiff->start[0]);
-			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(1, pDiff->end[0]);
 			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(1, pDiff->end[1]);
+            pDiff = diffs[1];
+			EXPECT_EQ(4, pDiff->start[0]);
+			EXPECT_EQ(4, pDiff->end[0]);
+			EXPECT_EQ(4, pDiff->start[1]);
 			EXPECT_EQ(4, pDiff->end[1]);
 		}
 	}
