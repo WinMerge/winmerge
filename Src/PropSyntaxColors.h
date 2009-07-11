@@ -1,7 +1,7 @@
 /** 
  * @file  PropSyntaxColors.h
  *
- * @brief Declaration file for CPropSyntaxColors propertyheet
+ * @brief Declaration file for PropSyntaxColors propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -17,13 +17,13 @@ class SyntaxColors;
 
 const int NumCustomColors = 16;
 
-class CPropSyntaxColors : public OptionsPanel
+class PropSyntaxColors : public OptionsPanel
 {
-	DECLARE_DYNAMIC(CPropSyntaxColors)
+	DECLARE_DYNAMIC(PropSyntaxColors)
 
 // Construction & Destruction
 public:
-	CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
+	PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -36,8 +36,6 @@ private:
 	enum { IDD = IDD_PROPPAGE_COLORS_SYNTAX };
 
 protected:
-
-
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedEcolorKeywords();

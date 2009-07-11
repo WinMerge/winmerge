@@ -1,7 +1,7 @@
 /**
  * @file  PropCodepage.h
  *
- * @brief Declaration of CPropCodepage class
+ * @brief Declaration of PropCodepage class
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -13,21 +13,18 @@
 
 class COptionsMgr;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropCodepage dialog
-
-class CPropCodepage : public OptionsPanel
+class PropCodepage : public OptionsPanel
 {
 // Construction
 public:
-	CPropCodepage(COptionsMgr *optionsMgr);
+	PropCodepage(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
 // Dialog Data
-	//{{AFX_DATA(CPropCodepage)
+	//{{AFX_DATA(PropCodepage)
 	enum { IDD = IDD_PROPPAGE_CODEPAGE };
 	int		m_nCodepageSystem;
 	int		m_nCustomCodepageValue;
@@ -37,7 +34,7 @@ public:
 
 // Overrides
 	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(CPropCodepage)
+	//{{AFX_VIRTUAL(PropCodepage)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -45,7 +42,7 @@ public:
 // Implementation
 protected:
 	// Generated message map functions
-	//{{AFX_MSG(CPropCodepage)
+	//{{AFX_MSG(PropCodepage)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();

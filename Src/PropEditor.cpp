@@ -1,7 +1,7 @@
 /** 
  * @file  PropEditor.cpp
  *
- * @brief Implementation of CPropEditor propertysheet
+ * @brief Implementation of PropEditor propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -22,15 +22,12 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Maximum size for tabs in spaces. */
 static const int MAX_TABSIZE = 64;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropEditor dialog
-
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager for handling options.
  */
-CPropEditor::CPropEditor(COptionsMgr *optionsMgr) 
-: OptionsPanel(optionsMgr, CPropEditor::IDD)
+PropEditor::PropEditor(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropEditor::IDD)
 , m_bHiliteSyntax(FALSE)
 , m_nTabType(-1)
 , m_nTabSize(0)
@@ -45,10 +42,10 @@ CPropEditor::CPropEditor(COptionsMgr *optionsMgr)
 /** 
  * @brief Function handling dialog data exchange between GUI and variables.
  */
-void CPropEditor::DoDataExchange(CDataExchange* pDX)
+void PropEditor::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropEditor)
+	//{{AFX_DATA_MAP(PropEditor)
 	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
@@ -62,8 +59,8 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
-	//{{AFX_MSG_MAP(CPropEditor)
+BEGIN_MESSAGE_MAP(PropEditor, CDialog)
+	//{{AFX_MSG_MAP(PropEditor)
 	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
@@ -74,7 +71,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropEditor::ReadOptions()
+void PropEditor::ReadOptions()
 {
 	m_nTabSize = GetOptionsMgr()->GetInt(OPT_TAB_SIZE);
 	m_nTabType = GetOptionsMgr()->GetInt(OPT_TAB_TYPE);
@@ -90,7 +87,7 @@ void CPropEditor::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropEditor::WriteOptions()
+void PropEditor::WriteOptions()
 {
 	// Sanity check tabsize
 	if (m_nTabSize < 1)
@@ -108,13 +105,10 @@ void CPropEditor::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, m_breakChars);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropEditor message handlers
-
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropEditor::OnInitDialog() 
+BOOL PropEditor::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -136,7 +130,7 @@ BOOL CPropEditor::OnInitDialog()
 /**
  * @brief Load strings (from resource) into combobox for break type
  */
-void CPropEditor::LoadBreakTypeStrings()
+void PropEditor::LoadBreakTypeStrings()
 {
 	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
 	cbo->AddString(theApp.LoadString(IDS_BREAK_ON_WHITESPACE).c_str());
@@ -146,7 +140,7 @@ void CPropEditor::LoadBreakTypeStrings()
 /**
  * @brief Handlers any clicks in any of the line differencing controls
  */
-void CPropEditor::OnLineDiffControlClicked()
+void PropEditor::OnLineDiffControlClicked()
 {
 	UpdateLineDiffControls();
 }
@@ -156,7 +150,7 @@ void CPropEditor::OnLineDiffControlClicked()
  * @param [in] item ID of dialog control to enable/disable.
  * @param [in] enable if true control is enabled, else disabled.
  */
-void CPropEditor::EnableDlgItem(int item, bool enable)
+void PropEditor::EnableDlgItem(int item, bool enable)
 {
 	GetDlgItem(item)->EnableWindow(!!enable);
 }
@@ -164,7 +158,7 @@ void CPropEditor::EnableDlgItem(int item, bool enable)
 /** 
  * @brief Update availability of line difference controls
  */
-void CPropEditor::UpdateLineDiffControls()
+void PropEditor::UpdateLineDiffControls()
 {
 	UpdateDataFromWindow();
 	// Can only choose char/word level if line differences are enabled
@@ -177,7 +171,7 @@ void CPropEditor::UpdateLineDiffControls()
 /** 
  * @brief Check tabsize value when control loses focus.
  */
-void CPropEditor::OnEnKillfocusTabEdit()
+void PropEditor::OnEnKillfocusTabEdit()
 {
 	CEdit * pEdit = (CEdit *)GetDlgItem(IDC_TAB_EDIT);
 	CString valueAsText;

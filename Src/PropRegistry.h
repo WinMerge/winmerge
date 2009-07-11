@@ -17,7 +17,7 @@
 /**
  * @file  PropRegistry.h
  *
- * @brief Declaration file CPropRegistry
+ * @brief Declaration file PropRegistry
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -29,9 +29,6 @@
 
 class COptionsMgr;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropRegistry dialog
-
 /**
  * @brief Property page for system options; used in options property sheet.
  *
@@ -39,18 +36,18 @@ class COptionsMgr;
  * It allows user to select options like whether to use Recycle Bin for
  * deleted files and External text editor.
  */
-class CPropRegistry : public OptionsPanel
+class PropRegistry : public OptionsPanel
 {
 // Construction
 public:
-	CPropRegistry(COptionsMgr *optionsMgr);
+	PropRegistry(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
 // Dialog Data
-	//{{AFX_DATA(CPropRegistry)
+	//{{AFX_DATA(PropRegistry)
 	enum { IDD = IDD_PROPPAGE_SYSTEM };
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
@@ -61,7 +58,7 @@ public:
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPropRegistry)
+	//{{AFX_VIRTUAL(PropRegistry)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -69,7 +66,7 @@ public:
 // Implementation methods
 protected:
 	// Generated message map functions
-	//{{AFX_MSG(CPropRegistry)
+	//{{AFX_MSG(PropRegistry)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();

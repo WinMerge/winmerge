@@ -1,9 +1,9 @@
 /** 
  * @file  PropTextColors.cpp
  *
- * @brief Implementation of CPropTextColors propertysheet
+ * @brief Implementation of PropTextColors propertysheet
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -24,23 +24,20 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Section name for settings in registry. */
 static const TCHAR Section[] = _T("Custom Colors");
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropTextColors dialog
-
 /** 
  * @brief Default constructor.
  */
-CPropTextColors::CPropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
- : OptionsPanel(optionsMgr, CPropTextColors::IDD)
+PropTextColors::PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
+ : OptionsPanel(optionsMgr, PropTextColors::IDD)
 , m_bCustomColors(FALSE)
 , m_pTempColors(pColors)
 {
 }
 
-void CPropTextColors::DoDataExchange(CDataExchange* pDX)
+void PropTextColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropTextColors)
+	//{{AFX_DATA_MAP(PropTextColors)
 	DDX_Control(pDX, IDC_DEFAULT_STANDARD_COLORS, m_btnDefaultStandardColors);
 	DDX_Check(pDX, IDC_DEFAULT_STANDARD_COLORS, m_bCustomColors);
 	DDX_Control(pDX, IDC_WHITESPACE_BKGD_COLOR, m_btnWhitespaceBackground);
@@ -52,8 +49,8 @@ void CPropTextColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropTextColors, CDialog)
-	//{{AFX_MSG_MAP(CPropTextColors)
+BEGIN_MESSAGE_MAP(PropTextColors, CDialog)
+	//{{AFX_MSG_MAP(PropTextColors)
 	ON_BN_CLICKED(IDC_DEFAULT_STANDARD_COLORS, OnDefaultsStandardColors)
 	ON_BN_CLICKED(IDC_WHITESPACE_BKGD_COLOR, OnWhitespaceBackgroundColor)
 	ON_BN_CLICKED(IDC_REGULAR_BKGD_COLOR, OnRegularBackgroundColor)
@@ -66,7 +63,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Enable/Disable controls when dialog is shown.
  */
-BOOL CPropTextColors::OnInitDialog()
+BOOL PropTextColors::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -83,7 +80,7 @@ BOOL CPropTextColors::OnInitDialog()
  * @brief Reads options values from storage to UI.
  * (Property sheet calls this before displaying all property pages)
  */
-void CPropTextColors::ReadOptions()
+void PropTextColors::ReadOptions()
 {
 	m_bCustomColors = GetOptionsMgr()->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING) ? FALSE : TRUE;
 	SerializeColorsToFromScreen(LOAD_COLORS);
@@ -93,7 +90,7 @@ void CPropTextColors::ReadOptions()
  * @brief Writes options values from UI to storage.
  * (Property sheet calls this after displaying all property pages)
  */
-void CPropTextColors::WriteOptions()
+void PropTextColors::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
 	// User can only change colors via BrowseColorAndSave,
@@ -110,7 +107,7 @@ void CPropTextColors::WriteOptions()
  * @param [in] colorButton Button for which to change color.
  * @param [in] colorIndex Index to color table.
  */
-void CPropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
+void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
 {
 	// Ignore user if colors are slaved to system
 	if (m_btnDefaultStandardColors.GetCheck() == BST_UNCHECKED)
@@ -133,7 +130,7 @@ void CPropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorIn
 /** 
  * @brief User wants to change whitespace color
  */
-void CPropTextColors::OnWhitespaceBackgroundColor() 
+void PropTextColors::OnWhitespaceBackgroundColor() 
 {
 	BrowseColorAndSave(m_btnWhitespaceBackground, COLORINDEX_WHITESPACE);
 }
@@ -141,7 +138,7 @@ void CPropTextColors::OnWhitespaceBackgroundColor()
 /** 
  * @brief User wants to change regular background color
  */
-void CPropTextColors::OnRegularBackgroundColor() 
+void PropTextColors::OnRegularBackgroundColor() 
 {
 	BrowseColorAndSave(m_btnRegularBackground, COLORINDEX_BKGND);
 }
@@ -149,7 +146,7 @@ void CPropTextColors::OnRegularBackgroundColor()
 /** 
  * @brief User wants to change regular text color
  */
-void CPropTextColors::OnRegularTextColor() 
+void PropTextColors::OnRegularTextColor() 
 {
 	BrowseColorAndSave(m_btnRegularText, COLORINDEX_NORMALTEXT);
 }
@@ -157,7 +154,7 @@ void CPropTextColors::OnRegularTextColor()
 /** 
  * @brief User wants to change regular selection background color
  */
-void CPropTextColors::OnSelectionBackgroundColor() 
+void PropTextColors::OnSelectionBackgroundColor() 
 {
 	BrowseColorAndSave(m_btnSelectionBackground, COLORINDEX_SELBKGND);
 }
@@ -165,7 +162,7 @@ void CPropTextColors::OnSelectionBackgroundColor()
 /** 
  * @brief User wants to change regular selection text color
  */
-void CPropTextColors::OnSelectionTextColor() 
+void PropTextColors::OnSelectionTextColor() 
 {
 	BrowseColorAndSave(m_btnSelectionText, COLORINDEX_SELTEXT);
 }
@@ -177,7 +174,7 @@ void CPropTextColors::OnSelectionTextColor()
  *  - LOAD_COLORS : Loads colors from registry
  * (No save operation because BrowseColorAndSave saves immediately when user chooses)
  */
-void CPropTextColors::SerializeColorsToFromScreen(OPERATION op)
+void PropTextColors::SerializeColorsToFromScreen(OPERATION op)
 {
 	if (op == SET_DEFAULTS)
 		m_pTempColors->SetDefaults();
@@ -198,7 +195,7 @@ void CPropTextColors::SerializeColorsToFromScreen(OPERATION op)
  *  - LOAD_COLORS : Loads colors from registry
  * (No save operation because BrowseColorAndSave saves immediately when user chooses)
  */
-void CPropTextColors::SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex)
+void PropTextColors::SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex)
 {
 	
 	switch (op)
@@ -223,7 +220,7 @@ void CPropTextColors::SerializeColorToFromScreen(OPERATION op, CColorButton & bt
 /** 
  * @brief Set colors to track standard (theme) colors
  */
-void CPropTextColors::OnDefaultsStandardColors()
+void PropTextColors::OnDefaultsStandardColors()
 {
 	// Reset all text colors to default every time user checks defaults button
 	SerializeColorsToFromScreen(SET_DEFAULTS);
@@ -242,7 +239,7 @@ void CPropTextColors::OnDefaultsStandardColors()
 /** 
  * @brief Loads color selection dialog's custom colors from registry
  */
-void CPropTextColors::LoadCustomColors()
+void PropTextColors::LoadCustomColors()
 {
 	SyntaxColors_Load(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
@@ -250,7 +247,7 @@ void CPropTextColors::LoadCustomColors()
 /** 
  * @brief Saves color selection dialog's custom colors to registry
  */
-void CPropTextColors::SaveCustomColors()
+void PropTextColors::SaveCustomColors()
 {
 	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
@@ -259,7 +256,7 @@ void CPropTextColors::SaveCustomColors()
  * @brief Enable / disable color controls on dialog.
  * @param [in] bEnable If TRUE color controls are enabled.
  */
-void CPropTextColors::EnableColorButtons(BOOL bEnable)
+void PropTextColors::EnableColorButtons(BOOL bEnable)
 {
 	CStatic * stc = (CStatic *) GetDlgItem(IDC_CUSTOM_COLORS_GROUP);
 	stc->EnableWindow(bEnable);

@@ -59,17 +59,17 @@ protected:
 
 	CPropertyPageHost m_pphost;
 	
-	CPropGeneral m_pageGeneral;
-	CPropCompare m_pageCompare;
-	CPropEditor m_pageEditor;
-	CPropVss m_pageVss;	
-	CPropRegistry m_pageSystem;
-	CPropCodepage m_pageCodepage;
-	CPropMergeColors m_pageMergeColors;
-	CPropTextColors m_pageTextColors;
-	CPropSyntaxColors m_pageSyntaxColors;
-	CPropArchive m_pageArchive;
-	CPropBackups m_pageBackups;
+	PropGeneral m_pageGeneral;
+	PropCompare m_pageCompare;
+	PropEditor m_pageEditor;
+	PropVss m_pageVss;	
+	PropRegistry m_pageSystem;
+	PropCodepage m_pageCodepage;
+	PropMergeColors m_pageMergeColors;
+	PropTextColors m_pageTextColors;
+	PropSyntaxColors m_pageSyntaxColors;
+	PropArchive m_pageArchive;
+	PropBackups m_pageBackups;
 	PropShell m_pageShell;
 	PropCompareFolder m_pageCompareFolder;
 

@@ -1346,13 +1346,13 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 
 		// Determine backup folder
 		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			CPropBackups::FOLDER_ORIGINAL)
+			PropBackups::FOLDER_ORIGINAL)
 		{
 			// Put backups to same folder than original file
 			bakPath = path;
 		}
 		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			CPropBackups::FOLDER_GLOBAL)
+			PropBackups::FOLDER_GLOBAL)
 		{
 			// Put backups to global folder defined in options
 			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);

@@ -1,7 +1,7 @@
 /** 
  * @file  PropCompare.cpp
  *
- * @brief Implementation of CPropCompare propertysheet
+ * @brief Implementation of PropCompare propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -19,15 +19,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropCompare property page
-
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to COptionsMgr.
  */
-CPropCompare::CPropCompare(COptionsMgr *optionsMgr) 
- : OptionsPanel(optionsMgr, CPropCompare::IDD)
+PropCompare::PropCompare(COptionsMgr *optionsMgr) 
+ : OptionsPanel(optionsMgr, PropCompare::IDD)
  , m_bIgnoreCase(FALSE)
  , m_bIgnoreBlankLines(FALSE)
  , m_bIgnoreEol(TRUE)
@@ -38,10 +35,10 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr)
 {
 }
 
-void CPropCompare::DoDataExchange(CDataExchange* pDX)
+void PropCompare::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropCompare)
+	//{{AFX_DATA_MAP(PropCompare)
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
@@ -53,8 +50,8 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropCompare, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropCompare)
+BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
+	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -64,7 +61,7 @@ END_MESSAGE_MAP()
  * Property sheet calls this before displaying GUI to load values
  * into members.
  */
-void CPropCompare::ReadOptions()
+void PropCompare::ReadOptions()
 {
 	m_nIgnoreWhite = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
@@ -80,7 +77,7 @@ void CPropCompare::ReadOptions()
  * Property sheet calls this after dialog is closed with OK button to
  * store values in member variables.
  */
-void CPropCompare::WriteOptions()
+void PropCompare::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
@@ -91,13 +88,10 @@ void CPropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropCompare message handlers
-
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropCompare::OnInitDialog() 
+BOOL PropCompare::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -109,7 +103,7 @@ BOOL CPropCompare::OnInitDialog()
 /** 
  * @brief Sets options to defaults
  */
-void CPropCompare::OnDefaults()
+void PropCompare::OnDefaults()
 {
 	DWORD tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);

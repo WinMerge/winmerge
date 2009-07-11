@@ -1,7 +1,7 @@
 /** 
  * @file  PropTextColors.h
  *
- * @brief Declaration file for CPropTextColors propertyheet
+ * @brief Declaration file for PropTextColors propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -16,18 +16,14 @@
 class COptionsMgr;
 class SyntaxColors;
 
-
-/////////////////////////////////////////////////////////////////////////////
-// CPropTextColors dialog
-
 /** @brief Property page for colors options; used in options property sheet */
-class CPropTextColors : public OptionsPanel
+class PropTextColors : public OptionsPanel
 {
 
 // Construction
 public:
 
-	CPropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
+	PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -39,7 +35,7 @@ private:
 	SyntaxColors *m_pTempColors;
 	COLORREF m_cCustColors[COLORINDEX_COUNT];
 
-	//{{AFX_DATA(CPropTextColors)
+	//{{AFX_DATA(PropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };
 	CColorButton    m_btnDefaultStandardColors;
 	CColorButton    m_btnWhitespaceBackground;
@@ -58,7 +54,7 @@ private:
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPropTextColors)
+	//{{AFX_VIRTUAL(PropTextColors)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -77,7 +73,7 @@ protected:
 	void EnableColorButtons(BOOL bEnable);
 
 	// Generated message map functions
-	//{{AFX_MSG(CPropTextColors)
+	//{{AFX_MSG(PropTextColors)
 	afx_msg void OnWhitespaceBackgroundColor();
 	afx_msg void OnRegularBackgroundColor();
 	afx_msg void OnRegularTextColor();

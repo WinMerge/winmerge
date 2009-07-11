@@ -1,9 +1,9 @@
 /** 
  * @file  PropSyntaxColors.cpp
  *
- * @brief Implementation of CPropSyntaxColors propertysheet
+ * @brief Implementation of PropSyntaxColors propertysheet
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -19,13 +19,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+IMPLEMENT_DYNAMIC(PropSyntaxColors, CPropertyPage)
 
-// CPropEditorColor dialog
-
-IMPLEMENT_DYNAMIC(CPropSyntaxColors, CPropertyPage)
-
-CPropSyntaxColors::CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
-: OptionsPanel(optionsMgr, CPropSyntaxColors::IDD)
+PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
+: OptionsPanel(optionsMgr, PropSyntaxColors::IDD)
 , m_nKeywordsBold(0)
 , m_nFunctionsBold(0)
 , m_nCommentsBold(0)
@@ -60,7 +57,7 @@ CPropSyntaxColors::CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pCol
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
 }
 
-void CPropSyntaxColors::DoDataExchange(CDataExchange* pDX)
+void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SCOLOR_KEYWORDS, m_btnKeywordsText);
@@ -93,7 +90,7 @@ void CPropSyntaxColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropSyntaxColors, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_KEYWORDS, OnBnClickedEcolorKeywords)
 	ON_BN_CLICKED(IDC_SCOLOR_FUNCTIONS, OnBnClickedEcolorFunctions)
 	ON_BN_CLICKED(IDC_SCOLOR_COMMENTS, OnBnClickedEcolorComments)
@@ -115,12 +112,10 @@ BEGIN_MESSAGE_MAP(CPropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_USER2_BOLD, OnBnClickedEcolorUser2Bold)
 END_MESSAGE_MAP()
 
-// CPropSyntaxColor message handlers
-
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropSyntaxColors::OnInitDialog()
+BOOL PropSyntaxColors::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	return CPropertyPage::OnInitDialog();
@@ -130,7 +125,7 @@ BOOL CPropSyntaxColors::OnInitDialog()
  * @brief Reads options values from storage to UI.
  * (Property sheet calls this before displaying all property pages)
  */
-void CPropSyntaxColors::ReadOptions()
+void PropSyntaxColors::ReadOptions()
 {
 }
 
@@ -138,7 +133,7 @@ void CPropSyntaxColors::ReadOptions()
  * @brief Writes options values from UI to storage.
  * (Property sheet calls this after displaying all property pages)
  */
-void CPropSyntaxColors::WriteOptions()
+void PropSyntaxColors::WriteOptions()
 {
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
@@ -150,7 +145,7 @@ void CPropSyntaxColors::WriteOptions()
 /** 
  * @brief Let user browse common color dialog, and select a color & save to registry
  */
-void CPropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
+void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
@@ -166,52 +161,52 @@ void CPropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int color
 	SaveCustomColors();
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorKeywords()
+void PropSyntaxColors::OnBnClickedEcolorKeywords()
 {
 	BrowseColorAndSave(m_btnKeywordsText, COLORINDEX_KEYWORD);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorFunctions()
+void PropSyntaxColors::OnBnClickedEcolorFunctions()
 {
 	BrowseColorAndSave(m_btnFunctionsText, COLORINDEX_FUNCNAME);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorComments()
+void PropSyntaxColors::OnBnClickedEcolorComments()
 {
 	BrowseColorAndSave(m_btnCommentsText, COLORINDEX_COMMENT);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorNumbers()
+void PropSyntaxColors::OnBnClickedEcolorNumbers()
 {
 	BrowseColorAndSave(m_btnNumbersText, COLORINDEX_NUMBER);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorOperators()
+void PropSyntaxColors::OnBnClickedEcolorOperators()
 {
 	BrowseColorAndSave(m_btnOperatorsText, COLORINDEX_OPERATOR);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorStrings()
+void PropSyntaxColors::OnBnClickedEcolorStrings()
 {
 	BrowseColorAndSave(m_btnStringsText, COLORINDEX_STRING);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorPreprocessor()
+void PropSyntaxColors::OnBnClickedEcolorPreprocessor()
 {
 	BrowseColorAndSave(m_btnPreprocessorText, COLORINDEX_PREPROCESSOR);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorUser1()
+void PropSyntaxColors::OnBnClickedEcolorUser1()
 {
 	BrowseColorAndSave(m_btnUser1Text, COLORINDEX_USER1);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorUser2()
+void PropSyntaxColors::OnBnClickedEcolorUser2()
 {
 	BrowseColorAndSave(m_btnUser2Text, COLORINDEX_USER2);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorsBdefaults()
+void PropSyntaxColors::OnBnClickedEcolorsBdefaults()
 {
 	m_pTempColors->SetDefaults();
 	m_btnKeywordsText.SetColor(m_pTempColors->GetColor(COLORINDEX_KEYWORD));
@@ -240,7 +235,7 @@ void CPropSyntaxColors::OnBnClickedEcolorsBdefaults()
 /** 
  * @brief Loads color selection dialog's custom colors from registry
  */
-void CPropSyntaxColors::LoadCustomColors()
+void PropSyntaxColors::LoadCustomColors()
 {
 	SyntaxColors_Load(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
@@ -248,57 +243,57 @@ void CPropSyntaxColors::LoadCustomColors()
 /** 
  * @brief Saves color selection dialog's custom colors to registry
  */
-void CPropSyntaxColors::SaveCustomColors()
+void PropSyntaxColors::SaveCustomColors()
 {
 	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorKeywordsBold()
+void PropSyntaxColors::OnBnClickedEcolorKeywordsBold()
 {
 	UpdateBoldStatus(m_btnKeywordsBold, COLORINDEX_KEYWORD);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorFunctionsBold()
+void PropSyntaxColors::OnBnClickedEcolorFunctionsBold()
 {
 	UpdateBoldStatus(m_btnFunctionsBold, COLORINDEX_FUNCNAME);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorCommentsBold()
+void PropSyntaxColors::OnBnClickedEcolorCommentsBold()
 {
 	UpdateBoldStatus(m_btnCommentsBold, COLORINDEX_COMMENT);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorNumbersBold()
+void PropSyntaxColors::OnBnClickedEcolorNumbersBold()
 {
 	UpdateBoldStatus(m_btnNumbersBold, COLORINDEX_NUMBER);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorOperatorsBold()
+void PropSyntaxColors::OnBnClickedEcolorOperatorsBold()
 {
 	UpdateBoldStatus(m_btnOperatorsBold, COLORINDEX_OPERATOR);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorStringsBold()
+void PropSyntaxColors::OnBnClickedEcolorStringsBold()
 {
 	UpdateBoldStatus(m_btnStringsBold, COLORINDEX_STRING);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorPreprocessorBold()
+void PropSyntaxColors::OnBnClickedEcolorPreprocessorBold()
 {
 	UpdateBoldStatus(m_btnPreProcessorBold, COLORINDEX_PREPROCESSOR);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorUser1Bold()
+void PropSyntaxColors::OnBnClickedEcolorUser1Bold()
 {
 	UpdateBoldStatus(m_btnUser1Bold, COLORINDEX_USER1);
 }
 
-void CPropSyntaxColors::OnBnClickedEcolorUser2Bold()
+void PropSyntaxColors::OnBnClickedEcolorUser2Bold()
 {
 	UpdateBoldStatus(m_btnUser2Bold, COLORINDEX_USER2);
 }
 
-int CPropSyntaxColors::GetCheckVal(UINT nColorIndex)
+int PropSyntaxColors::GetCheckVal(UINT nColorIndex)
 {
 	if (m_pTempColors->GetBold(nColorIndex))
 		return BST_CHECKED;
@@ -306,7 +301,7 @@ int CPropSyntaxColors::GetCheckVal(UINT nColorIndex)
 		return BST_UNCHECKED;
 }
 
-void CPropSyntaxColors::UpdateBoldStatus(CButton &btn, UINT colorIndex)
+void PropSyntaxColors::UpdateBoldStatus(CButton &btn, UINT colorIndex)
 {
 	int state = btn.GetCheck();
 	if (state == BST_CHECKED)

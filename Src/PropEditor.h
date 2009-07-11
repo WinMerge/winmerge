@@ -1,7 +1,7 @@
 /** 
  * @file  PropEditor.h
  *
- * @brief Declaration file for CPropEditor propertyheet
+ * @brief Declaration file for PropEditor propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -14,27 +14,24 @@
 
 class COptionsMgr;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropEditor dialog
-
 /**
  * @brief Property page for editor options.
  *
  * Editor options affect to editor behavior. For example syntax highlighting
  * and tabs.
  */
-class CPropEditor : public OptionsPanel
+class PropEditor : public OptionsPanel
 {
 // Construction
 public:
-	CPropEditor(COptionsMgr *optionsMgr);
+	PropEditor(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
 // Dialog Data
-	//{{AFX_DATA(CPropEditor)
+	//{{AFX_DATA(PropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR };
 	BOOL    m_bHiliteSyntax;
 	int	    m_nTabType;
@@ -57,7 +54,7 @@ private:
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPropEditor)
+	//{{AFX_VIRTUAL(PropEditor)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -66,7 +63,7 @@ private:
 protected:
 
 	// Generated message map functions
-	//{{AFX_MSG(CPropEditor)
+	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnLineDiffControlClicked();
 	afx_msg void OnEnKillfocusTabEdit();

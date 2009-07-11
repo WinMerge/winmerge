@@ -21,7 +21,7 @@
 /** 
  * @file  PropGeneral.h
  *
- * @brief Implementation file for CPropGeneral propertyheet
+ * @brief Implementation file for PropGeneral propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -40,14 +40,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropGeneral property page
-
 /** 
  * @brief Constructor initialising members.
  */
-CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) 
-: OptionsPanel(optionsMgr, CPropGeneral::IDD)
+PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropGeneral::IDD)
 , m_bScroll(FALSE)
 , m_bDisableSplash(FALSE)
 , m_bSingleInstance(FALSE)
@@ -62,11 +59,11 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr)
 {
 }
 
-CPropGeneral::~CPropGeneral()
+PropGeneral::~PropGeneral()
 {
 }
 
-BOOL CPropGeneral::OnInitDialog()
+BOOL PropGeneral::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -83,10 +80,10 @@ BOOL CPropGeneral::OnInitDialog()
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
-void CPropGeneral::DoDataExchange(CDataExchange* pDX)
+void PropGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropGeneral)
+	//{{AFX_DATA_MAP(PropGeneral)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
@@ -102,8 +99,8 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropGeneral)
+BEGIN_MESSAGE_MAP(PropGeneral, CPropertyPage)
+	//{{AFX_MSG_MAP(PropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -111,7 +108,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropGeneral::ReadOptions()
+void PropGeneral::ReadOptions()
 {
 	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
 	m_bDisableSplash = GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
@@ -129,7 +126,7 @@ void CPropGeneral::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropGeneral::WriteOptions()
+void PropGeneral::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
@@ -144,13 +141,10 @@ void CPropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropGeneral message handlers
-
 /** 
  * @brief Called when user wants to see all messageboxes again.
  */
-void CPropGeneral::OnResetAllMessageBoxes()
+void PropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
 	LangMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
