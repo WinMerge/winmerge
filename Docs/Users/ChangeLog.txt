@@ -7,6 +7,7 @@ WinMerge 2.13.9
   Update PCRE to version 7.9 (r6903)
   Improve color options organization (#2818451)
   Improve character-level difference highlight accuracy (#2723613)
+  Add new options dialog panel for folder compare options (#2819626)
   Bugfix: Did not export changed options values (#2799149)
   Bugfix: Don't highlight identical words if whitespaces are ignored (#2798360)
   Bugfix: Did not reset folder compare method back to original (#2803152)

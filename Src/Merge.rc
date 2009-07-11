@@ -1163,35 +1163,18 @@ CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
-    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,14,19,206,10
-    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
-                    14,41,206,10
-    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,60,221,10
-    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",
-                    IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,80,221,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
-    CONTROL         "Ign&ore time differences less than 3 seconds",
-                    IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,110,222,10
-    LTEXT           "&File Compare method:",IDC_STATIC,7,125,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,123,114,70,CBS_DROPDOWNLIST |
-                    WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,140,202,10
-    GROUPBOX        "Comments",IDC_STATIC,7,154,221,32
-    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,167,205,10
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,190,70,14
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,206,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,221,10
+    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
+    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_EOL_SENSITIVE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,80,221,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
+    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
+    GROUPBOX        "Comments",IDC_STATIC,7,114,221,32
+    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,127,205,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,5,187,70,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 215
@@ -1698,6 +1681,20 @@ BEGIN
                     WS_TABSTOP,19,69,200,10
 END
 
+IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 235, 205
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Folder"
+FONT 8, "MS Shell Dlg", 00, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,7,114,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,28,202,10
+    CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,41,222,10
+    LTEXT           "&Compare method:",IDC_STATIC,7,9,100,9
+    PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,184,70,14
+END
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1956,8 +1953,8 @@ BEGIN
     IDS_OPTIONSPG_COMPARE   "Compare"
     IDS_OPTIONSPG_EDITOR    "Editor"
     IDS_OPTIONSPG_COLORS    "Colors"
-    IDS_OPTIONSPG_SYNTAXCOLORS "Syntax"
     IDS_OPTIONSPG_TEXTCOLORS "Text"
+    IDS_OPTIONSPG_SYNTAXCOLORS "Syntax"
     IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
@@ -1965,6 +1962,8 @@ BEGIN
     IDS_OPTIONSPG_BACKUPS   "Backup Files"
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Merge"
+    IDS_OPTIONSPG_GENCOMPARE "General"
+    IDS_OPTIONSPG_FOLDERCOMPARE "Folder"
 END
 
 // WINMERGE CUSTOM STRINGS

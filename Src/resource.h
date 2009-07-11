@@ -56,6 +56,7 @@
 #define IDD_CONFIRM_COPY                235
 #define IDD_PLUGINS_LIST                236
 #define IDD_PROPPAGE_SHELL              237
+#define IDD_PROPPAGE_COMPARE_FOLDER     238
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -448,6 +449,7 @@
 #define IDC_BREAK_CHARS                 1345
 #define IDC_WORDDIFF_DELETED_COLOR      1346
 #define IDC_SEL_WORDDIFF_DELETED_COLOR  1347
+#define IDC_COMPAREFOLDER_DEFAULTS      1348
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -496,6 +498,8 @@
 #define IDS_OPTIONSPG_BACKUPS           9051
 #define IDS_OPTIONSPG_SHELL             9052
 #define IDS_OPTIONSPG_MERGECOLORS       9053
+#define IDS_OPTIONSPG_GENCOMPARE        9054
+#define IDS_OPTIONSPG_FOLDERCOMPARE     9055
 #define IDS_TO                          16000
 #define IDS_FROM_LEFT                   16001
 #define IDS_TO_LEFT                     16002
@@ -1085,9 +1089,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        237
+#define _APS_NEXT_RESOURCE_VALUE        239
 #define _APS_NEXT_COMMAND_VALUE         33178
-#define _APS_NEXT_CONTROL_VALUE         1348
+#define _APS_NEXT_CONTROL_VALUE         1349
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif
