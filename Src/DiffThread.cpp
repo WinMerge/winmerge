@@ -122,15 +122,13 @@ bool CDiffThread::ShouldAbort() const
  * @brief Start and run directory compare thread.
  * @param [in] dir1 First directory to compare.
  * @param [in] dir2 Second directory to compare.
- * @param [in] bRecursive Is the compare recursive (subfolders included)?
  * @return Success (1) or error for thread. Currently always 1.
  */
 UINT CDiffThread::CompareDirectories(const String & dir1,
-		const String & dir2, BOOL bRecursive)
+		const String & dir2)
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
-	m_pDiffParm->bRecursive = bRecursive;
 	m_pDiffParm->context = m_pDiffContext;
 	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
 	m_pDiffParm->hWindow = m_hWnd;
@@ -218,7 +216,7 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	CAssureScriptsForThread scriptsForRescan;
 
 	bool casesensitive = false;
-	int depth = myStruct->bRecursive ? -1 : 0;
+	int depth = myStruct->context->m_bRecursive ? -1 : 0;
 
 	paths.SetLeft(myStruct->context->GetNormalizedLeft().c_str());
 	paths.SetRight(myStruct->context->GetNormalizedRight().c_str());

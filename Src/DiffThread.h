@@ -52,7 +52,7 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(const String & dir1, const String & dir2, BOOL bRecursive);
+	UINT CompareDirectories(const String & dir1, const String & dir2);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg);
 	void SetCompareSelected(bool bSelected = false);
@@ -87,7 +87,6 @@ struct DiffFuncStruct
 	UINT msgUIUpdate; /**< Windows message for updating GUI. */
 	HWND hWindow; /**< Window getting status updates. */
 	CDiffThread::ThreadState nThreadState; /**< Thread state. */
-	BOOL bRecursive; /**< Is compare recursive (subfolders included)? */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
 	bool bOnlyRequested; /**< Compare only requested items? */
 	HANDLE hSemaphore; /**< Semaphore for synchronizing threads. */
@@ -97,7 +96,6 @@ struct DiffFuncStruct
 		, msgUIUpdate(0)
 		, hWindow(0)
 		, nThreadState(CDiffThread::THREAD_NOTSTARTED)
-		, bRecursive(FALSE)
 		, m_pAbortgate(NULL)
 		, bOnlyRequested(false)
 		, hSemaphore(NULL)

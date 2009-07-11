@@ -183,6 +183,7 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathC
 
 	m_pCtxt = new CDiffContext(paths.GetLeft().c_str(), paths.GetRight().c_str(),
 			GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	m_pCtxt->m_bRecursive = !!bRecursive;
 
 	if (pTempPathContext)
 	{
@@ -314,7 +315,8 @@ void CDirDoc::LoadLineFilterList()
  */
 void CDirDoc::Rescan()
 {
-	if (!m_pCtxt) return;
+	if (!m_pCtxt)
+		return;
 
 	CDirFrame *pf = m_pDirView->GetParentFrame();
 
@@ -354,6 +356,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
 	m_pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 	m_pCtxt->m_pCompareStats = m_pCompareStats;
+	m_pCtxt->m_bRecursive = !!m_bRecursive;
 
 	// Set total items count since we don't collect items
 	if (m_bMarkedRescan)
@@ -378,7 +381,7 @@ void CDirDoc::Rescan()
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
 	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
-			m_pCtxt->GetNormalizedRight(), m_bRecursive);
+			m_pCtxt->GetNormalizedRight());
 	m_bMarkedRescan = FALSE;
 }
 

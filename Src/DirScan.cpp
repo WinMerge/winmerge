@@ -331,7 +331,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
 		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
 		UINT_PTR curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		if (di.diffcode.isDirectory() && myStruct->bRecursive)
+		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			int ndiff = DirScan_CompareItems(myStruct, curpos);
@@ -383,7 +383,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffp
 
 		UINT_PTR curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
-		if (di.diffcode.isDirectory() && myStruct->bRecursive)
+		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			int ndiff = DirScan_CompareRequestedItems(myStruct, curpos);
