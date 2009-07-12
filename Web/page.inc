@@ -33,7 +33,7 @@
      */
     function Page() {
       $this->_title = '';
-      $this->_charset = 'ISO-8859-1';
+      $this->_charset = 'UTF-8';
       $this->_description = '';
       $this->_keywords = '';
       $this->_rssfeeds = array();

@@ -260,14 +260,14 @@
             $temp = '';
             foreach ($translation->translators as $translators) { //for all translators...
               foreach ($translators as $translator) { //for each translator...
-                $translator_name = utf8_decode((string)$translator->name);
-                $translator_mail = utf8_decode((string)$translator->mail);
+                $translator_name = (string)$translator->name;
+                $translator_mail = (string)$translator->mail;
                 $maintainer = (bool)$translator->attributes()->maintainer;
                 
                 if ($maintainer)
                   $temp .= "<strong title=\"Maintainer\">";
                 if ($translator_mail != '')
-                  $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name) . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name) . "</a>";
+                  $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name, ENT_COMPAT, 'UTF-8') . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name, ENT_COMPAT, 'UTF-8') . "</a>";
                 else
                   $temp .= $translator_name;
                 if ($maintainer)

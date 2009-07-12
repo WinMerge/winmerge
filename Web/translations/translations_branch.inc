@@ -201,14 +201,14 @@
         $temp .= "    <td class=\"left\">";
         for ($j = 0; $j < count($translators); $j++) { //For all translators...
           $translator = $translators[$j];
-          $translator_name = @$translator['NAME'][0]['VALUE'];
-          $translator_mail = @$translator['MAIL'][0]['VALUE'];
+          $translator_name = utf8_encode(@$translator['NAME'][0]['VALUE']);
+          $translator_mail = utf8_encode(@$translator['MAIL'][0]['VALUE']);
           $maintainer = @$translator['ATTRIBUTES']['MAINTAINER'];
           
           if ($maintainer == '1')
             $temp .= "<strong title=\"Maintainer\">";
           if ($translator_mail != '')
-            $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name) . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name) . "</a>";
+            $temp .= "<a href=\"mailto:" . $translator_mail . "\" title=\"" . htmlentities($translator_name, ENT_COMPAT, 'UTF-8') . " &lt;" . $translator_mail . "&gt;\">" . htmlentities($translator_name, ENT_COMPAT, 'UTF-8') . "</a>";
           else
             $temp .= $translator_name;
           if ($maintainer == '1')
