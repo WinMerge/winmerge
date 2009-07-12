@@ -6,7 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+#include <assert.h>
 #include "DiffItem.h"
 #include "CompareStats.h"
 
@@ -53,7 +54,7 @@ void CompareStats::AddItem(int code)
 	int index = static_cast<int>(res);
 	m_counts[index] += 1;
 	++m_nComparedItems;
-	ASSERT(m_nComparedItems <= m_nTotalItems);
+	assert(m_nComparedItems <= m_nTotalItems);
 	LeaveCriticalSection(&m_csProtect);
 }
 
