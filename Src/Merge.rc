@@ -1686,12 +1686,14 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Folder"
 FONT 8, "MS Shell Dlg", 00, 0, 0x1
 BEGIN
+    LTEXT           "&Compare method:",IDC_STATIC,7,9,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,7,114,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,28,202,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,41,222,10
-    LTEXT           "&Compare method:",IDC_STATIC,7,9,100,9
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,39,222,10
+    CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,50,222,10
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,184,70,14
 END
 

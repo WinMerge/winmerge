@@ -74,6 +74,8 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_pCompareOptions(NULL)
 , m_pOptions(NULL)
 , m_bPluginsEnabled(false)
+, m_bRecursive(false)
+, m_bWalkUniques(true)
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);

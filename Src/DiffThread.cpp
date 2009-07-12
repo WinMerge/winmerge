@@ -45,17 +45,6 @@
  */
 static bool bSinglethreaded = false;
 
-/**
- * @brief Walk into unique folders and add contents.
- * This enables/disables walking into unique folders. If we don't walk into
- * unique folders, they are shown as such in folder compare results. If we
- * walk into unique folders, we'll show all files in the unique folder and
- * in possible subfolders.
- *
- * This value is true by default.
- */
-static bool bWalkUniques = true;
-
 /** @brief abort handler for CDiffThread -- just a gateway to CDiffThread */
 class DiffThreadAbortable : public IAbortable
 {
@@ -230,7 +219,8 @@ UINT DiffThreadCollect(LPVOID lpParam)
 #endif
 
 	// Build results list (except delaying file comparisons until below)
-	DirScan_GetItems(paths, subdir, false, subdir, false, myStruct, casesensitive, depth, NULL, bWalkUniques);
+	DirScan_GetItems(paths, subdir, false, subdir, false, myStruct,
+			casesensitive, depth, NULL, myStruct->context->m_bWalkUniques);
 
 #ifdef _DEBUG
 	_CrtMemCheckpoint(&memStateAfter);

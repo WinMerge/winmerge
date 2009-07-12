@@ -159,6 +159,18 @@ public:
 	 * cannot compare large files. And large files are usually binary files.
 	 */
 	int m_nQuickCompareLimit;
+
+	/**
+	 * Walk into unique folders and add contents.
+	 * This enables/disables walking into unique folders. If we don't walk into
+	 * unique folders, they are shown as such in folder compare results. If we
+	 * walk into unique folders, we'll show all files in the unique folder and
+	 * in possible subfolders.
+	 *
+	 * This value is true by default.
+	 */
+	bool m_bWalkUniques;
+
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	FilterList * m_pFilterList; /**< Filter list for line filters */

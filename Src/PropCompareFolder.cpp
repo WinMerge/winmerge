@@ -28,6 +28,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_compareMethod(-1)
  , m_bStopAfterFirst(FALSE)
  , m_bIgnoreSmallTimeDiff(FALSE)
+ , m_bIncludeUniqFolders(TRUE)
 {
 }
 
@@ -38,6 +39,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
+	DDX_Check(pDX, IDC_COMPARE_WALKSUBDIRS, m_bIncludeUniqFolders);
 	//}}AFX_DATA_MAP
 }
 
@@ -59,6 +61,7 @@ void PropCompareFolder::ReadOptions()
 	m_compareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 	m_bStopAfterFirst = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	m_bIncludeUniqFolders = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
 }
 
 /** 
@@ -71,6 +74,7 @@ void PropCompareFolder::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
 	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders == TRUE);
 }
 
 /** 
@@ -114,6 +118,8 @@ void PropCompareFolder::OnDefaults()
 	m_compareMethod = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
 	m_bStopAfterFirst = tmp;
+	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, tmp);
+	m_bIncludeUniqFolders = tmp;
 	UpdateData(FALSE);
 }
 

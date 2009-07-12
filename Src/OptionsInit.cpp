@@ -108,6 +108,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	m_pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	m_pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
+	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
 
 	m_pOptions->InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	m_pOptions->InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
