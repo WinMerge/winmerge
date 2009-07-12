@@ -9445,7 +9445,10 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -9454,7 +9457,10 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
+						BrowseInformation="1"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -9463,7 +9469,10 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
+						BrowseInformation="1"
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
@@ -9471,7 +9480,10 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""/>
 				</FileConfiguration>
 			</File>
 			<File

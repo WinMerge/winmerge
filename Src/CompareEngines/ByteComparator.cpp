@@ -6,7 +6,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
+//#include "StdAfx.h"
+#include <windows.h>
+#include <tchar.h>
+#include <assert.h>
 #include "ByteComparator.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"
@@ -259,7 +262,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 						// "whitespace on both sides"
 						// should not come here, it should have been
 						// handled above
-						ASSERT(!iswsch(*ptr0));
+						assert(!iswsch(*ptr0));
 
 						if (iseolch(*ptr0))
 						{
