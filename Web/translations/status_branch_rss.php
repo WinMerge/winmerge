@@ -5,6 +5,6 @@
   include('translations_branch.inc');
   
   $page = new Page;
-  $status = $page->convertXml2Array('status_branch.xml');
+  $status = convertXml2Array('status_branch.xml');
   printTranslationsStatusRSS($status, 'Branch', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/' . $stablerelease = $page->getStableRelease()->getBranchName() . '/Src/Languages/');
 ?>

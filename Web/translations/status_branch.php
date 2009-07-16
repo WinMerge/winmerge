@@ -6,7 +6,7 @@
   $page->addRssFeed('status_branch_rss.php');
   $page->printHead('Translations Status (Stable Branch)', TAB_TRANSLATIONS);
   
-  $status = $page->convertXml2Array('status_branch.xml');
+  $status = convertXml2Array('status_branch.xml');
   $page->printRssHeading('Translations Status (Stable Branch)', 'status_branch_rss.php');
   if (!empty($status)) { //If translations status available...
     printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/branches/' . $stablerelease = $page->getStableRelease()->getBranchName() . '/Src/Languages/');

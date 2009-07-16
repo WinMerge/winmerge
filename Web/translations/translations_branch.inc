@@ -59,8 +59,6 @@
    * ...
    */
   function printTranslationsStatus($xmlarray, $svnurl) {
-    global $page;
-    
     $update = $xmlarray['TRANSLATIONS'][0]['UPDATE'][0]['VALUE'];
     $temp = "<p>Status from <strong>" . $update . "</strong>:</p>\n";
     $temp .= "<table class=\"status\">\n";
@@ -73,7 +71,7 @@
     $temp .= "    <th class=\"center\">Last Update</th>\n";
     $temp .= "  </tr>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+    $translations = multisortArray($translations, 'LANGUAGE', SORT_ASC);
     for ($i = 0; $i < count($translations); $i++) { //For all translations...
       $translation = $translations[$i];
       $language_name = $translation['LANGUAGE'][0]['VALUE'];
@@ -128,8 +126,6 @@
    * ...
    */
   function printTranslationsStatusRSS($xmlarray, $version, $svnurl) {
-    global $page;
-    
     switch ($version) {
       case 'Trunk': $version_title = 'Unstable Trunk'; break;
       case 'Branch': $version_title = 'Stable Branch'; break;
@@ -150,7 +146,7 @@
     
     $temp .= "<ul>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+    $translations = multisortArray($translations, 'LANGUAGE', SORT_ASC);
     for ($i = 0; $i < count($translations); $i++) { //For all translations...
       $translation = $translations[$i];
       $language_name = $translation['LANGUAGE'][0]['VALUE'];
@@ -181,15 +177,13 @@
    * ...
    */
   function printTranslationsTranslators($xmlarray) {
-    global $page;
-    
     $temp = "<table class=\"status\">\n";
     $temp .= "  <tr>\n";
     $temp .= "    <th class=\"left\">Language</th>\n";
     $temp .= "    <th class=\"left\">Translator(s)</th>\n";
     $temp .= "  </tr>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
-    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+    $translations = multisortArray($translations, 'LANGUAGE', SORT_ASC);
     for ($i = 0; $i < count($translations); $i++) { //For all translations...
       $translation = $translations[$i];
       $language_name = $translation['LANGUAGE'][0]['VALUE'];
@@ -221,5 +215,122 @@
     }
     $temp .= "</table>\n";
     print($temp);
+  }
+  
+  /**
+   * convert a xml file into an array
+   *
+   * @link http://www.devdump.com/phpxml.php
+   * @link http://www.php.net/manual/en/function.xml-parse-into-struct.php
+   */
+  function convertXml2Array($filename) {
+    if (file_exists($filename) == true) {
+      $data = implode('', file($filename));
+      $data = utf8_encode($data);
+      
+      $parser = xml_parser_create('UTF-8');
+      xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+      xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'ISO-8859-1');
+      xml_parse_into_struct($parser, $data, $vals, $index);
+      xml_parser_free($parser);
+      
+      $i = 0;
+      $tree = array();
+      if (isset($vals[$i]['attributes'])) {
+        $tree[$vals[$i]['tag']][]['ATTRIBUTES'] = $vals[$i]['attributes'];
+        $index = count($tree[$vals[$i]['tag']]) - 1;
+        $tree[$vals[$i]['tag']][$index] =  array_merge($tree[$vals[$i]['tag']][$index], _getXmlChildren($vals, $i));
+      }
+      else {
+        $tree[$vals[$i]['tag']][] = _getXmlChildren($vals, $i);
+      }
+      return $tree;
+    }
+  }
+  
+  /**
+   * helper function from "convertXml2Array"
+   *
+   * @link http://www.devdump.com/phpxml.php
+   * @link http://www.php.net/manual/en/function.xml-parse-into-struct.php
+   */
+  function _getXmlChildren($vals, &$i) {
+    $children = array(); // Contains node data
+    
+    /* Node has CDATA before it's children */
+    if (isset($vals[$i]['value']))
+      $children['VALUE'] = $vals[$i]['value'];
+    
+    /* Loop through children */
+    while (++$i < count($vals)) {
+      switch ($vals[$i]['type']) {
+        /* Node has CDATA after one of it's children
+          (Add to cdata found before if this is the case) */
+        case 'cdata':
+          if (isset($children['VALUE']))
+            $children['VALUE'] .= $vals[$i]['value'];
+          else
+            $children['VALUE'] = $vals[$i]['value'];
+          break;
+        /* At end of current branch */
+        case 'complete':
+          if (isset($vals[$i]['attributes'])) {
+            $children[$vals[$i]['tag']][]['ATTRIBUTES'] = $vals[$i]['attributes'];
+            $index = count($children[$vals[$i]['tag']]) - 1;
+            
+            if (isset($vals[$i]['value']))
+              $children[$vals[$i]['tag']][$index]['VALUE'] = $vals[$i]['value'];
+            else
+              $children[$vals[$i]['tag']][$index]['VALUE'] = '';
+          }
+          else {
+            if (isset($vals[$i]['value']))
+              $children[$vals[$i]['tag']][]['VALUE'] = $vals[$i]['value'];
+            else
+              $children[$vals[$i]['tag']][]['VALUE'] = '';
+          }
+          break;
+        /* Node has more children */
+        case 'open':
+          if (isset($vals[$i]['attributes'])) {
+            $children[$vals[$i]['tag']][]['ATTRIBUTES'] = $vals[$i]['attributes'];
+            $index = count($children[$vals[$i]['tag']]) - 1;
+            $children[$vals[$i]['tag']][$index] = array_merge($children[$vals[$i]['tag']][$index],_getXmlChildren($vals, $i));
+          }
+          else {
+            $children[$vals[$i]['tag']][] = _getXmlChildren($vals, $i);
+          }
+          break;
+        /* End of node, return collected data */
+        case 'close':
+          return $children;
+      }
+    }
+  }
+  
+  /**
+   * sort a multi-dimensional array
+   *
+   * @link http://www.php.net/manual/en/function.usort.php
+   */
+  function multisortArray() {
+    $arguments = func_get_args();
+    $array = $arguments[0];
+    $code = '';
+    for ($c = 1; $c < count($arguments); $c += 2) {
+      if (in_array($arguments[$c + 1], array(SORT_ASC, SORT_DESC))) {
+        $code .= 'if ($a["'.$arguments[$c].'"] != $b["'.$arguments[$c].'"]) {';
+        if ($arguments[$c + 1] == SORT_ASC) {
+          $code .= 'return ($a["'.$arguments[$c].'"] < $b["'.$arguments[$c].'"] ? -1 : 1); }';
+        }
+        else {
+          $code .= 'return ($a["'.$arguments[$c].'"] < $b["'.$arguments[$c].'"] ? 1 : -1); }';
+        }
+      }
+    }
+    $code .= 'return 0;';
+    $compare = create_function('$a,$b', $code);
+    usort($array, $compare);
+    return $array;
   }
 ?>
