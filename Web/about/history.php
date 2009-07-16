@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('History of WinMerge releases with version numbers, release dates and manuals.');

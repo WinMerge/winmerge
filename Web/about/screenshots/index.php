@@ -1,5 +1,5 @@
 <?php
-  include('../../page.inc');
+  include('../../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('Screenshots from WinMerge features like file comparison, folder comparison results and location pane.');

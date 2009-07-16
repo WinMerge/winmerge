@@ -16,8 +16,8 @@
   define ('TAB_SUPPORT', 'support');
   define ('TAB_TRANSLATIONS', 'translations');
 
-  include 'engine/tabnav.inc';
-  include 'engine/release.inc';
+  include 'tabnav.inc';
+  include 'release.inc';
 
   /**
    * ...

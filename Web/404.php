@@ -3,7 +3,7 @@
   header('HTTP/1.1 404 Not Found');
   header('Status: 404 Not Found');
 
-  include('page.inc');
+  include('engine/engine.inc');
 
   $page = new Page;
   $page->printHead('Error 404 (Page Not Found)', TAB_HOME);

@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('Tracker Shortcuts are shorter and nicer URLs to Tracker items from our SF.net project page. And you can use this page to create a shortcut.');

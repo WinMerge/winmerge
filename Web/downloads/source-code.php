@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('Download the source code of WinMerge, which is released under the GNU General Public License.');

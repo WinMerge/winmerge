@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('Subscribe or unsubscribe to one of the following mailing lists: Announce, Support, User, Translate, Development and SVN');

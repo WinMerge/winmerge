@@ -1,5 +1,5 @@
 <?php
-  include('page.inc');
+  include('engine/engine.inc');
 
   $page = new Page;
   $page->printHead('Links', TAB_HOME);

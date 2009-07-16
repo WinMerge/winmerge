@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
   
   $page = new Page;
   $page->setDescription('The change log is a more complete list of changes in the last WinMerge releases.');

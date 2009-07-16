@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.');

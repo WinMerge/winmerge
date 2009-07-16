@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
 
   $page = new Page;
   $page->setDescription('Download additional plugins for WinMerge, like the 7-Zip plugin or the xdocdiff Plugin.');

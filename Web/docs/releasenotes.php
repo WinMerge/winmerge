@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
   
   $page = new Page;
   $page->setDescription('The release notes are a short summary of important changes, enhancements, bug fixes and known issues in the current WinMerge release.');

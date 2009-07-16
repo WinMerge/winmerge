@@ -1,5 +1,5 @@
 <?php
-  include('../page.inc');
+  include('../engine/engine.inc');
   include('translations.inc');
 
   $page = new Page;
