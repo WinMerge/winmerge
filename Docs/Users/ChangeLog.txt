@@ -12,6 +12,7 @@ WinMerge 2.13.9
   Bugfix: Did not export changed options values (#2799149)
   Bugfix: Don't highlight identical words if whitespaces are ignored (#2798360)
   Bugfix: Did not reset folder compare method back to original (#2803152)
+  Bugfix: Added EOL chars between copied file/path names (#2817546)
   Translation updates:
   - Dutch (#2801690, #2804979)
   - Swedish (#2805726)´
