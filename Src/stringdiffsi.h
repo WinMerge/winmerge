@@ -67,6 +67,7 @@ private:
 	int FindNextMatchInWords1(const word & needword2, int bw1) const;
 	int FindNextMatchInWords2(const word & needword1, int bw2) const;
 	int FindNextSpaceInWords1(int bw1) const;
+	int FindNextSpaceInWords2(int bw2) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;

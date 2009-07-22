@@ -13,9 +13,10 @@ WinMerge 2.13.9
   Bugfix: Don't highlight identical words if whitespaces are ignored (#2798360)
   Bugfix: Did not reset folder compare method back to original (#2803152)
   Bugfix: Added EOL chars between copied file/path names (#2817546)
+  Bugfix: In-line difference highlight fixes (#2824173)
   Translation updates:
   - Dutch (#2801690, #2804979)
-  - Swedish (#2805726)´
+  - Swedish (#2805726)
   - Ukrainian (#2817835)
 
 WinMerge 2.13.8 - 2009-05-26 (r6791)

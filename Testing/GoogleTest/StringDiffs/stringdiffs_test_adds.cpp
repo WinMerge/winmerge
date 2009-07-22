@@ -191,5 +191,118 @@ namespace
 			EXPECT_EQ(-1, pDiff->end[1]);
 		}
 	}
+	// exchange string left right side only
+	TEST_F(StringDiffsAddsTest, ExchangeString1a)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
+		sd_ComputeWordDiffs("N2130   _RobOk=_INT B_AND 512                   ;Roboter bereit",
+			"N2040   _RobOk=_INT B_AND 'B1000000000'          ;Roboter bereit",
+				false, 1, 0, true, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(2, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(3, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(26, pDiff->start[0]);
+			EXPECT_EQ(26, pDiff->start[1]);
+			EXPECT_EQ(28, pDiff->end[0]);
+			EXPECT_EQ(38, pDiff->end[1]);
+		}
+	}
+	// exchange string left right side only
+	TEST_F(StringDiffsAddsTest, ExchangeString1b)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
+		sd_ComputeWordDiffs("N2040   _RobOk=_INT B_AND 'B1000000000'          ;Roboter bereit",
+			"N2130   _RobOk=_INT B_AND 512                   ;Roboter bereit",
+				false, 1, 0, true, &diffs);
+		EXPECT_EQ(2, diffs.size());
+		if (diffs.size() > 1)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(2, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(3, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(26, pDiff->start[0]);
+			EXPECT_EQ(26, pDiff->start[1]);
+			EXPECT_EQ(38, pDiff->end[0]);
+			EXPECT_EQ(28, pDiff->end[1]);
+		}
+	}
+
+	// exchange string left right side only
+	TEST_F(StringDiffsAddsTest, ExchangeString2a)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
+		sd_ComputeWordDiffs("N1960 IF(R2941==2) OR (R2941==203))",
+			"N1830 IF((R2941==2)   OR (R2941==3)    ",
+				false, 1, 1, true, &diffs);
+		EXPECT_EQ(4, diffs.size());
+		if (diffs.size() > 3)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(2, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(3, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(9, pDiff->start[0]);
+			EXPECT_EQ(9, pDiff->start[1]);
+			EXPECT_EQ(8, pDiff->end[0]);
+			EXPECT_EQ(9, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(30, pDiff->start[0]);
+			EXPECT_EQ(33, pDiff->start[1]);
+			EXPECT_EQ(31, pDiff->end[0]);
+			EXPECT_EQ(32, pDiff->end[1]);
+			pDiff = diffs[3];
+			EXPECT_EQ(34, pDiff->start[0]);
+			EXPECT_EQ(35, pDiff->start[1]);
+			EXPECT_EQ(34, pDiff->end[0]);
+			EXPECT_EQ(38, pDiff->end[1]);
+		}
+	}
+	// exchange string left right side only
+	TEST_F(StringDiffsAddsTest, ExchangeString2b)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
+		sd_ComputeWordDiffs("N1830 IF((R2941==2)   OR (R2941==3)    ",
+			"N1960 IF(R2941==2) OR (R2941==203))",
+				false, 1, 1, true, &diffs);
+		EXPECT_EQ(4, diffs.size());
+		if (diffs.size() > 3)
+		{
+			wdiff *pDiff = diffs[0];
+			EXPECT_EQ(2, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->end[0]);
+			EXPECT_EQ(3, pDiff->end[1]);
+			pDiff = diffs[1];
+			EXPECT_EQ(9, pDiff->start[0]);
+			EXPECT_EQ(9, pDiff->start[1]);
+			EXPECT_EQ(9, pDiff->end[0]);
+			EXPECT_EQ(8, pDiff->end[1]);
+			pDiff = diffs[2];
+			EXPECT_EQ(33, pDiff->start[0]);
+			EXPECT_EQ(30, pDiff->start[1]);
+			EXPECT_EQ(32, pDiff->end[0]);
+			EXPECT_EQ(31, pDiff->end[1]);
+			pDiff = diffs[3];
+			EXPECT_EQ(35, pDiff->start[0]);
+			EXPECT_EQ(34, pDiff->start[1]);
+			EXPECT_EQ(38, pDiff->end[0]);
+			EXPECT_EQ(34, pDiff->end[1]);
+		}
+	}
 
 }  // namespace
