@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2009-07-23 18:17+0000\n"
+"POT-Creation-Date: 2009-07-23 18:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3084,9 +3084,9 @@ msgid "Version Control"
 msgstr ""
 
 #: Merge.rc:1968
-#: Merge.rc:2121
+#: Merge.rc:2339
 #, c-format
-msgid "Merge"
+msgid "Differences"
 msgstr ""
 
 #: Merge.rc:1977
@@ -3434,6 +3434,11 @@ msgstr ""
 #: Merge.rc:2120
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#: Merge.rc:2121
+#, c-format
+msgid "Merge"
 msgstr ""
 
 #: Merge.rc:2122
@@ -4067,11 +4072,6 @@ msgstr ""
 #: Merge.rc:2338
 #, c-format
 msgid "Ignored Diff."
-msgstr ""
-
-#: Merge.rc:2339
-#, c-format
-msgid "Differences"
 msgstr ""
 
 #: Merge.rc:2340
