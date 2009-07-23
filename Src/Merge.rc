@@ -1694,6 +1694,8 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,39,222,10
     CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,50,222,10
+    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,60,200,8
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,70,50,14,ES_AUTOHSCROLL,ES_NUMBER
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,184,70,14
 END
 

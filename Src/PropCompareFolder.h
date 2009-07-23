@@ -43,6 +43,7 @@ public:
 	BOOL    m_bStopAfterFirst;
 	BOOL    m_bIgnoreSmallTimeDiff;
 	BOOL    m_bIncludeUniqFolders;
+	UINT    m_nQuickCompareLimit;
 	//}}AFX_DATA
 
 

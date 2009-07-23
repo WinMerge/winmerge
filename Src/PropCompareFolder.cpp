@@ -19,6 +19,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+static const int Mega = 1024 * 1024;
+
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to COptionsMgr.
@@ -29,6 +31,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_bStopAfterFirst(FALSE)
  , m_bIgnoreSmallTimeDiff(FALSE)
  , m_bIncludeUniqFolders(TRUE)
+ , m_nQuickCompareLimit(4 * Mega)
 {
 }
 
@@ -40,6 +43,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Check(pDX, IDC_COMPARE_WALKSUBDIRS, m_bIncludeUniqFolders);
+	DDX_Text(pDX, IDC_COMPARE_QUICKC_LIMIT, m_nQuickCompareLimit);
 	//}}AFX_DATA_MAP
 }
 
@@ -62,6 +66,7 @@ void PropCompareFolder::ReadOptions()
 	m_bStopAfterFirst = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
 }
 
 /** 
@@ -75,6 +80,10 @@ void PropCompareFolder::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders == TRUE);
+
+	if (m_nQuickCompareLimit > 2000)
+		m_nQuickCompareLimit = 2000;
+	GetOptionsMgr()->SaveOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit * Mega);
 }
 
 /** 
@@ -120,6 +129,8 @@ void PropCompareFolder::OnDefaults()
 	m_bStopAfterFirst = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, tmp);
 	m_bIncludeUniqFolders = tmp;
+	GetOptionsMgr()->GetDefault(OPT_CMP_QUICK_LIMIT, tmp);
+	m_nQuickCompareLimit = tmp / Mega;
 	UpdateData(FALSE);
 }
 
