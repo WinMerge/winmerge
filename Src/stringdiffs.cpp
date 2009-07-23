@@ -566,7 +566,9 @@ stringdiffs::BuildWordDiffList()
 		// Be aware, do not create more wdiffs as shortest line has chars!
 		int imaxcount = min(m_str1.length(), m_str2.length());
 		i = 0;
-		while ((i < (int)m_words1.size()) && (i < (int)m_words2.size()) && ((int)m_wdiffs.size() <= imaxcount))
+		const int iSize1 = (int)m_words1.size();
+		const int iSize2 = (int)m_words2.size();
+		while ((i < iSize1) && (i < iSize2) && ((int)m_wdiffs.size() <= imaxcount))
 		{
 			if (!AreWordsSame(*m_words1[i], *m_words2[i]))
 			{
@@ -579,7 +581,7 @@ stringdiffs::BuildWordDiffList()
 				int len1 = e1 - s1 + 1;
 				int len2 = e2 - s2 + 1;
 
-                if (IsInsert(*m_words1[i]))
+				if (IsInsert(*m_words1[i]))
 					str1.clear();
 				else
 				{
@@ -622,7 +624,8 @@ stringdiffs::BuildWordDiffList()
 int 
 stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
 {
-	while (bw1 < (int) m_words1.size())
+	const int iSize = (int) m_words1.size();
+	while (bw1 < iSize)
 	{
 		if (AreWordsSame(*m_words1[bw1], needword2))
 			return bw1;
@@ -637,7 +640,8 @@ stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
 int 
 stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 {
-	while (bw2 < (int)m_words2.size())
+	const int iSize = (int) m_words2.size();
+	while (bw2 < iSize)
 	{
 		if (AreWordsSame(needword1, *m_words2[bw2]))
 			return bw2;
@@ -652,7 +656,8 @@ stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 int 
 stringdiffs::FindNextSpaceInWords1(int bw1) const
 {
-	while (bw1 < (int) m_words1.size())
+	const int iSize = (int) m_words1.size();
+	while (bw1 < iSize)
 	{
 		if (IsSpace(*m_words1[bw1]))
 			return bw1;
@@ -666,7 +671,8 @@ stringdiffs::FindNextSpaceInWords1(int bw1) const
 int 
 stringdiffs::FindNextSpaceInWords2(int bw2) const
 {
-	while (bw2 < (int) m_words2.size())
+	const int iSize = (int) m_words2.size();
+	while (bw2 < iSize)
 	{
 		if (IsSpace(*m_words2[bw2]))
 			return bw2;
@@ -1084,17 +1090,17 @@ sd_ComputeByteDiff(String & str1, String & str2,
 				pen2 = CharPrev(py2, pen2);
 		}
 	}
-    //check for excaption of empty string on one side
-    //In that case display all as a diff
-	if (!equal && ((py1 == pen1) && isSafeWhitespace(*pen1) )
-        || ((py2 == pen2) && isSafeWhitespace(*pen2) ))
-    {
-        begin1 = 0;
-   	    begin2 = 0;
-        end1 =len1 - 1;
-        end2 =len2 - 1;
-        return;
-    }
+	//check for excaption of empty string on one side
+	//In that case display all as a diff
+	if (!equal && (((py1 == pen1) && isSafeWhitespace(*pen1)) ||
+		((py2 == pen2) && isSafeWhitespace(*pen2))))
+	{
+		begin1 = 0;
+		begin2 = 0;
+		end1 =len1 - 1;
+		end2 =len2 - 1;
+		return;
+	}
 	bool alldone = false;
 	bool found = false;
 
