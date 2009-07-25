@@ -123,6 +123,7 @@ Localization:
   Göran Håkansson <goran.x.hakansson@telia.com>
 
 * Turkish:
+  Afyonlu <afyonlu@users.sourceforge.net>
   Ozkan UNVER <turquaz37915@users.sourceforge.net>
 
 * Ukranian
