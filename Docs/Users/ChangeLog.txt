@@ -18,7 +18,7 @@ WinMerge 2.13.9
   Translation updates:
   - Dutch (#2801690, #2804979)
   - Swedish (#2805726)
-  - Turkish (#2825130)
+  - Turkish (#2825130, #2825132)
   - Ukrainian (#2817835)
 
 WinMerge 2.13.8 - 2009-05-26 (r6791)
