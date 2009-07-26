@@ -5,7 +5,7 @@
  *  @date   Edited:  2006-02-20 (Perry Rapp)
  *
  *  @brief  Declaration of utility unicode conversion routines
- */ 
+ */
 // ID line follows -- this is updated by SVN
 // $Id$
 
@@ -14,12 +14,14 @@
 
 #include "UnicodeString.h"
 
-namespace ucr {
+namespace ucr
+{
 
 /**
  * @brief A simple buffer struct.
  */
-struct buffer {
+struct buffer
+{
 	unsigned char * ptr; /**< Pointer to a buffer. */
 	unsigned int capacity; /**< Buffer's size in bytes. */
 	unsigned int size; /**< Size of the data in the buffer, <= capacity. */
@@ -49,7 +51,7 @@ unsigned int GetUtf8Char(unsigned char * str);
 int to_utf8_advance(unsigned int u, unsigned char * &lpd);
 String maketchar(unsigned int ch, bool & lossy);
 int writeBom(void* dest, UNICODESET unicoding);
-unsigned int get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
+unsigned int get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage = 0);
 String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy);
 String maketchar(unsigned int unich, bool & lossy);
 String maketchar(unsigned int unich, bool & lossy, unsigned int codepage);

@@ -1,4 +1,4 @@
-/** 
+/**
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
@@ -20,7 +20,7 @@
 class UniFile
 {
 public:
-	
+
 	/**
 	 * @brief A struct for error message or error code.
 	 */
