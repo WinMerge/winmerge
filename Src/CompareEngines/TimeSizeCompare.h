@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  TimeSizeCompare.h
  *
  * @brief Declaration file for TimeSizeCompare compare engine.

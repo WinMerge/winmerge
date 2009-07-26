@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  TimeSizeCompare.cpp
  *
  * @brief Implementation file for TimeSizeCompare
@@ -15,7 +15,7 @@ namespace CompareEngines
 {
 
 TimeSizeCompare::TimeSizeCompare()
-: m_ignoreSmallDiff(false)
+		: m_ignoreSmallDiff(false)
 {
 }
 
@@ -32,7 +32,7 @@ void TimeSizeCompare::SetAdditionalOptions(bool ignoreSmallDiff)
 	m_ignoreSmallDiff = ignoreSmallDiff;
 }
 
-/** 
+/**
  * @brief Compare two specified files, byte-by-byte
  * @param [in] compMethod Compare method used.
  * @param [in] di Diffitem info.
@@ -70,7 +70,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di)
 		else
 			code = DIFFCODE::CMPERR;
 	}
-	
+
 	// This is actual CMP_DATE_SIZE method..
 	// If file sizes differ mark them different
 	if (compMethod == CMP_DATE_SIZE)

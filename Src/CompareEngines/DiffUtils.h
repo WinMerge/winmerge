@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  DiffUtils.h
  *
  * @brief Declaration of DiffUtils class.
@@ -41,7 +41,7 @@ public:
 	void GetDiffCounts(int & diffs, int & trivialDiffs);
 	void GetTextStats(int side, FileTextStats *stats);
 	bool Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, bool bMovedBlocks, int * bin_file);
+			int * bin_status, bool bMovedBlocks, int * bin_file);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 protected:

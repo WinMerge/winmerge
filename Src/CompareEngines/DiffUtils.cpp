@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  DiffUtils.cpp
  *
  * @brief Implementation file for DiffUtils class.
@@ -22,9 +22,9 @@ static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
  * @brief Default constructor.
  */
 DiffUtils::DiffUtils()
- : m_pOptions(NULL)
- , m_pFilterList(NULL)
- , m_inf(NULL)
+		: m_pOptions(NULL)
+		, m_pFilterList(NULL)
+		, m_inf(NULL)
 {
 }
 
@@ -120,14 +120,14 @@ int DiffUtils::diffutils_compare_files()
 	if (script && m_pFilterList && m_pFilterList->HasRegExps())
 	{
 		struct change *next = script;
-		struct change *thisob=0, *end=0;
-		
+		struct change *thisob = 0, *end = 0;
+
 		while (next)
 		{
 			/* Find a set of changes that belong together.  */
 			thisob = next;
 			end = find_change(next);
-			
+
 			/* Disconnect them from the rest of the changes,
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
@@ -136,21 +136,21 @@ int DiffUtils::diffutils_compare_files()
 			debug_script(thisob);
 #endif
 
-			{					
+			{
 				/* Determine range of line numbers involved in each file.  */
-				int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
-				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+				int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
+				analyze_hunk(thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
 				if (deletes || inserts || thisob->trivial)
 				{
 					/* Print the lines that the first file has.  */
-					int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
+					int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
 					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
 					translate_range(&m_inf[1], first1, last1, &trans_a1, &trans_b1);
 
 					//Determine quantity of lines in this block for both sides
 					int QtyLinesLeft = (trans_b0 - trans_a0);
 					int QtyLinesRight = (trans_b1 - trans_a1);
-					
+
 					// Match lines against regular expression filters
 					// Our strategy is that every line in both sides must
 					// match regexp before we mark difference as ignored.
@@ -172,7 +172,7 @@ int DiffUtils::diffutils_compare_files()
 	// Free change script (which we don't want)
 	if (script != NULL)
 	{
-		struct change *p,*e;
+		struct change *p, *e;
 		for (e = script; e; e = p)
 		{
 			if (!e->trivial)
@@ -180,7 +180,7 @@ int DiffUtils::diffutils_compare_files()
 			else
 				++m_ntrivialdiffs;
 			p = e->link;
-			free (e);
+			free(e);
 		}
 		if (m_ndiffs > 0)
 			code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
@@ -196,11 +196,14 @@ int DiffUtils::diffutils_compare_files()
 		code = code & ~DIFFCODE::TEXT;
 		switch (bin_file)
 		{
-		case BINFILE_SIDE1: code |= DIFFCODE::BINSIDE1;
+		case BINFILE_SIDE1:
+			code |= DIFFCODE::BINSIDE1;
 			break;
-		case BINFILE_SIDE2: code |= DIFFCODE::BINSIDE2;
+		case BINFILE_SIDE2:
+			code |= DIFFCODE::BINSIDE2;
 			break;
-		case BINFILE_SIDE1 | BINFILE_SIDE2: code |= DIFFCODE::BIN;
+		case BINFILE_SIDE1 | BINFILE_SIDE2:
+			code |= DIFFCODE::BIN;
 			break;
 		default:
 			_RPTF1(_CRT_ERROR, "Invalid bin_file value: %d", bin_file);
@@ -231,9 +234,9 @@ int DiffUtils::diffutils_compare_files()
 bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
 {
 	if (m_pFilterList == NULL)
-	{	
+	{
 		_RPTF0(_CRT_ERROR, "DiffUtils::RegExpFilter() called when "
-			"filterlist doesn't exist (=NULL)");
+				"filterlist doesn't exist (=NULL)");
 		return false;
 	}
 
@@ -276,14 +279,14 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
  * @return TRUE when compare succeeds, FALSE if error happened during compare.
  */
 bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
-	int * bin_status, bool bMovedBlocks, int * bin_file)
+		int * bin_status, bool bMovedBlocks, int * bin_file)
 {
 	bool bRet = true;
 	__try
 	{
-		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks, bin_file);
+		*diffs = diff_2_files(m_inf, depth, bin_status, bMovedBlocks, bin_file);
 	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
+	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 		*diffs = NULL;
 		bRet = false;

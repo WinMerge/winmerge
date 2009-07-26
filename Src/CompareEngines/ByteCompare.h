@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  ByteCompare.h
  *
  * @brief Declaration file for ByteCompare
