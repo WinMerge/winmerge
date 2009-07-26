@@ -108,13 +108,13 @@ STDAPI DllRegisterServer(void)
 		LONG lRet;
 
 		lRet = reg.Open(HKEY_LOCAL_MACHINE,
-		                _T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"));
+				_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"));
 
 		if (ERROR_SUCCESS != lRet)
 			return E_ACCESSDENIED;
 
 		lRet = reg.WriteString(_T("WinMerge_Shell Extension"),
-		                       _T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
+				_T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
 
 		if (ERROR_SUCCESS != lRet)
 			return E_ACCESSDENIED;
@@ -140,8 +140,8 @@ STDAPI DllUnregisterServer(void)
 		LONG lRet;
 
 		lRet = reg.Open(HKEY_LOCAL_MACHINE,
-		                _T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"),
-		                KEY_SET_VALUE);
+				_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"),
+				KEY_SET_VALUE);
 
 		if (ERROR_SUCCESS == lRet)
 		{
