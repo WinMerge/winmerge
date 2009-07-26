@@ -13,6 +13,9 @@ astyle --style=ansi --indent=tab --pad-oper --unpad-paren Src/Common/*.h
 astyle --style=ansi --indent=tab --pad-oper --unpad-paren Src/CompareEngines/*.cpp
 astyle --style=ansi --indent=tab --pad-oper --unpad-paren Src/CompareEngines/*.h
 
+astyle --style=ansi --indent=tab --pad-oper --unpad-paren ShellExtension/*.cpp
+astyle --style=ansi --indent=tab --pad-oper --unpad-paren ShellExtension/*.h
+
 REM Editor code is GNU style - 2 space indent
 astyle --style=gnu --pad-oper --unpad-paren Src/editlib/*.cpp
 astyle --style=gnu --pad-oper --unpad-paren Src/editlib/*.h
