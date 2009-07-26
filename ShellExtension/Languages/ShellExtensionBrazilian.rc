@@ -1,5 +1,9 @@
 //Microsoft Developer Studio generated resource script.
 //
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
+//
 // $Id$
 
 #include "../resource.h"
@@ -15,7 +19,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Portuguese (Brazil) resources
+// Resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
 #ifdef _WIN32
@@ -28,7 +32,11 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 // String Table
 //
 
-STRINGTABLE
+//
+//  ***  TRANSLATED STRINGS ***
+// Translate strings  below
+// 
+STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "Extensão do Shell"
     IDS_CONTEXT_MENU        "WinMerge"
@@ -42,5 +50,5 @@ BEGIN
     IDS_RESELECT_FIRST      "Re-selecionar Primeiro"
 END
 
-#endif    // Portuguese (Brazil) resources
+#endif    // Resources
 /////////////////////////////////////////////////////////////////////////////

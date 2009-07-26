@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2009-05-23 13:10+0000\n"
+"POT-Creation-Date: 2009-07-26 14:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -19,70 +19,70 @@ msgstr ""
 "X-Poedit-SourceCharset: CP1252\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr ""
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtensionTemplate.rc:26
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr ""
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "1252"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "WinMerge"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 2 items"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Compare"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare..."
 msgstr ""
 
-#: ShellExtensionTemplate.rc:48
+#: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare To"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
 msgstr ""
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Compare to saved path (%1)"
 msgstr ""
 
-#: ShellExtensionTemplate.rc:51
+#: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Re-select First"
 msgstr ""

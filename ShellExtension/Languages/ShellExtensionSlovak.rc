@@ -1,5 +1,9 @@
 //Microsoft Developer Studio generated resource script.
 //
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
+//
 // $Id$
 
 #include "../resource.h"
@@ -15,7 +19,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Slovak resources
+// Resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SKY)
 #ifdef _WIN32
@@ -28,6 +32,10 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 // String Table
 //
 
+//
+//  ***  TRANSLATED STRINGS ***
+// Translate strings  below
+// 
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
@@ -42,5 +50,5 @@ BEGIN
     IDS_RESELECT_FIRST      "Najprv znova oznaète"
 END
 
-#endif    // Slovak resources
+#endif    // Resources
 /////////////////////////////////////////////////////////////////////////////

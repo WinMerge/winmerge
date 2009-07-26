@@ -1,11 +1,10 @@
 //Microsoft Developer Studio generated resource script.
 //
-// This is a template file for new ShellExtension translations:
-// 1. Copy this file as a [YourLanguage].rc
-// 2. Translate strings in the end of the file
-// 3. Save the file and send it to WinMerge developers
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
 //
-// $Id: ShellExtensionTemplate.rc 5137 2008-03-08 08:17:20Z kimmov $
+// $Id: ShellExtensionTemplate.rc 6792 2009-05-26 20:33:42Z gerundt $
 
 #include "../resource.h"
 
@@ -20,7 +19,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// Resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SLV)
 #ifdef _WIN32
@@ -43,7 +42,7 @@ BEGIN
     IDS_CONTEXT_MENU        "WinMerge"
     IDS_CONTEXT_HELP        "Open with WinMerge"
     IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 2 items"
-    IDS_COMPARE             "Primerjaj"
+    IDS_COMPARE             "Compare"
     IDS_COMPARE_ELLIPSIS    "Compare..."
     IDS_COMPARE_TO          "Compare To"
     IDS_HELP_SAVETHIS       "Save this path. Select another path to compare with this path."
@@ -51,5 +50,5 @@ BEGIN
     IDS_RESELECT_FIRST      "Re-select First"
 END
 
-#endif    // English (U.S.) resources
+#endif    // Resources
 /////////////////////////////////////////////////////////////////////////////

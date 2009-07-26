@@ -1,5 +1,9 @@
 //Microsoft Developer Studio generated resource script.
 //
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
+//
 // $Id$
 
 #include "../resource.h"
@@ -15,11 +19,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Norwegian (Bokmal) resources
+// Resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NOR)
 #ifdef _WIN32
-LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
+LANGUAGE LANG_NORWEGIAN, SUBLANG_DEFAULT
 #pragma code_page(1252)
 #endif //_WIN32
 
@@ -28,6 +32,10 @@ LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
 // String Table
 //
 
+//
+//  ***  TRANSLATED STRINGS ***
+// Translate strings  below
+// 
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "ShellExtension"
@@ -42,5 +50,5 @@ BEGIN
     IDS_RESELECT_FIRST      "Re-select First"
 END
 
-#endif    // Norwegian (Bokmal) resources
+#endif    // Resources
 /////////////////////////////////////////////////////////////////////////////

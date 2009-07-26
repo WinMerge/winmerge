@@ -1,4 +1,9 @@
 //Microsoft Developer Studio generated resource script.
+//
+// This is an *automatic* generated file for the ShellExtension translation.
+// Please edit the PO file instead of this RC file for translation updates:
+//   ..\..\Translations\ShellExtension\<Languagename>.po
+//
 // $Id$
 
 #include "../resource.h"
@@ -14,7 +19,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Galician (RAG) resources
+// Resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)
 #ifdef _WIN32
@@ -45,5 +50,5 @@ BEGIN
     IDS_RESELECT_FIRST      "Voltar seleccionar a primeira"
 END
 
-#endif    // Galician (RAG) resources
+#endif    // Resources
 /////////////////////////////////////////////////////////////////////////////
