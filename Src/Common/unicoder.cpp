@@ -463,18 +463,27 @@ unsigned int get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codep
 }
 
 /**
- * @brief Convert series of bytes (8-bit chars) to TCHARs, using specified codepage
+ * @brief Convert series of bytes (8-bit chars) to TCHARs.
  *
- * TODO: This doesn't inform the caller whether translation was lossy
+ * @param [out] str String returned.
+ * @param [in] lpd Original byte array to convert.
+ * @param [in] len Length of the original byte array.
+ * @param [in] codepage Codepage used.
+ * @param [out] lossy Was conversion lossy?
+ * @return true if conversion succeeds, false otherwise.
+ * @todo This doesn't inform the caller whether translation was lossy
  *  In fact, this doesn't even know. Probably going to have to make
  *  two passes, the first with MB_ERR_INVALID_CHARS. Ugh. :(
  */
-String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy)
+bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, bool * lossy)
 {
 	int defcodepage = getDefaultCodepage();
 
 	if (!len)
-		return _T("");
+	{
+		str.clear();
+		return true;
+	}
 
 	// 0 is a valid value (CP_ACP)!
 	if (codepage == -1)
@@ -485,8 +494,17 @@ String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy
 	// TCHAR is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
 	int wlen = len * 2 + 6;
-	String str;
-	str.resize(wlen);
+
+	try
+	{
+		str.resize(wlen);
+	}
+	catch (std::bad_alloc)
+	{
+		// Not enough memory - exit
+		return false;
+	}
+
 	LPWSTR wbuff = &*str.begin();
 	do
 	{
@@ -508,15 +526,23 @@ String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy
 				ASSERT(FALSE);
 				--n;
 			}
-			str.resize(n);
-			return str;
+			try
+			{
+				str.resize(n);
+			}
+			catch (std::bad_alloc)
+			{
+				// Not enough memory - exit
+				return false;
+			}
+			return true;
 		}
 		*lossy = true;
 		flags ^= MB_ERR_INVALID_CHARS;
 	}
 	while (flags == 0 && GetLastError() == ERROR_NO_UNICODE_TRANSLATION);
 	str = _T('?');
-	return str;
+	return true;
 
 #else
 	if (EqualCodepages(codepage, defcodepage))
@@ -526,8 +552,8 @@ String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy
 		return String(lpd, len);
 	}
 
-	String str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);
-	return str;
+	str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);
+	return true;
 #endif
 }
 

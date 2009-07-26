@@ -52,7 +52,7 @@ int to_utf8_advance(unsigned int u, unsigned char * &lpd);
 String maketchar(unsigned int ch, bool & lossy);
 int writeBom(void* dest, UNICODESET unicoding);
 unsigned int get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage = 0);
-String maketstring(const char* lpd, unsigned int len, int codepage, bool * lossy);
+bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, bool * lossy);
 String maketchar(unsigned int unich, bool & lossy);
 String maketchar(unsigned int unich, bool & lossy, unsigned int codepage);
 unsigned int byteToUnicode(unsigned char ch);
