@@ -116,7 +116,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
 	m_nCmdShow(SW_SHOWNORMAL),
 	m_bClearCaseTool(false),
 	m_bEscShutdown(false),
-	m_bExitIfNoDiff(false),
+	m_bExitIfNoDiff(Disabled),
 	m_bRecurse(false),
 	m_bNonInteractive(false),
 	m_bSingleInstance(false),
@@ -347,7 +347,13 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 		else if (param == _T("x"))
 		{
 			// -x to close application if files are identical.
-			m_bExitIfNoDiff = true;
+			m_bExitIfNoDiff = Exit;
+		}
+		else if (param == _T("xq"))
+		{
+			// -xn to close application if files are identical without showing
+			// any messages
+			m_bExitIfNoDiff = ExitQuiet;
 		}
 		else if (param == _T("cp"))
 		{

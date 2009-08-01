@@ -63,6 +63,7 @@
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
 #include "TempFile.h"
+#include "MergeCmdLineInfo.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -680,18 +681,20 @@ void CMergeDoc::ShowRescanError(int nRescanResult, BOOL bIdentical)
 		{
 			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
 
-			// Show the "files are identical" error message even if the user
-			// requested not to show it again. It is better than to close
-			// the application without a warning.
-			if (GetMainFrame()->m_bExitIfNoDiff)
+			if (GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::Exit)
 			{
+				// Show the "files are identical" for basic "exit no diff" flag
+				// If user don't want to see the message one uses the quiet version
+				// of the "exit no diff".
 				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
 			}
 
-			LangMessageBox(IDS_FILESSAME, nFlags);
+			if (GetMainFrame()->m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
+				LangMessageBox(IDS_FILESSAME, nFlags);
 
 			// Exit application if files are identical.
-			if (GetMainFrame()->m_bExitIfNoDiff)
+			if (GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
+				GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
 			{
 				GetMainFrame()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			}
@@ -2374,7 +2377,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
-		GetMainFrame()->m_bExitIfNoDiff = FALSE;
+		GetMainFrame()->m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
 	}
 	else
 	{
@@ -2589,7 +2592,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
-		GetMainFrame()->m_bExitIfNoDiff = FALSE;
+		GetMainFrame()->m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
 	}
 	else
 	{

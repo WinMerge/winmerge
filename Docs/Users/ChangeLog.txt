@@ -11,6 +11,8 @@ WinMerge 2.13.9
   Allow disabling reading of unique folder contents (#2820067)
   Add options GUI for quick compare limit (#2825628)
   Add accelerator keys for Shell context menu (#2823536)
+  Add /xq command line switch for closing WinMerge after identical files
+    and not showing message (#2827836)
   Bugfix: Did not export changed options values (#2799149)
   Bugfix: Don't highlight identical words if whitespaces are ignored (#2798360)
   Bugfix: Did not reset folder compare method back to original (#2803152)
