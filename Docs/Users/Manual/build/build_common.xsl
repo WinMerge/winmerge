@@ -21,7 +21,6 @@
      Changes
      Created July 2008
      ******************************************************************** -->
-
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
@@ -57,6 +56,7 @@ common/local.l10n.xml
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/docbook.xsl 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<!-- Link to the appropriate css stylesheets -->
 <xsl:template name="user.head.content">
   <link rel="stylesheet" type="text/css" href="css/all.css" />
   <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
@@ -111,5 +111,29 @@ html/autotoc.xsl
   </a>
   </span>
 </xsl:template>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+WinMerge custom templates 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<xsl:template name="header.ads">
+  <div id="ads">
+    <script type="text/javascript">&lt;!--
+      google_ad_client = "pub-1411904495533584";
+      google_ad_width = 728;
+      google_ad_height = 90;
+      google_ad_format = "728x90_as";
+      google_ad_type = "text";
+      google_ad_channel ="";
+      google_color_border = "FFCC00";
+      google_color_bg = "FFFFCC";
+      google_color_link = "0000FF";
+      google_color_text = "000000";
+      google_color_url = "008000";
+    //--&gt;</script>
+    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+  </div>
+</xsl:template>
+
 
 </xsl:stylesheet>

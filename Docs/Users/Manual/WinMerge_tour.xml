@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"./build/dtd/docbookx.dtd">
+<book id="WinMerge_tour">
+  <bookinfo>
+    <title>WinMerge <xi:include href="replaceables.xml"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(version)" />
+    Quick Tour</title>
+
+    <abstract>
+      <para>WinMerge is an Open Source differencing and merging tool for
+      Windows. Use it to detect changes between files and folders, and then to
+      merge changes selectively. You can use WinMerge by itself, or launch it
+      from a version control system or another application.</para>
+
+      <para>When you compare two files or folders, the result is displayed in
+      the WinMerge window. The WinMerge window's visual display and functions
+      are designed to help you see differences between your targets, and to
+      merge selected differences if you want to.</para>
+
+      <formalpara>
+        <title>In a file comparison</title>
+
+        <para>WinMerge shows differences between lines. The built-in text editor
+        provides syntax highlighting for several programming languages and other
+        file formats.</para>
+      </formalpara>
+
+      <formalpara>
+        <title>In a folder comparison</title>
+
+        <para>WinMerge indicates various kinds of differences between the files
+        that the folders contain.</para>
+      </formalpara>
+
+      <para>Take this brief, guided tour if you are considering installing
+      WinMerge, or if you just want to see what the tool looks like and what you
+      can do with it. The topics below describe the main WinMerge features. They
+      include some simple examples of comparing files and folders, and merging
+      differences between them.</para>
+
+      <para>This tour just scratches the surface. For detailed information and
+      guidance about using WinMerge, see the Help that is installed with
+      WinMerge and available <ulink url="http://winmerge.org/docs/manual/">on
+      our Web site</ulink>.</para>
+    </abstract>
+  </bookinfo>
+
+  <toc></toc>
+
+  <xi:include href="tour_sel_targets.xml"
+              xmlns:xi="http://www.w3.org/2001/XInclude" xpointer="element(/1)" />
+
+  <xi:include href="tour_comparingfiles.xml"
+              xmlns:xi="http://www.w3.org/2001/XInclude" />
+
+  <xi:include href="tour_comparingdirs.xml"
+              xmlns:xi="http://www.w3.org/2001/XInclude" />
+</book>

@@ -17,15 +17,22 @@
 
 <xsl:import href="../build/xsl/html/chunk.xsl"/>
 <xsl:import href="build_common.xsl"/>
-<!-- Define suffix to appear after title text in head/title element of every topic -->
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+Custom parameters
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<!-- Define suffix to appear after title text in head/title element of 
+every topic -->
 <xsl:param name="headtitle.suffix" select="' - WinMerge 2.12 Manual'"/>
 
+<!-- Detect if we're displaying ads for the Web pages -->
+<xsl:param name="withads">false</xsl:param>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/docbook.xsl 
-  Add suffix to head title text
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 
+<!--   Add headtitle.suffix to head title text -->
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
   <xsl:param name="title">
@@ -106,6 +113,13 @@ body { background-image: url('</xsl:text>
     </style>
   </xsl:if>
   <xsl:apply-templates select="." mode="head.keywords.content"/>
+</xsl:template>
+
+<!-- For web pages add banner image and Google ad scripts -->
+<xsl:template name="user.header.content">
+    <xsl:if test="$withads = 'true'">
+      <xsl:call-template name="header.ads"/>
+    </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

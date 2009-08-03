@@ -3,14 +3,17 @@
 call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
+set tour_inputfile=..\WinMerge_tour.xml
 set docbook_use_stylesheet=build_html.xsl
+set tour_use_stylesheet=build_html_page.xsl
 set docbook_outputdir=%docbook_build_path%\html
+set ads=false
 if "%1" == "withads" goto withads
 if not "%1" == "" goto withadserror
 goto start
 
 :withads
-set docbook_use_stylesheet=build_html_withads.xsl
+set ads=true
 echo **************************************
 echo * The manual includes advertisements *
 echo **************************************
@@ -38,11 +41,14 @@ copy "..\art\*.*" "%docbook_outputdir%\art\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
-copy "..\css\all.css" "%docbook_outputdir%\css\all.css"
-copy "..\css\print.css" "%docbook_outputdir%\css\print.css"
+copy "..\css\*.css" "%docbook_outputdir%\css"
+rem copy "..\css\print.css" "%docbook_outputdir%\css\print.css"
 
-echo Create HTML files...
-%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\
+echo Create Manual HTML files...
+%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\ withads=%ads%
+
+echo Create tour HTML file...
+%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet -o %docbook_outputdir%/WinMerge_tour.html %tour_inputfile% %tour_use_stylesheet% headtitle.suffix="' - WinMerge 2.12 Tour'" withads=%ads% 
 
 echo Finished!
 
