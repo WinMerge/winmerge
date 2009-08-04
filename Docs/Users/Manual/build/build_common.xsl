@@ -20,6 +20,7 @@
      ******************************************************************** 
      Changes
      Created July 2008
+     3 Aug 2009: Added 'header.ads' custom template
      ******************************************************************** -->
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 html/param.xsl  parameters
@@ -115,6 +116,9 @@ html/autotoc.xsl
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 WinMerge custom templates 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<!-- This template adds ads to the top of HTML pages when you use the 
+     'build html withads' command line to generate commercialized 
+     pages for the WinMerge web site. -->
 <xsl:template name="header.ads">
   <div id="ads">
     <script type="text/javascript">&lt;!--

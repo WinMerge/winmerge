@@ -13,6 +13,7 @@
      ******************************************************************** 
      Changes:
      Created July 2008
+     3 Aug 2009: Added 'user.header.content' template
      ******************************************************************** -->
 
 <xsl:import href="../build/xsl/html/chunk.xsl"/>
@@ -115,7 +116,8 @@ body { background-image: url('</xsl:text>
   <xsl:apply-templates select="." mode="head.keywords.content"/>
 </xsl:template>
 
-<!-- For web pages add banner image and Google ad scripts -->
+<!-- For web pages add banner image. Add Google ad scripts 
+     if 'withads' param is set  to true. -->
 <xsl:template name="user.header.content">
     <xsl:if test="$withads = 'true'">
       <xsl:call-template name="header.ads"/>
