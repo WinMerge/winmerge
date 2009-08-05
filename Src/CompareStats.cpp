@@ -8,6 +8,7 @@
 
 #include <windows.h>
 #include <assert.h>
+#include <crtdbg.h>
 #include "DiffItem.h"
 #include "CompareStats.h"
 

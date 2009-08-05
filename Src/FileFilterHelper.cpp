@@ -24,6 +24,7 @@
 
 #include <windows.h>
 #include <tchar.h>
+#include <crtdbg.h>
 #include "Ucs2Utf8.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
