@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.6
+  Add missing keywords to Pascal highlighter (#2834192)
   Translation updates:
   - Dutch (#2804979)
   - Turkish (#2825132, #2827817)

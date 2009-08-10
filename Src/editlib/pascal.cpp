@@ -25,7 +25,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  Pascal keywords
 static LPTSTR s_apszPascalKeywordList[] =
   {
     _T ("program"),
@@ -79,6 +79,35 @@ static LPTSTR s_apszPascalKeywordList[] =
     _T ("assembler"),
     _T ("near"),
     _T ("inherited"),
+    //Object Pascal Keywords
+    _T ("As"),
+    _T ("Class"),
+    _T ("Except"),
+    _T ("Finally"),
+    _T ("In"),
+    _T ("Is"),
+    _T ("On"),
+    _T ("Packed"),
+    _T ("Property"),
+    _T ("Raise"),
+    _T ("Shl"),
+    _T ("Shr"),
+    _T ("ThreadVar"),
+    _T ("Try"),
+    //Object Pascal Directives
+    _T ("Abstract"),
+    _T ("Default"),
+    _T ("Dynamic"),
+    _T ("Export"),
+    _T ("Index"),
+    _T ("Out"),
+    _T ("Overload"),
+    _T ("Override"),
+    _T ("Private"),
+    _T ("Protected"),
+    _T ("Public"),
+    _T ("Published"),
+    _T ("Virtual"),
     NULL
   };
 
