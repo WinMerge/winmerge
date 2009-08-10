@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="tour_comparingfiles">
+  <title>Comparing Files</title>
+
+  <para>When you compare two files, WinMerge shows the differences between their
+  lines. To demonstrate comparing and merging files, consider these two small
+  text files named <filename>File1</filename> and
+  <filename>File2</filename>:</para>
+
+  <formalpara>
+    <title>File1:</title>
+
+    <para><screen>You can cage a swallow,
+can't you? 
+But you can't swallow 
+a cage, can you?</screen></para>
+  </formalpara>
+
+  <formalpara>
+    <title>File2:</title>
+
+    <para><screen>You can cage a swallow.
+But you can't swallow 
+a cage. Can you?</screen></para>
+  </formalpara>
+
+  <section>
+    <title>The File Compare window</title>
+
+    <para>If you <link linkend="tour_sel_targets">launch a WinMerge compare
+    operation</link> on two files, the File Compare window opens. This screen
+    shot compares our two sample files:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/filecompwin_tr.png" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Compare Files screen shot</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>The File Compare window makes it easy to see differences between lines
+    in your files. It also has special functions for merging different lines
+    from one file to the other, and basic editing capabilities for more detailed
+    merging within lines. Notice these basic features of the File Compare
+    window:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>In the bottom right corner of the window, the status bar tells you
+        how many differences WinMerge detects.</para>
+
+        <para>The Location pane indicates where the differences are located in
+        the files. The Location pane is helpful for working with long files,
+        where you can't see all the differences at once in the File
+        panes.</para>
+      </listitem>
+
+      <listitem>
+        <para>Differences are marked in the File panes by a gold background
+        color. In this comparison, the first difference is a block of two lines;
+        the second difference is a single line at the end.</para>
+      </listitem>
+
+      <listitem>
+        <para>Notice that the first difference has an extra blank line on the
+        right side. Why does this blank line appear, since it doesn't exist in
+        the source file?</para>
+
+        <para>The empty line is a placeholder in WinMerge that does not change
+        the source file. WinMerge inserts blank lines on one side of a
+        difference whenever the other side has more lines. The extra lines,
+        marked with a gray background color by default, keep the left and right
+        sides vertically aligned for ease of comparison. That is, every
+        difference begins on the same line in the File panes, even when they are
+        on different lines in the source files. Without this feature, files of
+        different lengths would be hard to compare.</para>
+      </listitem>
+
+      <listitem>
+        <para>The third line is identical in both files, so it has no difference
+        color (its background is white).</para>
+      </listitem>
+
+      <listitem>
+        <para>Within differences, WinMerge highlights the text that makes the
+        lines different. By default, different words are highlighted. To see
+        more detail you can highlight changes at the character level; to see
+        less, you can turn off all highlighting within lines.</para>
+      </listitem>
+    </itemizedlist>
+
+    <note>
+      <para>The WinMerge main window can contain multiple File Compare (and
+      Folder compare) windows. Each File Compare window displays the result of a
+      single comparison, representing the two files in the left and right File
+      panes. In our screen shot, the File Compare window is maximized within the
+      main window:</para>
+    </note>
+  </section>
+
+  <section>
+    <title>Navigating line differences</title>
+
+    <para>In the File Compare window you can use standard mouse and cursor
+    actions to select and edit text in either File pane. But in WinMerge,
+    working with text and working with differences are not the same thing.
+    WinMerge provides special functions to navigate differences.</para>
+
+    <para>For example, click anywhere in an area that is marked as a difference,
+    then click the <inlinemediaobject>
+        <imageobject>
+          <imagedata contentdepth="15" fileref="screenshots/currentdiff_btn_tr.png" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Current Difference button</phrase>
+        </textobject>
+      </inlinemediaobject> <guibutton>Current Difference</guibutton> button in
+    the toolbar.</para>
+
+    <para>The next two screen shots show the first difference in our sample
+    comparison, after it's selected. When you select a difference, several
+    things happen:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>The Selected Difference background color (red by default)
+        highlights the difference in the File panes. The Location Pane also
+        highlights the selected difference and marks its location with arrows.
+        :</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/filecomp_diffpanesel_tr.png" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Difference selected in Compare Files panes</phrase>
+          </textobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para>The selected difference is loaded in the Diff pane, where you can
+        examine it in isolation from other differences.</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/filecomp_diffpane_tr.png" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Compare Files Diff Pane</phrase>
+          </textobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para>All the merge buttons in the toolbar are enabled:
+        <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/mergebtns_on_tr.png" />
+            </imageobject>
+          </inlinemediaobject></para>
+      </listitem>
+
+      <listitem>
+        <para>The status bar confirms which difference is selected.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Merging differences in files</title>
+
+    <para>You can merge differences at two levels in the File Compare
+    window:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Line-level differences</term>
+
+        <listitem>
+          <para>As we have seen, a difference includes one or more lines. Use
+          the WinMerge merge functions to copy an entire selected difference
+          from one side to the other. For example, click the <inlinemediaobject>
+              <imageobject>
+                <imagedata contentdepth="15"
+                           fileref="screenshots/copyr_adv_btn_tr.png" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Copy Right and Advance button</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Copy Right and Advance</guibutton>
+          button.</para>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/filecomp_merged_tr.png" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Compare Files window after merge</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>Notice the changes:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>The first difference is gone: the lines are now identical
+              and have no difference color.</para>
+            </listitem>
+
+            <listitem>
+              <para>WinMerge automatically selects the next difference, skipping
+              over the identical line. The Location Pane also moves its
+              indicator.</para>
+            </listitem>
+
+            <listitem>
+              <para>The status bar indicates that only one difference
+              remains.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>You can see that the navigation and merge functions provide a
+          good way to systematically step through all the differences in a
+          comparison.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Differences within lines</term>
+
+        <listitem>
+          <para>Instead of merging entire differences using the Merge functions,
+          you can change text within them by manually editing either file
+          directly in the File Compare window. For example, if you don't want to
+          use either side of the first difference, you can delete the line. Or,
+          you might replace <quote>words</quote> on the right side with
+          <quote>text</quote>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>After you finish merging, you can click <menuchoice>
+        <guimenu>File</guimenu>
+
+        <guimenuitem>Save</guimenuitem>
+      </menuchoice> to save changes to both sides. Or, to save just one side,
+    click <menuchoice>
+        <guimenu>File</guimenu>
+
+        <guimenuitem>Save Left</guimenuitem>
+      </menuchoice> or <menuchoice>
+        <guimenu>File</guimenu>
+
+        <guimenuitem>Save</guimenuitem>
+      </menuchoice>.</para>
+
+    <para>This was a trivial example — there were only two differences and we
+    only merged one of them. But you can use the methods shown here to navigate
+    and merge line differences between files of any length.</para>
+
+    <!--
+  <para>When you launch a file compare operation, WinMerge opens the File
+  Compare window. The window features two columns representing the
+  <quote>left</quote> and <quote>right</quote> files that you are comparing, and
+  indicates whether the corresponding lines on each side are identical or
+  different. WinMerge can also highlight the content within lines that makes
+  them different.</para>
+
+  <para>You can tailor how differences are detected and displayed. For example,
+  if whitespace differences are not meaningful to your comparison, you can
+  choose to ignore whitespace or different line ending encodings. You can change
+  the colors used to highlight line differences and the text within them.</para>
+
+  <para>The Compare window has special functions that make it easy to step
+  through line differences quickly and systematically, and functions to merge
+  differences from one file to the other if you want to. You can also edit the
+  files directly in the Compare window.</para>
+-->
+  </section>
+</article>

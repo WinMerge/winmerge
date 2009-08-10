@@ -45,14 +45,14 @@ html/docbook.xsl
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <!-- Link to the appropriate css stylesheets -->
 <xsl:template name="user.head.content">
-  <link rel="stylesheet" type="text/css" href="css/onepage.css" />
-  <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
+  <link rel="stylesheet" type="text/css" href="../html/css/onepage.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="../html/css/print.css" />
 </xsl:template>
 
 <!-- For web pages add banner image and Google ad scripts -->
 <xsl:template name="user.header.content">
     <div class="header"><a href="http://www.winmerge.org">
-      <img src="images/head.gif" alt="winmerge.org"/></a>
+      <img src="../html/images/head.gif" alt="winmerge.org"/></a>
     </div>
     <xsl:if test="$withads = 'true'">
       <xsl:call-template name="header.ads"/>
