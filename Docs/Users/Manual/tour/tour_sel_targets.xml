@@ -58,8 +58,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata fileref="screenshots/ctx_menu_advanced_tr.png"
-                   format="PNG" />
+        <imagedata fileref="screenshots/ctx_menu_advanced_tr.png" format="PNG" />
       </imageobject>
 
       <textobject>
@@ -112,7 +111,7 @@
           <formalpara>
             <title>File filters</title>
 
-            <para>include or exclude files that match regular expressions. For
+            <para>Include or exclude files that match regular expressions. For
             example, the expression <code>^test</code> matches files that start
             with the string, <literal>test</literal>, like
             <filename>testheaders.h</filename>. WinMerge installs a number of
@@ -124,7 +123,7 @@
           <formalpara>
             <title>Line filters</title>
 
-            <para>ignore lines <emphasis>within</emphasis> files that match
+            <para>Ignore lines <emphasis>within</emphasis> files that match
             patterns. For example, the expression <code>^[1-5]00</code> ignores
             lines beginning with numbers <literal>100</literal>,
             <literal>200</literal>, <literal>300</literal>,

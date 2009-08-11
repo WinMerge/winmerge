@@ -40,6 +40,7 @@ html/param.xsl  parameters
 <xsl:param name="chunk.section.depth" select="0" />
 <xsl:param name="generate.toc">book toc,title article nop</xsl:param>
 <xsl:param name="toc.section.depth">1</xsl:param>
+<xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 common/local.l10n.xml 
