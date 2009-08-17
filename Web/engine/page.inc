@@ -98,13 +98,15 @@
      * print the head from the page
      */
     function printHead($title = '', $tab = '', $onload = '') {
+      global $translations;
+      
       $this->_title = $title;
       if ($tab != '') {
         $this->_tab = $tab;
       }
       $temp = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n";
       $temp .= "  \"http://www.w3.org/TR/html4/loose.dtd\">\n";
-      $temp .= "<html>\n\n";
+      $temp .= "<html lang=\"" . $translations->getActiveLanguageId() . "\">\n\n";
       $temp .= "<head>\n";
       if ($this->_title != '') {
         $temp .= "  <title>" . $this->_title . " - WinMerge</title>\n";
@@ -147,6 +149,7 @@
     function printFoot() {
       $temp = $this->getSocialBookmarks();
       $temp .= "  </div> <!-- #content -->\n";
+      $temp .= $this->getLanguages();
       $temp .= "<p id=\"poweredby\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/projects/winmerge\"><img src=\"http://sflogo.sourceforge.net/sflogo.php?group_id=13216&amp;type=11\" width=\"120\" height=\"30\" border=\"0\" alt=\"SourceForge.net\" title=\"Get WinMerge at SourceForge.net. Fast, secure and Free Open Source software downloads\" /></a>\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/engine/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
@@ -205,13 +208,15 @@
      * get the tabs menu from the page
      */
     function getTabs() {
+      global $translations;
+      
       /* Main Tabs */
-      $tabs[0] = new Tab(TAB_HOME, '/', 'Home', 'WinMerge Home');
-      $tabs[1] = new Tab(TAB_ABOUT, '/about/', 'About', 'About WinMerge');
-      $tabs[2] = new Tab(TAB_DOCS, '/docs/', 'Documentation', 'WinMerge Documentation');
-      $tabs[3] = new Tab(TAB_DOWNLOADS, '/downloads/', 'Downloads', 'WinMerge Downloads');
-      $tabs[4] = new Tab(TAB_SUPPORT, '/support/', 'Support', 'WinMerge Support');
-      $tabs[5] = new Tab(TAB_TRANSLATIONS, '/translations/', 'Translations', 'WinMerge Translations');
+      $tabs[0] = new Tab(TAB_HOME, $translations->prepareLink('/'), __('Home'), __('WinMerge Home'));
+      $tabs[1] = new Tab(TAB_ABOUT, $translations->prepareLink('/about/'), __('About'), __('About WinMerge'));
+      $tabs[2] = new Tab(TAB_DOCS, $translations->prepareLink('/docs/'), __('Documentation'), __('WinMerge Documentation'));
+      $tabs[3] = new Tab(TAB_DOWNLOADS, $translations->prepareLink('/downloads/'), __('Downloads'), __('WinMerge Downloads'));
+      $tabs[4] = new Tab(TAB_SUPPORT, $translations->prepareLink('/support/'), __('Support'), __('WinMerge Support'));
+      $tabs[5] = new Tab(TAB_TRANSLATIONS, $translations->prepareLink('/translations/'), __('Translations'), __('WinMerge Translations'));
       
       $temp = "<ul id=\"tabs\">\n";
       foreach ($tabs as $tab) { //for all tabs...
@@ -228,43 +233,43 @@
       $subtabs = array();
       switch ($this->_tab) {
         case TAB_HOME: //if "Home" ...
-          $subtabs[0] = new Subtab('/', 'Index', 'WinMerge Home');
-          $subtabs[1] = new Subtab('/links.php', 'Links', 'WinMerge Links');
-          $subtabs[2] = new Subtab('http://sourceforge.net/projects/winmerge', 'Project Page', 'WinMerge Project Page');
+          $subtabs[0] = new Subtab($translations->prepareLink('/'), __('Index'), __('WinMerge Home'));
+          $subtabs[1] = new Subtab($translations->prepareLink('/links.php'), __('Links'), __('WinMerge Links'));
+          $subtabs[2] = new Subtab('http://sourceforge.net/projects/winmerge', __('Project Page'), __('WinMerge Project Page'));
           break;
         case TAB_ABOUT: //if "About" ...
-          $subtabs[0] = new Subtab('/about/', 'Index', 'About WinMerge');
-          $subtabs[1] = new Subtab('/about/screenshots/', 'Screenshots', 'WinMerge Screenshots');
-          $subtabs[2] = new Subtab('/about/history.php', 'History', 'WinMerge History');
-          $subtabs[3] = new Subtab('/about/license.php', 'License', 'WinMerge License');
+          $subtabs[0] = new Subtab($translations->prepareLink('/about/'), __('Index'), __('About WinMerge'));
+          $subtabs[1] = new Subtab($translations->prepareLink('/about/screenshots/'), __('Screenshots'), __('WinMerge Screenshots'));
+          $subtabs[2] = new Subtab($translations->prepareLink('/about/history.php'), __('History'), __('WinMerge History'));
+          $subtabs[3] = new Subtab($translations->prepareLink('/about/license.php'), __('License'), __('WinMerge License'));
           break;
         case TAB_DOCS: //if "Documentation" ...
-          $subtabs[0] = new Subtab('/docs/', 'Index', 'WinMerge Documentation');
-          $subtabs[1] = new Subtab('/docs/manual/', 'Manual', 'WinMerge Manual');
-          $subtabs[2] = new Subtab('/docs/releasenotes.php', 'Release Notes', 'WinMerge Release Notes');
-          $subtabs[3] = new Subtab('/docs/releasenotes.php#issues', 'Known Issues', 'WinMerge Known Issues');
-          $subtabs[4] = new Subtab('/docs/changelog.php', 'Change Log', 'WinMerge Change Log');
-          $subtabs[5] = new Subtab('/Wiki/', 'Development Wiki', 'WinMerge Development Wiki');
+          $subtabs[0] = new Subtab($translations->prepareLink('/docs/'), __('Index'), __('WinMerge Documentation'));
+          $subtabs[1] = new Subtab($translations->prepareLink('/docs/manual/'), __('Manual'), __('WinMerge Manual'));
+          $subtabs[2] = new Subtab($translations->prepareLink('/docs/releasenotes.php'), __('Release Notes'), __('WinMerge Release Notes'));
+          $subtabs[3] = new Subtab($translations->prepareLink('/docs/releasenotes.php#issues'), __('Known Issues'), __('WinMerge Known Issues'));
+          $subtabs[4] = new Subtab($translations->prepareLink('/docs/changelog.php'), __('Change Log'), __('WinMerge Change Log'));
+          $subtabs[5] = new Subtab('/Wiki/', __('Development Wiki'), __('WinMerge Development Wiki'));
           break;
         case TAB_DOWNLOADS: //if "Downloads" ...
-          $subtabs[0] = new Subtab('/downloads/', 'WinMerge', 'Download WinMerge');
-          $subtabs[1] = new Subtab('/downloads/plugins.php', 'Plugins', 'Download WinMerge Plugins');
-          $subtabs[2] = new Subtab('/downloads/source-code.php', 'Source Code', 'Download WinMerge Source Code');
-          $subtabs[3] = new Subtab('/downloads/pad-file.php', 'PAD File', 'WinMerge PAD File');
+          $subtabs[0] = new Subtab($translations->prepareLink('/downloads/'), __('WinMerge'), __('Download WinMerge'));
+          $subtabs[1] = new Subtab($translations->prepareLink('/downloads/plugins.php'), __('Plugins'), __('Download WinMerge Plugins'));
+          $subtabs[2] = new Subtab($translations->prepareLink('/downloads/source-code.php'), __('Source Code'), __('Download WinMerge Source Code'));
+          $subtabs[3] = new Subtab($translations->prepareLink('/downloads/pad-file.php'), __('PAD File'), __('WinMerge PAD File'));
           break;
         case TAB_SUPPORT: //if "Support" ...
-          $subtabs[0] = new Subtab('/support/', 'Index', 'WinMerge Support');
-          $subtabs[1] = new Subtab('http://forums.winmerge.org/', 'Discussion Forums', 'WinMerge Discussion Forums');
-          $subtabs[2] = new Subtab('/support/mailing-lists.php', 'Mailing Lists', 'WinMerge Mailing Lists');
-          $subtabs[3] = new Subtab('http://sourceforge.net/tracker/?group_id=13216', 'Tracker', 'WinMerge Tracker');
-          $subtabs[4] = new Subtab('/support/tracker-shortcuts.php', 'Tracker Shortcuts', 'WinMerge Tracker Shortcuts');
-          $subtabs[5] = new Subtab('http://sourceforge.net/donate/index.php?group_id=13216', 'Donate', 'Donate money to WinMerge');
+          $subtabs[0] = new Subtab($translations->prepareLink('/support/'), __('Index'), __('WinMerge Support'));
+          $subtabs[1] = new Subtab('http://forums.winmerge.org/', __('Discussion Forums'), __('WinMerge Discussion Forums'));
+          $subtabs[2] = new Subtab($translations->prepareLink('/support/mailing-lists.php'), __('Mailing Lists'), __('WinMerge Mailing Lists'));
+          $subtabs[3] = new Subtab('http://sourceforge.net/tracker/?group_id=13216', __('Tracker'), __('WinMerge Tracker'));
+          $subtabs[4] = new Subtab($translations->prepareLink('/support/tracker-shortcuts.php'), __('Tracker Shortcuts'), __('WinMerge Tracker Shortcuts'));
+          $subtabs[5] = new Subtab('http://sourceforge.net/donate/index.php?group_id=13216', __('Donate'), __('Donate money to WinMerge'));
           break;
         case TAB_TRANSLATIONS: //if "Translations" ...
-          $subtabs[0] = new Subtab('/translations/', 'Index', 'WinMerge Translations');
-          $subtabs[1] = new Subtab('/translations/instructions.php', 'Instructions', 'WinMerge Translations Instructions');
-          $subtabs[2] = new Subtab('/translations/status_branch.php', 'Status (Stable Branch)', 'WinMerge Translations Status (Stable Branch)');
-          $subtabs[3] = new Subtab('/translations/status_trunk.php', 'Status (Unstable Trunk)', 'WinMerge Translations Status (Unstable Trunk)');
+          $subtabs[0] = new Subtab($translations->prepareLink('/translations/'), __('Index'), __('WinMerge Translations'));
+          $subtabs[1] = new Subtab($translations->prepareLink('/translations/instructions.php'), __('Instructions'), __('WinMerge Translations Instructions'));
+          $subtabs[2] = new Subtab($translations->prepareLink('/translations/status_branch.php'), __('Status (Stable Branch)'), __('WinMerge Translations Status (Stable Branch)'));
+          $subtabs[3] = new Subtab($translations->prepareLink('/translations/status_trunk.php'), __('Status (Unstable Trunk)'), __('WinMerge Translations Status (Unstable Trunk)'));
           break;
       }
       
@@ -316,6 +321,28 @@
       $temp .= "<img src=\"http://static.delicious.com/img/delicious.small.gif\" height=\"10\" width=\"10\" alt=\"Delicious\">\n";
       $temp .= "<a href=\"http://delicious.com/save\" onclick=\"window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;\"> Bookmark this on Delicious</a>\n";
       $temp .= "</div> <!-- #bookmarks -->\n";
+      return $temp;
+    }
+
+    /**
+     * get the languages from the page
+     */
+    function getLanguages() {
+      global $translations;
+      
+      $temp = "<div id=\"languages\">\n";
+      $temp .= "<ul>\n";
+      $languages = $translations->getLanguages();
+      foreach ($languages as $language) { //for all languages...
+        if ($translations->isActiveLanguage($language)) { //if current language...
+          $temp .= "  <li><strong><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></strong></li>\n";
+        }
+        else { //if NOT current language...
+          $temp .= "  <li><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></li>\n";
+        }
+      }
+      $temp .= "</ul>\n";
+      $temp .= "</div> <!-- #languages -->\n";
       return $temp;
     }
 

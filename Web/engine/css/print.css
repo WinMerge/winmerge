@@ -63,6 +63,10 @@ a[name]:hover { color:black; text-decoration:none; }
 	display: none;
 }
 
+#languages {
+	display: none;
+}
+
 #poweredby {
 	display: none;
 }

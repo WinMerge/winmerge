@@ -143,6 +143,28 @@ a[name]:hover { color:black; text-decoration:none; }
 	text-align: right;
 }
 
+/* Languages */
+#languages {
+	margin: 0;
+	padding: .5em;
+}
+#languages ul {
+	margin: 0;
+	padding: 0;
+}
+#languages li {
+	margin: 0;
+	margin-right: 1em;
+	padding: 0;
+	display: inline;
+	list-style: none;
+}
+#languages a:link { color:black; text-decoration:none; }
+#languages a:visited { color:black; text-decoration:none; }
+#languages a:focus { color:black; text-decoration:underline; }
+#languages a:hover { color:black; text-decoration:underline; }
+#languages a:active { color:black; text-decoration:none; }
+
 #poweredby {
 	margin: 0;
 	margin-top: 1em;
