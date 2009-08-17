@@ -3,8 +3,9 @@
   <title>Overview of file comparing and merging</title>
 
   <para>This topic describes how WinMerge detects and displays differences
-  within files, and demonstrates simple file comparing and merging
-  operations.</para>
+  within text files, and demonstrates simple file comparing and merging
+  operations. See <xref linkend="Intro_diffs" /> for related information about
+  hex files. </para>
 
   <section id="Intro_diffs_comparing">
     <title>Comparing files<indexterm>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_bin">
+  <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
+
+  <title>Comparing binary files</title>
+
+  <indexterm>
+    <primary>comparing files</primary>
+
+    <secondary>binary</secondary>
+  </indexterm>
+
+  <para>WinMerge can detect whether files are in text or binary format. When you
+  launch a file compare operation on two binary files, WinMerge opens each file
+  in the binary file editor.</para>
+</article>
