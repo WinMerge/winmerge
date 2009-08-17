@@ -1,0 +1,325 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org\n"
+"POT-Creation-Date: 2009-08-17 20:36+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: ../../Web/\n"
+
+#: engine\page.inc:236
+#: engine\page.inc:241
+#: engine\page.inc:247
+#: engine\page.inc:261
+#: engine\page.inc:269
+#, c-format
+msgid "Index"
+msgstr ""
+
+#: engine\page.inc:216
+#: engine\page.inc:247
+#, c-format
+msgid "WinMerge Documentation"
+msgstr ""
+
+#: engine\page.inc:251
+#, c-format
+msgid "WinMerge Change Log"
+msgstr ""
+
+#: engine\page.inc:265
+#, c-format
+msgid "Tracker Shortcuts"
+msgstr ""
+
+#: engine\page.inc:262
+#, c-format
+msgid "WinMerge Discussion Forums"
+msgstr ""
+
+#: engine\page.inc:258
+#, c-format
+msgid "WinMerge PAD File"
+msgstr ""
+
+#: engine\page.inc:218
+#, c-format
+msgid "Support"
+msgstr ""
+
+#: engine\page.inc:272
+#, c-format
+msgid "Status (Unstable Trunk)"
+msgstr ""
+
+#: engine\page.inc:264
+#, c-format
+msgid "Tracker"
+msgstr ""
+
+#: engine\page.inc:250
+#, c-format
+msgid "WinMerge Known Issues"
+msgstr ""
+
+#: engine\page.inc:264
+#, c-format
+msgid "WinMerge Tracker"
+msgstr ""
+
+#: engine\page.inc:266
+#, c-format
+msgid "Donate"
+msgstr ""
+
+#: engine\page.inc:252
+#, c-format
+msgid "WinMerge Development Wiki"
+msgstr ""
+
+#: engine\page.inc:250
+#, c-format
+msgid "Known Issues"
+msgstr ""
+
+#: engine\page.inc:270
+#, c-format
+msgid "WinMerge Translations Instructions"
+msgstr ""
+
+#: engine\page.inc:252
+#, c-format
+msgid "Development Wiki"
+msgstr ""
+
+#: engine\page.inc:242
+#, c-format
+msgid "WinMerge Screenshots"
+msgstr ""
+
+#: engine\page.inc:217
+#, c-format
+msgid "Downloads"
+msgstr ""
+
+#: engine\page.inc:219
+#, c-format
+msgid "Translations"
+msgstr ""
+
+#: engine\page.inc:238
+#, c-format
+msgid "Project Page"
+msgstr ""
+
+#: engine\page.inc:215
+#: engine\page.inc:241
+#, c-format
+msgid "About WinMerge"
+msgstr ""
+
+#: engine\page.inc:251
+#, c-format
+msgid "Change Log"
+msgstr ""
+
+#: engine\page.inc:219
+#: engine\page.inc:269
+#, c-format
+msgid "WinMerge Translations"
+msgstr ""
+
+#: engine\page.inc:263
+#, c-format
+msgid "WinMerge Mailing Lists"
+msgstr ""
+
+#: engine\page.inc:244
+#, c-format
+msgid "WinMerge License"
+msgstr ""
+
+#: engine\page.inc:271
+#, c-format
+msgid "Status (Stable Branch)"
+msgstr ""
+
+#: engine\page.inc:256
+#, c-format
+msgid "Download WinMerge Plugins"
+msgstr ""
+
+#: engine\page.inc:266
+#, c-format
+msgid "Donate money to WinMerge"
+msgstr ""
+
+#: engine\page.inc:270
+#, c-format
+msgid "Instructions"
+msgstr ""
+
+#: engine\page.inc:257
+#, c-format
+msgid "Source Code"
+msgstr ""
+
+#: engine\page.inc:215
+#, c-format
+msgid "About"
+msgstr ""
+
+#: engine\page.inc:262
+#, c-format
+msgid "Discussion Forums"
+msgstr ""
+
+#: engine\page.inc:244
+#, c-format
+msgid "License"
+msgstr ""
+
+#: engine\page.inc:265
+#, c-format
+msgid "WinMerge Tracker Shortcuts"
+msgstr ""
+
+#: engine\page.inc:214
+#: engine\page.inc:236
+#, c-format
+msgid "WinMerge Home"
+msgstr ""
+
+#: engine\page.inc:216
+#, c-format
+msgid "Documentation"
+msgstr ""
+
+#: engine\page.inc:248
+#, c-format
+msgid "Manual"
+msgstr ""
+
+#: engine\page.inc:257
+#, c-format
+msgid "Download WinMerge Source Code"
+msgstr ""
+
+#: engine\page.inc:238
+#, c-format
+msgid "WinMerge Project Page"
+msgstr ""
+
+#: engine\page.inc:263
+#, c-format
+msgid "Mailing Lists"
+msgstr ""
+
+#: engine\engine.inc:19
+#, c-format
+msgid "English"
+msgstr ""
+
+#: engine\page.inc:249
+#, c-format
+msgid "Release Notes"
+msgstr ""
+
+#: engine\page.inc:248
+#, c-format
+msgid "WinMerge Manual"
+msgstr ""
+
+#: engine\page.inc:249
+#, c-format
+msgid "WinMerge Release Notes"
+msgstr ""
+
+#: engine\page.inc:243
+#, c-format
+msgid "History"
+msgstr ""
+
+#: engine\page.inc:255
+#, c-format
+msgid "Download WinMerge"
+msgstr ""
+
+#: engine\page.inc:272
+#, c-format
+msgid "WinMerge Translations Status (Unstable Trunk)"
+msgstr ""
+
+#: engine\page.inc:237
+#, c-format
+msgid "Links"
+msgstr ""
+
+#: engine\page.inc:258
+#, c-format
+msgid "PAD File"
+msgstr ""
+
+#: engine\engine.inc:20
+#, c-format
+msgid "German"
+msgstr ""
+
+#: engine\page.inc:255
+#, c-format
+msgid "WinMerge"
+msgstr ""
+
+#: engine\page.inc:218
+#: engine\page.inc:261
+#, c-format
+msgid "WinMerge Support"
+msgstr ""
+
+#: engine\page.inc:271
+#, c-format
+msgid "WinMerge Translations Status (Stable Branch)"
+msgstr ""
+
+#: engine\page.inc:256
+#, c-format
+msgid "Plugins"
+msgstr ""
+
+#: engine\page.inc:214
+#, c-format
+msgid "Home"
+msgstr ""
+
+#: engine\page.inc:217
+#, c-format
+msgid "WinMerge Downloads"
+msgstr ""
+
+#: engine\page.inc:242
+#, c-format
+msgid "Screenshots"
+msgstr ""
+
+#: engine\page.inc:243
+#, c-format
+msgid "WinMerge History"
+msgstr ""
+
+#: engine\page.inc:237
+#, c-format
+msgid "WinMerge Links"
+msgstr ""
+
