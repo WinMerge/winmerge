@@ -4,32 +4,34 @@
 
   $page = new Page;
   $stablerelease = $page->getStableRelease();
-  $page->setDescription('Download the current WinMerge version ' . $stablerelease->getVersionNumber() . ', which was released at ' . $stablerelease->getDate() . '. For detailed info on what\'s new, read the change log and the release notes.');
-  $page->setKeywords('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable');
-  $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
-  $page->printHead('Download WinMerge', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
+  $page->setDescription(__('Download the current WinMerge version %1$s, which was released at %2$s. For detailed info on what\'s new, read the change log and the release notes.', $stablerelease->getVersionNumber(), $stablerelease->getDate()));
+  $page->setKeywords(__('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable'));
+  $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', __('Project File Releases'));
+  $page->printHead(__('Download WinMerge'), TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
+  
+  $page->printHeading(__('Download WinMerge'));
+  $page->printSubHeading(__('WinMerge %s', $stablerelease->getVersionNumber()));
+  $page->printDownloadNow();
+  $page->printPara(__('The current WinMerge version is <strong>%1$s</strong> and was released at <strong>%2$s</strong>.', $stablerelease->getVersionNumber(), $stablerelease->getDate()),
+                   __('For detailed info on what\'s new, read the <a href="%1$s">change log</a> and the <a href="%2$s">release notes</a>.', '/docs/changelog.php', '/docs/releasenotes.php'));
 ?>
-<h2>Download WinMerge</h2>
-<h3>WinMerge <?php echo $stablerelease->getVersionNumber();?></h3>
-<?php $page->printDownloadNow(); ?>
-<p>The current WinMerge version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/docs/changelog.php">change log</a> and the <a href="/docs/releasenotes.php">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
-  <li><strong>Installer</strong>
+  <li><strong><?php __e('Installer');?></strong>
     <ul>
-      <li><a href="<?php echo $stablerelease->getDownload('setup.exe');?>">Exe-Format (<?php echo $stablerelease->getDownloadSizeMb('setup.exe');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('setup.exe');?>"><?php __e('Exe-Format (%s MB)', $stablerelease->getDownloadSizeMb('setup.exe'));?></a></li>
     </ul>
   </li>
-  <li><strong>Binaries</strong>
+  <li><strong><?php __e('Binaries');?></strong>
     <ul>
-      <li><a href="<?php echo $stablerelease->getDownload('exe.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('exe.zip');?> MB)</a></li>
-      <li><a href="<?php echo $stablerelease->getDownload('exe.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('exe.7z');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('exe.zip');?>"><?php __e('Zip-Format (%s MB)', $stablerelease->getDownloadSizeMb('exe.zip'));?></a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('exe.7z');?>"><?php __e('7z-Format (%s MB)', $stablerelease->getDownloadSizeMb('exe.7z'));?></a></li>
     </ul>
   </li>
-  <li><strong>Runtimes</strong>
+  <li><strong><?php __e('Runtimes');?></strong>
     <ul>
-      <li><a href="<?php echo $stablerelease->getDownload('rt.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('rt.zip');?> MB)</a></li>
-      <li><a href="<?php echo $stablerelease->getDownload('rt.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('rt.7z');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('rt.zip');?>"><?php __e('Zip-Format (%s MB)', $stablerelease->getDownloadSizeMb('rt.zip'));?></a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('rt.7z');?>"><?php __e('7z-Format (%s MB)', $stablerelease->getDownloadSizeMb('rt.7z'));?></a></li>
     </ul>
   </li>
 </ul>
@@ -46,24 +48,29 @@
 ?>
 </pre>
 </div> <!-- #checksums -->
-<p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="/docs/manual/Installing.html">online manual</a> for help using it.</p>
-<p>You can also download additional <a href="plugins.php">plugins</a> and the whole <a href="source-code.php">source code</a> from WinMerge.</p>
-<h4>Requirements</h4>
+<?php
+  $page->printPara(__('The easiest way to install WinMerge is to download and run the Installer. Read the <a href="%s">online manual</a> for help using it.', '/docs/manual/Installing.html'));
+  $page->printPara(__('You can also download additional <a href="%1$s">plugins</a> and the whole <a href="%2$s">source code</a> from WinMerge.', 'plugins.php', 'source-code.php'));
+
+  $page->printSubSubHeading(__('Requirements'));
+?>
 <ul>
-  <li>Microsoft Windows 98/2000/XP/2003/Vista/2008</li>
-  <li>Microsoft Visual C++ 2003 Runtime Components (included in the installer)</li>
-  <li>Admin rights for the installer</li>
-</ul>
-<h3><a name="other">Other Versions</a></h3>
-<ul>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable Versions</a></li>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta Versions</a></li>
-  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental Builds</a></li>
-  <li><a href="http://portableapps.com/apps/utilities/winmerge_portable">WinMerge Portable</a> (by PortableApps.com)</li>
-  <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html">Japanese WinMerge Version</a> (by Takashi Sawanaka)</li>
+  <li><?php __e('Microsoft Windows 98/2000/XP/2003/Vista/2008');?></li>
+  <li><?php __e('Microsoft Visual C++ 2003 Runtime Components (included in the installer)');?></li>
+  <li><?php __e('Admin rights for the installer');?></li>
 </ul>
 <?php
-  $page->printRssSubHeading('Project File Releases', 'http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
+  $page->printSubHeading(__('Other Versions'));
+?>
+<ul>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248"><?php __e('Stable Versions');?></a></li>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158"><?php __e('Beta Versions');?></a></li>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246"><?php __e('Experimental Builds');?></a></li>
+  <li><a href="http://portableapps.com/apps/utilities/winmerge_portable"><?php __e('WinMerge Portable');?></a> <?php __e('(by PortableApps.com)');?></li>
+  <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html"><?php __e('Japanese WinMerge Version');?></a> (by Takashi Sawanaka)</li>
+</ul>
+<?php
+  $page->printRssSubHeading(__('Project File Releases'), 'http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
   $feed = new SimplePie();
   $feed->set_feed_url('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
   $feed->set_cache_location('../engine/simplepie/cache');
@@ -78,12 +85,10 @@
     $title = str_replace('4. Beta versions', 'Beta version', $title);
     $title = str_replace('5. Experimental builds', 'Experimental build', $title);
     $title = str_replace('6. Developer tools', 'Developer tool', $title);
-    print("  <li><a href=\"".$item->get_link()."\">".$title."</a> <em>".$item->get_date('Y-m-d')."</em></li>\n");
+    print("  <li><a href=\"".$item->get_link()."\">".$title."</a> <em>".$item->get_date(__('Y-m-d'))."</em></li>\n");
   }
-  print("  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216\">View all file releases &hellip;</a></li>\n");
+  print("  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216\">" . __('View all file releases&hellip;') . "</a></li>\n");
   print("</ul>\n");
-?>
 
-<?php
   $page->printFoot();
 ?>

@@ -162,10 +162,24 @@
     }
 
     /**
+     * print a <h2> heading
+     */
+    function printHeading($title) {
+      print("<h2>" . $title . "</h2>\n");
+    }
+
+    /**
      * print a <h2> heading with a RSS feed link
      */
     function printRssHeading($title, $rssfeedurl) {
       print("<h2>" . $title . " " . $this->getRssFeedLink($rssfeedurl) . "</h2>\n");
+    }
+
+    /**
+     * print a <h3> heading
+     */
+    function printSubHeading($title) {
+      print("<h3>" . $title . "</h3>\n");
     }
 
     /**
@@ -176,12 +190,35 @@
     }
 
     /**
+     * print a <h4> heading
+     */
+    function printSubSubHeading($title) {
+      print("<h4>" . $title . "</h4>\n");
+    }
+
+    /**
+     * print a paragraph
+     */
+    function printPara() {
+      print("<p>");
+      $numargs = func_num_args();
+      $args = func_get_args();
+      for ($i = 0; $i < $numargs; $i++) { //for all arguments...
+        if ($i > 0) //if NOT first argument...
+          print(' ' . $args[$i]);
+        else //if first argument...
+          print($args[$i]);
+      }
+      print("</p>\n");
+    }
+
+    /**
      * print the "Download Now!" link
      */
     function printDownloadNow() {
       $temp = "<p><a class=\"downloadnow\" href=\"" . $this->_stablerelease->getDownload('setup.exe') . "\">";
-      $temp .= "<strong>Download Now!</strong> ";
-      $temp .= "<em>Version " . $this->_stablerelease->getVersionNumber() . "; " . $this->_stablerelease->getDownloadSizeMb('setup.exe') . " MB</em>";
+      $temp .= "<strong>" . __('Download Now!') . "</strong> ";
+      $temp .= "<em>" . __('Version %1$s; %2$s MB', $this->_stablerelease->getVersionNumber(), $this->_stablerelease->getDownloadSizeMb('setup.exe')) . "</em>";
       $temp .= "</a></p>\n";
       print($temp);
     }
