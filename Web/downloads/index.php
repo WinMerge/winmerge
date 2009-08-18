@@ -37,7 +37,7 @@
 </ul>
 </div> <!-- .downloadmatrix -->
 <div id="checksums">
-  <h4><a href="javascript:toggle('checksumslist')">SHA-1 Checksums</a></h4>
+  <h4><a href="javascript:toggle('checksumslist')"><?php __e('SHA-1 Checksums');?></a></h4>
 <pre id="checksumslist">
 <?php
   echo $stablerelease->getDownloadSha1Sum('setup.exe') . ' ' . $stablerelease->getDownloadFileName('setup.exe') . "\n";
