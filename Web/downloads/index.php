@@ -4,7 +4,7 @@
 
   $page = new Page;
   $stablerelease = $page->getStableRelease();
-  $page->setDescription(__('Download the current WinMerge version %1$s, which was released at %2$s. For detailed info on what\'s new, read the change log and the release notes.', $stablerelease->getVersionNumber(), $stablerelease->getDate()));
+  $page->setDescription(__('Download the current WinMerge version %1$s, which was released at %2$s. For detailed info on what is new, read the change log and the release notes.', $stablerelease->getVersionNumber(), $stablerelease->getDate()));
   $page->setKeywords(__('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable'));
   $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', __('Project File Releases'));
   $page->printHead(__('Download WinMerge'), TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
@@ -13,7 +13,7 @@
   $page->printSubHeading(__('WinMerge %s', $stablerelease->getVersionNumber()));
   $page->printDownloadNow();
   $page->printPara(__('The current WinMerge version is <strong>%1$s</strong> and was released at <strong>%2$s</strong>.', $stablerelease->getVersionNumber(), $stablerelease->getDate()),
-                   __('For detailed info on what\'s new, read the <a href="%1$s">change log</a> and the <a href="%2$s">release notes</a>.', '/docs/changelog.php', '/docs/releasenotes.php'));
+                   __('For detailed info on what is new, read the <a href="%1$s">change log</a> and the <a href="%2$s">release notes</a>.', '/docs/changelog.php', '/docs/releasenotes.php'));
 ?>
 <div class="downloadmatrix">
 <ul>
