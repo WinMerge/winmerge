@@ -2,25 +2,26 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription('Download the source code of WinMerge, which is released under the GNU General Public License.');
-  $page->setKeywords('WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN');
-  $page->printHead('Download Source Code', TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
+  $page->setDescription(__('Download the source code of WinMerge, which is released under the GNU General Public License.'));
+  $page->setKeywords(__('WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN'));
+  $page->printHead(__('Download Source Code'), TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   $stablerelease = $page->getStableRelease();
+  
+  $page->printHeading(__('Download Source Code'));
+  $page->printPara(__('WinMerge is released under the <a href="%s">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.', 'http://www.gnu.org/licenses/gpl-2.0.html'));
 ?>
-<h2>Download Source Code</h2>
-<p>WinMerge is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.</p>
 <div class="downloadmatrix">
 <ul>
-  <li><strong>WinMerge <?php echo $stablerelease->getVersionNumber();?> - Source Code</strong>
+  <li><strong><?php __e('WinMerge %s - Source Code', $stablerelease->getVersionNumber());?></strong>
     <ul>
-      <li><a href="<?php echo $stablerelease->getDownload('src.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('src.zip');?> MB)</a></li>
-      <li><a href="<?php echo $stablerelease->getDownload('src.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('src.7z');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('src.zip');?>"><?php __e('Zip-Format (%s MB)', $stablerelease->getDownloadSizeMb('src.zip'));?></a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('src.7z');?>"><?php __e('7z-Format (%s MB)', $stablerelease->getDownloadSizeMb('src.7z'));?></a></li>
     </ul>
   </li>
 </ul>
 </div> <!-- .downloadmatrix -->
 <div id="checksums">
-  <h3><a href="javascript:toggle('checksumslist')">SHA-1 Checksums</a></h3>
+  <h3><a href="javascript:toggle('checksumslist')"><?php __e('SHA-1 Checksums');?></a></h3>
 <pre id="checksumslist">
 <?php
   echo $stablerelease->getDownloadSha1Sum('src.zip') . ' ' . $stablerelease->getDownloadFileName('src.zip') . "\n";
@@ -28,12 +29,14 @@
 ?>
 </pre>
 </div> <!-- #checksums -->
-<p>The source code is hosted on <a href="http://sourceforge.net/">SourceForge.net</a> in a <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> repository.</p>
-<p>You can <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">browse the source code</a> with a web browser or you can check out the whole code by clicking on one of the following links (if you have <a href="http://tortoisesvn.net/">TortoiseSVN</a> installed):</p>
+<?php
+  $page->printPara(__('The source code is hosted on <a href="%1$s">SourceForge.net</a> in a <a href="%2$s">Subversion</a> repository.', 'http://sourceforge.net/', 'http://sourceforge.net/svn/?group_id=13216'));
+  $page->printPara(__('You can <a href="%1$s">browse the source code</a> with a web browser or you can check out the whole code by clicking on one of the following links (if you have <a href="%2$s">TortoiseSVN</a> installed):', 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/', 'http://tortoisesvn.net/'));
+?>
 <dl class="headinglist">
-  <dt>Developer Version</dt>
+  <dt><?php __e('Developer Version');?></dt>
   <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></dd>
-  <dt>WinMerge <?php echo $stablerelease->getVersionNumberMajor();?></dt>
+  <dt><?php __e('WinMerge %s', $stablerelease->getVersionNumberMajor());?></dt>
   <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/<?php echo $stablerelease->getBranchName();?>">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/<?php echo $stablerelease->getBranchName();?></a></dd>
 </dl>
 <?php
