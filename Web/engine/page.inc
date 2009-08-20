@@ -183,6 +183,13 @@
     }
 
     /**
+     * print a linked <h3> heading
+     */
+    function printLinkedSubHeading($title, $link) {
+      print("<h3><a href=\"" . $link . "\">" . $title . "</a></h3>\n");
+    }
+
+    /**
      * print a <h3> heading with a RSS feed link
      */
     function printRssSubHeading($title, $rssfeedurl) {

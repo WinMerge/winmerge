@@ -2,19 +2,19 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription('Documentation from WinMerge like manual, release notes, change log and development wiki.');
-  $page->setKeywords('WinMerge, documentation, manual, release notes, known issues, change log, development wiki');
-  $page->printHead('Documentation', TAB_DOCS);
-?>
-<h2>Documentation</h2>
-<h3><a href="manual/">Manual</a></h3>
-<p>The <a href="manual/">manual</a> explains how to use WinMerge, and documents its capabilities and limitations.</p>
-<h3><a href="releasenotes.php">Release Notes</a></h3>
-<p>The <a href="releasenotes.php">release notes</a> are a short summary of important changes, enhancements, bug fixes and <a href="releasenotes.php#issues">known issues</a> in the current WinMerge release.</p>
-<h3><a href="changelog.php">Change Log</a></h3>
-<p>The <a href="changelog.php">change log</a> is a more complete list of changes in the last WinMerge releases.</p>
-<h3><a href="/Wiki/">Development Wiki</a></h3>
-<p>The <a href="/Wiki/">Development Wiki</a> contains many informations about the WinMerge development.</p>
-<?php
+  $page->setDescription(__('Documentation from WinMerge like manual, release notes, change log and development wiki.'));
+  $page->setKeywords(__('WinMerge, documentation, manual, release notes, known issues, change log, development wiki'));
+  $page->printHead(__('Documentation'), TAB_DOCS);
+
+  $page->printHeading(__('Documentation'));
+  $page->printLinkedSubHeading(__('Manual'), 'manual/');
+  $page->printPara(__('The <a href="%s">manual</a> explains how to use WinMerge, and documents its capabilities and limitations.', 'manual/'));
+  $page->printLinkedSubHeading(__('Release Notes'), 'releasenotes.php');
+  $page->printPara(__('The <a href="%1$s">release notes</a> are a short summary of important changes, enhancements, bug fixes and <a href="%2$s">known issues</a> in the current WinMerge release.', 'releasenotes.php', 'releasenotes.php#issues'));
+  $page->printLinkedSubHeading(__('Change Log'), 'changelog.php');
+  $page->printPara(__('The <a href="%s">change log</a> is a more complete list of changes in the last WinMerge releases.', 'changelog.php'));
+  $page->printLinkedSubHeading(__('Development Wiki'), '/Wiki/');
+  $page->printPara(__('The <a href="%s">Development Wiki</a> contains many informations about the WinMerge development.', '/Wiki/'));
+
   $page->printFoot();
 ?>
