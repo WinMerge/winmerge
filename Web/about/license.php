@@ -2,17 +2,18 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify them.');
-  $page->setKeywords('WinMerge, license, open source, GNU General Public License, GPL, free software');
-  $page->printHead('License', TAB_ABOUT);
+  $page->setDescription(__('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify them.'));
+  $page->setKeywords(__('WinMerge, license, open source, GNU General Public License, GPL, free software'));
+  $page->printHead(__('License'), TAB_ABOUT);
+  
+  $page->printHeading(__('License'));
+  $page->printPara(__('WinMerge is <a href="%1$s">Open Source</a> software under the <a href="%2$s">GNU General Public License</a>.', 'http://www.opensource.org/', 'http://www.gnu.org/licenses/gpl-2.0.html'));
+  $page->printPara(__('This means everybody can download the <a href="%s">source code</a> and improve and modify them.
+The only thing we ask is that people submit their improvements and modifications back to us so that all WinMerge users may benefit.', '/downloads/source-code.php'));
+  
+  $page->printSubHeading(__('GNU General Public License'));
 ?>
-<h2>License</h2>
-<p>WinMerge is <a href="http://www.opensource.org/">Open Source</a> software under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>.</p>
-<p>This means everybody can download the <a href="/downloads/source-code.php">source code</a> and improve and modify them.
-The only thing we ask is that people submit their improvements and modifications back to us so that all WinMerge users may benefit.</p>
-
-<h3>GNU General Public License</h3>
-<pre>WinMerge is free software: you can redistribute it and/or modify
+<pre lang="en">WinMerge is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
@@ -25,11 +26,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with WinMerge.  If not, see &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</pre>
 
-<h3>Links</h3>
+<?php
+  $page->printSubHeading(__('Links'));
+?>
 <ul>
-  <li><a href="http://www.opensource.org/">The Open Source Definition</a></li>
-  <li><a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License v2.0</a></li>
-  <li><a href="http://en.wikipedia.org/wiki/Open_source_software">Open Source Software</a></li>
+  <li><a href="http://www.opensource.org/"><?php __e('The Open Source Definition');?></a></li>
+  <li><a href="http://www.gnu.org/licenses/gpl-2.0.html"><?php __e('GNU General Public License v2.0');?></a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Open_source_software"><?php __e('Open Source Software');?></a></li>
 </ul>
 <?php
   $page->printFoot();

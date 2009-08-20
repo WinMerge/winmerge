@@ -2,11 +2,12 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription('History of WinMerge releases with version numbers, release dates and manuals.');
-  $page->setKeywords('WinMerge, history, version number, release date, manual, user\'s guide');
-  $page->printHead('History', TAB_ABOUT);
+  $page->setDescription(__('History of WinMerge releases with version numbers, release dates and manuals.'));
+  $page->setKeywords(__('WinMerge, history, version number, release date, manual, users guide'));
+  $page->printHead(__('History'), TAB_ABOUT);
+  
+  $page->printHeading(__('History'));
 ?>
-<h2>History</h2>
 <div class="infocard">
   <h3>WinMerge 2.12</h3>
   <ul>
@@ -15,8 +16,8 @@
     <li>WinMerge 2.12.0 (2009-03-05)</li>
   </ul>
   <ul class="inline">
-    <li><a href="/docs/manual/">Manual</a></li>
-    <li><a href="/docs/changelog.php">Change Log</a></li>
+    <li><a href="/docs/manual/"><?php __e('Manual');?></a></li>
+    <li><a href="/docs/changelog.php"><?php __e('Change Log');?></a></li>
   </ul>
 </div>
 <div class="infocard">
@@ -41,7 +42,7 @@
   <ul>
     <li>WinMerge 2.6.14 (2008-01-17)</li>
     <li>WinMerge 2.6.12 (2007-09-26)</li>
-    <li><del>WinMerge 2.6.10 (2007-09-25)</del> <em>Withdrawn due to installer bug!</em></li>
+    <li><del>WinMerge 2.6.10 (2007-09-25)</del> <em><?php __e('Withdrawn due to installer bug!');?></em></li>
     <li>WinMerge 2.6.8 (2007-06-19)</li>
     <li>WinMerge 2.6.6 (2007-03-29)</li>
     <li>WinMerge 2.6.4 (2007-01-17)</li>
