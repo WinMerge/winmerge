@@ -35,10 +35,10 @@
           $this->_status = $xml;
         }
         else //if XML file was NOT valid...
-          throw new Exception('File not valid.');
+          throw new Exception(__('File not valid.'));
       }
       else //if XML file NOT exists...
-        throw new Exception('File not found.');
+        throw new Exception(__('File not found.'));
     }
     
     /**
@@ -78,11 +78,11 @@
       
       $temp = "";
       if ($wt > 0)
-        $temp .= "<img src=\"images/translated.png\" alt=\"Translated\" title=\"Translated: " . round($pt, 1) . "%\" width=\"$wt\" height=\"16\">";
+        $temp .= "<img src=\"images/translated.png\" alt=\"" . __('Translated') . "\" title=\"" . __('Translated: %d%%', round($pt, 1)) . "\" width=\"$wt\" height=\"16\">";
       if ($wf > 0)
-        $temp .= "<img src=\"images/fuzzy.png\" alt=\"Fuzzy\" title=\"Fuzzy: " . round($pf, 1) . "%\" width=\"$wf\" height=\"16\">";
+        $temp .= "<img src=\"images/fuzzy.png\" alt=\"" . __('Fuzzy') . "\" title=\"" . __('Fuzzy: %d%%', round($pf, 1)) . "\" width=\"$wf\" height=\"16\">";
       if ($wu > 0)
-        $temp .= "<img src=\"images/untranslated.png\" alt=\"Untranslated\" title=\"Untranslated: " . round($pu, 1) . "%\" width=\"$wu\" height=\"16\">";
+        $temp .= "<img src=\"images/untranslated.png\" alt=\"" . __('Untranslated') . "\" title=\"" . __('Untranslated: %d%%', round($pu, 1)) . "\" width=\"$wu\" height=\"16\">";
       
       return $temp;
     }
@@ -92,9 +92,9 @@
      */
     private function getStatusGraphLegend() {
       $temp = "<ul class=\"inline\">\n";
-      $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> Translated</li>\n";
-      $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> Fuzzy</li>\n";
-      $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> Untranslated</li>\n";
+      $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Translated') . "</li>\n";
+      $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Fuzzy') . "</li>\n";
+      $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Untranslated') . "</li>\n";
       $temp .= "</ul>\n";
       return $temp;
     }
@@ -128,12 +128,12 @@
         $temp .= "<h3><a name=\"" . $project . "\">" . $project .  "</a></h3>\n";
         $temp .= "<table class=\"status\">\n";
         $temp .= "  <tr>\n";
-        $temp .= "    <th class=\"left\">Language</th>\n";
-        $temp .= "    <th class=\"center\">Graph</th>\n";
-        $temp .= "    <th class=\"right translated\">Translated</th>\n";
-        $temp .= "    <th class=\"right fuzzy\">Fuzzy</th>\n";
-        $temp .= "    <th class=\"right untranslated\">Untranslated</th>\n";
-        $temp .= "    <th class=\"center\">Last Update</th>\n";
+        $temp .= "    <th class=\"left\">" . __('Language') . "</th>\n";
+        $temp .= "    <th class=\"center\">" . __('Graph') . "</th>\n";
+        $temp .= "    <th class=\"right translated\">" . __('Translated') . "</th>\n";
+        $temp .= "    <th class=\"right fuzzy\">" . __('Fuzzy') . "</th>\n";
+        $temp .= "    <th class=\"right untranslated\">" . __('Untranslated') . "</th>\n";
+        $temp .= "    <th class=\"center\">" . __('Last Update') . "</th>\n";
         $temp .= "  </tr>\n";
         //TODO: Sort languages!?
         foreach ($translations as $translation) { //for all translations...
@@ -174,12 +174,12 @@
           }
         }
         $temp .= "  <tr>\n";
-        $temp .= "    <td class=\"left\"><a href=\"" . $this->svnUrl . $project . '/' . $template_file_name . "\" rel=\"nofollow\">" . $template_language_name . " (Template)</a></td>\n";
+        $temp .= "    <td class=\"left\"><a href=\"" . $this->svnUrl . $project . '/' . $template_file_name . "\" rel=\"nofollow\">" . $template_language_name . " (" . __('Template') . ")</a></td>\n";
         $temp .= "    <td class=\"center\"></td>\n";
         if ($template_strings_count > 0) //if KNOWN status...
-          $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $template_strings_count . "</td>\n";
+          $temp .= "    <td colspan=\"3\" class=\"center\">" . __('Total: %d' , $template_strings_count) . "</td>\n";
         else //if UNKNOWN status...
-          $temp .= "    <td colspan=\"3\" class=\"center\">Total: Unknown</td>\n";
+          $temp .= "    <td colspan=\"3\" class=\"center\">" . __('Total: Unknown') . "</td>\n";
         $temp .= "    <td class=\"center\">" . $template_translation_update . "</td>\n";
         $temp .= "  </tr>\n";
         $temp .= "</table>\n";
@@ -282,10 +282,10 @@
       }
       ksort($languages, SORT_STRING);
       
-      $temp = "<h3><a name=\"translators\">Translators</a></h3>\n";
+      $temp = "<h3><a name=\"translators\">" . __('Translators') . "</a></h3>\n";
       $temp .= "<table class=\"status\">\n";
       $temp .= "  <tr>\n";
-      $temp .= "    <th class=\"left\">Language</th>\n";
+      $temp .= "    <th class=\"left\">" . __('Language') . "</th>\n";
       foreach ($projects as $project) { //For all projects...
         $temp .= "    <th class=\"left\">" . $project . "</th>\n";
       }
@@ -294,7 +294,7 @@
         $temp .= "  <tr>\n";
         $temp .= "    <td class=\"left\">" . $language_name . "</td>\n";
         foreach ($projects as $project_key => $project_name) { //For all projects...
-          $temp .= "    <td class=\"left\">" . @$language_translators[$project_key] . "</td>";
+          $temp .= "    <td class=\"left\">" . @$language_translators[$project_key] . "</td>\n";
         }
         $temp .= "  </tr>\n";
       }

@@ -46,11 +46,11 @@
     
     $temp = "";
     if ($wt > 0)
-      $temp .= "<img src=\"images/translated.png\" alt=\"Translated\" title=\"Translated: " . round($pt, 1) . "%\" width=\"$wt\" height=\"16\">";
+      $temp .= "<img src=\"images/translated.png\" alt=\"" . __('Translated') . "\" title=\"" . __('Translated: %d%%', round($pt, 1)) . "\" width=\"$wt\" height=\"16\">";
     if ($wf > 0)
-      $temp .= "<img src=\"images/fuzzy.png\" alt=\"Fuzzy\" title=\"Fuzzy: " . round($pf, 1) . "%\" width=\"$wf\" height=\"16\">";
+      $temp .= "<img src=\"images/fuzzy.png\" alt=\"" . __('Fuzzy') . "\" title=\"" . __('Fuzzy: %d%%', round($pf, 1)) . "\" width=\"$wf\" height=\"16\">";
     if ($wu > 0)
-      $temp .= "<img src=\"images/untranslated.png\" alt=\"Untranslated\" title=\"Untranslated: " . round($pu, 1) . "%\" width=\"$wu\" height=\"16\">";
+      $temp .= "<img src=\"images/untranslated.png\" alt=\"" . __('Untranslated') . "\" title=\"" . __('Untranslated: %d%%', round($pu, 1)) . "\" width=\"$wu\" height=\"16\">";
     
     return $temp;
   }
@@ -63,12 +63,12 @@
     $temp = "<p>Status from <strong>" . $update . "</strong>:</p>\n";
     $temp .= "<table class=\"status\">\n";
     $temp .= "  <tr>\n";
-    $temp .= "    <th class=\"left\">Language</th>\n";
-    $temp .= "    <th class=\"center\">Graph</th>\n";
-    $temp .= "    <th class=\"right translated\">Translated</th>\n";
-    $temp .= "    <th class=\"right fuzzy\">Fuzzy</th>\n";
-    $temp .= "    <th class=\"right untranslated\">Untranslated</th>\n";
-    $temp .= "    <th class=\"center\">Last Update</th>\n";
+    $temp .= "    <th class=\"left\">" . __('Language') . "</th>\n";
+    $temp .= "    <th class=\"center\">" . __('Graph') . "</th>\n";
+    $temp .= "    <th class=\"right translated\">" . __('Translated') . "</th>\n";
+    $temp .= "    <th class=\"right fuzzy\">" . __('Fuzzy') . "</th>\n";
+    $temp .= "    <th class=\"right untranslated\">" . __('Untranslated') . "</th>\n";
+    $temp .= "    <th class=\"center\">" . __('Last Update') . "</th>\n";
     $temp .= "  </tr>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
     $translations = multisortArray($translations, 'LANGUAGE', SORT_ASC);
@@ -101,9 +101,9 @@
       }
     }
     $temp .= "  <tr>\n";
-    $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">English (Template)</a></td>\n";
+    $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">" . __('English (Template)') . "</a></td>\n";
     $temp .= "    <td class=\"center\"></td>\n";
-    $temp .= "    <td colspan=\"3\" class=\"center\">Total: " . $english_strings_count . "</td>\n";
+    $temp .= "    <td colspan=\"3\" class=\"center\">" . __('Total: %s', $english_strings_count) . "</td>\n";
     $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
     $temp .= "  </tr>\n";
     $temp .= "</table>\n";
@@ -115,9 +115,9 @@
    */
   function printTranslationsStatusGraphLegend() {
     $temp = "<ul class=\"inline\">\n";
-    $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> Translated</li>\n";
-    $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> Fuzzy</li>\n";
-    $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> Untranslated</li>\n";
+    $temp .= "  <li><img src=\"images/translated.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Translated') . "</li>\n";
+    $temp .= "  <li><img src=\"images/fuzzy.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Fuzzy') . "</li>\n";
+    $temp .= "  <li><img src=\"images/untranslated.png\" alt=\"*\" width=\"16\" height=\"16\"> " . __('Untranslated') . "</li>\n";
     $temp .= "</ul>\n";
     print($temp);
   }
@@ -179,8 +179,8 @@
   function printTranslationsTranslators($xmlarray) {
     $temp = "<table class=\"status\">\n";
     $temp .= "  <tr>\n";
-    $temp .= "    <th class=\"left\">Language</th>\n";
-    $temp .= "    <th class=\"left\">Translator(s)</th>\n";
+    $temp .= "    <th class=\"left\">" . __('Language') . "</th>\n";
+    $temp .= "    <th class=\"left\">" . __('Translator(s)') . "</th>\n";
     $temp .= "  </tr>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
     $translations = multisortArray($translations, 'LANGUAGE', SORT_ASC);
