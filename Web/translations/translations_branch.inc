@@ -103,7 +103,7 @@
     $temp .= "  <tr>\n";
     $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $english_file_name . "\" rel=\"nofollow\">" . __('English (Template)') . "</a></td>\n";
     $temp .= "    <td class=\"center\"></td>\n";
-    $temp .= "    <td colspan=\"3\" class=\"center\">" . __('Total: %s', $english_strings_count) . "</td>\n";
+    $temp .= "    <td colspan=\"3\" class=\"center\">" . __('Total: %d', $english_strings_count) . "</td>\n";
     $temp .= "    <td class=\"center\">" . $english_translation_update . "</td>\n";
     $temp .= "  </tr>\n";
     $temp .= "</table>\n";
