@@ -6,27 +6,28 @@
   include('engine/engine.inc');
 
   $page = new Page;
-  $page->printHead('Error 404 (Page Not Found)', TAB_HOME);
-?>
-<h2>Page Not Found...</h2>
-<p>For some reason (mis-typed URL, faulty referral from another site, out-of-date search engine listing or we simply deleted a file) the page you were looking for could not be found.
-This site has recently undergone a major re-working, so that might explain why you got this page instead.</p>
+  $page->printHead(__('Error 404 (Page Not Found)'), TAB_HOME);
 
-<h3>Were you looking for...</h3>
+  $page->printHeading(__('Page Not Found...'));
+  $page->printPara(__('For some reason (mis-typed URL, faulty referral from another site, out-of-date search engine listing or we simply deleted a file) the page you were looking for could not be found.'),
+                   __('This site has recently undergone a major re-working, so that might explain why you got this page instead.'));
+
+  $page->printSubHeading(__('Were you looking for...'));
+?>
 <ul>
-  <li><a href="/about/screenshots/">Screenshots</a>?</li>
-  <li><a href="/docs/">Documentation</a>?
+  <li><?php __e('<a href="/about/screenshots/">Screenshots</a>?');?></li>
+  <li><?php __e('<a href="/docs/">Documentation</a>?');?>
     <ul>
-      <li><a href="/docs/manual/">Manual</a>?</li>
-      <li><a href="/docs/releasenotes.php">Release Notes</a>?</li>
-      <li><a href="/docs/changelog.php">Change Log</a>?</li>
+      <li><?php __e('<a href="/docs/manual/">Manual</a>?');?></li>
+      <li><?php __e('<a href="/docs/releasenotes.php">Release Notes</a>?');?></li>
+      <li><?php __e('<a href="/docs/changelog.php">Change Log</a>?');?></li>
     </ul>
   </li>
-  <li><a href="/downloads/">Downloads</a>?</li>
-  <li><a href="/support/">Support</a>?</li>
-  <li><a href="/translations/">Translations</a>?</li>
+  <li><?php __e('<a href="/downloads/">Downloads</a>?');?></li>
+  <li><?php __e('<a href="/support/">Support</a>?');?></li>
+  <li><?php __e('<a href="/translations/">Translations</a>?');?></li>
 </ul>
-<?php $page->printDownloadNow(); ?>
 <?php
+  $page->printDownloadNow();
   $page->printFoot();
 ?>
