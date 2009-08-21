@@ -151,6 +151,9 @@
       elseif ($this->_link == str_replace('index.php', '', $_SERVER['PHP_SELF'])) {
         return true;
       }
+      elseif ($this->_link == $_SERVER['REQUEST_URI']) {
+        return true;
+      }
       return false;
     }
   }
