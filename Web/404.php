@@ -15,17 +15,17 @@
   $page->printSubHeading(__('Were you looking for...'));
 ?>
 <ul>
-  <li><?php __e('<a href="/about/screenshots/">Screenshots</a>?');?></li>
-  <li><?php __e('<a href="/docs/">Documentation</a>?');?>
+  <li><?php __e('<a href="%s">Screenshots</a>?', '/about/screenshots/');?></li>
+  <li><?php __e('<a href="%s">Documentation</a>?', '/docs/');?>
     <ul>
-      <li><?php __e('<a href="/docs/manual/">Manual</a>?');?></li>
-      <li><?php __e('<a href="/docs/releasenotes.php">Release Notes</a>?');?></li>
-      <li><?php __e('<a href="/docs/changelog.php">Change Log</a>?');?></li>
+      <li><?php __e('<a href="%s">Manual</a>?', '/docs/manual/');?></li>
+      <li><?php __e('<a href="%s">Release Notes</a>?', '/docs/releasenotes.php');?></li>
+      <li><?php __e('<a href="%s">Change Log</a>?', '/docs/changelog.php');?></li>
     </ul>
   </li>
-  <li><?php __e('<a href="/downloads/">Downloads</a>?');?></li>
-  <li><?php __e('<a href="/support/">Support</a>?');?></li>
-  <li><?php __e('<a href="/translations/">Translations</a>?');?></li>
+  <li><?php __e('<a href="%s">Downloads</a>?', '/downloads/');?></li>
+  <li><?php __e('<a href="%s">Support</a>?', '/support/');?></li>
+  <li><?php __e('<a href="%s">Translations</a>?', '/translations/');?></li>
 </ul>
 <?php
   $page->printDownloadNow();
