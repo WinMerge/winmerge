@@ -17,7 +17,7 @@
   $translations = new SimpleTranslate;
   $translations->setUrlParameter('lang');
   $translations->addLanguage('en', __('English'));
-  //$translations->addLanguage('de', __('German'), $languagesdir . 'de.po');
+  $translations->addLanguage('de', __('German'), $languagesdir . 'de.po');
   if (!$translations->detectLanguageFromUrl()) {
     $translations->detectLanguageFromBrowser();
   }

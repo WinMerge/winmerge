@@ -374,19 +374,22 @@
     function getLanguages() {
       global $translations;
       
-      $temp = "<div id=\"languages\">\n";
-      $temp .= "<ul>\n";
-      $languages = $translations->getLanguages();
-      foreach ($languages as $language) { //for all languages...
-        if ($translations->isActiveLanguage($language)) { //if current language...
-          $temp .= "  <li><strong><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></strong></li>\n";
+      $temp = "";
+      if ($translations->getLanguagesCount() > 1) { //if at least 2 languages exists...
+        $temp .= "<div id=\"languages\">\n";
+        $temp .= "<ul>\n";
+        $languages = $translations->getLanguages();
+        foreach ($languages as $language) { //for all languages...
+          if ($translations->isActiveLanguage($language)) { //if current language...
+            $temp .= "  <li><strong><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></strong></li>\n";
+          }
+          else { //if NOT current language...
+            $temp .= "  <li><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></li>\n";
+          }
         }
-        else { //if NOT current language...
-          $temp .= "  <li><a href=\"" . $translations->getLink($language) . "\">" . __($language->getName()) . "</a></li>\n";
-        }
+        $temp .= "</ul>\n";
+        $temp .= "</div> <!-- #languages -->\n";
       }
-      $temp .= "</ul>\n";
-      $temp .= "</div> <!-- #languages -->\n";
       return $temp;
     }
 

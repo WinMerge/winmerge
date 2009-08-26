@@ -116,7 +116,9 @@
         $this->_baselanguageid = $id;
       }
       else { //if normal language...
-        $this->_languages[$id] = new SimpleTranslateLanguage($id, $name, $pofile);
+        if (file_exists($pofile) == true) { //if the PO file exists...
+          $this->_languages[$id] = new SimpleTranslateLanguage($id, $name, $pofile);
+        }
       }
     }
 
@@ -136,6 +138,13 @@
      */
     function getLanguages() {
       return $this->_languages;
+    }
+
+    /**
+     * get the languages count...
+     */
+    function getLanguagesCount() {
+      return count($this->_languages);
     }
 
     /**
