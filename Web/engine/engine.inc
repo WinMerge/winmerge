@@ -18,6 +18,9 @@
   $translations->setUrlParameter('lang');
   $translations->addLanguage('en', __('English'));
   $translations->addLanguage('de', __('German'), $languagesdir . 'de.po');
+  $translations->addLanguage('fr', __('French'), $languagesdir . 'fr.po');
+  $translations->addLanguage('nl', __('Dutch'), $languagesdir . 'nl.po');
+  $translations->addLanguage('se', __('Swedish'), $languagesdir . 'se.po');
   if (!$translations->detectLanguageFromUrl()) {
     $translations->detectLanguageFromBrowser();
   }
