@@ -129,7 +129,7 @@
         $temp .= "  <link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . $rsstitle . "\" href=\"" . $rssurl . "\">\n";
       }
       if ($translations->isBaseLanguage()) { //if base language...
-        $temp .= "  <link rel=\"canonical\" href=\"" . $translations->getLink() . "\"/>\n";
+        $temp .= "  <link rel=\"canonical\" href=\"" . $translations->getLink() . "\">\n";
       }
       $temp .= "</head>\n\n";
       if ($onload != '')
