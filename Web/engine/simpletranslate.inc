@@ -14,6 +14,7 @@
    */
   class SimpleTranslate {
     var $_urlparameter;
+    var $_forceurlparameter;
     var $_languages;
     var $_baselanguageid;
     var $_activelanguageid;
@@ -24,6 +25,7 @@
      */
     function SimpleTranslate() {
       $this->_urlparameter = 'lang';
+      $this->_forceurlparameter = false;
       $this->_languages = array();
       $this->_baselanguageid = '';
       $this->_activelanguageid = '';
@@ -104,6 +106,20 @@
       }
       
       return $url;
+    }
+
+    /**
+     * get forcing of the URL parameter...
+     */
+    function getForceUrlParameter() {
+      return $this->_forceurlparameter;
+    }
+
+    /**
+     * set forcing of the URL parameter...
+     */
+    function setForceUrlParameter($force) {
+      $this->_forceurlparameter = $force;
     }
 
     /**
@@ -252,7 +268,7 @@
      */
     function prepareLink($link) {
       $activelanguage = $this->getActiveLanguage();
-      if (strtolower(get_class($activelanguage)) == 'simpletranslatelanguage') { //if normal language...
+      if ((strtolower(get_class($activelanguage)) == 'simpletranslatelanguage') || ($this->_forceurlparameter == true)) { //if normal language OR forcing URL parameter...
         return $this->appendUrlParameter($link, $this->_urlparameter, $activelanguage->getId());
       }
       else { //if base language...
@@ -265,7 +281,7 @@
      */
     function getLink($language) {
       $phpself = str_replace('index.php', '', $_SERVER['PHP_SELF']);
-      if (strtolower(get_class($language)) == 'simpletranslatelanguage') { //if normal language...
+      if ((strtolower(get_class($language)) == 'simpletranslatelanguage') || ($this->_forceurlparameter == true)) { //if normal language OR forcing URL parameter...
         return $phpself . '?' . $this->_urlparameter . '=' . $language->getId();
       }
       else { //if base language...
