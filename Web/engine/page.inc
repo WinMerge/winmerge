@@ -128,6 +128,9 @@
       foreach ($this->_rssfeeds as $rssurl => $rsstitle) { //for all RSS feeds...
         $temp .= "  <link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . $rsstitle . "\" href=\"" . $rssurl . "\">\n";
       }
+      if ($translations->isBaseLanguage()) { //if base language...
+        $temp .= "  <link rel=\"canonical\" href=\"" . $translations->getLink() . "\"/>\n";
+      }
       $temp .= "</head>\n\n";
       if ($onload != '')
         $temp .= "<body onload=\"".$onload."\">\n";

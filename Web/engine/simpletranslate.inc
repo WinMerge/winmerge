@@ -180,13 +180,19 @@
     /**
      * check if the language is the base language...
      */
-    function isBaseLanguage($language) {
-      if ($language == $this->getBaseLanguage()) { //if base language...
-        return true;
+    function isBaseLanguage($language = null) {
+      if (isset($language)) { //if language committed...
+        if ($language == $this->getBaseLanguage()) { //if base language...
+          return true;
+        }
+      }
+      else { //if language NOT committed...
+        if ($this->_baselanguageid == $this->_activelanguageid) { //if base language is active...
+          return true;
+        }
       }
       return false;
     }
-
 
     /**
      * get the active language ID...
@@ -279,14 +285,14 @@
     /**
      * get the language link...
      */
-    function getLink($language) {
+    function getLink($language = null) {
       $phpself = str_replace('index.php', '', $_SERVER['PHP_SELF']);
-      if ((strtolower(get_class($language)) == 'simpletranslatelanguage') || ($this->_forceurlparameter == true)) { //if normal language OR forcing URL parameter...
-        return $phpself . '?' . $this->_urlparameter . '=' . $language->getId();
+      if (isset($language)) { //if language committed...
+        if ((strtolower(get_class($language)) == 'simpletranslatelanguage') || ($this->_forceurlparameter == true)) { //if normal language OR forcing URL parameter...
+          return $phpself . '?' . $this->_urlparameter . '=' . $language->getId();
+        }
       }
-      else { //if base language...
-        return $phpself;
-      }
+      return $phpself;
     }
 
     /**
