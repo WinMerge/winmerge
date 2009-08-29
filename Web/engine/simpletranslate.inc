@@ -285,10 +285,14 @@
     /**
      * get the language link...
      */
-    function getLink($language = null) {
+    function getLink($language = null, $forceurlparameter = null) {
       $phpself = str_replace('index.php', '', $_SERVER['PHP_SELF']);
       if (isset($language)) { //if language committed...
-        if ((strtolower(get_class($language)) == 'simpletranslatelanguage') || ($this->_forceurlparameter == true)) { //if normal language OR forcing URL parameter...
+        $forceing = $this->_forceurlparameter;
+        if (isset($forceurlparameter)) { //if force URL parameter committed...
+          $forceing = $forceurlparameter;
+        }
+        if ((strtolower(get_class($language)) == 'simpletranslatelanguage') || ($forceing == true)) { //if normal language OR forcing URL parameter...
           return $phpself . '?' . $this->_urlparameter . '=' . $language->getId();
         }
       }
