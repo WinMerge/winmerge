@@ -304,7 +304,7 @@ msgstr "Av någon anledning (felstavad URL, felaktig referens från en annan hem
 #: about\index.php:11
 #, c-format
 msgid "WinMerge is an <a href=\"%s\">Open Source</a> differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle."
-msgstr "WinMerge är en <a href=\"%s\">Open Source</a> skillnads och hopläggningsverktyg för Windows. WinMerge kan jämföra både kataloger och filer, presentera skillnader i ett visuellt textformat som är enkelt att förstå och hantera."
+msgstr "WinMerge är ett <a href=\"%s\">Open Source</a> skillnads och hopläggningsverktyg för Windows. WinMerge kan jämföra både kataloger och filer, presentera skillnader i ett visuellt textformat som är enkelt att förstå och hantera."
 
 #: support\tracker-shortcuts.php:5
 #, c-format
@@ -340,7 +340,7 @@ msgstr "Länkar"
 #: index.php:49
 #, c-format
 msgid "The WinMerge Development Team"
-msgstr "WinMerges utveckligsteam"
+msgstr "WinMerges utvecklingsteam"
 
 #: support\tracker-shortcuts.php:15
 #, c-format
@@ -404,7 +404,7 @@ msgstr "För mer information, var god se <a href=\"%1$s\">Installationssektionen
 #: about\index.php:32
 #, c-format
 msgid "Difference pane shows current difference in two vertical panes"
-msgstr "Skillnadsfältet visar aktuell skillnader i två vertikala fält"
+msgstr "Skillnadsfältet visar aktuella skillnader i två vertikala fält"
 
 #: downloads\index.php:58
 #, c-format
@@ -419,7 +419,7 @@ msgstr "<a href=\"%1$s\">WinMerge %2$s</a> är den senaste stabila versionen, oc
 #: index.php:48
 #, c-format
 msgid "In addition, WinMerge is translated into a number of different languages. See our <a href=\"%s\">information on translating WinMerge</a> into your own language."
-msgstr "Utöver detta är, WinMerge översatt till ett antal olika språk. Se vårr <a href=\"%s\">information om översättning av WinMerge</a> till ditt eget språk."
+msgstr "Utöver detta är, WinMerge översatt till ett antal olika språk. Se vår <a href=\"%s\">information om översättning av WinMerge</a> till ditt eget språk."
 
 #: engine\engine.inc:19
 #: translations\index.php:24
@@ -449,7 +449,7 @@ msgstr "Ladda ner WinMerge Plugins"
 #: index.php:20
 #, c-format
 msgid "<a href=\"%1$s\">Learn More</a> or <a href=\"%2$s\">Download Now!</a>"
-msgstr "<a href=\"%1$s\">Lär dig mer</a> or <a href=\"%2$s\">Ladda ner nu!</a>"
+msgstr "<a href=\"%1$s\">Lär dig mer</a> eller <a href=\"%2$s\">Ladda ner nu!</a>"
 
 #: translations\index.php:11
 #, c-format
@@ -1506,7 +1506,7 @@ msgstr "Visa alla filreleaser&hellip;"
 #: about\index.php:12
 #, c-format
 msgid "WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application."
-msgstr "WinMerge är mycket användbart för att se vad som har ändrats mellan projektversioner, och sedan lägga samman ändringar mellan versioner. WinMerge kan användas som en extern skillnads/lägga ihop-verktyg eller som en självständig applikation."
+msgstr "WinMerge är mycket användbart för att se vad som har ändrats mellan projektversioner, och sedan lägga samman ändringar mellan versioner. WinMerge kan användas som ett extern skillnads/lägga ihop-verktyg eller som en självständig applikation."
 
 #: downloads\source-code.php:7
 #: downloads\source-code.php:10
