@@ -2,15 +2,17 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.');
-  $page->setKeywords('WinMerge, PAD file, Portable Application Description');
-  $page->printHead('PAD File', TAB_DOWNLOADS);
+  $page->setDescription(__('The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here.'));
+  $page->setKeywords(__('WinMerge, PAD file, Portable Application Description'));
+  $page->printHead(__('PAD File'), TAB_DOWNLOADS);
+  
+  $page->printHeading(__('PAD File'));
+  $page->printPara(__('The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="%s">Portable Application Description</a> file, which you find here:', 'http://www.asp-shareware.org/pad/'));
 ?>
-<h2>PAD File</h2>
-<p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>
 <pre class="code"><a href="http://winmerge.org/WinMergePAD.xml">http://winmerge.org/WinMergePAD.xml</a></pre>
-<p>If you can't work with the <a href="/WinMergePAD.xml">PAD file</a>, you can use the following informations:</p>
 <?php
+  $page->printPara(__('If you can not work with the <a href="%s">PAD file</a>, you can use the following informations:', '/WinMergePAD.xml'));
+  
   $padfile = @simplexml_load_file('../WinMergePAD.xml');
   if ($padfile) { //if PAD file was valid...
     $company_info = $padfile->Company_Info;
@@ -33,17 +35,17 @@
     print("<div class=\"padfile\">\n");
     print("<h2>" . $program_name . " " . $program_version . "</h2>\n");
     print("<dl>\n");
-    print("  <dt>Release Date</dt>\n");
+    print("  <dt>" . __('Release Date') . "</dt>\n");
     print("  <dd>" . $release_date_month . "/" . $release_date_day . "/" . $release_date_year . "</dd>\n");
-    print("  <dt>Release Status</dt>\n");
+    print("  <dt>" . __('Release Status') . "</dt>\n");
     print("  <dd>" . $release_status . "</dd>\n");
-    print("  <dt>Download</dt>\n");
+    print("  <dt>" . __('Download') . "</dt>\n");
     print("  <dd><a href=\"" . $download . "\">" . $download . "</a> (" . $file_size_mb . " MB)</dd>\n");
-    print("  <dt>Operating Systems</dt>\n");
+    print("  <dt>" . __('Operating Systems') . "</dt>\n");
     print("  <dd>" . str_replace(',', ', ', $program_os_support) . "</dd>\n");
-    print("  <dt>Supported Languages</dt>\n");
+    print("  <dt>" . __('Supported Languages') . "</dt>\n");
     print("  <dd>" . str_replace(',', ', ', $program_language) . "</dd>\n");
-    print("  <dt>Type</dt>\n");
+    print("  <dt>" . __('Type') . "</dt>\n");
     print("  <dd>" . $program_type . "</dd>\n");
     print("</dl>\n");
 
@@ -51,15 +53,15 @@
     $description_250 = (string)$program_descriptions->Char_Desc_250;
     $description_450 = (string)$program_descriptions->Char_Desc_450;
     $keywords = (string)$program_descriptions->Keywords;
-    print("<h3>Descriptions</h3>\n");
+    print("<h3>" . __('English Descriptions') . "</h3>\n");
     print("<dl>\n");
-    print("  <dt>Description (80 chars)</dt>\n");
+    print("  <dt>" . __('English Description (%d chars)', 80) . "</dt>\n");
     print("  <dd>" . $description_80 . "</dd>\n");
-    print("  <dt>Description (250 chars)</dt>\n");
+    print("  <dt>" . __('English Description (%d chars)', 250) . "</dt>\n");
     print("  <dd>" . $description_250 . "</dd>\n");
-    print("  <dt>Description (450 chars)</dt>\n");
+    print("  <dt>" . __('English Description (%d chars)', 450) . "</dt>\n");
     print("  <dd>" . $description_450 . "</dd>\n");
-    print("  <dt>Keywords</dt>\n");
+    print("  <dt>" . __('English Keywords') . "</dt>\n");
     print("  <dd>" . str_replace(',', ', ', $keywords) . "</dd>\n");
     print("</dl>\n");
 
@@ -67,15 +69,15 @@
     $screenshot_url = (string)$web_info->Application_URLs->Application_Screenshot_URL;
     $icon_url = (string)$web_info->Application_URLs->Application_Icon_URL;
     $pad_url = (string)$web_info->Application_URLs->Application_XML_File_URL;
-    print("<h3>Web Addresses</h3>\n");
+    print("<h3>" . __('Web Addresses') . "</h3>\n");
     print("<dl>\n");
-    print("  <dt>Information</dt>\n");
+    print("  <dt>" . __('Information') . "</dt>\n");
     print("  <dd><a href=\"" . $info_url . "\">" . $info_url . "</a></dd>\n");
-    print("  <dt>Screenshot</dt>\n");
+    print("  <dt>" . __('Screenshot') . "</dt>\n");
     print("  <dd><a href=\"" . $screenshot_url . "\">" . $screenshot_url . "</a></dd>\n");
-    print("  <dt>Icon</dt>\n");
+    print("  <dt>" . __('Icon') . "</dt>\n");
     print("  <dd><a href=\"" . $icon_url . "\">" . $icon_url . "</a></dd>\n");
-    print("  <dt>PAD file</dt>\n");
+    print("  <dt>" . __('PAD File') . "</dt>\n");
     print("  <dd><a href=\"" . $pad_url . "\">" . $pad_url . "</a></dd>\n");
     print("</dl>\n");
 
@@ -85,13 +87,13 @@
     $contact_last_name = (string)$company_info->Contact_Info->Contact_Last_Name;
     $contact_email = (string)$company_info->Contact_Info->Contact_Email;
     $support_email = (string)$company_info->Support_Info->Support_Email;
-    print("<h3>Company</h3>\n");
+    print("<h3>" . __('Company') . "</h3>\n");
     print("<dl>\n");
-    print("  <dt>Name</dt>\n");
+    print("  <dt>" . __('Name') . "</dt>\n");
     print("  <dd><a href=\"" . $company_website_url . "\">" . $company_name . "</a></dd>\n");
-    print("  <dt>Contact</dt>\n");
+    print("  <dt>" . __('Contact') . "</dt>\n");
     print("  <dd><a href=\"mailto:" . $contact_email . "\">" . $contact_first_name . " " . $contact_last_name . "</a></dd>\n");
-    print("  <dt>Support</dt>\n");
+    print("  <dt>" . __('Support') . "</dt>\n");
     print("  <dd><a href=\"mailto:" . $support_email . "\">" . $support_email . "</a></dd>\n");
     print("</dl>\n");
     print("</div> <!-- .padfile -->\n");
