@@ -2,8 +2,8 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription(__('Documentation from WinMerge like manual, release notes, change log and development wiki.'));
-  $page->setKeywords(__('WinMerge, documentation, manual, release notes, known issues, change log, development wiki'));
+  $page->setDescription(__('Documentation from WinMerge like manual, release notes, change log and Development Wiki.'));
+  $page->setKeywords(__('WinMerge, documentation, manual, release notes, known issues, change log, Development Wiki'));
   $page->printHead(__('Documentation'), TAB_DOCS);
 
   $page->printHeading(__('Documentation'));
@@ -14,7 +14,7 @@
   $page->printLinkedSubHeading(__('Change Log'), 'changelog.php');
   $page->printPara(__('The <a href="%s">change log</a> is a more complete list of changes in the last WinMerge releases.', 'changelog.php'));
   $page->printLinkedSubHeading(__('Development Wiki'), '/Wiki/');
-  $page->printPara(__('The <a href="%s">Development Wiki</a> contains many informations about the WinMerge development.', '/Wiki/'));
+  $page->printPara(__('The <a href="%s">Development Wiki</a> contains much information about the WinMerge development.', '/Wiki/'));
 
   $page->printFoot();
 ?>

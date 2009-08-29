@@ -2,13 +2,13 @@
   include('../engine/engine.inc');
 
   $page = new Page;
-  $page->setDescription(__('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify them.'));
+  $page->setDescription(__('WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify it.'));
   $page->setKeywords(__('WinMerge, license, open source, GNU General Public License, GPL, free software'));
   $page->printHead(__('License'), TAB_ABOUT);
   
   $page->printHeading(__('License'));
   $page->printPara(__('WinMerge is <a href="%1$s">Open Source</a> software under the <a href="%2$s">GNU General Public License</a>.', 'http://www.opensource.org/', 'http://www.gnu.org/licenses/gpl-2.0.html'));
-  $page->printPara(__('This means everybody can download the <a href="%s">source code</a> and improve and modify them.
+  $page->printPara(__('This means everybody can download the <a href="%s">source code</a> and improve and modify it.
 The only thing we ask is that people submit their improvements and modifications back to us so that all WinMerge users may benefit.', '/downloads/source-code.php'));
   
   $page->printSubHeading(__('GNU General Public License'));

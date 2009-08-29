@@ -23,7 +23,7 @@
   <p><?php __e('In the tree view, folders are expandable and collapsible, containing files and subfolders. This is useful for an easier navigation in deeply nested directory structures. <em>The tree view is available only in recursive compares.');?></em></p>
   <h3><?php __e('Highlight Line Diff');?></h3>
   <a href="filecmp_inlinediff.png" target="_blank"><img src="filecmp_inlinediff_small.png" alt="<?php __e('Highlight Line Diff');?>" width="294" height="200" border="0"></a>
-  <p><?php __e('Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines.');?></p>
+  <p><?php __e('Many times it is useful to see exact differences inside lines. WinMerge can highlight different areas between lines.');?></p>
   <h3><?php __e('Location Pane');?></h3>
   <a href="screenshot.png" target="_blank"><img src="screenshot_small.png" alt="<?php __e('Location Pane');?>" width="300" height="200" border="0"></a>
   <p><?php __e('Location pane is a handy side-pane showing a overall (difference) map of files compared.');?></p>

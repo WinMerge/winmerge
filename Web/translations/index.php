@@ -26,7 +26,7 @@
 ?>
 </ul>
 <?php
-  $page->printPara(__('To change languages, select the desired language from the <span class="guimenu">View</span>&#8594; <span class="guimenuitem">Languages</span> menu choice.'));
+  $page->printPara(__('To change language, select the desired language from the <span class="guimenu">View</span>&#8594; <span class="guimenuitem">Language</span> menu choice.'));
   
   $page->printSubHeading(__('Translating'));
   $page->printPara(__('If you would like to update any of these translations or add another translation, then please follow <a href="%s">these instructions</a>.', 'instructions.php'),
