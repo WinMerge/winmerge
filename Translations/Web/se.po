@@ -145,7 +145,7 @@ msgstr "WinMerge PAD-fil"
 #: about\screenshots\index.php:26
 #, c-format
 msgid "Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines."
-msgstr "Många gånger är det användbart att se exakta skillnader i rader. WinMerge" kan markera olika områden mellan rader."
+msgstr "Många gånger är det användbart att se exakta skillnader i rader. WinMerge kan markera olika områden mellan rader."
 
 #: translations\instructions.php:15
 #, c-format
