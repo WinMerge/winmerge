@@ -155,7 +155,7 @@ msgstr "WinMerge PAD-fil"
 #: engine\engine.inc:21
 #, c-format
 msgid "French"
-msgstr "Fransk"
+msgstr "Franska"
 
 #: translations\instructions.php:15
 #, c-format
@@ -457,7 +457,7 @@ msgstr "Utöver detta är, WinMerge översatt till ett antal olika språk. Se v�
 #: translations\index.php:24
 #, c-format
 msgid "English"
-msgstr "Engelsk"
+msgstr "Engelska"
 
 #: support\index.php:19
 #, c-format
@@ -467,7 +467,7 @@ msgstr "Önskningar i <a href=\"%s\">funktionsäskandelistan</a> kommer också i
 #: engine\engine.inc:23
 #, c-format
 msgid "Swedish"
-msgstr "Svensk"
+msgstr "Svenska"
 
 #: engine\page.inc:283
 #: engine\page.inc:288
@@ -1280,7 +1280,7 @@ msgstr "Historia om WinMerge releaser med versionsnummer,releasedatum och manual
 #: downloads\plugins.php:11
 #, c-format
 msgid "This is the 7-Zip plugin for WinMerge and the current version <strong>%1$s</strong> was released at <strong>%2$s</strong>."
-msgstr "Detta är 7-Zip plugin för WinMergeoch den akuella versionen <strong>%1$s</strong> släpptes <strong>%2$s</strong>."
+msgstr "Detta är 7-Zip plugin för WinMerge och den aktuella versionen <strong>%1$s</strong> släpptes <strong>%2$s</strong>."
 
 #: 404.php:23
 #, c-format
@@ -1315,7 +1315,7 @@ msgstr "Arkiv"
 #: engine\engine.inc:20
 #, c-format
 msgid "German"
-msgstr "Tysk"
+msgstr "Tyska"
 
 #: support\index.php:14
 #, c-format
@@ -1456,7 +1456,7 @@ msgstr "Markera radskillnad"
 #: about\screenshots\index.php:13
 #, c-format
 msgid "File Comparison"
-msgstr "Filjänförelse"
+msgstr "Filjämförelse"
 
 #: engine\page.inc:261
 #, c-format
@@ -1481,7 +1481,7 @@ msgstr "<a href=\"%s\">Support</a>?"
 #: engine\engine.inc:22
 #, c-format
 msgid "Dutch"
-msgstr "Nederländsk"
+msgstr "Nederländska"
 
 #: support\index.php:7
 #, c-format
