@@ -286,7 +286,10 @@ class Status(object):
     
     @property
     def language(self):
-        return os.path.splitext(self.filename)[0]
+        if self._poeditlanguage: #If "X-Poedit-Language"...
+            return self._poeditlanguage
+        else: #If NOT "X-Poedit-Language"...
+            return os.path.splitext(self.filename)[0]
     
     @property
     def count(self):
@@ -344,6 +347,7 @@ class PoStatus(Status):
         self._fuzzy = 0
         self._porevisiondate = ''
         self._potcreationdate = ''
+        self._poeditlanguage = ''
         self._translators = []
         
         if os.access(filepath, os.R_OK): #If PO(T) file can read...
@@ -353,6 +357,7 @@ class PoStatus(Status):
           reTranslator = re.compile('^# \* (.*)$', re.IGNORECASE)
           rePoRevisionDate = re.compile('PO-Revision-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
           rePotCreationDate = re.compile('POT-Creation-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
+          rePoeditLanguage = re.compile('X-Poedit-Language: ([A-Z]+)', re.IGNORECASE)
           
           iMsgStarted = 0
           sMsgId = ''
@@ -420,6 +425,9 @@ class PoStatus(Status):
                       if tmp: #If "POT-Creation-Date"...
                           #TODO: Convert to date!
                           self._potcreationdate = tmp[0]
+                      tmp = rePoeditLanguage.findall(sMsgStr)
+                      if tmp: #If "X-Poedit-Language"...
+                          self._poeditlanguage = tmp[0]
                   sMsgId = ''
                   sMsgStr = ''
                   bIsFuzzy = False
@@ -509,6 +517,7 @@ def main():
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/Readme.txt', 'Docs/Readme'))
+    status.addProject(PoProject('Web', 'Web/en-US.pot', 'Web'))
     status.writeToXmlFile('TranslationsStatus.xml')
     status.writeToHtmlFile('TranslationsStatus.html')
 
