@@ -21,6 +21,7 @@ WinMerge 2.13.9
   Bugfix: In-line difference highlight fixes (#2824173)
   Translation updates:
   - Dutch (#2801690, #2804979, #2828310)
+  - French (#2850842)
   - German (r6942)
   - Swedish (#2805726, #2845755)
   - Turkish (#2825130, #2825132, #2827820)
