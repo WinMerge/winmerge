@@ -7,6 +7,7 @@ WinMerge 2.12.6
   Add missing keywords to Pascal highlighter (#2834192)
   Translation updates:
   - Dutch (#2804979)
+  - French (#2850842)
   - Turkish (#2825132, #2827817)
   - Ukrainian (#2817835)
 

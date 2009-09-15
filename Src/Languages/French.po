@@ -1,10 +1,12 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Maintainer:
+# * Jean-F Jolin <jean-f-j at users.sourceforge.net>
+#
 # Translators:
 # * Gil Andre <gil_andre at compuserve.com>
 # * Laurent Ganier <ccganier at club-internet.fr>
-# * Jean-F Jolin <jean-f-j at users.sourceforge.net>
 # * Dominique Saussereau <redguff at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
@@ -15,8 +17,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-15 14:33-0500\n"
-"Last-Translator: Jean-F Jolin  <jean-f-j at users.sourceforge.net>\n"
+"PO-Revision-Date: 2009-09-04 05:36-0000\n"
+"Last-Translator: Jean-F Jolin <jean-f-j at users.sourceforge.net>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1252\n"
@@ -246,7 +248,7 @@ msgstr "Barre d'&état"
 #: Merge.rc:420
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Barre d'&onglet"
+msgstr "Barre d'&onglets"
 
 #: Merge.rc:141
 #: Merge.rc:241
@@ -309,7 +311,7 @@ msgstr "Décompression &automatique"
 #: Merge.rc:459
 #, c-format
 msgid "&Edit with Unpacker"
-msgstr "&Éditer avec décompression"
+msgstr "&Éditer avec un décompresseur"
 
 #: Merge.rc:157
 #: Merge.rc:278
@@ -337,7 +339,7 @@ msgstr "&Charger la configuration..."
 #: Merge.rc:471
 #, c-format
 msgid "&Reset Options"
-msgstr "&Initialiser les préférences"
+msgstr "&Rétablir les préférences"
 
 #: Merge.rc:164
 #: Merge.rc:285
@@ -521,7 +523,7 @@ msgstr "&Contracter tous les sous-répertoires"
 #: Merge.rc:239
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "Comparer les &statistiques"
+msgstr "Statistiques de comparaison"
 
 #: Merge.rc:243
 #: Merge.rc:426
@@ -1270,7 +1272,7 @@ msgstr "&Atteindre automatiquement la première différence"
 #: Merge.rc:760
 #, c-format
 msgid "&Disable Splash Screen"
-msgstr "&Sans page de garde"
+msgstr "&Désactiver la page de garde"
 
 #: Merge.rc:762
 #, c-format
@@ -1332,7 +1334,7 @@ msgstr "WinMerge permet de dissimuler certaines boîtes de message. Appuyer sur c
 #: Merge.rc:787
 #, c-format
 msgid "Reset"
-msgstr "&Initialiser"
+msgstr "Rétablir"
 
 #: Merge.rc:794
 #, c-format
@@ -1681,7 +1683,7 @@ msgstr "Ignorer les chan&gements"
 #: Merge.rc:1043
 #, c-format
 msgid "Ig&nore all"
-msgstr "&Tout ignorer"
+msgstr "Ignorer &tout"
 
 #: Merge.rc:1045
 #, c-format
@@ -1691,7 +1693,7 @@ msgstr "Ignorer les lignes &vides"
 #: Merge.rc:1047
 #, c-format
 msgid "Case sensi&tive"
-msgstr "Sensi&ble à la casse"
+msgstr "Respecter la casse"
 
 #: Merge.rc:1049
 #, c-format
@@ -1828,7 +1830,7 @@ msgstr "Ignorer les chan&gements"
 #: Merge.rc:1158
 #, c-format
 msgid "I&gnore all"
-msgstr "&Tout ignorer"
+msgstr "Ignorer &tout"
 
 #: Merge.rc:1160
 #, c-format
@@ -2004,7 +2006,7 @@ msgstr "I&gnorer les changements"
 #: Merge.rc:1258
 #, c-format
 msgid "Discard All"
-msgstr "Tout ignorer"
+msgstr "Ignorer tout"
 
 #: Merge.rc:1265
 #: Merge.rc:1513
@@ -2389,12 +2391,12 @@ msgstr "Affectations"
 #: Merge.rc:1522
 #, c-format
 msgid "(Affects)"
-msgstr "(Affecté)"
+msgstr "(Concernés)"
 
 #: Merge.rc:1523
 #, c-format
 msgid "Select Codepage for"
-msgstr "Sélectionner le code de page"
+msgstr "Sélectionner le code de page pour"
 
 #: Merge.rc:1524
 #, c-format
@@ -2737,8 +2739,7 @@ msgstr ""
 msgid ""
 "Change the printer and printing options\n"
 "Print Setup"
-msgstr ""
-"Change les options d'imprimante et d'impression\n"
+msgstr "Change l'imprimante et les options d'impression\n"
 "Configuration de l'impression"
 
 #: Merge.rc:1763
@@ -2801,7 +2802,7 @@ msgstr "Erreur indéterminée lors de l'enregistrement du projet"
 #: Merge.rc:1781
 #, c-format
 msgid "Project File"
-msgstr "Fichiers du projet"
+msgstr "Fichier de projet"
 
 #: Merge.rc:1782
 #, c-format
@@ -2818,9 +2819,8 @@ msgstr "Fichiers du projet correctement enregistrés."
 msgid ""
 "Save current paths and options to project file\n"
 "Save Project File"
-msgstr ""
-"Enregistrer les chemins et préférences au projet\n"
-"Enregistrer les fichiers du projet"
+msgstr "Enregistrer les chemins et préférences au fichier de projet\n"
+"Enregistrer le fichier de projet"
 
 #: Merge.rc:1789
 #, c-format
@@ -2836,8 +2836,7 @@ msgstr ""
 msgid ""
 "Quit the application; prompts to save documents\n"
 "Exit"
-msgstr ""
-"Ferme l'application et propose d'enregistrer les documents\n"
+msgstr "Quitte l'application et propose d'enregistrer les documents\n"
 "Quitter"
 
 #: Merge.rc:1796
@@ -2910,8 +2909,7 @@ msgstr ""
 msgid ""
 "Copy the selection and put it on the Clipboard\n"
 "Copy"
-msgstr ""
-"Copie la sélection et la place dans le presse-papiers\n"
+msgstr "Copie la sélection dans le presse-papiers\n"
 "Copier"
 
 #: Merge.rc:1832
@@ -2921,7 +2919,7 @@ msgid ""
 "Cut"
 msgstr ""
 "Supprime la sélection et la place dans le presse-papiers\n"
-"Copier"
+"Couper"
 
 #: Merge.rc:1833
 #, c-format
@@ -3010,7 +3008,7 @@ msgid ""
 "Show or hide the tab bar\n"
 "Toggle TabBar"
 msgstr ""
-"Affiche ou masque la barre d'onglet\n"
+"Affiche ou masque la barre d'onglets\n"
 "Barre d'onglet"
 
 #: Merge.rc:1848
@@ -3172,7 +3170,7 @@ msgstr "&Ignorer"
 #: Merge.rc:1920
 #, c-format
 msgid "Ignore &all"
-msgstr "&Tout ignorer"
+msgstr "Ignorer &tout"
 
 #: Merge.rc:1921
 #, c-format
@@ -3202,12 +3200,12 @@ msgstr "&Continuer"
 #: Merge.rc:1931
 #, c-format
 msgid "&Skip"
-msgstr "&Sauter"
+msgstr "&Ignorer"
 
 #: Merge.rc:1932
 #, c-format
 msgid "Skip &all"
-msgstr "To&ut sauter"
+msgstr "Ignorer &tout"
 
 #: Merge.rc:1934
 #, c-format
@@ -3300,10 +3298,9 @@ msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
 "\n"
 "Please use values 1 - %1."
-msgstr ""
-"Taille d'une tabulation -cette étendue n'est pas acceptée par WinMerge.\n"
+msgstr "La valeur de la taille des tabulations n'entre pas dans la plage acceptée.\n"
 "\n"
-"Veuillez utiliser ces valeurs 1 - %1."
+"Voici la plage des valeurs acceptées 1 - %1."
 
 #: Merge.rc:1984
 #, c-format
@@ -3311,10 +3308,9 @@ msgid ""
 "Are you sure you want to reset all WinMerge options to default values?\n"
 "\n"
 "Please re-start WinMerge after the reset."
-msgstr ""
-"Confirmer l'initialisation des valeurs par défaut des préférences WinMerge ?\n"
+msgstr "Confirmer le rétablissement des valeurs par défaut des préférences WinMerge ?\n"
 "\n"
-"Veuillez redémarrer WinMerge après l'initialisation."
+"Veuillez redémarrer WinMerge après le rétablissement."
 
 #: Merge.rc:1990
 #, c-format
@@ -3773,7 +3769,7 @@ msgstr "Erreur en vérifiant les droits en écriture de la destination"
 #: Merge.rc:2147
 #, c-format
 msgid "Error backing up file"
-msgstr "Erreur lors du backup du fichier"
+msgstr "Erreur durant la prise de fichiers d'archive"
 
 #: Merge.rc:2149
 #, c-format
@@ -3783,7 +3779,7 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Ne peut effectuer le backup du fichier d'origine:\n"
+"Ne peut effectuer la prise de fichiers d'archive:\n"
 "%1\n"
 "\n"
 "Continuer quand même ?"
@@ -4116,12 +4112,12 @@ msgstr "Côté droit - choisir répertoire de destination:"
 #: Merge.rc:2230
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 Fichiers modifiés)"
+msgstr "(%1 Fichiers concernés)"
 
 #: Merge.rc:2231
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 de %2 Fichiers modifiés)"
+msgstr "(%1 de %2 Fichiers concernés)"
 
 #: Merge.rc:2237
 #, c-format
@@ -4396,7 +4392,7 @@ msgstr "Page de code droite"
 #: Merge.rc:2320
 #, c-format
 msgid "Ignored Diff."
-msgstr "Différences ignorées."
+msgstr "Différences ignorées"
 
 #: Merge.rc:2321
 #, c-format
@@ -4552,12 +4548,12 @@ msgstr "Taille du fichier du côté droit abrégée."
 #: Merge.rc:2377
 #, c-format
 msgid "Left side creation time."
-msgstr "Temps de creation du côté gauche."
+msgstr "Date de creation du côté gauche."
 
 #: Merge.rc:2378
 #, c-format
 msgid "Right side creation time."
-msgstr "Temps de creation du côté droit."
+msgstr "Date de creation du côté droit."
 
 #: Merge.rc:2379
 #, c-format
@@ -4989,7 +4985,7 @@ msgstr "Expression régulière invalide"
 #: Merge.rc:2507
 #, c-format
 msgid "Invalid collation character"
-msgstr "Comparaison de caractère invalide"
+msgstr "Caractère de classement invalide"
 
 #: Merge.rc:2508
 #, c-format
@@ -5180,7 +5176,7 @@ msgstr "MS-DOS Hébreu"
 #: Merge.rc:2575
 #, c-format
 msgid "MS-DOS French Canada"
-msgstr "MS-DOS Français (Canada)"
+msgstr "MS-DOS Français Canada"
 
 #: Merge.rc:2576
 #, c-format
@@ -5210,7 +5206,7 @@ msgstr "Windows Japonais"
 #: Merge.rc:2586
 #, c-format
 msgid "Windows Simplified Chinese"
-msgstr "Windows Chinois (Simplifié)"
+msgstr "Windows Chinois Simplifié"
 
 #: Merge.rc:2587
 #, c-format
@@ -5220,7 +5216,7 @@ msgstr "Windows Coréen"
 #: Merge.rc:2588
 #, c-format
 msgid "Windows Traditional Chinese"
-msgstr "Windows Chinois (Traditionnel)"
+msgstr "Windows Chinois Traditionnel"
 
 #: Merge.rc:2589
 #, c-format
@@ -5245,7 +5241,7 @@ msgstr "Windows Grec"
 #: Merge.rc:2593
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
-msgstr "Windows Latin 5 (Turquie)"
+msgstr "Windows Latin 5 (Turc)"
 
 #: Merge.rc:2594
 #, c-format
@@ -5596,9 +5592,8 @@ msgstr ""
 msgid ""
 "Select the font for the view\n"
 "Select View Font"
-msgstr ""
-"Sélectionner la police utilisée pour l'affichage des différences\n"
-"Sélection de la Police Diff"
+msgstr "Sélectionner la police utilisée pour l'affichage des différences\n"
+"Sélection de la Police d'affichage"
 
 #: Merge.rc:2709
 #, c-format
@@ -5692,32 +5687,52 @@ msgstr "Diminuer la taille du texte"
 #: Merge.rc:2722
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr "Initialiser le zoom du texte à la taille par défaut"
+msgstr "Rétablir le zoom du texte à la taille par défaut"
 
 #: Merge.rc:2728
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr "Atteindre la différence précédente\nDiff Précédente (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
+msgstr ""
+"Atteindre la différence précédente\n"
+"Diff Précédente (Alt+Up)"
 
 #: Merge.rc:2729
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr "Atteindre la différence suivante\nDiff Suivante (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"Atteindre la différence suivante\n"
+"Diff Suivante (Alt+Down)"
 
 #: Merge.rc:2730
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr "Atteindre la première différence\nPremière Diff (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"Atteindre la première différence\n"
+"Première Diff (Alt+Home)"
 
 #: Merge.rc:2731
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr "Atteindre la différence courante\nDiff Courante (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"Atteindre la différence courante\n"
+"Diff Courante (Alt+Enter)"
 
 #: Merge.rc:2732
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr "Atteindre la dernière différence\nDernière Diff (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"Atteindre la dernière différence\n"
+"Dernière Diff (Alt+End)"
 
 #: Merge.rc:2733
 #, c-format
@@ -6107,7 +6122,7 @@ msgstr "REXX"
 #: Merge.rc:2848
 #, c-format
 msgid "Resources"
-msgstr "Resources"
+msgstr "Ressources"
 
 #: Merge.rc:2849
 #, c-format
@@ -6157,7 +6172,7 @@ msgstr "XML"
 #: Merge.rc:2862
 #, c-format
 msgid "Hide the toolbar"
-msgstr "Cacher la barre d'outils"
+msgstr "Masquer la barre d'outils"
 
 #: Merge.rc:2863
 #, c-format
