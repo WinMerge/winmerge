@@ -32,6 +32,7 @@ import os.path
 import string
 import re
 import time
+import codecs
 
 class TranslationsStatus(object):
     def __init__(self):
@@ -70,8 +71,8 @@ class TranslationsStatus(object):
         self._projects.append(project)
     
     def writeToXmlFile(self, xmlpath):
-        xmlfile = open(xmlpath, 'w')
-        xmlfile.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
+        xmlfile = codecs.open(xmlpath, 'w', 'utf-8')
+        xmlfile.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         xmlfile.write('<status>\n')
         xmlfile.write('  <update>%s</update>\n' % (time.strftime('%Y-%m-%d')))
         for project in self._projects: #For all projects...
@@ -118,14 +119,14 @@ class TranslationsStatus(object):
         xmlfile.close()
     
     def writeToHtmlFile(self, htmlpath):
-        htmlfile = open(htmlpath, 'w')
+        htmlfile = codecs.open(htmlpath, 'w', 'utf-8')
         
         htmlfile.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"\n')
         htmlfile.write('  "http://www.w3.org/TR/html4/loose.dtd">\n')
         htmlfile.write('<html>\n')
         htmlfile.write('<head>\n')
         htmlfile.write('  <title>Translations Status</title>\n')
-        htmlfile.write('  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">\n')
+        htmlfile.write('  <meta http-equiv="content-type" content="text/html; charset=UTF-8">\n')
         htmlfile.write('  <style type="text/css">\n')
         htmlfile.write('  <!--\n')
         htmlfile.write('    body {\n')
@@ -285,6 +286,10 @@ class Status(object):
         return self._template
     
     @property
+    def charset(self):
+        return self._charset
+    
+    @property
     def language(self):
         if self._poeditlanguage: #If "X-Poedit-Language"...
             return self._poeditlanguage
@@ -341,6 +346,7 @@ class PoStatus(Status):
     def __init__(self, filepath, template):
         self._filepath = filepath
         self._template = template
+        self._charset = self._getCharsetFromPoFile(filepath)
         self._count = 0
         self._translated = 0
         self._untranslated = 0
@@ -365,7 +371,8 @@ class PoStatus(Status):
           bIsFuzzy = False
           bIsMaintainer = False
           
-          pofile = open(filepath, 'r')
+          encoding = self._charset.lower()
+          pofile = codecs.open(filepath, 'r', encoding)
           for line in pofile: #For all lines...
               line = line.strip()
               if line: #If NOT empty line...
@@ -439,6 +446,27 @@ class PoStatus(Status):
             return self._potcreationdate
         else: #if NOT template...
             return self._porevisiondate
+    
+    def _getCharsetFromPoFile(self, filepath):
+        charset = ''
+        if os.access(filepath, os.R_OK): #If PO(T) file can read...
+            reContentTypeCharset = re.compile('charset=([A-Z0-9\-]+)', re.IGNORECASE)
+            rePoeditSourceCharset = re.compile('X-Poedit-SourceCharset: ([A-Z0-9\-]+)', re.IGNORECASE)
+            
+            pofile = open(filepath, 'r')
+            for line in pofile: #For all lines...
+                line = line.strip()
+                
+                tmp = reContentTypeCharset.findall(line)
+                if tmp: #If "Content-Type-Charset"...
+                    charset = tmp[0]
+                    break
+                tmp = rePoeditSourceCharset.findall(line)
+                if tmp: #If "X-Poedit-SourceCharset"...
+                    charset = tmp[0]
+                    break
+            pofile.close()
+        return charset
 
 class InnoSetupProject(Project):
     def __init__(self, name, templatefile, translationsdir):
