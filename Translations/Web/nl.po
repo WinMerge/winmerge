@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Maintainer:
-# * Thomas De Rocker <thomasderocker@yahoo.com
+# * Thomas De Rocker <thomasderocker@yahoo.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
