@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>
+# * Hasan Osmanagiæ <hasan.osmanagic at public.carnet.hr>
 #
 # ID line follows -- this is updated by SVN
 # $Id$

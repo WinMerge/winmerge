@@ -40,7 +40,7 @@ Localization:
   Koko <kokokoko@giga.net.tw>
 
 * Croatian:
-  Hasan Osmanagæ <hasan.osmanagic@public.carnet.hr>
+  Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>
 
 * Czech:
   Jiri Tax <jt@taxoft.cz>
