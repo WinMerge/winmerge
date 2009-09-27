@@ -290,12 +290,12 @@ msgstr "リスト(&L)..."
 #: Merge.rc:152
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "手動比較前処理(&N)"
 
 #: Merge.rc:153
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "自動比較前処理(&U)"
 
 #: Merge.rc:155
 #: Merge.rc:276
@@ -1951,7 +1951,7 @@ msgstr "単語単位(&W):"
 #: Merge.rc:1226
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
+msgstr "単語区切り文字(&O)"
 
 #: Merge.rc:1239
 #, c-format
@@ -2021,7 +2021,7 @@ msgstr "変更を破棄する(&C)"
 #: Merge.rc:1272
 #, c-format
 msgid "Disca&rd All"
-msgstr ""
+msgstr "すべて破棄する(&R)"
 
 #: Merge.rc:1279
 #: Merge.rc:1527
