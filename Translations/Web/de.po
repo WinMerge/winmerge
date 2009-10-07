@@ -25,12 +25,12 @@ msgstr ""
 #: about\screenshots\index.php:26
 #, c-format
 msgid "Many times it is useful to see exact differences inside lines. WinMerge can highlight different areas between lines."
-msgstr ""
+msgstr "Oft ist es sinnvoll, genaue Unterschiede innerhalb von Linien zu sehen. WinMerge kann unterschiediche Bereiche zwischen den Linien hervorheben."
 
 #: 404.php:13
 #, c-format
 msgid "This site has recently undergone a major re-working, so that might explain why you got this page instead."
-msgstr ""
+msgstr "Diese Seite wurde kürzlich einer großen Überarbeitung unterzogen, was erklären könnte, warum Sie diese Seite angezeigt bekommen."
 
 #: translations\index.php:36
 #, c-format
@@ -503,7 +503,7 @@ msgstr "7-Zip Plugin"
 #: index.php:20
 #, c-format
 msgid "<a href=\"%1$s\">Learn More</a> or <a href=\"%2$s\">Download Now!</a>"
-msgstr "<a href=\"%1$s\">Mehr erfahren</a> oder <a href=\"%2$s\">jetzt herunterfahren!</a>"
+msgstr "<a href=\"%1$s\">Mehr erfahren</a> oder <a href=\"%2$s\">jetzt herunterladen!</a>"
 
 #: translations\index.php:11
 #, c-format
@@ -655,7 +655,7 @@ msgstr "Übersetzungen"
 #: links.php:35
 #, c-format
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Verschiedenes"
 
 #: support\index.php:38
 #, c-format
@@ -759,7 +759,7 @@ msgstr "Tracker-Eintrag"
 #: links.php:24
 #, c-format
 msgid "Regular expressions"
-msgstr ""
+msgstr "Reguläre Ausdrücke"
 
 #: translations\translations_branch.inc:183
 #, c-format
@@ -972,7 +972,7 @@ msgstr "Screenshots"
 #: links.php:30
 #, c-format
 msgid "Tutorial"
-msgstr ""
+msgstr "Anleitung"
 
 #: about\index.php:78
 #, c-format
@@ -1761,7 +1761,7 @@ msgstr ""
 #: engine\engine.inc:22
 #, c-format
 msgid "Japanese"
-msgstr ""
+msgstr "Japanisch"
 
 #: downloads\source-code.php:7
 #: downloads\source-code.php:10
