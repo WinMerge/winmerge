@@ -24,7 +24,8 @@
    */
   class Page {
     var $_title, $_charset;
-    var $_description, $_keywords, $_rssfeeds;
+    var $_description, $_keywords;
+    var $_javascript, $_rssfeeds;
     var $_tab;
     var $_stablerelease;
 
@@ -36,6 +37,7 @@
       $this->_charset = 'UTF-8';
       $this->_description = '';
       $this->_keywords = '';
+      $this->_javascript = false;
       $this->_rssfeeds = array();
       $this->_tab = TAB_HOME;
       /* _Stable Release */
@@ -81,6 +83,13 @@
     }
 
     /**
+     * enable/disable JacaScript from the page
+     */
+    function setJavaScript($value) {
+      $this->_javascript = $value;
+    }
+
+    /**
      * add RSS feed to the page head
      */
     function addRssFeed($url, $title = 'RSS') {
@@ -123,7 +132,9 @@
       }
       $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/engine/css/screen.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/engine/css/print.css\">\n";
-      $temp .= "  <script src=\"/engine/javascript/winmerge.js\" type=\"text/javascript\"></script>\n";
+      if ($this->_javascript == true || $onload != '') { //if JavaScript is needed...
+        $temp .= "  <script src=\"/engine/javascript/winmerge.js\" type=\"text/javascript\"></script>\n";
+      }
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       foreach ($this->_rssfeeds as $rssurl => $rsstitle) { //for all RSS feeds...
         $temp .= "  <link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . $rsstitle . "\" href=\"" . $rssurl . "\">\n";
