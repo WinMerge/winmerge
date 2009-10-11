@@ -376,7 +376,7 @@
      */
     function getSocialBookmarks() {
       $temp = "<div id=\"bookmarks\">\n";
-      $temp .= "<img src=\"http://static.delicious.com/img/delicious.small.gif\" height=\"10\" width=\"10\" alt=\"Delicious\">\n";
+      $temp .= "<img src=\"/engine/images/delicious.small.gif\" height=\"10\" width=\"10\" alt=\"Delicious\">\n";
       $temp .= "<a href=\"http://delicious.com/save\" onclick=\"window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;\"> " . __('Bookmark this on Delicious') . "</a>\n";
       $temp .= "</div> <!-- #bookmarks -->\n";
       return $temp;
