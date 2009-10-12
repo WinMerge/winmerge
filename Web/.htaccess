@@ -2,6 +2,31 @@
   CheckSpelling Off
 </IfModule>
 
+#Set expires dates...
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+  #Icon files (1 month)...
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+
+  #Images files (7 days)...
+  ExpiresByType image/jpg "access plus 7 days"
+  ExpiresByType image/gif "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+
+  #CSS files (3 days)...
+  ExpiresByType text/css "access plus 3 days"
+
+  #JavaScript files (3 days)...
+  ExpiresByType application/javascript "access plus 3 days"
+  ExpiresByType application/x-javascript "access plus 3 days"
+
+  #All other files (24 hours)...
+  ExpiresDefault "access plus 24 hours"
+</IfModule>
+
 ErrorDocument 404 /404.php
 
 <FilesMatch "\.inc$">
