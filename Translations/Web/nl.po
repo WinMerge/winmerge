@@ -24,11 +24,11 @@ msgstr ""
 
 #: about\screenshots\index.php:26
 msgid "Many times it is useful to see exact differences inside lines. WinMerge can highlight different areas between lines."
-msgstr ""
+msgstr "Het is dikwijls handig om exacte verschillen binnen regels te zien. WinMerge kan verschillende gebieden tussen regels markeren."
 
 #: 404.php:13
 msgid "This site has recently undergone a major re-working, so that might explain why you got this page instead."
-msgstr ""
+msgstr "Deze site heeft recent een grote aanpassing ondergaan, zodat dit kan verklaren waarom u deze pagina in de plaats kreeg."
 
 #: translations\index.php:36
 msgid "Status"
@@ -36,7 +36,7 @@ msgstr "Status"
 
 #: docs\changelog.php:11
 msgid "The change log is currently not available..."
-msgstr ""
+msgstr "De lijst van aanpassingen is op dit moment niet beschikbaar..."
 
 #: downloads\index.php:55
 msgid "Requirements"
@@ -44,7 +44,7 @@ msgstr "Vereisten"
 
 #: downloads\source-code.php:33
 msgid "The source code is hosted on <a href=\"%1$s\">SourceForge.net</a> in a <a href=\"%2$s\">Subversion</a> repository."
-msgstr ""
+msgstr "De broncode wordt gehost op <a href=\"%1$s\">SourceForge.net</a> in een <a href=\"%2$s\">Subversion</a>-repositorium."
 
 #: about\license.php:35
 msgid "Open Source Software"
@@ -56,7 +56,7 @@ msgstr "Druk verkeer"
 
 #: index.php:13
 msgid "What is WinMerge?"
-msgstr ""
+msgstr "Wat is WinMerge?"
 
 #: support\index.php:15
 msgid "Good information in a bug report makes it more likely that your bug will be fixed quickly."
@@ -100,28 +100,28 @@ msgstr "Ontwikkelaars"
 
 #: about\index.php:39
 msgid "Regular Expression based file filters allow excluding and including items"
-msgstr ""
+msgstr "Bestandsfilters gebaseerd op reguliere expressies staan toe om items te excluderen of includeren"
 
 #: downloads\index.php:59
 msgid "Microsoft Visual C++ 2003 Runtime Components (included in the installer)"
-msgstr ""
+msgstr "Microsoft Visual C++ 2003 Runtime Components (bij de installer bijgevoegd)"
 
 #: translations\status_branch.php:18
 #: translations\status_trunk.php:18
 msgid "The translations status is currently not available..."
-msgstr ""
+msgstr "De vertaalstatus is op dit moment niet beschikbaar..."
 
 #: engine\page.inc:295
 msgid "WinMerge Manual"
-msgstr ""
+msgstr "WinMerge handleiding"
 
 #: engine\page.inc:309
 msgid "WinMerge Discussion Forums"
-msgstr ""
+msgstr "WinMerge discussieforums"
 
 #: about\license.php:5
 msgid "WinMerge is Open Source software under the GNU General Public License. This means everybody can download the source code and improve and modify it."
-msgstr ""
+msgstr "WinMerge is Open Source software onder de GNU General Public License. Dit betekent dat iedereen de broncode kan downloaden en ze verbeteren en aanpassen."
 
 #: downloads\pad-file.php:90
 msgid "Company"
@@ -134,7 +134,7 @@ msgstr "Ondersteuningslijst"
 
 #: engine\page.inc:305
 msgid "WinMerge PAD File"
-msgstr ""
+msgstr "WinMerge PAD-bestand"
 
 #: engine\engine.inc:21
 msgid "French"
@@ -146,7 +146,7 @@ msgstr "Bron: %s"
 
 #: downloads\plugins.php:6
 msgid "WinMerge, free, download, plugins, plugin, plug-in, setup, installer, binaries, 7-Zip, xdocdiff, Word, Excel, PowerPoint, PDF"
-msgstr ""
+msgstr "WinMerge, gratis, download, plugins, plugin, plug-in, setup, installer, installatiebestanden, 7-Zip, xdocdiff, Word, Excel, PowerPoint, PDF"
 
 #: links.php:31
 #, c-format
@@ -159,7 +159,7 @@ msgstr "Subdomeinen"
 
 #: about\history.php:45
 msgid "Withdrawn due to installer bug!"
-msgstr ""
+msgstr "Teruggehaald vanwege een installer-bug!"
 
 #: translations\index.php:40
 msgid "Unstable Version (Trunk)"
@@ -167,7 +167,7 @@ msgstr "Instabiele versie (Trunk)"
 
 #: about\screenshots\index.php:32
 msgid "WinMerge 2.8 has a new professional looking splash screen."
-msgstr ""
+msgstr "WinMerge 2.8 heeft een nieuw professioneel ogend opstartvenster."
 
 #: about\index.php:42
 msgid "Can show folder compare results in a tree-style view"
@@ -175,7 +175,7 @@ msgstr "Kan mapvergelijkingsresultaten weergeven in een boomweergave"
 
 #: about\index.php:16
 msgid "In addition, WinMerge has many helpful supporting features that make comparing, synchronising, and merging as easy and useful as possible:"
-msgstr ""
+msgstr "Daarenboven heeft WinMerge vele handige ondersteunende functies die vergelijken, synchroniseren en samenvoegen zo gemakkelijk en bruikbaar mogelijk maken:"
 
 #: support\mailing-lists.php:22
 #: support\mailing-lists.php:52
@@ -188,7 +188,7 @@ msgstr "Bestandsvergelijking"
 
 #: support\mailing-lists.php:27
 msgid "This list is only for announcing new releases of WinMerge."
-msgstr ""
+msgstr "Deze lijst is alleen voor het aankondigen van nieuwe releases van WinMerge."
 
 #: 404.php:19
 msgid "<a href=\"%s\">Documentation</a>?"
@@ -196,7 +196,7 @@ msgstr "<a href=\"%s\">Documentatie</a>?"
 
 #: engine\page.inc:317
 msgid "WinMerge Translations Instructions"
-msgstr ""
+msgstr "WinMerge vertaalinstructies"
 
 #: downloads\pad-file.php:78
 msgid "Icon"
@@ -233,7 +233,7 @@ msgstr "<a href=\"%s\">Online handleiding</a> en geïnstalleerde html-handleidin
 
 #: engine\page.inc:312
 msgid "WinMerge Tracker Shortcuts"
-msgstr ""
+msgstr "WinMerge tracker-snelkoppelingen"
 
 #: support\tracker-shortcuts.php:10
 msgid "<em>Tracker Shortcuts</em> are shorter and nicer URLs to <a href=\"%1$s\">Tracker</a> items from our <a href=\"%2$s\">SF.net project page</a>."
@@ -241,7 +241,7 @@ msgstr "<em>Tracker-koppelingen</em> zijn kortere en leukere URLs om items te <a
 
 #: downloads\pad-file.php:10
 msgid "The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href=\"%s\">Portable Application Description</a> file, which you find here:"
-msgstr ""
+msgstr "De gemakkelijkste manier om informatie te krijgen over de laatste stabiele versie van WinMerge voor uw website is het <a href=\"%s\">Portable Application Description</a>-bestand, dat u hier terugvindt:"
 
 #: support\tracker-shortcuts.php:14
 msgid "Patch"
@@ -249,7 +249,7 @@ msgstr "Patch"
 
 #: support\mailing-lists.php:5
 msgid "Subscribe or unsubscribe to one of the following mailing lists: Announce, Support, User, Translate, Development and SVN"
-msgstr ""
+msgstr "Inschrijven of uitschrijven op een van de volgende maillijsten: Announce, Support, User, Translate, Development en SVN"
 
 #: about\screenshots\index.php:20
 msgid "Folder compare shows all files and subfolders found from compared folders as list. Folder compare allows synchronising folders by copying and deleting files and subfolders. Folder compare view can be versatile customised."
@@ -258,11 +258,11 @@ msgstr "Mapvergelijking toont alle bestanden en submappen gevonden van vergeleke
 #: engine\page.inc:265
 #: engine\page.inc:308
 msgid "WinMerge Support"
-msgstr ""
+msgstr "WinMerge ondersteuning"
 
 #: support\index.php:17
 msgid "We require registering because anonymous submissions caused a lot of spam and also because there were no possibility to contact people for asking more information."
-msgstr ""
+msgstr "We vereisen registratie omdat anonieme inzendingen veel spam veroorzaakten, en ook omdat er geen mogelijkheid was om mensen te contacteren om meer informatie te vragen."
 
 #: engine\page.inc:310
 #: support\mailing-lists.php:7
@@ -281,11 +281,11 @@ msgstr "Om een of andere reden (verkeerd getypte URL, foute referentie vanaf een
 #: index.php:19
 #: about\index.php:11
 msgid "WinMerge is an <a href=\"%s\">Open Source</a> differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle."
-msgstr ""
+msgstr "WinMerge is een <a href=\"%s\">Open Source</a> vergelijkings- en samenvoegingstool voor Windows. WinMerge kan mappen en bestanden vergelijken, verschillen voorstellend in een visueel tekstformaat dat gemakkelijk te begrijpen en behandelen is."
 
 #: support\index.php:18
 msgid "We rarely sent direct emails but you will get notifications when we ask questions in the bug item."
-msgstr ""
+msgstr "We verzenden sporadisch directe e-mails maar u zal berichten krijgen wanneer we vragen stellen in het bug-item."
 
 #: downloads\index.php:25
 #: downloads\plugins.php:20
@@ -294,11 +294,11 @@ msgstr "Binaries"
 
 #: docs\releasenotes.php:11
 msgid "The release notes are currently not available..."
-msgstr ""
+msgstr "De vrijgave-opmerkingen zijn op dit moment niet beschikbaar..."
 
 #: engine\page.inc:297
 msgid "WinMerge Known Issues"
-msgstr ""
+msgstr "WinMerge gekende problemen"
 
 #: about\index.php:76
 msgid "Using WinMerge"
@@ -306,11 +306,11 @@ msgstr "WinMerge gebruiken"
 
 #: downloads\index.php:53
 msgid "You can also download additional <a href=\"%1$s\">plugins</a> and the whole <a href=\"%2$s\">source code</a> from WinMerge."
-msgstr ""
+msgstr "U kan ook bijkomende <a href=\"%1$s\">plugins</a> downloaden en de hele <a href=\"%2$s\">broncode</a> van WinMerge."
 
 #: support\mailing-lists.php:57
 msgid "This list is used for coordinating the translations."
-msgstr ""
+msgstr "Deze lijst wordt gebruikt om de vertalingen te coördineren."
 
 #: links.php:6
 #: about\license.php:30
@@ -320,7 +320,7 @@ msgstr "Links"
 
 #: index.php:49
 msgid "The WinMerge Development Team"
-msgstr ""
+msgstr "Het WinMerge-ontwikkelingsteam"
 
 #: support\tracker-shortcuts.php:15
 msgid "Support Request"
@@ -342,7 +342,7 @@ msgstr "Functie-aanvraag"
 
 #: support\index.php:11
 msgid "The <a href=\"%s\">Open Discussion forum</a> is the fastest way to get help. Please be patient, it may take some time for somebody to answer."
-msgstr ""
+msgstr "Het <a href=\"%s\">Open Discussion forum</a> is de snelste manier om hulp te krijgen. Wees geduldig, het kan even duren voordat iemand antwoordt."
 
 #: about\index.php:31
 msgid "Highlights differences inside lines"
@@ -358,7 +358,7 @@ msgstr "Bestand niet geldig."
 
 #: about\screenshots\index.php:6
 msgid "WinMerge, screenshots, file comparison, open-dialog, folder comparison results, highlight line diff, location pane, splash screen"
-msgstr ""
+msgstr "WinMerge, screenshots, bestandsvergelijking, open-dialoog, mapvergelijkingsresultaten, regelverschil markeren, locatievenster, splashvenster"
 
 #: downloads\pad-file.php:72
 msgid "Web Addresses"
@@ -366,7 +366,7 @@ msgstr "Web-adressen"
 
 #: engine\page.inc:318
 msgid "WinMerge Translations Status (Stable Branch)"
-msgstr ""
+msgstr "WinMerge vertaalstatus (stabiele branch)"
 
 #: about\index.php:74
 msgid "For more information, please see the <a href=\"%1$s\">Installation section</a> of the <a href=\"%2$s\">Manual</a>."
@@ -386,7 +386,7 @@ msgstr "<a·href=\"%1$s\">WinMerge·%2$s</a>·is·de laatste stabiele versie, en
 
 #: index.php:48
 msgid "In addition, WinMerge is translated into a number of different languages. See our <a href=\"%s\">information on translating WinMerge</a> into your own language."
-msgstr ""
+msgstr "Daarnaast is WinMerge vertaald in een aantal verschillende talen. Zie onze <a href=\"%s\">informatie over het vertalen van WinMerge</a> in uw eigen taal."
 
 #: engine\engine.inc:19
 #: translations\index.php:24
@@ -395,7 +395,7 @@ msgstr "Engels"
 
 #: support\index.php:19
 msgid "Wish list items on the <a href=\"%s\">feature request list</a> will also be considered, but we make absolutely no promises."
-msgstr ""
+msgstr "Wenslijst-items op de <a href=\"%s\">functie-aanvragenlijst</a> zullen ook in overweging genomen worden, maar we maken absoluut geen beloften."
 
 #: engine\engine.inc:24
 msgid "Swedish"
@@ -419,11 +419,11 @@ msgstr "<a·href=\"%1$s\">Meer informatie</a>·of·<a·href=\"%2$s\">nu download
 
 #: translations\index.php:11
 msgid "We currently have WinMerge translated into the languages listed below:"
-msgstr ""
+msgstr "WinMerge wordt op dit moment vertaald in de talen die hieronder weergegeven worden:"
 
 #: translations\index.php:33
 msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"\"%2$s>Development Wiki</a>."
-msgstr ""
+msgstr "U kan meer technische informatie vinden over het <a href=\"%1$s\">vertaalsysteem<a> in onze <a href=\"\"%2$s>Ontwikkelingswiki</a>."
 
 #: translations\translations.inc:131
 #: translations\translations.inc:288
@@ -443,7 +443,7 @@ msgstr "Status (onstabiele trunk)"
 
 #: engine\page.inc:264
 msgid "WinMerge Downloads"
-msgstr ""
+msgstr "WinMerge downloads"
 
 #: downloads\index.php:70
 msgid "Japanese WinMerge Version"
@@ -468,7 +468,7 @@ msgstr "Bug"
 #: links.php:43
 #: downloads\index.php:69
 msgid "WinMerge Portable"
-msgstr ""
+msgstr "WinMerge portable"
 
 #: translations\translations.inc:83
 #: translations\translations_branch.inc:51
@@ -477,11 +477,11 @@ msgstr "Fuzzy: %d%%"
 
 #: docs\changelog.php:5
 msgid "The change log is a more complete list of changes in the last WinMerge releases."
-msgstr ""
+msgstr "De aanpassingslog is een meer complete lijst van aanpassingen in de laatste releases van WinMerge."
 
 #: 404.php:15
 msgid "Were you looking for..."
-msgstr ""
+msgstr "Was u op zoek naar..."
 
 #: about\index.php:19
 msgid "General"
@@ -498,11 +498,11 @@ msgstr ""
 
 #: engine\page.inc:299
 msgid "WinMerge Development Wiki"
-msgstr ""
+msgstr "WinMerge ontwikkelingswiki"
 
 #: downloads\index.php:15
 msgid "The current WinMerge version is <strong>%1$s</strong> and was released at <strong>%2$s</strong>."
-msgstr ""
+msgstr "De huidige WinMerge-versie is <strong>%1$s</strong> en werd vrijgegeven op <strong>%2$s</strong>."
 
 #: about\index.php:21
 msgid "Supports Microsoft Windows 98/ME/2000/XP/2003/Vista/2008"
@@ -523,7 +523,7 @@ msgstr ""
 
 #: index.php:16
 msgid "More Screenshots&hellip;"
-msgstr ""
+msgstr "Meer screenshots&hellip;"
 
 #: about\index.php:48
 msgid "Resolve conflict files"
@@ -546,7 +546,7 @@ msgstr ""
 
 #: support\index.php:38
 msgid "Since WinMerge is an <a href=\"%s\">Open Source</a> project, you may use it free of charge."
-msgstr ""
+msgstr "Omdat WinMerge een <a href=\"%s\">Open Source</a>-project is, mag u het gratis gebruiken."
 
 #: translations\translations.inc:81
 #: translations\translations_branch.inc:49
@@ -567,11 +567,11 @@ msgstr "Over WinMerge"
 #: engine\page.inc:266
 #: engine\page.inc:316
 msgid "WinMerge Translations"
-msgstr ""
+msgstr "WinMerge vertalingen"
 
 #: downloads\pad-file.php:6
 msgid "WinMerge, PAD file, Portable Application Description"
-msgstr ""
+msgstr "WinMerge, PAD-bestand, Portable Application Description"
 
 #: downloads\pad-file.php:40
 msgid "Release Status"
@@ -579,11 +579,11 @@ msgstr "Vrijgave-status"
 
 #: engine\page.inc:311
 msgid "WinMerge Tracker"
-msgstr ""
+msgstr "WinMerge tracker"
 
 #: support\mailing-lists.php:47
 msgid "This list is for user related questions. Having questions posted to this list may allow others having the same problem to solve it on their own."
-msgstr ""
+msgstr "Deze lijst is voor gebruikersgerelateerde vragen. Vragen die in deze lijst gesteld worden kunnen anderen met hetzelfde probleem toestaan om het zelf op te lossen."
 
 #: downloads\index.php:7
 msgid "Download the current WinMerge version %1$s, which was released at %2$s. For detailed info on what is new, read the change log and the release notes."
@@ -595,7 +595,7 @@ msgstr "Gekende problemen"
 
 #: translations\index.php:29
 msgid "To change language, select the desired language from the <span class=\"guimenu\">View</span>&#8594; <span class=\"guimenuitem\">Language</span> menu choice."
-msgstr ""
+msgstr "Om de taal aan te passen selecteert u de gewenste taal van de <span class=\"guimenu\">Beeld</span>&#8594; <span class=\"guimenuitem\">Taal</span> menukeuze."
 
 #: translations\translations.inc:136
 #: translations\translations_branch.inc:71
@@ -615,11 +615,11 @@ msgstr "Boomweergave mapvergelijking"
 #: downloads\index.php:33
 #: downloads\source-code.php:17
 msgid "Zip-Format (%s MB)"
-msgstr ""
+msgstr "Zip-Formaat (%s MB)"
 
 #: support\tracker-shortcuts.php:5
 msgid "Tracker Shortcuts are shorter and nicer URLs to Tracker items from our SF.net project page. And you can use this page to create a shortcut."
-msgstr ""
+msgstr "Trackerkoppelingen zijn kortere en leukere URL's naar tracker-items van onze SF.net projectpagina. U kan deze pagina gebruiken om een koppeling aan te maken."
 
 #: support\tracker-shortcuts.php:18
 msgid "Tracker Item"
@@ -662,7 +662,7 @@ msgstr ""
 
 #: about\license.php:6
 msgid "WinMerge, license, open source, GNU General Public License, GPL, free software"
-msgstr ""
+msgstr "WinMerge, licentie, open source, GNU General Public License, GPL, vrije software"
 
 #: downloads\pad-file.php:94
 msgid "Contact"
@@ -671,7 +671,7 @@ msgstr "Contact"
 #: downloads\index.php:40
 #: downloads\source-code.php:24
 msgid "SHA-1 Checksums"
-msgstr ""
+msgstr "SHA-1-checksums"
 
 #: engine\page.inc:231
 msgid "Version %1$s; %2$s MB"
@@ -688,7 +688,7 @@ msgstr "Type:"
 
 #: support\tracker-shortcuts.php:6
 msgid "WinMerge, tracker, shortcuts, sourceforge, project page, bug, patch, support request, feature request, todo item"
-msgstr ""
+msgstr "WinMerge, tracker, koppelingen, sourceforge, projectpagina, bug, patch, ondersteuningsaanvraag, functie-aanvraag, item te doen"
 
 #: links.php:38
 #, c-format
@@ -709,7 +709,7 @@ msgstr "Engels (Template)"
 
 #: engine\page.inc:284
 msgid "WinMerge Links"
-msgstr ""
+msgstr "WinMerge links"
 
 #: about\screenshots\index.php:29
 msgid "Location pane is a handy side-pane showing a overall (difference) map of files compared."
@@ -721,7 +721,7 @@ msgstr "Documentatie van WinMerge zoals handleiding, vrijgave-opmerkingen, lijst
 
 #: docs\index.php:15
 msgid "The <a href=\"%s\">change log</a> is a more complete list of changes in the last WinMerge releases."
-msgstr ""
+msgstr "De <a href=\"%s\">aanpassingslog</a> is een meer complete lijst van aanpassingen in de laatste releases van WinMerge."
 
 #: engine\page.inc:303
 msgid "Download WinMerge Plugins"
@@ -729,11 +729,11 @@ msgstr "WinMerge-plugins downloaden"
 
 #: engine\page.inc:319
 msgid "WinMerge Translations Status (Unstable Trunk)"
-msgstr ""
+msgstr "WinMerge vertaalstatus (instabiele trunk)"
 
 #: docs\index.php:17
 msgid "The <a href=\"%s\">Development Wiki</a> contains much information about the WinMerge development."
-msgstr ""
+msgstr "De <a href=\"%s\">ontwikkelingswiki</a> bevat veel informatie over de ontwikkeling van WinMerge."
 
 #: downloads\index.php:16
 msgid "For detailed info on what is new, read the <a href=\"%1$s\">change log</a> and the <a href=\"%2$s\">release notes</a>."
@@ -741,7 +741,7 @@ msgstr "Voor gedetailleerde informatie over wat nieuw is, lees de <a href=\"%1$s
 
 #: support\mailing-lists.php:77
 msgid "Subscribers to this list get notices of each and every code change commited to Subversion."
-msgstr ""
+msgstr "Abonnees van deze lijst krijgen berichten van elke codeverandering die toegepast wordt op Subversion."
 
 #: links.php:44
 #, c-format
@@ -765,11 +765,11 @@ msgstr "Engelse beschrijving (%d tekens)"
 
 #: about\index.php:29
 msgid "Visual differencing and merging of text files"
-msgstr ""
+msgstr "Visueel zien van verschillen en samenvoegen van tekstbestanden"
 
 #: engine\page.inc:285
 msgid "WinMerge Project Page"
-msgstr ""
+msgstr "WinMerge projectpagina"
 
 #: downloads\index.php:60
 msgid "Admin rights for the installer"
@@ -777,11 +777,11 @@ msgstr "Administratorrechten voor het installatiebestand"
 
 #: downloads\plugins.php:28
 msgid "You can also read the <a href=\"%1$s\">Release Notes</a> or search for <a href=\"%2$s\">other versions</a>."
-msgstr ""
+msgstr "U kan ook de <a href=\"%1$s\">vrijgave-opmerkingen</a> lezen of zoeken naar <a href=\"%2$s\">andere versies</a>."
 
 #: engine\page.inc:289
 msgid "WinMerge Screenshots"
-msgstr ""
+msgstr "WinMerge screenshots"
 
 #: downloads\pad-file.php:42
 msgid "Download"
@@ -814,11 +814,11 @@ msgstr "Hier is de huidige <a href=\"%s\">lijst met wijzigingen</a>."
 
 #: support\tracker-shortcuts.php:11
 msgid "You can use this page to create a shortcut:"
-msgstr ""
+msgstr "U kan deze pagina gebruiken om een snelkoppeling aan te maken:"
 
 #: downloads\pad-file.php:5
 msgid "The easiest way to get informations about the latest stable version from WinMerge for your web site is the Portable Application Description file, which you find here."
-msgstr ""
+msgstr "De gemakkelijkste manier om informatie te krijgen over de laatste stabiele versie van WinMerge voor uw website is het Portable Application Description-bestand, dat u hier terugvindt."
 
 #: translations\translations.inc:41
 msgid "File not found."
@@ -835,11 +835,11 @@ msgstr "Fout 404 (pagina niet gevonden)"
 
 #: downloads\index.php:52
 msgid "The easiest way to install WinMerge is to download and run the Installer. Read the <a href=\"%s\">online manual</a> for help using it."
-msgstr ""
+msgstr "De gemakkelijkste manier om WinMerge te installeren is de installer te downloaden en openen. Lees de <a href=\"%s\">online handleiding</a> voor hulp om hem te gebruiken."
 
 #: about\screenshots\index.php:23
 msgid "In the tree view, folders are expandable and collapsible, containing files and subfolders. This is useful for an easier navigation in deeply nested directory structures. <em>The tree view is available only in recursive compares."
-msgstr ""
+msgstr "In de boomweergave zijn mappen in- en uitklapbaar, en bevatten ze bestanden en submappen. Dit is bruikbaar voor een gemakkelijkere navigatie in diep geneste mapstructuren. <em>De boomweergave is alleen beschikbaar in recursieve vergelijkingen."
 
 #: index.php:42
 #: downloads\pad-file.php:96
@@ -851,11 +851,11 @@ msgstr "Ondersteuning"
 
 #: about\index.php:72
 msgid "Just download the <a href=\"%s\">installer</a> and double-click it."
-msgstr ""
+msgstr "Download gewoon de <a href=\"%s\">installer</a> en dubbelklik erop."
 
 #: downloads\source-code.php:34
 msgid "You can <a href=\"%1$s\">browse the source code</a> with a web browser or you can check out the whole code by clicking on one of the following links (if you have <a href=\"%2$s\">TortoiseSVN</a> installed):"
-msgstr ""
+msgstr "U kan <a href=\"%1$s\">door de broncode surfen</a> met een webbrowser of u kan de hele code nachecken door op een van de volgende links te klikken (als u <a href=\"%2$s\">TortoiseSVN</a> geinstalleerd heeft):"
 
 #: downloads\source-code.php:5
 msgid "Download the source code of WinMerge, which is released under the GNU General Public License."
@@ -872,7 +872,7 @@ msgstr "Vertaald"
 
 #: index.php:46
 msgid "WinMerge is an open source project, which means that the program is maintained and developed by volunteers."
-msgstr ""
+msgstr "WinMerge is een open source project, wat betekent dat het programma onderhouden en ontwikkeld wordt door vrijwilligers."
 
 #: about\index.php:24
 msgid "Tabbed interface"
@@ -880,11 +880,11 @@ msgstr "Interface met tabs"
 
 #: about\index.php:33
 msgid "Location pane shows map of files compared"
-msgstr ""
+msgstr "Het locatievenster toont een kaart van de vergeleken bestanden"
 
 #: about\screenshots\index.php:17
 msgid "WinMerge allows selecting/opening paths in several ways. Using the Open-dialog is just one of them."
-msgstr ""
+msgstr "WinMerge staat toe om paden op verschillende manieren te selecteren/openen. Een ervan is het gebruiken van het Openen-dialoogvenster."
 
 #: about\index.php:77
 msgid "For information on using WinMerge, see our <a href=\"%s\">online Manual</a>, or you can use the local help file (just press <code>F1</code> inside WinMerge) for offline use."
@@ -892,7 +892,7 @@ msgstr "Voor informatie over het gebruik van WinMerge, zie onze <a href=\"%s\">o
 
 #: about\index.php:73
 msgid "Or you may simply unzip the <a href=\"%s\">binary zip package</a> into the desired location, and run <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>)."
-msgstr ""
+msgstr "Of u kan gewoon het <a href=\"%s\">zipbestand</a> uitpakken in de gewenste locatie en <code>WinMergeU.exe</code> starten (behalve voor gebruikers van Windows 98/ME, die <code>WinMerge.exe</code> moeten gebruiken)."
 
 #: downloads\pad-file.php:56
 msgid "English Descriptions"
@@ -909,7 +909,7 @@ msgstr "Versie-controle"
 
 #: support\index.php:6
 msgid "The Open Discussion forum is the fastest way to get help. A other way is a subscription to the support mailing list."
-msgstr ""
+msgstr "Het Open Discussion-forum is de snelste manier om hulp te krijgen. Een andere manier is een inschrijving op de ondersteuningsmaillijst."
 
 #: about\screenshots\index.php:30
 #: about\screenshots\index.php:31
@@ -926,7 +926,7 @@ msgstr "Ondersteunde talen"
 
 #: index.php:6
 msgid "WinMerge is an Open Source differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle."
-msgstr ""
+msgstr "WinMerge is een Open Source vergelijkings- en samenvoegingstool voor Windows. WinMerge kan mappen en bestanden vergelijken, de verschillen voorstellend in een visueel tekstformaat dat gemakkelijk te begrijpen en behandelen is."
 
 #: downloads\index.php:67
 msgid "Beta Versions"
@@ -938,7 +938,7 @@ msgstr "Screenshot"
 
 #: about\index.php:6
 msgid "WinMerge, about, features, file compare, folder compare, version control, screenshots, installation"
-msgstr ""
+msgstr "WinMerge, over, functies, bestandsvergelijking, mapvergelijking, versicontrole, screenshots, installatie"
 
 #: support\mailing-lists.php:15
 #: support\mailing-lists.php:50
@@ -947,7 +947,7 @@ msgstr "Vertaallijst"
 
 #: downloads\index.php:58
 msgid "Microsoft Windows 98/ME/2000/XP/2003/Vista/2008"
-msgstr ""
+msgstr "Microsoft Windows 98/ME/2000/XP/2003/Vista/2008"
 
 #: downloads\plugins.php:5
 msgid "Download additional plugins for WinMerge, like the 7-Zip plugin or the xdocdiff Plugin."
@@ -965,7 +965,7 @@ msgstr "Een andere manier is een abonnement op de <a href=\"%s\">ondersteuning-m
 
 #: about\screenshots\index.php:5
 msgid "Screenshots from WinMerge features like file comparison, folder comparison results and location pane."
-msgstr ""
+msgstr "Screenshots van WinMerge-functies zoals bestandsvergelijking, mapvergelijkingsresultaten en locatievenster."
 
 #: translations\translations.inc:85
 #: translations\translations_branch.inc:53
@@ -974,7 +974,7 @@ msgstr "Onvertaald: %d%%"
 
 #: index.php:43
 msgid "If you need support, look at our <a href=\"%s\">support page</a> for more information how you can get it."
-msgstr ""
+msgstr "Als u ondersteuning nodig heeft, kan u kijken op onze <a href=\"%s\">ondersteuningspagina</a> voor meer informatie over hoe u ondersteuning kan krijgen."
 
 #: engine\page.inc:318
 msgid "Status (Stable Branch)"
@@ -986,7 +986,7 @@ msgstr "Maakt patch-bestanden (Normal-, context- en Unified-formaten)"
 
 #: translations\instructions.php:9
 msgid "The translations instructions are currently not available..."
-msgstr ""
+msgstr "De vertaalinstructies zijn op dit moment niet beschikbaar..."
 
 #: support\mailing-lists.php:17
 #: support\mailing-lists.php:70
@@ -995,27 +995,27 @@ msgstr "SVN-lijst"
 
 #: downloads\plugins.php:31
 msgid "With this plugin you can compare Word, Excel, PowerPoint, PDF and some more files."
-msgstr ""
+msgstr "Met deze plugin kan u Word-, Excel-, PowerPoint-, PDF- en andere bestanden vergelijken."
 
 #: support\index.php:16
 msgid "You must <a href=\"%s\">register with SourceForge.net</a> before posting a bug report (registration is free)."
-msgstr ""
+msgstr "U moet <a href=\"%s\">registreren bij SourceForge.net</a> voordat u een bugrapport kan posten (registratie is gratis)."
 
 #: downloads\source-code.php:6
 msgid "WinMerge, free, download, source code, GPL, Subversion, SVN, TortoiseSVN"
-msgstr ""
+msgstr "WinMerge, gratis, download, broncode, GPL, subversie, SVN, TortoiseSVN"
 
 #: docs\releasenotes.php:5
 msgid "The release notes are a short summary of important changes, enhancements, bug fixes and known issues in the current WinMerge release."
-msgstr ""
+msgstr "De vrijgave-opmerkingen zijn een korte opsomming van belangrijke aanpassingen, verbeteringen, bugfixes en gekende problemen in de huidige WinMerge-vrijgave."
 
 #: docs\changelog.php:6
 msgid "WinMerge, change log, changes, release, tracker item, revision number"
-msgstr ""
+msgstr "WinMerge, aanpassingslog, aanpassingen, vrijgave, tracker item, revisienummer"
 
 #: docs\releasenotes.php:6
 msgid "WinMerge, release notes, summary, changes, enhancements, bug fixes, known issues, release"
-msgstr ""
+msgstr "WinMerge, vrijgave-opmerkingen, opsomming, aanpassingen, verbeteringen, bugfixes, gekende problemen, vrijgave"
 
 #: downloads\pad-file.php:14
 msgid "If you can not work with the <a href=\"%s\">PAD file</a>, you can use the following informations:"
@@ -1031,7 +1031,7 @@ msgstr "Plugin-ondersteuning"
 
 #: about\index.php:54
 msgid "Shell Integration (supports 64-bit Windows versions)"
-msgstr ""
+msgstr "Shell-integratie (ondersteunt 64-bit Windowsversies)"
 
 #: about\index.php:55
 msgid "Archive file support using 7-Zip"
@@ -1079,13 +1079,15 @@ msgstr ""
 
 #: docs\index.php:6
 msgid "WinMerge, documentation, manual, release notes, known issues, change log, Development Wiki"
-msgstr ""
+msgstr "WinMerge, documentatie, handleiding, vrijgave-opmerkingen, gekende problemen, aanpassingslog, ontwikkelingswiki"
 
 #: about\license.php:10
 msgid ""
 "This means everybody can download the <a href=\"%s\">source code</a> and improve and modify it.\n"
 "The only thing we ask is that people submit their improvements and modifications back to us so that all WinMerge users may benefit."
 msgstr ""
+"Dit betekent dat iedereen de <a href=\"%s\">broncode</a> kan downloaden en ze verbeteren en aanpassen.\n"
+"Het enige dat we vragen is dat mensen hun verbeteringen en aanpassingen terug naar ons sturen zodat alle WinMerge-gebruikers er voordeel van hebben."
 
 #: about\history.php:5
 msgid "History of WinMerge releases with version numbers, release dates and manuals."
@@ -1093,7 +1095,7 @@ msgstr "Geschiedenis van WinMerge releases met versienummers, vrijgavedatums en 
 
 #: downloads\plugins.php:11
 msgid "This is the 7-Zip plugin for WinMerge and the current version <strong>%1$s</strong> was released at <strong>%2$s</strong>."
-msgstr ""
+msgstr "Dit is de 7-Zip-plugin voor WinMerge en de huidige versie <strong>%1$s</strong> werd vrijgegeven op <strong>%2$s</strong>."
 
 #: 404.php:23
 msgid "<a href=\"%s\">Change Log</a>?"
@@ -1128,12 +1130,12 @@ msgstr "Duits"
 
 #: support\index.php:14
 msgid "Please attach as much information as you can: at a minimum, the version number of WinMerge that you are using. If you can, also attach a configuration log which, you can display by clicking <span class=\"guimenu\">Help</span> &#8594; <span class=\"guimenuitem\">Configuration</span> in the WinMerge window."
-msgstr ""
+msgstr "Gelieve zoveel mogelijk informatie bij te voegen: minimum het versienummer van de WinMerge-versie die u gebruikt. Voeg indien mogelijk ook een configuratielog bij, die u kan verkrijgen door te klikken op <span class=\"guimenu\">Help</span> &#8594; <span class=\"guimenuitem\">Configuratie</span> in het WinMerge-venster."
 
 #: engine\page.inc:261
 #: engine\page.inc:283
 msgid "WinMerge Home"
-msgstr ""
+msgstr "WinMerge home"
 
 #: links.php:33
 #, c-format
@@ -1142,7 +1144,7 @@ msgstr ""
 
 #: docs\index.php:11
 msgid "The <a href=\"%s\">manual</a> explains how to use WinMerge, and documents its capabilities and limitations."
-msgstr ""
+msgstr "De <a href=\"%s\">handleiding</a> legt uit hoe WinMerge gebruikt wordt, en documenteert zijn mogelijkheden en limitaties."
 
 #: engine\page.inc:302
 msgid "WinMerge"
@@ -1150,7 +1152,7 @@ msgstr "WinMerge"
 
 #: downloads\plugins.php:30
 msgid "xdocdiff Plugin"
-msgstr ""
+msgstr "xdocdiff-plugin"
 
 #: support\tracker-shortcuts.php:17
 msgid "Todo Item"
@@ -1158,7 +1160,7 @@ msgstr "Item te doen"
 
 #: support\mailing-lists.php:67
 msgid "This is the list where participating developers of the WinMerge meet and discuss issues, code changes/additions, etc."
-msgstr ""
+msgstr "Dit is de lijst waar deelnemende ontwikkelaars van de WinMerge elkaar ontmoeten en problemen, code-aanpassingen en -toevoegingen bespreken, enzovoort."
 
 #: downloads\index.php:22
 #: downloads\plugins.php:17
@@ -1171,7 +1173,7 @@ msgstr "Plugins"
 
 #: support\mailing-lists.php:6
 msgid "WinMerge, mailing lists, announce, support, user, translate, development, SVN"
-msgstr ""
+msgstr "WinMerge, mailing lists, aankondiging, ondersteuning, gebruiker, vertalen, ontwikkeling, SVN"
 
 #: about\index.php:67
 #: about\screenshots\index.php:18
@@ -1198,11 +1200,11 @@ msgstr "Informatie"
 #: engine\page.inc:263
 #: engine\page.inc:294
 msgid "WinMerge Documentation"
-msgstr ""
+msgstr "WinMerge documentatie"
 
 #: downloads\source-code.php:11
 msgid "WinMerge is released under the <a href=\"%s\">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself."
-msgstr ""
+msgstr "WinMerge is vrijgegeven onder de <a href=\"%s\">GNU General Public License</a>. Dat betekent dat u de hele broncode kan verkrijgen en het programma zelf kan compileren."
 
 #: about\index.php:40
 msgid "Fast compare using file sizes and dates"
@@ -1223,7 +1225,7 @@ msgstr "GNU General Public License"
 
 #: docs\index.php:13
 msgid "The <a href=\"%1$s\">release notes</a> are a short summary of important changes, enhancements, bug fixes and <a href=\"%2$s\">known issues</a> in the current WinMerge release."
-msgstr ""
+msgstr "De <a href=\"%1$s\">vrijgave-opmerkingen</a> zijn een korte opsomming van belangrijke aanpassingen, verbeteringen, bugfixes en <a href=\"%2$s\">gekende problemen</a> in de huidige release van WinMerge."
 
 #: translations\translations.inc:85
 #: translations\translations.inc:97
@@ -1252,7 +1254,7 @@ msgstr "Home"
 
 #: support\mailing-lists.php:37
 msgid "You should ask all your support questions on this list."
-msgstr ""
+msgstr "U kan al uw ondersteuningsvragen stellen op deze lijst."
 
 #: about\index.php:52
 msgid "Other"
@@ -1278,7 +1280,7 @@ msgstr ""
 
 #: support\index.php:7
 msgid "WinMerge, support, discussion forums, mailing lists, tracker, donate, bugs, support requests, patches, feature requests, todo, open source, sourceforge.net"
-msgstr ""
+msgstr "WinMerge, ondersteuning, discussieforums, maillijsten, tracker, doneren, bugs, ondersteuningsaanvragen, patches, functie-aanvragen,te doen, open source, sourceforge.net"
 
 #: downloads\index.php:31
 msgid "Runtimes"
@@ -1286,11 +1288,11 @@ msgstr "Runtimes"
 
 #: translations\index.php:37
 msgid "The following two pages inform you about the translations status of the stable and developer version of WinMerge:"
-msgstr ""
+msgstr "De volgende twee pagina's geven informatie over de vertaalstatus van de stabiele versie en ontwikkelingsversie van WinMerge:"
 
 #: about\index.php:49
 msgid "Rudimentary Visual SourceSafe and Rational ClearCase integration"
-msgstr ""
+msgstr "Rudimentaire Visual SourceSafe en Rational ClearCase integratie"
 
 #: translations\translations.inc:83
 #: translations\translations.inc:96
@@ -1308,7 +1310,7 @@ msgstr "Totaal: %d"
 
 #: downloads\index.php:8
 msgid "WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable"
-msgstr ""
+msgstr "WinMerge, gratis, download, Windows, setup, installer, installatiebestanden, runtimes, stabiel, beta, experimenteel, portable"
 
 #: 404.php:18
 msgid "<a href=\"%s\">Screenshots</a>?"
@@ -1325,12 +1327,12 @@ msgstr "Totaal: onbekend"
 
 #: about\index.php:69
 msgid "See the <a href=\"%s\">screenshots page</a> for more screenshots."
-msgstr ""
+msgstr "Zie de <a href=\"%s\">screenshots-pagina</a> voor meer screenshots."
 
 #: index.php:37
 #: downloads\index.php:88
 msgid "Y-m-d"
-msgstr ""
+msgstr "d-m-Y"
 
 #: translations\instructions.php:5
 #: translations\instructions.php:8
@@ -1339,7 +1341,7 @@ msgstr "Vertaalinstructies"
 
 #: engine\page.inc:310
 msgid "WinMerge Mailing Lists"
-msgstr ""
+msgstr "WinMerge maillijsten"
 
 #: downloads\index.php:68
 msgid "Experimental Builds"
@@ -1389,7 +1391,7 @@ msgstr "Ontwikkelingsversie"
 
 #: index.php:7
 msgid "WinMerge, free, open source, Windows, windiff, diff, merge, compare, tool, utility, text, file, folder, directory, compare files, compare folders, merge files, merge folders, diff tool, merge tool, compare tool"
-msgstr ""
+msgstr "WinMerge, vrij, open source, Windows, windiff, diff, samenvoegen, vergelijken, tool, utility, tekt, bestand, map, bestanden vergelijken, mappen vergelijken, bestanden samenvoegen, mappen samenvoegen, diff tool, samenvoegingstool, vergelijkingstool"
 
 #: engine\page.inc:230
 msgid "Download Now!"
@@ -1417,7 +1419,7 @@ msgstr ""
 
 #: engine\page.inc:296
 msgid "WinMerge Release Notes"
-msgstr ""
+msgstr "WinMerge vrijgave-opmerkingen"
 
 #: index.php:26
 msgid "WinMerge %s - latest stable version"
@@ -1425,7 +1427,7 @@ msgstr "WinMerge %s - laatste stabiele versie"
 
 #: translations\index.php:32
 msgid "If you would like to update any of these translations or add another translation, then please follow <a href=\"%s\">these instructions</a>."
-msgstr ""
+msgstr "Als u een van deze vertalingen wilt updaten of een andere vertaling toevoegen, gelieve dan <a href=\"%s\">deze instructies</a> te volgen."
 
 #: translations\index.php:31
 msgid "Translating"
@@ -1453,7 +1455,7 @@ msgstr ""
 #: about\index.php:5
 #: about\index.php:12
 msgid "WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application."
-msgstr ""
+msgstr "WinMerge is vooral bruikbaar voor het onderzoeken van welke dingen veranderd zijn tussen projectversies, en nadien de veranderingen tussen versies samen te voegen. WinMerge kan gebruikt worden als een externe vergelijkings-/samenvoegingstool of als een standalone toepassing."
 
 #: engine\engine.inc:22
 #, c-format
@@ -1481,11 +1483,11 @@ msgstr "Ontwikkelingslijst"
 
 #: about\index.php:34
 msgid "Moved lines detection"
-msgstr ""
+msgstr "Detectie van verplaatste regels"
 
 #: engine\page.inc:290
 msgid "WinMerge History"
-msgstr ""
+msgstr "WinMerge geschiedenis"
 
 #: translations\translations.inc:132
 #: translations\translations_branch.inc:67
@@ -1498,15 +1500,15 @@ msgstr "(door PortableApps.com)"
 
 #: about\license.php:10
 msgid "WinMerge is <a href=\"%1$s\">Open Source</a> software under the <a href=\"%2$s\">GNU General Public License</a>."
-msgstr ""
+msgstr "WinMerge is <a href=\"%1$s\">Open Source</a> software onder de <a href=\"%2$s\">GNU General Public License</a>."
 
 #: engine\page.inc:291
 msgid "WinMerge License"
-msgstr ""
+msgstr "WinMerge licentie"
 
 #: about\history.php:6
 msgid "WinMerge, history, version number, release date, manual, users guide"
-msgstr ""
+msgstr "WinMerge, geschiedenis, versienummer, vrijgave-datum, handleiding, gebruikersgids"
 
 #: downloads\index.php:10
 #: downloads\index.php:12
