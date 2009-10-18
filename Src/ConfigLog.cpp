@@ -389,7 +389,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 		sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 		m_sFileName = sFileName.c_str();
 
-		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
+		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite, &e))
 		{
 			TCHAR szError[1024];
 			e.GetErrorMessage(szError, 1024);
