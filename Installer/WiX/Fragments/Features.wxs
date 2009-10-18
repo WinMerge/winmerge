@@ -78,6 +78,7 @@
         <ComponentRef Id="Japanese" />
         <ComponentRef Id="Korean" />
         <ComponentRef Id="Norwegian" />
+        <ComponentRef Id="Persian" />
         <ComponentRef Id="Polish" />
         <ComponentRef Id="Portuguese" />
         <ComponentRef Id="Romanian" />

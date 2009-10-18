@@ -136,6 +136,13 @@
           Vital="no" />
       </Component>
       
+      <Component Id="Persian" Guid="*" Win64="$(var.Win64)">
+        <File Id="PersianPO" 
+          Name="Persian.po" 
+          Source="..\..\Translations\WinMerge\Persian.po" 
+          Vital="no" />
+      </Component>
+      
       <Component Id="Portuguese" Guid="*" Win64="$(var.Win64)">
         <File Id="PortuguesePO" 
           Name="Portuguese.po" 
