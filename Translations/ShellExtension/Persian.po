@@ -1,0 +1,89 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge Shell Extension\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Persian <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1256\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Persian\n"
+"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
+
+#. AFX_TARG_*
+#: ShellExtensionTemplate.rc:24
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_FAR"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtensionTemplate.rc:26
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_FARSI, SUBLANG_PERSIAN_IRAN"
+
+#. Codepage
+#: ShellExtensionTemplate.rc:27
+#, c-format
+msgid "1252"
+msgstr "1256"
+
+#: ShellExtensionTemplate.rc:41
+#, c-format
+msgid "ShellExtension"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:42
+#, c-format
+msgid "WinMerge"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "Open with WinMerge"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:44
+#, c-format
+msgid "Please select no more than 2 items"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:45
+#, c-format
+msgid "Compare"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:46
+#, c-format
+msgid "Compare..."
+msgstr ""
+
+#: ShellExtensionTemplate.rc:47
+#, c-format
+msgid "Compare To"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:48
+#, c-format
+msgid "Save this path. Select another path to compare with this path."
+msgstr ""
+
+#: ShellExtensionTemplate.rc:49
+#, c-format
+msgid "Compare to saved path (%1)"
+msgstr ""
+
+#: ShellExtensionTemplate.rc:50
+#, c-format
+msgid "Re-select First"
+msgstr ""
+

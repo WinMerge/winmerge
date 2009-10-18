@@ -353,6 +353,7 @@ ItalianLanguage=Meniuri si dialoguri în Italiana
 JapaneseLanguage=Meniuri si dialoguri în Japoneza
 KoreanLanguage=Meniuri si dialoguri în Coreana
 NorwegianLanguage=Meniuri si dialoguri în Norvegiana
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Meniuri si dialoguri în  Poloneza
 PortugueseBrazilLanguage=Meniuri si dialoguri în Portugheza (Braziliana)
 PortugueseLanguage=Meniuri si dialoguri în Portugheza

@@ -353,6 +353,7 @@ ItalianLanguage=Ιταλικά επιλογές και διάλογοι
 JapaneseLanguage=Ιαπωνικά επιλογές και διάλογοι
 KoreanLanguage=Κορεατικά επιλογές και διάλογοι
 NorwegianLanguage=Νορβηγικά επιλογές και διάλογοι
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Πολωνικά επιλογές και διάλογοι
 PortugueseBrazilLanguage=Πορτογαλικά (Βραζιλίας) επιλογές και διάλογοι
 PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι

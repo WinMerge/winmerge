@@ -89,6 +89,9 @@ Localization:
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
 
+* Persian:
+  Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
+
 * Polish:
   M.T <mtrz@users.sourceforge.net>
   Skiff <skiffatsf@users.sourceforge.net>

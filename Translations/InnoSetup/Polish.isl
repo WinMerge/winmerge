@@ -342,6 +342,7 @@ ItalianLanguage=W³oski interfejs
 JapaneseLanguage=Japoñski interfejs
 KoreanLanguage=Koreañski interfejs
 NorwegianLanguage=Norweski interfejs
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Polski interfejs
 PortugueseBrazilLanguage=Portugalski (Brazylijski) interfejs
 PortugueseLanguage=Portugalski interfejs

@@ -343,6 +343,7 @@ ItalianLanguage=Italienska menyer och dialoger
 JapaneseLanguage=Japanska menyer och dialoger
 KoreanLanguage=Koreanska menyer och dialoger
 NorwegianLanguage=Norska menyer och dialoger
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Polska menyer och dialoger
 PortugueseBrazilLanguage=Portugisiska (Brasiliansk) menyer och dialoger
 PortugueseLanguage=Portugisiska menyer och dialoger

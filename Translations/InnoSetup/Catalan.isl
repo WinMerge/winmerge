@@ -336,6 +336,7 @@ ItalianLanguage=Menús i diàlegs en Italià
 JapaneseLanguage=Menús i diàlegs en Japonès
 KoreanLanguage=Menús i diàlegs en Koreà
 NorwegianLanguage=Menús i diàlegs en Noruec
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Menús i diàlegs en Polonès
 PortugueseBrazilLanguage=Menús i diàlegs en Portuguès (Brasiler)
 PortugueseLanguage=Menús i diàlegs en Portuguès

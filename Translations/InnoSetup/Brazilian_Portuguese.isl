@@ -351,6 +351,7 @@ ItalianLanguage=Menus e diálogos italianos
 JapaneseLanguage=Menus e diálogos japoneses
 KoreanLanguage=Menus e diálogos coreanos
 NorwegianLanguage=Menus e diálogos noruegueses
+PersianLanguage=Persian menus and dialogs
 PolishLanguage=Menus e diálogos poloneses
 PortugueseBrazilLanguage=Menus e diálogos portugueses (brasileiros)
 PortugueseLanguage=Menus e diálogos portugueses
