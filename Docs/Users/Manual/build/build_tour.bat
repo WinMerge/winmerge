@@ -3,7 +3,7 @@
 call configuration.bat
 
 set docbook_inputfile=..\tour\WinMerge_tour.xml
-set docbook_use_stylesheet=build_html_page.xsl
+set docbook_use_stylesheet=build_tour.xsl
 set docbook_outputdir=%docbook_build_path%\tour
 set docbook_outputfile=index.html
 set ads=false

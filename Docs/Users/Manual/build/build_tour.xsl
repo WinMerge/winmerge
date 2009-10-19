@@ -3,7 +3,7 @@
 		version="1.0">
 
 <!-- ********************************************************************
-     build_html_page.xsl
+     build_tour.xsl
      WinMerge customization of the XSL DocBook stylesheet distribution.
      Contains customized templates and parameters for generating 
      a single HTML document; all other styles are inherited from the WinMerge 
@@ -27,7 +27,7 @@ Custom parameters
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <!-- Define suffix to appear after title text in head/title element of 
 every topic -->
-<xsl:param name="headtitle.suffix" select="' - WinMerge 2.12 Manual'"/>
+<xsl:param name="headtitle.suffix" select="' - WinMerge 2.12 Quicktour'"/>
 
 <!-- Detect if we're displaying ads for the Web pages -->
 <xsl:param name="withads">false</xsl:param>
@@ -45,7 +45,7 @@ html/docbook.xsl
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <!-- Link to the appropriate css stylesheets -->
 <xsl:template name="user.head.content">
-  <link rel="stylesheet" type="text/css" href="css/onepage.css" />
+  <link rel="stylesheet" type="text/css" href="css/tour.css" />
   <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
 </xsl:template>
 
