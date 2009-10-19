@@ -26,6 +26,7 @@ http://winmerge.org/docs/manual/QuickStart.html
 http://winmerge.org/docs/manual/Shortcuts.html
 http://winmerge.org/docs/manual/VersionControl.html
 http://winmerge.org/docs/manual/word_index.html
+http://winmerge.org/docs/tour/
 http://winmerge.org/downloads/
 http://winmerge.org/downloads/pad-file.php
 http://winmerge.org/downloads/plugins.php
