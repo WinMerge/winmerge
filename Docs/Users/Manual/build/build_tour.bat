@@ -2,10 +2,10 @@
 
 call configuration.bat
 
-set docbook_inputfile=..\WinMerge_help.xml
-set tour_inputfile=..\tour\WinMerge_tour.xml
-set docbook_use_stylesheet=build_html.xsl
-set docbook_outputdir=%docbook_build_path%\html
+set docbook_inputfile=..\tour\WinMerge_tour.xml
+set docbook_use_stylesheet=build_html_page.xsl
+set docbook_outputdir=%docbook_build_path%\tour
+set docbook_outputfile=index.html
 set ads=false
 if "%1" == "withads" goto withads
 if not "%1" == "" goto withadserror
@@ -32,18 +32,14 @@ copy "..\images\*.png" "%docbook_outputdir%\images\."
 
 echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
-copy "..\screenshots\*.*" "%docbook_outputdir%\screenshots\."
-
-echo Copy art...
-if not exist "%docbook_outputdir%\art" mkdir "%docbook_outputdir%\art"
-copy "..\art\*.*" "%docbook_outputdir%\art\."
+copy "..\tour\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
 copy "..\css\*.css" "%docbook_outputdir%\css"
 
-echo Create Manual HTML files...
-%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\ withads=%ads%
+echo Create Tour HTML file...
+%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet -o %docbook_outputdir%/%docbook_outputfile% %docbook_inputfile% %docbook_use_stylesheet% withads=%ads%"
 
 echo Finished!
 
