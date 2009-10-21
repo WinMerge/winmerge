@@ -23,7 +23,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ELL)
 #ifdef _WIN32
-LANGUAGE LANG_GREEK, SUBLANG_GREEK
+LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 #pragma code_page(1253)
 #endif //_WIN32
 

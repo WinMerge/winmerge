@@ -27,7 +27,7 @@ msgstr ""
 #: Merge.rc:51
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_GREEK, SUBLANG_GREEK"
+msgstr "LANG_GREEK, SUBLANG_DEFAULT"
 
 #. Codepage
 #: Merge.rc:23
