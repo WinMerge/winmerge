@@ -521,7 +521,7 @@ LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
 #ifdef _WIN32
 LANGUAGE LANG_FARSI, SUBLANG_PERSIAN_IRAN
 #pragma code_page(1256)
-#include "Languages\ShellExtensionPolish.rc"
+#include "Languages\ShellExtensionPersian.rc"
 #endif //_WIN32
 #endif
 
