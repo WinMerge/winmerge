@@ -190,7 +190,7 @@ BEGIN
     "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FAR)\r\n"
     "#ifdef _WIN32\r\n"
-    "LANGUAGE LANG_FARSI, SUBLANG_PERSIAN_IRAN\r\n"
+    "LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL\r\n"
     "#pragma code_page(1256)\r\n"
     "#include ""Languages\\ShellExtensionPersian.rc""\r\n"
     "#endif //_WIN32\r\n"
@@ -519,7 +519,7 @@ LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FAR)
 #ifdef _WIN32
-LANGUAGE LANG_FARSI, SUBLANG_PERSIAN_IRAN
+LANGUAGE LANG_FARSI, SUBLANG_NEUTRAL
 #pragma code_page(1256)
 #include "Languages\ShellExtensionPersian.rc"
 #endif //_WIN32

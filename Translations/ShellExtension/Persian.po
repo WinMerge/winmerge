@@ -29,7 +29,7 @@ msgstr "AFX_TARG_FAR"
 #: ShellExtensionTemplate.rc:26
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_FARSI, SUBLANG_PERSIAN_IRAN"
+msgstr "LANG_FARSI, SUBLANG_NEUTRAL"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:27
