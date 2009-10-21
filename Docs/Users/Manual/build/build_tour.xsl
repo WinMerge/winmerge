@@ -36,7 +36,7 @@ every topic -->
      html/param.xsl  parameters
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <xsl:param name="section.autolabel" select="0"/>
-<xsl:param name="generate.toc">book nop</xsl:param> 
+<xsl:param name="generate.toc">book toc</xsl:param> 
 <xsl:param name="generate.meta.abstract" select="0"/>
 
 
