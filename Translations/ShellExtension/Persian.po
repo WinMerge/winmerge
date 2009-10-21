@@ -1,6 +1,9 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -40,50 +43,50 @@ msgstr "1256"
 #: ShellExtensionTemplate.rc:41
 #, c-format
 msgid "ShellExtension"
-msgstr ""
+msgstr " ‘· «ò” ‰‘‰ "
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "WinMerge"
-msgstr ""
+msgstr " ÊÌ‰„—Ã "
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "Open with WinMerge"
-msgstr ""
+msgstr " »«“ ò—œ‰ »« ÊÌ‰„—Ã "
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr ""
+msgstr " ·ÿ›« »Ì‘ — «“ œÊ „Ê—œ —« «‰ Œ«» ‰‰„«ÌÌœ "
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Compare"
-msgstr ""
+msgstr " Â„”‰ÃÌ / „ﬁ«Ì”Â "
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare..."
-msgstr ""
+msgstr " Â„”‰ÃÌ ... "
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare To"
-msgstr ""
+msgstr " „ﬁ«Ì”Â »« "
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr ""
+msgstr " «Ì‰ „”Ì— —« –ŒÌ—Â ò‰. „”Ì— œÌê—Ì —« »—«Ì „ﬁ«Ì”Â »« «Ì‰ „”Ì— «‰ Œ«» ò‰ "
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr ""
+msgstr " Â„”‰ÃÌ »« „”Ì— –ŒÌ—Â ‘œÂ %1 "
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Re-select First"
-msgstr ""
+msgstr " œ— ¬€«“  œÊ»«—Â «‰ Œ«» ‰„«ÌÌœ "
 
