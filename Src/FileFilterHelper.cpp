@@ -170,7 +170,7 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
 	m_sUserSelFilterPath = filterPath;
 	if (filterPath[filterPath.length() - 1] != '\\')
-		m_sUserSelFilterPath += L"\\";
+		m_sUserSelFilterPath += _T("\\");
 }
 
 /** 
@@ -247,10 +247,10 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 		String strFileName = szFileName;
 		strFileName = string_makelower(strFileName);
 		if (strFileName[0] != '\\')
-			strFileName = L"\\" + strFileName;
+			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
 		if (strFileName.find('.') == -1)
-			strFileName = strFileName + L".";
+			strFileName = strFileName + _T(".");
 
 		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
 		bool match = m_pMaskFilter->Match(name_utf);
@@ -474,8 +474,8 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
-	m_sGlobalFilterPath = GetModulePath() + L"\\Filters";
-	String pattern(L"*");
+	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
+	String pattern(_T("*"));
 	pattern += FileFilterExt;
 	LoadFileFilterDirPattern(m_sGlobalFilterPath.c_str(), pattern.c_str());
 	LoadFileFilterDirPattern(m_sUserSelFilterPath.c_str(), pattern.c_str());

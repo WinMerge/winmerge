@@ -71,7 +71,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 	// Invoke unpacking plugins
 	if (!Unpack(plugCtxt->filepathUnpacked1, filteredFilenames.c_str(), plugCtxt->infoUnpacker))
 	{
-		errStr = L"Unpack Error Side 1";
+		errStr = _T("Unpack Error Side 1");
 		return false;
 	}
 
@@ -80,7 +80,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 
 	if (!Unpack(plugCtxt->filepathUnpacked2, filteredFilenames.c_str(), plugCtxt->infoUnpacker))
 	{
-		errStr = L"Unpack Error Side 2";
+		errStr = _T("Unpack Error Side 2");
 		return false;
 	}
 
@@ -91,7 +91,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 	if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1.c_str(),
 			plugCtxt->filepathTransformed2.c_str()))
 	{
-		errStr = L"OpenFiles Error (before tranform)";
+		errStr = _T("OpenFiles Error (before tranform)");
 		return false;
 	}
 
@@ -100,7 +100,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 			plugCtxt->filepathUnpacked1, plugCtxt->filepathTransformed1,
 			filteredFilenames.c_str(), plugCtxt->infoPrediffer))
 	{
-		errStr = L"Transform Error Side 1";
+		errStr = _T("Transform Error Side 1");
 		return false;
 	}
 
@@ -111,7 +111,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 			plugCtxt->filepathUnpacked2, plugCtxt->filepathTransformed2,
 			filteredFilenames.c_str(), plugCtxt->infoPrediffer))
 	{
-		errStr = L"Transform Error Side 2";
+		errStr = _T("Transform Error Side 2");
 		return false;
 	}
 
@@ -128,7 +128,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, Stri
 		if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1.c_str(),
 				plugCtxt->filepathTransformed2.c_str()))
 		{
-			errStr = L"OpenFiles Error (after tranform)";
+			errStr = _T("OpenFiles Error (after tranform)");
 			return false;
 		}
 	}
@@ -191,7 +191,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			if (!m_diffFileData.OpenFiles(plugCtxt.origFileName1.c_str(),
 					plugCtxt.origFileName2.c_str()))
 			{
-				di.errorDesc = L"Error opening compared files";
+				di.errorDesc = _T("Error opening compared files");
 				return false;
 			}
 		}
@@ -244,7 +244,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
 		}
 		if (DIFFCODE::isResultError(code))
-			di.errorDesc = L"DiffUtils Error";
+			di.errorDesc = _T("DiffUtils Error");
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
@@ -288,7 +288,7 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		// Print error since we should have handled by date compare earlier
 		_RPTF0(_CRT_ERROR, "Invalid compare type, DiffFileData can't handle it");
-		di.errorDesc = L"Bad compare type";
+		di.errorDesc = _T("Bad compare type");
 	}
 
 	m_diffFileData.Reset();

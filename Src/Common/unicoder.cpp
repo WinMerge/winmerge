@@ -549,7 +549,8 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
 		// Only caveat is that input (lpd) is not zero-terminated
-		return String(lpd, len);
+		str = String(lpd, len);
+		return true;
 	}
 
 	str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);

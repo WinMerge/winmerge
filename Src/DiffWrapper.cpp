@@ -138,7 +138,7 @@ void CDiffWrapper::SetCreatePatchFile(const String &filename)
 	{
 		m_bCreatePatchFile = TRUE;
 		m_sPatchFile = filename;
-		string_replace(m_sPatchFile, L"/", L"\\");
+		string_replace(m_sPatchFile, _T("/"), _T("\\"));
 	}
 }
 

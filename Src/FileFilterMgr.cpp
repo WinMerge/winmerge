@@ -169,7 +169,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		regexString, sizeof(regexString));
 	pcre_opts |= PCRE_UTF8;
 #else
-	strcpy(regexString, (LPCTSTR)str);
+	strcpy(regexString, str.c_str());
 	regexLen = strlen(regexString);
 #endif
 	pcre_opts |= PCRE_CASELESS;
