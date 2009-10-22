@@ -310,76 +310,76 @@ StatusUninstalling=...%1 ÏÑ ÍÇá ÍĞİ ˜ÑÏä
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-NameAndVersion=%1 æíÑÇíÔ %2
-AdditionalIcons=ÔãÇíá åÇí ÇÖÇİí:
-OptionalFeatures=Optional Features:
-CreateDesktopIcon=İÑÇåã ˜ÑÏä í˜ ÔãÇíá ãíÒ˜ÇÑ
-CreateQuickLaunchIcon=İÑÇåã ˜ÑÏä ÔãÇíá Quick Launch
-ProgramOnTheWeb=%1 ÏÑ æÈ
-UninstallProgram=ÍĞİ %1
-LaunchProgram=ÈÇÒ ˜ÑÏä %1
-AssocFileExtension=æÇÈÓÊå ˜ÑÏä %1 ÈÇ ŞÇáÈ İÇíá %2
-AssocingFileExtension=ÏÑ ÍÇá æÇÈÓÊå ˜ÑÏä %1 ÈÇ ŞÇáÈ İÇíá %2...
+NameAndVersion= %1 æíÑÇíÔ %2 
+AdditionalIcons= ÔãÇíáåÇí ÇÖÇİå : 
+OptionalFeatures= æííåÇí ÇÎÊíÇÑí :
+CreateDesktopIcon= İÑÇåã ˜ÑÏä í˜ ÔãÇíá ãíÒ˜ÇÑ 
+CreateQuickLaunchIcon= İÑÇåã ˜ÑÏä ÔãÇíá ˜ÇÑ ÏÑ ˜æÆí˜ áÇä  
+ProgramOnTheWeb= %1 ÏÑ æÈ 
+UninstallProgram= ÍĞİ %1 
+LaunchProgram= ÈÇÒ ˜ÑÏä %1 
+AssocFileExtension= æÇÈÓÊå ˜ÑÏä %1 ÈÇ ŞÇáÈ İÇíá %2 
+AssocingFileExtension= ÏÑ ÍÇá æÇÈÓÊå ˜ÑÏä %1 ÈÇ ŞÇáÈ İÇíá %2 ... 
 
 ;Things we can also localize
-CompanyName=Thingamahoochie Software
+CompanyName= ÊíäÇãÇåæí ÓÇİÊæÑ 
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation= äÕÈ ãÚãæá 
+FullInstallation= äÕÈ ˜Çãá 
+CompactInstallation= äÕÈ İÔÑÏå 
+CustomInstallation= äÕÈ ÓİÇÑÔí 
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
-Plugins=Plugins
+AppCoreFiles= ÑæäÏå åÇí åÓÊå æíäãÑÌ 
+Filters= ÕÇİíåÇ 
+Plugins= æÕá ÔÏäíåÇ 
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages= ÒÈÇäåÇ 
+BulgarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÈáÛÇÑí 
+CatalanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÇÊÇáÇä 
+ChineseSimplifiedLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓÇÏå ÔÏå  
+ChineseTraditionalLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓäÊí  
+CroatianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÑæÇÊíä  
+CzechLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜æÓáæÇ˜í   
+DanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÏÇäãÇÑ˜í  
+DutchLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå åáäÏí  
+FrenchLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå İÑÇäÓæí  
+GalicianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇáíÓíä  
+GermanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÂáãÇäí  
+GreekLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íæäÇäí  
+HungarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ãÌÇÑÓÊÇäí  
+ItalianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇíÊÇáíÇíí  
+JapaneseLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Çäí  
+KoreanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜Ñå Çí  
+NorwegianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå äÑæí  
+PolishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå áåÓÊÇäí  
+PortugueseBrazilLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÈÑÒíáí / ÑÊŞÇáí   
+PortugueseLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑÊŞÇáí  
+RomanianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑæãÇäí  
+RussianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÑæÓí  
+SlovakLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáæÇ˜í  
+SlovenianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáÇæí  
+SpanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓÇäíÇíí  
+SwedishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÓæÆÏí  
+TurkishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÊÑ˜í  
+UkrainianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Ç˜ÑÇíäí  
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+ExplorerContextMenu=&E İÚÇá äãæÏä í˜ÇÑå ÓÇÒí İåÑÓÊ ÌÓÊÌæÑ ãÊä 
+IntegrateTortoiseSVN=&T í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ Óí æí ÇÓ 
+IntegrateTortoiseSVN=&o í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ ÇÓ æí Çä 
+IntegrateClearCase=&C í˜ÇÑå ÓÇÒí ÈÇ ÑÔäÇá ˜áÑ˜íÓ 
+AddToPath=&A ÇÖÇİå äãæÏä æÔå æíäãÑÌ Èå ãÓíÑåÇí ÓíÓÊã 
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe= ãÑÇ ÈÎæÇä 
+UsersGuide= ÑÇåäãÇí ˜ÇÑÈÑí 
+ViewStartMenuFolder=&V ãÔÇåÏå æÔå İåÑÓÊ ÔÑæÚ æíäãÑÌ 
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu= äÕÇÈ äÑã ÇİÒÇÑ ãÊæÌå ÔÏå ÇÓÊ ˜å ÔãÇ ãÍá İåÑÓÊ ÔÑæÚ ÑÇ ÊÛííÑ ÏÇÏå ÇíÏ ("%s" Èå"%s"). ÂíÇ ãÇíá åÓÊíÏ ˜å æÔå İåÑÓÊ ŞÈáí ÍĞİ ÔæÏ¿ 
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc= ÑæäÏå Ñæå / ØÑÍ æíäãÑÌ 
