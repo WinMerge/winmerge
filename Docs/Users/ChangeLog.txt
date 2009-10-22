@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.9
+WinMerge 2.13.9 - 2009-10-22 (r7025)
   Update PCRE to version 7.9 (r6903)
   Improve color options organization (#2818451)
   Improve character-level difference highlight accuracy (#2723613)
