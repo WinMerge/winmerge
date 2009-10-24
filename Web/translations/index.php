@@ -30,7 +30,7 @@
   
   $page->printSubHeading(__('Translating'));
   $page->printPara(__('If you would like to update any of these translations or add another translation, then please follow <a href="%s">these instructions</a>.', 'instructions.php'),
-                   __('You can find a more technical view about the <a href="%1$s">translation system</a> in our <a href=""%2$s>Development Wiki</a>.', 'http://winmerge.org/Wiki/Translation_System', 'http://winmerge.org/Wiki/'));
+                   __('You can find a more technical view about the <a href="%1$s">translation system</a> in our <a href="%2$s">Development Wiki</a>.', 'http://winmerge.org/Wiki/Translation_System', 'http://winmerge.org/Wiki/'));
 ?>
 
 <h3><a name="status"><?php __e('Status');?></a></h3>
