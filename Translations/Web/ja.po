@@ -509,8 +509,8 @@ msgstr "私たちは、以下にリストされた言語に WinMerge を翻訳�
 
 #: translations\index.php:33
 #, c-format
-msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"\"%2$s>Development Wiki</a>."
-msgstr "私たちの<a href=\"\"%2$s>開発 Wiki</a>では、<a href=\"%1$s\">翻訳システム</a>について多くの技術的な考え方を見つけることができます。"
+msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"%2$s\">Development Wiki</a>."
+msgstr "私たちの<a href=\"%2$s\">開発 Wiki</a>では、<a href=\"%1$s\">翻訳システム</a>について多くの技術的な考え方を見つけることができます。"
 
 #: translations\translations.inc:131
 #: translations\translations.inc:288

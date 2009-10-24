@@ -422,8 +422,8 @@ msgid "We currently have WinMerge translated into the languages listed below:"
 msgstr "WinMerge wordt op dit moment vertaald in de talen die hieronder weergegeven worden:"
 
 #: translations\index.php:33
-msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"\"%2$s>Development Wiki</a>."
-msgstr "U kan meer technische informatie vinden over het <a href=\"%1$s\">vertaalsysteem<a> in onze <a href=\"\"%2$s>Ontwikkelingswiki</a>."
+msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"%2$s\">Development Wiki</a>."
+msgstr "U kan meer technische informatie vinden over het <a href=\"%1$s\">vertaalsysteem<a> in onze <a href=\"%2$s\">Ontwikkelingswiki</a>."
 
 #: translations\translations.inc:131
 #: translations\translations.inc:288

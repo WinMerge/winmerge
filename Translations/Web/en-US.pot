@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org\n"
-"POT-Creation-Date: 2009-10-23 20:39+0000\n"
+"POT-Creation-Date: 2009-10-24 15:18+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -505,11 +505,6 @@ msgstr ""
 #: translations\index.php:11
 #, c-format
 msgid "We currently have WinMerge translated into the languages listed below:"
-msgstr ""
-
-#: translations\index.php:33
-#, c-format
-msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"\"%2$s>Development Wiki</a>."
 msgstr ""
 
 #: translations\translations.inc:131
@@ -1129,6 +1124,11 @@ msgstr ""
 msgid "Beta Versions"
 msgstr ""
 
+#: translations\index.php:33
+#, c-format
+msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"%2$s\">Development Wiki</a>."
+msgstr ""
+
 #: downloads\pad-file.php:76
 #, c-format
 msgid "Screenshot"
@@ -1659,6 +1659,11 @@ msgstr ""
 msgid "Other Versions"
 msgstr ""
 
+#: docs\index.php:13
+#, c-format
+msgid "The <a href=\"%s\">quick tour</a> describes the main WinMerge features in one page."
+msgstr ""
+
 #: engine\page.inc:321
 #, c-format
 msgid "Discussion Forums"
@@ -1762,11 +1767,6 @@ msgstr ""
 #: about\index.php:12
 #, c-format
 msgid "WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application."
-msgstr ""
-
-#: docs\index.php:13
-#, c-format
-msgid "The <a href=\"%s\">quick tour</a> describe the main  features from WinMerge at one page."
 msgstr ""
 
 #: engine\engine.inc:22

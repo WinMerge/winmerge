@@ -512,8 +512,8 @@ msgstr "Nous avons actuellement traduit Winmerge dans les langues listées ci-de
 
 #: translations\index.php:33
 #, c-format
-msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"\"%2$s>Development Wiki</a>."
-msgstr "Nous pouvons trouver une vue plus technique sur le <a href=\"%1$s\">système de traduction</a> dans notre <a href=\"\"%2$s>Wiki Développement</a>."
+msgid "You can find a more technical view about the <a href=\"%1$s\">translation system</a> in our <a href=\"%2$s\">Development Wiki</a>."
+msgstr "Nous pouvons trouver une vue plus technique sur le <a href=\"%1$s\">système de traduction</a> dans notre <a href=\"%2$s\">Wiki Développement</a>."
 
 #: translations\translations.inc:131
 #: translations\translations.inc:288
