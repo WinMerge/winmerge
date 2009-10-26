@@ -54,7 +54,8 @@
 
     <para>The <inlinemediaobject>
         <imageobject>
-          <imagedata contentwidth="23" fileref="screenshots/nav_uparrow_btn_tr.png" />
+          <imagedata contentwidth="23"
+                     fileref="screenshots/nav_uparrow_btn_tr.png" />
         </imageobject>
 
         <textobject>
@@ -105,26 +106,23 @@
   <section>
     <title>Comparing subfolders</title>
 
-    <para>So far we have looked at a non-recursive comparison, meaning that it
-    includes only files in the root target folders. It shows subfolders, but not
-    their contents. If you want to see the files in a subfolder, you have to
-    launch a new compare operation. For example, if double-click the
-    <filename>Common</filename> folder in the preceding comparison, WinMerge
-    opens a new File Compare window that compares the two
-    <filename>Common</filename> folders.</para>
+    <para>So far we have looked at a non-recursive comparison, which includes
+    files only in the root of the two folders you select, not any subfolders
+    that they contain. To compare their subfolders, you have to launch a new
+    compare operation. For example, in the preceding comparison, double-click
+    the <filename>Common</filename> folder icon to open a new File Compare
+    window that compares the two <filename>Common</filename> folders.</para>
 
-    <para>You can also compare folders recursively. A recursive comparison
+    <para>WinMerge can also compare folders recursively. A recursive comparison
     includes all the files in all subfolders, so you don't need to launch
-    separate compare operations to navigate nested folders. You can As you might
-    expect, a recursive comparison can can take longer than a non-recursive
-    comparison for targets with a lot of nested files, and the result can be
-    harder to read.</para>
+    separate compare operations to navigate nested folders. </para>
 
-    <para>To address these drawbacks, a handy alternative is to display the
-    results of recursive comparisons in a hierachical tree view, instead of the
-    default tabular view. In the tree view, subfolders are initially collapsed
-    for a compact, readable display, but you can expand them to see their
-    contents:</para>
+    <para>For targets with many nested folders and files, a recursive comparison
+    can can take longer than a non-recursive comparison, and the result can be
+    harder to read. In this case, consider displaying the results of recursive
+    comparisons in a hierachical tree view instead of the default tabular view.
+    Folders are initially collapsed for a compact, readable display — expand
+    just the ones whose contents you want to see:</para>
 
     <mediaobject>
       <imageobject>
@@ -140,15 +138,14 @@
   <section>
     <title>Merging folder differences</title>
 
-    <para>You merge differences in the Folder Compare window by copying one or
-    more files or folders from one side to the other, or by deleting
-    them.</para>
+    <para>Merging in the Folder Compare window involves either copying items
+    (files or folders) between folders, or deleting items.</para>
 
-    <para>For example, suppose you want to update files in two folders to the
-    most recent version. In the preceding screen shot, you can tell from the
-    asterisk that the left version of <filename>AboutDlg.h</filename> is more
-    recent. So, to merge <filename>AboutDlg.h</filename> select the row and
-    click the <inlinemediaobject>
+    <para>For example, suppose you want to synchronize two folders. In the
+    preceding screen shot, you can tell from the asterisk that the left version
+    of <filename>AboutDlg.h</filename> is more recent. So, to merge
+    <filename>AboutDlg.h</filename> select the row and click the
+    <inlinemediaobject>
         <imageobject>
           <imagedata contentwidth="17" fileref="screenshots/copyr_button_tr.png" />
         </imageobject>
