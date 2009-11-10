@@ -49,6 +49,9 @@ common/local.l10n.xml
 <xsl:param name="local.l10n.xml" select="document('')"/>
 <l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
   <l:l10n language="en">
+     <l:context name="xref">
+       <l:template name="section" text="%t"/>
+     </l:context>
     <l:context name="xref-number-and-title">
       <l:template name="section" text="%t"/>
     </l:context>
