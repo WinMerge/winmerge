@@ -6,7 +6,7 @@
   $stablerelease = $page->getStableRelease();
   $page->setDescription(__('Download the current WinMerge version %1$s, which was released at %2$s. For detailed info on what is new, read the change log and the release notes.', $stablerelease->getVersionNumber(), $stablerelease->getDate()));
   $page->setKeywords(__('WinMerge, free, download, Windows, setup, installer, binaries, runtimes, stable, beta, experimental, portable'));
-  $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', __('Project File Releases'));
+  $page->addRssFeed('http://sourceforge.net/api/file/index/project-id/13216/rss', __('Project File Releases'));
   $page->printHead(__('Download WinMerge'), TAB_DOWNLOADS, 'toggle(\'checksumslist\');');
   
   $page->printHeading(__('Download WinMerge'));
@@ -70,13 +70,13 @@
   <li><a href="http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge.html"><?php __e('Japanese WinMerge Version');?></a> (by Takashi Sawanaka)</li>
 </ul>
 <?php
-  $page->printRssSubHeading(__('Project File Releases'), 'http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
+  $page->printRssSubHeading(__('Project File Releases'), 'http://sourceforge.net/api/file/index/project-id/13216/rss');
   $feed = new SimplePie();
-  $feed->set_feed_url('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216');
+  $feed->set_feed_url('http://sourceforge.net/api/file/index/project-id/13216/rss');
   $feed->set_cache_location('../engine/simplepie/cache');
   $feed->init();
   print("<ul class=\"rssfeeditems\">\n");
-  foreach ($feed->get_items(0, 5) as $item) { //for the last 5 file releases...
+  foreach ($feed->get_items(0, 10) as $item) { //for the last 10 file releases...
     $title = $item->get_title();
     $title = preg_replace('#(\([A-Z][a-z][a-z],.*GMT\))#si', '', $title);
     $title = str_replace('1. Stable versions', 'Stable version', $title);
