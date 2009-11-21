@@ -396,10 +396,10 @@
         $languages = $translations->getLanguages();
         foreach ($languages as $language) { //for all languages...
           if ($translations->isActiveLanguage($language)) { //if current language...
-            $temp .= "  <li><strong><a href=\"" . $translations->getLink($language, true) . "\">" . __($language->getName()) . "</a></strong></li>\n";
+            $temp .= "  <li><strong><a href=\"" . $translations->getLink($language, true) . "\" hreflang=\"" . $language->getId() . "\">" . __($language->getName()) . "</a></strong></li>\n";
           }
           else { //if NOT current language...
-            $temp .= "  <li><a href=\"" . $translations->getLink($language, true) . "\">" . __($language->getName()) . "</a></li>\n";
+            $temp .= "  <li><a href=\"" . $translations->getLink($language, true) . "\" hreflang=\"" . $language->getId() . "\">" . __($language->getName()) . "</a></li>\n";
           }
         }
         $temp .= "</ul>\n";
