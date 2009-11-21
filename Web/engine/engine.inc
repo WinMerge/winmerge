@@ -53,4 +53,9 @@
       echo $translations->translate($text);
     }
   }
+
+  if (!$translations->isValidLanguageId()) { //if NOT a valid language ID...
+    include('../404.php');
+    exit();
+  }
 ?>

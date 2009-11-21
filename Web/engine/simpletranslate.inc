@@ -13,11 +13,41 @@
    * ...
    */
   class SimpleTranslate {
+    /**
+     * URL parameter
+     * @var string
+     * @access private
+     */
     var $_urlparameter;
+    /**
+     * Force URL parameter?
+     * @var bool
+     * @access private
+     */
     var $_forceurlparameter;
+    /**
+     * Languages
+     * @var array
+     * @access private
+     */
     var $_languages;
+    /**
+     * ...
+     * @var string
+     * @access private
+     */
     var $_baselanguageid;
+    /**
+     * ...
+     * @var string
+     * @access private
+     */
     var $_activelanguageid;
+    /**
+     * Translations
+     * @var array
+     * @access private
+     */
     var $_translations;
 
     /**
@@ -34,6 +64,7 @@
 
     /**
      * get the URL parameter...
+     * @return string URL parameter
      */
     function getUrlParameter() {
       return $this->_urlparameter;
@@ -41,6 +72,7 @@
 
     /**
      * set the URL parameter...
+     * @param string $urlparameter URL parameter
      */
     function setUrlParameter($urlparameter) {
       $this->_urlparameter = $urlparameter;
@@ -48,6 +80,10 @@
 
     /**
      * append URL parameter to link...
+     * @param string $link Link
+     * @param string $urlparameter URL parameter
+     * @param string $id Language ID
+     * @return string Link with URL parameter
      */
     function appendUrlParameter($link, $urlparameter, $id = '') {
       $urlparts = parse_url($link);
@@ -110,6 +146,7 @@
 
     /**
      * get forcing of the URL parameter...
+     * @return bool Force URL parameter?
      */
     function getForceUrlParameter() {
       return $this->_forceurlparameter;
@@ -117,6 +154,7 @@
 
     /**
      * set forcing of the URL parameter...
+     * @param bool $force Force URL parameter?
      */
     function setForceUrlParameter($force) {
       $this->_forceurlparameter = $force;
@@ -124,6 +162,9 @@
 
     /**
      * add a language...
+     * @param string $id Language ID
+     * @param string $name Language name
+     * @param string $pofile PO file
      */
     function addLanguage($id, $name, $pofile = '') {
       $id = strtolower($id);
@@ -139,11 +180,22 @@
     }
 
     /**
+     * exists the language?
+     * @param string $id Language ID (in lower case)
+     * @return bool Exists?
+     */
+    function existsLanguage($id) {
+      return array_key_exists($id, $this->_languages);
+    }
+
+    /**
      * get the language...
+     * @param string $id Language ID
+     * @return object Language
      */
     function getLanguage($id) {
       $id = strtolower($id);
-      if (array_key_exists($id, $this->_languages)) { //if the language exists...
+      if ($this->existsLanguage($id)) { //if the language exists...
         return $this->_languages[$id];
       }
       return null;
@@ -151,6 +203,7 @@
 
     /**
      * get the languages...
+     * @return array Languages
      */
     function getLanguages() {
       return $this->_languages;
@@ -158,6 +211,7 @@
 
     /**
      * get the languages count...
+     * @return int Languages count
      */
     function getLanguagesCount() {
       return count($this->_languages);
@@ -165,6 +219,7 @@
 
     /**
      * get the base language ID...
+     * @return string Base language ID
      */
     function getBaseLanguageId() {
       return $this->_baselanguageid;
@@ -172,6 +227,7 @@
 
     /**
      * get the base language...
+     * @return object Base language
      */
     function getBaseLanguage() {
       return $this->_languages[$this->_baselanguageid];
@@ -179,6 +235,8 @@
 
     /**
      * check if the language is the base language...
+     * @param object $language Language
+     * @return bool Is base language?
      */
     function isBaseLanguage($language = null) {
       if (isset($language)) { //if language committed...
@@ -196,6 +254,7 @@
 
     /**
      * get the active language ID...
+     * @return string Active language ID
      */
     function getActiveLanguageId() {
       if ($this->_activelanguageid != '') {
@@ -206,6 +265,7 @@
 
     /**
      * get the active language...
+     * @return object Active language
      */
     function getActiveLanguage() {
       if ($this->_activelanguageid != '') {
@@ -216,12 +276,14 @@
 
     /**
      * set the active language...
+     * @param string $id Language ID
+     * @return bool Successful?
      */
-    function setActiveLanguage($activelanguage) {
-      $activelanguage = strtolower($activelanguage);
-      if (array_key_exists($activelanguage, $this->_languages)) { //if the language exists...
-        $this->_activelanguageid = $activelanguage;
-        $language = $this->_languages[$activelanguage];
+    function setActiveLanguage($id) {
+      $id = strtolower($id);
+      if ($this->existsLanguage($id)) { //if the language exists...
+        $this->_activelanguageid = $id;
+        $language = $this->_languages[$id];
         $this->_translations = $language->getTranslations();
         return true;
       }
@@ -230,6 +292,8 @@
 
     /**
      * check if the language is the active language...
+     * @param object $language Language
+     * @return bool Is active language?
      */
     function isActiveLanguage($language) {
       if ($language == $this->getActiveLanguage()) { //if active language...
@@ -239,7 +303,28 @@
     }
 
     /**
+     * check if the language ID is valid...
+     * @param string $id Language ID
+     * @return bool Is valid language ID?
+     */
+    function isValidLanguageId($id = null) {
+      if (isset($id)) { //if language ID committed...
+        if (!empty($id)) { //if language ID NOT empty...
+          return $this->existsLanguage(strtolower($id));
+        }
+        return false;
+      }
+      else { //if language ID NOT committed...
+        if (isset($_GET[$this->_urlparameter])) {
+          return $this->existsLanguage(strtolower($_GET[$this->_urlparameter]));
+        }
+        return true;
+      }
+    }
+
+    /**
      * detect the language from the url...
+     * @return bool Detected?
      */
     function detectLanguageFromUrl() {
       if (isset($_GET[$this->_urlparameter])) {
@@ -250,6 +335,7 @@
 
     /**
      * detect the language from the browser...
+     * @return bool Detected?
      */
     function detectLanguageFromBrowser() {
       if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
@@ -258,7 +344,7 @@
           $tmp = split(';', $accepted_language);
           
           $lang_id = strtolower($tmp[0]);
-          if (array_key_exists($lang_id, $this->_languages)) { //if the language exists...
+          if ($this->existsLanguage($lang_id)) { //if the language exists...
             $this->_activelanguageid = $lang_id;
             $language = $this->_languages[$lang_id];
             $this->_translations = $language->getTranslations();
@@ -271,6 +357,8 @@
 
     /**
      * prepare link...
+     * @param string $link Link
+     * @return string Prepared link
      */
     function prepareLink($link) {
       $activelanguage = $this->getActiveLanguage();
@@ -284,6 +372,9 @@
 
     /**
      * get the language link...
+     * @param object $language Language
+     * @param bool $forceurlparameter Force URL parameter?
+     * @return string Language link
      */
     function getLink($language = null, $forceurlparameter = null) {
       $phpself = str_replace('index.php', '', $_SERVER['PHP_SELF']);
@@ -301,6 +392,8 @@
 
     /**
      * translate a text...
+     * @param string $text Untranslated text
+     * @return string Translated text
      */
     function translate($text) {
       $text = str_replace("\r", '', $text);
@@ -319,12 +412,30 @@
    * ...
    */
   class SimpleTranslateLanguage {
+    /**
+     * ID
+     * @var string
+     * @access private
+     */
     var $_id;
+    /**
+     * Name
+     * @var string
+     * @access private
+     */
     var $_name;
+    /**
+     * PO file
+     * @var string
+     * @access private
+     */
     var $_pofile;
 
     /**
      * Constructor
+     * @param string $id ID
+     * @param string $name Name
+     * @param string $pofile PO file
      */
     function SimpleTranslateLanguage($id, $name, $pofile) {
       $this->_id = $id;
@@ -334,6 +445,7 @@
 
     /**
      * get the language id...
+     * @return string ID
      */
     function getId() {
       return $this->_id;
@@ -341,6 +453,7 @@
 
     /**
      * get the language name...
+     * @return string Name
      */
     function getName() {
       return $this->_name;
@@ -348,6 +461,7 @@
 
     /**
      * get the language PO file...
+     * @return string PO file
      */
     function getPoFile() {
       return $this->_pofile;
@@ -355,6 +469,7 @@
 
     /**
      * get the translations array...
+     * @return array Translations
      */
     function getTranslations() {
       $translations = array();
@@ -416,6 +531,8 @@
 
     /**
      * Constructor
+     * @param string $id ID
+     * @param string $name Name
      */
     function SimpleTranslateBaseLanguage($id, $name) {
       $this->_id = $id;
@@ -425,6 +542,7 @@
 
     /**
      * get the translations array...
+     * @return array Translations
      */
     function getTranslations() {
       return array();
