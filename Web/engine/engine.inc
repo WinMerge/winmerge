@@ -55,7 +55,7 @@
   }
 
   if (!$translations->isValidLanguageId()) { //if NOT a valid language ID...
-    include('../404.php');
-    exit();
+    header('HTTP/1.1 404 Not Found');
+    header('Status: 404 Not Found');
   }
 ?>
