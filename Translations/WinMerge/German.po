@@ -812,7 +812,7 @@ msgstr "Ausschnitte &fixieren"
 #: Merge.rc:408
 #, c-format
 msgid "&View Whitespace"
-msgstr "Leer&zeichen anzeigen"
+msgstr "&Leerzeichen anzeigen"
 
 #: Merge.rc:409
 #, c-format
@@ -1446,7 +1446,7 @@ msgstr "&Auswahl"
 #: Merge.rc:861
 #, c-format
 msgid "Wh&ole file"
-msgstr "&ganzer Datei"
+msgstr "ganzer &Datei"
 
 #: Merge.rc:864
 #, c-format

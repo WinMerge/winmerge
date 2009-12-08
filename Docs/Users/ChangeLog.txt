@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.10
   Bugfix: New Persian translation don't work (#2884856)
+  Bugfix: German shortcut key conflict resolution (#2894257)
 
 WinMerge 2.13.9 - 2009-10-22 (r7025)
   Update PCRE to version 7.9 (r6903)
