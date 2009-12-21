@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.10
+  Visual Studio project files upgraded to VS2005 format (r7045)
   Bugfix: New Persian translation don't work (#2884856)
   Bugfix: German shortcut key conflict resolution (#2894257)
 
