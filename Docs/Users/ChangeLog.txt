@@ -7,6 +7,7 @@ WinMerge 2.13.10
   Visual Studio project files upgraded to VS2005 format (r7045)
   Bugfix: New Persian translation don't work (#2884856)
   Bugfix: German shortcut key conflict resolution (#2894257)
+  Bugfix: More details to in-line difference highlighting (#2876480)
 
 WinMerge 2.13.9 - 2009-10-22 (r7025)
   Update PCRE to version 7.9 (r6903)
