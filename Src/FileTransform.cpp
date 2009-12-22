@@ -137,6 +137,9 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName.c_str());
 	if (plugin == NULL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName.c_str());
+	if (plugin == NULL)
+		return FALSE;
+
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler->bWithFile)
 	{
