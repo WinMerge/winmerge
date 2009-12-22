@@ -456,7 +456,6 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 
 	// get optional property PluginDescription
 	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
 	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BSTR)
