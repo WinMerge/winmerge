@@ -157,7 +157,7 @@ void CMergeDoc::AdjustDiffBlocks()
  * The cost of making them equal is the measure of their dissimilarity
  * which is their Levenshtein distance.
  */
-int CMergeDoc::GetMatchCost(const CString &sLine0, const CString &sLine1)
+int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 {
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
@@ -169,7 +169,7 @@ int CMergeDoc::GetMatchCost(const CString &sLine0, const CString &sLine1)
 	bool byteColoring = GetByteColoringOption();
 
 	vector<wdiff*> worddiffs;
-	sd_ComputeWordDiffs((LPCTSTR)sLine0, (LPCTSTR)sLine1, casitive, xwhite, breakType, byteColoring, &worddiffs);
+	sd_ComputeWordDiffs(sLine0, sLine1, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	int nDiffLenSum = 0, nDiffLen0, nDiffLen1;
 	int i;
@@ -260,7 +260,7 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 		for (int j=lo1; j<=hi1; ++j)
 		{
 			m_ptBuf[1]->GetLine(offset1 + j, sLine1);
-			int savings = GetMatchCost(sLine0, sLine1);
+			int savings = GetMatchCost((LPCTSTR)sLine0, (LPCTSTR)sLine1);
 			// TODO
 			// Need to penalize assignments that push us outside the box
 			// further than is required

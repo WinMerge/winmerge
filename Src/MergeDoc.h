@@ -283,7 +283,7 @@ private:
 	void PrimeTextBuffers();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
-	int GetMatchCost(const CString &Line0, const CString &Line1);
+	int GetMatchCost(const String &Line0, const String &Line1);
 	void FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
 		CDiffTextBuffer * pBuffer2);
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
