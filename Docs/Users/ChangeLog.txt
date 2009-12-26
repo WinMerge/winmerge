@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.3.11
   Bugfix: Plugin error after interrupting folder compare (#2919475)
+  Bugfix: GUI Word Wrap missing text (#2921400, #2894033)
 
 WinMerge 2.13.10 2009-12-21 (r7051)
   Visual Studio project files upgraded to VS2005 format (r7045)

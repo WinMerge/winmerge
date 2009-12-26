@@ -15,6 +15,7 @@
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
 #include "stringdiffs.h"
+#include "UnicodeString.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -193,8 +194,8 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	CString str1(pView1->GetLineChars(line), pView1->GetFullLineLength(line));
-	CString str2(pView2->GetLineChars(line), pView2->GetFullLineLength(line));
+	String str1(pView1->GetLineChars(line), pView1->GetFullLineLength(line));
+	String str2(pView2->GetLineChars(line), pView2->GetFullLineLength(line));
 
 	/* Commented out code because GetLineActualLength is buggy
 	// Chop of eol (end of line) characters
@@ -203,16 +204,16 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	int len2 = pView2->GetLineActualLength(line);
 	str2 = str2.Left(len2);
 	*/
-	i1 = str1.GetLength() - 1;
+	i1 = str1.length() - 1;
 	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
 		--i1;
-	if (i1 + 1 < str1.GetLength())
-		str1 = str1.Left(i1 + 1);
-	i2 = str2.GetLength() - 1;
-	while (i2 >= 0 && (str2[i2] == '\r' || str2[i2] == '\n'))
+	if (i1 + 1 < str1.length())
+		str1.resize(i1 + 1);
+	i2 = str2.length() - 1;
+	while (i2 >= 0 && (str2[i2]=='\r' || str2[i2]=='\n'))
 		--i2;
-	if (i2+1 < str2.GetLength())
-		str2 = str2.Left(i2 + 1);
+	if (i2+1 < str2.length())
+		str2.resize(i2 + 1);
 
 	// We truncate diffs to remain inside line (ie, to not flag eol characters)
 	int width1 = pView1->GetLineLength(line);
@@ -225,7 +226,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	vector<wdiff*> worddiffs;
 	bool breakType = GetBreakType();
-	sd_ComputeWordDiffs((LPCTSTR)str1, (LPCTSTR)str2, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
+	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
 	//Add a diff in case of EOL difference
 	if (!diffOptions.bIgnoreEol)
 	{
@@ -335,8 +336,8 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	CString str1(m_pView[0]->GetLineChars(nLineIndex), m_pView[0]->GetFullLineLength(nLineIndex));
-	CString str2(m_pView[1]->GetLineChars(nLineIndex), m_pView[1]->GetFullLineLength(nLineIndex));
+	String str1(m_pView[0]->GetLineChars(nLineIndex), m_pView[0]->GetFullLineLength(nLineIndex));
+	String str2(m_pView[1]->GetLineChars(nLineIndex), m_pView[1]->GetFullLineLength(nLineIndex));
 
 	/* Commented out code because GetLineActualLength is buggy
 	// Chop of eol (end of line) characters
@@ -345,16 +346,16 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	int len2 = pView2->GetLineActualLength(line);
 	str2 = str2.Left(len2);
 	*/
-	i1 = str1.GetLength() - 1;
+	i1 = str1.length() - 1;
 	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
 		--i1;
-	if (i1 + 1 < str1.GetLength())
-		str1 = str1.Left(i1 + 1);
-	i2 = str2.GetLength() - 1;
+	if (i1 + 1 < str1.length())
+		str1.resize(i1 + 1);
+	i2 = str2.length() - 1;
 	while (i2 >= 0 && (str2[i2]=='\r' || str2[i2]=='\n'))
 		--i2;
-	if (i2+1 < str2.GetLength())
-		str2 = str2.Left(i2 + 1);
+	if (i2+1 < str2.length())
+		str2.resize(i2 + 1);
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
@@ -363,7 +364,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	bool byteColoring = GetByteColoringOption();
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	sd_ComputeWordDiffs((LPCTSTR)str1, (LPCTSTR)str2, casitive, xwhite, breakType, byteColoring, pworddiffs);
+	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, byteColoring, pworddiffs);
 	//Add a diff in case of EOL difference
 	if (!diffOptions.bIgnoreEol)
 	{
