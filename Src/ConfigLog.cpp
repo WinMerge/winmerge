@@ -23,12 +23,10 @@
 // $Id$
 
 #include "StdAfx.h"
-#ifndef UNICODE
-#include <mbctype.h>
-#endif
 #include "Constants.h"
 #include "version.h"
 #include "dllver.h"
+#include "UniFile.h"
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
 #include "winnt_supp.h"
@@ -48,11 +46,13 @@ static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * 
 CConfigLog::CConfigLog()
 : m_pCfgSettings(NULL)
 {
+	m_pfile = new UniStdioFile();
 }
 
 CConfigLog::~CConfigLog()
 {
 	CloseFile();
+	delete m_pfile;
 }
 
 
@@ -68,10 +68,11 @@ CString CConfigLog::GetFileName() const
 /** 
  * @brief Write plugin names
  */
-void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file)
+void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 {
 	// do nothing if actually reading config file
-	if (file.m_hFile == CFile::hFileNull) return;
+	if (!m_writing)
+		return;
 
 	// get an array with the available scripts
 	PluginArray * piPluginArray; 
@@ -83,11 +84,11 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile &
 	for (iPlugin = 0 ; iPlugin < piPluginArray->GetSize() ; iPlugin++)
 	{
 		PluginInfo & plugin = piPluginArray->ElementAt(iPlugin);
-		file.WriteString(_T("\n  "));
-		file.WriteString(plugin.m_name.c_str());
-		file.WriteString(_T(" ["));
-		file.WriteString(plugin.m_filepath.c_str());
-		file.WriteString(_T("]"));
+		m_pfile->WriteString(_T("\r\n  "));
+		m_pfile->WriteString(plugin.m_name.c_str());
+		m_pfile->WriteString(_T(" ["));
+		m_pfile->WriteString(plugin.m_filepath.c_str());
+		m_pfile->WriteString(_T("]"));
 	}
 }
 
@@ -135,27 +136,29 @@ static CString FontCharsetName(BYTE charset)
 /**
  * @brief Write string item
  */
-static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, LPCTSTR value = 0)
+void CConfigLog::WriteItem(int indent, LPCTSTR key, LPCTSTR value)
 {
 	// do nothing if actually reading config file
-	if (file.m_hFile == CFile::hFileNull) return;
+	if (!m_writing)
+		return;
 
 	CString text;
-	text.Format(value ? _T("%*.0s%s: %s\n") : _T("%*.0s%s:\n"), indent, key, key, value);
-	file.WriteString(text);
+	text.Format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key, key, value);
+	m_pfile->WriteString((LPCTSTR)text);
 }
 
 /**
  * @brief Write int item
  */
-static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
+void CConfigLog::WriteItem(int indent, LPCTSTR key, long value)
 {
 	// do nothing if actually reading config file
-	if (file.m_hFile == CFile::hFileNull) return;
+	if (!m_writing)
+		return;
 
 	CString text;
-	text.Format(_T("%*.0s%s: %ld\n"), indent, key, key, value);
-	file.WriteString(text);
+	text.Format(_T("%*.0s%s: %ld\r\n"), indent, key, key, value);
+	m_pfile->WriteString((LPCTSTR)text);
 }
 
 /**
@@ -166,8 +169,8 @@ void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 	if (m_writing)
 	{
 		CString text;
-		text.Format(_T("%*.0s%s: %s\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
-		m_file.WriteString(text);
+		text.Format(_T("%*.0s%s: %s\r\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
+		m_pfile->WriteString((LPCTSTR)text);
 	}
 	else
 	{
@@ -198,27 +201,29 @@ void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue)
 /**
  * @brief Write out various possibly relevant windows locale information
  */
-static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
+void CConfigLog::WriteLocaleSettings(LCID locid, LPCTSTR title)
 {
 	// do nothing if actually reading config file
-	if (file.m_hFile == CFile::hFileNull) return;
+	if (!m_writing)
+		return;
 
-	WriteItem(file, 1, title);
-	WriteItem(file, 2, _T("Def ANSI codepage"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE));
-	WriteItem(file, 2, _T("Def OEM codepage"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE));
-	WriteItem(file, 2, _T("Country"), GetLocaleString(locid, LOCALE_SENGCOUNTRY));
-	WriteItem(file, 2, _T("Language"), GetLocaleString(locid, LOCALE_SENGLANGUAGE));
-	WriteItem(file, 2, _T("Language code"), GetLocaleString(locid, LOCALE_ILANGUAGE));
-	WriteItem(file, 2, _T("ISO Language code"), GetLocaleString(locid, LOCALE_SISO639LANGNAME));
+	WriteItem(1, title);
+	WriteItem(2, _T("Def ANSI codepage"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE));
+	WriteItem(2, _T("Def OEM codepage"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE));
+	WriteItem(2, _T("Country"), GetLocaleString(locid, LOCALE_SENGCOUNTRY));
+	WriteItem(2, _T("Language"), GetLocaleString(locid, LOCALE_SENGLANGUAGE));
+	WriteItem(2, _T("Language code"), GetLocaleString(locid, LOCALE_ILANGUAGE));
+	WriteItem(2, _T("ISO Language code"), GetLocaleString(locid, LOCALE_SISO639LANGNAME));
 }
 
 /**
  * @brief Write version of a single executable file
  */
-static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
+void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 {
-	// do nothing if actually reading config file
-	if (file.m_hFile == CFile::hFileNull) return;
+	// Do nothing if actually reading config file
+	if (!m_writing)
+		return;
 
 	LPTSTR name = PathFindFileName(path);
 	CVersionInfo vi(path, TRUE);
@@ -226,8 +231,8 @@ static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
 	text.Format
 	(
 		name == path
-	?	_T("%*s%-20s %s=%u.%02u %s=%04u\n")
-	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\n"),
+	?	_T("%*s%-20s %s=%u.%02u %s=%04u\r\n")
+	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\r\n"),
 		indent,
 		// Tilde prefix for modules currently mapped into WinMerge
 		GetModuleHandle(path) ? _T("~") : _T("")/*name*/,
@@ -243,13 +248,13 @@ static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
 		vi.m_dvi.dwBuildNumber,
 		path
 	);
-	file.WriteString(text);
+	m_pfile->WriteString((LPCTSTR)text);
 }
 
 /**
  * @brief Write version of a set of executable files
  */
-static void WriteVersionOf(CStdioFile &file, int indent, LPTSTR path)
+void CConfigLog::WriteVersionOf(int indent, LPTSTR path)
 {
 	LPTSTR name = PathFindFileName(path);
 	WIN32_FIND_DATA ff;
@@ -259,7 +264,7 @@ static void WriteVersionOf(CStdioFile &file, int indent, LPTSTR path)
 		do
 		{
 			lstrcpy(name, ff.cFileName);
-			WriteVersionOf1(file, indent, path);
+			WriteVersionOf1(indent, path);
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}
@@ -268,23 +273,23 @@ static void WriteVersionOf(CStdioFile &file, int indent, LPTSTR path)
 /**
  * @brief Write version of 7-Zip plugins and shell context menu handler
  */
-static void WriteVersionOf7z(CStdioFile &file, LPTSTR path)
+void CConfigLog::WriteVersionOf7z(LPTSTR path)
 {
 	lstrcat(path, _T("\\7-zip*.dll"));
 	LPTSTR pattern = PathFindFileName(path);
-	WriteVersionOf(file, 2, path);
-	WriteItem(file, 2, _T("Codecs"));
+	WriteVersionOf(2, path);
+	WriteItem(2, _T("Codecs"));
 	lstrcpy(pattern, _T("codecs\\*.dll"));
-	WriteVersionOf(file, 3, path);
-	WriteItem(file, 2, _T("Formats"));
+	WriteVersionOf(3, path);
+	WriteItem(2, _T("Formats"));
 	lstrcpy(pattern, _T("formats\\*.dll"));
-	WriteVersionOf(file, 3, path);
+	WriteVersionOf(3, path);
 }
 
 /**
  * @brief Write archive support stuff
  */
-static void WriteArchiveSupport(CStdioFile &file)
+void CConfigLog::WriteArchiveSupport()
 {
 	DWORD registered = VersionOf7z(FALSE);
 	DWORD standalone = VersionOf7z(TRUE);
@@ -292,27 +297,27 @@ static void WriteArchiveSupport(CStdioFile &file)
 	DWORD type = 0;
 	DWORD size = sizeof path;
 
-	WriteItem(file, 0, _T("Archive support"));
-	WriteItem(file, 1, _T("Enable"),
+	WriteItem(0, _T("Archive support"));
+	WriteItem(1, _T("Enable"),
 		AfxGetApp()->GetProfileInt(_T("Merge7z"), _T("Enable"), 0));
 
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(registered), UINT LOWORD(registered));
-	WriteItem(file, 1, _T("7-Zip software installed on your computer"), path);
+	WriteItem(1, _T("7-Zip software installed on your computer"), path);
 	static const TCHAR szSubKey[] = _T("Software\\7-Zip");
 	static const TCHAR szValue[] = _T("Path");
 	SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
-	WriteVersionOf7z(file, path);
+	WriteVersionOf7z(path);
 
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(standalone), UINT LOWORD(standalone));
-	WriteItem(file, 1, _T("7-Zip components for standalone operation"), path);
+	WriteItem(1, _T("7-Zip components for standalone operation"), path);
 	GetModuleFileName(0, path, countof(path));
 	LPTSTR pattern = PathFindFileName(path);
 	PathRemoveFileSpec(path);
-	WriteVersionOf7z(file, path);
+	WriteVersionOf7z(path);
 
-	WriteItem(file, 1, _T("Merge7z plugins on path"));
+	WriteItem(1, _T("Merge7z plugins on path"));
 	lstrcpy(pattern, _T("Merge7z*.dll"));
-	WriteVersionOf(file, 2, path);
+	WriteVersionOf(2, path);
 	// now see what's on the path:
 	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
 	{
@@ -327,7 +332,7 @@ static void WriteArchiveSupport(CStdioFile &file)
 				CopyMemory(path, pchItem, cchItem*sizeof*pchItem);
 				path[cchItem] = 0;
 				PathAppend(path, _T("Merge7z*.dll"));
-				WriteVersionOf(file, 2, path);
+				WriteVersionOf(2, path);
 			}
 			pchItem += cchItem;
 		}
@@ -356,7 +361,7 @@ WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 			if (*pvalue == namemap[i].ival)
 				text = namemap[i].sval;
 		}
-		WriteItem(m_file, indent, key, text);
+		WriteItem(indent, key, text);
 	}
 	else
 	{
@@ -376,7 +381,6 @@ WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
  */
 bool CConfigLog::DoFile(bool writing, CString &sError)
 {
-	CFileException e;
 	CVersionInfo version;
 	CString text;
 
@@ -389,26 +393,33 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 		sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 		m_sFileName = sFileName.c_str();
 
-		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite, &e))
+#ifdef _UNICODE
+		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+#else
+		if (!m_pfile->OpenCreate(m_sFileName))
+#endif
 		{
-			TCHAR szError[1024];
-			e.GetErrorMessage(szError, 1024);
-			sError = szError;
+			const UniFile::UniError &err = m_pfile->GetLastUniError();
+			sError = err.GetError().c_str();
 			return false;
 		}
+#ifdef _UNICODE
+		m_pfile->SetBom(true);
+		m_pfile->WriteBom();
+#endif
 	}
 
 // Begin log
-	FileWriteString(_T("WinMerge configuration log\n"));
-	FileWriteString(_T("--------------------------\n"));
+	FileWriteString(_T("WinMerge configuration log\r\n"));
+	FileWriteString(_T("--------------------------\r\n"));
 	FileWriteString(_T("Saved to: "));
 	FileWriteString(m_sFileName);
-	FileWriteString(_T("\n* Please add this information (or attach this file)\n"));
-	FileWriteString(_T("* when reporting bugs.\n"));
-	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\n"));
+	FileWriteString(_T("\r\n* Please add this information (or attach this file)\r\n"));
+	FileWriteString(_T("* when reporting bugs.\r\n"));
+	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\r\n"));
 
 // Platform stuff
-	FileWriteString(_T("\n\nVersion information:\n"));
+	FileWriteString(_T("\r\n\r\nVersion information:\r\n"));
 	FileWriteString(_T(" WinMerge.exe: "));
 	FileWriteString(version.GetFixedProductVersion().c_str());
 
@@ -420,7 +431,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	}
 
 	text = GetBuildFlags();
-	FileWriteString(_T("\n Build config: "));
+	FileWriteString(_T("\r\n Build config: "));
 	FileWriteString(text);
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
@@ -448,24 +459,24 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 		szCmdLine = _T(" none");
 	}
 
-	FileWriteString(_T("\n Command Line: "));
+	FileWriteString(_T("\r\n Command Line: "));
 	FileWriteString(szCmdLine);
 
-	FileWriteString(_T("\n Windows: "));
+	FileWriteString(_T("\r\n Windows: "));
 	text = GetWindowsVer();
 	FileWriteString(text);
 
-	FileWriteString(_T("\n"));
-	WriteVersionOf1(m_file, 1, _T("COMCTL32.dll"));
-	WriteVersionOf1(m_file, 1, _T("shlwapi.dll"));
-	WriteVersionOf1(m_file, 1, _T("MergeLang.dll"));
-	WriteVersionOf1(m_file, 1, _T("ShellExtension.dll"));
-	WriteVersionOf1(m_file, 1, _T("ShellExtensionU.dll"));
-	WriteVersionOf1(m_file, 1, _T("ShellExtensionX64.dll"));
+	FileWriteString(_T("\r\n"));
+	WriteVersionOf1(1, _T("COMCTL32.dll"));
+	WriteVersionOf1(1, _T("shlwapi.dll"));
+	WriteVersionOf1(1, _T("MergeLang.dll"));
+	WriteVersionOf1(1, _T("ShellExtension.dll"));
+	WriteVersionOf1(1, _T("ShellExtensionU.dll"));
+	WriteVersionOf1(1, _T("ShellExtensionX64.dll"));
 
 // WinMerge settings
-	FileWriteString(_T("\nWinMerge configuration:\n"));
-	FileWriteString(_T(" Compare settings:\n"));
+	FileWriteString(_T("\r\nWinMerge configuration:\r\n"));
+	FileWriteString(_T(" Compare settings:\r\n"));
 
 	WriteItemYesNo(2, _T("Ignore blank lines"), &m_diffOptions.bIgnoreBlankLines);
 	WriteItemYesNo(2, _T("Ignore case"), &m_diffOptions.bIgnoreCase);
@@ -474,16 +485,16 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemWhitespace(2, _T("Whitespace compare"), &m_diffOptions.nIgnoreWhitespace);
 
 	WriteItemYesNo(2, _T("Detect moved blocks"), &m_miscSettings.bMovedBlocks);
-	WriteItem(m_file, 2, _T("Compare method"), m_compareSettings.nCompareMethod);
+	WriteItem(2, _T("Compare method"), m_compareSettings.nCompareMethod);
 	WriteItemYesNo(2, _T("Stop after first diff"), &m_compareSettings.bStopAfterFirst);
 
-	FileWriteString(_T("\n Other settings:\n"));
+	FileWriteString(_T("\r\n Other settings:\r\n"));
 	WriteItemYesNo(2, _T("Automatic rescan"), &m_miscSettings.bAutomaticRescan);
 	WriteItemYesNoInverted(2, _T("Simple EOL"), &m_miscSettings.bAllowMixedEol);
 	WriteItemYesNo(2, _T("Automatic scroll to 1st difference"), &m_miscSettings.bScrollToFirst);
 	WriteItemYesNo(2, _T("Backup original file"), &m_miscSettings.bBackup);
 
-	FileWriteString(_T("\n Folder compare:\n"));
+	FileWriteString(_T("\r\n Folder compare:\r\n"));
 	WriteItemYesNo(2, _T("Identical files"), &m_viewSettings.bShowIdent);
 	WriteItemYesNo(2, _T("Different files"), &m_viewSettings.bShowDiff);
 	WriteItemYesNo(2, _T("Left Unique files"), &m_viewSettings.bShowUniqueLeft);
@@ -492,57 +503,57 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
 	WriteItemYesNo(2, _T("Tree-mode enabled"), &m_viewSettings.bTreeView);
 
-	FileWriteString(_T("\n File compare:\n"));
+	FileWriteString(_T("\r\n File compare:\r\n"));
 	WriteItemYesNo(2, _T("Preserve filetimes"), &m_miscSettings.bPreserveFiletimes);
 	WriteItemYesNo(2, _T("Match similar lines"), &m_miscSettings.bMatchSimilarLines);
 
-	FileWriteString(_T("\n Editor settings:\n"));
+	FileWriteString(_T("\r\n Editor settings:\r\n"));
 	WriteItemYesNo(2, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
 	WriteItemYesNo(2, _T("Merge Mode enabled"), &m_miscSettings.bMergeMode);
 	WriteItemYesNo(2, _T("Show linenumbers"), &m_miscSettings.bShowLinenumbers);
 	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
 	WriteItemYesNo(2, _T("Syntax Highlight"), &m_miscSettings.bSyntaxHighlight);
-	WriteItem(m_file, 2, _T("Tab size"), m_miscSettings.nTabSize);
+	WriteItem(2, _T("Tab size"), m_miscSettings.nTabSize);
 	WriteItemYesNoInverted(2, _T("Insert tabs"), &m_miscSettings.nInsertTabs);
 	
 // Font settings
-	FileWriteString(_T("\n Font:\n"));
-	FileWriteString(Fmt(_T("  Font facename: %s\n"), m_fontSettings.sFacename));
-	FileWriteString(Fmt(_T("  Font charset: %d (%s)\n"), m_fontSettings.nCharset, 
+	FileWriteString(_T("\r\n Font:\r\n"));
+	FileWriteString(Fmt(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename));
+	FileWriteString(Fmt(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
 		FontCharsetName(m_fontSettings.nCharset)));
 
 // System settings
-	FileWriteString(_T("\nSystem settings:\n"));
-	FileWriteString(_T(" codepage settings:\n"));
-	WriteItem(m_file, 2, _T("ANSI codepage"), GetACP());
-	WriteItem(m_file, 2, _T("OEM codepage"), GetOEMCP());
+	FileWriteString(_T("\r\nSystem settings:\r\n"));
+	FileWriteString(_T(" codepage settings:\r\n"));
+	WriteItem(2, _T("ANSI codepage"), GetACP());
+	WriteItem(2, _T("OEM codepage"), GetOEMCP());
 #ifndef UNICODE
-	WriteItem(m_file, 2, _T("multibyte codepage"), _getmbcp());
+	WriteItem(2, _T("multibyte codepage"), _getmbcp());
 #endif
-	WriteLocaleSettings(m_file, GetThreadLocale(), _T("Locale (Thread)"));
-	WriteLocaleSettings(m_file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
-	WriteLocaleSettings(m_file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
+	WriteLocaleSettings(GetThreadLocale(), _T("Locale (Thread)"));
+	WriteLocaleSettings(LOCALE_USER_DEFAULT, _T("Locale (User)"));
+	WriteLocaleSettings(LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
 // Codepage settings
 	WriteItemYesNo(1, _T("Detect codepage automatically for RC and HTML files"), &m_cpSettings.bDetectCodepage);
-	WriteItem(m_file, 1, _T("unicoder codepage"), getDefaultCodepage());
+	WriteItem(1, _T("unicoder codepage"), getDefaultCodepage());
 
 // Plugins
-	FileWriteString(_T("\nPlugins:\n"));
+	FileWriteString(_T("\r\nPlugins:\r\n"));
 	WriteItemYesNo(1, _T("Plugins enabled"), &m_miscSettings.bPluginsEnabled);
 	FileWriteString(_T(" Unpackers: "));
-	WritePluginsInLogFile(L"FILE_PACK_UNPACK", m_file);
-	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK", m_file);
-	FileWriteString(_T("\n Prediffers: "));
-	WritePluginsInLogFile(L"FILE_PREDIFF", m_file);
-	WritePluginsInLogFile(L"BUFFER_PREDIFF", m_file);
-	FileWriteString(_T("\n Editor scripts: "));
-	WritePluginsInLogFile(L"EDITOR_SCRIPT", m_file);
+	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
+	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
+	FileWriteString(_T("\r\n Prediffers: "));
+	WritePluginsInLogFile(L"FILE_PREDIFF");
+	WritePluginsInLogFile(L"BUFFER_PREDIFF");
+	FileWriteString(_T("\r\n Editor scripts: "));
+	WritePluginsInLogFile(L"EDITOR_SCRIPT");
 	if (IsWindowsScriptThere() == FALSE)
-		FileWriteString(_T("\n .sct scripts disabled (Windows Script Host not found)\n"));
+		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 
-	FileWriteString(_T("\n\n"));
-	WriteArchiveSupport(m_file);
+	FileWriteString(_T("\r\n\r\n"));
+	WriteArchiveSupport();
 
 	CloseFile();
 
@@ -793,7 +804,7 @@ CString CConfigLog::GetWindowsVer()
 		break;
 
 	case VER_PLATFORM_WIN32s:
-		sVersion = _T("Microsoft Win32s\n");
+		sVersion = _T("Microsoft Win32s\r\n");
 		break;
 
 	default:
@@ -899,7 +910,7 @@ void
 CConfigLog::FileWriteString(LPCTSTR lpsz)
 {
 	if (m_writing)
-		m_file.WriteString(lpsz);
+		m_pfile->WriteString(lpsz);
 }
 
 /**
@@ -908,8 +919,8 @@ CConfigLog::FileWriteString(LPCTSTR lpsz)
 void
 CConfigLog::CloseFile()
 {
-	if (m_file.m_hFile != CFile::hFileNull)
-		m_file.Close();
+	if (m_pfile->IsOpen())
+		m_pfile->Close();
 	delete m_pCfgSettings;
 	m_pCfgSettings = 0;
 }

@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.3.11
+  Write config log as UTF-8 file (r7057)
   Bugfix: Plugin error after interrupting folder compare (#2919475)
   Bugfix: GUI Word Wrap missing text (#2921400, #2894033)
 

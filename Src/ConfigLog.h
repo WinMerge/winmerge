@@ -26,6 +26,7 @@
 #define _CONFIGLOG_H_
 
 class CfgSettings;
+class UniStdioFile;
 
 /** 
  * @brief Compare-related settings.
@@ -112,11 +113,19 @@ public:
 	bool WriteLogFile(CString &sError);
 	void ReadLogFile(const CString & Filepath);
 
-
 	// Implementation methods
+protected:
+	void WriteItem(int indent, LPCTSTR key, LPCTSTR value = 0);
+	void WriteItem(int indent, LPCTSTR key, long value);
+	void WriteVersionOf1(int indent, LPTSTR path);
+	void WriteVersionOf(int indent, LPTSTR path);
+	void WriteLocaleSettings(LCID locid, LPCTSTR title);
+	void WriteArchiveSupport();
+	void WriteVersionOf7z(LPTSTR path);
+
 private:
 	bool DoFile(bool writing, CString &sError);
-	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
+	void WritePluginsInLogFile(LPCWSTR transformationEvent);
 	CString GetWindowsVer();
 	CString GetBuildFlags();
 	void FileWriteString(LPCTSTR lpsz);
@@ -128,11 +137,10 @@ private:
 	bool ParseSettings(const CString & Filepath);
 	CString GetValueFromConfig(const CString & key);
 
-
 	// Implementation data
 private:
 	CString m_sFileName;
-	CStdioFile m_file;
+	UniStdioFile *m_pfile;
 	bool m_writing;
 	CfgSettings * m_pCfgSettings;
 };
