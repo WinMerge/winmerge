@@ -49,4 +49,7 @@ String string_trim_ws(const String & str);
 String string_trim_ws_begin(const String & str);
 String string_trim_ws_end(const String & str);
 
+// Formatting
+String string_format(const TCHAR *fmt, ...);
+
 #endif // _UNICODE_STRING_

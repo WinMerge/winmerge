@@ -23,8 +23,14 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+// String formatting code originally from Paul Senzee:
+// http://www.senzee5.com/2006/05/c-formatting-stdstring.html
+
 #include <tchar.h>
+#include <stdarg.h>
 #include "UnicodeString.h"
+
+static String format_arg_list(const TCHAR *fmt, va_list args);
 
 /**
  * @brief Convert a string to lower case string.
@@ -147,4 +153,38 @@ String string_trim_ws_end(const String & str)
 	if (it != result.end() - 1)
 		result.erase(it + 1, result.end());
 	return result;
+}
+
+static String format_arg_list(const TCHAR *fmt, va_list args)
+{
+	if (!fmt)
+		return _T("");
+	int result = -1;
+	int length = 256;
+	TCHAR *buffer = 0;
+	while (result == -1)
+	{
+		if (buffer)
+			delete [] buffer;
+		buffer = new TCHAR[length + 1];
+		memset(buffer, 0, (length + 1) * sizeof(TCHAR));
+		result = _vsntprintf(buffer, length, fmt, args);
+		length *= 2;
+	}
+	String s(buffer);
+	delete [] buffer;
+	return s;
+}
+
+/**
+ * @brief printf()-style formatting for STL string.
+ * Use this function to format String:s in printf() style.
+ */
+String string_format(const TCHAR *fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	String s = format_arg_list(fmt, args);
+	va_end(args);
+	return s;
 }

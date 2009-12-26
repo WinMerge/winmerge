@@ -189,6 +189,7 @@ WinMerge includes code from:
 * Cristi Posea (CSizingControlBar)
 * Ferdinand Prantl (CrystalEditor syntax rules)
 * Keith Rule (CMemDC - memory DC)
+* Paul Senzee (String formatting)
 * Henry Spencer (CRegExp)
 * Andrei Stcherbatchenko (CrystalEditor)
 
