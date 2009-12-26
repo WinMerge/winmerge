@@ -33,7 +33,7 @@ public:
 		UniError();
 		bool HasError() const;
 		void ClearError();
-		String GetError();
+		String GetError() const;
 	};
 
 	virtual ~UniFile() { }
