@@ -1276,9 +1276,10 @@ void CDirView::OpenSpecialItems(UINT_PTR pos1, UINT_PTR pos2)
  * contents and don't necessarily need to copy whole folder structure.
  * @param [in] di DIFFITEM for folder compare item.
  * @param [in] side1 true if our unique folder item is side1 item.
+ * @param [out] newFolder New created folder (full folder path).
  * @return true if user agreed and folder was created.
  */
-bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1)
+bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
 {
 	String subdir;
 	String basedir;
@@ -1288,6 +1289,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1)
 		// right side base path (where to create)
 		subdir = di.left.filename;
 		basedir = GetDocument()->GetRightBasePath();
+		basedir = di.getLeftFilepath(basedir);
 	}
 	else
 	{
@@ -1295,8 +1297,10 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1)
 		// left side base path (where to create)
 		subdir = di.right.filename;
 		basedir = GetDocument()->GetLeftBasePath();
+		basedir = di.getRightFilepath(basedir);
 	}
 	String createpath = paths_ConcatPath(basedir, subdir);
+	newFolder = createpath;
 
 	CString message;
 	LangFormatString1(message, IDS_CREATE_PAIR_FOLDER, createpath.c_str());
@@ -1351,7 +1355,7 @@ bool CDirView::OpenOneItem(UINT_PTR pos1, DIFFITEM **di1, DIFFITEM **di2,
 		// Open left-only item to editor if its not a folder or binary
 		if (isDir)
 		{
-			if (CreateFoldersPair(**di1, true))
+			if (CreateFoldersPair(**di1, true, path2))
 			{
 				return true;
 			}
@@ -1367,7 +1371,7 @@ bool CDirView::OpenOneItem(UINT_PTR pos1, DIFFITEM **di1, DIFFITEM **di2,
 		// Open right-only item to editor if its not a folder or binary
 		if (isDir)
 		{
-			if (CreateFoldersPair(**di1, false))
+			if (CreateFoldersPair(**di1, false, path1))
 			{
 				return true;
 			}

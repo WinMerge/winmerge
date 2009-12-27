@@ -254,7 +254,7 @@ protected:
 			String &path1, String &path2, int & sel1, bool & isDir);
 	bool OpenTwoItems(UINT_PTR pos1, UINT_PTR pos2, DIFFITEM **di1, DIFFITEM **di2,
 			String &path1, String &path2, int & sel1, int & sel2, bool & isDir);
-	bool CreateFoldersPair(DIFFITEM & di, bool side1);
+	bool CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder);
 
 // Implementation data
 protected:
