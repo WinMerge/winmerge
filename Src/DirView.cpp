@@ -738,9 +738,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 				!di.diffcode.isSideLeftOnly() && !di.diffcode.isSideRightOnly() &&
 				!di.diffcode.isResultFiltered())
 		{
-			String leftPath(di.getLeftFilepath(pDoc->GetLeftBasePath()));
+			String leftPath(di.GetLeftFilepath(pDoc->GetLeftBasePath()));
 			leftPath = paths_ConcatPath(leftPath, di.left.filename);
-			String rightPath(di.getRightFilepath(pDoc->GetRightBasePath()));
+			String rightPath(di.GetRightFilepath(pDoc->GetRightBasePath()));
 			rightPath = paths_ConcatPath(rightPath, di.right.filename);
 			CString filteredFilenames;
 			filteredFilenames.Format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
@@ -827,8 +827,8 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE side)
 			continue;
 
 		String currentDir = (side == SIDE_LEFT) ?
-				di.getLeftFilepath(pDoc->GetLeftBasePath()) :
-				di.getRightFilepath(pDoc->GetRightBasePath());
+				di.GetLeftFilepath(pDoc->GetLeftBasePath()) :
+				di.GetRightFilepath(pDoc->GetRightBasePath());
 
 		String filename = ((side == SIDE_LEFT) ? di.left.filename : di.right.filename);
 
@@ -1289,7 +1289,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
 		// right side base path (where to create)
 		subdir = di.left.filename;
 		basedir = GetDocument()->GetRightBasePath();
-		basedir = di.getLeftFilepath(basedir);
+		basedir = di.GetLeftFilepath(basedir);
 	}
 	else
 	{
@@ -1297,7 +1297,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
 		// left side base path (where to create)
 		subdir = di.right.filename;
 		basedir = GetDocument()->GetLeftBasePath();
-		basedir = di.getRightFilepath(basedir);
+		basedir = di.GetRightFilepath(basedir);
 	}
 	String createpath = paths_ConcatPath(basedir, subdir);
 	newFolder = createpath;
@@ -3105,7 +3105,7 @@ void CDirView::OnCopyLeftPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideRightOnly())
 		{
-			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
+			strPaths += di.GetLeftFilepath(GetDocument()->GetLeftBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.left.filename);
@@ -3132,7 +3132,7 @@ void CDirView::OnCopyRightPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideLeftOnly())
 		{
-			strPaths += di.getRightFilepath(pDoc->GetRightBasePath());
+			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.right.filename);
@@ -3159,7 +3159,7 @@ void CDirView::OnCopyBothPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideRightOnly())
 		{
-			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
+			strPaths += di.GetLeftFilepath(pDoc->GetLeftBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.left.filename);
@@ -3170,7 +3170,7 @@ void CDirView::OnCopyBothPathnames()
 
 		if (!di.diffcode.isSideLeftOnly())
 		{
-			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
+			strPaths += di. GetRightFilepath(pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.right.filename);

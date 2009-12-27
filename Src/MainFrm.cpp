@@ -2087,10 +2087,10 @@ void CMainFrame::OnToolsGeneratePatch()
 			if (bValidFiles)
 			{
 				// Format full paths to files (leftFile/rightFile)
-				String leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
+				String leftFile = item.GetLeftFilepath(pDoc->GetLeftBasePath());
 				if (!leftFile.empty())
 					leftFile = paths_ConcatPath(leftFile, item.left.filename);
-				String rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
+				String rightFile = item.GetRightFilepath(pDoc->GetRightBasePath());
 				if (!rightFile.empty())
 					rightFile = paths_ConcatPath(rightFile, item.right.filename);
 
