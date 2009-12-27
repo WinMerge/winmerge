@@ -90,7 +90,7 @@ struct CPSETTINGS
 struct FONTSETTINGS
 {
 	BYTE nCharset;
-	CString sFacename;
+	String sFacename;
 };
 
 /** 
@@ -109,13 +109,14 @@ public:
 	CPSETTINGS m_cpSettings;
 	FONTSETTINGS m_fontSettings;
 
-	CString GetFileName() const;
-	bool WriteLogFile(CString &sError);
-	void ReadLogFile(const CString & Filepath);
+	String GetFileName() const;
+	bool WriteLogFile(String &sError);
+	void ReadLogFile(const String & Filepath);
 
 	// Implementation methods
 protected:
 	void WriteItem(int indent, LPCTSTR key, LPCTSTR value = 0);
+	void WriteItem(int indent, LPCTSTR key, const String &str);
 	void WriteItem(int indent, LPCTSTR key, long value);
 	void WriteVersionOf1(int indent, LPTSTR path);
 	void WriteVersionOf(int indent, LPTSTR path);
@@ -124,22 +125,22 @@ protected:
 	void WriteVersionOf7z(LPTSTR path);
 
 private:
-	bool DoFile(bool writing, CString &sError);
+	bool DoFile(bool writing, String &sError);
 	void WritePluginsInLogFile(LPCWSTR transformationEvent);
-	CString GetWindowsVer();
-	CString GetBuildFlags();
+	String GetWindowsVer();
+	String GetBuildFlags() const;
 	void FileWriteString(LPCTSTR lpsz);
 	void CloseFile();
     void WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue);
 	void WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue);
     void WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue);
 	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
-	bool ParseSettings(const CString & Filepath);
+	bool ParseSettings(const String & Filepath);
 	CString GetValueFromConfig(const CString & key);
 
 	// Implementation data
 private:
-	CString m_sFileName;
+	String m_sFileName;
 	UniStdioFile *m_pfile;
 	bool m_writing;
 	CfgSettings * m_pCfgSettings;

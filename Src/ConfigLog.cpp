@@ -60,7 +60,7 @@ CConfigLog::~CConfigLog()
 /** 
  * @brief Return logfile name and path
  */
-CString CConfigLog::GetFileName() const
+String CConfigLog::GetFileName() const
 {
 	return m_sFileName;
 }
@@ -93,12 +93,12 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 }
 
 /**
- * @brief CString wrapper around API call GetLocaleInfo
+ * @brief String wrapper around API call GetLocaleInfo
  */
-static CString GetLocaleString(LCID locid, LCTYPE lctype)
+static String GetLocaleString(LCID locid, LCTYPE lctype)
 {
 	TCHAR buffer[512];
-	if (!GetLocaleInfo(locid, lctype, buffer, sizeof(buffer)/sizeof(buffer[0])))
+	if (!GetLocaleInfo(locid, lctype, buffer, countof(buffer)))
 		buffer[0] = 0;
 	return buffer;
 }
@@ -106,7 +106,7 @@ static CString GetLocaleString(LCID locid, LCTYPE lctype)
 /**
  * @brief Return Windows font charset constant name from constant value, eg, FontCharsetName() => "Hebrew"
  */
-static CString FontCharsetName(BYTE charset)
+static String FontCharsetName(BYTE charset)
 {
 	switch(charset)
 	{
@@ -142,9 +142,16 @@ void CConfigLog::WriteItem(int indent, LPCTSTR key, LPCTSTR value)
 	if (!m_writing)
 		return;
 
-	CString text;
-	text.Format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key, key, value);
-	m_pfile->WriteString((LPCTSTR)text);
+	String text = string_format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key, key, value);
+	m_pfile->WriteString(text);
+}
+
+/**
+ * @brief Write string item
+ */
+void CConfigLog::WriteItem(int indent, LPCTSTR key, const String &str)
+{
+	WriteItem(indent, key, str.c_str());
 }
 
 /**
@@ -156,9 +163,8 @@ void CConfigLog::WriteItem(int indent, LPCTSTR key, long value)
 	if (!m_writing)
 		return;
 
-	CString text;
-	text.Format(_T("%*.0s%s: %ld\r\n"), indent, key, key, value);
-	m_pfile->WriteString((LPCTSTR)text);
+	String text = string_format(_T("%*.0s%s: %ld\r\n"), indent, key, key, value);
+	m_pfile->WriteString(text);
 }
 
 /**
@@ -168,9 +174,8 @@ void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 {
 	if (m_writing)
 	{
-		CString text;
-		text.Format(_T("%*.0s%s: %s\r\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
-		m_pfile->WriteString((LPCTSTR)text);
+		String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
+		m_pfile->WriteString(text);
 	}
 	else
 	{
@@ -227,8 +232,7 @@ void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 
 	LPTSTR name = PathFindFileName(path);
 	CVersionInfo vi(path, TRUE);
-	CString text;
-	text.Format
+	String text = string_format
 	(
 		name == path
 	?	_T("%*s%-20s %s=%u.%02u %s=%04u\r\n")
@@ -248,7 +252,7 @@ void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 		vi.m_dvi.dwBuildNumber,
 		path
 	);
-	m_pfile->WriteString((LPCTSTR)text);
+	m_pfile->WriteString(text);
 }
 
 /**
@@ -344,8 +348,7 @@ struct NameMap { int ival; LPCTSTR sval; };
 /**
  * @brief Write boolean item using keywords (Yes|No)
  */
-void CConfigLog::
-WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
+void CConfigLog::WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 {
 	static NameMap namemap[] = {
 		{ WHITESPACE_COMPARE_ALL, _T("Compare all") }
@@ -379,10 +382,10 @@ WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 /** 
  * @brief Write logfile
  */
-bool CConfigLog::DoFile(bool writing, CString &sError)
+bool CConfigLog::DoFile(bool writing, String &sError)
 {
 	CVersionInfo version;
-	CString text;
+	String text;
 
 	m_writing = writing;
 
@@ -390,17 +393,16 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	{
 		String sFileName = paths_ConcatPath(env_GetMyDocuments(NULL), WinMergeDocumentsFolder);
 		paths_CreateIfNeeded(sFileName.c_str());
-		sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
-		m_sFileName = sFileName.c_str();
+		m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 
 #ifdef _UNICODE
-		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+		if (!m_pfile->OpenCreateUtf8(m_sFileName.c_str()))
 #else
-		if (!m_pfile->OpenCreate(m_sFileName))
+		if (!m_pfile->OpenCreate(m_sFileName.c_str()))
 #endif
 		{
 			const UniFile::UniError &err = m_pfile->GetLastUniError();
-			sError = err.GetError().c_str();
+			sError = err.GetError();
 			return false;
 		}
 #ifdef _UNICODE
@@ -413,7 +415,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	FileWriteString(_T("WinMerge configuration log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
 	FileWriteString(_T("Saved to: "));
-	FileWriteString(m_sFileName);
+	FileWriteString(m_sFileName.c_str());
 	FileWriteString(_T("\r\n* Please add this information (or attach this file)\r\n"));
 	FileWriteString(_T("* when reporting bugs.\r\n"));
 	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\r\n"));
@@ -432,7 +434,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 
 	text = GetBuildFlags();
 	FileWriteString(_T("\r\n Build config: "));
-	FileWriteString(text);
+	FileWriteString(text.c_str());
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
 	ASSERT(szCmdLine != NULL);
@@ -464,7 +466,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 
 	FileWriteString(_T("\r\n Windows: "));
 	text = GetWindowsVer();
-	FileWriteString(text);
+	FileWriteString(text.c_str());
 
 	FileWriteString(_T("\r\n"));
 	WriteVersionOf1(1, _T("COMCTL32.dll"));
@@ -518,7 +520,7 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	
 // Font settings
 	FileWriteString(_T("\r\n Font:\r\n"));
-	FileWriteString(Fmt(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename));
+	FileWriteString(Fmt(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename.c_str()));
 	FileWriteString(Fmt(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
 		FontCharsetName(m_fontSettings.nCharset)));
 
@@ -582,9 +584,9 @@ static WORD GetSuiteMaskFromOsvc(const OSVERSIONINFOEX & osvi)
 /** 
  * @brief Extract any helpful product details from version info
  */
-static CString GetProductFromOsvi(const OSVERSIONINFOEX & osvi)
+static String GetProductFromOsvi(const OSVERSIONINFOEX & osvi)
 {
-	CString sProduct;
+	String sProduct;
 	BYTE productType = GetProductTypeFromOsvc(osvi);
 	WORD suiteMask = GetSuiteMaskFromOsvc(osvi);
 
@@ -639,13 +641,13 @@ static CString GetProductFromOsvi(const OSVERSIONINFOEX & osvi)
 /** 
  * @brief Extract any helpful product details from registry (for WinNT)
  */
-static CString GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
+static String GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
 {
-	CString sProduct;
+	String sProduct;
 
 	HKEY hKey;
 	TCHAR szProductType[REGBUFSIZE];
-	DWORD dwBufLen=sizeof(szProductType)/sizeof(szProductType[0]);
+	DWORD dwBufLen = countof(szProductType);
 	LONG lRet;
 
 	lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
@@ -668,8 +670,7 @@ static CString GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
 	if ( _tcsicmp( _T("SERVERNT"), szProductType) == 0 )
 		sProduct = _T( "Advanced Server " );
 
-	CString ver;
-	ver.Format( _T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
+	String ver = string_format( _T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
 	sProduct += ver;
 	return sProduct;
 }
@@ -680,10 +681,10 @@ static CString GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
  * http://msdn.microsoft.com/en-us/library/ms724833(VS.85).aspx
  * @return String describing Windows version.
  */
-CString CConfigLog::GetWindowsVer()
+String CConfigLog::GetWindowsVer()
 {
 	OSVERSIONINFOEX osvi;
-	CString sVersion;
+	String sVersion;
 
 	// Try calling GetVersionEx using the OSVERSIONINFOEX structure.
 	// If that fails, try using the OSVERSIONINFO structure.
@@ -727,19 +728,19 @@ CString CConfigLog::GetWindowsVer()
 				sVersion = _T("Microsoft Windows Server 2008 R2 ");
 		}
 		else
-			sVersion.Format(_T("[? WindowsNT %d.%d] "), 
+			sVersion = string_format(_T("[? WindowsNT %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
 
 		if (osvi.dwOSVersionInfoSize == sizeof(OSVERSIONINFOEX))
 		{
 			// Test for specific product on Windows NT 4.0 SP6 and later.
-			CString sProduct = GetProductFromOsvi(osvi);
+			String sProduct = GetProductFromOsvi(osvi);
 			sVersion += sProduct;
 		}
 		else
 		{
 			// Test for specific product on Windows NT 4.0 SP5 and earlier
-			CString sProduct = GetNtProductFromRegistry(osvi);
+			String sProduct = GetNtProductFromRegistry(osvi);
 			sVersion += sProduct;
 		}
 
@@ -754,12 +755,12 @@ CString CConfigLog::GetWindowsVer()
 			lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
 				_T("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
 				0, KEY_QUERY_VALUE, &hKey );
-			CString ver;
+			String ver;
 			if( lRet == ERROR_SUCCESS )
-				ver.Format(_T("Service Pack 6a (Build %d)"), osvi.dwBuildNumber & 0xFFFF );
+				ver = string_format(_T("Service Pack 6a (Build %d)"), osvi.dwBuildNumber & 0xFFFF );
 			else // Windows NT 4.0 prior to SP6a
 			{
-				ver.Format(_T("%s (Build %d)"),
+				ver = string_format(_T("%s (Build %d)"),
 					osvi.szCSDVersion,
 					osvi.dwBuildNumber & 0xFFFF);
 			}
@@ -769,8 +770,7 @@ CString CConfigLog::GetWindowsVer()
 		}
 		else // Windows NT 3.51 and earlier or Windows 2000 and later
 		{
-			CString ver;
-			ver.Format( _T("%s (Build %d)"),
+			String ver = string_format( _T("%s (Build %d)"),
 				osvi.szCSDVersion,
 				osvi.dwBuildNumber & 0xFFFF);
 			sVersion += ver;
@@ -798,7 +798,7 @@ CString CConfigLog::GetWindowsVer()
 		}
 		else
 		{
-			sVersion.Format(_T("[? Windows9x %d.%d] "), 
+			sVersion = string_format(_T("[? Windows9x %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
 		}
 		break;
@@ -808,7 +808,7 @@ CString CConfigLog::GetWindowsVer()
 		break;
 
 	default:
-		sVersion.Format(_T(" [? Windows? %d.%d] "),
+		sVersion = string_format(_T(" [? Windows? %d.%d] "),
 			osvi.dwMajorVersion, osvi.dwMinorVersion);
 	}
 	return sVersion;
@@ -817,32 +817,32 @@ CString CConfigLog::GetWindowsVer()
 /** 
  * @brief Return string representation of build flags (for reporting in config log)
  */
-CString CConfigLog::GetBuildFlags()
+String CConfigLog::GetBuildFlags() const
 {
-	CString flags;
+	String flags;
 
 #ifdef _DEBUG
-	flags += " _DEBUG ";
+	flags += _T(" _DEBUG ");
 #endif
 
 #ifdef NDEBUG
-	flags += " NDEBUG ";
+	flags += _T(" NDEBUG ");
 #endif
 
 #ifdef UNICODE
-	flags += " UNICODE ";
+	flags += _T(" UNICODE ");
 #endif
 
 #ifdef _UNICODE
-	flags += " _UNICODE ";
+	flags += _T(" _UNICODE ");
 #endif
 
 #ifdef _MBCS
-	flags += " _MBCS ";
+	flags += _T(" _MBCS ");
 #endif
 
 #ifdef WIN64
-	flags += " WIN64 ";
+	flags += _T(" WIN64 ");
 #endif
 
 	return flags;
@@ -884,8 +884,7 @@ LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag)
 	return false;
 }
 
-bool
-CConfigLog::WriteLogFile(CString &sError)
+bool CConfigLog::WriteLogFile(String &sError)
 {
 	CloseFile();
 
@@ -893,15 +892,15 @@ CConfigLog::WriteLogFile(CString &sError)
 	return DoFile(writing, sError);
 }
 
-void
-CConfigLog::ReadLogFile(const CString & Filepath)
+void CConfigLog::ReadLogFile(const String & Filepath)
 {
 	CloseFile();
 
 	bool writing = false;
-	CString sError;
+	String sError;
 	m_pCfgSettings = new CfgSettings;
-	if (!ParseSettings(Filepath)) return;
+	if (!ParseSettings(Filepath))
+		return;
 	DoFile(writing, sError);
 }
 
@@ -928,36 +927,31 @@ CConfigLog::CloseFile()
 /**
  * @brief  Store all name:value strings from file into m_pCfgSettings
  */
-bool
-CConfigLog::ParseSettings(const CString & Filepath)
+bool CConfigLog::ParseSettings(const String & Filepath)
 {
-	CStdioFile file;
-	if (!file.Open(Filepath, CFile::modeRead))
+	UniMemFile file;
+	if (!file.Open(Filepath.c_str()))
 		return false;
 
-	CString strline;
-	while (file.ReadString(strline))
+	String strline;
+	bool lossy;
+	while (file.ReadString(strline, &lossy))
 	{
-		int colon = strline.Find(':');
+		int colon = strline.find(_T(":"));
 		if (colon > 0)
 		{
-			CString name = strline.Left(colon);
-			CString value = strline.Mid(colon+1);
-			name.TrimLeft();
-			name.TrimRight();
-			value.TrimLeft();
-			value.TrimRight();
-			m_pCfgSettings->Add(name, value);
+			String name = strline.substr(0, colon);
+			String value = strline.substr(colon + 1);
+			name = string_trim_ws(name);
+			value = string_trim_ws(value);
+			m_pCfgSettings->Add(name.c_str(), value.c_str());
 		}
 	}
 	file.Close();
 	return true;
-
-
 }
 
-CString
-CConfigLog::GetValueFromConfig(const CString & key)
+CString CConfigLog::GetValueFromConfig(const CString & key)
 {
 	CString value;
 	if (m_pCfgSettings->Lookup(key, value))

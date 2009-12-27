@@ -2501,7 +2501,7 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	else
 	{
 		lfDiff.lfCharSet = configLog.m_fontSettings.nCharset;
-		_tcsncpy(lfDiff.lfFaceName, configLog.m_fontSettings.sFacename, sizeof(lfDiff.lfFaceName)/sizeof(lfDiff.lfFaceName[0]));
+		_tcsncpy(lfDiff.lfFaceName, configLog.m_fontSettings.sFacename.c_str(), countof(lfDiff.lfFaceName));
 	}
 }
 
@@ -2512,20 +2512,20 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 void CMainFrame::OnSaveConfigData()
 {
 	CConfigLog configLog;
-	CString sError;
+	String sError;
 
 	LoadConfigLog(configLog, GetOptionsMgr(), m_lfDiff, ToConfigLog);
 
 	if (configLog.WriteLogFile(sError))
 	{
-		CString sFileName = configLog.GetFileName();
-		OpenFileToExternalEditor(sFileName);
+		String sFileName = configLog.GetFileName();
+		OpenFileToExternalEditor(sFileName.c_str());
 	}
 	else
 	{
 		CString msg;
-		CString sFileName = configLog.GetFileName();
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sFileName, sError);
+		String sFileName = configLog.GetFileName();
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sFileName.c_str(), sError.c_str());
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 }
@@ -2931,7 +2931,7 @@ void CMainFrame::OnDebugLoadConfig()
 	if (dlg.DoModal() != IDOK)
 		return;
 
-	CString filepath = dlg.GetPathName();
+	String filepath = (LPCTSTR) dlg.GetPathName();
 
 	CConfigLog configLog;
 
