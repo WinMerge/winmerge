@@ -84,7 +84,7 @@ static LPCTSTR crlfs[] =
 	_T ("\x0d")      //  Macintosh style
 };
 
-static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath);
+static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTSTR filepath);
 static void UnescapeControlChars(CString &s);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -336,14 +336,14 @@ void CMergeDoc::Serialize(CArchive& ar)
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
-static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath)
+static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTSTR filepath)
 {
 	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
 	int orig_codepage = buf.getCodepage();
 	ucr::UNICODESET orig_unicoding = buf.getUnicoding();
 
 	// If file was in Unicode
-	if (orig_unicoding!=ucr::NONE)
+	if ((orig_unicoding != ucr::NONE) || (buf2.getUnicoding() != ucr::NONE))
 	{
 	// we subvert the buffer's memory of the original file encoding
 		buf.setUnicoding(ucr::UCS2LE);  // write as UCS-2LE (for preprocessing)
@@ -485,8 +485,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
 	if (bBinary == FALSE)
 	{
-		SaveBuffForDiff(*m_ptBuf[0], m_tempFiles[0].GetPath().c_str());
-		SaveBuffForDiff(*m_ptBuf[1], m_tempFiles[1].GetPath().c_str());
+		SaveBuffForDiff(*m_ptBuf[0], *m_ptBuf[1], m_tempFiles[0].GetPath().c_str());
+		SaveBuffForDiff(*m_ptBuf[1], *m_ptBuf[0], m_tempFiles[1].GetPath().c_str());
 	}
 
 	// Set up DiffWrapper
