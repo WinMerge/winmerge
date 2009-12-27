@@ -737,9 +737,9 @@ BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL 
 	DWORD flags =0;
 	UINT nDstSize;
 	//First convert to unicode UCS16
-	nDstSize = MultiByteToWideChar(CP_ACP, flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
+	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
 	wchar_t *szTemp = new wchar_t[nDstSize]; 
-	nDstSize = MultiByteToWideChar(CP_ACP, flags, (const char*)(pszBuf + nSizeOldBOM),nchars,szTemp,nDstSize);
+	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,szTemp,nDstSize);
 
 	//now convert to unicode UTF8
 	nDstSize = WideCharToMultiByte(CP_UTF8, flags, szTemp, nDstSize, NULL, 0, NULL, NULL);
