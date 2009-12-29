@@ -70,27 +70,33 @@ DESCRIPTION
        of the above options is used.
 
        Patterns  that can match an empty string are accepted, but empty string
-       matches are not recognized. An example is the pattern "(super)?(man)?",
-       in  which  all  components  are optional. This pattern finds all occur-
-       rences of both "super" and "man"; the output differs from matching with
-       "super|man" when only the matching substrings are being shown.
+       matches   are   never   recognized.   An   example   is   the   pattern
+       "(super)?(man)?",  in  which  all components are optional. This pattern
+       finds all occurrences of both "super" and  "man";  the  output  differs
+       from  matching  with  "super|man" when only the matching substrings are
+       being shown.
 
-       If  the  LC_ALL  or LC_CTYPE environment variable is set, pcregrep uses
-       the value to set a locale when calling the PCRE library.  The  --locale
+       If the LC_ALL or LC_CTYPE environment variable is  set,  pcregrep  uses
+       the  value to set a locale when calling the PCRE library.  The --locale
        option can be used to override this.
 
 
 SUPPORT FOR COMPRESSED FILES
 
-       It  is  possible  to compile pcregrep so that it uses libz or libbz2 to
-       read files whose names end in .gz or .bz2, respectively. You  can  find
+       It is possible to compile pcregrep so that it uses libz  or  libbz2  to
+       read  files  whose names end in .gz or .bz2, respectively. You can find
        out whether your binary has support for one or both of these file types
        by running it with the --help option. If the appropriate support is not
-       present,  files are treated as plain text. The standard input is always
+       present, files are treated as plain text. The standard input is  always
        so treated.
 
 
 OPTIONS
+
+       The  order  in  which some of the options appear can affect the output.
+       For example, both the -h and -l options affect  the  printing  of  file
+       names.  Whichever  comes later in the command line will be the one that
+       takes effect.
 
        --        This terminate the list of options. It is useful if the  next
                  item  on  the command line starts with a hyphen but is not an
@@ -123,10 +129,14 @@ OPTIONS
                  to the same value.
 
        -c, --count
-                 Do  not  output individual lines; instead just output a count
-                 of the number of lines that would otherwise have been output.
-                 If  several  files  are  given, a count is output for each of
-                 them. In this mode, the -A, -B, and -C options are ignored.
+                 Do  not output individual lines from the files that are being
+                 scanned; instead output the number of lines that would other-
+                 wise  have  been  shown. If no lines are selected, the number
+                 zero is output. If several files are  are  being  scanned,  a
+                 count  is  output  for each of them. However, if the --files-
+                 with-matches option is also  used,  only  those  files  whose
+                 counts are greater than zero are listed. When -c is used, the
+                 -A, -B, and -C options are ignored.
 
        --colour, --color
                  If this option is given without any data, it is equivalent to
@@ -295,8 +305,12 @@ OPTIONS
                  Instead  of  outputting lines from the files, just output the
                  names of the files containing lines that would have been out-
                  put.  Each  file  name  is  output  once, on a separate line.
-                 Searching stops as soon as a matching  line  is  found  in  a
-                 file.
+                 Searching normally stops as soon as a matching line is  found
+                 in  a  file.  However, if the -c (count) option is also used,
+                 matching continues in order to obtain the correct count,  and
+                 those  files  that  have  at least one match are listed along
+                 with their counts. Using this option with -c is a way of sup-
+                 pressing the listing of files with no matches.
 
        --label=name
                  This option supplies a name to be used for the standard input
@@ -443,54 +457,55 @@ OPTIONS COMPATIBILITY
        as  in  the  GNU grep program. Any long option of the form --xxx-regexp
        (GNU terminology) is also available as --xxx-regex (PCRE  terminology).
        However,  the  --locale,  -M,  --multiline, -u, and --utf-8 options are
-       specific to pcregrep.
+       specific to pcregrep. If both the -c and -l options are given, GNU grep
+       lists only file names, without counts, but pcregrep gives the counts.
 
 
 OPTIONS WITH DATA
 
        There are four different ways in which an option with data can be spec-
-       ified.   If  a  short  form option is used, the data may follow immedi-
+       ified.  If a short form option is used, the  data  may  follow  immedi-
        ately, or in the next command line item. For example:
 
          -f/some/file
          -f /some/file
 
-       If a long form option is used, the data may appear in the same  command
+       If  a long form option is used, the data may appear in the same command
        line item, separated by an equals character, or (with one exception) it
        may appear in the next command line item. For example:
 
          --file=/some/file
          --file /some/file
 
-       Note, however, that if you want to supply a file name beginning with  ~
-       as  data  in  a  shell  command,  and have the shell expand ~ to a home
+       Note,  however, that if you want to supply a file name beginning with ~
+       as data in a shell command, and have the  shell  expand  ~  to  a  home
        directory, you must separate the file name from the option, because the
        shell does not treat ~ specially unless it is at the start of an item.
 
-       The  exception  to  the  above is the --colour (or --color) option, for
-       which the data is optional. If this option does have data, it  must  be
-       given  in  the first form, using an equals character. Otherwise it will
+       The exception to the above is the --colour  (or  --color)  option,  for
+       which  the  data is optional. If this option does have data, it must be
+       given in the first form, using an equals character. Otherwise  it  will
        be assumed that it has no data.
 
 
 MATCHING ERRORS
 
-       It is possible to supply a regular expression that takes  a  very  long
-       time  to  fail  to  match certain lines. Such patterns normally involve
-       nested indefinite repeats, for example: (a+)*\d when matched against  a
-       line  of  a's  with  no  final  digit. The PCRE matching function has a
-       resource limit that causes it to abort in these circumstances. If  this
+       It  is  possible  to supply a regular expression that takes a very long
+       time to fail to match certain lines.  Such  patterns  normally  involve
+       nested  indefinite repeats, for example: (a+)*\d when matched against a
+       line of a's with no final digit.  The  PCRE  matching  function  has  a
+       resource  limit that causes it to abort in these circumstances. If this
        happens, pcregrep outputs an error message and the line that caused the
-       problem to the standard error stream. If there are more  than  20  such
+       problem  to  the  standard error stream. If there are more than 20 such
        errors, pcregrep gives up.
 
 
 DIAGNOSTICS
 
        Exit status is 0 if any matches were found, 1 if no matches were found,
-       and 2 for syntax errors and non-existent or inacessible files (even  if
-       matches  were  found in other files) or too many matching errors. Using
-       the -s option to suppress error messages about inaccessble  files  does
+       and  2 for syntax errors and non-existent or inacessible files (even if
+       matches were found in other files) or too many matching  errors.  Using
+       the  -s  option to suppress error messages about inaccessble files does
        not affect the return code.
 
 
@@ -508,5 +523,5 @@ AUTHOR
 
 REVISION
 
-       Last updated: 01 March 2009
+       Last updated: 13 September 2009
        Copyright (c) 1997-2009 University of Cambridge.

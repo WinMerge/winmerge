@@ -358,13 +358,10 @@ pcregrep: check your regex for nested unlimited loops
 pcregrep: pcre_exec() error -8 while matching this text:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ---------------------------- Test 38 ------------------------------
-This line contains a binary zero here > < for testing.
----------------------------- Test 39 ------------------------------
+This line contains a binary zero here >---------------------------- Test 39 ------------------------------
 This is a line before the binary zero.
-This line contains a binary zero here > < for testing.
----------------------------- Test 40 ------------------------------
-This line contains a binary zero here > < for testing.
-This is a line after the binary zero.
+This line contains a binary zero here >---------------------------- Test 40 ------------------------------
+This line contains a binary zero here >This is a line after the binary zero.
 ---------------------------- Test 41 ------------------------------
 before the binary zero
 after the binary zero
@@ -423,3 +420,27 @@ This time it [1;31mjumps[00m and [1;31mjumps[00m and [1;31mjumps[00m.
 Here is the [1;31mpattern[00m again.
 That time it was on a [1;31mline by itself[00m.
 This line contains [1;31mpattern[00m not on a [1;31mline by itself[00m.
+---------------------------- Test 55 -----------------------------
+./testdata/grepinput:456
+./testdata/grepinput8:0
+./testdata/grepinputv:1
+./testdata/grepinputx:0
+---------------------------- Test 56 -----------------------------
+./testdata/grepinput:456
+./testdata/grepinputv:1
+---------------------------- Test 57 -----------------------------
+PATTERN at the start of a line.
+In the middle of a line, PATTERN appears.
+Check up on PATTERN near the end.
+---------------------------- Test 58 -----------------------------
+PATTERN at the start of a line.
+In the middle of a line, PATTERN appears.
+Check up on PATTERN near the end.
+---------------------------- Test 59 -----------------------------
+PATTERN at the start of a line.
+In the middle of a line, PATTERN appears.
+Check up on PATTERN near the end.
+---------------------------- Test 60 -----------------------------
+PATTERN at the start of a line.
+In the middle of a line, PATTERN appears.
+Check up on PATTERN near the end.

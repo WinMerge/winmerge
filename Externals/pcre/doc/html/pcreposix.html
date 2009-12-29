@@ -66,6 +66,11 @@ POSIX interface often use it, this makes it easier to slot in PCRE as a
 replacement library. Other POSIX options are not even defined.
 </P>
 <P>
+There are also some other options that are not defined by POSIX. These have
+been added at the request of users who want to make use of certain
+PCRE-specific features via the POSIX calling interface.
+</P>
+<P>
 When PCRE is called via these functions, it is only the API that is POSIX-like
 in style. The syntax and semantics of the regular expressions themselves are
 still those of Perl, subject to the setting of various PCRE options, as
@@ -121,6 +126,12 @@ compiled with this flag is passed to <b>regexec()</b> for matching, the
 <i>nmatch</i> and <i>pmatch</i> arguments are ignored, and no captured strings
 are returned.
 <pre>
+  REG_UNGREEDY
+</pre>
+The PCRE_UNGREEDY option is set when the regular expression is passed for
+compilation to the native function. Note that REG_UNGREEDY is not part of the
+POSIX standard.
+<pre>
   REG_UTF8
 </pre>
 The PCRE_UTF8 option is set when the regular expression is passed for
@@ -134,7 +145,7 @@ This means the the regex is compiled with PCRE default semantics. In
 particular, the way it handles newline characters in the subject string is the
 Perl way, not the POSIX way. Note that setting PCRE_MULTILINE has only
 <i>some</i> of the effects specified for REG_NEWLINE. It does not affect the way
-newlines are matched by . (they aren't) or by a negative class such as [^a]
+newlines are matched by . (they are not) or by a negative class such as [^a]
 (they are).
 </P>
 <P>
@@ -142,6 +153,11 @@ The yield of <b>regcomp()</b> is zero on success, and non-zero otherwise. The
 <i>preg</i> structure is filled in on success, and one member of the structure
 is public: <i>re_nsub</i> contains the number of capturing subpatterns in
 the regular expression. Various error codes are defined in the header file.
+</P>
+<P>
+NOTE: If the yield of <b>regcomp()</b> is non-zero, you must not attempt to
+use the contents of the <i>preg</i> structure. If, for example, you pass it to
+<b>regexec()</b>, the result is undefined and your program is likely to crash.
 </P>
 <br><a name="SEC4" href="#TOC1">MATCHING NEWLINE CHARACTERS</a><br>
 <P>
@@ -217,6 +233,10 @@ strings is returned. The <i>nmatch</i> and <i>pmatch</i> arguments of
 <b>regexec()</b> are ignored.
 </P>
 <P>
+If the value of <i>nmatch</i> is zero, or if the value <i>pmatch</i> is NULL,
+no data about any matched strings is returned.
+</P>
+<P>
 Otherwise,the portion of the string that was matched, and also any captured
 substrings, are returned via the <i>pmatch</i> argument, which points to an
 array of <i>nmatch</i> structures of type <i>regmatch_t</i>, containing the
@@ -257,7 +277,7 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC9" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 11 March 2009
+Last updated: 02 September 2009
 <br>
 Copyright &copy; 1997-2009 University of Cambridge.
 <br>

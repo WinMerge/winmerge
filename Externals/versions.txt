@@ -4,5 +4,5 @@ Versions of external components
 This file lists versions of the external components we are using.
 
 Expat: 2.0.1
-PCRE: 7.9
+PCRE: 8.00
 SCEW: 0.4.0

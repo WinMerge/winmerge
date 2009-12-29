@@ -40,6 +40,7 @@ dist_html_DATA = \
   doc/html/pcrebuild.html \
   doc/html/pcrecallout.html \
   doc/html/pcrecompat.html \
+  doc/html/pcredemo.html \
   doc/html/pcregrep.html \
   doc/html/pcrematching.html \
   doc/html/pcrepartial.html \
@@ -270,6 +271,8 @@ EXTRA_DIST += \
   testdata/testinput8 \
   testdata/testinput9 \
   testdata/testinput10 \
+  testdata/testinput11 \
+  testdata/testinput12 \
   testdata/testoutput1 \
   testdata/testoutput2 \
   testdata/testoutput3 \
@@ -280,6 +283,8 @@ EXTRA_DIST += \
   testdata/testoutput8 \
   testdata/testoutput9 \
   testdata/testoutput10 \
+  testdata/testoutput11 \
+  testdata/testoutput12 \
   testdata/wintestinput3 \
   testdata/wintestoutput3 \
   perltest.pl
@@ -327,7 +332,7 @@ pcre.dll: $(DLL_OBJS)
 
 # We have .pc files for pkg-config users.
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libpcre.pc
+pkgconfig_DATA = libpcre.pc libpcreposix.pc
 if WITH_PCRE_CPP
 pkgconfig_DATA += libpcrecpp.pc
 endif

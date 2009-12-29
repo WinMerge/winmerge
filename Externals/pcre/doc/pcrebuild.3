@@ -1,6 +1,8 @@
 .TH PCREBUILD 3
 .SH NAME
 PCRE - Perl-compatible regular expressions
+.
+.
 .SH "PCRE BUILD-TIME OPTIONS"
 .rs
 .sp
@@ -9,8 +11,13 @@ the library is compiled. It assumes use of the \fBconfigure\fP script, where
 the optional features are selected or deselected by providing options to
 \fBconfigure\fP before running the \fBmake\fP command. However, the same
 options can be selected in both Unix-like and non-Unix-like environments using
-the GUI facility of \fBCMakeSetup\fP if you are using \fBCMake\fP instead of
+the GUI facility of \fBcmake-gui\fP if you are using \fBCMake\fP instead of
 \fBconfigure\fP to build PCRE.
+.P
+There is a lot more information about building PCRE in non-Unix-like
+environments in the file called \fINON_UNIX_USE\fP, which is part of the PCRE
+distribution. You should consult this file as well as the \fIREADME\fP file if
+you are building in a non-Unix-like environment.
 .P
 The complete list of options for \fBconfigure\fP (which includes the standard
 ones such as the selection of the installation directory) can be obtained by
@@ -24,6 +31,7 @@ The following sections include descriptions of options whose names begin with
 --enable and --disable always come in pairs, so the complementary option always
 exists as well, but as it specifies the default, it is not described.
 .
+.
 .SH "C++ SUPPORT"
 .rs
 .sp
@@ -35,6 +43,7 @@ for PCRE. You can disable this by adding
 .sp
 to the \fBconfigure\fP command.
 .
+.
 .SH "UTF-8 SUPPORT"
 .rs
 .sp
@@ -45,13 +54,14 @@ To build PCRE with support for UTF-8 Unicode character strings, add
 to the \fBconfigure\fP command. Of itself, this does not make PCRE treat
 strings as UTF-8. As well as compiling PCRE with this option, you also have
 have to set the PCRE_UTF8 option when you call the \fBpcre_compile()\fP
-function.
+or \fBpcre_compile2()\fP functions.
 .P
 If you set --enable-utf8 when compiling in an EBCDIC environment, PCRE expects
 its input to be either ASCII or UTF-8 (depending on the runtime option). It is
 not possible to support both EBCDIC and UTF-8 codes in the same version of the
 library. Consequently, --enable-utf8 and --enable-ebcdic are mutually
 exclusive.
+.
 .
 .SH "UNICODE CHARACTER PROPERTY SUPPORT"
 .rs
@@ -74,6 +84,7 @@ supported. Details are given in the
 \fBpcrepattern\fP
 .\"
 documentation.
+.
 .
 .SH "CODE VALUE OF NEWLINE"
 .rs
@@ -107,6 +118,7 @@ Whatever line ending convention is selected when PCRE is built can be
 overridden when the library functions are called. At build time it is
 conventional to use the standard for your operating system.
 .
+.
 .SH "WHAT \eR MATCHES"
 .rs
 .sp
@@ -119,6 +131,7 @@ the default is changed so that \eR matches only CR, LF, or CRLF. Whatever is
 selected when PCRE is built can be overridden when the library functions are
 called.
 .
+.
 .SH "BUILDING SHARED AND STATIC LIBRARIES"
 .rs
 .sp
@@ -129,6 +142,7 @@ Unix libraries by default. You can suppress one of these by adding one of
   --disable-static
 .sp
 to the \fBconfigure\fP command, as required.
+.
 .
 .SH "POSIX MALLOC USAGE"
 .rs
@@ -149,6 +163,7 @@ such as
 .sp
 to the \fBconfigure\fP command.
 .
+.
 .SH "HANDLING VERY LARGE PATTERNS"
 .rs
 .sp
@@ -157,14 +172,15 @@ another (for example, from an opening parenthesis to an alternation
 metacharacter). By default, two-byte values are used for these offsets, leading
 to a maximum size for a compiled pattern of around 64K. This is sufficient to
 handle all but the most gigantic patterns. Nevertheless, some people do want to
-process enormous patterns, so it is possible to compile PCRE to use three-byte
-or four-byte offsets by adding a setting such as
+process truyl enormous patterns, so it is possible to compile PCRE to use
+three-byte or four-byte offsets by adding a setting such as
 .sp
   --with-link-size=3
 .sp
 to the \fBconfigure\fP command. The value given must be 2, 3, or 4. Using
 longer offsets slows down the operation of PCRE because it has to load
 additional bytes when handling them.
+.
 .
 .SH "AVOIDING EXCESSIVE STACK USAGE"
 .rs
@@ -189,7 +205,7 @@ to the \fBconfigure\fP command. With this configuration, PCRE will use the
 \fBpcre_stack_malloc\fP and \fBpcre_stack_free\fP variables to call memory
 management functions. By default these point to \fBmalloc()\fP and
 \fBfree()\fP, but you can replace the pointers so that your own functions are
-used.
+used instead.
 .P
 Separate functions are provided rather than using \fBpcre_malloc\fP and
 \fBpcre_free\fP because the usage is very predictable: the block sizes
@@ -197,7 +213,8 @@ requested are always the same, and the blocks are always freed in reverse
 order. A calling program might be able to implement optimized functions that
 perform better than \fBmalloc()\fP and \fBfree()\fP. PCRE runs noticeably more
 slowly when built in this way. This option affects only the \fBpcre_exec()\fP
-function; it is not relevant for the the \fBpcre_dfa_exec()\fP function.
+function; it is not relevant for \fBpcre_dfa_exec()\fP.
+.
 .
 .SH "LIMITING PCRE RESOURCE USAGE"
 .rs
@@ -230,6 +247,7 @@ constraints. However, you can set a lower limit by adding, for example,
 .sp
 to the \fBconfigure\fP command. This value can also be overridden at run time.
 .
+.
 .SH "CREATING CHARACTER TABLES AT BUILD TIME"
 .rs
 .sp
@@ -248,6 +266,7 @@ compiling, because \fBdftables\fP is run on the local host. If you need to
 create alternative tables when cross compiling, you will have to do so "by
 hand".)
 .
+.
 .SH "USING EBCDIC CODE"
 .rs
 .sp
@@ -263,6 +282,7 @@ to the \fBconfigure\fP command. This setting implies
 an EBCDIC environment (for example, an IBM mainframe operating system). The
 --enable-ebcdic option is incompatible with --enable-utf8.
 .
+.
 .SH "PCREGREP OPTIONS FOR COMPRESSED FILE SUPPORT"
 .rs
 .sp
@@ -277,6 +297,7 @@ to the \fBconfigure\fP command. These options naturally require that the
 relevant libraries are installed on your system. Configuration will fail if
 they are not.
 .
+.
 .SH "PCRETEST OPTION FOR LIBREADLINE SUPPORT"
 .rs
 .sp
@@ -287,7 +308,7 @@ If you add
 to the \fBconfigure\fP command, \fBpcretest\fP is linked with the
 \fBlibreadline\fP library, and when its input is from a terminal, it reads it
 using the \fBreadline()\fP function. This provides line-editing and history
-facilities. Note that \fBlibreadline\fP is GPL-licenced, so if you distribute a
+facilities. Note that \fBlibreadline\fP is GPL-licensed, so if you distribute a
 binary of \fBpcretest\fP linked in this way, there may be licensing issues.
 .P
 Setting this option causes the \fB-lreadline\fP option to be added to the
@@ -329,6 +350,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 17 March 2009
+Last updated: 29 September 2009
 Copyright (c) 1997-2009 University of Cambridge.
 .fi

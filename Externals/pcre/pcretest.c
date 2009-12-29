@@ -1305,6 +1305,7 @@ while (!done)
     if ((options & PCRE_DOTALL) != 0) cflags |= REG_DOTALL;
     if ((options & PCRE_NO_AUTO_CAPTURE) != 0) cflags |= REG_NOSUB;
     if ((options & PCRE_UTF8) != 0) cflags |= REG_UTF8;
+    if ((options & PCRE_UNGREEDY) != 0) cflags |= REG_UNGREEDY;
 
     rc = regcomp(&preg, (char *)p, cflags);
 
@@ -1450,7 +1451,8 @@ while (!done)
         {
         pcre_study_data *rsd = (pcre_study_data *)(extra->study_data);
         rsd->size = byteflip(rsd->size, sizeof(rsd->size));
-        rsd->options = byteflip(rsd->options, sizeof(rsd->options));
+        rsd->flags = byteflip(rsd->flags, sizeof(rsd->flags));
+        rsd->minlength = byteflip(rsd->minlength, sizeof(rsd->minlength));
         }
       }
 
@@ -1627,10 +1629,14 @@ while (!done)
         else
           {
           uschar *start_bits = NULL;
-          new_info(re, extra, PCRE_INFO_FIRSTTABLE, &start_bits);
+          int minlength;
 
+          new_info(re, extra, PCRE_INFO_MINLENGTH, &minlength);
+          fprintf(outfile, "Subject length lower bound = %d\n", minlength);
+
+          new_info(re, extra, PCRE_INFO_FIRSTTABLE, &start_bits);
           if (start_bits == NULL)
-            fprintf(outfile, "No starting byte set\n");
+            fprintf(outfile, "No set of starting bytes\n");
           else
             {
             int i;
@@ -1969,7 +1975,10 @@ while (!done)
         continue;
 
         case 'N':
-        options |= PCRE_NOTEMPTY;
+        if ((options & PCRE_NOTEMPTY) != 0)
+          options = (options & ~PCRE_NOTEMPTY) | PCRE_NOTEMPTY_ATSTART;
+        else
+          options |= PCRE_NOTEMPTY;
         continue;
 
         case 'O':
@@ -1992,7 +2001,8 @@ while (!done)
         continue;
 
         case 'P':
-        options |= PCRE_PARTIAL;
+        options |= ((options & PCRE_PARTIAL_SOFT) == 0)?
+          PCRE_PARTIAL_SOFT : PCRE_PARTIAL_HARD;
         continue;
 
         case 'Q':
@@ -2145,7 +2155,7 @@ while (!done)
           {
           int workspace[1000];
           for (i = 0; i < timeitm; i++)
-            count = pcre_dfa_exec(re, NULL, (char *)bptr, len, start_offset,
+            count = pcre_dfa_exec(re, extra, (char *)bptr, len, start_offset,
               options | g_notempty, use_offsets, use_size_offsets, workspace,
               sizeof(workspace)/sizeof(int));
           }
@@ -2208,7 +2218,7 @@ while (!done)
       else if (all_use_dfa || use_dfa)
         {
         int workspace[1000];
-        count = pcre_dfa_exec(re, NULL, (char *)bptr, len, start_offset,
+        count = pcre_dfa_exec(re, extra, (char *)bptr, len, start_offset,
           options | g_notempty, use_offsets, use_size_offsets, workspace,
           sizeof(workspace)/sizeof(int));
         if (count == 0)
@@ -2363,11 +2373,12 @@ while (!done)
       else if (count == PCRE_ERROR_PARTIAL)
         {
         fprintf(outfile, "Partial match");
-#if !defined NODFA
-        if ((all_use_dfa || use_dfa) && use_size_offsets > 2)
-          fprintf(outfile, ": %.*s", use_offsets[1] - use_offsets[0],
-            bptr + use_offsets[0]);
-#endif
+        if (use_size_offsets > 1)
+          {
+          fprintf(outfile, ": ");
+          pchars(bptr + use_offsets[0], use_offsets[1] - use_offsets[0],
+            outfile);
+          }
         fprintf(outfile, "\n");
         break;  /* Out of the /g loop */
         }
@@ -2440,9 +2451,9 @@ while (!done)
       if (!do_g && !do_G) break;
 
       /* If we have matched an empty string, first check to see if we are at
-      the end of the subject. If so, the /g loop is over. Otherwise, mimic
-      what Perl's /g options does. This turns out to be rather cunning. First
-      we set PCRE_NOTEMPTY and PCRE_ANCHORED and try the match again at the
+      the end of the subject. If so, the /g loop is over. Otherwise, mimic what
+      Perl's /g options does. This turns out to be rather cunning. First we set
+      PCRE_NOTEMPTY_ATSTART and PCRE_ANCHORED and try the match again at the
       same point. If this fails (picked up above) we advance to the next
       character. */
 
@@ -2451,7 +2462,7 @@ while (!done)
       if (use_offsets[0] == use_offsets[1])
         {
         if (use_offsets[0] == len) break;
-        g_notempty = PCRE_NOTEMPTY | PCRE_ANCHORED;
+        g_notempty = PCRE_NOTEMPTY_ATSTART | PCRE_ANCHORED;
         }
 
       /* For /g, update the start offset, leaving the rest alone */

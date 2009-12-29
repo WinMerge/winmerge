@@ -19,9 +19,10 @@ For example, this pattern has two callout points:
 .sp
   (?C1)abc(?C2)def
 .sp
-If the PCRE_AUTO_CALLOUT option bit is set when \fBpcre_compile()\fP is called,
-PCRE automatically inserts callouts, all with number 255, before each item in
-the pattern. For example, if PCRE_AUTO_CALLOUT is used with the pattern
+If the PCRE_AUTO_CALLOUT option bit is set when \fBpcre_compile()\fP or
+\fBpcre_compile2()\fP is called, PCRE automatically inserts callouts, all with
+number 255, before each item in the pattern. For example, if PCRE_AUTO_CALLOUT
+is used with the pattern
 .sp
   A(\ed{2}|--)
 .sp
@@ -53,6 +54,11 @@ PCRE knows that any matching string must contain the letter "d". If the subject
 string is "abyz", the lack of "d" means that matching doesn't ever start, and
 the callout is never reached. However, with "abyd", though the result is still
 no match, the callout is obeyed.
+.P
+If the pattern is studied, PCRE knows the minimum length of a matching string,
+and will immediately give a "no match" return without actually running a match
+if the subject is not long enough, or, for unanchored patterns, if it has
+been scanned far enough.
 .P
 You can disable these optimizations by passing the PCRE_NO_START_OPTIMIZE
 option to \fBpcre_exec()\fP or \fBpcre_dfa_exec()\fP. This slows down the
@@ -155,7 +161,7 @@ The external callout function returns an integer to PCRE. If the value is zero,
 matching proceeds as normal. If the value is greater than zero, matching fails
 at the current point, but the testing of other matching possibilities goes
 ahead, just as if a lookahead assertion had failed. If the value is less than
-zero, the match is abandoned, and \fBpcre_exec()\fP (or \fBpcre_dfa_exec()\fP)
+zero, the match is abandoned, and \fBpcre_exec()\fP or \fBpcre_dfa_exec()\fP
 returns the negative value.
 .P
 Negative values should normally be chosen from the set of PCRE_ERROR_xxx
@@ -178,6 +184,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 15 March 2009
+Last updated: 29 September 2009
 Copyright (c) 1997-2009 University of Cambridge.
 .fi

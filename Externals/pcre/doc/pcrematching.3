@@ -74,13 +74,17 @@ this is a kind of "DFA algorithm", though it is not implemented as a
 traditional finite state machine (it keeps multiple states active
 simultaneously).
 .P
+Although the general principle of this matching algorithm is that it scans the
+subject string only once, without backtracking, there is one exception: when a
+lookaround assertion is encountered, the characters following or preceding the
+current point have to be independently inspected.
+.P
 The scan continues until either the end of the subject is reached, or there are
 no more unterminated paths. At this point, terminated paths represent the
 different matching possibilities (if there are none, the match has failed).
 Thus, if there is more than one possible match, this algorithm finds all of
-them, and in particular, it finds the longest. In PCRE, there is an option to
-stop the algorithm after the first match (which is necessarily the shortest)
-has been found.
+them, and in particular, it finds the longest. There is an option to stop the
+algorithm after the first match (which is necessarily the shortest) is found.
 .P
 Note that all the matches that are found start at the same point in the
 subject. If the pattern
@@ -144,15 +148,15 @@ found, and in particular, the longest match is found. To find more than one
 match using the standard algorithm, you have to do kludgy things with
 callouts.
 .P
-2. There is much better support for partial matching. The restrictions on the
-content of the pattern that apply when using the standard algorithm for partial
-matching do not apply to the alternative algorithm. For non-anchored patterns,
-the starting position of a partial match is available.
-.P
-3. Because the alternative algorithm scans the subject string just once, and
+2. Because the alternative algorithm scans the subject string just once, and
 never needs to backtrack, it is possible to pass very long subject strings to
 the matching function in several pieces, checking for partial matching each
-time.
+time. The
+.\" HREF
+\fBpcrepartial\fP
+.\"
+documentation gives details of partial matching.
+.
 .
 .SH "DISADVANTAGES OF THE ALTERNATIVE ALGORITHM"
 .rs
@@ -183,6 +187,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 19 April 2008
-Copyright (c) 1997-2008 University of Cambridge.
+Last updated: 29 September 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding = "Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8.00"
 	Name="pcrecpp"
-	ProjectGUID="{7E38BB66-34AB-4EDD-866E-DA894E18F626}"
-	SccProjectName=""
-	SccLocalPath=""
+	ProjectGUID="{1D12D1F3-C077-4443-8F26-024D63AFD5B6}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -14,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\..\Build\pcre\Debug"
-			IntermediateDirectory="..\..\..\Build\pcre\pcrecpp.dir\Debug"
+			OutputDirectory="Debug"
+			IntermediateDirectory="pcrecpp.dir\Debug"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -23,33 +21,27 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
-				Optimization="0"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				BasicRuntimeChecks="3"
+				CompileAs="2"
+				DebugInformationFormat="3"
+				ExceptionHandling="1"
 				InlineFunctionExpansion="0"
-				AdditionalIncludeDirectories=".;.."
-				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
-				ExceptionHandling="TRUE"
-				BasicRuntimeChecks="1"
+				Optimization="0"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\pcrecppd.pdb"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				CompileAs="2"/>
+				ProgramDataBaseFileName="D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/Debug/pcrecppd.pdb"
+/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib $(OutDir)\pcre.lib $(NOINHERIT)"
-				OutputFile="$(OutDir)\pcrecppd.dll"
-				Version="0.0"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(IntDir)\pcrecppd.pdb"
-				ImportLibrary="$(OutDir)\pcrecppd.lib"/>
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
@@ -63,30 +55,28 @@
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  Debug\pcred.lib "
+				OutputFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Debug\pcrecppd.dll"
+				Version="0.0"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories=""
+				ProgramDataBaseFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Debug\pcrecppd.pdb"
+				GenerateDebugInformation="TRUE"
+				ImportLibrary="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Debug\pcrecppd.lib"/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\Build\pcre\Release"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcrecpp.dir\Release"
+			OutputDirectory="Release"
+			IntermediateDirectory="pcrecpp.dir\Release"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -94,30 +84,25 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
-				Optimization="2"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				CompileAs="2"
+				ExceptionHandling="1"
 				InlineFunctionExpansion="2"
-				AdditionalIncludeDirectories=".;.."
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
-				ExceptionHandling="TRUE"
+				Optimization="2"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
-				WarningLevel="3"
-				CompileAs="2"/>
+				ProgramDataBaseFileName="D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/Release/pcrecpp.pdb"
+/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=" /STACK:10000000 /machine:I386"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib $(OutDir)\pcre.lib $(NOINHERIT)"
-				OutputFile="$(OutDir)\pcrecpp.dll"
-				Version="0.0"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="$(IntDir)\pcrecpp.pdb"
-				ImportLibrary="$(OutDir)\pcrecpp.lib"/>
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
@@ -131,30 +116,27 @@
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:I386"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  Release\pcre.lib "
+				OutputFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Release\pcrecpp.dll"
+				Version="0.0"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories=""
+				ProgramDataBaseFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Release\pcrecpp.pdb"
+				ImportLibrary="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\Release\pcrecpp.lib"/>
 		</Configuration>
 		<Configuration
 			Name="MinSizeRel|Win32"
-			OutputDirectory="..\..\..\Build\pcre\MinSizeRel"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcrecpp.dir\MinSizeRel"
+			OutputDirectory="MinSizeRel"
+			IntermediateDirectory="pcrecpp.dir\MinSizeRel"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -162,67 +144,59 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
-				Optimization="1"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				CompileAs="2"
+				ExceptionHandling="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.."
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
-				ExceptionHandling="TRUE"
+				Optimization="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
-				WarningLevel="3"
-				CompileAs="2"/>
+				ProgramDataBaseFileName="D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/MinSizeRel/pcrecpp.pdb"
+/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
+				MkTypLibCompatible="FALSE"
+				TargetEnvironment="1"
+				GenerateStublessProxies="TRUE"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
 				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib $(OutDir)\pcre.lib $(NOINHERIT)"
-				OutputFile="$(OutDir)\pcrecpp.dll"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  MinSizeRel\pcre.lib "
+				OutputFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\MinSizeRel\pcrecpp.dll"
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="$(IntDir)\pcrecpp.pdb"
-				ImportLibrary="$(OutDir)\pcrecpp.lib"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
-				MkTypLibCompatible="FALSE"
-				TargetEnvironment="1"
-				GenerateStublessProxies="TRUE"
-				TypeLibraryName="$(InputName).tlb"
-				OutputDirectory="$(IntDir)"
-				HeaderFileName="$(InputName).h"
-				DLLDataFileName=""
-				InterfaceIdentifierFileName="$(InputName)_i.c"
-				ProxyFileName="$(InputName)_p.c"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				ProgramDataBaseFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\MinSizeRel\pcrecpp.pdb"
+				ImportLibrary="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\MinSizeRel\pcrecpp.lib"/>
 		</Configuration>
 		<Configuration
 			Name="RelWithDebInfo|Win32"
-			OutputDirectory="..\..\..\Build\pcre\RelWithDebInfo"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcrecpp.dir\RelWithDebInfo"
+			OutputDirectory="RelWithDebInfo"
+			IntermediateDirectory="pcrecpp.dir\RelWithDebInfo"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -230,32 +204,26 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
-				Optimization="2"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				CompileAs="2"
+				DebugInformationFormat="3"
+				ExceptionHandling="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.."
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
-				ExceptionHandling="TRUE"
+				Optimization="2"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
+				WarningLevel="3"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
-				WarningLevel="3"
-				DebugInformationFormat="3"
-				CompileAs="2"/>
+				ProgramDataBaseFileName="D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/RelWithDebInfo/pcrecpp.pdb"
+/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
-				Name="VCLinkerTool"
-				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
-				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib $(OutDir)\pcre.lib $(NOINHERIT)"
-				OutputFile="$(OutDir)\pcrecpp.dll"
-				Version="0.0"
-				LinkIncremental="2"
-				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(IntDir)\pcrecpp.pdb"
-				ImportLibrary="$(OutDir)\pcrecpp.lib"/>
+				Name="VCResourceCompilerTool"
+				AdditionalIncludeDirectories="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre;"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
@@ -269,98 +237,94 @@
 				InterfaceIdentifierFileName="$(InputName)_i.c"
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
+				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  RelWithDebInfo\pcre.lib "
+				OutputFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\RelWithDebInfo\pcrecpp.dll"
+				Version="0.0"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories=""
+				ProgramDataBaseFile="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\RelWithDebInfo\pcrecpp.pdb"
+				GenerateDebugInformation="TRUE"
+				ImportLibrary="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\RelWithDebInfo\pcrecpp.lib"/>
 		</Configuration>
 	</Configurations>
-	<References>
-	</References>
 	<Files>
+			<File
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files\CMake 2.8\bin\cmake.exe&quot; -HD:/Work/WinMerge/WinMerge_SVN/Externals/pcre -BD:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp"
+					AdditionalDependencies="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindBZip2.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindZLIB.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindReadline.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\config-cmake.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre.h.generic;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_stringpiece.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpparg.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_chartables.c.dist;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;"
+					Outputs="CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files\CMake 2.8\bin\cmake.exe&quot; -HD:/Work/WinMerge/WinMerge_SVN/Externals/pcre -BD:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp"
+					AdditionalDependencies="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindBZip2.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindZLIB.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindReadline.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\config-cmake.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre.h.generic;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_stringpiece.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpparg.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_chartables.c.dist;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;"
+					Outputs="CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="MinSizeRel|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files\CMake 2.8\bin\cmake.exe&quot; -HD:/Work/WinMerge/WinMerge_SVN/Externals/pcre -BD:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp"
+					AdditionalDependencies="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindBZip2.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindZLIB.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindReadline.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\config-cmake.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre.h.generic;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_stringpiece.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpparg.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_chartables.c.dist;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;"
+					Outputs="CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="RelWithDebInfo|Win32">
+					<Tool
+					Name="VCCustomBuildTool"
+					Description="Building Custom Rule D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt"
+					CommandLine="&quot;C:\Program Files\CMake 2.8\bin\cmake.exe&quot; -HD:/Work/WinMerge/WinMerge_SVN/Externals/pcre -BD:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp"
+					AdditionalDependencies="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindBZip2.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindZLIB.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindReadline.cmake;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckIncludeFile.cmake&quot;;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\config-cmake.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre.h.generic;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_stringpiece.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpparg.h.in;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_chartables.c.dist;D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\CMakeLists.txt;"
+					Outputs="CMakeFiles\generate.stamp"/>
+				</FileConfiguration>
+			</File>
 		<Filter
 			Name="Source Files"
 			Filter="">
 			<File
-				RelativePath="..\pcre_scanner.cc">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpp.cc">
 			</File>
 			<File
-				RelativePath="..\pcre_stringpiece.cc">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_scanner.cc">
 			</File>
 			<File
-				RelativePath="..\pcrecpp.cc">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_stringpiece.cc">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="">
 			<File
-				RelativePath="..\pcre_scanner.h">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcrecpp.h">
 			</File>
 			<File
-				RelativePath="pcre_stringpiece.h">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\pcre_scanner.h">
 			</File>
 			<File
-				RelativePath="..\pcrecpp.h">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\pcrecpparg.h">
 			</File>
 			<File
-				RelativePath="pcrecpparg.h">
+				RelativePath="D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win32\pcre_stringpiece.h">
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\CMakeLists.txt">
-			<FileConfiguration
-				Name="Debug|Win32">
-				<Tool
-					Name="VCCustomBuildTool"
-					Description=""
-					CommandLine=""
-					AdditionalDependencies=""
-					Outputs=""/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32">
-				<Tool
-					Name="VCCustomBuildTool"
-					Description=""
-					CommandLine=""
-					AdditionalDependencies=""
-					Outputs=""/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="MinSizeRel|Win32">
-				<Tool
-					Name="VCCustomBuildTool"
-					Description=""
-					CommandLine=""
-					AdditionalDependencies=""
-					Outputs=""/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="RelWithDebInfo|Win32">
-				<Tool
-					Name="VCCustomBuildTool"
-					Description=""
-					CommandLine=""
-					AdditionalDependencies=""
-					Outputs=""/>
-			</FileConfiguration>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

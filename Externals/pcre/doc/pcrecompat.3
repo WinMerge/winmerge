@@ -5,9 +5,8 @@ PCRE - Perl-compatible regular expressions
 .rs
 .sp
 This document describes the differences in the ways that PCRE and Perl handle
-regular expressions. The differences described here are mainly with respect to
-Perl 5.8, though PCRE versions 7.0 and later contain some features that are
-expected to be in the forthcoming Perl 5.10.
+regular expressions. The differences described here are with respect to Perl
+5.10.
 .P
 1. PCRE has only a subset of Perl's UTF-8 and Unicode support. Details of what
 it does have are given in the
@@ -46,7 +45,10 @@ encountered by PCRE, an error is generated.
 built with Unicode character property support. The properties that can be
 tested with \ep and \eP are limited to the general category properties such as
 Lu and Nd, script names such as Greek or Han, and the derived properties Any
-and L&.
+and L&. PCRE does support the Cs (surrogate) property, which Perl does not; the
+Perl documentation says "Because Perl hides the need for the user to understand
+the internal representation of Unicode characters, there is no need to
+implement the somewhat messy concept of surrogates."
 .P
 7. PCRE does support the \eQ...\eE escape for quoting substrings. Characters in
 between are treated as literals. This is slightly different from Perl in that $
@@ -66,7 +68,7 @@ The \eQ...\eE sequence is recognized both inside and outside character classes.
 .P
 8. Fairly obviously, PCRE does not support the (?{code}) and (??{code})
 constructions. However, there is support for recursive patterns. This is not
-available in Perl 5.8, but will be in Perl 5.10. Also, the PCRE "callout"
+available in Perl 5.8, but it is in Perl 5.10. Also, the PCRE "callout"
 feature allows an external function to be called during pattern matching. See
 the
 .\" HREF
@@ -75,7 +77,17 @@ the
 documentation for details.
 .P
 9. Subpatterns that are called recursively or as "subroutines" are always
-treated as atomic groups in PCRE. This is like Python, but unlike Perl.
+treated as atomic groups in PCRE. This is like Python, but unlike Perl. There
+is a discussion of an example that explains this in more detail in the
+.\" HTML <a href="pcrepattern.html#recursiondifference">
+.\" </a>
+section on recursion differences from Perl
+.\"
+in the
+.\" HREF
+\fBpcrepattern\fP
+.\"
+page.
 .P
 10. There are some differences that are concerned with the settings of captured
 strings when part of a pattern is repeated. For example, matching "aba" against
@@ -83,17 +95,26 @@ the pattern /^(a(b)?)+$/ in Perl leaves $2 unset, but in PCRE it is set to "b".
 .P
 11. PCRE does support Perl 5.10's backtracking verbs (*ACCEPT), (*FAIL), (*F),
 (*COMMIT), (*PRUNE), (*SKIP), and (*THEN), but only in the forms without an
-argument. PCRE does not support (*MARK). If (*ACCEPT) is within capturing
-parentheses, PCRE does not set that capture group; this is different to Perl.
+argument. PCRE does not support (*MARK).
 .P
-12. PCRE provides some extensions to the Perl regular expression facilities.
-Perl 5.10 will include new features that are not in earlier versions, some of
-which (such as named parentheses) have been in PCRE for some time. This list is
-with respect to Perl 5.10:
+12. PCRE's handling of duplicate subpattern numbers and duplicate subpattern
+names is not as general as Perl's. This is a consequence of the fact the PCRE
+works internally just with numbers, using an external table to translate
+between numbers and names. In particular, a pattern such as (?|(?<a>A)|(?<b)B),
+where the two capturing parentheses have the same number but different names,
+is not supported, and causes an error at compile time. If it were allowed, it
+would not be possible to distinguish which parentheses matched, because both
+names map to capturing subpattern number 1. To avoid this confusing situation,
+an error is given at compile time.
+.P
+13. PCRE provides some extensions to the Perl regular expression facilities.
+Perl 5.10 includes new features that are not in earlier versions of Perl, some
+of which (such as named parentheses) have been in PCRE for some time. This list
+is with respect to Perl 5.10:
 .sp
-(a) Although lookbehind assertions must match fixed length strings, each
-alternative branch of a lookbehind assertion can match a different length of
-string. Perl requires them all to have the same length.
+(a) Although lookbehind assertions in PCRE must match fixed length strings,
+each alternative branch of a lookbehind assertion can match a different length
+of string. Perl requires them all to have the same length.
 .sp
 (b) If PCRE_DOLLAR_ENDONLY is set and PCRE_MULTILINE is not set, the $
 meta-character matches only at the very end of the string.
@@ -109,8 +130,8 @@ question mark they are.
 (e) PCRE_ANCHORED can be used at matching time to force a pattern to be tried
 only at the first matching position in the subject string.
 .sp
-(f) The PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, and PCRE_NO_AUTO_CAPTURE
-options for \fBpcre_exec()\fP have no Perl equivalents.
+(f) The PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NOTEMPTY_ATSTART, and
+PCRE_NO_AUTO_CAPTURE options for \fBpcre_exec()\fP have no Perl equivalents.
 .sp
 (g) The \eR escape sequence can be restricted to match only CR, LF, or CRLF
 by the PCRE_BSR_ANYCRLF option.
@@ -143,6 +164,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 11 September 2007
-Copyright (c) 1997-2007 University of Cambridge.
+Last updated: 04 October 2009
+Copyright (c) 1997-2009 University of Cambridge.
 .fi

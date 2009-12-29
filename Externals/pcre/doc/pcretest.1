@@ -211,11 +211,11 @@ substring. This makes a difference to the matching process if the pattern
 begins with a lookbehind assertion (including \eb or \eB).
 .P
 If any call to \fBpcre_exec()\fP in a \fB/g\fP or \fB/G\fP sequence matches an
-empty string, the next call is done with the PCRE_NOTEMPTY and PCRE_ANCHORED
-flags set in order to search for another, non-empty, match at the same point.
-If this second match fails, the start offset is advanced by one, and the normal
-match is retried. This imitates the way Perl handles such cases when using the
-\fB/g\fP modifier or the \fBsplit()\fP function.
+empty string, the next call is done with the PCRE_NOTEMPTY_ATSTART and
+PCRE_ANCHORED flags set in order to search for another, non-empty, match at the
+same point. If this second match fails, the start offset is advanced by one
+character, and the normal match is retried. This imitates the way Perl handles
+such cases when using the \fB/g\fP modifier or the \fBsplit()\fP function.
 .
 .
 .SS "Other modifiers"
@@ -356,18 +356,23 @@ recognized:
                MATCH_LIMIT_RECURSION settings
 .\" JOIN
   \eN         pass the PCRE_NOTEMPTY option to \fBpcre_exec()\fP
-               or \fBpcre_dfa_exec()\fP
+               or \fBpcre_dfa_exec()\fP; if used twice, pass the
+               PCRE_NOTEMPTY_ATSTART option
 .\" JOIN
   \eOdd       set the size of the output vector passed to
                \fBpcre_exec()\fP to dd (any number of digits)
 .\" JOIN
-  \eP         pass the PCRE_PARTIAL option to \fBpcre_exec()\fP
-               or \fBpcre_dfa_exec()\fP
+  \eP         pass the PCRE_PARTIAL_SOFT option to \fBpcre_exec()\fP
+               or \fBpcre_dfa_exec()\fP; if used twice, pass the
+               PCRE_PARTIAL_HARD option
 .\" JOIN
   \eQdd       set the PCRE_MATCH_LIMIT_RECURSION limit to dd
                (any number of digits)
   \eR         pass the PCRE_DFA_RESTART option to \fBpcre_dfa_exec()\fP
   \eS         output details of memory get/free calls during matching
+.\" JOIN
+  \eY         pass the PCRE_NO_START_OPTIMIZE option to \fBpcre_exec()\fP
+               or \fBpcre_dfa_exec()\fP
 .\" JOIN
   \eZ         pass the PCRE_NOTEOL option to \fBpcre_exec()\fP
                or \fBpcre_dfa_exec()\fP
@@ -460,10 +465,11 @@ This section describes the output when the normal matching function,
 .P
 When a match succeeds, pcretest outputs the list of captured substrings that
 \fBpcre_exec()\fP returns, starting with number 0 for the string that matched
-the whole pattern. Otherwise, it outputs "No match" or "Partial match"
-when \fBpcre_exec()\fP returns PCRE_ERROR_NOMATCH or PCRE_ERROR_PARTIAL,
-respectively, and otherwise the PCRE negative error number. Here is an example
-of an interactive \fBpcretest\fP run.
+the whole pattern. Otherwise, it outputs "No match" when the return is
+PCRE_ERROR_NOMATCH, and "Partial match:" followed by the partially matching
+substring when \fBpcre_exec()\fP returns PCRE_ERROR_PARTIAL. For any other
+returns, it outputs the PCRE negative error number. Here is an example of an
+interactive \fBpcretest\fP run.
 .sp
   $ pcretest
   PCRE version 7.0 30-Nov-2006
@@ -544,7 +550,9 @@ the subject where there is at least one match. For example:
    2: tan
 .sp
 (Using the normal matching function on this data finds only "tang".) The
-longest matching string is always given first (and numbered zero).
+longest matching string is always given first (and numbered zero). After a
+PCRE_ERROR_PARTIAL return, the output is "Partial match:", followed by the
+partially matching substring.
 .P
 If \fB/g\fP is present on the pattern, the search for further matches resumes
 at the end of the longest match. For example:
@@ -723,6 +731,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 10 March 2009
+Last updated: 26 September 2009
 Copyright (c) 1997-2009 University of Cambridge.
 .fi

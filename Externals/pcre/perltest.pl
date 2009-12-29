@@ -91,6 +91,10 @@ for (;;)
 
   $utf8 = $pattern =~ s/8(?=[a-z]*$)//;
 
+  # Remove /J from a pattern with duplicate names.
+
+  $pattern =~ s/J(?=[a-z]*$)//;
+
   # Check that the pattern is valid
 
   eval "\$_ =~ ${pattern}";

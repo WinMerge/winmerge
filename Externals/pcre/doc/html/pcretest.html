@@ -246,11 +246,11 @@ begins with a lookbehind assertion (including \b or \B).
 </P>
 <P>
 If any call to <b>pcre_exec()</b> in a <b>/g</b> or <b>/G</b> sequence matches an
-empty string, the next call is done with the PCRE_NOTEMPTY and PCRE_ANCHORED
-flags set in order to search for another, non-empty, match at the same point.
-If this second match fails, the start offset is advanced by one, and the normal
-match is retried. This imitates the way Perl handles such cases when using the
-<b>/g</b> modifier or the <b>split()</b> function.
+empty string, the next call is done with the PCRE_NOTEMPTY_ATSTART and
+PCRE_ANCHORED flags set in order to search for another, non-empty, match at the
+same point. If this second match fails, the start offset is advanced by one
+character, and the normal match is retried. This imitates the way Perl handles
+such cases when using the <b>/g</b> modifier or the <b>split()</b> function.
 </P>
 <br><b>
 Other modifiers
@@ -370,12 +370,15 @@ recognized:
                ated by next non-alphanumeric character)
   \L         call pcre_get_substringlist() after a successful match
   \M         discover the minimum MATCH_LIMIT and MATCH_LIMIT_RECURSION settings
-  \N         pass the PCRE_NOTEMPTY option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
+  \N         pass the PCRE_NOTEMPTY option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>; if used twice, pass the
+               PCRE_NOTEMPTY_ATSTART option
   \Odd       set the size of the output vector passed to <b>pcre_exec()</b> to dd (any number of digits)
-  \P         pass the PCRE_PARTIAL option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
+  \P         pass the PCRE_PARTIAL_SOFT option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>; if used twice, pass the
+               PCRE_PARTIAL_HARD option
   \Qdd       set the PCRE_MATCH_LIMIT_RECURSION limit to dd (any number of digits)
   \R         pass the PCRE_DFA_RESTART option to <b>pcre_dfa_exec()</b>
   \S         output details of memory get/free calls during matching
+  \Y         pass the PCRE_NO_START_OPTIMIZE option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \Z         pass the PCRE_NOTEOL option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \?         pass the PCRE_NO_UTF8_CHECK option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \&#62;dd       start the match at offset dd (any number of digits);
@@ -453,10 +456,11 @@ This section describes the output when the normal matching function,
 <P>
 When a match succeeds, pcretest outputs the list of captured substrings that
 <b>pcre_exec()</b> returns, starting with number 0 for the string that matched
-the whole pattern. Otherwise, it outputs "No match" or "Partial match"
-when <b>pcre_exec()</b> returns PCRE_ERROR_NOMATCH or PCRE_ERROR_PARTIAL,
-respectively, and otherwise the PCRE negative error number. Here is an example
-of an interactive <b>pcretest</b> run.
+the whole pattern. Otherwise, it outputs "No match" when the return is
+PCRE_ERROR_NOMATCH, and "Partial match:" followed by the partially matching
+substring when <b>pcre_exec()</b> returns PCRE_ERROR_PARTIAL. For any other
+returns, it outputs the PCRE negative error number. Here is an example of an
+interactive <b>pcretest</b> run.
 <pre>
   $ pcretest
   PCRE version 7.0 30-Nov-2006
@@ -536,7 +540,9 @@ the subject where there is at least one match. For example:
    2: tan
 </pre>
 (Using the normal matching function on this data finds only "tang".) The
-longest matching string is always given first (and numbered zero).
+longest matching string is always given first (and numbered zero). After a
+PCRE_ERROR_PARTIAL return, the output is "Partial match:", followed by the
+partially matching substring.
 </P>
 <P>
 If <b>/g</b> is present on the pattern, the search for further matches resumes
@@ -703,7 +709,7 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC15" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 10 March 2009
+Last updated: 26 September 2009
 <br>
 Copyright &copy; 1997-2009 University of Cambridge.
 <br>

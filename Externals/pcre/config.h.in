@@ -126,6 +126,10 @@ them both to 0; an emulation function will be used. */
    "configure" can be used to override this default. */
 #undef LINK_SIZE
 
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
 /* The value of MATCH_LIMIT determines the default number of times the
    internal match() function can be called during a single execution of
    pcre_exec(). There is a runtime interface for setting a different limit.

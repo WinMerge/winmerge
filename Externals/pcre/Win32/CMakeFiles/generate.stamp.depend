@@ -1,36 +1,36 @@
 # CMake generation dependency list for this directory.
-G:/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeSystem.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCCompiler.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCXXCompiler.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeSystemSpecificInformation.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeGenericSystem.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/Platform/gcc.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/Platform/Windows.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/Platform/WindowsPaths.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeCInformation.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/Platform/Windows-cl.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCPlatform.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCXXPlatform.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/Platform/cl.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeRCCompiler.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeRCInformation.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeCommonLanguageInclude.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeCXXInformation.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CMakeCommonLanguageInclude.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/FindBZip2.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/FindZLIB.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindReadline.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CheckIncludeFile.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CheckIncludeFileCXX.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CheckFunctionExists.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CheckTypeSize.cmake
-C:/Program Files/CMake 2.6/share/cmake-2.6/Modules/CheckIncludeFile.cmake
-G:/WinMerge/WinMerge_SVN/Externals/pcre/config-cmake.h.in
-G:/WinMerge/WinMerge_SVN/Externals/pcre/pcre.h.generic
-G:/WinMerge/WinMerge_SVN/Externals/pcre/pcre_stringpiece.h.in
-G:/WinMerge/WinMerge_SVN/Externals/pcre/pcrecpparg.h.in
-G:/WinMerge/WinMerge_SVN/Externals/pcre/pcre_chartables.c.dist
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/CMakeLists.txt
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeSystem.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCCompiler.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCXXCompiler.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/gcc.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/Windows-cl.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCPlatform.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeCXXPlatform.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/Platform/cl.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win32/CMakeFiles/CMakeRCCompiler.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/FindBZip2.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/FindZLIB.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindReadline.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/cmake/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CheckFunctionExists.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CheckTypeSize.cmake
+C:/Program Files/CMake 2.8/share/cmake-2.8/Modules/CheckIncludeFile.cmake
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/config-cmake.h.in
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/pcre.h.generic
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/pcre_stringpiece.h.in
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/pcrecpparg.h.in
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/pcre_chartables.c.dist

@@ -45,6 +45,34 @@ FSM). This is NOT Perl- compatible, but it has advantages in certain
 applications. */
 
 
+/* NOTE ABOUT PERFORMANCE: A user of this function sent some code that improved
+the performance of his patterns greatly. I could not use it as it stood, as it
+was not thread safe, and made assumptions about pattern sizes. Also, it caused
+test 7 to loop, and test 9 to crash with a segfault.
+
+The issue is the check for duplicate states, which is done by a simple linear
+search up the state list. (Grep for "duplicate" below to find the code.) For
+many patterns, there will never be many states active at one time, so a simple
+linear search is fine. In patterns that have many active states, it might be a
+bottleneck. The suggested code used an indexing scheme to remember which states
+had previously been used for each character, and avoided the linear search when
+it knew there was no chance of a duplicate. This was implemented when adding
+states to the state lists.
+
+I wrote some thread-safe, not-limited code to try something similar at the time
+of checking for duplicates (instead of when adding states), using index vectors
+on the stack. It did give a 13% improvement with one specially constructed
+pattern for certain subject strings, but on other strings and on many of the
+simpler patterns in the test suite it did worse. The major problem, I think,
+was the extra time to initialize the index. This had to be done for each call
+of internal_dfa_exec(). (The supplied patch used a static vector, initialized
+only once - I suspect this was the cause of the problems with the tests.)
+
+Overall, I concluded that the gains in some cases did not outweigh the losses
+in others, so I abandoned this code. */
+
+
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -81,8 +109,9 @@ never stored, so we push them well clear of the normal opcodes. */
 character that is to be tested in some way. This makes is possible to
 centralize the loading of these characters. In the case of Type * etc, the
 "character" is the opcode for \D, \d, \S, \s, \W, or \w, which will always be a
-small value. ***NOTE*** If the start of this table is modified, the two tables
-that follow must also be modified. */
+small value. Non-zero values in the table are the offsets from the opcode where
+the character is to be found. ***NOTE*** If the start of this table is
+modified, the three tables that follow must also be modified. */
 
 static const uschar coptable[] = {
   0,                             /* End                                    */
@@ -132,7 +161,63 @@ static const uschar coptable[] = {
   0,                             /* DEF                                    */
   0, 0,                          /* BRAZERO, BRAMINZERO                    */
   0, 0, 0, 0,                    /* PRUNE, SKIP, THEN, COMMIT              */
-  0, 0, 0                        /* FAIL, ACCEPT, SKIPZERO                 */
+  0, 0, 0, 0                     /* FAIL, ACCEPT, CLOSE, SKIPZERO          */
+};
+
+/* This table identifies those opcodes that inspect a character. It is used to
+remember the fact that a character could have been inspected when the end of
+the subject is reached. ***NOTE*** If the start of this table is modified, the
+two tables that follow must also be modified. */
+
+static const uschar poptable[] = {
+  0,                             /* End                                    */
+  0, 0, 0, 1, 1,                 /* \A, \G, \K, \B, \b                     */
+  1, 1, 1, 1, 1, 1,              /* \D, \d, \S, \s, \W, \w                 */
+  1, 1, 1,                       /* Any, AllAny, Anybyte                   */
+  1, 1, 1,                       /* NOTPROP, PROP, EXTUNI                  */
+  1, 1, 1, 1, 1,                 /* \R, \H, \h, \V, \v                     */
+  0, 0, 0, 0, 0,                 /* \Z, \z, Opt, ^, $                      */
+  1,                             /* Char                                   */
+  1,                             /* Charnc                                 */
+  1,                             /* not                                    */
+  /* Positive single-char repeats                                          */
+  1, 1, 1, 1, 1, 1,              /* *, *?, +, +?, ?, ??                    */
+  1, 1, 1,                       /* upto, minupto, exact                   */
+  1, 1, 1, 1,                    /* *+, ++, ?+, upto+                      */
+  /* Negative single-char repeats - only for chars < 256                   */
+  1, 1, 1, 1, 1, 1,              /* NOT *, *?, +, +?, ?, ??                */
+  1, 1, 1,                       /* NOT upto, minupto, exact               */
+  1, 1, 1, 1,                    /* NOT *+, ++, ?+, upto+                  */
+  /* Positive type repeats                                                 */
+  1, 1, 1, 1, 1, 1,              /* Type *, *?, +, +?, ?, ??               */
+  1, 1, 1,                       /* Type upto, minupto, exact              */
+  1, 1, 1, 1,                    /* Type *+, ++, ?+, upto+                 */
+  /* Character class & ref repeats                                         */
+  1, 1, 1, 1, 1, 1,              /* *, *?, +, +?, ?, ??                    */
+  1, 1,                          /* CRRANGE, CRMINRANGE                    */
+  1,                             /* CLASS                                  */
+  1,                             /* NCLASS                                 */
+  1,                             /* XCLASS - variable length               */
+  0,                             /* REF                                    */
+  0,                             /* RECURSE                                */
+  0,                             /* CALLOUT                                */
+  0,                             /* Alt                                    */
+  0,                             /* Ket                                    */
+  0,                             /* KetRmax                                */
+  0,                             /* KetRmin                                */
+  0,                             /* Assert                                 */
+  0,                             /* Assert not                             */
+  0,                             /* Assert behind                          */
+  0,                             /* Assert behind not                      */
+  0,                             /* Reverse                                */
+  0, 0, 0, 0,                    /* ONCE, BRA, CBRA, COND                  */
+  0, 0, 0,                       /* SBRA, SCBRA, SCOND                     */
+  0,                             /* CREF                                   */
+  0,                             /* RREF                                   */
+  0,                             /* DEF                                    */
+  0, 0,                          /* BRAZERO, BRAMINZERO                    */
+  0, 0, 0, 0,                    /* PRUNE, SKIP, THEN, COMMIT              */
+  0, 0, 0, 0                     /* FAIL, ACCEPT, CLOSE, SKIPZERO          */
 };
 
 /* These 2 tables allow for compact code for testing for \D, \d, \S, \s, \W,
@@ -390,6 +475,11 @@ if (*first_op == OP_REVERSE)
     current_subject -= gone_back;
     }
 
+  /* Save the earliest consulted character */
+
+  if (current_subject < md->start_used_ptr)
+    md->start_used_ptr = current_subject;
+
   /* Now we can process the individual branches. */
 
   end_code = this_start_code;
@@ -454,6 +544,8 @@ for (;;)
   int i, j;
   int clen, dlen;
   unsigned int c, d;
+  int forced_fail = 0;
+  BOOL could_continue = FALSE;
 
   /* Make the new state list into the active state list and empty the
   new state list. */
@@ -543,7 +635,9 @@ for (;;)
         }
       }
 
-    /* Check for a duplicate state with the same count, and skip if found. */
+    /* Check for a duplicate state with the same count, and skip if found.
+    See the note at the head of this module about the possibility of improving
+    performance here. */
 
     for (j = 0; j < i; j++)
       {
@@ -559,6 +653,12 @@ for (;;)
 
     code = start_code + state_offset;
     codevalue = *code;
+
+    /* If this opcode inspects a character, but we are at the end of the
+    subject, remember the fact for use when testing for a partial match. */
+
+    if (clen == 0 && poptable[codevalue] != 0)
+      could_continue = TRUE;
 
     /* If this opcode is followed by an inline character, load it. It is
     tempting to test for the presence of a subject character here, but that
@@ -610,7 +710,8 @@ for (;;)
 /* ========================================================================== */
       /* Reached a closing bracket. If not at the end of the pattern, carry
       on with the next opcode. Otherwise, unless we have an empty string and
-      PCRE_NOTEMPTY is set, save the match data, shifting up all previous
+      PCRE_NOTEMPTY is set, or PCRE_NOTEMPTY_ATSTART is set and we are at the
+      start of the subject, save the match data, shifting up all previous
       matches so we always have the longest first. */
 
       case OP_KET:
@@ -624,26 +725,32 @@ for (;;)
           ADD_ACTIVE(state_offset - GET(code, 1), 0);
           }
         }
-      else if (ptr > current_subject || (md->moptions & PCRE_NOTEMPTY) == 0)
+      else
         {
-        if (match_count < 0) match_count = (offsetcount >= 2)? 1 : 0;
-          else if (match_count > 0 && ++match_count * 2 >= offsetcount)
-            match_count = 0;
-        count = ((match_count == 0)? offsetcount : match_count * 2) - 2;
-        if (count > 0) memmove(offsets + 2, offsets, count * sizeof(int));
-        if (offsetcount >= 2)
+        if (ptr > current_subject ||
+            ((md->moptions & PCRE_NOTEMPTY) == 0 &&
+              ((md->moptions & PCRE_NOTEMPTY_ATSTART) == 0 ||
+                current_subject > start_subject + md->start_offset)))
           {
-          offsets[0] = current_subject - start_subject;
-          offsets[1] = ptr - start_subject;
-          DPRINTF(("%.*sSet matched string = \"%.*s\"\n", rlevel*2-2, SP,
-            offsets[1] - offsets[0], current_subject));
-          }
-        if ((md->moptions & PCRE_DFA_SHORTEST) != 0)
-          {
-          DPRINTF(("%.*sEnd of internal_dfa_exec %d: returning %d\n"
-            "%.*s---------------------\n\n", rlevel*2-2, SP, rlevel,
-            match_count, rlevel*2-2, SP));
-          return match_count;
+          if (match_count < 0) match_count = (offsetcount >= 2)? 1 : 0;
+            else if (match_count > 0 && ++match_count * 2 >= offsetcount)
+              match_count = 0;
+          count = ((match_count == 0)? offsetcount : match_count * 2) - 2;
+          if (count > 0) memmove(offsets + 2, offsets, count * sizeof(int));
+          if (offsetcount >= 2)
+            {
+            offsets[0] = current_subject - start_subject;
+            offsets[1] = ptr - start_subject;
+            DPRINTF(("%.*sSet matched string = \"%.*s\"\n", rlevel*2-2, SP,
+              offsets[1] - offsets[0], current_subject));
+            }
+          if ((md->moptions & PCRE_DFA_SHORTEST) != 0)
+            {
+            DPRINTF(("%.*sEnd of internal_dfa_exec %d: returning %d\n"
+              "%.*s---------------------\n\n", rlevel*2-2, SP, rlevel,
+              match_count, rlevel*2-2, SP));
+            return match_count;
+            }
           }
         }
       break;
@@ -794,6 +901,7 @@ for (;;)
         if (ptr > start_subject)
           {
           const uschar *temp = ptr - 1;
+          if (temp < md->start_used_ptr) md->start_used_ptr = temp;
 #ifdef SUPPORT_UTF8
           if (utf8) BACKCHAR(temp);
 #endif
@@ -802,8 +910,9 @@ for (;;)
           }
         else left_word = 0;
 
-        if (clen > 0) right_word = c < 256 && (ctypes[c] & ctype_word) != 0;
-          else right_word = 0;
+        if (clen > 0)
+          right_word = c < 256 && (ctypes[c] & ctype_word) != 0;
+        else right_word = 0;
 
         if ((left_word == right_word) == (codevalue == OP_NOT_WORD_BOUNDARY))
           { ADD_ACTIVE(state_offset + 1, 0); }
@@ -2157,11 +2266,12 @@ for (;;)
 
 /* ========================================================================== */
       /* These are the opcodes for fancy brackets of various kinds. We have
-      to use recursion in order to handle them. The "always failing" assersion
-      (?!) is optimised when compiling to OP_FAIL, so we have to support that,
+      to use recursion in order to handle them. The "always failing" assertion
+      (?!) is optimised to OP_FAIL when compiling, so we have to support that,
       though the other "backtracking verbs" are not supported. */
 
       case OP_FAIL:
+      forced_fail++;    /* Count FAILs for multiple states */
       break;
 
       case OP_ASSERT:
@@ -2235,7 +2345,8 @@ for (;;)
 
         /* Back reference conditions are not supported */
 
-        if (condcode == OP_CREF) return PCRE_ERROR_DFA_UCOND;
+        if (condcode == OP_CREF || condcode == OP_NCREF)
+          return PCRE_ERROR_DFA_UCOND;
 
         /* The DEFINE condition is always false */
 
@@ -2246,7 +2357,7 @@ for (;;)
         which means "test if in any recursion". We can't test for specifically
         recursed groups. */
 
-        else if (condcode == OP_RREF)
+        else if (condcode == OP_RREF || condcode == OP_NRREF)
           {
           int value = GET2(code, LINK_SIZE+2);
           if (value != RREF_ANY) return PCRE_ERROR_DFA_UCOND;
@@ -2469,19 +2580,33 @@ for (;;)
   /* We have finished the processing at the current subject character. If no
   new states have been set for the next character, we have found all the
   matches that we are going to find. If we are at the top level and partial
-  matching has been requested, check for appropriate conditions. */
+  matching has been requested, check for appropriate conditions.
+
+  The "forced_ fail" variable counts the number of (*F) encountered for the
+  character. If it is equal to the original active_count (saved in
+  workspace[1]) it means that (*F) was found on every active state. In this
+  case we don't want to give a partial match.
+
+  The "could_continue" variable is true if a state could have continued but
+  for the fact that the end of the subject was reached. */
 
   if (new_count <= 0)
     {
-    if (match_count < 0 &&                     /* No matches found */
-        rlevel == 1 &&                         /* Top level match function */
-        (md->moptions & PCRE_PARTIAL) != 0 &&  /* Want partial matching */
-        ptr >= end_subject &&                  /* Reached end of subject */
-        ptr > current_subject)                 /* Matched non-empty string */
+    if (rlevel == 1 &&                               /* Top level, and */
+        could_continue &&                            /* Some could go on */
+        forced_fail != workspace[1] &&               /* Not all forced fail & */
+        (                                            /* either... */
+        (md->moptions & PCRE_PARTIAL_HARD) != 0      /* Hard partial */
+        ||                                           /* or... */
+        ((md->moptions & PCRE_PARTIAL_SOFT) != 0 &&  /* Soft partial and */
+         match_count < 0)                            /* no matches */
+        ) &&                                         /* And... */
+        ptr >= end_subject &&                     /* Reached end of subject */
+        ptr > current_subject)                    /* Matched non-empty string */
       {
       if (offsetcount >= 2)
         {
-        offsets[0] = current_subject - start_subject;
+        offsets[0] = md->start_used_ptr - start_subject;
         offsets[1] = end_subject - start_subject;
         }
       match_count = PCRE_ERROR_PARTIAL;
@@ -2623,6 +2748,7 @@ md->start_code = (const uschar *)argument_re +
     re->name_table_offset + re->name_count * re->name_entry_size;
 md->start_subject = (const unsigned char *)subject;
 md->end_subject = end_subject;
+md->start_offset = start_offset;
 md->moptions = options;
 md->poptions = re->options;
 
@@ -2727,8 +2853,8 @@ if (!anchored)
     }
   else
     {
-    if (startline && study != NULL &&
-         (study->options & PCRE_STUDY_MAPPED) != 0)
+    if (!startline && study != NULL &&
+         (study->flags & PCRE_STUDY_MAPPED) != 0)
       start_bits = study->start_bits;
     }
   }
@@ -2779,13 +2905,11 @@ for (;;)
       }
 
     /* There are some optimizations that avoid running the match if a known
-    starting point is not found, or if a known later character is not present.
-    However, there is an option that disables these, for testing and for
-    ensuring that all callouts do actually occur. */
+    starting point is not found. However, there is an option that disables
+    these, for testing and for ensuring that all callouts do actually occur. */
 
     if ((options & PCRE_NO_START_OPTIMIZE) == 0)
       {
-
       /* Advance to a known first byte. */
 
       if (first_byte >= 0)
@@ -2851,66 +2975,79 @@ for (;;)
     /* Restore fudged end_subject */
 
     end_subject = save_end_subject;
-    }
 
-  /* If req_byte is set, we know that that character must appear in the subject
-  for the match to succeed. If the first character is set, req_byte must be
-  later in the subject; otherwise the test starts at the match point. This
-  optimization can save a huge amount of work in patterns with nested unlimited
-  repeats that aren't going to match. Writing separate code for cased/caseless
-  versions makes it go faster, as does using an autoincrement and backing off
-  on a match.
+    /* The following two optimizations are disabled for partial matching or if
+    disabling is explicitly requested (and of course, by the test above, this
+    code is not obeyed when restarting after a partial match). */
 
-  HOWEVER: when the subject string is very, very long, searching to its end can
-  take a long time, and give bad performance on quite ordinary patterns. This
-  showed up when somebody was matching /^C/ on a 32-megabyte string... so we
-  don't do this when the string is sufficiently long.
-
-  ALSO: this processing is disabled when partial matching is requested, and can
-  also be explicitly deactivated. */
-
-  if ((options & PCRE_NO_START_OPTIMIZE) == 0 &&
-      req_byte >= 0 &&
-      end_subject - current_subject < REQ_BYTE_MAX &&
-      (options & PCRE_PARTIAL) == 0)
-    {
-    register const uschar *p = current_subject + ((first_byte >= 0)? 1 : 0);
-
-    /* We don't need to repeat the search if we haven't yet reached the
-    place we found it at last time. */
-
-    if (p > req_byte_ptr)
+    if ((options & PCRE_NO_START_OPTIMIZE) == 0 &&
+        (options & (PCRE_PARTIAL_HARD|PCRE_PARTIAL_SOFT)) == 0)
       {
-      if (req_byte_caseless)
+      /* If the pattern was studied, a minimum subject length may be set. This
+      is a lower bound; no actual string of that length may actually match the
+      pattern. Although the value is, strictly, in characters, we treat it as
+      bytes to avoid spending too much time in this optimization. */
+
+      if (study != NULL && (study->flags & PCRE_STUDY_MINLEN) != 0 &&
+          end_subject - current_subject < study->minlength)
+        return PCRE_ERROR_NOMATCH;
+
+      /* If req_byte is set, we know that that character must appear in the
+      subject for the match to succeed. If the first character is set, req_byte
+      must be later in the subject; otherwise the test starts at the match
+      point. This optimization can save a huge amount of work in patterns with
+      nested unlimited repeats that aren't going to match. Writing separate
+      code for cased/caseless versions makes it go faster, as does using an
+      autoincrement and backing off on a match.
+
+      HOWEVER: when the subject string is very, very long, searching to its end
+      can take a long time, and give bad performance on quite ordinary
+      patterns. This showed up when somebody was matching /^C/ on a 32-megabyte
+      string... so we don't do this when the string is sufficiently long. */
+
+      if (req_byte >= 0 && end_subject - current_subject < REQ_BYTE_MAX)
         {
-        while (p < end_subject)
+        register const uschar *p = current_subject + ((first_byte >= 0)? 1 : 0);
+
+        /* We don't need to repeat the search if we haven't yet reached the
+        place we found it at last time. */
+
+        if (p > req_byte_ptr)
           {
-          register int pp = *p++;
-          if (pp == req_byte || pp == req_byte2) { p--; break; }
+          if (req_byte_caseless)
+            {
+            while (p < end_subject)
+              {
+              register int pp = *p++;
+              if (pp == req_byte || pp == req_byte2) { p--; break; }
+              }
+            }
+          else
+            {
+            while (p < end_subject)
+              {
+              if (*p++ == req_byte) { p--; break; }
+              }
+            }
+
+          /* If we can't find the required character, break the matching loop,
+          which will cause a return or PCRE_ERROR_NOMATCH. */
+
+          if (p >= end_subject) break;
+
+          /* If we have found the required character, save the point where we
+          found it, so that we don't search again next time round the loop if
+          the start hasn't passed this character yet. */
+
+          req_byte_ptr = p;
           }
         }
-      else
-        {
-        while (p < end_subject)
-          {
-          if (*p++ == req_byte) { p--; break; }
-          }
-        }
-
-      /* If we can't find the required character, break the matching loop,
-      which will cause a return or PCRE_ERROR_NOMATCH. */
-
-      if (p >= end_subject) break;
-
-      /* If we have found the required character, save the point where we
-      found it, so that we don't search again next time round the loop if
-      the start hasn't passed this character yet. */
-
-      req_byte_ptr = p;
       }
-    }
+    }   /* End of optimizations that are done when not restarting */
 
   /* OK, now we can do the business */
+
+  md->start_used_ptr = current_subject;
 
   rc = internal_dfa_exec(
     md,                                /* fixed match data */

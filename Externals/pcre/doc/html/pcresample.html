@@ -17,7 +17,11 @@ PCRE SAMPLE PROGRAM
 </b><br>
 <P>
 A simple, complete demonstration program, to get you started with using PCRE,
-is supplied in the file <i>pcredemo.c</i> in the PCRE distribution.
+is supplied in the file <i>pcredemo.c</i> in the PCRE distribution. A listing of
+this program is given in the
+<a href="pcredemo.html"><b>pcredemo</b></a>
+documentation. If you do not have a copy of the PCRE distribution, you can save
+this listing to re-create <i>pcredemo.c</i>.
 </P>
 <P>
 The program compiles the regular expression that is its first argument, and
@@ -34,8 +38,8 @@ an empty string. Comments in the code explain what is going on.
 </P>
 <P>
 If PCRE is installed in the standard include and library directories for your
-system, you should be able to compile the demonstration program using this
-command:
+operating system, you should be able to compile the demonstration program using
+this command:
 <pre>
   gcc -o pcredemo pcredemo.c -lpcre
 </pre>
@@ -55,13 +59,15 @@ this:
 Note that there is a much more comprehensive test program, called
 <a href="pcretest.html"><b>pcretest</b>,</a>
 which supports many more facilities for testing regular expressions and the
-PCRE library. The <b>pcredemo</b> program is provided as a simple coding
-example.
+PCRE library. The
+<a href="pcredemo.html"><b>pcredemo</b></a>
+program is provided as a simple coding example.
 </P>
 <P>
-On some operating systems (e.g. Solaris), when PCRE is not installed in the
-standard library directory, you may get an error like this when you try to run
-<b>pcredemo</b>:
+When you try to run
+<a href="pcredemo.html"><b>pcredemo</b></a>
+when PCRE is not installed in the standard library directory, you may get an
+error like this on some operating systems (e.g. Solaris):
 <pre>
   ld.so.1: a.out: fatal: libpcre.so.0: open failed: No such file or directory
 </pre>
@@ -87,9 +93,9 @@ Cambridge CB2 3QH, England.
 REVISION
 </b><br>
 <P>
-Last updated: 23 January 2008
+Last updated: 30 September 2009
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2009 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

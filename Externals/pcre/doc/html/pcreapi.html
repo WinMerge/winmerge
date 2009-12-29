@@ -164,8 +164,10 @@ Applications can use these to include support for different releases of PCRE.
 The functions <b>pcre_compile()</b>, <b>pcre_compile2()</b>, <b>pcre_study()</b>,
 and <b>pcre_exec()</b> are used for compiling and matching regular expressions
 in a Perl-compatible manner. A sample program that demonstrates the simplest
-way of using them is provided in the file called <i>pcredemo.c</i> in the source
-distribution. The
+way of using them is provided in the file called <i>pcredemo.c</i> in the PCRE
+source distribution. A listing of this program is given in the
+<a href="pcredemo.html"><b>pcredemo</b></a>
+documentation, and the
 <a href="pcresample.html"><b>pcresample</b></a>
 documentation describes how to compile and run it.
 </P>
@@ -173,9 +175,10 @@ documentation describes how to compile and run it.
 A second matching function, <b>pcre_dfa_exec()</b>, which is not
 Perl-compatible, is also provided. This uses a different algorithm for the
 matching. The alternative algorithm finds all possible matches (at a given
-point in the subject), and scans the subject just once. However, this algorithm
-does not return captured substrings. A description of the two matching
-algorithms and their advantages and disadvantages is given in the
+point in the subject), and scans the subject just once (unless there are
+lookbehind assertions). However, this algorithm does not return captured
+substrings. A description of the two matching algorithms and their advantages
+and disadvantages is given in the
 <a href="pcrematching.html"><b>pcrematching</b></a>
 documentation.
 </P>
@@ -397,7 +400,9 @@ avoiding the use of the stack.
 Either of the functions <b>pcre_compile()</b> or <b>pcre_compile2()</b> can be
 called to compile a pattern into an internal form. The only difference between
 the two interfaces is that <b>pcre_compile2()</b> has an additional argument,
-<i>errorcodeptr</i>, via which a numerical error code can be returned.
+<i>errorcodeptr</i>, via which a numerical error code can be returned. To avoid
+too much repetition, we refer just to <b>pcre_compile()</b> below, but the
+information applies equally to <b>pcre_compile2()</b>.
 </P>
 <P>
 The pattern is a C string terminated by a binary zero, and is passed in the
@@ -417,23 +422,26 @@ argument, which is an address (see below).
 The <i>options</i> argument contains various bit settings that affect the
 compilation. It should be zero if no options are required. The available
 options are described below. Some of them (in particular, those that are
-compatible with Perl, but also some others) can also be set and unset from
+compatible with Perl, but some others as well) can also be set and unset from
 within the pattern (see the detailed description in the
 <a href="pcrepattern.html"><b>pcrepattern</b></a>
 documentation). For those options that can be different in different parts of
-the pattern, the contents of the <i>options</i> argument specifies their initial
-settings at the start of compilation and execution. The PCRE_ANCHORED and
-PCRE_NEWLINE_<i>xxx</i> options can be set at the time of matching as well as at
-compile time.
+the pattern, the contents of the <i>options</i> argument specifies their
+settings at the start of compilation and execution. The PCRE_ANCHORED,
+PCRE_BSR_<i>xxx</i>, and PCRE_NEWLINE_<i>xxx</i> options can be set at the time
+of matching as well as at compile time.
 </P>
 <P>
 If <i>errptr</i> is NULL, <b>pcre_compile()</b> returns NULL immediately.
 Otherwise, if compilation of a pattern fails, <b>pcre_compile()</b> returns
 NULL, and sets the variable pointed to by <i>errptr</i> to point to a textual
 error message. This is a static string that is part of the library. You must
-not try to free it. The offset from the start of the pattern to the character
-where the error was discovered is placed in the variable pointed to by
-<i>erroffset</i>, which must not be NULL. If it is, an immediate error is given.
+not try to free it. The byte offset from the start of the pattern to the
+character that was being processed when the error was discovered is placed in
+the variable pointed to by <i>erroffset</i>, which must not be NULL. If it is,
+an immediate error is given. Some errors are not detected until checks are
+carried out when the whole pattern has been scanned; in this case the offset is
+set to the end of the pattern.
 </P>
 <P>
 If <b>pcre_compile2()</b> is used instead of <b>pcre_compile()</b>, and the
@@ -766,17 +774,17 @@ results of the study.
 </P>
 <P>
 The returned value from <b>pcre_study()</b> can be passed directly to
-<b>pcre_exec()</b>. However, a <b>pcre_extra</b> block also contains other
-fields that can be set by the caller before the block is passed; these are
-described
+<b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>. However, a <b>pcre_extra</b> block
+also contains other fields that can be set by the caller before the block is
+passed; these are described
 <a href="#extradata">below</a>
 in the section on matching a pattern.
 </P>
 <P>
-If studying the pattern does not produce any additional information
+If studying the pattern does not produce any useful information,
 <b>pcre_study()</b> returns NULL. In that circumstance, if the calling program
-wants to pass any of the other fields to <b>pcre_exec()</b>, it must set up its
-own <b>pcre_extra</b> block.
+wants to pass any of the other fields to <b>pcre_exec()</b> or
+<b>pcre_dfa_exec()</b>, it must set up its own <b>pcre_extra</b> block.
 </P>
 <P>
 The second argument of <b>pcre_study()</b> contains option bits. At present, no
@@ -799,9 +807,19 @@ This is a typical call to <b>pcre_study</b>():
     0,              /* no options exist */
     &error);        /* set to NULL or points to a message */
 </pre>
-At present, studying a pattern is useful only for non-anchored patterns that do
-not have a single fixed starting character. A bitmap of possible starting
-bytes is created.
+Studying a pattern does two things: first, a lower bound for the length of
+subject string that is needed to match the pattern is computed. This does not
+mean that there are any strings of that length that match, but it does
+guarantee that no shorter strings match. The value is used by
+<b>pcre_exec()</b> and <b>pcre_dfa_exec()</b> to avoid wasting time by trying to
+match strings that are shorter than the lower bound. You can find out the value
+in a calling program via the <b>pcre_fullinfo()</b> function.
+</P>
+<P>
+Studying a pattern is also useful for non-anchored patterns that do not have a
+single fixed starting character. A bitmap of possible starting bytes is
+created. This speeds up finding a position in the subject at which to start
+matching.
 <a name="localesupport"></a></P>
 <br><a name="SEC10" href="#TOC1">LOCALE SUPPORT</a><br>
 <P>
@@ -972,6 +990,16 @@ follows something of variable length. For example, for the pattern
 /^a\d+z\d+/ the returned value is "z", but for /^a\dz\d/ the returned value
 is -1.
 <pre>
+  PCRE_INFO_MINLENGTH
+</pre>
+If the pattern was studied and a minimum length for matching subject strings
+was computed, its value is returned. Otherwise the returned value is -1. The
+value is a number of characters, not bytes (this may be relevant in UTF-8
+mode). The fourth argument should point to an <b>int</b> variable. A
+non-negative value is a lower bound to the length of any matching string. There
+may not be any strings of that length that do actually match, but every string
+that does match is at least that long.
+<pre>
   PCRE_INFO_NAMECOUNT
   PCRE_INFO_NAMEENTRYSIZE
   PCRE_INFO_NAMETABLE
@@ -993,10 +1021,24 @@ entry; both of these return an <b>int</b> value. The entry size depends on the
 length of the longest name. PCRE_INFO_NAMETABLE returns a pointer to the first
 entry of the table (a pointer to <b>char</b>). The first two bytes of each entry
 are the number of the capturing parenthesis, most significant byte first. The
-rest of the entry is the corresponding name, zero terminated. The names are in
-alphabetical order. When PCRE_DUPNAMES is set, duplicate names are in order of
-their parentheses numbers. For example, consider the following pattern (assume
-PCRE_EXTENDED is set, so white space - including newlines - is ignored):
+rest of the entry is the corresponding name, zero terminated.
+</P>
+<P>
+The names are in alphabetical order. Duplicate names may appear if (?| is used
+to create multiple groups with the same number, as described in the
+<a href="pcrepattern.html#dupsubpatternnumber">section on duplicate subpattern numbers</a>
+in the
+<a href="pcrepattern.html"><b>pcrepattern</b></a>
+page. Duplicate names for subpatterns with different numbers are permitted only
+if PCRE_DUPNAMES is set. In all cases of duplicate names, they appear in the
+table in the order in which they were found in the pattern. In the absence of
+(?| this is the order of increasing number; when (?| is used this is not
+necessarily the case because later subpatterns may have lower numbers.
+</P>
+<P>
+As a simple example of the name/number table, consider the following pattern
+(assume PCRE_EXTENDED is set, so white space - including newlines - is
+ignored):
 <pre>
   (?&#60;date&#62; (?&#60;year&#62;(\d\d)?\d\d) - (?&#60;month&#62;\d\d) - (?&#60;day&#62;\d\d) )
 </pre>
@@ -1015,11 +1057,12 @@ different for each compiled pattern.
 <pre>
   PCRE_INFO_OKPARTIAL
 </pre>
-Return 1 if the pattern can be used for partial matching, otherwise 0. The
-fourth argument should point to an <b>int</b> variable. The
+Return 1 if the pattern can be used for partial matching with
+<b>pcre_exec()</b>, otherwise 0. The fourth argument should point to an
+<b>int</b> variable. From release 8.00, this always returns 1, because the
+restrictions that previously applied to partial matching have been lifted. The
 <a href="pcrepartial.html"><b>pcrepartial</b></a>
-documentation lists the restrictions that apply to patterns when partial
-matching is used.
+documentation gives details of partial matching.
 <pre>
   PCRE_INFO_OPTIONS
 </pre>
@@ -1055,7 +1098,8 @@ variable.
 Return the size of the data block pointed to by the <i>study_data</i> field in
 a <b>pcre_extra</b> block. That is, it is the value that was passed to
 <b>pcre_malloc()</b> when PCRE was getting memory into which to place the data
-created by <b>pcre_study()</b>. The fourth argument should point to a
+created by <b>pcre_study()</b>. If <b>pcre_extra</b> is NULL, or there is no
+study data, zero is returned. The fourth argument should point to a
 <b>size_t</b> variable.
 </P>
 <br><a name="SEC12" href="#TOC1">OBSOLETE INFO FUNCTION</a><br>
@@ -1115,7 +1159,7 @@ is different. (This seems a highly unlikely scenario.)
 <P>
 The function <b>pcre_exec()</b> is called to match a subject string against a
 compiled pattern, which is passed in the <i>code</i> argument. If the
-pattern has been studied, the result of the study should be passed in the
+pattern was studied, the result of the study should be passed in the
 <i>extra</i> argument. This function is the main matching facility of the
 library, and it operates in a Perl-like manner. For specialist use there is
 also an alternative matching function, which is described
@@ -1182,7 +1226,7 @@ the block by setting the other fields and their corresponding flag bits.
 The <i>match_limit</i> field provides a means of preventing PCRE from using up a
 vast amount of resources when running patterns that are not going to match,
 but which have a very large number of possibilities in their search trees. The
-classic example is the use of nested unlimited repeats.
+classic example is a pattern that uses nested unlimited repeats.
 </P>
 <P>
 Internally, PCRE uses a function called <b>match()</b> which it calls repeatedly
@@ -1221,8 +1265,8 @@ PCRE_EXTRA_MATCH_LIMIT_RECURSION is set in the <i>flags</i> field. If the limit
 is exceeded, <b>pcre_exec()</b> returns PCRE_ERROR_RECURSIONLIMIT.
 </P>
 <P>
-The <i>pcre_callout</i> field is used in conjunction with the "callout" feature,
-which is described in the
+The <i>callout_data</i> field is used in conjunction with the "callout" feature,
+and is described in the
 <a href="pcrecallout.html"><b>pcrecallout</b></a>
 documentation.
 </P>
@@ -1245,8 +1289,9 @@ Option bits for <b>pcre_exec()</b>
 <P>
 The unused bits of the <i>options</i> argument for <b>pcre_exec()</b> must be
 zero. The only bits that may be set are PCRE_ANCHORED, PCRE_NEWLINE_<i>xxx</i>,
-PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NO_START_OPTIMIZE,
-PCRE_NO_UTF8_CHECK and PCRE_PARTIAL.
+PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NOTEMPTY_ATSTART,
+PCRE_NO_START_OPTIMIZE, PCRE_NO_UTF8_CHECK, PCRE_PARTIAL_SOFT, and
+PCRE_PARTIAL_HARD.
 <pre>
   PCRE_ANCHORED
 </pre>
@@ -1325,18 +1370,27 @@ match the empty string, the entire match fails. For example, if the pattern
 <pre>
   a?b?
 </pre>
-is applied to a string not beginning with "a" or "b", it matches the empty
+is applied to a string not beginning with "a" or "b", it matches an empty
 string at the start of the subject. With PCRE_NOTEMPTY set, this match is not
 valid, so PCRE searches further into the string for occurrences of "a" or "b".
+<pre>
+  PCRE_NOTEMPTY_ATSTART
+</pre>
+This is like PCRE_NOTEMPTY, except that an empty string match that is not at
+the start of the subject is permitted. If the pattern is anchored, such a match
+can occur only if the pattern contains \K.
 </P>
 <P>
-Perl has no direct equivalent of PCRE_NOTEMPTY, but it does make a special case
-of a pattern match of the empty string within its <b>split()</b> function, and
-when using the /g modifier. It is possible to emulate Perl's behaviour after
-matching a null string by first trying the match again at the same offset with
-PCRE_NOTEMPTY and PCRE_ANCHORED, and then if that fails by advancing the
-starting offset (see below) and trying an ordinary match again. There is some
-code that demonstrates how to do this in the <i>pcredemo.c</i> sample program.
+Perl has no direct equivalent of PCRE_NOTEMPTY or PCRE_NOTEMPTY_ATSTART, but it
+does make a special case of a pattern match of the empty string within its
+<b>split()</b> function, and when using the /g modifier. It is possible to
+emulate Perl's behaviour after matching a null string by first trying the match
+again at the same offset with PCRE_NOTEMPTY_ATSTART and PCRE_ANCHORED, and then
+if that fails, by advancing the starting offset (see below) and trying an
+ordinary match again. There is some code that demonstrates how to do this in
+the
+<a href="pcredemo.html"><b>pcredemo</b></a>
+sample program.
 <pre>
   PCRE_NO_START_OPTIMIZE
 </pre>
@@ -1373,15 +1427,19 @@ PCRE_NO_UTF8_CHECK is set, the effect of passing an invalid UTF-8 string as a
 subject, or a value of <i>startoffset</i> that does not point to the start of a
 UTF-8 character, is undefined. Your program may crash.
 <pre>
-  PCRE_PARTIAL
+  PCRE_PARTIAL_HARD
+  PCRE_PARTIAL_SOFT
 </pre>
-This option turns on the partial matching feature. If the subject string fails
-to match the pattern, but at some point during the matching process the end of
-the subject was reached (that is, the subject partially matches the pattern and
-the failure to match occurred only because there were not enough subject
-characters), <b>pcre_exec()</b> returns PCRE_ERROR_PARTIAL instead of
-PCRE_ERROR_NOMATCH. When PCRE_PARTIAL is used, there are restrictions on what
-may appear in the pattern. These are discussed in the
+These options turn on the partial matching feature. For backwards
+compatibility, PCRE_PARTIAL is a synonym for PCRE_PARTIAL_SOFT. A partial match
+occurs if the end of the subject string is reached successfully, but there are
+not enough subject characters to complete the match. If this happens when
+PCRE_PARTIAL_HARD is set, <b>pcre_exec()</b> immediately returns
+PCRE_ERROR_PARTIAL. Otherwise, if PCRE_PARTIAL_SOFT is set, matching continues
+by testing any other alternatives. Only if they all fail is PCRE_ERROR_PARTIAL
+returned (instead of PCRE_ERROR_NOMATCH). The portion of the string that
+was inspected when the partial match was found is set as the first matching
+string. There is a more detailed discussion in the
 <a href="pcrepartial.html"><b>pcrepartial</b></a>
 documentation.
 </P>
@@ -1478,7 +1536,7 @@ has to get additional memory for use during matching. Thus it is usually
 advisable to supply an <i>ovector</i>.
 </P>
 <P>
-The <b>pcre_info()</b> function can be used to find out how many capturing
+The <b>pcre_fullinfo()</b> function can be used to find out how many capturing
 subpatterns there are in a compiled pattern. The smallest size for
 <i>ovector</i> that will allow for <i>n</i> captured substrings, in addition to
 the offsets of the substring matched by the whole pattern, is (<i>n</i>+1)*3.
@@ -1582,10 +1640,10 @@ documentation for details of partial matching.
 <pre>
   PCRE_ERROR_BADPARTIAL     (-13)
 </pre>
-The PCRE_PARTIAL option was used with a compiled pattern containing items that
-are not supported for partial matching. See the
-<a href="pcrepartial.html"><b>pcrepartial</b></a>
-documentation for details of partial matching.
+This code is no longer in use. It was formerly returned when the PCRE_PARTIAL
+option was used with a compiled pattern containing items that were not
+supported for partial matching. From release 8.00 onwards, there are no
+restrictions on partial matching.
 <pre>
   PCRE_ERROR_INTERNAL       (-14)
 </pre>
@@ -1758,10 +1816,15 @@ appropriate. <b>NOTE:</b> If PCRE_DUPNAMES is set and there are duplicate names,
 the behaviour may not be what you want (see the next section).
 </P>
 <P>
-<b>Warning:</b> If the pattern uses the "(?|" feature to set up multiple
-subpatterns with the same number, you cannot use names to distinguish them,
-because names are not included in the compiled code. The matching process uses
-only numbers.
+<b>Warning:</b> If the pattern uses the (?| feature to set up multiple
+subpatterns with the same number, as described in the
+<a href="pcrepattern.html#dupsubpatternnumber">section on duplicate subpattern numbers</a>
+in the
+<a href="pcrepattern.html"><b>pcrepattern</b></a>
+page, you cannot use names to distinguish the different subpatterns, because
+names are not included in the compiled code. The matching process uses only
+numbers. For this reason, the use of different names for subpatterns of the
+same number causes an error at compile time.
 </P>
 <br><a name="SEC17" href="#TOC1">DUPLICATE SUBPATTERN NAMES</a><br>
 <P>
@@ -1770,9 +1833,13 @@ only numbers.
 </P>
 <P>
 When a pattern is compiled with the PCRE_DUPNAMES option, names for subpatterns
-are not required to be unique. Normally, patterns with duplicate names are such
-that in any one match, only one of the named subpatterns participates. An
-example is shown in the
+are not required to be unique. (Duplicate names are always allowed for
+subpatterns with the same number, created by using the (?| feature. Indeed, if
+such subpatterns are named, they are required to use the same names.)
+</P>
+<P>
+Normally, patterns with duplicate names are such that in any one match, only
+one of the named subpatterns participates. An example is shown in the
 <a href="pcrepattern.html"><b>pcrepattern</b></a>
 documentation.
 </P>
@@ -1828,8 +1895,8 @@ a compiled pattern, using a matching algorithm that scans the subject string
 just once, and does not backtrack. This has different characteristics to the
 normal algorithm, and is not compatible with Perl. Some of the features of PCRE
 patterns are not supported. Nevertheless, there are times when this kind of
-matching can be useful. For a discussion of the two matching algorithms, see
-the
+matching can be useful. For a discussion of the two matching algorithms, and a
+list of features that <b>pcre_dfa_exec()</b> does not support, see the
 <a href="pcrematching.html"><b>pcrematching</b></a>
 documentation.
 </P>
@@ -1871,19 +1938,24 @@ Option bits for <b>pcre_dfa_exec()</b>
 <P>
 The unused bits of the <i>options</i> argument for <b>pcre_dfa_exec()</b> must be
 zero. The only bits that may be set are PCRE_ANCHORED, PCRE_NEWLINE_<i>xxx</i>,
-PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NO_UTF8_CHECK, PCRE_PARTIAL,
-PCRE_DFA_SHORTEST, and PCRE_DFA_RESTART. All but the last three of these are
-the same as for <b>pcre_exec()</b>, so their description is not repeated here.
+PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NOTEMPTY_ATSTART,
+PCRE_NO_UTF8_CHECK, PCRE_PARTIAL_HARD, PCRE_PARTIAL_SOFT, PCRE_DFA_SHORTEST,
+and PCRE_DFA_RESTART. All but the last four of these are exactly the same as
+for <b>pcre_exec()</b>, so their description is not repeated here.
 <pre>
-  PCRE_PARTIAL
+  PCRE_PARTIAL_HARD
+  PCRE_PARTIAL_SOFT
 </pre>
-This has the same general effect as it does for <b>pcre_exec()</b>, but the
-details are slightly different. When PCRE_PARTIAL is set for
-<b>pcre_dfa_exec()</b>, the return code PCRE_ERROR_NOMATCH is converted into
-PCRE_ERROR_PARTIAL if the end of the subject is reached, there have been no
-complete matches, but there is still at least one matching possibility. The
-portion of the string that provided the partial match is set as the first
-matching string.
+These have the same general effect as they do for <b>pcre_exec()</b>, but the
+details are slightly different. When PCRE_PARTIAL_HARD is set for
+<b>pcre_dfa_exec()</b>, it returns PCRE_ERROR_PARTIAL if the end of the subject
+is reached and there is still at least one matching possibility that requires
+additional characters. This happens even if some complete matches have also
+been found. When PCRE_PARTIAL_SOFT is set, the return code PCRE_ERROR_NOMATCH
+is converted into PCRE_ERROR_PARTIAL if the end of the subject is reached,
+there have been no complete matches, but there is still at least one matching
+possibility. The portion of the string that was inspected when the longest
+partial match was found is set as the first matching string in both cases.
 <pre>
   PCRE_DFA_SHORTEST
 </pre>
@@ -1894,13 +1966,12 @@ matching point in the subject string.
 <pre>
   PCRE_DFA_RESTART
 </pre>
-When <b>pcre_dfa_exec()</b> is called with the PCRE_PARTIAL option, and returns
-a partial match, it is possible to call it again, with additional subject
-characters, and have it continue with the same match. The PCRE_DFA_RESTART
-option requests this action; when it is set, the <i>workspace</i> and
-<i>wscount</i> options must reference the same vector as before because data
-about the match so far is left in them after a partial match. There is more
-discussion of this facility in the
+When <b>pcre_dfa_exec()</b> returns a partial match, it is possible to call it
+again, with additional subject characters, and have it continue with the same
+match. The PCRE_DFA_RESTART option requests this action; when it is set, the
+<i>workspace</i> and <i>wscount</i> options must reference the same vector as
+before because data about the match so far is left in them after a partial
+match. There is more discussion of this facility in the
 <a href="pcrepartial.html"><b>pcrepartial</b></a>
 documentation.
 </P>
@@ -1996,7 +2067,7 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC22" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 11 April 2009
+Last updated: 03 October 2009
 <br>
 Copyright &copy; 1997-2009 University of Cambridge.
 <br>

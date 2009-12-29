@@ -66,11 +66,11 @@ DIST_COMMON = README $(am__configure_deps) $(am__include_HEADERS_DIST) \
 	$(dist_noinst_DATA) $(dist_noinst_SCRIPTS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in $(srcdir)/libpcre.pc.in \
-	$(srcdir)/libpcrecpp.pc.in $(srcdir)/pcre-config.in \
-	$(srcdir)/pcre.h.in $(srcdir)/pcre_stringpiece.h.in \
-	$(srcdir)/pcrecpparg.h.in $(top_srcdir)/configure AUTHORS \
-	COPYING ChangeLog INSTALL NEWS config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
+	$(srcdir)/libpcrecpp.pc.in $(srcdir)/libpcreposix.pc.in \
+	$(srcdir)/pcre-config.in $(srcdir)/pcre.h.in \
+	$(srcdir)/pcre_stringpiece.h.in $(srcdir)/pcrecpparg.h.in \
+	$(top_srcdir)/configure AUTHORS COPYING ChangeLog INSTALL NEWS \
+	config.guess config.sub depcomp install-sh ltmain.sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -79,8 +79,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = libpcre.pc libpcrecpp.pc pcre-config pcre.h \
-	pcre_stringpiece.h pcrecpparg.h
+CONFIG_CLEAN_FILES = libpcre.pc libpcreposix.pc libpcrecpp.pc \
+	pcre-config pcre.h pcre_stringpiece.h pcrecpparg.h
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -247,7 +247,7 @@ DEPDIR = @DEPDIR@
 DISTCHECK_CONFIGURE_FLAGS = @DISTCHECK_CONFIGURE_FLAGS@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
-ECHO = @ECHO@
+DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
@@ -256,14 +256,14 @@ EXEEXT = @EXEEXT@
 EXTRA_LIBPCRECPP_LDFLAGS = @EXTRA_LIBPCRECPP_LDFLAGS@
 EXTRA_LIBPCREPOSIX_LDFLAGS = @EXTRA_LIBPCREPOSIX_LDFLAGS@
 EXTRA_LIBPCRE_LDFLAGS = @EXTRA_LIBPCRE_LDFLAGS@
-F77 = @F77@
-FFLAGS = @FFLAGS@
+FGREP = @FGREP@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBBZ2 = @LIBBZ2@
 LIBOBJS = @LIBOBJS@
@@ -271,13 +271,17 @@ LIBREADLINE = @LIBREADLINE@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIBZ = @LIBZ@
+LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
+OTOOL = @OTOOL@
+OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -289,6 +293,7 @@ PCRE_DATE = @PCRE_DATE@
 PCRE_MAJOR = @PCRE_MAJOR@
 PCRE_MINOR = @PCRE_MINOR@
 PCRE_PRERELEASE = @PCRE_PRERELEASE@
+PCRE_STATIC_CFLAG = @PCRE_STATIC_CFLAG@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -301,7 +306,7 @@ abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
-ac_ct_F77 = @ac_ct_F77@
+ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -332,6 +337,7 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
+lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -391,6 +397,7 @@ dist_html_DATA = \
   doc/html/pcrebuild.html \
   doc/html/pcrecallout.html \
   doc/html/pcrecompat.html \
+  doc/html/pcredemo.html \
   doc/html/pcregrep.html \
   doc/html/pcrematching.html \
   doc/html/pcrepartial.html \
@@ -449,12 +456,14 @@ EXTRA_DIST = doc/perltest.txt NON-UNIX-USE HACKING PrepareRelease \
 	testdata/testinput1 testdata/testinput2 testdata/testinput3 \
 	testdata/testinput4 testdata/testinput5 testdata/testinput6 \
 	testdata/testinput7 testdata/testinput8 testdata/testinput9 \
-	testdata/testinput10 testdata/testoutput1 testdata/testoutput2 \
-	testdata/testoutput3 testdata/testoutput4 testdata/testoutput5 \
-	testdata/testoutput6 testdata/testoutput7 testdata/testoutput8 \
-	testdata/testoutput9 testdata/testoutput10 \
-	testdata/wintestinput3 testdata/wintestoutput3 perltest.pl \
-	pcredemo.c $(pcrecpp_man) cmake/COPYING-CMAKE-SCRIPTS \
+	testdata/testinput10 testdata/testinput11 testdata/testinput12 \
+	testdata/testoutput1 testdata/testoutput2 testdata/testoutput3 \
+	testdata/testoutput4 testdata/testoutput5 testdata/testoutput6 \
+	testdata/testoutput7 testdata/testoutput8 testdata/testoutput9 \
+	testdata/testoutput10 testdata/testoutput11 \
+	testdata/testoutput12 testdata/wintestinput3 \
+	testdata/wintestoutput3 perltest.pl pcredemo.c $(pcrecpp_man) \
+	cmake/COPYING-CMAKE-SCRIPTS \
 	cmake/FindPackageHandleStandardArgs.cmake \
 	cmake/FindReadline.cmake CMakeLists.txt config-cmake.h.in
 
@@ -530,7 +539,7 @@ DLL_OBJS = pcre_compile.o pcre_config.o \
 
 # We have .pc files for pkg-config users.
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libpcre.pc $(am__append_7)
+pkgconfig_DATA = libpcre.pc libpcreposix.pc $(am__append_7)
 dist_man_MANS = \
   doc/pcre.3 \
   doc/pcre-config.1 \
@@ -628,6 +637,8 @@ $(srcdir)/config.h.in:  $(am__configure_deps)
 distclean-hdr:
 	-rm -f config.h stamp-h1
 libpcre.pc: $(top_builddir)/config.status $(srcdir)/libpcre.pc.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+libpcreposix.pc: $(top_builddir)/config.status $(srcdir)/libpcreposix.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 libpcrecpp.pc: $(top_builddir)/config.status $(srcdir)/libpcrecpp.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@

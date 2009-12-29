@@ -52,7 +52,7 @@ while test $# -gt 0; do
       if test @includedir@ != /usr/include ; then
         includes=-I@includedir@
       fi
-      echo $includes
+      echo $includes @PCRE_STATIC_CFLAG@
       ;;
     --libs-posix)
       echo -L@libdir@$libR -lpcreposix -lpcre

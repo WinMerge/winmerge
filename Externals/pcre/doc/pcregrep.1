@@ -67,7 +67,7 @@ which multiple patterns are specified can affect the output when one of the
 above options is used.
 .P
 Patterns that can match an empty string are accepted, but empty string
-matches are not recognized. An example is the pattern "(super)?(man)?", in
+matches are never recognized. An example is the pattern "(super)?(man)?", in
 which all components are optional. This pattern finds all occurrences of both
 "super" and "man"; the output differs from matching with "super|man" when only
 the matching substrings are being shown.
@@ -88,6 +88,11 @@ standard input is always so treated.
 .
 .SH OPTIONS
 .rs
+.sp
+The order in which some of the options appear can affect the output. For
+example, both the \fB-h\fP and \fB-l\fP options affect the printing of file
+names. Whichever comes later in the command line will be the one that takes
+effect.
 .TP 10
 \fB--\fP
 This terminate the list of options. It is useful if the next item on the
@@ -115,10 +120,13 @@ Output \fInumber\fP lines of context both before and after each matching line.
 This is equivalent to setting both \fB-A\fP and \fB-B\fP to the same value.
 .TP
 \fB-c\fP, \fB--count\fP
-Do not output individual lines; instead just output a count of the number of
-lines that would otherwise have been output. If several files are given, a
-count is output for each of them. In this mode, the \fB-A\fP, \fB-B\fP, and
-\fB-C\fP options are ignored.
+Do not output individual lines from the files that are being scanned; instead
+output the number of lines that would otherwise have been shown. If no lines
+are selected, the number zero is output. If several files are are being
+scanned, a count is output for each of them. However, if the
+\fB--files-with-matches\fP option is also used, only those files whose counts
+are greater than zero are listed. When \fB-c\fP is used, the \fB-A\fP,
+\fB-B\fP, and \fB-C\fP options are ignored.
 .TP
 \fB--colour\fP, \fB--color\fP
 If this option is given without any data, it is equivalent to "--colour=auto".
@@ -263,8 +271,11 @@ output once, on a separate line.
 \fB-l\fP, \fB--files-with-matches\fP
 Instead of outputting lines from the files, just output the names of the files
 containing lines that would have been output. Each file name is output
-once, on a separate line. Searching stops as soon as a matching line is found
-in a file.
+once, on a separate line. Searching normally stops as soon as a matching line
+is found in a file. However, if the \fB-c\fP (count) option is also used,
+matching continues in order to obtain the correct count, and those files that
+have at least one match are listed along with their counts. Using this option
+with \fB-c\fP is a way of suppressing the listing of files with no matches.
 .TP
 \fB--label\fP=\fIname\fP
 This option supplies a name to be used for the standard input when file names
@@ -399,7 +410,9 @@ The majority of short and long forms of \fBpcregrep\fP's options are the same
 as in the GNU \fBgrep\fP program. Any long option of the form
 \fB--xxx-regexp\fP (GNU terminology) is also available as \fB--xxx-regex\fP
 (PCRE terminology). However, the \fB--locale\fP, \fB-M\fP, \fB--multiline\fP,
-\fB-u\fP, and \fB--utf-8\fP options are specific to \fBpcregrep\fP.
+\fB-u\fP, and \fB--utf-8\fP options are specific to \fBpcregrep\fP. If both the
+\fB-c\fP and \fB-l\fP options are given, GNU grep lists only file names,
+without counts, but \fBpcregrep\fP gives the counts.
 .
 .
 .SH "OPTIONS WITH DATA"
@@ -472,6 +485,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 01 March 2009
+Last updated: 13 September 2009
 Copyright (c) 1997-2009 University of Cambridge.
 .fi

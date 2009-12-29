@@ -232,6 +232,23 @@ while (<STDIN>)
       redo;            # Process the joined lines
       }
 
+    # .EX/.EE are used in the pcredemo page to bracket the entire program,
+    # which is unmodified except for turning backslash into "\e".
+
+    elsif (/^\.EX\s*$/)
+      {
+      print TEMP "<PRE>\n";
+      while (<STDIN>)
+        {
+        last if /^\.EE\s*$/;
+        s/\\e/\\/g;
+        s/&/&amp;/g;
+        s/</&lt;/g;
+        s/>/&gt;/g;
+        print TEMP;
+        }
+      }
+
     # Ignore anything not recognized
 
     next;

@@ -48,29 +48,36 @@ matching function is <b>pcre_exec()</b>. The arguments for this function are:
 </pre>
 The options are:
 <pre>
-  PCRE_ANCHORED      Match only at the first position
-  PCRE_BSR_ANYCRLF   \R matches only CR, LF, or CRLF
-  PCRE_BSR_UNICODE   \R matches all Unicode line endings
-  PCRE_NEWLINE_ANY   Recognize any Unicode newline sequence
-  PCRE_NEWLINE_ANYCRLF  Recognize CR, LF, and CRLF as newline sequences
-  PCRE_NEWLINE_CR    Set CR as the newline sequence
-  PCRE_NEWLINE_CRLF  Set CRLF as the newline sequence
-  PCRE_NEWLINE_LF    Set LF as the newline sequence
-  PCRE_NOTBOL        Subject is not the beginning of a line
-  PCRE_NOTEOL        Subject is not the end of a line
-  PCRE_NOTEMPTY      An empty string is not a valid match
-  PCRE_NO_START_OPTIMIZE  Do not do "start-match" optimizations
-  PCRE_NO_UTF8_CHECK Do not check the subject for UTF-8
-                       validity (only relevant if PCRE_UTF8
-                       was set at compile time)
-  PCRE_PARTIAL       Return PCRE_ERROR_PARTIAL for a partial match
-  PCRE_DFA_SHORTEST  Return only the shortest match
-  PCRE_DFA_RESTART   This is a restart after a partial match
+  PCRE_ANCHORED          Match only at the first position
+  PCRE_BSR_ANYCRLF       \R matches only CR, LF, or CRLF
+  PCRE_BSR_UNICODE       \R matches all Unicode line endings
+  PCRE_NEWLINE_ANY       Recognize any Unicode newline sequence
+  PCRE_NEWLINE_ANYCRLF   Recognize CR, LF, & CRLF as newline sequences
+  PCRE_NEWLINE_CR        Recognize CR as the only newline sequence
+  PCRE_NEWLINE_CRLF      Recognize CRLF as the only newline sequence
+  PCRE_NEWLINE_LF        Recognize LF as the only newline sequence
+  PCRE_NOTBOL            Subject is not the beginning of a line
+  PCRE_NOTEOL            Subject is not the end of a line
+  PCRE_NOTEMPTY          An empty string is not a valid match
+  PCRE_NOTEMPTY_ATSTART  An empty string at the start of the subject
+                           is not a valid match
+  PCRE_NO_START_OPTIMIZE Do not do "start-match" optimizations
+  PCRE_NO_UTF8_CHECK     Do not check the subject for UTF-8
+                           validity (only relevant if PCRE_UTF8
+                           was set at compile time)
+  PCRE_PARTIAL           ) Return PCRE_ERROR_PARTIAL for a partial
+  PCRE_PARTIAL_SOFT      )   match if no full matches are found
+  PCRE_PARTIAL_HARD      Return PCRE_ERROR_PARTIAL for a partial match
+                           even if there is a full match as well
+  PCRE_DFA_SHORTEST      Return only the shortest match
+  PCRE_DFA_RESTART       Restart after a partial match
 </pre>
 There are restrictions on what may appear in a pattern when using this matching
 function. Details are given in the
 <a href="pcrematching.html"><b>pcrematching</b></a>
-documentation.
+documentation. For details of partial matching, see the
+<a href="pcrepartial.html"><b>pcrepartial</b></a>
+page.
 </P>
 <P>
 A <b>pcre_extra</b> structure contains the following fields:

@@ -14,9 +14,7 @@ echo " "
 echo "Testing pcregrep"
 $pcregrep -V
 
-cf="diff -ub"
 valgrind=
-
 while [ $# -gt 0 ] ; do
   case $1 in
     valgrind) valgrind="valgrind -q --leak-check=no";;
@@ -24,6 +22,18 @@ while [ $# -gt 0 ] ; do
   esac
   shift
 done
+
+cf="diff -ub"
+
+# Set up a suitable "diff" command for comparison. Some systems have a diff
+# that lacks a -u option. Try to deal with this; better do the test for the -b
+# option as well.
+
+if diff -u /dev/null /dev/null; then
+  if diff -ub /dev/null /dev/null; then cf="diff -ub"; else cf="diff -u"; fi
+else
+  if diff -b /dev/null /dev/null; then cf="diff -b"; else cf="diff"; fi
+fi
 
 # If PCRE has been built in a directory other than the source directory, and
 # this test is being run from "make check" as usual, then $(srcdir) will be
@@ -179,13 +189,13 @@ echo "---------------------------- Test 42 ------------------------------" >>tes
 (cd $srcdir; $valgrind $pcregrep -on 'before|zero|after' ./testdata/grepinput) >>testtry
 
 echo "---------------------------- Test 43 ------------------------------" >>testtry
-(cd $srcdir; $valgrind $pcregrep -on -e before -e zero -e after ./testdata/grepinput) >>testtry
+(cd $srcdir; $valgrind $pcregrep -on -e before -ezero -e after ./testdata/grepinput) >>testtry
 
 echo "---------------------------- Test 44 ------------------------------" >>testtry
 (cd $srcdir; $valgrind $pcregrep -on -f ./testdata/greplist -e binary ./testdata/grepinput) >>testtry
 
 echo "---------------------------- Test 45 ------------------------------" >>testtry
-(cd $srcdir; $valgrind $pcregrep -e abc -e '(unclosed' ./testdata/grepinput) 2>>testtry >>testtry
+(cd $srcdir; $valgrind $pcregrep -eabc -e '(unclosed' ./testdata/grepinput) 2>>testtry >>testtry
 
 echo "---------------------------- Test 46 ------------------------------" >>testtry
 (cd $srcdir; $valgrind $pcregrep -Fx "AB.VE
@@ -216,6 +226,24 @@ echo "---------------------------- Test 53 ------------------------------" >>tes
 
 echo "---------------------------- Test 54 -----------------------------" >>testtry
 (cd $srcdir; $valgrind $pcregrep -f./testdata/greplist --color=always ./testdata/grepinputx) >>testtry
+
+echo "---------------------------- Test 55 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep -c lazy ./testdata/grepinput*) >>testtry
+
+echo "---------------------------- Test 56 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep -c -l lazy ./testdata/grepinput*) >>testtry
+
+echo "---------------------------- Test 57 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep --regex=PATTERN ./testdata/grepinput) >>testtry
+
+echo "---------------------------- Test 58 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep --regexp=PATTERN ./testdata/grepinput) >>testtry
+
+echo "---------------------------- Test 59 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep --regex PATTERN ./testdata/grepinput) >>testtry
+
+echo "---------------------------- Test 60 -----------------------------" >>testtry
+(cd $srcdir; $valgrind $pcregrep --regexp PATTERN ./testdata/grepinput) >>testtry
 
 # Now compare the results.
 
