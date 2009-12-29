@@ -193,31 +193,14 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
-
-	String str1(pView1->GetLineChars(line), pView1->GetFullLineLength(line));
-	String str2(pView2->GetLineChars(line), pView2->GetFullLineLength(line));
-
-	/* Commented out code because GetLineActualLength is buggy
-	// Chop of eol (end of line) characters
-	int len1 = pView1->GetLineActualLength(line);
-	str1 = str1.Left(len1);
-	int len2 = pView2->GetLineActualLength(line);
-	str2 = str2.Left(len2);
-	*/
-	i1 = str1.length() - 1;
-	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
-		--i1;
-	if (i1 + 1 < str1.length())
-		str1.resize(i1 + 1);
-	i2 = str2.length() - 1;
-	while (i2 >= 0 && (str2[i2]=='\r' || str2[i2]=='\n'))
-		--i2;
-	if (i2+1 < str2.length())
-		str2.resize(i2 + 1);
+	i1 = m_pView[0]->GetLineLength(line);
+	i2 = m_pView[1]->GetLineLength(line);
+	String str1(m_pView[0]->GetLineChars(line), i1);
+	String str2(m_pView[1]->GetLineChars(line), i2);
 
 	// We truncate diffs to remain inside line (ie, to not flag eol characters)
-	int width1 = pView1->GetLineLength(line);
-	int width2 = pView2->GetLineLength(line);
+	int width1 = i1;
+	int width2 = i2;
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
@@ -232,7 +215,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	{
 		if (pView1->GetTextBufferEol(line) != pView1->GetTextBufferEol(line))
 		{
-			wdiff *wdf = new wdiff(++i1, i1, ++i2, i2);
+			wdiff *wdf = new wdiff(i1, i1, i2, i2);
 			worddiffs.push_back(wdf);
 		}
 	}
@@ -335,27 +318,10 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
-
-	String str1(m_pView[0]->GetLineChars(nLineIndex), m_pView[0]->GetFullLineLength(nLineIndex));
-	String str2(m_pView[1]->GetLineChars(nLineIndex), m_pView[1]->GetFullLineLength(nLineIndex));
-
-	/* Commented out code because GetLineActualLength is buggy
-	// Chop of eol (end of line) characters
-	int len1 = pView1->GetLineActualLength(line);
-	str1 = str1.Left(len1);
-	int len2 = pView2->GetLineActualLength(line);
-	str2 = str2.Left(len2);
-	*/
-	i1 = str1.length() - 1;
-	while (i1 >= 0 && (str1[i1] == '\r' || str1[i1] == '\n'))
-		--i1;
-	if (i1 + 1 < str1.length())
-		str1.resize(i1 + 1);
-	i2 = str2.length() - 1;
-	while (i2 >= 0 && (str2[i2]=='\r' || str2[i2]=='\n'))
-		--i2;
-	if (i2+1 < str2.length())
-		str2.resize(i2 + 1);
+	i1 = m_pView[0]->GetLineLength(nLineIndex);
+	i2 = m_pView[1]->GetLineLength(nLineIndex);
+	String str1(m_pView[0]->GetLineChars(nLineIndex), i1);
+	String str2(m_pView[1]->GetLineChars(nLineIndex), i2);
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
@@ -370,7 +336,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 	{
 		if (m_pView[0]->GetTextBufferEol(nLineIndex) != m_pView[1]->GetTextBufferEol(nLineIndex))
 		{
-			wdiff *wdf = new wdiff(++i1, i1, ++i2, i2);
+			wdiff *wdf = new wdiff(i1, i1, i2, i2);
 			pworddiffs->push_back(wdf);
 		}
 	}
