@@ -10,6 +10,9 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
@@ -578,6 +581,954 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="X64 Debug|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Performing registration"
+				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT&#x0D;&#x0A;if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT&#x0D;&#x0A;regsvr32 /s /c &quot;$(TargetPath)&quot;&#x0D;&#x0A;echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;&#x0D;&#x0A;goto end&#x0D;&#x0A;:NOTNT&#x0D;&#x0A;echo Warning : Cannot register Unicode DLL on Windows 95&#x0D;&#x0A;:end&#x0D;&#x0A;"
+				Outputs="$(OutDir)\regsvr32.trg"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="4"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeUnicodeDebug\ShellExtensionU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionU.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Unicode Debug|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Performing registration"
+				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT&#x0D;&#x0A;if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT&#x0D;&#x0A;regsvr32 /s /c &quot;$(TargetPath)&quot;&#x0D;&#x0A;echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;&#x0D;&#x0A;goto end&#x0D;&#x0A;:NOTNT&#x0D;&#x0A;echo Warning : Cannot register Unicode DLL on Windows 95&#x0D;&#x0A;:end&#x0D;&#x0A;"
+				Outputs="$(OutDir)\regsvr32.trg"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeUnicodeDebug\ShellExtensionU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionU.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Unicode Release MinSize|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="2"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionU.def"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Unicode Release MinDependency|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="1"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionU.def"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release MinDependency|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="1"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/D &quot;NDEBUG&quot;"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtension.def"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release MinSize|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="2"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="/D &quot;NDEBUG&quot;"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtension.def"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Performing registration"
+				CommandLine="regsvr32 /s /c &quot;$(TargetPath)&quot;&#x0D;&#x0A;echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;&#x0D;&#x0A;"
+				Outputs="$(OutDir)\regsvr32.trg"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__Debug/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__Debug/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__Debug/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeDebug\ShellExtension.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtension.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="X64 Debug|x64"
+			OutputDirectory="..\Build\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Performing registration"
+				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT&#x0D;&#x0A;if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT&#x0D;&#x0A;regsvr32 /s /c &quot;$(TargetPath)&quot;&#x0D;&#x0A;echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;&#x0D;&#x0A;goto end&#x0D;&#x0A;:NOTNT&#x0D;&#x0A;echo Warning : Cannot register Unicode DLL on Windows 95&#x0D;&#x0A;:end&#x0D;&#x0A;"
+				Outputs="$(OutDir)\regsvr32.trg"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName="$(IntDir)/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN64;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\ShellExtensionX64.pdb"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\ShellExtensionX64.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionX64.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(IntDir)\ShellExtensionX64.pdb"
+				SubSystem="2"
+				ImportLibrary="$(OutDir)\ShellExtensionX64.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="X64 Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="1"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionU.def"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.pdb"
+				SubSystem="2"
+				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="X64 Release|x64"
+			OutputDirectory="..\Build\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			UseOfMFC="0"
+			UseOfATL="1"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="1"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories=".,../src/common"
+				PreprocessorDefinitions="WIN64;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_ATL_NO_UUIDOF"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\ShellExtensionX64.pdb"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\ShellExtensionX64.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\ShellExtensionX64.def"
+				ProgramDatabaseFile="$(IntDir)/ShellExtensionX64.pdb"
+				SubSystem="2"
+				ImportLibrary="$(OutDir)/ShellExtensionX64.lib"
+				TargetMachine="17"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -651,6 +1602,110 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\src\common\RegKey.cpp"
@@ -715,6 +1770,110 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
 					/>
 				</FileConfiguration>
 			</File>
@@ -783,6 +1942,110 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ShellExtension.def"
@@ -805,6 +2068,62 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Unicode Release MinDependency|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -881,6 +2200,116 @@
 						InterfaceIdentifierFileName="ShellExtension_i.c"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCMIDLTool"
+						GenerateStublessProxies="true"
+						TypeLibraryName=".\ShellExtension.tlb"
+						HeaderFileName="ShellExtension.h"
+						InterfaceIdentifierFileName="ShellExtension_i.c"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ShellExtensionU.def"
@@ -903,6 +2332,30 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
 					ExcludedFromBuild="true"
 					>
 					<Tool
@@ -987,6 +2440,130 @@
 						PrecompiledHeaderThrough="stdafx.h"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="stdafx.h"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\Src\Common\UnicodeString.cpp"
@@ -1053,6 +2630,110 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="WinMergeShell.cpp"
@@ -1117,6 +2798,110 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
 						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_USRDLL;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_MBCS;_USRDLL;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						BasicRuntimeChecks="3"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UNICODE;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
 					/>
 				</FileConfiguration>
 			</File>
@@ -1211,6 +2996,96 @@
 						AdditionalIncludeDirectories="$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionBrazilian.rc"
@@ -1272,6 +3147,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1339,6 +3314,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionCatalan.rc"
@@ -1400,6 +3475,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1467,6 +3642,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionChineseTraditional.rc"
@@ -1528,6 +3803,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1595,6 +3970,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionCzech.rc"
@@ -1656,6 +4131,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1723,6 +4298,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionDutch.rc"
@@ -1784,6 +4459,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1851,6 +4626,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionGalician.rc"
@@ -1912,6 +4787,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -1979,6 +4954,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Languages\ShellExtensionGreek.rc"
@@ -2040,6 +5115,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2107,6 +5282,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionItalian.rc"
@@ -2168,6 +5443,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2235,6 +5610,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionKorean.rc"
@@ -2296,6 +5771,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2363,6 +5938,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionPersian.rc"
@@ -2424,6 +6099,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2491,6 +6266,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionPortuguese.rc"
@@ -2552,6 +6427,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2619,6 +6594,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionRussian.rc"
@@ -2680,6 +6755,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2747,6 +6922,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionSlovenian.rc"
@@ -2808,6 +7083,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -2875,6 +7250,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionSwedish.rc"
@@ -2936,6 +7411,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
@@ -3003,6 +7578,106 @@
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Languages\ShellExtensionUkrainian.rc"
@@ -3064,6 +7739,106 @@
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Debug|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|Win32"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="X64 Release|x64"
+					ExcludedFromBuild="true"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"
 					/>
 				</FileConfiguration>
