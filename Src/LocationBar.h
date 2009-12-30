@@ -34,7 +34,7 @@ public:
 		UINT nID = AFX_IDW_PANE_FIRST);
 
 	void SetFrameHwnd(HWND hwndFrame);
-
+	void UpdateResources();
 protected:
 // Overrides
 	// ClassWizard generated virtual function overrides

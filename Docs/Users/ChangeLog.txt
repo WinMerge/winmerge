@@ -10,6 +10,7 @@ WinMerge 2.3.11
   Bugfix: GUI Word Wrap missing text (#2921400, #2894033)
   Bugfix: Selected custom odepage was not used (#2921555)
   Bugfix: Created new matching folder to wrong folder (#2890961)
+  Bugfix: Pane headers not updated after language change (#2923684)
 
 WinMerge 2.13.10 2009-12-21 (r7051)
   Visual Studio project files upgraded to VS2005 format (r7045)

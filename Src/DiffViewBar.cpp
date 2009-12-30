@@ -11,6 +11,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+#include "Merge.h"
 
 #include "ChildFrm.h"
 #include "DiffViewBar.h"
@@ -158,4 +159,12 @@ void CDiffViewBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 void CDiffViewBar::SetFrameHwnd(HWND hwndFrame)
 {
 	m_hwndFrame = hwndFrame;
+}
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
+void CDiffViewBar::UpdateResources()
+{
+	String sCaption = theApp.LoadString(IDS_DIFFBAR_CAPTION);
+	SetWindowText(sCaption.c_str());
 }
