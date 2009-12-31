@@ -164,7 +164,7 @@ public:
 	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
-	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
+	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left, bool bIgnoreBlankLines);
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
 	void SetFilterList(LPCTSTR filterStr);

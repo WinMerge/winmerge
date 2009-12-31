@@ -521,7 +521,7 @@ prepare_text_end (current)
     {
       p[buffered_chars++] = '\n';
       current->buffered_chars = buffered_chars;
-      current->missing_newline = p[buffered_chars-2] != '\r' && ! ignore_blank_lines_flag;
+      current->missing_newline = 1;
     }
   
   /* Don't use uninitialized storage when planting or using sentinels.  */

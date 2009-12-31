@@ -864,12 +864,16 @@ void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, 
 
 /**
  * @brief Expand last DIFFRANGE of file by one line to contain last line after EOL.
+ * @param [in] leftBufferLines size of array pane left
+ * @param [in] rightBufferLines size of array pane right
+ * @param [in] left on whitch side we have to insert
+ * @param [in] bIgnoreBlankLines, if true we allways add a new diff and make as trivial
  */
-void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left)
+void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left, bool bIgnoreBlankLines)
 {
 	DIFFRANGE dr;
 	const int count = m_pDiffList->GetSize();
-	if (count > 0)
+	if (count > 0 && !bIgnoreBlankLines)
 	{
 		m_pDiffList->GetDiff(count - 1, dr);
 
@@ -904,6 +908,8 @@ void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, B
 			dr.begin1 = dr.end1;
 			dr.op = OP_RIGHTONLY;
 		}
+		if (bIgnoreBlankLines)
+			dr.op = OP_TRIVIAL;
 		ASSERT(dr.begin0 == dr.begin1);
 
 		AddDiffRange(dr.begin0, dr.end0, dr.begin1, dr.end1, dr.op); 

@@ -11,6 +11,8 @@ WinMerge 2.3.11
   Bugfix: Selected custom odepage was not used (#2921555)
   Bugfix: Created new matching folder to wrong folder (#2890961)
   Bugfix: Pane headers not updated after language change (#2923684)
+  Bugfix: File panes become unaligned when last line didn't have
+    an EOL byte (#2922517)
 
 WinMerge 2.13.10 2009-12-21 (r7051)
   Visual Studio project files upgraded to VS2005 format (r7045)

@@ -514,17 +514,6 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	if (bBinary) // believe caller if we were told these are binaries
 		status.bBinaries = TRUE;
 
-	// If comparing whitespaces and
-	// other file has EOL before EOF and other not...
-	if (status.bLeftMissingNL != status.bRightMissingNL &&
-		!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
-	{
-		// ..lasf DIFFRANGE of file which has EOL must be
-		// fixed to contain last line too
-		m_diffWrapper.FixLastDiffRange(m_ptBuf[0]->GetLineCount(), m_ptBuf[1]->GetLineCount(),
-				status.bRightMissingNL);
-	}
-
 	// set identical/diff result as recorded by diffutils
 	bIdentical = status.bIdentical;
 
@@ -552,6 +541,15 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		// this operation does not change the modified flag
 		m_ptBuf[0]->prepareForRescan();
 		m_ptBuf[1]->prepareForRescan();
+
+		// If one file has EOL before EOF and other not...
+		if (status.bLeftMissingNL != status.bRightMissingNL)
+		{
+			// ..lasf DIFFRANGE of file which has EOL must be
+			// fixed to contain last line too
+			m_diffWrapper.FixLastDiffRange(m_ptBuf[0]->GetLineCount(), m_ptBuf[1]->GetLineCount(),
+				status.bRightMissingNL, diffOptions.bIgnoreBlankLines);
+		}
 
 		// Divide diff blocks to match lines.
 		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES))
