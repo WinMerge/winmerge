@@ -1,0 +1,169 @@
+Determining if the include file dirent.h exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   .\CheckIncludeFile.c
+1>CheckIncludeFile.c
+1>.\CheckIncludeFile.c(1) : fatal error C1083: Cannot open include file: 'dirent.h': No such file or directory
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 1 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the include file unistd.h exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   .\CheckIncludeFile.c
+1>CheckIncludeFile.c
+1>.\CheckIncludeFile.c(1) : fatal error C1083: Cannot open include file: 'unistd.h': No such file or directory
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 1 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the include file type_traits.h exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /EHsc /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TP   /Zm1000
+1>   .\CheckIncludeFile.cxx
+1>CheckIncludeFile.cxx
+1>.\CheckIncludeFile.cxx(1) : fatal error C1083: Cannot open include file: 'type_traits.h': No such file or directory
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 1 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the include file bits/type_traits.h exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /EHsc /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TP   /Zm1000
+1>   .\CheckIncludeFile.cxx
+1>CheckIncludeFile.cxx
+1>.\CheckIncludeFile.cxx(1) : fatal error C1083: Cannot open include file: 'bits/type_traits.h': No such file or directory
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 1 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the function bcopy exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "CHECK_FUNCTION_EXISTS=bcopy" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   "c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.c"
+1>CheckFunctionExists.c
+1>Compiling manifest to resources...
+1>Linking...
+1>CheckFunctionExists.obj : error LNK2019: unresolved external symbol bcopy referenced in function main
+1>D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec.exe : fatal error LNK1120: 1 unresolved externals
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 2 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the function strtoll exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "CHECK_FUNCTION_EXISTS=strtoll" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   "c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.c"
+1>CheckFunctionExists.c
+1>Compiling manifest to resources...
+1>Linking...
+1>CheckFunctionExists.obj : error LNK2019: unresolved external symbol strtoll referenced in function main
+1>D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec.exe : fatal error LNK1120: 1 unresolved externals
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 2 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the function strtoq exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "CHECK_FUNCTION_EXISTS=strtoq" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   "c:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CheckFunctionExists.c"
+1>CheckFunctionExists.c
+1>Compiling manifest to resources...
+1>Linking...
+1>CheckFunctionExists.obj : error LNK2019: unresolved external symbol strtoq referenced in function main
+1>D:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec.exe : fatal error LNK1120: 1 unresolved externals
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 2 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+
+Determining if the include file stdint.h exists failed with the following output:
+Change Dir: D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp
+
+Run Build Command:C:\PROGRA~1\MICROS~4\Common7\IDE\devenv.com CMAKE_TRY_COMPILE.sln /build Debug /project cmTryCompileExec
+
+Microsoft (R) Visual Studio Version 8.0.50727.867.
+Copyright (C) Microsoft Corp 1984-2005. All rights reserved.
+1>------ Build started: Project: cmTryCompileExec, Configuration: Debug x64 ------
+1>Compiling...
+1>Microsoft (R) C/C++ Optimizing Compiler Version 14.00.50727.762 for x64
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>cl /Od /D "WIN32" /D "_WINDOWS" /D "_DEBUG" /D "CMAKE_INTDIR=\"Debug\"" /D "_MBCS" /FD /RTC1 /MDd /Fo"cmTryCompileExec.dir\Debug\\" /Fd"D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec.pdb" /W3 /c /Zi /TC   /Zm1000
+1>   .\CheckIncludeFile.c
+1>CheckIncludeFile.c
+1>.\CheckIncludeFile.c(1) : fatal error C1083: Cannot open include file: 'stdint.h': No such file or directory
+1>Build log was saved at "file://d:\Work\WinMerge\WinMerge_SVN\Externals\pcre\Win64\CMakeFiles\CMakeTmp\cmTryCompileExec.dir\Debug\BuildLog.htm"
+1>cmTryCompileExec - 1 error(s), 0 warning(s)
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+

@@ -1,0 +1,10 @@
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/ALL_BUILD.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/ZERO_CHECK.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcre.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcre_scanner_unittest.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcre_stringpiece_unittest.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcrecpp.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcrecpp_unittest.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcregrep.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcreposix.dir
+D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/CMakeFiles/pcretest.dir

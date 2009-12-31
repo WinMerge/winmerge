@@ -1,0 +1,5 @@
+# This is a generated file.
+  SET(ENV{srcdir} D:/Work/WinMerge/WinMerge_SVN/Externals/pcre)
+  SET(ENV{pcregrep} D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/DEBUG/pcregrep.exe)
+  SET(ENV{pcretest} D:/Work/WinMerge/WinMerge_SVN/Externals/pcre/Win64/DEBUG/pcretest.exe)
+  
