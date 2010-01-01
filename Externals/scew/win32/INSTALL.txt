@@ -1,0 +1,41 @@
+Windows Installation
+====================
+
+Note: Since SCEW 1.0.0, Microsoft Visual C++ 2008 (Express Edition)
+has been used to provide Windows support.
+
+   Extract the SCEW distribution library to your desired location. For
+example, the scew-1.0.0 distribution may be extracted to:
+
+   c:\lib\scew-1.0.0
+
+   Open the 'scew.sln' (Microsoft Visual Studio Solution) or
+'scew.vcproj' (Visual C++ Project) files. Go to the 'Build' menu and
+choose 'Batch Build...'. Select all the desired configurations (see
+README.txt) to be built and click 'Rebuild'. This will build all
+selected libraries in:
+
+   c:\lib\scew-1.0.0\win32\lib
+
+   In every new application you will need to add an additional
+'Include' directory, so the compiler can find the SCEW headers and an
+additional 'Library' directory so the linker can find the correct SCEW
+library and build your application successfully.
+
+   Include directory
+      SCEW top level, e.g. "c:\lib\scew-1.0.0"
+
+   Library directory
+      SCEW win32 lib, e.g. "c:\lib\scew-1.0.0\win32\lib"
+
+You will also have to do the same for Expat:
+
+   Include directory
+      <expat_install>\source\lib e.g. "c:\lib\expat\source\lib"
+
+   Library directory
+      <expat_install>\bin e.g. "c:\lib\expat\bin"
+
+
+For more information about how to link SCEW as a static or shared
+library with your application read the README.txt.

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scew", "scew.vcproj", "{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug UTF-16|Win32 = Debug UTF-16|Win32
+		Debug|Win32 = Debug|Win32
+		Release UTF-16|Win32 = Release UTF-16|Win32
+		Release|Win32 = Release|Win32
+		Static Debug UTF-16|Win32 = Static Debug UTF-16|Win32
+		Static Debug|Win32 = Static Debug|Win32
+		Static Release UTF-16|Win32 = Static Release UTF-16|Win32
+		Static Release|Win32 = Static Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Debug UTF-16|Win32.ActiveCfg = Debug UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Debug UTF-16|Win32.Build.0 = Debug UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Debug|Win32.Build.0 = Debug|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Release UTF-16|Win32.ActiveCfg = Release UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Release UTF-16|Win32.Build.0 = Release UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Release|Win32.ActiveCfg = Release|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Release|Win32.Build.0 = Release|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Debug UTF-16|Win32.ActiveCfg = Static Debug UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Debug UTF-16|Win32.Build.0 = Static Debug UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Debug|Win32.ActiveCfg = Static Debug|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Debug|Win32.Build.0 = Static Debug|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Release UTF-16|Win32.ActiveCfg = Static Release UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Release UTF-16|Win32.Build.0 = Static Release UTF-16|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Release|Win32.ActiveCfg = Static Release|Win32
+		{FEC3F558-143A-40B4-9427-A5E8FF1D29DA}.Static Release|Win32.Build.0 = Static Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

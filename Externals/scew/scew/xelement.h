@@ -1,15 +1,12 @@
 /**
- *
- * @file     xelement.h
- * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
- * @date     Mon Nov 25, 2002 00:55
+ * @file     element.c
  * @brief    SCEW private element type declaration
- *
- * $Id: xelement.h,v 1.2 2004/03/08 22:36:38 aleix Exp $
+ * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
+ * @date     Thu Aug 27, 2009 01:47
  *
  * @if copyright
  *
- * Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+ * Copyright (C) 2002-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,37 +20,40 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
-
-#ifndef XELEMENT_H_ALEIX0211250055
-#define XELEMENT_H_ALEIX0211250055
+#ifndef XELEMENT_H_0908270147
+#define XELEMENT_H_0908270147
 
 #include "element.h"
 
-#include "xattribute.h"
+#include "list.h"
 
+#include <expat.h>
 
-/* Triply linked tree node */
-struct _scew_element
+
+/* Types */
+
+struct scew_element
 {
-    XML_Char* name;
-    XML_Char* contents;
-    attribute_list* attributes;
+  XML_Char *name;               /**< The element's name */
+  XML_Char *contents;           /**< The element's text contents */
 
-    unsigned int n_children;
+  scew_element *parent;         /**< The parent of the element (if any) */
+  scew_list *myself;            /**< Pointer to parent's children list
+                                   (performance) */
 
-    /* Immediately neighbour pointers */
-    scew_element* parent;
-    scew_element* child;
-    scew_element* left;
-    scew_element* right;
+  unsigned int n_children;      /**< Number of children (if any) */
+  scew_list *children;          /**< List of children elements */
+  scew_list *last_child;        /**< Pointer to last child (performance) */
 
-    /* Last element in list */
-    scew_element* last_child;
+  unsigned int n_attributes;    /**< Number of attributes (if any) */
+  scew_list *attributes;        /**< List of attributes */
+  scew_list *last_attribute;    /**< Pointer to last attribute (performance) */
 };
 
-#endif /* XELEMENT_H_ALEIX0211250055 */
+#endif /* XELEMENT_H_0908270147 */

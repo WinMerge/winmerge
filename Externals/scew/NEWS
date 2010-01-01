@@ -1,19 +1,144 @@
 SCEW -- History of visible changes.
 
-Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+Copyright (C) 2002-2009 Aleix Conchillo Flaqué
 
 See the end for copying conditions.
 
 ------------------------------------------------------------------------
 
-* Version 0.4.0 (25/05/04)
+* Version 1.1.1 (2009/12/11)
+
+** Changes:
+
+   - Element contents and attribute values are now escaped when
+     printing by using the new scew_strescape function.
+
+   - Examples correctly output UTF-16 characters in Windows console.
+
+------------------------------------------------------------------------
+
+* Version 1.1.0 (2009/11/30)
+
+** API changes:
+
+   - scew_tree_compare and scew_element_compare now receive an extra
+     argument to specify user defined comparisons.
+
+** Changes:
+
+   - Tree and element comparison function can now take a user defined
+     comparison function.
+
+** Fixes:
+
+   - Missing _cpluplus closing brace in printer.h.
+     (closes #28130)
+
+   - Printer stops printing when element with zero-length contents is
+     encountered.
+     (closes #28125)
+
+------------------------------------------------------------------------
+
+* Version 1.0.0 (2009/10/30)
+
+** API changes:
+
+   - scew_parser_load now uses an SCEW reader to read the XML
+     document. It also returns a scew_tree giving the user to
+     responsibility to free it.
+
+   - scew_parser_tree has been removed.
+
+   - Parse loading notifications (via hooks) can be added for elements
+     and trees.
+
+   - A new type, scew_printer, has been added to provide XML document
+     printing. Printers work with any SCEW writer type to perform the
+     actual output.
+
+   - Two new types, scew_reader and scew_writer, have been created to
+     support any type of I/O. Two default I/O interfaces are provided:
+     files and memory buffers. New I/O sources can be easily added.
+
+   - More functions to delete attributes and child elements have been
+     added to the scew_element interface.
+
+   - Attribute functions related to elements have been moved to the
+     scew_element interface.
+
+   - Some element functions have been renamed, mostly the ones related
+     to attributes.
+
+   - Added copy and comparison functions in most SCEW types: trees,
+     elements and attributes.
+
+   - A new type, scew_list, has been defined and used for scew_element
+     children and attributes. scew_list provides a general way to work
+     with lists, thus no code repetition is done and there is a
+     flexible and general way to work with lists.
+
+   - Added new scew_bool type. In the future, this should be changed
+     in favor of the bool type defined by C99.
+
+   - Added scew_element_detach which detaches an element from its
+     parent (it does not free it).
+     (suggested by Alex Katebi)
+
+   - Added scew_element_parent which returns an element's parent if
+     any.
+     (thanks to dsk AT purdue DOT edu and Alex Katebi)
+
+   - Added scew_element_add_pair which allows to add a new attribute
+     with a name and contents.
+     (thanks to Christopher Layne)
+
+** Changes:
+
+   - Windows support has been updated to Microsoft Visual C++ 2008. It
+     is now also possible to build SCEW DLLs and SCEW examples.
+
+   - UTF-16 is better supported (only under Windows platforms).
+
+   - XML preamble (anything between XML declaration and root element)
+     is now parsed.
+
+   - XML declaration standalone attribute is now used.
+
+   - Unit Test cases have been added using Check unit testing
+     framework (C99 needed).
+     (see http://check.sf.net)
+
+   - Code has been cleaned to allow better definition of private and
+     public interfaces.
+
+   - Documentation has been improved and organized into modules.
+
+   - SCEW now uses libtool to generate a static or dynamic library.
+
+   - Thread support can now be disabled (see ./configure --help).
+
+** Fixes:
+
+   - Fix compilation warnings in error.c and parser.c.
+     (reported by Aaron S. Kurland)
+
+   - Fix scew_tree_free documentation.
+     (reported by Gord Shier)
+
+   - Hardcoded gcc "CFLAGS" removed.
+     (reported by Mark Zieg)
+
+------------------------------------------------------------------------
+
+* Version 0.4.0 (2004/05/25)
 
 ** Changes:
 
         - Ability  to load  and XML  document  from an  stream has  been
           added. The stream  may not be completed, so  it will just load
-          correct  XML pieces.   A callback,  set by  the user,  will be
-          called each time an element is available.
+     correct XML pieces. A callback, set by the user, will be called
+     each time an element is available.
           (thanks to Gord Shier)
 
 ** Fixes:
@@ -32,7 +157,7 @@ See the end for copying conditions.
 
 ------------------------------------------------------------------------
 
-* Version 0.3.2 (30/01/04)
+* Version 0.3.2 (2004/01/30)
 
 ** Changes:
 
@@ -45,8 +170,7 @@ See the end for copying conditions.
         - Added improvements in str functions. mem.* has been removed.
           (thanks to Brodie Thiesfield)
 
-        - Write  functions have  been moved  from tree  to  new writer.*
-          files.
+   - Write functions have been moved from tree to new writer.* files.
 
         - Added a preamble section to the XML declaration.
 
@@ -57,12 +181,12 @@ See the end for copying conditions.
 
 ------------------------------------------------------------------------
 
-* Version 0.3.1 (21/07/03)
+* Version 0.3.1 (2003/07/21)
 
 ** Changes:
 
-        - Added missing performace improvements by using the linked list
-          in element and attribute iterations.
+   - Added missing performace improvements by using the linked list in
+     element and attribute iterations.
           (thanks to Brodie Thiesfield)
 
         - Added exponentially growing buffer to avoid many realloc calls
@@ -95,25 +219,24 @@ See the end for copying conditions.
           (thanks to Brodie Thiesfield)
 
         - Multi-thread    support     fixed    in    Microsoft    Visual
-          C++.  __declspec(thread)  did  not  work,  use  TLS  functions
-          instead.
+     C++. __declspec(thread) did not work, use TLS functions instead.
           (thanks to Brodie Thiesfield)
 
 ------------------------------------------------------------------------
 
-* Version 0.3.0 (10/07/03)
+* Version 0.3.0 (2003/07/10)
 
 ** Changes:
 
-        - Added more  string functions.  New memory functions  have also
-          been added.
+   - Added more string functions. New memory functions have also been
+     added.
 
         - Performance improved in element and attribute iteration.
           (thanks to Sanzo Miyazawa)
 
-        - Support  for   XML  declaration  attributes   has  been  added
-          (version,  encoding,  standalone).   This  attributes  can  be
-          changed using SCEW tree functions.
+   - Support for XML declaration attributes has been added (version,
+     encoding, standalone).  This attributes can be changed using SCEW
+     tree functions.
 
         - Improved white spaces treatment in XML element contents.
 
@@ -123,9 +246,9 @@ See the end for copying conditions.
           (thanks to Neil Harvey)
 
         - Added 'make doc'. If you have doxygen installed (which will be
-          automatically  detected), it  will create  SCEW documentation.
-          Execute  './configure   --help'  to  see   more  documentation
-          options.
+     automatically detected), it will create SCEW
+     documentation. Execute './configure --help' to see more
+     documentation options.
 
         - 'make install' does not install example binaries anymore.
 
@@ -134,13 +257,12 @@ See the end for copying conditions.
         - scew_tree_save_file() did not fclose output file.
           (reported by Paul Bohme)
 
-        - scew_element_free()  did   not  decrement  parent   number  of
-          children.
+   - scew_element_free() did not decrement parent number of children.
           (reported by anonymous)
 
 ------------------------------------------------------------------------
 
-* Version 0.2.1 (25/04/03)
+* Version 0.2.1 (2003/04/25)
 
 ** Changes:
 
@@ -157,48 +279,52 @@ See the end for copying conditions.
 
 ------------------------------------------------------------------------
 
-* Version 0.2.0 (07/04/03)
+* Version 0.2.0 (2003/04/07)
 
 ** Changes:
 
         - Functions to create and save XML files have been added.
 
-        - A  lot  of  cleanup  and  rewriting has  been  done.  Internal
-          structures have changed.
+   - A lot of cleanup and rewriting has been done. Internal structures
+     have changed.
 
 ** Fixes:
 
 ------------------------------------------------------------------------
 
-* Version 0.1.1 (14/01/03)
+* Version 0.1.1 (2003/01/14)
 
 ** Changes:
 
 ** Fixes:
 
-        - scew_get_element_by_name() and scew_get_attribute_by_name()
-          did not return NULL if an element/attribute was not found.
+   - scew_get_element_by_name() and scew_get_attribute_by_name() did
+     not return NULL if an element/attribute was not found.
           (reported by Stuart R. Anderson)
 
 ------------------------------------------------------------------------
 
-* Version 0.1.0 (05/12/02)
+* Version 0.1.0 (2002/12/05)
 
 ** Initial release
 
 ------------------------------------------------------------------------
-Copying information:
 
-Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+* Copying information:
 
-  Permission is granted to anyone  to make or distribute verbatim copies
-of this document as received, in any medium, provided that the copyright
-notice  and  this  permission  notice  are preserved,  thus  giving  the
-recipient permission to redistribute in turn.
+Copyright (C) 2002-2009 Aleix Conchillo Flaqué
 
-  Permission  is  granted  to   distribute  modified  versions  of  this
-document, or  of portions  of it, under  the above  conditions, provided
-also that they carry prominent notices stating who last changed them.
+   Permission is granted to anyone to make or distribute verbatim
+   copies of this document as received, in any medium, provided that
+   the copyright notice and this permission notice are preserved, thus
+   giving the recipient permission to redistribute in turn.
 
----
-$Id: NEWS,v 1.21 2004/05/25 21:10:54 aleix Exp $
+   Permission is granted to distribute modified versions of this
+   document, or of portions of it, under the above conditions,
+   provided also that they carry prominent notices stating who last
+   changed them.
+
+--
+;;; Local Variables:
+;;; mode: outline
+;;; End:

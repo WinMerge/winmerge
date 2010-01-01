@@ -1,0 +1,1 @@
+This is just a dummy file to test the SCEW reader for files. We don't need to use an XML file as SCEW readers do not bother about file contents.

@@ -1,15 +1,13 @@
 #
-# $Id: Makefile.am,v 1.11 2004/01/29 22:42:09 aleix Exp $
-#
 # Author: Aleix Conchillo Flaque <aleix@member.fsf.org>
 # Date:   Mon Nov 04, 2002 20:29
 #
-# Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+# Copyright (C) 2002-2009 Aleix Conchillo Flaque
 #
 
-SUBDIRS = doc etc win32 scew examples
+SUBDIRS = doc etc scew examples tests win32
 
-EXTRA_DIST = INSTALL.WIN32
+EXTRA_DIST = ChangeLog.1
 
 .PHONY: doc
 
@@ -21,6 +19,6 @@ doc:
 else
 
 doc:
-	@echo "Doxygen documentation generation not enabled";
+	@echo "WARNING: Documentation generation not enabled or available";
 
 endif

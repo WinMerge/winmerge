@@ -1,15 +1,12 @@
 /**
- *
  * @file     scew_stream.c
+ * @brief    SCEW usage example
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Sun May 23, 2004 20:58
- * @brief    SCEW usage example
- *
- * $Id: scew_stream.c,v 1.2 2004/05/25 18:21:35 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2004 Aleix Conchillo Flaque
+ * Copyright (C) 2004-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,7 +20,8 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  *
@@ -35,85 +33,125 @@
  *
  * Example 1:
  *
- *   <command>command_1</command>                <-- callback called
- *   <command><option>option2</option></command> <-- callback called
- *   <command>command_3</command>                <-- callback called
+ *   <command>command_1</command>                <-- element hook
+ *   <command><option>option2</option></command> <-- element, element hook
+ *   <command>command_3</command>                <-- element hook
  *
  * Example 2:
  *
  *   <commands>
- *     <command>command_1</command>
- *     <command>command_2</command>
- *   </commands>                                 <-- callback called
+ *     <command>command_1</command>              <-- element hook
+ *     <command>command_2</command>              <-- element hook
+ *   </commands>                                 <-- tree, element hook
  */
 
 #include <scew/scew.h>
 
+#if defined(_MSC_VER) && defined(XML_UNICODE_WCHAR_T)
+#include <fcntl.h>
+#include <io.h>
+#endif /* _MSC_VER && XML_UNICODE_WCHAR_T */
+
 #include <stdio.h>
 
-unsigned int
-stream_cb(scew_parser* parser)
+static scew_printer *stdout_printer_ = NULL;
+static scew_writer *stdout_writer_ = NULL;
+
+static scew_bool
+tree_hook_ (scew_parser *parser, void *tree, void *user_data)
 {
-    printf("SCEW stream callback called!\n");
-    return 1;
+  scew_printf (_XT("*** SCEW stream tree loaded!\n\n"));
+
+  scew_printer_print_tree (stdout_printer_, (scew_tree *) tree);
+
+  scew_printf (_XT("\n----------------------------------\n"));
+
+  /**
+   * We free the tree here as we are not going to using it. We should
+   * save the pointer if we want to play with it.
+   */
+  scew_tree_free ((scew_tree *) tree);
+
+  return SCEW_TRUE;
+}
+
+static scew_bool
+element_hook_ (scew_parser *parser, void *element, void *user_data)
+{
+  scew_printf (_XT("*** SCEW stream element loaded!\n"));
+
+  return SCEW_TRUE;
 }
 
 int
-main(int argc, char** argv)
+main (int argc, char *argv[])
 {
-    FILE* in;
-    scew_parser* parser = NULL;
+  scew_reader *reader = NULL;
+  scew_parser *parser = NULL;
+
+#if defined(_MSC_VER) && defined(XML_UNICODE_WCHAR_T)
+  /* Change stdout to Unicode before writing anything. */
+  _setmode(_fileno(stdout), _O_U16TEXT);
+#endif /* _MSC_VER && XML_UNICODE_WCHAR_T */
 
     if (argc < 2)
     {
-        printf("usage: scew_stream file.xml\n");
+      scew_printf (_XT("Usage: scew_stream file.xml\n"));
         return EXIT_FAILURE;
     }
 
-    in = fopen(argv[1], "rb");
-    if (in == NULL)
+  /* Create a writer for the standard output. */
+  stdout_writer_ = scew_writer_fp_create (stdout);
+
+  /* Create a writer for the standard output. */
+  stdout_printer_ = scew_printer_create (stdout_writer_);
+
+  /* Creates an SCEW parser. This is the first function to call. */
+  parser = scew_parser_create ();
+
+  scew_parser_ignore_whitespaces (parser, SCEW_TRUE);
+
+  /* Loads an XML file. */
+  reader = scew_reader_file_create (argv[1]);
+  if (reader == NULL)
     {
-        perror("Unable to open file");
-        return EXIT_FAILURE;
+      scew_error code = scew_error_code ();
+      scew_printf (_XT("Unable to load file (error #%d: %s)\n"),
+                   code, scew_error_string (code));
     }
 
-    /**
-     * Creates an SCEW parser. This is the first function to call.
-     */
-    parser = scew_parser_create();
-
-    scew_parser_set_stream_callback(parser, stream_cb);
-
-    {
-        int len = 1;
-        char buffer;
-        while (len)
-        {
-            len = fread(&buffer, 1, 1, in);
-
-            if (!scew_parser_load_stream(parser, &buffer, 1))
+  /* Setup element and tree hooks. */
+  scew_parser_set_tree_hook (parser, tree_hook_, NULL);
+  scew_parser_set_element_hook (parser, element_hook_, NULL);
+  if (!scew_parser_load_stream (parser, reader))
             {
-                scew_error code = scew_error_code();
-                printf("Unable to load stream (error #%d: %s)\n", code,
-                       scew_error_string(code));
+      scew_error code = scew_error_code ();
+      scew_printf (_XT("Unable to load file (error #%d: %s)\n"),
+                   code, scew_error_string (code));
                 if (code == scew_error_expat)
                 {
-                    enum XML_Error expat_code = scew_error_expat_code(parser);
-                    printf("Expat error #%d (line %d, column %d): %s\n",
+          enum XML_Error expat_code = scew_error_expat_code (parser);
+          scew_printf (_XT("Expat error #%d (line %d, column %d): %s\n"),
                            expat_code,
-                           scew_error_expat_line(parser),
-                           scew_error_expat_column(parser),
-                           scew_error_expat_string(expat_code));
+                       scew_error_expat_line (parser),
+                       scew_error_expat_column (parser),
+                       scew_error_expat_string (expat_code));
                 }
+
+      /* Frees the SCEW parser, printer, reader and writer. */
+      scew_reader_free (reader);
+      scew_parser_free (parser);
+      scew_writer_free (stdout_writer_);
+      scew_printer_free (stdout_printer_);
+
                 return EXIT_FAILURE;
             }
-        }
-    }
 
-    fclose(in);
-
-    /* Frees the SCEW parser */
-    scew_parser_free(parser);
+  /* Frees the SCEW parser, printer, reader and writer. */
+  scew_reader_free (reader);
+  scew_parser_free (parser);
+  scew_writer_free (stdout_writer_);
+  scew_printer_free (stdout_printer_);
 
     return 0;
 }

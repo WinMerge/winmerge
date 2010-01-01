@@ -1,15 +1,12 @@
 /**
- *
  * @file     attribute.c
+ * @brief    attribute.h implementation
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Mon Nov 25, 2002 00:41
- * @brief    SCEW attribute type implementation
- *
- * $Id: attribute.c,v 1.1 2004/01/28 00:43:21 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2002, 2003 Aleix Conchillo Flaque
+ * Copyright (C) 2002-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,112 +20,167 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
+#include "attribute.h"
+
 #include "xattribute.h"
 
 #include "xerror.h"
-#include "xelement.h"
 
 #include "str.h"
 
 #include <assert.h>
-#include <string.h>
 
+
+
+/* Public */
+
+/* Allocation */
 
 scew_attribute*
-scew_attribute_create(XML_Char const* name, XML_Char const* value)
+scew_attribute_create (XML_Char const *name, XML_Char const *value)
 {
-    return attribute_create(name, value);
+  scew_attribute *attribute = NULL;
+
+  assert (name != NULL);
+  assert (value != NULL);
+
+  attribute = calloc (1, sizeof (scew_attribute));
+
+  if (attribute != NULL)
+    {
+      attribute->name = scew_strdup(name);
+      attribute->value = scew_strdup(value);
+    }
+  else
+    {
+      scew_error_set_last_error_ (scew_error_no_memory);
+    }
+
+  return attribute;
+}
+
+scew_attribute*
+scew_attribute_copy (scew_attribute const *attribute)
+{
+  scew_attribute *new_attr = NULL;
+
+  assert (attribute != NULL);
+
+  new_attr = calloc (1, sizeof (scew_attribute));
+
+  if (new_attr != NULL)
+    {
+      scew_bool copied =
+        (scew_attribute_set_name (new_attr, attribute->name) != NULL)
+        && (scew_attribute_set_value (new_attr, attribute->value) != NULL);
+
+      if (!copied)
+    	{
+          scew_attribute_free (new_attr);
+          new_attr = NULL;
+    }
+    }
+
+  return new_attr;
 }
 
 void
-scew_attribute_free(scew_attribute* attribute)
+scew_attribute_free (scew_attribute *attribute)
 {
-    attribute_free(attribute);
-}
-
-unsigned int
-scew_attribute_count(scew_element const* element)
-{
-    assert(element != NULL);
-
-    return element->attributes->size;
-}
-
-scew_attribute*
-scew_attribute_next(scew_element const* element,
-                    scew_attribute const* attribute)
-{
-    scew_attribute *next_attribute;
-
-    if (attribute == NULL)
+  if (attribute != NULL)
     {
-	if (element == NULL)
-    	{
-            return NULL;
-	}
-	next_attribute = element->attributes->first;
+      free (attribute->name);
+      free (attribute->value);
+      free (attribute);
     }
-    else
-    {
-	next_attribute = attribute->next;
-    }
-
-    return next_attribute;
 }
 
-scew_attribute*
-scew_attribute_by_index(scew_element const* element, unsigned int idx)
+
+/* Comparison */
+
+scew_bool
+scew_attribute_compare (scew_attribute const *a, scew_attribute const *b)
 {
-    return attribute_by_index(element->attributes, idx);
+  assert (a != NULL);
+  assert (b != NULL);
+
+  return (scew_strcmp (a->name, b->name) == 0)
+    && (scew_strcmp (a->value, b->value) == 0);
 }
 
-scew_attribute*
-scew_attribute_by_name(scew_element const* element, XML_Char const* name)
-{
-    return attribute_by_name(element->attributes, name);
-}
+
+/* Accessors */
 
 XML_Char const*
-scew_attribute_name(scew_attribute const* attribute)
+scew_attribute_name (scew_attribute const *attribute)
 {
-    assert(attribute != NULL);
+  assert (attribute != NULL);
 
     return attribute->name;
 }
 
 XML_Char const*
-scew_attribute_value(scew_attribute const* attribute)
+scew_attribute_value (scew_attribute const *attribute)
 {
-    assert(attribute != NULL);
+  assert (attribute != NULL);
 
     return attribute->value;
 }
 
 XML_Char const*
-scew_attribute_set_name(scew_attribute* attribute, XML_Char const* name)
+scew_attribute_set_name (scew_attribute *attribute, XML_Char const *name)
 {
-    assert(attribute != NULL);
-    assert(name != NULL);
+  XML_Char *new_name = NULL;
 
-    free(attribute->name);
-    attribute->name = scew_strdup(name);
+  assert (attribute != NULL);
+  assert (name != NULL);
 
-    return attribute->name;
+  new_name = scew_strdup (name);
+  if (new_name != NULL)
+    {
+      free (attribute->name);
+      attribute->name = new_name;
+    }
+  else
+    {
+      scew_error_set_last_error_ (scew_error_no_memory);
+    }
+
+  return new_name;
 }
 
 XML_Char const*
-scew_attribute_set_value(scew_attribute* attribute, XML_Char const* value)
+scew_attribute_set_value (scew_attribute *attribute, XML_Char const *value)
 {
-    assert(attribute != NULL);
-    assert(value != NULL);
+  XML_Char *new_value = NULL;
 
-    free(attribute->value);
-    attribute->value = scew_strdup(value);
+  assert (attribute != NULL);
+  assert (value != NULL);
 
-    return attribute->value;
+  new_value = scew_strdup (value);
+  if (new_value != NULL)
+    {
+      free (attribute->value);
+      attribute->value = new_value;
+    }
+  else
+    {
+      scew_error_set_last_error_ (scew_error_no_memory);
+    }
+
+  return new_value;
+}
+
+scew_element*
+scew_attribute_parent (scew_attribute const *attribute)
+{
+  assert (attribute != NULL);
+
+  return attribute->parent;
 }

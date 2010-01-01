@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scew_write", "scew_write\scew_write.vcproj", "{DE371A37-A94F-4E36-A246-09F05E64878A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scew_print", "scew_print\scew_print.vcproj", "{3417272D-9A13-4321-A029-52B7CBC6AAA3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scew_stream", "scew_stream\scew_stream.vcproj", "{038964D7-4020-4B2E-A725-F1A3B65BA7A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE371A37-A94F-4E36-A246-09F05E64878A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DE371A37-A94F-4E36-A246-09F05E64878A}.Debug|Win32.Build.0 = Debug|Win32
+		{DE371A37-A94F-4E36-A246-09F05E64878A}.Release|Win32.ActiveCfg = Release|Win32
+		{DE371A37-A94F-4E36-A246-09F05E64878A}.Release|Win32.Build.0 = Release|Win32
+		{3417272D-9A13-4321-A029-52B7CBC6AAA3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3417272D-9A13-4321-A029-52B7CBC6AAA3}.Debug|Win32.Build.0 = Debug|Win32
+		{3417272D-9A13-4321-A029-52B7CBC6AAA3}.Release|Win32.ActiveCfg = Release|Win32
+		{3417272D-9A13-4321-A029-52B7CBC6AAA3}.Release|Win32.Build.0 = Release|Win32
+		{038964D7-4020-4B2E-A725-F1A3B65BA7A8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{038964D7-4020-4B2E-A725-F1A3B65BA7A8}.Debug|Win32.Build.0 = Debug|Win32
+		{038964D7-4020-4B2E-A725-F1A3B65BA7A8}.Release|Win32.ActiveCfg = Release|Win32
+		{038964D7-4020-4B2E-A725-F1A3B65BA7A8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

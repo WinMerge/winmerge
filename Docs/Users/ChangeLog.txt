@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.3.11
   Write config log as UTF-8 file (r7057)
   Update PCRE to version 8.00 (r7068)
+  Update SCEW to version 1.1.1 (r7079)
   Bugfix: Plugin error after interrupting folder compare (#2919475)
   Bugfix: GUI Word Wrap missing text (#2921400, #2894033)
   Bugfix: Selected custom odepage was not used (#2921555)
