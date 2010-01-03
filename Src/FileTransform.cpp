@@ -452,7 +452,7 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 			if (!::DeleteFile(filepath.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError())));
+					filepath.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 		}
 		// and change the filepath if everything works
@@ -463,7 +463,7 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 		if (!::DeleteFile(tempFilepath.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError())));
+				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
 		}
 	}
 
@@ -498,7 +498,7 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 			if (!::DeleteFile(filepath.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError())));
+					filepath.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 		}
 		// and change the filepath if everything works
@@ -509,7 +509,7 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 		if (!::DeleteFile(tempFilepath.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError())));
+				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
 		}
 	}
 
@@ -641,7 +641,7 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
 			if (!::DeleteFile(filepath.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError())));
+					filepath.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 		}
 		// and change the filepath if everything works
@@ -652,7 +652,7 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
 		if (!::DeleteFile(tempFilepath.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError())));
+				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
 		}
 	}
 	return TRUE;

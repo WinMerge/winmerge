@@ -113,7 +113,7 @@ void storageForPlugins::ValidateNewFile()
 		if (!::DeleteFile(m_tempFilenameDst.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, m_tempFilenameDst.c_str(), GetSysError(GetLastError())));
+				, m_tempFilenameDst.c_str(), GetSysError(GetLastError()).c_str()));
 		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
@@ -126,7 +126,7 @@ void storageForPlugins::ValidateNewFile()
 			if (!::DeleteFile(m_filename.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-					, m_filename.c_str(), GetSysError(GetLastError())));
+					, m_filename.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 			::MoveFile(m_tempFilenameDst.c_str(), m_filename.c_str());
 		}

@@ -335,7 +335,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	if (hr != S_OK)
 	{
 		LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-			sIntermediateFilename.c_str(), GetSysError(hr)));
+			sIntermediateFilename.c_str(), GetSysError(hr).c_str()));
 	}
 	return S_OK;
 }

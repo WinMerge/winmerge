@@ -515,7 +515,7 @@ LoadFromFileExit:
 		if (!::DeleteFile(pszFileName))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				pszFileName, GetSysError(GetLastError())));
+				pszFileName, GetSysError(GetLastError()).c_str()));
 		}
 
 	return nRetVal;
@@ -579,10 +579,10 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			sError = uniErr.GetError().c_str();
 			if (bTempFile)
 				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
-					pszFileName, sError));
+					pszFileName, sError.c_str()));
 			else
 				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
-					sIntermediateFilename, sError));
+					sIntermediateFilename.c_str(), sError.c_str()));
 		}
 		return SAVE_FAILED;
 	}
@@ -648,7 +648,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			if (!::DeleteFile(sIntermediateFilename.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError())));
+					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 			// returns now, don't overwrite the original file
 			return SAVE_PACK_FAILED;
@@ -659,7 +659,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			if (!::DeleteFile(sIntermediateFilename.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError())));
+					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 			sIntermediateFilename = csTempFileName;
 		}
@@ -670,7 +670,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			if (!::DeleteFile(sIntermediateFilename.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError())));
+					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
 			}
 			if (bClearModifiedFlag)
 			{
@@ -689,7 +689,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		{
 			sError = GetSysError(GetLastError());
 			LogErrorString(Fmt(_T("CopyFile(%s, %s) failed: %s"),
-				sIntermediateFilename.c_str(), pszFileName, sError));
+				sIntermediateFilename.c_str(), pszFileName, sError.c_str()));
 		}
 	}
 	else

@@ -522,7 +522,7 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	FileWriteString(_T("\r\n Font:\r\n"));
 	FileWriteString(Fmt(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename.c_str()));
 	FileWriteString(Fmt(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
-		FontCharsetName(m_fontSettings.nCharset)));
+		FontCharsetName(m_fontSettings.nCharset).c_str()));
 
 // System settings
 	FileWriteString(_T("\r\nSystem settings:\r\n"));
