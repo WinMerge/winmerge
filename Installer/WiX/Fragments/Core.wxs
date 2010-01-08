@@ -68,6 +68,7 @@
     <!-- Startmenu shortcuts -->
     <DirectoryRef Id="WinMergeMenuFolder">
       <Component Id="StartMenuShortcuts" Guid="$(var.StartMenuShortcutsGuid)" Win64="$(var.Win64)">
+        <Condition>TASK_STARTMENUSHORTCUTS</Condition>
         <Shortcut Id="WinMergeStartMenuShortcut" 
           Name="WinMerge" 
           Target="[INSTALLDIR]WinMergeU.exe"
@@ -88,6 +89,7 @@
     <!-- Desktop shortcut -->
     <DirectoryRef Id="DesktopFolder">
       <Component Id="DesktopShortcut" Guid="$(var.DesktopShortcutGuid)" Win64="$(var.Win64)">
+        <Condition>TASK_DESKTOPSHORTCUT</Condition>
         <Shortcut Id="WinMergeDesktopShortcut" 
           Name="WinMerge" 
           Target="[INSTALLDIR]WinMergeU.exe"

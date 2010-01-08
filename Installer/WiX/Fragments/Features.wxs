@@ -17,24 +17,14 @@
       <ComponentRef Id="libexpat" />
       <ComponentRef Id="pcre" />
       <ComponentRef Id="MergeLang" />
+      <ComponentRef Id="StartMenuShortcuts" />
+      <ComponentRef Id="DesktopShortcut" />
       <Feature Id="ShellExtension" 
         AllowAdvertise="no" 
         Description="Explorer context menu integration" 
         Level="1" 
         Title="Shell Extension">
         <ComponentRef Id="ShellExtension" />
-      </Feature>
-      <Feature Id="StartMenuShortcuts" 
-        AllowAdvertise="no" 
-        Level="1" 
-        Title="Startmenu shortcut">
-        <ComponentRef Id="StartMenuShortcuts" />
-      </Feature>
-      <Feature Id="DesktopShortcut" 
-        AllowAdvertise="no" 
-        Level="1" 
-        Title="Desktop shortcut">
-        <ComponentRef Id="DesktopShortcut" />
       </Feature>
       <Feature Id="Documentation" Absent="disallow" AllowAdvertise="no" Display="hidden" Level="1" Title="Documentation">
         <ComponentRef Id="Files" />

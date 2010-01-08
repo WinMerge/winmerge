@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) Microsoft Corporation.  All rights reserved.
+    
+    The use and distribution terms for this software are covered by the
+    Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
+    which can be found in the file CPL.TXT at the root of this distribution.
+    By using this software in any fashion, you are agreeing to be bound by
+    the terms of this license.
+    
+    You must not remove this notice, or any other, from this software.
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <UI>
+            <!-- TODO: Use to <WixLocalization>
+            <Dialog Id="AdditionalTasksDlg" Width="370" Height="270" Title="!(loc.AdditionalTasksDlg_Title)">
+            -->
+            <Dialog Id="AdditionalTasksDlg" Width="370" Height="270" Title="[ProductName] Setup">
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" />
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                
+                <!--<Control Id="SplitLine" Type="Line" X="0" Y="160" Width="370" Height="0" />-->
+                <Control Id="StartMenuShortcuts" Type="CheckBox" Height="18" Width="295" X="40" Y="70" 
+                   Text="Create the startmenu shortcuts" 
+                   Property="TASK_STARTMENUSHORTCUTS" CheckBoxValue="1" />
+                <Control Id="DesktopShortcut" Type="CheckBox" Height="18" Width="295" X="40" Y="90" 
+                   Text="Create a desktop shortcut" 
+                   Property="TASK_DESKTOPSHORTCUT" CheckBoxValue="1" />
+                
+                <!-- TODO: Use to <WixLocalization>
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.AdditionalTasksDlgDescription)" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.AdditionalTasksDlgTitle)" />
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.AdditionalTasksDlgBannerBitmap)" />
+                -->
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="Which additional tasks should be performed?" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Additional Tasks" />
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+            </Dialog>
+        </UI>
+    </Fragment>
+</Wix>
+
+<!-- TODO: Use to <WixLocalization>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+    <String Id="AdditionalTasksDlg_Title">[ProductName] Setup</String>
+    <String Id="AdditionalTasksDlgTitle">{\WixUI_Font_Title}Additional Tasks</String>
+    <String Id="AdditionalTasksDlgDescription">...</String>
+    <String Id="AdditionalTasksDlgBannerBitmap">WixUI_Bmp_Banner</String>
+</WixLocalization>
+-->

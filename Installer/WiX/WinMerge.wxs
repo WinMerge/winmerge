@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    candleArgs: "WinMerge.wxs" "Fragments\Core.wxs" "Fragments\Docs.wxs" "Fragments\Filters.wxs" "Fragments\Plugins.wxs" "Fragments\Languages.wxs" "Fragments\Features.wxs" "Fragments\WixUI_WinMerge.wxs" <extensions>
-    lightArgs: "WinMerge.wixobj" "Core.wixobj" "Docs.wixobj" "Filters.wixobj" "Plugins.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+    candleArgs: "WinMerge.wxs" "Fragments\Core.wxs" "Fragments\Docs.wxs" "Fragments\Filters.wxs" "Fragments\Languages.wxs" "Fragments\Features.wxs" "Fragments\WixUI_WinMerge.wxs" "Fragments\WixUI_AdditionalTasksDlg.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "Core.wixobj" "Docs.wixobj" "Filters.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" "WixUI_AdditionalTasksDlg.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Config.wxi ?>
@@ -16,7 +16,6 @@
           * ClearCase
         * Modify Path
       * Don't install 32 bit version von Windows x64
-      * Separate page for tasks (shortcuts, TortoiseSVN, ...)
       * Install translated readme files
       * Set WinMerge language
       * Mutli-language support
@@ -61,6 +60,9 @@
       <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
       <Merge Id="MFC" Language="0" SourceFile="$(var.MfcMergeModule)" DiskId="1" />
     </Directory>
+    
+    <Property Id="TASK_STARTMENUSHORTCUTS">1</Property>
+    <Property Id="TASK_DESKTOPSHORTCUT">1</Property>
     
     <FeatureRef Id="WinMerge" />
     

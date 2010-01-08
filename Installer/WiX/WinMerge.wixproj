@@ -24,6 +24,7 @@
     <Compile Include="Fragments\Languages.wxs"/>
     <Compile Include="Fragments\Features.wxs"/>
     <Compile Include="Fragments\WixUI_WinMerge.wxs"/>
+    <Compile Include="Fragments\WixUI_AdditionalTasksDlg.wxs"/>
   </ItemGroup>
   
   <Import Project="$(WixTargetsPath)"/>
