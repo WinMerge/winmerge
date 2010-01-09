@@ -15,7 +15,7 @@
 ##    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #############################################################################
 
-# Copyright (c) 2008-2009 Kimmo Varis <kimmov@winmerge.org>
+# Copyright (c) 2008-2010 Kimmo Varis <kimmov@winmerge.org>
 
 # $Id$
 
@@ -31,11 +31,12 @@ import os
 import subprocess
 import sys
 
-import ToolSettings
+import cleanup_backups
 import fix_manifest
+import ToolSettings
 
 # The version of the script
-script_version = 0.3
+script_version = 0.4
 
 # global settings class instance
 tools = ToolSettings.ToolSettings()
@@ -58,16 +59,22 @@ def upgrade_projects(root_path):
         sol_file = os.path.join(root_path, solution)
         print 'Upgrading VS solution file: ' + sol_file
         subprocess.call([vs_binary, sol_file, '/Upgrade'], shell = True)
+        cleanup(sol_file)
 
     for project in projects:
         proj_file = os.path.join(root_path, project)
         print 'Upgrading project file: ' + proj_file
         subprocess.call([vs_binary, proj_file, '/Upgrade'], shell = True)
+        cleanup(proj_file)
 
 def fix_proj_manifests(root_path):
     for project in manifest_projects:
         proj_file = os.path.join(root_path, project)
         fix_manifest.process_project_file(proj_file)
+
+def cleanup(updatefile):
+    folder = os.path.dirname(updatefile)
+    cleanup_backups.cleanupfolder(folder)
 
 def usage():
     '''Print script usage information.'''
