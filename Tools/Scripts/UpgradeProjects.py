@@ -41,12 +41,12 @@ script_version = 0.3
 tools = ToolSettings.ToolSettings()
 
 solutions = [r'Externals\expat\expat.sln',
-    r'Externals\pcre\Win32\PCRE.sln',
     r'WinMerge.sln']
 
 projects = [r'Externals\scew\win32\scew.vcproj',
+    r'Externals\pcre\Win32\pcre.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
-    
+
 # These projects need the manifest file fix
 manifest_projects = [r'Src\Merge.vcproj']
 
