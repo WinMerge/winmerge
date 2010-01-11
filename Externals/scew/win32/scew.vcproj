@@ -47,10 +47,10 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\Release/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\Release/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\Release/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\Release/"
+				PrecompiledHeaderFile="$(IntDir)\scew.pch"
+				AssemblerListingLocation="$(OutDir)\Release\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -68,7 +68,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew.lib"
+				OutputFile="$(OutDir)\..\scew.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -531,7 +531,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\..\..\..\Build\scew\Debug"
-			IntermediateDirectory=".\..\..\..\Build\scew\Debug"
+			IntermediateDirectory=".\..\..\..\BuildTmp\scew\Debug"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -560,10 +560,10 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile=".\..\..\..\Build\scew\Debug/scew.pch"
-				AssemblerListingLocation=".\..\..\..\Build\scew\Debug/"
-				ObjectFile=".\..\..\..\Build\scew\Debug/"
-				ProgramDataBaseFileName=".\..\..\..\Build\scew\Debug/"
+				PrecompiledHeaderFile="$(IntDir)\scew.pch"
+				AssemblerListingLocation=".\..\..\..\Build\scew\Debug\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -582,7 +582,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_d.lib"
+				OutputFile="$(OutDir)\..\scew_d.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
