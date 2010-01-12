@@ -1,6 +1,6 @@
 #
 # The MIT License
-# Copyright (c) 2007-2009 Kimmo Varis
+# Copyright (c) 2007-2010 Kimmo Varis
 # Copyright (c) 2008 Matthias Mayer
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -112,18 +112,18 @@ def cleanup_build():
         print 'Remove ANSI files'
         if os.path.exists('build/mergerelease/WinMerge.exe'):
             os.remove('build/mergerelease/WinMerge.exe')
-        if os.path.exists('build/mergerelease/ShellExtension.dll'):
-            os.remove('build/mergerelease/ShellExtension.dll')
         if os.path.exists('build/mergerelease/MergeLang.dll'):
             os.remove('build/mergerelease/MergeLang.dll')
 
         print 'Remove Unicode files'
         if os.path.exists('build/mergeunicoderelease/WinMergeU.exe'):
             os.remove('build/mergeunicoderelease/WinMergeU.exe')
-        if os.path.exists('build/mergeunicoderelease/ShellExtensionU.dll'):
-            os.remove('build/mergeunicoderelease/ShellExtensionU.dll')
         if os.path.exists('build/mergeunicoderelease/MergeLang.dll'):
             os.remove('build/mergeunicoderelease/MergeLang.dll')
+
+        print 'Remove ShellExtension files'
+        if os.path.exists('build/ShellExtension'):
+            shutil.rmtree('build/ShellExtension', True)
 
         print 'Remove expat files'
         if os.path.exists('build/expat'):
@@ -248,8 +248,8 @@ def build_libraries():
     #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
-    print 'Build scew library...'
-    solution_path = os.path.join(cur_path, 'Externals/scew/win32/scew.vcproj')
+    print 'Build SCEW library...'
+    solution_path = os.path.join(cur_path, 'Externals/scew/win32/scew.sln')
     #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
@@ -368,11 +368,11 @@ def create_bin_folders(bin_folder, dist_src_folder):
     print 'Copying files to binary distribution folder...'
     shutil.copy('build/mergerelease/WinMerge.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/WinMergeU.exe', bin_folder)
-
-    shutil.copy('build/mergerelease/ShellExtension.dll', bin_folder)
-    shutil.copy('build/mergeunicoderelease/ShellExtensionU.dll', bin_folder)
     shutil.copy('build/mergeunicoderelease/MergeLang.dll', bin_folder)
-    shutil.copy('build/shellextensionx64/ShellExtensionX64.dll', bin_folder)
+
+    shutil.copy('build/ShellExtension/release mindependency/ShellExtension.dll', bin_folder)
+    shutil.copy('build/ShellExtension/unicode release mindependency/ShellExtensionU.dll', bin_folder)
+    shutil.copy('build/ShellExtension/x64 release/ShellExtensionX64.dll', bin_folder)
     shutil.copy('ShellExtension/Register.bat', bin_folder)
     shutil.copy('ShellExtension/UnRegister.bat', bin_folder)
 
@@ -471,7 +471,7 @@ def check_x64shellext():
     environment tweaks, so it won't work (currently) from this script. And the
     ShellExtension must be compiled separately.
     """
-    if not os.path.exists('build/shellextensionx64/ShellExtensionX64.dll'):
+    if not os.path.exists('build/shellextension/x64 release/ShellExtensionX64.dll'):
         print 'ERROR: cannot create a release:'
         print 'You must compile 64-bit ShellExtension (ShellExtensionX64.dll)'
         print 'before running this script!'
