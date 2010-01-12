@@ -53,13 +53,13 @@
           <File Id="ShellExtensionX64DLL" 
             Name="ShellExtensionX64.dll" 
             SelfRegCost="1" 
-            Source="..\..\Build\ShellExtensionX64\ShellExtensionX64.dll" 
+            Source="$(var.ShellExtBuildDir)\ShellExtensionX64.dll" 
             Vital="yes" />
         <?else ?>
           <File Id="ShellExtensionUDLL" 
             Name="ShellExtensionU.dll" 
             SelfRegCost="1" 
-            Source="$(var.MergeBuildDir)\ShellExtensionU.dll" 
+            Source="$(var.ShellExtBuildDir)\ShellExtensionU.dll" 
             Vital="yes" />
         <?endif ?>
       </Component>
