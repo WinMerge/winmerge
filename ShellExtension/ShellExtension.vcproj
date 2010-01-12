@@ -19,8 +19,8 @@
 	<Configurations>
 		<Configuration
 			Name="Unicode Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -44,7 +44,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -55,10 +55,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -77,14 +77,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeDebug\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\ShellExtensionU.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.lib"
+				ImportLibrary="$(OutDir)\ShellExtensionU.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -210,8 +210,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -233,7 +233,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -246,10 +246,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -267,13 +267,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\ShellExtensionU.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.pdb"
+				ProgramDatabaseFile="$(IntDir)\ShellExtensionU.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.lib"
+				ImportLibrary="$(OutDir)\ShellExtensionU.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -397,8 +397,8 @@
 		</Configuration>
 		<Configuration
 			Name="Unicode Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -420,7 +420,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -433,10 +433,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -454,13 +454,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\ShellExtensionU.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.pdb"
+				ProgramDatabaseFile="$(IntDir)\ShellExtensionU.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.lib"
+				ImportLibrary="$(OutDir)\ShellExtensionU.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -584,8 +584,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -607,7 +607,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -621,10 +621,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -642,13 +642,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				OutputFile="$(OutDir)\ShellExtension.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pdb"
+				ProgramDatabaseFile="$(IntDir)\ShellExtension.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.lib"
+				ImportLibrary="$(OutDir)\/ShellExtension.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -773,8 +773,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -796,7 +796,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -810,10 +810,10 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -831,13 +831,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				OutputFile="$(OutDir)\ShellExtension.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pdb"
+				ProgramDatabaseFile="$(IntDir)\ShellExtension.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.lib"
+				ImportLibrary="$(OutDir)\ShellExtension.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -962,8 +962,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__Debug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__Debug"
+			OutputDirectory="..\Build\ShellExtension\$(ConfigurationName)"
+			IntermediateDirectory="..\BuildTmp\ShellExtension\$(ConfigurationName)"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -987,7 +987,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.tlb"
+				TypeLibraryName="$(IntDir)\ShellExtension.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -998,10 +998,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__Debug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__Debug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__Debug/"
+				PrecompiledHeaderFile="$(IntDir)\ShellExtension.pch"
+				AssemblerListingLocation="$(IntDir)\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -1020,14 +1020,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeDebug\ShellExtension.dll"
+				OutputFile="$(OutDir)\ShellExtension.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\ShellExtension.def"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pdb"
+				ProgramDatabaseFile="$(IntDir)\ShellExtension.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.lib"
+				ImportLibrary="$(IntDir)\ShellExtension.lib"
 				TargetMachine="1"
 			/>
 			<Tool
