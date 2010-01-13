@@ -29,7 +29,7 @@
 # - updates POT and PO files
 # - builds libraries (expat, scew, pcre)
 # - builds WinMerge.exe and WinMergeU.exe
-# - builds 32-bit ShellExtension targets
+# - builds 32-bit and 64-bit ShellExtension targets
 # - builds user manual
 # - builds the InnoSetup installer
 # - creates per-version distribution folder
@@ -37,7 +37,6 @@
 # - creates binary distribution folder
 
 #Tasks not done (TODO?):
-# - building 64-bit ShellExtension
 # - creating packages from source and binary folders
 # - running virus check
 # - creating SHA-1 hashes for distributed files
@@ -71,6 +70,10 @@
 dist_root_folder = 'distrib'
 root_path = ''
 prog_ver = ''
+
+# Build 64-bit targets? This requires 64-bit cross-compile cabable VS version.
+# If disabled, 64-bit versions must be compiled before running this script
+build_64bit = True
 
 # END CONFIGURATION - you don't need to edit anything below...
 
@@ -293,7 +296,10 @@ def build_winmerge(vs_cmd):
         return False
 
 def build_shellext(vs_cmd):
-    """Builds 32-bit ShellExtension."""
+    '''Builds 32-bit and 64-bit ShellExtension.
+    
+    64-bit ShellExtension is build only if build_64bit is enabled in config.
+    '''
 
     cur_path = os.getcwd()
     solution_path = os.path.join(cur_path, 'ShellExtension\\ShellExtension.vcproj')
@@ -306,11 +312,20 @@ def build_shellext(vs_cmd):
     else:
         print 'ERROR: Failed to build ANSI target of ShellExtension!'
         return False
+        
+    if ret == 0:
+        if build_64bit == True:
+            ret = call([vs_cmd, solution_path, '/rebuild', 'X64 Release|x64'])
+        else:
+            return True
+    else:
+        print 'ERROR: Failed to build Unicode target of ShellExtension!'
+        return False
 
     if ret == 0:
         return True
     else:
-        print 'ERROR: Failed to build Unicode target of ShellExtension!'
+        print 'ERROR: Failed to build 64-bit target of ShellExtension!'
         return False
 
 def build_manual():
@@ -464,13 +479,13 @@ def check_tools():
     return True
 
 def check_x64shellext():
-    """Checks that 64-bit ShellExtension is compiled prior to running this
+    '''Checks that 64-bit ShellExtension is compiled prior to running this
     script.
 
-    This is due to the fact we can't compile 64-bit ShellExtension without some
-    environment tweaks, so it won't work (currently) from this script. And the
-    ShellExtension must be compiled separately.
-    """
+    If we haven't enabled building 64-bit targets we must ensure the 64-bit
+    ShellExtension is already compiled.
+    '''
+
     if not os.path.exists('build/shellextension/x64 release/ShellExtensionX64.dll'):
         print 'ERROR: cannot create a release:'
         print 'You must compile 64-bit ShellExtension (ShellExtensionX64.dll)'
@@ -543,8 +558,8 @@ def main(argv):
     if check_tools() == False:
         sys.exit()
 
-    # Check 64-bit ShellExtension is compiled
-    if check_x64shellext() == False:
+    # Check 64-bit ShellExtension is compiled if not building 64-bit
+    if build_64bit == False and check_x64shellext() == False:
         sys.exit()
 
     # Create the distribution folder if it doesn't exist
