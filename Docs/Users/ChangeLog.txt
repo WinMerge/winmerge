@@ -17,6 +17,8 @@ WinMerge 2.3.11
     an EOL byte (#2922517)
   Bugfix: Automatic rescanning was not disabled everywhere (r7086,r7089)
   Bugfix: Quick contents compare didn't ignore EOL byte differences (#2929005)
+  Translation updates:
+  - Spanish (#2930734)
 
 WinMerge 2.13.10 2009-12-21 (r7051)
   Visual Studio project files upgraded to VS2005 format (r7045)
