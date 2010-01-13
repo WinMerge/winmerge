@@ -397,7 +397,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib scew.lib libexpat.lib pcre.lib"
 				OutputFile="..\Build\MergeRelease/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
