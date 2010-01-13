@@ -112,6 +112,7 @@ Localization:
 
 * Slovenian:
   Iztok Osredkar <iztok.osredkar@institut-oko.si>
+  Filip Komar <filip.komar@gmail.com>
 
 * Spanish:
   Mario Angel <marioangel70@gmail.com>

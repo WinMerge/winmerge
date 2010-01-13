@@ -3,8 +3,7 @@
 #
 # Translators:
 # * Iztok Osredkar <iztok.osredkar at institut-oko.si>
-#
-#
+# * Filip Komar <filip.komar at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -14,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-06-16 00:11+0100\n"
-"Last-Translator: Iztok Osredkar <iztok.osredkar@institut-oko.si>\n"
+"PO-Revision-Date: 2009-12-19 20:52+0100\n"
+"Last-Translator: Filip Komar <filip.komar at gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -287,7 +286,7 @@ msgstr "&Razširitve"
 #: Merge.rc:454
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Seznam"
 
 #: Merge.rc:152
 #: Merge.rc:273
@@ -378,14 +377,14 @@ msgstr "Vodoravna &okna"
 #: Merge.rc:481
 #, c-format
 msgid "Tile &Vertically"
-msgstr "Navpièna &okna"
+msgstr "&Navpièna okna"
 
 #: Merge.rc:173
 #: Merge.rc:294
 #: Merge.rc:482
 #, c-format
 msgid "&Cascade"
-msgstr "Kaskadna &okna"
+msgstr "&Kaskadna okna"
 
 #: Merge.rc:175
 #: Merge.rc:296
@@ -428,7 +427,7 @@ msgstr "&Nastavitve"
 #: Merge.rc:491
 #, c-format
 msgid "A&rchive Support disabled..."
-msgstr "&Podpora arhiviranju onemogoèena"
+msgstr "&Podpora arhivskim datotekam onemogoèena"
 
 #: Merge.rc:184
 #: Merge.rc:305
@@ -470,7 +469,7 @@ msgstr "Oznaèi &vse\tCtrl+A"
 #: Merge.rc:215
 #, c-format
 msgid "Show &Identical Items"
-msgstr "Prikaži &identiene predmete"
+msgstr "Prikaži &identiène predmete"
 
 #: Merge.rc:216
 #, c-format
@@ -490,7 +489,7 @@ msgstr "Prikaži d&esne unikatne predmete"
 #: Merge.rc:219
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Prikaži &preskoeene predmete"
+msgstr "Prikaži &preskoèene predmete"
 
 #: Merge.rc:220
 #, c-format
@@ -505,17 +504,17 @@ msgstr "Prikaži skri&te predmete"
 #: Merge.rc:224
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "&Drevesni naèin"
 
 #: Merge.rc:225
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "Ra&zširi vse mape"
 
 #: Merge.rc:226
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "S&krèi vse mape"
 
 #: Merge.rc:239
 #, c-format
@@ -1299,7 +1298,7 @@ msgstr "&Zadrži èas datoteke v primerjavi datoteke"
 #: Merge.rc:774
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Prikaži pogovorno okno \"Izberite datoteke ali mape\" ob zagonu"
 
 #: Merge.rc:776
 #, c-format
@@ -1328,7 +1327,7 @@ msgstr "Primerjva &datotek"
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
 msgstr ""
 "WinMerge omogoèa skrivanje skupnih sporoèilnih okvirjev.\n"
-"Pritisnite gumb za ponovni zagon, da bodo postala vsa sporoèilna okna vidna."
+"Pritisnite gumb Ponastavi, da bodo postala vsa sporoèilna okna vidna."
 
 #: Merge.rc:787
 #, c-format
@@ -1727,17 +1726,17 @@ msgstr "Izberite orodje za odpakiranje"
 #: Merge.rc:1095
 #, c-format
 msgid "File unpacker:"
-msgstr "Arhiver datoteke:"
+msgstr "Arhivske datoteke:"
 
 #: Merge.rc:1098
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Prikaži vsa orodja za stiskanje, ne preverjaj ekstenzije"
+msgstr "Prikaži vsa orodja za stiskanje, ne preverjaj konènice"
 
 #: Merge.rc:1101
 #, c-format
 msgid "Extensions list:"
-msgstr "Popis ekstenzij"
+msgstr "Popis konènic"
 
 #: Merge.rc:1102
 #, c-format
@@ -1925,7 +1924,7 @@ msgstr "Obarvaj razlike v vrstici"
 #: Merge.rc:1206
 #, c-format
 msgid "View line differences"
-msgstr "Poglej vrstiene razlike"
+msgstr "Poglej vrstiène razlike"
 
 #: Merge.rc:1208
 #, c-format
@@ -2027,7 +2026,7 @@ msgstr "Izberi splošno kodno tabelo ko se nalagajo non-Unicode datoteke:"
 #: Merge.rc:1271
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr ""
+msgstr "Zaznaj kodno tabelo za datoteke s konènico: .html, .rc, .xml \npotreben je ponovni zagon seje"
 
 #: Merge.rc:1274
 #, c-format
@@ -2042,12 +2041,12 @@ msgstr "Po mnenju WinMerge uporabniškega vmesnika"
 #: Merge.rc:1278
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Kodna tabela po meri:"
 
 #: Merge.rc:1286
 #, c-format
 msgid "WinMerge - Archive support disabled"
-msgstr "WinMerge - Arhivna podpora onemogoèena"
+msgstr "WinMerge - podpora Arhivskim datotekam onemogoèena"
 
 #: Merge.rc:1289
 #, c-format
@@ -2060,7 +2059,7 @@ msgstr "Ni mogoèe zaznati 7-zip verzijo (ni namešèena?)"
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
-msgstr "Delo z arhivi zahteva program 7-Zip 3.11 ali njegovo novejšo razlièico namešèeno na vašem raèunalniku"
+msgstr "Delo z arhivskimi datotekami zahteva program 7-Zip 3.11 ali njegovo novejšo razlièico namešèeno na vašem raèunalniku"
 
 #: Merge.rc:1294
 #, c-format
@@ -2281,12 +2280,12 @@ msgstr "Zasebni filter (samo za doloèene uporabnike)"
 #: Merge.rc:1950
 #, c-format
 msgid "Archive Support"
-msgstr "Podpora arhivom"
+msgstr "Podpora arhivskim datotekam"
 
 #: Merge.rc:1452
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
-msgstr "Arhivna podpora zahteva 7-zip namešèen vtiènik:"
+msgstr "Podpora za arhivske datoteke zahteva 7-zip namešèen vtiènik:"
 
 #: Merge.rc:1454
 #, c-format
@@ -2296,7 +2295,7 @@ msgstr "Prenosi 7-zip vtiènik"
 #: Merge.rc:1455
 #, c-format
 msgid "&Enable archive file support"
-msgstr "Omoguèi delo z &arhivi"
+msgstr "Omogoèi delo z &arhivskimi datotekami"
 
 #: Merge.rc:1457
 #, c-format
@@ -2311,7 +2310,7 @@ msgstr "&Uporabi lokalni 7-zip iz WinMerge mape"
 #: Merge.rc:1462
 #, c-format
 msgid "&Detect archive type from file signature"
-msgstr "&Razberi tip arhiva iz podpisa datoteke"
+msgstr "&Razberi tip arhivske datoteke iz podpisa datoteke"
 
 #: Merge.rc:1470
 #, c-format
@@ -2543,7 +2542,7 @@ msgstr "Naziv varnostne datoteke"
 #: Merge.rc:1629
 #, c-format
 msgid "&Append .bak -extension"
-msgstr "&Dodaj .bak ekstenzijo"
+msgstr "&Dodaj .bak konènico"
 
 #: Merge.rc:1631
 #, c-format
@@ -2554,7 +2553,7 @@ msgstr "&Dodaj datum in èas "
 #: Merge.rc:2243
 #, c-format
 msgid "Confirm Copy"
-msgstr "Potrdi klopiranje"
+msgstr "Potrdi kopiranje"
 
 #: Merge.rc:1642
 #, c-format
@@ -2615,17 +2614,17 @@ msgstr "Privzeto vkljuèi podmape"
 #: Merge.rc:1679
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Dodaj k razširjenemu meniju"
 
 #: Merge.rc:1681
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Primerjava map"
 
 #: Merge.rc:1682
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Dodaj obstojeèi meni k &razširjenemu meniju"
 
 #. StringFileInfo.Block
 #: Merge.rc:1708
@@ -2952,7 +2951,7 @@ msgid ""
 "Replace specific text with different text\n"
 "Replace"
 msgstr ""
-"Zamenjaj specifieeno besedilo z drugaènim besedilom\n"
+"Zamenjaj specifièno besedilo z drugaènim besedilom\n"
 "Zamenjaj"
 
 #: Merge.rc:1837
@@ -3203,7 +3202,7 @@ msgstr "&Preskoèi"
 #: Merge.rc:1932
 #, c-format
 msgid "Skip &all"
-msgstr "Preskoei &vse"
+msgstr "Preskoèi &vse"
 
 #: Merge.rc:1934
 #, c-format
@@ -3385,7 +3384,7 @@ msgstr "Hitra vsebina"
 #: Merge.rc:2020
 #, c-format
 msgid "Modified Date"
-msgstr "Datum spemembe"
+msgstr "Datum spremembe"
 
 #: Merge.rc:2021
 #, c-format
@@ -3694,7 +3693,7 @@ msgstr "Obe poti sta neveljavni"
 #: Merge.rc:2126
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Izberi dve datoteki,da boste omogoèili izbiro arhiverja"
+msgstr "Izberi dve datoteki, da boste omogoèili izbiro arhiverja"
 
 #: Merge.rc:2127
 #, c-format
@@ -3763,7 +3762,7 @@ msgstr "Napaka pri preverjanju cilja možnosti zapisovanja"
 #: Merge.rc:2147
 #, c-format
 msgid "Error backing up file"
-msgstr "Napaka pri shranjevanju arhive"
+msgstr "Napaka pri shranjevanju arhiva"
 
 #: Merge.rc:2149
 #, c-format
@@ -3773,7 +3772,7 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Ni mogoèe shraniti arhive originalne datoteke:\n"
+"Ni mogoèe shraniti arhiva originalne datoteke:\n"
 "%1\n"
 "\n"
 "Vseeno nadaljujem?"
@@ -3883,7 +3882,7 @@ msgstr ""
 #: Merge.rc:2170
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "Navesti morate pot SourceSafe projekta èe želite nadaljevati (ie:  $/MyProject)"
+msgstr "Navesti morate pot SourceSafe projekta èe želite nadaljevati (npr:  $/MyProject)"
 
 #: Merge.rc:2171
 #, c-format
@@ -3932,7 +3931,7 @@ msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
-"Versioninh System vraèa napako med preverjanjem datoteke.\n"
+"Sistem za verzije vraèa napako med preverjanjem datoteke.\n"
 "Prosim preverite nastavitvene specifikacije uporabljenega pogleda"
 
 #: Merge.rc:2184
@@ -4141,17 +4140,17 @@ msgstr ""
 #: Merge.rc:2241
 #, c-format
 msgid "Are you sure you want to move:"
-msgstr ""
+msgstr "Ali ste preprièani, da želite premakniti:"
 
 #: Merge.rc:2242
 #, c-format
 msgid "Are you sure you want to move %d items:"
-msgstr ""
+msgstr "Ali ste preprièani, da želite premakniti: %d predmetov"
 
 #: Merge.rc:2244
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Potrdi premik"
 
 #: Merge.rc:2250
 #, c-format
@@ -4191,7 +4190,7 @@ msgstr "Ni bilo mogoèe zagnati zunanjega urejevalnika: %1"
 #: Merge.rc:2257
 #, c-format
 msgid "Unknown extension on external editor: %1"
-msgstr "Nepoznana ekstenzija na zunanjem urejevalniku: %1"
+msgstr "Nepoznana konènica datoteke na zunanjem urejevalniku: %1"
 
 #: Merge.rc:2258
 #, c-format
@@ -4216,12 +4215,12 @@ msgstr "Kopiraj pot obeh strani v odložišèe"
 #: Merge.rc:2267
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Levi razširitveni meni"
 
 #: Merge.rc:2268
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Desni razširitveni meni"
 
 #: Merge.rc:2274
 #, c-format
@@ -4432,7 +4431,7 @@ msgstr "Datoteki sta razlièni"
 #: Merge.rc:2338
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Mapi sta razlièni"
 
 #: Merge.rc:2339
 #, c-format
@@ -4452,12 +4451,12 @@ msgstr "Napaka"
 #: Merge.rc:2343
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Tekstovni datoteki sta enaki"
 
 #: Merge.rc:2348
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Tekstovni datoteki sta razlièni"
 
 #: Merge.rc:2354
 #, c-format
@@ -4651,7 +4650,7 @@ msgstr "Ista datoteka je odprta v obeh panelih"
 #: Merge.rc:2417
 #, c-format
 msgid "The selected files are identical."
-msgstr "Izbrane datoteko so identiène."
+msgstr "Izbrani datoteki sta identièni."
 
 #: Merge.rc:2418
 #, c-format
@@ -4883,9 +4882,9 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Delo z arhivi ni omogoèeno.\n"
-"Vse rabljene komponente (7-zip in/ali Merge7z*.dll) za arhivno podporo ni mogoèe najdti.\n"
-"Za veè informacij poglejte v rubriko pomoè o podpori arhivom."
+"Delo z arhivskimi datotekami ni omogoèeno.\n"
+"Vse rabljene komponente (7-zip in/ali Merge7z*.dll) za arhivno podporo ni mogoèe najti.\n"
+"Za veè informacij poglejte v rubriko pomoè o podpori arhivskih datotek."
 
 #: Merge.rc:2490
 #, c-format
@@ -5365,22 +5364,22 @@ msgstr " PB"
 #: Merge.rc:2654
 #, c-format
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: Merge.rc:2656
 #, c-format
 msgid "Unpacker"
-msgstr ""
+msgstr "arhiver"
 
 #: Merge.rc:2657
 #, c-format
 msgid "Prediffer"
-msgstr ""
+msgstr "Prediffer"
 
 #: Merge.rc:2658
 #, c-format
 msgid "Editor script"
-msgstr ""
+msgstr "Script urejevalnika"
 
 #: Merge.rc:2665
 #, c-format
@@ -5405,12 +5404,12 @@ msgstr "Shrani desno datoteko z imenom..."
 #: Merge.rc:2669
 #, c-format
 msgid "Change left side file/folder read-only status"
-msgstr ""
+msgstr "Spremeni status Samo za branje za levo datoteko ali mapo"
 
 #: Merge.rc:2670
 #, c-format
 msgid "Change right side file/folder read-only status"
-msgstr ""
+msgstr "Spremeni status Samo za branje za desno datoteko ali mapo"
 
 #: Merge.rc:2671
 #, c-format
@@ -5620,7 +5619,7 @@ msgid ""
 "Show Line Difference"
 msgstr ""
 "Prikaži razlike znotraj vrstic z razliènimi barvami\n"
-"Prikaži vrstiene razlike"
+"Prikaži vrstiène razlike"
 
 #: Merge.rc:2716
 #, c-format
@@ -5801,7 +5800,7 @@ msgstr "Izdelaj poroèilo iz primerjalnih rezultatov"
 #: Merge.rc:2755
 #, c-format
 msgid "Shows a list of available plugins"
-msgstr ""
+msgstr "Prikaži seznam razširitev, ki so na voljo"
 
 #: Merge.rc:2756
 #, c-format
@@ -5811,7 +5810,7 @@ msgstr "Uporabnik izbere arhiver (razpakiranje ne deluje med primerjanjem map)"
 #: Merge.rc:2757
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Prilagojen arhiver je uporaben na obeh datotekah(samo ena datoteka potrebuje razširitev)"
+msgstr "Prilagojen arhiver je uporaben na obeh datotekah (samo ena datoteka potrebuje razširitev)"
 
 #: Merge.rc:2758
 #, c-format
@@ -5821,7 +5820,7 @@ msgstr "Izberite arhiver za urejanje naslednje datoteke"
 #: Merge.rc:2759
 #, c-format
 msgid "No prediffer (normal)"
-msgstr "Brez datotek (obieajno)"
+msgstr "Brez datotek (obièajno)"
 
 #: Merge.rc:2760
 #, c-format
@@ -5987,7 +5986,7 @@ msgstr "IZ MRU seznama"
 #: Merge.rc:2825
 #, c-format
 msgid "No Highlighting"
-msgstr ""
+msgstr "Brez osvetljevanja"
 
 #: Merge.rc:2826
 #, c-format
@@ -6142,7 +6141,7 @@ msgstr "TEX"
 #: Merge.rc:2856
 #, c-format
 msgid "Verilog"
-msgstr ""
+msgstr "Verilog"
 
 #: Merge.rc:2857
 #, c-format
