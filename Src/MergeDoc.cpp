@@ -451,6 +451,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
 		{
 			ReloadDoc(0);
+			return RESCAN_OK;
 		}
 	}
 	else if (rightFileChanged == FileChanged)
@@ -460,6 +461,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
 		{
 			ReloadDoc(1);
+			return RESCAN_OK;
 		}
 	}
 
@@ -1437,6 +1439,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_SUPPRESSED)
 		ShowRescanError(nRescanResult, bIdentical);
+	m_LastRescan = COleDateTime::GetCurrentTime();
 }
 
 /**
@@ -2511,7 +2514,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	}
 
 	BOOL bBinary = FALSE;
-	nRescanResult = Rescan(bBinary, bIdentical);
+	nRescanResult = Rescan(bBinary, bIdentical, TRUE);
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)
