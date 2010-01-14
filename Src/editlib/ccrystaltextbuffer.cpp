@@ -193,8 +193,8 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
 {
   ASSERT(nLength != -1);
 
-  LineInfo li;
-  li.Create(pszLine, nLength);
+  LineInfo line;
+  line.Create(pszLine, nLength);
 
   // nPosition not defined ? Insert at end of array
   if (nPosition == -1)
@@ -202,12 +202,14 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
 
   // insert all lines in one pass
   vector<LineInfo>::iterator iter = m_aLines.begin() + nPosition;
-  m_aLines.insert(iter, nCount, li);
+  m_aLines.insert(iter, nCount, line);
 
-  // duplicate the text data for lines after the first one
+  // create text data for lines after the first one
   for (int ic = 1; ic < nCount; ic++) 
   {
-    m_aLines[nPosition+ic].CopyFrom(li);
+    LineInfo li ;
+    li.Create(pszLine, nLength);
+    m_aLines[nPosition + ic] = li;
   }
 
 #ifdef _DEBUG
