@@ -206,7 +206,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < (int) m_diffs.size())
 	{
-		m_diffs[nDiff] = di;
+		m_diffs[nDiff].diffrange = di;
 		return true;
 	}
 	else
