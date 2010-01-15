@@ -18,7 +18,7 @@ WinMerge 2.3.11
   Bugfix: Automatic rescanning was not disabled everywhere (r7086,r7089)
   Bugfix: Quick contents compare didn't ignore EOL byte differences (#2929005)
   Translation updates:
-  - Slovenian (#2917796)
+  - Slovenian (#2917796, #2932094)
   - Spanish (#2930734)
 
 WinMerge 2.13.10 2009-12-21 (r7051)

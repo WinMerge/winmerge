@@ -1,6 +1,9 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Filip Komar <filip.komar at gmail.com>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -9,11 +12,11 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2010-01-14 19:36+0100\n"
+"Last-Translator: Filip Komar <filip.komar@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=CP1250\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-SourceCharset: CP1250\n"
@@ -40,50 +43,50 @@ msgstr "1250"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr ""
+msgstr "Razširitev integracije v lupino"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
 msgid "WinMerge"
-msgstr ""
+msgstr "WinMerge"
+
+#: ShellExtensionTemplate.rc:43
+#, c-format
+msgid "Open with WinMerge"
+msgstr "Odpri z WinMerge"
 
 #: ShellExtensionTemplate.rc:44
 #, c-format
-msgid "Open with WinMerge"
-msgstr ""
-
-#: ShellExtensionTemplate.rc:45
-#, c-format
 msgid "Please select no more than 2 items"
-msgstr ""
+msgstr "Prosimo izberite najveè 2 predmeta"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr ""
+msgstr "Primerjaj"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr ""
+msgstr "Primerjaj..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr ""
+msgstr "Primerjaj z"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr ""
+msgstr "Shrani tole pot. Izberi še drugo pot za primerjavo s tole."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr ""
+msgstr "Primerjaj s shranjeno potjo (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr ""
+msgstr "Ponovno izberite prvega"
 
