@@ -8,7 +8,7 @@ WinMerge 2.12.6
   Translation updates:
   - Dutch (#2804979)
   - French (#2850842)
-  - Slovenian (#2917796)
+  - Slovenian (#2917796, #2932094)
   - Spanish (#2930734)
   - Turkish (#2825132, #2827817)
   - Ukrainian (#2817835)
