@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-01-14 19:36+0100\n"
+"PO-Revision-Date: 2010-01-18 15:47+0100\n"
 "Last-Translator: Filip Komar <filip.komar@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Primerjaj"
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Primerjaj..."
+msgstr "Primerjaj ..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
@@ -78,7 +78,7 @@ msgstr "Primerjaj z"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Shrani tole pot. Izberi še drugo pot za primerjavo s tole."
+msgstr "Shrani tole pot. Izberite še drugo pot za primerjavo s tole."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
