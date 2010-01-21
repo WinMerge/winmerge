@@ -338,17 +338,26 @@
      * @return bool Detected?
      */
     function detectLanguageFromBrowser() {
-      if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-        $accepted_languages = split(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        foreach ($accepted_languages as $accepted_language) { //for all accepted languages...
-          $tmp = split(';', $accepted_language);
+      $acceptLanguageHeader = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+      if (isset($acceptLanguageHeader) && is_string($acceptLanguageHeader) && !empty($acceptLanguageHeader)) { //if the "Accept-Language" header is set...
+        $acceptLanguageHeader = strtolower($acceptLanguageHeader);
+        $acceptLanguageHeader = str_replace(' ', '', $acceptLanguageHeader);
+        $acceptLanguageHeader = str_replace('q=', '', $acceptLanguageHeader);
+        
+        $acceptedLanguages = explode(',', $acceptLanguageHeader);
+        foreach ($acceptedLanguages as $acceptedLanguage) { //for all accepted languages...
+          $tmp = explode(';', $acceptedLanguage);
           
-          $lang_id = strtolower($tmp[0]);
-          if ($this->existsLanguage($lang_id)) { //if the language exists...
-            $this->_activelanguageid = $lang_id;
-            $language = $this->_languages[$lang_id];
-            $this->_translations = $language->getTranslations();
-            return true;
+          if (isset($tmp[0]) && !empty($tmp[0])) { //if found (full) language ID...
+            $tmp2 = explode('-', $tmp[0]); //Split language and country ID, if exist!
+            
+            $lang_id = strtolower($tmp2[0]);
+            if (array_key_exists($lang_id, $this->_languages)) { //if the language exists...
+              $this->_activelanguageid = $lang_id;
+              $language = $this->_languages[$lang_id];
+              $this->_translations = $language->getTranslations();
+              return true;
+            }
           }
         }
       }
