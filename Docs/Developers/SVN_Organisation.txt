@@ -40,7 +40,6 @@ WinMerge Folder Structure
    - selftests
  - Tools
    - diff2winmerge
-   - MakePatchDirs
  - Translations
    - Docs
    - InnoSetup
@@ -156,17 +155,11 @@ WinMerge/Testing/selftests/
  - Tests using Perl run WinMerge executable to test compare functionality.
 
 WinMerge/Tools/
- - Tools needed/used with WinMerge development (e.g. language file compiler).
+ - Tools needed/used with WinMerge development.
 
 WinMerge/Tools/diff2winmerge/
  - Commandline wrapper for WinMerge executable, offers
    diffutils -style commandline switches (needed by Perl selftests).
-
-WinMerge/Tools/MakePatchDirs/
- - Source files for MakePatchDirs, a program to generate original &
-   altered directories
- - Used to create patches to WinMerge source tree, for upload to
-   sourceforge patch board
 
 WinMerge/Translations
  - Translation files for WinMerge components and documents
