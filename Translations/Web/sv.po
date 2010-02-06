@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-31 00:43+0100\n"
+"PO-Revision-Date: 2010-02-01 19:11 +0100\n"
 "Last-Translator: Hans Eriksson <hans.ericson at bredband.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Förlaga"
 #: links.php:27
 #, c-format
 msgid "Good site devoted for regular expressions"
-msgstr ""
+msgstr "Bra hemsida tillägnad reguljära uttryck"
 
 #: index.php:45
 #, c-format
@@ -180,7 +180,7 @@ msgstr "WinMerge, gratis, ladda ner,plugins, plugin,plug-in,setup, installerare,
 #: links.php:31
 #, c-format
 msgid "Regular expressions tutorial"
-msgstr ""
+msgstr "Reguljära uttryck instruktion"
 
 #: support\tracker-shortcuts.php:55
 #, c-format
@@ -398,12 +398,12 @@ msgstr "Supportäskande"
 #: links.php:18
 #, c-format
 msgid "<b>External diff Tool</b> is an <a href=\"%s\">Eclipse</a> Plugin</a> that allows the launch of WinMerge (or an other external diff tool) for file compares rather than the default built-in Eclipse diff tool."
-msgstr ""
+msgstr "<b>Externt skillnadsverktyg</b> är en <a href=\"%s\">Eclipse</a> Plugin</a> som tillåter start av WinMerge (eller ett annat externt skillnadsverktyg) för filjämförelser i stället för det standardinbyggda Eclipse skillnadsverktyget."
 
 #: links.php:22
 #, c-format
 msgid "<b>Frhed</b> is an binary file editor for Windows. It is small but has many advanced features like ability to load big files partially."
-msgstr ""
+msgstr "<b>Frhed</b> är en binär fileditor för Windows. Den är liten men har många avancerade fuktioner som möjlighet att öppna stora filer delvis."
 
 #: support\tracker-shortcuts.php:16
 #, c-format
@@ -598,7 +598,7 @@ msgstr "Typ:"
 #: links.php:40
 #, c-format
 msgid "Reviews of popular comparison software. [<a href=\"%s\">WinMerge Review</a>]"
-msgstr ""
+msgstr "Recentioner av populära jämförelseprogram [<a href=\"%s\">WinMerge Recentioner</a>]"
 
 #: engine\page.inc:311
 #, c-format
@@ -623,7 +623,7 @@ msgstr "<a href=\"%s\">Releasenoteringar</a>?"
 #: engine\page.inc:307
 #, c-format
 msgid "WinMerge Quick Tour"
-msgstr ""
+msgstr "WinMerge Snabbguide"
 
 #: 404.php:11
 #, c-format
@@ -633,7 +633,7 @@ msgstr "Sida hittades inte..."
 #: links.php:29
 #, c-format
 msgid "Good HOWTO document for regular expressions"
-msgstr ""
+msgstr "Bra INSTRUERANDE dokument för reguljära uttryck"
 
 #: index.php:16
 #, c-format
@@ -660,7 +660,7 @@ msgstr "Översättningar"
 #: links.php:35
 #, c-format
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diverse"
 
 #: support\index.php:38
 #, c-format
@@ -721,7 +721,7 @@ msgstr "Ladda ner den aktuella WinMerge versionen %1$s, som släpptes %2$s. För
 #: engine\page.inc:307
 #, c-format
 msgid "Quick Tour"
-msgstr ""
+msgstr "Snabbguide"
 
 #: translations\index.php:29
 #, c-format
@@ -765,7 +765,7 @@ msgstr "Trackerobjekt"
 #: links.php:24
 #, c-format
 msgid "Regular expressions"
-msgstr ""
+msgstr "Reguljära uttryck"
 
 #: translations\translations_branch.inc:183
 #, c-format
@@ -800,7 +800,7 @@ msgstr "Projekt-nyheter"
 #: links.php:20
 #, c-format
 msgid "<b>TortoiseSVN</b> lets you work with files under <em>Subversion</em> version control directly from Windows Explorer."
-msgstr ""
+msgstr "<b>TortoiseSVN</b> låter dig arbeta med filer under <em>Subversion</em> versionskontroll direkt från Windows Explorer."
 
 #: about\license.php:6
 #, c-format
@@ -826,7 +826,7 @@ msgstr "Version %1$s; %2$s MB"
 #: links.php:42
 #, c-format
 msgid "Inside informations, unreleased products and articles on various soon-to-be-released software titles."
-msgstr ""
+msgstr "Inside information, osläppta produkter och artiklar om diverse snart släppta programtitlar."
 
 #: support\tracker-shortcuts.php:23
 #, c-format
@@ -841,7 +841,7 @@ msgstr "WinMerge, Tracker, genvägar, sourceforge, projektsida, fel, patch, supp
 #: links.php:38
 #, c-format
 msgid "Map the open source world by collecting objective information on open source projects. [<a href=\"%s\">WinMerge Report</a>]"
-msgstr ""
+msgstr "Kartlägg Open source-världen genom att samla objektiv information om Open source-projekt. [<a href=\"%s\">WinMerge Rapport</a>]"
 
 #: downloads\plugins.php:32
 #, c-format
@@ -906,7 +906,7 @@ msgstr "Prenumeranter av denna lista får noter om varje kodändring tillhandah�
 #: links.php:44
 #, c-format
 msgid "This is WinMerge packaged with a PortableApps.com Launcher as a <a href=\"%s\">portable app</a>, so you can compare files on the go."
-msgstr ""
+msgstr "Detta är WinMerge paketterat med en PortableApps.com startare som en <a href=\"%s\">portabel applikation</a>, så du kan jämföra filer direkt."
 
 #: index.php:47
 #, c-format
@@ -978,7 +978,7 @@ msgstr "Skärmdumpar"
 #: links.php:30
 #, c-format
 msgid "Tutorial"
-msgstr ""
+msgstr "Instruktion"
 
 #: about\index.php:78
 #, c-format
@@ -1307,7 +1307,7 @@ msgstr "Översättare"
 #: links.php:28
 #, c-format
 msgid "regex HOWTO"
-msgstr ""
+msgstr "reguljära uttryck INSTRUKTION"
 
 #: about\license.php:10
 #, c-format
@@ -1379,7 +1379,7 @@ msgstr "WinMerges hemsida"
 #: links.php:33
 #, c-format
 msgid "PDF quick reference"
-msgstr ""
+msgstr "PDF snabbreferens"
 
 #: docs\index.php:11
 #, c-format
@@ -1468,7 +1468,7 @@ msgstr "Snabb jämförelse med filstorlek och datum"
 #: docs\index.php:6
 #, c-format
 msgid "WinMerge, documentation, manual, quick tour, release notes, known issues, change log, Development Wiki"
-msgstr ""
+msgstr "WinMerge, dokumentation, manual, snabbguide, releasenoteringar, kända problem, ändringslogg, Development Wiki"
 
 #: support\mailing-lists.php:24
 #: support\mailing-lists.php:34
@@ -1548,7 +1548,7 @@ msgstr "Nederländska"
 #: links.php:7
 #, c-format
 msgid "Here is a collection of links to tools and reference material that we find is generally useful when you work with WinMerge."
-msgstr ""
+msgstr "Här finns en samling länkar till verktyg och referensmaterial som vi generellt finner användbart när du arbetar med WinMerge. "
 
 #: support\index.php:7
 #, c-format
@@ -1722,7 +1722,7 @@ msgstr "Releasenoteringar"
 #: links.php:16
 #, c-format
 msgid "<b>GnuWin32</b> provides Win32 ports of tools with a <a href=\"%1$s\">GNU</a> or similar <a href=\"%2$s\">open source license</a>."
-msgstr ""
+msgstr "<b>GnuWin32</b> har Win32 portar av verktyg med en <a href=\"%1$s\">GNU</a> eller liknande <a href=\"%2$s\">open source license</a>."
 
 #: engine\page.inc:308
 #, c-format
@@ -1758,12 +1758,12 @@ msgstr "Visa alla filreleaser&hellip;"
 #: links.php:14
 #, c-format
 msgid "<b>WinSCP</b> is an open source <acronym title=\"SSH File Transfer Protocol\">SFTP</acronym>, <acronym title=\"File Transfer Protocol\">FTP</acronym> and <acronym title=\"Secure Copy Protocol\">SCP</acronym> client for Windows."
-msgstr ""
+msgstr "<b>WinSCP</b> är en open source <acronym title=\"SSH Filöverföringsprotokoll\">SFTP</acronym>, <acronym title=\"Filöverföringsprotokoll\">FTP</acronym> och <acronym title=\"Säkert Kopieringsprotokoll\">SCP</acronym> client för Windows."
 
 #: links.php:12
 #, c-format
 msgid "<b>7-Zip</b> is a file archiver with high compression ratio."
-msgstr ""
+msgstr "b>7-Zip</b> är en filkomprimerare med en hög kompressionsgrad."
 
 #: about\index.php:5
 #: about\index.php:12
@@ -1774,12 +1774,12 @@ msgstr "WinMerge är mycket användbart för att se vad som har ändrats mellan 
 #: docs\index.php:13
 #, c-format
 msgid "The <a href=\"%s\">quick tour</a> describe the main  features from WinMerge at one page."
-msgstr ""
+msgstr "<a href=\"%s\">Snabbguiden</a> beskriver de huvudsakliga funktionerna i WinMerge på en sida."
 
 #: engine\engine.inc:22
 #, c-format
 msgid "Japanese"
-msgstr ""
+msgstr "Japanska"
 
 #: downloads\source-code.php:7
 #: downloads\source-code.php:10
@@ -1849,7 +1849,7 @@ msgstr "Ladda ner WinMerge"
 #: links.php:9
 #, c-format
 msgid "Tools"
-msgstr ""
+msgstr "Verktyg"
 
 #: engine\page.inc:381
 #, c-format

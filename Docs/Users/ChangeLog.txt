@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.12
   Translation updates:
   - Slovenian (#2934354)
+  - Swedish (#2943964)
 
 WinMerge 2.13.11 - 2010-01-15 (r7111)
   Write config log as UTF-8 file (r7057)
