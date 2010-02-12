@@ -42,6 +42,8 @@
   <dd><?php __e('Inside informations, unreleased products and articles on various soon-to-be-released software titles.');?></dd>
   <dt><a href="http://portableapps.com/apps/utilities/winmerge_portable"><?php __e('WinMerge Portable');?></a></dt>
   <dd><?php __e('This is WinMerge packaged with a PortableApps.com Launcher as a <a href="%s">portable app</a>, so you can compare files on the go.', 'http://portableapps.com/about/what_is_a_portable_app');?></dd>
+  <dt><a href="http://www.facebook.com/group.php?gid=13326170958"><?php __e('WinMerge Facebook Group');?></a></dt>
+  <dd><?php __e('A <a href="%s">Facebook</a> group for people interested in WinMerge.', 'http://www.facebook.com/');?></dd>
 </dl>
 <?php
   $page->printFoot();
