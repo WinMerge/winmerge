@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.12
   Translation updates:
   - Chinese Traditional (#2954833)
+  - Polish (#2951149)
   - Slovenian (#2934354)
   - Swedish (#2943964)
 
