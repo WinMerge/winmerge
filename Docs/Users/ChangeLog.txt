@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.12
+  Bugfix: Strange scrolling effect in location pane (#2942869) 
   Translation updates:
   - Chinese Traditional (#2954833)
   - Polish (#2951149)
