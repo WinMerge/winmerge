@@ -8,9 +8,9 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; Maintained by Pierre Yager (pierre@levosgien.net)
+; Maintainer : Jean-F Jolin <jean-f-j at users.sourceforge.net>
 ;
-; Contributors : Frédéric Bonduelle, Francis Pallini
+; Contributors : Pierre Yager, Frédéric Bonduelle, Francis Pallini
 ;
 ; $jrsoftware: issrc/Files/Languages/French.isl,v 1.14 2007/02/27 18:22:41 jr Exp $
 
@@ -345,6 +345,7 @@ ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais
 KoreanLanguage=Menus et dialogues Coréen
 NorwegianLanguage=Menus et dialogues Norvégien
+PersianLanguage=Menus et dialogues Perse
 PolishLanguage=Menus et dialogues Polonais
 PortugueseBrazilLanguage=Menus et dialogues Portugais (Brésilien)
 PortugueseLanguage=Menus et dialogues Portugais
