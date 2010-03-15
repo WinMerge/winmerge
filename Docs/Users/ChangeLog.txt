@@ -7,6 +7,7 @@ WinMerge 2.13.12
   Bugfix: Strange scrolling effect in location pane (#2942869) 
   Translation updates:
   - Chinese Traditional (#2954833)
+  - French (#2968200)
   - Polish (#2951149)
   - Slovenian (#2934354)
   - Swedish (#2943964)
