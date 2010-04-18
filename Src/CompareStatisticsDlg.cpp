@@ -20,7 +20,7 @@
  * @brief Implementation file for CompareStatisticsDlg dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: CompareStatisticsDlg.cpp 5293 2008-04-14 05:58:23Z kimmov $
 
 #include "stdafx.h"
 #include "CompareStatisticsDlg.h"
@@ -95,6 +95,12 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_LUNIQUE);
 	totalFiles += count;
 	SetDlgItemInt(IDC_STAT_LUNIQFILE, count);
+	count = m_pCompareStats->GetCount(CompareStats::RESULT_MDIRUNIQUE);
+	totalFolders += count;
+	SetDlgItemInt(IDC_STAT_MUNIQFOLDER, count);
+	count = m_pCompareStats->GetCount(CompareStats::RESULT_MUNIQUE);
+	totalFiles += count;
+	SetDlgItemInt(IDC_STAT_MUNIQFILE, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_RDIRUNIQUE);
 	totalFolders += count;
 	SetDlgItemInt(IDC_STAT_RUNIQFOLDER, count);
@@ -112,6 +118,11 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
 
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IMUNIQFOLDER);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_MFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+	
 	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFOLDER);
 	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
 		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
@@ -135,6 +146,11 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFILE);
 	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
 		MAKEINTRESOURCE(IDI_LFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IMUNIQFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_MFILE), IMAGE_ICON, IconSize.cx, IconSize.cy, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
 
 	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFILE);

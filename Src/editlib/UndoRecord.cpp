@@ -4,7 +4,7 @@
  * @brief Implementation of UndoRecord struct.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: UndoRecord.cpp 5762 2008-08-08 05:32:15Z kimmov $
 
 #include "stdafx.h"
 #include "UndoRecord.h"
@@ -36,19 +36,16 @@ void UndoRecord::
 SetText (LPCTSTR pszText, int nLength)
 {
   FreeText();
-  if (nLength)
+  if (nLength != 1)
     {
-      if (nLength > 1)
-        {
-          m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
-          m_pszText->size = nLength;
-          memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
-          m_pszText->data[nLength] = _T('?'); // debug sentinel
-        }
-      else
-        {
-          m_szText[0] = pszText[0];
-        }
+      m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
+      m_pszText->size = nLength;
+      memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
+      m_pszText->data[nLength] = _T('?'); // debug sentinel
+    }
+  else
+    {
+      m_szText[0] = pszText[0];
     }
 }
 

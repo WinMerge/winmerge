@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ChildFrm.cpp 7075 2009-12-30 22:57:20Z kimmov $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -36,6 +36,7 @@
 #include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "DiffViewBar.h"
+#include "charsets.h"
 #include "OptionsDef.h"
 
 #ifdef _DEBUG
@@ -62,8 +63,8 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CChildFrame)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
-	ON_WM_SIZE()
-	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
+	ON_WM_MDIACTIVATE()
+	ON_WM_TIMER()
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
@@ -77,14 +78,15 @@ END_MESSAGE_MAP()
  */
 enum
 {
-	PANE_LEFT_INFO = 0,
-	PANE_LEFT_RO,
-	PANE_LEFT_ENCODING,
-	PANE_LEFT_EOL,
-	PANE_RIGHT_INFO,
-	PANE_RIGHT_RO,
-	PANE_RIGHT_ENCODING,
-	PANE_RIGHT_EOL,
+	PANE_PANE0_INFO = 0,
+	PANE_PANE0_RO,
+	PANE_PANE0_EOL,
+	PANE_PANE1_INFO,
+	PANE_PANE1_RO,
+	PANE_PANE1_EOL,
+	PANE_PANE2_INFO,
+	PANE_PANE2_RO,
+	PANE_PANE2_EOL,
 };
 
 /**
@@ -100,7 +102,10 @@ static UINT indicatorsBottom[] =
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
+	ID_SEPARATOR,
 };
+
+#define IDT_SAVEPOSITION 2
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame construction/destruction
@@ -110,14 +115,17 @@ static UINT indicatorsBottom[] =
  */
 CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
-: m_leftStatus(this, PANE_LEFT_INFO)
-, m_rightStatus(this, PANE_RIGHT_INFO)
-, m_hIdentical(NULL)
+: m_hIdentical(NULL)
 , m_hDifferent(NULL)
 #pragma warning(default:4355)
 {
+	for (int pane = 0; pane < countof(m_status); pane++)
+	{
+		m_status[pane].m_pFrame = this;
+		m_status[pane].m_base = PANE_PANE0_INFO + pane * 3;
+	}
 	m_bActivated = FALSE;
-	m_nLastSplitPos = 0;
+//	m_nLastSplitPos = 0;
 	m_pMergeDoc = 0;
 }
 
@@ -132,27 +140,26 @@ CChildFrame::~CChildFrame()
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
+	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
+
 	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, 1, 2, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
+	if (!m_wndSplitter.CreateStatic(this, 1, pDoc->m_nBuffers, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
 	}
 
-	if (!m_wndSplitter.CreateView(0, 0,
-		RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
+	int pane;
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		TRACE0("Failed to create first pane\n");
-		return FALSE;
+		if (!m_wndSplitter.CreateView(0, pane,
+			RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
+		{
+			TRACE1("Failed to create pane%d\n", pane);
+			return FALSE;
+		}
 	}
 	
-	// add the second splitter pane - an input view in column 1
-	if (!m_wndSplitter.CreateView(0, 1,
-		RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
-	{
-		TRACE0("Failed to create second pane\n");
-		return FALSE;
-	}
 	m_wndSplitter.ResizablePanes(TRUE);
 	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 
@@ -182,55 +189,57 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	// create a splitter with 2 rows, 1 column
 	// this is not a vertical scrollable splitter (see MergeDiffDetailView.h)
-	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, 2, 1, WS_CHILD | WS_VISIBLE | WS_HSCROLL, AFX_IDW_PANE_FIRST+1) )
+	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, pDoc->m_nBuffers, 1, WS_CHILD | WS_VISIBLE | WS_HSCROLL, AFX_IDW_PANE_FIRST+1) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
 	}
-	// add the first splitter pane - the default view in column 0
-	if (!m_wndDetailSplitter.CreateView(0, 0,
-		RUNTIME_CLASS(CMergeDiffDetailView), CSize(-1, 200), pContext))
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		TRACE0("Failed to create first pane\n");
-		return FALSE;
-	}
-	// add the second splitter pane - an input view in column 1
-	if (!m_wndDetailSplitter.CreateView(1, 0,
-		RUNTIME_CLASS(CMergeDiffDetailView), CSize(-1, 200), pContext))
-	{
-		TRACE0("Failed to create second pane\n");
-		return FALSE;
+		// add splitter pane - the default view in column (pane)
+		if (!m_wndDetailSplitter.CreateView(pane, 0,
+			RUNTIME_CLASS(CMergeDiffDetailView), CSize(-1, 200), pContext))
+		{
+			TRACE1("Failed to create pane %d\n", pane);
+			return FALSE;
+		}
 	}
 	m_wndDetailSplitter.LockBar(TRUE);
 	m_wndDetailSplitter.ResizablePanes(TRUE);
 	m_wndDetailBar.setSplitter(&m_wndDetailSplitter);
 
 	// stash left & right pointers into the mergedoc
-	CMergeEditView * pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
-	CMergeEditView * pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
-	// connect merge views up to display of status info
-	pLeft->SetStatusInterface(&m_leftStatus);
-	pRight->SetStatusInterface(&m_rightStatus);
+	CMergeEditView * pView[3];
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		pView[pane] = (CMergeEditView *)m_wndSplitter.GetPane(0,pane);
+		// connect merge views up to display of status info
+		pView[pane]->SetStatusInterface(&m_status[pane]);
+		pView[pane]->m_nThisPane = pane;
+	}
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
-	m_pMergeDoc->SetMergeViews(pLeft, pRight);
-	pLeft->m_nThisPane = 0;
-	pRight->m_nThisPane = 1;
+	m_pMergeDoc->SetMergeViews(pView);
 
 	// stash left & right detail pointers into the mergedoc
-	CMergeDiffDetailView * pLeftDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(0,0);
-	CMergeDiffDetailView * pRightDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(1,0);
+	CMergeDiffDetailView * pDetail[3];
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		pDetail[pane] = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(pane,0);
+		pDetail[pane]->m_nThisPane = pane;
+	}
 	// tell merge doc about these views
-	m_pMergeDoc->SetMergeDetailViews(pLeftDetail, pRightDetail);
-	pLeftDetail->m_nThisPane = 0;
-	pRightDetail->m_nThisPane = 1;
+	m_pMergeDoc->SetMergeDetailViews(pDetail);
+
+	m_wndFilePathBar.SetPaneCount(pDoc->m_nBuffers);
 	
 	// Set frame window handles so we can post stage changes back
 	((CLocationView *)pWnd)->SetFrameHwnd(GetSafeHwnd());
-	pLeftDetail->SetFrameHwnd(GetSafeHwnd());
-	pRightDetail->SetFrameHwnd(GetSafeHwnd());
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+		pDetail[pane]->SetFrameHwnd(GetSafeHwnd());
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 	m_wndDetailBar.SetFrameHwnd(GetSafeHwnd());
+
 	return TRUE;
 }
 
@@ -279,6 +288,7 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Set filename bars inactive so colors get initialized
 	m_wndFilePathBar.SetActive(0, FALSE);
 	m_wndFilePathBar.SetActive(1, FALSE);
+	m_wndFilePathBar.SetActive(2, FALSE);
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 
@@ -307,8 +317,13 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Set text to read-only info panes
 	// Text is hidden if file is writable
 	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
-	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
-	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
+	m_wndStatusBar.SetPaneText(PANE_PANE0_RO, sText.c_str(), TRUE);
+	m_wndStatusBar.SetPaneText(PANE_PANE1_RO, sText.c_str(), TRUE);
+	m_wndStatusBar.SetPaneText(PANE_PANE2_RO, sText.c_str(), TRUE);
+	// load active pane column
+	int iCol = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+	if (iCol < 0 || iCol >= m_wndSplitter.GetColumnCount()) iCol = 0;
+	m_wndSplitter.SetActivePane(0, iCol, NULL);
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
@@ -356,17 +371,29 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		return 0;
 	case WM_NCACTIVATE:
 		return 1;
-	default:
-		{
-		WNDPROC pfnOldWndProc = (WNDPROC)GetProp(hwnd, _T("OldWndProc"));
-		return CallWindowProc(pfnOldWndProc, hwnd, uMsg, wParam, lParam);
-		}
+	case WM_SIZE:
+		if (wParam != SIZE_RESTORED)
+			return 0;
 	}
+	WNDPROC pfnOldWndProc = (WNDPROC)GetProp(hwnd, _T("OldWndProc"));
+	return CallWindowProc(pfnOldWndProc, hwnd, uMsg, wParam, lParam);
 }
 
 static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
 {
-	::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
+	if (lParam == FALSE)
+	{
+		if (IsWindowVisible(hwnd))
+			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
+		else
+			SetProp(hwnd, _T("Hidden"), (HANDLE)1);
+	}
+	else
+	{
+		BOOL bHidden = (BOOL)RemoveProp(hwnd, _T("Hidden"));
+		if (!bHidden)
+			::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
+	}
 	return TRUE;
 }
 
@@ -426,7 +453,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		// get the active child frame, and a flag whether it is maximized
 		if (oldActiveFrame == NULL)
 			// for the first frame, get the restored/maximized state from the registry
-			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE);
+			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
 		if (bMaximized)
 			nCmdShow = SW_SHOWMAXIMIZED;
 		else
@@ -479,6 +506,9 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 
 		CMDIChildWnd::ActivateFrame(nCmdShow);
 	}
+
+	if (oldActiveFrame)
+		((CChildFrame *)oldActiveFrame)->PostMessage(WM_TIMER);
 }
 
 BOOL CChildFrame::DestroyWindow() 
@@ -533,6 +563,10 @@ void CChildFrame::SavePosition()
 	// for the dimensions of the diff pane, use the CSizingControlBar save
 	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
+
+	int iCol;
+	m_wndSplitter.GetActivePane(NULL, &iCol);
+	theApp.WriteProfileInt(_T("Settings"), _T("ActivePane"), iCol);
 }
 
 void CChildFrame::OnClose() 
@@ -541,13 +575,6 @@ void CChildFrame::OnClose()
 	CMDIChildWnd::OnClose();
 
 	GetMainFrame()->ClearStatusbarItemCount();
-}
-
-void CChildFrame::OnSize(UINT nType, int cx, int cy) 
-{
-	CMDIChildWnd::OnSize(nType, cx, cy);
-	
-	UpdateHeaderSizes();
 }
 
 
@@ -560,50 +587,49 @@ void CChildFrame::UpdateDiffDockbarHeight(int DiffPanelHeight)
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CChildFrame::UpdateHeaderSizes()
 {
+	if(!::IsWindow(m_wndFilePathBar.m_hWnd) || !::IsWindow(m_wndSplitter.m_hWnd))
+		return;
+	
 	if(IsWindowVisible())
 	{
-		int w,wmin;
-		m_wndSplitter.GetColumnInfo(0, w, wmin);
-		int w1;
-		m_wndSplitter.GetColumnInfo(1, w1, wmin);
-		if (w<1) w=1; // Perry 2003-01-22 (I don't know why this happens)
-		if (w1<1) w1=1; // Perry 2003-01-22 (I don't know why this happens)
+		m_wndFilePathBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
+		m_wndStatusBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
+				
+		int w[3],wmin;
+		int pane;
+		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		{
+			m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+		}
 
 		// prepare file path bar to look as a status bar
 		if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
 			RecalcLayout();
 
 		// resize controls in header dialog bar
-		m_wndFilePathBar.Resize(w, w1);
+		m_wndFilePathBar.Resize(w);
 
 		// Set bottom statusbar panel widths
 		// Kimmo - I don't know why 4 seems to be right for me
 		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		int pane1Width = w - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
-				ENCODING_PANEL_WIDTH + (3 * borderWidth));
-		if (pane1Width < borderWidth)
-			pane1Width = borderWidth;
-		int pane2Width = w1 - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
-				ENCODING_PANEL_WIDTH + (3 * borderWidth));
-		if (pane2Width < borderWidth)
-			pane2Width = borderWidth;
+		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		{
+			int paneWidth = w[pane] - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
+				(2 * borderWidth));
+			if (paneWidth < borderWidth)
+				paneWidth = borderWidth;
 
-		m_wndStatusBar.SetPaneInfo(PANE_LEFT_INFO, ID_STATUS_LEFTFILE_INFO,
-			SBPS_NORMAL, pane1Width);
-		m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTFILE_RO,
-			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(PANE_LEFT_ENCODING, ID_STATUS_LEFTFILE_ENCODING,
-			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(PANE_LEFT_EOL, ID_STATUS_LEFTFILE_EOL,
-			SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_INFO, ID_STATUS_RIGHTFILE_INFO,
-			SBPS_STRETCH, pane2Width);
-		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTFILE_RO,
-			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_ENCODING, ID_STATUS_RIGHTFILE_ENCODING,
-			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_EOL, ID_STATUS_RIGHTFILE_EOL,
-			SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
+			m_wndStatusBar.SetPaneStyle(PANE_PANE0_INFO + pane * 3, SBPS_NORMAL);
+			m_wndStatusBar.SetPaneInfo(PANE_PANE0_INFO + pane * 3, ID_STATUS_PANE0FILE_INFO + pane,
+				SBPS_NORMAL, paneWidth);
+			m_wndStatusBar.SetPaneStyle(PANE_PANE0_RO + pane * 3, SBPS_NORMAL);
+			m_wndStatusBar.SetPaneInfo(PANE_PANE0_RO + pane * 3, ID_STATUS_PANE0FILE_RO + pane,
+				SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+			m_wndStatusBar.SetPaneStyle(PANE_PANE0_EOL + pane * 3, SBPS_NORMAL);
+			m_wndStatusBar.SetPaneInfo(PANE_PANE0_EOL + pane * 3, ID_STATUS_PANE0FILE_EOL + pane,
+				SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
+		}
 	}
 }
 
@@ -650,19 +676,28 @@ void CChildFrame::UpdateSplitter()
 	m_wndDetailBar.UpdateBarHeight(0);
 }
 
-void CChildFrame::OnIdleUpdateCmdUI()
+void CChildFrame::OnTimer(UINT_PTR nIDEvent) 
 {
-	if (IsWindowVisible())
+	if (nIDEvent == IDT_SAVEPOSITION)
 	{
-		int w,wmin;
-		m_wndSplitter.GetColumnInfo(0, w, wmin);
-		if (w != m_nLastSplitPos && w > 0)
-		{
-			UpdateHeaderSizes();
-			m_nLastSplitPos = w;
-		}
+		SavePosition();
+		KillTimer(IDT_SAVEPOSITION);
 	}
-	CMDIChildWnd::OnIdleUpdateCmdUI();
+	else
+	{
+		UpdateHeaderSizes();
+	}
+	CMDIChildWnd::OnTimer(nIDEvent);
+}
+
+void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd)
+{
+	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+
+	CMergeDoc *pDoc = GetMergeDoc();
+	if (bActivate && pDoc)
+		this->GetParentFrame()->PostMessage(WM_USER+1);
+	return;
 }
 
 /// Document commanding us to close
@@ -674,13 +709,12 @@ void CChildFrame::CloseNow()
 }
 
 /// Bridge class which implements the interface from crystal editor to frame status line display
-CChildFrame::MergeStatus::MergeStatus(CChildFrame * pFrame, int base)
-: m_pFrame(pFrame)
-, m_base(base)
-, m_nColumn(0)
+CChildFrame::MergeStatus::MergeStatus()
+: m_nColumn(0)
 , m_nColumns(0)
 , m_nChar(0)
 , m_nChars(0)
+, m_nCodepage(-1)
 {
 }
 
@@ -698,12 +732,12 @@ void CChildFrame::MergeStatus::Update()
 		else if (m_sEolDisplay.empty())
 		{
 			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO).c_str(),
-				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars);
+				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_nCodepage, m_sCodepageName.c_str());
 		}
 		else
 		{
 			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO_EOL).c_str(),
-				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str());
+				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str(), m_nCodepage, m_sCodepageName.c_str());
 		}
 
 		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
@@ -744,11 +778,12 @@ static String EolString(const String & sEol)
 
 /// Receive status line info from crystal window and display
 void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
-		int nColumns, int nChar, int nChars, LPCTSTR szEol)
+		int nColumns, int nChar, int nChars, LPCTSTR szEol, int nCodepage)
 {
 	if (m_sLine != szLine || m_nColumn != nColumn || m_nColumns != nColumns ||
-		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol)
+		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol != 0 || m_nCodepage != nCodepage)
 	{
+		USES_CONVERSION;
 		m_sLine = szLine;
 		m_nColumn = nColumn;
 		m_nColumns = nColumns;
@@ -756,6 +791,12 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		m_nChars = nChars;
 		m_sEol = szEol;
 		m_sEolDisplay = EolString(m_sEol);
+		if (m_nCodepage != nCodepage)
+		{
+			const char *pszCodepageName = GetEncodingNameFromCodePage(nCodepage);
+			m_sCodepageName = pszCodepageName ? A2CT(pszCodepageName) : _T("");
+		}
+		m_nCodepage = nCodepage;
 		Update();
 	}
 }
@@ -765,8 +806,8 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
  */
 void CChildFrame::UpdateResources()
 {
-	m_leftStatus.UpdateResources();
-	m_rightStatus.UpdateResources();
+	for (int pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		m_status[pane].UpdateResources();
 	m_wndLocationBar.UpdateResources();
 	m_wndDetailBar.UpdateResources();
 }
@@ -776,6 +817,7 @@ void CChildFrame::UpdateResources()
  */
 LRESULT CChildFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 {
-	SavePosition();
+	KillTimer(IDT_SAVEPOSITION);
+	SetTimer(IDT_SAVEPOSITION, 300, NULL);
 	return 0;
 }

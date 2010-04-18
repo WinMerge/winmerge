@@ -4,7 +4,7 @@
  *  @brief Additional lineflags for editor.
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeLineFlags.h 4762 2007-11-18 09:52:04Z kimmov $
 
 #ifndef MergeLineFlags_h_included
 #define MergeLineFlags_h_included
@@ -21,6 +21,7 @@ enum MERGE_LINEFLAGS
 	LF_DIFF = 0x00200000L,
 	LF_TRIVIAL = 0x00800000L,
 	LF_MOVED = 0x01000000L,
+	LF_SNP = 0x02000000L,
 };
 
 

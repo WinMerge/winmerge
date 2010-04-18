@@ -302,10 +302,10 @@ StatusUninstalling=%1 をアンインストールしています...
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 バージョン %2
-AdditionalIcons=アイコンを追加する:
+AdditionalIcons=アイコンの追加:
 OptionalFeatures=追加する機能:
-CreateDesktopIcon=デスクトップ上にアイコンを作成する(&d)
-CreateQuickLaunchIcon=&Quick Launch アイコンを作成する
+CreateDesktopIcon=デスクトップ上にアイコンを作成する(&D)
+CreateQuickLaunchIcon=クイック起動バーにアイコンを作成する(&Q)
 ProgramOnTheWeb=%1 on the Web
 UninstallProgram=%1 をアンインストールする
 LaunchProgram=%1 を実行する
@@ -363,7 +363,7 @@ ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
 IntegrateClearCase=Rational ClearCaseとの連携(&C)
-AddToPath=&Add WinMerge folder to your system path
+AddToPath=システム環境変数PATHへWinMergeのフォルダを追加する(&A)
 
 ;Icon Labels
 ReadMe=Read Me

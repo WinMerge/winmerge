@@ -23,7 +23,7 @@
 //	stdafx.obj will contain the pre-compiled type information
 //
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: StdAfx.cpp 6457 2009-02-15 14:08:50Z kimmov $
 
 #include "stdafx.h"
 #include "LogFile.h"
@@ -157,6 +157,25 @@ int GetClipTcharTextFormat()
 #else
 	return CF_TEXT;
 #endif // _UNICODE
+}
+
+BOOL IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int (*compare)(LPCTSTR, LPCTSTR, size_t))
+{
+	TCHAR **base = (TCHAR **)pszKeywordList;
+	int lim, cmp;
+	TCHAR **p;
+
+	for (lim = nKeywordListCount; lim != 0; lim >>= 1) {
+		p = base + (lim >> 1) ;
+		cmp = (*compare)(pszKey, *p, nKeyLen);
+		if (cmp == 0 && (*p)[nKeyLen] == 0)
+			return TRUE;
+		if (cmp > 0) {	/* key > p: move right */
+			base = (TCHAR **)p + 1;
+			lim--;
+		} /* else move left */
+	}
+	return FALSE;
 }
 
 /**

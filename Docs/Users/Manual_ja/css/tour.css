@@ -1,0 +1,33 @@
+@import url("all.css");
+
+div.titlepage hr {display: none;}
+
+div.abstract p.title  {display: none;}
+
+div.article {
+    margin: 10px 0 0 0;
+    padding: 0 20px 0 100px;
+    border: 1px dotted #004080;
+}
+
+div.header {
+  height: 50px;
+  background: #FFCC00;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1px 0 1px 0; 
+  text-align: center;
+}
+
+div.header img {
+  border: none;
+}
+
+div.article h2 {
+    margin-left: -90px;
+}
+
+div.section h2 {
+    background-color: inherit;
+}
+

@@ -103,7 +103,7 @@ public:
 	BOOL LoadToolbars(const UINT *arID,int n);
 	void AddFromToolBar(CToolBar* pToolBar, int nResourceID);
 	BOOL LoadFromToolBar(UINT nID,UINT nToolBar,int& xoffset);
-	BOOL AddBitmapToImageList(CImageList *list,UINT nResourceID);
+	BOOL AddBitmapToImageList(CImageList *list,UINT nResourceID,BOOL bDisabled=FALSE);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);
 	void LoadCheckmarkBitmap(int unselect,int select); // custom check mark bitmaps
 	
@@ -225,7 +225,7 @@ public:
 	BOOL GetDisableOldStyle(void);
 	void SetDisableOldStyle(void);
 	void UnSetDisableOldStyle(void);
-	static COLORREF LightenColor(COLORREF col,double factor);
+	static inline COLORREF LightenColor(COLORREF col,double factor);
 	static COLORREF DarkenColor(COLORREF col,double factor);
 
 public:

@@ -4,7 +4,7 @@
  *  @brief Declaration of TempFile
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: TempFile.h 6566 2009-03-12 18:16:39Z kimmov $
 
 #ifndef _TEMP_FILE_
 #define _TEMP_FILE_
@@ -20,7 +20,7 @@ public:
 	TempFile() {}
 	~TempFile();
 	void Create();
-	String Create(LPCTSTR prefix = NULL);
+	String Create(LPCTSTR prefix = NULL, LPCTSTR ext = NULL);
 	String CreateFromFile(LPCTSTR filepath, LPCTSTR prefix);
 	String GetPath();
 	bool Delete();

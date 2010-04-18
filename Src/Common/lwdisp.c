@@ -39,7 +39,7 @@ DATE:		BY:					DESCRIPTION:
 2008/01/22  Kimmo               Changed map argument name to disp_map to not confuse VC6
 */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: lwdisp.c 4938 2008-01-22 13:54:38Z kimmov $
 
 //#define _WIN32_IE		0x0300
 //#define _WIN32_WINNT	0x0400	
@@ -53,6 +53,7 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 #include <shlobj.h>
 #include <shlwapi.h>
 #include <tchar.h>
+#include <stdarg.h>
 #include "lwdisp.h"
 #include "dllproxy.h"
 
@@ -84,7 +85,7 @@ static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 		(
 			FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_STRING |
 			FORMAT_MESSAGE_ARGUMENT_ARRAY,
-			"Error 0x%1!lX!", 0,
+			_T("Error 0x%1!lX!"), 0,
 			MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
 			(LPTCH)&pc, 0, (va_list *)&sc
 		);
@@ -104,14 +105,16 @@ static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 static LPTSTR FormatMessageFromString(LPCTSTR format, ...)
 {
 	LPTCH pc = 0;
+	va_list list;
+	va_start(list, format);
 	FormatMessage
 	(
-		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_STRING |
-		FORMAT_MESSAGE_ARGUMENT_ARRAY,
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_STRING,
 		format, 0,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
-		(LPTCH)&pc, 0, (va_list *)(&format + 1)
+		(LPTCH)&pc, 0, &list
 	);
+	va_end(list);
 	return pc;
 }
 
@@ -289,6 +292,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	DISPPARAMS dispparams;
 	UINT nArgErr = (UINT)-1;
 	EXCEPINFO excepInfo = {0};
+	int i;
 	dispparams.cArgs = LOBYTE((UINT_PTR)op);
 	dispparams.cNamedArgs = 0;
 	if (wFlags & (DISPATCH_PROPERTYPUT|DISPATCH_PROPERTYPUTREF))
@@ -296,9 +300,66 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		dispparams.cNamedArgs = 1;
 		dispparams.rgdispidNamedArgs = &idNamed;
 	}
-	dispparams.rgvarg = argv;
 	if (pi)
 	{
+		BOOL bParamByRef = FALSE;
+		BOOL bNeedToConv = FALSE;
+		VARIANT varParams[12];
+		VARIANT varData[12];
+
+		for (i = 0; i < (int)dispparams.cArgs; i++)
+		{
+			if (V_ISBYREF(&argv[i]))
+			{
+				bParamByRef = TRUE;
+				break;
+			}
+		}
+		if (bParamByRef)
+		{
+			ITypeInfo *pTypeInfo;
+			HRESULT hr;
+
+			hr = pi->lpVtbl->GetTypeInfo(pi, 0, 0, &pTypeInfo);
+			if (SUCCEEDED(hr))
+			{
+				FUNCDESC* pFuncDesc = NULL;
+				ITypeInfo2 *pTypeInfo2 = NULL;
+				pTypeInfo->lpVtbl->QueryInterface(pTypeInfo, &IID_ITypeInfo2, &pTypeInfo2);
+				if (pTypeInfo2 != NULL)
+				{
+					UINT nIndex;
+					hr = pTypeInfo2->lpVtbl->GetFuncIndexOfMemId(pTypeInfo2, id, INVOKE_FUNC, &nIndex);
+					if (SUCCEEDED(hr))
+					{
+						hr = pTypeInfo->lpVtbl->GetFuncDesc(pTypeInfo, nIndex, &pFuncDesc);
+						if (SUCCEEDED(hr))
+						{
+							if (pFuncDesc->oVft == 0)
+								bNeedToConv = TRUE;
+							pTypeInfo->lpVtbl->ReleaseFuncDesc(pTypeInfo, pFuncDesc);
+						}
+					}
+				}
+			}
+		}
+
+		if (bNeedToConv)
+		{
+			for (i = 0; i < (int)dispparams.cArgs; i++)
+			{
+				VariantInit(&varData[i]);
+				VariantCopyInd(&varData[i], &argv[i]);
+				V_VARIANTREF(&varParams[i]) = &varData[i];
+				V_VT(&varParams[i]) = VT_VARIANT | VT_BYREF;
+			}
+			dispparams.rgvarg = varParams;
+		}
+		else
+		{
+			dispparams.rgvarg = argv;
+		}
+
 		sc = pi->lpVtbl->Invoke(pi, id, &IID_NULL, 0, wFlags, &dispparams,
 			ret, &excepInfo, &nArgErr);
 		if FAILED(sc)
@@ -318,6 +379,34 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 			SysFreeString(excepInfo.bstrDescription);
 			SysFreeString(excepInfo.bstrSource);
 			SysFreeString(excepInfo.bstrHelpFile);
+		}
+		else
+		{
+			if (bNeedToConv)
+			{
+				for (i = 0; i < (int)dispparams.cArgs; i++)
+				{
+					if (V_ISBYREF(&argv[i]))
+					{
+						VARIANT varTemp;
+						VariantInit(&varTemp);
+						VariantChangeType(&varTemp, &varData[i], 0, (unsigned short)(V_VT(&argv[i]) & ~VT_BYREF));
+						switch(V_VT(&varTemp)) {
+						case VT_BOOL: *V_BOOLREF(&argv[i]) = V_BOOL(&varTemp); break;
+						case VT_I1: *V_I2REF(&argv[i]) = V_I1(&varTemp); break;
+						case VT_I2: *V_I2REF(&argv[i]) = V_I2(&varTemp); break;
+						case VT_I4: *V_I4REF(&argv[i]) = V_I4(&varTemp); break;
+						case VT_R4: *V_R4REF(&argv[i]) = V_R4(&varTemp); break;
+						case VT_R8: *V_R8REF(&argv[i]) = V_R8(&varTemp); break;
+						case VT_BSTR: 
+							SysFreeString(*V_BSTRREF(&argv[i]));
+							*V_BSTRREF(&argv[i]) = V_BSTR(&varTemp);
+							break;
+						}
+					}
+					VariantClear(&varParams[i]);
+				}
+			}
 		}
 	}
 	while (dispparams.cArgs--)
@@ -608,8 +697,11 @@ VARIANT NTAPI LWArgA(LPCSTR cVal)
 VARIANT NTAPI LWArgV(UINT vt, ...)
 {
 	VARIANT v;
+	va_list list;
 	VariantInit(&v);
+	va_start(list, vt);
 	V_VT(&v) = (VARTYPE)(vt & 0xF0FF);
-	CopyMemory(&V_NONE(&v), &vt + 1, (vt & 0x0F00) >> 8);
+	CopyMemory(&V_NONE(&v), va_arg(list, void *), (vt & 0x0F00) >> 8);
+	va_end(list);
 	return v;
 }

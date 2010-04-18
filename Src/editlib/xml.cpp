@@ -26,177 +26,162 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszXmlKeywordList[] =
+static LPCTSTR s_apszXmlKeywordList[] =
   {
-    _T ("xml"),
+    _T ("ATTLIST"),
     _T ("DOCTYPE"),
     _T ("ELEMENT"),
-    _T ("ATTLIST"),
     _T ("ENTITY"),
     _T ("NOTATION"),
-    NULL
+    _T ("xml"),
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("version"),
-    _T ("encoding"),
-    _T ("standalone"),
-    _T ("SYSTEM"),
-    _T ("PUBLIC"),
-    _T ("EMPTY"),
+    _T ("#FIXED"),
+    _T ("#IMPLIED"),
+    _T ("#REQUIRED"),
     _T ("ANY"),
-    _T ("PCDATA"),
     _T ("CDATA"),
+    _T ("EMPTY"),
+    _T ("ENTITIES"),
+    _T ("ENTITY"),
     _T ("ID"),
     _T ("IDREF"),
     _T ("IDREFS"),
-    _T ("ENTITY"),
-    _T ("ENTITIES"),
+    _T ("IGNORE"),
+    _T ("INCLUDE"),
+    _T ("NDATA"),
     _T ("NMTOKEN"),
     _T ("NMTOKENS"),
-    _T ("#REQUIRED"),
-    _T ("#IMPLIED"),
-    _T ("#FIXED"),
-    _T ("NDATA"),
-    _T ("INCLUDE"),
-    _T ("IGNORE"),
-    NULL
+    _T ("PCDATA"),
+    _T ("PUBLIC"),
+    _T ("SYSTEM"),
+    _T ("encoding"),
+    _T ("standalone"),
+    _T ("version"),
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
-    _T ("nbsp"),
-    _T ("quot"),
-    _T ("amp"),
-    _T ("lt"),
-    _T ("gt"),
-    _T ("copy"),
-    _T ("reg"),
-    _T ("acute"),
-    _T ("laquo"),
-    _T ("raquo"),
-    _T ("iexcl"),
-    _T ("iquest"),
-    _T ("Agrave"),
-    _T ("agrave"),
     _T ("Aacute"),
     _T ("aacute"),
-    _T ("Acirc"),
     _T ("acirc"),
+    _T ("Acirc"),
+    _T ("acute"),
+    _T ("aelig"),
+    _T ("AElig"),
+    _T ("agrave"),
+    _T ("Agrave"),
+    _T ("amp"),
+    _T ("Aring"),
+    _T ("aring"),
     _T ("Atilde"),
     _T ("atilde"),
     _T ("Auml"),
     _T ("auml"),
-    _T ("Aring"),
-    _T ("aring"),
-    _T ("AElig"),
-    _T ("aelig"),
-    _T ("Ccedil"),
+    _T ("brvbar"),
     _T ("ccedil"),
-    _T ("ETH"),
-    _T ("eth"),
-    _T ("Egrave"),
-    _T ("egrave"),
+    _T ("Ccedil"),
+    _T ("cedil"),
+    _T ("cent"),
+    _T ("copy"),
+    _T ("curren"),
+    _T ("deg"),
+    _T ("divide"),
     _T ("Eacute"),
     _T ("eacute"),
     _T ("Ecirc"),
     _T ("ecirc"),
-    _T ("Euml"),
+    _T ("Egrave"),
+    _T ("egrave"),
+    _T ("ETH"),
+    _T ("eth"),
     _T ("euml"),
-    _T ("Igrave"),
-    _T ("igrave"),
+    _T ("Euml"),
+    _T ("frac12"),
+    _T ("frac14"),
+    _T ("frac34"),
+    _T ("gt"),
     _T ("Iacute"),
     _T ("iacute"),
-    _T ("Icirc"),
     _T ("icirc"),
-    _T ("Iuml"),
+    _T ("Icirc"),
+    _T ("iexcl"),
+    _T ("Igrave"),
+    _T ("igrave"),
+    _T ("iquest"),
     _T ("iuml"),
-    _T ("Ntilde"),
+    _T ("Iuml"),
+    _T ("laquo"),
+    _T ("lt"),
+    _T ("macr"),
+    _T ("micro"),
+    _T ("middot"),
+    _T ("nbsp"),
+    _T ("not"),
     _T ("ntilde"),
-    _T ("Ograve"),
-    _T ("ograve"),
-    _T ("Oacute"),
+    _T ("Ntilde"),
     _T ("oacute"),
-    _T ("Ocirc"),
+    _T ("Oacute"),
     _T ("ocirc"),
-    _T ("Otilde"),
+    _T ("Ocirc"),
+    _T ("ograve"),
+    _T ("Ograve"),
+    _T ("ordf"),
+    _T ("ordm"),
+    _T ("oslash"),
+    _T ("Oslash"),
     _T ("otilde"),
+    _T ("Otilde"),
     _T ("Ouml"),
     _T ("ouml"),
-    _T ("Oslash"),
-    _T ("oslash"),
-    _T ("Ugrave"),
-    _T ("ugrave"),
+    _T ("para"),
+    _T ("plusmn"),
+    _T ("pound"),
+    _T ("quot"),
+    _T ("raquo"),
+    _T ("reg"),
+    _T ("sect"),
+    _T ("shy"),
+    _T ("sup1"),
+    _T ("sup2"),
+    _T ("sup3"),
+    _T ("szlig"),
+    _T ("THORN"),
+    _T ("thorn"),
+    _T ("times"),
     _T ("Uacute"),
     _T ("uacute"),
     _T ("Ucirc"),
     _T ("ucirc"),
-    _T ("Uuml"),
+    _T ("ugrave"),
+    _T ("Ugrave"),
+    _T ("uml"),
     _T ("uuml"),
+    _T ("Uuml"),
     _T ("Yacute"),
     _T ("yacute"),
-    _T ("yuml"),
-    _T ("THORN"),
-    _T ("thorn"),
-    _T ("szlig"),
-    _T ("sect"),
-    _T ("para"),
-    _T ("micro"),
-    _T ("brvbar"),
-    _T ("plusmn"),
-    _T ("middot"),
-    _T ("uml"),
-    _T ("cedil"),
-    _T ("ordf"),
-    _T ("ordm"),
-    _T ("not"),
-    _T ("shy"),
-    _T ("macr"),
-    _T ("deg"),
-    _T ("sup1"),
-    _T ("sup2"),
-    _T ("sup3"),
-    _T ("frac14"),
-    _T ("frac12"),
-    _T ("frac34"),
-    _T ("times"),
-    _T ("divide"),
-    _T ("cent"),
-    _T ("pound"),
-    _T ("curren"),
     _T ("yen"),
-    NULL
+    _T ("yuml"),
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsXmlKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszXmlKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszXmlKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -230,6 +215,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -305,7 +291,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

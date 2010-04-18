@@ -4,12 +4,13 @@
  * @brief Path handling routines
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: paths.cpp 6514 2009-03-01 16:55:11Z kimmov $
 
 #include <windows.h>
 #include <tchar.h>
 #include <assert.h>
 #include "paths.h"
+#include "PathContext.h"
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
 #include <shlobj.h>
@@ -353,25 +354,33 @@ bool paths_CreateIfNeeded(LPCTSTR szPath)
  * @brief Check if paths are both folders or files.
  * This function checks if paths are "compatible" as in many places we need
  * to have two folders or two files.
- * @param [in] pszLeft Left path.
- * @param [in] pszRight Right path.
+ * @param [in] paths Left and right paths.
  * @return One of:
  *  - IS_EXISTING_DIR : both are directories & exist
  *  - IS_EXISTING_FILE : both are files & exist
  *  - DOES_NOT_EXIST : in all other cases
 */
-PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, BOOL (*IsArchiveFile)(LPCTSTR))
 {
 	// fail if not both specified
-	if (!pszLeft || !pszLeft[0] || !pszRight || !pszRight[0])
+	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p1 = paths_DoesPathExist(pszLeft);
+	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0].c_str());
 	// short circuit testing right if left doesn't exist
 	if (p1 == DOES_NOT_EXIST)
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p2 = paths_DoesPathExist(pszRight);
+	if (IsArchiveFile && IsArchiveFile(paths[0].c_str()))
+		p1 = IS_EXISTING_DIR;
+	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1].c_str());
+	if (IsArchiveFile && IsArchiveFile(paths[1].c_str()))
+		p2 = IS_EXISTING_DIR;
 	if (p1 != p2)
 		return DOES_NOT_EXIST;
+	if (paths.GetSize() < 3) return p1; 
+	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2].c_str());
+	if (IsArchiveFile && IsArchiveFile(paths[2].c_str()))
+		p3 = IS_EXISTING_DIR;
+	if (p2 != p3) return DOES_NOT_EXIST;
 	return p1;
 }
 

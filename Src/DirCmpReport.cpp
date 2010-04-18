@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirCmpReport.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 //
 
 #include "stdafx.h"
@@ -144,7 +144,7 @@ BOOL DirCmpReport::GenerateReport(String &errStr)
 					"EndFragment:%09d\n";
 				static const char start[] = "<html><body>\n<!--StartFragment -->";
 				static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
-				char buffer[256];
+				char buffer[_MAX_PATH];
 				int cbHeader = wsprintfA(buffer, header, 0, 0, 0, 0);
 				file.Write(buffer, cbHeader);
 				file.Write(start, sizeof start - 1);

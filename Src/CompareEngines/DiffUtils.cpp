@@ -4,7 +4,7 @@
  * @brief Implementation file for DiffUtils class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffUtils.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
 
 #include "StdAfx.h"
@@ -139,7 +139,7 @@ int DiffUtils::diffutils_compare_files()
 			{
 				/* Determine range of line numbers involved in each file.  */
 				int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
-				analyze_hunk(thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, m_inf);
 				if (deletes || inserts || thisob->trivial)
 				{
 					/* Print the lines that the first file has.  */

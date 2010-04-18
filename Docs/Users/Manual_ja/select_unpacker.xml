@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "build/dtd/docbookx.dtd">
+<section id="select-unpacker">
+  <title>Using the Select Unpacker dialog</title>
+
+  <orderedlist id="select-unpacker-proc">
+    <listitem>
+      <para>Configure automatic plugin selection or choose a plugin
+      manually:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>To use automatic mode (which applies the first available
+          plugin), verify that <guilabel>&lt;None&gt;</guilabel> is displayed in
+          the <guilabel>File unpacker</guilabel> control.</para>
+        </listitem>
+
+        <listitem>
+          <para>To choose a different plugin (if available), use the
+          <guilabel>File unpacker</guilabel> control to choose the
+          plugin.</para>
+
+          <para>By default, this control lists only suggested plugins for the
+          file type you selected to compare. To see all available plugins,
+          enable the option, <guilabel>Display all packers, don't check the
+          extension</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>To launch the compare without using any plugin, choose
+          <guimenuitem>&lt;None&gt;</guimenuitem> in the <guilabel>File
+          unpacker</guilabel> control.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>Click <guibutton>OK</guibutton> to close the Select Unpacker
+      dialog.</para>
+    </listitem>
+  </orderedlist>
+</section>

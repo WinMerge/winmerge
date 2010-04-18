@@ -4,7 +4,7 @@
  * @brief Implementation file for Directory compare state dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirCompProgressDlg.cpp 4596 2007-10-07 09:44:06Z jtuc $
 
 #include "stdafx.h"
 #include "merge.h"
@@ -44,6 +44,9 @@ void DirCompProgressDlg::ClearStat()
 	pTotal->SetWindowText(_T("0"));
 
 	m_prevState = CompareStats::STATE_IDLE;
+
+//	if (m_pIDlg)
+//		m_pIDlg->SetProgress(0, 1);
 }
 
 IMPLEMENT_DYNAMIC(DirCompProgressDlg, CDialog)
@@ -57,6 +60,7 @@ DirCompProgressDlg::DirCompProgressDlg(CWnd* pParent /*=NULL*/)
 , m_prevState(CompareStats::STATE_IDLE)
 , m_pDirDoc(NULL)
 , m_pCompareStats(NULL)
+//, m_pIDlg(NULL)
 {
 }
 
@@ -88,6 +92,10 @@ BOOL DirCompProgressDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	GetMainFrame()->CenterToMainFrame(this);
+
+//	HRESULT hr;
+//	hr = CoCreateInstance (CLSID_ProgressDialog, NULL, CLSCTX_INPROC_SERVER,
+//		IID_IProgressDialog, (void**)&m_pIDlg);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -205,6 +213,8 @@ void DirCompProgressDlg::OnTimer(UINT_PTR nIDEvent)
 			m_prevState = CompareStats::STATE_COMPARE;
 			m_bCompareReady = TRUE;
 		}
+//		if (m_pIDlg)
+//			m_pIDlg->SetProgress(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
 	}
 	else
 		CDialog::OnTimer(nIDEvent);
@@ -217,6 +227,8 @@ void DirCompProgressDlg::StartUpdating()
 {
 	ClearStat();
 	SetTimer(IDT_UPDATE, UPDATE_INTERVAL, NULL);
+//	if (m_pIDlg)
+//		m_pIDlg->StartProgressDialog(GetParent()->m_hWnd, NULL, PROGDLG_NOTIME, NULL);
 }
 
 /**
@@ -225,6 +237,8 @@ void DirCompProgressDlg::StartUpdating()
 void DirCompProgressDlg::EndUpdating()
 {
 	KillTimer(IDT_UPDATE);
+//	if (m_pIDlg)
+//		m_pIDlg->StopProgressDialog();
 }
 
 /**
@@ -251,6 +265,8 @@ void DirCompProgressDlg::CloseDialog()
 {
 	EndUpdating();
 	DestroyWindow();
+//	if (m_pIDlg)
+//		m_pIDlg->Release();
 }
 
 /** 

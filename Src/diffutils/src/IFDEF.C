@@ -41,7 +41,7 @@ static void format_ifdef PARAMS((char *, int, int, int, int));
 static void print_ifdef_hunk PARAMS((struct change *));
 static void print_ifdef_lines PARAMS((FILE *, char *, struct group const *));
 
-static int next_line;
+DECL_TLS static int next_line;
 
 /* Print the edit-script SCRIPT as a merged #ifdef file.  */
 
@@ -72,7 +72,7 @@ print_ifdef_hunk (hunk)
   char *format;
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts);
+  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts, files);
   if (inserts)
     format = deletes ? group_format[CHANGED] : group_format[NEW];
   else if (deletes)

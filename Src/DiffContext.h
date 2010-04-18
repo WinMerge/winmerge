@@ -4,7 +4,7 @@
  *  @brief Declarations of CDiffContext and diff structures
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffContext.h 6910 2009-07-12 09:06:54Z kimmov $
 
 #if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
@@ -20,6 +20,7 @@ class IDiffFilter;
 struct DIFFITEM;
 class CompareStats;
 class IAbortable;
+class CDiffWrapper;
 class FilterList;
 class CompareOptions;
 struct DIFFOPTIONS;
@@ -53,7 +54,7 @@ public:
 		DIFFS_UNKNOWN_QUICKCOMPARE = -9, /**< Unknown because of quick-compare method. */
 	};
 
-	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, int compareMethod);
+	CDiffContext(const PathContext & paths, int compareMethod);
 	~CDiffContext();
 
 	void UpdateVersion(DIFFITEM & di, BOOL bLeft) const;
@@ -78,26 +79,38 @@ public:
 	 * @return full path in left-side.
 	 */
 	String GetLeftPath() const { return m_paths.GetLeft(FALSE); }
+	String GetMiddlePath() const { return m_paths.GetMiddle(FALSE); }
 	/**
 	 * Get right-side compare path.
 	 * @return full path in right-side.
 	 */
 	String GetRightPath() const { return m_paths.GetRight(FALSE); }
+	String GetPath(int nIndex) const { return m_paths.GetPath(nIndex, FALSE); }
 	/**
 	 * Get left-side compare path in normalized form.
 	 * @return full path in left-side.
 	 */
 	String GetNormalizedLeft() const { return m_paths.GetLeft(); }
+	String GetNormalizedMiddle() const { return m_paths.GetMiddle(); }
 	/**
 	 * Get right-side compare path in normalized form.
 	 * @return full path in left-side.
 	 */
 	String GetNormalizedRight() const { return m_paths.GetRight(); }
+	String GetNormalizedPath(int nIndex) const { return m_paths.GetPath(nIndex, TRUE); }
+	PathContext GetNormalizedPaths() const
+	{
+		PathContext paths;
+		for (int nIndex = 0; nIndex < m_paths.GetSize(); nIndex++)
+			paths.SetPath(nIndex, m_paths.GetPath(nIndex, TRUE).c_str());
+		return paths;
+	}
 	//@}
 
 	// change an existing difference
-	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft);
+	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
 	void UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight);
+	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bMiddle, BOOL bRight);
 
 	BOOL CreateCompareOptions(const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
@@ -129,9 +142,11 @@ public:
 	const IAbortable * GetAbortable() const { return m_piAbortable; }
 	//@}
 
+	int GetCompareDirs() const { return m_paths.GetSize(); }
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IPluginInfos * m_piPluginInfos;
-	BOOL m_bGuessEncoding;
+	int m_iGuessEncodingType;
 
 	/**
 	 * The current and effective compare method.
@@ -174,6 +189,8 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	FilterList * m_pFilterList; /**< Filter list for line filters */
+	BOOL m_bScanUnpairedDir; /** Scan into unpaired directories **/
+	CDiffWrapper *m_pDiffWrapper;
 
 private:
 	/**

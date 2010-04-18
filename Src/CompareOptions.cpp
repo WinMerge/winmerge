@@ -123,6 +123,9 @@ void DiffutilsOptions::SetToDiffUtils()
 	case DIFF_OUTPUT_UNIFIED:
 		output_style = OUTPUT_UNIFIED;
 		break;
+	case DIFF_OUTPUT_HTML:
+		output_style = OUTPUT_HTML;
+		break;
 	default:
 		_RPTF0(_CRT_ERROR, "Unknown output style!");
 		break;

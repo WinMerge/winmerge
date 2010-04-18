@@ -8,7 +8,7 @@
 //////////////////////////////////////////////////////////////////////
 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: LocationView.h 6085 2008-11-12 17:31:24Z kimmov $
 
 #ifndef __LOCATIONVIEW_H__
 #define __LOCATIONVIEW_H__
@@ -98,14 +98,14 @@ protected:
 	void DrawBackground(CDC* pDC);
 
 private:
-	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
+	CMergeEditView* m_view[3]; //*< Table for view pointers */
 	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
 	double m_lineInPix; //*< How many lines is one pixel?
-	CRect m_leftBar; //*< Left-side file's bar.
-	CRect m_rightBar; //*< Right-side file's bar.
+	CRect m_bar[3]; //*< Left/middle/riggt bar */
 	int m_visibleTop; //*< Top visible line for visible area indicator */
 	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
+	int m_nSubLineCount[3]; //*< Cached subline count */
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	HWND m_hwndFrame; //*< Frame window handle */
 	CBitmap *m_pSavedBackgroundBitmap; //*< Saved background */
@@ -127,6 +127,7 @@ protected:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnPaint();
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

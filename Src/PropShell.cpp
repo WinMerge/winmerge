@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropShell.cpp 6725 2009-05-09 14:31:24Z kimmov $
 
 #include "stdafx.h"
 #include "resource.h"
@@ -103,7 +103,7 @@ void PropShell::GetContextRegValues()
 	{
 		CString msg;
 		msg.Format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal));
+			f_RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
@@ -141,7 +141,7 @@ void PropShell::SaveMergePath()
 	{
 		CString msg;
 		msg.Format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal));
+			f_RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
@@ -152,7 +152,7 @@ void PropShell::SaveMergePath()
 	{
 		CString msg;
 		msg.Format(_T("Failed to set registry value %s:\n\t%d : %s"),
-			f_RegValuePath, retVal, GetSysError(retVal));
+			f_RegValuePath, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 	}
 
@@ -178,7 +178,7 @@ void PropShell::SaveMergePath()
 	{
 		CString msg;
 		msg.Format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
-			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal));
+			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 	}
 }

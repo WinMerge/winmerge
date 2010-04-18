@@ -4,7 +4,7 @@
  * @brief Implementation file for ByteCompare
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ByteCompare.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
 #include "StdAfx.h"
 #include <io.h>
@@ -164,8 +164,12 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				bfend[i] += rtn;
 				if (m_inf[0].desc == m_inf[1].desc)
 				{
-					location[1].encoding = location[0].encoding;
-					return diffcode | DIFFCODE::SAME;
+					bfstart[1] = bfstart[0];
+					bfend[1] = bfend[0];
+					eof[1] = eof[0];
+					location[1] = location[0];
+					memcpy(&buff[1][bfend[1] - rtn], &buff[0][bfend[0] - rtn], rtn);
+					break;
 				}
 			}
 		}

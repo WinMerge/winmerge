@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "IgnoreCommentsC.h"
 #include "WinMergeScript.h"
-#include <fstream.h>
+#include <fstream>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript

@@ -4,7 +4,7 @@
  * @brief Implementation of helper functions involving locale
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: locality.cpp 5918 2008-09-07 16:05:46Z sdottaka $
 
 #include "StdAfx.h"
 #include "locality.h"
@@ -114,7 +114,7 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 	else
 	{
 		int nerr = GetLastError();
-		TRACE(_T("Error %d in NumToStr(): %s\n"), nerr, GetSysError(nerr));
+		TRACE(_T("Error %d in NumToStr(): %s\n"), nerr, GetSysError(nerr).c_str());
 		out = str;
 	}
 	return out;
@@ -146,9 +146,9 @@ String TimeString(const __int64 * tim)
 	SYSTEMTIME sysTime;
 	odt.GetAsSystemTime(sysTime);
 	TCHAR buff[128];
-	int len = GetDateFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE, &sysTime, NULL, buff, countof(buff));
+	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff, countof(buff));
 	buff[len - 1] = ' ';
-	GetTimeFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE, &sysTime, NULL, buff + len, countof(buff) - len - 1);
+	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff + len, countof(buff) - len - 1);
 	return buff;
 }
 

@@ -6,7 +6,7 @@ Option Explicit
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
-' $Id$
+' $Id: GetTranslationsStatus.vbs 6895 2009-07-04 06:54:24Z gerundt $
 
 Const ForReading = 1
 Const SvnWebUrlLanguages = "http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Translations/WinMerge/"

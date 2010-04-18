@@ -29,7 +29,7 @@
  * @brief Declaration file for CCrystalTextBuffer.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ccrystaltextbuffer.h 6879 2009-06-29 10:00:33Z kimmov $
 
 
 #if !defined(AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
@@ -54,7 +54,8 @@ enum LINEFLAGS
   LF_BREAKPOINT = 0x00020000L,
   LF_COMPILATION_ERROR = 0x00040000L,
   LF_BOOKMARKS = 0x00080000L,
-  LF_INVALID_BREAKPOINT = 0x00100000L
+  LF_INVALID_BREAKPOINT = 0x00100000L,
+  LF_INVISIBLE = 0x80000000L
 };
 
 #define LF_BOOKMARK(id)     (LF_BOOKMARK_FIRST << id)
@@ -226,12 +227,12 @@ public :
     DWORD GetLineRevisionNumber (int nLine) const;
     int GetLineWithFlag (DWORD dwFlag) const;
     void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet,
-            BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate = TRUE);
+            BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-            CString & text, LPCTSTR pszCRLF = NULL) const;
+            CString & text, LPCTSTR pszCRLF = NULL, BOOL bExcludeInvisibleLines = TRUE) const;
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, CString &text,
-            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC) const;
+            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bExcludeInvisibleLines = TRUE) const;
 
     //  Attributes
     CRLFSTYLE GetCRLFMode () const;
@@ -247,7 +248,8 @@ public :
 
     //  Text modification functions
     virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
-    virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
+    virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE, BOOL bExcludeInvisibleLines = TRUE);
+    virtual BOOL DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 
     //  Undo/Redo
     BOOL CanUndo () const;

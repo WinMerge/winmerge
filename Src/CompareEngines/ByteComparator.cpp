@@ -4,7 +4,7 @@
  * @brief Implements ByteComparator class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ByteComparator.cpp 7090 2010-01-11 19:48:26Z kimmov $
 
 //#include "StdAfx.h"
 #include <windows.h>
@@ -180,12 +180,6 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	// cycle through buffer data performing actual comparison
 	while (true)
 	{
-		// we are at the end on one side?
-		if ((ptr0 == end0) || (ptr1 == end1))
-		{
-			goto need_more;
-		}
-
 		if (m_ignore_all_space)
 		{
 			// Skip over any whitespace on either side

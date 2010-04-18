@@ -4,11 +4,12 @@
  * @brief Declaration file for path routines
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: paths.h 5301 2008-04-16 12:51:56Z kimmov $
 
 #ifndef paths_h_included
 #define paths_h_included
 
+#include "PathContext.h"
 #include "UnicodeString.h"
 
 /**
@@ -19,6 +20,7 @@ typedef enum
 	DOES_NOT_EXIST, /**< File or folder does not exist. */
 	IS_EXISTING_FILE, /**< It is existing file */
 	IS_EXISTING_DIR, /**< It is existing folder */
+	IS_EXISTING_DIR_ARCHIVE, /**< It is existing folder */
 } PATH_EXISTENCE;
 
 bool paths_EndsWithSlash(LPCTSTR s);
@@ -28,7 +30,7 @@ LPCTSTR paths_FindFileName(LPCTSTR path);
 void paths_normalize(String & sPath);
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(LPCTSTR szPath);
-PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, BOOL (*IsArchiveFile)(LPCTSTR) = NULL);
 BOOL paths_IsShortcut(LPCTSTR inPath);
 String ExpandShortcut(const String &inFile);
 String paths_ConcatPath(const String & path, const String & subpath);

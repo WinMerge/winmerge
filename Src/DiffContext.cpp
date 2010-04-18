@@ -24,12 +24,11 @@
  *  @brief Implementation of CDiffContext
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffContext.cpp 7063 2009-12-27 15:28:16Z kimmov $
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
 #include <shlwapi.h>
-#include "UnicodeString.h"
 #include "Merge.h"
 #include "CompareOptions.h"
 #include "CompareStats.h"
@@ -60,8 +59,7 @@ static char THIS_FILE[]=__FILE__;
  * @param [in] pszRight Initial right-side path.
  * @param [in] compareMethod Main compare method for this compare.
  */
-CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
-		int compareMethod)
+CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 : m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
 , m_nCompMethod(compareMethod)
@@ -70,15 +68,18 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_pCompareStats(NULL)
 , m_piAbortable(NULL)
 , m_bStopAfterFirstDiff(false)
+, m_bScanUnpairedDir(FALSE)
 , m_pFilterList(NULL)
+, m_pDiffWrapper(NULL)
 , m_pCompareOptions(NULL)
 , m_pOptions(NULL)
 , m_bPluginsEnabled(false)
 , m_bRecursive(false)
 , m_bWalkUniques(true)
 {
-	m_paths.SetLeft(pszLeft);
-	m_paths.SetRight(pszRight);
+	int index;
+	for (index = 0; index < paths.GetSize(); index++)
+		m_paths.SetPath(index, paths[index].c_str());
 }
 
 /**
@@ -104,15 +105,15 @@ void CDiffContext::UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRigh
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	if (bLeft)
 	{
-		di.left.ClearPartial();
-		if (!di.diffcode.isSideRightOnly())
-			UpdateInfoFromDiskHalf(di, TRUE);
+		di.diffFileInfo[0].ClearPartial();
+		if (!di.diffcode.isSideSecondOnly())
+			UpdateInfoFromDiskHalf(di, 0);
 	}
 	if (bRight)
 	{
-		di.right.ClearPartial();
-		if (!di.diffcode.isSideLeftOnly())
-			UpdateInfoFromDiskHalf(di, FALSE);
+		di.diffFileInfo[1].ClearPartial();
+		if (!di.diffcode.isSideFirstOnly())
+			UpdateInfoFromDiskHalf(di, 1);
 	}
 }
 
@@ -125,20 +126,14 @@ void CDiffContext::UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRigh
  *  right side otherwise.
  * @return TRUE if file exists
  */
-BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
+BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
 {
-	String filepath;
-
-	if (bLeft == TRUE)
-		filepath = paths_ConcatPath(di.GetLeftFilepath(GetNormalizedLeft()), di.left.filename);
-	else
-		filepath = paths_ConcatPath(di.GetRightFilepath(GetNormalizedRight()), di.right.filename);
-
-	DiffFileInfo & dfi = bLeft ? di.left : di.right;
+	String filepath = paths_ConcatPath(di.getFilepath(nIndex, GetNormalizedPath(nIndex)), di.diffFileInfo[nIndex].filename);
+	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	if (!dfi.Update(filepath.c_str()))
 		return FALSE;
-	UpdateVersion(di, bLeft);
-	GuessCodepageEncoding(filepath.c_str(), &dfi.encoding, m_bGuessEncoding);
+	UpdateVersion(di, nIndex);
+	GuessCodepageEncoding(filepath.c_str(), &dfi.encoding, m_iGuessEncodingType);
 	return TRUE;
 }
 
@@ -172,9 +167,9 @@ static bool CheckFileForVersion(LPCTSTR ext)
  * @param [in,out] di DIFFITEM to update.
  * @param [in] bLeft If TRUE left-side file is updated, right-side otherwise.
  */
-void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
+void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 {
-	DiffFileInfo & dfi = bLeft ? di.left : di.right;
+	DiffFileInfo & dfi = nIndex == 0 ? di.diffFileInfo[0] : di.diffFileInfo[1];
 	// Check only binary files
 	dfi.version.Clear();
 	dfi.bVersionChecked = true;
@@ -183,25 +178,25 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 		return;
 	
 	String spath;
-	if (bLeft)
+	if (nIndex == 0)
 	{
-		if (di.diffcode.isSideRightOnly())
+		if (di.diffcode.isSideSecondOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.left.filename.c_str());
+		LPCTSTR ext = PathFindExtension(di.diffFileInfo[0].filename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
-		spath = di.GetLeftFilepath(GetNormalizedLeft());
-		spath = paths_ConcatPath(spath, di.left.filename);
+		spath = di.getFilepath(0, GetNormalizedLeft());
+		spath = paths_ConcatPath(spath, di.diffFileInfo[0].filename);
 	}
 	else
 	{
-		if (di.diffcode.isSideLeftOnly())
+		if (di.diffcode.isSideFirstOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.right.filename.c_str());
+		LPCTSTR ext = PathFindExtension(di.diffFileInfo[1].filename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
-		spath = di.GetRightFilepath(GetNormalizedRight());
-		spath = paths_ConcatPath(spath, di.right.filename);
+		spath = di.getFilepath(1, GetNormalizedRight());
+		spath = paths_ConcatPath(spath, di.diffFileInfo[1].filename);
 	}
 	
 	// Get version info if it exists

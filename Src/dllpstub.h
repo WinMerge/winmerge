@@ -36,6 +36,7 @@ struct DLLPSTUB
 	DWORD dwMajorVersion;					// Major version
 	DWORD dwMinorVersion;					// Minor version
 	DWORD dwBuildNumber;					// Build number
+	DWORD dwPadding;						// Padding for 64bit CPU
 	static void Throw(LPCSTR name, HMODULE, DWORD dwError, BOOL bFreeLibrary);
 	HMODULE Load();
 };

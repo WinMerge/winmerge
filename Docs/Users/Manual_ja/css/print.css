@@ -1,0 +1,52 @@
+@import url("all.css") print;
+body {
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 77%;
+}
+
+
+.navheader,.navfooter, div#ads {
+  display: none;
+}
+
+h1, h2 {
+  font-family: Verdana,Helvetica,Arial,sans-serif;
+}
+
+h1 {
+  font-size: 160%;
+  letter-spacing: inherit;
+}
+
+div.article h2, div.appendix h2, div.index h2 {
+  font-size: 140%;
+}
+
+
+div.section h3 {
+  font-size: 120%;
+}
+div.section h4 {
+  font-size: 110%;
+}
+
+div.toc p{
+  color: #000;
+}
+
+
+.screen {
+  padding: 5px;
+  background-color: none;
+  border: 1px solid #CCCCCC;
+  border-left: 10px solid #CCCCCC;
+}
+
+.caution,.important,.note,.tip,.warning {
+  background-color: none;
+  border: 1px solid #808080;
+}
+
+/* links */
+a:link { color:black; text-decoration:underline; }
+a:visited { color:black; text-decoration:underline; }

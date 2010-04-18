@@ -63,7 +63,7 @@ public:
 
 	// This function is called by the module on exit
 	// It is registered through _Module.AddTermFunc()
-	static void __stdcall Cleanup(DWORD dw)
+	static void __stdcall Cleanup(DWORD_PTR dw)
 	{
 		CComTypeInfoHolder* p = (CComTypeInfoHolder*) dw;
 		if (p->m_pInfo != NULL)

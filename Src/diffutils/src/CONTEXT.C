@@ -35,10 +35,10 @@ static void print_context_number_range PARAMS((struct file_data const *, int, in
 static void print_unidiff_number_range PARAMS((struct file_data const *, int, int));
 
 /* Last place find_function started searching from.  */
-static int find_function_last_search;
+DECL_TLS static int find_function_last_search;
 
 /* The value find_function returned when it started searching there.  */
-static int find_function_last_match;
+DECL_TLS static int find_function_last_match;
 
 /* Print a label for a context diff, with a file name and date or a label.  */
 
@@ -143,7 +143,7 @@ pr_context_hunk (hunk)
 
   /* Determine range of line numbers involved in each file.  */
 
-  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &show_from, &show_to);
+  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &show_from, &show_to, files);
 
   if (!show_from && !show_to)
     return;
@@ -276,7 +276,7 @@ pr_unidiff_hunk (hunk)
 
   /* Determine range of line numbers involved in each file.  */
 
-  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &show_from, &show_to);
+  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &show_from, &show_to, files);
 
   if (!show_from && !show_to)
     return;
@@ -412,7 +412,7 @@ mark_ignorable (script)
       script->link = 0;
 
       /* Determine whether this change is ignorable.  */
-      analyze_hunk (script, &first0, &last0, &first1, &last1, &deletes, &inserts);
+      analyze_hunk (script, &first0, &last0, &first1, &last1, &deletes, &inserts, files);
       /* Reconnect the chain as before.  */
       script->link = next;
 

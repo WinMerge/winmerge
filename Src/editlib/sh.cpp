@@ -27,74 +27,60 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszShKeywordList[] =
+static LPCTSTR s_apszShKeywordList[] =
   {
+    _T ("alias"),
+    _T ("break"),
     _T ("case"),
     _T ("do"),
     _T ("done"),
+    _T ("echo"),
     _T ("elif"),
     _T ("else"),
     _T ("esac"),
+    _T ("exec"),
+    _T ("exit"),
+    _T ("export"),
     _T ("fi"),
     _T ("for"),
     _T ("function"),
     _T ("if"),
     _T ("in"),
-    _T ("then"),
-    _T ("until"),
-    _T ("while"),
-    _T ("exec"),
-    _T ("export"),
-    _T ("set"),
-    _T ("echo"),
-    _T ("exit"),
-    _T ("select"),
-    _T ("source"),
-    _T ("unset"),
-    _T ("alias"),
-    _T ("unalias"),
-    _T ("shift"),
-    _T ("break"),
     _T ("read"),
     _T ("return"),
-    NULL
+    _T ("select"),
+    _T ("set"),
+    _T ("shift"),
+    _T ("source"),
+    _T ("then"),
+    _T ("unalias"),
+    _T ("unset"),
+    _T ("until"),
+    _T ("while"),
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
+    _T ("chmod"),
+    _T ("chown"),
+    _T ("logout"),
     _T ("ls"),
     _T ("pwd"),
-    _T ("chown"),
-    _T ("chmod"),
-    _T ("logout"),
     _T ("ssh"),
     _T ("telnet"),
     _T ("who"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsShKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszShKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszShKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -128,6 +114,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -197,7 +184,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

@@ -29,7 +29,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -97,7 +97,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -110,7 +110,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -179,7 +179,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -192,7 +192,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -258,7 +258,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -271,7 +271,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -338,7 +338,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -351,7 +351,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -419,7 +419,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -432,7 +432,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -501,7 +501,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -514,7 +514,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -580,7 +580,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -593,7 +593,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -660,7 +660,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -673,7 +673,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -741,7 +741,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -754,7 +754,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -823,7 +823,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -836,7 +836,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -902,7 +902,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -915,7 +915,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -982,7 +982,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="pushd $(InputDir)\Languages&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)Languages\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge&#x0D;&#x0A;UpdatePoFilesFromPotFile.vbs&#x0D;&#x0A;popd&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL&#x0D;&#x0A;mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;&#x0D;&#x0A;copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -1006,8 +1006,8 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -1024,8 +1024,8 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -1042,8 +1042,8 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -1060,8 +1060,8 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -1078,8 +1078,8 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 			<FileConfiguration
@@ -1096,14 +1096,62 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
-					Outputs="Languages\MergeLang.rc"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"
 				/>
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\Languages\MergeLang.rc"
+			RelativePath="..\Translations\WinMerge\MergeLang.rc"
 			>
+			<FileConfiguration
+				Name="Debug|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="UnicodeDebug|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="UnicodeRelease|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="X64 Debug|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="X64 Release|x64"
+				>
+				<Tool
+					Name="VCResourceCompilerTool"
+					AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;"
+				/>
+			</FileConfiguration>
 		</File>
 	</Files>
 	<Globals>

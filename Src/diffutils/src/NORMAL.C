@@ -52,7 +52,7 @@ print_normal_hunk (hunk)
   //int trans_c, trans_d;
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts);
+  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts, files);
   if (!deletes && !inserts)
     return;
 

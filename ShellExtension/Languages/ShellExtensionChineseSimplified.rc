@@ -45,8 +45,8 @@ BEGIN
     IDS_COMPARE             "对比"
     IDS_COMPARE_ELLIPSIS    "对比..."
     IDS_COMPARE_TO          "和另外一个对比"
-    IDS_HELP_SAVETHIS       "保存这个路径。选择另外一个路径与之进行对比。"
-    IDS_HELP_COMPARESAVED   "与保存的路径(%1)进行对比"
+    IDS_HELP_SAVETHIS       "保存这个路径。选择另外一个路径与之进行对比。 "
+    IDS_HELP_COMPARESAVED   "与保存的路径(%1)进行对比 "
     IDS_RESELECT_FIRST      "重新选择第一个路径"
 END
 

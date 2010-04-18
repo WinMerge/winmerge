@@ -4,7 +4,7 @@
  * @brief Implementation of CompareStats class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: CompareStats.cpp 6945 2009-08-05 03:34:52Z marcelgosselin $
 
 #include <windows.h>
 #include <assert.h>
@@ -15,11 +15,12 @@
 /** 
  * @brief Constructor, initializes critical section.
  */
-CompareStats::CompareStats()
+CompareStats::CompareStats(int nDirs)
 : m_nTotalItems(0)
 , m_nComparedItems(0)
 , m_state(STATE_IDLE)
 , m_bCompareDone(FALSE)
+, m_nDirs(nDirs)
 {
 	InitializeCriticalSection(&m_csProtect);
 	ZeroMemory(&m_counts[0], sizeof(m_counts));
@@ -141,7 +142,7 @@ CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode)
 			return RESULT_SKIP;
 		}
 	}
-	else if (di.isSideLeftOnly())
+	else if (di.isSideFirstOnly())
 	{
 		// left-only
 		if (di.isDirectory())
@@ -153,7 +154,25 @@ CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode)
 			return RESULT_LUNIQUE;
 		}
 	}
-	else if (di.isSideRightOnly())
+	else if (di.isSideSecondOnly())
+	{
+		// right-only
+		if (di.isDirectory())
+		{
+			if (m_nDirs < 3)
+				return RESULT_RDIRUNIQUE;
+			else
+				return RESULT_MDIRUNIQUE;
+		}
+		else
+		{
+			if (m_nDirs < 3)
+				return RESULT_RUNIQUE;
+			else
+				return RESULT_MUNIQUE;
+		}
+	}
+	else if (di.isSideThirdOnly())
 	{
 		// right-only
 		if (di.isDirectory())

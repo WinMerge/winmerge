@@ -27,60 +27,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszInnoSetupKeywordList[] =
+static LPCTSTR s_apszInnoSetupKeywordList[] =
   {
-    _T ("program"),
-    _T ("const"),
-    _T ("type"),
-    _T ("var"),
-    _T ("begin"),
-    _T ("end"),
-    _T ("array"),
-    _T ("set"),
-    _T ("record"),
-    _T ("string"),
-    _T ("if"),
-    _T ("then"),
-    _T ("else"),
-    _T ("while"),
-    _T ("for"),
-    _T ("to"),
-    _T ("downto"),
-    _T ("do"),
-    _T ("with"),
-    _T ("repeat"),
-    _T ("until"),
-    _T ("case"),
-    _T ("of"),
-    _T ("goto"),
-    _T ("exit"),
-    _T ("label"),
-    _T ("procedure"),
-    _T ("function"),
-    _T ("nil"),
-    _T ("file"),
-    _T ("and"),
-    _T ("or"),
-    _T ("not"),
-    _T ("xor"),
-    _T ("div"),
-    _T ("mod"),
-    _T ("unit"),
-    _T ("uses"),
-    _T ("implementation"),
-    _T ("interface"),
-    _T ("external"),
-    _T ("asm"),
-    _T ("inline"),
-    _T ("object"),
-    _T ("constructor"),
-    _T ("destructor"),
-    _T ("virtual"),
-    _T ("far"),
-    _T ("assembler"),
-    _T ("near"),
-    _T ("inherited"),
-    //Inno Setup...
     _T ("AdminPrivilegesRequired"),
     _T ("AfterInstall"),
     _T ("AllowCancelDuringInstall"),
@@ -92,6 +40,7 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("AlwaysShowDirOnReadyPage"),
     _T ("AlwaysShowGroupOnReadyPage"),
     _T ("AlwaysUsePersonalGroup"),
+    _T ("and"),
     _T ("AppComments"),
     _T ("AppContact"),
     _T ("AppCopyright"),
@@ -108,12 +57,17 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("AppUpdatesURL"),
     _T ("AppVerName"),
     _T ("AppVersion"),
+    _T ("array"),
+    _T ("asm"),
+    _T ("assembler"),
     _T ("Attribs"),
     _T ("BackColor"),
     _T ("BackColor2"),
     _T ("BackColorDirection"),
     _T ("BackSolid"),
     _T ("BeforeInstall"),
+    _T ("begin"),
+    _T ("case"),
     _T ("ChangesAssociations"),
     _T ("ChangesEnvironment"),
     _T ("Check"),
@@ -121,6 +75,8 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("Comment"),
     _T ("Components"),
     _T ("Compression"),
+    _T ("const"),
+    _T ("constructor"),
     _T ("CopyMode"),
     _T ("CreateAppDir"),
     _T ("CreateUninstallRegKey"),
@@ -132,6 +88,7 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("Description"),
     _T ("DestDir"),
     _T ("DestName"),
+    _T ("destructor"),
     _T ("DirExistsWarning"),
     _T ("DisableDirPage"),
     _T ("DisableFinishedPage"),
@@ -143,43 +100,73 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("DiskSliceSize"),
     _T ("DiskSpaceMBLabel"),
     _T ("DiskSpanning"),
+    _T ("div"),
+    _T ("do"),
     _T ("DontMergeDuplicateFiles"),
+    _T ("downto"),
+    _T ("else"),
     _T ("EnableDirDoesntExistWarning"),
     _T ("Encryption"),
+    _T ("end"),
     _T ("Excludes"),
+    _T ("exit"),
+    _T ("external"),
     _T ("ExtraDiskSpaceRequired"),
+    _T ("far"),
+    _T ("file"),
     _T ("Filename"),
     _T ("Flags"),
     _T ("FlatComponentsList"),
     _T ("FontInstall"),
+    _T ("for"),
+    _T ("function"),
+    _T ("goto"),
     _T ("GroupDescription"),
     _T ("HotKey"),
     _T ("IconFilename"),
     _T ("IconIndex"),
+    _T ("if"),
+    _T ("implementation"),
     _T ("InfoAfterFile"),
     _T ("InfoBeforeFile"),
+    _T ("inherited"),
+    _T ("inline"),
+    _T ("interface"),
     _T ("InternalCompressLevel"),
     _T ("Key"),
+    _T ("label"),
     _T ("LanguageDetectionMethod"),
     _T ("Languages"),
     _T ("LicenseFile"),
     _T ("MergeDuplicateFiles"),
     _T ("MessagesFile"),
     _T ("MinVersion"),
+    _T ("mod"),
     _T ("Name"),
+    _T ("near"),
+    _T ("nil"),
+    _T ("not"),
+    _T ("object"),
+    _T ("of"),
     _T ("OnlyBelowVersion"),
+    _T ("or"),
     _T ("OutputBaseFilename"),
-    _T ("OutputManifestFile"),
     _T ("OutputDir"),
+    _T ("OutputManifestFile"),
     _T ("Parameters"),
     _T ("Password"),
     _T ("Permissions"),
     _T ("PrivilegesRequired"),
+    _T ("procedure"),
+    _T ("program"),
+    _T ("record"),
+    _T ("repeat"),
     _T ("ReserveBytes"),
     _T ("RestartIfNeededByRun"),
     _T ("Root"),
     _T ("RunOnceId"),
     _T ("Section"),
+    _T ("set"),
     _T ("SetupIconFile"),
     _T ("ShowComponentSizes"),
     _T ("ShowLanguageDialog"),
@@ -189,14 +176,19 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("Source"),
     _T ("SourceDir"),
     _T ("StatusMsg"),
+    _T ("string"),
     _T ("Subkey"),
     _T ("Tasks"),
+    _T ("then"),
     _T ("TimeStampRounding"),
     _T ("TimeStampsInUTC"),
+    _T ("to"),
     _T ("TouchDate"),
     _T ("TouchTime"),
+    _T ("type"),
     _T ("Type"),
     _T ("Types"),
+    _T ("Uninstallable"),
     _T ("UninstallDisplayIcon"),
     _T ("UninstallDisplayName"),
     _T ("UninstallFilesDir"),
@@ -204,26 +196,32 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("UninstallLogMode"),
     _T ("UninstallRestartComputer"),
     _T ("UninstallStyle"),
-    _T ("Uninstallable"),
+    _T ("unit"),
+    _T ("until"),
     _T ("UpdateUninstallLogAppName"),
     _T ("UsePreviousAppDir"),
     _T ("UsePreviousGroup"),
-    _T ("UsePreviousTasks"),
     _T ("UsePreviousSetupType"),
+    _T ("UsePreviousTasks"),
     _T ("UsePreviousUserInfo"),
     _T ("UserInfoPage"),
+    _T ("uses"),
     _T ("UseSetupLdr"),
     _T ("ValueData"),
     _T ("ValueName"),
     _T ("ValueType"),
-    _T ("VersionInfoVersion"),
+    _T ("var"),
     _T ("VersionInfoCompany"),
     _T ("VersionInfoDescription"),
     _T ("VersionInfoTextVersion"),
+    _T ("VersionInfoVersion"),
+    _T ("virtual"),
+    _T ("while"),
     _T ("WindowResizable"),
     _T ("WindowShowCaption"),
     _T ("WindowStartMaximized"),
     _T ("WindowVisible"),
+    _T ("with"),
     _T ("WizardImageBackColor"),
     _T ("WizardImageFile"),
     _T ("WizardImageStretch"),
@@ -231,16 +229,11 @@ static LPTSTR s_apszInnoSetupKeywordList[] =
     _T ("WizardSmallImageFile"),
     _T ("WizardStyle"),
     _T ("WorkingDir"),
-    NULL
+    _T ("xor"),
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("HKCC"),
-    _T ("HKCR"),
-    _T ("HKCU"),
-    _T ("HKLM"),
-    _T ("HKU"),
     _T ("alwaysoverwrite"),
     _T ("alwaysskipifsameorolder"),
     _T ("append"),
@@ -256,10 +249,10 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("deletekey"),
     _T ("deletevalue"),
     _T ("dirifempty"),
+    _T ("disablenouninstallwarning"),
     _T ("dontcloseonexit"),
     _T ("dontcopy"),
     _T ("dontcreatekey"),
-    _T ("disablenouninstallwarning"),
     _T ("dword"),
     _T ("exclusive"),
     _T ("expandsz"),
@@ -268,6 +261,11 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("filesandordirs"),
     _T ("fixed"),
     _T ("fontisnttruetype"),
+    _T ("HKCC"),
+    _T ("HKCR"),
+    _T ("HKCU"),
+    _T ("HKLM"),
+    _T ("HKU"),
     _T ("ignoreversion"),
     _T ("iscustom"),
     _T ("isreadme"),
@@ -296,10 +294,10 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("sharedfile"),
     _T ("shellexec"),
     _T ("showcheckbox"),
-    _T ("skipifnotsilent"),
-    _T ("skipifsilent"),
     _T ("silent"),
     _T ("skipifdoesntexist"),
+    _T ("skipifnotsilent"),
+    _T ("skipifsilent"),
     _T ("skipifsourcedoesntexist"),
     _T ("sortfilesbyextension"),
     _T ("unchecked"),
@@ -315,31 +313,18 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("useapppaths"),
     _T ("verysilent"),
     _T ("waituntilidle"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsInnoSetupKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszInnoSetupKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszInnoSetupKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -373,6 +358,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -452,7 +438,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

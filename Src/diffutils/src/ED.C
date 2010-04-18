@@ -55,7 +55,7 @@ print_ed_hunk (hunk)
 #endif
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts);
+  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts, files);
   if (!deletes && !inserts)
     return;
 
@@ -124,7 +124,7 @@ pr_forward_ed_hunk (hunk)
   int deletes, inserts;
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts);
+  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts, files);
   if (!deletes && !inserts)
     return;
 
@@ -171,7 +171,7 @@ print_rcs_hunk (hunk)
   int tf0, tl0, tf1, tl1;
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts);
+  analyze_hunk (hunk, &f0, &l0, &f1, &l1, &deletes, &inserts, files);
   if (!deletes && !inserts)
     return;
 

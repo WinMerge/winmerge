@@ -24,7 +24,7 @@
  * @brief Implementation of the CFilepathEdit class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FilepathEdit.cpp 6500 2009-02-25 13:36:26Z kimmov $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -293,6 +293,8 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		case ID_EDITOR_COPY_FILENAME:
 			{
 			int lastSlash = m_sOriginalText.ReverseFind('\\');
+			if (lastSlash == -1)
+				lastSlash = m_sOriginalText.ReverseFind('/');
 			if (lastSlash != -1)
 				iBegin = lastSlash+1;
 			else

@@ -6,11 +6,11 @@ Option Explicit
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
-' $Id$
+' $Id: UpdatePoFilesFromPotFile.vbs 6754 2009-05-16 17:42:05Z kimmov $
 
 Const ForReading = 1
 
-Dim oFSO, bRunFromCmd
+Dim oFSO, oCharsets, bRunFromCmd
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 
@@ -18,6 +18,18 @@ bRunFromCmd = False
 If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
   bRunFromCmd = True
 End If
+
+Set oCharsets = CreateObject("Scripting.Dictionary")
+oCharsets.Add "932", "Shift_JIS"
+oCharsets.Add "936", "GB2312"
+oCharsets.Add "949", "EUC-KR"
+oCharsets.Add "950", "BIG5"
+oCharsets.Add "1250", "Windows-1250"
+oCharsets.Add "1251", "Windows-1251"
+oCharsets.Add "1252", "Windows-1252"
+oCharsets.Add "1253", "Windows-1253"
+oCharsets.Add "1254", "Windows-1254"
+oCharsets.Add "1256", "Windows-1256"
 
 Call Main
 
@@ -27,13 +39,14 @@ Sub Main
   Dim oLanguages, oLanguage, sLanguage, sDir, bPotChanged
   Dim oEnglishPotContent, oLanguagePoContent
   Dim StartTime, EndTime, Seconds
+  Dim sCharset
   
   StartTime = Time
   
   InfoBox "Updating PO files from POT file...", 3
   
   sDir = oFSO.GetParentFolderName(Wscript.ScriptFullName)
-  Set oEnglishPotContent = GetContentFromPoFile(sDir & "\English.pot")
+  Set oEnglishPotContent = GetContentFromPoFile(sDir & "\English.pot", sCharset)
   If oEnglishPotContent.Count = 0 Then Err.Raise vbObjectError, "Sub Main", "Error reading content from English.pot"
   bPotChanged = GetArchiveBit("English.pot")
   Set oLanguages = Wscript.Arguments
@@ -45,9 +58,9 @@ Sub Main
         If bRunFromCmd Then 'If run from command line...
           Wscript.Echo oFSO.GetFileName(sLanguage)
         End If
-        Set oLanguagePoContent = GetContentFromPoFile(sLanguage)
+        Set oLanguagePoContent = GetContentFromPoFile(sLanguage, sCharset)
         If oLanguagePoContent.Count > 0 Then 'If content exists...
-          CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent
+          CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent, sCharset
         End If
         SetArchiveBit sLanguage, False
       End If
@@ -68,10 +81,10 @@ End Class
 
 ''
 ' ...
-Function GetContentFromPoFile(ByVal sPoPath)
+Function GetContentFromPoFile(ByVal sPoPath, sCharset)
   Dim oContent, oSubContent, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgCtxt, sMsgId
-  Dim reMsgCtxt, reMsgId, reMsgContinued
+  Dim reMsgCtxt, reMsgId, reMsgContinued, reCharset
 
   Set reMsgCtxt = New RegExp
   reMsgCtxt.Pattern = "^msgctxt ""(.*)""$"
@@ -85,14 +98,41 @@ Function GetContentFromPoFile(ByVal sPoPath)
   reMsgContinued.Pattern = "^""(.*)""$"
   reMsgContinued.IgnoreCase = True
   
+  ' 
+  sCharset = "_autodetect"
+  Set reCharset = New RegExp
+  reCharset.Pattern = "harset.*CP(.*)\\n""$"
+  reCharset.IgnoreCase = True
+  Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
+  Do Until oTextFile.AtEndOfStream 'For all lines...
+    sLine = Trim(oTextFile.ReadLine)
+    If reCharset.Test(sLine) Then
+      Set oMatch = reCharset.Execute(sLine)(0)
+      sCharset = oCharsets(oMatch.SubMatches(0))
+      Exit Do
+    End If
+  Loop
+  oTextFile.Close
+
   Set oContent = CreateObject("Scripting.Dictionary")
   
   iMsgStarted = 0
   sMsgCtxt = ""
   Set oSubContent = New CSubContent
-  Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
-  Do Until oTextFile.AtEndOfStream 'For all lines...
-    sLine = Trim(oTextFile.ReadLine)
+  Set oTextFile = CreateObject("ADODB.Stream")
+  oTextFile.Type = 2 ' adTypeText
+  oTextFile.LineSeparator = 10 ' adLF
+  oTextFile.Charset = sCharset
+  oTextFile.Open
+  oTextFile.LoadFromFile(sPoPath)
+  Do Until oTextFile.EOS 'For all lines...
+    sLine = oTextFile.ReadText(-2) ' -2 = adReadLine
+    If Len(sLine) > 0 Then
+      If Right(sLine, 1) = vbCR Then
+        sLine = Left(sLine, Len(sLine) - 1)
+      End If
+    End If
+    sLine = Trim(sLine)
     If sLine <> "" Then 'If NOT empty line...
       If Left(sLine, 1) <> "#" Then 'If NOT comment line...
         If reMsgCtxt.Test(sLine) Then 'If "msgctxt"...
@@ -151,7 +191,7 @@ End Function
 
 ''
 ' ...
-Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguagePoContent)
+Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguagePoContent, ByVal sCharset)
   Dim sBakPath, oPoFile, sKey, oEnglish, oLanguage
   
   '--------------------------------------------------------------------------------
@@ -164,13 +204,17 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
   oFSO.MoveFile sPoPath, sBakPath
   '--------------------------------------------------------------------------------
   
-  Set oPoFile = oFSO.CreateTextFile(sPoPath, True)
+  Set oPoFile = CreateObject("ADODB.Stream")
+  oPoFile.Type = 2 ' adTypeText
+  oPoFile.LineSeparator = -1 ' adCRLF
+  oPoFile.Charset = sCharset
+  oPoFile.Open
   
   Set oLanguage = oLanguagePoContent("__head__")
-  oPoFile.Write oLanguage.sTranslatorComments
-  oPoFile.Write oLanguage.sMsgId2
-  oPoFile.Write oLanguage.sMsgStr2
-  oPoFile.Write vbCrLf
+  oPoFile.WriteText oLanguage.sTranslatorComments
+  oPoFile.WriteText oLanguage.sMsgId2
+  oPoFile.WriteText oLanguage.sMsgStr2
+  oPoFile.WriteText vbCrLf
   For Each sKey In oEnglishPotContent.Keys 'For all English content...
     If sKey <> "__head__" Then
       Set oEnglish = oEnglishPotContent(sKey)
@@ -179,16 +223,17 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
       Else 'If translation NOT exists...
         Set oLanguage = oEnglish
       End If
-      oPoFile.Write oLanguage.sTranslatorComments
-      oPoFile.Write oEnglish.sExtractedComments
-      oPoFile.Write oEnglish.sReferences
-      oPoFile.Write oLanguage.sFlags
-      oPoFile.Write oLanguage.sMsgCtxt2
-      oPoFile.Write oLanguage.sMsgId2
-      oPoFile.Write oLanguage.sMsgStr2
-      oPoFile.Write vbCrLf
+      oPoFile.WriteText oLanguage.sTranslatorComments
+      oPoFile.WriteText oEnglish.sExtractedComments
+      oPoFile.WriteText oEnglish.sReferences
+      oPoFile.WriteText oLanguage.sFlags
+      oPoFile.WriteText oLanguage.sMsgCtxt2
+      oPoFile.WriteText oLanguage.sMsgId2
+      oPoFile.WriteText oLanguage.sMsgStr2
+      oPoFile.WriteText vbCrLf
     End If
   Next
+  oPoFile.SaveToFile sPoPath, 2
   oPoFile.Close
 End Sub
 

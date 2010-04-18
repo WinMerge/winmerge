@@ -7,7 +7,7 @@
  *  @brief  Implementation of utility unicode conversion routines
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: unicoder.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 /* The MIT License
 Copyright (c) 2003 Perry Rapp
@@ -20,6 +20,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "unicoder.h"
 #include "codepage.h"
 #include "Utf8FileDetect.h"
+#include <mlang.h>
+#ifndef __IMultiLanguage2_INTERFACE_DEFINED__
+#error "IMultiLanguage2 is not defined in mlang.h. Please install latest Platform SDK."
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,6 +42,272 @@ namespace ucr
 // current OS version
 static bool f_osvi_fetched = false;
 static OSVERSIONINFO f_osvi;
+
+extern "C" typedef HRESULT (__stdcall *DllGetClassObjectFunc)(const CLSID &,  const IID &, void **); 
+
+class CExconverterMLang: public IExconverter {
+private:
+	IMultiLanguage2 *m_pmlang;
+	HMODULE m_hLibMLang;
+	DWORD m_mlangcookie;
+#ifdef USEUNIVERSALCHARDET
+	HMODULE m_hLibCharGuess;
+	int (*m_pfnCharGuessInit)(void);
+	int (*m_pfnCharGuessDone)(void);
+	const char* (*m_pfnGuessChardet)(const char *str);
+#endif
+
+public:
+	CExconverterMLang()
+	: m_pmlang(NULL)
+	, m_hLibMLang(NULL)
+	, m_mlangcookie(0)
+	{
+	}
+
+	~CExconverterMLang()
+	{
+		if (m_pmlang)
+			m_pmlang->Release();
+		if (m_hLibMLang)
+			FreeLibrary(m_hLibMLang);
+	}
+
+	bool initialize()
+	{
+		DllGetClassObjectFunc pfnDllGetClassObject = NULL;
+		IClassFactory *pClassFactory = NULL;
+
+		m_hLibMLang = LoadLibrary(_T("mlang.dll"));
+		if (m_hLibMLang)
+		{
+			pfnDllGetClassObject = (DllGetClassObjectFunc)GetProcAddress(m_hLibMLang, "DllGetClassObject");
+			if (pfnDllGetClassObject)
+			{
+				HRESULT hr = pfnDllGetClassObject(CLSID_CMultiLanguage, IID_IClassFactory, (void**)&pClassFactory);
+				if (pClassFactory)
+				{
+					hr = pClassFactory->CreateInstance(NULL, IID_IMultiLanguage2, (void**)&m_pmlang);
+					if (SUCCEEDED(hr))
+					{
+						pClassFactory->Release();
+						return true;
+					}
+				}
+			}
+		}
+		if (pClassFactory)
+			pClassFactory->Release();
+		if (m_hLibMLang)
+		{
+			FreeLibrary(m_hLibMLang);
+			m_hLibMLang = NULL;
+		}
+		return false;
+	}
+
+	bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, int * srcbytes, unsigned char * dest, int * destbytes)
+	{
+		bool bsucceeded;
+		int wsize = *srcbytes * 2 + 6;
+		wchar_t *pbuf = new wchar_t[wsize];
+		bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
+		if (!bsucceeded)
+		{
+			delete pbuf;
+			destbytes = 0;
+			return false;
+		}
+		bsucceeded = convertFromUnicode(dstCodepage, pbuf, &wsize, (char *)dest, destbytes);
+		delete pbuf;
+		return bsucceeded;
+	}
+
+	bool convertFromUnicode(int dstCodepage, const wchar_t * src, int * srcchars, char * dest, int *destbytes)
+	{
+		HRESULT hr = m_pmlang->ConvertStringFromUnicode(&m_mlangcookie, dstCodepage, (wchar_t *)src, (UINT *)srcchars, (char *)dest, (UINT *)destbytes);
+		return SUCCEEDED(hr) ? true : false;
+	}
+
+	bool convertToUnicode(int srcCodepage, const char * src, int * srcbytes, wchar_t * dest, int *destchars)
+	{
+		HRESULT hr = m_pmlang->ConvertStringToUnicode(&m_mlangcookie, srcCodepage, (char *)src, (UINT *)srcbytes, dest, (UINT *)destchars);
+		return SUCCEEDED(hr) ? true : false;
+	}
+
+	int detectInputCodepage(int autodetectType, int defcodepage, const char *data, int size)
+	{
+		int codepage;
+		IMLangConvertCharset *pcc;
+		unsigned char *pdst;
+		UINT dstsize;
+		UINT srcsize;
+		HRESULT hr;
+		USES_CONVERSION;
+
+		hr = m_pmlang->CreateConvertCharset(autodetectType, 1200, MLCONVCHARF_AUTODETECT, &pcc);
+		if (FAILED(hr))
+			return defcodepage;
+		srcsize = size;
+		dstsize = size * sizeof(wchar_t);
+		pdst = new unsigned char[size * sizeof(wchar_t)];
+		SetLastError(0);
+		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst, &dstsize);
+		pcc->GetSourceCodePage((unsigned int *)&codepage);
+		if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION || codepage == autodetectType)
+		{
+			int codepagestotry[3] = {0};
+			if (codepage == autodetectType)
+			{
+				if (size < 2 || (data[0] != 0 && data[1] != 0))
+				{
+					codepagestotry[0] = defcodepage;
+					codepagestotry[1] = 65001/*UTF-8*/;
+				}
+			}
+			else
+			{
+				if (size < 2 || (data[0] != 0 && data[1] != 0))
+					codepagestotry[0] = 65001/*UTF-8*/;
+			}
+			codepage = defcodepage;
+			int i;
+			for (i = 0; i < countof(codepagestotry); i++)
+			{
+				if (codepagestotry[i] == 0) break;
+				hr = pcc->Initialize(codepagestotry[i], 1200, 0);
+				dstsize = size * sizeof(wchar_t);
+				SetLastError(0);
+				hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst, &dstsize);
+				if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+					continue;
+				codepage = codepagestotry[i];
+				break;
+			}
+			if (codepagestotry[i] == 0 && (size % 2) == 0)
+			{
+				// UCS-2
+				int lezerocount = 0;
+				int lecrorlf = 0;
+				int bezerocount = 0;
+				int becrorlf = 0;
+				for (i = 0; i < size; i += 2)
+				{
+					if (data[i] == 0)
+					{
+						bezerocount++;
+						if (data[i + 1] == 0x0a || data[i + 1] == 0x0d)
+							lecrorlf++;
+					}
+					else if (data[i + 1] == 0)
+					{
+						lezerocount++;
+						if (data[i] == 0x0a || data[i] == 0x0d)
+							lecrorlf++;
+					}
+				}
+				if (lezerocount > 0 || bezerocount > 0)
+				{
+					if ((lecrorlf == 0 && size < 512 || (lecrorlf > 0 && (size / lecrorlf > 1024))) && lezerocount > bezerocount)
+						codepage = 1200;
+					else if ((becrorlf == 0 && size < 512 || (becrorlf > 0 && (size / becrorlf > 1024))) && lezerocount < bezerocount)
+						codepage = 1201;
+				}
+			}
+			delete pdst;
+		}
+		else
+			delete pdst;
+		if (codepage == 20127)
+			return defcodepage;
+		return codepage;
+	}
+
+	int enumCodePages(CodePageInfo *cpinfo, int count)
+	{
+		IEnumCodePage *pEnumCodePage = NULL;
+		PMIMECPINFO pcpInfo;
+		ULONG ccpInfo;
+		HRESULT hr = m_pmlang->EnumCodePages(MIMECONTF_SAVABLE_BROWSER | MIMECONTF_VALID | MIMECONTF_VALID_NLS, 0, &pEnumCodePage);
+		if (FAILED(hr))
+			return 0;
+		pcpInfo = (PMIMECPINFO)CoTaskMemAlloc(sizeof(MIMECPINFO) * count);
+		pEnumCodePage->Next(count, pcpInfo, &ccpInfo);
+		CoTaskMemRealloc((void*)pcpInfo, sizeof(MIMECPINFO)*ccpInfo);
+
+		for (int i = 0; i < (int)ccpInfo; i++)
+		{
+			cpinfo[i].codepage = pcpInfo[i].uiCodePage;
+			lstrcpyW(cpinfo[i].desc, pcpInfo[i].wszDescription);
+		}
+
+		return ccpInfo;
+	}
+
+	bool getCodepageFromCharsetName(LPCTSTR pszCharsetName, int *pCodepage)
+	{
+		MIMECSETINFO charsetInfo;
+#ifdef _UNICODE
+		BSTR bstrCharsetName = SysAllocString(pszCharsetName);
+#else
+		wchar_t szCharsetNameW[256];
+		MultiByteToWideChar(CP_ACP, 0, pszCharsetName, -1, szCharsetNameW, sizeof(szCharsetNameW)/sizeof(wchar_t));
+		BSTR bstrCharsetName = SysAllocString(szCharsetNameW);
+#endif
+		HRESULT hr = m_pmlang->GetCharsetInfo(bstrCharsetName, &charsetInfo);
+		SysFreeString(bstrCharsetName);
+		if (FAILED(hr))
+			return false;
+		*pCodepage = charsetInfo.uiInternetEncoding;
+		return true;
+	}
+
+	bool getCodepageDescription(int codepage, LPTSTR pszDescription)
+	{
+		wchar_t szDescription[256];
+		HRESULT hr = m_pmlang->GetCodePageDescription(codepage, GetSystemDefaultLangID(), szDescription, sizeof(szDescription)/sizeof(wchar_t));
+		if (FAILED(hr))
+			return false;
+
+#ifdef _UNICODE
+		lstrcpy(pszDescription, szDescription);
+#else
+		wsprintf(pszDescription, "%S", szDescription);
+#endif
+		return true;
+	}
+
+	bool isValidCodepage(int codepage)
+	{
+		TCHAR szDesc[256];
+		return getCodepageDescription(codepage, szDesc);
+	}
+
+	bool getCodePageInfo(int codepage, CodePageInfo *pCodePageInfo)
+	{
+		MIMECPINFO mcpi = {0};
+		HRESULT hr = m_pmlang->GetCodePageInfo(codepage, GetSystemDefaultLangID(), &mcpi);
+		if (FAILED(hr))
+			return false;
+		wcscpy(pCodePageInfo->fixedWidthFont, mcpi.wszFixedWidthFont);
+		pCodePageInfo->bGDICharset = mcpi.bGDICharset;
+		return true;
+	}
+
+};
+
+__declspec(thread) static IExconverter *m_pexconv = NULL;
+
+IExconverter *createConverterMLang()
+{
+	CExconverterMLang *pexconv = new CExconverterMLang();
+	if (!pexconv->initialize())
+	{
+		delete pexconv;
+		return NULL;
+	}
+	return pexconv;
+}
 
 /**
  * @brief fetch current OS version into file level variable & set flag
@@ -300,32 +570,33 @@ int to_utf8_advance(unsigned int u, unsigned char * &lpd)
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-String maketchar(unsigned int unich, bool & lossy)
+void maketchar(String & ch, unsigned int unich, bool & lossy)
 {
 	static unsigned int codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
-	return maketchar(unich, lossy, codepage);
+	maketchar(ch, unich, lossy, codepage);
 }
 
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
+void maketchar(String & ch, unsigned int unich, bool & lossy, unsigned int codepage)
 {
 #ifdef _UNICODE
 	if (unich < 0x10000)
 	{
-		String s(1, (TCHAR)unich);
-		return s;
+		ch = (TCHAR)unich;
+		return;
 	}
 	lossy = TRUE;
-	return _T("?");
+	ch = '?';
+	return;
 #else
 	if (unich < 0x80)
 	{
-		String s(1, (TCHAR)unich);
-		return s;
+		ch = (TCHAR)unich;
+		return;
 	}
 	wchar_t wch = (wchar_t)unich;
 	if (!lossy)
@@ -340,14 +611,14 @@ String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
 			vercheck = true;
 		}
 		// So far it isn't lossy, so try for lossless conversion
-		TCHAR outch;
+		char outch[3] = {0};
 		BOOL defaulted = FALSE;
 		DWORD flags = has_no_best_fit ? WC_NO_BEST_FIT_CHARS : 0;
-		if (WideCharToMultiByte(codepage, flags, &wch, 1, &outch, 1, NULL, &defaulted)
+		if (WideCharToMultiByte(codepage, flags, &wch, 1, outch, sizeof(outch), NULL, &defaulted)
 				&& !defaulted)
 		{
-			String s(1, outch);
-			return s;
+			ch = outch;
+			return;
 		}
 		lossy = TRUE;
 	}
@@ -358,9 +629,10 @@ String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
 	if (n > 0)
 	{
 		outbuff[n] = 0;
-		return outbuff;
+		ch = outbuff;
+		return;
 	}
-	return _T("?");
+	ch = _T("?");
 #endif
 }
 
@@ -506,7 +778,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 	}
 
 	LPWSTR wbuff = &*str.begin();
-	do
+	if (codepage == CP_ACP || IsValidCodePage(codepage))
 	{
 		int n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen - 1);
 		if (n)
@@ -537,15 +809,98 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 			}
 			return true;
 		}
-		*lossy = true;
-		flags ^= MB_ERR_INVALID_CHARS;
+		else
+		{
+			if (GetLastError() == ERROR_INVALID_FLAGS)
+			{
+				int n = MultiByteToWideChar(codepage, 0, lpd, len, wbuff, wlen-1);
+				if (n)
+				{
+					/* NB: MultiByteToWideChar is documented as only zero-terminating 
+					if input was zero-terminated, but it appears that it can 
+					zero-terminate even if input wasn't.
+					So we check if it zero-terminated and adjust count accordingly.
+					*/
+					if (wbuff[n-1] == 0 && lpd[len-1] != 0)
+					{
+						ASSERT(FALSE);
+						--n;
+					}
+					try
+					{
+						str.resize(n);
+					}
+					catch (std::bad_alloc)
+					{
+						// Not enough memory - exit
+						return false;
+					}
+					return true;
+				}
+			}
+			if (GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+			{
+				*lossy = true;
+				flags = 0;
+				// wlen & wbuff are still fine
+				n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
+				if (n)
+				{
+					try
+					{
+						str.resize(n);
+					}
+					catch (std::bad_alloc)
+					{
+						// Not enough memory - exit
+						return false;
+					}
+					return true;
+				}
+			}
+			str = _T("?");
+			return true;
+		}
 	}
-	while (flags == 0 && GetLastError() == ERROR_NO_UNICODE_TRANSLATION);
-	str = _T('?');
-	return true;
+	else
+	{
+		if (!m_pexconv)
+			m_pexconv = createConverterMLang();
+		if (m_pexconv)
+		{
+			int n = wlen;
+			if (m_pexconv->convertToUnicode(codepage, lpd, (int *)&len, wbuff, (int *)&n))
+			{
+				try
+				{
+					str.resize(n);
+				}
+				catch (std::bad_alloc)
+				{
+					// Not enough memory - exit
+					return false;
+				}
+				return true;
+			}
+			else
+			{
+				*lossy = true;
+				str = _T("?");
+			}
+			return true;
+		}
+		else
+		{
+			*lossy = true;
+			str = _T("?");
+		}
+		return true;
+	}
 
 #else
-	if (EqualCodepages(codepage, defcodepage))
+	int dstcodepage = IsValidCodePage(defcodepage) ? defcodepage : GetACP();
+
+	if (EqualCodepages(codepage, dstcodepage))
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
 		// Only caveat is that input (lpd) is not zero-terminated
@@ -553,8 +908,50 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 		return true;
 	}
 
-	str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);
-	return true;
+	if (codepage == CP_ACP || IsValidCodePage(codepage))
+	{
+		str = CrossConvertToStringA(lpd, len, codepage, dstcodepage, lossy);
+		if (*lossy)
+			str = _T("?");
+		return true;
+	}
+	else
+	{
+		if (!m_pexconv)
+			m_pexconv = createConverterMLang();
+		if (m_pexconv)
+		{		
+			int n = len * 6 + 6;
+			try
+			{
+				str.resize(n);
+			}
+			catch (std::bad_alloc)
+			{
+				// Not enough memory - exit
+				return false;
+			}
+			LPSTR buff = &*str.begin();
+			m_pexconv->convert(codepage, dstcodepage, (const unsigned char *)lpd, (int *)&len, (unsigned char *)buff, (int *)&n);
+			if (n)
+			{
+				try
+				{
+					str.resize(n);
+				}
+				catch (std::bad_alloc)
+				{
+					// Not enough memory - exit
+					return false;
+				}
+			}
+			else
+				str = _T("?");
+		}
+		else
+			str = _T("?");		
+		return true;
+	}
 #endif
 }
 
@@ -664,6 +1061,83 @@ void buffer::resize(unsigned int newSize)
 	}
 }
 
+unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR * src, int srcbytes/* = -1*/)
+{
+	bool bSucceeded;
+#ifdef _UNICODE
+	bSucceeded = convert(1200, 
+		(unsigned char *)src, (srcbytes < 0) ? wcslen((const wchar_t *)src) : srcbytes,
+		CP_UTF8, buf);
+#else
+	bSucceeded = convert(GetACP(),
+		(unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		CP_UTF8, buf);
+#endif
+	if (!bSucceeded)
+		*((unsigned char *)buf->ptr) = 0;
+	return buf->ptr;
+}
+
+unsigned char *convertTtoUTF8(LPCTSTR * src, int srcbytes/* = -1*/)
+{
+	buffer buf(256);
+	convertTtoUTF8(&buf, src, srcbytes);
+	return (unsigned char *)strdup((const char *)buf.ptr);
+}
+
+TCHAR *convertUTF8toT(buffer * buf, LPCSTR * src, int srcbytes/* = -1*/)
+{
+	bool bSucceeded;
+#ifdef _UNICODE
+	bSucceeded = convert(CP_UTF8,
+		(const unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		1200/*UCS2LE*/, buf);
+#else
+	bSucceeded = convert(CP_UTF8,
+		(const unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		GetACP(), buf);
+#endif
+	if (!bSucceeded)
+		*((TCHAR *)buf->ptr) = 0;
+	return (TCHAR *)buf->ptr;
+}
+
+TCHAR *convertUTF8toT(LPCSTR * src, int srcbytes/* = -1*/)
+{
+	buffer buf(256);
+	convertUTF8toT(&buf, src, srcbytes);
+	return (TCHAR *)_tcsdup((LPCTSTR)buf.ptr);
+}
+
+void dealloc(void *ptr)
+{
+	free(ptr);
+}
+
+bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepage2, buffer * dest)
+{
+	UNICODESET unicoding[2];
+	int codepage[2] = {codepage1, codepage2};
+
+	int i;
+	for (i = 0; i < 2; i++)
+	{
+		switch (codepage[i])
+		{
+		case 1200:
+			unicoding[i] = UCS2LE; break;
+		case 1201:
+			unicoding[i] = UCS2BE; break;
+		case 65001:
+			unicoding[i] = UTF8; break;
+		default:
+			unicoding[i] = NONE; break;
+		}
+	}
+
+	return convert(unicoding[0], codepage1, src, srcbytes, unicoding[1], codepage2, dest);
+}
+
 /**
  * @brief Convert from one text encoding to another; return false if any lossing conversions
  */
@@ -672,8 +1146,10 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 	if (unicoding1 == unicoding2 && (unicoding1 || EqualCodepages(codepage1, codepage2)))
 	{
 		// simple byte copy
-		dest->resize(srcbytes);
+		dest->resize(srcbytes + 2);
 		CopyMemory(dest->ptr, src, srcbytes);
+		dest->ptr[srcbytes] = 0;
+		dest->ptr[srcbytes+1] = 0;
 		dest->size = srcbytes;
 		return true;
 	}
@@ -681,20 +1157,22 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 			|| (unicoding1 == UCS2BE && unicoding2 == UCS2LE))
 	{
 		// simple byte swap
-		dest->resize(srcbytes);
+		dest->resize(srcbytes + 2);
 		for (int i = 0; i < srcbytes; i += 2)
 		{
 			// Byte-swap into destination
 			dest->ptr[i] = src[i+1];
 			dest->ptr[i+1] = src[i];
 		}
+		dest->ptr[srcbytes] = 0;
+		dest->ptr[srcbytes+1] = 0;
 		dest->size = srcbytes;
 		return true;
 	}
 	if (unicoding1 != UCS2LE && unicoding2 != UCS2LE)
 	{
 		// Break problem into two simpler pieces by converting through UCS-2LE
-		buffer intermed(dest->capacity);
+		buffer intermed(dest->capacity + 2);
 		bool step1 = convert(unicoding1, codepage1, src, srcbytes, UCS2LE, 0, &intermed);
 		bool step2 = convert(UCS2LE, 0, intermed.ptr, intermed.size, unicoding2, codepage2, dest);
 		return step1 && step2;
@@ -706,24 +1184,70 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		// WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8
 
 		int destcp = (unicoding2 == UTF8 ? CP_UTF8 : codepage2);
-		DWORD flags = 0;
-		int bytes = WideCharToMultiByte(destcp, flags, (const wchar_t*)src, srcbytes / 2, 0, 0, NULL, NULL);
-		dest->resize(bytes);
-		int losses = 0;
-		bytes = WideCharToMultiByte(destcp, flags, (const wchar_t*)src, srcbytes / 2, (char *)dest->ptr, dest->capacity, NULL, NULL);
-		dest->size = bytes;
-		return losses == 0;
+		if (destcp == CP_ACP || IsValidCodePage(destcp))
+		{
+			DWORD flags = 0;
+			int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, 0, 0, NULL, NULL);
+			dest->resize(bytes + 2);
+			int losses = 0;
+			bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->capacity, NULL, NULL);
+			dest->ptr[bytes] = 0;
+			dest->ptr[bytes+1] = 0;
+			dest->size = bytes;
+			return losses==0;
+		}
+		else
+		{
+			int srcsize = srcbytes / 2;
+			int dstsize = srcbytes * 6; 
+			dest->resize(dstsize + 2);
+			if (!m_pexconv)
+				m_pexconv = createConverterMLang();
+			if (m_pexconv)
+			{
+				bool result = m_pexconv->convertFromUnicode(destcp, (LPWSTR)src, &srcsize, (char *)dest->ptr, &dstsize);
+				dest->ptr[dstsize] = 0;
+				dest->ptr[dstsize+1] = 0;
+				dest->size = dstsize;
+				return result;
+			}
+			else
+				return false;
+		}
 	}
 	else
 	{
 		// From 8-bit (or UTF-8) to UCS-2LE
 		int srccp = (unicoding1 == UTF8 ? CP_UTF8 : codepage1);
-		DWORD flags = 0;
-		int wchars = MultiByteToWideChar(srccp, flags, (const char*)src, srcbytes, 0, 0);
-		dest->resize(wchars*2);
-		wchars = MultiByteToWideChar(srccp, flags, (const char*)src, srcbytes, (LPWSTR)dest->ptr, dest->capacity / 2);
-		dest->size = wchars * 2;
-		return true;
+		if (srccp == CP_ACP || IsValidCodePage(srccp))
+		{
+			DWORD flags = 0;
+			int wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, 0, 0);
+			dest->resize((wchars + 1) *2);
+			wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, (LPWSTR)dest->ptr, dest->capacity/2);
+			dest->ptr[wchars * 2] = 0;
+			dest->ptr[wchars * 2 + 1] = 0;
+			dest->size = wchars * 2;
+			return true;
+		}
+		else
+		{
+			int srcsize = srcbytes;
+			int dstsize = srcbytes; 
+			dest->resize((srcbytes + 1) * sizeof(wchar_t));
+			if (!m_pexconv)
+				m_pexconv = createConverterMLang();
+			if (m_pexconv)
+			{
+				bool result = m_pexconv->convertToUnicode(srccp, (LPCSTR)src, &srcsize, (LPWSTR)dest->ptr, &dstsize);
+				dest->ptr[dstsize * sizeof(wchar_t)] = 0;
+				dest->ptr[dstsize * sizeof(wchar_t) + 1] = 0;
+				dest->size = dstsize * sizeof(wchar_t);
+				return result;
+			}
+			else
+				return false;
+		}
 	}
 }
 
@@ -778,18 +1302,6 @@ UNICODESET DetermineEncoding(PBYTE pBuffer, __int64 size, bool * pBom)
 		{
 			unicoding = ucr::UCS4BE; //UTF-32, big endian
 			*pBom = true;
-		}
-	}
-
-	// If not any of the above, check if it is UTF-8 without BOM?
-	if (unicoding == ucr::NONE)
-	{
-		int bufSize = min(size, 8 * 1024);
-		bool invalidUtf8 = CheckForInvalidUtf8(pBuffer, bufSize);
-		if (!invalidUtf8)
-		{
-			// No BOM!
-			unicoding = ucr::UTF8;
 		}
 	}
 

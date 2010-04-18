@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: codepage_detect.cpp 5584 2008-07-09 12:09:56Z kimmov $
 
 #include "StdAfx.h"
 #include <shlwapi.h>
@@ -24,7 +24,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /** @brief Buffer size used in this file. */
-static const int BufSize = 4 * 1024;
+static const int BufSize = 65536;
 
 /**
  * @brief Prefixes to handle when searching for codepage names
@@ -83,7 +83,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 /**
  * @brief Parser for HTML files to find encoding information
  */
-static unsigned demoGuessEncoding_html(const char *src, size_t len)
+static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodepage)
 {
 	CMarkdown markdown(src, src + len, CMarkdown::Html);
 	//As <html> and <head> are optional, there is nothing to pull...
@@ -109,22 +109,38 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len)
 						{
 							return GetEncodingCodePageFromId(encodingId);
 						}
-						return 0;
+						return defcodepage;
 					}
 					pchKey = pchValue + cchValue;
 				}
 			}
 		}
 	}
-	return 0;
+	return defcodepage;
 }
 
 /**
  * @brief Parser for XML files to find encoding information
  */
-static unsigned demoGuessEncoding_xml(const char *src, size_t len)
+static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepage)
 {
-	CMarkdown xml(src, src + len);
+	char *psrc;
+	if (len >= 2 && (src[0] == 0 || src[1] == 0))
+	{
+		psrc = new char[len];
+		int i, j;
+		for (i = 0, j = 0; i < (int)len; i++)
+		{
+			if (src[i])
+				psrc[j++] = src[i];
+		}
+		len = j;
+	}
+	else
+	{
+		psrc = (char *)src;
+	}
+	CMarkdown xml(psrc, psrc + len);
 	if (xml.Move("?xml"))
 	{
 		CMarkdown::String encoding = xml.GetAttribute("encoding");
@@ -134,11 +150,13 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len)
 			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.A);
 			if (encodingId)
 			{
+				if (psrc != src) delete psrc;
 				return GetEncodingCodePageFromId(encodingId);
 			}
 		}
 	}
-	return 0;
+	if (psrc != src) delete psrc;
+	return defcodepage;
 }
 
 /**
@@ -146,10 +164,10 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len)
  * @note sscanf() requires first argument to be zero-terminated so we must
  * copy lines to temporary buffer.
  */
-static unsigned demoGuessEncoding_rc(const char *src, size_t len)
+static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepage)
 {
 	// NB: Diffutils may replace line endings by '\0'
-	unsigned cp = 0;
+	unsigned cp = defcodepage;
 	char line[80];
 	do
 	{
@@ -176,22 +194,39 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
  * @param [in] len Size of the file contents string.
  * @return Codepage number.
  */
-unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
+static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len, int guessEncodingType)
 {
-	if (len > BufSize)
-		len = BufSize;
-	unsigned cp = 0;
-	if (lstrcmpi(ext, _T(".rc")) ==  0)
+	unsigned cp = getDefaultCodepage();
+	if (guessEncodingType & 2)
 	{
-		cp = demoGuessEncoding_rc(src, len);
+		ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+		if (pexconv && src != NULL)
+		{
+			int autodetectType = (unsigned int)guessEncodingType >> 16;
+			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);
+		}
 	}
-	else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
+	else
 	{
-		cp = demoGuessEncoding_html(src, len);
+		if (!CheckForInvalidUtf8((LPBYTE)src, len))
+			cp = CP_UTF8;
 	}
-	else if (lstrcmpi(ext, _T(".xml")) == 0 || lstrcmpi(ext, _T(".xsl")) == 0)
+	if (guessEncodingType & 1)
 	{
-		cp = demoGuessEncoding_xml(src, len);
+		if (len > BufSize)
+			len = BufSize;
+		if (lstrcmpi(ext, _T(".rc")) ==  0)
+		{
+			cp = demoGuessEncoding_rc(src, len, cp);
+		}
+		else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
+		{
+			cp = demoGuessEncoding_html(src, len, cp);
+		}
+		else if (lstrcmpi(ext, _T(".xml")) == 0 || lstrcmpi(ext, _T(".xsl")) == 0)
+		{
+			cp = demoGuessEncoding_xml(src, len, cp);
+		}
 	}
 	return cp;
 }
@@ -202,9 +237,10 @@ unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
  * @param [in,out] encoding Structure getting the encoding info.
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  */
-void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL bGuessEncoding)
+void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int guessEncodingType)
 {
-	CMarkdown::FileImage fi(filepath, BufSize);
+	const int mapmaxlen = BufSize;
+	CMarkdown::FileImage fi(filepath, mapmaxlen);
 	encoding->SetCodepage(getDefaultCodepage());
 	encoding->m_bom = false;
 	encoding->m_guessed = false;
@@ -212,32 +248,50 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL b
 	{
 	case 8 + 2 + 0:
 		encoding->SetUnicoding(ucr::UCS2LE);
+		encoding->SetCodepage(1200);
 		encoding->m_bom = true;
 		break;
 	case 8 + 2 + 1:
 		encoding->SetUnicoding(ucr::UCS2BE);
+		encoding->SetCodepage(1201);
 		encoding->m_bom = true;
 		break;
 	case 8 + 1:
 		encoding->SetUnicoding(ucr::UTF8);
+		encoding->SetCodepage(CP_UTF8);
 		encoding->m_bom = true;
 		break;
 	default:
-		if (fi.pImage && !CheckForInvalidUtf8((LPBYTE)fi.pImage, 4096))
-			encoding->SetUnicoding(ucr::UTF8);
-		encoding->m_bom = false;
 		break;
 
 	}
-	if (fi.nByteOrder == 1 && bGuessEncoding)
+	if (fi.nByteOrder < 4 && guessEncodingType != 0)
 	{
 		LPCTSTR ext = PathFindExtension(filepath);
 		const char *src = (char *)fi.pImage;
 		size_t len = fi.cbImage;
-		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
+		if (len == mapmaxlen)
+		{
+			int i;
+			for (i = len - 1; i >= 0; i--)
+			{
+				if (isspace((unsigned char)src[i]))
+				{
+					// make len an even number for ucs-2 detection
+					if ((i % 2) == 0)
+						len = i;
+					else
+						len = i + 1;
+					break;
+				}
+			}
+		}
+		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len, guessEncodingType))
 		{
 			encoding->SetCodepage(cp);
 			encoding->m_guessed = true;
 		}
+		else
+			encoding->SetCodepage(getDefaultCodepage());
 	}
 }

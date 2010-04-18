@@ -24,7 +24,7 @@
  * @brief Implementation of the file and folder selection routines.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileOrFolderSelect.cpp 6569 2009-03-15 14:33:03Z kimmov $
 
 #include "stdafx.h"
 #include <sys/stat.h>
@@ -170,7 +170,7 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 	bi.lpszTitle = title.c_str();
 	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI | BIF_VALIDATE;
 	bi.lpfn = BrowseCallbackProc;
-	bi.lParam = NULL;
+	bi.lParam = (LPARAM)root_path;
 
 	pidl = SHBrowseForFolder(&bi);
 
@@ -198,11 +198,27 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	// Look for BFFM_INITIALIZED
 	if (uMsg == BFFM_INITIALIZED)
 	{
-		SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
+		if (lpData)
+			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, lpData);
+		else
+			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
+	}
+	else if (uMsg == BFFM_VALIDATEFAILED)
+	{
+		CString strMessage = (TCHAR *)lParam;
+		strMessage += _T("フォルダは存在しません。作成しますか?");
+		int answer = MessageBox(hwnd, strMessage, _T("フォルダの作成"), MB_YESNO);
+		if (answer == IDYES)
+		{
+			if (!paths_CreateIfNeeded(CString((TCHAR*)lParam)))
+			{
+				MessageBox(hwnd, _T("フォルダの作成に失敗しました"), _T("フォルダの作成"), MB_OK | MB_ICONWARNING);
+			}
+		}
+		return 1;
 	}
 	return 0;
 }
-
 
 /** 
  * @brief Shows file/folder selection dialog.

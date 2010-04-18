@@ -26,118 +26,104 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszHtmlKeywordList[] =
+static LPCTSTR s_apszHtmlKeywordList[] =
   {
-    // HTML section
-    _T ("DOCTYPE"),
-    _T ("PUBLIC"),
-    _T ("HTML"),
-    // frames
-    _T ("FRAMESET"),
-    _T ("FRAME"),
-    _T ("NOFRAMES"),
-    _T ("IFRAME"),
-    // HEAD section
-    _T ("HEAD"),
-    _T ("TITLE"),
-    _T ("ISINDEX"),
-    _T ("META"),
-    _T ("LINK"),
+    _T ("A"),
+    _T ("ABBR"),
+    _T ("ACRONYM"),
+    _T ("ADDRESS"),
+    _T ("APPLET"),
+    _T ("AREA"),
+    _T ("B"),
     _T ("BASE"),
     _T ("BASEFONT"),
-    _T ("SCRIPT"),
-    _T ("NOSCRIPT"),
-    _T ("STYLE"),
-    // BODY section
+    _T ("BDO"),
+    _T ("BIG"),
+    _T ("BLOCKQUOTE"),
     _T ("BODY"),
-    // headings
+    _T ("BR"),
+    _T ("BUTTON"),
+    _T ("CAPTION"),
+    _T ("CENTER"),
+    _T ("CITE"),
+    _T ("CODE"),
+    _T ("COL"),
+    _T ("COLGROUP"),
+    _T ("DD"),
+    _T ("DEL"),
+    _T ("DFN"),
+    _T ("DIR"),
+    _T ("DIV"),
+    _T ("DL"),
+    _T ("DOCTYPE"),
+    _T ("DT"),
+    _T ("EM"),
+    _T ("FIELDSET"),
+    _T ("FONT"),
+    _T ("FORM"),
+    _T ("FRAME"),
+    _T ("FRAMESET"),
     _T ("H1"),
     _T ("H2"),
     _T ("H3"),
     _T ("H4"),
     _T ("H5"),
     _T ("H6"),
-    // lists
-    _T ("UL"),
-    _T ("OL"),
-    _T ("DIR"),
-    _T ("MENU"),
-    _T ("LI"),
-    _T ("DL"),
-    _T ("DT"),
-    _T ("DD"),
-    // text containers
-    _T ("P"),
-    _T ("PRE"),
-    _T ("BLOCKQUOTE"),
-    _T ("ADDRESS"),
-    // others
-    _T ("DIV"),
-    _T ("SPAN"),
-    _T ("CENTER"),
+    _T ("HEAD"),
     _T ("HR"),
-    // logical markup
-    _T ("EM"),
-    _T ("STRONG"),
-    _T ("DFN"),
-    _T ("CODE"),
-    _T ("SAMP"),
-    _T ("KBD"),
-    _T ("VAR"),
-    _T ("CITE"),
-    _T ("Q"),
-    _T ("ACRONYM"),
-    _T ("ABBR"),
-    _T ("INS"),
-    _T ("DEL"),
-    _T ("BDO"),
-    // physical markup
-    _T ("TT"),
+    _T ("HTML"),
     _T ("I"),
-    _T ("B"),
-    _T ("U"),
-    _T ("STRIKE"),
+    _T ("IFRAME"),
+    _T ("IMG"),
+    _T ("INPUT"),
+    _T ("INS"),
+    _T ("ISINDEX"),
+    _T ("KBD"),
+    _T ("LABEL"),
+    _T ("LEGEND"),
+    _T ("LI"),
+    _T ("LINK"),
+    _T ("MAP"),
+    _T ("MENU"),
+    _T ("META"),
+    _T ("NOFRAMES"),
+    _T ("NOSCRIPT"),
+    _T ("OBJECT"),
+    _T ("OL"),
+    _T ("OPTGROUP"),
+    _T ("OPTION"),
+    _T ("P"),
+    _T ("PARAM"),
+    _T ("PRE"),
+    _T ("PUBLIC"),
+    _T ("Q"),
     _T ("S"),
-    _T ("BIG"),
+    _T ("SAMP"),
+    _T ("SCRIPT"),
+    _T ("SELECT"),
     _T ("SMALL"),
+    _T ("SPAN"),
+    _T ("STRIKE"),
+    _T ("STRONG"),
+    _T ("STYLE"),
     _T ("SUB"),
     _T ("SUP"),
-    // special markup
-    _T ("A"),
-    _T ("IMG"),
-    _T ("APPLET"),
-    _T ("OBJECT"),
-    _T ("PARAM"),
-    _T ("FONT"),
-    _T ("BR"),
-    _T ("MAP"),
-    _T ("AREA"),
-    // forms
-    _T ("FORM"),
-    _T ("INPUT"),
-    _T ("TEXTAREA"),
-    _T ("SELECT"),
-    _T ("OPTION"),
-    _T ("OPTGROUP"),
-    _T ("BUTTON"),
-    _T ("FIELDSET"),
-    _T ("LEGEND"),
-    _T ("LABEL"),
-    // tables
     _T ("TABLE"),
-    _T ("TR"),
-    _T ("TH"),
-    _T ("TD"),
-    _T ("COLGROUP"),
-    _T ("COL"),
-    _T ("THEAD"),
     _T ("TBODY"),
+    _T ("TD"),
+    _T ("TEXTAREA"),
     _T ("TFOOT"),
-    _T ("CAPTION"),
-    NULL
+    _T ("TH"),
+    _T ("THEAD"),
+    _T ("TITLE"),
+    _T ("TR"),
+    _T ("TT"),
+    _T ("U"),
+    _T ("UL"),
+    _T ("VAR"),
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
     _T ("ABBR"),
     _T ("ACCEPT"),
@@ -261,118 +247,114 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("VLINK"),
     _T ("VSPACE"),
     _T ("WIDTH"),
-    NULL
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
-    _T ("nbsp"),
-    _T ("quot"),
-    _T ("amp"),
-    _T ("lt"),
-    _T ("gt"),
-    _T ("copy"),
-    _T ("reg"),
-    _T ("acute"),
-    _T ("laquo"),
-    _T ("raquo"),
-    _T ("iexcl"),
-    _T ("iquest"),
-    _T ("Agrave"),
-    _T ("agrave"),
     _T ("Aacute"),
     _T ("aacute"),
-    _T ("Acirc"),
     _T ("acirc"),
+    _T ("Acirc"),
+    _T ("acute"),
+    _T ("aelig"),
+    _T ("AElig"),
+    _T ("agrave"),
+    _T ("Agrave"),
+    _T ("amp"),
+    _T ("aring"),
+    _T ("Aring"),
     _T ("Atilde"),
     _T ("atilde"),
     _T ("Auml"),
     _T ("auml"),
-    _T ("Aring"),
-    _T ("aring"),
-    _T ("AElig"),
-    _T ("aelig"),
-    _T ("Ccedil"),
+    _T ("brvbar"),
     _T ("ccedil"),
-    _T ("ETH"),
-    _T ("eth"),
-    _T ("Egrave"),
-    _T ("egrave"),
+    _T ("Ccedil"),
+    _T ("cedil"),
+    _T ("cent"),
+    _T ("copy"),
+    _T ("curren"),
+    _T ("deg"),
+    _T ("divide"),
     _T ("Eacute"),
     _T ("eacute"),
     _T ("Ecirc"),
     _T ("ecirc"),
+    _T ("Egrave"),
+    _T ("egrave"),
+    _T ("eth"),
+    _T ("ETH"),
     _T ("Euml"),
     _T ("euml"),
+    _T ("frac12"),
+    _T ("frac14"),
+    _T ("frac34"),
+    _T ("gt"),
+    _T ("iacute"),
+    _T ("Iacute"),
+    _T ("icirc"),
+    _T ("Icirc"),
+    _T ("iexcl"),
     _T ("Igrave"),
     _T ("igrave"),
-    _T ("Iacute"),
-    _T ("iacute"),
-    _T ("Icirc"),
-    _T ("icirc"),
+    _T ("iquest"),
     _T ("Iuml"),
     _T ("iuml"),
+    _T ("laquo"),
+    _T ("lt"),
+    _T ("macr"),
+    _T ("micro"),
+    _T ("middot"),
+    _T ("nbsp"),
+    _T ("not"),
     _T ("Ntilde"),
     _T ("ntilde"),
-    _T ("Ograve"),
-    _T ("ograve"),
     _T ("Oacute"),
     _T ("oacute"),
-    _T ("Ocirc"),
     _T ("ocirc"),
-    _T ("Otilde"),
-    _T ("otilde"),
-    _T ("Ouml"),
-    _T ("ouml"),
-    _T ("Oslash"),
-    _T ("oslash"),
-    _T ("Ugrave"),
-    _T ("ugrave"),
-    _T ("Uacute"),
-    _T ("uacute"),
-    _T ("Ucirc"),
-    _T ("ucirc"),
-    _T ("Uuml"),
-    _T ("uuml"),
-    _T ("Yacute"),
-    _T ("yacute"),
-    _T ("yuml"),
-    _T ("THORN"),
-    _T ("thorn"),
-    _T ("szlig"),
-    _T ("sect"),
-    _T ("para"),
-    _T ("micro"),
-    _T ("brvbar"),
-    _T ("plusmn"),
-    _T ("middot"),
-    _T ("uml"),
-    _T ("cedil"),
+    _T ("Ocirc"),
+    _T ("ograve"),
+    _T ("Ograve"),
     _T ("ordf"),
     _T ("ordm"),
-    _T ("not"),
+    _T ("oslash"),
+    _T ("Oslash"),
+    _T ("otilde"),
+    _T ("Otilde"),
+    _T ("ouml"),
+    _T ("Ouml"),
+    _T ("para"),
+    _T ("plusmn"),
+    _T ("pound"),
+    _T ("quot"),
+    _T ("raquo"),
+    _T ("reg"),
+    _T ("sect"),
     _T ("shy"),
-    _T ("macr"),
-    _T ("deg"),
     _T ("sup1"),
     _T ("sup2"),
     _T ("sup3"),
-    _T ("frac14"),
-    _T ("frac12"),
-    _T ("frac34"),
+    _T ("szlig"),
+    _T ("thorn"),
+    _T ("THORN"),
     _T ("times"),
-    _T ("divide"),
-    _T ("cent"),
-    _T ("pound"),
-    _T ("curren"),
+    _T ("uacute"),
+    _T ("Uacute"),
+    _T ("Ucirc"),
+    _T ("ucirc"),
+    _T ("ugrave"),
+    _T ("Ugrave"),
+    _T ("uml"),
+    _T ("uuml"),
+    _T ("Uuml"),
+    _T ("Yacute"),
+    _T ("yacute"),
     _T ("yen"),
-    NULL
+    _T ("yuml"),
   };
 
-static LPTSTR s_apszPhpKeywordList[] =
+static LPCTSTR s_apszPhpKeywordList[] =
   {
-    _T ("exception"),
-    _T ("php_user_filter"),
     _T ("array"),
     _T ("as"),
     _T ("break"),
@@ -396,6 +378,7 @@ static LPTSTR s_apszPhpKeywordList[] =
     _T ("endswitch"),
     _T ("endwhile"),
     _T ("eval"),
+    _T ("exception"),
     _T ("exit"),
     _T ("extends"),
     _T ("for"),
@@ -409,6 +392,7 @@ static LPTSTR s_apszPhpKeywordList[] =
     _T ("list"),
     _T ("new"),
     _T ("old_function"),
+    _T ("php_user_filter"),
     _T ("print"),
     _T ("require"),
     _T ("require_once"),
@@ -419,73 +403,58 @@ static LPTSTR s_apszPhpKeywordList[] =
     _T ("use"),
     _T ("var"),
     _T ("while"),
-    NULL
   };
 
-static LPTSTR s_apszPhp1KeywordList[] =
+static LPCTSTR s_apszPhp1KeywordList[] =
   {
-    _T ("OR"),
     _T ("AND"),
+    _T ("OR"),
     _T ("XOR"),
-    NULL
   };
 
-static LPTSTR s_apszPhp2KeywordList[] =
+static LPCTSTR s_apszPhp2KeywordList[] =
   {
-    _T ("__LINE__"),
+    _T ("__CLASS__"),
     _T ("__FILE__"),
     _T ("__FUNCTION__"),
-    _T ("__CLASS__"),
+    _T ("__LINE__"),
     _T ("__METHOD__"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsHtmlKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszHtmlKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszHtmlKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsPhpKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszPhpKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszPhpKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsPhp1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszPhp1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszPhp1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsPhp2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszPhp2KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszPhp2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -519,6 +488,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -600,7 +570,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

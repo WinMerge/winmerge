@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffTextBuffer.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
 #include "UniFile.h"
@@ -21,6 +21,7 @@
 #include "FileTransform.h"
 #include "FileTextEncoding.h"
 #include "DiffTextBuffer.h"
+#include "codepage_detect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -114,22 +115,6 @@ static void EscapeControlChars(CString &s)
 		}
 		p[--n] = c;
 	}
-}
-
-/**
- * @brief Get EOL of the string.
- * This function returns a pointer to the EOL chars in the given string.
- * Behavior is similar to CCrystalTextBuffer::GetLineEol().
- * @param [in] str String whose EOL chars are returned.
- * @return Pointer to string's EOL chars, or empty string if no EOL found.
- */
-static LPCTSTR GetEol(const CString &str)
-{
-	if (str.GetLength()>1 && str[str.GetLength()-2]=='\r' && str[str.GetLength()-1]=='\n')
-		return (LPCTSTR)str + str.GetLength()-2;
-	if (str.GetLength()>0 && (str[str.GetLength()-1]=='\r' || str[str.GetLength()-1]=='\n'))
-		return (LPCTSTR)str + str.GetLength()-1;
-	return _T("");
 }
 
 /**
@@ -258,9 +243,9 @@ void CDiffTextBuffer::prepareForRescan()
 	RemoveAllGhostLines();
 	for (int ct = GetLineCount() - 1; ct >= 0; --ct)
 	{
-		SetLineFlag(ct, LF_DIFF, FALSE, FALSE, FALSE);
-		SetLineFlag(ct, LF_TRIVIAL, FALSE, FALSE, FALSE);
-		SetLineFlag(ct, LF_MOVED, FALSE, FALSE, FALSE);
+		SetLineFlag(ct, 
+			LF_INVISIBLE | LF_DIFF | LF_TRIVIAL | LF_MOVED | LF_SNP,
+			FALSE, FALSE, FALSE);
 	}
 }
 
@@ -277,6 +262,7 @@ void CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 	SetLineFlag(nLine, LF_DIFF, FALSE, FALSE, FALSE);
 	SetLineFlag(nLine, LF_TRIVIAL, FALSE, FALSE, FALSE);
 	SetLineFlag(nLine, LF_MOVED, FALSE, FALSE, FALSE);
+	SetLineFlag(nLine, LF_SNP, FALSE, FALSE, FALSE);
 	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
 }
 
@@ -376,11 +362,25 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		// If the file is not unicode file, use the codepage we were given to
-		// interpret the 8-bit characters. If the file is unicode file,
-		// determine its type (IsUnicode() does that).
-		if (encoding.m_unicoding == ucr::NONE || !pufile->IsUnicode())
-			pufile->SetCodepage(encoding.m_codepage);
+		if (infoUnpacker->pluginName[0] != '\0')
+		{
+			// re-detect codepage
+			FileTextEncoding encoding2;
+			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+			GuessCodepageEncoding(pszFileName, &encoding2,
+				iGuessEncodingType);
+			pufile->SetUnicoding(encoding2.m_unicoding);
+			pufile->SetCodepage(encoding2.m_codepage);
+			pufile->SetBom(encoding2.m_bom);
+		}
+		else
+		{
+			// If the file is not unicode file, use the codepage we were given to
+			// interpret the 8-bit characters. If the file is unicode file,
+			// determine its type (IsUnicode() does that).
+			if (encoding.m_unicoding == ucr::NONE  || !pufile->IsUnicode())
+				pufile->SetCodepage(encoding.m_codepage);
+		}
 		UINT lineno = 0;
 		String eol, preveol;
 		String sline;
@@ -532,8 +532,11 @@ LoadFromFileExit:
 int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		BOOL bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
-		BOOL bClearModifiedFlag /*= TRUE*/ )
+		BOOL bClearModifiedFlag /*= TRUE*/,
+		BOOL bForceUTF8 /*= FALSE*/)
 {
+	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
+		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
 
 	if (!pszFileName || _tcslen(pszFileName) == 0)
@@ -552,9 +555,9 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	BOOL bSaveSuccess = FALSE;
 
 	UniStdioFile file;
-	file.SetUnicoding(m_encoding.m_unicoding);
-	file.SetBom(m_encoding.m_bom);
-	file.SetCodepage(m_encoding.m_codepage);
+	file.SetUnicoding(bForceUTF8 ? ucr::UTF8 : m_encoding.m_unicoding);
+	file.SetBom(bForceUTF8 ? true : m_encoding.m_bom);
+	file.SetCodepage(bForceUTF8 ? CP_UTF8 : m_encoding.m_codepage);
 
 	String sIntermediateFilename; // used when !bTempFile
 
@@ -600,14 +603,20 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 		// get the characters of the line (excluding EOL)
 		if (GetLineLength(line) > 0)
-			GetText(line, 0, line, GetLineLength(line), sLine, 0);
+		{
+			int nLineLength = GetLineLength(line);
+			void *pszBuf = sLine.GetBuffer(nLineLength);
+			memcpy(pszBuf, GetLineChars(line), nLineLength * sizeof(TCHAR));
+			sLine.ReleaseBuffer(nLineLength);
+		}
 		else
 			sLine = _T("");
 
 		if (bTempFile)
 			EscapeControlChars(sLine);
 		// last real line ?
-		if (line == ApparentLastRealLine())
+		int lastRealLine = ApparentLastRealLine();
+		if (line == lastRealLine || lastRealLine == -1 )
 		{
 			// last real line is never EOL terminated
 			ASSERT (_tcslen(GetLineEol(line)) == 0);
@@ -708,60 +717,27 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		return SAVE_FAILED;
 }
 
-/**
- * @brief Replace a line with new text.
- * This function replaces line's text without changing the EOL style/bytes
- * of the line.
- * @param [in] pSource Editor view where text is changed.
- * @param [in] nLine Index of the line to change.
- * @param [in] pchText New text of the line.
- * @param [in] cchText New length of the line (not inc. EOL bytes).
- * @param [in] nAction Edit action to use.
- */
-void CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine,
-		LPCTSTR pchText, int cchText, int nAction /*=CE_ACTION_UNKNOWN*/)
-{
-	if (GetLineLength(nLine)>0)
-		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine), nAction);
-	int endl, endc;
-	if (cchText)
-		InsertText(pSource, nLine, 0, pchText, cchText, endl, endc, nAction);
-}
-
 /// Replace line (removing any eol, and only including one if in strText)
-/**
- * @brief Replace a line with new text.
- * This function replaces line's text including EOL bytes. If the @p strText
- * does not include EOL bytes, the "line" does not get EOL bytes.
- * @param [in] pSource Editor view where text is changed.
- * @param [in] nLine Index of the line to change.
- * @param [in] pchText New text of the line.
- * @param [in] cchText New length of the line (not inc. EOL bytes).
- * @param [in] nAction Edit action to use.
- */
-void CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine,
-		const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
+void CDiffTextBuffer::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
-	LPCTSTR eol = GetEol(strText);
-	if (_tcscmp(GetLineEol(nLine), eol) == 0)
+	int endl,endc;
+	CString strText;
+	if (nLineBegin != nLineEnd || sbuf.GetLineLength(nLineEnd) > 0)
+		sbuf.GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, sbuf.GetLineLength(nLineEnd), strText);
+	strText += sbuf.GetLineEol(nLineEnd);
+
+	if (nLineBegin != nLineEnd || dbuf.GetFullLineLength(nLineEnd) > 0)
 	{
-		// (optimization) eols are the same, so just replace text inside line
-		// we must clean strText from its eol...
-		int eolLength = _tcslen(eol);
-		ReplaceLine(pSource, nLine, strText, strText.GetLength() - eolLength, nAction);
-		return;
+		int nLineEndSource = nLineEnd < dbuf.GetLineCount() ? nLineEnd : dbuf.GetLineCount();
+		if (nLineEnd+1 < GetLineCount())
+			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource + 1, 0, nAction);
+		else
+			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource, dbuf.GetLineLength(nLineEndSource), nAction); 
 	}
 
-	// we may need a last line as the DeleteText end is (x=0,y=line+1)
-	if (nLine + 1 == GetLineCount())
-		InsertGhostLine (pSource, GetLineCount());
+	if (int cchText = strText.GetLength())
+		dbuf.InsertText(pSource, nLineBegin, 0, strText, cchText, endl,endc, nAction);
 
-	if (GetFullLineLength(nLine))
-		DeleteText(pSource, nLine, 0, nLine + 1, 0, nAction); 
-	int endl, endc;
-	const int cchText = strText.GetLength();
-	if (cchText)
-		InsertText(pSource, nLine, 0, strText, cchText, endl, endc, nAction);
 }
 
 bool CDiffTextBuffer::curUndoGroup()

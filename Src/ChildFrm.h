@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ChildFrm.h 5446 2008-06-07 12:14:19Z jtuc $
 
 #if !defined(AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -72,27 +72,29 @@ protected:
 	{
 	public:
 		// ctr
-		MergeStatus(CChildFrame * pFrame, int base);
+		MergeStatus();
 		// Implement MergeEditStatus
 		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
-			int nChar, int nChars, LPCTSTR szEol);
+			int nChar, int nChars, LPCTSTR szEol, int nCodepage);
 		void UpdateResources();
 	protected:
 		void Update();
-	private:
+	public:
 		CChildFrame * m_pFrame;
 		int m_base; /**< 0 for left, 1 for right */
+	private:
 		String m_sLine;
 		int m_nColumn; /**< Current column, tab-expanded */
 		int m_nColumns; /**< Amount of columns, tab-expanded */
 		int m_nChar; /**< Current char */
 		int m_nChars; /**< Amount of chars in line */
+		int m_nCodepage;
 		String m_sEol;
 		String m_sEolDisplay;
+		String m_sCodepageName;
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
-	MergeStatus m_leftStatus;
-	MergeStatus m_rightStatus;
+	MergeStatus m_status[3];
 
 
 
@@ -127,8 +129,8 @@ private:
 	//{{AFX_MSG(CChildFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnIdleUpdateCmdUI();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

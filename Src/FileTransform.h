@@ -24,11 +24,12 @@
  *  @brief Declaration of file transformations
  */ 
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: FileTransform.h 6857 2009-06-25 07:46:29Z kimmov $
 
 #ifndef FileTransform_h
 #define FileTransform_h
 
+#include "unicoder.h"
 #include "resource.h"
 
 class UniFile;
@@ -188,7 +189,7 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler);
  *
  * @note Ansi files are not changed
  */
-BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite);
+BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::UNICODESET unicoding = ucr::NONE);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -231,6 +232,10 @@ BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite);
  * if other file is unicode or uses a different codepage
  */
 BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite);
+BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite);
+
+
+BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayOverwrite);
 
 
 /**

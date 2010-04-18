@@ -14,6 +14,11 @@ static char THIS_FILE[] = __FILE__;
 
 #define DEF_AUTOADD_STRING   _T(" <<new template>>")
 
+#ifndef SHACF_FILESYSTEM
+#define SHACF_FILESYSTEM 0x00000001
+#endif
+typedef HRESULT (WINAPI *SHAUTOCOMPLETE)(HWND hwndEdit, DWORD dwFlags);
+
 //	To use this in an app, you'll need to :
 //
 //	1) Place a normal edit control on your dialog. 
@@ -45,11 +50,16 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox
 
+HIMAGELIST CSuperComboBox::m_himlSystem = NULL;
+
 CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
 {
 	m_bEditChanged=FALSE;
 	m_bDoComplete = FALSE;
 	m_bAutoComplete = FALSE;
+	m_bHasImageList = FALSE;
+	m_bRecognizedMyself = FALSE;
+	m_bComboBoxEx = FALSE;
 
 	m_strCurSel = _T("");
 	if (bAdd)
@@ -82,17 +92,86 @@ CSuperComboBox::~CSuperComboBox()
 		::OleUninitialize();
 }
 
-BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBox)
+BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBoxEx)
 	//{{AFX_MSG_MAP(CSuperComboBox)
 	ON_CONTROL_REFLECT_EX(CBN_EDITCHANGE, OnEditchange)
 	ON_CONTROL_REFLECT_EX(CBN_SELCHANGE, OnSelchange)
 	ON_WM_CREATE()
 	ON_WM_DROPFILES()
+	ON_NOTIFY_REFLECT(CBEN_GETDISPINFO, OnGetDispInfo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox message handlers
+
+/**
+ * @brief Returns whether the window associated with this object is ComboBoxEx.
+ */
+BOOL CSuperComboBox::IsComboBoxEx()
+{
+	if (m_bRecognizedMyself)
+		return m_bComboBoxEx;
+
+	TCHAR szClassName[256];
+	GetClassName(m_hWnd, szClassName, sizeof(szClassName));
+	if (lstrcmpi(_T("ComboBoxEx32"), szClassName) == 0)
+		m_bComboBoxEx = TRUE;
+
+	m_bRecognizedMyself = TRUE;
+	return m_bComboBoxEx;
+}
+
+/**
+ * @brief Adds a string to the list box of a combo box
+ * @param lpszItem Pointer to the null-terminated string that is to be added. 
+ */
+int CSuperComboBox::AddString(LPCTSTR lpszItem)
+{
+	return InsertString(GetCount(), lpszItem);
+}
+
+/**
+ * @brief Inserts a string into the list box of a combo box.
+ * @param nIndex The zero-based index to the position in the list box that receives the string.
+ * @param lpszItem Pointer to the null-terminated string that is to be added. 
+ */
+int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
+{
+	if (IsComboBoxEx())
+	{
+		COMBOBOXEXITEM cbitem = {0};
+		cbitem.mask = CBEIF_TEXT |
+			(m_bHasImageList ? CBEIF_IMAGE|CBEIF_SELECTEDIMAGE : 0);
+		cbitem.pszText = (LPTSTR)lpszItem;
+		cbitem.iItem = nIndex;
+		cbitem.iImage = I_IMAGECALLBACK;
+		cbitem.iSelectedImage = I_IMAGECALLBACK;
+		return InsertItem(&cbitem);
+	}
+	else
+	{
+		return CComboBox::InsertString(nIndex, lpszItem);
+	}
+}
+
+/**
+ * @brief Gets the system image list and attaches the image list to a combo box control.
+ */
+BOOL CSuperComboBox::AttachSystemImageList()
+{
+	if (!m_himlSystem)
+	{
+		SHFILEINFO sfi = {0};
+		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T("C:\\"), 0, 
+			&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
+		if (!m_himlSystem)
+			return FALSE;
+	}
+	SetImageList(CImageList::FromHandle(m_himlSystem));
+	m_bHasImageList = TRUE;
+	return TRUE;
+}
 
 void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 {
@@ -110,6 +189,27 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	}
 }
 
+void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
+{
+	ASSERT(::IsWindow(m_hWnd));
+	CComboBox::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
+	rString.ReleaseBuffer();
+}
+
+int CSuperComboBox::GetLBTextLen(int nIndex) const
+{
+#ifdef _UNICODE
+	return CComboBox::GetLBTextLen(nIndex);
+#else
+	int nUnicodeLen = CComboBox::GetLBTextLen(nIndex);
+	char *pBuf = new char[nUnicodeLen * 2 + 1];
+	CComboBox::GetLBText(nIndex, pBuf);
+	int len = lstrlen(pBuf);
+	delete [] pBuf;
+	return len;
+#endif
+}
+
 /** 
  * @brief Saves strings in combobox.
  * This function saves strings in combobox, in editbox and in dropdown.
@@ -124,7 +224,10 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	CString strItem,s,s2;
 	int i,idx,cnt = GetCount();
 
-	GetWindowText(strItem);
+	if (IsComboBoxEx())
+		GetEditCtrl()->GetWindowText(strItem);
+	else
+		GetWindowText(strItem);
 	if (!strItem.IsEmpty())
 	{
 		AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), strItem);
@@ -296,9 +399,19 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 			m_bAutoComplete = FALSE;
 
 			// ComboBox's edit control is alway 1001.
-			CWnd *pWnd = GetDlgItem(1001);
+			CWnd *pWnd = IsComboBoxEx() ? this->GetEditCtrl() : GetDlgItem(1001);
 			ASSERT(NULL != pWnd);
-			::SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
+			SHAUTOCOMPLETE pfnSHAutoComplete;
+
+			HANDLE hSHlwapi = GetModuleHandle(_T("SHLWAPI.DLL"));
+			if (!hSHlwapi)
+				hSHlwapi = LoadLibrary(_T("SHLWAPI.DLL"));
+			if (hSHlwapi)
+			{
+				pfnSHAutoComplete = (SHAUTOCOMPLETE)GetProcAddress((HINSTANCE)hSHlwapi, "SHAutoComplete");
+				if (pfnSHAutoComplete)
+					pfnSHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
+			}
 
 			break;
 		}
@@ -388,6 +501,64 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	SetWindowText(firstFile);
 	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
 		(CBN_EDITCHANGE << 16), (LPARAM)m_hWnd);
+}
+
+static DWORD WINAPI SHGetFileInfoThread(LPVOID pParam)
+{
+	TCHAR szPath[MAX_PATH];
+	lstrcpy(szPath, (LPCTSTR)pParam);
+
+	SHFILEINFO sfi = {0};
+	sfi.iIcon = -1;
+	SHGetFileInfo(szPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+	return sfi.iIcon;
+}
+
+/**
+ * @brief A message handler for CBEN_GETDISPINFO message
+ */
+void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
+{
+	NMCOMBOBOXEX *pDispInfo = (NMCOMBOBOXEX *)pNotifyStruct;
+	if (pDispInfo && pDispInfo->ceItem.pszText && m_bHasImageList)
+	{
+		pDispInfo->ceItem.mask |= CBEIF_DI_SETITEM;
+		SHFILEINFO sfi = {0};
+		TCHAR szDrive[5] = {0};
+		CString sText;
+		GetLBText(pDispInfo->ceItem.iItem, sText);
+		lstrcpyn(szDrive, sText, 4);
+		if (sText[1] != '\\' && GetDriveType(szDrive) != DRIVE_REMOTE)
+		{
+			// The path is not a network path.
+			if (SHGetFileInfo(sText, 0, &sfi, sizeof(sfi), 
+			    SHGFI_SYSICONINDEX) != 0)
+			{
+				pDispInfo->ceItem.iImage = sfi.iIcon;
+				pDispInfo->ceItem.iSelectedImage = sfi.iIcon;
+			}
+		}
+		else
+		{
+			// The path is a network path. 
+			// try to get the index of a system image list icon with timeout.
+			DWORD dwThreadId;
+			HANDLE hThread = CreateThread(NULL, 0, SHGetFileInfoThread, 
+				(VOID *)(LPCTSTR)sText, 0, &dwThreadId);
+			if (hThread)
+			{
+				DWORD dwResult = WaitForSingleObject(hThread, 1000);
+				if (dwResult == WAIT_OBJECT_0)
+				{
+					GetExitCodeThread(hThread, (DWORD*)&sfi.iIcon);
+					pDispInfo->ceItem.iImage = sfi.iIcon;
+					pDispInfo->ceItem.iSelectedImage = sfi.iIcon;
+				}
+				CloseHandle(hThread);
+			}
+		}
+	}
+	*pResult = 0;
 }
 
 //////////////////////////////////////////////////////////////////

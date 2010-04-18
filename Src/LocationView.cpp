@@ -27,7 +27,7 @@
  */
 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: LocationView.cpp 7127 2010-03-10 21:03:58Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -64,7 +64,7 @@ static const int DIFFMARKER_BOTTOM = 3;
 /** @brief Width of difference marker. */
 static const int DIFFMARKER_WIDTH = 6;
 /** @brief Minimum height of the visible area indicator */
-static const int INDICATOR_MIN_HEIGHT = 5;
+static const int INDICATOR_MIN_HEIGHT = 2;
 
 /** 
  * @brief Bars in location pane
@@ -72,8 +72,9 @@ static const int INDICATOR_MIN_HEIGHT = 5;
 enum LOCBAR_TYPE
 {
 	BAR_NONE = -1,	/**< No bar in given coords */
-	BAR_LEFT,		/**< Left side bar in given coords */
-	BAR_RIGHT,		/**< Right side bar in given coords */
+	BAR_0,			/**< first bar in given coords */
+	BAR_1,			/**< second bar in given coords */
+	BAR_2,			/**< third side bar in given coords */
 	BAR_YAREA,		/**< Y-Coord in bar area */
 };
 
@@ -97,8 +98,11 @@ CLocationView::CLocationView()
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
-	m_view[MERGE_VIEW_LEFT] = NULL;
-	m_view[MERGE_VIEW_RIGHT] = NULL;
+	for (int pane = 0; pane < countof(m_view); pane++)
+	{
+		m_view[pane] = NULL;
+		m_nSubLineCount[pane] = 0;
+	}
 }
 
 CLocationView::~CLocationView()
@@ -118,6 +122,7 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_SIZE()
 	ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
+	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -167,12 +172,13 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	UNREFERENCED_PARAMETER(pSender);
 	UNREFERENCED_PARAMETER(lHint);
 	CMergeDoc* pDoc = GetDocument();
-	m_view[MERGE_VIEW_LEFT] = pDoc->GetLeftView();
-	m_view[MERGE_VIEW_RIGHT] = pDoc->GetRightView();
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		m_view[pane] = pDoc->GetView(pane);
 
-	// Give pointer to MergeEditView
-	m_view[MERGE_VIEW_LEFT]->SetLocationView(this);
-	m_view[MERGE_VIEW_RIGHT]->SetLocationView(this);
+		// Give pointer to MergeEditView
+		m_view[pane]->SetLocationView(this);
+	}
 
 	m_bRecalculateBlocks = TRUE;
 	Invalidate();
@@ -184,6 +190,14 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 {
 	return FALSE;
+}
+
+void CLocationView::OnSetFocus(CWnd* pOldWnd)
+{
+	if (pOldWnd && pOldWnd->IsChild(this))
+		m_view[0]->SetFocus();
+	else
+		pOldWnd->SetFocus();
 }
 
 /**
@@ -211,16 +225,20 @@ void CLocationView::DrawBackground(CDC* pDC)
  */
 void CLocationView::CalculateBars()
 {
+	CMergeDoc *pDoc = GetDocument();
 	CRect rc;
 	GetClientRect(rc);
-	const int w = rc.Width() / 4;
-	m_leftBar.left = (rc.Width() - 2 * w) / 3;
-	m_leftBar.right = m_leftBar.left + w;
-	m_rightBar.left = 2 * m_leftBar.left + w;
-	m_rightBar.right = m_rightBar.left + w;
-	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
-	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
-			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
+	const int w = rc.Width() / (pDoc->m_nBuffers * 2);
+	const int margin = (rc.Width() - w * pDoc->m_nBuffers) / (pDoc->m_nBuffers + 1);
+	int pane;
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		m_bar[pane].left = pane * (w + margin) + margin;
+		m_bar[pane].right = m_bar[pane].left + w;
+	}	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
+	int nbLines = 0;
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+		nbLines = max(nbLines, m_view[pane]->GetSubLineCount());
 
 	m_lineInPix = hTotal / nbLines;
 	m_pixInLines = nbLines / hTotal;
@@ -230,10 +248,11 @@ void CLocationView::CalculateBars()
 		m_pixInLines = 1 / MAX_LINEPIX;
 	}
 
-	m_leftBar.top = Y_OFFSET - 1;
-	m_rightBar.top = Y_OFFSET - 1;
-	m_leftBar.bottom = (LONG)(m_lineInPix * nbLines + Y_OFFSET + 1);
-	m_rightBar.bottom = m_leftBar.bottom;
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		m_bar[pane].top = Y_OFFSET - 1;
+		m_bar[pane].bottom = (LONG)(m_lineInPix * nbLines + Y_OFFSET + 1);
+	}
 }
 
 /**
@@ -256,99 +275,53 @@ void CLocationView::CalculateBlocks()
 	if (nDiffs > 0)
 		m_diffBlocks.reserve(nDiffs); // Pre-allocate space for the list.
 
+	int nLineCount = m_view[0]->GetLineCount();
 	int nDiff = pDoc->m_diffList.FirstSignificantDiff();
 	while (nDiff != -1)
 	{
 		DIFFRANGE diff;
 		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
 
-		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
+		CMergeEditView *pView = m_view[0];
 
 		DiffBlock block;
-		//there are no blanks on both side
-		if ((diff.blank0 < 0) && (diff.blank1 < 0))
-		{
-			CalculateBlocksPixel(
-				pView->GetSubLineIndex(diff.dbegin0),
-				pView->GetSubLineIndex(diff.dend0),
-				pView->GetSubLines(diff.dend0),	nBeginY, nEndY);
+		int i, nBlocks = 0;
+		int bs[4] = {0};
+		int minY = INT_MAX, maxY = -1;
 
-			block.top_line = diff.dbegin0;
-			block.bottom_line = diff.dend0;
-			block.top_coord = nBeginY;
-			block.bottom_coord = nEndY;
-			block.diff_index = nDiff;
-			m_diffBlocks.push_back(block);
-		}
-		//side0 has blank lines?
-		else if (diff.blank0 > 0)
+		bs[nBlocks++] = diff.dbegin[0];
+		for (i = 0; i < pDoc->m_nBuffers; i++)
 		{
-			//Is there a common block on side0?
-			if ((int)diff.dbegin0 < diff.blank0)
+			if (diff.blank[i] >= 0)
 			{
-				CalculateBlocksPixel(
-					pView->GetSubLineIndex(diff.dbegin0),
-					pView->GetSubLineIndex(diff.blank0 - 1),
-					pView->GetSubLines(diff.blank0 - 1), nBeginY, nEndY);
-
-				block.top_line = diff.dbegin0;
-				block.bottom_line = diff.blank0 - 1;
-				block.top_coord = nBeginY;
-				block.bottom_coord = nEndY;
-				block.diff_index = nDiff;
-				m_diffBlocks.push_back(block);
+				if (minY > diff.blank[i])
+					minY = diff.blank[i];
+				if (maxY < diff.blank[i])
+					maxY = diff.blank[i];
 			}
-
-			// First diff having only blank lines in other side causes the
-			// blank value be -1. Set it to 0 as top line of diff.
-			if (diff.blank0 == -1)
-				diff.blank0 = 0;
-
-			// Now the block for blank lines side0!
-			CalculateBlocksPixel(
-				pView->GetSubLineIndex(diff.blank0),
-				pView->GetSubLineIndex(diff.dend1),
-				pView->GetSubLines(diff.dend1), nBeginY, nEndY);
-
-			block.top_line = diff.blank0;
-			block.bottom_line = diff.dend1;
-			block.top_coord = nBeginY;
-			block.bottom_coord = nEndY;
-			block.diff_index = nDiff;
-			m_diffBlocks.push_back(block);
 		}
-		//side1 has blank lines?
-		else
+		if (minY == maxY)
 		{
-			// Is there a common block on side1?
-			if ((int)diff.dbegin0 < diff.blank1)
-			{
-				CalculateBlocksPixel(
-					pView->GetSubLineIndex(diff.dbegin0),
-					pView->GetSubLineIndex(diff.blank1 - 1),
-					pView->GetSubLines(diff.blank1 - 1), nBeginY, nEndY);
+			bs[nBlocks++] = minY;
+		}
+		else if (maxY != -1)
+		{
+			bs[nBlocks++] = minY;
+			bs[nBlocks++] = maxY;
+		}
+		bs[nBlocks] = diff.dend[0] + 1;
+		if (bs[nBlocks] >= nLineCount)
+			bs[nBlocks] = nLineCount - 1;
 
-				block.top_line = diff.dbegin0;
-				block.bottom_line = diff.blank1 - 1;
-				block.top_coord = nBeginY;
-				block.bottom_coord = nEndY;
-				block.diff_index = nDiff;
-				m_diffBlocks.push_back(block);
-			}
-
-			// First diff having only blank lines in other side causes the
-			// blank value be -1. Set it to 0 as top line of diff.
-			if (diff.blank1 == -1)
-				diff.blank1 = 0;
-
-			// Now the block for blank lines side1!
+		for (i = 0; i < nBlocks; i++)
+		{
 			CalculateBlocksPixel(
-				pView->GetSubLineIndex(diff.blank1),
-				pView->GetSubLineIndex(diff.dend0),
-				pView->GetSubLines(diff.dend0), nBeginY, nEndY);
+				pView->GetSubLineIndex(bs[i]),
+				pView->GetSubLineIndex(bs[i + 1]),
+				pView->GetSubLines(bs[i + 1]), nBeginY, nEndY);
 
-			block.top_line = diff.blank1;
-			block.bottom_line = diff.dend0;
+			block.top_line = bs[i];
+			block.bottom_line = bs[i + 1];
 			block.top_coord = nBeginY;
 			block.bottom_coord = nEndY;
 			block.diff_index = nDiff;
@@ -390,21 +363,32 @@ void CLocationView::CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
  */
 void CLocationView::OnDraw(CDC* pDC)
 {
-	ASSERT(m_view[MERGE_VIEW_LEFT] != NULL);
-	ASSERT(m_view[MERGE_VIEW_RIGHT] != NULL);
+	ASSERT(m_view[0] != NULL);
+	ASSERT(m_view[1] != NULL);
 
-	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
+	CMergeDoc *pDoc = GetDocument();
+	int pane;
+	IF_IS_TRUE_ALL (m_view[pane] == NULL, pane, pDoc->m_nBuffers)
 		return;
 
-	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
+	if (!m_view[0]->IsInitialized()) return;
+
+	BOOL bEditedAfterRescan = FALSE;
+	int nPaneNotModified = -1;
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		if (!pDoc->IsEditedAfterRescan(pane))
+			nPaneNotModified = pane;
+		else
+			bEditedAfterRescan = TRUE;
+	}
 
 	CRect rc;
 	GetClientRect(&rc);
 
 	CMemDC dc(pDC, &rc);
 
-	COLORREF cr0 = CLR_NONE; // Left side color
-	COLORREF cr1 = CLR_NONE; // Right side color
+	COLORREF cr[3] = {CLR_NONE, CLR_NONE, CLR_NONE};
 	COLORREF crt = CLR_NONE; // Text color
 	BOOL bwh = FALSE;
 
@@ -417,8 +401,17 @@ void CLocationView::OnDraw(CDC* pDC)
 	CPen* oldObj = (CPen*)dc.SelectStockObject(BLACK_PEN);
 	CBrush brush(m_view[0]->GetColor(COLORINDEX_WHITESPACE));
 	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
-	dc.Rectangle(m_leftBar);
-	dc.Rectangle(m_rightBar);
+	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+	{
+		int nBottom = (int)(m_lineInPix * m_view[pane]->GetSubLineCount() + Y_OFFSET + 1);
+		CBrush *pOldBrush = NULL;
+		if (pDoc->IsEditedAfterRescan(pane))
+			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);
+		dc.Rectangle(m_bar[pane]);
+		if (pOldBrush)
+			dc.SelectObject(pOldBrush);
+	}
+	dc.SelectObject(oldBrush);
 	dc.SelectObject(oldBrush);
 	dc.SelectObject(oldObj);
 
@@ -429,27 +422,28 @@ void CLocationView::OnDraw(CDC* pDC)
 	if (m_bRecalculateBlocks)
 		CalculateBlocks();
 
-	CMergeDoc *pDoc = GetDocument();
 	int nPrevEndY = -1;
 	const int nCurDiff = pDoc->GetCurrentDiff();
 
 	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
-	while (iter != m_diffBlocks.end())
+	for (; iter != m_diffBlocks.end(); iter++)
 	{
-		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
+		if (nPaneNotModified == -1)
+			continue;
+		CMergeEditView *pView = m_view[nPaneNotModified];
 		const BOOL bInsideDiff = (nCurDiff == (*iter).diff_index);
 
 		if ((nPrevEndY != (*iter).bottom_coord) || bInsideDiff)
 		{
-			// Draw left side block
-			m_view[MERGE_VIEW_LEFT]->GetLineColors2((*iter).top_line, 0, cr0, crt, bwh);
-			CRect r0(m_leftBar.left, (*iter).top_coord, m_leftBar.right, (*iter).bottom_coord);
-			DrawRect(&dc, r0, cr0, bInsideDiff);
-
-			// Draw right side block
-			m_view[MERGE_VIEW_RIGHT]->GetLineColors2((*iter).top_line, 0, cr1, crt, bwh);
-			CRect r1(m_rightBar.left, (*iter).top_coord, m_rightBar.right, (*iter).bottom_coord);
-			DrawRect(&dc, r1, cr1, bInsideDiff);
+			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+			{
+				if (pDoc->IsEditedAfterRescan(pane))
+					continue;
+				// Draw block
+				m_view[pane]->GetLineColors2((*iter).top_line, 0, cr[pane], crt, bwh);
+				CRect r(m_bar[pane].left, (*iter).top_coord, m_bar[pane].right, (*iter).bottom_coord);
+				DrawRect(&dc, r, cr[pane], bInsideDiff);
+			}
 		}
 		nPrevEndY = (*iter).bottom_coord;
 
@@ -475,62 +469,67 @@ void CLocationView::OnDraw(CDC* pDC)
 			break;
 		}
 
-		if (bDisplayConnectorFromLeft)
+		if (bEditedAfterRescan)
+			continue;
+
+		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
-			int apparent0 = (*iter).top_line;
-			int apparent1 = pDoc->RightLineInMovedBlock(apparent0);
-			const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
-			if (apparent1 != -1)
+			if (bDisplayConnectorFromLeft && pane < 2)
 			{
-				MovedLine line;
-				CPoint start;
-				CPoint end;
+				int apparent0 = (*iter).top_line;
+				int apparent1 = pDoc->RightLineInMovedBlock(pane, apparent0);
+				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
+				if (apparent1 != -1)
+				{
+					MovedLine line;
+					CPoint start;
+					CPoint end;
 
-				apparent0 = pView->GetSubLineIndex(apparent0);
-				apparent1 = pView->GetSubLineIndex(apparent1);
+					apparent0 = pView->GetSubLineIndex(apparent0);
+					apparent1 = pView->GetSubLineIndex(apparent1);
 
-				start.x = m_leftBar.right;
-				int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-				int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
-				start.y = leftUpper + (leftLower - leftUpper) / 2;
-				end.x = m_rightBar.left;
-				int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-				int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
-				end.y = rightUpper + (rightLower - rightUpper) / 2;
-				line.ptLeft = start;
-				line.ptRight = end;
-				m_movedLines.AddTail(line);
+					start.x = m_bar[pane].right;
+					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
+					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
+					start.y = leftUpper + (leftLower - leftUpper) / 2;
+					end.x = m_bar[pane + 1].left;
+					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
+					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
+					end.y = rightUpper + (rightLower - rightUpper) / 2;
+					line.ptLeft = start;
+					line.ptRight = end;
+					m_movedLines.AddTail(line);
+				}
+			}
+
+			if (bDisplayConnectorFromRight && pane > 0)
+			{
+				int apparent1 = (*iter).top_line;
+				int apparent0 = pDoc->LeftLineInMovedBlock(pane, apparent1);
+				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
+				if (apparent0 != -1)
+				{
+					MovedLine line;
+					CPoint start;
+					CPoint end;
+
+					apparent0 = pView->GetSubLineIndex(apparent0);
+					apparent1 = pView->GetSubLineIndex(apparent1);
+
+					start.x = m_bar[pane - 1].right;
+					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
+					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
+					start.y = leftUpper + (leftLower - leftUpper) / 2;
+					end.x = m_bar[pane].left;
+					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
+					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
+					end.y = rightUpper + (rightLower - rightUpper) / 2;
+					line.ptLeft = start;
+					line.ptRight = end;
+					m_movedLines.AddTail(line);
+				}
 			}
 		}
-
-		if (bDisplayConnectorFromRight)
-		{
-			int apparent1 = (*iter).top_line;
-			int apparent0 = pDoc->LeftLineInMovedBlock(apparent1);
-			const int nBlockHeight = (*iter).bottom_line - (*iter).top_line;
-			if (apparent0 != -1)
-			{
-				MovedLine line;
-				CPoint start;
-				CPoint end;
-
-				apparent0 = pView->GetSubLineIndex(apparent0);
-				apparent1 = pView->GetSubLineIndex(apparent1);
-
-				start.x = m_leftBar.right;
-				int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-				int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
-				start.y = leftUpper + (leftLower - leftUpper) / 2;
-				end.x = m_rightBar.left;
-				int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-				int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
-				end.y = rightUpper + (rightLower - rightUpper) / 2;
-				line.ptLeft = start;
-				line.ptRight = end;
-				m_movedLines.AddTail(line);
-			}
-		}
-		++iter;
 	}
 
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
@@ -620,7 +619,7 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 			nSubLine = 0;
 
 		// Just a random choose as both view share the same scroll bar.
-		CWnd *pView = m_view[MERGE_VIEW_LEFT];
+		CWnd *pView = m_view[0];
 
 		SCROLLINFO si = {0};
 		si.cbSize = sizeof(si);
@@ -631,9 +630,10 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 		// The views are child windows of a splitter windows. Splitter window
 		// doesn't accept scroll bar updates not send from scroll bar control.
 		// So we need to update both views.
-		pView->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
-		pView = m_view[MERGE_VIEW_RIGHT];
-		pView->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
+		int pane;
+		int nBuffers = GetDocument()->m_nBuffers;
+		for (pane = 0; pane < nBuffers; pane++)
+			m_view[pane]->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
 	}
 
 	CView::OnMouseMove(nFlags, point);
@@ -667,24 +667,29 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 {
 	CRect rc;
 	GetClientRect(rc);
+	CMergeDoc* pDoc = GetDocument();
+
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+		if (m_view[pane] == NULL)
+			return FALSE;
 
 	int line = -1;
 	int bar = IsInsideBar(rc, point);
-	if (bar == BAR_LEFT || bar == BAR_RIGHT)
+	if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
 	{
 		line = GetLineFromYPos(point.y, bar, bRealLine);
 	}
 	else if (bar == BAR_YAREA)
 	{
 		// Outside bars, use left bar
-		bar = BAR_LEFT;
+		bar = BAR_0;
 		line = GetLineFromYPos(point.y, bar, FALSE);
 	}
 	else
 		return false;
 
-	m_view[MERGE_VIEW_LEFT]->GotoLine(line, bRealLine, bar);
-	if (bar == BAR_LEFT || bar == BAR_RIGHT)
+	m_view[0]->GotoLine(line, bRealLine, bar);
+	if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
 		m_view[bar]->SetFocus();
 
 	return true;
@@ -701,7 +706,7 @@ void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		// Scroll did not come frome a scroll bar
 		// Send it to the right view instead
  	  CMergeDoc *pDoc = GetDocument();
-		pDoc->GetRightView()->SendMessage(WM_VSCROLL,
+		pDoc->GetView(pDoc->m_nBuffers - 1)->SendMessage(WM_VSCROLL,
 			MAKELONG(nSBCode, nPos), (LPARAM)NULL);
 		return;
 	}
@@ -765,7 +770,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	{
 		// If outside bar area use left bar
 		if (bar == BAR_YAREA)
-			bar = BAR_LEFT;
+			bar = BAR_0;
 		nLine = GetLineFromYPos(pt.y, bar);
 		strNum.Format(_T("%d"), nLine + 1); // Show linenumber not lineindex
 	}
@@ -783,12 +788,12 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		m_view[MERGE_VIEW_LEFT]->GotoLine(nLine, true, bar);
-	if (bar == BAR_LEFT || bar == BAR_RIGHT)
-		m_view[bar]->SetFocus();
+		m_view[0]->GotoLine(nLine, true, bar);
+		if (bar == BAR_0 || bar == BAR_1 || bar == BAR_2)
+			m_view[bar]->SetFocus();
 		break;
 	case ID_EDIT_WMGOTO:
-		m_view[MERGE_VIEW_LEFT]->WMGoto();
+		m_view[0]->WMGoto();
 		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
@@ -814,8 +819,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 {
-	CMergeEditView *pView = (bar == BAR_LEFT) ? m_view[MERGE_VIEW_LEFT] : 
-		m_view[MERGE_VIEW_RIGHT];
+	CMergeEditView *pView = m_view[bar];
 
 	int nSubLineIndex = (int) (m_pixInLines * (nYCoord - Y_OFFSET));
 
@@ -859,17 +863,15 @@ int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 {
 	int retVal = BAR_NONE;
-
-	if (m_leftBar.PtInRect(pt))
-		retVal = BAR_LEFT;
-	else if (m_rightBar.PtInRect(pt))
-		retVal = BAR_RIGHT;
-	else if (pt.x >= INDICATOR_MARGIN && pt.x < (rc.Width() - INDICATOR_MARGIN) &&
-		pt.y > m_leftBar.top && pt.y <= m_leftBar.bottom)
+	CMergeDoc *pDoc = GetDocument();
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		retVal = BAR_YAREA;
+		if (m_bar[pane].PtInRect(pt))
+		{
+			retVal = BAR_0 + pane;
+			break;
+		}
 	}
-
 	return retVal;
 }
 
@@ -883,19 +885,22 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
+	const int nScreenLines = pDoc->GetView(0)->GetScreenLines();
+	
 	if (nTopLine == -1)
-		nTopLine = pDoc->GetRightView()->GetTopSubLine();
+		nTopLine = pDoc->GetView(0)->GetTopSubLine();
 	
 	if (nBottomLine == -1)
 	{
-		const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
+		const int nScreenLines = pDoc->GetView(1)->GetScreenLines();
 		nBottomLine = nTopLine + nScreenLines;
 	}
 
 	CRect rc;
 	GetClientRect(rc);
-	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
-			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
+	int nbLines = INT_MAX;
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+		nbLines = min(nbLines, m_view[pane]->GetSubLineCount());
 
 	int nTopCoord = static_cast<int>(Y_OFFSET +
 			(static_cast<double>(nTopLine * m_lineInPix)));
@@ -949,23 +954,35 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
 	if (m_bDrawn)
 	{
-		int nTopCoord = static_cast<int>(Y_OFFSET +
-				(static_cast<double>(nTopLine * m_lineInPix)));
-		int nBottomCoord = static_cast<int>(Y_OFFSET +
-				(static_cast<double>(nBottomLine * m_lineInPix)));
-		if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
+		static int prevsublinecount[3] = {0};
+		CMergeDoc *pDoc = GetDocument();
+		int pane;
+		IF_IS_TRUE_ALL(m_nSubLineCount[pane] == m_view[pane]->GetSubLineCount(), pane, pDoc->m_nBuffers)
 		{
-			// Visible area was changed
-			CDC *pDC = GetDC();
-			if (m_pSavedBackgroundBitmap)
+			int nTopCoord = static_cast<int>(Y_OFFSET +
+					(static_cast<double>(nTopLine * m_lineInPix)));
+			int nBottomCoord = static_cast<int>(Y_OFFSET +
+					(static_cast<double>(nBottomLine * m_lineInPix)));
+			if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
 			{
-				CMemDC dc(pDC);
-				// Clear previous visible rect
-				DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap);
+				// Visible area was changed
+				CDC *pDC = GetDC();
+				if (m_pSavedBackgroundBitmap)
+				{
+					CMemDC dc(pDC);
+					// Clear previous visible rect
+					DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap);
 
-				DrawVisibleAreaRect(&dc, nTopLine, nBottomLine);
+					DrawVisibleAreaRect(&dc, nTopLine, nBottomLine);
+				}
+				ReleaseDC(pDC);
 			}
-			ReleaseDC(pDC);
+		}
+		else
+		{
+			InvalidateRect(NULL);
+			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+				m_nSubLineCount[pane] = m_view[pane]->GetSubLineCount();
 		}
 	}
 }
@@ -975,8 +992,9 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
  */
 void CLocationView::OnClose()
 {
-	m_view[MERGE_VIEW_LEFT]->SetLocationView(NULL);
-	m_view[MERGE_VIEW_RIGHT]->SetLocationView(NULL);
+	CMergeDoc* pDoc = GetDocument();
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+		m_view[pane]->SetLocationView(NULL);
 
 	CView::OnClose();
 }
@@ -1047,12 +1065,14 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
  */
 void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 {
+	int nBuffers = GetDocument()->m_nBuffers;
+
 	CPoint points[3];
-	points[0].x = m_leftBar.left - DIFFMARKER_WIDTH - 1;
+	points[0].x = m_bar[0].left - DIFFMARKER_WIDTH - 1;
 	points[0].y = yCoord - DIFFMARKER_TOP;
-	points[1].x = m_leftBar.left - 1;
+	points[1].x = m_bar[0].left - 1;
 	points[1].y = yCoord;
-	points[2].x = m_leftBar.left - DIFFMARKER_WIDTH - 1;
+	points[2].x = m_bar[0].left - DIFFMARKER_WIDTH - 1;
 	points[2].y = yCoord + DIFFMARKER_BOTTOM;
 
 	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
@@ -1062,9 +1082,9 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 	pDC->SetPolyFillMode(WINDING);
 	pDC->Polygon(points, 3);
 
-	points[0].x = m_rightBar.right + 1 + DIFFMARKER_WIDTH;
-	points[1].x = m_rightBar.right + 1;
-	points[2].x = m_rightBar.right + 1 + DIFFMARKER_WIDTH;
+	points[0].x = m_bar[nBuffers - 1].right + 1 + DIFFMARKER_WIDTH;
+	points[1].x = m_bar[nBuffers - 1].right + 1;
+	points[2].x = m_bar[nBuffers - 1].right + 1 + DIFFMARKER_WIDTH;
 	pDC->Polygon(points, 3);
 
 	pDC->SelectObject(pOldBrush);

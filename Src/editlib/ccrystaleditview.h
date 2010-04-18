@@ -91,6 +91,9 @@ protected :
     void Paste ();
     void Cut ();
     BOOL DeleteCurrentSelection ();
+    BOOL DeleteCurrentColumnSelection (int nAction, BOOL bFlushUndoGroup = TRUE, BOOL bUpdateCursorPosition = TRUE);
+	BOOL DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction);
+    BOOL InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, BOOL bFlushUndoGroup = TRUE);
 
     // Attributes
 public :
@@ -122,7 +125,7 @@ public :
 
     BOOL ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
 
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
 
     virtual bool DoSetTextType (TextDefinition *def);
 

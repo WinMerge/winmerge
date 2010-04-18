@@ -5,7 +5,7 @@
  *
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: MergeDocDiffSync.cpp 7054 2009-12-22 17:59:08Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -39,8 +39,8 @@ void CMergeDoc::AdjustDiffBlocks()
 	{
 		const DIFFRANGE & diffrange = *m_diffList.DiffRangeAt(nDiff);
 		// size map correctly (it will hold one entry for each left-side line
-		int nlines0 = diffrange.end0 - diffrange.begin0 + 1;
-		int nlines1 = diffrange.end1 - diffrange.begin1 + 1;
+		int nlines0 = diffrange.end[0] - diffrange.begin[0] + 1;
+		int nlines1 = diffrange.end[1] - diffrange.begin[1] + 1;
 		if (nlines0>0 && nlines1>0)
 		{
 			// Call worker to do all lines in block
@@ -56,8 +56,8 @@ void CMergeDoc::AdjustDiffBlocks()
 			while (iter != diffmap.m_map.end())
 			{
 				TCHAR buf[256];
-				wsprintf(buf, _T("begin0=%d begin1=%d diffmap[%d]=%d\n"),
-						diffrange.begin0, diffrange.begin1, i, iter);
+				wsprintf(buf, _T("begin[0]=%d begin[1]=%d diffmap[%d]=%d\n"), 
+						diffrange.begin[0], diffrange.begin[1], i, diffmap.m_map[i]);
 				OutputDebugString(buf);
 				iter++;
 				i++;
@@ -79,12 +79,12 @@ void CMergeDoc::AdjustDiffBlocks()
 								map_line0 != DiffMap::BAD_MAP_ENTRY)
 							break;
 					}
-					dr.begin0  = diffrange.begin0 + line0;
-					dr.begin1  = diffrange.begin1 + line1;
-					dr.end0    = diffrange.begin0 + lineend0 - 1;
-					dr.end1    = dr.begin1 - 1;
-					dr.blank0  = dr.blank1 = -1;
-					dr.op      = OP_DIFF;
+					dr.begin[0]  = diffrange.begin[0] + line0;
+					dr.begin[1]  = diffrange.begin[1] + line1;
+					dr.end[0]    = diffrange.begin[0] + lineend0 - 1;
+					dr.end[1]    = dr.begin[1] - 1;
+					dr.blank[0]  = dr.blank[1] = -1;
+					dr.op        = OP_DIFF;
 					newDiffList.AddDiff(dr);
 					line0 = lineend0;
 				}
@@ -92,12 +92,12 @@ void CMergeDoc::AdjustDiffBlocks()
 				{
 					if (map_line0 > line1)
 					{
-						dr.begin0  = diffrange.begin0 + line0;
-						dr.begin1  = diffrange.begin1 + line1;
-						dr.end0    = dr.begin0 - 1;
-						dr.end1    = diffrange.begin1 + map_line0 - 1;
-						dr.blank0  = dr.blank1 = -1;
-						dr.op      = OP_DIFF;
+						dr.begin[0]  = diffrange.begin[0] + line0;
+						dr.begin[1]  = diffrange.begin[1] + line1;
+						dr.end[0]    = dr.begin[0] - 1;
+						dr.end[1]    = diffrange.begin[1] + map_line0 - 1;
+						dr.blank[0]  = dr.blank[1] = -1;
+						dr.op        = OP_DIFF;
 						newDiffList.AddDiff(dr);
 						line1 = map_line0;
 					} 
@@ -107,12 +107,12 @@ void CMergeDoc::AdjustDiffBlocks()
 						if (map_line0 != diffmap.m_map[lineend0 - 1] + 1)
 							break;
 					}
-					dr.begin0  = diffrange.begin0 + line0;
-					dr.begin1  = diffrange.begin1 + line1;
-					dr.end0    = diffrange.begin0 + lineend0 - 1;
-					dr.end1    = diffrange.begin1 + diffmap.m_map[lineend0 - 1];
-					dr.blank0  = dr.blank1 = -1;
-					dr.op      = diffrange.op == OP_TRIVIAL ? OP_TRIVIAL : OP_DIFF;
+					dr.begin[0]  = diffrange.begin[0] + line0;
+					dr.begin[1]  = diffrange.begin[1] + line1;
+					dr.end[0]    = diffrange.begin[0] + lineend0 - 1;
+					dr.end[1]    = diffrange.begin[1] + diffmap.m_map[lineend0 - 1];
+					dr.blank[0]  = dr.blank[1] = -1;
+					dr.op        = diffrange.op == OP_TRIVIAL ? OP_TRIVIAL : OP_DIFF;
 					newDiffList.AddDiff(dr);
 					line0 = lineend0;
 					line1 = diffmap.m_map[lineend0 - 1] + 1;
@@ -120,12 +120,12 @@ void CMergeDoc::AdjustDiffBlocks()
 			}
 			if (line1 <= hi1)
 			{
-				dr.begin0  = diffrange.begin0 + line0;
-				dr.begin1  = diffrange.begin1 + line1;
-				dr.end0    = dr.begin0 - 1;
-				dr.end1    = diffrange.begin1 + hi1;
-				dr.blank0  = dr.blank1 = -1;
-				dr.op      = diffrange.op == OP_TRIVIAL ? OP_TRIVIAL : OP_DIFF;
+				dr.begin[0]  = diffrange.begin[0] + line0;
+				dr.begin[1]  = diffrange.begin[1] + line1;
+				dr.end[0]    = dr.begin[0] - 1;
+				dr.end[1]    = diffrange.begin[1] + hi1;
+				dr.blank[0]  = dr.blank[1] = -1;
+				dr.op        = diffrange.op == OP_TRIVIAL ? OP_TRIVIAL : OP_DIFF;
 				newDiffList.AddDiff(dr);
 			}
 		}
@@ -143,8 +143,8 @@ void CMergeDoc::AdjustDiffBlocks()
 #ifdef _DEBUG
 		TCHAR buf[256];
 		DIFFRANGE di = *newDiffList.DiffRangeAt(nDiff);
-		wsprintf(buf, _T("%d: begin0=%d end0=%d begin1=%d end1=%d\n"), nDiff,
-				di.begin0, di.end0, di.begin1, di.end1);
+		wsprintf(buf, _T("%d: begin[0]=%d end[0]=%d begin[1]=%d end[1]=%d\n"), nDiff,
+				di.begin[0], di.end[0], di.begin[1], di.end[1]);
 		OutputDebugString(buf);
 #endif
 		m_diffList.AddDiff(*newDiffList.DiffRangeAt(nDiff));
@@ -162,6 +162,10 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
+	String str[2];
+	str[0] = sLine0;
+	str[1] = sLine1;
+
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
@@ -169,16 +173,14 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 	bool byteColoring = GetByteColoringOption();
 
 	vector<wdiff*> worddiffs;
-	sd_ComputeWordDiffs(sLine0, sLine1, casitive, xwhite, breakType, byteColoring, &worddiffs);
+	sd_ComputeWordDiffs(2, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
-	int nDiffLenSum = 0, nDiffLen0, nDiffLen1;
+	int nDiffLenSum = 0;
 	int i;
 	int nCount = worddiffs.size();
 	for (i = 0; i < nCount; i++)
 	{
-		nDiffLen0 = worddiffs[i]->end[0] - worddiffs[i]->start[0] + 1;
-		nDiffLen1 = worddiffs[i]->end[1] - worddiffs[i]->start[1] + 1;
-		nDiffLenSum += (nDiffLen0 > nDiffLen1) ? nDiffLen0 : nDiffLen1;
+		nDiffLenSum += worddiffs[i]->end[0] - worddiffs[i]->begin[0] + 1;
 	}
 
 	while (!worddiffs.empty())
@@ -187,7 +189,7 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 		worddiffs.pop_back();
 	}
 
-	return nDiffLenSum;
+	return -(sLine0.length() - nDiffLenSum);
 }
 
 /**
@@ -203,8 +205,8 @@ void CMergeDoc::AdjustDiffBlock(DiffMap & diffMap, const DIFFRANGE & diffrange, 
 {
 	// Map & lo & hi numbers are all relative to this block
 	// We need to know offsets to find actual line strings from buffer
-	int offset0 = diffrange.begin0;
-	int offset1 = diffrange.begin1;
+	int offset0 = diffrange.begin[0];
+	int offset1 = diffrange.begin[1];
 
 	// # of lines on left and right
 	int lines0 = hi0 - lo0 + 1;

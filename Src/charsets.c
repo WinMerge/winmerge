@@ -3,7 +3,7 @@
   (c) 1998-2004 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  $Id$
+  $Id: charsets.c 5895 2008-09-05 10:08:59Z jtuc $
 
 * Changes 2005-01-09 Jochen Tucht
   This file originates from the Tidy library (tidy.sourceforge.net).
@@ -497,8 +497,8 @@ static struct _charsetInfo
   { 125, "iso-2022-cn-ext",                                   0, yes }, /* IANA */
   { 126, "iso-2022-jp",                                   50220, yes }, /* IANA */
   { 126, "csiso2022jp",                                   50220, yes }, /* IANA */
-  { 127, "iso-2022-jp-2",                                     0, yes }, /* IANA */
-  { 127, "csiso2022jp2",                                      0, yes }, /* IANA */
+  { 127, "iso-2022-jp-2",                                 50221, yes }, /* IANA */
+  { 127, "csiso2022jp2",                                  50221, yes }, /* IANA */
   { 128, "iso-2022-kr",                                   50225, yes }, /* IANA */
   { 128, "csiso2022kr",                                   50225, yes }, /* IANA */
   { 129, "iso-8859-1-windows-3.0-latin-1",                    0,  no }, /* IANA */
@@ -850,6 +850,8 @@ static struct _charsetInfo
   { 213, "shift-jis",                                       932,  no }, /* MICROSOFT */
   { 213, "x-ms-cp932",                                      932,  no }, /* MICROSOFT */
   { 213, "x-sjis",                                          932,  no }, /* MICROSOFT */
+  { 213, "cp932",                                           932,  no },
+  { 213, "sjis",                                            932,  no },
   { 214, "iso-ir-128",                                        0,  no }, /* IANA */
   { 214, "t.101-g2",                                          0,  no }, /* IANA */
   { 214, "csiso128t101g2",                                    0,  no }, /* IANA */
@@ -957,6 +959,7 @@ static struct _charsetInfo
   { 281, "x-mac-japanese",                                10001,  no }, /* MICROSOFT */
   { 282, "x-mac-korean",                                  10003,  no }, /* MICROSOFT */
   { 283, "x-mac-turkish",                                 10081,  no }, /* MICROSOFT */
+  { 284, "cp20932",                                       20932,  no }, /* MICROSOFT */
 
   /* final entry */
   {   0, NULL,                                                0,  no }

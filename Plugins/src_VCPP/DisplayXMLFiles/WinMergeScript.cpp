@@ -21,7 +21,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: WinMergeScript.cpp 5855 2008-08-24 15:49:22Z kimmov $
 
 #include "stdafx.h"
 #include <stdio.h>
@@ -98,17 +98,17 @@ static void XMLCALL StartElementHandler(void *userData, const char *name, const 
 	// End the previous element, if needed
 	if (pData->bNeedsEnding)
 	{
-		fprintf(pData->pOutput,">\n");
+		fprintf(pData->pOutput,">");
 	}
-	else if (pData->bInElement)
+	
+	// Indent
+	if (pData->iDepth > 0)
 	{
 		fprintf(pData->pOutput,"\n");
-	}
-
-	// Indent
-	for (i = 0; i < pData->iDepth; i++)
-	{
-		fprintf(pData->pOutput,"\t");
+		for (i = 0; i < pData->iDepth; i++)
+		{
+			fprintf(pData->pOutput,"\t");
+		}
 	}
 
 	// Start new element
@@ -123,11 +123,14 @@ static void XMLCALL StartElementHandler(void *userData, const char *name, const 
 		{
 			iLen = 0;
 			iCount = 0;
-			fprintf(pData->pOutput,"\n");
 			// Indent
-			for (int j = 0; j < pData->iDepth + 1; j++)
+			if (pData->iDepth > 0)
 			{
-				fprintf(pData->pOutput,"\t");
+				fprintf(pData->pOutput,"\n");
+				for (int j = 0; j < pData->iDepth + 1; j++)
+				{
+					fprintf(pData->pOutput,"\t");
+				}
 			}
 		}
 
@@ -155,19 +158,20 @@ static void XMLCALL EndElementHandler(void *userData, const char *name)
 	// End this element, depending on what was before this
 	if (pData->bNeedsEnding)
 	{
-		fprintf(pData->pOutput,"/>\n");
+		fprintf(pData->pOutput,"/>");
 	}
 	else
 	{
 		if (!pData->bInElement)
 		{
 			// Indent
+			fprintf(pData->pOutput,"\n");
 			for (i = 0; i < pData->iDepth; i++)
 			{
 				fprintf(pData->pOutput,"\t");
 			}
 		}
-		fprintf(pData->pOutput,"</%s>\n",name);
+		fprintf(pData->pOutput,"</%s>",name);
 	}
 
 	// Element is ended
@@ -192,21 +196,16 @@ static void XMLCALL DefaultHandler(void *userData, const char *s, int len)
 	// Only output something if it's not all whitespace
 	if (!bIsAllWhiteSpace)
 	{
-		// Only output stuff inside elements
-		if (pData->bInElement)
+		// End the previous element if needed
+		if (pData->bNeedsEnding)
 		{
-			// End the previous element if needed
-			if (pData->bNeedsEnding)
-			{
-				fprintf(pData->pOutput,">");
-				pData->bNeedsEnding = false;
-
-			}
-
-			// Just output verbatim, this is most likely the text content of a an element
-			fwrite( s, sizeof( char ), len, pData->pOutput );
+			fprintf(pData->pOutput,">");
+			pData->bNeedsEnding = false;
 
 		}
+
+		// Just output verbatim, this is most likely the text content of a an element
+		fwrite( s, sizeof( char ), len, pData->pOutput );
 	}
 
 }
@@ -239,14 +238,18 @@ static void XMLCALL CommentHandler(void *userData, const char *data)
 	// End the previous element if needed
 	if (pData->bNeedsEnding)
 	{
-		fprintf(pData->pOutput,">\n");
+		fprintf(pData->pOutput,">");
 		pData->bNeedsEnding = false;
 	}
 
 	// Indent
-	for (int i = 0; i < pData->iDepth; i++)
+	if (pData->iDepth > 0)
 	{
-		fprintf(pData->pOutput,"\t");
+		fprintf(pData->pOutput,"\n");
+		for (int i = 0; i < pData->iDepth; i++)
+		{
+			fprintf(pData->pOutput,"\t");
+		}
 	}
 
 	// Output comment

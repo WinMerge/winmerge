@@ -58,9 +58,9 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel19b3)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(",;");
-		sd_ComputeWordDiffs( "				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),",
-				"					if (len2 < 50)",
+		sd_SetBreakChars(_T(",;"));
+		sd_ComputeWordDiffs(_T("				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),"),
+				_T("					if (len2 < 50)"),
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(11, diffs.size());
 	}
@@ -70,32 +70,32 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel19b2)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(",;");
-		sd_ComputeWordDiffs( "	while (1)", "	for (;;)", true, 0, 1, true, &diffs);
+		sd_SetBreakChars(_T(",;"));
+		sd_ComputeWordDiffs(_T("	while (1)"), _T("	for (;;)"), true, 0, 1, true, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(1, pDiff->begin[0]);
 			EXPECT_EQ(5, pDiff->end[0]);
-			EXPECT_EQ(1, pDiff->start[1]);
+			EXPECT_EQ(1, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[1]);
 		}	
 		if (diffs.size() >=2 )
 		{
 			pDiff = diffs[1];
-			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(9, pDiff->end[0]);
-			EXPECT_EQ(5, pDiff->start[1]);
+			EXPECT_EQ(5, pDiff->begin[1]);
 			EXPECT_EQ(4, pDiff->end[1]);
 		}	
 		if (diffs.size() >=3 )
 		{
 			pDiff = diffs[2];
-			EXPECT_EQ(10, pDiff->start[0]);
+			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(9, pDiff->end[0]);
-			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(6, pDiff->begin[1]);
 			EXPECT_EQ(8, pDiff->end[1]);
 		}	
 	}
@@ -104,17 +104,17 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel19b1)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(",");
-		sd_ComputeWordDiffs( "abcdef,abccef,abcdef,", "abcdef,abcdef,abcdef,",
+		sd_SetBreakChars(_T(","));
+		sd_ComputeWordDiffs(_T("abcdef,abccef,abcdef,"), _T("abcdef,abcdef,abcdef,"),
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(10, pDiff->start[0]);
+			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(10, pDiff->end[0]);
-			EXPECT_EQ(10, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->begin[1]);
 			EXPECT_EQ(10, pDiff->end[1]);
 		}	
 	}
@@ -123,41 +123,41 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel20c)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
-		sd_ComputeWordDiffs("/**", "		// remove empty records on both side",
+		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
+		sd_ComputeWordDiffs(_T("/**"), _T("		// remove empty records on both side"),
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(4, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(-1, pDiff->end[0]);
-			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(1, pDiff->end[1]);
 		}	
 		if (diffs.size() >=2 )
 		{
 			pDiff = diffs[1];
-			EXPECT_EQ(1, pDiff->start[0]);
+			EXPECT_EQ(1, pDiff->begin[0]);
 			EXPECT_EQ(1, pDiff->end[0]);
-			EXPECT_EQ(3, pDiff->start[1]);
+			EXPECT_EQ(3, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[1]);
 		}	
 		if (diffs.size() >=3 )
 		{
 			pDiff = diffs[2];
-			EXPECT_EQ(2, pDiff->start[0]);
+			EXPECT_EQ(2, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->end[0]);
-			EXPECT_EQ(4, pDiff->start[1]);
+			EXPECT_EQ(4, pDiff->begin[1]);
 			EXPECT_EQ(4, pDiff->end[1]);
 		}	
 		if (diffs.size() >=4 )
 		{
 			pDiff = diffs[3];
-			EXPECT_EQ(3, pDiff->start[0]);
+			EXPECT_EQ(3, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->end[0]);
-			EXPECT_EQ(5, pDiff->start[1]);
+			EXPECT_EQ(5, pDiff->begin[1]);
 			EXPECT_EQ(37, pDiff->end[1]);
 		}	
 	}
@@ -166,50 +166,50 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel20a)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
-		sd_ComputeWordDiffs(",;+ der abcdef,der,Thomas,abcdef,abcdef,;",
-				",;+ der abcdef,Thomas,accdgf,abcdef,-+",
+		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
+		sd_ComputeWordDiffs(_T(",;+ der abcdef,der,Thomas,abcdef,abcdef,;"),
+				_T(",;+ der abcdef,Thomas,accdgf,abcdef,-+"),
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(5, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(15, pDiff->start[0]);
+			EXPECT_EQ(15, pDiff->begin[0]);
 			EXPECT_EQ(18, pDiff->end[0]);
-			EXPECT_EQ(15, pDiff->start[1]);
+			EXPECT_EQ(15, pDiff->begin[1]);
 			EXPECT_EQ(14, pDiff->end[1]);
 		}	
 		if (diffs.size() >=2 )
 		{
 			pDiff = diffs[1];
-			EXPECT_EQ(27, pDiff->start[0]);
+			EXPECT_EQ(27, pDiff->begin[0]);
 			EXPECT_EQ(27, pDiff->end[0]);
-			EXPECT_EQ(23, pDiff->start[1]);
+			EXPECT_EQ(23, pDiff->begin[1]);
 			EXPECT_EQ(23, pDiff->end[1]);
 		}	
 		if (diffs.size() >=3 )
 		{
 			pDiff = diffs[2];
-			EXPECT_EQ(30, pDiff->start[0]);
+			EXPECT_EQ(30, pDiff->begin[0]);
 			EXPECT_EQ(30, pDiff->end[0]);
-			EXPECT_EQ(26, pDiff->start[1]);
+			EXPECT_EQ(26, pDiff->begin[1]);
 			EXPECT_EQ(26, pDiff->end[1]);
 		}	
 		if (diffs.size() >=4 )
 		{
 			pDiff = diffs[3];
-			EXPECT_EQ(40, pDiff->start[0]);
+			EXPECT_EQ(40, pDiff->begin[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
-			EXPECT_EQ(36, pDiff->start[1]);
+			EXPECT_EQ(36, pDiff->begin[1]);
 			EXPECT_EQ(36, pDiff->end[1]);
 		}	
 		if (diffs.size() >=5 )
 		{
 			pDiff = diffs[4];
-			EXPECT_EQ(41, pDiff->start[0]);
+			EXPECT_EQ(41, pDiff->begin[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
-			EXPECT_EQ(37, pDiff->start[1]);
+			EXPECT_EQ(37, pDiff->begin[1]);
 			EXPECT_EQ(37, pDiff->end[1]);
 		}	
 	}
@@ -219,17 +219,17 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel19a)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(",");
-		sd_ComputeWordDiffs("abcdef,abcdef,abcdef,", "abcdef,abccef,abcdef,",
+		sd_SetBreakChars(_T(","));
+		sd_ComputeWordDiffs(_T("abcdef,abcdef,abcdef,"), _T("abcdef,abccef,abcdef,"),
 				true, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(7, pDiff->start[0]);
+			EXPECT_EQ(7, pDiff->begin[0]);
 			EXPECT_EQ(12, pDiff->end[0]);
-			EXPECT_EQ(7, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->begin[1]);
 			EXPECT_EQ(12, pDiff->end[1]);
 		}	
 	}
@@ -239,17 +239,17 @@ namespace
 	TEST_F(StringDiffsTestByte, ByteLevel19b)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(",");
-		sd_ComputeWordDiffs( "abcdef,abccef,abcdef,", "abcdef,abcdef,abcdef,",
+		sd_SetBreakChars(_T(","));
+		sd_ComputeWordDiffs(_T("abcdef,abccef,abcdef,"), _T("abcdef,abcdef,abcdef,"),
 				true, 0, 1, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(10, pDiff->start[0]);
+			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(10, pDiff->end[0]);
-			EXPECT_EQ(10, pDiff->start[1]);
+			EXPECT_EQ(10, pDiff->begin[1]);
 			EXPECT_EQ(10, pDiff->end[1]);
 		}	
 	}

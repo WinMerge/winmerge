@@ -95,7 +95,7 @@ else switch(c)
   case 0x000c: *lenptr = 1; return TRUE;             /* FF */
   case 0x000d: *lenptr = (ptr < endptr - 1 && ptr[1] == 0x0a)? 2 : 1;
                return TRUE;                          /* CR */
-  case 0x0085: *lenptr = utf8? 2 : 1; return TRUE;   /* NEL */
+//  case 0x0085: *lenptr = utf8? 2 : 1; return TRUE;   /* NEL */
   case 0x2028:                                       /* LS */
   case 0x2029: *lenptr = 3; return TRUE;             /* PS */
   default: return FALSE;
@@ -152,7 +152,7 @@ else switch(c)
   case 0x000b:                                      /* VT */
   case 0x000c:                                      /* FF */
   case 0x000d: *lenptr = 1; return TRUE;            /* CR */
-  case 0x0085: *lenptr = utf8? 2 : 1; return TRUE;  /* NEL */
+//  case 0x0085: *lenptr = utf8? 2 : 1; return TRUE;  /* NEL */
   case 0x2028:                                      /* LS */
   case 0x2029: *lenptr = 3; return TRUE;            /* PS */
   default: return FALSE;

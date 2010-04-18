@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="tour_comparingdirs">
+  <title>Comparing Folders</title>
+
+  <para>In addition to comparing files in WinMerge, you can compare the contents
+  of folders. WinMerge shows which files are different, and provides functions
+  to merge files between folders.</para>
+
+  <section>
+    <title>The Folder Compare window</title>
+
+    <para>If you <link linkend="tour_sel_targets">launch a WinMerge compare
+    operation</link> on two folders, the Folder Compare window opens:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/foldercomp_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Folder Compare window</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>The Folder Compare window lists the files and subfolders found in the
+    target folders. Each row compares a file or subfolder in the two selected
+    folder targets. As with the File Compare window, the targets are represented
+    on <quote>left</quote> and <quote>right</quote> sides.</para>
+
+    <para>These columns tells you whether corresponding right and left items in
+    each row are identical, different, or exist on only one side. The asterisk
+    in either the left or right date highlights the more recent date. The icons
+    in the Filename column provide visual cues for each type of file, like text
+    or binary files, and how the two sides are different. Icons are also used to
+    mark files and folders that are found only on one side.</para>
+
+    <para>The columns are sortable. By default, rows are sorted by filename in
+    descending alphabetical order. Click the Filename column title to reverse
+    the sorting. Or, maybe you're only interested in rows that are different. If
+    so, click the Comparison result column title to sort by result type. This
+    groups different files together so they're easy to see.</para>
+
+    <para>If you want to display more information, a simple customization lets
+    you add additional columns, including file creation time, file encoding
+    type, file size, and even the number of differences found.</para>
+
+    <para>The Folder Compare window supports common operations on files, like
+    editing, copying, deleting, moving, and renaming (moving is equivalent to a
+    copy operation followed by a delete). You can use these file operations and
+    WinMerge functions to merge the contents of folders. You can also open files
+    using associated programs or external editors. You can even launch file
+    compare operations on individual files from the Folder Compare
+    window.</para>
+
+    <para>The <inlinemediaobject>
+        <imageobject>
+          <imagedata contentwidth="23"
+                     fileref="screenshots/nav_uparrow_btn_tr.png" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Navigator up arrow button</phrase>
+        </textobject>
+      </inlinemediaobject> <guibutton>up arrow</guibutton> button at the top of
+    the Filename column navigates to the parent folder of each target.</para>
+
+    <para>As we mentioned earlier, the WinMerge main window can contain multiple
+    Folder Compare or File Compare windows, and each Compare window displays the
+    result of a single comparison. In the preceding screen shot, the File
+    Compare window is maximized within the main window:</para>
+  </section>
+
+  <section>
+    <title>Navigating folder differences</title>
+
+    <para>To navigate differences at the folder level:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Use conventional keyboard and mouse actions to move between rows.
+        To select a difference, simply click its row.</para>
+      </listitem>
+
+      <listitem>
+        <para>Use the Difference buttons in the toolbar to select differences
+        systematically. For example, click the <inlinemediaobject>
+            <imageobject>
+              <imagedata contentdepth="15"
+                         fileref="screenshots/nextdiff_btn_tr.png" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Next Difference button</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>Next Difference</guibutton> button in
+        the toolbar (or press <keycombo>
+            <keycap>Alt</keycap>
+
+            <keycap>Enter</keycap>
+          </keycombo>) to select the next row that is different, automatically
+        skipping identical rows.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>Comparing subfolders</title>
+
+    <para>So far we have looked at a non-recursive comparison, which includes
+    files only in the root of the two folders you select, not any subfolders
+    that they contain. To compare their subfolders, you have to launch a new
+    compare operation. For example, in the preceding comparison, double-click
+    the <filename>Common</filename> folder icon to open a new File Compare
+    window that compares the two <filename>Common</filename> folders.</para>
+
+    <para>WinMerge can also compare folders recursively. A recursive comparison
+    includes all the files in all subfolders, so you don't need to launch
+    separate compare operations to navigate nested folders. </para>
+
+    <para>For targets with many nested folders and files, a recursive comparison
+    can can take longer than a non-recursive comparison, and the result can be
+    harder to read. In this case, consider displaying the results of recursive
+    comparisons in a hierachical tree view instead of the default tabular view.
+    Folders are initially collapsed for a compact, readable display — expand
+    just the ones whose contents you want to see:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/treeview_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Folder Compare window</phrase>
+      </textobject>
+    </mediaobject>
+  </section>
+
+  <section>
+    <title>Merging folder differences</title>
+
+    <para>Merging in the Folder Compare window involves either copying items
+    (files or folders) between folders, or deleting items.</para>
+
+    <para>For example, suppose you want to synchronize two folders. In the
+    preceding screen shot, you can tell from the asterisk that the left version
+    of <filename>AboutDlg.h</filename> is more recent. So, to merge
+    <filename>AboutDlg.h</filename> select the row and click the
+    <inlinemediaobject>
+        <imageobject>
+          <imagedata contentwidth="17" fileref="screenshots/copyr_button_tr.png" />
+        </imageobject>
+
+        <textobject>
+          <phrase>Copy Right button</phrase>
+        </textobject>
+      </inlinemediaobject> <guibutton>Copy Right</guibutton> button in the
+    toolbar.</para>
+
+    <para>When you merge a file or folder, the value in the <guilabel>Comparison
+    result</guilabel> column changes to <literal>Identical</literal>.</para>
+
+    <para>Of course, you might not always want to merge entire files or folders.
+    For example, you might want to merge selected differences within the files,
+    or to examine the differences within files before merging them. In such
+    cases, you can double-click a file to launch a file comparison. WinMerge
+    displays the result in a new File Compare window, where you can see and
+    merge the line-level differences.</para>
+  </section>
+</article>

@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox window
 
-class CSuperComboBox : public CComboBox
+class CSuperComboBox : public CComboBoxEx
 {
 // Construction
 public:
@@ -22,6 +22,10 @@ protected:
 	BOOL m_bEditChanged;
 	BOOL m_bAutoComplete;
 	BOOL m_bDoComplete;
+	BOOL m_bHasImageList;
+	BOOL m_bRecognizedMyself;
+	BOOL m_bComboBoxEx;
+	static HIMAGELIST m_himlSystem;
 
 public:
 
@@ -50,6 +54,12 @@ public:
 	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
 	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
+	BOOL IsComboBoxEx();
+	BOOL AttachSystemImageList();
+	int AddString(LPCTSTR lpszItem);
+	int InsertString(int nIndex, LPCTSTR lpszItem);
+	int GetLBTextLen(int nIndex) const;
+	void GetLBText(int nIndex, CString &rString) const;
 
 	// Generated message map functions
 protected:
@@ -63,6 +73,7 @@ protected:
 	afx_msg BOOL OnSelchange();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnDropFiles(HDROP dropInfo);
+	afx_msg void OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult);
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()

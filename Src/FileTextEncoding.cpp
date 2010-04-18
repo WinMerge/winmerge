@@ -4,7 +4,7 @@
  * @brief Implementation of FileTextEncoding structure
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileTextEncoding.cpp 5621 2008-07-15 19:44:58Z kimmov $
 
 #include "stdafx.h"
 #include "unicoder.h"
@@ -38,18 +38,45 @@ void FileTextEncoding::Clear()
 void FileTextEncoding::SetCodepage(int codepage)
 {
 	m_codepage = codepage;
-	m_unicoding = ucr::NONE;
-	if (codepage == CP_UTF8)
+	switch (codepage)
+	{
+	case CP_UTF8:
 		m_unicoding = ucr::UTF8;
+		break;
+	case 1200:
+		m_unicoding = ucr::UCS2LE;
+		break;
+	case 1201:
+		m_unicoding = ucr::UCS2BE;
+		break;
+	}
 }
 
 void FileTextEncoding::SetUnicoding(ucr::UNICODESET unicoding)
 {
-	if (unicoding == ucr::NONE)
-		m_codepage = CP_ACP; // not sure what to do here
 	m_unicoding = unicoding;
-	if (m_unicoding == ucr::UTF8)
+	switch (unicoding)
+	{
+	case ucr::NONE:
+		switch (m_codepage)
+		{
+		case CP_UTF8:
+		case 1200:
+		case 1201:
+			m_codepage = CP_ACP; // not sure what to do here
+			break;
+		}
+		break;
+	case ucr::UTF8:
 		m_codepage = CP_UTF8;
+		break;
+	case ucr::UCS2LE:
+		m_codepage = 1200;
+		break;
+	case ucr::UCS2BE:
+		m_codepage = 1201;
+		break;
+	}
 }
 
 /**

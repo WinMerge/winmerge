@@ -4,7 +4,7 @@
  * @brief Declaration file for Directory compare statusdialog class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirCompProgressDlg.h 5444 2008-06-07 06:48:49Z kimmov $
 
 #if !defined(AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
 #define AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
@@ -78,6 +78,7 @@ private:
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 	BOOL m_bCompareReady; /**< Compare ready, waiting for closing? */
 	CDirDoc * m_pDirDoc; /**< Pointer to dirdoc we are comparing */
+    //IProgressDialog* m_pIDlg;
 };
 
 //{{AFX_INSERT_LOCATION}}

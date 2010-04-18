@@ -1827,7 +1827,7 @@ for (;;)
 
       case 0x000b:
       case 0x000c:
-      case 0x0085:
+//      case 0x0085:
       case 0x2028:
       case 0x2029:
       if (md->bsr_anycrlf) RRETURN(MATCH_NOMATCH);
@@ -1918,7 +1918,7 @@ for (;;)
       case 0x0b:      /* VT */
       case 0x0c:      /* FF */
       case 0x0d:      /* CR */
-      case 0x85:      /* NEL */
+//      case 0x85:      /* NEL */
       case 0x2028:    /* LINE SEPARATOR */
       case 0x2029:    /* PARAGRAPH SEPARATOR */
       RRETURN(MATCH_NOMATCH);
@@ -1940,7 +1940,7 @@ for (;;)
       case 0x0b:      /* VT */
       case 0x0c:      /* FF */
       case 0x0d:      /* CR */
-      case 0x85:      /* NEL */
+//      case 0x85:      /* NEL */
       case 0x2028:    /* LINE SEPARATOR */
       case 0x2029:    /* PARAGRAPH SEPARATOR */
       break;
@@ -3500,7 +3500,7 @@ for (;;)
 
             case 0x000b:
             case 0x000c:
-            case 0x0085:
+//            case 0x0085:
             case 0x2028:
             case 0x2029:
             if (md->bsr_anycrlf) RRETURN(MATCH_NOMATCH);
@@ -3597,7 +3597,7 @@ for (;;)
             case 0x0b:      /* VT */
             case 0x0c:      /* FF */
             case 0x0d:      /* CR */
-            case 0x85:      /* NEL */
+//            case 0x85:      /* NEL */
             case 0x2028:    /* LINE SEPARATOR */
             case 0x2029:    /* PARAGRAPH SEPARATOR */
             RRETURN(MATCH_NOMATCH);
@@ -3621,7 +3621,7 @@ for (;;)
             case 0x0b:      /* VT */
             case 0x0c:      /* FF */
             case 0x0d:      /* CR */
-            case 0x85:      /* NEL */
+//            case 0x85:      /* NEL */
             case 0x2028:    /* LINE SEPARATOR */
             case 0x2029:    /* PARAGRAPH SEPARATOR */
             break;
@@ -3771,7 +3771,7 @@ for (;;)
 
             case 0x000b:
             case 0x000c:
-            case 0x0085:
+//            case 0x0085:
             if (md->bsr_anycrlf) RRETURN(MATCH_NOMATCH);
             break;
             }
@@ -3831,7 +3831,7 @@ for (;;)
             case 0x0b:      /* VT */
             case 0x0c:      /* FF */
             case 0x0d:      /* CR */
-            case 0x85:      /* NEL */
+//            case 0x85:      /* NEL */
             RRETURN(MATCH_NOMATCH);
             }
           }
@@ -3852,7 +3852,7 @@ for (;;)
             case 0x0b:      /* VT */
             case 0x0c:      /* FF */
             case 0x0d:      /* CR */
-            case 0x85:      /* NEL */
+//            case 0x85:      /* NEL */
             break;
             }
           }
@@ -4116,7 +4116,7 @@ for (;;)
 
               case 0x000b:
               case 0x000c:
-              case 0x0085:
+//              case 0x0085:
               case 0x2028:
               case 0x2029:
               if (md->bsr_anycrlf) RRETURN(MATCH_NOMATCH);
@@ -4186,7 +4186,7 @@ for (;;)
               case 0x0b:      /* VT */
               case 0x0c:      /* FF */
               case 0x0d:      /* CR */
-              case 0x85:      /* NEL */
+//              case 0x85:      /* NEL */
               case 0x2028:    /* LINE SEPARATOR */
               case 0x2029:    /* PARAGRAPH SEPARATOR */
               RRETURN(MATCH_NOMATCH);
@@ -4201,7 +4201,7 @@ for (;;)
               case 0x0b:      /* VT */
               case 0x0c:      /* FF */
               case 0x0d:      /* CR */
-              case 0x85:      /* NEL */
+//              case 0x85:      /* NEL */
               case 0x2028:    /* LINE SEPARATOR */
               case 0x2029:    /* PARAGRAPH SEPARATOR */
               break;
@@ -4280,7 +4280,7 @@ for (;;)
 
               case 0x000b:
               case 0x000c:
-              case 0x0085:
+//              case 0x0085:
               if (md->bsr_anycrlf) RRETURN(MATCH_NOMATCH);
               break;
               }
@@ -4316,7 +4316,7 @@ for (;;)
               case 0x0b:      /* VT */
               case 0x0c:      /* FF */
               case 0x0d:      /* CR */
-              case 0x85:      /* NEL */
+//              case 0x85:      /* NEL */
               RRETURN(MATCH_NOMATCH);
               }
             break;
@@ -4329,7 +4329,7 @@ for (;;)
               case 0x0b:      /* VT */
               case 0x0c:      /* FF */
               case 0x0d:      /* CR */
-              case 0x85:      /* NEL */
+//              case 0x85:      /* NEL */
               break;
               }
             break;
@@ -4622,7 +4622,7 @@ for (;;)
               if (c != 0x000a &&
                   (md->bsr_anycrlf ||
                    (c != 0x000b && c != 0x000c &&
-                    c != 0x0085 && c != 0x2028 && c != 0x2029)))
+                    /*c != 0x0085 && */c != 0x2028 && c != 0x2029)))
                 break;
               eptr += len;
               }
@@ -4690,7 +4690,7 @@ for (;;)
               case 0x0b:      /* VT */
               case 0x0c:      /* FF */
               case 0x0d:      /* CR */
-              case 0x85:      /* NEL */
+//              case 0x85:      /* NEL */
               case 0x2028:    /* LINE SEPARATOR */
               case 0x2029:    /* PARAGRAPH SEPARATOR */
               gotspace = TRUE;
@@ -4855,7 +4855,7 @@ for (;;)
               {
               if (c != 0x000a &&
                   (md->bsr_anycrlf ||
-                    (c != 0x000b && c != 0x000c && c != 0x0085)))
+                    (c != 0x000b && c != 0x000c/* && c != 0x0085*/)))
                 break;
               eptr++;
               }
@@ -4899,7 +4899,7 @@ for (;;)
               break;
               }
             c = *eptr;
-            if (c == 0x0a || c == 0x0b || c == 0x0c || c == 0x0d || c == 0x85)
+            if (c == 0x0a || c == 0x0b || c == 0x0c || c == 0x0d/* || c == 0x85*/)
               break;
             eptr++;
             }
@@ -4914,7 +4914,7 @@ for (;;)
               break;
               }
             c = *eptr;
-            if (c != 0x0a && c != 0x0b && c != 0x0c && c != 0x0d && c != 0x85)
+            if (c != 0x0a && c != 0x0b && c != 0x0c && c != 0x0d/* && c != 0x85*/)
               break;
             eptr++;
             }

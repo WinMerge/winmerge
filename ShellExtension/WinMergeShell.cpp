@@ -37,7 +37,7 @@
  * @brief Implementation of the ShellExtension class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: WinMergeShell.cpp 6933 2009-07-26 14:07:03Z kimmov $
 
 #include "stdafx.h"
 #include "ShellExtension.h"
@@ -59,7 +59,7 @@ enum ExtensionFlags
 };
 
 /// Max. filecount to select
-static const int MaxFileCount = 2;
+static const int MaxFileCount = 3;
 /// Registry path to WinMerge
 #define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
 static const TCHAR f_RegDir[] = REGDIR;
@@ -92,6 +92,7 @@ enum
 	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
 	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */
 	MENU_TWOSEL,  /**< Two items are selected. */
+	MENU_THREESEL
 };
 
 #define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
@@ -271,6 +272,8 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 				m_dwMenuState = MENU_ONESEL_PREV;
 			else if (m_nSelectedItems == 2)
 				m_dwMenuState = MENU_TWOSEL;
+			else if (m_nSelectedItems == 3)
+				m_dwMenuState = MENU_THREESEL;
 
 			nItemsAdded = DrawAdvancedMenu(hmenu, uMenuIndex, uidFirstCmd);
 		}
@@ -295,7 +298,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 	}
 	else
 	{
-		if (idCmd > 1)
+		if (idCmd > 2)
 			return E_INVALIDARG;
 	}
 
@@ -366,6 +369,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			break;
 
 		case MENU_TWOSEL:
+		case MENU_THREESEL:
 			// "Compare" - compare paths
 			bCompare = TRUE;
 			m_strPreviousPath.erase();
@@ -400,6 +404,9 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 
 	String strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
 			m_strPaths[1], bAlterSubFolders);
+
+	if (!m_strPaths[2].empty())
+		strCommandLine += _T(" \"") + m_strPaths[2] + _T("\"");
 
 	// Finally start a new WinMerge process
 	BOOL retVal = FALSE;
@@ -515,6 +522,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		// Two items selected
 		// Select both items for compare
 	case MENU_TWOSEL:
+	case MENU_THREESEL:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
 				strCompare.c_str());
 		nItemsAdded = 1;
@@ -576,6 +584,7 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 			break;
 
 		case MENU_TWOSEL:
+		case MENU_THREESEL:
 			strHelp = GetResourceString(IDS_CONTEXT_HELP);
 			break;
 		}

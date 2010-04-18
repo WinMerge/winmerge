@@ -374,6 +374,36 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
 // Methods for handling common window functions.
 
 /*
+ *	Parameters for passing to ModelessMessageBoxThread.
+ */
+struct ModelessMesssageBoxParam
+{
+	CString strMessage;
+	UINT nType;
+};
+
+/*
+ *	Thread for displaying the message boxes asyncronously.
+ */
+static UINT ModelessMesssageBoxThread(LPVOID lpParam)
+{
+	struct ModelessMesssageBoxParam *p = (struct ModelessMesssageBoxParam *)lpParam;
+	
+	// Create the message box dialog.
+	CMessageBoxDialog dlgMessage(NULL, p->strMessage, _T(""), p->nType);
+	
+	delete p;
+
+	// Display the message box dialog
+	dlgMessage.Create(CMessageBoxDialog::IDD);
+	dlgMessage.ShowWindow(SW_SHOW);
+	dlgMessage.RunModalLoop();
+	dlgMessage.DestroyWindow();
+
+	return 0;
+}
+
+/*
  *	Method for displaying the dialog.
  *
  *	If the MB_DONT_DISPLAY_AGAIN or MB_DONT_ASK_AGAIN flag is set, this
@@ -408,6 +438,15 @@ INT_PTR CMessageBoxDialog::DoModal ( )
 			// Return the former result without displaying the dialog.
 			return nFormerResult;
 		}
+	}
+
+	if (m_nStyle & MB_MODELESS) {
+		// Show the messsage box dialog asyncronously.
+		ModelessMesssageBoxParam *pParam = new ModelessMesssageBoxParam();
+		pParam->strMessage = m_strMessage.c_str();
+		pParam->nType      = m_nStyle & ~MB_MODELESS;
+		AfxBeginThread(ModelessMesssageBoxThread, pParam);
+		return IDOK;
 	}
 
 	// Call the parent method.

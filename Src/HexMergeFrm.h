@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: HexMergeFrm.h 6653 2009-04-12 09:30:35Z jtuc $
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"
@@ -60,8 +60,7 @@ public:
 protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
-	CStatusBar m_wndLeftStatusBar;
-	CStatusBar m_wndRightStatusBar;
+	CStatusBar m_wndStatusBar[3];
 // Overrides
 public:
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

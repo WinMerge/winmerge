@@ -39,19 +39,19 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "diff.h"
 #include "cmpbuf.h"
 
-int no_discards;
-int need_free_buffers=0;
+DECL_TLS int no_discards;
+DECL_TLS int need_free_buffers=0;
 
-static int *xvec, *yvec;	/* Vectors being compared. */
-static int *fdiag;		/* Vector, indexed by diagonal, containing
+DECL_TLS static int *xvec, *yvec;	/* Vectors being compared. */
+DECL_TLS static int *fdiag;		/* Vector, indexed by diagonal, containing
 				   1 + the X coordinate of the point furthest
 				   along the given diagonal in the forward
 				   search of the edit matrix. */
-static int *bdiag;		/* Vector, indexed by diagonal, containing
+DECL_TLS static int *bdiag;		/* Vector, indexed by diagonal, containing
 				   the X coordinate of the point furthest
 				   along the given diagonal in the backward
 				   search of the edit matrix. */
-static int too_expensive;	/* Edit scripts longer than this are too
+DECL_TLS static int too_expensive;	/* Edit scripts longer than this are too
 				   expensive to compute.  */
 
 #define SNAKE_LIMIT 20	/* Snakes bigger than this are considered `big'.  */
@@ -622,7 +622,7 @@ discard_confusing_lines (struct file_data filevec[])
    but usually it is cleaner to consider the following identical line
    to be the "change".  */
 
-int inhibit;
+DECL_TLS int inhibit;
 
 static void
 shift_boundaries (struct file_data filevec[])
@@ -1000,7 +1000,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 				
 				//  Determine whether thisob hunk is really a difference.  
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1,
-					&deletes, &inserts);
+					&deletes, &inserts, files);
 				
 				//  Reconnect the script so it will all be freed properly.  
 				end->link = next;

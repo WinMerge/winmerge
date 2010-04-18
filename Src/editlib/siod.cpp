@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszSiodKeywordList[] =
+static LPCTSTR s_apszSiodKeywordList[] =
   {
     _T("abs"),
     _T("alarm"),
@@ -74,34 +74,33 @@ static LPTSTR s_apszSiodKeywordList[] =
     _T("list"),
     _T("load"),
     _T("max"),
-    _T("min"),
     _T("member"),
     _T("memq"),
     _T("memv"),
+    _T("min"),
     _T("nil"),
     _T("not"),
     _T("null?"),
-    _T("number?"),
     _T("number->string"),
+    _T("number?"),
     _T("or"),
     _T("pair?"),
     _T("quit"),
     _T("quote"),
+    _T("read"),
+    _T("reverse"),
     _T("set!"),
     _T("set-car!"),
     _T("set-cdr!"),
     _T("string->number"),
+    _T("string-append"),
     _T("string-length"),
     _T("string?"),
-    _T("string-append"),
     _T("substring"),
     _T("symbol?"),
-    _T("read"),
-    _T("reverse"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
     _T("acos"),
     _T("asin"),
@@ -110,17 +109,16 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T("exp"),
     _T("log"),
     _T("sin"),
-    _T("tan"),
     _T("sqrt"),
-    NULL
+    _T("tan"),
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
     _T("%%%memref"),
-    _T("%%closure"),
     _T("%%closure-code"),
     _T("%%closure-env"),
+    _T("%%closure"),
     _T("%%stack-limit"),
     _T("*after-gc*"),
     _T("*args*"),
@@ -131,9 +129,6 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("*plists*"),
     _T("*throw"),
     _T("*traced*"),
-    _T("F_GETLK"),
-    _T("F_SETLK"),
-    _T("F_SETLKW"),
     _T("access-problem?"),
     _T("allocate-heap"),
     _T("apropos"),
@@ -171,6 +166,9 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("eof-val"),
     _T("errobj"),
     _T("error"),
+    _T("F_GETLK"),
+    _T("F_SETLK"),
+    _T("F_SETLKW"),
     _T("fast-load"),
     _T("fast-print"),
     _T("fast-read"),
@@ -187,9 +185,9 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("fstat"),
     _T("ftell"),
     _T("fwrite"),
-    _T("gc"),
     _T("gc-info"),
     _T("gc-status"),
+    _T("gc"),
     _T("get"),
     _T("getc"),
     _T("getcwd"),
@@ -213,8 +211,8 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("intern"),
     _T("kill"),
     _T("larg-default"),
-    _T("last"),
     _T("last-c-error"),
+    _T("last"),
     _T("lchown"),
     _T("link"),
     _T("lkey-default"),
@@ -241,8 +239,8 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("popen"),
     _T("pow"),
     _T("prin1"),
-    _T("print"),
     _T("print-to-string"),
+    _T("print"),
     _T("prog1"),
     _T("putc"),
     _T("putenv"),
@@ -257,8 +255,8 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("readlink"),
     _T("realtime"),
     _T("rename"),
-    _T("require"),
     _T("require-so"),
+    _T("require"),
     _T("rest"),
     _T("rld-pathnames"),
     _T("rmdir"),
@@ -286,9 +284,9 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("string-downcase"),
     _T("string-lessp"),
     _T("string-search"),
-    _T("string-trim"),
     _T("string-trim-left"),
     _T("string-trim-right"),
+    _T("string-trim"),
     _T("string-upcase"),
     _T("strptime"),
     _T("strspn"),
@@ -309,8 +307,8 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("unbreakupstr"),
     _T("ungetc"),
     _T("unix-ctime"),
-    _T("unix-time"),
     _T("unix-time->strtime"),
+    _T("unix-time"),
     _T("unlink"),
     _T("untrace"),
     _T("url-decode"),
@@ -320,37 +318,24 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T("wait"),
     _T("while"),
     _T("writes"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsSiodKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszSiodKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszSiodKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -384,6 +369,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -456,7 +442,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

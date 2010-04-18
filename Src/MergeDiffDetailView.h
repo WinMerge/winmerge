@@ -5,7 +5,7 @@
  * @brief Declaration of CMergeDiffDetailView class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeDiffDetailView.h 5444 2008-06-07 06:48:49Z kimmov $
 //
 //////////////////////////////////////////////////////////////////////
 #ifndef __MERGEDIFFDETAILVIEW_H__
@@ -74,7 +74,7 @@ public:
 	void DocumentsLoaded();
 
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
-	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE );
+	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE, BOOL bRedraw = TRUE );
 
 	virtual void EnsureVisible (CPoint pt);
 	virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
@@ -111,7 +111,7 @@ protected:
 // Implementation
 protected:
 	virtual ~CMergeDiffDetailView();
-	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
 	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                               COLORREF & crText, BOOL & bDrawWhitespace);
@@ -133,6 +133,10 @@ protected:
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnL2m();
+	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
+	afx_msg void OnR2m();
+	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateViewWordWrap(CCmdUI *pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

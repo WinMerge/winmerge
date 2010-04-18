@@ -38,8 +38,23 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  InstallShield keywords (IS3.0)
-static LPTSTR s_apszISKeywordList[] =
+static LPCTSTR s_apszISKeywordList[] =
   {
+    _T ("BOOL"),
+    _T ("BYREF"),
+    _T ("CHAR"),
+    _T ("HIWORD"),
+    _T ("HWND"),
+    _T ("INT"),
+    _T ("LIST"),
+    _T ("LONG"),
+    _T ("LOWORD"),
+    _T ("NUMBER"),
+    _T ("POINTER"),
+    _T ("QUAD"),
+    _T ("RGB"),
+    _T ("SHORT"),
+    _T ("STRING"),
     _T ("begin"),
     _T ("call"),
     _T ("case"),
@@ -69,25 +84,9 @@ static LPTSTR s_apszISKeywordList[] =
     _T ("until"),
     _T ("void"),
     _T ("while"),
-    _T ("BOOL"),
-    _T ("BYREF"),
-    _T ("CHAR"),
-    _T ("HIWORD"),
-    _T ("HWND"),
-    _T ("INT"),
-    _T ("LIST"),
-    _T ("LONG"),
-    _T ("LOWORD"),
-    _T ("NUMBER"),
-    _T ("POINTER"),
-    _T ("QUAD"),
-    _T ("RGB"),
-    _T ("SHORT"),
-    _T ("STRING"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
     _T ("AFTER"),
     _T ("APPEND"),
@@ -119,10 +118,9 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("SET"),
     _T ("TRUE"),
     _T ("YES"),
-    NULL
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
     _T ("CMDLINE"),
     _T ("ERRORFILENAME"),
@@ -139,7 +137,6 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("WINDISK"),
     _T ("WINSYSDIR"),
     _T ("WINSYSDISK"),
-    NULL
   };
 
 /* built-in functions
@@ -418,33 +415,21 @@ static LPTSTR s_apszUser2KeywordList[] =
 */
 
 static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
-
-static BOOL
 IsISKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszISKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszISKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -478,6 +463,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -552,7 +538,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

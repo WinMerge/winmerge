@@ -23,7 +23,7 @@
  * @brief Declaration of CMergeDoc class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeDoc.h 7086 2010-01-09 13:38:25Z kimmov $
 
 #if !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -80,10 +80,12 @@ typedef enum {
 
 enum MERGEVIEW_INDEX_TYPE
 {
-	MERGEVIEW_LEFT = 0,         /**< Left MergeView */
-	MERGEVIEW_RIGHT,            /**< Right MergeView */
-	MERGEVIEW_LEFT_DETAIL = 10, /**< Left DetailView */
-	MERGEVIEW_RIGHT_DETAIL,     /**< Right DetailView */
+	MERGEVIEW_PANE0 = 0,         /**< Pane0 MergeView */
+	MERGEVIEW_PANE1,             /**< Pane1 MergeView */
+	MERGEVIEW_PANE2,             /**< Pane2 MergeView */
+	MERGEVIEW_PANE0_DETAIL = 10, /**< Pane0 DetailView */
+	MERGEVIEW_PANE1_DETAIL,      /**< Pane1 DetailView */
+	MERGEVIEW_PANE2_DETAIL,      /**< Pane2 DetailView */
 };
 
 /**
@@ -130,7 +132,12 @@ public:
 
 // Attributes
 public:
-	CDiffTextBuffer *m_ptBuf[2]; /**< Left/Right side text buffer */
+	static int m_nBuffersTemp;
+
+// Begin declaration of CMergeDoc
+
+	CDiffTextBuffer *m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
+	int m_nBuffers;
 
 protected: // create from serialization only
 	CMergeDoc();
@@ -138,8 +145,8 @@ protected: // create from serialization only
 
 	// Operations
 public:	
-	DiffFileInfo *m_pSaveFileInfo[2];
-	DiffFileInfo *m_pRescanFileInfo[2];
+	DiffFileInfo *m_pSaveFileInfo[3];
+	DiffFileInfo *m_pRescanFileInfo[3];
 	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	PathContext m_filePaths; /**< Filepaths for this document */
@@ -152,41 +159,40 @@ public:
 	void UpdateHeaderActivity(int pane, bool bActivate);
 	void RefreshOptions();
 	void UpdateResources();
-	OPENRESULTS_TYPE OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
-		BOOL bROLeft, BOOL bRORight);
+	OPENRESULTS_TYPE OpenDocs(FileLocation fileloc[],
+		BOOL bRO[]);
+	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding);
 	OPENRESULTS_TYPE ReloadDoc(int index);
 	void RescanIfNeeded(float timeOutInSecond);
-	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
-	void ShowRescanError(int nRescanResult, BOOL bIdentical);
+	int Rescan(BOOL &bBinary, IDENTLEVEL &identical, BOOL bForced = FALSE);
+	void CheckFileChanged(void);
+	void ShowRescanError(int nRescanResult, IDENTLEVEL identical);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
 	bool SanityCheckDiff(DIFFRANGE dr) const;
-	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false);
+	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(CString &strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
 	bool DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
 	bool DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
-	int RightLineInMovedBlock(int leftLine);
-	int LeftLineInMovedBlock(int rightLine);
+	int RightLineInMovedBlock(int pane, int line);
+	int LeftLineInMovedBlock(int pane, int line);
 	void SetEditedAfterRescan(int nBuffer);
+	BOOL IsEditedAfterRescan(int nBuffer) { return m_bEditAfterRescan[nBuffer]; }
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetPrediffer(PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
-	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
-	void SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight);
+	void SetMergeViews(CMergeEditView * pView[]);
+	void SetMergeDetailViews(CMergeDiffDetailView * pView[]);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
 	void SwapFiles();
 
-	CMergeEditView * GetLeftView() const { return m_pView[MERGE_VIEW_LEFT]; }
-	CMergeEditView * GetRightView() const { return m_pView[MERGE_VIEW_RIGHT]; }
 	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
-	CMergeDiffDetailView * GetLeftDetailView() const { return m_pDetailView[0]; }
-	CMergeDiffDetailView * GetRightDetailView() const { return m_pDetailView[1]; }
 	CMergeDiffDetailView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
 	CChildFrame * GetParentFrame();
 	const FileTextEncoding & GetEncoding(int file) const
@@ -210,7 +216,7 @@ public:
 	void Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl);
 	void GetWordDiffArray(int nLineIndex, std::vector<wdiff*> *pworddiffs);
 private:
-	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2, DIFFLEVEL difflvl);
+	void Computelinediff(CCrystalTextView * pView[], int line, CRect rc[], DIFFLEVEL difflvl);
 // End MergeDocLineDiffs.cpp
 
 // Implementation in MergeDocEncoding.cpp
@@ -234,7 +240,6 @@ public:
 	void SetMergingMode(bool bMergingMode);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
-	void SetAutomaticRescan(bool bRescan) { m_bEnableRescan = bRescan; }
 
 // implementation methods
 private:
@@ -243,24 +248,24 @@ private:
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
 	DWORD LoadOneFile(int index, String filename, BOOL readOnly, const FileTextEncoding & encoding);
-	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding);
 
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
-	CMergeEditView * m_pView[MERGE_VIEW_COUNT]; /**< Pointer to left/right view */
-	CMergeDiffDetailView * m_pDetailView[2];
+	CMergeEditView * m_pView[3]; /**< Pointer to left/middle/right view */
+	CMergeDiffDetailView * m_pDetailView[3];
 	CDirDoc * m_pDirDoc;
 	bool m_bEnableRescan; /**< Automatic rescan enabled/disabled */
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
 	PackingInfo * m_pInfoUnpacker;
-	String m_strDesc[2]; /**< Left/right side description text */
-	BUFFERTYPE m_nBufferType[2];
+	String m_strDesc[3]; /**< Left/Middle/Right side description text */
+	BUFFERTYPE m_nBufferType[3];
 	bool m_bMergingMode; /**< Merging or Edit mode */
-	bool m_bEditAfterRescan[2]; /**< Left/right doc edited after rescanning */
-	TempFile m_tempFiles[2]; /**< Temp files for compared files */
+	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
+	TempFile m_tempFiles[3]; /**< Temp files for compared files */
+	int m_nDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 
 // friend access
@@ -272,22 +277,33 @@ protected:
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
 	afx_msg void OnFileSaveLeft();
+	afx_msg void OnFileSaveMiddle();
 	afx_msg void OnFileSaveRight();
 	afx_msg void OnFileSaveAsLeft();
+	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
+	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
+	afx_msg void OnFileReload();
+	afx_msg void OnUpdateFileReload(CCmdUI* pCmdUI);
 	afx_msg void OnFileEncoding();
+	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
+	afx_msg void OnDiffContext(UINT nID);
+	afx_msg void OnUpdateDiffContext(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
+	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
 	void PrimeTextBuffers();
+	void HideLines();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange, int lo0, int hi0, int lo1, int hi1);
 	int GetMatchCost(const String &Line0, const String &Line1);
-	void FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
-		CDiffTextBuffer * pBuffer2);
+	void FlagMovedLines();
 	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
+	void DoFileSave(int pane);
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -42,7 +42,7 @@
  * @brief More functions for CCrystalTextView class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ccrystaltextview2.cpp 6457 2009-02-15 14:08:50Z kimmov $
 
 #include "StdAfx.h"
 #include "editcmd.h"
@@ -310,9 +310,12 @@ MoveDown (BOOL bSelect)
       if (m_nIdealCharPos == -1)
         m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
 		//BEGIN SW
-		do {
-			nSubLine++;
-		} while (IsEmptySubLineIndex(nSubLine));
+        if (GetLineVisible (m_ptCursorPos.y))
+          {
+		    do {
+			  nSubLine++;
+		    } while (IsEmptySubLineIndex(nSubLine));
+          }
 		SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
 		/*ORIGINAL
 		m_ptCursorPos.y ++;
@@ -369,7 +372,7 @@ MoveEnd (BOOL bSelect)
 	/*ORIGINAL
 	m_ptCursorPos.x = GetLineLength(m_ptCursorPos.y);
 	*///END SW
-  m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
+  m_nIdealCharPos = INT_MAX;
   EnsureVisible (m_ptCursorPos);
   UpdateCaret ();
   if (!bSelect)
@@ -382,6 +385,8 @@ MovePgUp (BOOL bSelect)
 {
   // scrolling windows
   int nNewTopSubLine = m_nTopSubLine - GetScreenLines() + 1;
+  while (nNewTopSubLine > 0 && IsEmptySubLineIndex(nNewTopSubLine))
+    nNewTopSubLine--;
   if (nNewTopSubLine < 0)
     nNewTopSubLine = 0;
   if (m_nTopSubLine != nNewTopSubLine)
@@ -420,6 +425,8 @@ MovePgDn (BOOL bSelect)
 	//BEGIN SW
 	// scrolling windows
 	int nNewTopSubLine = m_nTopSubLine + GetScreenLines() - 1;
+    while (nNewTopSubLine < GetSubLineCount() && IsEmptySubLineIndex(nNewTopSubLine))
+	    nNewTopSubLine++;
 	int nSubLineCount = GetSubLineCount();
 
 	if (nNewTopSubLine > nSubLineCount - 1)
@@ -578,6 +585,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
   BOOL bShift = GetKeyState (VK_SHIFT) & 0x8000;
   BOOL bControl = GetKeyState (VK_CONTROL) & 0x8000;
+  BOOL bAlt = GetKeyState (VK_MENU) & 0x8000;
 
   if (point.x < GetMarginWidth ())
     {
@@ -608,7 +616,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
             {
               // Select last line to end of subline
               ptEnd.y = GetLineCount() - 1;
-              ptEnd.x = SubLineEndToCharPos (ptStart.y, pos.y);
+              ptEnd.x = SubLineEndToCharPos (ptEnd.y, pos.y);
             }
           else
             {
@@ -626,6 +634,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetCapture ();
           m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
           ASSERT (m_nDragSelTimer != 0);
+          m_bColumnSelection = FALSE;
           m_bWordSelection = FALSE;
           m_bLineSelection = TRUE;
           m_bDragSelection = TRUE;
@@ -677,6 +686,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
           SetCapture ();
           m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
           ASSERT (m_nDragSelTimer != 0);
+          m_bColumnSelection = bAlt;
           m_bWordSelection = bControl;
           m_bLineSelection = FALSE;
           m_bDragSelection = TRUE;
@@ -898,6 +908,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
           SetSelection (ptStart, ptEnd);
         }
 
+      m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
       ReleaseCapture ();
       KillTimer (m_nDragSelTimer);
       m_bDragSelection = FALSE;
@@ -1047,6 +1058,7 @@ OnLButtonDblClk (UINT nFlags, CPoint point)
       SetCapture ();
       m_nDragSelTimer = SetTimer (CRYSTAL_TIMER_DRAGSEL, 100, NULL);
       ASSERT (m_nDragSelTimer != 0);
+      m_bColumnSelection = FALSE;
       m_bWordSelection = TRUE;
       m_bLineSelection = FALSE;
       m_bDragSelection = TRUE;
@@ -1110,8 +1122,11 @@ Copy ()
 
   PrepareSelBounds ();
   CString text;
-  GetText (m_ptDrawSelStart, m_ptDrawSelEnd, text);
-  PutToClipboard (text, text.GetLength());
+  if (!m_bColumnSelection)
+    GetText (m_ptDrawSelStart, m_ptDrawSelEnd, text);
+  else
+    GetTextInColumnSelection (text);
+  PutToClipboard (text, text.GetLength(), m_bColumnSelection);
 }
 
 
@@ -1123,7 +1138,7 @@ TextInClipboard ()
 }
 
 BOOL CCrystalTextView::
-PutToClipboard (LPCTSTR pszText, int cchText)
+PutToClipboard (LPCTSTR pszText, int cchText, BOOL bColumnSelection)
 {
   if (pszText == NULL || cchText == 0)
     return FALSE;
@@ -1138,14 +1153,21 @@ PutToClipboard (LPCTSTR pszText, int cchText)
       if (hData != NULL)
         {
           GlobalReAlloc(hData, cbData, 0);
-          ASSERT(GlobalSize(hData) == cbData);
+		  DWORD dwSize = GlobalSize(hData);
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           memcpy (pszData, pszText, cbData);
+		  if (dwSize > cbData)
+			  memset(pszData + cbData, 0, dwSize - cbData);
           GlobalUnlock (hData);
           UINT fmt = GetClipTcharTextFormat();
           bOK = SetClipboardData (fmt, hData) != NULL;
           if (bOK)
-            SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
+            {
+              if (bColumnSelection)
+                SetClipboardData (RegisterClipboardFormat (_T("MSDEVColumnSelect")), NULL);
+              if (dwSize == cbData)
+                SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
+            }
         }
       CloseClipboard ();
     }
@@ -1153,8 +1175,9 @@ PutToClipboard (LPCTSTR pszText, int cchText)
 }
 
 BOOL CCrystalTextView::
-GetFromClipboard (CString & text)
+GetFromClipboard (CString & text, BOOL & bColumnSelection)
 {
+  bColumnSelection = FALSE;
   BOOL bSuccess = FALSE;
   if (OpenClipboard ())
     {
@@ -1171,6 +1194,8 @@ GetFromClipboard (CString & text)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);
               bSuccess = TRUE;
+              if (IsClipboardFormatAvailable (RegisterClipboardFormat (_T("MSDEVColumnSelect"))))
+                bColumnSelection = TRUE;
               // If in doubt, assume zero-terminated string
               if (!IsClipboardFormatAvailable (RegisterClipboardFormat (_T("WinMergeClipboard"))))
                 text.ReleaseBuffer();

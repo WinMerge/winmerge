@@ -38,7 +38,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszNsisKeywordList[] =
+static LPCTSTR s_apszNsisKeywordList[] =
   {
     _T ("Abort"),
     _T ("AddBrandingImage"),
@@ -264,10 +264,9 @@ static LPTSTR s_apszNsisKeywordList[] =
     _T ("WriteRegStr"),
     _T ("WriteUninstaller"),
     _T ("XPStyle"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
 /*
     _T ("$0"),
@@ -328,16 +327,7 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("$VIDEOS"),
     _T ("$WINDIR"),
 */
-    _T ("alwaysoff"),
     _T ("ARCHIVE"),
-    _T ("auto"),
-    _T ("both"),
-    _T ("bottom"),
-    _T ("bzip2"),
-    _T ("components"),
-    _T ("custom"),
-    _T ("directory"),
-    _T ("false"),
     _T ("FILE_ATTRIBUTE_ARCHIVE"),
     _T ("FILE_ATTRIBUTE_HIDDEN"),
     _T ("FILE_ATTRIBUTE_NORMAL"),
@@ -345,9 +335,7 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("FILE_ATTRIBUTE_READONLY"),
     _T ("FILE_ATTRIBUTE_SYSTEM"),
     _T ("FILE_ATTRIBUTE_TEMPORARY"),
-    _T ("force"),
     _T ("HIDDEN"),
-    _T ("hide"),
     _T ("HKCC"),
     _T ("HKCR"),
     _T ("HKCU"),
@@ -369,16 +357,6 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("IDOK"),
     _T ("IDRETRY"),
     _T ("IDYES"),
-    _T ("ifdiff"),
-    _T ("ifnewer"),
-    _T ("instfiles"),
-    _T ("lastused"),
-    _T ("leave"),
-    _T ("left"),
-    _T ("license"),
-    _T ("listonly"),
-    _T ("lzma"),
-    _T ("manual"),
     _T ("MB_ABORTRETRYIGNORE"),
     _T ("MB_DEFBUTTON1"),
     _T ("MB_DEFBUTTON2"),
@@ -399,56 +377,64 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("MB_YESNO"),
     _T ("MB_YESNO"),
     _T ("MB_YESNOCANCEL"),
-    _T ("nevershow"),
-    _T ("none"),
-    _T ("normal"),
     _T ("NORMAL"),
-    _T ("off"),
     _T ("OFFLINE"),
-    _T ("on"),
     _T ("READONLY"),
-    _T ("right"),
     _T ("RO"),
-    _T ("show"),
-    _T ("silent"),
-    _T ("silentlog"),
     _T ("SW_HIDE"),
     _T ("SW_SHOWMAXIMIZED"),
     _T ("SW_SHOWMINIMIZED"),
     _T ("SW_SHOWNORMAL"),
     _T ("SYSTEM"),
     _T ("TEMPORARY"),
+    _T ("alwaysoff"),
+    _T ("auto"),
+    _T ("both"),
+    _T ("bottom"),
+    _T ("bzip2"),
+    _T ("components"),
+    _T ("custom"),
+    _T ("directory"),
+    _T ("false"),
+    _T ("force"),
+    _T ("hide"),
+    _T ("ifdiff"),
+    _T ("ifnewer"),
+    _T ("instfiles"),
+    _T ("lastused"),
+    _T ("leave"),
+    _T ("left"),
+    _T ("license"),
+    _T ("listonly"),
+    _T ("lzma"),
+    _T ("manual"),
+    _T ("nevershow"),
+    _T ("none"),
+    _T ("normal"),
+    _T ("off"),
+    _T ("on"),
+    _T ("right"),
+    _T ("show"),
+    _T ("silent"),
+    _T ("silentlog"),
     _T ("textonly"),
     _T ("top"),
     _T ("true"),
     _T ("try"),
     _T ("uninstConfirm"),
     _T ("zlib"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsNsisKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszNsisKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszNsisKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -482,6 +468,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -556,7 +543,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

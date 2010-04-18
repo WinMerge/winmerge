@@ -1,0 +1,106 @@
+2006-10-03 13:23  nwalsh
+
+	* trunk/docbook/sgml/catalog.xml, trunk/docbook/sgml/docbook.cat,
+	  trunk/docbook/sgml/docbook.dcl, trunk/docbook/sgml/docbook.dtd,
+	  calstblx.dtd, catalog.xml, dbcentx.mod, dbgenent.mod,
+	  dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat,
+	  docbookx.dtd, htmltblx.mod: DocBook V4.5 released
+
+2006-06-02 11:28  nwalsh
+
+	* calstblx.dtd, catalog.xml, dbcentx.mod, dbgenent.mod,
+	  dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat,
+	  docbookx.dtd, freshmeat.xsl, htmltblx.mod: Changed copyright
+	  dates and version numbers
+
+2006-05-30 20:58  nwalsh
+
+	* htmltblx.mod: Supply tag omission markers in SGML; suppress
+	  xml:lang in SGML
+
+2006-03-07 13:11  nwalsh
+
+	* trunk/docbook/sgml/catalog.xml, trunk/docbook/sgml/docbook.cat,
+	  trunk/docbook/sgml/docbook.dcl, trunk/docbook/sgml/docbook.dtd,
+	  calstblx.dtd, catalog.xml, dbcentx.mod, dbgenent.mod,
+	  dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat,
+	  docbookx.dtd, freshmeat.xsl, htmltblx.mod: Change version
+	  numbers to 4.5CR2
+
+2006-03-07 13:03  nwalsh
+
+	* dbpoolx.mod: Allow citebiblioid anywhere the other citation
+	  elements are allowed
+
+2006-02-16 21:12  nwalsh
+
+	* calstblx.dtd, catalog.xml, dbcentx.mod, dbgenent.mod,
+	  dbhierx.mod, dbnotnx.mod, dbpoolx.mod, docbook.cat,
+	  docbookx.dtd, freshmeat.xsl, htmltblx.mod: DocBook V4.5 released
+
+2005-06-29 10:59  nwalsh
+
+	* trunk/docbook/sgml/docbook.dtd, docbookx.dtd: DocBook V4.5CR1
+	  Released
+
+2005-06-29 10:58  nwalsh
+
+	* trunk/docbook/sgml/catalog.xml, trunk/docbook/sgml/docbook.cat,
+	  trunk/docbook/sgml/docbook.dcl, calstblx.dtd, catalog.xml,
+	  dbcentx.mod, dbgenent.mod, dbhierx.mod, dbnotnx.mod,
+	  dbpoolx.mod, docbook.cat, htmltblx.mod: Updated version number
+
+2005-06-29 10:53  nwalsh
+
+	* freshmeat.xsl: Tweaked freshmeat changes
+
+2005-06-24 21:09  nwalsh
+
+	* calstblx.dtd, dbhierx.mod, dbpoolx.mod, htmltblx.mod,
+	  soextblx.dtd: Added doc: structured comments
+
+2005-05-05 11:41  nwalsh
+
+	* trunk/docbook/sgml/docbook.dtd, docbookx.dtd: DocBook V4.5b1
+	  Released
+
+2005-05-05 11:40  nwalsh
+
+	* trunk/docbook/sgml/catalog.xml, trunk/docbook/sgml/docbook.cat,
+	  trunk/docbook/sgml/docbook.dcl, calstblx.dtd, catalog.xml,
+	  dbcentx.mod, dbgenent.mod, dbhierx.mod, dbnotnx.mod,
+	  dbpoolx.mod, docbook.cat, htmltblx.mod: Updated version number
+
+2005-05-05 11:37  nwalsh
+
+	* freshmeat.xsl: Prepare for 4.5b1
+
+2005-05-05 10:59  nwalsh
+
+	* dbpoolx.mod: RFE 1055480: Make revnumber optional
+
+2005-05-05 10:54  nwalsh
+
+	* dbpoolx.mod, htmltblx.mod: Allow common attributes on HTML table
+	  elements
+
+2005-05-05 10:48  nwalsh
+
+	* dbpoolx.mod: Added termdef
+
+2005-05-05 10:39  nwalsh
+
+	* dbpoolx.mod: Added mathphrase
+
+2005-05-05 10:33  nwalsh
+
+	* dbhierx.mod: RFE 1070458: Allow colophon in article
+
+2005-05-05 10:32  nwalsh
+
+	* dbpoolx.mod: RFE 1070770: Allow procedure in example
+
+2005-05-05 10:21  nwalsh
+
+	* dbpoolx.mod: Add isrn to list of biblioid class attribute values
+

@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: coretools.cpp 6699 2009-04-23 19:28:00Z kimmov $
 
 #include <windows.h>
 #include <tchar.h>
@@ -542,7 +542,10 @@ HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL
     si.wShowWindow = (bMinimized) ? SW_MINIMIZE : SW_HIDE;
 
 	TCHAR args[4096];
-	_sntprintf(args, countof(args), _T("\"%s\" %s"), szExeFile, szArgs);
+	if (szExeFile)
+		_sntprintf(args, countof(args), _T("\"%s\" %s"), szExeFile, szArgs);
+	else
+		_sntprintf(args, countof(args), _T("%s"), szArgs);
     if (CreateProcess(szExeFile, args, NULL, NULL,
 		FALSE, NORMAL_PRIORITY_CLASS|(bNewConsole? CREATE_NEW_CONSOLE:0),
                          NULL, _T(".\\"), &si, &procInfo))

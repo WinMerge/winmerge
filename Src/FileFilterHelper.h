@@ -20,7 +20,7 @@
  * @brief Declaration file for FileFilterHelper
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileFilterHelper.h 7024 2009-10-22 18:26:45Z kimmov $
 
 #ifndef _FILEFILTERHELPER_H_
 #define _FILEFILTERHELPER_H_
@@ -59,20 +59,22 @@ class IDiffFilter
 public:
 	virtual BOOL includeFile(LPCTSTR szFileName) = 0;
 	virtual BOOL includeDir(LPCTSTR szDirName) = 0;
-	BOOL includeFile(LPCTSTR szFileName1, LPCTSTR szFileName2)
+	BOOL includeFile(LPCTSTR szFileName1, LPCTSTR szFileName2, LPCTSTR szFileName3 = NULL)
 	{
 		return
 		(
 			(szFileName1[0] == '\0' || includeFile(szFileName1))
 		&&	(szFileName2[0] == '\0' || includeFile(szFileName2))
+		&&	(szFileName3 == NULL || szFileName3[0] == '\0' || includeFile(szFileName3))
 		);
 	}
-	BOOL includeDir(LPCTSTR szDirName1, LPCTSTR szDirName2)
+	BOOL includeDir(LPCTSTR szDirName1, LPCTSTR szDirName2, LPCTSTR szDirName3 = NULL)
 	{
 		return
 		(
 			(szDirName1[0] == '\0' || includeDir(szDirName1))
 		&&	(szDirName2[0] == '\0' || includeDir(szDirName2))
+		&&	(szDirName3 == NULL || szDirName3[0] == '\0' || includeDir(szDirName3))
 		);
 	}
 };

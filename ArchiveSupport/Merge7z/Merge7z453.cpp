@@ -41,7 +41,7 @@ DATE:		BY:					DESCRIPTION:
 /**
  * @brief Extraction thread
  */
-class CThreadExtracting : CThread
+class CThreadExtracting : NWindows::CThread
 {
 protected:
 	THREAD_FUNC_RET_TYPE Process()
@@ -208,7 +208,7 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 /**
  * @brief Compression thread
  */
-class CThreadUpdateCompress : CThread
+class CThreadUpdateCompress : NWindows::CThread
 {
 protected:
 	THREAD_FUNC_RET_TYPE Process()

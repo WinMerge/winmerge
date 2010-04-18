@@ -27,8 +27,11 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszFortranKeywordList[] =
+static LPCTSTR s_apszFortranKeywordList[] =
   {
+    _T (".and."),
+    _T (".not."),
+    _T (".or."),
     _T ("abs"),
     _T ("achar"),
     _T ("acos"),
@@ -40,7 +43,6 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("allocatable"),
     _T ("allocate"),
     _T ("allocated"),
-    _T (".and."),
     _T ("anint"),
     _T ("any"),
     _T ("asin"),
@@ -54,9 +56,6 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("blockdata"),
     _T ("btest"),
     _T ("call"),
-    _T ("random_number"),
-    _T ("random_seed"),
-    _T ("system_clock"),
     _T ("call"),
     _T ("case"),
     _T ("ceiling"),
@@ -167,13 +166,11 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("nearest"),
     _T ("nint"),
     _T ("none"),
-    _T (".not."),
     _T ("nullify"),
     _T ("only"),
     _T ("open"),
     _T ("operator"),
     _T ("optional"),
-    _T (".or."),
     _T ("out"),
     _T ("pack"),
     _T ("parameter"),
@@ -187,6 +184,8 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("program"),
     _T ("public"),
     _T ("radix"),
+    _T ("random_number"),
+    _T ("random_seed"),
     _T ("rangereal"),
     _T ("read"),
     _T ("real"),
@@ -217,6 +216,7 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("stop"),
     _T ("subroutine"),
     _T ("sum"),
+    _T ("system_clock"),
     _T ("tan"),
     _T ("tanh"),
     _T ("target"),
@@ -234,25 +234,12 @@ static LPTSTR s_apszFortranKeywordList[] =
     _T ("where"),
     _T ("while"),
     _T ("write"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsFortranKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszFortranKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszFortranKeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -286,6 +273,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -355,7 +343,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

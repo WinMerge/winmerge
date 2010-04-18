@@ -1,0 +1,128 @@
+<scriptlet>
+
+<implements type="Automation" id="dispatcher">
+	<property name="PluginEvent">
+	          <get/>
+        </property>
+	<property name="PluginDescription">
+	          <get/>
+        </property>
+	<property name="PluginFileFilters">
+	          <get/>
+        </property>
+	<property name="PluginIsAutomatic">
+	          <get/>
+        </property>
+      	<method name="UnpackFile"/>
+      	<method name="PackFile"/>
+</implements>
+
+<script language="VBS">
+
+'/////////////////////////////////////////////////////////////////////////////
+'    This is a plugin for WinMerge.
+'    It will display the text content of MS Excel files.
+'    Copyright (C) 2005 Takashi Sawanaka
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty of
+'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License for more details.
+'
+'    You should have received a copy of the GNU General Public License
+'    along with this program; if not, write to the Free Software
+'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+'
+
+Option Explicit
+
+Function get_PluginEvent()
+         get_PluginEvent = "FILE_PACK_UNPACK"
+End Function
+
+Function get_PluginDescription()
+         get_PluginDescription = "ExcelToText"
+End Function
+
+Function get_PluginFileFilters()
+         get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$"
+End Function
+
+Function get_PluginIsAutomatic()
+         get_PluginIsAutomatic = True
+End Function
+
+Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	Dim fso
+	Dim fo
+	Dim xl
+	Dim wbk
+	Dim sht
+	Dim cmp
+	Dim row
+	Dim col
+	Dim line
+	Dim varCells
+
+
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set fo = fso.CreateTextFile(fileDst, True)
+
+	Set xl = CreateObject("Excel.Application")
+	Set wbk = xl.Workbooks.Open(fileSrc)
+
+	xl.DisplayAlerts = False
+
+	On Error Resume Next
+
+	For Each sht In wbk.Worksheets
+		fo.WriteLine "[" & sht.Name & "]"
+		varCells = sht.UsedRange.Value
+		If TypeName(varCells) = "String" Then
+			fo.WriteLine varCells
+		ElseIf Not IsEmpty(varCells) Then
+			For row = 1 To UBound(varCells, 1)
+				line = ""
+				For col = 1 To UBound(varCells, 2)
+					line = line & varCells(Row, Col) & vbTab
+				Next
+				fo.WriteLine line
+			Next
+		End If
+		fo.WriteLine ""
+	Next
+
+	For Each cmp In wbk.VBProject.VBComponents
+		fo.WriteLine "[CodeModule." & cmp.Name & "]"
+		If cmp.CodeModule.CountOfLines > 0 Then
+			fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
+		End If
+		fo.WriteLine ""
+	Next
+
+	Set sht = Nothing
+	wbk.Close
+	Set wbk = Nothing
+	xl.Quit
+	Set xl = Nothing
+	fo.Close
+	Set fo = Nothing
+	Set fso = Nothing
+
+	pbChanged = True
+	pSubcode = 0
+	UnpackFile = True
+
+End Function
+
+Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	PackFile = False
+End Function
+
+</script>
+</scriptlet>

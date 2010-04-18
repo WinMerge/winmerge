@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShellExtension", "ShellExtensionX64.vcproj", "{C388C7AA-862D-455A-8D3B-8F4BF5AE44EA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug X64 = Debug X64
+		Release X64 = Release X64
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C388C7AA-862D-455A-8D3B-8F4BF5AE44EA}.Debug X64.ActiveCfg = Debug X64|Win32
+		{C388C7AA-862D-455A-8D3B-8F4BF5AE44EA}.Debug X64.Build.0 = Debug X64|Win32
+		{C388C7AA-862D-455A-8D3B-8F4BF5AE44EA}.Release X64.ActiveCfg = Release X64|Win32
+		{C388C7AA-862D-455A-8D3B-8F4BF5AE44EA}.Release X64.Build.0 = Release X64|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

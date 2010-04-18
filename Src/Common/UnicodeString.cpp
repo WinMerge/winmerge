@@ -21,7 +21,7 @@
  * @brief String utilities.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: UnicodeString.cpp 7058 2009-12-26 23:11:18Z kimmov $
 
 // String formatting code originally from Paul Senzee:
 // http://www.senzee5.com/2006/05/c-formatting-stdstring.html
@@ -57,11 +57,12 @@ String string_makelower(const String &str)
  */
 void string_replace(String &target, const String &find, const String &replace)
 {
-	const std::string::size_type replace_len = find.length();
+	const std::string::size_type find_len = find.length();
+	const std::string::size_type replace_len = replace.length();
 	std::string::size_type pos = 0;
 	while ((pos = target.find(find, pos)) != String::npos)
 	{
-		target.replace(pos, replace_len, replace);
+		target.replace(pos, find_len, replace);
 		pos += replace_len;
 	}
 }
@@ -107,7 +108,7 @@ String string_trim_ws(const String & str)
 		return result;
 
 	it = result.end() - 1;
-	while (it != result.begin() &&_istspace(*it))
+	while (it != result.begin() && _istspace(*it))
 		--it;
 
 	if (it != result.end() - 1)

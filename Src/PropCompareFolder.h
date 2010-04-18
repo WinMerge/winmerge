@@ -4,7 +4,7 @@
  * @brief Declaration of PropCompareFolder propertysheet
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropCompareFolder.h 6921 2009-07-23 15:20:41Z kimmov $
 
 #ifndef _PROPCOMPARE_FOLDER_H_
 #define _PROPCOMPARE_FOLDER_H_
@@ -43,6 +43,7 @@ public:
 	BOOL    m_bStopAfterFirst;
 	BOOL    m_bIgnoreSmallTimeDiff;
 	BOOL    m_bIncludeUniqFolders;
+	BOOL    m_bExpandSubdirs;
 	UINT    m_nQuickCompareLimit;
 	//}}AFX_DATA
 

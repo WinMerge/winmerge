@@ -5,7 +5,7 @@
  */ 
 //
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: CompareStats.h 6914 2009-07-12 22:31:23Z kimmov $
 
 #ifndef _COMPARESTATS_H_
 #define _COMPARESTATS_H_
@@ -43,13 +43,21 @@ public:
 	enum RESULT
 	{
 		RESULT_LUNIQUE = 0,
+		RESULT_MUNIQUE,
 		RESULT_RUNIQUE,
+		RESULT_LMISSING,
+		RESULT_MMISSING,
+		RESULT_RMISSING,
 		RESULT_DIFF,
 		RESULT_SAME,
 		RESULT_BINSAME,
 		RESULT_BINDIFF,
 		RESULT_LDIRUNIQUE,
+		RESULT_MDIRUNIQUE,
 		RESULT_RDIRUNIQUE,
+		RESULT_LDIRMISSING,
+		RESULT_MDIRMISSING,
+		RESULT_RDIRMISSING,
 		RESULT_SKIP,
 		RESULT_DIRSKIP,
 		RESULT_DIR,
@@ -57,7 +65,7 @@ public:
 		RESULT_COUNT  //THIS MUST BE THE LAST ITEM
 	};
 
-	CompareStats();
+	CompareStats(int nDirs);
 	~CompareStats();
 	void AddItem(int code);
 	void IncreaseTotalItems(int count = 1);
@@ -69,7 +77,7 @@ public:
 	CompareStats::CMP_STATE GetCompareState() const;
 	BOOL IsCompareDone() const { return m_bCompareDone; }
 
-	static CompareStats::RESULT GetResultFromCode(UINT diffcode);
+	CompareStats::RESULT GetResultFromCode(UINT diffcode);
 
 private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
@@ -78,6 +86,7 @@ private:
 	long m_nComparedItems; /**< Compared items so far */
 	CMP_STATE m_state; /**< State for compare (idle, collect, compare,..) */
 	BOOL m_bCompareDone; /**< Have we finished last compare? */
+	int m_nDirs; /**< number of directories to compare */
 };
 
 #endif // _COMPARESTATS_H_

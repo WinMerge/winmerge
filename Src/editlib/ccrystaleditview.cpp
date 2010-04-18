@@ -64,7 +64,7 @@
  * @brief Implementation of the CCrystalEditView class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ccrystaleditview.cpp 6457 2009-02-15 14:08:50Z kimmov $
 
 
 #include "StdAfx.h"
@@ -313,6 +313,200 @@ DeleteCurrentSelection ()
   return FALSE;
 }
 
+BOOL CCrystalEditView::
+DeleteCurrentColumnSelection (int nAction, BOOL bFlushUndoGroup /*=TRUE*/, BOOL bUpdateCursorPosition /*=TRUE*/)
+{
+  if (IsSelection ())
+    {
+      if (bFlushUndoGroup)
+        m_pTextBuffer->BeginUndoGroup ();
+
+      CPoint ptSelStart, ptSelEnd;
+      GetSelection (ptSelStart, ptSelEnd);
+
+      int nSelLeft, nSelRight;
+      GetColumnSelection (m_ptDrawSelStart.y, nSelLeft, nSelRight);
+      CPoint ptCursorPos(nSelLeft, m_ptDrawSelStart.y);
+      int nStartLine = m_ptDrawSelStart.y;
+      int nEndLine = m_ptDrawSelEnd.y;
+
+      if (GetEnableHideLines ())
+        {
+          for (int nLineIndex = nEndLine; nLineIndex >= nStartLine; nLineIndex--)
+            {
+              if (!(GetLineFlags (nLineIndex) & LF_INVISIBLE))
+                {
+                  int nEndLine2 = nLineIndex;
+                  int nStartLine2;
+                  for (nStartLine2 = nLineIndex - 1; nStartLine2 >= nStartLine; nStartLine2--)
+                    {
+                      if (GetLineFlags (nStartLine2) & LF_INVISIBLE)
+                        break;
+                    }  
+                  nStartLine2++;
+                  nLineIndex = nStartLine2;
+                  DeleteCurrentColumnSelection2 (nStartLine2, nEndLine2, nAction);
+                }
+            }
+        }
+      else
+        {
+          DeleteCurrentColumnSelection2 (ptSelStart.y, ptSelEnd.y, nAction);
+        }
+
+      if (bFlushUndoGroup)
+        m_pTextBuffer->FlushUndoGroup (this);
+
+      if (bUpdateCursorPosition)
+        {
+          ASSERT_VALIDTEXTPOS (ptCursorPos);
+          SetAnchor (ptCursorPos);
+          SetSelection (ptCursorPos, ptCursorPos);
+          SetCursorPos (ptCursorPos);
+          EnsureVisible (ptCursorPos);
+      }
+      return TRUE;
+    }
+  return FALSE;
+}
+
+BOOL CCrystalEditView::
+DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
+{
+  int nBufSize = 1;
+  for (int L = nStartLine; L <= nEndLine; L++)
+      nBufSize += GetFullLineLength (L);
+
+  CString text;
+  LPTSTR p, pszBuf = text.GetBuffer (nBufSize);
+  p = pszBuf;
+
+  for (int I = nStartLine; I <= nEndLine; I++)
+    {
+      LPCTSTR pszChars = GetLineChars (I);
+      int nSelLeft, nSelRight;
+      GetColumnSelection (I, nSelLeft, nSelRight);
+      if (nSelLeft > 0)
+        {
+          memcpy (p, pszChars, sizeof (TCHAR) * nSelLeft);
+          p += nSelLeft;
+        }
+      int nLineLength = GetFullLineLength (I);
+      if (nSelRight < nLineLength)
+        {
+          memcpy (p, pszChars + nSelRight, sizeof (TCHAR) * (nLineLength - nSelRight));
+          p += nLineLength - nSelRight;
+        }
+    }
+
+  p[0] = 0;
+  text.ReleaseBuffer (p - pszBuf);
+  text.FreeExtra ();
+
+  if (nEndLine + 1 < GetLineCount())
+    m_pTextBuffer->DeleteText (this, nStartLine, 0, nEndLine + 1, 0, nAction);
+  else
+    m_pTextBuffer->DeleteText (this, nStartLine, 0, nEndLine, GetLineLength (nEndLine), nAction);
+  int x, y;
+  m_pTextBuffer->InsertText (this, nStartLine, 0, text, text.GetLength(), y, x, nAction);
+
+  return TRUE;
+}
+
+BOOL CCrystalEditView::
+InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, BOOL bFlushUndoGroup)
+{
+  if (!pszText || cchText == 0)
+    return FALSE;
+
+  CTypedPtrArray<CPtrArray, LPTSTR> aLines;
+  CDWordArray aLineLengths;
+  int nLineBegin = 0;
+  for (int nTextPos = 0; nTextPos < cchText; )
+    {
+      TCHAR ch;
+      aLines.Add ((LPTSTR)&pszText[nTextPos]);
+
+      for (; nTextPos < cchText; nTextPos++)
+        {
+          ch = pszText[nTextPos];
+          if (ch=='\r' || ch=='\n'/*iseol(pszText[nTextPos]*/)
+            break;
+		}
+
+      aLineLengths.Add (nTextPos - nLineBegin);
+
+      // advance after EOL of line
+      if (ch=='\r' && pszText[nTextPos + 1]=='\n'/*isdoseol(&pszText[nTextPos])*/)
+        nTextPos += 2;
+      else if (ch=='\r' || ch=='\n'/*iseol(pszText[nTextPos])*/)
+        nTextPos++;
+      nLineBegin = nTextPos;
+    }
+
+  int L;
+  int nBufSize = 1;
+  int nLineCount = GetLineCount ();
+  int nPasteTextLineCount = aLineLengths.GetSize ();
+  for (L = 0; L < nPasteTextLineCount; L++)
+    {
+      if (nLine + L < nLineCount)
+        nBufSize += GetFullLineLength (nLine + L) + aLineLengths[L] + 2;
+      else
+        nBufSize += aLineLengths[L] + 2;
+    }
+
+  LPTSTR pszBuf = new TCHAR[nBufSize];
+  LPTSTR p = pszBuf;
+  int nTopBeginCharPos = CalculateActualOffset (nLine, nPos, TRUE);
+  for (L = 0; L < nPasteTextLineCount; L++)
+    {
+      if (nLine + L < nLineCount)
+        {
+          int nLineLength = GetFullLineLength (nLine + L);
+          LPCTSTR pszChars = GetLineChars (nLine + L);
+          int nOffset = ApproxActualOffset (nLine + L, nTopBeginCharPos);
+          memcpy(p, pszChars, nOffset * sizeof(TCHAR));
+          p += nOffset;
+          memcpy(p, aLines[L], aLineLengths[L] * sizeof(TCHAR));
+          p += aLineLengths[L];
+          memcpy(p, pszChars + nOffset, (nLineLength - nOffset) * sizeof(TCHAR));
+          p += nLineLength - nOffset;
+        }
+      else
+        {
+          CString sEol = m_pTextBuffer->GetDefaultEol ();
+          if (p > pszBuf && p[-1] != '\r' && p[-1] != '\n')
+            {
+              memcpy(p, sEol, sEol.GetLength () * sizeof(TCHAR));
+              p += sEol.GetLength ();
+            }
+          memcpy(p, aLines[L], aLineLengths[L] * sizeof(TCHAR));
+          p += aLineLengths[L];
+          memcpy(p, sEol, sEol.GetLength () * sizeof(TCHAR));
+          p += sEol.GetLength ();
+        }
+    }
+  p[0] = 0;
+
+  if (bFlushUndoGroup)
+    m_pTextBuffer->BeginUndoGroup ();
+
+  if (nLine + nPasteTextLineCount + 1 < nLineCount)
+    m_pTextBuffer->DeleteText (this, nLine, 0, nLine + nPasteTextLineCount, 0, nAction);
+  else if (nLine != nLineCount - 1 || GetLineLength (nLineCount - 1) != 0)
+    m_pTextBuffer->DeleteText (this, nLine, 0, nLineCount - 1, GetLineLength (nLineCount - 1), nAction);
+  int x, y;
+  m_pTextBuffer->InsertText (this, nLine, 0, pszBuf, p - pszBuf, x, y, nAction);
+
+  if (bFlushUndoGroup)
+    m_pTextBuffer->FlushUndoGroup (this);
+
+  delete pszBuf;
+
+  return TRUE;
+}
+
 void CCrystalEditView::
 Paste ()
 {
@@ -322,7 +516,8 @@ Paste ()
     return;
 
   CString text;
-  if (GetFromClipboard (text))
+  BOOL bColumnSelection;
+  if (GetFromClipboard (text, bColumnSelection))
     {
       m_pTextBuffer->BeginUndoGroup ();
     
@@ -339,7 +534,10 @@ Paste ()
           EnsureVisible (ptCursorPos);*/
 
           // [JRT]:
-          m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
+          if (!m_bColumnSelection)
+            m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
+          else
+            DeleteCurrentColumnSelection (CE_ACTION_PASTE, FALSE, FALSE);
         }
       else
         {
@@ -348,10 +546,15 @@ Paste ()
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       
       int x, y;
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_PASTE);  //  [JRT]
+      if (!bColumnSelection)
+        {
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_PASTE);  //  [JRT]
+          ptCursorPos.x = x;
+          ptCursorPos.y = y;
+        }
+      else
+        InsertColumnText (ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), CE_ACTION_PASTE, FALSE);
 
-      ptCursorPos.x = x;
-      ptCursorPos.y = y;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
       SetSelection (ptCursorPos, ptCursorPos);
@@ -375,18 +578,25 @@ Cut ()
   CPoint ptSelStart, ptSelEnd;
   GetSelection (ptSelStart, ptSelEnd);
   CString text;
-  GetText (ptSelStart, ptSelEnd, text);
+  if (!m_bColumnSelection)
+    GetText (ptSelStart, ptSelEnd, text);
+  else
+    GetTextInColumnSelection (text);
   PutToClipboard (text, text.GetLength());
 
-  CPoint ptCursorPos = ptSelStart;
-  ASSERT_VALIDTEXTPOS (ptCursorPos);
-  SetAnchor (ptCursorPos);
-  SetSelection (ptCursorPos, ptCursorPos);
-  SetCursorPos (ptCursorPos);
-  EnsureVisible (ptCursorPos);
+  if (!m_bColumnSelection)
+    {
+      CPoint ptCursorPos = ptSelStart;
+      ASSERT_VALIDTEXTPOS (ptCursorPos);
+      SetAnchor (ptCursorPos);
+      SetSelection (ptCursorPos, ptCursorPos);
+      SetCursorPos (ptCursorPos);
+      EnsureVisible (ptCursorPos);
 
-  m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_CUT);  // [JRT]
-
+      m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_CUT);  // [JRT]
+    }
+  else
+    DeleteCurrentColumnSelection (CE_ACTION_CUT);
 }
 
 void CCrystalEditView::
@@ -416,15 +626,19 @@ OnEditDelete ()
       }
     }
 
-  CPoint ptCursorPos = ptSelStart;
-  ASSERT_VALIDTEXTPOS (ptCursorPos);
-  SetAnchor (ptCursorPos);
-  SetSelection (ptCursorPos, ptCursorPos);
-  SetCursorPos (ptCursorPos);
-  EnsureVisible (ptCursorPos);
+  if (!m_bColumnSelection)
+    {
+      CPoint ptCursorPos = ptSelStart;
+      ASSERT_VALIDTEXTPOS (ptCursorPos);
+      SetAnchor (ptCursorPos);
+      SetSelection (ptCursorPos, ptCursorPos);
+      SetCursorPos (ptCursorPos);
+      EnsureVisible (ptCursorPos);
 
-  m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_DELETE);   // [JRT]
-
+      m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_DELETE);   // [JRT]
+    }
+  else
+    DeleteCurrentColumnSelection (CE_ACTION_DELETE);
 }
 
 void CCrystalEditView::
@@ -1589,12 +1803,12 @@ bracetype (LPCTSTR s)
 }
 
 void CCrystalEditView::
-OnEditOperation (int nAction, LPCTSTR pszText)
+OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
 {
   if (m_bAutoIndent)
     {
       //  Analyse last action...
-      if (nAction == CE_ACTION_TYPING && _tcscmp (pszText, _T ("\r\n")) == 0 && !m_bOvrMode)
+      if (nAction == CE_ACTION_TYPING && _tcsncmp (pszText, _T ("\r\n"), cchText) == 0 && !m_bOvrMode)
         {
           //  Enter stroke!
           CPoint ptCursorPos = GetCursorPos ();
@@ -1931,7 +2145,7 @@ OnEditAutoExpand ()
                   SetCursorPos (ptCursorPos);
                   SetSelection (ptCursorPos, ptCursorPos);
                   SetAnchor (ptCursorPos);
-                  OnEditOperation (CE_ACTION_TYPING, pszExpand);
+                  OnEditOperation (CE_ACTION_TYPING, pszExpand, _tcslen(pszExpand));
                   ptCursorPos = GetCursorPos ();
                   if (!pszSlash)
                     break;
@@ -1947,7 +2161,7 @@ OnEditAutoExpand ()
                           SetSelection (ptCursorPos, ptCursorPos);
                           SetAnchor (ptCursorPos);
                           SetCursorPos (ptCursorPos);
-                          OnEditOperation (CE_ACTION_TYPING, szText);
+                          OnEditOperation (CE_ACTION_TYPING, szText, _tcslen(pszExpand));
                         }
                         break;
                       case _T ('u'):

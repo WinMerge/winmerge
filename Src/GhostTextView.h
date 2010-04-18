@@ -107,7 +107,10 @@ public:
 
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
-			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC);
+			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
+			BOOL bExcludeInvisibleLines = TRUE);
+	virtual void GetTextWithoutEmptysInColumnSelection (CString & text,
+			BOOL bExcludeInvisibleLines = TRUE);
 	/** 
 	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
 	 */

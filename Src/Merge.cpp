@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
 #include "Constants.h"
@@ -70,7 +70,10 @@ static char THIS_FILE[] = __FILE__;
 
 
 /** @brief Location for command line help to open. */
-static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/CommandLine.html");
+static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
+
+// registry dir to WinMerge
+static CString f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
@@ -201,6 +204,10 @@ BOOL CMergeApp::InitInstance()
 	//  of your final executable, you should remove from the following
 	//  the specific initialization routines you do not need.
 
+	// Revoke the standard OLE Message Filter to avoid drawing frame while loading files.
+	COleMessageFilter* pOldFilter = AfxOleGetMessageFilter();
+	pOldFilter->Revoke();
+
 	// Only needed by VC6
 #if _MSC_VER < 1300
 #ifdef _AFXDLL
@@ -209,6 +216,23 @@ BOOL CMergeApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 #endif
+
+	// Load registry file if existing
+	CString sRegPath = CString(GetModulePath(m_hInstance).c_str()) + _T("\\WinMerge.reg");
+	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
+	{
+		CString sCmdArg;
+		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
+			sCmdArg = _T("regedit /s \"") + sRegPath + _T("\"");
+		else
+			sCmdArg = _T("reg import \"") + sRegPath + _T("\"");
+		HANDLE hProcess = RunIt(NULL, sCmdArg, TRUE, FALSE);
+		if (hProcess)
+		{
+			WaitForSingleObject(hProcess, INFINITE);
+			CloseHandle(hProcess);
+		}
+	}
 
 	m_pOptions = new CRegOptionsMgr;
 	OptionsInit(); // Implementation in OptionsInit.cpp
@@ -243,7 +267,7 @@ BOOL CMergeApp::InitInstance()
 
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).
-	BOOL bCommandLineInvoke = cmdInfo.m_Files.size() > 0;
+	BOOL bCommandLineInvoke = cmdInfo.m_Files.GetSize() > 0;
 
 	// Set default codepage
 	DirScan_InitializeDefaultCodepage();
@@ -445,6 +469,20 @@ void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 int CMergeApp::ExitInstance() 
 {
 	charsets_cleanup();
+	CString sRegPath = CString(GetModulePath(m_hInstance).c_str()) + _T("\\WinMerge.reg");
+	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
+	{
+		DeleteFile(sRegPath);
+		CString sCmdArg;
+		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
+			sCmdArg = _T("regedit /s /e \"") + sRegPath + _T("\" ") + _T("HKEY_CURRENT_USER\\") + f_RegDir;
+		else
+			sCmdArg = _T("reg export HKCU\\") + f_RegDir + _T(" \"") + sRegPath + _T("\"");
+		HANDLE hProcess = RunIt(NULL, sCmdArg, TRUE, FALSE);
+		if (hProcess)
+			CloseHandle(hProcess);
+	}
+
 	// Remove tempfolder
 	const String temp = env_GetTempPath(NULL);
 	ClearTempfolder(temp);
@@ -593,27 +631,37 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		pMainFrame->m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		pMainFrame->m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
-		pMainFrame->m_strSaveAsPath = _T("");
+		pMainFrame->m_strSaveAsPath = cmdInfo.m_sOutputpath.c_str();
 
 		pMainFrame->m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
-		pMainFrame->m_strDescriptions[1] = cmdInfo.m_sRightDesc;
+		if (cmdInfo.m_Files.GetSize() < 3)
+		{
+			pMainFrame->m_strDescriptions[1] = cmdInfo.m_sRightDesc;
+		}
+		else
+		{
+			pMainFrame->m_strDescriptions[1] = cmdInfo.m_sMiddleDesc;
+			pMainFrame->m_strDescriptions[2] = cmdInfo.m_sRightDesc;
+		}
 
-		if (cmdInfo.m_Files.size() > 2)
+		if (cmdInfo.m_Files.GetSize() > 2)
 		{
-			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2].c_str();
-			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0].c_str(),
-				cmdInfo.m_Files[1].c_str(),	cmdInfo.m_dwLeftFlags,
-				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
+			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
+			cmdInfo.m_dwMiddleFlags |= FFILEOPEN_CMDLINE;
+			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
+			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwMiddleFlags, cmdInfo.m_dwRightFlags};
+			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+				dwFlags, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer.c_str());
 		}
-		else if (cmdInfo.m_Files.size() > 1)
+		else if (cmdInfo.m_Files.GetSize() > 1)
 		{
-			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0].c_str(),
-				cmdInfo.m_Files[1].c_str(),	cmdInfo.m_dwLeftFlags,
-				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
+			DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
+			bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+				dwFlags, cmdInfo.m_bRecurse, NULL,
 				cmdInfo.m_sPreDiffer.c_str());
 		}
-		else if (cmdInfo.m_Files.size() == 1)
+		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
 			String sFilepath = cmdInfo.m_Files[0];
 			if (IsProjectFile(sFilepath.c_str()))
@@ -626,12 +674,13 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			}
 			else
 			{
-				bCompared = pMainFrame->DoFileOpen(sFilepath.c_str(), _T(""),
-					cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags,
-					cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer.c_str());
+				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
+				bCompared = pMainFrame->DoFileOpen(&cmdInfo.m_Files,
+					dwFlags, cmdInfo.m_bRecurse, NULL,
+					cmdInfo.m_sPreDiffer.c_str());
 			}
 		}
-		else if (cmdInfo.m_Files.size() == 0) // if there are no input args, we can check the display file dialog flag
+		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
 		{
 			BOOL showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 			if (showFiles)
@@ -684,12 +733,15 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 		AfxMessageBox(msg, MB_ICONSTOP);
 		return false;
 	}
-	String sLeft, sRight;
+	PathContext files;
 	BOOL bLeftReadOnly = FALSE;
+	BOOL bMiddleReadOnly = FALSE;
 	BOOL bRightReadOnly = FALSE;
 	BOOL bRecursive = FALSE;
-	sLeft = project.GetLeft(&bLeftReadOnly);
-	sRight = project.GetRight(&bRightReadOnly);
+	project.GetPaths(files, bRecursive);
+	bLeftReadOnly = project.GetLeftReadOnly();
+	bMiddleReadOnly = project.GetMiddleReadOnly();
+	bRightReadOnly = project.GetRightReadOnly();
 	if (project.HasFilter())
 	{
 		String filter = project.GetFilter();
@@ -699,25 +751,29 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 	if (project.HasSubfolders())
 		bRecursive = project.GetSubfolders() > 0;
 
-	DWORD dwLeftFlags = FFILEOPEN_NONE;
-	DWORD dwRightFlags = FFILEOPEN_NONE;
-	if (!sLeft.empty())
-	{	
-		dwLeftFlags = FFILEOPEN_PROJECT;
-		if (bLeftReadOnly)
-			dwLeftFlags |= FFILEOPEN_READONLY;
-	}
-	if (!sRight.empty())
-	{	
-		dwRightFlags = FFILEOPEN_PROJECT;
+	DWORD dwFlags[3] = {
+		files.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT,
+		files.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT,
+		files.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT
+	};
+	if (bLeftReadOnly)
+		dwFlags[0] |= FFILEOPEN_READONLY;
+	if (files.GetSize() == 2)
+	{
 		if (bRightReadOnly)
-			dwRightFlags |= FFILEOPEN_READONLY;
+			dwFlags[1] |= FFILEOPEN_READONLY;
+	}
+	else
+	{
+		if (bMiddleReadOnly)
+			dwFlags[1] |= FFILEOPEN_READONLY;
+		if (bRightReadOnly)
+			dwFlags[2] |= FFILEOPEN_READONLY;
 	}
 
 	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
-
-	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft.c_str(), sRight.c_str(),
-			dwLeftFlags, dwRightFlags, bRecursive);
+	
+	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, bRecursive);
 
 	AddToRecentProjectsMRU(sProject);
 	return !!rtn;

@@ -5,10 +5,12 @@
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
 
+#include "DiffContext.h"
 #include "DirView.h"
 
-extern Merge7z::Proxy Merge7z;
+extern __declspec(thread) Merge7z::Proxy Merge7z;
 
+BOOL IsArchiveFile(LPCTSTR);
 Merge7z::Format *ArchiveGuessFormat(LPCTSTR);
 
 CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt);
@@ -20,10 +22,8 @@ class CTempPathContext
 {
 public:
 	CTempPathContext *m_pParent;
-	String m_strLeftDisplayRoot;
-	String m_strRightDisplayRoot;
-	String m_strLeftRoot;
-	String m_strRightRoot;
+	String m_strDisplayRoot[3];
+	String m_strRoot[3];
 	CTempPathContext *DeleteHead();
 };
 

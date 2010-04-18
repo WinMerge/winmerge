@@ -34,7 +34,7 @@ static void print_sdiff_common_lines PARAMS((int, int));
 static void print_sdiff_hunk PARAMS((struct change *));
 
 /* Next line number to be printed in the two input files.  */
-static int next0, next1;
+DECL_TLS static int next0, next1;
 
 /* Print the edit-script SCRIPT as a sdiff style output.  */
 
@@ -250,7 +250,7 @@ print_sdiff_hunk (hunk)
   register int i, j;
 
   /* Determine range of line numbers involved in each file.  */
-  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts);
+  analyze_hunk (hunk, &first0, &last0, &first1, &last1, &deletes, &inserts, files);
   if (!deletes && !inserts)
     return;
 

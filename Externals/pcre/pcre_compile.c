@@ -2461,7 +2461,7 @@ if (next >= 0) switch(op_code)
     case 0x0b:
     case 0x0c:
     case 0x0d:
-    case 0x85:
+//    case 0x85:
     case 0x2028:
     case 0x2029:
     return op_code != OP_VSPACE;
@@ -2539,7 +2539,7 @@ switch(op_code)
       case 0x0b:
       case 0x0c:
       case 0x0d:
-      case 0x85:
+//      case 0x85:
       case 0x2028:
       case 0x2029:
       return -next != ESC_v;
@@ -3278,7 +3278,7 @@ for (;; ptr++)
             SETBIT(classbits, 0x0b); /* VT */
             SETBIT(classbits, 0x0c); /* FF */
             SETBIT(classbits, 0x0d); /* CR */
-            SETBIT(classbits, 0x85); /* NEL */
+//            SETBIT(classbits, 0x85); /* NEL */
 #ifdef SUPPORT_UTF8
             if (utf8)
               {
@@ -3303,8 +3303,8 @@ for (;; ptr++)
                              x ^= 1 << (0x0c%8);
                              x ^= 1 << (0x0d%8);
                              break;
-                case 0x85/8: x ^= 1 << (0x85%8); break;
-                default: break;
+//                case 0x85/8: x ^= 1 << (0x85%8); break;
+//                default: break;
                 }
               classbits[c] |= x;
               }

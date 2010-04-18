@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: Constants.h 6729 2009-05-11 07:14:59Z kimmov $
 
 #ifndef _CONSTANTS_H_
 #define _CONSTANTS_H_
@@ -30,6 +30,7 @@ const TCHAR DownloadUrl[] = _T("http://winmerge.org/downloads/");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
 const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
+const TCHAR DocsPath_ja[] = _T("\\Docs\\WinMerge_ja.chm");
 
 /** @brief Contributors list. */
 const TCHAR ContributorsPath[] = _T("\\contributors.txt");

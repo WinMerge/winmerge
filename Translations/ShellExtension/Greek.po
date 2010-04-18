@@ -29,7 +29,7 @@ msgstr "AFX_TARG_ELL"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_GREEK, SUBLANG_GREEK"
+msgstr "LANG_GREEK, SUBLANG_DEFAULT"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28
@@ -40,7 +40,7 @@ msgstr "1253"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "Επέκταση Περιβάλλοντος"
+msgstr "Επέκ‘¦ση Περιβάλλον‘¦‘¦"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,12 +50,12 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "’νοιγμα με το WinMerge"
+msgstr "‘¦οιγμβΒμε ‘¦ WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα"
+msgstr "Παρακαλώ επιλέξατζΒόχκΒπερισσότερβΒαπ‘¦2 αν‘¦κείμενβΔ
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -75,7 +75,7 @@ msgstr "Σύγκριση με"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
+msgstr "Αποθήκευση αυ‘¦‘¦‘¦‘¦διαδρομή‘¦ ΕπιλέξατζΒκάποια άλλη διαδρομή προς σύγκριση με αυ‘¦ ‘¦ διαδρομή."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -85,5 +85,5 @@ msgstr "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Επανεπιλογή Πρώτου"
+msgstr "Επανεπιλογ‘¦Πρ‘¦ου "
 

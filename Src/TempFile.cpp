@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: TempFile.cpp 6723 2009-05-09 09:13:26Z sdottaka $
 
 #include <windows.h>
 #include <tlhelp32.h> 
@@ -39,9 +39,10 @@ void TempFile::Create()
 /**
  * @brief Create a temporary file with given prefix.
  * @param [in] prefix A prefix for temp file name.
+ * @param [in] ext extension for temp file name.
  * @return Created temp file path.
  */
-String TempFile::Create(LPCTSTR prefix)
+String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
 {
 	String temp = env_GetTempPath(NULL);
 	if (temp.empty())
@@ -55,7 +56,15 @@ String TempFile::Create(LPCTSTR prefix)
 
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
+	{
+		if (ext)
+		{
+			String tempext = temp + ext;
+			if (MoveFile(temp.c_str(), tempext.c_str()))
+				temp = tempext;
+		}
 		m_path = temp;
+	}
 
 	return temp;
 }
@@ -137,8 +146,9 @@ void CleanupWMtemp()
 	// the ProcessIDs of all running WM instances
 	while (hRes)
 	{
-		if ((_tcscmp(pEntry.szExeFile, ExecutableFilenameU) == 0) ||
-			(_tcscmp(pEntry.szExeFile, ExecutableFilename) == 0))
+		size_t exeFileLen = _tcslen(pEntry.szExeFile);
+		if ((exeFileLen >= sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1 && _tcsicmp(pEntry.szExeFile + exeFileLen - (sizeof(ExecutableFilenameU)/sizeof(TCHAR)-1), ExecutableFilenameU) == 0) ||
+			(exeFileLen >= sizeof(ExecutableFilename )/sizeof(TCHAR)-1 && _tcsicmp(pEntry.szExeFile + exeFileLen - (sizeof(ExecutableFilename )/sizeof(TCHAR)-1), ExecutableFilename ) == 0))
 		{
 			processIDs.push_back(pEntry.th32ProcessID);
 		}

@@ -5,11 +5,12 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirTravel.cpp 5761 2008-08-08 04:54:52Z marcelgosselin $
 
 #include <algorithm>
 #include <windows.h>
 #include <tchar.h>
+#include <mbstring.h>
 #include "UnicodeString.h"
 #include "DirItem.h"
 #include "DirTravel.h"
@@ -123,10 +124,27 @@ static int collate_ignore_case(const String &str1, const String &str2)
 	String s1(str1);
 	String s2(str2);
     String::size_type i = 0;
+#ifdef _UNICODE
 	for (i = 0; i < s1.length(); i++)
 		s1[i] = _totlower(s1[i]);
 	for (i = 0; i < s2.length(); i++)
 		s2[i] = _totlower(s2[i]);
+#else
+	for (i = 0; i < s1.length(); i++)
+	{
+		if (_ismbblead(s1[i]))
+			i++;
+		else
+			s1[i] = _totlower(s1[i]);
+	}
+	for (i = 0; i < s2.length(); i++)
+	{
+		if (_ismbblead(s2[i]))
+			i++;
+		else
+			s2[i] = _totlower(s2[i]);
+	}
+#endif
 	return _tcscoll(s1.c_str(), s2.c_str());
 }
 

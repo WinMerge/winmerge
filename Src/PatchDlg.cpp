@@ -20,7 +20,7 @@
  * @brief Implementation of Patch creation dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PatchDlg.cpp 6783 2009-05-25 06:47:22Z kimmov $
 
 #include "StdAfx.h"
 #include "Merge.h"
@@ -30,7 +30,9 @@
 #include "coretools.h"
 #include "paths.h"
 #include "CompareOptions.h"
+#include "PatchHTML.h"
 #include "FileOrFolderSelect.h"
+#include "Environment.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,6 +40,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using std::swap;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPatchDlg dialog
@@ -49,6 +52,7 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CPatchDlg::IDD, pParent)
 	, m_caseSensitive(FALSE)
 	, m_ignoreBlanks(0)
+	, m_ignoreEOLDifference(FALSE)
 	, m_whitespaceCompare(0)
 	, m_appendFile(FALSE)
 	, m_openToEditor(FALSE)
@@ -70,6 +74,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_DIFF_CASESENSITIVE, m_caseSensitive);
 	DDX_Check(pDX, IDC_DIFF_WHITESPACE_IGNOREBLANKS, m_ignoreBlanks);
 	DDX_Radio(pDX, IDC_DIFF_WHITESPACE_COMPARE, m_whitespaceCompare);
+	DDX_Check(pDX, IDC_DIFF_IGNOREEOL, m_ignoreEOLDifference);
 	DDX_Check(pDX, IDC_DIFF_APPENDFILE, m_appendFile);
 	DDX_Control(pDX, IDC_DIFF_FILE1, m_ctlFile1);
 	DDX_Control(pDX, IDC_DIFF_FILE2, m_ctlFile2);
@@ -129,20 +134,23 @@ void CPatchDlg::OnOK()
 		}
 	}
 
-	// Check that a result file was specified
-	if (m_fileResult.IsEmpty())
-	{
-		LangMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
-		m_ctlResult.SetFocus();
-		return;
-	}
- 
 	// Check that result (patch) file is absolute path
 	if (!paths_IsPathAbsolute((LPCTSTR)m_fileResult))
 	{
-		ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
-		m_ctlResult.SetFocus();
-		return;
+		if (m_fileResult.GetLength() == 0)
+		{
+			TCHAR szTempFile[MAX_PATH];
+			GetTempFileName(env_GetTempPath(), _T("pat"), 0, szTempFile);
+			m_fileResult = szTempFile;
+			m_ctlResult.SetWindowText(m_fileResult);
+			DeleteFile(m_fileResult);
+		}
+		if (paths_IsPathAbsolute((LPCTSTR)m_fileResult) == FALSE)
+		{
+			ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
+			m_ctlResult.SetFocus();
+			return;
+		}
 	}
 	
 	BOOL fileExists = (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE);
@@ -159,12 +167,18 @@ void CPatchDlg::OnOK()
 	}
 	// else it's OK to write new file
 
-	m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
+	switch (m_comboStyle.GetCurSel())
+	{
+	case 1: m_outputStyle = (enum output_style)OUTPUT_CONTEXT; break;
+	case 2: m_outputStyle = (enum output_style)OUTPUT_UNIFIED; break;
+	case 3: m_outputStyle = (enum output_style)OUTPUT_HTML; break;
+	default: m_outputStyle = (enum output_style)OUTPUT_NORMAL; break;
+	}
 
 	int contextSel = m_comboContext.GetCurSel();
 	if (contextSel != CB_ERR)
 	{
-		TCHAR contextText[50] = _T("");
+		CString contextText;
 		m_comboContext.GetLBText(contextSel, contextText);
 		m_contextLines = _ttoi(contextText);
 	}
@@ -231,6 +245,7 @@ BOOL CPatchDlg::OnInitDialog()
 	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_NORMAL).c_str());
 	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
 	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
+	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_HTML).c_str());
 
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
@@ -396,8 +411,7 @@ void CPatchDlg::OnSelchangeDiffStyle()
 	selection = m_comboStyle.GetCurSel();
 
 	// Only context and unified formats allow context lines
-	if ((selection == OUTPUT_CONTEXT) ||
-			(selection == OUTPUT_UNIFIED))
+	if (selection != OUTPUT_NORMAL)
 	{
 		m_comboContext.EnableWindow(TRUE);
 		// 3 lines is default context for Difftools too
@@ -428,13 +442,13 @@ void CPatchDlg::OnDiffSwapFiles()
 	m_file1 = file2;
 	m_file2 = file1;
 
-	// Empty list
-	m_fileList.clear();
-
-	// Add swapped files
-	files.lfile = file2;
-	files.rfile = file1;
-	AddItem(files);
+	for (std::vector<PATCHFILES>::size_type i = 0; i < m_fileList.size(); i++)
+	{
+		files = m_fileList[i];
+		swap(files.lfile, files.rfile);
+		swap(files.ltime, files.rtime);
+		m_fileList[i] = files;
+	}
 }
 
 /** 
@@ -491,13 +505,16 @@ void CPatchDlg::UpdateSettings()
 	case DIFF_OUTPUT_UNIFIED:
 		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
 		break;
+	case DIFF_OUTPUT_HTML:
+		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_HTML).c_str());
+		break;
 	}
 
 	CString str;
 	str.Format(_T("%d"), m_contextLines);
 	m_comboContext.SelectString(-1, str);
 
-	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
+	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML)
 		m_comboContext.EnableWindow(TRUE);
 	else
 		m_comboContext.EnableWindow(FALSE);
@@ -509,7 +526,7 @@ void CPatchDlg::UpdateSettings()
 void CPatchDlg::LoadSettings()
 {
 	int patchStyle = theApp.GetProfileInt(_T("PatchCreator"), _T("PatchStyle"), 0);
-	if (patchStyle < DIFF_OUTPUT_NORMAL || patchStyle > DIFF_OUTPUT_UNIFIED)
+	if ((patchStyle < DIFF_OUTPUT_NORMAL || patchStyle > DIFF_OUTPUT_UNIFIED) &&  patchStyle != DIFF_OUTPUT_HTML)
 		patchStyle = DIFF_OUTPUT_NORMAL;
 	m_outputStyle = (enum output_style) patchStyle;
 	
@@ -518,6 +535,7 @@ void CPatchDlg::LoadSettings()
 		m_contextLines = 0;
 
 	m_caseSensitive = theApp.GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), TRUE);
+	m_ignoreEOLDifference = theApp.GetProfileInt(_T("PatchCreator"), _T("EOLSensitive"), TRUE);
 	m_ignoreBlanks = theApp.GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), FALSE);
 	
 	m_whitespaceCompare = theApp.GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
@@ -541,6 +559,7 @@ void CPatchDlg::SaveSettings()
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("EOLSensitive"), m_ignoreEOLDifference);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), m_ignoreBlanks);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("Whitespace"), m_whitespaceCompare);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("OpenToEditor"), m_openToEditor);
@@ -555,6 +574,7 @@ void CPatchDlg::OnDefaultSettings()
 	m_outputStyle = (enum output_style) DIFF_OUTPUT_NORMAL;
 	m_contextLines = 0;
 	m_caseSensitive = TRUE;
+	m_ignoreEOLDifference = FALSE;
 	m_ignoreBlanks = FALSE;
 	m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
 	m_openToEditor = FALSE;

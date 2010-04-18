@@ -38,7 +38,7 @@ LANGUAGE LANG_GREEK, SUBLANG_DEFAULT
 // 
 STRINGTABLE 
 BEGIN
-    IDS_PROJNAME            "Επέκταση Περιβάλλοντος"
+    IDS_PROJNAME            "Επέκταση Περιβάλλοντος "
     IDS_CONTEXT_MENU        "WinMerge"
     IDS_CONTEXT_HELP        "’νοιγμα με το WinMerge"
     IDS_CONTEXT_HELP_MANYITEMS "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα"
@@ -47,7 +47,7 @@ BEGIN
     IDS_COMPARE_TO          "Σύγκριση με"
     IDS_HELP_SAVETHIS       "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
     IDS_HELP_COMPARESAVED   "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
-    IDS_RESELECT_FIRST      "Επανεπιλογή Πρώτου"
+    IDS_RESELECT_FIRST      "Επανεπιλογή Πρώτου "
 END
 
 #endif    // Resources

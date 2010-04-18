@@ -4,7 +4,7 @@
  * @brief Declaration file for FolderCmp
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FolderCmp.h 6856 2009-06-25 06:34:42Z kimmov $
 
 #ifndef _FOLDERCMP_H_
 #define _FOLDERCMP_H_
@@ -23,12 +23,9 @@ class PrediffingInfo;
  */
 struct PluginsContext
 {
-	String origFileName1;
-	String origFileName2;
-	String filepathUnpacked1;
-	String filepathUnpacked2;
-	String filepathTransformed1;
-	String filepathTransformed2;
+	PathContext origFileName;
+	PathContext filepathUnpacked;
+	PathContext filepathTransformed;
 	PackingInfo * infoUnpacker;
 	PrediffingInfo * infoPrediffer;
 };
@@ -46,10 +43,12 @@ public:
 	~FolderCmp();
 	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
-	UINT prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
+	int prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di);
+	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
+	int m_codepage;
 
 	DiffFileData m_diffFileData;
 	CDiffContext * m_pCtx;

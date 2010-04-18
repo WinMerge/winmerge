@@ -40,7 +40,7 @@ class Packer
 public:
 	static int HexValue(TCHAR uch);
 public:
-	Packer(CWSTR srcFilepath, CWSTR destFilepath);
+	Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath);
 
 	bool Unpack();
 	bool Pack();
@@ -51,15 +51,15 @@ private:
 	void LogError(LPCTSTR fmt, ...);
 
 private:
-	CWSTR m_srcFilepath;
-	CWSTR m_destFilepath;
+	LPCWSTR m_srcFilepath;
+	LPCWSTR m_destFilepath;
 	StdFile m_in;
 	StdFile m_out;
 	unicodingInfo m_uninfo;
 	unsigned char m_escape;
 };
 
-bool Unpack(CWSTR srcFilepath, CWSTR destFilepath)
+bool Unpack(LPCWSTR srcFilepath, LPCWSTR destFilepath)
 {
 	Packer pack(srcFilepath, destFilepath);
 	if (!pack.Unpack()) return false;
@@ -68,7 +68,7 @@ bool Unpack(CWSTR srcFilepath, CWSTR destFilepath)
 
 
 
-bool Pack(CWSTR srcFilepath, CWSTR destFilepath)
+bool Pack(LPCWSTR srcFilepath, LPCWSTR destFilepath)
 {
 	Packer pack(srcFilepath, destFilepath);
 	if (!pack.Pack()) return false;
@@ -86,7 +86,7 @@ ValidEscape(TCHAR ch)
 	return true;
 }
 
-Packer::Packer(CWSTR srcFilepath, CWSTR destFilepath)
+Packer::Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath)
 : m_srcFilepath(srcFilepath)
 , m_destFilepath(destFilepath)
 {

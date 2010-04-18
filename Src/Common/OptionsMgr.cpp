@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: OptionsMgr.cpp 6728 2009-05-10 21:13:36Z kimmov $
 
 
 /* The MIT License
@@ -39,6 +39,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "UnicodeString.h"
 #include "varprop.h"
 #include "OptionsMgr.h"
+
+#ifdef _DEBUG
+#  ifdef _UNICODE
+#    define _TRPTF1
+#  else
+#    define _TRPTF1 _RPTF1
+#  endif
+#else
+#  define _TRPTF1
+#endif
 
 static bool GetAsInt(LPCTSTR str, int & val);
 
@@ -283,7 +293,7 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 			if (ConvertType(value, m_value.GetType()))
 				return Set(value);
 		}
-		_RPTF1(_CRT_ERROR, "Wrong type for option: %s", m_strName);
+		_TRPTF1(_CRT_ERROR, _T("Wrong type for option: %s"), m_strName);
 		return OPT_WRONG_TYPE;
 	}
 
@@ -329,7 +339,7 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 	varprop::VT_TYPE inType = defaultValue.GetType();
 	if (inType != m_valueDef.GetType())
 	{
-		_RPTF1(_CRT_ERROR, "Wrong type for option: %s!", m_strName);
+		_TRPTF1(_CRT_ERROR, _T("Wrong type for option: %s!"), m_strName);
 		return OPT_WRONG_TYPE;
 	}
 
@@ -397,14 +407,14 @@ int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
 #ifdef _DEBUG
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
-		_RPTF1(_CRT_WARN, "Re-adding option: %s !", name);
+		_TRPTF1(_CRT_WARN, _T("Re-adding option: %s !"), name);
 #endif
 
 	retVal = tmpOption.Init(name, defaultValue);
 	if (retVal == OPT_OK)
 		m_optionsMap[name] = tmpOption;
 	else
-		_RPTF1(_CRT_ERROR, "Could not add option: %s!", name);
+		_TRPTF1(_CRT_ERROR, _T("Could not add option: %s!"), name);
 
 	return retVal;
 }
@@ -425,7 +435,7 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 	}
 	else
 	{
-		_RPTF1(_CRT_ERROR, "Could not find option: %s!", name);
+		_TRPTF1(_CRT_ERROR, _T("Could not find option: %s!"), name);
 	}
 	return value;
 }
@@ -480,7 +490,7 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 	}
 	else
 	{
-		_RPTF1(_CRT_ERROR, "Could not set option: %s", name);
+		_TRPTF1(_CRT_ERROR, _T("Could not set option: %s"), name);
 		retVal = OPT_NOTFOUND;
 	}
 	return retVal;
@@ -691,7 +701,7 @@ int COptionsMgr::ExportOptions(LPCTSTR filename)
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			TCHAR num[10] = {0};
+			TCHAR num[12] = {0};
 			_itot(value.GetInt(), num, 10);
 			strVal = num;
 		}

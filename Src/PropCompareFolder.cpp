@@ -4,7 +4,7 @@
  * @brief Implementation of PropCompareFolder propertysheet
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropCompareFolder.cpp 6921 2009-07-23 15:20:41Z kimmov $
 
 #include "stdafx.h"
 #include "merge.h"
@@ -30,7 +30,8 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_compareMethod(-1)
  , m_bStopAfterFirst(FALSE)
  , m_bIgnoreSmallTimeDiff(FALSE)
- , m_bIncludeUniqFolders(TRUE)
+ , m_bIncludeUniqFolders(FALSE)
+ , m_bExpandSubdirs(FALSE)
  , m_nQuickCompareLimit(4 * Mega)
 {
 }
@@ -43,6 +44,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Check(pDX, IDC_COMPARE_WALKSUBDIRS, m_bIncludeUniqFolders);
+	DDX_Check(pDX, IDC_EXPAND_SUBDIRS, m_bExpandSubdirs);
 	DDX_Text(pDX, IDC_COMPARE_QUICKC_LIMIT, m_nQuickCompareLimit);
 	//}}AFX_DATA_MAP
 }
@@ -66,6 +68,7 @@ void PropCompareFolder::ReadOptions()
 	m_bStopAfterFirst = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
 }
 
@@ -80,6 +83,7 @@ void PropCompareFolder::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs == TRUE);
 
 	if (m_nQuickCompareLimit > 2000)
 		m_nQuickCompareLimit = 2000;
@@ -129,6 +133,8 @@ void PropCompareFolder::OnDefaults()
 	m_bStopAfterFirst = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, tmp);
 	m_bIncludeUniqFolders = tmp;
+	GetOptionsMgr()->GetDefault(OPT_DIRVIEW_EXPAND_SUBDIRS, tmp);
+	m_bExpandSubdirs = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_QUICK_LIMIT, tmp);
 	m_nQuickCompareLimit = tmp / Mega;
 	UpdateData(FALSE);

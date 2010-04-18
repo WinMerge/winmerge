@@ -33,7 +33,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "expat_static"=..\..\..\Src\ExpatLib\expat_static.dsp - Package Owner=<4>
+Project: "expat_static"=..\..\..\Externals\Expat\Lib\expat_static.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

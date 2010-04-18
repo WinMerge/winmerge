@@ -38,12 +38,13 @@ void IdenticalStrings1::tearDown()
 void IdenticalStrings1::IdenticalWord1()
 {
 	wdiffarray diffs;
+	CString string[2];
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Compare case, all whitespaces, whitespace break
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -51,7 +52,7 @@ void IdenticalStrings1::IdenticalWord1()
 
 	// Ignore case, all whitespaces, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -59,7 +60,7 @@ void IdenticalStrings1::IdenticalWord1()
 
 	// Compare case, whitespaces change, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -67,7 +68,7 @@ void IdenticalStrings1::IdenticalWord1()
 
 	// Compare case, whitespaces ignore, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -83,12 +84,13 @@ void IdenticalStrings1::IdenticalWord1()
 void IdenticalStrings1::IdenticalWord2()
 {
 	wdiffarray diffs;
+	CString string[2];
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Compare case, all whitespaces, whitespace break
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 1, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -96,7 +98,7 @@ void IdenticalStrings1::IdenticalWord2()
 
 	// Ignore case, all whitespaces, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 1, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -104,7 +106,7 @@ void IdenticalStrings1::IdenticalWord2()
 
 	// Compare case, whitespaces change, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 1, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -112,7 +114,7 @@ void IdenticalStrings1::IdenticalWord2()
 
 	// Compare case, whitespaces ignore, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 1, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -128,12 +130,13 @@ void IdenticalStrings1::IdenticalWord2()
 void IdenticalStrings1::IdenticalWord3()
 {
 	wdiffarray diffs;
+	CString string[2];
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Compare case, all whitespaces, whitespace break
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -141,7 +144,7 @@ void IdenticalStrings1::IdenticalWord3()
 
 	// Ignore case, all whitespaces, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -149,7 +152,7 @@ void IdenticalStrings1::IdenticalWord3()
 
 	// Compare case, whitespaces change, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -157,7 +160,7 @@ void IdenticalStrings1::IdenticalWord3()
 
 	// Compare case, whitespaces ignore, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -173,12 +176,13 @@ void IdenticalStrings1::IdenticalWord3()
 void IdenticalStrings1::IdenticalWord4()
 {
 	wdiffarray diffs;
+	CString string[2];
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Compare case, all whitespaces, whitespace break
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 1, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -186,7 +190,7 @@ void IdenticalStrings1::IdenticalWord4()
 
 	// Ignore case, all whitespaces, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 1, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -194,7 +198,7 @@ void IdenticalStrings1::IdenticalWord4()
 
 	// Compare case, whitespaces change, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 1, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -202,7 +206,7 @@ void IdenticalStrings1::IdenticalWord4()
 
 	// Compare case, whitespaces ignore, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 1, true,
 		&diffs);
 	count = diffs.GetSize();

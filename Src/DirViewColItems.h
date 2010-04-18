@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-19
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: DirViewColItems.h 4619 2007-10-14 08:50:20Z jtuc $
 
 #ifndef DirViewColItems_h
 #define DirViewColItems_h
@@ -35,7 +35,8 @@ struct DirColInfo
 	int alignment; /**< Column alignment */
 };
 
-extern int g_ncols;
+extern const int g_ncols;
+extern const int g_ncols3;
 
 
 #endif // DirViewColItems_h

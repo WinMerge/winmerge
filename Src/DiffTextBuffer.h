@@ -4,7 +4,7 @@
  * @brief Declaration of CDiffTextBuffer class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffTextBuffer.h 6879 2009-06-29 10:00:33Z kimmov $
 
 #ifndef _DIFFTEXT_BUFFER_H_
 #define _DIFFTEXT_BUFFER_H_
@@ -51,21 +51,20 @@ public :
 		int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN,
 		CDWordArray *paSavedRevisonNumbers = NULL);
 	bool curUndoGroup();
-	void ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR pchText,
-		int cchText, int nAction =CE_ACTION_UNKNOWN);
-	void ReplaceFullLine(CCrystalTextView * pSource, int nLine,
-		const CString& strText, int nAction = CE_ACTION_UNKNOWN);
+	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
 	int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
 		LPCTSTR filteredFilenames, BOOL & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, String & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
-		BOOL bClearModifiedFlag = TRUE );
+		BOOL bClearModifiedFlag = TRUE, BOOL bForceUTF8 = FALSE);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }
 	void setCodepage(int value) { m_encoding.m_codepage = value; }
+	bool getHasBom() const { return m_encoding.m_bom; }
+	void setHasBom(bool value) { m_encoding.m_bom = value; }
 	const FileTextEncoding & getEncoding() const { return m_encoding; }
 	bool IsMixedEOL() const { return m_bMixedEOL; }
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }

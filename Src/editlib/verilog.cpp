@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  Verilog keywords
-static LPTSTR s_apszVerilogKeywordList[] =
+static LPCTSTR s_apszVerilogKeywordList[] =
   {
     _T ("always"),
     _T ("and"),
@@ -152,11 +152,10 @@ static LPTSTR s_apszVerilogKeywordList[] =
     _T ("wor"),
     _T ("xnor"),
     _T ("xor"),
-    NULL
   };
 
 //  Verilog functions
-static LPTSTR s_apszVerilogFunctionList[] =
+static LPCTSTR s_apszVerilogFunctionList[] =
   {
     _T ("$async$and$array"),
     _T ("$async$and$plane"),
@@ -304,31 +303,18 @@ static LPTSTR s_apszVerilogFunctionList[] =
     _T ("$writeb"),
     _T ("$writeh"),
     _T ("$writeo"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsVerilogKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszVerilogKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszVerilogKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsVerilogFunction (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszVerilogFunctionList, pszChars, nLength);
+  return ISXKEYWORD (s_apszVerilogFunctionList, pszChars, nLength);
 }
 
 static BOOL
@@ -353,6 +339,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
