@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeEditView.h 6655 2009-04-14 19:18:31Z kimmov $
 
 #if !defined(AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_)
 #define AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_
@@ -49,6 +49,12 @@ struct COLORSETTINGS
 	COLORREF	clrSelMoved;		/**< Selected moved block color */
 	COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
 	COLORREF	clrSelMovedText;	/**< Selected moved block text color */
+	COLORREF	clrSNP;				/**< SNP block color */
+	COLORREF	clrSNPDeleted;		/**< SNP block deleted color */
+	COLORREF	clrSNPText;			/**< SNP block text color */
+	COLORREF	clrSelSNP;			/**< Selected SNP block color */
+	COLORREF	clrSelSNPDeleted;	/**< Selected SNP block deleted color */
+	COLORREF	clrSelSNPText;		/**< Selected SNP block text color */
 	COLORREF	clrWordDiff;		/**< Word difference color */
 	COLORREF	clrWordDiffDeleted;	/**< Word differenceDeleted color */
 	COLORREF	clrWordDiffText;	/**< Word difference text color */
@@ -141,7 +147,7 @@ public:
 	bool EnableRescan(bool bEnable);
 	bool IsReadOnly(int pane);
 	void ShowDiff(bool bScroll, bool bSelectText);
-	virtual void OnEditOperation(int nAction, LPCTSTR pszText);
+	virtual void OnEditOperation(int nAction, LPCTSTR pszText, int cchText);
 	void UpdateLineLengths();
 	bool IsLineInCurrentDiff(int nLine);
 	void SelectNone();
@@ -157,7 +163,7 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
-	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
 	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, BOOL & bDrawWhitespace);
@@ -186,6 +192,7 @@ public:
 	virtual void GetPrintHeaderText(int nPageNum, CString & text);
 	virtual void PrintHeader(CDC * pdc, int nPageNum);
 	virtual void PrintFooter(CDC * pdc, int nPageNum);
+	virtual void SetWordWrapping( BOOL bWordWrap );
 	void UpdateStatusbar();
 
 	// to customize the mergeview menu
@@ -219,6 +226,10 @@ protected:
 	bool MergeModeKeyDown(MSG* pMsg);
 	int FindPrediffer(LPCTSTR prediffer) const;
 	bool IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
+	void OnNext3wayDiff(int type);
+	void OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int type);
+	void OnPrev3wayDiff(int type);
+	void OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int type);
 
 	// Generated message map functions
 protected:
@@ -240,6 +251,30 @@ protected:
 	afx_msg void OnUpdateNextdiff(CCmdUI* pCmdUI);
 	afx_msg void OnPrevdiff();
 	afx_msg void OnUpdatePrevdiff(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffLM();
+	afx_msg void OnUpdateNextdiffLM(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffLM();
+	afx_msg void OnUpdatePrevdiffLM(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffLR();
+	afx_msg void OnUpdateNextdiffLR(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffLR();
+	afx_msg void OnUpdatePrevdiffLR(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffMR();
+	afx_msg void OnUpdateNextdiffMR(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffMR();
+	afx_msg void OnUpdatePrevdiffMR(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffLO();
+	afx_msg void OnUpdateNextdiffLO(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffLO();
+	afx_msg void OnUpdatePrevdiffLO(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffMO();
+	afx_msg void OnUpdateNextdiffMO(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffMO();
+	afx_msg void OnUpdatePrevdiffMO(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiffRO();
+	afx_msg void OnUpdateNextdiffRO(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiffRO();
+	afx_msg void OnUpdatePrevdiffRO(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnAllLeft();
@@ -250,11 +285,16 @@ protected:
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnL2m();
+	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
+	afx_msg void OnR2m();
+	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
@@ -264,14 +304,14 @@ protected:
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnLeftReadOnly();
 	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnMiddleReadOnly();
+	afx_msg void OnUpdateMiddleReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnRightReadOnly();
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRO(CCmdUI* pCmdUI);
 	afx_msg void OnConvertEolTo(UINT nID );
 	afx_msg void OnUpdateConvertEolTo(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusLeftEOL(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusRightEOL(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusEOL(CCmdUI* pCmdUI);
 	afx_msg void OnL2RNext();
 	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
 	afx_msg void OnR2LNext();
@@ -316,8 +356,6 @@ protected:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
-	afx_msg void OnUpdateStatusLeftEncoding(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateStatusRightEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnPluginsList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

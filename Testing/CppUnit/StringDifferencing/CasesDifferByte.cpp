@@ -35,13 +35,15 @@ void CasesDifferByte::tearDown()
 void CasesDifferByte::CasesDifferByte1()
 {
 	wdiffarray diffs;
-	CString string1(_T("Test"));
-	CString string2(_T("test"));
+	CString string[2];
 	int count = 0;
+
+	string[0] = _T("Test");
+	string[1] = _T("test");
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find one difference
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -50,7 +52,7 @@ void CasesDifferByte::CasesDifferByte1()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -59,7 +61,7 @@ void CasesDifferByte::CasesDifferByte1()
 	// Compare case, whitespaces change, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -68,7 +70,7 @@ void CasesDifferByte::CasesDifferByte1()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -84,14 +86,15 @@ void CasesDifferByte::CasesDifferByte1()
 void CasesDifferByte::CasesDifferByte2()
 {
 	wdiffarray diffs;
-	CString string1(_T("test"));
-	CString string2(_T("teSt"));
+	CString string[2];
+	string[0] = _T("test");
+	string[1] = _T("teSt");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -100,7 +103,7 @@ void CasesDifferByte::CasesDifferByte2()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -109,7 +112,7 @@ void CasesDifferByte::CasesDifferByte2()
 	// Compare case, whitespaces change, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -118,7 +121,7 @@ void CasesDifferByte::CasesDifferByte2()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -133,14 +136,16 @@ void CasesDifferByte::CasesDifferByte2()
 void CasesDifferByte::CasesDifferByte3()
 {
 	wdiffarray diffs;
-	CString string1(_T("test case"));
-	CString string2(_T("teSt case"));
+	CString string[2];
 	int count = 0;
+
+	string[0] = _T("Test");
+	string[1] = _T("test");
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -149,7 +154,7 @@ void CasesDifferByte::CasesDifferByte3()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -158,7 +163,7 @@ void CasesDifferByte::CasesDifferByte3()
 	// Compare case, whitespaces change, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -167,7 +172,7 @@ void CasesDifferByte::CasesDifferByte3()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -182,14 +187,15 @@ void CasesDifferByte::CasesDifferByte3()
 void CasesDifferByte::CasesDifferByte4()
 {
 	wdiffarray diffs;
-	CString string1(_T("test case"));
-	CString string2(_T("test cAse"));
+	CString string[2];
+	string[0] = _T("test case");
+	string[1] = _T("test cAse");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -198,7 +204,7 @@ void CasesDifferByte::CasesDifferByte4()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -207,7 +213,7 @@ void CasesDifferByte::CasesDifferByte4()
 	// Compare case, whitespaces change, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -216,7 +222,7 @@ void CasesDifferByte::CasesDifferByte4()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -231,23 +237,24 @@ void CasesDifferByte::CasesDifferByte4()
 void CasesDifferByte::CasesDifferByte5()
 {
 	wdiffarray diffs;
-	CString string1(_T("test case"));
-	CString string2(_T("tEst cAse"));
+	CString string[2];
+	string[0] = _T("test case");
+	string[1] = _T("tEst cAse");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -256,20 +263,20 @@ void CasesDifferByte::CasesDifferByte5()
 	// Compare case, whitespaces change, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find one difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 }
 
 /**
@@ -281,14 +288,15 @@ void CasesDifferByte::CasesDifferByte5()
 void CasesDifferByte::CasesDifferByte6()
 {
 	wdiffarray diffs;
-	CString string1(_T("test case string"));
-	CString string2(_T("tEst case String"));
+	CString string[2];
+	string[0] = _T("test case string");
+	string[1] = _T("tEst case String");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -297,7 +305,7 @@ void CasesDifferByte::CasesDifferByte6()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -306,7 +314,7 @@ void CasesDifferByte::CasesDifferByte6()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -315,7 +323,7 @@ void CasesDifferByte::CasesDifferByte6()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -330,14 +338,15 @@ void CasesDifferByte::CasesDifferByte6()
 void CasesDifferByte::CasesDifferByte7()
 {
 	wdiffarray diffs;
-	CString string1(_T("testcasestring"));
-	CString string2(_T("tEstcaseString"));
+	CString string[2];
+	string[0] = _T("testcasestring");
+	string[1] = _T("tEstcaseString");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -346,7 +355,7 @@ void CasesDifferByte::CasesDifferByte7()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -355,7 +364,7 @@ void CasesDifferByte::CasesDifferByte7()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -364,7 +373,7 @@ void CasesDifferByte::CasesDifferByte7()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -379,14 +388,15 @@ void CasesDifferByte::CasesDifferByte7()
 void CasesDifferByte::CasesDifferByte8()
 {
 	wdiffarray diffs;
-	CString string1(_T("testcasestring second"));
-	CString string2(_T("tEstcaseString second"));
+	CString string[2];
+	string[0] = _T("testcasestring second");
+	string[1] = _T("tEstcaseString second");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -395,7 +405,7 @@ void CasesDifferByte::CasesDifferByte8()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -404,7 +414,7 @@ void CasesDifferByte::CasesDifferByte8()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -413,7 +423,7 @@ void CasesDifferByte::CasesDifferByte8()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -428,23 +438,24 @@ void CasesDifferByte::CasesDifferByte8()
 void CasesDifferByte::CasesDifferByte9()
 {
 	wdiffarray diffs;
-	CString string1(_T("testcasestring secoNd"));
-	CString string2(_T("tEstcaseString second"));
+	CString string[2];
+	string[0] = _T("testcasestring secoNd");
+	string[1] = _T("tEstcaseString second");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -453,20 +464,20 @@ void CasesDifferByte::CasesDifferByte9()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 1);
+	CPPUNIT_ASSERT(count == 2);
 }
 
 /**
@@ -477,14 +488,15 @@ void CasesDifferByte::CasesDifferByte9()
 void CasesDifferByte::CasesDifferByte10()
 {
 	wdiffarray diffs;
-	CString string1(_T("testcasestring second third"));
-	CString string2(_T("tEstcaseString second thIrd"));
+	CString string[2];
+	string[0] = _T("testcasestring second third");
+	string[1] = _T("tEstcaseString second thIrd");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -493,7 +505,7 @@ void CasesDifferByte::CasesDifferByte10()
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -502,7 +514,7 @@ void CasesDifferByte::CasesDifferByte10()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -511,7 +523,7 @@ void CasesDifferByte::CasesDifferByte10()
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -526,23 +538,24 @@ void CasesDifferByte::CasesDifferByte10()
 void CasesDifferByte::CasesDifferByte11()
 {
 	wdiffarray diffs;
-	CString string1(_T("testcasestring second third fourth"));
-	CString string2(_T("tEstcaseString second thIrd fOurth"));
+	CString string[2];
+	string[0] = _T("testcasestring second third fourth");
+	string[1] = _T("tEstcaseString second thIrd fOurth");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 2);
+	CPPUNIT_ASSERT(count == 3);
 
 	// Ignore case, all whitespaces, whitespace break
 	// No difference
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
@@ -551,18 +564,18 @@ void CasesDifferByte::CasesDifferByte11()
 	// Compare case, whitespaces change, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 2);
+	CPPUNIT_ASSERT(count == 3);
 
 	// Compare case, whitespaces ignore, whitespace break
 	// We must find two differences
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 2);
+	CPPUNIT_ASSERT(count == 3);
 }

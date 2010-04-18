@@ -4,7 +4,7 @@
  * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: ViewableWhitespace.cpp 3410 2006-07-31 17:14:15Z kimmov $
 
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
@@ -37,9 +37,10 @@ static void initialize()
 {
 	f_specialChars.c_tab[0] = 0xBB;
 	f_specialChars.c_space[0] = 0xB7;
-	f_specialChars.c_cr[0] = 0xA7;
-	f_specialChars.c_lf[0] = 0xB6;
-	f_specialChars.c_eol[0] = 0xA4;
+	f_specialChars.c_cr[0] = 0x2190;
+	f_specialChars.c_lf[0] = 0x2193;
+	f_specialChars.c_eol[0] = 0x25C4;
+	f_specialChars.c_eol[1] = 0x2518;
 
 	f_initialized = true;
 }
@@ -60,7 +61,7 @@ static struct ViewableWhitespaceChars
 	// CP-932 Windows version of Japanese ShiftJIS
 	// \x81\x98 = u+A7
 	// \x81\xF7 = u+B6
-	, { 932, ">", ".", "\x81\x98", "\x81\xF7", "&" } // CP-932 Japanese
+	, { 932, "^", "`", "\x81\xA9", "\x81\xAB", "&" } // CP-932 Japanese
 
 	// CP-949 Korean
 	// \xA1\xA4 = u+B7

@@ -20,7 +20,7 @@
  * @brief Declaration file for patch creation dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PatchDlg.h 6783 2009-05-25 06:47:22Z kimmov $
 
 #if !defined(AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_)
 #define AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_
@@ -63,6 +63,7 @@ public:
 	CString	m_file2;
 	CString	m_fileResult;
 	BOOL m_ignoreBlanks;
+	BOOL m_ignoreEOLDifference;
 	int m_whitespaceCompare;
 	BOOL m_appendFile;
 	BOOL m_openToEditor;

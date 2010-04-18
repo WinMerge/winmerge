@@ -20,7 +20,7 @@
  * @brief Implementation file for ProjectFile class.
  */
 // ID line follows -- this is updated by CVS
-// $Id$
+// $Id: ProjectFile.cpp 7081 2010-01-01 20:33:30Z kimmov $
 
 #include "stdafx.h"
 #include <scew/scew.h>
@@ -53,10 +53,12 @@
 const char Root_element_name[] = "project";
 const char Paths_element_name[] = "paths";
 const char Left_element_name[] = "left";
+const char Middle_element_name[] = "middle";
 const char Right_element_name[] = "right";
 const char Filter_element_name[] = "filter";
 const char Subfolders_element_name[] = "subfolders";
 const char Left_ro_element_name[] = "left-readonly";
+const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 
 /** 
@@ -64,11 +66,13 @@ const char Right_ro_element_name[] = "right-readonly";
  */
  ProjectFile::ProjectFile()
 : m_bHasLeft(FALSE)
+, m_bHasMiddle(FALSE)
 , m_bHasRight(FALSE)
 , m_bHasFilter(FALSE)
 , m_bHasSubfolders(FALSE)
 , m_subfolders(-1)
 , m_bLeftReadOnly(FALSE)
+, m_bMiddleReadOnly(FALSE)
 , m_bRightReadOnly(FALSE)
 {
 }
@@ -166,31 +170,42 @@ BOOL ProjectFile::GetPathsData(scew_element * parent)
 	{
 		bFoundPaths = TRUE;
 		scew_element *left = NULL;
+		scew_element *middle = NULL;
 		scew_element *right = NULL;
 		scew_element *filter = NULL;
 		scew_element *subfolders = NULL;
 		scew_element *left_ro = NULL;
+		scew_element *middle_ro = NULL;
 		scew_element *right_ro = NULL;
 
 		left = scew_element_by_name(paths, Left_element_name);
+		middle = scew_element_by_name(paths, Middle_element_name);
 		right = scew_element_by_name(paths, Right_element_name);
 		filter = scew_element_by_name(paths, Filter_element_name);
 		subfolders = scew_element_by_name(paths, Subfolders_element_name);
 		left_ro = scew_element_by_name(paths, Left_ro_element_name);
+		middle_ro = scew_element_by_name(paths, Middle_ro_element_name);
 		right_ro = scew_element_by_name(paths, Right_ro_element_name);
 
 		if (left)
 		{
 			LPCSTR path = NULL;
 			path = scew_element_contents(left);
-			m_leftFile = UTF82T(path);
+			m_paths.SetLeft(UTF82T(path));
 			m_bHasLeft = TRUE;
+		}
+		if (middle)
+		{
+			LPCSTR path = NULL;
+			path = scew_element_contents(middle);
+			m_paths.SetMiddle(UTF82T(path));
+			m_bHasMiddle = TRUE;
 		}
 		if (right)
 		{
 			LPCSTR path = NULL;
 			path = scew_element_contents(right);
-			m_rightFile = UTF82T(path);
+			m_paths.SetRight(UTF82T(path));
 			m_bHasRight = TRUE;
 		}
 		if (filter)
@@ -212,6 +227,12 @@ BOOL ProjectFile::GetPathsData(scew_element * parent)
 			LPCSTR readonly = NULL;
 			readonly = scew_element_contents(left_ro);
 			m_bLeftReadOnly = (atoi(readonly) != 0);
+		}
+		if (middle_ro)
+		{
+			LPCSTR readonly = NULL;
+			readonly = scew_element_contents(middle_ro);
+			m_bMiddleReadOnly = (atoi(readonly) != 0);
 		}
 		if (right_ro)
 		{
@@ -332,18 +353,22 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 	USES_CONVERSION;
 	scew_element* element = NULL;
 
-	if (!m_leftFile.empty())
+	if (!m_paths.GetLeft().empty())
 	{
 		element = scew_element_add(parent, Left_element_name);
-		String path = m_leftFile;
-		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetLeft()).c_str()));
 	}
 
-	if (!m_rightFile.empty())
+	if (!m_paths.GetMiddle().empty())
+	{
+		element = scew_element_add(parent, Middle_element_name);
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetMiddle()).c_str()));
+	}
+
+	if (!m_paths.GetRight().empty())
 	{
 		element = scew_element_add(parent, Right_element_name);
-		String path = m_rightFile;
-		scew_element_set_contents(element, T2UTF8(EscapeXML(path).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetRight()).c_str()));
 	}
 
 	if (!m_filter.empty())
@@ -365,6 +390,14 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 	else
 		scew_element_set_contents(element, "0");
 
+	if (!m_paths.GetMiddle().empty())
+	{
+		element = scew_element_add(parent, Middle_ro_element_name);
+		if (m_bMiddleReadOnly)
+			scew_element_set_contents(element, "1");
+		else
+			scew_element_set_contents(element, "0");
+	}
 	element = scew_element_add(parent, Right_ro_element_name);
 	if (m_bRightReadOnly)
 		scew_element_set_contents(element, "1");
@@ -381,6 +414,14 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 BOOL ProjectFile::HasLeft() const
 {
 	return m_bHasLeft;
+}
+
+/** 
+ * @brief Returns if middle path is defined.
+ */
+BOOL ProjectFile::HasMiddle() const
+{
+	return m_bHasMiddle;
 }
 
 /** 
@@ -419,7 +460,7 @@ String ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bLeftReadOnly;
-	return m_leftFile;
+	return m_paths.GetLeft();
 }
 
 /** 
@@ -438,9 +479,42 @@ BOOL ProjectFile::GetLeftReadOnly() const
  */
 void ProjectFile::SetLeft(const String& sLeft, const BOOL * pReadOnly /*=NULL*/)
 {
-	m_leftFile = sLeft;
+	m_paths.SetLeft(sLeft.c_str(), false);
 	if (pReadOnly)
 		m_bLeftReadOnly = *pReadOnly;
+}
+
+/** 
+ * @brief Returns middle path.
+ * @param [out] pReadOnly TRUE if readonly was specified for path.
+ */
+String ProjectFile::GetMiddle(BOOL * pReadOnly /*=NULL*/) const
+{
+	if (pReadOnly)
+		*pReadOnly = m_bMiddleReadOnly;
+	return m_paths.GetMiddle();
+}
+
+/** 
+ * @brief Returns if middle path is specified read-only.
+ */
+BOOL ProjectFile::GetMiddleReadOnly() const
+{
+	return m_bMiddleReadOnly;
+}
+
+/** 
+ * @brief Set middle path, returns old middle path.
+ * @param [in] sMiddle Middle path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+void ProjectFile::SetMiddle(const String& sMiddle, const BOOL * pReadOnly /*=NULL*/)
+{
+	m_paths.SetMiddle(sMiddle.c_str(), false);
+	if (pReadOnly)
+		m_bMiddleReadOnly = *pReadOnly;
+
+	return;
 }
 
 /** 
@@ -452,7 +526,7 @@ String ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bRightReadOnly;
-	return m_rightFile;
+	return m_paths.GetRight();
 }
 
 /** 
@@ -471,7 +545,7 @@ BOOL ProjectFile::GetRightReadOnly() const
  */
 void ProjectFile::SetRight(const String& sRight, const BOOL * pReadOnly /*=NULL*/)
 {
-	m_rightFile = sRight;
+	m_paths.SetRight(sRight.c_str(), false);
 	if (pReadOnly)
 		m_bRightReadOnly = *pReadOnly;
 }
@@ -510,4 +584,29 @@ int ProjectFile::GetSubfolders() const
 void ProjectFile::SetSubfolders(int iSubfolder)
 {
 	m_subfolders = iSubfolder ? 1 : 0;
+}
+
+/** 
+ * @brief 
+ *
+ * @param [in] files Files in project
+ * @param [in] bSubFolders If TRUE subfolders included (recursive compare)
+ */
+void ProjectFile::SetPaths(const PathContext& files, BOOL bSubfolders)
+{
+	m_paths = files;
+	m_subfolders = bSubfolders;
+}
+
+/** 
+ * @brief Returns left and right paths and recursive from project file
+ * 
+ * @param [out] files Files in project
+ * @param [out] bSubFolders If TRUE subfolders included (recursive compare)
+ */
+void ProjectFile::GetPaths(PathContext& files, BOOL & bSubfolders) const
+{
+	files = m_paths;
+	if (HasSubfolders())
+		bSubfolders = (GetSubfolders() == 1);
 }

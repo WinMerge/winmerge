@@ -4,7 +4,7 @@
  * @brief Implementation for SyntaxColors class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: SyntaxColors.cpp 6727 2009-05-10 08:25:18Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -87,7 +87,13 @@ bool SyntaxColors::GetSystemColorIndex(int nColorIndex, int * pSysIndex) const
 			*pSysIndex = COLOR_WINDOWTEXT;
 			return true;
 		case COLORINDEX_SELMARGIN:
-			*pSysIndex = COLOR_SCROLLBAR;
+			*pSysIndex = COLOR_3DLIGHT;
+			return true;
+		case COLORINDEX_SELTEXT:
+			*pSysIndex = COLOR_HIGHLIGHTTEXT;
+			return true;
+		case COLORINDEX_SELBKGND:
+			*pSysIndex = COLOR_HIGHLIGHT;
 			return true;
 	}
 	return false;

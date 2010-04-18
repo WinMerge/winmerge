@@ -27,107 +27,92 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  Pascal keywords
-static LPTSTR s_apszPascalKeywordList[] =
+static LPCTSTR s_apszPascalKeywordList[] =
   {
-    _T ("program"),
-    _T ("const"),
-    _T ("type"),
-    _T ("var"),
-    _T ("begin"),
-    _T ("end"),
-    _T ("array"),
-    _T ("set"),
-    _T ("record"),
-    _T ("string"),
-    _T ("if"),
-    _T ("then"),
-    _T ("else"),
-    _T ("while"),
-    _T ("for"),
-    _T ("to"),
-    _T ("downto"),
-    _T ("do"),
-    _T ("with"),
-    _T ("repeat"),
-    _T ("until"),
-    _T ("case"),
-    _T ("of"),
-    _T ("goto"),
-    _T ("exit"),
-    _T ("label"),
-    _T ("procedure"),
-    _T ("function"),
-    _T ("nil"),
-    _T ("file"),
-    _T ("and"),
-    _T ("or"),
-    _T ("not"),
-    _T ("xor"),
-    _T ("div"),
-    _T ("mod"),
-    _T ("unit"),
-    _T ("uses"),
-    _T ("implementation"),
-    _T ("interface"),
-    _T ("external"),
-    _T ("asm"),
-    _T ("inline"),
-    _T ("object"),
-    _T ("constructor"),
-    _T ("destructor"),
-    _T ("virtual"),
-    _T ("far"),
-    _T ("assembler"),
-    _T ("near"),
-    _T ("inherited"),
-    //Object Pascal Keywords
-    _T ("As"),
-    _T ("Class"),
-    _T ("Except"),
-    _T ("Finally"),
-    _T ("In"),
-    _T ("Is"),
-    _T ("On"),
-    _T ("Packed"),
-    _T ("Property"),
-    _T ("Raise"),
-    _T ("Shl"),
-    _T ("Shr"),
-    _T ("ThreadVar"),
-    _T ("Try"),
-    //Object Pascal Directives
     _T ("Abstract"),
+    _T ("and"),
+    _T ("array"),
+    _T ("As"),
+    _T ("asm"),
+    _T ("assembler"),
+    _T ("begin"),
+    _T ("case"),
+    _T ("Class"),
+    _T ("const"),
+    _T ("constructor"),
     _T ("Default"),
+    _T ("destructor"),
+    _T ("div"),
+    _T ("do"),
+    _T ("downto"),
     _T ("Dynamic"),
+    _T ("else"),
+    _T ("end"),
+    _T ("Except"),
+    _T ("exit"),
     _T ("Export"),
+    _T ("external"),
+    _T ("far"),
+    _T ("file"),
+    _T ("Finally"),
+    _T ("for"),
+    _T ("function"),
+    _T ("goto"),
+    _T ("if"),
+    _T ("implementation"),
+    _T ("In"),
     _T ("Index"),
+    _T ("inherited"),
+    _T ("inline"),
+    _T ("interface"),
+    _T ("Is"),
+    _T ("label"),
+    _T ("mod"),
+    _T ("near"),
+    _T ("nil"),
+    _T ("not"),
+    _T ("object"),
+    _T ("of"),
+    _T ("On"),
+    _T ("or"),
     _T ("Out"),
     _T ("Overload"),
     _T ("Override"),
+    _T ("Packed"),
     _T ("Private"),
+    _T ("procedure"),
+    _T ("program"),
+    _T ("Property"),
     _T ("Protected"),
     _T ("Public"),
     _T ("Published"),
+    _T ("Raise"),
+    _T ("record"),
+    _T ("repeat"),
+    _T ("set"),
+    _T ("Shl"),
+    _T ("Shr"),
+    _T ("string"),
+    _T ("then"),
+    _T ("ThreadVar"),
+    _T ("to"),
+    _T ("Try"),
+    _T ("type"),
+    _T ("unit"),
+    _T ("until"),
+    _T ("uses"),
+    _T ("var"),
+    _T ("virtual"),
     _T ("Virtual"),
-    NULL
+    _T ("while"),
+    _T ("with"),
+    _T ("xor"),
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsPascalKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszPascalKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszPascalKeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -161,6 +146,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -231,7 +217,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

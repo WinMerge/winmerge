@@ -38,7 +38,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C# keywords
-static LPTSTR s_apszCppKeywordList[] =
+static LPCTSTR s_apszCppKeywordList[] =
   {
     _T ("abstract"),
     _T ("base"),
@@ -116,26 +116,13 @@ static LPTSTR s_apszCppKeywordList[] =
     _T ("using"),
     _T ("virtual"),
     _T ("void"),
-    NULL
   };
 
 
 static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
-
-static BOOL
 IsCppKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszCppKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszCppKeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -169,6 +156,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -243,7 +231,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

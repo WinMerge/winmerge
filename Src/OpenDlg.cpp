@@ -24,7 +24,7 @@
  * @brief Implementation of the COpenDlg class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: OpenDlg.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
 #include <sys/types.h>
@@ -40,6 +40,7 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "FileOrFolderSelect.h"
+#include "7zCommon.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
 #undef COMPILE_MULTIMON_STUBS
@@ -58,7 +59,7 @@ const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /** @brief Location for Open-dialog specific help to open. */
-static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/OpenPaths.html");
+static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
@@ -72,6 +73,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	, m_bOverwriteRecursive(FALSE)
 	, m_bRecurse(FALSE)
 	, m_pProjectFile(NULL)
+	, m_pUpdateButtonStatusThread(NULL)
 {
 }
 
@@ -80,6 +82,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
  */
 COpenDlg::~COpenDlg()
 {
+	TerminateThreadIfRunning();
 	delete m_pProjectFile;
 }
 
@@ -92,10 +95,12 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
 	DDX_Control(pDX, IDOK, m_ctlOk);
 	DDX_Control(pDX, IDC_RECURS_CHECK, m_ctlRecurse);
-	DDX_Control(pDX, IDC_RIGHT_COMBO, m_ctlRight);
-	DDX_Control(pDX, IDC_LEFT_COMBO, m_ctlLeft);
-	DDX_CBStringExact(pDX, IDC_LEFT_COMBO, m_strLeft);
-	DDX_CBStringExact(pDX, IDC_RIGHT_COMBO, m_strRight);
+	DDX_Control(pDX, IDC_PATH0_COMBO, m_ctlPath[0]);
+	DDX_Control(pDX, IDC_PATH1_COMBO, m_ctlPath[1]);
+	DDX_Control(pDX, IDC_PATH2_COMBO, m_ctlPath[2]);
+	DDX_CBStringExact(pDX, IDC_PATH0_COMBO, m_strPath[0]);
+	DDX_CBStringExact(pDX, IDC_PATH1_COMBO, m_strPath[1]);
+	DDX_CBStringExact(pDX, IDC_PATH2_COMBO, m_strPath[2]);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
 	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpacker);
@@ -105,20 +110,25 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	//{{AFX_MSG_MAP(COpenDlg)
-	ON_BN_CLICKED(IDC_LEFT_BUTTON, OnLeftButton)
-	ON_BN_CLICKED(IDC_RIGHT_BUTTON, OnRightButton)
-	ON_CBN_SELCHANGE(IDC_LEFT_COMBO, OnSelchangeLeftCombo)
-	ON_CBN_SELCHANGE(IDC_RIGHT_COMBO, OnSelchangeRightCombo)
-	ON_CBN_EDITCHANGE(IDC_LEFT_COMBO, OnEditEvent)
+	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPath0Button)
+	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPath1Button)
+	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPath2Button)
+	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePath0Combo)
+	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePath1Combo)
+	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePath2Combo)
+	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent)
+	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent)
+	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent)
 	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
-	ON_CBN_SELENDCANCEL(IDC_LEFT_COMBO, UpdateButtonStates)
-	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, OnEditEvent)
-	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
+	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
+	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
+	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_WM_DROPFILES()
+	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -137,13 +147,15 @@ BOOL COpenDlg::OnInitDialog()
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
 	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_LEFT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_RIGHT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH0_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH1_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH2_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
@@ -156,16 +168,38 @@ BOOL COpenDlg::OnInitDialog()
 
 	CMainFrame::CenterToMainFrame(this);
 
-	m_ctlLeft.LoadState(_T("Files\\Left"));
-	m_ctlRight.LoadState(_T("Files\\Right"));
-	m_ctlExt.LoadState(_T("Files\\Ext"));
-	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
+	for (int file = 0; file < m_files.GetSize(); file++)
+	{
+		m_strPath[file] = m_files[file].c_str();
+		m_ctlPath[file].SetWindowText(m_files[file].c_str());
+	}
 
+	m_ctlPath[0].AttachSystemImageList();
+	m_ctlPath[1].AttachSystemImageList();
+	m_ctlPath[2].AttachSystemImageList();
+	m_ctlPath[0].LoadState(_T("Files\\Left"));
+	m_ctlPath[1].LoadState(_T("Files\\Right"));
+	m_ctlPath[2].LoadState(_T("Files\\Option"));
+	m_ctlExt.LoadState(_T("Files\\Ext"));
+	
+	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
+	if (bIsEmptyThirdItem)
+		m_ctlPath[2].SetWindowText(_T(""));
+	
+	BOOL bDoUpdateData = TRUE;
+	for (int index = 0; index < countof(m_strPath); index++)
+	{
+		if (!m_strPath[index].IsEmpty())
+			bDoUpdateData = FALSE;
+	}
+	UpdateData(bDoUpdateData);
+	
 	int nSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	if (nSource > 0)
 	{
-		m_ctlLeft.SetAutoComplete(nSource);
-		m_ctlRight.SetAutoComplete(nSource);
+		m_ctlPath[0].SetAutoComplete(nSource);
+		m_ctlPath[1].SetAutoComplete(nSource);
+		m_ctlPath[2].SetAutoComplete(nSource);
 	}
 
 	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
@@ -208,23 +242,20 @@ BOOL COpenDlg::OnInitDialog()
 	return TRUE;
 }
 
-/** 
- * @brief Called when "Browse..." button is selected for left path.
- */
-void COpenDlg::OnLeftButton()
+void COpenDlg::OnButton(int index)
 {
 	CString s;
 	String sfolder;
 	UpdateData(TRUE); 
 
-	PATH_EXISTENCE existence = paths_DoesPathExist(m_strLeft);
+	PATH_EXISTENCE existence = paths_DoesPathExist(m_strPath[index]);
 	switch (existence)
 	{
 	case IS_EXISTING_DIR:
-		sfolder = m_strLeft;
+		sfolder = m_strPath[index];
 		break;
 	case IS_EXISTING_FILE:
-		sfolder = GetPathOnly(m_strLeft);
+		sfolder = GetPathOnly(m_strPath[index]);
 		break;
 	case DOES_NOT_EXIST:
 		// Do nothing, empty foldername will be passed to dialog
@@ -236,46 +267,35 @@ void COpenDlg::OnLeftButton()
 
 	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
 	{
-		m_strLeft = s;
-		m_strLeftBrowsePath = s;
+		m_strPath[index] = s;
+		m_strBrowsePath[index] = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
 }
 
 /** 
- * @brief Called when "Browse..." button is selected for right path.
+ * @brief Called when "Browse..." button is selected for first path.
  */
-void COpenDlg::OnRightButton() 
+void COpenDlg::OnPath0Button()
 {
-	CString s;
-	String sfolder;
-	UpdateData(TRUE);
+	OnButton(0);
+}
 
-	PATH_EXISTENCE existence = paths_DoesPathExist(m_strRight);
-	switch (existence)
-	{
-	case IS_EXISTING_DIR:
-		sfolder = m_strRight;
-		break;
-	case IS_EXISTING_FILE:
-		sfolder = GetPathOnly(m_strRight);
-		break;
-	case DOES_NOT_EXIST:
-		// Do nothing, empty foldername will be passed to dialog
-		break;
-	default:
-		_RPTF0(_CRT_ERROR, "Invalid return value from paths_DoesPathExist()");
-		break;
-	}
+/** 
+ * @brief Called when "Browse..." button is selected for second path.
+ */
+void COpenDlg::OnPath1Button() 
+{
+	OnButton(1);
+}
 
-	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
-	{
-		m_strRight = s;
-		m_strRightBrowsePath = s;
-		UpdateData(FALSE);
-		UpdateButtonStates();
-	}	
+/** 
+ * @brief Called when "Browse..." button is selected for third path.
+ */
+void COpenDlg::OnPath2Button() 
+{
+	OnButton(2);
 }
 
 /** 
@@ -292,12 +312,22 @@ void COpenDlg::OnOK()
 
 	// If left path is a project-file, load it
 	String ext;
-	SplitFilename(m_strLeft, NULL, NULL, &ext);
+	SplitFilename(m_strPath[0], NULL, NULL, &ext);
 	CString sExt(ext.c_str());
-	if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
-		LoadProjectFile(m_strLeft);
+	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		LoadProjectFile(m_strPath[0]);
 
-	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
+	int index;
+	int nFiles = 0;
+	for (index = 0; index < countof(m_strPath); index++)
+	{
+		if (index == 2 && m_strPath[index].IsEmpty())
+			break;
+		m_files.SetSize(nFiles + 1);
+		m_files[nFiles] = m_strPath[index];
+		nFiles++;
+	}
+	m_pathsType = GetPairComparability(m_files, IsArchiveFile);
 
 	if (m_pathsType == DOES_NOT_EXIST)
 	{
@@ -305,24 +335,21 @@ void COpenDlg::OnOK()
 		return;
 	}
 
-	// If user has edited path by hand, expand environment variables
-	BOOL bExpandLeft = FALSE;
-	BOOL bExpandRight = FALSE;
-	if (m_strLeftBrowsePath.CompareNoCase(m_strLeft) != 0)
-		bExpandLeft = TRUE;
-	if (m_strRightBrowsePath.CompareNoCase(m_strRight) != 0)
-		bExpandRight = TRUE;
-
-	m_strRight = paths_GetLongPath(m_strRight, bExpandRight).c_str();
-	m_strLeft = paths_GetLongPath(m_strLeft, bExpandLeft).c_str();
-
-	// Add trailing '\' for directories if its missing
-	if (m_pathsType == IS_EXISTING_DIR)
+	for (index = 0; index < nFiles; index++)
 	{
-		if (!paths_EndsWithSlash(m_strLeft))
-			m_strLeft += '\\';
-		if (!paths_EndsWithSlash(m_strRight))
-			m_strRight += '\\';
+		// If user has edited path by hand, expand environment variables
+		BOOL bExpand = FALSE;
+		if (m_strBrowsePath[index].CompareNoCase(m_files[index].c_str()) != 0)
+			bExpand = TRUE;
+
+		m_files[index] = paths_GetLongPath(m_files[index].c_str(), bExpand);
+	
+		// Add trailing '\' for directories if its missing
+		if (paths_DoesPathExist(m_files[index].c_str()) == IS_EXISTING_DIR)
+		{
+			if (!paths_EndsWithSlash(m_files[index].c_str()))
+				m_files[index] += '\\';
+		}
 	}
 
 	UpdateData(FALSE);
@@ -376,9 +403,123 @@ void COpenDlg::OnCancel()
  */
 void COpenDlg::SaveComboboxStates()
 {
-	m_ctlLeft.SaveState(_T("Files\\Left"));
-	m_ctlRight.SaveState(_T("Files\\Right"));
+	m_ctlPath[0].SaveState(_T("Files\\Left"));
+	m_ctlPath[1].SaveState(_T("Files\\Right"));
+	m_ctlPath[2].SaveState(_T("Files\\Option"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
+
+	CString strOption;
+	m_ctlPath[2].GetWindowText(strOption);
+	theApp.WriteProfileInt(_T("Files\\Option"), _T("Empty"), strOption.IsEmpty());
+}
+
+struct UpdateButtonStatesThreadParams
+{
+	HWND m_hWnd;
+	PathContext m_paths;
+};
+
+UINT UpdateButtonStatesThread(LPVOID lpParam)
+{
+	MSG msg;
+	BOOL bRet;
+	while( (bRet = GetMessage( &msg, NULL, 0, 0 )) != 0)
+	{ 
+		if (bRet == -1)
+			break;
+		if (msg.message != WM_USER)
+			continue;
+
+		BOOL bButtonEnabled = TRUE;
+		BOOL bInvalid[3] = {FALSE, FALSE, FALSE};
+		int iStatusMsgId;
+		int iUnpackerStatusMsgId;
+
+		UpdateButtonStatesThreadParams *pParams = (UpdateButtonStatesThreadParams *)msg.wParam;
+		PathContext paths = pParams->m_paths;
+		HWND hWnd = pParams->m_hWnd;
+		delete pParams;
+
+		// Check if we have project file as left side path
+		BOOL bProject = FALSE;
+		String ext;
+		SplitFilename(paths[0].c_str(), NULL, NULL, &ext);
+		CString sExt(ext.c_str());
+		if (paths[1].empty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+			bProject = TRUE;
+
+		if (!bProject)
+		{
+			if (paths_DoesPathExist(paths[0].c_str()) == DOES_NOT_EXIST)
+				bInvalid[0] = TRUE;
+			if (paths_DoesPathExist(paths[1].c_str()) == DOES_NOT_EXIST)
+				bInvalid[1] = TRUE;
+			if (paths.GetSize() > 2 && paths_DoesPathExist(paths[2].c_str()) == DOES_NOT_EXIST)
+				bInvalid[2] = TRUE;
+		}
+
+		PATH_EXISTENCE pathsType = DOES_NOT_EXIST;
+
+		if (paths.GetSize() <= 2)
+		{
+			if (bInvalid[0] && bInvalid[1])
+				iStatusMsgId = IDS_OPEN_BOTHINVALID;
+			else if (bInvalid[0])
+				iStatusMsgId = IDS_OPEN_LEFTINVALID;
+			else if (bInvalid[1])
+				iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+			else if (!bInvalid[0] && !bInvalid[1])
+			{
+				pathsType = GetPairComparability(paths, IsArchiveFile);
+				if (pathsType == DOES_NOT_EXIST)
+					iStatusMsgId = IDS_OPEN_MISMATCH;
+				else
+					iStatusMsgId = IDS_OPEN_FILESDIRS;
+			}
+		}
+		else
+		{
+			if (bInvalid[0] && bInvalid[1] && bInvalid[2])
+				iStatusMsgId = IDS_OPEN_ALLINVALID;
+			else if (!bInvalid[0] && bInvalid[1] && bInvalid[2])
+				iStatusMsgId = IDS_OPEN_MIDDLERIGHTINVALID;
+			else if (bInvalid[0] && !bInvalid[1] && bInvalid[2])
+				iStatusMsgId = IDS_OPEN_LEFTRIGHTINVALID;
+			else if (!bInvalid[0] && !bInvalid[1] && bInvalid[2])
+				iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+			else if (bInvalid[0] && bInvalid[1] && !bInvalid[2])
+				iStatusMsgId = IDS_OPEN_LEFTMIDDLEINVALID;
+			else if (!bInvalid[0] && bInvalid[1] && !bInvalid[2])
+				iStatusMsgId = IDS_OPEN_MIDDLEINVALID;
+			else if (bInvalid[0] && !bInvalid[1] && !bInvalid[2])
+				iStatusMsgId = IDS_OPEN_LEFTINVALID;
+			else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
+			{
+				pathsType = GetPairComparability(paths, IsArchiveFile);
+				if (pathsType == DOES_NOT_EXIST)
+					iStatusMsgId = IDS_OPEN_MISMATCH;
+				else
+					iStatusMsgId = IDS_OPEN_FILESDIRS;
+			}
+		}
+		if (pathsType == IS_EXISTING_FILE || bProject)
+			iUnpackerStatusMsgId = 0;	//Empty field
+		else
+			iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
+
+		// Enable buttons as appropriate
+		if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
+		{
+			if (bProject)
+				bButtonEnabled = TRUE;
+			else
+				bButtonEnabled = (pathsType != DOES_NOT_EXIST);
+		}
+
+		PostMessage(hWnd, WM_USER + 1, bButtonEnabled, MAKELPARAM(iStatusMsgId, iUnpackerStatusMsgId)); 
+	}
+
+	return 0;
 }
 
 /** 
@@ -386,92 +527,74 @@ void COpenDlg::SaveComboboxStates()
  */
 void COpenDlg::UpdateButtonStates()
 {
-	BOOL bLeftInvalid = FALSE;
-	BOOL bRightInvalid = FALSE;
-
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
 	TrimPaths();
-
-	// Check if we have project file as left side path
-	BOOL bProject = FALSE;
-	String ext;
-	SplitFilename(m_strLeft, NULL, NULL, &ext);
-	CString sExt(ext.c_str());
-	if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
-		bProject = TRUE;
-
-	// Enable buttons as appropriate
-	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
-	if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
+	
+	if (!m_pUpdateButtonStatusThread)
 	{
-		if (bProject)
-		{
-			m_ctlOk.EnableWindow(TRUE);
-			m_ctlUnpacker.EnableWindow(TRUE);
-			m_ctlSelectUnpacker.EnableWindow(TRUE);
-		}
-		else
-		{
-			m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
-			m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
-			m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
-		}
+		m_pUpdateButtonStatusThread = AfxBeginThread(
+			UpdateButtonStatesThread, NULL, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
+		m_pUpdateButtonStatusThread->m_bAutoDelete = FALSE;
+		m_pUpdateButtonStatusThread->ResumeThread();
+		while (PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_NULL, 0, 0) == FALSE)
+			Sleep(1);
 	}
 
-	if (!bProject)
+	UpdateButtonStatesThreadParams *pParams = new UpdateButtonStatesThreadParams;
+	pParams->m_hWnd = this->m_hWnd;
+	if (m_strPath[2].IsEmpty())
+		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1]);
+	else
+		pParams->m_paths = PathContext(m_strPath[0], m_strPath[1], m_strPath[2]);
+
+	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER, (WPARAM)pParams, 0);
+}
+
+void COpenDlg::TerminateThreadIfRunning()
+{
+	if (!m_pUpdateButtonStatusThread)
+		return;
+
+	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_QUIT, 0, 0);
+	DWORD dwResult = WaitForSingleObject(m_pUpdateButtonStatusThread->m_hThread, 100);
+	if (dwResult != WAIT_OBJECT_0)
 	{
-		if (paths_DoesPathExist(m_strLeft) == DOES_NOT_EXIST)
-			bLeftInvalid = TRUE;
-		if (paths_DoesPathExist(m_strRight) == DOES_NOT_EXIST)
-			bRightInvalid = TRUE;
+		m_pUpdateButtonStatusThread->SuspendThread();
+		TerminateThread(m_pUpdateButtonStatusThread->m_hThread, 0);
 	}
-
-	if (bLeftInvalid && bRightInvalid)
-		SetStatus(IDS_OPEN_BOTHINVALID);
-	else if (bLeftInvalid)
-		SetStatus(IDS_OPEN_LEFTINVALID);
-	else if (bRightInvalid)
-		SetStatus(IDS_OPEN_RIGHTINVALID);
-	else if (!bLeftInvalid && !bRightInvalid && pathsType == DOES_NOT_EXIST)
-		SetStatus(IDS_OPEN_MISMATCH);
-	else
-		SetStatus(IDS_OPEN_FILESDIRS);
-
-	if (pathsType == IS_EXISTING_FILE || bProject)
-		SetUnpackerStatus(0);	//Empty field
-	else
-		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
+	delete m_pUpdateButtonStatusThread;
+	m_pUpdateButtonStatusThread = NULL;
 }
 
 /**
- * @brief Called when user changes selection in left path's combo box.
+ * @brief Called when user changes selection in left/middle/right path's combo box.
  */
-void COpenDlg::OnSelchangeLeftCombo() 
+void COpenDlg::OnSelchangeCombo(int index) 
 {
-	int sel = m_ctlLeft.GetCurSel();
+	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlLeft.GetLBText(sel, m_strLeft);
-		m_ctlLeft.SetWindowText(m_strLeft);
+		m_ctlPath[index].GetLBText(sel, m_strPath[index]);
+		m_ctlPath[index].SetWindowText(m_strPath[index]);
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
 }
 
-/**
- * @brief Called when user changes selection in right path's combo box.
- */
-void COpenDlg::OnSelchangeRightCombo() 
+void COpenDlg::OnSelchangePath0Combo() 
 {
-	int sel = m_ctlRight.GetCurSel();
-	if (sel != CB_ERR)
-	{
-		m_ctlRight.GetLBText(sel, m_strRight);
-		m_ctlRight.SetWindowText(m_strRight);
-		UpdateData(TRUE);
-	}
-	UpdateButtonStates();
+	OnSelchangeCombo(0);
+}
+
+void COpenDlg::OnSelchangePath1Combo() 
+{
+	OnSelchangeCombo(1);
+}
+
+void COpenDlg::OnSelchangePath2Combo() 
+{
+	OnSelchangeCombo(2);
 }
 
 /** 
@@ -505,13 +628,23 @@ void COpenDlg::OnSelectUnpacker()
 {
 	UpdateData(TRUE);
 
-	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
+	int index;
+	int nFiles = 0;
+	for (index = 0; index < countof(m_strPath); index++)
+	{
+		if (index == 2 && m_strPath[index].IsEmpty())
+			break;
+		m_files.SetSize(nFiles + 1);
+		m_files[nFiles] = m_strPath[index];
+		nFiles++;
+	}
+	m_pathsType = GetPairComparability(m_files);
 
 	if (m_pathsType != IS_EXISTING_FILE) 
 		return;
 
 	// let the user select a handler
-	CSelectUnpackerDlg dlg(m_strLeft, m_strRight, this);
+	CSelectUnpackerDlg dlg(m_files[0].c_str(), this);
 	dlg.SetInitialInfoHandler(&m_infoHandler);
 
 	if (dlg.DoModal() == IDOK)
@@ -522,6 +655,20 @@ void COpenDlg::OnSelectUnpacker()
 
 		UpdateData(FALSE);
 	}
+}
+
+LRESULT COpenDlg::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
+{
+	BOOL bEnabledButtons = (BOOL)wParam;
+
+	m_ctlOk.EnableWindow(bEnabledButtons);
+	m_ctlUnpacker.EnableWindow(bEnabledButtons);
+	m_ctlSelectUnpacker.EnableWindow(bEnabledButtons);
+
+	SetStatus(HIWORD(lParam));
+	SetStatus(LOWORD(lParam));
+
+	return 0;
 }
 
 /**
@@ -610,9 +757,7 @@ BOOL COpenDlg::LoadProjectFile(const CString &path)
 	}
 	else
 	{
-		m_strLeft = m_pProjectFile->GetLeft().c_str();
-		m_strRight = m_pProjectFile->GetRight().c_str();
-		m_bRecurse = m_pProjectFile->GetSubfolders();
+		m_pProjectFile->GetPaths(m_files, m_bRecurse);
 		if (m_pProjectFile->HasFilter())
 		{
 			m_strExt = m_pProjectFile->GetFilter().c_str();
@@ -631,10 +776,11 @@ BOOL COpenDlg::LoadProjectFile(const CString &path)
  */
 void COpenDlg::TrimPaths()
 {
-	m_strLeft.TrimLeft();
-	m_strLeft.TrimRight();
-	m_strRight.TrimLeft();
-	m_strRight.TrimRight();
+	for (int index = 0; index < countof(m_strPath); index++)
+	{
+		m_strPath[index].TrimLeft();
+		m_strPath[index].TrimRight();
+	}
 }
 
 /** 
@@ -730,21 +876,31 @@ void COpenDlg::OnDropFiles(HDROP dropInfo)
 
 	// Add dropped paths to the dialog
 	UpdateData(TRUE);
-	if (fileCount == 2)
+	if (fileCount == 3)
 	{
-		m_strLeft = files[0];
-		m_strRight = files[1];
+		m_strPath[0] = files[0];
+		m_strPath[1] = files[1];
+		m_strPath[2] = files[2];
+		UpdateData(FALSE);
+		UpdateButtonStates();
+	}
+	else if (fileCount == 2)
+	{
+		m_strPath[0] = files[0];
+		m_strPath[1] = files[1];
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
 	else if (fileCount == 1)
 	{
-		if (m_strLeft.IsEmpty())
-			m_strLeft = files[0];
-		else if (m_strRight.IsEmpty())
-			m_strRight = files[0];
+		if (m_strPath[0].IsEmpty())
+			m_strPath[0] = files[0];
+		else if (m_strPath[1].IsEmpty())
+			m_strPath[1] = files[0];
+		else if (m_strPath[2].IsEmpty())
+			m_strPath[2] = files[0];
 		else
-			m_strLeft = files[0];
+			m_strPath[0] = files[0];
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}

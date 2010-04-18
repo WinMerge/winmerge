@@ -4,7 +4,7 @@
  * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: ViewableWhitespace.h 3410 2006-07-31 17:14:15Z kimmov $
 
 #ifndef ViewableWhitespace_included_h
 #define ViewableWhitespace_included_h
@@ -22,7 +22,7 @@ struct ViewableWhitespaceChars
 	TCHAR c_space[3]; /**< Visible character for spaces. */
 	TCHAR c_cr[3]; /**< Visible character for CR EOL chars. */
 	TCHAR c_lf[3]; /**< Visible character for LF EOL chars. */
-	TCHAR c_eol[3]; /**< Visible character for general EOL chars. */
+	TCHAR c_eol[3]; /**< Visible character for general or CRLF EOL chars. */
 };
 
 const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage);

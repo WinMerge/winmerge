@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: EditorFilepathBar.h 5401 2008-05-30 12:09:27Z kimmov $
 
 #ifndef __EDITORFILEPATHBAR_H__
 #define __EDITORFILEPATHBAR_H__
@@ -39,6 +39,8 @@ class IHeaderBar
 public:
 	virtual void SetText(int pane, LPCTSTR lpszString) = 0;
 	virtual void SetActive(int pane, BOOL bActive) = 0;
+	virtual void SetPaneCount(int nPanes) = 0;
+	virtual void Resize() = 0;
 };
 
 
@@ -59,21 +61,14 @@ public :
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
 	
-	enum
-	{
-		PANE_LEFT = 0,
-		PANE_RIGHT,
-	};
-
-	enum { PaneCount = 2 }; /**< Number of panes */
-
 	BOOL LookLikeThisWnd(const CWnd * pWnd);
 	void Resize();
-	void Resize(int leftWidth, int rightWidth);
+	void Resize(int widths[]);
 
 	// Implement IFilepathHeaders
 	void SetText(int pane, LPCTSTR lpszString);
 	void SetActive(int pane, BOOL bActive);
+	void SetPaneCount(int nPanes);
 
 protected:
 	BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );
@@ -81,8 +76,9 @@ protected:
 
 private:
 	// this dialog uses custom edit boxes
-	CFilepathEdit m_Edit[2]; /**< Edit controls. */
+	CFilepathEdit m_Edit[3]; /**< Edit controls. */
 	CFont * m_pFont; /**< Font for editcontrols */
+	int m_nPanes;
 };
 
 

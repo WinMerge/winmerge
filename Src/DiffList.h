@@ -20,7 +20,7 @@
  * @brief Declaration file for DiffList class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffList.h 6705 2009-04-23 20:18:39Z kimmov $
 
 #ifndef _DIFFLIST_H_
 #define _DIFFLIST_H_
@@ -41,19 +41,14 @@
  */
 struct DIFFRANGE
 {
-	UINT begin0;	/**< First diff line in original file1 */
-	UINT end0;		/**< Last diff line in original file1 */
-	UINT begin1;	/**< First diff line in original file2 */
-	UINT end1;		/**< Last diff line in original file2 */
-	UINT dbegin0;	/**< Synchronised (ghost lines added) first diff line in file1 */
-	UINT dend0;		/**< Synchronised (ghost lines added) last diff line in file1 */
-	UINT dbegin1;	/**< Synchronised (ghost lines added) first diff line in file2 */
-	UINT dend1;		/**< Synchronised (ghost lines added) last diff line in file2 */
-	int blank0;		/**< Number of blank lines in file1 */
-	int blank1;		/**< Number of blank lines in file2 */
+	int begin[3];	/**< First diff line in original file1,2,3 */
+	int end[3];	/**< Last diff line in original file1,2,3 */
+	int dbegin[3];	/**< Synchronised (ghost lines added) first diff line in file1,2,3 */
+	int dend[3];	/**< Synchronised (ghost lines added) last diff line in file1,2,3 */
+	int blank[3];		/**< Number of blank lines in file1,2,3 */
 	BYTE op;		/**< Operation done with this diff */
 	DIFFRANGE() { memset(this, 0, sizeof(*this)); }
-	void swap_sides();
+	void swap_sides(int index1, int index2);
 };
 
 /**
@@ -101,10 +96,21 @@ struct DiffRangeInfo
 enum
 {
 	OP_NONE = 0,
-	OP_LEFTONLY,
+	OP_1STONLY,
+	OP_2NDONLY,
+	OP_3RDONLY,
 	OP_DIFF,
-	OP_RIGHTONLY,
 	OP_TRIVIAL
+};
+
+enum
+{
+	THREEWAYDIFFTYPE_LEFTMIDDLE  = 0,
+	THREEWAYDIFFTYPE_LEFTRIGHT,
+	THREEWAYDIFFTYPE_MIDDLERIGHT,
+	THREEWAYDIFFTYPE_LEFTONLY,
+	THREEWAYDIFFTYPE_MIDDLEONLY,
+	THREEWAYDIFFTYPE_RIGHTONLY,
 };
 
 /**
@@ -146,17 +152,37 @@ public:
 	int LastSignificantDiff() const;
 	const DIFFRANGE * FirstSignificantDiffRange() const;
 	const DIFFRANGE * LastSignificantDiffRange() const;
+	int PrevSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const;
+	int NextSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const;
+	int FirstSignificant3wayDiff(int nDiffType) const;
+	int NextSignificant3wayDiff(int nDiff, int nDiffType) const;
+	int PrevSignificant3wayDiff(int nDiff, int nDiffType) const;
+	int LastSignificant3wayDiff(int nDiffType) const;
+	const DIFFRANGE * FirstSignificant3wayDiffRange(int nDiffType) const;
+	const DIFFRANGE * LastSignificant3wayDiffRange(int nDiffType) const;
 
 	const DIFFRANGE * DiffRangeAt(int nDiff) const;
 
 	void ConstructSignificantChain(); // must be called after diff list is entirely populated
-	void Swap();
-	void GetExtraLinesCounts(int &nLeftLines, int &nRightLines);
+	void Swap(int index1, int index2);
+	void GetExtraLinesCounts(int nFiles, int extras[]);
 
 private:
 	std::vector<DiffRangeInfo> m_diffs; /**< Difference list. */
 	int m_firstSignificant; /**< Index of first significant diff in m_diffs */
 	int m_lastSignificant; /**< Index of last significant diff in m_diffs */
+	int m_firstSignificantLeftMiddle;
+	int m_firstSignificantLeftRight;
+	int m_firstSignificantMiddleRight;
+	int m_firstSignificantLeftOnly;
+	int m_firstSignificantMiddleOnly;
+	int m_firstSignificantRightOnly;
+	int m_lastSignificantLeftMiddle;
+	int m_lastSignificantLeftRight;
+	int m_lastSignificantMiddleRight;
+	int m_lastSignificantLeftOnly;
+	int m_lastSignificantMiddleOnly;
+	int m_lastSignificantRightOnly;
 };
 
 #endif // _DIFFLIST_H_

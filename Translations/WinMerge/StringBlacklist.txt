@@ -9,5 +9,7 @@ _POPUP_
 IDS_SAVEVSS_FMT
 MS Shell Dlg
 Static
+ComboEx32
 Version 1.0
 WinMerge
+../Version.h

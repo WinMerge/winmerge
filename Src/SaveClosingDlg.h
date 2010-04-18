@@ -20,7 +20,7 @@
  * @brief Declaration file for SaveClosingDlg dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: SaveClosingDlg.h 5444 2008-06-07 06:48:49Z kimmov $
 
 
 #ifndef _SAVECLOSINGDLG_H_
@@ -53,14 +53,16 @@ public:
 	};
 
 	SaveClosingDlg(CWnd* pParent = NULL);   // standard constructor
-	void DoAskFor(BOOL bLeft = FALSE, BOOL bRight = FALSE);
+	void DoAskFor(BOOL bLeft = FALSE, BOOL bMiddle = FALSE, BOOL bRight = FALSE);
 
 // Dialog Data
 	//{{AFX_DATA(SaveClosingDlg)
 	enum { IDD = IDD_SAVECLOSING };
 	CString m_sLeftFile; /**< Path to left-file to save. */
+	CString m_sMiddleFile; /**< Path to middle-file to save. */
 	CString m_sRightFile; /**< Path to right-side file to save. */
 	int m_leftSave; /**< User's choice for left-side save. */
+	int m_middleSave; /**< User's choice for middle-side save. */
 	int m_rightSave; /**< User's choice for righ-side save. */
 	BOOL m_bDisableCancel; /**< Should we disable Cancel-button? */
 	//}}AFX_DATA
@@ -79,6 +81,7 @@ protected:
 private:
 	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
 	BOOL m_bAskForLeft; /**< Is left file modified? */
+	BOOL m_bAskForMiddle; /**< Is middle file modified? */
 	BOOL m_bAskForRight; /**< Is right file modified? */
 };
 

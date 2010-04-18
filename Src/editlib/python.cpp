@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  Python 2.6 keywords
-static LPTSTR s_apszPythonKeywordList[] =
+static LPCTSTR s_apszPythonKeywordList[] =
   {
     _T ("and"),
     _T ("as"),
@@ -60,37 +60,14 @@ static LPTSTR s_apszPythonKeywordList[] =
     _T ("while"),
     _T ("whith"),
     _T ("yield"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("argv"),
-    _T ("builtin_module_names"),
-    _T ("Ellipsis"),
-    _T ("exc_type"),
-    _T ("exc_value"),
-    _T ("exc_traceback"),
-    _T ("exit"),
-    _T ("exitfunc"),
-    _T ("False"),
-    _T ("last_type"),
-    _T ("last_value"),
-    _T ("last_traceback"),
-    _T ("modules"),
-    _T ("None"),
-    _T ("NotImplemented"),
-    _T ("path"),
-    _T ("ps1"),
-    _T ("ps2"),
-    _T ("settrace"),
-    _T ("setprofile"),
-    _T ("stdin"),
-    _T ("stdout"),
-    _T ("stderr"),
-    _T ("tracebacklimit"),
     _T ("AttributeError"),
     _T ("EOFError"),
+    _T ("Ellipsis"),
+    _T ("False"),
     _T ("IOError"),
     _T ("ImportError"),
     _T ("IndexError"),
@@ -98,6 +75,8 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("KeyboardInterrupt"),
     _T ("MemoryError"),
     _T ("NameError"),
+    _T ("None"),
+    _T ("NotImplemented"),
     _T ("OverflowError"),
     _T ("RuntimeError"),
     _T ("SyntaxError"),
@@ -108,95 +87,101 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("ValueError"),
     _T ("ZeroDivisionError"),
     _T ("__debug__"),
-    NULL
+    _T ("argv"),
+    _T ("builtin_module_names"),
+    _T ("exc_traceback"),
+    _T ("exc_type"),
+    _T ("exc_value"),
+    _T ("exit"),
+    _T ("exitfunc"),
+    _T ("last_traceback"),
+    _T ("last_type"),
+    _T ("last_value"),
+    _T ("modules"),
+    _T ("path"),
+    _T ("ps1"),
+    _T ("ps2"),
+    _T ("setprofile"),
+    _T ("settrace"),
+    _T ("stderr"),
+    _T ("stdin"),
+    _T ("stdout"),
+    _T ("tracebacklimit"),
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
-    _T ("id"),
-    _T ("__init__"),
-    _T ("__del__"),
-    _T ("__repr__"),
-    _T ("__str__"),
-    _T ("__cmp__"),
-    _T ("__hash__"),
-    _T ("__dict__"),
-    _T ("__methods__"),
-    _T ("__members__"),
-    _T ("__class__"),
-    _T ("__bases__"),
-    _T ("__add__"),
-    _T ("__mul__"),
-    _T ("__mod__"),
-    _T ("__sub__"),
-    _T ("__div__"),
-    _T ("divmod"),
-    _T ("__divmod__"),
-    _T ("pow"),
-    _T ("__pow__"),
-    _T ("__and__"),
-    _T ("__xor__"),
-    _T ("__or__"),
-    _T ("__lshift__"),
-    _T ("__rshift__"),
-    _T ("nonzero"),
-    _T ("__nonzero__"),
-    _T ("coerce"),
-    _T ("__coerce__"),
-    _T ("__neg__"),
-    _T ("__pos__"),
-    _T ("abs"),
     _T ("__abs__"),
-    _T ("__invert__"),
-    _T ("int"),
-    _T ("__int__"),
-    _T ("float"),
+    _T ("__add__"),
+    _T ("__and__"),
+    _T ("__bases__"),
+    _T ("__class__"),
+    _T ("__cmp__"),
+    _T ("__coerce__"),
+    _T ("__del__"),
+    _T ("__dict__"),
+    _T ("__div__"),
+    _T ("__divmod__"),
     _T ("__float__"),
-    _T ("long"),
-    _T ("__long__"),
-    _T ("float"),
     _T ("__float__"),
-    _T ("oct"),
-    _T ("__oct__"),
-    _T ("hex"),
+    _T ("__getitem__"),
+    _T ("__hash__"),
     _T ("__hex__"),
+    _T ("__init__"),
+    _T ("__int__"),
+    _T ("__invert__"),
+    _T ("__len__"),
+    _T ("__long__"),
+    _T ("__lshift__"),
+    _T ("__members__"),
+    _T ("__methods__"),
+    _T ("__mod__"),
+    _T ("__mul__"),
+    _T ("__neg__"),
+    _T ("__nonzero__"),
+    _T ("__oct__"),
+    _T ("__or__"),
+    _T ("__pos__"),
+    _T ("__pow__"),
+    _T ("__repr__"),
+    _T ("__rshift__"),
+    _T ("__str__"),
+    _T ("__sub__"),
+    _T ("__xor__"),
+    _T ("abs"),
+    _T ("coerce"),
+    _T ("divmod"),
+    _T ("float"),
+    _T ("float"),
+    _T ("hex"),
+    _T ("id"),
+    _T ("int"),
+    _T ("len"),
+    _T ("long"),
+    _T ("nonzero"),
+    _T ("oct"),
+    _T ("pow"),
     _T ("range"),
     _T ("round"),
     _T ("xrange"),
-    _T ("len"),
-    _T ("__len__"),
-    _T ("__getitem__"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsPythonKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszPythonKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszPythonKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -230,6 +215,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -299,7 +285,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

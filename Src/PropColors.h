@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropColors.h 6908 2009-07-11 08:29:49Z kimmov $
 
 #if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
 #define AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_
@@ -48,6 +48,12 @@ private:
 	CColorButton	m_cSelMoved;
 	CColorButton	m_cSelMovedDeleted;
 	CColorButton	m_cSelMovedText;
+	CColorButton	m_cSNP;
+	CColorButton	m_cSNPDeleted;
+	CColorButton	m_cSNPText;
+	CColorButton	m_cSelSNP;
+	CColorButton	m_cSelSNPDeleted;
+	CColorButton	m_cSelSNPText;
 	CColorButton	m_cWordDiff;
 	CColorButton	m_cWordDiffDeleted;
 	CColorButton	m_cWordDiffText;
@@ -72,6 +78,12 @@ private:
 	COLORREF	m_clrSelMoved;
 	COLORREF	m_clrSelMovedDeleted;
 	COLORREF	m_clrSelMovedText;
+	COLORREF	m_clrSNP;
+	COLORREF	m_clrSNPDeleted;
+	COLORREF	m_clrSNPText;
+	COLORREF	m_clrSelSNP;
+	COLORREF	m_clrSelSNPDeleted;
+	COLORREF	m_clrSelSNPText;
 	COLORREF	m_clrWordDiff;
 	COLORREF	m_clrWordDiffDeleted;
 	COLORREF	m_clrWordDiffText;
@@ -117,6 +129,12 @@ protected:
 	afx_msg void OnSelMovedColor();
 	afx_msg void OnSelMovedDeletedColor();
 	afx_msg void OnSelMovedTextColor();
+	afx_msg void OnSNPColor();
+	afx_msg void OnSNPDeletedColor();
+	afx_msg void OnSNPTextColor();
+	afx_msg void OnSelSNPColor();
+	afx_msg void OnSelSNPDeletedColor();
+	afx_msg void OnSelSNPTextColor();
 	afx_msg void OnWordDiffColor();
 	afx_msg void OnWordDiffDeletedColor();
 	afx_msg void OnWordDiffTextColor();

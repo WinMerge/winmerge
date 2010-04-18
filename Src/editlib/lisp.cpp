@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszLispKeywordList[] =
+static LPCTSTR s_apszLispKeywordList[] =
   {
     _T ("abs"),
     _T ("acad_colordlg"),
@@ -43,16 +43,16 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("angtos"),
     _T ("append"),
     _T ("apply"),
+    _T ("arx"),
     _T ("arxload"),
     _T ("arxunload"),
-    _T ("arx"),
     _T ("ascii"),
     _T ("assoc"),
     _T ("atan"),
     _T ("atof"),
     _T ("atoi"),
-    _T ("atoms-family"),
     _T ("atom"),
+    _T ("atoms-family"),
     _T ("autoarxload"),
     _T ("autoload"),
     _T ("autoxload"),
@@ -114,20 +114,20 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("entnext"),
     _T ("entsel"),
     _T ("entupd"),
-    _T ("equal"),
     _T ("eq"),
+    _T ("equal"),
     _T ("eval"),
     _T ("exit"),
+    _T ("exp"),
     _T ("expand"),
     _T ("expt"),
-    _T ("exp"),
     _T ("fill_image"),
     _T ("findfile"),
     _T ("fix"),
     _T ("float"),
     _T ("foreach"),
-    _T ("gcd"),
     _T ("gc"),
+    _T ("gcd"),
     _T ("get_attr"),
     _T ("get_tile"),
     _T ("getangle"),
@@ -150,29 +150,29 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("grtext"),
     _T ("grvecs"),
     _T ("handent"),
-    _T ("if"),
     _T ("help"),
+    _T ("if"),
     _T ("initget"),
     _T ("inters"),
     _T ("itoa"),
     _T ("lambda"),
     _T ("last"),
     _T ("length"),
-    _T ("listp"),
     _T ("list"),
-    _T ("load_dialog"),
+    _T ("listp"),
     _T ("load"),
+    _T ("load_dialog"),
+    _T ("log"),
     _T ("logand"),
     _T ("logior"),
-    _T ("log"),
     _T ("lsh"),
     _T ("mapcar"),
     _T ("max"),
-    _T ("member"),
     _T ("mem"),
+    _T ("member"),
     _T ("menucmd"),
-    _T ("minusp"),
     _T ("min"),
+    _T ("minusp"),
     _T ("mode_tile"),
     _T ("namedobjdict"),
     _T ("nentsel"),
@@ -193,21 +193,21 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("prompt"),
     _T ("quit"),
     _T ("quote"),
+    _T ("read"),
     _T ("read-char"),
     _T ("read-line"),
-    _T ("read"),
     _T ("redraw"),
     _T ("regapp"),
     _T ("rem"),
     _T ("repeat"),
     _T ("reverse"),
     _T ("rtos"),
+    _T ("set"),
+    _T ("set_tile"),
     _T ("setcfg"),
     _T ("setfunhelp"),
     _T ("setq"),
     _T ("setvar"),
-    _T ("set_tile"),
-    _T ("set"),
     _T ("sin"),
     _T ("slide_image"),
     _T ("snvalid"),
@@ -218,15 +218,15 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("sslength"),
     _T ("ssmemb"),
     _T ("ssname"),
-    _T ("startapp"),
     _T ("start_dialog"),
     _T ("start_image"),
     _T ("start_list"),
+    _T ("startapp"),
     _T ("strcase"),
     _T ("strcat"),
     _T ("strlen"),
-    _T ("substr"),
     _T ("subst"),
+    _T ("substr"),
     _T ("tablet"),
     _T ("tblnext"),
     _T ("tblobjname"),
@@ -254,25 +254,12 @@ static LPTSTR s_apszLispKeywordList[] =
     _T ("xload"),
     _T ("xunload"),
     _T ("zerop"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsLispKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszLispKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszLispKeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -306,6 +293,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -378,7 +366,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

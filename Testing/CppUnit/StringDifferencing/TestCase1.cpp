@@ -34,12 +34,13 @@ void TestCase1::tearDown()
 void TestCase1::Identical1()
 {
 	wdiffarray diffs;
-	CString string1(_T("Test"));
-	CString string2(_T("Test"));
+	CString string[2];
+	string[0] = _T("Test");
+	string[1] = _T("Test");
 	int count = 0;
 
 	// Compare case, all whitespaces, whitespace break
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -47,7 +48,7 @@ void TestCase1::Identical1()
 
 	// Ignore case, all whitespaces, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -55,7 +56,7 @@ void TestCase1::Identical1()
 
 	// Compare case, whitespaces change, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_CHANGE, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -63,7 +64,7 @@ void TestCase1::Identical1()
 
 	// Compare case, whitespaces ignore, whitespace break
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_IGNORE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -78,14 +79,15 @@ void TestCase1::Identical1()
 void TestCase1::Difference1()
 {
 	wdiffarray diffs;
-	CString string1(_T("Test"));
-	CString string2(_T("test"));
+	CString string[2];
+	string[0] = _T("Test");
+	string[1] = _T("test");
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Check strings with different settings
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -94,7 +96,7 @@ void TestCase1::Difference1()
 
 	// Check strings with different settings
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -102,10 +104,10 @@ void TestCase1::Difference1()
 	diffs.RemoveAll();
 
 	// Check strings with different settings
-	string1 = _T("tesT");
-	string2 = _T("test");
+	string[0] = _T("tesT");
+	string[1] = _T("test");
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -121,14 +123,15 @@ void TestCase1::Difference1()
 void TestCase1::Difference2()
 {
 	wdiffarray diffs;
-	CString string1(_T("Test string"));
-	CString string2(_T("test strIng"));
+	CString string[2];
+	string[0] = _T("Test string");
+	string[1] = _T("test strIng");
 	int count = 0;
 
 	// Break type is whitespace or punctuation
 
 	// Check strings with different settings
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
@@ -138,7 +141,7 @@ void TestCase1::Difference2()
 	// non-matching word and ends in the predecessor of the first matching
 	// word.
 	diffs.RemoveAll();
-	sd_ComputeWordDiffs(string1, string2,
+	sd_ComputeWordDiffs(2, string,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();

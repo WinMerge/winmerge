@@ -3,7 +3,7 @@
 
 typedef const unsigned short * CWSTR;
 
-bool Unpack(CWSTR srcFilepath, CWSTR destFilepath);
-bool Pack(CWSTR srcFilepath, CWSTR destFilepath);
+bool Unpack(LPCWSTR srcFilepath, LPCWSTR destFilepath);
+bool Pack(LPCWSTR srcFilepath, LPCWSTR destFilepath);
 
 #endif // Unpacker_h_included

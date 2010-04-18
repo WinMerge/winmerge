@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirDoc.h 6136 2008-12-01 17:04:25Z kimmov $
 
 #if !defined(AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_)
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
@@ -63,12 +63,15 @@ protected:
 // Attributes
 public:
 	CTempPathContext *m_pTempPathContext;
+	int m_nDirs;
+	static int m_nDirsTemp;
+
 // Operations
 public:
 	BOOL CloseMergeDocs();
 	CDirView * GetMainView();
-	CMergeDoc * GetMergeDocForDiff(BOOL * pNew);
-	CHexMergeDoc * GetHexMergeDocForDiff(BOOL * pNew);
+	CMergeDoc * GetMergeDocForDiff(int nFiles, BOOL * pNew);
+	CHexMergeDoc * GetHexMergeDocForDiff(int nFiles, BOOL * pNew);
 	BOOL ReusingDirDoc();
 	bool CanFrameClose();
 
@@ -88,8 +91,8 @@ public:
 	void InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *);
 	void Rescan();
 	BOOL GetRecursive() const { return m_bRecursive; }
-	BOOL GetReadOnly(BOOL bLeft) const;
-	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
+	BOOL GetReadOnly(int nIndex) const;
+	void SetReadOnly(int nIndex, BOOL bReadOnly);
 	BOOL HasDirView() { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
@@ -115,9 +118,8 @@ public:
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
-	void SetDescriptions(const String &strLeftDesc, const String &strRightDesc);
-	void ApplyLeftDisplayRoot(String &);
-	void ApplyRightDisplayRoot(String &);
+	void SetDescriptions(const String strDesc[]);
+	void ApplyDisplayRoot(int nIndex, String &);
 
 	void SetPluginPrediffSetting(LPCTSTR filteredFilenames, int newsetting);
 	void SetPluginPrediffer(LPCTSTR filteredFilenames, const CString & prediffer);
@@ -131,6 +133,7 @@ public:
 	DIFFITEM & GetDiffRefByKey(UINT_PTR key) { return m_pCtxt->GetDiffRefAt(key); }
 	String GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
 	String GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
+	String GetBasePath(int nIndex) const { return m_pCtxt->GetNormalizedPath(nIndex); }
 	void RemoveDiffByKey(UINT_PTR key) { m_pCtxt->RemoveDiff(key); }
 	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
 	struct AllowUpwardDirectory
@@ -143,7 +146,7 @@ public:
 			ParentIsTempPath
 		};
 	};
-	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(String &leftParent, String &rightParent);
+	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(PathContext &paths);
 	void SetItemViewFlag(UINT_PTR key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats; };
@@ -160,17 +163,15 @@ protected:
 
 	// Implementation data
 private:
-	CDiffContext *m_pCtxt; /**< Pointer to compare results-data */
+	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView; /**< Pointer to GUI */
 	CompareStats *m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
-	BOOL m_bROLeft; /**< Is left side read-only */
-	BOOL m_bRORight; /**< Is right side read-only */
+	BOOL m_bRO[3]; /**< Is left/middle/right side read-only */
 	BOOL m_bRecursive; /**< Is current compare recursive? */
 	CustomStatusCursor * m_statusCursor;
-	String m_strLeftDesc; /**< Left side desription text */
-	String m_strRightDesc; /**< Left side desription text */
+	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */

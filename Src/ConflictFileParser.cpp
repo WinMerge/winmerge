@@ -20,7 +20,7 @@
  * @brief Implementation for conflict file parser.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ConflictFileParser.cpp 6638 2009-04-03 23:17:42Z sdottaka $
 
 // Conflict file parsing method modified from original code got from:
 // TortoiseCVS - a Windows shell extension for easy version control
@@ -31,6 +31,10 @@
 #include "UnicodeString.h"
 #include "UniFile.h"
 #include "ConflictFileParser.h"
+#include "OptionsDef.h"
+#include "Merge.h"
+#include "FileTextEncoding.h"
+#include "codepage_detect.h"
 
 
 // Note: keep these strings in "wrong" order so we can resolve this file :)
@@ -107,6 +111,22 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 	// Create output files
 	bool success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
 	bool success3 = newRevision.Open(newRevisionFileName, _T("wb"));
+
+	// detect codepage of conflict file
+	FileTextEncoding encoding;
+	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	GuessCodepageEncoding(conflictFileName, &encoding,
+		iGuessEncodingType);
+
+	conflictFile.SetUnicoding(encoding.m_unicoding);
+	conflictFile.SetBom(encoding.m_bom);
+	conflictFile.SetCodepage(encoding.m_codepage);
+	workingCopy.SetUnicoding(encoding.m_unicoding);
+	workingCopy.SetBom(encoding.m_bom);
+	workingCopy.SetCodepage(encoding.m_codepage);
+	newRevision.SetUnicoding(encoding.m_unicoding);
+	newRevision.SetBom(encoding.m_bom);
+	newRevision.SetCodepage(encoding.m_codepage);
 
 	state = 0;
 	bool linesToRead = true;

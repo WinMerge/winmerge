@@ -24,7 +24,7 @@
  * @brief Implementation of the CMainFrame class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MainFrm.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -73,6 +73,7 @@
 #include "MergeCmdLineInfo.h"
 #include "FileOrFolderSelect.h"
 #include "PropBackups.h"
+#include "unicoder.h"
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
@@ -132,6 +133,10 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_VIEW_ZOOMIN,				IDB_VIEW_ZOOMIN,				CMainFrame::MENU_FILECMP },
 	{ ID_VIEW_ZOOMOUT,				IDB_VIEW_ZOOMOUT,				CMainFrame::MENU_FILECMP },
 	{ ID_MERGE_COMPARE,				IDB_MERGE_COMPARE,				CMainFrame::MENU_FOLDERCMP },
+	{ ID_MERGE_COMPARE_LEFT1_LEFT2,		IDB_MERGE_COMPARE_LEFT1_LEFT2,	CMainFrame::MENU_FOLDERCMP },
+	{ ID_MERGE_COMPARE_RIGHT1_RIGHT2,	IDB_MERGE_COMPARE_RIGHT1_RIGHT2,CMainFrame::MENU_FOLDERCMP },
+	{ ID_MERGE_COMPARE_LEFT1_RIGHT2,	IDB_MERGE_COMPARE_LEFT1_RIGHT2,	CMainFrame::MENU_FOLDERCMP },
+	{ ID_MERGE_COMPARE_LEFT2_RIGHT1,	IDB_MERGE_COMPARE_LEFT2_RIGHT1,	CMainFrame::MENU_FOLDERCMP },
 	{ ID_MERGE_DELETE,				IDB_MERGE_DELETE,				CMainFrame::MENU_FOLDERCMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_COPY_LEFT_TO_RIGHT,	IDB_LEFT_TO_RIGHT,				CMainFrame::MENU_FOLDERCMP },
@@ -146,6 +151,8 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_DIR_COPY_PATHNAMES_LEFT,	IDB_LEFT,						CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_COPY_PATHNAMES_RIGHT,	IDB_RIGHT,						CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_COPY_PATHNAMES_BOTH,	IDB_BOTH,						CMainFrame::MENU_FOLDERCMP },
+	{ ID_DIR_COPY_LEFT_TO_CLIPBOARD, IDB_LEFT,						CMainFrame::MENU_FOLDERCMP },
+	{ ID_DIR_COPY_RIGHT_TO_CLIPBOARD, IDB_RIGHT,					CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_ZIP_LEFT,				IDB_LEFT,						CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_ZIP_RIGHT,				IDB_RIGHT,						CMainFrame::MENU_FOLDERCMP },
 	{ ID_DIR_ZIP_BOTH,				IDB_BOTH,						CMainFrame::MENU_FOLDERCMP }
@@ -199,6 +206,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
+	ON_COMMAND(ID_FILE_NEW3, OnFileNew3)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	ON_COMMAND(ID_DEBUG_LOADCONFIG, OnDebugLoadConfig)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
@@ -210,11 +218,13 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
+	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_WM_TIMER()
 	ON_WM_ACTIVATE()
+	ON_WM_ACTIVATEAPP()
 	ON_COMMAND(ID_DEBUG_RESETOPTIONS, OnDebugResetOptions)
 	ON_COMMAND(ID_TOOLBAR_NONE, OnToolbarNone)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_NONE, OnUpdateToolbarNone)
@@ -445,17 +455,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  */
 HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 {
-	// look for "Edit" menu
+	// look for "Plugin" menu
 	int i;
 	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_EDIT_UNDO)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
 			break;
-	HMENU editMenu = ::GetSubMenu(mainMenu, i);
+	HMENU pluginMenu = ::GetSubMenu(mainMenu, i);
 
-	// look for "script" submenu (first submenu)
-	for (i = 0 ; i < ::GetMenuItemCount(editMenu) ; i++)
-		if (::GetSubMenu(editMenu, i) != NULL)
-			return ::GetSubMenu(editMenu, i);
+	// look for "script" submenu (last submenu)
+	for (i = ::GetMenuItemCount(pluginMenu) ; i >= 0  ; i--)
+		if (::GetSubMenu(pluginMenu, i) != NULL)
+			return ::GetSubMenu(pluginMenu, i);
 
 	// error, submenu not found
 	return NULL;
@@ -687,15 +697,24 @@ FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
  * @return OPENRESULTS_TYPE for success/failure code.
  */
 int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
-	const FileLocation & ifilelocLeft, const FileLocation & ifilelocRight,
-	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/,
-	PackingInfo * infoUnpacker /*= NULL*/)
+	int nFiles, const FileLocation ifileloc[],
+	DWORD dwFlags[] /*=0*/, PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
-	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
+	CMergeDoc * pMergeDoc = GetMergeDocToShow(nFiles, pDirDoc, &docNull);
 
 	// Make local copies, so we can change encoding if we guess it below
-	FileLocation filelocLeft = ifilelocLeft, filelocRight = ifilelocRight;
+	FileLocation fileloc[3];
+	BOOL bRO[3];
+	int pane;
+	for (pane = 0; pane < nFiles; pane++)
+	{
+		fileloc[pane] = ifileloc[pane];
+		if (dwFlags)
+			bRO[pane] = (dwFlags[pane] & FFILEOPEN_READONLY) > 0;
+		else
+			bRO[pane] = FALSE;
+	}
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc)
@@ -708,82 +727,59 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	// detect codepage
-	BOOL bGuessEncoding =GetOptionsMgr()->GetBool(OPT_CP_DETECT);
-	if (filelocLeft.encoding.m_unicoding == -1)
-		filelocLeft.encoding.m_unicoding = ucr::NONE;
-	if (filelocLeft.encoding.m_unicoding == ucr::NONE && filelocLeft.encoding.m_codepage == -1)
+	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	for (pane = 0; pane < nFiles; pane++)
 	{
-		FileLocationGuessEncodings(filelocLeft, bGuessEncoding);
-	}
-	if (filelocRight.encoding.m_unicoding == -1)
-		filelocRight.encoding.m_unicoding = ucr::NONE;
-	if (filelocRight.encoding.m_unicoding == ucr::NONE && filelocRight.encoding.m_codepage == -1)
-	{
-		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
-	}
-
-	if (!IsUnicodeBuild())
-	{
-		// In ANSI (8-bit) build, character loss can occur in merging
-		// if the two buffers use different encodings
-		if (filelocLeft.encoding.m_unicoding == ucr::NONE
-			&& filelocRight.encoding.m_unicoding == ucr::NONE
-			&& filelocLeft.encoding.m_codepage != filelocRight.encoding.m_codepage)
+		if (fileloc[pane].encoding.m_unicoding == -1)
+			fileloc[pane].encoding.m_unicoding = ucr::NONE;
+		if (fileloc[pane].encoding.m_unicoding == ucr::NONE && fileloc[pane].encoding.m_codepage == -1)
 		{
-			CString msg;
-			msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), filelocLeft.encoding.m_codepage, filelocRight.encoding.m_codepage);
-			int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
-			// Two files with different codepages
-			// Warn and propose to use the default codepage for both
-			int userChoice = AfxMessageBox(msg, msgflags);
-			if (userChoice == IDYES)
+			FileLocationGuessEncodings(fileloc[pane], iGuessEncodingType);
+		}
+
+		// TODO (Perry, 2005-12-04)
+		// Should we do any unification if unicodings are different?
+
+
+		if (!IsUnicodeBuild())
+		{
+			// In ANSI (8-bit) build, character loss can occur in merging
+			// if the two buffers use different encodings
+			if (pane > 0 && fileloc[pane - 1].encoding.m_codepage != fileloc[pane].encoding.m_codepage)
 			{
-				if (filelocLeft.encoding.m_codepage != getDefaultCodepage())
+				CString msg;
+				msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), fileloc[pane - 1].encoding.m_codepage,fileloc[pane].encoding.m_codepage);
+				int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
+				// Two files with different codepages
+				// Warn and propose to use the default codepage for both
+				int userChoice = AfxMessageBox(msg, msgflags);
+				if (userChoice == IDYES)
 				{
-					filelocLeft.encoding.SetCodepage(getDefaultCodepage());
-					filelocLeft.encoding.m_bom = false;
-					filelocLeft.encoding.m_guessed = false;
-				}
-				if (filelocRight.encoding.m_codepage != getDefaultCodepage())
-				{
-					filelocRight.encoding.SetCodepage(getDefaultCodepage());
-					filelocRight.encoding.m_bom = false;
-					filelocRight.encoding.m_guessed = false;
+					fileloc[pane - 1].encoding.SetCodepage(getDefaultCodepage());
+					fileloc[pane - 1].encoding.m_bom = false;
+					fileloc[pane - 1].encoding.m_guessed = false;
+					fileloc[pane].encoding.SetCodepage(getDefaultCodepage());
+					fileloc[pane].encoding.m_bom = false;
+					fileloc[pane].encoding.m_guessed = false;
 				}
 			}
-		}
-		else if (filelocLeft.encoding.m_unicoding != filelocRight.encoding.m_unicoding)
-		{
-			String leftEncoding = filelocLeft.encoding.GetName();
-			String rightEncoding = filelocRight.encoding.GetName();
-			CString msg;
-			msg.Format(theApp.LoadString(IDS_DIFFERENT_UNICODINGS).c_str(), leftEncoding.c_str(), rightEncoding.c_str());
-			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
-			// Two files with different codepages
-			// Warn and propose to use the default codepage for both
-			AfxMessageBox(msg, msgflags);
 		}
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
-	BOOL bLeftRO = (dwLeftFlags & FFILEOPEN_READONLY) > 0;
-	BOOL bRightRO = (dwRightFlags & FFILEOPEN_READONLY) > 0;
-	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(filelocLeft, filelocRight,
-			bLeftRO, bRightRO);
+	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(fileloc, bRO);
 
 	if (openResults == OPENRESULTS_SUCCESS)
 	{
-		BOOL bLeftModified = (dwLeftFlags & FFILEOPEN_MODIFIED) > 0;
-		BOOL bRightModified = (dwRightFlags & FFILEOPEN_MODIFIED) > 0;
-		if (bLeftModified || bRightModified)
+		for (pane = 0; pane < nFiles; pane++)
 		{
-			if (bLeftModified)
-				pMergeDoc->m_ptBuf[0]->SetModified(TRUE);
-			if (bRightModified)
-				pMergeDoc->m_ptBuf[1]->SetModified(TRUE);
-			pMergeDoc->UpdateHeaderPath(1);
+			BOOL bModified = dwFlags && (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
+			if (bModified)
+			{
+				pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
+				pMergeDoc->UpdateHeaderPath(pane);
+			}
 		}
-
 		if (docNull)
 		{
 			CWnd* pWnd = pMergeDoc->GetParentFrame();
@@ -795,12 +791,12 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	return openResults;
 }
 
-void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
-	LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bLeftRO, BOOL bRightRO)
+void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, 
+	const PathContext &paths, BOOL bRO[])
 {
 	BOOL docNull;
-	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(pDirDoc, &docNull))
-		pHexMergeDoc->OpenDocs(pathLeft, pathRight, bLeftRO, bRightRO);
+	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc, &docNull))
+		pHexMergeDoc->OpenDocs(paths, bRO);
 }
 
 void CMainFrame::RedisplayAllDirDocs()
@@ -1080,8 +1076,8 @@ void CMainFrame::OnOptions()
  * @param [in] prediffer Prediffer plugin name.
  * @return TRUE if opening files and compare succeeded, FALSE otherwise.
  */
-BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
-	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
+	DWORD dwFlags[] /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
 	CString prediffer /*=_T("")*/)
 {
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
@@ -1091,15 +1087,21 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
 		return FALSE;
 
-	CString strLeft = pszLeft;
-	CString strRight = pszRight;
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	PackingInfo infoUnpacker;
 
-	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
-	BOOL bRORight = dwRightFlags & FFILEOPEN_READONLY;
+	PathContext files;
+	if (pFiles)
+		files = *pFiles;
+	BOOL bRO[3] = {0};
+	if (dwFlags)
+	{
+		bRO[0] = dwFlags[0] & FFILEOPEN_READONLY;
+		bRO[1] = dwFlags[1] & FFILEOPEN_READONLY;
+		bRO[2] = dwFlags[2] & FFILEOPEN_READONLY;
+	};
 	// jtuc: docNull used to be uninitialized so you couldn't tell whether
 	// pDirDoc->ReusingDirDoc() would be called for passed-in pDirDoc.
 	// However, pDirDoc->ReusingDirDoc() kills temp path contexts, and I
@@ -1109,33 +1111,44 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	BOOL docNull = TRUE;
 
 	// pop up dialog unless arguments exist (and are compatible)
-	PATH_EXISTENCE pathsType = GetPairComparability(strLeft, strRight);
+	PATH_EXISTENCE pathsType = GetPairComparability(files, IsArchiveFile);
 	if (pathsType == DOES_NOT_EXIST)
 	{
 		COpenDlg dlg;
-		dlg.m_strLeft = strLeft;
-		dlg.m_strRight = strRight;
+		dlg.m_files = files;
 		dlg.m_bRecurse = bRecurse;
 
-		if (dwLeftFlags & FFILEOPEN_PROJECT || dwRightFlags & FFILEOPEN_PROJECT)
-			dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
-		if (dwLeftFlags & FFILEOPEN_CMDLINE || dwRightFlags & FFILEOPEN_CMDLINE)
-			dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
+		if (dwFlags)
+		{
+			if (dwFlags[0] & FFILEOPEN_PROJECT || dwFlags[1] & FFILEOPEN_PROJECT)
+				dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
+			if (dwFlags[0] & FFILEOPEN_CMDLINE || dwFlags[1] & FFILEOPEN_CMDLINE)
+				dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
+		}
 
 		if (dlg.DoModal() != IDOK)
 			return FALSE;
 
-		strLeft = dlg.m_strLeft;
-		strRight = dlg.m_strRight;
+		files = dlg.m_files;
 		bRecurse = dlg.m_bRecurse;
 		infoUnpacker = dlg.m_infoHandler;
 		if (dlg.m_pProjectFile != NULL)
 		{
 			// User loaded a project file, set additional information
 			if (dlg.m_pProjectFile->GetLeftReadOnly())
-				bROLeft = TRUE;
-			if (dlg.m_pProjectFile->GetRightReadOnly())
-				bRORight = TRUE;
+				bRO[0] = TRUE;
+			if (files.GetSize() == 2)
+			{
+				if (dlg.m_pProjectFile->GetRightReadOnly())
+					bRO[1] = TRUE;
+			}
+			else
+			{
+				if (dlg.m_pProjectFile->GetMiddleReadOnly())
+					bRO[1] = TRUE;
+				if (dlg.m_pProjectFile->GetRightReadOnly())
+					bRO[2] = TRUE;
+			}
 			// Set value in both cases because we want to override Open-dialog
 			// value.
 			int projRecurse = dlg.m_pProjectFile->GetSubfolders();
@@ -1153,17 +1166,24 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		// Add trailing '\' for directories if its missing
 		if (pathsType == IS_EXISTING_DIR)
 		{
-			if (!paths_EndsWithSlash(strLeft))
-				strLeft += '\\';
-			if (!paths_EndsWithSlash(strRight))
-				strRight += '\\';
+			if (!paths_EndsWithSlash(files[0].c_str()) && !IsArchiveFile(files[0].c_str()))
+				files[0] += '\\';
+			if (!paths_EndsWithSlash(files[1].c_str()) && !IsArchiveFile(files[1].c_str()))
+				files[1] += '\\';
+			if (files.GetSize() == 3 && !paths_EndsWithSlash(files[2].c_str()) && !IsArchiveFile(files[1].c_str()))
+				files[2] += '\\';
 		}
 
 		//save the MRU left and right files.
-		if (!(dwLeftFlags & FFILEOPEN_NOMRU))
-			addToMru(strLeft, _T("Files\\Left"));
-		if (!(dwRightFlags & FFILEOPEN_NOMRU))
-			addToMru(strRight, _T("Files\\Right"));
+		if (dwFlags)
+		{
+			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
+				addToMru(files[0].c_str(), _T("Files\\Left"));
+			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
+				addToMru(files[1].c_str(), _T("Files\\Right"));
+			if (files.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+				addToMru(files[2].c_str(), _T("Files\\Option"));
+		}
 	}
 
 
@@ -1174,72 +1194,118 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tRight: %s\r\n")
 				  _T("\tRecurse: %d\r\n")
 				  _T("### End Comparison Parameters #############################\r\n"),
-				  strLeft,
-				  strRight,
+				  files[0],
+				  files[1],
 				  bRecurse);
 	}
 
 	CTempPathContext *pTempPathContext = NULL;
 	try
 	{
+		CString path;
+		USES_CONVERSION;
 		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(strLeft))
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0].c_str()))
 		{
 			pTempPathContext = new CTempPathContext;
-			CString path = GetClearTempPath(pTempPathContext, _T("0"));
-			pTempPathContext->m_strLeftDisplayRoot = strLeft;
-			pTempPathContext->m_strRightDisplayRoot = strRight;
+			path = GetClearTempPath(pTempPathContext, _T("0"));
+			for (int index = 0; index < files.GetSize(); index++)
+				pTempPathContext->m_strDisplayRoot[index] = files[index];
 			pathsType = IS_EXISTING_DIR;
-			if (strRight == strLeft)
+			if (files[0] == files[1])
 			{
-				strRight.Empty();
+				files[1].erase();
+				if (files.GetSize() > 2)
+				{
+					files[2].erase();
+				}
 			}
 			do
 			{
-				if FAILED(piHandler->DeCompressArchive(m_hWnd, strLeft, path))
+				if FAILED(piHandler->DeCompressArchive(m_hWnd, files[0].c_str(), path))
 					break;
-				if (strLeft.Find(path) == 0)
+				if (files[0].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(strLeft) || GetLog()->DeleteFileFailed(strLeft));
+					VERIFY(::DeleteFile(files[0].c_str()) || GetLog()->DeleteFileFailed(files[0].c_str()));
 				}
-				SysFreeString(Assign(strLeft, piHandler->GetDefaultName(m_hWnd, strLeft)));
-				strLeft.Insert(0, '\\');
-				strLeft.Insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(strLeft));
-			strLeft = path;
-			if (Merge7z::Format *piHandler = ArchiveGuessFormat(strRight))
+				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[0].c_str());
+				files[0] = OLE2T(pTmp);
+				SysFreeString(pTmp);
+				files[0].insert(0, _T("\\"));
+				files[0].insert(0, path);
+			} while (piHandler = ArchiveGuessFormat(files[0].c_str()));
+			files[0] = path;
+		}
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[1].c_str()))
+		{
+			if (!pTempPathContext)
 			{
-				path = GetClearTempPath(pTempPathContext, _T("1"));
+				pTempPathContext = new CTempPathContext;
+				for (int index = 0; index < files.GetSize(); index++)
+					pTempPathContext->m_strDisplayRoot[index] = files[index];
+			}
+			path = GetClearTempPath(pTempPathContext, _T("1"));
+			do
+			{
+				if FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path))
+					break;;
+				if (files[1].find(path) == 0)
+				{
+					VERIFY(::DeleteFile(files[1].c_str()) || GetLog()->DeleteFileFailed(files[1].c_str()));
+				}
+				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
+				files[1] = OLE2T(pTmp);
+				SysFreeString(pTmp);
+				files[1].insert(0, _T("\\"));
+				files[1].insert(0, path);
+			} while (piHandler = ArchiveGuessFormat(files[1].c_str()));
+			files[1] = path;
+		}
+		if (files.GetSize() > 2)
+		{
+			if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[2].c_str()))
+			{
+				if (!pTempPathContext)
+				{
+					pTempPathContext = new CTempPathContext;
+					for (int index = 0; index < files.GetSize(); index++)
+						pTempPathContext->m_strDisplayRoot[index] = files[index];
+				}
+				path = GetClearTempPath(pTempPathContext, _T("2"));
 				do
 				{
-					if FAILED(piHandler->DeCompressArchive(m_hWnd, strRight, path))
+					if FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path))
 						break;;
-					if (strRight.Find(path) == 0)
+					if (files[2].find(path) == 0)
 					{
-						VERIFY(::DeleteFile(strRight) || GetLog()->DeleteFileFailed(strRight));
+						VERIFY(::DeleteFile(files[2].c_str()) || GetLog()->DeleteFileFailed(files[2].c_str()));
 					}
-					SysFreeString(Assign(strRight, piHandler->GetDefaultName(m_hWnd, strRight)));
-					strRight.Insert(0, '\\');
-					strRight.Insert(0, path);
-				} while (piHandler = ArchiveGuessFormat(strRight));
-				strRight = path;
+					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
+					files[2] = OLE2T(pTmp);
+					SysFreeString(pTmp);
+					files[2].insert(0, _T("\\"));
+					files[2].insert(0, path);
+				} while (piHandler = ArchiveGuessFormat(files[2].c_str()));
+				files[2] = path;
 			}
-			else if (strRight.IsEmpty())
+		}
+		if (files[1].empty())
+		{
+			// assume Perry style patch
+			files[1] = path;
+			files[0] += _T("\\ORIGINAL");
+			files[1] += _T("\\ALTERED");
+			if (!PathFileExists(files[0].c_str()) || !PathFileExists(files[1].c_str()))
 			{
-				// assume Perry style patch
-				strRight = path;
-				strLeft += _T("\\ORIGINAL");
-				strRight += _T("\\ALTERED");
-				if (!PathFileExists(strLeft) || !PathFileExists(strRight))
-				{
-					// not a Perry style patch: diff with itself...
-					strLeft = strRight = path;
-				}
-				else
-				{
-					pTempPathContext->m_strLeftDisplayRoot += _T("\\ORIGINAL");
-					pTempPathContext->m_strRightDisplayRoot += _T("\\ALTERED");
-				}
+				// not a Perry style patch: diff with itself...
+				files[0] = files[1] = path;
+				if (files.GetSize() > 2)
+					files[2] = path;
+			}
+			else
+			{
+				pTempPathContext->m_strDisplayRoot[0] += _T("\\ORIGINAL");
+				pTempPathContext->m_strDisplayRoot[1] += _T("\\ALTERED");
 			}
 		}
 	}
@@ -1255,7 +1321,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	{
 		if (pathsType == IS_EXISTING_DIR)
 		{
-			pDirDoc = GetDirDocToShow(&docNull);
+			pDirDoc = GetDirDocToShow(files.GetSize(), &docNull);
 		}
 		else
 		{
@@ -1277,38 +1343,51 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	{
 		if (pDirDoc)
 		{
-			PathContext paths(strLeft, strRight);
+			if (files.GetSize() == 3)
+			{
+				AfxMessageBox(_T("3フォルダ比較機能は実装中です"), MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(paths, bRecurse, pTempPathContext);
-			GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
-				strLeft, strRight);
+			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
+			GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tMiddle: %s\n\tRight: %s."),
+				files[0], files.GetSize() == 3 ? files[1] : _T("none"), files[files.GetSize() - 1]);
 
-			pDirDoc->SetReadOnly(TRUE, bROLeft);
-			pDirDoc->SetReadOnly(FALSE, bRORight);
-			pDirDoc->SetDescriptions(m_strDescriptions[0], m_strDescriptions[1]);
+			pDirDoc->SetDescriptions(m_strDescriptions);
 			pDirDoc->SetTitle(NULL);
-			m_strDescriptions[0].erase();
-			m_strDescriptions[1].erase();
+			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
+			{
+				pDirDoc->SetReadOnly(nIndex, bRO[nIndex]);
+				m_strDescriptions[nIndex].erase();
+			}
 
 			pDirDoc->Rescan();
 		}
 	}
 	else
 	{
-		GetLog()->Write(CLogFile::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
-			strLeft, strRight);
+		GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tMiddle: %s\n\tRight: %s."),
+			files[0], files.GetSize() == 3 ? files[1] : _T("none"), files[files.GetSize() - 1]);
 		
-		FileLocation filelocLeft(strLeft);
-		FileLocation filelocRight(strRight);
+		FileLocation fileloc[3];
+
+		for (int nPane = 0; nPane < files.GetSize(); nPane++)
+			fileloc[nPane].setPath(files[nPane].c_str());
 
 		if (!prediffer.IsEmpty())
 		{
-			CString strBothFilenames = strLeft + _T("|") + strRight;
+			CString strBothFilenames;
+			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
+			{
+				strBothFilenames += files[nIndex].c_str();
+				strBothFilenames += _T("|");
+			}
+			strBothFilenames.Delete(strBothFilenames.GetLength() - 1);
+
 			pDirDoc->SetPluginPrediffer(strBothFilenames, prediffer);
 		}
 
-		ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, dwLeftFlags, dwRightFlags,
+		ShowMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
 			&infoUnpacker);
 	}
 	return TRUE;
@@ -1359,6 +1438,8 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
 			if (bakPath.empty())
 				bakPath = path;
+			else
+				bakPath = paths_GetLongPath(bakPath.c_str());
 		}
 		else
 		{
@@ -1516,20 +1597,38 @@ void CMainFrame::OnViewSelectfont()
 		}
 
 		if (frame == FRAME_FOLDER)
+		{
 			m_lfDir = *lf;
+
+			const DirDocList &dirdocs = GetAllDirDocs();
+			POSITION pos = dirdocs.GetHeadPosition();
+			while (pos)
+			{
+				CDirDoc * pDoc = dirdocs.GetNext(pos);
+				if (pDoc)
+					pDoc->GetMainView()->SetFont(m_lfDir);
+			}
+		}
 		else
+		{
 			m_lfDiff = *lf;
 
-		// TODO: Update document fonts
-		/*
-		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))
-		{
-			CMergeEditView * pEditView = editViews.GetAt(pos);
-			// update pEditView for font change
+			const MergeDocList &mergedocs = GetAllMergeDocs();
+			POSITION pos = mergedocs.GetHeadPosition();
+			while (pos)
+			{
+				CMergeDoc * pDoc = mergedocs.GetNext(pos);
+				for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+				{
+					CMergeEditView * pView = pDoc->GetView(pane);
+					CMergeDiffDetailView * pDetailView = pDoc->GetDetailView(pane);
+					if (pView)
+						pView->SetFont(m_lfDiff);
+					if (pDetailView)
+						pDetailView->SetFont(m_lfDiff);
+				}
+			}
 		}
-		*/
-
-		ShowFontChangeMessage();
 	}
 }
 
@@ -1567,8 +1666,8 @@ void CMainFrame::GetFontProperties()
 	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_QUALITY);
 	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_PITCHANDFAMILY);
 
-	_tcscpy(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME).c_str());
+	lstrcpyn(lfnew.lfFaceName,
+		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME).c_str(), countof(lfnew.lfFaceName));
 	m_lfDiff = lfnew;
 
 	// Get DirView font
@@ -1588,8 +1687,8 @@ void CMainFrame::GetFontProperties()
 	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_QUALITY);
 	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_PITCHANDFAMILY);
 
-	_tcscpy(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME).c_str());
+	lstrcpyn(lfnew.lfFaceName,
+		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME).c_str(), countof(lfnew.lfFaceName));
     m_lfDir = lfnew;
 }
 
@@ -1710,7 +1809,12 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
  */
 void CMainFrame::OnHelpContents()
 {
-	String sPath = GetModulePath(0) + DocsPath;
+	String sPath = GetModulePath(0);
+	LANGID LangId = GetUserDefaultLangID();
+	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
+		sPath += DocsPath_ja;
+	else
+		sPath += DocsPath;
 	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
 		::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 	else
@@ -1873,37 +1977,24 @@ void CMainFrame::ApplyViewWhitespace()
 	while (pos)
 	{
 		CMergeDoc *pMergeDoc = mergedocs.GetNext(pos);
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		CMergeEditView * pRight = pMergeDoc->GetRightView();
-		CMergeDiffDetailView * pLeftDetail = pMergeDoc->GetLeftDetailView();
-		CMergeDiffDetailView * pRightDetail = pMergeDoc->GetRightDetailView();
-		if (pLeft)
+		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
 		{
-			pLeft->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-			pLeft->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-				pLeft->GetDocument()->IsMixedEOL(pLeft->m_nThisPane));
-		}
-		if (pRight)
-		{
-			pRight->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-			pRight->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-				pRight->GetDocument()->IsMixedEOL(pRight->m_nThisPane));
-		}
-		if (pLeftDetail)
-		{
-			pLeftDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-			pLeftDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-				pLeft->GetDocument()->IsMixedEOL(pLeft->m_nThisPane));
-		}
-		if (pRightDetail)
-		{
-			pRightDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-			pRightDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-				pRight->GetDocument()->IsMixedEOL(pRight->m_nThisPane));
+			CMergeEditView * pView = pMergeDoc->GetView(pane);
+			CMergeDiffDetailView * pDetailView = pMergeDoc->GetDetailView(pane);
+			if (pView)
+			{
+				pView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+				pView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+					pView->GetDocument()->IsMixedEOL(pView->m_nThisPane));
+			}
+			if (pDetailView)
+			{
+				pDetailView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+				pDetailView->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+					GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+					pDetailView->GetDocument()->IsMixedEOL(pDetailView->m_nThisPane));
+			}
 		}
 	}
 }
@@ -1949,7 +2040,7 @@ const HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
  * @param [out] pNew Did we create a new document?
  * @return Pointer to merge doucument.
  */
-CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
+CMergeDoc * CMainFrame::GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew)
 {
 	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	const MergeDocList &docs = GetAllMergeDocs();
@@ -1960,7 +2051,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 		CMergeDoc * pMergeDoc = docs.GetAt(pos);
 		pMergeDoc->CloseNow();
 	}
-	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
+	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(nFiles, pNew);
 	return pMergeDoc;
 }
 
@@ -1974,7 +2065,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
  * @param [out] pNew Did we create a new document?
  * @return Pointer to merge doucument.
  */
-CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
+CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew)
 {
 	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	const HexMergeDocList &docs = GetAllHexMergeDocs();
@@ -1985,12 +2076,12 @@ CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 		CHexMergeDoc * pHexMergeDoc = docs.GetAt(pos);
 		pHexMergeDoc->CloseNow();
 	}
-	CHexMergeDoc * pHexMergeDoc = pDirDoc->GetHexMergeDocForDiff(pNew);
+	CHexMergeDoc * pHexMergeDoc = pDirDoc->GetHexMergeDocForDiff(nFiles, pNew);
 	return pHexMergeDoc;
 }
 
 /// Get pointer to a dir doc for displaying a scan
-CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
+CDirDoc * CMainFrame::GetDirDocToShow(int nDirs, BOOL * pNew)
 {
 	CDirDoc * pDirDoc = 0;
 	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
@@ -2009,6 +2100,7 @@ CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 	}
 	if (!pDirDoc)
 	{
+		CDirDoc::m_nDirsTemp = nDirs;
 		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
 		*pNew = TRUE;
 	}
@@ -2048,7 +2140,13 @@ void CMainFrame::OnToolsGeneratePatch()
 	{
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		// If there are changes in files, tell user to save them first
-		if (pMergeDoc->m_ptBuf[0]->IsModified() || pMergeDoc->m_ptBuf[1]->IsModified())
+		BOOL bModified = FALSE;
+		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
+		{
+			if (pMergeDoc->m_ptBuf[pane]->IsModified())
+				bModified = TRUE;
+		}
+		if (bModified)
 		{
 			bOpenDialog = FALSE;
 			LangMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
@@ -2087,22 +2185,22 @@ void CMainFrame::OnToolsGeneratePatch()
 			if (bValidFiles)
 			{
 				// Format full paths to files (leftFile/rightFile)
-				String leftFile = item.GetLeftFilepath(pDoc->GetLeftBasePath());
+				String leftFile = item.getFilepath(0, pDoc->GetBasePath(0));
 				if (!leftFile.empty())
-					leftFile = paths_ConcatPath(leftFile, item.left.filename);
-				String rightFile = item.GetRightFilepath(pDoc->GetRightBasePath());
+					leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].filename);
+				String rightFile = item.getFilepath(1, pDoc->GetBasePath(1));
 				if (!rightFile.empty())
-					rightFile = paths_ConcatPath(rightFile, item.right.filename);
+					rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].filename);
 
 				// Format relative paths to files in folder compare
-				String leftpatch = item.left.path;
+				String leftpatch = item.diffFileInfo[0].path;
 				if (!leftpatch.empty())
 					leftpatch += _T("/");
-				leftpatch += item.left.filename;
-				String rightpatch = item.right.path;
+				leftpatch += item.diffFileInfo[0].filename;
+				String rightpatch = item.diffFileInfo[1].path;
 				if (!rightpatch.empty())
 					rightpatch += _T("/");
-				rightpatch += item.right.filename;
+				rightpatch += item.diffFileInfo[1].filename;
 				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
 				pView->GetNextSelectedInd(ind);
 			}
@@ -2133,7 +2231,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 {
 	// Get the number of pathnames that have been dropped
 	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-	CString files[2];
+	PathContext files;
 	UINT fileCount = 0;
 
 	// get all file names. but we'll only need the first one.
@@ -2153,8 +2251,9 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		// Copy the pathname into the buffer
 		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
 
-		if (x < 2)
+		if (x < 3)
 		{
+			files.SetSize(x + 1);
 			files[x] = npszFile;
 			fileCount++;
 		}
@@ -2166,10 +2265,10 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 	for (UINT i = 0; i < fileCount; i++)
 	{
-		if (paths_IsShortcut((LPCTSTR)files[i]))
+		if (paths_IsShortcut(files[i].c_str()))
 		{
 			// if this was a shortcut, we need to expand it to the target path
-			CString expandedFile = ExpandShortcut((LPCTSTR)files[i]).c_str();
+			CString expandedFile = ExpandShortcut(files[i]).c_str();
 
 			// if that worked, we should have a real file name
 			if (!expandedFile.IsEmpty())
@@ -2187,25 +2286,33 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		files[1] = files[0];
 	}
 
-	GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
-		files[0], files[1]);
+	if (fileCount < 2)
+		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s."),
+			files[0]);
+	else if (fileCount < 3)
+		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
+			files[0], files[1]);
+	else
+		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tMiddle: %s\n\tRight: %s."),
+			files[0], files[1], files[2]);
 
 	// Check if they dropped a project file
+	DWORD dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};
 	if (wNumFilesDropped == 1)
 	{
-		if (theApp.IsProjectFile(files[0]))
+		if (theApp.IsProjectFile(files[0].c_str()))
 		{
-			theApp.LoadAndOpenProjectFile(files[0]);
+			theApp.LoadAndOpenProjectFile(files[0].c_str());
 			return;
 		}
-		if (IsConflictFile((LPCTSTR)files[0]))
+		if (IsConflictFile((LPCTSTR)files[0].c_str()))
 		{
-			DoOpenConflict((LPCTSTR)files[0], true);
+			DoOpenConflict((LPCTSTR)files[0].c_str(), true);
 			return;
 		}
 	}
 
-	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
+	DoFileOpen(&files, dwFlags, ctrlKey);
 }
 
 BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
@@ -2343,49 +2450,57 @@ void CMainFrame::UpdatePrediffersMenu()
 /**
  * @brief Open given file to external editor specified in options.
  * @param [in] file Full path to file to open.
+ *
+ * Opens file to defined (in Options/system), Notepad by default,
+ * external editor. Path is decorated with quotation marks if needed
+ * (contains spaces). Also '$file' in editor path is replaced by
+ * filename to open.
+ * @param [in] file Full path to file to open.
+ * @param [in] nLineNumber Line number to go to.
  */
-void CMainFrame::OpenFileToExternalEditor(LPCTSTR file)
+void CMainFrame::OpenFileToExternalEditor(LPCTSTR file, int nLineNumber/* = 1*/)
 {
-	String sExtEditor;
-	String sExecutable;
-	String sCmd;
+	CString sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
+	String sFile = file;
 	
-	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
-	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
+	sCmd.Replace(_T("$linenum"), Fmt(_T("%d"), nLineNumber));
 
-	String sExt;
-	SplitFilename(sExecutable.c_str(), NULL, NULL, &sExt);
-	CString ext(sExt.c_str());
-	ext.MakeLower();
-
-	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
+	int nIndex = sCmd.Find(_T("$file"));
+	if (nIndex > -1)
 	{
-		sCmd += _T(" \"");
-		sCmd += file;
-		sCmd += _T("\"");
-
-		BOOL retVal = FALSE;
-		STARTUPINFO stInfo = {0};
-		stInfo.cb = sizeof(STARTUPINFO);
-		PROCESS_INFORMATION processInfo;
-
-		retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
-			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-			&stInfo, &processInfo);
-
-		if (!retVal)
-		{
-			// Error invoking external editor
-			CString msg;
-			LangFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor.c_str());
-			AfxMessageBox(msg, MB_ICONSTOP);
-		}
+		sFile.insert(0, _T("\""));
+		sCmd.Replace(_T("$file"), sFile.c_str());
+		nIndex = sCmd.Find(' ', nIndex + sFile.length());
+		if (nIndex > -1)
+			sCmd.Insert(nIndex, '"');
+		else
+			sCmd += '"';
 	}
 	else
 	{
-		// Don't know how to invoke external editor (it doesn't end with
-		// an obvious executable extension)
-		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor.c_str(), MB_ICONSTOP);
+		sCmd += _T(" \"");
+		sCmd += sFile.c_str();
+		sCmd += _T("\"");
+	}
+
+	BOOL retVal = FALSE;
+	STARTUPINFO stInfo = {0};
+	stInfo.cb = sizeof(STARTUPINFO);
+	PROCESS_INFORMATION processInfo;
+
+	retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) sCmd,
+		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+		&stInfo, &processInfo);
+
+	if (!retVal)
+	{
+		// Error invoking external editor
+		ResMsgBox1(IDS_ERROR_EXECUTE_FILE, sCmd, MB_ICONSTOP);
+	}
+	else
+	{
+		CloseHandle(processInfo.hThread);
+		CloseHandle(processInfo.hProcess);
 	}
 }
 
@@ -2487,11 +2602,12 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigIntSetting(&configLog.m_miscSettings.nInsertTabs, options, OPT_TAB_TYPE, cfgdir);
 	LoadConfigIntSetting(&configLog.m_miscSettings.nTabSize, options, OPT_TAB_SIZE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bPluginsEnabled, options, OPT_PLUGINS_ENABLED, cfgdir);
+	LoadConfigIntSetting(&configLog.m_miscSettings.nDiffContext, options, OPT_DIFF_CONTEXT, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bMatchSimilarLines, options, OPT_CMP_MATCH_SIMILAR_LINES, cfgdir);	
 
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultMode, options, OPT_CP_DEFAULT_MODE, cfgdir);
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultCustomValue, options, OPT_CP_DEFAULT_CUSTOM, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_cpSettings.bDetectCodepage, options, OPT_CP_DETECT, cfgdir);
+	LoadConfigIntSetting(&configLog.m_cpSettings.iDetectCodepageType, options, OPT_CP_DETECT, cfgdir);
 
 	if (cfgdir == ToConfigLog)
 	{
@@ -2540,49 +2656,63 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-void CMainFrame::OnFileNew() 
+void CMainFrame::FileNew(int nPanes) 
 {
-	BOOL docNull;
 	CDirDoc *pDirDoc;
 
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
 	if (IsComparing())
 		return;
 
-	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
-	{
-		pDirDoc = GetDirDocToShow(&docNull);
-		if (!docNull)
-		{
-			// If dircompare contains results, warn user that they are lost
-			if (pDirDoc->HasDiffs())
-			{
-				int res = LangMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
-					MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);
-				if (res == IDCANCEL)
-					return;
-			}
-
-			// If reusing an existing doc, give it a chance to save its data
-			// and close any merge views, and clear its window
-			if (!pDirDoc->ReusingDirDoc())
-				return;
-		}
-	}
-	else
-		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
+	pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
-	m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-	m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
-	FileLocation filelocLeft; // empty, unspecified (so default) encoding
-	FileLocation filelocRight;
-	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight);
+	DWORD dwFlags[3] = {0, 0, 0};
+	FileLocation fileloc[3];
+	if (nPanes == 2)
+	{
+		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		fileloc[0].encoding.SetCodepage(getDefaultCodepage());
+		fileloc[1].encoding.SetCodepage(getDefaultCodepage());
+		ShowMergeDoc(pDirDoc, 2, fileloc, dwFlags);
+	}
+	else
+	{
+		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
+		m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		fileloc[0].encoding.SetCodepage(getDefaultCodepage());
+		fileloc[1].encoding.SetCodepage(getDefaultCodepage());
+		fileloc[2].encoding.SetCodepage(getDefaultCodepage());
+		ShowMergeDoc(pDirDoc, 3, fileloc, dwFlags);
+	}
 
 	// Empty descriptors now that docs are open
 	m_strDescriptions[0].erase();
 	m_strDescriptions[1].erase();
+	m_strDescriptions[2].erase();
+}
+
+/**
+ * @brief Open two new empty docs, 'Scratchpads'
+ * 
+ * Allows user to open two empty docs, to paste text to
+ * compare from clipboard.
+ * @note File filenames are set emptys and filedescriptors
+ * are loaded from resource.
+ * @sa CMergeDoc::OpenDocs()
+ * @sa CMergeDoc::TrySaveAs()
+ */
+void CMainFrame::OnFileNew() 
+{
+	FileNew(2);
+}
+
+void CMainFrame::OnFileNew3() 
+{
+	FileNew(3);
 }
 
 /**
@@ -2778,7 +2908,12 @@ void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 	}
 	else
 	{
-		String sPath = GetModulePath(0) + DocsPath;
+		String sPath = GetModulePath(0);
+		LANGID LangId = GetUserDefaultLangID();
+		if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
+			sPath += DocsPath_ja;
+		else
+			sPath += DocsPath;
 		if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
@@ -2909,6 +3044,18 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 	return TRUE;
 }
 
+LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
+{
+	CFrameWnd * pFrame = GetActiveFrame();
+	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	{
+		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		if (pMergeDoc)
+			pMergeDoc->CheckFileChanged();
+	}
+	return 0;
+}
+
 /**
  * @brief When font is changed open views must be closed.
  */
@@ -2984,35 +3131,19 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
  */
 void CMainFrame::OnWindowCloseAll()
 {
-	// save any dirty edit views
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-	POSITION pos = mergedocs.GetHeadPosition();
-	while (pos)
+	CMDIChildWnd *pChild = MDIGetActive();
+	CDocument* pDoc;
+	while (pChild)
 	{
-		CMergeDoc * pMergeDoc = mergedocs.GetNext(pos);
-		// Allow user to cancel closing
-		if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
-			return;
-	}
-
-	const DirDocList &dirdocs = GetAllDirDocs();
-	pos = dirdocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
-		if (pDirDoc->HasDirView())
+		if ((pDoc = pChild->GetActiveDocument()) != NULL)
 		{
-			pDirDoc->CloseMergeDocs();
-			pDirDoc->OnCloseDocument();
+			if (!pDoc->SaveModified())
+				return;
+			pDoc->OnCloseDocument();
 		}
-		else
-		{
-			// When comparing files from Open-Dialog, pDirDoc has no View.
-			pDirDoc->CloseMergeDocs();
-			// pDirDoc has no View and has already been deleted by CloseMergeDocs. So no need to call OnCloseDocument.
-			//pDirDoc->OnCloseDocument();
-		}
+		pChild = MDIGetActive();
 	}
+	return;
 }
 
 /**
@@ -3200,8 +3331,8 @@ void CMainFrame::OnSaveProject()
 		// Set-up the dialog
 		pathsDlg.SetPaths(left.c_str(), right.c_str());
 		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
-		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(TRUE);
-		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(FALSE);
+		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(0);
+		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(pDoc->m_nDirs - 1);
 	}
 
 	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
@@ -3244,6 +3375,27 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 			FlashWindow(FALSE);
 			KillTimer(ID_TIMER_FLASH);
 		}
+	}
+}
+
+#if _MFC_VER > 0x0600
+void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
+#else
+void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
+#endif
+{
+#if _MFC_VER > 0x0600
+	CMDIFrameWnd::OnActivateApp(bActive, dwThreadID);
+#else
+	CMDIFrameWnd::OnActivateApp(bActive, hTask);
+#endif
+
+	CFrameWnd * pFrame = GetActiveFrame();
+	if (pFrame && pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	{
+		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		if (pMergeDoc)
+			PostMessage(WM_USER+1);
 	}
 }
 
@@ -3569,11 +3721,12 @@ BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 
 	// Create temp files and put them into the list,
 	// from where they get deleted when MainFrame is deleted.
+	String ext = PathFindExtension(conflictFile);
 	TempFile *wTemp = new TempFile();
-	String workFile = wTemp->Create(_T("confw_"));
+	String workFile = wTemp->Create(_T("confw_"), ext.c_str());
 	m_tempFiles.push_back(wTemp);
 	TempFile *vTemp = new TempFile();
-	String revFile = vTemp->Create(_T("confv_"));
+	String revFile = vTemp->Create(_T("confv_"), ext.c_str());
 	m_tempFiles.push_back(vTemp);
 
 	// Parse conflict file into two files.
@@ -3590,9 +3743,9 @@ BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 		m_strDescriptions[0] = theirs;
 		m_strDescriptions[1] = my;
 
-		conflictCompared = DoFileOpen(revFile.c_str(), workFile.c_str(),
-				FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
-				FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED);
+		DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
+		conflictCompared = DoFileOpen(&PathContext(revFile.c_str(), workFile.c_str()), 
+					dwFlags);
 	}
 	else
 	{

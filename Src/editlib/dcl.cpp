@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszDclKeywordList[] =
+static LPCTSTR s_apszDclKeywordList[] =
   {
     _T ("boxed_column"),
     _T ("boxed_radio_column"),
@@ -45,36 +45,34 @@ static LPTSTR s_apszDclKeywordList[] =
     _T ("row"),
     _T ("slider"),
     _T ("spacer"),
-    _T ("text_part"),
     _T ("text"),
+    _T ("text_part"),
     _T ("toggle"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("spacer_0"),
-    _T ("spacer_1"),
+    _T ("cancel_button"),
     _T ("default_button"),
-    _T ("retirement_button"),
-    _T ("ok_cancel_help_errtile"),
-    _T ("ok_cancel_help_info"),
+    _T ("errtile"),
+    _T ("help_button"),
+    _T ("image_button"),
+    _T ("info_button"),
+    _T ("ok_button"),
     _T ("ok_cancel"),
     _T ("ok_cancel_err"),
     _T ("ok_cancel_help"),
+    _T ("ok_cancel_help_errtile"),
+    _T ("ok_cancel_help_info"),
     _T ("ok_only"),
-    _T ("ok_button"),
-    _T ("cancel_button"),
-    _T ("help_button"),
-    _T ("info_button"),
-    _T ("errtile"),
-    _T ("image_button"),
     _T ("radio_column"),
     _T ("radio_row"),
-    NULL
+    _T ("retirement_button"),
+    _T ("spacer_0"),
+    _T ("spacer_1"),
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
     _T ("action"),
     _T ("alignment"),
@@ -107,37 +105,24 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("tabs"),
     _T ("value"),
     _T ("width"),
-    NULL
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsDclKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszDclKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszDclKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -171,6 +156,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -241,7 +227,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

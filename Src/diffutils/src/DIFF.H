@@ -30,14 +30,16 @@ extern "C" {
 #define PR_FILE_NAME "/bin/pr"
 #endif
 
+#define DECL_TLS __declspec(thread)
+
 #define TAB_WIDTH 8
 
 /* Variables for command line options */
 
 #ifndef GDIFF_MAIN
-#define EXTERN extern
+#define EXTERN DECL_TLS extern 
 #else
-#define EXTERN
+#define EXTERN DECL_TLS
 #endif
 
 enum output_style {
@@ -56,14 +58,16 @@ enum output_style {
   /* Output merged #ifdef'd file (-D).  */
   OUTPUT_IFDEF,
   /* Output sdiff style (-y).  */
-  OUTPUT_SDIFF
+  OUTPUT_SDIFF,
+  /* Output html style.  */
+  OUTPUT_HTML
 };
 
 /* True for output styles that are robust,
    i.e. can handle a file that ends in a non-newline.  */
 #define ROBUST_OUTPUT_STYLE(S) ((S) != OUTPUT_ED && (S) != OUTPUT_FORWARD_ED)
 
-EXTERN enum output_style output_style;
+EXTERN int output_style;
 
 /* Nonzero if output cannot be generated for identical files.  */
 EXTERN int no_diff_means_no_output;
@@ -344,7 +348,7 @@ int line_cmp PARAMS((char const HUGE *, size_t, char const HUGE *, size_t));
 int translate_line_number PARAMS((struct file_data const *, int));
 struct change *find_change PARAMS((struct change *));
 struct change *find_reverse_change PARAMS((struct change *));
-void analyze_hunk PARAMS((struct change *, int *, int *, int *, int *, int *, int *));
+void analyze_hunk PARAMS((struct change *, int *, int *, int *, int *, int *, int *, const struct file_data fd[]));
 void begin_output PARAMS((void));
 void debug_script PARAMS((struct change *));
 void error PARAMS((char const *, char const *, char const *));

@@ -6,7 +6,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: SplitterWndEx.cpp 6500 2009-02-25 13:36:26Z kimmov $
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -201,6 +201,7 @@ void CSplitterWndEx::EqualizeRows()
 			sum -= hEqual;
 		}
 		SetRowInfo(i, sum, hmin);
+		CSplitterWnd::RecalcLayout();
 	}
 }
 
@@ -230,6 +231,7 @@ void CSplitterWndEx::EqualizeCols()
 			sum -= vEqual;
 		}
 		SetColumnInfo(i, sum, hmin);
+		CSplitterWnd::RecalcLayout();
 	}
 }
 
@@ -281,9 +283,16 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 	// and resize the panes 
 	if (m_bResizePanes)
 	{
-		EqualizeCols();
-		EqualizeRows();
-		RecalcLayout();
+		if (m_nCols == 2 && m_bAutoResizePanes)
+		{
+			RecalcLayout();
+			EqualizeRows();
+		}
+		else
+		{
+			EqualizeCols();
+			EqualizeRows();
+		}
 	}
 
 }

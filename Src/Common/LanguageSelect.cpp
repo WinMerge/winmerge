@@ -4,7 +4,7 @@
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: LanguageSelect.cpp 6499 2009-02-25 13:31:52Z kimmov $
 
 #include "StdAfx.h"
 #include "OptionsDef.h"
@@ -978,8 +978,12 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 	while (i > 0)
 	{
 		--i;
-		MENUITEMINFO mii;
+		MENUITEMINFO mii = {0};
+#if(WINVER >= 0x0500)
+		mii.cbSize = sizeof mii - sizeof HBITMAP;
+#else
 		mii.cbSize = sizeof mii;
+#endif
 		mii.fMask = MIIM_STATE|MIIM_ID|MIIM_SUBMENU|MIIM_DATA;
 		::GetMenuItemInfo(h, i, TRUE, &mii);
 		if (mii.hSubMenu)

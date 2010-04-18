@@ -20,7 +20,7 @@
  * @brief Implementation file for FileFilterHelper class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileFilterHelper.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 #include <windows.h>
 #include <tchar.h>
@@ -169,8 +169,7 @@ String FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
 void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 {
 	m_sUserSelFilterPath = filterPath;
-	if (filterPath[filterPath.length() - 1] != '\\')
-		m_sUserSelFilterPath += _T("\\");
+	paths_normalize(m_sUserSelFilterPath);
 }
 
 /** 
@@ -253,7 +252,11 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 			strFileName = strFileName + _T(".");
 
 		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
+#ifdef UNICODE
 		bool match = m_pMaskFilter->Match(name_utf);
+#else
+		bool match = m_pMaskFilter->Match(name_utf, GetACP());
+#endif
 		UCS2UTF8_Dealloc(name_utf);
 		return match;
 	}
@@ -324,18 +327,26 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		ext = ext.substr(pos + 1); // Remove extension + separator
 		
 		// Only "*." or "*.something" allowed, other ignored
-		if (token.length() >= 2 && token[0] == '*' && token[1] == '.')
+		if (token.length() >= 1)
 		{
 			bFilterAdded = TRUE;
-			strPattern += _T(".*\\.");
-			strPattern += token.substr(2);
-			strPattern += _T("$");
+			String strRegex = token;
+			string_replace(strRegex, _T("."), _T("\\."));
+			string_replace(strRegex, _T("?"), _T("."));
+			string_replace(strRegex, _T("("), _T("\\("));
+			string_replace(strRegex, _T(")"), _T("\\)"));
+			string_replace(strRegex, _T("["), _T("\\["));
+			string_replace(strRegex, _T("]"), _T("\\]"));
+			string_replace(strRegex, _T("$"), _T("\\$"));
+			string_replace(strRegex, _T("*"), _T(".*"));
+			strRegex += _T("$");
+			strPattern += _T("(^|\\\\)") + strRegex;
 		}
 		else
 			bFilterAdded = FALSE;
 
 		pos = ext.find_first_of(pszSeps); 
-		if (bFilterAdded && pos >= 0)
+		if (bFilterAdded && pos != String::npos && extensions.length() > 1)
 			strPattern += _T("|");
 	}
 
@@ -343,7 +354,6 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		strParsed = _T(".*"); // Match everything
 	else
 	{
-		strParsed = _T("^");
 
 		strPattern = string_makelower(strPattern);
 		strParsed = strPattern; //+ _T("$");
@@ -401,7 +411,7 @@ BOOL FileFilterHelper::SetFilter(const String &filter)
 	String flt = string_trim_ws(filter);
 
 	// Star means we have a file extension mask
-	if (flt[0] == '*')
+	if (filter.find_first_of(_T("*?")) != -1)
 	{
 		UseMask(TRUE);
 		SetMask(flt.c_str());
@@ -475,10 +485,12 @@ void FileFilterHelper::LoadAllFileFilters()
 
 	// Program application directory
 	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
+	paths_normalize(m_sGlobalFilterPath);
 	String pattern(_T("*"));
 	pattern += FileFilterExt;
 	LoadFileFilterDirPattern(m_sGlobalFilterPath.c_str(), pattern.c_str());
-	LoadFileFilterDirPattern(m_sUserSelFilterPath.c_str(), pattern.c_str());
+	if (_tcsicmp(m_sGlobalFilterPath.c_str(), m_sUserSelFilterPath.c_str()) != 0)
+		LoadFileFilterDirPattern(m_sUserSelFilterPath.c_str(), pattern.c_str());
 }
 
 /**

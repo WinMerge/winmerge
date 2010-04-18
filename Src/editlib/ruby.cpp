@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 // Ruby reserved words.
-static LPTSTR s_apszRubyKeywordList[] =
+static LPCTSTR s_apszRubyKeywordList[] =
   {
     _T ("BEGIN"),
     _T ("END"),
@@ -77,11 +77,10 @@ static LPTSTR s_apszRubyKeywordList[] =
     _T ("when"),
     _T ("while"),
     _T ("yield"),
-    NULL
   };
 
 // Ruby constants (preprocessor color).
-static LPTSTR s_apszRubyConstantsList[] =
+static LPCTSTR s_apszRubyConstantsList[] =
   {
     _T ("$defout"),
     _T ("$deferr"),
@@ -110,7 +109,6 @@ static LPTSTR s_apszRubyConstantsList[] =
     _T ("SCRIPT_LINES__"),
     _T ("TOPLEVEL_BINDING"),
     _T ("TRUE"),
-    NULL
   };
 
 static BOOL
@@ -128,13 +126,13 @@ IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 static BOOL
 IsRubyKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszRubyKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszRubyKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsRubyConstant (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszRubyConstantsList, pszChars, nLength);
+  return ISXKEYWORD (s_apszRubyConstantsList, pszChars, nLength);
 }
 
 static BOOL
@@ -145,7 +143,17 @@ IsRubyNumber (LPCTSTR pszChars, int nLength)
       for (int I = 2; I < nLength; I++)
         {
           if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
-                (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
+                (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_')
+            continue;
+          return FALSE;
+        }
+      return TRUE;
+    }
+  if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'b')
+    {
+      for (int I = 2; I < nLength; I++)
+        {
+          if (pszChars[I] == '0' || pszChars[I] == '1' || pszChars[I] == '_')
             continue;
           return FALSE;
         }
@@ -157,7 +165,7 @@ IsRubyNumber (LPCTSTR pszChars, int nLength)
     {
       if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
             pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
-            pszChars[I] != 'E')
+            pszChars[I] != 'E' || pszChars[I] == '_')
         return FALSE;
     }
   return TRUE;
@@ -168,6 +176,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -242,7 +251,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

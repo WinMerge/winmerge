@@ -24,7 +24,7 @@
  * @brief Implementation file for CEditorFilepathBar class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: EditorFilepathBar.cpp 5401 2008-05-30 12:09:27Z kimmov $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -48,6 +48,7 @@ END_MESSAGE_MAP()
 CEditorFilePathBar::CEditorFilePathBar()
 : m_pFont(NULL)
 {
+	m_nPanes = 2;
 }
 
 /**
@@ -71,11 +72,16 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		return FALSE;
 
 	// subclass the two custom edit boxes
-	m_Edit[0].SubClassEdit(IDC_STATIC_TITLE_LEFT, this);
-	m_Edit[1].SubClassEdit(IDC_STATIC_TITLE_RIGHT, this);
+	for (int pane = 0; pane < countof(m_Edit); pane++)
+		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 
 	return TRUE;
 };
+
+void CEditorFilePathBar::SetPaneCount(int nPanes)
+{
+	m_nPanes = nPanes;
+}
 
 /**
  * @brief Set look of headerbars similar to other window.
@@ -101,8 +107,8 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 			if (pFont->GetLogFont(&lfFont))
 			{
 				m_pFont->CreateFontIndirect(&lfFont);
-				m_Edit[0].SetFont(m_pFont);
-				m_Edit[1].SetFont(m_pFont);
+				for (int pane = 0; pane < m_nPanes; pane++)
+					m_Edit[pane].SetFont(m_pFont);
 			}
 		}
 	}
@@ -132,20 +138,16 @@ void CEditorFilePathBar::Resize()
 	WINDOWPLACEMENT infoBar;
 	GetWindowPlacement(&infoBar);
 
-	WINDOWPLACEMENT info1;
-	m_Edit[0].GetWindowPlacement(&info1);
-	info1.rcNormalPosition.right = infoBar.rcNormalPosition.right /
-		PaneCount - 2;
-	m_Edit[0].SetWindowPlacement(&info1);
-	m_Edit[0].RefreshDisplayText();
-
-	WINDOWPLACEMENT info2;
-	m_Edit[1].GetWindowPlacement(&info2);
-	info2.rcNormalPosition.left = infoBar.rcNormalPosition.right /
-		PaneCount + 2;
-	info2.rcNormalPosition.right = infoBar.rcNormalPosition.right;
-	m_Edit[1].SetWindowPlacement(&info2);
-	m_Edit[1].RefreshDisplayText();
+	CRect rc;
+	GetClientRect(&rc);
+	for (int pane = 0; pane < m_nPanes; pane++)
+	{
+		int width = infoBar.rcNormalPosition.right / m_nPanes;
+		rc.left = pane * width;
+		rc.right = rc.left + width;
+		m_Edit[pane].MoveWindow(&rc);
+		m_Edit[pane].RefreshDisplayText();
+	}
 }
 /** 
  * @brief Set widths.
@@ -154,24 +156,23 @@ void CEditorFilePathBar::Resize()
  * @param [in] leftWidth Left-side control width.
  * @param [in] rightWidth Right-side control width.
  */
-void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
+void CEditorFilePathBar::Resize(int widths[])
 {
 	if (m_hWnd == NULL)
 		return;
 
-	WINDOWPLACEMENT info1;
-
 	// resize left filename
-	m_Edit[0].GetWindowPlacement(&info1);
-	info1.rcNormalPosition.right = info1.rcNormalPosition.left + leftWidth + 4;
-	m_Edit[0].SetWindowPlacement(&info1);
-	m_Edit[0].RefreshDisplayText();
-
-	// resize right filename
-	info1.rcNormalPosition.left = info1.rcNormalPosition.right + 3;
-	info1.rcNormalPosition.right = info1.rcNormalPosition.left + rightWidth + 4;
-	m_Edit[1].SetWindowPlacement(&info1);
-	m_Edit[1].RefreshDisplayText();
+	CRect rc;
+	int x = 0;
+	GetClientRect(&rc);
+	for (int pane = 0; pane < m_nPanes; pane++)
+	{
+		rc.left = x;
+		rc.right = x + widths[pane] + 4;
+		x += widths[pane] + 7;
+		m_Edit[pane].MoveWindow(&rc);
+		m_Edit[pane].RefreshDisplayText();
+	}
 }
 
 /**
@@ -189,7 +190,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 	{
 		// idFrom is actually the HWND of the CEdit 
 		nID = ::GetDlgCtrlID((HWND)nID);
-		if(nID == IDC_STATIC_TITLE_LEFT || nID == IDC_STATIC_TITLE_RIGHT)
+		if(nID == IDC_STATIC_TITLE_PANE0 || nID == IDC_STATIC_TITLE_PANE1 || nID == IDC_STATIC_TITLE_PANE2)
 		{
 			// compute max width : 97% of application width or 80% or full screen width
 			CRect rect;
@@ -231,7 +232,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
  */
 void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 {
-	ASSERT (pane >= PANE_LEFT && pane < PaneCount);
+	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
 	// Check for NULL since window may be closing..
 	if (m_hWnd == NULL)
@@ -248,7 +249,7 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
  */
 void CEditorFilePathBar::SetActive(int pane, BOOL bActive)
 {
-	ASSERT (pane >= PANE_LEFT && pane < PaneCount);
+	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
 	// Check for NULL since window may be closing..
 	if (m_hWnd == NULL)

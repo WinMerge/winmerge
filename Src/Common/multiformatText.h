@@ -6,7 +6,7 @@
  * @date  Created: 2003-11-24
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: multiformatText.h 6433 2009-02-10 19:00:27Z kimmov $
 
 #ifndef __MULTIFORMATTEXT_H__
 #define __MULTIFORMATTEXT_H__
@@ -14,7 +14,7 @@
 // CComBSTR wraps BSTR initialize/copy
 // but function arguments/return value is BSTR as &CComBSTR is a pointer to the internal BSTR
 #include <atlbase.h>    // for CComBSTR
-
+#include "unicoder.h"
 
 
 /**
@@ -130,9 +130,10 @@ private:
 // other conversion functions
 
 /// Convert any unicode file to UCS-2LE
-BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged);
+BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, ucr::UNICODESET unicoding = ucr::NONE);
 /// Convert UCS-2LE file to UTF-8 (for diffutils)
 BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+BOOL AnyCodepageToUTF8(int codepage, LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
 
 /// Convert UCS-2BE file to UTF-8 (for diffutils)
 BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);

@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MainFrm.h 6940 2009-08-01 17:29:01Z kimmov $
 
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -34,6 +34,7 @@
 #include "MDITabBar.h"
 #include "OptionsMgr.h"
 #include "VSSHelper.h"
+#include "PathContext.h"
 #include "MergeCmdLineInfo.h"
 
 /**
@@ -107,13 +108,12 @@ public:
 	void UpdatePrediffersMenu();
 
 	BOOL SyncFileToVCS(LPCTSTR pszDest,	BOOL &bApplyToAll, CString *psError);
-	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
-		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""));
-	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft,
-		const FileLocation & filelocRight, DWORD dwLeftFlags = 0,
-		DWORD dwRightFlags = 0, PackingInfo * infoUnpacker = NULL);
+	BOOL DoFileOpen(PathContext *pFiles = NULL,
+		DWORD dwFlags[] = NULL, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""));
+	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
-		LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bLeftRO, BOOL bRightRO);
+		const PathContext &paths, BOOL bRO[]);
 	void UpdateResources();
 	BOOL CreateBackup(BOOL bFolder, LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
@@ -133,7 +133,7 @@ public:
 	BOOL DoOpenConflict(LPCTSTR conflictFile, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 
-	static void OpenFileToExternalEditor(LPCTSTR file);
+	static void OpenFileToExternalEditor(LPCTSTR file, int nLineNumber = 1);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -191,7 +191,7 @@ public:
 	 * which is more pleasant and informative than temporary paths.
 	 */
 	/*@{*/ 
-	String m_strDescriptions[2];
+	String m_strDescriptions[3];
 	/*@}*/
 
 	/** @brief Possible toolbar image sizes. */
@@ -300,6 +300,7 @@ protected:
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
 	afx_msg void OnFileNew();
+	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
 	afx_msg void OnDebugLoadConfig();
 	afx_msg void OnHelpMerge7zmismatch();
@@ -312,11 +313,17 @@ protected:
 	afx_msg void OnResizePanes();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+#if _MFC_VER > 0x0600
+	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
+#else
+	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
+#endif
 	afx_msg void OnDebugResetOptions();
 	afx_msg void OnToolbarNone();
 	afx_msg void OnUpdateToolbarNone(CCmdUI* pCmdUI);
@@ -334,14 +341,15 @@ protected:
 
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
+	void FileNew(int nPanes);
 	const MergeDocList &GetAllMergeDocs();
 	const DirDocList &GetAllDirDocs();
 	const HexMergeDocList &GetAllHexMergeDocs();
 	BOOL IsComparing();
 	void RedisplayAllDirDocs();
-	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
-	CHexMergeDoc * GetHexMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
-	CDirDoc * GetDirDocToShow(BOOL * pNew);
+	CMergeDoc * GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew);
+	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
+	CDirDoc * GetDirDocToShow(int nDirs, BOOL * pNew);
 	void ShowFontChangeMessage();
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	BOOL CreateToobar();

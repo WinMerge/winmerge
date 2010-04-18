@@ -29,7 +29,7 @@
  * @brief Declaration file for CCrystalTextView
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ccrystaltextview.h 6888 2009-06-30 10:36:28Z kimmov $
 
 #if !defined(AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
 #define AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
@@ -171,7 +171,7 @@ private:
 protected:
     BOOL m_bPreparingToDrag;
     BOOL m_bDraggingText;
-    BOOL m_bDragSelection, m_bWordSelection, m_bLineSelection;
+    BOOL m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
     UINT m_nDragSelTimer;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
@@ -226,6 +226,7 @@ protected :
 
     //BEGIN SW
     BOOL m_bWordWrap;
+    BOOL m_bHideLines;
     CCrystalParser *m_pParser;
     //END SW
 
@@ -267,9 +268,10 @@ protected :
 
     BOOL IsSelection ();
     BOOL IsInsideSelection (const CPoint & ptTextPos);
+    BOOL GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
     void GetSelection (CPoint & ptStart, CPoint & ptEnd);
     void GetFullySelectedLines(int & firstLine, int & lastLine);
-    virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
+    virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
 
     int m_nTopLine, m_nOffsetChar;
     //BEGIN SW
@@ -377,8 +379,8 @@ protected :
     int GetScreenChars ();
     CFont *GetFont (BOOL bItalic = FALSE, BOOL bBold = FALSE);
 
-    void RecalcVertScrollBar (BOOL bPositionOnly = FALSE);
-    virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE);
+    void RecalcVertScrollBar (BOOL bPositionOnly = FALSE, BOOL bRedraw = TRUE);
+    virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE, BOOL bRedraw = TRUE);
 
     //  Scrolling helpers
     void ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
@@ -437,12 +439,13 @@ public:
     virtual LPCTSTR GetLineChars (int nLineIndex) const;
 protected:
     virtual DWORD GetLineFlags (int nLineIndex) const;
-    virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text);
+    virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, BOOL bExcludeInvisibleLines = TRUE);
+    virtual void GetTextInColumnSelection (CString & text, BOOL bExcludeInvisibleLines = TRUE);
 
     //  Clipboard overridable
     virtual BOOL TextInClipboard ();
-    virtual BOOL PutToClipboard (LPCTSTR pszText, int cchText);
-    virtual BOOL GetFromClipboard (CString & text);
+    virtual BOOL PutToClipboard (LPCTSTR pszText, int cchText, BOOL bColumnSelection = FALSE);
+    virtual BOOL GetFromClipboard (CString & text, BOOL & bColumnSelection);
 
     //  Drag-n-drop overrideable
     virtual HGLOBAL PrepareDragData ();
@@ -460,7 +463,7 @@ protected:
                          COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
-
+    virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
     int GetCharWidthFromChar(TCHAR ch);
     int GetCharWidthFromString(LPCTSTR lpsz);
     int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
@@ -546,7 +549,7 @@ protected:
 	*/
 	virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
 	virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
-	void InvalidateScreenRect();
+	void InvalidateScreenRect(BOOL bInvalidateView = TRUE);
 	//END SW
 
     //  Syntax coloring overrides
@@ -570,11 +573,11 @@ protected:
 	//END SW
 
 	int MergeTextBlocks(TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pBufMerged);
-	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
 
 public:
-    virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
-    virtual CString GetHTMLStyles ();
+	virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
+	virtual CString GetHTMLStyles ();
 protected:
     virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd);
 
@@ -695,7 +698,7 @@ public :
 
 	//BEGIN SW
 	BOOL GetWordWrapping() const;
-	void SetWordWrapping( BOOL bWordWrap );
+	virtual void SetWordWrapping( BOOL bWordWrap );
 
 	/**
 	Sets the Parser to use to parse the file.
@@ -706,6 +709,10 @@ public :
 	*/
 	CCrystalParser *SetParser( CCrystalParser *pParser );
 	//END SW
+
+	BOOL GetEnableHideLines () const;
+	void SetEnableHideLines (BOOL bHideLines);
+	BOOL GetLineVisible (int nLineIndex) const;
 
     //  Default handle to resources
     static HINSTANCE s_hResourceInst;
@@ -811,6 +818,7 @@ public :
     void ShowCursor ();
     void HideCursor ();
     void SetNewAnchor (const CPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
+    void SetNewSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true) { SetSelection(ptStart, ptEnd, bUpdateView); }
 
     //  Operations
     virtual void EnsureVisible (CPoint pt);
@@ -828,7 +836,7 @@ public :
     void UpdateCompositionWindowFont();
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText);
+    virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
 
     // Overrides
     // ClassWizard generated virtual function overrides
@@ -958,6 +966,8 @@ protected :
 	afx_msg void OnUpdateEditFindIncrementalForward(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditFindIncrementalBackward(CCmdUI* pCmdUI);
 	//END SW
+
+    afx_msg void OnToggleColumnSelection ();
 
     DECLARE_MESSAGE_MAP ()
   };

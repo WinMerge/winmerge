@@ -1,0 +1,106 @@
+<scriptlet>
+
+<implements type="Automation" id="dispatcher">
+	<property name="PluginEvent">
+	          <get/>
+        </property>
+	<property name="PluginDescription">
+	          <get/>
+        </property>
+	<property name="PluginFileFilters">
+	          <get/>
+        </property>
+	<property name="PluginIsAutomatic">
+	          <get/>
+        </property>
+      	<method name="UnpackFile"/>
+      	<method name="PackFile"/>
+</implements>
+
+<script language="VBS">
+
+'/////////////////////////////////////////////////////////////////////////////
+'    This is a plugin for WinMerge.
+'    It will display the text content of MS Word files.
+'    Copyright (C) 2008 Takashi Sawanaka
+'
+'    This program is free software; you can redistribute it and/or modify
+'    it under the terms of the GNU General Public License as published by
+'    the Free Software Foundation; either version 2 of the License, or
+'    (at your option) any later version.
+'
+'    This program is distributed in the hope that it will be useful,
+'    but WITHOUT ANY WARRANTY; without even the implied warranty of
+'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+'    GNU General Public License for more details.
+'
+'    You should have received a copy of the GNU General Public License
+'    along with this program; if not, write to the Free Software
+'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+'
+
+Option Explicit
+
+Function get_PluginEvent()
+         get_PluginEvent = "FILE_PACK_UNPACK"
+End Function
+
+Function get_PluginDescription()
+         get_PluginDescription = "WordToText"
+End Function
+
+Function get_PluginFileFilters()
+         get_PluginFileFilters = "\.doc(\..*)?$;\.dot(\..*)?$;\.docx(\..*)?$;\.docm(\..*)?$;\.dotx(\..*)?$;\.dotm(\..*)?$"
+End Function
+
+Function get_PluginIsAutomatic()
+         get_PluginIsAutomatic = True
+End Function
+
+Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	Dim fso
+	Dim fo
+	Dim wd 
+	Dim doc
+	Dim cmp
+	Dim Codes
+
+	Set wd = CreateObject("Word.Application")
+	Set doc = wd.Documents.Open(fileSrc)
+
+	On Error Resume Next
+
+	For Each cmp In doc.VBProject.VBComponents
+		Codes = Codes & "[CodeModule." & cmp.Name & "]" & vbCrLf
+		If cmp.CodeModule.CountOfLines > 0 Then
+			Codes = Codes & cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines) & vbCrLf
+		End If
+		Codes = Codes & vbCrLf
+	Next
+
+	doc.SaveAs fileDst, 2
+
+	doc.Close
+	Set doc = Nothing
+	wd.Quit
+	Set wd = Nothing
+
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set fo = fso.OpenTextFile(fileDst, 8, 2)
+	fo.Write Codes
+	fo.Close
+	Set fo = Nothing
+	Set fso = Nothing
+
+	pbChanged = True
+	pSubcode = 0
+	UnpackFile = True
+
+End Function
+
+Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
+	PackFile = False
+End Function
+
+</script>
+</scriptlet>

@@ -22,7 +22,7 @@
  * @brief Declaration file for ShellExtension class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: WinMergeShell.h 6933 2009-07-26 14:07:03Z kimmov $
 
 #ifndef __WINMERGESHELL_H_
 #define __WINMERGESHELL_H_
@@ -61,7 +61,7 @@ public:
 
 // IWinMergeShell
 protected:
-	String m_strPaths[2]; /**< Paths for selected items */
+	String m_strPaths[3]; /**< Paths for selected items */
 	String m_strPreviousPath; /**< Previously selected path */
 	HBITMAP m_MergeBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */

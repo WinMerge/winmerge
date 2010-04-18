@@ -81,7 +81,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\MergeUnicodeRelease\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -181,7 +181,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\X64\MergeUnicodeRelease\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -277,7 +277,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\MergeUnicodeDebug/WinMergeU.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -373,7 +373,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\X64\MergeUnicodeDebug/WinMergeU.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -468,7 +468,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\MergeDebug/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -561,7 +561,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\X64\MergeDebug/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -658,7 +658,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\MergeRelease/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -755,7 +755,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib"
 				OutputFile="..\Build\X64\MergeRelease/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -3033,6 +3033,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3067,6 +3068,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -3078,6 +3080,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -3089,6 +3092,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3099,6 +3103,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4259,6 +4264,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4283,6 +4289,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4369,6 +4376,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4392,6 +4400,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4403,6 +4412,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4414,6 +4424,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -4425,6 +4436,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4435,6 +4447,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4483,6 +4496,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -7572,6 +7586,38 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="X64 Debug|Win32"
 					>
 					<Tool
@@ -7661,6 +7707,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -7672,6 +7719,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -7683,6 +7731,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -7693,6 +7742,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -7799,6 +7849,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -7810,6 +7861,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -7821,6 +7873,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -7831,6 +7884,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -8719,6 +8773,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -8743,6 +8798,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -8995,6 +9051,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -9019,6 +9076,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -13291,6 +13349,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\PatchHTML.cpp"
+				>
 			</File>
 			<File
 				RelativePath="PatchTool.cpp"
@@ -21218,6 +21280,10 @@
 			</File>
 			<File
 				RelativePath="PatchDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PatchHTML.h"
 				>
 			</File>
 			<File
@@ -30217,6 +30283,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -30228,6 +30295,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -30239,6 +30307,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -30249,6 +30318,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration

@@ -4,7 +4,7 @@
  * @brief Constants for option-names
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: OptionsDef.h 6910 2009-07-12 09:06:54Z kimmov $
 
 #ifndef _OPTIONS_DEF_H_
 #define _OPTIONS_DEF_H_
@@ -51,8 +51,10 @@ const TCHAR OPT_BACKUP_ADD_BAK[] = _T("Backup/NameAddBak");
 const TCHAR OPT_BACKUP_ADD_TIME[] = _T("Backup/NameAddTime");
 
 const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
+const TCHAR OPT_DIRVIEW_SORT_COLUMN3[] =  _T("Settings/DirViewSortCol3");
 const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");
 const TCHAR OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU[] = _T("Settings/DirViewEnableShellContextMenu");
+const TCHAR OPT_DIRVIEW_EXPAND_SUBDIRS[] = _T("Settings/DirViewExpandSubdirs");
 
 // File compare
 const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
@@ -62,6 +64,7 @@ const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
 const TCHAR OPT_WORDWRAP[] = _T("Settings/WordWrap");
 const TCHAR OPT_VIEW_LINENUMBERS[] = _T("Settings/ViewLineNumbers");
 const TCHAR OPT_VIEW_FILEMARGIN[] = _T("Settings/ViewFileMargin");
+const TCHAR OPT_DIFF_CONTEXT[] = _T("Settings/DiffContext");
 
 const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
 const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
@@ -114,6 +117,18 @@ const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK[] = _T("Settings/SelectedMovedBlockColor
 const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_DELETED[] = _T("Settings/SelectedMovedBlockDeletedColor");
 // The selected moved block text color
 const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_TEXT[] = _T("Settings/SelectedMovedBlockTextColor");
+// The SNP block color
+const TCHAR OPT_CLR_SNP[] = _T("Settings/SNPColor");
+// The SNP block deleted lines color
+const TCHAR OPT_CLR_SNP_DELETED[] = _T("Settings/SNPDeletedColor");
+// The SNP block text color
+const TCHAR OPT_CLR_SNP_TEXT[] = _T("Settings/SNPTextColor");
+// The selected SNP block color
+const TCHAR OPT_CLR_SELECTED_SNP[] = _T("Settings/SelectedSNPColor");
+// The selected SNP block deleted lines
+const TCHAR OPT_CLR_SELECTED_SNP_DELETED[] = _T("Settings/SelectedSNPDeletedColor");
+// The selected SNP block text color
+const TCHAR OPT_CLR_SELECTED_SNP_TEXT[] = _T("Settings/SelectedSNPTextColor");
 // The word difference color
 const TCHAR OPT_CLR_WORDDIFF[] = _T("Settings/WordDifferenceColor");
 // The word difference deleted color
@@ -140,7 +155,7 @@ const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
 const TCHAR OPT_CMP_MATCH_SIMILAR_LINES[] = _T("Settings/MatchSimilarLines");
 const TCHAR OPT_CMP_STOP_AFTER_FIRST[] = _T("Settings/StopAfterFirst");
 const TCHAR OPT_CMP_QUICK_LIMIT[] = _T("Settings/QuickMethodLimit");
-const TCHAR OPT_CMP_WALK_UNIQUE_DIRS[] = _T("Settings/WalkUniqueDirs");
+const TCHAR OPT_CMP_WALK_UNIQUE_DIRS[] = _T("Settings/ScanUnpairedDir");
 
 // Multidoc enable/disable per document type
 const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");

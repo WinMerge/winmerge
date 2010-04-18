@@ -9,7 +9,7 @@
  *  Classes include memory-mapped reader class and Stdio replacement class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: UniFile.cpp 7056 2009-12-26 19:49:14Z kimmov $
 
 /* The MIT License
 Copyright (c) 2003 Perry Rapp
@@ -359,12 +359,20 @@ bool UniMemFile::ReadBom()
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
+		m_codepage = 1200;
+		m_charsize = 2;
+		m_data = lpByte + 2;
+		unicode = true;
+		break;
 	case ucr::UCS2BE:
+		m_codepage = 1201;
 		m_charsize = 2;
 		m_data = lpByte + 2;
 		unicode = true;
 		break;
 	case ucr::UTF8:
+		m_codepage = 65001;
+		m_charsize = 1;
 		if (bom)
 			m_data = lpByte + 3;
 		else
@@ -385,7 +393,7 @@ bool UniMemFile::ReadBom()
  * @brief Returns if file has a BOM bytes.
  * @return true if file has BOM bytes, false otherwise.
  */
-bool UniMemFile::HasBom()
+bool UniMemFile::HasBom() const
 {
 	return m_bom;
 }
@@ -417,7 +425,7 @@ bool UniMemFile::ReadString(String & line, bool * lossy)
  * is grown exponentially to avoid unnecessary allocations and copying.
  * @param [in, out] strBuffer A string to wich new characters are appended.
  * @param [in] ccHead Index in the string where new chars are appended.
- * @param [in] pchTaíl Characters to append.
+ * @param [in] pchTaú‰ Characters to append.
  * @param [in] cchTail Amount of characters to append.
  * @param [in] cchBufferMin Minimum size for the buffer.
  * @return New length of the string.
@@ -463,7 +471,8 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	line.erase();
 	eol.erase();
 	LPCTSTR pchLine = (LPCTSTR)m_current;
-
+	String localLine;
+	
 	// shortcut methods in case file is in the same encoding as our Strings
 
 #ifdef _UNICODE
@@ -513,7 +522,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		return true;
 	}
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, GetACP()))
 	{
 		int cchLine = 0;
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
@@ -581,7 +590,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 				RecordZero(m_txtstats, offset);
 			}
 		}
-		bool success = ucr::maketstring(line, (LPCSTR)m_current, eolptr - m_current, m_codepage, lossy);
+		bool success = ucr::maketstring(line, (LPCSTR)m_current, eolptr-m_current, m_codepage, lossy);
 		if (!success)
 		{
 			return false;
@@ -613,7 +622,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	while (m_current - m_base + (m_charsize - 1) < m_filesize)
 	{
 		UINT ch = 0;
-		UINT utf8len = 0;
+		int  utf8len = 0;
 		bool doneline = false;
 
 		if (m_unicoding == ucr::UTF8)
@@ -647,7 +656,8 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		// convert from Unicode codepoint to TCHAR string
 		// could be multicharacter if decomposition took place, for example
 		bool lossy = false; // try to avoid lossy conversion
-		String sch = ucr::maketchar(ch, lossy);
+		String sch;
+		ucr::maketchar(sch, ch, lossy);
 		if (lossy)
 			++m_txtstats.nlosses;
 		if (sch.length() >= 1)
@@ -875,12 +885,19 @@ bool UniStdioFile::ReadBom()
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
+		m_codepage = 1200;
+		m_charsize = 2;
+		m_data = 2;
+		unicode = true;
+		break;
 	case ucr::UCS2BE:
+		m_codepage = 1201;
 		m_charsize = 2;
 		m_data = 2;
 		unicode = true;
 		break;
 	case ucr::UTF8:
+		m_codepage = CP_UTF8;
 		if (bom)
 			m_data = 3;
 		else
@@ -901,7 +918,7 @@ bool UniStdioFile::ReadBom()
  * @brief Returns if file has a BOM bytes.
  * @return true if file has BOM bytes, false otherwise.
  */
-bool UniStdioFile::HasBom()
+bool UniStdioFile::HasBom() const
 {
 	return m_bom;
 }
@@ -931,14 +948,14 @@ bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
 /** @brief Write BOM (byte order mark) if Unicode file */
 int UniStdioFile::WriteBom()
 {
-	if (m_unicoding == ucr::UCS2LE)
+	if (m_unicoding == ucr::UCS2LE && m_bom)
 	{
 		unsigned char bom[] = "\xFF\xFE";
 		fseek(m_fp, 0, SEEK_SET);
 		fwrite(bom, 1, 2, m_fp);
 		m_data = 2;
 	}
-	else if (m_unicoding == ucr::UCS2BE)
+	else if (m_unicoding == ucr::UCS2BE && m_bom)
 	{
 		unsigned char bom[] = "\xFE\xFF";
 		fseek(m_fp, 0, SEEK_SET);
@@ -968,7 +985,7 @@ bool UniStdioFile::WriteString(const String & line)
 #ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, GetACP()))
 #endif
 	{
 		size_t bytes = line.length() * sizeof(TCHAR);

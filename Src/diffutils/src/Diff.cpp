@@ -60,5 +60,5 @@ static char THIS_FILE[] = __FILE__;
 /* Nonzero for -r: if comparing two directories,
    compare their common subdirectories recursively.  */
 
-int recursive;
+DECL_TLS int recursive;
 

@@ -150,6 +150,8 @@ void CGhostTextView::PopCursors ()
 	m_nTopSubLine = m_nTopSubLinePushed;
 	if (m_nTopSubLine >= GetSubLineCount())
 		m_nTopSubLine = GetSubLineCount() - 1;
+	if (m_nTopSubLine < 0)
+		m_nTopSubLine = 0;
 	int nDummy;
 	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
     RecalcVertScrollBar(TRUE);
@@ -199,12 +201,48 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 
 void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		int nEndLine, int nEndChar, CString &text,
-		CRLFSTYLE nCrlfStyle /*=CRLF_STYLE_AUTOMATIC*/ )
+		CRLFSTYLE nCrlfStyle /*=CRLF_STYLE_AUTOMATIC*/,
+		BOOL bExcludeInvisibleLines/*=FALSE*/)
 {
   if (m_pGhostTextBuffer != NULL)
-    m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle);
+    m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
   else
     text = _T ("");
+}
+
+void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, BOOL bExcludeInvisibleLines/*=TRUE*/)
+{
+	if (m_pGhostTextBuffer == NULL)
+	{
+		text = _T ("");
+		return;
+	}
+
+	PrepareSelBounds ();
+
+	CString sEol = m_pGhostTextBuffer->GetStringEol (CRLF_STYLE_DOS);
+
+	int nBufSize = 1;
+	for (int L = m_ptDrawSelStart.y; L <= m_ptDrawSelEnd.y; L++)
+		nBufSize += GetLineLength (L) + sEol.GetLength ();
+	LPTSTR pszBuf = text.GetBuffer (nBufSize);
+
+	for (int I = m_ptDrawSelStart.y; I <= m_ptDrawSelEnd.y; I++)
+	{
+		// exclude ghost lines
+		if ((GetLineFlags(I) & LF_GHOST) || (bExcludeInvisibleLines && (GetLineFlags(I) & LF_INVISIBLE)))
+			continue;
+
+		int nSelLeft, nSelRight;
+		GetColumnSelection (I, nSelLeft, nSelRight);
+		memcpy (pszBuf, GetLineChars (I) + nSelLeft, sizeof (TCHAR) * (nSelRight - nSelLeft));
+		pszBuf += (nSelRight - nSelLeft);
+		memcpy (pszBuf, sEol, sizeof (TCHAR) * sEol.GetLength ());
+		pszBuf += sEol.GetLength ();
+	}
+	pszBuf[0] = 0;
+	text.ReleaseBuffer ();
+	text.FreeExtra ();
 }
 
 HGLOBAL CGhostTextView::PrepareDragData ()

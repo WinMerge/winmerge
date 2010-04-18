@@ -106,7 +106,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\debug\libexpat.lib ..\..\..\Build\expat&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\debug\libexpat.dll ..\..\..\Build\expat&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -164,7 +164,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../Build/expat/lib/X64/Debug/libexpat.dll"
+				OutputFile=".\../../../Build/expat/lib/$(PlatformName)/$(ConfigurationName)/libexpat.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\libexpat.def"
@@ -197,7 +197,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat\$(PlatformName)&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.lib ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.dll ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -287,7 +287,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\release\libexpat.lib ..\..\..\Build\expat&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\release\libexpat.dll ..\..\..\Build\expat&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
@@ -345,7 +345,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../Build/expat/lib/X64/Release/libexpat.dll"
+				OutputFile=".\../../../Build/expat/lib/$(PlatformName)/$(ConfigurationName)/libexpat.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\libexpat.def"
@@ -377,7 +377,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat\$(PlatformName)&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.lib ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.dll ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration

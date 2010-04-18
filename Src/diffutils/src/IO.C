@@ -52,21 +52,21 @@ struct equivclass
 };
 
 /* Hash-table: array of buckets, each being a chain of equivalence classes.  */
-static int *buckets;
+DECL_TLS static int *buckets;
   
 /* Number of buckets in the hash table array. */
-static int nbuckets;
+DECL_TLS static int nbuckets;
 
 /* Array in which the equivalence classes are allocated.
    The bucket-chains go through the elements in this array.
    The number of an equivalence class is its index in this array.  */
-static struct equivclass HUGE *equivs;
+DECL_TLS static struct equivclass HUGE *equivs;
 
 /* Index of first free element in the array `equivs'.  */
-static int equivs_index;
+DECL_TLS static int equivs_index;
 
 /* Number of elements allocated in the array `equivs'.  */
-static int equivs_alloc;
+DECL_TLS static int equivs_alloc;
 
 static void find_and_hash_each_line PARAMS((struct file_data *));
 static void find_identical_ends PARAMS((struct file_data[]));
@@ -404,7 +404,7 @@ hashing_done:;
           if (length>1 && p[-2]=='\r' && p[-1]=='\n')
             {
               ++current->count_crlfs;
-              ((char HUGE *)p)[-2] = 0;
+              //((char HUGE *)p)[-2] = 0;
               length -= 2;
             }
           else if (p[-1] == '\n' || p[-1] == '\r')
@@ -413,7 +413,7 @@ hashing_done:;
                 ++current->count_lfs;
               else
                 ++current->count_crs;
-              ((char HUGE *)p)[-1] = 0;
+              //((char HUGE *)p)[-1] = 0;
               --length;
             }
         }

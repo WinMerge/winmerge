@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-22
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffFileData.cpp 6899 2009-07-05 14:22:19Z kimmov $
 
 #include "stdafx.h"
 #include <io.h>
@@ -36,11 +36,6 @@ DiffFileData::DiffFileData()
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	m_used = false;
 	Reset();
-	// Set default codepages
-	for (i = 0; i < countof(m_FileLocation); ++i)
-	{
-		m_FileLocation[i].encoding.SetCodepage(f_defcp);
-	}
 }
 
 /** @brief deallocate member data */
@@ -190,18 +185,18 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath_Transform(FileLocation & fpenc,
-	const String & filepath, String & filepathTransformed,
+bool DiffFileData::Filepath_Transform(BOOL bForceUTF8,
+	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
 	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
-	if (fpenc.encoding.m_unicoding && fpenc.encoding.m_unicoding != ucr::UCS2LE)
+	if (encoding.m_unicoding && (!encoding.m_bom || encoding.m_unicoding != ucr::UCS2LE))
 	{
 		// second step : normalize Unicode to OLECHAR (most of time, do nothing)
 		// (OLECHAR = UCS-2LE in Windows)
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite))
+		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite, encoding.m_unicoding))
 			return false;
 	}
 
@@ -228,13 +223,21 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc,
 			return false;
 	}
 
-	if (fpenc.encoding.m_unicoding)
+	if (encoding.m_unicoding)
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
 		BOOL bMayOverwrite = 0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str());
 		if (!FileTransform_ToUTF8(filepathTransformed, bMayOverwrite))
 			return false;
+	}
+	else if (bForceUTF8)
+	{
+		// fourth step : prepare for diffing
+		// may overwrite if we've already copied to temp file
+		BOOL bMayOverwrite = (0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str()));
+		if (!FileTransform_AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite))
+			return false;		
 	}
 	return true;
 }

@@ -26,7 +26,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszBatKeywordList[] =
+static LPCTSTR s_apszBatKeywordList[] =
   {
     _T (".AND."),
     _T (".OR."),
@@ -53,10 +53,10 @@ static LPTSTR s_apszBatKeywordList[] =
     _T ("COPY"),
     _T ("CTTY"),
     _T ("DATE"),
-    _T ("DEFAULT"),
-    _T ("DEFINED"),
     _T ("DDEEXEC"),
     _T ("DEBUGSTRING"),
+    _T ("DEFAULT"),
+    _T ("DEFINED"),
     _T ("DEL"),
     _T ("DELAY"),
     _T ("DESCRIBE"),
@@ -70,6 +70,7 @@ static LPTSTR s_apszBatKeywordList[] =
     _T ("DRAWHLINE"),
     _T ("DRAWVLINE"),
     _T ("ECHO"),
+    _T ("ECHO."),
     _T ("ECHOERR"),
     _T ("ECHOS"),
     _T ("ECHOSERR"),
@@ -115,7 +116,6 @@ static LPTSTR s_apszBatKeywordList[] =
     _T ("IN"),
     _T ("INKEY"),
     _T ("INPUT"),
-    _T ("JABBER"),
     _T ("ISALIAS"),
     _T ("ISAPP"),
     _T ("ISDIR"),
@@ -124,6 +124,7 @@ static LPTSTR s_apszBatKeywordList[] =
     _T ("ISLABEL"),
     _T ("ISWINDOW"),
     _T ("ITERATE"),
+    _T ("JABBER"),
     _T ("KEYBD"),
     _T ("KEYS"),
     _T ("KEYSTACK"),
@@ -220,10 +221,9 @@ static LPTSTR s_apszBatKeywordList[] =
     _T ("WINDOW"),
     _T ("WMIQUERY"),
     _T ("Y"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
     _T ("APPEND"),
     _T ("ATTRIB"),
@@ -291,10 +291,9 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("UNINSTAL"),
     _T ("VSAFE"),
     _T ("XCOPY"),
-    NULL
   };
 
-static LPTSTR s_apszUser2KeywordList[] =
+static LPCTSTR s_apszUser2KeywordList[] =
   {
     _T ("@ABS"),
     _T ("@AFSCELL"),
@@ -343,9 +342,9 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("@DOWF"),
     _T ("@DOWI"),
     _T ("@DOY"),
-    _T ("@EMS"),
     _T ("@DRIVETYPE"),
     _T ("@DRIVETYPEEX"),
+    _T ("@EMS"),
     _T ("@ENUMSERVERS"),
     _T ("@ENUMSHARES"),
     _T ("@ERRTEXT"),
@@ -500,8 +499,8 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("@WORD"),
     _T ("@WORDS"),
     _T ("@WORKGROUP"),
-    _T ("@XMS"),
     _T ("@XMLPATH"),
+    _T ("@XMS"),
     _T ("@YEAR"),
     _T ("_"),
     _T ("_4VER"),
@@ -646,19 +645,12 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("_XPIXELS"),
     _T ("_YEAR"),
     _T ("_YPIXELS"),
-    NULL
   };
 
 static BOOL
 IsBatKeyword (LPCTSTR pszChars, int nLength)
 {
-  for (int L = 0; s_apszBatKeywordList[L] != NULL; L++)
-    {
-      if (_tcsnicmp (s_apszBatKeywordList[L], pszChars, nLength) == 0
-            && s_apszBatKeywordList[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
+  return ISXKEYWORDI(s_apszBatKeywordList, pszChars, (size_t)nLength);
 }
 
 static BOOL
@@ -666,41 +658,34 @@ IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
   TCHAR buffer[13];
 
-  for (int L = 0; s_apszUser1KeywordList[L] != NULL; L++)
+  if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
-      if (_tcsnicmp (s_apszUser1KeywordList[L], pszChars, nLength) == 0
-            && s_apszUser1KeywordList[L][nLength] == 0)
-        return TRUE;
-      _tcscpy (buffer, s_apszUser1KeywordList[L]);
-      _tcscat (buffer, _T (".COM"));
-      if (_tcsnicmp (buffer, pszChars, nLength) == 0
-            && buffer[nLength] == 0)
-        return TRUE;
-      _tcscpy (buffer, s_apszUser1KeywordList[L]);
-      _tcscat (buffer, _T (".EXE"));
-      if (_tcsnicmp (buffer, pszChars, nLength) == 0
-            && buffer[nLength] == 0)
-        return TRUE;
+      return ISXKEYWORDI(s_apszUser1KeywordList, pszChars, (size_t)nLength);
+    }
+  else
+    {
+      for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(TCHAR *); L++)
+        {
+          _tcscpy (buffer, s_apszUser1KeywordList[L]);
+          _tcscat (buffer, _T (".COM"));
+          if (_tcsnicmp (buffer, pszChars, nLength) == 0
+                && buffer[nLength] == 0)
+            return TRUE;
+          _tcscpy (buffer, s_apszUser1KeywordList[L]);
+          _tcscat (buffer, _T (".EXE"));
+          if (_tcsnicmp (buffer, pszChars, nLength) == 0
+                && buffer[nLength] == 0)
+            return TRUE;
+        }
     }
   return FALSE;
 }
 
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-    for (int L = 0; apszKeywords[L] != NULL; L++)
-      {
-        if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-            return TRUE;
-      }
-    return FALSE;
-}
 
 static BOOL
 IsUser2Keyword (LPCTSTR pszChars, int nLength)
 {
-    return IsXKeyword (s_apszUser2KeywordList, pszChars, nLength);
+    return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -734,6 +719,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -807,7 +793,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

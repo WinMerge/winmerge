@@ -20,11 +20,12 @@
  * @brief Code file routines
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PatchTool.cpp 6858 2009-06-25 07:48:26Z kimmov $
 
 #include "StdAfx.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
+#include "PathContext.h"
 #include "PatchTool.h"
 #include "PatchDlg.h"
 #include "coretools.h"
@@ -128,14 +129,20 @@ int CPatchTool::CreatePatch()
 		m_diffWrapper.SetPrediffer(NULL);
 
 		int fileCount = m_pDlgPatch->GetItemCount();
+
+		m_diffWrapper.WritePatchFileHeader(m_pDlgPatch->m_outputStyle, m_pDlgPatch->m_appendFile);
+		m_diffWrapper.SetAppendFiles(TRUE);
+
 		for (int index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& files = m_pDlgPatch->GetItemAt(index);
+			String filename1 = files.lfile.length() == 0 ? _T("NUL") : files.lfile;
+			String filename2 = files.rfile.length() == 0 ? _T("NUL") : files.rfile;
 			
 			// Set up DiffWrapper
-			m_diffWrapper.SetPaths(files.lfile, files.rfile, FALSE);
-			m_diffWrapper.SetAlternativePaths(files.pathLeft, files.pathRight);
-			m_diffWrapper.SetCompareFiles(files.lfile, files.rfile);
+			m_diffWrapper.SetPaths(PathContext(filename1.c_str(), filename2.c_str()), FALSE);
+			m_diffWrapper.SetAlternativePaths(PathContext(files.pathLeft.c_str(), files.pathRight.c_str()));
+			m_diffWrapper.SetCompareFiles(PathContext(files.lfile.c_str(), files.rfile.c_str()));
 			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
@@ -159,11 +166,10 @@ int CPatchTool::CreatePatch()
 				bResult = FALSE;
 				break;
 			}
-
-			// Append next files...
-			m_diffWrapper.SetAppendFiles(TRUE);
 		}
 		
+		m_diffWrapper.WritePatchFileTerminator(m_pDlgPatch->m_outputStyle);
+
 		if (bResult && fileCount > 0)
 		{
 			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
@@ -209,7 +215,7 @@ BOOL CPatchTool::ShowDialog()
 
 		// Use this because non-sensitive setting can't write
 		// patch file EOLs correctly
-		diffOptions.bIgnoreEol = false;
+		diffOptions.bIgnoreEol = m_pDlgPatch->m_ignoreEOLDifference;
 		
 		diffOptions.bIgnoreCase = m_pDlgPatch->m_caseSensitive == FALSE;
 		m_diffWrapper.SetOptions(&diffOptions);

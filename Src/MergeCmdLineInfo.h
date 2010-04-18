@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeCmdLineInfo.h 6940 2009-08-01 17:29:01Z kimmov $
 
 #ifndef _MERGE_CMD_LINE_INFO_INCLUDED_
 #define _MERGE_CMD_LINE_INFO_INCLUDED_
@@ -64,15 +64,19 @@ public:
 	int  m_nCodepage;  /**< Codepage. */
 
 	DWORD m_dwLeftFlags; /**< Left side file's behavior options. */
+	DWORD m_dwMiddleFlags; /**< Middle side file's behavior options. */
 	DWORD m_dwRightFlags; /**< Right side file's behavior options. */
 
 	String m_sLeftDesc; /**< Left side file's description. */
+	String m_sMiddleDesc; /**< Middle side file's description. */
 	String m_sRightDesc; /**< Right side file's description. */
 
 	String m_sFileFilter; /**< File filter mask. */
 	String m_sPreDiffer; /**< Pre-differ name. */
 
-	std::vector<String> m_Files; /**< Files (or directories) to compare. */
+	String m_sOutputpath;
+
+	PathContext m_Files; /**< Files (or directories) to compare. */
 
 private:
 

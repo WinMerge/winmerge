@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: HexMergeFrm.cpp 6653 2009-04-12 09:30:35Z jtuc $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -144,27 +144,26 @@ void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndP
 BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
+	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
+
 	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, 1, 2, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
+	if (!m_wndSplitter.CreateStatic(this, 1, m_pMergeDoc->m_nBuffers, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
 	}
 
-	if (!m_wndSplitter.CreateView(0, 0,
-		RUNTIME_CLASS(CHexMergeView), CSize(-1, 200), pContext))
+	int nPane;
+	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 	{
-		TRACE0("Failed to create first pane\n");
-		return FALSE;
+		if (!m_wndSplitter.CreateView(0, nPane,
+			RUNTIME_CLASS(CHexMergeView), CSize(-1, 200), pContext))
+		{
+			TRACE0("Failed to create first pane\n");
+			return FALSE;
+		}
 	}
-	
-	// add the second splitter pane - an input view in column 1
-	if (!m_wndSplitter.CreateView(0, 1,
-		RUNTIME_CLASS(CHexMergeView), CSize(-1, 200), pContext))
-	{
-		TRACE0("Failed to create second pane\n");
-		return FALSE;
-	}
+
 	m_wndSplitter.ResizablePanes(TRUE);
 	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 
@@ -175,40 +174,46 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;      // fail to create
 	}
 	// Set filename bars inactive so colors get initialized
-	m_wndFilePathBar.SetActive(0, FALSE);
-	m_wndFilePathBar.SetActive(1, FALSE);
+	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
+		m_wndFilePathBar.SetActive(nPane, FALSE);
 
-	CHexMergeView *pLeft = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, 0));
-	CHexMergeView *pRight = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, 1));
+	CHexMergeView *pView[3];
+	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
+		pView[nPane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, nPane));
 
-	m_wndLeftStatusBar.m_cxRightBorder = 4;
-	CreateHexWndStatusBar(m_wndLeftStatusBar, pLeft);
-	pRight->ModifyStyle(0, WS_THICKFRAME); // Create an SBARS_SIZEGRIP
-	CreateHexWndStatusBar(m_wndRightStatusBar, pRight);
-	pRight->ModifyStyle(WS_THICKFRAME, 0);
-	CSize size = m_wndLeftStatusBar.CalcFixedLayout(TRUE, TRUE);
+	m_wndStatusBar[0].m_cxRightBorder = 4;
+	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
+	{
+		pView[nPane]->ModifyStyle(0, WS_THICKFRAME); // Create an SBARS_SIZEGRIP
+		CreateHexWndStatusBar(m_wndStatusBar[nPane], pView[nPane]);
+		pView[nPane]->ModifyStyle(WS_THICKFRAME, 0);
+	}
+	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALBINARY);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_BINARYDIFF);
 
 	// get the IHexEditorWindow interfaces
-	IHexEditorWindow *pifLeft = pLeft->GetInterface();
-	IHexEditorWindow *pifRight = pRight->GetInterface();
+	IHexEditorWindow *pif[3];
+	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
+	{
+		pif[nPane] = reinterpret_cast<IHexEditorWindow *>(
+			::GetWindowLongPtr(pView[nPane]->m_hWnd, GWLP_USERDATA));
+	}
 
-	// tell the heksedit controls about each other
-	pifLeft->set_sibling(pifRight);
-	pifRight->set_sibling(pifLeft);
+	for (int nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
+	{
+		// tell the heksedit controls about each other
+		pif[nPane]->set_sibling(pif[(nPane + 1) % m_pMergeDoc->m_nBuffers]);
 
-	// adjust a few settings and colors
-	Customize(pifLeft);
-	Customize(pifRight);
+		// adjust a few settings and colors
+		Customize(pif[nPane]);
+	}
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
-	m_pMergeDoc->SetMergeViews(pLeft, pRight);
-	pLeft->m_nThisPane = 0;
-	pRight->m_nThisPane = 1;
+	m_pMergeDoc->SetMergeViews(pView);
 
 	return TRUE;
 }
@@ -288,21 +293,23 @@ void CHexMergeFrame::UpdateHeaderSizes()
 {
 	if (IsWindowVisible())
 	{
-		int w0, w1, wmin;
-		m_wndSplitter.GetColumnInfo(0, w0, wmin);
-		m_wndSplitter.GetColumnInfo(1, w1, wmin);
-		if (w0 < 1) w0 = 1; // Perry 2003-01-22 (I don't know why this happens)
-		if (w1 < 1) w1 = 1; // Perry 2003-01-22 (I don't know why this happens)
+		int w[3],wmin;
+		int pane;
+		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		{
+			m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+		}
 		// resize controls in header dialog bar
-		m_wndFilePathBar.Resize(w0, w1);
+		m_wndFilePathBar.Resize(w);
 		RECT rc;
 		GetClientRect(&rc);
 		rc.top = rc.bottom - m_rectBorder.bottom;
-		rc.left = w0 + 8;
-		m_wndRightStatusBar.MoveWindow(&rc);
+		rc.left = w[0] + 8;
+		m_wndStatusBar[1].MoveWindow(&rc);
 		rc.right = rc.left;
 		rc.left = 0;
-		m_wndLeftStatusBar.MoveWindow(&rc);
+		m_wndStatusBar[0].MoveWindow(&rc);
 	}
 }
 
@@ -363,19 +370,19 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			UpdateHeaderSizes();
 			m_nLastSplitPos = w;
 		}
-		CHexMergeView *pLeft = (CHexMergeView *)m_wndSplitter.GetPane(0, MERGE_VIEW_LEFT);
-		CHexMergeView *pRight = (CHexMergeView *)m_wndSplitter.GetPane(0, MERGE_VIEW_RIGHT);
+		CHexMergeView *pLeft = (CHexMergeView *)m_wndSplitter.GetPane(0, 0);
+		CHexMergeView *pRight = (CHexMergeView *)m_wndSplitter.GetPane(0, 1);
 
 		// Update mod indicators
 		TCHAR ind[2];
 
-		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_LEFT, ind, 2))
+		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_PANE0, ind, 2))
 			if (pLeft->GetModified() ? ind[0] != _T('*') : ind[0] == _T('*'))
-				m_pMergeDoc->UpdateHeaderPath(MERGE_VIEW_LEFT);
+				m_pMergeDoc->UpdateHeaderPath(0);
 
-		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_RIGHT, ind, 2))
+		if (m_wndFilePathBar.GetDlgItemText(IDC_STATIC_TITLE_PANE1, ind, 2))
 			if (pRight->GetModified() ? ind[0] != _T('*') : ind[0] == _T('*'))
-				m_pMergeDoc->UpdateHeaderPath(MERGE_VIEW_RIGHT);
+				m_pMergeDoc->UpdateHeaderPath(1);
 
 		// Synchronize scrollbars
 		SCROLLINFO si, siLeft, siRight;

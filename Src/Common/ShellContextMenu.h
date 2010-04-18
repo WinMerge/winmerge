@@ -24,7 +24,7 @@
  */ 
 //
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ShellContextMenu.h 6106 2008-11-20 14:25:18Z kimmov $
 
 #ifndef _SHELLCONTEXTMENU_H_
 #define _SHELLCONTEXTMENU_H_
@@ -167,6 +167,8 @@ public:
 	 * @retval	false	Something failed
 	 */
 	bool InvokeCommand(UINT nCmd, HWND hWnd);
+
+	void ReleaseShellContextMenu();
 
 private:
 	/**

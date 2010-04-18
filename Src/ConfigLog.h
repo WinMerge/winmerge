@@ -20,7 +20,7 @@
  * @brief Declaration file ConfigLog class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ConfigLog.h 7059 2009-12-27 00:06:59Z kimmov $
 
 #ifndef _CONFIGLOG_H_
 #define _CONFIGLOG_H_
@@ -71,6 +71,7 @@ struct MISCSETTINGS
 	int  nTabSize;
 	bool bPluginsEnabled;
 	bool bPreserveFiletimes;
+	INT  nDiffContext;
 	bool bMatchSimilarLines;
 };
 
@@ -81,7 +82,7 @@ struct CPSETTINGS
 {
 	int nDefaultMode;
 	int nDefaultCustomValue;
-	bool bDetectCodepage;
+	int iDetectCodepageType;
 };
 
 /** 

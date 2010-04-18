@@ -53,7 +53,7 @@ BOOL BCMenu::xp_select_disabled=FALSE;
 // Set to FALSE since TRUE value causes WinMerge to start slowly in WinXP
 // Ref: BUG item #1052762 WinMerge VERY slow to startup
 // https://sourceforge.net/tracker/index.php?func=detail&aid=1052762&group_id=13216&atid=113216
-BOOL BCMenu::xp_draw_3D_bitmaps=FALSE;
+BOOL BCMenu::xp_draw_3D_bitmaps=TRUE;
 BOOL BCMenu::hicolor_bitmaps=FALSE;
 // Variable to set how accelerators are justified. The default mode (TRUE) right
 // justifies them to the right of the longes string in the menu. FALSE
@@ -77,6 +77,65 @@ enum Win32Type{
 	WinXP
 };
 
+
+// The Representation of a 32 bit color table entry
+#pragma pack(push)
+#pragma pack(1)
+typedef struct ssBGR {
+	unsigned char b;
+	unsigned char g;
+	unsigned char r;
+	unsigned char pad;
+} sBGR;
+
+typedef sBGR *pBGR;
+#pragma pack(pop)
+
+
+// Returns the DI (Device Independent) bits of the Bitmap
+// Here I use 32 bit since it's easy to adress in memory and no
+// padding of the horizontal lines is required.
+static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
+{
+	BITMAPINFO bi;
+	BOOL bRes;
+	pBGR buf;
+
+	bi.bmiHeader.biSize = sizeof(bi.bmiHeader);
+	bi.bmiHeader.biWidth = nx;
+	bi.bmiHeader.biHeight = ny;
+	bi.bmiHeader.biPlanes = 1;
+	bi.bmiHeader.biBitCount = 32;
+	bi.bmiHeader.biCompression = BI_RGB;
+	bi.bmiHeader.biSizeImage = nx * 4 * ny;
+	bi.bmiHeader.biClrUsed = 0;
+	bi.bmiHeader.biClrImportant = 0;
+	
+	buf = (pBGR) malloc(nx * 4 * ny);
+	bRes = GetDIBits(hdcSrc, hBmpSrc, 0, ny, buf, &bi, DIB_RGB_COLORS);
+	if (!bRes) {
+		free(buf);
+		buf = 0;
+	}
+	return buf;
+}
+
+static void MySetDibBits(HDC hdcDst, HBITMAP hBmpDst, pBGR pdstBGR, int nx, int ny)
+{
+	BITMAPINFO bi;
+
+	// Set the new Bitmap
+	bi.bmiHeader.biSize = sizeof(bi.bmiHeader);
+	bi.bmiHeader.biWidth = nx;
+	bi.bmiHeader.biHeight = ny;
+	bi.bmiHeader.biPlanes = 1;
+	bi.bmiHeader.biBitCount = 32;
+	bi.bmiHeader.biCompression = BI_RGB;
+	bi.bmiHeader.biSizeImage = nx * 4 * ny;
+	bi.bmiHeader.biClrUsed = 0;
+	bi.bmiHeader.biClrImportant = 0;
+	SetDIBits(hdcDst, hBmpDst, 0, ny, pdstBGR, &bi, DIB_RGB_COLORS);
+}
 
 Win32Type IsShellType()
 {
@@ -576,7 +635,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 	m_brBackground.DeleteObject();
 }
 
-COLORREF BCMenu::LightenColor(COLORREF col,double factor)
+inline COLORREF BCMenu::LightenColor(COLORREF col,double factor)
 {
 	if(factor>0.0&&factor<=1.0){
 		BYTE red,green,blue,lightred,lightgreen,lightblue;
@@ -659,7 +718,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	else{
 		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
 		BOOL checkflag=FALSE;
-		COLORREF crText = RGB(0, 0, 0); // Original was	GetSysColor(COLOR_MENUTEXT);
+		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
 		COLORREF crSelect = GetSysColor(COLOR_HIGHLIGHT);
 		COLORREF crSelectFill;
 		if(!IsWinXPLuna())crSelectFill=LightenColor(crSelect,0.85);
@@ -906,30 +965,15 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 
 BOOL BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp)
 {
-	HICON hIcon = imglist->ExtractIcon(nIndex);
 	CDC dc;
 	dc.CreateCompatibleDC(pDC);
 	bmp.CreateCompatibleBitmap(pDC,m_iconX,m_iconY);
 	CBitmap* pOldBmp = dc.SelectObject(&bmp);
-	CBrush brush ;
-	COLORREF m_newclrBack;
-	m_newclrBack=GetSysColor(COLOR_3DFACE);
-	brush.CreateSolidBrush(m_newclrBack);
-	::DrawIconEx(
-		dc.GetSafeHdc(),
-		0,
-		0,
-		hIcon,
-		m_iconX,
-		m_iconY,
-		0,
-		(HBRUSH)brush,
-		DI_NORMAL
-		);
+	POINT pt = {0};
+	SIZE  sz = {m_iconX, m_iconY};
+	imglist->DrawIndirect(&dc, nIndex, pt, sz, pt, ILD_NORMAL, SRCCOPY, GetSysColor(COLOR_3DFACE), CLR_DEFAULT);
 	dc.SelectObject( pOldBmp );
 	dc.DeleteDC();
-	// the icon is not longer needed
-	::DestroyIcon(hIcon);
 	return(TRUE);
 }
 
@@ -2203,7 +2247,7 @@ void BCMenu::DitherBlt (HDC hdcDest, int nXDest, int nYDest, int nWidth,
 void BCMenu::GetFadedBitmap(CBitmap &bmp)
 {
 	CDC ddc;
-	COLORREF bgcol,col;
+	COLORREF col;
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
@@ -2221,56 +2265,78 @@ void BCMenu::GetFadedBitmap(CBitmap &bmp)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
 	ddc2.FillRect(rect,&brush);
-	bgcol=ddc2.GetPixel(1,1);
 	brush.DeleteObject();
 	ddc2.SelectObject(pddcOldBmp2);
 
+	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
+	sBGR bgcolBGR = *pdstBGR;
+	pBGR pcurBGR = pdstBGR;
+
 	for(int i=0;i<BitMap.bmWidth;++i){
 		for(int j=0;j<BitMap.bmHeight;++j){
-			col=ddc.GetPixel(i,j);
-			if(col!=bgcol)ddc.SetPixel(i,j,LightenColor(col,0.3));
+			if(*(DWORD *)pcurBGR != *(DWORD *)&bgcolBGR){
+				COLORREF newcol = LightenColor(RGB(pcurBGR->r,pcurBGR->g,pcurBGR->b),0.3);
+				sBGR newcolBGR = {GetBValue(newcol),GetGValue(newcol),GetRValue(newcol),0};
+				*pcurBGR = newcolBGR;
+			}
+			pcurBGR++;
 		}
 	}
+
+	MySetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
+	free(pdstBGR);
+
 	ddc.SelectObject(pddcOldBmp);
 }
 
 void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 {
 	CDC ddc;
+	COLORREF col,newcol;
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
 	ddc.CreateCompatibleDC(NULL);
 	CBitmap * pddcOldBmp = ddc.SelectObject(&bmp);
 
-	CDC ddcMask;
-	CBitmap bmpMask;
-	ddcMask.CreateCompatibleDC(NULL);
-	bmpMask.CreateBitmap(BitMap.bmWidth, BitMap.bmHeight, 1, 1, NULL);
-	CBitmap * pddcMaskOldBmp = ddcMask.SelectObject(&bmpMask);
+	// use this to get the background color, takes into account color shifting
+	CDC ddc2;
+	CBrush brush;
+	CBitmap bmp2;
+	ddc2.CreateCompatibleDC(NULL);
+	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
+	col=RGB(255,0,255); // Original was RGB(192,192,192)
+	brush.CreateSolidBrush(col);
+	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
+	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
+	ddc2.FillRect(rect,&brush);
+	brush.DeleteObject();
+	ddc2.SelectObject(pddcOldBmp2);
+	newcol=GetSysColor(COLOR_3DFACE);
 
-	/* Generate mask */
-	ddc.SetBkColor(RGB(255, 0, 255));
-	ddcMask.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddc, 0, 0, SRCCOPY);
+	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
+	sBGR bgcolBGR = *pdstBGR;
+	sBGR newcolBGR = {GetBValue(newcol),GetGValue(newcol), GetRValue(newcol),0};
+	pBGR pcurBGR = pdstBGR;
 
-	/* Remove transparent areas from bmp */
-	ddc.SetBkColor(RGB(0, 0, 0));
-	ddc.SetTextColor(RGB(255, 255, 255));
-	ddc.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddcMask, 0, 0, SRCAND);
+	for(int i=0;i<BitMap.bmWidth;++i){
+		for(int j=0;j<BitMap.bmHeight;++j){
+			if(*(DWORD *)pcurBGR == *(DWORD *)&bgcolBGR)
+				*pcurBGR = newcolBGR;
+			pcurBGR++;
+		}
+	}
 
-	/* Fill transparent areas with COLOR_3DFACE */
-	ddc.SetBkColor(GetSysColor(COLOR_3DFACE));
-	ddc.SetTextColor(RGB(0, 0, 0));
-	ddc.BitBlt(0, 0, BitMap.bmWidth, BitMap.bmHeight, &ddcMask, 0, 0, SRCPAINT);
+	MySetDibBits(ddc2.m_hDC, (HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
+	free(pdstBGR);
 
-	ddcMask.SelectObject(pddcMaskOldBmp);
 	ddc.SelectObject(pddcOldBmp);
 }
 
 void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 {
 	CDC ddc;
-	COLORREF bgcol,col,discol;
+	COLORREF col,discol;
 	BITMAP BitMap;
 
 	bmp.GetBitmap(&BitMap);
@@ -2288,34 +2354,42 @@ void BCMenu::GetDisabledBitmap(CBitmap &bmp,COLORREF background)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
 	ddc2.FillRect(rect,&brush);
-	bgcol=ddc2.GetPixel(1,1);
 	brush.DeleteObject();
 	ddc2.SelectObject(pddcOldBmp2);
 	discol=GetSysColor(COLOR_BTNSHADOW);
 
+	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
+	sBGR bgcolBGR = *pdstBGR;
+	sBGR backgroundBGR = {GetBValue(background),GetGValue(background),GetRValue(background),0};
+	pBGR pcurBGR = pdstBGR;
+
 	for(int i=0;i<BitMap.bmWidth;++i){
 		for(int j=0;j<BitMap.bmHeight;++j){
-			col=ddc.GetPixel(i,j);
-			if(col!=bgcol){
-				BYTE r = GetRValue(col);
-				BYTE g = GetGValue(col);
-				BYTE b = GetBValue(col);
-				int avgcol = (r+g+b)/3;
+			if(*(DWORD *)pcurBGR != *(DWORD *)&bgcolBGR){
+				int avgcol = ((DWORD)pcurBGR->r+(DWORD)pcurBGR->g+(DWORD)pcurBGR->b)/3;
 				double factor = avgcol/255.0;
-				ddc.SetPixel(i,j,LightenColor(discol,factor));
+				COLORREF newcol = LightenColor(discol,factor);
+				sBGR newcolBGR = {GetBValue(newcol),GetGValue(newcol),GetRValue(newcol),0};
+				*pcurBGR = newcolBGR;
 			}
 			else{
-				if(background)ddc.SetPixel(i,j,background);
+				if(background)
+					*pcurBGR = backgroundBGR;
 			}
+			pcurBGR++;
 		}
 	}
+
+	MySetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
+	free(pdstBGR);
+
 	ddc.SelectObject(pddcOldBmp);
 }
 
 void BCMenu::GetShadowBitmap(CBitmap &bmp)
 {
 	CDC ddc;
-	COLORREF bgcol,col,shadowcol=GetSysColor(COLOR_BTNSHADOW);
+	COLORREF col,shadowcol=GetSysColor(COLOR_BTNSHADOW);
 	BITMAP BitMap;
 
 	if(!IsWinXPLuna())shadowcol=LightenColor(shadowcol,0.49);
@@ -2334,21 +2408,30 @@ void BCMenu::GetShadowBitmap(CBitmap &bmp)
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);
 	ddc2.FillRect(rect,&brush);
-	bgcol=ddc2.GetPixel(1,1);
 	brush.DeleteObject();
 	ddc2.SelectObject(pddcOldBmp2);
 
+	pBGR pdstBGR = MyGetDibBits(ddc2.m_hDC,(HBITMAP)bmp.m_hObject,BitMap.bmWidth,BitMap.bmHeight);
+	sBGR bgcolBGR = *pdstBGR;
+	sBGR shadowcolBGR = {GetBValue(shadowcol),GetGValue(shadowcol), GetRValue(shadowcol),0};
+	pBGR pcurBGR = pdstBGR;
+
 	for(int i=0;i<BitMap.bmWidth;++i){
 		for(int j=0;j<BitMap.bmHeight;++j){
-			col=ddc.GetPixel(i,j);
-			if(col!=bgcol)ddc.SetPixel(i,j,shadowcol);
+			if(*(DWORD *)pcurBGR != *(DWORD *)&bgcolBGR)
+				*pcurBGR = shadowcolBGR;
+			pcurBGR++;
 		}
 	}
+
+	MySetDibBits(ddc2.m_hDC, (HBITMAP)bmp.m_hObject,pdstBGR,BitMap.bmWidth,BitMap.bmHeight);
+	free(pdstBGR);
+
 	ddc.SelectObject(pddcOldBmp);
 }
 
 
-BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
+BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDisabled/*=FALSE*/)
 {
 	BOOL bReturn=FALSE;
 
@@ -2362,6 +2445,8 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
 		if(hbmp){
 			CBitmap bmp;
 			bmp.Attach(hbmp);
+			if (bDisabled)
+				GetDisabledBitmap(bmp);
 			if(m_bitmapBackgroundFlag){
 				if(bmplist->Add(&bmp,m_bitmapBackground)>=0)bReturn=TRUE;
 			}
@@ -2375,7 +2460,10 @@ BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
 			CBitmap mybmp;
 			if(mybmp.LoadBitmap(nResourceID)){
 				hicolor_bitmaps=TRUE;
-				GetTransparentBitmap(mybmp);
+				if (bDisabled)
+					GetDisabledBitmap(mybmp, GetSysColor(COLOR_3DFACE));
+				else
+					GetTransparentBitmap(mybmp);
 				if(m_bitmapBackgroundFlag){
 					if(bmplist->Add(&mybmp,m_bitmapBackground)>=0)bReturn=TRUE;
 				}

@@ -20,7 +20,7 @@
  * @brief CConfigLog implementation
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ConfigLog.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
 #include "Constants.h"
@@ -537,7 +537,8 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	WriteLocaleSettings(LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
 // Codepage settings
-	WriteItemYesNo(1, _T("Detect codepage automatically for RC and HTML files"), &m_cpSettings.bDetectCodepage);
+	bool bValue = m_cpSettings.iDetectCodepageType & 1 ? true : false;
+	WriteItemYesNo(1, _T("Detect codepage automatically for RC and HTML files"), &bValue);
 	WriteItem(1, _T("unicoder codepage"), getDefaultCodepage());
 
 // Plugins

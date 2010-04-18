@@ -25,7 +25,7 @@
  *
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: DirFrame.cpp 4739 2007-11-12 20:41:16Z jtuc $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -46,6 +46,7 @@ enum
 {
 	PANE_FILTER = 1,
 	PANE_LEFT_RO,
+	PANE_MIDDLE_RO,
 	PANE_RIGHT_RO,
 };
 
@@ -60,6 +61,7 @@ const int FILTER_PANEL_WIDTH = 180;
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -127,8 +129,10 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, RO_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, 0, RO_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
+	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
 	return 0;
 }
@@ -167,7 +171,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 	if (oldActiveFrame == NULL)
 		// for the first frame, get the restored/maximized state from the registry
-		bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE);
+		bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE);
 	if (bMaximized)
 		nCmdShow = SW_SHOWMAXIMIZED;
 	else

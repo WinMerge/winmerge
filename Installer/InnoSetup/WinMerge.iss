@@ -1,5 +1,5 @@
 ; ID line follows -- this is updated by SVN
-; $Id$
+; $Id: WinMerge.iss 7095 2010-01-12 21:45:51Z kimmov $
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
@@ -19,11 +19,18 @@
 ;                           5.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
 ;
 ; Installer To Do List:
+; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL (Use GetCurentFileName)
+; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge., make sure it's turned on for at least one icon
+; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
 ; #  We need to ask those that have the RCLLocalization.dll in their plugins folder if they actually want it, their answer will need to be stored in the registry
 ; #  Write code to detect "\Programs\WinMerge\WinMerge" type start menu installs
+;
+; Custom Installer Pages:
+; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
+; #  Allow users to set their working directory via a custom installer page
 ;
 ; Things that make the user's life easier:
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
@@ -49,12 +56,16 @@
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
 ; Runtime files
-#define Runtime_MFC  "..\..\..\Runtimes\mfc80.dll"
-#define Runtime_MFCU "..\..\..\Runtimes\mfc80u.dll"
-#define Runtime_C    "..\..\..\Runtimes\msvcr80.dll"
-#define Runtime_CPP  "..\..\..\Runtimes\msvcp80.dll"
-#define Runtime_CPP_Manifest "..\..\..\Runtimes\Microsoft.VC80.CRT.manifest"
-#define Runtime_MFC_Manifest "..\..\..\Runtimes\Microsoft.VC80.MFC.manifest"
+#define Runtime_MFC  "..\Runtimes\mfc71.dll"
+#define Runtime_MFCU "..\Runtimes\mfc71u.dll"
+#define Runtime_C    "..\Runtimes\msvcr71.dll"
+#define Runtime_CPP  "..\Runtimes\msvcp71.dll"
+;#define Runtime_MFC  "..\..\..\Runtimes\mfc80.dll"
+;#define Runtime_MFCU "..\..\..\Runtimes\mfc80u.dll"
+;#define Runtime_C    "..\..\..\Runtimes\msvcr80.dll"
+;#define Runtime_CPP  "..\..\..\Runtimes\msvcp80.dll"
+;#define Runtime_CPP_Manifest "..\..\..\Runtimes\Microsoft.VC80.CRT.manifest"
+;#define Runtime_MFC_Manifest "..\..\..\Runtimes\Microsoft.VC80.MFC.manifest"
 
 
 [Setup]
@@ -120,35 +131,35 @@ AlwaysShowComponentsList=true
 Name: English; MessagesFile: ..\..\Translations\InnoSetup\English.isl
 
 ;Localizations:
-Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt
-Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
-Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt
-Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt
-Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt
+Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Bulgarian.txt
+Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Catalan.txt
+Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-ChineseSimplified.txt
+Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-ChineseTraditional.txt
+Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Croatian.txt
 Name: Czech; MessagesFile: ..\..\Translations\InnoSetup\Czech.isl
 Name: Danish; MessagesFile: ..\..\Translations\InnoSetup\Danish.isl
-Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Dutch.txt
-Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-French.txt
-Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
+Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Dutch.txt
+Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-French.txt
+Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Galician.txt
 Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
-Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
+Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
-Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
 Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
-Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
+Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
 Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Slovak.isl
 Name: Slovenian; MessagesFile: ..\..\Translations\InnoSetup\Slovenian.isl
-Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
-Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
+Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
+Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: ..\..\Translations\InnoSetup\Turkish.isl
-Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
+Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
 
 
 [Messages]
@@ -286,6 +297,33 @@ Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 Name: {app}\WinMerge.exe.manifest; Type: files
 Name: {app}\WinMergeU.exe.manifest; Type: files
 
+Name: {app}\Merge7z311.dll; Type: files
+Name: {app}\Merge7z311U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z312.dll; Type: files
+Name: {app}\Merge7z312U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z313.dll; Type: files
+Name: {app}\Merge7z313U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z420.dll; Type: files
+Name: {app}\Merge7z420U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z423.dll; Type: files
+Name: {app}\Merge7z423U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z431.dll; Type: files
+Name: {app}\Merge7z431U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z432.dll; Type: files
+Name: {app}\Merge7z432U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z442.dll; Type: files
+Name: {app}\Merge7z442U.dll; Type: files; MinVersion: 0, 4
+
+Name: {app}\Merge7z457.dll; Type: files
+Name: {app}\Merge7z457U.dll; Type: files; MinVersion: 0, 4
+
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -324,6 +362,7 @@ Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type:
 Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
 
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
+Name: {userdesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
 ;Remove ANSI executable link from start menu for NT-based Windows versions
@@ -371,26 +410,47 @@ Source: {#Runtime_MFC}; DestDir: {sys}; Flags: restartreplace uninsneveruninstal
 Source: {#Runtime_MFCU}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
 Source: {#Runtime_C}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 Source: {#Runtime_CPP}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_CPP_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_MFC_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+;Source: {#Runtime_CPP_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+;Source: {#Runtime_MFC_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: ..\Runtimes\MFC71JPN.DLL; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\release mindependency\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
-Source: ..\..\Build\ShellExtension\unicode release mindependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
+Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
+Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\x64 release\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
+Source: ..\..\Build\shellextensionx64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
+
+;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('457')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z442U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('442')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z432U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('432')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z431U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('431')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z423U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('423')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z420U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('420')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('313')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('312')
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('311')
+Source: ..\..\Build\MergeRelease\Merge7z457.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('457')
+Source: ..\..\Build\MergeRelease\Merge7z442.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('442')
+Source: ..\..\Build\MergeRelease\Merge7z432.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('432')
+Source: ..\..\Build\MergeRelease\Merge7z431.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('431')
+Source: ..\..\Build\MergeRelease\Merge7z423.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('423')
+Source: ..\..\Build\MergeRelease\Merge7z420.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('420')
+Source: ..\..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('313')
+Source: ..\..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('312')
+Source: ..\..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('311')
 
 ; Expat dll
-Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\expat\lib\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; PCRE dll
-Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\pcre\MinSizeRel\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; MergeLang.dll - translation helper dll
-Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core
 
 ; Language files
-Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
 Source: ..\..\Translations\WinMerge\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
@@ -415,8 +475,9 @@ Source: ..\..\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Componen
 Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
@@ -449,6 +510,13 @@ Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: o
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
 Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\CompareMSExcelFiles.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\CompareMSWordFiles.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreColumns.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 [Icons]
 ;Start Menu Icons
@@ -521,10 +589,11 @@ Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: string; ValueN
 
 ;Enables or disables the Context Menu preference based on what the user selects during install
 ;Initially the Context menu is explicitly disabled:
-Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 0; Check: not IsTaskSelected('ShellExtension')
+Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 0;
 
 ;If the user chose to use the context menu then we re-enable it.  This is necessary so it'll turn on and off not just on.
-Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension; Check: not ShellMenuEnabled()
+Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: {code:ShellMenuEnabled}
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
@@ -593,6 +662,13 @@ Name: {app}; Type: dirifempty
 
 
 [Code]
+Var
+    {Stores the version of 7-Zip Installed}
+    int7Zip_Version: Integer;
+
+    {Determines two things whether or not ComCtrl is needed and whether or not we've already checked}
+    intComCtlNeeded: Integer;
+
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
 Var
@@ -881,6 +957,151 @@ Begin
     }
 end;
 
+function Install7ZipDll(strDLL_Version: string): Boolean;
+Var
+    {Stores the file path of the 7-Zip File Manager Program}
+    str7Zip_Path: String;
+
+    {Stores the version of 7-Zip Installed}
+    str7Zip_Version: String;
+
+    {Stores the DLL's Version Function Input Parameter in integer format}
+    intDLL_Version: Integer;
+Begin
+
+    {If the actual version of 7-Zip Installed hasn't been determined yet then...}
+    If int7Zip_Version = 0 Then
+        Begin
+	       {Detects the install location of 7-Zip from the registry, if it's installed}
+	       RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe', '', str7Zip_Path)
+
+	        {If there is 7-Zip information in the registry then...}
+			If length(str7Zip_Path) > 0 Then
+				begin
+					{If the 7zFM.exe file exists then...}
+					If FileExists(str7Zip_Path) = True Then
+						Begin
+							{Detects the version of the 7-Zip Installed}
+							GetVersionNumbersString(str7Zip_Path, str7Zip_Version)
+							{If the version of 7-Zip Installed is at least 3.11 Then...}
+							If VersionAtLeast(str7Zip_Version, 3, 11, 0, 0) = True Then
+								begin
+									{If the user has 3.12 or higher installed then...}
+									If VersionAtLeast(str7Zip_Version, 3, 12, 0, 0) = True Then
+										Begin
+											{If the user has 3.13 or higher installed then...}
+											If VersionAtLeast(str7Zip_Version, 3, 13, 0, 0) = True Then
+												Begin
+													{If the user has 4.20 or higher installed then...}
+													If VersionAtLeast(str7Zip_Version, 4, 20, 0, 0) = True Then
+														Begin
+															{If the user has 4.23 or higher installed then...}
+															If VersionAtLeast(str7Zip_Version, 4, 23, 0, 0) = True Then
+																Begin
+																	{If the user has 4.31 or higher installed then...}
+																		If VersionAtLeast(str7Zip_Version, 4, 31, 0, 0) = True Then				
+																		Begin
+																			{If the user has 4.32 or higher installed then...}
+																			If VersionAtLeast(str7Zip_Version, 4, 32, 0, 0) = True Then
+																				Begin
+																					{If the user has 4.32 or higher installed then...}
+																					If VersionAtLeast(str7Zip_Version, 4, 42, 0, 0) = True Then
+																						Begin
+																							{If the user has 4.57 or higher installed then...}
+																							If VersionAtLeast(str7Zip_Version, 4, 57, 0, 0) = True Then
+																								{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
+																								int7Zip_Version := 457
+																							Else
+																								int7Zip_Version := 442
+																						end
+																					Else
+																						int7Zip_Version := 432
+																				end
+																			Else
+																				{Since it was at least 4.31, but not 4.32 then it must be 4.31}
+																				int7Zip_Version := 431
+																		end
+																	Else
+																		{Since it was at least 4.23, but not 4.31 then it must be 4.23}
+																		int7Zip_Version := 423
+																end
+															Else
+																{Since it was at least 4.20, but not 4.23 then it must be 4.20}
+																int7Zip_Version := 420
+														end
+													Else
+														{Since it was at least 3.13, but not 4.20 then it must be 3.13}
+														int7Zip_Version := 313
+												end
+											Else
+												{Since it was at least 3.12, but not 3.13 then it must be 3.12}
+												int7Zip_Version := 312;
+										end
+									Else
+										{Since it was at least 3.11, but not 3.12 then it must be 3.11}
+										int7Zip_Version := 311;
+								end;
+						End
+					Else
+						{Records that the 7-Zip program didn't exist for the rest of the installation}
+						int7Zip_Version := -1;
+				end
+			Else
+				{Records that the 7-Zip program wasn't installed for rest of the installation}
+				int7Zip_Version := -1;
+	    end;
+
+    {Converts the DLL Version String to an Integer for numeric evaluation}
+    intDLL_Version := StrToInt(strDLL_Version);
+
+	{If 7-Zip either wasn't installed or was of inadequate version then...}
+	If int7Zip_Version = -1 Then
+		Begin
+			{If the program is trying to determine if the 313 DLL should be installed then the answer is yes
+			we install this, because it's the most recent version and if they were to install 7-zip this
+			would be the version they'd want (since people generally install the latest and greatest)}
+			if intDLL_Version = 313 Then
+				Result := True
+
+			{If the program is trying to install anything, but 313 on a system without 7-Zip
+			then we disallow the installation of that DLL}
+			else
+				Result := False;
+		End
+
+	{If the version of 7-Zip was sufficient then...}
+	Else
+		Begin
+			{if the version the program is trying to install matches the version installed on the clients system then...}
+			If int7Zip_Version = intDLL_Version Then
+				Result := True
+
+			{If the program is trying to install the 31X DLL on a 31Y system then we won't allow the file to be copied...}
+            else
+				Result := False;
+		End;
+
+    {Debug:
+    If UsingWinNT = True Then
+        begin
+            If Result = True Then
+                Msgbox('We''re are installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
+            Else
+                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
+        end
+
+
+    Else
+         begin
+            If Result = True Then
+                Msgbox('We''re are installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
+            Else
+                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
+        end }
+
+End;
+
+
 {Determines whether or not TortoiseCVS is installed}
 Function TortoiseCVSInstalled(): boolean;
 Begin
@@ -948,12 +1169,16 @@ End;
 
 // Checks if context menu is already enabled for shell extension
 // If so, we won't overwrite its existing value in [Registry] section
-Function ShellMenuEnabled(): Boolean;
+Function ShellMenuEnabled(Unused: string): string;
+Var
+  ContextMenuEnabled: DWORD;
 Begin
-  If RegValueExists(HKCU, 'Software\Thingamahoochie\WinMerge', 'ContextMenuEnabled') Then
-    result := True
-  Else
-    result := False;
+  ContextMenuEnabled := 0;
+  RegQueryDWORDValue(HKCU, 'Software\Thingamahoochie\WinMerge', 'ContextMenuEnabled', ContextMenuEnabled);
+  if IsTaskSelected('ShellExtension') then
+    Result := inttostr(ContextMenuEnabled or 1)
+  else
+    Result := '0';
 End;
 
 {Replace one occurrence of OldStr in Str with NewStr}

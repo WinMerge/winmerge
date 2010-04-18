@@ -1186,7 +1186,7 @@ for (;;)
           {
           case 0x000b:
           case 0x000c:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           if ((md->moptions & PCRE_BSR_ANYCRLF) != 0) break;
@@ -1228,7 +1228,7 @@ for (;;)
           case 0x000b:
           case 0x000c:
           case 0x000d:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           OK = TRUE;
@@ -1425,7 +1425,7 @@ for (;;)
           {
           case 0x000b:
           case 0x000c:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           if ((md->moptions & PCRE_BSR_ANYCRLF) != 0) break;
@@ -1475,7 +1475,7 @@ for (;;)
           case 0x000b:
           case 0x000c:
           case 0x000d:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           OK = TRUE;
@@ -1663,7 +1663,7 @@ for (;;)
           {
           case 0x000b:
           case 0x000c:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           if ((md->moptions & PCRE_BSR_ANYCRLF) != 0) break;
@@ -1709,7 +1709,7 @@ for (;;)
           case 0x000b:
           case 0x000c:
           case 0x000d:
-          case 0x0085:
+//          case 0x0085:
           case 0x2028:
           case 0x2029:
           OK = TRUE;
@@ -1868,7 +1868,7 @@ for (;;)
         {
         case 0x000b:
         case 0x000c:
-        case 0x0085:
+//        case 0x0085:
         case 0x2028:
         case 0x2029:
         if ((md->moptions & PCRE_BSR_ANYCRLF) != 0) break;
@@ -1898,7 +1898,7 @@ for (;;)
         case 0x000b:
         case 0x000c:
         case 0x000d:
-        case 0x0085:
+//        case 0x0085:
         case 0x2028:
         case 0x2029:
         break;
@@ -1917,7 +1917,7 @@ for (;;)
         case 0x000b:
         case 0x000c:
         case 0x000d:
-        case 0x0085:
+//        case 0x0085:
         case 0x2028:
         case 0x2029:
         ADD_NEW(state_offset + 1, 0);

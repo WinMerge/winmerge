@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="MergeLang"
+	ProjectGUID="{4B011DDA-2279-437D-903C-8028913AF31B}"
+	RootNamespace="MergeLang"
+	Keyword="Win32Proj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\..\Build\MergeDebug"
+			IntermediateDirectory=".\..\BuildTmp\MergeDebug"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="TRUE"
+				OutputFile="$(OutDir)/MergeLang.dll"
+				LinkIncremental="2"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/MergeLang.pdb"
+				SubSystem="2"
+				ResourceOnlyDLL="TRUE"
+				ImportLibrary="$(OutDir)/MergeLang.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge
+UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\..\Build\MergeRelease"
+			IntermediateDirectory=".\..\BuildTmp\MergeRelease"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="TRUE"
+				OutputFile="$(OutDir)/MergeLang.dll"
+				LinkIncremental="1"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ResourceOnlyDLL="TRUE"
+				ImportLibrary="$(OutDir)/MergeLang.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge
+UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="UnicodeRelease|Win32"
+			OutputDirectory=".\..\Build\MergeUnicodeRelease"
+			IntermediateDirectory=".\..\BuildTmp\MergeUnicodeRelease"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="TRUE"
+				OutputFile="$(OutDir)/MergeLang.dll"
+				LinkIncremental="1"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ResourceOnlyDLL="TRUE"
+				ImportLibrary="$(OutDir)/MergeLang.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge
+UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="UnicodeDebug|Win32"
+			OutputDirectory=".\..\Build\MergeUnicodeDebug"
+			IntermediateDirectory=".\..\BuildTmp\MergeUnicodeDebug"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;MERGELANG_EXPORTS"
+				MinimalRebuild="TRUE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				IgnoreImportLibrary="TRUE"
+				OutputFile="$(OutDir)/MergeLang.dll"
+				LinkIncremental="2"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/MergeLang.pdb"
+				SubSystem="2"
+				ResourceOnlyDLL="TRUE"
+				ImportLibrary="$(OutDir)/MergeLang.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="pushd $(InputDir)..\Translations\WinMerge
+UpdatePoFilesFromPotFile.vbs
+popd
+mkdir $(InputDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\MergeUnicodeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeRelease\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\ 2&gt; NUL
+mkdir $(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\ 2&gt; NUL
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\MergeUnicodeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeRelease\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeDebug\Languages\&quot;
+copy /Y &quot;$(InputDir)..\Translations\WinMerge\*.po&quot; &quot;$(InputDir)..\Build\x64\MergeUnicodeRelease\Languages\&quot;
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath=".\Merge.rc">
+			<FileConfiguration
+				Name="Debug|Win32">
+				<Tool
+					Name="VCCustomBuildTool"
+					CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCustomBuildTool"
+					CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="UnicodeRelease|Win32">
+				<Tool
+					Name="VCCustomBuildTool"
+					CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="UnicodeDebug|Win32">
+				<Tool
+					Name="VCCustomBuildTool"
+					CommandLine="cd ..\Translations\WinMerge
+cscript CreateMasterPotFile.vbs
+"
+					Outputs="..\Translations\WinMerge\MergeLang.rc"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="..\Translations\WinMerge\MergeLang.rc">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

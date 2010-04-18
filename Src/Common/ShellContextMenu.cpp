@@ -24,7 +24,7 @@
  * @brief Main implementation file for CShellContextMenu
  */
 // Revision ID line follows -- this is updated by SVN
-// $Id$
+// $Id: ShellContextMenu.cpp 6106 2008-11-20 14:25:18Z kimmov $
 
 #include "StdAfx.h"
 #include "ShellContextMenu.h"
@@ -265,4 +265,11 @@ bool CShellContextMenu::RequeryShellContextMenu()
 	ASSERT(::GetMenuItemCount(m_hShellContextMenu) == 0);
 
 	return QueryShellContextMenu();
+}
+
+void CShellContextMenu::ReleaseShellContextMenu()
+{
+	m_pShellContextMenu2 = NULL;
+	m_pShellContextMenu3 = NULL;
+	m_pPreferredMenu = NULL;
 }

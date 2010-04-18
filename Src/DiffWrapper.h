@@ -22,12 +22,13 @@
  * @date  Created: 2003-08-22
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffWrapper.h 7091 2010-01-11 20:27:43Z kimmov $
 
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
 #include "FileLocation.h"
+#include "PathContext.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"
 
@@ -36,6 +37,7 @@ class PrediffingInfo;
 struct DIFFRANGE;
 class DiffList;
 struct DiffFileData;
+class PathContext;
 struct file_data;
 class FilterCommentsManager;
 struct FilterCommentsSet;
@@ -117,15 +119,21 @@ struct PATCHOPTIONS
 	BOOL bAddCommandline; /**< Add diff-style commandline to patch file. */
 };
 
+typedef enum {
+	IDENTLEVEL_NONE,
+	IDENTLEVEL_ALL,
+	IDENTLEVEL_EXCEPTLEFT,
+	IDENTLEVEL_EXCEPTMIDDLE,
+	IDENTLEVEL_EXCEPTRIGHT,
+} IDENTLEVEL;
 /**
  * @brief Diffutils returns this statusdata about files compared
  */
 struct DIFFSTATUS
 {
-	BOOL bLeftMissingNL; /**< Left file is missing EOL before EOF */
-	BOOL bRightMissingNL; /**< Right file is missing EOL before EOF */
+	BOOL bMissingNL[3]; /**< file is missing EOL before EOF */
 	BOOL bBinaries; /**< Files are binaries */
-	BOOL bIdentical; /**< diffutils said files are identical */
+	IDENTLEVEL Identical; /**< diffutils said files are identical */
 	BOOL bPatchFileFailed; /**< Creating patch file failed */
 
 	DIFFSTATUS() { memset(this, 0, sizeof(*this)); } // start out with all flags clear
@@ -156,17 +164,21 @@ public:
 	void GetPrediffer(PrediffingInfo * prediffer);
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
-	bool GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
+	bool GetDetectMovedBlocks() { return (m_pMovedLines[0] != NULL); }
 	void SetAppendFiles(BOOL bAppendFiles);
-	void SetPaths(const String &filepath1, const String &filepath2, BOOL tempPaths);
-	void SetAlternativePaths(const String &altPath1, const String &altPath2);
+	void SetPaths(const PathContext &files, BOOL tempPaths);
+	void SetAlternativePaths(const PathContext &altPaths);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
-	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
-	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left, bool bIgnoreBlankLines);
-	MovedLines * GetMovedLines() { return m_pMovedLines; }
-	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
+	void AddDiffRange(DiffList *pDiffList, UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
+	void AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr);
+	void FixLastDiffRange(int nFiles, int bufferLines[], int bMissingNL[], bool bIgnoreBlankLines);
+	MovedLines * GetMovedLines(int index) { return m_pMovedLines[index]; }
+	void SetCompareFiles(const PathContext &originalFile);
+	int Make3wayDiff(DiffList& diff3, DiffList& diff02, DiffList& diff10, DiffList& diff21);
+	void WritePatchFileHeader(enum output_style output_style, BOOL bAppendFiles);
+	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(LPCTSTR filterStr);
 	void EnablePlugins(bool enable);
 
@@ -176,18 +188,21 @@ protected:
 		int * bin_status, int * bin_file);
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
+public:
+	void LoadWinMergeDiffsFromDiffUtilsScript3(
+		struct change * script10, struct change * script02, struct change * script12,
+		const file_data * inf10, const file_data * inf02, const file_data * inf12);
+	void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, struct change * & script02);
 	bool RegExpFilter(int StartPos, int EndPos, int FileNo);
 
 private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	FilterList * m_pFilterList; /**< List of linefilters. */
-	String m_s1File; /**< Full path to first diff'ed file. */
-	String m_s2File; /**< Full path to second diff'ed file. */
-	String m_s1AlternativePath; /**< First file's alternative path (may be relative). */
-	String m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
-	String m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
-	String m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
+	PathContext m_files; /**< Full path to diff'ed file. */
+	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */
+	PathContext m_originalFile; /**< file's original (NON-TEMP) path. */
+
 	String m_sPatchFile; /**< Full path to created patch file. */
 	BOOL m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
@@ -201,7 +216,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
-	MovedLines * m_pMovedLines;
+	MovedLines * m_pMovedLines[3];
 	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };

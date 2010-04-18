@@ -7,7 +7,7 @@
  *  @brief  Declaration of Unicode file classes.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: UniFile.h 7056 2009-12-26 19:49:14Z kimmov $
 
 #ifndef UniFile_h_included
 #define UniFile_h_included
@@ -46,7 +46,7 @@ public:
 
 	virtual bool IsUnicode() = 0;
 	virtual bool ReadBom() = 0;
-	virtual bool HasBom() = 0;
+	virtual bool HasBom() const = 0;
 	virtual void SetBom(bool bom) = 0;
 
 	virtual ucr::UNICODESET GetUnicoding() const = 0;
@@ -93,7 +93,28 @@ public:
 	virtual ucr::UNICODESET GetUnicoding() const { return m_unicoding; }
 	virtual void SetUnicoding(ucr::UNICODESET unicoding) { m_unicoding = unicoding; }
 	virtual int GetCodepage() const { return m_codepage; }
-	virtual void SetCodepage(int codepage) { m_codepage = codepage; }
+	virtual void SetCodepage(int codepage) { 
+		m_codepage = codepage;
+		switch (m_codepage)
+		{
+		case 1200:
+			m_unicoding = ucr::UCS2LE;
+			m_charsize = 2;
+			break;
+		case 1201:
+			m_unicoding = ucr::UCS2BE;
+			m_charsize = 2;
+			break;
+		case 65001:
+			m_charsize = 1;
+			m_unicoding = ucr::UTF8;
+			break;
+		default:
+			m_charsize = 1;
+			m_unicoding = ucr::NONE;
+			break;
+		}
+	}
 
 	virtual int GetLineNumber() const { return m_lineno; }
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
@@ -140,7 +161,7 @@ public:
 	virtual bool IsOpen() const;
 
 	virtual bool ReadBom();
-	virtual bool HasBom();
+	virtual bool HasBom() const;
 	virtual void SetBom(bool bom);
 
 public:
@@ -184,7 +205,7 @@ public:
 	virtual bool IsOpen() const;
 
 	virtual bool ReadBom();
-	virtual bool HasBom();
+	virtual bool HasBom() const;
 	virtual void SetBom(bool bom);
 
 protected:

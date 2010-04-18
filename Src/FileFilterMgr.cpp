@@ -18,7 +18,7 @@
  *  @brief Implementation of FileFilterMgr and supporting routines
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileFilterMgr.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
 #include <windows.h>
 #include <string.h>
@@ -158,7 +158,8 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
-	char regexString[200] = {0};
+	int  regexStringBufLen = _tcslen(str.c_str()) * sizeof(TCHAR) * 3 + 1;
+	char *regexString = (char *)malloc(regexStringBufLen);
 	int regexLen = 0;
 	int pcre_opts = 0;
 
@@ -166,10 +167,11 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 	// For unicode builds, use UTF-8.
 	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
 	regexLen = TransformUcs2ToUtf8(str.c_str(), str.length(),
-		regexString, sizeof(regexString));
+		regexString, regexStringBufLen);
+	regexString[regexLen] = '\0';
 	pcre_opts |= PCRE_UTF8;
 #else
-	strcpy(regexString, str.c_str());
+	strcpy(regexString, (LPCTSTR)str.c_str());
 	regexLen = strlen(regexString);
 #endif
 	pcre_opts |= PCRE_CASELESS;
@@ -189,6 +191,8 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		
 		filterList->push_back(elem);
 	}
+
+	free(regexString);
 }
 
 /**
@@ -303,14 +307,15 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 	{
 		//const FileFilterElement & elem = filterList.GetNext(pos);
 		int ovector[30];
-		char compString[200] = {0};
+		int compStringBufLen = _tcslen(szTest) * sizeof(TCHAR) * 3 + 1;
+		char *compString = (char *)malloc(compStringBufLen);
 		int stringLen = 0;
 		TCHAR * tempName = _tcsdup(szTest); // Create temp copy for conversions
 		TCHAR * cmpStr = _tcsupr(tempName);
 
 #ifdef UNICODE
 		stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
-			compString, sizeof(compString));
+			compString, compStringBufLen);
 #else
 		strcpy(compString, cmpStr);
 		stringLen = strlen(compString);
@@ -322,6 +327,7 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 			0, 0, ovector, 30);
 
 		free(tempName);
+		free(compString);
 
 		if (result >= 0)
 			return TRUE;

@@ -20,7 +20,7 @@
  * @brief Implementation file for SaveClosingDlg dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: SaveClosingDlg.cpp 4704 2007-11-03 12:10:48Z jtuc $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -44,8 +44,10 @@ IMPLEMENT_DYNAMIC(SaveClosingDlg, CDialog)
 SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
  : CDialog(SaveClosingDlg::IDD, pParent)
  , m_leftSave(SAVECLOSING_SAVE)
+ , m_middleSave(SAVECLOSING_SAVE)
  , m_rightSave(SAVECLOSING_SAVE)
  , m_bAskForLeft(FALSE)
+ , m_bAskForMiddle(FALSE)
  , m_bAskForRight(FALSE)
  , m_bDisableCancel(FALSE)
 {
@@ -56,8 +58,10 @@ void SaveClosingDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(SaveClosingDlg)
 	DDX_Text(pDX, IDC_SAVECLOSING_LEFTFILE, m_sLeftFile);
+	DDX_Text(pDX, IDC_SAVECLOSING_MIDDLEFILE, m_sMiddleFile);
 	DDX_Text(pDX, IDC_SAVECLOSING_RIGHTFILE, m_sRightFile);
 	DDX_Radio(pDX, IDC_SAVECLOSING_SAVELEFT, m_leftSave);
+	DDX_Radio(pDX, IDC_SAVECLOSING_SAVEMIDDLE, m_middleSave);
 	DDX_Radio(pDX, IDC_SAVECLOSING_SAVERIGHT, m_rightSave);
 	//}}AFX_DATA_MAP
 }
@@ -85,8 +89,8 @@ BOOL SaveClosingDlg::OnInitDialog()
 	GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->SetFocus();
 	if (!m_bAskForLeft)
 	{
-		// Left items disabled move focus to right side items
-		GetDlgItem(IDC_SAVECLOSING_SAVERIGHT)->SetFocus();
+		// Left items disabled move focus to middle side items
+		GetDlgItem(IDC_SAVECLOSING_SAVEMIDDLE)->SetFocus();
 
 		GetDlgItem(IDC_SAVECLOSING_LEFTFRAME)->EnableWindow(FALSE);
 		GetDlgItem(IDC_SAVECLOSING_LEFTFILE)->EnableWindow(FALSE);
@@ -94,6 +98,18 @@ BOOL SaveClosingDlg::OnInitDialog()
 		GetDlgItem(IDC_SAVECLOSING_DISCARDLEFT)->EnableWindow(FALSE);
 	}
 
+	if (!m_bAskForMiddle)
+	{
+		// Middle items disabled move focus to right side items
+		if (!m_bAskForLeft)
+			GetDlgItem(IDC_SAVECLOSING_SAVERIGHT)->SetFocus();
+
+		GetDlgItem(IDC_SAVECLOSING_MIDDLEFRAME)->EnableWindow(FALSE);
+		GetDlgItem(IDC_SAVECLOSING_MIDDLEFILE)->EnableWindow(FALSE);
+		GetDlgItem(IDC_SAVECLOSING_SAVEMIDDLE)->EnableWindow(FALSE);
+		GetDlgItem(IDC_SAVECLOSING_DISCARDMIDDLE)->EnableWindow(FALSE);
+	}
+	
 	if (!m_bAskForRight)
 	{
 		GetDlgItem(IDC_SAVECLOSING_RIGHTFRAME)->EnableWindow(FALSE);
@@ -114,6 +130,10 @@ BOOL SaveClosingDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_LEFTFILE, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVELEFT, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_DISCARDLEFT, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SAVECLOSING_MIDDLEFRAME, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SAVECLOSING_MIDDLEFILE, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVEMIDDLE, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SAVECLOSING_DISCARDMIDDLE, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_RIGHTFRAME, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_RIGHTFILE, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SAVECLOSING_SAVERIGHT, 0, 1, 0, 0); // grows right
@@ -134,9 +154,10 @@ BOOL SaveClosingDlg::OnInitDialog()
  * @param [in] bLeft Do we ask about left-side file?
  * @param [in] bRight Do we ask about right-side file?
  */
-void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bRight /*= FALSE*/)
+void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bMiddle /*= FALSE*/, BOOL bRight /*= FALSE*/)
 {
 	m_bAskForLeft = bLeft;
+	m_bAskForMiddle = bMiddle;
 	m_bAskForRight = bRight;
 }
 
@@ -146,6 +167,7 @@ void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bRight /*= FALSE*/)
 void SaveClosingDlg::OnDiscardAll()
 {
 	m_leftSave = SAVECLOSING_DISCARD;
+	m_middleSave = SAVECLOSING_DISCARD;
 	m_rightSave = SAVECLOSING_DISCARD;
 	UpdateData(FALSE);
 	OnOK();

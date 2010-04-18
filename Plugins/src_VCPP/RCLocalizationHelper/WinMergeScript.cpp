@@ -7,7 +7,7 @@
  *
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id$
+// $Id: WinMergeScript.cpp 3135 2006-03-06 03:01:38Z elsapo $
 
 #include "stdafx.h"
 #include "RCLocalizationHelper.h"
@@ -52,7 +52,8 @@ STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 static int
 GetLineLength(const WCHAR * start, int maxlen)
 {
-	for (int i=0; (maxlen == -1 || i < maxlen); ++i)
+	int i;
+	for (i=0; (maxlen == -1 || i < maxlen); ++i)
 	{
 		if (start[i] == '\n' || start[i] == '\r' || start[i] == 0)
 			return i;

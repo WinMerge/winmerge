@@ -20,7 +20,7 @@
  * @brief Code for DiffThread class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffThread.cpp 6910 2009-07-12 09:06:54Z kimmov $
 
 #include "stdafx.h"
 #include "UnicodeString.h"
@@ -207,10 +207,9 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	bool casesensitive = false;
 	int depth = myStruct->context->m_bRecursive ? -1 : 0;
 
-	paths.SetLeft(myStruct->context->GetNormalizedLeft().c_str());
-	paths.SetRight(myStruct->context->GetNormalizedRight().c_str());
+	paths = myStruct->context->GetNormalizedPaths();
 
-	String subdir; // blank to start at roots specified in diff context
+	LPCTSTR subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
 #ifdef _DEBUG
 	_CrtMemState memStateBefore;
 	_CrtMemState memStateAfter;
@@ -219,7 +218,7 @@ UINT DiffThreadCollect(LPVOID lpParam)
 #endif
 
 	// Build results list (except delaying file comparisons until below)
-	DirScan_GetItems(paths, subdir, false, subdir, false, myStruct,
+	DirScan_GetItems(paths, subdir, myStruct,
 			casesensitive, depth, NULL, myStruct->context->m_bWalkUniques);
 
 #ifdef _DEBUG
@@ -230,6 +229,9 @@ UINT DiffThreadCollect(LPVOID lpParam)
 
 	// ReleaseSemaphore() once again to signal that collect phase is ready
 	ReleaseSemaphore(myStruct->hSemaphore, 1, 0);
+
+	// Send message to UI to update
+	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, 2, myStruct->bOnlyRequested);
 	return 1;
 }
 
@@ -265,6 +267,6 @@ UINT DiffThreadCompare(LPVOID lpParam)
 	// Send message to UI to update
 	myStruct->nThreadState = CDiffThread::THREAD_COMPLETED;
 	// msgID=MSG_UI_UPDATE=1025 (2005-11-29, Perry)
-	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, NULL, NULL);
+	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, NULL, myStruct->bOnlyRequested);
 	return 1;
 }

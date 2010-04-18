@@ -4,7 +4,7 @@
  * @brief Compare options classes and types.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: CompareOptions.h 5920 2008-09-07 16:15:10Z marcelgosselin $
 
 #ifndef CompareOptions_h_included
 #define CompareOptions_h_included
@@ -47,7 +47,8 @@ enum DiffOutputType
 	DIFF_OUTPUT_CONTEXT,
 	/**< Output the differences in a unified context diff format (-u). */
 	DIFF_OUTPUT_UNIFIED,
-
+	/** Output html style.  */
+	DIFF_OUTPUT_HTML = 8,
 // These are not used, see the comment above enum.
 #if 0
 	/**< Output the differences as commands suitable for `ed' (-e).  */
@@ -59,7 +60,7 @@ enum DiffOutputType
 	/**< Output merged #ifdef'd file (-D).  */
 	DIFF_OUTPUT_IFDEF,
 	/**< Output sdiff style (-y).  */
-	DIFF_OUTPUT_SDIFF
+	DIFF_OUTPUT_SDIFF,
 #endif
 };
 

@@ -8,7 +8,7 @@
  *  @brief Implementation of methods of CDirView that copy/move/delete files
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirActions.cpp 6572 2009-03-18 18:51:20Z kimmov $
 
 // It would be nice to make this independent of the UI (CDirView)
 // but it needs access to the list of selected items.
@@ -278,11 +278,11 @@ void CDirView::DoCopyRightToLeft()
 				// If destination sides's relative path is empty it means we
 				// are copying unique items and need to get the real relative
 				// path from original side.
-				if (di.left.path.empty())
+				if (di.diffFileInfo[0].path.empty())
 				{
 					sDest = GetDocument()->GetLeftBasePath();
-					sDest = paths_ConcatPath(sDest, di.right.path);
-					sDest = paths_ConcatPath(sDest, di.right.filename);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[1].path);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[1].filename);
 				}
 			}
 
@@ -339,11 +339,11 @@ void CDirView::DoCopyLeftToRight()
 				// If destination sides's relative path is empty it means we
 				// are copying unique items and need to get the real relative
 				// path from original side.
-				if (di.right.path.empty())
+				if (di.diffFileInfo[1].path.empty())
 				{
 					sDest = GetDocument()->GetRightBasePath();
-					sDest = paths_ConcatPath(sDest, di.left.path);
-					sDest = paths_ConcatPath(sDest, di.left.filename);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[0].path);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[0].filename);
 				}
 			}
 
@@ -625,13 +625,13 @@ void CDirView::DoCopyLeftTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.left.path.empty())
+				if (!di.diffFileInfo[0].path.empty())
 				{
-					sFullDest += di.left.path.c_str();
+					sFullDest += di.diffFileInfo[0].path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.left.filename.c_str();
+			sFullDest += di.diffFileInfo[0].filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -696,13 +696,13 @@ void CDirView::DoCopyRightTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.right.path.empty())
+				if (!di.diffFileInfo[1].path.empty())
 				{
-					sFullDest += di.right.path.c_str();
+					sFullDest += di.diffFileInfo[1].path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.right.filename.c_str();
+			sFullDest += di.diffFileInfo[1].filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -765,13 +765,13 @@ void CDirView::DoMoveLeftTo()
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.left.path.empty())
+				if (!di.diffFileInfo[0].path.empty())
 				{
-					sFullDest += di.left.path.c_str();
+					sFullDest += di.diffFileInfo[0].path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.left.filename.c_str();
+			sFullDest += di.diffFileInfo[0].filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -834,13 +834,13 @@ void CDirView::DoMoveRightTo()
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.right.path.empty())
+				if (!di.diffFileInfo[1].path.empty())
 				{
-					sFullDest += di.right.path.c_str();
+					sFullDest += di.diffFileInfo[1].path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.right.filename.c_str();
+			sFullDest += di.diffFileInfo[1].filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -1038,9 +1038,6 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 				GetMainFrame()->CheckinToClearCase(act.dest.c_str());
 		}
 
-		// Update doc (difflist)
-		pDoc->UpdateDiffAfterOperation(act, diffpos);
-
 		// Update UI
 		switch (act.UIResult)
 		{
@@ -1054,8 +1051,10 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_LEFT:
-			if (diffcode.isSideLeftOnly())
+			if (diffcode.isSideFirstOnly())
 			{
+				if (m_bTreeMode)
+					CollapseSubdir(act.context);
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
 			}
@@ -1066,8 +1065,10 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_RIGHT:
-			if (diffcode.isSideRightOnly())
+			if (diffcode.isSideSecondOnly())
 			{
+				if (m_bTreeMode)
+					CollapseSubdir(act.context);
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
 			}
@@ -1078,10 +1079,15 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_BOTH:
+			if (m_bTreeMode)
+				CollapseSubdir(act.context);
 			m_pList->DeleteItem(act.context);
 			bItemsRemoved = TRUE;
 			break;
 		}
+
+		// Update doc (difflist)
+		pDoc->UpdateDiffAfterOperation(act, diffpos);
 
 		if (bUpdateLeft || bUpdateRight)
 		{
@@ -1125,7 +1131,7 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di) const
 	// can't copy same items
 	if (di.diffcode.isResultSame()) return FALSE;
 	// impossible if only on left
-	if (di.diffcode.isSideLeftOnly()) return FALSE;
+	if (di.diffcode.isSideFirstOnly()) return FALSE;
 
 	// everything else can be copied to left
 	return TRUE;
@@ -1138,7 +1144,7 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di) const
 	// can't copy same items
 	if (di.diffcode.isResultSame()) return FALSE;
 	// impossible if only on right
-	if (di.diffcode.isSideRightOnly()) return FALSE;
+	if (di.diffcode.isSideSecondOnly()) return FALSE;
 
 	// everything else can be copied to right
 	return TRUE;
@@ -1149,7 +1155,7 @@ BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.diffcode.isResultError()) return FALSE;
 	// impossible if only on right
-	if (di.diffcode.isSideRightOnly()) return FALSE;
+	if (di.diffcode.isSideSecondOnly()) return FALSE;
 	// everything else can be deleted on left
 	return TRUE;
 }
@@ -1159,7 +1165,7 @@ BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.diffcode.isResultError()) return FALSE;
 	// impossible if only on right
-	if (di.diffcode.isSideLeftOnly()) return FALSE;
+	if (di.diffcode.isSideFirstOnly()) return FALSE;
 
 	// everything else can be deleted on right
 	return TRUE;
@@ -1170,7 +1176,7 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.diffcode.isResultError()) return FALSE;
 	// impossible if only on right or left
-	if (di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly()) return FALSE;
+	if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly()) return FALSE;
 
 	// everything else can be deleted on both
 	return TRUE;
@@ -1189,7 +1195,7 @@ BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 	if (m_bTreeMode && GetDocument()->GetRecursive())
 	{
 		if (di.diffcode.isDirectory() ||
-			(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
+			(!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond())) /* FIXME: 3-pane */
 		{
 			return FALSE;
 		}
@@ -1197,7 +1203,7 @@ BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 	else 
 	{
 		if (!di.diffcode.isDirectory() &&
-			(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
+			(!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond())) /* FIXME: 3-pane */
 		{
 			return FALSE;
 		}
@@ -1205,24 +1211,45 @@ BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 	return TRUE;
 }
 /// is it possible to compare these two items?
-BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) const
+BOOL CDirView::AreItemsOpenable(SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2) const
 {
-	String sLeftBasePath = GetDocument()->GetLeftBasePath();
-	String sRightBasePath = GetDocument()->GetRightBasePath();
+	String sLeftBasePath = GetDocument()->GetBasePath(0);
+	String sRightBasePath = GetDocument()->GetBasePath(1);
 
 	// Must be both directory or neither
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory()) return FALSE;
 
-	// Must be on different sides, or one on one side & one on both
-	if (di1.diffcode.isSideLeftOnly() && (di2.diffcode.isSideRightOnly() ||
+	switch (selectionType)
+	{
+	case SELECTIONTYPE_NORMAL:
+		// Must be on different sides, or one on one side & one on both
+		if (di1.diffcode.isSideFirstOnly() && (di2.diffcode.isSideSecondOnly() ||
 			di2.diffcode.isSideBoth()))
-		return TRUE;
-	if (di1.diffcode.isSideRightOnly() && (di2.diffcode.isSideLeftOnly() ||
+			return TRUE;
+		if (di1.diffcode.isSideSecondOnly() && (di2.diffcode.isSideFirstOnly() ||
 			di2.diffcode.isSideBoth()))
-		return TRUE;
-	if (di1.diffcode.isSideBoth() && (di2.diffcode.isSideLeftOnly() ||
-			di2.diffcode.isSideRightOnly()))
-		return TRUE;
+			return TRUE;
+		if (di1.diffcode.isSideBoth() && (di2.diffcode.isSideFirstOnly() ||
+			di2.diffcode.isSideSecondOnly()))
+			return TRUE;
+		break;
+	case SELECTIONTYPE_LEFT1LEFT2:
+		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(0))
+			return TRUE;
+		break;
+	case SELECTIONTYPE_RIGHT1RIGHT2:
+		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(1))
+			return TRUE;
+		break;
+	case SELECTIONTYPE_LEFT1RIGHT2:
+		if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1))
+			return TRUE;
+		break;
+	case SELECTIONTYPE_LEFT2RIGHT1:
+		if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0))
+			return TRUE;
+		break;
+	}
 
 	// Allow to compare items if left & right path refer to same directory
 	// (which means there is effectively two files involved). No need to check
@@ -1232,11 +1259,69 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 
 	return FALSE;
 }
+/// is it possible to compare these three items?
+BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, const DIFFITEM & di3) const
+{
+	String sLeftBasePath = GetDocument()->GetBasePath(0);
+	String sMiddleBasePath = GetDocument()->GetBasePath(1);
+	String sRightBasePath = GetDocument()->GetBasePath(2);
+	String sLeftPath1 = paths_ConcatPath(di1.getFilepath(0, sLeftBasePath), di1.diffFileInfo[0].filename);
+	String sLeftPath2 = paths_ConcatPath(di2.getFilepath(0, sLeftBasePath), di2.diffFileInfo[0].filename);
+	String sLeftPath3 = paths_ConcatPath(di3.getFilepath(0, sLeftBasePath), di3.diffFileInfo[0].filename);
+	String sMiddlePath1 = paths_ConcatPath(di1.getFilepath(1, sMiddleBasePath), di1.diffFileInfo[1].filename);
+	String sMiddlePath2 = paths_ConcatPath(di2.getFilepath(1, sMiddleBasePath), di2.diffFileInfo[1].filename);
+	String sMiddlePath3 = paths_ConcatPath(di3.getFilepath(1, sMiddleBasePath), di3.diffFileInfo[1].filename);
+	String sRightPath1 = paths_ConcatPath(di1.getFilepath(2, sRightBasePath), di1.diffFileInfo[2].filename);
+	String sRightPath2 = paths_ConcatPath(di2.getFilepath(2, sRightBasePath), di2.diffFileInfo[2].filename);
+	String sRightPath3 = paths_ConcatPath(di3.getFilepath(2, sRightBasePath), di3.diffFileInfo[2].filename);
+	// Must not be binary (unless archive)
+	if
+	(
+		(di1.diffcode.isBin() || di2.diffcode.isBin() || di3.diffcode.isBin())
+	&&!	(
+			HasZipSupport()
+		&&	(sLeftPath1.empty() || ArchiveGuessFormat(sLeftPath1.c_str()))
+		&&	(sMiddlePath1.empty() || ArchiveGuessFormat(sMiddlePath1.c_str()))
+		&&	(sLeftPath2.empty() || ArchiveGuessFormat(sLeftPath2.c_str()))
+		&&	(sMiddlePath2.empty() || ArchiveGuessFormat(sMiddlePath2.c_str()))
+		&&	(sLeftPath2.empty() || ArchiveGuessFormat(sLeftPath2.c_str()))
+		&&	(sMiddlePath2.empty() || ArchiveGuessFormat(sMiddlePath2.c_str())) /* FIXME: */
+		)
+	)
+	{
+		return FALSE;
+	}
+
+	// Must be both directory or neither
+	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory() && di1.diffcode.isDirectory() != di3.diffcode.isDirectory()) return FALSE;
+
+	// Must be on different sides, or one on one side & one on both
+	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(1) && di3.diffcode.isExists(2))
+		return TRUE;
+	if (di1.diffcode.isExists(0) && di2.diffcode.isExists(2) && di3.diffcode.isExists(1))
+		return TRUE;
+	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(0) && di3.diffcode.isExists(2))
+		return TRUE;
+	if (di1.diffcode.isExists(1) && di2.diffcode.isExists(2) && di3.diffcode.isExists(0))
+		return TRUE;
+	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(0) && di3.diffcode.isExists(1))
+		return TRUE;
+	if (di1.diffcode.isExists(2) && di2.diffcode.isExists(1) && di3.diffcode.isExists(0))
+		return TRUE;
+
+	// Allow to compare items if left & right path refer to same directory
+	// (which means there is effectively two files involved). No need to check
+	// side flags. If files weren't on both sides, we'd have no DIFFITEMs.
+	if (lstrcmpi(sLeftBasePath.c_str(), sMiddleBasePath.c_str()) == 0 && lstrcmpi(sLeftBasePath.c_str(), sRightBasePath.c_str()) == 0)
+		return TRUE;
+
+	return FALSE;
+}
 /// is it possible to open left item ?
 BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
-	if (di.diffcode.isSideRightOnly()) return FALSE;
+	if (di.diffcode.isSideSecondOnly()) return FALSE;
 
 	// everything else can be opened on right
 	return TRUE;
@@ -1245,7 +1330,7 @@ BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di) const
 BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
-	if (di.diffcode.isSideLeftOnly()) return FALSE;
+	if (di.diffcode.isSideFirstOnly()) return FALSE;
 
 	// everything else can be opened on left
 	return TRUE;
@@ -1264,7 +1349,7 @@ BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di) const
 BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
-	if (di.diffcode.isSideRightOnly()) return FALSE;
+	if (di.diffcode.isSideSecondOnly()) return FALSE;
 
 	// everything else can be copied to from left
 	return TRUE;
@@ -1273,7 +1358,7 @@ BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di) const
 BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
-	if (di.diffcode.isSideLeftOnly()) return FALSE;
+	if (di.diffcode.isSideFirstOnly()) return FALSE;
 
 	// everything else can be copied to from right
 	return TRUE;
@@ -1310,10 +1395,10 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
 	else
 	{
 		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
-		const String leftrelpath = paths_ConcatPath(di.left.path, di.left.filename);
-		const String rightrelpath = paths_ConcatPath(di.right.path, di.right.filename);
-		const String & leftpath = GetDocument()->GetLeftBasePath();
-		const String & rightpath = GetDocument()->GetRightBasePath();
+		const String leftrelpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+		const String rightrelpath = paths_ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename);
+		const String & leftpath = GetDocument()->GetBasePath(0);
+		const String & rightpath = GetDocument()->GetBasePath(1);
 		strLeft = paths_ConcatPath(leftpath, leftrelpath);
 		strRight = paths_ConcatPath(rightpath, rightrelpath);
 	}
@@ -1325,11 +1410,23 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
  */
 void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 {
-	String strLeft;
-	String strRight;
-	GetItemFileNames(sel, strLeft, strRight);
-	paths->SetLeft(strLeft.c_str());
-	paths->SetRight(strRight.c_str());
+	String strPath[3];
+	UINT_PTR diffpos = GetItemKey(sel);
+	if (diffpos == SPECIAL_ITEM_POS)
+	{
+		for (int nIndex = 0; nIndex < GetDocument()->m_nDirs; nIndex++)
+			paths->SetPath(nIndex, _T(""));
+	}
+	else
+	{
+		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
+		for (int nIndex = 0; nIndex < GetDocument()->m_nDirs; nIndex++)
+		{
+			const String relpath = paths_ConcatPath(di.diffFileInfo[nIndex].path, di.diffFileInfo[nIndex].filename);
+			const String & path = GetDocument()->GetBasePath(nIndex);
+			paths->SetPath(nIndex, paths_ConcatPath(path, relpath).c_str());
+		}
+	}
 }
 
 /**
@@ -1390,8 +1487,8 @@ void CDirView::ApplyPluginPrediffSetting(int newsetting)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!di.diffcode.isDirectory() && !di.diffcode.isSideLeftOnly() &&
-			!di.diffcode.isSideRightOnly())
+		if (!di.diffcode.isDirectory() && !di.diffcode.isSideFirstOnly() &&
+			!di.diffcode.isSideSecondOnly())
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			String filteredFilenames = slFile + _T("|") + srFile;
@@ -1450,7 +1547,7 @@ FormatFilesAffectedString(int nFilesAffected, int nFilesTotal)
 void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 {
 	IntToIntMap currentCodepages;
-	int nLeft=0, nLeftAffected=0, nRight=0, nRightAffected=0;
+	int nFirst=0, nFirstAffected=0, nSecond=0, nSecondAffected=0, nThird=0, nThirdAffected=0;
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
@@ -1460,29 +1557,41 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 		if (di.diffcode.isDirectory())
 			continue;
 
-		if (di.diffcode.isSideLeftOrBoth())
+		if (di.diffcode.isExistsFirst())
 		{
-			// exists on left
-			++nLeft;
-			if (di.left.IsEditableEncoding())
-				++nLeftAffected;
-			int codepage = di.left.encoding.m_codepage;
+			// exists on First
+			++nFirst;
+			if (di.diffFileInfo[0].IsEditableEncoding())
+				++nFirstAffected;
+			int codepage = di.diffFileInfo[0].encoding.m_codepage;
 			currentCodepages.Increment(codepage);
 		}
-		if (di.diffcode.isSideRightOrBoth())
+		if (di.diffcode.isExistsSecond())
 		{
-			++nRight;
-			if (di.right.IsEditableEncoding())
-				++nRightAffected;
-			int codepage = di.right.encoding.m_codepage;
+			++nSecond;
+			if (di.diffFileInfo[1].IsEditableEncoding())
+				++nSecondAffected;
+			int codepage = di.diffFileInfo[1].encoding.m_codepage;
+			currentCodepages.Increment(codepage);
+		}
+		if (GetDocument()->m_nDirs > 2 && di.diffcode.isExistsThird())
+		{
+			++nThird;
+			if (di.diffFileInfo[1].IsEditableEncoding())
+				++nThirdAffected;
+			int codepage = di.diffFileInfo[2].encoding.m_codepage;
 			currentCodepages.Increment(codepage);
 		}
 	}
 
 	// Format strings such as "25 of 30 Files Affected"
-	CString sLeftAffected = FormatFilesAffectedString(nLeftAffected, nLeft);
-	CString sRightAffected = FormatFilesAffectedString(nRightAffected, nRight);
-	dlg->SetLeftRightAffectStrings(sLeftAffected, sRightAffected);
+	CString sFirstAffected = FormatFilesAffectedString(nFirstAffected, nFirst);
+	CString sSecondAffected = FormatFilesAffectedString(nSecondAffected, nSecond);
+	CString sThirdAffected = FormatFilesAffectedString(nThirdAffected, nThird);
+	if (GetDocument()->m_nDirs < 3)
+		dlg->SetLeftRightAffectStrings(sFirstAffected, _T(""), sSecondAffected);
+	else
+		dlg->SetLeftRightAffectStrings(sFirstAffected, sSecondAffected, sThirdAffected);
 	int codepage = currentCodepages.FindMaxKey();
 	dlg->SetCodepages(codepage);
 }
@@ -1494,7 +1603,7 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
  */
 void CDirView::DoFileEncodingDialog()
 {
-	CLoadSaveCodepageDlg dlg;
+	CLoadSaveCodepageDlg dlg(GetDocument()->m_nDirs);
 	// set up labels about what will be affected
 	FormatEncodingDialogDisplays(&dlg);
 	dlg.EnableSaveCodepage(false); // disallow setting a separate codepage for saving
@@ -1519,14 +1628,14 @@ void CDirView::DoFileEncodingDialog()
 			continue;
 
 		// Does it exist on left? (ie, right or both)
-		if (doLeft && di.diffcode.isSideLeftOrBoth() && di.left.IsEditableEncoding())
+		if (doLeft && di.diffcode.isExistsFirst() && di.diffFileInfo[0].IsEditableEncoding())
 		{
-			di.left.encoding.SetCodepage(nCodepage);
+			di.diffFileInfo[0].encoding.SetCodepage(nCodepage);
 		}
 		// Does it exist on right (ie, left or both)
-		if (doRight && di.diffcode.isSideRightOrBoth() && di.right.IsEditableEncoding())
+		if (doRight && di.diffcode.isExistsSecond() && di.diffFileInfo[1].IsEditableEncoding())
 		{
-			di.right.encoding.SetCodepage(nCodepage);
+			di.diffFileInfo[1].encoding.SetCodepage(nCodepage);
 		}
 	}
 	m_pList->InvalidateRect(NULL);
@@ -1594,18 +1703,19 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 {
 	ASSERT(NULL != szNewItemName);
 	
-	String sLeftFile, sRightFile;
+	PathContext paths;
+	int nDirs = GetDocument()->m_nDirs;
 
 	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	ASSERT(-1 != nSelItem);
-	GetItemFileNames(nSelItem, sLeftFile, sRightFile);
+	GetItemFileNames(nSelItem, &paths);
 
 	// We must check that paths still exists
 	CString failpath;
 	DIFFITEM &di = GetDiffItemRef(nSelItem);
-	BOOL succeed = CheckPathsExist(sLeftFile.c_str(), sRightFile.c_str(),
-		di.diffcode.isSideLeftOrBoth()  ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
-		di.diffcode.isSideRightOrBoth() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+	BOOL succeed = CheckPathsExist(paths.GetLeft().c_str(), paths.GetRight().c_str(), 
+		di.diffcode.isExistsFirst() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+		di.diffcode.isExistsSecond() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
 		failpath);
 	if (succeed == FALSE)
 	{
@@ -1617,28 +1727,84 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 	ASSERT(key != SPECIAL_ITEM_POS);
 	ASSERT(&di == &GetDocument()->GetDiffRefByKey(key));
 
-	BOOL bRenameLeft = FALSE;
-	BOOL bRenameRight = FALSE;
-	if (di.diffcode.isSideLeftOrBoth())
-		bRenameLeft = RenameOnSameDir(sLeftFile.c_str(), szNewItemName);
-	if (di.diffcode.isSideRightOrBoth())
-		bRenameRight = RenameOnSameDir(sRightFile.c_str(), szNewItemName);
-
-	if ((TRUE == bRenameLeft) && (TRUE == bRenameRight))
+	BOOL bRename[3] = {FALSE};
+	int index;
+	for (index = 0; index < nDirs; index++)
 	{
-		di.left.filename = szNewItemName;
-		di.right.filename = szNewItemName;
-	}
-	else if (TRUE == bRenameLeft)
-	{
-		di.left.filename = szNewItemName;
-		di.right.filename.erase();
-	}
-	else if (TRUE == bRenameRight)
-	{
-		di.left.filename.erase();
-		di.right.filename = szNewItemName;
+		if (di.diffcode.isExists(index))
+			bRename[index] = RenameOnSameDir(paths[index].c_str(), szNewItemName);
 	}
 
-	return (bRenameLeft || bRenameRight);
+	int nSuccessCount = 0;
+	for (index = 0; index < nDirs; index++)
+		nSuccessCount += bRename[index] ? 1 : 0;
+
+	if (nSuccessCount > 0)
+	{
+		for (index = 0; index < nDirs; index++)
+		{
+			if (bRename[index])
+				di.diffFileInfo[index].filename = szNewItemName;
+			else
+				di.diffFileInfo[index].filename.erase();
+		}
+	}
+
+	return (bRename[0] || bRename[1] || (nDirs > 2 && bRename[2]));
+}
+
+/**
+ * @brief Copy selected item left side to clipboard.
+ */
+void CDirView::DoCopyItemsToClipboard(int nIndex)
+{
+	CString strPaths;
+	int sel = -1;
+
+	strPaths.GetBufferSetLength(GetSelectedCount() * MAX_PATH);
+	strPaths = _T("");
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode.isExists(nIndex))
+		{
+			strPaths += di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex)).c_str();
+			strPaths += _T("\\");
+			// If item is a folder then subfolder (relative to base folder)
+			// is in filename member.
+			strPaths += di.diffFileInfo[nIndex].filename.c_str();
+			strPaths += CString(_T("\0"), 1);
+		}
+	}
+	strPaths += CString(_T("\0"), 1);
+
+	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.GetLength());
+	if (!hDrop)
+		return;
+	TCHAR *pDrop = (TCHAR *)GlobalLock(hDrop);
+	DROPFILES df = {0};
+	df.pFiles = sizeof(DROPFILES);
+	df.fWide = (sizeof(TCHAR) > 1);
+	memcpy(pDrop, &df, sizeof(DROPFILES));
+	memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths, sizeof(TCHAR) * strPaths.GetLength());
+	GlobalUnlock(hDrop);
+
+	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
+	if (!hDropEffect)
+	{
+		GlobalFree(hDrop);
+		return;
+	}
+	*((DWORD *)(GlobalLock(hDropEffect))) = DROPEFFECT_COPY;
+	GlobalUnlock(hDropEffect);
+
+	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
+	if (::OpenClipboard(AfxGetMainWnd()->GetSafeHwnd()))
+	{
+		EmptyClipboard();
+		SetClipboardData(CF_HDROP, hDrop);
+		SetClipboardData(CF_DROPEFFECT, hDropEffect);
+		CloseClipboard();
+	}
 }

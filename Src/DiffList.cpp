@@ -20,7 +20,7 @@
  * @brief Implementation file for DiffList class
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffList.cpp 7105 2010-01-14 21:14:22Z kimmov $
 
 #include <windows.h>
 #include <crtdbg.h>
@@ -34,13 +34,13 @@ using std::vector;
 /**
  * @brief Swap diff sides.
  */
-void DIFFRANGE::swap_sides()
+void DIFFRANGE::swap_sides(int index1, int index2)
 {
-	swap(begin0, begin1);
-	swap(end0, end1);
-	swap(dbegin0, dbegin1);
-	swap(dend0, dend1);
-	swap(blank0, blank1);
+	swap(begin[index1], begin[index2]);
+	swap(end[index1], end[index2]);
+	swap(dbegin[index1], dbegin[index2]);
+	swap(dend[index1], dend[index2]);
+	swap(blank[index1], blank[index2]);
 }
 
 /**
@@ -60,6 +60,18 @@ void DiffMap::InitDiffMap(int nlines)
 DiffList::DiffList()
 : m_firstSignificant(-1)
 , m_lastSignificant(-1)
+, m_firstSignificantLeftMiddle(-1)
+, m_firstSignificantLeftRight(-1)
+, m_firstSignificantMiddleRight(-1)
+, m_firstSignificantLeftOnly(-1)
+, m_firstSignificantMiddleOnly(-1)
+, m_firstSignificantRightOnly(-1)
+, m_lastSignificantLeftMiddle(-1)
+, m_lastSignificantLeftRight(-1)
+, m_lastSignificantMiddleRight(-1)
+, m_lastSignificantLeftOnly(-1)
+, m_lastSignificantMiddleOnly(-1)
+, m_lastSignificantRightOnly(-1)
 {
 	m_diffs.reserve(64); // Reserve some initial space to avoid allocations.
 }
@@ -72,6 +84,18 @@ void DiffList::Clear()
 	m_diffs.clear();
 	m_firstSignificant = -1;
 	m_lastSignificant = -1;
+	m_firstSignificantLeftMiddle = -1;
+	m_firstSignificantLeftRight = -1;
+	m_firstSignificantMiddleRight = -1;
+	m_firstSignificantLeftOnly = -1;
+	m_firstSignificantMiddleOnly = -1;
+	m_firstSignificantRightOnly = -1;
+	m_lastSignificantLeftMiddle = -1;
+	m_lastSignificantLeftRight = -1;
+	m_lastSignificantMiddleRight = -1;
+	m_lastSignificantLeftOnly = -1;
+	m_lastSignificantMiddleOnly = -1;
+	m_lastSignificantRightOnly = -1;
 }
 
 /**
@@ -223,9 +247,9 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (nLine < dfi->dbegin0)
+	if (nLine < dfi->dbegin[0])
 		return -1;
-	else if (nLine > dfi->dend0)
+	else if (nLine > dfi->dend[0])
 		return 1;
 	else
 		return 0;
@@ -240,7 +264,7 @@ int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
 bool DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (nLine >= dfi->dbegin0 && nLine <= dfi->dend0)
+	if (nLine >= dfi->dbegin[0] && nLine <= dfi->dend[0])
 		return true;
 	else
 		return false;
@@ -258,9 +282,9 @@ int DiffList::LineToDiff(UINT nLine) const
 		return -1;
 
 	// First check line is not before first or after last diff
-	if (nLine < DiffRangeAt(0)->dbegin0)
+	if (nLine < DiffRangeAt(0)->dbegin[0])
 		return -1;
-	if (nLine > DiffRangeAt(nDiffCount-1)->dend0)
+	if (nLine > DiffRangeAt(nDiffCount-1)->dend[0])
 		return -1;
 
 	// Use binary search to search for a diff.
@@ -310,7 +334,7 @@ bool DiffList::GetPrevDiff(int nLine, int & nDiff) const
 		const int size = (int) m_diffs.size();
 		for (int i = (int) size - 1; i >= 0 ; i--)
 		{
-			if ((int)DiffRangeAt(i)->dend0 <= nLine)
+			if ((int)DiffRangeAt(i)->dend[0] <= nLine)
 			{
 				numDiff = i;
 				break;
@@ -342,7 +366,7 @@ bool DiffList::GetNextDiff(int nLine, int & nDiff) const
 		const int nDiffCount = (int) m_diffs.size();
 		for (int i = 0; i < nDiffCount; i++)
 		{
-			if ((int)DiffRangeAt(i)->dbegin0 >= nLine)
+			if ((int)DiffRangeAt(i)->dbegin[0] >= nLine)
 			{
 				numDiff = i;
 				break;
@@ -377,7 +401,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
+		if (dfi->op != OP_TRIVIAL && dfi->dend[0] <= nLine)
 		{
 			nDiff = i;
 			break;
@@ -399,7 +423,7 @@ int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 	for (int i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dbegin0 >= nLine)
+		if (dfi->op != OP_TRIVIAL && dfi->dbegin[0] >= nLine)
 		{
 			nDiff = i;
 			break;
@@ -415,6 +439,12 @@ void DiffList::ConstructSignificantChain()
 {
 	m_firstSignificant = -1;
 	m_lastSignificant = -1;
+	m_firstSignificantLeftMiddle = -1;
+	m_firstSignificantLeftRight = -1;
+	m_firstSignificantMiddleRight = -1;
+	m_lastSignificantLeftMiddle = -1;
+	m_lastSignificantLeftRight = -1;
+	m_lastSignificantMiddleRight = -1;
 	int prev = -1;
 	const int size = (int) m_diffs.size();
 
@@ -435,6 +465,42 @@ void DiffList::ConstructSignificantChain()
 			if (m_firstSignificant == -1)
 				m_firstSignificant = i;
 			m_lastSignificant = i;
+			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_3RDONLY)
+			{
+				if (m_firstSignificantLeftMiddle == -1)
+					m_firstSignificantLeftMiddle = i;
+				m_lastSignificantLeftMiddle = i;
+			}
+			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_2NDONLY)
+			{
+				if (m_firstSignificantLeftRight == -1)
+					m_firstSignificantLeftRight = i;
+				m_lastSignificantLeftRight = i;
+			}
+			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_1STONLY)
+			{
+				if (m_firstSignificantMiddleRight == -1)
+					m_firstSignificantMiddleRight = i;
+				m_lastSignificantMiddleRight = i;
+			}
+			if (m_diffs[i].diffrange.op == OP_1STONLY)
+			{
+				if (m_firstSignificantLeftOnly == -1)
+					m_firstSignificantLeftOnly = i;
+				m_lastSignificantLeftOnly = i;
+			}
+			if (m_diffs[i].diffrange.op == OP_2NDONLY)
+			{
+				if (m_firstSignificantMiddleOnly == -1)
+					m_firstSignificantMiddleOnly = i;
+				m_lastSignificantMiddleOnly = i;
+			}
+			if (m_diffs[i].diffrange.op == OP_3RDONLY)
+			{
+				if (m_firstSignificantRightOnly == -1)
+					m_firstSignificantRightOnly = i;
+				m_lastSignificantRightOnly = i;
+			}
 		}
 	}
 }
@@ -500,15 +566,290 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 }
 
 /**
- * @brief Swap sides in diffrange.
+<<<<<<< .mine
+ * @brief Return previous diff index from given line.
+ * @param [in] nLine First line searched.
+ * @return Index for next difference or -1 if no difference is found.
  */
-void DiffList::Swap()
+int DiffList::PrevSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const
+{
+	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
+	{
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		switch (nDiffType)
+		{
+		case THREEWAYDIFFTYPE_LEFTMIDDLE:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_LEFTRIGHT:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLERIGHT:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_LEFTONLY:
+			if (dfi->op == OP_1STONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLEONLY:
+			if (dfi->op == OP_2NDONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_RIGHTONLY:
+			if (dfi->op == OP_3RDONLY && dfi->dend[0] <= nLine)
+				return i;
+			break;
+		}
+	}
+	return -1;
+}
+
+/**
+ * @brief Return next diff index from given line.
+ * @param [in] nLine First line searched.
+ * @return Index for previous difference or -1 if no difference is found.
+ */
+int DiffList::NextSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const
+{
+	const int nDiffCount = m_diffs.size();
+
+	for (int i = 0; i < nDiffCount; i++)
+	{
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		switch (nDiffType)
+		{
+		case THREEWAYDIFFTYPE_LEFTMIDDLE:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_LEFTRIGHT:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLERIGHT:
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_LEFTONLY:
+			if (dfi->op == OP_1STONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLEONLY:
+			if (dfi->op == OP_2NDONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		case THREEWAYDIFFTYPE_RIGHTONLY:
+			if (dfi->op == OP_3RDONLY && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
+		}
+	}
+	return -1;
+}
+
+/**
+ * @brief Return index to first significant difference.
+ * @return Index of first significant difference.
+ */
+int DiffList::FirstSignificant3wayDiff(int nDiffType) const
+{
+	switch (nDiffType)
+	{
+	case THREEWAYDIFFTYPE_LEFTMIDDLE:
+		return m_firstSignificantLeftMiddle;
+	case THREEWAYDIFFTYPE_LEFTRIGHT:
+		return m_firstSignificantLeftRight;
+	case THREEWAYDIFFTYPE_MIDDLERIGHT:
+		return m_firstSignificantMiddleRight;
+	case THREEWAYDIFFTYPE_LEFTONLY:
+		return m_firstSignificantLeftOnly;
+	case THREEWAYDIFFTYPE_MIDDLEONLY:
+		return m_firstSignificantLeftOnly;
+	case THREEWAYDIFFTYPE_RIGHTONLY:
+		return m_firstSignificantRightOnly;
+	}
+	return -1;
+}
+
+/**
+ * @brief Return index of next significant diff.
+ * @param [in] nDiff Index to start looking for next diff.
+ * @return Index of next significant difference.
+ */
+int DiffList::NextSignificant3wayDiff(int nDiff, int nDiffType) const
+{
+	while (m_diffs[nDiff].next != -1)
+	{
+		nDiff = m_diffs[nDiff].next;
+		switch (nDiffType)
+		{
+		case THREEWAYDIFFTYPE_LEFTMIDDLE:
+			if (m_diffs[nDiff].diffrange.op != OP_3RDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_LEFTRIGHT:
+			if (m_diffs[nDiff].diffrange.op != OP_2NDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLERIGHT:
+			if (m_diffs[nDiff].diffrange.op != OP_1STONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_LEFTONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_1STONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLEONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_2NDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_RIGHTONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_3RDONLY)
+				return nDiff;
+			break;
+		}
+	}
+	return -1;
+}
+
+/**
+ * @brief Return index of previous significant diff.
+ * @param [in] nDiff Index to start looking for previous diff.
+ * @return Index of previous significant difference.
+ */
+int DiffList::PrevSignificant3wayDiff(int nDiff, int nDiffType) const
+{
+	while (m_diffs[nDiff].prev != -1)
+	{
+		nDiff = m_diffs[nDiff].prev;
+		switch (nDiffType)
+		{
+		case THREEWAYDIFFTYPE_LEFTMIDDLE:
+			if (m_diffs[nDiff].diffrange.op != OP_3RDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_LEFTRIGHT:
+			if (m_diffs[nDiff].diffrange.op != OP_2NDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLERIGHT:
+			if (m_diffs[nDiff].diffrange.op != OP_1STONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_LEFTONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_1STONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_MIDDLEONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_2NDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_RIGHTONLY:
+			if (m_diffs[nDiff].diffrange.op == OP_3RDONLY)
+				return nDiff;
+			break;
+		}
+	}
+	return -1;
+}
+
+/**
+ * @brief Return index to last significant diff.
+ * @return Index of last significant difference.
+ */
+int DiffList::LastSignificant3wayDiff(int nDiffType) const
+{
+	switch (nDiffType)
+	{
+	case THREEWAYDIFFTYPE_LEFTMIDDLE:
+		return m_lastSignificantLeftMiddle;
+	case THREEWAYDIFFTYPE_LEFTRIGHT:
+		return m_lastSignificantLeftRight;
+	case THREEWAYDIFFTYPE_MIDDLERIGHT:
+		return m_lastSignificantMiddleRight;
+	case THREEWAYDIFFTYPE_LEFTONLY:
+		return m_lastSignificantLeftOnly;
+	case THREEWAYDIFFTYPE_MIDDLEONLY:
+		return m_lastSignificantLeftOnly;
+	case THREEWAYDIFFTYPE_RIGHTONLY:
+		return m_lastSignificantRightOnly;
+	}
+	return -1;
+}
+
+/**
+ * @brief Return pointer to first significant diff.
+ * @return Constant pointer to first significant difference.
+ */
+const DIFFRANGE * DiffList::FirstSignificant3wayDiffRange(int nDiffType) const
+{
+	switch (nDiffType)
+	{
+	case THREEWAYDIFFTYPE_LEFTMIDDLE:
+		if (m_firstSignificantLeftMiddle == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantLeftMiddle);
+	case THREEWAYDIFFTYPE_LEFTRIGHT:
+		if (m_firstSignificantLeftRight == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantLeftRight);
+	case THREEWAYDIFFTYPE_MIDDLERIGHT:
+		if (m_firstSignificantMiddleRight == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantMiddleRight);
+	case THREEWAYDIFFTYPE_LEFTONLY:
+		if (m_firstSignificantLeftOnly == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantLeftOnly);
+	case THREEWAYDIFFTYPE_MIDDLEONLY:
+		if (m_firstSignificantMiddleOnly == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantMiddleOnly);
+	case THREEWAYDIFFTYPE_RIGHTONLY:
+		if (m_firstSignificantRightOnly == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantRightOnly);
+	}
+	return NULL;
+}
+
+/**
+ * @brief Return pointer to last significant diff.
+ * @return Constant pointer to last significant difference.
+ */
+const DIFFRANGE * DiffList::LastSignificant3wayDiffRange(int nDiffType) const
+{
+	switch (nDiffType)
+	{
+	case THREEWAYDIFFTYPE_LEFTMIDDLE:
+		if (m_lastSignificantLeftMiddle == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantLeftMiddle);
+	case THREEWAYDIFFTYPE_LEFTRIGHT:
+		if (m_lastSignificantLeftRight == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantLeftRight);
+	case THREEWAYDIFFTYPE_MIDDLERIGHT:
+		if (m_lastSignificantMiddleRight == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantMiddleRight);
+	case THREEWAYDIFFTYPE_LEFTONLY:
+		if (m_lastSignificantLeftOnly == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantLeftOnly);
+	case THREEWAYDIFFTYPE_MIDDLEONLY:
+		if (m_lastSignificantMiddleOnly == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantMiddleOnly);
+	case THREEWAYDIFFTYPE_RIGHTONLY:
+		if (m_lastSignificantRightOnly == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantRightOnly);
+	}
+	return NULL;
+}
+
+/**
+ * @brief Swap sides of diffrange
+ */
+void DiffList::Swap(int index1, int index2)
 {
 	vector<DiffRangeInfo>::iterator iter = m_diffs.begin();
 	vector<DiffRangeInfo>::const_iterator iterEnd = m_diffs.end();
 	while (iter != iterEnd)
 	{
-		(*iter).diffrange.swap_sides();
+		(*iter).diffrange.swap_sides(index1, index2);
 		++iter;
 	}
 }
@@ -518,10 +859,11 @@ void DiffList::Swap()
  * @param [out] nLeftLines Number of lines to add to left side.
  * @param [out] nRightLines Number of lines to add to right side.
  */
-void DiffList::GetExtraLinesCounts(int &nLeftLines, int &nRightLines)
+void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
 {
-	nLeftLines = 0;
-	nRightLines = 0;
+	extras[0]=0;
+	extras[1]=0;
+	extras[2]=0;
 	const int nDiffCount = GetSize();
 
 	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
@@ -530,14 +872,16 @@ void DiffList::GetExtraLinesCounts(int &nLeftLines, int &nRightLines)
 		GetDiff(nDiff, curDiff);
 
 		// this guarantees that all the diffs are synchronized
-		assert(curDiff.begin0 + nLeftLines == curDiff.begin1 + nRightLines);
-		int nline0 = curDiff.end0 - curDiff.begin0 + 1;
-		int nline1 = curDiff.end1 - curDiff.begin1 + 1;
-		int nextra = nline0 - nline1;
-
-		if (nextra > 0)
-			nRightLines += nextra;
-		else
-			nLeftLines -= nextra;
+		assert(curDiff.begin[0]+extras[0] == curDiff.begin[1]+extras[1]);
+		int nline[3];
+		int nmaxline = 0;
+		int file;
+		for (file = 0; file < nFiles; file++)
+		{
+			nline[file] = curDiff.end[file]-curDiff.begin[file]+1;
+			nmaxline = max(nmaxline, nline[file]);
+		}
+		for (file = 0; file < nFiles; file++)
+			extras[file] += nmaxline - nline[file];
 	}
 }

@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-22
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffFileData.h 5055 2008-02-19 18:35:40Z kimmov $
 
 #ifndef _DIFFFILEDATA_H_
 #define _DIFFFILEDATA_H_
@@ -36,16 +36,14 @@ struct DiffFileData
 	void Close() { Reset(); }
 	void SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2);
 
-	bool Filepath_Transform(FileLocation & fpenc, const String & filepath, String & filepathTransformed,
+	bool Filepath_Transform(BOOL bForceUTF8, const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
 		LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer);
-	void GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt);
-	static void GuessEncoding_from_buffer(FileLocation & fpenc, const char *src, size_t len);
 
 // Data (public)
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
 	FileLocation m_FileLocation[2];
-	FileTextStats m_textStats0, m_textStats1;
+	FileTextStats m_textStats[3];
 
 	CString m_sDisplayFilepath[2];
 	struct UniFileBom // detect unicode file and quess encoding

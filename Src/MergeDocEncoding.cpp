@@ -1,3 +1,4 @@
+
 /////////////////////////////////////////////////////////////////////////////
 //    WinMerge:  an interactive diff/merge utility
 //    Copyright (C) 1997-2000  Thingamahoochie Software
@@ -25,7 +26,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeDocEncoding.cpp 4921 2008-01-16 20:20:54Z kimmov $
 
 #include "stdafx.h"
 
@@ -49,40 +50,35 @@ void CMergeDoc::DoFileEncodingDialog()
 	if (!PromptAndSaveIfNeeded(TRUE))
 		return;
 	
-	CLoadSaveCodepageDlg dlg;
+	CLoadSaveCodepageDlg dlg(m_nBuffers);
 	dlg.SetCodepages(m_ptBuf[0]->getCodepage());
 	if (IDOK != dlg.DoModal())
 		return;
 
 	bool doLeft = dlg.DoesAffectLeft();
+	bool doMiddle = dlg.DoesAffectMiddle();
 	bool doRight = dlg.DoesAffectRight();
-	FileLocation filelocLeft, filelocRight;
-	BOOL bROLeft = m_ptBuf[0]->GetReadOnly();
-	BOOL bRORight = m_ptBuf[1]->GetReadOnly();
-	if (doLeft)
+	FileLocation fileloc[3];
+	BOOL bRO[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
-		filelocLeft.encoding.m_unicoding = ucr::NONE;
-		filelocLeft.encoding.m_codepage = dlg.GetLoadCodepage();
+		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+		if ((pane == 0 && doLeft) ||
+		    (pane == 1 && doRight  && m_nBuffers <  3) ||
+		    (pane == 1 && doMiddle && m_nBuffers == 3) ||
+		    (pane == 2 && doRight  && m_nBuffers == 3))
+		{
+			fileloc[pane].encoding.m_unicoding = ucr::NONE;
+			fileloc[pane].encoding.m_codepage = dlg.GetLoadCodepage();
+		}
+		else
+		{
+			fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
+			fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
+		}
+		fileloc[pane].setPath(m_filePaths[pane].c_str());
+		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
 	}
-	else
-	{
-		filelocLeft.encoding.m_unicoding = m_ptBuf[0]->getUnicoding();
-		filelocLeft.encoding.m_codepage = m_ptBuf[0]->getCodepage();
-	}
-	if (doRight)
-	{
-		filelocRight.encoding.m_unicoding = ucr::NONE;
-		filelocRight.encoding.m_codepage = dlg.GetLoadCodepage();
-	}
-	else
-	{
-		filelocRight.encoding.m_unicoding = m_ptBuf[1]->getUnicoding();
-		filelocRight.encoding.m_codepage = m_ptBuf[1]->getCodepage();
-	}
-	filelocLeft.setPath(m_filePaths.GetLeft().c_str());
-	filelocRight.setPath(m_filePaths.GetRight().c_str());
-	GetMainFrame()->m_strDescriptions[0] = m_strDesc[0];
-	GetMainFrame()->m_strDescriptions[1] = m_strDesc[1];
-	OpenDocs(filelocLeft, filelocRight, bROLeft, bRORight);
+	OpenDocs(fileloc, bRO);
 }
 

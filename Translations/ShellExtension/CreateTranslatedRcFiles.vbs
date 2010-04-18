@@ -6,7 +6,7 @@ Option Explicit
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
-' $Id$
+' $Id: CreateTranslatedRcFiles.vbs 6780 2009-05-23 11:58:54Z gerundt $
 
 Const ForReading = 1
 
@@ -15,7 +15,7 @@ Const STRINGTABLE_BLOCK = 1
 
 Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/Languages/ShellExtensionTemplate.rc"
 
-Dim oFSO, bRunFromCmd
+Dim oFSO, oCharsets, bRunFromCmd
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 
@@ -23,6 +23,18 @@ bRunFromCmd = False
 If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
   bRunFromCmd = True
 End If
+
+Set oCharsets = CreateObject("Scripting.Dictionary")
+oCharsets.Add "932", "Shift_JIS"
+oCharsets.Add "936", "GB2312"
+oCharsets.Add "949", "EUC-KR"
+oCharsets.Add "950", "BIG5"
+oCharsets.Add "1250", "Windows-1250"
+oCharsets.Add "1251", "Windows-1251"
+oCharsets.Add "1252", "Windows-1252"
+oCharsets.Add "1253", "Windows-1253"
+oCharsets.Add "1254", "Windows-1254"
+oCharsets.Add "1256", "Windows-1256"
 
 Call Main
 
@@ -32,6 +44,7 @@ Sub Main
   Dim oLanguages, sLanguage
   Dim oLanguageTranslations, sLanguagePoFilePath
   Dim StartTime, EndTime, Seconds
+  Dim sCharset
   
   StartTime = Time
   
@@ -42,9 +55,9 @@ Sub Main
     If (bRunFromCmd = True) Then 'If run from command line...
       Wscript.Echo sLanguage
     End If
-    Set oLanguageTranslations = GetTranslationsFromPoFile(oLanguages(sLanguage))
+    Set oLanguageTranslations = GetTranslationsFromPoFile(oLanguages(sLanguage), sCharset)
     If (oLanguageTranslations.Count > 0) Then 'If translations exists...
-      CreateRcFileWithTranslations PATH_SHELLEXTTEMPLATE_RC, "../../ShellExtension/Languages/ShellExtension" & sLanguage & ".rc", oLanguageTranslations
+      CreateRcFileWithTranslations PATH_SHELLEXTTEMPLATE_RC, "../../ShellExtension/Languages/ShellExtension" & sLanguage & ".rc", oLanguageTranslations, sCharset
     End If
   Next
   
@@ -71,10 +84,10 @@ End Function
 
 ''
 ' ...
-Function GetTranslationsFromPoFile(ByVal sPoPath)
+Function GetTranslationsFromPoFile(ByVal sPoPath, sCharset)
   Dim oTranslations, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr
-  Dim reMsgId, reMsgStr, reMsgContinued
+  Dim reMsgId, reMsgStr, reMsgContinued, reCharset
   
   Set reMsgId = New RegExp
   reMsgId.Pattern = "^msgid ""(.*)""$"
@@ -88,15 +101,42 @@ Function GetTranslationsFromPoFile(ByVal sPoPath)
   reMsgContinued.Pattern = "^""(.*)""$"
   reMsgContinued.IgnoreCase = True
   
+  ' 
+  sCharset = "_autodetect"
+  Set reCharset = New RegExp
+  reCharset.Pattern = "harset.*CP(.*)\\n""$"
+  reCharset.IgnoreCase = True
+  Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
+  Do Until oTextFile.AtEndOfStream 'For all lines...
+    sLine = Trim(oTextFile.ReadLine)
+    If reCharset.Test(sLine) Then
+      Set oMatch = reCharset.Execute(sLine)(0)
+      sCharset = oCharsets(oMatch.SubMatches(0))
+      Exit Do
+    End If
+  Loop
+  oTextFile.Close
+
   Set oTranslations = CreateObject("Scripting.Dictionary")
   
   If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
     iMsgStarted = 0
     sMsgId = ""
     sMsgStr = ""
-    Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
-    Do Until oTextFile.AtEndOfStream = True 'For all lines...
-      sLine = Trim(oTextFile.ReadLine)
+    Set oTextFile = CreateObject("ADODB.Stream")
+    oTextFile.Type = 2 ' adTypeText
+    oTextFile.LineSeparator = 10 ' adLF
+    oTextFile.Charset = sCharset
+    oTextFile.Open
+    oTextFile.LoadFromFile(sPoPath)
+    Do Until oTextFile.EOS 'For all lines...
+      sLine = oTextFile.ReadText(-2) ' -2 = adReadLine
+      If Len(sLine) > 0 Then
+        If Right(sLine, 1) = vbCR Then
+          sLine = Left(sLine, Len(sLine) - 1)
+        End If
+      End If
+      sLine = Trim(sLine)
       
       If (sLine <> "") Then 'If NOT empty line...
         If (Left(sLine, 1) <> "#") Then 'If NOT comment line...
@@ -142,7 +182,7 @@ End Function
 
 ''
 ' ...
-Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByVal oTranslations)
+Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByVal oTranslations, sCharset)
   Dim oMasterRcFile, sMasterLine
   Dim oLanguageRcFile, sLanguageLine
   Dim iBlockType, oMatches, oMatch, sMsgId, sMsgStr
@@ -167,7 +207,11 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
   If (oFSO.FileExists(sMasterRcPath) = True) Then 'If the master RC file exists...
     iBlockType = NO_BLOCK
     Set oMasterRcFile = oFSO.OpenTextFile(sMasterRcPath, ForReading)
-    Set oLanguageRcFile = oFSO.CreateTextFile(sLanguageRcPath, True)
+    Set oLanguageRcFile = CreateObject("ADODB.Stream")
+    oLanguageRcFile.Type = 2 ' adTypeText
+    oLanguageRcFile.LineSeparator = -1 ' adCRLF
+    oLanguageRcFile.Charset = sCharset
+    oLanguageRcFile.Open
     Do Until oMasterRcFile.AtEndOfStream = True 'For all lines...
       sMasterLine = oMasterRcFile.ReadLine
       sLanguageLine = sMasterLine
@@ -229,9 +273,11 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
             
         End Select
       End If
-      oLanguageRcFile.WriteLine sLanguageLine
+      oLanguageRcFile.WriteText sLanguageLine, 1
     Loop
     oMasterRcFile.Close
+    WScript.Echo sLanguageRcPath
+    oLanguageRcFile.SaveToFile sLanguageRcPath, 2
     oLanguageRcFile.Close
   End If
 End Sub

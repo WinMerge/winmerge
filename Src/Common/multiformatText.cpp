@@ -26,7 +26,7 @@
  * @date  Created: 2003-11-24
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: multiformatText.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
 #include "unicoder.h"
@@ -598,14 +598,20 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 }
 
 
-BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged)
+BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, ucr::UNICODESET unicoding)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.IsUnicode())
-		return TRUE; // not unicode file, nothing to do
+	{
+		if (unicoding == 0)
+			return TRUE; // not unicode file, nothing to do
+	}
 
+	if (unicoding)
+		ufile.SetUnicoding(unicoding);
 	ucr::UNICODESET codeOldBOM = ufile.GetUnicoding();
-	if (codeOldBOM == ucr::UCS2LE)
+	UINT nSizeOldBOM = ufile.GetPosition();
+	if (nSizeOldBOM > 0 && codeOldBOM == ucr::UCS2LE)
 		return TRUE; // unicode UCS-2LE, nothing to do
 	bool bBom = ufile.HasBom();
 	// Finished with examing file contents
@@ -625,7 +631,6 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 	UINT nBufSize = fileDataIn.dwSize;
 
 	// first pass : get the size of the destination file
-	UINT nSizeOldBOM = 0;
 	UINT nchars = 0;
 	switch (codeOldBOM)
 	{
@@ -634,7 +639,7 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 		nchars = TransformUtf8ToUcs2(pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, NULL, 0);
 		break;
 	case ucr::UCS2BE:
-		nSizeOldBOM = 2;
+	case ucr::UCS2LE:
 		// same number of characters
 		nchars = (nBufSize - nSizeOldBOM)/sizeof(WCHAR);
 	}
@@ -662,6 +667,9 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 		{
 		case ucr::UTF8:
 			TransformUtf8ToUcs2( pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, pszWideDst, nchars);
+			break;
+		case ucr::UCS2LE:
+			memcpy(pszWideDst, pszBuf + nSizeOldBOM, nchars * sizeof(WCHAR));
 			break;
 		case ucr::UCS2BE:
 			LPWSTR pszWideBuf = (LPWSTR) (pszBuf + nSizeOldBOM);
@@ -937,3 +945,79 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 	nFileChanged++;
 	return bSuccess;
 }
+
+BOOL AnyCodepageToUTF8(int codepage, LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+{
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(filepath))
+		return TRUE;
+	ufile.ReadBom();
+	ucr::UNICODESET unicoding = ufile.GetUnicoding();
+	// Finished with examing file contents
+	ufile.Close();
+
+	// Init filedataIn struct and open file as memory mapped (input)
+	BOOL bSuccess;
+	MAPPEDFILEDATA fileDataIn = {0};
+	_tcsncpy(fileDataIn.fileName, filepath, lstrlen(filepath)+1);
+	fileDataIn.bWritable = FALSE;
+	fileDataIn.dwOpenFlags = OPEN_EXISTING;
+	bSuccess = files_openFileMapped(&fileDataIn);
+	if (!bSuccess)
+		return FALSE;
+
+	ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+
+	char * pszBuf = (char *)fileDataIn.pMapBase;
+	UINT nBufSize = fileDataIn.dwSize;
+	UINT nSizeOldBOM = 0;
+	switch (unicoding)
+	{
+	case ucr::UTF8:
+		nSizeOldBOM = 3;
+		break;
+	case ucr::UCS2LE:
+	case ucr::UCS2BE:
+		nSizeOldBOM = 2;
+		break;
+	}
+
+	// first pass : get the size of the destination file
+	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
+	UINT nDstSize = nBufSize * 2;
+
+	// create the destination file
+	MAPPEDFILEDATA fileDataOut = {0};
+	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst)+1);
+	fileDataOut.bWritable = TRUE;
+	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
+	fileDataOut.dwSize = nDstSize + nSizeBOM;
+	bSuccess = files_openFileMapped(&fileDataOut);
+
+	// second pass : write the file
+	if (bSuccess)
+	{
+		// write BOM
+		if (bWriteBOM)
+			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+
+		// write data
+		int srcbytes = nBufSize;
+		int destbytes = nDstSize;
+		if (pexconv)
+			pexconv->convert(codepage, 65001, (const unsigned char *)pszBuf+nSizeOldBOM, &srcbytes, (unsigned char *)fileDataOut.pMapBase+nSizeBOM, &destbytes);
+		else
+		{
+			bool lossy = false;
+			ucr::CrossConvert((const char *)pszBuf+nSizeOldBOM, srcbytes, (char *)fileDataOut.pMapBase+nSizeBOM, destbytes, codepage, CP_UTF8, &lossy);
+		}
+
+		files_closeFileMapped(&fileDataOut, destbytes + nSizeBOM, FALSE);
+	}
+
+	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+
+	nFileChanged ++;
+	return bSuccess;
+}
+

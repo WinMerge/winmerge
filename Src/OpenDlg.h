@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: OpenDlg.h 5444 2008-06-07 06:48:49Z kimmov $
 
 #if !defined(AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_)
 #define AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_
@@ -35,6 +35,7 @@
 #include "SuperComboBox.h"
 #include "CMoveConstraint.h"
 #include "FileTransform.h"
+#include "PathContext.h"
 
 class ProjectFile;
 
@@ -64,10 +65,9 @@ public:
 	CSuperComboBox	m_ctlExt;
 	CButton	m_ctlOk;
 	CButton	m_ctlRecurse;
-	CSuperComboBox	m_ctlRight;
-	CSuperComboBox	m_ctlLeft;
-	CString	m_strLeft;
-	CString	m_strRight;
+	CSuperComboBox	m_ctlPath[3];
+	CString m_strPath[3];
+	PathContext m_files;
 	BOOL	m_bRecurse;
 	CString	m_strExt;
 	CString	m_strUnpacker;
@@ -83,8 +83,8 @@ public:
 // Implementation data
 private:
 	prdlg::CMoveConstraint m_constraint;
-	CString m_strLeftBrowsePath; /**< Left path from browse dialog. */
-	CString m_strRightBrowsePath; /**< Right path from browse dialog. */
+	CString m_strBrowsePath[3]; /**< Left/middle/right path from browse dialog. */
+	CWinThread *m_pUpdateButtonStatusThread;
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -98,18 +98,23 @@ protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
 	BOOL LoadProjectFile(const CString &path);
+	void TerminateThreadIfRunning();
 	void TrimPaths();
+	void OnButton(int index);
+	void OnSelchangeCombo(int index);
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)
-	afx_msg void OnLeftButton();
-	afx_msg void OnRightButton();
+	afx_msg void OnPath0Button();
+	afx_msg void OnPath1Button();
+	afx_msg void OnPath2Button();
 	virtual void OnOK();
 	virtual void OnCancel();
 	afx_msg void SaveComboboxStates();
 	virtual BOOL OnInitDialog();
-	afx_msg void OnSelchangeLeftCombo();
-	afx_msg void OnSelchangeRightCombo();
+	afx_msg void OnSelchangePath0Combo();
+	afx_msg void OnSelchangePath1Combo();
+	afx_msg void OnSelchangePath2Combo();
 	afx_msg void OnEditEvent();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
@@ -117,6 +122,7 @@ protected:
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnHelp();
 	afx_msg void OnDropFiles(HDROP dropInfo);
+	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

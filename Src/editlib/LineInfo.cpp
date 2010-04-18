@@ -4,7 +4,7 @@
  * @brief Implementation of LineInfo class.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: LineInfo.cpp 5738 2008-08-05 20:30:02Z kimmov $
 
 #include "stdafx.h"
 #include "LineInfo.h"
@@ -142,7 +142,7 @@ void LineInfo::Append(LPCTSTR pszChars, int nLength)
        m_nEolChars = 1;
       }
    m_nLength -= m_nEolChars;
-  ASSERT (m_nLength + m_nEolChars <= m_nMax);
+   ASSERT (m_nLength + m_nEolChars <= m_nMax);
 }
 
 /**
@@ -225,7 +225,8 @@ void LineInfo::Delete(int nStartChar, int nEndChar)
 void LineInfo::DeleteEnd(int nStartChar)
 {
   m_nLength = nStartChar;
-  m_pcLine[nStartChar] = 0;
+  if (m_pcLine)
+    m_pcLine[nStartChar] = 0;
   m_nEolChars = 0;
 }
 

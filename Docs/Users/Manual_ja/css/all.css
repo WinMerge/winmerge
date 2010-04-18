@@ -1,0 +1,235 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 40em;
+}
+
+body,th,td {
+  font-family: Verdana,Helvetica,Arial,sans-serif;
+  font-size: 80%; 
+}
+
+pre,code,tt {
+  font-family: "Courier New",Courier,monospace;
+  font-size: 100%;
+}
+
+/* Default link style */
+a:link { color:#3366CC; text-decoration:underline; }
+a:visited { color:#003399; text-decoration:underline; }
+a:focus { color:#3366CC; text-decoration:none; }
+a:hover { color:#3366CC; text-decoration:none; }
+a:active { color:#003399; text-decoration:none; }
+
+a[name]:hover { color:black; text-decoration:none; }
+
+/* Nav headers and footers */
+div.navheader, div.navfooter {
+  background: #FFCC00;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1px 0 1px 0; 
+}
+
+div.navheader {
+  height: 50px;
+  background-image: url("../images/head.gif"); 
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+div.navheader table {
+  height: 50px;
+}
+
+div.navheader * * * th { 
+  display:none;
+}
+
+div.navheader a, div.navheader a:visited, div.navfooter a, div.navfooter a:visited  { 
+  display: inline-block; 
+  padding: 2px 4px 2px 4px; 
+  text-decoration: none;
+  color: #ffdd700;
+  background-color: #F0E68C;
+  border: 1px solid #004080;
+}
+
+div.navheader a:hover, div.navfooter a:hover {
+  color: #000;
+  background: #fff;
+}
+
+/* Main topic divs  */
+div.book,div.article,div.appendix,div.index {
+  margin: 0 10px 10px 10px;
+}
+
+div.section {
+  margin: 0 10px 0 20px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  color: #707070;
+  background-color: #707070;
+}
+
+/* Manual title */
+h1 {
+  font-size: 200%;
+  letter-spacing: 0.05em;
+}
+
+/* Topic titles */
+h2 {
+  font-size: 180%;
+}
+
+/* Section titles */
+div.section h2 {
+  font-size: 140%;
+}
+
+div.section h3 {
+  font-size: 120%;
+}
+div.section h4 {
+  font-size: 110%;
+}
+
+#ads {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.mediaobject {
+  margin-top: 10px;
+}
+
+.screen {
+  padding: 5px;
+  background-color: #EEEEEE;
+  border-left: 10px solid #CCCCCC;
+}
+
+.caution {
+  background-color: #FFDDAA;
+  border: 1px solid #FF9966;
+}
+.important {
+  background-color: #FFFFDD;
+  border: 1px solid #FFFF66;
+}
+.note {
+  background-color: #DDDDFF;
+  border: 1px solid #6666FF;
+}
+.tip {
+  background-color: #DDFFDD;
+  border: 1px solid #66FF66;
+}
+.warning {
+  background-color: #FFDDDD;
+  border: 1px solid #FF6666;
+}
+
+/* Examples */
+.example,.informalexample {
+  padding-left: 7px;
+  border-left: 3px solid black;
+}
+
+/* Command synopsis */
+.cmdsynopsis p {
+  padding: 5px;
+  color: gray;
+  background-color: #EEEEEE;
+  border-left: 10px solid #CCCCCC;
+}
+
+.command,.option,.replaceable {
+  color: black;
+}
+
+/* GUI elements */
+.guimenu,.guisubmenu,.guimenuitem,.guilabel {
+  font-style: italic;
+}
+
+.guibutton, .keycap {
+  font-weight: bold;
+}
+/* FAQ */
+.question {
+  font-weight: bold;
+}
+
+/* tables */
+.table table, .informaltable table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.table th, .informaltable th {
+  padding: 2px;
+  text-align: left;
+  color: white;
+  background: black;
+  border: 1px solid black;
+}
+
+.table td, .informaltable td {
+  padding: 2px;
+  border: 1px solid black;
+}
+
+/* for Firefox quirks mode: eliminate line break */
+tr.question p {
+  margin-top: 0;
+}
+
+/* variablelist */
+.variablelist dl {
+  margin-left: 2em;
+}
+.variablelist dt {
+  font-weight: bold;
+}
+.variablelist dd {
+  margin-left: 2em;
+}
+.variablelist dd p {
+  margin-top: 0.5em;
+}
+
+/* authorgroup */
+.authorgroup {
+  margin-left: 2em;
+}
+.author h3 {
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  font-size: 100%;
+}
+
+/* Table of contents */
+.toc dt {
+  line-height: 1.75em;
+  font-weight: bold;
+}
+.toc dd dl dt {
+  line-height: 1.25em;
+  font-weight: normal;
+}
+
+/* TOC title */
+div.toc p{
+  font-size: 150%;
+}
+
+div.toc a:visited, div.toc a:link {
+  text-decoration: none;
+}

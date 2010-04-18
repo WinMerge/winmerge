@@ -62,9 +62,13 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nLastBreakPos = 0;
 	int			nLastCharBreakPos = 0;
 	BOOL		bBreakable = FALSE;
+	TCHAR		ch;
+	int			nCharWidth = m_pTextView->GetCharWidth();
+	WORD		wCharType;
 
-	for( int i = 0; i < nLineLength; i += EnsureCharNext(szLine + i) - (szLine + i) )
+	for( int i = 0; i < nLineLength; i++ )
 	{
+		ch = szLine[i]; 
 		// remember position of whitespace for wrap
 		if( bBreakable )
 		{
@@ -74,37 +78,54 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 		}
 
 		// increment char counter (evtl. expand tab)
-		if( szLine[i] == _T('\t') )
+		if( ch == _T('\t') )
 		{
 			nLineCharCount+= (nTabWidth - nCharCount % nTabWidth);
 			nCharCount+= (nTabWidth - nCharCount % nTabWidth);
+			// remember whitespace
+			bBreakable = TRUE;
 		}
 		else
 		{
-			if( IsDBCSLeadByte((BYTE)szLine[i]) )
+#ifndef _UNICODE
+			if( IsDBCSLeadByte((BYTE)ch) )
 			{
 				nLineCharCount += 2;
 				nCharCount += 2;
+				GetStringTypeA(LOCALE_USER_DEFAULT,CT_CTYPE3, &szLine[i], 2, &wCharType);
+				// remember whitespace
+				if( (wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA)))
+					bBreakable = TRUE;
 			}
 			else
 			{
-				nLineCharCount += m_pTextView->GetCharWidthFromChar(szLine[i]) / m_pTextView->GetCharWidth();
-				nCharCount += m_pTextView->GetCharWidthFromChar(szLine[i]) / m_pTextView->GetCharWidth();
+				nLineCharCount ++;
+				nCharCount ++;
+				// remember whitespace
+				if( ch == _T(' ') )
+					bBreakable = TRUE;
 			}
-		}
-
-		// remember whitespace
-		WORD wCharType;
-#ifdef _UNICODE
-		GetStringTypeW(CT_CTYPE3, &szLine[i], 1, &wCharType);
 #else
-		if (IsDBCSLeadByte((BYTE)szLine[i]))
-			GetStringTypeA(LOCALE_USER_DEFAULT,CT_CTYPE3, &szLine[i], 2, &wCharType);
-		else
-			wCharType = 0;
+			if (ch & 0xff80)
+			{
+				int n = m_pTextView->GetCharWidthFromChar(ch) / nCharWidth;
+				nLineCharCount += n;
+				nCharCount += n;
+				GetStringTypeW(CT_CTYPE3, &ch, 1, &wCharType);
+				// remember whitespace
+				if( wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA) )
+					bBreakable = TRUE;
+			}
+			else
+			{
+				nLineCharCount ++;
+				nCharCount ++;
+				// remember whitespace
+				if( ch == _T(' ') )
+					bBreakable = TRUE;
+			}
 #endif
-		if( szLine[i] == _T('\t') || szLine[i] == _T(' ') || (wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA)))
-			bBreakable = TRUE;
+		}
 
 		// wrap line
 		if( nLineCharCount >= nMaxLineWidth )
@@ -124,5 +145,10 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 			nLineCharCount = nCharCount - nLastCharBreakPos;
 			nLastBreakPos = 0;
 		}
+
+#ifndef _UNICODE
+		if (IsDBCSLeadByte((BYTE)ch))
+			i++;
+#endif
 	}
 }

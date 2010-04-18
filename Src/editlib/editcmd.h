@@ -162,7 +162,6 @@
 #define ID_PARA_LEFT                    20086
 #define ID_PARA_CENTER                  20087
 #define ID_PARA_RIGHT                   20088
-#define ID_FILE_RELOAD                  20999
 #define ID_EDIT_FIRST                   21000
 #define ID_EDIT_DELETE                  21000
 #define ID_EDIT_DELETE_BACK             21001
@@ -226,12 +225,11 @@
 #define ID_EDIT_AUTOCOMPLETE            21300
 #define ID_EDIT_AUTOEXPAND              21301
 #define ID_EDIT_MATCHBRACE              21302
-#define ID_EDIT_LOWERCASE               21303
-#define ID_EDIT_UPPERCASE               21304
 #define ID_EDIT_CAPITALIZE              21305
 #define ID_EDIT_SENTENCE                21306
 #define ID_EDIT_SWAPCASE                21307
 #define ID_EDIT_GOTO                    21308
+#define ID_EDIT_TOGGLE_COLUMNSELECTION  21309
 #define ID_VIEW_OPTIONS                 21400
 #define ID_VIEW_TOGGLE_SRC_HDR          21401
 #define ID_VIEW_SELMARGIN               21402

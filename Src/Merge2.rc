@@ -1,6 +1,6 @@
 //WinMerge resource script (for English only).
 //
-// $Id$
+// $Id: Merge2.rc 6021 2008-10-20 18:07:27Z kimmov $
 
 
 // Include the manifest file for VC6 and VS2003.Net
@@ -27,7 +27,11 @@ IDR_MERGEDOCTYPE        ICON                    "res\\MergeDoc.ico"
 IDR_DIRDOCTYPE          ICON                    "res\\MergeDir.ico"
 IDI_FOLDER              ICON                    "res\\folder.ico"
 IDI_LFOLDER             ICON                    "res\\lfolder.ico"
+IDI_MFOLDER             ICON                    "res\\mfolder.ico"
 IDI_RFOLDER             ICON                    "res\\rfolder.ico"
+IDI_MRFOLDER            ICON                    "res\\lmissingfolder.ico"
+IDI_LRFOLDER            ICON                    "res\\mmissingfolder.ico"
+IDI_LMFOLDER            ICON                    "res\\rmissingfolder.ico"
 IDI_FOLDERSKIP          ICON                    "res\\folderskip.ico"
 IDI_EQUALFOLDER         ICON                    "res\\equalfolder.ico"
 IDI_NOTEQUALFOLDER      ICON                    "res\\notequalfolder.ico"
@@ -35,7 +39,11 @@ IDI_EQUALFILE           ICON                    "res\\equalfile.ico"
 IDI_NOTEQUALFILE        ICON                    "res\\notequalfile.ico"
 IDI_EQUALBINARY         ICON                    "res\\equalbinary.ico"
 IDI_LFILE               ICON                    "res\\lfile.ico"
+IDI_MFILE               ICON                    "res\\mfile.ico"
 IDI_RFILE               ICON                    "res\\rfile.ico"
+IDI_MRFILE              ICON                    "res\\lmissing.ico"
+IDI_LRFILE              ICON                    "res\\mmissing.ico"
+IDI_LMFILE              ICON                    "res\\rmissing.ico"
 IDI_BINARYDIFF          ICON                    "res\\binarydiff.ico"
 IDI_FILESKIP            ICON                    "res\\fileskip.ico"
 IDI_COMPARE_ERROR       ICON                    "res\\error.ico"
@@ -146,6 +154,10 @@ IDB_TREE_STATE          BITMAP                  "res\\treestate.bmp"
 IDB_FILE_OPENCONFLICT   BITMAP                  "res\\open_conflict.bmp"
 IDB_PLUGINS_LIST        BITMAP                  "res\\plugins.bmp"
 IDB_MERGE_COMPARE       BITMAP                  "res\\compare.bmp"
+IDB_MERGE_COMPARE_LEFT1_LEFT2 BITMAP            "res\\compare_left1_left2.bmp"
+IDB_MERGE_COMPARE_RIGHT1_RIGHT2 BITMAP          "res\\compare_right1_right2.bmp"
+IDB_MERGE_COMPARE_LEFT1_RIGHT2 BITMAP           "res\\compare_left1_right2.bmp"
+IDB_MERGE_COMPARE_LEFT2_RIGHT1 BITMAP           "res\\compare_left2_right1.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

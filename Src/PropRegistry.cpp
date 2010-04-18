@@ -20,7 +20,7 @@
  * @brief PropRegistry implementation file
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropRegistry.cpp 6908 2009-07-11 08:29:49Z kimmov $
 
 #include "stdafx.h"
 #include "resource.h"
@@ -131,7 +131,7 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnBrowseEditor()
 {
 	CString path;
-	if (SelectFile(GetSafeHwnd(), path, NULL, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
 	{
 		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
 	}

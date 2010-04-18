@@ -4,8 +4,8 @@
  * @brief Declaration file for class stringdiffs
  *
  */
-// ID line follows -- this is updated by SVN
-// $Id$
+// RCS ID line follows -- this is updated by CVS
+// $Id: stringdiffsi.h 7047 2009-12-21 19:08:49Z kimmov $
 
 #ifndef stringdiffsi_h_included
 #define stringdiffsi_h_included
@@ -47,6 +47,7 @@ public:
 	~stringdiffs();
 
 	void BuildWordDiffList();
+	void wordLevelToByteLevel();
 	void PopulateDiffs();
 
 // Implementation types
@@ -63,6 +64,8 @@ private:
 // Implementation methods
 private:
 
+	bool ExtendLastDiff(bool bLeftSide, int nEnd);
+	void HandleLeftOvers(int nLastWord, bool bInWordDiff);
 	void BuildWordsArray(const String & str, std::vector<word*> * words);
 	int FindPreMatchInWords1(const word & needword2, int bw1) const;
 	int FindNextMatchInWords1(const word & needword2, int bw1) const;
@@ -80,7 +83,13 @@ private:
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
 	bool RemoveItem1(int bw1);
 	bool RemoveItem2(int bw1);
-
+	bool BuildWordDiffList_DP();
+	int dp(std::vector<char> & edscript);
+	int onp(std::vector<char> & edscript);
+	int snake(int k, int y, bool exchanged);
+#ifdef STRINGDIFF_LOGGING
+	void debugoutput();
+#endif
 
 // Implementation data
 private:

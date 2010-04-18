@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="tour_sel_targets">
+  <title>Starting WinMerge compare operations</title>
+
+  <para>Every WinMerge compare operation has two targets: either two files or
+  two folders. WinMerge makes it easy to select targets and launch comparisons
+  from different places in your Windows environment. Here are some commonly used
+  methods:</para>
+
+  <section>
+    <title>Drag and drop</title>
+
+    <para>Select two files or two folders in Windows Explorer and drag them to
+    the WinMerge shortcut on your desktop, or into the WinMerge window if it's
+    already open.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/dragndrop_files_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Drag and drop to WinMerge Desktop icon</phrase>
+      </textobject>
+    </mediaobject>
+
+    <note>
+      <para>If you drop only one file or folder into the WinMerge icon or
+      window, WinMerge opens the <xref linkend="sel_targets_dialog" />, where
+      you can specify the other target.</para>
+    </note>
+  </section>
+
+  <section>
+    <title>Windows Explorer context menu shortcuts</title>
+
+    <para>WinMerge has an option that adds a <guimenuitem>WinMerge</guimenuitem>
+    shortcut to the context menu when you select one or two files or folders in
+    Windows Explorer. Choosing the shortcut opens WinMerge and compares the
+    selected items:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/ctx_menu_simple_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Windows Explorer basic context menu integration</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>For even more flexibility, you can replace the basic
+    <guimenuitem>WinMerge</guimenuitem> shortcut with a set of advanced
+    shortcuts. Use these shortcuts to select objects separately, even from
+    different Explorer folders or windows. The next screen shot shows a typical
+    sequence: we choose the first compare target in one Explorer view, then the
+    second target in another Explorer view.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/ctx_menu_advanced_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Windows Explorer advanced context menu integration</phrase>
+      </textobject>
+    </mediaobject>
+  </section>
+
+  <section id="sel_targets_dialog">
+    <title>Select Files or Folder dialog</title>
+
+    <para>For maximum flexibility in launching compare operations, click
+    <menuchoice>
+        <guimenu>File</guimenu>
+
+        <guimenuitem>Open</guimenuitem>
+      </menuchoice> in the main WinMerge window to open the Select Files or
+    Folders dialog:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/OpenDlg_tr.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Select Files or Folders window</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>This dialog lets you browse anywhere for the files or folders to
+    compare. Alternatively, you might choose a recently-used file or folder from
+    the <guilabel>Left</guilabel> and <guilabel>Right</guilabel> drop-down
+    controls. You can even drag a file or folder from Windows Explorer into the
+    <guilabel>Left</guilabel> or <guilabel>Right</guilabel> field. A message
+    prompts you if either target is not found, or if you entered a combination
+    of file and folder (WinMerge can't compare files to folders!) in the two
+    fields.</para>
+
+    <para>The dialog contains several options to tailor your compare operation,
+    including these:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Filter</term>
+
+        <listitem>
+          <para>Use this option to apply a filter to narrow the scope of the
+          comparison. There two kinds of filters:</para>
+
+          <formalpara>
+            <title>File filters</title>
+
+            <para>Include or exclude files that match regular expressions. For
+            example, the expression <code>^test</code> matches files that start
+            with the string, <literal>test</literal>, like
+            <filename>testheaders.h</filename>. WinMerge installs a number of
+            filter files that specify commonly-excluded files for various
+            languages, like C#, C++, and Visual Basic. You can edit these files
+            and, of course, add your own.</para>
+          </formalpara>
+
+          <formalpara>
+            <title>Line filters</title>
+
+            <para>Ignore lines <emphasis>within</emphasis> files that match
+            patterns. For example, the expression <code>^[1-5]00</code> ignores
+            lines beginning with numbers <literal>100</literal>,
+            <literal>200</literal>, <literal>300</literal>,
+            <literal>400</literal>, and <literal>500</literal>.</para>
+          </formalpara>
+
+          <para>WinMerge provides the Filters dialog for creating and managing
+          filters.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Include Subfolders</term>
+
+        <listitem>
+          <para>This option lets you control the depth of a folder comparison.
+          Enabling it compares all folder levels, which might take a while if
+          there are a lot of files. Disable it to compare only the top level of
+          the target folders. This is the fastest option, and you can
+          <quote>drill down</quote> into nested folders later in the Compare
+          Folders window.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Command line</title>
+
+    <para>The WinMerge CLI includes commands with a full set of parameters and
+    options that you can use in a script or Command Prompt window to launch
+    comparisons. This example compares two folders recursively and displays the
+    result in the WinMerge window:</para>
+
+    <para><userinput>WinMergeU <filename>/r C:\folder1</filename> <filename
+    class="directory"><filename>C:\folder2</filename>
+    </filename></userinput></para>
+  </section>
+
+  <section>
+    <title>Version control systems</title>
+
+    <para>If you run TortoiseSVN, TortoiseCVS, or Rational ClearCase, you can
+    configure your version control system to open WinMerge directly. That is, if
+    you compare files using one of these VCS tools, WinMerge opens instead of
+    the tool's native diff utility.</para>
+
+    <note>
+      <para>Another handy VCS integration automatically launches your version
+      control system's checkout dialog whenever you change a managed file in the
+      WinMerge window. This integration works with version control systems that
+      lock files, specifically ClearCase and Visual Source Safe.</para>
+    </note>
+  </section>
+</article>

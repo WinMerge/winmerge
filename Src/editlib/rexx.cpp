@@ -27,21 +27,41 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszRexxKeywordList[] =
+static LPCTSTR s_apszRexxKeywordList[] =
   {
     _T ("ADDRESS"),
     _T ("ARG"),
+    _T ("BY"),
     _T ("CALL"),
+    _T ("DIGITS"),
     _T ("DO"),
     _T ("DROP"),
+    _T ("ELSE"),
+    _T ("END"),
+    _T ("END"),
+    _T ("ENGINEERING"),
+    _T ("ERROR"),
     _T ("EXIT"),
+    _T ("EXPOSE"),
+    _T ("FAILURE"),
+    _T ("FOR"),
+    _T ("FOREVER"),
+    _T ("FORM"),
+    _T ("FUZZ"),
+    _T ("HALT"),
     _T ("IF"),
     _T ("INTERPRET"),
     _T ("ITERATE"),
     _T ("LEAVE"),
+    _T ("NAME"),
     _T ("NOP"),
+    _T ("NOTREADY"),
+    _T ("NOVALUE"),
     _T ("NUMERIC"),
+    _T ("OFF"),
+    _T ("ON"),
     _T ("OPTIONS"),
+    _T ("OTHERWISE"),
     _T ("PARSE"),
     _T ("PROCEDURE"),
     _T ("PULL"),
@@ -49,83 +69,49 @@ static LPTSTR s_apszRexxKeywordList[] =
     _T ("QUEUE"),
     _T ("RETURN"),
     _T ("SAY"),
+    _T ("SCIENTIFIC"),
     _T ("SELECT"),
-    _T ("OTHERWISE"),
     _T ("SIGNAL"),
-    _T ("TRACE"),
-    _T ("END"),
-    _T ("WHEN"),
-    _T ("ELSE"),
-    _T ("WITH"),
-    _T ("TO"),
-    _T ("BY"),
-    _T ("ON"),
-    _T ("END"),
-    _T ("FOR"),
-    _T ("OFF"),
-    _T ("VAR"),
-    _T ("THEN"),
-    _T ("HALT"),
-    _T ("NAME"),
-    _T ("FORM"),
-    _T ("FUZZ"),
-    _T ("VALUE"),
-    _T ("WHILE"),
-    _T ("UNTIL"),
-    _T ("ERROR"),
-    _T ("UPPER"),
-    _T ("WITH"),
-    _T ("EXPOSE"),
-    _T ("DIGITS"),
-    _T ("FOREVER"),
-    _T ("FAILURE"),
-    _T ("VERSION"),
-    _T ("NOVALUE"),
     _T ("SOURCE"),
     _T ("SYNTAX"),
-    _T ("NOTREADY"),
-    _T ("SCIENTIFIC"),
-    _T ("ENGINEERING"),
-    NULL
+    _T ("THEN"),
+    _T ("TO"),
+    _T ("TRACE"),
+    _T ("UNTIL"),
+    _T ("UPPER"),
+    _T ("VALUE"),
+    _T ("VAR"),
+    _T ("VERSION"),
+    _T ("WHEN"),
+    _T ("WHILE"),
+    _T ("WITH"),
+    _T ("WITH"),
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("METHOD"),
-    _T ("CLASS"),
-    _T ("NULL"),
-    _T ("LOOP"),
+    _T ("BOOLEAN"),
     _T ("CATCH"),
-    _T ("RETURNS"),
+    _T ("CHAR"),
+    _T ("CLASS"),
     _T ("EXTENDS"),
     _T ("IMPLEMENTS"),
-    _T ("CHAR"),
-    _T ("BOOLEAN"),
-    NULL
+    _T ("LOOP"),
+    _T ("METHOD"),
+    _T ("NULL"),
+    _T ("RETURNS"),
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsRexxKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszRexxKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszRexxKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -159,6 +145,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -229,7 +216,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

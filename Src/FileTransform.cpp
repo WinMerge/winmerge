@@ -24,7 +24,7 @@
  *  @brief Implementation of file transformations
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: FileTransform.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
 #include "FileTransform.h"
@@ -430,21 +430,18 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
+BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::UNICODESET unicoding)
 {
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
 		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W1"));
 	if (tempFilepath.empty())
 		return FALSE;
 
 	int nFileChanged = 0;
-	BOOL bSuccess = UnicodeFileToOlechar(filepath.c_str(), tempFilepath.c_str(), nFileChanged); 
-	if (!bSuccess)
-		return FALSE;
-
-	if (nFileChanged)
+	BOOL bSuccess = UnicodeFileToOlechar(filepath.c_str(), tempFilepath.c_str(), nFileChanged, unicoding); 
+	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
@@ -468,7 +465,7 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 	}
 
 
-	return TRUE;
+	return bSuccess;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -480,17 +477,14 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
 		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W2"));
 	if (tempFilepath.empty())
 		return FALSE;
 
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	BOOL bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
-	if (!bSuccess)
-		return FALSE;
-
-	if (nFileChanged)
+	BOOL bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
+	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
@@ -513,9 +507,47 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 		}
 	}
 
-	return TRUE;
+	return bSuccess;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayOverwrite)
+{
+	String tempDir = env_GetTempPath();
+	if (tempDir.empty())
+		return FALSE;
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W3"));
+	if (tempFilepath.empty())
+		return FALSE;
+	// TODO : is it better with the BOM or without (just change the last argument)
+	int nFileChanged = 0;
+	BOOL bSuccess = AnyCodepageToUTF8(codepage, filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
+	if (bSuccess && nFileChanged)
+	{
+		// we do not overwrite so we delete the old file
+		if (bMayOverwrite)
+		{
+			if (!::DeleteFile(filepath.c_str()))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					filepath.c_str(), GetSysError(GetLastError()).c_str()));
+			}
+		}
+		// and change the filepath if everything works
+		filepath = tempFilepath;
+	}
+	else
+	{
+		if (!::DeleteFile(tempFilepath.c_str()))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
+		}
+	}
+
+	return bSuccess;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////

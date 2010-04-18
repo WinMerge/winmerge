@@ -34,7 +34,7 @@ Attribute VB_Exposed = True
 '/////////////////////////////////////////////////////////////////////////////
 '
 ' RCS ID line follows -- this is updated by CVS
-' $Id$
+' $Id: WinMergeScript.cls 5120 2008-03-04 00:02:01Z gerundt $
 
 Option Explicit
 
@@ -59,7 +59,7 @@ Public Property Get PluginDescription() As String
 End Property
 
 Public Property Get PluginFileFilters() As String
-    PluginFileFilters = "\.doc;\.dot$"
+    PluginFileFilters = "\.doc(\..*)?$;\.dot(\..*)?$;\.docx(\..*)?$;\.docm(\..*)?$;\.dotx(\..*)?$;\.dotm(\..*)?$"
 End Property
 
 Public Property Get PluginIsAutomatic() As Boolean

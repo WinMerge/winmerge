@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeDoc.cpp 7107 2010-01-14 21:43:14Z kimmov $
 
 #include "StdAfx.h"
 #include <shlwapi.h>		// PathCompactPathEx()
@@ -63,6 +63,8 @@
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
 #include "TempFile.h"
+#include "codepage_detect.h"
+#include "SelectUnpackerDlg.h"
 #include "MergeCmdLineInfo.h"
 
 #ifdef _DEBUG
@@ -76,6 +78,8 @@ using std::swap;
 /** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
 
+int CMergeDoc::m_nBuffersTemp = 2;
+
 /** @brief EOL types */
 static LPCTSTR crlfs[] =
 {
@@ -84,7 +88,7 @@ static LPCTSTR crlfs[] =
 	_T ("\x0d")      //  Macintosh style
 };
 
-static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTSTR filepath);
+static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath);
 static void UnescapeControlChars(CString &s);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -96,12 +100,22 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	//{{AFX_MSG_MAP(CMergeDoc)
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
+	ON_COMMAND(ID_FILE_SAVE_MIDDLE, OnFileSaveMiddle)
 	ON_COMMAND(ID_FILE_SAVE_RIGHT, OnFileSaveRight)
 	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVEAS_MIDDLE, OnUpdateFileSaveAsMiddle)
+	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_RESCAN, OnFileReload)
+	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
+	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
+	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_9, OnDiffContext)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_9, OnUpdateDiffContext)
+	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
+	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -122,24 +136,27 @@ CMergeDoc::CMergeDoc()
 {
 	DIFFOPTIONS options = {0};
 
+	m_nBuffers = m_nBuffersTemp;
+	m_filePaths.SetSize(m_nBuffers);
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_ptBuf[nBuffer] = new CDiffTextBuffer(this,nBuffer);
+		m_pSaveFileInfo[nBuffer] = new DiffFileInfo();
+		m_pRescanFileInfo[nBuffer] = new DiffFileInfo();
+		m_pView[nBuffer] = NULL;
+		m_pDetailView[nBuffer] = NULL;
+		m_nBufferType[nBuffer] = BUFFER_NORMAL;
+		m_bEditAfterRescan[nBuffer] = false;
+	}
+
+	m_nCurDiff=-1;
+	m_bEnableRescan = true;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
-	m_pView[MERGE_VIEW_LEFT] = NULL;
-	m_pView[MERGE_VIEW_RIGHT] = NULL;
-	m_pDetailView[0] = NULL;
-	m_pDetailView[1] = NULL;
 	m_pInfoUnpacker = new PackingInfo;
-	m_nBufferType[0] = BUFFER_NORMAL;
-	m_nBufferType[1] = BUFFER_NORMAL;
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
-	m_bEditAfterRescan[0] = false;
-	m_bEditAfterRescan[1] = false;
-	m_ptBuf[0] = new CDiffTextBuffer(this, 0);
-	m_ptBuf[1] = new CDiffTextBuffer(this, 1);
-	m_pSaveFileInfo[0] = new DiffFileInfo();
-	m_pSaveFileInfo[1] = new DiffFileInfo();
-	m_pRescanFileInfo[0] = new DiffFileInfo();
-	m_pRescanFileInfo[1] = new DiffFileInfo();
+	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
 
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
@@ -168,12 +185,12 @@ CMergeDoc::~CMergeDoc()
 	}
 
 	delete m_pInfoUnpacker;
-	delete m_pSaveFileInfo[0];
-	delete m_pSaveFileInfo[1];
-	delete m_pRescanFileInfo[0];
-	delete m_pRescanFileInfo[1];
-	delete m_ptBuf[0];
-	delete m_ptBuf[1];
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		delete m_pSaveFileInfo[nBuffer];
+		delete m_pRescanFileInfo[nBuffer];
+		delete m_ptBuf[nBuffer];
+	}
 }
 
 /**
@@ -182,8 +199,8 @@ CMergeDoc::~CMergeDoc()
 void CMergeDoc::DeleteContents ()
 {
 	CDocument::DeleteContents ();
-	m_ptBuf[0]->FreeAll ();
-	m_ptBuf[1]->FreeAll ();
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		m_ptBuf[nBuffer]->FreeAll ();
 	m_tempFiles[0].Delete();
 	m_tempFiles[1].Delete();
 }
@@ -252,8 +269,10 @@ BOOL CMergeDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	m_ptBuf[0]->InitNew();
-	m_ptBuf[1]->InitNew();
+	SetTitle(theApp.LoadString(IDS_FILE_COMPARISON_TITLE).c_str());
+	
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		m_ptBuf[nBuffer]->InitNew ();
 	return TRUE;
 }
 
@@ -270,14 +289,18 @@ int CMergeDoc::GetActiveMergeViewIndexType() const
 	// Cast it to common base of all our views
 	CCrystalTextView* curView = dynamic_cast<CCrystalTextView*> (pActiveView);
 	// Now test it against all our views to see which it is
-	if (curView == GetLeftView())
-		return MERGEVIEW_LEFT;
-	else if (curView == GetRightView())
-		return MERGEVIEW_RIGHT;
-	else if (curView == GetLeftDetailView())
-		return MERGEVIEW_LEFT_DETAIL;
-	else if (curView == GetRightDetailView())
-		return MERGEVIEW_RIGHT_DETAIL;
+	if (curView == GetView(0))
+		return MERGEVIEW_PANE0;
+	else if (curView == GetView(1))
+		return MERGEVIEW_PANE1;
+	else if (m_nBuffers == 3 && curView == GetView(2))
+		return MERGEVIEW_PANE2;
+	else if (curView == GetDetailView(0))
+		return MERGEVIEW_PANE0_DETAIL;
+	else if (curView == GetDetailView(1))
+		return MERGEVIEW_PANE1_DETAIL;
+	else if (m_nBuffers == 3 && curView == GetDetailView(2))
+		return MERGEVIEW_PANE2_DETAIL;
 
 	// This assert fired when location pane caused refresh.
 	// We can't detect location pane activity, so disable the assert.
@@ -293,7 +316,7 @@ CMergeEditView * CMergeDoc::GetActiveMergeView()
 	CView * pActiveView = GetParentFrame()->GetActiveView();
 	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
 	if (!pMergeEditView)
-		pMergeEditView = GetLeftView(); // default to left view (in case some location or detail view active)
+		pMergeEditView = GetView(0); // default to left view (in case some location or detail view active)
 	return pMergeEditView;
 }
 
@@ -336,18 +359,20 @@ void CMergeDoc::Serialize(CArchive& ar)
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
-static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTSTR filepath)
+static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath, BOOL bForceUTF8)
 {
 	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
 	int orig_codepage = buf.getCodepage();
 	ucr::UNICODESET orig_unicoding = buf.getUnicoding();
+	bool orig_bHasBOM = buf.getHasBom();
 
 	// If file was in Unicode
-	if ((orig_unicoding != ucr::NONE) || (buf2.getUnicoding() != ucr::NONE))
+	if (orig_unicoding != ucr::NONE)
 	{
 	// we subvert the buffer's memory of the original file encoding
 		buf.setUnicoding(ucr::UCS2LE);  // write as UCS-2LE (for preprocessing)
-		buf.setCodepage(0); // should not matter
+		buf.setCodepage(1200); // should not matter
+		buf.setHasBom(true);
 	}
 
 	// and we don't repack the file
@@ -356,11 +381,12 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTS
 	// write buffer out to temporary file
 	String sError;
 	int retVal = buf.SaveToFile(filepath, TRUE, sError, tempPacker,
-		CRLF_STYLE_AUTOMATIC, FALSE);
+		CRLF_STYLE_AUTOMATIC, FALSE, bForceUTF8);
 
 	// restore memory of encoding of original file
 	buf.setUnicoding(orig_unicoding);
 	buf.setCodepage(orig_codepage);
+	buf.setHasBom(orig_bHasBOM);
 }
 
 /**
@@ -379,15 +405,15 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, CDiffTextBuffer & buf2, LPCTS
  * touched by Rescan().
  * @sa CDiffWrapper::RunFileDiff()
  */
-int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
+int CMergeDoc::Rescan(BOOL &bBinary, IDENTLEVEL &identical,
 		BOOL bForced /* =FALSE */)
 {
 	DIFFOPTIONS diffOptions = {0};
 	DiffFileInfo fileInfo;
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
-	FileChange leftFileChanged = FileNoChange;
-	FileChange rightFileChanged = FileNoChange;
+	FileChange FileChanged[3] = {FileNoChange, FileNoChange, FileNoChange};
+	int nBuffer;
 
 	if (!bForced)
 	{
@@ -405,90 +431,55 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_diffWrapper.SetFilterList(_T(""));
 	}
 
-	// Check if files have been modified since last rescan
-	// Ignore checking in case of scratchpads (empty filenames)
-	if (!m_filePaths.GetLeft().empty())
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		leftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft().c_str(),
-				fileInfo, false, 0);
-	}
-	if (!m_filePaths.GetRight().empty())
-	{
-		rightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight().c_str(),
-				fileInfo, false, 1);
+		// Check if files have been modified since last rescan
+		// Ignore checking in case of scratchpads (empty filenames)
+		if (!m_filePaths[nBuffer].empty())
+		{
+			FileChanged[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(),
+					fileInfo, false, nBuffer);
+		}
 	}
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
-	if (leftFileChanged == FileRemoved)
+	LPCTSTR tnames[] = {_T("t0_wmdoc"), _T("t1_wmdoc"), _T("t2_wmdoc")};
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths.GetLeft().c_str());
-		AfxMessageBox(msg, MB_ICONWARNING);
-		BOOL bSaveResult = FALSE;
-		bool ok = DoSaveAs(m_filePaths.GetLeft().c_str(), bSaveResult, 0);
-		if (!ok || !bSaveResult)
+		if (FileChanged[nBuffer] == FileRemoved)
 		{
-			return RESCAN_FILE_ERR;
+			CString msg;
+			LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths[nBuffer].c_str());
+			AfxMessageBox(msg, MB_ICONWARNING);
+			BOOL bSaveResult = FALSE;
+			bool ok = DoSaveAs(m_filePaths[nBuffer].c_str(), bSaveResult, nBuffer);
+			if (!ok || !bSaveResult)
+			{
+				return RESCAN_FILE_ERR;
+			}
 		}
-	}
-	if (rightFileChanged == FileRemoved)
-	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths.GetRight().c_str());
-		AfxMessageBox(msg);
-		BOOL bSaveResult = FALSE;
-		bool ok = DoSaveAs(m_filePaths.GetRight().c_str(), bSaveResult, 0);
-		if (!ok || !bSaveResult)
+
+		String temp = m_tempFiles[nBuffer].GetPath();
+		if (temp.empty())
 		{
-			return RESCAN_FILE_ERR;
+			temp = m_tempFiles[nBuffer].CreateFromFile(m_filePaths.GetPath(nBuffer).c_str(),
+				tnames[nBuffer]);
 		}
+		if (temp.empty())
+			return RESCAN_TEMP_ERR;
 	}
 
-	if (leftFileChanged == FileChanged)
-	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetLeft().c_str());
-		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
-		{
-			ReloadDoc(0);
-			return RESCAN_OK;
-		}
-	}
-	else if (rightFileChanged == FileChanged)
-	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetRight().c_str());
-		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
-		{
-			ReloadDoc(1);
-			return RESCAN_OK;
-		}
-	}
+	CheckFileChanged();
 
-	String temp1 = m_tempFiles[0].GetPath();
-	if (temp1.empty())
-	{
-		temp1 = m_tempFiles[0].CreateFromFile(m_filePaths.GetLeft().c_str(),
-				_T("lt_wmdoc"));
-	}
-	String temp2 = m_tempFiles[1].GetPath();
-	if (temp2.empty())
-	{
-		temp2 = m_tempFiles[1].CreateFromFile(m_filePaths.GetRight().c_str(),
-				_T("rt_wmdoc"));
-	}
-	if (temp1.empty() || temp2.empty())
-		return RESCAN_TEMP_ERR;
-
+	BOOL bForceUTF8 = FALSE;
 	String tempPath = env_GetTempPath(NULL);
-	m_ptBuf[0]->SetTempPath(tempPath);
-	m_ptBuf[1]->SetTempPath(tempPath);
-
-	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
-	if (bBinary == FALSE)
+	IF_IS_TRUE_ALL (m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage(), nBuffer, m_nBuffers) {}
+	else
+		bForceUTF8 = TRUE;
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		SaveBuffForDiff(*m_ptBuf[0], *m_ptBuf[1], m_tempFiles[0].GetPath().c_str());
-		SaveBuffForDiff(*m_ptBuf[1], *m_ptBuf[0], m_tempFiles[1].GetPath().c_str());
+		m_ptBuf[nBuffer]->SetTempPath(tempPath);
+		SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath().c_str(), bForceUTF8);
 	}
 
 	// Set up DiffWrapper
@@ -500,12 +491,19 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_nCurDiff = -1;
 	// Clear moved lines lists
 	if (m_diffWrapper.GetDetectMovedBlocks())
-		m_diffWrapper.GetMovedLines()->Clear();
+	{
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			m_diffWrapper.GetMovedLines(nBuffer)->Clear();
+	}
 
 	// Set paths for diffing and run diff
 	m_diffWrapper.EnablePlugins(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
-	m_diffWrapper.SetPaths(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), TRUE);
-	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
+	if (m_nBuffers < 3)
+		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath().c_str(), m_tempFiles[1].GetPath().c_str()), TRUE);
+	else
+		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath().c_str(), m_tempFiles[1].GetPath().c_str(), m_tempFiles[2].GetPath().c_str()), TRUE);
+	m_diffWrapper.SetCompareFiles(m_filePaths);
+	m_diffWrapper.SetCodepage(bForceUTF8 ? CP_UTF8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 	diffSuccess = m_diffWrapper.RunFileDiff();
@@ -516,8 +514,24 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	if (bBinary) // believe caller if we were told these are binaries
 		status.bBinaries = TRUE;
 
+	// If comparing whitespaces and
+	// other file has EOL before EOF and other not...
+	if (!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
+	{
+		IF_IS_TRUE_ALL ((status.bMissingNL[0] == status.bMissingNL[nBuffer]), nBuffer, m_nBuffers) {}
+		else
+		{
+			// ..lasf DIFFRANGE of file which has EOL must be
+			// fixed to contain last line too
+			int lineCount[3];
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				lineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+			m_diffWrapper.FixLastDiffRange(m_nBuffers, lineCount, status.bMissingNL, diffOptions.bIgnoreBlankLines);
+		}
+	}
+
 	// set identical/diff result as recorded by diffutils
-	bIdentical = status.bIdentical;
+	identical = status.Identical;
 
 	// Determine errors and binary file compares
 	if (!diffSuccess)
@@ -534,90 +548,96 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		// BTW, this solves the problem of double asserts
 		// (during the display of an assert message box, a second assert in one of the 
 		//  display functions happens, and hides the first assert)
-		m_pView[MERGE_VIEW_LEFT]->DetachFromBuffer();
-		m_pView[MERGE_VIEW_RIGHT]->DetachFromBuffer();
-		m_pDetailView[0]->DetachFromBuffer();
-		m_pDetailView[1]->DetachFromBuffer();
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			m_pView[nBuffer]->DetachFromBuffer();
+			m_pDetailView[nBuffer]->DetachFromBuffer();
+		}
 
 		// Remove blank lines and clear winmerge flags
 		// this operation does not change the modified flag
-		m_ptBuf[0]->prepareForRescan();
-		m_ptBuf[1]->prepareForRescan();
-
-		// If one file has EOL before EOF and other not...
-		if (status.bLeftMissingNL != status.bRightMissingNL)
-		{
-			// ..lasf DIFFRANGE of file which has EOL must be
-			// fixed to contain last line too
-			m_diffWrapper.FixLastDiffRange(m_ptBuf[0]->GetLineCount(), m_ptBuf[1]->GetLineCount(),
-				status.bRightMissingNL, diffOptions.bIgnoreBlankLines);
-		}
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			m_ptBuf[nBuffer]->prepareForRescan();
 
 		// Divide diff blocks to match lines.
-		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES))
+		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES) && m_nBuffers < 3)
 			AdjustDiffBlocks();
 
 		// Analyse diff-list (updating real line-numbers)
 		// this operation does not change the modified flag
 		PrimeTextBuffers();
 
+		// Hide identical lines if diff-context is not 'All'
+		HideLines();
+
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
 		if (m_diffWrapper.GetDetectMovedBlocks())
-			FlagMovedLines(m_diffWrapper.GetMovedLines(), m_ptBuf[0], m_ptBuf[1]);
+			FlagMovedLines();
 		
 		// After PrimeTextBuffers() we know amount of real diffs
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
 
 		// Identical files are also updated
 		if (!m_diffList.HasSignificantDiffs())
-			bIdentical = TRUE;
+			identical = IDENTLEVEL_ALL;
 
-		// just apply some options to the views
-		m_pView[MERGE_VIEW_LEFT]->PrimeListWithFile();
-		m_pView[MERGE_VIEW_RIGHT]->PrimeListWithFile();
-		m_pDetailView[0]->PrimeListWithFile();
-		m_pDetailView[1]->PrimeListWithFile();
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			// just apply some options to the views
+			m_pView[nBuffer]->PrimeListWithFile();
+			m_pDetailView[nBuffer]->PrimeListWithFile();
 
-		// Now buffers data are valid
-		m_pView[MERGE_VIEW_LEFT]->ReAttachToBuffer();
-		m_pView[MERGE_VIEW_RIGHT]->ReAttachToBuffer();
-		m_pDetailView[0]->ReAttachToBuffer();
-		m_pDetailView[1]->ReAttachToBuffer();
+			// Now buffers data are valid
+			m_pView[nBuffer]->ReAttachToBuffer();
+			m_pDetailView[nBuffer]->ReAttachToBuffer();
 
-		m_bEditAfterRescan[0] = false;
-		m_bEditAfterRescan[1] = false;
+			m_bEditAfterRescan[nBuffer] = false;
+		}
 	}
 
 	GetParentFrame()->SetLastCompareResult(m_diffList.GetSignificantDiffs());
 
-	m_pRescanFileInfo[0]->Update(m_filePaths.GetLeft().c_str());
-	m_pRescanFileInfo[1]->Update(m_filePaths.GetRight().c_str());
-
 	return nResult;
 }
 
-/** @brief Adjust all different lines that were detected as actually matching moved lines */
-void CMergeDoc::FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
-		CDiffTextBuffer * pBuffer2)
+void CMergeDoc::CheckFileChanged(void)
 {
-	int i;
-	for (i = 0; i < pBuffer1->GetLineCount(); ++i)
+	int nBuffer;
+	DiffFileInfo fileInfo;
+	FileChange FileChange[3];
+
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
-		if (j != -1)
-		{
-			TRACE(_T("%d->%d\n"), i, j);
-			ASSERT(j>=0);
-			// We only flag lines that are already marked as being different
-			int apparent = pBuffer1->ComputeApparentLine(i);
-			if (pBuffer1->FlagIsSet(apparent, LF_DIFF))
-			{
-				pBuffer1->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
-			}
-		}
+		FileChange[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(), fileInfo,
+			FALSE, nBuffer);
+
+		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
 	}
 
-	for (i=0; i<pBuffer2->GetLineCount(); ++i)
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (FileChange[nBuffer] == FileChanged)
+		{
+			CString msg;
+			LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths[nBuffer].c_str());
+			if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
+			{
+				OnFileReload();
+			}
+			break;
+		}
+	}
+}
+
+
+/** @brief Adjust all different lines that were detected as actually matching moved lines */
+void CMergeDoc::FlagMovedLines(void)
+{
+	int i;
+	MovedLines *pMovedLines;
+
+	pMovedLines = m_diffWrapper.GetMovedLines(0);
+	for (i = 0; i < m_ptBuf[0]->GetLineCount(); ++i)
 	{
 		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_RIGHT);
 		if (j != -1)
@@ -625,10 +645,64 @@ void CMergeDoc::FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuff
 			TRACE(_T("%d->%d\n"), i, j);
 			ASSERT(j>=0);
 			// We only flag lines that are already marked as being different
-			int apparent = pBuffer2->ComputeApparentLine(i);
-			if (pBuffer2->FlagIsSet(apparent, LF_DIFF))
+			int apparent = m_ptBuf[0]->ComputeApparentLine(i);
+			if (m_ptBuf[0]->FlagIsSet(apparent, LF_DIFF))
 			{
-				pBuffer2->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+				m_ptBuf[0]->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+			}
+		}
+	}
+
+	pMovedLines = m_diffWrapper.GetMovedLines(1);
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	{
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
+		if (j != -1)
+		{
+			TRACE(_T("%d->%d\n"), i, j);
+			ASSERT(j>=0);
+			// We only flag lines that are already marked as being different
+			int apparent = m_ptBuf[1]->ComputeApparentLine(i);
+			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
+			{
+				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+			}
+		}
+	}
+
+	if (m_nBuffers < 3)
+		return;
+
+	pMovedLines = m_diffWrapper.GetMovedLines(1);
+	for (i=0; i<m_ptBuf[1]->GetLineCount(); ++i)
+	{
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_RIGHT);
+		if (j != -1)
+		{
+			TRACE(_T("%d->%d\n"), i, j);
+			ASSERT(j>=0);
+			// We only flag lines that are already marked as being different
+			int apparent = m_ptBuf[1]->ComputeApparentLine(i);
+			if (m_ptBuf[1]->FlagIsSet(apparent, LF_DIFF))
+			{
+				m_ptBuf[1]->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+			}
+		}
+	}
+
+	pMovedLines = m_diffWrapper.GetMovedLines(2);
+	for (i=0; i<m_ptBuf[2]->GetLineCount(); ++i)
+	{
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
+		if (j != -1)
+		{
+			TRACE(_T("%d->%d\n"), i, j);
+			ASSERT(j>=0);
+			// We only flag lines that are already marked as being different
+			int apparent = m_ptBuf[2]->ComputeApparentLine(i);
+			if (m_ptBuf[2]->FlagIsSet(apparent, LF_DIFF))
+			{
+				m_ptBuf[2]->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
 			}
 		}
 	}
@@ -643,7 +717,7 @@ void CMergeDoc::FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuff
  * @param bIdentical [in] Were files identical?.
  * @sa CMergeDoc::Rescan()
  */
-void CMergeDoc::ShowRescanError(int nRescanResult, BOOL bIdentical)
+void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 {
 	// Rescan was suppressed, there is no sensible status
 	if (nRescanResult == RESCAN_SUPPRESSED)
@@ -668,16 +742,16 @@ void CMergeDoc::ShowRescanError(int nRescanResult, BOOL bIdentical)
 	}
 
 	// Files are not binaries, but they are identical
-	if (bIdentical)
+	if (identical != IDENTLEVEL_NONE)
 	{
-		if (!m_filePaths.GetLeft().empty() && !m_filePaths.GetRight().empty() && 
-			m_filePaths.GetLeft() == m_filePaths.GetRight())
+		if (!m_filePaths.GetLeft().empty() && !m_filePaths.GetMiddle().empty() && !m_filePaths.GetRight().empty() && 
+			m_filePaths.GetLeft() == m_filePaths.GetRight() && m_filePaths.GetMiddle() == m_filePaths.GetRight())
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
 			s = theApp.LoadString(IDS_FILE_TO_ITSELF);
 			AfxMessageBox(s.c_str(), MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
 		}
-		else
+		else if (identical == IDENTLEVEL_ALL)
 		{
 			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
 
@@ -778,21 +852,46 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	// Note we don't care about m_nDiffs count to become zero,
 	// because we don't rescan() so it does not change
 
+	SetCurrentDiff(lastDiff);
+
 	bool bGroupWithPrevious = false;
-	if (!ListCopy(srcPane, dstPane, lastDiff, bGroupWithPrevious))
+	if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, true))
 		return; // sync failure
+
+	SetEditedAfterRescan(dstPane);
+
+	CPoint currentPosSrc = m_pView[srcPane]->GetCursorPos();
+	currentPosSrc.x = 0;
+	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
+	currentPosDst.x = 0;
 
 	// copy from bottom up is more efficient
 	for (int i = lastDiff - 1; i >= firstDiff; --i)
 	{
 		if (m_diffList.IsDiffSignificant(i))
 		{
+			SetCurrentDiff(i);
+			const DIFFRANGE *pdi = m_diffList.DiffRangeAt(i);
+			if (currentPosDst.y > pdi->dend[dstPane])
+			{
+				if (pdi->blank[dstPane] >= 0)
+					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[dstPane] + 1;
+				else if (pdi->blank[srcPane] >= 0)
+					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[srcPane] + 1;
+			}			
 			// Group merge with previous (merge undo data to one action)
 			bGroupWithPrevious = true;
-			if (!ListCopy(srcPane, dstPane, i, bGroupWithPrevious))
-				return; // sync failure
+			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
+				break; // sync failure
 		}
 	}
+
+	m_pView[dstPane]->SetCursorPos(currentPosDst);
+	m_pView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
+	m_pView[dstPane]->SetNewAnchor(currentPosDst);
+	m_pDetailView[dstPane]->SetCursorPos(currentPosDst);
+	m_pDetailView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
+	m_pDetailView[dstPane]->SetNewAnchor(currentPosDst);
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
@@ -810,8 +909,9 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
  */
 bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 {
-	const int cd_dbegin = dr.dbegin0;
-	const int cd_dend = dr.dend0;
+	const int cd_dbegin = dr.dbegin[0];
+	const int cd_dend = dr.dend[0];
+	int nBuffer;
 
 	// Must ensure line number is in range before getting line flags
 	if (cd_dend >= m_ptBuf[0]->GetLineCount())
@@ -825,20 +925,20 @@ bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 
 	// Optimization - check last line first so we don't need to
 	// check whole diff for obvious cases
-	if (!(dwLeftFlags & LF_WINMERGE_FLAGS) ||
-		!(dwRightFlags & LF_WINMERGE_FLAGS))
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		return false;
+		DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
+		if (!(dwFlags & LF_WINMERGE_FLAGS))
+			return false;
 	}
 
 	for (int line = cd_dbegin; line < cd_dend; line++)
 	{
-		dwLeftFlags = m_ptBuf[0]->GetLineFlags(cd_dend);
-		dwRightFlags = m_ptBuf[1]->GetLineFlags(cd_dend);
-		if (!(dwLeftFlags & LF_WINMERGE_FLAGS) ||
-			!(dwRightFlags & LF_WINMERGE_FLAGS))
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			return false;
+			DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
+			if (!(dwFlags & LF_WINMERGE_FLAGS))
+				return false;
 		}
 	}
 	return true;
@@ -854,8 +954,10 @@ bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
  * previous action (allows one undo for copy all)
  */
 bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
-		bool bGroupWithPrevious /*= false*/)
+		bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
+	CCrystalTextView *pSource = bUpdateView ? m_pView[dstPane] : NULL;
+
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
 	// it will wreck the line status array to rescan as we merge)
@@ -873,12 +975,12 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			// Find out diff under cursor
 			CPoint ptCursor;
 			int nActiveViewIndexType = GetActiveMergeViewIndexType();
-			if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+			if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 				ptCursor = m_pView[nActiveViewIndexType]->GetCursorPos();
-			else if (nActiveViewIndexType == MERGEVIEW_LEFT_DETAIL ||
-					nActiveViewIndexType == MERGEVIEW_RIGHT_DETAIL)
+			else if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL ||
+					nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
 			{
-				ptCursor = m_pView[nActiveViewIndexType - MERGEVIEW_LEFT_DETAIL]->GetCursorPos();
+				ptCursor = m_pView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL]->GetCursorPos();
 			}
 			nDiff = m_diffList.LineToDiff(ptCursor.y);
 		}
@@ -891,9 +993,9 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
 		CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
 		BOOL bSrcWasMod = sbuf.IsModified();
-		const int cd_dbegin = srcPane == 0 ? cd.dbegin0 : cd.dbegin1;
-		const int cd_dend = srcPane == 0 ? cd.dend0 : cd.dend1;
-		const int cd_blank = srcPane == 0 ? cd.blank0 : cd.blank1;
+		const int cd_dbegin = cd.dbegin[srcPane];
+		const int cd_dend = cd.dend[srcPane];
+		const int cd_blank = cd.blank[srcPane];
 		bool bInSync = SanityCheckDiff(cd);
 
 		if (!bInSync)
@@ -905,21 +1007,26 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// If we remove whole diff from current view, we must fix cursor
 		// position first. Normally we would move to end of previous line,
 		// but we want to move to begin of that line for usability.
-		if ((cd.op == OP_LEFTONLY && dstPane == 0) ||
-			(cd.op == OP_RIGHTONLY && dstPane == 1))
+		if (bUpdateView)
 		{
-			CCrystalTextView * pCurView = m_pView[dstPane];
-			CPoint currentPos = pCurView->GetCursorPos();
+			CPoint currentPos = m_pView[dstPane]->GetCursorPos();
 			currentPos.x = 0;
-			if (currentPos.y > 0)
-				currentPos.y--;
-			pCurView->SetCursorPos(currentPos);
+			if (currentPos.y > cd_dend)
+			{
+				if (cd.blank[dstPane] >= 0)
+					currentPos.y -= cd_dend - cd.blank[dstPane] + 1;
+				else if (cd.blank[srcPane] >= 0)
+					currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
+			}
+			m_pView[dstPane]->SetCursorPos(currentPos);
+			m_pDetailView[dstPane]->SetCursorPos(currentPos);
 		}
 
 		// if the current diff contains missing lines, remove them from both sides
 		int limit = cd_dend;
 
 		// curView is the view which is changed, so the opposite of the source view
+		CCrystalTextView* srcView = m_pView[srcPane];
 		CCrystalTextView* dstView = m_pView[dstPane];
 
 		dbuf.BeginUndoGroup(bGroupWithPrevious);
@@ -929,32 +1036,30 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			// delete only on destination side since rescan will clear the other side
 			if (cd_dend + 1 < dbuf.GetLineCount())
 			{
-				dbuf.DeleteText(dstView, cd_blank, 0, cd_dend+1, 0, CE_ACTION_MERGE);
+				dbuf.DeleteText(pSource, cd_blank, 0, cd_dend+1, 0, CE_ACTION_MERGE);
 			}
 			else
 			{
 				// To removing EOL chars of last line, deletes from the end of the line (cd_blank - 1).
 				ASSERT(cd_blank > 0);
-				dbuf.DeleteText(dstView, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_MERGE);
+				dbuf.DeleteText(pSource, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_MERGE);
 			}
 
 			limit=cd_blank-1;
-			dbuf.FlushUndoGroup(dstView);
+			dbuf.FlushUndoGroup(pSource);
 			dbuf.BeginUndoGroup(TRUE);
 		}
 
-		CString strLine;
 
 		// copy the selected text over
-		for (int i=cd_dbegin; i <= limit; i++)
+		if (cd_dbegin <= limit)
 		{
-			// text exists on other side, so just replace
-			sbuf.GetFullLine(i, strLine);
-			dbuf.ReplaceFullLine(dstView, i, strLine, CE_ACTION_MERGE);
-			dbuf.FlushUndoGroup(dstView);
+			// text exists on left side, so just replace
+			dbuf.ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
+			dbuf.FlushUndoGroup(pSource);
 			dbuf.BeginUndoGroup(TRUE);
 		}
-		dbuf.FlushUndoGroup(dstView);
+		dbuf.FlushUndoGroup(pSource);
 
 		// remove the diff
 		SetCurrentDiff(-1);
@@ -1020,8 +1125,16 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 	// Select message based on reason function called
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		LangFormatString2(s, IDS_FILEPACK_FAILED_LEFT + nBuffer,
-			strPath, pInfoTempUnpacker->pluginName.c_str());
+		if (m_nBuffers == 3)
+		{
+			LangFormatString2(s, IDS_FILEPACK_FAILED_LEFT + nBuffer,
+				strPath, pInfoTempUnpacker->pluginName.c_str());
+		}
+		else
+		{
+			LangFormatString2(s, nBuffer == 0 ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT,
+				strPath, pInfoTempUnpacker->pluginName.c_str());
+		}
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
 	}
@@ -1040,8 +1153,10 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 	case IDOK:
 		if (nBuffer == 0)
 			titleid = IDS_SAVE_LEFT_AS;
-		else
+		else if (nBuffer == m_nBuffers - 1)
 			titleid = IDS_SAVE_RIGHT_AS;
+		else
+			titleid = IDS_SAVE_MIDDLE_AS;
 
 		if (SelectFile(parent, s, strPath, titleid, NULL, FALSE))
 		{
@@ -1163,9 +1278,8 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 		nSaveErrorCode = SAVE_NO_FILENAME;
 
 	// Handle unnamed buffers
-	if ((m_nBufferType[nBuffer] == BUFFER_UNNAMED) ||
-		(m_nBufferType[nBuffer] == BUFFER_UNNAMED))
-			nSaveErrorCode = SAVE_NO_FILENAME;
+	if (m_nBufferType[nBuffer] == BUFFER_UNNAMED)
+		nSaveErrorCode = SAVE_NO_FILENAME;
 
 	String sError;
 	if (nSaveErrorCode == SAVE_DONE)
@@ -1192,8 +1306,8 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 
 		m_ptBuf[nBuffer]->SetModified(FALSE);
 		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths.GetPath(nBuffer).c_str());
-		m_filePaths.SetPath(nBuffer, strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
+		m_filePaths[nBuffer] = strSavePath;
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = TRUE;
 		result = true;
@@ -1254,8 +1368,8 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths.GetPath(nBuffer).c_str());
-		m_filePaths.SetPath(nBuffer, strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
+		m_filePaths[nBuffer] = strSavePath;
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = TRUE;
 		result = true;
@@ -1266,20 +1380,20 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 /**
  * @brief Get left->right info for a moved line (apparent line number)
  */
-int CMergeDoc::RightLineInMovedBlock(int apparentLeftLine)
+int CMergeDoc::RightLineInMovedBlock(int nBuffer, int apparentLeftLine)
 {
-	if (!(m_ptBuf[0]->GetLineFlags(apparentLeftLine) & LF_MOVED))
+	if (!(m_ptBuf[nBuffer]->GetLineFlags(apparentLeftLine) & LF_MOVED))
 		return -1;
 
-	int realLeftLine = m_ptBuf[0]->ComputeRealLine(apparentLeftLine);
+	int realLeftLine = m_ptBuf[nBuffer]->ComputeRealLine(apparentLeftLine);
 	int realRightLine = -1;
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
-		realRightLine = m_diffWrapper.GetMovedLines()->LineInBlock(realLeftLine,
-				MovedLines::SIDE_LEFT);
+		realRightLine = m_diffWrapper.GetMovedLines(nBuffer)->LineInBlock(realLeftLine,
+				MovedLines::SIDE_RIGHT);
 	}
 	if (realRightLine != -1)
-		return m_ptBuf[1]->ComputeApparentLine(realRightLine);
+		return m_ptBuf[nBuffer + 1]->ComputeApparentLine(realRightLine);
 	else
 		return -1;
 }
@@ -1287,20 +1401,20 @@ int CMergeDoc::RightLineInMovedBlock(int apparentLeftLine)
 /**
  * @brief Get right->left info for a moved line (apparent line number)
  */
-int CMergeDoc::LeftLineInMovedBlock(int apparentRightLine)
+int CMergeDoc::LeftLineInMovedBlock(int nBuffer, int apparentRightLine)
 {
-	if (!(m_ptBuf[1]->GetLineFlags(apparentRightLine) & LF_MOVED))
+	if (!(m_ptBuf[nBuffer]->GetLineFlags(apparentRightLine) & LF_MOVED))
 		return -1;
 
-	int realRightLine = m_ptBuf[1]->ComputeRealLine(apparentRightLine);
+	int realRightLine = m_ptBuf[nBuffer]->ComputeRealLine(apparentRightLine);
 	int realLeftLine = -1;
 	if (m_diffWrapper.GetDetectMovedBlocks())
 	{
-		realLeftLine = m_diffWrapper.GetMovedLines()->LineInBlock(realRightLine,
-				MovedLines::SIDE_RIGHT);
+		realLeftLine = m_diffWrapper.GetMovedLines(nBuffer)->LineInBlock(realRightLine,
+				MovedLines::SIDE_LEFT);
 	}
 	if (realLeftLine != -1)
-		return m_ptBuf[0]->ComputeApparentLine(realLeftLine);
+		return m_ptBuf[nBuffer - 1]->ComputeApparentLine(realLeftLine);
 	else
 		return -1;
 }
@@ -1348,7 +1462,7 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
 		m_nCurDiff = -1;
 }
 
-/**
+/*
  * @brief Unescape control characters.
  * @param [in,out] s Line of text excluding eol chars.
  */
@@ -1395,42 +1509,45 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
 	// store cursors and hide caret
-	m_pView[MERGE_VIEW_LEFT]->PushCursors();
-	m_pView[MERGE_VIEW_RIGHT]->PushCursors();
-	m_pDetailView[0]->PushCursors();
-	m_pDetailView[1]->PushCursors();
-	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+	int nBuffer;
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_pView[nBuffer]->PushCursors();
+		m_pDetailView[nBuffer]->PushCursors();
+	}
+	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 		m_pView[nActiveViewIndexType]->HideCursor();
 
 	BOOL bBinary = FALSE;
-	BOOL bIdentical = FALSE;
-	int nRescanResult = Rescan(bBinary, bIdentical, bForced);
+	IDENTLEVEL identical = IDENTLEVEL_NONE;
+	int nRescanResult = Rescan(bBinary, identical, bForced);
 
 	// restore cursors and caret
-	m_pView[MERGE_VIEW_LEFT]->PopCursors();
-	m_pView[MERGE_VIEW_RIGHT]->PopCursors();
-	m_pDetailView[0]->PopCursors();
-	m_pDetailView[1]->PopCursors();
-	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_pView[nBuffer]->PopCursors();
+		m_pDetailView[nBuffer]->PopCursors();
+	}
+	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 		m_pView[nActiveViewIndexType]->ShowCursor();
 
 	// because of ghostlines, m_nTopLine may differ just after Rescan
 	// scroll both views to the same top line
-	CMergeEditView * fixedView = m_pView[MERGE_VIEW_LEFT];
-	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+	CMergeEditView * fixedView = m_pView[0];
+	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 		// only one view needs to scroll so do not scroll the active view
 		fixedView = m_pView[nActiveViewIndexType];
 	fixedView->UpdateSiblingScrollPos(FALSE);
 
 	// make sure we see the cursor from the curent view
-	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+	if (nActiveViewIndexType >= MERGEVIEW_PANE0 && nActiveViewIndexType <= MERGEVIEW_PANE2)
 		m_pView[nActiveViewIndexType]->EnsureVisible(m_pView[nActiveViewIndexType]->GetCursorPos());
 
 	// scroll both diff views to the same top line
 	CMergeDiffDetailView * fixedDetailView = m_pDetailView[0];
-	if (nActiveViewIndexType == MERGEVIEW_LEFT_DETAIL || nActiveViewIndexType == MERGEVIEW_RIGHT_DETAIL)
+	if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL && nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
 		// only one view needs to scroll so do not scroll the active view
-		fixedDetailView = m_pDetailView[nActiveViewIndexType - MERGEVIEW_LEFT_DETAIL];
+		fixedDetailView = m_pDetailView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL];
 	fixedDetailView->UpdateSiblingScrollPos(FALSE);
 
 	// Refresh display
@@ -1438,7 +1555,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_SUPPRESSED)
-		ShowRescanError(nRescanResult, bIdentical);
+		ShowRescanError(nRescanResult, identical);
 	m_LastRescan = COleDateTime::GetCurrentTime();
 }
 
@@ -1449,38 +1566,71 @@ void CMergeDoc::OnFileSave()
 {
 	// We will need to know if either of the originals actually changed
 	// so we know whether to update the diff status
-	bool bLChangedOriginal = false;
-	bool bRChangedOriginal = false;
+	BOOL bChangedOriginal = false;
 
-	if (m_ptBuf[0]->IsModified() && !m_ptBuf[0]->GetReadOnly())
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		// (why we don't use return value of DoSave)
-		// DoSave will return TRUE if it wrote to something successfully
-		// but we have to know if it overwrote the original file
-		BOOL bSaveOriginal = FALSE;
-		DoSave(m_filePaths.GetLeft().c_str(), bSaveOriginal, 0);
-		if (bSaveOriginal)
-			bLChangedOriginal = true;
-	}
-
-	if (m_ptBuf[1]->IsModified() && !m_ptBuf[1]->GetReadOnly())
-	{
-		// See comments above for left case
-		BOOL bSaveOriginal = FALSE;
-		DoSave(m_filePaths.GetRight().c_str(), bSaveOriginal, 1);
-		if (bSaveOriginal)
-			bRChangedOriginal = true;
+		if (m_ptBuf[nBuffer]->IsModified() && !m_ptBuf[nBuffer]->GetReadOnly())
+		{
+			// (why we don't use return value of DoSave)
+			// DoSave will return TRUE if it wrote to something successfully
+			// but we have to know if it overwrote the original file
+			BOOL bSaveOriginal = false;
+			DoSave(m_filePaths[nBuffer].c_str(), bSaveOriginal, nBuffer );
+			if (bSaveOriginal)
+				bChangedOriginal = true;
+		}
 	}
 
 	// If either of the actual source files being compared was changed
 	// we need to update status in the dir view
-	if (bLChangedOriginal || bRChangedOriginal)
+	if (bChangedOriginal)
 	{
 		// If DirDoc contains diffs
-		if (m_pDirDoc->HasDiffs())
+		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
-			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1])
-				FlushAndRescan(FALSE);
+			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				if (m_bEditAfterRescan[nBuffer])
+				{
+					FlushAndRescan(FALSE);
+					break;
+				}
+			}
+
+			bool bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
+					m_nTrivialDiffs, bIdentical);
+		}
+	}
+}
+
+void CMergeDoc::DoFileSave(int nBuffer)
+{
+	BOOL bSaveSuccess = FALSE;
+	BOOL bModified = FALSE;
+
+	if (m_ptBuf[nBuffer]->IsModified() && !m_ptBuf[nBuffer]->GetReadOnly())
+	{
+		bModified = TRUE;
+		DoSave(m_filePaths[nBuffer].c_str(), bSaveSuccess, nBuffer );
+	}
+
+	// If file were modified and saving succeeded,
+	// update status on dir view
+	if (bModified && bSaveSuccess)
+	{
+		// If DirDoc contains compare results
+		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		{
+			for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				if (m_bEditAfterRescan[nBuffer])
+				{
+					FlushAndRescan(FALSE);
+					break;
+				}
+			}
 
 			bool bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
 			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
@@ -1494,30 +1644,15 @@ void CMergeDoc::OnFileSave()
  */
 void CMergeDoc::OnFileSaveLeft()
 {
-	BOOL bLSaveSuccess = FALSE;
-	BOOL bLModified = FALSE;
+	DoFileSave(0);
+}
 
-	if (m_ptBuf[0]->IsModified() && !m_ptBuf[0]->GetReadOnly())
-	{
-		bLModified = TRUE;
-		DoSave(m_filePaths.GetLeft().c_str(), bLSaveSuccess, 0);
-	}
-
-	// If file were modified and saving succeeded,
-	// update status on dir view
-	if (bLModified && bLSaveSuccess)
-	{
-		// If DirDoc contains compare results
-		if (m_pDirDoc->HasDiffs())
-		{
-			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1])
-				FlushAndRescan(FALSE);
-
-			bool bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
-					m_nTrivialDiffs, bIdentical);
-		}
-	}
+/**
+ * @brief Saves middle-side file
+ */
+void CMergeDoc::OnFileSaveMiddle()
+{
+	DoFileSave(1);
 }
 
 /**
@@ -1525,30 +1660,7 @@ void CMergeDoc::OnFileSaveLeft()
  */
 void CMergeDoc::OnFileSaveRight()
 {
-	BOOL bRSaveSuccess = FALSE;
-	BOOL bRModified = FALSE;
-
-	if (m_ptBuf[1]->IsModified() && !m_ptBuf[1]->GetReadOnly())
-	{
-		bRModified = TRUE;
-		DoSave(m_filePaths.GetRight().c_str(), bRSaveSuccess, 1);
-	}
-
-	// If file were modified and saving succeeded,
-	// update status on dir view
-	if (bRModified && bRSaveSuccess)
-	{
-		// If DirDoc contains compare results
-		if (m_pDirDoc->HasDiffs())
-		{
-			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1])
-				FlushAndRescan(false);
-
-			bool bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
-					m_nTrivialDiffs, bIdentical);
-		}
-	}
+	DoFileSave(m_nBuffers - 1);
 }
 
 /**
@@ -1561,12 +1673,36 @@ void CMergeDoc::OnFileSaveAsLeft()
 }
 
 /**
+ * @brief Called when "Save middle (as...)" item is updated
+ */
+void CMergeDoc::OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI)
+{
+	if (m_nBuffers == 3)
+	{
+		pCmdUI->Enable(TRUE);
+	}
+	else
+	{
+		pCmdUI->Enable(FALSE);
+	}
+}
+
+/**
+ * @brief Saves right-side file with name asked
+ */
+void CMergeDoc::OnFileSaveAsMiddle()
+{
+	BOOL bSaveResult = FALSE;
+	DoSaveAs(m_filePaths.GetMiddle().c_str(), bSaveResult, 1);
+}
+
+/**
  * @brief Saves right-side file with name asked
  */
 void CMergeDoc::OnFileSaveAsRight()
 {
 	BOOL bSaveResult = FALSE;
-	DoSaveAs(m_filePaths.GetRight().c_str(), bSaveResult, 1);
+	DoSaveAs(m_filePaths.GetRight().c_str(), bSaveResult, m_nBuffers - 1);
 }
 
 /**
@@ -1609,6 +1745,59 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Change number of diff context lines
+ */
+void CMergeDoc::OnDiffContext(UINT nID)
+{
+	switch (nID)
+	{
+	case ID_VIEW_DIFFCONTEXT_0:
+		m_nDiffContext = 0; break;
+	case ID_VIEW_DIFFCONTEXT_1:
+		m_nDiffContext = 1; break;
+	case ID_VIEW_DIFFCONTEXT_3:
+		m_nDiffContext = 3; break;
+	case ID_VIEW_DIFFCONTEXT_5:
+		m_nDiffContext = 5; break;
+	case ID_VIEW_DIFFCONTEXT_7:
+		m_nDiffContext = 7; break;
+	case ID_VIEW_DIFFCONTEXT_9:
+		m_nDiffContext = 9; break;
+	default:
+		m_nDiffContext = -1; break;
+	}
+	GetOptionsMgr()->SaveOption(OPT_DIFF_CONTEXT, m_nDiffContext);
+	FlushAndRescan(TRUE);
+}
+
+/**
+ * @brief Update number of diff context lines
+ */
+void CMergeDoc::OnUpdateDiffContext(CCmdUI* pCmdUI)
+{
+	BOOL bCheck;
+	switch (pCmdUI->m_nID)
+	{
+	case ID_VIEW_DIFFCONTEXT_0:
+		bCheck = (m_nDiffContext == 0); break;
+	case ID_VIEW_DIFFCONTEXT_1:
+		bCheck = (m_nDiffContext == 1); break;
+	case ID_VIEW_DIFFCONTEXT_3:
+		bCheck = (m_nDiffContext == 3); break;
+	case ID_VIEW_DIFFCONTEXT_5:
+		bCheck = (m_nDiffContext == 5); break;
+	case ID_VIEW_DIFFCONTEXT_7:
+		bCheck = (m_nDiffContext == 7); break;
+	case ID_VIEW_DIFFCONTEXT_9:
+		bCheck = (m_nDiffContext == 9); break;
+	default:
+		bCheck = (m_nDiffContext < 0); break;
+	}
+	pCmdUI->SetCheck(bCheck);
+	pCmdUI->Enable(TRUE);
+}
+
+/**
  * @brief Build the diff array and prepare buffers accordingly (insert ghost lines, set WinMerge flags)
  *
  * @note Buffers may have different length after PrimeTextBuffers. Indeed, no
@@ -1624,21 +1813,24 @@ void CMergeDoc::PrimeTextBuffers()
 	m_nTrivialDiffs = 0;
 	int nDiff;
 	int nDiffCount = m_diffList.GetSize();
+	int file;
 
 	// walk the diff list and calculate numbers of extra lines to add
-	int LeftExtras = 0;   // extra lines added to left view
-	int RightExtras = 0;   // extra lines added to right view
-	m_diffList.GetExtraLinesCounts(LeftExtras, RightExtras);
+	int extras[3]={0};   // extra lines added to each view
+	m_diffList.GetExtraLinesCounts(m_nBuffers, extras);
 
 	// resize m_aLines once for each view
-	UINT lcount0 = m_ptBuf[0]->GetLineCount();
-	UINT lcount1 = m_ptBuf[1]->GetLineCount();
-	UINT lcount0new = lcount0 + LeftExtras;
-	UINT lcount1new = lcount1 + RightExtras;
+	UINT lcount[3];
+	UINT lcountnew[3];
+	
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		lcount[file] = m_ptBuf[file]->GetLineCount();
+		lcountnew[file] = lcount[file] + extras[file];
+		m_ptBuf[file]->m_aLines.resize(lcountnew[file]);
+	}
 // this ASSERT may be false because of empty last line (see function's note)
 //	ASSERT(lcount0new == lcount1new);
-	m_ptBuf[0]->m_aLines.resize(lcount0new);
-	m_ptBuf[1]->m_aLines.resize(lcount1new);
 
 	// walk the diff list backward, move existing lines to proper place,
 	// add ghost lines, and set flags
@@ -1648,155 +1840,95 @@ void CMergeDoc::PrimeTextBuffers()
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
-		int nline0 = lcount0 - curDiff.end0 - 1; // #lines on left after current diff
-		int nline1 = lcount1 - curDiff.end1 - 1; // #lines on right after current diff
+		int nline[3];
+		for (file = 0; file < m_nBuffers; file++)
+			nline[file] = lcount[file] - curDiff.end[file] - 1; // #lines on left/middle/right after current diff
 		// Matched lines should really match...
 		// But matched lines after last diff may differ because of empty last line (see function's note)
 		if (nDiff < nDiffCount - 1)
-			ASSERT(nline0 == nline1);
-		// Move all lines after current diff down as far as needed
-		// for any ghost lines we're about to insert
-		m_ptBuf[0]->MoveLine(curDiff.end0+1, lcount0-1, lcount0new-nline0);
-		m_ptBuf[1]->MoveLine(curDiff.end1+1, lcount1-1, lcount1new-nline1);
-		lcount0new -= nline0;
-		lcount1new -= nline1;
-		lcount0 -= nline0;
-		lcount1 -= nline1;
+			ASSERT(nline[0] == nline[1]);
 
-		// move unmatched lines and add ghost lines
-		nline0 = curDiff.end0 - curDiff.begin0 + 1; // #lines in diff on left
-		nline1 = curDiff.end1 - curDiff.begin1 + 1; // #lines in diff on right
-		int nextra = nline0-nline1;
-		int nextraAbs = (nextra >= 0) ? nextra : -nextra;
+		int nmaxline = 0;
+		for (file = 0; file < m_nBuffers; file++)
+		{
+			// Move all lines after current diff down as far as needed
+			// for any ghost lines we're about to insert
+			m_ptBuf[file]->MoveLine(curDiff.end[file]+1, lcount[file]-1, lcountnew[file]-nline[file]);
+			lcountnew[file] -= nline[file];
+			lcount[file] -= nline[file];
+			// move unmatched lines and add ghost lines
+			nline[file] = curDiff.end[file] - curDiff.begin[file] + 1; // #lines in diff on left/middle/right
+			nmaxline = max(nmaxline, nline[file]);
+		}
 
-		if (nextra > 0) 
+		for (file = 0; file < m_nBuffers; file++)
 		{
-			// more lines on the left
-			m_ptBuf[0]->MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline0);
-			m_ptBuf[1]->MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline0);
-			m_ptBuf[1]->SetEmptyLine(lcount1new - nextraAbs, nextraAbs);
-			for (int i = 1; i <= nextraAbs; i++)
-				m_ptBuf[1]->SetLineFlag(lcount1new-i, LF_GHOST, TRUE, FALSE, FALSE);
-			lcount0new -= nline0;
-			lcount1new -= nline0;
-		}
-		else if (nextra < 0) 
-		{
-			// more lines on the right
-			m_ptBuf[0]->MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline1);
-			m_ptBuf[1]->MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline1);
-			m_ptBuf[0]->SetEmptyLine(lcount0new - nextraAbs, nextraAbs);
-			for (int i = 1; i <= nextraAbs; i++)
-				m_ptBuf[0]->SetLineFlag(lcount0new-i, LF_GHOST, TRUE, FALSE, FALSE);
-			lcount0new -= nline1;
-			lcount1new -= nline1;
-		}
-		else 
-		{
-			// same number of lines
-			m_ptBuf[0]->MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline0);
-			m_ptBuf[1]->MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline1);
-			lcount0new -= nline0;
-			lcount1new -= nline1;
-		}
-		lcount0 -= nline0;
-		lcount1 -= nline1;
+			m_ptBuf[file]->MoveLine(curDiff.begin[file], curDiff.end[file], lcountnew[file]-nmaxline);
+			int nextra = nmaxline - nline[file];
+			if (nextra > 0)
+			{
+				m_ptBuf[file]->SetEmptyLine(lcountnew[file] - nextra, nextra);
+				DWORD dflag = LF_GHOST;
+				if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
+					dflag |= LF_SNP;
+				for (int i = 1; i <= nextra; i++)
+					m_ptBuf[file]->SetLineFlag(lcountnew[file]-i, dflag, TRUE, FALSE, FALSE);
+			}
+			lcountnew[file] -= nmaxline;
 
-		// set dbegin, dend, blank, and line flags
-		curDiff.dbegin0 = lcount0new;
-		curDiff.dbegin1 = lcount1new;
+			lcount[file] -= nline[file];
+
+			// set dbegin, dend, blank, and line flags
+			curDiff.dbegin[file] = lcountnew[file];
+		}
 
 		switch (curDiff.op)
 		{
-		case OP_LEFTONLY:
-			// set curdiff
-			{
-				// left side
-				curDiff.dend0 = lcount0new+nline0-1;
-				curDiff.blank0 = -1;
-				// right side
-				curDiff.dend1 = lcount1new+nline0-1;
-				curDiff.blank1 = curDiff.dbegin1;
-			}
-			// flag lines
-			{
-				for (UINT i = curDiff.dbegin0 ; i <= curDiff.dend0; i++)
-					m_ptBuf[0]->SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-				// blanks are already inserted (and flagged) to compensate for diff on other side
-			}
-			break;
-		case OP_RIGHTONLY:
-			// set curdiff
-			{
-				// left side
-				curDiff.dend0 = lcount0new+nline1-1;
-				curDiff.blank0 = curDiff.dbegin0;
-				// right side
-				curDiff.dend1 = lcount1new+nline1-1;
-				curDiff.blank1 = -1;
-			}
-			// flag lines
-			{
-				for (UINT i = curDiff.dbegin1 ; i <= curDiff.dend1 ; i++)
-					m_ptBuf[1]->SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-				// blanks are already inserted (and flagged) to compensate for diff on other side
-			}
-			break;
 		case OP_TRIVIAL:
 			++m_nTrivialDiffs;
 			// fall through and handle as diff
 		case OP_DIFF:
+		case OP_1STONLY:
+		case OP_2NDONLY:
+		case OP_3RDONLY:
 			// set curdiff
 			{
-				int nline = max(nline0, nline1);
-				// left side
-				curDiff.dend0 = lcount0new+nline-1;
-				curDiff.blank0 = -1;
-				// right side
-				curDiff.dend1 = lcount1new+nline-1;
-				curDiff.blank1 = -1;
-				if (nline0 > nline1)
-					// more lines on left, ghost lines on right side
-					curDiff.blank1 = curDiff.dend1+1 - nextraAbs;
-				else if (nline0 < nline1)
-					// more lines on right, ghost lines on left side
-					curDiff.blank0 = curDiff.dend0+1 - nextraAbs;
+				for (file = 0; file < m_nBuffers; file++)
+				{
+					curDiff.dend[file] = lcountnew[file]+nmaxline-1;
+					curDiff.blank[file] = -1;
+					int nextra = nmaxline - nline[file];
+					if (nmaxline > nline[file])
+					{
+						// more lines on left, ghost lines on right side
+						curDiff.blank[file] = curDiff.dend[file]+1 - nextra;
+					}
+				}
 			}
 			// flag lines
 			{
-				// left side
-				UINT i=0;
-				for (i = curDiff.dbegin0; i <= curDiff.dend0 ; i++)
+				for (file = 0; file < m_nBuffers; file++)
 				{
-					if (curDiff.blank0 == -1 || (int)i < curDiff.blank0)
+					// left side
+					UINT i;
+					for (i = curDiff.dbegin[file]; i <= curDiff.dend[file] ; i++)
 					{
-						// set diff or trivial flag
-						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-						m_ptBuf[0]->SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
-					}
-					else
-					{
-						// ghost lines are already inserted (and flagged)
-						// ghost lines opposite to trivial lines are ghost and trivial
-						if (curDiff.op == OP_TRIVIAL)
-							m_ptBuf[0]->SetLineFlag(i, LF_TRIVIAL, TRUE, FALSE, FALSE);
-					}
-				}
-				// right side
-				for (i = curDiff.dbegin1; i <= curDiff.dend1 ; i++)
-				{
-					if (curDiff.blank1 == -1 || (int)i < curDiff.blank1)
-					{
-						// set diff or trivial flag
-						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-						m_ptBuf[1]->SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
-					}
-					else
-					{
-						// ghost lines are already inserted (and flagged)
-						// ghost lines opposite to trivial lines are ghost and trivial
-						if (curDiff.op == OP_TRIVIAL)
-							m_ptBuf[1]->SetLineFlag(i, LF_TRIVIAL, TRUE, FALSE, FALSE);
+						if (curDiff.blank[file] == -1 || (int)i < curDiff.blank[file])
+						{
+							// set diff or trivial flag
+							DWORD dflag = (curDiff.op == OP_TRIVIAL) ? LF_TRIVIAL : LF_DIFF;
+							if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
+								dflag |= LF_SNP;
+							m_ptBuf[file]->SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
+m_ptBuf[file]->SetLineFlag(i, LF_INVISIBLE, FALSE, FALSE, FALSE);
+						}
+						else
+						{
+							// ghost lines are already inserted (and flagged)
+							// ghost lines opposite to trivial lines are ghost and trivial
+							if (curDiff.op == OP_TRIVIAL)
+								m_ptBuf[file]->SetLineFlag(i, LF_TRIVIAL, TRUE, FALSE, FALSE);
+						}
 					}
 				}
 			}
@@ -1813,8 +1945,8 @@ void CMergeDoc::PrimeTextBuffers()
 	// but now we keep all diffs, including trivial diffs
 
 
-	m_ptBuf[0]->FinishLoading();
-	m_ptBuf[1]->FinishLoading();
+	for (file = 0; file < m_nBuffers; file++)
+		m_ptBuf[file]->FinishLoading();
 }
 
 /**
@@ -1859,6 +1991,65 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 		return FileNoChange;
 }
 
+void CMergeDoc::HideLines()
+{
+	int nLine;
+	int file;
+
+	if (m_nDiffContext == -1)
+	{
+		for (file = 0; file < m_nBuffers; file++)
+			m_pView[file]->SetEnableHideLines(FALSE);
+		return;
+	}
+
+	int nLineCount = 0x7fffffff;
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		if (nLineCount > m_ptBuf[file]->GetLineCount())
+			nLineCount = m_ptBuf[file]->GetLineCount();
+	}
+
+	for (nLine =  0; nLine < nLineCount;)
+	{
+		if (!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST)))
+		{
+			for (file = 0; file < m_nBuffers; file++)
+				m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, TRUE, FALSE, FALSE);
+			nLine++;
+		}
+		else
+		{
+			int nLine2 = (nLine - m_nDiffContext < 0) ? 0 : (nLine - m_nDiffContext);
+			for (; nLine2 < nLine; nLine2++)
+			{
+				for (file = 0; file < m_nBuffers; file++)
+					m_ptBuf[file]->SetLineFlag(nLine2, LF_INVISIBLE, FALSE, FALSE, FALSE);
+			}
+		
+			for (; nLine < nLineCount; nLine++)
+			{
+				if (!(m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST)))
+					break;
+				for (file = 0; file < m_nBuffers; file++)
+					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, FALSE, FALSE, FALSE);
+			}
+
+			int nLineEnd2 = (nLine + m_nDiffContext >= nLineCount) ? nLineCount-1 : (nLine + m_nDiffContext);
+			for (; nLine < nLineEnd2; nLine++)
+			{
+				for (file = 0; file < m_nBuffers; file++)
+					m_ptBuf[file]->SetLineFlag(nLine, LF_INVISIBLE, FALSE, FALSE, FALSE);
+				if (m_ptBuf[0]->GetLineFlags(nLine) & (LF_DIFF | LF_GHOST))
+					nLineEnd2 = (nLine + 1 + m_nDiffContext >= nLineCount) ? nLineCount-1 : (nLine + 1 + m_nDiffContext);
+			}
+		}
+	}
+
+	for (file = 0; file < m_nBuffers; file++)
+		m_pView[file]->SetEnableHideLines(TRUE);
+}
+
 /**
  * @brief Asks and then saves modified files.
  *
@@ -1877,27 +2068,58 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
  */
 bool CMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 {
-	const BOOL bLModified = m_ptBuf[0]->IsModified();
-	const BOOL bRModified = m_ptBuf[1]->IsModified();
+	BOOL bLModified = FALSE, bMModified = FALSE, bRModified = FALSE;
 	bool result = true;
-	BOOL bLSaveSuccess = FALSE;
-	BOOL bRSaveSuccess = FALSE;
+	BOOL bLSaveSuccess = FALSE, bMSaveSuccess = FALSE, bRSaveSuccess = FALSE;
 
-	if (!bLModified && !bRModified) //Both files unmodified
-		return true;
+	if (m_nBuffers == 3)
+	{
+		bLModified = m_ptBuf[0]->IsModified();
+		bMModified = m_ptBuf[1]->IsModified();
+		bRModified = m_ptBuf[2]->IsModified();
+	}
+	else
+	{
+		bLModified = m_ptBuf[0]->IsModified();
+		bRModified = m_ptBuf[1]->IsModified();
+	}
+	if (!bLModified && !bMModified && !bRModified)
+		 return true;
 
 	SaveClosingDlg dlg;
-	dlg.DoAskFor(bLModified, bRModified);
+	dlg.DoAskFor(bLModified, bMModified, bRModified);
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = TRUE;
 	if (!m_filePaths.GetLeft().empty())
-		dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
+	{
+		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+			dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
+		else
+			dlg.m_sLeftFile = GetMainFrame()->m_strSaveAsPath;
+	}
 	else
 		dlg.m_sLeftFile = m_strDesc[0].c_str();
+	if (m_nBuffers == 3)
+	{
+		if (!m_filePaths.GetMiddle().empty())
+		{
+			if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+				dlg.m_sMiddleFile = m_filePaths.GetMiddle().c_str();
+			else
+				dlg.m_sMiddleFile = GetMainFrame()->m_strSaveAsPath;
+		}
+		else
+			dlg.m_sMiddleFile = m_strDesc[1].c_str();
+	}
 	if (!m_filePaths.GetRight().empty())
-		dlg.m_sRightFile = m_filePaths.GetRight().c_str();
+	{
+		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+			dlg.m_sRightFile = m_filePaths.GetRight().c_str();
+		else
+			dlg.m_sRightFile = GetMainFrame()->m_strSaveAsPath;
+	}
 	else
-		dlg.m_sRightFile = m_strDesc[1].c_str();
+		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1].c_str();
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -1907,9 +2129,15 @@ bool CMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 				result = false;
 		}
 
+		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
+		{
+			if (!DoSave(m_filePaths.GetMiddle().c_str(), bMSaveSuccess, 1))
+				result = false;
+		}
+
 		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
-			if (!DoSave(m_filePaths.GetRight().c_str(), bRSaveSuccess, 1))
+			if (!DoSave(m_filePaths.GetRight().c_str(), bRSaveSuccess, m_nBuffers - 1))
 				result = false;
 		}
 	}
@@ -1920,13 +2148,14 @@ bool CMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 
 	// If file were modified and saving was successfull,
 	// update status on dir view
-	if ((bLModified && bLSaveSuccess) ||
+	if ((bLModified && bLSaveSuccess) || 
+	     (bMModified && bMSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
 		// If directory compare has results
-		if (m_pDirDoc->HasDiffs())
+		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
-			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1])
+			if (m_bEditAfterRescan[0] || m_bEditAfterRescan[1] || (m_nBuffers == 3 && m_bEditAfterRescan[2]))
 				FlushAndRescan(false);
 
 			bool bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
@@ -1953,23 +2182,25 @@ void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
  * @brief We have two child views (left & right), so we keep pointers directly
  * at them (the MFC view list doesn't have them both)
  */
-void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
+void CMergeDoc::SetMergeViews(CMergeEditView *pView[])
 {
-	ASSERT(pLeft && !m_pView[MERGE_VIEW_LEFT]);
-	m_pView[MERGE_VIEW_LEFT] = pLeft;
-	ASSERT(pRight && !m_pView[MERGE_VIEW_RIGHT]);
-	m_pView[MERGE_VIEW_RIGHT] = pRight;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		ASSERT(pView[nBuffer] && !m_pView[nBuffer]);
+		m_pView[nBuffer] = pView[nBuffer];
+	}
 }
 
 /**
  * @brief Someone is giving us pointers to our detail views
  */
-void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight)
+void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pDetailView[])
 {
-	ASSERT(pLeft && !m_pDetailView[0]);
-	m_pDetailView[0] = pLeft;
-	ASSERT(pRight && !m_pDetailView[1]);
-	m_pDetailView[1] = pRight;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		ASSERT(pDetailView[nBuffer] && !m_pDetailView[nBuffer]);
+		m_pDetailView[nBuffer] = pDetailView[nBuffer];
+	}
 }
 
 /**
@@ -1986,7 +2217,7 @@ void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
  */
 CChildFrame * CMergeDoc::GetParentFrame() 
 {
-	return dynamic_cast<CChildFrame *>(m_pView[MERGE_VIEW_LEFT]->GetParentFrame()); 
+	return dynamic_cast<CChildFrame *>(m_pView[0]->GetParentFrame()); 
 }
 
 /**
@@ -2027,7 +2258,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 	DWORD retVal = FileLoadResult::FRESULT_ERROR;
 
 	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer];
-	nBuffer == 0 ? m_filePaths.SetLeft(sFileName) : m_filePaths.SetRight(sFileName);
+	m_filePaths[nBuffer] = sFileName;
 
 	CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	CString sOpenError;
@@ -2056,12 +2287,12 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 			LangFormatString2(sError, IDS_ERROR_FILEOPEN, sFileName, sOpenError);
 		else
 			LangFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
-		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	else if (FileLoadResult::IsErrorUnpack(retVal))
 	{
 		LangFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
-		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	return retVal;
 }
@@ -2078,7 +2309,7 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 	// Codepage must be actually installed on system
 	// for us to be able to use it
 	// We accept whatever codepages that codepage module says are installed
-	return isCodepageInstalled(cp);
+	return true;/*isCodepageInstalled(cp);*/ /* FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME */
 }
 
 /**
@@ -2140,23 +2371,22 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
 
 /**
  * @brief Loads files and does initial rescan.
- * @param filelocLeft [in] File to open to left side (path & encoding info)
- * @param fileLocRight [in] File to open to right side (path & encoding info)
- * @param bROLeft [in] Is left file read-only
- * @param bRORight [in] Is right file read-only
+ * @param fileloc [in] File to open to left/middle/right side (path & encoding info)
+ * @param bRO [in] Is left/middle/right file read-only
  * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
-OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
-		BOOL bROLeft, BOOL bRORight)
+OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
+		BOOL bRO[])
 {
-	BOOL bIdentical = FALSE;
+	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = RESCAN_OK;
+	int nBuffer;
 
 	// Filter out invalid codepages, or editor will display all blank
-	SanityCheckCodepage(filelocLeft);
-	SanityCheckCodepage(filelocRight);
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		SanityCheckCodepage(fileloc[nBuffer]);
 
 	// clear undo stack
 	undoTgt.clear();
@@ -2164,41 +2394,49 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 	// Prevent displaying views during LoadFile
 	// Note : attach buffer again only if both loads succeed
-	m_pView[MERGE_VIEW_LEFT]->DetachFromBuffer();
-	m_pView[MERGE_VIEW_RIGHT]->DetachFromBuffer();
-	m_pDetailView[0]->DetachFromBuffer();
-	m_pDetailView[1]->DetachFromBuffer();
+	m_strBothFilenames.erase();
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_pView[nBuffer]->DetachFromBuffer();
+		m_pDetailView[nBuffer]->DetachFromBuffer();
+		
+		// clear undo buffers
+		m_ptBuf[nBuffer]->m_aUndoBuf.clear();
 
-	// clear undo buffers
-	m_ptBuf[0]->m_aUndoBuf.clear();
-	m_ptBuf[1]->m_aUndoBuf.clear();
+		// free the buffers
+		m_ptBuf[nBuffer]->FreeAll ();
 
-	// free the buffers
-	m_ptBuf[0]->FreeAll();
-	m_ptBuf[1]->FreeAll();
-
-	String sLeftFile = filelocLeft.filepath;
-	String sRightFile = filelocRight.filepath;
-
-	// build the text being filtered, "|" separates files as it is forbidden in filenames
-	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
+		// build the text being filtered, "|" separates files as it is forbidden in filenames
+		m_strBothFilenames += fileloc[nBuffer].filepath + _T("|");
+	}
+	m_strBothFilenames.erase(m_strBothFilenames.length() - 1);
 
 	// Load files
-	DWORD nLeftSuccess = LoadOneFile(0, sLeftFile.c_str(), bROLeft,
-		filelocLeft.encoding);
-	DWORD nRightSuccess = LoadOneFile(1, sRightFile.c_str(), bRORight,
-		filelocRight.encoding);
-
+	DWORD nSuccess[3];
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		nSuccess[nBuffer] = LoadOneFile(nBuffer, (LPCTSTR)fileloc[nBuffer].filepath.c_str(), bRO[nBuffer],
+			fileloc[nBuffer].encoding);
+	}
 	const BOOL bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one
-	if (bFiltersEnabled && m_nBufferType[0] == BUFFER_UNNAMED &&
-			m_nBufferType[1] == BUFFER_UNNAMED)
-		m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
+	if (bFiltersEnabled)
+	{ 
+		IF_IS_TRUE_ALL ((m_nBufferType[nBuffer] == BUFFER_UNNAMED), nBuffer, m_nBuffers)
+		{
+			m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
+		}
+	}
 
 	// Bail out if either side failed
-	if (!FileLoadResult::IsOk(nLeftSuccess) || !FileLoadResult::IsOk(nRightSuccess))
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		if (!FileLoadResult::IsOk(nSuccess[nBuffer]))
+			break;
+	}
+	if (nBuffer < m_nBuffers)
 	{
 		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
 		CChildFrame *pFrame = GetParentFrame();
@@ -2211,58 +2449,60 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	}
 
 	// Warn user if file load was lossy (bad encoding)
-	if (FileLoadResult::IsLossy(nLeftSuccess) || FileLoadResult::IsLossy(nRightSuccess))
+	int idres=0;
+	int nLossyBuffers = 0;
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		// TODO: It would be nice to report how many lines were lossy
-		// we did calculate those numbers when we loaded the files, in the text stats
-
-		int idres=0;
-		if (FileLoadResult::IsLossy(nLeftSuccess) && FileLoadResult::IsLossy(nRightSuccess))
+		if (FileLoadResult::IsLossy(nSuccess[nBuffer]))
 		{
-			idres = IDS_LOSSY_TRANSCODING_BOTH;
+			// TODO: It would be nice to report how many lines were lossy
+			// we did calculate those numbers when we loaded the files, in the text stats
+	
+			idres = IDS_LOSSY_TRANSCODING_FIRST + nBuffer;
+			nLossyBuffers++;
 		}
-		else if (FileLoadResult::IsLossy(nLeftSuccess))
-		{
-			idres = IDS_LOSSY_TRANSCODING_LEFT;
-		}
-		else
-		{
-			idres = IDS_LOSSY_TRANSCODING_RIGHT;
-		}
-		LangMessageBox(idres, MB_ICONSTOP);
 	}
+	if (nLossyBuffers > 1)
+		idres = IDS_LOSSY_TRANSCODING_BOTH; /* FIXEME */
+	
+	if (nLossyBuffers > 0)
+		LangMessageBox(idres, MB_ICONSTOP | MB_MODELESS);
 
-	// Now buffers data are valid
-	m_pView[MERGE_VIEW_LEFT]->AttachToBuffer();
-	m_pView[MERGE_VIEW_RIGHT]->AttachToBuffer();
-	m_pDetailView[0]->AttachToBuffer();
-	m_pDetailView[1]->AttachToBuffer();
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		// Now buffers data are valid
+		m_pView[nBuffer]->AttachToBuffer();
+		m_pDetailView[nBuffer]->AttachToBuffer();
 
-	// Currently there is only one set of syntax colors, which all documents & views share
-	m_pView[MERGE_VIEW_LEFT]->SetColorContext(GetMainSyntaxColors());
-	m_pView[MERGE_VIEW_RIGHT]->SetColorContext(GetMainSyntaxColors());
-	m_pDetailView[0]->SetColorContext(GetMainSyntaxColors());
-	m_pDetailView[1]->SetColorContext(GetMainSyntaxColors());
+		// Currently there is only one set of syntax colors, which all documents & views share
+		m_pView[nBuffer]->SetColorContext(GetMainSyntaxColors());
+		m_pDetailView[nBuffer]->SetColorContext(GetMainSyntaxColors());
 
-	// Set read-only statuses
-	m_ptBuf[0]->SetReadOnly(bROLeft);
-	m_ptBuf[1]->SetReadOnly(bRORight);
+		// Set read-only statuses
+		m_ptBuf[nBuffer]->SetReadOnly(bRO[nBuffer]);
+	}
 
 	// Check the EOL sensitivity option (do it before Rescan)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
-	if (m_ptBuf[0]->GetCRLFMode() != m_ptBuf[1]->GetCRLFMode() &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && !diffOptions.bIgnoreEol)
+	if (!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && !diffOptions.bIgnoreEol)
 	{
-		// Options and files not are not compatible :
-		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
-		// All lines will differ, that is not very interesting and probably not wanted.
-		// Propose to turn off the option 'sensitive to EOL'
-		String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
-		if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
+		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
+			if (m_ptBuf[0]->GetCRLFMode() != m_ptBuf[nBuffer]->GetCRLFMode())
+				break;
+
+		if (nBuffer < m_nBuffers)
 		{
-			diffOptions.bIgnoreEol = TRUE;
-			m_diffWrapper.SetOptions(&diffOptions);
+			// Options and files not are not compatible :
+			// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
+			// All lines will differ, that is not very interesting and probably not wanted.
+			// Propose to turn off the option 'sensitive to EOL'
+			String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
+			if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
+			{
+				diffOptions.bIgnoreEol = TRUE;
+				m_diffWrapper.SetOptions(&diffOptions);
+			}
 		}
 	}
 
@@ -2277,95 +2517,88 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	}
 
 	BOOL bBinary = FALSE;
-	nRescanResult = Rescan(bBinary, bIdentical, TRUE);
+	nRescanResult = Rescan(bBinary, identical, TRUE);
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)
 	{
-		// prepare the four views
-		CMergeEditView * pLeft = GetLeftView();
-		CMergeEditView * pRight = GetRightView();
-		CMergeDiffDetailView * pLeftDetail = GetLeftDetailView();
-		CMergeDiffDetailView * pRightDetail = GetRightDetailView();
-		
 		// set the document types
 		// Warning : it is the first thing to do (must be done before UpdateView,
 		// or any function that calls UpdateView, like SelectDiff)
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
-		String sextL, sextR;
-		if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
+		String sext;
+		BOOL bTyped[3];
+		int paneTyped = 0;
+
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			sextL = sextR = m_pInfoUnpacker->textType;
+			if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
+				sext = m_pInfoUnpacker->textType;
+			else
+				sext = GetFileExt(fileloc[nBuffer].filepath.c_str(), m_strDesc[nBuffer].c_str());
+			bTyped[nBuffer] = GetView(nBuffer)->SetTextType(sext.c_str());
+			GetDetailView(nBuffer)->SetTextType(sext.c_str());
+			if (bTyped[nBuffer])
+				paneTyped = nBuffer;
 		}
-		else
+
+		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
 		{
-			sextL = GetFileExt(sLeftFile.c_str(), m_strDesc[0].c_str());
-			sextR = GetFileExt(sRightFile.c_str(), m_strDesc[1].c_str());
+			if (bTyped[0] != bTyped[nBuffer])
+				break;
 		}
-		
+
 		BOOL syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-		BOOL bLeftTyped = FALSE;
-		BOOL bRightTyped = FALSE;
-		
+		if (syntaxHLEnabled && nBuffer < m_nBuffers)
+		{
+			IF_IS_TRUE_ALL (!bTyped[nBuffer], nBuffer, m_nBuffers)
+			{
+				CString sFirstLine;
+				m_ptBuf[0]->GetLine(0, sFirstLine);
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
+					bTyped[nBuffer] = GetView(nBuffer)->SetTextTypeByContent(sFirstLine);
+				}
+			}
+		}
+
 		if (syntaxHLEnabled)
 		{
-			bLeftTyped = pLeft->SetTextType(sextL.c_str());
-			pLeftDetail->SetTextType(sextL.c_str());
-			bRightTyped = pRight->SetTextType(sextR.c_str());
-			pRightDetail->SetTextType(sextR.c_str());
-		}
-
-		// If textypes of the files aren't recogzined by their extentions,
-		// try to recognize them using their first lines 
-		if (!bLeftTyped && !bRightTyped)
-		{
-			CString sFirstLine;
-			m_ptBuf[0]->GetLine(0, sFirstLine);
-			bLeftTyped = pLeft->SetTextTypeByContent(sFirstLine);
-			m_ptBuf[1]->GetLine(0, sFirstLine);
-			bRightTyped = pRight->SetTextTypeByContent(sFirstLine);
-		}
-
-		// If other side didn't have recognized texttype, apply recognized
-		// type to unrecognized one. (comparing file.cpp and file.bak applies
-		// cpp file type to .bak file.
-		if (bLeftTyped != bRightTyped)
-		{
-			CCrystalTextView::TextDefinition *enuType;
-
-			if (bLeftTyped)
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
-				enuType = pLeft->GetTextType(sextL.c_str());
-				pRight->SetTextType(enuType);
-				pRightDetail->SetTextType(enuType);
-			}
-			else
-			{
-				enuType = pRight->GetTextType(sextR.c_str());
-				pLeft->SetTextType(enuType);
-				pLeftDetail->SetTextType(enuType);
+				CCrystalTextView::TextDefinition *enuType;
+				if (!bTyped[nBuffer])
+				{
+					enuType = GetView(paneTyped)->GetTextType(sext.c_str());
+					GetView(nBuffer)->SetTextType(enuType);
+					GetDetailView(nBuffer)->SetTextType(enuType);
+				}
 			}
 		}
 
-		// set the frame window header
-		UpdateHeaderPath(0);
-		UpdateHeaderPath(1);
+		int nNormalBuffer = 0;
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			// set the frame window header
+			UpdateHeaderPath(nBuffer);
 
-		pLeft->DocumentsLoaded();
-		pRight->DocumentsLoaded();
-		pLeftDetail->DocumentsLoaded();
-		pRightDetail->DocumentsLoaded();
+			GetView(nBuffer)->DocumentsLoaded();
+			GetDetailView(nBuffer)->DocumentsLoaded();
+			
+			if ((m_nBufferType[nBuffer] == BUFFER_NORMAL) ||
+			    (m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED))
+			{
+				nNormalBuffer++;
+			}
+			
+		}
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
-		if ((TRUE == bIdentical) &&
-			((m_nBufferType[0] == BUFFER_NORMAL) ||
-			 (m_nBufferType[0] == BUFFER_NORMAL_NAMED) ||
-			 (m_nBufferType[1] == BUFFER_NORMAL) ||
-			 (m_nBufferType[1] == BUFFER_NORMAL_NAMED)))
+		if (identical == IDENTLEVEL_ALL && nNormalBuffer > 0)
 		{
-			ShowRescanError(nRescanResult, bIdentical);
+			ShowRescanError(nRescanResult, identical);
 		}
 
 		// scroll to first diff
@@ -2373,7 +2606,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			m_diffList.HasSignificantDiffs())
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
-			pLeft->SelectDiff(nDiff, true, false);
+			m_pView[0]->SelectDiff(nDiff, true, false);
 		}
 
 		// Exit if files are identical should only work for the first
@@ -2386,15 +2619,15 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// or the really arcane case that the temp files couldn't be created, 
 		// which is too obscure to bother reporting if you can't write to 
 		// your temp directory, doing nothing is graceful enough for that).
-		ShowRescanError(nRescanResult, bIdentical);
+		ShowRescanError(nRescanResult, identical);
 		GetParentFrame()->DestroyWindow();
 		return OPENRESULTS_FAILED_MISC;
 	}
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[MERGE_VIEW_LEFT])
-		m_pView[MERGE_VIEW_LEFT]->RepaintLocationPane();
+	if (m_pView[0])
+		m_pView[0]->RepaintLocationPane();
 
 	return OPENRESULTS_SUCCESS;
 }
@@ -2408,7 +2641,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
  */
 OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 {
-	BOOL bIdentical = FALSE;
+	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = RESCAN_OK;
 
 	// clear undo stack
@@ -2423,20 +2656,10 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	// Note : attach buffer again only if both loads succeed
 	// clear undo buffers
 	// free the buffers
-	if (index == 0)
-	{
-		m_pView[MERGE_VIEW_LEFT]->DetachFromBuffer();
-		m_pDetailView[0]->DetachFromBuffer();
-		m_ptBuf[0]->m_aUndoBuf.clear();
-		m_ptBuf[0]->FreeAll();
-	}
-	else
-	{
-		m_pView[MERGE_VIEW_RIGHT]->DetachFromBuffer();
-		m_pDetailView[1]->DetachFromBuffer();
-		m_ptBuf[1]->m_aUndoBuf.clear();
-		m_ptBuf[1]->FreeAll();
-	}
+	m_pView[index]->DetachFromBuffer();
+	m_pDetailView[index]->DetachFromBuffer();
+	m_ptBuf[index]->m_aUndoBuf.clear();
+	m_ptBuf[index]->FreeAll();
 
 	// Load files
 	DWORD nLoadSuccess = LoadOneFile(index, path.c_str(), readOnly,
@@ -2461,26 +2684,25 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	{
 		// TODO: It would be nice to report how many lines were lossy
 		// we did calculate those numbers when we loaded the files, in the text stats
-		LangMessageBox(IDS_LOSSY_TRANSCODING_LEFT, MB_ICONSTOP);
+		LangMessageBox(IDS_LOSSY_TRANSCODING_FIRST, MB_ICONSTOP);
 	}
 
 	// Now buffers data are valid
-	if (index == 0)
-	{
-		m_pView[MERGE_VIEW_LEFT]->AttachToBuffer();
-		m_pDetailView[0]->AttachToBuffer();
-	}
-	else
-	{
-		m_pView[MERGE_VIEW_RIGHT]->AttachToBuffer();
-		m_pDetailView[1]->AttachToBuffer();
-	}
+	m_pView[index]->AttachToBuffer();
+	m_pDetailView[index]->AttachToBuffer();
 
 	// Currently there is only one set of syntax colors, which all documents & views share
-	m_pView[MERGE_VIEW_LEFT]->SetColorContext(GetMainSyntaxColors());
-	m_pView[MERGE_VIEW_RIGHT]->SetColorContext(GetMainSyntaxColors());
-	m_pDetailView[0]->SetColorContext(GetMainSyntaxColors());
-	m_pDetailView[1]->SetColorContext(GetMainSyntaxColors());
+	int nNormalBuffer = 0;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_pView[nBuffer]->SetColorContext(GetMainSyntaxColors());
+		m_pDetailView[nBuffer]->SetColorContext(GetMainSyntaxColors());
+		if ((m_nBufferType[nBuffer] == BUFFER_NORMAL) ||
+		    (m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED))
+		{
+			nNormalBuffer++;
+		}
+	}
 
 	// Set read-only status
 	m_ptBuf[index]->SetReadOnly(readOnly);
@@ -2514,16 +2736,14 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	}
 
 	BOOL bBinary = FALSE;
-	nRescanResult = Rescan(bBinary, bIdentical, TRUE);
+	nRescanResult = Rescan(bBinary, identical, TRUE);
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)
 	{
 		// prepare the four views
-		CMergeEditView * pLeft = GetLeftView();
-		CMergeEditView * pRight = GetRightView();
-		CMergeDiffDetailView * pLeftDetail = GetLeftDetailView();
-		CMergeDiffDetailView * pRightDetail = GetRightDetailView();
+		CMergeEditView * pView = GetView(index);
+		CMergeDiffDetailView * pDetail = GetDetailView(index);
 		
 		// set the document types
 		// Warning : it is the first thing to do (must be done before UpdateView,
@@ -2541,46 +2761,25 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 		}
 		
 		BOOL syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-		BOOL bLeftTyped = FALSE;
-		BOOL bRightTyped = FALSE;
+		BOOL bTyped = FALSE;
 		
 		if (syntaxHLEnabled)
 		{
-			if (index == 0)
-			{
-				bLeftTyped = pLeft->SetTextType(sext.c_str());
-				pLeftDetail->SetTextType(sext.c_str());
-			}
-			else if (index == 1)
-			{
-				bRightTyped = pRight->SetTextType(sext.c_str());
-				pRightDetail->SetTextType(sext.c_str());
-			}
+			bTyped = pView->SetTextType(sext.c_str());
+			pDetail->SetTextType(sext.c_str());
 		}
 
 		// set the frame window header
 		UpdateHeaderPath(index);
 
-		if (index == 0)
-		{
-			pLeft->DocumentsLoaded();
-			pRight->DocumentsLoaded();
-		}
-		else if (index == 1)
-		{
-			pLeftDetail->DocumentsLoaded();
-			pRightDetail->DocumentsLoaded();
-		}
+		pView->DocumentsLoaded();
+		pDetail->DocumentsLoaded();
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
-		if ((TRUE == bIdentical) &&
-			((m_nBufferType[0] == BUFFER_NORMAL) ||
-			 (m_nBufferType[0] == BUFFER_NORMAL_NAMED) ||
-			 (m_nBufferType[1] == BUFFER_NORMAL) ||
-			 (m_nBufferType[1] == BUFFER_NORMAL_NAMED)))
+		if (identical == IDENTLEVEL_ALL && nNormalBuffer > 0)
 		{
-			ShowRescanError(nRescanResult, bIdentical);
+			ShowRescanError(nRescanResult, identical);
 		}
 
 		// scroll to first diff
@@ -2588,7 +2787,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 			m_diffList.HasSignificantDiffs())
 		{
 			int nDiff = m_diffList.FirstSignificantDiff();
-			pLeft->SelectDiff(nDiff, true, false);
+			pView->SelectDiff(nDiff, true, false);
 		}
 
 		// Exit if files are identical should only work for the first
@@ -2601,15 +2800,15 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 		// or the really arcane case that the temp files couldn't be created, 
 		// which is too obscure to bother reporting if you can't write to 
 		// your temp directory, doing nothing is graceful enough for that).
-		ShowRescanError(nRescanResult, bIdentical);
+		ShowRescanError(nRescanResult, identical);
 		GetParentFrame()->DestroyWindow();
 		return OPENRESULTS_FAILED_MISC;
 	}
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[MERGE_VIEW_LEFT])
-		m_pView[MERGE_VIEW_LEFT]->RepaintLocationPane();
+	if (m_pView[0])
+		m_pView[0]->RepaintLocationPane();
 
 	return OPENRESULTS_SUCCESS;
 }
@@ -2635,8 +2834,8 @@ void CMergeDoc::RefreshOptions()
 	m_diffWrapper.SetOptions(&options);
 
 	// Refresh view options
-	m_pView[MERGE_VIEW_LEFT]->RefreshOptions();
-	m_pView[MERGE_VIEW_RIGHT]->RefreshOptions();
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		m_pView[nBuffer]->RefreshOptions();
 }
 
 /**
@@ -2657,13 +2856,10 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 	}
 	else
 	{
-		sText = m_filePaths.GetPath(pane);
+		sText = m_filePaths[pane];
 		if (m_pDirDoc)
 		{
-			if (pane == 0)
-				m_pDirDoc->ApplyLeftDisplayRoot(sText);
-			else
-				m_pDirDoc->ApplyRightDisplayRoot(sText);
+			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 		}
 	}
 	bChanges = m_ptBuf[pane]->IsModified();
@@ -2739,42 +2935,60 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
 	const TCHAR pszSeparator[] = _T(" - ");
 	String sTitle;
+	String sFileName[3];
 
 	if (lpszTitle)
 		sTitle = lpszTitle;
 	else
 	{
-		if (!m_strDesc[0].empty())
-			sTitle += m_strDesc[0];
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (!m_strDesc[nBuffer].empty())
+				sFileName[nBuffer] = m_strDesc[nBuffer];
+			else
+			{
+				String file;
+				String ext;
+				SplitFilename(m_filePaths[nBuffer].c_str(), NULL, &file, &ext);
+				sFileName[nBuffer] += file.c_str();
+				if (!ext.empty())
+				{
+					sFileName[nBuffer] += _T(".");
+					sFileName[nBuffer] += ext.c_str();
+				}
+			}
+		}
+		if (m_nBuffers < 3)
+		{
+			if (sFileName[0] == sFileName[1])
+			{
+				sTitle = sFileName[0];
+				sTitle += _T(" x 2");
+			}
+			else
+			{
+				sTitle = sFileName[0];
+				sTitle += pszSeparator;
+				sTitle += sFileName[1];
+			}
+		}
 		else
 		{
-			String file;
-			String ext;
-			SplitFilename(m_filePaths.GetLeft().c_str(), NULL, &file, &ext);
-			sTitle += file.c_str();
-			if (!ext.empty())
+			if (sFileName[0] == sFileName[1] && sFileName[0] == sFileName[2])
 			{
-				sTitle += _T(".");
-				sTitle += ext.c_str();
+				sTitle = sFileName[0];
+				sTitle += _T(" x 3");
+			}
+			else
+			{
+				sTitle = sFileName[0];
+				sTitle += pszSeparator;
+				sTitle += sFileName[1];
+				sTitle += pszSeparator;
+				sTitle += sFileName[2];
 			}
 		}
 
-		sTitle += pszSeparator;
-
-		if (!m_strDesc[1].empty())
-			sTitle += m_strDesc[1];
-		else
-		{
-			String file;
-			String ext;
-			SplitFilename(m_filePaths.GetRight().c_str(), NULL, &file, &ext);
-			sTitle += file.c_str();
-			if (!ext.empty())
-			{
-				sTitle += _T(".");
-				sTitle += ext.c_str();
-			}
-		}
 	}
 	CDocument::SetTitle(sTitle.c_str());
 }
@@ -2784,17 +2998,19 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
-	if (m_filePaths.GetLeft().empty() && m_filePaths.GetRight().empty())
-	{
-		m_strDesc[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-		m_strDesc[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
-	}
-	UpdateHeaderPath(0);
-	UpdateHeaderPath(1);
+	CString str;
+	int nBuffer;
+
+	m_strDesc[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+	m_strDesc[m_nBuffers - 1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+	if (m_nBuffers == 3)
+		m_strDesc[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		UpdateHeaderPath(nBuffer);
 
 	GetParentFrame()->UpdateResources();
-	GetLeftView()->UpdateResources();
-	GetRightView()->UpdateResources();
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		GetView(nBuffer)->UpdateResources();
 }
 
 // Return current word breaking break type setting (whitespace only or include punctuation)
@@ -2817,44 +3033,73 @@ void CMergeDoc::SwapFiles()
 {
 	// Swap views
 	int nLeftViewId = m_pView[0]->GetDlgCtrlID();
-	int nRightViewId = m_pView[1]->GetDlgCtrlID();
+	int nRightViewId = m_pView[m_nBuffers - 1]->GetDlgCtrlID();
 	m_pView[0]->SetDlgCtrlID(nRightViewId);
-	m_pView[1]->SetDlgCtrlID(nLeftViewId);
+	m_pView[m_nBuffers - 1]->SetDlgCtrlID(nLeftViewId);
 
 	int nLeftDetailViewId = m_pDetailView[0]->GetDlgCtrlID();
-	int nRightDetailViewId = m_pDetailView[1]->GetDlgCtrlID();
+	int nRightDetailViewId = m_pDetailView[m_nBuffers - 1]->GetDlgCtrlID();
 	m_pDetailView[0]->SetDlgCtrlID(nRightDetailViewId);
-	m_pDetailView[1]->SetDlgCtrlID(nLeftDetailViewId);
+	m_pDetailView[m_nBuffers - 1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
-	swap(m_ptBuf[0], m_ptBuf[1]);
-	swap(m_pView[0], m_pView[1]);
-	swap(m_pDetailView[0], m_pDetailView[1]);
-	swap(m_pSaveFileInfo[0], m_pSaveFileInfo[1]);
-	swap(m_pRescanFileInfo[0], m_pRescanFileInfo[1]);
-	swap(m_nBufferType[0], m_nBufferType[1]);
-	swap(m_bEditAfterRescan[0], m_bEditAfterRescan[1]);
+	swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
+	swap(m_pView[0], m_pView[m_nBuffers - 1]);
+	swap(m_pDetailView[0], m_pDetailView[m_nBuffers - 1]);
+	swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
+	swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
+	swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
+	swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
+	swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);
 	m_strDesc[0].swap(m_strDesc[1]);
 
 	m_filePaths.Swap();
-	m_diffList.Swap();
+	m_diffList.Swap(0, m_nBuffers - 1);
+	swap(m_pView[0]->m_piMergeEditStatus, m_pView[m_nBuffers - 1]->m_piMergeEditStatus);
 
-	m_ptBuf[0]->m_nThisPane = 0;
-	m_pView[MERGE_VIEW_LEFT]->m_nThisPane = 0;
-	m_pDetailView[0]->m_nThisPane = 0;
-	m_ptBuf[1]->m_nThisPane = 1;
-	m_pView[MERGE_VIEW_RIGHT]->m_nThisPane = 1;
-	m_pDetailView[1]->m_nThisPane = 1;
-	swap(m_pView[MERGE_VIEW_LEFT]->m_piMergeEditStatus, m_pView[MERGE_VIEW_RIGHT]->m_piMergeEditStatus);
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		m_ptBuf[nBuffer]->m_nThisPane = nBuffer;
+		m_pView[nBuffer]->m_nThisPane = nBuffer;
+		m_pDetailView[nBuffer]->m_nThisPane = nBuffer;
 
-	// Update views
-	UpdateHeaderPath(0);
-	UpdateHeaderPath(1);
+		// Update views
+		UpdateHeaderPath(nBuffer);
+	}
 	GetParentFrame()->UpdateSplitter();
-	m_pView[MERGE_VIEW_LEFT]->UpdateStatusbar();
-	m_pView[MERGE_VIEW_RIGHT]->UpdateStatusbar();
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		m_pView[nBuffer]->UpdateStatusbar();
 
 	UpdateAllViews(NULL);
+}
+
+/**
+ * @brief Update "Reload" item
+ */
+void CMergeDoc::OnUpdateFileReload(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Reloads the opened files
+ */
+void CMergeDoc::OnFileReload()
+{
+	if (!PromptAndSaveIfNeeded(TRUE))
+		return;
+	
+	FileLocation fileloc[3];
+	BOOL bRO[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+	{
+		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
+		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
+		fileloc[pane].setPath(m_filePaths[pane].c_str());
+		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
+	}
+	OpenDocs(fileloc, bRO);
 }
 
 /**
@@ -2863,6 +3108,35 @@ void CMergeDoc::SwapFiles()
 void CMergeDoc::OnFileEncoding()
 {
 	DoFileEncodingDialog();
+}
+
+/**
+ * @brief Update "File Encoding" item
+ */
+void CMergeDoc::OnUpdateFileEncoding(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+}
+
+void CMergeDoc::OnCtxtOpenWithUnpacker() 
+{
+	// let the user choose a handler
+	CSelectUnpackerDlg dlg(m_filePaths[0].c_str(), NULL);
+	// create now a new infoUnpacker to initialize the manual/automatic flag
+	PackingInfo infoUnpacker;
+	dlg.SetInitialInfoHandler(&infoUnpacker);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		infoUnpacker = dlg.GetInfoHandler();
+		SetUnpacker(&infoUnpacker);
+		OnFileReload();
+	}
+}
+
+void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
 }
 
 // Return file extension either from file name or file description (if WinMerge is used as an
@@ -2926,8 +3200,8 @@ void CMergeDoc::OnToolsGenerateReport()
 		_T("<title>WinMerge File Compare Report</title>\n")
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
-		_T("td,th {font-size: %dpt;}\n")
-		_T(".ln {text-align: right; background-color: lightgrey;}\n")
+		_T("td,th {word-break: break-all; font-size: %dpt;}\n")
+		_T(".ln {text-align: right; word-break: keep-all; background-color: lightgrey;}\n")
 		_T(".title {color: white; background-color: blue; vertical-align: top;}\n")
 		_T("%s")
 		_T("-->\n")
@@ -2943,36 +3217,33 @@ void CMergeDoc::OnToolsGenerateReport()
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
-	String left = m_filePaths.GetPath(0);
-	String right = m_filePaths.GetPath(1);
+	PathContext paths = m_filePaths;
 	if (m_pDirDoc->IsArchiveFolders())
 	{
-		m_pDirDoc->ApplyLeftDisplayRoot(left);
-		m_pDirDoc->ApplyRightDisplayRoot(right);
+		for (int i = 0; i < paths.GetSize(); i++)
+			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
 	}
 	else
 	{
-		if (!m_strDesc[0].empty())
-			left = m_strDesc[0];
-		if (!m_strDesc[1].empty())
-			right = m_strDesc[1];
+		for (int i = 0; i < paths.GetSize(); i++)
+		{
+			if (!m_strDesc[i].empty())
+				paths[i] = m_strDesc[i];
+		}
 	}
 
 	// left and right title
 	int nBuffer;
-	for (nBuffer = 0; nBuffer < 2; nBuffer++)
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		int nLineNumberColumnWidth = m_pView[nBuffer]->GetViewLineNumbers() ? 1 : 0;
 		String data = Fmt(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
 			nLineNumberColumnWidth);
 		file.WriteString(data);
 		data = Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
-			(double)(100 - nLineNumberColumnWidth * 2) / 2);
+			(double)(100 - nLineNumberColumnWidth * m_nBuffers) / m_nBuffers);
 		file.WriteString(data);
-		if (nBuffer == 0)
-			file.WriteString(left.c_str());
-		else
-			file.WriteString(right.c_str());
+		file.WriteString(paths[nBuffer].c_str());
 		file.WriteString(_T("</th>\n"));
 	}
 	file.WriteString(
@@ -2981,16 +3252,22 @@ void CMergeDoc::OnToolsGenerateReport()
 		_T("<tbody>\n"));
 
 	// write the body of the report
-	int idx[2] = {0};
-	int nLineCount[2] = {0};
-	for (nBuffer = 0; nBuffer < 2; nBuffer++)
+	int idx[3] = {0};
+	int nLineCount[3] = {0};
+	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
 
 	for (;;)
 	{
 		file.WriteString(_T("<tr valign=\"top\">\n"));
-		for (nBuffer = 0; nBuffer < 2; nBuffer++)
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
+			for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+			{
+				if (m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+					break;
+			}
+				
 			if (idx[nBuffer] < nLineCount[nBuffer])
 			{
 				// line number
@@ -3013,7 +3290,27 @@ void CMergeDoc::OnToolsGenerateReport()
 		}
 		file.WriteString(_T("</tr>\n"));
 
-		if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1])
+		BOOL bBorderLine = FALSE;
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+				bBorderLine = TRUE;
+		}
+
+		if (bBorderLine)
+		{
+			file.WriteString(_T("<tr height=1>"));
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[nBuffer]->GetLineVisible(idx[nBuffer]))
+					file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
+				else
+					file.WriteString(_T("<td></td><td></td>"));
+			}
+			file.WriteString(_T("</tr>\n"));
+		}
+
+		if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
 			break;
 	}
 	file.WriteString(

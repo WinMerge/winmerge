@@ -27,7 +27,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszRsrcKeywordList[] =
+static LPCTSTR s_apszRsrcKeywordList[] =
   {
     _T ("ACCELERATORS"),
     _T ("ALT"),
@@ -109,47 +109,20 @@ static LPTSTR s_apszRsrcKeywordList[] =
     _T ("VERSION"),
     _T ("VERSIONINFO"),
     _T ("VIRTKEY"),
-    NULL
   };
 
-static LPTSTR s_apszUser1KeywordList[] =
+static LPCTSTR s_apszUser1KeywordList[] =
   {
-    _T ("VK_LBUTTON"),
-    _T ("VK_RBUTTON"),
-    _T ("VK_CANCEL"),
-    _T ("VK_MBUTTON"),
     _T ("VK_BACK"),
-    _T ("VK_TAB"),
-    _T ("VK_CLEAR"),
-    _T ("VK_RETURN"),
-    _T ("VK_SHIFT"),
-    _T ("VK_CONTROL"),
-    _T ("VK_MENU"),
-    _T ("VK_PAUSE"),
+    _T ("VK_CANCEL"),
     _T ("VK_CAPITAL"),
-    _T ("VK_ESCAPE"),
-    _T ("VK_SPACE"),
-    _T ("VK_PRIOR"),
-    _T ("VK_NEXT"),
-    _T ("VK_END"),
-    _T ("VK_HOME"),
-    _T ("VK_LEFT"),
-    _T ("VK_UP"),
-    _T ("VK_RIGHT"),
-    _T ("VK_DOWN"),
-    _T ("VK_SELECT"),
-    _T ("VK_INSERT"),
+    _T ("VK_CLEAR"),
+    _T ("VK_CONTROL"),
     _T ("VK_DELETE"),
-    _T ("VK_HELP"),
+    _T ("VK_DOWN"),
+    _T ("VK_END"),
+    _T ("VK_ESCAPE"),
     _T ("VK_F1"),
-    _T ("VK_F2"),
-    _T ("VK_F3"),
-    _T ("VK_F4"),
-    _T ("VK_F5"),
-    _T ("VK_F6"),
-    _T ("VK_F7"),
-    _T ("VK_F8"),
-    _T ("VK_F9"),
     _T ("VK_F10"),
     _T ("VK_F11"),
     _T ("VK_F12"),
@@ -160,36 +133,49 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("VK_F17"),
     _T ("VK_F18"),
     _T ("VK_F19"),
+    _T ("VK_F2"),
     _T ("VK_F20"),
     _T ("VK_F21"),
     _T ("VK_F22"),
     _T ("VK_F23"),
     _T ("VK_F24"),
-    NULL
+    _T ("VK_F3"),
+    _T ("VK_F4"),
+    _T ("VK_F5"),
+    _T ("VK_F6"),
+    _T ("VK_F7"),
+    _T ("VK_F8"),
+    _T ("VK_F9"),
+    _T ("VK_HELP"),
+    _T ("VK_HOME"),
+    _T ("VK_INSERT"),
+    _T ("VK_LBUTTON"),
+    _T ("VK_LEFT"),
+    _T ("VK_MBUTTON"),
+    _T ("VK_MENU"),
+    _T ("VK_NEXT"),
+    _T ("VK_PAUSE"),
+    _T ("VK_PRIOR"),
+    _T ("VK_RBUTTON"),
+    _T ("VK_RETURN"),
+    _T ("VK_RIGHT"),
+    _T ("VK_SELECT"),
+    _T ("VK_SHIFT"),
+    _T ("VK_SPACE"),
+    _T ("VK_TAB"),
+    _T ("VK_UP"),
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsRsrcKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszRsrcKeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszRsrcKeywordList, pszChars, nLength);
 }
 
 static BOOL
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszUser1KeywordList, pszChars, nLength);
+  return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -223,6 +209,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -297,7 +284,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

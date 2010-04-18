@@ -54,6 +54,8 @@
 #define MB_RIGHT_ALIGN				0x20000000L	// Additional style.
 #define MB_NO_SOUND					0x40000000L	// Additional style.
 
+#define MB_MODELESS					0x80000000L	// Additional style.
+
 #define MB_DEFBUTTON5				0x00000400L	// Additional style.
 #define MB_DEFBUTTON6				0x00000500L	// Additional style.
 

@@ -782,10 +782,11 @@ int iseolch (char ch)
    set to 0.  */
 
 void
-analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
+analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts, fd)
      struct change *hunk;
      int *first0, *last0, *first1, *last1;
      int *deletes, *inserts;
+     const struct file_data fd[];
 {
   int l0, l1, show_from, show_to;
   int i;
@@ -806,12 +807,12 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(files[0].linbuf[i][0]) &&
-            files[0].linbuf[i][0] != 0))
+        if (!ignore_blank_lines_flag || (!iseolch(fd[0].linbuf[i][0]) &&
+            fd[0].linbuf[i][0] != 0))
           {
             struct regexp_list *r;
-            char const HUGE *line = files[0].linbuf[i];
-            int len = files[0].linbuf[i + 1] - line;
+            char const HUGE *line = fd[0].linbuf[i];
+            int len = fd[0].linbuf[i + 1] - line;
 
             for (r = ignore_regexp_list; r; r = r->next)
               if (0 <= re_search (&r->buf, line, len, 0, len, 0))
@@ -823,12 +824,12 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
           }
 
       for (i = next->line1; i <= l1 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(files[1].linbuf[i][0]) &&
-            files[1].linbuf[i][0] != 0))
+        if (!ignore_blank_lines_flag || (!iseolch(fd[1].linbuf[i][0]) &&
+            fd[1].linbuf[i][0] != 0))
           {
             struct regexp_list *r;
-            char const HUGE *line = files[1].linbuf[i];
-            int len = files[1].linbuf[i + 1] - line;
+            char const HUGE *line = fd[1].linbuf[i];
+            int len = fd[1].linbuf[i + 1] - line;
 
             for (r = ignore_regexp_list; r; r = r->next)
               if (0 <= re_search (&r->buf, line, len, 0, len, 0))

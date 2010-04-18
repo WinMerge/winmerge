@@ -21,7 +21,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: AboutDlg.cpp 6380 2009-01-25 22:13:36Z kimmov $
 
 #include "stdafx.h"
 #include "Constants.h"
@@ -69,7 +69,7 @@ BOOL CAboutDlg::OnInitDialog()
 	}
 
 	CVersionInfo version(AfxGetResourceHandle());
-	String sVersion = version.GetFixedProductVersion();
+	String sVersion = version.GetProductVersion();
 	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion.c_str());
 
 #ifdef _UNICODE
@@ -77,7 +77,11 @@ BOOL CAboutDlg::OnInitDialog()
 	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
 #endif
 
-#ifdef WIN64
+#if defined _M_IX86
+	m_strVersion += _T(" x86");
+#elif defined _M_IA64
+	m_strVersion += _T(" IA64");
+#elif defined _M_X64
 	m_strVersion += _T(" ");
 	m_strVersion += theApp.LoadString(IDS_WINX64).c_str();
 #endif

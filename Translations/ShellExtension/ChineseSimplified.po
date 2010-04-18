@@ -55,7 +55,7 @@ msgstr "用 WinMerge 打开"
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "请不要选中超过2个项目"
+msgstr "请不要选中超过2个ˇ目"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
@@ -75,12 +75,12 @@ msgstr "和另外一个对比"
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "保存这个路径。选择另外一个路径与之进行对比。"
+msgstr "保存这个路径。选择另外一个路径与之进行对比。 "
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "与保存的路径(%1)进行对比"
+msgstr "与保存的路径(%1)进行对比 "
 
 #: ShellExtensionTemplate.rc:51
 #, c-format

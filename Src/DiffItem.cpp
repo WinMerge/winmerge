@@ -4,7 +4,7 @@
  *  @brief Implementation of DIFFITEM
  */ 
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DiffItem.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include <windows.h>
 #include "DiffItem.h"
@@ -23,24 +23,13 @@ DIFFITEM::~DIFFITEM()
 	}
 }
 
-/** @brief Return path to left file, including all but file name */
-String DIFFITEM::GetLeftFilepath(const String &sLeftRoot) const
+/** @brief Return path to left/right file, including all but file name */
+String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
 	String sPath;
-	if (!diffcode.isSideRightOnly())
+	if (diffcode.isExists(nIndex))
 	{
-		sPath = paths_ConcatPath(sLeftRoot, left.path);
-	}
-	return sPath;
-}
-
-/** @brief Return path to right file, including all but file name */
-String DIFFITEM::GetRightFilepath(const String &sRightRoot) const
-{
-	String sPath;
-	if (!diffcode.isSideLeftOnly())
-	{
-		sPath = paths_ConcatPath(sRightRoot, right.path);
+		sPath = paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}
 	return sPath;
 }

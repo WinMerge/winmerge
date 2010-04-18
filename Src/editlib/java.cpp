@@ -27,77 +27,64 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 //  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszJavaKeywordList[] =
+static LPCTSTR s_apszJavaKeywordList[] =
   {
     _T ("abstract"),
-    _T ("default"),
-    _T ("goto"),
-    _T ("null"),
-    _T ("synchronized"),
     _T ("boolean"),
-    _T ("do"),
-    _T ("if"),
-    _T ("package"),
-    _T ("this"),
     _T ("break"),
-    _T ("double"),
-    _T ("implements"),
-    _T ("private"),
-    _T ("threadsafe"),
     _T ("byte"),
-    _T ("else"),
-    _T ("import"),
-    _T ("protected"),
-    _T ("throw"),
     _T ("byvalue"),
-    _T ("extends"),
-    _T ("instanceof"),
-    _T ("public"),
-    _T ("transient"),
     _T ("case"),
-    _T ("false"),
-    _T ("int"),
-    _T ("return"),
-    _T ("true"),
     _T ("catch"),
-    _T ("final"),
-    _T ("interface"),
-    _T ("short"),
-    _T ("try"),
     _T ("char"),
-    _T ("finally"),
-    _T ("long"),
-    _T ("static"),
-    _T ("void"),
     _T ("class"),
-    _T ("float"),
-    _T ("native"),
-    _T ("super"),
-    _T ("while"),
     _T ("const"),
-    _T ("for"),
-    _T ("new"),
-    _T ("switch"),
     _T ("continue"),
-    NULL
+    _T ("default"),
+    _T ("do"),
+    _T ("double"),
+    _T ("else"),
+    _T ("extends"),
+    _T ("false"),
+    _T ("final"),
+    _T ("finally"),
+    _T ("float"),
+    _T ("for"),
+    _T ("goto"),
+    _T ("if"),
+    _T ("implements"),
+    _T ("import"),
+    _T ("instanceof"),
+    _T ("int"),
+    _T ("interface"),
+    _T ("long"),
+    _T ("native"),
+    _T ("new"),
+    _T ("null"),
+    _T ("package"),
+    _T ("private"),
+    _T ("protected"),
+    _T ("public"),
+    _T ("return"),
+    _T ("short"),
+    _T ("static"),
+    _T ("super"),
+    _T ("switch"),
+    _T ("synchronized"),
+    _T ("this"),
+    _T ("threadsafe"),
+    _T ("throw"),
+    _T ("transient"),
+    _T ("true"),
+    _T ("try"),
+    _T ("void"),
+    _T ("while"),
   };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
 
 static BOOL
 IsJavaKeyword (LPCTSTR pszChars, int nLength)
 {
-  return IsXKeyword (s_apszJavaKeywordList, pszChars, nLength);
+  return ISXKEYWORD (s_apszJavaKeywordList, pszChars, nLength);
 }
 
 static BOOL
@@ -131,6 +118,7 @@ ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == (pos)) nActualItems--;\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
         pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
@@ -205,7 +193,7 @@ out:
 
       // Can be bigger than length if there is binary data
       // See bug #1474782 Crash when comparing SQL with with binary data
-      if (I >= nLength)
+      if (I >= nLength || pszChars[I] == 0)
         break;
 
       if (dwCookie & COOKIE_COMMENT)

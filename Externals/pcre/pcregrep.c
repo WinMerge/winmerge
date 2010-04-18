@@ -658,9 +658,9 @@ switch(endlinetype)
       else *lenptr = 1;
       return p;
 
-      case 0x85:    /* NEL */
-      *lenptr = utf8? 2 : 1;
-      return p;
+//      case 0x85:    /* NEL */
+//      *lenptr = utf8? 2 : 1;
+//      return p;
 
       case 0x2028:  /* LS */
       case 0x2029:  /* PS */
@@ -763,7 +763,7 @@ switch(endlinetype)
       case 0x0b:    /* VT */
       case 0x0c:    /* FF */
       case 0x0d:    /* CR */
-      case 0x85:    /* NEL */
+//      case 0x85:    /* NEL */
       case 0x2028:  /* LS */
       case 0x2029:  /* PS */
       return p;

@@ -4,7 +4,7 @@
  * @brief Declaration of CGhostTextBuffer (subclasses CCrystalTextBuffer to handle ghost lines)
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: GhostTextBuffer.h 5762 2008-08-08 05:32:15Z kimmov $
 
 #ifndef __GHOSTTEXTBUFFER_H__
 #define __GHOSTTEXTBUFFER_H__
@@ -110,16 +110,20 @@ public :
 	*/
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
-			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC);
+			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
+			BOOL bExcludeInvisibleLines = TRUE);
 
 
 	// Text modification functions
 	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos,
 		LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
-		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory = TRUE);
+		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 	virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory = TRUE);
+		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE, BOOL bExcludeInvisibleLines = TRUE);
+	virtual BOOL DeleteText2 (CCrystalTextView * pSource, int nStartLine,
+		int nStartPos, int nEndLine, int nEndPos,
+		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 	BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
 	// Undo/Redo

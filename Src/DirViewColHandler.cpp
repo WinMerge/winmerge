@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-19
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: DirViewColHandler.cpp 6138 2008-12-01 17:24:02Z kimmov $
 
 
 #include "StdAfx.h"
@@ -149,7 +149,8 @@ void CDirView::NameColumn(int id, int subitem)
 /// Load column names from string table
 void CDirView::UpdateColumnNames()
 {
-	for (int i=0; i<g_ncols; ++i)
+	int ncols = GetColLogCount();
+	for (int i=0; i<ncols; ++i)
 	{
 		const DirColInfo * col = DirViewColItems_GetDirColInfo(i);
 		NameColumn(col->idName, i);
@@ -161,7 +162,8 @@ void CDirView::UpdateColumnNames()
  */
 void CDirView::SetColAlignments()
 {
-	for (int i=0; i<g_ncols; ++i)
+	int ncols = GetColLogCount();
+	for (int i=0; i<ncols; ++i)
 	{
 		const DirColInfo * col = DirViewColItems_GetDirColInfo(i);
 		LVCOLUMN lvc;
@@ -265,12 +267,33 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	{
 		String s = ColGetTextToDisplay(&ctxt, i, di);
 		// Add '*' to newer time field
-		if (di.left.mtime != 0 || di.right.mtime != 0)
+		if (GetDocument()->m_nDirs < 3)
 		{
-			if ((IsColLmTime(i) && di.left.mtime > di.right.mtime) ||
-				(IsColRmTime(i) && di.left.mtime < di.right.mtime))
+			if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
 			{
-				s.insert(0, _T("* "));
+				if
+				(
+					IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
+				||	IsColRmTime(i) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
+				)
+				{
+					s.insert(0, _T("* "));
+				}
+			}
+		}
+		else
+		{
+			if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0 ||  di.diffFileInfo[2].mtime != 0)
+			{
+				if
+				(
+					IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
+				||	IsColMmTime(i) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
+				||	IsColRmTime(i) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
+				)
+				{
+					s.insert(0, _T("* "));
+				}
 			}
 		}
 		pParam->item.pszText = AllocDispinfoText(s);
@@ -279,6 +302,9 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	{
 		pParam->item.iImage = GetColImage(di);
 	}
+
+	m_bNeedSearchLastDiffItem = true;
+	m_bNeedSearchFirstDiffItem = true;
 }
 
 /// store current column orders into registry
@@ -286,11 +312,11 @@ void CDirView::SaveColumnOrders()
 {
 	ASSERT(m_colorder.size() == m_numcols);
 	ASSERT(m_invcolorder.size() == m_numcols);
-    for (int i=0; i < m_numcols; i++)
+	for (int i=0; i < m_numcols; i++)
 	{
 		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
 		int ord = m_colorder[i];
-		theApp.WriteProfileInt(_T("DirView"), RegName, ord);
+		theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName, ord);
 	}
 }
 
@@ -311,7 +337,7 @@ void CDirView::LoadColumnOrders()
 	for (i=0; i<m_numcols; ++i)
 	{
 		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
-		int ord = theApp.GetProfileInt(_T("DirView"), RegName, -2);
+		int ord = theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName, -2);
 		if (ord<-1 || ord >= m_numcols)
 			break;
 		m_colorder[i] = ord;
@@ -430,7 +456,10 @@ String CDirView::GetColDescription(int col) const
  */
 int CDirView::GetColLogCount() const
 {
-	return g_ncols;
+	if (GetDocument()->m_nDirs < 3)
+		return g_ncols;
+	else
+		return g_ncols3;
 }
 
 /**
@@ -499,7 +528,7 @@ void CDirView::OnEditColumns()
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	ClearColumnOrders();
 	m_dispcols = 0;
-	const int sortColumn = GetOptionsMgr()->GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	const int sortColumn = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 	for (CDirColsDlg::ColumnArray::const_iterator iter = cols.begin();
 		iter != cols.end(); ++iter)
 	{
@@ -515,7 +544,7 @@ void CDirView::OnEditColumns()
 		// If sorted column was hidden, reset sorting
 		if (log == sortColumn && phy < 0)
 		{
-			GetOptionsMgr()->Reset(OPT_DIRVIEW_SORT_COLUMN);
+			GetOptionsMgr()->Reset((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 			GetOptionsMgr()->Reset(OPT_DIRVIEW_SORT_ASCENDING);
 		}
 	}

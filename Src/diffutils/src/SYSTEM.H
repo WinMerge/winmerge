@@ -19,7 +19,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 /* We must define `volatile' and `const' first (the latter inside config.h),
    so that they're used consistently in all system includes.  */
-#if !__STDC__
+#if !defined(__STDC__) && !defined(_MSC_VER)
 #ifndef volatile
 #define volatile
 #endif
@@ -29,7 +29,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
+#if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32) || defined(WIN64)
 #define PARAMS(args) args
 #define VOID void
 #else

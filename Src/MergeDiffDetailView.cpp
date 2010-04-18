@@ -6,7 +6,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: MergeDiffDetailView.cpp 6732 2009-05-12 07:21:01Z kimmov $
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -73,6 +73,10 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_COMMAND(ID_L2M, OnL2m)
+	ON_UPDATE_COMMAND_UI(ID_L2M, OnUpdateL2m)
+	ON_COMMAND(ID_R2M, OnR2m)
+	ON_UPDATE_COMMAND_UI(ID_R2M, OnUpdateR2m)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -188,52 +192,66 @@ void CMergeDiffDetailView::OnInitialUpdate()
 	m_displayLength = NROWS_INIT;
 }
 
-int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
+int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 {
+	pBuf = NULL;
+
 	if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
 		return 0;
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
 		return 0; // No diff
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
 		return 0; // No coloring
 
-	int nLineLength = GetLineLength(nLineIndex);
-	vector<wdiff*> worddiffs;
-	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
-
-	if (nLineLength == 0 || worddiffs.size() == 0 || // Both sides are empty
-		IsSide0Empty(worddiffs, nLineLength) || IsSide1Empty(worddiffs, nLineLength))
+	CMergeDoc *pDoc = GetDocument();
+	int unemptyLineCount = 0;
+	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		while (!worddiffs.empty())
-		{
-			delete worddiffs.back();
-			worddiffs.pop_back();
-		}
-		return 0;
+		if ((pDoc->GetDetailView(pane)->GetLineCount() > nLineIndex) && !(pDoc->GetDetailView(pane)->GetLineFlags(nLineIndex) & LF_GHOST))
+			unemptyLineCount++;
 	}
+	if (unemptyLineCount < 2)
+		return 0;	
+		
+	vector<wdiff*> worddiffs;
+	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
 
 	int nWordDiffs = worddiffs.size();
 
+	pBuf = new TEXTBLOCK[nWordDiffs * 2 + 1];
 	pBuf[0].m_nCharPos = 0;
 	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
 	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
-	for (int i = 0; i < nWordDiffs; i++)
+	int i, j;
+	for (i = 0, j = 1; i < nWordDiffs; i++)
 	{
-		pBuf[1 + i * 2].m_nCharPos = worddiffs[i]->start[m_nThisPane];
-		pBuf[2 + i * 2].m_nCharPos = worddiffs[i]->end[m_nThisPane] + 1;
-		pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
-		if (worddiffs[i]->start[0] == worddiffs[i]->end[0] + 1 ||
-			worddiffs[i]->start[1] == worddiffs[i]->end[1] + 1)
+		pBuf[j].m_nCharPos = worddiffs[i]->begin[m_nThisPane];
+		pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+		if (worddiffs[i]->begin[0] == worddiffs[i]->end[0] + 1 ||
+			worddiffs[i]->begin[1] == worddiffs[i]->end[1] + 1 || 
+			(pDoc->m_nBuffers == 3 && worddiffs[i]->begin[2] == worddiffs[i]->end[2] + 1))
 			// Case on one side char/words are inserted or deleted 
-			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
+			pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
 		else
-			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
+			pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
 
-		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
-		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
+		if (i + 1 == nWordDiffs || worddiffs[i]->end[m_nThisPane] + 1 < worddiffs[i + 1]->begin[m_nThisPane])
+		{
+			j++;
+#ifdef _UNICODE
+			pBuf[j].m_nCharPos = worddiffs[i]->end[m_nThisPane] + 1;
+#else
+			LPCTSTR pLine = GetLineChars(nLineIndex);
+			BOOL bDBCS = (pLine && IsDBCSLeadByte(pLine[worddiffs[i]->end[m_nThisPane]]));
+			pBuf[j].m_nCharPos = worddiffs[i]->end[m_nThisPane] + (bDBCS ? 2 : 1);
+#endif
+			pBuf[j].m_nColorIndex = COLORINDEX_NONE;
+			pBuf[j].m_nBgColorIndex = COLORINDEX_NONE;
+		}
+		j++;
 	}
 
 	while (!worddiffs.empty())
@@ -242,7 +260,7 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 		worddiffs.pop_back();
 	}
 
-	return nWordDiffs * 2 + 1;
+	return j;
 }
 
 COLORREF CMergeDiffDetailView::GetColor(int nColorIndex)
@@ -282,7 +300,7 @@ void CMergeDiffDetailView::GetLineColors2(int nLineIndex, DWORD ignoreFlags,
 
 	// Line with WinMerge flag, 
 	// Lines with only the LF_DIFF/LF_TRIVIAL flags are not colored with Winmerge colors
-	if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED))
+	if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED & ~LF_SNP))
 	{
 		crText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
 		bDrawWhitespace = TRUE;
@@ -329,9 +347,9 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 		DIFFRANGE curDiff;
 		VERIFY(pd->m_diffList.GetDiff(nDiff, curDiff));
 
-		newlineBegin = curDiff.dbegin0;
+		newlineBegin = curDiff.dbegin[0];
 		ASSERT (newlineBegin >= 0);
-		newlineEnd = curDiff.dend0;
+		newlineEnd = curDiff.dend[0];
 	}
 
 	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
@@ -414,6 +432,8 @@ void CMergeDiffDetailView::ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScrol
 			nNewTopLine = m_lineBegin;
 		if (nNewTopLine + m_displayLength - 1 > m_lineEnd)
 			nNewTopLine = m_lineEnd - m_displayLength + 1;
+		if (nNewTopLine < 0)
+			nNewTopLine = 0;
 	}
 	m_nTopLine = nNewTopLine;
 	
@@ -552,7 +572,7 @@ int CMergeDiffDetailView::GetDiffLineLength ()
  * @note The scrollbar width is the one needed for the largest view
  * @sa ccrystaltextview::RecalcHorzScrollBar()
  */
-void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
+void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/, BOOL bRedraw /*= TRUE */)
 {
 	// Again, we cannot use nPos because it's 16-bit
 	SCROLLINFO si = {0};
@@ -560,10 +580,11 @@ void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 
 	// note : this value differs from the value in CCrystalTextView::RecalcHorzScrollBar
 	int nMaxLineLen = 0;
-	if (GetDocument()->GetRightDetailView())
-		nMaxLineLen = GetDocument()->GetRightDetailView()->GetDiffLineLength();
-	if (GetDocument()->GetLeftDetailView())
-		nMaxLineLen = max(nMaxLineLen, GetDocument()->GetLeftDetailView()->GetDiffLineLength());
+	for (int pane = 0; pane < GetDocument()->m_nBuffers; pane++)
+	{
+		if (GetDocument()->GetDetailView(pane))
+			nMaxLineLen = max(nMaxLineLen, GetDocument()->GetDetailView(pane)->GetDiffLineLength());
+	}
 	
 	si.cbSize = sizeof (si);
 	if (bPositionOnly)
@@ -587,7 +608,7 @@ void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 		si.nPage = nScreenChars;
 		si.nPos = m_nOffsetChar;
 	}
-	VERIFY (SetScrollInfo (SB_HORZ, &si));
+	VERIFY (SetScrollInfo (SB_HORZ, &si, bRedraw));
 }
 
 void CMergeDiffDetailView::OnRefresh()
@@ -798,6 +819,84 @@ void CMergeDiffDetailView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
 	if (!IsReadOnly(0))
+	{
+		if (GetDocument()->GetCurrentDiff() != -1)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Copy diff from left pane to middle pane
+ */
+void CMergeDiffDetailView::OnL2m()
+{
+	CMergeDoc *pDoc = GetDocument();
+
+	// Check that right side is not readonly
+	if (pDoc->m_nBuffers < 3 || IsReadOnly(1))
+		return;
+	
+	int currentDiff = pDoc->GetCurrentDiff();
+
+	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
+	{
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2M);
+		pDoc->ListCopy(0, 1, currentDiff);
+	}
+}
+
+/**
+ * @brief Called when "Copy to middle" item is updated
+ */
+void CMergeDiffDetailView::OnUpdateL2m(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pDoc = GetDocument();
+
+	// Check that middle side is not readonly
+	if (pDoc->m_nBuffers == 3 && !IsReadOnly(1))
+	{
+		if (GetDocument()->GetCurrentDiff() != -1)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Copy diff from right pane to middle pane
+ */
+void CMergeDiffDetailView::OnR2m()
+{
+	CMergeDoc *pDoc = GetDocument();
+
+	// Check that left side is not readonly
+	if (pDoc->m_nBuffers < 3 || IsReadOnly(1))
+		return;
+
+	int currentDiff = pDoc->GetCurrentDiff();
+
+	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
+	{
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2M);
+		pDoc->ListCopy(2, 1, currentDiff);
+	}
+}
+
+/**
+ * @brief Called when "Copy to middle" item is updated
+ */
+void CMergeDiffDetailView::OnUpdateR2m(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pDoc = GetDocument();
+
+	// Check that middle side is not readonly
+	if (pDoc->m_nBuffers == 3 && !IsReadOnly(1))
 	{
 		if (GetDocument()->GetCurrentDiff() != -1)
 			pCmdUI->Enable(TRUE);

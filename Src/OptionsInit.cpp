@@ -4,7 +4,7 @@
  * @brief Options initialisation.
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: OptionsInit.cpp 6910 2009-07-12 09:06:54Z kimmov $
 
 #include "stdafx.h"
 #include <mlang.h>
@@ -13,6 +13,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "DiffWrapper.h" // CMP_CONTENT
+#include "unicoder.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
 static void CopyHKLMValues();
@@ -36,8 +37,17 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
-	// Default language to English unless installer set it otherwise
-	m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
+	LANGID LangId = GetUserDefaultLangID();
+	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
+	{
+		// Default language to Japanese unless installer set it otherwise
+		m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x411);
+	}
+	else
+	{
+		// Default language to English unless installer set it otherwise
+		m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
+	}
 
 	// Initialise options (name, default value)
 	m_pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
@@ -61,13 +71,14 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	m_pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	m_pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
-	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)0);
+	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
 	m_pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
+	m_pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
 
 	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, true);
 	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
 	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
-	m_pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;"));
+	m_pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<>`'!\"#$%&^~\\|@+-*/"));
 
 	m_pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
 	m_pOptions->InitOption(OPT_BACKUP_FILECMP, true);
@@ -77,9 +88,11 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_BACKUP_ADD_TIME, false);
 
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
+	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1);
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
 	m_pOptions->InitOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, false);
 	m_pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
+	m_pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
 
 	m_pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	m_pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
@@ -90,6 +103,9 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_USE_RECYCLE_BIN, true);
 	m_pOptions->InitOption(OPT_SINGLE_INSTANCE, false);
 	m_pOptions->InitOption(OPT_MERGE_MODE, false);
+	// OPT_WORDDIFF_HIGHLIGHT is initialized above
+	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, false);
+	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
 
 	m_pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_pOptions->InitOption(OPT_LOGGING, 0);
@@ -108,7 +124,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	m_pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	m_pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
-	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
+	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
 
 	m_pOptions->InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	m_pOptions->InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
@@ -125,6 +141,12 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)RGB(248,112,78));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
 	m_pOptions->InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
+	m_pOptions->InitOption(OPT_CLR_SNP, (int)RGB(251,250,223));
+	m_pOptions->InitOption(OPT_CLR_SNP_DELETED, (int)RGB(233, 233, 233));
+	m_pOptions->InitOption(OPT_CLR_SNP_TEXT, (int)RGB(0,0,0));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_SNP, (int)RGB(239,183,180));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_SNP_DELETED, (int)RGB(240, 224, 224));
+	m_pOptions->InitOption(OPT_CLR_SELECTED_SNP_TEXT, (int)RGB(0,0,0));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF, (int)RGB(241,226,173));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF_DELETED, (int)RGB(255,170,130));
 	m_pOptions->InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
@@ -137,7 +159,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
 	m_pOptions->InitOption(OPT_CUSTOM_TEMP_PATH, _T(""));
 
-	m_pOptions->InitOption(OPT_MULTIDOC_DIRDOCS, false);
+	m_pOptions->InitOption(OPT_MULTIDOC_DIRDOCS, true);
 	m_pOptions->InitOption(OPT_MULTIDOC_MERGEDOCS, true);
 
 	m_pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
@@ -148,7 +170,17 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
 	m_pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
-	m_pOptions->InitOption(OPT_CP_DETECT, false);
+
+	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
+		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50932 << 16) | 3);
+	else if (LangId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED))
+		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50936 << 16) | 3);
+	else if (PRIMARYLANGID(LangId) == LANG_KOREAN)
+		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50949 << 16) | 3);
+	else if (LangId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL))
+		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50950 << 16) | 3);
+	else
+		m_pOptions->InitOption(OPT_CP_DETECT, (int)(50001 << 16) | 3);
 
 	m_pOptions->InitOption(OPT_VCS_SYSTEM, VCS_NONE);
 	m_pOptions->InitOption(OPT_VSS_PATH, _T(""));
@@ -156,7 +188,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
 
-	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, false);
+	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 
 	m_pOptions->InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
 	m_pOptions->InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
@@ -200,23 +232,19 @@ void CMergeApp::SetFontDefaults()
 	LOGFONT lfDefault;
 	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
-	MIMECPINFO cpi = {0};
+	ucr::CodePageInfo cpi = {0};
 	cpi.bGDICharset = ANSI_CHARSET;
-	wcscpy(cpi.wszFixedWidthFont, L"Courier New");
-	IMultiLanguage *pMLang = NULL;
+	wcscpy(cpi.fixedWidthFont, L"Courier New");
 
-	HRESULT hr = CoCreateInstance(CLSID_CMultiLanguage, NULL,
-		CLSCTX_INPROC_SERVER, IID_IMultiLanguage, (void **)&pMLang);
-	if (SUCCEEDED(hr))
-	{
-		hr = pMLang->GetCodePageInfo(GetACP(), &cpi);
-		pMLang->Release();
-	}
+	ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+	if (pexconv)
+		pexconv->getCodePageInfo(GetACP(), &cpi);
+
 	m_pOptions->InitOption(OPT_FONT_FILECMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, W2T(cpi.wszFixedWidthFont));
+	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, W2T(cpi.fixedWidthFont));
 
 	m_pOptions->InitOption(OPT_FONT_DIRCMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, W2T(cpi.wszFixedWidthFont));
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, W2T(cpi.fixedWidthFont));
 }
 
 /**

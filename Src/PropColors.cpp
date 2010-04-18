@@ -4,7 +4,7 @@
  * @brief Implementation of PropMergeColors propertysheet
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: PropColors.cpp 6908 2009-07-11 08:29:49Z kimmov $
 
 #include "stdafx.h"
 #include "merge.h"
@@ -48,6 +48,12 @@ void PropMergeColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_COLOR, m_cSelMoved);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_DELETED_COLOR, m_cSelMovedDeleted);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_TEXT_COLOR, m_cSelMovedText);
+	DDX_Control(pDX, IDC_SNP_COLOR, m_cSNP);
+	DDX_Control(pDX, IDC_SNP_DELETED_COLOR, m_cSNPDeleted);
+	DDX_Control(pDX, IDC_SNP_TEXT_COLOR, m_cSNPText);
+	DDX_Control(pDX, IDC_SEL_SNP_COLOR, m_cSelSNP);
+	DDX_Control(pDX, IDC_SEL_SNP_DELETED_COLOR, m_cSelSNPDeleted);
+	DDX_Control(pDX, IDC_SEL_SNP_TEXT_COLOR, m_cSelSNPText);
 	DDX_Control(pDX, IDC_WORDDIFF_COLOR, m_cWordDiff);
 	DDX_Control(pDX, IDC_WORDDIFF_DELETED_COLOR, m_cWordDiffDeleted);
 	DDX_Control(pDX, IDC_WORDDIFF_TEXT_COLOR, m_cWordDiffText);
@@ -76,6 +82,12 @@ BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_COLOR, OnSelMovedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
+	ON_BN_CLICKED(IDC_SNP_COLOR, OnSNPColor)
+	ON_BN_CLICKED(IDC_SNP_DELETED_COLOR, OnSNPDeletedColor)
+	ON_BN_CLICKED(IDC_SNP_TEXT_COLOR, OnSNPTextColor)
+	ON_BN_CLICKED(IDC_SEL_SNP_COLOR, OnSelSNPColor)
+	ON_BN_CLICKED(IDC_SEL_SNP_DELETED_COLOR, OnSelSNPDeletedColor)
+	ON_BN_CLICKED(IDC_SEL_SNP_TEXT_COLOR, OnSelSNPTextColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_COLOR, OnWordDiffColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_DELETED_COLOR, OnWordDiffDeletedColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_TEXT_COLOR, OnWordDiffTextColor)
@@ -228,6 +240,36 @@ void PropMergeColors::OnSelMovedTextColor()
 	BrowseColor(m_cSelMovedText, m_clrSelMovedText);
 }
 
+void PropMergeColors::OnSNPColor()
+{
+	BrowseColor(m_cSNP, m_clrSNP);
+}
+
+void PropMergeColors::OnSNPDeletedColor()
+{
+	BrowseColor(m_cSNPDeleted, m_clrSNPDeleted);
+}
+
+void PropMergeColors::OnSNPTextColor()
+{
+	BrowseColor(m_cSNPText, m_clrSNPText);
+}
+
+void PropMergeColors::OnSelSNPColor()
+{
+	BrowseColor(m_cSelSNP, m_clrSelSNP);
+}
+
+void PropMergeColors::OnSelSNPDeletedColor()
+{
+	BrowseColor(m_cSelSNPDeleted, m_clrSelSNPDeleted);
+}
+
+void PropMergeColors::OnSelSNPTextColor()
+{
+	BrowseColor(m_cSelSNPText, m_clrSelSNPText);
+}
+
 /** 
  * @brief User wants to change word difference color
  */
@@ -293,10 +335,18 @@ void PropMergeColors::SerializeColors(OPERATION op)
 	SerializeColor(op, m_cMovedDeleted, OPT_CLR_MOVEDBLOCK_DELETED, m_clrMovedDeleted);
 	SerializeColor(op, m_cMovedText, OPT_CLR_MOVEDBLOCK_TEXT, m_clrMovedText);
 	
+	SerializeColor(op, m_cSNP, OPT_CLR_SNP, m_clrSNP);
+	SerializeColor(op, m_cSNPDeleted, OPT_CLR_SNP_DELETED, m_clrSNPDeleted);
+	SerializeColor(op, m_cSNPText, OPT_CLR_SNP_TEXT, m_clrSNPText);
+
 	SerializeColor(op, m_cSelMoved, OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved);
 	SerializeColor(op, m_cSelMovedDeleted, OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted);
 	SerializeColor(op, m_cSelMovedText, OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
 	
+	SerializeColor(op, m_cSelSNP, OPT_CLR_SELECTED_SNP, m_clrSelSNP);
+	SerializeColor(op, m_cSelSNPDeleted, OPT_CLR_SELECTED_SNP_DELETED, m_clrSelSNPDeleted);
+	SerializeColor(op, m_cSelSNPText, OPT_CLR_SELECTED_SNP_TEXT, m_clrSelSNPText);
+
 	SerializeColor(op, m_cWordDiff, OPT_CLR_WORDDIFF, m_clrWordDiff);
 	SerializeColor(op, m_cWordDiffDeleted, OPT_CLR_WORDDIFF_DELETED, m_clrWordDiffDeleted);
 	SerializeColor(op, m_cWordDiffText, OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText);
