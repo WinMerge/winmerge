@@ -58,7 +58,7 @@ const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /** @brief Location for Open-dialog specific help to open. */
-static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/OpenPaths.html");
+static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog

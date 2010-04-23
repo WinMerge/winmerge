@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.12.6
   Add missing keywords to Pascal highlighter (#2834192)
+  Fix help locations (#2988974)
   Translation updates:
   - Dutch (#2804979)
   - French (#2850842, #2968200)
