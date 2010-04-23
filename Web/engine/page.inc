@@ -414,15 +414,15 @@
     function getPiwikCode() {
       $temp = "<!-- Piwik -->\n";
       $temp .= "<script type=\"text/javascript\">\n";
-      $temp .= "var pkBaseURL = ((\"https:\" == document.location.protocol) ? \"https://apps.sourceforge.net/piwik/winmerge/\" : \"http://apps.sourceforge.net/piwik/winmerge/\");\n";
+      $temp .= "var pkBaseURL = ((\"https:\" == document.location.protocol) ? \"https://sourceforge.net/apps/piwik/winmerge/\" : \"http://sourceforge.net/apps/piwik/winmerge/\");\n";
       $temp .= "document.write(unescape(\"%3Cscript src='\" + pkBaseURL + \"piwik.js' type='text/javascript'%3E%3C/script%3E\"));\n";
       $temp .= "</script><script type=\"text/javascript\">\n";
-      $temp .= "piwik_action_name = '';\n";
-      $temp .= "piwik_idsite = 1;\n";
-      $temp .= "piwik_url = pkBaseURL + \"piwik.php\";\n";
-      $temp .= "piwik_log(piwik_action_name, piwik_idsite, piwik_url);\n";
-      $temp .= "</script>\n";
-      $temp .= "<object><noscript><p><img src=\"http://apps.sourceforge.net/piwik/winmerge/piwik.php?idsite=1\" alt=\"piwik\"/></p></noscript></object>\n";
+      $temp .= "try {\n";
+      $temp .= "var piwikTracker = Piwik.getTracker(pkBaseURL + \"piwik.php\", 1);\n";
+      $temp .= "piwikTracker.trackPageView();\n";
+      $temp .= "piwikTracker.enableLinkTracking();\n";
+      $temp .= "} catch( err ) {}\n";
+      $temp .= "</script><noscript><p><img src=\"http://sourceforge.net/apps/piwik/winmerge/piwik.php?idsite=1\" style=\"border:0\" alt=\"\"/></p></noscript>\n";
       $temp .= "<!-- End Piwik Tag -->\n";
       return $temp;
     }
