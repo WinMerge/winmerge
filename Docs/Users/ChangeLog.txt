@@ -7,6 +7,8 @@ WinMerge 2.13.12
   Update copyright year to 2010
   Fix help locations (#2988974)
   Bugfix: Strange scrolling effect in location pane (#2942869)
+  Bugfix: Difference panel didn't show differences when moved blocks were
+    enabled (#2988656)
   Translation updates:
   - Chinese Traditional (#2954833)
   - French (#2968200)
