@@ -107,6 +107,8 @@
      * print the head from the page
      */
     function printHead($title = '', $tab = '', $onload = '') {
+      ob_start('ob_gzhandler'); //Use GZIP compression from PHP, since 1and1 don't support it from Apache!
+      
       global $translations;
       
       $this->_title = $title;
