@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.12
   Update copyright year to 2010
+  Fix help locations (#2988974)
   Bugfix: Strange scrolling effect in location pane (#2942869)
   Translation updates:
   - Chinese Traditional (#2954833)

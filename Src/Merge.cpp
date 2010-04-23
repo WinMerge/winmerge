@@ -70,7 +70,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 /** @brief Location for command line help to open. */
-static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/CommandLine.html");
+static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp

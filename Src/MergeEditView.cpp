@@ -61,7 +61,7 @@ const UINT IDT_RESCAN = 2;
 const UINT RESCAN_TIMEOUT = 1000;
 
 /** @brief Location for file compare specific help to open. */
-static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/CompareFiles.html");
+static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
