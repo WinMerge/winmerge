@@ -1,4 +1,5 @@
 <?php
+  ob_start('ob_gzhandler'); //Use GZIP compression from PHP, since 1and1 don't support it from Apache!
   header('Content-type: application/rss+xml');
   
   include('../engine/engine.inc');
