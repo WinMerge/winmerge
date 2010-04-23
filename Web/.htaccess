@@ -37,6 +37,10 @@ ErrorDocument 404 /404.php
 #Use PHP5 instead of PHP4
 AddType x-mapp-php5 .php
 
+#Use PHP5 for CSS files
+AddType x-mapp-php5 .css 
+#AddType application/x-httpd-php .css 
+
 #Redirect PAD download URL to current WinMerge version...
 Redirect permanent /downloads/WinMerge-Setup.exe http://downloads.sourceforge.net/winmerge/WinMerge-2.12.4-Setup.exe
 
