@@ -62,7 +62,7 @@ static char THIS_FILE[] = __FILE__;
 /**
  * @brief Location for folder compare specific help to open.
  */
-static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/CompareDirs.html");
+static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/Compare_dirs.html");
 
 /**
  * @brief Limit (in seconds) to signal compare is ready for user.
