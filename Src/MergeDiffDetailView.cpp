@@ -194,7 +194,7 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 		return 0;
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+	if ((dwLineFlags & LF_DIFF) != LF_DIFF)
 		return 0; // No diff
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
