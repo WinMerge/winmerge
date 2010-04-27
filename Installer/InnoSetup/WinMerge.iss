@@ -48,13 +48,8 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
-; Runtime files
-#define Runtime_MFC  "..\..\..\Runtimes\mfc80.dll"
-#define Runtime_MFCU "..\..\..\Runtimes\mfc80u.dll"
-#define Runtime_C    "..\..\..\Runtimes\msvcr80.dll"
-#define Runtime_CPP  "..\..\..\Runtimes\msvcp80.dll"
-#define Runtime_CPP_Manifest "..\..\..\Runtimes\Microsoft.VC80.CRT.manifest"
-#define Runtime_MFC_Manifest "..\..\..\Runtimes\Microsoft.VC80.MFC.manifest"
+; Runtime files installer
+#define RuntimesX86Installer "..\..\..\Runtimes\vcredist_x86.exe"
 
 
 [Setup]
@@ -366,13 +361,8 @@ Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifol
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
-; Microsoft runtime libraries (C-runtime, MFC)
-Source: {#Runtime_MFC}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
-Source: {#Runtime_MFCU}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
-Source: {#Runtime_C}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_CPP}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_CPP_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_MFC_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+; Microsoft runtime libraries installer (C-runtimes, MFC)
+Source: {#RuntimesX86Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; AfterInstall: RuntimesInstaller
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\release mindependency\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
@@ -593,6 +583,18 @@ Name: {app}; Type: dirifempty
 
 
 [Code]
+
+{Runs the runtime file installer}
+{Command line used is documented in:
+http://blogs.msdn.com/astebner/archive/2007/02/07/update-regarding-silent-install-of-the-vc-8-0-runtime-vcredist-packages.aspx
+}
+procedure RuntimesInstaller();
+var
+    ResultCode: Integer;
+begin
+    Exec(ExpandConstant('{tmp}\vcredist_x86.exe'), '/q:a /c:"VCREDI~3.EXE /q:a /c:""msiexec /i vcredist.msi /qn"" "', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+end;
+
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
 Var
