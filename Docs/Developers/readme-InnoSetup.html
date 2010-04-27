@@ -88,17 +88,16 @@ that's not subject of this document, refer to <a href="Compiling.html">Compiling
 <a href="Translations.html">Translations.html</a>.</p>
 
 <p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
-not distributes with WinMerge. You get these files from Visual Studio
-installation folder or can download them from internet. By default we use VS2005
-runtime files:
-<ul>
-  <li><code>msvcr80.dll</code></li>
-  <li><code>msvcp80.dll</code></li>
-  <li><code>mfc80.dll</code></li>
-  <li><code>mfc80u.dll</code></li>
-  <li><code>Microsoft.VC80.CRT.manifest</code></li>
-  <li><code>Microsoft.VC80.MFC.manifest</code></li>
-</ul>
+not distributes with WinMerge. Older WinMerge installers copied those runtime
+files to WinMerge program folder. But with VS 2005 and later this has caused a
+lot of installing problems for users. So now we are embedding MS's own runtime
+installer executable to our installer. This makes the installer executable
+considerable bigger but seems to be the only reliable way to install those
+runtime files.</p>
+
+<p>You can download the latest VC2005 runtimes installer from MS:
+<a href="http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072-9112BAB119C2&displaylang=en">
+http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072-9112BAB119C2&displaylang=en</a><p>
 
 <h4>Folder structure</h4>
 <p>Copy or move the WinMerge files into the following layout (not runtimes):</p>
@@ -214,8 +213,8 @@ Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; [...]
 </pre>
 <p>from <code>WinMerge.iss</code></p>
 
-<h4>Runtime files</h4>
-<p>Runtime files must be copied to the <code>Runtimes</code>-folder in same level
+<h4>Runtime files installer</h4>
+<p>Runtime files installer must be copied to the <code>Runtimes</code>-folder in same level
 than WinMerge source tree folder is. Not <i>inside</i> source tree but
 <i>outside</i> of the source tree.</p>
 
