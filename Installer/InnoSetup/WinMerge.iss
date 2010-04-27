@@ -764,7 +764,7 @@ begin
 
       {Stops analyzing the version number since we already know it's inadequate and returns False (inadequate)}
       exit;
-    end
+    end;
 
 
   {Starts detecting the Minor version of the Version Installed}
@@ -1067,7 +1067,7 @@ End;
 Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
 	appdir:			String;
-	selectedTasks:	String;
+	selectedTasks:	AnsiString;
 Begin
 	appdir := ExpandConstant('{app}')
 	if CurUninstallStep = usUninstall then begin
