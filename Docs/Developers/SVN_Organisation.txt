@@ -45,8 +45,6 @@ WinMerge Folder Structure
    - InnoSetup
    - ShellExtension
    - WinMerge
- - Web
-
 
 WinMerge/ArchiveSupport/
  - Archive file support system. Currently includes 7-Zip based archive support.
@@ -175,6 +173,3 @@ WinMerge/Translations/ShellExtension
 
 WinMerge/Translations/WinMerge
  - WinMerge executable translations
-
-WinMerge/Web/
- - Homepages.
