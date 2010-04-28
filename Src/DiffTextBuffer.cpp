@@ -43,9 +43,12 @@ static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
 static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
 {
 	int nType = 0;
-	nType += (stats.ncrlfs > 0);
-	nType += (stats.ncrs > 0);
-	nType += (stats.nlfs > 0);
+	if (stats.ncrlfs > 0)
+		nType++;
+	if ( stats.ncrs > 0)
+		nType++;
+	if (stats.nlfs > 0)
+		nType++;
 	return (nType <= 1);
 }
 
@@ -139,7 +142,10 @@ static LPCTSTR GetEol(const CString &str)
  */
 static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 {
-	if (stats.ncrlfs >= stats.nlfs)
+	// Check if file has more than one EOL type.
+	if (!IsTextFileStylePure(stats))
+			return CRLF_STYLE_MIXED;
+	else if (stats.ncrlfs >= stats.nlfs)
 	{
 		if (stats.ncrlfs >= stats.ncrs)
 			return CRLF_STYLE_DOS;
@@ -466,7 +472,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		{
 			nCrlfStyle = GetTextFileStyle(pufile->GetTxtStats());
 		}
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 3);
 		SetCRLFMode(nCrlfStyle);
 		
 		//  At least one empty line must present
@@ -545,7 +551,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 3);
 	}
 
 	BOOL bOpenSuccess = TRUE;
@@ -618,7 +624,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		}
 
 		// normal real line : append an EOL
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_MIXED)
 		{
 			// either the EOL of the line (when preserve original EOL chars is on)
 			sLine += GetLineEol(line);

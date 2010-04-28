@@ -650,7 +650,8 @@ SetCRLFMode (CRLFSTYLE nCRLFMode)
     nCRLFMode = CRLF_STYLE_DOS;
   m_nCRLFMode = nCRLFMode;
 
-  ASSERT(m_nCRLFMode==CRLF_STYLE_DOS || m_nCRLFMode==CRLF_STYLE_UNIX || m_nCRLFMode==CRLF_STYLE_MAC);
+  ASSERT(m_nCRLFMode == CRLF_STYLE_DOS || m_nCRLFMode == CRLF_STYLE_UNIX ||
+      m_nCRLFMode == CRLF_STYLE_MAC || m_nCRLFMode == CRLF_STYLE_MIXED);
 }
 
 BOOL CCrystalTextBuffer::
@@ -1531,7 +1532,11 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
   m_aUndoBuf.push_back (ur);
   m_nUndoPosition = (int) m_aUndoBuf.size ();
 }
-
+/**
+ * @brief Get EOL style string.
+ * @param [in] nCRLFMode.
+ * @return string of CRLF style.
+ */
 LPCTSTR CCrystalTextBuffer::GetStringEol(CRLFSTYLE nCRLFMode)
 {
   switch(nCRLFMode)
@@ -1539,6 +1544,7 @@ LPCTSTR CCrystalTextBuffer::GetStringEol(CRLFSTYLE nCRLFMode)
   case CRLF_STYLE_DOS: return _T("\r\n");
   case CRLF_STYLE_UNIX: return _T("\n");
   case CRLF_STYLE_MAC: return _T("\r");
+      // If mixed or not defined
   default: return _T("\r\n");
   }
 }
