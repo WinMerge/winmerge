@@ -2096,14 +2096,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL(0))
-	{
-		String eol = LoadResString(IDS_EOL_MIXED);
-		pCmdUI->SetText(eol.c_str());
-	}
-	else
-		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
+	GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
 }
 
 /**

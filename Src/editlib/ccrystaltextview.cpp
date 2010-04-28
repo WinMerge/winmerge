@@ -4386,6 +4386,11 @@ OnUpdateIndicatorCRLF (CCmdUI * pCmdUI)
           pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (TRUE);
           break;
+        case CRLF_STYLE_MIXED:
+          eol = LoadResString (IDS_EOL_MIXED);
+          pCmdUI->SetText (eol.c_str());
+          pCmdUI->Enable (TRUE);
+          break;
         default:
           pCmdUI->SetText (NULL);
           pCmdUI->Enable (FALSE);
