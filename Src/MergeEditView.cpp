@@ -2462,7 +2462,9 @@ void CMergeEditView::OnPrediffer(UINT nID )
 }
 
 /**
- * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ * @brief Handler for all prediffer choices.
+ * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
+ * ID_NO_PREDIFFER, & specific prediffers.
  */
 void CMergeEditView::SetPredifferByMenu(UINT nID )
 {
@@ -2472,7 +2474,11 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	if (nID == ID_NO_PREDIFFER)
 	{
 		m_CurrentPredifferID = nID;
-		pd->SetPrediffer(NULL);
+		// All flags are set correctly during the construction
+		PrediffingInfo *infoPrediffer = new PrediffingInfo;
+		infoPrediffer->bToBeScanned = 0;
+		infoPrediffer->pluginName.clear();
+		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
 		return;
 	}
