@@ -545,7 +545,6 @@ def main():
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/Readme.txt', 'Docs/Readme'))
-    status.addProject(PoProject('Web', 'Web/en-US.pot', 'Web'))
     status.writeToXmlFile('TranslationsStatus.xml')
     status.writeToHtmlFile('TranslationsStatus.html')
 
