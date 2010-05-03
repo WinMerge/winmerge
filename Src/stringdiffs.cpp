@@ -49,7 +49,7 @@ void sd_Close()
 {
 	if (CustomChars)
 	{
-		delete [] BreakChars;
+		free(BreakChars);
 		BreakChars = NULL;
 		CustomChars = false;
 	}
@@ -61,7 +61,7 @@ void sd_SetBreakChars(const TCHAR *breakChars)
 	assert(Initialized);
 
 	if (CustomChars)
-		delete [] BreakChars;
+		free(BreakChars);
 
 	CustomChars = true;
 	BreakChars = _tcsdup(breakChars);
