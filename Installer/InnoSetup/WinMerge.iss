@@ -48,8 +48,9 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
-; Runtime files installer
+; Runtime files installers
 #define RuntimesX86Installer "..\..\..\Runtimes\vcredist_x86.exe"
+#define RuntimesX64Installer "..\..\..\Runtimes\vcredist_x64.exe"
 
 
 [Setup]
@@ -363,6 +364,7 @@ Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Compon
 
 ; Microsoft runtime libraries installer (C-runtimes, MFC)
 Source: {#RuntimesX86Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; AfterInstall: RuntimesInstaller
+Source: {#RuntimesX64Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; Check: IsWin64; AfterInstall: RuntimesX64Installer
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\release mindependency\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
@@ -593,6 +595,17 @@ var
     ResultCode: Integer;
 begin
     Exec(ExpandConstant('{tmp}\vcredist_x86.exe'), '/q:a /c:"VCREDI~3.EXE /q:a /c:""msiexec /i vcredist.msi /qn"" "', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+end;
+
+{Runs the runtime file installer for X64}
+{Command line used is documented in:
+http://blogs.msdn.com/astebner/archive/2007/02/07/update-regarding-silent-install-of-the-vc-8-0-runtime-vcredist-packages.aspx
+}
+procedure RuntimesX64Installer();
+var
+    ResultCode: Integer;
+begin
+    Exec(ExpandConstant('{tmp}\vcredist_x64.exe'), '/q:a /c:"VCREDI~2.EXE /q:a /c:""msiexec /i vcredist.msi /qn"" "', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
 end;
 
 {Determines whether or not the user chose to create a start menu}
