@@ -323,19 +323,67 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		String token = ext.substr(0, pos); // Get first extension
 		ext = ext.substr(pos + 1); // Remove extension + separator
 		
-		// Only "*." or "*.something" allowed, other ignored
-		if (token.length() >= 2 && token[0] == '*' && token[1] == '.')
+		if (token.length() >= 2)
 		{
-			bFilterAdded = TRUE;
-			strPattern += _T(".*\\.");
-			strPattern += token.substr(2);
-			strPattern += _T("$");
+			BOOL bTokenAdded = FALSE;
+			size_t postoken = 0;
+			strPattern += _T("\\\\");
+
+			while (postoken != String::npos)
+			{
+				if (token[postoken] == '*')
+				{
+					strPattern += _T("[a-z0-9\\-_]+");
+					bTokenAdded = TRUE;
+					postoken++;
+					if (postoken >= token.length())
+						break;
+				}
+				if (token[postoken] == '?')
+				{
+					while (token[postoken++] == '?')
+					{
+						strPattern += _T("[a-z0-9\\-_]");
+						bTokenAdded = TRUE;
+					}
+					if (postoken >= token.length())
+						break;
+				}
+				if (token[postoken] == '.')
+				{
+					strPattern += _T('.');
+					bTokenAdded = TRUE;
+					postoken++;
+					if (postoken >= token.length())
+						break;
+				}
+				// we had found placeholders, now remove same
+				if (postoken)
+					token = token.substr(postoken);
+				postoken = token.find_first_of(_T("*?."), 0);
+				if (postoken != String::npos)
+				{
+					strPattern += token.substr(0, postoken);
+					token = token.substr(postoken);
+					postoken = 0;
+				}
+				else
+				{
+					strPattern += token.c_str();
+				}
+				bTokenAdded = TRUE;
+			}
+			if (bTokenAdded == TRUE)
+			{
+				bFilterAdded = TRUE;
+				strPattern += _T("$");
+			}
 		}
 		else
 			bFilterAdded = FALSE;
 
 		pos = ext.find_first_of(pszSeps); 
-		if (bFilterAdded && pos >= 0)
+		if (bFilterAdded && (pos != String::npos))
 			strPattern += _T("|");
 	}
 
@@ -419,7 +467,7 @@ BOOL FileFilterHelper::SetFilter(const String &filter)
 		else
 		{
 			UseMask(TRUE);
-			SetMask(_T("*.*"));
+			SetMask(flt.c_str());
 			SetFileFilterPath(_T(""));
 			return FALSE;
 		}
