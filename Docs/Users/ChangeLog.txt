@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.13
   Installer: Embed MS runtime files installer for x64 (r7150)
+  Allow DOS-style pattern matching in Open-dialog filters (#2988369)
 
 WinMerge 2.13.12 - 2010-04-29 (r7148)
   Update copyright year to 2010
