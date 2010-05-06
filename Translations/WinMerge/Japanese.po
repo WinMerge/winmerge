@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-02-16 23:52+0900\n"
+"PO-Revision-Date: 2010-05-07 02:37+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2644,7 +2644,7 @@ msgstr "フォルダ"
 #: Merge.rc:1689
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "比較方法(&C):"
 
 #: Merge.rc:1691
 #, c-format
@@ -2659,12 +2659,12 @@ msgstr "3秒以下の時間差を無視する"
 #: Merge.rc:1695
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "片方にしか存在しないサブフォルダ内も含める(&I)"
 
 #: Merge.rc:1697
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "クイックコンテンツ制限(MB)(&Q):"
 
 #. StringFileInfo.Block
 #: Merge.rc:1723
@@ -3257,7 +3257,7 @@ msgstr "再びこの質問をしない(&Q)"
 #: Merge.rc:1961
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "シンタックス"
 
 #: Merge.rc:1963
 #, c-format
