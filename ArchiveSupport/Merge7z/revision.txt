@@ -61,3 +61,6 @@ VERSION(2,2)
 "*"//2007-12-22	Jochen Neubeck	Unassociate .001 filename extension
 "*"//2008-08-03	Jochen Neubeck	Fix OpenArchive.* being taken from wrong folder
 //								Add LZMA format (introduced with 7z458 beta)
+"*"//2010-04-24	Jochen Neubeck	New formats introduced with 7z459 beta:
+//								XAR, MUB, HFS, DMG, ELF (not sure if they work)
+//								Support 7z465, 7z907, 7z909-7z913
