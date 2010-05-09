@@ -13,12 +13,12 @@
 
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 27
+#define DllBuild_Merge7z 28
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 
 typedef char SZ_EXTENSION[8];
-typedef char CH_SIGNATURE[64]; //MAX(4 + IMAGE_SIZEOF_FILE_HEADER, 64)
+typedef char CH_SIGNATURE[512]; //MAX(4 + IMAGE_SIZEOF_FILE_HEADER, 512)
 
 using namespace NWindows;
 
@@ -32,34 +32,13 @@ struct Format7zDLL
 	interface Interface;
 };
 
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR < 445
-
-struct Format7zDLL::Proxy
-{
-	const char *aModule;
-	union
-	{
-		const char *aCreateObject;
-		HRESULT(STDAPICALLTYPE*CreateObject)(const GUID *clsID, const GUID *interfaceID, void **outObject);
-	};
-	union
-	{
-		const char *aGetHandlerProperty;
-		HRESULT(STDAPICALLTYPE*GetHandlerProperty)(PROPID propID, PROPVARIANT *value);
-	};
-	HMODULE handle;
-	const char *extension;
-	size_t signature;
-	struct Proxy *operator->();
-};
-
-#else
-
 struct Format7zDLL::Proxy
 {
 	INT32 formatIndex;
+	WORD sig_begin;
+	BYTE sig_count;
+	char sig_joker;
 	const char *extension;
-	size_t signature;
 	STDMETHODIMP CreateObject(const GUID *clsID, const GUID *interfaceID, void **outObject);
 	STDMETHODIMP GetHandlerProperty(PROPID propID, PROPVARIANT *value);
 	static struct Handle
@@ -85,8 +64,6 @@ struct Format7zDLL::Proxy
 	} handle;
 	struct Proxy *operator->();
 };
-
-#endif
 
 interface Format7zDLL::Interface : Merge7z::Format
 {
@@ -137,8 +114,9 @@ interface Format7zDLL::Interface : Merge7z::Format
 		IOutArchive *outArchive;
 		COutFileStream *file;
 		CSysString const path;
-		CObjectVector<CDirItem> dirItems;
-		CObjectVector<CArchiveItem> archiveItems;
+		//CObjectVector<CDirItem> dirItems;
+		CDirItems dirItems;
+		CObjectVector<CArcItem> archiveItems;
 		Updater(Format7zDLL::Interface *, LPCTSTR);
 		void Init(HWND);
 	};

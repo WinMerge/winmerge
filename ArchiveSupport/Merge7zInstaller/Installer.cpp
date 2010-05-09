@@ -45,8 +45,6 @@ DATE:		BY:					DESCRIPTION:
 
 #define VERSION7Z 4.57
 
-#pragma intrinsic(memset) // do not depend on CRT
-
 #define SHARPEN(X) #X
 #define SHARPEN2(X) SHARPEN(X)
 
@@ -313,7 +311,7 @@ BOOL CALLBACK DlgMain_BrowseExe(HWND hWnd)
 		OPENFILENAME ofn;
 		TCHAR buffer[5 * MAX_PATH];
 	} path;
-	ZeroMemory(&path, sizeof path);
+	SecureZeroMemory(&path, sizeof path);
 	path.ofn.lStructSize = sizeof path.ofn;
 	path.ofn.hwndOwner = hWnd;
 	path.ofn.lpstrFile = path.buffer;

@@ -48,6 +48,9 @@ DATE:		BY:					DESCRIPTION:
 2007-09-01	Jochen Neubeck		No longer #include "LangUtils.h", which has
 								moved to a different location as of 7z453 beta.
 2007-12-22	Jochen Neubeck		Unassociate .001 filename extension
+2008-08-03	Jochen Neubeck		Add LZMA format (introduced with 7z458 beta)
+2010-04-24	Jochen Neubeck		New formats introduced with 7z459 beta:
+								XAR, MUB, HFS, DMG, ELF (not sure if they work)
 */
 
 #include "stdafx.h"
@@ -63,31 +66,34 @@ void AddDirFileInfo(
 	const UString &prefix, 
 	const UString &fullPathName,
 	NFind::CFileInfoW &fileInfo, 
-	CObjectVector<CDirItem> &dirItems)
+	CDirItems &dirItems)
 {
 	CDirItem item;
-	item.Attributes = fileInfo.Attributes;
+	item.Attrib = fileInfo.Attrib;
 	item.Size = fileInfo.Size;
-	item.CreationTime = fileInfo.CreationTime;
-	item.LastAccessTime = fileInfo.LastAccessTime;
-	item.LastWriteTime = fileInfo.LastWriteTime;
-	item.Name = prefix + fileInfo.Name;
-	item.FullPath = fullPathName;
-	dirItems.Add(item);
+	item.CTime = fileInfo.CTime;
+	item.ATime = fileInfo.ATime;
+	item.MTime = fileInfo.MTime;
+	//UString
+	item.LogParent = dirItems.AddPrefix(-1, -1, prefix + fileInfo.Name);
+	item.PhyParent = dirItems.AddPrefix(-1, -1, fullPathName);
+	//item.Name = prefix + fileInfo.Name;
+	//item.FullPath = fullPathName;
+	dirItems.Items.Add(item);
 }
 
 static void EnumerateDirectory(
 	const UString &baseFolderPrefix,
 	const UString &directory, 
 	const UString &prefix,
-	CObjectVector<CDirItem> &dirItems)
+	CDirItems &dirItems)
 {
 	NFind::CEnumeratorW enumerator(baseFolderPrefix + directory + wchar_t(kAnyStringWildcard));
 	NFind::CFileInfoW fileInfo;
 	while (enumerator.Next(fileInfo))
 	{ 
 		AddDirFileInfo(prefix, directory + fileInfo.Name, fileInfo, dirItems);
-		if (fileInfo.IsDirectory())
+		if (fileInfo.IsDir())
 		{
 			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + wchar_t(kDirDelimiter),
 			prefix + fileInfo.Name + wchar_t(kDirDelimiter), dirItems);
@@ -150,19 +156,19 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 			handle = LoadLibraryA(path);
 			if (handle)
 			{
-				LPCSTR *export = proxy;
+				LPCSTR *p = proxy;
 				*proxy = NULL;
-				while ((name = *++export) != NULL)
+				while ((name = *++p) != NULL)
 				{
-					*export = (LPCSTR)GetProcAddress(handle, name);
-					if (*export == NULL)
+					*p = (LPCSTR)GetProcAddress(handle, name);
+					if (*p == NULL)
 					{
 						*proxy = proxy[1] = name;
-						export = proxy + 2;
+						p = proxy + 2;
 						break;
 					}
 				}
-				*export = (LPCSTR)handle;
+				*p = (LPCSTR)handle;
 			}
 		}
 		if ((name = *proxy) != NULL)
@@ -326,14 +332,14 @@ BSTR Format7zDLL::Interface::Inspector::GetExtension(UINT32 index)
 VARIANT_BOOL Format7zDLL::Interface::Inspector::IsFolder(UINT32 index)
 {
 	PROPVARIANT value;
-	return SUCCEEDED(GetProperty(index, kpidIsFolder, &value, VT_BOOL)) ? value.boolVal : 0;
+	return SUCCEEDED(GetProperty(index, kpidIsDir, &value, VT_BOOL)) ? value.boolVal : 0;
 }
 
 FILETIME Format7zDLL::Interface::Inspector::LastWriteTime(UINT32 index)
 {
 	static const FILETIME invalid = { 0, 0 };
 	PROPVARIANT value;
-	return SUCCEEDED(GetProperty(index, kpidLastWriteTime, &value, VT_FILETIME)) ? value.filetime : invalid;
+	return SUCCEEDED(GetProperty(index, kpidMTime, &value, VT_FILETIME)) ? value.filetime : invalid;
 }
 
 void Format7zDLL::Interface::GetDefaultName(HWND hwndParent, UString &ustrDefaultName)
@@ -413,38 +419,42 @@ UINT32 Format7zDLL::Interface::Updater::Add(Merge7z::DirItemEnumerator::Item &et
 {
 	// fill in the default values from the enumerator
 	CDirItem item;
+	UString Name = GetUnicodeString(etorItem.Name);
+	UString FullPath = GetUnicodeString(etorItem.FullPath);
 	if (etorItem.Mask.Item & etorItem.Mask.Name)
-		item.Name = GetUnicodeString(etorItem.Name);
+		//item.Name = GetUnicodeString(etorItem.Name);
+		item.LogParent = dirItems.AddPrefix(-1, -1, Name);
 	if (etorItem.Mask.Item & etorItem.Mask.FullPath)
-		item.FullPath = GetUnicodeString(etorItem.FullPath);
+		//item.FullPath = GetUnicodeString(etorItem.FullPath);
+		item.PhyParent = dirItems.AddPrefix(-1, -1, FullPath);
 	if (etorItem.Mask.Item & etorItem.Mask.Attributes)
-		item.Attributes = etorItem.Attributes;
+		item.Attrib = etorItem.Attributes;
 	if (etorItem.Mask.Item & etorItem.Mask.Size)
 		item.Size = etorItem.Size;
 	if (etorItem.Mask.Item & etorItem.Mask.CreationTime)
-		item.CreationTime = etorItem.CreationTime;
+		item.CTime = etorItem.CreationTime;
 	if (etorItem.Mask.Item & etorItem.Mask.LastAccessTime)
-		item.LastAccessTime = etorItem.LastAccessTime;
+		item.ATime = etorItem.LastAccessTime;
 	if (etorItem.Mask.Item & etorItem.Mask.LastWriteTime)
-		item.LastWriteTime = etorItem.LastWriteTime;
+		item.MTime = etorItem.LastWriteTime;
 	if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
 	{
 		// Check the info from the disk
 		NFile::NFind::CFileInfoW fileInfo;
-		if (NFile::NFind::FindFile(item.FullPath, fileInfo))
+		if (NFile::NFind::CFindFile().FindFirst(FullPath, fileInfo))
 		{
 			if (!(etorItem.Mask.Item & etorItem.Mask.Name))
 				item.Name = fileInfo.Name;
 			if (!(etorItem.Mask.Item & etorItem.Mask.Attributes))
-				item.Attributes = fileInfo.Attributes;
+				item.Attrib = fileInfo.Attrib;
 			if (!(etorItem.Mask.Item & etorItem.Mask.Size))
 				item.Size = fileInfo.Size;
 			if (!(etorItem.Mask.Item & etorItem.Mask.CreationTime))
-				item.CreationTime = fileInfo.CreationTime;
+				item.CTime = fileInfo.CTime;
 			if (!(etorItem.Mask.Item & etorItem.Mask.LastAccessTime))
-				item.LastAccessTime = fileInfo.LastAccessTime;
+				item.ATime = fileInfo.ATime;
 			if (!(etorItem.Mask.Item & etorItem.Mask.LastWriteTime))
-				item.LastWriteTime = fileInfo.LastWriteTime;
+				item.MTime = fileInfo.MTime;
 		}
 		else
 		{
@@ -456,12 +466,12 @@ UINT32 Format7zDLL::Interface::Updater::Add(Merge7z::DirItemEnumerator::Item &et
 	{
 		// No check from disk, simply use info from enumerators (risky)
 		// Why risky? This is not at all obvious.
-		dirItems.Add(item);
+		dirItems.Items.Add(item);
 		// Recurse into directories (call a function of 7zip)
-		if ((etorItem.Mask.Item & etorItem.Mask.Recurse) && (item.Attributes & FILE_ATTRIBUTE_DIRECTORY))
+		if ((etorItem.Mask.Item & etorItem.Mask.Recurse) && (item.Attrib & FILE_ATTRIBUTE_DIRECTORY))
 		{
-			EnumerateDirectory(UString(), item.FullPath + L'\\',
-					item.Name + L'\\', dirItems);
+			EnumerateDirectory(UString(), FullPath + L'\\',
+					Name + L'\\', dirItems);
 		}
 	}
 	return etorItem.Mask.Item;
@@ -493,7 +503,10 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			Merge7z::DirItemEnumerator::Item etorItem;
 			etorItem.Mask.Item = 0;
 			Merge7z::Envelope *envelope = etor->Enum(etorItem);
-			updater->Add(etorItem);
+			if (etorItem.Mask.Item != 0)
+			{
+				updater->Add(etorItem);
+			}
 			if (envelope)
 			{
 				envelope->Free();
@@ -612,59 +625,6 @@ Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
 /**
  * @brief Access archiver dll functions through proxy.
  */
-#if MY_VER_MAJOR * 100 + MY_VER_MINOR < 445
-
-/**
- * @brief 7-Zip 4.15+: IsArchiveItemFolder(), needed by CArchiveExtractCallback,
- * used to reside in OpenArchive.cpp, which has been removed from Merge7z in an
- * attempt to reduce dependencies (actually got rid of four cpp files).
- * 7-Zip 4.45+: OpenArchive.cpp included again - no more secondary dependencies.
- */
-static HRESULT IsArchiveItemProp(IInArchive *archive, UINT32 index, PROPID propID, bool &result)
-{
-	NCOM::CPropVariant prop;
-	RINOK(archive->GetProperty(index, propID, &prop));
-	if(prop.vt == VT_BOOL)
-		result = VARIANT_BOOLToBool(prop.boolVal);
-	else if (prop.vt == VT_EMPTY)
-		result = false;
-	else
-		return E_FAIL;
-	return S_OK;
-}
-
-HRESULT IsArchiveItemFolder(IInArchive *archive, UINT32 index, bool &result)
-{
-	return IsArchiveItemProp(archive, index, kpidIsFolder, result);
-}
-
-HRESULT IsArchiveItemAnti(IInArchive *archive, UINT32 index, bool &result)
-{
-	return IsArchiveItemProp(archive, index, kpidIsAnti, result);
-}
-
-static const char aCreateObject[] = "CreateObject";
-static const char aGetHandlerProperty[] = "GetHandlerProperty";
-
-struct Format7zDLL::Proxy *Format7zDLL::Proxy::operator->()
-{
-	DllProxyHelper(&aModule, g_cPath7z);
-	return this;
-}
-
-#define	DEFINE_FORMAT(name, id, dll, extension, signature) \
-		Format7zDLL::Proxy PROXY_##name = \
-		{ \
-			"%1Formats\\" dll, \
-			aCreateObject, \
-			aGetHandlerProperty, \
-			(HMODULE)0, \
-			signature extension + sizeof signature extension - sizeof extension, \
-			sizeof signature extension - sizeof extension \
-		}; \
-		Format7zDLL::Interface name = PROXY_##name;
-
-#else
 
 #define CLS_ARC_ID_ITEM(cls) ((cls).Data4[5])
 
@@ -723,41 +683,48 @@ STDMETHODIMP Format7zDLL::Proxy::GetHandlerProperty(PROPID propID, PROPVARIANT *
 	return handle.GetHandlerProperty2(formatIndex, propID, value);
 }
 
-#define	DEFINE_FORMAT(name, id, dll, extension, signature) \
+#define	DEFINE_FORMAT(name, id, extension, signature) \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			-0x##id, \
-			signature extension + sizeof signature extension - sizeof extension, \
-			sizeof signature extension - sizeof extension \
+			0, \
+			sizeof signature extension - sizeof extension, \
+			'@', \
+			signature extension + sizeof signature extension - sizeof extension \
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 
-#endif
-
-DEFINE_FORMAT(CFormat7z,		07, "7Z.DLL",		"7z", "@7z\xBC\xAF\x27\x1C");
-DEFINE_FORMAT(CArjHandler,		04, "ARJ.DLL",		"arj", "@\x60\xEA");
-DEFINE_FORMAT(CBZip2Handler,	02, "BZ2.DLL",		"bz2 tbz2", "@BZh");
-DEFINE_FORMAT(CCabHandler,		08, "CAB.DLL",		"cab", "@MSCF");
-DEFINE_FORMAT(CCpioHandler,		ED, "CPIO.DLL",		"cpio", "");
-DEFINE_FORMAT(CDebHandler,		EC, "DEB.DLL",		"deb", "@!<arch>\n");
-DEFINE_FORMAT(CLzhHandler,		06, "LZH.DLL",		"lzh lha", "@@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
-DEFINE_FORMAT(CGZipHandler,		EF, "GZ.DLL",		"gz tgz", "@\x1F\x8B");
-DEFINE_FORMAT(CRarHandler,		03, "RAR.DLL",		"rar", "@Rar!\x1a\x07\x00");
-DEFINE_FORMAT(CRpmHandler,		EB, "RPM.DLL",		"rpm", "");
-DEFINE_FORMAT(CTarHandler,		EE, "TAR.DLL",		"tar", "");
-DEFINE_FORMAT(CZHandler,		05, "Z.DLL",		"z", "@\x1F\x9D");
-DEFINE_FORMAT(CZipHandler,		01, "ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
-DEFINE_FORMAT(CChmHandler,		E9, "CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
-DEFINE_FORMAT(CIsoHandler,		E7, "ISO.DLL",		"iso", "");
-DEFINE_FORMAT(CNsisHandler,		09, "NSIS.DLL",		"", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
+DEFINE_FORMAT(CFormat7z,		07, "7z", "7z\xBC\xAF\x27\x1C");
+DEFINE_FORMAT(CArjHandler,		04, "arj", "\x60\xEA");
+DEFINE_FORMAT(CBZip2Handler,	02, "bz2 tbz2", "BZh");
+DEFINE_FORMAT(CCabHandler,		08, "cab", "MSCF");
+DEFINE_FORMAT(CCpioHandler,		ED, "cpio", "");
+DEFINE_FORMAT(CDebHandler,		EC, "deb", "!<arch>\n");
+DEFINE_FORMAT(CLzhHandler,		06, "lzh lha", "@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
+DEFINE_FORMAT(CGZipHandler,		EF, "gz tgz", "\x1F\x8B");
+DEFINE_FORMAT(CRarHandler,		03, "rar", "Rar!\x1a\x07\x00");
+DEFINE_FORMAT(CRpmHandler,		EB, "rpm", "");
+DEFINE_FORMAT(CTarHandler,		EE, "tar", "");
+DEFINE_FORMAT(CZHandler,		05, "z", "\x1F\x9D");
+DEFINE_FORMAT(CZipHandler,		01, "zip jar war ear xpi", "PK\x03\x04");
+DEFINE_FORMAT(CChmHandler,		E9, "chm chi chq chw hxs hxi hxr hxq hxw lit", "ITSF");
+DEFINE_FORMAT(CIsoHandler,		E7, "iso", "");
+DEFINE_FORMAT(CNsisHandler,		09, "", "@@@@\xEF\xBE\xAD\xDENullsoftInst");
 #if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 449
-DEFINE_FORMAT(CWimHandler,		E6, "WIM.DLL",		"wim swm", "@MSWIM\x00\x00\x00");
+DEFINE_FORMAT(CWimHandler,		E6, "wim swm", "MSWIM\x00\x00\x00");
 #endif
 #if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 452
-DEFINE_FORMAT(CComHandler,		E5, "COM.DLL",		"", "@\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
+DEFINE_FORMAT(CComHandler,		E5, "", "\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
 #endif
 #if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 458
-DEFINE_FORMAT(CLzmaHandler,		0A, "LZMA.DLL",		"lzma lzma86", "");
+DEFINE_FORMAT(CLzmaHandler,		0A, "lzma lzma86", "");
+#endif
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 459
+DEFINE_FORMAT(CXarHandler,		E1, "", "xar!\x00\x1C");
+DEFINE_FORMAT(CMubHandler,		E2, "mub", "");
+DEFINE_FORMAT(CHfsHandler,		E3, "hfs", "");
+DEFINE_FORMAT(CDmgHandler,		E4, "dmg", "");
+DEFINE_FORMAT(CElfHandler,		DE, "elf", "");
 #endif
 
 /**
@@ -816,18 +783,18 @@ Merge7z::Format *Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
 	{
 		static const char aBlank[] = " ";
 		LPCSTR pchExtension = pFormat->proxy.extension;
-		int cchExtension = pFormat->proxy.signature;
+		int cchExtension = pFormat->proxy.sig_count;
 		if (cchSig > 0 && cchExtension)
 		{
 			LPCSTR pchSignature = pchExtension - cchExtension;
-			char joker = *pchSignature++;
-			--cchExtension;
+			char joker = pFormat->proxy.sig_joker;
+			size_t begin = pFormat->proxy.sig_begin;
 			if (cchSig >= cchExtension)
 			{
 				while (cchExtension--)
 				{
 					char expected = pchSignature[cchExtension];
-					if (expected != joker && sig[cchExtension] != expected)
+					if (expected != joker && sig[begin + cchExtension] != expected)
 						break;
 				}
 				if (cchExtension == -1)
