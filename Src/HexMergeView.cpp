@@ -275,7 +275,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 			if (hr != S_OK)
 				GetBuffer(0);
 		}
-		else
+		else if (length != 0)
 		{
 			hr = E_OUTOFMEMORY;
 		}
