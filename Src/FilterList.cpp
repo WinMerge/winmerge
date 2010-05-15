@@ -46,7 +46,7 @@ FilterList::~FilterList()
 void FilterList::AddRegExp(const char * regularExpression, EncodingType encoding)
 {
 	filter_item item;
-	item.filterAsString = strdup(regularExpression);
+	item.filterAsString = _strdup(regularExpression);
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
@@ -137,7 +137,7 @@ bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
 		{
 			if (m_lastMatchExpression != NULL)
 				free(m_lastMatchExpression);
-			m_lastMatchExpression = strdup(item.filterAsString);
+			m_lastMatchExpression = _strdup(item.filterAsString);
 			retval = true;
 		}
 		else
