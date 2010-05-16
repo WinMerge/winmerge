@@ -69,6 +69,7 @@ public:
 	//{{AFX_VIRTUAL(CHexMergeFrame)
 	public:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
 	protected:
 	//}}AFX_VIRTUAL
@@ -82,7 +83,6 @@ private:
 private:
 	int m_nLastSplitPos;
 	void UpdateHeaderSizes();
-	BOOL m_bActivated;
 	CHexMergeDoc * m_pMergeDoc;
 	HICON m_hIdentical;
 	HICON m_hDifferent;

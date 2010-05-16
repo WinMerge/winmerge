@@ -72,9 +72,10 @@ public:
 	CHexMergeFrame * GetParentFrame();
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bROLeft, BOOL bRORight);
-protected:
+private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
+	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[MERGE_VIEW_COUNT]; /**< Pointer to left/right view */

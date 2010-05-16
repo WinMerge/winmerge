@@ -80,7 +80,6 @@ CHexMergeFrame::CHexMergeFrame()
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
 {
-	m_bActivated = FALSE;
 	m_nLastSplitPos = 0;
 	m_pMergeDoc = 0;
 }
@@ -228,6 +227,15 @@ void CHexMergeFrame::GetMessageString(UINT nID, CString& rMessage) const
 		// not found
 		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
 	}
+}
+
+void CHexMergeFrame::ActivateFrame(int nCmdShow) 
+{
+	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
+	{
+		nCmdShow = SW_SHOWMAXIMIZED;
+	}
+	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
 
 /**
