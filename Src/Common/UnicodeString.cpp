@@ -57,11 +57,12 @@ String string_makelower(const String &str)
  */
 void string_replace(String &target, const String &find, const String &replace)
 {
-	const std::string::size_type replace_len = find.length();
-	std::string::size_type pos = 0;
+	const String::size_type find_len = find.length();
+	const String::size_type replace_len = replace.length();
+	String::size_type pos = 0;
 	while ((pos = target.find(find, pos)) != String::npos)
 	{
-		target.replace(pos, replace_len, replace);
+		target.replace(pos, find_len, replace);
 		pos += replace_len;
 	}
 }
