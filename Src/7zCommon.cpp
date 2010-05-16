@@ -89,6 +89,9 @@ DATE:		BY:					DESCRIPTION:
 2007-06-16	Jochen Neubeck		FIX [1723263] "Zip --> Both" operation...
 2007-12-22	Jochen Neubeck		Fix Merge7z UI lang for new translation system
 								Change recommended version of 7-Zip to 4.57
+2010-05-16	Jochen Neubeck		Read 7-Zip version from 7z.dll (which has long
+								ago replaced the various format and codec DLLs)
+								Change recommended version of 7-Zip to 4.65
 */
 
 // ID line follows -- this is updated by SVN
@@ -102,7 +105,7 @@ DATE:		BY:					DESCRIPTION:
 #include "MainFrm.h"
 #include "7zCommon.h"
 //#include "ExternalArchiveFormat.h"
-#include "markdown.h"
+#include "version.h"
 #include <afxinet.h>
 #include <shlwapi.h>
 #include <paths.h>
@@ -212,7 +215,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(57,4);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(65,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
@@ -604,8 +607,8 @@ CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
 	CString strPath;
 	strPath.Format
 	(
-		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
-		env_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
+		pOwner ? _T("%s\\%08lX.7z%s") : _T("%s"),
+		env_GetTempPath(), pOwner, pchExt
 	);
 	// SHFileOperation expects a ZZ terminated list of paths!
 	int cchPath = strPath.GetLength();
@@ -646,20 +649,11 @@ DWORD NTAPI VersionOf7z(BOOL bLocal)
 		DWORD size = sizeof path;
 		SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
 	}
-	PathAppend(path, _T("7zip_pad.xml"));
-	CMarkdown::String version
-	(
-		CMarkdown::File(path)
-		.Move("XML_DIZ_INFO").Pop()
-		.Move("Program_Info").Pop()
-		.Move("Program_Version").GetInnerText()
-	);
-	DWORD ver = (WORD)StrToIntA(version.A) << 16;
-	if (LPSTR p = StrChrA(version.A, '.'))
-	{
-		ver |= (WORD)StrToIntA(p + 1);
-	}
-	return ver;
+	PathAppend(path, _T("7z.dll"));
+	DWORD versionMS = 0;
+	DWORD versionLS = 0;
+	CVersionInfo(path).GetFixedFileVersion(versionMS, versionLS);
+	return versionMS;
 }
 
 /**
