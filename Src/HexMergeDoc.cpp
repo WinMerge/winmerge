@@ -146,6 +146,8 @@ CHexMergeDoc::CHexMergeDoc()
 {
 	m_pView[MERGE_VIEW_LEFT] = NULL;
 	m_pView[MERGE_VIEW_RIGHT] = NULL;
+	m_nBufferType[0] = BUFFER_NORMAL;
+	m_nBufferType[1] = BUFFER_NORMAL;
 }
 
 /**
@@ -412,30 +414,48 @@ BOOL CHexMergeDoc::CloseNow()
 }
 
 /**
+* @brief Load one file
+*/
+HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
+{
+	if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
+		return E_FAIL;
+	m_pView[index]->SetReadOnly(readOnly);
+	m_filePaths.SetPath(index, filename);
+	ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
+	String strDesc = GetMainFrame()->m_strDescriptions[index];
+	if (!strDesc.empty())
+	{
+		m_strDesc[index] = strDesc;
+		m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+	}
+	UpdateHeaderPath(index);
+	m_pView[index]->ResizeWindow();
+	return S_OK;
+}
+
+/**
  * @brief Load files and initialize frame's compare result icon
  */
 HRESULT CHexMergeDoc::OpenDocs(LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bROLeft, BOOL bRORight)
 {
-	if (Try(m_pView[MERGE_VIEW_LEFT]->LoadFile(pathLeft), MB_ICONSTOP) == 0)
+	HRESULT hr;
+	if (SUCCEEDED(hr = LoadOneFile(MERGE_VIEW_LEFT, pathLeft, bROLeft)) &&
+		SUCCEEDED(hr = LoadOneFile(MERGE_VIEW_RIGHT, pathRight, bRORight)))
 	{
-		m_pView[MERGE_VIEW_LEFT]->SetReadOnly(bROLeft);
-		m_filePaths.SetLeft(pathLeft);
-		m_strDesc[MERGE_VIEW_LEFT] = pathLeft;
-		UpdateHeaderPath(MERGE_VIEW_LEFT);
+		UpdateDiffItem(0);
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+			m_pView[MERGE_VIEW_LEFT]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}
-	if (Try(m_pView[MERGE_VIEW_RIGHT]->LoadFile(pathRight), MB_ICONSTOP) == 0)
+	else
 	{
-		m_pView[MERGE_VIEW_RIGHT]->SetReadOnly(bRORight);
-		m_filePaths.SetRight(pathRight);
-		m_strDesc[MERGE_VIEW_RIGHT] = pathRight;
-		UpdateHeaderPath(MERGE_VIEW_RIGHT);
+		if (CFrameWnd *pFrame = GetParentFrame())
+		{
+			// Use verify macro to trap possible error in debug.
+			VERIFY(pFrame->DestroyWindow());
+		}
 	}
-	m_pView[MERGE_VIEW_LEFT]->ResizeWindow();
-	m_pView[MERGE_VIEW_RIGHT]->ResizeWindow();
-	UpdateDiffItem(0);
-	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-		m_pView[MERGE_VIEW_LEFT]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
-	return S_OK;
+	return hr;
 }
 
 /**
