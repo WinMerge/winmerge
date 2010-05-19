@@ -208,6 +208,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL b
 	encoding->SetCodepage(getDefaultCodepage());
 	encoding->m_bom = false;
 	encoding->m_guessed = false;
+	encoding->m_binary = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
@@ -226,8 +227,9 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL b
 		if (fi.pImage && !CheckForInvalidUtf8((LPBYTE)fi.pImage, fi.cbImage))
 			encoding->SetUnicoding(ucr::UTF8);
 		encoding->m_bom = false;
+		if (memchr(fi.pImage, 0, fi.cbImage))
+			encoding->m_binary = true;
 		break;
-
 	}
 	if (fi.nByteOrder == 1 && bGuessEncoding)
 	{

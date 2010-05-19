@@ -30,6 +30,7 @@ void FileTextEncoding::Clear()
 	m_unicoding = ucr::NONE;
 	m_bom = false;
 	m_guessed = false;
+	m_binary = false;
 }
 
 /**
