@@ -20,6 +20,7 @@ struct FileTextEncoding
 	ucr::UNICODESET m_unicoding; /**< Unicode encoding. */
 	bool m_bom; /**< Unicode byte marker */
 	bool m_guessed; /**< Whether encoding was guessed from content */
+	bool m_binary;
 
 	FileTextEncoding();
 	void Clear();
