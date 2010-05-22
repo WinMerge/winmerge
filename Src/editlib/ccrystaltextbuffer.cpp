@@ -358,7 +358,7 @@ static LPCTSTR crlfs[] =
   };
 
 BOOL CCrystalTextBuffer::
-LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
+LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
   ASSERT (!m_bInit);
   ASSERT (m_aLines.size() == 0);
@@ -398,7 +398,8 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
         {
           //  Try to determine current CRLF mode based on first line
-          for (DWORD I = 0; I < dwCurSize; I++)
+          DWORD I;
+          for (I = 0; I < dwCurSize; I++)
             {
               if ((pcBuf[I] == _T('\x0d')) || (pcBuf[I] == _T('\x0a')))
                 break;
@@ -428,7 +429,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
       m_nCRLFMode = nCrlfStyle;
 
-      m_aLines.setsize(4096);
+      m_aLines.reserve(4096);
 
       DWORD dwBufPtr = 0;
       while (dwBufPtr < dwCurSize)
@@ -463,12 +464,12 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
               nCurrentLength = 0;
               if (m_nSourceEncoding >= 0)
                 iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-              InsertLine (pcLineBuf);
+              InsertLine (pcLineBuf, lstrlen(pcLineBuf));
             }
         }
 
       pcLineBuf[nCurrentLength] = 0;
-      InsertLine (pcLineBuf);
+      InsertLine (pcLineBuf, nCurrentLength);
 
       ASSERT (m_aLines.size() > 0);   //  At least one empty line must present
 
@@ -476,7 +477,6 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
       m_bReadOnly = (dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0;
       m_bModified = FALSE;
       m_bUndoGroup = m_bUndoBeginGroup = FALSE;
-      m_nUndoBufSize = UNDO_BUF_SIZE;
       m_nSyncPosition = m_nUndoPosition = 0;
       ASSERT (m_aUndoBuf.size () == 0);
       bSuccess = TRUE;
@@ -501,7 +501,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 // WinMerge has own routine for saving
 #ifdef CRYSTALEDIT_ENABLESAVER
 BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
-                  int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+                  CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
                   BOOL bClearModifiedFlag /*= TRUE*/)
 {
   ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
@@ -544,15 +544,15 @@ BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
           int nLineCount = m_aLines.size();
           for (int nLine = 0; nLine < nLineCount; nLine++)
             {
-              int nLength = m_aLines[nLine].m_nLength;
+              int nLength = m_aLines[nLine].Length();
               DWORD dwWrittenBytes;
               if (nLength > 0)
                 {
-                  LPCTSTR pszLine = m_aLines[nLine].m_pcLine;
+                  LPCTSTR pszLine = m_aLines[nLine].GetLine(0);
                   if (m_nSourceEncoding >= 0)
                     {
                       LPTSTR pszBuf;
-                      iconvert_new (m_aLines[nLine].m_pcLine, &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
+                      iconvert_new (m_aLines[nLine].GetLine(0), &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
                       if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, NULL))
                         {
                           free (pszBuf);
@@ -857,8 +857,7 @@ void CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */,
                  BOOL bExcludeInvisibleLines/*=TRUE*/) const
 {
-  LPCTSTR sEol = GetStringEol (nCrlfStyle);
-  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, sEol, bExcludeInvisibleLines);
+  GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLF_STYLE_AUTOMATIC) ? NULL : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
 }
 
 
@@ -878,15 +877,15 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
   // assert to be sure to catch these 'do nothing' cases.
   ASSERT (nStartLine != nEndLine || nStartChar != nEndChar);
 
-  if (pszCRLF == NULL)
-    pszCRLF = crlf;
-  int nCRLFLength = (int) _tcslen (pszCRLF);
-  ASSERT (nCRLFLength > 0);
+  int nCRLFLength;
+  LPCTSTR pszCurCRLF;
 
   int nBufSize = 0;
   for (int L = nStartLine; L <= nEndLine; L++)
     {
       nBufSize += m_aLines[L].Length();
+      pszCurCRLF = pszCRLF ? pszCRLF : m_aLines[L].GetEol();
+      nCRLFLength = lstrlen(pszCurCRLF);
       nBufSize += nCRLFLength;
     }
 
@@ -901,7 +900,9 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
           memcpy (pszBuf, startLine.GetLine(nStartChar), sizeof (TCHAR) * nCount);
           pszBuf += nCount;
         }
-      memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
+      pszCurCRLF = pszCRLF ? pszCRLF : startLine.GetEol();
+	  nCRLFLength = lstrlen(pszCurCRLF);
+      memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
       pszBuf += nCRLFLength;
       for (int I = nStartLine + 1; I < nEndLine; I++)
         {
@@ -914,7 +915,9 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
               memcpy (pszBuf, li.GetLine(), sizeof (TCHAR) * nCount);
               pszBuf += nCount;
             }
-          memcpy (pszBuf, pszCRLF, sizeof (TCHAR) * nCRLFLength);
+          pszCurCRLF = pszCRLF ? pszCRLF : startLine.GetEol();
+	      nCRLFLength = lstrlen(pszCurCRLF);
+          memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
           pszBuf += nCRLFLength;
         }
       if (nEndChar > 0)
@@ -1380,7 +1383,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
               (apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].Length()))
             {
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, FALSE);
-              if (_tcscmp(text, ur.GetText()) == 0)
+              if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
                 {
                   VERIFY (InternalDeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x));
                   ptCursorPos = apparent_ptStartPos;
@@ -1465,7 +1468,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 #ifdef _ADVANCED_BUGCHECK
           CString text;
           GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLF_STYLE_AUTOMATIC, FALSE);
-          ASSERT (lstrcmp (text, ur.GetText ()) == 0);
+          ASSERT (text.GetLength() == ur.GetTextLength() && memcmp (text, ur.GetText (), text.GetLength() * sizeof(TCHAR)) == 0);
 #endif
           VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
             apparent_ptEndPos.y, apparent_ptEndPos.x, 0, FALSE, FALSE));

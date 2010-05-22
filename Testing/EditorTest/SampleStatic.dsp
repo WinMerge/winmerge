@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /I "..\..\Externals\pcre\Win32" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "NDEBUG" /d "_AFXDLL"
@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 imm32.lib shlwapi.lib /nologo /subsystem:windows /machine:I386 /libpath:"..\output"
+# ADD LINK32 imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib /nologo /subsystem:windows /machine:I386 /libpath:"..\output"
 
 !ELSEIF  "$(CFG)" == "SampleStatic - Win32 Debug"
 
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /I "..\..\Externals\pcre\Win32" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "_DEBUG" /d "_AFXDLL"
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 imm32.lib shlwapi.lib /nologo /subsystem:windows /profile /debug /machine:I386 /libpath:"..\output"
+# ADD LINK32 imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib /nologo /subsystem:windows /profile /debug /machine:I386 /libpath:"..\output"
 
 !ELSEIF  "$(CFG)" == "SampleStatic - Win32 Unicode Release"
 
@@ -98,7 +98,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /I "..\..\Externals\pcre\Win32" /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "NDEBUG" /d "_AFXDLL"
@@ -108,7 +108,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386 /out:"Release/crysedit_demo.exe"
-# ADD LINK32 imm32.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386 /libpath:"..\output"
+# ADD LINK32 imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386 /libpath:"..\output"
 
 !ELSEIF  "$(CFG)" == "SampleStatic - Win32 Unicode Debug"
 
@@ -125,7 +125,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /I "..\..\Externals\pcre\Win32" /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -135,7 +135,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 imm32.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"..\output"
+# ADD LINK32 imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /pdbtype:sept /libpath:"..\output"
 
 !ENDIF 
 
@@ -363,6 +363,10 @@ SOURCE=..\..\Src\editlib\csharp.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Src\editlib\css.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\Src\editlib\dcl.cpp
 # End Source File
 # Begin Source File
@@ -435,6 +439,14 @@ SOURCE=..\..\Src\editlib\java.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Src\editlib\LineInfo.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\LineInfo.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\Src\editlib\lisp.cpp
 # End Source File
 # Begin Source File
@@ -464,6 +476,14 @@ SOURCE=..\..\Src\editlib\perl.cpp
 # Begin Source File
 
 SOURCE=..\..\Src\editlib\php.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\po.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\powershell.cpp
 # End Source File
 # Begin Source File
 
@@ -531,6 +551,18 @@ SOURCE=..\..\Src\editlib\tex.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Src\editlib\UndoRecord.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\UndoRecord.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\verilog.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\Src\editlib\wispelld.h
 # End Source File
 # Begin Source File
@@ -552,10 +584,20 @@ SOURCE=.\isx.h
 # Begin Source File
 
 SOURCE=..\..\Src\Common\OptionsMgr.cpp
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\Src\Common\OptionsMgr.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\Common\RegOptionsMgr.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\Common\RegOptionsMgr.h
 # End Source File
 # Begin Source File
 
@@ -576,6 +618,7 @@ SOURCE=..\..\Src\SyntaxColors.h
 # Begin Source File
 
 SOURCE=..\..\Src\Common\varprop.cpp
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
