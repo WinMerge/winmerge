@@ -571,6 +571,20 @@ BEGIN
     ID_INDICATOR_ENCODING   "Unicode"
 END
 
+// EOL types shown in folder compare EOL type column and in file compare statusbar
+STRINGTABLE
+BEGIN
+    IDS_EOL_DOS             "Win"
+    IDS_EOL_MAC             "Mac"
+    IDS_EOL_UNIX            "Unix"
+    IDS_EOL_MIXED           "Mixed"
+    IDS_EOL_BIN             "Binary"
+    IDS_EOL_LF              "LF"
+    IDS_EOL_CR              "CR"
+    IDS_EOL_CRLF            "CRLF"
+    IDS_EOL_NONE            "None"
+END
+
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
