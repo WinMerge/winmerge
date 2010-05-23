@@ -236,44 +236,44 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
-  oPotFile.WriteLine "# This file is part from WinMerge <http://winmerge.org/>"
-  oPotFile.WriteLine "# Released under the ""GNU General Public License"""
-  oPotFile.WriteLine "#"
-  oPotFile.WriteLine "# ID line follows -- this is updated by SVN"
-  oPotFile.WriteLine "# $" & "Id: " & "$"
-  oPotFile.WriteLine "#"
-  oPotFile.WriteLine "msgid """""
-  oPotFile.WriteLine "msgstr """""
-  oPotFile.WriteLine """Project-Id-Version: WinMerge\n"""
-  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"""
-  oPotFile.WriteLine """POT-Creation-Date: " & GetPotCreationDate() & "\n"""
-  oPotFile.WriteLine """PO-Revision-Date: \n"""
-  oPotFile.WriteLine """Last-Translator: \n"""
-  oPotFile.WriteLine """Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"""
-  oPotFile.WriteLine """MIME-Version: 1.0\n"""
-  oPotFile.WriteLine """Content-Type: text/plain; charset=CP" & sCodePage & "\n"""
-  oPotFile.WriteLine """Content-Transfer-Encoding: 8bit\n"""
-  oPotFile.WriteLine """X-Poedit-Language: English\n"""
-  oPotFile.WriteLine """X-Poedit-SourceCharset: CP" & sCodePage & "\n"""
-  oPotFile.WriteLine """X-Poedit-Basepath: ../../Src/\n"""
-  'oPotFile.WriteLine """X-Generator: CreateMasterPotFile.vbs\n"""
-  oPotFile.WriteLine
+  oPotFile.Write "# This file is part from WinMerge <http://winmerge.org/>" & vbLf
+  oPotFile.Write "# Released under the ""GNU General Public License""" & vbLf
+  oPotFile.Write "#" & vbLf
+  oPotFile.Write "# ID line follows -- this is updated by SVN" & vbLf
+  oPotFile.Write "# $" & "Id: " & "$" & vbLf
+  oPotFile.Write "#" & vbLf
+  oPotFile.Write "msgid """"" & vbLf
+  oPotFile.Write "msgstr """"" & vbLf
+  oPotFile.Write """Project-Id-Version: WinMerge\n""" & vbLf
+  oPotFile.Write """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n""" & vbLf
+  oPotFile.Write """POT-Creation-Date: " & GetPotCreationDate() & "\n""" & vbLf
+  oPotFile.Write """PO-Revision-Date: \n""" & vbLf
+  oPotFile.Write """Last-Translator: \n""" & vbLf
+  oPotFile.Write """Language-Team: English <winmerge-translate@lists.sourceforge.net>\n""" & vbLf
+  oPotFile.Write """MIME-Version: 1.0\n""" & vbLf
+  oPotFile.Write """Content-Type: text/plain; charset=CP" & sCodePage & "\n""" & vbLf
+  oPotFile.Write """Content-Transfer-Encoding: 8bit\n""" & vbLf
+  oPotFile.Write """X-Poedit-Language: English\n""" & vbLf
+  oPotFile.Write """X-Poedit-SourceCharset: CP" & sCodePage & "\n""" & vbLf
+  oPotFile.Write """X-Poedit-Basepath: ../../Src/\n""" & vbLf
+  'oPotFile.Write """X-Generator: CreateMasterPotFile.vbs\n""" & vbLf
+  oPotFile.Write vbLf
   For Each sKey In oStrings.Keys 'For all strings...
     Set oString = oStrings(sKey)
     If (oString.Comment <> "") Then 'If comment exists...
-      oPotFile.WriteLine "#. " & oString.Comment
+      oPotFile.Write "#. " & oString.Comment & vbLf
     End If
     aReferences = SplitByTab(oString.References)
     For i = LBound(aReferences) To UBound(aReferences) 'For all references...
-      oPotFile.WriteLine "#: " & aReferences(i)
+      oPotFile.Write "#: " & aReferences(i) & vbLf
     Next
-    oPotFile.WriteLine "#, c-format"
+    oPotFile.Write "#, c-format" & vbLf
     If (oString.Context <> "") Then 'If context exists...
-      oPotFile.WriteLine "msgctxt """ & oString.Context & """"
+      oPotFile.Write "msgctxt """ & oString.Context & """" & vbLf
     End If
-    oPotFile.WriteLine "msgid """ & oString.Id & """"
-    oPotFile.WriteLine "msgstr """""
-    oPotFile.WriteLine
+    oPotFile.Write "msgid """ & oString.Id & """" & vbLf
+    oPotFile.Write "msgstr """"" & vbLf
+    oPotFile.Write vbLf
   Next
   oPotFile.Close
 End Sub

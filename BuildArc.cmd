@@ -23,10 +23,10 @@ mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Microsoft.VC90.CRT" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Microsoft.VC90.MFC" 2> NUL
 
 rem Readme
-copy Docs\Users\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Src\COPYING "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Docs\Users\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-copy Src\COPYING "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+for %%i in (Docs\Users\*.txt Src\COPYING) do (
+  cscript convertlf2crlf.vbs "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
+  cscript convertlf2crlf.vbs "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\%%~nxi"
+)
 
 rem Help
 copy Build\Manual\htmlhelp\WinMerge.chm "%DISTDIR%\2.14-zip-version\WinMerge\Docs"
@@ -63,12 +63,10 @@ copy Build\X64\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-x64-zip
 copy Build\X64\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
 rem Filters
-copy Filters\*.flt "%DISTDIR%\2.14-zip-version\WinMerge\Filters\"
-copy Filters\*.tmpl "%DISTDIR%\2.14-zip-version\WinMerge\Filters\"
-copy Filters\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\Filters\"
-copy Filters\*.flt "%DISTDIR%\2.14-x64-zip-version\WinMerge\Filters\"
-copy Filters\*.tmpl "%DISTDIR%\2.14-x64-zip-version\WinMerge\Filters\"
-copy Filters\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\Filters\"
+for %%i in (Filters\*.flt Filters\*.tmpl Filters\*.txt) do (
+  cscript convertlf2crlf.vbs "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\Filters\%%~nxi"
+  cscript convertlf2crlf.vbs "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\Filters\%%~nxi"
+)
 
 rem Plugins
 copy Plugins\dlls\*.dll "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\"

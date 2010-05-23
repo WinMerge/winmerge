@@ -164,11 +164,11 @@ SOURCE=.\Merge7z453.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Merge7zCommon.cpp
+SOURCE=.\Merge7zCommon453.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Merge7zCommon.h
+SOURCE=.\Merge7zCommon453.h
 # End Source File
 # Begin Source File
 

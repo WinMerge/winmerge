@@ -4,7 +4,7 @@
  * @brief Implementation of FileTextEncoding structure
  */
 // ID line follows -- this is updated by SVN
-// $Id: FileTextEncoding.cpp 5621 2008-07-15 19:44:58Z kimmov $
+// $Id: FileTextEncoding.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
 #include "stdafx.h"
 #include "unicoder.h"
@@ -30,6 +30,7 @@ void FileTextEncoding::Clear()
 	m_unicoding = ucr::NONE;
 	m_bom = false;
 	m_guessed = false;
+	m_binary = false;
 }
 
 /**

@@ -23,7 +23,7 @@
  * @brief Declaration of CHexMergeDoc class
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id: HexMergeDoc.h 6166 2008-12-14 18:25:09Z jtuc $
+// $Id: HexMergeDoc.h 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "TempFile.h"
 #include "PathContext.h"
@@ -74,11 +74,12 @@ public:
 	CHexMergeFrame * GetParentFrame();
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(const PathContext &paths, BOOL bRO[]);
-protected:
+private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	void DoFileSave(int nBuffer);
 	void DoFileSaveAs(int nBuffer);
+	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */
