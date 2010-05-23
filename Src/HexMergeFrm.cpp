@@ -243,15 +243,6 @@ void CHexMergeFrame::ActivateFrame(int nCmdShow)
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
 
-void CHexMergeFrame::ActivateFrame(int nCmdShow) 
-{
-	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
-	{
-		nCmdShow = SW_SHOWMAXIMIZED;
-	}
-	CMDIChildWnd::ActivateFrame(nCmdShow);
-}
-
 /**
  * @brief Save the window's position, free related resources, and destroy the window
  */
