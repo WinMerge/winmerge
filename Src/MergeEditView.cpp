@@ -24,7 +24,7 @@
  * @brief Implementation of the CMergeEditView class
  */
 // ID line follows -- this is updated by SVN
-// $Id: MergeEditView.cpp 7086 2010-01-09 13:38:25Z kimmov $
+// $Id: MergeEditView.cpp 7142 2010-04-28 17:05:50Z kimmov $
 
 #include "StdAfx.h"
 #include <vector>
@@ -378,7 +378,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	pBuf = NULL;
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF)
 		return 0;
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
@@ -2696,14 +2696,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusEOL(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-			GetDocument()->IsMixedEOL(pCmdUI->m_nID - ID_STATUS_PANE0FILE_EOL))
-	{
-		String eol = LoadResString(IDS_EOL_MIXED);
-		pCmdUI->SetText(eol.c_str());
-	}
-	else
-		GetDocument()->GetView(pCmdUI->m_nID - ID_STATUS_PANE0FILE_EOL)->OnUpdateIndicatorCRLF(pCmdUI);
+	GetDocument()->GetView(pCmdUI->m_nID - ID_STATUS_PANE0FILE_EOL)->OnUpdateIndicatorCRLF(pCmdUI);
 }
 
 /**
@@ -3057,7 +3050,9 @@ void CMergeEditView::OnPrediffer(UINT nID )
 }
 
 /**
- * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ * @brief Handler for all prediffer choices.
+ * Prediffer choises include ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO,
+ * ID_NO_PREDIFFER, & specific prediffers.
  */
 void CMergeEditView::SetPredifferByMenu(UINT nID )
 {
@@ -3067,7 +3062,11 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	if (nID == ID_NO_PREDIFFER)
 	{
 		m_CurrentPredifferID = nID;
-		pd->SetPrediffer(NULL);
+		// All flags are set correctly during the construction
+		PrediffingInfo *infoPrediffer = new PrediffingInfo;
+		infoPrediffer->bToBeScanned = 0;
+		infoPrediffer->pluginName.clear();
+		pd->SetPrediffer(infoPrediffer);
 		pd->FlushAndRescan(true);
 		return;
 	}

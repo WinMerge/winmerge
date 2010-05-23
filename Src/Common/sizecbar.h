@@ -38,7 +38,7 @@
 
 // MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
 #ifndef NCHITTEST_RESULT
-#if _MSC_VER >= 1400
+#if _MFC_VER >= 0x0800
 #define NCHITTEST_RESULT LRESULT
 #else
 #define NCHITTEST_RESULT UINT

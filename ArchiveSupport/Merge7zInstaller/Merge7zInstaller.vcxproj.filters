@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quellcodedateien">
+      <UniqueIdentifier>{dbb2ba5b-abca-4d8d-8722-434ee0806a8c}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{1b7e2315-c882-4320-9d81-3a38bb29bb3f}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien">
+      <UniqueIdentifier>{379810b4-9256-4b9f-9a5f-a75fc24c5855}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Installer.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Installer.rc">
+      <Filter>Quellcodedateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Files.rc2">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -6,7 +6,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: MergeDiffDetailView.cpp 6732 2009-05-12 07:21:01Z kimmov $
+// $Id: MergeDiffDetailView.cpp 7137 2010-04-23 17:34:32Z kimmov $
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -200,7 +200,7 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&p
 		return 0;
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF)
 		return 0; // No diff
 
 	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
