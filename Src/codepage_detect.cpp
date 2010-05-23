@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: codepage_detect.cpp 5584 2008-07-09 12:09:56Z kimmov $
+// $Id: codepage_detect.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
 #include "StdAfx.h"
 #include <shlwapi.h>
@@ -45,7 +45,7 @@ static const char *EatPrefix(const char *text, const char *prefix)
 {
 	int len = strlen(prefix);
 	if (len)
-		if (memicmp(text, prefix, len) == 0)
+		if (_memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -100,7 +100,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 				{
 					char *pchValue = pchKey + cchKey;
 					int cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-					if (cchKey >= 7 && memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					if (cchKey >= 7 && _memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 					{
 						pchValue[cchValue] = '\0';
 						// Is it an encoding name known to charsets module ?
@@ -244,6 +244,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int gu
 	encoding->SetCodepage(getDefaultCodepage());
 	encoding->m_bom = false;
 	encoding->m_guessed = false;
+	encoding->m_binary = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
@@ -262,8 +263,10 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int gu
 		encoding->m_bom = true;
 		break;
 	default:
+		encoding->m_bom = false;
+		if (memchr(fi.pImage, 0, fi.cbImage))
+			encoding->m_binary = true;
 		break;
-
 	}
 	if (fi.nByteOrder < 4 && guessEncodingType != 0)
 	{

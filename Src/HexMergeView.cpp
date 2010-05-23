@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id$
+// $Id: HexMergeView.cpp 7165 2010-05-15 14:04:43Z jtuc $
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -275,7 +275,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 			if (hr != S_OK)
 				GetBuffer(0);
 		}
-		else
+		else if (length != 0)
 		{
 			hr = E_OUTOFMEMORY;
 		}

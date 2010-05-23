@@ -1,5 +1,5 @@
 ; ID line follows -- this is updated by SVN
-; $Id: WinMerge.iss 7095 2010-01-12 21:45:51Z kimmov $
+; $Id: WinMerge.iss 7150 2010-05-04 17:26:43Z kimmov $
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
@@ -840,7 +840,7 @@ begin
 
       {Stops analyzing the version number since we already know it's inadequate and returns False (inadequate)}
       exit;
-    end
+    end;
 
 
   {Starts detecting the Minor version of the Version Installed}
@@ -1292,7 +1292,7 @@ End;
 Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
 	appdir:			String;
-	selectedTasks:	String;
+	selectedTasks:	AnsiString;
 Begin
 	appdir := ExpandConstant('{app}')
 	if CurUninstallStep = usUninstall then begin
