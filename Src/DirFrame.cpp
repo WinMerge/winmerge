@@ -94,6 +94,7 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_WM_MDIACTIVATE()
+	ON_MESSAGE(WM_SETMESSAGESTRING, OnSetMessageString)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -152,6 +153,30 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
 void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 {
 	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
+}
+
+/**
+ * @brief Update statusbar
+ */
+ LRESULT CDirFrame::OnSetMessageString(WPARAM wParam, LPARAM lParam)
+{
+	LRESULT ret;
+    UINT nID = (UINT)wParam;
+    if (nID == AFX_IDS_IDLEMESSAGE)
+	{
+        wParam = 0;
+        String msg = theApp.LoadString(AFX_IDS_IDLEMESSAGE);
+		wchar_t *szMsg = new wchar_t[wcslen((wchar_t *)msg.c_str())+1];
+		wcscpy(szMsg, (wchar_t *)msg.c_str());
+		lParam = (LPARAM)szMsg;
+	    ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
+		delete szMsg;
+    }
+	else
+	{
+		ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
+	}
+	return ret;
 }
 
 /**
