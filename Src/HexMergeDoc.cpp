@@ -25,7 +25,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: HexMergeDoc.cpp 6836 2009-06-09 22:01:48Z kimmov $
+// $Id: HexMergeDoc.cpp 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "stdafx.h"
 #include <afxinet.h>
@@ -156,7 +156,10 @@ CHexMergeDoc::CHexMergeDoc()
 {
 	m_nBuffers = m_nBuffersTemp;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
 		m_pView[nBuffer] = NULL;
+		m_nBufferType[nBuffer] = BUFFER_NORMAL;
+	}
 }
 
 /**
@@ -485,30 +488,53 @@ BOOL CHexMergeDoc::CloseNow()
 }
 
 /**
+* @brief Load one file
+*/
+HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
+{
+	if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
+		return E_FAIL;
+	m_pView[index]->SetReadOnly(readOnly);
+	m_filePaths.SetPath(index, filename);
+	ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
+	String strDesc = GetMainFrame()->m_strDescriptions[index];
+	if (!strDesc.empty())
+	{
+		m_strDesc[index] = strDesc;
+		m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+	}
+	UpdateHeaderPath(index);
+	m_pView[index]->ResizeWindow();
+	return S_OK;
+}
+
+/**
  * @brief Load files and initialize frame's compare result icon
  */
 HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, BOOL bRO[])
 {
+	HRESULT hr;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		String &path = paths.GetPath(nBuffer);
-		if (Try(m_pView[nBuffer]->LoadFile(path.c_str()), MB_ICONSTOP) == 0)
+		if (FAILED(hr = LoadOneFile(nBuffer, paths.GetPath(nBuffer).c_str(), bRO[nBuffer])))
+			break;
+	}
+	if (nBuffer == m_nBuffers)
+	{
+		UpdateDiffItem(0);
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+			m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
+	}
+	else
+	{
+		if (CFrameWnd *pFrame = GetParentFrame())
 		{
-			m_pView[nBuffer]->SetReadOnly(bRO[nBuffer]);
-			m_filePaths.SetPath(nBuffer, path.c_str());
-			m_strDesc[nBuffer] = path;
+			// Use verify macro to trap possible error in debug.
+			VERIFY(pFrame->DestroyWindow());
 		}
 	}
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		UpdateHeaderPath(nBuffer);
-		m_pView[nBuffer]->ResizeWindow();
-	}
-	UpdateDiffItem(0);
-	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-		m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
-	return S_OK;
+	return hr;
 }
 
 /**

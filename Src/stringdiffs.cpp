@@ -5,7 +5,7 @@
  *
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id: stringdiffs.cpp 7047 2009-12-21 19:08:49Z kimmov $
+// $Id: stringdiffs.cpp 7149 2010-05-03 17:08:20Z kimmov $
 
 #include <windows.h>
 #include <tchar.h>
@@ -41,7 +41,7 @@ void sd_Close()
 {
 	if (CustomChars)
 	{
-		delete [] BreakChars;
+		free(BreakChars);
 		BreakChars = NULL;
 		CustomChars = false;
 	}
@@ -53,7 +53,7 @@ void sd_SetBreakChars(const TCHAR *breakChars)
 	assert(Initialized);
 
 	if (CustomChars)
-		delete [] BreakChars;
+		free(BreakChars);
 
 	CustomChars = true;
 	BreakChars = _tcsdup(breakChars);

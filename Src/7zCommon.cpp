@@ -89,10 +89,13 @@ DATE:		BY:					DESCRIPTION:
 2007-06-16	Jochen Neubeck		FIX [1723263] "Zip --> Both" operation...
 2007-12-22	Jochen Neubeck		Fix Merge7z UI lang for new translation system
 								Change recommended version of 7-Zip to 4.57
+2010-05-16	Jochen Neubeck		Read 7-Zip version from 7z.dll (which has long
+								ago replaced the various format and codec DLLs)
+								Change recommended version of 7-Zip to 4.65
 */
 
 // ID line follows -- this is updated by SVN
-// $Id: 7zCommon.cpp 7063 2009-12-27 15:28:16Z kimmov $
+// $Id: 7zCommon.cpp 7169 2010-05-16 14:44:19Z jtuc $
 
 #include "stdafx.h"
 #include "OptionsDef.h"
@@ -102,7 +105,7 @@ DATE:		BY:					DESCRIPTION:
 #include "MainFrm.h"
 #include "7zCommon.h"
 //#include "ExternalArchiveFormat.h"
-#include "markdown.h"
+#include "version.h"
 #include <afxinet.h>
 #include <shlwapi.h>
 #include <paths.h>
@@ -241,7 +244,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(57,4);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(65,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
@@ -675,27 +678,11 @@ DWORD NTAPI VersionOf7z(BOOL bLocal)
 		DWORD size = sizeof path;
 		SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
 	}
-	PathAppend(path, _T("7zip_pad.xml"));
-	CMarkdown::String version
-	(
-		CMarkdown::File(path)
-		.Move("XML_DIZ_INFO").Pop()
-		.Move("Program_Info").Pop()
-		.Move("Program_Version").GetInnerText()
-	);
-	DWORD ver = (WORD)StrToIntA(version.A) << 16;
-	if (LPSTR p = StrChrA(version.A, '.'))
-	{
-		ver |= (WORD)StrToIntA(p + 1);
-	}
-	if (!ver)
-	{
-		// 7-zip x64 installer does not install 7zip_pad.xml.
-		PathRemoveFileSpec(path);
-		PathAppend(path, _T("7z.dll"));
-		ver = GetDllVersion(path);
-	}
-	return ver;
+	PathAppend(path, _T("7z.dll"));
+	DWORD versionMS = 0;
+	DWORD versionLS = 0;
+	CVersionInfo(path).GetFixedFileVersion(versionMS, versionLS);
+	return versionMS;
 }
 
 /**
