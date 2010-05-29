@@ -505,7 +505,7 @@ CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_nMaxLineLength(-1)
 {
-  AFX_ZERO_INIT_OBJECT (CView);
+  memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
   m_pszMatched = NULL;
   m_bSelMargin = TRUE;
   m_bViewLineNumbers = FALSE;
