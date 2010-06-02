@@ -12006,15 +12006,15 @@
 			Name="Batch files"
 			>
 			<File
-				RelativePath=".\Languages\BuildMergeLangDll.bat"
+				RelativePath="..\Translations\WinMerge\BuildMergeLangDll.bat"
 				>
 			</File>
 			<File
-				RelativePath=".\Languages\CreateMasterPotFile.vbs"
+				RelativePath="..\Translations\WinMerge\CreateMasterPotFile.vbs"
 				>
 			</File>
 			<File
-				RelativePath=".\Languages\GetTranslationsStatus.vbs"
+				RelativePath="..\Translations\WinMerge\GetTranslationsStatus.vbs"
 				>
 			</File>
 			<File
@@ -12030,7 +12030,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Languages\UpdatePoFilesFromPotFile.vbs"
+				RelativePath="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs"
 				>
 			</File>
 		</Filter>
