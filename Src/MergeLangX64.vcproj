@@ -29,7 +29,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +110,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -192,7 +192,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -271,7 +271,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -351,7 +351,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -432,7 +432,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -514,7 +514,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -593,7 +593,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -673,7 +673,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -754,7 +754,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -836,7 +836,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -915,7 +915,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+				CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -997,7 +997,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1006,7 +1006,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1015,7 +1015,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1024,7 +1024,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1033,7 +1033,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1042,7 +1042,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1051,7 +1051,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1060,7 +1060,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1069,7 +1069,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1078,7 +1078,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1087,7 +1087,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
@@ -1096,7 +1096,7 @@
 				>
 				<Tool
 					Name="VCCustomBuildTool"
-					CommandLine="cd Languages&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
+					CommandLine="cd ..\Translations\WinMerge&#x0D;&#x0A;cscript CreateMasterPotFile.vbs&#x0D;&#x0A;"
 					Outputs="Languages\MergeLang.rc"
 				/>
 			</FileConfiguration>
