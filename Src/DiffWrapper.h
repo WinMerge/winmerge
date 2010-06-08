@@ -181,6 +181,17 @@ public:
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(LPCTSTR filterStr);
 	void EnablePlugins(bool enable);
+	bool IsTrivialBytes(const char* Start, const char* End,
+		const FilterCommentsSet& filtercommentsset);
+	bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
+	   const char * EndOfComment, const char * InLineComment,
+	   const FilterCommentsSet& filtercommentsset);
+	bool PostFilter(int StartPos, int EndPos, int Direction,
+		int QtyLinesInBlock, int &Op, int FileNo,
+		const FilterCommentsSet& filtercommentsset);
+	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+		int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+		const TCHAR *FileNameExt);
 
 protected:
 	String FormatSwitchString();
