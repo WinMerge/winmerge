@@ -166,8 +166,8 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 	{
         wParam = 0;
         String msg = theApp.LoadString(AFX_IDS_IDLEMESSAGE);
-		wchar_t *szMsg = new wchar_t[wcslen((wchar_t *)msg.c_str())+1];
-		wcscpy(szMsg, (wchar_t *)msg.c_str());
+		TCHAR *szMsg = new TCHAR[lstrlen(msg.c_str())+1];
+		lstrcpy(szMsg, msg.c_str());
 		lParam = (LPARAM)szMsg;
 	    ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
 		delete szMsg;
