@@ -257,8 +257,8 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			if (m_pDiffUtilsEngine == NULL)
 				m_pDiffUtilsEngine = new CompareEngines::DiffUtils();
 			m_pDiffUtilsEngine->SetCodepage(m_codepage);
-			bool success = m_pDiffUtilsEngine->SetCompareOptions(
-					*m_pCtx->GetCompareOptions(CMP_CONTENT));
+			bool success = m_pByteCompare->SetCompareOptions(
+				*m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
 			if (success)
 			{
 				if (m_pCtx->m_pFilterList != NULL)
