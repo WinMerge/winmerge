@@ -27,6 +27,7 @@
 #include "StdAfx.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <algorithm>
 #include <string>
 #include <map>
 #include <shlwapi.h>
@@ -62,22 +63,6 @@ static void FreeDiffUtilsScript(struct change * & script);
 static void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, struct change * & script02);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
-
-// Postfiltering
-static bool IsTrivialBytes(const char* Start, const char* End,
-	const FilterCommentsSet& filtercommentsset);
-static bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
-   const char * EndOfComment, const char * InLineComment,
-   const FilterCommentsSet& filtercommentsset);
-static bool PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, int &Op, int FileNo,
-	const FilterCommentsSet& filtercommentsset);
-static void PostFilterSingleLine(const char* LineStr, int &Op,
-	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck);
-static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
-	const TCHAR *FileNameExt);
-
 
 /**
  * @brief Default constructor.
@@ -285,7 +270,7 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
  * @param [in] filtercommentsset	- For future use to determine trivial bytes
  * @return Returns true if all characters are trivial
  */
-static bool IsTrivialBytes(const char* Start, const char* End,
+bool CDiffWrapper::IsTrivialBytes(const char* Start, const char* End,
 	const FilterCommentsSet& filtercommentsset)
 {
 	std::string testdata(Start, End);
@@ -303,7 +288,7 @@ static bool IsTrivialBytes(const char* Start, const char* End,
  * @param [in] filtercommentsset	- Comment marker set used to indicate comment blocks.
  * @return Returns true if entire line is trivial
  */
-static bool IsTrivialLine(const std::string &Line, 
+bool CDiffWrapper::IsTrivialLine(const std::string &Line, 
 				   const char * StartOfComment,	
 				   const char * EndOfComment,	
 				   const char * InLineComment,	
@@ -354,7 +339,7 @@ static bool IsTrivialLine(const std::string &Line,
 	@return		Always returns true in reverse direction.
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
-static bool PostFilter(int StartPos, int EndPos, int Direction,
+bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 	int QtyLinesInBlock, int &Op, int FileNo,
 	const FilterCommentsSet& filtercommentsset)
 {
@@ -476,45 +461,6 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 }
 
 /**
-@brief Performs post-filtering on single line comments, by setting comment blocks to trivial
-@param [in]  LineStr				- Line of string to check that must be NULL terminated.
-@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
-@param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
-@param [in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
-*/
-static void PostFilterSingleLine(const char* LineStr, int &Op,
-	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
-{
-	if (Op == OP_TRIVIAL)
-		return;
-	if (filtercommentsset.InlineMarker.empty())
-	{//If filtercommentsset.InlineMarker is empty, then no support for single line comment
-		return;
-	}
-	const char *	EndLine = strchr(LineStr, '\0');
-	if (EndLine)
-	{
-		std::string LineData(LineStr, EndLine);
-		if (LineData.empty() && PartOfMultiLineCheck)
-		{
-			Op = OP_TRIVIAL;
-			return;
-		}
-
-		size_t CommentStr = LineData.find(filtercommentsset.InlineMarker);
-		if (CommentStr == std::string::npos)
-			return;
-		if (!CommentStr)
-		{//If it begins with comment string, then this is a trivial difference
-			Op = OP_TRIVIAL;
-			return;
-		}
-		//Consider adding code here to check if there's any significant code before the comment string
-	}
-
-}
-
-/**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
 @param [in]  LineNumberLeft		- First line number to read from left file
 @param [in]  QtyLinesLeft		- Number of lines in the block for left file
@@ -524,7 +470,7 @@ static void PostFilterSingleLine(const char* LineStr, int &Op,
 @param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
-static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
 	const TCHAR *FileNameExt)
 {
@@ -540,106 +486,151 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 		return;
 	}
 
-	if (QtyLinesRight == 0)
-	{//Only check left side
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, Op, 0, filtercommentsset))
-		{
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, Op, 0, filtercommentsset);
-		}
-		
-		if (Op != OP_TRIVIAL && !filtercommentsset.InlineMarker.empty())
-		{
-			bool AllLinesAreComments = true;
-			for(int i = LineNumberLeft;i < LineNumberLeft + QtyLinesLeft;++i)
-			{
-				int TestOp = 0;
-				PostFilterSingleLine(files[0].linbuf[i], TestOp, filtercommentsset, QtyLinesLeft > 1);
-				if (TestOp != OP_TRIVIAL)
-				{
-					AllLinesAreComments = false;
-					break;
-				}
-			}
+	int LeftOp = 0;
+	int RightOp = 0;
 
-			if (AllLinesAreComments)
-				Op = OP_TRIVIAL;
-		}
+	if (QtyLinesRight == 0)
+	{	//Only check left side
+		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
+			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
 	}
 	else if (QtyLinesLeft == 0)
-	{//Only check right side
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, Op, 1, filtercommentsset))
-		{
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, Op, 1, filtercommentsset);
-		}
-
-		if (Op != OP_TRIVIAL && !filtercommentsset.InlineMarker.empty())
-		{
-			bool AllLinesAreComments = true;
-			for(int i = LineNumberRight;i < LineNumberRight + QtyLinesRight;++i)
-			{
-				int TestOp = 0;
-				PostFilterSingleLine(files[1].linbuf[i], TestOp, filtercommentsset, QtyLinesRight > 1);
-				if (TestOp != OP_TRIVIAL)
-				{
-					AllLinesAreComments = false;
-					break;
-				}
-			}
-
-			if (AllLinesAreComments)
-				Op = OP_TRIVIAL;
-		}
+	{	//Only check right side
+		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
+			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
 	}
 	else
 	{
-		int LeftOp = 0;
 		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
 			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
 
-		int RightOp = 0;
 		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
 			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
+	}
 
-		if (LeftOp == OP_TRIVIAL && RightOp == OP_TRIVIAL)
-			Op = OP_TRIVIAL;
-		else if (!filtercommentsset.InlineMarker.empty() && QtyLinesLeft == 1 && QtyLinesRight == 1)
+	for(int i = 0; (i < QtyLinesLeft) || (i < QtyLinesRight); i++)
+	{
+		//Lets test  all lines if only a comment is different.
+		const char *	LineStrLeft = "";
+		const char *	EndLineLeft = LineStrLeft;
+		const char *	LineStrRight = "";
+		const char *	EndLineRight = LineStrRight;
+		if(i < QtyLinesLeft)
 		{
-			//Lets test if only a post line comment is different.
-			const char *	LineStrLeft = files[0].linbuf[LineNumberLeft];
-			const char *	EndLineLeft = strchr(LineStrLeft, '\0');
-			const char *	LineStrRight = files[1].linbuf[LineNumberRight];
-			const char *	EndLineRight = strchr(LineStrRight, '\0');
-			if (EndLineLeft && EndLineRight)
+			LineStrLeft = files[0].linbuf[LineNumberLeft + i];
+			EndLineLeft = files[0].linbuf[LineNumberLeft + i + 1];
+			//EndLineLeft = strchr(LineStrLeft, '\0');
+			
+		}
+		if(i < QtyLinesRight)
+		{
+			LineStrRight = files[1].linbuf[LineNumberRight + i];
+			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
+			//EndLineRight = strchr(LineStrRight, '\0');
+		}
+			
+		if (EndLineLeft && EndLineRight)
+		{	
+			std::string LineDataLeft(LineStrLeft, EndLineLeft);
+			std::string LineDataRight(LineStrRight, EndLineRight);
+
+			if (!filtercommentsset.StartMarker.empty() && !filtercommentsset.EndMarker.empty())
 			{
-				std::string LineDataLeft(LineStrLeft, EndLineLeft);
-				std::string LineDataRight(LineStrRight, EndLineRight);
+				size_t CommentStrLeftStart;
+				size_t CommentStrLeftEnd;
+				size_t CommentStrRightStart;
+				size_t CommentStrRightEnd;
+
+				BOOL bFirstLoop = TRUE;
+				do {
+					//Lets remove block comments, and see if lines are equal
+					CommentStrLeftStart = LineDataLeft.find(filtercommentsset.StartMarker);
+					CommentStrLeftEnd = LineDataLeft.find(filtercommentsset.EndMarker);
+					CommentStrRightStart = LineDataRight.find(filtercommentsset.StartMarker);
+					CommentStrRightEnd = LineDataRight.find(filtercommentsset.EndMarker);
+					
+					if (CommentStrLeftStart != std::string::npos && CommentStrLeftEnd != std::string::npos)
+						LineDataLeft.erase(CommentStrLeftStart, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
+					else if (CommentStrLeftStart != std::string::npos)
+						LineDataLeft.erase(CommentStrLeftStart);
+					else if (CommentStrLeftEnd != std::string::npos)
+						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size());
+					else if(LeftOp == OP_TRIVIAL && bFirstLoop)
+						LineDataLeft.erase(0);  //This line is all in block comments
+
+					if (CommentStrRightStart != std::string::npos && CommentStrRightEnd != std::string::npos)
+						LineDataRight.erase(CommentStrRightStart, CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
+					else if (CommentStrRightStart != std::string::npos)
+						LineDataRight.erase(CommentStrRightStart);
+					else if (CommentStrRightEnd != std::string::npos)
+						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size());
+					else if(RightOp == OP_TRIVIAL && bFirstLoop)
+						LineDataRight.erase(0);  //This line is all in block comments
+
+					bFirstLoop = FALSE;
+
+				} while (CommentStrLeftStart != std::string::npos || CommentStrLeftEnd != std::string::npos
+					|| CommentStrRightStart != std::string::npos || CommentStrRightEnd != std::string::npos); //Loops until all blockcomments are lost
+			}
+
+			if (!filtercommentsset.InlineMarker.empty())
+			{
+				//Lets remove line comments
 				size_t CommentStrLeft = LineDataLeft.find(filtercommentsset.InlineMarker);
 				size_t CommentStrRight = LineDataRight.find(filtercommentsset.InlineMarker);
-				//If neither side has comment string, then lets assume significant difference, and return
-				if (CommentStrLeft == std::string::npos && CommentStrRight == std::string::npos)
-				{
-					return;
-				}
-				//Do a quick test to see if both sides begin with comment character
-				if (!CommentStrLeft && !CommentStrRight)
-				{//If both sides begin with comment character, then this is a trivial difference
-					Op = OP_TRIVIAL;
-					return;
-				}
 
-				//Lets remove comments, and see if lines are equal
 				if (CommentStrLeft != std::string::npos)
 					LineDataLeft.erase(CommentStrLeft);
 				if (CommentStrRight != std::string::npos)
 					LineDataRight.erase(CommentStrRight);
-				if (LineDataLeft == LineDataRight)
-				{//If they're equal now, then only difference is comments, and that's a trivial difference
-					Op = OP_TRIVIAL;
-					return;
+			}
+
+			if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+			{
+				//Ignore character case
+				std::string::size_type pos = 0;
+				while ((pos = LineDataLeft.find(" ", pos)) != String::npos)
+				{
+					LineDataLeft.replace(pos, 1, "");
 				}
+
+				pos = 0;
+				while ((pos = LineDataRight.find(" ", pos)) != String::npos)
+				{
+					LineDataRight.replace(pos, 1, "");
+				}
+			}
+			else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+			{
+				//Ignore change in whitespace char count
+				std::string::size_type pos = 0;
+				while ((pos = LineDataLeft.find("  ", pos)) != String::npos)
+				{
+					LineDataLeft.replace(pos, 2, " ");
+				}
+
+				pos = 0;
+				while ((pos = LineDataRight.find("  ", pos)) != String::npos)
+				{
+					LineDataRight.replace(pos, 2, " ");
+				}
+			}
+
+			if (m_options.m_bIgnoreCase)
+			{
+				//ignore case
+				std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+				std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
+			}
+
+			if (LineDataLeft != LineDataRight)
+			{	
+				return;
 			}
 		}
 	}
+	//only difference is trival
+	Op = OP_TRIVIAL;
 }
 
 /**
