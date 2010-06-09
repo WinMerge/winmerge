@@ -439,21 +439,21 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
  */
 HRESULT CHexMergeDoc::OpenDocs(LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bROLeft, BOOL bRORight)
 {
+	CHexMergeFrame *pf = GetParentFrame();
+	ASSERT(pf);
 	HRESULT hr;
 	if (SUCCEEDED(hr = LoadOneFile(MERGE_VIEW_LEFT, pathLeft, bROLeft)) &&
 		SUCCEEDED(hr = LoadOneFile(MERGE_VIEW_RIGHT, pathRight, bRORight)))
 	{
 		UpdateDiffItem(0);
+		pf->Invalidate();
 		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 			m_pView[MERGE_VIEW_LEFT]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}
 	else
 	{
-		if (CFrameWnd *pFrame = GetParentFrame())
-		{
-			// Use verify macro to trap possible error in debug.
-			VERIFY(pFrame->DestroyWindow());
-		}
+		// Use verify macro to trap possible error in debug.
+		VERIFY(pf->DestroyWindow());
 	}
 	return hr;
 }
