@@ -1064,24 +1064,17 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 		return false;
 	}
 
-	const char EolIndicators[] = "\r\n"; //List of characters used as EOL
 	bool linesMatch = true; // set to false when non-matching line is found.
 	int line = StartPos;
 
 	while (line <= EndPos && linesMatch == true)
 	{
-		char * linedata = strdup(files[FileNo].linbuf[line]);
-		int eolpos = strcspn(linedata, EolIndicators);
-		if (eolpos != strlen(linedata))
-		{
-			linedata[eolpos] = '\0';
-		}
-
-		if (!m_pFilterList->Match(linedata, m_codepage))
+		const char *string = files[FileNo].linbuf[line];
+		size_t stringlen = linelen(string);
+		if (!m_pFilterList->Match(stringlen, string, m_codepage))
 		{
 			linesMatch = false;
 		}
-		free(linedata);
 		++line;
 	}
 	return linesMatch;
