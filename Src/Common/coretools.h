@@ -105,6 +105,7 @@ float RoundMeasure(float measure, float units);
 String LegalizeFileName(LPCTSTR szFileName);
 
 int tcssubptr(LPCTSTR start, LPCTSTR end);
+size_t linelen(const char *string);
 
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNewConsole = FALSE);
 BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
