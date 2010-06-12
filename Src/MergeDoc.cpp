@@ -2277,7 +2277,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	}
 
 	BOOL bBinary = FALSE;
-	nRescanResult = Rescan(bBinary, bIdentical, TRUE);
+	nRescanResult = Rescan(bBinary, bIdentical);
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)

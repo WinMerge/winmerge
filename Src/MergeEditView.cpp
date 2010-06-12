@@ -1635,7 +1635,6 @@ bool CMergeEditView::EnableRescan(bool bEnable)
 {
 	bool bOldValue = m_bAutomaticRescan;
 	m_bAutomaticRescan = bEnable;
-	GetDocument()->SetAutomaticRescan(m_bAutomaticRescan);
 	return bOldValue;
 }
 
@@ -2334,7 +2333,6 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 void CMergeEditView::RefreshOptions()
 { 
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
-	GetDocument()->SetAutomaticRescan(m_bAutomaticRescan);
 
 	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)
 		SetInsertTabs(true);

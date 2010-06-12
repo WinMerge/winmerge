@@ -234,7 +234,6 @@ public:
 	void SetMergingMode(bool bMergingMode);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
-	void SetAutomaticRescan(bool bRescan) { m_bEnableRescan = bRescan; }
 
 // implementation methods
 private:
