@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.13
   Installer: Embed MS runtime files installer for x64 (r7150)
   Bugfix: Compare by size always checked file times too (#2919510)
+  Bugfix: Line filtering wasted huge amounts of memory (r7178)
   Translation updates:
   - Japanese (r7153)
 
