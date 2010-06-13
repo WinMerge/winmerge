@@ -19,6 +19,8 @@ MERGE7Z(Merge7z912.dll)
 MERGE7ZU(Merge7z912U.dll)
 MERGE7Z(Merge7z913.dll)
 MERGE7ZU(Merge7z913U.dll)
+MERGE7Z(Merge7z914.dll)
+MERGE7ZU(Merge7z914U.dll)
 
 VIIZIP(7zip_pad.xml)
 VIIZIP(7z.dll)
