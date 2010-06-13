@@ -51,63 +51,168 @@
 </head>
 <body>
 
-<h2>WinMerge 2.9.10 Beta Release Notes</h2>
+<h2>WinMerge 2.12.4 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2910">What Is New in 2.9.10?</a></li>
+  <li><a href="#new2124">What Is New in 2.12.4?</a></li>
+  <li><a href="#new2122">What Is New in 2.12.2?</a></li>
+  <li><a href="#new2120">What Is New in 2.12.0?</a></li>
+  <li><a href="#new2112">What Is New in 2.11.2 beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>July 2008</p>
+<p>June 2009</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.12.4 stable release. This release replaces earlier WinMerge
+stable releases as a recommended release.
 </p>
 
 <p>
-Please submit bug reports to our <a href=
-"https://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-tracker</a>.
-
-<h3><a name="new2910">What Is New in 2.9.10?</a></h3>
-<p>
-For a complete changelog history, see the <code><a href="ChangeLog.txt">ChangeLog.txt</a></code>
-file located in the <code>Docs</code> folder under the WinMerge program folder.
+Please submit bug reports to our <a href="http://bugs.winmerge.org">bug-tracker</a>.
 </p>
 
+<h3><a name="#new2124">What Is New in 2.12.4?</a></h3>
 <p>
-WinMerge 2.9.x will not have many new features. Instead many existing features
-will be improved and optimized. And some long-standing problems will be fixed.
-</p>
+WinMerge 2.12.4 is an bug-fix release fixing few important bugs found
+from the 2.12.2 release. For a complete changelog history, see the
+<code><a href="ChangeLog.txt">ChangeLog.txt</a></code> file located in the
+<code>Docs</code> folder under the WinMerge program folder.</p>
 
-<h4>Regular expressions</h4>
-<p>
-Regular expression library (PCRE, <a href="http://www.pcre.org/">http://www.pcre.org/</a>)
-is updated to the latest version (7.7). That will fix some problems present in
-older version used in WinMerge 2.8.x. PCRE is now used also in WinMerge's
-editor component. So Find- and Replace- features have now a lot improved regular
-expression support.
-</p>
-
-<h4>Installing for all users</h4>
-<p>
-Installer will now install WinMerge to all users. Previously the installer
-always installed just for the current user which causes problems in many
-environments. Now the Shell Integration is correctly enabled for all users
-after installing.
-</p>
-
-<h4>Changes</h4>
+<h4>Bugs fixed</h4>
 <ul>
-  <li>Fix location pane flickering, optimize location pane</li>
-  <li>Open conflict files by drag&amp;dropping file to main window</li>
-  <li>Manual improvements</li>
+  <li>When folder compare method changed during the compare it was not reset
+    back to original. This caused some surprising behavior and missing info.</li>
+  <li>Reports had same left/right description</li>
+  <li>When conflict file was saved trailing line-ending was lost</li>
+  <li>Opening mixed-EOL file one side forced both files to be handled as
+    mixed-eol files</li>
+  <li>Generated patch had wrong file time for UTF-16 files</li>
+  <li>"##" in file filter pattern caused an infinite loop</li>
+</ul>
+
+<h3><a name="#new2122">What Is New in 2.12.2?</a></h3>
+<p>
+WinMerge 2.12.2 is an bug-fix release fixing couple of important bugs found
+from the 2.12.0 release. For a complete changelog history, see the
+<code><a href="ChangeLog.txt">ChangeLog.txt</a></code> file located in the
+<code>Docs</code> folder under the WinMerge program folder.</p>
+
+<h4>Bugs fixed</h4>
+<ul>
+  <li>Disable folder compare tree-view by default</li>
+  <li>Filename extension column was empty for files (in folder compare)</li>
+  <li>Crash when selecting backup folder</li>
+  <li>Swapping panes did not update statusbar (in file compare)</li>
+  <li>Says files are identical after making files different in another
+    application and re-loading them</li>
+  <li>Files with missing last EOL (End Of Line) bytes were not merged correctly</li>
 </ul>
 
 <h4>Translation updates</h4>
 <ul>
-  <li>New Slovenian translation</li>
+  <li>Polish</li>
+</ul>
+
+<h3><a name="#new2120">What Is New in 2.12.0?</a></h3>
+<p>
+WinMerge 2.12 is an important update to WinMerge. There are lots of 
+improvements and bug fixes since 2.10.4 stable release. 
+</p>
+
+<p>2.12.0 stable release has only couple of changes after beta release. See the
+2.12 beta release changes below for more complete change list in this release.
+</p>
+
+<h4>Improvements</h4>
+<ul>
+  <li>Remember last target folder for Copy/Move to in folder compare</li>
+</ul>
+
+<h4>Bugs fixed</h4>
+<ul>
+  <li>Help window opened from WinMerge was modal</li>
+  <li>Files without extension get backed up to name..bak</li>
+</ul>
+
+<h4>Translation updates</h4>
+<ul>
+  <li>Chinese Traditional</li>
+  <li>Croatian</li>
+  <li>Czech</li>
+  <li>Danish</li>
+  <li>Dutch</li>
+  <li>French</li>
+  <li>Galician</li>
+  <li>German</li>
+  <li>Greek</li>
+  <li>Japanese</li>
+  <li>Swedish</li>
+  <li>Ukrainian</li>
+</ul>
+
+
+<h3><a name="new2112">What Is New in 2.11.2 beta?</a></h3>
+<p>
+WinMerge 2.11.x adds couple of long awaited features. Overall WinMerge 2.11.x
+will be important improvement for some use cases.
+</p>
+
+<h4>Tree-view for folder compare</h4>
+<p>
+WinMerge can now show folder compare results in a tree-style view. This is
+much improved way to show result compared to old flat result view. Subfolders
+in tree-view can be made visible and hidden like in Windows Explorer. The
+tree-style is only available when subfolders are included to the comparison. 
+</p>
+
+<h4>Include items in unique folders in compare results</h4>
+<p>
+If subfolders are included to the compare all unique subfolders and files in
+them are now visible in compare results. In earlier versions WinMerge only shows
+the top-level unique folder. This means one can copy subfolders and files
+inside unique folders to another side and proper folder structure is created in
+the target side.
+</p>
+
+<h4>General compare result statuses</h4>
+<p>
+When WinMerge cannot determine if file is text- or binary-file it now shows the
+compare status with general statuses. Earlier WinMerge versions showed such
+files as text files. This is important since e.g. file size/time -based compare
+methods cannot know if file is binary- or text-file.
+</p>
+
+<h4>More accurate location pane</h4>
+<p>
+Location pane now shows missing lines more accurately. Also the visible area
+indicator positioning matches better reality.
+</p>
+
+<h4>Re-load files changed in disk behind WinMerge</h4>
+<p>
+WinMerge now finally can re-load files that have been changed in the disk after
+WinMerge loaded them. This is remarkable usability improvement since earlier
+versions required user to close current files and open them again.
+</p>
+
+<h4>Other changes</h4>
+<ul>
+  <li>Refresh compare results after changing line filter</li>
+  <li>Add option to show Open-dialog on WinMerge startup</li>
+  <li>PCRE updated to version 7.8</li>
+  <li>Installer can add WinMerge to system path</li>
+  <li>New options page for Shell Integration options</li>
+  <li>Better Unicode file detection for full contents compare</li>
+</ul>
+
+<h4>Important bug fixes</h4>
+<ul>
+  <li>Quick compare didn't ignore EOL differences</li>
+  <li>Remove invalid characters from command line</li>
+  <li>Crash when compared file disappeared during file compare</li>
+  <li>Don't show file name extension for folders</li>
 </ul>
 
 <h3><a name="issues">Known Issues</a></h3>
