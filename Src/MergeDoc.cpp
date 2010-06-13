@@ -54,7 +54,6 @@
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
 #include "DiffList.h"
-#include "dllver.h"
 #include "codepage.h"
 #include "paths.h"
 #include "OptionsMgr.h"
