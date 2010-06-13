@@ -102,7 +102,7 @@ bool DiffFileData::DoOpenFiles()
 			return false;
 
 		// Get file stats (diffutils uses these)
-		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+		if (_fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
 		{
 			return false;
 		}

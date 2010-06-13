@@ -227,7 +227,7 @@ struct change
 struct file_data {
     int             desc;	/* File descriptor  */
     char const      *name;	/* File name  */
-    struct stat     stat;	/* File status from fstat()  */
+    struct _stat    stat;	/* File status from fstat()  */
     int             dir_p;	/* nonzero if file is a directory  */
 
     /* Buffer in which text of file is read.  */
