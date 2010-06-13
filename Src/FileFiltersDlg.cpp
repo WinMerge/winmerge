@@ -29,7 +29,6 @@
 #include "MainFrm.h"
 #include "FileFiltersDlg.h"
 #include "coretools.h"
-#include "dllver.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "SharedFilterDlg.h"
@@ -128,13 +127,8 @@ void FileFiltersDlg::SetSelected(const CString & selected)
 void FileFiltersDlg::InitList()
 {
 	// Show selection across entire row.
-	DWORD newstyle = LVS_EX_FULLROWSELECT;
-	// Also enable infotips if they have new enough version for our
-	// custom draw code
-	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
-		newstyle |= LVS_EX_INFOTIP;
-	m_listFilters.SetExtendedStyle(m_listFilters.GetExtendedStyle() | newstyle);
+	// Also enable infotips.
+	m_listFilters.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	String title = theApp.LoadString(IDS_FILTERFILE_NAMETITLE);
 	m_listFilters.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);
@@ -331,12 +325,6 @@ void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 	LVHITTESTINFO lvhti = {0};
 	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
 	ASSERT(pInfoTip);
-
-	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
-	{
-		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-		return;
-	}
 
 	// Get subitem under mouse cursor
 	lvhti.pt = m_ptLastMousePos;

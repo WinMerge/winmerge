@@ -10,7 +10,6 @@
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "Plugins.h"
-#include "dllver.h"
 #include "PluginsListDlg.h"
 #include "OptionsDef.h"
 
@@ -69,13 +68,8 @@ BOOL PluginsListDlg::OnInitDialog()
 void PluginsListDlg::InitList()
 {
 	// Show selection across entire row.
-	DWORD newstyle = LVS_EX_FULLROWSELECT;
-	// Also enable infotips if they have new enough version for our
-	// custom draw code
-	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
-		newstyle |= LVS_EX_INFOTIP;
-	m_list.SetExtendedStyle(m_list.GetExtendedStyle() | newstyle);
+	// Also enable infotips.
+	m_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	String title = LoadResString(IDS_PLUGINSLIST_NAME);
 	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);

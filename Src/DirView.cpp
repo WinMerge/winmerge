@@ -39,7 +39,6 @@
 #include "resource.h"
 #include "coretools.h"
 #include "WaitStatusCursor.h"
-#include "dllver.h"
 #include "locality.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
@@ -332,14 +331,9 @@ void CDirView::OnInitialUpdate()
 	ReloadColumns();
 
 	// Show selection across entire row.
-	// Also allow user to rearrange columns via drag&drop of headers
-	// if they have a new enough common controls
-	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP;
-	// Also enable infotips if they have new enough version for our
-	// custom draw code
-	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4, 71))
-		exstyle |= LVS_EX_INFOTIP;
+	// Also allow user to rearrange columns via drag&drop of headers.
+	// Also enable infotips.
+	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP;
 	m_pList->SetExtendedStyle(exstyle);
 }
 
@@ -2620,10 +2614,6 @@ BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
  */
 void CDirView::FixReordering()
 {
-	// LVCOLUMN.iOrder is present with version 4.70+
-	if (GetDllVersion(_T("shlwapi.dll")) < PACKVERSION(4, 70))
-		return;
-
 	LVCOLUMN lvcol;
 	lvcol.mask = LVCF_ORDER;
 	lvcol.fmt = 0;
