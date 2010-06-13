@@ -1227,18 +1227,19 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	inf_patch[0].name = ansiconvert_SystemCP(path1.c_str());
 	inf_patch[1].name = ansiconvert_SystemCP(path2.c_str());
 
-	// Fix timestamps for generated patch files
-	// If there are translations needed (e.g. when comparing UTF-16 files)
-	// then the stats in 'inf' are read from temp files. If the original
-	// file's and read timestamps differ, use original file's timestamps.
-	// See also sf.net bug item #2791506.
-	struct __stat64 st;
-	_tstat64(path1.c_str(), &st);
-	if (st.st_mtime != inf_patch[0].stat.st_mtime)
-		inf_patch[0].stat.st_mtime = st.st_mtime;
-	_tstat64(path2.c_str(), &st);
-	if (st.st_mtime != inf_patch[1].stat.st_mtime)
-		inf_patch[1].stat.st_mtime = st.st_mtime;
+	// If paths in m_s1File and m_s2File point to original files, then we can use
+	// them to fix potentially meaningless stats from potentially temporary files,
+	// resulting from whatever transforms may have taken place.
+	// If not, then we can't help it, and hence ASSERT that this won't happen.
+	if (!m_bPathsAreTemp)
+	{
+		_tstat(m_s1File.c_str(), &inf_patch[0].stat);
+		_tstat(m_s2File.c_str(), &inf_patch[1].stat);
+	}
+	else
+	{
+		ASSERT(FALSE);
+	}
 
 	outfile = NULL;
 	if (!m_sPatchFile.empty())
