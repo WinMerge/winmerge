@@ -335,7 +335,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 			bFilterAdded = FALSE;
 
 		pos = ext.find_first_of(pszSeps); 
-		if (bFilterAdded && pos >= 0)
+		if (bFilterAdded && pos != String::npos)
 			strPattern += _T("|");
 	}
 
