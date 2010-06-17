@@ -205,6 +205,14 @@
           Source="..\..\Translations\WinMerge\Ukrainian.po" 
           Vital="no" />
       </Component>
+      
+      <!-- Set the default WinMerge language -->
+      <Component Id="SetDefaultWinMergeLanguage" Guid="*" Win64="$(var.Win64)">
+        <!-- We just write the system language ID to the registry.
+             If WinMerge have no language with this ID, it will fall back to English!
+             This is a little bit lazy but also the easiest way! ;-) -->
+        <RegistryValue Root="HKLM" Key="Software\Thingamahoochie\WinMerge\Locale" Name="LanguageId" Type="integer" Value="[SystemLanguageID]" KeyPath="yes" />
+      </Component>
     </DirectoryRef>
   </Fragment>
 </Wix>

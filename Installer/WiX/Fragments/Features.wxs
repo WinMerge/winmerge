@@ -79,6 +79,7 @@
         <ComponentRef Id="Swedish" />
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
+        <ComponentRef Id="SetDefaultWinMergeLanguage" />
       </Feature>
       <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 Runtime Components ">
         <MergeRef Id="CRT"/>
