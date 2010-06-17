@@ -73,6 +73,7 @@
         <ComponentRef Id="Portuguese" />
         <ComponentRef Id="Romanian" />
         <ComponentRef Id="Russian" />
+        <ComponentRef Id="Serbian" />
         <ComponentRef Id="Slovak" />
         <ComponentRef Id="Slovenian" />
         <ComponentRef Id="Spanish" />

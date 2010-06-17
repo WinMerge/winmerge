@@ -348,6 +348,7 @@ PortugueseBrazilLanguage=Portugalski (Brazylijski) interfejs
 PortugueseLanguage=Portugalski interfejs
 RomanianLanguage=Rumuñski interfejs
 RussianLanguage=Rosyjski interfejs
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=S³owacki interfejs
 SlovenianLanguage=S³oweñski interfejs
 SpanishLanguage=Hiszpañski interfejs

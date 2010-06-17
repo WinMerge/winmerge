@@ -110,6 +110,9 @@ Localization:
 * Russian:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
 
+* Serbian:
+  Ozzii <ivanstar61@gmail.com>
+
 * Slovak:
   Majvan <vancojur@decef.elf.stuba.sk>
   Ivan Masár <helix84@centrum.sk>

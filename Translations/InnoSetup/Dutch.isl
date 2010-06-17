@@ -336,6 +336,7 @@ PortugueseBrazilLanguage=Portugese (Braziliaanse) menu’s en vensters
 PortugueseLanguage=Portugese menu’s en vensters
 RomanianLanguage=Roemeense menu’s en vensters
 RussianLanguage=Russische menu’s en vensters
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Slovaakse menu’s en vensters
 SlovenianLanguage=Sloveense menu’s en vensters
 SpanishLanguage=Spaanse menu’s en vensters

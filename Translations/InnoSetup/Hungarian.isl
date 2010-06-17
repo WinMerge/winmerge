@@ -378,6 +378,7 @@ PortugueseBrazilLanguage=Portugál (Brazíliai) menük és párbeszédablakok
 PortugueseLanguage=Portugál menük és párbeszédablakok
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Orosz menük és párbeszédablakok
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Szlovák menük és párbeszédablakok
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanyol menük és párbeszédablakok

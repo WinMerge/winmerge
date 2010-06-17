@@ -355,6 +355,7 @@
    PortugueseLanguage=Меню і діалогові вікна португальською мовою
    RomanianLanguage=Меню і діалогові вікна румунською мовою
    RussianLanguage=Меню і діалогові вікна російською мовою
+   SerbianLanguage=Serbian menus and dialogs
    SlovakLanguage=Меню і діалогові вікна словацькою мовою
    SlovenianLanguage=Slovenian menus and dialogs
    SpanishLanguage=Меню і діалогові вікна іспанською мовою

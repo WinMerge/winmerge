@@ -287,6 +287,7 @@ PortugueseBrazilLanguage=Portugalské (Brazilian) ponuky a dialógy
 PortugueseLanguage=Portugalské ponuky a dialógy
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Ruské ponuky a dialógy
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Slovenské ponuky a dialógy
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Španielske ponuky a dialógy
