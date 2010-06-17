@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.13
   Installer: Embed MS runtime files installer for x64 (r7150)
+  Installer: Set default language with MSI setup (#3014912)
   Bugfix: Compare by size always checked file times too (#2919510)
   Bugfix: Line filtering wasted huge amounts of memory (#3014162)
   Bugfix: Difference blocks not cleared after merging (#2995925)
