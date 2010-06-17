@@ -359,6 +359,7 @@ PortugueseBrazilLanguage=Πορτογαλικά (Βραζιλίας) επιλογές και διάλογοι
 PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι
 RomanianLanguage=Ρουμανικά επιλογές και διάλογοι
 RussianLanguage=Ρωσσικά επιλογές και διάλογοι
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
 SlovenianLanguage=Σλοβενικά επιλογές και διάλογοι
 SpanishLanguage=Ισπανικά επιλογές και διάλογοι

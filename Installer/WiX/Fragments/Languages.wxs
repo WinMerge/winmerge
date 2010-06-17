@@ -164,6 +164,13 @@
           Vital="no" />
       </Component>
       
+      <Component Id="Serbian" Guid="*" Win64="$(var.Win64)">
+        <File Id="SerbianPO" 
+          Name="Serbian.po" 
+          Source="..\..\Translations\WinMerge\Serbian.po" 
+          Vital="no" />
+      </Component>
+      
       <Component Id="Slovak" Guid="*" Win64="$(var.Win64)">
         <File Id="SlovakPO" 
           Name="Slovak.po" 
