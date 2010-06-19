@@ -139,7 +139,7 @@ Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
 Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
-Name: Serbian; MessagesFile: ..\..\Translations\InnoSetup\Serbian.isl InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
+Name: Serbian; MessagesFile: ..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
 Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Slovak.isl
 Name: Slovenian; MessagesFile: ..\..\Translations\InnoSetup\Slovenian.isl
 Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
