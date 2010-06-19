@@ -81,7 +81,7 @@ from subprocess import *
 import os
 import os.path
 import sys
-simport optparse
+import optparse
 import shutil
 import SetVersions
 import ToolSettings
