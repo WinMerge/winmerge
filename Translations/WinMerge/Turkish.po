@@ -399,7 +399,7 @@ msgstr "Basamakla"
 #: Merge.rc:178
 #: Merge.rc:299
 #: Merge.rc:487
-#: Merge.rc:1948
+#: Merge.rc:1945
 #, c-format
 msgid "&Help"
 msgstr "Yardým"
@@ -730,7 +730,7 @@ msgid "&Scripts"
 msgstr "Yazý Düzeni"
 
 #: Merge.rc:373
-#: Merge.rc:2708
+#: Merge.rc:2705
 #, c-format
 msgid "< Empty >"
 msgstr "< Boþ >"
@@ -932,15 +932,15 @@ msgid "&Delete"
 msgstr "Sil"
 
 #: Merge.rc:526
-#: Merge.rc:1147
-#: Merge.rc:1514
+#: Merge.rc:1144
+#: Merge.rc:1511
 #, c-format
 msgid "&Left"
 msgstr "Sol"
 
 #: Merge.rc:527
-#: Merge.rc:1149
-#: Merge.rc:1517
+#: Merge.rc:1146
+#: Merge.rc:1514
 #, c-format
 msgid "&Right"
 msgstr "Sað"
@@ -1093,16 +1093,16 @@ msgstr "WinMerge Sitesini Ziyaret Ediniz."
 #: Merge.rc:679
 #: Merge.rc:711
 #: Merge.rc:803
-#: Merge.rc:995
-#: Merge.rc:1066
-#: Merge.rc:1095
-#: Merge.rc:1105
-#: Merge.rc:1256
-#: Merge.rc:1320
-#: Merge.rc:1333
-#: Merge.rc:1425
-#: Merge.rc:1440
-#: Merge.rc:1662
+#: Merge.rc:992
+#: Merge.rc:1063
+#: Merge.rc:1092
+#: Merge.rc:1102
+#: Merge.rc:1253
+#: Merge.rc:1317
+#: Merge.rc:1330
+#: Merge.rc:1422
+#: Merge.rc:1437
+#: Merge.rc:1659
 #, c-format
 msgid "OK"
 msgstr "TAMAM"
@@ -1118,39 +1118,39 @@ msgid "Select Files or Folders"
 msgstr "Dosyalarý veya Klasörleri Seç"
 
 #: Merge.rc:690
-#: Merge.rc:1591
+#: Merge.rc:1588
 #, c-format
 msgid "&Left:"
 msgstr "Sol:"
 
 #: Merge.rc:694
 #: Merge.rc:755
-#: Merge.rc:1009
-#: Merge.rc:1031
+#: Merge.rc:1006
+#: Merge.rc:1028
 #, c-format
 msgid "&Browse..."
 msgstr "Gözat..."
 
 #: Merge.rc:695
-#: Merge.rc:1595
+#: Merge.rc:1592
 #, c-format
 msgid "&Right:"
 msgstr "Sað:"
 
 #: Merge.rc:699
-#: Merge.rc:1042
+#: Merge.rc:1039
 #, c-format
 msgid "Bro&wse..."
 msgstr "Gözat..."
 
 #: Merge.rc:700
-#: Merge.rc:1599
+#: Merge.rc:1596
 #, c-format
 msgid "&Filter:"
 msgstr "Filtre:"
 
 #: Merge.rc:703
-#: Merge.rc:1601
+#: Merge.rc:1598
 #, c-format
 msgid "Select..."
 msgstr "Seç..."
@@ -1166,7 +1166,7 @@ msgid "&Select..."
 msgstr "Seç..."
 
 #: Merge.rc:708
-#: Merge.rc:1602
+#: Merge.rc:1599
 #, c-format
 msgid "&Include Subfolders"
 msgstr "Alt Klasörler Dahil"
@@ -1182,21 +1182,21 @@ msgstr "Durum:"
 #: Merge.rc:834
 #: Merge.rc:866
 #: Merge.rc:876
-#: Merge.rc:1067
-#: Merge.rc:1096
-#: Merge.rc:1106
-#: Merge.rc:1157
-#: Merge.rc:1257
-#: Merge.rc:1334
-#: Merge.rc:1426
-#: Merge.rc:1441
-#: Merge.rc:1663
+#: Merge.rc:1064
+#: Merge.rc:1093
+#: Merge.rc:1103
+#: Merge.rc:1154
+#: Merge.rc:1254
+#: Merge.rc:1331
+#: Merge.rc:1423
+#: Merge.rc:1438
+#: Merge.rc:1660
 #, c-format
 msgid "Cancel"
 msgstr "Ýptal"
 
 #: Merge.rc:713
-#: Merge.rc:1335
+#: Merge.rc:1332
 #, c-format
 msgid "Help"
 msgstr "Yardým"
@@ -1264,14 +1264,14 @@ msgid "&Versioning System:"
 msgstr "Sürümleme Sistemi:"
 
 #: Merge.rc:753
-#: Merge.rc:2083
+#: Merge.rc:2080
 #, c-format
 msgid "&Path to cleartool.exe:"
 msgstr "'cleartool.exe' Dizini:"
 
 #: Merge.rc:760
-#: Merge.rc:1956
-#: Merge.rc:1969
+#: Merge.rc:1953
+#: Merge.rc:1966
 #, c-format
 msgid "General"
 msgstr "Genel"
@@ -1327,13 +1327,13 @@ msgid "Enable multiple compare windows for"
 msgstr "Çok Sayýda Karþýlaþtýrma Penceresi Yükle"
 
 #: Merge.rc:787
-#: Merge.rc:1614
+#: Merge.rc:1611
 #, c-format
 msgid "&Folder compare"
 msgstr "Klasör Karþýlaþtýrýrken"
 
 #: Merge.rc:789
-#: Merge.rc:1616
+#: Merge.rc:1613
 #, c-format
 msgid "Fil&e compare"
 msgstr "Dosya Karþýlaþtýrýrken"
@@ -1457,7 +1457,7 @@ msgid "Replace &All"
 msgstr "Tümünü Deðiþtir"
 
 #: Merge.rc:872
-#: Merge.rc:2205
+#: Merge.rc:2202
 #, c-format
 msgid "Rational ClearCase"
 msgstr "Rational ClearCase"
@@ -1468,7 +1468,7 @@ msgid "CheckOut"
 msgstr "Çýkýþ Kontrolü"
 
 #: Merge.rc:880
-#: Merge.rc:1175
+#: Merge.rc:1172
 #, c-format
 msgid "Comments"
 msgstr "Açýklamalar"
@@ -1493,546 +1493,541 @@ msgstr "Aþaðýdaki Satýr Filtreleri Yüklensin"
 msgid "Regular Expressions (one per line):"
 msgstr "Kurallý Ýfadeler (Bir Satýr Baþýna Düþen):"
 
-#: Merge.rc:902
-#, c-format
-msgid "Save"
-msgstr "Kaydet"
-
-#: Merge.rc:903
+#: Merge.rc:900
 #, c-format
 msgid "New"
 msgstr "Yeni"
 
-#: Merge.rc:904
+#: Merge.rc:901
 #, c-format
 msgid "Edit"
 msgstr "Düzenle"
 
-#: Merge.rc:905
+#: Merge.rc:902
 #, c-format
 msgid "Remove"
 msgstr "Kaldýr"
 
-#: Merge.rc:910
-#: Merge.rc:1959
+#: Merge.rc:907
+#: Merge.rc:1956
 #, c-format
 msgid "Colors"
 msgstr "Renkler"
 
-#: Merge.rc:913
+#: Merge.rc:910
 #, c-format
 msgid "Difference:"
 msgstr "Farklýlýk:"
 
-#: Merge.rc:917
+#: Merge.rc:914
 #, c-format
 msgid "Selected Difference:"
 msgstr "Seçili Farklýlýk:"
 
-#: Merge.rc:921
-#: Merge.rc:1566
+#: Merge.rc:918
+#: Merge.rc:1563
 #, c-format
 msgid "Background"
 msgstr "Arka Plan"
 
-#: Merge.rc:922
+#: Merge.rc:919
 #, c-format
 msgid "Deleted"
 msgstr "Silinen"
 
-#: Merge.rc:935
-#: Merge.rc:1361
-#: Merge.rc:1567
-#: Merge.rc:1960
+#: Merge.rc:932
+#: Merge.rc:1358
+#: Merge.rc:1564
+#: Merge.rc:1957
 #, c-format
 msgid "Text"
 msgstr "Metin"
 
-#: Merge.rc:939
+#: Merge.rc:936
 #, c-format
 msgid "Ignored Difference:"
 msgstr "Yok Sayýlan Farklýlýk:"
 
-#: Merge.rc:949
+#: Merge.rc:946
 #, c-format
 msgid "Moved:"
 msgstr "Taþýnan:"
 
-#: Merge.rc:959
+#: Merge.rc:956
 #, c-format
 msgid "Selected Moved:"
 msgstr "Seçili Taþýnan:"
 
-#: Merge.rc:966
+#: Merge.rc:963
 #, c-format
 msgid "Word Difference:"
 msgstr "Sözcük Farklýlýðý:"
 
-#: Merge.rc:976
+#: Merge.rc:973
 #, c-format
 msgid "Selected Word Diff:"
 msgstr "Seçili Sözcük Farklýlýðý:"
 
-#: Merge.rc:986
-#: Merge.rc:1065
-#: Merge.rc:1094
-#: Merge.rc:1177
-#: Merge.rc:1407
-#: Merge.rc:1699
+#: Merge.rc:983
+#: Merge.rc:1062
+#: Merge.rc:1091
+#: Merge.rc:1174
+#: Merge.rc:1404
+#: Merge.rc:1696
 #, c-format
 msgid "Defaults"
 msgstr "Varsayýlan Ayarlar"
 
-#: Merge.rc:992
-#: Merge.rc:1349
-#: Merge.rc:1555
+#: Merge.rc:989
+#: Merge.rc:1346
+#: Merge.rc:1552
 #, c-format
 msgid "Dialog"
 msgstr "Ýletiþim"
 
-#: Merge.rc:1002
-#: Merge.rc:1962
+#: Merge.rc:999
+#: Merge.rc:1959
 #, c-format
 msgid "System"
 msgstr "Sistem"
 
-#: Merge.rc:1005
+#: Merge.rc:1002
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr "Silinen Dosyalarý Geri Dönüþüm Kutusuna Gönder"
 
-#: Merge.rc:1007
+#: Merge.rc:1004
 #, c-format
 msgid "&External editor:"
 msgstr "Harici Düzenleyici:"
 
-#: Merge.rc:1010
+#: Merge.rc:1007
 #, c-format
 msgid "&Filter folder:"
 msgstr "Filtre Klasörü:"
 
-#: Merge.rc:1012
+#: Merge.rc:1009
 #, c-format
 msgid "B&rowse..."
 msgstr "Gözat..."
 
-#: Merge.rc:1013
+#: Merge.rc:1010
 #, c-format
 msgid "Temporary files folder"
 msgstr "Geçici Klasör Seçiminizi Yapýnýz"
 
-#: Merge.rc:1014
+#: Merge.rc:1011
 #, c-format
 msgid "S&ystem's temp folder"
 msgstr "Geçici Sistem Klasörü"
 
-#: Merge.rc:1016
+#: Merge.rc:1013
 #, c-format
 msgid "C&ustom folder:"
 msgstr "Özel Klasör:"
 
-#: Merge.rc:1019
-#: Merge.rc:1035
+#: Merge.rc:1016
+#: Merge.rc:1032
 #, c-format
 msgid "Br&owse..."
 msgstr "Gözat..."
 
-#: Merge.rc:1025
+#: Merge.rc:1022
 #, c-format
 msgid "Patch Generator"
 msgstr "Yama Oluþtur"
 
-#: Merge.rc:1028
+#: Merge.rc:1025
 #, c-format
 msgid "File&1:"
 msgstr "Dosya &1:"
 
-#: Merge.rc:1032
+#: Merge.rc:1029
 #, c-format
 msgid "File&2:"
 msgstr "Dosya &2:"
 
-#: Merge.rc:1036
+#: Merge.rc:1033
 #, c-format
 msgid "&Swap"
 msgstr "Yer Deðiþtir"
 
-#: Merge.rc:1037
+#: Merge.rc:1034
 #, c-format
 msgid "&Append to existing file"
 msgstr "Dosyaya Sonuç Ekle"
 
-#: Merge.rc:1039
+#: Merge.rc:1036
 #, c-format
 msgid "&Result:"
 msgstr "Sonuç:"
 
-#: Merge.rc:1043
+#: Merge.rc:1040
 #, c-format
 msgid "&Format"
 msgstr "Biçim"
 
-#: Merge.rc:1044
+#: Merge.rc:1041
 #, c-format
 msgid "St&yle:"
 msgstr "Tür:"
 
-#: Merge.rc:1047
+#: Merge.rc:1044
 #, fuzzy, c-format
 msgid "&Context:"
 msgstr "Sýnýr:"
 
-#: Merge.rc:1050
+#: Merge.rc:1047
 #, c-format
 msgid "W&hitespaces"
 msgstr "Boþluklar"
 
-#: Merge.rc:1051
+#: Merge.rc:1048
 #, c-format
 msgid "Com&pare"
 msgstr "Karþýlaþtýr"
 
-#: Merge.rc:1053
+#: Merge.rc:1050
 #, c-format
 msgid "I&gnore changes"
 msgstr "Deðiþiklikleri Yok Say"
 
-#: Merge.rc:1055
+#: Merge.rc:1052
 #, c-format
 msgid "Ig&nore all"
 msgstr "Tümünü Yok Say"
 
-#: Merge.rc:1057
+#: Merge.rc:1054
 #, c-format
 msgid "Ignor&e blank lines"
 msgstr "Boþ Satýrlarý Yok Say"
 
-#: Merge.rc:1059
+#: Merge.rc:1056
 #, c-format
 msgid "Case sensi&tive"
 msgstr "Büyük-Küçük Harf Duyarlýlýðý"
 
-#: Merge.rc:1061
+#: Merge.rc:1058
 #, c-format
 msgid "Inclu&de command line"
 msgstr "Komut Satýrýný Dahil Et"
 
-#: Merge.rc:1063
+#: Merge.rc:1060
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Harici Düzenleyici Ýle Aç"
 
-#: Merge.rc:1085
+#: Merge.rc:1082
 #, c-format
 msgid "Display Columns"
 msgstr "Sütunlarý Göster"
 
-#: Merge.rc:1091
+#: Merge.rc:1088
 #, c-format
 msgid "Move &Up"
 msgstr "Yukarý Taþý"
 
-#: Merge.rc:1092
+#: Merge.rc:1089
 #, c-format
 msgid "Move &Down"
 msgstr "Aþaðý Taþý"
 
-#: Merge.rc:1102
+#: Merge.rc:1099
 #, c-format
 msgid "Select Unpacker"
 msgstr "Çýkartýcý Seç"
 
-#: Merge.rc:1107
+#: Merge.rc:1104
 #, c-format
 msgid "File unpacker:"
 msgstr "Dosya Çýkartýcý:"
 
-#: Merge.rc:1110
+#: Merge.rc:1107
 #, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr "Uzantýsýna Bakmadan Tüm Çýkartýcýlarý Göster"
 
-#: Merge.rc:1113
+#: Merge.rc:1110
 #, c-format
 msgid "Extensions list:"
 msgstr "Uzantý Listesi:"
 
-#: Merge.rc:1114
+#: Merge.rc:1111
 #, c-format
 msgid "Description:"
 msgstr "Taným:"
 
-#: Merge.rc:1125
+#: Merge.rc:1122
 #, c-format
 msgid " Folder Compare Progress"
 msgstr "Klasör Karþýlaþtýrma Ýþlemi"
 
-#: Merge.rc:1128
-#: Merge.rc:1909
+#: Merge.rc:1125
+#: Merge.rc:1906
 #, c-format
 msgid "Stop"
 msgstr "Dur"
 
-#: Merge.rc:1133
+#: Merge.rc:1130
 #, c-format
 msgid "Comparing items..."
 msgstr "Ögeler Karþýlaþtýrýlýyor..."
 
-#: Merge.rc:1134
+#: Merge.rc:1131
 #, c-format
 msgid "Items compared:"
 msgstr "Karþýlaþtýrýlan Ögeler:"
 
-#: Merge.rc:1135
+#: Merge.rc:1132
 #, c-format
 msgid "Items total:"
 msgstr "Toplam Ögeler:"
 
-#: Merge.rc:1141
+#: Merge.rc:1138
 #, c-format
 msgid "Go To"
 msgstr "Git"
 
-#: Merge.rc:1144
+#: Merge.rc:1141
 #, c-format
 msgid "G&oto:"
 msgstr "Git:"
 
-#: Merge.rc:1146
+#: Merge.rc:1143
 #, c-format
 msgid "File"
 msgstr "Dosya"
 
-#: Merge.rc:1151
+#: Merge.rc:1148
 #, c-format
 msgid "Goto what"
 msgstr "Git"
 
-#: Merge.rc:1152
+#: Merge.rc:1149
 #, c-format
 msgid "Li&ne"
 msgstr "Satýr"
 
-#: Merge.rc:1154
+#: Merge.rc:1151
 #, c-format
 msgid "&Difference"
 msgstr "Farklýlýk"
 
-#: Merge.rc:1156
+#: Merge.rc:1153
 #, c-format
 msgid "&Go To"
 msgstr "Git"
 
-#: Merge.rc:1162
-#: Merge.rc:1957
+#: Merge.rc:1159
+#: Merge.rc:1954
 #, c-format
 msgid "Compare"
 msgstr "Karþýlaþtýrma"
 
-#: Merge.rc:1165
+#: Merge.rc:1162
 #, c-format
 msgid "Whitespace"
 msgstr "Boþluk"
 
-#: Merge.rc:1166
+#: Merge.rc:1163
 #, c-format
 msgid "&Compare"
 msgstr "Karþýlaþtýr"
 
-#: Merge.rc:1167
+#: Merge.rc:1164
 #, c-format
 msgid "&Ignore change"
 msgstr "Deðiþikliði Yok Say"
 
-#: Merge.rc:1168
+#: Merge.rc:1165
 #, c-format
 msgid "I&gnore all"
 msgstr "Tümünü Yok Say"
 
-#: Merge.rc:1169
+#: Merge.rc:1166
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "Boþ Satýrlarý Yok Say"
 
-#: Merge.rc:1170
+#: Merge.rc:1167
 #, c-format
 msgid "Ignore &case"
 msgstr "Büyük-Küçük Harf Umursama"
 
-#: Merge.rc:1171
+#: Merge.rc:1168
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr "Satýrbaþý Farklýlýklarýný Yok Say (Windows/Unix/Mac)"
 
-#: Merge.rc:1173
+#: Merge.rc:1170
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Taþýnan Blok Tespitini Yükle"
 
-#: Merge.rc:1174
+#: Merge.rc:1171
 #, c-format
 msgid "&Match similar lines"
 msgstr "Benzer Satýrlarý Eþleþtir"
 
-#: Merge.rc:1176
+#: Merge.rc:1173
 #, c-format
 msgid "Filter Comments"
 msgstr "Filtre Açýklamalarý"
 
-#: Merge.rc:1182
-#: Merge.rc:1958
+#: Merge.rc:1179
+#: Merge.rc:1955
 #, c-format
 msgid "Editor"
 msgstr "Düzenleyici"
 
-#: Merge.rc:1185
+#: Merge.rc:1182
 #, c-format
 msgid "&Highlight syntax"
 msgstr "Sözdizimi Vurgusu"
 
-#: Merge.rc:1187
+#: Merge.rc:1184
 #, c-format
 msgid "&Automatic rescan"
 msgstr "Otomatik Olarak Yeniden Tara"
 
-#: Merge.rc:1189
+#: Merge.rc:1186
 #, c-format
 msgid "&Preserve original EOL chars"
 msgstr "Orijinal Satýr Sonu (Kýsaca SS) Karakterlerini Koru"
 
-#: Merge.rc:1191
+#: Merge.rc:1188
 #, c-format
 msgid "Tabs"
 msgstr "Girinti Ayarlarý"
 
-#: Merge.rc:1192
+#: Merge.rc:1189
 #, c-format
 msgid "&Tab size:"
 msgstr "Sekme Geniþliði:"
 
-#: Merge.rc:1195
+#: Merge.rc:1192
 #, c-format
 msgid "&Insert Tabs"
 msgstr "Sekme Ekle"
 
-#: Merge.rc:1197
+#: Merge.rc:1194
 #, c-format
 msgid "Insert &Spaces"
 msgstr "Boþluk Ekle"
 
-#: Merge.rc:1199
+#: Merge.rc:1196
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Satýr Farklýlýklarýný Renklendir"
 
-#: Merge.rc:1201
+#: Merge.rc:1198
 #, c-format
 msgid "View line differences"
 msgstr "Satýr Farklýlýklarýný Göster"
 
-#: Merge.rc:1203
+#: Merge.rc:1200
 #, c-format
 msgid "&Character level"
 msgstr "Karakter Bölümü"
 
-#: Merge.rc:1205
+#: Merge.rc:1202
 #, c-format
 msgid "&Word-level:"
 msgstr "Sözcük Bölümü:"
 
-#: Merge.rc:1209
+#: Merge.rc:1206
 #, c-format
 msgid "W&ord break characters:"
 msgstr "Sözcük Bölme Karakterleri:"
 
-#: Merge.rc:1222
+#: Merge.rc:1219
 #, c-format
 msgid "Filefilters"
 msgstr "Dosya Filtreleri"
 
-#: Merge.rc:1228
+#: Merge.rc:1225
 #, c-format
 msgid "Test"
 msgstr "Dene"
 
-#: Merge.rc:1229
+#: Merge.rc:1226
 #, c-format
 msgid "Install..."
 msgstr "Yükle..."
 
-#: Merge.rc:1230
+#: Merge.rc:1227
 #, c-format
 msgid "New..."
 msgstr "Yeni..."
 
-#: Merge.rc:1231
+#: Merge.rc:1228
 #, c-format
 msgid "Edit..."
 msgstr "Düzenle..."
 
-#: Merge.rc:1232
+#: Merge.rc:1229
 #, c-format
 msgid "Delete..."
 msgstr "Sil..."
 
-#: Merge.rc:1238
+#: Merge.rc:1235
 #, c-format
 msgid "Save modified files?"
 msgstr "Dosya Deðiþiklikleri Kaydedilsin mi?"
 
-#: Merge.rc:1241
+#: Merge.rc:1238
 #, c-format
 msgid "Left side file"
 msgstr "Sol Taraftaki Dosya"
 
-#: Merge.rc:1244
+#: Merge.rc:1241
 #, c-format
 msgid "&Save changes"
 msgstr "Deðiþiklikleri Kaydet"
 
-#: Merge.rc:1246
+#: Merge.rc:1243
 #, fuzzy, c-format
 msgid "&Discard changes"
 msgstr "Deðiþiklikleri Seçimden Çýkart"
 
-#: Merge.rc:1248
+#: Merge.rc:1245
 #, c-format
 msgid "Right side file"
 msgstr "Sað Taraftaki Dosya"
 
-#: Merge.rc:1251
+#: Merge.rc:1248
 #, c-format
 msgid "S&ave changes"
 msgstr "Deðiþiklikleri Kaydet"
 
-#: Merge.rc:1253
+#: Merge.rc:1250
 #, fuzzy, c-format
 msgid "Dis&card changes"
 msgstr "Deðiþiklikleri Seçimden Çýkart"
 
-#: Merge.rc:1255
+#: Merge.rc:1252
 #, fuzzy, c-format
 msgid "Disca&rd All"
 msgstr "Tümünü Seçim Dýþý Býrak"
 
-#: Merge.rc:1262
-#: Merge.rc:1510
-#: Merge.rc:1964
+#: Merge.rc:1259
+#: Merge.rc:1507
+#: Merge.rc:1961
 #, c-format
 msgid "Codepage"
 msgstr "Kod Sayfasý"
 
-#: Merge.rc:1265
+#: Merge.rc:1262
 #, c-format
 msgid "Default Codepage"
 msgstr "Varsayýlan Kod Sayfasý"
 
-#: Merge.rc:1266
+#: Merge.rc:1263
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Unicode Olmayan Dosyalar Yüklenirken Dikkate Alýnacak Varsayýlan Kod Sayfasýný Seçiniz:"
 
-#: Merge.rc:1268
+#: Merge.rc:1265
 #, c-format
 msgid ""
 "Detect codepage info for these files: .html, .rc, .xml \n"
@@ -2041,32 +2036,32 @@ msgstr ""
 "Bu Dosyalar Ýçin Kod Sayfasý Bilgisi Ara: .html, .rc, .xml \n"
 "Oturumu Yeniden Baþlatmak Gerekir"
 
-#: Merge.rc:1271
+#: Merge.rc:1268
 #, c-format
 msgid "System codepage"
 msgstr "Sistem Kod Sayfasý"
 
-#: Merge.rc:1273
+#: Merge.rc:1270
 #, c-format
 msgid "According to WinMerge User Interface"
 msgstr "WinMerge Kullanýcý Arayüzü"
 
-#: Merge.rc:1275
+#: Merge.rc:1272
 #, c-format
 msgid "Custom codepage:"
 msgstr "Özel Kod Sayfasý:"
 
-#: Merge.rc:1283
+#: Merge.rc:1280
 #, c-format
 msgid "WinMerge - Archive support disabled"
 msgstr "WinMerge - Sýkýþtýrýlmýþ Dosya Desteði Kapalý"
 
-#: Merge.rc:1286
+#: Merge.rc:1283
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
 msgstr "7-Zip Tespit Edilemedi (Ya da Yüklü Deðil ?)"
 
-#: Merge.rc:1289
+#: Merge.rc:1286
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
@@ -2076,12 +2071,12 @@ msgstr ""
 "7-Zip'in 3.11 Ya da Daha Üst Sürümünün Kurulu Olmasý Gerekir,\n"
 "Veya Program Dizinine 7-Zip Temel Parçalarýný Kopyalamanýz Gerekir."
 
-#: Merge.rc:1291
+#: Merge.rc:1288
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
 msgstr "Orada Ayrýca Bir Arayüz Eklentisi (Merge7z*.dll) Olmalýdýr."
 
-#: Merge.rc:1293
+#: Merge.rc:1290
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
@@ -2090,12 +2085,12 @@ msgstr ""
 "Arayüz Eklentileri Ýçin Son Sürümler Daha Uygun Olduðundan,\n"
 "Lütfen Aþaðýda Önerilen 7-Zip Sürümünü Kullanýnýz."
 
-#: Merge.rc:1295
+#: Merge.rc:1292
 #, c-format
 msgid "Version"
 msgstr "Sürüm"
 
-#: Merge.rc:1297
+#: Merge.rc:1294
 #, c-format
 msgid ""
 "Plugin required\n"
@@ -2104,54 +2099,54 @@ msgstr ""
 "Gereken Eklenti\n"
 "(dllbuild %04u)"
 
-#: Merge.rc:1299
+#: Merge.rc:1296
 #, c-format
 msgid "Recommended version of 7-Zip:"
 msgstr "Önerilen 7-Zip Sürümü:"
 
+#: Merge.rc:1299
 #: Merge.rc:1302
-#: Merge.rc:1305
 #, c-format
 msgid "present"
 msgstr "Mevcut"
 
-#: Merge.rc:1303
+#: Merge.rc:1300
 #, c-format
 msgid "Merge7z000U.dll"
 msgstr "Merge7z000U.dll"
 
-#: Merge.rc:1306
+#: Merge.rc:1303
 #, c-format
 msgid "7-Zip software installed on your computer:"
 msgstr "Bilgisayarýnýzda Yüklü 7-Zip Yazýlýmý:"
 
-#: Merge.rc:1308
-#: Merge.rc:1313
+#: Merge.rc:1305
+#: Merge.rc:1310
 #, c-format
 msgid "none"
 msgstr "Yok"
 
-#: Merge.rc:1310
+#: Merge.rc:1307
 #, c-format
 msgid "missing"
 msgstr "Yok"
 
-#: Merge.rc:1311
+#: Merge.rc:1308
 #, c-format
 msgid "7-Zip components for standalone operation:"
 msgstr "7-Zip Temel Parçalarý:"
 
-#: Merge.rc:1315
+#: Merge.rc:1312
 #, c-format
 msgid "outdated"
 msgstr "Zamaný Geçmiþ"
 
-#: Merge.rc:1316
+#: Merge.rc:1313
 #, c-format
 msgid "Plugins on path:"
 msgstr "Eklentilerin Olduðu Dizin:"
 
-#: Merge.rc:1317
+#: Merge.rc:1314
 #, c-format
 msgid ""
 "Don't display this &message again.\n"
@@ -2160,567 +2155,567 @@ msgstr ""
 "Bu Mesajý Tekrar Gösterme!\n"
 "(Bu Mesajý Yeniden Görmek Ýçin Yardým Menüsünü Kullanabilirsiniz.)"
 
-#: Merge.rc:1321
+#: Merge.rc:1318
 #, c-format
 msgid "Plugin Download"
 msgstr "Eklenti Ýndir"
 
-#: Merge.rc:1330
+#: Merge.rc:1327
 #, c-format
 msgid "Options"
 msgstr "Ayarlar"
 
-#: Merge.rc:1341
+#: Merge.rc:1338
 #, c-format
 msgid " Categories"
 msgstr "  KATEGORÝLER"
 
-#: Merge.rc:1343
+#: Merge.rc:1340
 #, c-format
 msgid "Import..."
 msgstr "Ýçe Aktar..."
 
-#: Merge.rc:1344
+#: Merge.rc:1341
 #, c-format
 msgid "Export..."
 msgstr "Dýþa Aktar..."
 
-#: Merge.rc:1352
+#: Merge.rc:1349
 #, c-format
 msgid "Keywords:"
 msgstr "Anahtar Sözcükler:"
 
-#: Merge.rc:1353
+#: Merge.rc:1350
 #, c-format
 msgid "Function names:"
 msgstr "Fonksiyon Adlarý:"
 
-#: Merge.rc:1354
+#: Merge.rc:1351
 #, c-format
 msgid "Comments:"
 msgstr "Açýklamalar:"
 
-#: Merge.rc:1355
+#: Merge.rc:1352
 #, c-format
 msgid "Numbers:"
 msgstr "Numaralar:"
 
-#: Merge.rc:1356
+#: Merge.rc:1353
 #, c-format
 msgid "Operators:"
 msgstr "Ýþlemciler:"
 
-#: Merge.rc:1357
+#: Merge.rc:1354
 #, c-format
 msgid "Strings:"
 msgstr "Dizgiler:"
 
-#: Merge.rc:1358
+#: Merge.rc:1355
 #, c-format
 msgid "Preprocessor:"
 msgstr "Öniþlemci:"
 
-#: Merge.rc:1359
+#: Merge.rc:1356
 #, c-format
 msgid "User 1:"
 msgstr "Kullanýcý 1:"
 
-#: Merge.rc:1360
+#: Merge.rc:1357
 #, c-format
 msgid "User 2:"
 msgstr "Kullanýcý 2:"
 
-#: Merge.rc:1365
-#: Merge.rc:1370
-#: Merge.rc:1375
-#: Merge.rc:1380
-#: Merge.rc:1385
-#: Merge.rc:1390
-#: Merge.rc:1395
-#: Merge.rc:1400
-#: Merge.rc:1405
+#: Merge.rc:1362
+#: Merge.rc:1367
+#: Merge.rc:1372
+#: Merge.rc:1377
+#: Merge.rc:1382
+#: Merge.rc:1387
+#: Merge.rc:1392
+#: Merge.rc:1397
+#: Merge.rc:1402
 #, c-format
 msgid "Bold"
 msgstr "Kalýn"
 
-#: Merge.rc:1413
+#: Merge.rc:1410
 #, c-format
 msgid "Folder Compare Report"
 msgstr "Klasör Karþýlaþtýrma Raporu"
 
-#: Merge.rc:1416
+#: Merge.rc:1413
 #, c-format
 msgid "Report &File:"
 msgstr "Rapor Dosyasý:"
 
-#: Merge.rc:1419
-#: Merge.rc:1593
-#: Merge.rc:1597
-#: Merge.rc:1624
+#: Merge.rc:1416
+#: Merge.rc:1590
+#: Merge.rc:1594
+#: Merge.rc:1621
 #, c-format
 msgid "Browse..."
 msgstr "Gözat..."
 
-#: Merge.rc:1420
+#: Merge.rc:1417
 #, c-format
 msgid "&Style:"
 msgstr "Rapor Türü:"
 
-#: Merge.rc:1423
+#: Merge.rc:1420
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "Panoya Kopyala"
 
-#: Merge.rc:1431
+#: Merge.rc:1428
 #, c-format
 msgid "Shared or Private Filter"
 msgstr "Özel Veya Ortak Filtre"
 
-#: Merge.rc:1434
+#: Merge.rc:1431
 #, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "Ne Tür Filtre Hazýrlamak Ýstiyorsunuz?"
 
-#: Merge.rc:1436
+#: Merge.rc:1433
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "Ortak Filtre (Tüm Kullanýcýlar Ýçin)"
 
-#: Merge.rc:1438
+#: Merge.rc:1435
 #, c-format
 msgid "Private Filter (only for current user)"
 msgstr "Özel Filtre (Sadece Geçerli Kullanýcý Ýçin)"
 
-#: Merge.rc:1446
-#: Merge.rc:1965
+#: Merge.rc:1443
+#: Merge.rc:1962
 #, c-format
 msgid "Archive Support"
 msgstr "Sýkýþtýrýlmýþ Dosya Desteði"
 
-#: Merge.rc:1449
+#: Merge.rc:1446
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
 msgstr "Sýkýþtýrýlmýþ Dosya Desteði Ýçin 7-Zip Eklentisi Kurulu Olmalýdýr:"
 
-#: Merge.rc:1451
+#: Merge.rc:1448
 #, c-format
 msgid "Download 7-zip Plugin"
 msgstr "7-Zip Eklentisi Ýndir"
 
-#: Merge.rc:1452
+#: Merge.rc:1449
 #, c-format
 msgid "&Enable archive file support"
 msgstr "Sýkýþtýrýlmýþ Dosya Desteðini Yükle"
 
-#: Merge.rc:1454
+#: Merge.rc:1451
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
 msgstr "Varsa Kurulu 7-Zip Programýný Kullan"
 
-#: Merge.rc:1457
+#: Merge.rc:1454
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
 msgstr "WinMerge Klasöründeki 7-Zip'i Kullan"
 
-#: Merge.rc:1459
+#: Merge.rc:1456
 #, c-format
 msgid "&Detect archive type from file signature"
 msgstr "Sýkýþtýrma Türünü Tespit Et"
 
-#: Merge.rc:1467
+#: Merge.rc:1464
 #, c-format
 msgid "Compare Statistics"
 msgstr "Sayýsal Verileri Karþýlaþtýr"
 
-#: Merge.rc:1470
+#: Merge.rc:1467
 #, c-format
 msgid "Folders:"
 msgstr "Klasörler:"
 
-#: Merge.rc:1471
+#: Merge.rc:1468
 #, c-format
 msgid "Files:"
 msgstr "Dosyalar:"
 
-#: Merge.rc:1472
-#: Merge.rc:2359
+#: Merge.rc:1469
+#: Merge.rc:2356
 #, c-format
 msgid "Different"
 msgstr "Farklýlýk"
 
-#: Merge.rc:1473
+#: Merge.rc:1470
 #, c-format
 msgid "Text:"
 msgstr "Metin:"
 
-#: Merge.rc:1476
-#: Merge.rc:1495
+#: Merge.rc:1473
+#: Merge.rc:1492
 #, fuzzy, c-format
 msgid "Binary:"
 msgstr "Binary:"
 
-#: Merge.rc:1479
+#: Merge.rc:1476
 #, c-format
 msgid "Unique"
 msgstr "Benzersiz"
 
-#: Merge.rc:1480
+#: Merge.rc:1477
 #, c-format
 msgid "Left:"
 msgstr "Sol:"
 
-#: Merge.rc:1485
+#: Merge.rc:1482
 #, c-format
 msgid "Right:"
 msgstr "Sað:"
 
-#: Merge.rc:1490
-#: Merge.rc:2353
+#: Merge.rc:1487
+#: Merge.rc:2350
 #, c-format
 msgid "Identical"
 msgstr "Ayný"
 
-#: Merge.rc:1499
+#: Merge.rc:1496
 #, c-format
 msgid "Total:"
 msgstr "Toplam:"
 
-#: Merge.rc:1504
+#: Merge.rc:1501
 #, c-format
 msgid "Close"
 msgstr "Kapat"
 
-#: Merge.rc:1513
+#: Merge.rc:1510
 #, c-format
 msgid "Affects"
 msgstr "Etkiler"
 
+#: Merge.rc:1513
 #: Merge.rc:1516
-#: Merge.rc:1519
 #, c-format
 msgid "(Affects)"
 msgstr "(Etkiler)"
 
-#: Merge.rc:1520
+#: Merge.rc:1517
 #, c-format
 msgid "Select Codepage for"
 msgstr "Kod Sayfasý Seç"
 
-#: Merge.rc:1521
+#: Merge.rc:1518
 #, c-format
 msgid "&File Loading:"
 msgstr "Dosya Yükleniyor:"
 
+#: Merge.rc:1520
 #: Merge.rc:1523
-#: Merge.rc:1526
 #, c-format
 msgid "..."
 msgstr "..."
 
-#: Merge.rc:1524
+#: Merge.rc:1521
 #, c-format
 msgid "File &Saving:"
 msgstr "Dosya Kaydediliyor:"
 
-#: Merge.rc:1527
+#: Merge.rc:1524
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "Ýkisi Ýçin Ayný Kod Sayfasýný Kullan"
 
-#: Merge.rc:1530
+#: Merge.rc:1527
 #, c-format
 msgid "&Apply"
 msgstr "Uygula"
 
-#: Merge.rc:1531
-#: Merge.rc:1931
+#: Merge.rc:1528
+#: Merge.rc:1928
 #, c-format
 msgid "&Cancel"
 msgstr "Ýptal"
 
-#: Merge.rc:1536
+#: Merge.rc:1533
 #, c-format
 msgid "Test Filter"
 msgstr "Filtreyi Dene"
 
-#: Merge.rc:1539
+#: Merge.rc:1536
 #, c-format
 msgid "Testing filter ..."
 msgstr "Filtre Deneniyor..."
 
-#: Merge.rc:1541
+#: Merge.rc:1538
 #, c-format
 msgid "&Enter text to test:"
 msgstr "Deneme Metni Giriniz:"
 
-#: Merge.rc:1543
+#: Merge.rc:1540
 #, c-format
 msgid "&Folder Name"
 msgstr "Klasör Adý"
 
-#: Merge.rc:1545
+#: Merge.rc:1542
 #, c-format
 msgid "Result:"
 msgstr "Sonuç:"
 
-#: Merge.rc:1549
+#: Merge.rc:1546
 #, c-format
 msgid "&Test"
 msgstr "Dene"
 
-#: Merge.rc:1550
+#: Merge.rc:1547
 #, c-format
 msgid "&Close"
 msgstr "Kapat"
 
-#: Merge.rc:1558
+#: Merge.rc:1555
 #, c-format
 msgid "&Use customized text colors"
 msgstr "Özel Metin Rengi Kullan"
 
-#: Merge.rc:1561
+#: Merge.rc:1558
 #, c-format
 msgid "Custom text colors"
 msgstr "Özel Metin Renkleri"
 
-#: Merge.rc:1563
+#: Merge.rc:1560
 #, c-format
 msgid "Whitespace:"
 msgstr "Boþluk:"
 
-#: Merge.rc:1564
+#: Merge.rc:1561
 #, c-format
 msgid "Regular text:"
 msgstr "Normal Metin:"
 
-#: Merge.rc:1565
+#: Merge.rc:1562
 #, c-format
 msgid "Selection:"
 msgstr "Seçim:"
 
-#: Merge.rc:1588
+#: Merge.rc:1585
 #, c-format
 msgid "Paths"
 msgstr "Dizinler"
 
-#: Merge.rc:1594
+#: Merge.rc:1591
 #, c-format
 msgid "R&ead-only"
 msgstr "Salt Okunur"
 
-#: Merge.rc:1598
+#: Merge.rc:1595
 #, c-format
 msgid "Re&ad-only"
 msgstr "Salt Okunur"
 
-#: Merge.rc:1604
+#: Merge.rc:1601
 #, c-format
 msgid "Open..."
 msgstr "Aç..."
 
-#: Merge.rc:1605
+#: Merge.rc:1602
 #, c-format
 msgid "Save..."
 msgstr "Kaydet..."
 
-#: Merge.rc:1610
-#: Merge.rc:1966
+#: Merge.rc:1607
+#: Merge.rc:1963
 #, c-format
 msgid "Backup Files"
 msgstr "Yedek Dosyalarý"
 
-#: Merge.rc:1613
+#: Merge.rc:1610
 #, c-format
 msgid "Create backup files in:"
 msgstr "Yedek Al:"
 
-#: Merge.rc:1618
+#: Merge.rc:1615
 #, c-format
 msgid "Create backup files into:"
 msgstr "Yedek Dosyalarýnýn Oluþturulacaðý Yer:"
 
-#: Merge.rc:1619
+#: Merge.rc:1616
 #, c-format
 msgid "&Original file's folder"
 msgstr "Orijinal Dosyanýn Olduðu Klasör"
 
-#: Merge.rc:1621
+#: Merge.rc:1618
 #, c-format
 msgid "&Global backup folder:"
 msgstr "Yedekler Ýçin Özel Bir Klasör Belirle:"
 
-#: Merge.rc:1625
+#: Merge.rc:1622
 #, c-format
 msgid "Backup filename:"
 msgstr "Yedek Dosyasý Adlandýrýlýrken:"
 
-#: Merge.rc:1626
+#: Merge.rc:1623
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "Sonuna '.bak' Uzantýsý Ekle"
 
-#: Merge.rc:1628
+#: Merge.rc:1625
 #, c-format
 msgid "A&ppend timestamp"
 msgstr "Sonuna Tarih Damgasý Ekle"
 
-#: Merge.rc:1635
-#: Merge.rc:2261
+#: Merge.rc:1632
+#: Merge.rc:2258
 #, c-format
 msgid "Confirm Copy"
 msgstr "Kopyayý Doðrula"
 
-#: Merge.rc:1639
+#: Merge.rc:1636
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr "XXX Ögelerini Kopyalamak Ýstediðinize Emin misiniz?"
 
-#: Merge.rc:1641
+#: Merge.rc:1638
 #, c-format
 msgid "From left"
 msgstr "Soldan"
 
-#: Merge.rc:1644
+#: Merge.rc:1641
 #, c-format
 msgid "To right"
 msgstr "Saða"
 
-#: Merge.rc:1647
+#: Merge.rc:1644
 #, c-format
 msgid "Yes"
 msgstr "Evet"
 
-#: Merge.rc:1648
+#: Merge.rc:1645
 #, c-format
 msgid "No"
 msgstr "Hayýr"
 
-#: Merge.rc:1654
+#: Merge.rc:1651
 #, c-format
 msgid "Plugins"
 msgstr "Eklentiler"
 
-#: Merge.rc:1657
+#: Merge.rc:1654
 #, c-format
 msgid "&Enable plugins"
 msgstr "Eklentileri Yükle"
 
-#: Merge.rc:1668
-#: Merge.rc:1967
+#: Merge.rc:1665
+#: Merge.rc:1964
 #, c-format
 msgid "Shell Integration"
 msgstr "Sað Tuþ Eklentisi"
 
-#: Merge.rc:1671
+#: Merge.rc:1668
 #, c-format
 msgid "Explorer"
 msgstr "WinMerge'i Sað Tuþa Eklemek Ýster misiniz?"
 
-#: Merge.rc:1672
+#: Merge.rc:1669
 #, c-format
 msgid "E&nable advanced menu"
 msgstr "Geliþmiþ Menüyü Yükle"
 
-#: Merge.rc:1674
+#: Merge.rc:1671
 #, c-format
 msgid "In&clude subfolders by default"
 msgstr "Varsayýlan Olarak Alt Klasörleri Dahil Et"
 
-#: Merge.rc:1676
+#: Merge.rc:1673
 #, c-format
 msgid "&Add to context menu"
 msgstr "Sað Tuþ Menüsüne Ekle"
 
-#: Merge.rc:1678
+#: Merge.rc:1675
 #, c-format
 msgid "Folder compare"
 msgstr "WinMerge'de Dosya veya Klasör Karþýlaþtýrýrken"
 
-#: Merge.rc:1679
+#: Merge.rc:1676
 #, c-format
 msgid "Add &Shell menu to context menu"
 msgstr "Ögelere Týklandýðýnda, (Windows) Sað Tuþ Menüsü Göster"
 
-#: Merge.rc:1686
-#: Merge.rc:1970
-#: Merge.rc:2307
+#: Merge.rc:1683
+#: Merge.rc:1967
+#: Merge.rc:2304
 #, c-format
 msgid "Folder"
 msgstr "Klasör"
 
-#: Merge.rc:1689
+#: Merge.rc:1686
 #, c-format
 msgid "&Compare method:"
 msgstr "Karþýlaþtýrma Yöntemi:"
 
-#: Merge.rc:1691
+#: Merge.rc:1688
 #, c-format
 msgid "S&top after first difference"
 msgstr "Ýlk Farklýlýktan Sonra Dur"
 
-#: Merge.rc:1693
+#: Merge.rc:1690
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 Saniyeden Az Zaman Farklýlýklarýný Yok Say"
 
-#: Merge.rc:1695
+#: Merge.rc:1692
 #, c-format
 msgid "&Include unique subfolders contents"
 msgstr "Benzersiz Alt Klasör Ýçeriðini Dahil Et"
 
-#: Merge.rc:1697
+#: Merge.rc:1694
 #, c-format
 msgid "&Quick compare limit (MB):"
 msgstr "Hýzlý Karþýlaþtýrma Limiti (MB):"
 
 #. StringFileInfo.Block
-#: Merge.rc:1723
+#: Merge.rc:1720
 #, c-format
 msgid "040904e4"
 msgstr "041f04e6"
 
 #. VarFileInfo.Translation
-#: Merge.rc:1739
+#: Merge.rc:1736
 #, c-format
 msgid "0x409, 1252"
 msgstr "0x41f, 1254"
 
-#: Merge.rc:1754
+#: Merge.rc:1751
 #, c-format
 msgid "Ready"
 msgstr "Hazýr"
 
-#: Merge.rc:1760
+#: Merge.rc:1757
 #, c-format
 msgid "EXT"
 msgstr "EXT"
 
-#: Merge.rc:1761
+#: Merge.rc:1758
 #, c-format
 msgid "CAP"
 msgstr "CAP"
 
-#: Merge.rc:1762
+#: Merge.rc:1759
 #, c-format
 msgid "NUM"
 msgstr "NUM"
 
-#: Merge.rc:1763
+#: Merge.rc:1760
 #, c-format
 msgid "SCRL"
 msgstr "SCRL"
 
-#: Merge.rc:1764
+#: Merge.rc:1761
 #, c-format
 msgid "OVR"
 msgstr "OVR"
 
-#: Merge.rc:1765
+#: Merge.rc:1762
 #, c-format
 msgid "REC"
 msgstr "REC"
 
-#: Merge.rc:1771
+#: Merge.rc:1768
 #, c-format
 msgid ""
 "Create empty documents\n"
@@ -2729,7 +2724,7 @@ msgstr ""
 "Boþ Belgeler Oluþtur\n"
 "Yeni Belgeler (Ctrl+N)"
 
-#: Merge.rc:1772
+#: Merge.rc:1769
 #, c-format
 msgid ""
 "Open an existing document\n"
@@ -2738,7 +2733,7 @@ msgstr ""
 "Varolan Bir Belgeyi Aç\n"
 "Aç (Ctrl+O)"
 
-#: Merge.rc:1773
+#: Merge.rc:1770
 #, c-format
 msgid ""
 "Close the active document\n"
@@ -2747,7 +2742,7 @@ msgstr ""
 "Aktif Belgeyi Kapat\n"
 "Kapat"
 
-#: Merge.rc:1774
+#: Merge.rc:1771
 #, c-format
 msgid ""
 "Save the active document\n"
@@ -2756,7 +2751,7 @@ msgstr ""
 "Aktif Belgeyi Kaydet\n"
 "Kaydet (Ctrl+S)"
 
-#: Merge.rc:1775
+#: Merge.rc:1772
 #, c-format
 msgid ""
 "Save the active document with a new name\n"
@@ -2765,7 +2760,7 @@ msgstr ""
 "Aktif Belgeyi Baþka Bir Ýsimle Kaydet\n"
 "Farklý Kaydet"
 
-#: Merge.rc:1776
+#: Merge.rc:1773
 #, c-format
 msgid ""
 "Change the printing options\n"
@@ -2774,7 +2769,7 @@ msgstr ""
 "Yazdýrma Seçeneklerini Deðiþtir\n"
 "Sayfa Yapýsý"
 
-#: Merge.rc:1777
+#: Merge.rc:1774
 #, c-format
 msgid ""
 "Change the printer and printing options\n"
@@ -2783,7 +2778,7 @@ msgstr ""
 "Yazýcýyý ve Yazdýrma Seçeneklerini Deðiþtir\n"
 "Sayfa Yapýsý"
 
-#: Merge.rc:1778
+#: Merge.rc:1775
 #, c-format
 msgid ""
 "Print the active document\n"
@@ -2792,7 +2787,7 @@ msgstr ""
 "Aktif Belgeyi Yazdýr\n"
 "Yazdýr"
 
-#: Merge.rc:1779
+#: Merge.rc:1776
 #, c-format
 msgid ""
 "Display full pages\n"
@@ -2801,27 +2796,27 @@ msgstr ""
 "Sayfalarýn Tamamýný Göster\n"
 "Baský Önizleme"
 
-#: Merge.rc:1784
+#: Merge.rc:1781
 #, c-format
 msgid "Make all hidden items visible again"
 msgstr "Tüm Gizli Ögeleri Tekrar Görülebilir Yap"
 
-#: Merge.rc:1785
+#: Merge.rc:1782
 #, c-format
 msgid "Toggle tree mode"
 msgstr "Aðaç Görünümünü Aç-Kapat"
 
-#: Merge.rc:1786
+#: Merge.rc:1783
 #, c-format
 msgid "Expand all subfolders"
 msgstr "Tüm Alt Klasörleri Geniþlet"
 
-#: Merge.rc:1787
+#: Merge.rc:1784
 #, c-format
 msgid "Collapse all subfolders"
 msgstr "Tüm Alt Klasörleri Daralt"
 
-#: Merge.rc:1793
+#: Merge.rc:1790
 #, c-format
 msgid ""
 "Open project file\n"
@@ -2830,32 +2825,32 @@ msgstr ""
 "Proje Dosyasý Aç\n"
 "Proje Dosyasý (Ctrl+J)"
 
-#: Merge.rc:1794
+#: Merge.rc:1791
 #, c-format
 msgid "Unknown error attempting to open project file"
 msgstr "Proje Dosyasý Açýlýrken Bilinmeyen Bir Hata Ýle Karþýlaþýldý"
 
-#: Merge.rc:1795
+#: Merge.rc:1792
 #, c-format
 msgid "Unknown error attempting to save project file"
 msgstr "Proje Dosyasý Kaydedilirken Bilinmeyen Bir Hata Ýle Karþýlaþýldý"
 
-#: Merge.rc:1796
+#: Merge.rc:1793
 #, c-format
 msgid "Project File"
 msgstr "Proje Dosyasý"
 
-#: Merge.rc:1797
+#: Merge.rc:1794
 #, c-format
 msgid "Project file successfully loaded."
 msgstr "Proje Dosyasý Baþarýyla Yüklendi."
 
-#: Merge.rc:1798
+#: Merge.rc:1795
 #, c-format
 msgid "Project file successfully saved."
 msgstr "Proje Dosyasý Baþarýyla Kaydedildi."
 
-#: Merge.rc:1799
+#: Merge.rc:1796
 #, c-format
 msgid ""
 "Save current paths and options to project file\n"
@@ -2864,7 +2859,7 @@ msgstr ""
 "Proje Dosyasýna Þimdiki Dizinleri ve Ayarlarý Kaydet\n"
 "Proje Dosyasýný Kaydet"
 
-#: Merge.rc:1804
+#: Merge.rc:1801
 #, c-format
 msgid ""
 "Display program information, version number and copyright\n"
@@ -2873,7 +2868,7 @@ msgstr ""
 "Program Bilgisi, Sürüm Numarasý ve Telif Haklarýný Göster\n"
 "Hakkýnda"
 
-#: Merge.rc:1805
+#: Merge.rc:1802
 #, c-format
 msgid ""
 "Quit the application; prompts to save documents\n"
@@ -2882,6 +2877,9 @@ msgstr ""
 "Belgeler Kaydedilince Uygulamayý Kapat\n"
 "Çýk"
 
+#: Merge.rc:1808
+#: Merge.rc:1809
+#: Merge.rc:1810
 #: Merge.rc:1811
 #: Merge.rc:1812
 #: Merge.rc:1813
@@ -2895,14 +2893,11 @@ msgstr ""
 #: Merge.rc:1821
 #: Merge.rc:1822
 #: Merge.rc:1823
-#: Merge.rc:1824
-#: Merge.rc:1825
-#: Merge.rc:1826
 #, c-format
 msgid "Open this document"
 msgstr "Bu Belgeyi Aç"
 
-#: Merge.rc:1831
+#: Merge.rc:1828
 #, c-format
 msgid ""
 "Switch to the next window pane\n"
@@ -2911,7 +2906,7 @@ msgstr ""
 "Sonraki Panele Geç\n"
 "Sonraki Panel"
 
-#: Merge.rc:1832
+#: Merge.rc:1829
 #, c-format
 msgid ""
 "Switch back to the previous window pane\n"
@@ -2920,7 +2915,7 @@ msgstr ""
 "Önceki Panele Geç\n"
 "Önceki Panel"
 
-#: Merge.rc:1838
+#: Merge.rc:1835
 #, c-format
 msgid ""
 "Arrange windows so they overlap\n"
@@ -2929,7 +2924,7 @@ msgstr ""
 "Pencereleri Birbiri Üstüne Sýrala\n"
 "Pencereleri Basamakla"
 
-#: Merge.rc:1839
+#: Merge.rc:1836
 #, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
@@ -2938,7 +2933,7 @@ msgstr ""
 "Pencereleri Birbirinin Üstüne Gelmeyecek Þekilde Yatay Döþe\n"
 "Pencereleri Yatay Döþe"
 
-#: Merge.rc:1840
+#: Merge.rc:1837
 #, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
@@ -2947,7 +2942,7 @@ msgstr ""
 "Pencereleri Birbirinin Üstüne Gelmeyecek Þekilde Dikey Döþe\n"
 "Pencereleri Dikey Döþe"
 
-#: Merge.rc:1846
+#: Merge.rc:1843
 #, c-format
 msgid ""
 "Copy the selection and put it on the Clipboard\n"
@@ -2956,7 +2951,7 @@ msgstr ""
 "Seçimi Kopyala ve Panoya Gönder\n"
 "Kopyala"
 
-#: Merge.rc:1847
+#: Merge.rc:1844
 #, c-format
 msgid ""
 "Cut the selection and put it on the Clipboard\n"
@@ -2965,7 +2960,7 @@ msgstr ""
 "Seçimi Kes ve Panoya Gönder\n"
 "Kes"
 
-#: Merge.rc:1848
+#: Merge.rc:1845
 #, c-format
 msgid ""
 "Find the specified text\n"
@@ -2974,7 +2969,7 @@ msgstr ""
 "Belirtilen Metni Bul\n"
 "Bul"
 
-#: Merge.rc:1849
+#: Merge.rc:1846
 #, c-format
 msgid ""
 "Insert Clipboard contents\n"
@@ -2983,7 +2978,7 @@ msgstr ""
 "Panodaki Ýçerikleri Ekle\n"
 "Yapýþtýr"
 
-#: Merge.rc:1850
+#: Merge.rc:1847
 #, c-format
 msgid ""
 "Repeat the last action\n"
@@ -2992,7 +2987,7 @@ msgstr ""
 "Son Yapýlan Ýþlemi Tekrarla\n"
 "Tekrarla"
 
-#: Merge.rc:1851
+#: Merge.rc:1848
 #, c-format
 msgid ""
 "Replace specific text with different text\n"
@@ -3001,7 +2996,7 @@ msgstr ""
 "Farklý Metni Belirtilen Metinle Deðiþtir\n"
 "Deðiþtir"
 
-#: Merge.rc:1852
+#: Merge.rc:1849
 #, c-format
 msgid ""
 "Select the entire document\n"
@@ -3010,7 +3005,7 @@ msgstr ""
 "Belgenin Tamamýný Seç\n"
 "Tümünü Seç"
 
-#: Merge.rc:1853
+#: Merge.rc:1850
 #, c-format
 msgid ""
 "Undo the last action\n"
@@ -3019,7 +3014,7 @@ msgstr ""
 "Son Ýþlemi Geri Al\n"
 "Geri Al (Ctrl+Z)"
 
-#: Merge.rc:1854
+#: Merge.rc:1851
 #, c-format
 msgid ""
 "Redo the previously undone action\n"
@@ -3028,7 +3023,7 @@ msgstr ""
 "Geri Alma Ýþleminden Önceki Ýþlemi Yinele\n"
 "Ýleri Al (Ctrl+Y)"
 
-#: Merge.rc:1860
+#: Merge.rc:1857
 #, c-format
 msgid ""
 "Show or hide the toolbar\n"
@@ -3037,7 +3032,7 @@ msgstr ""
 "Araç Çubuðunu Göster veya Gizle\n"
 "Araç Çubuðunu Göster-Gizle"
 
-#: Merge.rc:1861
+#: Merge.rc:1858
 #, c-format
 msgid ""
 "Show or hide the status bar\n"
@@ -3046,7 +3041,7 @@ msgstr ""
 "Durum Çubuðunu Göster veya Gizle\n"
 "Durum Çubuðunu Göster-Gizle"
 
-#: Merge.rc:1862
+#: Merge.rc:1859
 #, c-format
 msgid ""
 "Show or hide the tab bar\n"
@@ -3055,7 +3050,7 @@ msgstr ""
 "Sekme Çubuðunu Göster veya Gizle\n"
 "Sekme Çubuðunu Göster-Gizle"
 
-#: Merge.rc:1863
+#: Merge.rc:1860
 #, c-format
 msgid ""
 "Automatically resize panes\n"
@@ -3064,57 +3059,57 @@ msgstr ""
 "Panelleri Otomatik Boyutlandýr\n"
 "Panelleri Kilitle"
 
-#: Merge.rc:1869
+#: Merge.rc:1866
 #, c-format
 msgid "Change the window size"
 msgstr "Pencere Boyutunu Deðiþtir"
 
-#: Merge.rc:1870
+#: Merge.rc:1867
 #, c-format
 msgid "Change the window position"
 msgstr "Pencere Konumunu Deðiþtir"
 
-#: Merge.rc:1871
+#: Merge.rc:1868
 #, c-format
 msgid "Reduce the window to an icon"
 msgstr "Pencereyi Simge Durumuna Küçült"
 
-#: Merge.rc:1872
+#: Merge.rc:1869
 #, c-format
 msgid "Enlarge the window to full size"
 msgstr "Pencereyi Tam Ekran Yap"
 
-#: Merge.rc:1873
+#: Merge.rc:1870
 #, c-format
 msgid "Switch to the next document window"
 msgstr "Sonraki Belge Penceresine Geç"
 
-#: Merge.rc:1874
+#: Merge.rc:1871
 #, c-format
 msgid "Switch to the previous document window"
 msgstr "Önceki Belge Penceresine Geç"
 
-#: Merge.rc:1875
+#: Merge.rc:1872
 #, c-format
 msgid "Close the active window and prompts to save the documents"
 msgstr "Belgeler Kaydedilirken Aktif Pencereyi Kapat"
 
-#: Merge.rc:1880
+#: Merge.rc:1877
 #, c-format
 msgid "Restore the window to normal size"
 msgstr "Pencereyi Normal Boyuta Döndür"
 
-#: Merge.rc:1881
+#: Merge.rc:1878
 #, c-format
 msgid "Activate Task List"
 msgstr "Görev Listesini Aktifleþtir"
 
-#: Merge.rc:1882
+#: Merge.rc:1879
 #, c-format
 msgid "Activate this window"
 msgstr "Bu Pencereyi Aktifleþtir"
 
-#: Merge.rc:1888
+#: Merge.rc:1885
 #, c-format
 msgid ""
 "Close print preview mode\n"
@@ -3123,7 +3118,7 @@ msgstr ""
 "Baský Önizleme Seçeneðini Kapat\n"
 "Önizlemeyi Ýptal Et"
 
-#: Merge.rc:1895
+#: Merge.rc:1892
 #, c-format
 msgid ""
 "\n"
@@ -3142,7 +3137,7 @@ msgstr ""
 "WinMerge.DosyaKarþýlaþtýr\n"
 "WinMerge Dosya Karþýlaþtýr"
 
-#: Merge.rc:1896
+#: Merge.rc:1893
 #, c-format
 msgid ""
 "\n"
@@ -3161,23 +3156,23 @@ msgstr ""
 "WinMerge.KlasörKarþýlaþtýr\n"
 "WinMerge Klasör Karþýlaþtýr"
 
-#: Merge.rc:1903
+#: Merge.rc:1900
 #, c-format
 msgid "Preserve original EOL chars"
 msgstr "Orijinal Satýr Sonu (Kýsaca SS) Karakterlerini Koru"
 
-#: Merge.rc:1910
+#: Merge.rc:1907
 #, c-format
 msgid "Press any key"
 msgstr "Herhangi Bir Tuþa Basýnýz"
 
-#: Merge.rc:1916
-#: Merge.rc:1917
+#: Merge.rc:1913
+#: Merge.rc:1914
 #, c-format
 msgid "Right click on the path to copy"
 msgstr "Kopyalamak Ýçin Dizinde Sað Týkla"
 
-#: Merge.rc:1923
+#: Merge.rc:1920
 #, c-format
 msgid ""
 "Developers:\n"
@@ -3186,158 +3181,158 @@ msgstr ""
 "GELÝÞTÝRÝCÝLER:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
-#: Merge.rc:1924
+#: Merge.rc:1921
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge Size Hiçbir Þeyi Garanti Etmez. Bu Program, Belirli Þartlar Altýnda Serbestçe Çoðaltýp Daðýtabileceðiniz Özgür Bir Yazýlýmdýr. Detaylar Ýçin Yardým Menüsünden GNU General Public Lisansý'na Bakýnýz."
 
-#: Merge.rc:1930
+#: Merge.rc:1927
 #, c-format
 msgid "&Ok"
 msgstr "TAMAM"
 
-#: Merge.rc:1932
+#: Merge.rc:1929
 #, c-format
 msgid "&Abort"
 msgstr "Baþarýsýz"
 
-#: Merge.rc:1933
+#: Merge.rc:1930
 #, c-format
 msgid "&Retry"
 msgstr "Yeniden Dene"
 
-#: Merge.rc:1934
+#: Merge.rc:1931
 #, c-format
 msgid "&Ignore"
 msgstr "Yok Say"
 
-#: Merge.rc:1935
+#: Merge.rc:1932
 #, c-format
 msgid "Ignore &all"
 msgstr "Tümünü Yok Say"
 
-#: Merge.rc:1936
+#: Merge.rc:1933
 #, c-format
 msgid "&Yes"
 msgstr "Evet"
 
-#: Merge.rc:1942
+#: Merge.rc:1939
 #, c-format
 msgid "Yes to &all"
 msgstr "Tümüne Evet"
 
-#: Merge.rc:1943
+#: Merge.rc:1940
 #, c-format
 msgid "&No"
 msgstr "Hayýr"
 
-#: Merge.rc:1944
+#: Merge.rc:1941
 #, c-format
 msgid "No to a&ll"
 msgstr "Tümüne Hayýr"
 
-#: Merge.rc:1945
+#: Merge.rc:1942
 #, c-format
 msgid "&Continue"
 msgstr "Devam"
 
-#: Merge.rc:1946
+#: Merge.rc:1943
 #, c-format
 msgid "&Skip"
 msgstr "Atla"
 
-#: Merge.rc:1947
+#: Merge.rc:1944
 #, c-format
 msgid "Skip &all"
 msgstr "Tümünü Atla"
 
-#: Merge.rc:1949
+#: Merge.rc:1946
 #, c-format
 msgid "Don't display this &message again."
 msgstr "Bu Mesajý Tekrar Gösterme!"
 
-#: Merge.rc:1950
+#: Merge.rc:1947
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "Bu Soruyu Tekrar Sorma!"
 
-#: Merge.rc:1961
+#: Merge.rc:1958
 #, c-format
 msgid "Syntax"
 msgstr "Sözdizimi"
 
-#: Merge.rc:1963
+#: Merge.rc:1960
 #, c-format
 msgid "Version Control"
 msgstr "Sürüm Kontrolü"
 
-#: Merge.rc:1968
-#: Merge.rc:2339
+#: Merge.rc:1965
+#: Merge.rc:2336
 #, c-format
 msgid "Differences"
 msgstr "Farklýlýklar"
 
-#: Merge.rc:1977
+#: Merge.rc:1974
 #, c-format
 msgid "To:"
 msgstr "Buna:"
 
-#: Merge.rc:1978
+#: Merge.rc:1975
 #, c-format
 msgid "From left:"
 msgstr "Soldan:"
 
-#: Merge.rc:1979
+#: Merge.rc:1976
 #, c-format
 msgid "To left:"
 msgstr "Sola:"
 
-#: Merge.rc:1980
+#: Merge.rc:1977
 #, c-format
 msgid "From right:"
 msgstr "Saðdan:"
 
-#: Merge.rc:1981
+#: Merge.rc:1978
 #, c-format
 msgid "To right:"
 msgstr "Saða:"
 
-#: Merge.rc:1987
+#: Merge.rc:1984
 #, c-format
 msgid "Version %1"
 msgstr "%1. Sürüm"
 
-#: Merge.rc:1988
+#: Merge.rc:1985
 #, c-format
 msgid "Unicode"
 msgstr "Unicode"
 
-#: Merge.rc:1989
+#: Merge.rc:1986
 #, c-format
 msgid "X64"
 msgstr "X64"
 
-#: Merge.rc:1995
+#: Merge.rc:1992
 #, c-format
 msgid "Options (%1)"
 msgstr "Ayarlar (%1)"
 
-#: Merge.rc:1996
+#: Merge.rc:1993
 #, c-format
 msgid "All message boxes are now displayed again."
 msgstr "Tüm Mesajlar Artýk Tekrar Görüntülenecek."
 
-#: Merge.rc:1997
+#: Merge.rc:1994
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
 msgstr "Bu Dosya Karþýlaþtýrýlmasý Oturumunda Deðiþiklikler Yapýldý. Þu Anki Dosya Karþýlaþtýrma Oturumu Yeniden Baþlatýlýncaya Kadar Bazý Ayarlar Etkin Olmayabilir."
 
-#: Merge.rc:1998
+#: Merge.rc:1995
 #, c-format
 msgid "The selected font change will not be applied to any currently visible difference windows."
 msgstr "Yazý Tipi Deðiþimi Þu Anki Görülebilen Pencerelerin Hiçbirisine Uygulanamayacak."
 
-#: Merge.rc:2000
+#: Merge.rc:1997
 #, c-format
 msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
@@ -3348,7 +3343,7 @@ msgstr ""
 "\n"
 "Lütfen 1 - %1 Arasýnda Bir Deðer Giriniz."
 
-#: Merge.rc:2002
+#: Merge.rc:1999
 #, c-format
 msgid ""
 "Are you sure you want to reset all WinMerge options to default values?\n"
@@ -3359,129 +3354,129 @@ msgstr ""
 "\n"
 "Tüm Ayarlar Sýfýrlandýktan Sonra WinMerge'i Lütfen Yeniden Baþlatýnýz."
 
-#: Merge.rc:2008
+#: Merge.rc:2005
 #, c-format
 msgid "Open"
 msgstr "Aç"
 
-#: Merge.rc:2009
+#: Merge.rc:2006
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Programlar|*.exe;*.bat;*.cmd|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2010
+#: Merge.rc:2007
 #, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2011
+#: Merge.rc:2008
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge Proje Dosyalarý (*.WinMerge)|*.WinMerge||"
 
-#: Merge.rc:2013
+#: Merge.rc:2010
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Yapýlandýrma Dosyalarý (*.ini)|*.ini|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2019
+#: Merge.rc:2016
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Metin Dosyalarý (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2020
+#: Merge.rc:2017
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML Dosyalarý (*.htm,*.html)|*.htm;*.html|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2021
+#: Merge.rc:2018
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML Dosyalarý (*.xml)|*.xml|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2027
+#: Merge.rc:2024
 #, c-format
 msgid "UTF-8"
 msgstr "UTF-8"
 
-#: Merge.rc:2028
+#: Merge.rc:2025
 #, c-format
 msgid "UTF-8 (B)"
 msgstr "UTF-8 (B)"
 
-#: Merge.rc:2029
+#: Merge.rc:2026
 #, c-format
 msgid "UCS-2 LE"
 msgstr "UCS-2 LE"
 
-#: Merge.rc:2030
+#: Merge.rc:2027
 #, c-format
 msgid "UCS-2 BE"
 msgstr "UCS-2 BE"
 
-#: Merge.rc:2036
+#: Merge.rc:2033
 #, c-format
 msgid "Full Contents"
 msgstr "Tüm Ýçerik"
 
-#: Merge.rc:2037
+#: Merge.rc:2034
 #, c-format
 msgid "Quick Contents"
 msgstr "Hýzlý Ýçerik"
 
-#: Merge.rc:2038
+#: Merge.rc:2035
 #, c-format
 msgid "Modified Date"
 msgstr "Deðiþtirilme Tarihi"
 
-#: Merge.rc:2039
+#: Merge.rc:2036
 #, c-format
 msgid "Modified Date and Size"
 msgstr "Deðiþtirilme Tarihi ve Boyutu"
 
-#: Merge.rc:2040
+#: Merge.rc:2037
 #, c-format
 msgid "Size"
 msgstr "Boyut"
 
-#: Merge.rc:2046
-#: Merge.rc:2572
+#: Merge.rc:2043
+#: Merge.rc:2569
 #, c-format
 msgid "Name"
 msgstr "Ýsim"
 
-#: Merge.rc:2047
+#: Merge.rc:2044
 #, c-format
 msgid "Location"
 msgstr "Yer"
 
-#: Merge.rc:2048
+#: Merge.rc:2045
 #, c-format
 msgid "Filters"
 msgstr "Filtreler"
 
-#: Merge.rc:2049
+#: Merge.rc:2046
 #, c-format
 msgid "[F] "
 msgstr "[F] "
 
-#: Merge.rc:2050
-#: Merge.rc:2574
+#: Merge.rc:2047
+#: Merge.rc:2571
 #, c-format
 msgid "Description"
 msgstr "Taným"
 
-#: Merge.rc:2051
+#: Merge.rc:2048
 #, c-format
 msgid "Select filename for new filter"
 msgstr "Yeni Filtre Ýçin Bir isim Seç"
 
-#: Merge.rc:2052
+#: Merge.rc:2049
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Dosya Filtreleri (*.flt)|*.flt|Tüm Dosyalar (*.*)|*.*||"
 
-#: Merge.rc:2054
+#: Merge.rc:2051
 #, c-format
 msgid ""
 "Cannot find file filter template file!\n"
@@ -3494,7 +3489,7 @@ msgstr ""
 "Lütfen %1 Dosyasýný, WinMerge/Filters Klasörüne Kopyalayýnýz:\n"
 "%2."
 
-#: Merge.rc:2056
+#: Merge.rc:2053
 #, c-format
 msgid ""
 "Cannot copy filter template file to filter folder:\n"
@@ -3507,7 +3502,7 @@ msgstr ""
 "\n"
 "Lütfen Klasörün Mevcut ve Yazýlabilir Olduðundan Emin Olunuz."
 
-#: Merge.rc:2058
+#: Merge.rc:2055
 #, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
@@ -3518,7 +3513,7 @@ msgstr ""
 "\n"
 "Lütfen 'Ayarlar/Sistem' Ýçinden Filtre Klasörü Seçiniz."
 
-#: Merge.rc:2060
+#: Merge.rc:2057
 #, c-format
 msgid ""
 "Failed to delete the filter file:\n"
@@ -3531,12 +3526,12 @@ msgstr ""
 "\n"
 "Acaba Bu Salt Okunur Bir Dosya mý?"
 
-#: Merge.rc:2061
+#: Merge.rc:2058
 #, c-format
 msgid "Locate filter file to install"
 msgstr "Kurulacak Filtreyi Yerleþtir"
 
-#: Merge.rc:2063
+#: Merge.rc:2060
 #, c-format
 msgid ""
 "Installing filter file failed.\n"
@@ -3547,17 +3542,17 @@ msgstr ""
 "\n"
 "Yeni Filtre, Filtre Klasörüne Kopyalanamadý."
 
-#: Merge.rc:2065
+#: Merge.rc:2062
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "Bu Filtre Zaten Var. Üzerine Yazýlsýn mý?"
 
-#: Merge.rc:2071
+#: Merge.rc:2068
 #, c-format
 msgid "Regular expression"
 msgstr "Kurallý Ýfade"
 
-#: Merge.rc:2077
+#: Merge.rc:2074
 #, c-format
 msgid ""
 "Filters were updated. Do you want to refresh all open folder compares?\n"
@@ -3568,203 +3563,203 @@ msgstr ""
 "\n"
 "Þimdi Ýstemezseniz, Tüm Karþýlaþtýrmalarý Daha Sonra da Tazeleyebilirsiniz."
 
-#: Merge.rc:2084
+#: Merge.rc:2081
 #, c-format
 msgid "&Path to SS.EXE:"
 msgstr "'SS.EXE' Dizini:"
 
-#: Merge.rc:2090
+#: Merge.rc:2087
 #, c-format
 msgid "Folder Comparison Results"
 msgstr "Klasör Karþýlaþtýrýlmasý Sonuçlarý"
 
-#: Merge.rc:2091
+#: Merge.rc:2088
 #, c-format
 msgid "File Comparison"
 msgstr "Dosya Karþýlaþtýrýlmasý"
 
-#: Merge.rc:2092
+#: Merge.rc:2089
 #, c-format
 msgid "Untitled left"
 msgstr "Ýsimsiz Sol"
 
-#: Merge.rc:2093
+#: Merge.rc:2090
 #, c-format
 msgid "Untitled right"
 msgstr "Ýsimsiz Sað"
 
-#: Merge.rc:2094
+#: Merge.rc:2091
 #, fuzzy, c-format
 msgid "Theirs File"
 msgstr "Onlarýn Dosyasý"
 
-#: Merge.rc:2095
+#: Merge.rc:2092
 #, fuzzy, c-format
 msgid "Mine File"
 msgstr "Benim Dosyam"
 
-#: Merge.rc:2101
+#: Merge.rc:2098
 #, c-format
 msgid "Scanning files..."
 msgstr "Dosyalarý Taramak..."
 
-#: Merge.rc:2102
+#: Merge.rc:2099
 #, c-format
 msgid "Opening selection"
 msgstr "Seçileni Açmak"
 
-#: Merge.rc:2103
+#: Merge.rc:2100
 #, c-format
 msgid "Copying Left to Right"
 msgstr "Soldakini, Saða Kopyalamak"
 
-#: Merge.rc:2104
+#: Merge.rc:2101
 #, c-format
 msgid "Copying Right to Left"
 msgstr "Saðdakini, Sola Kopyalamak"
 
-#: Merge.rc:2105
+#: Merge.rc:2102
 #, c-format
 msgid "Copying All to Left"
 msgstr "Tümünü Sola Kopyalamak"
 
-#: Merge.rc:2106
+#: Merge.rc:2103
 #, c-format
 msgid "Copying All to Right"
 msgstr "Tümünü Saða Kopyalamak"
 
-#: Merge.rc:2107
+#: Merge.rc:2104
 #, c-format
 msgid "Copying files..."
 msgstr "Dosyalarý Kopyalamak..."
 
-#: Merge.rc:2108
+#: Merge.rc:2105
 #, c-format
 msgid "Deleting files..."
 msgstr "Dosyalarý Silmek..."
 
-#: Merge.rc:2109
+#: Merge.rc:2106
 #, c-format
 msgid "Moving files..."
 msgstr "Dosyalarý Taþýmak..."
 
-#: Merge.rc:2110
+#: Merge.rc:2107
 #, c-format
 msgid "Creating the report..."
 msgstr "Rapor Hazýrlamak..."
 
-#: Merge.rc:2111
+#: Merge.rc:2108
 #, c-format
 msgid "Undoing the last operation..."
 msgstr "Son Ýþlemi Geri Almak..."
 
-#: Merge.rc:2112
+#: Merge.rc:2109
 #, c-format
 msgid "Redoing the previous operation..."
 msgstr "Önceki Ýþlemi Tekrarlamak..."
 
-#: Merge.rc:2118
+#: Merge.rc:2115
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "Str: %s  Stn: %d/%d  Krktr: %d/%d  SS: %s"
 
-#: Merge.rc:2119
+#: Merge.rc:2116
 #, c-format
 msgid "Line: %s"
 msgstr "Satýr: %s"
 
-#: Merge.rc:2120
+#: Merge.rc:2117
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "Str: %s  Stn: %d/%d  Krktr: %d/%d"
 
-#: Merge.rc:2121
+#: Merge.rc:2118
 #, c-format
 msgid "Merge"
 msgstr "Birleþtir"
 
-#: Merge.rc:2122
+#: Merge.rc:2119
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "%2 Farktan %1. Fark"
 
-#: Merge.rc:2123
+#: Merge.rc:2120
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1 Farklýlýk Bulundu"
 
-#: Merge.rc:2124
+#: Merge.rc:2121
 #, c-format
 msgid "1 Difference Found"
 msgstr "1 Farklýlýk Bulundu"
 
 #. Abbreviation from "Read Only"
-#: Merge.rc:2125
+#: Merge.rc:2122
 #, c-format
 msgid "RO"
 msgstr "SO"
 
-#: Merge.rc:2131
+#: Merge.rc:2128
 #, c-format
 msgid "Item %1 of %2"
 msgstr "%2 Dosyanýn %1. Ögesi"
 
-#: Merge.rc:2132
+#: Merge.rc:2129
 #, c-format
 msgid "Items: %1"
 msgstr "Ögeler: %1"
 
-#: Merge.rc:2138
+#: Merge.rc:2135
 #, c-format
 msgid "Select two existing folders or files to compare"
 msgstr "Karþýlaþtýrmak Ýçin Mevcut Ýki Klasör veya Dosya Seç"
 
-#: Merge.rc:2139
+#: Merge.rc:2136
 #, c-format
 msgid "Folder Selection"
 msgstr "Klasör Seçimi"
 
-#: Merge.rc:2140
+#: Merge.rc:2137
 #, c-format
 msgid "Select two folders or two files to compare."
 msgstr "Karþýlaþtýrmak Ýçin Ýki Klasör veya Ýki Dosya Seç"
 
-#: Merge.rc:2141
+#: Merge.rc:2138
 #, c-format
 msgid "Left path is invalid!"
 msgstr "Sol Dizin Geçersiz!"
 
-#: Merge.rc:2142
+#: Merge.rc:2139
 #, c-format
 msgid "Right path is invalid!"
 msgstr "Sað Dizin Geçersiz!"
 
-#: Merge.rc:2143
+#: Merge.rc:2140
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "Ýki Dizin de Geçersiz!"
 
-#: Merge.rc:2144
+#: Merge.rc:2141
 #, c-format
 msgid "Choose two files to enable unpacker selection."
 msgstr "Çýkartýcýnýn Etkinleþmesi Ýçin Ýki Dosya Seçmelisiniz."
 
-#: Merge.rc:2145
+#: Merge.rc:2142
 #, c-format
 msgid "Cannot compare file and folder!"
 msgstr "Dosya ve Klasör Karþýlaþtýrýlamaz!"
 
-#: Merge.rc:2151
+#: Merge.rc:2148
 #, c-format
 msgid "File not found: %1"
 msgstr "%1 Dosyasý Bulunamadý"
 
-#: Merge.rc:2152
+#: Merge.rc:2149
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "%1 Dosyasý Çýkartýlamadý"
 
-#: Merge.rc:2153
+#: Merge.rc:2150
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -3777,12 +3772,12 @@ msgstr ""
 "\n"
 "%2"
 
-#: Merge.rc:2154
+#: Merge.rc:2151
 #, c-format
 msgid "Failed to parse conflict file."
 msgstr "Fark Dosyasýnýn Ayrýþtýrýlmasý Baþarýsýz Oldu."
 
-#: Merge.rc:2155
+#: Merge.rc:2152
 #, c-format
 msgid ""
 "The file\n"
@@ -3793,32 +3788,32 @@ msgstr ""
 "%1\n"
 "Bir Fark Dosyasý Deðil."
 
-#: Merge.rc:2161
+#: Merge.rc:2158
 #, c-format
 msgid "Save As"
 msgstr "Farklý Kaydet"
 
-#: Merge.rc:2162
+#: Merge.rc:2159
 #, c-format
 msgid "Save changes to %1?"
 msgstr "%1 Ýçindeki Deðiþiklikler Kaydedilsin mi? "
 
-#: Merge.rc:2163
+#: Merge.rc:2160
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
 msgstr "%1 Salt Okunur Olarak Ýþaretli. Üzerine Yazmak Ýster misiniz ? (Ýstemezseniz, Yeni Bir Ýsimle Farklý Kaydedebilirsiniz.)"
 
-#: Merge.rc:2164
+#: Merge.rc:2161
 #, c-format
 msgid "Error checking destination writeability"
 msgstr "Hedefin Yazýlabilirliðini Engelleme Hatasý"
 
-#: Merge.rc:2165
+#: Merge.rc:2162
 #, c-format
 msgid "Error backing up file"
 msgstr "Dosya Yedekleme Hatasý"
 
-#: Merge.rc:2167
+#: Merge.rc:2164
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -3831,7 +3826,7 @@ msgstr ""
 "\n"
 "Devam Etmek Ýster misiniz?"
 
-#: Merge.rc:2168
+#: Merge.rc:2165
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -3848,7 +3843,7 @@ msgstr ""
 "\t-Farklý Bir Ýsim Kullan (Tamam'a Bas)\n"
 "\t-Ýþlem Ýptal Edilsin mi? (Evetse Ýptal'e Bas)"
 
-#: Merge.rc:2169
+#: Merge.rc:2166
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3863,7 +3858,7 @@ msgstr ""
 "\n"
 "Çýkartýlmýþ Sürümü Baþka Bir Dosyaya Kaydetmek Ýster misiniz?"
 
-#: Merge.rc:2170
+#: Merge.rc:2167
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -3878,7 +3873,7 @@ msgstr ""
 "\n"
 "Çýkartýlmýþ Sürümü Baþka Bir Dosyaya Kaydetmek Ýster misiniz?"
 
-#: Merge.rc:2171
+#: Merge.rc:2168
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3893,7 +3888,7 @@ msgstr ""
 "\n"
 "Dosya Deðiþtirilsin mi?"
 
-#: Merge.rc:2172
+#: Merge.rc:2169
 #, c-format
 msgid ""
 "%1\n"
@@ -3902,7 +3897,7 @@ msgstr ""
 "%1\n"
 "Salt Okunur Olarak Ýþaretli. Üzerine Yazmak Ýstediðinize Emin misiniz?"
 
-#: Merge.rc:2173
+#: Merge.rc:2170
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3917,17 +3912,17 @@ msgstr ""
 "\n"
 "Dosyayý Yeniden Yüklemek Ýster misiniz?"
 
-#: Merge.rc:2174
+#: Merge.rc:2171
 #, c-format
 msgid "Save Left File As"
 msgstr "Soldakini Farklý Kaydet"
 
-#: Merge.rc:2175
+#: Merge.rc:2172
 #, c-format
 msgid "Save Right File As"
 msgstr "Saðdakini Farklý Kaydet"
 
-#: Merge.rc:2176
+#: Merge.rc:2173
 #, c-format
 msgid ""
 "The file\n"
@@ -3938,7 +3933,7 @@ msgstr ""
 "%1\n"
 "Kaldýrýldý. Lütfen Devam Etmek Ýçin Bir Kopyasýný Kaydedin."
 
-#: Merge.rc:2182
+#: Merge.rc:2179
 #, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -3949,42 +3944,42 @@ msgstr ""
 "\n"
 "Devam Etmeden Önce Belgeleri Tazeleyin."
 
-#: Merge.rc:2188
+#: Merge.rc:2185
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 msgstr "Devam Etmek Ýçin Bir SourceSafe Projesi Yolunu Açýkça Belirtmelisiniz (Örn:  $/Projem)"
 
-#: Merge.rc:2189
+#: Merge.rc:2186
 #, c-format
 msgid "Checkout files from VSS..."
 msgstr "Dosyalarý VSS Projesinden Çýkart..."
 
-#: Merge.rc:2190
+#: Merge.rc:2187
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
 msgstr "Dosya Çýkýþý Yapýlmak Ýstenirken Sürümleme Sisteminde Bir Hata Oluþtu. Devam Edilemez..."
 
-#: Merge.rc:2191
+#: Merge.rc:2188
 #, c-format
 msgid "Error executing versioning system command."
 msgstr "Sürümleme Sistemi Komut Uygulama Hatasý"
 
-#: Merge.rc:2192
+#: Merge.rc:2189
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
 msgstr "VSS Etkin Klasörü Ýle Þu Anki Dosyanýn Konumu Eþleþmiyor. Devam Edilsin mi?"
 
-#: Merge.rc:2193
+#: Merge.rc:2190
 #, c-format
 msgid "No VSS database(s) found!"
 msgstr "VSS Veritabaný Bulunamadý!"
 
-#: Merge.rc:2194
+#: Merge.rc:2191
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS Kaynaklý Hata:"
 
-#: Merge.rc:2195
+#: Merge.rc:2192
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to check in the file.\n"
@@ -3995,7 +3990,7 @@ msgstr ""
 " Lütfen Yapýlandýrmanýzý Kontrol Ediniz.\n"
 " Çýkýþ Ýþlemi Geri Alýnsýn mý?"
 
-#: Merge.rc:2196
+#: Merge.rc:2193
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
@@ -4004,169 +3999,169 @@ msgstr ""
 "Dosya Çýkýþý Geri Alýnmak Ýstenirken Sürümleme Sisteminde Bir Hata Oluþtu.\n"
 " Lütfen Yapýlandýrmanýzý Kontrol Ediniz. "
 
-#: Merge.rc:2202
-#: Merge.rc:2556
+#: Merge.rc:2199
+#: Merge.rc:2553
 #, c-format
 msgid "None"
 msgstr "Yok"
 
-#: Merge.rc:2203
+#: Merge.rc:2200
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
 msgstr "Visual SourceSafe (5.0'dan Önceki Sürüm)"
 
-#: Merge.rc:2204
+#: Merge.rc:2201
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
 msgstr "Visual SourceSafe (5.0 ve Üstü)"
 
-#: Merge.rc:2206
+#: Merge.rc:2203
 #, c-format
 msgid "Break at whitespace"
 msgstr "Boþluðu Kaldýr"
 
-#: Merge.rc:2207
+#: Merge.rc:2204
 #, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Boþluðu Ve Noktalama Ýþaretini Kaldýr"
 
-#: Merge.rc:2213
-#: Merge.rc:2215
+#: Merge.rc:2210
+#: Merge.rc:2212
 #, c-format
 msgid "Copy selected item to named directory"
 msgstr "Seçili Ögeyi Adlandýrýlan Dizine Kopyala"
 
-#: Merge.rc:2214
-#: Merge.rc:2216
+#: Merge.rc:2211
+#: Merge.rc:2213
 #, c-format
 msgid "Copy selected item to custom directory"
 msgstr "Seçili Ögeyi Özel Dizine Kopyala"
 
-#: Merge.rc:2217
+#: Merge.rc:2214
 #, c-format
 msgid "Delete selected item on left"
 msgstr "Soldaki Seçili Ögeyi Sil"
 
-#: Merge.rc:2218
+#: Merge.rc:2215
 #, c-format
 msgid "Delete selected item on right"
 msgstr "Saðdaki Seçili Ögeyi Sil"
 
-#: Merge.rc:2219
+#: Merge.rc:2216
 #, c-format
 msgid "Delete selected item(s) on both sides"
 msgstr "Her Ýki Taraftaki Seçili Ögeleri Sil"
 
-#: Merge.rc:2220
+#: Merge.rc:2217
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
 msgstr "Seçilen(ler)i Gizle (Anýnda Filtresi)"
 
-#: Merge.rc:2221
+#: Merge.rc:2218
 #, c-format
 msgid "Rename selected item on both sides"
 msgstr "Her Ýki Taraftaki Seçili Ögeyi Yeniden Adlandýr"
 
-#: Merge.rc:2222
+#: Merge.rc:2219
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Saðdakini Sola (%1 Tane)"
 
-#: Merge.rc:2223
+#: Merge.rc:2220
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Soldakini Saða (%1 Tane)"
 
-#: Merge.rc:2224
+#: Merge.rc:2221
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Saðdakini Sola (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2225
+#: Merge.rc:2222
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Soldakini Saða (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2226
-#: Merge.rc:2242
+#: Merge.rc:2223
+#: Merge.rc:2239
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Soldakini Þuraya... (%1 Tane)"
 
-#: Merge.rc:2227
-#: Merge.rc:2243
+#: Merge.rc:2224
+#: Merge.rc:2240
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Saðdakini Þuraya... (%1 Tane)"
 
-#: Merge.rc:2228
-#: Merge.rc:2244
+#: Merge.rc:2225
+#: Merge.rc:2241
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Soldakini Þuraya... (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2229
-#: Merge.rc:2245
+#: Merge.rc:2226
+#: Merge.rc:2242
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Saðdakini Þuraya... (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2235
+#: Merge.rc:2232
 #, c-format
 msgid "Left (%1)"
 msgstr "Soldakini (%1 Tane)"
 
-#: Merge.rc:2236
+#: Merge.rc:2233
 #, c-format
 msgid "Right (%1)"
 msgstr "Saðdakini (%1 Tane)"
 
-#: Merge.rc:2237
+#: Merge.rc:2234
 #, c-format
 msgid "Both (%1)"
 msgstr "Her Ýkisini de (%1 Tane)"
 
-#: Merge.rc:2238
+#: Merge.rc:2235
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Soldakini (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2239
+#: Merge.rc:2236
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Saðdakini (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2240
+#: Merge.rc:2237
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Her Ýki Tarafta da Olaný (%2 Ögenin %1 Tanesi)"
 
-#: Merge.rc:2241
+#: Merge.rc:2238
 #, c-format
 msgid "Select destination folder"
 msgstr "Hedef Klasör Seç"
 
-#: Merge.rc:2246
+#: Merge.rc:2243
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "Sol Tarafýn Hedef Klasörü'nü Seç:"
 
-#: Merge.rc:2247
+#: Merge.rc:2244
 #, c-format
 msgid "Right side - select destination folder:"
 msgstr "Sað Tarafýn Hedef Klasörü'nü Seç:"
 
-#: Merge.rc:2248
+#: Merge.rc:2245
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(%1 Dosya Etkilendi)"
 
-#: Merge.rc:2249
+#: Merge.rc:2246
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(Toplam %2 Taneden %1 Dosya Etkilendi)"
 
-#: Merge.rc:2255
+#: Merge.rc:2252
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4177,17 +4172,17 @@ msgstr ""
 "\n"
 "%1"
 
-#: Merge.rc:2256
+#: Merge.rc:2253
 #, c-format
 msgid "Are you sure you want to copy:"
 msgstr "Bunu Kopyalamak Ýstediðinize Emin misiniz:"
 
-#: Merge.rc:2257
+#: Merge.rc:2254
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr "%d Ögeyi Kopyalamak Ýstediðinize Emin misiniz:"
 
-#: Merge.rc:2258
+#: Merge.rc:2255
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -4206,488 +4201,488 @@ msgstr ""
 "\n"
 "Lütfen Karþýlaþtýrmayý Tazeleyin."
 
-#: Merge.rc:2259
+#: Merge.rc:2256
 #, c-format
 msgid "Are you sure you want to move:"
 msgstr "Bunu Taþýmak Ýstediðinize Emin misiniz:"
 
-#: Merge.rc:2260
+#: Merge.rc:2257
 #, c-format
 msgid "Are you sure you want to move %d items:"
 msgstr "%d Ögeyi Taþýmak Ýstediðinize Emin misiniz:"
 
-#: Merge.rc:2262
+#: Merge.rc:2259
 #, c-format
 msgid "Confirm Move"
 msgstr "Taþýmayý Doðrula"
 
-#: Merge.rc:2268
+#: Merge.rc:2265
 #, c-format
 msgid "Open left file"
 msgstr "Sol Dosyayý Aç"
 
-#: Merge.rc:2269
+#: Merge.rc:2266
 #, c-format
 msgid "Open the left file to external editor"
 msgstr "Sol Dosyayý Harici Düzenleyici Ýle Aç"
 
-#: Merge.rc:2270
+#: Merge.rc:2267
 #, c-format
 msgid "Open left file with ..."
 msgstr "Sol Dosyayý Birlikte Aç..."
 
-#: Merge.rc:2271
+#: Merge.rc:2268
 #, c-format
 msgid "Open right file"
 msgstr "Sað Dosyayý Aç"
 
-#: Merge.rc:2272
+#: Merge.rc:2269
 #, c-format
 msgid "Open the right file to external editor"
 msgstr "Sað Dosyayý Harici Düzenleyici Ýle Aç"
 
-#: Merge.rc:2273
+#: Merge.rc:2270
 #, c-format
 msgid "Open right file with..."
 msgstr "Sað Dosyayý Birlikte Aç..."
 
-#: Merge.rc:2274
+#: Merge.rc:2271
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Bu Düzenleyici Çalýþtýrýlamadý: %1"
 
-#: Merge.rc:2275
+#: Merge.rc:2272
 #, c-format
 msgid "Unknown extension on external editor: %1"
 msgstr "Harici Düzenleyici Bu Uzantýyý Tanýmýyor: %1"
 
-#: Merge.rc:2276
+#: Merge.rc:2273
 #, c-format
 msgid "Copy filenames to clipboard"
 msgstr "Dosya Adlarýný Panoya Kopyala"
 
-#: Merge.rc:2277
+#: Merge.rc:2274
 #, c-format
 msgid "Copy left side pathnames to clipboard"
 msgstr "Soldaki Dizin Adlarýný Panoya Kopyala"
 
-#: Merge.rc:2278
+#: Merge.rc:2275
 #, c-format
 msgid "Copy right side pathnames to clipboard"
 msgstr "Saðdaki Dizin Adlarýný Panoya Kopyala"
 
-#: Merge.rc:2279
+#: Merge.rc:2276
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
 msgstr "Ýki Taraftaki Dizin Adlarýný Panoya Kopyala"
 
-#: Merge.rc:2285
+#: Merge.rc:2282
 #, c-format
 msgid "Left Shell menu"
 msgstr "Sol Ýçin Sað Tuþ Menüsü"
 
-#: Merge.rc:2286
+#: Merge.rc:2283
 #, c-format
 msgid "Right Shell menu"
 msgstr "Sað Ýçin Sað Tuþ Menüsü"
 
-#: Merge.rc:2292
+#: Merge.rc:2289
 #, c-format
 msgid "Unknown archive format"
 msgstr "Tanýnmayan Sýkýþtýrma Formatý"
 
-#: Merge.rc:2293
+#: Merge.rc:2290
 #, c-format
 msgid "Add items from left side to archive"
 msgstr "Soldakileri Sýkýþtýrma Dosyasýna Ekle"
 
-#: Merge.rc:2294
+#: Merge.rc:2291
 #, c-format
 msgid "Add items from right side to archive"
 msgstr "Saðdakileri Sýkýþtýrma Dosyasýna Ekle"
 
-#: Merge.rc:2295
+#: Merge.rc:2292
 #, c-format
 msgid "Add items from both sides to archive"
 msgstr "Ýki Taraftakileri Sýkýþtýrma Dosyasýna Ekle"
 
-#: Merge.rc:2296
+#: Merge.rc:2293
 #, c-format
 msgid "Add different items to archive (both sides)"
 msgstr "(Ýki Taraftaki) Farklý Ögeleri Sýkýþtýrma Dosyasýna Ekle"
 
-#: Merge.rc:2298
+#: Merge.rc:2295
 #, c-format
 msgid "Move selected file on left to custom directory"
 msgstr "Soldaki Seçili Dosyayý Özel Dizine Taþý"
 
-#: Merge.rc:2300
+#: Merge.rc:2297
 #, c-format
 msgid "Move selected file on right to custom directory"
 msgstr "Saðdaki Seçili Dosyayý Özel Dizine Taþý"
 
-#: Merge.rc:2306
+#: Merge.rc:2303
 #, c-format
 msgid "Filename"
 msgstr "Dosya Adý"
 
-#: Merge.rc:2308
+#: Merge.rc:2305
 #, c-format
 msgid "Comparison result"
 msgstr "Karþýlaþtýrma Sonucu"
 
-#: Merge.rc:2309
+#: Merge.rc:2306
 #, c-format
 msgid "Left Date"
 msgstr "Soldakinin Tarihi"
 
-#: Merge.rc:2310
+#: Merge.rc:2307
 #, c-format
 msgid "Right Date"
 msgstr "Saðdakinin Tarihi"
 
-#: Merge.rc:2311
+#: Merge.rc:2308
 #, c-format
 msgid "Extension"
 msgstr "Uzantý"
 
-#: Merge.rc:2312
+#: Merge.rc:2309
 #, c-format
 msgid "Left Size"
 msgstr "Soldakinin Boyutu"
 
-#: Merge.rc:2313
+#: Merge.rc:2310
 #, c-format
 msgid "Right Size"
 msgstr "Saðdakinin Boyutu"
 
-#: Merge.rc:2314
+#: Merge.rc:2311
 #, c-format
 msgid "Right Size (Short)"
 msgstr "Saðdakinin Boyutu (Kýsa)"
 
-#: Merge.rc:2315
+#: Merge.rc:2312
 #, c-format
 msgid "Left Size (Short)"
 msgstr "Soldakinin Boyutu (Kýsa)"
 
-#: Merge.rc:2321
+#: Merge.rc:2318
 #, c-format
 msgid "Left Creation Time"
 msgstr "Soldakinin Oluþturulma Zamaný"
 
-#: Merge.rc:2322
+#: Merge.rc:2319
 #, c-format
 msgid "Right Creation Time"
 msgstr "Saðdakinin Oluþturulma Zamaný"
 
-#: Merge.rc:2323
+#: Merge.rc:2320
 #, c-format
 msgid "Newer File"
 msgstr "En Yeni Dosya"
 
-#: Merge.rc:2324
+#: Merge.rc:2321
 #, c-format
 msgid "Left File Version"
 msgstr "Soldaki Dosyanýn Sürümü"
 
-#: Merge.rc:2325
+#: Merge.rc:2322
 #, c-format
 msgid "Right File Version"
 msgstr "Saðdaki Dosyanýn Sürümü"
 
-#: Merge.rc:2326
+#: Merge.rc:2323
 #, c-format
 msgid "Short Result"
 msgstr "Sonuç Özeti"
 
-#: Merge.rc:2327
+#: Merge.rc:2324
 #, c-format
 msgid "Left Attributes"
 msgstr "Soldakinin Öznitelikleri"
 
-#: Merge.rc:2328
+#: Merge.rc:2325
 #, c-format
 msgid "Right Attributes"
 msgstr "Saðdakinin Öznitelikleri"
 
-#: Merge.rc:2329
+#: Merge.rc:2326
 #, c-format
 msgid "Left EOL"
 msgstr "Sol SS (SatýrSonu)"
 
-#: Merge.rc:2330
+#: Merge.rc:2327
 #, c-format
 msgid "Right EOL"
 msgstr "Sað SS (SatýrSonu)"
 
-#: Merge.rc:2336
+#: Merge.rc:2333
 #, c-format
 msgid "Left Encoding"
 msgstr "Soldaki Kodlama"
 
-#: Merge.rc:2337
+#: Merge.rc:2334
 #, c-format
 msgid "Right Encoding"
 msgstr "Saðdaki Kodlama"
 
-#: Merge.rc:2338
+#: Merge.rc:2335
 #, c-format
 msgid "Ignored Diff."
 msgstr "Yok Sayýlan Farklýlýklar"
 
-#: Merge.rc:2340
-#: Merge.rc:2552
+#: Merge.rc:2337
+#: Merge.rc:2549
 #, c-format
 msgid "Binary"
 msgstr "Binary"
 
-#: Merge.rc:2346
+#: Merge.rc:2343
 #, c-format
 msgid "Unable to compare files"
 msgstr "Dosyalar Karþýlaþtýrýlamaz"
 
-#: Merge.rc:2347
+#: Merge.rc:2344
 #, c-format
 msgid "Item aborted"
 msgstr "Öge Ýptal Edildi"
 
-#: Merge.rc:2348
+#: Merge.rc:2345
 #, c-format
 msgid "File skipped"
 msgstr "Dosya Atlandý"
 
-#: Merge.rc:2349
+#: Merge.rc:2346
 #, c-format
 msgid "Folder skipped"
 msgstr "Klasör Atlandý"
 
-#: Merge.rc:2350
+#: Merge.rc:2347
 #, c-format
 msgid "Left only: %1"
 msgstr "Sadece Solda Var: %1"
 
-#: Merge.rc:2351
+#: Merge.rc:2348
 #, c-format
 msgid "Right only: %1"
 msgstr "Sadece Saðda Var: %1"
 
-#: Merge.rc:2352
+#: Merge.rc:2349
 #, c-format
 msgid "Binary files are identical"
 msgstr "Binary Dosyalarý Birbiri Ýle Ayný"
 
-#: Merge.rc:2354
+#: Merge.rc:2351
 #, c-format
 msgid "Binary files are different"
 msgstr "Binary Dosyalarý Birbirinden Farklý"
 
-#: Merge.rc:2355
+#: Merge.rc:2352
 #, c-format
 msgid "Files are different"
 msgstr "Dosyalar Birbirinden Farklý"
 
-#: Merge.rc:2356
+#: Merge.rc:2353
 #, c-format
 msgid "Folders are different"
 msgstr "Klasörler Birbirinden Farklý"
 
-#: Merge.rc:2357
+#: Merge.rc:2354
 #, c-format
 msgid "Left Only"
 msgstr "Sadece Soldaki"
 
-#: Merge.rc:2358
+#: Merge.rc:2355
 #, c-format
 msgid "Right Only"
 msgstr "Sadece Saðdaki"
 
-#: Merge.rc:2360
+#: Merge.rc:2357
 #, c-format
 msgid "Error"
 msgstr "Hata"
 
-#: Merge.rc:2361
+#: Merge.rc:2358
 #, c-format
 msgid "Text files are identical"
 msgstr "Metin Dosyalarý Birbiri Ýle Ayný"
 
-#: Merge.rc:2366
+#: Merge.rc:2363
 #, c-format
 msgid "Text files are different"
 msgstr "Metin Dosyalarý Birbirinden Farklý"
 
-#: Merge.rc:2372
+#: Merge.rc:2369
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Geçen Süre: %ld ms"
 
-#: Merge.rc:2373
+#: Merge.rc:2370
 #, c-format
 msgid "1 item selected"
 msgstr "1 Öge Seçildi"
 
-#: Merge.rc:2374
+#: Merge.rc:2371
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 Öge Seçildi"
 
-#: Merge.rc:2380
+#: Merge.rc:2377
 #, c-format
 msgid "Filename or folder name."
 msgstr "Dosya veya Klasör Adý"
 
-#: Merge.rc:2381
+#: Merge.rc:2378
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Alt Klasörler Eklendiðinde Alt Klasör Adý"
 
-#: Merge.rc:2382
+#: Merge.rc:2379
 #, c-format
 msgid "Comparison result, long form."
 msgstr "Karþýlaþtýrma Sonucu (Uzun Sonuç)"
 
-#: Merge.rc:2383
+#: Merge.rc:2380
 #, c-format
 msgid "Left side modification date."
 msgstr "Soldakinin Deðiþtirilme Tarihi"
 
-#: Merge.rc:2384
+#: Merge.rc:2381
 #, c-format
 msgid "Right side modification date."
 msgstr "Saðdakinin Deðiþtirilme Tarihi"
 
-#: Merge.rc:2385
+#: Merge.rc:2382
 #, c-format
 msgid "File's extension."
 msgstr "Dosyanýn Uzantýsý"
 
-#: Merge.rc:2386
+#: Merge.rc:2383
 #, c-format
 msgid "Left file size in bytes."
 msgstr "Soldaki Dosyanýn Byte Olarak Boyutu"
 
-#: Merge.rc:2387
+#: Merge.rc:2384
 #, c-format
 msgid "Right file size in bytes."
 msgstr "Saðdaki Dosyanýn Byte Olarak Boyutu"
 
-#: Merge.rc:2388
+#: Merge.rc:2385
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "Soldaki Dosyanýn Kýsaca Boyutu"
 
-#: Merge.rc:2389
+#: Merge.rc:2386
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "Saðdaki Dosyanýn Kýsaca Boyutu"
 
-#: Merge.rc:2395
+#: Merge.rc:2392
 #, c-format
 msgid "Left side creation time."
 msgstr "Soldakinin Oluþturulma Zamaný"
 
-#: Merge.rc:2396
+#: Merge.rc:2393
 #, c-format
 msgid "Right side creation time."
 msgstr "Saðdakinin Oluþturulma Zamaný"
 
-#: Merge.rc:2397
+#: Merge.rc:2394
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "En Yeni Deðiþtirilme Tarihine Sahip Olan Taraf"
 
-#: Merge.rc:2398
+#: Merge.rc:2395
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Soldaki Dosya Sürümü, Sadece Bazý Dosya Türleri Ýçindir"
 
-#: Merge.rc:2399
+#: Merge.rc:2396
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Saðdaki Dosya Sürümü, Sadece Bazý Dosya Türleri Ýçindir"
 
-#: Merge.rc:2400
+#: Merge.rc:2397
 #, c-format
 msgid "Short comparison result."
 msgstr "Karþýlaþtýrma Sonucu (Özet)"
 
-#: Merge.rc:2401
+#: Merge.rc:2398
 #, c-format
 msgid "Left side attributes."
 msgstr "Soldaki Dosyanýn Öznitelikleri"
 
-#: Merge.rc:2402
+#: Merge.rc:2399
 #, c-format
 msgid "Right side attributes."
 msgstr "Saðdaki Dosyanýn Öznitelikleri"
 
-#: Merge.rc:2403
+#: Merge.rc:2400
 #, c-format
 msgid "Left side file EOL type"
 msgstr "Soldaki Dosyanýn Satýr Sonu (SS) Türü"
 
-#: Merge.rc:2404
+#: Merge.rc:2401
 #, c-format
 msgid "Right side file EOL type"
 msgstr "Saðdaki Dosyanýn Satýr Sonu (SS) Türü"
 
-#: Merge.rc:2410
+#: Merge.rc:2407
 #, c-format
 msgid "Left side encoding."
 msgstr "Sol Taraftaki Kodlama"
 
-#: Merge.rc:2411
+#: Merge.rc:2408
 #, c-format
 msgid "Right side encoding."
 msgstr "Sað Taraftaki Kodlama"
 
-#: Merge.rc:2412
+#: Merge.rc:2409
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "Yok Sayýlan Farklýlýklarýn Sayýsý. Bunlar, WinMerge Tarafýndan Yok Sayýlan Veya Birleþtirilemeyen Farklýlýklardýr."
 
-#: Merge.rc:2413
+#: Merge.rc:2410
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "Farklýlýklarýn Sayýsý. Yok Sayýlan Farklýlýklar, Bu Sayýya Dahil Deðildir."
 
-#: Merge.rc:2414
+#: Merge.rc:2411
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Eðer Binary Dosyasý Ýse Yýldýz (*) Ýþareti Koy"
 
-#: Merge.rc:2420
+#: Merge.rc:2417
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 Ýle %2 Ögesini Karþýlaþtýr"
 
-#: Merge.rc:2421
+#: Merge.rc:2418
 #, c-format
 msgid "Comma-separated list"
 msgstr "Virgül Ýle Ayrýlmýþ Liste"
 
-#: Merge.rc:2422
+#: Merge.rc:2419
 #, c-format
 msgid "Tab-separated list"
 msgstr "Girinti Ýle Ayrýlmýþ Liste"
 
-#: Merge.rc:2423
+#: Merge.rc:2420
 #, c-format
 msgid "Simple HTML"
 msgstr "Basit HTML"
 
-#: Merge.rc:2424
+#: Merge.rc:2421
 #, c-format
 msgid "Simple XML"
 msgstr "Basit XML"
 
-#: Merge.rc:2426
+#: Merge.rc:2423
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "Rapor Dosyasý Zaten Var. Üzerine Yazmak Ýstiyor musunuz?"
 
-#: Merge.rc:2427
+#: Merge.rc:2424
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4696,32 +4691,32 @@ msgstr ""
 "Rapor Hazýrlama Hatasý:\n"
 "%1"
 
-#: Merge.rc:2428
+#: Merge.rc:2425
 #, c-format
 msgid "The report has been created successfully."
 msgstr "Rapor Baþarýyla Hazýrlandý."
 
-#: Merge.rc:2434
+#: Merge.rc:2431
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Ýki Panelde de Ayný Dosya Açýldý."
 
-#: Merge.rc:2435
+#: Merge.rc:2432
 #, c-format
 msgid "The selected files are identical."
 msgstr "Seçili Dosyalar Birbiri Ýle Ayný."
 
-#: Merge.rc:2436
+#: Merge.rc:2433
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "Dosyalar Karþýlaþtýrýlýrken Bir Hata Oluþtu."
 
-#: Merge.rc:2437
+#: Merge.rc:2434
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Geçici Klasör Oluþturulamadý. Geçici Dizin Ayarlarýnýzý Kontrol Ediniz."
 
-#: Merge.rc:2438
+#: Merge.rc:2435
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4736,7 +4731,7 @@ msgstr ""
 "\n"
 "Not: Eðer Her Zaman Tüm Satýrbaþý Türlerine Eþit Davranmak Ýstiyorsanýz, 'Ayarlar'dan 'Karþýlaþtýr' a Girerek, 'Satýrbaþý Farklýlýklarýný Yok Say..' Seçeneðini Ýþaretleyiniz (Düzen/Ayarlar Altýndan Ulaþabilirsiniz)."
 
-#: Merge.rc:2439
+#: Merge.rc:2436
 #, c-format
 msgid ""
 "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
@@ -4747,22 +4742,22 @@ msgstr ""
 " Bunlar Mevcut Ayarlarla, Temel Türe Dönüþtürülecek.\n"
 " Ayarlarýnýzý Deðiþtirmek ve SatýrSonu (SS) Farklýlýklarýný Korumak Ýster misiniz ?"
 
-#: Merge.rc:2440
+#: Merge.rc:2437
 #, fuzzy, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "'%2' Eklentisi Ýle '%1' Dosyasý Öncelikli Farklýlaþtýrýlýrken Bir Hata Oluþtu. Öncelikli Farklýlaþtýrma Daha Fazla Uygulanamayacak."
 
-#: Merge.rc:2441
+#: Merge.rc:2438
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "Seçili Klasör Geçersiz."
 
-#: Merge.rc:2442
+#: Merge.rc:2439
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "Binary Dosyasý Düzenleyicide Açýlamaz."
 
-#: Merge.rc:2443
+#: Merge.rc:2440
 #, c-format
 msgid ""
 "The folder exists only in other side and cannot be opened.\n"
@@ -4777,7 +4772,7 @@ msgstr ""
 "%1\n"
 "Oluþturmak ve Bu Klasörleri Açmak Ýstiyor musunuz?"
 
-#: Merge.rc:2449
+#: Merge.rc:2446
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4788,132 +4783,132 @@ msgstr ""
 "Her Bir Dosyayý Kendi Kod Sayfasýnda Görüntülemek Daha Ýyi Bir Görüntü Saðlar Ama Birleþtirme/Kopyalama Riskli Hale Gelir.\n"
 "Her Ýki Dosyaya da Varsayýlan Windows Kod Sayfasýna Sahipmiþ Gibi Davranmak Ýster misiniz? (Önerilen)"
 
-#: Merge.rc:2450
+#: Merge.rc:2447
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "Uyarý: Dosyalar Farklý Kodlama Kullanýyor, Sol=%s ve Sað=%s. Birleþtirmek Bilgi Kayýplarýný Doðurabilir."
 
-#: Merge.rc:2451
+#: Merge.rc:2448
 #, fuzzy, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "Hatalarý Kodlamak Bilgi Kaybýný Doðurur: Her Ýki Dosyada"
 
-#: Merge.rc:2452
+#: Merge.rc:2449
 #, fuzzy, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr "Hatalarý Kodlamak Bilgi Kaybýný Doðurur: Saðdaki Dosyada"
 
-#: Merge.rc:2453
+#: Merge.rc:2450
 #, fuzzy, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr "Hatalarý Kodlamak Bilgi Kaybýný Doðurur: Soldaki Dosyada"
 
-#: Merge.rc:2459
+#: Merge.rc:2456
 #, c-format
 msgid "No difference"
 msgstr "Farklýlýk Yok"
 
-#: Merge.rc:2460
+#: Merge.rc:2457
 #, fuzzy, c-format
 msgid "Line difference"
 msgstr "Satýr Farký"
 
-#: Merge.rc:2466
+#: Merge.rc:2463
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "%1 Dizgi Deðiþtirildi."
 
-#: Merge.rc:2467
+#: Merge.rc:2464
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "\"%s\" Dizgisi Bulunamýyor"
 
-#: Merge.rc:2473
+#: Merge.rc:2470
 #, c-format
 msgid "Copy Full Path"
 msgstr "Tam Yolu Kopyala"
 
-#: Merge.rc:2474
+#: Merge.rc:2471
 #, c-format
 msgid "Copy Filename"
 msgstr "Dosya Adýný Kopyala"
 
-#: Merge.rc:2480
+#: Merge.rc:2477
 #, c-format
 msgid "Location Pane"
 msgstr "Durum Penceresi"
 
-#: Merge.rc:2481
+#: Merge.rc:2478
 #, c-format
 msgid "Diff Pane"
 msgstr "Farklýlýk Penceresi"
 
-#: Merge.rc:2487
+#: Merge.rc:2484
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Yama Dosyasý Baþarýyla Yazýldý."
 
-#: Merge.rc:2488
+#: Merge.rc:2485
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. Öge Yok Veya Bu Dizinde Deðil!"
 
-#: Merge.rc:2489
+#: Merge.rc:2486
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. Öge Yok Veya Bu Dizinde Deðil!"
 
-#: Merge.rc:2490
+#: Merge.rc:2487
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Yama Dosyasý Zaten Var. Üzerine Yazmak Ýstiyor musunuz?"
 
-#: Merge.rc:2491
+#: Merge.rc:2488
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 Dosya Seçildi]"
 
-#: Merge.rc:2492
+#: Merge.rc:2489
 #, c-format
 msgid "Normal"
 msgstr "Normal"
 
-#: Merge.rc:2493
+#: Merge.rc:2490
 #, fuzzy, c-format
 msgid "Context"
 msgstr "Sýnýrlý"
 
-#: Merge.rc:2494
+#: Merge.rc:2491
 #, c-format
 msgid "Unified"
 msgstr "Birleþik"
 
-#: Merge.rc:2495
+#: Merge.rc:2492
 #, c-format
 msgid "Could not write to file %1."
 msgstr "%1 Dosyaya Yazýlamadý."
 
-#: Merge.rc:2496
+#: Merge.rc:2493
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Belirtilen Çýktý Dizini Kabul Edilebilir Bir Dizin Deðil: %1"
 
-#: Merge.rc:2497
+#: Merge.rc:2494
 #, c-format
 msgid "Specify an output file"
 msgstr "Bir Çýktý Dosyasý Belirtin"
 
-#: Merge.rc:2498
+#: Merge.rc:2495
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Binary Dosyalarýndan, Yama Dosyasý Hazýrlanamaz."
 
-#: Merge.rc:2499
+#: Merge.rc:2496
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Dizinlerden Yama Dosyasý Hazýrlanamaz."
 
-#: Merge.rc:2500
+#: Merge.rc:2497
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4924,17 +4919,17 @@ msgstr ""
 "\n"
 "Bir Yama Hazýrlamak, Dosyalardaki Tüm Deðiþikliklerin Kaydedilmiþ Olmasýný gerektirir."
 
-#: Merge.rc:2501
+#: Merge.rc:2498
 #, c-format
 msgid "Folder does not exist."
 msgstr "Klasör Bulunamýyor."
 
-#: Merge.rc:2506
+#: Merge.rc:2503
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "Þu Anki Dizin Karþýlaþtýrma Sonuçlarý Silinecek."
 
-#: Merge.rc:2507
+#: Merge.rc:2504
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4945,7 +4940,7 @@ msgstr ""
 "Sýkýþtýrýlmýþ Dosya Desteði Ýçin Gereken (7-zip ve/veya Merge7z*.dll) Hiçbir Ýçerik Bulunamadý.\n"
 "Sýkýþtýrýlmýþ Dosya Desteði Ve Nasýl Yüklenebileceði Ýle Ýlgili Ayrýntýlý Bilgi Ýçin Yardým'a Bakýnýz."
 
-#: Merge.rc:2508
+#: Merge.rc:2505
 #, c-format
 msgid ""
 "\n"
@@ -4954,7 +4949,7 @@ msgstr ""
 "\n"
 "Not: Ayarlar'da 7-Zip Bütünleþmesi Ýptal Edilmiþ."
 
-#: Merge.rc:2509
+#: Merge.rc:2506
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -4963,37 +4958,37 @@ msgstr ""
 "\n"
 "Not: Ayarlar'da 7-Zip Baðýmsýz Çalýþacak Þekilde Sýnýrlanmýþtýr."
 
-#: Merge.rc:2510
+#: Merge.rc:2507
 #, c-format
 msgid "Select file for export"
 msgstr "Dýþa Aktarmak Ýçin Dosya Seç"
 
-#: Merge.rc:2511
+#: Merge.rc:2508
 #, c-format
 msgid "Select file for import"
 msgstr "Ýçe Aktarmak Ýçin Dosya Seç"
 
-#: Merge.rc:2512
+#: Merge.rc:2509
 #, c-format
 msgid "Options imported from the file."
 msgstr "Ayarlar Ýçe Aktarýldý."
 
-#: Merge.rc:2513
+#: Merge.rc:2510
 #, c-format
 msgid "Options exported to the file."
 msgstr "Ayarlar Dýþa Aktarýldý."
 
-#: Merge.rc:2514
+#: Merge.rc:2511
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "Ayarlarýn Ýçe Aktarýlmasý Ýptal edildi."
 
-#: Merge.rc:2515
+#: Merge.rc:2512
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "Ayarlarýn Dosyaya Yazýlmasý Ýptal Edildi."
 
-#: Merge.rc:2516
+#: Merge.rc:2513
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -5004,227 +4999,227 @@ msgstr ""
 "\n"
 "Devam Etmek Ýstiyor musunuz?"
 
-#: Merge.rc:2522
+#: Merge.rc:2519
 #, c-format
 msgid "Regular expression error"
 msgstr "Kurallý Ýfade Hatasý"
 
-#: Merge.rc:2523
+#: Merge.rc:2520
 #, c-format
 msgid "No match"
 msgstr "Eþleþme Yok"
 
-#: Merge.rc:2524
+#: Merge.rc:2521
 #, c-format
 msgid "Invalid regular expression"
 msgstr "Geçersiz Kurallý Ýfade"
 
-#: Merge.rc:2525
+#: Merge.rc:2522
 #, c-format
 msgid "Invalid collation character"
 msgstr "Geçersiz Karþýlaþtýrma Karakteri"
 
-#: Merge.rc:2526
+#: Merge.rc:2523
 #, c-format
 msgid "Invalid character class name"
 msgstr "Geçersiz Sýnýf Ýsmi Karakteri"
 
-#: Merge.rc:2527
+#: Merge.rc:2524
 #, fuzzy, c-format
 msgid "Trailing backslash"
 msgstr "Ters Eðik Çizgi Takibi"
 
-#: Merge.rc:2528
+#: Merge.rc:2525
 #, fuzzy, c-format
 msgid "Invalid back reference"
 msgstr "Geçersiz Geri Referans"
 
-#: Merge.rc:2529
+#: Merge.rc:2526
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "Eþleþmeyen [ Veya [^"
 
-#: Merge.rc:2530
+#: Merge.rc:2527
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "Eþleþmeyen ( Veya \\("
 
-#: Merge.rc:2531
+#: Merge.rc:2528
 #, c-format
 msgid "Unmatched \\{"
 msgstr "Eþleþmeyen \\{"
 
-#: Merge.rc:2532
+#: Merge.rc:2529
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "\\{\\} Ýçeriði Geçersiz"
 
-#: Merge.rc:2533
+#: Merge.rc:2530
 #, fuzzy, c-format
 msgid "Invalid range end"
 msgstr "Geçersiz Dizi Sonu"
 
-#: Merge.rc:2534
+#: Merge.rc:2531
 #, c-format
 msgid "Out of memory"
 msgstr "Bellek Aþýmý"
 
-#: Merge.rc:2535
+#: Merge.rc:2532
 #, fuzzy, c-format
 msgid "Invalid preceding regular expression"
 msgstr "Önceki Kurallý Ýfade Geçersiz"
 
-#: Merge.rc:2536
+#: Merge.rc:2533
 #, fuzzy, c-format
 msgid "Premature end of regular expression"
 msgstr "Kurallý Ýfadenin Zamansýz Sonu"
 
-#: Merge.rc:2537
+#: Merge.rc:2534
 #, c-format
 msgid "Regular expression too big"
 msgstr "Kurallý Ýfade Çok Büyük"
 
-#: Merge.rc:2542
+#: Merge.rc:2539
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "Eþleþmeyen ) Veya \\)"
 
-#: Merge.rc:2548
+#: Merge.rc:2545
 #, c-format
 msgid "Win"
 msgstr "Win"
 
-#: Merge.rc:2549
+#: Merge.rc:2546
 #, c-format
 msgid "Mac"
 msgstr "Mac"
 
-#: Merge.rc:2550
+#: Merge.rc:2547
 #, c-format
 msgid "Unix"
 msgstr "Unix"
 
-#: Merge.rc:2551
+#: Merge.rc:2548
 #, c-format
 msgid "Mixed"
 msgstr "Karma"
 
-#: Merge.rc:2553
+#: Merge.rc:2550
 #, c-format
 msgid "LF"
 msgstr "LF"
 
-#: Merge.rc:2554
+#: Merge.rc:2551
 #, c-format
 msgid "CR"
 msgstr "CR"
 
-#: Merge.rc:2555
+#: Merge.rc:2552
 #, c-format
 msgid "CRLF"
 msgstr "CRLF"
 
-#: Merge.rc:2562
+#: Merge.rc:2559
 #, c-format
 msgid " B"
 msgstr " B"
 
-#: Merge.rc:2563
+#: Merge.rc:2560
 #, c-format
 msgid " KB"
 msgstr " KB"
 
-#: Merge.rc:2564
+#: Merge.rc:2561
 #, c-format
 msgid " MB"
 msgstr " MB"
 
-#: Merge.rc:2565
+#: Merge.rc:2562
 #, c-format
 msgid " GB"
 msgstr " GB"
 
-#: Merge.rc:2566
+#: Merge.rc:2563
 #, c-format
 msgid " TB"
 msgstr " TB"
 
-#: Merge.rc:2567
+#: Merge.rc:2564
 #, c-format
 msgid " PB"
 msgstr " PB"
 
-#: Merge.rc:2573
+#: Merge.rc:2570
 #, c-format
 msgid "Type"
 msgstr "Tür"
 
-#: Merge.rc:2575
+#: Merge.rc:2572
 #, c-format
 msgid "Unpacker"
 msgstr "Çýkartýcý"
 
-#: Merge.rc:2576
+#: Merge.rc:2573
 #, fuzzy, c-format
 msgid "Prediffer"
 msgstr "Öncelikli Fark"
 
-#: Merge.rc:2577
+#: Merge.rc:2574
 #, c-format
 msgid "Editor script"
 msgstr "Düzenleyici Yazý Düzeni"
 
-#: Merge.rc:2584
+#: Merge.rc:2581
 #, c-format
 msgid "Save the left file"
 msgstr "Sol Dosyayý Kaydet"
 
-#: Merge.rc:2585
+#: Merge.rc:2582
 #, c-format
 msgid "Save the right file"
 msgstr "Sað Dosyayý Kaydet"
 
-#: Merge.rc:2586
+#: Merge.rc:2583
 #, c-format
 msgid "Save the left file with name..."
 msgstr "Sol Dosyayý Þu Ýsimle Kaydet..."
 
-#: Merge.rc:2587
+#: Merge.rc:2584
 #, c-format
 msgid "Save the right file with name..."
 msgstr "Sað Dosyayý Þu Ýsimle Kaydet..."
 
-#: Merge.rc:2588
+#: Merge.rc:2585
 #, fuzzy, c-format
 msgid "Change left side file/folder read-only status"
 msgstr "Soldaki Dosyayý/Klasörü Salt Okunur Duruma Çevir"
 
-#: Merge.rc:2589
+#: Merge.rc:2586
 #, fuzzy, c-format
 msgid "Change right side file/folder read-only status"
 msgstr "Saðdaki Dosyayý/Klasörü Salt Okunur Duruma Çevir"
 
-#: Merge.rc:2590
+#: Merge.rc:2587
 #, c-format
 msgid "Convert EOL to Windows mode"
 msgstr "SatýrSonu (SS) 'nu Windows Moduna Dönüþtür"
 
-#: Merge.rc:2591
+#: Merge.rc:2588
 #, c-format
 msgid "Convert EOL to Unix mode"
 msgstr "SatýrSonu (SS) 'nu Unix Moduna Dönüþtür"
 
-#: Merge.rc:2592
+#: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Mac mode"
 msgstr "SatýrSonu (SS) 'nu Mac Moduna Dönüþtür"
 
-#: Merge.rc:2593
+#: Merge.rc:2590
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Düzenleme Ve Birleþtirme Modlarý Birbirine Geçiþ Anahtarý"
 
-#: Merge.rc:2594
+#: Merge.rc:2591
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5233,12 +5228,12 @@ msgstr ""
 "Dosya Kodlama Özelliklerine Bak ve Ayarla\n"
 "Dosya Kodlama Özellikleri"
 
-#: Merge.rc:2595
+#: Merge.rc:2592
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr "Fark Dosyasýný Aç Ve Deðiþiklik Yap"
 
-#: Merge.rc:2601
+#: Merge.rc:2598
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5247,7 +5242,7 @@ msgstr ""
 "Þu Anki Satýrda Farklýlýk Alanýný Seç\n"
 "Þu Anki Satýrdaki Farklýlýk"
 
-#: Merge.rc:2602
+#: Merge.rc:2599
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5256,7 +5251,7 @@ msgstr ""
 "Satýra Veya Farklýlýða Git\n"
 "Git (Ctrl+G)"
 
-#: Merge.rc:2603
+#: Merge.rc:2600
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5265,7 +5260,7 @@ msgstr ""
 "Program Ayarlarýný Yap\n"
 "Ayarlar"
 
-#: Merge.rc:2604
+#: Merge.rc:2601
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5274,37 +5269,37 @@ msgstr ""
 "Görüntüyü Tazele\n"
 "Tazele (F5)"
 
-#: Merge.rc:2605
+#: Merge.rc:2602
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "Seçili Satýrlarý Satýr Numaralarýný da Ekleyerek Panoya Kopyala"
 
-#: Merge.rc:2606
+#: Merge.rc:2603
 #, c-format
 msgid "Refresh selected items"
 msgstr "Seçili Ögeleri Tazele"
 
-#: Merge.rc:2607
+#: Merge.rc:2604
 #, c-format
 msgid "Toggle bookmark"
 msgstr "Sýk Kullanýlanlarý Aç-Kapa"
 
-#: Merge.rc:2608
+#: Merge.rc:2605
 #, c-format
 msgid "Go to next bookmark"
 msgstr "Sonraki Sýk Kullanýlana Git"
 
-#: Merge.rc:2609
+#: Merge.rc:2606
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "Önceki Sýk Kullanýlana Git"
 
-#: Merge.rc:2610
+#: Merge.rc:2607
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "Sýk Kullanýlanlarý Temizle"
 
-#: Merge.rc:2616
+#: Merge.rc:2613
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5313,7 +5308,7 @@ msgstr ""
 "Týpatýp Ayný Olan Ögeleri Gösterir\n"
 "Ayný Ögeleri Göster"
 
-#: Merge.rc:2617
+#: Merge.rc:2614
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5322,7 +5317,7 @@ msgstr ""
 "Farklý Olan Ögeleri Gösterir\n"
 "Farklý Ögeleri Göster"
 
-#: Merge.rc:2618
+#: Merge.rc:2615
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5331,7 +5326,7 @@ msgstr ""
 "Yalnýzca Sol Tarafta Olan, Saðda Olmayan Ögeleri Gösterir\n"
 "Soldaki Benzersiz Ögeleri Göster"
 
-#: Merge.rc:2619
+#: Merge.rc:2616
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5340,7 +5335,7 @@ msgstr ""
 "Yalnýzca Sað Tarafta Olan, Solda Olmayan Ögeleri Gösterir\n"
 "Saðdaki Benzersiz Ögeleri Göster"
 
-#: Merge.rc:2620
+#: Merge.rc:2617
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5349,7 +5344,7 @@ msgstr ""
 "Binary Dosyalarýný Gösterir\n"
 "Binary Dosyalarýný Göster"
 
-#: Merge.rc:2621
+#: Merge.rc:2618
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5358,7 +5353,7 @@ msgstr ""
 "Atlanan Ögeleri Gösterir\n"
 "Atlanan Ögeleri Göster"
 
-#: Merge.rc:2627
+#: Merge.rc:2624
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5367,7 +5362,7 @@ msgstr ""
 "Ekran Ýçin Yazý Tipi Seç\n"
 "Ekran Yazý Tipini Seç"
 
-#: Merge.rc:2628
+#: Merge.rc:2625
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5376,27 +5371,27 @@ msgstr ""
 "Ekran Yazý Tipini Varsayýlan Sistem Yazý Tipine Geri Döndür\n"
 "Varsayýlan Yazý Tipi"
 
-#: Merge.rc:2629
+#: Merge.rc:2626
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "Boþluk Karakterlerini Göster"
 
-#: Merge.rc:2630
+#: Merge.rc:2627
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Farklýlýk Penceresi'ni Aç-Kapat"
 
-#: Merge.rc:2631
+#: Merge.rc:2628
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "Durum Penceresi Dosyalarýn Tamamýnýn Görüntüsünü Görmenizi Saðlar"
 
-#: Merge.rc:2632
+#: Merge.rc:2629
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "Klasör Karþýlaþtýrma Verileri Ýletiþim Kutusunu Göster"
 
-#: Merge.rc:2633
+#: Merge.rc:2630
 #, c-format
 msgid ""
 "Select the current user interface language\n"
@@ -5405,7 +5400,7 @@ msgstr ""
 "Geçerli Kullanýcý Arayüz Dilini Seç\n"
 "Dil"
 
-#: Merge.rc:2634
+#: Merge.rc:2631
 #, c-format
 msgid ""
 "Shows differences inside lines with different colors\n"
@@ -5414,12 +5409,12 @@ msgstr ""
 "Satýr Ýçlerindeki Farklýlýklarý, Farklý Renklerle Göster\n"
 "Satýr Farklýlýklarýný Göster"
 
-#: Merge.rc:2635
+#: Merge.rc:2632
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "Ýki Paneli Yer Deðiþtir"
 
-#: Merge.rc:2636
+#: Merge.rc:2633
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5428,7 +5423,7 @@ msgstr ""
 "Satýr Numaralarýný Gösterir\n"
 "Satýr Numaralarýný Göster"
 
-#: Merge.rc:2637
+#: Merge.rc:2634
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5437,7 +5432,7 @@ msgstr ""
 "Sözcük Kaydýrmayý Yükle\n"
 "Satýrlarý Kaydýr"
 
-#: Merge.rc:2638
+#: Merge.rc:2635
 #, fuzzy, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -5446,22 +5441,22 @@ msgstr ""
 "Her Ýki Panelin Seçim Sýnýrlarýný Gösterir\n"
 "Seçim Sýnýrlarýný Göster"
 
-#: Merge.rc:2639
+#: Merge.rc:2636
 #, c-format
 msgid "Increase text size"
 msgstr "Metin Boyutunu Artýr"
 
-#: Merge.rc:2640
+#: Merge.rc:2637
 #, c-format
 msgid "Decrease text size"
 msgstr "Metin Boyutunu Azalt"
 
-#: Merge.rc:2641
+#: Merge.rc:2638
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr "Metin Yakýnlaþtýrmasýný Varsayýlan Boyuta Geri Döndür"
 
-#: Merge.rc:2647
+#: Merge.rc:2644
 #, c-format
 msgid ""
 "Scroll to the previous difference\n"
@@ -5470,7 +5465,7 @@ msgstr ""
 "Önceki Farklýlýða Git\n"
 "Önceki Farklýlýk (Alt+Up)"
 
-#: Merge.rc:2648
+#: Merge.rc:2645
 #, c-format
 msgid ""
 "Scroll to the next difference\n"
@@ -5479,7 +5474,7 @@ msgstr ""
 "Sonraki Farklýlýða Git\n"
 "Sonraki Farklýlýk (Alt+Down)"
 
-#: Merge.rc:2649
+#: Merge.rc:2646
 #, c-format
 msgid ""
 "Scroll to the first difference\n"
@@ -5488,7 +5483,7 @@ msgstr ""
 "Ýlk Farklýlýða Git\n"
 "Ýlk Farklýlýk"
 
-#: Merge.rc:2650
+#: Merge.rc:2647
 #, c-format
 msgid ""
 "Scroll to the current difference\n"
@@ -5497,7 +5492,7 @@ msgstr ""
 "Þu Anki Farklýlýða Git\n"
 "Þu Anki Farklýlýk"
 
-#: Merge.rc:2651
+#: Merge.rc:2648
 #, c-format
 msgid ""
 "Scroll to the last difference\n"
@@ -5506,7 +5501,7 @@ msgstr ""
 "Son Farklýlýða Git\n"
 "Son Farklýlýk (Alt+End)"
 
-#: Merge.rc:2652
+#: Merge.rc:2649
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5515,7 +5510,7 @@ msgstr ""
 "Seçili Metni Saðdaki Dosyaya Kopyala\n"
 "Saða Kopyala (Alt+Right)"
 
-#: Merge.rc:2653
+#: Merge.rc:2650
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5524,7 +5519,7 @@ msgstr ""
 "Seçili Metni Soldaki Dosyaya Kopyala\n"
 "Sola Kopyala (Alt+Right)"
 
-#: Merge.rc:2654
+#: Merge.rc:2651
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5533,7 +5528,7 @@ msgstr ""
 "Farklýlýðý Saða Kopyala ve Sonrakine Ýlerle\n"
 "Saða Kopyala ve Ýlerle (Ctrl+Alt+Right)"
 
-#: Merge.rc:2655
+#: Merge.rc:2652
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5542,7 +5537,7 @@ msgstr ""
 "Farklýlýðý Sola Kopyala ve Sonrakine Ýlerle\n"
 "Sola Kopyala ve Ýlerle (Ctrl+Alt+Right)"
 
-#: Merge.rc:2656
+#: Merge.rc:2653
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -5551,7 +5546,7 @@ msgstr ""
 "Tüm Farklýlýklarý Saðdaki Dosyaya Kopyala\n"
 "Tümünü Saða"
 
-#: Merge.rc:2657
+#: Merge.rc:2654
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -5560,77 +5555,77 @@ msgstr ""
 "Tüm Farklýlýklarý Soldaki Dosyaya Kopyala\n"
 "Tümünü Sola"
 
-#: Merge.rc:2658
+#: Merge.rc:2655
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "Her Ýki Dizinden Seçili Ögeleri  Sil"
 
-#: Merge.rc:2659
+#: Merge.rc:2656
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Seçili Ögeyi Karþýlaþtýr (Eðer Birçok Öge Seçilmiþse Ýlk Ögeyi Karþýlaþtýr)"
 
-#: Merge.rc:2665
+#: Merge.rc:2662
 #, fuzzy, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Dizin Karþýlaþtýrma Sütunlarýný Seç ve Yeniden Göster"
 
-#: Merge.rc:2666
+#: Merge.rc:2663
 #, c-format
 msgid "Generate a patch-file"
 msgstr "Bir Yama Dosyasý Oluþtur"
 
-#: Merge.rc:2667
+#: Merge.rc:2664
 #, c-format
 msgid "Select and modify filters"
 msgstr "Filtreleri Seç Ve Deðiþtir"
 
-#: Merge.rc:2668
+#: Merge.rc:2665
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "Karþýlaþtýrma Sonuçlarýndan Bir Rapor Çýkartýr"
 
-#: Merge.rc:2674
+#: Merge.rc:2671
 #, c-format
 msgid "Shows a list of available plugins"
 msgstr "Yüklenebilir Eklentilerin Listesini Göster"
 
-#: Merge.rc:2675
+#: Merge.rc:2672
 #, fuzzy, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "Çýkartýcýyý Kullanýcý Seçer (Dizin Karþýlaþtýrýlýrken Çýkartma Yapýlamaz)"
 
-#: Merge.rc:2676
+#: Merge.rc:2673
 #, fuzzy, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "Adapte Edilen Çýkartýcý Her Ýki Dosyaya da Uygulandý (Sadece Bir Dosya Bu Uzantýya Ýhtiyaç Duyuyor)"
 
-#: Merge.rc:2677
+#: Merge.rc:2674
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Bu Dosyayý Düzenlemek Ýçin Bir Çýkartýcý Seç"
 
-#: Merge.rc:2678
+#: Merge.rc:2675
 #, fuzzy, c-format
 msgid "No prediffer (normal)"
 msgstr "Öncelikli Fark Yok (Normal)"
 
-#: Merge.rc:2679
+#: Merge.rc:2676
 #, c-format
 msgid "Suggested plugins"
 msgstr "Önerilen Eklentiler"
 
-#: Merge.rc:2680
+#: Merge.rc:2677
 #, c-format
 msgid "Other plugins"
 msgstr "Diðer Eklentiler"
 
-#: Merge.rc:2681
+#: Merge.rc:2678
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Tüm Eklentileri Kaldýr ve Yeniden Yükle (Geliþtiriciler Ýçin)"
 
-#: Merge.rc:2687
+#: Merge.rc:2684
 #, c-format
 msgid ""
 "Activates next visible file\n"
@@ -5639,12 +5634,12 @@ msgstr ""
 "Sonraki Görülebilir Dosyayý Aktifleþtir\n"
 "Sonraki Dosyayý Aktifleþtir"
 
-#: Merge.rc:2688
+#: Merge.rc:2685
 #, c-format
 msgid "Closes all open windows"
 msgstr "Tüm Açýk Pencereleri Kapatýr"
 
-#: Merge.rc:2694
+#: Merge.rc:2691
 #, c-format
 msgid ""
 "Opens the WinMerge Help\n"
@@ -5653,22 +5648,22 @@ msgstr ""
 "WinMerge Yardým'ý Açar\n"
 "WinMerge Yardým"
 
-#: Merge.rc:2695
+#: Merge.rc:2692
 #, fuzzy, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "Þimdiki WinMerge Sürüm Bilgisini ve Ayarlarý Metin Dosyasýna Çýkart"
 
-#: Merge.rc:2696
+#: Merge.rc:2693
 #, c-format
 msgid "Display the GNU General Public License"
 msgstr "GNU General Public Lisansýný Göster"
 
-#: Merge.rc:2697
+#: Merge.rc:2694
 #, c-format
 msgid "Private Build: %1"
 msgstr "Özel Yapým: %1"
 
-#: Merge.rc:2698
+#: Merge.rc:2695
 #, c-format
 msgid ""
 "Opens the release notes document\n"
@@ -5677,7 +5672,7 @@ msgstr ""
 "Sürüm Notlarý Belgesini Açar\n"
 "Sürüm Notlarý"
 
-#: Merge.rc:2699
+#: Merge.rc:2696
 #, c-format
 msgid ""
 "Opens the translations website\n"
@@ -5686,272 +5681,272 @@ msgstr ""
 "Çeviriler Web Sitesini Açar\n"
 "Çeviriler"
 
-#: Merge.rc:2705
+#: Merge.rc:2702
 #, c-format
 msgid "Plugin Settings"
 msgstr "Eklenti Ayarlarý"
 
-#: Merge.rc:2706
+#: Merge.rc:2703
 #, fuzzy, c-format
 msgid "No prediffer"
 msgstr "Öncelikli Fark Yok"
 
-#: Merge.rc:2707
+#: Merge.rc:2704
 #, fuzzy, c-format
 msgid "Prediff if possible"
 msgstr "Mümkünse Öncelikli Fark"
 
-#: Merge.rc:2709
+#: Merge.rc:2706
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH (Windows Script Host) Bulunamadý  - .sct Betikleri Ýptal Edildi"
 
-#: Merge.rc:2710
+#: Merge.rc:2707
 #, c-format
 msgid "<None>"
 msgstr "<YOK>"
 
-#: Merge.rc:2711
+#: Merge.rc:2708
 #, c-format
 msgid "<Automatic>"
 msgstr "<Otomatik>"
 
-#: Merge.rc:2717
+#: Merge.rc:2714
 #, c-format
 msgid "Open the file with registered application"
 msgstr "Dosyayý Kayýtlý Uygulama Ýle Aç"
 
-#: Merge.rc:2718
+#: Merge.rc:2715
 #, c-format
 msgid "Open the file with external editor"
 msgstr "Dosyayý Harici Düzenleyici Ýle Aç"
 
-#: Merge.rc:2719
+#: Merge.rc:2716
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "Dosyayý Özel Bir Programla Aç"
 
-#: Merge.rc:2725
+#: Merge.rc:2722
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "Taþýnan Bloklarý Gösterme!"
 
-#: Merge.rc:2726
+#: Merge.rc:2723
 #, c-format
 msgid "Display all moved blocks"
 msgstr "Taþýnan Tüm Bloklarý Göster"
 
-#: Merge.rc:2727
+#: Merge.rc:2724
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Sadece Þu Anki Farklýlýktan Taþýnan Bloklarý Göster"
 
-#: Merge.rc:2728
+#: Merge.rc:2725
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Ýmlecin Altýndaki Farklýlýða Git"
 
-#: Merge.rc:2729
+#: Merge.rc:2726
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "%2 Farktan %1. Farka Git"
 
-#: Merge.rc:2730
+#: Merge.rc:2727
 #, c-format
 msgid "G&oto Line %1"
 msgstr "%1. Satýra Git"
 
-#: Merge.rc:2736
+#: Merge.rc:2733
 #, c-format
 msgid "Disabled"
 msgstr "Ýptal"
 
-#: Merge.rc:2737
+#: Merge.rc:2734
 #, c-format
 msgid "From file system"
 msgstr "Dosya Sisteminden"
 
-#: Merge.rc:2738
+#: Merge.rc:2735
 #, c-format
 msgid "From MRU list"
 msgstr "Sýk Kullanýlanlar Listesinden"
 
-#: Merge.rc:2744
+#: Merge.rc:2741
 #, c-format
 msgid "No Highlighting"
 msgstr "Vurgulama Yok"
 
-#: Merge.rc:2745
+#: Merge.rc:2742
 #, c-format
 msgid "ASP"
 msgstr "ASP"
 
-#: Merge.rc:2746
+#: Merge.rc:2743
 #, c-format
 msgid "Basic"
 msgstr "Basic"
 
-#: Merge.rc:2747
+#: Merge.rc:2744
 #, c-format
 msgid "Batch"
 msgstr "Batch"
 
-#: Merge.rc:2748
+#: Merge.rc:2745
 #, c-format
 msgid "C/C++"
 msgstr "C/C++"
 
-#: Merge.rc:2749
+#: Merge.rc:2746
 #, c-format
 msgid "C#"
 msgstr "C#"
 
-#: Merge.rc:2750
+#: Merge.rc:2747
 #, c-format
 msgid "CSS"
 msgstr "CSS"
 
-#: Merge.rc:2751
+#: Merge.rc:2748
 #, c-format
 msgid "DCL"
 msgstr "DCL"
 
-#: Merge.rc:2752
+#: Merge.rc:2749
 #, c-format
 msgid "Fortran"
 msgstr "Fortran"
 
-#: Merge.rc:2753
+#: Merge.rc:2750
 #, c-format
 msgid "HTML"
 msgstr "HTML"
 
-#: Merge.rc:2754
+#: Merge.rc:2751
 #, c-format
 msgid "INI"
 msgstr "INI"
 
-#: Merge.rc:2755
+#: Merge.rc:2752
 #, c-format
 msgid "InnoSetup"
 msgstr "InnoSetup"
 
-#: Merge.rc:2756
+#: Merge.rc:2753
 #, c-format
 msgid "InstallShield"
 msgstr "InstallShield"
 
-#: Merge.rc:2757
+#: Merge.rc:2754
 #, c-format
 msgid "Java"
 msgstr "Java"
 
-#: Merge.rc:2758
+#: Merge.rc:2755
 #, c-format
 msgid "AutoLISP"
 msgstr "AutoLISP"
 
-#: Merge.rc:2759
+#: Merge.rc:2756
 #, c-format
 msgid "NSIS"
 msgstr "NSIS"
 
-#: Merge.rc:2760
+#: Merge.rc:2757
 #, c-format
 msgid "Pascal"
 msgstr "Pascal"
 
-#: Merge.rc:2761
+#: Merge.rc:2758
 #, c-format
 msgid "Perl"
 msgstr "Perl"
 
-#: Merge.rc:2762
+#: Merge.rc:2759
 #, c-format
 msgid "PHP"
 msgstr "PHP"
 
-#: Merge.rc:2763
+#: Merge.rc:2760
 #, c-format
 msgid "Portable Object"
 msgstr "Portable Object"
 
-#: Merge.rc:2764
+#: Merge.rc:2761
 #, c-format
 msgid "PowerShell"
 msgstr "PowerShell"
 
-#: Merge.rc:2765
+#: Merge.rc:2762
 #, c-format
 msgid "Python"
 msgstr "Python"
 
-#: Merge.rc:2766
+#: Merge.rc:2763
 #, c-format
 msgid "REXX"
 msgstr "REXX"
 
-#: Merge.rc:2767
+#: Merge.rc:2764
 #, c-format
 msgid "Resources"
 msgstr "Resources"
 
-#: Merge.rc:2768
+#: Merge.rc:2765
 #, c-format
 msgid "Ruby"
 msgstr "Ruby"
 
-#: Merge.rc:2769
+#: Merge.rc:2766
 #, c-format
 msgid "SGML"
 msgstr "SGML"
 
-#: Merge.rc:2770
+#: Merge.rc:2767
 #, c-format
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:2771
+#: Merge.rc:2768
 #, c-format
 msgid "SIOD"
 msgstr "SIOD"
 
-#: Merge.rc:2772
+#: Merge.rc:2769
 #, c-format
 msgid "SQL"
 msgstr "SQL"
 
-#: Merge.rc:2773
+#: Merge.rc:2770
 #, c-format
 msgid "TCL"
 msgstr "TCL"
 
-#: Merge.rc:2774
+#: Merge.rc:2771
 #, c-format
 msgid "TEX"
 msgstr "TEX"
 
-#: Merge.rc:2775
+#: Merge.rc:2772
 #, c-format
 msgid "Verilog"
 msgstr "Verilog"
 
-#: Merge.rc:2776
+#: Merge.rc:2773
 #, c-format
 msgid "XML"
 msgstr "XML"
 
-#: Merge.rc:2781
+#: Merge.rc:2778
 #, c-format
 msgid "Hide the toolbar"
 msgstr "Araç Çubuðunu Gizle"
 
-#: Merge.rc:2782
+#: Merge.rc:2779
 #, c-format
 msgid "Show small toolbar"
 msgstr "Küçük Araç Çubuðu Göster"
 
-#: Merge.rc:2783
+#: Merge.rc:2780
 #, c-format
 msgid "Show big toolbar"
 msgstr "Büyük Araç Çubuðu Göster"
