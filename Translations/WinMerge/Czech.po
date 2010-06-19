@@ -1545,7 +1545,7 @@ msgstr "Chybìjící"
 #: Merge.rc:1960
 #, c-format
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: Merge.rc:939
 #, c-format
@@ -2632,12 +2632,12 @@ msgstr "Pøidat systémovou &místní nabídku"
 #: Merge.rc:2307
 #, c-format
 msgid "Folder"
-msgstr "Složka"
+msgstr "Složky"
 
 #: Merge.rc:1689
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "&Zpùsob porovnání:"
 
 #: Merge.rc:1691
 #, c-format
@@ -2652,12 +2652,12 @@ msgstr "&Ignorovat èasové rozdíly menší než 3 sekundy"
 #: Merge.rc:1695
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "Zahrnout obsah jedineèných podsložek"
 
 #: Merge.rc:1697
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&Omezení pro rychlé porovnání (MB):"
 
 #. StringFileInfo.Block
 #: Merge.rc:1723
@@ -3214,7 +3214,7 @@ msgstr "Na t&uto otázku se již pøíštì nedotazovat."
 #: Merge.rc:1961
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntaxe"
 
 #: Merge.rc:1963
 #, c-format
@@ -3225,7 +3225,7 @@ msgstr "Kontrola verzí"
 #: Merge.rc:2339
 #, c-format
 msgid "Differences"
-msgstr "Rozdílù"
+msgstr "Rozdíly"
 
 #: Merge.rc:1977
 #, c-format
