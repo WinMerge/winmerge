@@ -585,11 +585,16 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 					LineDataRight.erase(CommentStrRight);
 			}
 
-			if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+		if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 			{
 				//Ignore character case
 				std::string::size_type pos = 0;
 				while ((pos = LineDataLeft.find(" ", pos)) != String::npos)
+				{
+					LineDataLeft.replace(pos, 1, "");
+				}
+				pos = 0;
+				while ((pos = LineDataLeft.find("\t", pos)) != String::npos)
 				{
 					LineDataLeft.replace(pos, 1, "");
 				}
@@ -599,16 +604,31 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 				{
 					LineDataRight.replace(pos, 1, "");
 				}
+				pos = 0;
+				while ((pos = LineDataRight.find("\t", pos)) != String::npos)
+				{
+					LineDataRight.replace(pos, 1, "");
+				}
 			}
 			else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 			{
 				//Ignore change in whitespace char count
 				std::string::size_type pos = 0;
+				while ((pos = LineDataLeft.find("\t", pos)) != String::npos)
+				{
+					LineDataLeft.replace(pos, 1, " ");
+				}
+				pos = 0;
 				while ((pos = LineDataLeft.find("  ", pos)) != String::npos)
 				{
 					LineDataLeft.replace(pos, 2, " ");
 				}
 
+				pos = 0;
+				while ((pos = LineDataRight.find("\t", pos)) != String::npos)
+				{
+					LineDataRight.replace(pos, 1, " ");
+				}
 				pos = 0;
 				while ((pos = LineDataRight.find("  ", pos)) != String::npos)
 				{
