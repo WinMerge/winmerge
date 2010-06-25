@@ -131,6 +131,16 @@ int DiffUtils::diffutils_compare_files()
 		struct change *next = script;
 		struct change *thisob = 0, *end = 0;
 
+		String asLwrCaseExt;
+		String LowerCaseExt = CA2T(m_inf[0].name);
+		int PosOfDot = LowerCaseExt.rfind('.');
+		if (PosOfDot != -1)
+		{
+			LowerCaseExt.erase(0, PosOfDot + 1);
+			CharLower(&*LowerCaseExt.begin());
+			asLwrCaseExt = LowerCaseExt;
+		}
+
 		while (next)
 		{
 			/* Find a set of changes that belong together.  */
@@ -162,16 +172,6 @@ int DiffUtils::diffutils_compare_files()
 
 					if(m_pOptions->m_filterCommentsLines)
 					{
-						String asLwrCaseExt;
-						String LowerCaseExt = CA2T(m_inf[0].name);
-						int PosOfDot = LowerCaseExt.rfind('.');
-						if (PosOfDot != -1)
-						{
-							LowerCaseExt.erase(0, PosOfDot + 1);
-							CharLower(&*LowerCaseExt.begin());
-							asLwrCaseExt = LowerCaseExt;
-						}
-					
 						int op=0;
 						if (!deletes && !inserts)
 							op = OP_TRIVIAL;
