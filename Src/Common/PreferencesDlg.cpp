@@ -272,7 +272,7 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 
 	if (bUpdate)
 	{
-		SafeUpdatePage(&m_pageMergeColors, FALSE);
+		SafeUpdatePage(&m_pageGeneral, FALSE);
 		SafeUpdatePage(&m_pageMergeColors, FALSE);
 		SafeUpdatePage(&m_pageTextColors, FALSE);
 		SafeUpdatePage(&m_pageSyntaxColors, FALSE);
