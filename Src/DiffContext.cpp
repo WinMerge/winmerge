@@ -256,7 +256,7 @@ BOOL CDiffContext::CreateCompareOptions(const DIFFOPTIONS & options)
 CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 {
 	//If compare method is same than in previous time, return cached value
-	if (compareMethod == m_nCompMethod && m_pCompareOptions != NULL)
+	if (compareMethod == m_nCurrentCompMethod && m_pCompareOptions != NULL)
 		return m_pCompareOptions;
 	
 	// Otherwise we have to create new options
