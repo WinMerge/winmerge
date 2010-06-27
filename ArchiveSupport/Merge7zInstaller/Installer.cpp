@@ -33,19 +33,12 @@ DATE:		BY:					DESCRIPTION:
 								Fix empty path issue with GetFileTitle()
 								Accept extraction folder on command line
 								Batch options: /standalone, /select, /commit
-2005-05-30	Jochen Tucht		Standalone option now based on 7z420
-2005-06-28	Jochen Tucht		Standalone option now based on 7z423
-2005-12-04	Jochen Tucht		Standalone option now based on 7z431
-2005-12-09	Jochen Tucht		Standalone option now based on 7z432
-2006-06-28	Jochen Neubeck		Standalone option now based on 7z442
-2007-12-22	Jochen Neubeck		Standalone option now based on 7z457
+2010-05-13	Jochen Neubeck		Base application specific installation on 7z465
 */
 
 #include <windows.h>
 
-#define VERSION7Z 4.57
-
-#pragma intrinsic(memset) // do not depend on CRT
+#define VERSION7Z 4.65
 
 #define SHARPEN(X) #X
 #define SHARPEN2(X) SHARPEN(X)
@@ -313,7 +306,7 @@ BOOL CALLBACK DlgMain_BrowseExe(HWND hWnd)
 		OPENFILENAME ofn;
 		TCHAR buffer[5 * MAX_PATH];
 	} path;
-	ZeroMemory(&path, sizeof path);
+	SecureZeroMemory(&path, sizeof path);
 	path.ofn.lStructSize = sizeof path.ofn;
 	path.ofn.hwndOwner = hWnd;
 	path.ofn.lpstrFile = path.buffer;

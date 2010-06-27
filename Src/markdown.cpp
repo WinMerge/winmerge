@@ -389,7 +389,7 @@ static const char htmlUTags[]
 
 CMarkdown::CMarkdown(const char *upper, const char *ahead, unsigned flags):
 first(0), lower(0), upper(upper), ahead(ahead),
-memcmp(flags & IgnoreCase ? ::memicmp : ::memcmp),
+memcmp(flags & IgnoreCase ? ::_memicmp : ::memcmp),
 utags(flags & HtmlUTags ? htmlUTags : NULL)
 {
 	if (CMarkdown::ahead > CMarkdown::upper)

@@ -4,7 +4,7 @@
  * @brief Implementation file for FilterList.
  */
 // ID line follows -- this is updated by SVN
-// $Id: FilterList.cpp 6687 2009-04-21 14:12:15Z kimmov $
+// $Id: FilterList.cpp 7164 2010-05-15 13:57:32Z jtuc $
 
 #include <windows.h>
 #include <vector>
@@ -46,7 +46,7 @@ FilterList::~FilterList()
 void FilterList::AddRegExp(const char * regularExpression, EncodingType encoding)
 {
 	filter_item item;
-	item.filterAsString = strdup(regularExpression);
+	item.filterAsString = _strdup(regularExpression);
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
@@ -144,7 +144,7 @@ bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
 		{
 			if (m_lastMatchExpression != NULL)
 				free(m_lastMatchExpression);
-			m_lastMatchExpression = strdup(item.filterAsString);
+			m_lastMatchExpression = _strdup(item.filterAsString);
 			retval = true;
 		}
 		else

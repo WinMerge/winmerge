@@ -27,5 +27,9 @@ d: \\_vti_pvt$
 d: \\_vti_txt$
 d: \\_vti_script$
 d: \\_vti*$
-d: \\cvs$ ## CVS control directory
-d: \\.svn$ ## Subversion control directory
+d: \\\.svn$ ## Subversion working copy
+d: \\_svn$  ## Subversion working copy ASP.NET Hack
+d: \\cvs$   ## CVS control directory
+d: \\\.git$ ## Git directory
+d: \\\.bzr$ ## Bazaar branch
+d: \\\.hg$ ## Mercurial repository

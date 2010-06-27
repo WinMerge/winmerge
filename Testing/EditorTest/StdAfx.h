@@ -26,7 +26,24 @@
 #pragma warning(disable:4786)
 
 #include "isx.h"
+
+#include "UnicodeString.h"
+
+	/** @brief Load string from string resources; shortcut for CString::LoadString */
+String LoadResString(UINT id);
+
+	/** @brief Wrapper around CMergeApp::TranslateDialog() */
+void NTAPI LangTranslateDialog(HWND);
+
+	/** @brief Lang aware version of AfxFormatString1() */
+void NTAPI LangFormatString1(CString &, UINT, LPCTSTR);
+
+	/** @brief Inline sprintf-style format; shortcut for CString::Format */
+CString Fmt(LPCTSTR fmt, ...);
+
+	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"
+
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
