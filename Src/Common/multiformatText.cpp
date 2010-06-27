@@ -586,15 +586,18 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 
 	for (UINT i = 0 ; i < nUtf && nremains > 0; )
 	{
-		*pwc++ = ucr::GetUtf8Char(pUtf+i);
-		nremains --;
 		int chlen = ucr::Utf8len_fromLeadByte(pUtf[i]);
-		if (chlen < 1) chlen = 1;
-		i += chlen;
-	}
-
-	// return number of written wchars
-	return (nUtf - nremains);
+		if (chlen < 1 || i + chlen > nUtf)
+			*pwc++ = '?';
+		else
+ 			*pwc++ = ucr::GetUtf8Char(pUtf+i);
+ 		nremains --;
+ 		if (chlen < 1) chlen = 1;
+ 		i += chlen;
+ 	}
+ 
+ 	// return number of written wchars
+	return (nUcs - nremains);
 }
 
 
