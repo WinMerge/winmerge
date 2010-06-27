@@ -239,10 +239,10 @@ static String ColPathGet(const CDiffContext *, const void *p)
 	{
 		const TCHAR *pi = _tcschr(s.c_str() + i, '\\');
 		const TCHAR *pj = _tcschr(t.c_str() + j, '\\');
-		int i_ahead = pi ? pi - s.c_str() : std::string.npos;
-		int j_ahead = pj ? pj - t.c_str() : std::string.npos;
-		int length_s = (i_ahead != std::string.npos ? i_ahead : s.length()) - i;
-		int length_t = (j_ahead != std::string.npos ? j_ahead : t.length()) - j;
+		int i_ahead = pi ? pi - s.c_str() : std::string::npos;
+		int j_ahead = pj ? pj - t.c_str() : std::string::npos;
+		int length_s = (i_ahead != std::string::npos ? i_ahead : s.length()) - i;
+		int length_t = (j_ahead != std::string::npos ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
 			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
 		{

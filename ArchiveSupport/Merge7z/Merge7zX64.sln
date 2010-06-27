@@ -2,6 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge7z457", "Merge7z457X64.vcproj", "{01E54CFB-5414-43E4-B53D-86F0F903C9BC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge7z465", "Merge7z465X64.vcproj", "{34C32ABA-B317-406A-9F7A-598550CB855C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -30,6 +32,22 @@ Global
 		{01E54CFB-5414-43E4-B53D-86F0F903C9BC}.UnicodeRelease|Win32.Build.0 = UnicodeRelease|Win32
 		{01E54CFB-5414-43E4-B53D-86F0F903C9BC}.UnicodeRelease|x64.ActiveCfg = UnicodeRelease|x64
 		{01E54CFB-5414-43E4-B53D-86F0F903C9BC}.UnicodeRelease|x64.Build.0 = UnicodeRelease|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Debug|Win32.Build.0 = Debug|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Debug|x64.ActiveCfg = Debug|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Debug|x64.Build.0 = Debug|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Release|Win32.ActiveCfg = Release|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Release|Win32.Build.0 = Release|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Release|x64.ActiveCfg = Release|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.Release|x64.Build.0 = Release|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeDebug|Win32.ActiveCfg = UnicodeDebug|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeDebug|Win32.Build.0 = UnicodeDebug|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeDebug|x64.ActiveCfg = UnicodeDebug|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeDebug|x64.Build.0 = UnicodeDebug|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeRelease|Win32.ActiveCfg = UnicodeRelease|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeRelease|Win32.Build.0 = UnicodeRelease|Win32
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeRelease|x64.ActiveCfg = UnicodeRelease|x64
+		{34C32ABA-B317-406A-9F7A-598550CB855C}.UnicodeRelease|x64.Build.0 = UnicodeRelease|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

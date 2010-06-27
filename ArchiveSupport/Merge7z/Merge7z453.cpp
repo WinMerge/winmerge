@@ -28,7 +28,7 @@ DATE:		BY:					DESCRIPTION:
 #define INITGUID
 #include <initguid.h>
 
-#include "Merge7zCommon.h"
+#include "Merge7zCommon453.h"
 
 #include "7zip/UI/FileManager/OpenCallback.h"
 #include "7zip/UI/FileManager/ExtractCallback.h"

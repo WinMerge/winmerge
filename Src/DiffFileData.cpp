@@ -6,7 +6,7 @@
  * @date  Created: 2003-08-22
  */
 // ID line follows -- this is updated by SVN
-// $Id: DiffFileData.cpp 6899 2009-07-05 14:22:19Z kimmov $
+// $Id: DiffFileData.cpp 7162 2010-05-15 13:14:27Z jtuc $
 
 #include "stdafx.h"
 #include <io.h>
@@ -136,7 +136,7 @@ void DiffFileData::Reset()
 
 		if (m_inf[i].desc > 0)
 		{
-			close(m_inf[i].desc);
+			_close(m_inf[i].desc);
 		}
 		m_inf[i].desc = 0;
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));

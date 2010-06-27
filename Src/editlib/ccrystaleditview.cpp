@@ -127,7 +127,7 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 
 CCrystalEditView::CCrystalEditView ()
 {
-  AFX_ZERO_INIT_OBJECT (CCrystalTextView);
+  memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
   m_bAutoIndent = TRUE;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;

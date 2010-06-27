@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: coretools.cpp 6699 2009-04-23 19:28:00Z kimmov $
+// $Id: coretools.cpp 7168 2010-05-16 13:45:23Z jtuc $
 
 #include <windows.h>
 #include <tchar.h>
@@ -270,7 +270,7 @@ void SplitViewName(LPCTSTR s, String * path, String * name, String * ext)
 {
 	String sViewName(s);
 	size_t nOffset = sViewName.find(_T("@@"));
-	if (nOffset != std::string::npos)
+	if (nOffset != String::npos)
 	{
 		sViewName.erase(nOffset);
 		SplitFilename(sViewName.c_str(), path, name, ext);
@@ -768,7 +768,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 		sCmdLine.erase(clpos, clpos - sCmdLine.length());
 
 	std::string::size_type pos = sCmdLine.find(_T(" "));
-	if (pos != std::string.npos)
+	if (pos != String::npos)
 	{
 		// First space was before switch, we don't need "s
 		// (executable path didn't contain spaces)
@@ -788,7 +788,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 			prevPos = pos;
 			pos = sCmdLine.find(_T(" "), prevPos + 1);
 
-			if (pos != std::string.npos)
+			if (pos != String::npos)
 			{
 				if (sCmdLine[pos + 1] == '/' || sCmdLine[pos + 1] == '-')
 				{
@@ -803,7 +803,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 
 		if (addQuote)
 		{
-			if (pos != std::string.npos)
+			if (pos != String::npos)
 			{
 				sExecutable = sCmdLine.substr(0, pos);
 				sDecoratedCmdLine += sExecutable;

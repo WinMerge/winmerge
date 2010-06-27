@@ -295,6 +295,9 @@ Name: {app}\WinMergeU.exe.manifest; Type: files
 Name: {app}\Merge7z457.dll; Type: files
 Name: {app}\Merge7z457U.dll; Type: files; MinVersion: 0, 4
 
+Name: {app}\Merge7z465.dll; Type: files
+Name: {app}\Merge7z465U.dll; Type: files; MinVersion: 0, 4
+
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -392,6 +395,7 @@ Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC
 Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
 Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('457')
 
 ; Expat dll
@@ -794,7 +798,7 @@ begin
 
       {Stops analyzing the version number since we already know it's inadequate and returns False (inadequate)}
       exit;
-    end
+    end;
 
 
   {Starts detecting the Minor version of the Version Installed}
@@ -963,12 +967,20 @@ Begin
 																						Begin
 																							{If the user has 4.57 or higher installed then...}
 																							If VersionAtLeast(str7Zip_Version, 4, 57, 0, 0) = True Then
+																								Begin
+																									{If the user has 465 or higher installed then...}
+																									If VersionAtLeast(str7Zip_Version, 4, 65, 0, 0) = True Then
 																								{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
+																										int7Zip_Version := 465
+																									Else
 																								int7Zip_Version := 457
+																								end
 																							Else
+																								{Since it was at least 4.42, but not 4.57 then it must be 4.42}
 																								int7Zip_Version := 442
 																						end
 																					Else
+																						{Since it was at least 4.32, but not 4.42 then it must be 4.32}
 																						int7Zip_Version := 432
 																				end
 																			Else

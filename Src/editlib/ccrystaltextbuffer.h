@@ -199,10 +199,10 @@ public :
 
 // WinMerge has own routines for loading and saving
 #ifdef CRYSTALEDIT_ENABLELOADER
-    BOOL LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+    BOOL LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 #endif
 #ifdef CRYSTALEDIT_ENABLESAVER
-    BOOL SaveToFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
+    BOOL SaveToFile(LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
     BOOL bClearModifiedFlag = TRUE);
 #endif
 

@@ -24,7 +24,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: HexMergeFrm.h 6653 2009-04-12 09:30:35Z jtuc $
+// $Id: HexMergeFrm.h 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"
@@ -68,6 +68,7 @@ public:
 	//{{AFX_VIRTUAL(CHexMergeFrame)
 	public:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
 	protected:
 	//}}AFX_VIRTUAL
@@ -81,7 +82,6 @@ private:
 private:
 	int m_nLastSplitPos;
 	void UpdateHeaderSizes();
-	BOOL m_bActivated;
 	CHexMergeDoc * m_pMergeDoc;
 	HICON m_hIdentical;
 	HICON m_hDifferent;

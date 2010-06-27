@@ -7,7 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include <afxres.h>
+#include <winresrc.h>
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
@@ -33,7 +33,7 @@ END
 
 2 TEXTINCLUDE DISCARDABLE 
 BEGIN
-    "#include <afxres.h>\0"
+    "#include <winresrc.h>\0"
 END
 
 3 TEXTINCLUDE DISCARDABLE 
@@ -55,11 +55,11 @@ STYLE DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_CAPTION |
 CAPTION "Merge7z Interface Plugin Installer"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "&Select plugins to be installed",IDC_STATIC,2,0,304,90,
+    GROUPBOX        "&Select plugins to be installed",-1,2,0,304,90,
                     WS_GROUP,WS_EX_TRANSPARENT
     LISTBOX         100,6,10,296,76,LBS_NOINTEGRALHEIGHT | LBS_MULTICOLUMN | 
                     LBS_EXTENDEDSEL | WS_HSCROLL | WS_GROUP | WS_TABSTOP
-    GROUPBOX        "&Options",IDC_STATIC,2,92,304,72,WS_GROUP,
+    GROUPBOX        "&Options",-1,2,92,304,72,WS_GROUP,
                     WS_EX_TRANSPARENT
     CONTROL         "S&hared installation",201,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,6,102,73,10
