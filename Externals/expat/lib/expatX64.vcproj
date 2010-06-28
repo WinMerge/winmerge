@@ -559,7 +559,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine=""
+				CommandLine="mkdir ..\..\..\Build\expat\X64&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\X64\Debug\libexpat.lib ..\..\..\Build\expat\X64\&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\X64\Debug\libexpat.dll ..\..\..\Build\expat\X64\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -739,7 +739,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\expat\$(PlatformName)&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.lib ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\$(PlatformName)\$(ConfigurationName)\libexpat.dll ..\..\..\Build\expat\$(PlatformName)\&#x0D;&#x0A;"
+				CommandLine="mkdir ..\..\..\Build\expat\X64&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\X64\Release\libexpat.lib ..\..\..\Build\expat\X64\&#x0D;&#x0A;copy ..\..\..\Build\expat\lib\X64\Release\libexpat.dll ..\..\..\Build\expat\X64\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
