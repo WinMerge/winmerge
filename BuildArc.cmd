@@ -94,7 +94,7 @@ copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\
 
 del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 
-7z.exe a -t7z  -xr!*.bak -xr!*.lang -xr!*.ncb -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.bsc -xr!*.exp -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.idb -xr!*.R61.taka.user -xr!BuildLog.htm -xr!CVS -xr!.svn "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln
+7z.exe a -t7z  -xr!*.bak -xr!*.lang -xr!*.ncb -xr!*.sdf -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.bsc -xr!*.exp -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln
 
 explorer "%DISTDIR%"
 pause
