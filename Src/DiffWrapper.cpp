@@ -355,6 +355,26 @@ static const char *FindCommentMarker(const char *target, const char *marker)
 }
 
 /**
+ * @brief Replace spaces in a string
+ * @param [in] str - String to search
+ * @param [in] rep - String to replace
+ */
+static void ReplaceSpaces(std::string & str, const char *rep)
+{
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
+	{
+		std::string::size_type posend = str.find_first_not_of(" \t", pos);
+		if (posend != std::string::npos)
+			str.replace(pos, posend - pos, rep);
+		else
+			str.replace(pos, 1, rep);
+		pos += replen;
+	}
+}
+
+/**
 	@brief Performs post-filtering, by setting comment blocks to trivial
 	@param [in]  StartPos			- First line number to read
 	@param [in]  EndPos				- The line number PASS the last line number to read
@@ -537,14 +557,11 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 		{
 			LineStrLeft = files[0].linbuf[LineNumberLeft + i];
 			EndLineLeft = files[0].linbuf[LineNumberLeft + i + 1];
-			//EndLineLeft = strchr(LineStrLeft, '\0');
-			
 		}
 		if(i < QtyLinesRight)
 		{
 			LineStrRight = files[1].linbuf[LineNumberRight + i];
 			EndLineRight = files[1].linbuf[LineNumberRight + i + 1];
-			//EndLineRight = strchr(LineStrRight, '\0');
 		}
 			
 		if (EndLineLeft && EndLineRight)
@@ -554,104 +571,66 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 
 			if (!filtercommentsset.StartMarker.empty() && !filtercommentsset.EndMarker.empty())
 			{
-				size_t CommentStrLeftStart;
-				size_t CommentStrLeftEnd;
-				size_t CommentStrRightStart;
-				size_t CommentStrRightEnd;
+				const char * CommentStrLeftStart;
+				const char * CommentStrLeftEnd;
+				const char * CommentStrRightStart;
+				const char * CommentStrRightEnd;
 
 				BOOL bFirstLoop = TRUE;
 				do {
 					//Lets remove block comments, and see if lines are equal
-					CommentStrLeftStart = LineDataLeft.find(filtercommentsset.StartMarker);
-					CommentStrLeftEnd = LineDataLeft.find(filtercommentsset.EndMarker);
-					CommentStrRightStart = LineDataRight.find(filtercommentsset.StartMarker);
-					CommentStrRightEnd = LineDataRight.find(filtercommentsset.EndMarker);
+					CommentStrLeftStart = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.StartMarker.c_str());
+					CommentStrLeftEnd = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.EndMarker.c_str());
+					CommentStrRightStart = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.StartMarker.c_str());
+					CommentStrRightEnd = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.EndMarker.c_str());
 					
-					if (CommentStrLeftStart != std::string::npos && CommentStrLeftEnd != std::string::npos)
-						LineDataLeft.erase(CommentStrLeftStart, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
-					else if (CommentStrLeftStart != std::string::npos)
-						LineDataLeft.erase(CommentStrLeftStart);
-					else if (CommentStrLeftEnd != std::string::npos)
-						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size());
+					if (CommentStrLeftStart != NULL && CommentStrLeftEnd != NULL && CommentStrLeftStart < CommentStrLeftEnd)
+						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str(), CommentStrLeftEnd + filtercommentsset.EndMarker.size() - CommentStrLeftStart);
+					else if (CommentStrLeftEnd != NULL)
+						LineDataLeft.erase(0, CommentStrLeftEnd + filtercommentsset.EndMarker.size() - LineDataLeft.c_str());
+					else if (CommentStrLeftStart != NULL)
+						LineDataLeft.erase(CommentStrLeftStart - LineDataLeft.c_str());
 					else if(LeftOp == OP_TRIVIAL && bFirstLoop)
 						LineDataLeft.erase(0);  //This line is all in block comments
 
-					if (CommentStrRightStart != std::string::npos && CommentStrRightEnd != std::string::npos)
-						LineDataRight.erase(CommentStrRightStart, CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
-					else if (CommentStrRightStart != std::string::npos)
-						LineDataRight.erase(CommentStrRightStart);
-					else if (CommentStrRightEnd != std::string::npos)
-						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size());
+					if (CommentStrRightStart != NULL && CommentStrRightEnd != NULL && CommentStrRightStart < CommentStrRightEnd)
+						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str(), CommentStrRightEnd + filtercommentsset.EndMarker.size() - CommentStrRightStart);
+					else if (CommentStrRightEnd != NULL)
+						LineDataRight.erase(0, CommentStrRightEnd + filtercommentsset.EndMarker.size() - LineDataRight.c_str());
+					else if (CommentStrRightStart != NULL)
+						LineDataRight.erase(CommentStrRightStart - LineDataRight.c_str());
 					else if(RightOp == OP_TRIVIAL && bFirstLoop)
 						LineDataRight.erase(0);  //This line is all in block comments
 
 					bFirstLoop = FALSE;
 
-				} while (CommentStrLeftStart != std::string::npos || CommentStrLeftEnd != std::string::npos
-					|| CommentStrRightStart != std::string::npos || CommentStrRightEnd != std::string::npos); //Loops until all blockcomments are lost
+				} while (CommentStrLeftStart != NULL || CommentStrLeftEnd != NULL
+					|| CommentStrRightStart != NULL || CommentStrRightEnd != NULL); //Loops until all blockcomments are lost
 			}
 
 			if (!filtercommentsset.InlineMarker.empty())
 			{
 				//Lets remove line comments
-				size_t CommentStrLeft = LineDataLeft.find(filtercommentsset.InlineMarker);
-				size_t CommentStrRight = LineDataRight.find(filtercommentsset.InlineMarker);
+				const char * CommentStrLeft = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.InlineMarker.c_str());
+				const char * CommentStrRight = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.InlineMarker.c_str());
 
-				if (CommentStrLeft != std::string::npos)
-					LineDataLeft.erase(CommentStrLeft);
-				if (CommentStrRight != std::string::npos)
-					LineDataRight.erase(CommentStrRight);
+				if (CommentStrLeft != NULL)
+					LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
+				if (CommentStrRight != NULL)
+					LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
 			}
 
 		if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 			{
 				//Ignore character case
-				std::string::size_type pos = 0;
-				while ((pos = LineDataLeft.find(" ", pos)) != String::npos)
-				{
-					LineDataLeft.replace(pos, 1, "");
-				}
-				pos = 0;
-				while ((pos = LineDataLeft.find("\t", pos)) != String::npos)
-				{
-					LineDataLeft.replace(pos, 1, "");
-				}
-
-				pos = 0;
-				while ((pos = LineDataRight.find(" ", pos)) != String::npos)
-				{
-					LineDataRight.replace(pos, 1, "");
-				}
-				pos = 0;
-				while ((pos = LineDataRight.find("\t", pos)) != String::npos)
-				{
-					LineDataRight.replace(pos, 1, "");
-				}
+				ReplaceSpaces(LineDataLeft, "");
+				ReplaceSpaces(LineDataRight, "");
 			}
 			else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 			{
 				//Ignore change in whitespace char count
-				std::string::size_type pos = 0;
-				while ((pos = LineDataLeft.find("\t", pos)) != String::npos)
-				{
-					LineDataLeft.replace(pos, 1, " ");
-				}
-				pos = 0;
-				while ((pos = LineDataLeft.find("  ", pos)) != String::npos)
-				{
-					LineDataLeft.replace(pos, 2, " ");
-				}
-
-				pos = 0;
-				while ((pos = LineDataRight.find("\t", pos)) != String::npos)
-				{
-					LineDataRight.replace(pos, 1, " ");
-				}
-				pos = 0;
-				while ((pos = LineDataRight.find("  ", pos)) != String::npos)
-				{
-					LineDataRight.replace(pos, 2, " ");
-				}
+				ReplaceSpaces(LineDataLeft, " ");
+				ReplaceSpaces(LineDataRight, " ");
 			}
 
 			if (m_options.m_bIgnoreCase)
