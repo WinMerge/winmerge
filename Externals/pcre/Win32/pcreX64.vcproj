@@ -1007,7 +1007,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine=""
+				CommandLine="mkdir ..\..\..\Build\pcre\X64&#x0D;&#x0A;copy &quot;$(OutDir)\pcre.dll&quot; ..\..\..\Build\pcre\X64&#x0D;&#x0A;copy &quot;$(OutDir)\pcre.lib&quot; ..\..\..\Build\pcre\X64&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -1202,7 +1202,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="mkdir ..\..\..\Build\pcre\$(PlatformName)&#x0D;&#x0A;copy $(OutDir)\pcre.dll ..\..\..\Build\pcre\$(PlatformName)&#x0D;&#x0A;copy $(OutDir)\pcre.lib ..\..\..\Build\pcre\$(PlatformName)&#x0D;&#x0A;"
+				CommandLine="mkdir ..\..\..\Build\pcre\X64&#x0D;&#x0A;copy &quot;$(OutDir)\pcre.dll&quot; ..\..\..\Build\pcre\X64&#x0D;&#x0A;copy &quot;$(OutDir)\pcre.lib&quot; ..\..\..\Build\pcre\X64&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
