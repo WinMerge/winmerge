@@ -165,9 +165,11 @@ effect as they do in Perl. For example:
 .sp
   /caseless/i
 .sp
-The following table shows additional modifiers for setting PCRE options that do
-not correspond to anything in Perl:
+The following table shows additional modifiers for setting PCRE compile-time
+options that do not correspond to anything in Perl:
 .sp
+  \fB/8\fP              PCRE_UTF8
+  \fB/?\fP              PCRE_NO_UTF8_CHECK
   \fB/A\fP              PCRE_ANCHORED
   \fB/C\fP              PCRE_AUTO_CALLOUT
   \fB/E\fP              PCRE_DOLLAR_ENDONLY
@@ -175,6 +177,7 @@ not correspond to anything in Perl:
   \fB/J\fP              PCRE_DUPNAMES
   \fB/N\fP              PCRE_NO_AUTO_CAPTURE
   \fB/U\fP              PCRE_UNGREEDY
+  \fB/W\fP              PCRE_UCP
   \fB/X\fP              PCRE_EXTRA
   \fB/<JS>\fP           PCRE_JAVASCRIPT_COMPAT
   \fB/<cr>\fP           PCRE_NEWLINE_CR
@@ -185,13 +188,16 @@ not correspond to anything in Perl:
   \fB/<bsr_anycrlf>\fP  PCRE_BSR_ANYCRLF
   \fB/<bsr_unicode>\fP  PCRE_BSR_UNICODE
 .sp
-Those specifying line ending sequences are literal strings as shown, but the
-letters can be in either case. This example sets multiline matching with CRLF
-as the line ending sequence:
+The modifiers that are enclosed in angle brackets are literal strings as shown,
+including the angle brackets, but the letters can be in either case. This
+example sets multiline matching with CRLF as the line ending sequence:
 .sp
   /^abc/m<crlf>
 .sp
-Details of the meanings of these PCRE options are given in the
+As well as turning on the PCRE_UTF8 option, the \fB/8\fP modifier also causes
+any non-printing characters in output strings to be printed using the
+\ex{hh...} notation if they are valid UTF-8 sequences. Full details of the PCRE
+options are given in the
 .\" HREF
 \fBpcreapi\fP
 .\"
@@ -236,22 +242,6 @@ also present, this data is replaced by spaces. This is a special feature for
 use in the automatic test scripts; it ensures that the same output is generated
 for different internal link sizes.
 .P
-The \fB/L\fP modifier must be followed directly by the name of a locale, for
-example,
-.sp
-  /pattern/Lfr_FR
-.sp
-For this reason, it must be the last modifier. The given locale is set,
-\fBpcre_maketables()\fP is called to build a set of character tables for the
-locale, and this is then passed to \fBpcre_compile()\fP when compiling the
-regular expression. Without an \fB/L\fP modifier, NULL is passed as the tables
-pointer; that is, \fB/L\fP applies only to the expression on which it appears.
-.P
-The \fB/I\fP modifier requests that \fBpcretest\fP output information about the
-compiled pattern (whether it is anchored, has a fixed first character, and
-so on). It does this by calling \fBpcre_fullinfo()\fP after compiling a
-pattern. If the pattern is studied, the results of that are also output.
-.P
 The \fB/D\fP modifier is a PCRE debugging feature, and is equivalent to
 \fB/BI\fP, that is, both the \fB/B\fP and the \fB/I\fP modifiers.
 .P
@@ -263,28 +253,70 @@ available when the POSIX interface to PCRE is being used, that is, when the
 \fB/P\fP pattern modifier is specified. See also the section about saving and
 reloading compiled patterns below.
 .P
-The \fB/S\fP modifier causes \fBpcre_study()\fP to be called after the
-expression has been compiled, and the results used when the expression is
-matched.
+The \fB/I\fP modifier requests that \fBpcretest\fP output information about the
+compiled pattern (whether it is anchored, has a fixed first character, and
+so on). It does this by calling \fBpcre_fullinfo()\fP after compiling a
+pattern. If the pattern is studied, the results of that are also output.
+.P
+The \fB/K\fP modifier requests \fBpcretest\fP to show names from backtracking
+control verbs that are returned from calls to \fBpcre_exec()\fP. It causes
+\fBpcretest\fP to create a \fBpcre_extra\fP block if one has not already been
+created by a call to \fBpcre_study()\fP, and to set the PCRE_EXTRA_MARK flag
+and the \fBmark\fP field within it, every time that \fBpcre_exec()\fP is
+called. If the variable that the \fBmark\fP field points to is non-NULL for a
+match, non-match, or partial match, \fBpcretest\fP prints the string to which
+it points. For a match, this is shown on a line by itself, tagged with "MK:".
+For a non-match it is added to the message.
+.P
+The \fB/L\fP modifier must be followed directly by the name of a locale, for
+example,
+.sp
+  /pattern/Lfr_FR
+.sp
+For this reason, it must be the last modifier. The given locale is set,
+\fBpcre_maketables()\fP is called to build a set of character tables for the
+locale, and this is then passed to \fBpcre_compile()\fP when compiling the
+regular expression. Without an \fB/L\fP (or \fB/T\fP) modifier, NULL is passed
+as the tables pointer; that is, \fB/L\fP applies only to the expression on
+which it appears.
 .P
 The \fB/M\fP modifier causes the size of memory block used to hold the compiled
 pattern to be output.
 .P
+The \fB/S\fP modifier causes \fBpcre_study()\fP to be called after the
+expression has been compiled, and the results used when the expression is
+matched.
+.P
+The \fB/T\fP modifier must be followed by a single digit. It causes a specific
+set of built-in character tables to be passed to \fBpcre_compile()\fP. It is
+used in the standard PCRE tests to check behaviour with different character
+tables. The digit specifies the tables as follows:
+.sp
+  0   the default ASCII tables, as distributed in
+        pcre_chartables.c.dist
+  1   a set of tables defining ISO 8859 characters
+.sp
+In table 1, some characters whose codes are greater than 128 are identified as
+letters, digits, spaces, etc.
+.
+.
+.SS "Using the POSIX wrapper API"
+.rs
+.sp
 The \fB/P\fP modifier causes \fBpcretest\fP to call PCRE via the POSIX wrapper
-API rather than its native API. When this is done, all other modifiers except
-\fB/i\fP, \fB/m\fP, and \fB/+\fP are ignored. REG_ICASE is set if \fB/i\fP is
-present, and REG_NEWLINE is set if \fB/m\fP is present. The wrapper functions
-force PCRE_DOLLAR_ENDONLY always, and PCRE_DOTALL unless REG_NEWLINE is set.
-.P
-The \fB/8\fP modifier causes \fBpcretest\fP to call PCRE with the PCRE_UTF8
-option set. This turns on support for UTF-8 character handling in PCRE,
-provided that it was compiled with this support enabled. This modifier also
-causes any non-printing characters in output strings to be printed using the
-\ex{hh...} notation if they are valid UTF-8 sequences.
-.P
-If the \fB/?\fP modifier is used with \fB/8\fP, it causes \fBpcretest\fP to
-call \fBpcre_compile()\fP with the PCRE_NO_UTF8_CHECK option, to suppress the
-checking of the string for UTF-8 validity.
+API rather than its native API. When \fB/P\fP is set, the following modifiers
+set options for the \fBregcomp()\fP function:
+.sp
+  /i    REG_ICASE
+  /m    REG_NEWLINE
+  /N    REG_NOSUB
+  /s    REG_DOTALL     )
+  /U    REG_UNGREEDY   ) These options are not part of
+  /W    REG_UCP        )   the POSIX standard
+  /8    REG_UTF8       )
+.sp
+The \fB/+\fP modifier works as described above. All other modifiers are
+ignored.
 .
 .
 .SH "DATA LINES"
@@ -424,9 +456,9 @@ by the \fB-O\fP command line option (or defaulted to 45); \eO applies only to
 the call of \fBpcre_exec()\fP for the line in which it appears.
 .P
 If the \fB/P\fP modifier was present on the pattern, causing the POSIX wrapper
-API to be used, the only option-setting sequences that have any effect are \eB
-and \eZ, causing REG_NOTBOL and REG_NOTEOL, respectively, to be passed to
-\fBregexec()\fP.
+API to be used, the only option-setting sequences that have any effect are \eB,
+\eN, and \eZ, causing REG_NOTBOL, REG_NOTEMPTY, and REG_NOTEOL, respectively,
+to be passed to \fBregexec()\fP.
 .P
 The use of \ex{hh...} to represent UTF-8 characters is not dependent on the use
 of the \fB/8\fP modifier on the pattern. It is recognized always. There may be
@@ -731,6 +763,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 26 September 2009
-Copyright (c) 1997-2009 University of Cambridge.
+Last updated: 14 June 2010
+Copyright (c) 1997-2010 University of Cambridge.
 .fi

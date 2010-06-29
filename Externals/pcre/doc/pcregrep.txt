@@ -317,38 +317,51 @@ OPTIONS
                  when file names are being output. If not supplied, "(standard
                  input)" is used. There is no short form for this option.
 
+       --line-buffered
+                 When  this  option is given, input is read and processed line
+                 by line, and the output  is  flushed  after  each  write.  By
+                 default,  input  is read in large chunks, unless pcregrep can
+                 determine that it is reading from a terminal (which  is  cur-
+                 rently  possible only in Unix environments). Output to termi-
+                 nal is normally automatically flushed by the  operating  sys-
+                 tem.  This  option  can be useful when the input or output is
+                 attached to a pipe and you do not want pcregrep to buffer  up
+                 large  amounts  of data. However, its use will affect perfor-
+                 mance, and the -M (multiline) option ceases to work.
+
        --line-offsets
-                 Instead  of  showing lines or parts of lines that match, show
+                 Instead of showing lines or parts of lines that  match,  show
                  each match as a line number, the offset from the start of the
-                 line,  and a length. The line number is terminated by a colon
-                 (as usual; see the -n option), and the offset and length  are
-                 separated  by  a  comma.  In  this mode, no context is shown.
-                 That is, the -A, -B, and -C options are ignored. If there  is
-                 more  than  one  match in a line, each of them is shown sepa-
+                 line, and a length. The line number is terminated by a  colon
+                 (as  usual; see the -n option), and the offset and length are
+                 separated by a comma. In this  mode,  no  context  is  shown.
+                 That  is, the -A, -B, and -C options are ignored. If there is
+                 more than one match in a line, each of them  is  shown  sepa-
                  rately. This option is mutually exclusive with --file-offsets
                  and --only-matching.
 
        --locale=locale-name
-                 This  option specifies a locale to be used for pattern match-
-                 ing. It overrides the value in the LC_ALL or  LC_CTYPE  envi-
-                 ronment  variables.  If  no  locale  is  specified,  the PCRE
-                 library's default (usually the "C" locale) is used. There  is
+                 This option specifies a locale to be used for pattern  match-
+                 ing.  It  overrides the value in the LC_ALL or LC_CTYPE envi-
+                 ronment variables.  If  no  locale  is  specified,  the  PCRE
+                 library's  default (usually the "C" locale) is used. There is
                  no short form for this option.
 
        -M, --multiline
-                 Allow  patterns to match more than one line. When this option
+                 Allow patterns to match more than one line. When this  option
                  is given, patterns may usefully contain literal newline char-
-                 acters  and  internal  occurrences of ^ and $ characters. The
-                 output for any one match may consist of more than  one  line.
-                 When  this option is set, the PCRE library is called in "mul-
-                 tiline" mode.  There is a limit to the number of  lines  that
-                 can  be matched, imposed by the way that pcregrep buffers the
-                 input file as it scans it. However, pcregrep ensures that  at
+                 acters and internal occurrences of ^ and  $  characters.  The
+                 output  for  any one match may consist of more than one line.
+                 When this option is set, the PCRE library is called in  "mul-
+                 tiline"  mode.   There is a limit to the number of lines that
+                 can be matched, imposed by the way that pcregrep buffers  the
+                 input  file as it scans it. However, pcregrep ensures that at
                  least 8K characters or the rest of the document (whichever is
-                 the shorter) are available for forward  matching,  and  simi-
+                 the  shorter)  are  available for forward matching, and simi-
                  larly the previous 8K characters (or all the previous charac-
-                 ters, if fewer than 8K) are guaranteed to  be  available  for
-                 lookbehind assertions.
+                 ters,  if  fewer  than 8K) are guaranteed to be available for
+                 lookbehind assertions. This option does not work  when  input
+                 is read line by line (see --line-buffered.)
 
        -N newline-type, --newline=newline-type
                  The  PCRE  library  supports  five  different conventions for
@@ -523,5 +536,5 @@ AUTHOR
 
 REVISION
 
-       Last updated: 13 September 2009
-       Copyright (c) 1997-2009 University of Cambridge.
+       Last updated: 21 May 2010
+       Copyright (c) 1997-2010 University of Cambridge.

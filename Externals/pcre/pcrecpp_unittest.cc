@@ -1,6 +1,6 @@
 // -*- coding: utf-8 -*-
 //
-// Copyright (c) 2005 - 2006, Google Inc.
+// Copyright (c) 2005 - 2010, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -268,8 +268,8 @@ static void TestReplace() {
       "bb",
       "bbbbbb",
       "bb",
-      "bb",
-      1 },
+      "bbbb",
+      2 },
     { "b*",
       "bb",
       "aaaaa",
@@ -294,6 +294,19 @@ static void TestReplace() {
       "bbaa\r\naa\r\n",
       "bbabbabb\r\nbbabbabb\r\nbb",
       7 },
+    // Check empty-string matching (it's tricky!)
+    { "aa|b*",
+      "@",
+      "aa",
+      "@",
+      "@@",
+      2 },
+    { "b*|aa",
+      "@",
+      "aa",
+      "@aa",
+      "@@@",
+      3 },
 #ifdef SUPPORT_UTF8
     { "b*",
       "bb",

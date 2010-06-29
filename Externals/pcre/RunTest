@@ -133,10 +133,10 @@ echo ""
 echo PCRE C library tests
 ./pcretest /dev/null
 
-# Primary test, Perl-compatible for both 5.8 and 5.10
+# Primary test, compatible with Perl 5.8, 5.10, 5.11
 
 if [ $do1 = yes ] ; then
-  echo "Test 1: main functionality (Perl 5.8 & 5.10 compatible)"
+  echo "Test 1: main functionality (Perl 5.8, 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput1 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput1 testtry
@@ -215,7 +215,7 @@ fi
 # Additional tests for UTF8 support
 
 if [ $do4 = yes ] ; then
-  echo "Test 4: UTF-8 support (Perl 5.8 & 5.10 compatible)"
+  echo "Test 4: UTF-8 support (Perl 5.8, 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput4 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput4 testtry
@@ -237,7 +237,7 @@ if [ $do5 = yes ] ; then
 fi
 
 if [ $do6 = yes ] ; then
-  echo "Test 6: Unicode property support (Perl 5.10 compatible)"
+  echo "Test 6: Unicode property support (Perl 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput6 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput6 testtry
@@ -299,10 +299,10 @@ if [ $do10 = yes ] ; then
   echo "OK"
 fi
 
-# Test of Perl 5.10 features
+# Test of Perl 5.10, 5.11 features
 
 if [ $do11 = yes ] ; then
-  echo "Test 11: Perl 5.10 features"
+  echo "Test 11: Perl 5.10, 5.11 features"
   $valgrind ./pcretest -q $testdata/testinput11 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput11 testtry

@@ -88,10 +88,13 @@ them both to 0; an emulation function will be used. */
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if you have the `strtoll' function. */
+/* Define to 1 if you have `strtoimax'. */
+#undef HAVE_STRTOIMAX
+
+/* Define to 1 if you have `strtoll'. */
 #undef HAVE_STRTOLL
 
-/* Define to 1 if you have the `strtoq' function. */
+/* Define to 1 if you have `strtoq'. */
 #undef HAVE_STRTOQ
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
@@ -115,7 +118,7 @@ them both to 0; an emulation function will be used. */
 /* Define to 1 if you have the <zlib.h> header file. */
 #undef HAVE_ZLIB_H
 
-/* Define to 1 if you have the `_strtoi64' function. */
+/* Define to 1 if you have `_strtoi64'. */
 #undef HAVE__STRTOI64
 
 /* The value of LINK_SIZE determines the number of bytes used to store links
@@ -191,6 +194,9 @@ them both to 0; an emulation function will be used. */
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
 
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
@@ -247,6 +253,10 @@ them both to 0; an emulation function will be used. */
 
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
+
+/* Define to the type of a signed integer type of width exactly 64 bits if
+   such a type exists and the standard includes do not define it. */
+#undef int64_t
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 #undef size_t

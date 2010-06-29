@@ -178,8 +178,8 @@ coloured. The value (which is optional, see above) may be "never", "always", or
 connected to a terminal. More resources are used when colouring is enabled,
 because <b>pcregrep</b> has to search for all possible matches in a line, not
 just one, in order to colour them all.
-</P>
-<P>
+<br>
+<br>
 The colour that is used can be specified by setting the environment variable
 PCREGREP_COLOUR or PCREGREP_COLOR. The value of this variable should be a
 string of two numbers, separated by a semicolon. They are copied directly into
@@ -338,6 +338,17 @@ are being output. If not supplied, "(standard input)" is used. There is no
 short form for this option.
 </P>
 <P>
+<b>--line-buffered</b>
+When this option is given, input is read and processed line by line, and the
+output is flushed after each write. By default, input is read in large chunks,
+unless <b>pcregrep</b> can determine that it is reading from a terminal (which
+is currently possible only in Unix environments). Output to terminal is
+normally automatically flushed by the operating system. This option can be
+useful when the input or output is attached to a pipe and you do not want
+<b>pcregrep</b> to buffer up large amounts of data. However, its use will affect
+performance, and the <b>-M</b> (multiline) option ceases to work.
+</P>
+<P>
 <b>--line-offsets</b>
 Instead of showing lines or parts of lines that match, show each match as a
 line number, the offset from the start of the line, and a length. The line
@@ -365,7 +376,8 @@ that <b>pcregrep</b> buffers the input file as it scans it. However,
 <b>pcregrep</b> ensures that at least 8K characters or the rest of the document
 (whichever is the shorter) are available for forward matching, and similarly
 the previous 8K characters (or all the previous characters, if fewer than 8K)
-are guaranteed to be available for lookbehind assertions.
+are guaranteed to be available for lookbehind assertions. This option does not
+work when input is read line by line (see \fP--line-buffered\fP.)
 </P>
 <P>
 <b>-N</b> <i>newline-type</i>, <b>--newline=</b><i>newline-type</i>
@@ -538,9 +550,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC13" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 13 September 2009
+Last updated: 21 May 2010
 <br>
-Copyright &copy; 1997-2009 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

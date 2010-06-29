@@ -45,6 +45,7 @@ syntax.
   \eD         a character that is not a decimal digit
   \eh         a horizontal whitespace character
   \eH         a character that is not a horizontal whitespace character
+  \eN         a character that is not a newline
   \ep{\fIxx\fP}     a character with the \fIxx\fP property
   \eP{\fIxx\fP}     a character without the \fIxx\fP property
   \eR         a newline sequence
@@ -56,10 +57,12 @@ syntax.
   \eW         a "non-word" character
   \eX         an extended Unicode sequence
 .sp
-In PCRE, \ed, \eD, \es, \eS, \ew, and \eW recognize only ASCII characters.
+In PCRE, by default, \ed, \eD, \es, \eS, \ew, and \eW recognize only ASCII
+characters, even in UTF-8 mode. However, this can be changed by setting the
+PCRE_UCP option.
 .
 .
-.SH "GENERAL CATEGORY PROPERTY CODES FOR \ep and \eP"
+.SH "GENERAL CATEGORY PROPERTIES FOR \ep and \eP"
 .rs
 .sp
   C          Other
@@ -108,12 +111,23 @@ In PCRE, \ed, \eD, \es, \eS, \ew, and \eW recognize only ASCII characters.
   Zs         Space separator
 .
 .
+.SH "PCRE SPECIAL CATEGORY PROPERTIES FOR \ep and \eP"
+.rs
+.sp
+  Xan        Alphanumeric: union of properties L and N
+  Xps        POSIX space: property Z or tab, NL, VT, FF, CR
+  Xsp        Perl space: property Z or tab, NL, FF, CR
+  Xwd        Perl word: property Xan or underscore
+.
+.
 .SH "SCRIPT NAMES FOR \ep AND \eP"
 .rs
 .sp
 Arabic,
 Armenian,
+Avestan,
 Balinese,
+Bamum,
 Bengali,
 Bopomofo,
 Braille,
@@ -130,6 +144,7 @@ Cypriot,
 Cyrillic,
 Deseret,
 Devanagari,
+Egyptian_Hieroglyphs,
 Ethiopic,
 Georgian,
 Glagolitic,
@@ -142,7 +157,12 @@ Hangul,
 Hanunoo,
 Hebrew,
 Hiragana,
+Imperial_Aramaic,
 Inherited,
+Inscriptional_Pahlavi,
+Inscriptional_Parthian,
+Javanese,
+Kaithi,
 Kannada,
 Katakana,
 Kayah_Li,
@@ -153,9 +173,11 @@ Latin,
 Lepcha,
 Limbu,
 Linear_B,
+Lisu,
 Lycian,
 Lydian,
 Malayalam,
+Meetei_Mayek,
 Mongolian,
 Myanmar,
 New_Tai_Lue,
@@ -163,6 +185,8 @@ Nko,
 Ogham,
 Old_Italic,
 Old_Persian,
+Old_South_Arabian,
+Old_Turkic,
 Ol_Chiki,
 Oriya,
 Osmanya,
@@ -170,15 +194,18 @@ Phags_Pa,
 Phoenician,
 Rejang,
 Runic,
+Samaritan,
 Saurashtra,
 Shavian,
 Sinhala,
-Sudanese,
+Sundanese,
 Syloti_Nagri,
 Syriac,
 Tagalog,
 Tagbanwa,
 Tai_Le,
+Tai_Tham,
+Tai_Viet,
 Tamil,
 Telugu,
 Thaana,
@@ -214,7 +241,8 @@ Yi.
   word        same as \ew
   xdigit      hexadecimal digit
 .sp
-In PCRE, POSIX character set names recognize only ASCII characters. You can use
+In PCRE, POSIX character set names recognize only ASCII characters by default,
+but some of them use Unicode properties if PCRE_UCP is set. You can use
 \eQ...\eE inside a character class.
 .
 .
@@ -242,7 +270,7 @@ In PCRE, POSIX character set names recognize only ASCII characters. You can use
 .SH "ANCHORS AND SIMPLE ASSERTIONS"
 .rs
 .sp
-  \eb          word boundary (only ASCII letters recognized)
+  \eb          word boundary
   \eB          not a word boundary
   ^           start of subject
                also after internal newline in multiline mode
@@ -305,10 +333,11 @@ In PCRE, POSIX character set names recognize only ASCII characters. You can use
   (?x)            extended (ignore white space)
   (?-...)         unset option(s)
 .sp
-The following is recognized only at the start of a pattern or after one of the
+The following are recognized only at the start of a pattern or after one of the
 newline-setting options with similar syntax:
 .sp
-  (*UTF8)         set UTF-8 mode
+  (*UTF8)         set UTF-8 mode (PCRE_UTF8)
+  (*UCP)          set PCRE_UCP (use Unicode properties for \ed etc)
 .
 .
 .SH "LOOKAHEAD AND LOOKBEHIND ASSERTIONS"
@@ -397,7 +426,7 @@ pattern is not anchored.
 .rs
 .sp
 These are recognized only at the very start of the pattern or after a
-(*BSR_...) or (*UTF8) option.
+(*BSR_...) or (*UTF8) or (*UCP) option.
 .sp
   (*CR)           carriage return only
   (*LF)           linefeed only
@@ -410,7 +439,7 @@ These are recognized only at the very start of the pattern or after a
 .rs
 .sp
 These are recognized only at the very start of the pattern or after a
-(*...) option that sets the newline convention or UTF-8 mode.
+(*...) option that sets the newline convention or UTF-8 or UCP mode.
 .sp
   (*BSR_ANYCRLF)  CR, LF, or CRLF
   (*BSR_UNICODE)  any Unicode newline sequence
@@ -444,6 +473,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 11 April 2009
-Copyright (c) 1997-2009 University of Cambridge.
+Last updated: 12 May 2010
+Copyright (c) 1997-2010 University of Cambridge.
 .fi
