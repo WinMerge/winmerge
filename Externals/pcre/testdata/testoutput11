@@ -712,4 +712,234 @@ No match
  1: (ab(cd)ef)
  2: ef
 
+/^(?!a(*SKIP)b)/
+    ac
+ 0: 
+    
+/^(?=a(*SKIP)b|ac)/
+    ** Failers
+No match
+    ac
+No match
+    
+/^(?=a(*THEN)b|ac)/
+    ac
+ 0: 
+    
+/^(?=a(*PRUNE)b)/
+    ab  
+ 0: 
+    ** Failers 
+No match
+    ac
+No match
+
+/^(?=a(*ACCEPT)b)/
+    ac
+ 0: 
+
+/^(?(?!a(*SKIP)b))/
+    ac
+ 0: 
+
+/(?>a\Kb)/
+    ab
+ 0: b
+
+/((?>a\Kb))/
+    ab
+ 0: b
+ 1: ab
+
+/(a\Kb)/
+    ab
+ 0: b
+ 1: ab
+    
+/^a\Kcz|ac/
+    ac
+ 0: ac
+    
+/(?>a\Kbz|ab)/
+    ab 
+ 0: ab
+
+/^(?&t)(?(DEFINE)(?<t>a\Kb))$/
+    ab
+ 0: b
+
+/^([^()]|\((?1)*\))*$/
+    a(b)c
+ 0: a(b)c
+ 1: c
+    a(b(c)d)e 
+ 0: a(b(c)d)e
+ 1: e
+
+/(?P<L1>(?P<L2>0)(?P>L1)|(?P>L2))/
+    0
+ 0: 0
+ 1: 0
+    00
+ 0: 00
+ 1: 00
+ 2: 0
+    0000  
+ 0: 0000
+ 1: 0000
+ 2: 0
+
+/(?P<L1>(?P<L2>0)|(?P>L2)(?P>L1))/
+    0
+ 0: 0
+ 1: 0
+ 2: 0
+    00
+ 0: 0
+ 1: 0
+ 2: 0
+    0000  
+ 0: 0
+ 1: 0
+ 2: 0
+
+/--- This one does fail, as expected, in Perl. It needs the complex item at the
+     end of the pattern. A single letter instead of (B|D) makes it not fail,
+     which I think is a Perl bug. --- /
+
+/A(*COMMIT)(B|D)/
+    ACABX
+No match
+
+/--- Check the use of names for failure ---/
+
+/^(A(*PRUNE:A)B|C(*PRUNE:B)D)/K
+    ** Failers
+No match
+    AC
+No match, mark = A
+    CB    
+No match, mark = B
+    
+/(*MARK:A)(*SKIP:B)(C|X)/K
+    C
+ 0: C
+ 1: C
+MK: A
+    D
+No match, mark = A
+     
+/^(A(*THEN:A)B|C(*THEN:B)D)/K
+    ** Failers
+No match
+    CB    
+No match, mark = B
+
+/^(?:A(*THEN:A)B|C(*THEN:B)D)/K
+    CB    
+No match, mark = B
+    
+/^(?>A(*THEN:A)B|C(*THEN:B)D)/K
+    CB    
+No match, mark = B
+    
+/--- This should succeed, as the skip causes bump to offset 1 (the mark). Note
+that we have to have something complicated such as (B|Z) at the end because,
+for Perl, a simple character somehow causes an unwanted optimization to mess
+with the handling of backtracking verbs. ---/
+
+/A(*MARK:A)A+(*SKIP:A)(B|Z) | AC/xK
+    AAAC
+ 0: AC
+    
+/--- Test skipping over a non-matching mark. ---/
+
+/A(*MARK:A)A+(*MARK:B)(*SKIP:A)(B|Z) | AC/xK
+    AAAC
+ 0: AC
+    
+/--- Check shorthand for MARK ---/
+
+/A(*:A)A+(*SKIP:A)(B|Z) | AC/xK
+    AAAC
+ 0: AC
+
+/--- Don't loop! ---/
+
+/(*:A)A+(*SKIP:A)(B|Z)/K
+    AAAC
+No match, mark = A
+
+/--- This should succeed, as a non-existent skip name disables the skip ---/ 
+
+/A(*MARK:A)A+(*SKIP:B)(B|Z) | AC/xK
+    AAAC
+ 0: AC
+
+/A(*MARK:A)A+(*SKIP:B)(B|Z) | AC(*:B)/xK
+    AAAC
+ 0: AC
+MK: B
+
+/--- We use something more complicated than individual letters here, because
+that causes different behaviour in Perl. Perhaps it disables some optimization;
+anyway, the result now matches PCRE in that no tag is passed back for the 
+failures. ---/
+    
+/(A|P)(*:A)(B|P) | (X|P)(X|P)(*:B)(Y|P)/xK
+    AABC
+ 0: AB
+ 1: A
+ 2: B
+MK: A
+    XXYZ 
+ 0: XXY
+ 1: <unset>
+ 2: <unset>
+ 3: X
+ 4: X
+ 5: Y
+MK: B
+    ** Failers
+No match
+    XAQQ  
+No match
+    XAQQXZZ  
+No match
+    AXQQQ 
+No match
+    AXXQQQ 
+No match
+    
+/--- COMMIT at the start of a pattern should act like an anchor. Again, 
+however, we need the complication for Perl. ---/
+
+/(*COMMIT)(A|P)(B|P)(C|P)/
+    ABCDEFG
+ 0: ABC
+ 1: A
+ 2: B
+ 3: C
+    ** Failers
+No match
+    DEFGABC  
+No match
+
+/--- COMMIT inside an atomic group can't stop backtracking over the group. ---/
+
+/(\w+)(?>b(*COMMIT))\w{2}/
+    abbb
+ 0: abbb
+ 1: a
+
+/(\w+)b(*COMMIT)\w{2}/
+    abbb
+No match
+
+/--- Check opening parens in comment when seeking forward reference. ---/ 
+
+/(?&t)(?#()(?(DEFINE)(?<t>a))/
+    bac
+ 0: a
+
 /-- End of testinput11 --/

@@ -70,11 +70,12 @@ The option bits are:
   PCRE_NO_UTF8_CHECK      Do not check the pattern for UTF-8
                             validity (only relevant if
                             PCRE_UTF8 is set)
+  PCRE_UCP                Use Unicode properties for \d, \w, etc.
   PCRE_UNGREEDY           Invert greediness of quantifiers
   PCRE_UTF8               Run in UTF-8 mode
 </pre>
 PCRE must be built with UTF-8 support in order to use PCRE_UTF8 and
-PCRE_NO_UTF8_CHECK.
+PCRE_NO_UTF8_CHECK, and with UCP support if PCRE_UCP is used.
 </P>
 <P>
 The yield of the function is a pointer to a private data structure that

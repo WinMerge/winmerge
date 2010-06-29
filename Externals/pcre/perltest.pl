@@ -85,15 +85,23 @@ for (;;)
 
   # The private /+ modifier means "print $' afterwards".
 
-  $showrest = ($pattern =~ s/\+(?=[a-z]*$)//);
+  $showrest = ($pattern =~ s/\+(?=[a-zA-Z]*$)//);
 
   # Remove /8 from a UTF-8 pattern.
 
-  $utf8 = $pattern =~ s/8(?=[a-z]*$)//;
+  $utf8 = $pattern =~ s/8(?=[a-zA-Z]*$)//;
 
   # Remove /J from a pattern with duplicate names.
 
-  $pattern =~ s/J(?=[a-z]*$)//;
+  $pattern =~ s/J(?=[a-zA-Z]*$)//;
+
+  # Remove /K from a pattern (asks pcretest to check MARK data) */
+
+  $pattern =~ s/K(?=[a-zA-Z]*$)//;
+
+  # Remove /W from a pattern (asks pcretest to set PCRE_UCP)
+
+  $pattern =~ s/W(?=[a-zA-Z]*$)//;
 
   # Check that the pattern is valid
 
@@ -127,13 +135,15 @@ for (;;)
     chomp;
     printf $outfile "$_\n" if $infile ne "STDIN";
 
-    s/\s+$//;
-    s/^\s+//;
+    s/\s+$//;  # Remove trailing space
+    s/^\s+//;  # Remove leading space
+    s/\\Y//g;  # Remove \Y (pcretest flag to set PCRE_NO_START_OPTIMIZE)
 
     last if ($_ eq "");
     $x = eval "\"$_\"";   # To get escapes processed
 
-    # Empty array for holding results, then do the matching.
+    # Empty array for holding results, ensure $REGERROR and $REGMARK are
+    # unset, then do the matching.
 
     @subs = ();
 
@@ -156,6 +166,9 @@ for (;;)
          "push \@subs,\$16;" .
          "push \@subs,\$'; }";
 
+    undef $REGERROR;
+    undef $REGMARK;
+
     eval "${cmd} (\$x =~ ${pattern}) {" . $pushes;
 
     if ($@)
@@ -165,7 +178,10 @@ for (;;)
       }
     elsif (scalar(@subs) == 0)
       {
-      printf $outfile "No match\n";
+      printf $outfile "No match";
+      if (defined $REGERROR && $REGERROR != 1)
+        { print $outfile (", mark = $REGERROR"); }
+      printf $outfile "\n";
       }
     else
       {
@@ -186,6 +202,8 @@ for (;;)
           }
         splice(@subs, 0, 18);
         }
+      if (defined $REGMARK && $REGMARK != 1)
+        { print $outfile ("MK: $REGMARK\n"); }
       }
     }
   }

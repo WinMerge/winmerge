@@ -6,7 +6,7 @@
 its pattern matching. On a Unix or Win32 system it can recurse into
 directories.
 
-           Copyright (c) 1997-2009 University of Cambridge
+           Copyright (c) 1997-2010 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -104,6 +104,14 @@ enum { DEE_READ, DEE_SKIP };
 
 enum { EL_LF, EL_CR, EL_CRLF, EL_ANY, EL_ANYCRLF };
 
+/* In newer versions of gcc, with FORTIFY_SOURCE set (the default in some
+environments), a warning is issued if the value of fwrite() is ignored.
+Unfortunately, casting to (void) does not suppress the warning. To get round
+this, we use a macro that compiles a fudge. Oddly, this does not also seem to
+apply to fprintf(). */
+
+#define FWRITE(a,b,c,d) if (fwrite(a,b,c,d)) {}
+
 
 
 /*************************************************
@@ -162,6 +170,7 @@ static BOOL do_colour = FALSE;
 static BOOL file_offsets = FALSE;
 static BOOL hyphenpending = FALSE;
 static BOOL invert = FALSE;
+static BOOL line_buffered = FALSE;
 static BOOL line_offsets = FALSE;
 static BOOL multiline = FALSE;
 static BOOL number = FALSE;
@@ -198,6 +207,7 @@ used to identify them. */
 #define N_NULL         (-9)
 #define N_LOFFSETS     (-10)
 #define N_FOFFSETS     (-11)
+#define N_LBUFFER      (-12)
 
 static option_item optionlist[] = {
   { OP_NODATA,    N_NULL,   NULL,              "",              "  terminate options" },
@@ -220,6 +230,7 @@ static option_item optionlist[] = {
   { OP_NODATA,    'l',      NULL,              "files-with-matches", "print only FILE names containing matches" },
   { OP_NODATA,    'L',      NULL,              "files-without-match","print only FILE names not containing matches" },
   { OP_STRING,    N_LABEL,  &stdin_name,       "label=name",    "set name for standard input" },
+  { OP_NODATA,    N_LBUFFER, NULL,             "line-buffered", "use line buffering" },
   { OP_NODATA,    N_LOFFSETS, NULL,            "line-offsets",  "output line numbers and offsets, not text" },
   { OP_STRING,    N_LOCALE, &locale,           "locale=locale", "use the named locale" },
   { OP_NODATA,    'M',      NULL,              "multiline",     "run in multiline mode" },
@@ -331,12 +342,18 @@ return (statbuf.st_mode & S_IFMT) == S_IFREG;
 }
 
 
-/************* Test stdout for being a terminal in Unix **********/
+/************* Test for a terminal in Unix **********/
 
 static BOOL
 is_stdout_tty(void)
 {
 return isatty(fileno(stdout));
+}
+
+static BOOL
+is_file_tty(FILE *f)
+{
+return isatty(fileno(f));
 }
 
 
@@ -451,12 +468,18 @@ return !isdirectory(filename);
 }
 
 
-/************* Test stdout for being a terminal in Win32 **********/
+/************* Test for a terminal in Win32 **********/
 
 /* I don't know how to do this; assume never */
 
 static BOOL
 is_stdout_tty(void)
+{
+return FALSE;
+}
+
+static BOOL
+is_file_tty(FILE *f)
 {
 return FALSE;
 }
@@ -483,7 +506,7 @@ void closedirectory(directory_type *dir) {}
 int isregfile(char *filename) { return 1; }
 
 
-/************* Test stdout for being a terminal when we can't do it **********/
+/************* Test for a terminal when we can't do it **********/
 
 static BOOL
 is_stdout_tty(void)
@@ -491,6 +514,11 @@ is_stdout_tty(void)
 return FALSE;
 }
 
+static BOOL
+is_file_tty(FILE *f)
+{
+return FALSE;
+}
 
 #endif
 
@@ -515,6 +543,40 @@ if (n < 0 || n >= sys_nerr) return "unknown error number";
 return sys_errlist[n];
 }
 #endif /* HAVE_STRERROR */
+
+
+
+/*************************************************
+*            Read one line of input              *
+*************************************************/
+
+/* Normally, input is read using fread() into a large buffer, so many lines may
+be read at once. However, doing this for tty input means that no output appears
+until a lot of input has been typed. Instead, tty input is handled line by
+line. We cannot use fgets() for this, because it does not stop at a binary
+zero, and therefore there is no way of telling how many characters it has read,
+because there may be binary zeros embedded in the data.
+
+Arguments:
+  buffer     the buffer to read into
+  length     the maximum number of characters to read
+  f          the file
+
+Returns:     the number of characters read, zero at end of file
+*/
+
+static int
+read_one_line(char *buffer, int length, FILE *f)
+{
+int c;
+int yield = 0;
+while ((c = fgetc(f)) != EOF)
+  {
+  buffer[yield++] = c;
+  if (c == '\n' || yield >= length) break;
+  }
+return yield;
+}
 
 
 
@@ -813,7 +875,7 @@ if (after_context > 0 && lastmatchnumber > 0)
     if (printname != NULL) fprintf(stdout, "%s-", printname);
     if (number) fprintf(stdout, "%d-", lastmatchnumber++);
     pp = end_of_line(pp, endptr, &ellength);
-    fwrite(lastmatchrestart, 1, pp - lastmatchrestart, stdout);
+    FWRITE(lastmatchrestart, 1, pp - lastmatchrestart, stdout);
     lastmatchrestart = pp;
     }
   hyphenpending = TRUE;
@@ -847,14 +909,14 @@ match_patterns(char *matchptr, size_t length, int *offsets, int *mrc)
 int i;
 for (i = 0; i < pattern_count; i++)
   {
-  *mrc = pcre_exec(pattern_list[i], hints_list[i], matchptr, length, 0,
+  *mrc = pcre_exec(pattern_list[i], hints_list[i], matchptr, (int)length, 0,
     PCRE_NOTEMPTY, offsets, OFFSET_SIZE);
   if (*mrc >= 0) return TRUE;
   if (*mrc == PCRE_ERROR_NOMATCH) continue;
   fprintf(stderr, "pcregrep: pcre_exec() error %d while matching ", *mrc);
   if (pattern_count > 1) fprintf(stderr, "pattern number %d to ", i+1);
   fprintf(stderr, "this text:\n");
-  fwrite(matchptr, 1, length, stderr);  /* In case binary zero included */
+  FWRITE(matchptr, 1, length, stderr);   /* In case binary zero included */
   fprintf(stderr, "\n");
   if (error_count == 0 &&
       (*mrc == PCRE_ERROR_MATCHLIMIT || *mrc == PCRE_ERROR_RECURSIONLIMIT))
@@ -916,6 +978,7 @@ char *ptr = buffer;
 char *endptr;
 size_t bufflength;
 BOOL endhyphenpending = FALSE;
+BOOL input_line_buffered = line_buffered;
 FILE *in = NULL;                    /* Ensure initialized */
 
 #ifdef SUPPORT_LIBZ
@@ -953,7 +1016,10 @@ else
 
   {
   in = (FILE *)handle;
-  bufflength = fread(buffer, 1, 3*MBUFTHIRD, in);
+  if (is_file_tty(in)) input_line_buffered = TRUE;
+  bufflength = input_line_buffered?
+    read_one_line(buffer, 3*MBUFTHIRD, in) :
+    fread(buffer, 1, 3*MBUFTHIRD, in);
   }
 
 endptr = buffer + bufflength;
@@ -1095,7 +1161,7 @@ while (ptr < endptr)
         else
           {
           if (do_colour) fprintf(stdout, "%c[%sm", 0x1b, colour_string);
-          fwrite(matchptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
+          FWRITE(matchptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
           if (do_colour) fprintf(stdout, "%c[00m", 0x1b);
           }
         fprintf(stdout, "\n");
@@ -1137,7 +1203,7 @@ while (ptr < endptr)
           if (printname != NULL) fprintf(stdout, "%s-", printname);
           if (number) fprintf(stdout, "%d-", lastmatchnumber++);
           pp = end_of_line(pp, endptr, &ellength);
-          fwrite(lastmatchrestart, 1, pp - lastmatchrestart, stdout);
+          FWRITE(lastmatchrestart, 1, pp - lastmatchrestart, stdout);
           lastmatchrestart = pp;
           }
         if (lastmatchrestart != ptr) hyphenpending = TRUE;
@@ -1177,7 +1243,7 @@ while (ptr < endptr)
           if (printname != NULL) fprintf(stdout, "%s-", printname);
           if (number) fprintf(stdout, "%d-", linenumber - linecount--);
           pp = end_of_line(pp, endptr, &ellength);
-          fwrite(p, 1, pp - p, stdout);
+          FWRITE(p, 1, pp - p, stdout);
           p = pp;
           }
         }
@@ -1227,9 +1293,9 @@ while (ptr < endptr)
         {
         int first = S_arg * 2;
         int last  = first + 1;
-        fwrite(ptr, 1, offsets[first], stdout);
+        FWRITE(ptr, 1, offsets[first], stdout);
         fprintf(stdout, "X");
-        fwrite(ptr + offsets[last], 1, linelength - offsets[last], stdout);
+        FWRITE(ptr + offsets[last], 1, linelength - offsets[last], stdout);
         }
       else
 #endif
@@ -1240,9 +1306,9 @@ while (ptr < endptr)
       if (do_colour)
         {
         int last_offset = 0;
-        fwrite(ptr, 1, offsets[0], stdout);
+        FWRITE(ptr, 1, offsets[0], stdout);
         fprintf(stdout, "%c[%sm", 0x1b, colour_string);
-        fwrite(ptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
+        FWRITE(ptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
         fprintf(stdout, "%c[00m", 0x1b);
         for (;;)
           {
@@ -1250,22 +1316,24 @@ while (ptr < endptr)
           matchptr += offsets[1];
           length -= offsets[1];
           if (!match_patterns(matchptr, length, offsets, &mrc)) break;
-          fwrite(matchptr, 1, offsets[0], stdout);
+          FWRITE(matchptr, 1, offsets[0], stdout);
           fprintf(stdout, "%c[%sm", 0x1b, colour_string);
-          fwrite(matchptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
+          FWRITE(matchptr + offsets[0], 1, offsets[1] - offsets[0], stdout);
           fprintf(stdout, "%c[00m", 0x1b);
           }
-        fwrite(ptr + last_offset, 1, (linelength + endlinelength) - last_offset,
-          stdout);
+        FWRITE(ptr + last_offset, 1,
+          (linelength + endlinelength) - last_offset, stdout);
         }
 
       /* Not colouring; no need to search for further matches */
 
-      else fwrite(ptr, 1, linelength + endlinelength, stdout);
+      else FWRITE(ptr, 1, linelength + endlinelength, stdout);
       }
 
-    /* End of doing what has to be done for a match */
+    /* End of doing what has to be done for a match. If --line-buffered was
+    given, flush the output. */
 
+    if (line_buffered) fflush(stdout);
     rc = 0;    /* Had some success */
 
     /* Remember where the last match happened for after_context. We remember
@@ -1297,8 +1365,18 @@ while (ptr < endptr)
   offset to the current line is maintained in filepos. */
 
   ptr += linelength + endlinelength;
-  filepos += linelength + endlinelength;
+  filepos += (int)(linelength + endlinelength);
   linenumber++;
+
+  /* If input is line buffered, and the buffer is not yet full, read another
+  line and add it into the buffer. */
+
+  if (input_line_buffered && bufflength < sizeof(buffer))
+    {
+    int add = read_one_line(ptr, sizeof(buffer) - (ptr - buffer), in);
+    bufflength += add;
+    endptr += add;
+    }
 
   /* If we haven't yet reached the end of the file (the buffer is full), and
   the current point is in the top 1/3 of the buffer, slide the buffer down by
@@ -1334,8 +1412,10 @@ while (ptr < endptr)
     else
 #endif
 
-    bufflength = 2*MBUFTHIRD + fread(buffer + 2*MBUFTHIRD, 1, MBUFTHIRD, in);
-
+    bufflength = 2*MBUFTHIRD +
+      (input_line_buffered?
+       read_one_line(buffer + 2*MBUFTHIRD, MBUFTHIRD, in) :
+       fread(buffer + 2*MBUFTHIRD, 1, MBUFTHIRD, in));
     endptr = buffer + bufflength;
 
     /* Adjust any last match point */
@@ -1451,7 +1531,7 @@ if ((sep = isdirectory(pathname)) != 0)
       {
       int frc, nflen;
       sprintf(buffer, "%.512s%c%.128s", pathname, sep, nextfile);
-      nflen = strlen(nextfile);
+      nflen = (int)(strlen(nextfile));
 
       if (isdirectory(buffer))
         {
@@ -1495,7 +1575,7 @@ skipping was not requested. The scan proceeds. If this is the first and only
 argument at top level, we don't show the file name, unless we are only showing
 the file name, or the filename was forced (-H). */
 
-pathlen = strlen(pathname);
+pathlen = (int)(strlen(pathname));
 
 /* Open using zlib if it is supported and the file name ends with .gz. */
 
@@ -1686,6 +1766,7 @@ switch(letter)
   case N_FOFFSETS: file_offsets = TRUE; break;
   case N_HELP: help(); exit(0);
   case N_LOFFSETS: line_offsets = number = TRUE; break;
+  case N_LBUFFER: line_buffered = TRUE; break;
   case 'c': count_only = TRUE; break;
   case 'F': process_options |= PO_FIXED_STRINGS; break;
   case 'H': filenames = FN_FORCE; break;
@@ -1947,8 +2028,9 @@ for (i = 1; i < argc; i++)
           }
         else                 /* Special case xxx=data */
           {
-          int oplen = equals - op->long_name;
-          int arglen = (argequals == NULL)? (int)strlen(arg) : argequals - arg;
+          int oplen = (int)(equals - op->long_name);
+          int arglen = (argequals == NULL)?
+            (int)strlen(arg) : (int)(argequals - arg);
           if (oplen == arglen && strncmp(arg, op->long_name, oplen) == 0)
             {
             option_data = arg + arglen;
@@ -1969,10 +2051,10 @@ for (i = 1; i < argc; i++)
         char buff1[24];
         char buff2[24];
 
-        int baselen = opbra - op->long_name;
-        int fulllen = strchr(op->long_name, ')') - op->long_name + 1;
+        int baselen = (int)(opbra - op->long_name);
+        int fulllen = (int)(strchr(op->long_name, ')') - op->long_name + 1);
         int arglen = (argequals == NULL || equals == NULL)?
-          (int)strlen(arg) : argequals - arg;
+          (int)strlen(arg) : (int)(argequals - arg);
 
         sprintf(buff1, "%.*s", baselen, op->long_name);
         sprintf(buff2, "%s%.*s", buff1, fulllen - baselen - 2, opbra + 1);
@@ -2124,7 +2206,7 @@ for (i = 1; i < argc; i++)
         {
         char *equals = strchr(op->long_name, '=');
         int nlen = (equals == NULL)? (int)strlen(op->long_name) :
-          equals - op->long_name;
+          (int)(equals - op->long_name);
         fprintf(stderr, "pcregrep: Malformed number \"%s\" after --%.*s\n",
           option_data, nlen, op->long_name);
         }
