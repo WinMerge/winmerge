@@ -915,7 +915,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
               memcpy (pszBuf, li.GetLine(), sizeof (TCHAR) * nCount);
               pszBuf += nCount;
             }
-          pszCurCRLF = pszCRLF ? pszCRLF : startLine.GetEol();
+          pszCurCRLF = pszCRLF ? pszCRLF : li.GetEol();
 	      nCRLFLength = lstrlen(pszCurCRLF);
           memcpy (pszBuf, pszCurCRLF, sizeof (TCHAR) * nCRLFLength);
           pszBuf += nCRLFLength;
