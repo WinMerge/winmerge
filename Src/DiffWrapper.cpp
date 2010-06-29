@@ -328,6 +328,33 @@ bool CDiffWrapper::IsTrivialLine(const std::string &Line,
 }
 
 /**
+ * @brief Find comment marker in string, excluding portions enclosed in quotation marks or apostrophes
+ * @param [in] target				- string to search
+ * @param [in] marker				- marker to search for
+ * @return Returns position of marker, or NULL if none is present
+ */
+static const char *FindCommentMarker(const char *target, const char *marker)
+{
+	char prev = '\0';
+	char quote = '\0';
+	size_t marker_len = strlen(marker);
+	while (char c = *target)
+	{
+		if (quote == '\0' && strncmp(target, marker, marker_len) == 0)
+			return target;
+		if ((prev != '\\') &&
+			(c == '"' || c == '\'') &&
+			(quote == '\0' || quote == c))
+		{
+			quote ^= c;
+		}
+		prev = c;
+		++target;
+	}
+	return NULL;
+}
+
+/**
 	@brief Performs post-filtering, by setting comment blocks to trivial
 	@param [in]  StartPos			- First line number to read
 	@param [in]  EndPos				- The line number PASS the last line number to read
@@ -343,7 +370,6 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 	int QtyLinesInBlock, int &Op, int FileNo,
 	const FilterCommentsSet& filtercommentsset)
 {
-	const char* EolIndicators = "\r\n"; //List of characters used as EOL
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
 		return true;
 	bool OpShouldBeTrivial = false;
@@ -357,16 +383,12 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 			break;
 		}
 		size_t len = files[FileNo].linbuf[i + 1] - files[FileNo].linbuf[i];
-		std::string LineData(files[FileNo].linbuf[i], len);
-		size_t EolPos = LineData.find_first_of(EolIndicators);
-		if (EolPos != std::string::npos)
-		{
-			LineData.erase(EolPos);
-		}
+		const char *LineStr = files[FileNo].linbuf[i];
+		std::string LineData(LineStr, linelen(LineStr, len));
 
-		const char * StartOfComment		= strstr(LineData.c_str(), filtercommentsset.StartMarker.c_str());
-		const char * EndOfComment		= strstr(LineData.c_str(), filtercommentsset.EndMarker.c_str());
-		const char * InLineComment		= strstr(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
+		const char * StartOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.StartMarker.c_str());
+		const char * EndOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.EndMarker.c_str());
+		const char * InLineComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
 		//The following logic determines if the entire block is a comment block, and only marks it as trivial
 		//if all the changes are within a comment block.
 		if (Direction == -1)
@@ -428,12 +450,8 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 				for(; TrivLinePos != (StartPos + QtyLinesInBlock);++TrivLinePos)
 				{
 					size_t len = files[FileNo].linbuf[TrivLinePos + 1] - files[FileNo].linbuf[TrivLinePos];
-					std::string LineDataTrvCk(files[FileNo].linbuf[TrivLinePos], len);
-					size_t EolPos = LineDataTrvCk.find_first_of(EolIndicators);
-					if (EolPos != std::string::npos)
-					{
-						LineDataTrvCk.erase(EolPos);
-					}
+					const char *LineStrTrvCk = files[FileNo].linbuf[TrivLinePos];
+					std::string LineDataTrvCk(LineStrTrvCk, linelen(LineStrTrvCk, len));
 					if (LineDataTrvCk.size() &&
 						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
 					{
@@ -1198,21 +1216,16 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 		return false;
 	}
 
-	const char EolIndicators[] = "\r\n"; //List of characters used as EOL
 	bool linesMatch = true; // set to false when non-matching line is found.
 	int line = StartPos;
 
 	while (line <= EndPos && linesMatch == true)
 	{
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
-		std::string LineData(files[FileNo].linbuf[line], len);
-		size_t EolPos = LineData.find_first_of(EolIndicators);
-		if (EolPos != std::string::npos)
-		{
-			LineData.erase(EolPos);
-		}
+		const char *string = files[FileNo].linbuf[line];
+		size_t stringlen = linelen(string, len);
+		if (!m_pFilterList->Match(stringlen, string, m_codepage))
 
-		if (!m_pFilterList->Match(LineData.c_str(), m_codepage))
 		{
 			linesMatch = false;
 		}
@@ -1561,18 +1574,19 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	inf_patch[0].name = ansiconvert_SystemCP(path1.c_str());
 	inf_patch[1].name = ansiconvert_SystemCP(path2.c_str());
 
-	// Fix timestamps for generated patch files
-	// If there are translations needed (e.g. when comparing UTF-16 files)
-	// then the stats in 'inf' are read from temp files. If the original
-	// file's and read timestamps differ, use original file's timestamps.
-	// See also sf.net bug item #2791506.
-	struct __stat64 st;
-	_tstat64(path1.c_str(), &st);
-	if (st.st_mtime != inf_patch[0].stat.st_mtime)
-		inf_patch[0].stat.st_mtime = st.st_mtime;
-	_tstat64(path2.c_str(), &st);
-	if (st.st_mtime != inf_patch[1].stat.st_mtime)
-		inf_patch[1].stat.st_mtime = st.st_mtime;
+	// If paths in m_s1File and m_s2File point to original files, then we can use
+	// them to fix potentially meaningless stats from potentially temporary files,
+	// resulting from whatever transforms may have taken place.
+	// If not, then we can't help it, and hence ASSERT that this won't happen.
+	if (!m_bPathsAreTemp)
+	{
+		_tstat(m_files[0].c_str(), &inf_patch[0].stat);
+		_tstat(m_files[1].c_str(), &inf_patch[1].stat);
+	}
+	else
+	{
+		ASSERT(FALSE);
+	}
 
 	outfile = NULL;
 	if (!m_sPatchFile.empty())

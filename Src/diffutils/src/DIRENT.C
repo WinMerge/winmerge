@@ -324,7 +324,7 @@ loadDir(DIRENT *dir)
 			if ( ff.ff_name[0] != '.' )
 			{
 				/*  make a copy of the name  */
-				if ( (names[count] = strdup(ff.ff_name))
+				if ( (names[count] = _strdup(ff.ff_name))
 								     == NULL )
 				{
 					/*  free all if error (out of mem)  */

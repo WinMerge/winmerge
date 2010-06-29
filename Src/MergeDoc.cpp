@@ -54,7 +54,6 @@
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
 #include "DiffList.h"
-#include "dllver.h"
 #include "codepage.h"
 #include "paths.h"
 #include "OptionsMgr.h"
@@ -2517,7 +2516,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	}
 
 	BOOL bBinary = FALSE;
-	nRescanResult = Rescan(bBinary, identical, TRUE);
+	nRescanResult = Rescan(bBinary, identical);
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)

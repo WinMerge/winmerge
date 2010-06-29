@@ -348,6 +348,7 @@ PortugueseBrazilLanguage=Portugiesische (brasilianische) Menüs und Dialoge
 PortugueseLanguage=Portugiesische Menüs und Dialoge
 RomanianLanguage=Rumänisch Menüs und Dialoge
 RussianLanguage=Russische Menüs und Dialoge
+SerbianLanguage=Serbische Menüs und Dialoge
 SlovakLanguage=Slowakische Menüs und Dialoge
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanische Menüs und Dialoge

@@ -31,7 +31,6 @@
 #include "BCMenu.h"
 #include "FilepathEdit.h"
 #include "Shlwapi.h"
-#include "dllVer.h"		
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

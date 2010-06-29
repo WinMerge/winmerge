@@ -349,6 +349,7 @@ PortugueseBrazilLanguage=Portugisiska (Brasiliansk) menyer och dialoger
 PortugueseLanguage=Portugisiska menyer och dialoger
 RomanianLanguage=Rumänska menyer och dialoger
 RussianLanguage=Ryska menyer och dialoger
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Slovakiska menyer och dialoger
 SlovenianLanguage=Slovenska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger

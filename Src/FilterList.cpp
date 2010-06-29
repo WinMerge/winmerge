@@ -107,11 +107,10 @@ bool FilterList::HasRegExps()
  * @param [in] codepage codepage of string.
  * @return true if any of the expressions did match the string.
  */
-bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
+bool FilterList::Match(size_t stringlen, const char *string, int codepage/*=CP_UTF8*/)
 {
 	bool retval = false;
 	const size_t count = m_list.size();
-	size_t stringlen = strlen(string);
 
 	// convert string into UTF-8
 	ucr::buffer buf(stringlen * 2);

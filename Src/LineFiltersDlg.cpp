@@ -11,7 +11,6 @@
 #include "LineFiltersList.h"
 #include "MainFrm.h"
 #include "LineFiltersDlg.h"
-#include "dllver.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,8 +32,6 @@ IMPLEMENT_DYNAMIC(LineFiltersDlg, CPropertyPage)
 LineFiltersDlg::LineFiltersDlg()
 : CPropertyPage(LineFiltersDlg::IDD)
 , m_pList(NULL)
-, m_bEditing(FALSE)
-, m_editedIndex(-1)
 {
 	//{{AFX_DATA_INIT(LineFiltersDlg)
 	m_bIgnoreRegExp = FALSE;
@@ -53,22 +50,19 @@ void LineFiltersDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_IGNOREREGEXP, m_bIgnoreRegExp);
 	//}}AFX_DATA_MAP
 	DDX_Control(pDX, IDC_LFILTER_LIST, m_filtersList);
-	DDX_Control(pDX, IDC_LFILTER_EDITBOX, m_editRegexp);
-	DDX_Control(pDX, IDC_LFILTER_EDITSAVE, m_saveRegexp);
 }
 
 
 BEGIN_MESSAGE_MAP(LineFiltersDlg, CPropertyPage)
 	//{{AFX_MSG_MAP(LineFiltersDlg)
-	ON_BN_CLICKED(IDC_IGNOREREGEXP, OnIgnoreregexp)
 	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedLfilterAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_EDITBTN, OnBnClickedLfilterEditbtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedLfilterRemovebtn)
-	ON_BN_CLICKED(IDC_LFILTER_EDITSAVE, OnBnClickedLfilterEditsave)
 	ON_NOTIFY(LVN_ITEMACTIVATE, IDC_LFILTER_LIST, OnLvnItemActivateLfilterList)
-	ON_EN_KILLFOCUS(IDC_LFILTER_EDITBOX, OnEnKillfocusLfilterEditbox)
+	ON_NOTIFY(LVN_KEYDOWN, IDC_LFILTER_LIST, OnLvnKeyDownLfilterList)
+	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_LFILTER_LIST, OnEndLabelEditLfilterList)
 END_MESSAGE_MAP()
 
 
@@ -96,45 +90,20 @@ BOOL LineFiltersDlg::OnInitDialog()
 void LineFiltersDlg::InitList()
 {
 	// Show selection across entire row.
-	DWORD newstyle = LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT |
-		LVS_EX_ONECLICKACTIVATE;
-	// Also enable infotips if they have new enough version for our
-	// custom draw code
-	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
-		newstyle |= LVS_EX_INFOTIP;
-
-	m_filtersList.ModifyStyle(0, LVS_EDITLABELS | LVS_SHOWSELALWAYS);
-
-	m_filtersList.SetExtendedStyle(m_filtersList.GetExtendedStyle() | newstyle);
+	// Also enable infotips.
+	m_filtersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	String title = theApp.LoadString(IDS_FILTERLINE_REGEXP);
 	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 500);
 
 	int count = m_pList->GetCount();
-	int ind = -1;
 	for (int i = 0; i < count; i++)
 	{
 		const LineFilterItem &item = m_pList->GetAt(i);
-		ind = AddRow(item.filterStr.c_str(), item.enabled);
+		AddRow(item.filterStr.c_str(), item.enabled);
 	}
-	if (count > 0)
-	{
-		m_filtersList.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
-		BOOL bPartialOk = FALSE;
-		m_filtersList.EnsureVisible(0, bPartialOk);
-		CString text = m_filtersList.GetItemText(0, 0);
-		m_editRegexp.SetWindowText(text);
-	}
+	m_filtersList.SetItemState(0, LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
 	UpdateData(FALSE);
-}
-
-/**
- * @brief User clicked filter enable/disable checkbox.
- */
-void LineFiltersDlg::OnIgnoreregexp() 
-{
-	UpdateData();
 }
 
 /**
@@ -154,7 +123,7 @@ void LineFiltersDlg::OnHelp()
 int LineFiltersDlg::AddRow(LPCTSTR filter /*= NULL*/, BOOL enabled /*=FALSE*/)
 {
 	int items = m_filtersList.GetItemCount();
-	int ind = m_filtersList.InsertItem(items + 1, filter);
+	int ind = m_filtersList.InsertItem(items, filter);
 	m_filtersList.SetCheck(ind, enabled);
 	return ind;
 }
@@ -168,14 +137,7 @@ void LineFiltersDlg::EditSelectedFilter()
 	int sel = m_filtersList.GetNextItem(-1, LVNI_SELECTED);
 	if (sel > -1)
 	{
-		CString text = m_filtersList.GetItemText(sel, 0);
-		m_editRegexp.SetWindowText(text);
-		m_editRegexp.SetReadOnly(FALSE);
-		m_saveRegexp.EnableWindow(TRUE);
-		m_editRegexp.SetFocus();
-		m_editRegexp.SetSel(0, -1);
-		m_bEditing = TRUE;
-		m_editedIndex = sel;
+		m_filtersList.EditLabel(sel);
 	}
 }
 
@@ -188,8 +150,7 @@ void LineFiltersDlg::OnBnClickedLfilterAddBtn()
 	if (ind >= -1)
 	{
 		m_filtersList.SetItemState(ind, LVIS_SELECTED, LVIS_SELECTED);
-		BOOL bPartialOk = FALSE;
-		m_filtersList.EnsureVisible(ind, bPartialOk);
+		m_filtersList.EnsureVisible(ind, FALSE);
 		EditSelectedFilter();
 	}
 }
@@ -234,8 +195,7 @@ void LineFiltersDlg::SetList(LineFiltersList * list)
  */
 void LineFiltersDlg::OnBnClickedLfilterRemovebtn()
 {
-	int sel =- 1;
-	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
+	int sel = m_filtersList.GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
 	{
 		m_filtersList.DeleteItem(sel);
@@ -251,78 +211,31 @@ void LineFiltersDlg::OnBnClickedLfilterRemovebtn()
 }
 
 /**
- * @brief Called when Save button is clicked.
- */
-void LineFiltersDlg::OnBnClickedLfilterEditsave()
-{
-	SaveItem();
-}
-
-/**
- * @brief Cancel editing of filter when ESC is pressed.
- */
-BOOL LineFiltersDlg::PreTranslateMessage(MSG* pMsg)
-{
-	if (m_bEditing)
-	{
-		// Handle Esc key press
-		if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_ESCAPE)
-		{
-			m_saveRegexp.EnableWindow(FALSE);
-			m_editRegexp.SetReadOnly(TRUE);
-			m_bEditing = FALSE;
-			m_filtersList.SetFocus();
-			int sel = m_filtersList.GetNextItem(-1, LVNI_SELECTED);
-			if (sel > -1)
-			{
-				CString text = m_filtersList.GetItemText(sel, 0);
-				m_editRegexp.SetWindowText(text);
-			}
-			return TRUE;
-		}
-	}
-	return CPropertyPage::PreTranslateMessage(pMsg);
-}
-
-/**
- * @brief Called when selected item in list changes.
+ * @brief Called when the user activates an item.
  */
 void LineFiltersDlg::OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	LPNMITEMACTIVATE pNMIA = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	int item = pNMIA->iItem;
-	if (m_bEditing)
-	{
-		m_saveRegexp.EnableWindow(FALSE);
-		m_editRegexp.SetReadOnly(TRUE);
-		m_bEditing = FALSE;
-	}
-	CString text = m_filtersList.GetItemText(item, 0);
-	m_editRegexp.SetWindowText(text);
+	EditSelectedFilter();
 	*pResult = 0;
 }
 
 /**
- * @brief Save the current filter in edit box.
+ * @brief Called when a key has been pressed while the list has the focus.
  */
-void LineFiltersDlg::SaveItem()
+void LineFiltersDlg::OnLvnKeyDownLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	if (m_bEditing)
+	LPNMKEY pNMKey = reinterpret_cast<LPNMKEY>(pNMHDR);
+	if (LOWORD(pNMKey->nVKey) == VK_F2)
 	{
-		CString text;
-		m_editRegexp.GetWindowText(text);
-		m_filtersList.SetItemText(m_editedIndex, 0, text);
-		m_bEditing = FALSE;
-		m_editRegexp.SetReadOnly(TRUE);
-		m_saveRegexp.EnableWindow(FALSE);
-		m_editedIndex = -1;
+		EditSelectedFilter();
 	}
+	*pResult = 0;
 }
 
 /**
- * @brief Called when filter edit box loses its focus.
+ * @brief Called when in-place editing has finished.
  */
-void LineFiltersDlg::OnEnKillfocusLfilterEditbox()
+void LineFiltersDlg::OnEndLabelEditLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	SaveItem();
+	*pResult = 1;
 }

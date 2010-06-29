@@ -359,6 +359,7 @@ PortugueseBrazilLanguage=Meniuri si dialoguri în Portugheza (Braziliana)
 PortugueseLanguage=Meniuri si dialoguri în Portugheza
 RomanianLanguage=Meniuri si dialoguri în Româna
 RussianLanguage=Meniuri si dialoguri în Rusa
+SerbianLanguage=Serbian menus and dialogs
 SlovakLanguage=Meniuri si dialoguri în Slovaca
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Meniuri si dialoguri în Spaniola

@@ -73,12 +73,14 @@
         <ComponentRef Id="Portuguese" />
         <ComponentRef Id="Romanian" />
         <ComponentRef Id="Russian" />
+        <ComponentRef Id="Serbian" />
         <ComponentRef Id="Slovak" />
         <ComponentRef Id="Slovenian" />
         <ComponentRef Id="Spanish" />
         <ComponentRef Id="Swedish" />
         <ComponentRef Id="Turkish" />
         <ComponentRef Id="Ukrainian" />
+        <ComponentRef Id="SetDefaultWinMergeLanguage" />
       </Feature>
       <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 Runtime Components ">
         <MergeRef Id="CRT"/>

@@ -85,13 +85,13 @@ UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUcs)
 		if (chlen < 1 || i + chlen > nUtf)
 			*pwc++ = '?';
 		else
- 			*pwc++ = ucr::GetUtf8Char(pUtf+i);
- 		nremains --;
- 		if (chlen < 1) chlen = 1;
- 		i += chlen;
- 	}
- 
- 	// return number of written wchars
+			*pwc++ = ucr::GetUtf8Char(pUtf+i);
+		nremains --;
+		if (chlen < 1) chlen = 1;
+		i += chlen;
+	}
+
+	// return number of written wchars
 	return (nUcs - nremains);
 }
 
