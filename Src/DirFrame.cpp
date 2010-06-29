@@ -161,17 +161,17 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
  LRESULT CDirFrame::OnSetMessageString(WPARAM wParam, LPARAM lParam)
 {
 	LRESULT ret;
-    UINT nID = (UINT)wParam;
-    if (nID == AFX_IDS_IDLEMESSAGE)
+	UINT nID = (UINT)wParam;
+	if (nID == AFX_IDS_IDLEMESSAGE)
 	{
-        wParam = 0;
-        String msg = theApp.LoadString(AFX_IDS_IDLEMESSAGE);
+		wParam = 0;
+		String msg = theApp.LoadString(AFX_IDS_IDLEMESSAGE);
 		TCHAR *szMsg = new TCHAR[lstrlen(msg.c_str())+1];
 		lstrcpy(szMsg, msg.c_str());
 		lParam = (LPARAM)szMsg;
-	    ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
+		ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
 		delete szMsg;
-    }
+	}
 	else
 	{
 		ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);

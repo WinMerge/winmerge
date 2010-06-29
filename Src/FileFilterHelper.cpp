@@ -253,9 +253,9 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 
 		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
 #ifdef UNICODE
-		bool match = m_pMaskFilter->Match(name_utf);
+		bool match = m_pMaskFilter->Match(strlen(name_utf), name_utf);
 #else
-		bool match = m_pMaskFilter->Match(name_utf, GetACP());
+		bool match = m_pMaskFilter->Match(strlen(name_utf), name_utf, GetACP());
 #endif
 		UCS2UTF8_Dealloc(name_utf);
 		return match;

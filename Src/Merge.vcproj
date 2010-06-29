@@ -68,8 +68,7 @@
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\heksedit\release\heksedit.dll $(TargetDir)
-copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 "/>
 			<Tool
@@ -143,8 +142,7 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\heksedit\debug\heksedit.dll $(TargetDir)
-copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 "/>
 			<Tool
@@ -218,8 +216,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\heksedit\debug\heksedit.dll $(TargetDir)
-copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 
 "/>
@@ -296,8 +293,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\heksedit\release\heksedit.dll $(TargetDir)
-copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 "/>
 			<Tool
@@ -9611,13 +9607,13 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 			Name="Batch files"
 			Filter="">
 			<File
-				RelativePath=".\Languages\BuildMergeLangDll.bat">
+				RelativePath="..\Translations\WinMerge\BuildMergeLangDll.bat">
 			</File>
 			<File
-				RelativePath=".\Languages\CreateMasterPotFile.vbs">
+				RelativePath="..\Translations\WinMerge\CreateMasterPotFile.vbs">
 			</File>
 			<File
-				RelativePath=".\Languages\GetTranslationsStatus.vbs">
+				RelativePath="..\Translations\WinMerge\GetTranslationsStatus.vbs">
 			</File>
 			<File
 				RelativePath=".\PostBuild.bat">
@@ -9629,7 +9625,7 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				RelativePath=".\SetResourceVersions.bat">
 			</File>
 			<File
-				RelativePath=".\Languages\UpdatePoFilesFromPotFile.vbs">
+				RelativePath="..\Translations\WinMerge\UpdatePoFilesFromPotFile.vbs">
 			</File>
 		</Filter>
 	</Files>

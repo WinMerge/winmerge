@@ -798,6 +798,9 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Languages\ShellExtensionSerbian.rc">
+			</File>
+			<File
 				RelativePath="Languages\ShellExtensionSlovak.rc">
 				<FileConfiguration
 					Name="Debug X64|Win32"

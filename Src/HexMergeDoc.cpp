@@ -513,6 +513,8 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
  */
 HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, BOOL bRO[])
 {
+	CHexMergeFrame *pf = GetParentFrame();
+	ASSERT(pf);
 	HRESULT hr;
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -523,16 +525,14 @@ HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, BOOL bRO[])
 	if (nBuffer == m_nBuffers)
 	{
 		UpdateDiffItem(0);
+		pf->Invalidate();
 		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 			m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}
 	else
 	{
-		if (CFrameWnd *pFrame = GetParentFrame())
-		{
-			// Use verify macro to trap possible error in debug.
-			VERIFY(pFrame->DestroyWindow());
-		}
+		// Use verify macro to trap possible error in debug.
+		VERIFY(pf->DestroyWindow());
 	}
 	return hr;
 }

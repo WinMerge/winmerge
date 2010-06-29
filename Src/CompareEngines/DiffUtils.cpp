@@ -14,6 +14,7 @@
 #include "DiffContext.h"
 #include "DIFF.H"
 #include "DiffUtils.h"
+#include "coretools.h"
 
 #include "DiffList.h"
 #include "DiffWrapper.h"
@@ -284,20 +285,15 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
 		return false;
 	}
 
-	const char EolIndicators[] = "\r\n"; //List of characters used as EOL
 	bool linesMatch = true; // set to false when non-matching line is found.
 	int line = StartPos;
 
 	while (line <= EndPos && linesMatch == true)
 	{
-		std::string LineData(files[FileNo].linbuf[line]);
-		size_t EolPos = LineData.find_first_of(EolIndicators);
-		if (EolPos != std::string::npos)
-		{
-			LineData.erase(EolPos);
-		}
-
-		if (!m_pFilterList->Match(LineData.c_str(), m_codepage))
+		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
+		const char *string = files[FileNo].linbuf[line];
+		size_t stringlen = linelen(string, len);
+		if (!m_pFilterList->Match(stringlen, string, m_codepage))
 		{
 			linesMatch = false;
 		}

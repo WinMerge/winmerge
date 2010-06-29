@@ -15,7 +15,6 @@
 #include "DirDoc.h"
 #include "resource.h"
 #include "coretools.h"
-#include "dllver.h"
 #include "DirViewColItems.h"
 #include "DirColsDlg.h"
 #include "OptionsDef.h"

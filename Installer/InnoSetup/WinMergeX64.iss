@@ -970,7 +970,7 @@ Begin
 																								Begin
 																									{If the user has 465 or higher installed then...}
 																									If VersionAtLeast(str7Zip_Version, 4, 65, 0, 0) = True Then
-																								{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
+																										{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
 																										int7Zip_Version := 465
 																									Else
 																								int7Zip_Version := 457
