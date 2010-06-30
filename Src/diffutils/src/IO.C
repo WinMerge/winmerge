@@ -38,7 +38,18 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 /* Type used for fast prefix comparison in find_identical_ends.  */
 typedef unsigned word;
-
+
+/** @brief Known Unicode encodings. */
+enum UNICODESET
+{
+	NONE = 0,  /**< No unicode. */
+	UCS2LE,    /**< UCS-2 / UTF-16 little endian. */
+	UCS2BE,    /**< UCS-2 / UTF-16 big endian. */
+	UTF8,      /**< UTF-8. */
+	UCS4LE,    /**< UTF-32 little endian */
+	UCS4BE,    /**< UTF-32 big-endian */
+};
+
 /* Lines are put into equivalence classes (of lines that match in line_cmp).
    Each equivalence class is represented by one of these structures,
    but only while the classes are being computed.
@@ -70,14 +81,41 @@ static int equivs_alloc;
 
 static void find_and_hash_each_line PARAMS((struct file_data *));
 static void find_identical_ends PARAMS((struct file_data[]));
-static void prepare_text_end PARAMS((struct file_data *));
-
+static char *prepare_text_end PARAMS((struct file_data *));
+static enum UNICODESET get_unicode_signature(struct file_data *);
+
 /* Check for binary files and compare them for exact identity.  */
 
 /* Return 1 if BUF contains a non text character.
    SIZE is the number of characters in BUF.  */
 
 #define binary_file_p(buf, size) (size != 0 && memchr (buf, '\0', size) != 0)
+
+/** @brief Get unicode signature from file_data. */
+static enum UNICODESET get_unicode_signature(struct file_data *current)
+{
+  // initialize to a pattern that differs everywhere from all possible unicode signatures
+  unsigned long sig = 0x3F3F3F3F;
+  // copy at most 4 bytes from buffer
+  memcpy(&sig, current->buffer, min(current->buffered_chars, 4));
+  // check for the two possible 4 bytes signatures
+  if (sig == 0x0000FEFF)
+	return UCS4LE;
+  if (sig == 0xFFFE0000)
+	return UCS4BE;
+  // check for the only possible 3 bytes signature
+  sig &= 0xFFFFFF;
+  if (sig == 0xBFBBEF)
+	return UTF8;
+  // check for the two possible 2 bytes signatures
+  sig &= 0xFFFF;
+  if (sig == 0xFEFF)
+	return UCS2LE;
+  if (sig == 0xFFFE)
+	return UCS2BE;
+  // none of the above checks has passed, so probably no unicode
+  return NONE;
+}
 
 /* Get ready to read the current file.
    Return nonzero if SKIP_TEST is zero,
@@ -101,15 +139,6 @@ sip (current, skip_test)
     {
       current->bufsize = current->buffered_chars
         = STAT_BLOCKSIZE (current->stat);
-
-      if (S_ISREG (current->stat.st_mode))
-      /* Get the size out of the stat block.
-         Allocate enough room for appended newline and sentinel.
-         Allocate at least one block, to prevent overrunning the buffer
-         when comparing growing binary files.  */
-      current->bufsize = max (current->bufsize,
-        current->stat.st_size + sizeof (word) + 1);
-
 #ifdef __MSDOS__
       if ((current->buffer = (char HUGE *) farmalloc (current->bufsize)) == NULL)
          fatal ("far memory exhausted");
@@ -150,52 +179,40 @@ slurp (current)
   if (current->desc < 0)
     /* The file is nonexistent.  */
     ;
-  else if (S_ISREG (current->stat.st_mode))
-    {
-      /* It's a regular file; slurp in the rest all at once.  */
-#ifdef __MSDOS__
-      /* read inside of segment boundaries */
-      while ((current->stat.st_size - current->buffered_chars) > 0)
-      {
-        unsigned nr;
-        char HUGE *rp;
-
-        rp = current->buffer + current->buffered_chars;
-        nr = 0 - (unsigned)((long)rp & 0x0000FFFF);
-        if (nr == 0)
-          nr = 0xFFF0;
-        nr = read (current->desc, rp, nr);
-        if (nr == 0)
-          break;
-        if (nr == 0xFFFF)
-          pfatal_with_name (current->name);
-        current->buffered_chars += nr ;
-      }
-#else
-      cc = current->stat.st_size - current->buffered_chars;
-      if (cc)
-        {
-          cc = read (current->desc,
-             current->buffer + current->buffered_chars,
-             cc);
-          if (cc == -1)
-            pfatal_with_name (current->name);
-          current->buffered_chars += cc;
-        }
-#endif /*__MSDOS__*/
-    }
-      /* It's not a regular file; read it, growing the buffer as needed.  */
   else if (always_text_flag || current->buffered_chars != 0)
     {
+	  enum UNICODESET sig = get_unicode_signature(current);
+	  size_t alloc_extra
+		= (1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE))
+		  // some flavor of non octet encoded unicode?
+		  ? ~0U	// yes, allocate extra room for transcoding
+		  : 0U;	// no, allocate no extra room for transcoding
+
       for (;;)
         {
           if (current->buffered_chars == current->bufsize)
             {
+			  if (S_ISREG (current->stat.st_mode))
+			    {
+			  /* Get the size out of the stat block.
+				 Allocate 50% extra room for a necessary transcoding to UTF-8.
+				 Allocate enough room for appended newline and sentinel.
+				 Allocate at least one block, to prevent overrunning the buffer
+				 when comparing growing binary files. */
+			      current->bufsize = max (current->bufsize,
+				    current->stat.st_size + (alloc_extra & current->stat.st_size / 2) + sizeof (word) + 1);
+			    }
+			  else
+			    {
 #ifdef __MSDOS__
-              current->bufsize += 4096;
-              current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
+			      current->bufsize += 4096;
 #else
-              current->bufsize = current->bufsize * 2;
+                  current->bufsize = current->bufsize * 2;
+#endif /*__MSDOS__*/
+			    }
+#ifdef __MSDOS__
+			  current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
+#else
               current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
             }
@@ -209,8 +226,9 @@ slurp (current)
           current->buffered_chars += cc;
         }
 #ifndef __MSDOS__
-      /* Allocate just enough room for appended newline and sentinel.  */
-      current->bufsize = current->buffered_chars + sizeof (word) + 1;
+	  /* Allocate 50% extra room for a necessary transcoding to UTF-8.
+         Allocate enough room for appended newline and sentinel. */
+      current->bufsize = current->buffered_chars + (alloc_extra & current->buffered_chars / 2) + sizeof (word) + 1;
       current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*!__MSDOS__*/
     }
@@ -503,32 +521,207 @@ hashing_done:;
   equivs_alloc = eqs_alloc;
   equivs_index = eqs_index;
 }
-
-/* Prepare the end of the text.  Make sure it's initialized.
-   Make sure text ends in a newline,
-   but remember that we had to add one unless -B is in effect.  */
 
-static void
+/* Convert any non octet encoded unicode text to UTF-8.
+   Prepare the end of the text. Make sure it's initialized.
+   Make sure text ends in a newline,
+   but remember that we had to add one unless -B is in effect.
+   Return effective start of text to be compared. */
+
+static char *
 prepare_text_end (current)
      struct file_data *current;
 {
   FSIZE buffered_chars = current->buffered_chars;
-  char HUGE *p = current->buffer;
+  char *const p = current->buffer;
+  char *r = p; // receives the return value
+
+  enum UNICODESET sig = get_unicode_signature(current);
+
+  if (sig == UCS4LE)
+    {
+      FSIZE buffered_words = buffered_chars / 2;
+      unsigned long *q = (unsigned long *)p + buffered_words / 2;
+      buffered_chars += buffered_words;
+      r = p + buffered_chars;
+      while (--q > (unsigned long *)p) // exclude the BOM
+        {
+          unsigned long u = *q;
+          if (u >= 0x80000000)
+            {
+              *--r = '?';
+            }
+          else if (u >= 0x4000000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0x80 + ((u >> 18) & 0x3F);
+              *--r = 0x80 + ((u >> 24) & 0x3F);
+              *--r = 0xFC + (u >> 30);
+            }
+            else if (u >= 0x200000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0x80 + ((u >> 18) & 0x3F);
+              *--r = 0xF8 + (u >> 24);
+            }
+            else if (u >= 0x10000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0xF0 + (char)(u >> 18);
+            }
+            else if (u >= 0x800)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0xE0 + (char)(u >> 12);
+            }
+            else if (u >= 0x80 || u == 0) // map NUL to 2 byte sequence so as to prevent it from confusing diff algorithm
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0xC0 + (char)(u >> 6);
+            }
+            else
+            {
+              *--r = (char)u;
+            }
+        }
+    }
+  else if (sig == UCS4BE)
+    {
+      FSIZE buffered_words = buffered_chars / 2;
+      unsigned long *q = (unsigned long *)p + buffered_words / 2;
+      buffered_chars += buffered_words;
+      r = p + buffered_chars;
+      while (--q > (unsigned long *)p) // exclude the BOM
+        {
+          unsigned long u =
+          ((*q & 0x000000FF) << 24) |
+          ((*q & 0x0000FF00) << 8) |
+          ((*q & 0x00FF0000) >> 8) |
+          ((*q & 0xFF000000) >> 24); // fix byte order
+          if (u >= 0x80000000)
+            {
+              *--r = '?';
+            }
+          else if (u >= 0x4000000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0x80 + ((u >> 18) & 0x3F);
+              *--r = 0x80 + ((u >> 24) & 0x3F);
+              *--r = 0xFC + (u >> 30);
+            }
+          else if (u >= 0x200000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0x80 + ((u >> 18) & 0x3F);
+              *--r = 0xF8 + (u >> 24);
+            }
+          else if (u >= 0x10000)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0x80 + ((u >> 12) & 0x3F);
+              *--r = 0xF0 + (char)(u >> 18);
+            }
+          else if (u >= 0x800)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0xE0 + (char)(u >> 12);
+            }
+          else if (u >= 0x80 || u == 0) // map NUL to 2 byte sequence so as to prevent it from confusing diff algorithm
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0xC0 + (char)(u >> 6);
+            }
+          else
+            {
+              *--r = (char)u;
+            }
+        }
+    }
+  else if (sig == UCS2LE)
+    {
+      FSIZE buffered_words = buffered_chars / 2;
+      unsigned short *q = (unsigned short *)p + buffered_words;
+      buffered_chars += buffered_words;
+      r = p + buffered_chars;
+      while (--q > (unsigned short *)p) // exclude the BOM
+        {
+          unsigned short u = *q;
+          if (u >= 0x800)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0xE0 + (u >> 12);
+            }
+          else if (u >= 0x80 || u == 0) // map NUL to 2 byte sequence so as to prevent it from confusing diff algorithm
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0xC0 + (u >> 6);
+            }
+          else
+            {
+              *--r = (char)u;
+            }
+        }
+    }
+  else if (sig == UCS2BE)
+    {
+      FSIZE buffered_words = buffered_chars / 2;
+      unsigned short *q = (unsigned short *)p + buffered_words;
+      buffered_chars += buffered_words;
+      r = p + buffered_chars;
+      while (--q > (unsigned short *)p) // exclude the BOM
+        {
+          unsigned short u = (*q << 8) | (*q >> 8); // fix byte order
+          if (u >= 0x800)
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0x80 + ((u >> 6) & 0x3F);
+              *--r = 0xE0 + (u >> 12);
+            }
+          else if (u >= 0x80 || u == 0) // map NUL to 2 byte sequence so as to prevent it from confusing diff algorithm
+            {
+              *--r = 0x80 + (u & 0x3F);
+              *--r = 0xC0 + (u >> 6);
+            }
+          else
+            {
+              *--r = (char)u;
+            }
+        }
+    }
+  else if (sig == UTF8)
+    {
+        r = p + 3; // skip the BOM
+    }
 
   if (buffered_chars == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
     current->missing_newline = 0;
   else
     {
       p[buffered_chars++] = '\n';
-      current->buffered_chars = buffered_chars;
       current->missing_newline = 1;
     }
+  current->buffered_chars = buffered_chars;
   
   /* Don't use uninitialized storage when planting or using sentinels.  */
   if (p)
     bzero (p + buffered_chars, sizeof (word));
+  return r;
 }
-
+
 /* Given a vector of two file_data objects, find the identical
    prefixes and suffixes of each object. */
 
@@ -548,24 +741,27 @@ find_identical_ends (filevec)
   int ttt;
 
   slurp (&filevec[0]);
+  buffer0 = prepare_text_end (&filevec[0]);
   if (filevec[0].desc != filevec[1].desc)
-    slurp (&filevec[1]);
+    {
+      slurp (&filevec[1]);
+      buffer1 = prepare_text_end (&filevec[1]);
+    }
   else
     {
       filevec[1].buffer = filevec[0].buffer;
       filevec[1].bufsize = filevec[0].bufsize;
       filevec[1].buffered_chars = filevec[0].buffered_chars;
+      buffer1 = buffer0;
     }
-  for (i = 0; i < 2; i++)
-    prepare_text_end (&filevec[i]);
 
   /* Find identical prefix.  */
 
-  p0 = buffer0 = filevec[0].buffer;
-  p1 = buffer1 = filevec[1].buffer;
+  p0 = buffer0;
+  p1 = buffer1;
 
-  n0 = filevec[0].buffered_chars;
-  n1 = filevec[1].buffered_chars;
+  n0 = filevec[0].buffered_chars - (buffer0 - filevec[0].buffer);
+  n1 = filevec[1].buffered_chars - (buffer1 - filevec[1].buffer);
 
   if (p0 == p1)
     /* The buffers are the same; sentinels won't work.  */
@@ -763,7 +959,7 @@ find_identical_ends (filevec)
   filevec[1].alloc_lines = alloc_lines1 - buffered_prefix;
   filevec[0].prefix_lines = filevec[1].prefix_lines = lines;
 }
-
+
 /* Largest primes less than some power of two, for nbuckets.  Values range
    from useful to preposterous.  If one of these numbers isn't prime
    after all, don't blame it on me, blame it on primes (6) . . . */
