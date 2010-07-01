@@ -809,7 +809,7 @@ ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScr
 static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
 {
   str += szadd;
-  curpos += _tcslen(szadd);
+  curpos += (int) _tcslen(szadd);
 }
 
 /** Append escaped control char to string str, and advance position curpos */
@@ -1309,7 +1309,7 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
       return;
 
     if( nLineIndex2 >= m_panSubLines->GetSize() )
-      nLineIndex2 = m_panSubLines->GetUpperBound();
+      nLineIndex2 = (int) m_panSubLines->GetUpperBound();
 
     for( int i = nLineIndex1; i <= nLineIndex2; i++ )
       if( i >= 0 && i < m_panSubLines->GetSize() )
@@ -4068,7 +4068,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      const int cookiesSize = m_ParseCookies->size();
+      const int cookiesSize = (int) m_ParseCookies->size();
       if (cookiesSize > 0)
         {
           ASSERT (cookiesSize == nLineCount);
@@ -4581,7 +4581,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       ASSERT (pszFindWhere != NULL);
       ASSERT (pszFindWhat != NULL);
       int nCur = 0;
-      int nLength = _tcslen (pszFindWhat);
+      int nLength = (int) _tcslen (pszFindWhat);
       nLen = nLength;
       for (;;)
         {
@@ -4589,20 +4589,20 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
           if (pszPos == NULL)
             return -1;
           if ((dwFlags & FIND_WHOLE_WORD) == 0)
-            return nCur + (pszPos - pszFindWhere);
+            return nCur + (int) (pszPos - pszFindWhere);
           if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
             {
-              nCur += (pszPos - pszFindWhere + 1);
+              nCur += (int) (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;
               continue;
             }
           if (xisalnum (pszPos[nLength]))
             {
-              nCur += (pszPos - pszFindWhere + 1);
+              nCur += (int) (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;
               continue;
             }
-          return nCur + (pszPos - pszFindWhere);
+          return nCur + (int) (pszPos - pszFindWhere);
         }
     }
   ASSERT (FALSE);               // Unreachable
@@ -4671,7 +4671,8 @@ FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags,
 int HowManyStr (LPCTSTR s, LPCTSTR m)
 {
   LPCTSTR p = s;
-  int n = 0, l = _tcslen (m);
+  int n = 0;
+  const int l = (int) _tcslen (m);
   while ((p = _tcsstr (p, m)) != NULL)
     {
       n++;
@@ -5457,9 +5458,9 @@ OnMatchBrace ()
       LPCTSTR pszOpenComment = m_CurSourceDef->opencomment,
         pszCloseComment = m_CurSourceDef->closecomment,
         pszCommentLine = m_CurSourceDef->commentline, pszTest;
-      int nOpenComment = _tcslen (pszOpenComment),
-        nCloseComment = _tcslen (pszCloseComment),
-        nCommentLine = _tcslen (pszCommentLine);
+      int nOpenComment = (int) _tcslen (pszOpenComment),
+        nCloseComment = (int) _tcslen (pszCloseComment),
+        nCommentLine = (int) _tcslen (pszCommentLine);
       if (nOther & 1)
         {
           for (;;)
@@ -5501,7 +5502,7 @@ OnMatchBrace ()
                         {
                           if (!nCount--)
                             {
-                              ptCursorPos.x = pszEnd - pszText;
+                              ptCursorPos.x = (LONG) (pszEnd - pszText);
                               if (bAfter)
                                 ptCursorPos.x++;
                               SetCursorPos (ptCursorPos);
@@ -5568,7 +5569,7 @@ OnMatchBrace ()
                         {
                           if (!nCount--)
                             {
-                              ptCursorPos.x = pszText - pszBegin;
+                              ptCursorPos.x = (LONG) (pszText - pszBegin);
                               if (bAfter)
                                 ptCursorPos.x++;
                               SetCursorPos (ptCursorPos);

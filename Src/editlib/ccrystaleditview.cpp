@@ -495,7 +495,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
             ptCursorPos = GetCursorPos ();
           ASSERT_VALIDTEXTPOS (ptCursorPos);
           LPCTSTR pszText = m_pTextBuffer->GetDefaultEol();
-          int cchText = _tcslen(pszText);
+          int cchText = (int) _tcslen(pszText);
 
           int x, y;
           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, cchText, y, x, CE_ACTION_TYPING);  //  [JRT]
@@ -521,7 +521,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
           m_pTextBuffer->BeginUndoGroup (m_bMergeUndo);
-		  m_bMergeUndo = true;
+          m_bMergeUndo = true;
 
           CPoint ptSelStart, ptSelEnd;
           GetSelection (ptSelStart, ptSelEnd);
@@ -729,7 +729,7 @@ OnEditTab ()
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int x, y;
-          m_pTextBuffer->InsertText (this, L, 0, pszText, _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
+          m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
 
         }
       m_bHorzScrollBarLocked = FALSE;
@@ -796,12 +796,12 @@ OnEditTab ()
 
       // [JRT]:
       m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_TYPING);
-      m_pTextBuffer->InsertText( this, ptSelStart.y, ptSelStart.x, pszText, _tcslen(pszText), y, x, CE_ACTION_TYPING );
+      m_pTextBuffer->InsertText( this, ptSelStart.y, ptSelStart.x, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_TYPING );
     }
   // No selection, add tab
   else
     {
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, _tcslen(pszText), y, x, CE_ACTION_TYPING);  //  [JRT]
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_TYPING);  //  [JRT]
     }
 
   ptCursorPos.x = x;
@@ -1134,8 +1134,8 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
       return FALSE;
     }
 
-  SIZE_T cbData = ::GlobalSize (hData);
-  int cchText = cbData / sizeof(TCHAR) - 1;
+  UINT cbData = (UINT) ::GlobalSize (hData);
+  UINT cchText = cbData / sizeof(TCHAR) - 1;
   if (cchText < 0)
     return FALSE;
   LPTSTR pszText = (LPTSTR)::GlobalLock (hData);
@@ -1577,7 +1577,7 @@ bracetype (TCHAR c)
 {
   static LPCTSTR braces = _T("{}()[]<>");
   LPCTSTR pos = _tcschr (braces, c);
-  return pos ? pos - braces + 1 : 0;
+  return pos ? (int) (pos - braces) + 1 : 0;
 }
 
 int
