@@ -887,8 +887,8 @@
 		</Configuration>
 		<Configuration
 			Name="X64 Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory=".\..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="2"
@@ -1082,8 +1082,8 @@
 		</Configuration>
 		<Configuration
 			Name="X64 Release|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory=".\..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\$(PlatformName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="2"
