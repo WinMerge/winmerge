@@ -67,7 +67,7 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
  */
 void FileFilterMgr::LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR szExt)
 {
-	const int extlen = szExt ? _tcslen(szExt) : 0;
+	const int extlen = szExt ? (int)_tcslen(szExt) : 0;
 	const String pattern = paths_ConcatPath(dir, szPattern);
 	WIN32_FIND_DATA ff;
 	HANDLE h = FindFirstFile(pattern.c_str(), &ff);
@@ -166,7 +166,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 	// For unicode builds, use UTF-8.
 	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
 	regexLen = TransformUcs2ToUtf8(str.c_str(), str.length(),
-		regexString, sizeof(regexString));
+		regexString, (int)sizeof(regexString));
 	pcre_opts |= PCRE_UTF8;
 #else
 	strcpy(regexString, str.c_str());
@@ -301,7 +301,6 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
-		//const FileFilterElement & elem = filterList.GetNext(pos);
 		int ovector[30];
 		char compString[200] = {0};
 		int stringLen = 0;

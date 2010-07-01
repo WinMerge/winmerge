@@ -69,7 +69,7 @@ public:
 	void RemoveFilter(LPCTSTR szFilterFile);
 
 	// access to array of filters
-	int GetFilterCount() const { return m_filters.size(); }
+	int GetFilterCount() const { return (int) m_filters.size(); }
 	String GetFilterName(int i) const;
 	String GetFilterName(const FileFilter *pFilter) const;
 	String GetFilterPath(int i) const;
