@@ -130,7 +130,7 @@ bool FilterList::Match(size_t stringlen, const char *string, int codepage/*=CP_U
 			result = pcre_exec(regexp, extra, (const char *)buf.ptr, buf.size,
 				0, 0, ovector, 30);
 		else
-			result = pcre_exec(regexp, extra, string, stringlen,
+			result = pcre_exec(regexp, extra, string, (int)stringlen,
 				0, 0, ovector, 30);
 		if (result >= 0)
 		{

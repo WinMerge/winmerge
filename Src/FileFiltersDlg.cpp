@@ -142,7 +142,7 @@ void FileFiltersDlg::InitList()
 	m_listFilters.SetItemText(0, 1, title.c_str());
 	m_listFilters.SetItemText(0, 2, title.c_str());
 
-	const int count = m_Filters->size();
+	const int count = (int) m_Filters->size();
 
 	for (int i = 0; i < count; i++)
 	{
@@ -524,7 +524,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
  */
 void FileFiltersDlg::UpdateFiltersList()
 {
-	int count = m_Filters->size();
+	int count = (int) m_Filters->size();
 
 	m_listFilters.DeleteAllItems();
 

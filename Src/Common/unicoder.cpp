@@ -739,7 +739,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
  * FF FE 00 00 UTF-32, little endian
  * 00 00 FE FF UTF-32, big-endian
  */
-UNICODESET DetermineEncoding(PBYTE pBuffer, __int64 size, bool * pBom)
+UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom)
 {
 	UNICODESET unicoding = ucr::NONE;
 	*pBom = false;
@@ -784,7 +784,8 @@ UNICODESET DetermineEncoding(PBYTE pBuffer, __int64 size, bool * pBom)
 	// If not any of the above, check if it is UTF-8 without BOM?
 	if (unicoding == ucr::NONE)
 	{
-		int bufSize = min(size, 8 * 1024);
+		const INT64 maxSize = 8 * 1024;
+		int bufSize = (int) min(size, maxSize);
 		bool invalidUtf8 = CheckForInvalidUtf8(pBuffer, bufSize);
 		if (!invalidUtf8)
 		{

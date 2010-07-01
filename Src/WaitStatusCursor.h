@@ -43,7 +43,7 @@ protected:
 	void Create(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR m_msg);
 
 private:
-	int posInStack;
+	INT_PTR posInStack;
 	bool m_ended;
 
 	/**

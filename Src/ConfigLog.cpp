@@ -936,7 +936,7 @@ bool CConfigLog::ParseSettings(const String & Filepath)
 	bool lossy;
 	while (file.ReadString(strline, &lossy))
 	{
-		int colon = strline.find(_T(":"));
+		String::size_type colon = strline.find(_T(":"));
 		if (colon > 0)
 		{
 			String name = strline.substr(0, colon);
