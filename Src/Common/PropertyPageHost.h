@@ -48,7 +48,7 @@ public:
 	BOOL AddPage(CPropertyPage* pPage, LPCTSTR szTitle = NULL, DWORD dwItemData = 0);
 	BOOL SetActivePage(int nIndex, BOOL bAndFocus = TRUE);
 	BOOL SetActivePage(CPropertyPage* pPage, BOOL bAndFocus = TRUE);
-	int GetPageCount() { return m_aPages.GetSize(); }
+	int GetPageCount() { return (int) m_aPages.GetSize(); }
 	CString GetPageTitle(int nIndex);
 	DWORD GetPageItemData(int nIndex);
 	CPropertyPage* GetPage(int nIndex);

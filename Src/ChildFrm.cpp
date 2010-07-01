@@ -326,7 +326,7 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  */
 BOOL CChildFrame::EnsureValidDockState(CDockState& state) 
 {
-	for (int i = state.m_arrBarInfo.GetSize()-1 ; i >= 0; i--) 
+	for (int i = (int) state.m_arrBarInfo.GetSize()-1 ; i >= 0; i--) 
 	{
 		BOOL barIsCorrect = TRUE;
 		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];

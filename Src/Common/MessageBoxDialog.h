@@ -204,7 +204,7 @@ private:
 
 	UINT		m_nTimeoutSeconds;	// Seconds for a timeout.
 	BOOL		m_bTimeoutDisabled;	// Flag whether the timeout is disabled.
-	UINT		m_nTimeoutTimer;	// Timer for the timeout.
+	UINT_PTR	m_nTimeoutTimer;	// Timer for the timeout.
 
 	CString		m_strRegistryKey;	// Entry for storing the result in the
 									// registry, if the MB_DONT_DISPLAY_AGAIN
