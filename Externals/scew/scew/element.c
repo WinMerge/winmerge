@@ -50,16 +50,16 @@ scew_element_create (XML_Char const *name)
 
   element = calloc (1, sizeof (scew_element));
 
-    if (element != NULL)
+  if (element != NULL)
     {
       scew_element_set_name (element, name);
     }
-    else
+  else
     {
       scew_error_set_last_error_ (scew_error_no_memory);
     }
 
-    return element;
+  return element;
 }
 
 void
@@ -106,11 +106,11 @@ scew_element_set_name (scew_element *element, XML_Char const *name)
 
   new_name = scew_strdup (name);
   if (new_name != NULL)
-  	{
+    {
       free (element->name);
       element->name = new_name;
     }
-    else
+  else
     {
       scew_error_set_last_error_ (scew_error_no_memory);
     }
@@ -149,7 +149,7 @@ scew_element_free_contents (scew_element *element)
     {
       free (element->contents);
       element->contents = NULL;
-            }
+    }
 }
 
 
@@ -274,7 +274,7 @@ scew_element_add_element (scew_element *element, scew_element *child)
       element->last_child = item;
       element->n_children += 1;
     }
-    else
+  else
     {
       scew_error_set_last_error_ (scew_error_no_memory);
       child = NULL;

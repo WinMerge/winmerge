@@ -48,13 +48,13 @@ static scew_error last_error = scew_error_none;
 void
 scew_error_set_last_error_ (scew_error code)
 {
-    last_error = code;
+  last_error = code;
 }
 
 scew_error
 scew_error_last_error_ (void)
 {
-    return last_error;
+  return last_error;
 }
 
 #else /* SINGLE_THREADED */
@@ -148,7 +148,7 @@ scew_error_last_error_ (void)
   error = (scew_error*) pthread_getspecific (key_error_);
   if (NULL == error)
     {
-        return scew_error_none;
+      return scew_error_none;
     }
 
   return *error;

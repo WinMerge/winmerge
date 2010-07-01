@@ -113,10 +113,10 @@ scew_parser_stack_free_ (scew_parser *parser)
     {
       scew_element *element = parser_stack_pop_ (parser);
       while (element != NULL)
-    {
+        {
           scew_element_free (element);
           element = parser_stack_pop_ (parser);
-    }
+        }
     }
 }
 
@@ -325,7 +325,10 @@ expat_end_handler_ (void *data, XML_Char const *elem)
               free (parser->preamble);
               parser->preamble = NULL;
             }
-          scew_tree_set_xml_preamble (parser->tree, parser->preamble);
+          else
+            {
+              scew_tree_set_xml_preamble (parser->tree, parser->preamble);
+            }
         }
 
       scew_tree_set_root_element (parser->tree, current);
@@ -454,7 +457,7 @@ parser_stack_push_ (scew_parser *parser, scew_element *element)
 
   stack = calloc (1, sizeof (stack_element));
 
-    if (stack != NULL)
+  if (stack != NULL)
     {
       stack->element = element;
       if (parser->stack != NULL)
@@ -483,5 +486,5 @@ parser_stack_pop_ (scew_parser *parser)
       free (stack);
     }
 
-    return element;
+  return element;
 }

@@ -73,10 +73,10 @@
 #include <wchar.h>
 #include <wctype.h>
 
-#define _XT(str)                L##str
+#define _XT(str) L##str
 
 #define scew_printf wprintf
-#define scew_fprintf            fwprintf
+#define scew_fprintf fwprintf
 #define scew_vfprintf vfwprintf
 #define scew_fputs fputws
 #define scew_fgets fgetws
@@ -109,7 +109,7 @@
 /**
  * Creates a regular string or a wide character string.
  */
-#define _XT(str)                str
+#define _XT(str) str
 
 /**
  * See standard @a printf documentation.
@@ -119,7 +119,7 @@
 /**
  * See standard @a fprintf documentation.
  */
-#define scew_fprintf            fprintf
+#define scew_fprintf fprintf
 
 /**
  * See standard @a vfprintf documentation.

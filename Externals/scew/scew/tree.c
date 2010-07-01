@@ -71,7 +71,7 @@ scew_tree_create (void)
       scew_error_set_last_error_ (scew_error_no_memory);
     }
 
-    return tree;
+  return tree;
 }
 
 scew_tree*
@@ -112,7 +112,7 @@ scew_tree_copy (scew_tree const *tree)
 void
 scew_tree_free (scew_tree *tree)
 {
-    if (tree != NULL)
+  if (tree != NULL)
     {
       free (tree->version);
       free (tree->encoding);
@@ -146,7 +146,7 @@ scew_tree_compare (scew_tree const *a,
 XML_Char const*
 scew_tree_xml_version (scew_tree const *tree)
 {
-    assert(tree != NULL);
+  assert(tree != NULL);
 
   return tree->version;
 }
@@ -165,7 +165,7 @@ scew_tree_set_xml_version (scew_tree *tree, XML_Char const *version)
 XML_Char const*
 scew_tree_xml_encoding (scew_tree const *tree)
 {
-    assert(tree != NULL);
+  assert(tree != NULL);
 
   return tree->encoding;
 }
@@ -192,9 +192,9 @@ scew_tree_xml_standalone (scew_tree const *tree)
 void
 scew_tree_set_xml_standalone (scew_tree *tree, scew_tree_standalone standalone)
 {
-    assert(tree != NULL);
+  assert(tree != NULL);
 
-    tree->standalone = standalone;
+  tree->standalone = standalone;
 }
 
 
