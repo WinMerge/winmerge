@@ -94,10 +94,10 @@ main (int argc, char *argv[])
   _setmode(_fileno(stdout), _O_U16TEXT);
 #endif /* _MSC_VER && XML_UNICODE_WCHAR_T */
 
-    if (argc < 2)
+  if (argc < 2)
     {
       scew_printf (_XT("Usage: scew_stream file.xml\n"));
-        return EXIT_FAILURE;
+      return EXIT_FAILURE;
     }
 
   /* Create a writer for the standard output. */
@@ -124,19 +124,19 @@ main (int argc, char *argv[])
   scew_parser_set_tree_hook (parser, tree_hook_, NULL);
   scew_parser_set_element_hook (parser, element_hook_, NULL);
   if (!scew_parser_load_stream (parser, reader))
-            {
+    {
       scew_error code = scew_error_code ();
       scew_printf (_XT("Unable to load file (error #%d: %s)\n"),
                    code, scew_error_string (code));
-                if (code == scew_error_expat)
-                {
+      if (code == scew_error_expat)
+        {
           enum XML_Error expat_code = scew_error_expat_code (parser);
           scew_printf (_XT("Expat error #%d (line %d, column %d): %s\n"),
-                           expat_code,
+                       expat_code,
                        scew_error_expat_line (parser),
                        scew_error_expat_column (parser),
                        scew_error_expat_string (expat_code));
-                }
+        }
 
       /* Frees the SCEW parser, printer, reader and writer. */
       scew_reader_free (reader);
@@ -144,8 +144,8 @@ main (int argc, char *argv[])
       scew_writer_free (stdout_writer_);
       scew_printer_free (stdout_printer_);
 
-                return EXIT_FAILURE;
-            }
+      return EXIT_FAILURE;
+    }
 
   /* Frees the SCEW parser, printer, reader and writer. */
   scew_reader_free (reader);
@@ -153,5 +153,5 @@ main (int argc, char *argv[])
   scew_writer_free (stdout_writer_);
   scew_printer_free (stdout_printer_);
 
-    return 0;
+  return 0;
 }

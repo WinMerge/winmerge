@@ -44,7 +44,7 @@ print_indent (unsigned int indent)
   /* Indentation size (in whitespaces). */
   static unsigned int const INDENT_SIZE = 4;
 
-    if (indent > 0)
+  if (indent > 0)
     {
       scew_printf (_XT("%*s"), indent * INDENT_SIZE, " ");
     }
@@ -53,12 +53,12 @@ print_indent (unsigned int indent)
 static void
 print_attributes (scew_element *element)
 {
-    if (element != NULL)
+  if (element != NULL)
     {
-        /**
-         * Iterates through the element's attribute list, printing the
-         * pair name-value.
-         */
+      /**
+       * Iterates through the element's attribute list, printing the
+       * pair name-value.
+       */
       scew_list *list = scew_element_attributes (element);
       while (list != NULL)
         {
@@ -77,9 +77,9 @@ print_element (scew_element *element, unsigned int indent)
   XML_Char const *contents = NULL;
   scew_list *list = NULL;
 
-    if (element == NULL)
+  if (element == NULL)
     {
-        return;
+      return;
     }
 
   /* Prints the starting element tag with its attributes. */
@@ -90,15 +90,15 @@ print_element (scew_element *element, unsigned int indent)
 
   contents = scew_element_contents (element);
 
-    if (contents == NULL)
+  if (contents == NULL)
     {
       scew_printf (_XT("\n"));
     }
 
-    /**
+  /**
    * Call print_element function again for each child of the current
    * element.
-     */
+   */
   list = scew_element_children (element);
   while (list != NULL)
     {
@@ -107,12 +107,12 @@ print_element (scew_element *element, unsigned int indent)
       list = scew_list_next (list);
     }
 
-    /* Prints element's content. */
-    if (contents != NULL)
+  /* Prints element's content. */
+  if (contents != NULL)
     {
       scew_printf (_XT("%s"), contents);
     }
-    else
+  else
     {
       print_indent (indent);
     }
@@ -135,10 +135,10 @@ main (int argc, char *argv[])
   _setmode(_fileno(stdout), _O_U16TEXT);
 #endif /* _MSC_VER && XML_UNICODE_WCHAR_T */
 
-    if (argc < 2)
+  if (argc < 2)
     {
       scew_printf (_XT("Usage: scew_print file.xml\n"));
-        return EXIT_FAILURE;
+      return EXIT_FAILURE;
     }
 
   /* Creates an SCEW parser. This is the first function to call. */
@@ -161,7 +161,7 @@ main (int argc, char *argv[])
       scew_error code = scew_error_code ();
       scew_printf (_XT("Unable to parse file (error #%d: %s)\n"),
                    code, scew_error_string (code));
-        if (code == scew_error_expat)
+      if (code == scew_error_expat)
         {
           enum XML_Error expat_code = scew_error_expat_code (parser);
           scew_printf (_XT("Expat error #%d (line %d, column %d): %s\n"),
@@ -169,7 +169,7 @@ main (int argc, char *argv[])
                        scew_error_expat_line (parser),
                        scew_error_expat_column (parser),
                        scew_error_expat_string (expat_code));
-    }
+        }
 
       /* Frees the SCEW parser and reader. */
       scew_reader_free (reader);
@@ -201,5 +201,5 @@ main (int argc, char *argv[])
   scew_reader_free (reader);
   scew_parser_free (parser);
 
-    return 0;
+  return 0;
 }

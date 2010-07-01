@@ -6,7 +6,7 @@ people have contributed to SCEW by reporting problems, suggesting
 improvements, or submitting actual code. Here is a list of these
 people. Help me keep it complete and exempt of errors.
 
-* Jose A.  Ortega suggested some important C  implementation details. As
+* Jose A. Ortega suggested some important C implementation details. As
   usual, he has helped me in many other ways. Thanks jao!
 
 * Brodie Thiesfield has submitted lots of fixes and improvements. He
@@ -28,6 +28,7 @@ people. Help me keep it complete and exempt of errors.
 * Bug reporting and others (in alphabetical order):
 
   Anonymous reporters, Stuart R. Anderson, Paul Bohme, Eric
-  Fronheiser, Alex Katebi, Aaron S. Kurland, Christopher Layne, Jussi
-  Mäki, Sanzo Miyazawa, George Neill, Gord Shier, Brodie Thiesfield,
-  Andrew Thomas, Kalle Vallo, Michal Wozniak and Mark Zieg.
+  Fronheiser, Alex Katebi, Rudolf Alexander Kerbitz, Aaron S. Kurland,
+  Christopher Layne, Jussi Mäki, Sanzo Miyazawa, George Neill, Gord
+  Shier, Brodie Thiesfield, Andrew Thomas, Kalle Vallo, Michal Wozniak
+  and Mark Zieg.

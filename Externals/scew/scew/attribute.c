@@ -81,10 +81,10 @@ scew_attribute_copy (scew_attribute const *attribute)
         && (scew_attribute_set_value (new_attr, attribute->value) != NULL);
 
       if (!copied)
-    	{
+        {
           scew_attribute_free (new_attr);
           new_attr = NULL;
-    }
+        }
     }
 
   return new_attr;
@@ -122,7 +122,7 @@ scew_attribute_name (scew_attribute const *attribute)
 {
   assert (attribute != NULL);
 
-    return attribute->name;
+  return attribute->name;
 }
 
 XML_Char const*
@@ -130,7 +130,7 @@ scew_attribute_value (scew_attribute const *attribute)
 {
   assert (attribute != NULL);
 
-    return attribute->value;
+  return attribute->value;
 }
 
 XML_Char const*
