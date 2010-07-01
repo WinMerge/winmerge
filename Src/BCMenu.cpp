@@ -225,8 +225,8 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 
 BOOL BCMenu::IsMenu(CMenu *submenu)
 {
-	int m;
-	int numSubMenus = m_AllSubMenus.GetUpperBound();
+	INT_PTR m;
+	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
 	for(m=0;m<=numSubMenus;++m){
 		if(submenu->m_hMenu==m_AllSubMenus[m])return(TRUE);
 	}
@@ -235,8 +235,8 @@ BOOL BCMenu::IsMenu(CMenu *submenu)
 
 BOOL BCMenu::IsMenu(HMENU submenu)
 {
-	int m;
-	int numSubMenus = m_AllSubMenus.GetUpperBound();
+	INT_PTR m;
+	INT_PTR numSubMenus = m_AllSubMenus.GetUpperBound();
 	for(m=0;m<=numSubMenus;++m){
 		if(submenu==m_AllSubMenus[m])return(TRUE);
 	}
@@ -246,12 +246,12 @@ BOOL BCMenu::IsMenu(HMENU submenu)
 BOOL BCMenu::DestroyMenu()
 {
 	// Destroy Sub menus:
-	int m,n;
-	int numAllSubMenus = m_AllSubMenus.GetUpperBound();
+	INT_PTR m,n;
+	INT_PTR numAllSubMenus = m_AllSubMenus.GetUpperBound();
 	for(n = numAllSubMenus; n>= 0; n--){
 		if(m_AllSubMenus[n]==this->m_hMenu)m_AllSubMenus.RemoveAt(n);
 	}
-	int numSubMenus = m_SubMenus.GetUpperBound();
+	INT_PTR numSubMenus = m_SubMenus.GetUpperBound();
 	for(m = numSubMenus; m >= 0; m--){
 		numAllSubMenus = m_AllSubMenus.GetUpperBound();
 		for(n = numAllSubMenus; n>= 0; n--){
@@ -265,7 +265,7 @@ BOOL BCMenu::DestroyMenu()
 	}
 	m_SubMenus.RemoveAll();
 	// Destroy menu data
-	int numItems = m_MenuList.GetUpperBound();
+	INT_PTR numItems = m_MenuList.GetUpperBound();
 	for(m = 0; m <= numItems; m++)delete(m_MenuList[m]);
 	m_MenuList.RemoveAll();
 	if(checkmaps&&!checkmapsshare){
@@ -350,7 +350,8 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		CBrush m_brSelect;
 		CPen m_penBack;
 		int x0,y0,dy;
-		int nIconNormal=-1,xoffset=-1,global_offset=-1;
+		int nIconNormal=-1;
+		INT_PTR xoffset=-1,global_offset=-1;
 		CImageList *bitmap=NULL;
 		
 		// set some colors
@@ -440,7 +441,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			else if(disableflag){
 				if(!selectedflag){
 					CBitmap bitmapstandard;
-					GetBitmapFromImageList(pDC,bitmap,xoffset,bitmapstandard);
+					GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
 					rect2.SetRect(rect.left,rect.top+dy,rect.left+m_iconX+4,
                         rect.top+m_iconY+4+dy);
 					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
@@ -471,7 +472,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 						GetSysColor(COLOR_3DSHADOW));
 				}
 				CPoint ptImage(rect.left+2,rect.top+2+dy);
-				if(bitmap)bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 			else{
 				if(state&ODS_CHECKED){
@@ -494,7 +495,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 					pDC->Draw3dRect (rect2,m_clrBack,m_clrBack);
 				}
 				CPoint ptImage(rect.left+2,rect.top+2+dy);
-				if(bitmap)bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+				if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 		}
 		if(nIconNormal<0 && state&ODS_CHECKED && !checkflag){
@@ -667,8 +668,9 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 		CBrush m_brSelect;
 		CPen m_penBack;
 		int x0,y0,dx,dy;
-		int nIconNormal=-1,xoffset=-1,global_offset=-1;
-		int faded_offset=1,shadow_offset=2,disabled_offset=3;
+		int nIconNormal=-1;
+		INT_PTR xoffset=-1,global_offset=-1;
+		INT_PTR faded_offset=1,shadow_offset=2,disabled_offset=3;
 		CImageList *bitmap=NULL;
 		BOOL CanDraw3D=FALSE;
 		
@@ -699,7 +701,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 				xoffset=global_offset;
 				nIconNormal=0;
 				bitmap = &m_AllImages;
-				if(xp_draw_3D_bitmaps&&CanDraw3DImageList(global_offset)){
+				if(xp_draw_3D_bitmaps&&CanDraw3DImageList((int)global_offset)){
 					CanDraw3D=TRUE;
 					faded_offset=global_offset+1;
 					shadow_offset=global_offset+2;
@@ -764,11 +766,11 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 				if(!selectedflag){
 					if(CanDraw3D){
 						CPoint ptImage(rect.left+dx,rect.top+dy);
-						bitmap->Draw(pDC,disabled_offset,ptImage,ILD_TRANSPARENT);
+						bitmap->Draw(pDC,(int)disabled_offset,ptImage,ILD_TRANSPARENT);
 					}
 					else{
 						CBitmap bitmapstandard;
-						GetBitmapFromImageList(pDC,bitmap,xoffset,bitmapstandard);
+						GetBitmapFromImageList(pDC,bitmap,(int)xoffset,bitmapstandard);
 						COLORREF transparentcol=m_newclrBack;
 						if(state&ODS_SELECTED)transparentcol=crSelectFill;
 						if(disable_old_style)
@@ -801,10 +803,10 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					if(CanDraw3D&&!(state&ODS_CHECKED)){
 						CPoint ptImage1(ptImage.x+1,ptImage.y+1);
 						CPoint ptImage2(ptImage.x-1,ptImage.y-1);
-						bitmap->Draw(pDC,shadow_offset,ptImage1,ILD_TRANSPARENT);
-						bitmap->Draw(pDC,xoffset,ptImage2,ILD_TRANSPARENT);
+						bitmap->Draw(pDC,(int)shadow_offset,ptImage1,ILD_TRANSPARENT);
+						bitmap->Draw(pDC,(int)xoffset,ptImage2,ILD_TRANSPARENT);
 					}
-					else bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+					else bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 				}
 			}
 			else{
@@ -815,7 +817,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					brushin.DeleteObject();
 					pDC->Draw3dRect(rect2,crSelect,crSelect);
 					CPoint ptImage(rect.left+dx-1,rect.top+dy-1);
-					if(bitmap)bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+					if(bitmap)bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 				}
 				else{
 					pDC->FillRect (rect2,&m_newbrBackground);
@@ -823,9 +825,9 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 					CPoint ptImage(rect.left+dx,rect.top+dy);
 					if(bitmap){
 						if(CanDraw3D)
-							bitmap->Draw(pDC,faded_offset,ptImage,ILD_TRANSPARENT);
+							bitmap->Draw(pDC,(int)faded_offset,ptImage,ILD_TRANSPARENT);
 						else
-							bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+							bitmap->Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 					}
 				}
 			}
@@ -1127,10 +1129,10 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT nI
                            int nIconNormal)
 {
 	if(!(nFlags & MF_BYPOSITION)){
-		int iPosition =0;
+		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(nPosition,iPosition);
 		if(pMenu){
-			return(pMenu->InsertODMenuW(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,nIconNormal));
+			return(pMenu->InsertODMenuW((UINT)iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,nIconNormal));
 		}
 		else return(FALSE);
 	}
@@ -1190,10 +1192,10 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT nI
                            CImageList *il,int xoffset)
 {
 	if(!(nFlags & MF_BYPOSITION)){
-		int iPosition =0;
+		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(nPosition,iPosition);
 		if(pMenu){
-			return(pMenu->InsertODMenuW(iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,il,xoffset));
+			return(pMenu->InsertODMenuW((UINT)iPosition,lpstrText,nFlags|MF_BYPOSITION,nID,il,xoffset));
 		}
 		else return(FALSE);
 	}
@@ -1236,10 +1238,10 @@ BOOL BCMenu::ModifyODMenuA(const char * lpstrText,UINT nID,int nIconNormal)
 
 BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT nID,int nIconNormal)
 {
-	int nLoc;
+	UINT nLoc;
 	BCMenuData *mdata;
 	CArray<BCMenu*,BCMenu*>bcsubs;
-	CArray<int,int&>bclocs;
+	CArray<UINT,UINT&>bclocs;
 	
 	// Find the old BCMenuData structure:
 	BCMenu *psubmenu = FindMenuOption(nID,nLoc);
@@ -1289,10 +1291,10 @@ BOOL BCMenu::ModifyODMenuA(const char * lpstrText,UINT nID,CImageList *il,int xo
 
 BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,UINT nID,CImageList *il,int xoffset)
 {
-	int nLoc;
+	UINT nLoc;
 	BCMenuData *mdata;
 	CArray<BCMenu*,BCMenu*>bcsubs;
-	CArray<int,int&>bclocs;
+	CArray<UINT,UINT&>bclocs;
 	
 	// Find the old BCMenuData structure:
 	BCMenu *psubmenu = FindMenuOption(nID,nLoc);
@@ -1574,7 +1576,7 @@ BCMenuData *BCMenu::FindMenuItem(UINT nID)
 		}
 	}
 	if (!pData){
-		int loc;
+		UINT loc;
 		BCMenu *pMenu = FindMenuOption(nID, loc);
 		ASSERT(pMenu != this);
 		if (loc >= 0){
@@ -1585,10 +1587,10 @@ BCMenuData *BCMenu::FindMenuItem(UINT nID)
 }
 
 
-BCMenu *BCMenu::FindAnotherMenuOption(int nId,int& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
-									  CArray<int,int&>&bclocs)
+BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
+									  CArray<UINT,UINT&>&bclocs)
 {
-	int i,numsubs,j;
+	UINT i,numsubs,j;
 	BCMenu *psubmenu,*pgoodmenu;
 	BOOL foundflag;
 	
@@ -1596,14 +1598,14 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,int& nLoc,CArray<BCMenu*,BCMenu*>&
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
-		psubmenu=(BCMenu *)GetSubMenu(i);
+		psubmenu=(BCMenu *)GetSubMenu((int)i);
 #endif
 		if(psubmenu){
 			pgoodmenu=psubmenu->FindAnotherMenuOption(nId,nLoc,bcsubs,bclocs);
 			if(pgoodmenu)return(pgoodmenu);
 		}
-		else if(nId==(int)GetMenuItemID(i)){
-			numsubs=bcsubs.GetSize();
+		else if(nId==(int)GetMenuItemID((int)i)){
+			numsubs=(UINT)bcsubs.GetSize();
 			foundflag=TRUE;
 			for(j=0;j<numsubs;++j){
 				if(bcsubs[j]==this&&bclocs[j]==i){
@@ -1621,12 +1623,12 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,int& nLoc,CArray<BCMenu*,BCMenu*>&
 	return(NULL);
 }
 
-BCMenu *BCMenu::FindMenuOption(int nId,int& nLoc)
+BCMenu *BCMenu::FindMenuOption(int nId,UINT& nLoc)
 {
-	int i;
+	UINT i;
 	BCMenu *psubmenu,*pgoodmenu;
 	
-	for(i=0;i<(int)(GetMenuItemCount());++i){
+	for(i=0;i<GetMenuItemCount();++i){
 #ifdef _CPPRTTI 
 		psubmenu=dynamic_cast<BCMenu *>(GetSubMenu(i));
 #else
@@ -1714,7 +1716,7 @@ BOOL BCMenu::LoadMenu(LPCTSTR lpszResourceName)
 	
 	// Variables needed during processing of Menu Item Templates:
 	
-	int j=0;
+	INT_PTR j=0;
 	WORD    dwFlags = 0;              // Flags of the Menu Item
 	WORD    dwID  = 0;              // ID of the Menu Item
 	UINT    uFlags;                  // Actual Flags.
@@ -1804,8 +1806,8 @@ int BCMenu::GetMenuStart(void)
 
 	CString name,str;
 	int menuloc=-1,listloc=-1,menustart=0,i=0,j=0;
-	int nummenulist=m_MenuList.GetSize();
-	int nummenu=(int)GetMenuItemCount();
+	INT_PTR nummenulist=m_MenuList.GetSize();
+	UINT nummenu=(int)GetMenuItemCount();
 
 	while(i<nummenu&&menuloc==-1){
 		GetMenuString (i, name, MF_BYPOSITION);
@@ -1829,7 +1831,8 @@ void BCMenu::RemoveTopLevelOwnerDraw(void)
 {
 	CString str;
 	int i=0,j=0;
-	int nummenulist=m_MenuList.GetSize(),menustart;
+	INT_PTR nummenulist=m_MenuList.GetSize();
+	int menustart;
 
 	menustart=GetMenuStart();
 	for(i=menustart,j=0;i<(int)GetMenuItemCount();++i,++j){
@@ -1880,7 +1883,7 @@ void BCMenu::InsertSpaces(void)
 		else newstring=string;
 		newstring+=_T(" ");//SK: modified for Unicode correctness. 
 		LPCTSTR lpstrText = (LPCTSTR)newstring;
-		t=pDC->GetTextExtent(lpstrText,_tcslen(lpstrText));
+		t=pDC->GetTextExtent(lpstrText,(int)_tcslen(lpstrText));
 		if(t.cx>maxlength)maxlength = t.cx;
 	}
 	for(i=0;i<numitems;++i){
@@ -1890,11 +1893,11 @@ void BCMenu::InsertSpaces(void)
 			newstring.Empty();
 			newstring=string.Left(j);
 			LPCTSTR lpstrText = (LPCTSTR)(newstring);
-			t=pDC->GetTextExtent(lpstrText,_tcslen(lpstrText));
+			t=pDC->GetTextExtent(lpstrText,(int)_tcslen(lpstrText));
 			while(t.cx<maxlength){
 				newstring+=_T(' ');//SK: modified for Unicode correctness
 				LPCTSTR lpstrText = (LPCTSTR)(newstring);
-				t=pDC->GetTextExtent(lpstrText,_tcslen(lpstrText));
+				t=pDC->GetTextExtent(lpstrText,(int)_tcslen(lpstrText));
 			}
 			newstring+=string.Mid(j);
 #ifdef UNICODE      
@@ -1934,14 +1937,14 @@ BOOL BCMenu::GetMenuText(UINT id, CString& string, UINT nFlags/*= MF_BYPOSITION*
 	BOOL returnflag=FALSE;
 	
 	if(MF_BYPOSITION&nFlags){
-		UINT numMenuItems = m_MenuList.GetUpperBound();
+		INT_PTR numMenuItems = m_MenuList.GetUpperBound();
 		if(id<=numMenuItems){
 			string=m_MenuList[id]->GetString();
 			returnflag=TRUE;
 		}
 	}
 	else{
-		int uiLoc;
+		UINT uiLoc;
 		BCMenu* pMenu = FindMenuOption(id,uiLoc);
 		if(NULL!=pMenu) returnflag = pMenu->GetMenuText(uiLoc,string);
 	}
@@ -2433,7 +2436,7 @@ void BCMenu::AddFromToolBar(CToolBar* pToolBar, int nResourceID)
 		pToolBar->GetButtonInfo(i, nID, nStyle, nImage);
 		// OK, we have the command ID of the toolbar
 		// option, and the tollbar bitmap offset
-		int nLoc;
+		UINT nLoc;
 		BCMenuData* pData;
 		BCMenu *pSubMenu = FindMenuOption(nID, nLoc);
 		if (pSubMenu && nLoc >= 0)pData = pSubMenu->m_MenuList[nLoc];
@@ -2657,20 +2660,20 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 				}
 			}
 			else{
-				int numSubMenus = m_SubMenus.GetUpperBound();
-				for(int m = numSubMenus; m >= 0; m--){
+				INT_PTR numSubMenus = m_SubMenus.GetUpperBound();
+				for(INT_PTR m = numSubMenus; m >= 0; m--){
 					if(m_SubMenus[m]==pSubMenu->m_hMenu){
-						int numAllSubMenus = m_AllSubMenus.GetUpperBound();
-						for(int n = numAllSubMenus; n>= 0; n--){
+						INT_PTR numAllSubMenus = m_AllSubMenus.GetUpperBound();
+						for(INT_PTR n = numAllSubMenus; n>= 0; n--){
 							if(m_AllSubMenus[n]==m_SubMenus[m])m_AllSubMenus.RemoveAt(n);
 						}
 						m_SubMenus.RemoveAt(m);
 					}
 				}
-				int num = pSubMenu->GetMenuItemCount();
-				int i=0;
+				UINT num = pSubMenu->GetMenuItemCount();
+				UINT i=0;
 				for(i=num-1;i>=0;--i)pSubMenu->RemoveMenu(i,MF_BYPOSITION);
-				for(i=m_MenuList.GetUpperBound();i>=0;i--){
+				for(i=(UINT)m_MenuList.GetUpperBound();i>=0;i--){
 					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
@@ -2682,7 +2685,7 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 		}
 	}
 	else{
-		int iPosition =0;
+		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(uiId,iPosition);
 		// bug fix RIA 14th September 2000 
 		// failed to return correct value on call to remove menu as the item was 
@@ -2699,7 +2702,7 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 		UINT uint = GetMenuState(uiId,MF_BYPOSITION);
 		if(uint&MF_SEPARATOR && !(uint&MF_POPUP)){
 			// make sure it's a separator
-			int menulistsize=m_MenuList.GetSize();	
+			INT_PTR menulistsize=m_MenuList.GetSize();	
 			if(uiId<(UINT)menulistsize){
 				CString str=m_MenuList[uiId]->GetString();
 				if(str==""){
@@ -2721,20 +2724,20 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 				}
 			}
 			else{
-				int numSubMenus = m_SubMenus.GetUpperBound();
-				for(int m = numSubMenus; m >= 0; m--){
+				INT_PTR numSubMenus = m_SubMenus.GetUpperBound();
+				for(INT_PTR m = numSubMenus; m >= 0; m--){
 					if(m_SubMenus[m]==pSubMenu->m_hMenu){
-						int numAllSubMenus = m_AllSubMenus.GetUpperBound();
-						for(int n = numAllSubMenus; n>= 0; n--){
+						INT_PTR numAllSubMenus = m_AllSubMenus.GetUpperBound();
+						for(INT_PTR n = numAllSubMenus; n>= 0; n--){
 							if(m_AllSubMenus[n]==m_SubMenus[m])m_AllSubMenus.RemoveAt(n);
 						}
 						m_SubMenus.RemoveAt(m);
 					}
 				}
-				int num = pSubMenu->GetMenuItemCount();
-				int i=0;
+				UINT num = pSubMenu->GetMenuItemCount();
+				UINT i=0;
 				for(i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
-				for(i=m_MenuList.GetUpperBound();i>=0;i--){
+				for(i=(UINT)m_MenuList.GetUpperBound();i>=0;i--){
 					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
@@ -2746,7 +2749,7 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 		}
 	}
 	else{
-		int iPosition =0;
+		UINT iPosition =0;
 		BCMenu* pMenu = FindMenuOption(uiId,iPosition);
 		if(pMenu)return pMenu->DeleteMenu(iPosition,MF_BYPOSITION);
 	}
@@ -3036,7 +3039,7 @@ BOOL BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 	
 	if(MF_BYPOSITION&nFlags)
 	{
-		UINT numMenuItems = m_MenuList.GetUpperBound();
+		INT_PTR numMenuItems = m_MenuList.GetUpperBound();
 		if(id<=numMenuItems){
 #ifdef UNICODE
 			m_MenuList[id]->SetWideString((LPCTSTR)string);
@@ -3047,7 +3050,7 @@ BOOL BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 		}
 	}
 	else{
-		int uiLoc;
+		UINT uiLoc;
 		BCMenu* pMenu = FindMenuOption(id,uiLoc);
 		if(NULL!=pMenu) returnflag = pMenu->SetMenuText(uiLoc,string);
 	}
@@ -3131,7 +3134,7 @@ BOOL BCMenu::IsWindowsClassicTheme(void)
 
 int BCMenu::GlobalImageListOffset(int nID)
 {
-	int numcurrent=m_AllImagesID.GetSize();
+	INT_PTR numcurrent=m_AllImagesID.GetSize();
 	int existsloc = -1;
 	for(int i=0;i<numcurrent;++i){
 		if(m_AllImagesID[i]==nID){
@@ -3145,7 +3148,7 @@ int BCMenu::GlobalImageListOffset(int nID)
 BOOL BCMenu::CanDraw3DImageList(int offset)
 {
 	BOOL retflag=FALSE;
-	int numcurrent=m_AllImagesID.GetSize();
+	INT_PTR numcurrent=m_AllImagesID.GetSize();
 	if(offset+1<numcurrent&&offset+2<numcurrent){
 		int nID=m_AllImagesID[offset];
 		if(m_AllImagesID[offset+1]==nID&&m_AllImagesID[offset+2]==nID)retflag=TRUE;
@@ -3153,9 +3156,9 @@ BOOL BCMenu::CanDraw3DImageList(int offset)
 	return(retflag);
 }
 
-int BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
+INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 {
-	int loc = -1;
+	INT_PTR loc = -1;
 	HIMAGELIST hImageList = m_AllImages.m_hImageList;
 	if(!hImageList){
 		m_AllImages.Create(m_iconX,m_iconY,ILC_COLORDDB|ILC_MASK,1,1);
@@ -3175,9 +3178,9 @@ int BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 			GetDisabledBitmap(bmp3);
 			pWnd->ReleaseDC(pDC);  // Release the DC
 		}
-		int numcurrent=m_AllImagesID.GetSize();
-		int existsloc = -1;
-		for(int i=0;i<numcurrent;++i){
+		UINT numcurrent=(UINT)m_AllImagesID.GetSize();
+		UINT existsloc = -1;
+		for(UINT i=0;i<numcurrent;++i){
 			if(m_AllImagesID[i]==nID){
 				existsloc=i;
 				break;
@@ -3222,7 +3225,7 @@ int BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 		}
 		::DestroyIcon(hIcon);
 	}
-	return(loc);
+	return loc;
 }
 
 bool BCMenu::AppendMenu (BCMenu* pMenuToAdd, bool add_separator /*= true*/, int num_items_to_remove_at_end /*= 0*/)
