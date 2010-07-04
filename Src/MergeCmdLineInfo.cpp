@@ -31,7 +31,7 @@
 
 #include <windows.h>
 #include <tchar.h>
-#include <shlwapi.h> // Required for PathFindFileName
+#include <shlwapi.h> // StrSpn, StrRChr
 #include "Constants.h"
 #include "Paths.h"
 #include "MergeCmdLineInfo.h"
@@ -138,15 +138,13 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
 	// C:\Program Files\Rational\ClearCase\lib\mgrs\mgr_info.h file.
 	String exeName;
 	q = EatParam(q, exeName);
-	LPTSTR szFileName = PathFindFileName(exeName.c_str());
-	if (lstrcmpi(szFileName, _T("xcompare")) == 0)
+	if (exeName == _T("compare") || exeName == _T("xcompare"))
 	{
-		m_dwRightFlags |= FFILEOPEN_READONLY;
-		ParseClearCaseCmdLine(q);
+		ParseClearCaseCmdLine(q, _T("<No Base>"));
 	}
-	else if (lstrcmpi(szFileName, _T("xmerge")) == 0)
+	else if (exeName == _T("merge") || exeName == _T("xmerge"))
 	{
-		ParseClearCaseCmdLine(q);
+		ParseClearCaseCmdLine(q, _T(""));
 	}
 	else
 	{
@@ -158,17 +156,11 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
  * @brief Parse a command line passed in from ClearCase.
  * @param [in] p Points into the command line.
  */
-void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q)
+void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q, LPCTSTR basedesc)
 {
 	String sBaseFile;  /**< Base file path. */
-	String sBaseDesc;  /**< Base file description. */
+	String sBaseDesc = basedesc;  /**< Base file description. */
 	String sOutFile;   /**< Out file path. */
-	if (m_dwRightFlags & FFILEOPEN_READONLY)
-	{
-		// Compare tool doesn't have a common ancestor file description. We
-		// put a phony description so the command line parser will skip it.
-		sBaseDesc = _T("<No Base>");
-	}
 	m_bClearCaseTool = true;
 	String param;
 	bool flag;
@@ -179,6 +171,10 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q)
 			// Not a flag
 			param = paths_GetLongPath(param.c_str());
 			m_Files.push_back(param);
+			if (param == m_sLeftDesc)
+				m_dwLeftFlags &= ~FFILEOPEN_READONLY;
+			if (param == m_sRightDesc)
+				m_dwRightFlags &= ~FFILEOPEN_READONLY;
 		}
 		else if (param == _T("base"))
 		{
@@ -196,9 +192,15 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q)
 			if (sBaseDesc.empty())
 				q = EatParam(q, sBaseDesc);
 			else if (m_sLeftDesc.empty())
+			{
 				q = EatParam(q, m_sLeftDesc);
+				m_dwLeftFlags |= FFILEOPEN_READONLY;
+			}
 			else if (m_sRightDesc.empty())
+			{
 				q = EatParam(q, m_sRightDesc);
+				m_dwRightFlags |= FFILEOPEN_READONLY;
+			}
 			else
 				q = EatParam(q, param); // ignore excess arguments
 		}

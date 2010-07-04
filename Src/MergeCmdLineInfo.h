@@ -78,7 +78,7 @@ private:
 
 	static LPCTSTR EatParam(LPCTSTR, String &, bool *flag = 0);
 	static LPCTSTR SetOption(LPCTSTR, LPCTSTR key, LPCTSTR value = _T("1"));
-	void ParseClearCaseCmdLine(LPCTSTR);
+	void ParseClearCaseCmdLine(LPCTSTR, LPCTSTR basedesc);
 	void ParseWinMergeCmdLine(LPCTSTR);
 	void AddPath(const String &path);
 
