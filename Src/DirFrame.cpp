@@ -94,7 +94,6 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_WM_MDIACTIVATE()
-	ON_MESSAGE(WM_SETMESSAGESTRING, OnSetMessageString)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -156,27 +155,17 @@ void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 }
 
 /**
- * @brief Update statusbar
+ * @brief Handle translation of default messages on the status bar
  */
- LRESULT CDirFrame::OnSetMessageString(WPARAM wParam, LPARAM lParam)
+void CDirFrame::GetMessageString(UINT nID, CString& rMessage) const
 {
-	LRESULT ret;
-	UINT nID = (UINT)wParam;
-	if (nID == AFX_IDS_IDLEMESSAGE)
+	// load appropriate string
+	const String s = theApp.LoadString(nID);
+	if (!AfxExtractSubString(rMessage, &*s.begin(), 0))
 	{
-		wParam = 0;
-		String msg = theApp.LoadString(AFX_IDS_IDLEMESSAGE);
-		TCHAR *szMsg = new TCHAR[lstrlen(msg.c_str())+1];
-		lstrcpy(szMsg, msg.c_str());
-		lParam = (LPARAM)szMsg;
-		ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
-		delete szMsg;
+		// not found
+		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
 	}
-	else
-	{
-		ret = CMDIChildWnd::OnSetMessageString(wParam, lParam);
-	}
-	return ret;
 }
 
 /**

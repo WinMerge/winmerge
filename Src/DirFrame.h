@@ -57,6 +57,7 @@ public:
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 
 // Overrides
+	virtual void GetMessageString(UINT nID, CString& rMessage) const;
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirFrame)
 	public:
@@ -73,7 +74,6 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
