@@ -41,6 +41,7 @@ class FilterCommentsManager;
 struct FilterCommentsSet;
 class MovedLines;
 class FilterList;
+enum OP_TYPE;
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -163,7 +164,7 @@ public:
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
-	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
+	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, OP_TYPE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left, bool bIgnoreBlankLines);
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
