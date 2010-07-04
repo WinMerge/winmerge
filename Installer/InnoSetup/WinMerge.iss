@@ -426,6 +426,7 @@ Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Fla
 Source: ..\..\Build\shellextensionx64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
+Source: ..\..\Build\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('457')
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z442U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('442')
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z432U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('432')
@@ -1016,12 +1017,20 @@ Begin
 																						Begin
 																							{If the user has 4.57 or higher installed then...}
 																							If VersionAtLeast(str7Zip_Version, 4, 57, 0, 0) = True Then
+																								Begin
+																									{If the user has 465 or higher installed then...}
+																									If VersionAtLeast(str7Zip_Version, 4, 65, 0, 0) = True Then
 																								{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
+																										int7Zip_Version := 465
+																									Else
 																								int7Zip_Version := 457
+																								end
 																							Else
+																								{Since it was at least 4.42, but not 4.57 then it must be 4.42}
 																								int7Zip_Version := 442
 																						end
 																					Else
+																						{Since it was at least 4.32, but not 4.42 then it must be 4.32}
 																						int7Zip_Version := 432
 																				end
 																			Else
