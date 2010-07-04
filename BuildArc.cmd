@@ -2,7 +2,7 @@ cd /d "%~dp0"
 
 call SetVersion.cmd
 set DISTDIR=\Web Page\geocities
-set path=c:\progra~1\7-zip\;%path%
+set path="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%path%
 
 copy "Build\WinMerge-%RCVER%-Setup.exe" "WinMerge-%APPVER%-Setup.exe"
 7z.exe a -tzip "%DISTDIR%\WinMerge-%SAFEAPPVER%-Setup.exe.zip" "WinMerge-%APPVER%-Setup.exe"
