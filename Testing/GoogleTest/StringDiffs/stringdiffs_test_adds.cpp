@@ -255,10 +255,10 @@ namespace
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
 			pDiff = diffs[1];
-			EXPECT_EQ(9, pDiff->start[0]);
-			EXPECT_EQ(9, pDiff->start[1]);
-			EXPECT_EQ(8, pDiff->end[0]);
-			EXPECT_EQ(9, pDiff->end[1]);
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(8, pDiff->end[1]);
 			pDiff = diffs[2];
 			EXPECT_EQ(30, pDiff->start[0]);
 			EXPECT_EQ(33, pDiff->start[1]);
@@ -288,10 +288,10 @@ namespace
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
 			pDiff = diffs[1];
-			EXPECT_EQ(9, pDiff->start[0]);
-			EXPECT_EQ(9, pDiff->start[1]);
-			EXPECT_EQ(9, pDiff->end[0]);
-			EXPECT_EQ(8, pDiff->end[1]);
+			EXPECT_EQ(8, pDiff->start[0]);
+			EXPECT_EQ(8, pDiff->start[1]);
+			EXPECT_EQ(8, pDiff->end[0]);
+			EXPECT_EQ(7, pDiff->end[1]);
 			pDiff = diffs[2];
 			EXPECT_EQ(33, pDiff->start[0]);
 			EXPECT_EQ(30, pDiff->start[1]);
@@ -304,5 +304,39 @@ namespace
 			EXPECT_EQ(34, pDiff->end[1]);
 		}
 	}
-
+	// new option third run
+	TEST_F(StringDiffsAddsTest, RunThird)
+	{
+		std::vector<wdiff*> diffs;
+		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
+		sd_ComputeWordDiffs("(sizeof *new);",
+			"sizeof(*newob));",
+				false, 1, 0, true, &diffs);
+		EXPECT_EQ(3, diffs.size());
+		wdiff *pDiff;
+		if (diffs.size() >= 1)
+		{
+			pDiff = diffs[0];
+			EXPECT_EQ(0, pDiff->start[0]);
+			EXPECT_EQ(0, pDiff->start[1]);
+			EXPECT_EQ(0, pDiff->end[0]);
+			EXPECT_EQ(-1, pDiff->end[1]);
+		}
+		if (diffs.size() >= 2)
+		{
+			pDiff = diffs[1];
+			EXPECT_EQ(7, pDiff->start[0]);
+			EXPECT_EQ(6, pDiff->start[1]);
+			EXPECT_EQ(6, pDiff->end[0]);
+			EXPECT_EQ(15, pDiff->end[1]);
+		}
+		if (diffs.size() >= 3)
+		{
+			pDiff = diffs[2];
+			EXPECT_EQ(7, pDiff->start[0]);
+			EXPECT_EQ(16, pDiff->start[1]);
+			EXPECT_EQ(13, pDiff->end[0]);
+			EXPECT_EQ(15, pDiff->end[1]);
+		}
+	}
 }  // namespace

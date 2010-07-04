@@ -64,13 +64,16 @@ private:
 private:
 
 	void BuildWordsArray(const String & str, std::vector<word*> * words);
-	int FindPreMatchInWords1(const word & needword2, int bw1) const;
-	int FindNextMatchInWords1(const word & needword2, int bw1) const;
-	int FindPreMatchInWords2(const word & needword1, int bw2) const;
-	int FindNextMatchInWords2(const word & needword1, int bw2) const;
-	int FindPreSpaceInWords1(int bw1) const;
-	int FindNextSpaceInWords1(int bw1) const;
-	int FindNextSpaceInWords2(int bw2) const;
+	void InsertInWords(std::vector<word*> &words, int bw);
+	int FindPreMatchInWords(std::vector<word*> words,const word & needword, int bw, int side) const;
+	int FindNextMatchInWords(std::vector<word*> words,const word & needword, int bw, int side) const;
+	int FindPreSpaceInWords(std::vector<word*> words, int bw) const;
+	int FindNextSpaceInWords(std::vector<word*> words, int bw) const;
+	int FindPreNoInsertInWords(std::vector<word*> words, int bw) const;
+	int FindNextInsertInWords(std::vector<word*> words, int bw) const;
+	int FindNextNoInsertInWords(std::vector<word*> words, int bw) const;
+	void MoveInWordsUp(std::vector<word*> &words, int source, int target) const;
+	void MoveInWordsDown(std::vector<word*> &words, int source, int target) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;
@@ -78,9 +81,7 @@ private:
 	bool IsBreak(const word & word1) const;
 	bool IsInsert(const word & word1) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
-	bool RemoveItem1(int bw1);
-	bool RemoveItem2(int bw1);
-
+	bool RemoveItem(std::vector<word*> &words, int bw) const;
 
 // Implementation data
 private:

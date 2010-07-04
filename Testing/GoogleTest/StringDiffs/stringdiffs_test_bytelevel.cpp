@@ -62,7 +62,7 @@ namespace
 		sd_ComputeWordDiffs( "				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),",
 				"					if (len2 < 50)",
 				true, 0, 1, true, &diffs);
-		EXPECT_EQ(11, diffs.size());
+		EXPECT_EQ(9, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, punctuations, byte-level
@@ -124,9 +124,9 @@ namespace
 	{
 		std::vector<wdiff*> diffs;
 		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
-		sd_ComputeWordDiffs("/**", "		// remove empty records on both side",
+		sd_ComputeWordDiffs("", "		// remove empty records on both side",
 				true, 0, 1, true, &diffs);
-		EXPECT_EQ(4, diffs.size());
+		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
@@ -134,30 +134,6 @@ namespace
 			EXPECT_EQ(0, pDiff->start[0]);
 			EXPECT_EQ(-1, pDiff->end[0]);
 			EXPECT_EQ(0, pDiff->start[1]);
-			EXPECT_EQ(1, pDiff->end[1]);
-		}	
-		if (diffs.size() >=2 )
-		{
-			pDiff = diffs[1];
-			EXPECT_EQ(1, pDiff->start[0]);
-			EXPECT_EQ(1, pDiff->end[0]);
-			EXPECT_EQ(3, pDiff->start[1]);
-			EXPECT_EQ(3, pDiff->end[1]);
-		}	
-		if (diffs.size() >=3 )
-		{
-			pDiff = diffs[2];
-			EXPECT_EQ(2, pDiff->start[0]);
-			EXPECT_EQ(2, pDiff->end[0]);
-			EXPECT_EQ(4, pDiff->start[1]);
-			EXPECT_EQ(4, pDiff->end[1]);
-		}	
-		if (diffs.size() >=4 )
-		{
-			pDiff = diffs[3];
-			EXPECT_EQ(3, pDiff->start[0]);
-			EXPECT_EQ(2, pDiff->end[0]);
-			EXPECT_EQ(5, pDiff->start[1]);
 			EXPECT_EQ(37, pDiff->end[1]);
 		}	
 	}
@@ -175,10 +151,10 @@ namespace
 		if (diffs.size() >= 1 )
 		{
 			pDiff = diffs[0];
-			EXPECT_EQ(15, pDiff->start[0]);
-			EXPECT_EQ(18, pDiff->end[0]);
-			EXPECT_EQ(15, pDiff->start[1]);
-			EXPECT_EQ(14, pDiff->end[1]);
+			EXPECT_EQ(14, pDiff->start[0]);
+			EXPECT_EQ(17, pDiff->end[0]);
+			EXPECT_EQ(14, pDiff->start[1]);
+			EXPECT_EQ(13, pDiff->end[1]);
 		}	
 		if (diffs.size() >=2 )
 		{
