@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2010-04-17 18:55+0900\n"
+"PO-Revision-Date: 2010-07-04 04:27+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2981,7 +2981,7 @@ msgid ""
 "New Documents (Ctrl+N)"
 msgstr ""
 "新しいドキュメントを生成します\n"
-"新規ドキュメント (Ctrl-N)"
+"新規ドキュメント (Ctrl+N)"
 
 #: Merge.rc:1922
 #, c-format
