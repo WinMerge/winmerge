@@ -57,6 +57,7 @@ public:
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 
 // Overrides
+	virtual void GetMessageString(UINT nID, CString& rMessage) const;
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirFrame)
 	public:
