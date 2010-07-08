@@ -7,6 +7,8 @@ WinMerge 2.13.14
   Update to PCRE 8.10 (r7210)
   Update SCEW to 1.1.2 (r7212)
   In-line difference highlighting improvement (#3022014)
+  Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
+    in status bar (#3025855)
 
 WinMerge 2.13.13 - 2010-06-19 (r7205)
   Improve editing of linefilter regular expressions (#3015416)
