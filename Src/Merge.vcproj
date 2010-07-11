@@ -15,8 +15,8 @@
 	<Configurations>
 		<Configuration
 			Name="UnicodeRelease|Win32"
-			OutputDirectory=".\..\BuildTmp\MergeUnicodeRelease"
-			IntermediateDirectory=".\..\BuildTmp\MergeUnicodeRelease"
+			OutputDirectory="..\\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory="..\\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -34,10 +34,10 @@
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\MergeUnicodeRelease/Merge.pch"
-				AssemblerListingLocation=".\..\BuildTmp\MergeUnicodeRelease/"
-				ObjectFile=".\..\BuildTmp\MergeUnicodeRelease/"
-				ProgramDataBaseFileName=".\..\BuildTmp\MergeUnicodeRelease/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="0"
@@ -48,7 +48,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
 				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
-				OutputFile="..\Build\MergeUnicodeRelease\WinMergeU.exe"
+				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
@@ -64,7 +64,7 @@
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\..\BuildTmp\MergeUnicodeRelease/Merge.tlb"
+				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -92,8 +92,8 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 		</Configuration>
 		<Configuration
 			Name="UnicodeDebug|Win32"
-			OutputDirectory=".\..\BuildTmp\MergeUnicodeDebug"
-			IntermediateDirectory=".\..\BuildTmp\MergeUnicodeDebug"
+			OutputDirectory="..\\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory="..\\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -108,10 +108,10 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\MergeUnicodeDebug/Merge.pch"
-				AssemblerListingLocation=".\..\BuildTmp\MergeUnicodeDebug/"
-				ObjectFile=".\..\BuildTmp\MergeUnicodeDebug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\MergeUnicodeDebug/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -122,13 +122,13 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
-				OutputFile="..\Build\MergeUnicodeDebug/WinMergeU.exe"
+				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\MergeUnicodeDebug/WinMergeU.pdb"
+				ProgramDatabaseFile="$(OutDir)/WinMergeU.pdb"
 				SubSystem="2"
 				EntryPointSymbol="wWinMainCRTStartup"
 				TargetMachine="1"/>
@@ -138,11 +138,11 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\..\BuildTmp\MergeUnicodeDebug/Merge.tlb"
+				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\debug\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 "/>
 			<Tool
@@ -166,8 +166,8 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\MergeDebug"
-			IntermediateDirectory=".\..\BuildTmp\MergeDebug"
+			OutputDirectory="..\\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory="..\\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -182,10 +182,10 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\MergeDebug/Merge.pch"
-				AssemblerListingLocation=".\..\BuildTmp\MergeDebug/"
-				ObjectFile=".\..\BuildTmp\MergeDebug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\MergeDebug/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -196,15 +196,14 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
-				OutputFile="..\Build\MergeDebug/WinMerge.exe"
+				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\MergeDebug/WinMerge.pdb"
+				ProgramDatabaseFile="$(OutDir)/WinMerge.pdb"
 				SubSystem="2"
-				StackReserveSize="0"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -212,11 +211,11 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\..\BuildTmp\MergeDebug/Merge.tlb"
+				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\lib\debug\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\debug\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 
 "/>
@@ -241,8 +240,8 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\..\BuildTmp\MergeRelease"
-			IntermediateDirectory=".\..\BuildTmp\MergeRelease"
+			OutputDirectory="..\\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory="..\\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -260,10 +259,10 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\MergeRelease/Merge.pch"
-				AssemblerListingLocation=".\..\BuildTmp\MergeRelease/"
-				ObjectFile=".\..\BuildTmp\MergeRelease/"
-				ProgramDataBaseFileName=".\..\BuildTmp\MergeRelease/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="0"
@@ -274,7 +273,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
 				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
-				OutputFile="..\Build\MergeRelease/WinMerge.exe"
+				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
@@ -289,11 +288,11 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				MkTypLibCompatible="TRUE"
 				SuppressStartupBanner="TRUE"
 				TargetEnvironment="1"
-				TypeLibraryName=".\..\BuildTmp\MergeRelease/Merge.tlb"
+				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
+				CommandLine="copy $(TargetDir)\..\expat\release\libexpat.dll $(TargetDir)
 copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 "/>
 			<Tool

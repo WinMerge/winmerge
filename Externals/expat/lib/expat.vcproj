@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\../../../Build/expat/lib/Debug"
-			IntermediateDirectory=".\../../../BuildTmp/expat/lib/Debug"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -24,10 +24,10 @@
 				PreprocessorDefinitions="_DEBUG;COMPILED_FROM_DSP;WIN32;_WINDOWS;_USRDLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\../../../BuildTmp/expat/lib/Debug/expat.pch"
-				AssemblerListingLocation=".\../../../BuildTmp/expat/lib/Debug/"
-				ObjectFile=".\../../../BuildTmp/expat/lib/Debug/"
-				ProgramDataBaseFileName=".\../../../BuildTmp/expat/lib/Debug/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -36,12 +36,12 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../Build/expat/lib/Debug/libexpat.dll"
+				OutputFile="$(OutDir)/lib$(ProjectName).dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\libexpat.def"
 				GenerateDebugInformation="TRUE"
-				ImportLibrary=".\../../../Build/expat/lib/Debug/libexpat.lib"
+				ImportLibrary="$(OutDir)/lib$(ProjectName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -74,8 +74,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\../../../Build/expat/lib/Release"
-			IntermediateDirectory=".\../../../BuildTmp/expat/lib/Release"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -88,21 +88,21 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\../../../BuildTmp/expat/lib/Release/expat.pch"
-				AssemblerListingLocation=".\../../../BuildTmp/expat/lib/Release/"
-				ObjectFile=".\../../../BuildTmp/expat/lib/Release/"
-				ProgramDataBaseFileName=".\../../../BuildTmp/expat/lib/Release/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../Build/expat/lib/Release/libexpat.dll"
+				OutputFile="$(OutDir)/lib$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\libexpat.def"
-				ImportLibrary=".\../../../Build/expat/lib/Release/libexpat.lib"
+				ImportLibrary="$(OutDir)/lib$(ProjectName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
