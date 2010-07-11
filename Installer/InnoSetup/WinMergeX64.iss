@@ -55,12 +55,6 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
-; Runtime files
-#define Runtime_MFC  "..\Runtimes\mfc71.dll"
-#define Runtime_MFCU "..\Runtimes\mfc71u.dll"
-#define Runtime_C    "..\Runtimes\msvcr71.dll"
-#define Runtime_CPP  "..\Runtimes\msvcp71.dll"
-
 
 [Setup]
 AppName=WinMerge
@@ -140,7 +134,7 @@ Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
 Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
-Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Build\Docs\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
@@ -384,20 +378,16 @@ Source: ..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Microsoft runtime libraries (C-runtime, MFC)
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.CRT\msvcr90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.CRT\msvcp90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.CRT\msvcm90.dll"; DestDir: "{app}\Microsoft.VC90.CRT"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest"; DestDir: "{app}\Microsoft.VC90.CRT"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.CRT\msvcr100.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.CRT\msvcp100.dll"; DestDir: "{app}"; Components: Core
 
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.MFC\mfc90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.MFC\mfc90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.MFC\mfcm90.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.MFC\mfcm90u.dll"; DestDir: "{app}\Microsoft.VC90.MFC"; Components: Core
-Source: "\Program Files\Microsoft Visual Studio 9.0\vc\redist\amd64\Microsoft.VC90.MFC\Microsoft.VC90.MFC.manifest"; DestDir: "{app}\Microsoft.VC90.MFC"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.MFC\mfc100u.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.MFC\mfcm100u.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.MFCLOC\mfc100jpn.dll"; DestDir: "{app}"; Components: Core
 
 ; Shell extension
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
+Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
@@ -439,7 +429,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Co
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion
-Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Build\Docs\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
@@ -460,14 +450,14 @@ Source: ..\..\Translations\WinMerge\Turkish.po; DestDir: {app}\Languages; Compon
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
 
-Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
-Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Build\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Build\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 
 ;Plugins

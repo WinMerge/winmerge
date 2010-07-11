@@ -55,18 +55,6 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
-; Runtime files
-#define Runtime_MFC  "..\Runtimes\mfc71.dll"
-#define Runtime_MFCU "..\Runtimes\mfc71u.dll"
-#define Runtime_C    "..\Runtimes\msvcr71.dll"
-#define Runtime_CPP  "..\Runtimes\msvcp71.dll"
-;#define Runtime_MFC  "..\..\..\Runtimes\mfc80.dll"
-;#define Runtime_MFCU "..\..\..\Runtimes\mfc80u.dll"
-;#define Runtime_C    "..\..\..\Runtimes\msvcr80.dll"
-;#define Runtime_CPP  "..\..\..\Runtimes\msvcp80.dll"
-;#define Runtime_CPP_Manifest "..\..\..\Runtimes\Microsoft.VC80.CRT.manifest"
-;#define Runtime_MFC_Manifest "..\..\..\Runtimes\Microsoft.VC80.MFC.manifest"
-
 
 [Setup]
 AppName=WinMerge
@@ -145,7 +133,7 @@ Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
 Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
-Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Build\Docs\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
@@ -328,6 +316,9 @@ Name: {app}\Merge7z442U.dll; Type: files; MinVersion: 0, 4
 Name: {app}\Merge7z457.dll; Type: files
 Name: {app}\Merge7z457U.dll; Type: files; MinVersion: 0, 4
 
+Name: {app}\Merge7z465.dll; Type: files
+Name: {app}\Merge7z465U.dll; Type: files; MinVersion: 0, 4
+
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -405,25 +396,22 @@ Name: {app}; Flags: uninsalwaysuninstall
 ; For Windows 05/98/ME ANSI executable is installed (WinMerge.exe)
 ; For Windows NT4/2000/XP/2003/Vista the Unicode executable is installed (WinMergeU.exe)
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; OnlyBelowVersion: 0, 4; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Microsoft runtime libraries (C-runtime, MFC)
-Source: {#Runtime_MFC}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
-Source: {#Runtime_MFCU}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
-Source: {#Runtime_C}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: {#Runtime_CPP}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-;Source: {#Runtime_CPP_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-;Source: {#Runtime_MFC_Manifest}; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: ..\Runtimes\MFC71JPN.DLL; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.CRT\msvcr100.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.CRT\msvcp100.dll"; DestDir: "{app}"; Components: Core
+
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFC\mfc100u.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFC\mfcm100u.dll"; DestDir: "{app}"; Components: Core
+Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFCLOC\mfc100jpn.dll"; DestDir: "{app}"; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
 Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\shellextensionx64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
+Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
@@ -436,15 +424,6 @@ Source: ..\..\Build\MergeUnicodeRelease\Merge7z420U.dll; DestDir: {app}; Flags: 
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('313')
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('312')
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('311')
-Source: ..\..\Build\MergeRelease\Merge7z457.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('457')
-Source: ..\..\Build\MergeRelease\Merge7z442.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('442')
-Source: ..\..\Build\MergeRelease\Merge7z432.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('432')
-Source: ..\..\Build\MergeRelease\Merge7z431.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('431')
-Source: ..\..\Build\MergeRelease\Merge7z423.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('423')
-Source: ..\..\Build\MergeRelease\Merge7z420.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('420')
-Source: ..\..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('313')
-Source: ..\..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('312')
-Source: ..\..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('311')
 
 ; Expat dll
 Source: ..\..\Build\expat\lib\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -482,7 +461,7 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Co
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion
-Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
+Source: ..\..\Build\Docs\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
@@ -503,14 +482,14 @@ Source: ..\..\Translations\WinMerge\Turkish.po; DestDir: {app}\Languages; Compon
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
 
-Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
-Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Build\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Build\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Docs\ChangeLog.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 
 ;Plugins

@@ -14,8 +14,8 @@
 	<Configurations>
 		<Configuration
 			Name="Unicode Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -28,10 +28,10 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -51,14 +51,14 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeDebug\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\$(ProjectName)U.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -87,8 +87,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 		</Configuration>
 		<Configuration
 			Name="Unicode Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			UseOfATL="2"
@@ -104,10 +104,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -115,13 +115,13 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\$(ProjectName)U.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -150,8 +150,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 		</Configuration>
 		<Configuration
 			Name="Unicode Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			UseOfATL="1"
@@ -167,10 +167,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -178,13 +178,13 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+				OutputFile="$(OutDir)\$(ProjectName)U.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -213,8 +213,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 		</Configuration>
 		<Configuration
 			Name="Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			UseOfATL="1"
@@ -231,10 +231,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -242,13 +242,13 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				OutputFile="$(OutDir)\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -277,8 +277,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 		</Configuration>
 		<Configuration
 			Name="Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			UseOfATL="2"
@@ -295,10 +295,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -306,13 +306,13 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
+				OutputFile="$(OutDir)\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -341,8 +341,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__Debug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__Debug"
+			OutputDirectory=".\..\Build\vc71\$(ProjectName)$(ConfigurationName)"
+			IntermediateDirectory=".\..\BuildTmp\vc71\$(ProjectName)$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -355,10 +355,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__Debug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__Debug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__Debug/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -372,14 +372,14 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeDebug\ShellExtension.dll"
+				OutputFile="$(OutDir)\$(ProjectName).dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ShellExtension.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pdb"
+				ProgramDatabaseFile="$(OutDir)/$(TargetName).pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.lib"
+				ImportLibrary="$(IntDir)/$(TargetName).lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -2085,9 +2085,6 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\Languages\ShellExtensionSerbian.rc">
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionSlovak.rc">

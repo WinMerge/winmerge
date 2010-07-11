@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\Release"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\Release"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -27,10 +27,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile="$(IntDir)\scew.pch"
-				AssemblerListingLocation="$(OutDir)\Release\"
-				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -38,7 +38,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\..\scew.lib"
+				OutputFile="$(OutDir)\$(ProjectName).lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -63,8 +63,8 @@
 		</Configuration>
 		<Configuration
 			Name="XMLStatic Release|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\ReleaseS"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\ReleaseS"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -78,10 +78,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\ReleaseS/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\ReleaseS/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\ReleaseS/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\ReleaseS/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -89,7 +89,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_s.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_s.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -114,8 +114,8 @@
 		</Configuration>
 		<Configuration
 			Name="XMLStatic Debug|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\DebugS"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\DebugS"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -127,10 +127,10 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;XML_STATIC"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\DebugS/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\DebugS/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\DebugS/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\DebugS/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -139,7 +139,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_sd.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_sd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -164,8 +164,8 @@
 		</Configuration>
 		<Configuration
 			Name="XMLStatic Debug Unicode|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\DebugUS"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\DebugUS"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -177,10 +177,10 @@
 				PreprocessorDefinitions="_DEBUG;XML_STATIC;WIN32;_LIB;XML_UNICODE_WCHAR_T"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\DebugUS/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\DebugUS/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\DebugUS/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\DebugUS/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -189,7 +189,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_usd.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_usd.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -214,8 +214,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release Unicode|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\ReleaseU"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\ReleaseU"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -229,10 +229,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\ReleaseU/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\ReleaseU/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\ReleaseU/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\ReleaseU/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -240,7 +240,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_u.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_u.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -265,8 +265,8 @@
 		</Configuration>
 		<Configuration
 			Name="XMLStatic Release Unicode|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\ReleaseUS"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\ReleaseUS"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -280,10 +280,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\ReleaseUS/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\ReleaseUS/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\ReleaseUS/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\ReleaseUS/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
@@ -291,7 +291,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_us.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_us.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -316,8 +316,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug Unicode|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\DebugU"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\DebugU"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -329,10 +329,10 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_LIB;XML_UNICODE_WCHAR_T"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\DebugU/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\DebugU/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\DebugU/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\DebugU/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -341,7 +341,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_ud.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_ud.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -366,8 +366,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\..\..\Build\scew\Debug"
-			IntermediateDirectory=".\..\..\..\BuildTmp\scew\Debug"
+			OutputDirectory="..\..\..\Build\vc71\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\BuildTmp\vc71\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -379,10 +379,10 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile="$(IntDir)\scew.pch"
-				AssemblerListingLocation=".\..\..\..\Build\scew\Debug\"
-				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)\"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="4"
 				SuppressStartupBanner="TRUE"
 				DebugInformationFormat="4"
@@ -391,7 +391,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\..\scew_d.lib"
+				OutputFile="..\..\..\Build\scew\scew_d.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
