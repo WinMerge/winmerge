@@ -2,15 +2,16 @@
 <article id="Compare_bin">
   <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
 
-  <title>Comparing binary files</title>
+  <title>バイナリファイルの比較</title>
 
   <indexterm>
-    <primary>comparing files</primary>
+    <primary>ファイルの比較</primary>
 
-    <secondary>binary</secondary>
+    <secondary>バイナリ</secondary>
   </indexterm>
 
-  <para>WinMerge can detect whether files are in text or binary format. When you
-  launch a file compare operation on two binary files, WinMerge opens each file
-  in the binary file editor.</para>
+  <para>WinMergeは、比較するファイルがテキストなのか、バイナリ形式なのかを自動で検出することができます。
+  ２つのバイナリファイル比較するときは、Winmergeはそれぞれのファイルをバイナリファイルエディタで開きます。
+</para>
+
 </article>
