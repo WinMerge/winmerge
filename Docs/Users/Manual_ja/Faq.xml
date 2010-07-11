@@ -54,7 +54,7 @@
               <para>
                 <filename>WinMergeU.exe</filename>は、Unicodeを有効化した実行形式で、
                 Windows NT4、Windows 2000や、それよりも新しいシステムで動作します。
-                なぜなら、それはUnicodeをサポートしており、<filename>WinMerge.exe</filename>にあるような制約がないからです。
+                なぜなら、それらはUnicodeをサポートしており、<filename>WinMerge.exe</filename>にあるような制約がないからです。
               </para>
             </listitem>
           </itemizedlist>
@@ -64,17 +64,17 @@
       <qandaentry>
         <question>
           <para>あのスプラッシュ画面が邪魔なんだけど消せないの?<indexterm>
-              <primary>splash screen, turning off</primary>
+              <primary>スプラッシュ画面をオフにする</primary>
           </indexterm></para>
         </question>
 
         <answer>
-          <para>WinMergeメニューの、編集(E) → 設定(O)とクリックしてください。
+          <para>WinMergeメニューの、
             <menuchoice>
               <guimenu>編集(E)</guimenu>
               <guisubmenu>設定(O)</guisubmenu>
-            </menuchoice>。
-            設定ウィンドウの一般カテゴリにある、<guilabel>「スプラッシュ画面を非表示(D)」</guilabel>のチェックを外します。
+            </menuchoice>とクリックしてください。
+            設定ウィンドウの一般カテゴリにある、<guilabel>「スプラッシュ画面を非表示(D)」</guilabel>にチェックを付けてください。
           </para>
         </answer>
       </qandaentry>
@@ -96,7 +96,7 @@
             <guilabel>ファイル名(M)</guilabel>欄に<literal>Folder Selection</literal>と表示されている時、
             <guibutton>開く(O)</guibutton>をクリックしてください。
             もし、既にファイルやサブフォルダを選択している場合、<guilabel>ファイル名(M)</guilabel>欄に、適当な文字を入力し、
-            <guibutton>開く(O)</guibutton>ボタンをクリックしてください。
+            <guibutton>開く(O)</guibutton>をクリックしてください。
             もし、入力したファイル名が見つからない場合、WinMergeはフォルダを開きます。
           </para>
         </answer>
@@ -131,7 +131,7 @@
         <answer>
           <para>
             現在はありません。
-            誰かクロスプラットフォームサポート(<ulink url="http://www.wxwidgets.org/">wxWidgets</ulink>使用)を手伝いたい人がいるなら、
+            誰かクロスプラットフォームサポート(<ulink url="http://www.wxwidgets.org/">wxWidgets</ulink>を使用)を手伝いたい人がいるなら、
             私たちは、もちろん、それに興味があります。
           </para>
         </answer>
@@ -232,10 +232,6 @@
             これは、WinMergeが大きなファイルを比較する時は、
             常に<guilabel>クイックコンテンツ</guilabel>を使用しているからです。
             この方法は、WinMergeで大きなファイルをより効率的に比較することを可能にします。
-
-            <!-- FIXME -->
-            <!--To test if this is causing the behavior you're seeing, you can try raising the Quick Contents threshold for large files.-->
-            <!--See the discussion of this method in 「フォルダ比較操作の開始」  to learn how.-->
 
             このことがあなたの見ている現象を発生させるかどうかをテストするために、<guilabel>クイックコンテンツ</guilabel>用の大きなファイルとみなすしきい値を上げてみることができます。
             どのようにすればよいか学ぶために<xref linkend="Compare_dirs_starting" />での、この方法の説明を見てください。
@@ -362,7 +358,7 @@
           </para>
 
           <para>
-            [?]ANSIのファイルに関しては、多分コードページの問題です。
+            ANSIのファイルに関しては、多分コードページの問題です。
             障害調査をする為に、<menuchoice><guimenu>編集(E)</guimenu> → <guimenuitem>設定(O)</guimenuitem></menuchoice>とクリックしてください。
             「コードページ」カテゴリにある<guilabel>ファイルのコードページ情報を検出する</guilabel>がチェックされているか確認してください。
             もしチェックされていたら、チェックを外し、<guibutton>OK</guibutton>をクリックし、問題が解決するかを確認してください。
@@ -530,14 +526,6 @@
             </listitem>
 
             <listitem>
-              <!-- FIXME -->
-              <!--<para>If the error is something like: <emphasis><errortext>7-zip-->
-              <!--      x.xx missing / Plugin present</errortext></emphasis>, then you-->
-              <!--  probably installed 7-Zip using the MSI installer. Some 7-Zip MSI-->
-              <!--  installers do not install all the files that WinMerge needs-->
-              <!--  (specifically, <filename>7zip_pad.xml</filename> in the 7-Zip-->
-              <!--  program folder). Download and run the <filename>EXE</filename>-->
-              <!--  version of the 7-Zip installer.</para>-->
               <para>
                 次の様なエラーの場合: 
                 <emphasis>
