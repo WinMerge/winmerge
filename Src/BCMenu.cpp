@@ -1807,7 +1807,7 @@ int BCMenu::GetMenuStart(void)
 	CString name,str;
 	int menuloc=-1,listloc=-1,menustart=0,i=0,j=0;
 	INT_PTR nummenulist=m_MenuList.GetSize();
-	UINT nummenu=(int)GetMenuItemCount();
+	int nummenu=GetMenuItemCount();
 
 	while(i<nummenu&&menuloc==-1){
 		GetMenuString (i, name, MF_BYPOSITION);
@@ -2670,11 +2670,11 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 						m_SubMenus.RemoveAt(m);
 					}
 				}
-				UINT num = pSubMenu->GetMenuItemCount();
-				UINT i=0;
+				int num = pSubMenu->GetMenuItemCount();
+				int i=0;
 				for(i=num-1;i>=0;--i)pSubMenu->RemoveMenu(i,MF_BYPOSITION);
-				for(i=(UINT)m_MenuList.GetUpperBound();i>=0;i--){
-					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
+				for(i=(int)m_MenuList.GetUpperBound();i>=0;i--){
+					if(m_MenuList[i]->nID==(int)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
 						break;
@@ -2734,11 +2734,11 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 						m_SubMenus.RemoveAt(m);
 					}
 				}
-				UINT num = pSubMenu->GetMenuItemCount();
-				UINT i=0;
+				int num = pSubMenu->GetMenuItemCount();
+				int i=0;
 				for(i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
-				for(i=(UINT)m_MenuList.GetUpperBound();i>=0;i--){
-					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
+				for(i=(int)m_MenuList.GetUpperBound();i>=0;i--){
+					if(m_MenuList[i]->nID==(int)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
 						break;
