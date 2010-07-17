@@ -2646,7 +2646,7 @@ msgstr "Répertoire"
 #: Merge.rc:1686
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "&Méthode de comparaison:"
 
 #: Merge.rc:1688
 #, c-format
@@ -2661,12 +2661,12 @@ msgstr "I&gnorer les différences de temps de moins de 3 secondes"
 #: Merge.rc:1692
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "&Inclure le contenu des répertoires uniques"
 
 #: Merge.rc:1694
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&limite de comparaison rapide (MO):"
 
 #. StringFileInfo.Block
 #: Merge.rc:1720
@@ -3255,7 +3255,7 @@ msgstr "Ne plus poser cette &question."
 #: Merge.rc:1958
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntaxe"
 
 #: Merge.rc:1960
 #, c-format
