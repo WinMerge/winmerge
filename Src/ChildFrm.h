@@ -75,7 +75,7 @@ protected:
 		MergeStatus();
 		// Implement MergeEditStatus
 		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
-			int nChar, int nChars, LPCTSTR szEol, int nCodepage);
+			int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom);
 		void UpdateResources();
 	protected:
 		void Update();
@@ -89,6 +89,7 @@ protected:
 		int m_nChar; /**< Current char */
 		int m_nChars; /**< Amount of chars in line */
 		int m_nCodepage;
+		bool m_bHasBom;
 		String m_sEol;
 		String m_sEolDisplay;
 		String m_sCodepageName;
