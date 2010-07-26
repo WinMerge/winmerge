@@ -39,7 +39,7 @@
 #	if !defined(WINVER)
 #		define WINVER 0x0501
 #	endif
-#elif _MSC_VER == 1500
+#elif _MSC_VER >= 1500
 	// On Win XP, with VS2008, do not use default WINVER 0x0600 because of 
 	// some windows structure used in API (on VISTA they are longer)
 #	if !defined(WINVER)
