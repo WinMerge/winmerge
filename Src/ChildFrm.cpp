@@ -715,6 +715,7 @@ CChildFrame::MergeStatus::MergeStatus()
 , m_nChar(0)
 , m_nChars(0)
 , m_nCodepage(-1)
+, m_bHasBom(false)
 {
 }
 
@@ -778,10 +779,10 @@ static String EolString(const String & sEol)
 
 /// Receive status line info from crystal window and display
 void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
-		int nColumns, int nChar, int nChars, LPCTSTR szEol, int nCodepage)
+		int nColumns, int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom)
 {
 	if (m_sLine != szLine || m_nColumn != nColumn || m_nColumns != nColumns ||
-		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol != 0 || m_nCodepage != nCodepage)
+		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol != 0 || m_nCodepage != nCodepage || m_bHasBom != bHasBom)
 	{
 		USES_CONVERSION;
 		m_sLine = szLine;
@@ -795,8 +796,11 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		{
 			const char *pszCodepageName = GetEncodingNameFromCodePage(nCodepage);
 			m_sCodepageName = pszCodepageName ? A2CT(pszCodepageName) : _T("");
+			if (bHasBom)
+				m_sCodepageName += _T(" with BOM");
 		}
 		m_nCodepage = nCodepage;
+		m_bHasBom = bHasBom;
 		Update();
 	}
 }

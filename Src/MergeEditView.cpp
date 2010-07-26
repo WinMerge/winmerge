@@ -2441,7 +2441,7 @@ void CMergeEditView::OnUpdateCaret()
 			sEol = _T("hidden");
 	}
 	m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
-		curChar, chars, sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage());
+		curChar, chars, sEol, GetDocument()->m_ptBuf[m_nThisPane]->getCodepage(), GetDocument()->m_ptBuf[m_nThisPane]->getHasBom());
 
 	// Is cursor inside difference?
 	if (dwLineFlags & LF_NONTRIVIAL_DIFF)

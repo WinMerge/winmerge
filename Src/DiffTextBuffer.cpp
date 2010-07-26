@@ -368,7 +368,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (infoUnpacker->pluginName.length() == 0)
+		if (infoUnpacker->pluginName.length() > 0)
 		{
 			// re-detect codepage
 			FileTextEncoding encoding2;
@@ -378,6 +378,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			pufile->SetUnicoding(encoding2.m_unicoding);
 			pufile->SetCodepage(encoding2.m_codepage);
 			pufile->SetBom(encoding2.m_bom);
+			if (encoding2.m_bom)
+				pufile->ReadBom();
 		}
 		else
 		{
