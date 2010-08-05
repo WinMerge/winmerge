@@ -11,6 +11,7 @@ WinMerge 2.13.14
     in status bar (#3025855)
   Bugfix: Options dialog didn't update when importing settings
     from .ini file. (#2794137)
+  Bugfix: New fix for the bug #2210403 (#2929005)
   Translation updates:
   - French (#3025202)
 

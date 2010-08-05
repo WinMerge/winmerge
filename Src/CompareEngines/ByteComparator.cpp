@@ -180,12 +180,6 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	// cycle through buffer data performing actual comparison
 	while (true)
 	{
-		// we are at the end on one side?
-		if ((ptr0 == end0) || (ptr1 == end1))
-		{
-			goto need_more;
-		}
-
 		if (m_ignore_all_space)
 		{
 			// Skip over any whitespace on either side
@@ -400,9 +394,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 			else
 			{
-				if (!eof0 || !eof1)
+				// we are at the end on one side?
+				if (!eof0 && !eof1)
 				{
-					result = RESULT_DIFF;
 					goto need_more;
 				}
 				else
