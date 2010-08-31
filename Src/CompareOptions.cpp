@@ -37,6 +37,23 @@ CompareOptions::CompareOptions(const CompareOptions & options)
 }
 
 /**
+ * @brief Sets options from DiffutilsOptions structure.
+ * @param [in] options Diffutils options.
+ */
+DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
+: CompareOptions(options)
+{
+	m_bIgnoreBlankLines = options.m_bIgnoreBlankLines;
+	m_bIgnoreCase = options.m_bIgnoreCase;
+	m_bIgnoreEOLDifference = options.m_bIgnoreEOLDifference;
+	m_contextLines = options.m_contextLines;
+	m_filterCommentsLines = options.m_filterCommentsLines;
+	m_ignoreWhitespace = options.m_ignoreWhitespace;
+	m_outputStyle = options.m_outputStyle;
+	m_bIgnoreEOLDifference = options.m_bIgnoreEOLDifference;
+}
+
+/**
  * @brief Sets options from DIFFOPTIONS structure.
  * @param [in] options Diffutils options.
  */

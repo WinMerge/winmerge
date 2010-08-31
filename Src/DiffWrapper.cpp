@@ -27,6 +27,7 @@
 #include "StdAfx.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <algorithm>
 #include <string>
 #include <map>
 #include <shlwapi.h>
@@ -266,7 +267,7 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
  * @param [in] filtercommentsset	- For future use to determine trivial bytes
  * @return Returns true if all characters are trivial
  */
-static bool IsTrivialBytes(const char* Start, const char* End,
+bool CDiffWrapper::IsTrivialBytes(const char* Start, const char* End,
 	const FilterCommentsSet& filtercommentsset)
 {
 	std::string testdata(Start, End);
@@ -284,7 +285,7 @@ static bool IsTrivialBytes(const char* Start, const char* End,
  * @param [in] filtercommentsset	- Comment marker set used to indicate comment blocks.
  * @return Returns true if entire line is trivial
  */
-static bool IsTrivialLine(const std::string &Line, 
+bool CDiffWrapper::IsTrivialLine(const std::string &Line, 
 				   const char * StartOfComment,	
 				   const char * EndOfComment,	
 				   const char * InLineComment,	
@@ -351,6 +352,26 @@ static const char *FindCommentMarker(const char *target, const char *marker)
 }
 
 /**
+ * @brief Replace spaces in a string
+ * @param [in] str - String to search
+ * @param [in] rep - String to replace
+ */
+static void ReplaceSpaces(std::string & str, const char *rep)
+{
+	std::string::size_type pos = 0;
+	size_t replen = strlen(rep);
+	while ((pos = str.find_first_of(" \t", pos)) != std::string::npos)
+	{
+		std::string::size_type posend = str.find_first_not_of(" \t", pos);
+		if (posend != std::string::npos)
+			str.replace(pos, posend - pos, rep);
+		else
+			str.replace(pos, 1, rep);
+		pos += replen;
+	}
+}
+
+/**
 	@brief Performs post-filtering, by setting comment blocks to trivial
 	@param [in]  StartPos			- First line number to read
 	@param [in]  EndPos				- The line number PASS the last line number to read
@@ -362,9 +383,8 @@ static const char *FindCommentMarker(const char *target, const char *marker)
 	@return		Always returns true in reverse direction.
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
-static bool PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-	const FilterCommentsSet& filtercommentsset)
+bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
+							  int QtyLinesInBlock, OP_TYPE &Op, int FileNo, const FilterCommentsSet& filtercommentsset)
 {
 	const char* EolIndicators = "\r\n"; //List of characters used as EOL
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
@@ -488,7 +508,7 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
-static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
 	const TCHAR *FileNameExt)
 {
@@ -598,6 +618,26 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 					LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
 				if (CommentStrRight != NULL)
 					LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
+			}
+
+			if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+			{
+				//Ignore character case
+				ReplaceSpaces(LineDataLeft, "");
+				ReplaceSpaces(LineDataRight, "");
+			}
+			else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+			{
+				//Ignore change in whitespace char count
+				ReplaceSpaces(LineDataLeft, " ");
+				ReplaceSpaces(LineDataRight, " ");
+			}
+
+			if (m_options.m_bIgnoreCase)
+			{
+				//ignore case
+				std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
+				std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
 			}
 
 			if (LineDataLeft != LineDataRight)

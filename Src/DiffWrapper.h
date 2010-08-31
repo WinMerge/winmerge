@@ -170,7 +170,17 @@ public:
 	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
 	void SetFilterList(LPCTSTR filterStr);
 	void EnablePlugins(bool enable);
-
+	bool IsTrivialBytes(const char* Start, const char* End,
+		const FilterCommentsSet& filtercommentsset);
+	bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
+	   const char * EndOfComment, const char * InLineComment,
+	   const FilterCommentsSet& filtercommentsset);
+	bool PostFilter(int StartPos, int EndPos, int Direction,
+		int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
+		const FilterCommentsSet& filtercommentsset);
+	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+		int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
+		const TCHAR *FileNameExt);
 protected:
 	String FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,

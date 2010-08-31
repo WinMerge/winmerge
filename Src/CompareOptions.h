@@ -104,6 +104,7 @@ class DiffutilsOptions : public CompareOptions
 public:
 	DiffutilsOptions();
 	DiffutilsOptions(const CompareOptions& options);
+	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options);
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);

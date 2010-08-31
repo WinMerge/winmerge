@@ -230,6 +230,9 @@ BOOL CDiffContext::CreateCompareOptions(const DIFFOPTIONS & options)
 	else
 		return FALSE;
 
+	delete m_pCompareOptions;
+	m_pCompareOptions = NULL;
+
 	m_pCompareOptions = GetCompareOptions(m_nCompMethod);
 	if (m_pCompareOptions == NULL)
 	{
