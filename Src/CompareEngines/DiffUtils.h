@@ -15,6 +15,8 @@ class FilterList;
 class DiffutilsOptions;
 struct file_data;
 struct FileTextStats;
+class FilterCommentsManager;
+class CDiffWrapper;
 
 namespace CompareEngines
 {
@@ -54,6 +56,8 @@ private:
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */
 	int m_codepage; /**< Codepage used in line filter */
+	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
+	CDiffWrapper *m_pDiffWrapper;
 };
 
 

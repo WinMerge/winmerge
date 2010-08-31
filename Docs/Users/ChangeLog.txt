@@ -7,6 +7,7 @@ WinMerge 2.13.14
   Update to PCRE 8.10 (r7210)
   Update SCEW to 1.1.2 (r7212)
   In-line difference highlighting improvement (#3022014)
+  Make comment filtering work for folder compare (#3046938)
   Recognize .ascx files as ASP files (#3042393)
   Comment filtering improvement (#3034083)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
@@ -14,6 +15,7 @@ WinMerge 2.13.14
   Bugfix: Options dialog didn't update when importing settings
     from .ini file. (#2794137)
   Bugfix: New fix for the bug #2210403 (#2929005)
+  Bugfix: Take changed compareoptions into use in folder compare (#3046938)
   Translation updates:
   - French (#3025202)
 
