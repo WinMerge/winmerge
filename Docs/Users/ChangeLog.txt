@@ -10,6 +10,7 @@ WinMerge 2.13.14
   Make comment filtering work for folder compare (#3046938)
   Recognize .ascx files as ASP files (#3042393)
   Comment filtering improvement (#3034083)
+  Installer: Drop Windows 9x/ME/NT4 support from InnoSetup (#3025078)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
   Bugfix: Options dialog didn't update when importing settings

@@ -2,7 +2,7 @@
 ; $Id$
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
-;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
+;                 Purpose:  The is the Inno Setup installation script for distributing our WinMerge application.
 ; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
 ;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
@@ -84,6 +84,9 @@ OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
 ;This must be admin to install C++ Runtimes and shell extension
 PrivilegesRequired=admin
+
+;Windows 2000 or later required
+MinVersion=0,5.0
 
 UninstallDisplayIcon={app}\{code:ExeName}
 
@@ -358,11 +361,8 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 
 [Files]
-; Select the proper executable for different Windows versions
-; For Windows 05/98/ME ANSI executable is installed (WinMerge.exe)
-; For Windows NT4/2000/XP/2003/Vista the Unicode executable is installed (WinMergeU.exe)
-Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; OnlyBelowVersion: 0, 4; Components: Core
+; WinMerge itself
+Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -372,8 +372,7 @@ Source: {#RuntimesX86Installer}; DestDir: {tmp}; Flags: ignoreversion; Component
 Source: {#RuntimesX64Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; Check: IsWin64; AfterInstall: RuntimesX64Installer
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\release mindependency\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
-Source: ..\..\Build\ShellExtension\unicode release mindependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
+Source: ..\..\Build\ShellExtension\unicode release mindependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; Check: not IsWin64
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\ShellExtension\x64 release\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
@@ -509,6 +508,7 @@ Root: HKCR; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: de
 Root: HKCR; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
+;TODO: Deinstall WinMerge.exe paths?
 Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
 Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: none; Flags: uninsdeletekey
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
@@ -648,11 +648,7 @@ End;
 {Returns the appropriate name of the .EXE being installed}
 Function ExeName(Unused: string): string;
 Begin
-
-  If UsingWinNT() = True Then
-	 Result := 'WinMergeU.exe'
-  Else
-    Result := 'WinMerge.exe';
+  Result := 'WinMergeU.exe';
 End;
 
 Function FixVersion(strInput: string): string;
