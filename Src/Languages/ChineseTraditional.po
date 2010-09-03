@@ -5720,7 +5720,7 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "捲到上一差異\n"
-"上一差異 (Alt + Up)"
+"上一差異 (Alt+Up)"
 
 #: Merge.rc:2729
 #, c-format
@@ -5729,7 +5729,7 @@ msgid ""
 "Next Difference (Alt+Down)"
 msgstr ""
 "捲到下一差異\n"
-"下一差異 (Alt + Down)"
+"下一差異 (Alt+Down)"
 
 #: Merge.rc:2730
 #, c-format
@@ -5765,7 +5765,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "複製差異區塊到右邊檔案\n"
-"複製到右邊 (Alt + Right)"
+"複製到右邊 (Alt+Right)"
 
 #: Merge.rc:2734
 #, c-format
@@ -5774,7 +5774,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "複製差異區塊到左邊檔案\n"
-"複製到左邊 (Alt + Left)"
+"複製到左邊 (Alt+Left)"
 
 #: Merge.rc:2735
 #, c-format

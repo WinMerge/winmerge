@@ -5624,7 +5624,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "复制选择的文字到右侧文件\n"
-"复制右侧 (Alt + Right)"
+"复制右侧 (Alt+Right)"
 
 #: Merge.rc:2734
 #, c-format
@@ -5633,7 +5633,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "复制选择的文字到左侧文件\n"
-"复制左侧 (Alt + Left)"
+"复制左侧 (Alt+Left)"
 
 #: Merge.rc:2735
 #, c-format
