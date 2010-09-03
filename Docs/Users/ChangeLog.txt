@@ -17,6 +17,7 @@ WinMerge 2.13.14
     from .ini file. (#2794137)
   Bugfix: New fix for the bug #2210403 (#2929005)
   Bugfix: Take changed compareoptions into use in folder compare (#3046938)
+  Bugfix: "Copy and advance" toolbar icons not automatically enabled (#3033325)
   Translation updates:
   - Chinese (#3033324)
   - French (#3025202)
