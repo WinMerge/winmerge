@@ -18,6 +18,7 @@ WinMerge 2.13.14
   Bugfix: New fix for the bug #2210403 (#2929005)
   Bugfix: Take changed compareoptions into use in folder compare (#3046938)
   Translation updates:
+  - Chinese (#3033324)
   - French (#3025202)
 
 WinMerge 2.13.13 - 2010-06-19 (r7205)
