@@ -409,7 +409,7 @@ Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Micro
 Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFCLOC\mfc100jpn.dll"; DestDir: "{app}"; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
+Source: ..\..\Build\ShellExtensionUnicode Release MinDependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
