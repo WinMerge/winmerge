@@ -53,7 +53,7 @@ BOOL BCMenu::xp_select_disabled=FALSE;
 // Set to FALSE since TRUE value causes WinMerge to start slowly in WinXP
 // Ref: BUG item #1052762 WinMerge VERY slow to startup
 // https://sourceforge.net/tracker/index.php?func=detail&aid=1052762&group_id=13216&atid=113216
-BOOL BCMenu::xp_draw_3D_bitmaps=FALSE;
+BOOL BCMenu::xp_draw_3D_bitmaps=TRUE;
 BOOL BCMenu::hicolor_bitmaps=FALSE;
 // Variable to set how accelerators are justified. The default mode (TRUE) right
 // justifies them to the right of the longes string in the menu. FALSE
@@ -971,7 +971,26 @@ BOOL BCMenu::GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBit
 	CBitmap* pOldBmp = dc.SelectObject(&bmp);
 	POINT pt = {0};
 	SIZE  sz = {m_iconX, m_iconY};
-	imglist->DrawIndirect(&dc, nIndex, pt, sz, pt, ILD_NORMAL, SRCCOPY, GetSysColor(COLOR_3DFACE), CLR_DEFAULT);
+
+	IMAGELISTDRAWPARAMS drawing;
+
+	drawing.cbSize = IMAGELISTDRAWPARAMS_V3_SIZE;
+	drawing.himl = imglist->m_hImageList;
+	drawing.i = nIndex;
+	drawing.hdcDst = dc.m_hDC;
+	drawing.x = pt.x;
+	drawing.y = pt.y;
+	drawing.cx = sz.cx;
+	drawing.cy = sz.cy;
+	drawing.xBitmap = pt.x;
+	drawing.yBitmap = pt.y;
+	drawing.rgbBk = GetSysColor(COLOR_3DFACE);
+	drawing.rgbFg = CLR_DEFAULT;
+	drawing.fStyle = ILD_NORMAL;
+	drawing.dwRop = SRCCOPY;
+
+	ImageList_DrawIndirect(&drawing);
+
 	dc.SelectObject( pOldBmp );
 	dc.DeleteDC();
 	return(TRUE);
@@ -2429,7 +2448,6 @@ void BCMenu::GetShadowBitmap(CBitmap &bmp)
 
 	ddc.SelectObject(pddcOldBmp);
 }
-
 
 BOOL BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID, BOOL bDisabled/*=FALSE*/)
 {
