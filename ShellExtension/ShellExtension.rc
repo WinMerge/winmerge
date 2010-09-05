@@ -296,8 +296,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,15,0,2
- PRODUCTVERSION 1,15,0,2
+ FILEVERSION 1,15,0,3
+ PRODUCTVERSION 1,15,0,3
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -315,15 +315,15 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "http://winmerge.org\0"
             VALUE "FileDescription", "WinMerge Shell Integration library\0"
-            VALUE "FileVersion", "1.15.0.2\0"
+            VALUE "FileVersion", "1.15.0.3\0"
             VALUE "InternalName", "ShellExtension\0"
-            VALUE "LegalCopyright", "Copyright 2003-2009\0"
+            VALUE "LegalCopyright", "Copyright 2003-2010\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OLESelfRegister", "\0"
             VALUE "OriginalFilename", "ShellExtension.DLL\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge Shell Integration library\0"
-            VALUE "ProductVersion", "1.15.0.2\0"
+            VALUE "ProductVersion", "1.15.0.3\0"
             VALUE "SpecialBuild", "\0"
         END
     END
