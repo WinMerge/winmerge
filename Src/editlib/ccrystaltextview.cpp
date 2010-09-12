@@ -4510,101 +4510,101 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
      int &nLen)
 {
   if (dwFlags & FIND_REGEXP)
+  {
+    int pos;
+    const char * errormsg = NULL;
+    int erroroffset = 0;
+    const int ilen = _tcslen(pszFindWhat) * sizeof(TCHAR) + 1;
+    char *regexString = new char[ilen];
+    int pcre_opts = 0;
+
+#ifdef UNICODE
+    // For unicode builds, use UTF-8.
+    // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
+    size_t regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
+      regexString, ilen);
+    pcre_opts |= PCRE_UTF8;
+#else
+    strcpy(regexString, pszFindWhat);
+    size_t regexLen = ilen;
+#endif
+    regexString[regexLen] = 0;
+    pcre_opts |= PCRE_BSR_ANYCRLF;
+    if ((dwFlags & FIND_MATCH_CASE) == 0)
+      pcre_opts |= PCRE_CASELESS;
+
+    pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
+      &erroroffset, NULL);
+    pcre_extra *pe = NULL;
+    if (regexp)
     {
-      int pos;
-      const char * errormsg = NULL;
-      int erroroffset = 0;
-      char regexString[200] = {0};
-      int regexLen = 0;
-      int pcre_opts = 0;
-
-#ifdef UNICODE
-      // For unicode builds, use UTF-8.
-      // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-      regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
-          regexString, sizeof(regexString));
-      pcre_opts |= PCRE_UTF8;
-#else
-      strcpy(regexString, pszFindWhat);
-      regexLen = strlen(regexString);
-#endif
-      pcre_opts |= PCRE_BSR_ANYCRLF;
-      if ((dwFlags & FIND_MATCH_CASE) == 0)
-        pcre_opts |= PCRE_CASELESS;
-
-      pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
-          &erroroffset, NULL);
-      pcre_extra *pe = NULL;
-      if (regexp)
-        {
-          errormsg = NULL;
-          pe = pcre_study(regexp, 0, &errormsg);
-        }
-
-      int ovector[30];
-      int compStringBufLen = _tcslen(pszFindWhere) * sizeof(TCHAR) + 1;
-      char *compString = new char[compStringBufLen];
-      int stringLen = 0;
-
-#ifdef UNICODE
-      stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
-          compString, compStringBufLen);
-      compString[stringLen] = '\0';
-#else
-      strncpy(compString, pszFindWhere, compStringBufLen);
-      stringLen = strlen(compString);
-#endif
-
-      int result = pcre_exec(regexp, pe, compString, stringLen,
-          0, 0, ovector, 30);
-
-      if (result >= 0)
-        {
-#ifdef UNICODE
-          pos = ucr::stringlen_of_utf8(compString, ovector[0]);
-          nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
-#else
-          pos = ovector[0];
-          nLen = ovector[1] - ovector[0];
-#endif
-        }
-      else
-        pos = -1;
-
-      delete [] compString;
-      pcre_free(regexp);
-      pcre_free(pe);
-      return pos;
+      errormsg = NULL;
+      pe = pcre_study(regexp, 0, &errormsg);
     }
+    delete [] regexString;
+    int ovector[30];
+    int compStringBufLen = _tcslen(pszFindWhere) * sizeof(TCHAR) + 1;
+    char *compString = new char[compStringBufLen];
+    int stringLen = 0;
+
+#ifdef UNICODE
+    stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
+      compString, compStringBufLen);
+#else
+    strncpy(compString, pszFindWhere, compStringBufLen);
+    stringLen = compStringBufLen;
+#endif
+    compString[stringLen] = 0;
+    int result = pcre_exec(regexp, pe, compString, stringLen,
+      0, 0, ovector, 30);
+
+    if (result >= 0)
+    {
+#ifdef UNICODE
+      pos = ucr::stringlen_of_utf8(compString, ovector[0]);
+      nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
+#else
+      pos = ovector[0];
+      nLen = ovector[1] - ovector[0];
+#endif
+    }
+    else
+      pos = -1;
+
+    delete [] compString;
+    pcre_free(regexp);
+    pcre_free(pe);
+    return pos;
+  }
   else
+  {
+    ASSERT (pszFindWhere != NULL);
+    ASSERT (pszFindWhat != NULL);
+    int nCur = 0;
+    int nLength = (int) _tcslen (pszFindWhat);
+    nLen = nLength;
+    for (;;)
     {
-      ASSERT (pszFindWhere != NULL);
-      ASSERT (pszFindWhat != NULL);
-      int nCur = 0;
-      int nLength = (int) _tcslen (pszFindWhat);
-      nLen = nLength;
-      for (;;)
-        {
-          LPCTSTR pszPos = _tcsstr (pszFindWhere, pszFindWhat);
-          if (pszPos == NULL)
-            return -1;
-          if ((dwFlags & FIND_WHOLE_WORD) == 0)
-            return nCur + (int) (pszPos - pszFindWhere);
-          if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
-            {
-              nCur += (int) (pszPos - pszFindWhere + 1);
-              pszFindWhere = pszPos + 1;
-              continue;
-            }
-          if (xisalnum (pszPos[nLength]))
-            {
-              nCur += (int) (pszPos - pszFindWhere + 1);
-              pszFindWhere = pszPos + 1;
-              continue;
-            }
-          return nCur + (int) (pszPos - pszFindWhere);
-        }
+      LPCTSTR pszPos = _tcsstr (pszFindWhere, pszFindWhat);
+      if (pszPos == NULL)
+        return -1;
+      if ((dwFlags & FIND_WHOLE_WORD) == 0)
+        return nCur + (int) (pszPos - pszFindWhere);
+      if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
+      {
+        nCur += (int) (pszPos - pszFindWhere + 1);
+        pszFindWhere = pszPos + 1;
+        continue;
+      }
+      if (xisalnum (pszPos[nLength]))
+      {
+        nCur += (int) (pszPos - pszFindWhere + 1);
+        pszFindWhere = pszPos + 1;
+        continue;
+      }
+      return nCur + (int) (pszPos - pszFindWhere);
     }
+  }
   ASSERT (FALSE);               // Unreachable
 
   return -1;

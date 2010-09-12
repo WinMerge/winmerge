@@ -286,16 +286,17 @@ void PluginInfo::LoadFilterString()
 		FileFilterElement element;
 		const char * errormsg = NULL;
 		int erroroffset = 0;
-		char regexString[200] = {0};
-		int regexLen = 0;
+		const int ilen = _tcslen(sPiece) * sizeof(TCHAR) + 1;
+		char *regexString = new char[ilen];
+
 #ifdef UNICODE
-		regexLen = TransformUcs2ToUtf8((LPCTSTR)sPiece, _tcslen(sPiece),
-			regexString, sizeof(regexString));
+		size_t regexLen = TransformUcs2ToUtf8((LPCTSTR)sPiece, _tcslen(sPiece),
+			regexString, ilen);
 #else
 		strcpy(regexString, (LPCTSTR)sPiece);
-		regexLen = strlen(regexString);
+		size_t regexLen = ilen;
 #endif
-
+		regexString[regexLen] = 0;
 		pcre *regexp = pcre_compile(regexString, 0, &errormsg, &erroroffset, NULL);
 		if (regexp)
 		{
@@ -303,7 +304,7 @@ void PluginInfo::LoadFilterString()
 			elem->pRegExp = regexp;
 			m_filters->push_back(elem);
 		}
-
+		delete [] regexString;
 	};
 }
 
