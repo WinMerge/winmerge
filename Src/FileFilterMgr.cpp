@@ -142,7 +142,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	// Ignore lines beginning with '##'
 	size_t pos = str.find(commentLeader);
-	if (pos == 0)
+	if (pos == str.npos)
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
@@ -298,35 +298,37 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  */
 BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
 {
+		int ovector[30];
+	const String sTest = szTest;
+	const int ilen = sTest.length() * sizeof(TCHAR) + 1;
+	char *compString = new char[ilen];
+	size_t stringlen;
+
+#ifdef UNICODE
+	stringlen = TransformUcs2ToUtf8(sTest.c_str(), sTest.length(),
+		compString, ilen);
+#else
+	strncpy(compString, sTest.c_str(), sTest.length());
+	stringlen = ilen - 1;//linelen(compString);
+#endif
+
+	compString[stringlen] = 0;
+
+	int result = 0;
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
-		int ovector[30];
-		char compString[200] = {0};
-		int stringLen = 0;
-		TCHAR * tempName = _tcsdup(szTest); // Create temp copy for conversions
-		TCHAR * cmpStr = _tcsupr(tempName);
-
-#ifdef UNICODE
-		stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
-			compString, sizeof(compString));
-#else
-		strcpy(compString, cmpStr);
-		stringLen = strlen(compString);
-#endif
-
 		pcre * regexp = (*iter)->pRegExp;
 		pcre_extra * extra = (*iter)->pRegExpExtra;
-		int result = pcre_exec(regexp, extra, compString, stringLen,
+		result = pcre_exec(regexp, extra, compString,(int) stringlen,
 			0, 0, ovector, 30);
-
-		free(tempName);
-
 		if (result >= 0)
-			return TRUE;
-
+			break;
 		++iter;
 	}
+	delete [] compString;
+	if (result >= 0)
+		return TRUE;
 	return FALSE;
 }
 

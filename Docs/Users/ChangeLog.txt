@@ -21,6 +21,7 @@ WinMerge 2.13.14
   Bugfix: Location pane focus enabled "Save" (#3022292)
   Bugfix: WinMerge was vulnerable to DLL hijacking as described in
     Microsoft Security Advisory (2269637)  (#33056008)
+  Bugfix: Fix crash with long paths (#3056974)
   Translation updates:
   - Chinese (#3033324)
   - French (#3025202)
