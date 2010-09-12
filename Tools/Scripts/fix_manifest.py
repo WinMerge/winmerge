@@ -34,8 +34,6 @@ from xml.dom import minidom
 # The version of the script
 script_version = 0.1
 
-manifest_path = r'$(InputDir)\res\$(TargetFileName).manifest'
-
 def process_project_file(filename):
   '''Process a given project file.
 
@@ -48,14 +46,14 @@ def process_project_file(filename):
     #print 'Opening file ' + filename + ' for parsing...'
     fread = open(filename, 'r')
   except IOError, (errno, strerror):
-    print 'Cannot open file ' + file + ' for reading'
+    print 'Cannot open file ' + filename + ' for reading'
     print 'Error: ' + strerror
     return False
 
   try:
     fwrite = open(outfile, 'w')
   except IOError, (errno, strerror):
-    print 'Cannot open file ' + infile + ' for writing'
+    print 'Cannot open file ' + outfile + ' for writing'
     print 'Error: ' + strerror
     fread.close()
     return False
@@ -131,6 +129,7 @@ def handle_config_elem(element):
 def handle_tool_element(element):
   '''Adds new attributes to the element.'''
 
+  manifest_path = r'$(InputDir)\res\$(TargetFileName).manifest'
   element.setAttribute('AdditionalManifestFiles', manifest_path)
   element.setAttribute('EmbedManifest', 'true')
 

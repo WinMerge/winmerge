@@ -15,7 +15,7 @@
 ##    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #############################################################################
 
-# Copyright (c) 2008 Kimmo Varis <kimmov@winmerge.org>
+# Copyright (c) 2008-2010 Kimmo Varis <kimmov@winmerge.org>
 
 # $Id$
 
@@ -31,33 +31,50 @@ import os
 import subprocess
 import sys
 
+import cleanup_backups
+import fix_manifest
+import ToolSettings
+
 # The version of the script
-script_version = 0.1
+script_version = 0.4
+
+# global settings class instance
+tools = ToolSettings.ToolSettings()
 
 solutions = [r'Externals\expat\expat.sln',
-    r'Externals\pcre\Win32\PCRE.sln',
     r'WinMerge.sln']
 
-projects = [r'Externals\heksedit\heksedit.vcproj',
-    r'Externals\scew\win32\scew.vcproj',
+projects = [r'Externals\scew\win32\scew.vcproj',
+    r'Externals\pcre\Win32\pcre.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
 
-# TODO: read this from Tools.ini
-vs_path = r'C:\Program Files\Microsoft Visual Studio 8'
+# These projects need the manifest file fix
+manifest_projects = [r'Src\Merge.vcproj']
 
 def upgrade_projects(root_path):
-    vs_binary = os.path.join(vs_path, 'Common7/IDE')
+    vs_binary = os.path.join(tools.vs_path, 'Common7/IDE')
     vs_binary = os.path.join(vs_binary, 'devenv.com')
     
     for solution in solutions:
         sol_file = os.path.join(root_path, solution)
         print 'Upgrading VS solution file: ' + sol_file
         subprocess.call([vs_binary, sol_file, '/Upgrade'], shell = True)
+        cleanup(sol_file)
 
     for project in projects:
         proj_file = os.path.join(root_path, project)
         print 'Upgrading project file: ' + proj_file
         subprocess.call([vs_binary, proj_file, '/Upgrade'], shell = True)
+        cleanup(proj_file)
+
+def fix_proj_manifests(root_path):
+    for project in manifest_projects:
+        proj_file = os.path.join(root_path, project)
+        fix_manifest.process_project_file(proj_file)
+
+def cleanup(updatefile):
+    folder = os.path.dirname(updatefile)
+    cleanup_backups.cleanupfolder(folder)
 
 def usage():
     '''Print script usage information.'''
@@ -92,9 +109,12 @@ def main(argv):
     if not os.path.exists(root_path):
         print 'ERROR: Cannot find path: ' + root_path
         sys.exit()
-    
+
+    tools.read_ini('Tools.ini')
+
     print 'Upgrading VS solution- and project-file in folder: ' + root_path
     upgrade_projects(root_path)
+    fix_proj_manifests(root_path)
 
 # MAIN #
 if __name__ == "__main__":

@@ -61,7 +61,7 @@ create_release.py
 
  Run from root folder (Src, Filters etc are subfolders).
 
- Usage: create_release.py [-h] [-f file] [-v n] [-c] [-l]
+ Usage: create_release [-h] [-f file] [-v n] [-c] [-l]
   Where:
    -h, --help print usage help
    -v n, --version=n set release version
@@ -70,7 +70,7 @@ create_release.py
    -f file, --file=filename set the version number ini file
   For example:
    create_release -v 2.7.7.1
-   create_release.py -f versions.ini
+   create_release -f versions.ini
 
 
 fix_manifest.py
