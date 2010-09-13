@@ -133,7 +133,7 @@ void PropCodepage::GetEncodingCodePageFromNameString()
 		_wcstombsz(result, m_cCustomCodepageValue, len); //conversion to char * 
 #else
 		long len = m_cCustomCodepageValue.GetLength(); 
-		strncpy(Result, m_cCustomCodepageValue.GetBuffer(0), len);
+		strncpy(result, m_cCustomCodepageValue.GetBuffer(0), len);
 #endif
 		result[len] = '\0'; //don't forget to put the caracter of terminated string 
 		nCustomCodepageValue = GetEncodingCodePageFromName(result);
