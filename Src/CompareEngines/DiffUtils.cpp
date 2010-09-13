@@ -41,6 +41,7 @@ DiffUtils::DiffUtils()
 DiffUtils::~DiffUtils()
 {
 	delete m_FilterCommentsManager;
+	delete m_pDiffWrapper;
 	ClearCompareOptions();
 	ClearFilterList();
 }
