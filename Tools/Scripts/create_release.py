@@ -113,12 +113,6 @@ def cleanup_build():
         print 'Skipping folder %s' % winmerge_temp
     
     try:
-        print 'Remove ANSI files'
-        if os.path.exists('build/mergerelease/WinMerge.exe'):
-            os.remove('build/mergerelease/WinMerge.exe')
-        if os.path.exists('build/mergerelease/MergeLang.dll'):
-            os.remove('build/mergerelease/MergeLang.dll')
-
         print 'Remove Unicode files'
         if os.path.exists('build/mergeunicoderelease/WinMergeU.exe'):
             os.remove('build/mergeunicoderelease/WinMergeU.exe')
@@ -132,16 +126,12 @@ def cleanup_build():
         print 'Remove expat files'
         if os.path.exists('build/expat'):
             shutil.rmtree('build/expat', True)
-        if os.path.exists('build/mergerelease/libexpat.dll'):
-            os.remove('build/mergerelease/libexpat.dll')
         if os.path.exists('build/mergeunicoderelease/libexpat.dll'):
             os.remove('build/mergeunicoderelease/libexpat.dll')
 
         print 'Remove pcre files'
         if os.path.exists('build/pcre'):
             shutil.rmtree('build/pcre', True)
-        if os.path.exists('build/mergerelease/pcre.dll'):
-            os.remove('build/mergerelease/pcre.dll')
         if os.path.exists('build/mergeunicoderelease/pcre.dll'):
             os.remove('build/mergeunicoderelease/pcre.dll')
 
@@ -266,9 +256,7 @@ def build_targets():
     """Builds all WinMerge targets."""
 
     build_libraries()
-
     vs_cmd = get_vs_ide_bin()
-
     ret = build_winmerge(vs_cmd)
     if ret:
         ret = build_shellext(vs_cmd)
@@ -282,14 +270,8 @@ def build_winmerge(vs_cmd):
     #print sol_path
 
     # devenv Src\Merge.dsp /rebuild Release
-    print 'Build WinMerge executables...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Release'], shell = True)
-    if ret == 0:
-        ret = call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell = True)
-    else:
-        print 'ERROR: Failed to build ANSI release target of WinMerge!'
-        return False
-
+    print 'Build WinMerge executable...'
+    ret = call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell = True)
     if ret == 0:
         return True
     else:
@@ -307,13 +289,7 @@ def build_shellext(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build ShellExtension dlls...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
-    if ret == 0:
-        ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
-    else:
-        print 'ERROR: Failed to build ANSI target of ShellExtension!'
-        return False
-        
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
     if ret == 0:
         if build_64bit == True:
             ret = call([vs_cmd, solution_path, '/rebuild', 'X64 Release|x64'])
@@ -382,11 +358,9 @@ def create_bin_folders(bin_folder, dist_src_folder):
     os.chdir(cur_path)
 
     print 'Copying files to binary distribution folder...'
-    shutil.copy('build/mergerelease/WinMerge.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/WinMergeU.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/MergeLang.dll', bin_folder)
 
-    shutil.copy('build/ShellExtension/release mindependency/ShellExtension.dll', bin_folder)
     shutil.copy('build/ShellExtension/unicode release mindependency/ShellExtensionU.dll', bin_folder)
     shutil.copy('build/ShellExtension/x64 release/ShellExtensionX64.dll', bin_folder)
     shutil.copy('ShellExtension/Register.bat', bin_folder)
