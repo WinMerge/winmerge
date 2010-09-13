@@ -158,22 +158,12 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
-	char regexString[200] = {0};
-	int regexLen = 0;
+
+	char *regexString = UCS2UTF8_ConvertToUtf8(str.c_str());
 	int pcre_opts = 0;
 
-#ifdef UNICODE
-	// For unicode builds, use UTF-8.
-	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-	regexLen = TransformUcs2ToUtf8(str.c_str(), str.length(),
-		regexString, (int)sizeof(regexString));
-	pcre_opts |= PCRE_UTF8;
-#else
-	strcpy(regexString, str.c_str());
-	regexLen = strlen(regexString);
-#endif
+
 	pcre_opts |= PCRE_CASELESS;
-	
 	pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
 		&erroroffset, NULL);
 	if (regexp)
@@ -189,6 +179,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		
 		filterList->push_back(elem);
 	}
+	UCS2UTF8_Dealloc(regexString);
 }
 
 /**
@@ -298,22 +289,9 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  */
 BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
 {
-		int ovector[30];
-	const String sTest = szTest;
-	const int ilen = sTest.length() * sizeof(TCHAR) + 1;
-	char *compString = new char[ilen];
-	size_t stringlen;
-
-#ifdef UNICODE
-	stringlen = TransformUcs2ToUtf8(sTest.c_str(), sTest.length(),
-		compString, ilen);
-#else
-	strncpy(compString, sTest.c_str(), sTest.length());
-	stringlen = ilen - 1;//linelen(compString);
-#endif
-
-	compString[stringlen] = 0;
-
+	int ovector[30];
+	size_t stringlen =_tcslen(szTest);
+	char *compString = UCS2UTF8_ConvertToUtf8(szTest);
 	int result = 0;
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
@@ -326,7 +304,7 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 			break;
 		++iter;
 	}
-	delete [] compString;
+	UCS2UTF8_Dealloc(compString);
 	if (result >= 0)
 		return TRUE;
 	return FALSE;
