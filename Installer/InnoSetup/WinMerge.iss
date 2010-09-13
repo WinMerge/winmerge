@@ -128,11 +128,13 @@ Name: Italian; MessagesFile: Languages\Italian.isl
 Name: Japanese; MessagesFile: Languages\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: Languages\Korean.isl
 Name: Norwegian; MessagesFile: Languages\Norwegian.isl
+Name: Persian; MessagesFile: Languages\Persian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Portuguese.isl
 Name: PortugueseBrazilian; MessagesFile: Languages\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: Languages\Romanian.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
+Name: Serbian; MessagesFile: Languages\Serbian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Serbian.txt
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Slovenian; MessagesFile: Languages\Slovenian.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
@@ -215,6 +217,9 @@ Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninst
 Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Norwegian
 Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Norwegian
 
+Name: Languages\Persian; Description: {cm:PersianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Persian
+Name: Languages\Persian; Description: {cm:PersianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Persian
+
 Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Polish
 Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Polish
 
@@ -229,6 +234,9 @@ Name: Languages\Romanian; Description: {cm:RomanianLanguage}; Flags: disablenoun
 
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Russian
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Russian
+
+Name: Languages\Serbian; Description: {cm:SerbianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Serbian
+Name: Languages\Serbian; Description: {cm:SerbianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Serbian
 
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Slovak
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovak
@@ -293,11 +301,13 @@ Name: {app}\Languages\MergeItalian.lang; Type: files; Check: not IsComponentSele
 Name: {app}\Languages\MergeJapanese.lang; Type: files; Check: not IsComponentSelected('Japanese')
 Name: {app}\Languages\MergeKorean.lang; Type: files; Check: not IsComponentSelected('Korean')
 Name: {app}\Languages\MergeNorwegian.lang; Type: files; Check: not IsComponentSelected('Norwegian')
+Name: {app}\Languages\MergePersian.lang; Type: files; Check: not IsComponentSelected('Persian')
 Name: {app}\Languages\MergePolish.lang; Type: files; Check: not IsComponentSelected('Polish')
 Name: {app}\Languages\MergePortuguese.lang; Type: files; Check: not IsComponentSelected('Portuguese')
 Name: {app}\Languages\MergeSlovak.lang; Type: files; Check: not IsComponentSelected('Slovak')
 Name: {app}\Languages\MergeSpanish.lang; Type: files; Check: not IsComponentSelected('Spanish')
 Name: {app}\Languages\MergeRussian.lang; Type: files; Check: not IsComponentSelected('Russian')
+Name: {app}\Languages\MergeSerbian.lang; Type: files; Check: not IsComponentSelected('Serbian')
 Name: {app}\Languages\MergeSwedish.lang; Type: files; Check: not IsComponentSelected('Swedish')
 Name: {app}\Languages\MergeTurkish.lang; Type: files; Check: not IsComponentSelected('Turkish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('Plugins')
@@ -407,11 +417,14 @@ Source: ..\..\Src\Languages\Japanese.po; DestDir: {app}\Languages; Components: L
 Source: ..\..\Docs\Users\Languages\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Src\Languages\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
 Source: ..\..\Src\Languages\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Serbian.po; DestDir: {app}\Languages; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-Serbian.txt; DestDir: {app}\Docs; Components: Languages\Serbian
 Source: ..\..\Src\Languages\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
@@ -549,11 +562,13 @@ Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000411; Flags: deletevalue; Languages: Japanese
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000412; Flags: deletevalue; Languages: Korean
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000414; Flags: deletevalue; Languages: Norwegian
+Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000429; Flags: deletevalue; Languages: Persian
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000415; Flags: deletevalue; Languages: Polish
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000816; Flags: deletevalue; Languages: Portuguese
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000416; Flags: deletevalue; Languages: PortugueseBrazilian
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000418; Flags: deletevalue; Languages: Romanian
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000419; Flags: deletevalue; Languages: Russian
+Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c1a; Flags: deletevalue; Languages: Serbian
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041b; Flags: deletevalue; Languages: Slovak
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c0a; Flags: deletevalue; Languages: Spanish
 Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041D; Flags: deletevalue; Languages: Swedish

@@ -6,6 +6,8 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.12.6
   Add missing keywords to Pascal highlighter (#2834192)
   Fix help locations (#2988974)
+  New translation: Persian (#2877121, #3065119)
+  New translation: Serbian (#3017674, #3065119)
   Translation updates:
   - Chinese (#3033324)
   - Dutch (#2804979)

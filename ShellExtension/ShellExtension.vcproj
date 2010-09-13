@@ -1822,6 +1822,48 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
+			<File
+				RelativePath="Languages\ShellExtensionPersian.rc">
+				<FileConfiguration
+					Name="Unicode Debug|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32"
 					ExcludedFromBuild="TRUE">
@@ -1986,6 +2028,57 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			</File>
 			<File
 				RelativePath="Languages\ShellExtensionRussian.rc">
+				<FileConfiguration
+					Name="Unicode Debug|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinSize|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release MinDependency|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;$(NoInherit)"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinDependency|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release MinSize|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Languages\ShellExtensionSerbian.rc">
 				<FileConfiguration
 					Name="Unicode Debug|Win32"
 					ExcludedFromBuild="TRUE">
