@@ -4514,21 +4514,9 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
     int pos;
     const char * errormsg = NULL;
     int erroroffset = 0;
-    const int ilen = _tcslen(pszFindWhat) * sizeof(TCHAR) + 1;
-    char *regexString = new char[ilen];
+    char *regexString = UCS2UTF8_ConvertToUtf8(pszFindWhat);
     int pcre_opts = 0;
 
-#ifdef UNICODE
-    // For unicode builds, use UTF-8.
-    // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-    size_t regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
-      regexString, ilen);
-    pcre_opts |= PCRE_UTF8;
-#else
-    strcpy(regexString, pszFindWhat);
-    size_t regexLen = ilen;
-#endif
-    regexString[regexLen] = 0;
     pcre_opts |= PCRE_BSR_ANYCRLF;
     if ((dwFlags & FIND_MATCH_CASE) == 0)
       pcre_opts |= PCRE_CASELESS;
@@ -4541,20 +4529,10 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       errormsg = NULL;
       pe = pcre_study(regexp, 0, &errormsg);
     }
-    delete [] regexString;
+    UCS2UTF8_Dealloc(regexString);
     int ovector[30];
-    int compStringBufLen = _tcslen(pszFindWhere) * sizeof(TCHAR) + 1;
-    char *compString = new char[compStringBufLen];
-    int stringLen = 0;
-
-#ifdef UNICODE
-    stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
-      compString, compStringBufLen);
-#else
-    strncpy(compString, pszFindWhere, compStringBufLen);
-    stringLen = compStringBufLen;
-#endif
-    compString[stringLen] = 0;
+    char *compString = UCS2UTF8_ConvertToUtf8(pszFindWhere);
+    int stringLen = _tcslen(pszFindWhere);
     int result = pcre_exec(regexp, pe, compString, stringLen,
       0, 0, ovector, 30);
 
@@ -4571,7 +4549,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
     else
       pos = -1;
 
-    delete [] compString;
+    UCS2UTF8_Dealloc(compString);
     pcre_free(regexp);
     pcre_free(pe);
     return pos;
