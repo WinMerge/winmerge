@@ -85,6 +85,7 @@ import optparse
 import shutil
 import SetVersions
 import ToolSettings
+import UpgradeProjects
 
 # global settings class instance
 prog = ToolSettings.ToolSettings()
@@ -494,6 +495,13 @@ def check_x64shellext():
     else:
         return True
 
+def update_project_files(root_path):
+    '''Upgrade project/solution files for the VS version used.'''
+
+    print 'Update VS project/solution files for used VS version...'
+    UpgradeProjects.tools.read_ini('Tools.ini')
+    UpgradeProjects.upgrade_projects(root_path)
+
 def main(argv):
     global prog
     ver_file = ''
@@ -511,7 +519,7 @@ def main(argv):
 
     if options.version:
         prog_version = options.version
-        print 'Start building Frhed release version ' + prog_version
+        print 'Start building WinMerge release version ' + prog_version
 
     if options.cleanup:
         if cleanup_build() == True:
@@ -583,6 +591,8 @@ def main(argv):
 
     if setup_translations() == False:
         sys.exit(1)
+
+    update_project_files(root_path)
 
     if build_targets() == False:
         sys.exit(1)
