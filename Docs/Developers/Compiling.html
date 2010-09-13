@@ -78,8 +78,9 @@ MFC for the GUI.</p>
 <ul>
   <li>Visual Studio 2003.Net + Service Pack 1</li>
   <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1
-    recommended) [<i>used for releases</i>]</li>
-  <li>Visual Studio 2008 (Service Pack 1 recommended)</li>
+    recommended)</li>
+  <li>Visual Studio 2008 (Service Pack 1 recommended)  [<i>used for releases</i>]</li>
+  <li>Visual Studio 2010</li>
 </ul>
 
 <h4>Libraries</h4>
@@ -87,7 +88,7 @@ MFC for the GUI.</p>
 All are in the source tree (in <code>/Externals</code> -folder), and need to be
 compiled before compiling WinMerge executable.</p>
 
-<p class="note"><b>Visual Studio 2005 and later:</b> You'll need to convert
+<p class="note"><b>Visual Studio 2008 and later:</b> You'll need to convert
 library workspace and project files to new format before compiling.</p>
 
 <p> To convert workspace/project files, just open them into Visual Studio and
@@ -137,7 +138,7 @@ the "<em>Platform SDK</em>" start menu folder.</p>
 ShellExtension (in <code>/ShellExtension</code>) have their own project files. There is no one
 single project/workspace file to compile all projects.<p>
 
-<p>The Visual Studio project and solution files for VS2003 come with the
+<p>The Visual Studio project and solution files for VS2005 come with the
 WinMerge sources. Newer versions of Visual Studio can open that file too, they
 just ask if one wants to convert to the new version. The reason we don't ship
 project files for all Visual Studio versions is we have no resources
@@ -158,7 +159,7 @@ things.</p>
 <p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
 <ul>
   <li>Open Visual Studio solution <code>/Externals/expat/expat.sln</code>. If you are
-    using Visual Studio 2005 or later you need to convert the file to the new format when
+    using Visual Studio 2008 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select either debug or release targets.</li>
@@ -172,7 +173,7 @@ things.</p>
 <p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:</p>
 <ul>
   <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.vcproj</code> If you are
-    using Visual Studio 2005 or later you need to convert the file to the new format when
+    using Visual Studio 2008 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Make sure all targets are selected</li>
@@ -187,7 +188,7 @@ project- and solution-files. There are ready-made files in our source tree.</p>
 <p>To compile PCRE:</p>
 <ul>
   <li>Open Visual Studio solution file <code>/Externals/pcre/Win32/pcre.sln</code> If you are
-    using Visual Studio 2005 or later you need to convert the file to the new format when
+    using Visual Studio 2008 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select the <code>MinSizeRel</code>-target.</li>
   <li>Build the <code>pcre</code>-project
@@ -219,9 +220,7 @@ some files.
 <p>There are several targets available for compiling different projects. Targets used
 for compiling releases are:<br>
 <ul>
-  <li><code>WinMerge.exe</code> : Release</li>
   <li><code>WinMergeU.exe</code> : UnicodeRelease</li>
-  <li><code>ShellExtension.dll</code> : Release MinDependency</li>
   <li><code>ShellExtensionU.dll</code> : Unicode Release MinDependency</li>
   <li>Plugin dlls : Unicode Release MinDependency</li>
 </ul>
