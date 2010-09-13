@@ -28,6 +28,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_CODEPAGE };
 	int		m_nCodepageSystem;
 	int		m_nCustomCodepageValue;
+	CString	m_cCustomCodepageValue;
 	BOOL	m_bDetectCodepage;
 	//}}AFX_DATA
 
@@ -44,6 +45,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCodepage)
 	virtual BOOL OnInitDialog();
+	void GetEncodingCodePageFromNameString();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();
 	afx_msg void OnCpUi();
