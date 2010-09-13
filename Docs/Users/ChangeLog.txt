@@ -4,6 +4,9 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.14
+  Update release compiler and runtimes to VS2008
+  Remove ANSI binaries from distribution
+  Drop support for W95, W98, WME and NT4
   Update to PCRE 8.10 (r7210)
   Update SCEW to 1.1.2 (r7212)
   In-line difference highlighting improvement (#3022014)
