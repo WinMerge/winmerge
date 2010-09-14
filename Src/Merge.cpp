@@ -171,6 +171,15 @@ CMergeApp theApp;
  */
 BOOL CMergeApp::InitInstance()
 {
+	// Prevents DLL hijacking
+	HMODULE hLibrary = GetModuleHandle(_T("kernel32.dll"));
+	BOOL (WINAPI *pfnSetSearchPathMode)(DWORD) = (BOOL (WINAPI *)(DWORD))GetProcAddress(hLibrary, "SetSearchPathMode");
+	if (pfnSetSearchPathMode)
+		pfnSetSearchPathMode(0x00000001L /*BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE*/ | 0x00008000L /*BASE_SEARCH_PATH_PERMANENT*/);
+	BOOL (WINAPI *pfnSetDllDirectoryA)(LPCSTR) = (BOOL (WINAPI *)(LPCSTR))GetProcAddress(hLibrary, "SetDllDirectoryA");
+	if (pfnSetDllDirectoryA)
+		pfnSetDllDirectoryA("");
+
 	InitCommonControls();    // initialize common control library
 	CWinApp::InitInstance(); // call parent class method
 
