@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.14
+WinMerge 2.13.14 - 2010-09-14 (r7261)
   Update release compiler and runtimes to VS2008
   Remove ANSI binaries from distribution
   Drop support for W95, W98, WME and NT4
