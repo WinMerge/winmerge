@@ -32,7 +32,7 @@ msgstr "AFX_TARG_SLV"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN"
+msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN_SLOVENIA"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28

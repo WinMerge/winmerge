@@ -29,7 +29,7 @@ msgstr "AFX_TARG_ELL"
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_GREEK, SUBLANG_GREEK"
+msgstr "LANG_GREEK, SUBLANG_GREEK_GREECE"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28
