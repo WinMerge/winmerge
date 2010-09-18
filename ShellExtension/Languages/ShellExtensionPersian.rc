@@ -1,10 +1,6 @@
 //Microsoft Developer Studio generated resource script.
 //
-// This is an *automatic* generated file for the ShellExtension translation.
-// Please edit the PO file instead of this RC file for translation updates:
-//   ..\..\Translations\ShellExtension\<Languagename>.po
-//
-// $Id: ShellExtensionPersian.rc 7022 2009-10-21 19:36:10Z gerundt $
+// $Id$
 
 #include "../resource.h"
 
