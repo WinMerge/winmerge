@@ -64,9 +64,24 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <h3>Folder structure and files needed:</h3>
 
 <p>These files are produced by compiling WinMerge, documentation etc, but
-that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
+that's not subject of this document, refer to <a href="Compiling.html">Compiling.html</a>,
+<a href="readme-manual.html">readme-manual.html</a> and
+<a href="Translations.html">Translations.html</a>.</p>
 
-<p>Copy or move the files into the following layout:</p>
+<p>In addition you will need Microsoft C- and MFC-runtime files. Those files are
+not distributes with WinMerge. Older WinMerge installers copied those runtime
+files to WinMerge program folder. But with VS 2005 and later this has caused a
+lot of installing problems for users. So now we are embedding MS's own runtime
+installer executable to our installer. This makes the installer executable
+considerable bigger but seems to be the only reliable way to install those
+runtime files.</p>
+
+<p>You can download the latest VC2008 runtimes installer from MS:
+<a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C">
+http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C</a><p>
+
+<h4>Folder structure</h4>
+<p>Copy or move the WinMerge files into the following layout (not runtimes):</p>
 
 <ul>
  <li>
@@ -76,7 +91,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
      <code>expat</code>
      <ul>
       <li><code>libexpat.dll</code></li>
-      <li><code>libexpatw.dll</code></li>
      </ul>
     </li>
     <li>
@@ -91,13 +105,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
       <li><code>WinMerge.chm</code></li>
      </ul>
     </li>
-   <li>
-    <code>MergeRelease/</code>
-    <ul>
-     <li><code>ShellExtension.dll</code></li>
-     <li><code>WinMerge.exe</code></li>
-    </ul>
-   </li>
    <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
@@ -146,12 +153,6 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
       <li><em>Copy the entire Installer/InnoSetup folder to here</em></li>
      </ul>
    </li>
-   <li>
-    <code>Runtimes/</code>
-     <ul>
-      <li><em>Copy the entire Installer/Runtimes folder to here</em></li>
-     </ul>
-    </li>
   </ul>
  </li>
  <li>
@@ -174,6 +175,11 @@ comment or remove line:</p>
 Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; [...]
 </pre>
 <p>from <code>WinMerge.iss</code></p>
+
+<h4>Runtime files installer</h4>
+<p>Runtime files installer must be copied to the <code>Runtimes</code>-folder in same level
+than WinMerge source tree folder is. Not <i>inside</i> source tree but
+<i>outside</i> of the source tree.</p>
 
 <h3>Running Inno Setup to create installer</h3>
 

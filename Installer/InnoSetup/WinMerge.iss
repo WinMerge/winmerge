@@ -2,7 +2,7 @@
 ; $Id$
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
-;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
+;                 Purpose:  The is the Inno Setup installation script for distributing our WinMerge application.
 ; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
 ;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
@@ -48,6 +48,11 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeUnicodeRelease\WinMergeU.exe"), 1, 5)
 
+; Runtime files installers
+#define RuntimesX86Installer "..\..\..\Runtimes\vcredist_x86.exe"
+#define RuntimesX64Installer "..\..\..\Runtimes\vcredist_x64.exe"
+
+
 [Setup]
 AppName=WinMerge
 AppVersion={#AppVersion}
@@ -79,6 +84,9 @@ OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
 ;This must be admin to install C++ Runtimes and shell extension
 PrivilegesRequired=admin
+
+;Windows 2000 or later required
+MinVersion=0,5.0
 
 UninstallDisplayIcon={app}\{code:ExeName}
 
@@ -353,24 +361,18 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 
 [Files]
-; Select the proper executable for different Windows versions
-; For Windows 05/98/ME ANSI executable is installed (WinMerge.exe)
-; For Windows NT4/2000/XP/2003/Vista the Unicode executable is installed (WinMergeU.exe)
-Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; OnlyBelowVersion: 0, 4; Components: Core
+; WinMerge itself
+Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
-; Microsoft runtime libraries (C-runtime, MFC)
-Source: ..\Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
-Source: ..\Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
-Source: ..\Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-Source: ..\Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+; Microsoft runtime libraries installer (C-runtimes, MFC)
+Source: {#RuntimesX86Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; AfterInstall: RuntimesInstaller
+Source: {#RuntimesX64Installer}; DestDir: {tmp}; Flags: ignoreversion; Components: Core; Check: IsWin64; AfterInstall: RuntimesX64Installer
 
 ; Shell extension
-Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
-Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
+Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; Check: not IsWin64
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
@@ -513,6 +515,7 @@ Root: HKCR; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: de
 Root: HKCR; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
+;TODO: Deinstall WinMerge.exe paths?
 Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
 Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: none; Flags: uninsdeletekey
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
@@ -596,6 +599,29 @@ Name: {app}; Type: dirifempty
 
 
 [Code]
+
+{Runs the runtime file installer}
+{Command line used is documented in:
+http://blogs.msdn.com/astebner/archive/2007/02/07/update-regarding-silent-install-of-the-vc-8-0-runtime-vcredist-packages.aspx
+}
+procedure RuntimesInstaller();
+var
+    ResultCode: Integer;
+begin
+    Exec(ExpandConstant('{tmp}\vcredist_x86.exe'), '/q:a /c:"VCREDI~3.EXE /q:a /c:""msiexec /i vcredist.msi /qn"" "', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+end;
+
+{Runs the runtime file installer for X64}
+{Command line used is documented in:
+http://blogs.msdn.com/astebner/archive/2007/02/07/update-regarding-silent-install-of-the-vc-8-0-runtime-vcredist-packages.aspx
+}
+procedure RuntimesX64Installer();
+var
+    ResultCode: Integer;
+begin
+    Exec(ExpandConstant('{tmp}\vcredist_x64.exe'), '/q:a /c:"VCREDI~2.EXE /q:a /c:""msiexec /i vcredist.msi /qn"" "', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+end;
+
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
 Var
@@ -629,11 +655,7 @@ End;
 {Returns the appropriate name of the .EXE being installed}
 Function ExeName(Unused: string): string;
 Begin
-
-  If UsingWinNT() = True Then
-	 Result := 'WinMergeU.exe'
-  Else
-    Result := 'WinMerge.exe';
+  Result := 'WinMergeU.exe';
 End;
 
 Function FixVersion(strInput: string): string;
@@ -767,7 +789,7 @@ begin
 
       {Stops analyzing the version number since we already know it's inadequate and returns False (inadequate)}
       exit;
-    end
+    end;
 
 
   {Starts detecting the Minor version of the Version Installed}
