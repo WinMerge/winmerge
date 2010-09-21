@@ -492,6 +492,11 @@ SOURCE=.\Languages\ShellExtensionSlovak.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\Languages\ShellExtensionSlovenian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
 SOURCE=.\Languages\ShellExtensionSpanish.rc
 # PROP Exclude_From_Build 1
 # End Source File
