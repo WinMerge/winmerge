@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.12.6
+WinMerge 2.13.19
   Add missing keywords to Pascal highlighter (#2834192)
   Fix help locations (#2988974)
   New translation: Persian (#2877121, #3065119)
