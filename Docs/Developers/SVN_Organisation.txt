@@ -44,7 +44,7 @@ WinMerge Folder Structure
    - selftests
  - Tools
    - diff2winmerge
-   - MakePatchDirs
+   - Scripts
  - Web
 
 
@@ -175,12 +175,6 @@ WinMerge/Tools/
 WinMerge/Tools/diff2winmerge/
  - Commandline wrapper for WinMerge executable, offers
    diffutils -style commandline switches (needed by Perl selftests).
-
-WinMerge/Tools/MakePatchDirs/
- - Source files for MakePatchDirs, a program to generate original &
-   altered directories
- - Used to create patches to WinMerge source tree, for upload to
-   sourceforge patch board
 
 WinMerge/Web/
  - Homepages.
