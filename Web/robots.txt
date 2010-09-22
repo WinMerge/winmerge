@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /bug/
-Disallow: /patch/
-Disallow: /support/
-Disallow: /rfe/
-Disallow: /todo/
-Disallow: /tracker/

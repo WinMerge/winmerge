@@ -44,7 +44,6 @@ WinMerge Folder Structure
  - Tools
    - diff2winmerge
    - Scripts
- - Web
 
 
 WinMerge/ArchiveSupport/
@@ -171,6 +170,3 @@ WinMerge/Tools/
 WinMerge/Tools/diff2winmerge/
  - Commandline wrapper for WinMerge executable, offers
    diffutils -style commandline switches (needed by Perl selftests).
-
-WinMerge/Web/
- - Homepages.
