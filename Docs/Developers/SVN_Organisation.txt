@@ -22,7 +22,6 @@ WinMerge Folder Structure
    - InnoSetup
      - Art
      - Languages
-   - Runtimes
  - Plugins
    - dlls
    - Src_Delphi
@@ -111,9 +110,6 @@ WinMerge/Installer/InnoSetup/Art/
 
 WinMerge/Installer/InnoSetup/Languages/
  - Installer translations
-
-WinMerge/Installer/Runtimes/
- - Libraries for WinMerge added to install package
 
 WinMerge/Plugins/
  - Plugins files. Also plugins documentation at the moment.
