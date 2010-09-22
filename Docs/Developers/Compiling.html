@@ -76,9 +76,11 @@ Express Editions cannot be used since they don't include MFC. WinMerge uses
 MFC for the GUI.</p>
 
 <ul>
-  <li>Visual Studio 2003.Net + Service Pack 1 (used for releases)</li>
-  <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1 recommended)</li>
-  <li>Visual Studio 2008 (Service Pack 1 recommended)</li>
+  <li>Visual Studio 2003.Net + Service Pack 1</li>
+  <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1
+    recommended)</li>
+  <li>Visual Studio 2008 (Service Pack 1 recommended)  [<i>used for releases</i>]</li>
+  <li>Visual Studio 2010</li>
 </ul>
 
 <h4>Libraries</h4>
@@ -97,6 +99,8 @@ let the Visual Studio to convert. Files are:
   <li><code>Externals\scew\win32\scew.vcproj</code></li>
   <li><code>Externals\pcre\pcre.sln</code></li>
 </ul>
+There is a Python script <code>/Tools/Scripts/UpgradeProjects.py</code> which
+updates most solution/project files.</p>
 
 <h4>Additional requirements (out of source tree)</h4>
 <ul>

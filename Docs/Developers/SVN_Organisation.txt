@@ -166,7 +166,7 @@ WinMerge/Testing/selftests/
  - Tests using Perl run WinMerge executable to test compare functionality.
 
 WinMerge/Tools/
- - Tools needed/used with WinMerge development (e.g. language file compiler).
+ - Tools needed/used with WinMerge development.
 
 WinMerge/Tools/diff2winmerge/
  - Commandline wrapper for WinMerge executable, offers

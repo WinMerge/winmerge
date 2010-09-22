@@ -46,12 +46,12 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <h3>Checklist:</h3>
 <ul>
   <li>
-    Installer reads version number from <code>WinMerge.exe</code>. So make
+    Installer reads version number from <code>WinMergeU.exe</code>. So make
     sure you have version resource correctly set.<br>
-    You can use script to set version info into Merge.rc and all language.rc files:
-    just run <code>Src/SetResourceVersions.bat</code> - it asks version number to set.
-    Note that it needs four numbers, so if you are releasing 2.5.6 version, you need to
-    set last number as zero: 2.5.6.0.
+    There is Python script <code>Tools/Scripts/SetVersions.py</code> which sets
+    version numbers to all components. The script reads version numbers from
+    <code>/versions.ini</code> file. See more info about the script from
+    <code>Tools/Scripts/SetVersions.txt</code>
   </li>
   <li>
     Installer checks that files listed are present. But some files are

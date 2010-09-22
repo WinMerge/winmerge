@@ -150,6 +150,26 @@ mailing list.</p>
 subfolders have their own <code>Changes.txt</code> -file. If the file exists in the folder, it must be
 used instead of "global" <code>Src/Changes.txt</code>.
 
+<h3><a name="Minor_code_changes_and_bug_fixes">Minor code changes and bug fixes</a></h3>
+
+<p>It is reasonable to post small snippets of code showing small changes
+directly in the text in bug postings, or patch postings. For example, see
+<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216&amp;func=detail&amp;aid=824987">PATCH [ 824987 ] "Change binary-file detection (look only for zeros)"</a>,
+which gives the change directly in the text.</p>
+
+<p>Note, however, that sourceforge trackers currently ignore tabs, so if you
+can convert tabs to spaces in your posting, it helps greatly.</p>
+
+<p>Bugfixes may be treated less formally, especially for simple ones, or for
+fixes to code you know well -- eg, you caused the bug yourself with a
+recent patch :)</p>
+
+<p>Consider still posting something to the tracker lists, even if it is
+simply a summary in English. If the fix is something like
+"misspelled variable name foo as fooz in many places", it is quite
+understandable that you prefer to just fix the instances rather than
+doing a full patch for it.</p>
+
 <h3><a name="Coding_conventions">Coding conventions</a></h3>
 
 <p>Please conform to the prevalent coding conventions. There are quite a number of
@@ -213,8 +233,39 @@ appending revision and date information at checkout:</p>
 <h3><a name="File_release_numbers">File release numbers</a></h3>
 
 <p>We are trying to keep a consistent numbering scheme on our file releases,
-so everybody can figure out what we have released by just looking at the release number.
-However, some of our older releases do not follow this scheme.</p>
+so everybody can figure out what we have released by just looking at the
+release number. Unfortunately the original 4-number version numbering didn't
+work as well as we thought and caused a lot of confusion. So WinMerge 2.13.x
+and later use new 3-number version numbers:</p>
+
+<pre>
+2.14.2
+|  | |
+|  | |
+|  | |
+|  | `--------- Denotes a beta release, an experimental release
+|  |             or a minor bug fix of a major release.
+|  |             For experimental and stable releases this number increases by
+|  |             one. For beta releases we may increase few numbers more.
+|  `----------- Denotes a major release.
+|                even numbers means "stable".
+|                odd numbers means "unstable".
+`------------- Denotes a major release with major changes.
+</pre>
+
+<p>In this case:</p>
+<ul>
+  <li>The next experimental release will have the number 2.15.1 (and then
+    2.15.2 and then 2.15.3 and so on)</li>
+  <li>The next beta release will likely have the number 2.15.10 or 2.15.20</li>
+  <li>The next major release will have the number 2.16.0</li>
+</ul>
+
+<p>And if we decide to rewrite most of the code, the next major release will
+have the number 3.0.0. This is something big like cross-platform support, 3-way
+merge etc.</p>
+
+<p>WinMerge 2.12.x and earlier releases used a four-number version numbers:
 
 <pre>
 2.1.2.0
@@ -230,14 +281,6 @@ However, some of our older releases do not follow this scheme.</p>
 |                odd numbers means "unstable".
 `------------- Denotes a major release with major changes.
 </pre>
-
-<p>In this case:</p>
-<ul>
-  <li>The next experimental release will have the number 2.1.3.0 (and then 2.1.3.1 and then 2.1.3.2 and so on)</li>
-  <li>The next beta release will have the number 2.1.4.0</li>
-  <li>The next major release will have the number 2.2.0.0</li>
-</ul>
-<p>And if we decide to rewrite most of the code, the next major release will have the number 3.0.0.0</p>
 
 <h3><a name="Packaging_file_releases">Packaging file releases</a></h3>
 
