@@ -50,9 +50,21 @@
  */
 LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 {
-	if (p && *(p += StrSpn(p, _T(" \t\r\n"))) == '\0')
+	if (p && *(p += StrSpn(p, _T(" \t\r\n"))) == _T('\0'))
 		p = 0;
-	LPCTSTR q = PathGetArgs(p);
+	LPCTSTR q = p;
+	if (q)
+	{
+		TCHAR c = *q;
+		bool quoted = false;
+		do
+		{
+			if (c == _T('"'))
+				quoted = !quoted;
+			c = *++q;
+		} while (c != _T('\0') && (quoted ||
+			c != _T(' ') && c != _T('\t') && c != _T('\r') && c != _T('\n')));
+	}
 	if (q > p && flag)
 	{
 		if (*p == _T('-') || *p == _T('/'))
