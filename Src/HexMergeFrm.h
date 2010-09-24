@@ -28,7 +28,9 @@
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"
-#include "../externals/heksedit/heksedit.h"
+
+#define HEKSEDIT_INTERFACE_VERSION 1
+#include "heksedit.h"
 
 class CHexMergeDoc;
 
@@ -67,6 +69,7 @@ public:
 	//{{AFX_VIRTUAL(CHexMergeFrame)
 	public:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
 	protected:
 	//}}AFX_VIRTUAL
@@ -75,12 +78,11 @@ public:
 private:
 	void SavePosition();
 	virtual ~CHexMergeFrame();
-	void CreateHexWndStatusBar(CStatusBar &);
+	void CreateHexWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
 	int m_nLastSplitPos;
 	void UpdateHeaderSizes();
-	BOOL m_bActivated;
 	CHexMergeDoc * m_pMergeDoc;
 	HICON m_hIdentical;
 	HICON m_hDifferent;

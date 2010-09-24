@@ -25,7 +25,6 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "TempFile.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 
@@ -72,14 +71,14 @@ public:
 	CHexMergeFrame * GetParentFrame();
 	void UpdateHeaderPath(int pane);
 	HRESULT OpenDocs(LPCTSTR pathLeft, LPCTSTR pathRight, BOOL bROLeft, BOOL bRORight);
-protected:
+private:
 	static void CopySel(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
 	static void CopyAll(CHexMergeView *pViewSrc, CHexMergeView *pViewDst);
+	HRESULT LoadOneFile(int index, LPCTSTR filename, BOOL readOnly);
 // Implementation data
 protected:
 	CHexMergeView * m_pView[MERGE_VIEW_COUNT]; /**< Pointer to left/right view */
 	CDirDoc * m_pDirDoc;
-	TempFile m_tempFiles[2]; /**< Temp files for compared files */
 	String m_strDesc[2]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[2];
 

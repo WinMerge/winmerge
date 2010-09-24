@@ -41,11 +41,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief RO status panel width
- */
-static UINT RO_PANEL_WIDTH = 40;
-
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeFrame
 
@@ -78,19 +73,6 @@ enum
 	PANE_RIGHT_EOL,
 };
 
-/**
- * @brief Bottom statusbar panels and indicators
- */
-static UINT indicatorsBottom[] =
-{
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-	ID_SEPARATOR,
-};
-
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeFrame construction/destruction
 
@@ -98,7 +80,6 @@ CHexMergeFrame::CHexMergeFrame()
 : m_hIdentical(NULL)
 , m_hDifferent(NULL)
 {
-	m_bActivated = FALSE;
 	m_nLastSplitPos = 0;
 	m_pMergeDoc = 0;
 }
@@ -145,13 +126,15 @@ static void Customize(IHexEditorWindow *pif)
 /**
  * @brief Create a status bar to be associated with a heksedit control
  */
-void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar)
+void CHexMergeFrame::CreateHexWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
 {
-	wndStatusBar.Create(this, WS_CHILD|WS_VISIBLE);
+	wndStatusBar.Create(pwndPane, WS_CHILD|WS_VISIBLE);
 	wndStatusBar.SetIndicators(0, 3);
 	wndStatusBar.SetPaneInfo(0, 0, SBPS_STRETCH, 0);
-	wndStatusBar.SetPaneInfo(1, 0, 0, 72);
-	wndStatusBar.SetPaneInfo(2, 0, 0, 72);
+	wndStatusBar.SetPaneInfo(1, 0, 0, 80);
+	wndStatusBar.SetPaneInfo(2, 0, 0, 80);
+	wndStatusBar.SetParent(this);
+	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
 
 /**
@@ -194,35 +177,31 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetActive(0, FALSE);
 	m_wndFilePathBar.SetActive(1, FALSE);
 
+	CHexMergeView *pLeft = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, 0));
+	CHexMergeView *pRight = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, 1));
+
 	m_wndLeftStatusBar.m_cxRightBorder = 4;
-	ModifyStyle(WS_THICKFRAME, 0); // Prevent SBARS_SIZEGRIP
-	CreateHexWndStatusBar(m_wndLeftStatusBar);
-	ModifyStyle(0, WS_THICKFRAME);
-	CreateHexWndStatusBar(m_wndRightStatusBar);
+	CreateHexWndStatusBar(m_wndLeftStatusBar, pLeft);
+	pRight->ModifyStyle(0, WS_THICKFRAME); // Create an SBARS_SIZEGRIP
+	CreateHexWndStatusBar(m_wndRightStatusBar, pRight);
+	pRight->ModifyStyle(WS_THICKFRAME, 0);
 	CSize size = m_wndLeftStatusBar.CalcFixedLayout(TRUE, TRUE);
 	m_rectBorder.bottom = size.cy;
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALBINARY);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_BINARYDIFF);
 
-	// stash left & right pointers into the mergedoc
-	CHexMergeView *pLeft = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0,0));
-	CHexMergeView *pRight = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0,1));
+	// get the IHexEditorWindow interfaces
+	IHexEditorWindow *pifLeft = pLeft->GetInterface();
+	IHexEditorWindow *pifRight = pRight->GetInterface();
 
-	IHexEditorWindow *pifLeft = reinterpret_cast<IHexEditorWindow *>(
-		::GetWindowLongPtr(pLeft->m_hWnd, GWLP_USERDATA));
-	IHexEditorWindow *pifRight = reinterpret_cast<IHexEditorWindow *>(
-		::GetWindowLongPtr(pRight->m_hWnd, GWLP_USERDATA));
+	// tell the heksedit controls about each other
+	pifLeft->set_sibling(pifRight);
+	pifRight->set_sibling(pifLeft);
 
-	if (pifLeft && pifRight)
-	{
-		pifLeft->set_sibling(pifRight);
-		pifRight->set_sibling(pifLeft);
-		pifLeft->set_status_bar(m_wndLeftStatusBar.m_hWnd);
-		pifRight->set_status_bar(m_wndRightStatusBar.m_hWnd);
-		Customize(pifLeft);
-		Customize(pifRight);
-	}
+	// adjust a few settings and colors
+	Customize(pifLeft);
+	Customize(pifRight);
 
 	// tell merge doc about these views
 	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
@@ -248,6 +227,15 @@ void CHexMergeFrame::GetMessageString(UINT nID, CString& rMessage) const
 		// not found
 		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
 	}
+}
+
+void CHexMergeFrame::ActivateFrame(int nCmdShow) 
+{
+	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
+	{
+		nCmdShow = SW_SHOWMAXIMIZED;
+	}
+	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
 
 /**
