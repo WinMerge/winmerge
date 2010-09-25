@@ -12,7 +12,6 @@ WinMerge Folder Structure
      - Languages
      - Manual
  - Externals
-   - cppunit
    - expat
    - heksedit
    - pcre
@@ -79,9 +78,6 @@ WinMerge/Docs/Users/Manual/
 
 WinMerge/Externals/
  - External code modules WinMerge uses
-
-WinMerge/Externals/cppunit/
- - CppUnit unit-testing suite for C++ <http://cppunit.sourceforge.net/>
 
 WinMerge/Externals/expat/
  - Expat XML parser <http://expat.sourceforge.net/>
