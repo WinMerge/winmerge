@@ -13,6 +13,7 @@ WinMerge 2.13.19
   Bugfix: WinMerge was vulnerable to DLL hijacking as described in
     Microsoft Security Advisory (2269637)  (#33056008)
   Bugfix: Location pane focus enabled "Save" (#3022292)
+  Bugfix: "Copy and advance" toolbar icons not automatically enabled (#3033325)
   Translation updates:
   - Chinese (#3033324)
   - Dutch (#2804979)
