@@ -53,7 +53,7 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <h3>Checklist:</h3>
 <ul>
   <li>
-    Installer reads version number from <code>WinMerge.exe</code>. So make
+    Installer reads version number from <code>WinMergeU.exe</code>. So make
     sure you have version resource correctly set.<br>
     There is Python script <code>Tools/Scripts/SetVersions.py</code> which sets
     version numbers to all components. The script reads version numbers from
@@ -121,6 +121,7 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
    <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
+     <li><code>MergeLang.dll</code></li>
      <li><code>ShellExtensionU.dll</code></li>
      <li><code>WinMergeU.exe</code></li>
     </ul>
@@ -163,7 +164,7 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
    <li>
     <code>InnoSetup/</code>
      <ul>
-      <li><em>Copy the entire Installer/InnoSetup folder to here</em></li>
+      <li><em>Copy the entire <code>Installer/InnoSetup</code> folder to here</em></li>
      </ul>
    </li>
   </ul>
@@ -174,7 +175,7 @@ http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A
    <li>
     <code>dlls/</code>
      <ul>
-      <li><em>Copy the entire Plugins/dlls folder to here</em></li>
+      <li><em>Copy the entire <code>Plugins/dlls</code> folder to here</em></li>
      </ul>
    </li>
   </ul>
