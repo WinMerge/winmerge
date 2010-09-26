@@ -72,6 +72,52 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Location for command line help to open. */
 static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 
+
+/**
+ * @brief Turn STL exceptions into MFC exceptions.
+ * Based on the article "Visual C++ Exception-Handling Instrumentation"
+ * by Eugene Gershnik, published at http://www.drdobbs.com/184416600.
+ */
+namespace Turn_STL_exceptions_into_MFC_exceptions
+{
+#	ifndef _STATIC_CPPLIB
+#	error This hack only works with _STATIC_CPPLIB defined.
+#	endif
+
+	class CDisguisedSTLException : public CException
+	{
+	private:
+		std::exception *m_pSTLException;
+	public:
+		CDisguisedSTLException(std::exception *pSTLException)
+		: m_pSTLException(pSTLException)
+		{
+		}
+		virtual BOOL GetErrorMessage(LPTSTR lpszError, UINT nMaxError, PUINT)
+		{
+			_sntprintf(lpszError, nMaxError, _T("%hs"), m_pSTLException->what());
+			return TRUE;
+		}
+	};
+
+	const DWORD CPP_EXCEPTION = 0xE06D7363;
+	const DWORD MS_MAGIC = 0x19930520;
+
+	extern "C" void __stdcall _CxxThrowException(void *pObject, _s__ThrowInfo const *pObjectInfo)
+	{
+		if (int i = pObjectInfo->pCatchableTypeArray->nCatchableTypes)
+		{
+			const char *name = typeid(std::exception).raw_name();
+			if (pObjectInfo->pCatchableTypeArray->arrayOfCatchableTypes[i - 1]->pType->name == name)
+			{
+				throw new CDisguisedSTLException(static_cast<std::exception *>(pObject));
+			}
+		}
+		const ULONG_PTR args[] = { MS_MAGIC, (ULONG_PTR)pObject, (ULONG_PTR)pObjectInfo };
+		RaiseException(CPP_EXCEPTION, EXCEPTION_NONCONTINUABLE, _countof(args), args);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
 
