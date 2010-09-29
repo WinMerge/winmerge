@@ -1822,6 +1822,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
+			</File>
 			<File
 				RelativePath="Languages\ShellExtensionPersian.rc">
 				<FileConfiguration
