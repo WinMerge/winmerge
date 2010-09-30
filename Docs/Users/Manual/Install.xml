@@ -33,7 +33,7 @@
 
     <note>
       <para>The installer requires Administrator user privileges in Windows
-      NT4/2000/XP. If you don't have admin user privileges, you can install
+      2000 or newer. If you don't have admin user privileges, you can install
       WinMerge by unzipping from an archive file (see <xref
       linkend="InstallFromArchive" />).</para>
     </note>
@@ -82,9 +82,7 @@
               </indexterm></term>
 
             <listitem>
-              <para>WinMerge executable (<filename>WinMerge.exe</filename> on
-              Windows 9X and WME; <filename>WinMergeU.exe</filename> on all
-              other Windows versions), Help, and other needed files. Cannot be
+              <para>WinMerge executable, Help, and other needed files. Cannot be
               unchecked.</para>
             </listitem>
           </varlistentry>

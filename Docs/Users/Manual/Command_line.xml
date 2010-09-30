@@ -16,13 +16,13 @@
   <para>Use one of these formats for the WinMerge command:</para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command>WinMerge<optional>U</optional></command>
+      <command>WinMergeU</command>
 
       <arg choice="opt" rep="norepeat"><option>/?</option></arg>
     </cmdsynopsis></para>
 
   <para><cmdsynopsis sepchar=" ">
-      <command>WinMerge<optional>U</optional></command>
+      <command>WinMergeU</command>
 
       <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
@@ -66,35 +66,11 @@
     </cmdsynopsis></para>
 
   <cmdsynopsis sepchar=" ">
-    <command>WinMerge<optional>U</optional></command>
+    <command>WinMergeU</command>
 
     <arg choice="plain"
     rep="norepeat"><replaceable>conflictfile</replaceable></arg>
   </cmdsynopsis>
-
-  <para>The command has two forms:</para>
-
-  <variablelist>
-    <varlistentry>
-      <term>WinMergeU</term>
-
-      <listitem>
-        <para>Use <command>WinMergeU</command> if you are running the Unicode
-        version of WinMerge, typically installed on recent Windows
-        systems.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>WinMerge</term>
-
-      <listitem>
-        <para>Use <command>WinMerge</command> only if you are running the ANSI
-        version of WinMerge, typically installed only on Windows
-        9<replaceable>x</replaceable> and WME systems.</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
 
   <para>Entering the command with no parameters or pathnames simply opens the
   WinMerge window. Parameters are prefixed with either a forward slash (

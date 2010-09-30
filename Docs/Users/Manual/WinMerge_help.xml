@@ -84,9 +84,12 @@
     </authorgroup>
   </bookinfo>
 
-  <!--Note to maintainers: Not all doc files are included in this file. There are also fragment files included at the topic 
-level. For example, several files include elements from replaceables.xml. Other fragment files are select-unpacker.xml 
-and Text_encoding.xml. Pleaes do not delete xml files in this directory unless you know for sure that they are not used.-->
+  <!-- Note to maintainers:
+  Not all doc files are included in this file. There are also fragment files 
+  included at the topic level. For example, several files include elements from 
+  replaceables.xml. Other fragment file is select-unpacker.xml.
+  Please do not delete xml files in this directory unless you know for sure 
+  that they are not used. -->
 
   &AboutDoc;
 
