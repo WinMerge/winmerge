@@ -18,6 +18,7 @@ WinMerge 2.13.14 - 2010-09-15 (r7263)
   Comment filtering improvement (#3034083)
   Allow giving encoding name as custom codepage (#2813825, #3010934)
   Installer: Drop Windows 9x/ME/NT4 support from InnoSetup (#3025078)
+  Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
   Bugfix: Options dialog didn't update when importing settings
