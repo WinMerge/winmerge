@@ -10,6 +10,7 @@ WinMerge 2.13.19
   New translation: Serbian (#3017674, #3065119)
   Installer: Drop Windows 9x/ME/NT4 support and use Microsoft runtime
     libraries installer (#3070254)
+  Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Bugfix: WinMerge was vulnerable to DLL hijacking as described in
     Microsoft Security Advisory (2269637)  (#33056008)
   Bugfix: Location pane focus enabled "Save" (#3022292)

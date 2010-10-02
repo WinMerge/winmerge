@@ -330,6 +330,9 @@ Name: {commonappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Typ
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
 Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
+;Removes the Uninstall icon from the start menu...
+Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
+
 ;Remove ANSI executable link from start menu for NT-based Windows versions
 ;This was installed earlier, but not anymore.
 Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4
@@ -458,7 +461,6 @@ Source: ..\..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifol
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
-Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org/
 
 ;Link to translated ReadMe in Start Menu
