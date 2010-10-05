@@ -8,53 +8,43 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Why are there two executable files,
-          <filename>WinMerge.exe</filename> and
-          <filename>WinMergeU.exe</filename>?<indexterm>
+          <para>Does WinMerge run on older Windows versions?</para>
+        </question>
+        <answer>
+          <para><indexterm>
               <primary>WinMerge executables, Unicode and ANSI</primary>
             </indexterm><indexterm>
               <primary>Unicode</primary>
-
               <secondary>WinMerge support</secondary>
             </indexterm><indexterm>
               <primary>ANSI</primary>
-
               <secondary>WinMerge support</secondary>
-            </indexterm></para>
-        </question>
-
-        <answer>
-          <para>They support the different character encoding capabilities of
-          older and newer versions of Windows.</para>
-
-          <itemizedlist>
-            <listitem>
-              <para><filename>WinMerge.exe</filename> is an ANSI (8-bit)
-              executable that works in all 32-bit Windows systems. It does not
-              have Unicode support.</para>
-
-              <para>Internally, it stores only ANSI characters (256
-              possibilities). If you open a Unicode file, the characters must be
-              converted to the ANSI codepage. Because there are over 100,000
-              Unicode characters, and only 256 can be represented in the ANSI
-              codepage, data loss can occur. Conversion might be approximate
-              (for example, accents are lost) or impossible: characters are
-              replaced by question marks ( <literal>?</literal> ).</para>
-
-              <para><filename>WinMerge.exe</filename> also cannot open files
-              with names outside the current ANSI codepage. For example,
-              WinMerge.exe running on an English system cannot open a file with
-              a Hebrew name.</para>
-            </listitem>
-
-            <listitem>
-              <para><filename>WinMergeU.exe</filename> is a Unicode-enabled
-              executable that works on Windows NT4, Windows 2000, and newer
-              systems. Because it supports Unicode, it has none of the
-              limitations listed above for
-              <filename>WinMerge.exe</filename>.</para>
-            </listitem>
-          </itemizedlist>
+            </indexterm>Beginning with Version 2.14, WinMerge ended support for
+            older 32-bit Windows systems, including Windows 9x, ME, and NT4. </para>
+          <para>Previously, WinMerge provided an ANSI (8-bit) executable,
+              <filename>WinMerge.exe</filename>, that was designed around the
+            old Windows codepages. <filename>WinMerge.exe</filename> internally
+            stored only the ANSI characters supported by the Windows codepage.
+            This executable had severe limitations for working with Unicode: if
+            you opened a Unicode file, the characters were converted to the
+            Windows ANSI codepage. Because there are over 100,000 Unicode
+            characters, and only 256 can be represented in the ANSI character
+            set, data loss could occur. Conversion might be approximate (for
+            example, accents are lost) or impossible: characters were replaced
+            by question marks ( <literal>?</literal> ).</para>
+          <para><filename>WinMerge.exe</filename> also could not open files with
+            names outside the current ANSI codepage. For example, on an English
+            system, <filename>WinMerge.exe</filename> could not open a file with
+            a Hebrew name.</para>
+          <para>WinMerge developed the Unicode-enabled
+              <filename>WinMergeU.exe</filename> executable to work with newer,
+            Unicode-based Windows systems. <filename>WinMergeU.exe</filename>
+            has none of the limitations of the ANSI executable.</para>
+          <para><filename>WinMergeU.exe</filename> has been installed by default
+            for some time, and since few ANSI-based Windows systems remain, the
+            value of maintaining <filename>WinMerge.exe</filename> is miminal.
+            As of Version 2.14, WinMerge no longer includes
+              <filename>WinMerge.exe</filename> in the installer.  </para>
         </answer>
       </qandaentry>
 
@@ -327,9 +317,7 @@
         <answer>
           <para>This is what we call a <glossterm>lossy
           conversion</glossterm>.</para>
-
-          <para>For Unicode files (UCS-2, UTF-8), use
-          <filename>WinMergeU.exe</filename>.</para>
+          <!--<para>For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>-->
 
           <para>For ANSI files, this is probably due to code-page problems. To
           troubleshoot, click <menuchoice>

@@ -33,6 +33,8 @@
 
       <arg><option>/x</option></arg>
 
+      <arg><option>/xq</option></arg>
+
       <arg><option>/s</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
@@ -131,6 +133,11 @@
       WinMerge as an external compare application, or when you want to eliminate
       unnecessary steps by ignoring files that don't have any
       differences.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/xq</option> is similar to <option>/x</option> but does not
+      show the message about identical files. </para>
     </listitem>
 
     <listitem>

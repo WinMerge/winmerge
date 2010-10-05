@@ -1398,24 +1398,24 @@
         <secondary>options</secondary>
       </indexterm></title>
 
-    <para>This page allows you to specify the codepage that the ANSI version of
-    WinMerge uses for ANSI files. , and whether the codepage of certain file
-    formats should be detected from the contents of the files.</para>
+    <para>WinMerge detects handles file encoding transparently, and in most
+      cases you should not need to change the default settings.This page allows
+      you to specify the codepages of certain file formats, should you need to.  </para>
 
-    <important>
+<!--    <important>
       <para>The ANSI version of WinMerge (<filename>WinMerge.exe</filename>) is
       normally installed only on Windows 9X and WME. On all other, newer Windows
       systems, the Unicode version (<filename>WinMergeU.exe</filename>) is
       installed. The Unicode version of WinMerge handles encoding transparently.
       You should not need to change any settings in this page unless you are
       running the ANSI version.</para>
-    </important>
+    </important> -->
 
     <note>
       <para>A full explanation of text encoding and Windows codepages is beyond
-      the scope of WinMerge documentation. Fortunately, there is lots of
-      information about them on the Internet. For example, here are some places
-      to start:</para>
+        the scope of WinMerge documentation. Fortunately, there is lots of
+        information about them on the Internet. For example, here are some
+        places to start:</para>
 
       <itemizedlist>
         <listitem>
@@ -1434,7 +1434,7 @@
     </note>
 
     <section>
-      <title>Default codepage for ANSI files</title>
+      <title>Default codepage for non-Unicode files</title>
 
       <para>Choose one of these radio buttons to set the default codepage that
       WinMerge uses when handling ANSI files:</para>

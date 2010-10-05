@@ -264,7 +264,7 @@
     <title>Installing from an archive<indexterm>
         <primary>archive, installing WinMerge from</primary>
       </indexterm><indexterm>
-        <primary>mfc71[u].dll runtime file</primary>
+        <primary>mfc71u.dll runtime file</primary>
       </indexterm><indexterm>
         <primary>msvcr71.dll runtime file</primary>
       </indexterm><indexterm>
@@ -274,11 +274,11 @@
     <para>WinMerge is pretty much independent of other system components. It is
     not tightly integrated with Windows, and does not use many DLLs.</para>
 
-    <para><filename>WinMerge[U].exe</filename> itself depends on
-    <filename>MFC71[U].dll</filename> , <filename>MSVCR71.dll and
-    MSVCP71.dll</filename>, in addition to some system DLLs. So if these DLLs
-    are already installed on a system, only <filename>WinMerge[U].exe</filename>
-    is needed to run WinMerge. The DLL files listed above are also available as
+    <para><filename>WinMergeU.exe</filename> itself depends on
+    <filename>MFC71U.dll</filename> , <filename>MSVCR71.dll and
+    MSVCP71.dll</filename>, in addition to some system DLLs. So if these DLLs 
+    are already installed on a system, only <filename>WinMergeU.exe</filename> 
+    is needed to run WinMerge. The DLL files listed above are also available as 
     a downloadable runtime package.</para>
 
     <note>

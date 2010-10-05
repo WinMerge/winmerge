@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "./build/dtd/docbookx.dtd" [
-<!ENTITY AboutDoc SYSTEM "About_Doc.xml">
-<!ENTITY QuickStart SYSTEM "Quick_start.xml">
+<!ENTITY About_Doc SYSTEM "About_Doc.xml">
+<!ENTITY Quick_start SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
 <!ENTITY Install SYSTEM "Install.xml">
-<!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
-<!ENTITY OpenPaths SYSTEM "Open_paths.xml">
-<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
-<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Intro_diffs SYSTEM "Intro_diffs.xml">
+<!ENTITY Open_paths SYSTEM "Open_paths.xml">
+<!ENTITY Compare_dirs SYSTEM "Compare_dirs.xml">
+<!ENTITY Compare_files SYSTEM "Compare_files.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
 <!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY Filters SYSTEM "Filters.xml">
-<!ENTITY VersionControl SYSTEM "Version_control.xml">
-<!ENTITY CommandLine SYSTEM "Command_line.xml">
-<!ENTITY FAQ SYSTEM "Faq.xml">
-<!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
+<!ENTITY Version_control SYSTEM "Version_control.xml">
+<!ENTITY Command_line SYSTEM "Command_line.xml">
+<!ENTITY Faq SYSTEM "Faq.xml">
+<!ENTITY Shortcut_keys SYSTEM "Shortcut_keys.xml">
 ]>
 <book id="index">
   <bookinfo>
@@ -84,28 +84,25 @@
     </authorgroup>
   </bookinfo>
 
-  <!-- Note to maintainers:
-  Not all doc files are included in this file. There are also fragment files 
-  included at the topic level. For example, several files include elements from 
-  replaceables.xml. Other fragment file is select-unpacker.xml.
-  Please do not delete xml files in this directory unless you know for sure 
-  that they are not used. -->
+  <!--Note to maintainers: Not all doc files are included in this file. There are also fragment files included at the topic 
+level. For example, several files include elements from replaceables.xml. Other fragment files are select-unpacker.xml 
+and Text_encoding.xml. Pleaes do not delete xml files in this directory unless you know for sure that they are not used.-->
 
-  &AboutDoc;
+  &About_Doc;
 
-  &QuickStart;
+  &Quick_start;
 
   &Introduction;
 
   &Install;
 
-  &IntroductDiffing;
+  &Intro_diffs;
 
-  &OpenPaths;
+  &Open_paths;
 
-  &CompareDirs;
+  &Compare_dirs;
 
-  &CompareFiles;
+  &Compare_files;
 
   &Configuration;
 
@@ -115,13 +112,13 @@
 
   &Filters;
 
-  &VersionControl;
+  &Version_control;
 
-  &CommandLine;
+  &Command_line;
 
-  &FAQ;
+  &Faq;
 
-  &ShortCuts;
+  &Shortcut_keys;
 
   <index id="word_index"></index>
 </book>

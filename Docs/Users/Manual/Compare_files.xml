@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Compare_files">
-  <title>Comparing and merging files<indexterm>
+  <?target dbhh topicname="IDH_Compare_files" topicid ="001"?>
+
+  <title>Comparing and merging text files<indexterm>
       <primary>comparing files</primary>
     </indexterm></title>
 
   <para>This topic describes how to use the WinMerge File Compare window to
-  compare and merge files. To understand the basic concepts about differences
-  used here, we suggest you read <xref linkend="Intro_diffs" /> first.</para>
+  compare and merge text files. To understand the basic concepts about
+  differences discussed here, we suggest you read <xref linkend="Intro_diffs" />
+  first. See <xref linkend="Intro_diffs" /> for related information about hex
+  files. </para>
 
   <section id="Compare_files_starting">
     <title>Starting a file compare operation</title>
