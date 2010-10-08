@@ -17,6 +17,7 @@ WinMerge 2.13.19
   Bugfix: Location pane focus enabled "Save" (#3022292)
   Bugfix: "Copy and advance" toolbar icons not automatically enabled (#3033325)
   Translation updates:
+  - Bulgarian (#3082392)
   - Chinese (#3033324)
   - Dutch (#2804979)
   - French (#2850842, #2968200)
