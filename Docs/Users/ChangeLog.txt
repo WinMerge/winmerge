@@ -7,6 +7,8 @@ WinMerge 2.15.1
   Update version number in trunk
   Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Installer: Don't install quick launch icon for Windows 7 (#3079966)
+  Translation updates:
+  - Bulgarian (#3082392)
 
 WinMerge 2.13.14 - 2010-09-15 (r7263)
   Update release compiler and runtimes to VS2008
