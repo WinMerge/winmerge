@@ -3224,6 +3224,12 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 			pView->SetCursorPos(ptPos);
 			pView->SetAnchor(ptPos);
 		}
+		else
+		{
+			CPoint ptPos(0, pView->GetLineCount() - 1);
+			pView->SetCursorPos(ptPos);
+			pView->SetAnchor(ptPos);
+		}
 	}
 
 	// If goto target is another view - activate another view.

@@ -2372,12 +2372,14 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
  * @brief Loads files and does initial rescan.
  * @param fileloc [in] File to open to left/middle/right side (path & encoding info)
  * @param bRO [in] Is left/middle/right file read-only
+ * @param nPane [in] Pane to activate
+ * @param nLineIndex [in] Index of line in view to move the cursor to
  * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
 OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
-		BOOL bRO[])
+		BOOL bRO[], int nPane/* = -1 */, int nLineIndex/* = -1 */)
 {
 	IDENTLEVEL identical = IDENTLEVEL_NONE;
 	int nRescanResult = RESCAN_OK;
@@ -2600,12 +2602,21 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			ShowRescanError(nRescanResult, identical);
 		}
 
-		// scroll to first diff
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
-			m_diffList.HasSignificantDiffs())
+		if (nPane < 0)
+			nPane = 0;
+		if (nLineIndex == -1)
 		{
-			int nDiff = m_diffList.FirstSignificantDiff();
-			m_pView[0]->SelectDiff(nDiff, true, false);
+			// scroll to first diff
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
+				m_diffList.HasSignificantDiffs())
+			{
+				int nDiff = m_diffList.FirstSignificantDiff();
+				m_pView[nPane]->SelectDiff(nDiff, true, false);
+			}
+		}
+		else
+		{
+			m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
 		}
 
 		// Exit if files are identical should only work for the first
@@ -3098,7 +3109,9 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane].c_str());
 		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
 	}
-	OpenDocs(fileloc, bRO);
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
+	CPoint pt = m_pView[nActivePane]->GetCursorPos();
+	OpenDocs(fileloc, bRO, nActivePane, pt.y);
 }
 
 /**

@@ -160,7 +160,7 @@ public:
 	void RefreshOptions();
 	void UpdateResources();
 	OPENRESULTS_TYPE OpenDocs(FileLocation fileloc[],
-		BOOL bRO[]);
+		BOOL bRO[], int nPane = -1, int nLineIndex = -1);
 	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding);
 	OPENRESULTS_TYPE ReloadDoc(int index);
 	void RescanIfNeeded(float timeOutInSecond);
