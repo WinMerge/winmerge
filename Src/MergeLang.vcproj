@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="pushd $(InputDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(InputDir)..\Build\vc71\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(InputDir)..\Build\vc71\MergeRelease\Languages\ 2&gt; NUL
@@ -110,7 +110,7 @@ cscript CreateMasterPotFile.vbs
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="pushd $(InputDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(InputDir)..\Build\vc71\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(InputDir)..\Build\vc71\MergeRelease\Languages\ 2&gt; NUL
@@ -174,7 +174,7 @@ cscript CreateMasterPotFile.vbs
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="pushd $(InputDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(InputDir)..\Build\vc71\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(InputDir)..\Build\vc71\MergeRelease\Languages\ 2&gt; NUL
@@ -240,7 +240,7 @@ cscript CreateMasterPotFile.vbs
 			<Tool
 				Name="VCPostBuildEventTool"
 				CommandLine="pushd $(InputDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(InputDir)..\Build\vc71\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(InputDir)..\Build\vc71\MergeRelease\Languages\ 2&gt; NUL
