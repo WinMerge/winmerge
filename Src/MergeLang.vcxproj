@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -226,7 +226,7 @@
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -280,7 +280,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -329,7 +329,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -381,7 +381,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -432,7 +432,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -486,7 +486,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -535,7 +535,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -587,7 +587,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -638,7 +638,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -692,7 +692,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -741,7 +741,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
@@ -793,7 +793,7 @@ copy /Y "$(ProjectDir)..\Translations\WinMerge\*.po" "$(ProjectDir)..\Build\x64\
     </Link>
     <PostBuildEvent>
       <Command>pushd $(ProjectDir)..\Translations\WinMerge
-UpdatePoFilesFromPotFile.vbs
+cscript UpdatePoFilesFromPotFile.vbs
 popd
 mkdir $(ProjectDir)..\Build\MergeDebug\Languages\ 2&gt; NUL
 mkdir $(ProjectDir)..\Build\MergeRelease\Languages\ 2&gt; NUL
