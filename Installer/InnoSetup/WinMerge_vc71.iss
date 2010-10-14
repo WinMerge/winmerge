@@ -272,7 +272,7 @@ Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm
 Name: TortoiseSVN; Description: {cm:IntegrateTortoiseSVN}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseSVNInstalled; MinVersion: 0,5.0.2195sp3
 Name: ClearCase; Description: {cm:IntegrateClearCase}; GroupDescription: {cm:OptionalFeatures}; Check: ClearCaseInstalled
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
-Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}
+Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; OnlyBelowVersion: 0,6.1
 
 [InstallDelete]
 ; Diff.txt is a file left over from previous versions of WinMerge (before version 2.0), we just delete it to be nice.
