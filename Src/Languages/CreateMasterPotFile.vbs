@@ -2,7 +2,7 @@ Option Explicit
 ''
 ' This script creates the master POT file (English.pot).
 '
-' Copyright (C) 2007 by Tim Gerundt
+' Copyright (C) 2007-2009 by Tim Gerundt
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
@@ -16,6 +16,10 @@ Const DIALOGEX_BLOCK = 2
 Const STRINGTABLE_BLOCK = 3
 Const VERSIONINFO_BLOCK = 4
 Const ACCELERATORS_BLOCK = 5
+
+Const PATH_ENGLISH_POT = "English.pot"
+Const PATH_MERGE_RC = "../Merge.rc"
+Const PATH_MERGELANG_RC = "MergeLang.rc"
 
 Dim oFSO, bRunFromCmd
 
@@ -40,16 +44,16 @@ Sub Main
   InfoBox "Creating POT file from Merge.rc...", 3
   
   bNecessary = True
-  If (oFSO.FileExists("English.pot") = True) And (oFSO.FileExists("MergeLang.rc") = True) Then 'If the POT and RC file exists...
-    bNecessary = GetArchiveBit("../Merge.rc") Or GetArchiveBit("English.pot") Or GetArchiveBit("MergeLang.rc") 'RCs or POT file changed?
+  If (oFSO.FileExists(PATH_ENGLISH_POT) = True) And (oFSO.FileExists(PATH_MERGELANG_RC) = True) Then 'If the POT and RC file exists...
+    bNecessary = GetArchiveBit(PATH_MERGE_RC) Or GetArchiveBit(PATH_ENGLISH_POT) Or GetArchiveBit(PATH_MERGELANG_RC) 'RCs or POT file changed?
   End If
   
   If (bNecessary = True) Then 'If update necessary...
-    Set oStrings = GetStringsFromRcFile("../Merge.rc", sCodePage)
-    CreateMasterPotFile "English.pot", oStrings, sCodePage
-    SetArchiveBit "../Merge.rc", False
-    SetArchiveBit "English.pot", False
-    SetArchiveBit "MergeLang.rc", False
+    Set oStrings = GetStringsFromRcFile(PATH_MERGE_RC, sCodePage)
+    CreateMasterPotFile PATH_ENGLISH_POT, oStrings, sCodePage
+    SetArchiveBit PATH_MERGE_RC, False
+    SetArchiveBit PATH_ENGLISH_POT, False
+    SetArchiveBit PATH_MERGELANG_RC, False
     For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
       If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
         SetArchiveBit oFile.Path, True
@@ -241,7 +245,7 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   oPotFile.WriteLine "msgid """""
   oPotFile.WriteLine "msgstr """""
   oPotFile.WriteLine """Project-Id-Version: WinMerge\n"""
-  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"""
+  oPotFile.WriteLine """Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"""
   oPotFile.WriteLine """POT-Creation-Date: " & GetPotCreationDate() & "\n"""
   oPotFile.WriteLine """PO-Revision-Date: \n"""
   oPotFile.WriteLine """Last-Translator: \n"""

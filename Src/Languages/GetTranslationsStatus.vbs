@@ -83,7 +83,6 @@ Class CStatus
   Public Count, Translated, Untranslated, Fuzzy
   Public PoRevisionDate, PotCreationDate
   Public Translators
-  Private Translator
   
   Private Sub Class_Initialize
     Count = 0
@@ -96,6 +95,8 @@ Class CStatus
   End Sub
   
   Public Sub AddTranslator(ByVal sTranslator, ByVal bMaintainer)
+    Dim Translator
+    
     Set Translator = New CTranslator
     Translator.Maintainer = bMaintainer
     Translator.Mail = Trim(GetRegExpSubMatch(sTranslator, "<(.*)>"))
