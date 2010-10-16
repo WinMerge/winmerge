@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ..\Config.wxi ?>
+  <Fragment>
+    <DirectoryRef Id="DOCSDIR">
+      <Component Id="ReadMe" Guid="*" Win64="$(var.Win64)">
+        <File Id="ReadMeTXT" 
+          Name="ReadMe.txt" 
+          Source="..\..\Docs\Users\ReadMe.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ReleaseNotes" Guid="*" Win64="$(var.Win64)">
+        <File Id="ReleaseNotesHTML" 
+          Name="ReleaseNotes.html" 
+          Source="..\..\Docs\Users\ReleaseNotes.html" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ChangeLog" Guid="*" Win64="$(var.Win64)">
+        <File Id="ChangeLogTXT" 
+          Name="ChangeLog.txt" 
+          Source="..\..\Docs\Users\ChangeLog.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="WinMergeHelp" Guid="*" Win64="$(var.Win64)">
+        <File Id="WinMergeCHM" 
+          Name="WinMerge.chm" 
+          Source="..\..\Build\Manual\htmlhelp\WinMerge.chm" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ..\Config.wxi ?>
+  <Fragment>
+    <DirectoryRef Id="FILTERSDIR">
+      <Component Id="ADAMulti" Guid="*" Win64="$(var.Win64)">
+        <File Id="ADAMultiFLT" 
+          Name="ADAMulti.flt" 
+          Source="..\..\Filters\ADAMulti.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="ASPNET" Guid="*" Win64="$(var.Win64)">
+        <File Id="ASPNETFLT" 
+          Name="ASPNET.flt" 
+          Source="..\..\Filters\ASPNET.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="CSharp_loose" Guid="*" Win64="$(var.Win64)">
+        <File Id="CSharp_looseFLT" 
+          Name="CSharp_loose.flt" 
+          Source="..\..\Filters\CSharp_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Delphi" Guid="*" Win64="$(var.Win64)">
+        <File Id="DelphiFLT" 
+          Name="Delphi.flt" 
+          Source="..\..\Filters\Delphi.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="FileFilter" Guid="*" Win64="$(var.Win64)">
+        <File Id="FileFilterTMPL" 
+          Name="FileFilter.tmpl" 
+          Source="..\..\Filters\FileFilter.tmpl" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Frontpage" Guid="*" Win64="$(var.Win64)">
+        <File Id="FrontpageFLT" 
+          Name="Frontpage.flt" 
+          Source="..\..\Filters\Frontpage.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="MASM" Guid="*" Win64="$(var.Win64)">
+        <File Id="MASMFLT" 
+          Name="MASM.flt" 
+          Source="..\..\Filters\MASM.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_GnuC_loose" Guid="*" Win64="$(var.Win64)">
+        <File Id="Merge_GnuC_looseFLT" 
+          Name="Merge_GnuC_loose.flt" 
+          Source="..\..\Filters\Merge_GnuC_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_VB_loose" Guid="*" Win64="$(var.Win64)">
+        <File Id="Merge_VB_looseFLT" 
+          Name="Merge_VB_loose.flt" 
+          Source="..\..\Filters\Merge_VB_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Merge_VC_loose" Guid="*" Win64="$(var.Win64)">
+        <File Id="Merge_VC_looseFLT" 
+          Name="Merge_VC_loose.flt" 
+          Source="..\..\Filters\Merge_VC_loose.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="SourceControl" Guid="*" Win64="$(var.Win64)">
+        <File Id="SourceControlFLT" 
+          Name="SourceControl.flt" 
+          Source="..\..\Filters\SourceControl.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Symbian" Guid="*" Win64="$(var.Win64)">
+        <File Id="SymbianFLT" 
+          Name="Symbian.flt" 
+          Source="..\..\Filters\Symbian.flt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="XML_html" Guid="*" Win64="$(var.Win64)">
+        <File Id="XML_htmlFLT" 
+          Name="XML_html.flt" 
+          Source="..\..\Filters\XML_html.flt" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

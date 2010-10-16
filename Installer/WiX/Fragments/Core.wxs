@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ..\Config.wxi ?>
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="WinMergeU" Guid="*" Win64="$(var.Win64)">
+        <File Id="WinMergeUEXE" 
+          Name="WinMergeU.exe" 
+          Source="$(var.MergeBuildDir)\WinMergeU.exe" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="libexpat" Guid="*" Win64="$(var.Win64)">
+        <File Id="libexpatDLL" 
+          Name="libexpat.dll" 
+          Source="$(var.ExpatBuildDir)\libexpat.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="heksedit" Guid="*" Win64="$(var.Win64)">
+        <File Id="hekseditUDLL" 
+          Name="hekseditU.dll" 
+          Source="$(var.HekseditBuildDir)\hekseditU.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="pcre" Guid="*" Win64="$(var.Win64)">
+        <File Id="pcreDLL" 
+          Name="pcre.dll" 
+          Source="$(var.PcreBuildDir)\pcre.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="MergeLang" Guid="*" Win64="$(var.Win64)">
+        <File Id="MergeLangDLL" 
+          Name="MergeLang.dll" 
+          Source="$(var.MergeBuildDir)\MergeLang.dll" 
+          Vital="yes" />
+      </Component>
+      
+      <Component Id="Files" Guid="*" Win64="$(var.Win64)">
+        <File Id="FilesTXT" 
+          Name="Files.txt" 
+          Source="..\..\Docs\Users\Files.txt" 
+          Vital="no" />
+      </Component>
+      
+      <Component Id="Contributors" Guid="*" Win64="$(var.Win64)">
+        <File Id="ContributorsTXT" 
+          Name="Contributors.txt" 
+          Source="..\..\Docs\Users\Contributors.txt" 
+          Vital="no" />
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Shell Extension -->
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="ShellExtension" Guid="*" Win64="$(var.Win64)">
+        <?if $(var.Platform) = "x64" ?>
+          <File Id="ShellExtensionX64DLL" 
+            Name="ShellExtensionX64.dll" 
+            SelfRegCost="1" 
+            Source="$(var.ShellExtBuildDir)\ShellExtensionX64.dll" 
+            Vital="yes" />
+        <?else ?>
+          <File Id="ShellExtensionUDLL" 
+            Name="ShellExtensionU.dll" 
+            SelfRegCost="1" 
+            Source="$(var.ShellExtBuildDir)\ShellExtensionU.dll" 
+            Vital="yes" />
+        <?endif ?>
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Startmenu shortcuts -->
+    <DirectoryRef Id="WinMergeMenuFolder">
+      <Component Id="StartMenuShortcuts" Guid="$(var.StartMenuShortcutsGuid)" Win64="$(var.Win64)">
+        <Condition>TASK_STARTMENUSHORTCUTS</Condition>
+        <Shortcut Id="WinMergeStartMenuShortcut" 
+          Name="WinMerge" 
+          Target="[INSTALLDIR]WinMergeU.exe"
+          WorkingDirectory="INSTALLDIR" />
+        <Shortcut Id="ReadMeStartMenuShortcut" 
+          Name="Read Me" 
+          Target="[INSTALLDIR]Docs\ReadMe.txt"
+          WorkingDirectory="INSTALLDIR" />
+        <Shortcut Id="HelpStartMenuShortcut" 
+          Name="WinMerge Help" 
+          Target="[INSTALLDIR]Docs\WinMerge.chm"
+          WorkingDirectory="INSTALLDIR" />
+        <RemoveFolder Id="WinMergeMenuFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    
+    <!-- Desktop shortcut -->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="$(var.DesktopShortcutGuid)" Win64="$(var.Win64)">
+        <Condition>TASK_DESKTOPSHORTCUT</Condition>
+        <Shortcut Id="WinMergeDesktopShortcut" 
+          Name="WinMerge" 
+          Target="[INSTALLDIR]WinMergeU.exe"
+          WorkingDirectory="INSTALLDIR" />
+        <RegistryValue Root="HKCU" Key="Software\Thingamahoochie\WinMerge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

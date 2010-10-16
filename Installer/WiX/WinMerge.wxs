@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    candleArgs: "WinMerge.wxs" "Fragments\Core.wxs" "Fragments\Docs.wxs" "Fragments\Filters.wxs" "Fragments\Plugins.wxs" "Fragments\Languages.wxs" "Fragments\Features.wxs" "Fragments\WixUI_WinMerge.wxs" "Fragments\WixUI_AdditionalTasksDlg.wxs" <extensions>
+    lightArgs: "WinMerge.wixobj" "Core.wixobj" "Docs.wixobj" "Filters.wixobj" "Plugins.wixobj" "Languages.wixobj" "Features.wixobj" "WixUI_WinMerge.wixobj" "WixUI_AdditionalTasksDlg.wixobj" -ext WixUIExtension -out "<projectname>.msi" <extensions>
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Config.wxi ?>
+  <!--
+    TODO:
+      * Tasks
+        * Shortcuts
+          * Quick Launch
+        * Integrate to...
+          * TortoiseCVS
+          * TortoiseSVN
+          * ClearCase
+        * Modify Path
+      * Don't install 32 bit version von Windows x64
+      * Install translated readme files
+      * Mutli-language support
+      * ...
+  -->
+  <Product Id="*" 
+    Codepage="1252" 
+    Language="1033" 
+    Manufacturer="$(var.Manufacturer)" 
+    Name="$(var.ProductName)" 
+    UpgradeCode="$(var.UpgradeGuid)" 
+    Version="$(var.ProductVersion)">
+    
+    <Package Id="*" 
+      Comments="$(var.PackageComments)" 
+      Compressed="yes" 
+      Description="$(var.Manufacturer)" 
+      InstallerVersion="300" 
+      Keywords="$(var.PackageKeywords)" 
+      Languages="1033" 
+      Manufacturer="$(var.PackageDescription)" 
+      Platform="$(var.PackagePlatform)" 
+      SummaryCodepage="1252" />
+    
+    <Media Id="1"
+      Cabinet="winmerge.cab"
+      EmbedCab="yes" />
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.ProgramFilesFolder)">
+        <Directory Id="INSTALLDIR" Name="WinMerge">
+          <Directory Id="DOCSDIR" Name="Docs" />
+          <Directory Id="FILTERSDIR" Name="Filters" />
+          <Directory Id="LANGDIR" Name="Languages" />
+          <Directory Id="PLUGINSDIR" Name="MergePlugins" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="WinMergeMenuFolder" Name="WinMerge" />
+      </Directory>
+      <Directory Id="DesktopFolder" />
+      <Merge Id="CRT" Language="0" SourceFile="$(var.CrtMergeModule)" DiskId="1" />
+      <Merge Id="MFC" Language="0" SourceFile="$(var.MfcMergeModule)" DiskId="1" />
+    </Directory>
+    
+    <Property Id="TASK_STARTMENUSHORTCUTS">1</Property>
+    <Property Id="TASK_DESKTOPSHORTCUT">1</Property>
+    
+    <FeatureRef Id="WinMerge" />
+    
+    <!-- TODO: Works this really? -->
+    <Condition Message="WinMerge requires Windows 2000/XP/2003/Vista/2008 or later to install.">
+      <![CDATA[( VersionNT <= 500 ) OR ( Version9x <> 0 )]]>
+    </Condition>
+    
+    <WixVariable Id="WixUILicenseRtf" Value="..\..\Docs\users\GPL.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Bitmaps\banner.bmp" /> 
+    <WixVariable Id="WixUIDialogBmp" Value="Bitmaps\dialog.bmp" />
+    
+    <UIRef Id="WixUI_WinMerge" />
+    
+    <UI />
+    
+  </Product>
+</Wix>
