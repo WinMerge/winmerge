@@ -808,7 +808,7 @@ ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScr
 static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
 {
   str += szadd;
-  curpos += _tcslen(szadd);
+  curpos += (int) _tcslen(szadd);
 }
 
 /** Append escaped control char to string str, and advance position curpos */
@@ -1311,7 +1311,7 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
       return;
 
     if( nLineIndex2 >= m_panSubLines->GetSize() )
-      nLineIndex2 = m_panSubLines->GetUpperBound();
+      nLineIndex2 = (int) m_panSubLines->GetUpperBound();
 
     for( int i = nLineIndex1; i <= nLineIndex2; i++ )
       if( i >= 0 && i < m_panSubLines->GetSize() )

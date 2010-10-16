@@ -926,7 +926,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
       memcpy (pszBuf, m_aLines[nStartLine].GetLine(nStartChar), sizeof (TCHAR) * nCount);
       pszBuf += nCount;
     }
-  text.ReleaseBuffer (pszBuf - text);
+  text.ReleaseBuffer ((int) (pszBuf - text));
   text.FreeExtra ();
 }
 
@@ -1819,7 +1819,7 @@ FindPrevBookmarkLine (int nCurrentLine)
 
       // Start from the end of text
       bWrapIt = FALSE;
-      nCurrentLine = nSize - 1;
+      nCurrentLine = (int) (nSize - 1);
     }
   return -1;
 }
