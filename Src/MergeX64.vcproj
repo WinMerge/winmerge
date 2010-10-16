@@ -4460,6 +4460,8 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4483,6 +4485,8 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -15576,6 +15580,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="PropShell.cpp"
+				>
+			</File>
+			<File
 				RelativePath="PropSyntaxColors.cpp"
 				>
 				<FileConfiguration
@@ -20981,6 +20989,10 @@
 			</File>
 			<File
 				RelativePath="PropRegistry.h"
+				>
+			</File>
+			<File
+				RelativePath="PropShell.h"
 				>
 			</File>
 			<File
