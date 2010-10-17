@@ -52,6 +52,32 @@
 #define RuntimesX86Installer "..\..\..\Runtimes\vcredist_x86.exe"
 #define RuntimesX64Installer "..\..\..\Runtimes\vcredist_x64.exe"
 
+; OpenCandy includes and defines
+#include <OCSetupHlp.iss>
+
+// The OpenCandyKeys.iss file contains the WinMerge specific OpenCandy keys.
+// The file can be obtained from the WinMerge administrators.
+// Remove the next line to use the demo keys only.
+#include <OpenCandyKeys.iss>
+
+#define OC_STR_MY_PRODUCT_NAME "WinMerge"
+
+// Note: These keys are demo keys only, the WinMerge keys are kept somewhere else
+#ifndef OC_STR_KEY
+  #define OC_STR_KEY "1401d0bd8048e1f0f4628dbec1a73092"
+#endif
+#ifndef OC_STR_SECRET
+  #define OC_STR_SECRET "4564bdaf826bbe2115718d1643ecc19e"
+#endif
+
+#define OC_STR_REGISTRY_PATH "Software\Thingamahoochie\OpenCandy"
+
+#if OC_STR_KEY == "1401d0bd8048e1f0f4628dbec1a73092"
+	#pragma warning "Do not forget to change the test key '1401d0bd8048e1f0f4628dbec1a73092' to your company's product key before releasing this installer."
+#endif
+#if OC_STR_SECRET == "4564bdaf826bbe2115718d1643ecc19e"
+	#pragma warning "Do not forget to change the test secret '4564bdaf826bbe2115718d1643ecc19e' to your company's product secret before releasing this installer."
+#endif
 
 [Setup]
 AppName=WinMerge
@@ -155,7 +181,7 @@ Name: Ukrainian; MessagesFile: Languages\Ukrainian.isl; InfoAfterFile: ..\..\Doc
 English.FinishedLabel=Setup has finished installing WinMerge on your computer.
 English.SetupAppTitle=Setup - WinMerge {#AppVersion}
 English.WizardInfoBefore=License Agreement
-English.InfoBeforeLabel=GNU General Public License
+English.InfoBeforeLabel=GNU General Public License & OpenCandy EULA
 
 
 [Types]
@@ -455,6 +481,10 @@ Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags:
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
+; OPEN CANDY START
+Source: {#OCREADME}; DestDir: {app}\OpenCandy; Flags: overwritereadonly ignoreversion;  Check: OpenCandyCheckInstallReadme
+Source: {#OCDLL}; DestDir: {app}\OpenCandy; Flags: overwritereadonly ignoreversion; Check: OpenCandyCheckInstallDLL; AfterInstall: OpenCandyProcessEmbedded
+; OPEN CANDY END
 
 [Icons]
 ;Start Menu Icons
@@ -970,6 +1000,9 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
+	// OPEN CANDY START
+	OpenCandyCurPageChanged(CurPage);
+	// OPEN CANDY END
 End;
 
 // Checks if context menu is already enabled for shell extension
@@ -1088,6 +1121,9 @@ Begin
             IntegrateClearCase('..\..\bin\cleardiffmrg.exe', WinMergeExeName());
         end;
     end;
+	// OPEN CANDY START
+	OpenCandyCurStepChanged(CurStep);
+	// OPEN CANDY END
 End;
 
 Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
@@ -1109,3 +1145,139 @@ Begin
         IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
     end;
 End;
+
+procedure InitializeWizard;
+Var OCstrInstallerLanguage: String;
+begin
+  // OPEN CANDY START
+  // Convert the internal language name to an ISO 639-1 code. Find a list at http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+  Case ActiveLanguage of
+  'default' : Begin
+    OCstrInstallerLanguage := 'en';
+      End;
+  'English' : Begin
+    OCstrInstallerLanguage := 'en';
+      End;
+  'Bulgarian' : Begin
+    OCstrInstallerLanguage := 'bg';
+      End;
+  'Catalan' : Begin
+    OCstrInstallerLanguage := 'ca';
+      End;
+  'Chinese_Simplified' : Begin
+    OCstrInstallerLanguage := 'zh';
+      End;
+  'Chinese_Traditional' : Begin
+    OCstrInstallerLanguage := 'zh';
+      End;
+  'Croatian' : Begin
+    OCstrInstallerLanguage := 'hr';
+      End;
+  'Czech' : Begin
+    OCstrInstallerLanguage := 'cs';
+      End;
+  'Danish' : Begin
+    OCstrInstallerLanguage := 'da';
+      End;
+  'Dutch' : Begin
+    OCstrInstallerLanguage := 'nl';
+      End;
+  'French' : Begin
+    OCstrInstallerLanguage := 'fr';
+      End;
+  'Galician' : Begin
+    OCstrInstallerLanguage := 'gl';
+      End;
+  'German' : Begin
+    OCstrInstallerLanguage := 'de';
+      End;
+  'Greek' : Begin
+    OCstrInstallerLanguage := 'el';
+      End;
+  'Hungarian' : Begin
+    OCstrInstallerLanguage := 'hu';
+      End;
+  'Italian' : Begin
+    OCstrInstallerLanguage := 'it';
+      End;
+  'Japanese' : Begin
+    OCstrInstallerLanguage := 'ja';
+      End;
+  'Korean' : Begin
+    OCstrInstallerLanguage := 'ko';
+      End;
+  'Norwegian' : Begin
+    OCstrInstallerLanguage := 'no';
+      End;
+  'Persian' : Begin
+    OCstrInstallerLanguage := 'fa';
+      End;
+  'Polish' : Begin
+    OCstrInstallerLanguage := 'pl';
+      End;
+  'Portuguese' : Begin
+    OCstrInstallerLanguage := 'pt';
+      End;
+  'PortugueseBrazilian' : Begin
+    OCstrInstallerLanguage := 'pt';
+      End;
+  'Romanian' : Begin
+    OCstrInstallerLanguage := 'ro';
+      End;
+  'Russian' : Begin
+    OCstrInstallerLanguage := 'ru';
+      End;
+  'Serbian' : Begin
+    OCstrInstallerLanguage := 'sr';
+      End;
+  'Slovak' : Begin
+    OCstrInstallerLanguage := 'sk';
+      End;
+  'Slovenian' : Begin
+    OCstrInstallerLanguage := 'sl';
+      End;
+  'Spanish' : Begin
+    OCstrInstallerLanguage := 'es';
+      End;
+  'Swedish' : Begin
+    OCstrInstallerLanguage := 'sv';
+      End;
+  'Turkish' : Begin
+    OCstrInstallerLanguage := 'tr';
+      End;
+  'Ukrainian' : Begin
+    OCstrInstallerLanguage := 'uk';
+      End;
+  End;  {End Case}
+	OpenCandyInit('{#OC_STR_MY_PRODUCT_NAME}','{#OC_STR_KEY}','{#OC_STR_SECRET}',OCstrInstallerLanguage ,'{#OC_STR_REGISTRY_PATH}');
+	// OPEN CANDY END
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+	// OPEN CANDY START
+	Result := OpenCandyShouldSkipPage(PageID);
+	// OPEN CANDY END
+end;
+
+function NextButtonClick(CurPageID: Integer): Boolean;
+begin
+	// OPEN CANDY START
+	Result := OpenCandyNextButtonClick(CurPageID);
+	// OPEN CANDY END
+end;
+
+function BackButtonClick(CurPageID: Integer): Boolean;
+begin
+	// OPEN CANDY START
+	Result := OpenCandyBackButtonClick(CurPageID);
+	// OPEN CANDY END
+end;
+
+procedure DeinitializeSetup();
+begin
+	// OPEN CANDY START
+	OpenCandyDeinitializeSetup();
+	// OPEN CANDY END
+end;
+
