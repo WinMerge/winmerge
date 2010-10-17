@@ -1,0 +1,52 @@
+What is OpenCandy? 
+
+OpenCandy is a platform and network which enables software publishers 
+to recommend other products, during installation of their software, they 
+believe you will find valuable. 
+
+So… What is this folder, its contents, and why is it here? 
+
+These files are only on your computer because you accepted a software 
+recommendation. These files are TEMPORARILY copied to a folder within 
+the publisher's program files directory until the recommended software 
+is downloaded and installation is performed. 
+
+This folder contains: 
+
+  * OpenCandy_Why_Is_This_Here.txt
+    - This text file you’re reading. :) 
+    
+  * OCSetupHlp.dll
+    - This file is used to display a recommendation during the 
+      publisher’s software installation and to facilitate the download 
+      and installation of the recommended software. This file also 
+      allows us to provide software publishers with *non personally 
+      identifiable* information such as statistics like install 
+      initiated and completed, country, operating system and language, 
+      and whether the software recommendation was accepted or not. 
+
+After the recommended software’s installation is started (and regardless 
+of whether it is successfully completed) these files and the 'OpenCandy' 
+folder will be automatically deleted next time the system is restarted.
+
+The possible reasons this folder and its contents remain are: 
+
+  A) You rebooted before installing the recommend software
+  B) You lost power before the recommended software was installed
+  C) Your computer exploded before the recommended software was 
+  installed (Then how are you reading this?) 
+
+Feel free to delete this OpenCandy folder (and its contents) at any 
+time; there is no harm in doing so. If you believe this folder and its 
+files should have been deleted and were not (and neither A, B, or C 
+happened), we'd appreciate if you contacted us (see below) and told us 
+what you think happened. If it happens to be a bug, we'll fix it so this 
+doesn't happen to anyone else. Oh yeah, and we'll send you an awesome 
+purple t-shirt for helping us out! 
+
+If you have any questions, please don’t hesitate to contact us at 
+www.opencandy.com/contact/. 
+
+Thank you. 
+
+- The OpenCandy team
