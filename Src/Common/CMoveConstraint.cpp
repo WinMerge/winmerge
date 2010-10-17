@@ -626,7 +626,7 @@ CMoveConstraint::OnDestroy()
 bool
 CMoveConstraint::OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult)
 {
-	UINT id = pTTT->hdr.idFrom;
+	UINT_PTR id = pTTT->hdr.idFrom;
 	UINT uflags = pTTT->uFlags;
 	if (uflags & TTF_IDISHWND)
 		id = GetDlgCtrlID((HWND)id);

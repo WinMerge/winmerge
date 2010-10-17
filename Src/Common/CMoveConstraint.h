@@ -249,7 +249,7 @@ private:
 	CString m_sRegistrySubkey; // defaults to _T("LastWindowPos")
 	CString m_sRegistryValueName; // should be name of window
 // tooltips
-	CMap<UINT, UINT, tip, tip&> m_tips;
+	CMap<UINT_PTR, UINT_PTR, tip, tip&> m_tips;
 };
 
 } // namespace

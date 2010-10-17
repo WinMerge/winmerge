@@ -504,7 +504,7 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 		nIDPrompt);
 	
 	// Display the message box dialog and return the result.
-	return dlgMessage.DoModal();
+	return (int) dlgMessage.DoModal();
 }
 
 /** 
