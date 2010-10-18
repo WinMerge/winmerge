@@ -21,7 +21,7 @@
  *  @file DirView.h
  *
  *  @brief Declaration of class CDirView
- */ 
+ */
 //
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -60,15 +60,15 @@ struct ViewCustomFlags
 		// and each set of flags is in a different hex digit
 		// to make debugging easier
 		// These can always be packed down in the future
-		INVALID_CODE=0,
-		VISIBILITY=0x3, VISIBLE=0x1, HIDDEN=0x2, EXPANDED=0x4
+		INVALID_CODE = 0,
+		VISIBILITY = 0x3, VISIBLE = 0x1, HIDDEN = 0x2, EXPANDED = 0x4
 	};
 };
 
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const UINT_PTR SPECIAL_ITEM_POS = (UINT_PTR)-1L;
+const UINT_PTR SPECIAL_ITEM_POS = (UINT_PTR) - 1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -127,7 +127,7 @@ public:
 
 // Implementation types
 private:
-	typedef enum { SIDE_LEFT=1, SIDE_RIGHT } SIDE_TYPE;
+	typedef enum { SIDE_LEFT = 1, SIDE_RIGHT } SIDE_TYPE;
 
 // Implementation in DirActions.cpp
 private:
@@ -230,9 +230,9 @@ private:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirView)
-	public:
+public:
 	virtual void OnInitialUpdate();
-	protected:
+protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 	virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
@@ -251,9 +251,9 @@ protected:
 	void WarnContentsChanged(const CString & failedPath);
 	void OpenSpecialItems(UINT_PTR pos1, UINT_PTR pos2);
 	bool OpenOneItem(UINT_PTR pos1, DIFFITEM **di1, DIFFITEM **di2,
-		String &path1, String &path2, int & sel1, bool & isDir);
+			String &path1, String &path2, int & sel1, bool & isDir);
 	bool OpenTwoItems(UINT_PTR pos1, UINT_PTR pos2, DIFFITEM **di1, DIFFITEM **di2,
-		String &path1, String &path2, int & sel1, int & sel2, bool & isDir);
+			String &path1, String &path2, int & sel1, int & sel2, bool & isDir);
 	bool CreateFoldersPair(DIFFITEM & di, bool side1);
 
 // Implementation data
@@ -265,7 +265,7 @@ protected:
 	CListCtrl * m_pList;
 	int m_numcols;
 	int m_dispcols;
-    std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
+	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont m_font; /**< User-selected font */
@@ -447,7 +447,7 @@ private:
 
 #ifndef _DEBUG  // debug version in DirView.cpp
 inline CDirDoc* CDirView::GetDocument()
-   { return (CDirDoc*)m_pDocument; }
+{ return (CDirDoc*)m_pDocument; }
 #endif
 
 
