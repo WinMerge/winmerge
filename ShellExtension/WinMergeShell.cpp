@@ -4,7 +4,7 @@
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation; either version 2 of the License, or (at
 //    your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful, but
 //    WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
-// 
+//
 // This extension needs two registry values to be defined:
 //  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\ContextMenuEnabled
 //   defines if context menu is shown (extension enabled) and if
@@ -31,7 +31,7 @@
 //   overwrites 'Executable' if defined. Useful to overwrite
 //   option set from UI when debugging/testing.
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  WinMergeShell.cpp
  *
  * @brief Implementation of the ShellExtension class
@@ -48,7 +48,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-/** 
+/**
  * @brief Flags for enabling and other settings of context menu.
  */
 enum ExtensionFlags
@@ -60,7 +60,7 @@ enum ExtensionFlags
 
 /// Max. filecount to select
 static const int MaxFileCount = 2;
-/// Registry path to WinMerge 
+/// Registry path to WinMerge
 #define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
 static const TCHAR f_RegDir[] = REGDIR;
 static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
@@ -68,7 +68,7 @@ static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
 /**
  * @name Registry valuenames.
  */
-/*@{*/ 
+/*@{*/
 /** Shell context menuitem enabled/disabled */
 static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
 /** 'Saved' path in advanced mode */
@@ -81,13 +81,17 @@ static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
 static const TCHAR f_LanguageId[] = _T("LanguageId");
 /*@}*/
 
-/// Shown menustate
+/**
+ * @brief The states in which the menu can be.
+ * These states define what items are added to the menu and how those
+ * items work.
+ */
 enum
 {
-	MENU_SIMPLE = 0,
-	MENU_ONESEL_NOPREV,
-	MENU_ONESEL_PREV,
-	MENU_TWOSEL,
+	MENU_SIMPLE = 0,  /**< Simple menu, only "Compare item" is shown. */
+	MENU_ONESEL_NOPREV,  /**< One item selected, no previous selections. */
+	MENU_ONESEL_PREV,  /**< One item selected, previous selection exists. */
+	MENU_TWOSEL,  /**< Two items are selected. */
 };
 
 #define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
@@ -99,18 +103,20 @@ class CWinMergeTempLocale
 private:
 	LCID m_lcidOld;
 public:
-	CWinMergeTempLocale() {
+	CWinMergeTempLocale()
+	{
 		CRegKeyEx reg;
 		if (reg.Open(HKEY_CURRENT_USER, f_RegLocaleDir) != ERROR_SUCCESS)
 			return;
 
 		m_lcidOld = GetThreadLocale();
 
-		int iLangId = reg.ReadDword(f_LanguageId, (DWORD)-1);
+		int iLangId = reg.ReadDword(f_LanguageId, (DWORD) - 1);
 		if (iLangId != -1)
 			SetThreadLocale(MAKELCID(iLangId, SORT_DEFAULT));
 	}
-	~CWinMergeTempLocale() {
+	~CWinMergeTempLocale()
+	{
 		SetThreadLocale(m_lcidOld);
 	}
 };
@@ -124,7 +130,7 @@ static String GetResourceString(UINT resourceID)
 {
 	TCHAR resStr[1024] = {0};
 	int res = LoadString(_Module.GetModuleInstance(), resourceID, resStr, 1024);
-	ATLASSERT(res!= 0);
+	ATLASSERT(res != 0);
 	String strResource = resStr;
 	return strResource;
 }
@@ -138,8 +144,8 @@ CWinMergeShell::CWinMergeShell()
 	m_dwMenuState = 0;
 
 	// compress or stretch icon bitmap according to menu item height
-	m_MergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP, 
-		GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
+	m_MergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP,
+			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
 }
 
 /// Default destructor, unloads bitmap
@@ -175,7 +181,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 			return E_INVALIDARG;
 
 		// Sanity check & make sure there is at least one filename.
-		UINT uNumFilesDropped = DragQueryFile (hDropInfo, 0xFFFFFFFF, NULL, 0);
+		UINT uNumFilesDropped = DragQueryFile(hDropInfo, 0xFFFFFFFF, NULL, 0);
 		m_nSelectedItems = uNumFilesDropped;
 
 		if (uNumFilesDropped == 0)
@@ -353,7 +359,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			m_strPaths[1] = m_strPaths[0];
 			m_strPaths[0] = m_strPreviousPath;
 			bCompare = TRUE;
-			
+
 			// Forget previous selection
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
 				reg.WriteString(f_FirstSelection, _T(""));
@@ -393,17 +399,17 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		bAlterSubFolders = TRUE;
 
 	String strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
-		m_strPaths[1], bAlterSubFolders);
+			m_strPaths[1], bAlterSubFolders);
 
 	// Finally start a new WinMerge process
 	BOOL retVal = FALSE;
 	STARTUPINFO stInfo = {0};
 	stInfo.cb = sizeof(STARTUPINFO);
 	PROCESS_INFORMATION processInfo = {0};
-	
+
 	retVal = CreateProcess(NULL, (LPTSTR)strCommandLine.c_str(),
-		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-		&stInfo, &processInfo);
+			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+			&stInfo, &processInfo);
 
 	if (!retVal)
 		return S_FALSE;
@@ -419,7 +425,7 @@ BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
 	CRegKeyEx reg;
 	if (!reg.QueryRegUser(f_RegDir))
 		return FALSE;
-	
+
 	// Try first reading debug/test value
 	strDir = reg.ReadString(f_RegValuePriPath, _T(""));
 	if (strDir.empty())
@@ -427,7 +433,7 @@ BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
 		strDir = reg.ReadString(f_RegValuePath, _T(""));
 		if (strDir.empty())
 			return FALSE;
-	}	
+	}
 
 	return TRUE;
 }
@@ -440,8 +446,8 @@ BOOL CWinMergeShell::CheckExecutable(String path)
 
 	// Check extension
 	if (_tcsicmp(sExt.c_str(), _T("exe")) == 0 ||
-		_tcsicmp(sExt.c_str(), _T("cmd")) == 0 ||
-		_tcsicmp(sExt.c_str(), _T("bat")) == 0)
+			_tcsicmp(sExt.c_str(), _T("cmd")) == 0 ||
+			_tcsicmp(sExt.c_str(), _T("bat")) == 0)
 	{
 		// Check if file exists
 		struct _stati64 statBuffer;
@@ -458,15 +464,15 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 {
 	String strMenu = GetResourceString(IDS_CONTEXT_MENU);
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
-	
+
 	// Add bitmap
 	if (m_MergeBmp != NULL)
 		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
-	
+
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
 		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
-	
+
 	return 1;
 }
 
@@ -479,48 +485,48 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	String strCompareTo = GetResourceString(IDS_COMPARE_TO);
 	String strReselect = GetResourceString(IDS_RESELECT_FIRST);
 	int nItemsAdded = 0;
-	
+
 	switch (m_dwMenuState)
 	{
-	// No items selected earlier
-	// Select item as first item to compare
+		// No items selected earlier
+		// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strCompareTo.c_str());
+				strCompareTo.c_str());
 		uMenuIndex++;
 		uidFirstCmd++;
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strCompareEllipsis.c_str());
+				strCompareEllipsis.c_str());
 		nItemsAdded = 2;
 		break;
 
-	// One item selected earlier:
-	// Allow re-selecting first item or selecting second item
+		// One item selected earlier:
+		// Allow re-selecting first item or selecting second item
 	case MENU_ONESEL_PREV:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strCompare.c_str());
+				strCompare.c_str());
 		uMenuIndex++;
 		uidFirstCmd++;
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strReselect.c_str());
+				strReselect.c_str());
 		nItemsAdded = 2;
 		break;
 
-	// Two items selected
-	// Select both items for compare
+		// Two items selected
+		// Select both items for compare
 	case MENU_TWOSEL:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strCompare.c_str());
+				strCompare.c_str());
 		nItemsAdded = 1;
 		break;
 
 	default:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
-			strCompare.c_str());
+				strCompare.c_str());
 		nItemsAdded = 1;
 		break;
 	}
-	
+
 	// Add bitmap
 	if (m_MergeBmp != NULL)
 	{
@@ -528,7 +534,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, m_MergeBmp, NULL);
 		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
 	}
-	
+
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
 	{
@@ -563,12 +569,12 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		case MENU_ONESEL_NOPREV:
 			strHelp = GetResourceString(IDS_HELP_SAVETHIS);
 			break;
-		
+
 		case MENU_ONESEL_PREV:
 			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
 			string_replace(strHelp, _T("%1"), m_strPreviousPath);
 			break;
-		
+
 		case MENU_TWOSEL:
 			strHelp = GetResourceString(IDS_CONTEXT_HELP);
 			break;
@@ -591,7 +597,7 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 
 /// Format commandline used to start WinMerge
 String CWinMergeShell::FormatCmdLine(const String &winmergePath,
-	const String &path1, const String &path2, BOOL bAlterSubFolders)
+		const String &path1, const String &path2, BOOL bAlterSubFolders)
 {
 	String strCommandline(winmergePath);
 
@@ -604,9 +610,9 @@ String CWinMergeShell::FormatCmdLine(const String &winmergePath,
 		strCommandline += _T(" /r");
 	else if (!bAlterSubFolders && bSubfoldersByDefault)
 		strCommandline += _T(" /r");
-	
+
 	strCommandline += _T(" \"") + path1 + _T("\"");
-	
+
 	if (!m_strPaths[1].empty())
 		strCommandline += _T(" \"") + path2 + _T("\"");
 

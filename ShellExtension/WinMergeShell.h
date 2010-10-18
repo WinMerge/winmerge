@@ -4,7 +4,7 @@
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation; either version 2 of the License, or (at
 //    your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful, but
 //    WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
-/** 
+/**
  * @file  WinMergeShell.h
  *
  * @brief Declaration file for ShellExtension class
@@ -34,30 +34,30 @@
 #include "resource.h"   // main symbols
 #include "UnicodeString.h"
 
-/** 
+/**
  * @brief Class for handling shell extension tasks
  */
-class ATL_NO_VTABLE CWinMergeShell : 
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public CComCoClass<CWinMergeShell, &CLSID_WinMergeShell>,
-	public IDispatchImpl<IWinMergeShell, &IID_IWinMergeShell, &LIBID_SHELLEXTENSIONLib>,
-	public IShellExtInit,
-	public IContextMenu
+class ATL_NO_VTABLE CWinMergeShell :
+		public CComObjectRootEx<CComSingleThreadModel>,
+		public CComCoClass<CWinMergeShell, &CLSID_WinMergeShell>,
+		public IDispatchImpl<IWinMergeShell, &IID_IWinMergeShell, &LIBID_SHELLEXTENSIONLib>,
+		public IShellExtInit,
+		public IContextMenu
 {
 public:
 	CWinMergeShell();
 	~CWinMergeShell();
 
-DECLARE_REGISTRY_RESOURCEID(IDR_WINMERGESHELL)
+	DECLARE_REGISTRY_RESOURCEID(IDR_WINMERGESHELL)
 
-DECLARE_PROTECT_FINAL_CONSTRUCT()
+	DECLARE_PROTECT_FINAL_CONSTRUCT()
 
-BEGIN_COM_MAP(CWinMergeShell)
+	BEGIN_COM_MAP(CWinMergeShell)
 	COM_INTERFACE_ENTRY(IWinMergeShell)
 	COM_INTERFACE_ENTRY(IDispatch)
 	COM_INTERFACE_ENTRY(IShellExtInit)
 	COM_INTERFACE_ENTRY(IContextMenu)
-END_COM_MAP()
+	END_COM_MAP()
 
 // IWinMergeShell
 protected:
@@ -74,16 +74,16 @@ protected:
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	String GetHelpText(UINT_PTR idCmd);
 	String FormatCmdLine(const String &winmergePath,
-		const String &path1, const String &path2, BOOL bAlterSubFolders);
+			const String &path1, const String &path2, BOOL bAlterSubFolders);
 
 public:
-    // IShellExtInit
-    STDMETHOD(Initialize)(LPCITEMIDLIST, LPDATAOBJECT, HKEY);
+	// IShellExtInit
+	STDMETHOD(Initialize)(LPCITEMIDLIST, LPDATAOBJECT, HKEY);
 
-    // IContextMenu
-    STDMETHOD(GetCommandString)(UINT_PTR, UINT, UINT*, LPSTR, UINT);
-    STDMETHOD(InvokeCommand)(LPCMINVOKECOMMANDINFO);
-    STDMETHOD(QueryContextMenu)(HMENU, UINT, UINT, UINT, UINT);
+	// IContextMenu
+	STDMETHOD(GetCommandString)(UINT_PTR, UINT, UINT*, LPSTR, UINT);
+	STDMETHOD(InvokeCommand)(LPCMINVOKECOMMANDINFO);
+	STDMETHOD(QueryContextMenu)(HMENU, UINT, UINT, UINT, UINT);
 };
 
 #endif //__WINMERGESHELL_H_

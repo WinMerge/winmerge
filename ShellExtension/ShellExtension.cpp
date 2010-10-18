@@ -7,7 +7,7 @@
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation; either version 2 of the License, or (at
 //    your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful, but
 //    WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -19,11 +19,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
-// 
+//
 // $Id$
 
 // Note: Proxy/Stub Information
-//      To build a separate proxy/stub DLL, 
+//      To build a separate proxy/stub DLL,
 //      run nmake -f ShellExtensionps.mk in the project directory.
 
 #include "stdafx.h"
@@ -48,10 +48,10 @@ extern "C"
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpReserved*/)
 {
 	if (dwReason == DLL_PROCESS_ATTACH)
-{
+	{
 		_Module.Init(ObjectMap, hInstance, &LIBID_SHELLEXTENSIONLib);
 		DisableThreadLibraryCalls(hInstance);
-}
+	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 		_Module.Term();
 	return TRUE;    // ok
@@ -62,7 +62,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpReserved*/)
 
 STDAPI DllCanUnloadNow(void)
 {
-    return (_Module.GetLockCount()==0) ? S_OK : S_FALSE;
+	return (_Module.GetLockCount() == 0) ? S_OK : S_FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ STDAPI DllCanUnloadNow(void)
 
 STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 {
-    return _Module.GetClassObject(rclsid, riid, ppv);
+	return _Module.GetClassObject(rclsid, riid, ppv);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ STDAPI DllRegisterServer(void)
 	// If we're on NT, add ourselves to the list of approved shell extensions.
 
 	// Note that you should *NEVER* use the overload of CRegKey::SetValue with
-	// 4 parameters.  It lets you set a value in one call, without having to 
+	// 4 parameters.  It lets you set a value in one call, without having to
 	// call CRegKey::Open() first.  However, that version of SetValue() has a
 	// bug in that it requests KEY_ALL_ACCESS to the key.  That will fail if the
 	// user is not an administrator.  (The code should request KEY_WRITE, which
@@ -108,12 +108,12 @@ STDAPI DllRegisterServer(void)
 		LONG lRet;
 
 		lRet = reg.Open(HKEY_LOCAL_MACHINE,
-			_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"));
+				_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"));
 
 		if (ERROR_SUCCESS != lRet)
 			return E_ACCESSDENIED;
 
-		lRet = reg.WriteString(_T("WinMerge_Shell Extension"), 
+		lRet = reg.WriteString(_T("WinMerge_Shell Extension"),
 				_T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
 
 		if (ERROR_SUCCESS != lRet)
@@ -121,7 +121,7 @@ STDAPI DllRegisterServer(void)
 	}
 
 	// registers object, typelib and all interfaces in typelib
-    return _Module.RegisterServer(TRUE);
+	return _Module.RegisterServer(TRUE);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -145,10 +145,10 @@ STDAPI DllUnregisterServer(void)
 
 		if (ERROR_SUCCESS == lRet)
 		{
-			lRet = reg.DeleteValue( _T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
+			lRet = reg.DeleteValue(_T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
 		}
 	}
-	
+
 	return _Module.UnregisterServer(TRUE);
 }
 
