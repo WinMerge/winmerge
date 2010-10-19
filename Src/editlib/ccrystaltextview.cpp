@@ -6186,6 +6186,19 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
     }
 }
 
+// Analyze the first line of file to detect its type
+// Mainly it works for xml files
+bool CCrystalTextView::
+SetTextTypeByContent (LPCTSTR pszContent)
+{
+  int nLen;
+  if (::FindStringHelper(pszContent, _T("^\\s*\\<\\?xml\\s+.+?\\?\\>\\s*$"),
+      FIND_REGEXP, nLen) == 0)
+    {
+      return SetTextType(CCrystalTextView::SRC_XML);
+    }
+  return false;
+}
 
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )

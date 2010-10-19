@@ -790,6 +790,7 @@ public :
     virtual bool SetTextType (LPCTSTR pszExt);
     virtual bool SetTextType (CCrystalTextView::TextType enuType);
     virtual bool SetTextType (CCrystalTextView::TextDefinition *def);
+    virtual bool SetTextTypeByContent (LPCTSTR pszContent);
     static void LoadSettings ();
     static void SaveSettings ();
 
