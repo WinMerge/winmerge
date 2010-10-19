@@ -250,6 +250,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
+	ON_COMMAND(ID_VIEW_EXPAND, OnExpandFolder)
+	ON_COMMAND(ID_VIEW_COLLAPSE, OnCollapseFolder)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
@@ -1099,6 +1101,38 @@ void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	*pResult = 0;
+}
+
+/**
+ * @brief Expand collapsed folder in tree-view mode.
+ */
+void CDirView::OnExpandFolder()
+{
+	const int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (nSelItem == -1)
+		return;
+	const DIFFITEM &di = GetItemAt(nSelItem);
+	if (di.diffcode.isDirectory() && (di.customFlags1 &
+			ViewCustomFlags::EXPANDED) == 0)
+	{
+		ExpandSubdir(nSelItem);
+	}
+}
+
+/**
+ * @brief Collapse expanded folder in tree-view mode.
+ */
+void CDirView::OnCollapseFolder()
+{
+	const int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (nSelItem == -1)
+		return;
+	const DIFFITEM &di = GetItemAt(nSelItem);
+	if (di.diffcode.isDirectory() && (di.customFlags1 &
+			ViewCustomFlags::EXPANDED))
+	{
+		CollapseSubdir(nSelItem);
+	}
 }
 
 /**

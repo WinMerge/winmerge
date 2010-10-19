@@ -1071,7 +1071,8 @@
 #define ID_HELP_TRANSLATIONS            33171
 #define ID_VIEW_ZOOMNORMAL              33172
 #define ID_PLUGINS_LIST                 33173
-
+#define ID_VIEW_EXPAND                  33176
+#define ID_VIEW_COLLAPSE                33177
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
