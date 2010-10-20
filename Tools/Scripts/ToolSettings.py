@@ -44,7 +44,7 @@ class ToolSettings:
         self.nsis_path = r'C:\Program Files\NSIS'
         # Checkout sources from local workspace or from SVN server (give URL)
         self.source = 'workspace'
-        self.vs_version = 2005
+        self.vs_version = 2008
 
     def create_ini(self, filename):
         config = ConfigParser.RawConfigParser()
