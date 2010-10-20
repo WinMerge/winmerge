@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  ByteCompare.h
  *
  * @brief Declaration file for ByteCompare
@@ -20,6 +20,11 @@ struct file_data;
 namespace CompareEngines
 {
 
+/**
+ * @brief A quick compare -compare method implementation class.
+ * This compare method compares files in small blocks. Code assumes block size
+ * is in range of 32-bit int-type.
+ */
 class ByteCompare
 {
 public:
