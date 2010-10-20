@@ -7,14 +7,9 @@
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "windows.h"
 #include "varprop.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
+#include "assert.h"
 
 namespace varprop
 {
@@ -145,7 +140,7 @@ void VariantValue::Clear()
  */
 bool VariantValue::GetBool() const
 {
-	ASSERT(m_vtype == VT_BOOL);
+	assert(m_vtype == VT_BOOL);
 	return m_bvalue;
 }
 
@@ -155,7 +150,7 @@ bool VariantValue::GetBool() const
  */
 int VariantValue::GetInt() const
 {
-	ASSERT(m_vtype == VT_INT);
+	assert(m_vtype == VT_INT);
 	return m_ivalue;
 }
 
@@ -165,7 +160,7 @@ int VariantValue::GetInt() const
  */
 double VariantValue::GetFloat() const
 {
-	ASSERT(m_vtype == VT_FLOAT);
+	assert(m_vtype == VT_FLOAT);
 	return m_fvalue;
 }
 
@@ -175,7 +170,7 @@ double VariantValue::GetFloat() const
  */
 String VariantValue::GetString() const
 {
-	ASSERT(m_vtype == VT_STRING);
+	assert(m_vtype == VT_STRING);
 	return m_svalue;
 }
 
@@ -185,7 +180,7 @@ String VariantValue::GetString() const
  */
 time_t VariantValue::GetTime() const
 {
-	ASSERT(m_vtype == VT_TIME);
+	assert(m_vtype == VT_TIME);
 	return m_tvalue;
 }
 
