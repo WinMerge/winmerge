@@ -149,6 +149,9 @@ BEGIN
     BEGIN
         MENUITEM "&List...",                    ID_PLUGINS_LIST
         MENUITEM SEPARATOR
+        MENUITEM "Ma&nual Prediffer",           ID_PREDIFFER_MANUAL
+        MENUITEM "A&utomatic Prediffer",        ID_PREDIFFER_AUTO
+        MENUITEM SEPARATOR
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR

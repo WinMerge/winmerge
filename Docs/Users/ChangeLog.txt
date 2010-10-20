@@ -12,6 +12,7 @@ WinMerge 2.13.19
   Expand/collapse folders from keyboard (#2203904)
   Improve detecting XML files in file compare (#2726531)
   Improve startup time (#2788142)
+  Add menuitems for selecting automatic or manual prediffing (#2638608)
   New translation: Persian (#2877121, #3065119)
   New translation: Serbian (#3017674, #3065119)
   Installer: Drop Windows 9x/ME/NT4 support and use Microsoft runtime
