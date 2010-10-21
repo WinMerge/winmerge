@@ -17,6 +17,8 @@ WinMerge 2.13.20 - 2010-10-20 (r7319)
     context menu (#2600787)
   Expand/collapse folders from keyboard (#2203904)
   Improve detecting XML files in file compare (#2726531)
+  Initialize folder selection dialog to currently selected folder in
+    options dialog (r6570)
   New translation: Persian (#2877121, #3065119)
   New translation: Serbian (#3017674, #3065119)
   Installer: Drop Windows 9x/ME/NT4 support and use Microsoft runtime

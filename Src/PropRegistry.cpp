@@ -148,7 +148,7 @@ void CPropRegistry::OnBrowseEditor()
 void CPropRegistry::OnBrowseFilterPath()
 {
 	CString path;
-	if (SelectFolder(path, NULL, IDS_OPEN_TITLE, GetSafeHwnd()))
+	if (SelectFolder(path, m_strUserFilterPath, IDS_OPEN_TITLE, GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_FILTER_USER_PATH, path);
 	}
@@ -158,7 +158,7 @@ void CPropRegistry::OnBrowseFilterPath()
 void CPropRegistry::OnBrowseTmpFolder()
 {
 	CString path;
-	if (SelectFolder(path, NULL, NULL, GetSafeHwnd()))
+	if (SelectFolder(path, m_tempFolder, NULL, GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_TMPFOLDER_NAME, path);
 	}
