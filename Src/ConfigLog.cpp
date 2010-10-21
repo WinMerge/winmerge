@@ -28,7 +28,6 @@
 #endif
 #include "Constants.h"
 #include "version.h"
-#include "dllver.h"
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
 #include "winnt_supp.h"
