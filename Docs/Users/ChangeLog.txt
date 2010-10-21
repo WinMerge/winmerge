@@ -7,6 +7,7 @@ WinMerge 2.15.1
   Update version number in trunk
   Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Installer: Don't install quick launch icon for Windows 7 (#3079966)
+  Installer: Add OpenCandy to the InnoSetup installer (#3088720)
   Translation updates:
   - Bulgarian (#3082392)
 
