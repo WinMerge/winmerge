@@ -430,10 +430,8 @@
 #define IDC_LFILTER_LIST                1327
 #define IDC_LFILTER_ADDBTN              1328
 #define IDC_LFILTER_EDITBTN             1329
-#define IDC_LFILTER_EDITBOX             1330
 #define IDC_LFILTER_REMOVEBTN           1331
 #define IDC_BUTTON2                     1332
-#define IDC_LFILTER_EDITSAVE            1333
 #define IDC_ABOUTBOX_ICON               1334
 #define IDC_ASK_MULTIWINDOW_CLOSE       1335
 #define IDC_COLDLG_LIST                 1336
