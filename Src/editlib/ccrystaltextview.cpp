@@ -983,7 +983,6 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int nCharWidthNarrowed = nCharWidth / 2;
       const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
-      int nSumWidth = 0;
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -2102,7 +2101,6 @@ OnDraw (CDC * pdc)
     rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
   }
 
-  const int nMaxLineChars = GetScreenChars();
   //END SW
 
   int nCurrentLine = m_nTopLine;
@@ -2941,8 +2939,6 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
   int nCurrentLine;
   for (nCurrentLine = nTopLine; nCurrentLine <= nEndLine; nCurrentLine++)
     {
-      int nSubLines = GetSubLines (nCurrentLine);
-
       rcLine.bottom = rcLine.top + GetSubLines (nCurrentLine) * nLineHeight;
       rcMargin.bottom = rcLine.bottom;
 

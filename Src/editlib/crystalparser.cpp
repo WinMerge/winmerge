@@ -58,7 +58,6 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nTabWidth = m_pTextView->GetTabSize();
 	int			nLineCharCount = 0;
 	int			nCharCount = 0;
-	int			nCharPos = 0;
 	LPCTSTR	szLine = m_pTextView->GetLineChars( nLineIndex );
 	int			nLastBreakPos = 0;
 	int			nLastCharBreakPos = 0;

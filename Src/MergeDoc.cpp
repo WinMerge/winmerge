@@ -1353,7 +1353,6 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
  */
 static void UnescapeControlChars(CString &s)
 {
-	int n = s.GetLength();
 	LPTSTR p = s.LockBuffer();
 	LPTSTR q = p;
 	while ((*p = *q) != _T('\0'))

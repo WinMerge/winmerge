@@ -672,7 +672,6 @@ bool CLocationView::GotoLocation(const CPoint& point, bool bRealLine)
 	GetClientRect(rc);
 
 	int line = -1;
-	int lineOther = -1;
 	int bar = IsInsideBar(rc, point);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 	{
@@ -898,16 +897,13 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 
 	CRect rc;
 	GetClientRect(rc);
-	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
 			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
 
 	int nTopCoord = static_cast<int>(Y_OFFSET +
 			(static_cast<double>(nTopLine * m_lineInPix)));
-	int nLeftCoord = INDICATOR_MARGIN;
 	int nBottomCoord = static_cast<int>(Y_OFFSET +
 			(static_cast<double>(nBottomLine * m_lineInPix)));
-	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
 	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
 	int barBottom = (int)xbarBottom;

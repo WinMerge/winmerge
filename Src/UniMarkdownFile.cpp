@@ -193,7 +193,6 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 		{
 			while (m_current < m_base + m_filesize && isspace(*m_current))
 			{
-				LPBYTE current = m_current;
 				BYTE eol = *m_current++;
 				if (eol == '\r' || eol == '\n')
 				{

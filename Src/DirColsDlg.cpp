@@ -274,7 +274,6 @@ void CDirColsDlg::OnDefaults()
  */
 void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
 	if (pos)
