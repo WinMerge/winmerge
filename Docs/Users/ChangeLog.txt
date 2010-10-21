@@ -3,7 +3,11 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
-WinMerge 2.13.19
+WinMerge 2.13.21
+  Improve startup time (#2788142)
+  Add menuitems for selecting automatic or manual prediffing (#2638608)
+
+WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)
   Recognize .ascx files as ASP files (#3042393)
   Fix help locations (#2988974)
@@ -11,14 +15,13 @@ WinMerge 2.13.19
     context menu (#2600787)
   Expand/collapse folders from keyboard (#2203904)
   Improve detecting XML files in file compare (#2726531)
-  Improve startup time (#2788142)
-  Add menuitems for selecting automatic or manual prediffing (#2638608)
   New translation: Persian (#2877121, #3065119)
   New translation: Serbian (#3017674, #3065119)
   Installer: Drop Windows 9x/ME/NT4 support and use Microsoft runtime
     libraries installer (#3070254)
   Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Installer: Don't install quick launch icon for Windows 7 (#3079966)
+  Installer: Add OpenCandy to the InnoSetup installer (#3088720)
   Bugfix: WinMerge was vulnerable to DLL hijacking as described in
     Microsoft Security Advisory (2269637)  (#33056008)
   Bugfix: Location pane focus enabled "Save" (#3022292)
