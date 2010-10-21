@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.21
   Improve startup time (#2788142)
   Add menuitems for selecting automatic or manual prediffing (#2638608)
+  Add accelerator keys for Shell context menu (#2823536)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
 
