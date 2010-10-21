@@ -6,6 +6,8 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.13.21
   Improve startup time (#2788142)
   Add menuitems for selecting automatic or manual prediffing (#2638608)
+  Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
+    in status bar (#3025855)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)
