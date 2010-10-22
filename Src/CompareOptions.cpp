@@ -6,7 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: ByteComparator.h 3397 2006-07-27 10:41:24Z kimmov $
 
-#include "StdAfx.h"
+#include <windows.h>
+#include <crtdbg.h>
 #include "DIFF.H"
 #include "CompareOptions.h"
 
