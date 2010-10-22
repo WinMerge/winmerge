@@ -4,7 +4,7 @@
  *  @brief Declaration of class CompareStats
  */ 
 //
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _COMPARESTATS_H_
@@ -68,8 +68,8 @@ public:
 	void SetCompareState(CompareStats::CMP_STATE state);
 	CompareStats::CMP_STATE GetCompareState() const;
 	BOOL IsCompareDone() const { return m_bCompareDone; }
-	
-	static CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode);
+
+	static CompareStats::RESULT GetResultFromCode(UINT diffcode);
 
 private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
