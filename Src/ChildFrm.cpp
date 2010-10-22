@@ -310,8 +310,8 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
 
-	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
-	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
 
 	return 0;
 }
