@@ -826,7 +826,7 @@ stringdiffs::InsertInWords(std::vector<word*> &words, int bw)
  * @brief Find pre word in m_words2 (starting at bw2) that matches needword1 (in m_words1)
  */
 int 
-stringdiffs::FindPreMatchInWords(std::vector<word*> words, const word & needword, int bw, int side) const
+stringdiffs::FindPreMatchInWords(const std::vector<word*> &words, const word & needword, int bw, int side) const
 {
 	while (bw >= 0)
 	{
@@ -847,7 +847,7 @@ stringdiffs::FindPreMatchInWords(std::vector<word*> words, const word & needword
  * @brief Find next word in words (starting at bw) that matches needword1 (in m_words1)
  */
 int 
-stringdiffs::FindNextMatchInWords(std::vector<word*> words, const word & needword, int bw, int side) const
+stringdiffs::FindNextMatchInWords(const std::vector<word*> &words, const word & needword, int bw, int side) const
 {
 	const int iSize = (int) words.size();
 	while (bw < iSize)
@@ -870,7 +870,7 @@ stringdiffs::FindNextMatchInWords(std::vector<word*> words, const word & needwor
  * @brief Find pre space in m_words (starting at bw)
  */
 int 
-stringdiffs::FindPreSpaceInWords(std::vector<word*> words, int bw) const
+stringdiffs::FindPreSpaceInWords(const std::vector<word*> &words, int bw) const
 {
 	while (bw >= 0)
 	{
@@ -885,7 +885,7 @@ stringdiffs::FindPreSpaceInWords(std::vector<word*> words, int bw) const
  * @brief Find next space in m_words (starting at bw)
  */
 int 
-stringdiffs::FindNextSpaceInWords(std::vector<word*> words, int bw) const
+stringdiffs::FindNextSpaceInWords(const std::vector<word*> &words, int bw) const
 {
 	const int iSize = (int) words.size();
 	while (bw < iSize)
@@ -900,7 +900,7 @@ stringdiffs::FindNextSpaceInWords(std::vector<word*> words, int bw) const
  * @brief Find next pre noinsert in words (starting at bw)
  */
 int 
-stringdiffs::FindPreNoInsertInWords(std::vector<word*> words, int bw) const
+stringdiffs::FindPreNoInsertInWords(const std::vector<word*> &words, int bw) const
 {
 	while (bw >= 0)
 	{
@@ -914,7 +914,7 @@ stringdiffs::FindPreNoInsertInWords(std::vector<word*> words, int bw) const
  * @brief Find next insert in m_words (starting at bw)
  */
 int 
-stringdiffs::FindNextInsertInWords(std::vector<word*> words, int bw) const
+stringdiffs::FindNextInsertInWords(const std::vector<word*> &words, int bw) const
 {
 	const int iSize = (int) words.size();
 	while (bw < iSize)
@@ -929,7 +929,7 @@ stringdiffs::FindNextInsertInWords(std::vector<word*> words, int bw) const
  * @brief Find next noinsert in m_words (starting at bw)
  */
 int 
-stringdiffs::FindNextNoInsertInWords(std::vector<word*> words, int bw) const
+stringdiffs::FindNextNoInsertInWords(const std::vector<word*> &words, int bw) const
 {
 	const int iSize = (int) words.size();
 	while (bw < iSize)
