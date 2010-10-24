@@ -65,13 +65,13 @@ private:
 
 	void BuildWordsArray(const String & str, std::vector<word*> * words);
 	void InsertInWords(std::vector<word*> &words, int bw);
-	int FindPreMatchInWords(std::vector<word*> words,const word & needword, int bw, int side) const;
-	int FindNextMatchInWords(std::vector<word*> words,const word & needword, int bw, int side) const;
-	int FindPreSpaceInWords(std::vector<word*> words, int bw) const;
-	int FindNextSpaceInWords(std::vector<word*> words, int bw) const;
-	int FindPreNoInsertInWords(std::vector<word*> words, int bw) const;
-	int FindNextInsertInWords(std::vector<word*> words, int bw) const;
-	int FindNextNoInsertInWords(std::vector<word*> words, int bw) const;
+	int FindPreMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
+	int FindNextMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
+	int FindPreSpaceInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextSpaceInWords(const std::vector<word*> &words, int bw) const;
+	int FindPreNoInsertInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextInsertInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextNoInsertInWords(const std::vector<word*> &words, int bw) const;
 	void MoveInWordsUp(std::vector<word*> &words, int source, int target) const;
 	void MoveInWordsDown(std::vector<word*> &words, int source, int target) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
