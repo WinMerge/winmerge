@@ -1077,6 +1077,8 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1087,6 +1089,9 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1098,6 +1103,8 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
@@ -1110,6 +1117,8 @@
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						PrecompiledHeaderFile=""
 						BrowseInformation="1"
 					/>
 				</FileConfiguration>
