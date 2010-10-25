@@ -2617,52 +2617,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="dllver.cpp"
-				>
-				<FileConfiguration
-					Name="UnicodeRelease|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="EditorFilepathBar.cpp"
 				>
 				<FileConfiguration
@@ -7693,10 +7647,6 @@
 			</File>
 			<File
 				RelativePath="dllpstub.h"
-				>
-			</File>
-			<File
-				RelativePath="dllver.h"
 				>
 			</File>
 			<File
