@@ -77,6 +77,7 @@ static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
  * @brief Turn STL exceptions into MFC exceptions.
  * Based on the article "Visual C++ Exception-Handling Instrumentation"
  * by Eugene Gershnik, published at http://www.drdobbs.com/184416600.
+ * Rethrow fix inspired by http://www.spinics.net/lists/wine/msg05996.html.
  */
 namespace Turn_STL_exceptions_into_MFC_exceptions
 {
@@ -105,6 +106,17 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 
 	extern "C" void __stdcall _CxxThrowException(void *pObject, _s__ThrowInfo const *pObjectInfo)
 	{
+		__declspec(thread) static ULONG_PTR args[3] = { MS_MAGIC, 0, 0 };
+		if (pObject == NULL)
+		{
+			pObject = reinterpret_cast<void *>(args[1]);
+			pObjectInfo = reinterpret_cast<_s__ThrowInfo const *>(args[2]);
+		}
+		else
+		{
+			args[1] = (ULONG_PTR)pObject;
+			args[2] = (ULONG_PTR)pObjectInfo;
+		}
 		if (int i = pObjectInfo->pCatchableTypeArray->nCatchableTypes)
 		{
 			const char *name = typeid(std::exception).raw_name();
@@ -113,7 +125,6 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 				throw new CDisguisedSTLException(static_cast<std::exception *>(pObject));
 			}
 		}
-		const ULONG_PTR args[] = { MS_MAGIC, (ULONG_PTR)pObject, (ULONG_PTR)pObjectInfo };
 		RaiseException(CPP_EXCEPTION, EXCEPTION_NONCONTINUABLE, _countof(args), args);
 	}
 }
