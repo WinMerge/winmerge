@@ -66,19 +66,10 @@
 # CONFIGURATION:
 # Set these variables to match your environment and folders you want to use
 
-# Subversion binary - set this to absolute path to svn.exe
-#svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
-# Visual Studio path
-#vs_path = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-# InnoSetup installation path
-#innosetup_path = 'C:\\Program Files\\Inno Setup 5'
 # Relative path where to create a release folder
 dist_root_folder = 'distrib'
-# Source location
-# Give URL to SVN repository to export source from SVN or 'workspace' to export
-# from workspace
-#source_location = 'https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk'
-#source_location ='workspace'
+root_path = ''
+prog_ver = ''
 
 # Build 64-bit targets? This requires 64-bit cross-compile cabable VS version.
 # If disabled, 64-bit versions must be compiled before running this script
@@ -93,80 +84,11 @@ import sys
 import getopt
 import shutil
 import SetVersions
+import ToolSettings
 import ConfigParser
 
-class settings:
-    def __init__(self):
-        self.rootpath = ''
-        self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
-        self.vs_path = ''
-        self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-        self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8.0'
-        self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
-        self.innosetup_path = r'C:\Program Files\Inno Setup 5'
-        self.winmerge_iss = 'WinMerge.iss' #filename only
-        self.winmerge_iss_path = 'WinMerge.iss' #including path
-        self.source = 'workspace'
-        self.version = ''
-        self.vs_version = 2003
-
-    def create_ini(self, filename):
-        config = ConfigParser.RawConfigParser()
-        sect = 'RUNTIME'
-        if os.path.exists('Tools.ini'):
-            config.readfp(open(filename))
-        if not config.has_section(sect):
-            config.add_section(sect)
-        if not config.has_option(sect, 'type'):
-            config.set(sect, 'type', 'VSXXXX')
-        if not config.has_option(sect, 'VSStudio'):
-            config.set(sect, 'VSStudio', self.vs_version)
-        if not config.has_option(sect, 'Source'):
-            config.set(sect, 'Source', self.source)
-        if not config.has_option(sect, 'svn_binary'):
-            config.set(sect, 'svn_binary', self.svn_binary)
-        if not config.has_option(sect, 'vs_path7'):
-            config.set(sect, 'vs_path7', self.vs_path7)
-        if not config.has_option(sect, 'vs_path8'):
-            config.set(sect, 'vs_path8', self.vs_path8)
-        if not config.has_option(sect, 'vs_path9'):
-            config.set(sect, 'vs_path9', self.vs_path9)
-        if not config.has_option(sect, 'innosetup_path'):
-            config.set(sect, 'innosetup_path', self.innosetup_path)
-
-        # Writing our configuration file to 'Tools.ini'
-        with open(filename, 'w') as configfile:
-            config.write(configfile)
-
-    def read_ini(self, filename):
-        config = ConfigParser.RawConfigParser()
-        if not os.path.exists(filename):
-            # If the config file didn't exist, we create a new file and ask
-            # user to edit the config and re-run the script. This is because
-            # our defaults probably don't match user's environment.
-            self.create_ini(filename)
-            print 'New configuration file created: ' + filename
-            print 'Please edit the file to match your configuration and re-run the script.'
-            sys.exit()
-
-        config.readfp(open(filename))
-        self.svn_binary = config.get('RUNTIME', 'svn_binary')
-        self.vs_path7 = config.get('RUNTIME', 'vs_path7')
-        self.vs_path8 = config.get('RUNTIME', 'vs_path8')
-        self.vs_path9 = config.get('RUNTIME', 'vs_path9')
-        self.innosetup_path = config.get('RUNTIME', 'innosetup_path')
-        self.source = config.get('RUNTIME', 'Source') 
-        self.vs_version = config.getint('RUNTIME', 'VSStudio')
-
-        if self.vs_version ==2003:
-            self.vs_path =self.vs_path7
-        elif self.vs_version ==2005:
-            self.vs_path =self.vs_path8
-        elif self.vs_version ==2008:
-            self.vs_path =self.vs_path9
-
 # global settings class instance
-prog = settings()
+prog = ToolSettings.ToolSettings()
 
 def get_vs_ide_bin():
     """Gets a full path to the Visual Studio IDE executable to run."""
@@ -413,14 +335,14 @@ def build_innosetup_installer(target_folder):
     innosetup_exe = os.path.join(prog.innosetup_path, 'iscc.exe')
     cur_path = os.getcwd()
 
-    prog.winmerge_iss_path = os.path.join(cur_path, 'Installer\\InnoSetup\\' + prog.winmerge_iss)
+    winmerge_iss_path = os.path.join(cur_path, 'Installer\\InnoSetup\\WinMerge.iss')
 
     #output_switch = '/O"' + target_folder + '"'
 
     print 'Build Innosetup installer...'
     # Should be able to give folder for created file and Q switch to make build quiet
     #call([innosetup_exe, '/Q', output_switch, winmerge_iss])
-    call([innosetup_exe, prog.winmerge_iss_path])
+    call([innosetup_exe, winmerge_iss_path])
 
 def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
@@ -544,11 +466,11 @@ def check_tools():
         print 'Please check script configuration.'
         return False
 
-    pathhhc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/hhc/hhc.exe')
-    folderdtd = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/dtd')
-    foldersaxon = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/saxon')
-    folderxerc = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xerces')
-    folderxsl = os.path.join(prog.rootpath, 'Docs/Users/Manual/build/xsl')
+    pathhhc = os.path.join(root_path, 'Docs/Users/Manual/build/hhc/hhc.exe')
+    folderdtd = os.path.join(root_path, 'Docs/Users/Manual/build/dtd')
+    foldersaxon = os.path.join(root_path, 'Docs/Users/Manual/build/saxon')
+    folderxerc = os.path.join(root_path, 'Docs/Users/Manual/build/xerces')
+    folderxsl = os.path.join(root_path, 'Docs/Users/Manual/build/xsl')
 
     if not os.path.exists(pathhhc) or not os.path.exists(folderdtd) or \
             not os.path.exists(foldersaxon) or not os.path.exists(folderxerc) or \
@@ -603,8 +525,8 @@ def main(argv):
                 usage()
                 sys.exit()
             if opt in ("-v", "--version"):
-                prog.version = arg
-                print "Start building WinMerge release version " + prog.version
+                prog_version = arg
+                print "Start building WinMerge release version " + prog_version
             if opt in ("-c", "--cleanup"):
                 if cleanup_build() == True:
                     print 'Cleanup done.'
@@ -615,10 +537,10 @@ def main(argv):
             if opt in ("-f", "--file"):
                 ver_file = arg
         
-    if ver_file == '' and prog.version == '':
+    if ver_file == '' and prog_version == '':
         print 'WARNING: No version number or INI file given, using default'
         print '    version number of 0.0.0.0 where applicable in this script.'
-        prog.version = '0.0.0.0'
+        prog_version = '0.0.0.0'
 
     # Check we are running from correct folder (and go to root if found)
     if find_winmerge_root() == False:
@@ -634,7 +556,7 @@ def main(argv):
     print 'Path:' + os.getcwd()
 
     # Remember the rootfolder
-    prog.rootpath = os.getcwd()
+    root_path = os.getcwd()
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
@@ -660,10 +582,10 @@ def main(argv):
     if len(ver_file) > 0:
         version_read = get_product_version(ver_file)
         if len(version_read) > 0:
-            prog.version = version_read
+            prog_version = version_read
         set_resource_version(ver_file)
 
-    version_folder = 'WinMerge-' + prog.version
+    version_folder = 'WinMerge-' + prog_version
     dist_folder = get_and_create_dist_folder(version_folder)
     if dist_folder == '':
         sys.exit(1)
