@@ -28,20 +28,31 @@
 
 import os
 import os.path
+import platform
 import sys
 import ConfigParser
 
 class ToolSettings:
     def __init__(self):
-        # Set default values
-        self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
+        # Set default values. Need to make difference for 64-bit Windows paths
         self.vs_path = ''
-        self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
-        self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8'
-        self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
-        self.vs_path10 = r'C:\Program Files\Microsoft Visual Studio 10.0'
-        self.innosetup_path = r'C:\Program Files\Inno Setup 5'
-        self.nsis_path = r'C:\Program Files\NSIS'
+        if platform.architecture()[0] == '64bit':
+            self.svn_binary = r'C:\Program Files (x86)\Subversion\bin\svn.exe'
+            self.innosetup_path = r'C:\Program Files (x86)\Inno Setup 5'
+            self.nsis_path = r'C:\Program Files (x86)\NSIS'
+            self.vs_path7 = r'C:\Program Files (x86)\Microsoft Visual Studio .NET 2003'
+            self.vs_path8 = r'C:\Program Files (x86)\Microsoft Visual Studio 8'
+            self.vs_path9 = r'C:\Program Files (x86)\Microsoft Visual Studio 9.0'
+            self.vs_path10 = r'C:\Program Files (x86)\Microsoft Visual Studio 10.0'
+        else:
+            self.svn_binary = r'C:\Program Files\Subversion\bin\svn.exe'
+            self.innosetup_path = r'C:\Program Files\Inno Setup 5'
+            self.nsis_path = r'C:\Program Files\NSIS'
+            self.vs_path7 = r'C:\Program Files\Microsoft Visual Studio .NET 2003'
+            self.vs_path8 = r'C:\Program Files\Microsoft Visual Studio 8'
+            self.vs_path9 = r'C:\Program Files\Microsoft Visual Studio 9.0'
+            self.vs_path10 = r'C:\Program Files\Microsoft Visual Studio 10.0'
+
         # Checkout sources from local workspace or from SVN server (give URL)
         self.source = 'workspace'
         self.vs_version = 2008
