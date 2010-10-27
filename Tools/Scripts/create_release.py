@@ -319,11 +319,11 @@ def build_shellext(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build ShellExtension dlls...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency|Win32'])
     if ret != 0:
-        return print 'ERROR: Failed to build ANSI target of ShellExtension!'
+        print 'ERROR: Failed to build ANSI target of ShellExtension!'
         return False
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency|Win32'])
     if ret == 0:
         if build_64bit == True:
             ret = call([vs_cmd, solution_path, '/rebuild', 'X64 Release|x64'])
@@ -395,8 +395,8 @@ def create_bin_folders(bin_folder, dist_src_folder):
     shutil.copy('build/mergerelease/WinMerge.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/WinMergeU.exe', bin_folder)
 
-    shutil.copy('build/mergerelease/ShellExtension.dll', bin_folder)
-    shutil.copy('build/mergeunicoderelease/ShellExtensionU.dll', bin_folder)
+    shutil.copy('build/ShellExtension/Release MinDependency/ShellExtension.dll', bin_folder)
+    shutil.copy('build/ShellExtension/unicode release mindependency/ShellExtensionU.dll', bin_folder)
     shutil.copy('build/mergeunicoderelease/MergeLang.dll', bin_folder)
     shutil.copy('build/ShellExtension/x64 release/ShellExtensionX64.dll', bin_folder)
     shutil.copy('ShellExtension/Register.bat', bin_folder)
