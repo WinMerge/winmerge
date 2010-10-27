@@ -85,6 +85,7 @@ import optparse
 import shutil
 import SetVersions
 import ToolSettings
+import UpgradeProjects
 
 # global settings class instance
 prog = ToolSettings.ToolSettings()
@@ -481,6 +482,13 @@ def check_x64shellext():
     else:
         return True
 
+def update_project_files(root_path):
+    '''Upgrade project/solution files for the VS version used.'''
+
+    print 'Update VS project/solution files for used VS version...'
+    UpgradeProjects.tools.read_ini('Tools.ini')
+    UpgradeProjects.upgrade_projects(root_path)
+
 def main(argv):
     global prog
     ver_file = ''
@@ -568,6 +576,8 @@ def main(argv):
     svn_export(dist_src_folder)
 
     setup_translations()
+
+    update_project_files(root_path)
 
     build_targets()
     build_manual()
