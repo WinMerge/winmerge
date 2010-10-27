@@ -449,6 +449,13 @@ def check_tools():
         print vs_cmd
         print 'Please check script configuration.'
         return False
+    
+    innosetup_exe = os.path.join(prog.innosetup_path, 'iscc.exe')
+    if not os.path.exists(innosetup_exe):
+        print 'InnoSetup executable could not be found from:'
+        print innosetup_exe
+        print 'Please check script configuration.'
+        return False
 
     pathhhc = os.path.join(root_path, 'Docs/Users/Manual/build/hhc/hhc.exe')
     folderdtd = os.path.join(root_path, 'Docs/Users/Manual/build/dtd')
