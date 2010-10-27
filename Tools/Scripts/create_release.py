@@ -289,7 +289,7 @@ def build_shellext(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build ShellExtension dlls...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency|Win32'])
     if ret == 0:
         if build_64bit == True:
             ret = call([vs_cmd, solution_path, '/rebuild', 'X64 Release|x64'])
