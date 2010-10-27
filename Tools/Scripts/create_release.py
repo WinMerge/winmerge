@@ -81,11 +81,10 @@ from subprocess import *
 import os
 import os.path
 import sys
-import getopt
+import optparse
 import shutil
 import SetVersions
 import ToolSettings
-import ConfigParser
 
 # global settings class instance
 prog = ToolSettings.ToolSettings()
@@ -498,45 +497,37 @@ def check_x64shellext():
     else:
         return True
 
-def usage():
-    """Print script usage information."""
-
-    print 'WinMerge release script.'
-    print 'Usage: create_release [-h] [-f file] [-v n] [-c] [-l]'
-    print '  where:'
-    print '    -h, --help print this help'
-    print '    -v n, --version=n set release version'
-    print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
-    print '    -l, --libraries build libraries (expat, scew, pcre) only'
-    print '    -f file, --file=filename set the version number ini file'
-    print '  For example: create_release -f versions.ini'
-    print '  If no version number (-v) or INI file (-f) given, 0.0.0.0 will be'
-    print '    used as version number.'
-
 def main(argv):
     global prog
     ver_file = ''
-    if len(argv) > 0:
-        opts, args = getopt.getopt(argv, "hclv:f:", [ "help", "cleanup", "libraries",
-                                                    "version=", "file="])
-        
-        for opt, arg in opts:
-            if opt in ("-h", "--help"):
-                usage()
-                sys.exit()
-            if opt in ("-v", "--version"):
-                prog_version = arg
-                print "Start building WinMerge release version " + prog_version
-            if opt in ("-c", "--cleanup"):
-                if cleanup_build() == True:
-                    print 'Cleanup done.'
-                sys.exit()
-            if opt in ("-l", "--libraries"):
-                build_libraries()
-                sys.exit()
-            if opt in ("-f", "--file"):
-                ver_file = arg
-        
+    
+    parser = optparse.OptionParser()
+    parser.add_option('--version', '-v', action = 'store',
+            help = 'Set global version number to use.')
+    parser.add_option('--cleanup', '-c', action = 'store_true',
+            help = 'Clean up build files (temp files, libraries, executables).')
+    parser.add_option('--libraries', '-l', action = 'store_true',
+            help = 'Build libraries (hekxedit, rawio32) only.')
+    parser.add_option('--file', '-f', action = 'store',
+            help = 'Set the version number ini file.')
+    options, arguments = parser.parse_args()
+
+    if options.version:
+        prog_version = options.version
+        print 'Start building WinMerge release version ' + prog_version
+
+    if options.cleanup:
+        if cleanup_build() == True:
+            print 'Cleanup done.'
+        sys.exit()
+
+    if options.libraries:
+        build_libraries()
+        sys.exit()
+
+    if options.file:
+        ver_file = options.file
+
     if ver_file == '' and prog_version == '':
         print 'WARNING: No version number or INI file given, using default'
         print '    version number of 0.0.0.0 where applicable in this script.'
