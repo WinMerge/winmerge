@@ -1,6 +1,17 @@
 @echo off
-if "%_ACP_ATLPROV%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
 
+REM $Id$
+
+REM _ACP_ATLPROV is set by VS2005/VS2008 when compiling in IDE. But it is NOT
+REM set when calling devenv from command line.
+
+REM This detects if the script is called from VS2003 or from IDE
+if NOT "%_ACP_ATLPROV%" == "" goto IDEBuild
+
+REM This detects if the script is called from VS2005/VS2008 cmd line env
+if "%VCBuildHelper_Command%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
+
+:IDEBuild
 :_MSDEV_BLD_ENV_(1)
 cd
 REM Enable echo lines below if you need to debug this script
