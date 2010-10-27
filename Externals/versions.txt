@@ -6,4 +6,4 @@ This file lists versions of the external components we are using.
 Expat: 2.0.1
 PCRE: 7.8
 Heksedit: Frhed SVN trunk r 45
-SCEW: 0.4.0
+SCEW: 1.1.2

@@ -1,15 +1,12 @@
 /**
- *
  * @file     writer.c
+ * @brief    writer.h implementation
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Thu Sep 11, 2003 00:39
- * @brief    SCEW writer functions
- *
- * $Id: writer.c,v 1.1 2004/01/28 00:43:21 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2003, 2004 Aleix Conchillo Flaque
+ * Copyright (C) 2003-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,49 +20,101 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
 #include "writer.h"
 
-#include "str.h"
-
-#include "xerror.h"
-#include "xprint.h"
-
 #include <assert.h>
 
-unsigned int
-scew_writer_tree_file(scew_tree const* tree, char const* file_name)
+
+/* Private */
+
+struct scew_writer
 {
-    FILE* out = NULL;
+  scew_writer_hooks const *hooks;
+  void *data;
+};
 
-    assert(tree != NULL);
-    assert(file_name != NULL);
+
+/* Public */
 
-    out = fopen(file_name, "w");
-    if (out == NULL)
+scew_writer*
+scew_writer_create (scew_writer_hooks const *hooks, void *data)
+{
+  scew_writer *writer = NULL;
+
+  assert (hooks != NULL);
+
+  writer = calloc (1, sizeof (scew_writer));
+
+  if (writer != NULL)
     {
-        set_last_error(scew_error_io);
-        return 0;
+      writer->hooks = hooks;
+      writer->data = data;
     }
 
-    scew_writer_tree_fp(tree, out);
-
-    fclose(out);
-
-    return 1;
+  return writer;
 }
 
-unsigned int
-scew_writer_tree_fp(scew_tree const* tree, FILE* out)
+void*
+scew_writer_data (scew_writer *writer)
 {
-    assert(tree != NULL);
-    assert(out != NULL);
+  assert (writer != NULL);
 
-    tree_print(tree, out);
+  return writer->data;
+}
 
-    return 1;
+size_t
+scew_writer_write (scew_writer *writer, XML_Char const *buffer, size_t char_no)
+{
+  assert (writer != NULL);
+  assert (writer->hooks != NULL);
+  assert (writer->hooks->write != NULL);
+
+  return writer->hooks->write (writer, buffer, char_no);
+}
+
+scew_bool
+scew_writer_end (scew_writer *writer)
+{
+  assert (writer != NULL);
+  assert (writer->hooks != NULL);
+  assert (writer->hooks->end != NULL);
+
+  return writer->hooks->end (writer);
+}
+
+scew_bool
+scew_writer_error (scew_writer *writer)
+{
+  assert (writer != NULL);
+  assert (writer->hooks != NULL);
+  assert (writer->hooks->error != NULL);
+
+  return writer->hooks->error (writer);
+}
+
+scew_bool
+scew_writer_close (scew_writer *writer)
+{
+  assert (writer != NULL);
+  assert (writer->hooks != NULL);
+  assert (writer->hooks->close != NULL);
+
+  return writer->hooks->close (writer);
+}
+
+void
+scew_writer_free (scew_writer *writer)
+{
+  assert (writer != NULL);
+  assert (writer->hooks != NULL);
+  assert (writer->hooks->free != NULL);
+
+  writer->hooks->free (writer);
+  free (writer);
 }

@@ -1,15 +1,12 @@
 /**
- *
  * @file     xerror.h
+ * @brief    Internal error functions
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Mon May 05, 2003 10:40
- * @brief    Internal error functions
- *
- * $Id: xerror.h,v 1.1 2004/01/28 00:43:21 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2003 Aleix Conchillo Flaque
+ * Copyright (C) 2003-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,24 +20,27 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
+#ifndef XERROR_H_0305051040
+#define XERROR_H_0305051040
 
-#ifndef XERROR_H_ALEIX0305051040
-#define XERROR_H_ALEIX0305051040
+#include "export.h"
 
 #include "error.h"
 
+/**
+ * Sets SCEW internal last error.
+ */
+extern SCEW_LOCAL void scew_error_set_last_error_ (scew_error code);
 
-/* Sets SCEW internal last error. */
-void
-set_last_error(scew_error code);
+/**
+ * Gets SCEW internal last error.
+ */
+extern SCEW_LOCAL scew_error scew_error_last_error_ (void);
 
-/* Gets SCEW internal last error. */
-scew_error
-get_last_error();
-
-#endif /* XERROR_H_ALEIX0305051040 */
+#endif /* XERROR_H_0305051040 */

@@ -1,10 +1,8 @@
 #
-# $Id: Makefile.am,v 1.2 2004/01/28 09:23:49 aleix Exp $
-#
 # Author: Aleix Conchillo Flaque <aleix@member.fsf.org>
 # Date:   Sun Jul 06, 2003 04:51
 #
-# Copyright (C) 2003 Aleix Conchillo Flaque
+# Copyright (C) 2002-2009 Aleix Conchillo Flaque
 #
 
 DOXYGEN_LOG = doxygen.log
@@ -19,7 +17,7 @@ doc:
 else
 
 doc:
-	@echo "Doxygen documentation generation not enabled"
+	@echo "WARNING: Documentation generation not enabled or available."
 
 endif
 

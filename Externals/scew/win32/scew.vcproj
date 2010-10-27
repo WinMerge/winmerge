@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="scew"
-	ProjectGUID="{DC3625F6-2D70-4238-B308-039DBB526263}"
+	ProjectGUID="{E27D4F53-46B1-49EE-B00E-103D03E50F48}"
 	>
 	<Platforms>
 		<Platform
@@ -47,10 +47,10 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\..\..\..\BuildTmp\scew\Release/scew.pch"
-				AssemblerListingLocation=".\..\..\..\BuildTmp\scew\Release/"
-				ObjectFile=".\..\..\..\BuildTmp\scew\Release/"
-				ProgramDataBaseFileName=".\..\..\..\BuildTmp\scew\Release/"
+				PrecompiledHeaderFile="$(IntDir)\scew.pch"
+				AssemblerListingLocation="$(OutDir)\Release\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				CompileAs="0"
@@ -68,7 +68,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew.lib"
+				OutputFile="$(OutDir)\..\scew.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -531,7 +531,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\..\..\..\Build\scew\Debug"
-			IntermediateDirectory=".\..\..\..\Build\scew\Debug"
+			IntermediateDirectory=".\..\..\..\BuildTmp\scew\Debug"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -560,10 +560,10 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				PrecompiledHeaderFile=".\..\..\..\Build\scew\Debug/scew.pch"
-				AssemblerListingLocation=".\..\..\..\Build\scew\Debug/"
-				ObjectFile=".\..\..\..\Build\scew\Debug/"
-				ProgramDataBaseFileName=".\..\..\..\Build\scew\Debug/"
+				PrecompiledHeaderFile="$(IntDir)\scew.pch"
+				AssemblerListingLocation=".\..\..\..\Build\scew\Debug\"
+				ObjectFile="$(IntDir)\"
+				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
@@ -582,7 +582,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\..\..\Build\scew\scew_d.lib"
+				OutputFile="$(OutDir)\..\scew_d.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -786,6 +786,22 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\scew\element_attribute.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\element_compare.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\element_copy.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\element_search.c"
+				>
+			</File>
+			<File
 				RelativePath="..\scew\error.c"
 				>
 				<FileConfiguration
@@ -874,6 +890,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\scew\list.c"
+				>
+			</File>
+			<File
 				RelativePath="..\scew\parser.c"
 				>
 				<FileConfiguration
@@ -960,6 +980,22 @@
 						BasicRuntimeChecks="3"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\scew\printer.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader_buffer.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader_file.c"
+				>
 			</File>
 			<File
 				RelativePath="..\scew\str.c"
@@ -1226,6 +1262,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\scew\writer_buffer.c"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\writer_file.c"
+				>
+			</File>
+			<File
 				RelativePath="..\scew\xattribute.c"
 				>
 				<FileConfiguration
@@ -1402,183 +1446,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\scew\xhandler.c"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Debug Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;XML_STATIC;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Release Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;XML_STATIC;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="..\scew\xparser.c"
-				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Debug Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;XML_STATIC;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="XMLStatic Release Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="NDEBUG;XML_STATIC;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug Unicode|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="_DEBUG;WIN32;_LIB;_UNICODE;XML_UNICODE_WCHAR_T;$(NoInherit)"
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\scew\xprint.c"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
@@ -1675,6 +1543,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\scew\bool.h"
+				>
+			</File>
+			<File
 				RelativePath="..\scew\element.h"
 				>
 			</File>
@@ -1683,7 +1555,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\scew\export.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\list.h"
+				>
+			</File>
+			<File
 				RelativePath="..\scew\parser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\printer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader_buffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\reader_file.h"
 				>
 			</File>
 			<File
@@ -1699,11 +1595,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\scew\types.h"
+				RelativePath="..\scew\writer.h"
 				>
 			</File>
 			<File
-				RelativePath="..\scew\writer.h"
+				RelativePath="..\scew\writer_buffer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scew\writer_file.h"
 				>
 			</File>
 			<File
@@ -1719,19 +1619,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\scew\xhandler.h"
-				>
-			</File>
-			<File
 				RelativePath="..\scew\xparser.h"
-				>
-			</File>
-			<File
-				RelativePath="..\scew\xprint.h"
-				>
-			</File>
-			<File
-				RelativePath="..\scew\xtree.h"
 				>
 			</File>
 		</Filter>

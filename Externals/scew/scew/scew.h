@@ -1,15 +1,12 @@
 /**
- *
  * @file     scew.h
+ * @brief    SCEW main header file
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Mon Nov 25, 2002 01:34
- * @brief    SCEW main header file
- *
- * $Id: scew.h,v 1.1 2004/01/28 00:43:21 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+ * Copyright (C) 2002-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,51 +20,56 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
+#ifndef SCEW_H_0211250134
+#define SCEW_H_0211250134
 
-#ifndef SCEW_H_ALEIX0211250134
-#define SCEW_H_ALEIX0211250134
+#include "export.h"
 
 #include "attribute.h"
+#include "bool.h"
 #include "element.h"
 #include "error.h"
+#include "list.h"
 #include "parser.h"
+#include "printer.h"
+#include "reader.h"
+#include "reader_buffer.h"
+#include "reader_file.h"
 #include "str.h"
 #include "tree.h"
 #include "writer.h"
+#include "writer_buffer.h"
+#include "writer_file.h"
 
-/* automatically include the correct library on windows */
-#ifdef _WIN32
+/* Automatically include the correct library on Windows. */
+#if defined (_MSC_VER) && defined(XML_STATIC)
 
-#if  defined(XML_UNICODE_WCHAR_T) || defined(XML_STATIC) || defined(_DEBUG)
+#ifdef XML_UNICODE_WCHAR_T
+#define SCEW_LIB_W "w"
+#else
+#define SCEW_LIB_W
+#endif /* XML_UNICODE_WCHAR_T */
 
-# ifdef XML_UNICODE_WCHAR_T
-#  define SCEW_LIB_U    "u"
-# else
-#  define SCEW_LIB_U
-# endif /* XML_UNICODE_WCHAR_T */
+#ifdef _DEBUG
+#define SCEW_LIB_D "d"
+#else
+#define SCEW_LIB_D
+#endif /* _DEBUG */
 
-# ifdef XML_STATIC
-#  define SCEW_LIB_S    "s"
-# else
-#  define SCEW_LIB_S
-# endif /* XML_STATIC */
+/**
+ * By default SCEW uses "Multi-threaded (/MT)" run-time library. See
+ * 'win32/README' if you wish to use a different run-time library.
+ */
+#define SCEW_LIB_M "MT"
 
-# ifdef _DEBUG
-#  define SCEW_LIB_D    "d"
-# else
-#  define SCEW_LIB_D
-# endif /* _DEBUG */
+#pragma comment (lib, "libscew" SCEW_LIB_W SCEW_LIB_D SCEW_LIB_M ".lib")
 
-# pragma comment( lib, "scew_" SCEW_LIB_U SCEW_LIB_S SCEW_LIB_D ".lib" )
-#else /* none defined, use Release library name */
-# pragma comment( lib, "scew.lib" )
-# endif
+#endif /* _MSC_VER && XML_STATIC */
 
-#endif /* _WIN32 */
-
-#endif /* SCEW_H_ALEIX0211250134 */
+#endif /* SCEW_H_0211250134 */

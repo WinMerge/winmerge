@@ -1,15 +1,12 @@
 /**
- *
  * @file     xerror.c
+ * @brief    xerror.h implementation
  * @author   Aleix Conchillo Flaque <aleix@member.fsf.org>
  * @date     Mon May 05, 2003 10:41
- * @brief    Internal error functions
- *
- * $Id: xerror.c,v 1.2 2004/01/29 00:13:42 aleix Exp $
  *
  * @if copyright
  *
- * Copyright (C) 2003, 2004 Aleix Conchillo Flaque
+ * Copyright (C) 2003-2009 Aleix Conchillo Flaque
  *
  * SCEW is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,125 +20,140 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  * @endif
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "xerror.h"
 
+/* Define a single threading macro common for all platforms */
 #ifndef _MT
-/* single-threaded version */
+#ifndef HAVE_LIBPTHREAD
+#define SINGLE_THREADED
+#endif /* HAVE_LIBPTHREAD */
+#endif /* _MT */
+
+#ifdef SINGLE_THREADED
+
+/* Single-threaded version */
 
 static scew_error last_error = scew_error_none;
 
 void
-set_last_error(scew_error code)
+scew_error_set_last_error_ (scew_error code)
 {
-    last_error = code;
+  last_error = code;
 }
 
 scew_error
-get_last_error()
+scew_error_last_error_ (void)
 {
-    return last_error;
+  return last_error;
 }
 
-#else /* _MT */
-/* multi-threaded versions */
+#else /* SINGLE_THREADED */
+
+
+/* Multi-threaded versions */
 
 #ifdef _MSC_VER
-/* Microsoft Visual C++ multi-thread version */
+
+/* Visual C++ multi-thread version */
 
 /**
- * Note: This code isn't 100% thread safe without an initializer called
- * from a single-thread first. The current problem is the small chance
- * that another thread could enter the if() statement which initializes
- * the TLS variable before the current thread calls TlsAlloc(). This
- * would result in TlsAlloc() being called twice losing the first TLS
- * index and possibly the first thread's error value. However with the
- * current API, this is the best we can do.
+ * Note: This code isn't 100% thread safe without an initializer
+ * called from a single-thread first. The current problem is the small
+ * chance that another thread could enter the if() statement which
+ * initializes the TLS variable before the current thread calls
+ * TlsAlloc(). This would result in TlsAlloc() being called twice
+ * losing the first TLS index and possibly the first thread's error
+ * value. However with the current API, this is the best we can do.
  */
 
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
 
-static DWORD last_error_key = TLS_OUT_OF_INDEXES;
+static DWORD last_error_key_ = TLS_OUT_OF_INDEXES;
 
 void
-set_last_error(scew_error code)
+scew_error_set_last_error_ (scew_error code)
 {
-    if (last_error_key == TLS_OUT_OF_INDEXES)
+  if (TLS_OUT_OF_INDEXES == last_error_key_)
     {
-        last_error_key = TlsAlloc();
+      last_error_key_ = TlsAlloc ();
     }
-    TlsSetValue(last_error_key, (LPVOID) code);
+  TlsSetValue (last_error_key_, (LPVOID) code);
 }
 
 scew_error
-get_last_error()
+scew_error_last_error_ (void)
 {
-    if (last_error_key == TLS_OUT_OF_INDEXES)
+  if (TLS_OUT_OF_INDEXES == last_error_key_)
     {
-        last_error_key = TlsAlloc();
-        TlsSetValue(last_error_key, (LPVOID) scew_error_none);
+      last_error_key_ = TlsAlloc ();
+      TlsSetValue (last_error_key_, (LPVOID) scew_error_none);
     }
-    return (scew_error) TlsGetValue(last_error_key);
+  return (scew_error) TlsGetValue (last_error_key_);
 }
 
 #else /* _MSC_VER */
+
+
 /* pthread multi-threaded version */
 
 #include <pthread.h>
 
-static pthread_key_t key_error;
-static pthread_once_t key_once = PTHREAD_ONCE_INIT;
+static pthread_key_t key_error_;
+static pthread_once_t key_once_ = PTHREAD_ONCE_INIT;
 
-void
-create_keys()
+static void
+create_keys_ (void)
 {
-    scew_error* code = NULL;
+  scew_error* error = NULL;
 
-    pthread_key_create(&key_error, free);
+  pthread_key_create (&key_error_, free);
 
-    code = (scew_error*) malloc(sizeof(scew_error));
-    *code = scew_error_none;
-    pthread_setspecific(key_error, code);
+  error = (scew_error *) malloc (sizeof (scew_error));
+  *error = scew_error_none;
+  pthread_setspecific (key_error_, error);
 }
 
 void
-set_last_error(scew_error code)
+scew_error_set_last_error_ (scew_error code)
 {
-    scew_error* old_code = NULL;
-    scew_error* new_code = NULL;
+  scew_error *error = NULL;
 
-    /* Initialize error code per thread */
-    pthread_once(&key_once, create_keys);
+  /* Initialize error code per thread. */
+  pthread_once (&key_once_, create_keys_);
 
-    old_code = (scew_error*) pthread_getspecific(key_error);
-    new_code = (scew_error*) malloc(sizeof(scew_error));
-    *new_code = code;
-    free(old_code);
-    pthread_setspecific(key_error, new_code);
+  error = (scew_error *) pthread_getspecific (key_error_);
+  *error = code;
 }
 
 scew_error
-get_last_error()
+scew_error_last_error_ (void)
 {
-    scew_error* code = NULL;
+  scew_error *error = NULL;
 
-    /* Initialize error code per thread */
-    pthread_once(&key_once, create_keys);
+  /* Initialize error code per thread. */
+  pthread_once (&key_once_, create_keys_);
 
-    code = (scew_error*) pthread_getspecific(key_error);
-    if (code == NULL)
+  error = (scew_error*) pthread_getspecific (key_error_);
+  if (NULL == error)
     {
-        return scew_error_none;
+      return scew_error_none;
     }
-    return *code;
+
+  return *error;
 }
 
 #endif /* _MSC_VER */
 
-#endif /* _MT */
+#endif /* SINGLE_THREADED */
