@@ -19,7 +19,7 @@
  *
  * @brief Implementation file for ProjectFile class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -88,23 +88,30 @@ BOOL ProjectFile::Read(LPCTSTR path, String *sError)
     parser = scew_parser_create();
     scew_parser_ignore_whitespaces(parser, 1);
 
+	scew_reader *reader = NULL;
 	FILE * fp = _tfopen(path, _T("r"));
 	if (fp)
 	{
-		if (scew_parser_load_file_fp(parser, fp))
+		reader = scew_reader_fp_create(fp);
+		if (reader)
 		{
-			tree = scew_parser_tree(parser);
+			tree = scew_parser_load (parser, reader);
 
-			scew_element * root = GetRootElement(tree);
-			if (root)
+			if (tree)
 			{
-				// Currently our content is paths, so expect
-				// having paths in valid project file!
-				if (GetPathsData(root))
-					loaded = TRUE;
-			};
+				scew_element * root = GetRootElement(tree);
+				if (root)
+				{
+					// Currently our content is paths, so expect
+					// having paths in valid project file!
+					if (GetPathsData(root))
+						loaded = TRUE;
+				};
+			}
 		}
+
 		scew_tree_free(tree);
+		scew_reader_free(reader);
 
 		/* Frees the SCEW parser */
 		scew_parser_free(parser);
@@ -230,7 +237,7 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 	scew_element* paths = NULL;
 
 	tree = scew_tree_create();
-	root = scew_tree_add_root(tree, Root_element_name);
+	root = scew_tree_set_root(tree, Root_element_name);
 	if (root != NULL)
 	{
 		paths = AddPathsElement(root);
@@ -247,13 +254,24 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 	
 	scew_tree_set_xml_encoding(tree, "UTF-8");
 
-	// Set the XML file standalone
-	scew_tree_set_xml_standalone(tree, 1);
-
+	scew_writer *writer = NULL;
+	scew_printer *printer = NULL;
 	FILE * fp = _tfopen(path, _T("w"));
 	if (fp)
 	{
-		if (!scew_writer_tree_fp(tree, fp))
+		writer = scew_writer_fp_create(fp);
+		if (writer)
+		{
+			printer = scew_printer_create(writer);
+			
+			if (!scew_printer_print_tree(printer, tree) ||
+				!scew_printf(_XT("\n")))
+			{
+				success = FALSE;
+				*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
+			}
+		}
+		else
 		{
 			success = FALSE;
 			*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
@@ -267,6 +285,8 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 	
 	/* Frees the SCEW tree */
 	scew_tree_free(tree);
+	scew_writer_free(writer);
+	scew_printer_free(printer);
 
 	if (success == FALSE)
 	{

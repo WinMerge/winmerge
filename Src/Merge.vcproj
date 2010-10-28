@@ -82,7 +82,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib scew.lib"
 				OutputFile="..\Build\MergeUnicodeRelease\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -187,7 +187,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib scew_d.lib"
 				OutputFile="..\Build\MergeUnicodeDebug/WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -291,7 +291,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib scew_d.lib"
 				OutputFile="..\Build\MergeDebug/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -397,7 +397,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib"
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib scew.lib"
 				OutputFile="..\Build\MergeRelease/WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
