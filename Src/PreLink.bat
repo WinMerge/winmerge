@@ -134,10 +134,8 @@ REM Build PCRE
 cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Debug"
 %devenv% "pcre.vcproj" /build "Debug"
-cd %2\..\..\pcre
-copy Debug\pcre.dll 
-copy Debug\pcre.lib
-copy pcre.dll %2\..\
+copy Debug\pcre.dll %2\..\..\pcre
+copy Debug\pcre.lib %2\..\..\pcre
 
 goto Common
 
@@ -164,10 +162,8 @@ REM Build PCRE
 cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Release"
 %devenv% "pcre.vcproj" /build "MinSizeRel"
-cd %2\..\..\pcre
-copy MinSizeRel\pcre.dll
-copy MinSizeRel\pcre.lib
-copy pcre.dll %2\..\
+copy MinSizeRel\pcre.dll %2\..\..\pcre
+copy MinSizeRel\pcre.lib %2\..\..\pcre
 
 goto Common
 
