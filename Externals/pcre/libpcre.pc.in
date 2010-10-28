@@ -9,4 +9,4 @@ Name: libpcre
 Description: PCRE - Perl compatible regular expressions C library
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lpcre
-Cflags: -I${includedir}
+Cflags: -I${includedir} @PCRE_STATIC_CFLAG@

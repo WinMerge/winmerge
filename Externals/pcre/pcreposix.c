@@ -6,7 +6,7 @@
 and semantics are as close as possible to those of the Perl 5 language.
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2008 University of Cambridge
+           Copyright (c) 1997-2010 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -57,6 +57,11 @@ previously been set. */
 #  define PCREPOSIX_EXP_DEFN __declspec(dllexport)
 #endif
 
+/* We include pcre.h before pcre_internal.h so that the PCRE library functions
+are declared as "import" for Windows by defining PCRE_EXP_DECL as "import".
+This is needed even though pcre_internal.h itself includes pcre.h, because it
+does so after it has set PCRE_EXP_DECL to "export" if it is not already set. */
+
 #include "pcre.h"
 #include "pcre_internal.h"
 #include "pcreposix.h"
@@ -70,64 +75,82 @@ static const int eint[] = {
   REG_EESCAPE, /* \c at end of pattern */
   REG_EESCAPE, /* unrecognized character follows \ */
   REG_BADBR,   /* numbers out of order in {} quantifier */
+  /* 5 */
   REG_BADBR,   /* number too big in {} quantifier */
   REG_EBRACK,  /* missing terminating ] for character class */
   REG_ECTYPE,  /* invalid escape sequence in character class */
   REG_ERANGE,  /* range out of order in character class */
   REG_BADRPT,  /* nothing to repeat */
+  /* 10 */
   REG_BADRPT,  /* operand of unlimited repeat could match the empty string */
   REG_ASSERT,  /* internal error: unexpected repeat */
   REG_BADPAT,  /* unrecognized character after (? */
   REG_BADPAT,  /* POSIX named classes are supported only within a class */
   REG_EPAREN,  /* missing ) */
+  /* 15 */
   REG_ESUBREG, /* reference to non-existent subpattern */
   REG_INVARG,  /* erroffset passed as NULL */
   REG_INVARG,  /* unknown option bit(s) set */
   REG_EPAREN,  /* missing ) after comment */
   REG_ESIZE,   /* parentheses nested too deeply */
+  /* 20 */
   REG_ESIZE,   /* regular expression too large */
   REG_ESPACE,  /* failed to get memory */
-  REG_EPAREN,  /* unmatched brackets */
+  REG_EPAREN,  /* unmatched parentheses */
   REG_ASSERT,  /* internal error: code overflow */
   REG_BADPAT,  /* unrecognized character after (?< */
+  /* 25 */
   REG_BADPAT,  /* lookbehind assertion is not fixed length */
   REG_BADPAT,  /* malformed number or name after (?( */
   REG_BADPAT,  /* conditional group contains more than two branches */
   REG_BADPAT,  /* assertion expected after (?( */
   REG_BADPAT,  /* (?R or (?[+-]digits must be followed by ) */
+  /* 30 */
   REG_ECTYPE,  /* unknown POSIX class name */
   REG_BADPAT,  /* POSIX collating elements are not supported */
   REG_INVARG,  /* this version of PCRE is not compiled with PCRE_UTF8 support */
   REG_BADPAT,  /* spare error */
   REG_BADPAT,  /* character value in \x{...} sequence is too large */
+  /* 35 */
   REG_BADPAT,  /* invalid condition (?(0) */
   REG_BADPAT,  /* \C not allowed in lookbehind assertion */
   REG_EESCAPE, /* PCRE does not support \L, \l, \N, \U, or \u */
   REG_BADPAT,  /* number after (?C is > 255 */
   REG_BADPAT,  /* closing ) for (?C expected */
+  /* 40 */
   REG_BADPAT,  /* recursive call could loop indefinitely */
   REG_BADPAT,  /* unrecognized character after (?P */
   REG_BADPAT,  /* syntax error in subpattern name (missing terminator) */
   REG_BADPAT,  /* two named subpatterns have the same name */
   REG_BADPAT,  /* invalid UTF-8 string */
+  /* 45 */
   REG_BADPAT,  /* support for \P, \p, and \X has not been compiled */
   REG_BADPAT,  /* malformed \P or \p sequence */
   REG_BADPAT,  /* unknown property name after \P or \p */
   REG_BADPAT,  /* subpattern name is too long (maximum 32 characters) */
   REG_BADPAT,  /* too many named subpatterns (maximum 10,000) */
+  /* 50 */
   REG_BADPAT,  /* repeated subpattern is too long */
   REG_BADPAT,  /* octal value is greater than \377 (not in UTF-8 mode) */
   REG_BADPAT,  /* internal error: overran compiling workspace */
   REG_BADPAT,  /* internal error: previously-checked referenced subpattern not found */
   REG_BADPAT,  /* DEFINE group contains more than one branch */
+  /* 55 */
   REG_BADPAT,  /* repeating a DEFINE group is not allowed */
   REG_INVARG,  /* inconsistent NEWLINE options */
   REG_BADPAT,  /* \g is not followed followed by an (optionally braced) non-zero number */
-  REG_BADPAT,  /* (?+ or (?- must be followed by a non-zero number */
+  REG_BADPAT,  /* a numbered reference must not be zero */
+  REG_BADPAT,  /* an argument is not allowed for (*ACCEPT), (*FAIL), or (*COMMIT) */
+  /* 60 */
+  REG_BADPAT,  /* (*VERB) not recognized */
   REG_BADPAT,  /* number is too big */
   REG_BADPAT,  /* subpattern name expected */
   REG_BADPAT,  /* digit expected after (?+ */
-  REG_BADPAT   /* ] is an invalid data character in JavaScript compatibility mode */
+  REG_BADPAT,  /* ] is an invalid data character in JavaScript compatibility mode */
+  /* 65 */
+  REG_BADPAT,  /* different names for subpatterns of the same number are not allowed */
+  REG_BADPAT,  /* (*MARK) must have an argument */
+  REG_INVARG,  /* this version of PCRE is not compiled with PCRE_UCP support */
 };
 
 /* Table of texts corresponding to POSIX error codes */
@@ -226,17 +249,26 @@ int erroffset;
 int errorcode;
 int options = 0;
 
-if ((cflags & REG_ICASE) != 0)   options |= PCRE_CASELESS;
-if ((cflags & REG_NEWLINE) != 0) options |= PCRE_MULTILINE;
-if ((cflags & REG_DOTALL) != 0)  options |= PCRE_DOTALL;
-if ((cflags & REG_NOSUB) != 0)   options |= PCRE_NO_AUTO_CAPTURE;
-if ((cflags & REG_UTF8) != 0)    options |= PCRE_UTF8;
+if ((cflags & REG_ICASE) != 0)    options |= PCRE_CASELESS;
+if ((cflags & REG_NEWLINE) != 0)  options |= PCRE_MULTILINE;
+if ((cflags & REG_DOTALL) != 0)   options |= PCRE_DOTALL;
+if ((cflags & REG_NOSUB) != 0)    options |= PCRE_NO_AUTO_CAPTURE;
+if ((cflags & REG_UTF8) != 0)     options |= PCRE_UTF8;
+if ((cflags & REG_UCP) != 0)      options |= PCRE_UCP;
+if ((cflags & REG_UNGREEDY) != 0) options |= PCRE_UNGREEDY;
 
 preg->re_pcre = pcre_compile2(pattern, options, &errorcode, &errorptr,
   &erroffset, NULL);
 preg->re_erroffset = erroffset;
 
-if (preg->re_pcre == NULL) return eint[errorcode];
+/* Safety: if the error code is too big for the translation vector (which
+should not happen, but we all make mistakes), return REG_BADPAT. */
+
+if (preg->re_pcre == NULL)
+  {
+  return (errorcode < sizeof(eint)/sizeof(const int))?
+    eint[errorcode] : REG_BADPAT;
+  }
 
 preg->re_nsub = pcre_info((const pcre *)preg->re_pcre, NULL, NULL);
 return 0;
@@ -274,13 +306,15 @@ BOOL nosub =
 
 if ((eflags & REG_NOTBOL) != 0) options |= PCRE_NOTBOL;
 if ((eflags & REG_NOTEOL) != 0) options |= PCRE_NOTEOL;
+if ((eflags & REG_NOTEMPTY) != 0) options |= PCRE_NOTEMPTY;
 
 ((regex_t *)preg)->re_erroffset = (size_t)(-1);  /* Only has meaning after compile */
 
-/* When no string data is being returned, ensure that nmatch is zero.
-Otherwise, ensure the vector for holding the return data is large enough. */
+/* When no string data is being returned, or no vector has been passed in which
+to put it, ensure that nmatch is zero. Otherwise, ensure the vector for holding
+the return data is large enough. */
 
-if (nosub) nmatch = 0;
+if (nosub || pmatch == NULL) nmatch = 0;
 
 else if (nmatch > 0)
   {
@@ -310,13 +344,15 @@ if ((eflags & REG_STARTEND) != 0)
 else
   {
   so = 0;
-  eo = strlen(string);
+  eo = (int)strlen(string);
   }
 
 rc = pcre_exec((const pcre *)preg->re_pcre, NULL, string + so, (eo - so),
-  0, options, ovector, nmatch * 3);
+  0, options, ovector, (int)(nmatch * 3));
 
-if (rc == 0) rc = nmatch;    /* All captured slots were filled in */
+if (rc == 0) rc = (int)nmatch;    /* All captured slots were filled in */
+
+/* Successful match */
 
 if (rc >= 0)
   {
@@ -334,22 +370,33 @@ if (rc >= 0)
   return 0;
   }
 
-else
+/* Unsuccessful match */
+
+if (allocated_ovector) free(ovector);
+switch(rc)
   {
-  if (allocated_ovector) free(ovector);
-  switch(rc)
-    {
-    case PCRE_ERROR_NOMATCH: return REG_NOMATCH;
-    case PCRE_ERROR_NULL: return REG_INVARG;
-    case PCRE_ERROR_BADOPTION: return REG_INVARG;
-    case PCRE_ERROR_BADMAGIC: return REG_INVARG;
-    case PCRE_ERROR_UNKNOWN_NODE: return REG_ASSERT;
-    case PCRE_ERROR_NOMEMORY: return REG_ESPACE;
-    case PCRE_ERROR_MATCHLIMIT: return REG_ESPACE;
-    case PCRE_ERROR_BADUTF8: return REG_INVARG;
-    case PCRE_ERROR_BADUTF8_OFFSET: return REG_INVARG;
-    default: return REG_ASSERT;
-    }
+/* ========================================================================== */
+  /* These cases are never obeyed. This is a fudge that causes a compile-time
+  error if the vector eint, which is indexed by compile-time error number, is
+  not the correct length. It seems to be the only way to do such a check at
+  compile time, as the sizeof() operator does not work in the C preprocessor.
+  As all the PCRE_ERROR_xxx values are negative, we can use 0 and 1. */
+
+  case 0:
+  case (sizeof(eint)/sizeof(int) == ERRCOUNT):
+  return REG_ASSERT;
+/* ========================================================================== */
+
+  case PCRE_ERROR_NOMATCH: return REG_NOMATCH;
+  case PCRE_ERROR_NULL: return REG_INVARG;
+  case PCRE_ERROR_BADOPTION: return REG_INVARG;
+  case PCRE_ERROR_BADMAGIC: return REG_INVARG;
+  case PCRE_ERROR_UNKNOWN_NODE: return REG_ASSERT;
+  case PCRE_ERROR_NOMEMORY: return REG_ESPACE;
+  case PCRE_ERROR_MATCHLIMIT: return REG_ESPACE;
+  case PCRE_ERROR_BADUTF8: return REG_INVARG;
+  case PCRE_ERROR_BADUTF8_OFFSET: return REG_INVARG;
+  default: return REG_ASSERT;
   }
 }
 

@@ -71,8 +71,13 @@ input mode under Windows. */
 #define INPUT_MODE   "r"
 #define OUTPUT_MODE  "wb"
 
-#define isatty _isatty         /* This is what Windows calls them, I'm told */
+#ifndef isatty
+#define isatty _isatty         /* This is what Windows calls them, I'm told, */
+#endif                         /* though in some environments they seem to   */
+                               /* be already defined, hence the #ifndefs.    */
+#ifndef fileno
 #define fileno _fileno
+#endif
 
 #else
 #include <sys/time.h>          /* These two includes are needed */
@@ -113,18 +118,19 @@ external symbols to prevent clashes. */
 
 /* We also need the pcre_printint() function for printing out compiled
 patterns. This function is in a separate file so that it can be included in
-pcre_compile.c when that module is compiled with debugging enabled.
+pcre_compile.c when that module is compiled with debugging enabled. It needs to
+know which case is being compiled. */
 
-The definition of the macro PRINTABLE, which determines whether to print an
-output character as-is or as a hex value when showing compiled patterns, is
-contained in this file. We uses it here also, in cases when the locale has not
-been explicitly changed, so as to get consistent output from systems that
-differ in their output from isprint() even in the "C" locale. */
-
+#define COMPILING_PCRETEST
 #include "pcre_printint.src"
 
-#define PRINTHEX(c) (locale_set? isprint(c) : PRINTABLE(c))
+/* The definition of the macro PRINTABLE, which determines whether to print an
+output character as-is or as a hex value when showing compiled patterns, is
+contained in the printint.src file. We uses it here also, in cases when the
+locale has not been explicitly changed, so as to get consistent output from
+systems that differ in their output from isprint() even in the "C" locale. */
 
+#define PRINTHEX(c) (locale_set? isprint(c) : PRINTABLE(c))
 
 /* It is possible to compile this test program without including support for
 testing the POSIX interface, though this is not available via the standard
@@ -184,6 +190,331 @@ static uschar *dbuffer = NULL;
 static uschar *pbuffer = NULL;
 
 
+/*************************************************
+*         Alternate character tables             *
+*************************************************/
+
+/* By default, the "tables" pointer when calling PCRE is set to NULL, thereby
+using the default tables of the library. However, the T option can be used to
+select alternate sets of tables, for different kinds of testing. Note also that
+the L (locale) option also adjusts the tables. */
+
+/* This is the set of tables distributed as default with PCRE. It recognizes
+only ASCII characters. */
+
+static const unsigned char tables0[] = {
+
+/* This table is a lower casing table. */
+
+    0,  1,  2,  3,  4,  5,  6,  7,
+    8,  9, 10, 11, 12, 13, 14, 15,
+   16, 17, 18, 19, 20, 21, 22, 23,
+   24, 25, 26, 27, 28, 29, 30, 31,
+   32, 33, 34, 35, 36, 37, 38, 39,
+   40, 41, 42, 43, 44, 45, 46, 47,
+   48, 49, 50, 51, 52, 53, 54, 55,
+   56, 57, 58, 59, 60, 61, 62, 63,
+   64, 97, 98, 99,100,101,102,103,
+  104,105,106,107,108,109,110,111,
+  112,113,114,115,116,117,118,119,
+  120,121,122, 91, 92, 93, 94, 95,
+   96, 97, 98, 99,100,101,102,103,
+  104,105,106,107,108,109,110,111,
+  112,113,114,115,116,117,118,119,
+  120,121,122,123,124,125,126,127,
+  128,129,130,131,132,133,134,135,
+  136,137,138,139,140,141,142,143,
+  144,145,146,147,148,149,150,151,
+  152,153,154,155,156,157,158,159,
+  160,161,162,163,164,165,166,167,
+  168,169,170,171,172,173,174,175,
+  176,177,178,179,180,181,182,183,
+  184,185,186,187,188,189,190,191,
+  192,193,194,195,196,197,198,199,
+  200,201,202,203,204,205,206,207,
+  208,209,210,211,212,213,214,215,
+  216,217,218,219,220,221,222,223,
+  224,225,226,227,228,229,230,231,
+  232,233,234,235,236,237,238,239,
+  240,241,242,243,244,245,246,247,
+  248,249,250,251,252,253,254,255,
+
+/* This table is a case flipping table. */
+
+    0,  1,  2,  3,  4,  5,  6,  7,
+    8,  9, 10, 11, 12, 13, 14, 15,
+   16, 17, 18, 19, 20, 21, 22, 23,
+   24, 25, 26, 27, 28, 29, 30, 31,
+   32, 33, 34, 35, 36, 37, 38, 39,
+   40, 41, 42, 43, 44, 45, 46, 47,
+   48, 49, 50, 51, 52, 53, 54, 55,
+   56, 57, 58, 59, 60, 61, 62, 63,
+   64, 97, 98, 99,100,101,102,103,
+  104,105,106,107,108,109,110,111,
+  112,113,114,115,116,117,118,119,
+  120,121,122, 91, 92, 93, 94, 95,
+   96, 65, 66, 67, 68, 69, 70, 71,
+   72, 73, 74, 75, 76, 77, 78, 79,
+   80, 81, 82, 83, 84, 85, 86, 87,
+   88, 89, 90,123,124,125,126,127,
+  128,129,130,131,132,133,134,135,
+  136,137,138,139,140,141,142,143,
+  144,145,146,147,148,149,150,151,
+  152,153,154,155,156,157,158,159,
+  160,161,162,163,164,165,166,167,
+  168,169,170,171,172,173,174,175,
+  176,177,178,179,180,181,182,183,
+  184,185,186,187,188,189,190,191,
+  192,193,194,195,196,197,198,199,
+  200,201,202,203,204,205,206,207,
+  208,209,210,211,212,213,214,215,
+  216,217,218,219,220,221,222,223,
+  224,225,226,227,228,229,230,231,
+  232,233,234,235,236,237,238,239,
+  240,241,242,243,244,245,246,247,
+  248,249,250,251,252,253,254,255,
+
+/* This table contains bit maps for various character classes. Each map is 32
+bytes long and the bits run from the least significant end of each byte. The
+classes that have their own maps are: space, xdigit, digit, upper, lower, word,
+graph, print, punct, and cntrl. Other classes are built from combinations. */
+
+  0x00,0x3e,0x00,0x00,0x01,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0x00,0x00,0xff,0x03,
+  0x7e,0x00,0x00,0x00,0x7e,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0x00,0x00,0xff,0x03,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0xfe,0xff,0xff,0x07,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0xfe,0xff,0xff,0x07,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0x00,0x00,0xff,0x03,
+  0xfe,0xff,0xff,0x87,0xfe,0xff,0xff,0x07,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0xfe,0xff,0xff,0xff,
+  0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7f,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0xff,0xff,0xff,0xff,
+  0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x7f,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0x00,0x00,0x00,0x00,0xfe,0xff,0x00,0xfc,
+  0x01,0x00,0x00,0xf8,0x01,0x00,0x00,0x78,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+  0xff,0xff,0xff,0xff,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+
+/* This table identifies various classes of character by individual bits:
+  0x01   white space character
+  0x02   letter
+  0x04   decimal digit
+  0x08   hexadecimal digit
+  0x10   alphanumeric or '_'
+  0x80   regular expression metacharacter or binary zero
+*/
+
+  0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /*   0-  7 */
+  0x00,0x01,0x01,0x00,0x01,0x01,0x00,0x00, /*   8- 15 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /*  16- 23 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /*  24- 31 */
+  0x01,0x00,0x00,0x00,0x80,0x00,0x00,0x00, /*    - '  */
+  0x80,0x80,0x80,0x80,0x00,0x00,0x80,0x00, /*  ( - /  */
+  0x1c,0x1c,0x1c,0x1c,0x1c,0x1c,0x1c,0x1c, /*  0 - 7  */
+  0x1c,0x1c,0x00,0x00,0x00,0x00,0x00,0x80, /*  8 - ?  */
+  0x00,0x1a,0x1a,0x1a,0x1a,0x1a,0x1a,0x12, /*  @ - G  */
+  0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, /*  H - O  */
+  0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, /*  P - W  */
+  0x12,0x12,0x12,0x80,0x80,0x00,0x80,0x10, /*  X - _  */
+  0x00,0x1a,0x1a,0x1a,0x1a,0x1a,0x1a,0x12, /*  ` - g  */
+  0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, /*  h - o  */
+  0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, /*  p - w  */
+  0x12,0x12,0x12,0x80,0x80,0x00,0x00,0x00, /*  x -127 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 128-135 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 136-143 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 144-151 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 152-159 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 160-167 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 168-175 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 176-183 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 184-191 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 192-199 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 200-207 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 208-215 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 216-223 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 224-231 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 232-239 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 240-247 */
+  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};/* 248-255 */
+
+/* This is a set of tables that came orginally from a Windows user. It seems to
+be at least an approximation of ISO 8859. In particular, there are characters
+greater than 128 that are marked as spaces, letters, etc. */
+
+static const unsigned char tables1[] = {
+0,1,2,3,4,5,6,7,
+8,9,10,11,12,13,14,15,
+16,17,18,19,20,21,22,23,
+24,25,26,27,28,29,30,31,
+32,33,34,35,36,37,38,39,
+40,41,42,43,44,45,46,47,
+48,49,50,51,52,53,54,55,
+56,57,58,59,60,61,62,63,
+64,97,98,99,100,101,102,103,
+104,105,106,107,108,109,110,111,
+112,113,114,115,116,117,118,119,
+120,121,122,91,92,93,94,95,
+96,97,98,99,100,101,102,103,
+104,105,106,107,108,109,110,111,
+112,113,114,115,116,117,118,119,
+120,121,122,123,124,125,126,127,
+128,129,130,131,132,133,134,135,
+136,137,138,139,140,141,142,143,
+144,145,146,147,148,149,150,151,
+152,153,154,155,156,157,158,159,
+160,161,162,163,164,165,166,167,
+168,169,170,171,172,173,174,175,
+176,177,178,179,180,181,182,183,
+184,185,186,187,188,189,190,191,
+224,225,226,227,228,229,230,231,
+232,233,234,235,236,237,238,239,
+240,241,242,243,244,245,246,215,
+248,249,250,251,252,253,254,223,
+224,225,226,227,228,229,230,231,
+232,233,234,235,236,237,238,239,
+240,241,242,243,244,245,246,247,
+248,249,250,251,252,253,254,255,
+0,1,2,3,4,5,6,7,
+8,9,10,11,12,13,14,15,
+16,17,18,19,20,21,22,23,
+24,25,26,27,28,29,30,31,
+32,33,34,35,36,37,38,39,
+40,41,42,43,44,45,46,47,
+48,49,50,51,52,53,54,55,
+56,57,58,59,60,61,62,63,
+64,97,98,99,100,101,102,103,
+104,105,106,107,108,109,110,111,
+112,113,114,115,116,117,118,119,
+120,121,122,91,92,93,94,95,
+96,65,66,67,68,69,70,71,
+72,73,74,75,76,77,78,79,
+80,81,82,83,84,85,86,87,
+88,89,90,123,124,125,126,127,
+128,129,130,131,132,133,134,135,
+136,137,138,139,140,141,142,143,
+144,145,146,147,148,149,150,151,
+152,153,154,155,156,157,158,159,
+160,161,162,163,164,165,166,167,
+168,169,170,171,172,173,174,175,
+176,177,178,179,180,181,182,183,
+184,185,186,187,188,189,190,191,
+224,225,226,227,228,229,230,231,
+232,233,234,235,236,237,238,239,
+240,241,242,243,244,245,246,215,
+248,249,250,251,252,253,254,223,
+192,193,194,195,196,197,198,199,
+200,201,202,203,204,205,206,207,
+208,209,210,211,212,213,214,247,
+216,217,218,219,220,221,222,255,
+0,62,0,0,1,0,0,0,
+0,0,0,0,0,0,0,0,
+32,0,0,0,1,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,255,3,
+126,0,0,0,126,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,255,3,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,12,2,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+254,255,255,7,0,0,0,0,
+0,0,0,0,0,0,0,0,
+255,255,127,127,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,254,255,255,7,
+0,0,0,0,0,4,32,4,
+0,0,0,128,255,255,127,255,
+0,0,0,0,0,0,255,3,
+254,255,255,135,254,255,255,7,
+0,0,0,0,0,4,44,6,
+255,255,127,255,255,255,127,255,
+0,0,0,0,254,255,255,255,
+255,255,255,255,255,255,255,127,
+0,0,0,0,254,255,255,255,
+255,255,255,255,255,255,255,255,
+0,2,0,0,255,255,255,255,
+255,255,255,255,255,255,255,127,
+0,0,0,0,255,255,255,255,
+255,255,255,255,255,255,255,255,
+0,0,0,0,254,255,0,252,
+1,0,0,248,1,0,0,120,
+0,0,0,0,254,255,255,255,
+0,0,128,0,0,0,128,0,
+255,255,255,255,0,0,0,0,
+0,0,0,0,0,0,0,128,
+255,255,255,255,0,0,0,0,
+0,0,0,0,0,0,0,0,
+128,0,0,0,0,0,0,0,
+0,1,1,0,1,1,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+1,0,0,0,128,0,0,0,
+128,128,128,128,0,0,128,0,
+28,28,28,28,28,28,28,28,
+28,28,0,0,0,0,0,128,
+0,26,26,26,26,26,26,18,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,
+18,18,18,128,128,0,128,16,
+0,26,26,26,26,26,26,18,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,
+18,18,18,128,128,0,0,0,
+0,0,0,0,0,1,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,
+1,0,0,0,0,0,0,0,
+0,0,18,0,0,0,0,0,
+0,0,20,20,0,18,0,0,
+0,20,18,0,0,0,0,0,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,0,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,0,
+18,18,18,18,18,18,18,18
+};
+
+
 
 /*************************************************
 *        Read or extend an input line            *
@@ -215,7 +546,7 @@ uschar *here = start;
 
 for (;;)
   {
-  int rlen = buffer_size - (here - buffer);
+  int rlen = (int)(buffer_size - (here - buffer));
 
   if (rlen > 1000)
     {
@@ -245,7 +576,7 @@ for (;;)
     /* Read the next line by normal means, prompting if the file is stdin. */
 
       {
-      if (f == stdin) printf(prompt);
+      if (f == stdin) printf("%s", prompt);
       if (fgets((char *)here, rlen,  f) == NULL)
         return (here == start)? NULL : start;
       }
@@ -735,9 +1066,8 @@ return 0;
 *         Check newline indicator                *
 *************************************************/
 
-/* This is used both at compile and run-time to check for <xxx> escapes, where
-xxx is LF, CR, CRLF, ANYCRLF, or ANY. Print a message and return 0 if there is
-no match.
+/* This is used both at compile and run-time to check for <xxx> escapes. Print
+a message and return 0 if there is no match.
 
 Arguments:
   p           points after the leading '<'
@@ -785,6 +1115,7 @@ printf("  -dfa     force DFA matching for all subjects\n");
 #endif
 printf("  -help    show usage information\n");
 printf("  -i       show information about compiled patterns\n"
+       "  -M       find MATCH_LIMIT minimum for each subject\n"
        "  -m       output memory used information\n"
        "  -o <n>   set size of offsets vector to <n>\n");
 #if !defined NOPOSIX
@@ -814,6 +1145,7 @@ int main(int argc, char **argv)
 FILE *infile = stdin;
 int options = 0;
 int study_options = 0;
+int default_find_match_limit = FALSE;
 int op = 1;
 int timeit = 0;
 int timeitm = 0;
@@ -873,6 +1205,7 @@ while (argc > 1 && argv[op][0] == '-')
   else if (strcmp(argv[op], "-b") == 0) debug = 1;
   else if (strcmp(argv[op], "-i") == 0) showinfo = 1;
   else if (strcmp(argv[op], "-d") == 0) showinfo = debug = 1;
+  else if (strcmp(argv[op], "-M") == 0) default_find_match_limit = TRUE;
 #if !defined NODFA
   else if (strcmp(argv[op], "-dfa") == 0) all_use_dfa = 1;
 #endif
@@ -925,6 +1258,7 @@ while (argc > 1 && argv[op][0] == '-')
   else if (strcmp(argv[op], "-C") == 0)
     {
     int rc;
+    unsigned long int lrc;
     printf("PCRE version %s\n", pcre_version());
     printf("Compiled with\n");
     (void)pcre_config(PCRE_CONFIG_UTF8, &rc);
@@ -932,8 +1266,10 @@ while (argc > 1 && argv[op][0] == '-')
     (void)pcre_config(PCRE_CONFIG_UNICODE_PROPERTIES, &rc);
     printf("  %sUnicode properties support\n", rc? "" : "No ");
     (void)pcre_config(PCRE_CONFIG_NEWLINE, &rc);
-    printf("  Newline sequence is %s\n", (rc == '\r')? "CR" :
-      (rc == '\n')? "LF" : (rc == ('\r'<<8 | '\n'))? "CRLF" :
+    /* Note that these values are always the ASCII values, even
+    in EBCDIC environments. CR is 13 and NL is 10. */
+    printf("  Newline sequence is %s\n", (rc == 13)? "CR" :
+      (rc == 10)? "LF" : (rc == (13<<8 | 10))? "CRLF" :
       (rc == -2)? "ANYCRLF" :
       (rc == -1)? "ANY" : "???");
     (void)pcre_config(PCRE_CONFIG_BSR, &rc);
@@ -943,10 +1279,10 @@ while (argc > 1 && argv[op][0] == '-')
     printf("  Internal link size = %d\n", rc);
     (void)pcre_config(PCRE_CONFIG_POSIX_MALLOC_THRESHOLD, &rc);
     printf("  POSIX malloc threshold = %d\n", rc);
-    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT, &rc);
-    printf("  Default match limit = %d\n", rc);
-    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT_RECURSION, &rc);
-    printf("  Default recursion depth limit = %d\n", rc);
+    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT, &lrc);
+    printf("  Default match limit = %ld\n", lrc);
+    (void)pcre_config(PCRE_CONFIG_MATCH_LIMIT_RECURSION, &lrc);
+    printf("  Default recursion depth limit = %ld\n", lrc);
     (void)pcre_config(PCRE_CONFIG_STACKRECURSE, &rc);
     printf("  Match recursion uses %s\n", rc? "stack" : "heap");
     goto EXIT;
@@ -1028,11 +1364,13 @@ while (!done)
 #endif
 
   const char *error;
+  unsigned char *markptr;
   unsigned char *p, *pp, *ppp;
   unsigned char *to_file = NULL;
   const unsigned char *tables = NULL;
   unsigned long int true_size, true_study_size = 0;
   size_t size, regex_gotten_store;
+  int do_mark = 0;
   int do_study = 0;
   int do_debug = debug;
   int do_G = 0;
@@ -1150,7 +1488,7 @@ while (!done)
     }
 
   pp = p;
-  poffset = p - buffer;
+  poffset = (int)(p - buffer);
 
   for(;;)
     {
@@ -1214,6 +1552,7 @@ while (!done)
       case 'G': do_G = 1; break;
       case 'I': do_showinfo = 1; break;
       case 'J': options |= PCRE_DUPNAMES; break;
+      case 'K': do_mark = 1; break;
       case 'M': log_store = 1; break;
       case 'N': options |= PCRE_NO_AUTO_CAPTURE; break;
 
@@ -1223,10 +1562,30 @@ while (!done)
 
       case 'S': do_study = 1; break;
       case 'U': options |= PCRE_UNGREEDY; break;
+      case 'W': options |= PCRE_UCP; break;
       case 'X': options |= PCRE_EXTRA; break;
       case 'Z': debug_lengths = 0; break;
       case '8': options |= PCRE_UTF8; use_utf8 = 1; break;
       case '?': options |= PCRE_NO_UTF8_CHECK; break;
+
+      case 'T':
+      switch (*pp++)
+        {
+        case '0': tables = tables0; break;
+        case '1': tables = tables1; break;
+
+        case '\r':
+        case '\n':
+        case ' ':
+        case 0:
+        fprintf(outfile, "** Missing table number after /T\n");
+        goto SKIP_DATA;
+
+        default:
+        fprintf(outfile, "** Bad table number \"%c\" after /T\n", pp[-1]);
+        goto SKIP_DATA;
+        }
+      break;
 
       case 'L':
       ppp = pp;
@@ -1253,7 +1612,7 @@ while (!done)
 
       case '<':
         {
-        if (strncmp((char *)pp, "JS>", 3) == 0)
+        if (strncmpic(pp, (uschar *)"JS>", 3) == 0)
           {
           options |= PCRE_JAVASCRIPT_COMPAT;
           pp += 3;
@@ -1294,6 +1653,8 @@ while (!done)
     if ((options & PCRE_DOTALL) != 0) cflags |= REG_DOTALL;
     if ((options & PCRE_NO_AUTO_CAPTURE) != 0) cflags |= REG_NOSUB;
     if ((options & PCRE_UTF8) != 0) cflags |= REG_UTF8;
+    if ((options & PCRE_UCP) != 0) cflags |= REG_UCP;
+    if ((options & PCRE_UNGREEDY) != 0) cflags |= REG_UNGREEDY;
 
     rc = regcomp(&preg, (char *)p, cflags);
 
@@ -1314,6 +1675,8 @@ while (!done)
 #endif  /* !defined NOPOSIX */
 
     {
+    unsigned long int get_options;
+
     if (timeit > 0)
       {
       register int i;
@@ -1357,9 +1720,16 @@ while (!done)
       goto CONTINUE;
       }
 
-    /* Compilation succeeded; print data if required. There are now two
-    info-returning functions. The old one has a limited interface and
-    returns only limited data. Check that it agrees with the newer one. */
+    /* Compilation succeeded. It is now possible to set the UTF-8 option from
+    within the regex; check for this so that we know how to process the data
+    lines. */
+
+    new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
+    if ((get_options & PCRE_UTF8) != 0) use_utf8 = 1;
+
+    /* Print information if required. There are now two info-returning
+    functions. The old one has a limited interface and returns only limited
+    data. Check that it agrees with the newer one. */
 
     if (log_store)
       fprintf(outfile, "Memory allocation (code space): %d\n",
@@ -1398,6 +1768,19 @@ while (!done)
         true_study_size = ((pcre_study_data *)(extra->study_data))->size;
       }
 
+    /* If /K was present, we set up for handling MARK data. */
+
+    if (do_mark)
+      {
+      if (extra == NULL)
+        {
+        extra = (pcre_extra *)malloc(sizeof(pcre_extra));
+        extra->flags = 0;
+        }
+      extra->mark = &markptr;
+      extra->flags |= PCRE_EXTRA_MARK;
+      }
+
     /* If the 'F' option was present, we flip the bytes of all the integer
     fields in the regex data block and the study block. This is to make it
     possible to test PCRE's handling of byte-flipped patterns, e.g. those
@@ -1430,7 +1813,8 @@ while (!done)
         {
         pcre_study_data *rsd = (pcre_study_data *)(extra->study_data);
         rsd->size = byteflip(rsd->size, sizeof(rsd->size));
-        rsd->options = byteflip(rsd->options, sizeof(rsd->options));
+        rsd->flags = byteflip(rsd->flags, sizeof(rsd->flags));
+        rsd->minlength = byteflip(rsd->minlength, sizeof(rsd->minlength));
         }
       }
 
@@ -1444,9 +1828,11 @@ while (!done)
       pcre_printint(re, outfile, debug_lengths);
       }
 
+    /* We already have the options in get_options (see above) */
+
     if (do_showinfo)
       {
-      unsigned long int get_options, all_options;
+      unsigned long int all_options;
 #if !defined NOINFOCHECK
       int old_first_char, old_options, old_count;
 #endif
@@ -1455,7 +1841,6 @@ while (!done)
       int nameentrysize, namecount;
       const uschar *nametable;
 
-      new_info(re, NULL, PCRE_INFO_OPTIONS, &get_options);
       new_info(re, NULL, PCRE_INFO_SIZE, &size);
       new_info(re, NULL, PCRE_INFO_CAPTURECOUNT, &count);
       new_info(re, NULL, PCRE_INFO_BACKREFMAX, &backrefmax);
@@ -1515,7 +1900,7 @@ while (!done)
       if (do_flip) all_options = byteflip(all_options, sizeof(all_options));
 
       if (get_options == 0) fprintf(outfile, "No options\n");
-        else fprintf(outfile, "Options:%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
+        else fprintf(outfile, "Options:%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",
           ((get_options & PCRE_ANCHORED) != 0)? " anchored" : "",
           ((get_options & PCRE_CASELESS) != 0)? " caseless" : "",
           ((get_options & PCRE_EXTENDED) != 0)? " extended" : "",
@@ -1529,6 +1914,7 @@ while (!done)
           ((get_options & PCRE_UNGREEDY) != 0)? " ungreedy" : "",
           ((get_options & PCRE_NO_AUTO_CAPTURE) != 0)? " no_auto_capture" : "",
           ((get_options & PCRE_UTF8) != 0)? " utf8" : "",
+          ((get_options & PCRE_UCP) != 0)? " ucp" : "",
           ((get_options & PCRE_NO_UTF8_CHECK) != 0)? " no_utf8_check" : "",
           ((get_options & PCRE_DUPNAMES) != 0)? " dupnames" : "");
 
@@ -1606,10 +1992,14 @@ while (!done)
         else
           {
           uschar *start_bits = NULL;
-          new_info(re, extra, PCRE_INFO_FIRSTTABLE, &start_bits);
+          int minlength;
 
+          new_info(re, extra, PCRE_INFO_MINLENGTH, &minlength);
+          fprintf(outfile, "Subject length lower bound = %d\n", minlength);
+
+          new_info(re, extra, PCRE_INFO_FIRSTTABLE, &start_bits);
           if (start_bits == NULL)
-            fprintf(outfile, "No starting byte set\n");
+            fprintf(outfile, "No set of starting bytes\n");
           else
             {
             int i;
@@ -1691,7 +2081,12 @@ while (!done)
 
       new_free(re);
       if (extra != NULL) new_free(extra);
-      if (tables != NULL) new_free((void *)tables);
+      if (locale_set)
+        {
+        new_free((void *)tables);
+        setlocale(LC_CTYPE, "C");
+        locale_set = 0;
+        }
       continue;  /* With next regex */
       }
     }        /* End of non-POSIX compile */
@@ -1708,7 +2103,7 @@ while (!done)
     int callout_data_set = 0;
     int count, c;
     int copystrings = 0;
-    int find_match_limit = 0;
+    int find_match_limit = default_find_match_limit;
     int getstrings = 0;
     int getlist = 0;
     int gmatched = 0;
@@ -1740,7 +2135,11 @@ while (!done)
       {
       if (extend_inputline(infile, buffer + len, "data> ") == NULL)
         {
-        if (len > 0) break;
+        if (len > 0)    /* Reached EOF without hitting a newline */
+          {
+          fprintf(outfile, "\n");
+          break;
+          }
         done = 1;
         goto CONTINUE;
         }
@@ -1948,7 +2347,10 @@ while (!done)
         continue;
 
         case 'N':
-        options |= PCRE_NOTEMPTY;
+        if ((options & PCRE_NOTEMPTY) != 0)
+          options = (options & ~PCRE_NOTEMPTY) | PCRE_NOTEMPTY_ATSTART;
+        else
+          options |= PCRE_NOTEMPTY;
         continue;
 
         case 'O':
@@ -1971,7 +2373,8 @@ while (!done)
         continue;
 
         case 'P':
-        options |= PCRE_PARTIAL;
+        options |= ((options & PCRE_PARTIAL_SOFT) == 0)?
+          PCRE_PARTIAL_SOFT : PCRE_PARTIAL_HARD;
         continue;
 
         case 'Q':
@@ -2006,6 +2409,10 @@ while (!done)
         show_malloc = 1;
         continue;
 
+        case 'Y':
+        options |= PCRE_NO_START_OPTIMIZE;
+        continue;
+
         case 'Z':
         options |= PCRE_NOTEOL;
         continue;
@@ -2026,7 +2433,7 @@ while (!done)
       *q++ = c;
       }
     *q = 0;
-    len = q - dbuffer;
+    len = (int)(q - dbuffer);
 
     /* Move the data to the end of the buffer so that a read over the end of
     the buffer will be seen by valgrind, even if it doesn't cause a crash. If
@@ -2064,6 +2471,7 @@ while (!done)
         pmatch = (regmatch_t *)malloc(sizeof(regmatch_t) * use_size_offsets);
       if ((options & PCRE_NOTBOL) != 0) eflags |= REG_NOTBOL;
       if ((options & PCRE_NOTEOL) != 0) eflags |= REG_NOTEOL;
+      if ((options & PCRE_NOTEMPTY) != 0) eflags |= REG_NOTEMPTY;
 
       rc = regexec(&preg, (const char *)bptr, use_size_offsets, pmatch, eflags);
 
@@ -2108,6 +2516,8 @@ while (!done)
 
     for (;; gmatched++)    /* Loop for /g or /G */
       {
+      markptr = NULL;
+
       if (timeitm > 0)
         {
         register int i;
@@ -2119,7 +2529,7 @@ while (!done)
           {
           int workspace[1000];
           for (i = 0; i < timeitm; i++)
-            count = pcre_dfa_exec(re, NULL, (char *)bptr, len, start_offset,
+            count = pcre_dfa_exec(re, extra, (char *)bptr, len, start_offset,
               options | g_notempty, use_offsets, use_size_offsets, workspace,
               sizeof(workspace)/sizeof(int));
           }
@@ -2182,7 +2592,7 @@ while (!done)
       else if (all_use_dfa || use_dfa)
         {
         int workspace[1000];
-        count = pcre_dfa_exec(re, NULL, (char *)bptr, len, start_offset,
+        count = pcre_dfa_exec(re, extra, (char *)bptr, len, start_offset,
           options | g_notempty, use_offsets, use_size_offsets, workspace,
           sizeof(workspace)/sizeof(int));
         if (count == 0)
@@ -2252,6 +2662,8 @@ while (!done)
               }
             }
           }
+
+        if (markptr != NULL) fprintf(outfile, "MK: %s\n", markptr);
 
         for (i = 0; i < 32; i++)
           {
@@ -2336,12 +2748,14 @@ while (!done)
 
       else if (count == PCRE_ERROR_PARTIAL)
         {
-        fprintf(outfile, "Partial match");
-#if !defined NODFA
-        if ((all_use_dfa || use_dfa) && use_size_offsets > 2)
-          fprintf(outfile, ": %.*s", use_offsets[1] - use_offsets[0],
-            bptr + use_offsets[0]);
-#endif
+        if (markptr == NULL) fprintf(outfile, "Partial match");
+          else fprintf(outfile, "Partial match, mark=%s", markptr);
+        if (use_size_offsets > 1)
+          {
+          fprintf(outfile, ": ");
+          pchars(bptr + use_offsets[0], use_offsets[1] - use_offsets[0],
+            outfile);
+          }
         fprintf(outfile, "\n");
         break;  /* Out of the /g loop */
         }
@@ -2371,9 +2785,11 @@ while (!done)
             {
             int d;
             (void)pcre_config(PCRE_CONFIG_NEWLINE, &d);
-            obits = (d == '\r')? PCRE_NEWLINE_CR :
-                    (d == '\n')? PCRE_NEWLINE_LF :
-                    (d == ('\r'<<8 | '\n'))? PCRE_NEWLINE_CRLF :
+            /* Note that these values are always the ASCII ones, even in
+            EBCDIC environments. CR = 13, NL = 10. */
+            obits = (d == 13)? PCRE_NEWLINE_CR :
+                    (d == 10)? PCRE_NEWLINE_LF :
+                    (d == (13<<8 | 10))? PCRE_NEWLINE_CRLF :
                     (d == -2)? PCRE_NEWLINE_ANYCRLF :
                     (d == -1)? PCRE_NEWLINE_ANY : 0;
             }
@@ -2400,7 +2816,11 @@ while (!done)
           {
           if (count == PCRE_ERROR_NOMATCH)
             {
-            if (gmatched == 0) fprintf(outfile, "No match\n");
+            if (gmatched == 0)
+              {
+              if (markptr == NULL) fprintf(outfile, "No match\n");
+                else fprintf(outfile, "No match, mark = %s\n", markptr);
+              }
             }
           else fprintf(outfile, "Error %d\n", count);
           break;  /* Out of the /g loop */
@@ -2412,9 +2832,9 @@ while (!done)
       if (!do_g && !do_G) break;
 
       /* If we have matched an empty string, first check to see if we are at
-      the end of the subject. If so, the /g loop is over. Otherwise, mimic
-      what Perl's /g options does. This turns out to be rather cunning. First
-      we set PCRE_NOTEMPTY and PCRE_ANCHORED and try the match again at the
+      the end of the subject. If so, the /g loop is over. Otherwise, mimic what
+      Perl's /g options does. This turns out to be rather cunning. First we set
+      PCRE_NOTEMPTY_ATSTART and PCRE_ANCHORED and try the match again at the
       same point. If this fails (picked up above) we advance to the next
       character. */
 
@@ -2423,7 +2843,7 @@ while (!done)
       if (use_offsets[0] == use_offsets[1])
         {
         if (use_offsets[0] == len) break;
-        g_notempty = PCRE_NOTEMPTY | PCRE_ANCHORED;
+        g_notempty = PCRE_NOTEMPTY_ATSTART | PCRE_ANCHORED;
         }
 
       /* For /g, update the start offset, leaving the rest alone */
@@ -2450,7 +2870,7 @@ while (!done)
 
   if (re != NULL) new_free(re);
   if (extra != NULL) new_free(extra);
-  if (tables != NULL)
+  if (locale_set)
     {
     new_free((void *)tables);
     setlocale(LC_CTYPE, "C");

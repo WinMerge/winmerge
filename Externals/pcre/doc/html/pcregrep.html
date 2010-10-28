@@ -78,17 +78,30 @@ Patterns are limited to 8K or BUFSIZ characters, whichever is the greater.
 BUFSIZ is defined in <b>&#60;stdio.h&#62;</b>. When there is more than one pattern
 (specified by the use of <b>-e</b> and/or <b>-f</b>), each pattern is applied to
 each line in the order in which they are defined, except that all the <b>-e</b>
-patterns are tried before the <b>-f</b> patterns. As soon as one pattern matches
-(or fails to match when <b>-v</b> is used), no further patterns are considered.
+patterns are tried before the <b>-f</b> patterns.
 </P>
 <P>
-When <b>--only-matching</b>, <b>--file-offsets</b>, or <b>--line-offsets</b>
-is used, the output is the part of the line that matched (either shown
-literally, or as an offset). In this case, scanning resumes immediately
-following the match, so that further matches on the same line can be found.
-If there are multiple patterns, they are all tried on the remainder of the
-line. However, patterns that follow the one that matched are not tried on the
-earlier part of the line.
+By default, as soon as one pattern matches (or fails to match when <b>-v</b> is
+used), no further patterns are considered. However, if <b>--colour</b> (or
+<b>--color</b>) is used to colour the matching substrings, or if
+<b>--only-matching</b>, <b>--file-offsets</b>, or <b>--line-offsets</b> is used to
+output only the part of the line that matched (either shown literally, or as an
+offset), scanning resumes immediately following the match, so that further
+matches on the same line can be found. If there are multiple patterns, they are
+all tried on the remainder of the line, but patterns that follow the one that
+matched are not tried on the earlier part of the line.
+</P>
+<P>
+This is the same behaviour as GNU grep, but it does mean that the order in
+which multiple patterns are specified can affect the output when one of the
+above options is used.
+</P>
+<P>
+Patterns that can match an empty string are accepted, but empty string
+matches are never recognized. An example is the pattern "(super)?(man)?", in
+which all components are optional. This pattern finds all occurrences of both
+"super" and "man"; the output differs from matching with "super|man" when only
+the matching substrings are being shown.
 </P>
 <P>
 If the <b>LC_ALL</b> or <b>LC_CTYPE</b> environment variable is set,
@@ -105,6 +118,12 @@ appropriate support is not present, files are treated as plain text. The
 standard input is always so treated.
 </P>
 <br><a name="SEC4" href="#TOC1">OPTIONS</a><br>
+<P>
+The order in which some of the options appear can affect the output. For
+example, both the <b>-h</b> and <b>-l</b> options affect the printing of file
+names. Whichever comes later in the command line will be the one that takes
+effect.
+</P>
 <P>
 <b>--</b>
 This terminate the list of options. It is useful if the next item on the
@@ -136,10 +155,13 @@ This is equivalent to setting both <b>-A</b> and <b>-B</b> to the same value.
 </P>
 <P>
 <b>-c</b>, <b>--count</b>
-Do not output individual lines; instead just output a count of the number of
-lines that would otherwise have been output. If several files are given, a
-count is output for each of them. In this mode, the <b>-A</b>, <b>-B</b>, and
-<b>-C</b> options are ignored.
+Do not output individual lines from the files that are being scanned; instead
+output the number of lines that would otherwise have been shown. If no lines
+are selected, the number zero is output. If several files are are being
+scanned, a count is output for each of them. However, if the
+<b>--files-with-matches</b> option is also used, only those files whose counts
+are greater than zero are listed. When <b>-c</b> is used, the <b>-A</b>,
+<b>-B</b>, and <b>-C</b> options are ignored.
 </P>
 <P>
 <b>--colour</b>, <b>--color</b>
@@ -149,16 +171,21 @@ equals sign.
 </P>
 <P>
 <b>--colour=</b><i>value</i>, <b>--color=</b><i>value</i>
-This option specifies under what circumstances the part of a line that matched
-a pattern should be coloured in the output. The value may be "never" (the
-default), "always", or "auto". In the latter case, colouring happens only if
-the standard output is connected to a terminal. The colour can be specified by
-setting the environment variable PCREGREP_COLOUR or PCREGREP_COLOR. The value
-of this variable should be a string of two numbers, separated by a semicolon.
-They are copied directly into the control string for setting colour on a
-terminal, so it is your responsibility to ensure that they make sense. If
-neither of the environment variables is set, the default is "1;31", which gives
-red.
+This option specifies under what circumstances the parts of a line that matched
+a pattern should be coloured in the output. By default, the output is not
+coloured. The value (which is optional, see above) may be "never", "always", or
+"auto". In the latter case, colouring happens only if the standard output is
+connected to a terminal. More resources are used when colouring is enabled,
+because <b>pcregrep</b> has to search for all possible matches in a line, not
+just one, in order to colour them all.
+<br>
+<br>
+The colour that is used can be specified by setting the environment variable
+PCREGREP_COLOUR or PCREGREP_COLOR. The value of this variable should be a
+string of two numbers, separated by a semicolon. They are copied directly into
+the control string for setting colour on a terminal, so it is your
+responsibility to ensure that they make sense. If neither of the environment
+variables is set, the default is "1;31", which gives red.
 </P>
 <P>
 <b>-D</b> <i>action</i>, <b>--devices=</b><i>action</i>
@@ -247,17 +274,16 @@ and <b>--only-matching</b>.
 <b>-H</b>, <b>--with-filename</b>
 Force the inclusion of the filename at the start of output lines when searching
 a single file. By default, the filename is not shown in this case. For matching
-lines, the filename is followed by a colon and a space; for context lines, a
-hyphen separator is used. If a line number is also being output, it follows the
-file name without a space.
+lines, the filename is followed by a colon; for context lines, a hyphen
+separator is used. If a line number is also being output, it follows the file
+name.
 </P>
 <P>
 <b>-h</b>, <b>--no-filename</b>
 Suppress the output filenames when searching multiple files. By default,
 filenames are shown when multiple files are searched. For matching lines, the
-filename is followed by a colon and a space; for context lines, a hyphen
-separator is used. If a line number is also being output, it follows the file
-name without a space.
+filename is followed by a colon; for context lines, a hyphen separator is used.
+If a line number is also being output, it follows the file name.
 </P>
 <P>
 <b>--help</b>
@@ -299,14 +325,28 @@ output once, on a separate line.
 <b>-l</b>, <b>--files-with-matches</b>
 Instead of outputting lines from the files, just output the names of the files
 containing lines that would have been output. Each file name is output
-once, on a separate line. Searching stops as soon as a matching line is found
-in a file.
+once, on a separate line. Searching normally stops as soon as a matching line
+is found in a file. However, if the <b>-c</b> (count) option is also used,
+matching continues in order to obtain the correct count, and those files that
+have at least one match are listed along with their counts. Using this option
+with <b>-c</b> is a way of suppressing the listing of files with no matches.
 </P>
 <P>
 <b>--label</b>=<i>name</i>
 This option supplies a name to be used for the standard input when file names
 are being output. If not supplied, "(standard input)" is used. There is no
 short form for this option.
+</P>
+<P>
+<b>--line-buffered</b>
+When this option is given, input is read and processed line by line, and the
+output is flushed after each write. By default, input is read in large chunks,
+unless <b>pcregrep</b> can determine that it is reading from a terminal (which
+is currently possible only in Unix environments). Output to terminal is
+normally automatically flushed by the operating system. This option can be
+useful when the input or output is attached to a pipe and you do not want
+<b>pcregrep</b> to buffer up large amounts of data. However, its use will affect
+performance, and the <b>-M</b> (multiline) option ceases to work.
 </P>
 <P>
 <b>--line-offsets</b>
@@ -336,7 +376,8 @@ that <b>pcregrep</b> buffers the input file as it scans it. However,
 <b>pcregrep</b> ensures that at least 8K characters or the rest of the document
 (whichever is the shorter) are available for forward matching, and similarly
 the previous 8K characters (or all the previous characters, if fewer than 8K)
-are guaranteed to be available for lookbehind assertions.
+are guaranteed to be available for lookbehind assertions. This option does not
+work when input is read line by line (see \fP--line-buffered\fP.)
 </P>
 <P>
 <b>-N</b> <i>newline-type</i>, <b>--newline=</b><i>newline-type</i>
@@ -362,9 +403,9 @@ being scanned does not agree with the convention set by this option,
 <P>
 <b>-n</b>, <b>--line-number</b>
 Precede each output line by its line number in the file, followed by a colon
-and a space for matching lines or a hyphen and a space for context lines. If
-the filename is also being output, it precedes the line number. This option is
-forced if <b>--line-offsets</b> is used.
+for matching lines or a hyphen for context lines. If the filename is also being
+output, it precedes the line number. This option is forced if
+<b>--line-offsets</b> is used.
 </P>
 <P>
 <b>-o</b>, <b>--only-matching</b>
@@ -445,7 +486,9 @@ The majority of short and long forms of <b>pcregrep</b>'s options are the same
 as in the GNU <b>grep</b> program. Any long option of the form
 <b>--xxx-regexp</b> (GNU terminology) is also available as <b>--xxx-regex</b>
 (PCRE terminology). However, the <b>--locale</b>, <b>-M</b>, <b>--multiline</b>,
-<b>-u</b>, and <b>--utf-8</b> options are specific to <b>pcregrep</b>.
+<b>-u</b>, and <b>--utf-8</b> options are specific to <b>pcregrep</b>. If both the
+<b>-c</b> and <b>-l</b> options are given, GNU grep lists only file names,
+without counts, but <b>pcregrep</b> gives the counts.
 </P>
 <br><a name="SEC8" href="#TOC1">OPTIONS WITH DATA</a><br>
 <P>
@@ -507,9 +550,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC13" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 08 March 2008
+Last updated: 21 May 2010
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

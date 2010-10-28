@@ -1,3 +1,6 @@
+/-- This set of tests checks the API, internals, and non-Perl stuff for UTF-8
+    support, excluding Unicode properties. --/
+
 /\x{100}/8DZ
 
 /\x{1000}/8DZ
@@ -53,30 +56,6 @@
 /.{3,5}?/DZ8
     \x{212ab}\x{212ab}\x{212ab}\x{861}
 
-/-- These tests are here rather than in testinput4 because Perl 5.6 has some
-problems with UTF-8 support, in the area of \x{..} where the value is < 255. 
-It grumbles about invalid UTF-8 strings. --/
-
-/^[a\x{c0}]b/8
-    \x{c0}b
-    
-/^([a\x{c0}]*?)aa/8
-    a\x{c0}aaaa/ 
-
-/^([a\x{c0}]*?)aa/8
-    a\x{c0}aaaa/ 
-    a\x{c0}a\x{c0}aaa/ 
-
-/^([a\x{c0}]*)aa/8
-    a\x{c0}aaaa/ 
-    a\x{c0}a\x{c0}aaa/ 
-
-/^([a\x{c0}]*)a\x{c0}/8
-    a\x{c0}aaaa/ 
-    a\x{c0}a\x{c0}aaa/ 
-    
-/-- --/ 
-    
 /(?<=\C)X/8
     Should produce an error diagnostic
     
@@ -480,4 +459,339 @@ can't tell the difference.) --/
 /X/8f<any> 
     A\x{1ec5}ABCXYZ
 
-/ End of testinput5 /
+/(*UTF8)\x{1234}/
+  abcd\x{1234}pqr
+
+/(*CRLF)(*UTF8)(*BSR_UNICODE)a\Rb/I
+
+/Xa{2,4}b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/Xa{2,4}?b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/Xa{2,4}+b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/X\x{123}{2,4}b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X\x{123}{2,4}?b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X\x{123}{2,4}+b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X\x{123}{2,4}b/8
+    Xx\P
+    X\x{123}x\P
+    X\x{123}\x{123}x\P 
+    X\x{123}\x{123}\x{123}x\P
+    X\x{123}\x{123}\x{123}\x{123}x\P 
+    
+/X\x{123}{2,4}?b/8
+    Xx\P
+    X\x{123}x\P
+    X\x{123}\x{123}x\P 
+    X\x{123}\x{123}\x{123}x\P
+    X\x{123}\x{123}\x{123}\x{123}x\P 
+    
+/X\x{123}{2,4}+b/8
+    Xx\P
+    X\x{123}x\P
+    X\x{123}\x{123}x\P 
+    X\x{123}\x{123}\x{123}x\P
+    X\x{123}\x{123}\x{123}\x{123}x\P 
+    
+/X\d{2,4}b/8
+    X\P
+    X3\P
+    X33\P 
+    X333\P
+    X3333\P 
+    
+/X\d{2,4}?b/8
+    X\P
+    X3\P
+    X33\P 
+    X333\P
+    X3333\P 
+    
+/X\d{2,4}+b/8
+    X\P
+    X3\P
+    X33\P 
+    X333\P
+    X3333\P 
+
+/X\D{2,4}b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/X\D{2,4}?b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/X\D{2,4}+b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+
+/X\D{2,4}b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X\D{2,4}?b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X\D{2,4}+b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+
+/X[abc]{2,4}b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/X[abc]{2,4}?b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+    
+/X[abc]{2,4}+b/8
+    X\P
+    Xa\P
+    Xaa\P 
+    Xaaa\P
+    Xaaaa\P 
+
+/X[abc\x{123}]{2,4}b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X[abc\x{123}]{2,4}?b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X[abc\x{123}]{2,4}+b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+
+/X[^a]{2,4}b/8
+    X\P
+    Xz\P
+    Xzz\P 
+    Xzzz\P
+    Xzzzz\P 
+    
+/X[^a]{2,4}?b/8
+    X\P
+    Xz\P
+    Xzz\P 
+    Xzzz\P
+    Xzzzz\P 
+    
+/X[^a]{2,4}+b/8
+    X\P
+    Xz\P
+    Xzz\P 
+    Xzzz\P
+    Xzzzz\P 
+
+/X[^a]{2,4}b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X[^a]{2,4}?b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/X[^a]{2,4}+b/8
+    X\P
+    X\x{123}\P
+    X\x{123}\x{123}\P 
+    X\x{123}\x{123}\x{123}\P
+    X\x{123}\x{123}\x{123}\x{123}\P 
+
+/(Y)X\1{2,4}b/8
+    YX\P
+    YXY\P
+    YXYY\P 
+    YXYYY\P
+    YXYYYY\P 
+    
+/(Y)X\1{2,4}?b/8
+    YX\P
+    YXY\P
+    YXYY\P 
+    YXYYY\P
+    YXYYYY\P 
+    
+/(Y)X\1{2,4}+b/8
+    YX\P
+    YXY\P
+    YXYY\P 
+    YXYYY\P
+    YXYYYY\P 
+
+/(\x{123})X\1{2,4}b/8
+    \x{123}X\P
+    \x{123}X\x{123}\P
+    \x{123}X\x{123}\x{123}\P 
+    \x{123}X\x{123}\x{123}\x{123}\P
+    \x{123}X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/(\x{123})X\1{2,4}?b/8
+    \x{123}X\P
+    \x{123}X\x{123}\P
+    \x{123}X\x{123}\x{123}\P 
+    \x{123}X\x{123}\x{123}\x{123}\P
+    \x{123}X\x{123}\x{123}\x{123}\x{123}\P 
+    
+/(\x{123})X\1{2,4}+b/8
+    \x{123}X\P
+    \x{123}X\x{123}\P
+    \x{123}X\x{123}\x{123}\P 
+    \x{123}X\x{123}\x{123}\x{123}\P
+    \x{123}X\x{123}\x{123}\x{123}\x{123}\P 
+
+/\bthe cat\b/8
+    the cat\P
+    the cat\P\P
+
+/abcd*/8
+    xxxxabcd\P
+    xxxxabcd\P\P
+
+/abcd*/i8
+    xxxxabcd\P
+    xxxxabcd\P\P
+    XXXXABCD\P
+    XXXXABCD\P\P
+
+/abc\d*/8
+    xxxxabc1\P
+    xxxxabc1\P\P
+
+/(a)bc\1*/8
+    xxxxabca\P
+    xxxxabca\P\P
+
+/abc[de]*/8
+    xxxxabcde\P
+    xxxxabcde\P\P
+
+/X\W{3}X/8
+    \PX
+
+/\h/SI
+
+/\h/SI8
+    ABC\x{09}
+    ABC\x{20}
+    ABC\x{a0}
+    ABC\x{1680}
+    ABC\x{180e}
+    ABC\x{2000}
+    ABC\x{202f} 
+    ABC\x{205f} 
+    ABC\x{3000} 
+
+/\v/SI
+
+/\v/SI8
+    ABC\x{0a}
+    ABC\x{0b}
+    ABC\x{0c}
+    ABC\x{0d}
+    ABC\x{85}
+    ABC\x{2028}
+
+/\R/SI
+
+/\R/SI8
+
+/\h*A/SI8
+    CDBABC
+    
+/\v+A/SI8
+
+/\s?xxx\s/8SI
+
+/\sxxx\s/8T1
+    AB\x{85}xxx\x{a0}XYZ
+    AB\x{a0}xxx\x{85}XYZ
+
+/\sxxx\s/I8ST1
+    AB\x{85}xxx\x{a0}XYZ
+    AB\x{a0}xxx\x{85}XYZ
+
+/\S \S/8T1
+    \x{a2} \x{84} 
+
+/\S \S/I8ST1
+    \x{a2} \x{84} 
+    A Z 
+
+/-- End of testinput5 --/

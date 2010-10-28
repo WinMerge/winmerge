@@ -95,6 +95,11 @@ The matching interface supports at most 16 arguments per call.
 If you need more, consider using the more general interface
 \fBpcrecpp::RE::DoMatch\fP. See \fBpcrecpp.h\fP for the signature for
 \fBDoMatch\fP.
+.P
+NOTE: Do not use \fBno_arg\fP, which is used internally to mark the end of a
+list of optional arguments, as a placeholder for missing arguments, as this can
+lead to segfaults.
+.
 .
 .SH "QUOTING METACHARACTERS"
 .rs
@@ -338,5 +343,5 @@ Copyright (c) 2007 Google Inc.
 .rs
 .sp
 .nf
-Last updated: 12 November 2007
+Last updated: 17 March 2009
 .fi

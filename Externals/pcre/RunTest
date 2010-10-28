@@ -44,6 +44,8 @@ do7=no
 do8=no
 do9=no
 do10=no
+do11=no
+do12=no
 
 while [ $# -gt 0 ] ; do
   case $1 in
@@ -57,6 +59,8 @@ while [ $# -gt 0 ] ; do
     8) do8=yes;;
     9) do9=yes;;
    10) do10=yes;;
+   11) do11=yes;;
+   12) do12=yes;;
    valgrind) valgrind="valgrind -q";;
     *) echo "Unknown test number $1"; exit 1;;
   esac
@@ -91,6 +95,10 @@ if [ $ucp -eq 0 ] ; then
     echo "Can't run test 10 because Unicode property support is not configured"
     exit 1
   fi
+  if [ $do12 = yes ] ; then
+    echo "Can't run test 12 because Unicode property support is not configured"
+    exit 1
+  fi
 fi
 
 if [ $link_size -ne 2 ] ; then
@@ -104,7 +112,7 @@ fi
 
 if [ $do1 = no -a $do2 = no -a $do3 = no -a $do4 = no -a \
      $do5 = no -a $do6 = no -a $do7 = no -a $do8 = no -a \
-     $do9 = no -a $do10 = no ] ; then
+     $do9 = no -a $do10 = no -a $do11 = no -a $do12 = no ] ; then
   do1=yes
   do2=yes
   do3=yes
@@ -115,6 +123,8 @@ if [ $do1 = no -a $do2 = no -a $do3 = no -a $do4 = no -a \
   if [ $utf8 -ne 0 ] ; then do8=yes; fi
   if [ $utf8 -ne 0 -a $ucp -ne 0 ] ; then do9=yes; fi
   if [ $link_size -eq 2 -a $ucp -ne 0 ] ; then do10=yes; fi
+  do11=yes
+  if [ $utf8 -ne 0 -a $ucp -ne 0 ] ; then do12=yes; fi
 fi
 
 # Show which release
@@ -123,10 +133,10 @@ echo ""
 echo PCRE C library tests
 ./pcretest /dev/null
 
-# Primary test, Perl-compatible
+# Primary test, compatible with Perl 5.8, 5.10, 5.11
 
 if [ $do1 = yes ] ; then
-  echo "Test 1: main functionality (Perl compatible)"
+  echo "Test 1: main functionality (Perl 5.8, 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput1 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput1 testtry
@@ -136,10 +146,10 @@ if [ $do1 = yes ] ; then
   echo "OK"
 fi
 
-# PCRE tests that are not Perl-compatible - API & error tests, mostly
+# PCRE tests that are not Perl-compatible - API, errors, internals
 
 if [ $do2 = yes ] ; then
-  echo "Test 2: API and error handling (not Perl compatible)"
+  echo "Test 2: API, errors, internals, and non-Perl stuff"
   $valgrind ./pcretest -q $testdata/testinput2 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput2 testtry
@@ -205,7 +215,7 @@ fi
 # Additional tests for UTF8 support
 
 if [ $do4 = yes ] ; then
-  echo "Test 4: UTF-8 support (Perl compatible)"
+  echo "Test 4: UTF-8 support (Perl 5.8, 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput4 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput4 testtry
@@ -216,7 +226,7 @@ if [ $do4 = yes ] ; then
 fi
 
 if [ $do5 = yes ] ; then
-  echo "Test 5: API and internals for UTF-8 support (not Perl compatible)"
+  echo "Test 5: API, internals, and non-Perl stuff for UTF-8 support"
   $valgrind ./pcretest -q $testdata/testinput5 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput5 testtry
@@ -227,7 +237,7 @@ if [ $do5 = yes ] ; then
 fi
 
 if [ $do6 = yes ] ; then
-  echo "Test 6: Unicode property support"
+  echo "Test 6: Unicode property support (Perl 5.10, 5.11 compatible)"
   $valgrind ./pcretest -q $testdata/testinput6 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput6 testtry
@@ -283,6 +293,32 @@ if [ $do10 = yes ] ; then
   $valgrind ./pcretest -q $testdata/testinput10 testtry
   if [ $? = 0 ] ; then
     $cf $testdata/testoutput10 testtry
+    if [ $? != 0 ] ; then exit 1; fi
+  else exit 1
+  fi
+  echo "OK"
+fi
+
+# Test of Perl 5.10, 5.11 features
+
+if [ $do11 = yes ] ; then
+  echo "Test 11: Perl 5.10, 5.11 features"
+  $valgrind ./pcretest -q $testdata/testinput11 testtry
+  if [ $? = 0 ] ; then
+    $cf $testdata/testoutput11 testtry
+    if [ $? != 0 ] ; then exit 1; fi
+  else exit 1
+  fi
+  echo "OK"
+fi
+
+# Test non-Perl-compatible Unicode property support
+
+if [ $do12 = yes ] ; then
+  echo "Test 12: API, internals, and non-Perl stuff for Unicode property support"
+  $valgrind ./pcretest -q $testdata/testinput12 testtry
+  if [ $? = 0 ] ; then
+    $cf $testdata/testoutput12 testtry
     if [ $? != 0 ] ; then exit 1; fi
   else exit 1
   fi

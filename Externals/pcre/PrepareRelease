@@ -4,12 +4,13 @@
 # processing of the documentation, detrails files, and creates pcre.h.generic
 # and config.h.generic (for use by builders who can't run ./configure).
 
-# You must run this script before runnning "make dist". It makes use of the
-# following files:
+# You must run this script before runnning "make dist". If its first argument
+# is "doc", it stops after preparing the documentation. There are no other
+# arguments. The script makes use of the following files:
 
 # 132html     A Perl script that converts a .1 or .3 man page into HTML. It
-#             is called from MakeRelease. It "knows" the relevant troff
-#             constructs that are used in the PCRE man pages.
+#             "knows" the relevant troff constructs that are used in the PCRE
+#             man pages.
 
 # CleanTxt    A Perl script that cleans up the output of "nroff -man" by
 #             removing backspaces and other redundant text so as to produce
@@ -37,8 +38,9 @@ cat <<End >pcre.txt
 This file contains a concatenation of the PCRE man pages, converted to plain
 text format for ease of searching with a text editor, or for use on systems
 that do not have a man page processor. The small individual files that give
-synopses of each function in the library have not been included. There are
-separate text files for the pcregrep and pcretest commands.
+synopses of each function in the library have not been included. Neither has 
+the pcredemo program. There are separate text files for the pcregrep and
+pcretest commands.
 -----------------------------------------------------------------------------
 
 
@@ -68,6 +70,41 @@ for file in pcretest pcregrep pcre-config ; do
 done
 
 
+# Make pcredemo.3 from the pcredemo.c source file
+
+echo "Making pcredemo.3"
+perl <<"END" >pcredemo.3
+  open(IN, "../pcredemo.c") || die "Failed to open pcredemo.c\n";
+  open(OUT, ">pcredemo.3") || die "Failed to open pcredemo.3\n";
+  print OUT ".\\\" Start example.\n" .
+            ".de EX\n" .
+            ".  nr mE \\\\n(.f\n" .
+            ".  nf\n" .
+            ".  nh\n" .
+            ".  ft CW\n" .
+            "..\n" .
+            ".\n" .
+            ".\n" .
+            ".\\\" End example.\n" .
+            ".de EE\n" .
+            ".  ft \\\\n(mE\n" .
+            ".  fi\n" .
+            ".  hy \\\\n(HY\n" .
+            "..\n" .
+            ".\n" .
+            ".EX\n" ; 
+  while (<IN>)
+    {
+    s/\\/\\e/g;
+    print OUT;
+    }
+  print OUT ".EE\n";
+  close(IN);
+  close(OUT);    
+END
+if [ $? != 0 ] ; then exit 1; fi
+
+
 # Make HTML form of the documentation.
 
 echo "Making HTML documentation"
@@ -83,6 +120,7 @@ done
 # Exclude table of contents for function summaries. It seems that expr
 # forces an anchored regex. Also exclude them for small pages that have
 # only one section.
+
 for file in *.3 ; do
   base=`basename $file .3`
   toc=-toc
@@ -98,10 +136,11 @@ for file in *.3 ; do
   if [ $? != 0 ] ; then exit 1; fi
 done
 
-# End of documentation processing
+# End of documentation processing; stop if only documentation required.
 
 cd ..
 echo Documentation done
+if [ "$1" = "doc" ] ; then exit; fi
 
 # These files are detrailed; do not detrail the test data because there may be
 # significant trailing spaces. The configure files are also omitted from the
@@ -128,6 +167,7 @@ files="\
   RunTest.bat \
   pcre-config.in \
   libpcre.pc.in \
+  libpcreposix.pc.in \
   libpcrecpp.pc.in \
   config.h.in \
   pcre_printint.src \

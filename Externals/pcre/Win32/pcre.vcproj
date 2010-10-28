@@ -3,8 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="pcre"
-	ProjectGUID="{D6B50065-7185-4E20-A499-E78276066E6F}"
-	RootNamespace="pcre"
+	ProjectGUID="{F7E6A782-1C15-46E3-B645-922494B9F146}"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -17,10 +16,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\..\Build\pcre\Debug"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcre.dir\Debug"
+			OutputDirectory="Debug"
+			IntermediateDirectory="pcre.dir\Debug"
 			ConfigurationType="2"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -55,14 +53,14 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="0"
 				InlineFunctionExpansion="0"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcre_EXPORTS"
 				ExceptionHandling="0"
-				BasicRuntimeChecks="1"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)/pcred.pdb"
+				ProgramDataBaseFileName="./Debug/pcre.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="1"
@@ -73,22 +71,23 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
-				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"
-				OutputFile="$(OutDir)\pcre.dll"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  "
+				OutputFile=".\Debug\pcre.dll"
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(IntDir)/pcred.pdb"
-				ImportLibrary="$(OutDir)/pcre.lib"
+				ProgramDatabaseFile=".\Debug\pcre.pdb"
+				ImportLibrary=".\Debug\pcre.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -117,10 +116,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="..\..\..\Build\pcre\Release"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcre.dir\Release"
+			OutputDirectory="Release"
+			IntermediateDirectory="pcre.dir\Release"
 			ConfigurationType="2"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -155,13 +153,13 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="2"
 				InlineFunctionExpansion="2"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcre_EXPORTS"
 				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)/pcre.pdb"
+				ProgramDataBaseFileName="./Release/pcre.pdb"
 				WarningLevel="3"
 				CompileAs="1"
 			/>
@@ -171,21 +169,22 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
-				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"
-				OutputFile="$(Outdir)/pcre.dll"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  "
+				OutputFile=".\Release\pcre.dll"
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="$(Intdir)/pcre.pdb"
-				ImportLibrary="$(OutDir)/pcre.lib"
+				ProgramDatabaseFile=".\Release\pcre.pdb"
+				ImportLibrary=".\Release\pcre.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -214,10 +213,9 @@
 		</Configuration>
 		<Configuration
 			Name="MinSizeRel|Win32"
-			OutputDirectory="..\..\..\Build\pcre\MinSizeRel"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcre.dir\MinSizeRel"
+			OutputDirectory="MinSizeRel"
+			IntermediateDirectory="pcre.dir\MinSizeRel"
 			ConfigurationType="2"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -252,13 +250,13 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcre_EXPORTS"
 				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)/pcre.pdb"
+				ProgramDataBaseFileName="./MinSizeRel/pcre.pdb"
 				WarningLevel="3"
 				CompileAs="1"
 			/>
@@ -268,21 +266,22 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
-				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"
-				OutputFile="$(OutDir)/pcre.dll"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  "
+				OutputFile=".\MinSizeRel\pcre.dll"
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="$(IntDir)/pcre.pdb"
-				ImportLibrary="$(OutDir)/pcre.lib"
+				ProgramDatabaseFile=".\MinSizeRel\pcre.pdb"
+				ImportLibrary=".\MinSizeRel\pcre.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -311,10 +310,9 @@
 		</Configuration>
 		<Configuration
 			Name="RelWithDebInfo|Win32"
-			OutputDirectory="..\..\..\Build\pcre\RelWithDebInfo"
-			IntermediateDirectory="..\..\..\BuildTmp\pcre\pcre.dir\RelWithDebInfo"
+			OutputDirectory="RelWithDebInfo"
+			IntermediateDirectory="pcre.dir\RelWithDebInfo"
 			ConfigurationType="2"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -349,13 +347,13 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcre_EXPORTS"
 				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="$(IntDir)/pcre.pdb"
+				ProgramDataBaseFileName="./RelWithDebInfo/pcre.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="1"
@@ -366,22 +364,23 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories=".;.."
+				AdditionalIncludeDirectories=".;..;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				LinkLibraryDependencies="false"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
-				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib"
-				OutputFile="$(OutDir)/pcre.dll"
+				AdditionalDependencies="$(NOINHERIT) kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib  "
+				OutputFile=".\RelWithDebInfo\pcre.dll"
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(IntDir)/pcre.pdb"
-				ImportLibrary="$(OutDir)/pcre.lib"
+				ProgramDatabaseFile=".\RelWithDebInfo\pcre.pdb"
+				ImportLibrary=".\RelWithDebInfo\pcre.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -416,7 +415,7 @@
 			Name="Source Files"
 			>
 			<File
-				RelativePath="pcre_chartables.c"
+				RelativePath=".\pcre_chartables.c"
 				>
 			</File>
 			<File
@@ -500,11 +499,11 @@
 			Name="Header Files"
 			>
 			<File
-				RelativePath="config.h"
+				RelativePath=".\config.h"
 				>
 			</File>
 			<File
-				RelativePath="pcre.h"
+				RelativePath=".\pcre.h"
 				>
 			</File>
 		</Filter>

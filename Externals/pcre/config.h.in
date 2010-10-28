@@ -28,7 +28,10 @@ them both to 0; an emulation function will be used. */
 
 /* If you are compiling for a system that uses EBCDIC instead of ASCII
    character codes, define this macro as 1. On systems that can use
-   "configure", this can be done via --enable-ebcdic. */
+   "configure", this can be done via --enable-ebcdic. PCRE will then assume
+   that all input strings are in EBCDIC. If you do not define this macro, PCRE
+   will assume input strings are ASCII or UTF-8 Unicode. It is not possible to
+   build a version of PCRE that supports both EBCDIC and UTF-8. */
 #undef EBCDIC
 
 /* Define to 1 if you have the `bcopy' function. */
@@ -85,10 +88,13 @@ them both to 0; an emulation function will be used. */
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if you have the `strtoll' function. */
+/* Define to 1 if you have `strtoimax'. */
+#undef HAVE_STRTOIMAX
+
+/* Define to 1 if you have `strtoll'. */
 #undef HAVE_STRTOLL
 
-/* Define to 1 if you have the `strtoq' function. */
+/* Define to 1 if you have `strtoq'. */
 #undef HAVE_STRTOQ
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
@@ -112,7 +118,7 @@ them both to 0; an emulation function will be used. */
 /* Define to 1 if you have the <zlib.h> header file. */
 #undef HAVE_ZLIB_H
 
-/* Define to 1 if you have the `_strtoi64' function. */
+/* Define to 1 if you have `_strtoi64'. */
 #undef HAVE__STRTOI64
 
 /* The value of LINK_SIZE determines the number of bytes used to store links
@@ -122,6 +128,10 @@ them both to 0; an emulation function will be used. */
    for longer patterns in extreme cases. On systems that support it,
    "configure" can be used to override this default. */
 #undef LINK_SIZE
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
 
 /* The value of MATCH_LIMIT determines the default number of times the
    internal match() function can be called during a single execution of
@@ -184,6 +194,9 @@ them both to 0; an emulation function will be used. */
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
 
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
@@ -229,7 +242,10 @@ them both to 0; an emulation function will be used. */
 /* Define to enable support for Unicode properties */
 #undef SUPPORT_UCP
 
-/* Define to enable support for the UTF-8 Unicode encoding. */
+/* Define to enable support for the UTF-8 Unicode encoding. This will work
+   even in an EBCDIC environment, but it is incompatible with the EBCDIC
+   macro. That is, PCRE can support *either* EBCDIC code *or* ASCII/UTF-8, but
+   not both at once. */
 #undef SUPPORT_UTF8
 
 /* Version number of package */
@@ -237,6 +253,10 @@ them both to 0; an emulation function will be used. */
 
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
+
+/* Define to the type of a signed integer type of width exactly 64 bits if
+   such a type exists and the standard includes do not define it. */
+#undef int64_t
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 #undef size_t

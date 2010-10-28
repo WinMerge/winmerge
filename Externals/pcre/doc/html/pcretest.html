@@ -77,6 +77,12 @@ Behave as if each regex has the <b>/I</b> modifier; information about the
 compiled pattern is given after compilation.
 </P>
 <P>
+<b>-M</b>
+Behave as if each data line contains the \M escape sequence; this causes
+PCRE to discover the minimum MATCH_LIMIT and MATCH_LIMIT_RECURSION settings by
+calling <b>pcre_exec()</b> repeatedly with different limits.
+</P>
+<P>
 <b>-m</b>
 Output the size of each compiled pattern after it has been compiled. This is
 equivalent to adding <b>/M</b> to each regular expression. For compatibility
@@ -195,9 +201,11 @@ effect as they do in Perl. For example:
 <pre>
   /caseless/i
 </pre>
-The following table shows additional modifiers for setting PCRE options that do
-not correspond to anything in Perl:
+The following table shows additional modifiers for setting PCRE compile-time
+options that do not correspond to anything in Perl:
 <pre>
+  <b>/8</b>              PCRE_UTF8
+  <b>/?</b>              PCRE_NO_UTF8_CHECK
   <b>/A</b>              PCRE_ANCHORED
   <b>/C</b>              PCRE_AUTO_CALLOUT
   <b>/E</b>              PCRE_DOLLAR_ENDONLY
@@ -205,6 +213,7 @@ not correspond to anything in Perl:
   <b>/J</b>              PCRE_DUPNAMES
   <b>/N</b>              PCRE_NO_AUTO_CAPTURE
   <b>/U</b>              PCRE_UNGREEDY
+  <b>/W</b>              PCRE_UCP
   <b>/X</b>              PCRE_EXTRA
   <b>/&#60;JS&#62;</b>           PCRE_JAVASCRIPT_COMPAT
   <b>/&#60;cr&#62;</b>           PCRE_NEWLINE_CR
@@ -215,13 +224,16 @@ not correspond to anything in Perl:
   <b>/&#60;bsr_anycrlf&#62;</b>  PCRE_BSR_ANYCRLF
   <b>/&#60;bsr_unicode&#62;</b>  PCRE_BSR_UNICODE
 </pre>
-Those specifying line ending sequences are literal strings as shown, but the
-letters can be in either case. This example sets multiline matching with CRLF
-as the line ending sequence:
+The modifiers that are enclosed in angle brackets are literal strings as shown,
+including the angle brackets, but the letters can be in either case. This
+example sets multiline matching with CRLF as the line ending sequence:
 <pre>
   /^abc/m&#60;crlf&#62;
 </pre>
-Details of the meanings of these PCRE options are given in the
+As well as turning on the PCRE_UTF8 option, the <b>/8</b> modifier also causes
+any non-printing characters in output strings to be printed using the
+\x{hh...} notation if they are valid UTF-8 sequences. Full details of the PCRE
+options are given in the
 <a href="pcreapi.html"><b>pcreapi</b></a>
 documentation.
 </P>
@@ -240,11 +252,11 @@ begins with a lookbehind assertion (including \b or \B).
 </P>
 <P>
 If any call to <b>pcre_exec()</b> in a <b>/g</b> or <b>/G</b> sequence matches an
-empty string, the next call is done with the PCRE_NOTEMPTY and PCRE_ANCHORED
-flags set in order to search for another, non-empty, match at the same point.
-If this second match fails, the start offset is advanced by one, and the normal
-match is retried. This imitates the way Perl handles such cases when using the
-<b>/g</b> modifier or the <b>split()</b> function.
+empty string, the next call is done with the PCRE_NOTEMPTY_ATSTART and
+PCRE_ANCHORED flags set in order to search for another, non-empty, match at the
+same point. If this second match fails, the start offset is advanced by one
+character, and the normal match is retried. This imitates the way Perl handles
+such cases when using the <b>/g</b> modifier or the <b>split()</b> function.
 </P>
 <br><b>
 Other modifiers
@@ -268,24 +280,6 @@ use in the automatic test scripts; it ensures that the same output is generated
 for different internal link sizes.
 </P>
 <P>
-The <b>/L</b> modifier must be followed directly by the name of a locale, for
-example,
-<pre>
-  /pattern/Lfr_FR
-</pre>
-For this reason, it must be the last modifier. The given locale is set,
-<b>pcre_maketables()</b> is called to build a set of character tables for the
-locale, and this is then passed to <b>pcre_compile()</b> when compiling the
-regular expression. Without an <b>/L</b> modifier, NULL is passed as the tables
-pointer; that is, <b>/L</b> applies only to the expression on which it appears.
-</P>
-<P>
-The <b>/I</b> modifier requests that <b>pcretest</b> output information about the
-compiled pattern (whether it is anchored, has a fixed first character, and
-so on). It does this by calling <b>pcre_fullinfo()</b> after compiling a
-pattern. If the pattern is studied, the results of that are also output.
-</P>
-<P>
 The <b>/D</b> modifier is a PCRE debugging feature, and is equivalent to
 <b>/BI</b>, that is, both the <b>/B</b> and the <b>/I</b> modifiers.
 </P>
@@ -299,32 +293,75 @@ available when the POSIX interface to PCRE is being used, that is, when the
 reloading compiled patterns below.
 </P>
 <P>
-The <b>/S</b> modifier causes <b>pcre_study()</b> to be called after the
-expression has been compiled, and the results used when the expression is
-matched.
+The <b>/I</b> modifier requests that <b>pcretest</b> output information about the
+compiled pattern (whether it is anchored, has a fixed first character, and
+so on). It does this by calling <b>pcre_fullinfo()</b> after compiling a
+pattern. If the pattern is studied, the results of that are also output.
+</P>
+<P>
+The <b>/K</b> modifier requests <b>pcretest</b> to show names from backtracking
+control verbs that are returned from calls to <b>pcre_exec()</b>. It causes
+<b>pcretest</b> to create a <b>pcre_extra</b> block if one has not already been
+created by a call to <b>pcre_study()</b>, and to set the PCRE_EXTRA_MARK flag
+and the <b>mark</b> field within it, every time that <b>pcre_exec()</b> is
+called. If the variable that the <b>mark</b> field points to is non-NULL for a
+match, non-match, or partial match, <b>pcretest</b> prints the string to which
+it points. For a match, this is shown on a line by itself, tagged with "MK:".
+For a non-match it is added to the message.
+</P>
+<P>
+The <b>/L</b> modifier must be followed directly by the name of a locale, for
+example,
+<pre>
+  /pattern/Lfr_FR
+</pre>
+For this reason, it must be the last modifier. The given locale is set,
+<b>pcre_maketables()</b> is called to build a set of character tables for the
+locale, and this is then passed to <b>pcre_compile()</b> when compiling the
+regular expression. Without an <b>/L</b> (or <b>/T</b>) modifier, NULL is passed
+as the tables pointer; that is, <b>/L</b> applies only to the expression on
+which it appears.
 </P>
 <P>
 The <b>/M</b> modifier causes the size of memory block used to hold the compiled
 pattern to be output.
 </P>
 <P>
+The <b>/S</b> modifier causes <b>pcre_study()</b> to be called after the
+expression has been compiled, and the results used when the expression is
+matched.
+</P>
+<P>
+The <b>/T</b> modifier must be followed by a single digit. It causes a specific
+set of built-in character tables to be passed to <b>pcre_compile()</b>. It is
+used in the standard PCRE tests to check behaviour with different character
+tables. The digit specifies the tables as follows:
+<pre>
+  0   the default ASCII tables, as distributed in
+        pcre_chartables.c.dist
+  1   a set of tables defining ISO 8859 characters
+</pre>
+In table 1, some characters whose codes are greater than 128 are identified as
+letters, digits, spaces, etc.
+</P>
+<br><b>
+Using the POSIX wrapper API
+</b><br>
+<P>
 The <b>/P</b> modifier causes <b>pcretest</b> to call PCRE via the POSIX wrapper
-API rather than its native API. When this is done, all other modifiers except
-<b>/i</b>, <b>/m</b>, and <b>/+</b> are ignored. REG_ICASE is set if <b>/i</b> is
-present, and REG_NEWLINE is set if <b>/m</b> is present. The wrapper functions
-force PCRE_DOLLAR_ENDONLY always, and PCRE_DOTALL unless REG_NEWLINE is set.
-</P>
-<P>
-The <b>/8</b> modifier causes <b>pcretest</b> to call PCRE with the PCRE_UTF8
-option set. This turns on support for UTF-8 character handling in PCRE,
-provided that it was compiled with this support enabled. This modifier also
-causes any non-printing characters in output strings to be printed using the
-\x{hh...} notation if they are valid UTF-8 sequences.
-</P>
-<P>
-If the <b>/?</b> modifier is used with <b>/8</b>, it causes <b>pcretest</b> to
-call <b>pcre_compile()</b> with the PCRE_NO_UTF8_CHECK option, to suppress the
-checking of the string for UTF-8 validity.
+API rather than its native API. When <b>/P</b> is set, the following modifiers
+set options for the <b>regcomp()</b> function:
+<pre>
+  /i    REG_ICASE
+  /m    REG_NEWLINE
+  /N    REG_NOSUB
+  /s    REG_DOTALL     )
+  /U    REG_UNGREEDY   ) These options are not part of
+  /W    REG_UCP        )   the POSIX standard
+  /8    REG_UTF8       )
+</pre>
+The <b>/+</b> modifier works as described above. All other modifiers are
+ignored.
 </P>
 <br><a name="SEC5" href="#TOC1">DATA LINES</a><br>
 <P>
@@ -364,12 +401,15 @@ recognized:
                ated by next non-alphanumeric character)
   \L         call pcre_get_substringlist() after a successful match
   \M         discover the minimum MATCH_LIMIT and MATCH_LIMIT_RECURSION settings
-  \N         pass the PCRE_NOTEMPTY option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
+  \N         pass the PCRE_NOTEMPTY option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>; if used twice, pass the
+               PCRE_NOTEMPTY_ATSTART option
   \Odd       set the size of the output vector passed to <b>pcre_exec()</b> to dd (any number of digits)
-  \P         pass the PCRE_PARTIAL option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
+  \P         pass the PCRE_PARTIAL_SOFT option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>; if used twice, pass the
+               PCRE_PARTIAL_HARD option
   \Qdd       set the PCRE_MATCH_LIMIT_RECURSION limit to dd (any number of digits)
   \R         pass the PCRE_DFA_RESTART option to <b>pcre_dfa_exec()</b>
   \S         output details of memory get/free calls during matching
+  \Y         pass the PCRE_NO_START_OPTIMIZE option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \Z         pass the PCRE_NOTEOL option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \?         pass the PCRE_NO_UTF8_CHECK option to <b>pcre_exec()</b> or <b>pcre_dfa_exec()</b>
   \&#62;dd       start the match at offset dd (any number of digits);
@@ -409,9 +449,9 @@ the call of <b>pcre_exec()</b> for the line in which it appears.
 </P>
 <P>
 If the <b>/P</b> modifier was present on the pattern, causing the POSIX wrapper
-API to be used, the only option-setting sequences that have any effect are \B
-and \Z, causing REG_NOTBOL and REG_NOTEOL, respectively, to be passed to
-<b>regexec()</b>.
+API to be used, the only option-setting sequences that have any effect are \B,
+\N, and \Z, causing REG_NOTBOL, REG_NOTEMPTY, and REG_NOTEOL, respectively,
+to be passed to <b>regexec()</b>.
 </P>
 <P>
 The use of \x{hh...} to represent UTF-8 characters is not dependent on the use
@@ -447,10 +487,11 @@ This section describes the output when the normal matching function,
 <P>
 When a match succeeds, pcretest outputs the list of captured substrings that
 <b>pcre_exec()</b> returns, starting with number 0 for the string that matched
-the whole pattern. Otherwise, it outputs "No match" or "Partial match"
-when <b>pcre_exec()</b> returns PCRE_ERROR_NOMATCH or PCRE_ERROR_PARTIAL,
-respectively, and otherwise the PCRE negative error number. Here is an example
-of an interactive <b>pcretest</b> run.
+the whole pattern. Otherwise, it outputs "No match" when the return is
+PCRE_ERROR_NOMATCH, and "Partial match:" followed by the partially matching
+substring when <b>pcre_exec()</b> returns PCRE_ERROR_PARTIAL. For any other
+returns, it outputs the PCRE negative error number. Here is an example of an
+interactive <b>pcretest</b> run.
 <pre>
   $ pcretest
   PCRE version 7.0 30-Nov-2006
@@ -530,7 +571,9 @@ the subject where there is at least one match. For example:
    2: tan
 </pre>
 (Using the normal matching function on this data finds only "tang".) The
-longest matching string is always given first (and numbered zero).
+longest matching string is always given first (and numbered zero). After a
+PCRE_ERROR_PARTIAL return, the output is "Partial match:", followed by the
+partially matching substring.
 </P>
 <P>
 If <b>/g</b> is present on the pattern, the search for further matches resumes
@@ -697,9 +740,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC15" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 12 April 2008
+Last updated: 14 June 2010
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

@@ -6,7 +6,7 @@
 and semantics are as close as possible to those of the Perl 5 language.
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2008 University of Cambridge
+           Copyright (c) 1997-2010 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -53,10 +53,11 @@ supporting internal functions that are not used by other modules. */
 #include "pcre_internal.h"
 
 
-/* When DEBUG is defined, we need the pcre_printint() function, which is also
-used by pcretest. DEBUG is not defined when building a production library. */
+/* When PCRE_DEBUG is defined, we need the pcre_printint() function, which is
+also used by pcretest. PCRE_DEBUG is not defined when building a production
+library. */
 
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
 #include "pcre_printint.src"
 #endif
 
@@ -91,27 +92,67 @@ is 4 there is plenty of room. */
 
 #define COMPILE_WORK_SIZE (4096)
 
+/* The overrun tests check for a slightly smaller size so that they detect the
+overrun before it actually does run off the end of the data block. */
+
+#define WORK_SIZE_CHECK (COMPILE_WORK_SIZE - 100)
+
 
 /* Table for handling escaped characters in the range '0'-'z'. Positive returns
 are simple data values; negative values are for special things like \d and so
 on. Zero means further processing is needed (for things like \x), or the escape
 is invalid. */
 
-#ifndef EBCDIC  /* This is the "normal" table for ASCII systems */
+#ifndef EBCDIC
+
+/* This is the "normal" table for ASCII systems or for EBCDIC systems running
+in UTF-8 mode. */
+
 static const short int escapes[] = {
-     0,      0,      0,      0,      0,      0,      0,      0,   /* 0 - 7 */
-     0,      0,    ':',    ';',    '<',    '=',    '>',    '?',   /* 8 - ? */
-   '@', -ESC_A, -ESC_B, -ESC_C, -ESC_D, -ESC_E,      0, -ESC_G,   /* @ - G */
--ESC_H,      0,      0, -ESC_K,      0,      0,      0,      0,   /* H - O */
--ESC_P, -ESC_Q, -ESC_R, -ESC_S,      0,      0, -ESC_V, -ESC_W,   /* P - W */
--ESC_X,      0, -ESC_Z,    '[',   '\\',    ']',    '^',    '_',   /* X - _ */
-   '`',      7, -ESC_b,      0, -ESC_d,  ESC_e,  ESC_f,      0,   /* ` - g */
--ESC_h,      0,      0, -ESC_k,      0,      0,  ESC_n,      0,   /* h - o */
--ESC_p,      0,  ESC_r, -ESC_s,  ESC_tee,    0, -ESC_v, -ESC_w,   /* p - w */
-     0,      0, -ESC_z                                            /* x - z */
+     0,                       0,
+     0,                       0,
+     0,                       0,
+     0,                       0,
+     0,                       0,
+     CHAR_COLON,              CHAR_SEMICOLON,
+     CHAR_LESS_THAN_SIGN,     CHAR_EQUALS_SIGN,
+     CHAR_GREATER_THAN_SIGN,  CHAR_QUESTION_MARK,
+     CHAR_COMMERCIAL_AT,      -ESC_A,
+     -ESC_B,                  -ESC_C,
+     -ESC_D,                  -ESC_E,
+     0,                       -ESC_G,
+     -ESC_H,                  0,
+     0,                       -ESC_K,
+     0,                       0,
+     -ESC_N,                  0,
+     -ESC_P,                  -ESC_Q,
+     -ESC_R,                  -ESC_S,
+     0,                       0,
+     -ESC_V,                  -ESC_W,
+     -ESC_X,                  0,
+     -ESC_Z,                  CHAR_LEFT_SQUARE_BRACKET,
+     CHAR_BACKSLASH,          CHAR_RIGHT_SQUARE_BRACKET,
+     CHAR_CIRCUMFLEX_ACCENT,  CHAR_UNDERSCORE,
+     CHAR_GRAVE_ACCENT,       7,
+     -ESC_b,                  0,
+     -ESC_d,                  ESC_e,
+     ESC_f,                   0,
+     -ESC_h,                  0,
+     0,                       -ESC_k,
+     0,                       0,
+     ESC_n,                   0,
+     -ESC_p,                  0,
+     ESC_r,                   -ESC_s,
+     ESC_tee,                 0,
+     -ESC_v,                  -ESC_w,
+     0,                       0,
+     -ESC_z
 };
 
-#else           /* This is the "abnormal" table for EBCDIC systems */
+#else
+
+/* This is the "abnormal" table for EBCDIC systems without UTF-8 support. */
+
 static const short int escapes[] = {
 /*  48 */     0,     0,      0,     '.',    '<',   '(',    '+',    '|',
 /*  50 */   '&',     0,      0,       0,      0,     0,      0,      0,
@@ -130,7 +171,7 @@ static const short int escapes[] = {
 /*  B8 */     0,     0,      0,       0,      0,   ']',    '=',    '-',
 /*  C0 */   '{',-ESC_A, -ESC_B,  -ESC_C, -ESC_D,-ESC_E,      0, -ESC_G,
 /*  C8 */-ESC_H,     0,      0,       0,      0,     0,      0,      0,
-/*  D0 */   '}',     0, -ESC_K,       0,      0,     0,      0, -ESC_P,
+/*  D0 */   '}',     0, -ESC_K,       0,      0,-ESC_N,      0, -ESC_P,
 /*  D8 */-ESC_Q,-ESC_R,      0,       0,      0,     0,      0,      0,
 /*  E0 */  '\\',     0, -ESC_S,       0,      0,-ESC_V, -ESC_W, -ESC_X,
 /*  E8 */     0,-ESC_Z,      0,       0,      0,     0,      0,      0,
@@ -142,30 +183,37 @@ static const short int escapes[] = {
 
 /* Table of special "verbs" like (*PRUNE). This is a short table, so it is
 searched linearly. Put all the names into a single string, in order to reduce
-the number of relocations when a shared library is dynamically linked. */
+the number of relocations when a shared library is dynamically linked. The
+string is built from string macros so that it works in UTF-8 mode on EBCDIC
+platforms. */
 
 typedef struct verbitem {
-  int   len;
-  int   op;
+  int   len;                 /* Length of verb name */
+  int   op;                  /* Op when no arg, or -1 if arg mandatory */
+  int   op_arg;              /* Op when arg present, or -1 if not allowed */
 } verbitem;
 
 static const char verbnames[] =
-  "ACCEPT\0"
-  "COMMIT\0"
-  "F\0"
-  "FAIL\0"
-  "PRUNE\0"
-  "SKIP\0"
-  "THEN";
+  "\0"                       /* Empty name is a shorthand for MARK */
+  STRING_MARK0
+  STRING_ACCEPT0
+  STRING_COMMIT0
+  STRING_F0
+  STRING_FAIL0
+  STRING_PRUNE0
+  STRING_SKIP0
+  STRING_THEN;
 
 static const verbitem verbs[] = {
-  { 6, OP_ACCEPT },
-  { 6, OP_COMMIT },
-  { 1, OP_FAIL },
-  { 4, OP_FAIL },
-  { 5, OP_PRUNE },
-  { 4, OP_SKIP  },
-  { 4, OP_THEN  }
+  { 0, -1,        OP_MARK },
+  { 4, -1,        OP_MARK },
+  { 6, OP_ACCEPT, -1 },
+  { 6, OP_COMMIT, -1 },
+  { 1, OP_FAIL,   -1 },
+  { 4, OP_FAIL,   -1 },
+  { 5, OP_PRUNE,  OP_PRUNE_ARG },
+  { 4, OP_SKIP,   OP_SKIP_ARG  },
+  { 4, OP_THEN,   OP_THEN_ARG  }
 };
 
 static const int verbcount = sizeof(verbs)/sizeof(verbitem);
@@ -178,9 +226,10 @@ length entry. The first three must be alpha, lower, upper, as this is assumed
 for handling case independence. */
 
 static const char posix_names[] =
-  "alpha\0"  "lower\0"  "upper\0"  "alnum\0"  "ascii\0"  "blank\0"
-  "cntrl\0"  "digit\0"  "graph\0"  "print\0"  "punct\0"  "space\0"
-  "word\0"   "xdigit";
+  STRING_alpha0 STRING_lower0 STRING_upper0 STRING_alnum0
+  STRING_ascii0 STRING_blank0 STRING_cntrl0 STRING_digit0
+  STRING_graph0 STRING_print0 STRING_punct0 STRING_space0
+  STRING_word0  STRING_xdigit;
 
 static const uschar posix_name_lengths[] = {
   5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 6, 0 };
@@ -212,6 +261,53 @@ static const int posix_class_maps[] = {
   cbit_xdigit,-1,          0              /* xdigit */
 };
 
+/* Table of substitutes for \d etc when PCRE_UCP is set. The POSIX class
+substitutes must be in the order of the names, defined above, and there are
+both positive and negative cases. NULL means no substitute. */
+
+#ifdef SUPPORT_UCP
+static const uschar *substitutes[] = {
+  (uschar *)"\\P{Nd}",    /* \D */
+  (uschar *)"\\p{Nd}",    /* \d */
+  (uschar *)"\\P{Xsp}",   /* \S */       /* NOTE: Xsp is Perl space */
+  (uschar *)"\\p{Xsp}",   /* \s */
+  (uschar *)"\\P{Xwd}",   /* \W */
+  (uschar *)"\\p{Xwd}"    /* \w */
+};
+
+static const uschar *posix_substitutes[] = {
+  (uschar *)"\\p{L}",     /* alpha */
+  (uschar *)"\\p{Ll}",    /* lower */
+  (uschar *)"\\p{Lu}",    /* upper */
+  (uschar *)"\\p{Xan}",   /* alnum */
+  NULL,                   /* ascii */
+  (uschar *)"\\h",        /* blank */
+  NULL,                   /* cntrl */
+  (uschar *)"\\p{Nd}",    /* digit */
+  NULL,                   /* graph */
+  NULL,                   /* print */
+  NULL,                   /* punct */
+  (uschar *)"\\p{Xps}",   /* space */    /* NOTE: Xps is POSIX space */
+  (uschar *)"\\p{Xwd}",   /* word */
+  NULL,                   /* xdigit */
+  /* Negated cases */
+  (uschar *)"\\P{L}",     /* ^alpha */
+  (uschar *)"\\P{Ll}",    /* ^lower */
+  (uschar *)"\\P{Lu}",    /* ^upper */
+  (uschar *)"\\P{Xan}",   /* ^alnum */
+  NULL,                   /* ^ascii */
+  (uschar *)"\\H",        /* ^blank */
+  NULL,                   /* ^cntrl */
+  (uschar *)"\\P{Nd}",    /* ^digit */
+  NULL,                   /* ^graph */
+  NULL,                   /* ^print */
+  NULL,                   /* ^punct */
+  (uschar *)"\\P{Xps}",   /* ^space */   /* NOTE: Xps is POSIX space */
+  (uschar *)"\\P{Xwd}",   /* ^word */
+  NULL                    /* ^xdigit */
+};
+#define POSIX_SUBSIZE (sizeof(posix_substitutes)/sizeof(uschar *))
+#endif
 
 #define STRING(a)  # a
 #define XSTRING(s) STRING(s)
@@ -224,7 +320,11 @@ the number of relocations needed when a shared library is loaded dynamically,
 it is now one long string. We cannot use a table of offsets, because the
 lengths of inserts such as XSTRING(MAX_NAME_SIZE) are not known. Instead, we
 simply count through to the one we want - this isn't a performance issue
-because these strings are used only when there is a compilation error. */
+because these strings are used only when there is a compilation error.
+
+Each substring ends with \0 to insert a null character. This includes the final
+substring, so that the whole string ends with \0\0, which can be detected when
+counting through. */
 
 static const char error_texts[] =
   "no error\0"
@@ -271,7 +371,7 @@ static const char error_texts[] =
   /* 35 */
   "invalid condition (?(0)\0"
   "\\C not allowed in lookbehind assertion\0"
-  "PCRE does not support \\L, \\l, \\N, \\U, or \\u\0"
+  "PCRE does not support \\L, \\l, \\N{name}, \\U, or \\u\0"
   "number after (?C is > 255\0"
   "closing ) for (?C expected\0"
   /* 40 */
@@ -297,14 +397,18 @@ static const char error_texts[] =
   "inconsistent NEWLINE options\0"
   "\\g is not followed by a braced, angle-bracketed, or quoted name/number or by a plain number\0"
   "a numbered reference must not be zero\0"
-  "(*VERB) with an argument is not supported\0"
+  "an argument is not allowed for (*ACCEPT), (*FAIL), or (*COMMIT)\0"
   /* 60 */
   "(*VERB) not recognized\0"
   "number is too big\0"
   "subpattern name expected\0"
   "digit expected after (?+\0"
-  "] is an invalid data character in JavaScript compatibility mode";
-
+  "] is an invalid data character in JavaScript compatibility mode\0"
+  /* 65 */
+  "different names for subpatterns of the same number are not allowed\0"
+  "(*MARK) must have an argument\0"
+  "this version of PCRE is not compiled with PCRE_UCP support\0"
+  ;
 
 /* Table to identify digits and hex digits. This is used when compiling
 patterns. Note that the tables in chartables are dependent on the locale, and
@@ -322,7 +426,11 @@ For convenience, we use the same bit definitions as in chartables:
 
 Then we can use ctype_digit and ctype_xdigit in the code. */
 
-#ifndef EBCDIC  /* This is the "normal" case, for ASCII systems */
+#ifndef EBCDIC
+
+/* This is the "normal" case, for ASCII systems, and EBCDIC systems running in
+UTF-8 mode. */
+
 static const unsigned char digitab[] =
   {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /*   0-  7 */
@@ -358,7 +466,10 @@ static const unsigned char digitab[] =
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /* 240-247 */
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};/* 248-255 */
 
-#else           /* This is the "abnormal" case, for EBCDIC systems */
+#else
+
+/* This is the "abnormal" case, for EBCDIC systems not running in UTF-8 mode. */
+
 static const unsigned char digitab[] =
   {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, /*   0-  7  0 */
@@ -455,7 +566,11 @@ static const char *
 find_error_text(int n)
 {
 const char *s = error_texts;
-for (; n > 0; n--) while (*s++ != 0) {};
+for (; n > 0; n--)
+  {
+  while (*s++ != 0) {};
+  if (*s == 0) return "Error text not found (please report)";
+  }
 return s;
 }
 
@@ -503,9 +618,9 @@ if (c == 0) *errorcodeptr = ERR1;
 in a table. A non-zero result is something that can be returned immediately.
 Otherwise further processing may be required. */
 
-#ifndef EBCDIC  /* ASCII coding */
-else if (c < '0' || c > 'z') {}                           /* Not alphanumeric */
-else if ((i = escapes[c - '0']) != 0) c = i;
+#ifndef EBCDIC  /* ASCII/UTF-8 coding */
+else if (c < CHAR_0 || c > CHAR_z) {}                     /* Not alphanumeric */
+else if ((i = escapes[c - CHAR_0]) != 0) c = i;
 
 #else           /* EBCDIC coding */
 else if (c < 'a' || (ebcdic_chartab[c] & 0x0E) == 0) {}   /* Not alphanumeric */
@@ -524,11 +639,10 @@ else
     /* A number of Perl escapes are not handled by PCRE. We give an explicit
     error. */
 
-    case 'l':
-    case 'L':
-    case 'N':
-    case 'u':
-    case 'U':
+    case CHAR_l:
+    case CHAR_L:
+    case CHAR_u:
+    case CHAR_U:
     *errorcodeptr = ERR37;
     break;
 
@@ -548,8 +662,8 @@ else
     (possibly recursive) subroutine calls, _not_ backreferences. Just return
     the -ESC_g code (cf \k). */
 
-    case 'g':
-    if (ptr[1] == '<' || ptr[1] == '\'')
+    case CHAR_g:
+    if (ptr[1] == CHAR_LESS_THAN_SIGN || ptr[1] == CHAR_APOSTROPHE)
       {
       c = -ESC_g;
       break;
@@ -557,12 +671,12 @@ else
 
     /* Handle the Perl-compatible cases */
 
-    if (ptr[1] == '{')
+    if (ptr[1] == CHAR_LEFT_CURLY_BRACKET)
       {
       const uschar *p;
-      for (p = ptr+2; *p != 0 && *p != '}'; p++)
-        if (*p != '-' && (digitab[*p] & ctype_digit) == 0) break;
-      if (*p != 0 && *p != '}')
+      for (p = ptr+2; *p != 0 && *p != CHAR_RIGHT_CURLY_BRACKET; p++)
+        if (*p != CHAR_MINUS && (digitab[*p] & ctype_digit) == 0) break;
+      if (*p != 0 && *p != CHAR_RIGHT_CURLY_BRACKET)
         {
         c = -ESC_k;
         break;
@@ -572,7 +686,7 @@ else
       }
     else braced = FALSE;
 
-    if (ptr[1] == '-')
+    if (ptr[1] == CHAR_MINUS)
       {
       negated = TRUE;
       ptr++;
@@ -581,7 +695,7 @@ else
 
     c = 0;
     while ((digitab[ptr[1]] & ctype_digit) != 0)
-      c = c * 10 + *(++ptr) - '0';
+      c = c * 10 + *(++ptr) - CHAR_0;
 
     if (c < 0)   /* Integer overflow */
       {
@@ -589,7 +703,7 @@ else
       break;
       }
 
-    if (braced && *(++ptr) != '}')
+    if (braced && *(++ptr) != CHAR_RIGHT_CURLY_BRACKET)
       {
       *errorcodeptr = ERR57;
       break;
@@ -626,15 +740,15 @@ else
     value is greater than 377, the least significant 8 bits are taken. Inside a
     character class, \ followed by a digit is always an octal number. */
 
-    case '1': case '2': case '3': case '4': case '5':
-    case '6': case '7': case '8': case '9':
+    case CHAR_1: case CHAR_2: case CHAR_3: case CHAR_4: case CHAR_5:
+    case CHAR_6: case CHAR_7: case CHAR_8: case CHAR_9:
 
     if (!isclass)
       {
       oldptr = ptr;
-      c -= '0';
+      c -= CHAR_0;
       while ((digitab[ptr[1]] & ctype_digit) != 0)
-        c = c * 10 + *(++ptr) - '0';
+        c = c * 10 + *(++ptr) - CHAR_0;
       if (c < 0)    /* Integer overflow */
         {
         *errorcodeptr = ERR61;
@@ -652,7 +766,7 @@ else
     generates a binary zero byte and treats the digit as a following literal.
     Thus we have to pull back the pointer by one. */
 
-    if ((c = *ptr) >= '8')
+    if ((c = *ptr) >= CHAR_8)
       {
       ptr--;
       c = 0;
@@ -665,10 +779,10 @@ else
     to do). Nowadays we allow for larger numbers in UTF-8 mode, but no more
     than 3 octal digits. */
 
-    case '0':
-    c -= '0';
-    while(i++ < 2 && ptr[1] >= '0' && ptr[1] <= '7')
-        c = c * 8 + *(++ptr) - '0';
+    case CHAR_0:
+    c -= CHAR_0;
+    while(i++ < 2 && ptr[1] >= CHAR_0 && ptr[1] <= CHAR_7)
+        c = c * 8 + *(++ptr) - CHAR_0;
     if (!utf8 && c > 255) *errorcodeptr = ERR51;
     break;
 
@@ -676,8 +790,8 @@ else
     than 0xff in utf8 mode, but only if the ddd are hex digits. If not, { is
     treated as a data character. */
 
-    case 'x':
-    if (ptr[1] == '{')
+    case CHAR_x:
+    if (ptr[1] == CHAR_LEFT_CURLY_BRACKET)
       {
       const uschar *pt = ptr + 2;
       int count = 0;
@@ -686,19 +800,19 @@ else
       while ((digitab[*pt] & ctype_xdigit) != 0)
         {
         register int cc = *pt++;
-        if (c == 0 && cc == '0') continue;     /* Leading zeroes */
+        if (c == 0 && cc == CHAR_0) continue;     /* Leading zeroes */
         count++;
 
-#ifndef EBCDIC  /* ASCII coding */
-        if (cc >= 'a') cc -= 32;               /* Convert to upper case */
-        c = (c << 4) + cc - ((cc < 'A')? '0' : ('A' - 10));
+#ifndef EBCDIC  /* ASCII/UTF-8 coding */
+        if (cc >= CHAR_a) cc -= 32;               /* Convert to upper case */
+        c = (c << 4) + cc - ((cc < CHAR_A)? CHAR_0 : (CHAR_A - 10));
 #else           /* EBCDIC coding */
-        if (cc >= 'a' && cc <= 'z') cc += 64;  /* Convert to upper case */
-        c = (c << 4) + cc - ((cc >= '0')? '0' : ('A' - 10));
+        if (cc >= CHAR_a && cc <= CHAR_z) cc += 64;  /* Convert to upper case */
+        c = (c << 4) + cc - ((cc >= CHAR_0)? CHAR_0 : (CHAR_A - 10));
 #endif
         }
 
-      if (*pt == '}')
+      if (*pt == CHAR_RIGHT_CURLY_BRACKET)
         {
         if (c < 0 || count > (utf8? 8 : 2)) *errorcodeptr = ERR34;
         ptr = pt;
@@ -714,14 +828,14 @@ else
     c = 0;
     while (i++ < 2 && (digitab[ptr[1]] & ctype_xdigit) != 0)
       {
-      int cc;                               /* Some compilers don't like ++ */
-      cc = *(++ptr);                        /* in initializers */
-#ifndef EBCDIC  /* ASCII coding */
-      if (cc >= 'a') cc -= 32;              /* Convert to upper case */
-      c = c * 16 + cc - ((cc < 'A')? '0' : ('A' - 10));
+      int cc;                                  /* Some compilers don't like */
+      cc = *(++ptr);                           /* ++ in initializers */
+#ifndef EBCDIC  /* ASCII/UTF-8 coding */
+      if (cc >= CHAR_a) cc -= 32;              /* Convert to upper case */
+      c = c * 16 + cc - ((cc < CHAR_A)? CHAR_0 : (CHAR_A - 10));
 #else           /* EBCDIC coding */
-      if (cc <= 'z') cc += 64;              /* Convert to upper case */
-      c = c * 16 + cc - ((cc >= '0')? '0' : ('A' - 10));
+      if (cc <= CHAR_z) cc += 64;              /* Convert to upper case */
+      c = c * 16 + cc - ((cc >= CHAR_0)? CHAR_0 : (CHAR_A - 10));
 #endif
       }
     break;
@@ -730,7 +844,7 @@ else
     This coding is ASCII-specific, but then the whole concept of \cx is
     ASCII-specific. (However, an EBCDIC equivalent has now been added.) */
 
-    case 'c':
+    case CHAR_c:
     c = *(++ptr);
     if (c == 0)
       {
@@ -738,11 +852,11 @@ else
       break;
       }
 
-#ifndef EBCDIC  /* ASCII coding */
-    if (c >= 'a' && c <= 'z') c -= 32;
+#ifndef EBCDIC  /* ASCII/UTF-8 coding */
+    if (c >= CHAR_a && c <= CHAR_z) c -= 32;
     c ^= 0x40;
 #else           /* EBCDIC coding */
-    if (c >= 'a' && c <= 'z') c += 64;
+    if (c >= CHAR_a && c <= CHAR_z) c += 64;
     c ^= 0xC0;
 #endif
     break;
@@ -763,6 +877,19 @@ else
     break;
     }
   }
+
+/* Perl supports \N{name} for character names, as well as plain \N for "not
+newline". PCRE does not support \N{name}. */
+
+if (c == -ESC_N && ptr[1] == CHAR_LEFT_CURLY_BRACKET)
+  *errorcodeptr = ERR37;
+
+/* If PCRE_UCP is set, we change the values for \d etc. */
+
+if ((options & PCRE_UCP) != 0 && c <= -ESC_D && c >= -ESC_w)
+  c -= (ESC_DU - ESC_D);
+
+/* Set the pointer to the final character before returning. */
 
 *ptrptr = ptr;
 return c;
@@ -804,9 +931,9 @@ if (c == 0) goto ERROR_RETURN;
 /* \P or \p can be followed by a name in {}, optionally preceded by ^ for
 negation. */
 
-if (c == '{')
+if (c == CHAR_LEFT_CURLY_BRACKET)
   {
-  if (ptr[1] == '^')
+  if (ptr[1] == CHAR_CIRCUMFLEX_ACCENT)
     {
     *negptr = TRUE;
     ptr++;
@@ -815,10 +942,10 @@ if (c == '{')
     {
     c = *(++ptr);
     if (c == 0) goto ERROR_RETURN;
-    if (c == '}') break;
+    if (c == CHAR_RIGHT_CURLY_BRACKET) break;
     name[i] = c;
     }
-  if (c !='}') goto ERROR_RETURN;
+  if (c != CHAR_RIGHT_CURLY_BRACKET) goto ERROR_RETURN;
   name[i] = 0;
   }
 
@@ -883,15 +1010,15 @@ is_counted_repeat(const uschar *p)
 {
 if ((digitab[*p++] & ctype_digit) == 0) return FALSE;
 while ((digitab[*p] & ctype_digit) != 0) p++;
-if (*p == '}') return TRUE;
+if (*p == CHAR_RIGHT_CURLY_BRACKET) return TRUE;
 
-if (*p++ != ',') return FALSE;
-if (*p == '}') return TRUE;
+if (*p++ != CHAR_COMMA) return FALSE;
+if (*p == CHAR_RIGHT_CURLY_BRACKET) return TRUE;
 
 if ((digitab[*p++] & ctype_digit) == 0) return FALSE;
 while ((digitab[*p] & ctype_digit) != 0) p++;
 
-return (*p == '}');
+return (*p == CHAR_RIGHT_CURLY_BRACKET);
 }
 
 
@@ -924,7 +1051,7 @@ int max = -1;
 /* Read the minimum value and do a paranoid check: a negative value indicates
 an integer overflow. */
 
-while ((digitab[*p] & ctype_digit) != 0) min = min * 10 + *p++ - '0';
+while ((digitab[*p] & ctype_digit) != 0) min = min * 10 + *p++ - CHAR_0;
 if (min < 0 || min > 65535)
   {
   *errorcodeptr = ERR5;
@@ -934,12 +1061,12 @@ if (min < 0 || min > 65535)
 /* Read the maximum value if there is one, and again do a paranoid on its size.
 Also, max must not be less than min. */
 
-if (*p == '}') max = min; else
+if (*p == CHAR_RIGHT_CURLY_BRACKET) max = min; else
   {
-  if (*(++p) != '}')
+  if (*(++p) != CHAR_RIGHT_CURLY_BRACKET)
     {
     max = 0;
-    while((digitab[*p] & ctype_digit) != 0) max = max * 10 + *p++ - '0';
+    while((digitab[*p] & ctype_digit) != 0) max = max * 10 + *p++ - CHAR_0;
     if (max < 0 || max > 65535)
       {
       *errorcodeptr = ERR5;
@@ -964,47 +1091,131 @@ return p;
 
 
 /*************************************************
-*       Find forward referenced subpattern       *
+*  Subroutine for finding forward reference      *
 *************************************************/
 
-/* This function scans along a pattern's text looking for capturing
+/* This recursive function is called only from find_parens() below. The
+top-level call starts at the beginning of the pattern. All other calls must
+start at a parenthesis. It scans along a pattern's text looking for capturing
 subpatterns, and counting them. If it finds a named pattern that matches the
 name it is given, it returns its number. Alternatively, if the name is NULL, it
-returns when it reaches a given numbered subpattern. This is used for forward
-references to subpatterns. We know that if (?P< is encountered, the name will
-be terminated by '>' because that is checked in the first pass.
+returns when it reaches a given numbered subpattern. We know that if (?P< is
+encountered, the name will be terminated by '>' because that is checked in the
+first pass. Recursion is used to keep track of subpatterns that reset the
+capturing group numbers - the (?| feature.
 
 Arguments:
-  ptr          current position in the pattern
+  ptrptr       address of the current character pointer (updated)
   cd           compile background data
   name         name to seek, or NULL if seeking a numbered subpattern
   lorn         name length, or subpattern number if name is NULL
   xmode        TRUE if we are in /x mode
+  count        pointer to the current capturing subpattern number (updated)
 
 Returns:       the number of the named subpattern, or -1 if not found
 */
 
 static int
-find_parens(const uschar *ptr, compile_data *cd, const uschar *name, int lorn,
-  BOOL xmode)
+find_parens_sub(uschar **ptrptr, compile_data *cd, const uschar *name, int lorn,
+  BOOL xmode, int *count)
 {
-const uschar *thisname;
-int count = cd->bracount;
+uschar *ptr = *ptrptr;
+int start_count = *count;
+int hwm_count = start_count;
+BOOL dup_parens = FALSE;
+
+/* If the first character is a parenthesis, check on the type of group we are
+dealing with. The very first call may not start with a parenthesis. */
+
+if (ptr[0] == CHAR_LEFT_PARENTHESIS)
+  {
+  /* Handle specials such as (*SKIP) or (*UTF8) etc. */
+
+  if (ptr[1] == CHAR_ASTERISK) ptr += 2;
+
+  /* Handle a normal, unnamed capturing parenthesis. */
+
+  else if (ptr[1] != CHAR_QUESTION_MARK)
+    {
+    *count += 1;
+    if (name == NULL && *count == lorn) return *count;
+    ptr++;
+    }
+
+  /* All cases now have (? at the start. Remember when we are in a group
+  where the parenthesis numbers are duplicated. */
+
+  else if (ptr[2] == CHAR_VERTICAL_LINE)
+    {
+    ptr += 3;
+    dup_parens = TRUE;
+    }
+
+  /* Handle comments; all characters are allowed until a ket is reached. */
+
+  else if (ptr[2] == CHAR_NUMBER_SIGN)
+    {
+    for (ptr += 3; *ptr != 0; ptr++) if (*ptr == CHAR_RIGHT_PARENTHESIS) break;
+    goto FAIL_EXIT;
+    }
+
+  /* Handle a condition. If it is an assertion, just carry on so that it
+  is processed as normal. If not, skip to the closing parenthesis of the
+  condition (there can't be any nested parens). */
+
+  else if (ptr[2] == CHAR_LEFT_PARENTHESIS)
+    {
+    ptr += 2;
+    if (ptr[1] != CHAR_QUESTION_MARK)
+      {
+      while (*ptr != 0 && *ptr != CHAR_RIGHT_PARENTHESIS) ptr++;
+      if (*ptr != 0) ptr++;
+      }
+    }
+
+  /* Start with (? but not a condition. */
+
+  else
+    {
+    ptr += 2;
+    if (*ptr == CHAR_P) ptr++;                      /* Allow optional P */
+
+    /* We have to disambiguate (?<! and (?<= from (?<name> for named groups */
+
+    if ((*ptr == CHAR_LESS_THAN_SIGN && ptr[1] != CHAR_EXCLAMATION_MARK &&
+        ptr[1] != CHAR_EQUALS_SIGN) || *ptr == CHAR_APOSTROPHE)
+      {
+      int term;
+      const uschar *thisname;
+      *count += 1;
+      if (name == NULL && *count == lorn) return *count;
+      term = *ptr++;
+      if (term == CHAR_LESS_THAN_SIGN) term = CHAR_GREATER_THAN_SIGN;
+      thisname = ptr;
+      while (*ptr != term) ptr++;
+      if (name != NULL && lorn == ptr - thisname &&
+          strncmp((const char *)name, (const char *)thisname, lorn) == 0)
+        return *count;
+      term++;
+      }
+    }
+  }
+
+/* Past any initial parenthesis handling, scan for parentheses or vertical
+bars. */
 
 for (; *ptr != 0; ptr++)
   {
-  int term;
-
   /* Skip over backslashed characters and also entire \Q...\E */
 
-  if (*ptr == '\\')
+  if (*ptr == CHAR_BACKSLASH)
     {
-    if (*(++ptr) == 0) return -1;
-    if (*ptr == 'Q') for (;;)
+    if (*(++ptr) == 0) goto FAIL_EXIT;
+    if (*ptr == CHAR_Q) for (;;)
       {
-      while (*(++ptr) != 0 && *ptr != '\\') {};
-      if (*ptr == 0) return -1;
-      if (*(++ptr) == 'E') break;
+      while (*(++ptr) != 0 && *ptr != CHAR_BACKSLASH) {};
+      if (*ptr == 0) goto FAIL_EXIT;
+      if (*(++ptr) == CHAR_E) break;
       }
     continue;
     }
@@ -1012,42 +1223,50 @@ for (; *ptr != 0; ptr++)
   /* Skip over character classes; this logic must be similar to the way they
   are handled for real. If the first character is '^', skip it. Also, if the
   first few characters (either before or after ^) are \Q\E or \E we skip them
-  too. This makes for compatibility with Perl. */
+  too. This makes for compatibility with Perl. Note the use of STR macros to
+  encode "Q\\E" so that it works in UTF-8 on EBCDIC platforms. */
 
-  if (*ptr == '[')
+  if (*ptr == CHAR_LEFT_SQUARE_BRACKET)
     {
     BOOL negate_class = FALSE;
     for (;;)
       {
-      int c = *(++ptr);
-      if (c == '\\')
+      if (ptr[1] == CHAR_BACKSLASH)
         {
-        if (ptr[1] == 'E') ptr++;
-          else if (strncmp((const char *)ptr+1, "Q\\E", 3) == 0) ptr += 3;
-            else break;
+        if (ptr[2] == CHAR_E)
+          ptr+= 2;
+        else if (strncmp((const char *)ptr+2,
+                 STR_Q STR_BACKSLASH STR_E, 3) == 0)
+          ptr += 4;
+        else
+          break;
         }
-      else if (!negate_class && c == '^')
+      else if (!negate_class && ptr[1] == CHAR_CIRCUMFLEX_ACCENT)
+        {
         negate_class = TRUE;
+        ptr++;
+        }
       else break;
       }
 
     /* If the next character is ']', it is a data character that must be
     skipped, except in JavaScript compatibility mode. */
 
-    if (ptr[1] == ']' && (cd->external_options & PCRE_JAVASCRIPT_COMPAT) == 0)
+    if (ptr[1] == CHAR_RIGHT_SQUARE_BRACKET &&
+        (cd->external_options & PCRE_JAVASCRIPT_COMPAT) == 0)
       ptr++;
 
-    while (*(++ptr) != ']')
+    while (*(++ptr) != CHAR_RIGHT_SQUARE_BRACKET)
       {
       if (*ptr == 0) return -1;
-      if (*ptr == '\\')
+      if (*ptr == CHAR_BACKSLASH)
         {
-        if (*(++ptr) == 0) return -1;
-        if (*ptr == 'Q') for (;;)
+        if (*(++ptr) == 0) goto FAIL_EXIT;
+        if (*ptr == CHAR_Q) for (;;)
           {
-          while (*(++ptr) != 0 && *ptr != '\\') {};
-          if (*ptr == 0) return -1;
-          if (*(++ptr) == 'E') break;
+          while (*(++ptr) != 0 && *ptr != CHAR_BACKSLASH) {};
+          if (*ptr == 0) goto FAIL_EXIT;
+          if (*(++ptr) == CHAR_E) break;
           }
         continue;
         }
@@ -1057,46 +1276,88 @@ for (; *ptr != 0; ptr++)
 
   /* Skip comments in /x mode */
 
-  if (xmode && *ptr == '#')
+  if (xmode && *ptr == CHAR_NUMBER_SIGN)
     {
-    while (*(++ptr) != 0 && *ptr != '\n') {};
-    if (*ptr == 0) return -1;
+    while (*(++ptr) != 0 && *ptr != CHAR_NL) {};
+    if (*ptr == 0) goto FAIL_EXIT;
     continue;
     }
 
-  /* An opening parens must now be a real metacharacter */
+  /* Check for the special metacharacters */
 
-  if (*ptr != '(') continue;
-  if (ptr[1] != '?' && ptr[1] != '*')
+  if (*ptr == CHAR_LEFT_PARENTHESIS)
     {
-    count++;
-    if (name == NULL && count == lorn) return count;
-    continue;
+    int rc = find_parens_sub(&ptr, cd, name, lorn, xmode, count);
+    if (rc > 0) return rc;
+    if (*ptr == 0) goto FAIL_EXIT;
     }
 
-  ptr += 2;
-  if (*ptr == 'P') ptr++;                      /* Allow optional P */
+  else if (*ptr == CHAR_RIGHT_PARENTHESIS)
+    {
+    if (dup_parens && *count < hwm_count) *count = hwm_count;
+    goto FAIL_EXIT;
+    }
 
-  /* We have to disambiguate (?<! and (?<= from (?<name> */
-
-  if ((*ptr != '<' || ptr[1] == '!' || ptr[1] == '=') &&
-       *ptr != '\'')
-    continue;
-
-  count++;
-
-  if (name == NULL && count == lorn) return count;
-  term = *ptr++;
-  if (term == '<') term = '>';
-  thisname = ptr;
-  while (*ptr != term) ptr++;
-  if (name != NULL && lorn == ptr - thisname &&
-      strncmp((const char *)name, (const char *)thisname, lorn) == 0)
-    return count;
+  else if (*ptr == CHAR_VERTICAL_LINE && dup_parens)
+    {
+    if (*count > hwm_count) hwm_count = *count;
+    *count = start_count;
+    }
   }
 
+FAIL_EXIT:
+*ptrptr = ptr;
 return -1;
 }
+
+
+
+
+/*************************************************
+*       Find forward referenced subpattern       *
+*************************************************/
+
+/* This function scans along a pattern's text looking for capturing
+subpatterns, and counting them. If it finds a named pattern that matches the
+name it is given, it returns its number. Alternatively, if the name is NULL, it
+returns when it reaches a given numbered subpattern. This is used for forward
+references to subpatterns. We used to be able to start this scan from the
+current compiling point, using the current count value from cd->bracount, and
+do it all in a single loop, but the addition of the possibility of duplicate
+subpattern numbers means that we have to scan from the very start, in order to
+take account of such duplicates, and to use a recursive function to keep track
+of the different types of group.
+
+Arguments:
+  cd           compile background data
+  name         name to seek, or NULL if seeking a numbered subpattern
+  lorn         name length, or subpattern number if name is NULL
+  xmode        TRUE if we are in /x mode
+
+Returns:       the number of the found subpattern, or -1 if not found
+*/
+
+static int
+find_parens(compile_data *cd, const uschar *name, int lorn, BOOL xmode)
+{
+uschar *ptr = (uschar *)cd->start_pattern;
+int count = 0;
+int rc;
+
+/* If the pattern does not start with an opening parenthesis, the first call
+to find_parens_sub() will scan right to the end (if necessary). However, if it
+does start with a parenthesis, find_parens_sub() will return when it hits the
+matching closing parens. That is why we have to have a loop. */
+
+for (;;)
+  {
+  rc = find_parens_sub(&ptr, cd, name, lorn, xmode, &count);
+  if (rc > 0 || *ptr++ == 0) break;
+  }
+
+return rc;
+}
+
 
 
 
@@ -1149,7 +1410,9 @@ for (;;)
 
     case OP_CALLOUT:
     case OP_CREF:
+    case OP_NCREF:
     case OP_RREF:
+    case OP_NRREF:
     case OP_DEF:
     code += _pcre_OP_lengths[*code];
     break;
@@ -1165,23 +1428,34 @@ for (;;)
 
 
 /*************************************************
-*        Find the fixed length of a pattern      *
+*        Find the fixed length of a branch       *
 *************************************************/
 
-/* Scan a pattern and compute the fixed length of subject that will match it,
+/* Scan a branch and compute the fixed length of subject that will match it,
 if the length is fixed. This is needed for dealing with backward assertions.
-In UTF8 mode, the result is in characters rather than bytes.
+In UTF8 mode, the result is in characters rather than bytes. The branch is
+temporarily terminated with OP_END when this function is called.
+
+This function is called when a backward assertion is encountered, so that if it
+fails, the error message can point to the correct place in the pattern.
+However, we cannot do this when the assertion contains subroutine calls,
+because they can be forward references. We solve this by remembering this case
+and doing the check at the end; a flag specifies which mode we are running in.
 
 Arguments:
   code     points to the start of the pattern (the bracket)
   options  the compiling options
+  atend    TRUE if called when the pattern is complete
+  cd       the "compile data" structure
 
-Returns:   the fixed length, or -1 if there is no fixed length,
+Returns:   the fixed length,
+             or -1 if there is no fixed length,
              or -2 if \C was encountered
+             or -3 if an OP_RECURSE item was encountered and atend is FALSE
 */
 
 static int
-find_fixedlength(uschar *code, int options)
+find_fixedlength(uschar *code, int options, BOOL atend, compile_data *cd)
 {
 int length = -1;
 
@@ -1194,6 +1468,7 @@ branch, check the length against that of the other branches. */
 for (;;)
   {
   int d;
+  uschar *ce, *cs;
   register int op = *cc;
   switch (op)
     {
@@ -1201,7 +1476,7 @@ for (;;)
     case OP_BRA:
     case OP_ONCE:
     case OP_COND:
-    d = find_fixedlength(cc + ((op == OP_CBRA)? 2:0), options);
+    d = find_fixedlength(cc + ((op == OP_CBRA)? 2:0), options, atend, cd);
     if (d < 0) return d;
     branchlength += d;
     do cc += GET(cc, 1); while (*cc == OP_ALT);
@@ -1224,6 +1499,21 @@ for (;;)
     branchlength = 0;
     break;
 
+    /* A true recursion implies not fixed length, but a subroutine call may
+    be OK. If the subroutine is a forward reference, we can't deal with
+    it until the end of the pattern, so return -3. */
+
+    case OP_RECURSE:
+    if (!atend) return -3;
+    cs = ce = (uschar *)cd->start_code + GET(cc, 1);  /* Start subpattern */
+    do ce += GET(ce, 1); while (*ce == OP_ALT);       /* End subpattern */
+    if (cc > cs && cc < ce) return -1;                /* Recursion */
+    d = find_fixedlength(cs + 2, options, atend, cd);
+    if (d < 0) return d;
+    branchlength += d;
+    cc += 1 + LINK_SIZE;
+    break;
+
     /* Skip over assertive subpatterns */
 
     case OP_ASSERT:
@@ -1237,12 +1527,15 @@ for (;;)
 
     case OP_REVERSE:
     case OP_CREF:
+    case OP_NCREF:
     case OP_RREF:
+    case OP_NRREF:
     case OP_DEF:
     case OP_OPT:
     case OP_CALLOUT:
     case OP_SOD:
     case OP_SOM:
+    case OP_SET_SOM:
     case OP_EOD:
     case OP_EODN:
     case OP_CIRC:
@@ -1260,10 +1553,8 @@ for (;;)
     branchlength++;
     cc += 2;
 #ifdef SUPPORT_UTF8
-    if ((options & PCRE_UTF8) != 0)
-      {
-      while ((*cc & 0xc0) == 0x80) cc++;
-      }
+    if ((options & PCRE_UTF8) != 0 && cc[-1] >= 0xc0)
+      cc += _pcre_utf8_table4[cc[-1] & 0x3f];
 #endif
     break;
 
@@ -1274,10 +1565,8 @@ for (;;)
     branchlength += GET2(cc,1);
     cc += 4;
 #ifdef SUPPORT_UTF8
-    if ((options & PCRE_UTF8) != 0)
-      {
-      while((*cc & 0x80) == 0x80) cc++;
-      }
+    if ((options & PCRE_UTF8) != 0 && cc[-1] >= 0xc0)
+      cc += _pcre_utf8_table4[cc[-1] & 0x3f];
 #endif
     break;
 
@@ -1356,22 +1645,25 @@ for (;;)
 
 
 /*************************************************
-*    Scan compiled regex for numbered bracket    *
+*    Scan compiled regex for specific bracket    *
 *************************************************/
 
 /* This little function scans through a compiled pattern until it finds a
-capturing bracket with the given number.
+capturing bracket with the given number, or, if the number is negative, an
+instance of OP_REVERSE for a lookbehind. The function is global in the C sense
+so that it can be called from pcre_study() when finding the minimum matching
+length.
 
 Arguments:
   code        points to start of expression
   utf8        TRUE in UTF-8 mode
-  number      the required bracket number
+  number      the required bracket number or negative to find a lookbehind
 
 Returns:      pointer to the opcode for the bracket, or NULL if not found
 */
 
-static const uschar *
-find_bracket(const uschar *code, BOOL utf8, int number)
+const uschar *
+_pcre_find_bracket(const uschar *code, BOOL utf8, int number)
 {
 for (;;)
   {
@@ -1384,6 +1676,14 @@ for (;;)
 
   if (c == OP_XCLASS) code += GET(code, 1);
 
+  /* Handle recursion */
+
+  else if (c == OP_REVERSE)
+    {
+    if (number < 0) return (uschar *)code;
+    code += _pcre_OP_lengths[c];
+    }
+
   /* Handle capturing bracket */
 
   else if (c == OP_CBRA)
@@ -1395,7 +1695,8 @@ for (;;)
 
   /* Otherwise, we can get the item's length from the table, except that for
   repeated character types, we have to test for \p and \P, which have an extra
-  two bytes of parameters. */
+  two bytes of parameters, and for MARK/PRUNE/SKIP/THEN with an argument, we
+  must add in its length. */
 
   else
     {
@@ -1418,6 +1719,13 @@ for (;;)
       case OP_TYPEEXACT:
       case OP_TYPEPOSUPTO:
       if (code[3] == OP_PROP || code[3] == OP_NOTPROP) code += 2;
+      break;
+
+      case OP_MARK:
+      case OP_PRUNE_ARG:
+      case OP_SKIP_ARG:
+      case OP_THEN_ARG:
+      code += code[1];
       break;
       }
 
@@ -1490,7 +1798,8 @@ for (;;)
 
   /* Otherwise, we can get the item's length from the table, except that for
   repeated character types, we have to test for \p and \P, which have an extra
-  two bytes of parameters. */
+  two bytes of parameters, and for MARK/PRUNE/SKIP/THEN with an argument, we
+  must add in its length. */
 
   else
     {
@@ -1513,6 +1822,13 @@ for (;;)
       case OP_TYPEMINUPTO:
       case OP_TYPEEXACT:
       if (code[3] == OP_PROP || code[3] == OP_NOTPROP) code += 2;
+      break;
+
+      case OP_MARK:
+      case OP_PRUNE_ARG:
+      case OP_SKIP_ARG:
+      case OP_THEN_ARG:
+      code += code[1];
       break;
       }
 
@@ -1570,12 +1886,14 @@ Arguments:
   code        points to start of search
   endcode     points to where to stop
   utf8        TRUE if in UTF8 mode
+  cd          contains pointers to tables etc.
 
 Returns:      TRUE if what is matched could be empty
 */
 
 static BOOL
-could_be_empty_branch(const uschar *code, const uschar *endcode, BOOL utf8)
+could_be_empty_branch(const uschar *code, const uschar *endcode, BOOL utf8,
+  compile_data *cd)
 {
 register int c;
 for (code = first_significant_code(code + _pcre_OP_lengths[*code], NULL, 0, TRUE);
@@ -1606,6 +1924,28 @@ for (code = first_significant_code(code + _pcre_OP_lengths[*code], NULL, 0, TRUE
     continue;
     }
 
+  /* For a recursion/subroutine call, if its end has been reached, which
+  implies a subroutine call, we can scan it. */
+
+  if (c == OP_RECURSE)
+    {
+    BOOL empty_branch = FALSE;
+    const uschar *scode = cd->start_code + GET(code, 1);
+    if (GET(scode, 1) == 0) return TRUE;    /* Unclosed */
+    do
+      {
+      if (could_be_empty_branch(scode, endcode, utf8, cd))
+        {
+        empty_branch = TRUE;
+        break;
+        }
+      scode += GET(scode, 1);
+      }
+    while (*scode == OP_ALT);
+    if (!empty_branch) return FALSE;  /* All branches are non-empty */
+    continue;
+    }
+
   /* For other groups, scan the branches. */
 
   if (c == OP_BRA || c == OP_CBRA || c == OP_ONCE || c == OP_COND)
@@ -1613,17 +1953,25 @@ for (code = first_significant_code(code + _pcre_OP_lengths[*code], NULL, 0, TRUE
     BOOL empty_branch;
     if (GET(code, 1) == 0) return TRUE;    /* Hit unclosed bracket */
 
-    /* Scan a closed bracket */
+    /* If a conditional group has only one branch, there is a second, implied,
+    empty branch, so just skip over the conditional, because it could be empty.
+    Otherwise, scan the individual branches of the group. */
 
-    empty_branch = FALSE;
-    do
-      {
-      if (!empty_branch && could_be_empty_branch(code, endcode, utf8))
-        empty_branch = TRUE;
+    if (c == OP_COND && code[GET(code, 1)] != OP_ALT)
       code += GET(code, 1);
+    else
+      {
+      empty_branch = FALSE;
+      do
+        {
+        if (!empty_branch && could_be_empty_branch(code, endcode, utf8, cd))
+          empty_branch = TRUE;
+        code += GET(code, 1);
+        }
+      while (*code == OP_ALT);
+      if (!empty_branch) return FALSE;   /* All branches are non-empty */
       }
-    while (*code == OP_ALT);
-    if (!empty_branch) return FALSE;   /* All branches are non-empty */
+
     c = *code;
     continue;
     }
@@ -1741,12 +2089,30 @@ for (code = first_significant_code(code + _pcre_OP_lengths[*code], NULL, 0, TRUE
     case OP_QUERY:
     case OP_MINQUERY:
     case OP_POSQUERY:
+    if (utf8 && code[1] >= 0xc0) code += _pcre_utf8_table4[code[1] & 0x3f];
+    break;
+
     case OP_UPTO:
     case OP_MINUPTO:
     case OP_POSUPTO:
-    if (utf8) while ((code[2] & 0xc0) == 0x80) code++;
+    if (utf8 && code[3] >= 0xc0) code += _pcre_utf8_table4[code[3] & 0x3f];
     break;
 #endif
+
+    /* MARK, and PRUNE/SKIP/THEN with an argument must skip over the argument
+    string. */
+
+    case OP_MARK:
+    case OP_PRUNE_ARG:
+    case OP_SKIP_ARG:
+    case OP_THEN_ARG:
+    code += code[1];
+    break;
+
+    /* None of the remaining opcodes are required to match a character. */
+
+    default:
+    break;
     }
   }
 
@@ -1769,17 +2135,19 @@ Arguments:
   endcode     points to where to stop (current RECURSE item)
   bcptr       points to the chain of current (unclosed) branch starts
   utf8        TRUE if in UTF-8 mode
+  cd          pointers to tables etc
 
 Returns:      TRUE if what is matched could be empty
 */
 
 static BOOL
 could_be_empty(const uschar *code, const uschar *endcode, branch_chain *bcptr,
-  BOOL utf8)
+  BOOL utf8, compile_data *cd)
 {
-while (bcptr != NULL && bcptr->current >= code)
+while (bcptr != NULL && bcptr->current_branch >= code)
   {
-  if (!could_be_empty_branch(bcptr->current, endcode, utf8)) return FALSE;
+  if (!could_be_empty_branch(bcptr->current_branch, endcode, utf8, cd))
+    return FALSE;
   bcptr = bcptr->outer;
   }
 return TRUE;
@@ -1825,10 +2193,10 @@ int terminator;          /* Don't combine these lines; the Solaris cc */
 terminator = *(++ptr);   /* compiler warns about "non-constant" initializer. */
 for (++ptr; *ptr != 0; ptr++)
   {
-  if (*ptr == '\\' && ptr[1] == ']') ptr++; else
+  if (*ptr == CHAR_BACKSLASH && ptr[1] == CHAR_RIGHT_SQUARE_BRACKET) ptr++; else
     {
-    if (*ptr == ']') return FALSE;
-    if (*ptr == terminator && ptr[1] == ']')
+    if (*ptr == CHAR_RIGHT_SQUARE_BRACKET) return FALSE;
+    if (*ptr == terminator && ptr[1] == CHAR_RIGHT_SQUARE_BRACKET)
       {
       *endptr = ptr;
       return TRUE;
@@ -1961,8 +2329,8 @@ auto_callout(uschar *code, const uschar *ptr, compile_data *cd)
 {
 *code++ = OP_CALLOUT;
 *code++ = 255;
-PUT(code, 0, ptr - cd->start_pattern);  /* Pattern offset */
-PUT(code, LINK_SIZE, 0);                /* Default length */
+PUT(code, 0, (int)(ptr - cd->start_pattern));  /* Pattern offset */
+PUT(code, LINK_SIZE, 0);                       /* Default length */
 return code + 2*LINK_SIZE;
 }
 
@@ -1987,7 +2355,7 @@ Returns:             nothing
 static void
 complete_callout(uschar *previous_callout, const uschar *ptr, compile_data *cd)
 {
-int length = ptr - cd->start_pattern - GET(previous_callout, 2);
+int length = (int)(ptr - cd->start_pattern - GET(previous_callout, 2));
 PUT(previous_callout, 2 + LINK_SIZE, length);
 }
 
@@ -2037,6 +2405,69 @@ for (++c; c <= d; c++)
 
 return TRUE;
 }
+
+
+
+/*************************************************
+*        Check a character and a property        *
+*************************************************/
+
+/* This function is called by check_auto_possessive() when a property item
+is adjacent to a fixed character.
+
+Arguments:
+  c            the character
+  ptype        the property type
+  pdata        the data for the type
+  negated      TRUE if it's a negated property (\P or \p{^)
+
+Returns:       TRUE if auto-possessifying is OK
+*/
+
+static BOOL
+check_char_prop(int c, int ptype, int pdata, BOOL negated)
+{
+const ucd_record *prop = GET_UCD(c);
+switch(ptype)
+  {
+  case PT_LAMP:
+  return (prop->chartype == ucp_Lu ||
+          prop->chartype == ucp_Ll ||
+          prop->chartype == ucp_Lt) == negated;
+
+  case PT_GC:
+  return (pdata == _pcre_ucp_gentype[prop->chartype]) == negated;
+
+  case PT_PC:
+  return (pdata == prop->chartype) == negated;
+
+  case PT_SC:
+  return (pdata == prop->script) == negated;
+
+  /* These are specials */
+
+  case PT_ALNUM:
+  return (_pcre_ucp_gentype[prop->chartype] == ucp_L ||
+          _pcre_ucp_gentype[prop->chartype] == ucp_N) == negated;
+
+  case PT_SPACE:    /* Perl space */
+  return (_pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+          c == CHAR_HT || c == CHAR_NL || c == CHAR_FF || c == CHAR_CR)
+          == negated;
+
+  case PT_PXSPACE:  /* POSIX space */
+  return (_pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+          c == CHAR_HT || c == CHAR_NL || c == CHAR_VT ||
+          c == CHAR_FF || c == CHAR_CR)
+          == negated;
+
+  case PT_WORD:
+  return (_pcre_ucp_gentype[prop->chartype] == ucp_L ||
+          _pcre_ucp_gentype[prop->chartype] == ucp_N ||
+          c == CHAR_UNDERSCORE) == negated;
+  }
+return FALSE;
+}
 #endif  /* SUPPORT_UCP */
 
 
@@ -2050,10 +2481,8 @@ whether the next thing could possibly match the repeated item. If not, it makes
 sense to automatically possessify the repeated item.
 
 Arguments:
-  op_code       the repeated op code
-  this          data for this item, depends on the opcode
+  previous      pointer to the repeated opcode
   utf8          TRUE in UTF-8 mode
-  utf8_char     used for utf8 character bytes, NULL if not relevant
   ptr           next character in pattern
   options       options bits
   cd            contains pointers to tables etc.
@@ -2062,10 +2491,11 @@ Returns:        TRUE if possessifying is wanted
 */
 
 static BOOL
-check_auto_possessive(int op_code, int item, BOOL utf8, uschar *utf8_char,
-  const uschar *ptr, int options, compile_data *cd)
+check_auto_possessive(const uschar *previous, BOOL utf8, const uschar *ptr,
+  int options, compile_data *cd)
 {
-int next;
+int c, next;
+int op_code = *previous++;
 
 /* Skip whitespace and comments in extended mode */
 
@@ -2074,7 +2504,7 @@ if ((options & PCRE_EXTENDED) != 0)
   for (;;)
     {
     while ((cd->ctypes[*ptr] & ctype_space) != 0) ptr++;
-    if (*ptr == '#')
+    if (*ptr == CHAR_NUMBER_SIGN)
       {
       while (*(++ptr) != 0)
         if (IS_NEWLINE(ptr)) { ptr += cd->nllen; break; }
@@ -2086,7 +2516,7 @@ if ((options & PCRE_EXTENDED) != 0)
 /* If the next item is one that we can handle, get its value. A non-negative
 value is a character, a negative value is an escape value. */
 
-if (*ptr == '\\')
+if (*ptr == CHAR_BACKSLASH)
   {
   int temperrorcode = 0;
   next = check_escape(&ptr, &temperrorcode, cd->bracount, options, FALSE);
@@ -2111,7 +2541,7 @@ if ((options & PCRE_EXTENDED) != 0)
   for (;;)
     {
     while ((cd->ctypes[*ptr] & ctype_space) != 0) ptr++;
-    if (*ptr == '#')
+    if (*ptr == CHAR_NUMBER_SIGN)
       {
       while (*(++ptr) != 0)
         if (IS_NEWLINE(ptr)) { ptr += cd->nllen; break; }
@@ -2122,26 +2552,22 @@ if ((options & PCRE_EXTENDED) != 0)
 
 /* If the next thing is itself optional, we have to give up. */
 
-if (*ptr == '*' || *ptr == '?' || strncmp((char *)ptr, "{0,", 3) == 0)
-  return FALSE;
+if (*ptr == CHAR_ASTERISK || *ptr == CHAR_QUESTION_MARK ||
+  strncmp((char *)ptr, STR_LEFT_CURLY_BRACKET STR_0 STR_COMMA, 3) == 0)
+    return FALSE;
 
-/* Now compare the next item with the previous opcode. If the previous is a
-positive single character match, "item" either contains the character or, if
-"item" is greater than 127 in utf8 mode, the character's bytes are in
-utf8_char. */
-
-
-/* Handle cases when the next item is a character. */
+/* Now compare the next item with the previous opcode. First, handle cases when
+the next item is a character. */
 
 if (next >= 0) switch(op_code)
   {
   case OP_CHAR:
 #ifdef SUPPORT_UTF8
-  if (utf8 && item > 127) { GETCHAR(item, utf8_char); }
+  GETCHARTEST(c, previous);
 #else
-  (void)(utf8_char);  /* Keep compiler happy by referencing function argument */
+  c = *previous;
 #endif
-  return item != next;
+  return c != next;
 
   /* For CHARNC (caseless character) we must check the other case. If we have
   Unicode property support, we can use it to test the other case of
@@ -2149,9 +2575,11 @@ if (next >= 0) switch(op_code)
 
   case OP_CHARNC:
 #ifdef SUPPORT_UTF8
-  if (utf8 && item > 127) { GETCHAR(item, utf8_char); }
+  GETCHARTEST(c, previous);
+#else
+  c = *previous;
 #endif
-  if (item == next) return FALSE;
+  if (c == next) return FALSE;
 #ifdef SUPPORT_UTF8
   if (utf8)
     {
@@ -2162,16 +2590,16 @@ if (next >= 0) switch(op_code)
 #else
     othercase = NOTACHAR;
 #endif
-    return (unsigned int)item != othercase;
+    return (unsigned int)c != othercase;
     }
   else
 #endif  /* SUPPORT_UTF8 */
-  return (item != cd->fcc[next]);  /* Non-UTF-8 mode */
+  return (c != cd->fcc[next]);  /* Non-UTF-8 mode */
 
-  /* For OP_NOT, "item" must be a single-byte character. */
+  /* For OP_NOT, its data is always a single-byte character. */
 
   case OP_NOT:
-  if (item == next) return TRUE;
+  if ((c = *previous) == next) return TRUE;
   if ((options & PCRE_CASELESS) == 0) return FALSE;
 #ifdef SUPPORT_UTF8
   if (utf8)
@@ -2183,11 +2611,14 @@ if (next >= 0) switch(op_code)
 #else
     othercase = NOTACHAR;
 #endif
-    return (unsigned int)item == othercase;
+    return (unsigned int)c == othercase;
     }
   else
 #endif  /* SUPPORT_UTF8 */
-  return (item == cd->fcc[next]);  /* Non-UTF-8 mode */
+  return (c == cd->fcc[next]);  /* Non-UTF-8 mode */
+
+  /* Note that OP_DIGIT etc. are generated only when PCRE_UCP is *not* set.
+  When it is set, \d etc. are converted into OP_(NOT_)PROP codes. */
 
   case OP_DIGIT:
   return next > 127 || (cd->ctypes[next] & ctype_digit) == 0;
@@ -2230,11 +2661,12 @@ if (next >= 0) switch(op_code)
     case 0x202f:
     case 0x205f:
     case 0x3000:
-    return op_code != OP_HSPACE;
+    return op_code == OP_NOT_HSPACE;
     default:
-    return op_code == OP_HSPACE;
+    return op_code != OP_NOT_HSPACE;
     }
 
+  case OP_ANYNL:
   case OP_VSPACE:
   case OP_NOT_VSPACE:
   switch(next)
@@ -2246,48 +2678,62 @@ if (next >= 0) switch(op_code)
     case 0x85:
     case 0x2028:
     case 0x2029:
-    return op_code != OP_VSPACE;
+    return op_code == OP_NOT_VSPACE;
     default:
-    return op_code == OP_VSPACE;
+    return op_code != OP_NOT_VSPACE;
     }
+
+#ifdef SUPPORT_UCP
+  case OP_PROP:
+  return check_char_prop(next, previous[0], previous[1], FALSE);
+
+  case OP_NOTPROP:
+  return check_char_prop(next, previous[0], previous[1], TRUE);
+#endif
 
   default:
   return FALSE;
   }
 
 
-/* Handle the case when the next item is \d, \s, etc. */
+/* Handle the case when the next item is \d, \s, etc. Note that when PCRE_UCP
+is set, \d turns into ESC_du rather than ESC_d, etc., so ESC_d etc. are
+generated only when PCRE_UCP is *not* set, that is, when only ASCII
+characteristics are recognized. Similarly, the opcodes OP_DIGIT etc. are
+replaced by OP_PROP codes when PCRE_UCP is set. */
 
 switch(op_code)
   {
   case OP_CHAR:
   case OP_CHARNC:
 #ifdef SUPPORT_UTF8
-  if (utf8 && item > 127) { GETCHAR(item, utf8_char); }
+  GETCHARTEST(c, previous);
+#else
+  c = *previous;
 #endif
   switch(-next)
     {
     case ESC_d:
-    return item > 127 || (cd->ctypes[item] & ctype_digit) == 0;
+    return c > 127 || (cd->ctypes[c] & ctype_digit) == 0;
 
     case ESC_D:
-    return item <= 127 && (cd->ctypes[item] & ctype_digit) != 0;
+    return c <= 127 && (cd->ctypes[c] & ctype_digit) != 0;
 
     case ESC_s:
-    return item > 127 || (cd->ctypes[item] & ctype_space) == 0;
+    return c > 127 || (cd->ctypes[c] & ctype_space) == 0;
 
     case ESC_S:
-    return item <= 127 && (cd->ctypes[item] & ctype_space) != 0;
+    return c <= 127 && (cd->ctypes[c] & ctype_space) != 0;
 
     case ESC_w:
-    return item > 127 || (cd->ctypes[item] & ctype_word) == 0;
+    return c > 127 || (cd->ctypes[c] & ctype_word) == 0;
 
     case ESC_W:
-    return item <= 127 && (cd->ctypes[item] & ctype_word) != 0;
+    return c <= 127 && (cd->ctypes[c] & ctype_word) != 0;
 
     case ESC_h:
     case ESC_H:
-    switch(item)
+    switch(c)
       {
       case 0x09:
       case 0x20:
@@ -2315,7 +2761,7 @@ switch(op_code)
 
     case ESC_v:
     case ESC_V:
-    switch(item)
+    switch(c)
       {
       case 0x0a:
       case 0x0b:
@@ -2329,38 +2775,92 @@ switch(op_code)
       return -next == ESC_v;
       }
 
+    /* When PCRE_UCP is set, these values get generated for \d etc. Find
+    their substitutions and process them. The result will always be either
+    -ESC_p or -ESC_P. Then fall through to process those values. */
+
+#ifdef SUPPORT_UCP
+    case ESC_du:
+    case ESC_DU:
+    case ESC_wu:
+    case ESC_WU:
+    case ESC_su:
+    case ESC_SU:
+      {
+      int temperrorcode = 0;
+      ptr = substitutes[-next - ESC_DU];
+      next = check_escape(&ptr, &temperrorcode, 0, options, FALSE);
+      if (temperrorcode != 0) return FALSE;
+      ptr++;    /* For compatibility */
+      }
+    /* Fall through */
+
+    case ESC_p:
+    case ESC_P:
+      {
+      int ptype, pdata, errorcodeptr;
+      BOOL negated;
+
+      ptr--;      /* Make ptr point at the p or P */
+      ptype = get_ucp(&ptr, &negated, &pdata, &errorcodeptr);
+      if (ptype < 0) return FALSE;
+      ptr++;      /* Point past the final curly ket */
+
+      /* If the property item is optional, we have to give up. (When generated
+      from \d etc by PCRE_UCP, this test will have been applied much earlier,
+      to the original \d etc. At this point, ptr will point to a zero byte. */
+
+      if (*ptr == CHAR_ASTERISK || *ptr == CHAR_QUESTION_MARK ||
+        strncmp((char *)ptr, STR_LEFT_CURLY_BRACKET STR_0 STR_COMMA, 3) == 0)
+          return FALSE;
+
+      /* Do the property check. */
+
+      return check_char_prop(c, ptype, pdata, (next == -ESC_P) != negated);
+      }
+#endif
+
     default:
     return FALSE;
     }
 
+  /* In principle, support for Unicode properties should be integrated here as
+  well. It means re-organizing the above code so as to get hold of the property
+  values before switching on the op-code. However, I wonder how many patterns
+  combine ASCII \d etc with Unicode properties? (Note that if PCRE_UCP is set,
+  these op-codes are never generated.) */
+
   case OP_DIGIT:
   return next == -ESC_D || next == -ESC_s || next == -ESC_W ||
-         next == -ESC_h || next == -ESC_v;
+         next == -ESC_h || next == -ESC_v || next == -ESC_R;
 
   case OP_NOT_DIGIT:
   return next == -ESC_d;
 
   case OP_WHITESPACE:
-  return next == -ESC_S || next == -ESC_d || next == -ESC_w;
+  return next == -ESC_S || next == -ESC_d || next == -ESC_w || next == -ESC_R;
 
   case OP_NOT_WHITESPACE:
   return next == -ESC_s || next == -ESC_h || next == -ESC_v;
 
   case OP_HSPACE:
-  return next == -ESC_S || next == -ESC_H || next == -ESC_d || next == -ESC_w;
+  return next == -ESC_S || next == -ESC_H || next == -ESC_d ||
+         next == -ESC_w || next == -ESC_v || next == -ESC_R;
 
   case OP_NOT_HSPACE:
   return next == -ESC_h;
 
   /* Can't have \S in here because VT matches \S (Perl anomaly) */
+  case OP_ANYNL:
   case OP_VSPACE:
   return next == -ESC_V || next == -ESC_d || next == -ESC_w;
 
   case OP_NOT_VSPACE:
-  return next == -ESC_v;
+  return next == -ESC_v || next == -ESC_R;
 
   case OP_WORDCHAR:
-  return next == -ESC_W || next == -ESC_s || next == -ESC_h || next == -ESC_v;
+  return next == -ESC_W || next == -ESC_s || next == -ESC_h ||
+         next == -ESC_v || next == -ESC_R;
 
   case OP_NOT_WORDCHAR:
   return next == -ESC_w || next == -ESC_d;
@@ -2424,6 +2924,7 @@ BOOL inescq = FALSE;
 BOOL groupsetfirstbyte = FALSE;
 const uschar *ptr = *ptrptr;
 const uschar *tempptr;
+const uschar *nestptr = NULL;
 uschar *previous = NULL;
 uschar *previous_callout = NULL;
 uschar *save_hwm = NULL;
@@ -2440,7 +2941,7 @@ BOOL utf8 = FALSE;
 uschar *utf8_char = NULL;
 #endif
 
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
 if (lengthptr != NULL) DPRINTF((">> start branch\n"));
 #endif
 
@@ -2494,15 +2995,25 @@ for (;; ptr++)
 
   c = *ptr;
 
+  /* If we are at the end of a nested substitution, revert to the outer level
+  string. Nesting only happens one level deep. */
+
+  if (c == 0 && nestptr != NULL)
+    {
+    ptr = nestptr;
+    nestptr = NULL;
+    c = *ptr;
+    }
+
   /* If we are in the pre-compile phase, accumulate the length used for the
   previous cycle of this loop. */
 
   if (lengthptr != NULL)
     {
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
     if (code > cd->hwm) cd->hwm = code;                 /* High water info */
 #endif
-    if (code > cd->start_workspace + COMPILE_WORK_SIZE) /* Check for overrun */
+    if (code > cd->start_workspace + WORK_SIZE_CHECK)   /* Check for overrun */
       {
       *errorcodeptr = ERR52;
       goto FAILED;
@@ -2524,7 +3035,7 @@ for (;; ptr++)
       goto FAILED;
       }
 
-    *lengthptr += code - last_code;
+    *lengthptr += (int)(code - last_code);
     DPRINTF(("length=%d added %d c=%c\n", *lengthptr, code - last_code, c));
 
     /* If "previous" is set and it is not at the start of the work space, move
@@ -2551,7 +3062,7 @@ for (;; ptr++)
   /* In the real compile phase, just check the workspace used by the forward
   reference list. */
 
-  else if (cd->hwm > cd->start_workspace + COMPILE_WORK_SIZE)
+  else if (cd->hwm > cd->start_workspace + WORK_SIZE_CHECK)
     {
     *errorcodeptr = ERR52;
     goto FAILED;
@@ -2561,7 +3072,7 @@ for (;; ptr++)
 
   if (inescq && c != 0)
     {
-    if (c == '\\' && ptr[1] == 'E')
+    if (c == CHAR_BACKSLASH && ptr[1] == CHAR_E)
       {
       inescq = FALSE;
       ptr++;
@@ -2587,8 +3098,9 @@ for (;; ptr++)
   /* Fill in length of a previous callout, except when the next thing is
   a quantifier. */
 
-  is_quantifier = c == '*' || c == '+' || c == '?' ||
-    (c == '{' && is_counted_repeat(ptr+1));
+  is_quantifier =
+    c == CHAR_ASTERISK || c == CHAR_PLUS || c == CHAR_QUESTION_MARK ||
+    (c == CHAR_LEFT_CURLY_BRACKET && is_counted_repeat(ptr+1));
 
   if (!is_quantifier && previous_callout != NULL &&
        after_manual_callout-- <= 0)
@@ -2603,7 +3115,7 @@ for (;; ptr++)
   if ((options & PCRE_EXTENDED) != 0)
     {
     if ((cd->ctypes[c] & ctype_space) != 0) continue;
-    if (c == '#')
+    if (c == CHAR_NUMBER_SIGN)
       {
       while (*(++ptr) != 0)
         {
@@ -2628,8 +3140,8 @@ for (;; ptr++)
     {
     /* ===================================================================*/
     case 0:                        /* The branch terminates at string end */
-    case '|':                      /* or | or ) */
-    case ')':
+    case CHAR_VERTICAL_LINE:       /* or | or ) */
+    case CHAR_RIGHT_PARENTHESIS:
     *firstbyteptr = firstbyte;
     *reqbyteptr = reqbyte;
     *codeptr = code;
@@ -2641,7 +3153,7 @@ for (;; ptr++)
         *errorcodeptr = ERR20;
         goto FAILED;
         }
-      *lengthptr += code - last_code;   /* To include callout length */
+      *lengthptr += (int)(code - last_code);   /* To include callout length */
       DPRINTF((">> end branch\n"));
       }
     return TRUE;
@@ -2651,7 +3163,7 @@ for (;; ptr++)
     /* Handle single-character metacharacters. In multiline mode, ^ disables
     the setting of any following char as a first character. */
 
-    case '^':
+    case CHAR_CIRCUMFLEX_ACCENT:
     if ((options & PCRE_MULTILINE) != 0)
       {
       if (firstbyte == REQ_UNSET) firstbyte = REQ_NONE;
@@ -2660,7 +3172,7 @@ for (;; ptr++)
     *code++ = OP_CIRC;
     break;
 
-    case '$':
+    case CHAR_DOLLAR_SIGN:
     previous = NULL;
     *code++ = OP_DOLL;
     break;
@@ -2668,7 +3180,7 @@ for (;; ptr++)
     /* There can never be a first char if '.' is first, whatever happens about
     repeats. The value of reqbyte doesn't change either. */
 
-    case '.':
+    case CHAR_DOT:
     if (firstbyte == REQ_UNSET) firstbyte = REQ_NONE;
     zerofirstbyte = firstbyte;
     zeroreqbyte = reqbyte;
@@ -2692,7 +3204,7 @@ for (;; ptr++)
     In JavaScript compatibility mode, an isolated ']' causes an error. In
     default (Perl) mode, it is treated as a data character. */
 
-    case ']':
+    case CHAR_RIGHT_SQUARE_BRACKET:
     if ((cd->external_options & PCRE_JAVASCRIPT_COMPAT) != 0)
       {
       *errorcodeptr = ERR64;
@@ -2700,16 +3212,17 @@ for (;; ptr++)
       }
     goto NORMAL_CHAR;
 
-    case '[':
+    case CHAR_LEFT_SQUARE_BRACKET:
     previous = code;
 
     /* PCRE supports POSIX class stuff inside a class. Perl gives an error if
     they are encountered at the top level, so we'll do that too. */
 
-    if ((ptr[1] == ':' || ptr[1] == '.' || ptr[1] == '=') &&
+    if ((ptr[1] == CHAR_COLON || ptr[1] == CHAR_DOT ||
+         ptr[1] == CHAR_EQUALS_SIGN) &&
         check_posix_syntax(ptr, &tempptr))
       {
-      *errorcodeptr = (ptr[1] == ':')? ERR13 : ERR31;
+      *errorcodeptr = (ptr[1] == CHAR_COLON)? ERR13 : ERR31;
       goto FAILED;
       }
 
@@ -2721,13 +3234,17 @@ for (;; ptr++)
     for (;;)
       {
       c = *(++ptr);
-      if (c == '\\')
+      if (c == CHAR_BACKSLASH)
         {
-        if (ptr[1] == 'E') ptr++;
-          else if (strncmp((const char *)ptr+1, "Q\\E", 3) == 0) ptr += 3;
-            else break;
+        if (ptr[1] == CHAR_E)
+          ptr++;
+        else if (strncmp((const char *)ptr+1,
+                          STR_Q STR_BACKSLASH STR_E, 3) == 0)
+          ptr += 3;
+        else
+          break;
         }
-      else if (!negate_class && c == '^')
+      else if (!negate_class && c == CHAR_CIRCUMFLEX_ACCENT)
         negate_class = TRUE;
       else break;
       }
@@ -2737,7 +3254,8 @@ for (;; ptr++)
     that. In JS mode, [] must always fail, so generate OP_FAIL, whereas
     [^] must match any character, so generate OP_ALLANY. */
 
-    if (c ==']' && (cd->external_options & PCRE_JAVASCRIPT_COMPAT) != 0)
+    if (c == CHAR_RIGHT_SQUARE_BRACKET &&
+        (cd->external_options & PCRE_JAVASCRIPT_COMPAT) != 0)
       {
       *code++ = negate_class? OP_ALLANY : OP_FAIL;
       if (firstbyte == REQ_UNSET) firstbyte = REQ_NONE;
@@ -2802,7 +3320,7 @@ for (;; ptr++)
 
       if (inescq)
         {
-        if (c == '\\' && ptr[1] == 'E')     /* If we are at \E */
+        if (c == CHAR_BACKSLASH && ptr[1] == CHAR_E)  /* If we are at \E */
           {
           inescq = FALSE;                   /* Reset literal state */
           ptr++;                            /* Skip the 'E' */
@@ -2817,30 +3335,30 @@ for (;; ptr++)
       [.ch.] and [=ch=] ("collating elements") and fault them, as Perl
       5.6 and 5.8 do. */
 
-      if (c == '[' &&
-          (ptr[1] == ':' || ptr[1] == '.' || ptr[1] == '=') &&
-          check_posix_syntax(ptr, &tempptr))
+      if (c == CHAR_LEFT_SQUARE_BRACKET &&
+          (ptr[1] == CHAR_COLON || ptr[1] == CHAR_DOT ||
+           ptr[1] == CHAR_EQUALS_SIGN) && check_posix_syntax(ptr, &tempptr))
         {
         BOOL local_negate = FALSE;
         int posix_class, taboffset, tabopt;
         register const uschar *cbits = cd->cbits;
         uschar pbits[32];
 
-        if (ptr[1] != ':')
+        if (ptr[1] != CHAR_COLON)
           {
           *errorcodeptr = ERR31;
           goto FAILED;
           }
 
         ptr += 2;
-        if (*ptr == '^')
+        if (*ptr == CHAR_CIRCUMFLEX_ACCENT)
           {
           local_negate = TRUE;
           should_flip_negation = TRUE;  /* Note negative special */
           ptr++;
           }
 
-        posix_class = check_posix_name(ptr, tempptr - ptr);
+        posix_class = check_posix_name(ptr, (int)(tempptr - ptr));
         if (posix_class < 0)
           {
           *errorcodeptr = ERR30;
@@ -2854,10 +3372,25 @@ for (;; ptr++)
         if ((options & PCRE_CASELESS) != 0 && posix_class <= 2)
           posix_class = 0;
 
-        /* We build the bit map for the POSIX class in a chunk of local store
-        because we may be adding and subtracting from it, and we don't want to
-        subtract bits that may be in the main map already. At the end we or the
-        result into the bit map that is being built. */
+        /* When PCRE_UCP is set, some of the POSIX classes are converted to
+        different escape sequences that use Unicode properties. */
+
+#ifdef SUPPORT_UCP
+        if ((options & PCRE_UCP) != 0)
+          {
+          int pc = posix_class + ((local_negate)? POSIX_SUBSIZE/2 : 0);
+          if (posix_substitutes[pc] != NULL)
+            {
+            nestptr = tempptr + 1;
+            ptr = posix_substitutes[pc] - 1;
+            continue;
+            }
+          }
+#endif
+        /* In the non-UCP case, we build the bit map for the POSIX class in a
+        chunk of local store because we may be adding and subtracting from it,
+        and we don't want to subtract bits that may be in the main map already.
+        At the end we or the result into the bit map that is being built. */
 
         posix_class *= 3;
 
@@ -2901,22 +3434,21 @@ for (;; ptr++)
 
       /* Backslash may introduce a single character, or it may introduce one
       of the specials, which just set a flag. The sequence \b is a special
-      case. Inside a class (and only there) it is treated as backspace.
-      Elsewhere it marks a word boundary. Other escapes have preset maps ready
-      to 'or' into the one we are building. We assume they have more than one
-      character in them, so set class_charcount bigger than one. */
+      case. Inside a class (and only there) it is treated as backspace. We
+      assume that other escapes have more than one character in them, so set
+      class_charcount bigger than one. Unrecognized escapes fall through and
+      are either treated as literal characters (by default), or are faulted if
+      PCRE_EXTRA is set. */
 
-      if (c == '\\')
+      if (c == CHAR_BACKSLASH)
         {
         c = check_escape(&ptr, errorcodeptr, cd->bracount, options, TRUE);
         if (*errorcodeptr != 0) goto FAILED;
 
-        if (-c == ESC_b) c = '\b';       /* \b is backspace in a class */
-        else if (-c == ESC_X) c = 'X';   /* \X is literal X in a class */
-        else if (-c == ESC_R) c = 'R';   /* \R is literal R in a class */
+        if (-c == ESC_b) c = CHAR_BS;    /* \b is backspace in a class */
         else if (-c == ESC_Q)            /* Handle start of quoted string */
           {
-          if (ptr[1] == '\\' && ptr[2] == 'E')
+          if (ptr[1] == CHAR_BACKSLASH && ptr[2] == CHAR_E)
             {
             ptr += 2; /* avoid empty string */
             }
@@ -2930,10 +3462,20 @@ for (;; ptr++)
           register const uschar *cbits = cd->cbits;
           class_charcount += 2;     /* Greater than 1 is what matters */
 
-          /* Save time by not doing this in the pre-compile phase. */
-
-          if (lengthptr == NULL) switch (-c)
+          switch (-c)
             {
+#ifdef SUPPORT_UCP
+            case ESC_du:     /* These are the values given for \d etc */
+            case ESC_DU:     /* when PCRE_UCP is set. We replace the */
+            case ESC_wu:     /* escape sequence with an appropriate \p */
+            case ESC_WU:     /* or \P to test Unicode properties instead */
+            case ESC_su:     /* of the default ASCII testing. */
+            case ESC_SU:
+            nestptr = ptr;
+            ptr = substitutes[-c - ESC_DU] - 1;  /* Just before substitute */
+            class_charcount -= 2;                /* Undo! */
+            continue;
+#endif
             case ESC_d:
             for (c = 0; c < 32; c++) classbits[c] |= cbits[c+cbit_digit];
             continue;
@@ -2963,20 +3505,7 @@ for (;; ptr++)
             classbits[1] |= 0x08;    /* Perl 5.004 onwards omits VT from \s */
             continue;
 
-            default:    /* Not recognized; fall through */
-            break;      /* Need "default" setting to stop compiler warning. */
-            }
-
-          /* In the pre-compile phase, just do the recognition. */
-
-          else if (c == -ESC_d || c == -ESC_D || c == -ESC_w ||
-                   c == -ESC_W || c == -ESC_s || c == -ESC_S) continue;
-
-          /* We need to deal with \H, \h, \V, and \v in both phases because
-          they use extra memory. */
-
-          if (-c == ESC_h)
-            {
+            case ESC_h:
             SETBIT(classbits, 0x09); /* VT */
             SETBIT(classbits, 0x20); /* SPACE */
             SETBIT(classbits, 0xa0); /* NSBP */
@@ -3000,10 +3529,8 @@ for (;; ptr++)
               }
 #endif
             continue;
-            }
 
-          if (-c == ESC_H)
-            {
+            case ESC_H:
             for (c = 0; c < 32; c++)
               {
               int x = 0xff;
@@ -3045,10 +3572,8 @@ for (;; ptr++)
               }
 #endif
             continue;
-            }
 
-          if (-c == ESC_v)
-            {
+            case ESC_v:
             SETBIT(classbits, 0x0a); /* LF */
             SETBIT(classbits, 0x0b); /* VT */
             SETBIT(classbits, 0x0c); /* FF */
@@ -3064,10 +3589,8 @@ for (;; ptr++)
               }
 #endif
             continue;
-            }
 
-          if (-c == ESC_V)
-            {
+            case ESC_V:
             for (c = 0; c < 32; c++)
               {
               int x = 0xff;
@@ -3097,38 +3620,38 @@ for (;; ptr++)
               }
 #endif
             continue;
-            }
-
-          /* We need to deal with \P and \p in both phases. */
 
 #ifdef SUPPORT_UCP
-          if (-c == ESC_p || -c == ESC_P)
-            {
-            BOOL negated;
-            int pdata;
-            int ptype = get_ucp(&ptr, &negated, &pdata, errorcodeptr);
-            if (ptype < 0) goto FAILED;
-            class_utf8 = TRUE;
-            *class_utf8data++ = ((-c == ESC_p) != negated)?
-              XCL_PROP : XCL_NOTPROP;
-            *class_utf8data++ = ptype;
-            *class_utf8data++ = pdata;
-            class_charcount -= 2;   /* Not a < 256 character */
-            continue;
-            }
+            case ESC_p:
+            case ESC_P:
+              {
+              BOOL negated;
+              int pdata;
+              int ptype = get_ucp(&ptr, &negated, &pdata, errorcodeptr);
+              if (ptype < 0) goto FAILED;
+              class_utf8 = TRUE;
+              *class_utf8data++ = ((-c == ESC_p) != negated)?
+                XCL_PROP : XCL_NOTPROP;
+              *class_utf8data++ = ptype;
+              *class_utf8data++ = pdata;
+              class_charcount -= 2;   /* Not a < 256 character */
+              continue;
+              }
 #endif
-          /* Unrecognized escapes are faulted if PCRE is running in its
-          strict mode. By default, for compatibility with Perl, they are
-          treated as literals. */
+            /* Unrecognized escapes are faulted if PCRE is running in its
+            strict mode. By default, for compatibility with Perl, they are
+            treated as literals. */
 
-          if ((options & PCRE_EXTRA) != 0)
-            {
-            *errorcodeptr = ERR7;
-            goto FAILED;
+            default:
+            if ((options & PCRE_EXTRA) != 0)
+              {
+              *errorcodeptr = ERR7;
+              goto FAILED;
+              }
+            class_charcount -= 2;  /* Undo the default count from above */
+            c = *ptr;              /* Get the final character and fall through */
+            break;
             }
-
-          class_charcount -= 2;  /* Undo the default count from above */
-          c = *ptr;              /* Get the final character and fall through */
           }
 
         /* Fall through if we have a single character (c >= 0). This may be
@@ -3142,7 +3665,7 @@ for (;; ptr++)
       entirely. The code for handling \Q and \E is messy. */
 
       CHECK_RANGE:
-      while (ptr[1] == '\\' && ptr[2] == 'E')
+      while (ptr[1] == CHAR_BACKSLASH && ptr[2] == CHAR_E)
         {
         inescq = FALSE;
         ptr += 2;
@@ -3152,28 +3675,29 @@ for (;; ptr++)
 
       /* Remember \r or \n */
 
-      if (c == '\r' || c == '\n') cd->external_flags |= PCRE_HASCRORLF;
+      if (c == CHAR_CR || c == CHAR_NL) cd->external_flags |= PCRE_HASCRORLF;
 
       /* Check for range */
 
-      if (!inescq && ptr[1] == '-')
+      if (!inescq && ptr[1] == CHAR_MINUS)
         {
         int d;
         ptr += 2;
-        while (*ptr == '\\' && ptr[1] == 'E') ptr += 2;
+        while (*ptr == CHAR_BACKSLASH && ptr[1] == CHAR_E) ptr += 2;
 
         /* If we hit \Q (not followed by \E) at this point, go into escaped
         mode. */
 
-        while (*ptr == '\\' && ptr[1] == 'Q')
+        while (*ptr == CHAR_BACKSLASH && ptr[1] == CHAR_Q)
           {
           ptr += 2;
-          if (*ptr == '\\' && ptr[1] == 'E') { ptr += 2; continue; }
+          if (*ptr == CHAR_BACKSLASH && ptr[1] == CHAR_E)
+            { ptr += 2; continue; }
           inescq = TRUE;
           break;
           }
 
-        if (*ptr == 0 || (!inescq && *ptr == ']'))
+        if (*ptr == 0 || (!inescq && *ptr == CHAR_RIGHT_SQUARE_BRACKET))
           {
           ptr = oldptr;
           goto LONE_SINGLE_CHARACTER;
@@ -3192,19 +3716,16 @@ for (;; ptr++)
         not any of the other escapes. Perl 5.6 treats a hyphen as a literal
         in such circumstances. */
 
-        if (!inescq && d == '\\')
+        if (!inescq && d == CHAR_BACKSLASH)
           {
           d = check_escape(&ptr, errorcodeptr, cd->bracount, options, TRUE);
           if (*errorcodeptr != 0) goto FAILED;
 
-          /* \b is backspace; \X is literal X; \R is literal R; any other
-          special means the '-' was literal */
+          /* \b is backspace; any other special means the '-' was literal */
 
           if (d < 0)
             {
-            if (d == -ESC_b) d = '\b';
-            else if (d == -ESC_X) d = 'X';
-            else if (d == -ESC_R) d = 'R'; else
+            if (d == -ESC_b) d = CHAR_BS; else
               {
               ptr = oldptr;
               goto LONE_SINGLE_CHARACTER;  /* A few lines below */
@@ -3225,7 +3746,7 @@ for (;; ptr++)
 
         /* Remember \r or \n */
 
-        if (d == '\r' || d == '\n') cd->external_flags |= PCRE_HASCRORLF;
+        if (d == CHAR_CR || d == CHAR_NL) cd->external_flags |= PCRE_HASCRORLF;
 
         /* In UTF-8 mode, if the upper limit is > 255, or > 127 for caseless
         matching, we have to use an XCLASS with extra data items. Caseless
@@ -3370,34 +3891,22 @@ for (;; ptr++)
         }
       }
 
-    /* Loop until ']' reached. This "while" is the end of the "do" above. */
+    /* Loop until ']' reached. This "while" is the end of the "do" far above.
+    If we are at the end of an internal nested string, revert to the outer
+    string. */
 
-    while ((c = *(++ptr)) != 0 && (c != ']' || inescq));
+    while (((c = *(++ptr)) != 0 ||
+           (nestptr != NULL &&
+             (ptr = nestptr, nestptr = NULL, c = *(++ptr)) != 0)) &&
+           (c != CHAR_RIGHT_SQUARE_BRACKET || inescq));
 
-    if (c == 0)                          /* Missing terminating ']' */
+    /* Check for missing terminating ']' */
+
+    if (c == 0)
       {
       *errorcodeptr = ERR6;
       goto FAILED;
       }
-
-
-/* This code has been disabled because it would mean that \s counts as
-an explicit \r or \n reference, and that's not really what is wanted. Now
-we set the flag only if there is a literal "\r" or "\n" in the class. */
-
-#if 0
-    /* Remember whether \r or \n are in this class */
-
-    if (negate_class)
-      {
-      if ((classbits[1] & 0x24) != 0x24) cd->external_flags |= PCRE_HASCRORLF;
-      }
-    else
-      {
-      if ((classbits[1] & 0x24) != 0) cd->external_flags |= PCRE_HASCRORLF;
-      }
-#endif
-
 
     /* If class_charcount is 1, we saw precisely one character whose value is
     less than 256. As long as there were no characters >= 128 and there was no
@@ -3462,13 +3971,14 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
     /* If there are characters with values > 255, we have to compile an
     extended class, with its own opcode, unless there was a negated special
-    such as \S in the class, because in that case all characters > 255 are in
-    the class, so any that were explicitly given as well can be ignored. If
-    (when there are explicit characters > 255 that must be listed) there are no
-    characters < 256, we can omit the bitmap in the actual compiled code. */
+    such as \S in the class, and PCRE_UCP is not set, because in that case all
+    characters > 255 are in the class, so any that were explicitly given as
+    well can be ignored. If (when there are explicit characters > 255 that must
+    be listed) there are no characters < 256, we can omit the bitmap in the
+    actual compiled code. */
 
 #ifdef SUPPORT_UTF8
-    if (class_utf8 && !should_flip_negation)
+    if (class_utf8 && (!should_flip_negation || (options & PCRE_UCP) != 0))
       {
       *class_utf8data++ = XCL_END;    /* Marks the end of extra data */
       *code++ = OP_XCLASS;
@@ -3494,10 +4004,11 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
       }
 #endif
 
-    /* If there are no characters > 255, set the opcode to OP_CLASS or
-    OP_NCLASS, depending on whether the whole class was negated and whether
-    there were negative specials such as \S in the class. Then copy the 32-byte
-    map into the code vector, negating it if necessary. */
+    /* If there are no characters > 255, or they are all to be included or
+    excluded, set the opcode to OP_CLASS or OP_NCLASS, depending on whether the
+    whole class was negated and whether there were negative specials such as \S
+    (non-UCP) in the class. Then copy the 32-byte map into the code vector,
+    negating it if necessary. */
 
     *code++ = (negate_class == should_flip_negation) ? OP_CLASS : OP_NCLASS;
     if (negate_class)
@@ -3517,23 +4028,23 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
     /* Various kinds of repeat; '{' is not necessarily a quantifier, but this
     has been tested above. */
 
-    case '{':
+    case CHAR_LEFT_CURLY_BRACKET:
     if (!is_quantifier) goto NORMAL_CHAR;
     ptr = read_repeat_counts(ptr+1, &repeat_min, &repeat_max, errorcodeptr);
     if (*errorcodeptr != 0) goto FAILED;
     goto REPEAT;
 
-    case '*':
+    case CHAR_ASTERISK:
     repeat_min = 0;
     repeat_max = -1;
     goto REPEAT;
 
-    case '+':
+    case CHAR_PLUS:
     repeat_min = 1;
     repeat_max = -1;
     goto REPEAT;
 
-    case '?':
+    case CHAR_QUESTION_MARK:
     repeat_min = 0;
     repeat_max = 1;
 
@@ -3568,13 +4079,13 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
     but if PCRE_UNGREEDY is set, it works the other way round. We change the
     repeat type to the non-default. */
 
-    if (ptr[1] == '+')
+    if (ptr[1] == CHAR_PLUS)
       {
       repeat_type = 0;                  /* Force greedy */
       possessive_quantifier = TRUE;
       ptr++;
       }
-    else if (ptr[1] == '?')
+    else if (ptr[1] == CHAR_QUESTION_MARK)
       {
       repeat_type = greedy_non_default;
       ptr++;
@@ -3621,8 +4132,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
       if (!possessive_quantifier &&
           repeat_max < 0 &&
-          check_auto_possessive(*previous, c, utf8, utf8_char, ptr + 1,
-            options, cd))
+          check_auto_possessive(previous, utf8, ptr + 1, options, cd))
         {
         repeat_type = 0;    /* Force greedy */
         possessive_quantifier = TRUE;
@@ -3643,7 +4153,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
       c = previous[1];
       if (!possessive_quantifier &&
           repeat_max < 0 &&
-          check_auto_possessive(OP_NOT, c, utf8, NULL, ptr + 1, options, cd))
+          check_auto_possessive(previous, utf8, ptr + 1, options, cd))
         {
         repeat_type = 0;    /* Force greedy */
         possessive_quantifier = TRUE;
@@ -3667,7 +4177,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
       if (!possessive_quantifier &&
           repeat_max < 0 &&
-          check_auto_possessive(c, 0, utf8, NULL, ptr + 1, options, cd))
+          check_auto_possessive(previous, utf8, ptr + 1, options, cd))
         {
         repeat_type = 0;    /* Force greedy */
         possessive_quantifier = TRUE;
@@ -3689,10 +4199,15 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
       if (repeat_max == 0) goto END_REPEAT;
 
+      /*--------------------------------------------------------------------*/
+      /* This code is obsolete from release 8.00; the restriction was finally
+      removed: */
+
       /* All real repeats make it impossible to handle partial matching (maybe
       one day we will be able to remove this restriction). */
 
-      if (repeat_max != 1) cd->external_flags |= PCRE_NOPARTIAL;
+      /* if (repeat_max != 1) cd->external_flags |= PCRE_NOPARTIAL; */
+      /*--------------------------------------------------------------------*/
 
       /* Combine the op_type with the repeat_type */
 
@@ -3839,10 +4354,15 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         goto END_REPEAT;
         }
 
+      /*--------------------------------------------------------------------*/
+      /* This code is obsolete from release 8.00; the restriction was finally
+      removed: */
+
       /* All real repeats make it impossible to handle partial matching (maybe
       one day we will be able to remove this restriction). */
 
-      if (repeat_max != 1) cd->external_flags |= PCRE_NOPARTIAL;
+      /* if (repeat_max != 1) cd->external_flags |= PCRE_NOPARTIAL; */
+      /*--------------------------------------------------------------------*/
 
       if (repeat_min == 0 && repeat_max == -1)
         *code++ = OP_CRSTAR + repeat_type;
@@ -3867,7 +4387,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
       {
       register int i;
       int ketoffset = 0;
-      int len = code - previous;
+      int len = (int)(code - previous);
       uschar *bralink = NULL;
 
       /* Repeating a DEFINE group is pointless */
@@ -3888,7 +4408,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         {
         register uschar *ket = previous;
         do ket += GET(ket, 1); while (*ket != OP_KET);
-        ketoffset = code - ket;
+        ketoffset = (int)(code - ket);
         }
 
       /* The case of a zero minimum is special because of the need to stick
@@ -3956,7 +4476,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           /* We chain together the bracket offset fields that have to be
           filled in later when the ends of the brackets are reached. */
 
-          offset = (bralink == NULL)? 0 : previous - bralink;
+          offset = (bralink == NULL)? 0 : (int)(previous - bralink);
           bralink = previous;
           PUTINC(previous, 0, offset);
           }
@@ -3977,13 +4497,15 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           {
           /* In the pre-compile phase, we don't actually do the replication. We
           just adjust the length as if we had. Do some paranoid checks for
-          potential integer overflow. */
+          potential integer overflow. The INT64_OR_DOUBLE type is a 64-bit
+          integer type when available, otherwise double. */
 
           if (lengthptr != NULL)
             {
             int delta = (repeat_min - 1)*length_prevgroup;
-            if ((double)(repeat_min - 1)*(double)length_prevgroup >
-                                                            (double)INT_MAX ||
+            if ((INT64_OR_DOUBLE)(repeat_min - 1)*
+                  (INT64_OR_DOUBLE)length_prevgroup >
+                    (INT64_OR_DOUBLE)INT_MAX ||
                 OFLOW_MAX - *lengthptr < delta)
               {
               *errorcodeptr = ERR20;
@@ -4029,15 +4551,16 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         just adjust the length as if we had. For each repetition we must add 1
         to the length for BRAZERO and for all but the last repetition we must
         add 2 + 2*LINKSIZE to allow for the nesting that occurs. Do some
-        paranoid checks to avoid integer overflow. */
+        paranoid checks to avoid integer overflow. The INT64_OR_DOUBLE type is
+        a 64-bit integer type when available, otherwise double. */
 
         if (lengthptr != NULL && repeat_max > 0)
           {
           int delta = repeat_max * (length_prevgroup + 1 + 2 + 2*LINK_SIZE) -
                       2 - 2*LINK_SIZE;   /* Last one doesn't nest */
-          if ((double)repeat_max *
-                (double)(length_prevgroup + 1 + 2 + 2*LINK_SIZE)
-                  > (double)INT_MAX ||
+          if ((INT64_OR_DOUBLE)repeat_max *
+                (INT64_OR_DOUBLE)(length_prevgroup + 1 + 2 + 2*LINK_SIZE)
+                  > (INT64_OR_DOUBLE)INT_MAX ||
               OFLOW_MAX - *lengthptr < delta)
             {
             *errorcodeptr = ERR20;
@@ -4062,7 +4585,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             {
             int offset;
             *code++ = OP_BRA;
-            offset = (bralink == NULL)? 0 : code - bralink;
+            offset = (bralink == NULL)? 0 : (int)(code - bralink);
             bralink = code;
             PUTINC(code, 0, offset);
             }
@@ -4083,7 +4606,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         while (bralink != NULL)
           {
           int oldlinkoffset;
-          int offset = code - bralink + 1;
+          int offset = (int)(code - bralink + 1);
           uschar *bra = code - offset;
           oldlinkoffset = GET(bra, 1);
           bralink = (oldlinkoffset == 0)? NULL : bralink - oldlinkoffset;
@@ -4114,7 +4637,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           uschar *scode = bracode;
           do
             {
-            if (could_be_empty_branch(scode, ketcode, utf8))
+            if (could_be_empty_branch(scode, ketcode, utf8, cd))
               {
               *bracode += OP_SBRA - OP_BRA;
               break;
@@ -4157,12 +4680,21 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
     if (possessive_quantifier)
       {
       int len;
-      if (*tempcode == OP_EXACT || *tempcode == OP_TYPEEXACT ||
-          *tempcode == OP_NOTEXACT)
+
+      if (*tempcode == OP_TYPEEXACT)
         tempcode += _pcre_OP_lengths[*tempcode] +
-          ((*tempcode == OP_TYPEEXACT &&
-             (tempcode[3] == OP_PROP || tempcode[3] == OP_NOTPROP))? 2:0);
-      len = code - tempcode;
+          ((tempcode[3] == OP_PROP || tempcode[3] == OP_NOTPROP)? 2 : 0);
+
+      else if (*tempcode == OP_EXACT || *tempcode == OP_NOTEXACT)
+        {
+        tempcode += _pcre_OP_lengths[*tempcode];
+#ifdef SUPPORT_UTF8
+        if (utf8 && tempcode[-1] >= 0xc0)
+          tempcode += _pcre_utf8_table4[tempcode[-1] & 0x3f];
+#endif
+        }
+
+      len = (int)(code - tempcode);
       if (len > 0) switch (*tempcode)
         {
         case OP_STAR:  *tempcode = OP_POSSTAR; break;
@@ -4180,7 +4712,12 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         case OP_NOTQUERY: *tempcode = OP_NOTPOSQUERY; break;
         case OP_NOTUPTO:  *tempcode = OP_NOTPOSUPTO; break;
 
+        /* Because we are moving code along, we must ensure that any
+        pending recursive references are updated. */
+
         default:
+        *code = OP_END;
+        adjust_recurse(tempcode, 1 + LINK_SIZE, utf8, cd, save_hwm);
         memmove(tempcode + 1+LINK_SIZE, tempcode, len);
         code += 1 + LINK_SIZE;
         len += 1 + LINK_SIZE;
@@ -4207,7 +4744,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
     lookbehind or option setting or condition or all the other extended
     parenthesis forms.  */
 
-    case '(':
+    case CHAR_LEFT_PARENTHESIS:
     newoptions = options;
     skipbytes = 0;
     bravalue = OP_CBRA;
@@ -4216,44 +4753,93 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
     /* First deal with various "verbs" that can be introduced by '*'. */
 
-    if (*(++ptr) == '*' && (cd->ctypes[ptr[1]] & ctype_letter) != 0)
+    if (*(++ptr) == CHAR_ASTERISK &&
+         ((cd->ctypes[ptr[1]] & ctype_letter) != 0 || ptr[1] == ':'))
       {
       int i, namelen;
+      int arglen = 0;
       const char *vn = verbnames;
-      const uschar *name = ++ptr;
+      const uschar *name = ptr + 1;
+      const uschar *arg = NULL;
       previous = NULL;
       while ((cd->ctypes[*++ptr] & ctype_letter) != 0) {};
-      if (*ptr == ':')
+      namelen = (int)(ptr - name);
+
+      if (*ptr == CHAR_COLON)
         {
-        *errorcodeptr = ERR59;   /* Not supported */
-        goto FAILED;
+        arg = ++ptr;
+        while ((cd->ctypes[*ptr] & (ctype_letter|ctype_digit)) != 0
+          || *ptr == '_') ptr++;
+        arglen = (int)(ptr - arg);
         }
-      if (*ptr != ')')
+
+      if (*ptr != CHAR_RIGHT_PARENTHESIS)
         {
         *errorcodeptr = ERR60;
         goto FAILED;
         }
-      namelen = ptr - name;
+
+      /* Scan the table of verb names */
+
       for (i = 0; i < verbcount; i++)
         {
         if (namelen == verbs[i].len &&
             strncmp((char *)name, vn, namelen) == 0)
           {
-          *code = verbs[i].op;
-          if (*code++ == OP_ACCEPT) cd->had_accept = TRUE;
-          break;
+          /* Check for open captures before ACCEPT */
+
+          if (verbs[i].op == OP_ACCEPT)
+            {
+            open_capitem *oc;
+            cd->had_accept = TRUE;
+            for (oc = cd->open_caps; oc != NULL; oc = oc->next)
+              {
+              *code++ = OP_CLOSE;
+              PUT2INC(code, 0, oc->number);
+              }
+            }
+
+          /* Handle the cases with/without an argument */
+
+          if (arglen == 0)
+            {
+            if (verbs[i].op < 0)   /* Argument is mandatory */
+              {
+              *errorcodeptr = ERR66;
+              goto FAILED;
+              }
+            *code++ = verbs[i].op;
+            }
+
+          else
+            {
+            if (verbs[i].op_arg < 0)   /* Argument is forbidden */
+              {
+              *errorcodeptr = ERR59;
+              goto FAILED;
+              }
+            *code++ = verbs[i].op_arg;
+            *code++ = arglen;
+            memcpy(code, arg, arglen);
+            code += arglen;
+            *code++ = 0;
+            }
+
+          break;  /* Found verb, exit loop */
           }
+
         vn += verbs[i].len + 1;
         }
-      if (i < verbcount) continue;
-      *errorcodeptr = ERR60;
+
+      if (i < verbcount) continue;    /* Successfully handled a verb */
+      *errorcodeptr = ERR60;          /* Verb not recognized */
       goto FAILED;
       }
 
     /* Deal with the extended parentheses; all are introduced by '?', and the
     appearance of any of them means that this is not a capturing group. */
 
-    else if (*ptr == '?')
+    else if (*ptr == CHAR_QUESTION_MARK)
       {
       int i, set, unset, namelen;
       int *optset;
@@ -4262,9 +4848,9 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
       switch (*(++ptr))
         {
-        case '#':                 /* Comment; skip to ket */
+        case CHAR_NUMBER_SIGN:                 /* Comment; skip to ket */
         ptr++;
-        while (*ptr != 0 && *ptr != ')') ptr++;
+        while (*ptr != 0 && *ptr != CHAR_RIGHT_PARENTHESIS) ptr++;
         if (*ptr == 0)
           {
           *errorcodeptr = ERR18;
@@ -4274,19 +4860,19 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case '|':                 /* Reset capture count for each branch */
+        case CHAR_VERTICAL_LINE:  /* Reset capture count for each branch */
         reset_bracount = TRUE;
         /* Fall through */
 
         /* ------------------------------------------------------------ */
-        case ':':                 /* Non-capturing bracket */
+        case CHAR_COLON:          /* Non-capturing bracket */
         bravalue = OP_BRA;
         ptr++;
         break;
 
 
         /* ------------------------------------------------------------ */
-        case '(':
+        case CHAR_LEFT_PARENTHESIS:
         bravalue = OP_COND;       /* Conditional group */
 
         /* A condition can be an assertion, a number (referring to a numbered
@@ -4306,7 +4892,8 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         the switch. This will take control down to where bracketed groups,
         including assertions, are processed. */
 
-        if (ptr[1] == '?' && (ptr[2] == '=' || ptr[2] == '!' || ptr[2] == '<'))
+        if (ptr[1] == CHAR_QUESTION_MARK && (ptr[2] == CHAR_EQUALS_SIGN ||
+            ptr[2] == CHAR_EXCLAMATION_MARK || ptr[2] == CHAR_LESS_THAN_SIGN))
           break;
 
         /* Most other conditions use OP_CREF (a couple change to OP_RREF
@@ -4318,7 +4905,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
         /* Check for a test for recursion in a named group. */
 
-        if (ptr[1] == 'R' && ptr[2] == '&')
+        if (ptr[1] == CHAR_R && ptr[2] == CHAR_AMPERSAND)
           {
           terminator = -1;
           ptr += 2;
@@ -4328,20 +4915,20 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         /* Check for a test for a named group's having been set, using the Perl
         syntax (?(<name>) or (?('name') */
 
-        else if (ptr[1] == '<')
+        else if (ptr[1] == CHAR_LESS_THAN_SIGN)
           {
-          terminator = '>';
+          terminator = CHAR_GREATER_THAN_SIGN;
           ptr++;
           }
-        else if (ptr[1] == '\'')
+        else if (ptr[1] == CHAR_APOSTROPHE)
           {
-          terminator = '\'';
+          terminator = CHAR_APOSTROPHE;
           ptr++;
           }
         else
           {
           terminator = 0;
-          if (ptr[1] == '-' || ptr[1] == '+') refsign = *(++ptr);
+          if (ptr[1] == CHAR_MINUS || ptr[1] == CHAR_PLUS) refsign = *(++ptr);
           }
 
         /* We now expect to read a name; any thing else is an error */
@@ -4361,12 +4948,13 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           {
           if (recno >= 0)
             recno = ((digitab[*ptr] & ctype_digit) != 0)?
-              recno * 10 + *ptr - '0' : -1;
+              recno * 10 + *ptr - CHAR_0 : -1;
           ptr++;
           }
-        namelen = ptr - name;
+        namelen = (int)(ptr - name);
 
-        if ((terminator > 0 && *ptr++ != terminator) || *ptr++ != ')')
+        if ((terminator > 0 && *ptr++ != terminator) ||
+            *ptr++ != CHAR_RIGHT_PARENTHESIS)
           {
           ptr--;      /* Error offset */
           *errorcodeptr = ERR26;
@@ -4388,7 +4976,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             *errorcodeptr = ERR58;
             goto FAILED;
             }
-          recno = (refsign == '-')?
+          recno = (refsign == CHAR_MINUS)?
             cd->bracount - recno + 1 : recno +cd->bracount;
           if (recno <= 0 || recno > cd->final_bracount)
             {
@@ -4400,7 +4988,10 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           }
 
         /* Otherwise (did not start with "+" or "-"), start by looking for the
-        name. */
+        name. If we find a name, add one to the opcode to change OP_CREF or
+        OP_RREF into OP_NCREF or OP_NRREF. These behave exactly the same,
+        except they record that the reference was originally to a name. The
+        information is used to check duplicate names. */
 
         slot = cd->name_table;
         for (i = 0; i < cd->names_found; i++)
@@ -4415,14 +5006,16 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           {
           recno = GET2(slot, 0);
           PUT2(code, 2+LINK_SIZE, recno);
+          code[1+LINK_SIZE]++;
           }
 
         /* Search the pattern for a forward reference */
 
-        else if ((i = find_parens(ptr, cd, name, namelen,
+        else if ((i = find_parens(cd, name, namelen,
                         (options & PCRE_EXTENDED) != 0)) > 0)
           {
           PUT2(code, 2+LINK_SIZE, i);
+          code[1+LINK_SIZE]++;
           }
 
         /* If terminator == 0 it means that the name followed directly after
@@ -4440,7 +5033,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         /* Check for (?(R) for recursion. Allow digits after R to specify a
         specific group number. */
 
-        else if (*name == 'R')
+        else if (*name == CHAR_R)
           {
           recno = 0;
           for (i = 1; i < namelen; i++)
@@ -4450,7 +5043,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
               *errorcodeptr = ERR15;
               goto FAILED;
               }
-            recno = recno * 10 + name[i] - '0';
+            recno = recno * 10 + name[i] - CHAR_0;
             }
           if (recno == 0) recno = RREF_ANY;
           code[1+LINK_SIZE] = OP_RREF;      /* Change test type */
@@ -4460,7 +5053,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         /* Similarly, check for the (?(DEFINE) "condition", which is always
         false. */
 
-        else if (namelen == 6 && strncmp((char *)name, "DEFINE", 6) == 0)
+        else if (namelen == 6 && strncmp((char *)name, STRING_DEFINE, 6) == 0)
           {
           code[1+LINK_SIZE] = OP_DEF;
           skipbytes = 1;
@@ -4485,16 +5078,16 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case '=':                 /* Positive lookahead */
+        case CHAR_EQUALS_SIGN:                 /* Positive lookahead */
         bravalue = OP_ASSERT;
         ptr++;
         break;
 
 
         /* ------------------------------------------------------------ */
-        case '!':                 /* Negative lookahead */
+        case CHAR_EXCLAMATION_MARK:            /* Negative lookahead */
         ptr++;
-        if (*ptr == ')')          /* Optimize (?!) */
+        if (*ptr == CHAR_RIGHT_PARENTHESIS)    /* Optimize (?!) */
           {
           *code++ = OP_FAIL;
           previous = NULL;
@@ -4505,15 +5098,15 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case '<':                 /* Lookbehind or named define */
+        case CHAR_LESS_THAN_SIGN:              /* Lookbehind or named define */
         switch (ptr[1])
           {
-          case '=':               /* Positive lookbehind */
+          case CHAR_EQUALS_SIGN:               /* Positive lookbehind */
           bravalue = OP_ASSERTBACK;
           ptr += 2;
           break;
 
-          case '!':               /* Negative lookbehind */
+          case CHAR_EXCLAMATION_MARK:          /* Negative lookbehind */
           bravalue = OP_ASSERTBACK_NOT;
           ptr += 2;
           break;
@@ -4528,22 +5121,22 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case '>':                 /* One-time brackets */
+        case CHAR_GREATER_THAN_SIGN:           /* One-time brackets */
         bravalue = OP_ONCE;
         ptr++;
         break;
 
 
         /* ------------------------------------------------------------ */
-        case 'C':                 /* Callout - may be followed by digits; */
+        case CHAR_C:                 /* Callout - may be followed by digits; */
         previous_callout = code;  /* Save for later completion */
         after_manual_callout = 1; /* Skip one item before completing */
         *code++ = OP_CALLOUT;
           {
           int n = 0;
           while ((digitab[*(++ptr)] & ctype_digit) != 0)
-            n = n * 10 + *ptr - '0';
-          if (*ptr != ')')
+            n = n * 10 + *ptr - CHAR_0;
+          if (*ptr != CHAR_RIGHT_PARENTHESIS)
             {
             *errorcodeptr = ERR39;
             goto FAILED;
@@ -4554,8 +5147,8 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             goto FAILED;
             }
           *code++ = n;
-          PUT(code, 0, ptr - cd->start_pattern + 1);  /* Pattern offset */
-          PUT(code, LINK_SIZE, 0);                    /* Default length */
+          PUT(code, 0, (int)(ptr - cd->start_pattern + 1)); /* Pattern offset */
+          PUT(code, LINK_SIZE, 0);                          /* Default length */
           code += 2 * LINK_SIZE;
           }
         previous = NULL;
@@ -4563,14 +5156,15 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case 'P':                 /* Python-style named subpattern handling */
-        if (*(++ptr) == '=' || *ptr == '>')  /* Reference or recursion */
+        case CHAR_P:              /* Python-style named subpattern handling */
+        if (*(++ptr) == CHAR_EQUALS_SIGN ||
+            *ptr == CHAR_GREATER_THAN_SIGN)  /* Reference or recursion */
           {
-          is_recurse = *ptr == '>';
-          terminator = ')';
+          is_recurse = *ptr == CHAR_GREATER_THAN_SIGN;
+          terminator = CHAR_RIGHT_PARENTHESIS;
           goto NAMED_REF_OR_RECURSE;
           }
-        else if (*ptr != '<')    /* Test for Python-style definition */
+        else if (*ptr != CHAR_LESS_THAN_SIGN)  /* Test for Python-style defn */
           {
           *errorcodeptr = ERR41;
           goto FAILED;
@@ -4580,13 +5174,14 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
         /* ------------------------------------------------------------ */
         DEFINE_NAME:    /* Come here from (?< handling */
-        case '\'':
+        case CHAR_APOSTROPHE:
           {
-          terminator = (*ptr == '<')? '>' : '\'';
+          terminator = (*ptr == CHAR_LESS_THAN_SIGN)?
+            CHAR_GREATER_THAN_SIGN : CHAR_APOSTROPHE;
           name = ++ptr;
 
           while ((cd->ctypes[*ptr] & ctype_word) != 0) ptr++;
-          namelen = ptr - name;
+          namelen = (int)(ptr - name);
 
           /* In the pre-compile phase, just do a syntax check. */
 
@@ -4613,11 +5208,24 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
               }
             }
 
-          /* In the real compile, create the entry in the table */
+          /* In the real compile, create the entry in the table, maintaining
+          alphabetical order. Duplicate names for different numbers are
+          permitted only if PCRE_DUPNAMES is set. Duplicate names for the same
+          number are always OK. (An existing number can be re-used if (?|
+          appears in the pattern.) In either event, a duplicate name results in
+          a duplicate entry in the table, even if the number is the same. This
+          is because the number of names, and hence the table size, is computed
+          in the pre-compile, and it affects various numbers and pointers which
+          would all have to be modified, and the compiled code moved down, if
+          duplicates with the same number were omitted from the table. This
+          doesn't seem worth the hassle. However, *different* names for the
+          same number are not permitted. */
 
           else
             {
+            BOOL dupname = FALSE;
             slot = cd->name_table;
+
             for (i = 0; i < cd->names_found; i++)
               {
               int crc = memcmp(name, slot+2, namelen);
@@ -4625,21 +5233,53 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
                 {
                 if (slot[2+namelen] == 0)
                   {
-                  if ((options & PCRE_DUPNAMES) == 0)
+                  if (GET2(slot, 0) != cd->bracount + 1 &&
+                      (options & PCRE_DUPNAMES) == 0)
                     {
                     *errorcodeptr = ERR43;
                     goto FAILED;
                     }
+                  else dupname = TRUE;
                   }
-                else crc = -1;      /* Current name is substring */
+                else crc = -1;      /* Current name is a substring */
                 }
+
+              /* Make space in the table and break the loop for an earlier
+              name. For a duplicate or later name, carry on. We do this for
+              duplicates so that in the simple case (when ?(| is not used) they
+              are in order of their numbers. */
+
               if (crc < 0)
                 {
                 memmove(slot + cd->name_entry_size, slot,
                   (cd->names_found - i) * cd->name_entry_size);
                 break;
                 }
+
+              /* Continue the loop for a later or duplicate name */
+
               slot += cd->name_entry_size;
+              }
+
+            /* For non-duplicate names, check for a duplicate number before
+            adding the new name. */
+
+            if (!dupname)
+              {
+              uschar *cslot = cd->name_table;
+              for (i = 0; i < cd->names_found; i++)
+                {
+                if (cslot != slot)
+                  {
+                  if (GET2(cslot, 0) == cd->bracount + 1)
+                    {
+                    *errorcodeptr = ERR65;
+                    goto FAILED;
+                    }
+                  }
+                else i--;
+                cslot += cd->name_entry_size;
+                }
               }
 
             PUT2(slot, 0, cd->bracount + 1);
@@ -4648,16 +5288,17 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             }
           }
 
-        /* In both cases, count the number of names we've encountered. */
+        /* In both pre-compile and compile, count the number of names we've
+        encountered. */
 
-        ptr++;                    /* Move past > or ' */
         cd->names_found++;
+        ptr++;                    /* Move past > or ' */
         goto NUMBERED_GROUP;
 
 
         /* ------------------------------------------------------------ */
-        case '&':                 /* Perl recursion/subroutine syntax */
-        terminator = ')';
+        case CHAR_AMPERSAND:            /* Perl recursion/subroutine syntax */
+        terminator = CHAR_RIGHT_PARENTHESIS;
         is_recurse = TRUE;
         /* Fall through */
 
@@ -4670,7 +5311,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         NAMED_REF_OR_RECURSE:
         name = ++ptr;
         while ((cd->ctypes[*ptr] & ctype_word) != 0) ptr++;
-        namelen = ptr - name;
+        namelen = (int)(ptr - name);
 
         /* In the pre-compile phase, do a syntax check and set a dummy
         reference number. */
@@ -4716,7 +5357,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             recno = GET2(slot, 0);
             }
           else if ((recno =                /* Forward back reference */
-                    find_parens(ptr, cd, name, namelen,
+                    find_parens(cd, name, namelen,
                       (options & PCRE_EXTENDED) != 0)) <= 0)
             {
             *errorcodeptr = ERR15;
@@ -4732,18 +5373,18 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
 
         /* ------------------------------------------------------------ */
-        case 'R':                 /* Recursion */
+        case CHAR_R:              /* Recursion */
         ptr++;                    /* Same as (?0)      */
         /* Fall through */
 
 
         /* ------------------------------------------------------------ */
-        case '-': case '+':
-        case '0': case '1': case '2': case '3': case '4':   /* Recursion or */
-        case '5': case '6': case '7': case '8': case '9':   /* subroutine */
+        case CHAR_MINUS: case CHAR_PLUS:  /* Recursion or subroutine */
+        case CHAR_0: case CHAR_1: case CHAR_2: case CHAR_3: case CHAR_4:
+        case CHAR_5: case CHAR_6: case CHAR_7: case CHAR_8: case CHAR_9:
           {
           const uschar *called;
-          terminator = ')';
+          terminator = CHAR_RIGHT_PARENTHESIS;
 
           /* Come here from the \g<...> and \g'...' code (Oniguruma
           compatibility). However, the syntax has been checked to ensure that
@@ -4753,7 +5394,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
           HANDLE_NUMERICAL_RECURSION:
 
-          if ((refsign = *ptr) == '+')
+          if ((refsign = *ptr) == CHAR_PLUS)
             {
             ptr++;
             if ((digitab[*ptr] & ctype_digit) == 0)
@@ -4762,7 +5403,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
               goto FAILED;
               }
             }
-          else if (refsign == '-')
+          else if (refsign == CHAR_MINUS)
             {
             if ((digitab[ptr[1]] & ctype_digit) == 0)
               goto OTHER_CHAR_AFTER_QUERY;
@@ -4771,7 +5412,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
           recno = 0;
           while((digitab[*ptr] & ctype_digit) != 0)
-            recno = recno * 10 + *ptr++ - '0';
+            recno = recno * 10 + *ptr++ - CHAR_0;
 
           if (*ptr != terminator)
             {
@@ -4779,7 +5420,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             goto FAILED;
             }
 
-          if (refsign == '-')
+          if (refsign == CHAR_MINUS)
             {
             if (recno == 0)
               {
@@ -4793,7 +5434,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
               goto FAILED;
               }
             }
-          else if (refsign == '+')
+          else if (refsign == CHAR_PLUS)
             {
             if (recno == 0)
               {
@@ -4820,20 +5461,26 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           if (lengthptr == NULL)
             {
             *code = OP_END;
-            if (recno != 0) called = find_bracket(cd->start_code, utf8, recno);
+            if (recno != 0)
+              called = _pcre_find_bracket(cd->start_code, utf8, recno);
 
             /* Forward reference */
 
             if (called == NULL)
               {
-              if (find_parens(ptr, cd, NULL, recno,
+              if (find_parens(cd, NULL, recno,
                     (options & PCRE_EXTENDED) != 0) < 0)
                 {
                 *errorcodeptr = ERR15;
                 goto FAILED;
                 }
+
+              /* Fudge the value of "called" so that when it is inserted as an
+              offset below, what it actually inserted is the reference number
+              of the group. */
+
               called = cd->start_code + recno;
-              PUTINC(cd->hwm, 0, code + 2 + LINK_SIZE - cd->start_code);
+              PUTINC(cd->hwm, 0, (int)(code + 2 + LINK_SIZE - cd->start_code));
               }
 
             /* If not a forward reference, and the subpattern is still open,
@@ -4841,7 +5488,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
             recursion that could loop for ever, and diagnose that case. */
 
             else if (GET(called, 1) == 0 &&
-                     could_be_empty(called, code, bcptr, utf8))
+                     could_be_empty(called, code, bcptr, utf8, cd))
               {
               *errorcodeptr = ERR40;
               goto FAILED;
@@ -4857,7 +5504,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
           code += 1 + LINK_SIZE;
 
           *code = OP_RECURSE;
-          PUT(code, 1, called - cd->start_code);
+          PUT(code, 1, (int)(called - cd->start_code));
           code += 1 + LINK_SIZE;
 
           *code = OP_KET;
@@ -4879,23 +5526,23 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         set = unset = 0;
         optset = &set;
 
-        while (*ptr != ')' && *ptr != ':')
+        while (*ptr != CHAR_RIGHT_PARENTHESIS && *ptr != CHAR_COLON)
           {
           switch (*ptr++)
             {
-            case '-': optset = &unset; break;
+            case CHAR_MINUS: optset = &unset; break;
 
-            case 'J':    /* Record that it changed in the external options */
+            case CHAR_J:    /* Record that it changed in the external options */
             *optset |= PCRE_DUPNAMES;
             cd->external_flags |= PCRE_JCHANGED;
             break;
 
-            case 'i': *optset |= PCRE_CASELESS; break;
-            case 'm': *optset |= PCRE_MULTILINE; break;
-            case 's': *optset |= PCRE_DOTALL; break;
-            case 'x': *optset |= PCRE_EXTENDED; break;
-            case 'U': *optset |= PCRE_UNGREEDY; break;
-            case 'X': *optset |= PCRE_EXTRA; break;
+            case CHAR_i: *optset |= PCRE_CASELESS; break;
+            case CHAR_m: *optset |= PCRE_MULTILINE; break;
+            case CHAR_s: *optset |= PCRE_DOTALL; break;
+            case CHAR_x: *optset |= PCRE_EXTENDED; break;
+            case CHAR_U: *optset |= PCRE_UNGREEDY; break;
+            case CHAR_X: *optset |= PCRE_EXTRA; break;
 
             default:  *errorcodeptr = ERR12;
                       ptr--;    /* Correct the offset */
@@ -4929,14 +5576,14 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         options if this setting actually changes any of them, and reset the
         greedy defaults and the case value for firstbyte and reqbyte. */
 
-        if (*ptr == ')')
+        if (*ptr == CHAR_RIGHT_PARENTHESIS)
           {
           if (code == cd->start_code + 1 + LINK_SIZE &&
                (lengthptr == NULL || *lengthptr == 2 + 2*LINK_SIZE))
             {
             cd->external_options = newoptions;
             }
-         else
+          else
             {
             if ((options & PCRE_IMS) != (newoptions & PCRE_IMS))
               {
@@ -4968,8 +5615,8 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         }     /* End of switch for character following (? */
       }       /* End of (? handling */
 
-    /* Opening parenthesis not followed by '?'. If PCRE_NO_AUTO_CAPTURE is set,
-    all unadorned brackets become non-capturing and behave like (?:...)
+    /* Opening parenthesis not followed by '*' or '?'. If PCRE_NO_AUTO_CAPTURE
+    is set, all unadorned brackets become non-capturing and behave like (?:...)
     brackets. */
 
     else if ((options & PCRE_NO_AUTO_CAPTURE) != 0)
@@ -5069,7 +5716,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
     /* Error if hit end of pattern */
 
-    if (*ptr != ')')
+    if (*ptr != CHAR_RIGHT_PARENTHESIS)
       {
       *errorcodeptr = ERR14;
       goto FAILED;
@@ -5161,13 +5808,14 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
     /* ===================================================================*/
     /* Handle metasequences introduced by \. For ones like \d, the ESC_ values
-    are arranged to be the negation of the corresponding OP_values. For the
-    back references, the values are ESC_REF plus the reference number. Only
-    back references and those types that consume a character may be repeated.
-    We can test for values between ESC_b and ESC_Z for the latter; this may
-    have to change if any new ones are ever created. */
+    are arranged to be the negation of the corresponding OP_values in the
+    default case when PCRE_UCP is not set. For the back references, the values
+    are ESC_REF plus the reference number. Only back references and those types
+    that consume a character may be repeated. We can test for values between
+    ESC_b and ESC_Z for the latter; this may have to change if any new ones are
+    ever created. */
 
-    case '\\':
+    case CHAR_BACKSLASH:
     tempptr = ptr;
     c = check_escape(&ptr, errorcodeptr, cd->bracount, options, FALSE);
     if (*errorcodeptr != 0) goto FAILED;
@@ -5176,8 +5824,9 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
       {
       if (-c == ESC_Q)            /* Handle start of quoted string */
         {
-        if (ptr[1] == '\\' && ptr[2] == 'E') ptr += 2; /* avoid empty string */
-          else inescq = TRUE;
+        if (ptr[1] == CHAR_BACKSLASH && ptr[2] == CHAR_E)
+          ptr += 2;               /* avoid empty string */
+            else inescq = TRUE;
         continue;
         }
 
@@ -5205,7 +5854,8 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         {
         const uschar *p;
         save_hwm = cd->hwm;   /* Normally this is set when '(' is read */
-        terminator = (*(++ptr) == '<')? '>' : '\'';
+        terminator = (*(++ptr) == CHAR_LESS_THAN_SIGN)?
+          CHAR_GREATER_THAN_SIGN : CHAR_APOSTROPHE;
 
         /* These two statements stop the compiler for warning about possibly
         unset variables caused by the jump to HANDLE_NUMERICAL_RECURSION. In
@@ -5217,7 +5867,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
         /* Test for a name */
 
-        if (ptr[1] != '+' && ptr[1] != '-')
+        if (ptr[1] != CHAR_PLUS && ptr[1] != CHAR_MINUS)
           {
           BOOL isnumber = TRUE;
           for (p = ptr + 1; *p != 0 && *p != terminator; p++)
@@ -5255,10 +5905,13 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
       /* \k<name> or \k'name' is a back reference by name (Perl syntax).
       We also support \k{name} (.NET syntax) */
 
-      if (-c == ESC_k && (ptr[1] == '<' || ptr[1] == '\'' || ptr[1] == '{'))
+      if (-c == ESC_k && (ptr[1] == CHAR_LESS_THAN_SIGN ||
+          ptr[1] == CHAR_APOSTROPHE || ptr[1] == CHAR_LEFT_CURLY_BRACKET))
         {
         is_recurse = FALSE;
-        terminator = (*(++ptr) == '<')? '>' : (*ptr == '\'')? '\'' : '}';
+        terminator = (*(++ptr) == CHAR_LESS_THAN_SIGN)?
+          CHAR_GREATER_THAN_SIGN : (*ptr == CHAR_APOSTROPHE)?
+          CHAR_APOSTROPHE : CHAR_RIGHT_CURLY_BRACKET;
         goto NAMED_REF_OR_RECURSE;
         }
 
@@ -5268,6 +5921,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
       if (-c >= ESC_REF)
         {
+        open_capitem *oc;
         recno = -c - ESC_REF;
 
         HANDLE_REFERENCE:    /* Come here from named backref handling */
@@ -5277,6 +5931,19 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
         PUT2INC(code, 0, recno);
         cd->backref_map |= (recno < 32)? (1 << recno) : 1;
         if (recno > cd->top_backref) cd->top_backref = recno;
+
+        /* Check to see if this back reference is recursive, that it, it
+        is inside the group that it references. A flag is set so that the
+        group can be made atomic. */
+
+        for (oc = cd->open_caps; oc != NULL; oc = oc->next)
+          {
+          if (oc->number == recno)
+            {
+            oc->flag = TRUE;
+            break;
+            }
+          }
         }
 
       /* So are Unicode property matches, if supported. */
@@ -5306,12 +5973,24 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 #endif
 
       /* For the rest (including \X when Unicode properties are supported), we
-      can obtain the OP value by negating the escape value. */
+      can obtain the OP value by negating the escape value in the default
+      situation when PCRE_UCP is not set. When it *is* set, we substitute
+      Unicode property tests. */
 
       else
         {
-        previous = (-c > ESC_b && -c < ESC_Z)? code : NULL;
-        *code++ = -c;
+#ifdef SUPPORT_UCP
+        if (-c >= ESC_DU && -c <= ESC_wu)
+          {
+          nestptr = ptr + 1;                   /* Where to resume */
+          ptr = substitutes[-c - ESC_DU] - 1;  /* Just before substitute */
+          }
+        else
+#endif
+          {
+          previous = (-c > ESC_b && -c < ESC_Z)? code : NULL;
+          *code++ = -c;
+          }
         }
       continue;
       }
@@ -5361,7 +6040,7 @@ we set the flag only if there is a literal "\r" or "\n" in the class. */
 
     /* Remember if \r or \n were seen */
 
-    if (mcbuffer[0] == '\r' || mcbuffer[0] == '\n')
+    if (mcbuffer[0] == CHAR_CR || mcbuffer[0] == CHAR_NL)
       cd->external_flags |= PCRE_HASCRORLF;
 
     /* Set the first and required bytes appropriately. If no previous first
@@ -5459,15 +6138,18 @@ uschar *code = *codeptr;
 uschar *last_branch = code;
 uschar *start_bracket = code;
 uschar *reverse_count = NULL;
+open_capitem capitem;
+int capnumber = 0;
 int firstbyte, reqbyte;
 int branchfirstbyte, branchreqbyte;
 int length;
 int orig_bracount;
 int max_bracount;
+int old_external_options = cd->external_options;
 branch_chain bc;
 
 bc.outer = bcptr;
-bc.current = code;
+bc.current_branch = code;
 
 firstbyte = reqbyte = REQ_UNSET;
 
@@ -5484,6 +6166,19 @@ length = 2 + 2*LINK_SIZE + skipbytes;
 the code that abstracts option settings at the start of the pattern and makes
 them global. It tests the value of length for (2 + 2*LINK_SIZE) in the
 pre-compile phase to find out whether anything has yet been compiled or not. */
+
+/* If this is a capturing subpattern, add to the chain of open capturing items
+so that we can detect them if (*ACCEPT) is encountered. This is also used to
+detect groups that contain recursive back references to themselves. */
+
+if (*code == OP_CBRA)
+  {
+  capnumber = GET2(code, 1 + LINK_SIZE);
+  capitem.number = capnumber;
+  capitem.next = cd->open_caps;
+  capitem.flag = FALSE;
+  cd->open_caps = &capitem;
+  }
 
 /* Offset is set zero to mark that this bracket is still open */
 
@@ -5528,6 +6223,15 @@ for (;;)
     *ptrptr = ptr;
     return FALSE;
     }
+
+  /* If the external options have changed during this branch, it means that we
+  are at the top level, and a leading option setting has been encountered. We
+  need to re-set the original option values to take account of this so that,
+  during the pre-compile phase, we know to allow for a re-set at the start of
+  subsequent branches. */
+
+  if (old_external_options != cd->external_options)
+    oldims = cd->external_options & PCRE_IMS;
 
   /* Keep the highest bracket count in case (?| was used and some branch
   has fewer than the rest. */
@@ -5579,21 +6283,29 @@ for (;;)
 
     /* If lookbehind, check that this branch matches a fixed-length string, and
     put the length into the OP_REVERSE item. Temporarily mark the end of the
-    branch with OP_END. */
+    branch with OP_END. If the branch contains OP_RECURSE, the result is -3
+    because there may be forward references that we can't check here. Set a
+    flag to cause another lookbehind check at the end. Why not do it all at the
+    end? Because common, erroneous checks are picked up here and the offset of
+    the problem can be shown. */
 
     if (lookbehind)
       {
       int fixed_length;
       *code = OP_END;
-      fixed_length = find_fixedlength(last_branch, options);
+      fixed_length = find_fixedlength(last_branch, options, FALSE, cd);
       DPRINTF(("fixed length = %d\n", fixed_length));
-      if (fixed_length < 0)
+      if (fixed_length == -3)
+        {
+        cd->check_lookbehind = TRUE;
+        }
+      else if (fixed_length < 0)
         {
         *errorcodeptr = (fixed_length == -2)? ERR36 : ERR25;
         *ptrptr = ptr;
         return FALSE;
         }
-      PUT(reverse_count, 0, fixed_length);
+      else { PUT(reverse_count, 0, fixed_length); }
       }
     }
 
@@ -5606,11 +6318,11 @@ for (;;)
   compile a resetting op-code following, except at the very end of the pattern.
   Return leaving the pointer at the terminating char. */
 
-  if (*ptr != '|')
+  if (*ptr != CHAR_VERTICAL_LINE)
     {
     if (lengthptr == NULL)
       {
-      int branch_length = code - last_branch;
+      int branch_length = (int)(code - last_branch);
       do
         {
         int prev_length = GET(last_branch, 1);
@@ -5624,12 +6336,33 @@ for (;;)
     /* Fill in the ket */
 
     *code = OP_KET;
-    PUT(code, 1, code - start_bracket);
+    PUT(code, 1, (int)(code - start_bracket));
     code += 1 + LINK_SIZE;
 
-    /* Resetting option if needed */
+    /* If it was a capturing subpattern, check to see if it contained any
+    recursive back references. If so, we must wrap it in atomic brackets.
+    In any event, remove the block from the chain. */
 
-    if ((options & PCRE_IMS) != oldims && *ptr == ')')
+    if (capnumber > 0)
+      {
+      if (cd->open_caps->flag)
+        {
+        memmove(start_bracket + 1 + LINK_SIZE, start_bracket,
+          code - start_bracket);
+        *start_bracket = OP_ONCE;
+        code += 1 + LINK_SIZE;
+        PUT(start_bracket, 1, (int)(code - start_bracket));
+        *code = OP_KET;
+        PUT(code, 1, (int)(code - start_bracket));
+        code += 1 + LINK_SIZE;
+        length += 2 + 2*LINK_SIZE;
+        }
+      cd->open_caps = cd->open_caps->next;
+      }
+
+    /* Reset options if needed. */
+
+    if ((options & PCRE_IMS) != oldims && *ptr == CHAR_RIGHT_PARENTHESIS)
       {
       *code++ = OP_OPT;
       *code++ = oldims;
@@ -5675,8 +6408,8 @@ for (;;)
   else
     {
     *code = OP_ALT;
-    PUT(code, 1, code - last_branch);
-    bc.current = last_branch = code;
+    PUT(code, 1, (int)(code - last_branch));
+    bc.current_branch = last_branch = code;
     code += 1 + LINK_SIZE;
     }
 
@@ -5811,6 +6544,34 @@ do {
      NULL, 0, FALSE);
    register int op = *scode;
 
+   /* If we are at the start of a conditional assertion group, *both* the
+   conditional assertion *and* what follows the condition must satisfy the test
+   for start of line. Other kinds of condition fail. Note that there may be an
+   auto-callout at the start of a condition. */
+
+   if (op == OP_COND)
+     {
+     scode += 1 + LINK_SIZE;
+     if (*scode == OP_CALLOUT) scode += _pcre_OP_lengths[OP_CALLOUT];
+     switch (*scode)
+       {
+       case OP_CREF:
+       case OP_NCREF:
+       case OP_RREF:
+       case OP_NRREF:
+       case OP_DEF:
+       return FALSE;
+
+       default:     /* Assertion */
+       if (!is_startline(scode, bracket_map, backref_map)) return FALSE;
+       do scode += GET(scode, 1); while (*scode == OP_ALT);
+       scode += 1 + LINK_SIZE;
+       break;
+       }
+     scode = first_significant_code(scode, NULL, 0, FALSE);
+     op = *scode;
+     }
+
    /* Non-capturing brackets */
 
    if (op == OP_BRA)
@@ -5829,8 +6590,10 @@ do {
 
    /* Other brackets */
 
-   else if (op == OP_ASSERT || op == OP_ONCE || op == OP_COND)
-     { if (!is_startline(scode, bracket_map, backref_map)) return FALSE; }
+   else if (op == OP_ASSERT || op == OP_ONCE)
+     {
+     if (!is_startline(scode, bracket_map, backref_map)) return FALSE;
+     }
 
    /* .* means "start at start or after \n" if it isn't in brackets that
    may be referenced. */
@@ -5964,9 +6727,7 @@ int length = 1;  /* For final END opcode */
 int firstbyte, reqbyte, newline;
 int errorcode = 0;
 int skipatstart = 0;
-#ifdef SUPPORT_UTF8
 BOOL utf8;
-#endif
 size_t size;
 uschar *code;
 const uschar *codestart;
@@ -6009,30 +6770,6 @@ if (erroroffset == NULL)
 
 *erroroffset = 0;
 
-/* Can't support UTF8 unless PCRE has been compiled to include the code. */
-
-#ifdef SUPPORT_UTF8
-utf8 = (options & PCRE_UTF8) != 0;
-if (utf8 && (options & PCRE_NO_UTF8_CHECK) == 0 &&
-     (*erroroffset = _pcre_valid_utf8((uschar *)pattern, -1)) >= 0)
-  {
-  errorcode = ERR44;
-  goto PCRE_EARLY_ERROR_RETURN2;
-  }
-#else
-if ((options & PCRE_UTF8) != 0)
-  {
-  errorcode = ERR32;
-  goto PCRE_EARLY_ERROR_RETURN;
-  }
-#endif
-
-if ((options & ~PUBLIC_OPTIONS) != 0)
-  {
-  errorcode = ERR17;
-  goto PCRE_EARLY_ERROR_RETURN;
-  }
-
 /* Set up pointers to the individual character tables */
 
 if (tables == NULL) tables = _pcre_default_tables;
@@ -6041,28 +6778,42 @@ cd->fcc = tables + fcc_offset;
 cd->cbits = tables + cbits_offset;
 cd->ctypes = tables + ctypes_offset;
 
+/* Check that all undefined public option bits are zero */
+
+if ((options & ~PUBLIC_COMPILE_OPTIONS) != 0)
+  {
+  errorcode = ERR17;
+  goto PCRE_EARLY_ERROR_RETURN;
+  }
+
 /* Check for global one-time settings at the start of the pattern, and remember
 the offset for later. */
 
-while (ptr[skipatstart] == '(' && ptr[skipatstart+1] == '*')
+while (ptr[skipatstart] == CHAR_LEFT_PARENTHESIS &&
+       ptr[skipatstart+1] == CHAR_ASTERISK)
   {
   int newnl = 0;
   int newbsr = 0;
 
-  if (strncmp((char *)(ptr+skipatstart+2), "CR)", 3) == 0)
+  if (strncmp((char *)(ptr+skipatstart+2), STRING_UTF8_RIGHTPAR, 5) == 0)
+    { skipatstart += 7; options |= PCRE_UTF8; continue; }
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_UCP_RIGHTPAR, 4) == 0)
+    { skipatstart += 6; options |= PCRE_UCP; continue; }
+
+  if (strncmp((char *)(ptr+skipatstart+2), STRING_CR_RIGHTPAR, 3) == 0)
     { skipatstart += 5; newnl = PCRE_NEWLINE_CR; }
-  else if (strncmp((char *)(ptr+skipatstart+2), "LF)", 3)  == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_LF_RIGHTPAR, 3)  == 0)
     { skipatstart += 5; newnl = PCRE_NEWLINE_LF; }
-  else if (strncmp((char *)(ptr+skipatstart+2), "CRLF)", 5)  == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_CRLF_RIGHTPAR, 5)  == 0)
     { skipatstart += 7; newnl = PCRE_NEWLINE_CR + PCRE_NEWLINE_LF; }
-  else if (strncmp((char *)(ptr+skipatstart+2), "ANY)", 4) == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_ANY_RIGHTPAR, 4) == 0)
     { skipatstart += 6; newnl = PCRE_NEWLINE_ANY; }
-  else if (strncmp((char *)(ptr+skipatstart+2), "ANYCRLF)", 8)  == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_ANYCRLF_RIGHTPAR, 8) == 0)
     { skipatstart += 10; newnl = PCRE_NEWLINE_ANYCRLF; }
 
-  else if (strncmp((char *)(ptr+skipatstart+2), "BSR_ANYCRLF)", 12) == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_BSR_ANYCRLF_RIGHTPAR, 12) == 0)
     { skipatstart += 14; newbsr = PCRE_BSR_ANYCRLF; }
-  else if (strncmp((char *)(ptr+skipatstart+2), "BSR_UNICODE)", 12) == 0)
+  else if (strncmp((char *)(ptr+skipatstart+2), STRING_BSR_UNICODE_RIGHTPAR, 12) == 0)
     { skipatstart += 14; newbsr = PCRE_BSR_UNICODE; }
 
   if (newnl != 0)
@@ -6071,6 +6822,35 @@ while (ptr[skipatstart] == '(' && ptr[skipatstart+1] == '*')
     options = (options & ~(PCRE_BSR_ANYCRLF|PCRE_BSR_UNICODE)) | newbsr;
   else break;
   }
+
+utf8 = (options & PCRE_UTF8) != 0;
+
+/* Can't support UTF8 unless PCRE has been compiled to include the code. */
+
+#ifdef SUPPORT_UTF8
+if (utf8 && (options & PCRE_NO_UTF8_CHECK) == 0 &&
+     (*erroroffset = _pcre_valid_utf8((USPTR)pattern, -1)) >= 0)
+  {
+  errorcode = ERR44;
+  goto PCRE_EARLY_ERROR_RETURN2;
+  }
+#else
+if (utf8)
+  {
+  errorcode = ERR32;
+  goto PCRE_EARLY_ERROR_RETURN;
+  }
+#endif
+
+/* Can't support UCP unless PCRE has been compiled to include the code. */
+
+#ifndef SUPPORT_UCP
+if ((options & PCRE_UCP) != 0)
+  {
+  errorcode = ERR67;
+  goto PCRE_EARLY_ERROR_RETURN;
+  }
+#endif
 
 /* Check validity of \R options. */
 
@@ -6090,10 +6870,10 @@ current code allows for fixed one- or two-byte sequences, plus "any" and
 switch (options & PCRE_NEWLINE_BITS)
   {
   case 0: newline = NEWLINE; break;   /* Build-time default */
-  case PCRE_NEWLINE_CR: newline = '\r'; break;
-  case PCRE_NEWLINE_LF: newline = '\n'; break;
+  case PCRE_NEWLINE_CR: newline = CHAR_CR; break;
+  case PCRE_NEWLINE_LF: newline = CHAR_NL; break;
   case PCRE_NEWLINE_CR+
-       PCRE_NEWLINE_LF: newline = ('\r' << 8) | '\n'; break;
+       PCRE_NEWLINE_LF: newline = (CHAR_CR << 8) | CHAR_NL; break;
   case PCRE_NEWLINE_ANY: newline = -1; break;
   case PCRE_NEWLINE_ANYCRLF: newline = -2; break;
   default: errorcode = ERR56; goto PCRE_EARLY_ERROR_RETURN;
@@ -6154,6 +6934,7 @@ cd->end_pattern = (const uschar *)(pattern + strlen(pattern));
 cd->req_varyopt = 0;
 cd->external_options = options;
 cd->external_flags = 0;
+cd->open_caps = NULL;
 
 /* Now do the pre-compile. On error, errorcode will be set non-zero, so we
 don't need to look at the result of the function here. The initial options have
@@ -6199,7 +6980,7 @@ regex compiled on a system with 4-byte pointers is run on another with 8-byte
 pointers. */
 
 re->magic_number = MAGIC_NUMBER;
-re->size = size;
+re->size = (int)size;
 re->options = cd->external_options;
 re->flags = cd->external_flags;
 re->dummy1 = 0;
@@ -6228,6 +7009,8 @@ cd->start_code = codestart;
 cd->hwm = cworkspace;
 cd->req_varyopt = 0;
 cd->had_accept = FALSE;
+cd->check_lookbehind = FALSE;
+cd->open_caps = NULL;
 
 /* Set up a starting, non-extracting bracket, then compile the expression. On
 error, errorcode will be set non-zero, so we don't need to look at the result
@@ -6253,7 +7036,7 @@ if debugging, leave the test till after things are printed out. */
 
 *code++ = OP_END;
 
-#ifndef DEBUG
+#ifndef PCRE_DEBUG
 if (code - codestart > length) errorcode = ERR23;
 #endif
 
@@ -6266,9 +7049,9 @@ while (errorcode == 0 && cd->hwm > cworkspace)
   cd->hwm -= LINK_SIZE;
   offset = GET(cd->hwm, 0);
   recno = GET(codestart, offset);
-  groupptr = find_bracket(codestart, (re->options & PCRE_UTF8) != 0, recno);
+  groupptr = _pcre_find_bracket(codestart, utf8, recno);
   if (groupptr == NULL) errorcode = ERR53;
-    else PUT(((uschar *)codestart), offset, groupptr - codestart);
+    else PUT(((uschar *)codestart), offset, (int)(groupptr - codestart));
   }
 
 /* Give an error if there's back reference to a non-existent capturing
@@ -6276,13 +7059,54 @@ subpattern. */
 
 if (errorcode == 0 && re->top_backref > re->top_bracket) errorcode = ERR15;
 
+/* If there were any lookbehind assertions that contained OP_RECURSE
+(recursions or subroutine calls), a flag is set for them to be checked here,
+because they may contain forward references. Actual recursions can't be fixed
+length, but subroutine calls can. It is done like this so that those without
+OP_RECURSE that are not fixed length get a diagnosic with a useful offset. The
+exceptional ones forgo this. We scan the pattern to check that they are fixed
+length, and set their lengths. */
+
+if (cd->check_lookbehind)
+  {
+  uschar *cc = (uschar *)codestart;
+
+  /* Loop, searching for OP_REVERSE items, and process those that do not have
+  their length set. (Actually, it will also re-process any that have a length
+  of zero, but that is a pathological case, and it does no harm.) When we find
+  one, we temporarily terminate the branch it is in while we scan it. */
+
+  for (cc = (uschar *)_pcre_find_bracket(codestart, utf8, -1);
+       cc != NULL;
+       cc = (uschar *)_pcre_find_bracket(cc, utf8, -1))
+    {
+    if (GET(cc, 1) == 0)
+      {
+      int fixed_length;
+      uschar *be = cc - 1 - LINK_SIZE + GET(cc, -LINK_SIZE);
+      int end_op = *be;
+      *be = OP_END;
+      fixed_length = find_fixedlength(cc, re->options, TRUE, cd);
+      *be = end_op;
+      DPRINTF(("fixed length = %d\n", fixed_length));
+      if (fixed_length < 0)
+        {
+        errorcode = (fixed_length == -2)? ERR36 : ERR25;
+        break;
+        }
+      PUT(cc, 1, fixed_length);
+      }
+    cc += 1 + LINK_SIZE;
+    }
+  }
+
 /* Failed to compile, or error while post-processing */
 
 if (errorcode != 0)
   {
   (pcre_free)(re);
   PCRE_EARLY_ERROR_RETURN:
-  *erroroffset = ptr - (const uschar *)pattern;
+  *erroroffset = (int)(ptr - (const uschar *)pattern);
   PCRE_EARLY_ERROR_RETURN2:
   *errorptr = find_error_text(errorcode);
   if (errorcodeptr != NULL) *errorcodeptr = errorcode;
@@ -6336,8 +7160,7 @@ if (reqbyte >= 0 &&
 /* Print out the compiled data if debugging is enabled. This is never the
 case when building a production library. */
 
-#ifdef DEBUG
-
+#ifdef PCRE_DEBUG
 printf("Length = %d top_bracket = %d top_backref = %d\n",
   length, re->top_bracket, re->top_backref);
 
@@ -6374,7 +7197,7 @@ if (code - codestart > length)
   if (errorcodeptr != NULL) *errorcodeptr = ERR23;
   return NULL;
   }
-#endif   /* DEBUG */
+#endif   /* PCRE_DEBUG */
 
 return (pcre *)re;
 }

@@ -45,10 +45,12 @@ The following information is available:
   PCRE_INFO_FIRSTTABLE      Table of first bytes (after studying)
   PCRE_INFO_JCHANGED        Return 1 if (?J) or (?-J) was used
   PCRE_INFO_LASTLITERAL     Literal last byte required
+  PCRE_INFO_MINLENGTH       Lower bound length of matching strings
   PCRE_INFO_NAMECOUNT       Number of named subpatterns
   PCRE_INFO_NAMEENTRYSIZE   Size of name table entry
   PCRE_INFO_NAMETABLE       Pointer to name table
   PCRE_INFO_OKPARTIAL       Return 1 if partial matching can be tried
+                              (always returns 1 after release 8.00)
   PCRE_INFO_OPTIONS         Option bits used for compilation
   PCRE_INFO_SIZE            Size of compiled pattern
   PCRE_INFO_STUDYSIZE       Size of study data

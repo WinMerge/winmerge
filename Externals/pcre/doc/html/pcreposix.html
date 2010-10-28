@@ -59,11 +59,16 @@ command for linking an application that uses them. Because the POSIX functions
 call the native ones, it is also necessary to add <b>-lpcre</b>.
 </P>
 <P>
-I have implemented only those option bits that can be reasonably mapped to PCRE
-native options. In addition, the option REG_EXTENDED is defined with the value
-zero. This has no effect, but since programs that are written to the POSIX
-interface often use it, this makes it easier to slot in PCRE as a replacement
-library. Other POSIX options are not even defined.
+I have implemented only those POSIX option bits that can be reasonably mapped
+to PCRE native options. In addition, the option REG_EXTENDED is defined with
+the value zero. This has no effect, but since programs that are written to the
+POSIX interface often use it, this makes it easier to slot in PCRE as a
+replacement library. Other POSIX options are not even defined.
+</P>
+<P>
+There are also some other options that are not defined by POSIX. These have
+been added at the request of users who want to make use of certain
+PCRE-specific features via the POSIX calling interface.
 </P>
 <P>
 When PCRE is called via these functions, it is only the API that is POSIX-like
@@ -81,8 +86,6 @@ structure types, <i>regex_t</i> for compiled internal forms, and
 <i>regmatch_t</i> for returning captured substrings. It also defines some
 constants whose names start with "REG_"; these are used for setting options and
 identifying error codes.
-</P>
-<P>
 </P>
 <br><a name="SEC3" href="#TOC1">COMPILING A PATTERN</a><br>
 <P>
@@ -121,6 +124,19 @@ compiled with this flag is passed to <b>regexec()</b> for matching, the
 <i>nmatch</i> and <i>pmatch</i> arguments are ignored, and no captured strings
 are returned.
 <pre>
+  REG_UCP
+</pre>
+The PCRE_UCP option is set when the regular expression is passed for
+compilation to the native function. This causes PCRE to use Unicode properties
+when matchine \d, \w, etc., instead of just recognizing ASCII values. Note
+that REG_UTF8 is not part of the POSIX standard.
+<pre>
+  REG_UNGREEDY
+</pre>
+The PCRE_UNGREEDY option is set when the regular expression is passed for
+compilation to the native function. Note that REG_UNGREEDY is not part of the
+POSIX standard.
+<pre>
   REG_UTF8
 </pre>
 The PCRE_UTF8 option is set when the regular expression is passed for
@@ -134,7 +150,7 @@ This means the the regex is compiled with PCRE default semantics. In
 particular, the way it handles newline characters in the subject string is the
 Perl way, not the POSIX way. Note that setting PCRE_MULTILINE has only
 <i>some</i> of the effects specified for REG_NEWLINE. It does not affect the way
-newlines are matched by . (they aren't) or by a negative class such as [^a]
+newlines are matched by . (they are not) or by a negative class such as [^a]
 (they are).
 </P>
 <P>
@@ -142,6 +158,11 @@ The yield of <b>regcomp()</b> is zero on success, and non-zero otherwise. The
 <i>preg</i> structure is filled in on success, and one member of the structure
 is public: <i>re_nsub</i> contains the number of capturing subpatterns in
 the regular expression. Various error codes are defined in the header file.
+</P>
+<P>
+NOTE: If the yield of <b>regcomp()</b> is non-zero, you must not attempt to
+use the contents of the <i>preg</i> structure. If, for example, you pass it to
+<b>regexec()</b>, the result is undefined and your program is likely to crash.
 </P>
 <br><a name="SEC4" href="#TOC1">MATCHING NEWLINE CHARACTERS</a><br>
 <P>
@@ -189,6 +210,12 @@ be:
 The PCRE_NOTBOL option is set when calling the underlying PCRE matching
 function.
 <pre>
+  REG_NOTEMPTY
+</pre>
+The PCRE_NOTEMPTY option is set when calling the underlying PCRE matching
+function. Note that REG_NOTEMPTY is not part of the POSIX standard. However,
+setting this option can give more POSIX-like behaviour in some situations.
+<pre>
   REG_NOTEOL
 </pre>
 The PCRE_NOTEOL option is set when calling the underlying PCRE matching
@@ -209,6 +236,10 @@ how it is matched.
 If the pattern was compiled with the REG_NOSUB flag, no data about any matched
 strings is returned. The <i>nmatch</i> and <i>pmatch</i> arguments of
 <b>regexec()</b> are ignored.
+</P>
+<P>
+If the value of <i>nmatch</i> is zero, or if the value <i>pmatch</i> is NULL,
+no data about any matched strings is returned.
 </P>
 <P>
 Otherwise,the portion of the string that was matched, and also any captured
@@ -251,9 +282,9 @@ Cambridge CB2 3QH, England.
 </P>
 <br><a name="SEC9" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 05 April 2008
+Last updated: 16 May 2010
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.
