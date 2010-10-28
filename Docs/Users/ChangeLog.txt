@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX). To open the tracker item, go to URL:
 http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.13.21
+  Update PCRE to version 8.10
+  Update SCEW to version 1.1.2
   Improve startup time (#2788142)
   Add menuitems for selecting automatic or manual prediffing (#2638608)
   Add accelerator keys for Shell context menu (#2823536)
