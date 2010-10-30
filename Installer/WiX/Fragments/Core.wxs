@@ -17,13 +17,6 @@
           Vital="yes" />
       </Component>
       
-      <Component Id="heksedit" Guid="*" Win64="$(var.Win64)">
-        <File Id="hekseditUDLL" 
-          Name="hekseditU.dll" 
-          Source="$(var.HekseditBuildDir)\hekseditU.dll" 
-          Vital="yes" />
-      </Component>
-      
       <Component Id="pcre" Guid="*" Win64="$(var.Win64)">
         <File Id="pcreDLL" 
           Name="pcre.dll" 

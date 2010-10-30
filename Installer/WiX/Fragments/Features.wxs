@@ -16,7 +16,6 @@
       <ComponentRef Id="WinMergeU" />
       <ComponentRef Id="libexpat" />
       <ComponentRef Id="pcre" />
-      <ComponentRef Id="heksedit" />
       <ComponentRef Id="MergeLang" />
       <ComponentRef Id="StartMenuShortcuts" />
       <ComponentRef Id="DesktopShortcut" />

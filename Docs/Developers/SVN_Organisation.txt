@@ -13,7 +13,6 @@ WinMerge Folder Structure
      - Manual
  - Externals
    - expat
-   - heksedit
    - pcre
    - scew
  - Filters
@@ -81,9 +80,6 @@ WinMerge/Externals/
 
 WinMerge/Externals/expat/
  - Expat XML parser <http://expat.sourceforge.net/>
-
-WinMerge/Externals/heksedit/
- - Frhed binary file editor's heksedit component <http://frhed.sourceforge.net/>
 
 WinMerge/Externals/pcre/
  - PCRE - Perl Compatible Regular Expression <http://www.pcre.org/>

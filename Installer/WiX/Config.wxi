@@ -20,7 +20,6 @@
     
     <?define ProgramFilesFolder = "ProgramFiles64Folder" ?>
     <?define MergeBuildDir = "..\..\Build\x64\MergeRelease" ?>
-    <?define HekseditBuildDir = "..\..\Build\heksedit\x64\Release" ?>
     <?define ExpatBuildDir = "..\..\Build\expat\lib\x64\Release" ?>
     <?define PcreBuildDir = "..\..\Build\pcre\lib\x64\Release" ?>
     <?define ShellExtBuildDir = "..\..\Build\ShellExtension\x64 release" ?>
@@ -38,7 +37,6 @@
     <?define ProgramFilesFolder = "ProgramFilesFolder" ?>
     <?define MergeBuildDir = "..\..\Build\MergeUnicodeRelease" ?>
     <?define ExpatBuildDir = "..\..\Build\expat" ?>
-    <?define HekseditBuildDir = "..\..\Build\heksedit" ?>
     <?define PcreBuildDir = "..\..\Build\pcre" ?>
     <?define ShellExtBuildDir = "..\..\Build\MergeUnicodeRelease" ?>
     
