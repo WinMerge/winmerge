@@ -49,20 +49,10 @@ mkdir ..\Build\pcre
 mkdir ..\Build\heksedit
 goto %1
 
-:.\..\BuildTmp\MergeDebug
-%info% ANSI/Debug
-mkdir ..\Build\MergeDebug
-goto Debug
-
 :.\..\BuildTmp\MergeUnicodeDebug
 %info% UNICODE/Debug
 mkdir ..\Build\MergeUnicodeDebug
 goto Debug
-
-:.\..\BuildTmp\MergeRelease
-%info% ANSI/Release
-mkdir ..\Build\MergeRelease
-goto Release
 
 :.\..\BuildTmp\MergeUnicodeRelease
 %info% UNICODE/Release
