@@ -10,10 +10,6 @@ Global
 		UnicodeRelease|Win32 = UnicodeRelease|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A81DB64-C062-48AF-8D2E-23B68320142D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2A81DB64-C062-48AF-8D2E-23B68320142D}.Debug|Win32.Build.0 = Debug|Win32
-		{2A81DB64-C062-48AF-8D2E-23B68320142D}.Release|Win32.ActiveCfg = Release|Win32
-		{2A81DB64-C062-48AF-8D2E-23B68320142D}.Release|Win32.Build.0 = Release|Win32
 		{2A81DB64-C062-48AF-8D2E-23B68320142D}.UnicodeDebug|Win32.ActiveCfg = UnicodeDebug|Win32
 		{2A81DB64-C062-48AF-8D2E-23B68320142D}.UnicodeDebug|Win32.Build.0 = UnicodeDebug|Win32
 		{2A81DB64-C062-48AF-8D2E-23B68320142D}.UnicodeRelease|Win32.ActiveCfg = UnicodeRelease|Win32
