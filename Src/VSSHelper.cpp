@@ -64,14 +64,14 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 	if (tempPath.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath: %s")
-			, GetSysError(nerr)));
+			, GetSysError(nerr).c_str()));
 		return FALSE;
 	}
 	String tempFile = env_GetTempFileName(tempPath.c_str(), _T("_LT"), &nerr);
 	if (tempFile.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile: %s")
-			, GetSysError(nerr)));
+			, GetSysError(nerr).c_str()));
 		return FALSE;
 	}
 
