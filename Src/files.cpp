@@ -67,7 +67,7 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	{
 		bSuccess = FALSE;
 		LogErrorString(Fmt(_T("CreateFile(%s) failed in files_openFileMapped: %s")
-			, fileData->fileName, GetSysError(GetLastError())));
+			, fileData->fileName, GetSysError(GetLastError()).c_str()));
 	}
 	else
 	{
@@ -95,7 +95,7 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 		{
 			bSuccess = FALSE;
 			LogErrorString(Fmt(_T("CreateFileMapping(%s) failed: %s")
-				, fileData->fileName, GetSysError(GetLastError())));
+				, fileData->fileName, GetSysError(GetLastError()).c_str()));
 		}
 		else
 		{
@@ -105,7 +105,7 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 			{
 				bSuccess = FALSE;
 				LogErrorString(Fmt(_T("MapViewOfFile(%s) failed: %s")
-					, fileData->fileName, GetSysError(GetLastError())));
+					, fileData->fileName, GetSysError(GetLastError()).c_str()));
 			}
 		}
 	}
