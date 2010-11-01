@@ -55,7 +55,7 @@
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32"
-				PreprocessorDefinitions="WIN32;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;_STATIC_CPPLIB"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -155,7 +155,7 @@
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32"
-				PreprocessorDefinitions="WIN64;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE"
+				PreprocessorDefinitions="WIN64;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_STATIC_CPPLIB"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -253,7 +253,7 @@
 				AdditionalOptions="/EHa "
 				Optimization="0"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;_STATIC_CPPLIB"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
@@ -349,7 +349,7 @@
 				AdditionalOptions="/EHa "
 				Optimization="0"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32"
-				PreprocessorDefinitions="_DEBUG;WIN64;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE"
+				PreprocessorDefinitions="_DEBUG;WIN64;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_STATIC_CPPLIB"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
@@ -1965,7 +1965,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1975,7 +1975,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2029,7 +2029,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2039,7 +2039,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2071,7 +2071,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2081,7 +2081,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -5837,7 +5837,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5847,7 +5847,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5901,7 +5901,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5911,7 +5911,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5943,7 +5943,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5953,7 +5953,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -5967,7 +5967,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5977,7 +5977,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6031,7 +6031,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6041,7 +6041,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6073,7 +6073,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6083,7 +6083,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -6499,7 +6499,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6509,7 +6509,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6563,7 +6563,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6573,7 +6573,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6605,7 +6605,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -6615,7 +6615,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -10487,7 +10487,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10497,7 +10497,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10551,7 +10551,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10561,7 +10561,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10593,7 +10593,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10603,7 +10603,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -10889,7 +10889,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10899,7 +10899,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10953,7 +10953,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10963,7 +10963,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -10995,7 +10995,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11005,93 +11005,13 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Merge.rc"
 				>
-				<FileConfiguration
-					Name="UnicodeRelease|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeRelease|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Debug|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Debug|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Release|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="X64 Release|x64"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="MergeCmdLineInfo.cpp"
@@ -11363,7 +11283,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11373,7 +11293,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11427,7 +11347,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11437,7 +11357,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11469,7 +11389,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -11479,7 +11399,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -12545,7 +12465,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -12555,7 +12475,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -12609,7 +12529,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -12619,7 +12539,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -12651,7 +12571,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -12661,7 +12581,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -15307,7 +15227,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15317,7 +15237,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15371,7 +15291,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15381,7 +15301,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15413,7 +15333,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15423,7 +15343,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -15831,7 +15751,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15841,7 +15761,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15895,7 +15815,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15905,7 +15825,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15937,7 +15857,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -15947,7 +15867,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -17247,7 +17167,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17257,7 +17177,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17311,7 +17231,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17321,7 +17241,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17353,7 +17273,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -17363,7 +17283,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
@@ -17767,7 +17687,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -17778,7 +17698,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -17837,7 +17757,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -17848,7 +17768,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -17883,7 +17803,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -17894,7 +17814,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
@@ -19998,7 +19918,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -20008,7 +19928,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -20062,7 +19982,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -20072,7 +19992,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -20104,7 +20024,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -20114,7 +20034,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN64;_WINDOWS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
 			</File>
