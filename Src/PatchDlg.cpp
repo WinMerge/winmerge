@@ -175,6 +175,7 @@ void CPatchDlg::OnOK()
 
 	// Save combobox history
 	m_ctlResult.SaveState(_T("Files\\DiffFileResult"));
+	m_comboContext.SaveState(_T("PatchCreator\\DiffContext"));
 	// Don't save filenames if multiple file selected (as editbox reads
 	// [X files selected])
 	if (selectCount <= 1)
@@ -201,6 +202,7 @@ BOOL CPatchDlg::OnInitDialog()
 	// Load combobox history
 	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));
 	m_ctlFile2.LoadState(_T("Files\\DiffFile2"));
+	m_comboContext.LoadState(_T("PatchCreator\\DiffContext"));
 	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
 
 	int count = m_fileList.size();
@@ -233,13 +235,15 @@ BOOL CPatchDlg::OnInitDialog()
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
 
-	// Add context line counts to combobox
-	m_comboContext.AddString(_T("0"));
-	m_comboContext.AddString(_T("1"));
-	m_comboContext.AddString(_T("3"));
-	m_comboContext.AddString(_T("5"));
-	m_comboContext.AddString(_T("7"));
-	m_comboContext.AddString(_T("11"));
+	// Add default context line counts to combobox if its empty
+	if (m_comboContext.GetCount() == 0)
+	{
+		m_comboContext.AddString(_T("0"));
+		m_comboContext.AddString(_T("1"));
+		m_comboContext.AddString(_T("3"));
+		m_comboContext.AddString(_T("5"));
+		m_comboContext.AddString(_T("7"));
+	}
 	
 	LoadSettings();
 
