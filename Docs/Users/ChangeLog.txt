@@ -11,6 +11,7 @@ WinMerge 2.13.21
   Add accelerator keys for Shell context menu (#2823536)
   Improve editing of linefilter regular expressions (#3015416)
   Allow editing context line count in patch creator (#2092180)
+  Improve color options organization (#2818451)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
 
