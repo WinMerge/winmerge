@@ -72,7 +72,7 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Location for command line help to open. */
 static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 
-
+#ifndef WIN64
 /**
  * @brief Turn STL exceptions into MFC exceptions.
  * Based on the article "Visual C++ Exception-Handling Instrumentation"
@@ -128,6 +128,7 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 		RaiseException(CPP_EXCEPTION, EXCEPTION_NONCONTINUABLE, _countof(args), args);
 	}
 }
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
