@@ -3178,9 +3178,9 @@ INT_PTR BCMenu::AddToGlobalImageList(CImageList *il,int xoffset,int nID)
 			GetDisabledBitmap(bmp3);
 			pWnd->ReleaseDC(pDC);  // Release the DC
 		}
-		UINT numcurrent=(UINT)m_AllImagesID.GetSize();
-		UINT existsloc = -1;
-		for(UINT i=0;i<numcurrent;++i){
+		INT_PTR numcurrent=m_AllImagesID.GetSize();
+		INT_PTR existsloc = -1;
+		for(INT_PTR i=0;i<numcurrent;++i){
 			if(m_AllImagesID[i]==nID){
 				existsloc=i;
 				break;
