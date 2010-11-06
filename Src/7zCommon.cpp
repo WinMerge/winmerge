@@ -735,7 +735,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
  */
 Merge7z::Proxy Merge7z =
 {
-	0, 0, DllBuild_Merge7z,
+	{ 0, 0, DllBuild_Merge7z },
 	"Merge7z%u%02u"DECORATE_U".dll",
 	"Merge7z"
 };
