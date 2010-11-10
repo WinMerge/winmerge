@@ -34,7 +34,7 @@
 #include "MDITabBar.h"
 #include "OptionsMgr.h"
 #include "VSSHelper.h"
-struct FileLocation;
+#include "MergeCmdLineInfo.h"
 
 /**
  * @brief Flags used when opening files
@@ -83,7 +83,7 @@ class CMergeDiffDetailView;
 class SyntaxColors;
 class LineFiltersList;
 class TempFile;
-
+struct FileLocation;
 
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
@@ -177,7 +177,7 @@ public:
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	BOOL m_bFlashing; /**< Window is flashing. */
-	BOOL m_bExitIfNoDiff; /**< If command line switch -x given close application if files are identical. */
+	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	LineFiltersList *m_pLineFilters; /**< List of linefilters */
 
 	/**

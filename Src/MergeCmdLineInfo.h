@@ -44,11 +44,18 @@ public:
 
 public:
 
+	enum ExitNoDiff
+	{
+		Disabled, /**< Don't exit. */
+		Exit, /**< Exit and show message. */
+		ExitQuiet, /**< Exit and don't show message. */
+	};
+
 	int m_nCmdShow; /**< Initial state of the application's window. */
 
 	bool m_bClearCaseTool; /**< Running as Rational ClearCase external tool. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
-	bool m_bExitIfNoDiff; /**< Exit after telling the user that files are identical. */
+	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
 	bool m_bRecurse; /**< Include sub folder in directories compare. */
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
 	bool m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */

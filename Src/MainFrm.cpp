@@ -74,6 +74,7 @@
 #include "FileOrFolderSelect.h"
 #include "PropBackups.h"
 #include "PluginsListDlg.h"
+#include "MergeCmdLineInfo.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -274,7 +275,7 @@ CMainFrame::CMainFrame()
 , m_bFirstTime(TRUE)
 , m_bEscShutdown(FALSE)
 , m_bClearCaseTool(FALSE)
-, m_bExitIfNoDiff(FALSE)
+, m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_bShowErrors(TRUE)
 , m_CheckOutMulti(FALSE)
 , m_bVCProjSync(FALSE)
