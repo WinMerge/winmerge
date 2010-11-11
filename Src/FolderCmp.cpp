@@ -346,7 +346,6 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	return code;
 }
 
-
 /**
  * @brief Get actual compared paths from DIFFITEM.
  * @note If item is unique, same path is returned for both.

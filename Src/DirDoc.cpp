@@ -313,7 +313,8 @@ void CDirDoc::LoadLineFilterList()
  */
 void CDirDoc::Rescan()
 {
-	if (!m_pCtxt) return;
+	if (!m_pCtxt)
+		return;
 
 	CDirFrame *pf = m_pDirView->GetParentFrame();
 
@@ -435,15 +436,15 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			// users see files appearing/disappearing without clear logic.		
 			if (GetOptionsMgr()->GetBool(OPT_TREE_MODE))
 			{
-			// result filters
-			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-				return FALSE;
+				// result filters
+				if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+					return FALSE;
 
-			// result filters
-			if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
-				return FALSE;
-			if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-				return FALSE;
+				// result filters
+				if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
+					return FALSE;
+				if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
+					return FALSE;
 			}
 		}
 	}

@@ -2828,17 +2828,16 @@ void CMergeDoc::SwapFiles()
 	m_pDetailView[1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
-    swap(m_ptBuf[0], m_ptBuf[1]);
-    swap(m_pView[0], m_pView[1]);
-    swap(m_pDetailView[0], m_pDetailView[1]);
-    swap(m_pSaveFileInfo[0], m_pSaveFileInfo[1]);
-    swap(m_pRescanFileInfo[0], m_pRescanFileInfo[1]);
-    swap(m_nBufferType[0], m_nBufferType[1]);
-    swap(m_bEditAfterRescan[0], m_bEditAfterRescan[1]);
+	swap(m_ptBuf[0], m_ptBuf[1]);
+	swap(m_pView[0], m_pView[1]);
+	swap(m_pDetailView[0], m_pDetailView[1]);
+	swap(m_pSaveFileInfo[0], m_pSaveFileInfo[1]);
+	swap(m_pRescanFileInfo[0], m_pRescanFileInfo[1]);
+	swap(m_nBufferType[0], m_nBufferType[1]);
+	swap(m_bEditAfterRescan[0], m_bEditAfterRescan[1]);
 	m_strDesc[0].swap(m_strDesc[1]);
 
 	m_filePaths.Swap();
-	
 	m_diffList.Swap();
 
 	m_ptBuf[0]->m_nThisPane = 0;

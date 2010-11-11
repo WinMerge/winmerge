@@ -927,7 +927,6 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 				nBottomCoord +=iPos;
 			}
 		}
-
 	}
 
 	// Store current values for later use (to check if area changes)

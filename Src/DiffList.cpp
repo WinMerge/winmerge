@@ -467,7 +467,8 @@ int DiffList::LastSignificantDiff() const
  */
 const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 {
-	if (m_firstSignificant == -1) return NULL;
+	if (m_firstSignificant == -1)
+		return NULL;
 	return DiffRangeAt(m_firstSignificant);
 }
 
@@ -477,7 +478,8 @@ const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
  */
 const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 {
-	if (m_lastSignificant == -1) return NULL;
+	if (m_lastSignificant == -1)
+		return NULL;
 	return DiffRangeAt(m_lastSignificant);
 }
 
