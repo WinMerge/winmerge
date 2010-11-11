@@ -142,6 +142,7 @@ Localization:
 Other Contributors (code, ideas, testing..):
 * Andre Arpin
 * Steve Beaudoin
+* bulklodd <bulklodd@users.sourceforge.net>
 * Adam Carrivick
 * Hern Chen
 * Jeremy Dewey

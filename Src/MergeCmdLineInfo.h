@@ -60,6 +60,7 @@ public:
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
 	bool m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */
+	int  m_nCodepage;  /**< Codepage. */
 
 	DWORD m_dwLeftFlags; /**< Left side file's behavior options. */
 	DWORD m_dwRightFlags; /**< Right side file's behavior options. */

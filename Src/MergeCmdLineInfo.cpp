@@ -123,6 +123,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
 	m_bNonInteractive(false),
 	m_bSingleInstance(false),
 	m_bShowUsage(false),
+	m_nCodepage(0),
 	m_dwLeftFlags(FFILEOPEN_CMDLINE),
 	m_dwRightFlags(FFILEOPEN_CMDLINE)
 {
@@ -334,6 +335,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 			// -xn to close application if files are identical without showing
 			// any messages
 			m_bExitIfNoDiff = ExitQuiet;
+		}
+		else if (param == _T("cp"))
+		{
+			String codepage;
+			q = EatParam(q, codepage);
+			m_nCodepage = _ttoi(codepage.c_str());
 		}
 		else if (param == _T("ignorews"))
 		{

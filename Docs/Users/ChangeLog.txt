@@ -14,6 +14,7 @@ WinMerge 2.13.21
   Improve color options organization (#2818451)
   Add /xq command line switch for closing WinMerge after identical files
     and not showing message (#2827836)
+  Allow setting codepage from command line (#2725549)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
 

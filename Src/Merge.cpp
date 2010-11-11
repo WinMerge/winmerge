@@ -56,6 +56,7 @@
 #include "OptionsDef.h"
 #include "MergeCmdLineInfo.h"
 #include "ConflictFileParser.h"
+#include "codepage.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -624,6 +625,12 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
 		m_globalFileFilter.SetFilter(cmdInfo.m_sFileFilter.c_str());
+	}
+
+	// Set codepage.
+	if (cmdInfo.m_nCodepage)
+	{
+		updateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
 
 	// Unless the user has requested to see WinMerge's usage open files for
