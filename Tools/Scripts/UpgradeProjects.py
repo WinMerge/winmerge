@@ -46,7 +46,6 @@ solutions = [r'Externals\expat\expat.sln',
 
 projects = [r'Externals\scew\win32\scew.vcproj',
     r'Externals\pcre\Win32\pcre.vcproj',
-    r'Externals\heksedit\heksedit.vcproj',
     r'ShellExtension\ShellExtension.vcproj']
 
 # These projects need the manifest file fix
