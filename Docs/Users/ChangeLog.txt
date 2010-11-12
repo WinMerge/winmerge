@@ -17,6 +17,7 @@ WinMerge 2.13.21
   Allow setting codepage from command line (#2725549)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
+  Bugfix: Pane headers not updated after language change (#2923684)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)

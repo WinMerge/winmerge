@@ -767,6 +767,8 @@ void CChildFrame::UpdateResources()
 {
 	m_leftStatus.UpdateResources();
 	m_rightStatus.UpdateResources();
+	m_wndLocationBar.UpdateResources();
+	m_wndDetailBar.UpdateResources();
 }
 
 /**
