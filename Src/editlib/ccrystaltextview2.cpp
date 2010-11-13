@@ -49,6 +49,7 @@
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include <malloc.h>
+#include "string_util.h"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")

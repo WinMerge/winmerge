@@ -11,6 +11,7 @@
 #include <vector>
 #include <mbctype.h>
 #include "UnicodeString.h"
+#include "string_util.h"
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
