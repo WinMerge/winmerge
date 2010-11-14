@@ -3191,7 +3191,9 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 {
  	CMergeDoc *pDoc = GetDocument();
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
-	CMergeEditView *pCurrentView = static_cast<CMergeEditView*>
+	CMergeEditView *pCurrentView = NULL;
+	if (pSplitterWnd)
+		pCurrentView = static_cast<CMergeEditView*>
 			(pSplitterWnd->GetActivePane());
 
 	int nRealLine = nLine;
@@ -3236,7 +3238,10 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
 	if (pDoc->GetView(pane) != pCurrentView)
-		pSplitterWnd->SetActivePane(0, pane);
+	{
+		if (pSplitterWnd)
+			pSplitterWnd->SetActivePane(0, pane);
+	}
 }
 
 /**
