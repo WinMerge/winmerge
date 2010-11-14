@@ -39,7 +39,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="version.lib shlwapi.lib odbc32.lib odbccp32.lib"
 				OutputFile="../../Build/MergeRelease/Merge7zxxx.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -103,7 +103,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="version.lib shlwapi.lib odbc32.lib odbccp32.lib"
 				OutputFile="../../Build/MergeUnicodeDebug/Merge7zxxxU.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -169,7 +169,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="version.lib shlwapi.lib odbc32.lib odbccp32.lib"
 				OutputFile="../../Build/MergeUnicodeRelease/Merge7zxxxU.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -233,7 +233,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="shlwapi.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="version.lib shlwapi.lib odbc32.lib odbccp32.lib"
 				OutputFile="../../Build/MergeDebug/Merge7zxxx.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"

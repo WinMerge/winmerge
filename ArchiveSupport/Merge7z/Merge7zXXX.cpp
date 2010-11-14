@@ -7,7 +7,7 @@
 #include "dllpstub.h"
 #include "Common/UnicodeString.h"
 #include "PipeIPC.h"
-#define DllBuild_Merge7z 27
+#define DllBuild_Merge7z 28
 #include "Merge7z.h"
 #include "tools.h"
 #include "resource.h"
