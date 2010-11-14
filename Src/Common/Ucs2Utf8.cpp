@@ -45,7 +45,18 @@ UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUtf)
 	// quick way 
 	UINT i=0;
 	for (i = 0 ; i < nUcs && nremains > 10; ++i)
-		nremains -= ucr::to_utf8_advance(psUcs[i], pc);
+	{
+		if (psUcs[i] >= 0xd800 && psUcs[i] <= 0xdfff && i + 1 < nUcs)
+		{
+			UINT uchar = ((psUcs[i] & 0x3ff) << 10) | (psUcs[i + 1] & 0x3ff) | 0x10000;
+			nremains -= ucr::to_utf8_advance(uchar, pc);
+			i++;
+		}
+		else
+		{
+			nremains -= ucr::to_utf8_advance(psUcs[i], pc);
+		}
+	}
 
 	// be careful for the end of the buffer, risk of overflow because
 	// of the variable length of the UTF-8 character
@@ -53,7 +64,18 @@ UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUtf)
 	int nremainsend = nremains;
 	unsigned char * pcTemp = (unsigned char *) smallTempBuffer;
 	for ( ; i < nUcs && nremainsend > 0; ++i)
-		nremainsend -= ucr::to_utf8_advance(psUcs[i], pcTemp);
+	{
+		if (psUcs[i] >= 0xd800 && psUcs[i] <= 0xdfff && i + 1 < nUcs)
+		{
+			UINT uchar = ((psUcs[i] & 0x3ff) << 10) | (psUcs[i + 1] & 0x3ff) | 0x10000;
+			nremainsend -= ucr::to_utf8_advance(uchar, pc);
+			i++;
+		}
+		else
+		{
+			nremainsend -= ucr::to_utf8_advance(psUcs[i], pcTemp);
+		}
+	}
 
 	int ncomplement = min(nremains, pcTemp-smallTempBuffer);
 	CopyMemory(pc, smallTempBuffer, ncomplement);
