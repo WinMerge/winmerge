@@ -30,7 +30,7 @@ DIFFITEM::~DIFFITEM()
 }
 
 /** @brief Return path to left file, including all but file name */
-String DIFFITEM::getLeftFilepath(const String &sLeftRoot) const
+String DIFFITEM::GetLeftFilepath(const String &sLeftRoot) const
 {
 	String sPath;
 	if (!diffcode.isSideRightOnly())
@@ -41,7 +41,7 @@ String DIFFITEM::getLeftFilepath(const String &sLeftRoot) const
 }
 
 /** @brief Return path to right file, including all but file name */
-String DIFFITEM::getRightFilepath(const String &sRightRoot) const
+String DIFFITEM::GetRightFilepath(const String &sRightRoot) const
 {
 	String sPath;
 	if (!diffcode.isSideLeftOnly())

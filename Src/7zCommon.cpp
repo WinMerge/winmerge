@@ -905,8 +905,8 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	envelope->FullPath = sFilename;
 	envelope->FullPath.insert(0, _T("\\"));
 	envelope->FullPath.insert(0, m_bRight ?
-		di.getRightFilepath(pDoc->GetRightBasePath()) :
-		di.getLeftFilepath(pDoc->GetLeftBasePath()));
+		di.GetRightFilepath(pDoc->GetRightBasePath()) :
+		di.GetLeftFilepath(pDoc->GetLeftBasePath()));
 
 	UINT32 Recurse = item.Mask.Recurse;
 
@@ -924,7 +924,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.left.path;
-					envelope->FullPath = di.getLeftFilepath(pDoc->GetLeftBasePath());
+					envelope->FullPath = di.GetLeftFilepath(pDoc->GetLeftBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideLeft = false;
 					Recurse = 0;
@@ -943,7 +943,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.right.path;
-					envelope->FullPath = di.getRightFilepath(pDoc->GetRightBasePath());
+					envelope->FullPath = di.GetRightFilepath(pDoc->GetRightBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideRight = false;
 					Recurse = 0;
@@ -1099,7 +1099,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 		{
 			cchBuffer +=
 			(
-				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath)
+				m_bRight ? di.GetRightFilepath(sLeftRootPath) : di.GetLeftFilepath(sRightRootPath)
 			).length() + (m_bRight ? di.right.filename : di.left.filename).length() + 2;
 		}
 	}
@@ -1113,7 +1113,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			(
 				pchBuffer,
 				_T("%s\\%s"),
-				m_bRight ? di.getRightFilepath(sLeftRootPath).c_str() : di.getLeftFilepath(sRightRootPath).c_str(),
+				m_bRight ? di.GetRightFilepath(sLeftRootPath).c_str() : di.GetLeftFilepath(sRightRootPath).c_str(),
 				m_bRight ? di.right.filename.c_str() : di.left.filename.c_str()
 			) + 1;
 		}

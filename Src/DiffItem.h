@@ -144,9 +144,8 @@ struct DIFFITEM : ListEntry
 	DIFFITEM() : parent(NULL), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
 	~DIFFITEM();
 
-	bool isEmpty() const { return this == &emptyitem; }
-	String getLeftFilepath(const String &sLeftRoot) const;
-	String getRightFilepath(const String &sRightRoot) const;
+	String GetLeftFilepath(const String &sLeftRoot) const;
+	String GetRightFilepath(const String &sRightRoot) const;
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
 	bool HasChildren() const;

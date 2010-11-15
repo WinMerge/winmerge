@@ -731,9 +731,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 				!di.diffcode.isSideLeftOnly() && !di.diffcode.isSideRightOnly() &&
 				!di.diffcode.isResultFiltered())
 		{
-			String leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
+			String leftPath = di.GetLeftFilepath(pDoc->GetLeftBasePath()) +
 					_T("\\") + di.left.filename;
-			String rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
+			String rightPath = di.GetRightFilepath(pDoc->GetRightBasePath()) +
 					_T("\\") + di.right.filename;
 			CString filteredFilenames;
 			filteredFilenames.Format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
@@ -820,8 +820,8 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE side)
 			continue;
 
 		String currentDir = (side == SIDE_LEFT) ?
-				di.getLeftFilepath(pDoc->GetLeftBasePath()) :
-				di.getRightFilepath(pDoc->GetRightBasePath());
+				di.GetLeftFilepath(pDoc->GetLeftBasePath()) :
+				di.GetRightFilepath(pDoc->GetRightBasePath());
 
 		String filename = ((side == SIDE_LEFT) ? di.left.filename : di.right.filename);
 
@@ -3090,7 +3090,7 @@ void CDirView::OnCopyLeftPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideRightOnly())
 		{
-			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
+			strPaths += di.GetLeftFilepath(GetDocument()->GetLeftBasePath());
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
@@ -3115,7 +3115,7 @@ void CDirView::OnCopyRightPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideLeftOnly())
 		{
-			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
+			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
@@ -3140,7 +3140,7 @@ void CDirView::OnCopyBothPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isSideRightOnly())
 		{
-			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
+			strPaths += di.GetLeftFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
@@ -3150,7 +3150,7 @@ void CDirView::OnCopyBothPathnames()
 
 		if (!di.diffcode.isSideLeftOnly())
 		{
-			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
+			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.

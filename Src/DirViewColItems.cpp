@@ -277,12 +277,12 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	else if (di.diffcode.isSideLeftOnly())
 	{
 		s = theApp.LoadString(IDS_LEFT_ONLY_IN_FMT);
-		string_replace(s, _T("%1"), di.getLeftFilepath(pCtxt->GetNormalizedLeft()).c_str());
+		string_replace(s, _T("%1"), di.GetLeftFilepath(pCtxt->GetNormalizedLeft()).c_str());
 	}
 	else if (di.diffcode.isSideRightOnly())
 	{
 		s = theApp.LoadString(IDS_RIGHT_ONLY_IN_FMT);
-		string_replace(s, _T("%1"), di.getRightFilepath(pCtxt->GetNormalizedRight()).c_str());
+		string_replace(s, _T("%1"), di.GetRightFilepath(pCtxt->GetNormalizedRight()).c_str());
 	}
 	else if (di.diffcode.isResultSame())
 	{
