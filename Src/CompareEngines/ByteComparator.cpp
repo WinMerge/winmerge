@@ -394,9 +394,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 			else
 			{
-				if (!eof0 || !eof1)
+				// we are at the end on one side?
+				if (!eof0 && !eof1)
 				{
-					result = RESULT_DIFF;
 					goto need_more;
 				}
 				else
