@@ -6760,6 +6760,35 @@
 				RelativePath="CompareEngines\DiffUtils.h"
 				>
 			</File>
+			<File
+				RelativePath="CompareEngines\TimeSizeCompare.cpp"
+				>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="CompareEngines\TimeSizeCompare.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Batch files"

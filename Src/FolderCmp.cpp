@@ -21,8 +21,10 @@
 #include "FolderCmp.h"
 #include "ByteComparator.h"
 #include "codepage_detect.h"
+#include "TimeSizeCompare.h"
 
 using CompareEngines::ByteCompare;
+using CompareEngines::TimeSizeCompare;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, String & right);
 static bool Unpack(String & filepathTransformed,
@@ -31,6 +33,7 @@ static bool Unpack(String & filepathTransformed,
 FolderCmp::FolderCmp()
 : m_pDiffUtilsEngine(NULL)
 , m_pByteCompare(NULL)
+, m_pTimeSizeCompare(NULL)
 , m_ndiffs(CDiffContext::DIFFS_UNKNOWN)
 , m_ntrivialdiffs(CDiffContext::DIFFS_UNKNOWN)
 {
@@ -40,6 +43,7 @@ FolderCmp::~FolderCmp()
 {
 	delete m_pDiffUtilsEngine;
 	delete m_pByteCompare;
+	delete m_pTimeSizeCompare;
 }
 
 bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr)
@@ -276,56 +280,14 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		di.left.m_textStats = m_diffFileData.m_textStats0;
 		di.right.m_textStats = m_diffFileData.m_textStats1;
 	}
-	else if (pCtxt->m_nCompMethod == CMP_DATE ||
-		pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
-		// Compare by modified date
-		// Check that we have both filetimes
-		if (di.left.mtime != 0 && di.right.mtime != 0)
-		{
-			__int64 nTimeDiff = di.left.mtime - di.right.mtime;
-			// Remove sign
-			nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
-			if (pCtxt->m_bIgnoreSmallTimeDiff)
-			{
-				// If option to ignore small timediffs (couple of seconds)
-				// is set, decrease absolute difference by allowed diff
-				nTimeDiff -= SmallTimeDiff;
-			}
-			if (nTimeDiff <= 0)
-				code = DIFFCODE::SAME;
-			else
-				code = DIFFCODE::DIFF;
-		}
-		else
-		{
-			// Filetimes for item(s) could not be read. So we have to
-			// set error status, unless we have DATE_SIZE -compare
-			// when we have still hope for size compare..
-			if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
-				code = DIFFCODE::SAME;
-			else
-				code = DIFFCODE::CMPERR;
-		}
-		
-		// This is actual CMP_DATE_SIZE method..
-		// If file sizes differ mark them different
-		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
-		{
-			if (di.left.size != di.right.size)
-			{
-				code &= ~DIFFCODE::SAME;
-				code = DIFFCODE::DIFF;
-			}
-		}
-	}
-	else if (pCtxt->m_nCompMethod == CMP_SIZE)
-	{
-		// Compare by size
-		if (di.left.size == di.right.size)
-			code = DIFFCODE::SAME;
-		else
-			code = DIFFCODE::DIFF;
+		if (m_pTimeSizeCompare == NULL)
+			m_pTimeSizeCompare = new TimeSizeCompare();
+
+		m_pTimeSizeCompare->SetAdditionalOptions(!!pCtxt->m_bIgnoreSmallTimeDiff);
+		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, di);
+
 	}
 	else
 	{

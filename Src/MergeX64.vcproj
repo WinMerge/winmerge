@@ -11386,6 +11386,14 @@
 				RelativePath="CompareEngines\DiffUtils.h"
 				>
 			</File>
+			<File
+				RelativePath=".\CompareEngines\TimeSizeCompare.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CompareEngines\TimeSizeCompare.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
