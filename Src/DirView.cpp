@@ -27,6 +27,7 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirView.h"
