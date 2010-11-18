@@ -254,7 +254,7 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 			strFileName = strFileName + _T('.');
 
 		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName);
-		bool match = m_pMaskFilter->Match(name_utf);
+		bool match = m_pMaskFilter->Match(strlen(name_utf), name_utf);
 		UCS2UTF8_Dealloc(name_utf);
 		return match;
 	}
