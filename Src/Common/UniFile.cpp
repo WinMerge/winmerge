@@ -456,7 +456,7 @@ static void RecordZero(UniFile::txtstats & txstats, int offset)
  * @param [out] line Line read.
  * @param [out] eol EOL bytes read (if any).
  * @param [out] lossy TRUE if there were lossy encoding.
- * @return TRUE if there is more lines to read, TRUE when last line is read.
+ * @return true if there is more lines to read, false when last line is read.
  */
 bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 {
@@ -581,7 +581,11 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 				RecordZero(m_txtstats, offset);
 			}
 		}
-		line = ucr::maketstring((LPCSTR)m_current, eolptr - m_current, m_codepage, lossy);
+		bool success = ucr::maketstring(line, (LPCSTR)m_current, eolptr - m_current, m_codepage, lossy);
+		if (!success)
+		{
+			return false;
+		}
 		if (lossy && *lossy)
 			++m_txtstats.nlosses;
 		if (!eof)

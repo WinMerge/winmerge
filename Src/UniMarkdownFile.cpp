@@ -138,7 +138,8 @@ void UniMarkdownFile::Move()
 String UniMarkdownFile::maketstring(LPCSTR lpd, UINT len)
 {
 	bool lossy = false;
-	String s = ucr::maketstring(lpd, len, m_codepage, &lossy);
+	String s;
+	ucr::maketstring(s, lpd, len, m_codepage, &lossy);
 	if (lossy)
 		++m_txtstats.nlosses;
 	return s;
