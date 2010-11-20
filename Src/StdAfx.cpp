@@ -164,11 +164,7 @@ int GetClipTcharTextFormat()
  */
 bool IsUnicodeBuild()
 {
-#ifdef UNICODE
 	return true;
-#else
-	return false;
-#endif
 }
 
 #if _MSC_VER <= 1310

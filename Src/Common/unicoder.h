@@ -63,9 +63,6 @@ void getInternalEncoding(UNICODESET * unicoding, int * codepage);
 bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
 
 int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy);
-#ifndef UNICODE
-String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy);
-#endif
 
 UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom);
 

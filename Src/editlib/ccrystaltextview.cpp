@@ -926,11 +926,7 @@ int CCrystalTextView::GetCharWidthFromChar(TCHAR ch)
     return GetCharWidth() * 3;
   // This assumes a fixed width font
   // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
-#ifdef _UNICODE
   return GetCharWidthUnicodeChar(ch);
-#else
-  return GetCharWidth();
-#endif
 }
 
 /**
@@ -940,14 +936,10 @@ int CCrystalTextView::GetCharWidthFromString(LPCTSTR lpsz)
 {
   // This assumes a fixed width font
   // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
-#ifdef _UNICODE
   int n=0;
   for (LPCTSTR p = lpsz; *p; ++p)
     n += GetCharWidthUnicodeChar(*p);
   return n;
-#else
-  return strlen(lpsz) * GetCharWidth();
-#endif
 }
 
 /**
@@ -2397,11 +2389,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 /** Does character introduce a multicharacter character? */
 static inline bool IsLeadByte(TCHAR ch)
 {
-#ifdef UNICODE
   return false;
-#else
-  return _getmbcp() && IsDBCSLeadByte(ch);
-#endif
 }
 
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
@@ -4538,13 +4526,8 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
 
     if (result >= 0)
     {
-#ifdef UNICODE
       pos = ucr::stringlen_of_utf8(compString, ovector[0]);
       nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
-#else
-      pos = ovector[0];
-      nLen = ovector[1] - ovector[0];
-#endif
     }
     else
       pos = -1;

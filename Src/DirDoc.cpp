@@ -295,19 +295,12 @@ void CDirDoc::LoadLineFilterList()
 	char * regexp_str;
 	FilterList::EncodingType type;
 
-#ifdef UNICODE
 	regexp_str = UCS2UTF8_ConvertToUtf8(filters.c_str());
 	type = FilterList::ENC_UTF8;
-#else
-	regexp_str = (char *) filters.c_str();
-	type = FilterList::ENC_ANSI;
-#endif
 
 	m_pCtxt->m_pFilterList->AddRegExp(regexp_str, type);
 
-#ifdef UNICODE
 	UCS2UTF8_Dealloc(regexp_str);
-#endif
 }
 
 /**
