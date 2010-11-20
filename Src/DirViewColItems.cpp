@@ -23,11 +23,7 @@
 #include "coretools.h"
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
-#ifdef UNICODE
 #define StrIsIntlEqual StrIsIntlEqualW
-#else
-#define StrIsIntlEqual StrIsIntlEqualA
-#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

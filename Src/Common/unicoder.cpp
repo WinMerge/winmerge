@@ -489,7 +489,6 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 	if (codepage == -1)
 		codepage = defcodepage;
 
-#ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
 	// TCHAR is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
@@ -543,37 +542,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 	while (flags == 0 && GetLastError() == ERROR_NO_UNICODE_TRANSLATION);
 	str = _T('?');
 	return true;
-
-#else
-	if (EqualCodepages(codepage, defcodepage))
-	{
-		// trivial case, they want the bytes in the file interpreted in our current codepage
-		// Only caveat is that input (lpd) is not zero-terminated
-		str = String(lpd, len);
-		return true;
-	}
-
-	str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);
-	return true;
-#endif
 }
-
-/**
- * @brief (ANSI build only) Convert from one 8 bit codepage to another
- */
-#ifndef UNICODE
-String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy)
-{
-	int wlen = srclen * 2 + 6;
-	int clen = wlen * 2 + 6;
-	String str;
-	str.resize(clen);
-	char* cbuff = &*str.begin();
-	int nbytes = CrossConvert(src, srclen, cbuff, clen, cpin, cpout, lossy);
-	str.resize(nbytes);
-	return str;
-}
-#endif
 
 /**
  * @brief Convert from one 8-bit codepage to another

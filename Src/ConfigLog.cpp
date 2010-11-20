@@ -528,9 +528,6 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	FileWriteString(_T(" codepage settings:\r\n"));
 	WriteItem(2, _T("ANSI codepage"), GetACP());
 	WriteItem(2, _T("OEM codepage"), GetOEMCP());
-#ifndef UNICODE
-	WriteItem(2, _T("multibyte codepage"), _getmbcp());
-#endif
 	WriteLocaleSettings(GetThreadLocale(), _T("Locale (Thread)"));
 	WriteLocaleSettings(LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));

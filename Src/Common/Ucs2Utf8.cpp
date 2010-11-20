@@ -102,7 +102,6 @@ UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUcs)
  */
 char * UCS2UTF8_ConvertToUtf8(LPCTSTR strOrigin)
 {
-#ifdef UNICODE
 	// Get the size of UTF-8 string
 	int str_len = TransformUcs2ToUtf8(strOrigin, _tcslen(strOrigin), NULL, 0);
 	++str_len; // Space for zero at end
@@ -110,9 +109,6 @@ char * UCS2UTF8_ConvertToUtf8(LPCTSTR strOrigin)
 	char * str_utf = (char *) malloc(str_len);
 	ZeroMemory(str_utf, str_len);
 	str_len = TransformUcs2ToUtf8(strOrigin, _tcslen(strOrigin), str_utf, str_len);
-#else
-	char *str_utf = strdup(strOrigin);
-#endif
 	
 	return str_utf;
 }

@@ -50,11 +50,7 @@ public:
 //struct CMenuItemInfo : public MENUITEMINFO {
 struct CMenuItemInfo : public 
 //MENUITEMINFO 
-#ifndef UNICODE   //SK: this fixes warning C4097: typedef-name 'MENUITEMINFO' used as synonym for class-name 'tagMENUITEMINFOA'
-tagMENUITEMINFOA
-#else
 tagMENUITEMINFOW
-#endif
 {
 	CMenuItemInfo()
 	{
@@ -70,15 +66,6 @@ typedef enum {BCMENU_DRAWMODE_ORIGINAL,BCMENU_DRAWMODE_XP} BC_MenuDrawMode;
 typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 
 // defines for unicode support
-#ifndef UNICODE
-#define AppendMenu AppendMenuA
-#define InsertMenu InsertMenuA
-#define InsertODMenu InsertODMenuA
-#define AppendODMenu AppendODMenuA
-#define AppendODPopupMenu AppendODPopupMenuA
-#define ModifyODMenu ModifyODMenuA
-#define SetImageForPopupFromToolbar SetImageForPopupFromToolbarA
-#else
 #define AppendMenu AppendMenuW
 #define InsertMenu InsertMenuW
 #define InsertODMenu InsertODMenuW
@@ -86,7 +73,6 @@ typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 #define ModifyODMenu ModifyODMenuW
 #define AppendODPopupMenu AppendODPopupMenuW
 #define SetImageForPopupFromToolbar SetImageForPopupFromToolbarW
-#endif
 
 
 class BCMenu : public CMenu
