@@ -20,6 +20,7 @@ WinMerge 2.13.21
   Bugfix: Pane headers not updated after language change (#2923684)
   Bugfix: Quick contents compare didn't ignore EOL byte differences (#2929005)
   Bugfix: Compare by size always checked file times too (#2919510)
+  Bugfix: Crash when pasting from clipboard (#3109525)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)

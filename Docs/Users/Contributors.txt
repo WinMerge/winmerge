@@ -180,6 +180,7 @@ Other Contributors (code, ideas, testing..):
 * Vikrant
 * Gilbert Wellisch
 * Paul Welter
+* Lars Wittenburg
 
 
 WinMerge includes code from:

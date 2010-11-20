@@ -1166,7 +1166,8 @@ GetFromClipboard (CString & text)
           if (pszData != NULL)
             {
               UINT cbData = (UINT) GlobalSize (hData);
-              int cchText = cbData / sizeof(TCHAR) - 1;
+              // in case we get an odd length for unicodes
+              int cchText = ((cbData + 1) / sizeof(TCHAR)) - 1;
               if (cchText >= 0)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);
