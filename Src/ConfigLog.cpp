@@ -23,9 +23,6 @@
 // $Id$
 
 #include "StdAfx.h"
-#ifndef UNICODE
-#include <mbctype.h>
-#endif
 #include "Constants.h"
 #include "version.h"
 #include "DiffWrapper.h"
@@ -515,9 +512,6 @@ bool CConfigLog::DoFile(bool writing, CString &sError)
 	FileWriteString(_T(" codepage settings:\n"));
 	WriteItem(m_file, 2, _T("ANSI codepage"), GetACP());
 	WriteItem(m_file, 2, _T("OEM codepage"), GetOEMCP());
-#ifndef UNICODE
-	WriteItem(m_file, 2, _T("multibyte codepage"), _getmbcp());
-#endif
 	WriteLocaleSettings(m_file, GetThreadLocale(), _T("Locale (Thread)"));
 	WriteLocaleSettings(m_file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(m_file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));

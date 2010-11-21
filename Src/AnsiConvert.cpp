@@ -46,9 +46,6 @@ LPCSTR ansiconvert_ThreadCP(LPCTSTR str)
  */
 LPCSTR convert(LPCTSTR str, UINT codepage)
 {
-#ifndef UNICODE
-	return strdup(str);
-#else
 	int len = WideCharToMultiByte(codepage, 0, str, -1, 0, 0, 0, 0);
 	if (len)
 	{
@@ -57,5 +54,4 @@ LPCSTR convert(LPCTSTR str, UINT codepage)
 		return ansi;
 	}
 	return NULL;
-#endif
 }

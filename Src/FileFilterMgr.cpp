@@ -206,16 +206,11 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, CString & s
 	int regexLen = 0;
 	int pcre_opts = 0;
 
-#ifdef UNICODE
 	// For unicode builds, use UTF-8.
 	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
 	regexLen = TransformUcs2ToUtf8((LPCTSTR)str, _tcslen(str),
 		regexString, sizeof(regexString));
 	pcre_opts |= PCRE_UTF8;
-#else
-	strcpy(regexString, (LPCTSTR)str);
-	regexLen = strlen(regexString);
-#endif
 	pcre_opts |= PCRE_CASELESS;
 	
 	pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
@@ -353,13 +348,8 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 		TCHAR * tempName = _tcsdup(szTest); // Create temp copy for conversions
 		TCHAR * cmpStr = _tcsupr(tempName);
 
-#ifdef UNICODE
 		stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
 			compString, sizeof(compString));
-#else
-		strcpy(compString, cmpStr);
-		stringLen = strlen(compString);
-#endif
 
 		pcre * regexp = (*iter)->pRegExp;
 		pcre_extra * extra = (*iter)->pRegExpExtra;

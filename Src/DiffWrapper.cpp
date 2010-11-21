@@ -1317,14 +1317,8 @@ void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
 	char * regexp_str;
 	FilterList::EncodingType type;
 	
-#ifdef UNICODE
 	regexp_str = UCS2UTF8_ConvertToUtf8(filterStr);
 	type = FilterList::ENC_UTF8;
-#else
-	CString tmp_str(filterStr);
-	regexp_str = tmp_str.LockBuffer();
-	type = FilterList::ENC_ANSI;
-#endif
 
 	// Add every "line" of regexps to regexp list
 	char * token;
@@ -1335,11 +1329,7 @@ void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
 		m_pFilterList->AddRegExp(token, type);
 		token = strtok(NULL, sep);
 	}
-#ifdef UNICODE
 	UCS2UTF8_Dealloc(regexp_str);
-#else
-	tmp_str.UnlockBuffer();
-#endif
 }
 
 /**

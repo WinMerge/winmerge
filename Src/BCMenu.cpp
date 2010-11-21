@@ -129,12 +129,7 @@ CString BCMenuData::GetString(void)//returns the menu text in ANSI or UNICODE
 	CString strText;
 	if (m_szMenuText)
     {
-#ifdef UNICODE
 		strText = m_szMenuText;
-#else
-		USES_CONVERSION;
-		strText=W2A(m_szMenuText);     //SK:  see MFC Tech Note 059
-#endif    
     }
 	return strText;
 }
@@ -987,18 +982,6 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		if (Win32s!=g_Shell)
 			VERIFY(::GetTextExtentPoint32W(pDC->m_hDC,lpstrText,
 			wcslen(lpstrText),&size)); //SK should also work on 95
-#ifndef UNICODE //can't be UNICODE for Win32s
-		else{//it's Win32suckx
-			RECT rect;
-			rect.left=rect.top=0;
-			size.cy=DrawText(pDC->m_hDC,(LPCTSTR)lpstrText,
-				wcslen(lpstrText),&rect,
-				DT_SINGLELINE|DT_LEFT|DT_VCENTER|DT_CALCRECT);
-			//+3 makes at least three pixels space to the menu border
-			size.cx=rect.right-rect.left+3;
-			size.cx += 3*(size.cx/wcslen(lpstrText));
-		}
-#endif    
 		
 		CSize t = CSize(size);
 		if(IsNewShell())
@@ -1472,11 +1455,7 @@ BCMenuData *BCMenu::NewODMenu(UINT pos,UINT nFlags,UINT nID,CString string)
 	mdata = new BCMenuData;
 	mdata->menuIconNormal = -1;
 	mdata->xoffset=-1;
-#ifdef UNICODE
 	mdata->SetWideString((LPCTSTR)string);//SK: modified for dynamic allocation
-#else
-	mdata->SetAnsiString(string);
-#endif
 	mdata->nFlags = nFlags;
 	mdata->nID = nID;
 	
@@ -1897,11 +1876,7 @@ void BCMenu::InsertSpaces(void)
 				t=pDC->GetTextExtent(lpstrText,_tcslen(lpstrText));
 			}
 			newstring+=string.Mid(j);
-#ifdef UNICODE      
 			m_MenuList[i]->SetWideString(newstring);//SK: modified for dynamic allocation
-#else
-			m_MenuList[i]->SetAnsiString(newstring);
-#endif
 		}
 	}
 	pDC->SelectObject (pFont);              // Select old font in
@@ -2042,11 +2017,7 @@ void BCMenu::SynchronizeMenu(void)
 			if(!mdata)mdata=NewODMenu(j,
 				(state&0xFF)|MF_BYPOSITION|MF_POPUP|MF_OWNERDRAW,submenu,string);
 			else if(string.GetLength()>0)
-#ifdef UNICODE
 				mdata->SetWideString(string);  //SK: modified for dynamic allocation
-#else
-			mdata->SetAnsiString(string);
-#endif
 		}
 		else if(state&MF_SEPARATOR){
 			mdata=FindMenuList(0);
@@ -2063,11 +2034,7 @@ void BCMenu::SynchronizeMenu(void)
 			else{
 				mdata->nFlags=state|MF_BYPOSITION|MF_OWNERDRAW;
 				if(string.GetLength()>0)
-#ifdef UNICODE
 					mdata->SetWideString(string);//SK: modified for dynamic allocation
-#else
-				mdata->SetAnsiString(string);
-#endif
 				
 				ModifyMenu(j,mdata->nFlags,nID,(LPCTSTR)mdata);
 			}
@@ -3038,11 +3005,7 @@ BOOL BCMenu::SetMenuText(UINT id, CString string, UINT nFlags/*= MF_BYPOSITION*/
 	{
 		UINT numMenuItems = m_MenuList.GetUpperBound();
 		if(id<=numMenuItems){
-#ifdef UNICODE
 			m_MenuList[id]->SetWideString((LPCTSTR)string);
-#else
-			m_MenuList[id]->SetAnsiString(string);
-#endif
 			returnflag=TRUE;
 		}
 	}

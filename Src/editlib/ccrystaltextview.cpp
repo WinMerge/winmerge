@@ -2397,11 +2397,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 /** Does character introduce a multicharacter character? */
 static inline bool IsLeadByte(TCHAR ch)
 {
-#ifdef UNICODE
   return false;
-#else
-  return _getmbcp() && IsDBCSLeadByte(ch);
-#endif
 }
 
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
@@ -4508,16 +4504,11 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       int regexLen = 0;
       int pcre_opts = 0;
 
-#ifdef UNICODE
       // For unicode builds, use UTF-8.
       // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
       regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
           regexString, sizeof(regexString));
       pcre_opts |= PCRE_UTF8;
-#else
-      strcpy(regexString, pszFindWhat);
-      regexLen = strlen(regexString);
-#endif
       pcre_opts |= PCRE_BSR_ANYCRLF;
       if ((dwFlags & FIND_MATCH_CASE) == 0)
         pcre_opts |= PCRE_CASELESS;
@@ -4536,27 +4527,17 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       char *compString = new char[compStringBufLen];
       int stringLen = 0;
 
-#ifdef UNICODE
       stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
           compString, compStringBufLen);
       compString[stringLen] = '\0';
-#else
-      strncpy(compString, pszFindWhere, compStringBufLen);
-      stringLen = strlen(compString);
-#endif
 
       int result = pcre_exec(regexp, pe, compString, stringLen,
           0, 0, ovector, 30);
 
       if (result >= 0)
         {
-#ifdef UNICODE
           pos = ucr::stringlen_of_utf8(compString, ovector[0]);
           nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
-#else
-          pos = ovector[0];
-          nLen = ovector[1] - ovector[0];
-#endif
         }
       else
         pos = -1;

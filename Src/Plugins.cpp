@@ -287,13 +287,8 @@ void PluginInfo::LoadFilterString()
 		int erroroffset = 0;
 		char regexString[200] = {0};
 		int regexLen = 0;
-#ifdef UNICODE
 		regexLen = TransformUcs2ToUtf8((LPCTSTR)sPiece, _tcslen(sPiece),
 			regexString, sizeof(regexString));
-#else
-		strcpy(regexString, (LPCTSTR)sPiece);
-		regexLen = strlen(regexString);
-#endif
 
 		pcre *regexp = pcre_compile(regexString, 0, &errormsg, &erroroffset, NULL);
 		if (regexp)
