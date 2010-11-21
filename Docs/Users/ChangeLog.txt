@@ -10,6 +10,7 @@ WinMerge 2.15.1
   Installer: Add OpenCandy to the InnoSetup installer (#3088720)
   Bugfix: No menu icons was shown on Windows x64 (#3070151)
   Bugfix: Crash when pasting from clipboard (#3109525)
+  Bugfix: Keeps verifing path even turned off in options (#3111581)
   Translation updates:
   - Bulgarian (#3082392)
 
