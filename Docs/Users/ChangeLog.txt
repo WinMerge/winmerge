@@ -22,6 +22,7 @@ WinMerge 2.13.21
   Bugfix: Compare by size always checked file times too (#2919510)
   Bugfix: Crash when pasting from clipboard (#3109525)
   Bugfix: Keeps verifing path even turned off in options (#3111581)
+  Bugfix: Crash after deleting text (#3109521)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)
