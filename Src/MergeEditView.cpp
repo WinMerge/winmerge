@@ -451,6 +451,9 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
+	if (GetLineCount() <= nLineIndex)
+		return;
+
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
 
 	if (dwLineFlags & ignoreFlags)
