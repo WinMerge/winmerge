@@ -1212,20 +1212,13 @@ matchchar(TCHAR ch1, TCHAR ch2, bool casitive)
 		return _totupper(ch1)==_totupper(ch2);
 }
 
-
-/** Does character introduce a multicharacter character? */
-static inline bool IsLeadByte(TCHAR ch)
-{
-	return false;
-}
-
 /**
  * @brief Is it whitespace (excludes all lead & trail bytes)?
  */
 static bool
 isSafeWhitespace(TCHAR ch)
 {
-	return xisspace(ch) && !IsLeadByte(ch);
+	return xisspace(ch);
 }
 
 /**
@@ -1264,7 +1257,7 @@ LastChar(LPCTSTR psz, int len)
 		if (prev == psz)
 			psz++;
 	}
-	if (psz==lastValid && !IsLeadByte(*psz))
+	if (psz==lastValid)
 		return psz;
 	else // last character was multibyte or broken multibyte
 		return prev;
@@ -1440,71 +1433,34 @@ sd_ComputeByteDiff(String & str1, String & str2,
 		}
 
 		// Now do real character match
-		if (IsLeadByte(*py1))
+		if (!equal)
 		{
-			if (!IsLeadByte(*py2))
+			if (!matchchar(py1[0], py2[0], casitive))
 				break; // done with forward search
-			// DBCS (we assume if a lead byte, then character is 2-byte)
-			if (!equal)
+		}
+		else 
+		{
+			if (matchchar(py1[0], py2[0], casitive))
 			{
-				if (!(py1[0] == py2[0] && py1[1] == py2[1]))
+				// check at least two chars are identical
+				if (!found)
+				{
+					found = true;
+				}
+				else
+				{
+					py1 = CharPrev(pbeg1, py1);
+					py2 = CharPrev(pbeg2, py2);
 					break; // done with forward search
+				}
 			}
 			else
 			{
-				if ((py1[0] == py2[0] && py1[1] == py2[1]))
-				{
-					// check at least two chars are identical
-					if (!found)
-					{
-						found = true;
-					}
-					else
-					{
-						break; // done with forward search
-					}
-				}
-				else
-				{
-					found = false;
-				}
+				found = false;
 			}
-			py1 += 2; // DBCS specific
-			py2 += 2; // DBCS specific
 		}
-		else
-		{
-			if (IsLeadByte(*py2))
-				break; // done with forward search
-			if (!equal)
-			{
-				if (!matchchar(py1[0], py2[0], casitive))
-					break; // done with forward search
-			}
-			else 
-			{
-				if (matchchar(py1[0], py2[0], casitive))
-				{
-					// check at least two chars are identical
-					if (!found)
-					{
-						found = true;
-					}
-					else
-					{
-						py1 = CharPrev(pbeg1, py1);
-						py2 = CharPrev(pbeg2, py2);
-						break; // done with forward search
-					}
-				}
-				else
-				{
-					found = false;
-				}
-			}
-			++py1; // DBCS safe b/c we checked above
-			++py2; // DBCS safe b/c we checked above
-		}
+		++py1;
+		++py2;
 	}
 
 	// Potential difference extends from py1 to pen1 and py2 to pen2
@@ -1582,71 +1538,33 @@ sd_ComputeByteDiff(String & str1, String & str2,
 			}
 
 			// Now do real character match
-			if (IsLeadByte(*pz1))
+			if (!equal)
 			{
-				if (!IsLeadByte(*pz2))
-					break; // done with forward search
-				// DBCS (we assume if a lead byte, then character is 2-byte)
-				if (!equal)
+				if (!matchchar(pz1[0], pz2[0], casitive))
 				{
-					if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
+					found = true;
+					break; // done with forward search
+				}
+			}
+			else 
+			{
+				if (matchchar(pz1[0], pz2[0], casitive))
+				{
+					// check at least two chars are identical
+					if (!found)
 					{
 						found = true;
+					}
+					else
+					{
+						pz1++;
+						pz2++;
 						break; // done with forward search
 					}
 				}
 				else
 				{
-					if ((pz1[0] == pz2[0] && pz1[1] == pz2[1]))
-					{
-						// check at least two chars are identical
-						if (!found)
-						{
-							found = true;
-						}
-						else
-						{
-							break; // done with forward search
-						}
-					}
-					else
-					{
-						found = false;
-					}
-                }
-			}
-			else
-			{
-				if (IsLeadByte(*pz2))
-					break; // done with forward search
-				if (!equal)
-				{
-					if (!matchchar(pz1[0], pz2[0], casitive))
-					{
-						found = true;
-						break; // done with forward search
-					}
-				}
-				else 
-				{
-					if (matchchar(pz1[0], pz2[0], casitive))
-					{
-						// check at least two chars are identical
-						if (!found)
-						{
-							found = true;
-						}
-						else
-						{
-							pz1++;
-							pz2++;
-							break; // done with forward search
-						}
-					}
-					else
-					{
-						found = false;
-					}
+					found = false;
 				}
 			}
 			// decrement pz1 and pz2
