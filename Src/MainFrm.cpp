@@ -714,49 +714,6 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
 	}
 
-	if (!IsUnicodeBuild())
-	{
-		// In ANSI (8-bit) build, character loss can occur in merging
-		// if the two buffers use different encodings
-		if (filelocLeft.encoding.m_unicoding == ucr::NONE
-			&& filelocRight.encoding.m_unicoding == ucr::NONE
-			&& filelocLeft.encoding.m_codepage != filelocRight.encoding.m_codepage)
-		{
-			CString msg;
-			msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), filelocLeft.encoding.m_codepage, filelocRight.encoding.m_codepage);
-			int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
-			// Two files with different codepages
-			// Warn and propose to use the default codepage for both
-			int userChoice = AfxMessageBox(msg, msgflags);
-			if (userChoice == IDYES)
-			{
-				if (filelocLeft.encoding.m_codepage != getDefaultCodepage())
-				{
-					filelocLeft.encoding.SetCodepage(getDefaultCodepage());
-					filelocLeft.encoding.m_bom = false;
-					filelocLeft.encoding.m_guessed = false;
-				}
-				if (filelocRight.encoding.m_codepage != getDefaultCodepage())
-				{
-					filelocRight.encoding.SetCodepage(getDefaultCodepage());
-					filelocRight.encoding.m_bom = false;
-					filelocRight.encoding.m_guessed = false;
-				}
-			}
-		}
-		else if (filelocLeft.encoding.m_unicoding != filelocRight.encoding.m_unicoding)
-		{
-			String leftEncoding = filelocLeft.encoding.GetName();
-			String rightEncoding = filelocRight.encoding.GetName();
-			CString msg;
-			msg.Format(theApp.LoadString(IDS_DIFFERENT_UNICODINGS).c_str(), leftEncoding.c_str(), rightEncoding.c_str());
-			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
-			// Two files with different codepages
-			// Warn and propose to use the default codepage for both
-			AfxMessageBox(msg, msgflags);
-		}
-	}
-
 	// Note that OpenDocs() takes care of closing compare window when needed.
 	BOOL bLeftRO = (dwLeftFlags & FFILEOPEN_READONLY) > 0;
 	BOOL bRightRO = (dwRightFlags & FFILEOPEN_READONLY) > 0;

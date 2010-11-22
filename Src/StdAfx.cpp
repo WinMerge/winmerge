@@ -159,14 +159,6 @@ int GetClipTcharTextFormat()
 #endif // _UNICODE
 }
 
-/**
- * @brief Return true if Unicode (16-bit) build
- */
-bool IsUnicodeBuild()
-{
-	return true;
-}
-
 #if _MSC_VER <= 1310
 /**
 * @brief Calculates a number absolute value.
