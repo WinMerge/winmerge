@@ -26,12 +26,7 @@ static bool GetDirName(LPCTSTR sDir, String& sName);
 static bool IsSlash(LPCTSTR pszStart, int nPos)
 {
 	return pszStart[nPos]=='/' || 
-#ifdef _UNICODE
 	       pszStart[nPos]=='\\';
-#else
-		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-	       (pszStart[nPos]=='\\' && !_ismbstrail((unsigned char *)pszStart, (unsigned char *)pszStart + nPos));
-#endif
 }
 
 /** 
@@ -431,11 +426,7 @@ String ExpandShortcut(const String &inFile)
 		if (SUCCEEDED(hres))
 		{
 			WCHAR wsz[MAX_PATH];
-#ifdef _UNICODE
 			wcsncpy((wchar_t *)wsz, inFile.c_str(), sizeof(wsz) / sizeof(WCHAR));
-#else
-			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH);
-#endif
 
 			// Load shortcut
 			hres = ppf->Load(wsz, STGM_READ);

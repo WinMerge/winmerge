@@ -421,11 +421,7 @@ CString CSuperComboBox::ExpandShortcut(CString &inFile)
         if (SUCCEEDED(hres))
         {
             WCHAR wsz[MAX_PATH];
-#ifdef _UNICODE
 	     wcsncpy((wchar_t *)wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
-#else
-            ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
-#endif
 
             // Load shortcut
             hres = ppf->Load((LPCOLESTR)wsz, STGM_READ);

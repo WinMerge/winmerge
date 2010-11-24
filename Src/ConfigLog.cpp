@@ -394,20 +394,14 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 		paths_CreateIfNeeded(sFileName.c_str());
 		m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 
-#ifdef _UNICODE
 		if (!m_pfile->OpenCreateUtf8(m_sFileName.c_str()))
-#else
-		if (!m_pfile->OpenCreate(m_sFileName.c_str()))
-#endif
 		{
 			const UniFile::UniError &err = m_pfile->GetLastUniError();
 			sError = err.GetError();
 			return false;
 		}
-#ifdef _UNICODE
 		m_pfile->SetBom(true);
 		m_pfile->WriteBom();
-#endif
 	}
 
 // Begin log

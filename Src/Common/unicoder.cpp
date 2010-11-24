@@ -313,7 +313,6 @@ String maketchar(unsigned int unich, bool & lossy)
  */
 String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
 {
-#ifdef _UNICODE
 	if (unich < 0x10000)
 	{
 		String s(1, (TCHAR)unich);
@@ -321,47 +320,6 @@ String maketchar(unsigned int unich, bool & lossy, unsigned int codepage)
 	}
 	lossy = TRUE;
 	return _T("?");
-#else
-	if (unich < 0x80)
-	{
-		String s(1, (TCHAR)unich);
-		return s;
-	}
-	wchar_t wch = (wchar_t)unich;
-	if (!lossy)
-	{
-		static bool vercheck = false;
-		static bool has_no_best_fit = false;
-		if (!vercheck)
-		{
-			if (!f_osvi_fetched) fetch_verinfo();
-			// Need 2000 (5.x) or 98 (4.10)
-			has_no_best_fit = f_osvi.dwMajorVersion >= 5 || (f_osvi.dwMajorVersion == 4 && f_osvi.dwMinorVersion >= 10);
-			vercheck = true;
-		}
-		// So far it isn't lossy, so try for lossless conversion
-		TCHAR outch;
-		BOOL defaulted = FALSE;
-		DWORD flags = has_no_best_fit ? WC_NO_BEST_FIT_CHARS : 0;
-		if (WideCharToMultiByte(codepage, flags, &wch, 1, &outch, 1, NULL, &defaulted)
-				&& !defaulted)
-		{
-			String s(1, outch);
-			return s;
-		}
-		lossy = TRUE;
-	}
-	// already lossy, so make our best shot
-	DWORD flags = WC_COMPOSITECHECK + WC_DISCARDNS + WC_SEPCHARS + WC_DEFAULTCHAR;
-	TCHAR outbuff[16];
-	int n = WideCharToMultiByte(codepage, flags, &wch, 1, outbuff, sizeof(outbuff) - 1, NULL, NULL);
-	if (n > 0)
-	{
-		outbuff[n] = 0;
-		return outbuff;
-	}
-	return _T("?");
-#endif
 }
 
 /**
@@ -398,14 +356,8 @@ unsigned int byteToUnicode(unsigned char ch, unsigned int codepage)
  */
 void getInternalEncoding(UNICODESET * unicoding, int * codepage)
 {
-#ifdef _UNICODE
 	*unicoding = UCS2LE;
 	*codepage = 0;
-#else
-	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
-	*unicoding = NONE;
-	*codepage = CP_ACP;
-#endif
 }
 
 /**
