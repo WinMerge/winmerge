@@ -20,11 +20,7 @@ static wint_t normch(wint_t c);
 // codepoints don't extend that high).
 static wint_t normch(wint_t c)
 {
-#ifdef _UNICODE
 	return (unsigned short)(short)c;
-#else
-	return (unsigned char)(char)c;
-#endif
 }
 
 /** @brief Return nonzero if input is outside ASCII or is underline. */

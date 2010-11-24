@@ -41,13 +41,8 @@
 
 #define UTF82A(lpu) W2A(UTF82W(lpu))
 #define A2UTF8(lpa) W2UTF8(A2W(lpa))
-#ifdef _UNICODE
 #  define UTF82T(lpu) UTF82W(lpu)
 #  define T2UTF8(lpw) W2UTF8(lpw)
-#else
-#  define UTF82T(lpu) UTF82A(lpu)
-#  define T2UTF8(lpw) A2UTF8(lpw)
-#endif
 
 // Constants for xml element names
 const char Root_element_name[] = "project";

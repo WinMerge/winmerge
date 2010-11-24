@@ -152,11 +152,7 @@ CString Fmt(LPCTSTR fmt, ...)
 // Get appropriate clipboard format for TCHAR text
 int GetClipTcharTextFormat()
 {
-#ifdef _UNICODE
 	return CF_UNICODETEXT;
-#else
-	return CF_TEXT;
-#endif // _UNICODE
 }
 
 #if _MSC_VER <= 1310

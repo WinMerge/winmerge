@@ -1020,10 +1020,6 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               int nCount = lineLen - ibegin;
               int nCountFit = nWidth / nCharWidth + 2/* wide char */;
               if (nCount > nCountFit) {
-#ifndef _UNICODE
-                if (_ismbslead((unsigned char *)(LPCSTR)line, (unsigned char *)(LPCSTR)line + nCountFit - 1))
-                  nCountFit++;
-#endif
                 nCount = nCountFit;
               }
 
@@ -1660,10 +1656,6 @@ EscapeHTML (const CString & strText, BOOL & bLastCharSpace, int & nNonbreakChars
             bLastCharSpace = FALSE;
             nNonbreakChars++;
         }
-#ifndef _UNICODE
-      if (IsDBCSLeadByte (ch))
-        strHTML += strText[++i];
-#endif
       if ((nNonbreakChars % nScreenChars) == nScreenChars - 1)
         {
           strHTML += _T("<wbr>");
@@ -6002,7 +5994,6 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
   return m_pTextBuffer->GetLineEol(nLine); 
 }
 
-#ifdef _UNICODE
 int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
 {
   if (!m_bChWidthsCalculated[ch/256])
@@ -6037,15 +6028,12 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
   else
     return GetCharWidth();
 }
-#endif
 
 /** @brief Reset computed unicode character widths. */
 void CCrystalTextView::ResetCharWidths ()
 {
-#ifdef _UNICODE
   ZeroMemory(m_bChWidthsCalculated, sizeof(m_bChWidthsCalculated));
   ZeroMemory(m_iChDoubleWidthFlags, sizeof(m_iChDoubleWidthFlags));
-#endif
 }
 
 // This function assumes selection is in one line

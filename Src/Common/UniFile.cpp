@@ -466,7 +466,6 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 
 	// shortcut methods in case file is in the same encoding as our Strings
 
-#ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 	{
 		int cchLine = 0;
@@ -512,53 +511,6 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		line.assign(pchLine, cchLine);
 		return true;
 	}
-#else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
-	{
-		int cchLine = 0;
-		// If there aren't any bytes left in the file, return FALSE to indicate EOF
-		if (m_current - m_base >= m_filesize)
-			return false;
-		// Loop through chars, watching for eol chars or zero
-		while (m_current - m_base < m_filesize)
-		{
-			char ch = *m_current;
-			int ch_offset = (m_current - m_base);
-			++m_current;
-			if (ch == '\n' || ch == '\r')
-			{
-				eol += ch;
-				if (ch == '\r')
-				{
-					if (m_current - m_base < m_filesize && *m_current == '\n')
-					{
-						eol += '\n';
-						++m_current;
-						++m_txtstats.ncrlfs;
-					}
-					else
-					{
-						++m_txtstats.ncrs;
-					}
-				}
-				else
-				{
-					++m_txtstats.nlfs;
-				}
-				++m_lineno;
-				line.assign(pchLine, cchLine);
-				return true;
-			}
-			if (!ch)
-			{
-				RecordZero(m_txtstats, ch_offset);
-			}
-			++cchLine;
-		}
-		line.assign(pchLine, cchLine);
-		return true;
-	}
-#endif
 
 	if (m_current - m_base + (m_charsize - 1) >= m_filesize)
 		return false;
@@ -965,11 +917,7 @@ int UniStdioFile::WriteBom()
 bool UniStdioFile::WriteString(const String & line)
 {
 	// shortcut the easy cases
-#ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
-#else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
-#endif
 	{
 		size_t bytes = line.length() * sizeof(TCHAR);
 		size_t wbytes = fwrite(line.c_str(), 1, bytes, m_fp);

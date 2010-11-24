@@ -29,11 +29,7 @@
 
 #include <string>
 
-#ifdef _UNICODE
 #define std_tchar(type) std::w##type
-#else
-#define std_tchar(type) std::type
-#endif // _UNICODE
 
 typedef std_tchar(string) String;
 

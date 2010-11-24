@@ -95,14 +95,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 
 		// remember whitespace
 		WORD wCharType;
-#ifdef _UNICODE
 		GetStringTypeW(CT_CTYPE3, &szLine[i], 1, &wCharType);
-#else
-		if (IsDBCSLeadByte((BYTE)szLine[i]))
-			GetStringTypeA(LOCALE_USER_DEFAULT,CT_CTYPE3, &szLine[i], 2, &wCharType);
-		else
-			wCharType = 0;
-#endif
 		if( szLine[i] == _T('\t') || szLine[i] == _T(' ') || (wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA)))
 			bBreakable = TRUE;
 

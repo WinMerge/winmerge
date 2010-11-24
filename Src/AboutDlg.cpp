@@ -72,10 +72,8 @@ BOOL CAboutDlg::OnInitDialog()
 	String sVersion = version.GetFixedProductVersion();
 	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion.c_str());
 
-#ifdef _UNICODE
 	m_strVersion += _T(" ");
 	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
-#endif
 
 #ifdef WIN64
 	m_strVersion += _T(" ");
