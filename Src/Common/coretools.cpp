@@ -197,13 +197,7 @@ BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext)
  */
 bool IsSlashOrColon(LPCTSTR pszChar, LPCTSTR begin)
 {
-#ifdef _UNICODE
 		return (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\');
-#else
-		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-		return (*pszChar == '/' || *pszChar == ':' 
-			|| (*pszChar == '\\' && !_ismbstrail((unsigned char *)begin, (unsigned char *)pszChar)));
-#endif
 }
 
 /**

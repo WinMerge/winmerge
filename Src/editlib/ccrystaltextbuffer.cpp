@@ -520,11 +520,7 @@ BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
   __try
   {
     TCHAR drive[_MAX_PATH], dir[_MAX_PATH], name[_MAX_PATH], ext[_MAX_PATH];
-#ifdef _UNICODE
     _wsplitpath (pszFileName, drive, dir, name, ext);
-#else
-    _splitpath (pszFileName, drive, dir, name, ext);
-#endif
     _tcscpy (szTempFileDir, drive);
     _tcscat (szTempFileDir, dir);
     _tcscpy (szBackupFileName, pszFileName);
@@ -1830,15 +1826,7 @@ IsMBSLead (int nLine, int nCol)
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-#ifdef _UNICODE
   return FALSE;
-#else // _UNICODE
-  const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
-  const unsigned char *current = string + nCol;
-  if (_ismbslead (string, current) < 0)
-    return TRUE;
-  return FALSE;
-#endif // _UNICODE
 }
 
 BOOL CCrystalTextBuffer::
@@ -1847,15 +1835,7 @@ IsMBSTrail (int nLine, int nCol)
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
 
-#ifdef _UNICODE
   return FALSE;
-#else // _UNICODE
-  const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
-  const unsigned char *current = string + nCol;
-  if (_ismbstrail (string, current) < 0)
-    return TRUE;
-  return FALSE;
-#endif // _UNICODE
 }
 
 //BEGIN SW

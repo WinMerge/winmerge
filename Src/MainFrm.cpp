@@ -357,11 +357,7 @@ protected:
 
 static StatusDisplay myStatusDisplay;
 
-#ifdef _UNICODE
 const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
-#else
-const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassA");
-#endif
 /**
  * @brief Change MainFrame window class name
  *        see http://support.microsoft.com/kb/403825/ja
@@ -3406,17 +3402,10 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 		// this is the command id, not the button index
 		AfxExtractSubString(strTipText, strFullText.c_str(), 1, '\n');
 	}
-#ifndef _UNICODE
-	if (pNMHDR->code == TTN_NEEDTEXTA)
-		lstrcpyn(pTTTA->szText, strTipText, countof(pTTTA->szText));
-	else
-		_mbstowcsz(pTTTW->szText, strTipText, countof(pTTTW->szText));
-#else
 	if (pNMHDR->code == TTN_NEEDTEXTA)
 		_wcstombsz(pTTTA->szText, strTipText, countof(pTTTA->szText));
 	else
 		lstrcpyn(pTTTW->szText, strTipText, countof(pTTTW->szText));
-#endif
 	*pResult = 0;
 
 	// bring the tooltip window above other popup windows
