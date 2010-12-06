@@ -149,12 +149,6 @@ CString Fmt(LPCTSTR fmt, ...)
 	return str;
 }
 
-// Get appropriate clipboard format for TCHAR text
-int GetClipTcharTextFormat()
-{
-	return CF_UNICODETEXT;
-}
-
 #if _MSC_VER <= 1310
 /**
 * @brief Calculates a number absolute value.

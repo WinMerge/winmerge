@@ -964,8 +964,7 @@ OnUpdateEditSwitchOvrmode (CCmdUI * pCmdUI)
 DROPEFFECT CEditDropTargetImpl::
 OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point)
 {
-  UINT fmt = GetClipTcharTextFormat();
-  if (!pDataObject->IsDataAvailable (fmt))
+  if (!pDataObject->IsDataAvailable (CF_UNICODETEXT))
     {
       m_pOwner->HideDropIndicator ();
       return DROPEFFECT_NONE;
@@ -1003,8 +1002,7 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   //  if ((pDataObject->IsDataAvailable( CF_TEXT ) ) ||       // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
-  if (pDataObject->IsDataAvailable (fmt))   // If Text Available
+  if (pDataObject->IsDataAvailable (CF_UNICODETEXT))   // If Text Available
 
     {
       bDataSupported = true;    // Set Flag
@@ -1045,8 +1043,7 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
   //  if( ( pDataObject -> IsDataAvailable( CF_TEXT ) ) ||    // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
-  if (pDataObject->IsDataAvailable (fmt))   // If Text Available
+  if (pDataObject->IsDataAvailable (CF_UNICODETEXT))   // If Text Available
 
     {
       bDataSupported = true;    // Set Flag
@@ -1119,8 +1116,7 @@ DoDragScroll (const CPoint & point)
 BOOL CCrystalEditView::
 DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
 {
-  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
-  HGLOBAL hData = pDataObject->GetGlobalData (fmt);
+  HGLOBAL hData = pDataObject->GetGlobalData (CF_UNICODETEXT);
   if (hData == NULL)
     return FALSE;
 

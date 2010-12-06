@@ -31,8 +31,7 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
 			LPTSTR pszData = (LPTSTR)::GlobalLock(hData);
 			_tcscpy(pszData, text.c_str());
 			GlobalUnlock(hData);
-			UINT fmt = GetClipTcharTextFormat();
-			bOK = SetClipboardData(fmt, hData) != NULL;
+			bOK = SetClipboardData(CF_UNICODETEXT, hData) != NULL;
 		}
 		CloseClipboard();
 	}
@@ -50,8 +49,7 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
 	bool bSuccess = false;
 	if (OpenClipboard(currentWindowHandle))
 	{
-		UINT fmt = GetClipTcharTextFormat();
-		HGLOBAL hData = GetClipboardData(fmt);
+		HGLOBAL hData = GetClipboardData(CF_UNICODETEXT);
 		if (hData != NULL)
 		{
 			LPTSTR pszData = (LPTSTR) GlobalLock(hData);
@@ -73,6 +71,5 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
  */
 bool TextInClipboard()
 {
-	UINT fmt = GetClipTcharTextFormat();
-	return IsClipboardFormatAvailable(fmt) != FALSE;
+	return IsClipboardFormatAvailable(CF_UNICODETEXT) != FALSE;
 }

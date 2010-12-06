@@ -139,9 +139,6 @@ void LogErrorString(LPCTSTR sz);
 	/** @brief Inline sprintf-style format; shortcut for CString::Format */
 CString Fmt(LPCTSTR fmt, ...);
 
-	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
-int GetClipTcharTextFormat();
-
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"
 
