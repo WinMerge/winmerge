@@ -74,6 +74,9 @@
     <WixVariable Id="WixUIBannerBmp" Value="Bitmaps\banner.bmp" /> 
     <WixVariable Id="WixUIDialogBmp" Value="Bitmaps\dialog.bmp" />
     
+    <Icon Id="Merge.ico" SourceFile="..\..\Src\res\Merge.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Merge.ico" />
+    
     <UIRef Id="WixUI_WinMerge" />
     
     <UI />
