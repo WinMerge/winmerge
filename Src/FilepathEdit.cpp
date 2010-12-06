@@ -241,9 +241,8 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	// Copy selected data from m_sOriginalText into the alloc'd data area
 	_tcscpy (pszData, (LPTSTR) m_sOriginalText.Mid(iBegin, iEnd - iBegin).GetBuffer(0));
 	GlobalUnlock (hData);
-	UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
 	// Using alloc'd data, set the clipboard
-	SetClipboardData (fmt, hData);
+	SetClipboardData (CF_UNICODETEXT, hData);
 
 	// release the clipboard
 	CloseClipboard ();

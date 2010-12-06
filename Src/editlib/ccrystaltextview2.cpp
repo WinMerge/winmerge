@@ -794,8 +794,7 @@ OnMouseMove (UINT nFlags, CPoint point)
             m_pTextBuffer->BeginUndoGroup ();
 
           COleDataSource ds;
-          UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
-          ds.CacheGlobalData (fmt, hData);
+          ds.CacheGlobalData (CF_UNICODETEXT, hData);
           m_bDraggingText = TRUE;
           DROPEFFECT de = ds.DoDragDrop (GetDropEffect ());
           if (de != DROPEFFECT_NONE)
@@ -1118,8 +1117,7 @@ Copy ()
 BOOL CCrystalTextView::
 TextInClipboard ()
 {
-  UINT fmt = GetClipTcharTextFormat();
-  return IsClipboardFormatAvailable (fmt);
+  return IsClipboardFormatAvailable (CF_UNICODETEXT);
 }
 
 BOOL CCrystalTextView::
@@ -1142,8 +1140,7 @@ PutToClipboard (LPCTSTR pszText, int cchText)
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           memcpy (pszData, pszText, cbData);
           GlobalUnlock (hData);
-          UINT fmt = GetClipTcharTextFormat();
-          bOK = SetClipboardData (fmt, hData) != NULL;
+          bOK = SetClipboardData (CF_UNICODETEXT, hData) != NULL;
           if (bOK)
             SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
         }
@@ -1158,8 +1155,7 @@ GetFromClipboard (CString & text)
   BOOL bSuccess = FALSE;
   if (OpenClipboard ())
     {
-      UINT fmt = GetClipTcharTextFormat();
-      HGLOBAL hData = GetClipboardData (fmt);
+      HGLOBAL hData = GetClipboardData (CF_UNICODETEXT);
       if (hData != NULL)
         {
           LPTSTR pszData = (LPTSTR) GlobalLock (hData);
