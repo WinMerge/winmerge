@@ -217,7 +217,7 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 		// Convert string to integer
 		{
 			int val=0;
-			if (!::GetAsInt(svalue.c_str(), val))
+			if (!GetAsInt(svalue.c_str(), val))
 				return false;
 			value.SetInt(val);
 			return true;
