@@ -3160,7 +3160,7 @@ void CDirView::OnCopyBothPathnames()
 
 		if (!di.diffcode.isSideLeftOnly())
 		{
-			strPaths += di. GetRightFilepath(pDoc->GetRightBasePath());
+			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.right.filename);
