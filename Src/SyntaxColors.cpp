@@ -262,7 +262,7 @@ void SyntaxColors::SaveToRegistry()
 
 	int count = COLORINDEX_COUNT;
 	valuename += _T("/Values");
-	m_pOptionsMgr->SetInt(valuename.c_str(), count);
+	m_pOptionsMgr->SaveOption(valuename.c_str(), count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
@@ -270,12 +270,12 @@ void SyntaxColors::SaveToRegistry()
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
 			DefColorsPath, i);
 		int color = m_colors[i];
-		m_pOptionsMgr->SetInt(valuename.c_str(), color);
+		m_pOptionsMgr->SaveOption(valuename.c_str(), color);
 		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
 			DefColorsPath, i);
 		BOOL bold = m_bolds[i];
-		m_pOptionsMgr->SetInt(valuename.c_str(), bold);
+		m_pOptionsMgr->SaveOption(valuename.c_str(), bold);
 	}
 }
 
