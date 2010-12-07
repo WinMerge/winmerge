@@ -130,10 +130,10 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			else
 			{
 				// we're in the common section, so write to both files
-				newRevision.WriteString(line.c_str());
+				newRevision.WriteString(line);
 				newRevision.WriteString(eol);
 
-				workingCopy.WriteString(line.c_str());
+				workingCopy.WriteString(line);
 				workingCopy.WriteString(eol);
 			}
 			break;
@@ -146,7 +146,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			{
 				// nested conflict section starts
 				state = 3;
-				workingCopy.WriteString(line.c_str());
+				workingCopy.WriteString(line);
 				workingCopy.WriteString(eol);
 			}
 			else
@@ -157,7 +157,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					line = line.substr(0, pos);
 					if (!line.empty())
 					{
-						workingCopy.WriteString(line.c_str());
+						workingCopy.WriteString(line);
 						workingCopy.WriteString(eol);
 					}
 
@@ -166,7 +166,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 				}
 				else
 				{
-					workingCopy.WriteString(line.c_str());
+					workingCopy.WriteString(line);
 					workingCopy.WriteString(eol);
 				}
 			}
@@ -180,7 +180,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 			{
 				// nested conflict section starts
 				state = 4;
-				newRevision.WriteString(line.c_str());
+				newRevision.WriteString(line);
 				newRevision.WriteString(eol);
 			}
 			else
@@ -192,7 +192,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					line = line.substr(0, pos);
 					if (!line.empty())
 					{
-						newRevision.WriteString(line.c_str());
+						newRevision.WriteString(line);
 						newRevision.WriteString(eol);
 					}
 
@@ -201,7 +201,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 				}
 				else
 				{
-					newRevision.WriteString(line.c_str());
+					newRevision.WriteString(line);
 					newRevision.WriteString(eol);
 				}
 			}
@@ -232,7 +232,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					}
 				}
 			}
-			workingCopy.WriteString(line.c_str());
+			workingCopy.WriteString(line);
 			workingCopy.WriteString(eol);
 			break;
 
@@ -259,7 +259,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 					}
 				}
 			}
-			newRevision.WriteString(line.c_str());
+			newRevision.WriteString(line);
 			newRevision.WriteString(eol);
 			break;
 		}
