@@ -358,21 +358,21 @@ bool UniMemFile::ReadBom()
 	m_unicoding = ucr::DetermineEncoding(lpByte, m_filesize, &bom);
 	switch (m_unicoding)
 	{
-		case ucr::UCS2LE:
-		case ucr::UCS2BE:
-			m_charsize = 2;
-			m_data = lpByte + 2;
-			unicode = true;
-			break;
-		case ucr::UTF8:
-			if (bom)
-				m_data = lpByte + 3;
-			else
-				m_data = lpByte;
-			unicode = true;
-			break;
-		default:
-			break;
+	case ucr::UCS2LE:
+	case ucr::UCS2BE:
+		m_charsize = 2;
+		m_data = lpByte + 2;
+		unicode = true;
+		break;
+	case ucr::UTF8:
+		if (bom)
+			m_data = lpByte + 3;
+		else
+			m_data = lpByte;
+		unicode = true;
+		break;
+	default:
+		break;
 	}
 
 	m_bom = bom;
@@ -826,21 +826,21 @@ bool UniStdioFile::ReadBom()
 	m_unicoding = ucr::DetermineEncoding(buff, bytes, &bom);
 	switch (m_unicoding)
 	{
-		case ucr::UCS2LE:
-		case ucr::UCS2BE:
-			m_charsize = 2;
-			m_data = 2;
-			unicode = true;
-			break;
-		case ucr::UTF8:
-			if (bom)
-				m_data = 3;
-			else
-				m_data = 0;
-			unicode = true;
-			break;
-		default:
-			break;
+	case ucr::UCS2LE:
+	case ucr::UCS2BE:
+		m_charsize = 2;
+		m_data = 2;
+		unicode = true;
+		break;
+	case ucr::UTF8:
+		if (bom)
+			m_data = 3;
+		else
+			m_data = 0;
+		unicode = true;
+		break;
+	default:
+		break;
 	}
 
 	delete[] buff;
