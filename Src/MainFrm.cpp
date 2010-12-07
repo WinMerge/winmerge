@@ -1308,9 +1308,6 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			_RPTF0(_CRT_ERROR, "Unknown backup location!");
 		}
 
-		if (!paths_EndsWithSlash(bakPath.c_str()))
-			bakPath += _T("\\");
-
 		BOOL success = FALSE;
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
 		{
@@ -1338,7 +1335,9 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			bakPath += filename;
+			if (!paths_EndsWithSlash(bakPath.c_str()))
+				bakPath += _T("\\");
+			bakPath = paths_ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
 		}
@@ -2033,10 +2032,10 @@ void CMainFrame::OnToolsGeneratePatch()
 				// Format full paths to files (leftFile/rightFile)
 				String leftFile = item.GetLeftFilepath(pDoc->GetLeftBasePath());
 				if (!leftFile.empty())
-					leftFile += _T("\\") + item.left.filename;
+					leftFile = paths_ConcatPath(leftFile, item.left.filename);
 				String rightFile = item.GetRightFilepath(pDoc->GetRightBasePath());
 				if (!rightFile.empty())
-					rightFile += _T("\\") + item.right.filename;
+					rightFile = paths_ConcatPath(rightFile, item.right.filename);
 
 				// Format relative paths to files in folder compare
 				String leftpatch = item.left.path;

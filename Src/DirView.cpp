@@ -42,7 +42,7 @@
 #include "locality.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
-#include "paths.h"	// GetPairComparability()
+#include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "BCMenu.h"
@@ -732,10 +732,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 				!di.diffcode.isSideLeftOnly() && !di.diffcode.isSideRightOnly() &&
 				!di.diffcode.isResultFiltered())
 		{
-			String leftPath = di.GetLeftFilepath(pDoc->GetLeftBasePath()) +
-					_T("\\") + di.left.filename;
-			String rightPath = di.GetRightFilepath(pDoc->GetRightBasePath()) +
-					_T("\\") + di.right.filename;
+			String leftPath(di.GetLeftFilepath(pDoc->GetLeftBasePath()));
+			leftPath = paths_ConcatPath(leftPath, di.left.filename);
+			String rightPath(di.GetRightFilepath(pDoc->GetRightBasePath()));
+			rightPath = paths_ConcatPath(rightPath, di.right.filename);
 			CString filteredFilenames;
 			filteredFilenames.Format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
 			PackingInfo * unpacker;
@@ -3092,10 +3092,9 @@ void CDirView::OnCopyLeftPathnames()
 		if (!di.diffcode.isSideRightOnly())
 		{
 			strPaths += di.GetLeftFilepath(GetDocument()->GetLeftBasePath());
-			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.left.filename;
+			strPaths = paths_ConcatPath(strPaths, di.left.filename);
 			strPaths += _T("\r\n");
 		}
 	}
@@ -3117,10 +3116,9 @@ void CDirView::OnCopyRightPathnames()
 		if (!di.diffcode.isSideLeftOnly())
 		{
 			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
-			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.right.filename;
+			strPaths = paths_ConcatPath(strPaths, di.right.filename);
 			strPaths += _T("\r\n");
 		}
 	}
@@ -3142,20 +3140,18 @@ void CDirView::OnCopyBothPathnames()
 		if (!di.diffcode.isSideRightOnly())
 		{
 			strPaths += di.GetLeftFilepath(pDoc->GetLeftBasePath());
-			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.left.filename;
+			strPaths = paths_ConcatPath(strPaths, di.left.filename);
 			strPaths += _T("\r\n");
 		}
 
 		if (!di.diffcode.isSideLeftOnly())
 		{
 			strPaths += di.GetRightFilepath(pDoc->GetRightBasePath());
-			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.right.filename;
+			strPaths = paths_ConcatPath(strPaths, di.right.filename);
 			strPaths += _T("\r\n");
 		}
 	}
