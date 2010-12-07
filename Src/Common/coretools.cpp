@@ -274,7 +274,7 @@ endSplit:
 void SplitViewName(LPCTSTR s, String * path, String * name, String * ext)
 {
 	String sViewName(s);
-	int nOffset = sViewName.find(_T("@@"));
+	size_t nOffset = sViewName.find(_T("@@"));
 	if (nOffset != std::string::npos)
 	{
 		sViewName.erase(nOffset);
@@ -756,7 +756,7 @@ void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
 {
 	BOOL pathEndFound = FALSE;
 	BOOL addQuote = FALSE;
-	int prevPos = 0;
+	size_t prevPos = 0;
 
 	sDecoratedCmdLine.erase();
 	sExecutable.erase();
