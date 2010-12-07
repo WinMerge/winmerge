@@ -408,6 +408,7 @@ BOOL ProjectFile::HasSubfolders() const
 /** 
  * @brief Returns left path.
  * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @return Left path.
  */
 CString ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 {
@@ -418,6 +419,7 @@ CString ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if left path is specified read-only.
+ * @return TRUE if left path is read-only, FALSE otherwise.
  */
 BOOL ProjectFile::GetLeftReadOnly() const
 {
@@ -442,6 +444,7 @@ CString ProjectFile::SetLeft(const CString& sLeft, const BOOL * pReadOnly /*=NUL
 /** 
  * @brief Returns right path.
  * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @return Right path.
  */
 CString ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 {
@@ -452,6 +455,7 @@ CString ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if right path is specified read-only.
+ * @return TRUE if right path is read-only, FALSE otherwise.
  */
 BOOL ProjectFile::GetRightReadOnly() const
 {
@@ -475,6 +479,7 @@ CString ProjectFile::SetRight(const CString& sRight, const BOOL * pReadOnly /*=N
 
 /** 
  * @brief Returns filter.
+ * @return Filter string.
  */
 CString ProjectFile::GetFilter() const
 {
@@ -494,6 +499,7 @@ CString ProjectFile::SetFilter(const CString& sFilter)
 
 /** 
  * @brief Returns subfolder included -setting.
+ * @return != 0 if subfolders are included.
  */
 int ProjectFile::GetSubfolders() const
 {
