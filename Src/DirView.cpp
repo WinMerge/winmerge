@@ -3095,9 +3095,12 @@ void CDirView::OnCopyLeftPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.left.filename);
-			strPaths += _T("\r\n");
+			// Append space between (and end) of paths. Space is better than
+			// EOL since it allows copying to console/command line.
+			strPaths += _T(" ");
 		}
 	}
+	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3119,9 +3122,12 @@ void CDirView::OnCopyRightPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.right.filename);
-			strPaths += _T("\r\n");
+			// Append space between (and end) of paths. Space is better than
+			// EOL since it allows copying to console/command line.
+			strPaths += _T(" ");
 		}
 	}
+	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3143,7 +3149,9 @@ void CDirView::OnCopyBothPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.left.filename);
-			strPaths += _T("\r\n");
+			// Append space between (and end) of paths. Space is better than
+			// EOL since it allows copying to console/command line.
+			strPaths += _T(" ");
 		}
 
 		if (!di.diffcode.isSideLeftOnly())
@@ -3152,9 +3160,12 @@ void CDirView::OnCopyBothPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.right.filename);
-			strPaths += _T("\r\n");
+			// Append space between (and end) of paths. Space is better than
+			// EOL since it allows copying to console/command line.
+			strPaths += _T(" ");
 		}
 	}
+	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3172,9 +3183,12 @@ void CDirView::OnCopyFilenames()
 		if (!di.diffcode.isDirectory())
 		{
 			strPaths += di.left.filename;
-			strPaths += _T("\r\n");
+			// Append space between (and end) of paths. Space is better than
+			// EOL since it allows copying to console/command line.
+			strPaths += _T(" ");
 		}
 	}
+	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 

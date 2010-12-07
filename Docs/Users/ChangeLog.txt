@@ -23,6 +23,7 @@ WinMerge 2.13.21
   Bugfix: Crash when pasting from clipboard (#3109525)
   Bugfix: Keeps verifing path even turned off in options (#3111581)
   Bugfix: Crash after deleting text (#3109521)
+  Bugfix: Added EOL chars between copied file/path names (#2817546)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)
