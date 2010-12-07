@@ -2350,7 +2350,7 @@ LoadConfigIntSetting(int * cfgval, COptionsMgr * options, const CString & name, 
 	}
 	else
 	{
-		options->SetInt(name, *cfgval);
+		options->Set(name, *cfgval);
 	}
 }
 
@@ -2369,7 +2369,7 @@ LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr * options, const CString & name
 	}
 	else
 	{
-		options->SetBool(name, !!(*cfgval));
+		options->Set(name, !!(*cfgval));
 	}
 }
 
@@ -2388,7 +2388,7 @@ LoadConfigBoolSetting(bool * cfgval, COptionsMgr * options, const CString & name
 	}
 	else
 	{
-		options->SetBool(name, !!(*cfgval));
+		options->Set(name, !!(*cfgval));
 	}
 }
 

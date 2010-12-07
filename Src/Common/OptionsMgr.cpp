@@ -9,7 +9,7 @@
 
 
 /* The MIT License
-Copyright (c) 2004-2008 Kimmo Varis
+Copyright (c) 2004-2009 Kimmo Varis
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction, including
@@ -40,7 +40,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "varprop.h"
 #include "OptionsMgr.h"
 
-static bool GetInt(LPCTSTR str, int & val);
+static bool GetAsInt(LPCTSTR str, int & val);
 
 /**
  * @brief Default constructor.
@@ -151,11 +151,11 @@ varprop::VariantValue COption::GetDefault() const
  * @param [out] val Converted integer.
  * @return true if conversion succeeded, false otherwise.
  */
-static bool GetInt(LPCTSTR str, int & val)
+static bool GetAsInt(LPCTSTR str, int & val)
 {
 	if (str == NULL)
 		return false;
-	int len = _tcslen(str);
+	const size_t len = _tcslen(str);
 	if (len == 0)
 		return false;
 
@@ -217,7 +217,7 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 		// Convert string to integer
 		{
 			int val=0;
-			if (!::GetInt(svalue.c_str(), val))
+			if (!::GetAsInt(svalue.c_str(), val))
 				return false;
 			value.SetInt(val);
 			return true;
@@ -487,6 +487,42 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 }
 
 /**
+ * @brief Set new value for boolean option.
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
+ */
+int COptionsMgr::Set(LPCTSTR name, bool value)
+{
+	varprop::VariantValue valx;
+	valx.SetBool(value);
+	return Set(name, valx);
+}
+
+/**
+ * @brief Set new value for integer option.
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
+ */
+int COptionsMgr::Set(LPCTSTR name, int value)
+{
+	varprop::VariantValue valx;
+	valx.SetInt(value);
+	return Set(name, valx);
+}
+
+/**
+ * @brief Set new value for string option.
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
+ */
+int COptionsMgr::Set(LPCTSTR name, LPCTSTR value)
+{
+	varprop::VariantValue valx;
+	valx.SetString(value);
+	return Set(name, valx);
+}
+
+/**
  * @brief Type-convert and forward to SaveOption(String, int)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
@@ -519,8 +555,8 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		BOOL succeeded = m_optionsMap.erase(name);
-		if (!succeeded)
+		size_t nr_removed = m_optionsMap.erase(name);
+		if (nr_removed == 0)
 			retVal = OPT_NOTFOUND;
 	}
 	else
