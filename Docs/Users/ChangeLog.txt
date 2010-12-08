@@ -25,6 +25,7 @@ WinMerge 2.13.21
   Bugfix: Crash after deleting text (#3109521)
   Bugfix: Added EOL chars between copied file/path names (#2817546)
   Bugfix: Created new matching folder to wrong folder (#2890961)
+  Bugfix: Strange scrolling effect in location pane (#2942869)
 
 WinMerge 2.13.20 - 2010-10-20 (r7319)
   Add missing keywords to Pascal highlighter (#2834192)
