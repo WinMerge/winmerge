@@ -17,7 +17,7 @@ const TCHAR WinMergeURL[] = _T("http://winmerge.org/");
  * @brief URL to help index in internet.
  * We use internet help when local help file is not found (not installed).
  */
-const TCHAR DocsURL[] = _T("http://winmerge.org/docs/manual/index.html");
+const TCHAR DocsURL[] = _T("http://manual.winmerge.org/index.html");
 
 /** @brief URL to translations page in internet. */
 const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");

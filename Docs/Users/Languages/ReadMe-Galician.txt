@@ -17,7 +17,7 @@ Comezo rápido
 ===========
 Para aprender como levar a cabo as operacións básicas logo de instalar o WinMerge, 
 preme en Axuda>Axuda do WinMerge e vai ao tema Quick start.  Ou, podes visitar a 
-versión Web en http://winmerge.org/docs/manual/QuickStart.html.
+versión Web en http://manual.winmerge.org/QuickStart.html.
 
 Axuda do WinMerge
 ===============
@@ -27,7 +27,7 @@ WinMerge ou preme F1 na fiestra do WinMerge. Se empregas a liña de comandos,
 executa o WinMerge coa opción de axuda /?.
 
 Tamén podes explorar a versión HTML da axuda do WinMerge en 
-http://winmerge.org/docs/manual/.
+http://manual.winmerge.org/.
 
 Soporte de Arquivo
 ==============

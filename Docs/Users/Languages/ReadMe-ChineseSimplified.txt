@@ -7,10 +7,10 @@ Windows平台上的开源软件。有些功能需要额外安装组件。
 
 WinMerge 快速入门：
 请阅读在线手册的“Quick-start”章节来了解并开始即用 WinMerge ：
-http://winmerge.org/docs/manual/QuickStart.html
+http://manual.winmerge.org/QuickStart.html
 
 HTML 手册：
-用户手册可以从 http://winmerge.org/docs/manual/ 得到，也可以在安装时选择
+用户手册可以从 http://manual.winmerge.org/ 得到，也可以在安装时选择
 安装到本地，或者也可以单独从 http://winmerge.org/ 下载。(参见文档)
 
 压缩包支持：
