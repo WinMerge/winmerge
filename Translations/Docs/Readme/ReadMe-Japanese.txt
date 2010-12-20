@@ -16,7 +16,7 @@ http://winmerge.org/
 ===========
 WinMerge‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚½ŒãAŠî–{“I‚È‘€ì‚Ìd•û‚ğ’m‚é‚½‚ß‚ÉA[ƒwƒ‹ƒv]ƒƒjƒ…[¨
 [WinMergeƒwƒ‹ƒv]‚ğƒNƒŠƒbƒN‚µAƒNƒCƒbƒNƒXƒ^[ƒgƒgƒsƒbƒN‚ğ•\¦‚µ‚Ä‚­‚¾‚³‚¢B
-‚Ü‚½‚ÍAWebƒo[ƒWƒ‡ƒ“‚Ìhttp://winmerge.org/docs/manual/QuickStart.html
+‚Ü‚½‚ÍAWebƒo[ƒWƒ‡ƒ“‚Ìhttp://manual.winmerge.org/QuickStart.html
 ‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
 WinMerge‚Ìƒwƒ‹ƒv
@@ -26,7 +26,7 @@ WinMerge‚Ìƒwƒ‹ƒv‚ÍAMicrosoft HTMLƒwƒ‹ƒv ƒtƒ@ƒCƒ‹‚ÌWinMerge.chm‚Æ‚µ‚ÄƒCƒ“ƒXƒg[ƒ
 ƒNƒŠƒbƒN‚·‚é‚©AWinMergeƒEƒCƒ“ƒhƒE‚ÅF1ƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B
 ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Å‚ÍA/? ƒwƒ‹ƒvƒXƒCƒbƒ`‚ğ‚Â‚¯‚ÄWinMerge‚ÌÀsƒtƒ@ƒCƒ‹‚ğÀs‚µ‚Ü‚·B
 
-http://winmerge.org/docs/manual/ ‚©‚ç‚Å‚àHTML”Å‚ÌWinMergeƒwƒ‹ƒv‚ğ‰{——‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+http://manual.winmerge.org/ ‚©‚ç‚Å‚àHTML”Å‚ÌWinMergeƒwƒ‹ƒv‚ğ‰{——‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 
 ƒA[ƒJƒCƒuƒTƒ|[ƒg:
 ===============
