@@ -9,11 +9,11 @@ http://winmerge.org
 
 Початок роботи з WinMerge:
 Щодо цього читайте відповідний розділ онлайн-довідки WinMerge:
-http://winmerge.org/docs/manual/QuickStart.html
+http://manual.winmerge.org/QuickStart.html
 
 HTML-довідка:
 Довідка доступна онлайн
-http://winmerge.org/docs/manual/
+http://manual.winmerge.org/
 її також можна встановити (якщо обрано) локально та завантажити окремо з
 http://winmerge.org/ (див. документацію)
 
