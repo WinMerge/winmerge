@@ -281,7 +281,7 @@ int to_utf8_advance(unsigned int u, unsigned char * &lpd)
 	}
 	else if (u < 0x80000000)
 	{
-		*lpd++ = 0xF8 + (u >> 30);
+		*lpd++ = 0xFC + (u >> 30);
 		*lpd++ = 0x80 + ((u >> 24) & 0x3F);
 		*lpd++ = 0x80 + ((u >> 18) & 0x3F);
 		*lpd++ = 0x80 + ((u >> 12) & 0x3F);
