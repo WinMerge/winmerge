@@ -62,7 +62,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 
 int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy);
 
-UNICODESET DetermineEncoding(unsigned char* pBuffer, int size, bool * pBom);
+UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom);
 
 } // namespace ucr
 

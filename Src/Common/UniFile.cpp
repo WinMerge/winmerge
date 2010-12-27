@@ -349,7 +349,7 @@ bool UniMemFile::ReadBom()
 	if (!IsOpen())
 		return false;
 
-	unsigned char * lpByte = m_base;
+	PBYTE lpByte = m_base;
 	m_current = m_data = m_base;
 	m_charsize = 1;
 	bool unicode = false;
@@ -443,7 +443,7 @@ static void Append(String &strBuffer, LPCTSTR pchTail,
 /**
  * @brief Record occurrence of binary zero to stats
  */
-static void RecordZero(UniFile::txtstats & txstats, int offset)
+static void RecordZero(UniFile::txtstats & txstats, INT64 offset)
 {
 	++txstats.nzeros;
 	if (txstats.first_zero == -1)
@@ -476,7 +476,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		while (m_current - m_base + 1 < m_filesize)
 		{
 			wchar_t wch = *(wchar_t *)m_current;
-			int wch_offset = (m_current - m_base);
+			INT64 wch_offset = (m_current - m_base);
 			m_current += 2;
 			if (wch == '\n' || wch == '\r')
 			{
@@ -529,7 +529,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			}
 			if (*eolptr == 0)
 			{
-				int offset = (eolptr - m_base);
+				INT64 offset = (eolptr - m_base);
 				RecordZero(m_txtstats, offset);
 			}
 		}
@@ -644,7 +644,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		}
 		else if (!ch)
 		{
-			int offset = (m_current - m_base);
+			INT64 offset = (m_current - m_base);
 			RecordZero(m_txtstats, offset);
 		}
 		// always advance to next character
