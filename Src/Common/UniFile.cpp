@@ -78,7 +78,7 @@ void UniFile::UniError::ClearError()
  * @brief Get the error string.
  * @return Error string.
  */
-String UniFile::UniError::GetError()
+String UniFile::UniError::GetError() const
 {
 	String sError;
 	if (apiname.empty())
