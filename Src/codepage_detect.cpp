@@ -45,7 +45,7 @@ static const char *EatPrefix(const char *text, const char *prefix)
 {
 	int len = strlen(prefix);
 	if (len)
-		if (memicmp(text, prefix, len) == 0)
+		if (_memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -100,7 +100,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len)
 				{
 					char *pchValue = pchKey + cchKey;
 					int cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-					if (cchKey >= 7 && memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					if (cchKey >= 7 && _memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 					{
 						pchValue[cchValue] = '\0';
 						// Is it an encoding name known to charsets module ?
