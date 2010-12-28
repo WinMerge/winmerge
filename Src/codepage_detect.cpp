@@ -223,7 +223,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL b
 		encoding->m_bom = true;
 		break;
 	default:
-		if (fi.pImage && !CheckForInvalidUtf8((LPBYTE)fi.pImage, 4096))
+		if (fi.pImage && !CheckForInvalidUtf8((LPBYTE)fi.pImage, fi.cbImage))
 			encoding->SetUnicoding(ucr::UTF8);
 		encoding->m_bom = false;
 		break;
