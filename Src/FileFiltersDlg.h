@@ -63,6 +63,7 @@ private:
 	void AddToGrid(int filterIndex);
 	bool IsFilterItemNone(int item) const;
 	void UpdateFiltersList();
+	void EditFileFilter(LPCTSTR path);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

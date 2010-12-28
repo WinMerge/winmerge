@@ -104,7 +104,6 @@ public:
 
 	FileFilterMgr * GetManager() const;
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
-	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
 	CString GetFileFilterName(LPCTSTR filterPath) const;
 	CString GetFileFilterPath(LPCTSTR filterName) const;

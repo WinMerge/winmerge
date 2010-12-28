@@ -25,7 +25,6 @@
 #include "stdafx.h"
 #include "Ucs2Utf8.h"
 #include "UnicodeString.h"
-#include "MainFrm.h"
 #include "FilterList.h"
 #include "DirItem.h"
 #include "FileFilterMgr.h"
@@ -281,15 +280,6 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 
 		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
 	}
-}
-
-/**
- * @brief Open filter file to external editor for modifying.
- * @param [in] szFileFilterterPath Path of filter file to edit.
- */
-void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
-{
-	CMainFrame::OpenFileToExternalEditor(szFileFilterPath);
 }
 
 /**
