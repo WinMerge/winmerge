@@ -9,16 +9,15 @@
 // $Id$
 
 #include "stdafx.h"
-#include "io.h"
+#include <io.h>
+#include <tchar.h>
+#include <shlwapi.h>
+#include "coretypes.h"
 #include "DiffItem.h"
 #include "FileLocation.h"
 #include "Diff.h"
-#include "Paths.h"
-#include "DiffContext.h"
 #include "FileTransform.h"
 #include "common/unicoder.h"
-#include "codepage_detect.h"
-#include <shlwapi.h>
 #include "AnsiConvert.h"
 #include "DiffFileData.h"
 
