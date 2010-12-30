@@ -587,54 +587,54 @@ static DIFFITEM *AddToList(const String &sLeftDir, const String &sRightDir,
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
 	// change to identical
-	DIFFITEM &di = myStruct->context->AddDiff(parent);
+	DIFFITEM *di = myStruct->context->AddDiff(parent);
 
 	if (!sLeftDir.empty())
-		di.left.path = sLeftDir;
+		di->left.path = sLeftDir;
 	if (!sRightDir.empty())
-		di.right.path = sRightDir;
+		di->right.path = sRightDir;
 
 	if (lent)
 	{
-		di.left.filename = lent->filename;
-		di.left.mtime = lent->mtime;
-		di.left.ctime = lent->ctime;
-		di.left.size = lent->size;
-		di.left.flags.attributes = lent->flags.attributes;
+		di->left.filename = lent->filename;
+		di->left.mtime = lent->mtime;
+		di->left.ctime = lent->ctime;
+		di->left.size = lent->size;
+		di->left.flags.attributes = lent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		di.left.filename = rent->filename;
+		di->left.filename = rent->filename;
 	}
 
 	if (rent)
 	{
-		di.right.filename = OPTIMIZE_SHARE_CSTRINGDATA
+		di->right.filename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			di.left.filename.c_str() == rent->filename.c_str() ? di.left.filename :
+			di->left.filename.c_str() == rent->filename.c_str() ? di->left.filename :
 		) rent->filename;
-		di.right.mtime = rent->mtime;
-		di.right.ctime = rent->ctime;
-		di.right.size = rent->size;
-		di.right.flags.attributes = rent->flags.attributes;
+		di->right.mtime = rent->mtime;
+		di->right.ctime = rent->ctime;
+		di->right.size = rent->size;
+		di->right.flags.attributes = rent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		di.right.filename = lent->filename;
+		di->right.filename = lent->filename;
 	}
 
-	di.diffcode = code;
+	di->diffcode = code;
 
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.left.filename.c_str(), di.left.path.c_str(), di.right.path.c_str(), code
+		di->left.filename.c_str(), di->left.path.c_str(), di->right.path.c_str(), code
 	);
 	myStruct->context->m_pCompareStats->IncreaseTotalItems();
 	ReleaseSemaphore(myStruct->hSemaphore, 1, 0);
-	return &di;
+	return di;
 }
 
 void // static
