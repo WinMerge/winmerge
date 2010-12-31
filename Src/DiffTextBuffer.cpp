@@ -405,10 +405,16 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 				break;
 			// but if last line had eol, we add an extra (empty) line to buffer
 
-			// Manually grow line array exponentially
+			// Grow line array
 			if (lineno == arraysize)
 			{
-				arraysize *= 2;
+				// For smaller sizes use exponential growth, but for larger
+				// sizes grow by constant ratio. Unlimited exponential growth
+				// easily runs out of memory.
+				if (arraysize < 100 * 1024)
+					arraysize *= 2;
+				else
+					arraysize += 100 * 1024;
 				m_aLines.SetSize(arraysize);
 			}
 
