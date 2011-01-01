@@ -44,7 +44,7 @@ class FolderCmp
 public:
 	FolderCmp();
 	~FolderCmp();
-	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr);
+	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
 	UINT prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 
