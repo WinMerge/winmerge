@@ -369,7 +369,7 @@ void CDirDoc::Rescan()
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
-	m_pCtxt->CreateCompareOptions(options);
+	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
 
 	m_pCtxt->m_iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
 	if ((m_pCtxt->m_iGuessEncodingType >> 16) == 0)

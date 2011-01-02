@@ -112,7 +112,7 @@ public:
 	void UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight);
 	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bMiddle, BOOL bRight);
 
-	BOOL CreateCompareOptions(const DIFFOPTIONS & options);
+	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
 
 	// retrieve or manufacture plugin info for specified file comparison
@@ -199,7 +199,7 @@ private:
 	 * can be temporary switches to other method (e.g. for large file) but
 	 * this main method must be set back for next file.
 	 */
-	const int m_nCompMethod;
+	int m_nCompMethod;
 
 	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
 	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
