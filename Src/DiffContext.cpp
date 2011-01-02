@@ -212,10 +212,11 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
  * This function creates a compare options class that is specific for
  * main compare method. Compare options class is initialized from
  * given set of options.
+ * @param [in] compareMethod Selected compare method.
  * @param [in] options Initial set of compare options.
  * @return TRUE if creation succeeds.
  */
-BOOL CDiffContext::CreateCompareOptions(const DIFFOPTIONS & options)
+BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
 {
 	if (m_pOptions != NULL)
 		delete m_pOptions;
@@ -228,6 +229,7 @@ BOOL CDiffContext::CreateCompareOptions(const DIFFOPTIONS & options)
 	delete m_pCompareOptions;
 	m_pCompareOptions = NULL;
 
+	m_nCompMethod = compareMethod;
 	m_pCompareOptions = GetCompareOptions(m_nCompMethod);
 	if (m_pCompareOptions == NULL)
 	{
