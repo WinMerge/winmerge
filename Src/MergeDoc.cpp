@@ -811,8 +811,8 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
  */
 bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 {
-	int cd_dbegin = dr.dbegin0;
-	int cd_dend = dr.dend0;
+	const int cd_dbegin = dr.dbegin0;
+	const int cd_dend = dr.dend0;
 
 	// Must ensure line number is in range before getting line flags
 	if (cd_dend >= m_ptBuf[0]->GetLineCount())
@@ -892,9 +892,9 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
 		CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
 		BOOL bSrcWasMod = sbuf.IsModified();
-		int cd_dbegin = srcPane == 0 ? cd.dbegin0 : cd.dbegin1;
-		int cd_dend = srcPane == 0 ? cd.dend0 : cd.dend1;
-		int cd_blank = srcPane == 0 ? cd.blank0 : cd.blank1;
+		const int cd_dbegin = srcPane == 0 ? cd.dbegin0 : cd.dbegin1;
+		const int cd_dend = srcPane == 0 ? cd.dend0 : cd.dend1;
+		const int cd_blank = srcPane == 0 ? cd.blank0 : cd.blank1;
 		bool bInSync = SanityCheckDiff(cd);
 
 		if (!bInSync)
