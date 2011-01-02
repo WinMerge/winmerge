@@ -105,7 +105,7 @@ String LineFiltersList::GetAsString() const
  * @return Filter item from the index. If the index is beyond table limit,
  *  return the last item in the list.
  */
-const LineFilterItem & LineFiltersList::GetAt(int ind) const
+const LineFilterItem & LineFiltersList::GetAt(size_t ind) const
 {
 	if (ind < m_items.size())
 		return *m_items[ind];
@@ -166,7 +166,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_pOptionsMgr = pOptionsMgr;
 
-    unsigned int count = m_items.size();
+	size_t count = m_items.size();
 	valuename += _T("/Values");
 	m_pOptionsMgr->InitOption(valuename.c_str(), static_cast<int>(count));
 	count = m_pOptionsMgr->GetInt(valuename.c_str());
