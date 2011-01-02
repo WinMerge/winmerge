@@ -225,7 +225,7 @@
     </listitem>
 
     <listitem>
-      <para><option>/wr</option> 読み取り専用として中央を開きます。
+      <para><option>/wm</option> 読み取り専用として中央を開きます。
       比較時、中央を変更したくない場合に使用してください。</para>
     </listitem>
 
