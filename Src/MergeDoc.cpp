@@ -809,7 +809,7 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
  * @param [in] dr Difference to check.
  * @return TRUE if difference lines match, FALSE otherwise.
  */
-bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr)
+bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
 {
 	int cd_dbegin = dr.dbegin0;
 	int cd_dend = dr.dend0;

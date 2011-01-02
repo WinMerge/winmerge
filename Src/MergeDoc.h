@@ -162,7 +162,7 @@ public:
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
-	bool SanityCheckDiff(DIFFRANGE dr);
+	bool SanityCheckDiff(DIFFRANGE dr) const;
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false);
 	bool TrySaveAs(CString &strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
