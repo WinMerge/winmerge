@@ -237,7 +237,7 @@ void SplitFilename(LPCTSTR pathLeft, String* pPath, String* pFile, String* pExt)
 			if (pPath)
 			{
 				// Grab directory (omit trailing slash)
-				int len = pszChar - pathLeft;
+				size_t len = pszChar - pathLeft;
 				if (*pszChar == ':')
 					++len; // Keep trailing colon ( eg, C:filename.txt)
 				*pPath = pathLeft;
@@ -265,7 +265,7 @@ endSplit:
 
 	if (pFile && pExt && extptr)
 	{
-		int extlen = pend - extptr;
+		size_t extlen = pend - extptr;
 		pFile->erase(pFile->length() - extlen);
 	}
 }
