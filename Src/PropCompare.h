@@ -1,7 +1,7 @@
 /** 
  * @file  PropCompare.h
  *
- * @brief Declaration of CPropCompare propertysheet
+ * @brief Declaration of PropCompare propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -14,7 +14,7 @@
 class COptionsMgr;
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropCompare dialog
+// PropCompare dialog
 
 /**
  * @brief Property page to set compare options for WinMerge.
@@ -33,18 +33,18 @@ class COptionsMgr;
  *
  * @author Tim Musschoot, several modifications by others
  */
-class CPropCompare : public CPropertyPage, public IOptionsPanel
+class PropCompare : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
-	CPropCompare(COptionsMgr *optionsMgr);
+	PropCompare(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
 // Dialog Data
-	//{{AFX_DATA(CPropCompare)
+	//{{AFX_DATA(PropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
 	int     m_compareMethod;
 	BOOL    m_bIgnoreEol;
@@ -61,7 +61,7 @@ public:
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPropCompare)
+	//{{AFX_VIRTUAL(PropCompare)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -69,7 +69,7 @@ public:
 // Implementation
 protected:
 	// Generated message map functions
-	//{{AFX_MSG(CPropCompare)
+	//{{AFX_MSG(PropCompare)
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnDefaults();
 	afx_msg void OnCbnSelchangeComparemethodcombo();

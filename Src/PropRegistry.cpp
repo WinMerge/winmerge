@@ -17,7 +17,7 @@
 /**
  * @file  PropRegistry.cpp
  *
- * @brief CPropRegistry implementation file
+ * @brief PropRegistry implementation file
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -46,21 +46,21 @@ static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
 static LPCTSTR f_RegValuePath = _T("Executable");
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropRegistry dialog
+// PropRegistry dialog
 
 
-CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
-	: CPropertyPage(CPropRegistry::IDD)
+PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
+	: CPropertyPage(PropRegistry::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_bUseRecycleBin(TRUE)
 , m_tempFolderType(0)
 {
 }
 
-void CPropRegistry::DoDataExchange(CDataExchange* pDX)
+void PropRegistry::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropRegistry)
+	//{{AFX_DATA_MAP(PropRegistry)
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	DDX_Text(pDX, IDC_FILTER_USER_PATH, m_strUserFilterPath);
@@ -69,8 +69,8 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
-	//{{AFX_MSG_MAP(CPropRegistry)
+BEGIN_MESSAGE_MAP(PropRegistry, CDialog)
+	//{{AFX_MSG_MAP(PropRegistry)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	ON_BN_CLICKED(IDC_FILTER_USER_BROWSE, OnBrowseFilterPath)
 	ON_BN_CLICKED(IDC_TMPFOLDER_BROWSE, OnBrowseTmpFolder)
@@ -80,7 +80,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropRegistry::ReadOptions()
+void PropRegistry::ReadOptions()
 {
 	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD).c_str();
 	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
@@ -92,7 +92,7 @@ void CPropRegistry::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropRegistry::WriteOptions()
+void PropRegistry::WriteOptions()
 {
 	CMergeApp *app = static_cast<CMergeApp*>(AfxGetApp());
 	CString sDefaultEditor = app->GetDefaultEditor();
@@ -121,9 +121,9 @@ void CPropRegistry::WriteOptions()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropRegistry message handlers
+// PropRegistry message handlers
 
-BOOL CPropRegistry::OnInitDialog()
+BOOL PropRegistry::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -135,7 +135,7 @@ BOOL CPropRegistry::OnInitDialog()
 }
 
 /// Open file browse dialog to locate editor
-void CPropRegistry::OnBrowseEditor()
+void PropRegistry::OnBrowseEditor()
 {
 	CString path;
 	if (SelectFile(GetSafeHwnd(), path, NULL, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
@@ -145,7 +145,7 @@ void CPropRegistry::OnBrowseEditor()
 }
 
 /// Open Folder selection dialog for user to select filter folder.
-void CPropRegistry::OnBrowseFilterPath()
+void PropRegistry::OnBrowseFilterPath()
 {
 	CString path;
 	if (SelectFolder(path, m_strUserFilterPath, IDS_OPEN_TITLE, GetSafeHwnd()))
@@ -155,7 +155,7 @@ void CPropRegistry::OnBrowseFilterPath()
 }
 
 /// Select temporary files folder.
-void CPropRegistry::OnBrowseTmpFolder()
+void PropRegistry::OnBrowseTmpFolder()
 {
 	CString path;
 	if (SelectFolder(path, m_tempFolder, NULL, GetSafeHwnd()))

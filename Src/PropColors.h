@@ -1,10 +1,10 @@
 /** 
  * @file  PropColors.h
  *
- * @brief Declaration file for CPropMergeColors propertyheet
+ * @brief Declaration file for PropMergeColors propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
@@ -19,14 +19,14 @@ class COptionsMgr;
 const int CustomColorsAmount = 16;
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropMergeColors dialog
+// PropMergeColors dialog
 
 /** @brief Property page for colors options; used in options property sheet */
-class CPropMergeColors : public CPropertyPage, public IOptionsPanel
+class PropMergeColors : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
-	CPropMergeColors(COptionsMgr *optionsMgr);
+	PropMergeColors(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -34,7 +34,7 @@ public:
 	
 // Dialog Data
 private:
-	//{{AFX_DATA(CPropMergeColors)
+	//{{AFX_DATA(PropMergeColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_WINMERGE };
 	CColorButton	m_cTrivialDeleted;
 	CColorButton	m_cTrivial;
@@ -80,7 +80,7 @@ private:
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPropMergeColors)
+	//{{AFX_VIRTUAL(PropMergeColors)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual BOOL OnInitDialog();
@@ -100,7 +100,7 @@ protected:
 	COLORREF m_cCustColors[CustomColorsAmount];
 
 	// Generated message map functions
-	//{{AFX_MSG(CPropMergeColors)
+	//{{AFX_MSG(PropMergeColors)
 	afx_msg void OnDifferenceColor();
 	afx_msg void OnDifferenceDeletedColor();
 	afx_msg void OnSelDifferenceDeletedColor();

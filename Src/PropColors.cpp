@@ -1,9 +1,9 @@
 /** 
  * @file  PropColors.cpp
  *
- * @brief Implementation of CPropMergeColors propertysheet
+ * @brief Implementation of PropMergeColors propertysheet
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -21,21 +21,21 @@ static char THIS_FILE[] = __FILE__;
 static const TCHAR Section[] = _T("Custom Colors");
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropMergeColors dialog
+// PropMergeColors dialog
 
 /** 
  * @brief Default constructor.
  */
-CPropMergeColors::CPropMergeColors(COptionsMgr *optionsMgr)
- : CPropertyPage(CPropMergeColors::IDD)
+PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
+ : CPropertyPage(PropMergeColors::IDD)
 , m_pOptionsMgr(optionsMgr)
 {
 }
 
-void CPropMergeColors::DoDataExchange(CDataExchange* pDX)
+void PropMergeColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropMergeColors)
+	//{{AFX_DATA_MAP(PropMergeColors)
 	DDX_Control(pDX, IDC_TRIVIAL_DIFF_DELETED_COLOR, m_cTrivialDeleted);
 	DDX_Control(pDX, IDC_TRIVIAL_DIFF_COLOR, m_cTrivial);
 	DDX_Control(pDX, IDC_SEL_DIFFERENCE_TEXT_COLOR, m_cSelDiffText);
@@ -59,8 +59,8 @@ void CPropMergeColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropMergeColors, CDialog)
-	//{{AFX_MSG_MAP(CPropMergeColors)
+BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
+	//{{AFX_MSG_MAP(PropMergeColors)
 	ON_BN_CLICKED(IDC_DIFFERENCE_COLOR, OnDifferenceColor)
 	ON_BN_CLICKED(IDC_DIFFERENCE_DELETED_COLOR, OnDifferenceDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_DELETED_COLOR, OnSelDifferenceDeletedColor)
@@ -87,7 +87,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropMergeColors::OnInitDialog()
+BOOL PropMergeColors::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	return CPropertyPage::OnInitDialog();
@@ -97,7 +97,7 @@ BOOL CPropMergeColors::OnInitDialog()
  * @brief Reads options values from storage to UI.
  * (Property sheet calls this before displaying all property pages)
  */
-void CPropMergeColors::ReadOptions()
+void PropMergeColors::ReadOptions()
 {
 	SerializeColors(READ_OPTIONS);
 }
@@ -106,7 +106,7 @@ void CPropMergeColors::ReadOptions()
  * @brief Writes options values from UI to storage.
  * (Property sheet calls this after displaying all property pages)
  */
-void CPropMergeColors::WriteOptions()
+void PropMergeColors::WriteOptions()
 {
 	SerializeColors(WRITE_OPTIONS);
 }
@@ -114,7 +114,7 @@ void CPropMergeColors::WriteOptions()
 /** 
  * @brief Let user browse common color dialog, and select a color
  */
-void CPropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & currentColor)
+void PropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & currentColor)
 {
 	CColorDialog dialog(currentColor);
 	LoadCustomColors();
@@ -131,7 +131,7 @@ void CPropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & curren
 /** 
  * @brief User wants to change difference color
  */
-void CPropMergeColors::OnDifferenceColor() 
+void PropMergeColors::OnDifferenceColor() 
 {
 	BrowseColor(m_cDiff, m_clrDiff);
 }
@@ -139,7 +139,7 @@ void CPropMergeColors::OnDifferenceColor()
 /** 
  * @brief User wants to change selected difference color
  */
-void CPropMergeColors::OnSelDifferenceColor() 
+void PropMergeColors::OnSelDifferenceColor() 
 {
 	BrowseColor(m_cSelDiff, m_clrSelDiff);
 }
@@ -147,7 +147,7 @@ void CPropMergeColors::OnSelDifferenceColor()
 /** 
  * @brief User wants to change deleted difference color
  */
-void CPropMergeColors::OnDifferenceDeletedColor() 
+void PropMergeColors::OnDifferenceDeletedColor() 
 {
 	BrowseColor(m_cDiffDeleted, m_clrDiffDeleted);
 }
@@ -155,7 +155,7 @@ void CPropMergeColors::OnDifferenceDeletedColor()
 /** 
  * @brief User wants to change selected & deleted difference color
  */
-void CPropMergeColors::OnSelDifferenceDeletedColor() 
+void PropMergeColors::OnSelDifferenceDeletedColor() 
 {
 	BrowseColor(m_cSelDiffDeleted, m_clrSelDiffDeleted);
 }
@@ -163,7 +163,7 @@ void CPropMergeColors::OnSelDifferenceDeletedColor()
 /** 
  * @brief User wants to change difference text color
  */
-void CPropMergeColors::OnDifferenceTextColor() 
+void PropMergeColors::OnDifferenceTextColor() 
 {
 	BrowseColor(m_cDiffText, m_clrDiffText);
 }
@@ -171,7 +171,7 @@ void CPropMergeColors::OnDifferenceTextColor()
 /** 
  * @brief User wants to change selected difference text color
  */
-void CPropMergeColors::OnSelDifferenceTextColor() 
+void PropMergeColors::OnSelDifferenceTextColor() 
 {
 	BrowseColor(m_cSelDiffText, m_clrSelDiffText);
 }
@@ -179,7 +179,7 @@ void CPropMergeColors::OnSelDifferenceTextColor()
 /** 
  * @brief User wants to change trivial difference color
  */
-void CPropMergeColors::OnTrivialDiffColor() 
+void PropMergeColors::OnTrivialDiffColor() 
 {
 	BrowseColor(m_cTrivial, m_clrTrivial);
 }
@@ -187,42 +187,42 @@ void CPropMergeColors::OnTrivialDiffColor()
 /** 
  * @brief User wants to change deleted trivial difference color
  */
-void CPropMergeColors::OnTrivialDiffDeletedColor() 
+void PropMergeColors::OnTrivialDiffDeletedColor() 
 {
 	BrowseColor(m_cTrivialDeleted, m_clrTrivialDeleted);
 }
 
-void CPropMergeColors::OnTrivialDiffTextColor()
+void PropMergeColors::OnTrivialDiffTextColor()
 {
 	BrowseColor(m_cTrivialText, m_clrTrivialText);
 }
 
-void CPropMergeColors::OnMovedColor()
+void PropMergeColors::OnMovedColor()
 {
 	BrowseColor(m_cMoved, m_clrMoved);
 }
 
-void CPropMergeColors::OnMovedDeletedColor()
+void PropMergeColors::OnMovedDeletedColor()
 {
 	BrowseColor(m_cMovedDeleted, m_clrMovedDeleted);
 }
 
-void CPropMergeColors::OnMovedTextColor()
+void PropMergeColors::OnMovedTextColor()
 {
 	BrowseColor(m_cMovedText, m_clrMovedText);
 }
 
-void CPropMergeColors::OnSelMovedColor()
+void PropMergeColors::OnSelMovedColor()
 {
 	BrowseColor(m_cSelMoved, m_clrSelMoved);
 }
 
-void CPropMergeColors::OnSelMovedDeletedColor()
+void PropMergeColors::OnSelMovedDeletedColor()
 {
 	BrowseColor(m_cSelMovedDeleted, m_clrSelMovedDeleted);
 }
 
-void CPropMergeColors::OnSelMovedTextColor()
+void PropMergeColors::OnSelMovedTextColor()
 {
 	BrowseColor(m_cSelMovedText, m_clrSelMovedText);
 }
@@ -230,7 +230,7 @@ void CPropMergeColors::OnSelMovedTextColor()
 /** 
  * @brief User wants to change word difference color
  */
-void CPropMergeColors::OnWordDifferenceColor() 
+void PropMergeColors::OnWordDifferenceColor() 
 {
 	BrowseColor(m_cWordDiff, m_clrWordDiff);
 }
@@ -238,7 +238,7 @@ void CPropMergeColors::OnWordDifferenceColor()
 /** 
  * @brief User wants to change selected word difference color
  */
-void CPropMergeColors::OnSelWordDifferenceColor() 
+void PropMergeColors::OnSelWordDifferenceColor() 
 {
 	BrowseColor(m_cSelWordDiff, m_clrSelWordDiff);
 }
@@ -246,7 +246,7 @@ void CPropMergeColors::OnSelWordDifferenceColor()
 /** 
  * @brief User wants to change word difference text color
  */
-void CPropMergeColors::OnWordDifferenceTextColor() 
+void PropMergeColors::OnWordDifferenceTextColor() 
 {
 	BrowseColor(m_cWordDiffText, m_clrWordDiffText);
 }
@@ -254,12 +254,12 @@ void CPropMergeColors::OnWordDifferenceTextColor()
 /** 
  * @brief User wants to change selected word difference text color
  */
-void CPropMergeColors::OnSelWordDifferenceTextColor() 
+void PropMergeColors::OnSelWordDifferenceTextColor() 
 {
 	BrowseColor(m_cSelWordDiffText, m_clrSelWordDiffText);
 }
 
-void CPropMergeColors::SerializeColors(OPERATION op)
+void PropMergeColors::SerializeColors(OPERATION op)
 {
 	SerializeColor(op, m_cDiff, OPT_CLR_DIFF, m_clrDiff);
 	SerializeColor(op, m_cDiffDeleted, OPT_CLR_DIFF_DELETED, m_clrDiffDeleted);
@@ -288,7 +288,7 @@ void CPropMergeColors::SerializeColors(OPERATION op)
 	SerializeColor(op, m_cSelWordDiffText, OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText);
 }
 
-void CPropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName, COLORREF & color)
+void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName, COLORREF & color)
 {
 	switch (op)
 	{
@@ -312,7 +312,7 @@ void CPropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR 
 /** 
  * @brief Resets colors to defaults
  */
-void CPropMergeColors::OnDefaults()
+void PropMergeColors::OnDefaults()
 {
 	SerializeColors(SET_DEFAULTS);
 }
@@ -320,7 +320,7 @@ void CPropMergeColors::OnDefaults()
 /** 
  * @brief Loads color selection dialog's custom colors from registry
  */
-void CPropMergeColors::LoadCustomColors()
+void PropMergeColors::LoadCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{
@@ -334,7 +334,7 @@ void CPropMergeColors::LoadCustomColors()
 /** 
  * @brief Saves color selection dialog's custom colors to registry
  */
-void CPropMergeColors::SaveCustomColors()
+void PropMergeColors::SaveCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{

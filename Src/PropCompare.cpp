@@ -1,7 +1,7 @@
 /** 
  * @file  PropCompare.cpp
  *
- * @brief Implementation of CPropCompare propertysheet
+ * @brief Implementation of PropCompare propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -19,13 +19,13 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropCompare property page
+// PropCompare property page
 
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to COptionsMgr.
  */
-CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare::IDD)
+PropCompare::PropCompare(COptionsMgr *optionsMgr) : CPropertyPage(PropCompare::IDD)
  , m_pOptionsMgr(optionsMgr)
  , m_compareMethod(-1)
  , m_bIgnoreCase(FALSE)
@@ -40,10 +40,10 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
 {
 }
 
-void CPropCompare::DoDataExchange(CDataExchange* pDX)
+void PropCompare::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropCompare)
+	//{{AFX_DATA_MAP(PropCompare)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
@@ -58,8 +58,8 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropCompare, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropCompare)
+BEGIN_MESSAGE_MAP(PropCompare, CPropertyPage)
+	//{{AFX_MSG_MAP(PropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
@@ -70,7 +70,7 @@ END_MESSAGE_MAP()
  * Property sheet calls this before displaying GUI to load values
  * into members.
  */
-void CPropCompare::ReadOptions()
+void PropCompare::ReadOptions()
 {
 	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
@@ -89,7 +89,7 @@ void CPropCompare::ReadOptions()
  * Property sheet calls this after dialog is closed with OK button to
  * store values in member variables.
  */
-void CPropCompare::WriteOptions()
+void PropCompare::WriteOptions()
 {
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
@@ -104,12 +104,12 @@ void CPropCompare::WriteOptions()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropCompare message handlers
+// PropCompare message handlers
 
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropCompare::OnInitDialog() 
+BOOL PropCompare::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -140,7 +140,7 @@ BOOL CPropCompare::OnInitDialog()
 /** 
  * @brief Sets options to defaults
  */
-void CPropCompare::OnDefaults()
+void PropCompare::OnDefaults()
 {
 	DWORD tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_METHOD, tmp);
@@ -169,7 +169,7 @@ void CPropCompare::OnDefaults()
  * Enables / disables "Stop compare after first difference" checkbox.
  * That checkbox is valid only for quick contents compare method.
  */
-void CPropCompare::OnCbnSelchangeComparemethodcombo()
+void PropCompare::OnCbnSelchangeComparemethodcombo()
 {
 	CComboBox * pCombo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);

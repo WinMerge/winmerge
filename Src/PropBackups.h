@@ -1,7 +1,7 @@
 /** 
  * @file  PropBackups.h
  *
- * @brief Declaration file for CPropBackups propertyheet
+ * @brief Declaration file for PropBackups propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -17,11 +17,11 @@ class COptionsMgr;
 /**
  * @brief A class for Backup file options page.
  */
-class CPropBackups : public CPropertyPage
+class PropBackups : public CPropertyPage
 {
 public:
-	CPropBackups(COptionsMgr *optionsMgr);
-	virtual ~CPropBackups();
+	PropBackups(COptionsMgr *optionsMgr);
+	virtual ~PropBackups();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

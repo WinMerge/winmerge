@@ -21,10 +21,10 @@
 /** 
  * @file  PropCodepage.h
  *
- * @brief Implementation file for CPropCodepage propertyheet
+ * @brief Implementation file for PropCodepage propertyheet
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -40,10 +40,10 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropCodepage property page
+// PropCodepage property page
 
-CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr)
- : CPropertyPage(CPropCodepage::IDD)
+PropCodepage::PropCodepage(COptionsMgr *optionsMgr)
+ : CPropertyPage(PropCodepage::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)
@@ -51,14 +51,14 @@ CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr)
 {
 }
 
-CPropCodepage::~CPropCodepage()
+PropCodepage::~PropCodepage()
 {
 }
 
-void CPropCodepage::DoDataExchange(CDataExchange* pDX)
+void PropCodepage::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropCodepage)
+	//{{AFX_DATA_MAP(PropCodepage)
 	DDX_Radio(pDX, IDC_CP_SYSTEM, m_nCodepageSystem);
 	DDX_Text(pDX, IDC_CUSTOM_CP_NUMBER, m_nCustomCodepageValue);
 	DDX_Check(pDX, IDC_DETECT_CODEPAGE, m_bDetectCodepage);
@@ -66,8 +66,8 @@ void CPropCodepage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropCodepage, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropCodepage)
+BEGIN_MESSAGE_MAP(PropCodepage, CPropertyPage)
+	//{{AFX_MSG_MAP(PropCodepage)
 	ON_BN_CLICKED(IDC_CP_SYSTEM, OnCpSystem)
 	ON_BN_CLICKED(IDC_CP_CUSTOM, OnCpCustom)
 	ON_BN_CLICKED(IDC_CP_UI, OnCpUi)
@@ -77,7 +77,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropCodepage::ReadOptions()
+void PropCodepage::ReadOptions()
 {
 	m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
 	m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
@@ -87,7 +87,7 @@ void CPropCodepage::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropCodepage::WriteOptions()
+void PropCodepage::WriteOptions()
 {
 	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
 	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
@@ -95,9 +95,9 @@ void CPropCodepage::WriteOptions()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropCodepage message handlers
+// PropCodepage message handlers
 
-BOOL CPropCodepage::OnInitDialog() 
+BOOL PropCodepage::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -114,17 +114,17 @@ BOOL CPropCodepage::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CPropCodepage::OnCpSystem() 
+void PropCodepage::OnCpSystem() 
 {
 	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);	
 }
 
-void CPropCodepage::OnCpCustom() 
+void PropCodepage::OnCpCustom() 
 {
 	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(TRUE);	
 }
 
-void CPropCodepage::OnCpUi() 
+void PropCodepage::OnCpUi() 
 {
 	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);	
 }

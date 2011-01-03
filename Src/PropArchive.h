@@ -1,7 +1,7 @@
 /** 
  * @file  PropArchive.h
  *
- * @brief Declaration file for CPropArchive propertyheet
+ * @brief Declaration file for PropArchive propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -18,11 +18,11 @@ class COptionsMgr;
 /** 
  * @brief Class for Archive Support options page.
  */
-class CPropArchive : public CPropertyPage
+class PropArchive : public CPropertyPage
 {
 public:
-	CPropArchive(COptionsMgr *optionsMgr);
-	virtual ~CPropArchive();
+	PropArchive(COptionsMgr *optionsMgr);
+	virtual ~PropArchive();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();

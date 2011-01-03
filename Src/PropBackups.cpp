@@ -1,7 +1,7 @@
 /** 
  * @file  PropBackups.cpp
  *
- * @brief Implementation of CPropBackups propertysheet
+ * @brief Implementation of PropBackups propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -20,14 +20,14 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
-// CPropBackups dialog
+// PropBackups dialog
 
 /** 
  * @brief Constructor taking OptionsManager parameter.
  * @param [in] optionsMgr Pointer to OptionsManager.
  */
-CPropBackups::CPropBackups(COptionsMgr *optionsMgr)
-	: CPropertyPage(CPropBackups::IDD)
+PropBackups::PropBackups(COptionsMgr *optionsMgr)
+	: CPropertyPage(PropBackups::IDD)
 	, m_pOptionsMgr(optionsMgr)
 	, m_bCreateForFolderCmp(FALSE)
 	, m_bCreateForFileCmp(FALSE)
@@ -40,11 +40,11 @@ CPropBackups::CPropBackups(COptionsMgr *optionsMgr)
 /** 
  * @brief Destructor.
  */
-CPropBackups::~CPropBackups()
+PropBackups::~PropBackups()
 {
 }
 
-void CPropBackups::DoDataExchange(CDataExchange* pDX)
+void PropBackups::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Check(pDX, IDC_BACKUP_FOLDERCMP, m_bCreateForFolderCmp);
@@ -56,7 +56,7 @@ void CPropBackups::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropBackups, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropBackups, CPropertyPage)
 	ON_BN_CLICKED(IDC_BACKUP_BROWSE, OnBnClickedBackupBrowse)
 END_MESSAGE_MAP()
 
@@ -64,7 +64,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropBackups::ReadOptions()
+void PropBackups::ReadOptions()
 {
 	m_bCreateForFolderCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FOLDERCMP);
 	m_bCreateForFileCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FILECMP);
@@ -77,7 +77,7 @@ void CPropBackups::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropBackups::WriteOptions()
+void PropBackups::WriteOptions()
 {
 	m_sGlobalFolder.TrimLeft();
 	m_sGlobalFolder.TrimRight();
@@ -98,7 +98,7 @@ void CPropBackups::WriteOptions()
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropBackups::OnInitDialog()
+BOOL PropBackups::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
     CPropertyPage::OnInitDialog();
@@ -110,7 +110,7 @@ BOOL CPropBackups::OnInitDialog()
 /** 
  * @brief Called when user selects Browse-button.
  */
-void CPropBackups::OnBnClickedBackupBrowse()
+void PropBackups::OnBnClickedBackupBrowse()
 {
 	CString path;
 	if (SelectFolder(path, m_sGlobalFolder, 0, GetSafeHwnd()))

@@ -1,7 +1,7 @@
 /** 
  * @file  PropArchive.cpp
  *
- * @brief Implementation of CPropArchive propertysheet
+ * @brief Implementation of PropArchive propertysheet
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -19,10 +19,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// CPropArchive dialog
+// PropArchive dialog
 
-CPropArchive::CPropArchive(COptionsMgr *optionsMgr)
-: CPropertyPage(CPropArchive::IDD)
+PropArchive::PropArchive(COptionsMgr *optionsMgr)
+: CPropertyPage(PropArchive::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_bEnableSupport(false)
 , m_nInstallType(0)
@@ -30,14 +30,14 @@ CPropArchive::CPropArchive(COptionsMgr *optionsMgr)
 {
 }
 
-CPropArchive::~CPropArchive()
+PropArchive::~PropArchive()
 {
 }
 
 /** 
  * @brief Sets update handlers for dialog controls.
  */
-void CPropArchive::DoDataExchange(CDataExchange* pDX)
+void PropArchive::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_ARCHIVE_WWW, m_wwwLink);
@@ -47,14 +47,14 @@ void CPropArchive::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropArchive, CPropertyPage)
+BEGIN_MESSAGE_MAP(PropArchive, CPropertyPage)
 	ON_BN_CLICKED(IDC_ARCHIVE_ENABLE, OnEnableClicked)
 END_MESSAGE_MAP()
 
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropArchive::ReadOptions()
+void PropArchive::ReadOptions()
 {
 	int enable = m_pOptionsMgr->GetInt(OPT_ARCHIVE_ENABLE);
 	m_bEnableSupport = enable > 0;
@@ -65,7 +65,7 @@ void CPropArchive::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropArchive::WriteOptions()
+void PropArchive::WriteOptions()
 {
 	if (m_bEnableSupport)
 		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, m_nInstallType + 1);
@@ -77,7 +77,7 @@ void CPropArchive::WriteOptions()
 /** 
  * @brief Called before propertysheet is drawn.
  */
-BOOL CPropArchive::OnInitDialog()
+BOOL PropArchive::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	m_wwwLink.m_link = DownloadUrl;
@@ -92,7 +92,7 @@ BOOL CPropArchive::OnInitDialog()
 /** 
  * @brief Called when archive support is enabled or disabled.
  */
-void CPropArchive::OnEnableClicked()
+void PropArchive::OnEnableClicked()
 {
 	UpdateControls();
 }
@@ -100,7 +100,7 @@ void CPropArchive::OnEnableClicked()
 /** 
  * @brief Called Updates controls enabled/disables state.
  */
-void CPropArchive::UpdateControls()
+void PropArchive::UpdateControls()
 {
 	CButton *chkEnabled = (CButton *) GetDlgItem(IDC_ARCHIVE_ENABLE);
 	CButton *btnLocal = (CButton *) GetDlgItem(IDC_ARCHIVE_INSTALLOCAL);

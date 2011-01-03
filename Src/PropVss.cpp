@@ -41,22 +41,22 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropVss property page
+// PropVss property page
 
 /**
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager.
  */
-CPropVss::CPropVss(COptionsMgr *optionsMgr) : CPropertyPage(CPropVss::IDD)
+PropVss::PropVss(COptionsMgr *optionsMgr) : CPropertyPage(PropVss::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_nVerSys(-1)
 {
 }
 
-void CPropVss::DoDataExchange(CDataExchange* pDX)
+void PropVss::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropVss)
+	//{{AFX_DATA_MAP(PropVss)
 	DDX_Control(pDX, IDC_VSS_L1, m_ctlVssL1);
 	DDX_Control(pDX, IDC_PATH_EDIT, m_ctlPath);
 	DDX_Control(pDX, IDC_BROWSE_BUTTON, m_ctlBrowse);
@@ -66,8 +66,8 @@ void CPropVss::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CPropVss, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropVss)
+BEGIN_MESSAGE_MAP(PropVss, CPropertyPage)
+	//{{AFX_MSG_MAP(PropVss)
 	ON_BN_CLICKED(IDC_BROWSE_BUTTON, OnBrowseButton)
 	ON_CBN_SELENDOK(IDC_VER_SYS, OnSelendokVerSys)
 	//}}AFX_MSG_MAP
@@ -76,7 +76,7 @@ END_MESSAGE_MAP()
 /** 
  * @brief Reads options values from storage to UI.
  */
-void CPropVss::ReadOptions()
+void PropVss::ReadOptions()
 {
 	m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
 	m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH).c_str();
@@ -85,19 +85,19 @@ void CPropVss::ReadOptions()
 /** 
  * @brief Writes options values from UI to storage.
  */
-void CPropVss::WriteOptions()
+void PropVss::WriteOptions()
 {
 	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_nVerSys);
 	m_pOptionsMgr->SaveOption(OPT_VSS_PATH, m_strPath);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropVss message handlers
+// PropVss message handlers
 
 /**
  * @brief Called when Browse-button is selected.
  */
-void CPropVss::OnBrowseButton()
+void PropVss::OnBrowseButton()
 {
 	CString s;
 	if (SelectFile(GetSafeHwnd(), s))
@@ -111,7 +111,7 @@ void CPropVss::OnBrowseButton()
  * @brief Initialized the dialog.
  * @return Always TRUE.
  */
-BOOL CPropVss::OnInitDialog() 
+BOOL PropVss::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -127,7 +127,7 @@ BOOL CPropVss::OnInitDialog()
 /**
  * @brief Called when user has selected VSS version.
  */
-void CPropVss::OnSelendokVerSys() 
+void PropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
 	String tempStr = theApp.LoadString(m_nVerSys == VCS_CLEARCASE ? IDS_CC_CMD : IDS_VSS_CMD);
@@ -140,7 +140,7 @@ void CPropVss::OnSelendokVerSys()
 /**
  * Load strings for supported source code control
  */
-void CPropVss::LoadVssOptionStrings()
+void PropVss::LoadVssOptionStrings()
 {
 	/*
 	Must be in order to agree with enum in MainFrm.h

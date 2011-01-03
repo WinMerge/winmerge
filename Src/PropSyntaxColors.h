@@ -1,7 +1,7 @@
 /** 
  * @file  PropSyntaxColors.h
  *
- * @brief Declaration file for CPropSyntaxColors propertyheet
+ * @brief Declaration file for PropSyntaxColors propertyheet
  *
  */
 // ID line follows -- this is updated by SVN
@@ -17,14 +17,14 @@ class SyntaxColors;
 
 const int NumCustomColors = 16;
 
-class CPropSyntaxColors : public CPropertyPage, public IOptionsPanel
+class PropSyntaxColors : public CPropertyPage, public IOptionsPanel
 {
-	DECLARE_DYNAMIC(CPropSyntaxColors)
+	DECLARE_DYNAMIC(PropSyntaxColors)
 
 // Construction & Destruction
 public:
-	CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
-	virtual ~CPropSyntaxColors();
+	PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
+	virtual ~PropSyntaxColors();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
