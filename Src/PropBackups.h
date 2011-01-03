@@ -10,18 +10,17 @@
 #ifndef _PROPBACKUPS_H_
 #define _PROPBACKUPS_H_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
 /**
  * @brief A class for Backup file options page.
  */
-class PropBackups : public CPropertyPage
+class PropBackups : public OptionsPanel
 {
 public:
 	PropBackups(COptionsMgr *optionsMgr);
-	virtual ~PropBackups();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -50,9 +49,6 @@ protected:
 	afx_msg void OnBnClickedBackupBrowse();
 
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 
 #endif // _PROPBACKUPS_H_

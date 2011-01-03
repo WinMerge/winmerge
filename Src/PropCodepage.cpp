@@ -32,6 +32,7 @@
 #include "PropCodepage.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -39,19 +40,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// PropCodepage property page
-
 PropCodepage::PropCodepage(COptionsMgr *optionsMgr)
- : CPropertyPage(PropCodepage::IDD)
-, m_pOptionsMgr(optionsMgr)
+ : OptionsPanel(optionsMgr, PropCodepage::IDD)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)
 , m_bDetectCodepage(FALSE)
-{
-}
-
-PropCodepage::~PropCodepage()
 {
 }
 
@@ -79,9 +72,9 @@ END_MESSAGE_MAP()
  */
 void PropCodepage::ReadOptions()
 {
-	m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
-	m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_bDetectCodepage = m_pOptionsMgr->GetBool(OPT_CP_DETECT);
+	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
+	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
+	m_bDetectCodepage = GetOptionsMgr()->GetBool(OPT_CP_DETECT);
 }
 
 /** 
@@ -89,13 +82,10 @@ void PropCodepage::ReadOptions()
  */
 void PropCodepage::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
-	m_pOptionsMgr->SaveOption(OPT_CP_DETECT, m_bDetectCodepage == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
+	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
+	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, m_bDetectCodepage == TRUE);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// PropCodepage message handlers
 
 BOOL PropCodepage::OnInitDialog() 
 {

@@ -11,6 +11,7 @@
 #include "PropColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,15 +21,11 @@ static char THIS_FILE[] = __FILE__;
 
 static const TCHAR Section[] = _T("Custom Colors");
 
-/////////////////////////////////////////////////////////////////////////////
-// PropMergeColors dialog
-
 /** 
  * @brief Default constructor.
  */
 PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
- : CPropertyPage(PropMergeColors::IDD)
-, m_pOptionsMgr(optionsMgr)
+ : OptionsPanel(optionsMgr, PropMergeColors::IDD)
 {
 }
 
@@ -293,16 +290,16 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR o
 	switch (op)
 	{
 	case SET_DEFAULTS:
-		m_pOptionsMgr->GetDefault(optionName, color);
+		GetOptionsMgr()->GetDefault(optionName, color);
 		btn.SetColor(color);
 		return;
 
 	case WRITE_OPTIONS:
-		m_pOptionsMgr->SaveOption(optionName, (int)color);
+		GetOptionsMgr()->SaveOption(optionName, (int)color);
 		return;
 
 	case READ_OPTIONS:
-		color = m_pOptionsMgr->GetInt(optionName);
+		color = GetOptionsMgr()->GetInt(optionName);
 		// Set colors for buttons, do NOT invalidate
 		btn.SetColor(color, FALSE);
 		return;

@@ -11,6 +11,7 @@
 #include "PropEditor.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,15 +22,12 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Maximum size for tabs in spaces. */
 static const int MAX_TABSIZE = 64;
 
-/////////////////////////////////////////////////////////////////////////////
-// PropEditor dialog
-
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager for handling options.
  */
-PropEditor::PropEditor(COptionsMgr *optionsMgr) : CPropertyPage(PropEditor::IDD)
-, m_pOptionsMgr(optionsMgr)
+PropEditor::PropEditor(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropEditor::IDD)
 , m_bHiliteSyntax(FALSE)
 , m_nTabType(-1)
 , m_nTabSize(0)
@@ -74,14 +72,14 @@ END_MESSAGE_MAP()
  */
 void PropEditor::ReadOptions()
 {
-	m_nTabSize = m_pOptionsMgr->GetInt(OPT_TAB_SIZE);
-	m_nTabType = m_pOptionsMgr->GetInt(OPT_TAB_TYPE);
-	m_bAutomaticRescan = m_pOptionsMgr->GetBool(OPT_AUTOMATIC_RESCAN);
-	m_bHiliteSyntax = m_pOptionsMgr->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bAllowMixedEol = m_pOptionsMgr->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
-	m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
-	m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
+	m_nTabSize = GetOptionsMgr()->GetInt(OPT_TAB_SIZE);
+	m_nTabType = GetOptionsMgr()->GetInt(OPT_TAB_TYPE);
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
+	m_bHiliteSyntax = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bAllowMixedEol = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL);
+	m_bViewLineDifferences = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
+	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
 }
 
 /** 
@@ -94,18 +92,15 @@ void PropEditor::WriteOptions()
 		m_nTabSize = 1;
 	if (m_nTabSize > MAX_TABSIZE)
 		m_nTabSize = MAX_TABSIZE;
-	m_pOptionsMgr->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
-	m_pOptionsMgr->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
-	m_pOptionsMgr->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
-	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
-	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
+	GetOptionsMgr()->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
+	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
+	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
+	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
+	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// PropEditor message handlers
 
 /** 
  * @brief Called before propertysheet is drawn.

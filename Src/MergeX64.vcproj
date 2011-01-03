@@ -4576,6 +4576,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\OptionsPanel.cpp"
+				>
+			</File>
+			<File
 				RelativePath="OutputDlg.cpp"
 				>
 				<FileConfiguration
@@ -7704,6 +7708,10 @@
 			</File>
 			<File
 				RelativePath="common\OptionsMgr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\OptionsPanel.h"
 				>
 			</File>
 			<File

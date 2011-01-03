@@ -9,15 +9,12 @@
 #if !defined(AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
-/////////////////////////////////////////////////////////////////////////////
-// PropVss dialog
-
 /** @brief Options property page covering Visual SourceSafe integration */
-class PropVss : public CPropertyPage, public IOptionsPanel
+class PropVss : public OptionsPanel
 {
 
 // Construction & Destruction
@@ -58,9 +55,6 @@ protected:
 	afx_msg void OnSelendokVerSys();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr; /**< Options manager. */
 };
 
 //{{AFX_INSERT_LOCATION}}

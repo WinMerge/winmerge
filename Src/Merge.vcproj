@@ -2544,6 +2544,35 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="OptionsPanel.cpp"
+				>
+				<FileConfiguration
+					Name="UnicodeRelease|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						PrecompiledHeaderThrough=""
+						BrowseInformation="1"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="OutputDlg.cpp"
 				>
 				<FileConfiguration
@@ -4489,6 +4518,10 @@
 			</File>
 			<File
 				RelativePath="Common\OptionsMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="OptionsPanel.h"
 				>
 			</File>
 			<File

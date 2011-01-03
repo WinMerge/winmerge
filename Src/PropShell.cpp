@@ -14,6 +14,7 @@
 #include "RegKey.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -34,8 +35,8 @@ static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
 static LPCTSTR f_RegValuePath = _T("Executable");
 
 
-PropShell::PropShell(COptionsMgr *optionsMgr) : CPropertyPage(PropShell::IDD)
-, m_pOptionsMgr(optionsMgr)
+PropShell::PropShell(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropShell::IDD)
 , m_bEnableShellContextMenu(FALSE)
 , m_bContextAdded(FALSE)
 , m_bContextAdvanced(FALSE)
@@ -80,7 +81,7 @@ END_MESSAGE_MAP()
 void PropShell::ReadOptions()
 {
 	GetContextRegValues();
-	m_bEnableShellContextMenu = m_pOptionsMgr->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
+	m_bEnableShellContextMenu = GetOptionsMgr()->GetBool(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU);
 }
 
 /** 
@@ -88,7 +89,7 @@ void PropShell::ReadOptions()
  */
 void PropShell::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_ENABLE_SHELL_CONTEXT_MENU, m_bEnableShellContextMenu);
 	SaveMergePath(); // saves context menu settings as well
 }
 

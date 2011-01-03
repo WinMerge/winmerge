@@ -13,6 +13,7 @@
 #include "PropTextColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,21 +24,13 @@ static char THIS_FILE[] = __FILE__;
 /** @brief Section name for settings in registry. */
 static const TCHAR Section[] = _T("Custom Colors");
 
-/////////////////////////////////////////////////////////////////////////////
-// PropTextColors dialog
-
 /** 
  * @brief Default constructor.
  */
 PropTextColors::PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
- : CPropertyPage(PropTextColors::IDD)
-, m_pOptionsMgr(optionsMgr)
+ : OptionsPanel(optionsMgr, PropTextColors::IDD)
 , m_bCustomColors(FALSE)
 , m_pTempColors(pColors)
-{
-}
-
-PropTextColors::~PropTextColors()
 {
 }
 
@@ -99,14 +92,14 @@ void PropTextColors::ReadOptions()
  */
 void PropTextColors::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
+	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
 	// (we don't have to read them from screen)
 
-	// Also, PropSyntaxColors writes m_pTempColors out, so we don't have to
-	// We share m_pTempColors with PropSyntaxColors
+	// Also, CPropSyntaxColors writes m_pTempColors out, so we don't have to
+	// We share m_pTempColors with CPropSyntaxColors
 }
 
 /** 

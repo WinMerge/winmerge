@@ -12,17 +12,14 @@
 
 
 #include "ColorButton.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
 const int CustomColorsAmount = 16;
 
-/////////////////////////////////////////////////////////////////////////////
-// PropMergeColors dialog
-
 /** @brief Property page for colors options; used in options property sheet */
-class PropMergeColors : public CPropertyPage, public IOptionsPanel
+class PropMergeColors : public OptionsPanel
 {
 // Construction
 public:
@@ -123,9 +120,6 @@ protected:
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

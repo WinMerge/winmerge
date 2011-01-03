@@ -9,17 +9,14 @@
 #if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
-
-/////////////////////////////////////////////////////////////////////////////
-// PropGeneral dialog
 
 /**
  * @brief Class for General options -propertypage.
  */
-class PropGeneral : public CPropertyPage, public IOptionsPanel
+class PropGeneral : public OptionsPanel
 {
 // Construction
 public:
@@ -63,9 +60,6 @@ protected:
 	afx_msg void OnResetAllMessageBoxes();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr *m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

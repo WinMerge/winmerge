@@ -11,6 +11,7 @@
 #include "SyntaxColors.h"
 #include "PropSyntaxColors.h"
 #include "Merge.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,14 +19,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-// PropEditorColor dialog
-
 IMPLEMENT_DYNAMIC(PropSyntaxColors, CPropertyPage)
 
 PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
-: CPropertyPage(PropSyntaxColors::IDD)
-, m_pOptionsMgr(optionsMgr)
+: OptionsPanel(optionsMgr, PropSyntaxColors::IDD)
 , m_nKeywordsBold(0)
 , m_nFunctionsBold(0)
 , m_nCommentsBold(0)
@@ -58,10 +55,6 @@ PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColor
 	m_nPreProcessorBold = GetCheckVal(COLORINDEX_PREPROCESSOR);
 	m_nUser1Bold = GetCheckVal(COLORINDEX_USER1);
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
-}
-
-PropSyntaxColors::~PropSyntaxColors()
-{
 }
 
 void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
@@ -118,8 +111,6 @@ BEGIN_MESSAGE_MAP(PropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_USER1_BOLD, OnBnClickedEcolorUser1Bold)
 	ON_BN_CLICKED(IDC_SCOLOR_USER2_BOLD, OnBnClickedEcolorUser2Bold)
 END_MESSAGE_MAP()
-
-// CPropSyntaxColor message handlers
 
 /** 
  * @brief Called before propertysheet is drawn.
@@ -318,4 +309,3 @@ void PropSyntaxColors::UpdateBoldStatus(CButton &btn, UINT colorIndex)
 	else
 		m_pTempColors->SetBold(colorIndex, FALSE);
 }
-

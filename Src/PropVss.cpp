@@ -33,6 +33,7 @@
 #include "PropVss.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,15 +41,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// PropVss property page
-
 /**
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager.
  */
-PropVss::PropVss(COptionsMgr *optionsMgr) : CPropertyPage(PropVss::IDD)
-, m_pOptionsMgr(optionsMgr)
+PropVss::PropVss(COptionsMgr *optionsMgr) 
+: OptionsPanel(optionsMgr, PropVss::IDD)
 , m_nVerSys(-1)
 {
 }
@@ -78,8 +76,8 @@ END_MESSAGE_MAP()
  */
 void PropVss::ReadOptions()
 {
-	m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
-	m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH).c_str();
+	m_nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
+	m_strPath = GetOptionsMgr()->GetString(OPT_VSS_PATH).c_str();
 }
 
 /** 
@@ -87,12 +85,9 @@ void PropVss::ReadOptions()
  */
 void PropVss::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_nVerSys);
-	m_pOptionsMgr->SaveOption(OPT_VSS_PATH, m_strPath);
+	GetOptionsMgr()->SaveOption(OPT_VCS_SYSTEM, (int)m_nVerSys);
+	GetOptionsMgr()->SaveOption(OPT_VSS_PATH, m_strPath);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// PropVss message handlers
 
 /**
  * @brief Called when Browse-button is selected.

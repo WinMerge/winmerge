@@ -9,19 +9,15 @@
 #if !defined(AFX_PROPCODEPAGE_H__0DF931F8_E845_48B7_A658_3BEE6D3EAF85__INCLUDED_)
 #define AFX_PROPCODEPAGE_H__0DF931F8_E845_48B7_A658_3BEE6D3EAF85__INCLUDED_
 
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 
-/////////////////////////////////////////////////////////////////////////////
-// PropCodepage dialog
-
-class PropCodepage : public CPropertyPage, public IOptionsPanel
+class PropCodepage : public OptionsPanel
 {
 // Construction
 public:
 	PropCodepage(COptionsMgr *optionsMgr);
-	~PropCodepage();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -32,6 +28,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_CODEPAGE };
 	int		m_nCodepageSystem;
 	int		m_nCustomCodepageValue;
+	CString	m_cCustomCodepageValue;
 	BOOL	m_bDetectCodepage;
 	//}}AFX_DATA
 
@@ -53,9 +50,6 @@ protected:
 	afx_msg void OnCpUi();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

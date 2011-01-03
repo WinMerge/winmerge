@@ -11,6 +11,7 @@
 #include "PropCompare.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsPanel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,16 +19,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// PropCompare property page
-
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to COptionsMgr.
  */
-PropCompare::PropCompare(COptionsMgr *optionsMgr) : CPropertyPage(PropCompare::IDD)
- , m_pOptionsMgr(optionsMgr)
- , m_compareMethod(-1)
+PropCompare::PropCompare(COptionsMgr *optionsMgr) 
+ : OptionsPanel(optionsMgr, PropCompare::IDD)
  , m_bIgnoreCase(FALSE)
  , m_bIgnoreBlankLines(FALSE)
  , m_bIgnoreEol(TRUE)
@@ -72,16 +69,16 @@ END_MESSAGE_MAP()
  */
 void PropCompare::ReadOptions()
 {
-	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	m_bFilterCommentsLines = m_pOptionsMgr->GetBool(OPT_CMP_FILTER_COMMENTLINES);
-	m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
-	m_bIgnoreEol = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL) ? true : false;
-	m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
-	m_bMatchSimilarLines = m_pOptionsMgr->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
-	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
-	m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
-	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	m_nIgnoreWhite = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL) ? true : false;
+	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
+	m_bMatchSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
+	m_compareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
+	m_bStopAfterFirst = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 }
 
 /** 
@@ -91,20 +88,17 @@ void PropCompare::ReadOptions()
  */
 void PropCompare::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
-	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
+	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// PropCompare message handlers
 
 /** 
  * @brief Called before propertysheet is drawn.
@@ -143,23 +137,23 @@ BOOL PropCompare::OnInitDialog()
 void PropCompare::OnDefaults()
 {
 	DWORD tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_METHOD, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_METHOD, tmp);
 	m_compareMethod = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
 	m_nIgnoreWhite = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_EOL, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_EOL, tmp);
 	m_bIgnoreEol = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
 	m_bIgnoreBlankLines = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_FILTER_COMMENTLINES, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_FILTER_COMMENTLINES, tmp);
 	m_bFilterCommentsLines = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
 	m_bIgnoreCase = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
 	m_bMovedBlocks = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, tmp);
 	m_bMatchSimilarLines = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
+	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
 	m_bStopAfterFirst = tmp;
 	UpdateData(FALSE);
 }

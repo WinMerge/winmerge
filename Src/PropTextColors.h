@@ -11,24 +11,19 @@
 #define PropTextColors_h_included
 
 #include "ColorButton.h"
-#include "IOptionsPanel.h"
+#include "OptionsPanel.h"
 
 class COptionsMgr;
 class SyntaxColors;
 
-
-/////////////////////////////////////////////////////////////////////////////
-// PropTextColors dialog
-
 /** @brief Property page for colors options; used in options property sheet */
-class PropTextColors : public CPropertyPage, public IOptionsPanel
+class PropTextColors : public OptionsPanel
 {
 
 // Construction
 public:
 
 	PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
-	virtual ~PropTextColors();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -39,7 +34,6 @@ private:
 
 	SyntaxColors *m_pTempColors;
 	COLORREF m_cCustColors[COLORINDEX_COUNT];
-	COptionsMgr * m_pOptionsMgr;
 
 	//{{AFX_DATA(PropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };
