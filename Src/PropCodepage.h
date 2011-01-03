@@ -45,6 +45,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCodepage)
 	virtual BOOL OnInitDialog();
+	void GetEncodingCodePageFromNameString();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();
 	afx_msg void OnCpUi();

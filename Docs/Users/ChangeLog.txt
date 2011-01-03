@@ -15,6 +15,7 @@ WinMerge 2.13.21
   Add /xq command line switch for closing WinMerge after identical files
     and not showing message (#2827836)
   Allow setting codepage from command line (#2725549)
+  Allow giving encoding name as custom codepage (#2813825, #3010934)
   Bugfix: Untranslated string ("Merge.rc:nnnn") was displayed 
     in status bar (#3025855)
   Bugfix: Pane headers not updated after language change (#2923684)
