@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2010-10-12 00:05+0000\n"
+"POT-Creation-Date: 2011-01-03 22:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1056,7 +1056,7 @@ msgstr ""
 
 #: Merge.rc:562
 #, c-format
-msgid "Co&mpare Special"
+msgid "Co&mpare As"
 msgstr ""
 
 #: Merge.rc:564
@@ -1066,7 +1066,7 @@ msgstr ""
 
 #: Merge.rc:565
 #, c-format
-msgid "&HEX"
+msgid "&Binary"
 msgstr ""
 
 #: Merge.rc:570

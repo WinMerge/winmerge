@@ -1067,8 +1067,8 @@ msgstr ""
 
 #: Merge.rc:562
 #, c-format
-msgid "Co&mpare Special"
-msgstr "比較特定格式(&M)"
+msgid "Co&mpare As"
+msgstr ""
 
 #: Merge.rc:564
 #, c-format
@@ -1077,8 +1077,8 @@ msgstr "&XML"
 
 #: Merge.rc:565
 #, c-format
-msgid "&HEX"
-msgstr "HEX(&H)"
+msgid "&Binary"
+msgstr ""
 
 #: Merge.rc:570
 #, c-format
@@ -5945,7 +5945,7 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "捲到上一差異\n"
-"上一差異 (Alt + Up)"
+"上一差異 (Alt+Up)"
 
 #: Merge.rc:2845
 #, c-format
@@ -5954,7 +5954,7 @@ msgid ""
 "Next Difference (Alt+Down)"
 msgstr ""
 "捲到下一差異\n"
-"下一差異 (Alt + Down)"
+"下一差異 (Alt+Down)"
 
 #: Merge.rc:2846
 #, c-format
@@ -6050,7 +6050,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "複製差異區塊到右邊檔案\n"
-"複製到右邊 (Alt + Right)"
+"複製到右邊 (Alt+Right)"
 
 #: Merge.rc:2862
 #, c-format
@@ -6059,7 +6059,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "複製差異區塊到左邊檔案\n"
-"複製到左邊 (Alt + Left)"
+"複製到左邊 (Alt+Left)"
 
 #: Merge.rc:2863
 #, c-format

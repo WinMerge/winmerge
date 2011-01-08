@@ -15,7 +15,6 @@
 #include "DIFF.H"
 #include "DiffUtils.h"
 #include "coretools.h"
-
 #include "DiffList.h"
 #include "DiffWrapper.h"
 #include "FilterCommentsManager.h"
@@ -42,6 +41,7 @@ DiffUtils::DiffUtils()
 DiffUtils::~DiffUtils()
 {
 	delete m_FilterCommentsManager;
+	delete m_pDiffWrapper;
 	ClearCompareOptions();
 	ClearFilterList();
 }
@@ -57,7 +57,6 @@ bool DiffUtils::SetCompareOptions(const CompareOptions & options)
 		ClearCompareOptions();
 
 	m_pOptions = new DiffutilsOptions((DiffutilsOptions&)options);
-
 	if (m_pOptions == NULL)
 		return false;
 
@@ -173,7 +172,7 @@ int DiffUtils::diffutils_compare_files()
 
 					if(m_pOptions->m_filterCommentsLines)
 					{
-						int op=0;
+						OP_TYPE op = OP_NONE;
 						if (!deletes && !inserts)
 							op = OP_TRIVIAL;
 						else

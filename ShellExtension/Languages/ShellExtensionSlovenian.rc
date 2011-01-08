@@ -4,7 +4,7 @@
 // Please edit the PO file instead of this RC file for translation updates:
 //   ..\..\Translations\ShellExtension\<Languagename>.po
 //
-// $Id: ShellExtensionTemplate.rc 6792 2009-05-26 20:33:42Z gerundt $
+// $Id$
 
 #include "../resource.h"
 

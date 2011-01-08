@@ -559,10 +559,10 @@ BEGIN
             MENUITEM "&First left item with second right item",  ID_MERGE_COMPARE_LEFT1_RIGHT2
             MENUITEM "&Second left item with first right item",  ID_MERGE_COMPARE_LEFT2_RIGHT1
         END
-        POPUP "Co&mpare Special"
+        POPUP "Co&mpare As"
         BEGIN
             MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
-            MENUITEM "&HEX",                        ID_MERGE_COMPARE_HEX
+            MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"

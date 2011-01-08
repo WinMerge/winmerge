@@ -36,7 +36,7 @@ public:
 	int GetCount() const;
 	void Empty();
 	String GetAsString() const;
-	const LineFilterItem & GetAt(int ind) const;
+	const LineFilterItem & GetAt(size_t ind) const;
 	void CloneFrom(const LineFiltersList *list);
 	bool Compare(const LineFiltersList *list) const;
 

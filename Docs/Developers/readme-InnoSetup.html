@@ -53,7 +53,7 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <h3>Checklist:</h3>
 <ul>
   <li>
-    Installer reads version number from <code>WinMerge.exe</code>. So make
+    Installer reads version number from <code>WinMergeU.exe</code>. So make
     sure you have version resource correctly set.<br>
     There is Python script <code>Tools/Scripts/SetVersions.py</code> which sets
     version numbers to all components. The script reads version numbers from
@@ -71,12 +71,12 @@ Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.i
 <h3>Folder structure and files needed:</h3>
 <p>First make sure you have all needed files compiled and available:
 <ul>
-  <li>WinMerge executables: <code>WinMerge.exe</code> and <code>WinMergeU.exe</code></li>
+  <li>WinMerge executable: <code>WinMergeU.exe</code></li>
   <li>Translation library: <code>MergeLang.dll</code></li>
   <li>Executable translations: <code>/Translations/WinMerge/*.po</code></li>
   <li>Libraries: <code>libexpat.dll</code> and <code>pcre.dll</code></li>
   <li>Manual: <code>WinMerge.chm</code></li>
-  <li>ShellExtension: <code>ShellExtension.dll</code>, <code>ShellExtensionU.dll</code>
+  <li>ShellExtension: <code>ShellExtensionU.dll</code>
     and <code>ShellExtensionX64.dll</code></li>
   <li>Documents: <code>/Docs/Users/*</code></li>
   <li>Filters: <code>/Filters/*</code></li>
@@ -95,9 +95,9 @@ installer executable to our installer. This makes the installer executable
 considerable bigger but seems to be the only reliable way to install those
 runtime files.</p>
 
-<p>You can download the latest VC2005 runtimes installer from MS:
-<a href="http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072-9112BAB119C2&displaylang=en">
-http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072-9112BAB119C2&displaylang=en</a><p>
+<p>You can download the latest VC2008 runtimes installer from MS:
+<a href="http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C">
+http://www.microsoft.com/downloads/en/details.aspx?FamilyID=2051A0C1-C9B5-4B0A-A8F5-770A549FD78C</a><p>
 
 <h4>Folder structure</h4>
 <p>Copy or move the WinMerge files into the following layout (not runtimes):</p>
@@ -119,15 +119,9 @@ http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072
      </ul>
     </li>
    <li>
-    <code>MergeRelease/</code>
-    <ul>
-     <li><code>ShellExtension.dll</code></li>
-     <li><code>WinMerge.exe</code></li>
-    </ul>
-   </li>
-   <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
+     <li><code>MergeLang.dll</code></li>
      <li><code>ShellExtensionU.dll</code></li>
      <li><code>WinMergeU.exe</code></li>
     </ul>
@@ -170,7 +164,7 @@ http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072
    <li>
     <code>InnoSetup/</code>
      <ul>
-      <li><em>Copy the entire Installer/InnoSetup folder to here</em></li>
+      <li><em>Copy the entire <code>Installer/InnoSetup</code> folder to here</em></li>
      </ul>
    </li>
   </ul>
@@ -181,7 +175,7 @@ http://www.microsoft.com/downloads/details.aspx?familyid=766A6AF7-EC73-40FF-B072
    <li>
     <code>dlls/</code>
      <ul>
-      <li><em>Copy the entire Plugins/dlls folder to here</em></li>
+      <li><em>Copy the entire <code>Plugins/dlls</code> folder to here</em></li>
      </ul>
    </li>
   </ul>

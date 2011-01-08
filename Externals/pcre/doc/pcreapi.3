@@ -132,6 +132,12 @@ an application that uses PCRE. The header file defines the macros PCRE_MAJOR
 and PCRE_MINOR to contain the major and minor release numbers for the library.
 Applications can use these to include support for different releases of PCRE.
 .P
+In a Windows environment, if you want to statically link an application program
+against a non-dll \fBpcre.a\fP file, you must define PCRE_STATIC before
+including \fBpcre.h\fP or \fBpcrecpp.h\fP, because otherwise the
+\fBpcre_malloc()\fP and \fBpcre_free()\fP exported functions will be declared
+\fB__declspec(dllimport)\fP, with unwanted results.
+.P
 The functions \fBpcre_compile()\fP, \fBpcre_compile2()\fP, \fBpcre_study()\fP,
 and \fBpcre_exec()\fP are used for compiling and matching regular expressions
 in a Perl-compatible manner. A sample program that demonstrates the simplest
@@ -553,8 +559,9 @@ set, any backslash in a pattern that is followed by a letter that has no
 special meaning causes an error, thus reserving these combinations for future
 expansion. By default, as in Perl, a backslash followed by a letter with no
 special meaning is treated as a literal. (Perl can, however, be persuaded to
-give a warning for this.) There are at present no other features controlled by
-this option. It can also be set by a (?X) option setting within a pattern.
+give an error for this, by running it with the -w option.) There are at present
+no other features controlled by this option. It can also be set by a (?X)
+option setting within a pattern.
 .sp
   PCRE_FIRSTLINE
 .sp
@@ -634,6 +641,24 @@ the pattern. Any opening parenthesis that is not followed by ? behaves as if it
 were followed by ?: but named parentheses can still be used for capturing (and
 they acquire numbers in the usual way). There is no equivalent of this option
 in Perl.
+.sp
+  PCRE_UCP
+.sp
+This option changes the way PCRE processes \eb, \ed, \es, \ew, and some of the
+POSIX character classes. By default, only ASCII characters are recognized, but
+if PCRE_UCP is set, Unicode properties are used instead to classify characters.
+More details are given in the section on
+.\" HTML <a href="pcre.html#genericchartypes">
+.\" </a>
+generic character types
+.\"
+in the
+.\" HREF
+\fBpcrepattern\fP
+.\"
+page. If you set PCRE_UCP, matching one of the items it affects takes much
+longer. The option is available only if PCRE has been compiled with Unicode
+property support.
 .sp
   PCRE_UNGREEDY
 .sp
@@ -740,19 +765,24 @@ out of use. To avoid confusion, they have not been re-used.
   50  [this code is not in use]
   51  octal value is greater than \e377 (not in UTF-8 mode)
   52  internal error: overran compiling workspace
-  53  internal error: previously-checked referenced subpattern not found
+  53  internal error: previously-checked referenced subpattern
+        not found
   54  DEFINE group contains more than one branch
   55  repeating a DEFINE group is not allowed
   56  inconsistent NEWLINE options
   57  \eg is not followed by a braced, angle-bracketed, or quoted
         name/number or by a plain number
   58  a numbered reference must not be zero
-  59  (*VERB) with an argument is not supported
+  59  an argument is not allowed for (*ACCEPT), (*FAIL), or (*COMMIT)
   60  (*VERB) not recognized
   61  number is too big
   62  subpattern name expected
   63  digit expected after (?+
   64  ] is an invalid data character in JavaScript compatibility mode
+  65  different names for subpatterns of the same number are
+        not allowed
+  66  (*MARK) must have an argument
+  67  this version of PCRE is not compiled with PCRE_UCP support
 .sp
 The numbers 32 and 10000 in errors 48 and 49 are defaults; different values may
 be used if the limits were changed when PCRE was built.
@@ -818,6 +848,16 @@ Studying a pattern is also useful for non-anchored patterns that do not have a
 single fixed starting character. A bitmap of possible starting bytes is
 created. This speeds up finding a position in the subject at which to start
 matching.
+.P
+The two optimizations just described can be disabled by setting the
+PCRE_NO_START_OPTIMIZE option when calling \fBpcre_exec()\fP or
+\fBpcre_dfa_exec()\fP. You might want to do this if your pattern contains
+callouts, or make use of (*MARK), and you make use of these in cases where
+matching fails. See the discussion of PCRE_NO_START_OPTIMIZE
+.\" HTML <a href="#execoptions">
+.\" </a>
+below.
+.\"
 .
 .
 .\" HTML <a name="localesupport"></a>
@@ -827,11 +867,13 @@ matching.
 PCRE handles caseless matching, and determines whether characters are letters,
 digits, or whatever, by reference to a set of tables, indexed by character
 value. When running in UTF-8 mode, this applies only to characters with codes
-less than 128. Higher-valued codes never match escapes such as \ew or \ed, but
-can be tested with \ep if PCRE is built with Unicode character property
-support. The use of locales with Unicode is discouraged. If you are handling
-characters with codes greater than 128, you should either use UTF-8 and
-Unicode, or use locales, but not try to mix the two.
+less than 128. By default, higher-valued codes never match escapes such as \ew
+or \ed, but they can be tested with \ep if PCRE is built with Unicode character
+property support. Alternatively, the PCRE_UCP option can be set at compile
+time; this causes \ew and friends to use Unicode property support instead of
+built-in tables. The use of locales with Unicode is discouraged. If you are
+handling characters with codes greater than 128, you should either use UTF-8
+and Unicode, or use locales, but not try to mix the two.
 .P
 PCRE contains an internal set of tables that are used when the final argument
 of \fBpcre_compile()\fP is NULL. These are sufficient for many applications.
@@ -1210,6 +1252,7 @@ fields (not necessarily in this order):
   unsigned long int \fImatch_limit_recursion\fP;
   void *\fIcallout_data\fP;
   const unsigned char *\fItables\fP;
+  unsigned char **\fImark\fP;
 .sp
 The \fIflags\fP field is a bitmap that specifies which of the other fields
 are set. The flag bits are:
@@ -1219,6 +1262,7 @@ are set. The flag bits are:
   PCRE_EXTRA_MATCH_LIMIT_RECURSION
   PCRE_EXTRA_CALLOUT_DATA
   PCRE_EXTRA_TABLES
+  PCRE_EXTRA_MARK
 .sp
 Other flag bits should be set to zero. The \fIstudy_data\fP field is set in the
 \fBpcre_extra\fP block that is returned by \fBpcre_study()\fP, together with
@@ -1281,6 +1325,26 @@ called. See the
 \fBpcreprecompile\fP
 .\"
 documentation for a discussion of saving compiled patterns for later use.
+.P
+If PCRE_EXTRA_MARK is set in the \fIflags\fP field, the \fImark\fP field must
+be set to point to a \fBchar *\fP variable. If the pattern contains any
+backtracking control verbs such as (*MARK:NAME), and the execution ends up with
+a name to pass back, a pointer to the name string (zero terminated) is placed
+in the variable pointed to by the \fImark\fP field. The names are within the
+compiled pattern; if you wish to retain such a name you must copy it before
+freeing the memory of a compiled pattern. If there is no name to pass back, the
+variable pointed to by the \fImark\fP field set to NULL. For details of the
+backtracking control verbs, see the section entitled
+.\" HTML <a href="pcrepattern#backtrackcontrol">
+.\" </a>
+"Backtracking control"
+.\"
+in the
+.\" HREF
+\fBpcrepattern\fP
+.\"
+documentation.
+.
 .
 .\" HTML <a name="execoptions"></a>
 .SS "Option bits for \fBpcre_exec()\fP"
@@ -1391,12 +1455,46 @@ sample program.
   PCRE_NO_START_OPTIMIZE
 .sp
 There are a number of optimizations that \fBpcre_exec()\fP uses at the start of
-a match, in order to speed up the process. For example, if it is known that a
-match must start with a specific character, it searches the subject for that
-character, and fails immediately if it cannot find it, without actually running
-the main matching function. When callouts are in use, these optimizations can
-cause them to be skipped. This option disables the "start-up" optimizations,
-causing performance to suffer, but ensuring that the callouts do occur.
+a match, in order to speed up the process. For example, if it is known that an
+unanchored match must start with a specific character, it searches the subject
+for that character, and fails immediately if it cannot find it, without
+actually running the main matching function. This means that a special item
+such as (*COMMIT) at the start of a pattern is not considered until after a
+suitable starting point for the match has been found. When callouts or (*MARK)
+items are in use, these "start-up" optimizations can cause them to be skipped
+if the pattern is never actually used. The start-up optimizations are in effect
+a pre-scan of the subject that takes place before the pattern is run.
+.P
+The PCRE_NO_START_OPTIMIZE option disables the start-up optimizations, possibly
+causing performance to suffer, but ensuring that in cases where the result is
+"no match", the callouts do occur, and that items such as (*COMMIT) and (*MARK)
+are considered at every possible starting position in the subject string.
+Setting PCRE_NO_START_OPTIMIZE can change the outcome of a matching operation.
+Consider the pattern
+.sp
+  (*COMMIT)ABC
+.sp
+When this is compiled, PCRE records the fact that a match must start with the
+character "A". Suppose the subject string is "DEFABC". The start-up
+optimization scans along the subject, finds "A" and runs the first match
+attempt from there. The (*COMMIT) item means that the pattern must match the
+current starting position, which in this case, it does. However, if the same
+match is run with PCRE_NO_START_OPTIMIZE set, the initial scan along the
+subject string does not happen. The first match attempt is run starting from
+"D" and when this fails, (*COMMIT) prevents any further matches being tried, so
+the overall result is "no match". If the pattern is studied, more start-up
+optimizations may be used. For example, a minimum length for the subject may be
+recorded. Consider the pattern
+.sp
+  (*MARK:A)(X|Y)
+.sp
+The minimum length for a match is one character. If the subject is "ABC", there
+will be attempts to match "ABC", "BC", "C", and then finally an empty string.
+If the pattern is studied, the final attempt does not take place, because PCRE
+knows that the subject is too short, and so the (*MARK) is never encountered.
+In this case, studying the pattern does not affect the overall match result,
+which is still "no match", but it does affect the auxiliary information that is
+returned.
 .sp
   PCRE_NO_UTF8_CHECK
 .sp
@@ -1591,6 +1689,10 @@ If a pattern contains back references, but the \fIovector\fP that is passed to
 gets a block of memory at the start of matching to use for this purpose. If the
 call via \fBpcre_malloc()\fP fails, this error is given. The memory is
 automatically freed at the end of matching.
+.P
+This error is also given if \fBpcre_stack_malloc()\fP fails in
+\fBpcre_exec()\fP. This can happen only when PCRE has been compiled with
+\fB--disable-stack-for-recursion\fP.
 .sp
   PCRE_ERROR_NOSUBSTRING    (-7)
 .sp
@@ -1939,9 +2041,10 @@ Here is an example of a simple call to \fBpcre_dfa_exec()\fP:
 The unused bits of the \fIoptions\fP argument for \fBpcre_dfa_exec()\fP must be
 zero. The only bits that may be set are PCRE_ANCHORED, PCRE_NEWLINE_\fIxxx\fP,
 PCRE_NOTBOL, PCRE_NOTEOL, PCRE_NOTEMPTY, PCRE_NOTEMPTY_ATSTART,
-PCRE_NO_UTF8_CHECK, PCRE_PARTIAL_HARD, PCRE_PARTIAL_SOFT, PCRE_DFA_SHORTEST,
-and PCRE_DFA_RESTART. All but the last four of these are exactly the same as
-for \fBpcre_exec()\fP, so their description is not repeated here.
+PCRE_NO_UTF8_CHECK, PCRE_BSR_ANYCRLF, PCRE_BSR_UNICODE, PCRE_NO_START_OPTIMIZE,
+PCRE_PARTIAL_HARD, PCRE_PARTIAL_SOFT, PCRE_DFA_SHORTEST, and PCRE_DFA_RESTART.
+All but the last four of these are exactly the same as for \fBpcre_exec()\fP,
+so their description is not repeated here.
 .sp
   PCRE_PARTIAL_HARD
   PCRE_PARTIAL_SOFT
@@ -2075,6 +2178,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 03 October 2009
-Copyright (c) 1997-2009 University of Cambridge.
+Last updated: 21 June 2010
+Copyright (c) 1997-2010 University of Cambridge.
 .fi

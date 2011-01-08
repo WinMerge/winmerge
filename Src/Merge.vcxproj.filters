@@ -166,9 +166,6 @@
     <ClCompile Include="dllpstub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dllver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EditorFilepathBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

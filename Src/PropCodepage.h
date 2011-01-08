@@ -30,6 +30,7 @@ public:
 	CComboBox m_comboAutodetectType;
 	int		m_nCodepageSystem;
 	int		m_nCustomCodepageValue;
+	CString	m_cCustomCodepageValue;
 	BOOL	m_bDetectCodepage;
 	BOOL	m_bDetectCodepage2;
 	int		m_nAutodetectType;
@@ -49,6 +50,7 @@ protected:
 	//{{AFX_MSG(PropCodepage)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog();
+	void GetEncodingCodePageFromNameString();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();
 	afx_msg void OnCpUi();

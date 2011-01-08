@@ -12,9 +12,6 @@
   first. See <xref linkend="Intro_diffs" /> for related information about hex
   files. </para>
 
-  <xi:include href="Text_encoding.xml"
-              xmlns:xi="http://www.w3.org/2001/XInclude" />
-
   <section id="Compare_files_starting">
     <title>Starting a file compare operation</title>
 

@@ -177,6 +177,7 @@ Other Contributors (code, ideas, testing..):
 * Scott Rasmussen
 * Michael Richter
 * Markus Rollmann
+* saitaman <saitaman@users.sourceforge.net>
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch

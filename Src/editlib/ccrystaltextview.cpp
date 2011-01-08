@@ -277,7 +277,7 @@ EXPAND_PRIMITIVE (MoveCtrlEnd, TextEnd)
 CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
   {
     CCrystalTextView::SRC_PLAIN, _T ("Plain"), _T ("txt,doc,diz"), &CCrystalTextView::ParseLinePlain, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (""), (DWORD)-1,
-    CCrystalTextView::SRC_ASP, _T ("ASP"), _T ("asp"), &CCrystalTextView::ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (DWORD)-1,
+    CCrystalTextView::SRC_ASP, _T ("ASP"), _T ("asp,ascx"), &CCrystalTextView::ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (DWORD)-1,
     CCrystalTextView::SRC_BASIC, _T ("Basic"), _T ("bas,vb,vbs,frm,dsm,cls,ctl,pag,dsr"), &CCrystalTextView::ParseLineBasic, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("\'"), (DWORD)-1,
     CCrystalTextView::SRC_BATCH, _T ("Batch"), _T ("bat,btm,cmd"), &CCrystalTextView::ParseLineBatch, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("rem "), (DWORD)-1,
     CCrystalTextView::SRC_C, _T ("C"), _T ("c,cc,cpp,cxx,h,hpp,hxx,hm,inl,rh,tlh,tli,xs"), &CCrystalTextView::ParseLineC, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
@@ -854,7 +854,7 @@ ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScr
 static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
 {
   str += szadd;
-  curpos += _tcslen(szadd);
+  curpos += (int) _tcslen(szadd);
 }
 
 /** Append escaped control char to string str, and advance position curpos */
@@ -1391,7 +1391,7 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
       return;
 
     if( nLineIndex2 >= m_panSubLines->GetSize() )
-      nLineIndex2 = m_panSubLines->GetUpperBound();
+      nLineIndex2 = (int) m_panSubLines->GetUpperBound();
 
     for( int i = nLineIndex1; i <= nLineIndex2; i++ )
       if( i >= 0 && i < m_panSubLines->GetSize() )
@@ -4301,7 +4301,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      const int cookiesSize = m_ParseCookies->size();
+      const int cookiesSize = (int) m_ParseCookies->size();
       if (cookiesSize > 0)
         {
           ASSERT (cookiesSize == nLineCount);
@@ -4750,19 +4750,11 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       int pos;
       const char * errormsg = NULL;
       int erroroffset = 0;
-      char regexString[200] = {0};
-      int regexLen = 0;
+      char *regexString = UCS2UTF8_ConvertToUtf8(pszFindWhat);
       int pcre_opts = 0;
 
 #ifdef UNICODE
-      // For unicode builds, use UTF-8.
-      // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-      regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
-          regexString, sizeof(regexString));
       pcre_opts |= PCRE_UTF8;
-#else
-      strcpy(regexString, pszFindWhat);
-      regexLen = strlen(regexString);
 #endif
       pcre_opts |= PCRE_BSR_ANYCRLF;
       if ((dwFlags & FIND_MATCH_CASE) == 0)
@@ -4776,21 +4768,10 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
           errormsg = NULL;
           pe = pcre_study(regexp, 0, &errormsg);
         }
-
+      UCS2UTF8_Dealloc(regexString);
       int ovector[30];
-      int compStringBufLen = _tcslen(pszFindWhere) * sizeof(TCHAR) * 3 + 1;
-      char *compString = new char[compStringBufLen];
-      int stringLen = 0;
-
-#ifdef UNICODE
-      stringLen = TransformUcs2ToUtf8(pszFindWhere, _tcslen(pszFindWhere),
-          compString, compStringBufLen);
-      compString[stringLen] = '\0';
-#else
-      strncpy(compString, pszFindWhere, compStringBufLen);
-      stringLen = strlen(compString);
-#endif
-
+      char *compString = UCS2UTF8_ConvertToUtf8(pszFindWhere);
+      int stringLen = strlen(compString);
       int result = pcre_exec(regexp, pe, compString, stringLen,
           0, 0, ovector, 30);
 
@@ -4807,7 +4788,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       else
         pos = -1;
 
-      delete [] compString;
+      UCS2UTF8_Dealloc(compString);
       pcre_free(regexp);
       pcre_free(pe);
       return pos;
@@ -4817,7 +4798,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
       ASSERT (pszFindWhere != NULL);
       ASSERT (pszFindWhat != NULL);
       int nCur = 0;
-      int nLength = _tcslen (pszFindWhat);
+      int nLength = (int) _tcslen (pszFindWhat);
       nLen = nLength;
       for (;;)
         {
@@ -4825,20 +4806,20 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
           if (pszPos == NULL)
             return -1;
           if ((dwFlags & FIND_WHOLE_WORD) == 0)
-            return nCur + (pszPos - pszFindWhere);
+            return nCur + (int) (pszPos - pszFindWhere);
           if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
             {
-              nCur += (pszPos - pszFindWhere + 1);
+              nCur += (int) (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;
               continue;
             }
           if (xisalnum (pszPos[nLength]))
             {
-              nCur += (pszPos - pszFindWhere + 1);
+              nCur += (int) (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;
               continue;
             }
-          return nCur + (pszPos - pszFindWhere);
+          return nCur + (int) (pszPos - pszFindWhere);
         }
     }
   ASSERT (FALSE);               // Unreachable
@@ -4907,7 +4888,8 @@ FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags,
 int HowManyStr (LPCTSTR s, LPCTSTR m)
 {
   LPCTSTR p = s;
-  int n = 0, l = _tcslen (m);
+  int n = 0;
+  const int l = (int) _tcslen (m);
   while ((p = _tcsstr (p, m)) != NULL)
     {
       n++;
@@ -5695,9 +5677,9 @@ OnMatchBrace ()
       LPCTSTR pszOpenComment = m_CurSourceDef->opencomment,
         pszCloseComment = m_CurSourceDef->closecomment,
         pszCommentLine = m_CurSourceDef->commentline, pszTest;
-      int nOpenComment = _tcslen (pszOpenComment),
-        nCloseComment = _tcslen (pszCloseComment),
-        nCommentLine = _tcslen (pszCommentLine);
+      int nOpenComment = (int) _tcslen (pszOpenComment),
+        nCloseComment = (int) _tcslen (pszCloseComment),
+        nCommentLine = (int) _tcslen (pszCommentLine);
       if (nOther & 1)
         {
           for (;;)
@@ -5739,7 +5721,7 @@ OnMatchBrace ()
                         {
                           if (!nCount--)
                             {
-                              ptCursorPos.x = pszEnd - pszText;
+                              ptCursorPos.x = (LONG) (pszEnd - pszText);
                               if (bAfter)
                                 ptCursorPos.x++;
                               SetCursorPos (ptCursorPos);
@@ -5806,7 +5788,7 @@ OnMatchBrace ()
                         {
                           if (!nCount--)
                             {
-                              ptCursorPos.x = pszText - pszBegin;
+                              ptCursorPos.x = (LONG) (pszText - pszBegin);
                               if (bAfter)
                                 ptCursorPos.x++;
                               SetCursorPos (ptCursorPos);

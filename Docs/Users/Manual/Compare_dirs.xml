@@ -7,9 +7,6 @@
   <para>This topic describes how to compare and merge folders using the Folder
   Compare window.</para>
 
-  <xi:include href="Text_encoding.xml"
-              xmlns:xi="http://www.w3.org/2001/XInclude" />
-
   <section id="Compare_dirs_starting">
     <title>Starting a folder compare operation</title>
 

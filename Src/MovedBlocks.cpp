@@ -31,7 +31,7 @@ class IntSet
 public:
 	void Add(int val) { m_map.SetAt(val, 1); }
 	void Remove(int val) { m_map.RemoveKey(val); }
-	int count() const { return m_map.GetCount(); }
+	int count() const { return (int) m_map.GetCount(); }
 	bool isPresent(int val) const { int parm; return !!m_map.Lookup(val, parm); }
 	int getSingle() const 
 	{

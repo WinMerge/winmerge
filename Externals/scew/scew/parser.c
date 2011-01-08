@@ -79,13 +79,13 @@ scew_parser_namespace_create (XML_Char separator)
 void
 scew_parser_free (scew_parser *parser)
 {
-    if (parser != NULL)
+  if (parser != NULL)
     {
       /* Free all intermediate parser data (if used before). */
       scew_parser_reset (parser);
 
       /* Free Expat parser. */
-        if (parser->parser)
+      if (parser->parser)
         {
           XML_ParserFree (parser->parser);
         }
@@ -235,11 +235,11 @@ parser_create_ (scew_bool namespace, XML_Char separator)
       scew_parser_reset (parser);
     }
   else
-        {
+    {
       scew_error_set_last_error_ (scew_error_no_memory);
       scew_parser_free (parser);
       parser = NULL;
-        }
+    }
 
   return parser;
 }
@@ -301,7 +301,7 @@ parse_stream_reader_ (scew_parser *parser, scew_reader *reader)
   scew_bool done = SCEW_FALSE;
   scew_bool result = SCEW_TRUE;
 
-    assert(parser != NULL);
+  assert(parser != NULL);
   assert(reader != NULL);
 
   while (!done && result)
@@ -316,7 +316,7 @@ parse_stream_reader_ (scew_parser *parser, scew_reader *reader)
           result = SCEW_FALSE;
         }
       else
-    {
+        {
           result = parse_stream_buffer_ (parser, buffer, length);
           done = ((0 == length) || scew_reader_end (reader));
         }
@@ -332,15 +332,15 @@ parse_stream_buffer_ (scew_parser *parser, XML_Char const *buffer, size_t size)
   unsigned int end = 0;
   unsigned int length = 0;
 
-    assert(parser != NULL);
-    assert(buffer != NULL);
+  assert(parser != NULL);
+  assert(buffer != NULL);
 
-    /**
+  /**
    * Loop through the buffer and:
-     * if we encounter a '>', send the chunk to Expat.
-     * if we hit the end of the buffer, send whatever remains to Expat.
-     */
-    while ((start < size) && (end <= size))
+   *    if we encounter a '>', send the chunk to Expat.
+   *    if we hit the end of the buffer, send whatever remains to Expat.
+   */
+  while ((start < size) && (end <= size))
     {
       /* Skip initial whitespaces. */
       while ((start < size) && scew_isspace (buffer[start]))
@@ -351,8 +351,8 @@ parse_stream_buffer_ (scew_parser *parser, XML_Char const *buffer, size_t size)
 
       if ((end == size) || (buffer[end] == _XT('>')))
         {
-            length = end - start;
-            if (end < size)
+          length = end - start;
+          if (end < size)
             {
               length += 1;
             }
@@ -376,12 +376,12 @@ parse_stream_buffer_ (scew_parser *parser, XML_Char const *buffer, size_t size)
                * We don't need to free last loaded XML, as it's the
                * users responsibility.
                */
-                parser->tree = NULL;
+              parser->tree = NULL;
 
               /* Reset parser to continue using it. */
               scew_parser_reset (parser);
             }
-            start = end + 1;
+          start = end + 1;
         }
       end += 1;
     }

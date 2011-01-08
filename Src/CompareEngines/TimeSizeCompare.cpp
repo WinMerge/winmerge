@@ -47,7 +47,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di)
 		// Check that we have both filetimes
 		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0)
 		{
-			INT64 nTimeDiff =_abs64( di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime);
+			INT64 nTimeDiff =_abs64(di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime);
 			if (m_ignoreSmallDiff)
 			{
 				// If option to ignore small timediffs (couple of seconds)

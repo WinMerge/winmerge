@@ -105,7 +105,7 @@ String LineFiltersList::GetAsString() const
  * @return Filter item from the index. If the index is beyond table limit,
  *  return the last item in the list.
  */
-const LineFilterItem & LineFiltersList::GetAt(int ind) const
+const LineFilterItem & LineFiltersList::GetAt(size_t ind) const
 {
 	if (ind < m_items.size())
 		return *m_items[ind];

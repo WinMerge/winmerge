@@ -67,7 +67,7 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
  */
 void FileFilterMgr::LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR szExt)
 {
-	const int extlen = szExt ? _tcslen(szExt) : 0;
+	const int extlen = szExt ? (int)_tcslen(szExt) : 0;
 	const String pattern = paths_ConcatPath(dir, szPattern);
 	WIN32_FIND_DATA ff;
 	HANDLE h = FindFirstFile(pattern.c_str(), &ff);
@@ -142,7 +142,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	// Ignore lines beginning with '##'
 	size_t pos = str.find(commentLeader);
-	if (pos == 0)
+	if (pos == str.npos)
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
@@ -158,24 +158,14 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
-	int  regexStringBufLen = _tcslen(str.c_str()) * sizeof(TCHAR) * 3 + 1;
-	char *regexString = (char *)malloc(regexStringBufLen);
-	int regexLen = 0;
+
+	char *regexString = UCS2UTF8_ConvertToUtf8(str.c_str());
 	int pcre_opts = 0;
 
 #ifdef UNICODE
-	// For unicode builds, use UTF-8.
-	// Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
-	regexLen = TransformUcs2ToUtf8(str.c_str(), str.length(),
-		regexString, regexStringBufLen);
-	regexString[regexLen] = '\0';
 	pcre_opts |= PCRE_UTF8;
-#else
-	strcpy(regexString, (LPCTSTR)str.c_str());
-	regexLen = strlen(regexString);
 #endif
 	pcre_opts |= PCRE_CASELESS;
-	
 	pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
 		&erroroffset, NULL);
 	if (regexp)
@@ -191,8 +181,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		
 		filterList->push_back(elem);
 	}
-
-	free(regexString);
+	UCS2UTF8_Dealloc(regexString);
 }
 
 /**
@@ -302,38 +291,24 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  */
 BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
 {
+	int ovector[30];
+	char *compString = UCS2UTF8_ConvertToUtf8(szTest);
+	size_t stringlen = strlen(compString);
+	int result = 0;
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
-		//const FileFilterElement & elem = filterList.GetNext(pos);
-		int ovector[30];
-		int compStringBufLen = _tcslen(szTest) * sizeof(TCHAR) * 3 + 1;
-		char *compString = (char *)malloc(compStringBufLen);
-		int stringLen = 0;
-		TCHAR * tempName = _tcsdup(szTest); // Create temp copy for conversions
-		TCHAR * cmpStr = _tcsupr(tempName);
-
-#ifdef UNICODE
-		stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
-			compString, compStringBufLen);
-#else
-		strcpy(compString, cmpStr);
-		stringLen = strlen(compString);
-#endif
-
 		pcre * regexp = (*iter)->pRegExp;
 		pcre_extra * extra = (*iter)->pRegExpExtra;
-		int result = pcre_exec(regexp, extra, compString, stringLen,
+		result = pcre_exec(regexp, extra, compString,(int) stringlen,
 			0, 0, ovector, 30);
-
-		free(tempName);
-		free(compString);
-
 		if (result >= 0)
-			return TRUE;
-
+			break;
 		++iter;
 	}
+	UCS2UTF8_Dealloc(compString);
+	if (result >= 0)
+		return TRUE;
 	return FALSE;
 }
 

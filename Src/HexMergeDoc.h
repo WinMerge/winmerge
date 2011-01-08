@@ -25,7 +25,6 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id: HexMergeDoc.h 7166 2010-05-16 12:05:13Z jtuc $
 
-#include "TempFile.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 
@@ -84,7 +83,6 @@ private:
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */
 	CDirDoc * m_pDirDoc;
-	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	String m_strDesc[3]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[3];
 

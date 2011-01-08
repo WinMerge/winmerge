@@ -110,7 +110,6 @@ DATE:		BY:					DESCRIPTION:
 #include <shlwapi.h>
 #include <paths.h>
 #include "Environment.h"
-#include "dllver.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -123,7 +122,7 @@ static char THIS_FILE[] = __FILE__;
  */
 static __declspec(thread) Merge7z::Proxy m_Merge7z =
 {
-	0, 0, DllBuild_Merge7z, 0,
+	{ 0, 0, DllBuild_Merge7z, },
 	"Merge7z%u%02u"DECORATE_U".dll",
 	"Merge7z",
 	NULL

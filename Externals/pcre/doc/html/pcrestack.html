@@ -31,19 +31,22 @@ current call (a "tail recursion"), the function is just restarted instead.
 </P>
 <P>
 The <b>pcre_dfa_exec()</b> function operates in an entirely different way, and
-hardly uses recursion at all. The limit on its complexity is the amount of
-workspace it is given. The comments that follow do NOT apply to
-<b>pcre_dfa_exec()</b>; they are relevant only for <b>pcre_exec()</b>.
+uses recursion only when there is a regular expression recursion or subroutine
+call in the pattern. This includes the processing of assertion and "once-only"
+subpatterns, which are handled like subroutine calls. Normally, these are never
+very deep, and the limit on the complexity of <b>pcre_dfa_exec()</b> is
+controlled by the amount of workspace it is given. However, it is possible to
+write patterns with runaway infinite recursions; such patterns will cause
+<b>pcre_dfa_exec()</b> to run out of stack. At present, there is no protection
+against this.
 </P>
 <P>
-You can set limits on the number of times that <b>match()</b> is called, both in
-total and recursively. If the limit is exceeded, an error occurs. For details,
-see the
-<a href="pcreapi.html#extradata">section on extra data for <b>pcre_exec()</b></a>
-in the
-<a href="pcreapi.html"><b>pcreapi</b></a>
-documentation.
+The comments that follow do NOT apply to <b>pcre_dfa_exec()</b>; they are
+relevant only for <b>pcre_exec()</b>.
 </P>
+<br><b>
+Reducing <b>pcre_exec()</b>'s stack usage
+</b><br>
 <P>
 Each time that <b>match()</b> is actually called recursively, it uses memory
 from the process stack. For certain kinds of pattern and data, very large
@@ -78,13 +81,13 @@ subject strings is to write repeated parenthesized subpatterns to match more
 than one character whenever possible.
 </P>
 <br><b>
-Compiling PCRE to use heap instead of stack
+Compiling PCRE to use heap instead of stack for <b>pcre_exec()</b>
 </b><br>
 <P>
 In environments where stack memory is constrained, you might want to compile
-PCRE to use heap memory instead of stack for remembering back-up points. This
-makes it run a lot more slowly, however. Details of how to do this are given in
-the
+PCRE to use heap memory instead of stack for remembering back-up points when
+<b>pcre_exec()</b> is running. This makes it run a lot more slowly, however.
+Details of how to do this are given in the
 <a href="pcrebuild.html"><b>pcrebuild</b></a>
 documentation. When built in this way, instead of using the stack, PCRE obtains
 and frees memory by calling the functions that are pointed to by the
@@ -95,16 +98,19 @@ same, and are always freed in reverse order, it may be possible to implement
 customized memory handlers that are more efficient than the standard functions.
 </P>
 <br><b>
-Limiting PCRE's stack usage
+Limiting <b>pcre_exec()</b>'s stack usage
 </b><br>
 <P>
-PCRE has an internal counter that can be used to limit the depth of recursion,
-and thus cause <b>pcre_exec()</b> to give an error code before it runs out of
-stack. By default, the limit is very large, and unlikely ever to operate. It
-can be changed when PCRE is built, and it can also be set when
+You can set limits on the number of times that <b>match()</b> is called, both in
+total and recursively. If a limit is exceeded, <b>pcre_exec()</b> returns an
+error code. Setting suitable limits should prevent it from running out of
+stack. The default values of the limits are very large, and unlikely ever to
+operate. They can be changed when PCRE is built, and they can also be set when
 <b>pcre_exec()</b> is called. For details of these interfaces, see the
 <a href="pcrebuild.html"><b>pcrebuild</b></a>
-and
+documentation and the
+<a href="pcreapi.html#extradata">section on extra data for <b>pcre_exec()</b></a>
+in the
 <a href="pcreapi.html"><b>pcreapi</b></a>
 documentation.
 </P>
@@ -112,8 +118,15 @@ documentation.
 As a very rough rule of thumb, you should reckon on about 500 bytes per
 recursion. Thus, if you want to limit your stack usage to 8Mb, you
 should set the limit at 16000 recursions. A 64Mb stack, on the other hand, can
-support around 128000 recursions. The <b>pcretest</b> test program has a command
-line option (<b>-S</b>) that can be used to increase the size of its stack.
+support around 128000 recursions.
+</P>
+<P>
+In Unix-like environments, the <b>pcretest</b> test program has a command line
+option (<b>-S</b>) that can be used to increase the size of its stack. As long
+as the stack is large enough, another option (<b>-M</b>) can be used to find the
+smallest limits that allow a particular pattern to match a given subject
+string. This is done by calling <b>pcre_exec()</b> repeatedly with different
+limits.
 </P>
 <br><b>
 Changing stack size in Unix-like systems
@@ -163,9 +176,9 @@ Cambridge CB2 3QH, England.
 REVISION
 </b><br>
 <P>
-Last updated: 09 July 2008
+Last updated: 03 January 2010
 <br>
-Copyright &copy; 1997-2008 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.
