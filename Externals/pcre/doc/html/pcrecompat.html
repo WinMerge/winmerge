@@ -18,7 +18,7 @@ DIFFERENCES BETWEEN PCRE AND PERL
 <P>
 This document describes the differences in the ways that PCRE and Perl handle
 regular expressions. The differences described here are with respect to Perl
-5.10.
+5.10/5.11.
 </P>
 <P>
 1. PCRE has only a subset of Perl's UTF-8 and Unicode support. Details of what
@@ -102,12 +102,7 @@ strings when part of a pattern is repeated. For example, matching "aba" against
 the pattern /^(a(b)?)+$/ in Perl leaves $2 unset, but in PCRE it is set to "b".
 </P>
 <P>
-11. PCRE does support Perl 5.10's backtracking verbs (*ACCEPT), (*FAIL), (*F),
-(*COMMIT), (*PRUNE), (*SKIP), and (*THEN), but only in the forms without an
-argument. PCRE does not support (*MARK).
-</P>
-<P>
-12. PCRE's handling of duplicate subpattern numbers and duplicate subpattern
+11. PCRE's handling of duplicate subpattern numbers and duplicate subpattern
 names is not as general as Perl's. This is a consequence of the fact the PCRE
 works internally just with numbers, using an external table to translate
 between numbers and names. In particular, a pattern such as (?|(?&#60;a&#62;A)|(?&#60;b)B),
@@ -118,7 +113,7 @@ names map to capturing subpattern number 1. To avoid this confusing situation,
 an error is given at compile time.
 </P>
 <P>
-13. PCRE provides some extensions to the Perl regular expression facilities.
+12. PCRE provides some extensions to the Perl regular expression facilities.
 Perl 5.10 includes new features that are not in earlier versions of Perl, some
 of which (such as named parentheses) have been in PCRE for some time. This list
 is with respect to Perl 5.10:
@@ -187,9 +182,9 @@ Cambridge CB2 3QH, England.
 REVISION
 </b><br>
 <P>
-Last updated: 04 October 2009
+Last updated: 12 May 2010
 <br>
-Copyright &copy; 1997-2009 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

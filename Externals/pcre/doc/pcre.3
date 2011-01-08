@@ -11,10 +11,11 @@ appeared in Perl are also available using the Python syntax, there is some
 support for one or two .NET and Oniguruma syntax items, and there is an option
 for requesting some minor changes that give better JavaScript compatibility.
 .P
-The current implementation of PCRE corresponds approximately with Perl 5.10,
-including support for UTF-8 encoded strings and Unicode general category
-properties. However, UTF-8 and Unicode support has to be explicitly enabled; it
-is not the default. The Unicode tables correspond to Unicode release 5.1.
+The current implementation of PCRE corresponds approximately with Perl
+5.10/5.11, including support for UTF-8 encoded strings and Unicode general
+category properties. However, UTF-8 and Unicode support has to be explicitly
+enabled; it is not the default. The Unicode tables correspond to Unicode
+release 5.2.0.
 .P
 In addition to the Perl-compatible matching function, PCRE contains an
 alternative function that matches the same compiled patterns in a different
@@ -150,7 +151,6 @@ documentation.
 .
 .
 .\" HTML <a name="utf8support"></a>
-.
 .SH "UTF-8 AND UNICODE PROPERTY SUPPORT"
 .rs
 .sp
@@ -189,7 +189,6 @@ compatibility with Perl 5.6. PCRE does not support this.
 .
 .
 .\" HTML <a name="utf8strings"></a>
-.
 .SS "Validity of UTF-8 strings"
 .rs
 .sp
@@ -231,6 +230,7 @@ encoded in a UTF-8-like manner as per the old RFC, you can set
 PCRE_NO_UTF8_CHECK to bypass the more restrictive test. However, in this
 situation, you will have to apply your own validity check.
 .
+.
 .SS "General comments about UTF-8 mode"
 .rs
 .sp
@@ -250,19 +250,32 @@ but its use can lead to some strange effects. This facility is not available in
 the alternative matching function, \fBpcre_dfa_exec()\fP.
 .P
 6. The character escapes \eb, \eB, \ed, \eD, \es, \eS, \ew, and \eW correctly
-test characters of any code value, but the characters that PCRE recognizes as
-digits, spaces, or word characters remain the same set as before, all with
-values less than 256. This remains true even when PCRE includes Unicode
-property support, because to do otherwise would slow down PCRE in many common
-cases. If you really want to test for a wider sense of, say, "digit", you
-must use Unicode property tests such as \ep{Nd}. Note that this also applies to
-\eb, because it is defined in terms of \ew and \eW.
+test characters of any code value, but, by default, the characters that PCRE
+recognizes as digits, spaces, or word characters remain the same set as before,
+all with values less than 256. This remains true even when PCRE is built to
+include Unicode property support, because to do otherwise would slow down PCRE
+in many common cases. Note that this also applies to \eb, because it is defined
+in terms of \ew and \eW. If you really want to test for a wider sense of, say,
+"digit", you can use explicit Unicode property tests such as \ep{Nd}.
+Alternatively, if you set the PCRE_UCP option, the way that the character
+escapes work is changed so that Unicode properties are used to determine which
+characters match. There are more details in the section on
+.\" HTML <a href="pcrepattern.html#genericchartypes">
+.\" </a>
+generic character types
+.\"
+in the
+.\" HREF
+\fBpcrepattern\fP
+.\"
+documentation.
 .P
 7. Similarly, characters that match the POSIX named character classes are all
-low-valued characters.
+low-valued characters, unless the PCRE_UCP option is set.
 .P
 8. However, the Perl 5.10 horizontal and vertical whitespace matching escapes
-(\eh, \eH, \ev, and \eV) do match all the appropriate Unicode characters.
+(\eh, \eH, \ev, and \eV) do match all the appropriate Unicode characters,
+whether or not PCRE_UCP is set.
 .P
 9. Case-insensitive matching applies only to characters whose values are less
 than 128, unless PCRE is built with Unicode property support. Even when Unicode
@@ -293,6 +306,6 @@ two digits 10, at the domain cam.ac.uk.
 .rs
 .sp
 .nf
-Last updated: 28 September 2009
-Copyright (c) 1997-2009 University of Cambridge.
+Last updated: 12 May 2010
+Copyright (c) 1997-2010 University of Cambridge.
 .fi

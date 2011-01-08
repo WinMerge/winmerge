@@ -12,11 +12,9 @@ MergeLang.dll          - helper library file for WinMerge translations
 pcre.dll               - library file for regular expressions
 ReadMe.txt             - Important information about WinMerge
 Register.bat           - batch file for installing ShellExtension to system
-ShellExtension.dll     - ansi version of Shell integrarion dll
 ShellExtensionU.dll    - Unicode version of Shell integration dll
 ShellExtensionX64.dll  - 64-bit version of Shell integration dll
 UnRegister.bat         - batch file to uninstalling ShellExtension from system
-WinMerge.exe           - ANSI version of WinMerge
 WinMergeU.exe          - Unicode version of WinMerge
 
 Docs folder:

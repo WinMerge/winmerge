@@ -129,9 +129,9 @@ scew_strtrim (XML_Char *src)
 
   /* Strip leading whitespace. */
   start = scew_strspn (src, _XT(" \n\r\t\v"));
-    total = end - start;
+  total = end - start;
   scew_memmove (src, &src[start], total);
-    src[total] = _XT('\0');
+  src[total] = _XT('\0');
 }
 
 scew_bool

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CP1253\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: English\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: CP1253\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG
@@ -40,7 +40,7 @@ msgstr "1253"
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "Επέκ‘¦ση Περιβάλλον‘¦‘¦"
+msgstr "Επέκταση Περιβάλλοντος "
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,17 +50,17 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "‘¦οιγμβΒμε ‘¦ WinMerge"
+msgstr "’νοιγμα με το WinMerge"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Παρακαλώ επιλέξατζΒόχκΒπερισσότερβΒαπ‘¦2 αν‘¦κείμενβΔ
+msgstr "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα "
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Σύγκριση"
+msgstr "Σύγκριση "
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
@@ -70,12 +70,12 @@ msgstr "Σύγκριση..."
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Σύγκριση με"
+msgstr "Σύγκριση με "
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Αποθήκευση αυ‘¦‘¦‘¦‘¦διαδρομή‘¦ ΕπιλέξατζΒκάποια άλλη διαδρομή προς σύγκριση με αυ‘¦ ‘¦ διαδρομή."
+msgstr "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
@@ -85,5 +85,5 @@ msgstr "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Επανεπιλογ‘¦Πρ‘¦ου "
+msgstr "Επανεπιλογή Πρώτου "
 

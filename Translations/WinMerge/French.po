@@ -1064,8 +1064,8 @@ msgstr ""
 
 #: Merge.rc:562
 #, c-format
-msgid "Co&mpare Special"
-msgstr "Comparaison sp&éciale"
+msgid "Co&mpare As"
+msgstr ""
 
 #: Merge.rc:564
 #, c-format
@@ -1074,8 +1074,8 @@ msgstr "&XML"
 
 #: Merge.rc:565
 #, c-format
-msgid "&HEX"
-msgstr "&HEX"
+msgid "&Binary"
+msgstr ""
 
 #: Merge.rc:570
 #, c-format
@@ -2898,7 +2898,7 @@ msgstr "Répertoire"
 #: Merge.rc:1837
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "&Méthode de comparaison:"
 
 #: Merge.rc:1839
 #, c-format
@@ -2913,7 +2913,7 @@ msgstr "I&gnorer les différences de temps de moins de 3 secondes"
 #: Merge.rc:1843
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "&Inclure le contenu des répertoires uniques"
 
 #: Merge.rc:1845
 #, c-format
@@ -2923,7 +2923,7 @@ msgstr ""
 #: Merge.rc:1847
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&limite de comparaison rapide (MO):"
 
 #. StringFileInfo.Block
 #: Merge.rc:1873
@@ -3513,7 +3513,7 @@ msgstr "Ne plus poser cette &question."
 #: Merge.rc:2113
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntaxe"
 
 #: Merge.rc:2115
 #, c-format

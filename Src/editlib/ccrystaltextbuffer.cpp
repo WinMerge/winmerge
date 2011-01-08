@@ -650,7 +650,7 @@ applyEOLMode()
 {
 	LPCTSTR lpEOLtoApply = GetDefaultEol();
 	BOOL bChanged = FALSE;
-	const int size = m_aLines.size();
+	const size_t size = m_aLines.size();
 	for (int i = 0 ; i < size; i++)
 	{
 		// the last real line has no EOL
@@ -932,7 +932,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
       memcpy (pszBuf, startLine.GetLine(nStartChar), sizeof (TCHAR) * nCount);
       pszBuf += nCount;
     }
-  text.ReleaseBuffer (pszBuf - text);
+  text.ReleaseBuffer ((int) (pszBuf - text));
   text.FreeExtra ();
 }
 
@@ -1878,7 +1878,7 @@ FindPrevBookmarkLine (int nCurrentLine) const
 
       // Start from the end of text
       bWrapIt = FALSE;
-      nCurrentLine = nSize - 1;
+      nCurrentLine = (int) (nSize - 1);
     }
   return -1;
 }

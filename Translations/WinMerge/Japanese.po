@@ -1059,8 +1059,8 @@ msgstr "2”Ô–Ú‚Ì¶‘¤€–Ú‚Æ1”Ô–Ú‚Ì‰E‘¤€–Ú(&S)"
 
 #: Merge.rc:562
 #, c-format
-msgid "Co&mpare Special"
-msgstr "“Áê‚È”äŠr(&M)"
+msgid "Co&mpare As"
+msgstr ""
 
 #: Merge.rc:564
 #, c-format
@@ -1069,8 +1069,8 @@ msgstr "XML(&X)"
 
 #: Merge.rc:565
 #, c-format
-msgid "&HEX"
-msgstr "HEX(&H)"
+msgid "&Binary"
+msgstr ""
 
 #: Merge.rc:570
 #, c-format

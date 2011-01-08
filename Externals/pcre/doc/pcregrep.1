@@ -141,7 +141,7 @@ coloured. The value (which is optional, see above) may be "never", "always", or
 connected to a terminal. More resources are used when colouring is enabled,
 because \fBpcregrep\fP has to search for all possible matches in a line, not
 just one, in order to colour them all.
-
+.sp
 The colour that is used can be specified by setting the environment variable
 PCREGREP_COLOUR or PCREGREP_COLOR. The value of this variable should be a
 string of two numbers, separated by a semicolon. They are copied directly into
@@ -282,6 +282,16 @@ This option supplies a name to be used for the standard input when file names
 are being output. If not supplied, "(standard input)" is used. There is no
 short form for this option.
 .TP
+\fB--line-buffered\fP
+When this option is given, input is read and processed line by line, and the
+output is flushed after each write. By default, input is read in large chunks,
+unless \fBpcregrep\fP can determine that it is reading from a terminal (which
+is currently possible only in Unix environments). Output to terminal is
+normally automatically flushed by the operating system. This option can be
+useful when the input or output is attached to a pipe and you do not want
+\fBpcregrep\fP to buffer up large amounts of data. However, its use will affect
+performance, and the \fB-M\fP (multiline) option ceases to work.
+.TP
 \fB--line-offsets\fP
 Instead of showing lines or parts of lines that match, show each match as a
 line number, the offset from the start of the line, and a length. The line
@@ -307,7 +317,8 @@ that \fBpcregrep\fP buffers the input file as it scans it. However,
 \fBpcregrep\fP ensures that at least 8K characters or the rest of the document
 (whichever is the shorter) are available for forward matching, and similarly
 the previous 8K characters (or all the previous characters, if fewer than 8K)
-are guaranteed to be available for lookbehind assertions.
+are guaranteed to be available for lookbehind assertions. This option does not
+work when input is read line by line (see \fP--line-buffered\fP.)
 .TP
 \fB-N\fP \fInewline-type\fP, \fB--newline=\fP\fInewline-type\fP
 The PCRE library supports five different conventions for indicating
@@ -485,6 +496,6 @@ Cambridge CB2 3QH, England.
 .rs
 .sp
 .nf
-Last updated: 13 September 2009
-Copyright (c) 1997-2009 University of Cambridge.
+Last updated: 21 May 2010
+Copyright (c) 1997-2010 University of Cambridge.
 .fi

@@ -47,9 +47,9 @@ scew_error_string (scew_error code)
 {
   static XML_Char const *message[] =
     {
-        _XT("No error"),
-        _XT("Out of memory"),
-        _XT("Input/Output error"),
+      _XT("No error"),
+      _XT("Out of memory"),
+      _XT("Input/Output error"),
       _XT("Error while calling hook"),
       _XT("Internal Expat parser error"),
       _XT("Internal SCEW error")
@@ -61,7 +61,7 @@ scew_error_string (scew_error code)
     {
       return message[code];
     }
-    else
+  else
     {
       static XML_Char const *unk_message = _XT("Unknown error code");
 

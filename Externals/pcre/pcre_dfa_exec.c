@@ -7,7 +7,7 @@ and semantics are as close as possible to those of the Perl 5 language (but see
 below for why this module is different).
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2009 University of Cambridge
+           Copyright (c) 1997-2010 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -106,7 +106,7 @@ never stored, so we push them well clear of the normal opcodes. */
 
 
 /* This table identifies those opcodes that are followed immediately by a
-character that is to be tested in some way. This makes is possible to
+character that is to be tested in some way. This makes it possible to
 centralize the loading of these characters. In the case of Type * etc, the
 "character" is the opcode for \D, \d, \S, \s, \W, or \w, which will always be a
 small value. Non-zero values in the table are the offsets from the opcode where
@@ -118,8 +118,9 @@ static const uschar coptable[] = {
   0, 0, 0, 0, 0,                 /* \A, \G, \K, \B, \b                     */
   0, 0, 0, 0, 0, 0,              /* \D, \d, \S, \s, \W, \w                 */
   0, 0, 0,                       /* Any, AllAny, Anybyte                   */
-  0, 0, 0,                       /* NOTPROP, PROP, EXTUNI                  */
+  0, 0,                          /* \P, \p                                 */
   0, 0, 0, 0, 0,                 /* \R, \H, \h, \V, \v                     */
+  0,                             /* \X                                     */
   0, 0, 0, 0, 0,                 /* \Z, \z, Opt, ^, $                      */
   1,                             /* Char                                   */
   1,                             /* Charnc                                 */
@@ -156,12 +157,13 @@ static const uschar coptable[] = {
   0,                             /* Reverse                                */
   0, 0, 0, 0,                    /* ONCE, BRA, CBRA, COND                  */
   0, 0, 0,                       /* SBRA, SCBRA, SCOND                     */
-  0,                             /* CREF                                   */
-  0,                             /* RREF                                   */
+  0, 0,                          /* CREF, NCREF                            */
+  0, 0,                          /* RREF, NRREF                            */
   0,                             /* DEF                                    */
   0, 0,                          /* BRAZERO, BRAMINZERO                    */
-  0, 0, 0, 0,                    /* PRUNE, SKIP, THEN, COMMIT              */
-  0, 0, 0, 0                     /* FAIL, ACCEPT, CLOSE, SKIPZERO          */
+  0, 0, 0,                       /* MARK, PRUNE, PRUNE_ARG,                */
+  0, 0, 0, 0,                    /* SKIP, SKIP_ARG, THEN, THEN_ARG,        */
+  0, 0, 0, 0, 0                  /* COMMIT, FAIL, ACCEPT, CLOSE, SKIPZERO  */
 };
 
 /* This table identifies those opcodes that inspect a character. It is used to
@@ -174,8 +176,9 @@ static const uschar poptable[] = {
   0, 0, 0, 1, 1,                 /* \A, \G, \K, \B, \b                     */
   1, 1, 1, 1, 1, 1,              /* \D, \d, \S, \s, \W, \w                 */
   1, 1, 1,                       /* Any, AllAny, Anybyte                   */
-  1, 1, 1,                       /* NOTPROP, PROP, EXTUNI                  */
+  1, 1,                          /* \P, \p                                 */
   1, 1, 1, 1, 1,                 /* \R, \H, \h, \V, \v                     */
+  1,                             /* \X                                     */
   0, 0, 0, 0, 0,                 /* \Z, \z, Opt, ^, $                      */
   1,                             /* Char                                   */
   1,                             /* Charnc                                 */
@@ -212,12 +215,13 @@ static const uschar poptable[] = {
   0,                             /* Reverse                                */
   0, 0, 0, 0,                    /* ONCE, BRA, CBRA, COND                  */
   0, 0, 0,                       /* SBRA, SCBRA, SCOND                     */
-  0,                             /* CREF                                   */
-  0,                             /* RREF                                   */
+  0, 0,                          /* CREF, NCREF                            */
+  0, 0,                          /* RREF, NRREF                            */
   0,                             /* DEF                                    */
   0, 0,                          /* BRAZERO, BRAMINZERO                    */
-  0, 0, 0, 0,                    /* PRUNE, SKIP, THEN, COMMIT              */
-  0, 0, 0, 0                     /* FAIL, ACCEPT, CLOSE, SKIPZERO          */
+  0, 0, 0,                       /* MARK, PRUNE, PRUNE_ARG,                */
+  0, 0, 0, 0,                    /* SKIP, SKIP_ARG, THEN, THEN_ARG,        */
+  0, 0, 0, 0, 0                  /* COMMIT, FAIL, ACCEPT, CLOSE, SKIPZERO  */
 };
 
 /* These 2 tables allow for compact code for testing for \D, \d, \S, \s, \W,
@@ -255,7 +259,7 @@ typedef struct stateblock {
 #define INTS_PER_STATEBLOCK  (sizeof(stateblock)/sizeof(int))
 
 
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
 /*************************************************
 *             Print character string             *
 *************************************************/
@@ -471,7 +475,7 @@ if (*first_op == OP_REVERSE)
 
     {
     gone_back = (current_subject - max_back < start_subject)?
-      current_subject - start_subject : max_back;
+      (int)(current_subject - start_subject) : max_back;
     current_subject -= gone_back;
     }
 
@@ -488,7 +492,7 @@ if (*first_op == OP_REVERSE)
     int back = GET(end_code, 2+LINK_SIZE);
     if (back <= gone_back)
       {
-      int bstate = end_code - start_code + 2 + 2*LINK_SIZE;
+      int bstate = (int)(end_code - start_code + 2 + 2*LINK_SIZE);
       ADD_NEW_DATA(-bstate, 0, gone_back - back);
       }
     end_code += GET(end_code, 1);
@@ -524,7 +528,7 @@ else
       ((*this_start_code == OP_CBRA || *this_start_code == OP_SCBRA)? 2:0);
     do
       {
-      ADD_NEW(end_code - start_code + length, 0);
+      ADD_NEW((int)(end_code - start_code + length), 0);
       end_code += GET(end_code, 1);
       length = 1 + LINK_SIZE;
       }
@@ -559,7 +563,7 @@ for (;;)
   workspace[0] ^= 1;              /* Remember for the restarting feature */
   workspace[1] = active_count;
 
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
   printf("%.*sNext character: rest of subject = \"", rlevel*2-2, SP);
   pchars((uschar *)ptr, strlen((char *)ptr), stdout);
   printf("\"\n");
@@ -605,7 +609,7 @@ for (;;)
     int state_offset = current_state->offset;
     int count, codevalue, rrc;
 
-#ifdef DEBUG
+#ifdef PCRE_DEBUG
     printf ("%.*sProcessing state %d c=", rlevel*2-2, SP, state_offset);
     if (clen == 0) printf("EOL\n");
       else if (c > 32 && c < 127) printf("'%c'\n", c);
@@ -706,6 +710,18 @@ for (;;)
 
     switch (codevalue)
       {
+/* ========================================================================== */
+      /* These cases are never obeyed. This is a fudge that causes a compile-
+      time error if the vectors coptable or poptable, which are indexed by
+      opcode, are not the correct length. It seems to be the only way to do
+      such a check at compile time, as the sizeof() operator does not work
+      in the C preprocessor. */
+
+      case OP_TABLE_LENGTH:
+      case OP_TABLE_LENGTH +
+        ((sizeof(coptable) == OP_TABLE_LENGTH) &&
+         (sizeof(poptable) == OP_TABLE_LENGTH)):
+      break;
 
 /* ========================================================================== */
       /* Reached a closing bracket. If not at the end of the pattern, carry
@@ -739,8 +755,8 @@ for (;;)
           if (count > 0) memmove(offsets + 2, offsets, count * sizeof(int));
           if (offsetcount >= 2)
             {
-            offsets[0] = current_subject - start_subject;
-            offsets[1] = ptr - start_subject;
+            offsets[0] = (int)(current_subject - start_subject);
+            offsets[1] = (int)(ptr - start_subject);
             DPRINTF(("%.*sSet matched string = \"%.*s\"\n", rlevel*2-2, SP,
               offsets[1] - offsets[0], current_subject));
             }
@@ -762,7 +778,7 @@ for (;;)
       /*-----------------------------------------------------------------*/
       case OP_ALT:
       do { code += GET(code, 1); } while (*code == OP_ALT);
-      ADD_ACTIVE(code - start_code, 0);
+      ADD_ACTIVE((int)(code - start_code), 0);
       break;
 
       /*-----------------------------------------------------------------*/
@@ -770,7 +786,7 @@ for (;;)
       case OP_SBRA:
       do
         {
-        ADD_ACTIVE(code - start_code + 1 + LINK_SIZE, 0);
+        ADD_ACTIVE((int)(code - start_code + 1 + LINK_SIZE), 0);
         code += GET(code, 1);
         }
       while (*code == OP_ALT);
@@ -779,11 +795,11 @@ for (;;)
       /*-----------------------------------------------------------------*/
       case OP_CBRA:
       case OP_SCBRA:
-      ADD_ACTIVE(code - start_code + 3 + LINK_SIZE,  0);
+      ADD_ACTIVE((int)(code - start_code + 3 + LINK_SIZE),  0);
       code += GET(code, 1);
       while (*code == OP_ALT)
         {
-        ADD_ACTIVE(code - start_code + 1 + LINK_SIZE,  0);
+        ADD_ACTIVE((int)(code - start_code + 1 + LINK_SIZE),  0);
         code += GET(code, 1);
         }
       break;
@@ -794,14 +810,14 @@ for (;;)
       ADD_ACTIVE(state_offset + 1, 0);
       code += 1 + GET(code, 2);
       while (*code == OP_ALT) code += GET(code, 1);
-      ADD_ACTIVE(code - start_code + 1 + LINK_SIZE, 0);
+      ADD_ACTIVE((int)(code - start_code + 1 + LINK_SIZE), 0);
       break;
 
       /*-----------------------------------------------------------------*/
       case OP_SKIPZERO:
       code += 1 + GET(code, 2);
       while (*code == OP_ALT) code += GET(code, 1);
-      ADD_ACTIVE(code - start_code + 1 + LINK_SIZE, 0);
+      ADD_ACTIVE((int)(code - start_code + 1 + LINK_SIZE), 0);
       break;
 
       /*-----------------------------------------------------------------*/
@@ -906,13 +922,37 @@ for (;;)
           if (utf8) BACKCHAR(temp);
 #endif
           GETCHARTEST(d, temp);
+#ifdef SUPPORT_UCP
+          if ((md->poptions & PCRE_UCP) != 0)
+            {
+            if (d == '_') left_word = TRUE; else
+              {
+              int cat = UCD_CATEGORY(d);
+              left_word = (cat == ucp_L || cat == ucp_N);
+              }
+            }
+          else
+#endif
           left_word = d < 256 && (ctypes[d] & ctype_word) != 0;
           }
-        else left_word = 0;
+        else left_word = FALSE;
 
         if (clen > 0)
+          {
+#ifdef SUPPORT_UCP
+          if ((md->poptions & PCRE_UCP) != 0)
+            {
+            if (c == '_') right_word = TRUE; else
+              {
+              int cat = UCD_CATEGORY(c);
+              right_word = (cat == ucp_L || cat == ucp_N);
+              }
+            }
+          else
+#endif
           right_word = c < 256 && (ctypes[c] & ctype_word) != 0;
-        else right_word = 0;
+          }
+        else right_word = FALSE;
 
         if ((left_word == right_word) == (codevalue == OP_NOT_WORD_BOUNDARY))
           { ADD_ACTIVE(state_offset + 1, 0); }
@@ -939,7 +979,8 @@ for (;;)
           break;
 
           case PT_LAMP:
-          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll || prop->chartype == ucp_Lt;
+          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll ||
+               prop->chartype == ucp_Lt;
           break;
 
           case PT_GC:
@@ -952,6 +993,30 @@ for (;;)
 
           case PT_SC:
           OK = prop->script == code[2];
+          break;
+
+          /* These are specials for combination cases. */
+
+          case PT_ALNUM:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N;
+          break;
+
+          case PT_SPACE:    /* Perl space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_PXSPACE:  /* POSIX space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_VT ||
+               c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_WORD:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N ||
+               c == CHAR_UNDERSCORE;
           break;
 
           /* Should never occur, but keep compilers from grumbling. */
@@ -1108,7 +1173,8 @@ for (;;)
           break;
 
           case PT_LAMP:
-          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll || prop->chartype == ucp_Lt;
+          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll ||
+            prop->chartype == ucp_Lt;
           break;
 
           case PT_GC:
@@ -1121,6 +1187,30 @@ for (;;)
 
           case PT_SC:
           OK = prop->script == code[3];
+          break;
+
+          /* These are specials for combination cases. */
+
+          case PT_ALNUM:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N;
+          break;
+
+          case PT_SPACE:    /* Perl space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_PXSPACE:  /* POSIX space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_VT ||
+               c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_WORD:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N ||
+               c == CHAR_UNDERSCORE;
           break;
 
           /* Should never occur, but keep compilers from grumbling. */
@@ -1330,7 +1420,8 @@ for (;;)
           break;
 
           case PT_LAMP:
-          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll || prop->chartype == ucp_Lt;
+          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll ||
+            prop->chartype == ucp_Lt;
           break;
 
           case PT_GC:
@@ -1343,6 +1434,30 @@ for (;;)
 
           case PT_SC:
           OK = prop->script == code[3];
+          break;
+
+          /* These are specials for combination cases. */
+
+          case PT_ALNUM:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N;
+          break;
+
+          case PT_SPACE:    /* Perl space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_PXSPACE:  /* POSIX space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_VT ||
+               c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_WORD:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N ||
+               c == CHAR_UNDERSCORE;
           break;
 
           /* Should never occur, but keep compilers from grumbling. */
@@ -1577,7 +1692,8 @@ for (;;)
           break;
 
           case PT_LAMP:
-          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll || prop->chartype == ucp_Lt;
+          OK = prop->chartype == ucp_Lu || prop->chartype == ucp_Ll ||
+            prop->chartype == ucp_Lt;
           break;
 
           case PT_GC:
@@ -1590,6 +1706,30 @@ for (;;)
 
           case PT_SC:
           OK = prop->script == code[5];
+          break;
+
+          /* These are specials for combination cases. */
+
+          case PT_ALNUM:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N;
+          break;
+
+          case PT_SPACE:    /* Perl space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_PXSPACE:  /* POSIX space */
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_Z ||
+               c == CHAR_HT || c == CHAR_NL || c == CHAR_VT ||
+               c == CHAR_FF || c == CHAR_CR;
+          break;
+
+          case PT_WORD:
+          OK = _pcre_ucp_gentype[prop->chartype] == ucp_L ||
+               _pcre_ucp_gentype[prop->chartype] == ucp_N ||
+               c == CHAR_UNDERSCORE;
           break;
 
           /* Should never occur, but keep compilers from grumbling. */
@@ -2219,7 +2359,7 @@ for (;;)
         points to the byte after the end of the class. If there is a
         quantifier, this is where it will be. */
 
-        next_state_offset = ecode - start_code;
+        next_state_offset = (int)(ecode - start_code);
 
         switch (*ecode)
           {
@@ -2290,7 +2430,7 @@ for (;;)
           md,                                   /* static match data */
           code,                                 /* this subexpression's code */
           ptr,                                  /* where we currently are */
-          ptr - start_subject,                  /* start offset */
+          (int)(ptr - start_subject),           /* start offset */
           local_offsets,                        /* offset vector */
           sizeof(local_offsets)/sizeof(int),    /* size of same */
           local_workspace,                      /* workspace vector */
@@ -2299,8 +2439,9 @@ for (;;)
           rlevel,                               /* function recursion level */
           recursing);                           /* pass on regex recursion */
 
+        if (rc == PCRE_ERROR_DFA_UITEM) return rc;
         if ((rc >= 0) == (codevalue == OP_ASSERT || codevalue == OP_ASSERTBACK))
-            { ADD_ACTIVE(endasscode + LINK_SIZE + 1 - start_code, 0); }
+            { ADD_ACTIVE((int)(endasscode + LINK_SIZE + 1 - start_code), 0); }
         }
       break;
 
@@ -2327,9 +2468,9 @@ for (;;)
             cb.callout_number   = code[LINK_SIZE+2];
             cb.offset_vector    = offsets;
             cb.subject          = (PCRE_SPTR)start_subject;
-            cb.subject_length   = end_subject - start_subject;
-            cb.start_match      = current_subject - start_subject;
-            cb.current_position = ptr - start_subject;
+            cb.subject_length   = (int)(end_subject - start_subject);
+            cb.start_match      = (int)(current_subject - start_subject);
+            cb.current_position = (int)(ptr - start_subject);
             cb.pattern_position = GET(code, LINK_SIZE + 3);
             cb.next_item_length = GET(code, 3 + 2*LINK_SIZE);
             cb.capture_top      = 1;
@@ -2380,7 +2521,7 @@ for (;;)
             md,                                   /* fixed match data */
             asscode,                              /* this subexpression's code */
             ptr,                                  /* where we currently are */
-            ptr - start_subject,                  /* start offset */
+            (int)(ptr - start_subject),           /* start offset */
             local_offsets,                        /* offset vector */
             sizeof(local_offsets)/sizeof(int),    /* size of same */
             local_workspace,                      /* workspace vector */
@@ -2389,9 +2530,10 @@ for (;;)
             rlevel,                               /* function recursion level */
             recursing);                           /* pass on regex recursion */
 
+          if (rc == PCRE_ERROR_DFA_UITEM) return rc;
           if ((rc >= 0) ==
                 (condcode == OP_ASSERT || condcode == OP_ASSERTBACK))
-            { ADD_ACTIVE(endasscode + LINK_SIZE + 1 - start_code, 0); }
+            { ADD_ACTIVE((int)(endasscode + LINK_SIZE + 1 - start_code), 0); }
           else
             { ADD_ACTIVE(state_offset + codelink + LINK_SIZE + 1, 0); }
           }
@@ -2412,7 +2554,7 @@ for (;;)
           md,                                   /* fixed match data */
           start_code + GET(code, 1),            /* this subexpression's code */
           ptr,                                  /* where we currently are */
-          ptr - start_subject,                  /* start offset */
+          (int)(ptr - start_subject),           /* start offset */
           local_offsets,                        /* offset vector */
           sizeof(local_offsets)/sizeof(int),    /* size of same */
           local_workspace,                      /* workspace vector */
@@ -2464,7 +2606,7 @@ for (;;)
           md,                                   /* fixed match data */
           code,                                 /* this subexpression's code */
           ptr,                                  /* where we currently are */
-          ptr - start_subject,                  /* start offset */
+          (int)(ptr - start_subject),           /* start offset */
           local_offsets,                        /* offset vector */
           sizeof(local_offsets)/sizeof(int),    /* size of same */
           local_workspace,                      /* workspace vector */
@@ -2481,7 +2623,8 @@ for (;;)
 
           do { end_subpattern += GET(end_subpattern, 1); }
             while (*end_subpattern == OP_ALT);
-          next_state_offset = end_subpattern - start_code + LINK_SIZE + 1;
+          next_state_offset =
+            (int)(end_subpattern - start_code + LINK_SIZE + 1);
 
           /* If the end of this subpattern is KETRMAX or KETRMIN, we must
           arrange for the repeat state also to be added to the relevant list.
@@ -2489,7 +2632,7 @@ for (;;)
 
           repeat_state_offset = (*end_subpattern == OP_KETRMAX ||
                                  *end_subpattern == OP_KETRMIN)?
-            end_subpattern - start_code - GET(end_subpattern, 1) : -1;
+            (int)(end_subpattern - start_code - GET(end_subpattern, 1)) : -1;
 
           /* If we have matched an empty string, add the next state at the
           current character pointer. This is important so that the duplicate
@@ -2553,9 +2696,9 @@ for (;;)
         cb.callout_number   = code[1];
         cb.offset_vector    = offsets;
         cb.subject          = (PCRE_SPTR)start_subject;
-        cb.subject_length   = end_subject - start_subject;
-        cb.start_match      = current_subject - start_subject;
-        cb.current_position = ptr - start_subject;
+        cb.subject_length   = (int)(end_subject - start_subject);
+        cb.start_match      = (int)(current_subject - start_subject);
+        cb.current_position = (int)(ptr - start_subject);
         cb.pattern_position = GET(code, 2);
         cb.next_item_length = GET(code, 2 + LINK_SIZE);
         cb.capture_top      = 1;
@@ -2606,8 +2749,8 @@ for (;;)
       {
       if (offsetcount >= 2)
         {
-        offsets[0] = md->start_used_ptr - start_subject;
-        offsets[1] = end_subject - start_subject;
+        offsets[0] = (int)(md->start_used_ptr - start_subject);
+        offsets[1] = (int)(end_subject - start_subject);
         }
       match_count = PCRE_ERROR_PARTIAL;
       }
@@ -2966,8 +3109,16 @@ for (;;)
         while (current_subject < end_subject)
           {
           register unsigned int c = *current_subject;
-          if ((start_bits[c/8] & (1 << (c&7))) == 0) current_subject++;
-            else break;
+          if ((start_bits[c/8] & (1 << (c&7))) == 0)
+            {
+            current_subject++;
+#ifdef SUPPORT_UTF8
+            if (utf8)
+              while(current_subject < end_subject &&
+                    (*current_subject & 0xc0) == 0x80) current_subject++;
+#endif
+            }
+          else break;
           }
         }
       }
@@ -2989,7 +3140,7 @@ for (;;)
       bytes to avoid spending too much time in this optimization. */
 
       if (study != NULL && (study->flags & PCRE_STUDY_MINLEN) != 0 &&
-          end_subject - current_subject < study->minlength)
+          (pcre_uint32)(end_subject - current_subject) < study->minlength)
         return PCRE_ERROR_NOMATCH;
 
       /* If req_byte is set, we know that that character must appear in the

@@ -50,8 +50,15 @@ like this:
 <pre>
   gcc -o pcredemo -I/usr/local/include pcredemo.c -L/usr/local/lib -lpcre
 </pre>
-Once you have compiled the demonstration program, you can run simple tests like
-this:
+In a Windows environment, if you want to statically link the program against a
+non-dll <b>pcre.a</b> file, you must uncomment the line that defines PCRE_STATIC
+before including <b>pcre.h</b>, because otherwise the <b>pcre_malloc()</b> and
+<b>pcre_free()</b> exported functions will be declared
+<b>__declspec(dllimport)</b>, with unwanted results.
+</P>
+<P>
+Once you have compiled and linked the demonstration program, you can run simple
+tests like this:
 <pre>
   ./pcredemo 'cat|dog' 'the cat sat on the mat'
   ./pcredemo -g 'cat|dog' 'the dog sat on the cat'
@@ -93,9 +100,9 @@ Cambridge CB2 3QH, England.
 REVISION
 </b><br>
 <P>
-Last updated: 30 September 2009
+Last updated: 26 May 2010
 <br>
-Copyright &copy; 1997-2009 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

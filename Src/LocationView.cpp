@@ -123,6 +123,10 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
 	ON_WM_SETFOCUS()
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1089,4 +1093,56 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 
 	pDC->SelectObject(pOldBrush);
 	pDC->SelectObject(oldObj);
+}
+
+/**
+ * @brief Called when "Save" item is updated
+ */
+void CLocationView::OnUpdateFileSave(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (pd->m_ptBuf[0]->IsModified() || pd->m_ptBuf[1]->IsModified())
+		pCmdUI->Enable(true);
+	else
+		pCmdUI->Enable(false);
+}
+
+/**
+ * @brief Called when "Save left (as...)" item is updated
+ */
+void CLocationView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (!pd->m_ptBuf[0]->GetReadOnly() && pd->m_ptBuf[0]->IsModified())
+		pCmdUI->Enable(true);
+	else
+		pCmdUI->Enable(false);
+}
+
+/**
+ * @brief Called when "Save Middle (as...)" item is updated
+ */
+void CLocationView::OnUpdateFileSaveMiddle(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (pd->m_nBuffers > 2 && !pd->m_ptBuf[1]->GetReadOnly() && pd->m_ptBuf[1]->IsModified())
+		pCmdUI->Enable(true);
+	else
+		pCmdUI->Enable(false);
+}
+
+/**
+ * @brief Called when "Save right (as...)" item is updated
+ */
+void CLocationView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (!pd->m_ptBuf[pd->m_nBuffers - 1]->GetReadOnly() && pd->m_ptBuf[pd->m_nBuffers - 1]->IsModified())
+		pCmdUI->Enable(true);
+	else
+		pCmdUI->Enable(false);
 }

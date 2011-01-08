@@ -710,7 +710,7 @@ Pekka Himanen</screen></para>
 
         <para>CVS Id lines look like this:</para>
 
-        <screen>// $Id$</screen>
+        <screen>// $Id: Filters.xml 6806 2009-05-29 20:33:13Z denisbradford $</screen>
 
         <para>... and can be filtered with this rule:</para>
 

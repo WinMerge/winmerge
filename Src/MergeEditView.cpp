@@ -2775,13 +2775,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnL2RNext()
 {
-	// Check that diff is selected
-	if (GetDocument()->GetCurrentDiff() == -1)
-		return;
-
 	OnL2r();
-	if (this->IsCursorInDiff())
-		OnCurdiff();
 	OnNextdiff();
 }
 
@@ -2790,11 +2784,7 @@ void CMergeEditView::OnL2RNext()
  */
 void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
 {
-	// Check that right side is not readonly
-	if (!IsReadOnly(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1))
-		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
-	else
-		pCmdUI->Enable(false);
+	OnUpdateL2r(pCmdUI);
 }
 
 /**
@@ -2802,13 +2792,7 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnR2LNext()
 {
-	// Check that diff is selected
-	if (GetDocument()->GetCurrentDiff() == -1)
-		return;
-
 	OnR2l();
-	if (this->IsCursorInDiff())
-		OnCurdiff();
 	OnNextdiff();
 }
 
@@ -2817,11 +2801,7 @@ void CMergeEditView::OnR2LNext()
  */
 void CMergeEditView::OnUpdateR2LNext(CCmdUI* pCmdUI)
 {
-	// Check that left side is not readonly
-	if (!IsReadOnly(m_nThisPane > 0 ? m_nThisPane - 1 : 0))
-		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
-	else
-		pCmdUI->Enable(false);
+	OnUpdateR2l(pCmdUI);
 }
 
 /**

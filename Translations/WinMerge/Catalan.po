@@ -1059,7 +1059,7 @@ msgstr ""
 
 #: Merge.rc:562
 #, c-format
-msgid "Co&mpare Special"
+msgid "Co&mpare As"
 msgstr ""
 
 #: Merge.rc:564
@@ -1069,7 +1069,7 @@ msgstr ""
 
 #: Merge.rc:565
 #, c-format
-msgid "&HEX"
+msgid "&Binary"
 msgstr ""
 
 #: Merge.rc:570

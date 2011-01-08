@@ -40,7 +40,7 @@ public:
 	const wchar_t *GetWideString(void) {return m_szMenuText;};
 	~BCMenuData ();
 	CString GetString(void);//returns the menu text in ANSI or UNICODE
-	int xoffset,global_offset;
+	INT_PTR xoffset,global_offset;
 	int menuIconNormal;
 	UINT nFlags,nID,syncflag;
 	CImageList *bitmap;
@@ -236,9 +236,9 @@ protected:
 	static BOOL IsLunaMenuStyle(void);
 	static BOOL IsWindowsClassicTheme(void);
 	BCMenuData *BCMenu::FindMenuItem(UINT nID);
-	BCMenu *FindMenuOption(int nId,int& nLoc);
-	BCMenu *FindAnotherMenuOption(int nId,int& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
-								  CArray<int,int&>&bclocs);
+	BCMenu *FindMenuOption(int nId,UINT& nLoc);
+	BCMenu *FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
+								  CArray<UINT,UINT&>&bclocs);
 	BCMenuData *FindMenuOption(wchar_t *lpstrText);
 	void InsertSpaces(void);
 	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag=FALSE);
@@ -268,7 +268,7 @@ protected:
 	void GetTransparentBitmap(CBitmap &bmp);
 	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
 	void GetShadowBitmap(CBitmap &bmp);
-	int AddToGlobalImageList(CImageList *il,int xoffset,int nID);
+	INT_PTR AddToGlobalImageList(CImageList *il,int xoffset,int nID);
 	int GlobalImageListOffset(int nID);
 	BOOL CanDraw3DImageList(int offset);
 	

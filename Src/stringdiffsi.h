@@ -64,16 +64,17 @@ private:
 // Implementation methods
 private:
 
-	bool ExtendLastDiff(bool bLeftSide, int nEnd);
-	void HandleLeftOvers(int nLastWord, bool bInWordDiff);
 	void BuildWordsArray(const String & str, std::vector<word*> * words);
-	int FindPreMatchInWords1(const word & needword2, int bw1) const;
-	int FindNextMatchInWords1(const word & needword2, int bw1) const;
-	int FindPreMatchInWords2(const word & needword1, int bw2) const;
-	int FindNextMatchInWords2(const word & needword1, int bw2) const;
-	int FindPreSpaceInWords1(int bw1) const;
-	int FindNextSpaceInWords1(int bw1) const;
-	int FindNextSpaceInWords2(int bw2) const;
+	void InsertInWords(std::vector<word*> &words, int bw);
+	int FindPreMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
+	int FindNextMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
+	int FindPreSpaceInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextSpaceInWords(const std::vector<word*> &words, int bw) const;
+	int FindPreNoInsertInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextInsertInWords(const std::vector<word*> &words, int bw) const;
+	int FindNextNoInsertInWords(const std::vector<word*> &words, int bw) const;
+	void MoveInWordsUp(std::vector<word*> &words, int source, int target) const;
+	void MoveInWordsDown(std::vector<word*> &words, int source, int target) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;
@@ -81,8 +82,7 @@ private:
 	bool IsBreak(const word & word1) const;
 	bool IsInsert(const word & word1) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
-	bool RemoveItem1(int bw1);
-	bool RemoveItem2(int bw1);
+	bool RemoveItem(std::vector<word*> &words, int bw) const;
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);
 	int onp(std::vector<char> & edscript);

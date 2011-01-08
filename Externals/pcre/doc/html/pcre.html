@@ -30,10 +30,11 @@ support for one or two .NET and Oniguruma syntax items, and there is an option
 for requesting some minor changes that give better JavaScript compatibility.
 </P>
 <P>
-The current implementation of PCRE corresponds approximately with Perl 5.10,
-including support for UTF-8 encoded strings and Unicode general category
-properties. However, UTF-8 and Unicode support has to be explicitly enabled; it
-is not the default. The Unicode tables correspond to Unicode release 5.1.
+The current implementation of PCRE corresponds approximately with Perl
+5.10/5.11, including support for UTF-8 encoded strings and Unicode general
+category properties. However, UTF-8 and Unicode support has to be explicitly
+enabled; it is not the default. The Unicode tables correspond to Unicode
+release 5.2.0.
 </P>
 <P>
 In addition to the Perl-compatible matching function, PCRE contains an
@@ -255,21 +256,29 @@ the alternative matching function, <b>pcre_dfa_exec()</b>.
 </P>
 <P>
 6. The character escapes \b, \B, \d, \D, \s, \S, \w, and \W correctly
-test characters of any code value, but the characters that PCRE recognizes as
-digits, spaces, or word characters remain the same set as before, all with
-values less than 256. This remains true even when PCRE includes Unicode
-property support, because to do otherwise would slow down PCRE in many common
-cases. If you really want to test for a wider sense of, say, "digit", you
-must use Unicode property tests such as \p{Nd}. Note that this also applies to
-\b, because it is defined in terms of \w and \W.
+test characters of any code value, but, by default, the characters that PCRE
+recognizes as digits, spaces, or word characters remain the same set as before,
+all with values less than 256. This remains true even when PCRE is built to
+include Unicode property support, because to do otherwise would slow down PCRE
+in many common cases. Note that this also applies to \b, because it is defined
+in terms of \w and \W. If you really want to test for a wider sense of, say,
+"digit", you can use explicit Unicode property tests such as \p{Nd}.
+Alternatively, if you set the PCRE_UCP option, the way that the character
+escapes work is changed so that Unicode properties are used to determine which
+characters match. There are more details in the section on
+<a href="pcrepattern.html#genericchartypes">generic character types</a>
+in the
+<a href="pcrepattern.html"><b>pcrepattern</b></a>
+documentation.
 </P>
 <P>
 7. Similarly, characters that match the POSIX named character classes are all
-low-valued characters.
+low-valued characters, unless the PCRE_UCP option is set.
 </P>
 <P>
 8. However, the Perl 5.10 horizontal and vertical whitespace matching escapes
-(\h, \H, \v, and \V) do match all the appropriate Unicode characters.
+(\h, \H, \v, and \V) do match all the appropriate Unicode characters,
+whether or not PCRE_UCP is set.
 </P>
 <P>
 9. Case-insensitive matching applies only to characters whose values are less
@@ -298,9 +307,9 @@ two digits 10, at the domain cam.ac.uk.
 </P>
 <br><a name="SEC6" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 28 September 2009
+Last updated: 12 May 2010
 <br>
-Copyright &copy; 1997-2009 University of Cambridge.
+Copyright &copy; 1997-2010 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE index page</a>.

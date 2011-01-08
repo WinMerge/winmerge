@@ -287,24 +287,19 @@ void PluginInfo::LoadFilterString()
 		FileFilterElement element;
 		const char * errormsg = NULL;
 		int erroroffset = 0;
-		char regexString[200] = {0};
-		int regexLen = 0;
+		char *regexString = UCS2UTF8_ConvertToUtf8(sPiece);
+		int pcre_opts = 0;
 #ifdef UNICODE
-		regexLen = TransformUcs2ToUtf8((LPCTSTR)sPiece, _tcslen(sPiece),
-			regexString, sizeof(regexString));
-#else
-		strcpy(regexString, (LPCTSTR)sPiece);
-		regexLen = strlen(regexString);
+		pcre_opts |= PCRE_UTF8;
 #endif
-
-		pcre *regexp = pcre_compile(regexString, 0, &errormsg, &erroroffset, NULL);
+		pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg, &erroroffset, NULL);
 		if (regexp)
 		{
 			FileFilterElement *elem = new FileFilterElement();
 			elem->pRegExp = regexp;
 			m_filters->push_back(elem);
 		}
-
+		UCS2UTF8_Dealloc(regexString);
 	};
 }
 

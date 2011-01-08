@@ -387,7 +387,7 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
 bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, int &Op, int FileNo,
+	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
 	const FilterCommentsSet& filtercommentsset)
 {
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
@@ -509,7 +509,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
 	const TCHAR *FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
@@ -524,8 +524,8 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 		return;
 	}
 
-	int LeftOp = 0;
-	int RightOp = 0;
+	OP_TYPE LeftOp = OP_NONE;
+	OP_TYPE RightOp = OP_NONE;
 
 	if (QtyLinesRight == 0)
 	{	//Only check left side
@@ -937,7 +937,7 @@ BOOL CDiffWrapper::RunFileDiff()
 /**
  * @brief Add diff to external diff-list
  */
-void CDiffWrapper::AddDiffRange(DiffList *pDiffList, UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
+void CDiffWrapper::AddDiffRange(DiffList *pDiffList, UINT begin0, UINT end0, UINT begin1, UINT end1, OP_TYPE op)
 {
 	TRY {
 		DIFFRANGE dr;
@@ -1258,7 +1258,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, inf);
-			int op=0;
+			OP_TYPE op=OP_NONE;
 			if (deletes || inserts || thisob->trivial)
 			{
 				if (deletes && inserts)
@@ -1322,7 +1322,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
+				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
 					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
@@ -1354,7 +1354,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	{
 		struct change *next;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
-		int first0, last0, first1, last1, deletes, inserts, op;
+		int first0, last0, first1, last1, deletes, inserts;
+		OP_TYPE op;
 		struct change *thisob, *end;
 		const file_data *pinf;
 
@@ -1443,7 +1444,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
-					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
+					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 					TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
 						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				}

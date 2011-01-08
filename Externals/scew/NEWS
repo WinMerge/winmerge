@@ -1,8 +1,18 @@
 SCEW -- History of visible changes.
 
-Copyright (C) 2002-2009 Aleix Conchillo Flaqué
+Copyright (C) 2002-2010 Aleix Conchillo Flaqué
 
 See the end for copying conditions.
+
+------------------------------------------------------------------------
+
+* Version 1.1.2 (2010/06/04)
+
+** Fixes:
+
+   - Precondition violation when assigning preamble to tree after
+     trimming and becoming NULL (scew/xparser.c).
+     (reported by Rudolf Alexander Kerbitz)
 
 ------------------------------------------------------------------------
 
@@ -135,25 +145,25 @@ See the end for copying conditions.
 
 ** Changes:
 
-        - Ability  to load  and XML  document  from an  stream has  been
-          added. The stream  may not be completed, so  it will just load
+   - Ability to load and XML document from an stream has been
+     added. The stream may not be completed, so it will just load
      correct XML pieces. A callback, set by the user, will be called
      each time an element is available.
-          (thanks to Gord Shier)
+     (thanks to Gord Shier)
 
 ** Fixes:
 
-        - Fixed  indentation  level   when  document  contains  multiple
-          consecutive empty elements.
-          (thanks to Tom Probasco)
+   - Fixed indentation level when document contains multiple
+     consecutive empty elements.
+     (thanks to Tom Probasco)
 
-        - scew_element_add_attr_pair()  did  not  add  a  new  attribute
-          correctly if the attribute already existed.
-          (reported by Matthew Peltzer)
+   - scew_element_add_attr_pair() did not add a new attribute
+     correctly if the attribute already existed.
+     (reported by Matthew Peltzer)
 
-        - Compiltaion  fixes in MSVC.   Compiler interpreted  a function
-          argument called list as the std::list.
-          (reported by Renaud Dumont)
+   - Compiltaion fixes in MSVC.  Compiler interpreted a function
+     argument called list as the std::list.
+     (reported by Renaud Dumont)
 
 ------------------------------------------------------------------------
 
@@ -161,23 +171,23 @@ See the end for copying conditions.
 
 ** Changes:
 
-        - A new "Unknown error code" message has been added.
-          (thanks to Brodie Thiesfield)
+   - A new "Unknown error code" message has been added.
+     (thanks to Brodie Thiesfield)
 
-        - Improved support for Windows and Unix compilation.
-          (thanks to Brodie Thiesfield)
+   - Improved support for Windows and Unix compilation.
+     (thanks to Brodie Thiesfield)
 
-        - Added improvements in str functions. mem.* has been removed.
-          (thanks to Brodie Thiesfield)
+   - Added improvements in str functions. mem.* has been removed.
+     (thanks to Brodie Thiesfield)
 
    - Write functions have been moved from tree to new writer.* files.
 
-        - Added a preamble section to the XML declaration.
+   - Added a preamble section to the XML declaration.
 
 ** Fixes:
 
-        - Allow building in a separate directory.
-          (thanks to Kalle Valo)
+   - Allow building in a separate directory.
+     (thanks to Kalle Valo)
 
 ------------------------------------------------------------------------
 
@@ -187,40 +197,40 @@ See the end for copying conditions.
 
    - Added missing performace improvements by using the linked list in
      element and attribute iterations.
-          (thanks to Brodie Thiesfield)
+     (thanks to Brodie Thiesfield)
 
-        - Added exponentially growing buffer to avoid many realloc calls
-          which are slow and fragment memory in scew_element_list.
-          (thanks to Brodie Thiesfield)
+   - Added exponentially growing buffer to avoid many realloc calls
+     which are slow and fragment memory in scew_element_list.
+     (thanks to Brodie Thiesfield)
 
-        - Performance  improvements in  file loading  by using  a static
-          buffer.
-          (thanks to Brodie Thiesfield)
+   - Performance improvements in file loading by using a static
+     buffer.
+     (thanks to Brodie Thiesfield)
 
-        - Added scew_parser_load_file_fp().
-          (thanks to Brodie Thiesfield)
+   - Added scew_parser_load_file_fp().
+     (thanks to Brodie Thiesfield)
 
-        - Some other minor changes.
-          (thanks to Brodie Thiesfield)
+   - Some other minor changes.
+     (thanks to Brodie Thiesfield)
 
 ** Fixes:
 
-        - scew_isxdigit() was calling isdigit() instead of isxdigit().
+   - scew_isxdigit() was calling isdigit() instead of isxdigit().
 
-        - scew_isxxxx() fixed.
-          (thanks to Brodie Thiesfield)
+   - scew_isxxxx() fixed.
+     (thanks to Brodie Thiesfield)
 
-        - strdup() is a GNU extension, replaced it by own version.
+   - strdup() is a GNU extension, replaced it by own version.
 
-        - Fixed scew_element_by_name.
-          (reported by Eric Fronheiser)
+   - Fixed scew_element_by_name.
+     (reported by Eric Fronheiser)
 
-        - Warning fixes (level 4) in Microsoft Visual C++ 7.
-          (thanks to Brodie Thiesfield)
+   - Warning fixes (level 4) in Microsoft Visual C++ 7.
+     (thanks to Brodie Thiesfield)
 
-        - Multi-thread    support     fixed    in    Microsoft    Visual
+   - Multi-thread support fixed in Microsoft Visual
      C++. __declspec(thread) did not work, use TLS functions instead.
-          (thanks to Brodie Thiesfield)
+     (thanks to Brodie Thiesfield)
 
 ------------------------------------------------------------------------
 
@@ -231,34 +241,34 @@ See the end for copying conditions.
    - Added more string functions. New memory functions have also been
      added.
 
-        - Performance improved in element and attribute iteration.
-          (thanks to Sanzo Miyazawa)
+   - Performance improved in element and attribute iteration.
+     (thanks to Sanzo Miyazawa)
 
    - Support for XML declaration attributes has been added (version,
      encoding, standalone).  This attributes can be changed using SCEW
      tree functions.
 
-        - Improved white spaces treatment in XML element contents.
+   - Improved white spaces treatment in XML element contents.
 
-        - Added error system. See documentation for more details.
+   - Added error system. See documentation for more details.
 
-        - Added pkg-config file.
-          (thanks to Neil Harvey)
+   - Added pkg-config file.
+     (thanks to Neil Harvey)
 
-        - Added 'make doc'. If you have doxygen installed (which will be
+   - Added 'make doc'. If you have doxygen installed (which will be
      automatically detected), it will create SCEW
      documentation. Execute './configure --help' to see more
      documentation options.
 
-        - 'make install' does not install example binaries anymore.
+   - 'make install' does not install example binaries anymore.
 
 ** Fixes:
 
-        - scew_tree_save_file() did not fclose output file.
-          (reported by Paul Bohme)
+   - scew_tree_save_file() did not fclose output file.
+     (reported by Paul Bohme)
 
    - scew_element_free() did not decrement parent number of children.
-          (reported by anonymous)
+     (reported by anonymous)
 
 ------------------------------------------------------------------------
 
@@ -266,16 +276,16 @@ See the end for copying conditions.
 
 ** Changes:
 
-        - Added --enable-debug flag to the configure script.
+   - Added --enable-debug flag to the configure script.
 
 ** Fixes:
 
-        - Added compatibilized headers with C++ (ifdef __cplusplus).
+   - Added compatibilized headers with C++ (ifdef __cplusplus).
 
-        - Compilation warnings fixed.
+   - Compilation warnings fixed.
 
-        - scew_element_del_attr() segmentation fault fixed.
-          (reported by Jussi Mäki)
+   - scew_element_del_attr() segmentation fault fixed.
+     (reported by Jussi Mäki)
 
 ------------------------------------------------------------------------
 
@@ -283,7 +293,7 @@ See the end for copying conditions.
 
 ** Changes:
 
-        - Functions to create and save XML files have been added.
+   - Functions to create and save XML files have been added.
 
    - A lot of cleanup and rewriting has been done. Internal structures
      have changed.
@@ -300,7 +310,7 @@ See the end for copying conditions.
 
    - scew_get_element_by_name() and scew_get_attribute_by_name() did
      not return NULL if an element/attribute was not found.
-          (reported by Stuart R. Anderson)
+     (reported by Stuart R. Anderson)
 
 ------------------------------------------------------------------------
 
@@ -312,7 +322,7 @@ See the end for copying conditions.
 
 * Copying information:
 
-Copyright (C) 2002-2009 Aleix Conchillo Flaqué
+Copyright (C) 2002-2010 Aleix Conchillo Flaqué
 
    Permission is granted to anyone to make or distribute verbatim
    copies of this document as received, in any medium, provided that

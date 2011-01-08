@@ -172,7 +172,7 @@ protected:
     BOOL m_bPreparingToDrag;
     BOOL m_bDraggingText;
     BOOL m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
-    UINT m_nDragSelTimer;
+    UINT_PTR m_nDragSelTimer;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
 

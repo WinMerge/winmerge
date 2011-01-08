@@ -149,7 +149,7 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
       DWORD dwRealCount = 0, dwLength;
       for (pszString = pValData->pszString; *pszString; pszString += dwLength)
         {
-          dwLength = _tcslen (pszString) + 1;
+          dwLength = (DWORD) _tcslen (pszString) + 1;
           dwRealCount++;
         }
       if (dwCount >= dwRealCount)
@@ -157,7 +157,7 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
           LPTSTR *pszDstString = pszStrings;
           for (LPCTSTR pszString = pValData->pszString; *pszString; pszString += dwLength, pszDstString++)
             {
-              dwLength = _tcslen (pszString) + 1;
+              dwLength = (DWORD) _tcslen (pszString) + 1;
               LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
               *pszDstString = pszNewString;
               if (pszNewString)
@@ -193,7 +193,7 @@ RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCo
       DWORD dwRealCount = 0, dwLength;
       for (pszString = pValData->pszString; *pszString; pszString += dwLength)
         {
-          dwLength = _tcslen (pszString) + 1;
+          dwLength = (DWORD) _tcslen (pszString) + 1;
           dwRealCount++;
         }
       LPTSTR *pszNewStrings = (LPTSTR *) malloc (dwRealCount *sizeof (LPTSTR));
@@ -203,7 +203,7 @@ RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCo
           *pdwCount = dwRealCount;
           for (pszString = pValData->pszString; *pszString; pszString += dwLength, pszNewStrings++)
             {
-              dwLength = _tcslen (pszString) + 1;
+              dwLength = (DWORD) _tcslen (pszString) + 1;
               LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
               *pszNewStrings = pszNewString;
               if (pszNewString)
@@ -296,7 +296,7 @@ bool
 RegValSetString (RegVal *pValData, LPCTSTR pszString)
 {
   ASSERT (pValData &&pszString);
-  DWORD dwLength = _tcslen (pszString) + 1;
+  DWORD dwLength = (DWORD) _tcslen (pszString) + 1;
   pValData->pszString = (LPTSTR) malloc (dwLength);
   if (pValData->pszString)
     {
@@ -318,7 +318,7 @@ RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
     {
       for (i = 0; i < dwCount; i++)
         {
-          dwSize += _tcslen (pszStrings[i]) + 1;
+          dwSize += (DWORD) _tcslen (pszStrings[i]) + 1;
         }
     }
   else
@@ -360,7 +360,7 @@ bool
 RegValSetStringArr (RegVal *pValData, const CStringArray &arrString)
 {
   ASSERT (pValData);
-  DWORD i, dwSize = 1, dwCount = arrString.GetSize ();
+  DWORD i, dwSize = 1, dwCount = (DWORD) arrString.GetSize ();
   if (dwCount)
     {
       for (i = 0; i < dwCount; i++)
@@ -821,7 +821,7 @@ RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszStri
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
   if (hSubKey)
     {
-      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, _tcslen (pszString) + 1) == ERROR_SUCCESS)
+      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)_tcslen (pszString) + 1) == ERROR_SUCCESS)
         {
           if (hSubKey != hKey)
             RegClose (hSubKey);

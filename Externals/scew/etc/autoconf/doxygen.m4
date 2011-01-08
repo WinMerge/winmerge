@@ -2,7 +2,7 @@
 # Author: Aleix Conchillo Flaque <aleix@member.fsf.org>
 # Start date: Sun Jul 06, 2003 04:41
 #
-# Copyright (C) 2003-2008 Aleix Conchillo Flaque
+# Copyright (C) 2003-2010 Aleix Conchillo Flaque
 #
 
 # Locate doxygen and auxiliary programs.
@@ -30,22 +30,29 @@ AC_ARG_ENABLE(latex-docs,
 [  --enable-latex-docs     enable LaTeX documentation generation with doxygen (no)], [], [enable_latex_docs=no])
 
 if test "x$enable_doxygen" = xno; then
-        enable_doc=no
+   enable_doc=no
 else
-        AC_PATH_PROG(DOXYGEN, doxygen, , $PATH)
-        if test x$DOXYGEN = x; then
+   AC_PATH_PROG(DOXYGEN, doxygen, , $PATH)
+   if test x$DOXYGEN = x; then
       AC_MSG_WARN(Could not find 'doxygen' (documentation disabled).)
-                enable_doc=no
-        else
-                enable_doc=yes
+      enable_doc=no
+   else
+      enable_doc=yes
+      if test "x$enable_latex_docs" = xyes; then
+         AC_PATH_PROG(LATEX, latex, , $PATH)
+         if test x$LATEX = x; then
+            AC_MSG_WARN(Could not find 'latex'.)
+            enable_latex_docs=no
+         fi
+      fi
       if test "x$enable_dot" = xyes; then
-                AC_PATH_PROG(DOT, dot, , $PATH)
+         AC_PATH_PROG(DOT, dot, , $PATH)
          if test x$DOT = x; then
             AC_MSG_WARN(Could not find 'dot'.)
             enable_dot=no
          fi
-        fi
-        fi
+      fi
+   fi
 fi
 
 AC_SUBST(enable_dot)

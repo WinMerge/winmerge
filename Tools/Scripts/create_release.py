@@ -85,6 +85,7 @@ import optparse
 import shutil
 import SetVersions
 import ToolSettings
+import UpgradeProjects
 
 # global settings class instance
 prog = ToolSettings.ToolSettings()
@@ -112,12 +113,6 @@ def cleanup_build():
         print 'Skipping folder %s' % winmerge_temp
     
     try:
-        print 'Remove ANSI files'
-        if os.path.exists('build/mergerelease/WinMerge.exe'):
-            os.remove('build/mergerelease/WinMerge.exe')
-        if os.path.exists('build/mergerelease/MergeLang.dll'):
-            os.remove('build/mergerelease/MergeLang.dll')
-
         print 'Remove Unicode files'
         if os.path.exists('build/mergeunicoderelease/WinMergeU.exe'):
             os.remove('build/mergeunicoderelease/WinMergeU.exe')
@@ -131,16 +126,12 @@ def cleanup_build():
         print 'Remove expat files'
         if os.path.exists('build/expat'):
             shutil.rmtree('build/expat', True)
-        if os.path.exists('build/mergerelease/libexpat.dll'):
-            os.remove('build/mergerelease/libexpat.dll')
         if os.path.exists('build/mergeunicoderelease/libexpat.dll'):
             os.remove('build/mergeunicoderelease/libexpat.dll')
 
         print 'Remove pcre files'
         if os.path.exists('build/pcre'):
             shutil.rmtree('build/pcre', True)
-        if os.path.exists('build/mergerelease/pcre.dll'):
-            os.remove('build/mergerelease/pcre.dll')
         if os.path.exists('build/mergeunicoderelease/pcre.dll'):
             os.remove('build/mergeunicoderelease/pcre.dll')
 
@@ -265,9 +256,7 @@ def build_targets():
     """Builds all WinMerge targets."""
 
     build_libraries()
-
     vs_cmd = get_vs_ide_bin()
-
     ret = build_winmerge(vs_cmd)
     if ret:
         ret = build_shellext(vs_cmd)
@@ -281,14 +270,8 @@ def build_winmerge(vs_cmd):
     #print sol_path
 
     # devenv Src\Merge.dsp /rebuild Release
-    print 'Build WinMerge executables...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Release'], shell = True)
-    if ret == 0:
-        ret = call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell = True)
-    else:
-        print 'ERROR: Failed to build ANSI release target of WinMerge!'
-        return False
-
+    print 'Build WinMerge executable...'
+    ret = call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell = True)
     if ret == 0:
         return True
     else:
@@ -306,13 +289,7 @@ def build_shellext(vs_cmd):
 
     # devenv Src\Merge.dsp /rebuild Release
     print 'Build ShellExtension dlls...'
-    ret = call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
-    if ret == 0:
-        ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
-    else:
-        print 'ERROR: Failed to build ANSI target of ShellExtension!'
-        return False
-        
+    ret = call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency|Win32'])
     if ret == 0:
         if build_64bit == True:
             ret = call([vs_cmd, solution_path, '/rebuild', 'X64 Release|x64'])
@@ -348,15 +325,15 @@ def build_innosetup_installer(target_folder):
 
     innosetup_exe = os.path.join(prog.innosetup_path, 'iscc.exe')
     cur_path = os.getcwd()
-
-    winmerge_iss_path = os.path.join(cur_path, 'Installer\\InnoSetup\\WinMerge.iss')
+    os.chdir('Installer/InnoSetup')
 
     #output_switch = '/O"' + target_folder + '"'
 
     print 'Build Innosetup installer...'
     # Should be able to give folder for created file and Q switch to make build quiet
     #call([innosetup_exe, '/Q', output_switch, winmerge_iss])
-    call([innosetup_exe, winmerge_iss_path])
+    call([innosetup_exe, 'WinMerge.iss'])
+    os.chdir(cur_path)
 
 def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
@@ -381,11 +358,9 @@ def create_bin_folders(bin_folder, dist_src_folder):
     os.chdir(cur_path)
 
     print 'Copying files to binary distribution folder...'
-    shutil.copy('build/mergerelease/WinMerge.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/WinMergeU.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/MergeLang.dll', bin_folder)
 
-    shutil.copy('build/ShellExtension/release mindependency/ShellExtension.dll', bin_folder)
     shutil.copy('build/ShellExtension/unicode release mindependency/ShellExtensionU.dll', bin_folder)
     shutil.copy('build/ShellExtension/x64 release/ShellExtensionX64.dll', bin_folder)
     shutil.copy('ShellExtension/Register.bat', bin_folder)
@@ -461,6 +436,13 @@ def check_tools():
         print vs_cmd
         print 'Please check script configuration.'
         return False
+    
+    innosetup_exe = os.path.join(prog.innosetup_path, 'iscc.exe')
+    if not os.path.exists(innosetup_exe):
+        print 'InnoSetup executable could not be found from:'
+        print innosetup_exe
+        print 'Please check script configuration.'
+        return False
 
     pathhhc = os.path.join(root_path, 'Docs/Users/Manual/build/hhc/hhc.exe')
     folderdtd = os.path.join(root_path, 'Docs/Users/Manual/build/dtd')
@@ -494,6 +476,13 @@ def check_x64shellext():
     else:
         return True
 
+def update_project_files(root_path):
+    '''Upgrade project/solution files for the VS version used.'''
+
+    print 'Update VS project/solution files for used VS version...'
+    UpgradeProjects.tools.read_ini('Tools.ini')
+    UpgradeProjects.upgrade_projects(root_path)
+
 def main(argv):
     global prog
     ver_file = ''
@@ -511,7 +500,7 @@ def main(argv):
 
     if options.version:
         prog_version = options.version
-        print 'Start building Frhed release version ' + prog_version
+        print 'Start building WinMerge release version ' + prog_version
 
     if options.cleanup:
         if cleanup_build() == True:
@@ -583,6 +572,8 @@ def main(argv):
 
     if setup_translations() == False:
         sys.exit(1)
+
+    update_project_files(root_path)
 
     if build_targets() == False:
         sys.exit(1)

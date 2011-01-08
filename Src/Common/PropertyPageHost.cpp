@@ -200,7 +200,7 @@ BOOL CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle, DWORD dwI
 	if (FindPage(pPage) == -1)
 	{
 		PAGEITEM pi(pPage, szTitle, dwItemData);
-		int nPage = m_aPages.Add(pi);
+		int nPage = (int) m_aPages.Add(pi);
 
 		if (szTitle)
 		{
@@ -214,7 +214,7 @@ BOOL CPropertyPageHost::AddPage(CPropertyPage* pPage, LPCTSTR szTitle, DWORD dwI
 
 int CPropertyPageHost::FindPage(CPropertyPage* pPage)
 {
-	int nPage = m_aPages.GetSize();
+	int nPage = (int) m_aPages.GetSize();
 
 	while (nPage--)
 	{
@@ -310,7 +310,7 @@ BOOL CPropertyPageHost::OnEraseBkgnd(CDC* pDC)
 
 void CPropertyPageHost::OnOK()
 {
-	int nPage = m_aPages.GetSize();
+	int nPage = (int) m_aPages.GetSize();
 
 	while (nPage--)
 	{
@@ -329,7 +329,7 @@ void CPropertyPageHost::OnOK()
  */
 void CPropertyPageHost::UpdatePagesData()
 {
-	int nPage = m_aPages.GetSize();
+	int nPage = (int) m_aPages.GetSize();
 
 	while (nPage--)
 	{
@@ -384,7 +384,7 @@ CPropertyPage* CPropertyPageHost::GetPage(int nIndex)
 
 CPropertyPage* CPropertyPageHost::FindPage(DWORD dwItemData)
 {
-	int nPage = m_aPages.GetSize();
+	int nPage = (int) m_aPages.GetSize();
 
 	while (nPage--)
 	{

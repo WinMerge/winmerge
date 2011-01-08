@@ -2,12 +2,12 @@
 # Author: Aleix Conchillo Flaque <aleix@member.fsf.org>
 # Date:   Mon Oct 07, 2002 01:56
 #
-# Copyright (C) 2002-2009 Aleix Conchillo Flaque
+# Copyright (C) 2002-2010 Aleix Conchillo Flaque
 #
 
 #### boilerplate and flags
 
-define([scew_version], [1.1.1])
+define([scew_version], [1.1.2])
 
 AC_INIT(scew/scew.h, scew_version)
 AM_INIT_AUTOMAKE(scew, scew_version)

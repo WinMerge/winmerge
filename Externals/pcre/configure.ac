@@ -1,15 +1,17 @@
 dnl Process this file with autoconf to produce a configure script.
 
-dnl NOTE FOR MAINTAINERS: Do not use major or minor version numbers with
-dnl leading zeros, because they may be treated as octal constants. The
-dnl PCRE_PRERELEASE feature is for identifying release candidates. It might
-dnl be defined as -RC2, for example. For real releases, it should be defined
-dnl empty.
+dnl NOTE FOR MAINTAINERS: Do not use minor version numbers 08 or 09 because
+dnl the leading zeros may cause them to be treated as invalid octal constants
+dnl if a PCRE user writes code that uses PCRE_MINOR as a number. There is now
+dnl a check further down that throws an error if 08 or 09 are used.
+
+dnl The PCRE_PRERELEASE feature is for identifying release candidates. It might
+dnl be defined as -RC2, for example. For real releases, it should be empty.
 
 m4_define(pcre_major, [8])
-m4_define(pcre_minor, [00])
+m4_define(pcre_minor, [10])
 m4_define(pcre_prerelease, [])
-m4_define(pcre_date, [2009-10-19])
+m4_define(pcre_date, [2010-06-25])
 
 # Libtool shared library interface versions (current:revision:age)
 m4_define(libpcre_version, [0:1:0])
@@ -21,6 +23,9 @@ AC_INIT(PCRE, pcre_major.pcre_minor[]pcre_prerelease, , pcre)
 AC_CONFIG_SRCDIR([pcre.h.in])
 AM_INIT_AUTOMAKE([dist-bzip2 dist-zip])
 AC_CONFIG_HEADERS(config.h)
+
+# This was added at the suggestion of libtoolize (03-Jan-10)
+AC_CONFIG_MACRO_DIR([m4])
 
 # The default CFLAGS and CXXFLAGS in Autoconf are "-g -O2" for gcc and just
 # "-g" for any other compiler. There doesn't seem to be a standard way of
@@ -66,6 +71,9 @@ AC_LANG_PUSH(C++)
 AC_COMPILE_IFELSE(AC_LANG_PROGRAM([],[]),, CXX=""; CXXCP=""; CXXFLAGS="")
 AC_LANG_POP
 
+# Check for a 64-bit integer type
+AC_TYPE_INT64_T
+
 AC_PROG_INSTALL
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
@@ -75,6 +83,15 @@ PCRE_MAJOR="pcre_major"
 PCRE_MINOR="pcre_minor"
 PCRE_PRERELEASE="pcre_prerelease"
 PCRE_DATE="pcre_date"
+
+if test "$PCRE_MINOR" = "08" -o "$PCRE_MINOR" = "09"
+then
+  echo "***"
+  echo "*** Minor version number $PCRE_MINOR must not be used. ***"
+  echo "*** Use only 01 to 07 or 10 onwards, to avoid octal issues. ***"
+  echo "***"
+  exit 1
+fi
 
 AC_SUBST(PCRE_MAJOR)
 AC_SUBST(PCRE_MINOR)
@@ -87,11 +104,13 @@ then
   htmldir='${docdir}/html'
 fi
 
-# Handle --disable-cpp
+# Handle --disable-cpp. The substitution of enable_cpp is needed for use in
+# pcre-config.
 AC_ARG_ENABLE(cpp,
               AS_HELP_STRING([--disable-cpp],
                              [disable C++ support]),
               , enable_cpp=yes)
+AC_SUBST(enable_cpp)
 
 # Handle --enable-rebuild-chartables
 AC_ARG_ENABLE(rebuild-chartables,
@@ -323,6 +342,49 @@ AC_CHECK_HEADERS(bits/type_traits.h, [pcre_have_bits_type_traits="1"],
 AC_CHECK_HEADERS(type_traits.h, [pcre_have_type_traits="1"],
                                 [pcre_have_type_traits="0"])
 
+# (This isn't c++-specific, but is only used in pcrecpp.cc, so try this
+# in a c++ context.  This matters becuase strtoimax is C99 and may not
+# be supported by the C++ compiler.)
+# Figure out how to create a longlong from a string: strtoll and
+# equiv.  It's not enough to call AC_CHECK_FUNCS: hpux has a
+# strtoll, for instance, but it only takes 2 args instead of 3!
+# We have to call AH_TEMPLATE since AC_DEFINE_UNQUOTED below is complex.
+AH_TEMPLATE(HAVE_STRTOQ, [Define to 1 if you have `strtoq'.])
+AH_TEMPLATE(HAVE_STRTOLL, [Define to 1 if you have `strtoll'.])
+AH_TEMPLATE(HAVE__STRTOI64, [Define to 1 if you have `_strtoi64'.])
+AH_TEMPLATE(HAVE_STRTOIMAX, [Define to 1 if you have `strtoimax'.])
+have_strto_fn=0
+for fn in strtoq strtoll _strtoi64 strtoimax; do
+  AC_MSG_CHECKING([for $fn])
+  if test "$fn" = strtoimax; then
+    include=stdint.h
+  else
+    include=stdlib.h
+  fi
+  AC_COMPILE_IFELSE(AC_LANG_PROGRAM([#include <$include>],
+                                    [char* e; return $fn("100", &e, 10)]),
+                    [AC_MSG_RESULT(yes)
+                     AC_DEFINE_UNQUOTED(HAVE_`echo $fn | tr abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ`, 1,
+                                        [Define to 1 if you have `$fn'.])
+                     have_strto_fn=1
+                     break],
+                    [AC_MSG_RESULT(no)])
+done
+
+if test "$have_strto_fn" = 1; then
+  AC_CHECK_TYPES([long long],
+                 [pcre_have_long_long="1"],
+                 [pcre_have_long_long="0"])
+  AC_CHECK_TYPES([unsigned long long],
+                 [pcre_have_ulong_long="1"],
+                 [pcre_have_ulong_long="0"])
+else
+  pcre_have_long_long="0"
+  pcre_have_ulong_long="0"
+fi
+AC_SUBST(pcre_have_long_long)
+AC_SUBST(pcre_have_ulong_long)
+
 AC_LANG_POP
 fi
 # Using AC_SUBST eliminates the need to include config.h in a public .h file
@@ -338,24 +400,6 @@ AM_CONDITIONAL(WITH_REBUILD_CHARTABLES, test "x$enable_rebuild_chartables" = "xy
 AC_C_CONST
 AC_TYPE_SIZE_T
 
-pcre_have_strotolonglong=0
-AC_CHECK_FUNCS(strtoq strtoll _strtoi64, [pcre_have_strotolonglong="1"; break])
-# If we can't convert a string to a long long, pretend we don't even
-# have a long long.
-if test $pcre_have_strotolonglong = "0"; then
-   pcre_have_long_long="0"
-   pcre_have_ulong_long="0"
-else
-  AC_CHECK_TYPES([long long],
-                 [pcre_have_long_long="1"],
-                 [pcre_have_long_long="0"])
-  AC_CHECK_TYPES([unsigned long long],
-                 [pcre_have_ulong_long="1"],
-                 [pcre_have_ulong_long="0"])
-fi
-AC_SUBST(pcre_have_long_long)
-AC_SUBST(pcre_have_ulong_long)
-
 # Checks for library functions.
 
 AC_CHECK_FUNCS(bcopy memmove strerror)
@@ -365,10 +409,39 @@ AC_CHECK_FUNCS(bcopy memmove strerror)
 AC_CHECK_HEADERS([zlib.h], [HAVE_ZLIB_H=1])
 AC_CHECK_LIB([z], [gzopen], [HAVE_LIBZ=1])
 
-# Check for the availability of libbz2
+# Check for the availability of libbz2. Originally we just used AC_CHECK_LIB,
+# as for libz. However, this had the following problem, diagnosed and fixed by
+# a user:
+#
+#   - libbz2 uses the Pascal calling convention (WINAPI) for the functions
+#     under Win32.
+#   - The standard autoconf AC_CHECK_LIB fails to include "bzlib.h",
+#     therefore missing the function definition.
+#   - The compiler thus generates a "C" signature for the test function.
+#   - The linker fails to find the "C" function.
+#   - PCRE fails to configure if asked to do so against libbz2.
+#
+# Solution:
+#
+#   - Replace the AC_CHECK_LIB test with a custom test.
 
 AC_CHECK_HEADERS([bzlib.h], [HAVE_BZLIB_H=1])
-AC_CHECK_LIB([bz2], [BZ2_bzopen], [HAVE_LIBBZ2=1])
+# Original test
+# AC_CHECK_LIB([bz2], [BZ2_bzopen], [HAVE_LIBBZ2=1])
+#
+# Custom test follows
+
+AC_MSG_CHECKING([for libbz2])
+OLD_LIBS="$LIBS"
+LIBS="$LIBS -lbz2"
+AC_LINK_IFELSE( AC_LANG_PROGRAM([[
+#ifdef HAVE_BZLIB_H
+#include <bzlib.h>
+#endif]],
+[[return (int)BZ2_bzopen("conftest", "rb");]]),
+[AC_MSG_RESULT([yes]);HAVE_LIBBZ2=1; break;],
+AC_MSG_RESULT([no]))
+LIBS="$OLD_LIBS"
 
 # Check for the availabiity of libreadline
 
