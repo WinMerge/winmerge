@@ -1653,7 +1653,7 @@ BCMenuData *BCMenu::FindMenuItem(UINT nID)
 BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 									  CArray<UINT,UINT&>&bclocs)
 {
-	UINT i,numsubs,j;
+	int i,j;
 	BCMenu *psubmenu,*pgoodmenu;
 	BOOL foundflag;
 	
@@ -1668,7 +1668,7 @@ BCMenu *BCMenu::FindAnotherMenuOption(int nId,UINT& nLoc,CArray<BCMenu*,BCMenu*>
 			if(pgoodmenu)return(pgoodmenu);
 		}
 		else if(nId==(int)GetMenuItemID((int)i)){
-			numsubs=(UINT)bcsubs.GetSize();
+			INT_PTR numsubs=(UINT)bcsubs.GetSize();
 			foundflag=TRUE;
 			for(j=0;j<numsubs;++j){
 				if(bcsubs[j]==this&&bclocs[j]==i){
@@ -1895,9 +1895,8 @@ void BCMenu::RemoveTopLevelOwnerDraw(void)
 	CString str;
 	int i=0,j=0;
 	INT_PTR nummenulist=m_MenuList.GetSize();
-	int menustart;
 
-	menustart=GetMenuStart();
+	int menustart=GetMenuStart();
 	for(i=menustart,j=0;i<(int)GetMenuItemCount();++i,++j){
 		if(j<nummenulist){
 			str=m_MenuList[j]->GetString();
@@ -2841,10 +2840,10 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 					}
 				}
 				int num = pSubMenu->GetMenuItemCount();
-				int i=0;
+				INT_PTR i=0;
 				for(i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
-				for(i=(int)m_MenuList.GetUpperBound();i>=0;i--){
-					if(m_MenuList[i]->nID==(int)pSubMenu->m_hMenu){
+				for(i=m_MenuList.GetUpperBound();i>=0;i--){
+					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
 						m_MenuList.RemoveAt(i);
 						break;
@@ -3242,7 +3241,7 @@ int BCMenu::GlobalImageListOffset(int nID)
 {
 	INT_PTR numcurrent=m_AllImagesID.GetSize();
 	int existsloc = -1;
-	for(int i=0;i<numcurrent;++i){
+	for(INT_PTR i=0;i<numcurrent;++i){
 		if(m_AllImagesID[i]==nID){
 			existsloc=i;
 			break;
