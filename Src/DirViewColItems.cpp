@@ -219,15 +219,15 @@ static String ColPathGet(const CDiffContext *, const void *p)
 			return s;
 	}
 
-	int i = 0, j = 0;
+	size_t i = 0, j = 0;
 	do
 	{
-		int i_ahead = s.find('\\', i);
-		int j_ahead = t.find('\\', j);
-		int length_s = (i_ahead != String::npos ? i_ahead : s.length()) - i;
-		int length_t = (j_ahead != String::npos ? j_ahead : t.length()) - j;
+		size_t i_ahead = s.find('\\', i);
+		size_t j_ahead = t.find('\\', j);
+		size_t length_s = (i_ahead != String::npos ? i_ahead : s.length()) - i;
+		size_t length_t = (j_ahead != String::npos ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
-			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
+			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, (int)length_s))
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
