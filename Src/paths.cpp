@@ -38,8 +38,8 @@ static bool IsSlash(LPCTSTR pszStart, int nPos)
  */
 bool paths_EndsWithSlash(LPCTSTR s)
 {
-	if (int len = _tcslen(s))
-		return IsSlash(s, len - 1);
+	if (size_t len = _tcslen(s))
+		return IsSlash(s, (int)len - 1);
 	return false;
 }
 
@@ -101,7 +101,7 @@ LPCTSTR paths_FindFileName(LPCTSTR path)
  */
 void paths_normalize(String & sPath)
 {
-	int len = sPath.length();
+	size_t len = sPath.length();
 	if (!len)
 		return;
 
@@ -167,7 +167,7 @@ static bool GetDirName(LPCTSTR sDir, String& sName)
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
 {
 	String sPath = szPath;
-	int len = sPath.length();
+	size_t len = sPath.length();
 	if (len < 1)
 		return sPath;
 
@@ -492,7 +492,7 @@ String paths_ConcatPath(const String & path, const String & subpath)
 String paths_GetParentPath(LPCTSTR path)
 {
 	String parentPath(path);
-	int len = parentPath.length();
+	size_t len = parentPath.length();
 
 	// Remove last '\' from paths
 	if (parentPath[len - 1] == '\\')
@@ -502,7 +502,7 @@ String paths_GetParentPath(LPCTSTR path)
 	}
 
 	// Remove last part of path
-	int pos = parentPath.rfind('\\');
+	size_t pos = parentPath.rfind('\\');
 
 	if (pos > -1)
 	{
@@ -523,7 +523,7 @@ String paths_GetParentPath(LPCTSTR path)
 String paths_GetLastSubdir(const String & path)
 {
 	String parentPath(path);
-	int len = parentPath.length();
+	size_t len = parentPath.length();
 
 	// Remove last '\' from paths
 	if (parentPath[len - 1] == '\\')
@@ -533,7 +533,7 @@ String paths_GetLastSubdir(const String & path)
 	}
 
 	// Find last part of path
-	int pos = parentPath.find_last_of('\\');
+	size_t pos = parentPath.find_last_of('\\');
 	if (pos >= 2)
 		parentPath.erase(0, pos);
 	return parentPath;
@@ -549,7 +549,7 @@ BOOL paths_IsPathAbsolute(const String &path)
 	if (path.length() < 3)
 		return FALSE;
 	
-	int pos = path.find_last_of('\\');
+	size_t pos = path.find_last_of('\\');
 
 	// Absolute path must have "\" and cannot start with it.
 	// Also "\\blahblah" is invalid.
