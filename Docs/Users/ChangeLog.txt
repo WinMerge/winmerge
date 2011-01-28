@@ -14,6 +14,7 @@ WinMerge 2.15.1
   Bugfix: Crash after deleting text (#3109521)
   Translation updates:
   - Bulgarian (#3082392)
+  - Hungarian (#3164982)
 
 WinMerge 2.13.14 - 2010-09-15 (r7263)
   Update release compiler and runtimes to VS2008
