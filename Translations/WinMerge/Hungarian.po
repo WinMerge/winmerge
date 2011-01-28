@@ -3,6 +3,7 @@
 #
 # Translators:
 # * Márton Balázs <documan at users.sourceforge.net>
+# * Mihalicza József <jmihalicza at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2011-01-24 21:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +141,7 @@ msgstr "M&egnyitás...\tCtrl+O"
 #: Merge.rc:319
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "Konfliktus fájl megnyitása..."
 
 #: Merge.rc:116
 #: Merge.rc:200
@@ -154,12 +155,12 @@ msgstr "Projekt megnyitása...\tCtrl+J"
 #: Merge.rc:322
 #, c-format
 msgid "Sa&ve Project..."
-msgstr ""
+msgstr "Projekt mentése..."
 
 #: Merge.rc:119
 #, c-format
 msgid "Recent Projects"
-msgstr ""
+msgstr "Legutóbbi projektek"
 
 #: Merge.rc:121
 #: Merge.rc:208
@@ -208,35 +209,35 @@ msgstr "Alapértelmezett betûtípus használata"
 #: Merge.rc:416
 #, c-format
 msgid "&Toolbar"
-msgstr ""
+msgstr "Eszköztár"
 
 #: Merge.rc:134
 #: Merge.rc:236
 #: Merge.rc:418
 #, c-format
 msgid "&None"
-msgstr ""
+msgstr "&Nincs"
 
 #: Merge.rc:135
 #: Merge.rc:237
 #: Merge.rc:419
 #, c-format
 msgid "&Small"
-msgstr ""
+msgstr "Kic&si"
 
 #: Merge.rc:136
 #: Merge.rc:238
 #: Merge.rc:420
 #, c-format
 msgid "&Big"
-msgstr ""
+msgstr "Nagy"
 
 #: Merge.rc:138
 #: Merge.rc:240
 #: Merge.rc:422
 #, c-format
 msgid "&Status Bar"
-msgstr "&Álapotsor"
+msgstr "&Állapotsor"
 
 #: Merge.rc:139
 #: Merge.rc:241
@@ -285,7 +286,7 @@ msgstr "&Bõvítmények"
 #: Merge.rc:457
 #, c-format
 msgid "&List..."
-msgstr ""
+msgstr "&Lista..."
 
 #: Merge.rc:152
 #, c-format
@@ -408,7 +409,7 @@ msgstr "&Súgó"
 #: Merge.rc:489
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge Súgó\tF1"
 
 #: Merge.rc:182
 #: Merge.rc:303
@@ -422,7 +423,7 @@ msgstr ""
 #: Merge.rc:492
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "Fordí&tások"
 
 #: Merge.rc:184
 #: Merge.rc:305
@@ -467,7 +468,7 @@ msgstr "Jobb oldal csak o&lvasható"
 #: Merge.rc:206
 #, c-format
 msgid "File En&coding"
-msgstr ""
+msgstr "Fájl kódolás"
 
 #: Merge.rc:212
 #: Merge.rc:366
@@ -478,32 +479,32 @@ msgstr "M&indent kijelöl\tCtrl+A"
 #: Merge.rc:218
 #, c-format
 msgid "Show &Identical Items"
-msgstr ""
+msgstr "Egyezõ elemek mutatása"
 
 #: Merge.rc:219
 #, c-format
 msgid "Show &Different Items"
-msgstr ""
+msgstr "Különbözõ elemek mutatása"
 
 #: Merge.rc:220
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr ""
+msgstr "Csak bal oldali elemek mutatása"
 
 #: Merge.rc:221
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr ""
+msgstr "Csak jobb oldali elemek mutatása"
 
 #: Merge.rc:222
 #, c-format
 msgid "Show S&kipped Items"
-msgstr ""
+msgstr "Kihagyott elemek mutatása"
 
 #: Merge.rc:223
 #, c-format
 msgid "S&how Binary Files"
-msgstr ""
+msgstr "Bináris fájlok mutatása"
 
 #: Merge.rc:225
 #, c-format
@@ -513,22 +514,22 @@ msgstr "&Rejtett elemek mutatása"
 #: Merge.rc:227
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "Fa &mód"
 
 #: Merge.rc:228
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "Minden alkönyvtár kibontása"
 
 #: Merge.rc:229
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "Minden alkönyvtár bezárása"
 
 #: Merge.rc:242
 #, c-format
 msgid "Compa&re Statistics"
-msgstr ""
+msgstr "Összehasonlítási statisztika"
 
 #: Merge.rc:246
 #: Merge.rc:429
@@ -539,7 +540,7 @@ msgstr "&Frissítés\tF5"
 #: Merge.rc:247
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr ""
+msgstr "Kijelöltek frissítése\tCtrl+F5"
 
 #: Merge.rc:249
 #: Merge.rc:431
@@ -641,37 +642,37 @@ msgstr "&Jobb oldal mentése"
 #: Merge.rc:336
 #, c-format
 msgid "&Print..."
-msgstr ""
+msgstr "Nyomtatás..."
 
 #: Merge.rc:337
 #, c-format
 msgid "Page Se&tup"
-msgstr ""
+msgstr "Oldalbeállítás"
 
 #: Merge.rc:338
 #, c-format
 msgid "Print Previe&w"
-msgstr ""
+msgstr "Nyomtatási kép"
 
 #: Merge.rc:343
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr ""
+msgstr "Sorvégek átalakítása"
 
 #: Merge.rc:345
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (CRLF)"
 
 #: Merge.rc:346
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (LF)"
 
 #: Merge.rc:347
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (CR)"
 
 #: Merge.rc:350
 #, c-format
@@ -681,7 +682,7 @@ msgstr "&Olvasztási mód\tF9"
 #: Merge.rc:352
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "&Fájl kódolás..."
 
 #: Merge.rc:358
 #, c-format
@@ -747,27 +748,27 @@ msgstr "&Másolás sorszámokkal együtt\tCtrl+Shift+C"
 #: Merge.rc:381
 #, c-format
 msgid "&Bookmarks"
-msgstr ""
+msgstr "Könyvjelzõk"
 
 #: Merge.rc:383
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr ""
+msgstr "Könyvjelzõ ki/be\tCtrl+F2"
 
 #: Merge.rc:384
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr ""
+msgstr "Következõ könyvjelzõ\tF2"
 
 #: Merge.rc:385
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr ""
+msgstr "Elõzõ könyvjelzõ\tShift+F2"
 
 #: Merge.rc:386
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr ""
+msgstr "Összes könyvjelzõ törlése"
 
 #: Merge.rc:388
 #, c-format
@@ -777,17 +778,17 @@ msgstr "&Ugrás...\tCtrl+G"
 #: Merge.rc:396
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "Nagyítás"
 
 #: Merge.rc:398
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "Nagyítás\tCtrl++"
 
 #: Merge.rc:399
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "Kicsinyítés\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:400
@@ -803,7 +804,7 @@ msgstr ""
 #: Merge.rc:407
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "Pane&lek rögzítése"
 
 #: Merge.rc:408
 #, c-format
@@ -818,22 +819,22 @@ msgstr "Sorok &eltérésének mutatása"
 #: Merge.rc:410
 #, c-format
 msgid "View Line &Numbers"
-msgstr ""
+msgstr "Sorszámok megjelenítése"
 
 #: Merge.rc:411
 #, c-format
 msgid "View &Margins"
-msgstr ""
+msgstr "Margók megjelenítése"
 
 #: Merge.rc:412
 #, c-format
 msgid "W&rap Lines"
-msgstr ""
+msgstr "Sortördelés"
 
 #: Merge.rc:414
 #, c-format
 msgid "Sw&ap Panes"
-msgstr ""
+msgstr "Panelek megcserélése"
 
 #: Merge.rc:424
 #, c-format
@@ -883,7 +884,7 @@ msgstr ""
 #: Merge.rc:508
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:509
 #, c-format
@@ -952,7 +953,7 @@ msgstr "&Mindkettõ"
 #: Merge.rc:530
 #, c-format
 msgid "Re&name"
-msgstr ""
+msgstr "Át&nevezés"
 
 #: Merge.rc:531
 #, c-format
@@ -997,7 +998,7 @@ msgstr "&Fájlnevek másolása"
 #: Merge.rc:554
 #, c-format
 msgid "&Zip"
-msgstr ""
+msgstr "&Zip"
 
 #: Merge.rc:556
 #, c-format
@@ -1077,7 +1078,7 @@ msgstr "A WinMerge névjegye"
 #: Merge.rc:674
 #, c-format
 msgid "(Private Build)"
-msgstr ""
+msgstr "(Privát build)"
 
 #: Merge.rc:675
 #, c-format
@@ -1208,7 +1209,7 @@ msgstr "Összehasonlítandó fájlok vagy könyvtárak"
 #: Merge.rc:721
 #, c-format
 msgid "Visual SourceSafe"
-msgstr ""
+msgstr "Visual SourceSafe"
 
 #: Merge.rc:726
 #, c-format
@@ -1303,17 +1304,17 @@ msgstr "Csak &egy példány futásának engedélyezése"
 #: Merge.rc:775
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr ""
+msgstr "Rá&kérdezés több ablak bezárásakor"
 
 #: Merge.rc:777
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "Fájl idõk megõrzése összehasonlításkor"
 
 #: Merge.rc:780
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "\"Válaszd ki a fájlokat vagy könyvtárakat\" ablak induláskor"
 
 #: Merge.rc:782
 #, c-format
@@ -1340,7 +1341,7 @@ msgstr "&Fájl összehasonlításkor"
 #: Merge.rc:791
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
-msgstr ""
+msgstr "A WinMerge lehetõvé teszi általános üzenetablakok elrejtését. A Visszaállít gombbal minden üzenetablak újra láthatóvá tehetõ."
 
 #: Merge.rc:793
 #, c-format
@@ -1456,7 +1457,7 @@ msgstr "&Mindet"
 #: Merge.rc:2202
 #, c-format
 msgid "Rational ClearCase"
-msgstr ""
+msgstr "Rational ClearCase"
 
 #: Merge.rc:875
 #, c-format
@@ -1492,17 +1493,17 @@ msgstr "Reguláris kifejezések (soronként egy):"
 #: Merge.rc:900
 #, c-format
 msgid "New"
-msgstr ""
+msgstr "Új"
 
 #: Merge.rc:901
 #, c-format
 msgid "Edit"
-msgstr ""
+msgstr "Szerkesztés"
 
 #: Merge.rc:902
 #, c-format
 msgid "Remove"
-msgstr ""
+msgstr "Eltávolítás"
 
 #: Merge.rc:907
 #: Merge.rc:1956
@@ -1605,22 +1606,22 @@ msgstr ""
 #: Merge.rc:1009
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "Tallóz..."
 
 #: Merge.rc:1010
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Átmeneti fájlok könyvtára"
 
 #: Merge.rc:1011
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "A rendszer temp könyvtára"
 
 #: Merge.rc:1013
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "Egyedi könyvtár:"
 
 #: Merge.rc:1016
 #: Merge.rc:1032
@@ -1721,12 +1722,12 @@ msgstr "Oszlopok mutatása"
 #: Merge.rc:1088
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Mozgatás fel"
 
 #: Merge.rc:1089
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Mozgatás le"
 
 #: Merge.rc:1099
 #, c-format
@@ -1756,7 +1757,7 @@ msgstr "Leírás:"
 #: Merge.rc:1122
 #, c-format
 msgid " Folder Compare Progress"
-msgstr ""
+msgstr " Könyvtár összehasonlítás folyamata"
 
 #: Merge.rc:1125
 #: Merge.rc:1906
@@ -1767,17 +1768,17 @@ msgstr "Leállítás"
 #: Merge.rc:1130
 #, c-format
 msgid "Comparing items..."
-msgstr ""
+msgstr "Elemek összehasonlítása..."
 
 #: Merge.rc:1131
 #, c-format
 msgid "Items compared:"
-msgstr ""
+msgstr "Összehasonlított elemek:"
 
 #: Merge.rc:1132
 #, c-format
 msgid "Items total:"
-msgstr ""
+msgstr "Összes elem:"
 
 #: Merge.rc:1138
 #, c-format
@@ -1853,7 +1854,7 @@ msgstr "&Kis-nagybetû különbségek kihagyása"
 #: Merge.rc:1168
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Sorvég különbségek figyelmen kívül hagyása (Windows/Unix/Mac)"
 
 #: Merge.rc:1170
 #, c-format
@@ -1949,7 +1950,7 @@ msgstr ""
 #: Merge.rc:1226
 #, c-format
 msgid "Install..."
-msgstr ""
+msgstr "Telepítés..."
 
 #: Merge.rc:1227
 #, c-format
@@ -2026,7 +2027,7 @@ msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
 #: Merge.rc:1265
 #, c-format
 msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
-msgstr ""
+msgstr "Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml \nprogram újraindítás szükséges"
 
 #: Merge.rc:1268
 #, c-format
@@ -2041,7 +2042,7 @@ msgstr "A Winmerge felhasználói felületéhez igazodva"
 #: Merge.rc:1272
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Egyedi kódlap:"
 
 #: Merge.rc:1280
 #, c-format
@@ -2140,7 +2141,7 @@ msgstr "Elérhetõ bõvítmények:"
 #: Merge.rc:1314
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr ""
+msgstr "Ne jelenjen &meg újra ez az üzenet.\n(A Súgó menübõl az üzenet bármikor újra bekapcsolható.)"
 
 #: Merge.rc:1318
 #, c-format
@@ -2160,12 +2161,12 @@ msgstr " Kategóriák"
 #: Merge.rc:1340
 #, c-format
 msgid "Import..."
-msgstr ""
+msgstr "Importálás..."
 
 #: Merge.rc:1341
 #, c-format
 msgid "Export..."
-msgstr ""
+msgstr "Exportálás..."
 
 #: Merge.rc:1349
 #, c-format
@@ -2251,7 +2252,7 @@ msgstr "&Stílus:"
 #: Merge.rc:1420
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr ""
+msgstr "Másolás vágólapra"
 
 #: Merge.rc:1428
 #, c-format
@@ -2312,17 +2313,17 @@ msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
 #: Merge.rc:1464
 #, c-format
 msgid "Compare Statistics"
-msgstr ""
+msgstr "Összehasonlítási statisztika"
 
 #: Merge.rc:1467
 #, c-format
 msgid "Folders:"
-msgstr ""
+msgstr "Könyvtárak:"
 
 #: Merge.rc:1468
 #, c-format
 msgid "Files:"
-msgstr ""
+msgstr "Fájlok:"
 
 #: Merge.rc:1469
 #: Merge.rc:2356
@@ -2333,13 +2334,13 @@ msgstr "Különbözõ"
 #: Merge.rc:1470
 #, c-format
 msgid "Text:"
-msgstr ""
+msgstr "Szöveg:"
 
 #: Merge.rc:1473
 #: Merge.rc:1492
 #, c-format
 msgid "Binary:"
-msgstr ""
+msgstr "Bináris:"
 
 #: Merge.rc:1476
 #, c-format
@@ -2349,12 +2350,12 @@ msgstr ""
 #: Merge.rc:1477
 #, c-format
 msgid "Left:"
-msgstr ""
+msgstr "Bal:"
 
 #: Merge.rc:1482
 #, c-format
 msgid "Right:"
-msgstr ""
+msgstr "Jobb:"
 
 #: Merge.rc:1487
 #: Merge.rc:2350
@@ -2365,12 +2366,12 @@ msgstr "Egyezõ"
 #: Merge.rc:1496
 #, c-format
 msgid "Total:"
-msgstr ""
+msgstr "Összesen:"
 
 #: Merge.rc:1501
 #, c-format
 msgid "Close"
-msgstr ""
+msgstr "Bezár"
 
 #: Merge.rc:1510
 #, c-format
@@ -2386,33 +2387,33 @@ msgstr ""
 #: Merge.rc:1517
 #, c-format
 msgid "Select Codepage for"
-msgstr ""
+msgstr "Kódlap kiválasztása"
 
 #: Merge.rc:1518
 #, c-format
 msgid "&File Loading:"
-msgstr ""
+msgstr "Fájl töltése:"
 
 #: Merge.rc:1520
 #: Merge.rc:1523
 #, c-format
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: Merge.rc:1521
 #, c-format
 msgid "File &Saving:"
-msgstr ""
+msgstr "Fájl menté&se:"
 
 #: Merge.rc:1524
 #, c-format
 msgid "&Use same codepage for both"
-msgstr ""
+msgstr "&Ugyanazon kódlap használata mindkettõhöz"
 
 #: Merge.rc:1527
 #, c-format
 msgid "&Apply"
-msgstr ""
+msgstr "&Alkalmaz"
 
 #: Merge.rc:1528
 #: Merge.rc:1928
@@ -2438,12 +2439,12 @@ msgstr ""
 #: Merge.rc:1540
 #, c-format
 msgid "&Folder Name"
-msgstr ""
+msgstr "Könyvtár neve"
 
 #: Merge.rc:1542
 #, c-format
 msgid "Result:"
-msgstr ""
+msgstr "Eredmény:"
 
 #: Merge.rc:1546
 #, c-format
@@ -2453,32 +2454,32 @@ msgstr ""
 #: Merge.rc:1547
 #, c-format
 msgid "&Close"
-msgstr ""
+msgstr "Bezár"
 
 #: Merge.rc:1555
 #, c-format
 msgid "&Use customized text colors"
-msgstr ""
+msgstr "Egyéni szövegszínek használata"
 
 #: Merge.rc:1558
 #, c-format
 msgid "Custom text colors"
-msgstr ""
+msgstr "Egyéni szövegszínek"
 
 #: Merge.rc:1560
 #, c-format
 msgid "Whitespace:"
-msgstr ""
+msgstr "Szóköz, tab:"
 
 #: Merge.rc:1561
 #, c-format
 msgid "Regular text:"
-msgstr ""
+msgstr "Sima szöveg:"
 
 #: Merge.rc:1562
 #, c-format
 msgid "Selection:"
-msgstr ""
+msgstr "Kijelölés:"
 
 #: Merge.rc:1585
 #, c-format
@@ -2488,104 +2489,104 @@ msgstr ""
 #: Merge.rc:1591
 #, c-format
 msgid "R&ead-only"
-msgstr ""
+msgstr "Csak olvasható"
 
 #: Merge.rc:1595
 #, c-format
 msgid "Re&ad-only"
-msgstr ""
+msgstr "Cs&ak olvasható"
 
 #: Merge.rc:1601
 #, c-format
 msgid "Open..."
-msgstr ""
+msgstr "Megnyitás..."
 
 #: Merge.rc:1602
 #, c-format
 msgid "Save..."
-msgstr ""
+msgstr "Mentés..."
 
 #: Merge.rc:1607
 #: Merge.rc:1963
 #, c-format
 msgid "Backup Files"
-msgstr ""
+msgstr "Visszaállítási fájlok"
 
 #: Merge.rc:1610
 #, c-format
 msgid "Create backup files in:"
-msgstr ""
+msgstr "Visszaállítási fájlok készítése itt:"
 
 #: Merge.rc:1615
 #, c-format
 msgid "Create backup files into:"
-msgstr ""
+msgstr "Visszaállítási fájlok készítése ide:"
 
 #: Merge.rc:1616
 #, c-format
 msgid "&Original file's folder"
-msgstr ""
+msgstr "Eredeti fájl könyvtára"
 
 #: Merge.rc:1618
 #, c-format
 msgid "&Global backup folder:"
-msgstr ""
+msgstr "Globális visszaállítási könyvtár:"
 
 #: Merge.rc:1622
 #, c-format
 msgid "Backup filename:"
-msgstr ""
+msgstr "Visszaállítási fájl neve:"
 
 #: Merge.rc:1623
 #, c-format
 msgid "&Append .bak -extension"
-msgstr ""
+msgstr ".bak kiterjesztés hozzáfûzése"
 
 #: Merge.rc:1625
 #, c-format
 msgid "A&ppend timestamp"
-msgstr ""
+msgstr "Idõpecsét hozzáfûzése"
 
 #: Merge.rc:1632
 #: Merge.rc:2258
 #, c-format
 msgid "Confirm Copy"
-msgstr ""
+msgstr "Másolás megerõsítése"
 
 #: Merge.rc:1636
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr ""
+msgstr "Biztosan másolni szeretne XXX elemet?"
 
 #: Merge.rc:1638
 #, c-format
 msgid "From left"
-msgstr ""
+msgstr "Balról"
 
 #: Merge.rc:1641
 #, c-format
 msgid "To right"
-msgstr ""
+msgstr "Jobbra"
 
 #: Merge.rc:1644
 #, c-format
 msgid "Yes"
-msgstr ""
+msgstr "Igen"
 
 #: Merge.rc:1645
 #, c-format
 msgid "No"
-msgstr ""
+msgstr "Nem"
 
 #: Merge.rc:1651
 #, c-format
 msgid "Plugins"
-msgstr ""
+msgstr "Bõvítmények"
 
 #: Merge.rc:1654
 #, c-format
 msgid "&Enable plugins"
-msgstr ""
+msgstr "Bõvítmény&ek bekapcsolása"
 
 #: Merge.rc:1665
 #: Merge.rc:1964
@@ -2596,7 +2597,7 @@ msgstr ""
 #: Merge.rc:1668
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Intézõ"
 
 #: Merge.rc:1669
 #, c-format
@@ -2606,17 +2607,17 @@ msgstr "&Bõvített menü engedélyezése"
 #: Merge.rc:1671
 #, c-format
 msgid "In&clude subfolders by default"
-msgstr ""
+msgstr "Alkönyvtárakat is alapértelmezésként"
 
 #: Merge.rc:1673
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "Hozzáadás a helyi menühöz"
 
 #: Merge.rc:1675
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Könyvtár összehasonlítás"
 
 #: Merge.rc:1676
 #, c-format
@@ -2643,7 +2644,7 @@ msgstr "Megállás az &elsõ különbségnél"
 #: Merge.rc:1690
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr ""
+msgstr "3 másodperc alatti idõkülönbségek mellõzése"
 
 #: Merge.rc:1692
 #, c-format
@@ -2695,7 +2696,7 @@ msgstr ""
 #: Merge.rc:1761
 #, c-format
 msgid "OVR"
-msgstr ""
+msgstr "ÁTÍR"
 
 #: Merge.rc:1762
 #, c-format
@@ -2791,17 +2792,17 @@ msgstr "Minden rejtett elem legyen újból látható"
 #: Merge.rc:1782
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "Fa mód ki/be"
 
 #: Merge.rc:1783
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Minden alkönyvtár kibontása"
 
 #: Merge.rc:1784
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "Minden alkönyvtár bezárása"
 
 #: Merge.rc:1790
 #, c-format
@@ -2815,27 +2816,27 @@ msgstr ""
 #: Merge.rc:1791
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr ""
+msgstr "Ismeretlen hiba a projekt fájl megnyitásakor"
 
 #: Merge.rc:1792
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr ""
+msgstr "Ismeretlen hiba a projekt fájl mentésekor"
 
 #: Merge.rc:1793
 #, c-format
 msgid "Project File"
-msgstr ""
+msgstr "Projekt fájl"
 
 #: Merge.rc:1794
 #, c-format
 msgid "Project file successfully loaded."
-msgstr ""
+msgstr "Projekt fájl sikeresen betöltve."
 
 #: Merge.rc:1795
 #, c-format
 msgid "Project file successfully saved."
-msgstr ""
+msgstr "Projekt fájl sikeresen elmentve."
 
 #: Merge.rc:1796
 #, c-format
@@ -2843,6 +2844,8 @@ msgid ""
 "Save current paths and options to project file\n"
 "Save Project File"
 msgstr ""
+"Aktuális elérési utak és beállítások mentése a projekt fájlba\n"
+"Projekt fájl mentése"
 
 #: Merge.rc:1801
 #, c-format
@@ -3036,7 +3039,7 @@ msgstr ""
 #: Merge.rc:1860
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
-msgstr ""
+msgstr "Panelek automatikus átméretezése\nPanelek rögzítése"
 
 #: Merge.rc:1866
 #, c-format
@@ -3217,7 +3220,7 @@ msgstr "Verzió Kontroll"
 #: Merge.rc:2336
 #, c-format
 msgid "Differences"
-msgstr ""
+msgstr "Eltérések"
 
 #: Merge.rc:1974
 #, c-format
@@ -3227,22 +3230,22 @@ msgstr ""
 #: Merge.rc:1975
 #, c-format
 msgid "From left:"
-msgstr ""
+msgstr "Balról:"
 
 #: Merge.rc:1976
 #, c-format
 msgid "To left:"
-msgstr ""
+msgstr "Jobbra:"
 
 #: Merge.rc:1977
 #, c-format
 msgid "From right:"
-msgstr ""
+msgstr "Jobbról:"
 
 #: Merge.rc:1978
 #, c-format
 msgid "To right:"
-msgstr ""
+msgstr "Jobbra:"
 
 #: Merge.rc:1984
 #, c-format
@@ -3252,12 +3255,12 @@ msgstr "Verzió %1"
 #: Merge.rc:1985
 #, c-format
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: Merge.rc:1986
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:1992
 #, c-format
@@ -3378,7 +3381,7 @@ msgstr ""
 #: Merge.rc:2037
 #, c-format
 msgid "Size"
-msgstr ""
+msgstr "Méret"
 
 #: Merge.rc:2043
 #: Merge.rc:2569
@@ -3473,7 +3476,7 @@ msgstr ""
 #: Merge.rc:2068
 #, c-format
 msgid "Regular expression"
-msgstr ""
+msgstr "Reguláris kifejezés"
 
 #: Merge.rc:2074
 #, c-format
@@ -3568,12 +3571,12 @@ msgstr "Jelentés készítése..."
 #: Merge.rc:2108
 #, c-format
 msgid "Undoing the last operation..."
-msgstr ""
+msgstr "Utolsó mûvelet visszavonása..."
 
 #: Merge.rc:2109
 #, c-format
 msgid "Redoing the previous operation..."
-msgstr ""
+msgstr "Elõzõ mûvelet újbóli alkalmazása..."
 
 #: Merge.rc:2115
 #, c-format
@@ -3692,12 +3695,12 @@ msgstr ""
 #: Merge.rc:2151
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "Hiba a konfliktusfájl értelmezésekor."
 
 #: Merge.rc:2152
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr ""
+msgstr "A fájl\n%1\nnem egy konfliktus fájl."
 
 #: Merge.rc:2158
 #, c-format
@@ -3811,7 +3814,7 @@ msgstr ""
 #: Merge.rc:2170
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
-msgstr ""
+msgstr "Egy másik alkalmazás módosította a fájlt\n%1\nmióta a WinMerge utoljára vizsgálta.\n\nSzeretné újra betölteni a fájlt?"
 
 #: Merge.rc:2171
 #, c-format
@@ -3826,7 +3829,7 @@ msgstr "Jobb oldali fájl mentése más néven"
 #: Merge.rc:2173
 #, c-format
 msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
-msgstr ""
+msgstr "A fájl\n%1\neltûnt. A folytatáshoz mentse el a fájlt."
 
 #: Merge.rc:2179
 #, c-format
@@ -4097,7 +4100,7 @@ msgstr ""
 #: Merge.rc:2259
 #, c-format
 msgid "Confirm Move"
-msgstr ""
+msgstr "Mozgatás megerõsítése"
 
 #: Merge.rc:2265
 #, c-format
@@ -4132,7 +4135,7 @@ msgstr "Jobb oldali fájl megnyitása a(z) ..."
 #: Merge.rc:2271
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr ""
+msgstr "Nem sikerült elindítani a külsõ szerkesztõt: %1"
 
 #: Merge.rc:2272
 #, c-format
@@ -4343,12 +4346,12 @@ msgstr "A könyvtár kihagyva"
 #: Merge.rc:2347
 #, c-format
 msgid "Left only: %1"
-msgstr ""
+msgstr "Csak bal: %1"
 
 #: Merge.rc:2348
 #, c-format
 msgid "Right only: %1"
-msgstr ""
+msgstr "Csak jobb: %1"
 
 #: Merge.rc:2349
 #, c-format
@@ -4368,7 +4371,7 @@ msgstr "A fájlok különbözõek"
 #: Merge.rc:2353
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "A könyvtárak különböznek"
 
 #: Merge.rc:2354
 #, c-format
@@ -4383,17 +4386,17 @@ msgstr "Csak jobb oldal"
 #: Merge.rc:2357
 #, c-format
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #: Merge.rc:2358
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "A szövegfájlok megegyeznek"
 
 #: Merge.rc:2363
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "A szövegfájlok különböznek"
 
 #: Merge.rc:2369
 #, c-format
@@ -4523,12 +4526,12 @@ msgstr "Jobb oldali kódolás."
 #: Merge.rc:2409
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr ""
+msgstr "Mellõzött különbségek száma a fájlban. Ezeket a különbségeket a WinMerge mellõzte és nem olvaszthatók."
 
 #: Merge.rc:2410
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr ""
+msgstr "Különbségek száma a fájlban. Ez a szám nem tartalmazza a mellõzött különbségeket."
 
 #: Merge.rc:2411
 #, c-format
@@ -4558,7 +4561,7 @@ msgstr "Egyszerû HTML"
 #: Merge.rc:2421
 #, c-format
 msgid "Simple XML"
-msgstr ""
+msgstr "Egyszerû XML"
 
 #: Merge.rc:2423
 #, c-format
@@ -4858,6 +4861,9 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Több nyitott összehasonlító ablak bezárása következik.\n"
+"\n"
+"Biztosan folytatja?"
 
 #: Merge.rc:2519
 #, c-format
@@ -5133,27 +5139,27 @@ msgstr "A kijelölt sorok vágólapra másolása a sorok elejéhez a sorszámokat hozzá
 #: Merge.rc:2603
 #, c-format
 msgid "Refresh selected items"
-msgstr ""
+msgstr "Kiválasztott elemek frissítése"
 
 #: Merge.rc:2604
 #, c-format
 msgid "Toggle bookmark"
-msgstr ""
+msgstr "Könyvjelzõ ki/be"
 
 #: Merge.rc:2605
 #, c-format
 msgid "Go to next bookmark"
-msgstr ""
+msgstr "Ugrás a következõ könyvjelzõre"
 
 #: Merge.rc:2606
 #, c-format
 msgid "Go to previous bookmark"
-msgstr ""
+msgstr "Ugrás az elõzõ könyvjelzõre"
 
 #: Merge.rc:2607
 #, c-format
 msgid "Clear all bookmarks"
-msgstr ""
+msgstr "Összes könyvjelzõ törlése"
 
 #: Merge.rc:2613
 #, c-format
