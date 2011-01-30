@@ -324,6 +324,33 @@ static bool IsTrivialLine(const std::string &Line,
 }
 
 /**
+ * @brief Find comment marker in string, excluding portions enclosed in quotation marks or apostrophes
+ * @param [in] target				- string to search
+ * @param [in] marker				- marker to search for
+ * @return Returns position of marker, or NULL if none is present
+ */
+static const char *FindCommentMarker(const char *target, const char *marker)
+{
+	char prev = '\0';
+	char quote = '\0';
+	size_t marker_len = strlen(marker);
+	while (const char c = *target)
+	{
+		if (quote == '\0' && memcmp(target, marker, marker_len) == 0)
+			return target;
+		if ((prev != '\\') &&
+			(c == '"' || c == '\'') &&
+			(quote == '\0' || quote == c))
+		{
+			quote ^= c;
+		}
+		prev = c;
+		++target;
+	}
+	return NULL;
+}
+
+/**
 	@brief Performs post-filtering, by setting comment blocks to trivial
 	@param [in]  StartPos			- First line number to read
 	@param [in]  EndPos				- The line number PASS the last line number to read
@@ -352,16 +379,13 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 			OpShouldBeTrivial = true;
 			break;
 		}
-		std::string LineData(files[FileNo].linbuf[i]);
-		size_t EolPos = LineData.find_first_of(EolIndicators);
-		if (EolPos != std::string::npos)
-		{
-			LineData.erase(EolPos);
-		}
 
-		const char * StartOfComment		= strstr(LineData.c_str(), filtercommentsset.StartMarker.c_str());
-		const char * EndOfComment		= strstr(LineData.c_str(), filtercommentsset.EndMarker.c_str());
-		const char * InLineComment		= strstr(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
+		const char *LineStr = files[FileNo].linbuf[i];
+		std::string LineData(LineStr, linelen(LineStr));
+
+		const char * StartOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.StartMarker.c_str());
+		const char * EndOfComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.EndMarker.c_str());
+		const char * InLineComment		= FindCommentMarker(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
 		//The following logic determines if the entire block is a comment block, and only marks it as trivial
 		//if all the changes are within a comment block.
 		if (Direction == -1)
@@ -584,38 +608,33 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 		else if (!filtercommentsset.InlineMarker.empty() && QtyLinesLeft == 1 && QtyLinesRight == 1)
 		{
 			//Lets test if only a post line comment is different.
-			const char *	LineStrLeft = files[0].linbuf[LineNumberLeft];
-			const char *	EndLineLeft = strchr(LineStrLeft, '\0');
-			const char *	LineStrRight = files[1].linbuf[LineNumberRight];
-			const char *	EndLineRight = strchr(LineStrRight, '\0');
-			if (EndLineLeft && EndLineRight)
+			const char *LineStrLeft = files[0].linbuf[LineNumberLeft];
+			const char *LineStrRight = files[1].linbuf[LineNumberRight];
+			std::string LineDataLeft(LineStrLeft, linelen(LineStrLeft));
+			std::string LineDataRight(LineStrRight, linelen(LineStrRight));
+			const char *CommentStrLeft = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.InlineMarker.c_str());
+			const char *CommentStrRight = FindCommentMarker(LineDataRight.c_str(), filtercommentsset.InlineMarker.c_str());
+			//If neither side has comment string, then lets assume significant difference, and return
+			if (CommentStrLeft == NULL && CommentStrRight == NULL)
 			{
-				std::string LineDataLeft(LineStrLeft, EndLineLeft);
-				std::string LineDataRight(LineStrRight, EndLineRight);
-				size_t CommentStrLeft = LineDataLeft.find(filtercommentsset.InlineMarker);
-				size_t CommentStrRight = LineDataRight.find(filtercommentsset.InlineMarker);
-				//If neither side has comment string, then lets assume significant difference, and return
-				if (CommentStrLeft == std::string::npos && CommentStrRight == std::string::npos)
-				{
-					return;
-				}
-				//Do a quick test to see if both sides begin with comment character
-				if (!CommentStrLeft && !CommentStrRight)
-				{//If both sides begin with comment character, then this is a trivial difference
-					Op = OP_TRIVIAL;
-					return;
-				}
+				return;
+			}
+			//Do a quick test to see if both sides begin with comment character
+			if (CommentStrLeft == LineDataLeft.c_str() && CommentStrRight == LineDataRight.c_str())
+			{//If both sides begin with comment character, then this is a trivial difference
+				Op = OP_TRIVIAL;
+				return;
+			}
 
-				//Lets remove comments, and see if lines are equal
-				if (CommentStrLeft != std::string::npos)
-					LineDataLeft.erase(CommentStrLeft);
-				if (CommentStrRight != std::string::npos)
-					LineDataRight.erase(CommentStrRight);
-				if (LineDataLeft == LineDataRight)
-				{//If they're equal now, then only difference is comments, and that's a trivial difference
-					Op = OP_TRIVIAL;
-					return;
-				}
+			//Lets remove comments, and see if lines are equal
+			if (CommentStrLeft != NULL)
+				LineDataLeft.erase(CommentStrLeft - LineDataLeft.c_str());
+			if (CommentStrRight != NULL)
+				LineDataRight.erase(CommentStrRight - LineDataRight.c_str());
+			if (LineDataLeft == LineDataRight)
+			{//If they're equal now, then only difference is comments, and that's a trivial difference
+				Op = OP_TRIVIAL;
+				return;
 			}
 		}
 	}
