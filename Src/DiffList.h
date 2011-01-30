@@ -28,6 +28,19 @@
 #include <vector>
 
 /**
+ * @brief Operations in diffranges.
+ * DIFFRANGE structs op-member can have these values
+ */
+enum OP_TYPE
+{
+	OP_NONE = 0,
+	OP_LEFTONLY,
+	OP_DIFF,
+	OP_RIGHTONLY,
+	OP_TRIVIAL
+};
+
+/**
  * @brief One difference defined by linenumbers.
  *
  * This struct defines one set of different lines "diff".
@@ -50,7 +63,7 @@ struct DIFFRANGE
 	UINT dend1;		/**< Synchronised (ghost lines added) last diff line in file2 */
 	int blank0;		/**< Number of blank lines in file1 */
 	int blank1;		/**< Number of blank lines in file2 */
-	BYTE op;		/**< Operation done with this diff */
+	OP_TYPE op;		/**< Operation done with this diff */
 	DIFFRANGE() { memset(this, 0, sizeof(*this)); }
 	void swap_sides();
 };
@@ -103,19 +116,6 @@ struct DiffRangeInfo
 	DiffRangeInfo() { InitLinks(); }
 	DiffRangeInfo(const DIFFRANGE & di) : diffrange(di) { InitLinks(); }
 	void InitLinks() { next = prev = -1; }
-};
-
-/**
- * @brief Operations in diffranges.
- * DIFFRANGE structs op-member can have these values
- */
-enum
-{
-	OP_NONE = 0,
-	OP_LEFTONLY,
-	OP_DIFF,
-	OP_RIGHTONLY,
-	OP_TRIVIAL
 };
 
 /**

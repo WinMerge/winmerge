@@ -68,12 +68,12 @@ static bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
    const char * EndOfComment, const char * InLineComment,
    const FilterCommentsSet& filtercommentsset);
 static bool PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, int &Op, int FileNo,
+	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
 	const FilterCommentsSet& filtercommentsset);
-static void PostFilterSingleLine(const char* LineStr, int &Op,
+static void PostFilterSingleLine(const char* LineStr, OP_TYPE &Op,
 	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck);
 static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
 	const TCHAR *FileNameExt);
 
 
@@ -336,7 +336,7 @@ static bool IsTrivialLine(const std::string &Line,
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
 static bool PostFilter(int StartPos, int EndPos, int Direction,
-	int QtyLinesInBlock, int &Op, int FileNo,
+	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
 	const FilterCommentsSet& filtercommentsset)
 {
 	const char* EolIndicators = "\r\n"; //List of characters used as EOL
@@ -461,7 +461,7 @@ static bool PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param [in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
 */
-static void PostFilterSingleLine(const char* LineStr, int &Op,
+static void PostFilterSingleLine(const char* LineStr, OP_TYPE &Op,
 	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
 {
 	if (Op == OP_TRIVIAL)
@@ -504,7 +504,7 @@ static void PostFilterSingleLine(const char* LineStr, int &Op,
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
 	const TCHAR *FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
@@ -531,7 +531,7 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 			bool AllLinesAreComments = true;
 			for(int i = LineNumberLeft;i < LineNumberLeft + QtyLinesLeft;++i)
 			{
-				int TestOp = 0;
+				OP_TYPE TestOp = OP_NONE;
 				PostFilterSingleLine(files[0].linbuf[i], TestOp, filtercommentsset, QtyLinesLeft > 1);
 				if (TestOp != OP_TRIVIAL)
 				{
@@ -556,7 +556,7 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 			bool AllLinesAreComments = true;
 			for(int i = LineNumberRight;i < LineNumberRight + QtyLinesRight;++i)
 			{
-				int TestOp = 0;
+				OP_TYPE TestOp = OP_NONE;
 				PostFilterSingleLine(files[1].linbuf[i], TestOp, filtercommentsset, QtyLinesRight > 1);
 				if (TestOp != OP_TRIVIAL)
 				{
@@ -571,11 +571,11 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
 	}
 	else
 	{
-		int LeftOp = 0;
+		OP_TYPE LeftOp = OP_NONE;
 		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
 			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
 
-		int RightOp = 0;
+		OP_TYPE RightOp = OP_NONE;
 		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
 			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
 
@@ -841,7 +841,7 @@ BOOL CDiffWrapper::RunFileDiff()
 /**
  * @brief Add diff to external diff-list
  */
-void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
+void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, OP_TYPE op)
 {
 	TRY {
 		DIFFRANGE dr;
@@ -1119,7 +1119,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-			int op=0;
+			OP_TYPE op = OP_NONE;
 			if (deletes || inserts || thisob->trivial)
 			{
 				if (deletes && inserts)
@@ -1185,7 +1185,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						op = OP_TRIVIAL;
 				}
 
-				AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
+				AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
 					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 			}
