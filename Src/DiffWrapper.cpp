@@ -907,7 +907,7 @@ void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, B
 		}
 		ASSERT(dr.begin0 == dr.begin1);
 
-		AddDiffRange(dr.begin0, dr.end0, dr.begin1, dr.end1, dr.op); 
+		AddDiffRange(dr.begin0, dr.end0, dr.begin1, dr.end1, dr.op);
 	}
 }
 
@@ -977,13 +977,14 @@ String CDiffWrapper::FormatSwitchString()
 }
 
 /**
- * @brief Enables/disables patch-file appending (files with same filename are appended)
+ * @brief Enables/disables patch-file appending.
+ * If the file for patch already exists then the patch will be appended to
+ * existing file.
+ * @param [in] bAppendFiles If TRUE patch will be appended to existing file.
  */
-BOOL CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
+void CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
 {
-	BOOL temp = m_bAppendFiles;
 	m_bAppendFiles = bAppendFiles;
-	return temp;
 }
 
 /**

@@ -158,7 +158,7 @@ public:
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
-	BOOL SetAppendFiles(BOOL bAppendFiles);
+	void SetAppendFiles(BOOL bAppendFiles);
 	void SetPaths(const String &filepath1, const String &filepath2, BOOL tempPaths);
 	void SetAlternativePaths(const String &altPath1, const String &altPath2);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
