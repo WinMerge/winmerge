@@ -81,9 +81,9 @@ copy Build\X64\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-x64-zip-version
 
 rem Filters
 for %%i in (Build\Filters\*.flt Build\Filters\*.tmpl Build\Filters\*.txt) do (
-  copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
-  copy "%%i" "%DISTDIR%\2.14-zip-version-vc71\WinMerge\%%~nxi"
-  copy "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\%%~nxi"
+  copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\Filters\%%~nxi"
+  copy "%%i" "%DISTDIR%\2.14-zip-version-vc71\WinMerge\Filters\%%~nxi"
+  copy "%%i" "%DISTDIR%\2.14-x64-zip-version\WinMerge\Filters\%%~nxi"
 )
 
 rem Plugins
