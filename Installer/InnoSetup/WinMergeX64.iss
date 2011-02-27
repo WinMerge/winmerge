@@ -299,6 +299,9 @@ Name: {app}\Merge7z457U.dll; Type: files; MinVersion: 0, 4
 Name: {app}\Merge7z465.dll; Type: files
 Name: {app}\Merge7z465U.dll; Type: files; MinVersion: 0, 4
 
+Name: {app}\Merge7z920.dll; Type: files
+Name: {app}\Merge7z920U.dll; Type: files; MinVersion: 0, 4
+
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -394,8 +397,9 @@ Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Micro
 Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
-Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('457')
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z920U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\X64\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
 
 ; Expat dll
 Source: ..\..\Build\expat\lib\X64\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -890,180 +894,6 @@ begin
     {Reports the inadequacy of the version installed and seases processing }
     Result := False;
 end;
-
-{Returns whether or not the version of particular file is at least equal to requested value}
-Function FileVersionAtLeast(strFile_Path: string; intMajor: integer; intMinor: integer; intRevision: integer; intBuild: integer): boolean;
-  Var
-  {Stores the version of the file to be compared}
-  strVersion: string;
-Begin
-  {Gets the version number of the specified file}
-  GetVersionNumbersString(strFile_Path, strVersion)
-
-  {File Version at least is the result of the VersionAtLeast Determination}
-  Result := VersionAtLeast(strVersion, intMajor, intMinor, intRevision, intBuild);
-
-
-  {Debug: If you'd like to debug with a messagebox then un rem this
-	If Result = True then
-
-	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "'  + strVersion + '.  The version detected met the required value.', mbInformation, MB_OK)
-	else
-	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "' + strVersion + '.  The version detected did not meet the required value.', mbInformation, MB_OK);
-    }
-end;
-
-function Install7ZipDll(strDLL_Version: string): Boolean;
-Var
-    {Stores the file path of the 7-Zip File Manager Program}
-    str7Zip_Path: String;
-
-    {Stores the version of 7-Zip Installed}
-    str7Zip_Version: String;
-
-    {Stores the DLL's Version Function Input Parameter in integer format}
-    intDLL_Version: Integer;
-Begin
-
-    {If the actual version of 7-Zip Installed hasn't been determined yet then...}
-    If int7Zip_Version = 0 Then
-        Begin
-	       {Detects the install location of 7-Zip from the registry, if it's installed}
-	       RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe', '', str7Zip_Path)
-
-	        {If there is 7-Zip information in the registry then...}
-			If length(str7Zip_Path) > 0 Then
-				begin
-					{If the 7zFM.exe file exists then...}
-					If FileExists(str7Zip_Path) = True Then
-						Begin
-							{Detects the version of the 7-Zip Installed}
-							GetVersionNumbersString(str7Zip_Path, str7Zip_Version)
-							{If the version of 7-Zip Installed is at least 3.11 Then...}
-							If VersionAtLeast(str7Zip_Version, 3, 11, 0, 0) = True Then
-								begin
-									{If the user has 3.12 or higher installed then...}
-									If VersionAtLeast(str7Zip_Version, 3, 12, 0, 0) = True Then
-										Begin
-											{If the user has 3.13 or higher installed then...}
-											If VersionAtLeast(str7Zip_Version, 3, 13, 0, 0) = True Then
-												Begin
-													{If the user has 4.20 or higher installed then...}
-													If VersionAtLeast(str7Zip_Version, 4, 20, 0, 0) = True Then
-														Begin
-															{If the user has 4.23 or higher installed then...}
-															If VersionAtLeast(str7Zip_Version, 4, 23, 0, 0) = True Then
-																Begin
-																	{If the user has 4.31 or higher installed then...}
-																		If VersionAtLeast(str7Zip_Version, 4, 31, 0, 0) = True Then				
-																		Begin
-																			{If the user has 4.32 or higher installed then...}
-																			If VersionAtLeast(str7Zip_Version, 4, 32, 0, 0) = True Then
-																				Begin
-																					{If the user has 4.32 or higher installed then...}
-																					If VersionAtLeast(str7Zip_Version, 4, 42, 0, 0) = True Then
-																						Begin
-																							{If the user has 4.57 or higher installed then...}
-																							If VersionAtLeast(str7Zip_Version, 4, 57, 0, 0) = True Then
-																								Begin
-																									{If the user has 465 or higher installed then...}
-																									If VersionAtLeast(str7Zip_Version, 4, 65, 0, 0) = True Then
-																										{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
-																										int7Zip_Version := 465
-																									Else
-																								int7Zip_Version := 457
-																								end
-																							Else
-																								{Since it was at least 4.42, but not 4.57 then it must be 4.42}
-																								int7Zip_Version := 442
-																						end
-																					Else
-																						{Since it was at least 4.32, but not 4.42 then it must be 4.32}
-																						int7Zip_Version := 432
-																				end
-																			Else
-																				{Since it was at least 4.31, but not 4.32 then it must be 4.31}
-																				int7Zip_Version := 431
-																		end
-																	Else
-																		{Since it was at least 4.23, but not 4.31 then it must be 4.23}
-																		int7Zip_Version := 423
-																end
-															Else
-																{Since it was at least 4.20, but not 4.23 then it must be 4.20}
-																int7Zip_Version := 420
-														end
-													Else
-														{Since it was at least 3.13, but not 4.20 then it must be 3.13}
-														int7Zip_Version := 313
-												end
-											Else
-												{Since it was at least 3.12, but not 3.13 then it must be 3.12}
-												int7Zip_Version := 312;
-										end
-									Else
-										{Since it was at least 3.11, but not 3.12 then it must be 3.11}
-										int7Zip_Version := 311;
-								end;
-						End
-					Else
-						{Records that the 7-Zip program didn't exist for the rest of the installation}
-						int7Zip_Version := -1;
-				end
-			Else
-				{Records that the 7-Zip program wasn't installed for rest of the installation}
-				int7Zip_Version := -1;
-	    end;
-
-    {Converts the DLL Version String to an Integer for numeric evaluation}
-    intDLL_Version := StrToInt(strDLL_Version);
-
-	{If 7-Zip either wasn't installed or was of inadequate version then...}
-	If int7Zip_Version = -1 Then
-		Begin
-			{If the program is trying to determine if the 313 DLL should be installed then the answer is yes
-			we install this, because it's the most recent version and if they were to install 7-zip this
-			would be the version they'd want (since people generally install the latest and greatest)}
-			if intDLL_Version = 313 Then
-				Result := True
-
-			{If the program is trying to install anything, but 313 on a system without 7-Zip
-			then we disallow the installation of that DLL}
-			else
-				Result := False;
-		End
-
-	{If the version of 7-Zip was sufficient then...}
-	Else
-		Begin
-			{if the version the program is trying to install matches the version installed on the clients system then...}
-			If int7Zip_Version = intDLL_Version Then
-				Result := True
-
-			{If the program is trying to install the 31X DLL on a 31Y system then we won't allow the file to be copied...}
-            else
-				Result := False;
-		End;
-
-    {Debug:
-    If UsingWinNT = True Then
-        begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end
-
-
-    Else
-         begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end }
-
-End;
 
 
 {Determines whether or not TortoiseCVS is installed}

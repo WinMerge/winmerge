@@ -119,36 +119,36 @@ AlwaysShowComponentsList=true
 Name: English; MessagesFile: ..\..\Translations\InnoSetup\English.isl
 
 ;Localizations:
-Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Bulgarian.txt
-Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Catalan.txt
-Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-ChineseSimplified.txt
-Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-ChineseTraditional.txt
-Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\\Docs\Readme\ReadMe-Croatian.txt
+Name: Bulgarian; MessagesFile: ..\..\Translations\InnoSetup\Bulgarian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt
+Name: Catalan; MessagesFile: ..\..\Translations\InnoSetup\Catalan.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt
+Name: Chinese_Simplified; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Simplified.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt
+Name: Chinese_Traditional; MessagesFile: ..\..\Translations\InnoSetup\Chinese_Traditional.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt
+Name: Croatian; MessagesFile: ..\..\Translations\InnoSetup\Croatian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt
 Name: Czech; MessagesFile: ..\..\Translations\InnoSetup\Czech.isl
 Name: Danish; MessagesFile: ..\..\Translations\InnoSetup\Danish.isl
-Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Dutch.txt
-Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-French.txt
-Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Galician.txt
+Name: Dutch; MessagesFile: ..\..\Translations\InnoSetup\Dutch.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Dutch.txt
+Name: French; MessagesFile: ..\..\Translations\InnoSetup\French.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-French.txt
+Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Galician.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
 Name: German; MessagesFile: ..\..\Translations\InnoSetup\German.isl
-Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Greek.txt
+Name: Greek; MessagesFile: ..\..\Translations\InnoSetup\Greek.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
 Name: Hungarian; MessagesFile: ..\..\Translations\InnoSetup\Hungarian.isl
 Name: Italian; MessagesFile: ..\..\Translations\InnoSetup\Italian.isl
-Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Build\Docs\ReadMe-Japanese.txt
+Name: Japanese; MessagesFile: ..\..\Translations\InnoSetup\Japanese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
 Name: Korean; MessagesFile: ..\..\Translations\InnoSetup\Korean.isl
 Name: Norwegian; MessagesFile: ..\..\Translations\InnoSetup\Norwegian.isl
 Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Persian.isl
 Name: Polish; MessagesFile: ..\..\Translations\InnoSetup\Polish.isl
 Name: Portuguese; MessagesFile: ..\..\Translations\InnoSetup\Portuguese.isl
-Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
+Name: PortugueseBrazilian; MessagesFile: ..\..\Translations\InnoSetup\Brazilian_Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
 Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Romanian.isl
 Name: Russian; MessagesFile: ..\..\Translations\InnoSetup\Russian.isl
 Name: Serbian; MessagesFile: ..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
 Name: Slovak; MessagesFile: ..\..\Translations\InnoSetup\Slovak.isl
 Name: Slovenian; MessagesFile: ..\..\Translations\InnoSetup\Slovenian.isl
-Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
-Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
+Name: Spanish; MessagesFile: ..\..\Translations\InnoSetup\Spanish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt
+Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Swedish.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: ..\..\Translations\InnoSetup\Turkish.isl
-Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Docs\Users\..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
+Name: Ukrainian; MessagesFile: ..\..\Translations\InnoSetup\Ukrainian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
 
 
 [Messages]
@@ -319,6 +319,9 @@ Name: {app}\Merge7z457U.dll; Type: files; MinVersion: 0, 4
 Name: {app}\Merge7z465.dll; Type: files
 Name: {app}\Merge7z465U.dll; Type: files; MinVersion: 0, 4
 
+Name: {app}\Merge7z920.dll; Type: files
+Name: {app}\Merge7z920U.dll; Type: files; MinVersion: 0, 4
+
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -415,26 +418,12 @@ Source: ..\..\Build\vc71\ShellExtensionUnicode Release mindependency\ShellExtens
 Source: ..\..\Build\x64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('465')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('457')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z442U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('442')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z432U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('432')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z431U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('431')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z423U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('423')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z420U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('420')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('313')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('312')
-Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll('311')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z465.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('465')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z457.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('457')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z442.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('442')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z432.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('432')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z431.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('431')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z423.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('423')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z420.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('420')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('313')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('312')
-Source: ..\..\Build\vc71\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; Check: Install7ZipDll('311')
+Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z920U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\vc71\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\vc71\MergeRelease\Merge7z920.dll; DestDir: {app}; Flags: promptifolder
+Source: ..\..\Build\vc71\MergeRelease\Merge7z465.dll; DestDir: {app}; Flags: promptifolder
+Source: ..\..\Build\vc71\MergeRelease\Merge7z457.dll; DestDir: {app}; Flags: promptifolder
 
 ; Expat dll
 Source: ..\..\Build\vc71\expat\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -446,7 +435,7 @@ Source: ..\..\Build\vc71\pcre\MinSizeRel\pcre.dll; DestDir: {app}; Flags: prompt
 Source: ..\..\Build\vc71\MergeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core
 
 ; Language files
-Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
 Source: ..\..\Translations\WinMerge\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
@@ -471,7 +460,7 @@ Source: ..\..\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Componen
 Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion
+Source: ..\..\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Docs\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMerge_ja.chm; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
@@ -483,6 +472,7 @@ Source: ..\..\Translations\WinMerge\Romanian.po; DestDir: {app}\Languages; Compo
 Source: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
 Source: ..\..\Translations\WinMerge\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Serbian.po; DestDir: {app}\Languages; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt; DestDir: {app}\Docs; Components: Languages\Serbian
 Source: ..\..\Translations\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
@@ -932,180 +922,6 @@ begin
     {Reports the inadequacy of the version installed and seases processing }
     Result := False;
 end;
-
-{Returns whether or not the version of particular file is at least equal to requested value}
-Function FileVersionAtLeast(strFile_Path: string; intMajor: integer; intMinor: integer; intRevision: integer; intBuild: integer): boolean;
-  Var
-  {Stores the version of the file to be compared}
-  strVersion: string;
-Begin
-  {Gets the version number of the specified file}
-  GetVersionNumbersString(strFile_Path, strVersion)
-
-  {File Version at least is the result of the VersionAtLeast Determination}
-  Result := VersionAtLeast(strVersion, intMajor, intMinor, intRevision, intBuild);
-
-
-  {Debug: If you'd like to debug with a messagebox then un rem this
-	If Result = True then
-
-	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "'  + strVersion + '.  The version detected met the required value.', mbInformation, MB_OK)
-	else
-	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "' + strVersion + '.  The version detected did not meet the required value.', mbInformation, MB_OK);
-    }
-end;
-
-function Install7ZipDll(strDLL_Version: string): Boolean;
-Var
-    {Stores the file path of the 7-Zip File Manager Program}
-    str7Zip_Path: String;
-
-    {Stores the version of 7-Zip Installed}
-    str7Zip_Version: String;
-
-    {Stores the DLL's Version Function Input Parameter in integer format}
-    intDLL_Version: Integer;
-Begin
-
-    {If the actual version of 7-Zip Installed hasn't been determined yet then...}
-    If int7Zip_Version = 0 Then
-        Begin
-	       {Detects the install location of 7-Zip from the registry, if it's installed}
-	       RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe', '', str7Zip_Path)
-
-	        {If there is 7-Zip information in the registry then...}
-			If length(str7Zip_Path) > 0 Then
-				begin
-					{If the 7zFM.exe file exists then...}
-					If FileExists(str7Zip_Path) = True Then
-						Begin
-							{Detects the version of the 7-Zip Installed}
-							GetVersionNumbersString(str7Zip_Path, str7Zip_Version)
-							{If the version of 7-Zip Installed is at least 3.11 Then...}
-							If VersionAtLeast(str7Zip_Version, 3, 11, 0, 0) = True Then
-								begin
-									{If the user has 3.12 or higher installed then...}
-									If VersionAtLeast(str7Zip_Version, 3, 12, 0, 0) = True Then
-										Begin
-											{If the user has 3.13 or higher installed then...}
-											If VersionAtLeast(str7Zip_Version, 3, 13, 0, 0) = True Then
-												Begin
-													{If the user has 4.20 or higher installed then...}
-													If VersionAtLeast(str7Zip_Version, 4, 20, 0, 0) = True Then
-														Begin
-															{If the user has 4.23 or higher installed then...}
-															If VersionAtLeast(str7Zip_Version, 4, 23, 0, 0) = True Then
-																Begin
-																	{If the user has 4.31 or higher installed then...}
-																		If VersionAtLeast(str7Zip_Version, 4, 31, 0, 0) = True Then				
-																		Begin
-																			{If the user has 4.32 or higher installed then...}
-																			If VersionAtLeast(str7Zip_Version, 4, 32, 0, 0) = True Then
-																				Begin
-																					{If the user has 4.32 or higher installed then...}
-																					If VersionAtLeast(str7Zip_Version, 4, 42, 0, 0) = True Then
-																						Begin
-																							{If the user has 4.57 or higher installed then...}
-																							If VersionAtLeast(str7Zip_Version, 4, 57, 0, 0) = True Then
-																								Begin
-																									{If the user has 465 or higher installed then...}
-																									If VersionAtLeast(str7Zip_Version, 4, 65, 0, 0) = True Then
-																								{We record the version of 7-Zip installed as 4.42 regardless of whether or not it's actually 4.21, 4.22, etc..}
-																										int7Zip_Version := 465
-																									Else
-																								int7Zip_Version := 457
-																								end
-																							Else
-																								{Since it was at least 4.42, but not 4.57 then it must be 4.42}
-																								int7Zip_Version := 442
-																						end
-																					Else
-																						{Since it was at least 4.32, but not 4.42 then it must be 4.32}
-																						int7Zip_Version := 432
-																				end
-																			Else
-																				{Since it was at least 4.31, but not 4.32 then it must be 4.31}
-																				int7Zip_Version := 431
-																		end
-																	Else
-																		{Since it was at least 4.23, but not 4.31 then it must be 4.23}
-																		int7Zip_Version := 423
-																end
-															Else
-																{Since it was at least 4.20, but not 4.23 then it must be 4.20}
-																int7Zip_Version := 420
-														end
-													Else
-														{Since it was at least 3.13, but not 4.20 then it must be 3.13}
-														int7Zip_Version := 313
-												end
-											Else
-												{Since it was at least 3.12, but not 3.13 then it must be 3.12}
-												int7Zip_Version := 312;
-										end
-									Else
-										{Since it was at least 3.11, but not 3.12 then it must be 3.11}
-										int7Zip_Version := 311;
-								end;
-						End
-					Else
-						{Records that the 7-Zip program didn't exist for the rest of the installation}
-						int7Zip_Version := -1;
-				end
-			Else
-				{Records that the 7-Zip program wasn't installed for rest of the installation}
-				int7Zip_Version := -1;
-	    end;
-
-    {Converts the DLL Version String to an Integer for numeric evaluation}
-    intDLL_Version := StrToInt(strDLL_Version);
-
-	{If 7-Zip either wasn't installed or was of inadequate version then...}
-	If int7Zip_Version = -1 Then
-		Begin
-			{If the program is trying to determine if the 313 DLL should be installed then the answer is yes
-			we install this, because it's the most recent version and if they were to install 7-zip this
-			would be the version they'd want (since people generally install the latest and greatest)}
-			if intDLL_Version = 313 Then
-				Result := True
-
-			{If the program is trying to install anything, but 313 on a system without 7-Zip
-			then we disallow the installation of that DLL}
-			else
-				Result := False;
-		End
-
-	{If the version of 7-Zip was sufficient then...}
-	Else
-		Begin
-			{if the version the program is trying to install matches the version installed on the clients system then...}
-			If int7Zip_Version = intDLL_Version Then
-				Result := True
-
-			{If the program is trying to install the 31X DLL on a 31Y system then we won't allow the file to be copied...}
-            else
-				Result := False;
-		End;
-
-    {Debug:
-    If UsingWinNT = True Then
-        begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end
-
-
-    Else
-         begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end }
-
-End;
 
 
 {Determines whether or not TortoiseCVS is installed}
