@@ -626,8 +626,6 @@ Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
  * @brief Access archiver dll functions through proxy.
  */
 
-#else
-//DEFINE_FORMAT(CFtpHandler,		"FTP.DLL",		"ftp", "");
 
 #define CLS_ARC_ID_ITEM(cls) ((cls).Data4[5])
 

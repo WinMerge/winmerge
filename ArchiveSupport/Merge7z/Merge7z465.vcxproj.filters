@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Quellcodedateien">
@@ -63,7 +63,7 @@
     <ClInclude Include="$(SRC7Z)\7z465\CPP\Windows\FileIO.h">
       <Filter>Windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\7z465\Cpp\Windows\Control\ListView.h">
+    <ClInclude Include="$(SRC7Z)\7z465\Cpp\Windows\Control\ListView.h">
       <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="$(SRC7Z)\7z465\CPP\Windows\PropVariant.h">
@@ -111,7 +111,7 @@
     <ClInclude Include="$(SRC7Z)\7z465\CPP\Windows\Control\Dialog.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\7z465\Cpp\7zip\Ui\Common\EnumDirItems.h">
+    <ClInclude Include="$(SRC7Z)\7z465\Cpp\7zip\Ui\Common\EnumDirItems.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
     <ClInclude Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\ExtractCallback.h">
@@ -126,7 +126,7 @@
     <ClInclude Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\LangUtils.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\7z465\Cpp\7zip\Ui\Common\LoadCodecs.h">
+    <ClInclude Include="$(SRC7Z)\7z465\Cpp\7zip\Ui\Common\LoadCodecs.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
     <ClInclude Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\MessagesDialog.h">
@@ -206,7 +206,7 @@
     <ClCompile Include="$(SRC7Z)\7z465\CPP\Windows\FileIO.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\7z465\Cpp\Windows\Control\ListView.cpp">
+    <ClCompile Include="$(SRC7Z)\7z465\Cpp\Windows\Control\ListView.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="$(SRC7Z)\7z465\CPP\Windows\PropVariant.cpp">
@@ -254,7 +254,7 @@
     <ClCompile Include="$(SRC7Z)\7z465\CPP\Windows\Control\Dialog.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\7z465\Cpp\7zip\Ui\Common\EnumDirItems.cpp">
+    <ClCompile Include="$(SRC7Z)\7z465\Cpp\7zip\Ui\Common\EnumDirItems.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
     <ClCompile Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\ExtractCallback.cpp">
@@ -269,7 +269,7 @@
     <ClCompile Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\LangUtils.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\7z465\Cpp\7zip\Ui\Common\LoadCodecs.cpp">
+    <ClCompile Include="$(SRC7Z)\7z465\Cpp\7zip\Ui\Common\LoadCodecs.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
     <ClCompile Include="$(SRC7Z)\7z465\CPP\7zip\UI\FileManager\MessagesDialog.cpp">
