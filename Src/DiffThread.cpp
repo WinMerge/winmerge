@@ -200,10 +200,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
 
-	// keep the scripts alive during the Rescan
-	// when we exit the thread, we delete this and release the scripts
-	CAssureScriptsForThread scriptsForRescan;
-
 	bool casesensitive = false;
 	int depth = myStruct->context->m_bRecursive ? -1 : 0;
 
