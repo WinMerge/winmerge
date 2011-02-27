@@ -244,7 +244,10 @@ void PathContext::SetMiddle(LPCTSTR path, bool bNormalized)
  */
 void PathContext::SetPath(int index, LPCTSTR path, bool bNormalized)
 {
-	if (index >= m_nFiles) m_nFiles = index + 1;
+	if (index >= countof(m_path))
+		return;
+	if (index >= m_nFiles)
+		m_nFiles = index + 1;
 	m_path[index].SetPath(path);
 	if (bNormalized)
 		m_path[index].NormalizePath();
