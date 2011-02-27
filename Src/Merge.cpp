@@ -120,7 +120,8 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 			args[1] = (ULONG_PTR)pObject;
 			args[2] = (ULONG_PTR)pObjectInfo;
 		}
-		if (int i = pObjectInfo->pCatchableTypeArray->nCatchableTypes)
+		int i;
+		if (pObjectInfo->pCatchableTypeArray && (i = pObjectInfo->pCatchableTypeArray->nCatchableTypes))
 		{
 			const char *name = typeid(std::exception).raw_name();
 			if (pObjectInfo->pCatchableTypeArray->arrayOfCatchableTypes[i - 1]->pType->name == name)
