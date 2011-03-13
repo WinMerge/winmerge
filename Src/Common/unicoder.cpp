@@ -176,6 +176,7 @@ public:
 			{
 				if (codepagestotry[i] == 0) break;
 				hr = pcc->Initialize(codepagestotry[i], 1200, 0);
+				srcsize = size;
 				dstsize = size * sizeof(wchar_t);
 				SetLastError(0);
 				hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst, &dstsize);
