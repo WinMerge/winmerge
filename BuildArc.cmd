@@ -74,8 +74,8 @@ copy Build\expat\lib\X64\release\libexpat.dll "%DISTDIR%\2.14-x64-zip-version\Wi
 rem Translation
 copy Build\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
 copy Build\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Build\vc71\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
-copy Build\vc71\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
+copy Build\vc71\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version-vc71\WinMerge\Languages\"
+copy Build\vc71\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-zip-version-vc71\WinMerge\"
 copy Build\X64\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-x64-zip-version\WinMerge\Languages\"
 copy Build\X64\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
