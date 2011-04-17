@@ -142,7 +142,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 
 	// Ignore lines beginning with '##'
 	size_t pos = str.find(commentLeader);
-	if (pos == str.npos)
+	if (pos == 0)
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
@@ -291,6 +291,9 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  */
 BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
 {
+	if (filterList->size() == 0)
+		return FALSE;
+
 	int ovector[30];
 	char *compString = UCS2UTF8_ConvertToUtf8(szTest);
 	size_t stringlen = strlen(compString);
