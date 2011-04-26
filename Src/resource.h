@@ -1129,6 +1129,7 @@
 #define ID_VIEW_DIFFCONTEXT_9           33184
 #define ID_EDIT_LOWERCASE               33185
 #define ID_EDIT_UPPERCASE               33186
+#define ID_VIEW_SPLITVERTICALLY         33187
 
 // Next default values for new objects
 //

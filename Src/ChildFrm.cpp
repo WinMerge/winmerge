@@ -45,6 +45,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#define SWAPPARAMS_IF(c, a, b) (c ? a : b), (c ? b : a)
+
 /** @brief RO status panel width */
 static UINT RO_PANEL_WIDTH = 40;
 /** @brief Encoding status panel width */
@@ -69,6 +71,8 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
+	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -140,10 +144,13 @@ CChildFrame::~CChildFrame()
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
+	BOOL bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY);
+
 	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
 
 	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, 1, pDoc->m_nBuffers, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
+	if (!m_wndSplitter.CreateStatic(this, SWAPPARAMS_IF(bSplitVert, 1, pDoc->m_nBuffers),
+		WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
@@ -152,7 +159,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	int pane;
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		if (!m_wndSplitter.CreateView(0, pane,
+		if (!m_wndSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, 0, pane),
 			RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
 		{
 			TRACE1("Failed to create pane%d\n", pane);
@@ -189,7 +196,8 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	// create a splitter with 2 rows, 1 column
 	// this is not a vertical scrollable splitter (see MergeDiffDetailView.h)
-	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, pDoc->m_nBuffers, 1, WS_CHILD | WS_VISIBLE | WS_HSCROLL, AFX_IDW_PANE_FIRST+1) )
+	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, SWAPPARAMS_IF(bSplitVert, pDoc->m_nBuffers, 1),
+		WS_CHILD | WS_VISIBLE | WS_HSCROLL, AFX_IDW_PANE_FIRST+1) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
@@ -197,7 +205,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
 		// add splitter pane - the default view in column (pane)
-		if (!m_wndDetailSplitter.CreateView(pane, 0,
+		if (!m_wndDetailSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, pane, 0),
 			RUNTIME_CLASS(CMergeDiffDetailView), CSize(-1, 200), pContext))
 		{
 			TRACE1("Failed to create pane %d\n", pane);
@@ -212,7 +220,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CMergeEditView * pView[3];
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		pView[pane] = (CMergeEditView *)m_wndSplitter.GetPane(0,pane);
+		pView[pane] = (CMergeEditView *)m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, pane));
 		// connect merge views up to display of status info
 		pView[pane]->SetStatusInterface(&m_status[pane]);
 		pView[pane]->m_nThisPane = pane;
@@ -225,7 +233,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CMergeDiffDetailView * pDetail[3];
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		pDetail[pane] = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(pane,0);
+		pDetail[pane] = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0));
 		pDetail[pane]->m_nThisPane = pane;
 	}
 	// tell merge doc about these views
@@ -321,9 +329,10 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_PANE1_RO, sText.c_str(), TRUE);
 	m_wndStatusBar.SetPaneText(PANE_PANE2_RO, sText.c_str(), TRUE);
 	// load active pane column
-	int iCol = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
-	if (iCol < 0 || iCol >= m_wndSplitter.GetColumnCount()) iCol = 0;
-	m_wndSplitter.SetActivePane(0, iCol, NULL);
+	int iPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+	if (iPane < 0 || iPane >= GetMergeDoc()->m_nBuffers) iPane = 0;
+	m_wndSplitter.SetActivePane(
+		SWAPPARAMS_IF((m_wndSplitter.GetColumnCount() > 1), 0, iPane), NULL);
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
@@ -462,7 +471,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 
 	// load the bars layout
 	// initialize the diff pane state with default dimension
-	int initialDiffHeight = ((CMergeDiffDetailView*)m_wndDetailSplitter.GetPane(1,0))->ComputeInitialHeight();
+	int initialDiffHeight = ((CMergeDiffDetailView*)m_wndDetailSplitter.GetPane(0,0))->ComputeInitialHeight();
 	UpdateDiffDockbarHeight(initialDiffHeight);
 	// load docking positions and sizes
 	CDockState pDockState;
@@ -594,13 +603,26 @@ void CChildFrame::UpdateHeaderSizes()
 	{
 		m_wndFilePathBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
 		m_wndStatusBar.ShowWindow(m_wndSplitter.GetPane(0, 0)->IsWindowVisible());
-				
+
 		int w[3],wmin;
 		int pane;
-		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		if (m_wndSplitter.GetColumnCount() > 1)
 		{
-			m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
-			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+			for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+			{
+				m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+			}
+		}
+		else
+		{
+			CRect rect;
+			CMergeDoc * pDoc = GetMergeDoc();
+			m_wndSplitter.GetWindowRect(&rect);
+			for (pane = 0; pane < pDoc->m_nBuffers; pane++)
+			{
+				w[pane] = rect.Width() /  pDoc->m_nBuffers;
+			}
 		}
 
 		// prepare file path bar to look as a status bar
@@ -613,7 +635,7 @@ void CChildFrame::UpdateHeaderSizes()
 		// Set bottom statusbar panel widths
 		// Kimmo - I don't know why 4 seems to be right for me
 		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		for (pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+		for (pane = 0; pane < GetMergeDoc()->m_nBuffers; pane++)
 		{
 			int paneWidth = w[pane] - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
 				(2 * borderWidth));
@@ -698,6 +720,26 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
 	if (bActivate && pDoc)
 		this->GetParentFrame()->PostMessage(WM_USER+1);
 	return;
+}
+
+/**
+ * @brief Split panes vertically
+ */
+void CChildFrame::OnViewSplitVertically() 
+{
+	bool bSplitVertically = !GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY);
+	GetOptionsMgr()->SaveOption(OPT_SPLIT_VERTICALLY, bSplitVertically);
+	m_wndSplitter.FlipSplit();
+	m_wndDetailSplitter.FlipSplit();
+}
+
+/**
+ * @brief Update "Split Vertically" UI items
+ */
+void CChildFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY));
 }
 
 /// Document commanding us to close
@@ -810,7 +852,7 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
  */
 void CChildFrame::UpdateResources()
 {
-	for (int pane = 0; pane < m_wndSplitter.GetColumnCount(); pane++)
+	for (int pane = 0; pane < GetMergeDoc()->m_nBuffers; pane++)
 		m_status[pane].UpdateResources();
 	m_wndLocationBar.UpdateResources();
 	m_wndDetailBar.UpdateResources();
