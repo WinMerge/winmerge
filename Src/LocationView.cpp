@@ -611,34 +611,7 @@ void CLocationView::OnLButtonUp(UINT nFlags, CPoint point)
 void CLocationView::OnMouseMove(UINT nFlags, CPoint point) 
 {
 	if (GetCapture() == this)
-	{
-		// Don't go above bars.
-		point.y = max(point.y, Y_OFFSET);
-
-		// Vertical scroll handlers are range safe, so there is no need to
-		// make sure value is valid and in range.
-		int nSubLine = (int) (m_pixInLines * (point.y - Y_OFFSET));
-		nSubLine -= m_view[0]->GetScreenLines() / 2;
-		if (nSubLine < 0)
-			nSubLine = 0;
-
-		// Just a random choose as both view share the same scroll bar.
-		CWnd *pView = m_view[0];
-
-		SCROLLINFO si = {0};
-		si.cbSize = sizeof(si);
-		si.fMask = SIF_POS;
-		si.nPos = nSubLine;
-		pView->SetScrollInfo(SB_VERT, &si);
-
-		// The views are child windows of a splitter windows. Splitter window
-		// doesn't accept scroll bar updates not send from scroll bar control.
-		// So we need to update both views.
-		int pane;
-		int nBuffers = GetDocument()->m_nBuffers;
-		for (pane = 0; pane < nBuffers; pane++)
-			m_view[pane]->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_THUMBPOSITION, 0), NULL);
-	}
+		GotoLocation(point, false);
 
 	CView::OnMouseMove(nFlags, point);
 }

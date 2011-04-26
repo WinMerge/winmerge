@@ -3220,7 +3220,12 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	if (pDoc->GetView(pane) != pCurrentView)
 	{
 		if (pSplitterWnd)
-			pSplitterWnd->SetActivePane(0, pane);
+		{
+			if (pSplitterWnd->GetColumnCount() > 1)
+				pSplitterWnd->SetActivePane(0, pane);
+			else
+				pSplitterWnd->SetActivePane(pane, 0);
+		}
 	}
 }
 

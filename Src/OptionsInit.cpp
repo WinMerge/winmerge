@@ -74,6 +74,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1);
 	m_pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
 	m_pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
+	m_pOptions->InitOption(OPT_SPLIT_VERTICALLY, false);
 
 	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, true);
 	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);

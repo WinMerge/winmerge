@@ -155,7 +155,7 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		if(row==curRow)
 			continue;
 
-		CScrollBar* curBar = GetScrollBarCtrl(GetPane(curRow, 0), SB_VERT);
+		CScrollBar* curBar = GetScrollBarCtrl(GetPane(row, 0), SB_VERT);
 		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
 		int newPos = (int) (temp/oldLimit);
 
@@ -294,5 +294,64 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 			EqualizeRows();
 		}
 	}
+
+}
+
+void CSplitterWndEx::FlipSplit()
+{
+	int nRows = m_nCols, nCols = m_nRows;
+	CWnd **pColPanes = new CWnd*[nCols];
+	CWnd **pRowPanes = new CWnd*[nRows];
+
+	BOOL bHasVScroll = m_bHasHScroll;
+	BOOL bHasHScroll = m_bHasVScroll;
+
+	CScrollBar *pBar;
+	int pane;
+	for (pane = 1; pane < nRows; pane++)
+	{
+		pRowPanes[pane] = GetDlgItem(IdFromRowCol( 0, pane ));
+		pBar = pRowPanes[pane]->GetScrollBarCtrl(SB_HORZ);
+		if (pBar)
+			pBar->ShowWindow(SW_HIDE);
+		pBar = pRowPanes[pane]->GetScrollBarCtrl(SB_VERT);
+		if (pBar)
+			pBar->ShowWindow(SW_HIDE);
+	}
+	for (pane = 1; pane < nCols; pane++)
+	{
+		pColPanes[pane] = GetDlgItem(IdFromRowCol( pane, 0 ));
+		pBar = pColPanes[pane]->GetScrollBarCtrl(SB_HORZ);
+		if (pBar)
+			pBar->ShowWindow(SW_HIDE);
+		pBar = pColPanes[pane]->GetScrollBarCtrl(SB_VERT);
+		if (pBar)
+			pBar->ShowWindow(SW_HIDE);
+	}
+
+	m_nMaxCols = m_nCols = nCols;
+	m_nMaxRows = m_nRows = nRows;
+
+	CRowColInfo* pTmp = m_pColInfo;
+	m_pColInfo = m_pRowInfo;
+	m_pRowInfo = pTmp;
+
+	for (pane = 1; pane < nRows; pane++)
+		pRowPanes[pane]->SetDlgCtrlID( IdFromRowCol( pane, 0 ));
+	for (pane = 1; pane < nCols; pane++)
+		pColPanes[pane]->SetDlgCtrlID( IdFromRowCol( 0, pane ));
+
+	SetScrollStyle(0);
+	SetScrollStyle(
+		(bHasVScroll ? WS_VSCROLL : 0) | 
+		(bHasHScroll ? WS_HSCROLL : 0));
+
+	RecalcLayout();
+
+	EqualizeCols();
+	EqualizeRows();
+
+	delete [] pColPanes;
+	delete [] pRowPanes;
 
 }

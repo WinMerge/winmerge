@@ -432,6 +432,7 @@ BEGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM "Split V&ertically",           ID_VIEW_SPLITVERTICALLY
         MENUITEM SEPARATOR
         POPUP "&Toolbar"
         BEGIN
