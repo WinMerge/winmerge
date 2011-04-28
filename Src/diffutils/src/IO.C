@@ -42,12 +42,12 @@ typedef unsigned word;
 /** @brief Known Unicode encodings. */
 enum UNICODESET
 {
-	NONE = 0,  /**< No unicode. */
-	UCS2LE,    /**< UCS-2 / UTF-16 little endian. */
-	UCS2BE,    /**< UCS-2 / UTF-16 big endian. */
-	UTF8,      /**< UTF-8. */
-	UCS4LE,    /**< UTF-32 little endian */
-	UCS4BE,    /**< UTF-32 big-endian */
+  NONE = 0,  /**< No unicode. */
+  UCS2LE,    /**< UCS-2 / UTF-16 little endian. */
+  UCS2BE,    /**< UCS-2 / UTF-16 big endian. */
+  UTF8,      /**< UTF-8. */
+  UCS4LE,    /**< UTF-32 little endian */
+  UCS4BE,    /**< UTF-32 big-endian */
 };
 
 /* Lines are put into equivalence classes (of lines that match in line_cmp).
@@ -100,19 +100,19 @@ static enum UNICODESET get_unicode_signature(struct file_data *current)
   memcpy(&sig, current->buffer, min(current->buffered_chars, 4));
   // check for the two possible 4 bytes signatures
   if (sig == 0x0000FEFF)
-	return UCS4LE;
+    return UCS4LE;
   if (sig == 0xFFFE0000)
-	return UCS4BE;
+    return UCS4BE;
   // check for the only possible 3 bytes signature
   sig &= 0xFFFFFF;
   if (sig == 0xBFBBEF)
-	return UTF8;
+    return UTF8;
   // check for the two possible 2 bytes signatures
   sig &= 0xFFFF;
   if (sig == 0xFEFF)
-	return UCS2LE;
+    return UCS2LE;
   if (sig == 0xFFFE)
-	return UCS2BE;
+    return UCS2BE;
   // none of the above checks has passed, so probably no unicode
   return NONE;
 }
@@ -181,37 +181,37 @@ slurp (current)
     ;
   else if (always_text_flag || current->buffered_chars != 0)
     {
-	  enum UNICODESET sig = get_unicode_signature(current);
-	  size_t alloc_extra
-		= (1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE))
-		  // some flavor of non octet encoded unicode?
-		  ? ~0U	// yes, allocate extra room for transcoding
-		  : 0U;	// no, allocate no extra room for transcoding
+      enum UNICODESET sig = get_unicode_signature(current);
+      size_t alloc_extra
+        = (1 << sig) & ((1 << UCS2LE) | (1 << UCS2BE) | (1 << UCS4LE) | (1 << UCS4BE))
+          // some flavor of non octet encoded unicode?
+          ? ~0U	// yes, allocate extra room for transcoding
+          : 0U;	// no, allocate no extra room for transcoding
 
       for (;;)
         {
           if (current->buffered_chars == current->bufsize)
             {
-			  if (S_ISREG (current->stat.st_mode))
-			    {
-			  /* Get the size out of the stat block.
-				 Allocate 50% extra room for a necessary transcoding to UTF-8.
-				 Allocate enough room for appended newline and sentinel.
-				 Allocate at least one block, to prevent overrunning the buffer
-				 when comparing growing binary files. */
-			      current->bufsize = max (current->bufsize,
-				    current->stat.st_size + (alloc_extra & current->stat.st_size / 2) + sizeof (word) + 1);
-			    }
-			  else
-			    {
+              if (S_ISREG (current->stat.st_mode))
+                {
+              /* Get the size out of the stat block.
+                 Allocate 50% extra room for a necessary transcoding to UTF-8.
+                 Allocate enough room for appended newline and sentinel.
+                 Allocate at least one block, to prevent overrunning the buffer
+                 when comparing growing binary files. */
+                  current->bufsize = max (current->bufsize,
+                    current->stat.st_size + (alloc_extra & current->stat.st_size / 2) + sizeof (word) + 1);
+                }
+              else
+                {
 #ifdef __MSDOS__
-			      current->bufsize += 4096;
+                  current->bufsize += 4096;
 #else
                   current->bufsize = current->bufsize * 2;
 #endif /*__MSDOS__*/
-			    }
+                }
 #ifdef __MSDOS__
-			  current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
+              current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
 #else
               current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
@@ -226,7 +226,7 @@ slurp (current)
           current->buffered_chars += cc;
         }
 #ifndef __MSDOS__
-	  /* Allocate 50% extra room for a necessary transcoding to UTF-8.
+      /* Allocate 50% extra room for a necessary transcoding to UTF-8.
          Allocate enough room for appended newline and sentinel. */
       current->bufsize = current->buffered_chars + (alloc_extra & current->buffered_chars / 2) + sizeof (word) + 1;
       current->buffer = xrealloc (current->buffer, current->bufsize);

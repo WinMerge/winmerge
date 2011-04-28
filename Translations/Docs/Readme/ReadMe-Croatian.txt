@@ -16,7 +16,7 @@ Quick start
 ===========
 Pokrnuli ste WinMerge, kliknite Pomoæ --> Quick start i nauèite kako koristiti
 osnovne moguænosti, ili poðite na Internet i posjetite
-http://winmerge.org/docs/manual/QuickStart.html.
+http://manual.winmerge.org/QuickStart.html.
 
 WinMerge Pomoæ
 ============= 
@@ -26,7 +26,7 @@ pritiskom tipke F1 u izborniku programa WinMerge. S komandne linije pokreæe se
 naredbom, /? help.
 
  
-Na internetu na http://winmerge.org/docs/manual/ takoðer možete pregledati
+Na internetu na http://manual.winmerge.org/ takoðer možete pregledati
 WinMerge Help.
 
 Podrška arhiva

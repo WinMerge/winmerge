@@ -34,11 +34,12 @@ DATE:		BY:					DESCRIPTION:
 								Accept extraction folder on command line
 								Batch options: /standalone, /select, /commit
 2010-05-13	Jochen Neubeck		Base application specific installation on 7z465
+2010-12-25	Jochen Neubeck		Base application specific installation on 7z920
 */
 
 #include <windows.h>
 
-#define VERSION7Z 4.65
+#define VERSION7Z 9.20
 
 #define SHARPEN(X) #X
 #define SHARPEN2(X) SHARPEN(X)
@@ -265,11 +266,6 @@ BOOL CALLBACK DlgMain_InitDialog(HWND hWnd, LPARAM lParam)
 		{
 			bCommit = TRUE;
 		}
-		/*//just for test
-		else if (0 == lstrcmpi(lpArgLower, "\"ping pong\""))
-		{
-			MessageBox(hWnd, "", lpArgLower, 0);
-		}*/
 		else
 		{
 			DWORD dwAttributes = GetFileAttributes(lpArgLower);
@@ -376,7 +372,7 @@ BOOL CALLBACK DlgMain_EnableStandalone(HWND hWnd)
 	{
 		TCHAR buffer[40];
 		const UINT major = UINT(VERSION7Z);
-		const UINT minor = UINT(VERSION7Z * 100) % 100;
+		const UINT minor = UINT(VERSION7Z * 100 + 0.5) % 100;
 		wsprintf(buffer, "Merge7z%u%02u.dll", major, minor);
 		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)buffer);
 		wsprintf(buffer, "Merge7z%u%02uU.dll", major, minor);

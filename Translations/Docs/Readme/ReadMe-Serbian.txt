@@ -16,7 +16,7 @@ http://winmerge.org/.
 ===========
 Да би сте сазнали како да користите WinMerge, кликните на дугме
 'Помоћ' и идите на Quick start или идите на интернет и посетите
- http://winmerge.org/docs/manual/QuickStart.html.
+ http://manual.winmerge.org/QuickStart.html.
 
 WinMerge Помоћ
 ============= 
@@ -26,7 +26,7 @@ WinMerge Помоћ је инсталиран као Microsoft HTML Help датотека назива WinMerge.ch
 
 
 Такође можете прегледати WinMerge Help на следећој адреси
-http://winmerge.org/docs/manual/.
+http://manual.winmerge.org/.
 
 Подршка архива
 ===============

@@ -75,6 +75,7 @@ Localization:
 
 * Hungarian:
   Márton Balázs <documan@users.sourceforge.net>
+  Mihalicza József <jmihalicza@gmail.com>
 
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>
@@ -182,6 +183,7 @@ Other Contributors (code, ideas, testing..):
 * Vikrant
 * Gilbert Wellisch
 * Paul Welter
+* Lars Wittenburg
 
 
 WinMerge includes code from:

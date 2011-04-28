@@ -727,8 +727,8 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
  */
 void CChildFrame::OnViewSplitVertically() 
 {
-	bool bSplitVertically = !GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY);
-	GetOptionsMgr()->SaveOption(OPT_SPLIT_VERTICALLY, bSplitVertically);
+	bool bSplitVertically = (m_wndSplitter.GetColumnCount() == 1);
+	GetOptionsMgr()->SaveOption(OPT_SPLIT_VERTICALLY, !bSplitVertically);
 	m_wndSplitter.FlipSplit();
 	m_wndDetailSplitter.FlipSplit();
 }
@@ -739,7 +739,7 @@ void CChildFrame::OnViewSplitVertically()
 void CChildFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY));
+	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() == 1));
 }
 
 /// Document commanding us to close

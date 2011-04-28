@@ -17,7 +17,7 @@ Quick start (Snabbstart)
 För att lära sig hur man ska utföra grundläggande uppgifter efter att ha 
 installerat WinMerge, klicka på "Hjälp>WinMerge Hjälp") 
 och navigera till "Quick start"-ämnet.  Eller, gå till Internetversionen på
-http://winmerge.org/docs/manual/QuickStart.html.
+http://manual.winmerge.org/QuickStart.html.
 
 WinMerge Help (WinMerges Hjälp)
 ============= 
@@ -27,7 +27,7 @@ WinMerge.chm,när du installerar WinMerge. För att öppna Hjälpen, klicka på
 kör WinMerge-programmet med  /? hjälpparametern.
 
 Du kan också bläddra i HTML-versionen av WinMerges Hjälp på 
-http://winmerge.org/docs/manual/.
+http://manual.winmerge.org/.
 
 Archive Support (Arkivsupport)
 ===============

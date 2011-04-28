@@ -82,10 +82,10 @@
         <ComponentRef Id="Ukrainian" />
         <ComponentRef Id="SetDefaultWinMergeLanguage" />
       </Feature>
-      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 Runtime Components ">
+      <Feature Id="CRT" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2008 Runtime Components ">
         <MergeRef Id="CRT"/>
       </Feature>
-      <Feature Id="MFC" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2005 MFC Components ">
+      <Feature Id="MFC" AllowAdvertise="no" Display="hidden" Level="1" Title="Microsoft Visual C++ 2008 MFC Components ">
         <MergeRef Id="MFC"/>
       </Feature>
     </Feature>
