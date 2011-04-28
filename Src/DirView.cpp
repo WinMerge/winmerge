@@ -3647,7 +3647,7 @@ void CDirView::OnCopyBothPathnames()
 
 		if (!di.diffcode.isSideFirstOnly())
 		{
-			strPaths += di. getFilepath(1, pDoc->GetRightBasePath());
+			strPaths += di.getFilepath(1, pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].filename);

@@ -9,11 +9,11 @@ http://winmerge.org
 
 Inici ràpid amb el WinMerge:
 Llegiu el capítol Quick-start del manual en línia per a començar amb el WinMerge:
-http://winmerge.org/docs/manual/QuickStart.html
+http://manual.winmerge.org/QuickStart.html
 
 Manual HTML:
 El manual està disponible en línia a
-http://winmerge.org/docs/manual/
+http://manual.winmerge.org/
 Possiblement també estigui instal·lada localment (si així es va triar) i es pot 
 baixar separadament des de http://winmerge.org/ (veieu la documentació)
 

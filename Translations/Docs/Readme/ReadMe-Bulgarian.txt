@@ -9,11 +9,11 @@ http://winmerge.org
 
 Бързо въведение в WinMerge:
 Моля, прочетете помощната онлайн информация за кратко въведение в WinMerge:
-http://winmerge.org/docs/manual/QuickStart.html
+http://manual.winmerge.org/QuickStart.html
 
 HTML ръководство:
 Ръководството е достъпно онлайн на адрес:
-http://winmerge.org/docs/manual/
+http://manual.winmerge.org/
 може да е инсталирано на Вашият компютър (ако е избрано) или да го
 свалите от http://winmerge.org/ (вижте документацията)
 

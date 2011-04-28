@@ -75,7 +75,7 @@ static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 // registry dir to WinMerge
 static CString f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
-
+#ifndef WIN64
 /**
  * @brief Turn STL exceptions into MFC exceptions.
  * Based on the article "Visual C++ Exception-Handling Instrumentation"
@@ -132,6 +132,7 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 		RaiseException(CPP_EXCEPTION, EXCEPTION_NONCONTINUABLE, sizeof(args)/sizeof(args[0]), args);
 	}
 }
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp

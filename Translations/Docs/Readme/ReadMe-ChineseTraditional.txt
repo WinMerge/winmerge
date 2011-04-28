@@ -8,13 +8,13 @@ WinMerge 最新版與資訊在：http://winmerge.org/
 
 立即上手
 ===========
-安裝後，學習基本操作，按 說明 > WinMerge 說明。瀏覽 Quick Start 章。或至 http://winmerge.org/docs/manual/QuickStart.html 瀏覽其網路版。
+安裝後，學習基本操作，按 說明 > WinMerge 說明。瀏覽 Quick Start 章。或至 http://manual.winmerge.org/QuickStart.html 瀏覽其網路版。
 
 WinMerge 說明
 ============= 
 安裝 WinMerge 時，其說明檔在地安裝成 Microsoft HTML Help 檔 ( WinMerge.chm)。開啟說明檔，按：Help > WinMerge 說明。或於WinMerge 窗，按 F1。於命令列，則以 "/?" 參數執行 WinMerge 的可執行檔。
 
-您也可以到 http://winmerge.org/docs/manual/ 瀏覽其HTML 版。
+您也可以到 http://manual.winmerge.org/ 瀏覽其HTML 版。
 
 壓縮支援
 ===============

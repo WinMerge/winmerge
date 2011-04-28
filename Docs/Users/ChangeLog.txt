@@ -8,8 +8,13 @@ WinMerge 2.15.1
   Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Installer: Don't install quick launch icon for Windows 7 (#3079966)
   Installer: Add OpenCandy to the InnoSetup installer (#3088720)
+  Bugfix: No menu icons was shown on Windows x64 (#3070151)
+  Bugfix: Crash when pasting from clipboard (#3109525)
+  Bugfix: Keeps verifing path even turned off in options (#3111581)
+  Bugfix: Crash after deleting text (#3109521)
   Translation updates:
   - Bulgarian (#3082392)
+  - Hungarian (#3164982)
 
 WinMerge 2.13.14 - 2010-09-15 (r7263)
   Update release compiler and runtimes to VS2008

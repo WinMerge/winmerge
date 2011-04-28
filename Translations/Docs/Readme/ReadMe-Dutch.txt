@@ -17,7 +17,7 @@ Quickstart
 ==========
 om te leren hoe u basisoperaties uitvoert na de installatie van WinMerge klikt u op
 Help > WinMerge Help en navigeert u naar het Quickstart-topic. U kan ook naar de 
-webversie gaan op http://winmerge.org/docs/manual/QuickStart.html.
+webversie gaan op http://manual.winmerge.org/QuickStart.html.
 
 WinMerge-help
 ============= 
@@ -27,7 +27,7 @@ Help > WinMerge Help of drukt u F1 in het WinMerge-venster. In de opdrachtregel
 start u het uitvoerbestand van WinMerge (WinMerge.exe) met de /? help-switch.
 
 U kan ook surfen naar de HTML-version van WinMerge-help op 
-http://winmerge.org/docs/manual/.
+http://manual.winmerge.org/.
 
 Archiefondersteuning
 ====================

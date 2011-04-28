@@ -458,58 +458,58 @@ UINT UpdateButtonStatesThread(LPVOID lpParam)
 				bInvalid[2] = TRUE;
 		}
 
-		PATH_EXISTENCE pathsType = DOES_NOT_EXIST;
-
-		if (paths.GetSize() <= 2)
-		{
-			if (bInvalid[0] && bInvalid[1])
-				iStatusMsgId = IDS_OPEN_BOTHINVALID;
-			else if (bInvalid[0])
-				iStatusMsgId = IDS_OPEN_LEFTINVALID;
-			else if (bInvalid[1])
-				iStatusMsgId = IDS_OPEN_RIGHTINVALID;
-			else if (!bInvalid[0] && !bInvalid[1])
-			{
-				pathsType = GetPairComparability(paths, IsArchiveFile);
-				if (pathsType == DOES_NOT_EXIST)
-					iStatusMsgId = IDS_OPEN_MISMATCH;
-				else
-					iStatusMsgId = IDS_OPEN_FILESDIRS;
-			}
-		}
-		else
-		{
-			if (bInvalid[0] && bInvalid[1] && bInvalid[2])
-				iStatusMsgId = IDS_OPEN_ALLINVALID;
-			else if (!bInvalid[0] && bInvalid[1] && bInvalid[2])
-				iStatusMsgId = IDS_OPEN_MIDDLERIGHTINVALID;
-			else if (bInvalid[0] && !bInvalid[1] && bInvalid[2])
-				iStatusMsgId = IDS_OPEN_LEFTRIGHTINVALID;
-			else if (!bInvalid[0] && !bInvalid[1] && bInvalid[2])
-				iStatusMsgId = IDS_OPEN_RIGHTINVALID;
-			else if (bInvalid[0] && bInvalid[1] && !bInvalid[2])
-				iStatusMsgId = IDS_OPEN_LEFTMIDDLEINVALID;
-			else if (!bInvalid[0] && bInvalid[1] && !bInvalid[2])
-				iStatusMsgId = IDS_OPEN_MIDDLEINVALID;
-			else if (bInvalid[0] && !bInvalid[1] && !bInvalid[2])
-				iStatusMsgId = IDS_OPEN_LEFTINVALID;
-			else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
-			{
-				pathsType = GetPairComparability(paths, IsArchiveFile);
-				if (pathsType == DOES_NOT_EXIST)
-					iStatusMsgId = IDS_OPEN_MISMATCH;
-				else
-					iStatusMsgId = IDS_OPEN_FILESDIRS;
-			}
-		}
-		if (pathsType == IS_EXISTING_FILE || bProject)
-			iUnpackerStatusMsgId = 0;	//Empty field
-		else
-			iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
-
 		// Enable buttons as appropriate
 		if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 		{
+			PATH_EXISTENCE pathsType = DOES_NOT_EXIST;
+
+			if (paths.GetSize() <= 2)
+			{
+				if (bInvalid[0] && bInvalid[1])
+					iStatusMsgId = IDS_OPEN_BOTHINVALID;
+				else if (bInvalid[0])
+					iStatusMsgId = IDS_OPEN_LEFTINVALID;
+				else if (bInvalid[1])
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+				else if (!bInvalid[0] && !bInvalid[1])
+				{
+					pathsType = GetPairComparability(paths, IsArchiveFile);
+					if (pathsType == DOES_NOT_EXIST)
+						iStatusMsgId = IDS_OPEN_MISMATCH;
+					else
+						iStatusMsgId = IDS_OPEN_FILESDIRS;
+				}
+			}
+			else
+			{
+				if (bInvalid[0] && bInvalid[1] && bInvalid[2])
+					iStatusMsgId = IDS_OPEN_ALLINVALID;
+				else if (!bInvalid[0] && bInvalid[1] && bInvalid[2])
+					iStatusMsgId = IDS_OPEN_MIDDLERIGHTINVALID;
+				else if (bInvalid[0] && !bInvalid[1] && bInvalid[2])
+					iStatusMsgId = IDS_OPEN_LEFTRIGHTINVALID;
+				else if (!bInvalid[0] && !bInvalid[1] && bInvalid[2])
+					iStatusMsgId = IDS_OPEN_RIGHTINVALID;
+				else if (bInvalid[0] && bInvalid[1] && !bInvalid[2])
+					iStatusMsgId = IDS_OPEN_LEFTMIDDLEINVALID;
+				else if (!bInvalid[0] && bInvalid[1] && !bInvalid[2])
+					iStatusMsgId = IDS_OPEN_MIDDLEINVALID;
+				else if (bInvalid[0] && !bInvalid[1] && !bInvalid[2])
+					iStatusMsgId = IDS_OPEN_LEFTINVALID;
+				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
+				{
+					pathsType = GetPairComparability(paths, IsArchiveFile);
+					if (pathsType == DOES_NOT_EXIST)
+						iStatusMsgId = IDS_OPEN_MISMATCH;
+					else
+						iStatusMsgId = IDS_OPEN_FILESDIRS;
+				}
+			}
+			if (pathsType == IS_EXISTING_FILE || bProject)
+				iUnpackerStatusMsgId = 0;	//Empty field
+			else
+				iUnpackerStatusMsgId = IDS_OPEN_UNPACKERDISABLED;
+
 			if (bProject)
 				bButtonEnabled = TRUE;
 			else
