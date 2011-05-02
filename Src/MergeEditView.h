@@ -126,6 +126,10 @@ protected:
 	 * certain time from previous rescan.
 	 */
 	bool m_bAutomaticRescan;
+	/// first line of diff (first displayable line)
+	int m_lineBegin;
+	/// last line of diff (last displayable line)
+	int m_lineEnd; 
 
 private:
 	/** 
@@ -194,6 +198,12 @@ public:
 	virtual void PrintFooter(CDC * pdc, int nPageNum);
 	virtual void SetWordWrapping( BOOL bWordWrap );
 	void UpdateStatusbar();
+	CMergeEditView *GetGroupView(int nPane) {
+		return (this == GetDocument()->GetView(this->m_nThisPane)) ? GetDocument()->GetView(nPane) : GetDocument()->GetDetailView(nPane);
+	}
+	bool IsDetailViewPane() { return (GetDocument()->GetView(m_nThisPane) != this); };
+
+	virtual void OnDisplayDiff(int nDiff=0);
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);

@@ -79,7 +79,7 @@ enum LOCBAR_TYPE
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// CMergeDiffDetailView
+// CLocationView
 
 IMPLEMENT_DYNCREATE(CLocationView, CView)
 

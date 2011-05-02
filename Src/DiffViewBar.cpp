@@ -78,7 +78,7 @@ int CDiffViewBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (TViewBarBase::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	SetSCBStyle(SCBS_EDGETOP | 	SCBS_EDGEBOTTOM);
+	SetSCBStyle(SCBS_EDGETOP | SCBS_EDGEBOTTOM | SCBS_SIZECHILD);
 	
 	return 0;
 }
@@ -111,14 +111,7 @@ void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
 void CDiffViewBar::OnSize(UINT nType, int cx, int cy) 
 {
 	TViewBarBase::OnSize(nType, cx, cy);
-	// the frame window is our parent frame
-	// it will resize the splitter (or any other control in the CDiffViewBar)
-	CFrameWnd * paren = GetParentFrame();
-	// If this is a floating window (for example they try to dock to the side),
-	// we get reparented to some minidockbar -- Perry, 2003-08-16
-	CChildFrame * pframe = dynamic_cast<CChildFrame *>(paren);
-	if (pframe)		
-		UpdateBarHeight(-1);
+	UpdateBarHeight(-1);
 }
 
 /**

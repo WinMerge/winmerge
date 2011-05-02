@@ -271,9 +271,6 @@
     <ClCompile Include="MergeCmdLineInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MergeDiffDetailView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MergeDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -996,9 +993,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeCmdLineInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeDiffDetailView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeDoc.h">

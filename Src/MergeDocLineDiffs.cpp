@@ -13,7 +13,6 @@
 #include "MainFrm.h"
 
 #include "MergeEditView.h"
-#include "MergeDiffDetailView.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
 
@@ -49,33 +48,6 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 }
 
 /**
- * @brief Display the line/word difference highlight in detail view
- *
- * Not combined with HighlightDiffRect(CMergeEditView *.. because
- * CMergeEditView & CMergeDiffDetailView do not inherit from a common base
- * which implements SelectArea etc.
- */
-static void
-HighlightDiffRect(CMergeDiffDetailView * pView, const CRect & rc)
-{
-	if (rc.top == -1)
-	{
-		// Should we remove existing selection ?
-	}
-	else
-	{
-		// select the area
-		// with anchor at left and caret at right
-		// this seems to be conventional behavior in Windows editors
-		pView->SelectArea(rc.TopLeft(), rc.BottomRight());
-		pView->SetCursorPos(rc.BottomRight());
-		pView->SetNewAnchor(rc.TopLeft());
-		// try to ensure that selected area is visible
-		pView->EnsureVisible(rc.TopLeft());
-	}
-}
-
-/**
  * @brief Highlight difference in current line (left & right panes)
  */
 void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
@@ -97,30 +69,6 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 	// Actually display selection areas on screen in both edit panels
 	for (pane = 0; pane < m_nBuffers; pane++)
 		HighlightDiffRect(m_pView[pane], rc[pane]);
-}
-
-/**
- * @brief Highlight difference in diff bar's current line (top & bottom panes)
- */
-void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl)
-{
-	CRect rc[3];
-	int pane;
-	CCrystalTextView *pCrystalTextView[3] = {m_pView[0], m_pView[1], m_pView[2]};
-
-	Computelinediff(pCrystalTextView, pView->GetCursorPos().y, rc, difflvl);
-
-	IF_IS_TRUE_ALL ((rc[pane].top == -1), pane, m_nBuffers)
-	{
-		String caption = theApp.LoadString(IDS_LINEDIFF_NODIFF_CAPTION);
-		String msg = theApp.LoadString(IDS_LINEDIFF_NODIFF);
-		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
-		return;
-	}
-
-	// Actually display selection areas on screen in both detail panels
-	for (pane = 0; pane < m_nBuffers; pane++)
-		HighlightDiffRect(m_pDetailView[pane], rc[pane]);
 }
 
 /**

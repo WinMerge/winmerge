@@ -33,7 +33,6 @@
 #include "ChildFrm.h"
 #include "MainFrm.h"
 #include "MergeEditView.h"
-#include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "DiffViewBar.h"
 #include "charsets.h"
@@ -197,7 +196,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// create a splitter with 2 rows, 1 column
 	// this is not a vertical scrollable splitter (see MergeDiffDetailView.h)
 	if (!m_wndDetailSplitter.CreateStatic(&m_wndDetailBar, SWAPPARAMS_IF(bSplitVert, pDoc->m_nBuffers, 1),
-		WS_CHILD | WS_VISIBLE | WS_HSCROLL, AFX_IDW_PANE_FIRST+1) )
+		WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL, AFX_IDW_PANE_FIRST+1) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
@@ -206,7 +205,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	{
 		// add splitter pane - the default view in column (pane)
 		if (!m_wndDetailSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, pane, 0),
-			RUNTIME_CLASS(CMergeDiffDetailView), CSize(-1, 200), pContext))
+			RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
 		{
 			TRACE1("Failed to create pane %d\n", pane);
 			return FALSE;
@@ -230,10 +229,10 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_pMergeDoc->SetMergeViews(pView);
 
 	// stash left & right detail pointers into the mergedoc
-	CMergeDiffDetailView * pDetail[3];
+	CMergeEditView * pDetail[3];
 	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		pDetail[pane] = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0));
+		pDetail[pane] = (CMergeEditView *)m_wndDetailSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, pane, 0));
 		pDetail[pane]->m_nThisPane = pane;
 	}
 	// tell merge doc about these views
@@ -243,8 +242,6 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	
 	// Set frame window handles so we can post stage changes back
 	((CLocationView *)pWnd)->SetFrameHwnd(GetSafeHwnd());
-	for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-		pDetail[pane]->SetFrameHwnd(GetSafeHwnd());
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 	m_wndDetailBar.SetFrameHwnd(GetSafeHwnd());
 
@@ -469,10 +466,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 			nCmdShow = SW_SHOWNORMAL;
 	}
 
-	// load the bars layout
-	// initialize the diff pane state with default dimension
-	int initialDiffHeight = ((CMergeDiffDetailView*)m_wndDetailSplitter.GetPane(0,0))->ComputeInitialHeight();
-	UpdateDiffDockbarHeight(initialDiffHeight);
 	// load docking positions and sizes
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings"));

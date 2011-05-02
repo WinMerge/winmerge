@@ -111,7 +111,6 @@ enum BUFFERTYPE
 
 struct DiffFileInfo;
 class CMergeEditView;
-class CMergeDiffDetailView;
 class PackingInfo;
 class PrediffingInfo;
 class CChildFrame;
@@ -186,14 +185,14 @@ public:
 	void SetPrediffer(PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	void SetMergeViews(CMergeEditView * pView[]);
-	void SetMergeDetailViews(CMergeDiffDetailView * pView[]);
+	void SetMergeDetailViews(CMergeEditView * pView[]);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
 	void SwapFiles();
 
 	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
-	CMergeDiffDetailView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
+	CMergeEditView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
 	CChildFrame * GetParentFrame();
 	const FileTextEncoding & GetEncoding(int file) const
 			{ return m_ptBuf[file]->getEncoding(); }
@@ -213,7 +212,6 @@ public:
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl);
-	void Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl);
 	void GetWordDiffArray(int nLineIndex, std::vector<wdiff*> *pworddiffs);
 private:
 	void Computelinediff(CCrystalTextView * pView[], int line, CRect rc[], DIFFLEVEL difflvl);
@@ -253,7 +251,7 @@ private:
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
 	CMergeEditView * m_pView[3]; /**< Pointer to left/middle/right view */
-	CMergeDiffDetailView * m_pDetailView[3];
+	CMergeEditView * m_pDetailView[3];
 	CDirDoc * m_pDirDoc;
 	bool m_bEnableRescan; /**< Automatic rescan enabled/disabled */
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 

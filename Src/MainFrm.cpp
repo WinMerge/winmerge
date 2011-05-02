@@ -43,7 +43,6 @@
 #include "OpenDlg.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
-#include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "SyntaxColors.h"
 #include "LineFiltersList.h"
@@ -1623,7 +1622,7 @@ void CMainFrame::OnViewSelectfont()
 				for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 				{
 					CMergeEditView * pView = pDoc->GetView(pane);
-					CMergeDiffDetailView * pDetailView = pDoc->GetDetailView(pane);
+					CMergeEditView * pDetailView = pDoc->GetDetailView(pane);
 					if (pView)
 						pView->SetFont(m_lfDiff);
 					if (pDetailView)
@@ -1982,7 +1981,7 @@ void CMainFrame::ApplyViewWhitespace()
 		for (int pane = 0; pane < pMergeDoc->m_nBuffers; pane++)
 		{
 			CMergeEditView * pView = pMergeDoc->GetView(pane);
-			CMergeDiffDetailView * pDetailView = pMergeDoc->GetDetailView(pane);
+			CMergeEditView * pDetailView = pMergeDoc->GetDetailView(pane);
 			if (pView)
 			{
 				pView->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));

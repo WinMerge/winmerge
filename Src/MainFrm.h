@@ -67,7 +67,6 @@ class CDirDoc;
 class CMergeDoc;
 class CHexMergeDoc;
 class CMergeEditView;
-class CMergeDiffDetailView;
 class SyntaxColors;
 class LineFiltersList;
 class TempFile;

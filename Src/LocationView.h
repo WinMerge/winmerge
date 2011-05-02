@@ -76,7 +76,7 @@ protected:
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMergeDiffDetailView)
+	//{{AFX_VIRTUAL(CLocationView)
 	public:
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual void OnDraw(CDC* pDC);
