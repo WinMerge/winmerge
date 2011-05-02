@@ -3340,43 +3340,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="MergeDiffDetailView.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="MergeDoc.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6534,9 +6497,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 			</File>
 			<File
 				RelativePath="MergeCmdLineInfo.h">
-			</File>
-			<File
-				RelativePath="MergeDiffDetailView.h">
 			</File>
 			<File
 				RelativePath="MergeDoc.h">

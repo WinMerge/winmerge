@@ -32,7 +32,6 @@
 #include "Merge.h"
 #include "LocationView.h"
 #include "MergeEditView.h"
-#include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
@@ -363,6 +362,9 @@ void CMergeEditView::OnInitialUpdate()
 {
 	CCrystalEditViewEx::OnInitialUpdate();
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
+
+	m_lineBegin = 0;
+	m_lineEnd = -1;
 }
 
 void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
@@ -377,6 +379,12 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 {
 	pBuf = NULL;
 
+	if (IsDetailViewPane())
+	{
+		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
+			return 0;
+	}
+
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
 	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF)
 		return 0;
@@ -388,7 +396,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	int unemptyLineCount = 0;
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
 	{
-		if ((pDoc->GetView(nPane)->GetLineCount() > nLineIndex) && !(pDoc->GetView(nPane)->GetLineFlags(nLineIndex) & LF_GHOST))
+		if ((GetGroupView(nPane)->GetLineCount() > nLineIndex) && !(GetGroupView(nPane)->GetLineFlags(nLineIndex) & LF_GHOST))
 			unemptyLineCount++;
 	}
 	if (unemptyLineCount < 2)
@@ -512,6 +520,43 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 
 	if (dwLineFlags & ignoreFlags)
 		dwLineFlags &= (~ignoreFlags);
+
+	if (IsDetailViewPane())
+	{
+		// Line with WinMerge flag, 
+		// Lines with only the LF_DIFF/LF_TRIVIAL flags are not colored with Winmerge colors
+		if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED & ~LF_SNP))
+		{
+			crText = m_cachedColors.clrDiffText;
+			bDrawWhitespace = true;
+
+			if (dwLineFlags & LF_GHOST)
+			{
+				crBkgnd = m_cachedColors.clrDiffDeleted;
+			}
+		}
+		else
+		{
+			// If no syntax hilighting
+			if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
+			{
+				crBkgnd = GetColor (COLORINDEX_BKGND);
+				crText = GetColor (COLORINDEX_NORMALTEXT);
+				bDrawWhitespace = FALSE;
+			}
+			else
+				// Line not inside diff, get colors from CrystalEditor
+				CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
+					crText, bDrawWhitespace);
+		}
+		if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
+		{
+			crBkgnd = GetColor (COLORINDEX_WHITESPACE);
+			crText = GetColor (COLORINDEX_WHITESPACE);
+			bDrawWhitespace = FALSE;
+		}
+		return;
+	}
 
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
@@ -702,6 +747,56 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
 	}
 }
 
+void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
+{
+	int newlineBegin, newlineEnd;
+	CMergeDoc *pd = GetDocument();
+	if (nDiff < 0 || nDiff >= pd->m_diffList.GetSize())
+	{
+		newlineBegin = 0;
+		newlineEnd = -1;
+	}
+	else
+	{
+		DIFFRANGE curDiff;
+		VERIFY(pd->m_diffList.GetDiff(nDiff, curDiff));
+
+		newlineBegin = curDiff.dbegin[0];
+		ASSERT (newlineBegin >= 0);
+		newlineEnd = curDiff.dend[0];
+	}
+
+	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
+		return;
+	m_lineBegin = newlineBegin;
+	m_lineEnd = newlineEnd;
+
+	// scroll to the first line of the diff
+	ScrollToLine(m_lineBegin);
+
+	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
+	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+
+	// pSplitterWnd is NULL if WinMerge started minimized.
+	if (pSplitterWnd != NULL)
+	{
+		int nRows = pSplitterWnd->GetRowCount ();
+		int nCols = pSplitterWnd->GetColumnCount ();
+		for (int nRow = 0; nRow < nRows; nRow++)
+		{
+			for (int nCol = 0; nCol < nCols; nCol++)
+			{
+				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
+				if (pSiblingView != NULL)
+					pSiblingView->OnDisplayDiff(nDiff);
+			}
+		}
+	}
+
+	// update the width of the horizontal scrollbar
+	RecalcHorzScrollBar();
+}
+
 /**
  * @brief Selects diff by number and syncs other file
  * @param [in] nDiff Diff to select, must be >= 0
@@ -729,7 +824,8 @@ void CMergeEditView::SelectDiff(int nDiff, bool bScroll /*=true*/, bool bSelectT
 	UpdateSiblingScrollPos(false);
 
 	// notify either side, as it will notify the other one
-	pd->GetDetailView(0)->OnDisplayDiff(nDiff);
+	if (!IsDetailViewPane())
+		pd->GetDetailView(0)->OnDisplayDiff(nDiff);
 }
 
 /**
@@ -1979,7 +2075,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
 			{
 				if (nPane == m_nThisPane)
 					continue;
-				CCrystalEditView *pView = pDoc->GetView(nPane);
+				CCrystalEditView *pView = GetGroupView(nPane);
 				if (pView)
 					pView->Invalidate();
 			}
@@ -2077,23 +2173,23 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 				{
 					nLine -= CONTEXT_LINES_ABOVE;
 				}
-				pd->GetView(m_nThisPane)->ScrollToSubLine(nLine);
+				GetGroupView(m_nThisPane)->ScrollToSubLine(nLine);
 				for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
 				{
 					if (nPane != m_nThisPane)
-						pd->GetView(nPane)->ScrollToSubLine(nLine);
+						GetGroupView(nPane)->ScrollToSubLine(nLine);
 				}
 			}
-			pd->GetView(m_nThisPane)->SetCursorPos(ptStart);
-			pd->GetView(m_nThisPane)->SetAnchor(ptStart);
-			pd->GetView(m_nThisPane)->SetSelection(ptStart, ptStart);
+			GetGroupView(m_nThisPane)->SetCursorPos(ptStart);
+			GetGroupView(m_nThisPane)->SetAnchor(ptStart);
+			GetGroupView(m_nThisPane)->SetSelection(ptStart, ptStart);
 			for (int nPane = 0; nPane < pd->m_nBuffers; nPane++)
 			{
 				if (nPane != m_nThisPane)
 				{
-					pd->GetView(nPane)->SetCursorPos(ptStart);
-					pd->GetView(nPane)->SetAnchor(ptStart);
-					pd->GetView(nPane)->SetSelection(ptStart, ptStart);
+					GetGroupView(nPane)->SetCursorPos(ptStart);
+					GetGroupView(nPane)->SetAnchor(ptStart);
+					GetGroupView(nPane)->SetSelection(ptStart, ptStart);
 				}
 			}
 		}
@@ -2699,7 +2795,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusEOL(CCmdUI* pCmdUI)
 {
-	GetDocument()->GetView(pCmdUI->m_nID - ID_STATUS_PANE0FILE_EOL)->OnUpdateIndicatorCRLF(pCmdUI);
+	GetGroupView(pCmdUI->m_nID - ID_STATUS_PANE0FILE_EOL)->OnUpdateIndicatorCRLF(pCmdUI);
 }
 
 /**
@@ -2867,7 +2963,7 @@ void CMergeEditView::OnWMGoto()
 		CMergeEditView * pCurrentView = NULL;
 
 		// Get views
-		pCurrentView = pDoc->GetView(m_nThisPane);
+		pCurrentView = GetGroupView(m_nThisPane);
 
 		if (dlg.m_nGotoWhat == 0)
 		{
@@ -3202,7 +3298,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
 	{
-		CMergeEditView *pView = pDoc->GetView(nPane);
+		CMergeEditView *pView = GetGroupView(nPane);
 		pView->ScrollToSubLine(nScrollLine);
 		if (ptPos.y < pView->GetLineCount())
 		{
@@ -3220,7 +3316,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane)
 	// If goto target is another view - activate another view.
 	// This is done for user convenience as user probably wants to
 	// work with goto target file.
-	if (pDoc->GetView(pane) != pCurrentView)
+	if (GetGroupView(pane) != pCurrentView)
 	{
 		if (pSplitterWnd)
 		{
@@ -3478,7 +3574,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		// we have to invalidate line cache in all pane before calling the function related the subline.
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
-			CMergeEditView *pView = pDoc->GetView(nPane);
+			CMergeEditView *pView = GetGroupView(nPane);
 			if (pView)
 				pView->InvalidateScreenRect(FALSE);
 		}
@@ -3487,7 +3583,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 	{
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
-			CMergeEditView *pView = pDoc->GetView(nPane);
+			CMergeEditView *pView = GetGroupView(nPane);
 			if (pView)
 				pView->Invalidate();
 		}
@@ -3623,7 +3719,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 	CMergeDoc * pDoc = GetDocument();
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
-		CMergeEditView *pView = pDoc->GetView(nPane);
+		CMergeEditView *pView = GetGroupView(nPane);
 		if (pView)
 		{
 			if (nLineIndex >= pView->GetLineCount())
@@ -3651,7 +3747,7 @@ void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
     // We have to invalidate sub line index cache on both panes.
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
-		CMergeEditView *pView = pDoc->GetView(nPane);
+		CMergeEditView *pView = GetGroupView(nPane);
 		if (pView)
 			pView->CCrystalTextView::InvalidateSubLineIndexCache( nLineIndex );
 	}
@@ -3660,7 +3756,7 @@ void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
 void CMergeEditView::SetWordWrapping( BOOL bWordWrap )
 {
 	for (int pane = 0; pane < GetDocument()->m_nBuffers; pane++)
-		GetDocument()->GetView(pane)->m_bWordWrap = bWordWrap;
+		GetGroupView(pane)->m_bWordWrap = bWordWrap;
 	CCrystalTextView::SetWordWrapping(bWordWrap);
 }
 
@@ -3867,7 +3963,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 	{
-		CMergeEditView *pView = pDoc->GetView(nPane);
+		CMergeEditView *pView = GetGroupView(nPane);
 		ASSERT(pView != NULL);
 
 		if (pView != NULL)
@@ -3972,7 +4068,7 @@ void CMergeEditView::ZoomText(short amount)
 		{
 			for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 			{
-				CMergeEditView *pView = pDoc->GetView(nPane);
+				CMergeEditView *pView = GetGroupView(nPane);
 				ASSERT(pView != NULL);
 				
 				if (pView != NULL)

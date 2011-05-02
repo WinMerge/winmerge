@@ -42,7 +42,6 @@
 #include "FNMATCH.H"
 #include "coretools.h"
 #include "MergeEditView.h"
-#include "MergeDiffDetailView.h"
 #include "ChildFrm.h"
 #include "DirDoc.h"
 #include "files.h"
@@ -1543,7 +1542,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 		m_pView[nActiveViewIndexType]->EnsureVisible(m_pView[nActiveViewIndexType]->GetCursorPos());
 
 	// scroll both diff views to the same top line
-	CMergeDiffDetailView * fixedDetailView = m_pDetailView[0];
+	CMergeEditView * fixedDetailView = m_pDetailView[0];
 	if (nActiveViewIndexType >= MERGEVIEW_PANE0_DETAIL && nActiveViewIndexType <= MERGEVIEW_PANE2_DETAIL)
 		// only one view needs to scroll so do not scroll the active view
 		fixedDetailView = m_pDetailView[nActiveViewIndexType - MERGEVIEW_PANE0_DETAIL];
@@ -2193,7 +2192,7 @@ void CMergeDoc::SetMergeViews(CMergeEditView *pView[])
 /**
  * @brief Someone is giving us pointers to our detail views
  */
-void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pDetailView[])
+void CMergeDoc::SetMergeDetailViews(CMergeEditView * pDetailView[])
 {
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -2753,7 +2752,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	{
 		// prepare the four views
 		CMergeEditView * pView = GetView(index);
-		CMergeDiffDetailView * pDetail = GetDetailView(index);
+		CMergeEditView * pDetail = GetDetailView(index);
 		
 		// set the document types
 		// Warning : it is the first thing to do (must be done before UpdateView,
@@ -2845,7 +2844,10 @@ void CMergeDoc::RefreshOptions()
 
 	// Refresh view options
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
 		m_pView[nBuffer]->RefreshOptions();
+		m_pDetailView[nBuffer]->RefreshOptions();
+	}
 }
 
 /**
