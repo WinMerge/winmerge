@@ -1908,7 +1908,7 @@ void CMergeDoc::PrimeTextBuffers()
 				for (file = 0; file < m_nBuffers; file++)
 				{
 					// left side
-					UINT i;
+					int i;
 					for (i = curDiff.dbegin[file]; i <= curDiff.dend[file] ; i++)
 					{
 						if (curDiff.blank[file] == -1 || (int)i < curDiff.blank[file])

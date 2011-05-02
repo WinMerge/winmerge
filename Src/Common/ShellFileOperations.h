@@ -40,7 +40,7 @@ public:
 	void AddSourceAndDestination(const String &source, const String &destination);
 	void AddSource(const String &source);
 	void SetDestination(const String &destination);
-	void SetOperation(UINT operation, DWORD flags, HWND parentWindow = NULL);
+	void SetOperation(UINT operation, FILEOP_FLAGS flags, HWND parentWindow = NULL);
 	bool Run();
 	bool IsCanceled() const;
 	void Reset();
@@ -53,7 +53,7 @@ private:
 	std::vector<String> m_sources; /**< Source paths. */
 	std::vector<String> m_destinations; /**< Destination paths. */
 	UINT m_function; /**< Operation used, copy, move, rename or delete. */
-	DWORD m_flags; /**< Flags for the operation. */
+	FILEOP_FLAGS m_flags; /**< Flags for the operation. */
 	HWND m_parentWindow; /**< Parent window getting notifications. */
 	bool m_bOneToOneMapping; /**< Same amount of sources and destinations? */
 	bool m_isCanceled; /**< Did user cancel the operation? */
