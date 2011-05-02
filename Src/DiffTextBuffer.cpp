@@ -604,7 +604,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
 	const size_t nLineCount = m_aLines.size();
-	for (int line = 0; line < nLineCount; ++line)
+	for (size_t line = 0; line < nLineCount; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
 			continue;

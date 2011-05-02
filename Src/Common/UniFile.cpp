@@ -44,8 +44,8 @@ THE SOFTWARE.
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static void Append(String &strBuffer, LPCTSTR pchTail, int cchTail,
-		int cchBufferMin = 1024);
+static void Append(String &strBuffer, LPCTSTR pchTail, DWORD cchTail,
+		DWORD cchBufferMin = 1024);
 
 /**
  * @brief The constructor.
@@ -431,7 +431,7 @@ bool UniMemFile::ReadString(String & line, bool * lossy)
  * @return New length of the string.
  */
 static void Append(String &strBuffer, LPCTSTR pchTail,
-		int cchTail, int cchBufferMin)
+		DWORD cchTail, DWORD cchBufferMin)
 {
 	size_t cchBuffer = strBuffer.capacity();
 	size_t cchHead = strBuffer.length();

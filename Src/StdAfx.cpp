@@ -162,7 +162,8 @@ int GetClipTcharTextFormat()
 BOOL IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int (*compare)(LPCTSTR, LPCTSTR, size_t))
 {
 	TCHAR **base = (TCHAR **)pszKeywordList;
-	int lim, cmp;
+	size_t lim;
+	int cmp;
 	TCHAR **p;
 
 	for (lim = nKeywordListCount; lim != 0; lim >>= 1) {

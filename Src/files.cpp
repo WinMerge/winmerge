@@ -198,8 +198,8 @@ BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists /*=NULL*/)
 void files_UpdateFileTime(const DiffFileInfo & info)
 {
 	String path = paths_ConcatPath(info.path, info.filename);
-	_utimbuf times = {0};
+	struct __utimbuf64 times = {0};
 
 	times.modtime = info.mtime;
-	_tutime(path.c_str(), &times);
+	_tutime64(path.c_str(), &times);
 }

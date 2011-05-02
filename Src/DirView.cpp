@@ -4400,7 +4400,7 @@ DirViewTreeState *CDirView::SaveTreeState()
 		if (di.HasChildren())
 		{
 			String relpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
-			pTreeState->insert(std::pair<String, bool>(relpath, di.customFlags1 & ViewCustomFlags::EXPANDED));
+			pTreeState->insert(std::pair<String, bool>(relpath, !!(di.customFlags1 & ViewCustomFlags::EXPANDED)));
 		}
 	}
 	return pTreeState;
