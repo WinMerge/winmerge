@@ -718,6 +718,9 @@
     <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
+    <ClCompile Include="EncodingErrorDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
@@ -1345,6 +1348,9 @@
     </ClInclude>
     <ClInclude Include="CompareEngines\TimeSizeCompare.h">
       <Filter>Compare Engines</Filter>
+    </ClInclude>
+    <ClInclude Include="EncodingErrorDlg.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

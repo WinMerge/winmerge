@@ -45,15 +45,15 @@ static char THIS_FILE[] = __FILE__;
 /**
  * @brief Display file encoding dialog to user & handle user's choices
  */
-void CMergeDoc::DoFileEncodingDialog()
+bool CMergeDoc::DoFileEncodingDialog()
 {
 	if (!PromptAndSaveIfNeeded(TRUE))
-		return;
+		return false;
 	
 	CLoadSaveCodepageDlg dlg(m_nBuffers);
 	dlg.SetCodepages(m_ptBuf[0]->getCodepage());
 	if (IDOK != dlg.DoModal())
-		return;
+		return false;
 
 	bool doLeft = dlg.DoesAffectLeft();
 	bool doMiddle = dlg.DoesAffectMiddle();
@@ -80,5 +80,7 @@ void CMergeDoc::DoFileEncodingDialog()
 		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	OpenDocs(fileloc, bRO);
+
+	return true;
 }
 

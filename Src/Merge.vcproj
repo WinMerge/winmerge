@@ -2115,6 +2115,9 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\EncodingErrorDlg.cpp">
+			</File>
+			<File
 				RelativePath="Environment.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6373,6 +6376,9 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				RelativePath="EditorFilepathBar.h">
 			</File>
 			<File
+				RelativePath=".\EncodingErrorDlg.h">
+			</File>
+			<File
 				RelativePath="Environment.h">
 			</File>
 			<File
@@ -9552,5 +9558,8 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 		</Filter>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="Merge.rc"/>
 	</Globals>
 </VisualStudioProject>

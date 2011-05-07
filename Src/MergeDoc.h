@@ -219,7 +219,7 @@ private:
 
 // Implementation in MergeDocEncoding.cpp
 public:
-	void DoFileEncodingDialog();
+	bool DoFileEncodingDialog();
 // End MergeDocEncoding.cpp
 
 // Implementation
@@ -238,6 +238,7 @@ public:
 	void SetMergingMode(bool bMergingMode);
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
+	bool OpenWithUnpackerDialog();
 
 // implementation methods
 private:
