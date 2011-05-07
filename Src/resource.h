@@ -58,6 +58,7 @@
 #define IDD_PROPPAGE_SHELL              237
 #define IDD_PROPPAGE_COMPARE_FOLDER     238
 #define IDD_DIR_FILTER                  239
+#define IDD_ENCODINGERROR               240
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -501,6 +502,8 @@
 #define IDC_PREDIFFERS_FIRST            8750
 #define IDC_PREDIFFERS_LAST             8799
 #define IDC_EXPAND_SUBDIRS              8800
+#define IDC_FILEENCODING                8801
+#define IDC_PLUGIN                      8802
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001

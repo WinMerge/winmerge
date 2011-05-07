@@ -63,6 +63,7 @@
 #include "TempFile.h"
 #include "codepage_detect.h"
 #include "SelectUnpackerDlg.h"
+#include "EncodingErrorDlg.h"
 #include "MergeCmdLineInfo.h"
 
 #ifdef _DEBUG
@@ -2466,7 +2467,19 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		idres = IDS_LOSSY_TRANSCODING_BOTH; /* FIXEME */
 	
 	if (nLossyBuffers > 0)
-		LangMessageBox(idres, MB_ICONSTOP | MB_MODELESS);
+	{
+		this->GetParentFrame()->ShowWindow(SW_MINIMIZE);
+		CEncodingErrorDlg dlg(LoadResString(idres).c_str());
+		int nID = dlg.DoModal();
+		bool bResult = false;
+		if (nID == IDC_FILEENCODING)
+			bResult = DoFileEncodingDialog();
+		else if (nID == IDC_PLUGIN)
+			bResult = OpenWithUnpackerDialog();
+		this->GetParentFrame()->ShowWindow(SW_RESTORE);
+		if (bResult)
+			return OPENRESULTS_SUCCESS;
+	}
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -3086,6 +3099,30 @@ void CMergeDoc::SwapFiles()
 }
 
 /**
+ * @brief Display unpacker dialog to user & handle user's choices
+ */
+bool CMergeDoc::OpenWithUnpackerDialog()
+{
+	// let the user choose a handler
+	CSelectUnpackerDlg dlg(m_filePaths[0].c_str(), NULL);
+	// create now a new infoUnpacker to initialize the manual/automatic flag
+	PackingInfo infoUnpacker;
+	dlg.SetInitialInfoHandler(&infoUnpacker);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		infoUnpacker = dlg.GetInfoHandler();
+		SetUnpacker(&infoUnpacker);
+		OnFileReload();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+/**
  * @brief Update "Reload" item
  */
 void CMergeDoc::OnUpdateFileReload(CCmdUI* pCmdUI) 
@@ -3134,18 +3171,7 @@ void CMergeDoc::OnUpdateFileEncoding(CCmdUI* pCmdUI)
 
 void CMergeDoc::OnCtxtOpenWithUnpacker() 
 {
-	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0].c_str(), NULL);
-	// create now a new infoUnpacker to initialize the manual/automatic flag
-	PackingInfo infoUnpacker;
-	dlg.SetInitialInfoHandler(&infoUnpacker);
-
-	if (dlg.DoModal() == IDOK)
-	{
-		infoUnpacker = dlg.GetInfoHandler();
-		SetUnpacker(&infoUnpacker);
-		OnFileReload();
-	}
+	OpenWithUnpackerDialog();
 }
 
 void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
