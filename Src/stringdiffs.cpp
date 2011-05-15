@@ -18,10 +18,6 @@
 
 using std::vector;
 
-// Uncomment this to see stringdiff log messages
-// We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge
-// #define STRINGDIFF_LOGGING
-
 static bool Initialized;
 static bool CustomChars;
 static TCHAR *BreakChars;
@@ -231,7 +227,7 @@ stringdiffs::~stringdiffs()
 void
 stringdiffs::debugoutput()
 {
-	for (int i = 0; i < m_wdiffs.size(); i++)
+	for (size_t i = 0; i < m_wdiffs.size(); i++)
 	{
 		String str1;
 		String str2;
