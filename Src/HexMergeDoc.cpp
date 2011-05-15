@@ -578,7 +578,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 		sTitle = lpszTitle;
 	else
 	{
-		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		for (int nBuffer = 0; nBuffer < m_filePaths.GetSize(); nBuffer++)
 		{
 			if (!m_strDesc[nBuffer].empty())
 				sFileName[nBuffer] = m_strDesc[nBuffer];

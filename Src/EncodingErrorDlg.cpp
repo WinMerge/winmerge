@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(CEncodingErrorDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
+	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -65,4 +66,9 @@ void CEncodingErrorDlg::OnBnClickedEncoding()
 void CEncodingErrorDlg::OnBnClickedPlugin()
 {
 	EndDialog(IDC_PLUGIN);
+}
+
+void CEncodingErrorDlg::OnBnClickedHexView()
+{
+	EndDialog(IDC_HEXVIEW);
 }
