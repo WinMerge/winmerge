@@ -11,6 +11,11 @@
 #define stringdiffsi_h_included
 
 #include <vector>
+
+// Uncomment this to see stringdiff log messages
+// We don't use _DEBUG since stringdiff logging is verbose and slows down WinMerge
+//#define STRINGDIFF_LOGGING
+
 /**
  * @brief kind of diff blocks.
  */
