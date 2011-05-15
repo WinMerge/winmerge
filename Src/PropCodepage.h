@@ -48,13 +48,13 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCodepage)
-	virtual void OnOK();
 	virtual BOOL OnInitDialog();
 	void GetEncodingCodePageFromNameString();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();
 	afx_msg void OnCpUi();
 	afx_msg void OnDetectCodepage2();
+	afx_msg void OnDetectAutodetecttype();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

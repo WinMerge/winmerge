@@ -71,6 +71,7 @@ BEGIN_MESSAGE_MAP(PropCodepage, CPropertyPage)
 	ON_BN_CLICKED(IDC_CP_SYSTEM, OnCpSystem)
 	ON_BN_CLICKED(IDC_CP_CUSTOM, OnCpCustom)
 	ON_BN_CLICKED(IDC_DETECT_CODEPAGE2, OnDetectCodepage2)
+	ON_CBN_SELCHANGE(IDC_DETECT_AUTODETECTTYPE, OnDetectAutodetecttype)
 	ON_BN_CLICKED(IDC_CP_UI, OnCpUi)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -98,7 +99,6 @@ void PropCodepage::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
 	GetEncodingCodePageFromNameString();
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
-	m_nAutodetectType = m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel());
 	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, m_bDetectCodepage | (m_bDetectCodepage2 << 1) | (m_nAutodetectType << 16));
 }
 
@@ -159,12 +159,6 @@ BOOL PropCodepage::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void PropCodepage::OnOK()
-{
-	m_nAutodetectType = m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel());
-	CDialog::OnOK();
-}
-
 void PropCodepage::OnCpSystem() 
 {
 	GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);	
@@ -181,6 +175,11 @@ void PropCodepage::OnDetectCodepage2()
 		m_comboAutodetectType.EnableWindow(TRUE);
 	else
 		m_comboAutodetectType.EnableWindow(FALSE);
+}
+
+void PropCodepage::OnDetectAutodetecttype()
+{
+	m_nAutodetectType = m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel());	
 }
 
 void PropCodepage::OnCpUi() 

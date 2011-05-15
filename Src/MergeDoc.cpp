@@ -420,6 +420,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, IDENTLEVEL &identical,
 			return RESCAN_SUPPRESSED;
 	}
 
+	ClearWordDiffCache();
+
 	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
 		String regexp = GetMainFrame()->m_pLineFilters->GetAsString();
