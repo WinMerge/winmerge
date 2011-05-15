@@ -50,13 +50,12 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 /**
  * @brief Highlight difference in current line (left & right panes)
  */
-void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
+void CMergeDoc::Showlinediff(CMergeEditView *pView)
 {
 	CRect rc[3];
 	int pane;
-	CCrystalTextView *pCrystalTextView[3] = {m_pView[0], m_pView[1], m_pView[2]};
 
-	Computelinediff(pCrystalTextView, pView->GetCursorPos().y, rc, difflvl);
+	Computelinediff(pView, rc);
 
 	IF_IS_TRUE_ALL ((rc[pane].top == -1), pane, m_nBuffers)
 	{
@@ -71,199 +70,67 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 		HighlightDiffRect(m_pView[pane], rc[pane]);
 }
 
-/**
- * @brief Ensure that i1 is no greater than w1
- */
-static void
-Limit(int & i1, int w1)
-{
-	if (i1>=w1)
-		i1 = w1;
-}
-
-/**
- * @brief Set highlight rectangle for a given difference (begin->end in line)
- */
-static void
-SetLineHighlightRect(int begin, int end, int line, int width, CRect * rc)
-{
-	if (begin == -1)
-	{
-		begin = end = 0;
-	}
-	else
-	{
-		++end; // MergeDoc needs to point past end
-	}
-	// Chop off any reference to eol characters
-	// TODO: Are we dropping the last non-eol character,
-	// because MergeDoc points past the end ?
-	Limit(begin, width);
-	Limit(end, width);
-	CPoint ptBegin(begin,line), ptEnd(end,line);
-	*rc = CRect(ptBegin, ptEnd);
-}
-
-/**
- * @brief Construct the highlight rectangles for diff # whichdiff
- */
-static void
-ComputeHighlightRects(int nFiles, const vector<wdiff*> & worddiffs, int whichdiff, int line, int width[3], CRect rc[3])
-{
-	ASSERT(whichdiff >= 0 && whichdiff < worddiffs.size());
-	const wdiff * diff = worddiffs[whichdiff];
-
-	for (int file = 0; file < nFiles; file++)
-		SetLineHighlightRect(diff->begin[file], diff->end[file], line, width[file], &rc[file]);
-	
-}
 
 /**
  * @brief Returns rectangles to highlight in both views (to show differences in line specified)
  */
-void CMergeDoc::Computelinediff(CCrystalTextView * pView[], int line, CRect rc[], DIFFLEVEL difflvl)
+void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
 {
-	// Local statics are used so we can cycle through diffs in one line
-	// We store previous state, both to find next state, and to verify
-	// that nothing has changed (else, we reset the cycle)
-	static CCrystalTextView * lastView = 0;
-	static int lastLine = -1;
-	static CRect lastRc[3];
-	static int whichdiff=-2; // last diff highlighted (-2==none, -1=whole line)
-	int i[3] = {0};
 	int file;
-
-	// Only remember place in cycle if same line and same view
-	if (lastView != pView[0] || lastLine != line)
-	{
-		lastView = pView[0];
-		lastLine = line;
-		whichdiff = -2; // reset to not in cycle
-	}
-
-	DIFFOPTIONS diffOptions = {0};
-	m_diffWrapper.GetOptions(&diffOptions);
-
-	String str[3];	
 	for (file = 0; file < m_nBuffers; file++)
-	{
-		i[file] = m_pView[file]->GetLineLength(line);
-		str[file] = String(m_pView[file]->GetLineChars(line), i[file]);
-	}
+		rc[file].top = -1;
 
-	// We truncate diffs to remain inside line (ie, to not flag eol characters)
-	int width[3];
-	for (file = 0; file < m_nBuffers; file++)
-		width[file] = pView[file]->GetLineLength(line);
+	CPoint ptStart, ptEnd;
+	pView->GetSelection(ptStart, ptEnd);
 
-	// Options that affect comparison
-	bool casitive = !diffOptions.bIgnoreCase;
-	int xwhite = diffOptions.nIgnoreWhitespace;
+	vector<WordDiff> worddiffs;
+	int nDiff = m_diffList.LineToDiff(ptStart.y);
 
-	// Make the call to stringdiffs, which does all the hard & tedious computations
-	vector<wdiff*> worddiffs;
-	bool breakType = GetBreakType();
-	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
-	//Add a diff in case of EOL difference
-	if (!diffOptions.bIgnoreEol)
-	{
-		if (pView[0]->GetTextBufferEol(line) != pView[0]->GetTextBufferEol(line))
-		{
-			wdiff *wdf = new wdiff(i[0], i[0], i[1], i[1]);
-			worddiffs.push_back(wdf);
-		}
-	}
+	GetWordDiffArray(nDiff, &worddiffs);
+
 	if (worddiffs.empty())
-	{
-		// signal to caller that there was no diff
-		for (file = 0; file < m_nBuffers; file++)
-			rc[file].top = -1;
-		
 		return;
+
+	int nActivePane = pView->m_nThisPane;
+
+	std::vector<WordDiff>::iterator it;
+	for (it = worddiffs.begin(); it != worddiffs.end(); it++)
+	{
+		if ((*it).beginline[nActivePane] <= ptStart.y && ptStart.y <= (*it).endline[nActivePane])
+		{
+			int begin = ((*it).beginline[nActivePane] < ptStart.y) ? 0 : (*it).begin[nActivePane];
+			int end   = ((*it).endline[nActivePane]   > ptStart.y) ? m_ptBuf[nActivePane]->GetLineLength(ptStart.y) : (*it).end[nActivePane];
+			if (begin <= ptStart.x && ptStart.x <= end)
+				break;
+		}
 	}
 
-	// Are we continuing a cycle from the same place ?
-	if (whichdiff >= (int)worddiffs.size())
-		whichdiff = -2; // Clearly not continuing the same cycle, reset to not in cycle
+	if (it != worddiffs.end())
+		it++;
 	
-	// After last diff, reset to get full line again
-	if (whichdiff == (int)worddiffs.size() - 1)
-		whichdiff = -2;
+	if (it == worddiffs.end())
+		it = worddiffs.begin();
 
-	// Check if current line has changed enough to reset cycle
-	if (whichdiff >= 0)
+	for (file = 0; file < m_nBuffers; file++)
 	{
-		// Recompute previous highlight rectangle
-		CRect rcx[3];
-		ComputeHighlightRects(m_nBuffers, worddiffs, whichdiff, line, width, rcx);
-		IF_IS_TRUE_ALL (rcx[file] == lastRc[file], file, m_nBuffers) {}
-		else
-		{
-			// Something has changed, reset cycle
-			whichdiff = -2;
-		}
+		rc[file].left = (*it).begin[file];
+		rc[file].top = (*it).beginline[file];
+		rc[file].right =(*it).end[file];
+		rc[file].bottom = (*it).endline[file];
 	}
+}
 
-	int begin[3] = {-1, -1, -1}, end[3] = {-1, -1, -1};
-
-	if (whichdiff == -2)
+void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
+{
+	if (nDiff == -1)
 	{
-		// Find starting locations for both sides
-		// Have to look for first valid starting location for each side
-		vector<wdiff*>::const_iterator it = worddiffs.begin();
-		while (it != worddiffs.end())
-		{
-			//const wdiff * diff = *it;
-			for (file = 0; file < m_nBuffers; file++)
-			{
-				if (begin[file] == -1 && (*it)->begin[file] != -1)
-					begin[file] = (*it)->begin[file];
-			}
-			IF_IS_TRUE_ALL (begin[file] != -1, file, m_nBuffers)
-			{
-				break; // found both
-			}
-			it++;
-		}
-		// Find ending locations for both sides
-		// Have to look for last valid starting location for each side
-		if (worddiffs.size() >= 1)
-		{
-			vector<wdiff*>::const_iterator it = worddiffs.end();
-			do
-			{
-				it--;
-				for (file = 0; file < m_nBuffers; file++)
-				{
-					if (end[file] == -1 && (*it)->end[file] != -1)
-						end[file] = (*it)->end[file];
-				}
-				IF_IS_TRUE_ALL (end[file] != -1, file, m_nBuffers)
-				{
-					break; // found both
-				}
-			} while (it != worddiffs.begin());
-		}
-		for (file = 0; file < m_nBuffers; file++)
-			SetLineHighlightRect(begin[file], end[file], line, width[file], &rc[file]);
-		whichdiff = -1;
+		m_cacheWordDiffs.clear();
 	}
 	else
 	{
-		// Advance to next diff (and earlier we checked for running off the end)
-		++whichdiff;
-		ASSERT(whichdiff < worddiffs.size());
-
-		// highlight one particular diff
-		ComputeHighlightRects(m_nBuffers, worddiffs, whichdiff, line, width, rc);
-		for (file = 0; file < m_nBuffers; file++)
-			lastRc[file] = rc[file];
-	}
-
-	while (!worddiffs.empty())
-	{
-		delete worddiffs.back();
-		worddiffs.pop_back();
+		std::map<int, std::vector<WordDiff> >::iterator it = m_cacheWordDiffs.find(nDiff);
+		if (it != m_cacheWordDiffs.end())
+			m_cacheWordDiffs.erase(it);
 	}
 }
 
@@ -272,43 +139,92 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView[], int line, CRect rc[]
  * This is used by algorithm for line diff coloring
  * (Line diff coloring is distinct from the selection highlight code)
  */
-void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
+void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 {
-	int icrlf[3] = {0};
-	int iend[3] = {0};
 	int file;
-	for (file = 0; file < m_nBuffers; file++)
+	DIFFRANGE cd;
+	std::map<int, std::vector<WordDiff> >::iterator itmap = m_cacheWordDiffs.find(nDiff);
+	if (itmap != m_cacheWordDiffs.end())
 	{
-		if (nLineIndex >= m_pView[file]->GetLineCount()) return;
+		pWordDiffs->resize((*itmap).second.size());
+		std::copy((*itmap).second.begin(), (*itmap).second.end(), pWordDiffs->begin());
+		return;
 	}
+
+	if (nDiff != -1)
+		m_diffList.GetDiff(nDiff, cd);
 
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
+	int *nOffsets[3];
 	for (file = 0; file < m_nBuffers; file++)
 	{
-		iend[file] = str[file].length() - 1;
-		icrlf[file] = m_pView[file]->GetLineLength(nLineIndex);
-		str[file] = String(m_pView[file]->GetLineChars(nLineIndex), icrlf[file]);
+		nOffsets[file] = new int[cd.dend[file] - cd.dbegin[file] + 1];
+		CString strText;
+		int nLineBegin = cd.dbegin[file];
+		int nLineEnd = cd.dend[file];
+		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
+			m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
+		strText += m_ptBuf[file]->GetLineEol(nLineEnd);
+		str[file] = strText;
+
+		nOffsets[file][0] = 0;
+		for (int nLine = nLineBegin; nLine < nLineEnd; nLine++)
+			nOffsets[file][nLine-nLineBegin+1] = nOffsets[file][nLine-nLineBegin] + m_ptBuf[file]->GetFullLineLength(nLine);
 	}
+
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
+	std::vector<wdiff*> worddiffs;
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, pworddiffs);
-	//Add a diff in case of EOL difference
-	if (!diffOptions.bIgnoreEol)
+	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
+
+	pWordDiffs->resize(worddiffs.size());
+
+	int i;
+	std::vector<wdiff*>::iterator it;
+	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); i++, it++)
 	{
-		if (m_pView[0]->GetTextBufferEol(nLineIndex) != m_pView[1]->GetTextBufferEol(nLineIndex) || 
-		    (m_nBuffers == 3 && m_pView[1]->GetTextBufferEol(nLineIndex) != m_pView[2]->GetTextBufferEol(nLineIndex)))
+		for (file = 0; file < m_nBuffers; file++)
 		{
-			wdiff *wdf = new wdiff(icrlf[0], iend[0], icrlf[1], iend[1], icrlf[2], iend[2]);
-			pworddiffs->push_back(wdf);
+			int nLine;
+			int nLineBegin = cd.dbegin[file];
+			int nLineEnd = cd.dend[file];
+			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
+			{
+				if ((*it)->begin[file] == nOffsets[file][nLine-nLineBegin] || (*it)->begin[file] < nOffsets[file][nLine-nLineBegin+1])
+					break;
+			}
+			(*pWordDiffs)[i].beginline[file] = nLine;
+			(*pWordDiffs)[i].begin[file] = (*it)->begin[file] - nOffsets[file][nLine-nLineBegin];
+			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
+			{
+				if ((*it)->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || (*it)->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
+					break;
+			}
+			(*pWordDiffs)[i].endline[file] = nLine;
+			(*pWordDiffs)[i].end[file] = (*it)->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].end[file])
+				(*pWordDiffs)[i].end[file] = m_ptBuf[file]->GetLineLength(nLine);
 		}
 	}
+
+	while (!worddiffs.empty())
+	{
+		delete worddiffs.back();
+		worddiffs.pop_back();
+	}
+
+	delete nOffsets[0], nOffsets[1], nOffsets[2];
+
+	m_cacheWordDiffs[nDiff].resize(pWordDiffs->size());
+	std::copy(pWordDiffs->begin(), pWordDiffs->end(), m_cacheWordDiffs[nDiff].begin());
+
 	return;
 }
 

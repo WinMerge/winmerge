@@ -393,20 +393,29 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 		return 0;
 
 	CMergeDoc *pDoc = GetDocument();
+	if (pDoc->IsEditedAfterRescan(m_nThisPane))
+		return 0;
+	
+	vector<WordDiff> worddiffs;
+	int nDiff = pDoc->m_diffList.LineToDiff(nLineIndex);
+	if (nDiff == -1)
+		return 0;
+
+	DIFFRANGE cd;
+	pDoc->m_diffList.GetDiff(nDiff, cd);
 	int unemptyLineCount = 0;
 	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
 	{
-		if ((GetGroupView(nPane)->GetLineCount() > nLineIndex) && !(GetGroupView(nPane)->GetLineFlags(nLineIndex) & LF_GHOST))
+		if (cd.begin[nPane] != cd.end[nPane] + 1)
 			unemptyLineCount++;
 	}
 	if (unemptyLineCount < 2)
-		return 0;	
-	
-	vector<wdiff*> worddiffs;
-	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
+		return 0;
+
+	pDoc->GetWordDiffArray(nDiff, &worddiffs);
+	int nWordDiffs = worddiffs.size();
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
-	int nWordDiffs = worddiffs.size();
 
 	pBuf = new TEXTBLOCK[nWordDiffs * 2 + 1];
 	pBuf[0].m_nCharPos = 0;
@@ -415,52 +424,36 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	int i, j;
 	for (i = 0, j = 1; i < nWordDiffs; i++)
 	{
-		pBuf[j].m_nCharPos = worddiffs[i]->begin[m_nThisPane];
+		if (worddiffs[i].beginline[m_nThisPane] > nLineIndex || worddiffs[i].endline[m_nThisPane] < nLineIndex )
+			continue;
+		int begin[3], end[3];
+		bool deleted = false;
+		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+		{
+			begin[pane] = (worddiffs[i].beginline[pane] < nLineIndex) ? 0 : worddiffs[i].begin[pane];
+			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetLineLength(nLineIndex) : worddiffs[i].end[pane];
+			if (worddiffs[i].beginline[pane] == worddiffs[i].endline[pane] &&
+				worddiffs[i].begin[pane] == worddiffs[i].end[pane])
+				deleted = true;
+		}
+		pBuf[j].m_nCharPos = begin[m_nThisPane];
 		if (lineInCurrentDiff)
 		{
 			pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
-			if (worddiffs[i]->begin[0] == worddiffs[i]->end[0] + 1 ||
-				worddiffs[i]->begin[1] == worddiffs[i]->end[1] + 1 || 
-				(pDoc->m_nBuffers == 3 && worddiffs[i]->begin[2] == worddiffs[i]->end[2] + 1))
-				pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND4 | COLORINDEX_APPLYFORCE;
-			else
-				pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
+			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE | 
+				(deleted ? COLORINDEX_HIGHLIGHTBKGND4 : COLORINDEX_HIGHLIGHTBKGND1);
 		}
 		else
 		{
 			pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
-			if (worddiffs[i]->begin[0] == worddiffs[i]->end[0] + 1 ||
-				worddiffs[i]->begin[1] == worddiffs[i]->end[1] + 1 ||
-				(pDoc->m_nBuffers == 3 && worddiffs[i]->begin[2] == worddiffs[i]->end[2] + 1))
-			{
-				// Case on one side char/words are inserted or deleted 
-				pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND3 | COLORINDEX_APPLYFORCE;
-			}
-			else
-			{
-				pBuf[j].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
-			}
-		}
-		if (i + 1 == nWordDiffs || worddiffs[i]->end[m_nThisPane] + 1 < worddiffs[i + 1]->begin[m_nThisPane])
-		{
-			j++;
-#ifdef _UNICODE
-			pBuf[j].m_nCharPos = worddiffs[i]->end[m_nThisPane] + 1;
-#else
-			LPCTSTR pLine = GetLineChars(nLineIndex);
-			BOOL bDBCS = (pLine && IsDBCSLeadByte(pLine[worddiffs[i]->end[m_nThisPane]]));
-			pBuf[j].m_nCharPos = worddiffs[i]->end[m_nThisPane] + (bDBCS ? 2 : 1);
-#endif
-			pBuf[j].m_nColorIndex = COLORINDEX_NONE;
-			pBuf[j].m_nBgColorIndex = COLORINDEX_NONE;
+			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE |
+				(deleted ? COLORINDEX_HIGHLIGHTBKGND3 : COLORINDEX_HIGHLIGHTBKGND2);
 		}
 		j++;
-	}
-
-	while (!worddiffs.empty())
-	{
-		delete worddiffs.back();
-		worddiffs.pop_back();
+		pBuf[j].m_nCharPos = end[m_nThisPane];
+		pBuf[j].m_nColorIndex = COLORINDEX_NONE;
+		pBuf[j].m_nBgColorIndex = COLORINDEX_NONE;
+		j++;
 	}
 
 	return j;
@@ -2558,19 +2551,17 @@ void CMergeEditView::OnUpdateCaret()
  */
 void CMergeEditView::OnSelectLineDiff()
 {
-	CMergeDoc::DIFFLEVEL level = CMergeDoc::BYTEDIFF;
-	if (GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS))
-		level = CMergeDoc::WORDDIFF;
-
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this, level);
+	GetDocument()->Showlinediff(this);
 }
 
 /// Enable select difference menuitem if current line is inside difference.
 void CMergeEditView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI)
 {
 	int line = GetCursorPos().y;
-	bool enable = (GetLineFlags(line) & LF_DIFF) != 0;
+	bool enable = ((GetLineFlags(line) & (LF_DIFF | LF_GHOST)) != 0);
+	if (GetDocument()->IsEditedAfterRescan(m_nThisPane))
+		enable = false;
 	pCmdUI->Enable(enable);
 }
 

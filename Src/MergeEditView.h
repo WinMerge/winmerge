@@ -166,6 +166,7 @@ public:
 	void PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
+	void GetSelection(CPoint &ptStart, CPoint &ptEnd) { CCrystalTextView::GetSelection(ptStart, ptEnd); }
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
 	virtual COLORREF GetColor(int nColorIndex);

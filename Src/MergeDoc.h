@@ -30,6 +30,7 @@
 
 #include "DiffTextBuffer.h"
 #include <vector>
+#include <map>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "stringdiffs.h"
@@ -107,6 +108,41 @@ enum BUFFERTYPE
 	BUFFER_NORMAL_NAMED, /**< Normal, description given */
 	BUFFER_UNNAMED, /**< Empty, created buffer */
 	BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+};
+
+struct WordDiff {
+	int begin[3]; // 0-based, eg, begin[0] is from str1
+	int end[3]; // 0-based, eg, end[1] is from str2
+	int beginline[3];
+	int endline[3];
+	WordDiff(int s1=0, int e1=0, int bl1=0, int el1=0, int s2=0, int e2=0, int bl2=0, int el2=0, int s3=0, int e3=0, int bl3=0, int el3=0)
+	{
+		if (s1>e1) e1=s1;
+		if (s2>e2) e2=s2;
+		if (s3>e3) e3=s3;
+		begin[0] = s1;
+		begin[1] = s2;
+		begin[2] = s3;
+		end[0] = e1;
+		end[1] = e2;
+		end[2] = e3;
+		beginline[0] = bl1;
+		beginline[1] = bl2;
+		beginline[2] = bl3;
+		endline[0] = el1;
+		endline[1] = el2;
+		endline[2] = el3;
+	}
+	WordDiff(const WordDiff & src)
+	{
+		for (int i=0; i<3; ++i)
+		{
+			begin[i] = src.begin[i];
+			end[i] = src.end[i];
+			beginline[i] = src.beginline[i];
+			endline[i] = src.endline[i];
+		}
+	}
 };
 
 struct DiffFileInfo;
@@ -211,10 +247,12 @@ public:
 // Implementation in MergeDocLineDiffs.cpp
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
-	void Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl);
-	void GetWordDiffArray(int nLineIndex, std::vector<wdiff*> *pworddiffs);
+	void Showlinediff(CMergeEditView *pView);
+	void GetWordDiffArray(int nDiff, std::vector<WordDiff> *pWordDiffs);
+	void ClearWordDiffCache(int nDiff = -1);
 private:
-	void Computelinediff(CCrystalTextView * pView[], int line, CRect rc[], DIFFLEVEL difflvl);
+	void Computelinediff(CMergeEditView *pView, CRect rc[]);
+	std::map<int, std::vector<WordDiff> > m_cacheWordDiffs;
 // End MergeDocLineDiffs.cpp
 
 // Implementation in MergeDocEncoding.cpp
