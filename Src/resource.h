@@ -504,6 +504,7 @@
 #define IDC_EXPAND_SUBDIRS              8800
 #define IDC_FILEENCODING                8801
 #define IDC_PLUGIN                      8802
+#define IDC_HEXVIEW                     8803
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
@@ -1133,6 +1134,7 @@
 #define ID_EDIT_LOWERCASE               33185
 #define ID_EDIT_UPPERCASE               33186
 #define ID_VIEW_SPLITVERTICALLY         33187
+#define IDS_FRHED_NOTINSTALLED          33188
 
 // Next default values for new objects
 //
@@ -1140,7 +1142,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33188
+#define _APS_NEXT_COMMAND_VALUE         33189
 #define _APS_NEXT_CONTROL_VALUE         1351
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

@@ -126,7 +126,9 @@ BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 	{
 		static const CLSID clsid = { 0xBCA3CA6B, 0xCC6B, 0x4F79,
 			{ 0xA2, 0xC2, 0xDD, 0xBE, 0x86, 0x4B, 0x1C, 0x90 } };
-		CoGetClassObject(clsid, CLSCTX_INPROC_SERVER, NULL, IID_IUnknown, &pv);
+		HRESULT hr = CoGetClassObject(clsid, CLSCTX_INPROC_SERVER, NULL, IID_IUnknown, &pv);
+		if (FAILED(hr))
+			LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
 	}
 	cs.lpszClass = _T("heksedit");
 	cs.style |= WS_HSCROLL | WS_VSCROLL;

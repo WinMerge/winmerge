@@ -2468,7 +2468,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	
 	if (nLossyBuffers > 0)
 	{
-		this->GetParentFrame()->ShowWindow(SW_MINIMIZE);
+		GetParentFrame()->ShowWindow(SW_MINIMIZE);
 		CEncodingErrorDlg dlg(LoadResString(idres).c_str());
 		int nID = dlg.DoModal();
 		bool bResult = false;
@@ -2476,7 +2476,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			bResult = DoFileEncodingDialog();
 		else if (nID == IDC_PLUGIN)
 			bResult = OpenWithUnpackerDialog();
-		this->GetParentFrame()->ShowWindow(SW_RESTORE);
+		else if (nID == IDC_HEXVIEW)
+		{
+			GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, bRO);
+			GetParentFrame()->ShowWindow(SW_RESTORE);
+			GetParentFrame()->DestroyWindow();
+			return OPENRESULTS_FAILED_MISC;
+		}
+		GetParentFrame()->ShowWindow(SW_RESTORE);
 		if (bResult)
 			return OPENRESULTS_SUCCESS;
 	}

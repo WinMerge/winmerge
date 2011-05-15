@@ -42,6 +42,7 @@ private:
 public:
 	afx_msg void OnBnClickedEncoding();
 	afx_msg void OnBnClickedPlugin();
+	afx_msg void OnBnClickedHexView();
 };
 
 //{{AFX_INSERT_LOCATION}}
