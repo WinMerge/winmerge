@@ -195,20 +195,23 @@ void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 			int nLine;
 			int nLineBegin = cd.dbegin[file];
 			int nLineEnd = cd.dend[file];
+			int begin, end;
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
 				if ((*it)->begin[file] == nOffsets[file][nLine-nLineBegin] || (*it)->begin[file] < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
 			(*pWordDiffs)[i].beginline[file] = nLine;
-			(*pWordDiffs)[i].begin[file] = (*it)->begin[file] - nOffsets[file][nLine-nLineBegin];
+			(*pWordDiffs)[i].begin[file] = begin = (*it)->begin[file] - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].begin[file])
+				(*pWordDiffs)[i].begin[file] = m_ptBuf[file]->GetLineLength(nLine);
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
 				if ((*it)->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || (*it)->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
 			(*pWordDiffs)[i].endline[file] = nLine;
-			(*pWordDiffs)[i].end[file] = (*it)->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
+			(*pWordDiffs)[i].end[file] = end = (*it)->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
 			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].end[file])
 				(*pWordDiffs)[i].end[file] = m_ptBuf[file]->GetLineLength(nLine);
 		}
