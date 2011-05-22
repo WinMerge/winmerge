@@ -1494,7 +1494,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                     clrBkColor = GetColor(nBgColorIndex);
                   else
                     clrBkColor = crBkgnd;
-                  pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight(), clrBkColor);
+                  pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
                   ptOriginZeroWidthBlock = ptOrigin;
                   nBgColorIndexZeorWidthBlock = pBuf[I].m_nBgColorIndex;
                   bPrevZeroWidthBlock = true;
@@ -1536,7 +1536,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
                 clrBkColor = GetColor(nBgColorIndex);
               else
                 clrBkColor = crBkgnd;
-              pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ptOrigin.x + ZEROWIDTHBLOCK_WIDTH, ptOrigin.y + GetLineHeight(), clrBkColor);
+              pdc->FillSolidRect(ptOrigin.x, ptOrigin.y, ZEROWIDTHBLOCK_WIDTH, GetLineHeight(), clrBkColor);
 		      bPrevZeroWidthBlock = true;
             }
         }
