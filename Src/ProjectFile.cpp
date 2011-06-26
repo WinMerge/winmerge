@@ -25,29 +25,8 @@
 #include "stdafx.h"
 #include <scew/scew.h>
 #include "UnicodeString.h"
+#include "UCS2UTF8.h"
 #include "ProjectFile.h"
-#include "Merge.h"
-
-// ATL conversion macro hack for UTF-8 conversion
-#define UTF82W(lpa) (\
-	((_lpa = lpa) == NULL) ? NULL : (\
-		_convert = (lstrlenA(_lpa)+1),\
-		AtlA2WHelper((LPWSTR) alloca(_convert*2), _lpa, _convert, CP_UTF8)))
-
-#define W2UTF8(lpw) (\
-	((_lpw = lpw) == NULL) ? NULL : (\
-		_convert = (lstrlenW(_lpw)+1)*6,\
-		AtlW2AHelper((LPSTR) alloca(_convert), _lpw, _convert, CP_UTF8)))
-
-#define UTF82A(lpu) W2A(UTF82W(lpu))
-#define A2UTF8(lpa) W2UTF8(A2W(lpa))
-#ifdef _UNICODE
-#  define UTF82T(lpu) UTF82W(lpu)
-#  define T2UTF8(lpw) W2UTF8(lpw)
-#else
-#  define UTF82T(lpu) UTF82A(lpu)
-#  define T2UTF8(lpw) A2UTF8(lpw)
-#endif
 
 // Constants for xml element names
 const char Root_element_name[] = "project";
@@ -60,6 +39,23 @@ const char Subfolders_element_name[] = "subfolders";
 const char Left_ro_element_name[] = "left-readonly";
 const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
+
+
+static String UTF82T(const char *str)
+{
+	wchar_t *ucs2 = UCS2UTF8_ConvertToUcs2(str ? str : "");
+	String newstr(ucs2);
+	UCS2UTF8_Dealloc(ucs2);
+	return newstr;
+}
+
+static std::string T2UTF8(const TCHAR *str)
+{
+	char *utf8 = UCS2UTF8_ConvertToUtf8(str ? str : _T(""));
+	std::string newstr(utf8);
+	UCS2UTF8_Dealloc(utf8);
+	return newstr;
+}
 
 /** 
  * @brief Standard constructor.
@@ -157,7 +153,6 @@ scew_element* ProjectFile::GetRootElement(scew_tree * tree)
  */
 BOOL ProjectFile::GetPathsData(scew_element * parent)
 {
-	USES_CONVERSION;
 	BOOL bFoundPaths = FALSE;
 	scew_element *paths = NULL;
 
@@ -191,21 +186,21 @@ BOOL ProjectFile::GetPathsData(scew_element * parent)
 		{
 			LPCSTR path = NULL;
 			path = scew_element_contents(left);
-			m_paths.SetLeft(UTF82T(path));
+			m_paths.SetLeft(UTF82T(path).c_str());
 			m_bHasLeft = TRUE;
 		}
 		if (middle)
 		{
 			LPCSTR path = NULL;
 			path = scew_element_contents(middle);
-			m_paths.SetMiddle(UTF82T(path));
+			m_paths.SetMiddle(UTF82T(path).c_str());
 			m_bHasMiddle = TRUE;
 		}
 		if (right)
 		{
 			LPCSTR path = NULL;
 			path = scew_element_contents(right);
-			m_paths.SetRight(UTF82T(path));
+			m_paths.SetRight(UTF82T(path).c_str());
 			m_bHasRight = TRUE;
 		}
 		if (filter)
@@ -289,13 +284,13 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 				!scew_printf(_XT("\n")))
 			{
 				success = FALSE;
-				*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
+				*sError = LoadResString(IDS_FILEWRITE_ERROR);
 			}
 		}
 		else
 		{
 			success = FALSE;
-			*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
+			*sError = LoadResString(IDS_FILEWRITE_ERROR);
 		}
 		fclose(fp);
 	}
@@ -311,7 +306,7 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 
 	if (success == FALSE)
 	{
-		*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
+		*sError = LoadResString(IDS_FILEWRITE_ERROR);
 	}
 	return success;
 }
@@ -350,32 +345,31 @@ static String EscapeXML(const String &str)
  */
 BOOL ProjectFile::AddPathsContent(scew_element * parent)
 {
-	USES_CONVERSION;
 	scew_element* element = NULL;
 
 	if (!m_paths.GetLeft().empty())
 	{
 		element = scew_element_add(parent, Left_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetLeft()).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetLeft()).c_str()).c_str());
 	}
 
 	if (!m_paths.GetMiddle().empty())
 	{
 		element = scew_element_add(parent, Middle_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetMiddle()).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetMiddle()).c_str()).c_str());
 	}
 
 	if (!m_paths.GetRight().empty())
 	{
 		element = scew_element_add(parent, Right_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetRight()).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetRight()).c_str()).c_str());
 	}
 
 	if (!m_filter.empty())
 	{
 		element = scew_element_add(parent, Filter_element_name);
 		String filter = m_filter;
-		scew_element_set_contents(element, T2UTF8(EscapeXML(filter).c_str()));
+		scew_element_set_contents(element, T2UTF8(EscapeXML(filter).c_str()).c_str());
 	}
 
 	element = scew_element_add(parent, Subfolders_element_name);

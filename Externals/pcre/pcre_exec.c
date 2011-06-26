@@ -2122,7 +2122,7 @@ for (;;)
              prop->chartype == ucp_Ll ||
              prop->chartype == ucp_Lt) == (op == OP_NOTPROP))
           MRRETURN(MATCH_NOMATCH);
-         break;
+        break;
 
         case PT_GC:
         if ((ecode[2] != _pcre_ucp_gentype[prop->chartype]) == (op == OP_PROP))

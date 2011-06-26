@@ -161,6 +161,7 @@ Other Contributors (code, ideas, testing..):
 * Ferenc Kubatovics
 * René Leonhardt
 * Vladimir Lukianov
+* LynX <devlynx@users.sourceforge.net>
 * David Maisonave
 * Dmitry Maslov
 * Denis Matiukha

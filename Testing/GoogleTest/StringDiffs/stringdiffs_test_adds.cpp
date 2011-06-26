@@ -308,9 +308,9 @@ namespace
 	TEST_F(StringDiffsAddsTest, RunThird)
 	{
 		std::vector<wdiff*> diffs;
-		sd_SetBreakChars(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|");
-		sd_ComputeWordDiffs("(sizeof *new);",
-			"sizeof(*newob));",
+		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
+		sd_ComputeWordDiffs(_T("(sizeof *new);"),
+			_T("sizeof(*newob));"),
 				false, 1, 0, true, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		wdiff *pDiff;

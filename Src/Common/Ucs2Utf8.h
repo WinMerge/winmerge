@@ -28,6 +28,7 @@ UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUtf);
 UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUcs);
 
 char * UCS2UTF8_ConvertToUtf8(LPCTSTR strOrigin);
-void UCS2UTF8_Dealloc(char * Utf8Str);
+wchar_t * UCS2UTF8_ConvertToUcs2(LPCSTR strOrigin);
+void UCS2UTF8_Dealloc(void * str);
 
 #endif // _UCS2UTF8_H_

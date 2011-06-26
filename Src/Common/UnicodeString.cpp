@@ -26,6 +26,7 @@
 // String formatting code originally from Paul Senzee:
 // http://www.senzee5.com/2006/05/c-formatting-stdstring.html
 
+#include <windows.h>
 #include <tchar.h>
 #include <stdarg.h>
 #include "UnicodeString.h"

@@ -49,309 +49,309 @@ namespace
 
 	TEST_F(UnicodeStringTest, ReplaceNotFound)
 	{
-		String orig("OneTwoThree");
-		String find("Blaa");
-		String rep("Five");
+		String orig(_T("OneTwoThree"));
+		String find(_T("Blaa"));
+		String rep(_T("Five"));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("OneTwoThree", orig);
+		EXPECT_EQ(_T("OneTwoThree"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceMiddle1)
 	{
-		String orig("OneTwoThree");
-		String find("Two");
-		String rep("Five");
+		String orig(_T("OneTwoThree"));
+		String find(_T("Two"));
+		String rep(_T("Five"));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("OneFiveThree", orig);
+		EXPECT_EQ(_T("OneFiveThree"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceMiddle2)
 	{
-		String orig("OneTwoThree");
-		String find("Two");
-		String rep("");
+		String orig(_T("OneTwoThree"));
+		String find(_T("Two"));
+		String rep(_T(""));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("OneThree", orig);
+		EXPECT_EQ(_T("OneThree"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceBegin1)
 	{
-		String orig("OneTwoThree");
-		String find("One");
-		String rep("five");
+		String orig(_T("OneTwoThree"));
+		String find(_T("One"));
+		String rep(_T("five"));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("fiveTwoThree", orig);
+		EXPECT_EQ(_T("fiveTwoThree"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceBegin2)
 	{
-		String orig("OneTwoThree");
-		String find("One");
-		String rep("");
+		String orig(_T("OneTwoThree"));
+		String find(_T("One"));
+		String rep(_T(""));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("TwoThree", orig);
+		EXPECT_EQ(_T("TwoThree"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceEnd1)
 	{
-		String orig("OneTwoThree");
-		String find("Three");
-		String rep("seven");
+		String orig(_T("OneTwoThree"));
+		String find(_T("Three"));
+		String rep(_T("seven"));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("OneTwoseven", orig);
+		EXPECT_EQ(_T("OneTwoseven"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, ReplaceEnd2)
 	{
-		String orig("OneTwoThree");
-		String find("Three");
-		String rep("");
+		String orig(_T("OneTwoThree"));
+		String find(_T("Three"));
+		String rep(_T(""));
 		string_replace(orig, find, rep);
-		EXPECT_EQ("OneTwo", orig);
+		EXPECT_EQ(_T("OneTwo"), orig);
 	}
 
 	TEST_F(UnicodeStringTest, MakelowerEmpty)
 	{
-		String orig("");
+		String orig(_T(""));
 		String result = string_makelower(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, MakelowerWhitespace)
 	{
-		String orig(" \t");
+		String orig(_T(" \t"));
 		String result = string_makelower(orig);
-		EXPECT_EQ(" \t", result);
+		EXPECT_EQ(_T(" \t"), result);
 	}
 
 	TEST_F(UnicodeStringTest, Makelower1)
 	{
-		String orig("onetwothree");
+		String orig(_T("onetwothree"));
 		String result = string_makelower(orig);
-		EXPECT_EQ("onetwothree", result);
+		EXPECT_EQ(_T("onetwothree"), result);
 	}
 
 	TEST_F(UnicodeStringTest, Makelower2)
 	{
-		String orig("OneTwoThree");
+		String orig(_T("OneTwoThree"));
 		String result = string_makelower(orig);
-		EXPECT_EQ("onetwothree", result);
+		EXPECT_EQ(_T("onetwothree"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginEmpty)
 	{
-		String orig("");
+		String orig(_T(""));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginNoWs)
 	{
-		String orig("abc");
+		String orig(_T("abc"));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWsEnd)
 	{
-		String orig("abc\t");
+		String orig(_T("abc\t"));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("abc\t", result);
+		EXPECT_EQ(_T("abc\t"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWsOnly)
 	{
-		String orig("\t");
+		String orig(_T("\t"));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsbeginWs1)
 	{
-		String orig("\tabc");
+		String orig(_T("\tabc"));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsbeginWs2)
 	{
-		String orig("\t\n abc");
+		String orig(_T("\t\n abc"));
 		String result = string_trim_ws_begin(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendEmpty)
 	{
-		String orig("");
+		String orig(_T(""));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendNoWs)
 	{
-		String orig("abc");
+		String orig(_T("abc"));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWsBegin)
 	{
-		String orig("\tabc");
+		String orig(_T("\tabc"));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("\tabc", result);
+		EXPECT_EQ(_T("\tabc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWsOnly)
 	{
-		String orig("\t");
+		String orig(_T("\t"));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsendWs1)
 	{
-		String orig("abc\t");
+		String orig(_T("abc\t"));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsendWs2)
 	{
-		String orig("abc\t\n ");
+		String orig(_T("abc\t\n "));
 		String result = string_trim_ws_end(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsEmpty)
 	{
-		String orig("");
+		String orig(_T(""));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsNoWs)
 	{
-		String orig("abc");
+		String orig(_T("abc"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly)
 	{
-		String orig("\t");
+		String orig(_T("\t"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly2)
 	{
-		String orig("\t \n");
+		String orig(_T("\t \n"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsOnly3)
 	{
-		String orig(" \t  \t ");
+		String orig(_T(" \t  \t "));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("", result);
+		EXPECT_EQ(_T(""), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBegin)
 	{
-		String orig("\tabc");
+		String orig(_T("\tabc"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBegin2)
 	{
-		String orig("\t\n abc");
+		String orig(_T("\t\n abc"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsEnd1)
 	{
-		String orig("abc\t");
+		String orig(_T("abc\t"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 	
 	TEST_F(UnicodeStringTest, TrimwsWsEnd2)
 	{
-		String orig("abc\t\n ");
+		String orig(_T("abc\t\n "));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBoth1)
 	{
-		String orig("\tabc\t");
+		String orig(_T("\tabc\t"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, TrimwsWsBoth2)
 	{
-		String orig("\n \tabc \t\n");
+		String orig(_T("\n \tabc \t\n"));
 		String result = string_trim_ws(orig);
-		EXPECT_EQ("abc", result);
+		EXPECT_EQ(_T("abc"), result);
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseEmpty)
 	{
-		EXPECT_EQ(0, string_compare_nocase("", ""));
+		EXPECT_EQ(0, string_compare_nocase(_T(""), _T("")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseWhitespace1)
 	{
-		EXPECT_EQ(0, string_compare_nocase(" ", " "));
+		EXPECT_EQ(0, string_compare_nocase(_T(" "), _T(" ")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseWhitespace)
 	{
-		EXPECT_NE(0, string_compare_nocase(" ", "\t"));
+		EXPECT_NE(0, string_compare_nocase(_T(" "), _T("\t")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseLowercase)
 	{
-		EXPECT_EQ(0, string_compare_nocase("abc", "abc"));
+		EXPECT_EQ(0, string_compare_nocase(_T("abc"), _T("abc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseUppercase)
 	{
-		EXPECT_EQ(0, string_compare_nocase("ABC", "ABC"));
+		EXPECT_EQ(0, string_compare_nocase(_T("ABC"), _T("ABC")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseMixedcase)
 	{
-		EXPECT_EQ(0, string_compare_nocase("AbC", "AbC"));
+		EXPECT_EQ(0, string_compare_nocase(_T("AbC"), _T("AbC")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseIdentical1)
 	{
-		EXPECT_EQ(0, string_compare_nocase("abc", "aBc"));
+		EXPECT_EQ(0, string_compare_nocase(_T("abc"), _T("aBc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseIdentical2)
 	{
-		EXPECT_EQ(0, string_compare_nocase("ABc", "abc"));
+		EXPECT_EQ(0, string_compare_nocase(_T("ABc"), _T("abc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent1)
 	{
-		EXPECT_NE(0, string_compare_nocase("abc", "adc"));
+		EXPECT_NE(0, string_compare_nocase(_T("abc"), _T("adc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent2)
 	{
-		EXPECT_NE(0, string_compare_nocase("aBc", "adc"));
+		EXPECT_NE(0, string_compare_nocase(_T("aBc"), _T("adc")));
 	}
 
 	TEST_F(UnicodeStringTest, ComparenocaseDifferent3)
 	{
-		EXPECT_NE(0, string_compare_nocase("abc", "aDc"));
+		EXPECT_NE(0, string_compare_nocase(_T("abc"), _T("aDc")));
 	}
 
 }  // namespace

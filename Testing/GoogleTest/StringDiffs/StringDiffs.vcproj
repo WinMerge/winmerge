@@ -15,12 +15,12 @@
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="1"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;..\..\..\Src&quot;;&quot;..\..\..\Src\Common&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;STRINGDIFF_LOGGING"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
@@ -66,7 +66,7 @@
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
-			CharacterSet="2">
+			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="&quot;..\..\..\Src&quot;;&quot;..\..\..\Src\Common&quot;"
@@ -88,58 +88,6 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Unicode Debug|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			CharacterSet="1">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\..\..\Src&quot;;&quot;..\..\..\Src\Common&quot;"
-				PreprocessorDefinitions="UNICODE;_UNICODE;WIN32;_DEBUG;_CONSOLE;STRINGDIFF_LOGGING"
-				MinimalRebuild="TRUE"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
-				TreatWChar_tAsBuiltInType="TRUE"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				AdditionalDependencies="gtestd.lib"
-				OutputFile="$(OutDir)/StringDiffs.exe"
-				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;..&quot;"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/StringDiffs.pdb"
-				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -191,6 +139,9 @@
 			<File
 				RelativePath=".\test_main.cpp">
 			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -201,9 +152,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Src\stringdiffs.h">
-			</File>
-			<File
-				RelativePath="..\..\..\Src\stringdiffsi.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Common\UnicodeString.h">

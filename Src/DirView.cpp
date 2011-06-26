@@ -52,6 +52,7 @@
 #include "PluginsListDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
+#include "DiffItem.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -303,6 +304,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
 	ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndLabelEdit)
 	ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
+	ON_NOTIFY_REFLECT(LVN_BEGINDRAG, OnBeginDrag)
  	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 END_MESSAGE_MAP()
 
@@ -4484,3 +4486,98 @@ void CDirView::OnSearch()
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
 
+/**
+ * @brief Retrives file list of all selected files, and store them like 
+ * file_path1\nfile_path2\n...file_pathN
+ *
+ * @param [out] filesForDroping Reference to buffer where file list will be stored
+ */
+void CDirView::PrepareDragData(String& filesForDroping)
+{
+	int pos = GetFirstSelectedInd();
+	const int count = GetSelectedCount();
+	int i = 0;
+
+	// No selection - no diff to go
+	if (count == 0)
+	{
+		return;
+	}
+
+	while (i++ < count)
+	{
+		const DIFFITEM &diffitem = GetNextSelectedInd(pos);
+
+		// check for special items (e.g not "..")
+		if (diffitem.diffcode.diffcode == 0)
+		{
+			continue;
+		}
+
+		if (diffitem.diffcode.isSideFirstOnly())
+		{
+			String spath = diffitem.getFilepath(0, GetDocument()->GetDiffContext().GetNormalizedLeft());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].filename);
+			filesForDroping += spath;
+		}
+		else if (diffitem.diffcode.isSideSecondOnly())
+		{
+			String spath = diffitem.getFilepath(1, GetDocument()->GetDiffContext().GetNormalizedRight());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].filename);
+			filesForDroping += spath;
+		}
+		else if (diffitem.diffcode.isSideBoth()) 
+		{
+			// when both files equal, there is no difference between what file to drag
+			// so we put file from the left panel
+			String spath = diffitem.getFilepath(0, GetDocument()->GetDiffContext().GetNormalizedLeft());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].filename);
+			filesForDroping += spath;
+			
+			// if both files are different then we also put file from the right panel
+			if (diffitem.diffcode.isResultDiff())
+			{
+				filesForDroping += _T('\n'); // end of left file path
+				String spath = diffitem.getFilepath(1, GetDocument()->GetDiffContext().GetNormalizedRight());
+				spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].filename);
+				filesForDroping += spath;
+			}
+		}
+		filesForDroping += _T('\n'); // end of file path
+	}
+
+	if (!filesForDroping.empty())
+	{
+		filesForDroping.erase(filesForDroping.length() - 1); // omit final \n
+	}
+}
+
+/**
+ * @brief Drag files/directories from folder compare listing view.
+ */
+void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult) 
+{
+	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
+
+	COleDataSource *DropData = new COleDataSource();
+	String filesForDroping;
+
+	PrepareDragData(filesForDroping);
+
+	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
+	file.Write(filesForDroping.data(), filesForDroping.length() * sizeof(TCHAR));
+	file.Write(_T("\0"), sizeof(TCHAR)); // include terminating zero
+	
+	HGLOBAL hMem = file.Detach();
+	if (hMem) 
+	{
+#ifdef _UNICODE
+		DropData->CacheGlobalData(CF_UNICODETEXT, hMem);
+#else
+		DropData->CacheGlobalData(CF_TEXT, hMem);
+#endif
+		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, NULL);
+	}
+
+	*pResult = 0;
+}
