@@ -1062,15 +1062,15 @@ void buffer::resize(unsigned int newSize)
 	}
 }
 
-unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR * src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
 	bSucceeded = convert(1200, 
-		(unsigned char *)src, (srcbytes < 0) ? wcslen((const wchar_t *)src) : srcbytes,
+		(unsigned char *)src, (srcbytes < 0) ? wcslen((const wchar_t *)src) * sizeof(wchar_t) : srcbytes,
 		CP_UTF8, buf);
 #else
-	bSucceeded = convert(GetACP(),
+	bSucceeded = convert(GetACP(),	
 		(unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
 		CP_UTF8, buf);
 #endif
@@ -1079,14 +1079,14 @@ unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR * src, int srcbytes/* = -1*/
 	return buf->ptr;
 }
 
-unsigned char *convertTtoUTF8(LPCTSTR * src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertTtoUTF8(&buf, src, srcbytes);
 	return (unsigned char *)strdup((const char *)buf.ptr);
 }
 
-TCHAR *convertUTF8toT(buffer * buf, LPCSTR * src, int srcbytes/* = -1*/)
+TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
@@ -1103,7 +1103,7 @@ TCHAR *convertUTF8toT(buffer * buf, LPCSTR * src, int srcbytes/* = -1*/)
 	return (TCHAR *)buf->ptr;
 }
 
-TCHAR *convertUTF8toT(LPCSTR * src, int srcbytes/* = -1*/)
+TCHAR *convertUTF8toT(LPCSTR src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertUTF8toT(&buf, src, srcbytes);

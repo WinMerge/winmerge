@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include <scew/scew.h>
+#include "unicoder.h"
 #include "UnicodeString.h"
 #include "UCS2UTF8.h"
 #include "ProjectFile.h"
@@ -43,17 +44,17 @@ const char Right_ro_element_name[] = "right-readonly";
 
 static String UTF82T(const char *str)
 {
-	wchar_t *ucs2 = UCS2UTF8_ConvertToUcs2(str ? str : "");
-	String newstr(ucs2);
-	UCS2UTF8_Dealloc(ucs2);
+	TCHAR *tstr = ucr::convertUTF8toT(str ? str : "");
+	String newstr(tstr);
+	free(tstr);
 	return newstr;
 }
 
 static std::string T2UTF8(const TCHAR *str)
 {
-	char *utf8 = UCS2UTF8_ConvertToUtf8(str ? str : _T(""));
+	char *utf8 = (char *)ucr::convertTtoUTF8(str ? str : _T(""));
 	std::string newstr(utf8);
-	UCS2UTF8_Dealloc(utf8);
+	free(utf8);
 	return newstr;
 }
 
