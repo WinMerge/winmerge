@@ -6,7 +6,7 @@
       <primary>comparing files</primary>
     </indexterm></title>
 
-  <para id="">This topic describes how to use the WinMerge File Compare window to
+  <para>This topic describes how to use the WinMerge File Compare window to
   compare and merge text files. To understand the basic concepts about
   differences discussed here, we suggest you read <xref linkend="Intro_diffs" />
   first. See <xref linkend="Intro_diffs" /> for related information about hex

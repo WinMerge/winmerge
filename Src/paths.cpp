@@ -45,7 +45,7 @@ static bool IsSlash(LPCTSTR pszStart, size_t nPos)
 bool paths_EndsWithSlash(LPCTSTR s)
 {
 	if (size_t len = _tcslen(s))
-		return IsSlash(s, len - 1);
+		return IsSlash(s, (int)len - 1);
 	return false;
 }
 
@@ -522,9 +522,10 @@ String paths_GetParentPath(LPCTSTR path)
 	// Remove last part of path
 	size_t pos = parentPath.rfind('\\');
 
-	if (pos > -1)
+	if (pos != parentPath.npos)
 	{
-		parentPath.resize(pos);
+		// Do not remove trailing slash from root directories
+		parentPath.resize(pos == 2 ? pos + 1 : pos);
 	}
 	return parentPath;
 }
@@ -552,7 +553,7 @@ String paths_GetLastSubdir(const String & path)
 
 	// Find last part of path
 	size_t pos = parentPath.find_last_of('\\');
-	if (pos >= 2)
+	if (pos >= 2 && pos != String::npos)
 		parentPath.erase(0, pos);
 	return parentPath;
 }
@@ -571,7 +572,7 @@ BOOL paths_IsPathAbsolute(const String &path)
 
 	// Absolute path must have "\" and cannot start with it.
 	// Also "\\blahblah" is invalid.
-	if (pos < 2)
+	if (pos < 2 || pos == String::npos)
 		return FALSE;
 
 	// Maybe "X:\blahblah"?

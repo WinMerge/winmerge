@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <windows.h>
+#include <tchar.h>
 #include "varprop.h"
 
 // NOTE:
@@ -130,18 +131,18 @@ namespace
 	TEST_F(VariantValueTest, SetString1)
 	{
 		varprop::VariantValue val;
-		val.SetString("");
+		val.SetString(_T(""));
 		EXPECT_TRUE(val.IsString());
-		EXPECT_EQ("", val.GetString());
+		EXPECT_EQ(_T(""), val.GetString());
 	}
 
 	// Set and read String value
 	TEST_F(VariantValueTest, SetString2)
 	{
 		varprop::VariantValue val;
-		val.SetString("Boo");
+		val.SetString(_T("Boo"));
 		EXPECT_TRUE(val.IsString());
-		EXPECT_EQ("Boo", val.GetString());
+		EXPECT_EQ(_T("Boo"), val.GetString());
 	}
 
 	// Set and read time value

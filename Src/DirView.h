@@ -445,6 +445,7 @@ protected:
 	afx_msg void OnSearch();
 	afx_msg void OnExpandFolder();
 	afx_msg void OnCollapseFolder();
+	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -493,6 +494,7 @@ private:
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText);
 	DirViewTreeState *SaveTreeState();
 	void RestoreTreeState(DirViewTreeState *pTreeState);
+	void PrepareDragData(String& filesForDroping);
 };
 
 

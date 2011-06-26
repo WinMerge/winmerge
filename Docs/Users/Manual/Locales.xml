@@ -52,11 +52,10 @@
 
         <orderedlist>
           <listitem>
-            <simpara>Create a folder named <filename
-            class="directory">Languages</filename> under the WinMerge
-            installation directory (where <filename>WinMerge.exe</filename> or
-            <filename>WinMergeU.exe</filename> is located), if it does not
-            already exist.</simpara>
+            <simpara>Create a folder named <filename class="directory"
+                >Languages</filename> under the WinMerge installation directory
+              (where <filename>WinMergeU.exe</filename> is located), if it does
+              not already exist.</simpara>
           </listitem>
 
           <listitem>

@@ -1389,8 +1389,8 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
 	UINT_PTR diffpos = GetItemKey(sel);
 	if (diffpos == (UINT_PTR)SPECIAL_ITEM_POS)
 	{
-		strLeft.empty();
-		strRight.empty();
+		strLeft.erase();
+		strRight.erase();
 	}
 	else
 	{

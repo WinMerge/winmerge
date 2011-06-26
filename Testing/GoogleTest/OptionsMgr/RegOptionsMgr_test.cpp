@@ -53,8 +53,8 @@ namespace
 	TEST_F(RegOptionsMgrTest, ReadNonexistingBool1)
 	{
 		CRegOptionsMgr mgr;
-		mgr.SetRegRootKey("Thingamahoochie\\WinMerge\\UnitTesting");
-		EXPECT_EQ(true, mgr.GetBool("BoolOpt2"));
+		mgr.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\UnitTesting"));
+		EXPECT_EQ(true, mgr.GetBool(_T("BoolOpt2"));
 	}
 #endif
 
@@ -62,17 +62,17 @@ namespace
 	TEST_F(RegOptionsMgrTest, AddBoolOption1)
 	{
 		CRegOptionsMgr mgr;
-		mgr.SetRegRootKey("Thingamahoochie\\WinMerge\\UnitTesting");
-		EXPECT_EQ(OPT_OK, mgr.InitOption("BoolOpt1", false));
-		EXPECT_EQ(false, mgr.GetBool("BoolOpt1"));
+		mgr.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\UnitTesting"));
+		EXPECT_EQ(OPT_OK, mgr.InitOption(_T("BoolOpt1"), false));
+		EXPECT_EQ(false, mgr.GetBool(_T("BoolOpt1")));
 	}
 
 	// Add new bool option with true default value
 	TEST_F(RegOptionsMgrTest, AddBoolOption2)
 	{
 		CRegOptionsMgr mgr;
-		mgr.SetRegRootKey("Thingamahoochie\\WinMerge\\UnitTesting");
-		EXPECT_EQ(OPT_OK, mgr.InitOption("BoolOpt2", true));
-		EXPECT_EQ(true, mgr.GetBool("BoolOpt2"));
+		mgr.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\UnitTesting"));
+		EXPECT_EQ(OPT_OK, mgr.InitOption(_T("BoolOpt2"), true));
+		EXPECT_EQ(true, mgr.GetBool(_T("BoolOpt2")));
 	}
 }

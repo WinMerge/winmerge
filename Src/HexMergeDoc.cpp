@@ -525,7 +525,9 @@ HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, BOOL bRO[])
 	if (nBuffer == m_nBuffers)
 	{
 		UpdateDiffItem(0);
-		pf->Invalidate();
+		// An extra ResizeWindow() on the left view aligns scroll ranges, and
+		// also triggers initial diff coloring by invalidating the client area.
+		m_pView[0]->ResizeWindow();
 		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 			m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 	}

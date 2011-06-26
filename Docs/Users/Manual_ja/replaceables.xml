@@ -16,13 +16,13 @@
         <row>
           <entry>現在のバージョン(マイナー)</entry>
 
-          <entry><phrase id="version-full">2.12.4</phrase></entry>
+          <entry><phrase id="version-full">2.14.0</phrase></entry>
         </row>
 
         <row>
           <entry>現在のバージョン(メジャー)</entry>
 
-          <entry><phrase id="version">2.12</phrase></entry>
+          <entry><phrase id="version">2.14</phrase></entry>
         </row>
       </tbody>
     </tgroup>

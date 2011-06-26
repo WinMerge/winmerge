@@ -143,10 +143,31 @@ char * UCS2UTF8_ConvertToUtf8(LPCTSTR strOrigin)
 }
 
 /**
- * @brief Free string allocated by UCS2UTF8_ConvertToUtf8().
- * @param [in] Utf8Str String to deallocate.
+ * @brief Convert string to UCS2.
+ * This function converts the given string to UCS2, and returns pointer
+ * to converted string. Given string must be deallocated by calling
+ * UCS2UTF8_Dealloc() after use.
+ * @param [in] strOrigin String to convert.
+ * @return Pointer to UCS2 string.
  */
-void UCS2UTF8_Dealloc(char * Utf8Str)
+wchar_t * UCS2UTF8_ConvertToUcs2(LPCSTR strOrigin)
 {
-	free(Utf8Str);
+	size_t utf8_len = strlen(strOrigin);
+	// Get the size of UCS2 string
+	int str_len = TransformUtf8ToUcs2(strOrigin, utf8_len, NULL, 0);
+
+	wchar_t * str_ucs2 = (wchar_t *) malloc((str_len + 1) * sizeof(wchar_t));
+	TransformUtf8ToUcs2(strOrigin, utf8_len, str_ucs2, str_len);
+	str_ucs2[str_len] = 0;
+	
+	return str_ucs2;
+}
+
+/**
+ * @brief Free string allocated by UCS2UTF8_ConvertToUtf8().
+ * @param [in] str String to deallocate.
+ */
+void UCS2UTF8_Dealloc(void * str)
+{
+	free(str);
 }

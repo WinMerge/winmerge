@@ -130,7 +130,7 @@ void VariantValue::Clear()
 	m_bvalue = false;
 	m_ivalue = 0;
 	m_fvalue = 0;
-	m_svalue.empty();
+	m_svalue.erase();
 	m_tvalue = 0;
 }
 

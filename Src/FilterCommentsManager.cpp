@@ -35,8 +35,6 @@
 FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")*/)
  : m_IniFileName(IniFileName)
 {
-	USES_CONVERSION;
-
 	int SectionNo = 0;
 	TCHAR SectionName[99];
 	TCHAR buffer[1024];
@@ -49,11 +47,11 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 		FilterCommentsSet filtercommentsset;
 		_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
 		GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.StartMarker = T2CA(buffer);
+		filtercommentsset.StartMarker = CStringA(buffer);
 		GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.EndMarker = T2CA(buffer);
+		filtercommentsset.EndMarker = CStringA(buffer);
 		GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.InlineMarker = T2CA(buffer);
+		filtercommentsset.InlineMarker = CStringA(buffer);
 		if (filtercommentsset.StartMarker.empty() && 
 			filtercommentsset.EndMarker.empty() &&
 			filtercommentsset.InlineMarker.empty())
