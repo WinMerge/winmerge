@@ -117,30 +117,6 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR subdir[],
 	// i points to current directory in left list (leftDirs)
 	// j points to current directory in right list (rightDirs)
 
-	// If there is only one directory on each side, and no files
-	// then pretend the directories have the same name
-	bool bTreatDirAsEqual;
-	if (nDirs < 3)
-	{
-		bTreatDirAsEqual = 
-		  (dirs[0].size() == 1)
-		&& (dirs[1].size() == 1)
-		&& (files[0].size() == 0)
-		&& (files[1].size() == 0)
-		;
-	}
-	else
-	{
-		bTreatDirAsEqual = 
-		  (dirs[0].size() == 1)
-		&& (dirs[1].size() == 1)
-		&& (dirs[2].size() == 1)
-		&& (files[0].size() == 0)
-		&& (files[1].size() == 0)
-		&& (files[2].size() == 0)
-		;
-	}
-
 	for (nIndex = 0; nIndex < nDirs; nIndex++)
 		if (dirs[nIndex].size() != 0 || files[nIndex].size() != 0) break;
 	if (nIndex == nDirs)
@@ -164,106 +140,96 @@ else
 	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.c_str() : _T(""));
 OutputDebugString(buf);
 
-		if (!bTreatDirAsEqual)
+		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
+			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
-			if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
-				&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
+			nDiffCode = DIFFCODE::FIRST | DIFFCODE::DIR;
+			if (!bUniques)
 			{
-				nDiffCode = DIFFCODE::FIRST | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					if (nDirs < 3)
-						AddToList(subdir[0], subdir[1], &dirs[0][i], 0, nDiffCode, myStruct, parent);
-					else
-						AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, 0, nDiffCode, myStruct, parent);
-					// Advance left pointer over left-only entry, and then retest with new pointers
-					++i;
-					continue;
-				}
-			}
-			else if (j<dirs[1].size() && (i==dirs[0].size() || collstr(dirs[1][j].filename, dirs[0][i].filename, casesensitive)<0)
-				&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive)<0) ))
-			{
-				nDiffCode = DIFFCODE::SECOND | DIFFCODE::DIR;
-				if (!bUniques)
-				{
-					if (nDirs < 3)
-						AddToList(subdir[0], subdir[1], 0, &dirs[1][j], nDiffCode, myStruct, parent);
-					else
-						AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], 0, nDiffCode, myStruct, parent);
-					// Advance right pointer over right-only entry, and then retest with new pointers
-					++j;
-					continue;
-				}
-			}
-			else if (nDirs < 3)
-			{
-				nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
-			}
-			else
-			{
-				if (k<dirs[2].size() && (i==dirs[0].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive)<0)
-					&&                     (j==dirs[1].size() || collstr(dirs[2][k].filename, dirs[1][j].filename, casesensitive)<0) )
-				{
-					nDiffCode = DIFFCODE::THIRD | DIFFCODE::DIR;
-					if (!bUniques)
-					{
-						AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &dirs[2][k], nDiffCode, myStruct, parent);
-						++k;
-						// Advance right pointer over right-only entry, and then retest with new pointers
-						continue;
-	
-					}	
-	
-				}
-				else if ((i<dirs[0].size() && j<dirs[1].size() && collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) == 0)
-				    && (k==dirs[2].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive) != 0))
-				{
-					nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::DIR;
-					if (!bUniques)
-					{
-						AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], &dirs[1][j], 0, nDiffCode, myStruct, parent);
-						++i;
-						++j;
-						continue;	
-					}
-				}
-				else if ((i<dirs[0].size() && k<dirs[2].size() && collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive) == 0)
-				    && (j==dirs[1].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) != 0))
-				{
-					nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::DIR;
-					if (!bUniques)
-					{
-						AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, &dirs[2][k], nDiffCode, myStruct, parent);
-						++i;
-						++k;
-						continue;
-					}
-				}
-				else if ((j<dirs[1].size() && k<dirs[2].size() && collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) == 0)
-				    && (i==dirs[0].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) != 0))
-				{
-					nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::DIR;
-					if (!bUniques)
-					{
-						AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], &dirs[2][k], nDiffCode, myStruct, parent);
-						++j;
-						++k;
-						continue;
-					}
-				}
+				if (nDirs < 3)
+					AddToList(subdir[0], subdir[1], &dirs[0][i], 0, nDiffCode, myStruct, parent);
 				else
-				{
-					nDiffCode = DIFFCODE::ALL | DIFFCODE::DIR;
-				}
+					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, 0, nDiffCode, myStruct, parent);
+				// Advance left pointer over left-only entry, and then retest with new pointers
+				++i;
+				continue;
 			}
+		}
+		else if (j<dirs[1].size() && (i==dirs[0].size() || collstr(dirs[1][j].filename, dirs[0][i].filename, casesensitive)<0)
+			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive)<0) ))
+		{
+			nDiffCode = DIFFCODE::SECOND | DIFFCODE::DIR;
+			if (!bUniques)
+			{
+				if (nDirs < 3)
+					AddToList(subdir[0], subdir[1], 0, &dirs[1][j], nDiffCode, myStruct, parent);
+				else
+					AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], 0, nDiffCode, myStruct, parent);
+				// Advance right pointer over right-only entry, and then retest with new pointers
+				++j;
+				continue;
+			}
+		}
+		else if (nDirs < 3)
+		{
+			nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
 		}
 		else
 		{
-			if (nDirs < 3)
-				nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
+			if (k<dirs[2].size() && (i==dirs[0].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive)<0)
+				&&                     (j==dirs[1].size() || collstr(dirs[2][k].filename, dirs[1][j].filename, casesensitive)<0) )
+			{
+				nDiffCode = DIFFCODE::THIRD | DIFFCODE::DIR;
+				if (!bUniques)
+				{
+					AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &dirs[2][k], nDiffCode, myStruct, parent);
+					++k;
+					// Advance right pointer over right-only entry, and then retest with new pointers
+					continue;
+
+				}	
+
+			}
+			else if ((i<dirs[0].size() && j<dirs[1].size() && collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) == 0)
+				&& (k==dirs[2].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive) != 0))
+			{
+				nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::DIR;
+				if (!bUniques)
+				{
+					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], &dirs[1][j], 0, nDiffCode, myStruct, parent);
+					++i;
+					++j;
+					continue;	
+				}
+			}
+			else if ((i<dirs[0].size() && k<dirs[2].size() && collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive) == 0)
+				&& (j==dirs[1].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) != 0))
+			{
+				nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::DIR;
+				if (!bUniques)
+				{
+					AddToList(subdir[0], subdir[1], subdir[2], &dirs[0][i], 0, &dirs[2][k], nDiffCode, myStruct, parent);
+					++i;
+					++k;
+					continue;
+				}
+			}
+			else if ((j<dirs[1].size() && k<dirs[2].size() && collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) == 0)
+				&& (i==dirs[0].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) != 0))
+			{
+				nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::DIR;
+				if (!bUniques)
+				{
+					AddToList(subdir[0], subdir[1], subdir[2], 0, &dirs[1][j], &dirs[2][k], nDiffCode, myStruct, parent);
+					++j;
+					++k;
+					continue;
+				}
+			}
 			else
+			{
 				nDiffCode = DIFFCODE::ALL | DIFFCODE::DIR;
+			}
 		}
 
 		// add to list
