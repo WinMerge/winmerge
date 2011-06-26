@@ -1811,7 +1811,7 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 void CMainFrame::OnHelpContents()
 {
 	String sPath = GetModulePath(0);
-	LANGID LangId = GetUserDefaultLangID();
+	LANGID LangId = theApp.GetLangId();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
 		sPath += DocsPath_ja;
 	else
