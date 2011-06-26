@@ -42,6 +42,15 @@ struct PATCHFILES
 	time_t ltime; /**< Left time */
 	time_t rtime; /**< Right time */
 	PATCHFILES() : ltime(0), rtime(0) {};
+	/**
+	 * @brief Swap diff sides.
+	 */
+	void swap_sides()
+	{
+		std::swap(lfile, rfile);
+		std::swap(pathLeft, pathRight);
+		std::swap(ltime, rtime);
+	}
 };
 
 /** 

@@ -89,6 +89,7 @@ protected:
 	void UpdateSettings();
 	void LoadSettings();
 	void SaveSettings();
+	void Swap();
 
 	// Generated message map functions
 	//{{AFX_MSG(CPatchDlg)
