@@ -14,6 +14,7 @@
 #include "LanguageSelect.h"
 #include "BCMenu.h"
 #include "MainFrm.h"
+#include "OpenFrm.h"
 #include "ChildFrm.h"
 #include "DirFrame.h"
 #include "coretools.h"
@@ -1101,6 +1102,8 @@ void CLanguageSelect::ReloadMenu()
 			{
 				if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 					((CChildFrame *)pFrame)->SetSharedMenu(hNewMergeMenu);
+				else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
+					((COpenFrame *)pFrame)->SetSharedMenu(hNewDefaultMenu);
 				else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
 					((CDirFrame *)pFrame)->SetSharedMenu(hNewDirMenu);
 				pFrame = pFrame->GetNextWindow();
@@ -1132,6 +1135,7 @@ void CLanguageSelect::ReloadMenu()
 			// m_hMenuDefault is used to redraw the main menu when we close a child frame
 			// if this child frame had a different menu
 			pMainFrame->m_hMenuDefault = hNewDefaultMenu;
+			pApp->m_pOpenTemplate->m_hMenuShared = hNewDefaultMenu;
 			pApp->m_pDiffTemplate->m_hMenuShared = hNewMergeMenu;
 			pApp->m_pDirTemplate->m_hMenuShared = hNewDirMenu;
 

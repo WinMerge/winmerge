@@ -59,6 +59,7 @@
 #define IDD_PROPPAGE_COMPARE_FOLDER     238
 #define IDD_DIR_FILTER                  239
 #define IDD_ENCODINGERROR               240
+#define IDR_LOGO                        307
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310

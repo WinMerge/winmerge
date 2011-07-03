@@ -298,9 +298,6 @@
     <ClCompile Include="Common\multiformatText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsInit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -721,6 +718,15 @@
     <ClCompile Include="EncodingErrorDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OpenDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
@@ -1017,9 +1023,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\multiformatText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsDef.h">
@@ -1350,6 +1353,15 @@
       <Filter>Compare Engines</Filter>
     </ClInclude>
     <ClInclude Include="EncodingErrorDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

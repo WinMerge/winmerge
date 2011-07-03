@@ -2375,6 +2375,45 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 			return FALSE;
 		}
 	}
+	else if (pMsg->message == WM_SYSKEYDOWN)
+	{
+		if (::GetAsyncKeyState(VK_MENU))
+		{
+			UINT id = 0;
+			if (::GetAsyncKeyState(VK_SHIFT))
+			{
+				switch (pMsg->wParam)
+				{
+				case '1': id = ID_PREVDIFFLM; break;
+				case '2': id = ID_PREVDIFFLR; break;
+				case '3': id = ID_PREVDIFFMR; break;
+				case '7': id = ID_PREVDIFFLO; break;
+				case '8': id = ID_PREVDIFFMO; break;
+				case '9': id = ID_PREVDIFFRO; break;
+				}
+			}
+			else
+			{
+				switch (pMsg->wParam)
+				{
+				case '1': id = ID_NEXTDIFFLM; break;
+				case '2': id = ID_NEXTDIFFLR; break;
+				case '3': id = ID_NEXTDIFFMR; break;
+				case '4': id = ID_L2M; break;
+				case '6': id = ID_R2M; break;
+				case '7': id = ID_NEXTDIFFLO; break;
+				case '8': id = ID_NEXTDIFFMO; break;
+				case '9': id = ID_NEXTDIFFRO; break;
+				}
+			}
+			if (id)
+			{
+				PostMessage(WM_COMMAND, id);
+				return FALSE;
+			}
+		}
+	}
+
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }
 

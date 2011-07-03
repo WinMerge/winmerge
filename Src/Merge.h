@@ -60,6 +60,7 @@ class CMergeApp : public CWinApp
 {
 public:
 	BOOL m_bNeedIdleTimer;
+	CMultiDocTemplate* m_pOpenTemplate;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
