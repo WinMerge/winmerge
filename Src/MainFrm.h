@@ -63,6 +63,7 @@ enum { WM_NONINTERACTIVE = 888 }; // timer value
 class BCMenu;
 class CDiffView;
 class CDirView;
+class COpenDoc;
 class CDirDoc;
 class CMergeDoc;
 class CHexMergeDoc;
@@ -73,6 +74,7 @@ class TempFile;
 struct FileLocation;
 
 // typed lists (homogenous pointer lists)
+typedef CTypedPtrList<CPtrList, COpenDoc *> OpenDocList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 typedef CTypedPtrList<CPtrList, CHexMergeDoc *> HexMergeDocList;
@@ -108,7 +110,7 @@ public:
 
 	BOOL SyncFileToVCS(LPCTSTR pszDest,	BOOL &bApplyToAll, CString *psError);
 	BOOL DoFileOpen(PathContext *pFiles = NULL,
-		DWORD dwFlags[] = NULL, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""));
+		DWORD dwFlags[] = NULL, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
@@ -341,6 +343,7 @@ protected:
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void FileNew(int nPanes);
+	const OpenDocList &GetAllOpenDocs();
 	const MergeDocList &GetAllMergeDocs();
 	const DirDocList &GetAllDirDocs();
 	const HexMergeDocList &GetAllHexMergeDocs();

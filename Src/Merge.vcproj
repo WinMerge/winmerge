@@ -3684,41 +3684,13 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="OpenDlg.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
-				</FileConfiguration>
+				RelativePath=".\OpenDoc.cpp">
+			</File>
+			<File
+				RelativePath=".\OpenFrm.cpp">
+			</File>
+			<File
+				RelativePath=".\OpenView.cpp">
 			</File>
 			<File
 				RelativePath="OptionsInit.cpp">
@@ -6526,7 +6498,13 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				RelativePath="Common\multiformatText.h">
 			</File>
 			<File
-				RelativePath="OpenDlg.h">
+				RelativePath=".\OpenDoc.h">
+			</File>
+			<File
+				RelativePath=".\OpenFrm.h">
+			</File>
+			<File
+				RelativePath=".\OpenView.h">
 			</File>
 			<File
 				RelativePath="OptionsDef.h">

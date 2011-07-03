@@ -33,6 +33,9 @@
 #include "Environment.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
+#include "OpenDoc.h"
+#include "OpenFrm.h"
+#include "OpenView.h"
 #include "HexMergeDoc.h"
 #include "HexMergeFrm.h"
 #include "HexMergeView.h"
@@ -409,6 +412,14 @@ BOOL CMergeApp::InitInstance()
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
 
+	// Open view
+	m_pOpenTemplate = new CMultiDocTemplate(
+		IDR_MAINFRAME,
+		RUNTIME_CLASS(COpenDoc),
+		RUNTIME_CLASS(COpenFrame), // custom MDI child frame
+		RUNTIME_CLASS(COpenView));
+	AddDocTemplate(m_pOpenTemplate);
+
 	// Merge Edit view
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGEDOCTYPE,
@@ -454,6 +465,7 @@ BOOL CMergeApp::InitInstance()
 	m_pHexMergeTemplate->m_hMenuShared = pMainFrame->NewHexMergeViewMenu();
 	m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
+	m_pOpenTemplate->m_hMenuShared = pMainFrame->m_hMenuDefault;
 
 	// Set the menu
 	// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach

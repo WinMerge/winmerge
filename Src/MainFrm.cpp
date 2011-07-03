@@ -35,12 +35,14 @@
 #include "UnicodeString.h"
 #include "BCMenu.h"
 #include "MainFrm.h"
+#include "OpenFrm.h"
 #include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
 #include "HexMergeFrm.h"
 #include "DirView.h"
 #include "DirDoc.h"
-#include "OpenDlg.h"
+#include "OpenDoc.h"
+#include "OpenView.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
 #include "LocationView.h"
@@ -1077,7 +1079,7 @@ void CMainFrame::OnOptions()
  */
 BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 	DWORD dwFlags[] /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
-	CString prediffer /*=_T("")*/)
+	CString prediffer /*=_T("")*/, PackingInfo *infoUnpacker/*=NULL*/)
 {
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
 	if (IsComparing())
@@ -1088,8 +1090,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
-
-	PackingInfo infoUnpacker;
 
 	PathContext files;
 	if (pFiles)
@@ -1113,52 +1113,19 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 	PATH_EXISTENCE pathsType = GetPairComparability(files, IsArchiveFile);
 	if (pathsType == DOES_NOT_EXIST)
 	{
-		COpenDlg dlg;
-		dlg.m_files = files;
-		dlg.m_bRecurse = bRecurse;
-
+		COpenDoc *pOpenDoc = (COpenDoc *)theApp.m_pOpenTemplate->CreateNewDocument();
 		if (dwFlags)
 		{
-			if (dwFlags[0] & FFILEOPEN_PROJECT || dwFlags[1] & FFILEOPEN_PROJECT)
-				dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
-			if (dwFlags[0] & FFILEOPEN_CMDLINE || dwFlags[1] & FFILEOPEN_CMDLINE)
-				dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
+			pOpenDoc->m_dwFlags[0] = dwFlags[0];
+			pOpenDoc->m_dwFlags[1] = dwFlags[1];
+			pOpenDoc->m_dwFlags[2] = dwFlags[2];
 		}
-
-		if (dlg.DoModal() != IDOK)
-			return FALSE;
-
-		files = dlg.m_files;
-		bRecurse = dlg.m_bRecurse;
-		infoUnpacker = dlg.m_infoHandler;
-		if (dlg.m_pProjectFile != NULL)
-		{
-			// User loaded a project file, set additional information
-			if (dlg.m_pProjectFile->GetLeftReadOnly())
-				bRO[0] = TRUE;
-			if (files.GetSize() == 2)
-			{
-				if (dlg.m_pProjectFile->GetRightReadOnly())
-					bRO[1] = TRUE;
-			}
-			else
-			{
-				if (dlg.m_pProjectFile->GetMiddleReadOnly())
-					bRO[1] = TRUE;
-				if (dlg.m_pProjectFile->GetRightReadOnly())
-					bRO[2] = TRUE;
-			}
-			// Set value in both cases because we want to override Open-dialog
-			// value.
-			int projRecurse = dlg.m_pProjectFile->GetSubfolders();
-			if (projRecurse == 0)
-				bRecurse = FALSE;
-			else if (projRecurse > 0)
-				bRecurse = TRUE;
-
-		}
-		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
-		// TODO: add codepage options to open dialog ?
+		pOpenDoc->m_files = files;
+		if (infoUnpacker)
+			pOpenDoc->m_infoHandler = *infoUnpacker;
+		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, NULL);
+		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
+		return TRUE;
 	}
 	else
 	{
@@ -1387,7 +1354,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 
 		ShowMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
-			&infoUnpacker);
+			infoUnpacker);
 	}
 	return TRUE;
 }
@@ -2011,6 +1978,12 @@ void CMainFrame::OnViewWhitespace()
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+}
+
+/// Get list of OpenDocs (documents underlying edit sessions)
+const OpenDocList &CMainFrame::GetAllOpenDocs()
+{
+	return static_cast<const OpenDocList &>(GetDocList(theApp.m_pOpenTemplate));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
@@ -2852,10 +2825,12 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		{
 			if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
 			{
+				const OpenDocList &openDocs = GetAllOpenDocs();
 				const MergeDocList &docs = GetAllMergeDocs();
+				const HexMergeDocList &hexDocs = GetAllHexMergeDocs();
 				const DirDocList &dirDocs = GetAllDirDocs();
 
-				if (docs.IsEmpty() && dirDocs.IsEmpty())
+				if (openDocs.IsEmpty() && docs.IsEmpty() && hexDocs.IsEmpty() && dirDocs.IsEmpty())
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 					return FALSE;

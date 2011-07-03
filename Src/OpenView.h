@@ -18,47 +18,43 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  OpenDlg.h
+ * @file  OpenView.h
  *
- * @brief Declaration file for COpenDlg dialog
+ * @brief Declaration file for COpenView window
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: OpenDlg.h 5444 2008-06-07 06:48:49Z kimmov $
+// $Id: OpenView.h 5444 2008-06-07 06:48:49Z kimmov $
 
-#if !defined(AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_)
-#define AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_
 #pragma once
 
 /////////////////////////////////////////////////////////////////////////////
-// COpenDlg dialog
+// COpenView window
 #include "SuperComboBox.h"
-#include "CMoveConstraint.h"
 #include "FileTransform.h"
 #include "PathContext.h"
+#include "Picture.h"
 
 class ProjectFile;
 
 /**
- * @brief The Open-dialog class.
- * The Open-dialog allows user to select paths to compare. In addition to
+ * @brief The Open-View class.
+ * The Open-View allows user to select paths to compare. In addition to
  * the two paths, there are controls for selecting filter and unpacker plugin.
  * If one of the paths is a project file, that projec file is loaded,
  * overwriting possible other values in other dialog controls.
  * The dialog shows also a status of the selected paths (found/not found),
  * if enabled in the options (enabled by default).
  */
-class COpenDlg : public CDialog
+ class COpenView : public CFormView
 {
-// Construction
+protected: // create from serialization only
+	COpenView();
+	DECLARE_DYNCREATE(COpenView)
+
 public:
-
-	COpenDlg(CWnd* pParent = NULL);   // standard constructor
-	~COpenDlg();
-	void UpdateButtonStates();
-
 // Dialog Data
-	//{{AFX_DATA(COpenDlg)
+	//{{AFX_DATA(COpenView)
 	enum { IDD = IDD_OPEN };
 	CButton	m_ctlSelectUnpacker;
 	CEdit	m_ctlUnpacker;
@@ -74,26 +70,40 @@ public:
 	//}}AFX_DATA
 
 // other public data
-	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
 	/// unpacker info
+	DWORD m_dwFlags[3];
 	PackingInfo m_infoHandler;
 	BOOL m_bOverwriteRecursive;  /**< If TRUE overwrite last used value of recursive */
-	ProjectFile * m_pProjectFile; /**< Project file (if loaded) */
+
+// Attributes
+public:
+	COpenDoc* GetDocument() const;
+
+// Operations
+public:
+	void UpdateButtonStates();
 
 // Implementation data
 private:
-	prdlg::CMoveConstraint m_constraint;
 	CString m_strBrowsePath[3]; /**< Left/middle/right path from browse dialog. */
 	CWinThread *m_pUpdateButtonStatusThread;
+	CPicture m_picture; /**< Image loader/viewer for logo image */
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(COpenDlg)
-	protected:
+	public:
+virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+	virtual void OnInitialUpdate(); // called first time after construct
 
 // Implementation
+public:
+	virtual ~COpenView();
+#ifdef _DEBUG
+	virtual void AssertValid() const;
+	virtual void Dump(CDumpContext& dc) const;
+#endif
+
 protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
@@ -103,15 +113,15 @@ protected:
 	void OnButton(int index);
 	void OnSelchangeCombo(int index);
 
-	// Generated message map functions
-	//{{AFX_MSG(COpenDlg)
+// Generated message map functions
+protected:
+	//{{AFX_MSG(COpenView)
 	afx_msg void OnPath0Button();
 	afx_msg void OnPath1Button();
 	afx_msg void OnPath2Button();
-	virtual void OnOK();
-	virtual void OnCancel();
+	afx_msg void OnOK();
+	afx_msg void OnCancel();
 	afx_msg void SaveComboboxStates();
-	virtual BOOL OnInitDialog();
 	afx_msg void OnSelchangePath0Combo();
 	afx_msg void OnSelchangePath1Combo();
 	afx_msg void OnSelchangePath2Combo();
@@ -120,14 +130,20 @@ protected:
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnEditCopy();
+	afx_msg void OnEditCut();
+	afx_msg void OnEditPaste();
+	afx_msg void OnEditUndo();
 	afx_msg void OnHelp();
 	afx_msg void OnDropFiles(HDROP dropInfo);
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnPaint();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+#ifndef _DEBUG  // debug version in OpenView.cpp
+inline COpenDoc* COpenView::GetDocument() const
+   { return reinterpret_cast<COpenDoc*>(m_pDocument); }
+#endif
 
-#endif // !defined(AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_)

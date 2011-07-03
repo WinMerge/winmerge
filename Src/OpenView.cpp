@@ -19,9 +19,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  OpenDlg.cpp
+ * @file  OpenView.cpp
  *
- * @brief Implementation of the COpenDlg class
+ * @brief Implementation of the COpenView class
  */
 // ID line follows -- this is updated by SVN
 // $Id: OpenDlg.cpp 6861 2009-06-25 12:11:07Z kimmov $
@@ -31,8 +31,9 @@
 #include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"
+#include "OpenDoc.h"
+#include "OpenView.h"
 #include "ProjectFile.h"
-#include "OpenDlg.h"
 #include "coretools.h"
 #include "paths.h"
 #include "SelectUnpackerDlg.h"
@@ -41,11 +42,8 @@
 #include "OptionsMgr.h"
 #include "FileOrFolderSelect.h"
 #include "7zCommon.h"
-
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#include <multimon.h>
+#include "Constants.h"
+#include "Picture.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -61,35 +59,59 @@ static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 /** @brief Location for Open-dialog specific help to open. */
 static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
-/////////////////////////////////////////////////////////////////////////////
-// COpenDlg dialog
+// COpenView
 
-/**
- * @brief Standard constructor.
- */
-COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(COpenDlg::IDD, pParent)
-	, m_pathsType(DOES_NOT_EXIST)
-	, m_bOverwriteRecursive(FALSE)
-	, m_bRecurse(FALSE)
-	, m_pProjectFile(NULL)
+IMPLEMENT_DYNCREATE(COpenView, CFormView)
+
+BEGIN_MESSAGE_MAP(COpenView, CFormView)
+	//{{AFX_MSG_MAP(COpenView)
+	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPath0Button)
+	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPath1Button)
+	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPath2Button)
+	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePath0Combo)
+	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePath1Combo)
+	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePath2Combo)
+	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent)
+	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent)
+	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent)
+	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
+	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
+	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
+	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
+	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
+	ON_WM_ACTIVATE()
+	ON_COMMAND(IDOK, OnOK)
+	ON_COMMAND(IDCANCEL, OnCancel)
+	ON_COMMAND(ID_HELP, OnHelp)
+	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_WM_DROPFILES()
+	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
+	ON_WM_PAINT()
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+// COpenView construction/destruction
+
+COpenView::COpenView()
+	: CFormView(COpenView::IDD)
 	, m_pUpdateButtonStatusThread(NULL)
 {
+	// TODO: add construction code here
 }
 
-/**
- * @brief Standard destructor.
- */
-COpenDlg::~COpenDlg()
+COpenView::~COpenView()
 {
 	TerminateThreadIfRunning();
-	delete m_pProjectFile;
 }
 
-void COpenDlg::DoDataExchange(CDataExchange* pDX)
+void COpenView::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(COpenDlg)
+	CFormView::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(COpenView)
 	DDX_Control(pDX, IDC_SELECT_UNPACKER, m_ctlSelectUnpacker);
 	DDX_Control(pDX, IDC_UNPACKER_EDIT, m_ctlUnpacker);
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
@@ -107,66 +129,39 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
+BOOL COpenView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Modify the Window class or styles here by modifying
+	//  the CREATESTRUCT cs
+	cs.style &= ~WS_BORDER;
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+	return CFormView::PreCreateWindow(cs);
+}
 
-BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
-	//{{AFX_MSG_MAP(COpenDlg)
-	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPath0Button)
-	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPath1Button)
-	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPath2Button)
-	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePath0Combo)
-	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePath1Combo)
-	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePath2Combo)
-	ON_CBN_EDITCHANGE(IDC_PATH0_COMBO, OnEditEvent)
-	ON_CBN_EDITCHANGE(IDC_PATH1_COMBO, OnEditEvent)
-	ON_CBN_EDITCHANGE(IDC_PATH2_COMBO, OnEditEvent)
-	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
-	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
-	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
-	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
-	ON_WM_TIMER()
-	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
-	ON_WM_ACTIVATE()
-	ON_COMMAND(ID_HELP, OnHelp)
-	ON_WM_DROPFILES()
-	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// COpenDlg message handlers
-
-/**
- * @brief Handler for WM_INITDIALOG; conventional location to initialize controls
- * At this point dialog and control windows exist
- */
-BOOL COpenDlg::OnInitDialog() 
+void COpenView::OnInitialUpdate()
 {
 	theApp.TranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
-	
-	// setup handler for resizing this dialog	
-	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_PATH0_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_PATH1_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_PATH2_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
-	m_constraint.DisallowHeightGrowth();
-	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
 
-	CMainFrame::CenterToMainFrame(this);
+	if (!m_picture.Load(IDR_LOGO))
+		return;
+
+	CFormView::OnInitialUpdate();
+	ResizeParentToFit();
+
+	COpenDoc *pDoc = GetDocument();
+
+	CString strTitle;
+	GetWindowText(strTitle);
+	pDoc->SetTitle(strTitle);
+
+	m_files = pDoc->m_files;
+	m_bRecurse = pDoc->m_bRecurse;
+	m_strExt = pDoc->m_strExt;
+	m_strUnpacker = pDoc->m_strUnpacker;
+	m_infoHandler = pDoc->m_infoHandler;
+	m_dwFlags[0] = pDoc->m_dwFlags[0];
+	m_dwFlags[1] = pDoc->m_dwFlags[1];
+	m_dwFlags[2] = pDoc->m_dwFlags[2];
 
 	for (int file = 0; file < m_files.GetSize(); file++)
 	{
@@ -232,17 +227,56 @@ BOOL COpenDlg::OnInitDialog()
 
 	UpdateButtonStates();
 
-	if (!m_bOverwriteRecursive)
+	BOOL bOverwriteRecursive = FALSE;
+	if (m_dwFlags[0] & FFILEOPEN_PROJECT || m_dwFlags[1] & FFILEOPEN_PROJECT)
+		bOverwriteRecursive = TRUE;
+	if (m_dwFlags[0] & FFILEOPEN_CMDLINE || m_dwFlags[1] & FFILEOPEN_CMDLINE)
+		bOverwriteRecursive = TRUE;
+	if (!bOverwriteRecursive)
 		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
 
 	m_strUnpacker = m_infoHandler.pluginName.c_str();
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
-	return TRUE;
 }
 
-void COpenDlg::OnButton(int index)
+// COpenView diagnostics
+
+#ifdef _DEBUG
+void COpenView::AssertValid() const
+{
+	CFormView::AssertValid();
+}
+
+void COpenView::Dump(CDumpContext& dc) const
+{
+	CFormView::Dump(dc);
+}
+
+COpenDoc* COpenView::GetDocument() const // non-debug version is inline
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(COpenDoc)));
+	return (COpenDoc*)m_pDocument;
+}
+#endif //_DEBUG
+
+
+/////////////////////////////////////////////////////////////////////////////
+// COpenView message handlers
+
+void COpenView::OnPaint()
+{
+	CPaintDC dc(this);
+	m_picture.Render(&dc);
+	CSize size = m_picture.GetImageSize(&dc);
+	CRect rc;
+	GetClientRect(&rc);
+    dc.PatBlt(size.cx, 0, rc.Width() - size.cx, size.cy, PATCOPY);
+	CFormView::OnPaint();
+}
+
+void COpenView::OnButton(int index)
 {
 	CString s;
 	String sfolder;
@@ -277,7 +311,7 @@ void COpenDlg::OnButton(int index)
 /** 
  * @brief Called when "Browse..." button is selected for first path.
  */
-void COpenDlg::OnPath0Button()
+void COpenView::OnPath0Button()
 {
 	OnButton(0);
 }
@@ -285,7 +319,7 @@ void COpenDlg::OnPath0Button()
 /** 
  * @brief Called when "Browse..." button is selected for second path.
  */
-void COpenDlg::OnPath1Button() 
+void COpenView::OnPath1Button() 
 {
 	OnButton(1);
 }
@@ -293,7 +327,7 @@ void COpenDlg::OnPath1Button()
 /** 
  * @brief Called when "Browse..." button is selected for third path.
  */
-void COpenDlg::OnPath2Button() 
+void COpenView::OnPath2Button() 
 {
 	OnButton(2);
 }
@@ -303,19 +337,13 @@ void COpenDlg::OnPath2Button()
  *
  * Checks that paths are valid and sets filters.
  */
-void COpenDlg::OnOK() 
+void COpenView::OnOK() 
 {
+	int pathsType; // enum from PATH_EXISTENCE in paths.h
 	const String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 
 	UpdateData(TRUE);
 	TrimPaths();
-
-	// If left path is a project-file, load it
-	String ext;
-	SplitFilename(m_strPath[0], NULL, NULL, &ext);
-	CString sExt(ext.c_str());
-	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
-		LoadProjectFile(m_strPath[0]);
 
 	int index;
 	int nFiles = 0;
@@ -327,9 +355,16 @@ void COpenDlg::OnOK()
 		m_files[nFiles] = m_strPath[index];
 		nFiles++;
 	}
-	m_pathsType = GetPairComparability(m_files, IsArchiveFile);
+	// If left path is a project-file, load it
+	String ext;
+	SplitFilename(m_strPath[0], NULL, NULL, &ext);
+	CString sExt(ext.c_str());
+	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		LoadProjectFile(m_strPath[0]);
 
-	if (m_pathsType == DOES_NOT_EXIST)
+	pathsType = GetPairComparability(m_files, IsArchiveFile);
+
+	if (pathsType == DOES_NOT_EXIST)
 	{
 		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
@@ -382,7 +417,17 @@ void COpenDlg::OnOK()
 	SaveComboboxStates();
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
 
-	CDialog::OnOK();
+	COpenDoc *pDoc = GetDocument();
+	pDoc->m_files = m_files;
+	pDoc->m_bRecurse = m_bRecurse;
+	pDoc->m_strExt = m_strExt;
+	pDoc->m_strUnpacker = m_strUnpacker;
+	pDoc->m_infoHandler = m_infoHandler;
+	pDoc->m_dwFlags[0] = m_dwFlags[0];
+	pDoc->m_dwFlags[1] = m_dwFlags[1];
+	pDoc->m_dwFlags[2] = m_dwFlags[2];
+
+	GetMainFrame()->DoFileOpen(&pDoc->m_files, pDoc->m_dwFlags, pDoc->m_bRecurse, NULL, _T(""), &m_infoHandler);
 }
 
 /** 
@@ -392,16 +437,16 @@ void COpenDlg::OnOK()
  * Esc-key is pressed. Save combobox states, since user may have
  * removed items from them and don't want them to re-appear.
  */
-void COpenDlg::OnCancel()
+void COpenView::OnCancel()
 {
 	SaveComboboxStates();
-	CDialog::OnCancel();
+	AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 }
 
 /** 
  * @brief Save File- and filter-combobox states.
  */
-void COpenDlg::SaveComboboxStates()
+void COpenView::SaveComboboxStates()
 {
 	m_ctlPath[0].SaveState(_T("Files\\Left"));
 	m_ctlPath[1].SaveState(_T("Files\\Right"));
@@ -419,7 +464,7 @@ struct UpdateButtonStatesThreadParams
 	PathContext m_paths;
 };
 
-UINT UpdateButtonStatesThread(LPVOID lpParam)
+static UINT UpdateButtonStatesThread(LPVOID lpParam)
 {
 	MSG msg;
 	BOOL bRet;
@@ -525,7 +570,7 @@ UINT UpdateButtonStatesThread(LPVOID lpParam)
 /** 
  * @brief Enable/disable components based on validity of paths.
  */
-void COpenDlg::UpdateButtonStates()
+void COpenView::UpdateButtonStates()
 {
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
@@ -551,7 +596,7 @@ void COpenDlg::UpdateButtonStates()
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_USER, (WPARAM)pParams, 0);
 }
 
-void COpenDlg::TerminateThreadIfRunning()
+void COpenView::TerminateThreadIfRunning()
 {
 	if (!m_pUpdateButtonStatusThread)
 		return;
@@ -570,7 +615,7 @@ void COpenDlg::TerminateThreadIfRunning()
 /**
  * @brief Called when user changes selection in left/middle/right path's combo box.
  */
-void COpenDlg::OnSelchangeCombo(int index) 
+void COpenView::OnSelchangeCombo(int index) 
 {
 	int sel = m_ctlPath[index].GetCurSel();
 	if (sel != CB_ERR)
@@ -582,17 +627,17 @@ void COpenDlg::OnSelchangeCombo(int index)
 	UpdateButtonStates();
 }
 
-void COpenDlg::OnSelchangePath0Combo() 
+void COpenView::OnSelchangePath0Combo() 
 {
 	OnSelchangeCombo(0);
 }
 
-void COpenDlg::OnSelchangePath1Combo() 
+void COpenView::OnSelchangePath1Combo() 
 {
 	OnSelchangeCombo(1);
 }
 
-void COpenDlg::OnSelchangePath2Combo() 
+void COpenView::OnSelchangePath2Combo() 
 {
 	OnSelchangeCombo(2);
 }
@@ -600,7 +645,7 @@ void COpenDlg::OnSelchangePath2Combo()
 /** 
  * @brief Called every time paths are edited.
  */
-void COpenDlg::OnEditEvent()
+void COpenView::OnEditEvent()
 {
 	// (Re)start timer to path validity check delay
 	// If timer starting fails, update buttonstates immediately
@@ -613,19 +658,20 @@ void COpenDlg::OnEditEvent()
  * Checks if paths are valid and sets control states accordingly.
  * @param [in] nIDEvent Timer ID that fired.
  */
-void COpenDlg::OnTimer(UINT_PTR nIDEvent)
+void COpenView::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == IDT_CHECKFILES)
 		UpdateButtonStates();
 
-	CDialog::OnTimer(nIDEvent);
+	CFormView::OnTimer(nIDEvent);
 }
 
 /**
  * @brief Called when users selects plugin browse button.
  */
-void COpenDlg::OnSelectUnpacker()
+void COpenView::OnSelectUnpacker()
 {
+	PATH_EXISTENCE pathsType;
 	UpdateData(TRUE);
 
 	int index;
@@ -638,9 +684,9 @@ void COpenDlg::OnSelectUnpacker()
 		m_files[nFiles] = m_strPath[index];
 		nFiles++;
 	}
-	m_pathsType = GetPairComparability(m_files);
+	pathsType = GetPairComparability(m_files);
 
-	if (m_pathsType != IS_EXISTING_FILE) 
+	if (pathsType != IS_EXISTING_FILE) 
 		return;
 
 	// let the user select a handler
@@ -657,7 +703,7 @@ void COpenDlg::OnSelectUnpacker()
 	}
 }
 
-LRESULT COpenDlg::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
+LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 {
 	BOOL bEnabledButtons = (BOOL)wParam;
 
@@ -677,7 +723,7 @@ LRESULT COpenDlg::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
  * is used to set that status text.
  * @param [in] msgID Resource ID of status text to set.
  */
-void COpenDlg::SetStatus(UINT msgID)
+void COpenView::SetStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg.c_str());
@@ -689,7 +735,7 @@ void COpenDlg::SetStatus(UINT msgID)
  * sets the status text.
  * @param [in] msgID Resource ID of status text to set.
  */
-void COpenDlg::SetUnpackerStatus(UINT msgID)
+void COpenView::SetUnpackerStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
 	SetDlgItemText(IDC_UNPACKER_EDIT, msg.c_str());
@@ -698,7 +744,7 @@ void COpenDlg::SetUnpackerStatus(UINT msgID)
 /** 
  * @brief Called when "Select..." button for filters is selected.
  */
-void COpenDlg::OnSelectFilter()
+void COpenView::OnSelectFilter()
 {
 	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	CString curFilter;
@@ -736,16 +782,13 @@ void COpenDlg::OnSelectFilter()
  * @param [in] path Path to the project file.
  * @return TRUE if the project file was successfully loaded, FALSE otherwise.
  */
-BOOL COpenDlg::LoadProjectFile(const CString &path)
+BOOL COpenView::LoadProjectFile(const CString &path)
 {
 	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	String err;
+	ProjectFile prj;
 
-	m_pProjectFile = new ProjectFile;
-	if (m_pProjectFile == NULL)
-		return FALSE;
-
-	if (!m_pProjectFile->Read(path, &err))
+	if (!prj.Read(path, &err))
 	{
 		if (!err.empty())
 		{
@@ -757,10 +800,24 @@ BOOL COpenDlg::LoadProjectFile(const CString &path)
 	}
 	else
 	{
-		m_pProjectFile->GetPaths(m_files, m_bRecurse);
-		if (m_pProjectFile->HasFilter())
+		prj.GetPaths(m_files, m_bRecurse);
+		m_dwFlags[0] &= ~FFILEOPEN_READONLY;
+		m_dwFlags[0] |= prj.GetLeftReadOnly() ?	FFILEOPEN_READONLY : 0;
+		if (m_files.GetSize() < 3)
 		{
-			m_strExt = m_pProjectFile->GetFilter().c_str();
+			m_dwFlags[1] &= ~FFILEOPEN_READONLY;
+			m_dwFlags[1] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
+		}
+		else
+		{
+			m_dwFlags[1] &= ~FFILEOPEN_READONLY;
+			m_dwFlags[1] |= prj.GetMiddleReadOnly() ? FFILEOPEN_READONLY : 0;
+			m_dwFlags[2] &= ~FFILEOPEN_READONLY;
+			m_dwFlags[2] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
+		}
+		if (prj.HasFilter())
+		{
+			m_strExt = prj.GetFilter().c_str();
 			m_strExt.TrimLeft();
 			m_strExt.TrimRight();
 			if (m_strExt[0] != '*')
@@ -774,7 +831,7 @@ BOOL COpenDlg::LoadProjectFile(const CString &path)
  * @brief Removes whitespaces from left and right paths
  * @note Assumes UpdateData(TRUE) is called before this function.
  */
-void COpenDlg::TrimPaths()
+void COpenView::TrimPaths()
 {
 	for (int index = 0; index < countof(m_strPath); index++)
 	{
@@ -791,18 +848,58 @@ void COpenDlg::TrimPaths()
  * swiches back to WinMerge. Its nice to see WinMerge detects updated
  * files/folders.
  */
-void COpenDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
-	CDialog::OnActivate(nState, pWndOther, bMinimized);
+	CFormView::OnActivate(nState, pWndOther, bMinimized);
 
 	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
 		UpdateButtonStates();
 }
 
 /**
+ * @brief Copy selected text to clipboard
+ */
+void COpenView::OnEditCopy()
+{
+	CWnd *pCtl = GetFocus();
+	if (pCtl)
+		pCtl->PostMessage(WM_COPY);
+}
+
+/**
+ * @brief Cut current selection to clipboard
+ */
+void COpenView::OnEditCut()
+{
+	CWnd *pCtl = GetFocus();
+	if (pCtl)
+		pCtl->PostMessage(WM_CUT);
+}
+
+/**
+ * @brief Paste text from clipboard
+ */
+void COpenView::OnEditPaste()
+{
+	CWnd *pCtl = GetFocus();
+	if (pCtl)
+		pCtl->PostMessage(WM_PASTE);
+}
+
+/**
+ * @brief Undo last action
+ */
+void COpenView::OnEditUndo()
+{
+	CWnd *pCtl = GetFocus();
+	if (pCtl)
+		pCtl->PostMessage(WM_UNDO);
+}
+
+/**
  * @brief Open help from mainframe when user presses F1.
  */
-void COpenDlg::OnHelp()
+void COpenView::OnHelp()
 {
 	GetMainFrame()->ShowHelp(OpenDlgHelpLocation);
 }
@@ -826,7 +923,7 @@ void COpenDlg::OnHelp()
  *    - overwrite both paths, empty or not
  * @param [in] dropInfo Dropped data, including paths.
  */
-void COpenDlg::OnDropFiles(HDROP dropInfo)
+void COpenView::OnDropFiles(HDROP dropInfo)
 {
 	// Get the number of pathnames that have been dropped
 	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
@@ -905,3 +1002,4 @@ void COpenDlg::OnDropFiles(HDROP dropInfo)
 		UpdateButtonStates();
 	}
 }
+
