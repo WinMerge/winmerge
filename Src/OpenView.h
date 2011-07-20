@@ -112,6 +112,8 @@ protected:
 	void TrimPaths();
 	void OnButton(int index);
 	void OnSelchangeCombo(int index);
+	void LoadComboboxStates();
+	void SaveComboboxStates();
 
 // Generated message map functions
 protected:
@@ -121,7 +123,6 @@ protected:
 	afx_msg void OnPath2Button();
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
-	afx_msg void SaveComboboxStates();
 	afx_msg void OnSelchangePath0Combo();
 	afx_msg void OnSelchangePath1Combo();
 	afx_msg void OnSelchangePath2Combo();
