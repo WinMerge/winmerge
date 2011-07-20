@@ -172,15 +172,8 @@ void COpenView::OnInitialUpdate()
 	m_ctlPath[0].AttachSystemImageList();
 	m_ctlPath[1].AttachSystemImageList();
 	m_ctlPath[2].AttachSystemImageList();
-	m_ctlPath[0].LoadState(_T("Files\\Left"));
-	m_ctlPath[1].LoadState(_T("Files\\Right"));
-	m_ctlPath[2].LoadState(_T("Files\\Option"));
-	m_ctlExt.LoadState(_T("Files\\Ext"));
-	
-	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
-	if (bIsEmptyThirdItem)
-		m_ctlPath[2].SetWindowText(_T(""));
-	
+	LoadComboboxStates();
+
 	BOOL bDoUpdateData = TRUE;
 	for (int index = 0; index < countof(m_strPath); index++)
 	{
@@ -416,6 +409,7 @@ void COpenView::OnOK()
 
 	SaveComboboxStates();
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
+	LoadComboboxStates();
 
 	COpenDoc *pDoc = GetDocument();
 	pDoc->m_files = m_files;
@@ -441,6 +435,25 @@ void COpenView::OnCancel()
 {
 	SaveComboboxStates();
 	AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+}
+
+/** 
+ * @brief Load File- and filter-combobox states.
+ */
+void COpenView::LoadComboboxStates()
+{
+	m_ctlPath[0].CComboBox::ResetContent();
+	m_ctlPath[1].CComboBox::ResetContent();
+	m_ctlPath[2].CComboBox::ResetContent();
+
+	m_ctlPath[0].LoadState(_T("Files\\Left"));
+	m_ctlPath[1].LoadState(_T("Files\\Right"));
+	m_ctlPath[2].LoadState(_T("Files\\Option"));
+	m_ctlExt.LoadState(_T("Files\\Ext"));
+	
+	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
+	if (bIsEmptyThirdItem)
+		m_ctlPath[2].SetWindowText(_T(""));	
 }
 
 /** 
