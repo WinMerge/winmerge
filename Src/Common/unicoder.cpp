@@ -590,6 +590,12 @@ void maketchar(String & ch, unsigned int unich, bool & lossy, unsigned int codep
 		ch = (TCHAR)unich;
 		return;
 	}
+	else if (unich < 0x110000)
+	{
+		ch = ((unich - 0x10000)/0x400 + 0xd800);
+		ch += ((unich % 0x400) + 0xdc00);
+		return;
+	}
 	lossy = TRUE;
 	ch = '?';
 	return;
