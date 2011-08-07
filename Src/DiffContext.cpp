@@ -222,7 +222,7 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 		return FALSE;
 
 	m_nCompMethod = compareMethod;
-	m_pCompareOptions.reset(GetCompareOptions(m_nCompMethod));
+	GetCompareOptions(m_nCompMethod);
 	if (m_pCompareOptions == NULL)
 	{
 		// For Date and Date+Size compare NULL is ok since they don't have actual
