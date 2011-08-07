@@ -3598,7 +3598,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 		return;
 
 	CMergeDoc * pDoc = GetDocument();
-	if (m_nThisPane == 0)
+	if (m_nThisPane < pDoc->m_nBuffers - 1)
 	{
 		// To calculate subline index correctly
 		// we have to invalidate line cache in all pane before calling the function related the subline.
@@ -3609,7 +3609,7 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 				pView->InvalidateScreenRect(FALSE);
 		}
 	}
-	else if (m_nThisPane == pDoc->m_nBuffers - 1)
+	else
 	{
 		for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++) 
 		{
