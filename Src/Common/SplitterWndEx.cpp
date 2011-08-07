@@ -11,6 +11,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#include <vector>
 #include "SplitterWndEx.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
@@ -300,8 +301,8 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 void CSplitterWndEx::FlipSplit()
 {
 	int nRows = m_nCols, nCols = m_nRows;
-	CWnd **pColPanes = new CWnd*[nCols];
-	CWnd **pRowPanes = new CWnd*[nRows];
+	std::vector<CWnd *> pColPanes(nCols);
+	std::vector<CWnd *> pRowPanes(nRows);
 
 	BOOL bHasVScroll = m_bHasHScroll;
 	BOOL bHasHScroll = m_bHasVScroll;
@@ -350,8 +351,5 @@ void CSplitterWndEx::FlipSplit()
 
 	EqualizeCols();
 	EqualizeRows();
-
-	delete [] pColPanes;
-	delete [] pRowPanes;
 
 }

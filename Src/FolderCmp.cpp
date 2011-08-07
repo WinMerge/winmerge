@@ -46,9 +46,6 @@ FolderCmp::FolderCmp()
 
 FolderCmp::~FolderCmp()
 {
-	delete m_pDiffUtilsEngine;
-	delete m_pByteCompare;
-	delete m_pTimeSizeCompare;
 }
 
 bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr)
@@ -223,14 +220,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		if (files.GetSize() == 2)
 		{
 			if (m_pDiffUtilsEngine == NULL)
-				m_pDiffUtilsEngine = new CompareEngines::DiffUtils();
+				m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 			m_pDiffUtilsEngine->SetCodepage(m_codepage);
 			bool success = m_pDiffUtilsEngine->SetCompareOptions(
 					*m_pCtx->GetCompareOptions(CMP_CONTENT));
 			if (success)
 			{
 				if (m_pCtx->m_pFilterList != NULL)
-					m_pDiffUtilsEngine->SetFilterList(m_pCtx->m_pFilterList);
+					m_pDiffUtilsEngine->SetFilterList(m_pCtx->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
 				m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
@@ -255,14 +252,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		else
 		{
 			if (m_pDiffUtilsEngine == NULL)
-				m_pDiffUtilsEngine = new CompareEngines::DiffUtils();
+				m_pDiffUtilsEngine.reset(new CompareEngines::DiffUtils());
 			m_pDiffUtilsEngine->SetCodepage(m_codepage);
 			bool success = m_pDiffUtilsEngine->SetCompareOptions(
 					*m_pCtx->GetCompareOptions(CMP_CONTENT));
 			if (success)
 			{
 				if (m_pCtx->m_pFilterList != NULL)
-					m_pDiffUtilsEngine->SetFilterList(m_pCtx->m_pFilterList);
+					m_pDiffUtilsEngine->SetFilterList(m_pCtx->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
 
@@ -321,7 +318,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		if (files.GetSize() == 2)
 		{
 			if (m_pByteCompare == NULL)
-				m_pByteCompare = new ByteCompare();
+				m_pByteCompare.reset(new ByteCompare());
 			bool success = m_pByteCompare->SetCompareOptions(
 				*m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
 	
@@ -351,7 +348,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		{
 			int code10, code12, code02;
 			if (m_pByteCompare == NULL)
-				m_pByteCompare = new ByteCompare();
+				m_pByteCompare.reset(new ByteCompare());
 			bool success = m_pByteCompare->SetCompareOptions(
 				*m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
 	
@@ -417,7 +414,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
 		if (m_pTimeSizeCompare == NULL)
-			m_pTimeSizeCompare = new TimeSizeCompare();
+			m_pTimeSizeCompare.reset(new TimeSizeCompare());
 
 		m_pTimeSizeCompare->SetAdditionalOptions(!!pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, di);

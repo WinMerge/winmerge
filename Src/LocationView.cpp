@@ -107,8 +107,6 @@ CLocationView::CLocationView()
 
 CLocationView::~CLocationView()
 {
-	if (m_pSavedBackgroundBitmap)
-		delete m_pSavedBackgroundBitmap;
 }
 
 BEGIN_MESSAGE_MAP(CLocationView, CView)
@@ -539,9 +537,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
 		DrawConnectLines(&dc);
 
-	if (m_pSavedBackgroundBitmap)
-		delete m_pSavedBackgroundBitmap;
-	m_pSavedBackgroundBitmap = CopyRectToBitmap(&dc, rc);
+	m_pSavedBackgroundBitmap.reset(CopyRectToBitmap(&dc, rc));
 
 	// Since we have invalidated locationbar there is no previous
 	// arearect to remove
@@ -975,7 +971,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 				{
 					CMemDC dc(pDC);
 					// Clear previous visible rect
-					DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap);
+					DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap.get());
 
 					DrawVisibleAreaRect(&dc, nTopLine, nBottomLine);
 				}

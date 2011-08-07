@@ -23,6 +23,7 @@
 // $Id: ConfigLog.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
+#include <boost/scoped_array.hpp>
 #include "Constants.h"
 #include "version.h"
 #include "UniFile.h"
@@ -43,15 +44,13 @@ static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * 
 
 
 CConfigLog::CConfigLog()
-: m_pCfgSettings(NULL)
+: m_pCfgSettings(NULL), m_pfile(new UniStdioFile())
 {
-	m_pfile = new UniStdioFile();
 }
 
 CConfigLog::~CConfigLog()
 {
 	CloseFile();
-	delete m_pfile;
 }
 
 
@@ -178,7 +177,7 @@ void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 	}
 	else
 	{
-		LoadYesNoFromConfig(m_pCfgSettings, key, pvalue);
+		LoadYesNoFromConfig(m_pCfgSettings.get(), key, pvalue);
 	}
 }
 
@@ -325,9 +324,9 @@ void CConfigLog::WriteArchiveSupport()
 	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
 	{
 		static const TCHAR cSep[] = _T(";");
-		LPTSTR pchPath = new TCHAR[cchPath];
-		GetEnvironmentVariable(_T("PATH"), pchPath, cchPath);
-		LPTSTR pchItem = pchPath;
+		boost::scoped_array<TCHAR> pchPath(new TCHAR[cchPath]);
+		GetEnvironmentVariable(_T("PATH"), pchPath.get(), cchPath);
+		LPTSTR pchItem = &pchPath[0];
 		while (int cchItem = StrCSpn(pchItem += StrSpn(pchItem, cSep), cSep))
 		{
 			if (cchItem < MAX_PATH)
@@ -339,7 +338,6 @@ void CConfigLog::WriteArchiveSupport()
 			}
 			pchItem += cchItem;
 		}
-		delete[] pchPath;
 	}
 }
 
@@ -898,7 +896,7 @@ void CConfigLog::ReadLogFile(const String & Filepath)
 
 	bool writing = false;
 	String sError;
-	m_pCfgSettings = new CfgSettings;
+	m_pCfgSettings.reset(new CfgSettings);
 	if (!ParseSettings(Filepath))
 		return;
 	DoFile(writing, sError);
@@ -920,8 +918,6 @@ CConfigLog::CloseFile()
 {
 	if (m_pfile->IsOpen())
 		m_pfile->Close();
-	delete m_pCfgSettings;
-	m_pCfgSettings = 0;
 }
 
 /**

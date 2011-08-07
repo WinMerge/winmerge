@@ -30,6 +30,7 @@
 #include <vector>
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
+#include <boost/scoped_array.hpp>
 #include "Constants.h"
 #include "Merge.h"
 #include "UnicodeString.h"
@@ -2216,22 +2217,17 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 		// Allocate memory to contain full pathname & zero byte
 		wPathnameSize += 1;
-		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
-
-		// If not enough memory, skip this one
-		if (npszFile == NULL)
-			continue;
+		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
 
 		// Copy the pathname into the buffer
-		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
+		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
 
 		if (x < 3)
 		{
 			files.SetSize(x + 1);
-			files[x] = npszFile;
+			files[x] = npszFile.get();
 			fileCount++;
 		}
-		delete[] npszFile;
 	}
 
 	// Free the memory block containing the dropped-file information

@@ -66,10 +66,10 @@ CDiffThread::CDiffThread()
 , m_msgUpdateUI(0)
 , m_hWnd(0)
 , m_bAborting(FALSE)
+, m_pDiffParm(new DiffFuncStruct)
+, m_pAbortgate(new DiffThreadAbortable(this))
 {
 	ZeroMemory(&m_threads[0], sizeof(m_threads));
-	m_pDiffParm = new DiffFuncStruct;
-	m_pAbortgate = new DiffThreadAbortable(this);
 }
 
 /**
@@ -78,8 +78,6 @@ CDiffThread::CDiffThread()
 CDiffThread::~CDiffThread()
 {
 	CloseHandle(m_pDiffParm->hSemaphore);
-	delete m_pDiffParm;
-	delete m_pAbortgate;
 }
 
 /**
@@ -121,7 +119,7 @@ UINT CDiffThread::CompareDirectories(const String & dir1,
 	m_pDiffParm->context = m_pDiffContext;
 	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
 	m_pDiffParm->hWindow = m_hWnd;
-	m_pDiffParm->m_pAbortgate = m_pAbortgate;
+	m_pDiffParm->m_pAbortgate = m_pAbortgate.get();
 	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
 	m_bAborting = FALSE;
 
@@ -134,14 +132,14 @@ UINT CDiffThread::CompareDirectories(const String & dir1,
 	if (bSinglethreaded)
 	{
 		if (m_bOnlyRequested == FALSE)
-			DiffThreadCollect(m_pDiffParm);
-		DiffThreadCompare(m_pDiffParm);
+			DiffThreadCollect(m_pDiffParm.get());
+		DiffThreadCompare(m_pDiffParm.get());
 	}
 	else
 	{
 		if (m_bOnlyRequested == FALSE)
-			m_threads[0] = AfxBeginThread(DiffThreadCollect, m_pDiffParm);
-		m_threads[1] = AfxBeginThread(DiffThreadCompare, m_pDiffParm);
+			m_threads[0] = AfxBeginThread(DiffThreadCollect, m_pDiffParm.get());
+		m_threads[1] = AfxBeginThread(DiffThreadCompare, m_pDiffParm.get());
 	}
 
 	return 1;

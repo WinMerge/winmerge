@@ -26,6 +26,7 @@
 #define _FILEACTIONSCRIPT_H_
 
 #include <vector>
+#include <boost/scoped_ptr.hpp>
 
 class ShellFileOperations;
 
@@ -152,11 +153,11 @@ protected:
 
 private:
 	std::vector<FileActionItem> m_actions; /**< List of all actions for this script. */
-	ShellFileOperations * m_pCopyOperations; /**< Copy operations. */
+	boost::scoped_ptr<ShellFileOperations> m_pCopyOperations; /**< Copy operations. */
 	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
-	ShellFileOperations * m_pMoveOperations; /**< Move operations. */
+	boost::scoped_ptr<ShellFileOperations> m_pMoveOperations; /**< Move operations. */
 	BOOL m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
-	ShellFileOperations * m_pDelOperations; /**< Delete operations. */
+	boost::scoped_ptr<ShellFileOperations> m_pDelOperations; /**< Delete operations. */
 	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	HWND m_hParentWindow; /**< Parent window for showing messages */

@@ -56,7 +56,6 @@ CEditorFilePathBar::CEditorFilePathBar()
  */
 CEditorFilePathBar::~CEditorFilePathBar()
 {
-	delete m_pFont;
 }
 
 /**
@@ -96,11 +95,7 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 	CFont * pFont = pWnd->GetFont();
 	if (pFont)
 	{
-		if (m_pFont != NULL)
-			delete m_pFont;
-
-		m_pFont = new CFont();
-
+		m_pFont.reset(new CFont);
 		if (m_pFont != NULL)
 		{
 			LOGFONT lfFont = {0};
@@ -108,7 +103,7 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 			{
 				m_pFont->CreateFontIndirect(&lfFont);
 				for (int pane = 0; pane < m_nPanes; pane++)
-					m_Edit[pane].SetFont(m_pFont);
+					m_Edit[pane].SetFont(m_pFont.get());
 			}
 		}
 	}

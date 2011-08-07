@@ -25,6 +25,8 @@
 #ifndef _CONFIGLOG_H_
 #define _CONFIGLOG_H_
 
+#include <boost/scoped_ptr.hpp>
+
 class CfgSettings;
 class UniStdioFile;
 
@@ -142,9 +144,9 @@ private:
 	// Implementation data
 private:
 	String m_sFileName;
-	UniStdioFile *m_pfile;
+	boost::scoped_ptr<UniStdioFile> m_pfile;
 	bool m_writing;
-	CfgSettings * m_pCfgSettings;
+	boost::scoped_ptr<CfgSettings> m_pCfgSettings;
 };
 
 #endif /* _CONFIGLOG_H_ */

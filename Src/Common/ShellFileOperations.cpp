@@ -82,14 +82,12 @@ void ShellFileOperations::SetDestination(const String &destination)
  * at the end of the paths. As the ShellFileOp() requires.
  * @param [in] source If true, return source paths, else return destination
  *   paths.
- * @return C-string of the paths.
- * @note You must free the returned string after using it!
+ * @param [out] string of the paths.
  */
-TCHAR* ShellFileOperations::GetPathList(bool source) const
+void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
 {
 	const int len = CountStringSize(source);
-	TCHAR *pStr = new TCHAR[len];
-	ZeroMemory(pStr, len * sizeof(TCHAR));
+	paths.resize(len, 0);
 
 	vector<String>::const_iterator iter;
 	vector<String>::const_iterator end;
@@ -108,12 +106,11 @@ TCHAR* ShellFileOperations::GetPathList(bool source) const
 	while (iter != end)
 	{
 		const int slen = (*iter).length();
-		memcpy(pStr + ind, (*iter).c_str(), slen * sizeof(TCHAR));
+		memcpy(&paths[ind], (*iter).c_str(), slen * sizeof(TCHAR));
 		ind += slen;
 		ind++; // NULL between strings
 		iter++;
 	}
-	return pStr;
 }
 
 /**
@@ -172,22 +169,17 @@ bool ShellFileOperations::Run()
 	if (m_function == 0)
 		return false; // Operation not set!
 
-	TCHAR *sourceStr = GetPathList(true);
-	TCHAR *destStr = NULL;
+	vector<TCHAR> sourceStr, destStr;
+	GetPathList(true, sourceStr);
 	if (m_function != FO_DELETE)
-		destStr = GetPathList(false);
+		GetPathList(false, destStr);
 
-	SHFILEOPSTRUCT fileop = {m_parentWindow, m_function, sourceStr, destStr,
-			m_flags, FALSE, 0, 0};
+	SHFILEOPSTRUCT fileop = {m_parentWindow, m_function, &sourceStr[0], 
+		m_function != FO_DELETE ? &destStr[0] : NULL, m_flags, FALSE, 0, 0};
 	int ret = SHFileOperation(&fileop);
 
 	if (ret == 0x75) // DE_OPCANCELLED
 		m_isCanceled = true;
-
-	delete [] sourceStr;
-	sourceStr = NULL;
-	delete [] destStr;
-	destStr = NULL;
 
 	BOOL anyAborted = fileop.fAnyOperationsAborted;
 

@@ -55,7 +55,7 @@ bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
 		m_filesize = f.cbImage;
 		// Prevent the CMarkdown::File destructor from unmapping the view.
 		f.pImage = NULL;
-		m_pMarkdown = new CMarkdown(f);
+		m_pMarkdown.reset(new CMarkdown(f));
 		Move();
 	}
 	return bOpen;
@@ -67,8 +67,6 @@ bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
 void UniMarkdownFile::Close()
 {
 	UniMemFile::Close();
-	delete m_pMarkdown;
-	m_pMarkdown = NULL;
 }
 
 /**

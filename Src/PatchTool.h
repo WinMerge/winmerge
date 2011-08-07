@@ -73,12 +73,11 @@ public:
 	BOOL GetOpenToEditor() const;
 
 protected:
-	BOOL ShowDialog();
+	BOOL ShowDialog(CPatchDlg *pDlgPatch);
 
 private:
     std::vector<PATCHFILES> m_fileList; /**< List of files to patch. */
 	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
-	CPatchDlg *m_pDlgPatch; /**< Dialog for selecting files and options. */
 	String m_sPatchFile; /**< Patch file path and filename. */
 	BOOL m_bOpenToEditor; /**< Is patch file opened to external editor? */
 };

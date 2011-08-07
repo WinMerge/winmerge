@@ -30,6 +30,7 @@
 #define __PLUGINS_H__
 
 #include <vector>
+#include <comutil.h>
 #include "FileFilterMgr.h"
 
 extern enum TRANSFORMATION_CATEGORY;
@@ -111,7 +112,7 @@ private:
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
 	int nTransformationEvents;
-	PluginArray ** m_aPluginsByEvent;
+	std::vector<PluginArray* > m_aPluginsByEvent;
 };
 
 
@@ -161,9 +162,8 @@ BOOL IsWindowsScriptThere();
  *
  * @return Returns the number of functions
  *
- * @note The arrays must be free with delete []
  */
-int GetMethodsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdArray);
+int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<_bstr_t>& namesArray, std::vector<int>& IdArray);
 /**
  * @brief Is a function available in this scriptlet or activeX/COM DLL ?
  *

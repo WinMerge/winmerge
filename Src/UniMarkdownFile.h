@@ -6,6 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#include <boost/scoped_ptr.hpp>
 #include "Common/UniFile.h"
 
 class CMarkdown;
@@ -32,5 +33,5 @@ private:
 	int m_depth;
 	bool m_bMove;
 	LPBYTE m_transparent;
-	CMarkdown *m_pMarkdown;
+	boost::scoped_ptr<CMarkdown> m_pMarkdown;
 };

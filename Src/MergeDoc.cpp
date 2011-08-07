@@ -132,6 +132,7 @@ CMergeDoc::CMergeDoc()
 , m_nCurDiff(-1)
 , m_pDirDoc(NULL)
 , m_bMixedEol(false)
+, m_pInfoUnpacker(new PackingInfo)
 {
 	DIFFOPTIONS options = {0};
 
@@ -140,9 +141,9 @@ CMergeDoc::CMergeDoc()
 
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		m_ptBuf[nBuffer] = new CDiffTextBuffer(this,nBuffer);
-		m_pSaveFileInfo[nBuffer] = new DiffFileInfo();
-		m_pRescanFileInfo[nBuffer] = new DiffFileInfo();
+		m_ptBuf[nBuffer].reset(new CDiffTextBuffer(this, nBuffer));
+		m_pSaveFileInfo[nBuffer].reset(new DiffFileInfo());
+		m_pRescanFileInfo[nBuffer].reset(new DiffFileInfo());
 		m_pView[nBuffer] = NULL;
 		m_pDetailView[nBuffer] = NULL;
 		m_nBufferType[nBuffer] = BUFFER_NORMAL;
@@ -153,7 +154,6 @@ CMergeDoc::CMergeDoc()
 	m_bEnableRescan = true;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
-	m_pInfoUnpacker = new PackingInfo;
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 	m_nDiffContext = GetOptionsMgr()->GetInt(OPT_DIFF_CONTEXT);
 
@@ -181,14 +181,6 @@ CMergeDoc::~CMergeDoc()
 	{
 		m_pDirDoc->MergeDocClosing(this);
 		m_pDirDoc = NULL;
-	}
-
-	delete m_pInfoUnpacker;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		delete m_pSaveFileInfo[nBuffer];
-		delete m_pRescanFileInfo[nBuffer];
-		delete m_ptBuf[nBuffer];
 	}
 }
 
@@ -1161,7 +1153,7 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 
 		if (SelectFile(parent, s, strPath, titleid, NULL, FALSE))
 		{
-			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer];
+			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
 			nSaveResult = pBuffer->SaveToFile(strSavePath, FALSE, sError,
 				pInfoTempUnpacker);
@@ -1271,7 +1263,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	// or SAVE_DONE when the save succeeds
 	// TODO: Shall we return this code in addition to bSaveSuccess ?
 	int nSaveErrorCode = SAVE_DONE;
-	CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer];
+	CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 
 	// Assume empty filename means Scratchpad (unnamed file)
 	// Todo: This is not needed? - buffer type check should be enough
@@ -1969,9 +1961,9 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 		tolerance = SmallTimeDiff; // From MainFrm.h
 
 	if (bSave)
-		fileInfo = m_pSaveFileInfo[nBuffer];
+		fileInfo = m_pSaveFileInfo[nBuffer].get();
 	else
-		fileInfo = m_pRescanFileInfo[nBuffer];
+		fileInfo = m_pRescanFileInfo[nBuffer].get();
 
 	// We assume file existed, so disappearing means removal
 	if (_taccess(szPath, 0) == -1)
@@ -2258,7 +2250,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 	CString sError;
 	DWORD retVal = FileLoadResult::FRESULT_ERROR;
 
-	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer];
+	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer].get();
 	m_filePaths[nBuffer] = sFileName;
 
 	CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC;
@@ -2953,7 +2945,7 @@ void CMergeDoc::SetDetectMovedBlocks(bool bDetectMovedBlocks)
  */
 bool CMergeDoc::IsMixedEOL(int nBuffer) const
 {
-	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer];
+	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer].get();
 	return pBuf->IsMixedEOL();
 }
 
@@ -3077,11 +3069,11 @@ void CMergeDoc::SwapFiles()
 	m_pDetailView[m_nBuffers - 1]->SetDlgCtrlID(nLeftDetailViewId);
 
 	// Swap buffers and so on
-	swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
+	boost::swap(m_ptBuf[0], m_ptBuf[m_nBuffers - 1]);
 	swap(m_pView[0], m_pView[m_nBuffers - 1]);
 	swap(m_pDetailView[0], m_pDetailView[m_nBuffers - 1]);
-	swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
-	swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
+	boost::swap(m_pSaveFileInfo[0], m_pSaveFileInfo[m_nBuffers - 1]);
+	boost::swap(m_pRescanFileInfo[0], m_pRescanFileInfo[m_nBuffers - 1]);
 	swap(m_nBufferType[0], m_nBufferType[m_nBuffers - 1]);
 	swap(m_bEditAfterRescan[0], m_bEditAfterRescan[m_nBuffers - 1]);
 	swap(m_strDesc[0], m_strDesc[m_nBuffers - 1]);

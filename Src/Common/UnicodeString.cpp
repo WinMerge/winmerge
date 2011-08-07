@@ -29,6 +29,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <stdarg.h>
+#include <vector>
 #include "UnicodeString.h"
 
 static String format_arg_list(const TCHAR *fmt, va_list args);
@@ -163,18 +164,14 @@ static String format_arg_list(const TCHAR *fmt, va_list args)
 		return _T("");
 	int result = -1;
 	int length = 256;
-	TCHAR *buffer = 0;
+	std::vector<TCHAR> buffer(length, 0);
 	while (result == -1)
 	{
-		if (buffer)
-			delete [] buffer;
-		buffer = new TCHAR[length + 1];
-		memset(buffer, 0, (length + 1) * sizeof(TCHAR));
-		result = _vsntprintf(buffer, length, fmt, args);
+		result = _vsntprintf(&buffer[0], length, fmt, args);
 		length *= 2;
+		buffer.resize(length, 0);
 	}
-	String s(buffer);
-	delete [] buffer;
+	String s(&buffer[0]);
 	return s;
 }
 

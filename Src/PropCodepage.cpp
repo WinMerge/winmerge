@@ -124,7 +124,7 @@ BOOL PropCodepage::OnInitDialog()
 	str.Format(_T("%d"), m_nCustomCodepageValue);
 	m_comboCustomCodepageValue.SetWindowText(str);
 
-	ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 	if (pexconv != NULL)
 	{
 		ucr::CodePageInfo cpi[256];

@@ -26,6 +26,7 @@
 #define _FILEFILTERHELPER_H_
 
 #include <vector>
+#include <boost/scoped_ptr.hpp>
 #include "UnicodeString.h"
 
 class FileFilterMgr;
@@ -130,9 +131,9 @@ protected:
 	String ParseExtensions(const String &extensions) const;
 
 private:
-	FilterList * m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */
+	boost::scoped_ptr<FilterList> m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
-	FileFilterMgr * m_fileFilterMgr;  /*< Associated FileFilterMgr */
+	boost::scoped_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */

@@ -40,9 +40,6 @@ DiffUtils::DiffUtils()
  */
 DiffUtils::~DiffUtils()
 {
-	delete m_FilterCommentsManager;
-	delete m_pDiffWrapper;
-	ClearCompareOptions();
 	ClearFilterList();
 }
 
@@ -53,24 +50,12 @@ DiffUtils::~DiffUtils()
  */
 bool DiffUtils::SetCompareOptions(const CompareOptions & options)
 {
-	if (m_pOptions != NULL)
-		ClearCompareOptions();
-
-	m_pOptions = new DiffutilsOptions((DiffutilsOptions&)options);
-	if (m_pOptions == NULL)
+	m_pOptions.reset(new DiffutilsOptions((DiffutilsOptions&)options));
+	if (m_pOptions.get() == NULL)
 		return false;
 
 	m_pOptions->SetToDiffUtils();
 	return true;
-}
-
-/**
- * @brief Clear current compare options.
- */
-void DiffUtils::ClearCompareOptions()
-{
-	delete m_pOptions;
-	m_pOptions = NULL;
 }
 
 /**

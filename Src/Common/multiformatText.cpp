@@ -29,6 +29,8 @@
 // $Id: multiformatText.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
+#include <vector>
+#include <boost/scoped_ptr.hpp>
 #include "unicoder.h"
 #include "multiformatText.h"
 #include "files.h"
@@ -749,11 +751,11 @@ BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL 
 	UINT nDstSize;
 	//First convert to unicode UCS16
 	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
-	wchar_t *szTemp = new wchar_t[nDstSize]; 
-	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,szTemp,nDstSize);
+	std::vector<wchar_t> szTemp(nDstSize);
+	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,&szTemp[0],nDstSize);
 
 	//now convert to unicode UTF8
-	nDstSize = WideCharToMultiByte(CP_UTF8, flags, szTemp, nDstSize, NULL, 0, NULL, NULL);
+	nDstSize = WideCharToMultiByte(CP_UTF8, flags, &szTemp[0], nDstSize, NULL, 0, NULL, NULL);
 
 	// create the destination file
 	MAPPEDFILEDATA fileDataOut = {0};
@@ -771,11 +773,10 @@ BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL 
 			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
 
 		// write data
-		WideCharToMultiByte(CP_UTF8, flags, szTemp, nDstSize,
+		WideCharToMultiByte(CP_UTF8, flags, &szTemp[0], nDstSize,
 			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
 		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
 	}
-	delete [] szTemp;
 	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 
 	nFileChanged ++;
@@ -909,7 +910,7 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 
 	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
 	DWORD flags =0;
-	char *szTemp = new char[nBufSize]; 
+	std::vector<char> szTemp(nBufSize);
 
 	// simple byte swap BE->LE
 	for (int i = 0; i < nBufSize; i += 2)
@@ -920,7 +921,7 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 	}
 
 	//now convert to unicode UTF8
-	UINT nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+	UINT nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(&szTemp[0] + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
 
 	// create the destination file
 	MAPPEDFILEDATA fileDataOut = {0};
@@ -938,11 +939,10 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
 
 		// write data 
-		WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(szTemp + nSizeOldBOM), nchars,
+		WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(&szTemp[0] + nSizeOldBOM), nchars,
 			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
 		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
 	}
-	delete [] szTemp;
 	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 
 	nFileChanged++;
@@ -969,7 +969,7 @@ BOOL AnyCodepageToUTF8(int codepage, LPCTSTR filepath, LPCTSTR filepathDst, int 
 	if (!bSuccess)
 		return FALSE;
 
-	ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 
 	char * pszBuf = (char *)fileDataIn.pMapBase;
 	UINT nBufSize = fileDataIn.dwSize;

@@ -238,14 +238,12 @@ BOOL ClearTempfolder(const String &pathName)
 {
 	// SHFileOperation expects a ZZ terminated list of paths!
 	const int pathSize = pathName.length() + 2;
-	TCHAR *path = new TCHAR[pathSize];
-	ZeroMemory(path, pathSize * sizeof(TCHAR));
-	_tcscpy(path, pathName.c_str());
+	std::vector<TCHAR> path(pathSize, 0);
+	_tcscpy(&path[0], pathName.c_str());
 
-	SHFILEOPSTRUCT fileop = {0, FO_DELETE, path, 0, FOF_NOCONFIRMATION |
+	SHFILEOPSTRUCT fileop = {0, FO_DELETE, &path[0], 0, FOF_NOCONFIRMATION |
 			FOF_SILENT | FOF_NOERRORUI, 0, 0, 0};
 	SHFileOperation(&fileop);
 
-	delete [] path;
 	return TRUE;
 }

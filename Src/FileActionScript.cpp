@@ -43,10 +43,10 @@ FileActionScript::FileActionScript()
 , m_bHasMoveOperations(FALSE)
 , m_bHasDelOperations(FALSE)
 , m_hParentWindow(NULL)
+, m_pCopyOperations(new ShellFileOperations())
+, m_pMoveOperations(new ShellFileOperations())
+, m_pDelOperations(new ShellFileOperations())
 {
-	m_pCopyOperations = new ShellFileOperations();
-	m_pMoveOperations = new ShellFileOperations();
-	m_pDelOperations = new ShellFileOperations();
 }
 
 /**
@@ -54,10 +54,8 @@ FileActionScript::FileActionScript()
  */
 FileActionScript::~FileActionScript()
 {
-	delete m_pCopyOperations;
-	delete m_pMoveOperations;
-	delete m_pDelOperations;
 }
+
 /**
  * @brief Remove last action item from the list.
  * @return Item removed from the list.
@@ -287,14 +285,14 @@ BOOL FileActionScript::Run()
 				paths_CreateIfNeeded((*iter).dest.c_str());
 			iter++;
 		}
-		bFileOpSucceed = RunOp(m_pCopyOperations, bUserCancelled);
+		bFileOpSucceed = RunOp(m_pCopyOperations.get(), bUserCancelled);
 	}
 
 	if (m_bHasMoveOperations)
 	{
 		if (bFileOpSucceed && !bUserCancelled)
 		{
-			bFileOpSucceed = RunOp(m_pMoveOperations, bUserCancelled);
+			bFileOpSucceed = RunOp(m_pMoveOperations.get(), bUserCancelled);
 		}
 		else
 			bRetVal = FALSE;
@@ -304,7 +302,7 @@ BOOL FileActionScript::Run()
 	{
 		if (bFileOpSucceed && !bUserCancelled)
 		{
-			bFileOpSucceed = RunOp(m_pDelOperations, bUserCancelled);
+			bFileOpSucceed = RunOp(m_pDelOperations.get(), bUserCancelled);
 		}
 		else
 			bRetVal = FALSE;

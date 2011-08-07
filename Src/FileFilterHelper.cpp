@@ -42,8 +42,8 @@ using std::vector;
 FileFilterHelper::FileFilterHelper()
 : m_pMaskFilter(NULL)
 , m_bUseMask(TRUE)
+, m_fileFilterMgr(new FileFilterMgr)
 {
-	m_fileFilterMgr = new FileFilterMgr;
 }
 
 /** 
@@ -51,8 +51,6 @@ FileFilterHelper::FileFilterHelper()
  */
 FileFilterHelper::~FileFilterHelper()
 {
-	delete m_fileFilterMgr;
-	delete m_pMaskFilter;
 }
 
 /** 
@@ -60,7 +58,7 @@ FileFilterHelper::~FileFilterHelper()
  */
 FileFilterMgr * FileFilterHelper::GetManager() const
 {
-	return m_fileFilterMgr;
+	return m_fileFilterMgr.get();
 }
 
 /**
@@ -183,13 +181,12 @@ void FileFilterHelper::UseMask(BOOL bUseMask)
 	{
 		if (m_pMaskFilter == NULL)
 		{
-			m_pMaskFilter = new FilterList;
+			m_pMaskFilter.reset(new FilterList);
 		}
 	}
 	else
 	{
-		delete m_pMaskFilter;
-		m_pMaskFilter = NULL;
+		m_pMaskFilter.reset();
 	}
 }
 

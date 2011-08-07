@@ -9,6 +9,7 @@
 #ifndef _FOLDERCMP_H_
 #define _FOLDERCMP_H_
 
+#include <boost/scoped_ptr.hpp>
 #include "DiffFileData.h"
 #include "DiffUtils.h"
 #include "ByteCompare.h"
@@ -54,9 +55,9 @@ public:
 	CDiffContext * m_pCtx;
 
 private:
-	CompareEngines::DiffUtils *m_pDiffUtilsEngine;
-	CompareEngines::ByteCompare *m_pByteCompare;
-	CompareEngines::TimeSizeCompare *m_pTimeSizeCompare;
+	boost::scoped_ptr<CompareEngines::DiffUtils> m_pDiffUtilsEngine;
+	boost::scoped_ptr<CompareEngines::ByteCompare> m_pByteCompare;
+	boost::scoped_ptr<CompareEngines::TimeSizeCompare> m_pTimeSizeCompare;
 };
 
 

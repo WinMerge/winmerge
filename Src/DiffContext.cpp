@@ -87,9 +87,6 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
  */
 CDiffContext::~CDiffContext()
 {
-	delete m_pOptions;
-	delete m_pCompareOptions;
-	delete m_pFilterList;
 }
 
 /**
@@ -218,19 +215,14 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
  */
 BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
 {
+	m_pOptions.reset(new DIFFOPTIONS);
 	if (m_pOptions != NULL)
-		delete m_pOptions;
-	m_pOptions = new DIFFOPTIONS;
-	if (m_pOptions != NULL)
-		CopyMemory(m_pOptions, &options, sizeof(DIFFOPTIONS));
+		CopyMemory(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
 	else
 		return FALSE;
 
-	delete m_pCompareOptions;
-	m_pCompareOptions = NULL;
-
 	m_nCompMethod = compareMethod;
-	m_pCompareOptions = GetCompareOptions(m_nCompMethod);
+	m_pCompareOptions.reset(GetCompareOptions(m_nCompMethod));
 	if (m_pCompareOptions == NULL)
 	{
 		// For Date and Date+Size compare NULL is ok since they don't have actual
@@ -259,24 +251,22 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 {
 	//If compare method is same than in previous time, return cached value
 	if (compareMethod == m_nCurrentCompMethod && m_pCompareOptions != NULL)
-		return m_pCompareOptions;
+		return m_pCompareOptions.get();
 
 	// Otherwise we have to create new options
-	delete m_pCompareOptions;
-	m_pCompareOptions = NULL;
-
 	switch (compareMethod)
 	{
 	case CMP_CONTENT:
-		m_pCompareOptions = new DiffutilsOptions();
+		m_pCompareOptions.reset(new DiffutilsOptions());
 		break;
 
 	case CMP_QUICK_CONTENT:
-		m_pCompareOptions = new QuickCompareOptions();
+		m_pCompareOptions.reset(new QuickCompareOptions());
 		break;
 
 	default:
 		// No really options to set..
+		m_pCompareOptions.reset();
 		break;
 	}
 
@@ -287,7 +277,7 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 
 	m_pCompareOptions->SetFromDiffOptions(*m_pOptions);
 
-	return m_pCompareOptions;
+	return m_pCompareOptions.get();
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */

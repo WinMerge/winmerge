@@ -13,6 +13,7 @@
 #endif
 #include <windows.h>
 #include <tchar.h>
+#include <vector>
 #include "varprop.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -65,7 +66,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	String strPath;
 	String strValueName;
 	LONG retValReg = 0;
-	LPBYTE pData = NULL;
+	std::vector<BYTE> data;
 	DWORD type = 0;
 	DWORD size = 0;
 	int valType = value.GetType();
@@ -79,21 +80,18 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
-		pData = new BYTE[size + sizeof(TCHAR)];
-		if (pData == NULL)
-			return OPT_ERR;
-		ZeroMemory(pData, size + sizeof(TCHAR));
+		data.resize(size + sizeof(TCHAR), 0);
 
 		// Get data
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
-			0, &type, pData, &size);
+			0, &type, &data[0], &size);
 	}
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
 		if (type == REG_SZ && valType == varprop::VT_STRING )
 		{
-			value.SetString((LPCTSTR)pData);
+			value.SetString((LPCTSTR)&data[0]);
 			retVal = Set(strName, value);
 		}
 		else if (type == REG_DWORD)
@@ -101,14 +99,14 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 			if (valType == varprop::VT_INT)
 			{
 				DWORD dwordValue;
-				CopyMemory(&dwordValue, pData, sizeof(DWORD));
+				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
 				value.SetInt(dwordValue);
 				retVal = Set(strName, value);
 			}
 			else if (valType == varprop::VT_BOOL)
 			{
 				DWORD dwordValue;
-				CopyMemory(&dwordValue, pData, sizeof(DWORD));
+				CopyMemory(&dwordValue, &data[0], sizeof(DWORD));
 				value.SetBool(dwordValue > 0 ? true : false);
 				retVal = Set(strName, value);
 			}
@@ -120,8 +118,6 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	}
 	else
 		retVal = OPT_ERR;
-
-	delete [] pData;
 
 	return retVal;
 }

@@ -42,7 +42,6 @@ ByteCompare::ByteCompare()
  */
 ByteCompare::~ByteCompare()
 {
-	ClearCompareOptions();
 }
 
 /**
@@ -52,22 +51,10 @@ ByteCompare::~ByteCompare()
  */
 bool ByteCompare::SetCompareOptions(const CompareOptions & options)
 {
-	if (m_pOptions != NULL)
-		ClearCompareOptions();
-
-	m_pOptions = new QuickCompareOptions(options);
-	if (m_pOptions == NULL)
+	m_pOptions.reset(new QuickCompareOptions(options));
+	if (m_pOptions.get() == NULL)
 		return false;
 	return true;
-}
-
-/**
- * @brief Clear current compare options.
- */
-void ByteCompare::ClearCompareOptions()
-{
-	delete m_pOptions;
-	m_pOptions = NULL;
 }
 
 /**
@@ -133,7 +120,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		eof[i] = false;
 	}
 
-	ByteComparator comparator(m_pOptions);
+	ByteComparator comparator(m_pOptions.get());
 
 	// Begin loop
 	// we handle the files in WMCMPBUFF sized buffers (variable buff[][])

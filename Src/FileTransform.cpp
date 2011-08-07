@@ -27,6 +27,7 @@
 // $Id: FileTransform.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
+#include <vector>
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "files.h"
@@ -566,18 +567,15 @@ void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR Transformatio
 	{
 		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
 		LPDISPATCH piScript = plugin.m_lpDispatch;
-		BSTR * scriptNamesArray;
-		int * scriptIdsArray;
+		std::vector<_bstr_t> scriptNamesArray;
+		std::vector<int> scriptIdsArray;
 		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
 		sNamesArray.SetSize(nFnc+nScriptFnc);
 
 		int iFnc;
 		for (iFnc = 0 ; iFnc < nScriptFnc ; iFnc++)
 			// the CString = operator provides the conversion if UNICODE is not defined
-			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc];
-
-		delete [] scriptIdsArray;
-		delete [] scriptNamesArray;
+			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc].GetBSTR();
 
 		nFnc += nScriptFnc;
 	}

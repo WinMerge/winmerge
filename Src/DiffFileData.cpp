@@ -12,6 +12,7 @@
 #include <io.h>
 #include <tchar.h>
 #include <shlwapi.h>
+#include <boost/scoped_array.hpp>
 #include "coretypes.h"
 #include "DiffItem.h"
 #include "FileLocation.h"
@@ -29,8 +30,8 @@ static int f_defcp = 0; // default codepage
  * @note Diffcounts are initialized to invalid values, not zeros.
  */
 DiffFileData::DiffFileData()
+: m_inf(new file_data[2])
 {
-	m_inf = new file_data[2];
 	int i = 0;
 	for (i = 0; i < 2; ++i)
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
@@ -153,13 +154,11 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 	long tmp = _lseek(fd, 0, SEEK_SET);
 
 	const int max_size = 8 * 1024;
-	unsigned char* buffer = new unsigned char[max_size];
-	if (buffer == NULL)
-		return;
+	boost::scoped_array<unsigned char> buffer(new unsigned char[max_size]);
 
-	int bytes = _read(fd, buffer, max_size);
+	int bytes = _read(fd, buffer.get(), max_size);
 	bom = false;
-	unicoding = ucr::DetermineEncoding(buffer, bytes, &bom);
+	unicoding = ucr::DetermineEncoding(buffer.get(), bytes, &bom);
 	switch (unicoding)
 	{
 		case ucr::UCS2LE:
@@ -176,7 +175,6 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 			break;
 	}
 
-	delete[] buffer;
 	_lseek(fd, tmp, SEEK_SET);
 }
 

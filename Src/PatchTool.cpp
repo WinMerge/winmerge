@@ -41,7 +41,6 @@ static char THIS_FILE[] = __FILE__;
  * @brief Default constructor.
  */
 CPatchTool::CPatchTool()
-: m_pDlgPatch(NULL)
 {
 }
 
@@ -50,7 +49,6 @@ CPatchTool::CPatchTool()
  */
 CPatchTool::~CPatchTool()
 {
-	delete m_pDlgPatch;
 }
 
 /** 
@@ -104,19 +102,18 @@ int CPatchTool::CreatePatch()
 	BOOL bDiffSuccess;
 	int retVal = 0;
 
-	if (m_pDlgPatch == NULL)
-		m_pDlgPatch = new CPatchDlg();
+	CPatchDlg dlgPatch;
 
 	// If files already inserted, add them to dialog
     for(std::vector<PATCHFILES>::iterator iter = m_fileList.begin(); iter != m_fileList.end(); ++iter)
     {
-        m_pDlgPatch->AddItem(*iter);
+        dlgPatch.AddItem(*iter);
 	}
 
-	if (ShowDialog())
+	if (ShowDialog(&dlgPatch))
 	{
 		String path;
-		SplitFilename(m_pDlgPatch->m_fileResult, &path, NULL, NULL);
+		SplitFilename(dlgPatch.m_fileResult, &path, NULL, NULL);
 		if (!paths_CreateIfNeeded(path.c_str()))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
@@ -124,18 +121,18 @@ int CPatchTool::CreatePatch()
 		}
 
 		// Select patch create -mode
-		m_diffWrapper.SetCreatePatchFile((LPCTSTR)m_pDlgPatch->m_fileResult);
-		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
+		m_diffWrapper.SetCreatePatchFile((LPCTSTR)dlgPatch.m_fileResult);
+		m_diffWrapper.SetAppendFiles(dlgPatch.m_appendFile);
 		m_diffWrapper.SetPrediffer(NULL);
 
-		int fileCount = m_pDlgPatch->GetItemCount();
+		int fileCount = dlgPatch.GetItemCount();
 
-		m_diffWrapper.WritePatchFileHeader(m_pDlgPatch->m_outputStyle, m_pDlgPatch->m_appendFile);
+		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(TRUE);
 
 		for (int index = 0; index < fileCount; index++)
 		{
-			const PATCHFILES& files = m_pDlgPatch->GetItemAt(index);
+			const PATCHFILES& files = dlgPatch.GetItemAt(index);
 			String filename1 = files.lfile.length() == 0 ? _T("NUL") : files.lfile;
 			String filename2 = files.rfile.length() == 0 ? _T("NUL") : files.rfile;
 			
@@ -161,26 +158,26 @@ int CPatchTool::CreatePatch()
 			else if (status.bPatchFileFailed)
 			{
 				CString errMsg;
-				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_pDlgPatch->m_fileResult);
+				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, dlgPatch.m_fileResult);
 				AfxMessageBox(errMsg, MB_ICONSTOP);
 				bResult = FALSE;
 				break;
 			}
 		}
 		
-		m_diffWrapper.WritePatchFileTerminator(m_pDlgPatch->m_outputStyle);
+		m_diffWrapper.WritePatchFileTerminator(dlgPatch.m_outputStyle);
 
 		if (bResult && fileCount > 0)
 		{
 			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
 				            IDS_DIFF_SUCCEEDED);
 			
-			m_sPatchFile = (LPCTSTR)m_pDlgPatch->m_fileResult;
-			m_bOpenToEditor = m_pDlgPatch->m_openToEditor;
+			m_sPatchFile = (LPCTSTR)dlgPatch.m_fileResult;
+			m_bOpenToEditor = dlgPatch.m_openToEditor;
 			retVal = 1;
 		}
 	}
-	m_pDlgPatch->ClearItems();
+	dlgPatch.ClearItems();
 	return retVal;
 }
 
@@ -188,36 +185,36 @@ int CPatchTool::CreatePatch()
  * @brief Show patch options dialog and check options selected.
  * @return TRUE if user wants to create a patch (didn't cancel dialog).
  */
-BOOL CPatchTool::ShowDialog()
+BOOL CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 {
 	DIFFOPTIONS diffOptions = {0};
 	PATCHOPTIONS patchOptions;
 	BOOL bRetVal = TRUE;
 
-	if (m_pDlgPatch->DoModal() == IDOK)
+	if (pDlgPatch->DoModal() == IDOK)
 	{
 		// There must be one filepair
-		if (m_pDlgPatch->GetItemCount() < 1)
+		if (pDlgPatch->GetItemCount() < 1)
 			bRetVal = FALSE;
 
 		// These two are from dropdown list - can't be wrong
-		patchOptions.outputStyle = m_pDlgPatch->m_outputStyle;
-		patchOptions.nContext = m_pDlgPatch->m_contextLines;
+		patchOptions.outputStyle = pDlgPatch->m_outputStyle;
+		patchOptions.nContext = pDlgPatch->m_contextLines;
 
 		// Checkbox - can't be wrong
-		patchOptions.bAddCommandline = m_pDlgPatch->m_includeCmdLine;
+		patchOptions.bAddCommandline = pDlgPatch->m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong
-		diffOptions.nIgnoreWhitespace = m_pDlgPatch->m_whitespaceCompare;
-		diffOptions.bIgnoreBlankLines = !!m_pDlgPatch->m_ignoreBlanks;
-		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
+		diffOptions.nIgnoreWhitespace = pDlgPatch->m_whitespaceCompare;
+		diffOptions.bIgnoreBlankLines = !!pDlgPatch->m_ignoreBlanks;
+		m_diffWrapper.SetAppendFiles(pDlgPatch->m_appendFile);
 
 		// Use this because non-sensitive setting can't write
 		// patch file EOLs correctly
-		diffOptions.bIgnoreEol = !!m_pDlgPatch->m_ignoreEOLDifference;
+		diffOptions.bIgnoreEol = !!pDlgPatch->m_ignoreEOLDifference;
 		
-		diffOptions.bIgnoreCase = m_pDlgPatch->m_caseSensitive == FALSE;
+		diffOptions.bIgnoreCase = pDlgPatch->m_caseSensitive == FALSE;
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else

@@ -33,6 +33,7 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
+#include <boost/scoped_ptr.hpp>
 #include "resource.h"       // main symbols
 #include "MergeDoc.h"
 #include "OptionsMgr.h"
@@ -64,7 +65,7 @@ public:
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
-	CLanguageSelect * m_pLangDlg;
+	boost::scoped_ptr<CLanguageSelect> m_pLangDlg;
 	FileFilterHelper m_globalFileFilter;
 
 	WORD GetLangId() const;
@@ -84,12 +85,12 @@ public:
 	CString GetDefaultEditor();
 	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 
-	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions); }
+	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	void OptionsInit();
 	void ResetOptions() { OptionsInit(); }
 	void SetFontDefaults();
 
-	CLogFile * GetMergeLog() { return m_pLog; }
+	CLogFile * GetMergeLog() { return m_pLog.get(); }
 
 // Implementation
 protected:
@@ -148,9 +149,9 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	CRegOptionsMgr *m_pOptions;
+	boost::scoped_ptr<CRegOptionsMgr> m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
-	CLogFile * m_pLog;
+	boost::scoped_ptr<CLogFile> m_pLog;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
