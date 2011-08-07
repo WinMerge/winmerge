@@ -29,6 +29,7 @@
 #define AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include "DiffTextBuffer.h"
+#include <boost/scoped_ptr.hpp>
 #include <vector>
 #include <map>
 #include "DiffWrapper.h"
@@ -171,7 +172,7 @@ public:
 
 // Begin declaration of CMergeDoc
 
-	CDiffTextBuffer *m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
+	boost::scoped_ptr<CDiffTextBuffer> m_ptBuf[3]; /**< Left/Middle/Right side text buffer */
 	int m_nBuffers;
 
 protected: // create from serialization only
@@ -180,8 +181,8 @@ protected: // create from serialization only
 
 	// Operations
 public:	
-	DiffFileInfo *m_pSaveFileInfo[3];
-	DiffFileInfo *m_pRescanFileInfo[3];
+	boost::scoped_ptr<DiffFileInfo> m_pSaveFileInfo[3];
+	boost::scoped_ptr<DiffFileInfo> m_pRescanFileInfo[3];
 	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	PathContext m_filePaths; /**< Filepaths for this document */

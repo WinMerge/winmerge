@@ -7,7 +7,9 @@
 // $Id: OptionsInit.cpp 6910 2009-07-12 09:06:54Z kimmov $
 
 #include "stdafx.h"
+#include <vector>
 #include <mlang.h>
+#include <boost/scoped_ptr.hpp>
 #include "Merge.h"
 #include "MainFrm.h"
 #include "OptionsDef.h"
@@ -237,7 +239,7 @@ void CMergeApp::SetFontDefaults()
 	cpi.bGDICharset = ANSI_CHARSET;
 	wcscpy(cpi.fixedWidthFont, L"Courier New");
 
-	ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 	if (pexconv)
 		pexconv->getCodePageInfo(GetACP(), &cpi);
 
@@ -343,14 +345,13 @@ static void CopyFromLMtoCU(HKEY lmKey, HKEY cuKey, LPCTSTR valname)
 		if (retval == ERROR_SUCCESS)
 		{
 			DWORD type = 0;
-			PBYTE buf = new BYTE[len];
-			retval = RegQueryValueEx(lmKey, valname, 0, &type, buf, &len);
+			std::vector<BYTE> buf(len);
+			retval = RegQueryValueEx(lmKey, valname, 0, &type, &buf[0], &len);
 			if (retval == ERROR_SUCCESS)
 			{
 				retval = RegSetValueEx(cuKey, valname , 0, type,
-					buf, len);
+					&buf[0], len);
 			}
-			delete [] buf;
 		}
 	}
 }

@@ -1097,22 +1097,22 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
               // same with some fonts and text is drawn only partially
               // if this table is not used.
-              int* pnWidths = new int[nCount + 2];
+              vector<int> nWidths(nCount + 2);
               for ( ; i < nCount + ibegin ; i++)
                 {
                   if (line[i] == '\t') // Escape sequence leadin?
                   {
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
-                    nSumWidth += pnWidths[i - ibegin] = nCharWidthNarrowed;
+                    nSumWidth += nWidths[i - ibegin] = nCharWidthNarrowed;
                     // 1st hex digit has normal width.
-                    nSumWidth += pnWidths[++i - ibegin] = nCharWidth;
+                    nSumWidth += nWidths[++i - ibegin] = nCharWidth;
                     // 2nd hex digit is padded by half the width of a character cell.
-                    nSumWidth += pnWidths[++i - ibegin] = nCharWidthWidened;
+                    nSumWidth += nWidths[++i - ibegin] = nCharWidthWidened;
                   }
                   else
                   {
-                    nSumWidth += pnWidths[i - ibegin] = GetCharWidthFromChar(line[i]);
+                    nSumWidth += nWidths[i - ibegin] = GetCharWidthFromChar(line[i]);
                   }
                 }
 
@@ -1134,7 +1134,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   RECT rcTextBlock = {ptOrigin.x, ptOrigin.y, ptOrigin.x + nSumWidth + 2, ptOrigin.y + nLineHeight};
                   IntersectRect(&rcIntersect, &rcClip, &rcTextBlock);
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED | ETO_OPAQUE,
-                      &rcIntersect, LPCTSTR(line) + ibegin, nCount, pnWidths));
+                      &rcIntersect, LPCTSTR(line) + ibegin, nCount, &nWidths[0]));
                   // Draw rounded rectangles around control characters
                   pdc->SaveDC();
                   pdc->IntersectClipRect(&rcClip);
@@ -1147,21 +1147,19 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   for (int j = 0 ; j < nCount ; ++j)
                   {
                     // Assume narrowed space is converted escape sequence leadin.
-                    if (line[ibegin + j] == ' ' && pnWidths[j] < nCharWidth)
+                    if (line[ibegin + j] == ' ' && nWidths[j] < nCharWidth)
                     {
                       ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
                         x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
                         nCharWidth / 2, nLineHeight / 2);
                     }
-                    x += pnWidths[j];
+                    x += nWidths[j];
                   }
                   hPen = ::SelectObject(hDC, hPen);
                   ::DeleteObject(hPen);
                   hBrush = ::SelectObject(hDC, hBrush);
                   pdc->RestoreDC(-1);
                 }
-
-              delete [] pnWidths;
 
               // Update the final position after the visible characters	              
               ptOrigin.x += nSumWidth;
@@ -2539,10 +2537,10 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
     }
 
   // line is wrapped
-  int *anBreaks = new int[GetLineLength (nLineIndex)];
+  vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
   int nBreaks = 0;
 
-  WrapLineCached (nLineIndex, GetScreenChars(), anBreaks, nBreaks);
+  WrapLineCached (nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
 
   int i = (nBreaks <= 0) ? -1 : nBreaks - 1;
   for (; i >= 0 && nCharPos < anBreaks[i]; i--)
@@ -2552,7 +2550,6 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
   charPoint.y = i + 1;
 
   int nReturnVal = (i >= 0)? anBreaks[i] : 0;
-  delete[] anBreaks;
 
   return nReturnVal;
 }
@@ -2576,10 +2573,10 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   LPCTSTR	szLine = GetLineChars( nLineIndex );
 
   // wrap line
-  int *anBreaks = new int[nLength];
+  vector<int> anBreaks(nLength + 1);
   int	nBreaks = 0;
 
-  WrapLineCached( nLineIndex, nScreenChars, anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, nScreenChars, &anBreaks[0], nBreaks );
 
   // find char pos that matches cursor position
   int nXPos = 0;
@@ -2627,7 +2624,6 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
       else
         bDBCSLeadPrev = IsLeadByte(szLine[nIndex]);
     }
-  delete[] anBreaks;
 
   if (szLine && m_pTextBuffer->IsMBSTrail(nLineIndex, nIndex)) nIndex--;
 
@@ -2661,16 +2657,15 @@ int CCrystalTextView::SubLineEndToCharPos(int nLineIndex, int nSubLineOffset)
     return nLength;
 
   // wrap line
-  int *anBreaks = new int[nLength];
+  vector<int> anBreaks(nLength + 1);
   int nBreaks = 0;
 
-  WrapLineCached(nLineIndex, GetScreenChars(), anBreaks, nBreaks);
+  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
 
   // if there is no break inside the line or the given subline is the last
   // one in this line...
   if (nBreaks <= 0 || nSubLineOffset == nBreaks)
     {
-      delete [] anBreaks;
       return nLength;
     }
 
@@ -2678,7 +2673,6 @@ int CCrystalTextView::SubLineEndToCharPos(int nLineIndex, int nSubLineOffset)
   ASSERT(nSubLineOffset >= 0 && nSubLineOffset <= nBreaks);
 
   int nReturnVal = anBreaks[nSubLineOffset] - 1;
-  delete [] anBreaks;
 
   return nReturnVal;
 }
@@ -2697,15 +2691,14 @@ int CCrystalTextView::SubLineHomeToCharPos(int nLineIndex, int nSubLineOffset)
 
   // wrap line
   int nLength = GetLineLength(nLineIndex);
-  int *anBreaks = new int[nLength];
+  vector<int> anBreaks(nLength + 1);
   int nBreaks = 0;
 
-  WrapLineCached(nLineIndex, GetScreenChars(), anBreaks, nBreaks);
+  WrapLineCached(nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks);
 
   // if there is no break inside the line...
   if (nBreaks == 0)
     {
-      delete [] anBreaks;
       return 0;
     }
 
@@ -2713,7 +2706,6 @@ int CCrystalTextView::SubLineHomeToCharPos(int nLineIndex, int nSubLineOffset)
   ASSERT(nSubLineOffset > 0 && nSubLineOffset <= nBreaks);
 
   int nReturnVal = anBreaks[nSubLineOffset - 1];
-  delete [] anBreaks;
 
   return nReturnVal;
 }
@@ -3789,15 +3781,15 @@ ClientToText (const CPoint & point)
 
   LPCTSTR pszLine = NULL;
   int nLength = 0;
-  int *anBreaks = NULL;
+  vector<int> anBreaks(1);
   int nBreaks = 0;
 
   if (pt.y >= 0 && pt.y < nLineCount)
     {
       nLength = GetLineLength( pt.y );
-      anBreaks = new int[nLength];
+      anBreaks.resize(nLength + 1);
       pszLine = GetLineChars(pt.y);
-      WrapLineCached( pt.y, GetScreenChars(), anBreaks, nBreaks );
+      WrapLineCached( pt.y, GetScreenChars(), &anBreaks[0], nBreaks );
 
       if (nSubLineOffset > 0)
         nOffsetChar = anBreaks[nSubLineOffset - 1];
@@ -3853,8 +3845,6 @@ ClientToText (const CPoint & point)
 
       nIndex ++;
     }
-
-  delete[] anBreaks;
 
   if (pszLine && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
     nIndex--;
@@ -4050,11 +4040,11 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, BOOL bAccumulate)
   int nOffset = 0;
   const int nTabSize = GetTabSize ();
   //BEGIN SW
-  int			*anBreaks = new int[nLength];
+  vector<int>   anBreaks(nLength + 1);
   int			nBreaks = 0;
 
   /*if( nLength > GetScreenChars() )*/
-  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), &anBreaks[0], nBreaks );
 
   int	nPreOffset = 0;
   int	nPreBreak = 0;
@@ -4063,9 +4053,8 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, BOOL bAccumulate)
   {
     int J=0;
     for( J = nBreaks - 1; J >= 0 && nCharIndex < anBreaks[J]; J-- );
-    nPreBreak = anBreaks[J];
+    nPreBreak = (J >= 0) ? anBreaks[J] : 0;
   }
-  delete[] anBreaks;
   //END SW
   int I=0;
   for (I = 0; I < nCharIndex; I++)

@@ -33,6 +33,7 @@
 // CDirView view
 #include <afxcview.h>
 #include <map>
+#include <boost/scoped_ptr.hpp>
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
 
@@ -306,11 +307,11 @@ protected:
 	bool m_bNeedSearchLastDiffItem;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
-	CShellContextMenu* m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
-	CShellContextMenu* m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
-	CShellContextMenu* m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
+	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
+	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
-	DirViewTreeState* m_pSavedTreeState;
+	boost::scoped_ptr<DirViewTreeState> m_pSavedTreeState;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);

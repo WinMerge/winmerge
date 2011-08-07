@@ -55,16 +55,6 @@ struct IExconverter
 
 IExconverter *createConverterMLang();
 
-class IExconverterPtr {
-private:
-	IExconverter *m_ptr;
-public:
-	IExconverterPtr(IExconverter *pexconv) { m_ptr = pexconv;	}
-	~IExconverterPtr()                     { if (m_ptr) delete m_ptr; }
-	operator IExconverter * ( void ) const { return m_ptr ; }
-	IExconverter *operator->( void ) const { return m_ptr ; }
-};
-
 /** @brief Known Unicode encodings. */
 enum UNICODESET
 {

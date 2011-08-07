@@ -9,6 +9,7 @@
 
 #include "StdAfx.h"
 #include <math.h>
+#include <boost/scoped_array.hpp>
 #include "Bitmap.h"
 
 #ifdef _DEBUG
@@ -87,8 +88,8 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 	bi.bmiHeader.biClrUsed = 0;
 	bi.bmiHeader.biClrImportant = 0;
 
-	BYTE *pbuf = new BYTE[bi.bmiHeader.biSizeImage];
-	GetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf, &bi, DIB_RGB_COLORS);
+	boost::scoped_array<BYTE> pbuf(new BYTE[bi.bmiHeader.biSizeImage]);
+	GetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
 
 	int x;
 	for (x = 0; x < bm.bmWidth; x++)
@@ -125,8 +126,7 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap)
 		pbuf[i+2] = (BYTE)(pbuf[i+2] * 0.4);
 	}
 
-	SetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf, &bi, DIB_RGB_COLORS);
-	delete[] pbuf;
+	SetDIBits(dcMem.m_hDC, (HBITMAP)*pBitmapDarkened, 0, bm.bmHeight, pbuf.get(), &bi, DIB_RGB_COLORS);
 	dcMem.SelectObject(pOldBitmap);
 	dcMem.DeleteDC();
 	return pBitmapDarkened;

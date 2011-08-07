@@ -17,6 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 #include "StdAfx.h"
+#include <boost/scoped_array.hpp>
 #include "unicoder.h"
 #include "codepage.h"
 #include "Utf8FileDetect.h"
@@ -139,7 +140,6 @@ public:
 	{
 		int codepage;
 		IMLangConvertCharset *pcc;
-		unsigned char *pdst;
 		UINT dstsize;
 		UINT srcsize;
 		HRESULT hr;
@@ -150,9 +150,9 @@ public:
 			return defcodepage;
 		srcsize = size;
 		dstsize = size * sizeof(wchar_t);
-		pdst = new unsigned char[size * sizeof(wchar_t)];
+		boost::scoped_array<unsigned char> pdst(new unsigned char[size * sizeof(wchar_t)]);
 		SetLastError(0);
-		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst, &dstsize);
+		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
 		pcc->GetSourceCodePage((unsigned int *)&codepage);
 		if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION || codepage == autodetectType)
 		{
@@ -179,7 +179,7 @@ public:
 				srcsize = size;
 				dstsize = size * sizeof(wchar_t);
 				SetLastError(0);
-				hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst, &dstsize);
+				hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
 				if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
 					continue;
 				codepage = codepagestotry[i];
@@ -215,10 +215,7 @@ public:
 						codepage = 1201;
 				}
 			}
-			delete pdst;
 		}
-		else
-			delete pdst;
 		if (codepage == 20127)
 			return defcodepage;
 		return codepage;
@@ -991,13 +988,12 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
 	// Convert input to Unicode, using specified codepage
 	DWORD flags = 0;
 	int wlen = srclen * 2 + 6;
-	wchar_t * wbuff = new wchar_t[wlen];
-	int n = MultiByteToWideChar(cpin, flags, (const char*)src, srclen, wbuff, wlen - 1);
+	boost::scoped_array<wchar_t> wbuff(new wchar_t[wlen]);
+	int n = MultiByteToWideChar(cpin, flags, (const char*)src, srclen, wbuff.get(), wlen - 1);
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
 		String syserrstr = GetSysError(nsyserr);
-		delete [] wbuff;
 		dest[0] = '?';
 		return 1;
 	}
@@ -1021,14 +1017,13 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
 		flags = 0;
 		pdefaulted = NULL;
 	}
-	n = WideCharToMultiByte(cpout, flags, wbuff, n, dest, destsize - 1, NULL, pdefaulted);
+	n = WideCharToMultiByte(cpout, flags, wbuff.get(), n, dest, destsize - 1, NULL, pdefaulted);
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
 		String syserrstr = GetSysError(nsyserr);
 	}
 	dest[n] = 0;
-	delete [] wbuff;
 	if (lossy)
 		*lossy = !!defaulted;
 	return n;

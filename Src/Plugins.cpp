@@ -94,7 +94,7 @@ BOOL IsWindowsScriptThere()
 // scriptlet/activeX support for function names
 
 // list the function IDs and names in a script or activeX dll
-int GetFunctionsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdArray, INVOKEKIND wantedKind)
+int GetFunctionsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int>& IdArray, INVOKEKIND wantedKind)
 {
 	HRESULT hr;
 	UINT iValidFunc = 0;
@@ -110,9 +110,8 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdA
 			{
 				// allocate arrays for the returned structures
 				// the names array is NULL terminated
-				namesArray = new BSTR [pTypeAttr->cFuncs+1];
-				ZeroMemory(namesArray, sizeof(BSTR) * (pTypeAttr->cFuncs+1));
-				IdArray = new int [pTypeAttr->cFuncs+1];
+				namesArray.resize(pTypeAttr->cFuncs+1);
+				IdArray.resize(pTypeAttr->cFuncs+1);
 
 				UINT iMaxFunc = pTypeAttr->cFuncs - 1;
 				for (UINT iFunc = 0 ; iFunc <= iMaxFunc ; ++iFunc)
@@ -131,7 +130,7 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdA
 								&bstrName, 1, &cNames))
 							{
 								IdArray[iValidFunc] = pFuncDesc->memid;
-								namesArray[iValidFunc] = bstrName;
+								namesArray[iValidFunc].Attach(bstrName);
 								iValidFunc ++;
 							}
 						}
@@ -146,11 +145,11 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdA
 	return iValidFunc;
 }
 
-int GetMethodsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdArray)
+int GetMethodsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int> &IdArray)
 {
 	return GetFunctionsFromScript(piDispatch, namesArray, IdArray, INVOKE_FUNC);
 }
-int GetPropertyGetsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdArray)
+int GetPropertyGetsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int> &IdArray)
 {
 	return GetFunctionsFromScript(piDispatch, namesArray, IdArray, INVOKE_PROPERTYGET);
 }
@@ -161,19 +160,16 @@ BOOL SearchScriptForMethodName(LPDISPATCH piDispatch, WCHAR * functionName)
 {
 	BOOL bFound = FALSE;
 
-	BSTR * namesArray=0;
-	int * IdArray=0;
+	vector<_bstr_t> namesArray;
+	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-	delete [] IdArray;
 
 	int iFnc;
 	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
 		if (wcscmp(namesArray[iFnc], functionName) == 0)
 			bFound = TRUE;
-		::SysFreeString(namesArray[iFnc]);
 	}
-	delete [] namesArray;
 	return bFound;
 }
 
@@ -182,30 +178,25 @@ BOOL SearchScriptForDefinedProperties(LPDISPATCH piDispatch, WCHAR * functionNam
 {
 	BOOL bFound = FALSE;
 
-	BSTR * namesArray=0;
-	int * IdArray=0;
+	vector<_bstr_t> namesArray;
+	vector<int> IdArray;
 	int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
-	delete [] IdArray;
 
 	int iFnc;
 	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
 		if (wcscmp(namesArray[iFnc], functionName) == 0)
 			bFound = TRUE;
-		::SysFreeString(namesArray[iFnc]);
 	}
-	delete [] namesArray;
 	return bFound;
 }
 
 
 int CountMethodsInScript(LPDISPATCH piDispatch)
 {
-	BSTR * namesArray=0;
-	int * IdArray=0;
+	vector<_bstr_t> namesArray;
+	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-	delete [] IdArray;
-	delete [] namesArray;
 
 	return nFnc;
 }
@@ -217,10 +208,9 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 {
 	int fncID;
 
-	BSTR * namesArray=0;
-	int * IdArray=0;
+	vector<_bstr_t> namesArray;
+	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
-	delete [] namesArray;
 
 	if (methodIndex < nFnc)
 	{
@@ -231,7 +221,6 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 		fncID = -1;
 	}
 	
-	delete [] IdArray;
 	return fncID;
 }
 
@@ -718,8 +707,7 @@ CScriptsOfThread::CScriptsOfThread()
 	m_nLocks = 0;
 	// initialize the plugins pointers
 	typedef PluginArray * LPPluginArray;
-	m_aPluginsByEvent = new LPPluginArray [nTransformationEvents];
-	ZeroMemory(m_aPluginsByEvent, nTransformationEvents*sizeof(LPPluginArray));
+	m_aPluginsByEvent.resize(nTransformationEvents, NULL);
 	// CoInitialize the thread, keep the returned value for the destructor 
 	hrInitialize = CoInitialize(NULL);
 	ASSERT(hrInitialize == S_OK || hrInitialize == S_FALSE);
@@ -731,7 +719,6 @@ CScriptsOfThread::~CScriptsOfThread()
 		CoUninitialize();
 
 	FreeAllScripts();
-	delete [] m_aPluginsByEvent;
 }
 
 BOOL CScriptsOfThread::bInMainThread()
@@ -970,18 +957,18 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 	BOOL bExceptionCatched = FALSE;	
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
-	VARIANT *pargs = new VARIANT[nargs];
+	vector<VARIANT> args(nargs);
 	va_list list;
 	va_start(list, op);
-	for (int i = 0; i < nargs; i++)
-		pargs[i] = va_arg(list, VARIANT);
+	for (vector<VARIANT>::iterator it = args.begin(); it != args.end(); ++it)
+		*it = va_arg(list, VARIANT);
 	va_end(list);
 #endif
 
 	try 
 	{
 #ifdef WIN64
-		h = invokeA(pi, ret, id, op, pargs);
+		h = invokeA(pi, ret, id, op, nargs == 0 ? NULL : &args[0]);
 #else
 		h = invokeA(pi, ret, id, op, (VARIANT *)(&op + 1));
 #endif
@@ -1009,9 +996,6 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 		h = -1;
 	}
 
-#ifdef WIN64
-	delete [] pargs;
-#endif
 	return h;
 }
 /**
@@ -1027,18 +1011,18 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, .
 	BOOL bExceptionCatched = FALSE;
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
-	VARIANT *pargs = new VARIANT[nargs];
+	vector<VARIANT> args(nargs);
 	va_list list;
 	va_start(list, op);
-	for (int i = 0; i < nargs; i++)
-		pargs[i] = va_arg(list, VARIANT);
+	for (vector<VARIANT>::iterator it = args.begin(); it != args.end(); ++it)
+		*it = va_arg(list, VARIANT);
 	va_end(list);
 #endif
 	
 	try 
 	{
 #ifdef WIN64
-		h = invokeW(pi, ret, silent, op, pargs);
+		h = invokeW(pi, ret, silent, op, nargs == 0 ? NULL : &args[0]);
 #else
 		h = invokeW(pi, ret, silent, op, (VARIANT *)(&op + 1));
 #endif
@@ -1065,10 +1049,6 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, .
 		// set h to FAILED
 		h = -1;
 	}
-
-#ifdef WIN64
-	delete [] pargs;
-#endif
 
 	return h;
 }

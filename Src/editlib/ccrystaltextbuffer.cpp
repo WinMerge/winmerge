@@ -365,7 +365,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
 
   HANDLE hFile = NULL;
   int nCurrentMax = 256;
-  LPTSTR pcLineBuf = new TCHAR[nCurrentMax];
+  vector<TCHAR> pcLineBuf(nCurrentMax);
 
   BOOL bSuccess = FALSE;
 
@@ -449,10 +449,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
             {
               //  Reallocate line buffer
               nCurrentMax += 256;
-              LPTSTR pcNewBuf = new TCHAR[nCurrentMax];
-              memcpy (pcNewBuf, pcLineBuf, nCurrentLength);
-              delete[] pcLineBuf;
-              pcLineBuf = pcNewBuf;
+              pcLineBuf.resize(nCurrentMax);
             }
 
           // detect both types of EOL for each line
@@ -469,7 +466,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
         }
 
       pcLineBuf[nCurrentLength] = 0;
-      InsertLine (pcLineBuf, nCurrentLength);
+	  InsertLine (&pcLineBuf[0], nCurrentLength);
 
       ASSERT (m_aLines.size() > 0);   //  At least one empty line must present
 
@@ -486,8 +483,6 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
     }
   __finally
     {
-      if (pcLineBuf != NULL)
-        delete[] pcLineBuf;
     }
   if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
     ::CloseHandle (hFile);

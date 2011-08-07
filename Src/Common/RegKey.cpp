@@ -316,12 +316,10 @@ String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
 
 	if (lReturn == ERROR_SUCCESS)
 	{
-		TCHAR *stringVal = new TCHAR[dwSize];
-
+		retString.resize(dwSize/sizeof(TCHAR));
 		lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, NULL,
-			&dwType, (LPBYTE) stringVal, &dwSize);
-		retString = stringVal;
-		delete [] stringVal;
+			&dwType, (LPBYTE) retString.data(), &dwSize);
+		retString.resize(dwSize/sizeof(TCHAR)-1);
 	}
 	if (lReturn == ERROR_SUCCESS)
 		return retString;

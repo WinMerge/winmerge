@@ -88,9 +88,6 @@ CDirDoc::CDirDoc()
  */
 CDirDoc::~CDirDoc()
 {
-	delete m_pCtxt;
-	delete m_pCompareStats;
-
 	// Inform all of our merge docs that we're closing
 	POSITION pos = m_MergeDocs.GetHeadPosition();
 	while (pos)
@@ -181,13 +178,12 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathC
 	m_pDirView->DeleteAllDisplayItems();
 	// Anything that can go wrong here will yield an exception.
 	// Default implementation of operator new() never returns NULL.
-	delete m_pCtxt;
 	
 	if (m_pCompareStats == NULL)
-		m_pCompareStats = new CompareStats(m_nDirs);
+		m_pCompareStats.reset(new CompareStats(m_nDirs));
 
-	m_pCtxt = new CDiffContext(paths,
-			GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	m_pCtxt.reset(new CDiffContext(paths,
+			GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	m_pCtxt->m_bRecursive = !!bRecursive;
 
 	if (pTempPathContext)
@@ -295,15 +291,14 @@ void CDirDoc::LoadLineFilterList()
 	String filters = GetMainFrame()->m_pLineFilters->GetAsString();
 	if (!bFilters || filters.empty())
 	{
-		delete m_pCtxt->m_pFilterList;
-		m_pCtxt->m_pFilterList = NULL;
+		m_pCtxt->m_pFilterList.reset();
 		return;
 	}
 
 	if (m_pCtxt->m_pFilterList)
 		m_pCtxt->m_pFilterList->RemoveAllFilters();
 	else
-		m_pCtxt->m_pFilterList = new FilterList();
+		m_pCtxt->m_pFilterList.reset(new FilterList());
 
 	char * regexp_str;
 	FilterList::EncodingType type;
@@ -351,7 +346,7 @@ void CDirDoc::Rescan()
 	GetLog()->Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tMiddle: %s\n\tRight: %s\n"),
 		m_pCtxt->GetLeftPath().c_str(), m_nDirs == 3 ? m_pCtxt->GetMiddlePath().c_str() : _T("none"), m_pCtxt->GetRightPath().c_str());
 	m_pCompareStats->Reset();
-	m_pDirView->StartCompare(m_pCompareStats);
+	m_pDirView->StartCompare(m_pCompareStats.get());
 
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
@@ -379,7 +374,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
 	m_pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 	m_pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
-	m_pCtxt->m_pCompareStats = m_pCompareStats;
+	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
 	m_pCtxt->m_bRecursive = !!m_bRecursive;
 
 	// Set total items count since we don't collect items
@@ -403,7 +398,7 @@ void CDirDoc::Rescan()
 	pf->SetFilterStatusDisplay(theApp.m_globalFileFilter.GetFilterNameOrMask().c_str());
 
 	// Folder names to compare are in the compare context
-	m_diffThread.SetContext(m_pCtxt);
+	m_diffThread.SetContext(m_pCtxt.get());
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
@@ -735,8 +730,7 @@ BOOL CDirDoc::ReusingDirDoc()
 	m_pDirView->DeleteAllDisplayItems();
 
 	// delete comparison parameters and results
-	delete m_pCtxt;
-	m_pCtxt = NULL;
+	m_pCtxt.reset();
 
 	while (m_pTempPathContext)
 	{

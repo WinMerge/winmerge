@@ -164,11 +164,6 @@ CDirView::CDirView()
 
 CDirView::~CDirView()
 {
-	delete m_pShellContextMenuRight;
-	delete m_pShellContextMenuMiddle;
-	delete m_pShellContextMenuLeft;
-	delete m_pCmpProgressDlg;
-	delete m_pSavedTreeState;
 }
 
 BEGIN_MESSAGE_MAP(CDirView, CListView)
@@ -710,11 +705,11 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	if (bEnableShellContextMenu)
 	{
 		if (!m_pShellContextMenuLeft)
-			m_pShellContextMenuLeft = new CShellContextMenu(LeftCmdFirst, LeftCmdLast);
+			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
 		if (!m_pShellContextMenuMiddle)
-			m_pShellContextMenuMiddle = new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast);
+			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
 		if (!m_pShellContextMenuRight)
-			m_pShellContextMenuRight = new CShellContextMenu(RightCmdFirst, RightCmdLast);
+			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
 
 		bool leftContextMenuOk = ListShellContextMenu(SIDE_LEFT);
 		bool middleContextMenuOk = false;
@@ -880,11 +875,11 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE side)
 	CShellContextMenu* shellContextMenu;
 	switch (side) {
 	case SIDE_LEFT:
-		shellContextMenu = m_pShellContextMenuLeft; break;
+		shellContextMenu = m_pShellContextMenuLeft.get(); break;
 	case SIDE_MIDDLE:
-		shellContextMenu = (GetDocument()->m_nDirs < 3) ? m_pShellContextMenuRight : m_pShellContextMenuMiddle; break;
+		shellContextMenu = (GetDocument()->m_nDirs < 3) ? m_pShellContextMenuRight.get() : m_pShellContextMenuMiddle.get(); break;
 	case SIDE_RIGHT:
-		shellContextMenu = m_pShellContextMenuRight; break;
+		shellContextMenu = m_pShellContextMenuRight.get(); break;
 	}
 	shellContextMenu->Initialize();
 
@@ -2773,8 +2768,7 @@ CDirFrame * CDirView::GetParentFrame()
 
 void CDirView::OnRefresh()
 {
-	delete m_pSavedTreeState;
-	m_pSavedTreeState = SaveTreeState();
+	m_pSavedTreeState.reset(SaveTreeState());
 	GetDocument()->Rescan();
 }
 
@@ -2930,9 +2924,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	{
 		if (m_pSavedTreeState)
 		{
-			RestoreTreeState(m_pSavedTreeState);
-			delete m_pSavedTreeState;
-			m_pSavedTreeState = NULL;
+			RestoreTreeState(m_pSavedTreeState.get());
+			m_pSavedTreeState.reset();
 			Redisplay();
 		}
 		else
@@ -4268,9 +4261,9 @@ CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
 {
 	CShellContextMenu* pMenu = NULL;
 	if (hMenu == m_pShellContextMenuLeft->GetHMENU())
-		pMenu = m_pShellContextMenuLeft;
+		pMenu = m_pShellContextMenuLeft.get();
 	else if (hMenu == m_pShellContextMenuRight->GetHMENU())
-		pMenu = m_pShellContextMenuRight;
+		pMenu = m_pShellContextMenuRight.get();
 
 	return pMenu;
 }

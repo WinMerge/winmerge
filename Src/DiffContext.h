@@ -10,6 +10,7 @@
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
 
+#include <boost/scoped_ptr.hpp>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
 #include "DiffItemList.h"
@@ -188,7 +189,7 @@ public:
 
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
-	FilterList * m_pFilterList; /**< Filter list for line filters */
+	boost::scoped_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
 	BOOL m_bScanUnpairedDir; /** Scan into unpaired directories **/
 	CDiffWrapper *m_pDiffWrapper;
 
@@ -201,8 +202,8 @@ private:
 	 */
 	int m_nCompMethod;
 
-	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
-	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
+	boost::scoped_ptr<DIFFOPTIONS> m_pOptions; /**< Generalized compare options. */
+	boost::scoped_ptr<CompareOptions> m_pCompareOptions; /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
 	IAbortable *m_piAbortable; /**< Interface for aborting the compare. */
 };

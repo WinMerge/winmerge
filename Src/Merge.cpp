@@ -205,20 +205,17 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
-, m_pOptions(NULL)
-, m_pLog(NULL)
+, m_pOptions(new CRegOptionsMgr())
+, m_pLog(new CLogFile())
 , m_nActiveOperations(0)
+, m_pLangDlg(new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME))
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
-	m_pLangDlg = new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME);
 }
 
 CMergeApp::~CMergeApp()
 {
-	delete m_pOptions;
-	delete m_pLangDlg;
-	delete m_pLog;
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -305,7 +302,6 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	m_pOptions = new CRegOptionsMgr;
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
 	// Initialize temp folder
@@ -316,8 +312,6 @@ BOOL CMergeApp::InitInstance()
 	// Normally this should not neet to do anything - but if for some reason
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
-
-	m_pLog = new CLogFile();
 
 	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
 	if (logging > 0)

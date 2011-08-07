@@ -5,6 +5,7 @@
 #include "SuperComboBox.h"
 
 #include <shlwapi.h>
+#include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -202,11 +203,9 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
 	return CComboBox::GetLBTextLen(nIndex);
 #else
 	int nUnicodeLen = CComboBox::GetLBTextLen(nIndex);
-	char *pBuf = new char[nUnicodeLen * 2 + 1];
-	CComboBox::GetLBText(nIndex, pBuf);
-	int len = lstrlen(pBuf);
-	delete [] pBuf;
-	return len;
+	std::vector<char> buf(nUnicodeLen * 2 + 1);
+	CComboBox::GetLBText(nIndex, &buf[0]);
+	return lstrlen(&buf[0]);
 #endif
 }
 
@@ -469,21 +468,14 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 
 		// Allocate memory to contain full pathname & zero byte
 		wPathnameSize += 1;
-		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
-
-		// If not enough memory, skip this one
-		if (npszFile == NULL)
-			continue;
+		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
 
 		// Copy the pathname into the buffer
-		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
+		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
 
 		// we only care about the first
 		if (firstFile==_T(""))
-			firstFile=npszFile;
-
-		// clean up
-		delete[] npszFile;
+			firstFile=npszFile.get();
 	}
 
 	// Free the memory block containing the dropped-file information

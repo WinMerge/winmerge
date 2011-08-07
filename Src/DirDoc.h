@@ -30,6 +30,7 @@
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
+#include <boost/scoped_ptr.hpp>
 #include "DiffThread.h"
 #include "PluginManager.h"
 
@@ -149,7 +150,7 @@ public:
 	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(PathContext &paths);
 	void SetItemViewFlag(UINT_PTR key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
-	const CompareStats * GetCompareStats() const { return m_pCompareStats; };
+	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders();
 
 protected:
@@ -163,9 +164,9 @@ protected:
 
 	// Implementation data
 private:
-	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
+	boost::scoped_ptr<CDiffContext> m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView; /**< Pointer to GUI */
-	CompareStats *m_pCompareStats; /**< Compare statistics */
+	boost::scoped_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
 	BOOL m_bRO[3]; /**< Is left/middle/right side read-only */

@@ -9,6 +9,7 @@
 
 #include "StdAfx.h"
 #include <shlwapi.h>
+#include <boost/scoped_ptr.hpp>
 #include "codepage_detect.h"
 #include "unicoder.h"
 #include "codepage.h"
@@ -199,7 +200,7 @@ static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t le
 	unsigned cp = getDefaultCodepage();
 	if (guessEncodingType & 2)
 	{
-		ucr::IExconverterPtr pexconv(ucr::createConverterMLang());
+		boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 		if (pexconv && src != NULL)
 		{
 			int autodetectType = (unsigned int)guessEncodingType >> 16;

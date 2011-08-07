@@ -266,7 +266,7 @@ CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
  */
 CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 {
-	return GetDocument()->m_ptBuf[m_nThisPane];
+	return GetDocument()->m_ptBuf[m_nThisPane].get();
 }
 
 /**
@@ -890,7 +890,7 @@ void CMergeEditView::OnEditCopy()
 
 	if (!m_bColumnSelection)
 	{
-		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane];
+		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
 		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 			ptSelEnd.y, ptSelEnd.x, text);

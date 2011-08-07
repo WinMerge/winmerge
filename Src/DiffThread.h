@@ -25,6 +25,7 @@
 #ifndef _DIFFTHREAD_H
 #define _DIFFTHREAD_H
 
+#include <boost/scoped_ptr.hpp>
 #include "diffcontext.h"
 
 struct DiffFuncStruct;
@@ -68,8 +69,8 @@ public:
 private:
 	CDiffContext * m_pDiffContext; /**< Compare context storing results. */
 	CWinThread * m_threads[2]; /**< Compare threads. */
-	DiffFuncStruct * m_pDiffParm; /**< Structure for sending data to threads. */
-	DiffThreadAbortable * m_pAbortgate;
+	boost::scoped_ptr<DiffFuncStruct> m_pDiffParm; /**< Structure for sending data to threads. */
+	boost::scoped_ptr<DiffThreadAbortable> m_pAbortgate;
 	UINT m_msgUpdateUI; /**< UI-update message number */
 	HWND m_hWnd; /**< Handle to folder compare GUI window */
 	bool m_bAborting; /**< Is compare aborting? */

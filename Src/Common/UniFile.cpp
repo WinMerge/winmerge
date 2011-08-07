@@ -31,6 +31,7 @@ THE SOFTWARE.
 */
 
 #include "StdAfx.h"
+#include <boost/scoped_array.hpp>
 #include <sys/stat.h>
 #include "UnicodeString.h"
 #include "UniFile.h"
@@ -871,17 +872,15 @@ bool UniStdioFile::ReadBom()
 
 	// Read 8 KB at max for get enough data determining UTF-8 without BOM.
 	const int max_size = 8 * 1024;
-	unsigned char* buff = new unsigned char[max_size];
-	if (buff == NULL)
-		return false;
+	boost::scoped_array<unsigned char> buff(new unsigned char[max_size]);
 
-	size_t bytes = fread(buff, 1, max_size, m_fp);
+	size_t bytes = fread(&buff[0], 1, max_size, m_fp);
 	m_data = 0;
 	m_charsize = 1;
 	bool unicode = false;
 	bool bom = false;
 
-	m_unicoding = ucr::DetermineEncoding(buff, bytes, &bom);
+	m_unicoding = ucr::DetermineEncoding(&buff[0], bytes, &bom);
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
@@ -908,7 +907,6 @@ bool UniStdioFile::ReadBom()
 		break;
 	}
 
-	delete[] buff;
 	fseek(m_fp, (long)m_data, SEEK_SET);
 	m_bom = bom;
 	return unicode;

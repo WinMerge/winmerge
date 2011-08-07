@@ -10,6 +10,8 @@
 #ifndef _DIFF_UTILS_H_
 #define _DIFF_UTILS_H_
 
+#include <boost/scoped_ptr.hpp>
+
 class CompareOptions;
 class FilterList;
 class DiffutilsOptions;
@@ -46,18 +48,15 @@ public:
 			int * bin_status, bool bMovedBlocks, int * bin_file);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 
-protected:
-	void ClearCompareOptions();
-
 private:
-	DiffutilsOptions *m_pOptions; /**< Compare options for diffutils. */
+	boost::scoped_ptr<DiffutilsOptions> m_pOptions; /**< Compare options for diffutils. */
 	FilterList * m_pFilterList; /**< Filter list for line filters. */
 	file_data * m_inf; /**< Compared files data (for diffutils). */
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */
 	int m_codepage; /**< Codepage used in line filter */
-	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
-	CDiffWrapper *m_pDiffWrapper;
+	boost::scoped_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
+	boost::scoped_ptr<CDiffWrapper> m_pDiffWrapper;
 };
 
 
