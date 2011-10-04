@@ -355,6 +355,7 @@ Plugins=Bõvítmények
 
 ;Localization Components
 Languages=Nyelvek
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
 ChineseSimplifiedLanguage=Kínai (Egyszerûsített) menük és párbeszédablakok

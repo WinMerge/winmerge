@@ -336,6 +336,7 @@ Plugins=Αρθρώματα
 
 ;Localization Components
 Languages=Γλώσσες
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Βουλγαρικά επιλογές και διάλογοι
 CatalanLanguage=Καταλανικά επιλογές και διάλογοι
 ChineseSimplifiedLanguage=Κινεζικά (Απλοποιημένα) επιλογές και διάλογοι

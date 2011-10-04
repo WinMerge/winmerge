@@ -339,6 +339,7 @@ Plugins=Plugin
 
 ;Localization Components
 Languages=Lingue
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Menu e finestre di dialogo in bulgaro
 CatalanLanguage=Menu e finestre di dialogo in catalano
 ChineseSimplifiedLanguage=Menu e finestre di dialogo in cinese (semplificato)

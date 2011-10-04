@@ -319,6 +319,7 @@ Plugins=Connectors
 
 ;Localization Components
 Languages=Idiomes
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Menús i diàlegs en Búlgar
 CatalanLanguage=Menús i diàlegs en Català
 ChineseSimplifiedLanguage=Menús i diàlegs en Xinès (Simplificat)

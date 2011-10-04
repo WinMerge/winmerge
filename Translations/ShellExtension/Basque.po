@@ -2,45 +2,46 @@
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
-# $Id$
+# $Id: Basque.po 7554 2011-08-19 14:50:47Z sdottaka $
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge\n"
+"Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Greek <winmerge-translate@lists.sourceforge.net>\n"
+"Last-Translator:  Xabier Aramendi <azpidatziak@gmail.com>\n"
+"Language-Team: (EUS_Xabier Aramendi) <azpidatziak@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1253\n"
+"Content-Type: text/plain; charset=CP1252\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: English\n"
+"X-Poedit-Language: Basque (Euskara)\n"
 "X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-Country: Basque Country (Navarre)\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG
 #: ShellExtensionTemplate.rc:25
 #, c-format
 msgid "AFX_TARG_ENU"
-msgstr "AFX_TARG_ELL"
+msgstr "AFX_TARG_EUQ"
 
 #. LANGUAGE, SUBLANGUAGE
 #: ShellExtensionTemplate.rc:27
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_GREEK, SUBLANG_DEFAULT"
+msgstr "LANG_BASQUE, SUBLANG_DEFAULT"
 
 #. Codepage
 #: ShellExtensionTemplate.rc:28
 #, c-format
 msgid "1252"
-msgstr "1253"
+msgstr "1250"
 
 #: ShellExtensionTemplate.rc:42
 #, c-format
 msgid "ShellExtension"
-msgstr "Επέκταση Περιβάλλοντος"
+msgstr "ShellExtension"
 
 #: ShellExtensionTemplate.rc:43
 #, c-format
@@ -50,40 +51,40 @@ msgstr "WinMerge"
 #: ShellExtensionTemplate.rc:44
 #, c-format
 msgid "Open with WinMerge"
-msgstr "’νοιγμα με το WinMerge"
+msgstr "Ireki WinMergerekin"
 
 #: ShellExtensionTemplate.rc:45
 #, c-format
 msgid "Please select no more than 2 items"
-msgstr "Παρακαλώ επιλέξατε όχι περισσότερα από 2 αντικείμενα"
+msgstr "Mesedez ez hautatu 2 gai baino gehiago"
 
 #: ShellExtensionTemplate.rc:46
 #, c-format
 msgid "Compare"
-msgstr "Σύγκριση"
+msgstr "Alderatu"
 
 #: ShellExtensionTemplate.rc:47
 #, c-format
 msgid "Compare..."
-msgstr "Σύγκριση..."
+msgstr "Alderatu..."
 
 #: ShellExtensionTemplate.rc:48
 #, c-format
 msgid "Compare To"
-msgstr "Σύγκριση με"
+msgstr "Alderatu Honekin"
 
 #: ShellExtensionTemplate.rc:49
 #, c-format
 msgid "Save this path. Select another path to compare with this path."
-msgstr "Αποθήκευση αυτής της διαδρομής. Επιλέξατε κάποια άλλη διαδρομή προς σύγκριση με αυτή τη διαδρομή."
+msgstr "Gorde helburu hau. Hautatu beste helburu bat helburu honekin alderatzeko."
 
 #: ShellExtensionTemplate.rc:50
 #, c-format
 msgid "Compare to saved path (%1)"
-msgstr "Σύγκριση με αποθηκευμένη διαδρομή (%1)"
+msgstr "Alderatu gordetako helburuarekin (%1)"
 
 #: ShellExtensionTemplate.rc:51
 #, c-format
 msgid "Re-select First"
-msgstr "Επανεπιλογή Πρώτου"
+msgstr "Bir-hautatu Lehenengoa"
 

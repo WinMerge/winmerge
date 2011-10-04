@@ -326,6 +326,7 @@ Plugins=插件
 
 ;Localization Components
 Languages=语言
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=简体中文菜单和对话框

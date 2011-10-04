@@ -19,6 +19,7 @@ WinMerge 2.15.1
     "Swap" button led to an error.  (#3043635, #3066200)
   Bugfix: WinMerge contained a vulnerability in handling project files (#3185386)
     (http://www.zeroscience.mk/mk/vulnerabilities/ZSL-2011-4997.php)
+  New translation: Basque (#3387142)
   Translation updates:
   - Bulgarian (#3082392)
   - Hungarian (#3164982)

@@ -26,6 +26,9 @@ Inactive/past developers:
 * Christian "Seier" Blackburn (Installer)
 
 Localization:
+* Basque:
+  Xabier Aramendi <Azpidatziak@gmail.com>  
+
 * Bulgarian:
   Sld <sld|mail.bg>
   tigertron <ivg_18@yahoo.com>

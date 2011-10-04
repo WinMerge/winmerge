@@ -407,6 +407,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
     <ClInclude Include="WinMergeShell.h" />
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="Languages\ShellExtensionBasque.rc" />
     <ResourceCompile Include="Languages\ShellExtensionSerbian.rc" />
     <ResourceCompile Include="Languages\ShellExtensionSlovenian.rc" />
     <ResourceCompile Include="ShellExtension.rc">

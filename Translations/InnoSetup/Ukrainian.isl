@@ -332,6 +332,7 @@
 
    ;Localization Components
    Languages=Languages
+   BasqueLanguage=Basque menus and dialogs
    BulgarianLanguage=Меню і діалогові вікна болгарською мовою
    CatalanLanguage=Меню і діалогові вікна каталонською мовою
    ChineseSimplifiedLanguage=Меню і діалогові вікна звичайною китайською мовою
