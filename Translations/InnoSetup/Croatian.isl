@@ -329,6 +329,7 @@ Plugins=Dodaci
 
 ;Localization Components
 Languages=Jezici
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs

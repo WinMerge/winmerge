@@ -264,6 +264,7 @@ Plugins=Zásuvné moduly
 
 ;Localization Components
 Languages=Jazyky
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Bulharské ponuky a dialógy
 CatalanLanguage=Katalánske ponuky a dialógy
 ChineseSimplifiedLanguage=Èínske (zjednodušená) ponuky a dialógy

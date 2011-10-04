@@ -337,6 +337,7 @@ Plugins= ж’б ‘ѕдне«
 
 ;Localization Components
 Languages= “»«де« 
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е »бџ«—н 
 CatalanLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е Ш« «б«д 
 ChineseSimplifiedLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е Нндн ”«ѕе ‘ѕе  
@@ -354,6 +355,7 @@ ItalianLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е «н «бн«нн
 JapaneseLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е О«Бдн  
 KoreanLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е Ш—е «н  
 NorwegianLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е д—жОн  
+PersianLanguage=Persian menus and dialogs
 PolishLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е бе” «дн  
 PortugueseBrazilLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е »—“нбн / Б— ё«бн   
 PortugueseLanguage= Ёе—” е«н «д ќ«» ж ћЏ»е е«н гЌ«ж—е Б— ё«бн  

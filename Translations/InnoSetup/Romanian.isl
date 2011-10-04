@@ -336,6 +336,7 @@ Plugins=Plug-in-uri
 
 ;Localization Components
 Languages=Languages
+BasqueLanguage=Basque menus and dialogs
 BulgarianLanguage=Meniuri si dialoguri în Bulgara
 CatalanLanguage=Meniuri si dialoguri în  Catalana
 ChineseSimplifiedLanguage=Meniuri si dialoguri în  Chineza (Simplificata)
