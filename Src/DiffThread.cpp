@@ -67,9 +67,9 @@ CDiffThread::CDiffThread()
 , m_hWnd(0)
 , m_bAborting(FALSE)
 , m_pDiffParm(new DiffFuncStruct)
-, m_pAbortgate(new DiffThreadAbortable(this))
 {
 	ZeroMemory(&m_threads[0], sizeof(m_threads));
+	m_pAbortgate.reset(new DiffThreadAbortable(this));
 }
 
 /**
