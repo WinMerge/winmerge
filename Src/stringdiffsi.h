@@ -47,7 +47,7 @@ class stringdiffs
 public:
 	stringdiffs(const String & str1, const String & str2,
 		bool case_sensitive, int whitespace, int breakType,
-		std::vector<wdiff*> * pDiffs);
+		std::vector<wdiff> * pDiffs);
 
 	~stringdiffs();
 
@@ -69,17 +69,17 @@ private:
 // Implementation methods
 private:
 
-	void BuildWordsArray(const String & str, std::vector<word*> * words);
-	void InsertInWords(std::vector<word*> &words, int bw);
-	int FindPreMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
-	int FindNextMatchInWords(const std::vector<word*> &words,const word & needword, int bw, int side) const;
-	int FindPreSpaceInWords(const std::vector<word*> &words, int bw) const;
-	int FindNextSpaceInWords(const std::vector<word*> &words, int bw) const;
-	int FindPreNoInsertInWords(const std::vector<word*> &words, int bw) const;
-	int FindNextInsertInWords(const std::vector<word*> &words, int bw) const;
-	int FindNextNoInsertInWords(const std::vector<word*> &words, int bw) const;
-	void MoveInWordsUp(std::vector<word*> &words, int source, int target) const;
-	void MoveInWordsDown(std::vector<word*> &words, int source, int target) const;
+	void BuildWordsArray(const String & str, std::vector<word>& words);
+	void InsertInWords(std::vector<word> &words, int bw);
+	int FindPreMatchInWords(const std::vector<word> &words,const word & needword, int bw, int side) const;
+	int FindNextMatchInWords(const std::vector<word> &words,const word & needword, int bw, int side) const;
+	int FindPreSpaceInWords(const std::vector<word> &words, int bw) const;
+	int FindNextSpaceInWords(const std::vector<word> &words, int bw) const;
+	int FindPreNoInsertInWords(const std::vector<word> &words, int bw) const;
+	int FindNextInsertInWords(const std::vector<word> &words, int bw) const;
+	int FindNextNoInsertInWords(const std::vector<word> &words, int bw) const;
+	void MoveInWordsUp(std::vector<word> &words, int source, int target) const;
+	void MoveInWordsDown(std::vector<word> &words, int source, int target) const;
 	UINT Hash(const String & str, int begin, int end, UINT h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;
@@ -87,7 +87,7 @@ private:
 	bool IsBreak(const word & word1) const;
 	bool IsInsert(const word & word1) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
-	bool RemoveItem(std::vector<word*> &words, int bw) const;
+	bool RemoveItem(std::vector<word> &words, int bw) const;
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);
 	int onp(std::vector<char> & edscript);
@@ -104,10 +104,10 @@ private:
 	int m_whitespace;
 	int m_breakType;
 	bool m_matchblock;
-	std::vector<wdiff*> * m_pDiffs;
-	std::vector<word*> m_words1;
-	std::vector<word*> m_words2;
-	std::vector<wdiff*> m_wdiffs;
+	std::vector<wdiff> * m_pDiffs;
+	std::vector<word> m_words1;
+	std::vector<word> m_words2;
+	std::vector<wdiff> m_wdiffs;
 };
 
 

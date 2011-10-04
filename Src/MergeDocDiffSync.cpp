@@ -172,7 +172,7 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	vector<wdiff*> worddiffs;
+	std::vector<wdiff> worddiffs;
 	sd_ComputeWordDiffs(2, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	int nDiffLenSum = 0;
@@ -180,13 +180,7 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 	int nCount = worddiffs.size();
 	for (i = 0; i < nCount; i++)
 	{
-		nDiffLenSum += worddiffs[i]->end[0] - worddiffs[i]->begin[0] + 1;
-	}
-
-	while (!worddiffs.empty())
-	{
-		delete worddiffs.back();
-		worddiffs.pop_back();
+		nDiffLenSum += worddiffs[i].end[0] - worddiffs[i].begin[0] + 1;
 	}
 
 	return -(sLine0.length() - nDiffLenSum);

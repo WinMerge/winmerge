@@ -180,14 +180,14 @@ void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	std::vector<wdiff*> worddiffs;
+	std::vector<wdiff> worddiffs;
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	pWordDiffs->resize(worddiffs.size());
 
 	int i;
-	std::vector<wdiff*>::iterator it;
+	std::vector<wdiff>::iterator it;
 	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); i++, it++)
 	{
 		for (file = 0; file < m_nBuffers; file++)
@@ -198,29 +198,23 @@ void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 			int begin, end;
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
-				if ((*it)->begin[file] == nOffsets[file][nLine-nLineBegin] || (*it)->begin[file] < nOffsets[file][nLine-nLineBegin+1])
+				if (it->begin[file] == nOffsets[file][nLine-nLineBegin] || it->begin[file] < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
 			(*pWordDiffs)[i].beginline[file] = nLine;
-			(*pWordDiffs)[i].begin[file] = begin = (*it)->begin[file] - nOffsets[file][nLine-nLineBegin];
+			(*pWordDiffs)[i].begin[file] = begin = it->begin[file] - nOffsets[file][nLine-nLineBegin];
 			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].begin[file])
 				(*pWordDiffs)[i].begin[file] = m_ptBuf[file]->GetLineLength(nLine);
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
-				if ((*it)->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || (*it)->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
+				if (it->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || it->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
 			(*pWordDiffs)[i].endline[file] = nLine;
-			(*pWordDiffs)[i].end[file] = end = (*it)->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
+			(*pWordDiffs)[i].end[file] = end = it->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
 			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].end[file])
 				(*pWordDiffs)[i].end[file] = m_ptBuf[file]->GetLineLength(nLine);
 		}
-	}
-
-	while (!worddiffs.empty())
-	{
-		delete worddiffs.back();
-		worddiffs.pop_back();
 	}
 
 	delete nOffsets[0], nOffsets[1], nOffsets[2];
