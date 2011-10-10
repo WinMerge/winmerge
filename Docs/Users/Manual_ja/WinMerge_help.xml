@@ -36,10 +36,10 @@
     </copyright>
 
     <legalnotice>
-      <para>Information in this document is subject to change without notice.
-      Other products and companies referred to herein are trademarks or
-      registered trademarks of their respective companies or mark
-      holders.</para>
+      <para>この文書の情報は予告なしに変更されます。
+        この文書に引用された製品や企業は、
+        それらの企業・権利者の商標、および、
+        登録商標です。</para>
     </legalnotice>
 
     <authorgroup>
@@ -80,7 +80,7 @@
       </author>
 
       <author role="frist-last">
-        <contrib>and all others who helped with this.</contrib>
+        <contrib>そして、すべての協力者の方々。</contrib>
       </author>
     </authorgroup>
   </bookinfo>

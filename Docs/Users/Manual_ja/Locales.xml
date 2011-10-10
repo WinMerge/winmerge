@@ -4,80 +4,61 @@
       <primary>localizing WinMerge</primary>
     </indexterm></title>
 
-  <para>The WinMerge user interface is in English by default, but you can
-  localize your installation to other languages for which translations have been
-  contributed. Localizing WinMerge changes text strings that are displayed in
-  the interface, including menus, dialogs, tooltips, and messages, to the
-  language you choose.</para>
+  <para>WinMergeのインタフェースはデフォルトで英語となっていますが、ローカライズが可能です。
+  各種インタフェース、メニュー、ダイアログ、ツールチップ、メニュー、メッセージの各種インタフェースがが
+  選択した言語に翻訳されます。</para>
 
-  <para>Note that localization does not extend beyond the translation of
-  strings. For example, it does not affect how numbers are divided or how words
-  are alphabetized. (Those issues should be addressed in the conventional
-  Windows manner by using the Regional settings in the Control Panel.)</para>
+  <para>ローカライズされるのは文字列のみであることに注意してください。 
+  例えば、数値の桁区切りや、単語の並び替えの順序などには影響されません。
+  (これらはWindowsのコントロールパネルの「地域と言語」設定に依存します。)</para>
 
-  <para>Localizing your WinMerge installation involves these two basic
-  steps:</para>
+  <para>WinMergeのローカライズする手順は以下の２ステップとなります。</para>
 
   <orderedlist>
     <listitem>
-      <para><xref linkend="Locales_config_files" />: Make one or more language
-      files available to WinMerge.</para>
+      <para><xref linkend="Locales_config_files" />1つ以上の翻訳ファイルをWinMergeに利用可能なファイルに設定</para>
     </listitem>
 
     <listitem>
-      <para><xref linkend="Locales_changing" />: Choose one of the configured
-      language files.</para>
+      <para><xref linkend="Locales_changing" />使用可能な言語から翻訳したい言語を選択</para>
     </listitem>
   </orderedlist>
 
   <section id="Locales_config_files">
     <title>言語の設定</title>
 
-    <para>Configuring a localization simply involves making its translation file
-    available to WinMerge, either during or after the installation.</para>
+    <para>WinMergeでは、インストール中またはインストール後に簡単に言語の設定を行うことができます。</para>
 
     <itemizedlist>
       <listitem>
-        <para>It's easiest to configure a language file during WinMerge
-        installation. The instructions in <xref
-        linkend="Installing_usinginstaller" /> describe how to use the Select
-        Components page to install one or more translation files.</para>
+        <para>WinMergeインストール中に言語の設定を行うのが最も簡単です。<xref
+        linkend="Installing_usinginstaller" />には、コンポーネントの選択ページから 1つ以上の翻訳ファイルを選択する方法が説明されています。</para>
       </listitem>
 
       <listitem>
-        <para>If you did not configure a language file when you installed
-        WinMerge (or did not use the installer at all), there is no need to
-        re-install WinMerge. You can get the latest translation files from the
-        WinMerge site and configure it yourself:</para>
+        <para>インストール時に、翻訳ファイルを構成しなかった(または、インストーラを全く使用しなかった)場合も、
+         WinMergeを再インストールする必要はありません。WinMergeサイトから最新の翻訳ファイルを手に入れて構成することができます。</para>
 
         <orderedlist>
           <listitem>
-            <simpara>Create a folder named <filename class="directory"
-                >Languages</filename> under the WinMerge installation directory
-              (where <filename>WinMergeU.exe</filename> is located), if it does
-              not already exist.</simpara>
+            <simpara>WinMergeのインストールディレクトリ(WinMerge.exeかWinMergeU.exeがあるディレクトリ）に
+             <filename class="directory">Languages</filename>という名前のフォルダを作成します。（既にLanguagesフォルダが存在する場合はスキップして構いません。）</simpara>
           </listitem>
 
           <listitem>
-            <simpara>Go to the <ulink
-            url="http://winmerge.org/downloads/">WinMerge download</ulink> site.
-            Download one of the archived binary files (either Zip or 7z format)
-            for the current WinMerge version, and save it to your file
-            system.</simpara>
+            <simpara><ulink
+            url="http://winmerge.org/downloads/">WinMerge ダウンロード</ulink>サイトに行き、
+            アーカイブされたバイナリファイル(Zipか7z形式のいずれか)をダウンロードし、保存します。</simpara>
           </listitem>
 
           <listitem>
-            <simpara>Open the downloaded archive, and locate the
-            <filename>*.po</filename> files, where * is a language (for example,
-            <filename>Swedish.po</filename> for the Swedish translation).
-            Extract the language files you want to the
-            <filename>Languages</filename> subfolder in your WinMerge
-            installation directory.</simpara>
+            <simpara>ダウンロードされたアーカイブを解凍し、その中より<filename>*.po</filename>ファイルを探します。
+            (*の個所は言語名となります。例えば、スウェーデンの翻訳ファイル名であれば<filename>Swedish.po</filename>となります。)
+            WinMergeインストールディレクトリの<filename>Languages</filename>サブフォルダにあなたの欲しい翻訳ファイルをコピーしてください。</simpara>
           </listitem>
         </orderedlist>
 
-        <para>The language files are now available the next time you run
-        WinMerge.</para>
+        <para>翻訳ファイルは次回WinMergeを起動した際に反映されます。</para>
       </listitem>
     </itemizedlist>
   </section>
@@ -85,173 +66,159 @@
   <section id="Locales_changing">
     <title>WinMerge GUI言語の変更</title>
 
-    <para>If you have configured one or more translation files, as described in
-    the preceding section, you can change the localization of WinMerge to any of
-    them:</para>
+    <para>複数の翻訳ファイルがある場合は、それらから任意の言語を選択し、設定することができます。</para>
 
     <orderedlist>
       <listitem>
-        <simpara>Run WinMerge.</simpara>
+        <simpara>WinMergeを起動します。</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Select <guimenuitem>Language</guimenuitem> from the
-        <guimenu>View</guimenu> menu.</simpara>
+        <simpara><guimenu>「表示」</guimenu>メニューより<guimenuitem>「言語」</guimenuitem>を選択します。</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Select your language and click
-        <guibutton>OK</guibutton>.</simpara>
+        <simpara>使用可能な言語から変更したい言語を選択し、<guibutton>OK</guibutton>ボタンをクリックします。</simpara>
       </listitem>
     </orderedlist>
 
-    <para>The language of the WinMerge user interface is instantly
-    updated.</para>
+    <para>GUI言語の変更は、即座にWinMergeの各インタフェースに反映されます。</para>
   </section>
 
   <section>
     <title>利用可能なWinMergeの言語<indexterm>
-        <primary>localizations, available</primary>
+        <primary>利用可能な言語</primary>
       </indexterm></title>
 
-    <para>WinMerge localizations contributed to date include the following
-    translations:</para>
-
+    <para>これまでの寄贈により、WinMergeは以下の言語のローカライズが可能となっています。</para>
     <itemizedlist>
       <listitem>
-        <simpara>Bulgarian</simpara>
+        <simpara>ブルガリア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Catalan</simpara>
+        <simpara>カタロニア語 </simpara>
       </listitem>
 
       <listitem>
-        <simpara>Chinese (both Simplified and Traditional)</simpara>
+        <simpara>中国語（簡体字・繁体字）</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Croatian</simpara>
+        <simpara>クロアチア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Czech</simpara>
+        <simpara>チェコ語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Danish</simpara>
+        <simpara>デンマーク語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Dutch</simpara>
+        <simpara>オランダ語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>French</simpara>
+        <simpara>フランス語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Galician</simpara>
+        <simpara>ガリシア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>German</simpara>
+        <simpara>ドイツ語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Greek</simpara>
+        <simpara>ギリシア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Hungarian</simpara>
+        <simpara>ハンガリー語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Italian</simpara>
+        <simpara>イタリア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Japanese</simpara>
+        <simpara>日本語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Korean</simpara>
+        <simpara>韓国語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Norwegian</simpara>
+        <simpara>ノルウェー語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Polish</simpara>
+        <simpara>ポーランド語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Portuguese</simpara>
+        <simpara>ポルトガル語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Portuguese (Brazilian)</simpara>
+        <simpara>ブラジルポルトガル語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Romanian</simpara>
+        <simpara>ルーマニア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Russian</simpara>
+        <simpara>ロシア語 </simpara>
       </listitem>
 
       <listitem>
-        <simpara>Slovak</simpara>
+        <simpara>スロバキア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Slovenian</simpara>
+        <simpara>スロベニア語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Spanish</simpara>
+        <simpara>スペイン語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Swedish</simpara>
+        <simpara>スウェーデン語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Turkish</simpara>
+        <simpara>トルコ語</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Ukrainian</simpara>
+        <simpara>ウクライナ語</simpara>
       </listitem>
     </itemizedlist>
   </section>
 
   <section>
     <title>翻訳ミスの報告<indexterm>
-        <primary>translations, reporting errors</primary>
+        <primary>>翻訳ミスの報</primary>
       </indexterm></title>
 
-    <para>Please submit any errors you find in translations as bugs to our
-    <ulink
-    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
-    It would be great if you also provide a corrected version of the translated
-    text.</para>
+    <para>あながたが翻訳ミスを見つけた場合は、バグとして<ulink url=" http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216 ">バグリスト</ulink>に投稿してください。
+          また、翻訳された文章の訂正版を提供してくだされば幸いです。</para>
   </section>
 
   <section>
     <title>新しい翻訳の提出<indexterm>
-        <primary>submitting translations</primary>
+        <primary>翻訳の提出</primary>
       </indexterm></title>
 
-    <para>If you would like to add your language to the list, read the <ulink
-    url="http://winmerge.org/translations/">Translations</ulink> documentation
-    in the WinMerge Web site to learn how. All the translations are incomplete,
-    so your help improving them would be appreciated. Translating (or improving
-    translation) does not require you to have all the compile tools or to know
-    about WinMerge internals, just to follow the instructions in the preceding
-    link. And if you have problems, ask for help from us in one of the <ulink
-    url="http://forums.winmerge.org/">WinMerge forums</ulink>.</para>
+    <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url=" http://winmerge.org/translations/ ">翻訳</ulink>
+   ドキュメントを読み、方法を学んでください。すべての翻訳が完全にできていないため、ぜひご協力をお願いいたします。翻訳する（または翻訳を改善する）に
+    あたって、コンパイルツールや、WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれば、
+   <ulink url=" http://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
   </section>
 </article>
