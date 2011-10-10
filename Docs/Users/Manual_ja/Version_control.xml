@@ -4,297 +4,297 @@
       <primary>integration</primary>
     </indexterm></title>
 
-  <para>Comparing and merging files are often subtasks in a larger change
-  management process. For that reason, WinMerge is often used not just by
-  itself, but also in conjunction with other tools. In addition, diff and merge
-  utilities provide different features, so it's sometimes handy to combine
-  different tools. This topic describes the primary methods for using WinMerge
-  with other tools.</para>
+  <para>ファイルを比較することと、マージすることは、大きな変更を管理する上でよくあることです。
+    そのような理由により、WinMergeは、それ単体で使用されるだけでなく、
+    他のツールと連携しても使用されます。さらに、
+    diffとマージユーティリティは、異なる特徴を提供するので、
+    それは、時々、異なるツールを結合するのに便利です。
+    このトピックは、他のツールと共に使用するための主な方法について説明しています。</para>
 
   <section>
     <title>コマンドインターフェース(CLI)を使用する</title>
 
-    <para>The WinMerge command-line interface (CLI), described in <xref
-    linkend="Command_line" />, enables you to run WinMerge from a Command Prompt
-    window, from scripts, or from another tool or program. Basically, any
+    <para><xref linkend="Command_line" />で説明されている、コマンドライン・インタフェース(CLI)により、
+      コマンド・プロンプト、スクリプト、または、他のツールやプログラムから、
+      WinMergeを起動することができます。<!-- TODO: なんかよくわからない -->Basically, any
     program that allows you to call an external executable with at least one
     path, can be used to launch a WinMerge operation.</para>
 
-    <para>Here are just a few examples:</para>
+    <para>ここにいくつかの例を示します</para>
 
     <itemizedlist>
       <listitem>
-        <para>A batch file can launch WinMerge and enable users to specify
-        parameters interactively:</para>
+        <para>バッチファイルは、WinMergeを起動することができ、
+          パラメータを対話的に指定することができます。</para>
 
         <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /ub /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
 
       <listitem>
-        <para>The Subversion client allows you to call an external diff program
-        and pass parameters, like this:</para>
+        <para>Subversionクライアントは、次に示すように、外部のdiffプログラムを呼ぶことを許可しています。
+        </para>
 
         <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" myfile </literallayout>
       </listitem>
     </itemizedlist>
 
     <tip>
-      <para>Similarly, many GUI tools (like version control clients and IDEs)
-      that include built-in diff tools enable you to configure WinMerge as their
-      default diff tool, instead. The next section describes how to use WinMerge
-      this way with TortoiseSVN, TortoiseCVS, and ClearCase. For other tools,
-      like Eclipse and Perforce, check their documentation or search the
-      Internet for details and examples.</para>
+      <para>同様に、組み込みのdiffツールを含む、多くのGUIツール(バージョン管理システムのクライアントやIDE)は、
+      それらのデフォルトのdiffツールの代わりにWinMergeを設定することが可能です。
+      次のセクションは、TortoiseSVN、TortoiseCVS、ClearCaseで、
+      このような方法でWinMergeを使う方法を説明しています。
+      EclipseやPerforceなど他のツールは、それらのドキュメントを参照するか、
+      インターネットで詳細や例を調べてください。</para>
     </tip>
   </section>
 
   <section id="VersionControl_vcs">
-    <title>Using WinMerge with version control systems<indexterm>
-        <primary>version control systems</primary>
+    <title>バージョン管理システムで、WinMergeを使う<indexterm>
+      <primary>version control systems</primary>
 
         <secondary>integration with</secondary>
       </indexterm></title>
 
-    <para>You can configure WinMerge to interact with a few supported version
-    control systems (VCS) in two ways. This section describes the two types of
-    VCS integration and provides an example of each.</para>
+    <para>あなたは、二つの方法で、WinMergeが、2、3のサポートされているバージョン管理システム(VCS)と、
+      協調し合うように設定できます。
+     このセクションは、二つのタイプのVCS統合と、それぞれの例を説明しています。</para>
 
     <section>
-      <title>Checking out versioned files from WinMerge</title>
+      <title>WinMergeから、バージョン管理されているファイルをチェックアウトする</title>
 
       <indexterm>
-        <primary>Visual SourceSafe integration</primary>
+        <primary>Visual Source Safeとの統合</primary>
       </indexterm>
 
-      <para>When you save a file in WinMerge and the file is a versioned
-      ClearCase or Visual Source Safe element, WinMerge can open the VCS's
-      checkout dialog for you. This makes it easy to check out files as you are
-      working in WinMerge. However, WinMerge does not provide checkin or history
-      tools, so remember to check the files in later using the VCS
-      interface.</para>
+      <para>WinMergeでファイルを保存した時、そのファイルが、ClearCase、または、
+        Visual Source Safeでバージョン管理されている場合、
+        WinMergeは、VCSのチェックアウトダイアログを表示することができます。
+      これは、あなたがWinMergeで作業しながら、ファイルをチェックアウトするのを容易にします。
+      しかしながら、WinMergeは、チェックイン、または、履歴ツールを提供していません。
+      後で忘れずに、VCSインタフェースを使用してファイルをチェックしてください。</para>
 
-      <para>This integration is available after WinMerge installation. To enable
-      or disable the integration, click <menuchoice>
-          <guimenu>Edit</guimenu>
+    <para>この統合は、WinMergeインストール後に有効です。この統合を、
+      有効、または、無効にするには、<menuchoice>
+        <guimenu>編集(E)</guimenu>
 
-          <guimenuitem>Options</guimenuitem>
-        </menuchoice>, open the Version Control integration page, and choose the
-      appropriate option.</para>
+        <guimenuitem>設定</guimenuitem>
+      </menuchoice>をクリックします。バージョン管理統合ページを開き、
+      適当なオプションを選択してください。</para>
 
-      <example>
-        <title>Visual Source Safe integration</title>
+  <example>
+        <title>Visual Source Safeとの統合</title>
 
-        <para>Here is a sample file checkout using the VSS integration.</para>
+        <para>これは、VSS統合を使用して、サンプルファイルをチェックアウトする例です。</para>
 
-        <orderedlist>
-          <listitem>
-            <para>Launch a WinMerge file or folder comparison whose left or
-            right target is under version control.</para>
-          </listitem>
+    <orderedlist>
+      <listitem>
+        <para>左か右のターゲットがバージョン管理下にある、
+          WinMergeの「ファイル、または、フォルダの比較」を起動してください。</para>
+      </listitem>
 
-          <listitem>
-            <para>In WinMerge, edit a version-controlled file.</para>
-          </listitem>
+      <listitem>
+            <para>WinMerge中で、バージョン管理されているファイルを編集してください。</para>
+      </listitem>
 
-          <listitem>
-            <para>Save your changes. WinMerge detects that the file is
-            read-only, and assumes that it is under Visual Source Safe version
-            control. WinMerge opens a Visual Source Save dialog, like
-            this:</para>
+      <listitem>
+        <para>変更を保存してください。WinMergeは、ファイルが読み取り専用であることを検知し、
+          それがVisual Source Safeの管理下にあると推測します。
+             WinMergeは、このように、Visual Source Safeのダイアログを表示します。
+            </para>
 
-            <mediaobject>
-              <imageobject>
-                <imagedata fileref="screenshots/sourcesafe1.png" format="PNG" />
-              </imageobject>
-            </mediaobject>
-          </listitem>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/sourcesafe1.png" format="PNG" />
+          </imageobject>
+        </mediaobject>
+      </listitem>
 
-          <listitem>
-            <para>In the <guilabel>Database</guilabel> dropdown list, choose the
-            correct Visual SourceSafe database if there is more than one on your
-            system.</para>
-          </listitem>
+      <listitem>
+        <para>お使いのシステムに、一つより多くのVSSデータベースがある場合、
+          <guilabel>データベース</guilabel>ドロップダウンリストの中から、
+          正しいVisual Source Safeデータベースを選択してください。</para>
+      </listitem>
 
-          <listitem>
-            <para>The <guilabel>Project</guilabel> field shows the selected
-            file's location relative to the Visual SourceSafe database path.
-            Verify that the path is correct: most errors are caused by the wrong
-            project path. If you change folders, remember to change the project
-            path, too!</para>
-          </listitem>
+      <listitem><!-- TODO: 一文目自信ない -->
+        <para><guilabel>プロジェクト</guilabel>フィールドは、
+          VSSデータベースパスに関係のある、選択されたファイルの場所を示しています。
+          パスが正しいか検査してください。ほとんどのエラーは、
+          間違ったプロジェクトパスが原因です。
+          もしフォルダを変更したなら、プロジェクトパスの変更も忘れずに！</para>
+      </listitem>
 
-          <listitem>
-            <para>Enter your password if required. WinMerge remembers your
-            password for the current session, but for your security does not
-            store it. Therefore, you don't need to retype the password during a
-            session, but you must retype the password each time you open
-            WinMerge.</para>
-          </listitem>
+      <listitem>
+        <para>必要なら、パスワードを入力してください。
+          WinMergeは、現在のセッションのパスワードを記憶します。しかし、セキュリティのために、それは保存しません。
+            したがって、セッションの間は、パスワードを再度タイプする必要はありません。
+            しかし、WinMergeを開く度に、パスワードをタイプしなければなりません。
+            </para>
+      </listitem>
 
-          <listitem>
-            <para>Optionally, enable one or both of these options:</para>
-
-            <itemizedlist>
-              <listitem>
-                <para><guilabel>Link to Destination VSS
-                project</guilabel></para>
-              </listitem>
-
-              <listitem>
-                <para><guilabel>Apply to all items</guilabel>. This option
-                enables you to check out multiple files in a single directory
-                when you copy files in a folder compare operation.</para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-        </orderedlist>
-
-        <para>Unfortunately, VSS provides very little information about error
-        conditions beyond the fact that they occur. If an operation fails,
-        causes might include any of the following conditions:</para>
+      <listitem>
+        <para>任意で、これらのオプションの内、ひとつ、または、両方を有効にできます。</para>
 
         <itemizedlist>
           <listitem>
-            <para>Another user might have the file checked out with exclusive
-            access.</para>
+            <para><guilabel><!-- TODO: WinMerge日本語版を確認 -->Link to Destination VSS
+                project</guilabel></para>
           </listitem>
 
           <listitem>
-            <para>You might have specified the wrong project.</para>
-          </listitem>
-
-          <listitem>
-            <para>You might have entered the project name incorrectly.</para>
-          </listitem>
-
-          <listitem>
-            <para>You might not have used a valid VSS path (for example, this is
-            incorrect: <userinput>$/MyProject/res</userinput>).</para>
-          </listitem>
-
-          <listitem>
-            <para>Your connection to the VSS server computer might be
-            broken.</para>
+            <para><guilabel><!-- TODO: WinMerge日本語版を確認 -->Apply to all items</guilabel>.
+              この操作は、フォルダ比較でファイルをコピーした時、
+              ディレクトリ中の複数ファイルのチェックアウトを可能にします。</para>
           </listitem>
         </itemizedlist>
-      </example>
+      </listitem>
+    </orderedlist>
+
+    <para>残念ながら、VSSは発生したエラーについての情報を、ほとんど提供しません。
+      ある操作に失敗する場合、
+      次の条件のうちのいくつかが原因かもしれません。</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>他のユーザが、排他アクセスで、
+          ファイルをチェックアウトした。</para>
+      </listitem>
+
+      <listitem>
+        <para>間違ったプロジェクトが選択されている。</para>
+      </listitem>
+
+      <listitem>
+        <para>プロジェクト名を間違って入力した。</para>
+      </listitem>
+
+      <listitem>
+        <para>不正なVSSパスを使用している。
+          (例えば、<userinput>$/MyProject/res</userinput> は不正なパスです。)</para>
+      </listitem>
+
+      <listitem>
+          <para>接続しているVSSサーバマシンが壊れている。
+          </para>
+      </listitem>
+    </itemizedlist>
+  </example>
     </section>
 
     <section>
-      <title>Using WinMerge as a version control system's diff tool</title>
+      <title>WinMergeを、バージョン管理システムの、差分ツールとして使用する</title>
 
       <indexterm>
-        <primary>TortoiseSVN integration</primary>
+        <primary>TortoiseSVNとの統合</primary>
       </indexterm>
 
-      <para>When you compare files in TortoiseSVN, TortoiseCVS, or Rational
-      ClearCase, you can have the VCS launch WinMerge instead of its native diff
-      utility. You can configure this integration only during <link
-      linkend="Installing_usinginstaller">WinMerge installation</link>.</para>
+      <para>TortoiseSVN、TortoiseCVS、または、Rational ClearCase でファイル比較する際、
+        VCSは、組込みの差分ツールの代わりに、WinMergeを起動することができます。
+       この設定は、<link
+      linkend="Installing_usinginstaller">WinMergeのインストール</link>の最中のみで可能です。</para>
 
       <example>
-        <title>Tortoise SVN integration</title>
+        <title>TortoiseSVNとの統合</title>
 
-        <para>Here is a sample diff operation in TortoiseSVN that uses the
-        WinMerge integration. The integrations with TortoiseCVS and ClearCase
-        are similar.</para>
+        <para>これは、WinMerge統合を使用した、TortoiseSVNでの比較操作のサンプルです。
+        この統合は、TortoiseCVS と ClearCase
+        も同じです。</para>
 
         <orderedlist>
           <listitem>
-            <para>In Windows Explorer, navigate to a Subversion working copy
-            that you have checked out.</para>
+            <para>Windowsのエクスプローラ中で、チェックアウトしたSubversion作業コピーをナビゲートします。
+            </para>
           </listitem>
 
           <listitem>
-            <para>Right-click a file that is under Subversion management
-            (usually indicated by a distinct TortoiseSVN icon), and click
-            <guimenu>TortoiseSVN</guimenu> in the context menu.</para>
+            <para>Subversionの管理下にあるファイル(大抵は、目立つTortoiseSVNアイコンで示されます)を、
+            右クリックし、コンテキストメニューの
+            <guimenu>TortoiseSVN</guimenu>をクリックしてください。</para>
 
             <itemizedlist>
               <listitem>
-                <para>If the file has not been modified, the context menu
-                contains the shortcut, <guimenuitem>Diff with previous
-                version</guimenuitem>. This command compares the checked-out
-                version of the file with the previous version that was checked
-                in to the repository.</para>
+                <para>ファイルが修正されていない場合、
+                  コンテキストメニューは、<guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較
+                  </guimenuitem>のショートカットを含んでいます。このコマンドは、
+                  チェックアウトされているバージョンと、リポジトリにチェックインされている、
+                  前のバージョンを比較します。</para>
               </listitem>
 
               <listitem>
-                <para>If you have modified the file, the context menu contains
-                the same <guimenuitem>Diff with previous version</guimenuitem>
-                shortcut, plus the <guimenuitem>Diff</guimenuitem> shortcut.
-                This command compares your revision to the current version (the
-                one you checked out). It is useful for reviewing the changes you
-                have made.</para>
+                <para>ファイルを変更している場合、コンテキストメニューは、同じ
+                  <guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較</guimenuitem>
+                  のショートカットと、それに加え、<guimenuitem><!-- TODO: 日本語版確認 -->比較</guimenuitem>のショートカットを含んでいます。
+                このコマンドは、あなたの版と最新版(チェックアウトされている版)を比較します。
+                それは、変更を加えた箇所をレビューするのに便利です。
+                </para>
               </listitem>
             </itemizedlist>
           </listitem>
 
           <listitem>
-            <para>Choose either the <guimenuitem>Diff with previous
-            version</guimenuitem> or <guimenuitem>Diff</guimenuitem> shortcut.
-            The WinMerge window opens, with the target file versions loaded In
-            the File Compare window.</para>
+            <para><guimenuitem><!-- TODO: 日本語版確認 -->前のバージョンと比較
+              </guimenuitem>、または、<guimenuitem><!-- TODO: 日本語版確認 -->比較</guimenuitem>ショートカットのどちらかを選んでください。
+              WinMergeのウィンドウが開き、ファイル比較ウィンドウに、
+              目的のファイルのバージョンが読み込まれます。</para>
           </listitem>
         </orderedlist>
 
-        <para>The <menuchoice>
+        <para><menuchoice>
             <guimenu>TortoiseSVN</guimenu>
 
-            <guimenuitem>Diff</guimenuitem>
-          </menuchoice> shortcut is available for comparing any two files in
-        your file system, not just files that are managed by Subversion. To
-        illustrate how the WinMerge integration works in this case:</para>
+            <guimenuitem>比較</guimenuitem>
+          </menuchoice>のショートカットでは、ファイルシステムにある、
+          Subversionで管理されていない二つのファイルの比較が可能です。
+          <!-- FIXME: ここ自信ない -->WinMerge統合の方法を次に示します。</para>
 
         <orderedlist>
           <listitem>
-            <para>In Windows Explorer, hold <keycap>Ctrl</keycap>, select any
-            two files, and right-click.</para>
+            <para>Windowsのエクスプローラで、<keycap>Ctrl</keycap>を押しながら二つのファイルを選択し、
+            右クリックします。</para>
           </listitem>
 
           <listitem>
-            <para>Choose <menuchoice>
+            <para>コンテキストメニューから、<menuchoice>
                 <guimenu>TortoiseSVN</guimenu>
 
-                <guimenuitem>Diff</guimenuitem>
-              </menuchoice> in the context menu.</para>
+                <guimenuitem>比較</guimenuitem>
+              </menuchoice>を選択します。</para>
 
-            <para>The WinMerge window opens, with the selected files loaded In
-            the File Compare window.</para>
+              <para>WinMergeウィンドウが開き、選択されたファイルが、
+                ファイル比較ウィンドウに表示されます。</para>
           </listitem>
         </orderedlist>
       </example>
 
       <section id="VersionControl_cc">
-        <title>About the ClearCase integration</title>
+        <title>ClearCaseとの統合について</title>
 
-        <para>When you choose the integration option for Rational ClearCase
-        during WinMerge installation, the installer:</para>
+        <para>WinMergeのインストール時に、Rational ClearCase統合を選択した時、
+        インストーラは、</para>
 
         <orderedlist>
           <listitem>
-            <para>Creates a backup copy of the ClearCase
-            <filename>map</filename> file, <filename>map.bak</filename>, in the
+            <para><!-- TODO: 日本語版確認 -->ClearCaseのバックアップコピーを、
+            <filename>map</filename>ファイルは、<filename>map.bak</filename>として、
             <filename><replaceable>ccase-home-dir</replaceable>\lib\mgrs</filename>
-            directory. The <filename>map</filename> file is a user-configurable
+            ディレクトリに作成します。<!-- FIXME: よくわからない -->The <filename>map</filename> file is a user-configurable
             file that associates ClearCase methods with the programs that carry
             them out.</para>
           </listitem>
 
           <listitem>
-            <para>Modifies the <guilabel>text_file_delta</guilabel> field In the
-            <filename>map</filename> file, specifying WinMerge instead of the
-            default <filename>cleardiff.exe</filename> when running the
-            <command>cleartool diff</command> command.</para>
+            <para><filename>map</filename>ファイル中の<guilabel><!-- TODO: 日本語版ではどうなっているのだろう -->text_file_delta</guilabel>フィールドを、
+            <command>cleartool diff</command>コマンドが実行されたとき、
+            デフォルトの<filename>cleardiff.exe</filename>の代わりに、
+            WinMergeを指定するように変更してください。</para>
           </listitem>
         </orderedlist>
 
-        <para>If you later want to disable WinMerge interactions with ClearCase,
-        replace the ClearCase <filename>map</filename> file created by the
-        WinMerge installer with the <filename>map.bak</filename> backup file.
-        Alternatively, edit the ClearCase <filename>map</filename> file to run
-        <filename>cleardiff.exe</filename> for the <command>cleartool
-        diff</command> command.</para>
+        <para>あとでWinMergeとClearCaseの連携を止めたい時は、
+        ClearCaseの<filename>map</filename>ファイルを、
+        WinMergeインストーラが作成したバックアップ、<filename>map.bak</filename>で置き換えてください。
+        または、ClearCaseの<filename>map</filename>ファイルを
+        <command>cleartool diff</command>コマンドで、
+        <filename>cleardiff.exe</filename>が実行されるように編集してください。</para>
       </section>
     </section>
   </section>
