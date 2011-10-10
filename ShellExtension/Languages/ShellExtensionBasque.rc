@@ -4,7 +4,7 @@
 // Please edit the PO file instead of this RC file for translation updates:
 //   ..\..\Translations\ShellExtension\<Languagename>.po
 //
-// $Id: ShellExtensionBasque.rc 7554 2011-08-19 14:50:47Z sdottaka $
+// $Id$
 
 #include "../resource.h"
 

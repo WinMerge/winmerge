@@ -318,7 +318,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "040904B0"
         BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "http://winmerge.org\0"
