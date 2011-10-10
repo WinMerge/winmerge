@@ -1770,14 +1770,14 @@ void CDirView::DoCopyItemsToClipboard(int nIndex)
 		if (di.diffcode.isExists(nIndex))
 		{
 			strPaths += di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex)).c_str();
-			strPaths += _T("\\");
+			strPaths += '\\';
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths += di.diffFileInfo[nIndex].filename.c_str();
-			strPaths += CString(_T("\0"), 1);
+			strPaths += '\0';
 		}
 	}
-	strPaths += CString(_T("\0"), 1);
+	strPaths += '\0';
 
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.GetLength());
 	if (!hDrop)
