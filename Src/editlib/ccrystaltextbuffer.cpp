@@ -365,7 +365,7 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
 
   HANDLE hFile = NULL;
   int nCurrentMax = 256;
-  vector<TCHAR> pcLineBuf(nCurrentMax);
+  TCHAR *pcLineBuf = new TCHAR[nCurrentMax];
 
   BOOL bSuccess = FALSE;
 
@@ -449,7 +449,10 @@ LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC
             {
               //  Reallocate line buffer
               nCurrentMax += 256;
-              pcLineBuf.resize(nCurrentMax);
+			  TCHAR *pcNewLineBuf = new TCHAR[nCurrentMax];
+			  memcpy(pcNewLineBuf, pcLineBuf, nCurrentMax - 256);
+			  delete [] pcLineBuf;
+			  pcNewLineBuf = pcLineBuf;
             }
 
           // detect both types of EOL for each line

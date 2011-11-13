@@ -41,6 +41,30 @@ void NTAPI LangFormatString1(CString &rString, UINT id, LPCTSTR lpsz1)
 	LangFormatStrings(rString, id, &lpsz1, 1);
 }
 
+// Get user language description of error, if available
+String GetSysError(int nerr)
+{
+	LPVOID lpMsgBuf;
+	String str = _T("?");
+	if (FormatMessage( 
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | 
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		nerr,
+		0, // Default language
+		(LPTSTR) &lpMsgBuf,
+		0,
+		NULL 
+		))
+	{
+		str = (LPCTSTR)lpMsgBuf;
+	}
+	// Free the buffer.
+	LocalFree( lpMsgBuf );
+	return str;
+}
+
 // Make a CString from printf-style args (single call version of CString::Format)
 CString Fmt(LPCTSTR fmt, ...)
 {
@@ -52,4 +76,11 @@ CString Fmt(LPCTSTR fmt, ...)
 	return str;
 }
 
+/**
+ * @brief Get appropriate default codepage 
+ */
+int getDefaultCodepage()
+{
+	return CP_ACP;
+}
 
