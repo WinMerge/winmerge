@@ -38,8 +38,6 @@
 #include "Ucs2Utf8.h"
 #include "DiffContext.h"	// FILE_SAME
 #include "MovedLines.h"
-#include "GETOPT.H"
-#include "FNMATCH.H"
 #include "coretools.h"
 #include "MergeEditView.h"
 #include "ChildFrm.h"

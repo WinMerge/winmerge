@@ -22,9 +22,6 @@
 #include "coretools.h" //SplitFilename()
 #include "FileOrFolderSelect.h"
 
-#include "WinClasses.h"
-#include "wclassdefines.h"
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE

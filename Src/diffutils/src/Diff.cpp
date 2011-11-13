@@ -28,8 +28,6 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "stdafx.h"
 #define GDIFF_MAIN
 #include "diff.h" 
-#include "getopt.h"
-#include "fnmatch.h"
 #include "io.h"
 #include "diffwrapper.h"
 
