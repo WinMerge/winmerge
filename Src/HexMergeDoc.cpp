@@ -40,8 +40,6 @@
 #include "MainFrm.h"
 #include "Environment.h"
 #include "diffcontext.h"	// FILE_SAME
-#include "getopt.h"
-#include "fnmatch.h"
 #include "coretools.h"
 #include "dirdoc.h"
 #include "files.h"

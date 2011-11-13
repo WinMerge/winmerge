@@ -55,6 +55,7 @@
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				EntryPointSymbol="wWinMainCRTStartup"
 				TargetMachine="1"/>
@@ -129,6 +130,7 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMergeU.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				EntryPointSymbol="wWinMainCRTStartup"
 				TargetMachine="1"/>
@@ -203,6 +205,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMerge.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
@@ -280,6 +283,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
@@ -6120,43 +6124,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Common\WinClasses.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="WMGotoDlg.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6709,12 +6676,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 			</File>
 			<File
 				RelativePath="WaitStatusCursor.h">
-			</File>
-			<File
-				RelativePath="Common\wclassdefines.h">
-			</File>
-			<File
-				RelativePath="Common\WinClasses.h">
 			</File>
 			<File
 				RelativePath="WMGotoDlg.h">
@@ -8898,50 +8859,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				RelativePath="diffutils\src\DIFF.H">
 			</File>
 			<File
-				RelativePath="diffutils\src\DIRENT.C">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="diffutils\src\DIRENT.H">
-			</File>
-			<File
 				RelativePath="diffutils\src\ED.C">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -8981,53 +8898,6 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="diffutils\lib\FNMATCH.C">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="diffutils\lib\FNMATCH.H">
-			</File>
-			<File
-				RelativePath="diffutils\lib\GETOPT.H">
 			</File>
 			<File
 				RelativePath="diffutils\GnuVersion.c">

@@ -499,9 +499,6 @@
     <ClCompile Include="WaitStatusCursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\WinClasses.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WMGotoDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -673,13 +670,7 @@
     <ClCompile Include="diffutils\src\Diff.cpp">
       <Filter>DiffEngine</Filter>
     </ClCompile>
-    <ClCompile Include="diffutils\src\DIRENT.C">
-      <Filter>DiffEngine</Filter>
-    </ClCompile>
     <ClCompile Include="diffutils\src\ED.C">
-      <Filter>DiffEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\lib\FNMATCH.C">
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\GnuVersion.c">
@@ -692,9 +683,6 @@
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\NORMAL.C">
-      <Filter>DiffEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="diffutils\lib\REGEX.C">
       <Filter>DiffEngine</Filter>
     </ClCompile>
     <ClCompile Include="diffutils\src\SIDE.C">
@@ -1232,12 +1220,6 @@
     <ClInclude Include="WaitStatusCursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\wclassdefines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\WinClasses.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WinMergeCmdLineParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1323,18 +1305,6 @@
       <Filter>DiffEngine</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\src\DIFF.H">
-      <Filter>DiffEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\src\DIRENT.H">
-      <Filter>DiffEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\lib\FNMATCH.H">
-      <Filter>DiffEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\lib\GETOPT.H">
-      <Filter>DiffEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="diffutils\lib\REGEX.H">
       <Filter>DiffEngine</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\src\SYSTEM.H">

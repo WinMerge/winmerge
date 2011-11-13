@@ -1,7 +1,6 @@
 /*
  *	config.h - pre-built version for MSDOS and NT.
  */
-#define DIRENT 1
 #define HAVE_VPRINTF 1
 #define RETSIGTYPE void
 #define STDC_HEADERS 1
