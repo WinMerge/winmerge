@@ -38,8 +38,13 @@ void NTAPI LangTranslateDialog(HWND);
 	/** @brief Lang aware version of AfxFormatString1() */
 void NTAPI LangFormatString1(CString &, UINT, LPCTSTR);
 
+	/** @brief Retrieve error description from Windows; uses FormatMessage */
+String GetSysError(int nerr);
+
 	/** @brief Inline sprintf-style format; shortcut for CString::Format */
 CString Fmt(LPCTSTR fmt, ...);
+
+int getDefaultCodepage();
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"
