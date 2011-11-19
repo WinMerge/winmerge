@@ -124,7 +124,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 	ofn.lpstrFileTitle = NULL;
 	if (defaultExtension)
 		ofn.lpstrDefExt = defaultExtension;
-	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOCHANGEDIR;
 
 	BOOL bRetVal = FALSE;
 	if (is_open)
@@ -133,7 +133,6 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		bRetVal = GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
-	SetCurrentDirectory(env_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 		path = sSelectedFile;
@@ -289,12 +288,11 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
 	ofn.lpstrFileTitle = NULL;
-	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
+	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
 	BOOL bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
-	SetCurrentDirectory(env_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 	{
