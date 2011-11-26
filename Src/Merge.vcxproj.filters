@@ -715,6 +715,9 @@
     <ClCompile Include="OpenView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="diffutils\lib\REGEX.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
@@ -1332,6 +1335,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OpenView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="diffutils\lib\REGEX.H">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
