@@ -104,10 +104,7 @@
 #include "gotodlg.h"
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
-#include "Ucs2Utf8.h"
-#include "unicoder.h"
 #include "string_util.h"
-#include "pcre.h"
 
 using std::vector;
 
@@ -506,6 +503,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_nMaxLineLength(-1)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
+  m_rxnode = NULL;
   m_pszMatched = NULL;
   m_bSelMargin = TRUE;
   m_bViewLineNumbers = FALSE;
@@ -550,6 +548,11 @@ CCrystalTextView::~CCrystalTextView ()
     {
       free (m_pszLastFindWhat);
       m_pszLastFindWhat=NULL;
+    }
+  if (m_rxnode)
+    {
+      RxFree (m_rxnode);
+      m_rxnode = NULL;
     }
   if (m_pszMatched)
     {
@@ -4731,55 +4734,24 @@ PrepareDragData ()
 }
 
 static int
-FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
-     int &nLen)
+FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
 {
   if (dwFlags & FIND_REGEXP)
     {
       int pos;
-      const char * errormsg = NULL;
-      int erroroffset = 0;
-      char *regexString = UCS2UTF8_ConvertToUtf8(pszFindWhat);
-      int pcre_opts = 0;
 
-#ifdef UNICODE
-      pcre_opts |= PCRE_UTF8;
-#endif
-      pcre_opts |= PCRE_BSR_ANYCRLF;
-      if ((dwFlags & FIND_MATCH_CASE) == 0)
-        pcre_opts |= PCRE_CASELESS;
-
-      pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
-          &erroroffset, NULL);
-      pcre_extra *pe = NULL;
-      if (regexp)
+      if (rxnode)
+        RxFree (rxnode);
+      rxnode = RxCompile (pszFindWhat, (dwFlags & FIND_MATCH_CASE) != 0 ? RX_CASE : 0);
+      if (rxnode && RxExec (rxnode, pszFindWhere, _tcslen (pszFindWhere), pszFindWhere, rxmatch))
         {
-          errormsg = NULL;
-          pe = pcre_study(regexp, 0, &errormsg);
-        }
-      UCS2UTF8_Dealloc(regexString);
-      int ovector[30];
-      char *compString = UCS2UTF8_ConvertToUtf8(pszFindWhere);
-      int stringLen = strlen(compString);
-      int result = pcre_exec(regexp, pe, compString, stringLen,
-          0, 0, ovector, 30);
-
-      if (result >= 0)
-        {
-#ifdef UNICODE
-          pos = ucr::stringlen_of_utf8(compString, ovector[0]);
-          nLen = ucr::stringlen_of_utf8(compString, ovector[1]) - pos;
-#else
-          pos = ovector[0];
-          nLen = ovector[1] - ovector[0];
-#endif
+          pos = rxmatch->Open[0];
+          nLen = rxmatch->Close[0] - rxmatch->Open[0];
         }
       else
+        {
         pos = -1;
-
-      UCS2UTF8_Dealloc(compString);
-      pcre_free(regexp);
-      pcre_free(pe);
+        }
       return pos;
     }
   else
@@ -4998,7 +4970,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               int nPos;
               do
                 {
-                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen);
+                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
                   if( nPos >= 0 )
                     {
                       nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
@@ -5087,7 +5059,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                 }
 
               //  Perform search in the line
-              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen);
+              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
               if (nPos >= 0)
                 {
                   if (m_pszMatched)
@@ -6426,12 +6398,18 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
 bool CCrystalTextView::
 SetTextTypeByContent (LPCTSTR pszContent)
 {
+  RxNode *rxnode = NULL;
+  RxMatchRes rxmatch;
   int nLen;
   if (::FindStringHelper(pszContent, _T("^\\s*\\<\\?xml\\s+.+?\\?\\>\\s*$"),
-      FIND_REGEXP, nLen) == 0)
+      FIND_REGEXP, nLen, rxnode, &rxmatch) == 0)
     {
+      if (rxnode)
+        RxFree (rxnode);
       return SetTextType(CCrystalTextView::SRC_XML);
     }
+  if (rxnode)
+    RxFree (rxnode);
   return false;
 }
 

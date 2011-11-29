@@ -1620,8 +1620,30 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 
   int x = 0;
   int y = 0;
-  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
-  m_nLastReplaceLen = cchNewText;
+  if (dwFlags & FIND_REGEXP)
+    {
+      LPTSTR lpszNewStr;
+      if (m_pszMatched && !RxReplace(pszNewText, m_pszMatched, m_nLastFindWhatLen, m_rxmatch, &lpszNewStr, &m_nLastReplaceLen))
+        {
+          CString text;
+          if (lpszNewStr && m_nLastReplaceLen > 0)
+            {
+              LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
+              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen);
+              text.ReleaseBuffer (m_nLastReplaceLen);
+            }
+          else
+            text.Empty ();
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
+          if (lpszNewStr)
+            free(lpszNewStr);
+        }
+    }
+  else
+    {
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
+      m_nLastReplaceLen = cchNewText;
+    }
 
   CPoint ptEndOfBlock = CPoint (x, y);
   ASSERT_VALIDTEXTPOS (ptCursorPos);

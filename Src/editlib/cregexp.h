@@ -93,24 +93,15 @@
 
 typedef struct _RxNode RxNode;
 
-struct _RxNode {
-    short fWhat;
-    short fLen;
-    RxNode *fPrev;
-    RxNode *fNext;
-    union {
-        LPTSTR fChar;
-        RxNode *fPtr;
-    };
-};
+struct _RxNode;
 
 typedef struct {
     int Open[NSEXPS];    // -1 = not matched
     int Close[NSEXPS];
 } RxMatchRes;
 
-RxNode EDITPADC_CLASS *RxCompile(LPCTSTR Regexp);
-int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match, unsigned int RxOpt = RX_CASE);
+RxNode EDITPADC_CLASS *RxCompile(LPCTSTR Regexp, unsigned int RxOpt = RX_CASE);
+int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match);
 int EDITPADC_CLASS RxReplace(LPCTSTR rep, LPCTSTR Src, int len, RxMatchRes match, LPTSTR *Dest, int *Dlen);
 void EDITPADC_CLASS RxFree(RxNode *Node);
 
