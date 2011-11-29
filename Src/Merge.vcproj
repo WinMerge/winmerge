@@ -7216,6 +7216,12 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\editlib\cregexp.h">
+			</File>
+			<File
+				RelativePath=".\editlib\cregexp_pcre.cpp">
+			</File>
+			<File
 				RelativePath="editlib\crystaleditviewex.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">

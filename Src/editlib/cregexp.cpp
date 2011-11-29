@@ -24,6 +24,19 @@
 
 //#define DEBUG
 
+struct _RxNode
+{
+    short fWhat;
+    short fLen;
+    RxNode *fPrev;
+    RxNode *fNext;
+    union {
+        LPTSTR fChar;
+        RxNode *fPtr;
+    };
+    unsigned int fOpt;
+};
+
 #ifdef _UNICODE
 #define mytcsnextc(p) (*p)
 #else
@@ -593,12 +606,13 @@ RxNode *RxOptimize(RxNode *rx) {
     return rx;
 }
 
-RxNode *RxCompile(LPCTSTR Regexp) {
+RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
     RxNode *n = 0, *x;
     if (Regexp == 0) return 0;
     RegCount = 0;
     n = RxComp(&Regexp);
     if (n == 0) return 0;
+    n->fOpt = RxOpt;
     n = RxOptimize(n);
     x = n;
     while (x->fNext) x = x->fNext;
@@ -837,7 +851,7 @@ int RxTry(RxNode *rx, LPCTSTR s) {
     return 0;
 }
 
-int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match, unsigned int RxOpt) {
+int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Match) {
     TCHAR Ch;
     if (Regexp == 0) return 0;
 
@@ -845,7 +859,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
     bop = Data;
     eop = Data + Len;
 
-    flags = RxOpt;
+    flags = Regexp->fOpt;
 
     for (int i = 0; i < NSEXPS; i++) Match->Open[i] = Match->Close[i] = -1;
 

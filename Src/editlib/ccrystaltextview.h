@@ -39,6 +39,7 @@
 #endif // _MSC_VER >= 1000
 
 #include <vector>
+#include "cregexp.h"
 #include "crystalparser.h"
 
 ////////////////////////////////////////////////////////////////////////////
@@ -718,6 +719,8 @@ public :
     static HINSTANCE s_hResourceInst;
 
     int m_nLastFindWhatLen;
+    RxNode *m_rxnode;
+    RxMatchRes m_rxmatch;
     LPTSTR m_pszMatched;
     static LOGFONT m_LogFont;
 

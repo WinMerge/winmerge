@@ -535,9 +535,6 @@
     <ClCompile Include="editlib\cplusplus.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\cregexp.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="editlib\crystaleditviewex.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
@@ -717,6 +714,9 @@
     </ClCompile>
     <ClCompile Include="diffutils\lib\REGEX.C">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editlib\cregexp_pcre.cpp">
+      <Filter>EditLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
