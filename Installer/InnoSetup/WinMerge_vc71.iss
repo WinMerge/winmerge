@@ -425,12 +425,6 @@ Source: ..\..\Build\vc71\MergeRelease\Merge7z920.dll; DestDir: {app}; Flags: pro
 Source: ..\..\Build\vc71\MergeRelease\Merge7z465.dll; DestDir: {app}; Flags: promptifolder
 Source: ..\..\Build\vc71\MergeRelease\Merge7z457.dll; DestDir: {app}; Flags: promptifolder
 
-; Expat dll
-Source: ..\..\Build\vc71\expat\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
-
-; PCRE dll
-Source: ..\..\Build\vc71\pcre\MinSizeRel\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
-
 ; MergeLang.dll - translation helper dll
 Source: ..\..\Build\vc71\MergeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core
 

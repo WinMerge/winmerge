@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="expat_static"
+	ProjectGUID="{AF019C38-415E-48E1-8981-B5AD1E4E387F}"
 	SccProjectName=""
 	SccLocalPath="">
 	<Platforms>
@@ -12,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\../../../Build/expat/lib/Debug_static"
-			IntermediateDirectory=".\../../../BuildTmp/expat/lib/Debug_static"
+			OutputDirectory=".\../../../Build/vc71/$(ProjectName)/$(ConfigurationName)"
+			IntermediateDirectory=".\../../../BuildTmp/vc71/$(ProjectName)/$(ConfigurationName)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -23,11 +24,11 @@
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;COMPILED_FROM_DSP;_LIB"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\../../../BuildTmp/expat/lib/Debug_static/expat_static.pch"
-				AssemblerListingLocation=".\../../../BuildTmp/expat/lib/Debug_static/"
-				ObjectFile=".\../../../BuildTmp/expat/lib/Debug_static/"
-				ProgramDataBaseFileName=".\../../../BuildTmp/expat/lib/Debug_static/"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
@@ -36,7 +37,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../Build/expat/lib/Debug_static/libexpatMT.lib"
+				OutputFile="$(OutDir)/libexpatMT.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -73,19 +74,19 @@
 				InlineFunctionExpansion="1"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_LIB;COMPILED_FROM_DSP"
 				StringPooling="TRUE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\../../../BuildTmp/expat/lib/Release_static/expat_static.pch"
-				AssemblerListingLocation=".\../../../BuildTmp/expat/lib/Release_static/"
-				ObjectFile=".\../../../BuildTmp/expat/lib/Release_static/"
-				ProgramDataBaseFileName=".\../../../BuildTmp/expat/lib/Release_static/"
+				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../Build/expat/lib/Release_static/libexpatMT.lib"
+				OutputFile="$(OutDir)/libexpatMT.lib"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>

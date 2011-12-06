@@ -63,14 +63,6 @@ copy ShellExtension\*.bat "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy ShellExtension\*.bat "%DISTDIR%\2.14-zip-version-vc71\WinMerge\"
 copy ShellExtension\*.bat "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
 
-rem Dlls
-copy Build\pcre\minsizerel\pcre.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Build\expat\lib\release\libexpat.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
-copy Build\vc71\pcre\minsizerel\pcre.dll "%DISTDIR%\2.14-zip-version-vc71\WinMerge\"
-copy Build\vc71\expat\release\libexpat.dll "%DISTDIR%\2.14-zip-version-vc71\WinMerge\"
-copy Build\pcre\X64\minsizerel\pcre.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-copy Build\expat\lib\X64\release\libexpat.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
-
 rem Translation
 copy Build\MergeUnicodeRelease\Languages\Japanese.po "%DISTDIR%\2.14-zip-version\WinMerge\Languages\"
 copy Build\MergeUnicodeRelease\MergeLang.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
