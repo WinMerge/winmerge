@@ -16,7 +16,7 @@
 /* #undef HAVE_STRTOQ */
 #define HAVE__STRTOI64 1
 
-/* #undef PCRE_STATIC */
+#define PCRE_STATIC 1
 
 #define SUPPORT_UTF8 1
 /* #undef SUPPORT_UCP */

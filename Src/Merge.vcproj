@@ -27,7 +27,7 @@
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -68,10 +68,7 @@
 				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\lib\release\libexpat.dll $(TargetDir)
-copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -104,7 +101,7 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				AdditionalOptions="/EHa "
 				Optimization="0"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="_DEBUG;WIN32;_STATIC_CPPLIB;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_DEBUG;WIN32;_STATIC_CPPLIB;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
@@ -143,10 +140,7 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\debug\libexpat.dll $(TargetDir)
-copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -179,7 +173,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				AdditionalOptions="/EHa "
 				Optimization="0"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
@@ -217,11 +211,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\debug\libexpat.dll $(TargetDir)
-copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
-
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -255,7 +245,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;.\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -295,10 +285,7 @@ copy $(TargetDir)\..\pcre\debug\pcre.dll $(TargetDir)
 				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
 				HeaderFileName=""/>
 			<Tool
-				Name="VCPostBuildEventTool"
-				CommandLine="copy $(TargetDir)\..\expat\release\libexpat.dll $(TargetDir)
-copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
-"/>
+				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -320,6 +307,15 @@ copy $(TargetDir)\..\pcre\minsizerel\pcre.dll $(TargetDir)
 		</Configuration>
 	</Configurations>
 	<References>
+		<ProjectReference
+			ReferencedProjectIdentifier="{AF019C38-415E-48E1-8981-B5AD1E4E387F}"
+			Name="expat_static"/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{D6B50065-7185-4E20-A499-E78276066E6F}"
+			Name="pcre"/>
+		<ProjectReference
+			ReferencedProjectIdentifier="{970954C2-C43F-41E7-9DF8-3046226FBB47}"
+			Name="scew"/>
 	</References>
 	<Files>
 		<Filter

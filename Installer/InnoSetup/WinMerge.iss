@@ -429,12 +429,6 @@ Source: ..\..\Build\MergeUnicodeRelease\Merge7z920U.dll; DestDir: {app}; Flags: 
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z465U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
 Source: ..\..\Build\MergeUnicodeRelease\Merge7z457U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4
 
-; Expat dll
-Source: ..\..\Build\expat\lib\Release\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
-
-; PCRE dll
-Source: ..\..\Build\pcre\MinSizeRel\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
-
 ; MergeLang.dll - translation helper dll
 Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder ignoreversion; Components: Core
 

@@ -1129,12 +1129,6 @@
     <ClInclude Include="..\scew\xparser.h" />
     <ClInclude Include="..\scew\xtree.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\expat\lib\expat.vcxproj">
-      <Project>{657f1cb0-7cbb-4479-a2c9-ae08d9dc30f1}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
