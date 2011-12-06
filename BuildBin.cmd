@@ -22,8 +22,8 @@ endlocal
 
 setlocal
 call "%VS100COMNTOOLS%vsvars32.bat"
-devenv.exe /build "Release Unicode|Win32" WinMerge_vc10.sln
-devenv.exe /build "Release Unicode|x64" WinMerge_vc10.sln
+MSBuild WinMerge_vc10.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="Win32"
+MSBuild WinMerge_vc10.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platform="x64"
 endlocal
 
 
