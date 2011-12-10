@@ -50,7 +50,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\;..\..\Externals\pcre\Win32"
+				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -79,7 +79,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib"
+				AdditionalDependencies="imm32.lib shlwapi.lib"
 				OutputFile=".\Debug/SampleStatic.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -150,7 +150,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\;..\..\Externals\pcre\Win32"
+				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -178,7 +178,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib"
+				AdditionalDependencies="imm32.lib shlwapi.lib"
 				OutputFile=".\Release/SampleStatic.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -247,7 +247,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\;..\..\Externals\pcre\Win32"
+				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -275,7 +275,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib"
+				AdditionalDependencies="imm32.lib shlwapi.lib"
 				OutputFile=".\UDebug/SampleStatic.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -347,7 +347,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\;..\..\Externals\pcre\Win32"
+				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -375,7 +375,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="imm32.lib shlwapi.lib ..\..\Build\pcre\minsizerel\pcre.lib"
+				AdditionalDependencies="imm32.lib shlwapi.lib"
 				OutputFile=".\URelease/SampleStatic.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -3046,102 +3046,6 @@
 			Name="common"
 			>
 			<File
-				RelativePath="..\..\Src\Common\OptionsMgr.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\OptionsMgr.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\RegOptionsMgr.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\RegOptionsMgr.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\Src\Common\string_util.cpp"
 				>
 			</File>
@@ -3235,70 +3139,6 @@
 			</File>
 			<File
 				RelativePath="..\..\Src\SyntaxColors.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\Ucs2Utf8.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\Ucs2Utf8.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\unicoder.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\unicoder.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\varprop.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\varprop.h"
 				>
 			</File>
 			<File
