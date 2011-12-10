@@ -6722,6 +6722,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="SyntaxColorsUtil.cpp" />
     <ClCompile Include="TempFile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -10775,6 +10776,7 @@
     <ClInclude Include="stringdiffsi.h" />
     <ClInclude Include="Common\SuperComboBox.h" />
     <ClInclude Include="SyntaxColors.h" />
+    <ClInclude Include="SyntaxColorsUtil.h" />
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestFilterDlg.h" />
     <ClInclude Include="Common\ToolbarXPThemes.h" />

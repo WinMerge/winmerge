@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "SyntaxColors.h"
+#include "SyntaxColorsUtil.h"
 #include "PropSyntaxColors.h"
 #include "Merge.h"
 #include "OptionsPanel.h"
@@ -139,7 +139,7 @@ void PropSyntaxColors::WriteOptions()
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
 	// (we don't have to read them from screen)
-	m_pTempColors->SaveToRegistry();
+	SyntaxColors_SaveToRegistry(m_pTempColors);
 }
 
 /** 
@@ -237,7 +237,7 @@ void PropSyntaxColors::OnBnClickedEcolorsBdefaults()
  */
 void PropSyntaxColors::LoadCustomColors()
 {
-	SyntaxColors_Load(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
+	SyntaxColors_LoadCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 /** 
@@ -245,7 +245,7 @@ void PropSyntaxColors::LoadCustomColors()
  */
 void PropSyntaxColors::SaveCustomColors()
 {
-	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
+	SyntaxColors_SaveCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywordsBold()

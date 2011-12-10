@@ -79,6 +79,7 @@
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
+#include "SyntaxColorsUtil.h"
 
 using std::vector;
 
@@ -306,7 +307,7 @@ CMainFrame::CMainFrame()
 
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
-		m_pSyntaxColors->Initialize(GetOptionsMgr());
+		SyntaxColors_LoadFromRegistry(m_pSyntaxColors);
 
 	m_pLineFilters = new LineFiltersList();
 	if (m_pLineFilters)

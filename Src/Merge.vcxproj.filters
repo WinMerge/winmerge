@@ -718,6 +718,9 @@
     <ClCompile Include="editlib\cregexp_pcre.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
+    <ClCompile Include="SyntaxColorsUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Merge.rc">
@@ -1338,6 +1341,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="diffutils\lib\REGEX.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxColorsUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
