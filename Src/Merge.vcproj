@@ -5371,41 +5371,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Common\string_util.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="stringdiffs.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -5456,43 +5421,6 @@
 			</File>
 			<File
 				RelativePath="Common\SuperComboBox.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="SyntaxColors.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -5972,43 +5900,6 @@
 						UsePrecompiledHeader="0"
 						PrecompiledHeaderThrough=""
 						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="ViewableWhitespace.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -6617,9 +6508,6 @@
 				RelativePath="StdAfx.h">
 			</File>
 			<File
-				RelativePath="Common\string_util.h">
-			</File>
-			<File
 				RelativePath="stringdiffs.h">
 			</File>
 			<File
@@ -6627,9 +6515,6 @@
 			</File>
 			<File
 				RelativePath="Common\SuperComboBox.h">
-			</File>
-			<File
-				RelativePath="SyntaxColors.h">
 			</File>
 			<File
 				RelativePath=".\SyntaxColorsUtil.h">
@@ -6666,9 +6551,6 @@
 			</File>
 			<File
 				RelativePath="Common\version.h">
-			</File>
-			<File
-				RelativePath="ViewableWhitespace.h">
 			</File>
 			<File
 				RelativePath="VSSHelper.h">
@@ -8533,6 +8415,66 @@
 				RelativePath="editlib\statbar.h">
 			</File>
 			<File
+				RelativePath=".\editlib\string_util.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\editlib\string_util.h">
+			</File>
+			<File
+				RelativePath=".\editlib\SyntaxColors.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\editlib\SyntaxColors.h">
+			</File>
+			<File
 				RelativePath="editlib\tcl.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -8648,6 +8590,12 @@
 			</File>
 			<File
 				RelativePath="editlib\verilog.cpp">
+			</File>
+			<File
+				RelativePath=".\editlib\ViewableWhitespace.cpp">
+			</File>
+			<File
+				RelativePath=".\editlib\ViewableWhitespace.h">
 			</File>
 			<File
 				RelativePath="editlib\wispelld.h">

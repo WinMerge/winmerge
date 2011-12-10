@@ -442,16 +442,10 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\string_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stringdiffs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\SuperComboBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SyntaxColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TempFile.cpp">
@@ -485,9 +479,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewableWhitespace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VSSHelper.cpp">
@@ -720,6 +711,15 @@
     </ClCompile>
     <ClCompile Include="SyntaxColorsUtil.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editlib\string_util.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="editlib\SyntaxColors.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="editlib\ViewableWhitespace.cpp">
+      <Filter>EditLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1166,9 +1166,6 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\string_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stringdiffs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1176,9 +1173,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SuperComboBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SyntaxColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TempFile.h">
@@ -1212,9 +1206,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewableWhitespace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VSSHelper.h">
@@ -1345,6 +1336,15 @@
     </ClInclude>
     <ClInclude Include="SyntaxColorsUtil.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="editlib\string_util.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="editlib\SyntaxColors.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="editlib\ViewableWhitespace.h">
+      <Filter>EditLib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

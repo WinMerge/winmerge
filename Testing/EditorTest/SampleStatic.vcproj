@@ -2834,6 +2834,54 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\Src\editlib\string_util.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Unicode Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\Src\editlib\string_util.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Src\editlib\SyntaxColors.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Src\editlib\SyntaxColors.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Src\editlib\tcl.cpp"
 				>
 				<FileConfiguration
@@ -2998,6 +3046,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\..\Src\editlib\ViewableWhitespace.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Src\editlib\ViewableWhitespace.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\Src\editlib\wispelld.h"
 				>
 			</File>
@@ -3046,14 +3102,6 @@
 			Name="common"
 			>
 			<File
-				RelativePath="..\..\Src\Common\string_util.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\string_util.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\Src\Common\SuperComboBox.cpp"
 				>
 				<FileConfiguration
@@ -3095,94 +3143,6 @@
 			</File>
 			<File
 				RelativePath="..\..\Src\Common\SuperComboBox.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\SyntaxColors.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\SyntaxColors.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\Src\ViewableWhitespace.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\ViewableWhitespace.h"
 				>
 			</File>
 		</Filter>
