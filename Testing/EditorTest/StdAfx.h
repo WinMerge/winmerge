@@ -25,7 +25,8 @@
 
 #pragma warning(disable:4786)
 
-#include "isx.h"
+#include "coretypes.h"
+#include "string_util.h"
 
 #include "UnicodeString.h"
 
@@ -45,6 +46,15 @@ String GetSysError(int nerr);
 CString Fmt(LPCTSTR fmt, ...);
 
 int getDefaultCodepage();
+
+inline int GetClipTcharTextFormat()
+{
+#ifdef _UNICODE
+	return CF_UNICODETEXT;
+#else
+	return CF_TEXT;
+#endif // _UNICODE
+}
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"

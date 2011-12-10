@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="SampleStatic"
 	ProjectGUID="{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
+	RootNamespace="SampleStatic"
 	Keyword="MFCProj"
 	TargetFrameworkVersion="0"
 	>
@@ -3045,50 +3046,6 @@
 			Name="common"
 			>
 			<File
-				RelativePath="isx.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="isx.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\Src\Common\OptionsMgr.cpp"
 				>
 				<FileConfiguration
@@ -3182,6 +3139,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Src\Common\RegOptionsMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Src\Common\string_util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\Src\Common\string_util.h"
 				>
 			</File>
 			<File

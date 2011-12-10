@@ -159,26 +159,6 @@ int GetClipTcharTextFormat()
 #endif // _UNICODE
 }
 
-BOOL IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int (*compare)(LPCTSTR, LPCTSTR, size_t))
-{
-	TCHAR **base = (TCHAR **)pszKeywordList;
-	size_t lim;
-	int cmp;
-	TCHAR **p;
-
-	for (lim = nKeywordListCount; lim != 0; lim >>= 1) {
-		p = base + (lim >> 1) ;
-		cmp = (*compare)(pszKey, *p, nKeyLen);
-		if (cmp == 0 && (*p)[nKeyLen] == 0)
-			return TRUE;
-		if (cmp > 0) {	/* key > p: move right */
-			base = (TCHAR **)p + 1;
-			lim--;
-		} /* else move left */
-	}
-	return FALSE;
-}
-
 /**
  * @brief Return true if Unicode (16-bit) build
  */
