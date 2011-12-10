@@ -86,8 +86,6 @@
 	for (index = 0; index < count; index++) { if ((expression)) ; else break; } \
 	if (index == count)
 
-#define ISXKEYWORD(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, countof(keywordlist), _tcsncmp)
-#define ISXKEYWORDI(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, countof(keywordlist), _tcsnicmp)
 
 /**
  * @name User-defined Windows-messages
@@ -101,8 +99,6 @@ const UINT MSG_STORE_PANESIZES = WM_USER + 2;
 
 /// Seconds ignored in filetime differences if option enabled
 static const UINT SmallTimeDiff = 2;
-
-BOOL IsXKeyword(LPCTSTR pszKey, size_t nKeyLen, LPCTSTR pszKeywordList[], size_t nKeywordListCount, int (*compare)(LPCTSTR, LPCTSTR, size_t));
 
 #include "UnicodeString.h"
 
