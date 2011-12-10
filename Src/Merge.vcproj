@@ -5529,6 +5529,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\SyntaxColorsUtil.cpp">
+			</File>
+			<File
 				RelativePath="TempFile.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6627,6 +6630,9 @@
 			</File>
 			<File
 				RelativePath="SyntaxColors.h">
+			</File>
+			<File
+				RelativePath=".\SyntaxColorsUtil.h">
 			</File>
 			<File
 				RelativePath="TempFile.h">

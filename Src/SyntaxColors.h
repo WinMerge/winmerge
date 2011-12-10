@@ -13,8 +13,6 @@
 #include <Windows.h>
 #include <vector>
 
-class COptionsMgr;
-
 /** 
  * @brief Indexes to color table
  */
@@ -78,11 +76,6 @@ public:
 	BOOL GetBold(UINT index) const { return m_bolds[index]; }
 	void SetBold(UINT index, BOOL bold);
 	void SetDefaults();
-	void Initialize(COptionsMgr *pOptionsMgr);
-	void SaveToRegistry();
-
-// Implementation methods
-private:
 	bool IsThemeableColorIndex(int nColorIndex) const;
 	bool GetSystemColorIndex(int nColorIndex, int * pSysIndex) const;
 
@@ -90,10 +83,6 @@ private:
 private:
 	std::vector<COLORREF> m_colors; /**< Syntax highlight colors */
 	std::vector<BOOL> m_bolds; /**< Bold font enable/disable */
-	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
-
-void SyntaxColors_Load(COLORREF * colors, int count);
-void SyntaxColors_Save(COLORREF * colors, int count);
 
 #endif // _SYNTAX_COLORS_H_

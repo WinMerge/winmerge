@@ -17767,6 +17767,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\SyntaxColorsUtil.cpp"
+				>
+			</File>
+			<File
 				RelativePath="TempFile.cpp"
 				>
 				<FileConfiguration
@@ -20478,6 +20482,10 @@
 			</File>
 			<File
 				RelativePath="SyntaxColors.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SyntaxColorsUtil.h"
 				>
 			</File>
 			<File

@@ -6,7 +6,6 @@
 #include "ceditcmd.h"
 
 #include "SampleDoc.h"
-#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,11 +43,7 @@ CSampleDoc::CSampleDoc() : m_xTextBuffer(this)
 	m_lf.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
    _tcscpy(m_lf.lfFaceName, _T("Courier New"));
 
-	m_options.InitOption(OPT_CLR_DEFAULT_TEXT_COLORING, true);
-
 	m_pSyntaxColors = new SyntaxColors();
-	if (m_pSyntaxColors)
-		m_pSyntaxColors->Initialize(&m_options);
 }
 
 CSampleDoc::~CSampleDoc()

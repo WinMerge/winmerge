@@ -33,7 +33,6 @@ public:
 
 	CSampleTextBuffer m_xTextBuffer;
 	LOGFONT m_lf;
-	CRegOptionsMgr m_options; /**< Options manager */
 	SyntaxColors *m_pSyntaxColors;
 
 // Operations

@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "Merge.h"
-#include "SyntaxColors.h"
+#include "SyntaxColorsUtil.h"
 #include "PropTextColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -241,7 +241,7 @@ void PropTextColors::OnDefaultsStandardColors()
  */
 void PropTextColors::LoadCustomColors()
 {
-	SyntaxColors_Load(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
+	SyntaxColors_LoadCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 /** 
@@ -249,7 +249,7 @@ void PropTextColors::LoadCustomColors()
  */
 void PropTextColors::SaveCustomColors()
 {
-	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
+	SyntaxColors_SaveCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 /** 
