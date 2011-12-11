@@ -25,9 +25,6 @@
 
 #pragma warning(disable:4786)
 
-#include "coretypes.h"
-#include "string_util.h"
-
 #include "UnicodeString.h"
 
 	/** @brief Load string from string resources; shortcut for CString::LoadString */

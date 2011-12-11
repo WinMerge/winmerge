@@ -124,6 +124,10 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
+#ifndef _countof
+#define _countof(array) (sizeof(array)/sizeof(array[0]))
+#endif
+
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
 /** @brief Maximum tab-char width. */
@@ -385,7 +389,7 @@ GetTextType (LPCTSTR pszExt)
 
   def = CCrystalTextView::m_SourceDefs;
   sExt.MakeLower ();
-  for (int i = 0; i < countof (CCrystalTextView::m_SourceDefs); i++, def++)
+  for (int i = 0; i < _countof (CCrystalTextView::m_SourceDefs); i++, def++)
     if (MatchType (def->exts, sExt))
       return def;
   return NULL;
@@ -407,7 +411,7 @@ SetTextType (CCrystalTextView::TextType enuType)
   TextDefinition *def;
 
   m_CurSourceDef = def = m_SourceDefs;
-  for (int i = 0; i < countof (m_SourceDefs); i++, def++)
+  for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
     {
       if (def->type == enuType)
         {
@@ -437,17 +441,17 @@ LoadSettings ()
   if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
     {
       reg.LoadNumber (_T ("DefaultEncoding"), (DWORD*) &CCrystalTextBuffer::m_nDefaultEncoding);
-      for (int i = 0; i < countof (m_SourceDefs); i++, def++)
+      for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
         {
           CReg reg1;
           if (reg1.Open (reg.hKey, def->name, KEY_READ))
             {
-              reg1.LoadString (_T ("Extensions"), def->exts, countof (def->exts));
+              reg1.LoadString (_T ("Extensions"), def->exts, _countof (def->exts));
               reg1.LoadNumber (_T ("Flags"), &def->flags);
 //              reg1.LoadNumber (_T ("TabSize"), &def->tabsize);
-              reg1.LoadString (_T ("OpenComment"), def->opencomment, countof (def->opencomment));
-              reg1.LoadString (_T ("CloseComment"), def->closecomment, countof (def->closecomment));
-              reg1.LoadString (_T ("CommentLine"), def->commentline, countof (def->commentline));
+              reg1.LoadString (_T ("OpenComment"), def->opencomment, _countof (def->opencomment));
+              reg1.LoadString (_T ("CloseComment"), def->closecomment, _countof (def->closecomment));
+              reg1.LoadString (_T ("CommentLine"), def->commentline, _countof (def->commentline));
               reg1.LoadNumber (_T ("DefaultEncoding"), &def->encoding);
             }
         }
@@ -480,7 +484,7 @@ SaveSettings ()
   if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
     {
       VERIFY (reg.SaveNumber (_T ("DefaultEncoding"), (DWORD) CCrystalTextBuffer::m_nDefaultEncoding));
-      for (int i = 0; i < countof (m_SourceDefs); i++, def++)
+      for (int i = 0; i < _countof (m_SourceDefs); i++, def++)
         {
           CReg reg1;
           if (reg1.Create (reg.hKey, def->name, KEY_WRITE))
