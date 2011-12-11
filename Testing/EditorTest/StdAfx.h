@@ -36,17 +36,6 @@ String LoadResString(UINT id);
 	/** @brief Wrapper around CMergeApp::TranslateDialog() */
 void NTAPI LangTranslateDialog(HWND);
 
-	/** @brief Lang aware version of AfxFormatString1() */
-void NTAPI LangFormatString1(CString &, UINT, LPCTSTR);
-
-	/** @brief Retrieve error description from Windows; uses FormatMessage */
-String GetSysError(int nerr);
-
-	/** @brief Inline sprintf-style format; shortcut for CString::Format */
-CString Fmt(LPCTSTR fmt, ...);
-
-int getDefaultCodepage();
-
 inline int GetClipTcharTextFormat()
 {
 #ifdef _UNICODE
@@ -55,10 +44,6 @@ inline int GetClipTcharTextFormat()
 	return CF_TEXT;
 #endif // _UNICODE
 }
-
-	/** @brief include for the custom dialog boxes, with do not ask/display again */
-#include "MessageBoxDialog.h"
-
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

@@ -5,6 +5,7 @@
 #include "SuperComboBox.h"
 
 #include <shlwapi.h>
+#include <vector>
 #include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
