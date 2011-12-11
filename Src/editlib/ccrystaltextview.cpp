@@ -1831,6 +1831,17 @@ EscapeHTML (const CString & strText, BOOL & bLastCharSpace, int & nNonbreakChars
   return strHTML;
 }
 
+// Make a CString from printf-style args (single call version of CString::Format)
+static CString Fmt(LPCTSTR fmt, ...)
+{
+	CString str;
+	va_list args;
+	va_start(args, fmt);
+	str.FormatV(fmt, args);
+	va_end(args);
+	return str;
+}
+
 /**
  * @brief Return all the styles necessary to render this view as HTML code
  * @return The HTML styles

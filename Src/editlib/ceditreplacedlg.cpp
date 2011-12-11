@@ -43,6 +43,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifndef MB_DONT_DISPLAY_AGAIN
+#define MB_DONT_DISPLAY_AGAIN		0x01000000L	// Additional style.
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CEditReplaceDlg dialog
 
@@ -493,8 +497,9 @@ OnEditReplaceAll ()
   // Let user know how many strings were replaced
   CString strMessage;
   CString strNumber;
-  strNumber.Format( _T("%d"), nNumReplaced );
-  LangFormatString1(strMessage, IDS_NUM_REPLACED, strNumber);
+  LPCTSTR lpsz = static_cast<LPCTSTR>(strNumber);
+  strNumber.Format ( _T("%d"), nNumReplaced );
+  AfxFormatStrings (strMessage, LoadResString(IDS_NUM_REPLACED).c_str(), &lpsz, 1);
 
   AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
 }
