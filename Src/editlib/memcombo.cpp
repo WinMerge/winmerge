@@ -156,7 +156,7 @@ LoadSettings ()
       static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
       CString value;
 
-      for (int i = 0; i < countof (name); i++)
+      for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
         {
           if (reg.LoadString (name[i], value))
             {

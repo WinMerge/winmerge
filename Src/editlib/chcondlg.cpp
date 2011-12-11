@@ -43,7 +43,7 @@ EDITPADC_CLASS LPCTSTR pszCodeNames[] =
     NULL
   };
 
-EDITPADC_CLASS int nCodeNames = countof (pszCodeNames) - 1;
+EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0]) - 1;
 
 EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
 {

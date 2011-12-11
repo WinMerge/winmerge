@@ -9,8 +9,8 @@
 #ifndef _STRING_UTIL_H_
 #define _STRING_UTIL_H_
 
-#define ISXKEYWORD(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, countof(keywordlist), _tcsncmp)
-#define ISXKEYWORDI(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, countof(keywordlist), _tcsnicmp)
+#define ISXKEYWORD(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), _tcsncmp)
+#define ISXKEYWORDI(keywordlist, key, keylen) IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), _tcsnicmp)
 
 int xisalnum(wint_t c);
 int xisspecial(wint_t c);

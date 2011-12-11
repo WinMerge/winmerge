@@ -46,7 +46,7 @@ SetPaneFormattedText (int nIndex, BOOL bUpdate, LPCTSTR lpszFmt,...)
   TCHAR buffer[256];
   va_list argptr;
   va_start (argptr, lpszFmt);
-  _vsntprintf (buffer, countof(buffer), lpszFmt, argptr);
+  _vsntprintf (buffer, sizeof(buffer)/sizeof(buffer[0]), lpszFmt, argptr);
   va_end (argptr);
   BOOL bResult = SetPaneText (nIndex, buffer, bUpdate);
   UpdateWindow ();
