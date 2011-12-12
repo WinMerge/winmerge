@@ -11,7 +11,6 @@
 
 #include "CCrystalTextBuffer.h"
 #include "SyntaxColors.h"
-#include "RegOptionsMgr.h"
 
 class CSampleDoc : public CDocument
 {
