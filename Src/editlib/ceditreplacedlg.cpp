@@ -497,8 +497,8 @@ OnEditReplaceAll ()
   // Let user know how many strings were replaced
   CString strMessage;
   CString strNumber;
-  LPCTSTR lpsz = static_cast<LPCTSTR>(strNumber);
   strNumber.Format ( _T("%d"), nNumReplaced );
+  LPCTSTR lpsz = static_cast<LPCTSTR>(strNumber);
   AfxFormatStrings (strMessage, LoadResString(IDS_NUM_REPLACED).c_str(), &lpsz, 1);
 
   AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
