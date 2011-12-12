@@ -50,7 +50,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
+				AdditionalIncludeDirectories=".,..\..\Src\editlib"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -150,7 +150,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
+				AdditionalIncludeDirectories=".,..\..\Src\editlib"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -247,7 +247,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib;..\..\Src\"
+				AdditionalIncludeDirectories=".,..\..\Src\editlib"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -347,7 +347,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\Externals\boost\;..\..\Src\Common;..\..\Src\editlib"
+				AdditionalIncludeDirectories=".,..\..\Src\editlib"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -3096,54 +3096,6 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
-			</File>
-		</Filter>
-		<Filter
-			Name="common"
-			>
-			<File
-				RelativePath="..\..\Src\Common\SuperComboBox.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\SuperComboBox.h"
-				>
 			</File>
 		</Filter>
 	</Files>

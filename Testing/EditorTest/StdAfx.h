@@ -25,10 +25,8 @@
 
 #pragma warning(disable:4786)
 
-#include "UnicodeString.h"
-
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
-String LoadResString(UINT id);
+std::basic_string<TCHAR> LoadResString(UINT id);
 
 	/** @brief Wrapper around CMergeApp::TranslateDialog() */
 void NTAPI LangTranslateDialog(HWND);

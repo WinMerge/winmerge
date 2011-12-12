@@ -92,7 +92,6 @@
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include <mbctype.h>
-#include "UnicodeString.h"
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaltextview.h"
@@ -4610,7 +4609,7 @@ OnUpdateIndicatorCRLF (CCmdUI * pCmdUI)
 {
   if (m_pTextBuffer != NULL)
     {
-      String eol;
+      std::basic_string<TCHAR> eol;
       CRLFSTYLE crlfMode = m_pTextBuffer->GetCRLFMode ();
       switch (crlfMode)
         {

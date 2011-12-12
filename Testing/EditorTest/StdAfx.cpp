@@ -10,11 +10,11 @@
  * @param [in] id Resource string ID.
  * @return Resource string as CString.
  */
-String LoadResString(UINT id)
+std::basic_string<TCHAR> LoadResString(UINT id)
 {
 	TCHAR szBuf[512];
 	LoadString(NULL, id, szBuf, sizeof(szBuf));
-	return String(szBuf);
+	return std::basic_string<TCHAR>(szBuf);
 }
 
 /**
