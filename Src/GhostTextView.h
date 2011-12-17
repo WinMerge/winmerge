@@ -79,11 +79,11 @@ private:
 	SCursorPushed m_ptSelStartPushed, m_ptSelEndPushed;
 	/// anchor point for selection (during shift is pressed)
 	SCursorPushed m_ptAnchorPushed;
-	/// during dragging, extremities of dragged text : if (m_bDraggingText == TRUE)
+	/// during dragging, extremities of dragged text : if (m_bDraggingText == true)
 	SCursorPushed m_ptDraggedTextBeginPushed, m_ptDraggedTextEndPushed;
-	/// during drag/drop, droping position : if (m_bDropPosVisible == TRUE)
+	/// during drag/drop, droping position : if (m_bDropPosVisible == true)
 	SCursorPushed m_ptSavedCaretPosPushed;
-	/// memorize selected text during OnEditReplace : if (m_bSelectionPushed == TRUE)
+	/// memorize selected text during OnEditReplace : if (m_bSelectionPushed == true)
 	SCursorPushed m_ptSavedSelStartPushed, m_ptSavedSelEndPushed;
 	/// memorize top line positions
 	int m_nTopSubLinePushed;
@@ -108,9 +108,9 @@ public:
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
 			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
-			BOOL bExcludeInvisibleLines = TRUE);
+			bool bExcludeInvisibleLines = true);
 	virtual void GetTextWithoutEmptysInColumnSelection (CString & text,
-			BOOL bExcludeInvisibleLines = TRUE);
+			bool bExcludeInvisibleLines = true);
 	/** 
 	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
 	 */

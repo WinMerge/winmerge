@@ -164,11 +164,11 @@ CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
  * @param [in] nLineIndex Index of the line to get.
  * @param [out] strLine Returns line text in the index.
  */
-BOOL CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
+bool CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
 {
 	int nLineLength = CCrystalTextBuffer::GetLineLength(nLineIndex);
 	if (nLineLength < 0)
-		return FALSE;
+		return false;
 	else if (nLineLength == 0)
 		strLine.Empty();
 	else
@@ -177,15 +177,15 @@ BOOL CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
 			CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
 		strLine.ReleaseBuffer(nLineLength);
 	}
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Set the buffer modified status.
- * @param [in] bModified New modified status, TRUE if buffer has been
+ * @param [in] bModified New modified status, true if buffer has been
  *   modified since last saving.
  */
-void CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
+void CDiffTextBuffer::SetModified(bool bModified /*= true*/)
 {
 	CCrystalTextBuffer::SetModified (bModified);
 	m_pOwnerDoc->SetModifiedFlag (bModified);
@@ -199,20 +199,20 @@ void CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
  * @param [out] strLine Returns line text in the index. Existing content
  * of this string is overwritten.
  */
-BOOL CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
+bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 {
 	int cchText = GetFullLineLength(nLineIndex);
 	if (cchText == 0)
 	{
 		strLine.Empty();
-		return FALSE;
+		return false;
 	}
 	LPTSTR pchText = strLine.GetBufferSetLength(cchText);
 	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(TCHAR));
-	return TRUE;
+	return true;
 }
 
-void CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos,
+void CDiffTextBuffer::AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
 		int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/,
 		CDWordArray *paSavedRevisonNumbers)
@@ -230,9 +230,9 @@ void CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos,
  * @brief Checks if a flag is set for line.
  * @param [in] line Index (0-based) for line.
  * @param [in] flag Flag to check.
- * @return TRUE if flag is set, FALSE otherwise.
+ * @return true if flag is set, false otherwise.
  */
-BOOL CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag) const
+bool CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag) const
 {
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
@@ -251,7 +251,7 @@ void CDiffTextBuffer::prepareForRescan()
 	{
 		SetLineFlag(ct, 
 			LF_INVISIBLE | LF_DIFF | LF_TRIVIAL | LF_MOVED | LF_SNP,
-			FALSE, FALSE, FALSE);
+			false, false, false);
 	}
 }
 
@@ -265,10 +265,10 @@ void CDiffTextBuffer::prepareForRescan()
 
 void CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 {
-	SetLineFlag(nLine, LF_DIFF, FALSE, FALSE, FALSE);
-	SetLineFlag(nLine, LF_TRIVIAL, FALSE, FALSE, FALSE);
-	SetLineFlag(nLine, LF_MOVED, FALSE, FALSE, FALSE);
-	SetLineFlag(nLine, LF_SNP, FALSE, FALSE, FALSE);
+	SetLineFlag(nLine, LF_DIFF, false, false, false);
+	SetLineFlag(nLine, LF_TRIVIAL, false, false, false);
+	SetLineFlag(nLine, LF_MOVED, false, false, false);
+	SetLineFlag(nLine, LF_SNP, false, false, false);
 	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
 }
 
@@ -283,7 +283,7 @@ void CDiffTextBuffer::SetTempPath(const String &path)
 
 /**
  * @brief Is the buffer initialized?
- * @return TRUE if the buffer is initialized, FALSE otherwise.
+ * @return true if the buffer is initialized, false otherwise.
  */
 bool CDiffTextBuffer::IsInitialized() const
 {
@@ -308,7 +308,7 @@ bool CDiffTextBuffer::IsInitialized() const
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
 int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
-		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, BOOL & readOnly,
+		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
 		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
@@ -481,9 +481,9 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		// (view does not work for empty buffers)
 		ASSERT(m_aLines.size() > 0);
 		
-		m_bInit = TRUE;
-		m_bModified = FALSE;
-		m_bUndoGroup = m_bUndoBeginGroup = FALSE;
+		m_bInit = true;
+		m_bModified = false;
+		m_bUndoGroup = m_bUndoBeginGroup = false;
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.size() == 0);
 		m_ptLastChange.x = m_ptLastChange.y = -1;
@@ -509,7 +509,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (pufile->GetTxtStats().nlosses)
 		{
 			FileLoadResult::AddModifier(nRetVal, FileLoadResult::FRESULT_LOSSY);
-			readOnly = TRUE;
+			readOnly = true;
 		}
 	}
 	
@@ -532,16 +532,16 @@ LoadFromFileExit:
 /**
  * @brief Saves file from buffer to disk
  *
- * @param bTempFile : FALSE if we are saving user files and
- * TRUE if we are saving workin-temp-files for diff-engine
+ * @param bTempFile : false if we are saving user files and
+ * true if we are saving workin-temp-files for diff-engine
  *
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
-		BOOL bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
+		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
-		BOOL bClearModifiedFlag /*= TRUE*/,
-		BOOL bForceUTF8 /*= FALSE*/)
+		bool bClearModifiedFlag /*= true*/,
+		bool bForceUTF8 /*= false*/)
 {
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
@@ -559,8 +559,8 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 3);
 	}
 
-	BOOL bOpenSuccess = TRUE;
-	BOOL bSaveSuccess = FALSE;
+	bool bOpenSuccess = true;
+	bool bSaveSuccess = false;
 
 	UniStdioFile file;
 	file.SetUnicoding(bForceUTF8 ? ucr::UTF8 : m_encoding.m_unicoding);
@@ -682,7 +682,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		}
 
 		// Write tempfile over original file
-		if (::CopyFile(sIntermediateFilename.c_str(), pszFileName, FALSE))
+		if (::CopyFile(sIntermediateFilename.c_str(), pszFileName, false))
 		{
 			if (!::DeleteFile(sIntermediateFilename.c_str()))
 			{
@@ -691,10 +691,10 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			}
 			if (bClearModifiedFlag)
 			{
-				SetModified(FALSE);
+				SetModified(false);
 				m_nSyncPosition = m_nUndoPosition;
 			}
-			bSaveSuccess = TRUE;
+			bSaveSuccess = true;
 
 			// remember revision number on save
 			m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
@@ -713,10 +713,10 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	{
 		if (bClearModifiedFlag)
 		{
-			SetModified(FALSE);
+			SetModified(false);
 			m_nSyncPosition = m_nUndoPosition;
 		}
-		bSaveSuccess = TRUE;
+		bSaveSuccess = true;
 	}
 
 	if (bSaveSuccess)

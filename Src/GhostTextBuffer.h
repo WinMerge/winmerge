@@ -73,10 +73,10 @@ protected:
 	This one must be duplicated because the flag UNDO_BEGINGROUP needs to be set in both 
 	CGhostTextBuffer::m_aUndoBuf and CCrystalTextBuffer::m_aUndoBuf CArrays 
 	*/
-	BOOL m_bUndoBeginGroup;
+	bool m_bUndoBeginGroup;
 
 	// [JRT] Support For Descriptions On Undo/Redo Actions
-	virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
                               LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
 private:
@@ -96,12 +96,12 @@ private:
 
 	// Operations
 private:
-	BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
-	BOOL InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount);
+	bool InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
+	bool InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount);
 public :
 	// Construction/destruction code
 	CGhostTextBuffer ();
-	virtual BOOL InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
+	virtual bool InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
 
 	/** 
 	This should work in base code as ghost lines are real empty lines
@@ -111,27 +111,27 @@ public :
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
 			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
-			BOOL bExcludeInvisibleLines = TRUE);
+			bool bExcludeInvisibleLines = true);
 
 
 	// Text modification functions
-	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos,
+	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,
 		LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar,
-		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
-	virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine,
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+	virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE, BOOL bExcludeInvisibleLines = TRUE);
-	virtual BOOL DeleteText2 (CCrystalTextView * pSource, int nStartLine,
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true, bool bExcludeInvisibleLines = true);
+	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
-		int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
-	BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
+		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 
 	// Undo/Redo
-	virtual BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
-	virtual BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+	virtual bool Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+	virtual bool Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
 	// Undo grouping
-	virtual void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
+	virtual void BeginUndoGroup (bool bMergeWithPrevious = false);
 	virtual void FlushUndoGroup (CCrystalTextView * pSource);
 
 public:
@@ -169,7 +169,7 @@ private:
 	*/
 	void RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine);
 	/** For debugging purpose */
-	void checkFlagsFromReality(BOOL bFlag) const;
+	void checkFlagsFromReality(bool bFlag) const;
 
 protected:
 	virtual void OnNotifyLineHasBeenEdited(int nLine);

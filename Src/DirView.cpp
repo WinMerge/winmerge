@@ -1905,9 +1905,9 @@ void CDirView::OpenSelectionHex()
 	}
 
 	// Open identical and different files
-	BOOL bRO[3];
+	bool bRO[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		bRO[nIndex] = pDoc->GetReadOnly(TRUE);
+		bRO[nIndex] = pDoc->GetReadOnly(true);
 
 	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, bRO);
 }
