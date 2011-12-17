@@ -16,6 +16,7 @@
 
 #include "StdAfx.h"
 #include "resource.h"
+#include "editreg.h"
 #include "memcombo.h"
 #include "registry.h"
 
@@ -151,7 +152,7 @@ void CMemComboBox::
 LoadSettings ()
 {
   CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, _T ("SOFTWARE\\EditPad"), KEY_READ))
+  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
     {
       static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
       CString value;
@@ -170,7 +171,7 @@ void CMemComboBox::
 SaveSettings ()
 {
   CReg reg;
-  if (reg.Create (HKEY_CURRENT_USER, _T ("SOFTWARE\\EditPad"), KEY_WRITE))
+  if (reg.Create (HKEY_CURRENT_USER, REG_EDITPAD, KEY_WRITE))
     {
       POSITION pos = groups.GetStartPosition ();
       CString name, value;
