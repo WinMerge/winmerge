@@ -708,7 +708,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
-	BOOL bRO[3];
+	bool bRO[3];
 	int pane;
 	for (pane = 0; pane < nFiles; pane++)
 	{
@@ -795,7 +795,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 }
 
 void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, 
-	const PathContext &paths, BOOL bRO[])
+	const PathContext &paths, bool bRO[])
 {
 	BOOL docNull;
 	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc, &docNull))

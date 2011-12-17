@@ -116,19 +116,19 @@ void CGhostTextView::PopCursors ()
 	// SetSelection (ptCursorLast, ptCursorLast);
 	// SetAnchor (ptCursorLast);
 
-	if (m_bDraggingText == TRUE)
+	if (m_bDraggingText)
 	{
 		popPosition(m_ptDraggedTextBeginPushed, m_ptDraggedTextBegin);
 		ASSERT_VALIDTEXTPOS(m_ptDraggedTextBegin);
 		popPosition(m_ptDraggedTextEndPushed, m_ptDraggedTextEnd);
 		ASSERT_VALIDTEXTPOS(m_ptDraggedTextEnd);
 	}
-	if (m_bDropPosVisible == TRUE)
+	if (m_bDropPosVisible)
 	{
 		popPosition(m_ptSavedCaretPosPushed, m_ptSavedCaretPos);
 		ASSERT_VALIDTEXTPOS(m_ptSavedCaretPos);
 	}
-	if (m_bSelectionPushed == TRUE)
+	if (m_bSelectionPushed)
 	{
 		popPosition(m_ptSavedSelStartPushed, m_ptSavedSelStart);
 		ASSERT_VALIDTEXTPOS(m_ptSavedSelStart);
@@ -154,7 +154,7 @@ void CGhostTextView::PopCursors ()
 		m_nTopSubLine = 0;
 	int nDummy;
 	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
-    RecalcVertScrollBar(TRUE);
+    RecalcVertScrollBar(true);
 }
 
 void CGhostTextView::PushCursors ()
@@ -163,16 +163,16 @@ void CGhostTextView::PushCursors ()
 	pushPosition(m_ptSelStartPushed, m_ptSelStart);
 	pushPosition(m_ptSelEndPushed, m_ptSelEnd);
 	pushPosition(m_ptAnchorPushed, m_ptAnchor);
-	if (m_bDraggingText == TRUE)
+	if (m_bDraggingText)
 	{
 		pushPosition(m_ptDraggedTextBeginPushed, m_ptDraggedTextBegin);
 		pushPosition(m_ptDraggedTextEndPushed, m_ptDraggedTextEnd);
 	}
-	if (m_bDropPosVisible == TRUE)
+	if (m_bDropPosVisible)
 	{
 		pushPosition(m_ptSavedCaretPosPushed, m_ptSavedCaretPos);
 	}
-	if (m_bSelectionPushed == TRUE)
+	if (m_bSelectionPushed)
 	{
 		pushPosition(m_ptSavedSelStartPushed, m_ptSavedSelStart);
 		pushPosition(m_ptSavedSelEndPushed, m_ptSavedSelEnd);
@@ -202,7 +202,7 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		int nEndLine, int nEndChar, CString &text,
 		CRLFSTYLE nCrlfStyle /*=CRLF_STYLE_AUTOMATIC*/,
-		BOOL bExcludeInvisibleLines/*=FALSE*/)
+		bool bExcludeInvisibleLines/*=false*/)
 {
   if (m_pGhostTextBuffer != NULL)
     m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
@@ -210,7 +210,7 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
     text = _T ("");
 }
 
-void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, BOOL bExcludeInvisibleLines/*=TRUE*/)
+void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines/*=true*/)
 {
 	if (m_pGhostTextBuffer == NULL)
 	{

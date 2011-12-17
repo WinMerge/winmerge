@@ -136,7 +136,7 @@ private:
 	This flag is set when we receive an OnTimer command, and we want 
 	to wait for theApp::OnIdle before processing it 
 	*/
-	BOOL fTimerWaitingForIdle;
+	bool fTimerWaitingForIdle;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	/// active prediffer ID : helper to check the radio button
@@ -167,13 +167,13 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	void GetSelection(CPoint &ptStart, CPoint &ptEnd) { CCrystalTextView::GetSelection(ptStart, ptEnd); }
-	virtual void UpdateSiblingScrollPos (BOOL bHorz);
+	virtual void UpdateSiblingScrollPos (bool bHorz);
 	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf);
 	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-			COLORREF & crText, BOOL & bDrawWhitespace);
+			COLORREF & crText, bool & bDrawWhitespace);
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
-		, COLORREF & crBkgnd, COLORREF & crText, BOOL & bDrawWhitespace);
+		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, bool bRealLine, int pane);
 	int GetTopLine() { return m_nTopLine; }
@@ -197,7 +197,7 @@ public:
 	virtual void GetPrintHeaderText(int nPageNum, CString & text);
 	virtual void PrintHeader(CDC * pdc, int nPageNum);
 	virtual void PrintFooter(CDC * pdc, int nPageNum);
-	virtual void SetWordWrapping( BOOL bWordWrap );
+	virtual void SetWordWrapping( bool bWordWrap );
 	void UpdateStatusbar();
 	CMergeEditView *GetGroupView(int nPane) {
 		return (this == GetDocument()->GetView(this->m_nThisPane)) ? GetDocument()->GetView(nPane) : GetDocument()->GetDetailView(nPane);

@@ -392,7 +392,7 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	COLORREF cr[3] = {CLR_NONE, CLR_NONE, CLR_NONE};
 	COLORREF crt = CLR_NONE; // Text color
-	BOOL bwh = FALSE;
+	bool bwh = false;
 
 	m_movedLines.RemoveAll();
 

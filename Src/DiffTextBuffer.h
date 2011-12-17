@@ -40,13 +40,13 @@ private :
 	 */
 	FileTextEncoding m_encoding;
 
-	BOOL FlagIsSet(UINT line, DWORD flag) const;
+	bool FlagIsSet(UINT line, DWORD flag) const;
 
 public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
 	void SetTempPath(const String &path);
-	virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos,
+	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, LPCTSTR pszText, int cchText,
 		int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN,
 		CDWordArray *paSavedRevisonNumbers = NULL);
@@ -54,11 +54,11 @@ public :
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
 	int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
-		LPCTSTR filteredFilenames, BOOL & readOnly, CRLFSTYLE nCrlfStyle,
+		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
-	int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, String & sError,
+	int SaveToFile (LPCTSTR pszFileName, bool bTempFile, String & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
-		BOOL bClearModifiedFlag = TRUE, BOOL bForceUTF8 = FALSE);
+		bool bClearModifiedFlag = TRUE, bool bForceUTF8 = FALSE);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }
@@ -70,12 +70,12 @@ public :
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
 	// If line has text (excluding eol), set strLine to text (excluding eol)
-	BOOL GetLine(int nLineIndex, CString &strLine) const;
+	bool GetLine(int nLineIndex, CString &strLine) const;
 
 	// if line has any text (including eol), set strLine to text (including eol)
-	BOOL GetFullLine(int nLineIndex, CString &strLine) const;
+	bool GetFullLine(int nLineIndex, CString &strLine) const;
 
-	virtual void SetModified (BOOL bModified = TRUE);
+	virtual void SetModified (bool bModified = TRUE);
 	void prepareForRescan();
 	virtual void OnNotifyLineHasBeenEdited(int nLine);
 	bool IsInitialized() const;

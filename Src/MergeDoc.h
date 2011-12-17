@@ -196,14 +196,14 @@ public:
 	void RefreshOptions();
 	void UpdateResources();
 	OPENRESULTS_TYPE OpenDocs(FileLocation fileloc[],
-		BOOL bRO[], int nPane = -1, int nLineIndex = -1);
-	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding);
+		bool bRO[], int nPane = -1, int nLineIndex = -1);
+	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
 	OPENRESULTS_TYPE ReloadDoc(int index);
 	void RescanIfNeeded(float timeOutInSecond);
-	int Rescan(BOOL &bBinary, IDENTLEVEL &identical, BOOL bForced = FALSE);
+	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
 	void CheckFileChanged(void);
 	void ShowRescanError(int nRescanResult, IDENTLEVEL identical);
-	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
+	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, bool bInsert, CMergeEditView *pList);
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
@@ -211,12 +211,12 @@ public:
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(CString &strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
-	bool DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
-	bool DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
+	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
+	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int pane, int line);
 	int LeftLineInMovedBlock(int pane, int line);
 	void SetEditedAfterRescan(int nBuffer);
-	BOOL IsEditedAfterRescan(int nBuffer) { return m_bEditAfterRescan[nBuffer]; }
+	bool IsEditedAfterRescan(int nBuffer) { return m_bEditAfterRescan[nBuffer]; }
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetPrediffer(PrediffingInfo * infoPrediffer);
@@ -225,7 +225,7 @@ public:
 	void SetMergeDetailViews(CMergeEditView * pView[]);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
-	BOOL CloseNow();
+	bool CloseNow();
 	void SwapFiles();
 
 	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
@@ -265,10 +265,10 @@ public:
 public:
 	FileChange IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 		bool bSave, int nBuffer);
-	bool PromptAndSaveIfNeeded(BOOL bAllowCancel);
+	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
-	void FlushAndRescan(BOOL bForced = FALSE);
+	void FlushAndRescan(bool bForced = false);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() { return m_nCurDiff; }
 	virtual ~CMergeDoc();
@@ -285,7 +285,7 @@ private:
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
-	DWORD LoadOneFile(int index, String filename, BOOL readOnly, const FileTextEncoding & encoding);
+	DWORD LoadOneFile(int index, String filename, bool readOnly, const FileTextEncoding & encoding);
 
 // Implementation data
 protected:

@@ -59,7 +59,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 	bool doMiddle = dlg.DoesAffectMiddle();
 	bool doRight = dlg.DoesAffectRight();
 	FileLocation fileloc[3];
-	BOOL bRO[3];
+	bool bRO[3];
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();

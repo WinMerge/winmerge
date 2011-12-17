@@ -62,14 +62,14 @@ void SyntaxColors_LoadFromRegistry(SyntaxColors *pSyntaxColors)
 		pSyntaxColors->SetColor(i, ref);
 	
 		int nBold = 0;
-		BOOL bBold = FALSE;
+		bool bBold = false;
 		valuename.resize(30);
 		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
 			DefColorsPath, i);
 		bBold = pSyntaxColors->GetBold(i);
 		pOptionsMgr->InitOption(valuename.c_str(), (int) bBold);
 		nBold = pOptionsMgr->GetInt(valuename.c_str());
-		bBold = nBold ? TRUE : FALSE;
+		bBold = nBold ? true : false;
 		pSyntaxColors->SetBold(i, bBold);
 	}
 }
