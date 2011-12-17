@@ -28,7 +28,7 @@
 
 #include "ccrystaltextview.h"
 
-inline BOOL CCrystalTextView::
+inline bool CCrystalTextView::
 IsDraggingText ()
 const
 {

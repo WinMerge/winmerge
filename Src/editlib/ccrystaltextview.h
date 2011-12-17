@@ -91,13 +91,13 @@ class EDITPADC_CLASS CCrystalTextView : public CView
 
 protected:
     //  Search parameters
-    BOOL m_bLastSearch;
+    bool m_bLastSearch;
     DWORD m_dwLastSearchFlags;
     LPTSTR m_pszLastFindWhat;
-    BOOL m_bMultipleSearch;       // More search
+    bool m_bMultipleSearch;       // More search
 
 private :
-    BOOL m_bCursorHidden;
+    bool m_bCursorHidden;
 
     //  Painting caching bitmap
     CBitmap *m_pCacheBitmap;
@@ -107,11 +107,11 @@ private :
     void CalcLineCharDim ();
 
     //  Text attributes
-    BOOL m_bViewTabs;
-    BOOL m_bViewEols;
-    BOOL m_bDistinguishEols;
-    BOOL m_bSelMargin;
-    BOOL m_bViewLineNumbers;
+    bool m_bViewTabs;
+    bool m_bViewEols;
+    bool m_bDistinguishEols;
+    bool m_bSelMargin;
+    bool m_bViewLineNumbers;
     DWORD m_dwFlags;
 
     //  Amount of lines/characters that completely fits the client area
@@ -136,7 +136,7 @@ private :
     int m_nMaxLineLength;
     int m_nIdealCharPos;
 
-    BOOL m_bFocused;
+    bool m_bFocused;
 protected:
     CPoint m_ptAnchor;
 private:
@@ -170,9 +170,9 @@ private:
     std::vector<int> *m_pnActualLineLength;
 
 protected:
-    BOOL m_bPreparingToDrag;
-    BOOL m_bDraggingText;
-    BOOL m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
+    bool m_bPreparingToDrag;
+    bool m_bDraggingText;
+    bool m_bDragSelection, m_bWordSelection, m_bLineSelection, m_bColumnSelection;
     UINT_PTR m_nDragSelTimer;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
@@ -188,16 +188,16 @@ protected:
     void AdjustTextPoint (CPoint & point);
     void DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                              int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset);
-    BOOL IsInsideSelBlock (CPoint ptTextPos);
+    bool IsInsideSelBlock (CPoint ptTextPos);
 
-    BOOL m_bBookmarkExist;        // More bookmarks
+    bool m_bBookmarkExist;        // More bookmarks
     void ToggleBookmark(UINT nLine);
 
 public :
     virtual void ResetView ();
     virtual int GetLineCount ();
     virtual void OnUpdateCaret ();
-    BOOL IsTextBufferInitialized () const;
+    bool IsTextBufferInitialized () const;
     CString GetTextBufferEol (int nLine) const;
 
     SyntaxColors * GetSyntaxColors() { return m_pColors; }
@@ -206,13 +206,13 @@ public :
 protected :
     CPoint WordToRight (CPoint pt);
     CPoint WordToLeft (CPoint pt);
-    BOOL           m_bOverrideCaret;
+    bool           m_bOverrideCaret;
 
     bool m_bSingle;
     CImageList * m_pIcons;
     CCrystalTextBuffer *m_pTextBuffer;
     HACCEL m_hAccel;
-    BOOL m_bVertScrollBarLocked, m_bHorzScrollBarLocked;
+    bool m_bVertScrollBarLocked, m_bHorzScrollBarLocked;
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
@@ -221,28 +221,28 @@ protected :
     bool IsValidTextPosX (const CPoint &point);
     bool IsValidTextPosY (const CPoint &point);
 
-    BOOL m_bShowInactiveSelection;
+    bool m_bShowInactiveSelection;
     //  [JRT]
-    BOOL m_bDisableDragAndDrop;
+    bool m_bDisableDragAndDrop;
 
     //BEGIN SW
-    BOOL m_bWordWrap;
-    BOOL m_bHideLines;
+    bool m_bWordWrap;
+    bool m_bHideLines;
     CCrystalParser *m_pParser;
     //END SW
 
     CPoint ClientToText (const CPoint & point);
     CPoint TextToClient (const CPoint & point);
-    void InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin = FALSE);
-    int CalculateActualOffset (int nLineIndex, int nCharIndex, BOOL bAccumulate = FALSE);
+    void InvalidateLines (int nLine1, int nLine2, bool bInvalidateMargin = false);
+    int CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate = false);
 
     //  Printing
     int m_nPrintPages;
     CFont *m_pPrintFont;
     int m_nPrintLineHeight;
-    BOOL m_bPrintHeader, m_bPrintFooter;
+    bool m_bPrintHeader, m_bPrintFooter;
     CRect m_ptPageArea, m_rcPrintArea;
-    BOOL m_bPrinting;
+    bool m_bPrinting;
     void GetPrintMargins (long & nLeft, long & nTop, long & nRight, long & nBottom);
     virtual void RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo);
     virtual void PrintHeader (CDC * pdc, int nPageNum);
@@ -251,25 +251,25 @@ protected :
     virtual void GetPrintFooterText (int nPageNum, CString & text);
 
     //  Keyboard handlers
-    void MoveLeft (BOOL bSelect);
-    void MoveRight (BOOL bSelect);
-    void MoveWordLeft (BOOL bSelect);
-    void MoveWordRight (BOOL bSelect);
-    void MoveUp (BOOL bSelect);
-    void MoveDown (BOOL bSelect);
-    void MoveHome (BOOL bSelect);
-    void MoveEnd (BOOL bSelect);
-    void MovePgUp (BOOL bSelect);
-    void MovePgDn (BOOL bSelect);
-    void MoveCtrlHome (BOOL bSelect);
-    void MoveCtrlEnd (BOOL bSelect);
+    void MoveLeft (bool bSelect);
+    void MoveRight (bool bSelect);
+    void MoveWordLeft (bool bSelect);
+    void MoveWordRight (bool bSelect);
+    void MoveUp (bool bSelect);
+    void MoveDown (bool bSelect);
+    void MoveHome (bool bSelect);
+    void MoveEnd (bool bSelect);
+    void MovePgUp (bool bSelect);
+    void MovePgDn (bool bSelect);
+    void MoveCtrlHome (bool bSelect);
+    void MoveCtrlEnd (bool bSelect);
 
     void SelectAll ();
     void Copy ();
 
-    BOOL IsSelection ();
-    BOOL IsInsideSelection (const CPoint & ptTextPos);
-    BOOL GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
+    bool IsSelection ();
+    bool IsInsideSelection (const CPoint & ptTextPos);
+    bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
     void GetSelection (CPoint & ptStart, CPoint & ptEnd);
     void GetFullySelectedLines(int & firstLine, int & lastLine);
     virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
@@ -281,7 +281,7 @@ protected :
     */
     int m_nTopSubLine;
     //END SW
-    BOOL m_bSmoothScroll;
+    bool m_bSmoothScroll;
 
     int GetLineHeight ();
 	//BEGIN SW
@@ -296,7 +296,7 @@ protected :
 	int GetSubLines( int nLineIndex );
 
 	virtual int GetEmptySubLines( int nLineIndex );
-	BOOL IsEmptySubLineIndex( int nSubLineIndex );
+	bool IsEmptySubLineIndex( int nSubLineIndex );
 
 	/**
 	Converts the given character position for the given line into a point.
@@ -378,14 +378,14 @@ protected :
     int GetMaxLineLength ();
     int GetScreenLines ();
     int GetScreenChars ();
-    CFont *GetFont (BOOL bItalic = FALSE, BOOL bBold = FALSE);
+    CFont *GetFont (bool bItalic = false, bool bBold = false);
 
-    void RecalcVertScrollBar (BOOL bPositionOnly = FALSE, BOOL bRedraw = TRUE);
-    virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE, BOOL bRedraw = TRUE);
+    void RecalcVertScrollBar (bool bPositionOnly = false, bool bRedraw = true);
+    virtual void RecalcHorzScrollBar (bool bPositionOnly = false, bool bRedraw = true);
 
     //  Scrolling helpers
-    void ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
-    void ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
+    void ScrollToChar (int nNewOffsetChar, bool bNoSmoothScroll = false, bool bTrackScrollBar = true);
+    void ScrollToLine (int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true);
 
 	//BEGIN SW
 	/**
@@ -393,16 +393,16 @@ protected :
 	line on the screen.
 
 	@param nNewTopSubLine Index of the sub line to scroll to.
-	@param bNoSmoothScroll TRUE to disable smooth scrolling, else FALSE.
-	@param bTrackScrollBar TRUE to recalculate the scroll bar after scrolling,
-		else FALSE.
+	@param bNoSmoothScroll true to disable smooth scrolling, else false.
+	@param bTrackScrollBar true to recalculate the scroll bar after scrolling,
+		else false.
 	*/
-	virtual void ScrollToSubLine( int nNewTopSubLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE );
+	virtual void ScrollToSubLine( int nNewTopSubLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true );
 	//END SW
 
     //  Splitter support
-    virtual void UpdateSiblingScrollPos (BOOL bHorz);
-    virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
+    virtual void UpdateSiblingScrollPos (bool bHorz);
+    virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz);
     CCrystalTextView *GetSiblingView (int nRow, int nCol);
 
 	//BEGIN SW
@@ -440,25 +440,25 @@ public:
     virtual LPCTSTR GetLineChars (int nLineIndex) const;
 protected:
     virtual DWORD GetLineFlags (int nLineIndex) const;
-    virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, BOOL bExcludeInvisibleLines = TRUE);
-    virtual void GetTextInColumnSelection (CString & text, BOOL bExcludeInvisibleLines = TRUE);
+    virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines = true);
+    virtual void GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines = true);
 
     //  Clipboard overridable
-    virtual BOOL TextInClipboard ();
-    virtual BOOL PutToClipboard (LPCTSTR pszText, int cchText, BOOL bColumnSelection = FALSE);
-    virtual BOOL GetFromClipboard (CString & text, BOOL & bColumnSelection);
+    virtual bool TextInClipboard ();
+    virtual bool PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection = false);
+    virtual bool GetFromClipboard (CString & text, bool & bColumnSelection);
 
     //  Drag-n-drop overrideable
     virtual HGLOBAL PrepareDragData ();
     virtual DROPEFFECT GetDropEffect ();
     virtual void OnDropSource (DROPEFFECT de);
-    BOOL IsDraggingText () const;
+    bool IsDraggingText () const;
 
     virtual COLORREF GetColor (int nColorIndex);
     virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-                                COLORREF & crText, BOOL & bDrawWhitespace);
-    virtual BOOL GetItalic (int nColorIndex);
-    virtual BOOL GetBold (int nColorIndex);
+                                COLORREF & crText, bool & bDrawWhitespace);
+    virtual bool GetItalic (int nColorIndex);
+    virtual bool GetBold (int nColorIndex);
 
     void DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
                          COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
@@ -470,7 +470,7 @@ protected:
     int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
 
 #ifdef _UNICODE
-    BOOL m_bChWidthsCalculated[65536/256];
+    bool m_bChWidthsCalculated[65536/256];
     int m_iChDoubleWidthFlags[65536/32];
     int GetCharWidthUnicodeChar(wchar_t ch);
 #endif
@@ -550,7 +550,7 @@ protected:
 	*/
 	virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
 	virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
-	void InvalidateScreenRect(BOOL bInvalidateView = TRUE);
+	void InvalidateScreenRect(bool bInvalidateView = true);
 	//END SW
 
     //  Syntax coloring overrides
@@ -568,7 +568,7 @@ protected:
 	// (a wrapped line can consist of many screen lines
 	virtual void DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
 		TEXTBLOCK *pBuf, int nBlocks, int &nActualItem,
-		COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
+		COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
 		LPCTSTR pszChars,
 		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
 	//END SW
@@ -599,23 +599,23 @@ protected:
 	Called by OnFindIncrementalForward() and OnFindIncrementalBackward().
 
 	@param bFindNextOccurence
-		TRUE, if the method should look for the next occurence of the
+		true, if the method should look for the next occurence of the
 		search string in search direction.
 
 	@see #OnFindIncrementalForward
 	@see #OnFindIncrementalBackward
 	*/
-	void OnEditFindIncremental( BOOL bFindNextOccurence = FALSE );
+	void OnEditFindIncremental( bool bFindNextOccurence = false );
 
-	/** TRUE if incremental forward search is active, FALSE otherwise */
-	BOOL m_bIncrementalSearchForward;
+	/** true if incremental forward search is active, false otherwise */
+	bool m_bIncrementalSearchForward;
 
-	/** TRUE if incremental backward search is active, FALSE otherwise */
-	BOOL m_bIncrementalSearchBackward;
+	/** true if incremental backward search is active, false otherwise */
+	bool m_bIncrementalSearchBackward;
 
 private:
-	/** TRUE if we found the string to search for */
-	BOOL m_bIncrementalFound;
+	/** true if we found the string to search for */
+	bool m_bIncrementalFound;
 
 	/** String we are looking for.*/
 	CString *m_pstrIncrementalSearchString;
@@ -678,28 +678,28 @@ public :
 public :
     int GetCRLFMode ();
     void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
-    BOOL GetViewTabs ();
-    void SetViewTabs (BOOL bViewTabs);
-    void SetViewEols (BOOL bViewEols, BOOL bDistinguishEols);
+    bool GetViewTabs ();
+    void SetViewTabs (bool bViewTabs);
+    void SetViewEols (bool bViewEols, bool bDistinguishEols);
     int GetTabSize ();
     void SetTabSize (int nTabSize);
-    BOOL GetSelectionMargin ();
-    void SetSelectionMargin (BOOL bSelMargin);
-	BOOL GetViewLineNumbers() const;
-	void SetViewLineNumbers(BOOL bViewLineNumbers);
+    bool GetSelectionMargin ();
+    void SetSelectionMargin (bool bSelMargin);
+	bool GetViewLineNumbers() const;
+	void SetViewLineNumbers(bool bViewLineNumbers);
     void GetFont (LOGFONT & lf);
     void SetFont (const LOGFONT & lf);
     DWORD GetFlags ();
     void SetFlags (DWORD dwFlags);
-    BOOL GetSmoothScroll () const;
-    void SetSmoothScroll (BOOL bSmoothScroll);
+    bool GetSmoothScroll () const;
+    void SetSmoothScroll (bool bSmoothScroll);
     //  [JRT]:
-    BOOL GetDisableDragAndDrop () const;
-    void SetDisableDragAndDrop (BOOL bDDAD);
+    bool GetDisableDragAndDrop () const;
+    void SetDisableDragAndDrop (bool bDDAD);
 
 	//BEGIN SW
-	BOOL GetWordWrapping() const;
-	virtual void SetWordWrapping( BOOL bWordWrap );
+	bool GetWordWrapping() const;
+	virtual void SetWordWrapping( bool bWordWrap );
 
 	/**
 	Sets the Parser to use to parse the file.
@@ -711,9 +711,9 @@ public :
 	CCrystalParser *SetParser( CCrystalParser *pParser );
 	//END SW
 
-	BOOL GetEnableHideLines () const;
-	void SetEnableHideLines (BOOL bHideLines);
-	BOOL GetLineVisible (int nLineIndex) const;
+	bool GetEnableHideLines () const;
+	void SetEnableHideLines (bool bHideLines);
+	bool GetLineVisible (int nLineIndex) const;
 
     //  Default handle to resources
     static HINSTANCE s_hResourceInst;
@@ -828,11 +828,11 @@ public :
     void EnsureVisible (CPoint ptStart, CPoint ptEnd);
 
     //  Text search helpers
-    BOOL FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
-    BOOL FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
-                          DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
-    BOOL HighlightText (const CPoint & ptStartPos, int nLength,
-      BOOL bCursorToLeft = FALSE);
+    bool FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
+    bool FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
+                          DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
+    bool HighlightText (const CPoint & ptStartPos, int nLength,
+      bool bCursorToLeft = false);
 
     // IME (input method editor)
     void UpdateCompositionWindowPos();

@@ -66,23 +66,23 @@ SetPaneFormattedText (int nIndex, BOOL bUpdate, UINT nId,...)
       return bResult;
     }
   SetPaneText (nIndex, _T (""), bUpdate);
-  return FALSE;
+  return false;
 }
 
 BOOL CEditStatusBar::
-SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate /*= TRUE*/ )
+SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate /*= true*/ )
 {
   return CStatusBar::SetPaneText (nIndex, lpszNewText, bUpdate);
 }
 
 BOOL CEditStatusBar::
-SetPaneText (int nIndex, UINT nId, BOOL bUpdate /*= TRUE*/ )
+SetPaneText (int nIndex, UINT nId, BOOL bUpdate /*= true*/ )
 {
   CString str;
   if (str.LoadString (nId))
     return SetPaneText (nIndex, str, bUpdate);
   SetPaneText (nIndex, _T (""), bUpdate);
-  return FALSE;
+  return false;
 }
 
 void CEditStatusBar::

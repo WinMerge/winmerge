@@ -119,16 +119,16 @@ public:
     static int m_nDefaultEncoding;
     DWORD m_dwCurrentRevisionNumber;
     DWORD m_dwRevisionNumberOnSave;
-    BOOL IsTextBufferInitialized () const { return m_bInit; }
+    bool IsTextBufferInitialized () const { return m_bInit; }
 
 protected :
-    BOOL m_bInit;
-    BOOL m_bReadOnly;
-    BOOL m_bModified;
+    bool m_bInit;
+    bool m_bReadOnly;
+    bool m_bModified;
     CRLFSTYLE m_nCRLFMode;
-    BOOL m_IgnoreEol;
-    BOOL m_bCreateBackupFile;
-    BOOL m_bInsertTabs;
+    bool m_IgnoreEol;
+    bool m_bCreateBackupFile;
+    bool m_bInsertTabs;
     int  m_nTabSize;
     int FindLineWithFlag (DWORD dwFlag) const;
 
@@ -160,7 +160,7 @@ public :
     std::vector<UndoRecord> m_aUndoBuf; /**< Undo records. */
     int m_nUndoPosition;
     int m_nSyncPosition;
-    BOOL m_bUndoGroup, m_bUndoBeginGroup;
+    bool m_bUndoGroup, m_bUndoBeginGroup;
 
     //BEGIN SW
     /** Position where the last change was made. */
@@ -177,16 +177,16 @@ public :
     void SetEmptyLine(int nPosition, int nCount = 1);
 
     //  Implementation
-    BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar);
-    BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
+    bool InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar);
+    bool InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
     CString StripTail (int i, int bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
-    virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+    virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
                                 LPCTSTR pszText, int cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
     //  Overridable: provide action description
-    virtual BOOL GetActionDescription (int nAction, CString & desc) const;
+    virtual bool GetActionDescription (int nAction, CString & desc) const;
 
     // Operations
 public :
@@ -195,15 +195,15 @@ public :
     ~CCrystalTextBuffer ();
 
     //  Basic functions
-    BOOL InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
+    bool InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
 
 // WinMerge has own routines for loading and saving
 #ifdef CRYSTALEDIT_ENABLELOADER
-    BOOL LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+    bool LoadFromFile (LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 #endif
 #ifdef CRYSTALEDIT_ENABLESAVER
-    BOOL SaveToFile(LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
-    BOOL bClearModifiedFlag = TRUE);
+    bool SaveToFile(LPCTSTR pszFileName, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
+    bool bClearModifiedFlag = true);
 #endif
 
     void FreeAll ();
@@ -211,8 +211,8 @@ public :
     void ResetInit() { FreeAll(); InitNew(); } // reset new or used buffer
 
     //  'Dirty' flag
-    virtual void SetModified (BOOL bModified = TRUE);
-    BOOL IsModified () const;
+    virtual void SetModified (bool bModified = true);
+    bool IsModified () const;
 
     //  Connect/disconnect views
     void AddView (CCrystalTextView * pView);
@@ -223,44 +223,44 @@ public :
     int GetLineLength (int nLine) const;
     int GetFullLineLength (int nLine) const; // including EOLs
     LPCTSTR GetLineEol (int nLine) const;
-    BOOL ChangeLineEol (int nLine, LPCTSTR lpEOL);
+    bool ChangeLineEol (int nLine, LPCTSTR lpEOL);
     LPCTSTR GetLineChars (int nLine) const;
     DWORD GetLineFlags (int nLine) const;
     DWORD GetLineRevisionNumber (int nLine) const;
     int GetLineWithFlag (DWORD dwFlag) const;
-    void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet,
-            BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
+    void SetLineFlag (int nLine, DWORD dwFlag, bool bSet,
+            bool bRemoveFromPreviousLine = true, bool bUpdate=true);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-            CString & text, LPCTSTR pszCRLF = NULL, BOOL bExcludeInvisibleLines = TRUE) const;
+            CString & text, LPCTSTR pszCRLF = NULL, bool bExcludeInvisibleLines = true) const;
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, CString &text,
-            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bExcludeInvisibleLines = TRUE) const;
+            CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC, bool bExcludeInvisibleLines = true) const;
 
     //  Attributes
     CRLFSTYLE GetCRLFMode () const;
     void SetCRLFMode (CRLFSTYLE nCRLFMode);
     /// Adjust all the lines in the buffer to the buffer default EOL Mode
-    virtual BOOL applyEOLMode();
+    virtual bool applyEOLMode();
     LPCTSTR GetDefaultEol() const;
     static LPCTSTR GetStringEol(CRLFSTYLE nCRLFMode);
-    BOOL GetReadOnly () const;
-    void SetReadOnly (BOOL bReadOnly = TRUE);
+    bool GetReadOnly () const;
+    void SetReadOnly (bool bReadOnly = true);
 
-    void SetIgnoreEol(BOOL IgnoreEol) { m_IgnoreEol = IgnoreEol; }
+    void SetIgnoreEol(bool IgnoreEol) { m_IgnoreEol = IgnoreEol; }
 
     //  Text modification functions
-    virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
-    virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE, BOOL bExcludeInvisibleLines = TRUE);
-    virtual BOOL DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
+    virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
+    virtual bool DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true, bool bExcludeInvisibleLines = true);
+    virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, bool bHistory =true);
 
     //  Undo/Redo
-    BOOL CanUndo () const;
-    BOOL CanRedo () const;
-    virtual BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
-    virtual BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    bool CanUndo () const;
+    bool CanRedo () const;
+    virtual bool Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    virtual bool Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
     //  Undo grouping
-    virtual void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
+    virtual void BeginUndoGroup (bool bMergeWithPrevious = false);
     virtual void FlushUndoGroup (CCrystalTextView * pSource);
 
     //BEGIN SW
@@ -286,8 +286,8 @@ public :
                       DWORD dwUpdateFlags, int nLineIndex = -1);
 
     // Tabs/space inserting
-    BOOL GetInsertTabs() const;
-    void SetInsertTabs(BOOL bInsertTabs);
+    bool GetInsertTabs() const;
+    void SetInsertTabs(bool bInsertTabs);
 
     // Tabbing
     int  GetTabSize() const;
@@ -297,8 +297,8 @@ public :
     int FindNextBookmarkLine (int nCurrentLine = 0) const;
     int FindPrevBookmarkLine (int nCurrentLine = 0) const;
 
-    BOOL IsMBSLead (int nLine, int nCol) const;
-    BOOL IsMBSTrail (int nLine, int nCol) const;
+    bool IsMBSLead (int nLine, int nCol) const;
+    bool IsMBSTrail (int nLine, int nCol) const;
 
     // Overrides
     // ClassWizard generated virtual function overrides

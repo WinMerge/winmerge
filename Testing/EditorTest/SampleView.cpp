@@ -85,7 +85,7 @@ void CSampleView::OnInitialUpdate()
 
 	SetFont(GetDocument()->m_lf);
 	SetColorContext(GetDocument()->m_pSyntaxColors);
-	SetWordWrapping(TRUE);
+	SetWordWrapping(true);
 }
 
 void CSampleView::OnContextMenu(CWnd* pWnd, CPoint point) 

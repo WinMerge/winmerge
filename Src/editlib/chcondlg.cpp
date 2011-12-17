@@ -61,7 +61,7 @@ CCharConvDlg::CCharConvDlg () : CDialog (CCharConvDlg::IDD, NULL)
   //{{AFX_DATA_INIT(CCharConvDlg)
 	m_nSource = 1;
 	m_nDest = 1;
-	m_bAlpha = FALSE;
+	m_bAlpha = false;
 	m_sPreview = _T("");
 	//}}AFX_DATA_INIT
 }
@@ -101,8 +101,8 @@ OnInitDialog ()
 	m_nSource = nSource;
 	m_nDest = nSource;
   m_sPreview = m_sOriginal;
-  UpdateData (FALSE);
-  return TRUE;
+  UpdateData (false);
+  return true;
 }
 
 void CCharConvDlg::OnOK ()
@@ -116,10 +116,10 @@ void CCharConvDlg::OnPreview()
 {
   UpdateData ();
   LPTSTR pszNew;
-  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha != FALSE))
+  if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha != false))
     {
       m_sPreview = pszNew;
-      UpdateData (FALSE);
+      UpdateData (false);
     }
   if (pszNew)
     free (pszNew);

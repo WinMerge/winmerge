@@ -30,7 +30,7 @@ CCrystalTextBlock::CCrystalTextBlock( TEXTBLOCK *pTextBlock, int &rnActualItems 
 }
 
 
-BOOL CCrystalTextBlock::Add( int nCharPos, int nColorIndex )
+bool CCrystalTextBlock::Add( int nCharPos, int nColorIndex )
 {
 	// insert new text block sorted by character position
 	int i=0;
@@ -63,5 +63,5 @@ BOOL CCrystalTextBlock::Add( int nCharPos, int nColorIndex )
 		m_pTextBlock[m_rnActualItems++].m_nColorIndex = nColorIndex;
 	}
 
-	return TRUE;
+	return true;
 }

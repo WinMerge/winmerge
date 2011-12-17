@@ -76,5 +76,5 @@ OnInitDialog ()
 
   GetDlgItem (IDOK)->EnableWindow (!m_sNumber.IsEmpty ());
 
-  return TRUE;
+  return true;
 }

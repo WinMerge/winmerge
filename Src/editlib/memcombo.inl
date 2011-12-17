@@ -31,7 +31,7 @@
 // Methods
 
 INLINE
-CMemComboBox::CMemComboBox () : m_bFirstFocus (TRUE)
+CMemComboBox::CMemComboBox () : m_bFirstFocus (true)
 {
 }
 

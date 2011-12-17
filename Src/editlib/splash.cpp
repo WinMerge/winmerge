@@ -19,10 +19,10 @@ BOOL CSplashWnd::Create(CWnd* pParent)
 	if (!CDialog::Create(CSplashWnd::IDD, pParent))
 	{
 		TRACE0("Warning: creation of CSplashWnd dialog failed\n");
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL CSplashWnd::OnInitDialog()
@@ -34,7 +34,7 @@ BOOL CSplashWnd::OnInitDialog()
 	m_icon.SubclassDlgItem(IDC_BIGICON, this);
 	m_icon.SizeToContent();
 
-	return TRUE;  // return TRUE  unless you set the focus to a control
+	return true;  // return true  unless you set the focus to a control
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -110,7 +110,7 @@ void CBigIcon::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 BOOL CBigIcon::OnEraseBkgnd(CDC*)
 {
-	return TRUE;    // we don't do any erasing...
+	return true;    // we don't do any erasing...
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -128,10 +128,10 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 CCrystalEditView::CCrystalEditView ()
 {
   memset(((CCrystalTextView*)this)+1, 0, sizeof(*this) - sizeof(class CCrystalTextView)); // AFX_ZERO_INIT_OBJECT (CCrystalTextView)
-  m_bAutoIndent = TRUE;
+  m_bAutoIndent = true;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
-  m_bDisableBSAtSOL = FALSE;
+  m_bDisableBSAtSOL = false;
 }
 
 CCrystalEditView:: ~CCrystalEditView ()
@@ -253,17 +253,17 @@ END_MESSAGE_MAP ()
 
 void CCrystalEditView::ResetView ()
 {
-  // m_bAutoIndent = TRUE;
-  m_bOvrMode = FALSE;
-  m_bLastReplace = FALSE;
+  // m_bAutoIndent = true;
+  m_bOvrMode = false;
+  m_bLastReplace = false;
   CCrystalTextView::ResetView ();
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 QueryEditable ()
 {
   if (m_pTextBuffer == NULL)
-    return FALSE;
+    return false;
   return !m_pTextBuffer->GetReadOnly ();
 }
 
@@ -291,7 +291,7 @@ OnEditCut ()
   Cut ();
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 DeleteCurrentSelection ()
 {
   if (IsSelection ())
@@ -308,13 +308,13 @@ DeleteCurrentSelection ()
 
       // [JRT]:
       m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_DELSEL);
-      return TRUE;
+      return true;
     }
-  return FALSE;
+  return false;
 }
 
-BOOL CCrystalEditView::
-DeleteCurrentColumnSelection (int nAction, BOOL bFlushUndoGroup /*=TRUE*/, BOOL bUpdateCursorPosition /*=TRUE*/)
+bool CCrystalEditView::
+DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*=true*/, bool bUpdateCursorPosition /*=true*/)
 {
   if (IsSelection ())
     {
@@ -365,12 +365,12 @@ DeleteCurrentColumnSelection (int nAction, BOOL bFlushUndoGroup /*=TRUE*/, BOOL 
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
       }
-      return TRUE;
+      return true;
     }
-  return FALSE;
+  return false;
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
 {
   int nBufSize = 1;
@@ -410,14 +410,14 @@ DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction)
   int x, y;
   m_pTextBuffer->InsertText (this, nStartLine, 0, text, text.GetLength(), y, x, nAction);
 
-  return TRUE;
+  return true;
 }
 
-BOOL CCrystalEditView::
-InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, BOOL bFlushUndoGroup)
+bool CCrystalEditView::
+InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, bool bFlushUndoGroup)
 {
   if (!pszText || cchText == 0)
-    return FALSE;
+    return false;
 
   CTypedPtrArray<CPtrArray, LPTSTR> aLines;
   CDWordArray aLineLengths;
@@ -458,7 +458,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
 
   LPTSTR pszBuf = new TCHAR[nBufSize];
   LPTSTR p = pszBuf;
-  int nTopBeginCharPos = CalculateActualOffset (nLine, nPos, TRUE);
+  int nTopBeginCharPos = CalculateActualOffset (nLine, nPos, true);
   for (L = 0; L < nPasteTextLineCount; L++)
     {
       if (nLine + L < nLineCount)
@@ -504,7 +504,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
 
   delete pszBuf;
 
-  return TRUE;
+  return true;
 }
 
 void CCrystalEditView::
@@ -516,7 +516,7 @@ Paste ()
     return;
 
   CString text;
-  BOOL bColumnSelection;
+  bool bColumnSelection;
   if (GetFromClipboard (text, bColumnSelection))
     {
       m_pTextBuffer->BeginUndoGroup ();
@@ -537,7 +537,7 @@ Paste ()
           if (!m_bColumnSelection)
             m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
           else
-            DeleteCurrentColumnSelection (CE_ACTION_PASTE, FALSE, FALSE);
+            DeleteCurrentColumnSelection (CE_ACTION_PASTE, false, false);
         }
       else
         {
@@ -553,7 +553,7 @@ Paste ()
           ptCursorPos.y = y;
         }
       else
-        InsertColumnText (ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), CE_ACTION_PASTE, FALSE);
+        InsertColumnText (ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), CE_ACTION_PASTE, false);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -646,7 +646,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
 {
   //BEGIN SW
   // check if incremental search is active before call to CCrystalTextView::OnChar()
-  BOOL bIncrementalSearch = m_bIncrementalSearchForward || m_bIncrementalSearchBackward;
+  bool bIncrementalSearch = m_bIncrementalSearchForward || m_bIncrementalSearchBackward;
   //END Sw
   CCrystalTextView::OnChar (nChar, nRepCnt, nFlags);
 	//BEGIN SW
@@ -880,7 +880,7 @@ OnEditTab ()
   if (!QueryEditable () || m_pTextBuffer == NULL)
     return;
 
-  BOOL bTabify = FALSE;
+  bool bTabify = false;
   CPoint ptSelStart, ptSelEnd;
   if (IsSelection ())
     {
@@ -889,7 +889,7 @@ OnEditTab ()
 		// If we have more than one line selected, tabify sel lines
 		if ( ptSelStart.y != ptSelEnd.y )
 		{
-			bTabify = TRUE;
+			bTabify = true;
 		}
 	}
 
@@ -939,14 +939,14 @@ OnEditTab ()
       EnsureVisible (ptSelEnd);
 
       //  Shift selection to right
-      m_bHorzScrollBarLocked = TRUE;
+      m_bHorzScrollBarLocked = true;
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int x, y;
           m_pTextBuffer->InsertText (this, L, 0, pszText, (int) _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
 
         }
-      m_bHorzScrollBarLocked = FALSE;
+      m_bHorzScrollBarLocked = false;
       RecalcHorzScrollBar ();
 
       m_pTextBuffer->FlushUndoGroup (this);
@@ -1035,7 +1035,7 @@ OnEditUntab ()
   if (!QueryEditable () || m_pTextBuffer == NULL)
     return;
 
-  BOOL bTabify = FALSE;
+  bool bTabify = false;
   CPoint ptSelStart, ptSelEnd;
   if (IsSelection ())
     {
@@ -1071,7 +1071,7 @@ OnEditUntab ()
       EnsureVisible (ptSelEnd);
 
       //  Shift selection to left
-      m_bHorzScrollBarLocked = TRUE;
+      m_bHorzScrollBarLocked = true;
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int nLength = GetLineLength (L);
@@ -1100,7 +1100,7 @@ OnEditUntab ()
 
             }
         }
-      m_bHorzScrollBarLocked = FALSE;
+      m_bHorzScrollBarLocked = false;
       RecalcHorzScrollBar ();
 
       m_pTextBuffer->FlushUndoGroup (this);
@@ -1145,7 +1145,7 @@ OnEditUntab ()
 void CCrystalEditView::
 OnUpdateIndicatorCol (CCmdUI * pCmdUI)
 {
-  pCmdUI->Enable (FALSE);
+  pCmdUI->Enable (false);
 }
 
 void CCrystalEditView::
@@ -1158,7 +1158,7 @@ void CCrystalEditView::
 OnUpdateIndicatorRead (CCmdUI * pCmdUI)
 {
   if (m_pTextBuffer == NULL)
-    pCmdUI->Enable (FALSE);
+    pCmdUI->Enable (false);
   else
     pCmdUI->Enable (m_pTextBuffer->GetReadOnly ());
 }
@@ -1298,7 +1298,7 @@ DoDragScroll (const CPoint & point)
       ScrollUp ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(FALSE);
+	  //UpdateSiblingScrollPos(false);
       return;
     }
   if (point.y >= rcClientRect.bottom - DRAG_BORDER_Y)
@@ -1307,7 +1307,7 @@ DoDragScroll (const CPoint & point)
       ScrollDown ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(FALSE);
+	  //UpdateSiblingScrollPos(false);
       return;
     }
   if (point.x < rcClientRect.left + GetMarginWidth () + DRAG_BORDER_X)
@@ -1316,7 +1316,7 @@ DoDragScroll (const CPoint & point)
       ScrollLeft ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(TRUE);
+	  //UpdateSiblingScrollPos(true);
       return;
     }
   if (point.x >= rcClientRect.right - DRAG_BORDER_X)
@@ -1325,18 +1325,18 @@ DoDragScroll (const CPoint & point)
       ScrollRight ();
       UpdateWindow ();
       ShowDropIndicator (point);
-	  //UpdateSiblingScrollPos(TRUE);
+	  //UpdateSiblingScrollPos(true);
       return;
     }
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
 {
   UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
   HGLOBAL hData = pDataObject->GetGlobalData (fmt);
   if (hData == NULL)
-    return FALSE;
+    return false;
 
   CPoint ptDropPos = ClientToText (ptClient);
   if (IsDraggingText () && IsInsideSelection (ptDropPos))
@@ -1345,25 +1345,25 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
       SetSelection (ptDropPos, ptDropPos);
       SetCursorPos (ptDropPos);
       EnsureVisible (ptDropPos);
-      return FALSE;
+      return false;
     }
 
   UINT cbData = (UINT) ::GlobalSize (hData);
   UINT cchText = cbData / sizeof(TCHAR) - 1;
   if (cchText < 0)
-    return FALSE;
+    return false;
   LPTSTR pszText = (LPTSTR)::GlobalLock (hData);
   if (pszText == NULL)
-    return FALSE;
+    return false;
 
   // Open the undo group
   // When we drag from the same panel, it is already open, so do nothing
   // (we could test m_pTextBuffer->m_bUndoGroup if it were not a protected member)
-  BOOL bGroupFlag = FALSE;
+  bool bGroupFlag = false;
   if (! IsDraggingText())
     {
       m_pTextBuffer->BeginUndoGroup ();
-      bGroupFlag = TRUE;
+      bGroupFlag = true;
     } 
 
   int x, y;
@@ -1380,7 +1380,7 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
     m_pTextBuffer->FlushUndoGroup (this);
 
   ::GlobalUnlock (hData);
-  return TRUE;
+  return true;
 }
 
 int CCrystalEditView::
@@ -1421,7 +1421,7 @@ ShowDropIndicator (const CPoint & point)
     {
       HideCursor ();
       m_ptSavedCaretPos = GetCursorPos ();
-      m_bDropPosVisible = TRUE;
+      m_bDropPosVisible = true;
       ::CreateCaret (m_hWnd, (HBITMAP) 1, 2, GetLineHeight ());
     }
   m_ptDropPos = ClientToText (point);
@@ -1445,7 +1445,7 @@ HideDropIndicator ()
     {
       SetCursorPos (m_ptSavedCaretPos);
       ShowCursor ();
-      m_bDropPosVisible = FALSE;
+      m_bDropPosVisible = false;
     }
 }
 
@@ -1529,11 +1529,11 @@ OnEditReplace ()
   if (IsSelection ())
     {
       GetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
-      m_bSelectionPushed = TRUE;
+      m_bSelectionPushed = true;
 
-      dlg.SetScope(TRUE);       //  Replace in current selection
+      dlg.SetScope(true);       //  Replace in current selection
       dlg.m_ptCurrentPos = m_ptSavedSelStart;
-      dlg.m_bEnableScopeSelection = TRUE;
+      dlg.m_bEnableScopeSelection = true;
       dlg.m_ptBlockBegin = m_ptSavedSelStart;
       dlg.m_ptBlockEnd = m_ptSavedSelEnd;
 
@@ -1543,9 +1543,9 @@ OnEditReplace ()
     }
   else
     {
-      dlg.SetScope(FALSE);      // Set scope when no selection
+      dlg.SetScope(false);      // Set scope when no selection
       dlg.m_ptCurrentPos = GetCursorPos ();
-      dlg.m_bEnableScopeSelection = FALSE;
+      dlg.m_bEnableScopeSelection = false;
 
       CPoint ptCursorPos = GetCursorPos ();
       CPoint ptStart = WordToLeft (ptCursorPos);
@@ -1561,7 +1561,7 @@ OnEditReplace ()
   lastSearch = dlg.GetLastSearchInfos();
 
   //  Save Replace parameters for 'F3' command
-  m_bLastReplace = TRUE;
+  m_bLastReplace = true;
   if (m_pszLastFindWhat != NULL)
     free (m_pszLastFindWhat);
   m_pszLastFindWhat = _tcsdup (lastSearch->m_sText);
@@ -1579,7 +1579,7 @@ OnEditReplace ()
   if (m_bSelectionPushed)
     {
       SetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
-      m_bSelectionPushed = FALSE;
+      m_bSelectionPushed = false;
     }
 
   //  Save search parameters to registry
@@ -1593,9 +1593,9 @@ OnEditReplace ()
  * @param [in] cchNewText Length of the replacing text.
  * @param [in] dwFlags Additional modifier flags:
  * - FIND_REGEXP: use the regular expression.
- * @return TRUE if succeeded.
+ * @return true if succeeded.
  */
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 {
   if (!cchNewText)
@@ -1654,13 +1654,13 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 
   m_pTextBuffer->FlushUndoGroup(this);
 
-  return TRUE;
+  return true;
 }
 
 void CCrystalEditView::
 OnUpdateEditUndo (CCmdUI * pCmdUI)
 {
-  BOOL bCanUndo = m_pTextBuffer != NULL && m_pTextBuffer->CanUndo ();
+  bool bCanUndo = m_pTextBuffer != NULL && m_pTextBuffer->CanUndo ();
   pCmdUI->Enable (bCanUndo);
 
   //  Since we need text only for menus...
@@ -1698,7 +1698,7 @@ OnEditUndo ()
 	DoEditUndo();
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 DoEditUndo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanUndo ())
@@ -1711,15 +1711,15 @@ DoEditUndo ()
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
-          return TRUE;
+          return true;
         }
     }
-  return FALSE;
+  return false;
 }
 
 //  [JRT]
 void CCrystalEditView::
-SetDisableBSAtSOL (BOOL bDisableBSAtSOL)
+SetDisableBSAtSOL (bool bDisableBSAtSOL)
 {
   m_bDisableBSAtSOL = bDisableBSAtSOL;
 }
@@ -1730,7 +1730,7 @@ OnEditRedo ()
 	DoEditRedo();
 }
 
-BOOL CCrystalEditView::
+bool CCrystalEditView::
 DoEditRedo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanRedo ())
@@ -1743,16 +1743,16 @@ DoEditRedo ()
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
-          return TRUE;
+          return true;
         }
     }
-  return FALSE;
+  return false;
 }
 
 void CCrystalEditView::
 OnUpdateEditRedo (CCmdUI * pCmdUI)
 {
-  BOOL bCanRedo = m_pTextBuffer != NULL && m_pTextBuffer->CanRedo ();
+  bool bCanRedo = m_pTextBuffer != NULL && m_pTextBuffer->CanRedo ();
   pCmdUI->Enable (bCanRedo);
 
   //  Since we need text only for menus...
@@ -2075,11 +2075,11 @@ OnEditAutoComplete ()
       sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
-      BOOL bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP|FIND_DIRECTION_UP, TRUE, &ptTextPos);
+      bool bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP|FIND_DIRECTION_UP, true, &ptTextPos);
       if (!bFound)
         {
           ptCursorPos.x += nLength;
-          bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP, TRUE, &ptTextPos);
+          bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP, true, &ptTextPos);
           ptCursorPos.x -= nLength;
         }
       if (bFound)
@@ -2137,7 +2137,7 @@ OnEditAutoExpand ()
       sText.ReleaseBuffer (nLength);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
-      BOOL bFound = m_mapExpand->Lookup (sText, sExpand);
+      bool bFound = !!m_mapExpand->Lookup (sText, sExpand);
       if (bFound && !sExpand.IsEmpty ())
         {
           m_pTextBuffer->BeginUndoGroup ();
@@ -2187,22 +2187,22 @@ OnEditAutoExpand ()
                         }
                         break;
                       case _T ('u'):
-                        MoveUp (FALSE);
+                        MoveUp (false);
                         break;
                       case _T ('d'):
-                        MoveDown (FALSE);
+                        MoveDown (false);
                         break;
                       case _T ('l'):
-                        MoveLeft (FALSE);
+                        MoveLeft (false);
                         break;
                       case _T ('r'):
-                        MoveRight (FALSE);
+                        MoveRight (false);
                         break;
                       case _T ('h'):
-                        MoveHome (FALSE);
+                        MoveHome (false);
                         break;
                       case _T ('f'):
-                        MoveEnd (FALSE);
+                        MoveEnd (false);
                         break;
                       case _T ('b'):
                         {
@@ -2302,7 +2302,7 @@ void CCrystalEditView::
 OnUpdateEditAutoExpand (CCmdUI * pCmdUI)
 {
   if (m_mapExpand->IsEmpty ())
-    pCmdUI->Enable (FALSE);
+    pCmdUI->Enable (false);
   else
     OnUpdateEditAutoComplete (pCmdUI);
 }
@@ -2696,10 +2696,10 @@ int (*CCrystalEditView::SpellInit) (SpellData*);
 int (*CCrystalEditView::SpellCheck) (SpellData*);
 int (*CCrystalEditView::SpellConfig) (SpellData*);
 
-BOOL CCrystalEditView::LoadSpellDll (BOOL bAlert /*= TRUE*/)
+bool CCrystalEditView::LoadSpellDll (bool bAlert /*= true*/)
 {
   if (hSpellDll)
-    return TRUE;
+    return true;
   CString sPath = szWIspellPath;
   if (!sPath.IsEmpty () && sPath[sPath.GetLength () - 1] != _T('\\'))
     sPath += _T ('\\');
@@ -2730,7 +2730,7 @@ OnUpdateToolsSpelling (CCmdUI * pCmdUI)
 {
   CPoint ptCursorPos = GetCursorPos ();
   int nLines = GetLineCount () - 1;
-  pCmdUI->Enable (LoadSpellDll (FALSE) && ptCursorPos.y < nLines);
+  pCmdUI->Enable (LoadSpellDll (false) && ptCursorPos.y < nLines);
 }
 
 void CCrystalEditView::
@@ -2792,7 +2792,7 @@ OnToolsCharCoding ()
       if (dlg.DoModal () != IDOK)
         return;
       LPTSTR pszNew;
-      if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha != FALSE))
+      if (!iconvert_new (sText, &pszNew, dlg.m_nSource, dlg.m_nDest, dlg.m_bAlpha != false))
         {
           ASSERT (pszNew);
           m_pTextBuffer->BeginUndoGroup ();
@@ -2821,7 +2821,7 @@ void CCrystalEditView::
 OnEditDeleteWord ()
 {
   if (!IsSelection ())
-    MoveWordRight (TRUE);
+    MoveWordRight (true);
   if (IsSelection ())
     {
       CPoint ptSelStart, ptSelEnd;
@@ -2845,7 +2845,7 @@ void CCrystalEditView::
 OnEditDeleteWordBack ()
 {
   if (!IsSelection ())
-    MoveWordLeft (TRUE);
+    MoveWordLeft (true);
   if (IsSelection ())
     {
       CPoint ptSelStart, ptSelEnd;

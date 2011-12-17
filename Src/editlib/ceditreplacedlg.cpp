@@ -54,12 +54,12 @@ static char THIS_FILE[] = __FILE__;
 CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 : CDialog (CEditReplaceDlg::IDD, NULL)
 , m_pBuddy(pBuddy)
-, m_bMatchCase(FALSE)
-, m_bWholeWord(FALSE)
-, m_bRegExp(FALSE)
+, m_bMatchCase(false)
+, m_bWholeWord(false)
+, m_bRegExp(false)
 , m_nScope(-1)
-, m_bDontWrap(FALSE)
-, m_bEnableScopeSelection(TRUE)
+, m_bDontWrap(false)
+, m_bEnableScopeSelection(true)
 {
   ASSERT (pBuddy != NULL);
 }
@@ -69,12 +69,12 @@ UpdateRegExp ()
 {
   if (m_bRegExp)
     {
-      m_ctlWholeWord.EnableWindow (FALSE);
-      m_bWholeWord = FALSE;
+      m_ctlWholeWord.EnableWindow (false);
+      m_bWholeWord = false;
     }
   else
     {
-      m_ctlWholeWord.EnableWindow (TRUE);
+      m_ctlWholeWord.EnableWindow (true);
     }
 }
 
@@ -120,7 +120,7 @@ BOOL CEditReplaceDlg::PreTranslateMessage(MSG* pMsg)
         {
           OnEditReplace ();
         }
-      return TRUE;
+      return true;
     }
   return CDialog::PreTranslateMessage(pMsg);
 }
@@ -161,15 +161,15 @@ OnInitDialog ()
   m_ctlReplText.m_sGroup = _T ("ReplaceText");
   m_ctlReplText.OnSetfocus ();
   GetDlgItem (IDC_EDIT_REPLACE_WITH)->GetWindowText (m_sNewText);
-  UpdateData (FALSE);
+  UpdateData (false);
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
 
   UpdateControls();
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
-  m_bFound = FALSE;
+  m_bFound = false;
 
-  return TRUE;
+  return true;
 }
 
 LastSearchInfos * CEditReplaceDlg::
@@ -178,8 +178,8 @@ GetLastSearchInfos()
   return &lastSearch;
 }
 
-BOOL CEditReplaceDlg::
-DoHighlightText ( BOOL bNotifyIfNotFound )
+bool CEditReplaceDlg::
+DoHighlightText ( bool bNotifyIfNotFound )
 {
   ASSERT (m_pBuddy != NULL);
   DWORD dwSearchFlags = 0;
@@ -190,22 +190,22 @@ DoHighlightText ( BOOL bNotifyIfNotFound )
   if (m_bRegExp)
     dwSearchFlags |= FIND_REGEXP;
 
-  BOOL bFound;
+  bool bFound;
   if (m_nScope == 0)
     {
       //  Searching selection only
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
-                                          dwSearchFlags, FALSE, &m_ptFoundAt);
+                                          dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
     {
       //  Searching whole text, no wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, false, &m_ptFoundAt);
     }
   else
     {
       //  Searching whole text, wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, TRUE, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, true, &m_ptFoundAt);
     }
 
   if (!bFound)
@@ -219,35 +219,35 @@ DoHighlightText ( BOOL bNotifyIfNotFound )
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
 
-      return FALSE;
+      return false;
     }
 
   m_pBuddy->HighlightText (m_ptFoundAt, m_pBuddy->m_nLastFindWhatLen);
-  return TRUE;
+  return true;
 }
 
-BOOL CEditReplaceDlg::
+bool CEditReplaceDlg::
 DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
 {
   ASSERT (m_pBuddy != NULL);
   // m_pBuddy->m_nLastFindWhatLen
 
-  BOOL bFound;
+  bool bFound;
   if (m_nScope == 0)
     {
       //  Searching selection only
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
-                                          dwSearchFlags, FALSE, &m_ptFoundAt);
+                                          dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
     {
       //  Searching whole text, no wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, false, &m_ptFoundAt);
     }
   else
     {
       //  Searching whole text, wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, TRUE, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, true, &m_ptFoundAt);
     }
 
   if (!bFound)
@@ -257,11 +257,11 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
       AfxMessageBox (prompt, MB_ICONINFORMATION);
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
-      return FALSE;
+      return false;
     }
 
   m_pBuddy->HighlightText (m_ptFoundAt, m_pBuddy->m_nLastFindWhatLen);
-  return TRUE;
+  return true;
 }
 
 void CEditReplaceDlg::
@@ -281,7 +281,7 @@ OnEditSkip ()
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ( TRUE );
+      m_bFound = DoHighlightText ( true );
       if (m_bFound)
         {
           pSkip->SetButtonStyle (pSkip->GetButtonStyle () & ~BS_DEFPUSHBUTTON);
@@ -305,12 +305,12 @@ OnEditSkip ()
       }
     else
       {
-        m_bFound = FALSE;
+        m_bFound = false;
         return;
       }
   else
     m_ptFoundAt.x += 1;
-  m_bFound = DoHighlightText ( TRUE );
+  m_bFound = DoHighlightText ( true );
   if (m_bFound)
     {
       pSkip->SetButtonStyle (pSkip->GetButtonStyle () & ~BS_DEFPUSHBUTTON);
@@ -339,7 +339,7 @@ OnEditReplace ()
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ( TRUE );
+      m_bFound = DoHighlightText ( true );
       CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
       CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
       if (m_bFound)
@@ -389,7 +389,7 @@ OnEditReplace ()
       }
     else
       {
-        m_bFound = FALSE;
+        m_bFound = false;
         return;
       }
   else
@@ -397,7 +397,7 @@ OnEditReplace ()
       m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
       m_ptFoundAt = m_pBuddy->GetCursorPos ();
     }
-  m_bFound = DoHighlightText ( TRUE );
+  m_bFound = DoHighlightText ( true );
 }
 
 void CEditReplaceDlg::
@@ -412,14 +412,14 @@ OnEditReplaceAll ()
   UpdateLastSearch ();
 
   int nNumReplaced = 0;
-  BOOL bWrapped = FALSE;
+  bool bWrapped = false;
   CWaitCursor waitCursor;
 
 
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ( FALSE );
+      m_bFound = DoHighlightText ( false );
     }
 
   CPoint m_ptFirstFound = m_ptFoundAt;
@@ -475,7 +475,7 @@ OnEditReplaceAll ()
           }
         else
           {
-            m_bFound = FALSE;
+            m_bFound = false;
             break;
           }
       else
@@ -486,11 +486,11 @@ OnEditReplaceAll ()
       nNumReplaced++;
 
       // find the next instance
-      m_bFound = DoHighlightText ( FALSE );
+      m_bFound = DoHighlightText ( false );
 
       // detect if we just wrapped at end of file
       if (m_ptFoundAt.y < m_ptCurrentReplacedEnd.y || (m_ptFoundAt.y == m_ptCurrentReplacedEnd.y && m_ptFoundAt.x < m_ptCurrentReplacedEnd.x))
-        bWrapped = TRUE;
+        bWrapped = true;
 
       // after wrapping, stop at m_ptFirstFound
       // so we don't replace twice when replacement string includes replaced string 
@@ -513,9 +513,9 @@ OnEditReplaceAll ()
 void CEditReplaceDlg::
 OnRegExp ()
 {
-  UpdateData (TRUE);
+  UpdateData (true);
   UpdateRegExp ();
-  UpdateData (FALSE);
+  UpdateData (false);
 }
 
 void CEditReplaceDlg::
@@ -533,20 +533,20 @@ UpdateControls()
 // Last search functions
 //
 void CEditReplaceDlg::
-SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nScope)
+SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
-  lastSearch.m_bNoWrap = m_bDontWrap;
+  lastSearch.m_bNoWrap = !!m_bDontWrap;
 }
 
 
 void CEditReplaceDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope);
+  SetLastSearch (m_sText, !!m_bMatchCase, !!m_bWholeWord, !!m_bRegExp, m_nScope);
 }
 
 void CEditReplaceDlg::
@@ -560,7 +560,7 @@ UseLastSearch ()
 }
 
 void CEditReplaceDlg::
-SetScope(BOOL bWithSelection)
+SetScope(bool bWithSelection)
 {
   if (bWithSelection)
     m_nScope = 0;

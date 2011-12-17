@@ -60,7 +60,7 @@ BOOL CSampleApp::InitInstance()
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDS_OLE_INIT_FAILED);
-		return FALSE;
+		return false;
 	}
 
 #ifdef _AFXDLL
@@ -90,7 +90,7 @@ BOOL CSampleApp::InitInstance()
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
-		return FALSE;
+		return false;
 	m_pMainWnd = pMainFrame;
 
 	// Enable drag/drop open
@@ -98,7 +98,7 @@ BOOL CSampleApp::InitInstance()
 
 	// Enable DDE Execute open
 //	EnableShellOpen();
-//	RegisterShellFileTypes(TRUE);
+//	RegisterShellFileTypes(true);
 
 	// Parse command line for standard shell commands, DDE, file open
 	CCommandLineInfo cmdInfo;
@@ -106,13 +106,13 @@ BOOL CSampleApp::InitInstance()
 
 	// Dispatch commands specified on the command line
 	if (!ProcessShellCommand(cmdInfo))
-		return FALSE;
+		return false;
 
 	// The main window has been initialized, so show and update it.
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
-	return TRUE;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////

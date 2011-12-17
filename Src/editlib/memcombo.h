@@ -40,7 +40,7 @@ public :
     // Attributes
 public :
     static CMap < CString, LPCTSTR, CString, LPCTSTR > groups;
-    BOOL m_bFirstFocus;
+    bool m_bFirstFocus;
     CString m_sGroup;
 
     // Operations

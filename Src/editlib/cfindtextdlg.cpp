@@ -42,10 +42,10 @@ CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy)
 : CDialog (CFindTextDlg::IDD, NULL)
 , m_pBuddy(pBuddy)
 , m_nDirection(1)
-, m_bMatchCase(FALSE)
-, m_bWholeWord(FALSE)
-, m_bRegExp(FALSE)
-, m_bNoWrap(FALSE)
+, m_bMatchCase(false)
+, m_bWholeWord(false)
+, m_bRegExp(false)
+, m_bNoWrap(false)
 , m_ptCurrentPos(CPoint (0, 0))
 {
   ASSERT (pBuddy != NULL);
@@ -72,12 +72,12 @@ UpdateRegExp ()
 {
   if (m_bRegExp)
     {
-      m_ctlWholeWord.EnableWindow (FALSE);
-      m_bWholeWord = FALSE;
+      m_ctlWholeWord.EnableWindow (false);
+      m_bWholeWord = false;
     }
   else
     {
-      m_ctlWholeWord.EnableWindow (TRUE);
+      m_ctlWholeWord.EnableWindow (true);
     }
 }
 
@@ -100,7 +100,7 @@ void CFindTextDlg::OnOK ()
       UpdateLastSearch ();
 
       ASSERT (m_pBuddy != NULL);
-      BOOL bCursorToLeft = FALSE;
+      bool bCursorToLeft = false;
       DWORD dwSearchFlags = 0;
       if (m_bMatchCase)
         dwSearchFlags |= FIND_MATCH_CASE;
@@ -112,7 +112,7 @@ void CFindTextDlg::OnOK ()
         {
           dwSearchFlags |= FIND_DIRECTION_UP;
           // When finding upwards put cursor to begin of selection
-          bCursorToLeft = TRUE;
+          bCursorToLeft = true;
          }
 
       CMemComboBox::SaveSettings();
@@ -164,13 +164,13 @@ OnInitDialog ()
   CDialog::OnInitDialog ();
 
   CMemComboBox::LoadSettings();
-  UpdateData (FALSE);
+  UpdateData (false);
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
   
   UpdateControls();
 
-  return TRUE;
+  return true;
 }
 
 LastSearchInfos * CFindTextDlg::
@@ -189,9 +189,9 @@ OnCancel ()
 void CFindTextDlg::
 OnRegExp ()
 {
-  UpdateData (TRUE);
+  UpdateData (true);
   UpdateRegExp ();
-  UpdateData (FALSE);
+  UpdateData (false);
 }
 
 
@@ -210,21 +210,21 @@ UpdateControls()
 // Last search functions
 //
 void CFindTextDlg::
-SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nDirection)
+SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_nDirection = nDirection;
   lastSearch.m_sText = sText;
-  lastSearch.m_bNoWrap = m_bNoWrap;
+  lastSearch.m_bNoWrap = !!m_bNoWrap;
 }
 
 
 void CFindTextDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nDirection);
+  SetLastSearch (m_sText, !!m_bMatchCase, !!m_bWholeWord, !!m_bRegExp, m_nDirection);
 }
 
 void CFindTextDlg::

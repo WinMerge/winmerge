@@ -31,8 +31,8 @@ protected :
 public :
     BOOL SetPaneFormattedText (int nIndex, BOOL bUpdate, LPCTSTR lpszFmt,...);
     BOOL SetPaneFormattedText (int nIndex, BOOL bUpdate, UINT nId,...);
-    BOOL SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate = TRUE);
-    BOOL SetPaneText (int nIndex, UINT nId, BOOL bUpdate = TRUE);
+    BOOL SetPaneText (int nIndex, LPCTSTR lpszNewText, BOOL bUpdate = true);
+    BOOL SetPaneText (int nIndex, UINT nId, BOOL bUpdate = true);
     void SetClockFormat (LPCTSTR strClockFormat);
 
     // Overrides
