@@ -61,7 +61,7 @@
 				ObjectFile=".\Debug/"
 				ProgramDataBaseFileName=".\Debug/"
 				BrowseInformation="1"
-				WarningLevel="3"
+				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
 			/>
@@ -161,7 +161,7 @@
 				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\Release/"
 				ProgramDataBaseFileName=".\Release/"
-				WarningLevel="3"
+				WarningLevel="4"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -257,7 +257,7 @@
 				AssemblerListingLocation=".\UDebug/"
 				ObjectFile=".\UDebug/"
 				ProgramDataBaseFileName=".\UDebug/"
-				WarningLevel="3"
+				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
 			/>
@@ -358,7 +358,7 @@
 				AssemblerListingLocation=".\URelease/"
 				ObjectFile=".\URelease/"
 				ProgramDataBaseFileName=".\URelease/"
-				WarningLevel="3"
+				WarningLevel="4"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

@@ -26,7 +26,7 @@ public:
 		CSampleDoc *m_pOwnerDoc;
 	public:
 		CSampleTextBuffer(CSampleDoc *pDoc) { m_pOwnerDoc = pDoc; };
-		virtual void SetModified(BOOL bModified = TRUE)
+		virtual void SetModified(bool bModified = true)
 			{ m_pOwnerDoc->SetModifiedFlag(bModified); };
 	};
 

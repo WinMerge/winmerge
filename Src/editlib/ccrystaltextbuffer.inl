@@ -28,19 +28,19 @@
 
 #include "ccrystaltextbuffer.h"
 
-inline BOOL CCrystalTextBuffer::
+inline bool CCrystalTextBuffer::
 IsModified ()
 const
 {
   return m_bModified;
 }
 
-inline BOOL CCrystalTextBuffer::GetInsertTabs() const          //UPDATE-BEGIN
+inline bool CCrystalTextBuffer::GetInsertTabs() const          //UPDATE-BEGIN
 {
     return m_bInsertTabs;
 }
 
-inline void CCrystalTextBuffer::SetInsertTabs(BOOL bInsertTabs)
+inline void CCrystalTextBuffer::SetInsertTabs(bool bInsertTabs)
 {
     m_bInsertTabs = bInsertTabs;
 }

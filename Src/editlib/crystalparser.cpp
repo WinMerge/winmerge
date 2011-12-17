@@ -61,7 +61,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	LPCTSTR	szLine = m_pTextView->GetLineChars( nLineIndex );
 	int			nLastBreakPos = 0;
 	int			nLastCharBreakPos = 0;
-	BOOL		bBreakable = FALSE;
+	bool		bBreakable = false;
 	TCHAR		ch;
 	int			nCharWidth = m_pTextView->GetCharWidth();
 	WORD		wCharType;
@@ -74,7 +74,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 		{
 			nLastBreakPos = i;
 			nLastCharBreakPos = nCharCount;
-			bBreakable = FALSE;
+			bBreakable = false;
 		}
 
 		// increment char counter (evtl. expand tab)
@@ -83,7 +83,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 			nLineCharCount+= (nTabWidth - nCharCount % nTabWidth);
 			nCharCount+= (nTabWidth - nCharCount % nTabWidth);
 			// remember whitespace
-			bBreakable = TRUE;
+			bBreakable = true;
 		}
 		else
 		{
@@ -95,7 +95,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 				GetStringTypeA(LOCALE_USER_DEFAULT,CT_CTYPE3, &szLine[i], 2, &wCharType);
 				// remember whitespace
 				if( (wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA)))
-					bBreakable = TRUE;
+					bBreakable = true;
 			}
 			else
 			{
@@ -103,7 +103,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 				nCharCount ++;
 				// remember whitespace
 				if( ch == _T(' ') )
-					bBreakable = TRUE;
+					bBreakable = true;
 			}
 #else
 			if (ch & 0xff80)
@@ -114,7 +114,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 				GetStringTypeW(CT_CTYPE3, &ch, 1, &wCharType);
 				// remember whitespace
 				if( wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA) )
-					bBreakable = TRUE;
+					bBreakable = true;
 			}
 			else
 			{
@@ -122,7 +122,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 				nCharCount ++;
 				// remember whitespace
 				if( ch == _T(' ') )
-					bBreakable = TRUE;
+					bBreakable = true;
 			}
 #endif
 		}

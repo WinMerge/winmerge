@@ -51,7 +51,7 @@ class CCrystalTextView;
 struct LastSearchInfos
   {
     int m_nDirection;       // only for search
-    BOOL m_bNoWrap;
+    bool m_bNoWrap;
     BOOL m_bMatchCase;
     CString m_sText;
     BOOL m_bWholeWord;
@@ -70,7 +70,7 @@ private :
     // Construction
 public :
     CFindTextDlg (CCrystalTextView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nDirection);
+    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
 

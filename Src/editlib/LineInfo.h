@@ -33,9 +33,9 @@ public:
     void Delete(int nStartChar, int nEndChar);
     void DeleteEnd(int nStartChar);
     void CopyFrom(const LineInfo &li);
-    BOOL HasEol() const;
+    bool HasEol() const;
     LPCTSTR GetEol() const;
-    BOOL ChangeEol(LPCTSTR lpEOL);
+    bool ChangeEol(LPCTSTR lpEOL);
     void RemoveEol();
     LPCTSTR GetLine(int index = 0) const;
 

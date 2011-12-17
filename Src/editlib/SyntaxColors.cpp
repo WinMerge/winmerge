@@ -164,9 +164,9 @@ void SyntaxColors::SetDefaults()
 		}
 		m_colors[i] = color;
 
-		BOOL bBold = FALSE;
+		bool bBold = false;
 		if (i == COLORINDEX_KEYWORD)
-			bBold = TRUE;
+			bBold = true;
 		m_bolds[i] = bBold;
 	}
 }
@@ -184,9 +184,9 @@ void SyntaxColors::SetColor(UINT index, COLORREF color)
 /**
  * @brief Set bold value.
  * @param [in] Index index of color to set (COLORINDEX).
- * @param [in] bold If TRUE bold is enabled.
+ * @param [in] bold If true bold is enabled.
  */
-void SyntaxColors::SetBold(UINT index, BOOL bold)
+void SyntaxColors::SetBold(UINT index, bool bold)
 {
 	m_bolds[index] = bold;
 }

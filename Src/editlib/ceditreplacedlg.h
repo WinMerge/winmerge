@@ -46,22 +46,22 @@ class EDITPADC_CLASS CEditReplaceDlg : public CDialog
   {
 private :
     CCrystalEditView * m_pBuddy;
-    BOOL m_bFound;
+    bool m_bFound;
     CPoint m_ptFoundAt;
-    BOOL DoHighlightText ( BOOL bNotifyIfNotFound );
-    BOOL DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
+    bool DoHighlightText ( bool bNotifyIfNotFound );
+    bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
     void UpdateControls();
 
     // Construction
 public :
     CEditReplaceDlg (CCrystalEditView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nScope);
+    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
-    void SetScope(BOOL bWithSelection);
+    void SetScope(bool bWithSelection);
 
 
-    BOOL m_bEnableScopeSelection;
+    bool m_bEnableScopeSelection;
     CPoint m_ptCurrentPos;
     CPoint m_ptBlockBegin, m_ptBlockEnd;
     LastSearchInfos lastSearch;

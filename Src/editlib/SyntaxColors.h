@@ -73,8 +73,8 @@ public:
 	void Clone(const SyntaxColors *pColors);
 	COLORREF GetColor(UINT index) const { return m_colors[index]; }
 	void SetColor(UINT index, COLORREF color);
-	BOOL GetBold(UINT index) const { return m_bolds[index]; }
-	void SetBold(UINT index, BOOL bold);
+	bool GetBold(UINT index) const { return m_bolds[index]; }
+	void SetBold(UINT index, bool bold);
 	void SetDefaults();
 	bool IsThemeableColorIndex(int nColorIndex) const;
 	bool GetSystemColorIndex(int nColorIndex, int * pSysIndex) const;
@@ -82,7 +82,7 @@ public:
 // Implementation data
 private:
 	std::vector<COLORREF> m_colors; /**< Syntax highlight colors */
-	std::vector<BOOL> m_bolds; /**< Bold font enable/disable */
+	std::vector<bool> m_bolds; /**< Bold font enable/disable */
 };
 
 #endif // _SYNTAX_COLORS_H_

@@ -81,8 +81,8 @@ void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
   info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
   info.lfMenuFont.lfWidth = 0;
   info.lfMenuFont.lfWeight = FW_THIN;
-  info.lfMenuFont.lfItalic = FALSE;
-  info.lfMenuFont.lfUnderline = FALSE;
+  info.lfMenuFont.lfItalic = false;
+  info.lfMenuFont.lfUnderline = false;
   info.lfMenuFont.lfCharSet = DEFAULT_CHARSET;
   info.lfMenuFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
   info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
@@ -188,7 +188,7 @@ OnSetfocus ()
 {
   if (m_bFirstFocus && !m_sGroup.IsEmpty ())
   {
-    m_bFirstFocus = FALSE;
+    m_bFirstFocus = false;
     // create the dropdown list
     CString items;
     if (groups.Lookup (m_sGroup, items))

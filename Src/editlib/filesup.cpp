@@ -101,7 +101,7 @@ GetNamePosition (LPCTSTR pszString)
 }
 
 INLINE CString
-GetPath (const CString & sString, BOOL bClose /*= FALSE*/ )
+GetPath (const CString & sString, bool bClose /*= false*/ )
 {
   if (sString.IsEmpty ())
     return sString;

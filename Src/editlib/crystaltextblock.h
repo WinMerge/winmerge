@@ -57,7 +57,7 @@ public:
 	@param nColorIndex
 		Index of the color to use to colorize the text block.
 	*/
-	BOOL Add( int nCharPos, int nColorIndex );
+	bool Add( int nCharPos, int nColorIndex );
 
 // attributes
 protected:

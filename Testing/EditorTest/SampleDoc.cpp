@@ -53,10 +53,10 @@ CSampleDoc::~CSampleDoc()
 BOOL CSampleDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
-		return FALSE;
+		return false;
 
 	m_xTextBuffer.InitNew();
-	return TRUE;
+	return true;
 }
 
 
@@ -104,7 +104,7 @@ void CSampleDoc::DeleteContents()
 BOOL CSampleDoc::OnOpenDocument(LPCTSTR lpszPathName) 
 {
 	if (!CDocument::OnOpenDocument(lpszPathName))
-		return FALSE;
+		return false;
 	
 	return m_xTextBuffer.LoadFromFile(lpszPathName);
 }
@@ -112,18 +112,18 @@ BOOL CSampleDoc::OnOpenDocument(LPCTSTR lpszPathName)
 BOOL CSampleDoc::OnSaveDocument(LPCTSTR lpszPathName) 
 {
 	m_xTextBuffer.SaveToFile(lpszPathName);
-	return TRUE;	//	Note - we didn't call inherited member!
+	return true;	//	Note - we didn't call inherited member!
 }
 
 void CSampleDoc::OnReadOnly() 
 {
 	if (! m_xTextBuffer.GetReadOnly())
 	{
-		m_xTextBuffer.SetReadOnly(TRUE);
+		m_xTextBuffer.SetReadOnly(true);
 		AfxMessageBox(_T("Document now read-only!"));
 	}
 	else
-		m_xTextBuffer.SetReadOnly(FALSE);
+		m_xTextBuffer.SetReadOnly(false);
 }
 
 void CSampleDoc::OnUpdateReadOnly(CCmdUI* pCmdUI) 

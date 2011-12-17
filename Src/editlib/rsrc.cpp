@@ -166,19 +166,19 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T ("VK_UP"),
   };
 
-static BOOL
+static bool
 IsRsrcKeyword (LPCTSTR pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszRsrcKeywordList, pszChars, nLength);
 }
 
-static BOOL
+static bool
 IsUser1Keyword (LPCTSTR pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-static BOOL
+static bool
 IsRsrcNumber (LPCTSTR pszChars, int nLength)
 {
   if (nLength > 2 && pszChars[0] == '0' && pszChars[1] == 'x')
@@ -188,20 +188,20 @@ IsRsrcNumber (LPCTSTR pszChars, int nLength)
           if (_istdigit (pszChars[I]) || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
                 (pszChars[I] >= 'a' && pszChars[I] <= 'f'))
             continue;
-          return FALSE;
+          return false;
         }
-      return TRUE;
+      return true;
     }
   if (!_istdigit (pszChars[0]))
-    return FALSE;
+    return false;
   for (int I = 1; I < nLength; I++)
     {
       if (!_istdigit (pszChars[I]) && pszChars[I] != '+' &&
             pszChars[I] != '-' && pszChars[I] != '.' && pszChars[I] != 'e' &&
             pszChars[I] != 'E')
-        return FALSE;
+        return false;
     }
-  return TRUE;
+  return true;
 }
 
 #define DEFINE_BLOCK(pos, colorindex)   \
@@ -230,10 +230,10 @@ ParseLineRsrc (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIte
     return dwCookie & COOKIE_EXT_COMMENT;
 
   LPCTSTR pszChars = GetLineChars (nLineIndex);
-  BOOL bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  BOOL bRedefineBlock = TRUE;
-  BOOL bWasCommentStart = FALSE;
-  BOOL bDecIndex = FALSE;
+  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+  bool bRedefineBlock = true;
+  bool bWasCommentStart = false;
+  bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
@@ -272,13 +272,13 @@ ParseLineRsrc (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIte
               else
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_OPERATOR);
-                  bRedefineBlock = TRUE;
-                  bDecIndex = TRUE;
+                  bRedefineBlock = true;
+                  bDecIndex = true;
                   goto out;
                 }
             }
-          bRedefineBlock = FALSE;
-          bDecIndex = FALSE;
+          bRedefineBlock = false;
+          bDecIndex = false;
         }
 out:
 
@@ -300,7 +300,7 @@ out:
           if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
-              bRedefineBlock = TRUE;
+              bRedefineBlock = true;
             }
           continue;
         }
@@ -311,7 +311,7 @@ out:
           if (pszChars[I] == '\'' && (I == 0 || pszChars[nPrevI] != '\\'))
             {
               dwCookie &= ~COOKIE_CHAR;
-              bRedefineBlock = TRUE;
+              bRedefineBlock = true;
             }
           continue;
         }
@@ -323,9 +323,9 @@ out:
           if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' /*&& *::CharPrev(pszChars, pszChars + nPrevI) != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
-              bRedefineBlock = TRUE;
+              bRedefineBlock = true;
             }
-          bWasCommentStart = FALSE;
+          bWasCommentStart = false;
           continue;
         }
 
@@ -368,11 +368,11 @@ out:
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
-          bWasCommentStart = TRUE;
+          bWasCommentStart = true;
           continue;
         }
 
-      bWasCommentStart = FALSE;
+      bWasCommentStart = false;
 
       if (bFirstChar)
         {
@@ -383,7 +383,7 @@ out:
               continue;
             }
           if (!xisspace (pszChars[I]))
-            bFirstChar = FALSE;
+            bFirstChar = false;
         }
 
       if (pBuf == NULL)
@@ -413,7 +413,7 @@ out:
                 }
               else
                 {
-                  bool bFunction = FALSE;
+                  bool bFunction = false;
 
                   for (int j = I; j < nLength; j++)
                     {
@@ -421,7 +421,7 @@ out:
                         {
                           if (pszChars[j] == '(')
                             {
-                              bFunction = TRUE;
+                              bFunction = true;
                             }
                           break;
                         }
@@ -431,8 +431,8 @@ out:
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
                     }
                 }
-              bRedefineBlock = TRUE;
-              bDecIndex = TRUE;
+              bRedefineBlock = true;
+              bDecIndex = true;
               nIdentBegin = -1;
             }
         }
@@ -454,7 +454,7 @@ out:
         }
       else
         {
-          bool bFunction = FALSE;
+          bool bFunction = false;
 
           for (int j = I; j < nLength; j++)
             {
@@ -462,7 +462,7 @@ out:
                 {
                   if (pszChars[j] == '(')
                     {
-                      bFunction = TRUE;
+                      bFunction = true;
                     }
                   break;
                 }

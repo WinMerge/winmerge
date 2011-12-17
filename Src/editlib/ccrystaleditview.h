@@ -56,26 +56,26 @@ public :
     static int (*SpellInit) (SpellData*);
     static int (*SpellCheck) (SpellData*);
     static int (*SpellConfig) (SpellData*);
-    static BOOL LoadSpellDll (BOOL bAlert = TRUE);
+    static bool LoadSpellDll (bool bAlert = true);
     static int SpellGetLine (struct SpellData_t *pdata);
     static int SpellNotify (int nEvent, struct SpellData_t *pdata);
 
 protected:
-    BOOL m_bLastReplace;
+    bool m_bLastReplace;
     DWORD m_dwLastReplaceFlags;
 
 protected:
-    BOOL m_bDropPosVisible;
+    bool m_bDropPosVisible;
     CPoint m_ptSavedCaretPos;
-    BOOL m_bSelectionPushed;
+    bool m_bSelectionPushed;
     CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
 private :
-    BOOL m_bOvrMode;
+    bool m_bOvrMode;
     CPoint m_ptDropPos;
-    BOOL m_bAutoIndent;
+    bool m_bAutoIndent;
 
     //  [JRT]
-    BOOL m_bDisableBSAtSOL;       // Disable BS At Start Of Line
+    bool m_bDisableBSAtSOL;       // Disable BS At Start Of Line
 
 
 public :
@@ -90,40 +90,40 @@ protected :
     virtual void OnDropSource (DROPEFFECT de);
     void Paste ();
     void Cut ();
-    BOOL DeleteCurrentSelection ();
-    BOOL DeleteCurrentColumnSelection (int nAction, BOOL bFlushUndoGroup = TRUE, BOOL bUpdateCursorPosition = TRUE);
-	BOOL DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction);
-    BOOL InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, BOOL bFlushUndoGroup = TRUE);
+    bool DeleteCurrentSelection ();
+    bool DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup = true, bool bUpdateCursorPosition = true);
+	bool DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction);
+    bool InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, bool bFlushUndoGroup = true);
 
     // Attributes
 public :
-    BOOL GetAutoIndent () const;
-    void SetAutoIndent (BOOL bAutoIndent);
-    BOOL GetInsertTabs () const;
-    void SetInsertTabs (BOOL bInsertTabs);
+    bool GetAutoIndent () const;
+    void SetAutoIndent (bool bAutoIndent);
+    bool GetInsertTabs () const;
+    void SetInsertTabs (bool bInsertTabs);
 
     //  [JRT]
-    void SetDisableBSAtSOL (BOOL bDisableBSAtSOL);
-    BOOL GetDisableBSAtSOL () const;
+    void SetDisableBSAtSOL (bool bDisableBSAtSOL);
+    bool GetDisableBSAtSOL () const;
 
     // Operations
 public :
     CCrystalEditView ();
     ~CCrystalEditView ();
 
-    BOOL GetOverwriteMode () const;
-    void SetOverwriteMode (BOOL bOvrMode = TRUE);
+    bool GetOverwriteMode () const;
+    void SetOverwriteMode (bool bOvrMode = true);
 
     void ShowDropIndicator (const CPoint & point);
     void HideDropIndicator ();
 
-    BOOL DoDropText (COleDataObject * pDataObject, const CPoint & ptClient);
+    bool DoDropText (COleDataObject * pDataObject, const CPoint & ptClient);
     void DoDragScroll (const CPoint & point);
 
-    virtual BOOL QueryEditable ();
+    virtual bool QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
-    BOOL ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
+    bool ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
 
     virtual void OnEditOperation (int nAction, LPCTSTR pszText, int cchText);
 
@@ -215,8 +215,8 @@ protected :
     afx_msg void OnExtTextEnd();
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
-    BOOL DoEditUndo();
-    BOOL DoEditRedo();
+    bool DoEditUndo();
+    bool DoEditRedo();
     DECLARE_MESSAGE_MAP ()
   };
 

@@ -29,43 +29,43 @@
 #include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
 
-inline BOOL CCrystalEditView::
+inline bool CCrystalEditView::
 GetOverwriteMode ()
 const
 {
   return m_bOvrMode;
 }
 
-inline void CCrystalEditView::SetOverwriteMode (BOOL bOvrMode /*= TRUE*/ )
+inline void CCrystalEditView::SetOverwriteMode (bool bOvrMode /*= true*/ )
 {
   m_bOvrMode = bOvrMode;
 }
 
-inline BOOL CCrystalEditView::
+inline bool CCrystalEditView::
 GetDisableBSAtSOL ()
 const
 {
   return m_bDisableBSAtSOL;
 }
 
-inline BOOL CCrystalEditView::GetAutoIndent ()
+inline bool CCrystalEditView::GetAutoIndent ()
 const
 {
   return m_bAutoIndent;
 }
 
-inline void CCrystalEditView::SetAutoIndent (BOOL bAutoIndent)
+inline void CCrystalEditView::SetAutoIndent (bool bAutoIndent)
 {
   m_bAutoIndent = bAutoIndent;
 }
 
-inline BOOL CCrystalEditView::GetInsertTabs ()
+inline bool CCrystalEditView::GetInsertTabs ()
 const
 {
   return m_pTextBuffer->GetInsertTabs();
 }
 
-inline void CCrystalEditView::SetInsertTabs (BOOL bInsertTabs)
+inline void CCrystalEditView::SetInsertTabs (bool bInsertTabs)
 {
   m_pTextBuffer->SetInsertTabs(bInsertTabs);
 }

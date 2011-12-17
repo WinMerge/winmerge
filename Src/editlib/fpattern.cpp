@@ -61,7 +61,7 @@ fpattern_isvalid (LPCTSTR pat)
 
   /* Check args */
   if (pat == NULL)
-    return (FALSE);
+    return (false);
 
   /* Verify that the pattern is valid */
   for (len = 0; pat[len] != _T('\0'); len++)
@@ -79,7 +79,7 @@ fpattern_isvalid (LPCTSTR pat)
               if (pat[len] == QUOTE)
                 len++;          /* Quoted char */
               if (pat[len] == _T('\0'))
-                return (FALSE); /* Missing closing bracket */
+                return (false); /* Missing closing bracket */
               len++;
 
               if (pat[len] == FPAT_SET_THRU)
@@ -89,12 +89,12 @@ fpattern_isvalid (LPCTSTR pat)
                   if (pat[len] == QUOTE)
                     len++;      /* Quoted char */
                   if (pat[len] == _T('\0'))
-                    return (FALSE);     /* Missing closing bracket */
+                    return (false);     /* Missing closing bracket */
                   len++;
                 }
 
               if (pat[len] == _T('\0'))
-                return (FALSE); /* Missing closing bracket */
+                return (false); /* Missing closing bracket */
             }
           break;
 
@@ -102,14 +102,14 @@ fpattern_isvalid (LPCTSTR pat)
           /* Quoted char */
           len++;
           if (pat[len] == _T('\0'))
-            return (FALSE);     /* Missing quoted char */
+            return (false);     /* Missing quoted char */
           break;
 
         case FPAT_NOT:
           /* Negated pattern */
           len++;
           if (pat[len] == _T('\0'))
-            return (FALSE);     /* Missing subpattern */
+            return (false);     /* Missing subpattern */
           break;
 
         default:
@@ -118,7 +118,7 @@ fpattern_isvalid (LPCTSTR pat)
         }
     }
 
-  return (TRUE);
+  return (true);
 }
 
 
@@ -160,10 +160,10 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
           /* Match a single char */
 #if DELIM
           if (fch == DEL || fch == DEL2 || fch == _T('\0'))
-            return (FALSE);
+            return (false);
 #else
           if (fch == _T('\0'))
-            return (FALSE);
+            return (false);
 #endif
           fname++;
           break;
@@ -182,10 +182,10 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
           while (i >= 0)
             {
               if (fpattern_submatch (pat, fname + i))
-                return (TRUE);
+                return (true);
               i--;
             }
-          return (FALSE);
+          return (false);
 
         case SUB:
           /* Match zero or more chars */
@@ -199,27 +199,27 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
           while (i >= 0)
             {
               if (fpattern_submatch (pat, fname + i))
-                return (TRUE);
+                return (true);
               i--;
             }
-          return (FALSE);
+          return (false);
 
         case QUOTE:
           /* Match a quoted char */
           pch = *pat;
           if (lowercase (fch) != lowercase (pch) || pch == _T('\0'))
-            return (FALSE);
+            return (false);
           fname++;
           pat++;
           break;
 
         case FPAT_SET_L:
           /* Match char set/range */
-          yes = TRUE;
+          yes = true;
           if (*pat == FPAT_SET_NOT)
             {
               pat++;
-              yes = FALSE;      /* Set negation */
+              yes = false;      /* Set negation */
             }
 
           /* Look for [ s ], [ - ], [ abc ], [ a-c ] */
@@ -257,10 +257,10 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
             }
 
           if (!match)
-            return (FALSE);
+            return (false);
 
           if (*pat == _T('\0'))
-            return (FALSE);     /* Missing closing bracket */
+            return (false);     /* Missing closing bracket */
 
           fname++;
           pat++;
@@ -269,7 +269,7 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
         case FPAT_NOT:
           /* Match only if rest of pattern does not match */
           if (*pat == _T('\0'))
-            return (FALSE);     /* Missing subpattern */
+            return (false);     /* Missing subpattern */
           i = fpattern_submatch (pat, fname);
           return !i;
 
@@ -280,7 +280,7 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
 #endif
           /* Match path delimiter char */
           if (fch != DEL && fch != DEL2)
-            return (FALSE);
+            return (false);
           fname++;
           break;
 #endif
@@ -288,7 +288,7 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
         default:
           /* Match a ( non-null ) char exactly */
           if (lowercase (fch) != lowercase (pch))
-            return (FALSE);
+            return (false);
           fname++;
           break;
         }
@@ -296,10 +296,10 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
 
   /* Check for complete match */
   if (*fname != _T('\0'))
-    return (FALSE);
+    return (false);
 
   /* Successful match */
-  return (TRUE);
+  return (true);
 }
 
 
@@ -335,14 +335,14 @@ fpattern_match (LPCTSTR pat, LPCTSTR fname)
 
   /* Check args */
   if (fname == NULL)
-    return (FALSE);
+    return (false);
 
   if (pat == NULL)
-    return (FALSE);
+    return (false);
 
   /* Verify that the pattern is valid, and get its length */
   if (!fpattern_isvalid (pat))
-    return (FALSE);
+    return (false);
 
   /* Attempt to match pattern against filename */
   if (fname[0] == _T('\0'))
@@ -388,10 +388,10 @@ fpattern_matchn (LPCTSTR pat, LPCTSTR fname)
 
   /* Check args */
   if (fname == NULL)
-    return (FALSE);
+    return (false);
 
   if (pat == NULL)
-    return (FALSE);
+    return (false);
 
   /* Assume that pattern is well-formed */
 
