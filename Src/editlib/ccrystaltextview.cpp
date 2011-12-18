@@ -5606,7 +5606,21 @@ OnUpdateSourceType (CCmdUI * pCmdUI)
   pCmdUI->SetRadio (m_SourceDefs + (pCmdUI->m_nID - ID_SOURCE_PLAIN) == m_CurSourceDef);
 }
 
-int bracetype (TCHAR c);
+int
+bracetype (TCHAR c)
+{
+  static LPCTSTR braces = _T("{}()[]<>");
+  LPCTSTR pos = _tcschr (braces, c);
+  return pos ? (int) (pos - braces) + 1 : 0;
+}
+
+int
+bracetype (LPCTSTR s)
+{
+  if (s[1])
+    return 0;
+  return bracetype (*s);
+}
 
 void CCrystalTextView::
 OnMatchBrace ()
