@@ -1808,21 +1808,8 @@ isclosebrace (LPCTSTR s)
   return s[1] == _T ('\0') && isclosebrace (*s);
 }
 
-int
-bracetype (TCHAR c)
-{
-  static LPCTSTR braces = _T("{}()[]<>");
-  LPCTSTR pos = _tcschr (braces, c);
-  return pos ? (int) (pos - braces) + 1 : 0;
-}
-
-int
-bracetype (LPCTSTR s)
-{
-  if (s[1])
-    return 0;
-  return bracetype (*s);
-}
+int bracetype (TCHAR c);
+int bracetype (LPCTSTR s);
 
 void CCrystalEditView::
 OnEditOperation (int nAction, LPCTSTR pszText, int cchText)
