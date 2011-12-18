@@ -543,6 +543,23 @@ SOURCE=..\..\Src\editlib\statbar.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Src\editlib\string_util.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\string_util.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\SyntaxColors.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\SyntaxColors.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\Src\editlib\tcl.cpp
 # End Source File
 # Begin Source File
@@ -563,74 +580,19 @@ SOURCE=..\..\Src\editlib\verilog.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\Src\editlib\ViewableWhitespace.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\Src\editlib\ViewableWhitespace.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\Src\editlib\wispelld.h
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\Src\editlib\xml.cpp
-# End Source File
-# End Group
-# Begin Group "common"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\isx.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\isx.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\OptionsMgr.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\OptionsMgr.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\RegOptionsMgr.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\RegOptionsMgr.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\SuperComboBox.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\SuperComboBox.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\SyntaxColors.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\SyntaxColors.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\varprop.cpp
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\varprop.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\ViewableWhitespace.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\ViewableWhitespace.h
 # End Source File
 # End Group
 # End Target
