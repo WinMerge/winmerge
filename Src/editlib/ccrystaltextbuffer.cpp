@@ -202,7 +202,7 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ ,
     nPosition = (int) m_aLines.size();
 
   // insert all lines in one pass
-  vector<LineInfo>::iterator iter = m_aLines.begin() + nPosition;
+  std::vector<LineInfo>::iterator iter = m_aLines.begin() + nPosition;
   m_aLines.insert(iter, nCount, line);
 
   // create text data for lines after the first one
@@ -288,8 +288,8 @@ void CCrystalTextBuffer::
 FreeAll ()
 {
   //  Free text
-  vector<LineInfo>::iterator iter = m_aLines.begin();
-  vector<LineInfo>::iterator end = m_aLines.end();
+  std::vector<LineInfo>::iterator iter = m_aLines.begin();
+  std::vector<LineInfo>::iterator end = m_aLines.end();
   while (iter != end)
     {
       (*iter).Clear();
@@ -1034,8 +1034,8 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       const int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
         m_aLines[L].Clear();
-      vector<LineInfo>::iterator iterBegin = m_aLines.begin() + nStartLine + 1;
-      vector<LineInfo>::iterator iterEnd = iterBegin + nDelCount;
+      std::vector<LineInfo>::iterator iterBegin = m_aLines.begin() + nStartLine + 1;
+      std::vector<LineInfo>::iterator iterEnd = iterBegin + nDelCount;
       m_aLines.erase(iterBegin, iterEnd);
 
       //  nEndLine is no more valid
@@ -1266,7 +1266,7 @@ GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
 
   //  Advance to next undo group
   nPosition--;
-  vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+  std::vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
   while (((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
     {
       --iter;
@@ -1309,7 +1309,7 @@ GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ ) const
   nPosition++;
   if (nPosition < m_aUndoBuf.size ())
     {
-      vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
+      std::vector<UndoRecord>::const_iterator iter = m_aUndoBuf.begin () + nPosition;
       while (iter != m_aUndoBuf.end () && ((*iter).m_dwFlags & UNDO_BEGINGROUP) == 0)
         {
           ++iter;
@@ -1934,8 +1934,8 @@ void CCrystalTextBuffer::DeleteLine(int line, int nCount /*=1*/)
 {
   for (int ic = 0; ic < nCount; ic++)
     m_aLines[line + ic].Clear();
-  vector<LineInfo>::iterator iterBegin = m_aLines.begin() + line;
-  vector<LineInfo>::iterator iterEnd = iterBegin + nCount;
+  std::vector<LineInfo>::iterator iterBegin = m_aLines.begin() + line;
+  std::vector<LineInfo>::iterator iterEnd = iterBegin + nCount;
   m_aLines.erase(iterBegin, iterEnd);
 }
 
