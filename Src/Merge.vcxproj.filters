@@ -26,6 +26,9 @@
       <UniqueIdentifier>{b889169f-de55-4db7-ad06-423f6438fa90}</UniqueIdentifier>
       <Extensions>cpp;c;h</Extensions>
     </Filter>
+    <Filter Include="EditLib\parsers">
+      <UniqueIdentifier>{740d4dd9-ab31-47b8-9cbb-8e6a7b5db4fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="7zCommon.cpp">
@@ -493,159 +496,6 @@
     <ClCompile Include="WMGotoDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\asp.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\basic.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\batch.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ccrystaleditview.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ccrystaltextbuffer.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ccrystaltextview.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ccrystaltextview2.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ceditreplacedlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\cfindtextdlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\chcondlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\cplusplus.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\crystaleditviewex.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\crystalparser.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\crystaltextblock.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\cs2cs.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\csharp.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\css.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\dcl.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\filesup.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\fortran.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\fpattern.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\gotodlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\html.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ini.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\innosetup.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\is.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\java.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\LineInfo.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\lisp.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\memcombo.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\nsis.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\pascal.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\perl.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\php.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\po.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\powershell.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\python.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\registry.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\rexx.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\rsrc.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\ruby.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\sgml.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\sh.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\siod.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\sql.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\statbar.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\tcl.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\tex.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\UndoRecord.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\verilog.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="editlib\xml.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="diffutils\src\ANALYZE.C">
       <Filter>DiffEngine</Filter>
     </ClCompile>
@@ -706,20 +556,179 @@
     <ClCompile Include="diffutils\lib\REGEX.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\cregexp_pcre.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="SyntaxColorsUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\string_util.cpp">
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\SyntaxColors.cpp">
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
-    <ClCompile Include="editlib\ViewableWhitespace.cpp">
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview.cpp">
       <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaltextview2.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ceditreplacedlg.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\LineInfo.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\SyntaxColors.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\UndoRecord.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ViewableWhitespace.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cfindtextdlg.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_pcre.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cs2cs.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\edtlib.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\filesup.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\fpattern.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\gotodlg.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\memcombo.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\splash.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
+      <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\batch.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\asp.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\basic.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cplusplus.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\csharp.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\css.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\dcl.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\fortran.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\html.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ini.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\innosetup.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\java.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\is.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\lisp.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\nsis.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\perl.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\pascal.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\php.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\po.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\powershell.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\python.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rexx.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\rsrc.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\ruby.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\tcl.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\tex.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\verilog.cpp">
+      <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp">
+      <Filter>EditLib\parsers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1223,78 +1232,6 @@
     <ClInclude Include="WMGotoDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="editlib\ccrystaleditview.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\ccrystaltextbuffer.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\ccrystaltextview.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\ceditreplacedlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\cfindtextdlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\chcondlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\cregexp.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\crystaleditviewex.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\crystalparser.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\crystaltextblock.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\cs2cs.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\editcmd.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\editreg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\edtlib.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\filesup.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\fpattern.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\gotodlg.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\LineInfo.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\memcombo.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\registry.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\resource.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\statbar.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\UndoRecord.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="editlib\wispelld.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
     <ClInclude Include="diffutils\lib\CMPBUF.H">
       <Filter>DiffEngine</Filter>
     </ClInclude>
@@ -1337,13 +1274,85 @@
     <ClInclude Include="SyntaxColorsUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="editlib\string_util.h">
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h">
       <Filter>EditLib</Filter>
     </ClInclude>
-    <ClInclude Include="editlib\SyntaxColors.h">
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.h">
       <Filter>EditLib</Filter>
     </ClInclude>
-    <ClInclude Include="editlib\ViewableWhitespace.h">
+    <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaltextview.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ceditreplacedlg.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\UndoRecord.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\ViewableWhitespace.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cfindtextdlg.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\chcondlg.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cregexp.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystaleditviewex.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystalparser.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\crystaltextblock.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\cs2cs.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\editcmd.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\editreg.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\edtlib.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\filesup.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\fpattern.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\gotodlg.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\registry.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\splash.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\string_util.h">
+      <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
       <Filter>EditLib</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1441,26 +1450,26 @@
     <None Include="res\sigma.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="editlib\ccrystaleditview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="editlib\ccrystaltextbuffer.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="editlib\ccrystaltextview.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="editlib\filesup.inl">
-      <Filter>EditLib</Filter>
-    </None>
-    <None Include="editlib\memcombo.inl">
-      <Filter>EditLib</Filter>
-    </None>
     <None Include="CHANGELO">
       <Filter>ChangeLogs</Filter>
     </None>
     <None Include="..\Docs\Users\ChangeLog.txt">
       <Filter>ChangeLogs</Filter>
+    </None>
+    <None Include="..\Externals\crystaledit\editlib\ccrystaleditview.inl">
+      <Filter>EditLib</Filter>
+    </None>
+    <None Include="..\Externals\crystaledit\editlib\ccrystaltextbuffer.inl">
+      <Filter>EditLib</Filter>
+    </None>
+    <None Include="..\Externals\crystaledit\editlib\ccrystaltextview.inl">
+      <Filter>EditLib</Filter>
+    </None>
+    <None Include="..\Externals\crystaledit\editlib\filesup.inl">
+      <Filter>EditLib</Filter>
+    </None>
+    <None Include="..\Externals\crystaledit\editlib\memcombo.inl">
+      <Filter>EditLib</Filter>
     </None>
   </ItemGroup>
 </Project>
