@@ -105,7 +105,7 @@ public:
 	void UpdateResources();
 	void InitStatusStrings();
 	void UpdateStatusFromDisk(UINT_PTR diffPos, BOOL bLeft, BOOL bRight);
-	void ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight);
+	void ReloadItemStatus(UINT_PTR diffPos, BOOL bLeft, BOOL bRight);
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
