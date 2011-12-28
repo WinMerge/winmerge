@@ -538,23 +538,24 @@ void CDirDoc::UpdateStatusFromDisk(UINT_PTR diffPos, BOOL bLeft, BOOL bRight)
 
 /**
  * @brief Update in-memory diffitem status from disk and update view.
- * @param [in] nIdx Index of item in UI list.
+ * @param [in] diffPos POSITION of item in UI list.
  * @param [in] bLeft If TRUE left-side item is updated.
  * @param [in] bRight If TRUE right-side item is updated.
  * @note Do not call this function from DirView code! This function
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
+void CDirDoc::ReloadItemStatus(UINT_PTR diffPos, BOOL bLeft, BOOL bRight)
 {
-	// Get position of item in DiffContext
-	UINT_PTR diffpos = m_pDirView->GetItemKey(nIdx);
-
 	// in case just copied (into existence) or modified
-	UpdateStatusFromDisk(diffpos, bLeft, bRight);
+	UpdateStatusFromDisk(diffPos, bLeft, bRight);
 
-	// Update view
-	m_pDirView->UpdateDiffItemStatus(nIdx);
+	int nIdx = m_pDirView->GetItemIndex(diffPos);
+	if (nIdx != -1)
+	{
+		// Update view
+		m_pDirView->UpdateDiffItemStatus(nIdx);
+	}
 }
 
 void CDirDoc::InitStatusStrings()
@@ -819,17 +820,15 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 	// so there really is not status to update.
 	if (pos > 0)
 	{
-		int ind = m_pDirView->GetItemIndex(pos);
-
 		// Figure out new status code
 		UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);
 
 		// Update both views and diff context memory
-		SetDiffCompare(diffcode, ind);
+		m_pCtxt->SetDiffStatusCode(pos, diffcode, DIFFCODE::COMPAREFLAGS);
 
 		if (nDiffs != -1 && nTrivialDiffs != -1)
-			SetDiffCounts(nDiffs, nTrivialDiffs, ind);
-		ReloadItemStatus(ind, TRUE, TRUE);
+			m_pCtxt->SetDiffCounts(pos, nDiffs, nTrivialDiffs);
+		ReloadItemStatus(pos, TRUE, TRUE);
 	}
 }
 
