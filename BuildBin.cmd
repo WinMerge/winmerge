@@ -16,8 +16,12 @@ setlocal
 call "%VS71COMNTOOLS%vsvars32.bat"
 set _ACP_ATLPROV=%VS71COMMONTOOLS%\..\..\Vc7\bin\ATLPROV.DLL
 
-devenv.exe /build "Release" WinMerge.sln
-devenv.exe /build "Release Unicode" WinMerge.sln
+echo. > error.log
+devenv.exe /build "Release" WinMerge.sln /Out error.log
+type error.log
+echo. > error.log
+devenv.exe /build "Release Unicode" WinMerge.sln /Out error.log
+type error.log
 endlocal
 
 setlocal
