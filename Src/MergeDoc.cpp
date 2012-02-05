@@ -462,7 +462,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	CheckFileChanged();
 
-	bool bForceUTF8 = false;
+	// Set up DiffWrapper
+	m_diffWrapper.SetCreateDiffList(&m_diffList);
+	m_diffWrapper.GetOptions(&diffOptions);
+	
+	// Save text buffer to file
+	bool bForceUTF8 = diffOptions.bIgnoreCase;
 	String tempPath = env_GetTempPath(NULL);
 	IF_IS_TRUE_ALL (m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage(), nBuffer, m_nBuffers) {}
 	else
@@ -473,10 +478,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 		SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath().c_str(), bForceUTF8);
 	}
 
-	// Set up DiffWrapper
-	m_diffWrapper.SetCreateDiffList(&m_diffList);
-	m_diffWrapper.GetOptions(&diffOptions);
-	
 	// Clear diff list
 	m_diffList.Clear();
 	m_nCurDiff = -1;
