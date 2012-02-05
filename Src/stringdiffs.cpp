@@ -11,7 +11,6 @@
 #include <tchar.h>
 #include <assert.h>
 #include <mbctype.h>
-#include "string_util.h"
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
@@ -1566,7 +1565,7 @@ static inline bool IsLeadByte(TCHAR ch)
 static inline bool
 isSafeWhitespace(TCHAR ch)
 {
-	return xisspace(ch) && !IsLeadByte(ch);
+	return _istspace((unsigned)ch) && !IsLeadByte(ch);
 }
 
 /**
