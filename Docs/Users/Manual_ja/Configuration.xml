@@ -1,1616 +1,1274 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Configuration">
-  <title>オプションとコンフィグレーション<indexterm>
-      <primary>オプション</primary>
-    </indexterm></title>
-
-  <para>The Options dialog enables you to customize many WinMerge features. To
-  set WinMerge options:</para>
-
+  <title>オプションとコンフィグレーション
+  <indexterm>
+    <primary>オプション</primary>
+  </indexterm></title>
+  <para>オプションダイアログでは、WinMergeの様々なカスタマイズを行うことができます。WinMergeオプションを設定するには、</para>
   <orderedlist>
     <listitem>
-      <para>Click <menuchoice>
-          <guimenu>Edit</guimenu>
-
-          <guimenuitem>Options</guimenuitem>
-        </menuchoice> in the menu or the <inlinemediaobject>
-          <imageobject>
-            <imagedata contentwidth="16" fileref="screenshots/options_btn.png" />
-          </imageobject>
-
-          <textobject>
-            <phrase>WinMerge Options button</phrase>
-          </textobject>
-        </inlinemediaobject> <guibutton>Options</guibutton> button in the
-      toolbar.</para>
-
-      <para>The Options dialog contains a number of pages, each containing a
-      group of related options. You can open any page by clicking its title in
-      the <guilabel>Categories</guilabel> list, on the left side of the
-      dialog.</para>
+      <para>メニューの、
+      <menuchoice>
+        <guimenu>編集</guimenu>
+        <guimenuitem>設定</guimenuitem>
+      </menuchoice>、または、ツールバーの
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata contentwidth="16" fileref="screenshots/options_btn.png" />
+        </imageobject>
+        <textobject>
+          <phrase>WinMerge Options button</phrase>
+        </textobject>
+      </inlinemediaobject>
+      <guibutton>設定</guibutton>ボタンをクリックしてください。</para>
+      <para>オプションダイアログには、多くのページがあり、それぞれ、関連する設定のグループを含んでいます。ダイアログの左端にある
+      <guilabel>
+      <!-- TODO: 日本語版確認 -->カテゴリ</guilabel>リストのタイトルをクリックすることで、ページを開くことができます。</para>
     </listitem>
-
     <listitem>
-      <para>Configure the options you want to change using one or both of these
-      methods:</para>
-
+      <para>以下の方法の片方、または、両方を使って、変更したいオプションを設定することができます。</para>
       <itemizedlist>
         <listitem>
-          <para>Directly in the options pages.</para>
+          <para>オプションページで直接編集</para>
         </listitem>
-
         <listitem>
-          <para>Importing an options <filename>.ini</filename> file that you
-          exported previously (see <xref linkend="Configuration_importexport" />
-          for details).</para>
+          <para>エクスポート済の
+          <filename>.ini</filename>ファイルをインポート
+          <!-- TODO: 参照先不明 (see <xref linkend="Configuration_importexport" /> for details).--></para>
         </listitem>
       </itemizedlist>
     </listitem>
-
     <listitem>
-      <para>When you have set all your options, click <guibutton>OK</guibutton>
-      to save them and dismiss the dialog.</para>
+      <para>オプションを設定し終わったら、
+      <guibutton>OK</guibutton>をクリックして、それらを保存し、ダイアログを閉じてください。</para>
     </listitem>
   </orderedlist>
-
-  <para>This topic describes the options in detail. There is a section for each
-  page in the Options dialog.</para>
-
+  <para>このトピックでは、オプションの詳細について説明します。オプションダイアログの、それぞれのページにはセクションがあります。</para>
   <section id="Configuration_importexport">
-    <title>設定情報のインポートとエクスポート<indexterm>
-        <primary>importing options files</primary>
-      </indexterm><indexterm>
-        <primary>exporting options files</primary>
-      </indexterm></title>
-
-    <para>If you change options frequently for different compare or merge
-    scenarios, or if you want to share your settings with other WinMerge users,
-    consider saving your settings by exporting them to an options file. Then,
-    whenever you want to use those settings, you can simply import the options
-    file instead of setting options manually.</para>
-
+    <title>設定情報のインポートとエクスポート
+    <indexterm>
+      <primary>importing options files</primary>
+    </indexterm>
+    <indexterm>
+      <primary>exporting options files</primary>
+    </indexterm></title>
+    <para>
+    差分比較、または、マージの設定を頻繁に変更する場合、また、あなたの設定を他のWinMergeユーザと共有したい場合は、設定をファイルへエクスポートして保存することを検討してください。あとでそれらの設定を使いたい時は、手動でオプションを設定する代わりに、単に設定ファイルをインポートすることができます。</para>
     <variablelist>
       <varlistentry>
-        <term>To export options</term>
-
+        <term>エクスポートオプション</term>
         <listitem>
-          <para>When you have set your options the way you want them, click
-          <guibutton>Export</guibutton>. In the Select file for export dialog,
-          specify a path and name for your options file (the type
-          <filename>ini</filename> is automatically appended), and click
-          <guibutton>Save</guibutton>.</para>
-
-          <para>In the generated text <filename>ini</filename> file, each line
-          contains a name-value pair that defines a single option.</para>
+          <para>オプションを設定し終わったら、
+          <guibutton>エクスポート</guibutton>をクリックしてください。エクスポートダイアログで、設定ファイルのパスと名前を指定して(拡張子
+          <filename>ini</filename>は、自動的に付加されます)、
+          <guibutton>保存</guibutton>をクリックしてください。</para>
+          <para>
+          <!-- FIXME: もっと良い訳はないか -->生成された
+          <filename>ini</filename>ファイルの各行は、一つのオプションを表す、名前と値のペアを含みます。</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
-        <term>To import options</term>
-
+        <term>インポートオプション</term>
         <listitem>
-          <para>When you want to reuse your saved options, click
-          <guibutton>Import</guibutton>. In the Select file for import dialog,
-          navigate to the saved <filename>ini</filename> file and click
-          <guibutton>Open</guibutton>.</para>
-
-          <para>The values in your imported options file replace all existing
-          settings.</para>
+          <para>保存された設定を再使用したい時は、
+          <guibutton>インポート</guibutton>をクリックしてください。インポートダイアログで、保存済の
+          <filename>ini</filename>ファイルを探して、
+          <guibutton>開く</guibutton>をクリックしてください。</para>
+          <para>インポートされた設定ファイルの値で、すべてのオプションを置き換えます。</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </section>
-
   <section id="Configuration_general">
     <title>一般ページ</title>
-
-    <para>The General page has these options:</para>
-
+    <para>一般ページには、いくつかのオプションがあります。</para>
     <section>
-      <title>自動的に最初の差異にスクロールする<indexterm>
-          <primary>自動的に最初の差異にスクロールする</primary>
-        </indexterm></title>
-
+      <title>自動的に最初の差異にスクロールする
+      <indexterm>
+        <primary>自動的に最初の差異にスクロールする</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Compare window opens to the
-          top of the folder or file, with no difference selected.</para>
+          <para>
+          <option>無効</option>(デフォルト): 
+          <!-- FIXME: イマイチ -->比較ウィンドウは、フォルダ、または、ファイルの先頭から開始します(差異は未選択)。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: When it first opens, the Compare
-          window selects the first difference, scrolling to the location if
-          necessary.</para>
-
+          <para>
+          <option>有効</option>: 最初に開いた時、比較ウィンドウは(必要ならそこまでスクロールして)最初の差異を選択します。</para>
           <itemizedlist>
             <listitem>
-              <para>For a folder compare, selects the first different file or
-              folders.</para>
+              <para>フォルダ比較では、ファイル、または、フォルダの最初の差異を選択します。</para>
             </listitem>
-
             <listitem>
-              <para>For a file compare, selects the first difference block in
-              the files.</para>
+              <para>ファイル比較では、ファイル中の最初の差異ブロックを選択します。</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>スプラッシュ画面を非表示<indexterm>
-          <primary>スプラッシュ画面の有効化と無効化</primary>
-        </indexterm></title>
-
+      <title>スプラッシュ画面を非表示
+      <indexterm>
+        <primary>スプラッシュ画面の有効化と無効化</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): A splash screen is
-          displayed when you start WinMerge. You can dismiss the screen at any
-          time by clicking it; otherwise it is automatically dismissed after a
-          few seconds.</para>
+          <para>
+          <option>無効</option>(デフォルト):
+          WinMergeを起動した時に、スプラッシュスクリーンが表示されます。クリックすることで、いつでも、それを消すことができます。そうしなかった場合、数秒すると自動的に消えます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Completely omits the splash screen
-          when you start WinMerge. Note that this does not make startup
-          faster.</para>
+          <para>
+          <option>有効</option>: WinMergeを起動した時に、スプラッシュすクリーンを表示しません。注) これは、起動を速くするわけではありません。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title><keycap>ESC</keycap>でウインドウを閉じる<indexterm>
-          <primary>ESCでウインドウを閉じる</primary>
-        </indexterm></title>
-
+      <title>
+      <keycap>ESC</keycap>でウインドウを閉じる
+      <indexterm>
+        <primary>ESCでウインドウを閉じる</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): Lets you use the
-          <keycap>ESC</keycap> key to close WinMerge windows. Pressing
-          <keycap>ESC</keycap> once closes one window, so with one File Compare
-          window open, it takes three key presses to close WinMerge: first the
-          File Compare window, then the Folder Compare window, and finally the
-          WinMerge window.</para>
-
-          <para>Note that in the WinMerge command line, the
-          <parameter>-e</parameter> parameter enables you to close WinMerge by
-          pressing <keycap>ESC</keycap> just once.</para>
+          <para>
+          <option>有効</option>(デフォルト): 
+          <keycap>ESC</keycap>キーでWinMergeウィンドウを閉じられるようにします。
+          <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
+          <keycap>
+          ESC</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
+          <para>注) WinMergeのコマンドラインの
+          <parameter>-e</parameter>パラメータは、WinMergeを
+          <keycap>ESC</keycap>1回で終了することを可能にします。</para>
         </listitem>
-
         <listitem>
-          <para><option>Disabled</option>: Pressing <keycap>ESC</keycap> does
-          not close any WinMerge windows.</para>
+          <para>
+          <option>無効</option>: 
+          <keycap>ESC</keycap>押下で、WinMergeウィンドウを閉じません。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>開くダイアログで自動的にパスを検査する</title>
-
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): The Select Files or Folders
-          dialog checks both paths as you enter them. The
-          <guibutton>OK</guibutton> button remains disabled until both paths are
-          validated. Note that this checking can cause some delay.</para>
+          <para>
+          <option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、パスを入力した時に、それらをチェックします。
+          <guibutton>OK</guibutton>ボタンは、両方のパスが検証されるまで、使用不可となります。注) 
+          <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
-
         <listitem>
-          <para><option>Disabled</option>: The <guibutton>OK</guibutton> button
-          in the Select Files or Folders dialog is always enabled, and attempts
-          to open any paths you specify. Since there is no delay during
-          validation, this can speed up the selection of paths. However, if the
-          path cannot be opened, an error dialog is displayed.</para>
+          <para>
+          <option>無効</option>: ファイルまたはフォルダの選択ダイアログの
+          <guibutton>
+          OK</guibutton>ボタンは常に使用可能となり、指定したパスを開こうとします。検証による遅延がないため、パスの選択が速くなります。しかし、パスが開かれなかった場合、エラーダイアログが表示されます。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>複数のインスタンスを起動しない<indexterm>
-          <primary>WinMerge window</primary>
-
-          <secondary>limiting instances</secondary>
-        </indexterm></title>
-
+      <title>複数のインスタンスを起動しない
+      <indexterm>
+        <primary>WinMerge window</primary>
+        <secondary>limiting instances</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): You can run multiple
-          WinMerge instances. For example, if WinMerge is currently running and
-          you click the WinMerge desktop shortcut, a new WinMerge window is
-          opened.</para>
+          <para>
+          <option>無効</option>(デフォルト):
+          複数のWinMergeを起動することができます。例えば、WinMergeが起動している時に、WinMergeのショートカットをクリックした場合、新たなWinMergeウィンドウが開かれます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Limits the WinMerge program to one
-          instance:</para>
-
+          <para>
+          <option>有効</option>: WinMergeの起動を一つに制限します。</para>
           <itemizedlist>
             <listitem>
-              <para>If WinMerge is currently running and you try to start a new
-              instance, no new application window is opened: the current
-              WinMerge window is used instead.</para>
+              <para>
+              WinMergeが起動している時に、新しいインスタンスを起動しようとした場合、新しいウィンドウは開かれず、代わりに、現在のWinMergeウィンドウが使われます。</para>
             </listitem>
-
             <listitem>
-              <para>If you start a new instance with paths (for example on the
-              command line), a new Compare window is opened in the existing
-              WinMerge window.</para>
+              <para>
+              (例えば、コマンドラインから)パスと共に新しいインスタンスを起動しようとした場合、新たな比較ウィンドウが、既存のWinMergeウィンドウ中に開かれます。</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </itemizedlist>
-
-      <para>Also see the related options under <xref
-      linkend="Configuration_multicompwin" />.</para>
+      <para>下記の関連するオプションも参照してください
+      <xref linkend="Configuration_multicompwin" />。</para>
     </section>
-
     <section>
       <title>複数のウインドウを閉じるときに尋ねる</title>
-
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): If you exit WinMerge while
-          multiple Compare windows are open, WinMerge prompts you to confirm
-          whether to close all the windows.</para>
+          <para>
+          <option>無効</option>(デフォルト):
+          複数の比較ウィンドウが開いている時に、WinMergeを終了する場合、WinMergeは、すべてのウィンドウを閉じるかを尋ねます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: If you click
-          <guibutton>Exit</guibutton> and there are no pending file changes,
-          WinMerge closes immediately.</para>
+          <para>
+          <option>有効</option>: 
+          <guibutton>終了</guibutton>をクリックした時、未保存のファイル変更が無い場合、WinMergeは直ちに終了します。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>ファイル比較時のファイル時刻を保つ<indexterm>
-          <primary>timestamps</primary>
-
-          <secondary>preserving</secondary>
-        </indexterm></title>
-
+      <title>ファイル比較時のファイル時刻を保つ
+      <indexterm>
+        <primary>timestamps</primary>
+        <secondary>preserving</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): If you save changes to a
-          file in WinMerge, the timestamp of the file is updated.</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMergeで、ファイルの変更を保存する時、ファイルのタイムスタンプが更新されます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: If you save changes to a file in
-          WinMerge, the timestamp of the file is not changed in your file
-          system.</para>
+          <para>
+          <option>有効</option>: WinMergeで、ファイルの変更を保存する時、ファイルシステム上のファイルのタイムスタンプは更新されません。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>起動時にファイルまたはフォルダの選択ダイアログを表示<indexterm>
-          <primary>Select Files or Folders dialog</primary>
-
-          <secondary>opening automatically</secondary>
-        </indexterm></title>
-
+      <title>起動時にファイルまたはフォルダの選択ダイアログを表示
+      <indexterm>
+        <primary>Select Files or Folders dialog</primary>
+        <secondary>opening automatically</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): The WinMerge window opens
-          when you launch WinMerge. You must then click <menuchoice>
-              <guimenu>File</guimenu>
-
-              <guimenuitem>Open</guimenuitem>
-            </menuchoice> to open Select Files or Folders.</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge起動時に、WinMergeウィンドウが開きます。ファイル、または、フォルダを選択するには、
+          <menuchoice>
+            <guimenu>ファイル</guimenu>
+            <guimenuitem>開く</guimenuitem>
+          </menuchoice>をクリックしなければなりません。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: The Select Files or Folders dialog
-          opens along with the WinMerge window when you launch WinMerge.</para>
+          <para>
+          <option>有効</option>: WinMergeを起動した時、WinMergeウィンドウと共に、ファイルまたはフォルダの選択ダイアログが開きます。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>Open-dialog Auto-Completion<indexterm>
-          <primary>MRU list</primary>
-        </indexterm></title>
-
-      <para>Choose one of these options:</para>
-
+      <title>開くダイアログのオートコンプリート
+      <indexterm>
+        <primary>MRU list</primary>
+      </indexterm></title>
+      <para>次の中から一つ選択してください:</para>
       <itemizedlist>
         <listitem>
-          <para><guilabel>Disabled</guilabel> (default): No autocompletion is
-          performed when you enter paths in the Select Files or Folders
-          dialog.</para>
+          <para>
+          <guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダの選択ダイアログでパス入力した時、オートコンプリートは実行されません。</para>
         </listitem>
-
         <listitem>
-          <para><guilabel>From file system</guilabel>: Checks paths as you type.
-          It attempts to locate paths in the file system that match the letters
-          you type, and if a matching path is found, completes the path.</para>
+          <para>
+          <guilabel>ファイルシステム</guilabel>: 
+          <!-- FIXME: 違和感あり -->入力した時にパスを調べます。入力した文字と一致するパスを、ファイルシステム上から見つけようとします。一致するパスが見つかった場合、パスを補完します。</para>
         </listitem>
-
         <listitem>
-          <para><guilabel>From MRU list</guilabel>: Checks paths only from the
-          most recently used (MRU) list. This is handy when you have a limited
-          set of paths to compare.</para>
+          <para>
+          <guilabel>最近使ったリスト</guilabel>: パスを、最近使ったリスト(MRU)の中から調べます。
+          <!-- TODO: かなり意訳 -->これは、比較用のパスが限定されている場合に便利です。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section id="Configuration_multicompwin">
-      <title>複数の比較ウインドウを有効<indexterm>
-          <primary>Compare window</primary>
-
-          <secondary>opening multiple</secondary>
-        </indexterm></title>
-
-      <para>Controls whether WinMerge allows you to open single or multiple
-      Compare windows. Specify the <guilabel>Folder compare</guilabel> and
-      <guilabel>File compare</guilabel> options independently:</para>
-
+      <title>複数の比較ウインドウを有効
+      <indexterm>
+        <primary>Compare window</primary>
+        <secondary>opening multiple</secondary>
+      </indexterm></title>
+      <para>WinMergeが、単一か複数の比較ウィンドウを開くことを許可するかどうかを制御します。
+      <guilabel>フォルダ比較</guilabel>と
+      <guilabel>ファイル比較</guilabel>オプションを別々に指定します。</para>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): You can only open one
-          Folder compare or File compare window at a time.</para>
+          <para>
+          <option>無効</option>(デフォルト): 同時に、一つのフォルダ比較、または、ファイル比較ウィンドウしか開けません。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: You can open multiple Folder or File
-          compare windows simultaneously.<note>
-              <para>File Compare windows are children of Folder Compare windows.
-              Therefore, you can open one File Compare window for every Folder
-              Compare window, even if the <guilabel>File compare</guilabel>
-              option is disabled.</para>
-            </note></para>
+          <para>
+          <option>有効</option>: 同時に、複数のフォルダ比較、または、ファイル比較ウィンドウを開くことができます。
+          <note>
+            <para>ファイル比較ウィンドウは、フォルダ比較ウィンドウの子どもです。したがって、
+            <guilabel>ファイル比較</guilabel>オプションが無効に設定されていても、フォルダ比較ウィンドウ毎に一つのファイル比較ウィンドウを開けます。</para>
+          </note></para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>リセット</title>
-
-      <para>WinMerge allows you to suppress some common message boxes. For
-      example, when two identical files are opened, the message box titled,
-      <guilabel>The files are identical</guilabel>, is normally opened. If you
-      don't want this box to display any more, you can enable (check) the option
-      in that message box to not show the message again.</para>
-
-      <para>Later, you might decide that you want to see those messages again.
-      If so, click the <guibutton>Reset</guibutton> button to make the message
-      boxes display again.</para>
-
+      <para>WinMergeは、いくつかのメッセージボックスを抑制することを許可します。例えば、同一の2つのファイルが開かれた時、通常なら
+      <guilabel>選択されたファイルは同一です。</guilabel>メッセージボックスが,
+      開かれます。これ以上、このメッセージを表示して欲しくない場合、メッセージボックス中のオプションを有効(チェックON)にすることで、そのメッセージを再び表示しないようにすることができます。</para>
+      <para>あとで、再びメッセージを見たいと思うかもしれません。
+      <guibutton>リセット</guibutton>ボタンをクリックすることで、メッセージボックスを再び表示するようにできます。</para>
       <note>
-        <para>We recommend that you not suppress messages when updating WinMerge
-        to a newer version. The installer enables their display automatically,
-        but if you don't use the installer, then remember to enable message
-        display by using the <guibutton>Reset</guibutton> button.</para>
+        <para>
+        WinMergeを新しいバージョンにアップデートした時は、メッセージを省略することはオススメしません。インストーラは、それらを自動的に表示するようにします。しかし、インストーラを使用しない場合、
+        <guibutton>リセット</guibutton>ボタンを使って、メッセージの表示を有効にすることを思い出してください。</para>
       </note>
     </section>
   </section>
-
   <section id="Configuration_compare">
     <title>比較ページ</title>
-
-    <para>The options in this page enable you to change some of the ways that
-    WinMerge detects differences, such as comparing only file size, or ignoring
-    some types of differences, like case.</para>
-
+    <para>
+    このページのオプションでは、WinMergeが、ファイルサイズのみを比較する(つまり、いくつかのタイプの差異を無視する)などの差異を検知する方法を変更することが可能です。</para>
     <important>
-      <para>Customizing difference detection can be useful during comparisons,
-      when you might not be interested in some differences. However, these
-      options also affect merging. For example, if you ignore whitespace
-      changes, then indentation changes in source code files are not preserved
-      when you merge.</para>
-
-      <para>For this reason, before you merge any differences, we strongly
-      recommend resetting the options on this page to their default settings,
-      especially the ignore options. To reset all the options on this page,
-      click the <guibutton>Defaults</guibutton> button.</para>
+      <para>
+      <!-- TODO: イマイチ -->いくつかの違いに興味がないかもしれない場合、差異を見つける方法をカスタマイズすることは、比較の間に有効かもしれません。しかし、これらのオプションは、マージにも影響します。例えば、スペースの変更を無視する場合は、マージ時にソースコード中のインデント変更は保存されません。</para>
+      <para>
+      この理由により、いくつかの差異をマージする前に、このページのオプション(特に無視オプション)をデフォルト値にリセットすることをオススメします。このページの全オプションをリセットするには、
+      <guibutton>デフォルト</guibutton>ボタンをクリックしてください。</para>
     </important>
-
     <section>
-      <title>様々な無視オプションについて<indexterm>
-          <primary>ignored differences</primary>
-        </indexterm></title>
-
-      <para>A number of options in the Compare page (described later in this
-      section) enable you to ignore certain differences. Ignored differences are
-      treated in special ways in WinMerge:</para>
-
+      <title>様々な無視オプションについて
+      <indexterm>
+        <primary>ignored differences</primary>
+      </indexterm></title>
+      <para>
+      比較ページ(このセクションの後で説明されている)の、たくさんのオプションによって、明らかな差異を無視することができます。無視された差異は、WinMerge内で特別な方法で扱われます。</para>
       <itemizedlist>
         <listitem>
-          <para>They are marked with the Ignored Difference color.</para>
+          <para>これらは、無視された差異の色でマークされます。</para>
         </listitem>
-
         <listitem>
-          <para>Ignored differences cannot be merged</para>
+          <para>無視された差異はマージできません。</para>
         </listitem>
-
         <listitem>
-          <para>Ignored differences are not included in difference counts</para>
+          <para>無視された差異は、差異の個数に含められません。</para>
         </listitem>
-
         <listitem>
-          <para>Files containing only ignored differences are marked as
-          identical in a folder comparison</para>
+          <para>フォルダ比較では、無視された差異のみが含まれているファイルは、同一のファイルとしてマークされます。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>空白<indexterm>
-          <primary>空白</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
-      <para>Whitespace is the space between words and lines. It is represented
-      in text files by special, nonprinting characters like spaces, tabs, and
-      linefeeds. The significance of whitespace depends on how you want to read
-      or process differences. It might be important to detect all changes in
-      whitespace. Conversely, you might prefer to treat all whitespace the same
-      whether one space, two spaces, an indent, or a tab. And in some structured
-      documents (like comma-separated lists), you might want to disregard all
-      whitespace.</para>
-
+      <title>空白
+      <indexterm>
+        <primary>空白</primary>
+        <secondary>detecting and ignoring differences</secondary>
+      </indexterm></title>
+      <para>
+      ホワイトスペースは、単語と行の間の空白です。それは、スペースやタブや改行のような、特別な非印字文字です。ホワイトスペースの重要性は、どのように差異を解釈したり、処理したいかに依ります。ホワイトスペースのすべての変更を見つけることは重要かもしれません。反対に、一つのスペース、二つのスペース、一つのインデント、または、タブなど、すべてのホワイトスペースを同様に扱いたいかもしれません。いくつかの構造化ドキュメント(カンマ区切りリストの様な)では、すべてのホワイトスペースを無視したいかもしれません。</para>
       <note>
-        <para>The effects of whitespace on changes within lines are visible only
-        when <option>View line differences</option> is enabled. This is in
-        contrast to difference blocks, which are always highlighted.</para>
+        <para>行内のホワイトスペースの変更の影響は、 
+        <option>行内差異を表示する</option>が有効にされている時だけ見ることができます。これは、差異ブロックとは対照的に、常にハイライトされます。</para>
       </note>
-
       <example>
-        <title>Lines with different whitespace</title>
-
-        <para>One space between words:<screen format="linespecific">Two Words</screen></para>
-
-        <para>Two spaces between words:<screen format="linespecific">Two  Words</screen></para>
-
-        <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
-
-        <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
+        <title>行と異なるホワイトスペース</title>
+        <para>単語間に一つのスペース:
+        <screen format="linespecific">Two Words</screen></para>
+        <para>単語間に二つのスペース:
+        <screen format="linespecific">Two Words</screen></para>
+        <para>単語間にタブ:
+        <screen format="linespecific">Two Words</screen></para>
+        <para>単語間にスペースなし:
+        <screen format="linespecific">TwoWords</screen></para>
       </example>
-
-      <para>You can control whitespace detection by choosing one of these
-      options:</para>
-
+      <para>これらのオプションの一つにより、ホワイトスペースの検出を制御できます:</para>
       <variablelist>
         <varlistentry>
-          <term>Compare</term>
-
+          <term>比較する</term>
           <listitem>
-            <para>All whitespace is compared (default). If you are not sure
-            which option your document requires, this is probably the safest
-            choice. In the example, all lines are detected as different.</para>
+            <para>
+            すべてのホワイトスペースが比較されます(デフォルト)。あなたのドキュメントがどのオプションを必要とするか確かでないなら、これは、たぶん最も安全な選択です。例では、すべての行が差異として検出されます。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Ignore change</term>
-
+          <term>変更を無視する</term>
           <listitem>
-            <para>Compares differences in whitespace. In the example, the first
-            three lines have different whitespace, but are detected as
-            identical: tabs and multiple are treated as if they are single
-            space. The last line has no whitespace, so the difference is
-            <emphasis>not</emphasis> ignored (in effect, the words in the last
-            two lines are different):</para>
+            <para>
+            <!-- TODO: ちょっと自信ない -->差異中のホワイトスペースを比較します。例では、最初の3行には異なるホワイトスペースが存在しています。しかし、それらは同一行として検出されます。タブと複数個のスペースは、単一のスペースとして扱われます。最後の行にホワイトスペースは存在しないため、差異は無視
+            <emphasis>されません</emphasis>(結果的に、最後の2行の単語は異なります)</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Ignore all</term>
-
+          <term>すべて無視する</term>
           <listitem>
-            <para>Ignores all whitespace characters, except linefeeds (so lines
-            are detected and preserved in a merge). All lines in the example are
-            detected as identical.</para>
+            <para>改行を除く、すべてのホワイトスペース文字を無視します(
+            <!-- TODO: ん？ -->so lines are detected and preserved in a
+            merge)。例のすべての行は、同一行として検出されます。</para>
           </listitem>
         </varlistentry>
       </variablelist>
-
       <note>
-        <title>Related topics</title>
-
-        <para>The effects of whitespace settings on line differences is
-        described in <xref linkend="CompareFiles_linediff-highlight" />.</para>
-
-        <para>The Options dialog Editor page contains related options that
-        control how whitespace is used to detect breaks between words. See <xref
-        linkend="Configuration_viewlinediffs" /> for details.</para>
+        <title>関連するトピック</title>
+        <para>行の差異におけるホワイトスペース設定の影響は、
+        <xref linkend="CompareFiles_linediff-highlight" />で説明されています。</para>
+        <para>
+        <!-- FIXME: 超難解な日本語 -->オプションダイアログのエディタページは、単語間の区切りを検出するために、ホワイトスペースがどのように使われるかの制御に関する設定を含んでいます。詳細は、
+        <xref linkend="Configuration_viewlinediffs" />を参照してください</para>
       </note>
     </section>
-
     <section>
-      <title>空行を無視する<indexterm>
-          <primary>blank lines</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
+      <title>空行を無視する
+      <indexterm>
+        <primary>blank lines</primary>
+        <secondary>detecting and ignoring differences</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Empty lines in the source
-          files are detected and represented in the File Compare window as blank
-          lines with the Deleted Difference colors.</para>
+          <para>
+          <option>無効</option>(デフォルト): ソースファイル中の空行は、ファイル比較ウィンドウ中で、「差異あり: 削除」の色の空行で表されされます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Empty lines in the source files are
-          ignored. They are represented in the File Compare window as blank
-          lines with the Ignored Difference colors. However the difference
-          cannot be merged.</para>
+          <para>
+          <option>有効</option>:
+          ソースファイル中の空行は無視されます。これらは、ファイル比較ウィンドウ中で、「無視された差異」の色の空行で表されます。しかしながら、差異はマージできません。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>大文字と小文字を区別しない<indexterm>
-          <primary>case (letter), detecting and ignoring differences</primary>
-        </indexterm></title>
-
+      <title>大文字と小文字を区別しない
+      <indexterm>
+        <primary>case (letter), detecting and ignoring differences</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Comparisons are
-          case-sensitive. For example, <literal>LowerCase</literal>,
-          <literal>LOWERCASE</literal>, and <literal>lowercase</literal> are all
-          different.</para>
+          <para>
+          <option>無効</option>(デフォルト): 比較は、大文字小文字を区別します。例えば、
+          <literal>LowerCase</literal>、
+          <literal>LOWERCASE</literal>、と 
+          <literal>lowercase</literal>はすべて異なります。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Differences between lowercase and
-          uppercase letters are ignored.</para>
+          <para>
+          <option>有効</option>: 文字間の大文字、小文字の差異は無視されます。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>改行文字の違いを無視する (Windows/Unix/Mac)<indexterm>
-          <primary>EOL</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
+      <title>改行文字の違いを無視する (Windows/Unix/Mac)
+      <indexterm>
+        <primary>EOL</primary>
+        <secondary>detecting and ignoring differences</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): End of line (EOL) style
-          differences are detected. For example, if you compare two lines that
-          have the same contents but different line endings, the lines are
-          considered to be different. When this happens, WinMerge displays a
-          dialog prompting you to confirm whether to detect or ignore the
-          difference.</para>
+          <para>
+          <option>無効</option>(デフォルト):
+          行末(EOL)スタイルの差異は検出されます。例えば、同じ内容で、行末が異なる2行を比較する場合、行は異なると判断されます。この場合、WinMergeは、差異を検出するか、無視するかの確認ダイアログを表示します。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: EOL differences are ignored.</para>
+          <para>
+          <option>有効</option>: EOLの差異は無視されます。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>移動ブロックの検出を有効にする<indexterm>
-          <primary>moved differences</primary>
-        </indexterm></title>
-
+      <title>移動ブロックの検出を有効にする
+      <indexterm>
+        <primary>moved differences</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge does not detect
-          when differences are due to moved lines.</para>
+          <para>
+          <option>無効</option>(デフォルト): 
+          <!-- TODO: イマイチ -->WinMergeは、行の移動による差異を検出しません。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: WinMerge tries to detect lines that
-          are moved (in different locations in each file). Moved blocks are
-          indicated by the <guilabel>Moved</guilabel> and <guilabel>Selected
-          Moved</guilabel> difference colors. If the Location bar is displayed,
-          corresponding difference locations in the left and right location bars
-          are connected with a line. Showing moved blocks can make it easier to
-          visualize changes in files, if there are not too many.</para>
-
-          <para>For an example, see the Location pane description in <xref
-          linkend="Compare_files" />.</para>
+          <para>
+          <option>有効</option>: WinMergeは、(ファイル中の異なる場所に)移動された行の検出を試みます。移動されたブロックは、
+          <guilabel>移動ブロック</guilabel>と
+          <guilabel>
+          選択された移動ブロック</guilabel>の色で示されます。ロケーションバーが表示されている場合、左と右のロケーションバーの一致する差異の場所が、線で結ばれます。移動ブロックの表示は、それが多すぎない場合、ファイル中の変更をより簡単に視覚化することができます。</para>
+          <para>一例は、ロケーションペインの説明
+          <xref linkend="Compare_files" />を参照してください。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>類似行をマッチさせる<indexterm>
-          <primary>similar lines, matching</primary>
-        </indexterm></title>
-
+      <title>類似行をマッチさせる
+      <indexterm>
+        <primary>similar lines, matching</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Lines within difference
-          blocks are shown as they occur in the source files.</para>
+          <para>
+          <option>無効</option>(デフォルト): 
+          <!-- TODO: -->Lines within difference blocks are shown as they occur in the source
+          files.</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: WinMerge tries to detect lines within
-          a difference blocks that are similar, and adds blank lines in the File
-          panes to align them. This option is most effective when lines are
-          quite similar; less effective if lines are too different.</para>
-
-          <para>For an example, see the <citetitle>Similar lines</citetitle>
-          description in <xref linkend="CompareFiles_diffcolors" />.</para>
+          <para>
+          <option>有効</option>:
+          WinMergeは、異なるブロック中の似ている行を検出しようと試みます。そして、ファイルペインに空行を追加し、それらの位置を揃えます。このオプションは、行が似通っている時に最も効果的で、行が全く異なっている場合には、それほど効果的ではありません。</para>
+          <para>一例は、
+          <xref linkend="CompareFiles_diffcolors" />にある
+          <citetitle>Similar lines</citetitle>の説明を参照してください。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>3秒以下の時間差を無視する<indexterm>
-          <primary>timestamps</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
+      <title>3秒以下の時間差を無視する
+      <indexterm>
+        <primary>timestamps</primary>
+        <secondary>detecting and ignoring differences</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Files with different
-          timestamps are detected as different.</para>
+          <para>
+          <option>無効</option>(デフォルト): 異なるタイムスタンプを持つファイルは、差異として検出されます。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Sometimes (for example, when you use
-          network shares) small differences in timestamps are not significant.
-          To get more meaningful results in such situations, this option enables
-          you to ignore time differences smaller than three seconds.</para>
-
-          <para>This option works only with the <guimenuitem>Modified
-          Date</guimenuitem> and <guimenuitem>Modified Date and
-          Size</guimenuitem> compare methods (described in <xref
-          linkend="Configuration_compmethod" />). It has no effect with other
-          methods.</para>
-
+          <para>
+          <option>有効</option>: 時々(例えば、ネットワーク共有を使用中の場合)、僅かなタイムスタンプの差異は重要なことではありません。
+          <!-- TODO: ちょっと意訳 -->そのような状況でより意味のある結果を得るために、このオプションで3秒以下の時間差を無視することができます。</para>
+          <para>このオプションは、(
+          <xref linkend="Configuration_compmethod" />で説明されている)比較方法が、
+          <guimenuitem>更新日時</guimenuitem>か
+          <guimenuitem>更新日時とサイズ</guimenuitem>の場合にのみ動作します。
+          <!-- TODO: 意訳すぎ？ -->他の比較方法と共に使用しても効果はありません。</para>
           <warning>
-            <para>This option should be enabled only when the time difference is
-            detected. Otherwise, it can cause incorrect compare results.</para>
+            <para>このオプションは、時間差が検出された時のみ有効です。さもなければ、それは不正な比較結果の原因となります。</para>
           </warning>
         </listitem>
       </itemizedlist>
     </section>
-
     <section id="Configuration_compmethod">
-      <title>ファイル比較方法<indexterm>
-          <primary>comparing files</primary>
-
-          <secondary>detection options</secondary>
-        </indexterm></title>
-
-      <para>This option lets you determine how complete your file comparisons
-      are. Choose one of these five choices:</para>
-
+      <title>ファイル比較方法
+      <indexterm>
+        <primary>comparing files</primary>
+        <secondary>detection options</secondary>
+      </indexterm></title>
+      <para>このオプションは、ファイル比較を完了する方法を決めることができます。5つの選択肢から1つを選んでください。</para>
       <variablelist>
         <varlistentry>
-          <term>Full Contents</term>
-
+          <term>フルコンテンツ</term>
           <listitem>
-            <para>Default: Full comparison of files by content, with all the
-            bells and whistles. This method invokes plugins and uses the
-            diffutils engine for fully accurate differencing and moved block
-            detection. This is the most complete and recommended method.</para>
+            <para>デフォルト: ファイルの内容すべてを比較します。この方法はプラグインを発動し、正確な差異と移動ブロック検出のために diffutils
+            エンジンを使用します。これは、もっとも完璧でオススメの方法です。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Quick Contents</term>
-
+          <term>クイックコンテンツ</term>
           <listitem>
-            <para>Slimmed-down comparison of files by content. This method uses
-            streamlined file comparison code which skips plugins and moved block
-            detection. This method is faster than <guilabel>Full
-            Contents</guilabel>, because it does not load the files.</para>
-
-            <para>Its drawback is that line filters are not applied when
-            comparing. For example, this method sees file as different even if
-            line filters are set to ignore all differences in the files.</para>
+            <para>スリムダウンされた、ファイルの内容による比較です。この方法は、プラグインと移動ブロック検出をスキップし、簡素化されたファイル比較コードを使用します。この方法は、
+            <!-- NOTE: 一度にファイル全体を読み込まないということか？ -->ファイルを読み込まないため、
+            <guilabel>フルコンテンツ</guilabel>よりも高速です。</para>
+            <para>
+            短所は、比較時に行フィルタが許可されないことです。例えば、この方法は、行フィルタをファイルのすべての差異を無視するように設定していても、それらを差異として検出します。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Modified Date<indexterm>
-              <primary>timestamps</primary>
-
-              <secondary>comparing</secondary>
-            </indexterm></term>
-
+          <term>更新日時
+          <indexterm>
+            <primary>timestamps</primary>
+            <secondary>comparing</secondary>
+          </indexterm></term>
           <listitem>
-            <para>Compares only the modification dates on the files, so it is
-            far faster than either of the contents methods. But obviously, it is
-            only as accurate as the modification dates.</para>
+            <para>ファイルの更新日時のみを比較するため、他のどの比較方法よりもずっと高速です。
+            <!-- TODO: これ必要？ -->しかし、明らかに、それはただ更新日時と同じくらい正確です。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term><guilabel>Modified Date and Size</guilabel></term>
-
+          <term>
+            <guilabel>更新日時とサイズ</guilabel>
+          </term>
           <listitem>
-            <para>Similar to <guilabel>Modified Date</guilabel>, but also checks
-            file sizes when dates are identical.</para>
+            <para>
+            <guilabel>更新日時</guilabel>と似ていますが、日時が同一の時に、ファイルサイズもチェックします。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Size<indexterm>
-              <primary>file sizes</primary>
-
-              <secondary>comparing</secondary>
-            </indexterm></term>
-
+          <term>サイズ
+          <indexterm>
+            <primary>file sizes</primary>
+            <secondary>comparing</secondary>
+          </indexterm></term>
           <listitem>
-            <para>Compares only file sizes, so it is fast but not as accurate as
-            the contents methods.</para>
+            <para>ファイルサイズのみを比較するため高速ですが、内容を比較する方法よりも不正確です。</para>
           </listitem>
         </varlistentry>
       </variablelist>
     </section>
-
     <section>
-      <title>最初の差異で比較を終了する<indexterm>
-          <primary>comparing files</primary>
-
-          <secondary>stopping after first difference</secondary>
-        </indexterm><indexterm>
-          <primary>comparing folders</primary>
-
-          <secondary>stopping after first difference</secondary>
-        </indexterm></title>
-
-      <para>This option is enabled only when the <guilabel>Quick
-      Contents</guilabel> compare method is selected.</para>
-
+      <title>最初の差異で比較を終了する
+      <indexterm>
+        <primary>comparing files</primary>
+        <secondary>stopping after first difference</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>comparing folders</primary>
+        <secondary>stopping after first difference</secondary>
+      </indexterm></title>
+      <para>このオプションは、比較方法に
+      <guilabel>クイックコンテンツ</guilabel>が選択された場合にのみ有効となります。</para>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge examines all
-          differences in the files.</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge は、ファイル中のすべての差異を検査します。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: This option optimizes comparisons by
-          examining files only until the first difference is found, instead
-          always scanning the entire files.</para>
-
-          <para>The drawback is that WinMerge may be unable to identify binary
-          files as binary. This is likely to happen if the first difference is
-          near the beginning of the file. If you know what kind of files you are
-          comparing (for example, which are binary files), this option can be a
-          good way to speed up comparisons. However, don't enable this option if
-          you are not sure what kind of files you are comparing.</para>
+          <para>
+          <option>有効</option>:
+          このオプションは、常にファイル全体をスキャンする代わりに、最初の差異が見つかるまでファイルを検査することにより比較を最適化します。</para>
+          <para>欠点は、WinMerge
+          が、バイナリファイルをバイナリとして検出できないかもしれないことです。最初の差異がファイルの先頭付近にある場合、このようなことが起こります。どんな種類のファイルを比較するか知っているなら、このオプションは比較を高速化するための良い方法となるでしょう。しかし、比較するファイルがどんな種類か確かでないなら、このオプションを有効にしないでください。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>フィルタコメント<indexterm>
-          <primary>filters</primary>
-
-          <secondary>comments</secondary>
-        </indexterm></title>
-
+      <title>フィルタコメント
+      <indexterm>
+        <primary>filters</primary>
+        <secondary>comments</secondary>
+      </indexterm></title>
       <!--Just guessing what this does - ask a developer.-->
-
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge compares comments
-          in code, along with other content.</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge は、他の内容と一緒に、コード中のコメントを比較します。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: This option optimizes comparisons by
-          detecting comments in certain programming language file types (such as
-          C++ and Java), and ignoring them.</para>
-
-          <para>The recognized file types and their comment markers are defined
-          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
-          of the WinMerge installation directory.</para>
+          <para>
+          <option>有効</option>: このオプションは、(C++ や Java
+          のような)プログラミング言語のコメントを検出し、それらを無視することにより、比較を最適化します。</para>
+          <para>既知のファイル形式と、それらのコメント記号は WinMerge インストールフォルダ直下の 
+          <filename>IgnoreSectionMarkers.ini</filename>ファイルに定義されています。</para>
         </listitem>
       </itemizedlist>
     </section>
   </section>
-
   <section id="Configuration_editor">
-    <title>エディタページ<indexterm>
-        <primary>editing</primary>
-
-        <secondary>options for File Compare window</secondary>
-      </indexterm></title>
-
+    <title>エディタページ
+    <indexterm>
+      <primary>editing</primary>
+      <secondary>options for File Compare window</secondary>
+    </indexterm></title>
     <section id="Configuration_syntaxhighlight">
-      <title>シンタックスハイライト<indexterm>
-          <primary>シンタックスハイライト</primary>
-
-          <secondary>enabling and disabling</secondary>
-        </indexterm></title>
-
+      <title>シンタックスハイライト
+      <indexterm>
+        <primary>シンタックスハイライト</primary>
+        <secondary>enabling and disabling</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge can syntax
-          highlight many programming language and web formats. To see the
-          formats that are supported by default, click <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>Syntax Highlight</guimenuitem>
-            </menuchoice>.</para>
+          <para>
+          <option>有効</option>(デフォルト): WinMerge
+          は、多くのプログラミング言語とwebフォーマットを、シンタックスハイライトすることができます。デフォルトでサポートされている形式を見るには、
+          <menuchoice>
+          <guimenu>表示</guimenu>
+          <guimenuitem>シンタックスハイライト</guimenuitem>をクリックしてください</menuchoice>。</para>
         </listitem>
-
         <listitem>
-          <para><option>Disabled</option>: Syntax highlighting consumes some
-          processing power, so if WinMerge screen updating seems to be slow,
-          turning off this option might help.</para>
+          <para>
+          <option>無効</option>: シンタックスハイライトは、多少のCPUパワーを消費するため、WinMerge
+          の画面描画が遅いと思う場合は、これを無効にすると良いかもしれません。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>自動的に再スキャンする<indexterm>
-          <primary>ファイルの再スキャン</primary>
-
-          <secondary>enabling and disabling autoscan</secondary>
-        </indexterm></title>
-
+      <title>自動的に再スキャンする
+      <indexterm>
+        <primary>ファイルの再スキャン</primary>
+        <secondary>enabling and disabling autoscan</secondary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge rescans
-          automatically when you merge a difference, or if you manually rescan
-          (for example, click the <guibutton>Rescan</guibutton> button).</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge は、差異をマージした時、または、
+          <guibutton>表示更新</guibutton>ボタンをクリックするなどした時、自動的に再スキャンします。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Forces WinMerge to rescan after every
-          edit event (a change to files, like typing).</para>
-
+          <para>
+          <option>有効</option>: WinMerge は、すべての編集イベント(入力するなど、ファイルへの変更)の後、強制的に再スキャンします。</para>
           <note>
-            <para>To avoid slowing down your editing, WinMerge delays automatic
-            rescanning a little: it waits one second after each edit event.
-            Because each new edit event resets the timer, no rescans occur until
-            you pause or stop editing.</para>
+            <para>編集作業を遅くするのを避けるために、WinMerge
+            は、自動再スキャンを僅かながら遅らせます(編集イベント後1秒待ちます)。それにより、それぞれの新しい編集イベントがタイマーをリセットし、編集を中断するか止めるまで、再スキャンは起こりません。</para>
           </note>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>元のEOL文字を保存する<indexterm>
-          <primary>EOL</primary>
-
-          <secondary>preserving</secondary>
-        </indexterm><indexterm>
-          <primary>end of line</primary>
-
-          <see>EOL</see>
-        </indexterm></title>
-
+      <title>元のEOL文字を保存する
+      <indexterm>
+        <primary>EOL</primary>
+        <secondary>preserving</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>end of line</primary>
+        <see>EOL</see>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Assumes that files are
-          meant to be Windows files. If a file does not use the standard Windows
-          line ending, WinMerge considers this to be an error. It silently
-          changes the line endings to the Windows style instead of detecting
-          them as differences. Thus, the File Compare window status bar shows
-          the EOL style as <guilabel>Win</guilabel>.</para>
-
-          <para>For most situations you should leave this option disabled: the
-          default behavior works even when comparing two files that have
-          different line ending styles.</para>
+          <para>
+          <option>無効</option>(デフォルト): ファイルが、Windows のファイルであると仮定します。ファイルが、Windows
+          標準の行末文字を使用していない場合、WinMerge は、これをエラーとみなします。それらを、差異として検出する代わりに、Windows
+          スタイルの行末文字へ静かに変更します。それゆえ、ファイル比較ウィンドウのステータスバーには、EOLスタイル 
+          <guilabel>Win</guilabel>として表示します。</para>
+          <para>
+          ほとんどの場合、このオプションは無効のままにしておくべきです。行末文字の異なる2つのファイルを比較する場合、デフォルトの振る舞いで、十分うまく動作するでしょう。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Prevents WinMerge from automatically
-          changing line endings, so that it detects different EOL styles for
-          every line. This might be useful for handling files from systems with
-          different EOL styles (for example, Windows and Unix).</para>
-
+          <para>
+          <option>有効</option>: WinMerge
+          が行末文字を自動的に変更するのを防ぎます。その結果、すべての行のEOLスタイルの差異を検出します。これは、(Windows と
+          Unixなど)異なるEOLスタイルを持つシステムからのファイルを扱うために便利かもしれません。</para>
           <important>
-            <para>This is an advanced option for users who are familiar with EOL
-            bytes and who want to compare files with different EOL styles inside
-            <emphasis>one</emphasis> file. We recommend that you not enable this
-            option unless you need this advanced functionality. Remember, this
-            option is not required to compare two files with different EOL
-            styles.</para>
+            <para>また、これは、EOLバイトに詳しい方や、
+            <emphasis>
+            1つの</emphasis>ファイルに異なるEOLスタイルが混在するファイルを比較したい方のための高等なオプションです。あなたが、この高等な機能を必要としないなら、このオプションを有効にしないことをオススメします。このオプションは、異なるEOLスタイルの2ファイルを比較するためには、不要であることを憶えておいてください。</para>
           </important>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>タブオプション<indexterm>
-          <primary>tabs</primary>
-
-          <secondary>editing options</secondary>
-        </indexterm></title>
-
+      <title>タブオプション
+      <indexterm>
+        <primary>tabs</primary>
+        <secondary>editing options</secondary>
+      </indexterm></title>
       <variablelist>
         <varlistentry>
-          <term>Tab size</term>
-
+          <term>タブ幅</term>
           <listitem>
-            <para>Width of a tab space. Specify a value
-            <replaceable>n</replaceable> : the resulting width is equivalent to
-            that of <replaceable>n</replaceable> characters. Default: 4. The
-            maximum value is 64.</para>
+            <para>タブの幅です。値を指定してください
+            <replaceable>n</replaceable>: 設定した幅は、同数の
+            <replaceable>n</replaceable>の文字と同じになります。デフォルト: 4. 最大値は64です。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Tab insert options</term>
-
+          <term>タブ挿入オプション</term>
           <listitem>
-            <para>Determines what kind of character is used when you insert a
-            tab in text. Only one of these options can be enabled:</para>
-
+            <para>テキスト中でtabキーを押下した時に、どの種類の文字が使われるかを指定します。次のうち、1つだけを有効にすることができます:</para>
             <itemizedlist>
               <listitem>
-                <para><guilabel>Insert Tabs</guilabel> (default): Uses a single
-                tab character.</para>
+                <para>
+                <guilabel>タブを挿入</guilabel>(デフォルト): 1つのタブ文字を使用します。</para>
               </listitem>
-
               <listitem>
-                <para><guilabel>Insert Spaces</guilabel>: Uses one or more
-                spaces (determined by the <option>Tab size</option>) instead of
-                a tab character. For example, with the default tab size, four
-                spaces are inserted.</para>
+                <para>
+                <guilabel>スペースを挿入</guilabel>: タブ文字の代わりに、( 
+                <option>タブ幅</option>)で指定された個数分のスペースを挿入します。例えば、デフォルトのタブ幅の場合、4つのスペースが挿入されます。</para>
               </listitem>
             </itemizedlist>
           </listitem>
         </varlistentry>
       </variablelist>
     </section>
-
     <section id="Configuration_viewlinediffs">
-      <title>行内差異の強調<indexterm>
-          <primary>line differences</primary>
-
-          <secondary>viewing options</secondary>
-        </indexterm></title>
-
-      <para>These settings enable and configure the detection of <glossterm>line
-      differences</glossterm> (changes within the lines of difference
-      blocks):</para>
-
+      <title>行内差異の強調
+      <indexterm>
+        <primary>line differences</primary>
+        <secondary>viewing options</secondary>
+      </indexterm></title>
+      <para>これらは、
+      <glossterm>行内差異</glossterm>(差異ブロックの行内の変更)の検出を有効にし、また、その設定をします。:</para>
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge highlights
-          differences within lines. Also enables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
-
-          <para>Choose one of these suboptions:</para>
-
+          <para>
+          <option>有効</option>(デフォルト): WinMerge は、行内の差異をハイライトします。メニューの
+          <menuchoice>
+            <guimenu>表示</guimenu>
+            <guimenuitem>行内差異を表示</guimenuitem>
+          </menuchoice>でも有効にできます。</para>
+          <para>次のサブオプションから、1つ選択してください:</para>
           <itemizedlist>
             <listitem>
-              <para><guilabel>Character level</guilabel>: Highlights individual
-              characters that are different. This option can be useful if you
-              are looking for changes within words, or for file formats that do
-              not have clear word breaks.</para>
+              <para>
+              <guilabel>文字単位</guilabel>:
+              異なる文字をハイライトします。このオプションは、単語内の変更を探す場合や、明確な単語分割をしていないファイルの場合に役立つでしょう。</para>
             </listitem>
-
             <listitem>
-              <para><guilabel>simiWord-level</guilabel> (default): Highlights
-              entire words that are different.</para>
-
+              <para>
+              <guilabel>単語単位</guilabel>(デフォルト) 差異のある単語全体をハイライトします。</para>
               <itemizedlist>
                 <listitem>
-                  <para><guilabel>Break at whitespace</guilabel> (default):
-                  Words are assumed to be separated by whitespace characters.
-                  This usually works for typical text files.</para>
+                  <para>
+                  <guilabel>空白で区切る</guilabel>(デフォルト):
+                  単語は、空白で区切られていると仮定されます。これは、大抵の典型的なテキストファイルに作用します。</para>
                 </listitem>
-
                 <listitem>
-                  <para><guilabel>Break at whitespace or punctuation</guilabel>:
-                  Considers both whitespace and punctuation characters to be
-                  word breaks. This can useful for handling lists that are
-                  separated with punctuation (like comma-separated
-                  lists).</para>
+                  <para>
+                  <guilabel>空白か句読点で区切る</guilabel>:
+                  空白と句読点の両方を単語境界とみなします。これは、(カンマ区切りリストのような)句読点で区切られたリストを扱うために便利です。</para>
                 </listitem>
               </itemizedlist>
             </listitem>
           </itemizedlist>
         </listitem>
-
         <listitem>
-          <para><option>Disabled</option>: WinMerge does not highlight line
-          differences, and all settings for the level and whitespace options are
-          ignored. Also disables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
+          <para>
+          <option>無効</option>: WinMerge は、行内差異をハイライトしません。そして、レベルと空白オプションは無視されます。メニューの、
+          <menuchoice>
+            <guimenu>表示</guimenu>
+            <guimenuitem>行内差異を表示</guimenuitem>
+          </menuchoice>も無効になります。</para>
         </listitem>
       </itemizedlist>
-
       <note>
-        <title>Related topic</title>
-
-        <para><xref linkend="CompareFiles_linediff-highlight" /> explains in
-        more detail how WinMerge detects and marks line differences.</para>
+        <title>関連トピック</title>
+        <para>
+        <xref linkend="CompareFiles_linediff-highlight" />
+        <!-- NOTE: コレどこで説明してる？ -->WinMerge が、行内差異をどのように検出しマークするのかを、もっと詳細に説明します。</para>
       </note>
     </section>
   </section>
-
   <section id="Configuration_colors">
-    <title>色ページ<indexterm>
-        <primary>difference colors</primary>
-
-        <secondary>options</secondary>
-      </indexterm></title>
-
-    <para>Use this page if you want to change any of the difference colors used
-    in the File Compare window. You can set the background, deleted, and text
-    color.</para>
-
-    <para>To change a color, click in its box to open a standard Color chooser
-    dialog. Choose one of the predefined colors or define your own custom color,
-    then click <guibutton>OK</guibutton> to load the new color in the
-    box.</para>
-
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <title>色ページ
+    <indexterm>
+      <primary>difference colors</primary>
+      <secondary>options</secondary>
+    </indexterm></title>
+    <para>ファイル比較ウィンドウで使用される差異などの色を変更したい場合は、このページで行ってください。背景、削除、テキストを設定可能です。</para>
+    <para>色を変更するには色ボックスをクリックし、標準的な色の設定ダイアログを開きます。基本色か作成した色から1つ選択し 
+    <guibutton>OK</guibutton>をクリックすると、新しい色がボックスに読み込まれます。</para>
+    <para>いつでも、
+    <guibutton>デフォルト</guibutton>をクリックして、元々の色を再読み込みすることができます。</para>
   </section>
-
   <section id="Configuration_textcolors">
-    <title>テキストカラーページ<indexterm>
-        <primary>text colors</primary>
-
-        <secondary>options</secondary>
-      </indexterm></title>
-
-    <para>Use this page to change the colors used for text. First, check the
-    option, <guilabel>Use customized text colors</guilabel>. This activates the
-    text options. There is an option for three kinds of text: whitespace,
-    regular text, and selected text. For each kind of text , you can choose a
-    color for the background and the text.</para>
+    <title>テキストカラーページ
+    <indexterm>
+      <primary>text colors</primary>
+      <secondary>options</secondary>
+    </indexterm></title>
+    <para>テキスト色を変更するには、このページを使用してください。はじめに、
+    <guilabel>
+    カスタムテキストカラーを使用</guilabel>にチェックしてください。これは、カスタムテキストカラーを有効化します。空白、標準テキスト、選択の3種類のテキストの設定があります。それぞれの種類のテキストに対し、背景と文字の色を選択することができます。</para>
   </section>
-
   <section id="Configuration_syntaxcolors">
-    <title>シンタックスカラーページ<indexterm>
-        <primary>syntax highlighting</primary>
-
-        <secondary>color options</secondary>
-      </indexterm></title>
-
-    <para>By default, the WinMerge File Compare window marks the syntax of
-    certain kinds of source code, as described in <xref
-    linkend="Configuration_syntaxhighlight" />. This page lists the syntax
-    elements that are recognized, and enables you to change their text color and
-    weight.</para>
-
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <title>シンタックスカラーページ
+    <indexterm>
+      <primary>syntax highlighting</primary>
+      <secondary>color options</secondary>
+    </indexterm></title>
+    <para>
+    <!-- TODO: marks は、評価でいいのか -->デフォルトでは、WinMerge のファイル比較ウィンドウは、
+    <xref linkend="Configuration_syntaxhighlight" />で説明されている、ある程度の種類のソースコードのシンタックスを評価します。このページは、認識されるシンタックス要素を列挙し、これらのテキストの色と太さを変更可能にします。</para>
+    <para>いつでも、
+    <guibutton>デフォルト</guibutton>をクリックして、元々の色を再読み込みすることができます。</para>
   </section>
-
   <section id="Configuration_archive">
-    <title>アーカイブサポートページ<indexterm>
-        <primary>archiving files</primary>
-
+    <title>アーカイブサポートページ
+    <indexterm>
+      <primary>archiving files</primary>
+      <secondary>configuring support after installation</secondary>
+    </indexterm></title>
+    <para>このページは、7-Zip を使用した Winzipアーカイブサポートの設定のためのオプションを含んでいます。</para>
+    <section>
+      <title>7-Zip プラグインのダウンロード
+      <indexterm>
+        <primary>7-Zip archives</primary>
         <secondary>configuring support after installation</secondary>
       </indexterm></title>
-
-    <para>This page contains options for configuring Winzip archive support
-    using 7-Zip.</para>
-
-    <section>
-      <title> 7-zip プラグインのダウンロード<indexterm>
-          <primary>7-Zip archives</primary>
-
-          <secondary>configuring support after installation</secondary>
-        </indexterm></title>
-
-      <para>If WinZip is already installed on your system, WinMerge
-      automatically detects it, and you don't need to configure anything here.
-      Otherwise, you can click this link to open the WinMerge downloads page in
-      your Web browser. There, you can download the 7-Zip Plugin installer (and
-      other WinMerge files). To install the plugin, see <xref
-      linkend="Installing_archive_support" />. Remember to close WinMerge before
-      running the 7-Zip installer.</para>
+      <para>システムに WinZip が既にインストールされている場合、WinMerge
+      は自動的にそれを検出します。あなたが、ここで何か設定する必要はりません。そうでない場合、このページのリンクをクリックして、ブラウザで
+      WinMergeダウンロードページを開きます。そこで、7-Zipプラグインのインストーラ(と、その他の
+      WinMergeファイル)をダウンロードすることができます。プラグインのインストールについては、
+      <xref linkend="Installing_archive_support" />を参照してください。7-Zipインストーラを起動する前に、WinMerge
+      を閉じることをお忘れなく。</para>
     </section>
-
     <section>
-      <title>アーカイブファイルサポートを有効にする<indexterm>
-          <primary>7-Zip archives</primary>
-
-          <secondary>enabling and disabling integration</secondary>
-        </indexterm></title>
-
-      <para>This option controls how WinMerge handles archive files (based on
-      7-Zip integration).</para>
-
+      <title>アーカイブファイルサポートを有効にする
+      <indexterm>
+        <primary>7-Zip archives</primary>
+        <secondary>enabling and disabling integration</secondary>
+      </indexterm></title>
+      <para>このオプションは、WinMerge が(7-Zip統合を基にした)アーカイブファイルを扱う方法を制御します。</para>
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge recognizes 7-Zip
-          archives.</para>
-
-          <para>WinMerge can access 7-Zip from two installation sources. If you
-          specified one of these methods earlier (for example, during the
-          WinMerge installation), you can change it here:</para>
-
+          <para>
+          <option>有効</option>(デフォルト): WinMerge は、7-Zipアーカイブを識別します。</para>
+          <para>WinMerge は、2つのインストール元から、7-Zipへアクセスすることができます。(WinMerge
+          のインストール中などに)次の方法のうち1つを指定していた場合、ここで変更することができます。</para>
           <itemizedlist>
             <listitem>
-              <para>Use stand-alone 7-Zip if available</para>
+              <para>利用可能であれば、スタンドアロンの7-Zipを使用する</para>
             </listitem>
-
             <listitem>
-              <para>Use local 7-Zip from WinMerge folder</para>
+              <para>WinMergeフォルダのローカルな7-Zipを使用する</para>
             </listitem>
           </itemizedlist>
         </listitem>
-
         <listitem>
-          <para><option>Disabled</option>: Turns off 7-Zip archive
-          integration.</para>
+          <para>
+          <option>無効</option>: 7-Zipアーカイブサポートを無効にします。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
-      <title>ファイルのシグネチャからアーカイブの種類を検出する<indexterm>
-          <primary>detecting archive types</primary>
-        </indexterm></title>
-
+      <title>ファイルのシグネチャからアーカイブの種類を検出する
+      <indexterm>
+        <primary>detecting archive types</primary>
+      </indexterm></title>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge recognizes only
-          archives whose file extension is known on your system (for example, in
-          the registry or through a file association).</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge は、お使いのシステムにおいて、既知の拡張子のアーカイブファイルのみを見分けることができます。
+          <!-- FIXME: よくわからん: through a file association? -->(for example, in the registry or
+          through a file association)</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: WinMerge can recognize archive files
-          even if their file extension is not known. To recognize an archive,
-          WinMerge searches the beginning of the file for the archive signature
-          bytes.<tip>
-              <para>You can use this option to enable WinMerge to recognize Open
-              Office files.</para>
-            </tip></para>
+          <para>
+          <option>有効</option>: WinMerge
+          は、ファイルの拡張子が不明な形式の場合でも、アーカイブファイルを見分けることができます。アーカイブを見分けるために、WinMerge
+          は、ファイルの先頭から、アーカイブシグネチャバイトを探します。
+          <tip>
+            <para>WinMerge が、Open Officeファイルを見分けるために、このオプションを有効にすることができます。</para>
+          </tip></para>
         </listitem>
       </itemizedlist>
     </section>
   </section>
-
   <section id="Configuration_system">
     <title>システムページ</title>
-
     <section>
-      <title>削除されたファイルをゴミ箱に移動する<indexterm>
-          <primary>deleting files</primary>
-
-          <secondary>options</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Enabled</option> (default): Files and folders that you
-          delete in a Folder Compare window are moved to the Recycle Bin, if it
-          is available.</para>
-
-          <important>
-            <para>Remember: if the Recycle Bin on your system has been
-            deactivated, this option does not work, and deleted files are
-            lost!</para>
-          </important>
-        </listitem>
-
-        <listitem>
-          <para><option>Disabled</option>: Files and folders deleted in a
-          directory compare actually deleted.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section id="Configuration_external_editor">
-      <title>外部エディタ<indexterm>
-          <primary>external editor</primary>
-
-          <secondary>configuring</secondary>
-        </indexterm></title>
-
-      <para>The WinMerge File Compare window provides common editing functions.
-      If you prefer using your favorite, full-featured editor, you can configure
-      WinMerge to open an external editor from the Folder Compare context
-      menu.</para>
-
-      <para>Installation configures Notepad as the default external editor,
-      because it is found on all Windows systems. To configure a different
-      external editor, enter the full path to its executable file.</para>
-
-      <tip>
-        <para>Along with the path, you can include any command line parameters
-        supported by the external tool, in this format:
-        <command><replaceable>path to executable</replaceable></command>
-        <option>-option1</option> <option>-option2</option>
-        <option><replaceable>...</replaceable></option></para>
-      </tip>
-
-      <para>To use the configured external editor, right-click a file in the
-      Folder Compare window and choose <menuchoice>
-          <guimenuitem>Open Left</guimenuitem>
-
-          <guimenuitem>with External Editor</guimenuitem>
-        </menuchoice> or <menuchoice>
-          <guimenuitem>Open Right</guimenuitem>
-
-          <guimenuitem>with External Editor</guimenuitem>
-        </menuchoice>.</para>
-    </section>
-
-    <section>
-      <title>フィルタフォルダ<indexterm>
-          <primary>Filters folders</primary>
-
-          <secondary>specifying default private folder</secondary>
-        </indexterm></title>
-
-      <para>Use this field to specify your own private folder for file filters.
-      By default this folder is your user profile directory (for example,
-      <filename>My Documents</filename> on Windows XP, or
-      <filename>Documents</filename> on Windows Vista). When you create a file
-      filter, it is automatically added to this folder.</para>
-    </section>
-
-    <section>
-      <title>テンポラリファイルフォルダ<indexterm>
-          <primary>temporary files, folder used</primary>
-        </indexterm></title>
-
-      <para>Specify the folder where WinMerge stores temporary files. Either one
-      of these options is available:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>System's temp folder (default): For example, this might be
-          <filename>C:\Windows\Temp</filename> on your system.</para>
-        </listitem>
-
-        <listitem>
-          <para>Custom folder: Click <guibutton>Browse</guibutton> and select a
-          different folder where you have write access.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-  </section>
-
-  <section id="Configuration_backup">
-    <title>バックアップファイルページ<indexterm>
-        <primary>backup files, options</primary>
-      </indexterm></title>
-
-    <para>This page allows you to control how WinMerge creates backup
-    files.</para>
-
-    <section>
-      <title>作成するバックアップ</title>
-
-      <para>Specify when WinMerge should create backup files. You can enable or
-      disable each of these options independently:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Folder compare</guilabel> (disabled by default):
-          Backup files are create whenever files are overwritten
-          (copied).</para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>File compare</guilabel> (enabled by default): Backup
-          files are created whenever files are saved.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>バックアップファイル生成先</title>
-
-      <para>Specify where backup files are created. Only one of these options
-      can be enabled:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Original file's folder</guilabel> (enabled by
-          default): Backup files are created in the same folder as the source
-          file. This is usually a good choice. The down side is that cleaning up
-          backup files in big folders can take a lot of work.</para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>Global backup folder</guilabel> (disabled by default):
-          All backup files are created in one global folder. This makes them
-          easy to clean up. But, if there are multiple source files with same
-          file name, then the most recent backup file overwrites the previous
-          one of the same name.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>バックアップファイル名</title>
-
-      <para>When WinMerge creates a backup file, it appends an extension to the
-      source file name. You can choose either or both of these extension
-      schemes:</para>
-
-      <itemizedlist>
-        <listitem>
-          <para><guilabel>Append .bak -extension</guilabel> (enabled by
-          default): For example, the <filename>file.txt</filename> is backed up
-          to <filename>file.txt.bak</filename>.</para>
-        </listitem>
-
-        <listitem>
-          <para><guilabel>File compare</guilabel> (enabled by default):
-          Timestamps are almost always unique, so this option usually avoids
-          duplicating backup file names when the source files have the same
-          names.</para>
-
-          <para>Also, storing a copy of a file each time you save it provides a
-          way to track changes to the file. However, you should consider that
-          this option can create a lot of files.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-  </section>
-
-  <section id="Configuration_vcs">
-    <title>バージョン管理オプションページ<indexterm>
-        <primary>version control systems</primary>
-
-        <secondary>configuring after installation</secondary>
-      </indexterm><indexterm>
-        <primary>integration</primary>
-
-        <secondary>with version control systems</secondary>
-      </indexterm></title>
-
-    <para>Use this page to enable or disable checkouts through an installed
-    version control system (VCS) that you select here. If you enable this
-    integration with one of the supported systems, WinMerge opens the checkout
-    dialog for that VCS when you save a versioned file in WinMerge.</para>
-
-    <itemizedlist>
-      <listitem>
-        <para><guilabel>None</guilabel> (default): When you save a file in
-        WinMerge, there are no interactions with any version control
-        system.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Visual SourceSafe (less than 5.0)</guilabel></para>
-
-        <para>Also enter the path to <filename>SS.EXE</filename>.</para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Visual SourceSafe (5.0 and above)</guilabel></para>
-      </listitem>
-
-      <listitem>
-        <para><guilabel>Rational ClearCase</guilabel></para>
-
-        <para>Also enter the path to <filename>cleartool.exe</filename>.</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>See <xref linkend="VersionControl_vcs" /> for details about using this
-    feature.</para>
-  </section>
-
-  <section id="Configuration_codepage">
-    <title>コードページページ<indexterm>
-        <primary>codepage</primary>
-
+      <title>削除されたファイルをゴミ箱に移動する
+      <indexterm>
+        <primary>deleting files</primary>
         <secondary>options</secondary>
       </indexterm></title>
-
-    <para>WinMerge detects handles file encoding transparently, and in most
-      cases you should not need to change the default settings.This page allows
-      you to specify the codepages of certain file formats, should you need to.  </para>
-
-<!--    <important>
-      <para>The ANSI version of WinMerge (<filename>WinMerge.exe</filename>) is
-      normally installed only on Windows 9X and WME. On all other, newer Windows
-      systems, the Unicode version (<filename>WinMergeU.exe</filename>) is
-      installed. The Unicode version of WinMerge handles encoding transparently.
-      You should not need to change any settings in this page unless you are
-      running the ANSI version.</para>
-    </important> -->
-
-    <note>
-      <para>A full explanation of text encoding and Windows codepages is beyond
-        the scope of WinMerge documentation. Fortunately, there is lots of
-        information about them on the Internet. For example, here are some
-        places to start:</para>
-
       <itemizedlist>
         <listitem>
-          <para><ulink url="http://en.wikipedia.org/wiki/Code_pages">Wikipedia:
-          Code pages</ulink>, <ulink
-          url="http://en.wikipedia.org/wiki/Character_encoding">Character
+          <para>
+          <option>有効</option>(デフォルト): フォルダ比較ウィンドウで削除したファイルやフォルダは、可能な場合、ゴミ箱へ移動されます。</para>
+          <important>
+            <para>お使いのシステムでゴミ箱が無効にされている場合、このオプションは動作しないことを、憶えておいてください。その場合、ファイルは削除され失われます！</para>
+          </important>
+        </listitem>
+        <listitem>
+          <para>
+          <option>無効</option>: フォルダ比較ウィンドウで削除されたファイルやフォルダは、本当に削除されます。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section id="Configuration_external_editor">
+      <title>外部エディタ
+      <indexterm>
+        <primary>external editor</primary>
+        <secondary>configuring</secondary>
+      </indexterm></title>
+      <para>WinMerge
+      のファイル比較ウィンドウは、一般的な編集機能を提供します。あなたのお気に入りのフル機能のエディタを使いたい場合、フォルダ比較コンテキストメニューから、WinMerge
+      が外部エディタを開くように設定することができます。</para>
+      <para>デフォルトの外部エディタには、すべての Windows
+      システムにある、メモ帳(notepad.exe)が設定されています。異なる外部エディタを設定するには、その実行ファイルのフルパスを入力してください。</para>
+      <tip>
+        <para>パスと一緒に、その外部ツールでサポートされている、いくらかのコマンドラインパラメータを含むことができます。このようなフォーマットです。
+        <command>
+          <replaceable>実行ファイルのパス</replaceable>
+        </command>
+        <option>-option1</option>
+        <option>-option2</option>
+        <option>
+          <replaceable>...</replaceable>
+        </option></para>
+      </tip>
+      <para>設定された外部エディタを使うには、フォルダ比較ウィンドウ中のファイルを右クリックし、
+      <menuchoice>
+        <guimenuitem>左を開く</guimenuitem>
+        <guimenuitem>外部エディタで</guimenuitem>
+      </menuchoice>、または、
+      <menuchoice>
+        <guimenuitem>右を開く</guimenuitem>
+        <guimenuitem>外部エディタで</guimenuitem>
+      </menuchoice>を選択してください。</para>
+    </section>
+    <section>
+      <title>フィルタフォルダ
+      <indexterm>
+        <primary>Filters folders</primary>
+        <secondary>specifying default private folder</secondary>
+      </indexterm></title>
+      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、(Windows XP では
+      <filename>マイ ドキュメント</filename>、または、Windows Vista では
+      <filename>
+      ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダです。ファイルフィルタを作成したら、このフォルダへ自動的に追加されます。</para>
+    </section>
+    <section>
+      <title>テンポラリファイルフォルダ
+      <indexterm>
+        <primary>temporary files, folder used</primary>
+      </indexterm></title>
+      <para>WinMerge が、一時ファイルを保存するフォルダを指定してください。次のうち、何れか1つが有効です:</para>
+      <itemizedlist>
+        <listitem>
+          <para>システムのテンポラリフォルダ (デフォルト): 例えば、お使いのシステムでは、
+          <filename>C:\Windows\Temp</filename>かもしれません。</para>
+        </listitem>
+        <listitem>
+          <para>カスタムフォルダ: 
+          <guibutton>参照</guibutton>をクリックし、書き込み可能なフォルダを選択してください。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+  <section id="Configuration_backup">
+    <title>バックアップファイルページ
+    <indexterm>
+      <primary>backup files, options</primary>
+    </indexterm></title>
+    <para>このページは、WinMerge がバックアップファイルを作る方法を制御することを可能にします。</para>
+    <section>
+      <title>作成するバックアップ</title>
+      <para>WinMerge がバックアップファイルを作るべきなら指定してください。次のオプションは、それぞれ独立に、有効、または、無効にすることができます。</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guilabel>フォルダ比較</guilabel>(デフォルトで無効): ファイルが上書き(コピー)される度に、バックアップファイルが作成されます。</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>ファイル比較</guilabel>(デフォルトで有効): ファイルが保存される度に、バックアップファイルが作成されます。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>バックアップファイル生成先</title>
+      <para>バックアップファイルが作成される場所を指定してください。次のうち、1つのみ有効にすることができます:</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guilabel>元ファイルのフォルダ</guilabel>(デフォルトで有効):
+          バックアップファイルは、元ファイルと同じフォルダに作成されます。これは、大抵良い選択です。マイナス面は、巨大なフォルダは、バックアップファイルを片付けるのが大変だということです。</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>バックアップフォルダ</guilabel>(デフォルトで無効):
+          すべてのバックアップファイルは、1つのフォルダに作成されます。これは、バックアップファイルを片付けるのを容易にします。しかし、複数のソースファイルが同じファイル名だった場合、最も新しいバックアップファイルは、以前に作成された同名のファイルを上書きします。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>バックアップファイル名</title>
+      <para>WinMerge がバックアップファイルを作る時、元ファイル名に拡張子を付加します。次のうち、一方か両方の拡張子構成を選ぶことができます:</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+          <guilabel>.bak拡張子を追加する</guilabel>(デフォルトで有効): 例えば、
+          <filename>file.txt</filename>は、
+          <filename>file.txt.bak</filename>でバックアップされます。</para>
+        </listitem>
+        <listitem>
+          <para>
+          <guilabel>
+            <!-- TODO: オリジナルでは 'File compare' (enabled by default) となっているが、両方間違っている -->
+          </guilabel>(デフォルトで無効):
+          タイムスタンプはほぼ常にユニークであるため、このオプションは元ファイル名が同じ場合に、大抵、バックアップファイルの重複を回避します。</para>
+          <para>
+          また、保存する毎にファイルが蓄積されるため、ファイルの変更を追跡する方法を提供します。しかし、このオプションが、たくさんのファイルを作成することを考慮すべきでしょう。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+  <section id="Configuration_vcs">
+    <title>バージョン管理オプションページ
+    <indexterm>
+      <primary>version control systems</primary>
+      <secondary>configuring after installation</secondary>
+    </indexterm>
+    <indexterm>
+      <primary>integration</primary>
+      <secondary>with version control systems</secondary>
+    </indexterm></title>
+    <para>
+    ここで選択したバージョン管理システム(VCS)経由でのチェックアウトを有効、または、無効にするには、このページを使用してください。サポートされているシステムのうちの1つとの統合を有効にした場合、WinMerge
+    内で、バージョン管理されているファイルを保存した時、WinMerge は、VCSのチェックアウトダイアログを開きます。</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <guilabel>なし</guilabel>(デオフォルト): WinMerge 内でファイルを保存した時、バージョン管理システムとの連携はありません。</para>
+      </listitem>
+      <listitem>
+        <para>
+          <guilabel>Visual SourceSafe (5.0 未満)</guilabel>
+        </para>
+        <para>
+        <filename>SS.EXE</filename>のパスも入力してください。</para>
+      </listitem>
+      <listitem>
+        <para>
+          <guilabel>Visual SourceSafe (5.0 以上)</guilabel>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guilabel>Rational ClearCase</guilabel>
+        </para>
+        <para>
+        <filename>cleartool.exe</filename>のパスも入力してください。</para>
+      </listitem>
+    </itemizedlist>
+    <para>この機能を使用することについての詳細は、
+    <xref linkend="VersionControl_vcs" />を参照してください。</para>
+  </section>
+  <section id="Configuration_codepage">
+    <title>コードページページ
+    <indexterm>
+      <primary>codepage</primary>
+      <secondary>options</secondary>
+    </indexterm></title>
+    <para>このページは、ANSI版 WinMerge
+    が、ANSIファイルに対して使うコードページを指定します。また、あるファイル形式のコードページは、ファイルの内容から検出されるべきかどうかを指定します。</para>
+    <important>
+      <para>ANSI版 WinMerge(
+      <filename>WinMerge.exe</filename>)は、通常、Windows 9X と 
+      <!-- NOTE: WME はちょっとわかりにくかろう -->Windows Me にインストールされます。その他すべての新しい Windows システムでは、Unicode版(
+      <filename>WinMergeU.exe</filename>)がインストールされます。Unicode版 WinMerge
+      は、エンコーディングをありのままに扱います。ANSI版を実行していない限り、このページのいくつかの設定は変更する必要がありません。</para>
+    </important>
+    <note>
+      <para>完全なテキストエンコーディングと Windows コードページの説明は、WinMerge
+      ドキュメントの範囲を超えています。幸いにも、インターネット上には、それらについての情報がたくさんあります。
+      <!-- TODO: 微妙 -->例えば、ここに始めるべきいくつかの場所があります:</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+          <ulink url="http://en.wikipedia.org/wiki/Code_pages">Wikipedia: Code pages</ulink>, 
+          <ulink url="http://en.wikipedia.org/wiki/Character_encoding">Character
           encoding</ulink></para>
         </listitem>
-
         <listitem>
-          <para><ulink
-          url="http://www.microsoft.com/globaldev/reference/wincp.mspx">Microsoft:
-          Code Pages Supported by Windows</ulink></para>
+          <para>
+            <ulink url="http://www.microsoft.com/globaldev/reference/wincp.mspx">Microsoft: Code
+            Pages Supported by Windows</ulink>
+          </para>
         </listitem>
       </itemizedlist>
     </note>
-
     <section>
       <title>非Unicodeファイルのデフォルトコードページ</title>
-
-      <para>Choose one of these radio buttons to set the default codepage that
-      WinMerge uses when handling ANSI files:</para>
-
+      <para>WinMerge が、非Unicode ファイルを扱う際の、デフォルトコードページを設定するために、次のラジオボタンから1つ選んでください:</para>
       <itemizedlist>
         <listitem>
-          <para><guilabel>System codepage</guilabel> (default):The codepage used
-          by your Windows system. This default is usually the best choice.
-          However if you know that you are comparing files that do not use the
-          system codepage, consider one of the other options.</para>
+          <para>
+          <guilabel>システムコードページ</guilabel>(デフォルト):あなたの Windows
+          システムにより使用されているコードページです。このデフォルトは、ほぼ、ベストチョイスです。しかし、システムコードページを使用していないファイルを比較することが分かっているなら、他のオプションを考慮してください。</para>
         </listitem>
-
         <listitem>
-          <para><guilabel>According to WinMerge User Interface</guilabel>: The
-          encoding used by your installation of WinMerge.<!--This is just a guess - don't find any info on this option.--></para>
+          <para>
+          <guilabel>
+          <!-- TODO: インストール後に変更していたら、そうじゃない気がする -->現在のWinMergeユーザーインターフェース言語に従う</guilabel>:
+          WinMerge のインストールに使用したエンコーディングです。
+          <!--This is just a guess - don't find any info on this option.--></para>
         </listitem>
-
         <listitem>
-          <para><guilabel>Custom codepage</guilabel>: Enter the codepage number
-          explicitly. For example, <userinput>UTF-8</userinput> or
-          <userinput>ISO-8851-1</userinput>.</para>
+          <para>
+          <guilabel>カスタムコードページ</guilabel>: 明示的にコードページ番号を入力してください。例えば、
+          <userinput>UTF-8</userinput>や
+          <userinput>ISO-8851-1</userinput>など。</para>
         </listitem>
       </itemizedlist>
     </section>
-
     <section>
       <title>html, .rc, .xml ファイルのコードページ情報を検出する</title>
-
       <important>
-        <para>Uncheck this option in <filename>WinMerge.exe</filename>.
-        Characters conversions can result in lossy conversions and the risk is
-        very high. <filename>WinMerge.exe</filename> can display files only with
-        your current codepage.<!--What option? The one in the Options page? If it should always be unchecked, 
+        <para>
+        <filename>
+        WinMerge.exe</filename>では、このオプションはチェックを外してください。文字列変換は、不可逆変換を生じる可能性があり、そしてそれは、非常にハイリスクです。
+        <filename>WinMerge.exe</filename>は、現在のコードページのファイルのみを表示することができます。
+        <!--What option? The one in the Options page? If it should always be unchecked, 
 why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 or is this understood?--></para>
       </important>
-
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge does not read
-          codepage information from the source files. It uses the default
-          codepage setting instead.</para>
+          <para>
+          <option>無効</option>(デフォルト): WinMerge
+          は、ソースファイルから、コードページ情報を読み取りません。その代わりに、デフォルトコードページ設定を使用します。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: WinMerge detects the codepage for
-          these extensions : <filename class="extension">html</filename>,
-          <filename class="extension">rc</filename> (resource files for VC++)
-          and <filename class="extension">xml</filename>. The detected codepage
-          overrides the setting for the default codepage option.</para>
-
-          <para>This option is of interest when your documents use a codepage
-          that is different from the codepage of your Windows
-          configuration.</para>
-
-          <para>For example, you might merge two Slovak or two Japanese files in
-          an English environment. With this option enabled (and with the
-          required fonts), your Slovak, or Japanese, the files are displayed
-          using Slovak, or Japanese, characters.</para>
-
-          <para>WinMerge also detects a codepage difference between the
-          left/right files. To avoid lossy conversions when you merge, copy, or
-          paste, we suggest that you ignore the codepage information.</para>
-
+          <para>
+          <option>有効</option>: WinMerge は、次の拡張子のコードページを検出します: 
+          <filename class="extension">html</filename>, 
+          <filename class="extension">rc</filename>(VC++ のリソースファイル), 
+          <filename class="extension">
+          xml</filename>。検出されたコードページは、デフォルトコードページオプションの設定を上書きします。</para>
+          <para>このオプションは、あなたのドキュメントが、Windows のものと異なるコードページを使用する場合に重要です。</para>
+          <para>
+          例えば、英語環境で、2つのスロバキア語か、2つの日本語ファイルをマージするかもしれません。このオプションが有効にされている(さらに、必要なフォントがある)場合、あなたのスロバキア語か日本語のファイルは、スロバキア語か日本語の文字で表示されます。</para>
+          <para>WinMerge
+          は、左右のファイル間のコードページの差異も検出します。マージ、コピー、ペースト時の不可逆変換を避けるために、コードページ情報を無視することをオススメします。</para>
           <caution>
-            <para>When you copy or paste text to an external application, the
-            external application must use the same codepage as WinMerge does.
-            Refer to the documentation for your external editor. For copying to
-            WinMerge, Internet Explorer offers codepage selection. If your
-            external editor does not support custom codepages, disable this
-            option.</para>
+            <para>外部アプリケーションにテキストをコピー、または、貼り付ける時、外部アプリケーションは、WinMerge
+            と同じコードページを使用するでしょう。外部エディタのドキュメントを参照してください。WinMerge へのコピーについては、Internet Explorer
+            は、コードページ選択機能を提供しています。外部エディタが、カスタムコードページをサポートしていない場合、このオプションは無効にしてください。</para>
           </caution>
         </listitem>
       </itemizedlist>
     </section>
   </section>
-
   <section id="Configuration_shell-integ">
-    <title>Shell Integration page</title>
-
+    <title>シェル統合ページ</title>
     <section id="Configuration_winexplorer-integ">
-      <title>Explorer<indexterm>
-          <primary>integration</primary>
-
-          <secondary>with Windows shell</secondary>
-        </indexterm></title>
-
-      <para>The <option>Add to context menu</option> option enables you to
-      launch WinMerge directly from Windows Explorer, comparing items that you
-      have selected there. It is enabled or disabled by default during WinMerge
-      installation. If enabled, you can also enable one or both of these
-      options:</para>
-
+      <title>エクスプローラ
+      <indexterm>
+        <primary>integration</primary>
+        <secondary>with Windows shell</secondary>
+      </indexterm></title>
+      <para>The 
+      <option>コンテキストメニューに追加</option>オプションは、Windows エクスプローラから、直接、WinMerge
+      を起動可能にし、そこで選択したアイテムを比較します。それは、WinMerge
+      インストールの最中に、デフォルトで有効か無効にされます。有効な場合、次のオプションのうち、一方、または、両方を有効にすることができます:</para>
       <variablelist>
         <varlistentry>
-          <term>Enable advanced menu</term>
-
+          <term>拡張メニューを有効にする</term>
           <listitem>
             <itemizedlist>
               <listitem>
-                <para><option>Disabled</option> (default): Only the
-                <guimenuitem>WinMerge</guimenuitem> shortcut is included in the
-                Windows Explorer context menu.</para>
+                <para>
+                <option>無効</option>(デフォルト): Windows エクスプローラのコンテキストメニューには、
+                <guimenuitem>WinMerge</guimenuitem>ショートカットのみが含まれます。</para>
               </listitem>
-
               <listitem>
-                <para><option>Enabled</option>: Replaces the
-                <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer
-                context menu with <guimenuitem>Compare</guimenuitem>
-                shortcuts.</para>
+                <para>
+                <option>有効</option>: エクスプローラのコンテキストメニュー中の、
+                <guimenuitem>WinMerge</guimenuitem>ショートカットを、
+                <guimenuitem>比較</guimenuitem>ショートカットで置き換えます。</para>
               </listitem>
             </itemizedlist>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Include subfolders by default</term>
-
+          <term>「サブフォルダを含む」をデフォルトとする</term>
           <listitem>
             <itemizedlist>
               <listitem>
-                <para><option>Disabled</option> (default): folder compare
-                operations are non-recursive.</para>
+                <para>
+                <option>無効</option>(デフォルト): フォルダ比較は、非再帰的に行われます。</para>
               </listitem>
-
               <listitem>
-                <para><option>Enabled</option>: The selection includes
-                subfolders, making the compare operation recursive.</para>
+                <para>
+                <option>有効</option>: 
+                <!-- TODO: 選択 というのがイマイチ -->選択はサブフォルダを含み、比較操作を再帰的にします。</para>
               </listitem>
             </itemizedlist>
-
             <note>
-              <para>This option does not change the <option>Include
-              Subfolders</option> setting for the Select Files or Folders
-              dialog.</para>
+              <para>このオプションは、ファイルまたはフォルダの選択ダイアログの、 
+              <option>サブフォルダを含む</option>の設定は変更しません。</para>
             </note>
           </listitem>
         </varlistentry>
       </variablelist>
-
-      <para><xref linkend="OpenPaths_shell-integ" /> describes how to use the
-      WinMerge and Compare shortcuts.</para>
+      <para>
+      <xref linkend="OpenPaths_shell-integ" />では、WinMerge と 比較ショートカットの使用方法について説明しています。</para>
     </section>
-
     <section id="Configuration_foldercompare">
-      <title>Folder compare</title>
-
-      <para>The <option>Add Shell menu to context menu</option> option enables
-      you to launch some Windows shell commands from the WinMerge window:</para>
-
+      <title>フォルダ比較</title>
+      <para>The 
+      <option>シェルメニューをコンテキストメニューに追加</option>オプションは、WinMerge ウィンドウから、Windows
+      シェルコマンドの起動を可能にします:</para>
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default). No shell menus are
-          available in the Folder Compare context menu.</para>
+          <para>
+          <option>無効</option>(デフォルト). フォルダ比較のコンテキストメニューで、シェルメニューは無効です。</para>
         </listitem>
-
         <listitem>
-          <para><option>Enabled</option>: Adds a <guimenu>Left shell
-          menu</guimenu> or <guimenu>Right shell menu</guimenu>, or both, to the
-          Folder Compare context menu. The shell menu (if added) is identical to
-          the path's context menu in Windows Explorer, and enables you to launch
-          its commands in the same way.</para>
-
-          <para>If you right-click an item that occurs on both sides, both the
-          left and right shell menus are available; if the item occurs only on
-          one side, only that side's shell menu appears.</para>
-
+          <para>
+          <option>有効</option>: フォルダ比較のコンテキストメニューに、
+          <guimenu>左側シェルメニュー</guimenu>か
+          <guimenu>右側シェルメニュー</guimenu>、または、その両方を追加します。シェルメニューは、Windows
+          エクスプローラのパスのコンテキストメニューと同様で、かつ同じ方法でコマンドを起動することができます。</para>
+          <para>両側にあるファイルを右クリックした場合、左右両方のシェルメニューが有効です。片側だけに存在するアイテムの場合、片側のみシェルメニューが現れます。</para>
           <note>
-            <para>Using the shell menu is just like launching Windows commands
-            outside of WinMerge. Consequently, WinMerge might not respond to
-            some operations in the same way as operations performed inside
-            WinMerge.</para>
+            <para>シェルメニューを使用することは、WinMerge の外側で Windows コマンドを起動する事とほぼ同じです。
+            <!-- FIXME: イマイチ -->その結果として、WinMerge は、WinMerge
+            内部で実行した操作と同じ方法で、いくつかの操作に応答しないかもしれません。</para>
           </note>
-
-          <para><xref linkend="CompareDirs_winshell" /> has more information
-          about using the shell menus.</para>
+          <para>
+          <xref linkend="CompareDirs_winshell" />には、シェルメニューの使用についての、より多くの情報があります。</para>
         </listitem>
       </itemizedlist>
     </section>

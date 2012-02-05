@@ -1,1197 +1,1132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Filters">
-  <title>フィルタの使用<indexterm>
-      <primary>filters</primary>
-
-      <seealso>file filters</seealso>
-
-      <seealso>file masks</seealso>
-
-      <seealso>line filters</seealso>
-    </indexterm></title>
-
-  <para>When you compare files or folders, you can use filters to narrow the
-  scope of the comparison. This can be useful when you want to simplify the
-  comparison result by eliminating differences that you are not interested in.
-  Filters are rules based on regular expressions. WinMerge uses the popular PCRE
-  (Perl Compatible Regular Expressions) regular expression engine.<indexterm>
-      <primary>regular expressions</primary>
-
-      <secondary>supported engine</secondary>
-    </indexterm><indexterm>
-      <primary>PCRE regular expression engine</primary>
-    </indexterm><indexterm>
-      <primary>regexp</primary>
-
-      <see>regular expressions</see>
-    </indexterm></para>
-
-  <para>The basic function of filtering is simple: evaluate each item that would
-  normally be compared (a folder, file, or line within a file), and if the
-  filter expression matches the target item, apply the filter. Depending on the
-  type of filter, the item is either included or excluded in the
-  comparison.</para>
-
-  <para>There are different WinMerge filters for folder compare and file compare
-  operations:</para>
-
+  <title>フィルタの使用
+  <indexterm>
+    <primary>filters</primary>
+    <seealso>file filters</seealso>
+    <seealso>file masks</seealso>
+    <seealso>line filters</seealso>
+  </indexterm></title>
+  <para>
+    ファイルやフォルダ比較の際、比較範囲を限定するためにファイルフィルタを使用することができます。
+    これは、比較結果から、あなたが興味のない差異を取り除きたい場合に便利です。
+    フィルタは、正規表現を元に規定します。
+    WinMerge は、ポピュラーな PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用しています。
+  <indexterm>
+    <primary>regular expressions</primary>
+    <secondary>supported engine</secondary>
+  </indexterm>
+  <indexterm>
+    <primary>PCRE regular expression engine</primary>
+  </indexterm>
+  <indexterm>
+    <primary>regexp</primary>
+    <see>regular expressions</see>
+  </indexterm></para>
+  <para>
+    <!-- TODO: ちょっと自信ない-->フィルタの基本機能はシンプルです。
+    通常比較されるであろう、それぞれのアイテム(フォルダ、ファイル、ファイル中の行)を評価し、
+    対象のアイテムがフィルタ式にマッチした場合、フィルタを適用します。
+    フィルタタイプにより、アイテムは、比較に含められるか、除外されるかのどちらかです。</para>
+  <para>フォルダ比較用とファイル比較用の異なる WinMerge
+    フィルタがあります。</para>
   <variablelist>
     <varlistentry>
-      <term>Folder comparison: File masks and file filters<indexterm>
-          <primary>comparing folders</primary>
-
-          <secondary>filtering</secondary>
-        </indexterm></term>
-
+      <term>フォルダ比較: ファイルマスクとファイルフィルタ
+      <indexterm>
+        <primary>comparing folders</primary>
+        <secondary> filtering</secondary>
+      </indexterm></term>
       <listitem>
-        <para>You can specify files to include in a folder comparison by using
-        simple file masks, or, for more complex filtering, by applying multiple
-        rules specified in a file filter. You cannot apply both a file mask and
-        a file filter in the same operation.</para>
-
-        <para>Files and folders that are filtered are hidden in the result by
-        default, which is typically what you want. You can click <menuchoice>
-            <guimenu>View</guimenu>
-
-            <guimenuitem>Show Skipped Items</guimenuitem>
-          </menuchoice> to unhide filtered items, but the Folder Compare window
-        shows only minimal information about them. For example, you cannot tell
-        whether a skipped file is a text file or binary.</para>
+        <para>
+          <!-- TODO:ちょっと複雑すぎる気がする-->
+          単純なファイルマスク、または、より複雑なフィルタにより、
+          ファイルフィルタ中で指定された複数の規則を適用することで、
+          フォルダ比較中に含めるファイルを指定することができます。
+          ファイルマスクとファイルフィルタの両方を、同一の操作中で適用することができます。</para>
+        <para>
+          フィルタされるファイルやフォルダは、デフォルトで隠されます。
+          それは、典型的にあなたが望むものでしょう。フィルタされたアイテムを表示するには、
+        <menuchoice>
+          <guimenu>表示</guimenu>
+          <guimenuitem>スキップされた項目の表示</guimenuitem>
+    </menuchoice>をクリックしてください。
+    しかし、フォルダ比較ウィンドウは、それらについて最小限の情報しか表示しません。
+    例えば、あなたは、スキップされたファイルがテキストファイルかバイナリファイルか判らないでしょう。</para>
       </listitem>
     </varlistentry>
-
     <varlistentry>
-      <term>File comparisons: Line filters<indexterm>
-          <primary>comparing files</primary>
-
-          <secondary>filtering</secondary>
-        </indexterm></term>
-
+      <term>ファイル比較: 行フィルタ
+      <indexterm>
+        <primary>comparing files</primary>
+        <secondary> filtering</secondary>
+      </indexterm></term>
       <listitem>
-        <para>Line filters are applied only to file compare operations. They let
-        you ignore single line differences.</para>
+        <para>
+          行フィルタは、ファイル比較操作のみに適用されます。
+          それにより、単一行の差異を無視することができます。</para>
       </listitem>
     </varlistentry>
   </variablelist>
-
   <section id="Filters_Mask">
-    <title>ファイルマスクの使用<indexterm>
-        <primary>file masks</primary>
-      </indexterm><indexterm>
-        <primary>filters</primary>
-
-        <secondary>file masks</secondary>
-      </indexterm><indexterm>
-        <primary>filters</primary>
-
-        <secondary>in folder comparisons</secondary>
-      </indexterm></title>
-
-    <para>You can use one or more <glossterm>file masks</glossterm> that specify
-    file extensions to include in a folder comparison. All other files are
-    omitted from your selection.</para>
-
+    <title>ファイルマスクの使用
+    <indexterm>
+      <primary>file masks</primary>
+    </indexterm>
+    <indexterm>
+      <primary>filters</primary>
+      <secondary>file masks</secondary>
+    </indexterm>
+    <indexterm>
+      <primary>filters</primary>
+      <secondary>in folder comparisons</secondary>
+    </indexterm></title>
+    <para>フォルダ比較中に含める拡張子を指定する、1つか複数の
+      <glossterm>ファイルマスク</glossterm>を使用することができます。
+      その他すべてのファイルは、選択から省かれます。</para>
     <section id="Filters_MaskApply">
-      <title>ファイルマスクと定義と適用<indexterm>
-          <primary>コマンドライン</primary>
-
-          <secondary>ファイルマスクの適用</secondary>
-        </indexterm></title>
-
-      <para>Define and apply a file mask at the time you launch your folder
-      compare operation:</para>
-
+      <title>ファイルマスクと定義と適用
+      <indexterm>
+        <primary>コマンドライン</primary>
+        <secondary>ファイルマスクの適用</secondary>
+      </indexterm></title>
+      <para>
+      フォルダ比較操作を実行時に、ファイルマスクを定義し適用する:</para>
       <itemizedlist>
         <listitem>
-          <para>If you are using the Select Files or Folders dialog, after
-          choosing the <guilabel>Left</guilabel> and <guilabel>Right</guilabel>
-          folders, enter one or more file masks in the
-          <guilabel>Filter</guilabel> field. The masks are applied when you
-          start the folder compare operation.</para>
+          <para>
+            ファイルまたはフォルダの選択ダイアログを使用しているなら、
+            <guilabel>1(左)</guilabel>と
+            <guilabel>2(右)</guilabel>のフォルダ選択後、
+            <guilabel>フィルタ</guilabel>フィールドへ、
+            1つか複数のファイルマスクを入力してください。
+            マスクは、フォルダ比較操作を開始した時に適用されます。</para>
         </listitem>
-
         <listitem>
-          <para>If you are using the WinMerge command line, use the
-          <option>-f</option> flag to specify file masks (see the example in the
-          next section).</para>
+          <para>WinMergeのコマンドラインを使用している場合は、ファイルマスクを指定する
+          
+          <!-- TODO: /f の誤り？ -f でもいける？ -->
+          <option>-f</option>フラグ(次のセクションの例を参照)を使用してください。</para>
         </listitem>
       </itemizedlist>
-
-      <para>Remember, you cannot specify both a file mask and a file filter in
-      the field or command line.</para>
+      <para>
+        フィールドやコマンドラインで、ファイルマスクとファイルフィルタの、
+        両方を指定することはできないことを憶えておいてください。</para>
     </section>
-
     <section id="Filters_MaskSyntax">
-      <title>ファイルマスクの文法と例<indexterm>
-          <primary>rules</primary>
-
-          <secondary>file masks</secondary>
-        </indexterm><indexterm>
-          <primary>filters</primary>
-
-          <secondary>file masks</secondary>
-        </indexterm><indexterm>
-          <primary>regular expressions</primary>
-
-          <secondary>in file masks</secondary>
-        </indexterm></title>
-
-      <para>Use this syntax for file masks:</para>
-
-      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
-
-      <para>Valid delimiters are spaces, commas, colons or semicolons.</para>
-
-      <para>A mask with no extension ( <filename>*.</filename> ) selects files
-      without any extension, such as
-      <filename><filename>README</filename></filename>.</para>
-
+      <title>ファイルマスクの文法と例
+      <indexterm>
+        <primary>rules</primary>
+        <secondary>file masks</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>filters</primary>
+        <secondary>file masks</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>regular expressions</primary>
+        <secondary>in file masks</secondary>
+      </indexterm></title>
+      <para>
+      このシンタックスは、ファイルマスク用です:</para>
+    <synopsis>
+      *.[<replaceable>拡張子</replaceable>]
+      [<replaceable>区切り文字</replaceable>*.
+      <replaceable>拡張子</replaceable>...]
+    </synopsis>
+      <para>
+      有効な区切り文字はスペース、カンマ、コロン、セミコロンです。</para>
+      <para>拡張子なしのマスク(<filename>*.</filename>)は、
+      <filename>
+        <filename>README</filename>
+      </filename>の様な、拡張子なしのファイルを選択します。</para>
       <example>
-        <title>File mask</title>
-
-        <para>In this command-line example, the folder compare operation
-        includes only files with <filename>xml</filename> or
-        <filename>txt</filename> extensions. All other files are omitted:</para>
-
-        <para><userinput>WinMergeU c:\project\docs c:\temp /f
-        *.xml;*.txt</userinput></para>
+        <title>ファイルマスク</title>
+        <para>
+          このコマンドラインの例では、フォルダ比較操作は、拡張子
+          <filename>xml</filename>か
+          <filename>txt</filename>のファイルのみを含みます。
+          その他すべてのファイルは省かれます:</para>
+        <para>
+          <userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput>
+        </para>
       </example>
     </section>
   </section>
-
   <section id="Filters_FileFilter">
-    <title>ファイルフィルタの使用<indexterm>
-        <primary>filters</primary>
-
-        <secondary>file filters</secondary>
-      </indexterm><indexterm>
-        <primary>filters</primary>
-
-        <secondary>in folder comparisons</secondary>
-      </indexterm></title>
-
-    <para><glossterm>File filters</glossterm> are text files with an extension
-    of <filename>flt</filename>. They enable you to apply multiple filtering
-    rules to a folder comparison. Unlike file masks, file filters can either
-    include or exclude matches.</para>
-
-    <para><indexterm>
+    <title>ファイルフィルタの使用
+    <indexterm>
+      <primary>filters</primary>
+      <secondary>file filters</secondary>
+    </indexterm>
+    <indexterm>
+      <primary>filters</primary>
+      <secondary>in folder comparisons</secondary>
+    </indexterm></title>
+    <para>
+      <glossterm>ファイルフィルタ</glossterm>は、拡張子
+      <filename>flt</filename>のテキストファイルです。
+      これらは、フォルダ比較用の複数のフィルタルールを適用することを可能にします。
+      <!-- FIXME: いい訳思いつかず-->
+      ファイルマスクと異なり、ファイルフィルタは、含むか除外、どちらかにマッチすることができます。</para>
+    <para>
+      <indexterm>
         <primary>file filters</primary>
-
         <secondary>template</secondary>
-      </indexterm>WinMerge installs a number of predefined file filters. If
-    these file filters do not provide the filtering you need, you can create
-    your own. To make that task easier, WinMerge also provides a template file
-    named <filename>FileFilter.tmpl</filename>. This section describes how to
-    apply file filters to comparisons, and documents the file filter syntax.
-    <xref linkend="Filters_dlg" /> describes how to add, edit, and manage
-    filters.</para>
-
+      </indexterm>
+      WinMergeは、たくさんの定義済ファイルフィルタをインストールします。
+      もし、必要なフィルタが、これらのファイルフィルタで提供されていなかったら、
+      自分自身で作成することができます。
+      タスクをもっと簡単にするために、WinMergeは、
+      <filename>FileFilter.tmpl</filename>という名前のテンプレートも提供しています。
+      このセクションは、比較にファイルフィルタを適用する方法と、ファイルフィルタの文法を説明します。
+      <!-- TODO: リンク切れ？-->
+      <xref linkend="Filters_dlg" />では、フィルタの追加、編集、管理方法について説明します。</para>
     <section id="Filters_FileFilterLoc">
-      <title>ファイルフィルタの場所<indexterm>
-          <primary>Filters folders</primary>
 
-          <secondary>locations</secondary>
-        </indexterm><indexterm>
-          <primary>file filters</primary>
-
-          <secondary>locations</secondary>
-        </indexterm></title>
-
-      <para>WinMerge automatically detects file filters in these
-      locations:</para>
-
+      <title>ファイルフィルタの場所
+      <indexterm>
+        <primary>Filters folders</primary>
+        <secondary> locations</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>file filters</primary>
+        <secondary> locations</secondary>
+      </indexterm></title>
+      <para>WinMergeは、次の場所のファイルフィルタを自動的に検出します:</para>
       <variablelist>
         <varlistentry>
-          <term>Filters subfolder in the WinMerge installation folder</term>
-
+          <term>WinMerge インストールフォルダのFilters フォルダ</term>
           <listitem>
-            <para>This is where the predefined file filters are installed. For
-            example, <filename>C:\Program Files\WinMerge\Filters</filename>. You
-            can create or copy filter files in this location to make them
-            available to all users on your system.</para>
-
-            <para>Before creating a new file filter, see if the predefined ones
-            already contain what you need. If not, you might find useful rule
-            examples in the existing files.</para>
+            <para>
+              ここには、定義済ファイルフィルタがインストールされています。例えば、
+              <filename>C:\Program Files\WinMerge\Filters</filename>。
+              システム上のすべてのユーザーに有効にするために、
+              ここにファイルフィルタを作成、または、コピーすることができます。</para>
+            <para>
+              新しいファイルフィルタを作る前に、定義済フィルタに必要なものが含まれているか確認してください。
+              含まれていない場合、定義済ファイルの中から役立つルールが見つかるかもしれません。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>Default private filter folder</term>
-
+          <term>デフォルトプライベートフィルタフォルダ</term>
           <listitem>
-            <para>The location of this folder is defined in the System page of
-            WinMerge options. By default, it is specified as a subfolder in your
-            user profile folder (for example, <filename>My
-            Documents\WinMerge\Filters</filename> in Windows XP). Filters that
-            are created or copied here are normally visible only to you. If you
-            create new file filters, you can copy them here to keep them
-            private.</para>
+            <para>このフォルダの場所は、WinMerge
+              オプションの、システムページで定義されています。
+              デフォルトでは、あなたのユーザプロファイルフォルダのサブフォルダとして指定されています
+              (Windows XPなら、<filename>My Documents\WinMerge\Filters</filename>)。
+              通常、ここに作成、または、コピーされたフィルタは、
+              あなただけが見ることができます。
+              新しいファイルフィルタを作成したら、それらをプライベートにするために、
+              ここにコピーすることができます。</para>
           </listitem>
         </varlistentry>
       </variablelist>
-
-      <para>Before you can apply file filters that exist in any other folder,
-      you must first install them.</para>
+      <para>
+        その他のフォルダにあるファイルフィルタを適用する前に、
+        それらをインストールしなければなりません。</para>
     </section>
-
     <section id="Filters_FileFilterApply">
-      <title>ファイルフィルタの適用<indexterm>
-          <primary>ファイルフィルタ</primary>
 
-          <secondary>適用</secondary>
-        </indexterm></title>
-
-      <para>You can apply a file filter using any of these methods:</para>
-
+      <title>ファイルフィルタの適用
+      <indexterm>
+        <primary>ファイルフィルタ</primary>
+        <secondary>適用</secondary>
+      </indexterm></title>
+      <para>
+      次のいくつかの方法で、ファイルフィルタを適用することができます:</para>
       <itemizedlist>
         <listitem>
-          <para>When you launch a folder compare from the Select Files or
-          Folders dialog:</para>
-
+          <para>
+          ファイルまたはフォルダの選択ダイアログから、フォルダ比較を起動した時:</para>
           <orderedlist>
             <listitem>
-              <para>After choosing the <guilabel>Left</guilabel> and
-              <guilabel>Right</guilabel> folders, click
-              <guibutton>Select</guibutton> next to the
-              <guilabel>Filter</guilabel> field.</para>
+              <para>
+                <guilabel>1(左)</guilabel>と
+                <guilabel>2(右)</guilabel>のフォルダ選択後、
+                <guilabel>フィルタ</guilabel>フィールドの隣にある
+                <guibutton>選択</guibutton>ボタンをクリックしてください。</para>
             </listitem>
-
             <listitem>
-              <para>In the Filters dialog, use the Filefilters tab to choose a
-              file filter and load it in the <guilabel>Filter</guilabel>
-              field.</para>
-
+              <para>
+                フィルタダイアログで、ファイルフィルタを選択し、
+                <guilabel>フィルタ</guilabel>フィールドへロードするには、ファイルフィルタタブを使用します。</para>
               <note>
-                <para>If a file filter is currently enabled, the selected file
-                filter is already loaded in the <guilabel>Filter</guilabel>
-                field.</para>
+                <para>
+                  ファイルフィルタが有効になっている(訳注:
+                  何れかのファイルフィルタが選択されている状態)場合、選択されたファイルフィルタは、
+                  <guilabel>フィルタ</guilabel>フィールドへ既にロードされています。</para>
               </note>
             </listitem>
-
             <listitem>
-              <para>Proceed with the compare operation. The file in the
-              <guilabel>Filter</guilabel> field is applied when you start the
-              operation.</para>
+              <para>
+                比較操作を続けてください。操作を開始した時、
+                <guilabel>フィルタ</guilabel>フィールドのファイルが適用されます。</para>
             </listitem>
           </orderedlist>
         </listitem>
-
         <listitem>
-          <para>To change file filtering after you have already launched a
-          folder compare operation (for example, applying a different filter or
-          disabling filtering):</para>
-
+          <para>
+            フォルダ比較操作起動後(違うフィルタを適用した、
+            または、フィルタを無効にしてしまった時など)にファイルフィルタを変更するには:</para>
           <orderedlist>
             <listitem>
-              <para>Click <menuchoice>
-                  <guimenu>Tools</guimenu>
-
-                  <guimenuitem>Filters</guimenuitem>
-                </menuchoice>.</para>
+              <para>
+                <menuchoice>
+                  <guimenu>ツール</guimenu>
+                  <guimenuitem>フィルタ</guimenuitem>
+              </menuchoice>をクリックしてください。</para>
             </listitem>
-
             <listitem>
-              <para>In the Filters dialog, configure your new file filter
-              setting, and click <guibutton>OK</guibutton>.</para>
+              <para>
+                フィルタダイアログで、新しいフィルタを設定し、
+                <guibutton>OK</guibutton>をクリックしてください。</para>
             </listitem>
-
             <listitem>
-              <para>The new filtering is not automatically applied when you
-              close the Filters dialog: press <keycap>F5</keycap> to see the new
-              results in the Folder Compare window.</para>
+              <para>
+                フィルタダイアログを閉じた時、新しいフィルタは自動では適用されません:
+                フォルダ比較ウィンドウ中で新しい結果を見るには、
+                <keycap>F5</keycap>を押下してください。</para>
             </listitem>
           </orderedlist>
         </listitem>
-
         <listitem>
-          <para><indexterm>
+          <para>
+            <indexterm>
               <primary>command line</primary>
-
               <secondary>applying file filters</secondary>
-            </indexterm>When you launch a folder compare from the WinMerge
-          command line, use the <option>-f</option> flag to specify a file
-          filter.</para>
+            </indexterm>WinMerge コマンドラインから、
+            フォルダ比較起動時にファイルフィルタを指定するには、
+
+            <!-- TODO: /f の誤り？ -->
+            <option>-f</option>フラグを使用してください。</para>
         </listitem>
       </itemizedlist>
-
-      <para>Remember, you cannot apply both a file mask and a file filter in the
-      field or command line.</para>
+      <para>
+        フィールドやコマンドラインで、
+        ファイルマスクとファイルフィルタの両方を指定する
+        ことはできないことを思い出してください。</para>
     </section>
-
     <section id="Filters_FileFilterSyntax">
-      <title>ファイルフィルタの文法<indexterm>
-          <primary>rules</primary>
 
-          <secondary>file filter</secondary>
-        </indexterm><indexterm>
-          <primary>file filters</primary>
-
-          <secondary>syntax</secondary>
-        </indexterm></title>
-
-      <para>This section describes the syntax of WinMerge file filters and
-      provides guidelines for writing them.</para>
-
-      <para>The comment delimiter is <code>##</code>. After a comment delimiter,
-      all characters in a line are ignored. WinMerge ignores most whitespace
-      characters in rules. However, a comment must always be preceded by one or
-      more whitespace (space or tab) characters. To use <code>##</code> as
-      characters in a rule, omit the whitespace prefix.</para>
-
-      <para>The first two required lines of a file filter are:</para>
-
+      <title>ファイルフィルタの文法
+      <indexterm>
+        <primary>rules</primary>
+        <secondary>file filter</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>file filters</primary>
+        <secondary>syntax</secondary>
+      </indexterm></title>
+      <para>このセクションは、WinMerge
+        ファイルフィルタの文法と、記述のためのガイドラインの提供について説明します。</para>
+      <para>コメント記号は、
+        <code>##</code>です。
+        コメント記号の後にある、行内のすべての文字は無視されます。
+        WinMergeは、ルール中のほとんどの空白文字を無視します。
+        しかしながら、通常は、コメントの前に1つか複数の空白文字(スペースかタブ)が置かれるでしょう。
+        ルール中で、
+        <code>##</code>を文字列として使用するには、後ろの空白文字を取り除いてください。</para>
+      <para>ファイルフィルタで、まずはじめに必要な2行は:</para>
       <variablelist>
         <varlistentry>
           <term>name</term>
-
           <listitem>
-            <para>The filter name that is listed in the Files dialog</para>
+            <para>
+              ファイルダイアログに表示されるフィルタ名です</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
           <term>def</term>
-
           <listitem>
-            <para>The type of filtering to be applied. Specify one of these
-            values:</para>
-
+            <para>
+              適用されるフィルタタイプです。次の値のうち、1つを指定してください:</para>
             <variablelist>
               <varlistentry>
                 <term>include</term>
-
                 <listitem>
-                  <para>Includes everything except items matching the specified
-                  rule.</para>
+                  <para>
+                    指定されたルールにマッチしたアイテム以外はすべて含めます。</para>
                 </listitem>
               </varlistentry>
-
               <varlistentry>
                 <term>exclude</term>
-
                 <listitem>
-                  <para>Excludes everything except items matching the specified
-                  rule.</para>
-
-                  <para>When you choose the exclude method, you must also add a
-                  <guilabel>d</guilabel> (directory) rule that specifies the
-                  subfolders. It's usually a good idea to specify all
-                  subfolders, like this:</para>
-
+                  <para>
+                    指定されたルールにマッチしたアイテム以外はすべて除外します。</para>
+                  <para>exclude
+                    メソッドを選択した時は、サブフォルダを指定する
+                    <guilabel>d</guilabel>(ディレクトリ)ルールも追加しなければなりません。
+                    このように、すべてのサブフォルダを指定するのは、通常良いアイデアです:</para>
                   <screen>d: \\*$ ## Subfolders</screen>
                 </listitem>
               </varlistentry>
             </variablelist>
-
             <tip>
-              <para>Don't confuse these terms. Remember, in file filters, an
-              <guilabel>include</guilabel> rule does not specify what to
-              include, it specifies what <emphasis>not</emphasis> to include.
-              Similarly, <guilabel>exclude</guilabel> does not specify what to
-              exclude, it specifies what not to exclude.</para>
+              <para>
+                これらの用語で混乱しないでください。ファイルフィルタの
+
+                <guilabel>include</guilabel>ルールは、「何を含めるか」を指定するわけではありません。
+                「何を<emphasis>含めない</emphasis>」かを指定します。
+                同様に、<guilabel>exclude</guilabel>ルールは、「何を除外する」かを指定するわけではありません。
+                「何を除外しないか」を指定します。</para>
             </tip>
           </listitem>
         </varlistentry>
       </variablelist>
+      <para>
+        次に、フィルタファイルは、1つ以上のフィルタルールを含むべきです。
+        あなたは、たくさんのルールを好きなだけ追加できます。
+        1行には1つのルールがあるべきで、それぞれのルールは、
+        それぞれ1行にあるべきです(ルール中での改行は許可されません)。
+        (訳注: 回りくどいですが、「ルールは1行で記述してください」ということです。)
+        それぞれのルールは、タイプデザイナ
 
-      <para>Next, your file should contain one or more filter rules. You can add
-      as many rules as you like. There must be one rule per line, and each rule
-      must be entirely on one line (no line breaks are allowed in a rule). Each
-      rule consists of either an <guilabel>f:</guilabel> or a
-      <guilabel>d:</guilabel> type designator, followed by a reqular expression,
-      where:</para>
-
+        <guilabel>f:</guilabel>か 
+        <guilabel>d:</guilabel>を含み、その後に、正規表現が続きます:</para>
       <variablelist>
         <varlistentry>
-          <term>f: <replaceable>regexp</replaceable></term>
-
+          <term>f: 
+            <replaceable>regexp</replaceable></term>
           <listitem>
-            <para>matches for files, or</para>
+            <para>ファイルにマッチ、または、</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>d: <replaceable>regexp</replaceable></term>
-
+          <term>d: 
+            <replaceable>regexp</replaceable></term>
           <listitem>
-            <para>matches for folders</para>
+            <para>フォルダにマッチ</para>
           </listitem>
         </varlistentry>
       </variablelist>
-
-      <para>Among the many regexp special characters, the following are
-      particularly important in file filter rules:<indexterm>
+      <para>
+        多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルタでは特に重要です:
+        <indexterm>
           <primary>regular expressions</primary>
-
           <secondary>special characters in filters</secondary>
-        </indexterm><indexterm>
+        </indexterm>
+        <indexterm>
           <primary>regular expressions</primary>
-
           <secondary>in file filters</secondary>
-        </indexterm></para>
-
+      </indexterm></para>
       <variablelist>
         <varlistentry>
-          <term>^ (beginning of line)</term>
-
+          <term>^ (行頭)</term>
           <listitem>
-            <para>Frequently required for rules to work correctly.</para>
+            <para>
+              ルールが正しく動作するために頻繁に必要になります。</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>$ (end of line)</term>
-
+          <term>$ (行末)</term>
           <listitem>
-            <para>Frequently required for rules to work correctly. For
-            example:</para>
-
-            <screen>\.c$ ## matches only file names with the extension, <filename>c</filename>.
-\.c  ## matches any extension beginning with <filename>c</filename>, like <filename>cpp</filename> and <filename>com</filename>.</screen>
+            <para>
+              ルールが正しく動作するために頻繁に必要になります。例えば:</para>
+            <screen>\.c$ ## 拡張子 
+              <filename>c</filename>のファイルのみにマッチします。
+              \.c ## <filename>cpp</filename>や 
+              <filename>com</filename>のような、拡張子が 
+              <filename>c</filename>で始まるファイルにマッチします。</screen>
           </listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>\ (escape)</term>
-
+          <term>\ (エスケープ)</term>
           <listitem>
-            <para>Forces special characters to match normal characters. For
-            example, to match a folder name, precede the folder backslash
-            delimiter with a backslash (<code>\\</code>). To match the dot in a
-            file name, specify a backslash followed by a dot
-            (<code>\.</code>).</para>
+            <para>
+              通常の文字を、特殊文字にマッチさせるために使います。
+              例えば、フォルダ名にマッチするために、
+              フォルダ区切り文字のバックスラッシュの前に、
+              バックスラッシュを置きます(<code>\\</code>)。
+              ファイル名中のドットにマッチするために、
+              バックスラッシュを指定し、その後にドットを置きます(<code>\.</code>)。</para>
           </listitem>
         </varlistentry>
       </variablelist>
-
-      <para>No special characters or wildcards are used to match file names. To
-      match all filenames of a certain type, simply omit the filename.</para>
-
-      <para>Rules are case-insensitive. For example, <code>f: \.bat&amp;</code>
-      matches <filename>winmerge.bat</filename> and
-      <filename>compare.BAT</filename>.</para>
-
+      <para>特殊文字やワイルドカードは、ファイル名とマッチさせるためには、使用されません。
+        ある型のすべてのファイル名にマッチするためには、単にファイル名を省略します。</para>
+      <para>ルールは、大文字・小文字を区別しません。例えば、
+        <code>f: \.bat&amp;</code>は、
+        <filename>winmerge.bat</filename>と 
+        <filename>compare.BAT</filename>にマッチします。</para>
       <example>
-        <title>File filter rule examples</title>
-
-        <para>Some simple file filter rules:</para>
-
-        <screen>f: \.cpp$ ## Match <filename>*.cpp</filename> files
-f: \.h$ ## Match <filename>*.h</filename> files
-f: ^My ## Match <filename>My*.*</filename> files
-f: Dlg\. ## Match <filename>*Dlg.*</filename> files
-d: \\test$ ## Match <filename>test</filename> folders
-d: ^\\Build$ ## Match <filename>Build</filename> folders
-d: Temp$ ## Match <filename>*Temp</filename> folders (for example, <filename>FirstTemp</filename>)
-d: Src ## Match <filename>*Src*</filename> folders</screen>
-
-        <para>Some rules with more complex regular expressions:</para>
-
-        <screen format="linespecific">f: ^\.#.*$ ## <filename>.#filename.version</filename> files
-f: Dlg\.c(pp)?$ ## <filename>*Dlg.c</filename> and <filename>*Dlg.cpp</filename> files
-f: ^I.*\.h$ ## <filename>I*.h</filename> files
-f: Srv[1-9]\.def$ ## <filename>*Srv1.def</filename> to <filename>*Srv9.def</filename> files
-f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filename>m*.*</filename> files</screen>
+        <title>ファイルフィルタルールの例</title>
+        <para>シンプルなファイルフィルタルール:</para>
+        <screen>f: \.cpp$ ## <filename>*.cpp</filename>ファイルにマッチ
+          f: \.h$ ## <filename>*.h</filename>ファイルにマッチ
+          f: ^My ## <filename>My*.*</filename>ファイルにマッチ
+          f: Dlg\. ## <filename>*Dlg.*</filename>ファイルにマッチ
+          d: \\test$ ## <filename>test</filename>フォルダにマッチ
+          d: ^\\Build$ ## <filename>Build</filename>フォルダマッチ
+          d: Temp$ ## <filename>*Temp</filename>フォルダにマッチ (例:<filename>FirstTemp</filename>)
+          d: Src ## <filename>*Src*</filename>フォルダにマッチ</screen>
+        <para>
+          いくつかのルールは、もっと複雑な正規表現です:</para>
+        <screen format="linespecific">
+          f: ^\.#.*$ ## <filename>.#filename.version</filename>ファイル
+          f: Dlg\.c(pp)?$ ## <filename>*Dlg.c</filename>と<filename>*Dlg.cpp</filename>ファイル
+          f: ^I.*\.h$ ## <filename>I*.h</filename>ファイル
+          f: Srv[1-9]\.def$ ## <filename>*Srv1.def</filename> から <filename>*Srv9.def</filename>ファイル
+          f: ^[h,k,m] ## <filename>h*.*</filename>d、<filename>k*.*</filename>、<filename>m*.*</filename>ファイル</screen>
       </example>
     </section>
   </section>
-
   <section id="Filters_LineFilter">
-    <title>行フィルタの使用<indexterm>
-        <primary>フィルタ</primary>
-
-        <secondary>行</secondary>
-      </indexterm><indexterm>
-        <primary>フィルタ</primary>
-
-        <secondary>in file comparisons</secondary>
-      </indexterm></title>
-
-    <para>In a file comparison, you can use line filters to ignore single lines.
-    For example, you might use line filters to ignore comments or certain type
-    of generated code, like version control system timestamps. Each line filter
-    is a rule, and you can apply any number of line filters to a file
-    comparison.</para>
-
-    <para>To learn how to add, edit, and manage filters, see <xref
-    linkend="Filters_dlg" />.</para>
-
+    <title>行フィルタの使用
+    <indexterm>
+      <primary>フィルタ</primary>
+      <secondary>行</secondary>
+    </indexterm>
+    <indexterm>
+      <primary>フィルタ</primary>
+      <secondary>in file comparisons</secondary>
+    </indexterm></title>
+    <para>
+      ファイル比較で単一行を無視するために、行フィルタを使用することができます。
+      例えば、コメント、生成されたコードの決まった型や、
+      バージョン管理システムのタイムスタンプの様なものを無視するために、
+      行フィルタを使うかもしれません。各行フィルタは1つのルールです。
+      ファイル比較のために、たくさんの行フィルタを使用することができます。</para>
+    <para>フィルタの追加、編集、管理については、
+      <!-- TODO: リンク切れ？ --><xref linkend="Filters_dlg" />を参照してください。</para>
     <section id="Filters_LineFilterApply">
+
       <title>行フィルタの適用</title>
-
-      <para>You can apply line filters using any of these methods:</para>
-
+      <para>
+        次の方法で、行フィルタを適用することができます:</para>
       <itemizedlist>
         <listitem>
-          <para>When you launch a file compare from the Select Files or Folders
-          dialog</para>
-
+          <para>
+            ファイルまたはフォルダの選択ダイアログから、
+            ファイル比較を起動する場合</para>
           <orderedlist>
             <listitem>
-              <para>After choosing the <guilabel>Left</guilabel> and
-              <guilabel>Right</guilabel> files, click
-              <guibutton>Select</guibutton> next to the
-              <guilabel>Filter</guilabel> field.</para>
+              <para>
+                <guilabel>1(左)</guilabel>と 
+                <guilabel>2(右)</guilabel>のファイル選択後、
+                <guilabel>フィルタ</guilabel>フィールドの隣の 
+                <guibutton>選択</guibutton>をクリックしてください。</para>
             </listitem>
-
             <listitem>
-              <para>In the Filters dialog, use the Linefilters tab to enable the
-              line filters you want to use (if any), or to see what line filters
-              are currently enabled.</para>
-
+              <para>フィルタダイアログで、使用したい行フィルタを有効化するため、
+                また、現在どの行フィルタが有効かを確認するには、行フィルタタブを使います。</para>
               <note>
-                <para>The <guilabel>Filter</guilabel> field does not indicate
-                what line filters are enabled.</para>
+                <para>
+                  <guilabel>フィルタ</guilabel>フィールドは、
+                  どの行フィルタが有効化されているかを表示しません。</para>
               </note>
             </listitem>
-
             <listitem>
-              <para>Proceed with the file compare operation. The enabled line
-              filters are applied when you start the operation.</para>
+              <para>
+                ファイル比較操作を続けてください。
+                操作を開始した時に、有効化された行フィルタが適用されます。</para>
             </listitem>
           </orderedlist>
         </listitem>
-
         <listitem>
-          <para>After you have already launched a file compare operation (for
-          example, to apply different filters or disabling filtering)</para>
-
+          <para>
+            既に、ファイル比較操作を起動後
+            (違うフィルタを適用した、または、フィルタを無効にしてしまった時など)は、</para>
           <orderedlist>
             <listitem>
-              <para>Click <menuchoice>
-                  <guimenu>Tools</guimenu>
-
-                  <guimenuitem>Filters</guimenuitem>
-                </menuchoice>.</para>
+              <para>
+              <menuchoice>
+                <guimenu>ツール</guimenu>
+                <guimenuitem>フィルタ</guimenuitem>
+              </menuchoice>をクリックしてください。</para>
             </listitem>
-
             <listitem>
-              <para>Open the Filefilters tab.</para>
+              <para>
+              ファイルフィルタタブを開いてください。</para>
             </listitem>
-
             <listitem>
-              <para>Check the individual line filters you want to apply, and
-              uncheck filters that you don't want to apply.</para>
-
-              <para>You can also add, edit, and remove filters from the list by
-              using the <guibutton>New</guibutton>, <guibutton>Edit</guibutton>,
-              and <guibutton>Remove</guibutton> buttons.</para>
+              <para>
+                あなたが適用したい行フィルタの行にチェックしてください。
+                また、適用したくないフィルタは、チェックを外してください。</para>
+              <para>
+                <guibutton>新規</guibutton>、
+                <guibutton>編集</guibutton>、
+                <guibutton>削除</guibutton>ボタンを使用して、
+                フィルタを追加、編集、削除することもできます。</para>
             </listitem>
-
             <listitem>
-              <para>To turn on line filtering, check the <guilabel>Enable Line
-              Filters</guilabel>. To turn line filtering off, uncheck the
-              option.</para>
+              <para>行フィルタ機能を有効にするには、
+                <guilabel>行フィルタを有効にする</guilabel>にチェックしてください。
+                行フィルタ機能を無効にするには、チェックを外してください。</para>
             </listitem>
-
             <listitem>
-              <para>Click <guibutton>OK</guibutton> to dismiss the File Filters
-              dialog.</para>
+              <para>
+                <guibutton>OK</guibutton>をクリックして、
+                ファイルフィルタダイアログを閉じてください。</para>
             </listitem>
-
             <listitem>
-              <para>Click <keycap>F5</keycap> to apply your changes and refresh
-              the File Compare window.</para>
+              <para>
+                <keycap>F5</keycap>を押下して変更を適用し、
+                ファイル比較ウィンドウをリフレッシュしてください。</para>
             </listitem>
           </orderedlist>
         </listitem>
       </itemizedlist>
     </section>
-
     <section id="Filters_LineFilterSyntax">
-      <title>行フィルタの文法<indexterm>
+
+      <title>行フィルタの文法
+        <indexterm>
           <primary>rules</primary>
-
           <secondary>line filter</secondary>
-        </indexterm><indexterm>
+        </indexterm>
+        <indexterm>
           <primary>filters</primary>
-
           <secondary>line</secondary>
-        </indexterm><indexterm>
+        </indexterm>
+        <indexterm>
           <primary>regular expressions</primary>
-
           <secondary>in line filters</secondary>
-        </indexterm></title>
-
-      <para>A line filter is a rule that is evaluated against each single-line
-      difference in your compared files, if line filter rules are enabled. When
-      a rule matches a single-line difference, the difference is ignored.</para>
-
-      <para>Ignored differences are marked in the File Compare window with the
-      <guilabel>Ignored Difference</guilabel> color (as defined in the Colors
-      page of WinMerge Options). This enables you to distinguish ignored
-      differences from other types. However, you cannot select or merge ignored
-      difference.</para>
-
-      <para>Line filter matching can be described in terms of two ideas:</para>
-
+      </indexterm></title>
+      <para>
+        <!-- TODO: わかりにく。。。-->行フィルタは、行フィルタルールが有効化されている場合、
+        比較ファイル中の単一行の差異毎に評価されるルールです。
+        単一行の差異にルールがマッチした時、その差異は無視されます。</para>
+      <para>無視された差異は、ファイル比較ウィンドウ中では、
+        <guilabel>無視された差異</guilabel>の色(WinMergeオプションの色ページで定義されている)
+        でマークされます。
+        これは、その他のタイプと無視された差異を区別できるようにします。
+        しかし、無視された差異は、選択やマージすることができません。</para>
+      <para>
+        行フィルタマッチは、2つの考えに基づいて記述されるかもしれません:</para>
       <itemizedlist>
         <listitem>
-          <para>When a rule matches any part of the line, the entire difference
-          is ignored. Therefore, you cannot filter just part of a line. For
-          example, suppose two files have the following single-line
-          difference:</para>
-
+          <para>
+            ルールが、行のある部分にマッチした時、差異全体が無視されます。
+            つまり、行の一部だけをフィルタすることはできません。
+            例えば、2つのファイルに、次の単一行の差異があると仮定した場合:</para>
           <formalpara>
             <title>File1:</title>
-
-            <para><screen># Jean Sibelius</screen></para>
+            <para>
+              <screen># Jean Sibelius</screen>
+            </para>
           </formalpara>
-
           <formalpara>
             <title>File2:</title>
-
-            <para><screen># Janne Sibelius</screen></para>
+            <para>
+              <screen># Janne Sibelius</screen>
+            </para>
           </formalpara>
-
-          <para>With no filtering, the line is detected as a difference. But if
-          we apply a line filter rule with the expression, <code>^#</code>, the
-          lines are reported as identical, because the expression specifies only
-          the first character, which matches in both files.</para>
+          <para>
+            フィルタなしの場合、行は差異として検出されます。
+            しかし、行フィルタを
+            <code>^#</code>の式とともに適用する場合、その行は同一であると評価されます。
+            なぜなら、式は、両方のファイルにマッチする最初の文字のみを指定しているからです。</para>
         </listitem>
-
         <listitem>
-          <para>A rule is applied to a multi-line difference only if all the
-          lines match. For example, consider this two-line difference:</para>
-
+          <para>
+            ルールは、すべての行にマッチした場合に、複数行差異に適用されます。
+            例えば、次の2行の差異を考えてみてください:</para>
           <formalpara>
             <title>File1:</title>
-
-            <para><screen># Jean Sibelius
-# Pekka Himanen</screen></para>
+            <para>
+              <screen># Jean Sibelius
+# Pekka Himanen</screen>
+            </para>
           </formalpara>
-
           <formalpara>
             <title>File2:</title>
-
-            <para><screen># Janne Sibelius
-Pekka Himanen</screen></para>
+            <para>
+              <screen># Janne Sibelius
+Pekka Himanen</screen>
+            </para>
           </formalpara>
-
-          <para>The same <code>^#</code> rule matches the first line, but not
-          the second line. Therefore, the difference is not ignored.</para>
+          <para>同じ 
+            <code>^#</code>ルールは、1行目にマッチしますが、2行目にはマッチしません。
+            したがって、差異は無視されません。</para>
         </listitem>
       </itemizedlist>
-
       <tip>
-        <para>It's usually good practice to use the beginning of line (
-        <code>^</code> ) and end of line ( <code>&amp;</code> ) markers to
-        control your patterns precisely, because the rule is applied if any part
-        of a line matches the expression.</para>
+        <para>パターンの正確さを制御するために、
+          行頭(<code>^</code>)と行末(<code>$</code>)
+          <!-- NOTE: 原文では、'&amp;' となっているが、おそらく間違い-->
+          記号を使用することは、大抵、良い習慣です。
+          <!-- TODO: イマイチ-->なぜなら、式が、行のある部分にマッチした場合に、
+          ルールが適用されるからです。</para>
       </tip>
-
       <example>
-        <title>Sample line filters</title>
-
+        <title>行フィルタサンプル</title>
         <screen format="linespecific">^MYTAG$</screen>
-
-        <para>Filters lines that exactly match <literal>MYTAG</literal></para>
-
+        <para>厳密に、
+          <literal>MYTAG</literal>にマッチする行をフィルタします</para>
         <screen format="linespecific">^::</screen>
-
-        <para>Filters lines beginning with <literal>::</literal></para>
-
+        <para>
+          <literal>::</literal>で始まる行をフィルタします</para>
         <screen format="linespecific">^/\**.\*/$</screen>
-
-        <para>Filters lines beginning with
-        <literal><constant>/*</constant></literal> and ending with
-        <literal>*/</literal></para>
-
+        <para>
+          <literal><constant>/*</constant></literal>で始まり、
+          <literal>*/</literal>で終わる行をフィルタします</para>
         <screen format="linespecific">^[1-5]00</screen>
-
-        <para>Filters lines beginning with numbers 100, 200, 300, 400, and
-        500</para>
+        <para>数字の、100、200、300、400、500
+          で始まる行をフィルタします</para>
       </example>
-
       <example>
-        <title>Line filter rule matching CVS Id lines</title>
-
-        <para>CVS Id lines look like this:</para>
-
-        <screen>// $Id: Filters.xml 6806 2009-05-29 20:33:13Z denisbradford $</screen>
-
-        <para>... and can be filtered with this rule:</para>
-
+        <title>CVS の Id 行にマッチする行フィルタルール</title>
+        <para>CVS の Id 行は、次の様なものです:</para>
+        <screen>// $Id: Filters.xml 6815 2009-06-04 11:57:09Z denisbradford $</screen>
+        <para>
+          そしてこれは、次のルールでフィルタできます:</para>
         <screen>^// \WId: .*\$</screen>
       </example>
-
       <example>
-        <title>Filter line number comments in po files</title>
-
-        <para>po line number comments look like this:</para>
-
+        <title>poファイルの行コメントフィルタ</title>
+        <para>poファイルの行コメントは、次の様なものです:</para>
         <screen>#: src/filename.c:766</screen>
-
-        <para>... and can be filtered with this rule:</para>
-
+        <para>
+          そしてこれは、次のルールでフィルタできます:</para>
         <screen>^#</screen>
       </example>
     </section>
   </section>
-
   <section id="Filters_dlg">
-    <title>フィルタダイアログの使用<indexterm>
-        <primary>Filters dialog</primary>
-      </indexterm><indexterm>
-        <primary>filters</primary>
-
-        <secondary>managing and enabling</secondary>
-      </indexterm></title>
-
-    <para>This section describes the Filters dialog, which provides functions to
-    create and manage file filters and line filters.</para>
-
-    <para>To open the Filters dialog, use either of these methods:</para>
-
+    <title>フィルタダイアログの使用
+    <indexterm>
+      <primary>Filters dialog</primary>
+    </indexterm>
+    <indexterm>
+      <primary>filters</primary>
+      <secondary>managing and enabling</secondary>
+    </indexterm></title>
+    <para>
+      このセクションは、ファイルフィルタと行フィルタの作成・管理機能を提供する、
+      フィルタダイアログの説明をします。</para>
+    <para>
+      フィルタダイアログを開くには、次の何れかの方法を使用してください:</para>
     <itemizedlist>
       <listitem>
-        <para>In the Select Files or Folders dialog, click
-        <guibutton>Select</guibutton> to the right of the
-        <guilabel>Filter</guilabel> field. You use this method when you want to
-        apply a file filter to a folder compare operation.</para>
+        <para>ファイルまたはフォルダの選択ダイアログで、
+          <guibutton>フィルタ</guibutton>フィールドの右にある、
+          <guilabel>選択</guilabel>ボタンをクリックしてください。
+          フォルダ比較用のファイルフィルタを適用したい時は、方法を使用してください。</para>
       </listitem>
-
       <listitem>
-        <para>Click <menuchoice>
-            <guimenu>Tools</guimenu>
-
-            <guimenuitem>Filters</guimenuitem>
-          </menuchoice>. This method can be used at any time except when the
-        Select Files or Folders dialog is open.</para>
+        <para>
+          <menuchoice>
+            <guimenu>ツール</guimenu>
+            <guimenuitem>フィルタ</guimenuitem>
+        </menuchoice>をクリックしてください。
+        この方法は、ファイルまたはフォルダの選択ダイアログを開いている時以外に使用可能です。</para>
       </listitem>
     </itemizedlist>
-
-    <para>The Filters dialog has a tab for each type of WinMerge filter:</para>
-
+    <para>フィルタダイアログには、それぞれの
+      WinMergeフィルタ用のタブがあります:</para>
     <variablelist>
       <varlistentry>
-        <term>Filefilters</term>
-
+        <term>ファイルフィルタ</term>
         <listitem>
-          <para>Choose this tab to work with file filters for folder compare
-          operations.</para>
+          <para>
+            フォルダ比較用のファイルフィルタを設定するには、このタブを選択してください。</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>Linefilters</term>
-
         <listitem>
-          <para>Choose this tab to work with line filters for file compare
-          operations.</para>
+          <para>
+            ファイル比較用の行フィルタを設定するには、こちらのタブを使用してください。</para>
         </listitem>
       </varlistentry>
     </variablelist>
-
     <section id="Filters_FileFiltersTab">
-      <title>ファイルフィルタタブの使用<indexterm>
-          <primary>file filters</primary>
 
-          <secondary>enabling</secondary>
-        </indexterm></title>
-
-      <para>The main part of this tab is a list of file filters that are
-      available for folder compare operations. The list includes shared,
-      private, and installed file filters that WinMerge knows about, as
-      described in <xref linkend="Filters_FileFilterLoc" />.</para>
-
+      <title>ファイルフィルタタブの使用
+      <indexterm>
+        <primary>file filters</primary>
+        <secondary>enabling</secondary>
+      </indexterm></title>
+      <para>
+        このタブの主要部分は、フォルダ比較用に利用可能なファイルフィルタの一覧です。
+        このリストは、共有、個人、そして、<!-- TODO: リンク切れ？ -->
+        <xref linkend="Filters_FileFilterLoc" />で説明されている、
+        WinMergeが知り得るインストール済みのファイルフィルタを含んでいます。</para>
       <section id="Filters_FileFilterEnabling">
+
         <title>ファイルフィルタの有効化と無効化</title>
-
-        <para>You must enable a file filter to make it available in a folder
-        comparison operation, or to disable a current filter to stop it from
-        being used:</para>
-
+        <para>
+          <!-- FIXME:言わんとしとることが全くわからん-->
+          ファイルフィルタが、フォルダ比較操作で、それを有効にすること、
+          また、フィルタが使用され始めてから、
+          現在のフィルタを止めるために無効にすることを可能にしなければなりません:</para>
         <orderedlist>
           <listitem>
-            <para>Open the Filters dialog, if it is not already open.</para>
+            <para>
+              まだ、フィルタダイアログを開いていない場合は、開いてください</para>
           </listitem>
-
           <listitem>
-            <para>Select a file filter or
-            <guimenuitem>&lt;None&gt;</guimenuitem> from the list.</para>
+            <para>
+              ファイルフィルタを選択、もしくは、リストから
+              <guimenuitem>
+                &lt;なし&gt;</guimenuitem>を選択しくてださい。</para>
           </listitem>
-
           <listitem>
-            <para>Click <guibutton>OK</guibutton> to dismiss the Filters
-            dialog.</para>
+            <para>
+              <guibutton> OK</guibutton>をクリックして、
+              フィルタダイアログを閉じてください。</para>
           </listitem>
         </orderedlist>
-
-        <para>There are several ways to apply file filters after enabling them.
-        For details, see <xref linkend="Filters_FileFilterApply" />.</para>
+        <para>
+          ファイルフィルタを有効にした後でそれらを適用する方法が、いくつかあります。
+          詳細は、<!-- TODO: リンク切れ？ -->
+          <xref linkend="Filters_FileFilterApply" />を参照してください。</para>
       </section>
-
       <section id="Filters_FileFilterCfg">
+
         <title>ファイルフィルタの設定</title>
-
-        <para>Use these buttons to manage your <guilabel>Filefilters</guilabel>
-        list and create new file filters:</para>
-
+        <para>
+          <guilabel>ファイルフィルタ</guilabel>リストの管理と
+          フィルタの新規作成には、これらのボタンを使用してください:</para>
         <variablelist>
           <varlistentry>
-            <term>Test</term>
-
+            <term>テスト</term>
             <listitem>
-              <para>Select a file filter in the list and click
-              <guibutton>Test</guibutton> to quickly see how the filter works.
-              See <xref linkend="Filters_TestingDlg" /> for details.</para>
+              <para>
+                フィルタがどのように動作するか素早く確認するには、
+                リスト中のファイルフィルタを選択し、
+                <guibutton>テスト</guibutton>をクリックしてください。
+                詳細は、<!-- TODO: リンク切れ？ -->
+                <xref linkend="Filters_TestingDlg" />を参照してください。</para>
             </listitem>
           </varlistentry>
-
           <varlistentry>
-            <term>Install</term>
-
+            <term>インストール</term>
             <listitem>
-              <para>Enables you to locate a file filter and adds it to the
-              Filters list. File filters that are not in either the shared or
-              default private folder are not detected unless you install
-              them.</para>
+              <para>
+                ファイルフィルタを配置し、フィルタリストへ追加することができます。
+                ファイルフィルタは、それらをインストールしない限り、
+                共有フォルダ、デフォルトのプライベートフォルダのどちらでも検出されません。</para>
             </listitem>
           </varlistentry>
-
           <varlistentry>
-            <term>New</term>
-
+            <term>新規</term>
             <listitem>
-              <para>Creates a new copy of a file template in either the shared
-              or private filter folders, and opens it in your default editor.
-              Edit the template and add your rules, as described in <xref
-              linkend="Filters_CreatingFile" />.</para>
+              <para>
+                共有フォルダかプライベートフィルタフォルダのどちらかに、
+                ファイルテンプレートの新しいコピーを作成します。
+                <xref linkend="Filters_CreatingFile" />で説明されているように、
+                テンプレートを編集、ルールの追加を行ってください。</para>
             </listitem>
           </varlistentry>
-
           <varlistentry>
-            <term>Edit</term>
-
+            <term>編集</term>
             <listitem>
-              <para>Select a file filter in the list and click
-              <guibutton>Edit</guibutton> to open the file in your default
-              editor.</para>
+              <para>
+                デフォルトエディタでファイルを開くには、リスト中のファイルフィルタを選択し、
+                <guibutton>編集</guibutton>をクリックしてください。</para>
             </listitem>
           </varlistentry>
-
           <varlistentry>
-            <term>Delete</term>
-
+            <term>削除</term>
             <listitem>
-              <para>Select a file filter in the list and click
-              <guibutton>Delete</guibutton> to delete the file and remove it
-              from the list. Yes, the file is really deleted!</para>
+              <para>
+                ファイルを削除しリストから取り除くには、
+                リスト中のファイルフィルタを選択し、
+                <guibutton>削除</guibutton>をクリックしてください。
+                これで、本当にファイルは削除されました。</para>
             </listitem>
           </varlistentry>
         </variablelist>
-
-        <para>Your changes are saved when you click <guibutton>OK</guibutton> to
-        dismiss the Filters dialog. Line filters are stored in the Windows
-        registry.</para>
+        <para>
+          <guibutton>OK</guibutton>をクリックして、
+          フィルタダイアログを閉じた時、変更は保存されます。
+          行フィルタは、Windowsのレジストリに保存されます。</para>
       </section>
-
       <section id="Filters_CreatingFile">
+
         <title>ファイルフィルタの作成</title>
-
-        <para>If the file filters that are installed with WinMerge do not
-        provide the filtering you need, you can create your own:</para>
-
+        <para>WinMergeにインストール済のファイルフィルタが、
+          お望みのフィルタを提供していないなら、あなた自身で作成することができます:</para>
         <orderedlist>
           <listitem>
-            <para>Click <menuchoice>
-                <guimenu>Tools</guimenu>
-
-                <guimenuitem>Filters</guimenuitem>
-              </menuchoice>. Or, from the Select Files or Folders dialog, click
-            <guibutton>Select</guibutton> to the right of the
-            <guilabel>Filter</guilabel> field.</para>
+            <para>
+              <menuchoice>
+                <guimenu>ツール</guimenu>
+                <guimenuitem>フィルタ</guimenuitem>
+              </menuchoice>をクリックしてください。
+              または、ファイルまたはフォルダの選択ダイアログから、
+              <guibutton>フィルタ</guibutton>フィールドの右にある、
+              <guilabel>選択</guilabel>ボタンをクリックしてください。</para>
           </listitem>
-
           <listitem id="Filters_New_step">
-            <para>In the Filters dialog Filefilters tab, click
-            <guibutton>New</guibutton>.</para>
+
+            <para>
+              フィルタダイアログのファイルフィルタタブの、
+              <guibutton>新規</guibutton>ボタンをクリックしてください。</para>
           </listitem>
-
           <listitem>
-            <para>In the Shared or Private Filter dialog, choose
-            <guilabel>Shared Filter</guilabel> or <guilabel>Private
-            Filter</guilabel> (see <xref linkend="Filters_FileFilterLoc" /> for
-            their uses) and click <keycap>OK</keycap>.</para>
-
-            <para>The Select filename for new filter dialog opens in the shared
-            or private files folder on your system (if the private folder does
-            not exist, WinMerge creates it).</para>
+            <para>共有/プライベートフィルタダイアログで、
+              <guilabel>共有フィルタ</guilabel>、または、
+              <guilabel>プライベートフィルタ</guilabel>
+              (これらを何に使用するかは、<!-- TODO: リンク切れ？ -->
+              <xref linkend="Filters_FileFilterLoc" />を参照してください)を選択し、
+              <keycap>OK</keycap>をクリックしてください。</para>
+            <para>
+              お使いのシステムの共有、または、プライベートフォルダが、
+              「新しいフィルタのファイル名を指定してください」ダイアログに開きます
+              (プライベートフォルダが存在しない場合は、WinMergeが作成します)。</para>
           </listitem>
-
           <listitem>
-            <para>In the Select filename for new filter dialog, enter a new file
-            name and click <guibutton>Save</guibutton>.</para>
-
+            <para>
+              「新しいフィルタのファイル名を指定してください」ダイアログで、
+              ファイル名を入力し
+              <guibutton>保存</guibutton>をクリックしてください。</para>
             <note>
-              <para>Don't choose an existing file name: to edit an existing
-              file, go back to Step <xref linkend="Filters_New_step" /> and
-              click Edit instead of New.</para>
+              <para>既存のファイル名を選ばないでください:
+                既存のファイルを編集するには、
+                <xref linkend="Filters_New_step" />に戻って、
+                「新規」の代わりに、「編集」をクリックしてください。</para>
             </note>
-
-            <para>WinMerge initializes the new file with the contents of the
-            <filename>FileFilter.tmpl</filename> tempate, and opens it in your
-            default text editor.</para>
+            <para>WinMergeは、新しいファイルを、テンプレート:
+              <filename>FileFilter.tmpl</filename>を用いて作成し、
+              デフォルトのテキストエディタでそれを開きます。</para>
           </listitem>
-
           <listitem>
-            <para>Follow the template instructions to edit the template,
-            updating the placeholder name and description and adding filter
-            rules as described in <xref linkend="Filters_FileFilterSyntax" />.
-            Save the file in your text editor.</para>
-
+            <para>
+              テンプレートの編集は、テンプレートの指示に従って、
+              プレースホルダ名と説明の更新、
+              <xref linkend="Filters_FileFilterSyntax" />で説明されている、
+              フィルタルールの追加を行ってください。
+              テキストエディタでファイルを保存してください。</para>
             <tip>
-              <para>If you want to quickly test a rule that you are defining,
-              try clicking Test in the Filters dialog. See <xref
-              linkend="Filters_TestingDlg" /> for details.</para>
+              <para>
+                あなたが作成中のルールを、素早くテストしたい場合は、
+                フィルタダイアログの「テスト」ボタンをクリックしてみてください。
+                詳細は、<xref linkend="Filters_TestingDlg" />を参照してください。</para>
             </tip>
           </listitem>
-
           <listitem>
-            <para>If you created your file filter in one of the standard
-            <filename>Filters</filename> folders, and the Filters dialog does
-            not list your new file filter, try clicking
-            <guibutton>OK</guibutton> to close it, then click <menuchoice>
-                <guimenu>Tools</guimenu>
-
-                <guimenuitem>Filters</guimenuitem>
-              </menuchoice> again to reopen it. The
-            <guilabel>Filefilters</guilabel> list should now include the new
-            file filter.</para>
-
-            <para>If you saved the file in an alternate location on your file
-            system), WinMerge cannot detect it unless you install it. To make a
-            file filter detectable anywhere on your system:</para>
-
+            <para>標準の
+              <filename>フィルタ</filename>フォルダに
+              、ファイルフィルタを作成したにも関わらず、
+              フィルタダイアログがその新しいファイルフィルタを表示しない場合は、
+              一度、<guibutton>OK</guibutton>をクリックしてダイアログを閉じてください。
+              次に、
+              <menuchoice>
+                <guimenu>ツール</guimenu>
+                <guimenuitem>フィルタ</guimenuitem>
+              </menuchoice>をクリックし、再度ダイアログを開いてください。
+              <guilabel>ファイルフィルタ</guilabel>リストは、
+              新しいファイルフィルタを含んでいるでしょう。</para>
+            <para>
+              お使いのシステム上の、別の場所にファイルを保存した場合、
+              あなたがインストールしない限り、WinMergeは、それを検出することができません。
+              システム上のどこかにあるファイルフィルタを検出させるには:</para>
             <orderedlist numeration="loweralpha">
-              <listitem>
-                <para>Click <guibutton>Install</guibutton> in the Filters
-                dialog.</para>
-              </listitem>
 
               <listitem>
-                <para>In the Locate filter file to install dialog, navigate to
-                the <filename>flt</filename> file on your system, and click
-                <guibutton>Open</guibutton>. The Filefilters list should now
-                include the installed file filter.</para>
+                <para>フィルタダイアログの
+                  <guibutton>インストール</guibutton>をクリックしてください。</para>
+              </listitem>
+              <listitem>
+                <para>
+                  「インストールするファイルフィルタの位置」ダイアログで、システム上の
+
+                  <filename>flt</filename>ファイルを選択し、
+                  <guibutton>開く</guibutton>をクリックしてください。
+                  ファイルフィルタリストは、インストールされたファイルフィルタを含んでいるでしょう。</para>
               </listitem>
             </orderedlist>
           </listitem>
         </orderedlist>
       </section>
-
       <section id="Filters_TestingDlg">
-        <title>ファイルフィルタのテスト<indexterm>
+        <title>ファイルフィルタのテスト
+          <indexterm>
             <primary>file filters</primary>
-
             <secondary>testing</secondary>
-          </indexterm><indexterm>
+          </indexterm>
+          <indexterm>
             <primary>testing file filters</primary>
-          </indexterm></title>
-
-        <para>Use the Test Filter dialog to quickly test a file filter against
-        sample data, to help you develop new rules or to understand how existing
-        rules work. It can be easier than running a full compare
-        operation.</para>
-
-        <para>Starting from the Filters dialog:</para>
-
+        </indexterm></title>
+        <para>
+          新しいルール作成や既存のルールの理解を補助するため、
+          サンプルデータに対し素早くファイルフィルタをテストするには、
+          テストフィルタダイアログを使用してください。
+          それは、フルで比較操作を走らせるより簡単です。</para>
+        <para>フィルタダイアログから始めます:</para>
         <orderedlist>
           <listitem>
-            <para>In the Filefilters tab, choose the file filter you want to
-            test.</para>
+            <para>
+              ファイルフィルタタブで、テストしたいファイルフィルタを選択してください。</para>
           </listitem>
-
           <listitem>
-            <para>If you want to see the rules you will be testing,click
-            <guibutton>Edit</guibutton> now to open the file so that you can
-            view it during the next steps.</para>
+            <para>テストするルールを確認したい場合は、
+              <guibutton>編集</guibutton>をクリックしてください。
+              ファイルが開き、次のステップの間、内容を確認することができます。</para>
           </listitem>
-
           <listitem>
-            <para>Click <guibutton>Test</guibutton>.</para>
+            <para>
+              <guibutton>テスト</guibutton>をクリックしてください。</para>
           </listitem>
-
           <listitem>
-            <para>In the Test Filter dialog, choose the type of rule to
-            test:</para>
-
+            <para>
+              フィルタのテストダイアログで、テストするルールの型を選択してください:</para>
             <itemizedlist>
               <listitem>
-                <para>To test an <guilabel>f:</guilabel> file rule in your file
-                filter, uncheck the <guilabel>Folder Name</guilabel>
-                option.</para>
+                <para>
+                  ファイルフィルタ中のファイルルール、
+                  <guilabel>f:</guilabel>をテストするには、
+                  <guilabel>フォルダ名</guilabel>オプションのチェックを外してください。</para>
               </listitem>
-
               <listitem>
-                <para>To test a <guilabel>d:</guilabel> folder rule, check the
-                <guilabel>Folder Name</guilabel> option.</para>
+                <para>フォルダルール、
+                <guilabel>d:</guilabel>をテストするには、
+                <guilabel>フォルダ名</guilabel>オプションにチェックを入れてください。</para>
               </listitem>
             </itemizedlist>
           </listitem>
-
           <listitem>
-            <para>Enter the text to test.</para>
+            <para>
+              テスト用のテキストを入力してください。</para>
+            <para>
+              テキストは、テストするルールの型に適したものであるべきです。
+              例えば、<guilabel>フォルダ名</guilabel>オプションをチェックした場合、
+              あなたは「\temp」の様なフォルダ名を入力したいでしょう。</para>
+            <para>
+              <guilabel>結果</guilabel>欄は、入力したテキストを、
+              次のどちらかのステータスと共に表示します:
 
-            <para>The text should be appropriate for the type of rule you are
-            testing. For example, if you have checked the <guilabel>Folder
-            Name</guilabel> option, you probably want to enter a folder name,
-            such as \temp.</para>
-
-            <para>The <guilabel>Result</guilabel> box displays your entry,
-            followed by its status: either
-            <computeroutput>passed</computeroutput> or
-            <computeroutput>failed</computeroutput>.</para>
+              <computeroutput>passed</computeroutput>、または、
+              <computeroutput>failed</computeroutput>。</para>
           </listitem>
         </orderedlist>
       </section>
     </section>
-
     <section id="Filters_LineFiltersTab">
-      <title>行フィルタタブの使用<indexterm>
-          <primary>line filters</primary>
 
-          <secondary>enabling</secondary>
-        </indexterm></title>
-
-      <para>Use this tab to configure and enable line filters for file compare
-      operations. The tab features a list of rules. Each rule contains a single
-      regular expression. You can apply any combination of rules from the list
-      to a file comparison.</para>
-
+      <title>行フィルタタブの使用
+      <indexterm>
+        <primary>line filters</primary>
+        <secondary>enabling</secondary>
+      </indexterm></title>
+      <para>
+        ファイル比較用の行フィルタの設定と有効化には、このタブを使用してください。
+        タブは、ルールの一覧を持っています。それぞれのルールは、1つの正規表現を含みます。
+        ファイル比較用に、リストから複数のルールを組み合わせて適用することができます。</para>
       <section id="Filters_LineFilterCfg">
+
         <title>行フィルタの設定</title>
-
-        <para>Below the <guilabel>Regular Expressions</guilabel> list is an edit
-        box and buttons that you can use to maintain the list at any time by
-        adding, editing, and removing rules.</para>
-
-        <para>To add a new rule:</para>
-
+        <para>下の
+          <guilabel>正規表現</guilabel>リストには、
+          いつでもルールの追加、編集、削除に使うことのできる、編集欄とボタンがあります。</para>
+        <para>新しいルールを追加するには:</para>
         <orderedlist>
           <listitem>
-            <para>Click <guibutton>New</guibutton>. Your edit cursor is
-            automatically enabled in the edit box.</para>
+            <para>
+              <guibutton>新規</guibutton>ボタンをクリックしてください。
+              カーソルが自動的に編集欄へ移動します。</para>
           </listitem>
-
           <listitem>
-            <para>Enter an expression in the edit box below the
-            <guilabel>Regular Expressions</guilabel> list.</para>
+            <para>
+              <guilabel>正規表現</guilabel>リストの下にある、編集欄に式を入力してください。</para>
           </listitem>
-
           <listitem>
-            <para>Click <guibutton>Save</guibutton> to load the expression in a
-            new line in the list.</para>
+            <para>
+              <guibutton>保存</guibutton>をクリックし、リストへ式を読み込んでください。</para>
           </listitem>
         </orderedlist>
-
-        <para>To edit an existing rule:</para>
-
+        <para>既存のルールを編集するには:</para>
         <orderedlist>
           <listitem>
-            <para>Select the line and click <guibutton>Edit</guibutton>.</para>
+            <para>行を選択し、
+            <guibutton>編集</guibutton>をクリックしてください。</para>
           </listitem>
-
           <listitem>
-            <para>Edit the expression in the edit box.</para>
+            <para>
+              編集欄の式を編集してください。</para>
           </listitem>
-
           <listitem>
-            <para>Click <guibutton>Save</guibutton><guibutton> </guibutton>when
-            you're done.</para>
+            <para>編集が完了したら、
+              <guibutton>保存</guibutton>をクリックしてください。
+              <!-- TODO: このボタンはゴミ？ -->
+              <guibutton> </guibutton>
+            </para>
           </listitem>
         </orderedlist>
-
-        <para>To delete an existing rule, select (check) the rule and click
-        <guibutton>Remove</guibutton>.</para>
+        <para>ルールを削除するには、ルールを選択(チェック)し、
+        <guibutton>削除</guibutton>ボタンをクリックしてください。</para>
       </section>
-
       <section id="Filters_LineFilterEnabling">
-        <title>行フィルタの有効化と無効化<indexterm>
-            <primary>line filters</primary>
 
-            <secondary>list of available</secondary>
-          </indexterm></title>
-
+        <title>行フィルタの有効化と無効化
+        <indexterm>
+          <primary>line filters</primary>
+          <secondary>list of available</secondary>
+        </indexterm></title>
         <orderedlist>
           <listitem>
-            <para>In the <guilabel>Regular Expressions</guilabel> list, check
-            just the filters that you want to apply, and uncheck any filters you
-            do not want to apply.</para>
+            <para>
+              <guilabel>正規表現</guilabel>リストで、
+              適用したいフィルタにチェックを入れ、適用したくないフィルタはチェックを外すだけです。</para>
           </listitem>
-
           <listitem>
-            <para>Check or uncheck the <guilabel>Enable Line Filters</guilabel>
-            option. If you turn filtering on, all the rules that are currently
-            checked in the <guilabel>Regular Expression</guilabel> list are
-            used. If filtering is off, no rules are used even if they are
-            checked.</para>
+            <para>
+              <guilabel>行フィルタを有効にする</guilabel>オプションに
+              チェックを入れるか、外してください。
+              行フィルタを有効にした場合、
+              <guilabel>正規表現</guilabel>リストで、現在チェックされているすべてのルールが使用されます。
+              行フィルタを無効にした場合、たとえそれらがチェックされていても、ルールは使用されません。</para>
           </listitem>
-
           <listitem>
-            <para>Click <guibutton>OK</guibutton> to dismiss the Filters dialog
-            and save your settings.</para>
+            <para>
+              <guibutton>OK</guibutton>をクリックして、フィルタダイアログを閉じ、設定を保存してください。</para>
           </listitem>
         </orderedlist>
-
-        <para>There are several ways to apply file filters after enabling them.
-        For details, see <xref linkend="Filters_LineFilterApply" />.</para>
+        <para>
+          それらを有効にした後にファイルフィルタを適用する、いくつかの方法があります。
+          詳細は、<!-- TODO: リンク切れ？ -->
+          <xref linkend="Filters_LineFilterApply" />を参照してください。</para>
       </section>
     </section>
   </section>
-
   <section id="AboutFilters_regexp">
-    <title>正規表現のヘルプ<indexterm>
-        <primary>regular expressions</primary>
-
-        <secondary>getting help</secondary>
-      </indexterm></title>
-
-    <para>Regular expressions can be very complex. Fortunately, most file
-    filters in WinMerge involve simple extension expressions, as shown in the
-    examples in this topic. The filter files installed with WinMerge include
-    many other useful examples.</para>
-
-    <para>Finally, there are lots of resources on the Web for help with regexps,
-    including these sites:</para>
-
+    <title>正規表現のヘルプ
+    <indexterm>
+      <primary>regular expressions</primary>
+      <secondary>getting help</secondary>
+    </indexterm></title>
+    <para>正規表現は、非常に複雑になり得ます。幸い、WinMerge 
+      のほとんどのファイルフィルタは、このトピックの例からもわかるように、シンプルな範囲の表現です。
+      WinMergeと共にインストールされるフィルタファイルは、多くの役に立つ例を含んでいます。</para>
+    <para>最後に、Web上には、正規表現を手助けする、これらのサイトを含むたくさんの情報源があります:</para>
     <variablelist>
       <varlistentry>
         <term>Good site devoted to regexps:</term>
-
         <listitem>
-          <simpara><ulink
-          url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
+          <simpara>
+            <ulink url="http://www.regular-expressions.info/">
+            http://www.regular-expressions.info/</ulink>
+          </simpara>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>Good HOWTO for regexps:</term>
-
         <listitem>
-          <simpara><ulink
-          url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></simpara>
+          <simpara>
+            <ulink url="http://www.amk.ca/python/howto/regex/">
+            http://www.amk.ca/python/howto/regex/</ulink>
+          </simpara>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>Tutorial:</term>
-
         <listitem>
-          <simpara><ulink
-          url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></simpara>
+          <simpara>
+            <ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">
+            http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink>
+          </simpara>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>PDF quick reference:</term>
-
         <listitem>
-          <simpara><ulink
-          url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></simpara>
+          <simpara>
+            <ulink url="http://www.night-ray.com/regex.pdf">
+            http://www.night-ray.com/regex.pdf</ulink>
+          </simpara>
         </listitem>
       </varlistentry>
     </variablelist>
