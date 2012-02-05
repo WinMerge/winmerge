@@ -113,7 +113,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				&infoPrediffer);
 
 		FileTextEncoding encoding[3];
-		BOOL bForceUTF8 = FALSE;
+		BOOL bForceUTF8 = pCtxt->GetCompareOptions(nCompMethod)->m_bIgnoreCase;
 
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
