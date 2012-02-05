@@ -52,7 +52,7 @@
                 <guimenu>ファイル(F)</guimenu>
 
                 <guimenuitem>開く(O)</guimenuitem>
-              </menuchoice>とクリックしてください。
+              </menuchoice>をクリックしてください。
             </para>
           </listitem>
 
@@ -74,7 +74,7 @@
               <keycombo>
                 <keycap>Ctrl</keycap>
                 <keycap>O</keycap>
-              </keycombo>を押してください。
+              </keycombo>を押下してください。
             </para>
           </listitem>
         </itemizedlist>
@@ -100,7 +100,7 @@
 
       <listitem>
         <para><guilabel>左(1)</guilabel>と<guilabel>右(2)</guilabel>
-          のフィールドに、これらのうち、いくつかの方法で、比較するファイルやフォルダを指定してください。</para>
+          のフィールドに、次のいくつかの方法で、比較するファイルやフォルダを指定してください。</para>
 
         <para><itemizedlist>
             <listitem>
@@ -119,12 +119,12 @@
 
               <itemizedlist>
                 <listitem>
-                  <para>もし、ファイルを比較しているなら、目的のファイルを選択してください。
+                  <para>ファイルを比較するなら、目的のファイルを選択してください。
                     <literal>Folder Selection</literal>という文字が、選択したファイル名で上書きされます。</para>
                 </listitem>
 
                 <listitem>
-                  <para>もし、フォルダを比較しているなら、(ファイルを選択せずに)目的のフォルダを開いてください。
+                  <para>フォルダを比較するなら、(ファイルを選択せずに)目的のフォルダを開いてください。
                     <literal>Folder Selection</literal>という文字は、きちんと残ったままになります。</para>
                 </listitem>
               </itemizedlist>
@@ -167,12 +167,8 @@
       <listitem>
         <para>もし、フォルダを比較しているなら、その操作からファイルを除外するために、
           <guilabel>フィルタ</guilabel>フィールドを使用することができます。
-          The field specifies a subset of files in the selected paths
-          that are to be included; all unspecified files are excluded.</para>
-          <!--FIXME: ぎこちない
           そのフィールドには、選択されたパスの中にあるファイルの一部を指定します。
-          すべての指定されていないファイルは、除外されます。
-          -->
+          すべての明示していないファイルは、除外されます。</para>
 
       <para>ファイルをフィルタするための、ファイル・マスクを入力することができます。
         例えば、この式は、CとC++のソースファイルだけを含みます(他のすべてのファイル形式は除外されます)。</para>
