@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4fdcd104-a0b6-4d6a-8e7a-da5020ef1e04}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{acff7d61-b5f2-4918-9ccf-94cdd5ef1b17}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="expat_maps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="expat_maps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_13.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_14.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_15.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_7.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_8859_9.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1250.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1251.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1252.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1253.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1254.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1255.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1256.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1257.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_data_CP1258.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
