@@ -201,7 +201,7 @@ inline HRESULT CComTypeInfoHolderModule<nObtainMethod>::GetTI(LCID lcid)
 		}
 	}
 	LeaveCriticalSection(&_Module.m_csTypeInfoHolder);
-	_Module.AddTermFunc(Cleanup, (DWORD)this);
+	_Module.AddTermFunc(Cleanup, (DWORD_PTR)this);
 	return hRes;
 }
 
