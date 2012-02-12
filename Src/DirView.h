@@ -91,6 +91,7 @@ const UINT DefColumnWidth = 150;
  */
 class CDirView : public CListView
 {
+	friend struct FileCmpReport;
 	/** 
 	* @brief Color settings.
 	*/

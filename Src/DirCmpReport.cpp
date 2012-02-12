@@ -67,6 +67,8 @@ DirCmpReport::DirCmpReport(const CStringArray & colRegKeys)
 , m_nColumns(0)
 , m_colRegKeys(colRegKeys)
 , m_sSeparator(_T(","))
+, m_pFileCmpReport(NULL)
+, m_bIncludeFileCmpReport(false)
 {
 }
 
@@ -95,6 +97,14 @@ void DirCmpReport::SetRootPaths(const PathContext &paths)
 void DirCmpReport::SetColumns(int columns)
 {
 	m_nColumns = columns;
+}
+
+/**
+ * @brief Set file compare reporter functor
+ */
+void DirCmpReport::SetFileCmpReport(IFileCmpReport *pFileCmpReport)
+{
+	m_pFileCmpReport = pFileCmpReport;
 }
 
 static ULONG GetLength32(CFile const &f)
@@ -173,6 +183,7 @@ BOOL DirCmpReport::GenerateReport(String &errStr)
 			CFile file(dlg.m_sReportFile,
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
 			m_pFile = &file;
+			m_bIncludeFileCmpReport = !!dlg.m_bIncludeFileCmpReport;
 			GenerateReport(dlg.m_nReportType);
 		}
 		bRet = TRUE;
@@ -395,11 +406,22 @@ void DirCmpReport::GenerateXmlHeader()
  */
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
+	String sFileName, sParentDir;
+	SplitFilename(m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
+	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
+	String sDestDir = paths_ConcatPath(sParentDir, sRelDestDir);
+	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+		paths_CreateIfNeeded(sDestDir.c_str());
+
 	int nRows = m_pList->GetItemCount();
 
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
+		String sLinkPath;
+		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
+			(*m_pFileCmpReport)(REPORT_TYPE_SIMPLEHTML, m_pList, currRow, sDestDir, sLinkPath);
+
 		CString rowEl = _T("tr");
 		if (xml)
 			rowEl = _T("filediff");
@@ -410,7 +432,20 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			if (xml)
 				colEl = m_colRegKeys[currCol];
 			WriteString(BeginEl(colEl));
-			WriteString(m_pList->GetItemText(currRow, currCol));
+			if (currCol == 0 && !sLinkPath.empty())
+			{
+				WriteString(_T("<a href=\""));
+				WriteString(sRelDestDir.c_str());
+				WriteString(_T("/"));
+				WriteString(sLinkPath.c_str());
+				WriteString(_T("\">"));
+				WriteString(m_pList->GetItemText(currRow, currCol));
+				WriteString(_T("</a>"));
+			}
+			else
+			{
+				WriteString(m_pList->GetItemText(currRow, currCol));
+			}
 			WriteString(EndEl(colEl));
 		}
 		WriteString(EndEl(rowEl) + _T("\n"));

@@ -3205,13 +3205,8 @@ String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
 /**
  * @brief Generate report from file compare results.
  */
-void CMergeDoc::OnToolsGenerateReport()
+bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 {
-	CString s, folder;
-
-	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
-		return;
-
 	// calculate HTML font size
 	LOGFONT lf;
 	CDC dc;
@@ -3221,11 +3216,11 @@ void CMergeDoc::OnToolsGenerateReport()
 
 	// create HTML report
 	UniStdioFile file;
-	if (!file.Open(s, _T("wt")))
+	if (!file.Open(szFileName, _T("wt")))
 	{
 		String errMsg = GetSysError(GetLastError());
 		ResMsgBox1(IDS_REPORT_ERROR, errMsg.c_str(), MB_OK | MB_ICONSTOP);
-		return;
+		return false;
 	}
 
 	file.SetCodepage(CP_UTF8);
@@ -3360,6 +3355,21 @@ void CMergeDoc::OnToolsGenerateReport()
 		_T("</html>\n"));
 
 	file.Close();
+
+	return true;
+}
+
+/**
+ * @brief Generate report from file compare results.
+ */
+void CMergeDoc::OnToolsGenerateReport()
+{
+	CString s, folder;
+
+	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
+		return;
+
+	GenerateReport(s);
 
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }

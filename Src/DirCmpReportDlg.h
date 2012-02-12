@@ -34,16 +34,23 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	// Generated message map functions
+	//{{AFX_MSG(DirCmpReportDlg)
 	afx_msg void OnBtnClickReportBrowse();
 	afx_msg void OnBtnDblclickCopyClipboard();
+	afx_msg void OnCbnSelchangeReportStylecombo();
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
+	//}}AFX_MSG
 
+	//{{AFX_DATA(DirCmpReportDlg)
 	CSuperComboBox m_ctlReportFile; /**< Report filename control */
 	CString m_sReportFile; /**< Report filename string */
 	CComboBox m_ctlStyle; /**< Report type control */
 	REPORT_TYPE m_nReportType; /**< Report type integer */
 	BOOL m_bCopyToClipboard; /**< Do we copy report to clipboard? */
+	BOOL m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */
+	//}}AFX_DATA
 };
 
 #endif // _DIRCMPREPORTDLG_H_
