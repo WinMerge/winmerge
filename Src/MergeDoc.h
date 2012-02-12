@@ -278,6 +278,7 @@ public:
 	void SetDetectMovedBlocks(bool bDetectMovedBlocks);
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
+	bool GenerateReport(LPCTSTR szFileName);
 
 // implementation methods
 private:

@@ -15,6 +15,7 @@
 #include "paths.h"
 #include "FileOrFolderSelect.h"
 #include "Merge.h"
+#include "DirCmpReportDlg.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
 
@@ -24,6 +25,7 @@ IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
 DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(DirCmpReportDlg::IDD, pParent)
 	, m_bCopyToClipboard(FALSE)
+	, m_bIncludeFileCmpReport(FALSE)
 {
 }
 
@@ -40,11 +42,13 @@ void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_REPORT_STYLECOMBO, m_ctlStyle);
 	DDX_Text(pDX, IDC_REPORT_FILE, m_sReportFile);
 	DDX_Check(pDX, IDC_REPORT_COPYCLIPBOARD, m_bCopyToClipboard);
+	DDX_Check(pDX, IDC_REPORT_INCLUDEFILECMPREPORT, m_bIncludeFileCmpReport);
 }
 
 BEGIN_MESSAGE_MAP(DirCmpReportDlg, CDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
 	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
+	ON_CBN_SELCHANGE(IDC_REPORT_STYLECOMBO, OnCbnSelchangeReportStylecombo)
 END_MESSAGE_MAP()
 
 /**
@@ -91,18 +95,28 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
+	m_nReportType = static_cast<REPORT_TYPE>(theApp.GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
+	m_bCopyToClipboard = theApp.GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), FALSE);
+	m_bIncludeFileCmpReport = theApp.GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), FALSE);
 
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
 		const ReportTypeInfo & info = f_types[i];
 		int ind = m_ctlStyle.InsertString(i, theApp.LoadString(info.idDisplay).c_str());
 		m_ctlStyle.SetItemData(ind, info.reportType);
-
+		if (info.reportType == m_nReportType)
+			m_ctlStyle.SetCurSel(m_nReportType);
 	}
-	m_ctlStyle.SetCurSel(0);
+	if (m_ctlStyle.GetCurSel() < 0)
+		m_ctlStyle.SetCurSel(0);
+
+	OnCbnSelchangeReportStylecombo();
+
 	// Set selected path to variable so file selection dialog shows
 	// correct filename and path.
 	m_ctlReportFile.GetWindowText(m_sReportFile);
+
+	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -135,6 +149,12 @@ void DirCmpReportDlg::OnBtnDblclickCopyClipboard()
 	m_ctlReportFile.SetWindowText(_T(""));
 }
 
+void DirCmpReportDlg::OnCbnSelchangeReportStylecombo()
+{
+	GetDlgItem(IDC_REPORT_INCLUDEFILECMPREPORT)->EnableWindow(
+		m_ctlStyle.GetItemData(m_ctlStyle.GetCurSel()) == REPORT_TYPE_SIMPLEHTML);
+}
+
 /**
  * @brief Close dialog.
  */
@@ -165,6 +185,9 @@ void DirCmpReportDlg::OnOK()
 	}
 
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
+	theApp.WriteProfileInt(_T("ReportFiles"), _T("ReportType"), m_nReportType);
+	theApp.WriteProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), m_bCopyToClipboard);
+	theApp.WriteProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), m_bIncludeFileCmpReport);
 
 	CDialog::OnOK();
 }

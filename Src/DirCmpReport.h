@@ -25,6 +25,12 @@
  * fit for reporting. Duplicating formatting and sorting code should be
  * avoided.
  */
+
+struct IFileCmpReport
+{
+	virtual bool operator()(REPORT_TYPE nReportType, CListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) = 0;
+};
+
 class DirCmpReport
 {
 public:
@@ -33,6 +39,7 @@ public:
 	void SetList(CListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetColumns(int columns);
+	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
 	BOOL GenerateReport(String &errStr);
 
 protected:
@@ -55,6 +62,8 @@ private:
 	CString m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */
 	const CStringArray & m_colRegKeys; /**< Key names for currently displayed columns */
+	IFileCmpReport *m_pFileCmpReport;
+	bool m_bIncludeFileCmpReport;
 };
 
 #endif // _DIRCMPREPORT_H_

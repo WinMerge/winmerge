@@ -3268,6 +3268,40 @@ void CDirView::GetCurrentColRegKeys(CStringArray & colKeys)
 	}
 }
 
+struct FileCmpReport: public IFileCmpReport
+{
+	FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
+	bool operator()(REPORT_TYPE nReportType, CListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath)
+	{
+		const DIFFITEM &di = m_pDirView->GetDiffItem(nIndex);
+		if (di.diffcode.isDirectory() || !m_pDirView->IsItemNavigableDiff(di))
+		{
+			sLinkPath.clear();
+			return false;
+		}
+
+		sLinkPath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
+		string_replace(sLinkPath, _T("\\"), _T("_"));
+		sLinkPath += _T(".html");
+
+		m_pDirView->MoveFocus(m_pDirView->GetFirstSelectedInd(), nIndex, m_pDirView->GetSelectedCount());
+		
+		m_pDirView->OpenSelection();
+		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
+		if (GetMainFrame()->GetFrameType(pFrame) == FRAME_FILE)
+		{
+			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
+			pMergeDoc->CloseNow();
+		}
+
+		return true;
+	}
+private:
+	FileCmpReport();
+	CDirView *m_pDirView;
+};
+
 /**
  * @brief Generate report from dir compare results.
  */
@@ -3286,6 +3320,7 @@ void CDirView::OnToolsGenerateReport()
 	GetCurrentColRegKeys(colKeys);
 
 	DirCmpReport report(colKeys);
+	FileCmpReport freport(this);
 	report.SetList(m_pList);
 	PathContext paths;
 	for (int i = 0; i < pDoc->m_nDirs; i++)
@@ -3300,6 +3335,7 @@ void CDirView::OnToolsGenerateReport()
 
 	report.SetRootPaths(paths);
 	report.SetColumns(m_dispcols);
+	report.SetFileCmpReport(&freport);
 	String errStr;
 	if (report.GenerateReport(errStr))
 	{
