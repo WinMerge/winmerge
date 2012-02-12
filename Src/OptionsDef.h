@@ -86,7 +86,7 @@ const TCHAR OPT_PROJECTS_PATH[] = _T("Settings/ProjectsPath");
 const TCHAR OPT_USE_SYSTEM_TEMP_PATH[] = _T("Settings/UseSystemTempPath");
 const TCHAR OPT_CUSTOM_TEMP_PATH[] = _T("Settings/CustomTempPath");
 
-const TCHAR OPT_SPLIT_VERTICALLY[] = _T("Settings/SplitVertically");
+const TCHAR OPT_SPLIT_HORIZONTALLY[] = _T("Settings/SplitHorizontally");
 
 // Color options
 // The difference color

@@ -143,7 +143,7 @@ CChildFrame::~CChildFrame()
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	BOOL bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_VERTICALLY);
+	BOOL bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
 
 	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
 
@@ -720,8 +720,9 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
  */
 void CChildFrame::OnViewSplitVertically() 
 {
-	bool bSplitVertically = (m_wndSplitter.GetColumnCount() == 1);
-	GetOptionsMgr()->SaveOption(OPT_SPLIT_VERTICALLY, !bSplitVertically);
+	bool bSplitVertically = (m_wndSplitter.GetColumnCount() != 1);
+	bSplitVertically = !bSplitVertically; // toggle
+	GetOptionsMgr()->SaveOption(OPT_SPLIT_HORIZONTALLY, !bSplitVertically);
 	m_wndSplitter.FlipSplit();
 	m_wndDetailSplitter.FlipSplit();
 }
@@ -732,7 +733,7 @@ void CChildFrame::OnViewSplitVertically()
 void CChildFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
-	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() == 1));
+	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() != 1));
 }
 
 /// Document commanding us to close
