@@ -430,8 +430,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 
 exitPrepAndCompare:
-	if (pCtxt->m_bPluginsEnabled && (nCompMethod == CMP_CONTENT ||
-		nCompMethod == CMP_QUICK_CONTENT))
+	if (nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT)
 	{
 		m_diffFileData.Reset();
 		diffdata10.m_diffFileData.Reset();
