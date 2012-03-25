@@ -2368,10 +2368,11 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		}
 
 		// Close window if user has allowed it from options
-		bool bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
-		if (pMsg->wParam == VK_ESCAPE && bCloseWithEsc)
+		if (pMsg->wParam == VK_ESCAPE)
 		{
-			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
+			bool bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+			if (bCloseWithEsc && !GetMainFrame()->m_bEscShutdown)
+				GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 			return false;
 		}
 	}

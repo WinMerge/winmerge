@@ -2782,7 +2782,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				if (m_bEscCloses)
+				if (m_bEscCloses && !GetMainFrame()->m_bEscShutdown)
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 					return FALSE;
