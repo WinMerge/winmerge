@@ -100,8 +100,9 @@ namespace
 	}
 	TEST_F(PathTest, Exists_files)
 	{
-		const TCHAR path[] = _T("paths_test.exe");
+		TCHAR path[_MAX_PATH];
 		const TCHAR path2[] = _T("notfound.txt");
+		GetModuleFileName(NULL, path, sizeof(path));
 		EXPECT_EQ(IS_EXISTING_FILE, paths_DoesPathExist(path));
 		EXPECT_EQ(DOES_NOT_EXIST, paths_DoesPathExist(path2));
 	}
@@ -181,8 +182,10 @@ namespace
 	}
 	TEST_F(PathTest, Normalize_abspath3)
 	{
-		String path = _T("C:");
-		String path_orig = path;
+		TCHAR curdir[_MAX_PATH];
+		GetCurrentDirectory(sizeof(curdir), curdir);
+		String path(curdir, 2);
+		String path_orig = curdir;
 		paths_normalize(path);
 		EXPECT_EQ(path_orig, path);
 	}

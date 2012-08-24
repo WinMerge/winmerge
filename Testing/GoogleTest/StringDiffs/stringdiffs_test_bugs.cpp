@@ -54,14 +54,14 @@ namespace
 	// int whitespace - do we ignore whitespace and how
 	// int breakType - Space (0) or punctuations (1) break
 	// bool byte_level - are we word (false) or byte-level (true) diffing
-	// std::vector<wdiff*> * pDiffs - resultting diff list
+	// std::vector<wdiff> * pDiffs - resultting diff list
 
 
 	// Sf.net bug #1685466 - char level diff
 	// (ENUMRESLANGPROC) added to middle
 	TEST_F(StringDiffsBugsTest, Bug_1685466_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(
 				_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)"),
 				_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)"),
@@ -69,7 +69,7 @@ namespace
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(83, pDiff->begin[0]);
 			EXPECT_EQ(83, pDiff->begin[1]);
 			EXPECT_EQ(99, pDiff->end[0]);
@@ -81,14 +81,14 @@ namespace
 	// (ENUMRESLANGPROC) added to middle
 	TEST_F(StringDiffsBugsTest, Bug_1685466_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)"),
 			_T("if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)"),
 				false, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(83, pDiff->begin[0]);
 			EXPECT_EQ(83, pDiff->begin[1]);
 			EXPECT_EQ(114, pDiff->end[0]);
@@ -100,7 +100,7 @@ namespace
 	// various changes
 	TEST_F(StringDiffsBugsTest, Bug_1939279_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(
 			_T("[overlay_oid_origin, overlay_oid_target], [nil, nil]"),
 			_T("[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\"), \"target.txt\"]"),
@@ -108,9 +108,9 @@ namespace
 		EXPECT_EQ(6, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
-			EXPECT_EQ(19, pDiff->start[0]);
-			EXPECT_EQ(19, pDiff->start[1]);
+			wdiff *pDiff = &diffs[0];
+			EXPECT_EQ(19, pDiff->begin[0]);
+			EXPECT_EQ(19, pDiff->begin[1]);
 			EXPECT_EQ(18, pDiff->end[0]);
 			EXPECT_EQ(81, pDiff->end[1]);
 		}
@@ -120,14 +120,14 @@ namespace
 	// various changes
 	TEST_F(StringDiffsBugsTest, Bug_1939279_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("[overlay_oid_origin, overlay_oid_target], [nil, nil]"),
 			_T("[overlay_oid_origin, overlay_oid_target, origin_file_name, target_file_name], [nil, nil, \"origin.txt\"), \"target.txt\"]"),
 				false, 0, 1, false, &diffs);
 		EXPECT_EQ(6, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(19, pDiff->begin[0]);
 			EXPECT_EQ(19, pDiff->begin[1]);
 			EXPECT_EQ(18, pDiff->end[0]);
@@ -139,13 +139,13 @@ namespace
 	// Chars added to end
 	TEST_F(StringDiffsBugsTest, Bug_2022935)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("N42=Import"), _T("N42=Importuj"),
 				false, 0, 1, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(10, pDiff->begin[1]);
 			EXPECT_EQ(-1, pDiff->end[0]);
@@ -157,14 +157,14 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsBugsTest, Bug_2638045)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 				_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
@@ -176,14 +176,14 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsBugsTest, Bug_2638045_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 				_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
 				false, 0, 1, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
@@ -195,14 +195,14 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsBugsTest, Bug_2638045_3)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 				_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(47, pDiff->begin[1]);
 			EXPECT_EQ(-1, pDiff->end[0]);
@@ -214,7 +214,7 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsBugsTest, Bug_2638045_4)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T("/"));
 		sd_ComputeWordDiffs(_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php"),
 				_T("LIB_PHP4_DIR=$(RPM_NAME)-$(RPM_VER)/usr/lib/php4"),
@@ -222,7 +222,7 @@ namespace
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(44, pDiff->begin[0]);
 			EXPECT_EQ(44, pDiff->begin[1]);
 			EXPECT_EQ(46, pDiff->end[0]);
@@ -235,14 +235,14 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2779834_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("if (nDiff < m_diffs.size())"),
 				_T("if(nDiff < (int) m_diffs.size())"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(12, pDiff->begin[0]);
 			EXPECT_EQ(12, pDiff->begin[1]);
 			EXPECT_EQ(11, pDiff->end[0]);
@@ -255,14 +255,14 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2779834_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("if (nDiff < m_diffs.size())"),
 				_T("if(nDiff < (int) m_diffs.size())"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(12, pDiff->begin[0]);
 			EXPECT_EQ(12, pDiff->begin[1]);
 			EXPECT_EQ(11, pDiff->end[0]);
@@ -275,14 +275,14 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2783185_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("const string ManualFolder = \"Manual\";"),
 				_T("private const string ManualFolder = \"Manual\";"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(-1, pDiff->end[0]);
@@ -295,14 +295,14 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2783185_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("const string ManualFolder = \"Manual\";"),
 				_T("private const string ManualFolder = \"Manual\";"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(-1, pDiff->end[0]);
@@ -315,19 +315,19 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2791879_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abc def ghi jkl mno"),
 				_T("abc defx ghi jklx mno"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(4, pDiff->begin[0]);
 			EXPECT_EQ(7, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(12, pDiff->begin[0]);
 			EXPECT_EQ(16, pDiff->begin[1]);
 			EXPECT_EQ(11, pDiff->end[0]);
@@ -340,19 +340,19 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2791879_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abc def ghi jkl mno"),
 				_T("abc defx ghi jklx mno"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(4, pDiff->begin[0]);
 			EXPECT_EQ(4, pDiff->begin[1]);
 			EXPECT_EQ(6, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(12, pDiff->begin[0]);
 			EXPECT_EQ(13, pDiff->begin[1]);
 			EXPECT_EQ(14, pDiff->end[0]);
@@ -366,19 +366,19 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2793479_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);"),
 				_T("static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(30, pDiff->begin[0]);
 			EXPECT_EQ(30, pDiff->begin[1]);
 			EXPECT_EQ(30, pDiff->end[0]);
 			EXPECT_EQ(29, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(42, pDiff->begin[0]);
 			EXPECT_EQ(41, pDiff->begin[1]);
 			EXPECT_EQ(41, pDiff->end[0]);
@@ -392,7 +392,7 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2793479_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("static int iTranslateBytesToBC (TCHAR* pd, BYTE* src, int srclen);"),
 				_T("static int iTranslateBytesToBC(TCHAR* pd, const BYTE* src, int srclen);"),
 				false, 0, 0, false, &diffs);
@@ -400,7 +400,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() > 0)
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(11, pDiff->begin[0]);
 			EXPECT_EQ(11, pDiff->begin[1]);
 			EXPECT_EQ(37, pDiff->end[0]);
@@ -408,7 +408,7 @@ namespace
 		}
 		if (diffs.size() > 1)
 		{
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(42, pDiff->begin[0]);
 			EXPECT_EQ(41, pDiff->begin[1]);
 			EXPECT_EQ(41, pDiff->end[0]);
@@ -416,7 +416,7 @@ namespace
 		}
 		if (diffs.size() > 2)
 		{
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(43, pDiff->begin[0]);
 			EXPECT_EQ(42, pDiff->begin[1]);
 			EXPECT_EQ(42, pDiff->end[0]);
@@ -429,24 +429,24 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2797067_1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abc def ghi jkl mno pqr stu vwx yz"),
 				_T("abc def 123 ghi jkl mno pqr stu 456 vw x yz"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(7, pDiff->begin[0]);
 			EXPECT_EQ(7, pDiff->begin[1]);
 			EXPECT_EQ(6, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(27, pDiff->begin[0]);
 			EXPECT_EQ(31, pDiff->begin[1]);
 			EXPECT_EQ(26, pDiff->end[0]);
 			EXPECT_EQ(37, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(28, pDiff->begin[0]);
 			EXPECT_EQ(39, pDiff->begin[1]);
 			EXPECT_EQ(29, pDiff->end[0]);
@@ -459,7 +459,7 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2797067_2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(
 			_T("abc def ghi jkl mno pqr stu vwx yz"),
 			_T("abc def 123 ghi jkl mno pqr stu 456 vw x yz"),
@@ -467,17 +467,17 @@ namespace
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(7, pDiff->begin[0]);
 			EXPECT_EQ(7, pDiff->begin[1]);
 			EXPECT_EQ(6, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(27, pDiff->begin[0]);
 			EXPECT_EQ(31, pDiff->begin[1]);
 			EXPECT_EQ(26, pDiff->end[0]);
 			EXPECT_EQ(37, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(28, pDiff->begin[0]);
 			EXPECT_EQ(39, pDiff->begin[1]);
 			EXPECT_EQ(30, pDiff->end[0]);
@@ -490,24 +490,24 @@ namespace
 	// char-diff
 	TEST_F(StringDiffsBugsTest, Bug_2797067_3)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abc def ghi jkl mno pqr stu vwx yzr"),
 				_T("abc def 123ghi jkl mno pqr stu 456vwx yzrr"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(7, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(28, pDiff->begin[0]);
 			EXPECT_EQ(31, pDiff->begin[1]);
 			EXPECT_EQ(27, pDiff->end[0]);
 			EXPECT_EQ(33, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(32, pDiff->begin[0]);
 			EXPECT_EQ(41, pDiff->begin[1]);
 			EXPECT_EQ(31, pDiff->end[0]);
@@ -520,24 +520,24 @@ namespace
 	// word-diff
 	TEST_F(StringDiffsBugsTest, Bug_2797067_4)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abc def ghi jkl mno pqr stu vwx yzr"),
 				_T("abc def 123ghi jkl mno pqr stu 456vwx yzrr"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		if (diffs.size() > 2)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(10, pDiff->end[0]);
 			EXPECT_EQ(13, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(28, pDiff->begin[0]);
 			EXPECT_EQ(31, pDiff->begin[1]);
 			EXPECT_EQ(30, pDiff->end[0]);
 			EXPECT_EQ(36, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(32, pDiff->begin[0]);
 			EXPECT_EQ(38, pDiff->begin[1]);
 			EXPECT_EQ(34, pDiff->end[0]);
