@@ -122,9 +122,9 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
 	m_bSingleInstance(false),
 	m_bShowUsage(false),
 	m_nCodepage(0),
-	m_dwLeftFlags(FFILEOPEN_CMDLINE),
-	m_dwMiddleFlags(FFILEOPEN_CMDLINE),
-	m_dwRightFlags(FFILEOPEN_CMDLINE)
+	m_dwLeftFlags(FFILEOPEN_NONE),
+	m_dwMiddleFlags(FFILEOPEN_NONE),
+	m_dwRightFlags(FFILEOPEN_NONE)
 {
 	// Rational ClearCase has a weird way of executing external
 	// tools which replace the build-in ones. It also doesn't allow

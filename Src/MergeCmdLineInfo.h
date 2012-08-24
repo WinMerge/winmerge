@@ -32,6 +32,7 @@
 
 #include <vector>
 #include "UnicodeString.h"
+#include "PathContext.h"
 
 /** 
  * @brief WinMerge's command line handler.

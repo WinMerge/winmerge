@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\..\Src&quot;;&quot;..\..\Src\Common&quot;"
+				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -68,7 +68,7 @@
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;..\..\Src&quot;;&quot;..\..\Src\Common&quot;"
+				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
@@ -132,13 +132,13 @@
 				RelativePath="..\..\Src\Common\OptionsMgr.cpp">
 			</File>
 			<File
+				RelativePath="..\..\Src\PathContext.cpp">
+			</File>
+			<File
 				RelativePath="..\..\Src\paths.cpp">
 			</File>
 			<File
 				RelativePath="..\..\Src\Common\RegOptionsMgr.cpp">
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\string_util.cpp">
 			</File>
 			<File
 				RelativePath="..\..\Src\stringdiffs.cpp">
@@ -170,13 +170,13 @@
 				RelativePath="..\..\Src\Common\OptionsMgr.h">
 			</File>
 			<File
+				RelativePath="..\..\Src\PathContext.h">
+			</File>
+			<File
 				RelativePath="..\..\Src\paths.h">
 			</File>
 			<File
 				RelativePath="..\..\Src\Common\RegOptionsMgr.h">
-			</File>
-			<File
-				RelativePath="..\..\Src\Common\string_util.h">
 			</File>
 			<File
 				RelativePath="..\..\Src\stringdiffs.h">

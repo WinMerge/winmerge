@@ -52,12 +52,12 @@ namespace
 	// int whitespace - do we ignore whitespace and how
 	// int breakType - Space (0) or punctuations (1) break
 	// bool byte_level - are we word (false) or byte-level (true) diffing
-	// std::vector<wdiff*> * pDiffs - resultting diff list
+	// std::vector<wdiff> * pDiffs - resultting diff list
 
 
 	TEST_F(StringDiffsTestByte, ByteLevel19b3)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(",;"));
 		sd_ComputeWordDiffs(_T("				wsprintf(buf, _T(left=  %s,   %d,%d, right=  %s,   %d,%d ),"),
 				_T("					if (len2 < 50)"),
@@ -69,14 +69,14 @@ namespace
 	// Second word is different
 	TEST_F(StringDiffsTestByte, ByteLevel19b2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(",;"));
 		sd_ComputeWordDiffs(_T("	while (1)"), _T("	for (;;)"), true, 0, 1, true, &diffs);
 		EXPECT_EQ(3, diffs.size());
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(1, pDiff->begin[0]);
 			EXPECT_EQ(5, pDiff->end[0]);
 			EXPECT_EQ(1, pDiff->begin[1]);
@@ -84,7 +84,7 @@ namespace
 		}	
 		if (diffs.size() >=2 )
 		{
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(9, pDiff->end[0]);
 			EXPECT_EQ(5, pDiff->begin[1]);
@@ -92,7 +92,7 @@ namespace
 		}	
 		if (diffs.size() >=3 )
 		{
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(9, pDiff->end[0]);
 			EXPECT_EQ(6, pDiff->begin[1]);
@@ -103,7 +103,7 @@ namespace
 	// Second word is different
 	TEST_F(StringDiffsTestByte, ByteLevel19b1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(","));
 		sd_ComputeWordDiffs(_T("abcdef,abccef,abcdef,"), _T("abcdef,abcdef,abcdef,"),
 				true, 0, 1, true, &diffs);
@@ -111,7 +111,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(10, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->begin[1]);
@@ -122,7 +122,7 @@ namespace
 	// Second word is different
 	TEST_F(StringDiffsTestByte, ByteLevel20c)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T(""), _T("		// remove empty records on both side"),
 				true, 0, 1, true, &diffs);
@@ -130,7 +130,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(-1, pDiff->end[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
@@ -141,7 +141,7 @@ namespace
 	// Second word is different
 	TEST_F(StringDiffsTestByte, ByteLevel20a)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T(",;+ der abcdef,der,Thomas,abcdef,abcdef,;"),
 				_T(",;+ der abcdef,Thomas,accdgf,abcdef,-+"),
@@ -150,7 +150,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(14, pDiff->begin[0]);
 			EXPECT_EQ(17, pDiff->end[0]);
 			EXPECT_EQ(14, pDiff->begin[1]);
@@ -158,7 +158,7 @@ namespace
 		}	
 		if (diffs.size() >=2 )
 		{
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(27, pDiff->begin[0]);
 			EXPECT_EQ(27, pDiff->end[0]);
 			EXPECT_EQ(23, pDiff->begin[1]);
@@ -166,7 +166,7 @@ namespace
 		}	
 		if (diffs.size() >=3 )
 		{
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(30, pDiff->begin[0]);
 			EXPECT_EQ(30, pDiff->end[0]);
 			EXPECT_EQ(26, pDiff->begin[1]);
@@ -174,7 +174,7 @@ namespace
 		}	
 		if (diffs.size() >=4 )
 		{
-			pDiff = diffs[3];
+			pDiff = &diffs[3];
 			EXPECT_EQ(40, pDiff->begin[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
 			EXPECT_EQ(36, pDiff->begin[1]);
@@ -182,7 +182,7 @@ namespace
 		}	
 		if (diffs.size() >=5 )
 		{
-			pDiff = diffs[4];
+			pDiff = &diffs[4];
 			EXPECT_EQ(41, pDiff->begin[0]);
 			EXPECT_EQ(40, pDiff->end[0]);
 			EXPECT_EQ(37, pDiff->begin[1]);
@@ -194,7 +194,7 @@ namespace
 	// Second word is different
 	TEST_F(StringDiffsTestByte, ByteLevel19a)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(","));
 		sd_ComputeWordDiffs(_T("abcdef,abcdef,abcdef,"), _T("abcdef,abccef,abcdef,"),
 				true, 0, 1, false, &diffs);
@@ -202,7 +202,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(7, pDiff->begin[0]);
 			EXPECT_EQ(12, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->begin[1]);
@@ -214,7 +214,7 @@ namespace
 
 	TEST_F(StringDiffsTestByte, ByteLevel19b)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(","));
 		sd_ComputeWordDiffs(_T("abcdef,abccef,abcdef,"), _T("abcdef,abcdef,abcdef,"),
 				true, 0, 1, true, &diffs);
@@ -222,7 +222,7 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1 )
 		{
-			pDiff = diffs[0];
+			pDiff = &diffs[0];
 			EXPECT_EQ(10, pDiff->begin[0]);
 			EXPECT_EQ(10, pDiff->end[0]);
 			EXPECT_EQ(10, pDiff->begin[1]);

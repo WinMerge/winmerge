@@ -54,18 +54,18 @@ namespace
 	// int whitespace - do we ignore whitespace and how
 	// int breakType - Space (0) or punctuations (1) break
 	// bool byte_level - are we word (false) or byte-level (true) diffing
-	// std::vector<wdiff*> * pDiffs - resultting diff list
+	// std::vector<wdiff> * pDiffs - resultting diff list
 
 	// Char added to begin
 	TEST_F(StringDiffsAddsTest, AddBeginFirst1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh"), _T("1abcdefgh"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(7, pDiff->end[0]);
@@ -76,13 +76,13 @@ namespace
 	// Char added to begin
 	TEST_F(StringDiffsAddsTest, AddBeginFirst2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("1abcdefgh"), _T("abcdefgh"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(8, pDiff->end[0]);
@@ -93,13 +93,13 @@ namespace
 	// Char added to begin
 	TEST_F(StringDiffsAddsTest, AddBeginFirstChar1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh"), _T("1abcdefgh"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(-1, pDiff->end[0]);
@@ -110,13 +110,13 @@ namespace
 	// Char added to begin
 	TEST_F(StringDiffsAddsTest, AddBeginFirstChar2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("1abcdefgh"), _T("abcdefgh"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(0, pDiff->end[0]);
@@ -127,13 +127,13 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsAddsTest, AddEndFirst1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh"), _T("abcdefgh1"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(7, pDiff->end[0]);
@@ -144,13 +144,13 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsAddsTest, AddEndFirst2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh1"), _T("abcdefgh"),
 				false, 0, 0, false, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(8, pDiff->end[0]);
@@ -161,13 +161,13 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsAddsTest, AddEndFirstChar1)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh"), _T("abcdefgh1"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(7, pDiff->end[0]);
@@ -178,13 +178,13 @@ namespace
 	// Char added to end
 	TEST_F(StringDiffsAddsTest, AddEndFirstChar2)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_ComputeWordDiffs(_T("abcdefgh1"), _T("abcdefgh"),
 				false, 0, 0, true, &diffs);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() >= 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(8, pDiff->end[0]);
@@ -194,7 +194,7 @@ namespace
 	// exchange string left right side only
 	TEST_F(StringDiffsAddsTest, ExchangeString1a)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T("N2130   _RobOk=_INT B_AND 512                   ;Roboter bereit"),
 			_T("N2040   _RobOk=_INT B_AND 'B1000000000'          ;Roboter bereit"),
@@ -202,12 +202,12 @@ namespace
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(2, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(26, pDiff->begin[0]);
 			EXPECT_EQ(26, pDiff->begin[1]);
 			EXPECT_EQ(28, pDiff->end[0]);
@@ -217,7 +217,7 @@ namespace
 	// exchange string left right side only
 	TEST_F(StringDiffsAddsTest, ExchangeString1b)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T("N2040   _RobOk=_INT B_AND 'B1000000000'          ;Roboter bereit"),
 			_T("N2130   _RobOk=_INT B_AND 512                   ;Roboter bereit"),
@@ -225,12 +225,12 @@ namespace
 		EXPECT_EQ(2, diffs.size());
 		if (diffs.size() > 1)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(2, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(26, pDiff->begin[0]);
 			EXPECT_EQ(26, pDiff->begin[1]);
 			EXPECT_EQ(38, pDiff->end[0]);
@@ -241,7 +241,7 @@ namespace
 	// exchange string left right side only
 	TEST_F(StringDiffsAddsTest, ExchangeString2a)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T("N1960 IF(R2941==2) OR (R2941==203))"),
 			_T("N1830 IF((R2941==2)   OR (R2941==3)    "),
@@ -249,22 +249,22 @@ namespace
 		EXPECT_EQ(4, diffs.size());
 		if (diffs.size() > 3)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(2, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(7, pDiff->end[0]);
 			EXPECT_EQ(8, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(30, pDiff->begin[0]);
 			EXPECT_EQ(33, pDiff->begin[1]);
 			EXPECT_EQ(31, pDiff->end[0]);
 			EXPECT_EQ(32, pDiff->end[1]);
-			pDiff = diffs[3];
+			pDiff = &diffs[3];
 			EXPECT_EQ(34, pDiff->begin[0]);
 			EXPECT_EQ(35, pDiff->begin[1]);
 			EXPECT_EQ(34, pDiff->end[0]);
@@ -274,7 +274,7 @@ namespace
 	// exchange string left right side only
 	TEST_F(StringDiffsAddsTest, ExchangeString2b)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T("N1830 IF((R2941==2)   OR (R2941==3)    "),
 			_T("N1960 IF(R2941==2) OR (R2941==203))"),
@@ -282,22 +282,22 @@ namespace
 		EXPECT_EQ(4, diffs.size());
 		if (diffs.size() > 3)
 		{
-			wdiff *pDiff = diffs[0];
+			wdiff *pDiff = &diffs[0];
 			EXPECT_EQ(2, pDiff->begin[0]);
 			EXPECT_EQ(2, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
-			pDiff = diffs[1];
+			pDiff = &diffs[1];
 			EXPECT_EQ(8, pDiff->begin[0]);
 			EXPECT_EQ(8, pDiff->begin[1]);
 			EXPECT_EQ(8, pDiff->end[0]);
 			EXPECT_EQ(7, pDiff->end[1]);
-			pDiff = diffs[2];
+			pDiff = &diffs[2];
 			EXPECT_EQ(33, pDiff->begin[0]);
 			EXPECT_EQ(30, pDiff->begin[1]);
 			EXPECT_EQ(32, pDiff->end[0]);
 			EXPECT_EQ(31, pDiff->end[1]);
-			pDiff = diffs[3];
+			pDiff = &diffs[3];
 			EXPECT_EQ(35, pDiff->begin[0]);
 			EXPECT_EQ(34, pDiff->begin[1]);
 			EXPECT_EQ(38, pDiff->end[0]);
@@ -307,7 +307,7 @@ namespace
 	// new option third run
 	TEST_F(StringDiffsAddsTest, RunThird)
 	{
-		std::vector<wdiff*> diffs;
+		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
 		sd_ComputeWordDiffs(_T("(sizeof *new);"),
 			_T("sizeof(*newob));"),
@@ -316,25 +316,25 @@ namespace
 		wdiff *pDiff;
 		if (diffs.size() >= 1)
 		{
-			pDiff = diffs[0];
-			EXPECT_EQ(0, pDiff->start[0]);
-			EXPECT_EQ(0, pDiff->start[1]);
+			pDiff = &diffs[0];
+			EXPECT_EQ(0, pDiff->begin[0]);
+			EXPECT_EQ(0, pDiff->begin[1]);
 			EXPECT_EQ(0, pDiff->end[0]);
 			EXPECT_EQ(-1, pDiff->end[1]);
 		}
 		if (diffs.size() >= 2)
 		{
-			pDiff = diffs[1];
-			EXPECT_EQ(7, pDiff->start[0]);
-			EXPECT_EQ(6, pDiff->start[1]);
+			pDiff = &diffs[1];
+			EXPECT_EQ(7, pDiff->begin[0]);
+			EXPECT_EQ(6, pDiff->begin[1]);
 			EXPECT_EQ(6, pDiff->end[0]);
 			EXPECT_EQ(15, pDiff->end[1]);
 		}
 		if (diffs.size() >= 3)
 		{
-			pDiff = diffs[2];
-			EXPECT_EQ(7, pDiff->start[0]);
-			EXPECT_EQ(16, pDiff->start[1]);
+			pDiff = &diffs[2];
+			EXPECT_EQ(7, pDiff->begin[0]);
+			EXPECT_EQ(16, pDiff->begin[1]);
 			EXPECT_EQ(13, pDiff->end[0]);
 			EXPECT_EQ(15, pDiff->end[1]);
 		}
