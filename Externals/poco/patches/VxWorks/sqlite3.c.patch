@@ -1,0 +1,54 @@
+--- Data/SQLite/src/sqlite3-orig.c	2011-01-26 11:58:04.722854900 +0100
++++ Data/SQLite/src/sqlite3.c	2011-01-26 11:57:37.321689600 +0100
+@@ -22903,7 +22903,12 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
++#if OS_VXWORKS
++#include <sys/times.h>
++#include <semaphore.h>
++#else
+ #include <sys/time.h>
++#endif
+ #include <errno.h>
+ #include <sys/mman.h>
+ 
+@@ -23441,7 +23446,9 @@
+   case ENODEV:
+   case ENXIO:
+   case ENOENT:
++#ifdef ESTALE
+   case ESTALE:
++#endif
+   case ENOSYS:
+     /* these should force the client to close the file and reconnect */
+     
+@@ -27195,7 +27202,7 @@
+       for( n=1; zSemName[n]; n++ )
+         if( zSemName[n]=='/' ) zSemName[n] = '_';
+       pNew->pInode->pSem = sem_open(zSemName, O_CREAT, 0666, 1);
+-      if( pNew->pInode->pSem == SEM_FAILED ){
++      if( pNew->pInode->pSem == (sem_t*) -1 ){
+         rc = SQLITE_NOMEM;
+         pNew->pInode->aSemName[0] = '\0';
+       }
+@@ -27765,6 +27772,11 @@
+   int flags,              /* What do we want to learn about the zPath file? */
+   int *pResOut            /* Write result boolean here */
+ ){
++#if OS_VXWORKS
++	struct stat st;
++	*pResOut = (stat(zPath, &st) == 0);
++	return SQLITE_OK;
++#else
+   int amode = 0;
+   UNUSED_PARAMETER(NotUsed);
+   SimulateIOError( return SQLITE_IOERR_ACCESS; );
+@@ -27790,6 +27802,7 @@
+     }
+   }
+   return SQLITE_OK;
++#endif
+ }
+ 
+ 
