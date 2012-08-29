@@ -62,8 +62,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\../../../Build/expat/lib/Release_static"
-			IntermediateDirectory=".\../../../BuildTmp/expat/lib/Release_static"
+			OutputDirectory=".\../../../Build/vc71/expat/lib/Release_static"
+			IntermediateDirectory=".\../../../BuildTmp/vc71/expat/lib/Release_static"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
