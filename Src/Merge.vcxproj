@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -75,6 +75,9 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -164,8 +167,8 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -186,7 +189,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\MergeUnicodeRelease\WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\pcre;..\Build\scew;..\Build\heksedit;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -220,8 +223,8 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN64;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -242,7 +245,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\X64\MergeUnicodeRelease\WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\pcre\X64;..\Build\scew\X64;..\Build\heksedit\X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -272,8 +275,8 @@
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -292,7 +295,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\pcre;..\Build\scew;..\Build\heksedit;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
@@ -324,8 +327,8 @@
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -344,7 +347,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\X64\MergeUnicodeDebug/WinMergeU.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\pcre\X64;..\Build\scew\X64;..\Build\heksedit\X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
@@ -371,8 +374,8 @@
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -391,7 +394,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\MergeDebug/WinMerge.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\pcre;..\Build\scew;..\Build\heksedit;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -417,8 +420,8 @@
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -437,7 +440,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\X64\MergeDebug/WinMerge.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\pcre\X64;..\Build\scew\X64;..\Build\heksedit\X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -464,8 +467,8 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -486,7 +489,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\MergeRelease/WinMerge.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat;..\Build\pcre;..\Build\scew;..\Build\heksedit;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat;..\Build\scew;..\Build\heksedit;..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -514,8 +517,8 @@
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN64;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions);PCRE_STATIC</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\boost;..\Externals\poco\Foundation\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;HAVE_LIMITS_H;PR_FILE_NAME="pr";DIFF_PROGRAM="diff";REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -536,7 +539,7 @@
       <AdditionalDependencies>version.lib;shlwapi.lib;imm32.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\Build\X64\MergeRelease/WinMerge.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\pcre\X64;..\Build\scew\X64;..\Build\heksedit\X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Build\expat\X64;..\Build\scew\X64;..\Build\heksedit\X64;..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -563,7 +566,7 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\cfindtextdlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\cplusplus.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_pcre.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystalparser.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaltextblock.cpp" />
@@ -814,10 +817,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -828,10 +831,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -2195,10 +2198,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2209,10 +2212,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2223,10 +2226,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="DirFrame.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -2253,10 +2256,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2267,10 +2270,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="DirItem.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -2489,10 +2492,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2503,10 +2506,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="DirViewColHandler.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -4032,10 +4035,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -4046,10 +4049,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="markdown.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -4188,10 +4191,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -4202,10 +4205,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="MergeCmdLineInfo.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -4312,10 +4315,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -4326,10 +4329,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="MergeDocDiffSync.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -5668,10 +5671,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -5682,10 +5685,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="PropRegistry.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -5845,10 +5848,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -5859,10 +5862,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Common\RegKey.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -6374,10 +6377,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -6388,10 +6391,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -6556,11 +6559,11 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">Create</PrecompiledHeader>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">Create</PrecompiledHeader>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -6574,11 +6577,11 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">Create</PrecompiledHeader>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="stringdiffs.cpp">
@@ -6777,50 +6780,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Common\ToolBarXPThemes.cpp">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <ClCompile Include="Common\Ucs2Utf8.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -7367,10 +7326,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -7381,10 +7340,10 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='X64 Debug|x64'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|Win32'">WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="WaitStatusCursor.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -8629,7 +8588,6 @@
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestFilterDlg.h" />
     <ClInclude Include="Common\ToolbarXPThemes.h" />
-    <ClInclude Include="Common\Ucs2Utf8.h" />
     <ClInclude Include="Common\unicoder.h" />
     <ClInclude Include="Common\UnicodeString.h" />
     <ClInclude Include="Common\UniFile.h" />
@@ -8700,10 +8658,6 @@
       <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
-    </ProjectReference>
-    <ProjectReference Include="..\Externals\pcre\Win32\pcre.vcxproj">
-      <Project>{d6b50065-7185-4e20-a499-e78276066e6f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\Externals\scew\win32\scew.vcxproj">
       <Project>{d87729ea-38df-4025-aa98-22f2438df995}</Project>

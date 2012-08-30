@@ -30,12 +30,13 @@
 
 #include "StdAfx.h"
 #include <shlwapi.h>		// PathFindFileName()
+#include <Poco/StringTokenizer.h>
+#include <Poco/UnicodeConverter.h>
 #include "Merge.h"
 #include "HexMergeDoc.h"
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
-#include "Ucs2Utf8.h"
 #include "DirDoc.h"
 #include "DirFrame.h"
 #include "MainFrm.h"
@@ -53,6 +54,9 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using Poco::StringTokenizer;
+using Poco::UnicodeConverter;
 
 int CDirDoc::m_nDirsTemp = 2;
 
@@ -300,30 +304,20 @@ void CDirDoc::LoadLineFilterList()
 	else
 		m_pCtxt->m_pFilterList.reset(new FilterList());
 
-	char * regexp_str;
 	FilterList::EncodingType type;
-
+	std::string regexp_str;
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(filters.c_str());
+	UnicodeConverter::toUTF8(filters, regexp_str);
 	type = FilterList::ENC_UTF8;
 #else
-	regexp_str = (char *) filters.c_str();
+	regexp_str = filters;
 	type = FilterList::ENC_ANSI;
 #endif
 
 	// Add every "line" of regexps to regexp list
-	char * token;
-	const char sep[] = "\r\n";
-	token = strtok(regexp_str, sep);
-	while (token)
-	{
-		m_pCtxt->m_pFilterList->AddRegExp(token, type);
-		token = strtok(NULL, sep);
-	}
-
-#ifdef UNICODE
-	UCS2UTF8_Dealloc(regexp_str);
-#endif
+	StringTokenizer tokens(regexp_str, "\r\n");
+	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); it++)
+		m_pCtxt->m_pFilterList->AddRegExp(*it, type);
 }
 
 /**

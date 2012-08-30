@@ -20,9 +20,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
 #include <vector>
-#include "pcre.h"
 #include "FileFilter.h"
 
 using std::vector;
@@ -46,8 +44,6 @@ void FileFilter::EmptyFilterList(vector<FileFilterElement*> *filterList)
 	while (!filterList->empty())
 	{
 		FileFilterElement *elem = filterList->back();
-		pcre_free(elem->pRegExp);
-		pcre_free(elem->pRegExpExtra);
 		delete elem;
 		filterList->pop_back();
 	}

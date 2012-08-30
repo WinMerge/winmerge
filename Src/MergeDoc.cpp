@@ -35,7 +35,6 @@
 #include "MainFrm.h"
 #include "DiffTextBuffer.h"
 #include "Environment.h"
-#include "Ucs2Utf8.h"
 #include "DiffContext.h"	// FILE_SAME
 #include "MovedLines.h"
 #include "coretools.h"
@@ -414,8 +413,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
-		String regexp = GetMainFrame()->m_pLineFilters->GetAsString();
-		m_diffWrapper.SetFilterList(regexp.c_str());
+		m_diffWrapper.SetFilterList(GetMainFrame()->m_pLineFilters->GetAsString());
 	}
 	else
 	{

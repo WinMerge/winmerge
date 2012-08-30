@@ -26,11 +26,13 @@
 				AdditionalOptions="/EHa "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
@@ -51,7 +53,7 @@
 				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
+				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
@@ -100,9 +102,11 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHa "
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="_DEBUG;WIN32;_STATIC_CPPLIB;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				PreprocessorDefinitions="_DEBUG;WIN32;_STATIC_CPPLIB;POCO_STATIC;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
@@ -123,7 +127,7 @@
 				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
+				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMergeU.pdb"
@@ -172,9 +176,11 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHa "
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="3"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
@@ -195,7 +201,7 @@
 				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
+				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMerge.pdb"
@@ -244,11 +250,13 @@
 				AdditionalOptions="/EHa "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE;PCRE_STATIC"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
+				TreatWChar_tAsBuiltInType="TRUE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
@@ -269,7 +277,7 @@
 				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre,..\Build\scew"
+				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
@@ -311,8 +319,8 @@
 			ReferencedProjectIdentifier="{AF019C38-415E-48E1-8981-B5AD1E4E387F}"
 			Name="expat_static"/>
 		<ProjectReference
-			ReferencedProjectIdentifier="{D6B50065-7185-4E20-A499-E78276066E6F}"
-			Name="pcre"/>
+			ReferencedProjectIdentifier="{8164D41D-B053-405B-826C-CF37AC0EF176}"
+			Name="Foundation"/>
 		<ProjectReference
 			ReferencedProjectIdentifier="{970954C2-C43F-41E7-9DF8-3046226FBB47}"
 			Name="scew"/>
@@ -403,7 +411,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
 						UsePrecompiledHeader="0"
 						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
@@ -435,7 +443,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
 						UsePrecompiledHeader="0"
 						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
@@ -566,7 +574,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -592,7 +600,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1695,7 +1703,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1721,7 +1729,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1732,7 +1740,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1758,7 +1766,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1896,7 +1904,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1922,7 +1930,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -3134,7 +3142,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3160,7 +3168,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -3249,7 +3257,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3275,7 +3283,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -3350,7 +3358,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3376,7 +3384,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4581,7 +4589,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4607,7 +4615,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4732,7 +4740,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4758,7 +4766,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -5189,7 +5197,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -5215,7 +5223,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -5337,7 +5345,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5366,7 +5374,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
 			</File>
@@ -5539,43 +5547,6 @@
 			</File>
 			<File
 				RelativePath="Common\ToolBarXPThemes.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="Common\Ucs2Utf8.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -5947,7 +5918,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -5973,7 +5944,7 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -6529,9 +6500,6 @@
 				RelativePath="Common\ToolbarXPThemes.h">
 			</File>
 			<File
-				RelativePath="Common\Ucs2Utf8.h">
-			</File>
-			<File
 				RelativePath="Common\unicoder.h">
 			</File>
 			<File
@@ -6717,7 +6685,7 @@
 				RelativePath="..\Externals\crystaledit\editlib\cregexp.h">
 			</File>
 			<File
-				RelativePath="..\Externals\crystaledit\editlib\cregexp_pcre.cpp">
+				RelativePath="..\Externals\crystaledit\editlib\cregexp_poco.cpp">
 			</File>
 			<File
 				RelativePath="..\Externals\crystaledit\editlib\crystaleditviewex.cpp">

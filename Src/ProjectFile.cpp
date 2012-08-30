@@ -26,7 +26,6 @@
 #include <scew/scew.h>
 #include "unicoder.h"
 #include "UnicodeString.h"
-#include "UCS2UTF8.h"
 #include "ProjectFile.h"
 
 // Constants for xml element names

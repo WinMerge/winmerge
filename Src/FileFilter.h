@@ -23,7 +23,7 @@
 // $Id$
 
 #include <vector>
-#include "pcre.h"
+#include <Poco/RegularExpression.h>
 #include "UnicodeString.h"
 
 /**
@@ -40,9 +40,10 @@
  */
 struct FileFilterElement
 {
-	pcre *pRegExp; /**< Compiled regular expression */
-	pcre_extra *pRegExpExtra; /**< Additional information got from regex study */
-	FileFilterElement() : pRegExp(NULL), pRegExpExtra(NULL) { };
+	Poco::RegularExpression regexp; /**< Compiled regular expression */
+	FileFilterElement(const std::string &regex, int reOpts) : regexp(regex, reOpts)
+	{
+	}
 };
 
 /**

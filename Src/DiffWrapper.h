@@ -180,7 +180,7 @@ public:
 	int Make3wayDiff(DiffList& diff3, DiffList& diff02, DiffList& diff10, DiffList& diff21);
 	void WritePatchFileHeader(enum output_style output_style, BOOL bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
-	void SetFilterList(LPCTSTR filterStr);
+	void SetFilterList(const String& filterStr);
 	void EnablePlugins(bool enable);
 	bool IsTrivialBytes(const char* Start, const char* End,
 		const FilterCommentsSet& filtercommentsset);

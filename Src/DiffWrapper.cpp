@@ -31,7 +31,8 @@
 #include <string>
 #include <map>
 #include <shlwapi.h>
-#include "Ucs2Utf8.h"
+#include <Poco/StringTokenizer.h>
+#include <Poco/UnicodeConverter.h>
 #include "coretools.h"
 #include "DiffContext.h"
 #include "DiffList.h"
@@ -50,6 +51,9 @@
 #include "PatchHTML.h"
 #include "AnsiConvert.h"
 #include "UnicodeString.h"
+
+using Poco::StringTokenizer;
+using Poco::UnicodeConverter;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1203,7 +1207,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
 		const char *string = files[FileNo].linbuf[line];
 		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(stringlen, string, m_codepage))
+		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
 
 		{
 			linesMatch = false;
@@ -1648,10 +1652,10 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
  * @brief Set line filters, given as one string.
  * @param [in] filterStr Filters.
  */
-void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
+void CDiffWrapper::SetFilterList(const String& filterStr)
 {
 	// Remove filterlist if new filter is empty
-	if (*filterStr == '\0')
+	if (filterStr.empty())
 	{
 		delete m_pFilterList;
 		m_pFilterList = NULL;
@@ -1666,32 +1670,20 @@ void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
 
 	m_pFilterList->RemoveAllFilters();
 
-	char * regexp_str;
 	FilterList::EncodingType type;
-	
+	std::string regexp_str;	
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(filterStr);
+	UnicodeConverter::toUTF8(filterStr, regexp_str);
 	type = FilterList::ENC_UTF8;
 #else
-	CString tmp_str(filterStr);
-	regexp_str = tmp_str.LockBuffer();
+	regexp_str = filterStr;
 	type = FilterList::ENC_ANSI;
 #endif
 
 	// Add every "line" of regexps to regexp list
-	char * token;
-	const char sep[] = "\r\n";
-	token = strtok(regexp_str, sep);
-	while (token)
-	{
-		m_pFilterList->AddRegExp(token, type);
-		token = strtok(NULL, sep);
-	}
-#ifdef UNICODE
-	UCS2UTF8_Dealloc(regexp_str);
-#else
-	tmp_str.UnlockBuffer();
-#endif
+	StringTokenizer tokens(regexp_str, "\r\n");
+	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); it++)
+		m_pFilterList->AddRegExp(*it, type);
 }
 
 /**

@@ -277,7 +277,7 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
 		size_t len = files[FileNo].linbuf[line + 1] - files[FileNo].linbuf[line];
 		const char *string = files[FileNo].linbuf[line];
 		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(stringlen, string, m_codepage))
+		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
 		{
 			linesMatch = false;
 		}
