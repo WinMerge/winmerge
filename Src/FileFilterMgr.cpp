@@ -24,16 +24,20 @@
 #include <string.h>
 #include <vector>
 #include <tchar.h>
+#include <Poco/Exception.h>
+#include <Poco/UnicodeConverter.h>
+#include <Poco/RegularExpression.h>
 #include "UnicodeString.h"
 #include "FileFilter.h"
-#include "pcre.h"
 #include "FileFilterMgr.h"
 #include "UniFile.h"
 #include "coretools.h"
-#include "Ucs2Utf8.h"
 #include "paths.h"
 
 using std::vector;
+using Poco::Exception;
+using Poco::RegularExpression;
+using Poco::UnicodeConverter;
 
 static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str);
 
@@ -156,32 +160,22 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 	if (str.empty())
 		return;
 
-	const char * errormsg = NULL;
-	int erroroffset = 0;
-
-	char *regexString = UCS2UTF8_ConvertToUtf8(str.c_str());
-	int pcre_opts = 0;
-
+	std::string regexString;
+	int re_opts = RegularExpression::RE_CASELESS;
 #ifdef UNICODE
-	pcre_opts |= PCRE_UTF8;
+	UnicodeConverter::toUTF8(str.c_str(), regexString);
+	re_opts |= RegularExpression::RE_UTF8;
+#else
+	regexString = str;
 #endif
-	pcre_opts |= PCRE_CASELESS;
-	pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
-		&erroroffset, NULL);
-	if (regexp)
+	try
 	{
-		FileFilterElement *elem = new FileFilterElement();
-		errormsg = NULL;
-
-		pcre_extra *pe = pcre_study(regexp, 0, &errormsg);
-		elem->pRegExp = regexp;
-		
-		if (pe != NULL && errormsg != NULL)
-			elem->pRegExpExtra = pe;
-		
-		filterList->push_back(elem);
+		filterList->push_back(new FileFilterElement(regexString, re_opts));
 	}
-	UCS2UTF8_Dealloc(regexString);
+	catch (Exception *)
+	{
+		// TODO:
+	}
 }
 
 /**
@@ -294,24 +288,28 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 	if (filterList->size() == 0)
 		return FALSE;
 
-	int ovector[30];
-	char *compString = UCS2UTF8_ConvertToUtf8(szTest);
-	size_t stringlen = strlen(compString);
-	int result = 0;
+	std::string compString;
+#ifdef UNICODE
+	UnicodeConverter::toUTF8(szTest, compString);
+#else
+	compString = szTest;
+#endif
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
-		pcre * regexp = (*iter)->pRegExp;
-		pcre_extra * extra = (*iter)->pRegExpExtra;
-		result = pcre_exec(regexp, extra, compString,(int) stringlen,
-			0, 0, ovector, 30);
-		if (result >= 0)
-			break;
+		RegularExpression::Match match;
+		try
+		{
+			if ((*iter)->regexp.match(compString, 0, match) > 0)
+				return TRUE;
+		}
+		catch (Exception *)
+		{
+			// TODO:
+		}
+		
 		++iter;
 	}
-	UCS2UTF8_Dealloc(compString);
-	if (result >= 0)
-		return TRUE;
 	return FALSE;
 }
 

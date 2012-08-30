@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="debug_shared|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
@@ -43,14 +43,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="iphlpapi.lib"
-				OutputFile="..\bin\PocoFoundationd.dll"
+				OutputFile="..\bin_vc71\PocoFoundationd.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="..\bin\PocoFoundationd.pdb"
+				ProgramDatabaseFile="..\bin_vc71\PocoFoundationd.pdb"
 				SubSystem="1"
 				OptimizeForWindows98="1"
-				ImportLibrary="..\lib\PocoFoundationd.lib"
+				ImportLibrary="..\lib_vc71\PocoFoundationd.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -75,8 +75,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_shared|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
@@ -110,7 +110,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="iphlpapi.lib"
-				OutputFile="..\bin\PocoFoundation.dll"
+				OutputFile="..\bin_vc71\PocoFoundation.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="FALSE"
@@ -119,7 +119,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				OptimizeForWindows98="1"
-				ImportLibrary="..\lib\PocoFoundation.lib"
+				ImportLibrary="..\lib_vc71\PocoFoundation.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -144,15 +144,15 @@
 		</Configuration>
 		<Configuration
 			Name="debug_static_md|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;PCRE_STATIC"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;PCRE_STATIC;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -163,7 +163,7 @@
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="..\lib\PocoFoundationmdd.pdb"
+				ProgramDataBaseFileName="..\lib_vc71\PocoFoundationmdd.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="4"
@@ -173,7 +173,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoFoundationmdd.lib"/>
+				OutputFile="..\lib_vc71\PocoFoundationmdd.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -195,8 +195,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_static_md|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -208,7 +208,7 @@
 				OmitFramePointers="TRUE"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories=".\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;PCRE_STATIC"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;PCRE_STATIC;_STATIC_CPPLIB"
 				GeneratePreprocessedFile="0"
 				KeepComments="FALSE"
 				StringPooling="TRUE"
@@ -229,7 +229,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoFoundationmd.lib"/>
+				OutputFile="..\lib_vc71\PocoFoundationmd.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -251,8 +251,8 @@
 		</Configuration>
 		<Configuration
 			Name="debug_static_mt|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -270,7 +270,7 @@
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="..\lib\PocoFoundationmtd.pdb"
+				ProgramDataBaseFileName="..\lib_vc71\PocoFoundationmtd.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="4"
@@ -280,7 +280,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoFoundationmtd.lib"/>
+				OutputFile="..\lib_vc71\PocoFoundationmtd.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -302,8 +302,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_static_mt|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -336,7 +336,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoFoundationmt.lib"/>
+				OutputFile="..\lib_vc71\PocoFoundationmt.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

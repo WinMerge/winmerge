@@ -25,7 +25,6 @@
 
 #include <vector>
 #include "UnicodeString.h"
-#include "pcre.h"
 
 struct FileFilterElement;
 struct FileFilter;

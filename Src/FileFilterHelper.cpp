@@ -25,7 +25,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <crtdbg.h>
-#include "Ucs2Utf8.h"
+#include <Poco/UnicodeConverter.h>
 #include "UnicodeString.h"
 #include "FilterList.h"
 #include "DirItem.h"
@@ -35,6 +35,7 @@
 #include "paths.h"
 
 using std::vector;
+using Poco::UnicodeConverter;
 
 /** 
  * @brief Constructor, creates new filtermanager.
@@ -204,23 +205,19 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 	m_sMask = strMask;
 	String regExp = ParseExtensions(strMask);
 
-	char * regexp_str;
 	FilterList::EncodingType type;
 
+	std::string regexp_str;
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(regExp.c_str());
+	UnicodeConverter::toUTF8(regExp, regexp_str);
 	type = FilterList::ENC_UTF8;
 #else
-	regexp_str = &*regExp.begin();
+	regexp_str = regExp;
 	type = FilterList::ENC_ANSI;
 #endif
 
 	m_pMaskFilter->RemoveAllFilters();
 	m_pMaskFilter->AddRegExp(regexp_str, type);
-
-#ifdef UNICODE
-	UCS2UTF8_Dealloc(regexp_str);
-#endif
 }
 
 /**
@@ -248,13 +245,13 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 		if (strFileName.find('.') == -1)
 			strFileName = strFileName + _T(".");
 
-		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName.c_str());
+		std::string name_utf;
 #ifdef UNICODE
-		bool match = m_pMaskFilter->Match(strlen(name_utf), name_utf);
+		UnicodeConverter::toUTF8(strFileName, name_utf);
+		bool match = m_pMaskFilter->Match(name_utf);
 #else
-		bool match = m_pMaskFilter->Match(strlen(name_utf), name_utf, GetACP());
+		bool match = m_pMaskFilter->Match(strFileName, GetACP());
 #endif
-		UCS2UTF8_Dealloc(name_utf);
 		return match;
 	}
 	else

@@ -9,15 +9,13 @@
 #include <windows.h>
 #include <vector>
 #include <crtdbg.h>
+#include <Poco/Exception.h>
+#include <Poco/RegularExpression.h>
 #include "FilterList.h"
-#include "pcre.h"
 #include "unicoder.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+using Poco::RegularExpression;
+using Poco::Exception;
 
 /** 
  * @brief Constructor.
@@ -33,7 +31,6 @@ static char THIS_FILE[] = __FILE__;
 FilterList::~FilterList()
 {
 	RemoveAllFilters();
-	free(m_lastMatchExpression);
 }
 
 /** 
@@ -43,34 +40,22 @@ FilterList::~FilterList()
  * @param [in] regularExpression Regular expression string.
  * @param [in] encoding Expression encoding.
  */
-void FilterList::AddRegExp(const char * regularExpression, EncodingType encoding)
+void FilterList::AddRegExp(const std::string& regularExpression, EncodingType encoding)
 {
-	filter_item item;
-	item.filterAsString = _strdup(regularExpression);
-
-	const char * errormsg = NULL;
-	int erroroffset = 0;
-	int pcre_flags = 0;
+	int re_opts = 0;
 
 	if (encoding == ENC_UTF8)
-		pcre_flags |= PCRE_UTF8;
+		re_opts |= RegularExpression::RE_UTF8;
 	else if (encoding != ENC_ANSI)
 		_RPTF0(_CRT_ERROR, "Unregognized regexp encoding!");
 
-	pcre *regexp = pcre_compile(regularExpression, pcre_flags, &errormsg,
-		&erroroffset, NULL);
-	if (regexp)
+	try
 	{
-		errormsg = NULL;
-		pcre_extra *pe = pcre_study(regexp, 0, &errormsg);
-		
-		item.pRegExp = regexp;
-		if (pe != NULL && errormsg != NULL)
-			item.pRegExpExtra = pe;
-		else
-			item.pRegExpExtra = NULL;
-
-		m_list.push_back(item);
+		m_list.push_back(new filter_item(regularExpression, re_opts));
+	}
+	catch (Exception *)
+	{
+		// TODO:
 	}
 }
 
@@ -81,10 +66,8 @@ void FilterList::RemoveAllFilters()
 {
 	while (!m_list.empty())
 	{
-		filter_item & item = m_list.back();
-		free(item.filterAsString);
-		pcre_free(item.pRegExp);
-		pcre_free(item.pRegExpExtra);
+		filter_item *item = m_list.back();
+		delete item;
 		m_list.pop_back();
 	}
 }
@@ -107,43 +90,44 @@ bool FilterList::HasRegExps()
  * @param [in] codepage codepage of string.
  * @return true if any of the expressions did match the string.
  */
-bool FilterList::Match(size_t stringlen, const char *string, int codepage/*=CP_UTF8*/)
+bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 {
 	bool retval = false;
 	const size_t count = m_list.size();
 
 	// convert string into UTF-8
-	ucr::buffer buf(stringlen * 2);
+	ucr::buffer buf(string.length() * 2);
 
 #ifdef _UNICODE
 	if (codepage != CP_UTF8)
-			ucr::convert(ucr::NONE, codepage, (const unsigned char *)string, 
-					stringlen, ucr::UTF8, CP_UTF8, &buf);
+			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
+					string.length(), ucr::UTF8, CP_UTF8, &buf);
 #else
 	if (codepage != GetACP())
-			ucr::convert(ucr::NONE, codepage, (const unsigned char *)string, 
-					stringlen, ucr::NONE, GetACP(), &buf);
+			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
+					string.length(), ucr::NONE, GetACP(), &buf);
 #endif
 
 	unsigned int i = 0;
 	while (i < count && retval == false)
 	{
-		filter_item item = m_list[i];
-		int ovector[30];
-		pcre * regexp = item.pRegExp;
-		pcre_extra * extra = item.pRegExpExtra;
-		int result;
-		if (buf.size > 0)
-			result = pcre_exec(regexp, extra, (const char *)buf.ptr, buf.size,
-				0, 0, ovector, 30);
-		else
-			result = pcre_exec(regexp, extra, string, (int)stringlen,
-				0, 0, ovector, 30);
-		if (result >= 0)
+		const filter_item* item = m_list[i];
+		int result = 0;
+		Poco::RegularExpression::Match match;
+		try
 		{
-			if (m_lastMatchExpression != NULL)
-				free(m_lastMatchExpression);
-			m_lastMatchExpression = _strdup(item.filterAsString);
+			if (buf.size > 0)
+				result = item->regexp.match(std::string(reinterpret_cast<const char *>(buf.ptr), buf.size), 0, match);
+			else
+				result = item->regexp.match(string, 0, match);
+		}
+		catch (Exception *)
+		{
+			// TODO:
+		}
+		if (result > 0)
+		{
+			m_lastMatchExpression = &item->filterAsString;
 			retval = true;
 		}
 		else
@@ -160,5 +144,5 @@ bool FilterList::Match(size_t stringlen, const char *string, int codepage/*=CP_U
  */
 const char * FilterList::GetLastMatchExpression()
 {
-	return m_lastMatchExpression;
+	return m_lastMatchExpression->c_str();
 }

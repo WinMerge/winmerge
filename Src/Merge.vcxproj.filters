@@ -460,9 +460,6 @@
     <ClCompile Include="Common\ToolBarXPThemes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\Ucs2Utf8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\unicoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -590,9 +587,6 @@
       <Filter>EditLib</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\chcondlg.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_pcre.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\crystaleditviewex.cpp">
@@ -729,6 +723,9 @@
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\xml.cpp">
       <Filter>EditLib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp">
+      <Filter>EditLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1191,9 +1188,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\ToolbarXPThemes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Ucs2Utf8.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\unicoder.h">

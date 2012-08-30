@@ -30,11 +30,11 @@
 #include <afxmt.h>
 #include <stdarg.h>
 #include <vector>
-
-#include "pcre.h"
+#include <Poco/Exception.h>
+#include <Poco/UnicodeConverter.h>
+#include <Poco/RegularExpression.h>
 #include "LogFile.h"
 #include "Merge.h"
-#include "Ucs2Utf8.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"
 #include "Plugins.h"
@@ -53,6 +53,9 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using std::vector;
+using Poco::Exception;
+using Poco::RegularExpression;
+using Poco::UnicodeConverter;
 
 static CStringArray theScriptletList;
 /// Need to lock the *.sct so the user can't delete them
@@ -273,22 +276,23 @@ void PluginInfo::LoadFilterString()
 		sPiece.TrimLeft();
 		sPiece.MakeUpper();
 
-		FileFilterElement element;
-		const char * errormsg = NULL;
-		int erroroffset = 0;
-		char *regexString = UCS2UTF8_ConvertToUtf8(sPiece);
-		int pcre_opts = 0;
+		int re_opts = 0;
+		std::string regexString;
 #ifdef UNICODE
-		pcre_opts |= PCRE_UTF8;
+		UnicodeConverter::toUTF8(sPiece, regexString);
+		re_opts |= RegularExpression::RE_UTF8;
+#else
+		regexString = sPiece;
 #endif
-		pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg, &erroroffset, NULL);
-		if (regexp)
+		try
 		{
-			FileFilterElement *elem = new FileFilterElement();
-			elem->pRegExp = regexp;
+			FileFilterElement *elem = new FileFilterElement(regexString, re_opts);
 			m_filters->push_back(elem);
 		}
-		UCS2UTF8_Dealloc(regexString);
+		catch (Exception *)
+		{
+			// TODO:
+		}
 	};
 }
 

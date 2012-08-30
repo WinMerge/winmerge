@@ -10,7 +10,8 @@
 #define _FILTERLIST_H_
 
 #include <vector>
-#include "pcre.h"
+#include <string>
+#include <Poco/RegularExpression.h>
 
 /**
  * @brief Container for one filtering rule / compiled expression.
@@ -20,11 +21,9 @@
  */
 struct filter_item
 {
-	char * filterAsString; /** Original regular expression string */
- 	pcre *pRegExp; /**< Compiled regular expression */
-	pcre_extra *pRegExpExtra; /**< Additional information got from regex study */
-
-	filter_item() : filterAsString(NULL), pRegExp(NULL), pRegExpExtra(NULL) {}
+	std::string filterAsString; /** Original regular expression string */
+	Poco::RegularExpression regexp; /**< Compiled regular expression */
+	filter_item(const std::string &filter, int reOpts) : filterAsString(filter), regexp(filter, reOpts) {}
 };
 
 /**
@@ -45,15 +44,15 @@ public:
 	FilterList();
 	~FilterList();
 	
-	void AddRegExp(const char *regularExpression, EncodingType encoding);
+	void AddRegExp(const std::string& regularExpression, EncodingType encoding);
 	void RemoveAllFilters();
 	bool HasRegExps();
-	bool Match(size_t stringlen, const char *string, int codepage = CP_UTF8);
+	bool Match(const std::string& string, int codepage = CP_UTF8);
 	const char * GetLastMatchExpression();
 
 private:
-	std::vector <filter_item> m_list;
-	char * m_lastMatchExpression;
+	std::vector <filter_item *> m_list;
+	const std::string *m_lastMatchExpression;
 
 };
 
