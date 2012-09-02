@@ -46,6 +46,7 @@ class CMainFrame;
 class CLanguageSelect;
 class MergeCmdLineInfo;
 class CLogFile;
+class ProjectFile;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -110,6 +111,8 @@ protected:
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	// End MergeArgs.cpp
 
+	bool LoadProjectFile(LPCTSTR sProject, ProjectFile &project);
+	bool SaveProjectFile(LPCTSTR sProject, const ProjectFile &project);
 	bool LoadAndOpenProjectFile(LPCTSTR sFilepath);
 	bool IsProjectFile(LPCTSTR filepath) const;
 

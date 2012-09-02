@@ -22,11 +22,34 @@
 // ID line follows -- this is updated by CVS
 // $Id: ProjectFile.cpp 7081 2010-01-01 20:33:30Z kimmov $
 
-#include "stdafx.h"
-#include <scew/scew.h>
-#include "unicoder.h"
-#include "UnicodeString.h"
 #include "ProjectFile.h"
+
+#include <Poco/SAX/InputSource.h>
+#include <Poco/XML/XMLWriter.h>
+#include <Poco/DOM/AutoPtr.h>
+#include <Poco/DOM/Document.h>
+#include <Poco/DOM/DOMParser.h>
+#include <Poco/DOM/DOMWriter.h>
+#include <Poco/DOM/NodeIterator.h>
+#include <Poco/DOM/NodeFilter.h>
+#include <Poco/DOM/Text.h>
+#include <Poco/Exception.h>
+#include "UnicodeString.h"
+#include "unicoder.h"
+
+using Poco::AutoPtr;
+using Poco::XML::InputSource;
+using Poco::XML::DOMParser;
+using Poco::XML::DOMWriter;
+using Poco::XML::Document;
+using Poco::XML::Element;
+using Poco::XML::NodeFilter;
+using Poco::XML::NodeIterator;
+using Poco::XML::Node;
+using Poco::XML::Text;
+using Poco::XML::XMLWriter;
+using ucr::UTF82T;
+using ucr::T2UTF8;
 
 // Constants for xml element names
 const char Root_element_name[] = "project";
@@ -41,35 +64,22 @@ const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 
 
-static String UTF82T(const char *str)
-{
-	TCHAR *tstr = ucr::convertUTF8toT(str ? str : "");
-	String newstr(tstr);
-	free(tstr);
-	return newstr;
-}
-
-static std::string T2UTF8(const TCHAR *str)
-{
-	char *utf8 = (char *)ucr::convertTtoUTF8(str ? str : _T(""));
-	std::string newstr(utf8);
-	free(utf8);
-	return newstr;
-}
+/** @brief File extension for path files */
+const String ProjectFile::PROJECTFILE_EXT = UTF82T("WinMerge");
 
 /** 
  * @brief Standard constructor.
  */
  ProjectFile::ProjectFile()
-: m_bHasLeft(FALSE)
-, m_bHasMiddle(FALSE)
-, m_bHasRight(FALSE)
-, m_bHasFilter(FALSE)
-, m_bHasSubfolders(FALSE)
+: m_bHasLeft(false)
+, m_bHasMiddle(false)
+, m_bHasRight(false)
+, m_bHasFilter(false)
+, m_bHasSubfolders(false)
 , m_subfolders(-1)
-, m_bLeftReadOnly(FALSE)
-, m_bMiddleReadOnly(FALSE)
-, m_bRightReadOnly(FALSE)
+, m_bLeftReadOnly(false)
+, m_bMiddleReadOnly(false)
+, m_bRightReadOnly(false)
 {
 }
 
@@ -77,47 +87,24 @@ static std::string T2UTF8(const TCHAR *str)
  * @brief Open given path-file and read data from it to member variables.
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
- * @return TRUE if reading succeeded, FALSE if error happened.
+ * @return true if reading succeeded, false if error happened.
  */
-BOOL ProjectFile::Read(LPCTSTR path, String *sError)
+bool ProjectFile::Read(const String& path)
 {
-	BOOL loaded = FALSE;
-    scew_tree* tree = NULL;
-    scew_parser* parser = NULL;
+	DOMParser parser;
+	parser.setFeature(DOMParser::FEATURE_FILTER_WHITESPACE, true);
+	AutoPtr<Document> tree = parser.parse(T2UTF8(path));
+	if (!tree)
+		return false;
+	Element* root = GetRootElement(tree.get());
+	if (!root)
+		return false;
+	// Currently our content is paths, so expect
+	// having paths in valid project file!
+	if (!GetPathsData(root))
+		return false;
 
-    parser = scew_parser_create();
-    scew_parser_ignore_whitespaces(parser, 1);
-
-	scew_reader *reader = NULL;
-	FILE * fp = _tfopen(path, _T("r"));
-	if (fp)
-	{
-		reader = scew_reader_fp_create(fp);
-		if (reader)
-		{
-			tree = scew_parser_load (parser, reader);
-
-			if (tree)
-			{
-				scew_element * root = GetRootElement(tree);
-				if (root)
-				{
-					// Currently our content is paths, so expect
-					// having paths in valid project file!
-					if (GetPathsData(root))
-						loaded = TRUE;
-				};
-			}
-		}
-
-		scew_tree_free(tree);
-		scew_reader_free(reader);
-
-		/* Frees the SCEW parser */
-		scew_parser_free(parser);
-		fclose(fp);
-	}
-	return loaded;
+	return true;
 }
 
 /** 
@@ -125,23 +112,14 @@ BOOL ProjectFile::Read(LPCTSTR path, String *sError)
  * @param [in] tree XML tree we got from the parser.
  * @return Root element pointer.
  */
-scew_element* ProjectFile::GetRootElement(scew_tree * tree)
+Element* ProjectFile::GetRootElement(const Document * tree)
 {
-	scew_element * root = NULL;
-
-	if (tree != NULL)
-	{
-		root = scew_tree_root(tree);
-	}
-
-	if (root != NULL)
-	{
-		// Make sure we have correct root element
-		if (strcmp(Root_element_name, scew_element_name(root)) != 0)
-		{
-			root = NULL;
-		}
-	}
+	if (!tree)
+		return NULL;
+	// Make sure we have correct root element
+	Element *root = dynamic_cast<Element *>(tree->firstChild());
+	if (root->nodeName() != Root_element_name)
+		return NULL;
 	return root;
 }
 
@@ -149,166 +127,87 @@ scew_element* ProjectFile::GetRootElement(scew_tree * tree)
  * @brief Reads the paths data from the XML data.
  * This function reads the paths data inside given element in XML data.
  * @param [in] parent Parent element for the paths data.
- * @return TRUE if pathdata was found from the file.
+ * @return true if pathdata was found from the file.
  */
-BOOL ProjectFile::GetPathsData(scew_element * parent)
+bool ProjectFile::GetPathsData(const Element * parent)
 {
-	BOOL bFoundPaths = FALSE;
-	scew_element *paths = NULL;
+	if (!parent)
+		return false;
+	
+	Node* paths = parent->firstChild();
+	if (!paths || paths->nodeName() != Paths_element_name)
+		return false;
 
-	if (parent != NULL)
+	NodeIterator it(paths, NodeFilter::SHOW_ELEMENT);
+	Node* pNode = it.nextNode();
+	while (pNode)
 	{
-		paths = scew_element_by_name(parent, Paths_element_name);
+		std::string nodename = pNode->nodeName();
+		if (nodename == Left_element_name)
+		{
+			m_paths.SetLeft(UTF82T(pNode->innerText()).c_str());
+			m_bHasLeft = true;
+		}
+		else if (nodename == Middle_element_name)
+		{
+			m_paths.SetMiddle(UTF82T(pNode->innerText()).c_str());
+			m_bHasMiddle = true;
+		}
+		else if (nodename == Right_element_name)
+		{
+			m_paths.SetRight(UTF82T(pNode->innerText()).c_str());
+			m_bHasRight = true;
+		}
+		else if (nodename == Filter_element_name)
+		{
+			m_filter = UTF82T(pNode->innerText());
+			m_bHasFilter = true;
+		}
+		else if (nodename == Subfolders_element_name)
+		{
+			m_subfolders = atoi(pNode->innerText().c_str());
+			m_bHasSubfolders = true;
+		}
+		else if (nodename == Left_ro_element_name)
+		{
+			m_bLeftReadOnly = atoi(pNode->innerText().c_str()) != 0;
+		}
+		else if (nodename == Middle_ro_element_name)
+		{
+			m_bMiddleReadOnly = atoi(pNode->innerText().c_str()) != 0;
+		}
+		else if (nodename == Right_ro_element_name)
+		{
+			m_bRightReadOnly = atoi(pNode->innerText().c_str()) != 0;
+		}
+		pNode = it.nextNode();
 	}
-
-	if (paths != NULL)
-	{
-		bFoundPaths = TRUE;
-		scew_element *left = NULL;
-		scew_element *middle = NULL;
-		scew_element *right = NULL;
-		scew_element *filter = NULL;
-		scew_element *subfolders = NULL;
-		scew_element *left_ro = NULL;
-		scew_element *middle_ro = NULL;
-		scew_element *right_ro = NULL;
-
-		left = scew_element_by_name(paths, Left_element_name);
-		middle = scew_element_by_name(paths, Middle_element_name);
-		right = scew_element_by_name(paths, Right_element_name);
-		filter = scew_element_by_name(paths, Filter_element_name);
-		subfolders = scew_element_by_name(paths, Subfolders_element_name);
-		left_ro = scew_element_by_name(paths, Left_ro_element_name);
-		middle_ro = scew_element_by_name(paths, Middle_ro_element_name);
-		right_ro = scew_element_by_name(paths, Right_ro_element_name);
-
-		if (left)
-		{
-			LPCSTR path = NULL;
-			path = scew_element_contents(left);
-			m_paths.SetLeft(UTF82T(path).c_str());
-			m_bHasLeft = TRUE;
-		}
-		if (middle)
-		{
-			LPCSTR path = NULL;
-			path = scew_element_contents(middle);
-			m_paths.SetMiddle(UTF82T(path).c_str());
-			m_bHasMiddle = TRUE;
-		}
-		if (right)
-		{
-			LPCSTR path = NULL;
-			path = scew_element_contents(right);
-			m_paths.SetRight(UTF82T(path).c_str());
-			m_bHasRight = TRUE;
-		}
-		if (filter)
-		{
-			LPCSTR filtername = NULL;
-			filtername = scew_element_contents(filter);
-			m_filter = UTF82T(filtername);
-			m_bHasFilter = TRUE;
-		}
-		if (subfolders)
-		{
-			LPCSTR folders = NULL;
-			folders = scew_element_contents(subfolders);
-			m_subfolders = atoi(folders);
-			m_bHasSubfolders = TRUE;
-		}
-		if (left_ro)
-		{
-			LPCSTR readonly = NULL;
-			readonly = scew_element_contents(left_ro);
-			m_bLeftReadOnly = (atoi(readonly) != 0);
-		}
-		if (middle_ro)
-		{
-			LPCSTR readonly = NULL;
-			readonly = scew_element_contents(middle_ro);
-			m_bMiddleReadOnly = (atoi(readonly) != 0);
-		}
-		if (right_ro)
-		{
-			LPCSTR readonly = NULL;
-			readonly = scew_element_contents(right_ro);
-			m_bRightReadOnly = (atoi(readonly) != 0);
-		}
-	}
-	return bFoundPaths;
+	return true;
 }
 
 /** 
  * @brief Save data from member variables to path-file.
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
- * @return TRUE if saving succeeded, FALSE if error happened.
+ * @return true if saving succeeded, false if error happened.
  */
-BOOL ProjectFile::Save(LPCTSTR path, String *sError)
+bool ProjectFile::Save(const String& path) const
 {
-	BOOL success = TRUE;
-	scew_tree* tree = NULL;
-	scew_element* root = NULL;
-	scew_element* paths = NULL;
+	AutoPtr<Document> doc = new Document();
+	AutoPtr<Element> root = doc->createElement(Root_element_name);
+	if (!root)
+		return false;
+	doc->appendChild(root);
+	AutoPtr<Element> paths = AddPathsElement(root);
+	if (!paths)
+		return false;
+	AddPathsContent(paths);
 
-	tree = scew_tree_create();
-	root = scew_tree_set_root(tree, Root_element_name);
-	if (root != NULL)
-	{
-		paths = AddPathsElement(root);
-	}
-	else
-		success = FALSE;
+	DOMWriter writer;
+	writer.setOptions(XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
+	writer.writeNode(T2UTF8(path), doc);
 
-	if (paths != NULL)
-	{
-		AddPathsContent(paths);
-	}
-	else
-		success = FALSE;
-	
-	scew_tree_set_xml_encoding(tree, "UTF-8");
-
-	scew_writer *writer = NULL;
-	scew_printer *printer = NULL;
-	FILE * fp = _tfopen(path, _T("w"));
-	if (fp)
-	{
-		writer = scew_writer_fp_create(fp);
-		if (writer)
-		{
-			printer = scew_printer_create(writer);
-			
-			if (!scew_printer_print_tree(printer, tree) ||
-				!scew_printf(_XT("\n")))
-			{
-				success = FALSE;
-				*sError = LoadResString(IDS_FILEWRITE_ERROR);
-			}
-		}
-		else
-		{
-			success = FALSE;
-			*sError = LoadResString(IDS_FILEWRITE_ERROR);
-		}
-		fclose(fp);
-	}
-	else
-	{
-		success = FALSE;
-	}
-	
-	/* Frees the SCEW tree */
-	scew_tree_free(tree);
-	scew_writer_free(writer);
-	scew_printer_free(printer);
-
-	if (success == FALSE)
-	{
-		*sError = LoadResString(IDS_FILEWRITE_ERROR);
-	}
-	return success;
+	return true;
 }
 
 /**
@@ -316,96 +215,79 @@ BOOL ProjectFile::Save(LPCTSTR path, String *sError)
  * @param [in] parent Parent element for the paths element.
  * @return pointer to added paths element.
  */
-scew_element* ProjectFile::AddPathsElement(scew_element * parent)
+Element* ProjectFile::AddPathsElement(Element * parent) const
 {
-	scew_element* element = NULL;
-	element = scew_element_add(parent, Paths_element_name);
+	Element *element = parent->ownerDocument()->createElement(Paths_element_name);
+	parent->appendChild(element);
 	return element;
 }
 
-/**
- * @brief Covert characters that are unsafe for use in XML
- * @param [in] str The string to be converted
- * @return The converted string
- */
-static String EscapeXML(const String &str)
+static Element *createElement(const Document *doc, const std::string& tagname, const std::string& content)
 {
-	String escapedStr = str;
-	string_replace(escapedStr, _T("&"), _T("&amp;"));
-	string_replace(escapedStr, _T("<"), _T("&lt;"));
-	string_replace(escapedStr, _T(">"), _T("&gt;"));
-	return escapedStr;
+	Element *element = doc->createElement(tagname);
+	AutoPtr<Text> text = doc->createTextNode(content);
+	element->appendChild(text);
+	return element;
 }
 
 /**
  * @brief Add paths data to the XML tree.
  * This function adds our paths data to the XML tree.
  * @param [in] parent Parent element for paths data.
- * @return TRUE if we succeeded, FALSE otherwise.
+ * @return true if we succeeded, false otherwise.
  */
-BOOL ProjectFile::AddPathsContent(scew_element * parent)
+bool ProjectFile::AddPathsContent(Element * parent) const
 {
-	scew_element* element = NULL;
+	Document *doc = parent->ownerDocument();
+	AutoPtr<Element> element;
 
 	if (!m_paths.GetLeft().empty())
 	{
-		element = scew_element_add(parent, Left_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetLeft()).c_str()).c_str());
+		element = createElement(doc, Left_element_name, T2UTF8(m_paths.GetLeft()));
+		parent->appendChild(element);
 	}
 
 	if (!m_paths.GetMiddle().empty())
 	{
-		element = scew_element_add(parent, Middle_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetMiddle()).c_str()).c_str());
+		element = createElement(doc, Middle_element_name, T2UTF8(m_paths.GetMiddle()));
+		parent->appendChild(element);
 	}
 
 	if (!m_paths.GetRight().empty())
 	{
-		element = scew_element_add(parent, Right_element_name);
-		scew_element_set_contents(element, T2UTF8(EscapeXML(m_paths.GetRight()).c_str()).c_str());
+		element = createElement(doc, Right_element_name, T2UTF8(m_paths.GetRight()));
+		parent->appendChild(element);
 	}
 
 	if (!m_filter.empty())
 	{
-		element = scew_element_add(parent, Filter_element_name);
-		String filter = m_filter;
-		scew_element_set_contents(element, T2UTF8(EscapeXML(filter).c_str()).c_str());
+		element = createElement(doc, Filter_element_name, T2UTF8(m_filter));
+		parent->appendChild(element);
 	}
 
-	element = scew_element_add(parent, Subfolders_element_name);
-	if (m_subfolders != 0)
-		scew_element_set_contents(element, "1");
-	else
-		scew_element_set_contents(element, "0");
+	element = createElement(doc, Subfolders_element_name, m_subfolders != 0 ? "1" : "0");
+	parent->appendChild(element);
 
-	element = scew_element_add(parent, Left_ro_element_name);
-	if (m_bLeftReadOnly)
-		scew_element_set_contents(element, "1");
-	else
-		scew_element_set_contents(element, "0");
+	element = createElement(doc, Left_ro_element_name, m_bLeftReadOnly ? "1" : "0");
+	parent->appendChild(element);
 
 	if (!m_paths.GetMiddle().empty())
 	{
-		element = scew_element_add(parent, Middle_ro_element_name);
-		if (m_bMiddleReadOnly)
-			scew_element_set_contents(element, "1");
-		else
-			scew_element_set_contents(element, "0");
+		element = createElement(doc, Middle_ro_element_name, m_bMiddleReadOnly ? "1" : "0");
+		parent->appendChild(element);
 	}
-	element = scew_element_add(parent, Right_ro_element_name);
-	if (m_bRightReadOnly)
-		scew_element_set_contents(element, "1");
-	else
-		scew_element_set_contents(element, "0");
 
-	return TRUE;
+	element = createElement(doc, Right_ro_element_name, m_bRightReadOnly ? "1" : "0");
+	parent->appendChild(element);
+
+	return true;
 }
 
 /** 
  * @brief Returns if left path is defined in project file.
- * @return TRUE if project file has left path.
+ * @return true if project file has left path.
  */
-BOOL ProjectFile::HasLeft() const
+bool ProjectFile::HasLeft() const
 {
 	return m_bHasLeft;
 }
@@ -413,44 +295,44 @@ BOOL ProjectFile::HasLeft() const
 /** 
  * @brief Returns if middle path is defined.
  */
-BOOL ProjectFile::HasMiddle() const
+bool ProjectFile::HasMiddle() const
 {
 	return m_bHasMiddle;
 }
 
 /** 
  * @brief Returns if right path is defined in project file.
- * @return TRUE if project file has right path.
+ * @return true if project file has right path.
  */
-BOOL ProjectFile::HasRight() const
+bool ProjectFile::HasRight() const
 {
 	return m_bHasRight;
 }
 
 /** 
  * @brief Returns if filter is defined in project file.
- * @return TRUE if project file has filter.
+ * @return true if project file has filter.
  */
-BOOL ProjectFile::HasFilter() const
+bool ProjectFile::HasFilter() const
 {
 	return m_bHasFilter;
 }
 
 /** 
  * @brief Returns if subfolder is defined in projectfile.
- * @return TRUE if project file has subfolder definition.
+ * @return true if project file has subfolder definition.
  */
-BOOL ProjectFile::HasSubfolders() const
+bool ProjectFile::HasSubfolders() const
 {
 	return m_bHasSubfolders;
 }
 
 /** 
  * @brief Returns left path.
- * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @param [out] pReadOnly true if readonly was specified for path.
  * @return Left path.
  */
-String ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
+String ProjectFile::GetLeft(bool * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bLeftReadOnly;
@@ -459,9 +341,9 @@ String ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if left path is specified read-only.
- * @return TRUE if left path is read-only, FALSE otherwise.
+ * @return true if left path is read-only, false otherwise.
  */
-BOOL ProjectFile::GetLeftReadOnly() const
+bool ProjectFile::GetLeftReadOnly() const
 {
 	return m_bLeftReadOnly;
 }
@@ -471,7 +353,7 @@ BOOL ProjectFile::GetLeftReadOnly() const
  * @param [in] sLeft Left path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetLeft(const String& sLeft, const BOOL * pReadOnly /*=NULL*/)
+void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*=NULL*/)
 {
 	m_paths.SetLeft(sLeft.c_str(), false);
 	if (pReadOnly)
@@ -480,9 +362,9 @@ void ProjectFile::SetLeft(const String& sLeft, const BOOL * pReadOnly /*=NULL*/)
 
 /** 
  * @brief Returns middle path.
- * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @param [out] pReadOnly true if readonly was specified for path.
  */
-String ProjectFile::GetMiddle(BOOL * pReadOnly /*=NULL*/) const
+String ProjectFile::GetMiddle(bool * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bMiddleReadOnly;
@@ -492,7 +374,7 @@ String ProjectFile::GetMiddle(BOOL * pReadOnly /*=NULL*/) const
 /** 
  * @brief Returns if middle path is specified read-only.
  */
-BOOL ProjectFile::GetMiddleReadOnly() const
+bool ProjectFile::GetMiddleReadOnly() const
 {
 	return m_bMiddleReadOnly;
 }
@@ -502,7 +384,7 @@ BOOL ProjectFile::GetMiddleReadOnly() const
  * @param [in] sMiddle Middle path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetMiddle(const String& sMiddle, const BOOL * pReadOnly /*=NULL*/)
+void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*=NULL*/)
 {
 	m_paths.SetMiddle(sMiddle.c_str(), false);
 	if (pReadOnly)
@@ -513,10 +395,10 @@ void ProjectFile::SetMiddle(const String& sMiddle, const BOOL * pReadOnly /*=NUL
 
 /** 
  * @brief Returns right path.
- * @param [out] pReadOnly TRUE if readonly was specified for path.
+ * @param [out] pReadOnly true if readonly was specified for path.
  * @return Right path.
  */
-String ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
+String ProjectFile::GetRight(bool * pReadOnly /*=NULL*/) const
 {
 	if (pReadOnly)
 		*pReadOnly = m_bRightReadOnly;
@@ -525,9 +407,9 @@ String ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 
 /** 
  * @brief Returns if right path is specified read-only.
- * @return TRUE if right path is read-only, FALSE otherwise.
+ * @return true if right path is read-only, false otherwise.
  */
-BOOL ProjectFile::GetRightReadOnly() const
+bool ProjectFile::GetRightReadOnly() const
 {
 	return m_bRightReadOnly;
 }
@@ -537,7 +419,7 @@ BOOL ProjectFile::GetRightReadOnly() const
  * @param [in] sRight Right path.
  * @param [in] bReadOnly Will path be recorded read-only?
  */
-void ProjectFile::SetRight(const String& sRight, const BOOL * pReadOnly /*=NULL*/)
+void ProjectFile::SetRight(const String& sRight, const bool * pReadOnly /*=NULL*/)
 {
 	m_paths.SetRight(sRight.c_str(), false);
 	if (pReadOnly)
@@ -584,9 +466,9 @@ void ProjectFile::SetSubfolders(int iSubfolder)
  * @brief 
  *
  * @param [in] files Files in project
- * @param [in] bSubFolders If TRUE subfolders included (recursive compare)
+ * @param [in] bSubFolders If true subfolders included (recursive compare)
  */
-void ProjectFile::SetPaths(const PathContext& files, BOOL bSubfolders)
+void ProjectFile::SetPaths(const PathContext& files, bool bSubfolders)
 {
 	m_paths = files;
 	m_subfolders = bSubfolders;
@@ -596,9 +478,9 @@ void ProjectFile::SetPaths(const PathContext& files, BOOL bSubfolders)
  * @brief Returns left and right paths and recursive from project file
  * 
  * @param [out] files Files in project
- * @param [out] bSubFolders If TRUE subfolders included (recursive compare)
+ * @param [out] bSubFolders If true subfolders included (recursive compare)
  */
-void ProjectFile::GetPaths(PathContext& files, BOOL & bSubfolders) const
+void ProjectFile::GetPaths(PathContext& files, bool & bSubfolders) const
 {
 	files = m_paths;
 	if (HasSubfolders())

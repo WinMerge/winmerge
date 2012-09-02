@@ -16,29 +16,32 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "StdAfx.h"
-#include <boost/scoped_array.hpp>
-#include "unicoder.h"
-#include "codepage.h"
-#include "Utf8FileDetect.h"
+#include <windows.h>
+#include <tchar.h>
 #include <mlang.h>
+#include <cassert>
+#include <boost/scoped_array.hpp>
+#include <Poco/UnicodeConverter.h>
+#include "unicoder.h"
+#include "Utf8FileDetect.h"
+#include "UnicodeString.h"
 #ifndef __IMultiLanguage2_INTERFACE_DEFINED__
 #error "IMultiLanguage2 is not defined in mlang.h. Please install latest Platform SDK."
 #endif
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
 
 // This is not in older platform sdk versions
 #ifndef WC_NO_BEST_FIT_CHARS
 #define WC_NO_BEST_FIT_CHARS        0x00000400
 #endif
 
+using Poco::UnicodeConverter;
+
 namespace ucr
 {
+
+// store the default codepage as specified by user in options
+static int f_nDefaultCodepage = GetACP();
 
 // current OS version
 static bool f_osvi_fetched = false;
@@ -143,7 +146,6 @@ public:
 		UINT dstsize;
 		UINT srcsize;
 		HRESULT hr;
-		USES_CONVERSION;
 
 		hr = m_pmlang->CreateConvertCharset(autodetectType, 1200, MLCONVCHARF_AUTODETECT, &pcc);
 		if (FAILED(hr))
@@ -172,7 +174,7 @@ public:
 			}
 			codepage = defcodepage;
 			int i;
-			for (i = 0; i < countof(codepagestotry); i++)
+			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]); i++)
 			{
 				if (codepagestotry[i] == 0) break;
 				hr = pcc->Initialize(codepagestotry[i], 1200, 0);
@@ -799,7 +801,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 			// good idea to ASSERT that the assumption holds.
 			if (wbuff[n-1] == 0 && lpd[len-1] != 0)
 			{
-				ASSERT(FALSE);
+				assert(FALSE);
 				--n;
 			}
 			try
@@ -827,7 +829,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 					*/
 					if (wbuff[n-1] == 0 && lpd[len-1] != 0)
 					{
-						ASSERT(FALSE);
+						assert(FALSE);
 						--n;
 					}
 					try
@@ -983,7 +985,7 @@ String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int
  */
 int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy)
 {
-	ASSERT(destsize > 1);
+	assert(destsize > 1);
 
 	// Convert input to Unicode, using specified codepage
 	DWORD flags = 0;
@@ -993,7 +995,6 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
-		String syserrstr = GetSysError(nsyserr);
 		dest[0] = '?';
 		return 1;
 	}
@@ -1021,7 +1022,6 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
-		String syserrstr = GetSysError(nsyserr);
 	}
 	dest[n] = 0;
 	if (lossy)
@@ -1068,11 +1068,11 @@ unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR src, int srcbytes/* = -1*/)
 	bool bSucceeded;
 #ifdef _UNICODE
 	bSucceeded = convert(1200, 
-		(unsigned char *)src, (srcbytes < 0) ? wcslen((const wchar_t *)src) * sizeof(wchar_t) : srcbytes,
+		(unsigned char *)src, (int)((srcbytes < 0) ? wcslen((const wchar_t *)src) * sizeof(wchar_t) : srcbytes),
 		CP_UTF8, buf);
 #else
 	bSucceeded = convert(GetACP(),	
-		(unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		(unsigned char *)src, (int)((srcbytes < 0) ? strlen((const char *)src) : srcbytes),
 		CP_UTF8, buf);
 #endif
 	if (!bSucceeded)
@@ -1092,11 +1092,11 @@ TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
 	bool bSucceeded;
 #ifdef _UNICODE
 	bSucceeded = convert(CP_UTF8,
-		(const unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		(const unsigned char *)src, (int)((srcbytes < 0) ? strlen((const char *)src) : srcbytes),
 		1200/*UCS2LE*/, buf);
 #else
 	bSucceeded = convert(CP_UTF8,
-		(const unsigned char *)src, (srcbytes < 0) ? strlen((const char *)src) : srcbytes,
+		(const unsigned char *)src, (int)((srcbytes < 0) ? strlen((const char *)src) : srcbytes),
 		GetACP(), buf);
 #endif
 	if (!bSucceeded)
@@ -1114,6 +1114,34 @@ TCHAR *convertUTF8toT(LPCSTR src, int srcbytes/* = -1*/)
 void dealloc(void *ptr)
 {
 	free(ptr);
+}
+
+String UTF82T(const std::string& str)
+{
+#ifdef UNICODE
+	std::wstring wstr;
+	UnicodeConverter::toUTF16(str, wstr);
+	return wstr;
+#else
+	const char *p = ucr::convertUTF8toT(str.c_str(), str.length());
+	std::string astr = p;
+	ucr::dealloc((void *)p);
+	return astr;
+#endif
+}
+
+std::string T2UTF8(const String& tstr)
+{
+#ifdef UNICODE
+	std::string str;
+	UnicodeConverter::toUTF8(tstr, str);
+	return str;
+#else
+	const char *p = (const char *)ucr::convertTtoUTF8(tstr.c_str(), tstr.length());
+	std::string astr = p;
+	ucr::dealloc((void *)p);
+	return astr;
+#endif
 }
 
 bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepage2, buffer * dest)
@@ -1310,8 +1338,6 @@ UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom)
 	return unicoding;
 }
 
-} // namespace ucr
-
 /**
  * @brief Change any special codepage constants into real codepage numbers
  */
@@ -1339,3 +1365,16 @@ bool EqualCodepages(int cp1, int cp2)
 	return (cp1 == cp2)
 			|| (NormalizeCodepage(cp1) == NormalizeCodepage(cp2));
 }
+
+int getDefaultCodepage()
+{
+	return f_nDefaultCodepage;
+}
+
+void setDefaultCodepage(int cp)
+{
+	f_nDefaultCodepage = cp;
+}
+
+} // namespace ucr
+

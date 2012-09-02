@@ -53,7 +53,6 @@
 #include "codepage.h"
 #include "paths.h"
 #include "OptionsMgr.h"
-#include "ProjectFile.h"
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"

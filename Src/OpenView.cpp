@@ -354,7 +354,7 @@ void COpenView::OnOK()
 	String ext;
 	SplitFilename(m_strPath[0], NULL, NULL, &ext);
 	CString sExt(ext.c_str());
-	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+	if (m_strPath[1].IsEmpty() && sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
 		LoadProjectFile(m_strPath[0]);
 
 	pathsType = GetPairComparability(m_files, IsArchiveFile);
@@ -505,7 +505,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		String ext;
 		SplitFilename(paths[0].c_str(), NULL, NULL, &ext);
 		CString sExt(ext.c_str());
-		if (paths[1].empty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		if (paths[1].empty() && sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
 			bProject = TRUE;
 
 		if (!bProject)
@@ -803,41 +803,33 @@ BOOL COpenView::LoadProjectFile(const CString &path)
 	String err;
 	ProjectFile prj;
 
-	if (!prj.Read(path, &err))
-	{
-		if (!err.empty())
-		{
-			CString msg;
-			LangFormatString2(msg, IDS_ERROR_FILEOPEN, path, err.c_str());
-			AfxMessageBox(msg, MB_ICONSTOP);
-		}
+	if (!theApp.LoadProjectFile((LPCTSTR)path, prj))
 		return FALSE;
+
+	bool recurse;
+	prj.GetPaths(m_files, recurse);
+	m_bRecurse = recurse;
+	m_dwFlags[0] &= ~FFILEOPEN_READONLY;
+	m_dwFlags[0] |= prj.GetLeftReadOnly() ?	FFILEOPEN_READONLY : 0;
+	if (m_files.GetSize() < 3)
+	{
+		m_dwFlags[1] &= ~FFILEOPEN_READONLY;
+		m_dwFlags[1] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
 	}
 	else
 	{
-		prj.GetPaths(m_files, m_bRecurse);
-		m_dwFlags[0] &= ~FFILEOPEN_READONLY;
-		m_dwFlags[0] |= prj.GetLeftReadOnly() ?	FFILEOPEN_READONLY : 0;
-		if (m_files.GetSize() < 3)
-		{
-			m_dwFlags[1] &= ~FFILEOPEN_READONLY;
-			m_dwFlags[1] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
-		}
-		else
-		{
-			m_dwFlags[1] &= ~FFILEOPEN_READONLY;
-			m_dwFlags[1] |= prj.GetMiddleReadOnly() ? FFILEOPEN_READONLY : 0;
-			m_dwFlags[2] &= ~FFILEOPEN_READONLY;
-			m_dwFlags[2] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
-		}
-		if (prj.HasFilter())
-		{
-			m_strExt = prj.GetFilter().c_str();
-			m_strExt.TrimLeft();
-			m_strExt.TrimRight();
-			if (m_strExt[0] != '*')
-				m_strExt.Insert(0, filterPrefix.c_str());
-		}
+		m_dwFlags[1] &= ~FFILEOPEN_READONLY;
+		m_dwFlags[1] |= prj.GetMiddleReadOnly() ? FFILEOPEN_READONLY : 0;
+		m_dwFlags[2] &= ~FFILEOPEN_READONLY;
+		m_dwFlags[2] |= prj.GetRightReadOnly() ? FFILEOPEN_READONLY : 0;
+	}
+	if (prj.HasFilter())
+	{
+		m_strExt = prj.GetFilter().c_str();
+		m_strExt.TrimLeft();
+		m_strExt.TrimRight();
+		if (m_strExt[0] != '*')
+			m_strExt.Insert(0, filterPrefix.c_str());
 	}
 	return TRUE;
 }

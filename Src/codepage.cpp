@@ -28,6 +28,7 @@
 #include "Merge.h" // for theApp
 #include "codepage.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
+#include "unicoder.h"
 #include <map>
 
 #ifdef _DEBUG
@@ -39,8 +40,6 @@ static char THIS_FILE[] = __FILE__;
 using std::map;
 
 static void initialize();
-
-static int f_nDefaultCodepage; // store the default codepage as specified by user in options
 
 static int f_bInitialized = false;
 
@@ -57,23 +56,23 @@ void updateDefaultCodepage(int cpDefaultMode, int customCodepage)
 	switch (cpDefaultMode)
 	{
 		case 0:
-			f_nDefaultCodepage = GetACP();
+			ucr::setDefaultCodepage(GetACP());
 			break;
 		case 1:
 			TCHAR buff[32];
 			wLangId = theApp.GetLangId();
 			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
-				f_nDefaultCodepage = _ttol(buff);
+				ucr::setDefaultCodepage(_ttol(buff));
 			else
-				f_nDefaultCodepage = GetACP();
+				ucr::setDefaultCodepage(GetACP());
 			break;
 		case 2:
-			f_nDefaultCodepage = customCodepage;
+			ucr::setDefaultCodepage(customCodepage);
 			break;
 		default:
 			// no other valid option
 			ASSERT (0);
-			f_nDefaultCodepage = GetACP();
+			ucr::setDefaultCodepage(GetACP());
 	}
 
 	// Set default codepage
@@ -86,7 +85,7 @@ void updateDefaultCodepage(int cpDefaultMode, int customCodepage)
  */
 int getDefaultCodepage()
 {
-	return f_nDefaultCodepage;
+	return ucr::getDefaultCodepage();
 }
 
 /**

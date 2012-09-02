@@ -3,6 +3,4 @@ Versions of external components
 
 This file lists versions of the external components we are using.
 
-Expat: 2.0.1
-SCEW: 1.1.2
 POCO: 1.4.3p1

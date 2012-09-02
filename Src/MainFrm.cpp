@@ -69,7 +69,6 @@
 #include "unicoder.h"
 #include "VSSHelper.h"
 #include "codepage.h"
-#include "ProjectFile.h"
 #include "PreferencesDlg.h"
 #include "ProjectFilePathsDlg.h"
 #include "MergeCmdLineInfo.h"

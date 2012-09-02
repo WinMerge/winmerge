@@ -42,12 +42,6 @@ namespace
 		{
 			// Code	here will be called	immediately	after the constructor (right
 			// before each test).
-			TCHAR exepath[_MAX_PATH];
-			GetModuleFileName(NULL, exepath, sizeof(exepath));
-			if (_tcsstr(exepath, _T("Paths_test")) != NULL)
-				SetCurrentDirectory(paths_GetParentPath(exepath).c_str());
-			else
-				SetCurrentDirectory((paths_GetParentPath(exepath) + _T("\\..\\Paths\\Debug")).c_str());
 		}
 
 		virtual void TearDown()
@@ -109,14 +103,14 @@ namespace
 	TEST_F(PathTest, Exists_relfolder)
 	{
 		const TCHAR path[] = _T("..\\");
-		const TCHAR path2[] = _T("..\\..\\Paths");
+		const TCHAR path2[] = _T("..\\Paths");
 		EXPECT_EQ(IS_EXISTING_DIR, paths_DoesPathExist(path));
 		EXPECT_EQ(IS_EXISTING_DIR, paths_DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_relfiles)
 	{
-		const TCHAR path[] = _T("..\\paths_test.cpp");
-		const TCHAR path2[] = _T("..\\..\\Paths\\paths_test.cpp");
+		const TCHAR path[] = _T(".\\..\\Paths\\paths_test.cpp");
+		const TCHAR path2[] = _T("..\\Paths\\paths_test.cpp");
 		EXPECT_EQ(IS_EXISTING_FILE, paths_DoesPathExist(path));
 		EXPECT_EQ(IS_EXISTING_FILE, paths_DoesPathExist(path2));
 	}

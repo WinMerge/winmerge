@@ -25,11 +25,15 @@
 #ifndef _PROJECT_FILE_H_
 #define _PROJECT_FILE_H_
 
-#include <scew/scew.h>
+#include "UnicodeString.h"
 #include "PathContext.h"
 
-/** @brief File extension for path files */
-const TCHAR PROJECTFILE_EXT[] = _T("WinMerge");
+namespace Poco {
+	namespace XML {
+		class Document;
+		class Element;
+	}
+}
 
 /**
  * @brief Class for handling project files.
@@ -42,53 +46,55 @@ class ProjectFile
 {
 public:
 	ProjectFile();
-	BOOL Read(LPCTSTR path, String *sError);
-	BOOL Save(LPCTSTR path, String *sError);
+	bool Read(const String& path);
+	bool Save(const String& path) const;
 	
-	BOOL HasLeft() const;
-	BOOL HasMiddle() const;
-	BOOL HasRight() const;
-	BOOL HasFilter() const;
-	BOOL HasSubfolders() const;
+	bool HasLeft() const;
+	bool HasMiddle() const;
+	bool HasRight() const;
+	bool HasFilter() const;
+	bool HasSubfolders() const;
 
-	String GetLeft(BOOL * pReadOnly = NULL) const;
-	BOOL GetLeftReadOnly() const;
-	String GetMiddle(BOOL * pReadOnly = NULL) const;
-	BOOL GetMiddleReadOnly() const;
+	String GetLeft(bool * pReadOnly = NULL) const;
+	bool GetLeftReadOnly() const;
+	String GetMiddle(bool * pReadOnly = NULL) const;
+	bool GetMiddleReadOnly() const;
 	String GetMiddle() const;
-	String GetRight(BOOL * pReadOnly = NULL) const;
-	BOOL GetRightReadOnly() const;
+	String GetRight(bool * pReadOnly = NULL) const;
+	bool GetRightReadOnly() const;
 	String GetFilter() const;
 	int GetSubfolders() const;
 
-	void SetLeft(const String& sLeft, const BOOL * pReadOnly = NULL);
-	void SetMiddle(const String& sMiddle, const BOOL * pReadOnly = NULL);
-	void SetRight(const String& sRight, const BOOL * pReadOnly = NULL);
+	void SetLeft(const String& sLeft, const bool * pReadOnly = NULL);
+	void SetMiddle(const String& sMiddle, const bool * pReadOnly = NULL);
+	void SetRight(const String& sRight, const bool * pReadOnly = NULL);
 	void SetFilter(const String& sFilter);
 	void SetSubfolders(int iSubfolder);
 
-	void GetPaths(PathContext& files, BOOL & bSubFolders) const;
-	void SetPaths(const PathContext& files, BOOL bSubFolders = FALSE);
+	void GetPaths(PathContext& files, bool & bSubFolders) const;
+	void SetPaths(const PathContext& files, bool bSubFolders = false);
+
+	static const String PROJECTFILE_EXT;
 
 protected:
-	scew_element* GetRootElement(scew_tree * tree);
-	BOOL GetPathsData(scew_element * parent);
+	Poco::XML::Element* GetRootElement(const Poco::XML::Document * tree);
+	bool GetPathsData(const Poco::XML::Element * parent);
 
-	scew_element* AddPathsElement(scew_element * parent);
-	BOOL AddPathsContent(scew_element * parent);
+	Poco::XML::Element* AddPathsElement(Poco::XML::Element * parent) const;
+	bool AddPathsContent(Poco::XML::Element* parent) const;
 
 private:
 	PathContext m_paths;
-	BOOL m_bHasLeft; /**< Has left path? */
-	BOOL m_bHasMiddle; /**< Has middle path? */
-	BOOL m_bHasRight; /**< Has right path? */
-	BOOL m_bHasFilter; /**< Has filter? */
+	bool m_bHasLeft; /**< Has left path? */
+	bool m_bHasMiddle; /**< Has middle path? */
+	bool m_bHasRight; /**< Has right path? */
+	bool m_bHasFilter; /**< Has filter? */
 	String m_filter; /**< Filter name or mask */
-	BOOL m_bHasSubfolders; /**< Has subfolders? */
+	bool m_bHasSubfolders; /**< Has subfolders? */
 	int m_subfolders; /**< Are subfolders included (recursive scan) */
-	BOOL m_bLeftReadOnly; /**< Is left path opened as read-only */
-	BOOL m_bMiddleReadOnly; /**< Is middle path opened as read-only */
-	BOOL m_bRightReadOnly; /**< Is right path opened as read-only */
+	bool m_bLeftReadOnly; /**< Is left path opened as read-only */
+	bool m_bMiddleReadOnly; /**< Is middle path opened as read-only */
+	bool m_bRightReadOnly; /**< Is right path opened as read-only */
 };
 
 #endif // #ifdef _PROJECT_FILE_H_

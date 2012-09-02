@@ -28,8 +28,10 @@
 // $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
+#include <Poco/Exception.h>
 #include "Constants.h"
 #include "UnicodeString.h"
+#include "unicoder.h"
 #include "Environment.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
@@ -780,10 +782,51 @@ bool CMergeApp::IsProjectFile(LPCTSTR filepath) const
 	String ext;
 	SplitFilename(filepath, NULL, NULL, &ext);
 	CString sExt(ext.c_str());
-	if (sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+	if (sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
 		return true;
 	else
 		return false;
+}
+
+bool CMergeApp::LoadProjectFile(LPCTSTR sProject, ProjectFile &project)
+{
+	if (*sProject == '\0')
+		return false;
+
+	try
+	{
+        project.Read(sProject);
+	}
+	catch (Poco::Exception *e)
+	{
+		String sErr = theApp.LoadString(IDS_UNK_ERROR_READING_PROJECT);
+		sErr += ucr::UTF82T(e->displayText());
+		CString msg;
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
+		AfxMessageBox(msg, MB_ICONSTOP);
+		return false;
+	}
+
+	return true;
+}
+
+bool CMergeApp::SaveProjectFile(LPCTSTR sProject, const ProjectFile &project)
+{
+	try
+	{
+		project.Save(sProject);
+	}
+	catch (Poco::Exception *e)
+	{
+		String sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
+		sErr += ucr::UTF82T(e->displayText());
+		CString msg;
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
+		AfxMessageBox(msg, MB_ICONSTOP);
+		return false;
+	}
+
+	return true;
 }
 
 /** 
@@ -793,25 +836,15 @@ bool CMergeApp::IsProjectFile(LPCTSTR filepath) const
  */
 bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 {
-	if (*sProject == '\0')
-		return false;
-
 	ProjectFile project;
-	String sErr;
-	if (!project.Read(sProject, &sErr))
-	{
-		if (sErr.empty())
-			sErr = theApp.LoadString(IDS_UNK_ERROR_READING_PROJECT);
-		CString msg;
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
-		AfxMessageBox(msg, MB_ICONSTOP);
+	if (!LoadProjectFile(sProject, project))
 		return false;
-	}
+	
 	PathContext files;
 	BOOL bLeftReadOnly = FALSE;
 	BOOL bMiddleReadOnly = FALSE;
 	BOOL bRightReadOnly = FALSE;
-	BOOL bRecursive = FALSE;
+	bool bRecursive = FALSE;
 	project.GetPaths(files, bRecursive);
 	bLeftReadOnly = project.GetLeftReadOnly();
 	bMiddleReadOnly = project.GetMiddleReadOnly();

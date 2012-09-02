@@ -10,6 +10,7 @@
 #ifndef _PATH_CONTEXT_H_
 #define _PATH_CONTEXT_H_
 
+#include <windows.h>
 #include "UnicodeString.h"
 
 class PathContext;

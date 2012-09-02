@@ -523,7 +523,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		return true;
 	}
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, GetACP()))
+	if (m_unicoding == ucr::NONE && ucr::EqualCodepages(m_codepage, GetACP()))
 	{
 		int cchLine = 0;
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
@@ -983,7 +983,7 @@ bool UniStdioFile::WriteString(const String & line)
 #ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, GetACP()))
+	if (m_unicoding == ucr::NONE && ucr::EqualCodepages(m_codepage, GetACP()))
 #endif
 	{
 		size_t bytes = line.length() * sizeof(TCHAR);
