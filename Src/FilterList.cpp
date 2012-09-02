@@ -47,7 +47,9 @@ void FilterList::AddRegExp(const std::string& regularExpression, EncodingType en
 	if (encoding == ENC_UTF8)
 		re_opts |= RegularExpression::RE_UTF8;
 	else if (encoding != ENC_ANSI)
+	{
 		_RPTF0(_CRT_ERROR, "Unregognized regexp encoding!");
+	}
 
 	try
 	{

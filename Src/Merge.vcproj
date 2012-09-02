@@ -26,7 +26,7 @@
 				AdditionalOptions="/EHa "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -49,11 +49,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib Iphlpapi.lib"
 				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
+				AdditionalLibraryDirectories="..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
@@ -102,7 +102,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHa "
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include"
 				PreprocessorDefinitions="_DEBUG;WIN32;_STATIC_CPPLIB;POCO_STATIC;_WINDOWS;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="3"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -123,11 +123,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib Iphlpapi.lib"
 				OutputFile="$(OutDir)\WinMergeU.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
+				AdditionalLibraryDirectories="..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMergeU.pdb"
@@ -176,7 +176,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHa "
 				Optimization="0"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="3"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -197,11 +197,11 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib Iphlpapi.lib"
 				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
+				AdditionalLibraryDirectories="..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/WinMerge.pdb"
@@ -250,7 +250,7 @@
 				AdditionalOptions="/EHa "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\expat\lib;..\Externals\expat\xmlwf;..\Externals\scew;..\Externals\pcre\Win32;..\Externals\boost;..\Externals\poco\Foundation\include"
+				AdditionalIncludeDirectories=".;.\CompareEngines;.\Common;..\Externals\crystaledit\editlib;.\diffutils;.\diffutils\lib;.\diffutils\src;..\Externals\boost;..\Externals\poco\Foundation\include;..\Externals\poco\XML\include"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;HAVE_STDLIB_H;STDC_HEADERS;HAVE_STRING_H=1;PR_FILE_NAME=\&quot;pr\&quot;;DIFF_PROGRAM=\&quot;diff\&quot;;REGEX_MALLOC;__MSC__;__NT__;USG=1;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -273,11 +273,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/verbose:lib"
-				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib "
+				AdditionalDependencies="version.lib shlwapi.lib imm32.lib HtmlHelp.lib Iphlpapi.lib"
 				OutputFile="$(OutDir)\WinMerge.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="..\Build\expat;..\Build\pcre;..\Build\scew;..\Externals\poco\lib_vc71"
+				AdditionalLibraryDirectories="..\Externals\poco\lib_vc71"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="FALSE"
 				ProgramDatabaseFile=""
@@ -316,14 +316,8 @@
 	</Configurations>
 	<References>
 		<ProjectReference
-			ReferencedProjectIdentifier="{AF019C38-415E-48E1-8981-B5AD1E4E387F}"
-			Name="expat_static"/>
-		<ProjectReference
 			ReferencedProjectIdentifier="{8164D41D-B053-405B-826C-CF37AC0EF176}"
 			Name="Foundation"/>
-		<ProjectReference
-			ReferencedProjectIdentifier="{970954C2-C43F-41E7-9DF8-3046226FBB47}"
-			Name="scew"/>
 	</References>
 	<Files>
 		<Filter
@@ -3949,7 +3943,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3958,6 +3953,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3967,6 +3963,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3975,7 +3972,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4219,7 +4217,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4228,6 +4227,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4237,6 +4237,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4245,7 +4246,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -5590,7 +5592,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -5599,6 +5602,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5608,6 +5612,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -5616,7 +5621,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File

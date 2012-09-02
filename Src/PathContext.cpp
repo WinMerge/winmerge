@@ -7,7 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: PathContext.cpp 4929 2008-01-18 20:03:57Z kimmov $
 
-#include "stdafx.h"
+#include <cassert>
 #include "PathContext.h"
 #include "paths.h"
 #include "Environment.h"
@@ -99,19 +99,19 @@ PathContext::PathContext(const PathContext &paths)
 
 String PathContext::GetAt(int nIndex) const
 {
-	ASSERT(nIndex < m_nFiles);
+	assert(nIndex < m_nFiles);
 	return m_path[nIndex].GetPath();
 }
 
 String& PathContext::GetElement(int nIndex)
 {
-	ASSERT(nIndex < m_nFiles);
+	assert(nIndex < m_nFiles);
 	return m_path[nIndex].GetRef();
 }
 
 void PathContext::SetAt(int nIndex, const String& newElement)
 {
-	ASSERT(nIndex < m_nFiles);
+	assert(nIndex < m_nFiles);
 	m_path[nIndex].SetPath(newElement.c_str());
 }
 
@@ -244,7 +244,7 @@ void PathContext::SetMiddle(LPCTSTR path, bool bNormalized)
  */
 void PathContext::SetPath(int index, LPCTSTR path, bool bNormalized)
 {
-	if (index >= countof(m_path))
+	if (index >= sizeof(m_path)/sizeof(m_path[0]))
 		return;
 	if (index >= m_nFiles)
 		m_nFiles = index + 1;

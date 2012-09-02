@@ -29,6 +29,26 @@
 
 #include <string>
 
+#ifdef _WIN32
+#  include <tchar.h>
+#else
+#  ifndef _T
+#    ifdef _UNICODE
+#      define _T(x) L ## x
+#    else
+#      define _T(x) x
+#    endif
+#  endif
+#  ifndef _TCHAR_DEFINED
+#    ifdef _UNICODE
+typedef wchar_t TCHAR;
+#    else
+typedef char    TCHAR;
+#    endif
+#  endif
+#  define _TCHAR_DEFINED
+#endif
+
 #ifdef _UNICODE
 #define std_tchar(type) std::w##type
 #else
@@ -50,10 +70,6 @@ String string_trim_ws_begin(const String & str);
 String string_trim_ws_end(const String & str);
 
 // Formatting
-#ifdef UNICODE
-String string_format(const wchar_t *fmt, ...);
-#else
-String string_format(const char *fmt, ...);
-#endif
+String string_format(const TCHAR *fmt, ...);
 
 #endif // _UNICODE_STRING_

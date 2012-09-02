@@ -134,26 +134,19 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 		return;
 
 	ProjectFile project;
+	if (!theApp.LoadProjectFile(fileName, project))
+		return;
 
-	String sErr;
-	if (!project.Read(fileName, &sErr))
-	{
-		if (sErr.empty())
-			sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
-		CString msg;
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr.c_str());
-		AfxMessageBox(msg, MB_ICONSTOP);
-	}
-	else
-	{
-		m_sLeftFile = project.GetLeft(&m_bLeftPathReadOnly).c_str();
-		m_sRightFile = project.GetRight(&m_bRightPathReadOnly).c_str();
-		m_sFilter = project.GetFilter().c_str();
-		m_bIncludeSubfolders = project.GetSubfolders();
+	bool left_ro, right_ro;
+	m_sLeftFile = project.GetLeft(&left_ro).c_str();
+	m_sRightFile = project.GetRight(&right_ro).c_str();
+	m_bLeftPathReadOnly = left_ro;
+	m_bRightPathReadOnly = right_ro;
+	m_sFilter = project.GetFilter().c_str();
+	m_bIncludeSubfolders = project.GetSubfolders();
 
-		UpdateData(FALSE);
-		LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
-	}
+	UpdateData(FALSE);
+	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 }
 
 /** 
@@ -176,10 +169,11 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 
 	ProjectFile project;
 
+	bool left_ro = !!m_bLeftPathReadOnly, right_ro = !!m_bRightPathReadOnly;
 	if (!m_sLeftFile.IsEmpty())
-		project.SetLeft((LPCTSTR)m_sLeftFile, &m_bLeftPathReadOnly);
+		project.SetLeft((LPCTSTR)m_sLeftFile, &left_ro);
 	if (!m_sRightFile.IsEmpty())
-		project.SetRight((LPCTSTR)m_sRightFile, &m_bRightPathReadOnly);
+		project.SetRight((LPCTSTR)m_sRightFile, &right_ro);
 	if (!m_sFilter.IsEmpty())
 	{
 		// Remove possbile prefix from the filter name
@@ -194,19 +188,10 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	}
 	project.SetSubfolders(m_bIncludeSubfolders);
 
-	String sErr;
-	if (!project.Save(fileName, &sErr))
-	{
-		if (sErr.empty())
-			sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
-		CString msg;
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr.c_str());
-		AfxMessageBox(msg, MB_ICONSTOP);
-	}
-	else
-	{
-		LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
-	}
+	if (!theApp.SaveProjectFile(fileName, project))
+		return;
+
+	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 }
 
 /** 

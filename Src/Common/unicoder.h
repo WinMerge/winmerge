@@ -12,6 +12,7 @@
 #ifndef unicoder_h_included
 #define unicoder_h_included
 
+#include <windows.h>
 #include "UnicodeString.h"
 
 namespace ucr
@@ -92,6 +93,8 @@ unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes = -1);
 TCHAR *convertUTF8toT(buffer * dest, const char* src, int srcbytes = -1);
 TCHAR *convertUTF8toT(const char* src, int srcbytes = -1);
 void dealloc(void *ptr);
+String UTF82T(const std::string& str);
+std::string T2UTF8(const String& tstr);
 
 int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy);
 #ifndef UNICODE
@@ -100,9 +103,12 @@ String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int
 
 UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom);
 
-} // namespace ucr
+int getDefaultCodepage();
+void setDefaultCodepage(int cp);
 
 bool EqualCodepages(int cp1, int cp2);
+
+} // namespace ucr
 
 #endif // unicoder_h_included
 
