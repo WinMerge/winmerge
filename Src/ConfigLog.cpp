@@ -29,7 +29,6 @@
 #include "UniFile.h"
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
-#include "winnt_supp.h"
 #include "Plugins.h"
 #include "paths.h"
 #include "unicoder.h"
