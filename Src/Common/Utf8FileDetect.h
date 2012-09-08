@@ -25,6 +25,6 @@
 #ifndef _UTF8FILEDETECT_H_
 #define _UTF8FILEDETECT_H_
 
-bool CheckForInvalidUtf8(LPBYTE pBuffer, int size);
+bool CheckForInvalidUtf8(const char *pBuffer, int size);
 
 #endif // _UTF8FILEDETECT_H_

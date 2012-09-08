@@ -22,7 +22,6 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
 #include "Utf8FileDetect.h"
 
 // Algorithm originally from:
@@ -37,16 +36,16 @@
  * @param [in] size Size of the buffer in bytes.
  * @return true if invalid bytes found, false otherwise.
  */
-bool CheckForInvalidUtf8(LPBYTE pBuffer, int size)
+bool CheckForInvalidUtf8(const char *pBuffer, int size)
 {
-	UINT8 * pVal2 = (UINT8 *)pBuffer;
+	unsigned char * pVal2 = (unsigned char *)pBuffer;
 	for (int j = 0; j < size; ++j)
 	{
 		if ((*pVal2 == 0xC0) || (*pVal2 == 0xC1) || (*pVal2 >= 0xF5))
 			return true;
 		pVal2++;
 	}
-	pVal2 = (UINT8 *)pBuffer;
+	pVal2 = (unsigned char *)pBuffer;
 	bool bUTF8 = false;
 	for (int i = 0; i < (size - 3); ++i)
 	{

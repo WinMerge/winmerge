@@ -209,7 +209,7 @@ static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t le
 	}
 	else
 	{
-		if (!CheckForInvalidUtf8((LPBYTE)src, len))
+		if (!CheckForInvalidUtf8(src, len))
 			cp = CP_UTF8;
 	}
 	if (guessEncodingType & 1)
