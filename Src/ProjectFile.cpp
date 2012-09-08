@@ -24,30 +24,25 @@
 
 #include "ProjectFile.h"
 
-#include <Poco/SAX/InputSource.h>
+#include <stack>
+#include <string>
+#include <Poco/FileStream.h>
 #include <Poco/XML/XMLWriter.h>
-#include <Poco/DOM/AutoPtr.h>
-#include <Poco/DOM/Document.h>
-#include <Poco/DOM/DOMParser.h>
-#include <Poco/DOM/DOMWriter.h>
-#include <Poco/DOM/NodeIterator.h>
-#include <Poco/DOM/NodeFilter.h>
-#include <Poco/DOM/Text.h>
+#include <Poco/SAX/SAXParser.h>
+#include <Poco/SAX/ContentHandler.h>
 #include <Poco/Exception.h>
 #include "UnicodeString.h"
 #include "unicoder.h"
 
-using Poco::AutoPtr;
-using Poco::XML::InputSource;
-using Poco::XML::DOMParser;
-using Poco::XML::DOMWriter;
-using Poco::XML::Document;
-using Poco::XML::Element;
-using Poco::XML::NodeFilter;
-using Poco::XML::NodeIterator;
-using Poco::XML::Node;
-using Poco::XML::Text;
+using Poco::FileStream;
+using Poco::XML::SAXParser;
+using Poco::XML::ContentHandler;
+using Poco::XML::Locator;
 using Poco::XML::XMLWriter;
+using Poco::XML::XMLChar;
+using Poco::XML::XMLString;
+using Poco::XML::Attributes;
+using Poco::Exception;
 using ucr::UTF82T;
 using ucr::T2UTF8;
 
@@ -63,6 +58,93 @@ const char Left_ro_element_name[] = "left-readonly";
 const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 
+namespace
+{
+
+String xmlch2tstr(const XMLChar *ch, int length)
+{
+	return UTF82T(std::string(ch, length));
+}
+
+void writeElement(XMLWriter& writer, const std::string& tagname, const std::string& characters)
+{
+	writer.startElement("", "", tagname);
+	writer.characters(characters);
+	writer.endElement("", "", tagname);
+}
+
+}
+
+class ProjectFileHandler: public ContentHandler
+{
+public:
+	ProjectFileHandler(ProjectFile *pProject) : m_pProject(pProject) {}
+
+	void setDocumentLocator(const Locator* loc) {}
+	void startDocument() {}
+	void endDocument() {}
+	void startElement(const XMLString& uri, const XMLString& localName, const XMLString& qname, const Attributes& attributes)
+	{
+		m_stack.push(localName);
+	}
+	void endElement(const XMLString& uri, const XMLString& localName, const XMLString& qname)
+	{
+		m_stack.pop();
+	}
+	void characters(const XMLChar ch[], int start, int length)
+	{
+		if (m_stack.size() != 3)
+			return;
+
+		const std::string& nodename = m_stack.top();
+		if (nodename == Left_element_name)
+		{
+			m_pProject->m_paths.SetLeft(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_bHasLeft = true;
+		}
+		else if (nodename == Middle_element_name)
+		{
+			m_pProject->m_paths.SetMiddle(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_bHasMiddle = true;
+		}
+		else if (nodename == Right_element_name)
+		{
+			m_pProject->m_paths.SetRight(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_bHasRight = true;
+		}
+		else if (nodename == Filter_element_name)
+		{
+			m_pProject->m_filter = xmlch2tstr(ch + start, length);
+			m_pProject->m_bHasFilter = true;
+		}
+		else if (nodename == Subfolders_element_name)
+		{
+			m_pProject->m_subfolders = atoi(std::string(ch + start, length).c_str());
+			m_pProject->m_bHasSubfolders = true;
+		}
+		else if (nodename == Left_ro_element_name)
+		{
+			m_pProject->m_bLeftReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+		}
+		else if (nodename == Middle_ro_element_name)
+		{
+			m_pProject->m_bMiddleReadOnly = atoi(std::string(ch +  start, length).c_str()) != 0;
+		}
+		else if (nodename == Right_ro_element_name)
+		{
+			m_pProject->m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+		}
+	}
+	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
+	void processingInstruction(const XMLString& target, const XMLString& data) {}
+	void startPrefixMapping(const XMLString& prefix, const XMLString& uri) {}
+	void endPrefixMapping(const XMLString& prefix) {}
+	void skippedEntity(const XMLString& name) {}
+
+private:
+	ProjectFile *m_pProject;
+	std::stack<std::string> m_stack;
+};
 
 /** @brief File extension for path files */
 const String ProjectFile::PROJECTFILE_EXT = UTF82T("WinMerge");
@@ -91,97 +173,10 @@ const String ProjectFile::PROJECTFILE_EXT = UTF82T("WinMerge");
  */
 bool ProjectFile::Read(const String& path)
 {
-	DOMParser parser;
-	parser.setFeature(DOMParser::FEATURE_FILTER_WHITESPACE, true);
-	AutoPtr<Document> tree = parser.parse(T2UTF8(path));
-	if (!tree)
-		return false;
-	Element* root = GetRootElement(tree.get());
-	if (!root)
-		return false;
-	// Currently our content is paths, so expect
-	// having paths in valid project file!
-	if (!GetPathsData(root))
-		return false;
-
-	return true;
-}
-
-/** 
- * @brief Return project file XML's root element.
- * @param [in] tree XML tree we got from the parser.
- * @return Root element pointer.
- */
-Element* ProjectFile::GetRootElement(const Document * tree)
-{
-	if (!tree)
-		return NULL;
-	// Make sure we have correct root element
-	Element *root = dynamic_cast<Element *>(tree->firstChild());
-	if (root->nodeName() != Root_element_name)
-		return NULL;
-	return root;
-}
-
-/** 
- * @brief Reads the paths data from the XML data.
- * This function reads the paths data inside given element in XML data.
- * @param [in] parent Parent element for the paths data.
- * @return true if pathdata was found from the file.
- */
-bool ProjectFile::GetPathsData(const Element * parent)
-{
-	if (!parent)
-		return false;
-	
-	Node* paths = parent->firstChild();
-	if (!paths || paths->nodeName() != Paths_element_name)
-		return false;
-
-	NodeIterator it(paths, NodeFilter::SHOW_ELEMENT);
-	Node* pNode = it.nextNode();
-	while (pNode)
-	{
-		std::string nodename = pNode->nodeName();
-		if (nodename == Left_element_name)
-		{
-			m_paths.SetLeft(UTF82T(pNode->innerText()).c_str());
-			m_bHasLeft = true;
-		}
-		else if (nodename == Middle_element_name)
-		{
-			m_paths.SetMiddle(UTF82T(pNode->innerText()).c_str());
-			m_bHasMiddle = true;
-		}
-		else if (nodename == Right_element_name)
-		{
-			m_paths.SetRight(UTF82T(pNode->innerText()).c_str());
-			m_bHasRight = true;
-		}
-		else if (nodename == Filter_element_name)
-		{
-			m_filter = UTF82T(pNode->innerText());
-			m_bHasFilter = true;
-		}
-		else if (nodename == Subfolders_element_name)
-		{
-			m_subfolders = atoi(pNode->innerText().c_str());
-			m_bHasSubfolders = true;
-		}
-		else if (nodename == Left_ro_element_name)
-		{
-			m_bLeftReadOnly = atoi(pNode->innerText().c_str()) != 0;
-		}
-		else if (nodename == Middle_ro_element_name)
-		{
-			m_bMiddleReadOnly = atoi(pNode->innerText().c_str()) != 0;
-		}
-		else if (nodename == Right_ro_element_name)
-		{
-			m_bRightReadOnly = atoi(pNode->innerText().c_str()) != 0;
-		}
-		pNode = it.nextNode();
-	}
+	ProjectFileHandler handler(this);
+	SAXParser parser;
+	parser.setContentHandler(&handler);
+	parser.parse(T2UTF8(path));
 	return true;
 }
 
@@ -193,93 +188,31 @@ bool ProjectFile::GetPathsData(const Element * parent)
  */
 bool ProjectFile::Save(const String& path) const
 {
-	AutoPtr<Document> doc = new Document();
-	AutoPtr<Element> root = doc->createElement(Root_element_name);
-	if (!root)
-		return false;
-	doc->appendChild(root);
-	AutoPtr<Element> paths = AddPathsElement(root);
-	if (!paths)
-		return false;
-	AddPathsContent(paths);
-
-	DOMWriter writer;
-	writer.setOptions(XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
-	writer.writeNode(T2UTF8(path), doc);
-
-	return true;
-}
-
-/**
- * @brief Add paths element into XML tree.
- * @param [in] parent Parent element for the paths element.
- * @return pointer to added paths element.
- */
-Element* ProjectFile::AddPathsElement(Element * parent) const
-{
-	Element *element = parent->ownerDocument()->createElement(Paths_element_name);
-	parent->appendChild(element);
-	return element;
-}
-
-static Element *createElement(const Document *doc, const std::string& tagname, const std::string& content)
-{
-	Element *element = doc->createElement(tagname);
-	AutoPtr<Text> text = doc->createTextNode(content);
-	element->appendChild(text);
-	return element;
-}
-
-/**
- * @brief Add paths data to the XML tree.
- * This function adds our paths data to the XML tree.
- * @param [in] parent Parent element for paths data.
- * @return true if we succeeded, false otherwise.
- */
-bool ProjectFile::AddPathsContent(Element * parent) const
-{
-	Document *doc = parent->ownerDocument();
-	AutoPtr<Element> element;
-
-	if (!m_paths.GetLeft().empty())
+	FileStream out(T2UTF8(path));
+	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
+	writer.startDocument();
+	writer.startElement("", "", Root_element_name);
 	{
-		element = createElement(doc, Left_element_name, T2UTF8(m_paths.GetLeft()));
-		parent->appendChild(element);
+		writer.startElement("", "", Paths_element_name);
+		{
+			if (!m_paths.GetLeft().empty())
+				writeElement(writer, Left_element_name, T2UTF8(m_paths.GetLeft()));
+			if (!m_paths.GetMiddle().empty())
+				writeElement(writer, Middle_element_name, T2UTF8(m_paths.GetMiddle()));
+			if (!m_paths.GetRight().empty())
+				writeElement(writer, Right_element_name, T2UTF8(m_paths.GetRight()));
+			if (!m_filter.empty())
+				writeElement(writer, Filter_element_name, T2UTF8(m_filter));
+			writeElement(writer, Subfolders_element_name, m_subfolders != 0 ? "1" : "0");
+			writeElement(writer, Left_ro_element_name, m_bLeftReadOnly ? "1" : "0");
+			if (!m_paths.GetMiddle().empty())
+				writeElement(writer, Middle_ro_element_name, m_bMiddleReadOnly ? "1" : "0");
+			writeElement(writer, Right_ro_element_name, m_bRightReadOnly ? "1" : "0");
+		}
+		writer.endElement("", "", Paths_element_name);
 	}
-
-	if (!m_paths.GetMiddle().empty())
-	{
-		element = createElement(doc, Middle_element_name, T2UTF8(m_paths.GetMiddle()));
-		parent->appendChild(element);
-	}
-
-	if (!m_paths.GetRight().empty())
-	{
-		element = createElement(doc, Right_element_name, T2UTF8(m_paths.GetRight()));
-		parent->appendChild(element);
-	}
-
-	if (!m_filter.empty())
-	{
-		element = createElement(doc, Filter_element_name, T2UTF8(m_filter));
-		parent->appendChild(element);
-	}
-
-	element = createElement(doc, Subfolders_element_name, m_subfolders != 0 ? "1" : "0");
-	parent->appendChild(element);
-
-	element = createElement(doc, Left_ro_element_name, m_bLeftReadOnly ? "1" : "0");
-	parent->appendChild(element);
-
-	if (!m_paths.GetMiddle().empty())
-	{
-		element = createElement(doc, Middle_ro_element_name, m_bMiddleReadOnly ? "1" : "0");
-		parent->appendChild(element);
-	}
-
-	element = createElement(doc, Right_ro_element_name, m_bRightReadOnly ? "1" : "0");
-	parent->appendChild(element);
-
+	writer.endElement("", "", Root_element_name);
+	writer.endDocument();
 	return true;
 }
 

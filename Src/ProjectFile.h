@@ -28,13 +28,6 @@
 #include "UnicodeString.h"
 #include "PathContext.h"
 
-namespace Poco {
-	namespace XML {
-		class Document;
-		class Element;
-	}
-}
-
 /**
  * @brief Class for handling project files.
  *
@@ -44,6 +37,7 @@ namespace Poco {
  */
 class ProjectFile
 {
+	friend class ProjectFileHandler;
 public:
 	ProjectFile();
 	bool Read(const String& path);
@@ -75,13 +69,6 @@ public:
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
 
 	static const String PROJECTFILE_EXT;
-
-protected:
-	Poco::XML::Element* GetRootElement(const Poco::XML::Document * tree);
-	bool GetPathsData(const Poco::XML::Element * parent);
-
-	Poco::XML::Element* AddPathsElement(Poco::XML::Element * parent) const;
-	bool AddPathsContent(Poco::XML::Element* parent) const;
 
 private:
 	PathContext m_paths;
