@@ -538,9 +538,6 @@
     <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
-    <ClCompile Include="EncodingErrorDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OpenDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -726,6 +723,9 @@
     </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\cregexp_poco.cpp">
       <Filter>EditLib</Filter>
+    </ClCompile>
+    <ClCompile Include="EncodingErrorBar.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1250,9 +1250,6 @@
     <ClInclude Include="CompareEngines\TimeSizeCompare.h">
       <Filter>Compare Engines</Filter>
     </ClInclude>
-    <ClInclude Include="EncodingErrorDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OpenDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1348,6 +1345,9 @@
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
       <Filter>EditLib</Filter>
+    </ClInclude>
+    <ClInclude Include="EncodingErrorBar.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
