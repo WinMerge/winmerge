@@ -36,6 +36,6 @@ bool IsConflictFile(LPCTSTR conflictFileName);
 
 bool ParseConflictFile(LPCTSTR conflictFileName,
 		LPCTSTR workingCopyFileName, LPCTSTR newRevisionFileName,
-		bool &nestedConflicts);
+		int iGuessEncodingType, bool &nestedConflicts);
 
 #endif // _CONFLICT_FILE_PARSER_H_

@@ -937,7 +937,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 	CString title;
 	int nVerSys = 0;
 
-	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
+	bFileRO = files_isFileReadOnly((LPCTSTR)strSavePath, &bFileExists);
 	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
 	
 	if (bFileExists && bFileRO)
@@ -3703,7 +3703,8 @@ BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 
 	// Parse conflict file into two files.
 	bool inners;
-	bool success = ParseConflictFile(conflictFile, workFile.c_str(), revFile.c_str(), inners);
+	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	bool success = ParseConflictFile(conflictFile, workFile.c_str(), revFile.c_str(), iGuessEncodingType, inners);
 
 	if (success)
 	{

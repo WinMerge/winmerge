@@ -6,15 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: FileTextEncoding.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
-#include "stdafx.h"
-#include "unicoder.h"
 #include "FileTextEncoding.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+#include "unicoder.h"
 
 FileTextEncoding::FileTextEncoding()
 {
@@ -89,15 +82,15 @@ String FileTextEncoding::GetName() const
 	if (m_unicoding == ucr::UTF8)
 	{
 		if (m_bom)
-			return LoadResString(IDS_UNICODING_UTF8_BOM);
+			return _T("UTF-8 (B)");
 		else
-			return LoadResString(IDS_UNICODING_UTF8);
+			return _T("UTF-8");
 	}
 
 	if (m_unicoding == ucr::UCS2LE)
-		return LoadResString(IDS_UNICODING_UCS2_LE);
+		return _T("UCS-2 LE");
 	if (m_unicoding == ucr::UCS2BE)
-		return LoadResString(IDS_UNICODING_UCS2_BE);
+		return _T("UCS-2 BE");
 
 	String str;
 	if (m_codepage > -1)
@@ -105,7 +98,7 @@ String FileTextEncoding::GetName() const
 		if (m_codepage == CP_UTF8)
 		{
 			// We detected codepage to be UTF-8, but unicoding was not set
-			str = LoadResString(IDS_UNICODING_UTF8);
+			str = _T("UTF-8");
 		}
 		else
 		{
