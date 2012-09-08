@@ -22,11 +22,10 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffList.cpp 7105 2010-01-14 21:14:22Z kimmov $
 
-#include <windows.h>
-#include <crtdbg.h>
-#include <assert.h>
+#include <cassert>
+#include <string>
+#include <sstream>
 #include "DiffList.h"
-#include "coretools.h"
 
 using std::swap;
 using std::vector;
@@ -244,7 +243,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
  * @return -1 if line is before diff, 0 if line is in diff and
  * 1 if line is after diff.
  */
-int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
+int DiffList::LineRelDiff(unsigned int nLine, unsigned int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (nLine < dfi->dbegin[0])
@@ -261,7 +260,7 @@ int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
  * @param [in] nDiff Index to diff table
  * @return TRUE if line is inside given difference.
  */
-bool DiffList::LineInDiff(UINT nLine, UINT nDiff) const
+bool DiffList::LineInDiff(unsigned int nLine, unsigned int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (nLine >= dfi->dbegin[0] && nLine <= dfi->dend[0])
@@ -275,7 +274,7 @@ bool DiffList::LineInDiff(UINT nLine, UINT nDiff) const
  * @param [in] nLine Linenumber, 0-based.
  * @return Index to diff table, -1 if line is not inside any diff.
  */
-int DiffList::LineToDiff(UINT nLine) const
+int DiffList::LineToDiff(unsigned int nLine) const
 {
 	const int nDiffCount = (int) m_diffs.size();
 	if (nDiffCount == 0)
@@ -308,9 +307,12 @@ int DiffList::LineToDiff(UINT nLine) const
 			left = middle + 1;
 			break;
 		default:
-			_RPTF1(_CRT_ERROR, "Invalid return value %d from LineRelDiff(): "
-				"-1, 0 or 1 expected!", result); 
+			{
+			std::stringstream s;
+			s << "Invalid return value " << result << " from LineRelDiff(): -1, 0 or 1 expected!";
+			throw s.str();
 			break;
+			}
 		}
 	}
 	return -1;
@@ -393,7 +395,7 @@ bool DiffList::HasSignificantDiffs() const
  * @param [in] nLine First line searched.
  * @return Index for next difference or -1 if no difference is found.
  */
-int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
+int DiffList::PrevSignificantDiffFromLine(unsigned int nLine) const
 {
 	int nDiff = -1;
 	const int size = (int) m_diffs.size();
@@ -415,7 +417,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
  * @param [in] nLine First line searched.
  * @return Index for previous difference or -1 if no difference is found.
  */
-int DiffList::NextSignificantDiffFromLine(UINT nLine) const
+int DiffList::NextSignificantDiffFromLine(unsigned int nLine) const
 {
 	int nDiff = -1;
 	const int nDiffCount = (int) m_diffs.size();
@@ -571,7 +573,7 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
  * @param [in] nLine First line searched.
  * @return Index for next difference or -1 if no difference is found.
  */
-int DiffList::PrevSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const
+int DiffList::PrevSignificant3wayDiffFromLine(unsigned int nLine, int nDiffType) const
 {
 	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
 	{
@@ -612,7 +614,7 @@ int DiffList::PrevSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const
  * @param [in] nLine First line searched.
  * @return Index for previous difference or -1 if no difference is found.
  */
-int DiffList::NextSignificant3wayDiffFromLine(UINT nLine, int nDiffType) const
+int DiffList::NextSignificant3wayDiffFromLine(unsigned int nLine, int nDiffType) const
 {
 	const int nDiffCount = m_diffs.size();
 
@@ -879,7 +881,7 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
 		for (file = 0; file < nFiles; file++)
 		{
 			nline[file] = curDiff.end[file]-curDiff.begin[file]+1;
-			nmaxline = max(nmaxline, nline[file]);
+			nmaxline = std::max(nmaxline, nline[file]);
 		}
 		for (file = 0; file < nFiles; file++)
 			extras[file] += nmaxline - nline[file];

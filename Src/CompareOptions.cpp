@@ -6,10 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: ByteComparator.h 3397 2006-07-27 10:41:24Z kimmov $
 
-#include <windows.h>
-#include <crtdbg.h>
-#include "DIFF.H"
 #include "CompareOptions.h"
+#include "DIFF.H"
 
 // Global defined in diffutils code
 extern int recursive;
@@ -71,7 +69,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 		m_ignoreWhitespace = WHITESPACE_IGNORE_ALL;
 		break;
 	default:
-		_RPTF0(_CRT_ERROR, "Unknown whitespace ignore value!");
+		throw "Unknown whitespace ignore value!";
 		break;
 	}
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
@@ -144,7 +142,7 @@ void DiffutilsOptions::SetToDiffUtils()
 		output_style = OUTPUT_HTML;
 		break;
 	default:
-		_RPTF0(_CRT_ERROR, "Unknown output style!");
+		throw "Unknown output style!";
 		break;
 	}
 
@@ -216,7 +214,7 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options)
 		options.nIgnoreWhitespace = 2;
 		break;
 	default:
-		_RPTF0(_CRT_ERROR, "Unknown whitespace ignore value!");
+		throw "Unknown whitespace ignore value!";
 		break;
 	}
 }
