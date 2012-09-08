@@ -892,10 +892,6 @@
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542
-#define IDS_UNICODING_UTF8              18592
-#define IDS_UNICODING_UTF8_BOM          18593
-#define IDS_UNICODING_UCS2_LE           18594
-#define IDS_UNICODING_UCS2_BE           18595
 #define IDD_LANGUAGE_SELECT             30000
 #define ID_FILE_NEW3                    32767
 #define IDS_EOL_DOS                     30400

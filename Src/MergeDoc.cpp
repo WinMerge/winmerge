@@ -1290,7 +1290,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 		if (GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES))
 		{
 			fileInfo.SetFile((LPCTSTR)strSavePath);
-			files_UpdateFileTime(fileInfo);
+			files_UpdateFileTime(fileInfo.GetFile(), fileInfo.mtime);
 		}
 
 		m_ptBuf[nBuffer]->SetModified(false);

@@ -27,12 +27,10 @@
 // Copyright (C) 2000 - Francis Irving
 // <francis@flourish.org> - January 2001
 
-#include "StdAfx.h"
+#include <windows.h>
+#include "ConflictFileParser.h"
 #include "UnicodeString.h"
 #include "UniFile.h"
-#include "ConflictFileParser.h"
-#include "OptionsDef.h"
-#include "Merge.h"
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 
@@ -87,12 +85,13 @@ bool IsConflictFile(LPCTSTR conflictFileName)
  * @param [in] workingCopyFileName Full path for user's modified file in
  *  working copy/working folder.
  * @param [in] newRevisionFileName Full path for revision control file.
+ * @param [in] iGuessEncodingType Try to guess codepage (not just unicode encoding)
  * @param [out] bNestedConflicts returned as true if nested conflicts found.
  * @return true if conflict file was successfully parsed, false otherwise.
  */
 bool ParseConflictFile(LPCTSTR conflictFileName,
 		LPCTSTR workingCopyFileName, LPCTSTR newRevisionFileName,
-		bool &bNestedConflicts)
+		int iGuessEncodingType, bool &bNestedConflicts)
 {
 	UniMemFile conflictFile;
 	UniStdioFile workingCopy;
@@ -114,7 +113,6 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 
 	// detect codepage of conflict file
 	FileTextEncoding encoding;
-	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
 	GuessCodepageEncoding(conflictFileName, &encoding,
 		iGuessEncodingType);
 

@@ -25,8 +25,6 @@
 #ifndef _FILES_H_INCLUDED
 #define _FILES_H_INCLUDED
 
-struct DiffFileInfo;
-
 /**
  * @brief File-operation return-statuses
  * Note that FileLoadResult class has no instance data or methods.
@@ -149,8 +147,7 @@ struct MAPPEDFILEDATA
 
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists = NULL);
-
-void files_UpdateFileTime(const DiffFileInfo & info);
+BOOL files_isFileReadOnly(const String &file, BOOL *fileExists = NULL);
+void files_UpdateFileTime(const String &file, __int64 mtime);
 
 #endif // _FILES_H

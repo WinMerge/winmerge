@@ -26,20 +26,30 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <tchar.h>
+#include "DirItem.h"
 #include "UnicodeString.h"
 #include "coretools.h"
-#include "DirItem.h"
+#include "paths.h"
 
 /**
  * @brief Set filename and path for the item.
  * @param [in] fullpath Full path to file to set to item.
  */
-void DirItem::SetFile(String fullPath)
+void DirItem::SetFile(const String &fullPath)
 {
 	String ext;
 	SplitFilename(fullPath.c_str(), &path, &filename, &ext);
 	filename += _T(".");
 	filename += ext;
+}
+
+/**
+ * @brief Get the full path of the item.
+ * @return fullpath
+ */
+String DirItem::GetFile() const
+{
+	return paths_ConcatPath(path, filename);
 }
 
 /**

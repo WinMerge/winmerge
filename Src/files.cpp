@@ -22,14 +22,12 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include <sys/stat.h>
 #include <sys/utime.h>
 #include "UnicodeString.h"
-#include "DiffFileInfo.h"
 #include "files.h"
 #include "paths.h"
-#include "unicoder.h"
 
 /**
  * @brief Open file as memory-mapped file.
@@ -66,8 +64,6 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	if (fileData->hFile == INVALID_HANDLE_VALUE)
 	{
 		bSuccess = FALSE;
-		LogErrorString(Fmt(_T("CreateFile(%s) failed in files_openFileMapped: %s")
-			, fileData->fileName, GetSysError(GetLastError()).c_str()));
 	}
 	else
 	{
@@ -94,8 +90,6 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 		if (!fileData->hMapping)
 		{
 			bSuccess = FALSE;
-			LogErrorString(Fmt(_T("CreateFileMapping(%s) failed: %s")
-				, fileData->fileName, GetSysError(GetLastError()).c_str()));
 		}
 		else
 		{
@@ -104,8 +98,6 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 			if (!fileData->pMapBase)
 			{
 				bSuccess = FALSE;
-				LogErrorString(Fmt(_T("MapViewOfFile(%s) failed: %s")
-					, fileData->fileName, GetSysError(GetLastError()).c_str()));
 			}
 		}
 	}
@@ -169,13 +161,13 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
  * @param [in, out] fileExists If non-NULL, function returns if file exists.
  * @return TRUE if file is read-only, FALSE otherwise.
  */
-BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists /*=NULL*/)
+BOOL files_isFileReadOnly(const String &file, BOOL *fileExists /*=NULL*/)
 {
 	struct _stati64 fstats = {0};
 	BOOL bReadOnly = FALSE;
 	BOOL bExists = FALSE;
 
-	if (_tstati64(file, &fstats) == 0)
+	if (_tstati64(file.c_str(), &fstats) == 0)
 	{
 		bExists = TRUE;
 
@@ -195,11 +187,10 @@ BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists /*=NULL*/)
  * @brief Update file's modification time.
  * @param [in] info Contains filename, path and file times to update.
  */
-void files_UpdateFileTime(const DiffFileInfo & info)
+void files_UpdateFileTime(const String &file, __int64 mtime)
 {
-	String path = paths_ConcatPath(info.path, info.filename);
 	struct __utimbuf64 times = {0};
 
-	times.modtime = info.mtime;
-	_tutime64(path.c_str(), &times);
+	times.modtime = mtime;
+	_tutime64(file.c_str(), &times);
 }
