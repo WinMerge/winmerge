@@ -821,7 +821,7 @@ RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszStri
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
   if (hSubKey)
     {
-      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)_tcslen (pszString) + 1) == ERROR_SUCCESS)
+      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)(_tcslen (pszString) + 1) * sizeof(TCHAR)) == ERROR_SUCCESS)
         {
           if (hSubKey != hKey)
             RegClose (hSubKey);
