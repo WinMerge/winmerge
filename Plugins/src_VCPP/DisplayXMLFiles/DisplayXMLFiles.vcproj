@@ -20,8 +20,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
@@ -37,7 +37,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeDebug\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -84,8 +84,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
@@ -101,7 +101,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeRelease\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -146,8 +146,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
@@ -164,7 +164,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeDebug\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -211,8 +211,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
@@ -228,7 +228,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -274,8 +274,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
@@ -291,7 +291,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeRelease\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -337,8 +337,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\..\..\Externals\expat\lib,..\..\..\Src\ExpatMapLib"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC"
+				AdditionalIncludeDirectories="..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\XML\include\Poco\XML;..\..\..\Externals\poco\Foundation\include;.\ExpatMapLib"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;XML_STATIC;XML_NS;XML_DTD;HAVE_EXPAT_CONFIG_H"
 				StringPooling="TRUE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="TRUE"
@@ -354,7 +354,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -556,6 +556,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\ExpatMapLib\expat_maps.cpp">
+			</File>
+			<File
 				RelativePath="StdAfx.cpp">
 				<FileConfiguration
 					Name="Unicode Debug|Win32">
@@ -685,6 +688,25 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 			<File
 				RelativePath="WinMergeScript.rgs">
+			</File>
+		</Filter>
+		<Filter
+			Name="expat"
+			Filter="">
+			<File
+				RelativePath="..\..\..\Externals\poco\XML\src\xmlparse.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Externals\poco\XML\src\xmlrole.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Externals\poco\XML\src\xmltok.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Externals\poco\XML\src\xmltok_impl.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Externals\poco\XML\src\xmltok_ns.c">
 			</File>
 		</Filter>
 	</Files>

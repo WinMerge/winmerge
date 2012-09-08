@@ -189,7 +189,7 @@ static void XMLCALL DefaultHandler(void *userData, const char *s, int len)
 	bool bIsAllWhiteSpace = true;
 	for (i = 0; i < len; i++)
 	{
-		if (!isspace(s[i]))
+		if (!isspace((unsigned char)s[i]))
 			bIsAllWhiteSpace = false;
 	}
 
