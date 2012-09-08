@@ -1,1 +1,0 @@
-cscript SetResourceVersions.wsf
