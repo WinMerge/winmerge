@@ -2771,7 +2771,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="EncodingErrorDlg.cpp" />
+    <ClCompile Include="EncodingErrorBar.cpp" />
     <ClCompile Include="Environment.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -8531,7 +8531,7 @@
     <ClInclude Include="dllpstub.h" />
     <ClInclude Include="dllver.h" />
     <ClInclude Include="EditorFilepathBar.h" />
-    <ClInclude Include="EncodingErrorDlg.h" />
+    <ClInclude Include="EncodingErrorBar.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="FileActionScript.h" />

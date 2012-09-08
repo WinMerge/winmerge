@@ -59,7 +59,7 @@
 #include "TempFile.h"
 #include "codepage_detect.h"
 #include "SelectUnpackerDlg.h"
-#include "EncodingErrorDlg.h"
+#include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 
 #ifdef _DEBUG
@@ -111,6 +111,10 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_9, OnUpdateDiffContext)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
 	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
+	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
+	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
+	ON_BN_CLICKED(IDC_HEXVIEW, OnBnClickedHexView)
+	ON_COMMAND(IDOK, OnOK)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -129,6 +133,7 @@ CMergeDoc::CMergeDoc()
 , m_pDirDoc(NULL)
 , m_bMixedEol(false)
 , m_pInfoUnpacker(new PackingInfo)
+, m_pEncodingErrorBar(NULL)
 {
 	DIFFOPTIONS options = {0};
 
@@ -2458,24 +2463,13 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	
 	if (nLossyBuffers > 0)
 	{
-		GetParentFrame()->ShowWindow(SW_MINIMIZE);
-		CEncodingErrorDlg dlg(LoadResString(idres).c_str());
-		int nID = dlg.DoModal();
-		bool bResult = false;
-		if (nID == IDC_FILEENCODING)
-			bResult = DoFileEncodingDialog();
-		else if (nID == IDC_PLUGIN)
-			bResult = OpenWithUnpackerDialog();
-		else if (nID == IDC_HEXVIEW)
+		if (!m_pEncodingErrorBar)
 		{
-			GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, bRO);
-			GetParentFrame()->ShowWindow(SW_RESTORE);
-			GetParentFrame()->DestroyWindow();
-			return OPENRESULTS_FAILED_MISC;
+			m_pEncodingErrorBar = new CEncodingErrorBar();
+			m_pEncodingErrorBar->Create(this->m_pView[0]->GetParentFrame());
 		}
-		GetParentFrame()->ShowWindow(SW_RESTORE);
-		if (bResult)
-			return OPENRESULTS_SUCCESS;
+		m_pEncodingErrorBar->SetText(LoadResString(idres).c_str());
+		m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, TRUE, FALSE);
 	}
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3174,6 +3168,34 @@ void CMergeDoc::OnCtxtOpenWithUnpacker()
 void CMergeDoc::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(true);
+}
+
+void CMergeDoc::OnBnClickedFileEncoding()
+{
+	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
+	DoFileEncodingDialog();
+}
+
+void CMergeDoc::OnBnClickedPlugin()
+{
+	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
+	OpenWithUnpackerDialog();
+}
+
+void CMergeDoc::OnBnClickedHexView()
+{
+	bool bRO[3];
+	for (int pane = 0; pane < m_nBuffers; pane++)
+		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
+	GetMainFrame()->ShowHexMergeDoc(m_pDirDoc, m_filePaths, bRO);
+	GetParentFrame()->ShowWindow(SW_RESTORE);
+	GetParentFrame()->DestroyWindow();
+}
+
+void CMergeDoc::OnOK()
+{
+	m_pView[0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar, FALSE, FALSE);
 }
 
 // Return file extension either from file name or file description (if WinMerge is used as an

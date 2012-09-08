@@ -152,6 +152,7 @@ class PackingInfo;
 class PrediffingInfo;
 class CChildFrame;
 class CDirDoc;
+class CEncodingErrorBar;
 
 /**
  * @brief Document class for merging two files
@@ -306,7 +307,7 @@ protected:
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
 	int m_nDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
-
+	CEncodingErrorBar *m_pEncodingErrorBar;
 // friend access
 	friend class RescanSuppress;
 
@@ -332,6 +333,10 @@ protected:
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
+	afx_msg void OnBnClickedFileEncoding();
+	afx_msg void OnBnClickedPlugin();
+	afx_msg void OnBnClickedHexView();
+	afx_msg void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
