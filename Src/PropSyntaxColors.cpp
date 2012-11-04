@@ -8,8 +8,10 @@
 
 #include "stdafx.h"
 #include "resource.h"
+#include "SyntaxColors.h"
 #include "SyntaxColorsUtil.h"
 #include "PropSyntaxColors.h"
+#include "CustomColors.h"
 #include "Merge.h"
 #include "OptionsPanel.h"
 
@@ -149,7 +151,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	LoadCustomColors();
+	CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -158,7 +160,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	SaveCustomColors();
+	CustomColors::Save(m_cCustColors);
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywords()
@@ -230,22 +232,6 @@ void PropSyntaxColors::OnBnClickedEcolorsBdefaults()
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
 
 	UpdateData(FALSE);
-}
-
-/** 
- * @brief Loads color selection dialog's custom colors from registry
- */
-void PropSyntaxColors::LoadCustomColors()
-{
-	SyntaxColors_LoadCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
-}
-
-/** 
- * @brief Saves color selection dialog's custom colors to registry
- */
-void PropSyntaxColors::SaveCustomColors()
-{
-	SyntaxColors_SaveCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywordsBold()

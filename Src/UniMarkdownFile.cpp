@@ -6,13 +6,11 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
-#include "UnicodeString.h"
 #include "UniMarkdownFile.h"
+#include <cassert>
 #include "markdown.h"
-#include "unicoder.h"
 
-static void CollapseWhitespace(CString &line);
+static void CollapseWhitespace(String &line);
 
 /**
  * @brief Constructor.
@@ -25,20 +23,13 @@ UniMarkdownFile::UniMarkdownFile()
 /**
  * @brief Open the XML file.
  * @param [in] filename Filename (and path) of the file to open.
- * @param [in] dwOpenAccess File access mode.
- * @param [in] dwOpenShareMode File's share mode when opened.
- * @param [in] dwOpenCreationDispostion Overwrite existing file?
- * @param [in] dwMappingProtect
- * @param [in] dwMapViewAccess
+ * @param [in] mode access mode.
  * @return true if succeeds, false otherwise.
  */
-bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
-		DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion,
-		DWORD dwMappingProtect, DWORD dwMapViewAccess)
+bool UniMarkdownFile::DoOpen(const String& filename, AccessMode mode)
 {
 	m_depth = 0;
-	bool bOpen = UniMemFile::DoOpen(filename, dwOpenAccess, dwOpenShareMode,
-			dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
+	bool bOpen = UniMemFile::DoOpen(filename, mode);
 	if (bOpen)
 	{
 		// CMarkdown wants octets, so we may need to transcode to UTF8.
@@ -47,11 +38,11 @@ bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
 			m_codepage = CP_UTF8;
 		// The CMarkdown::File constructor cares about transcoding.
 		CMarkdown::File f(
-			reinterpret_cast<LPCTSTR>(m_base),
-			static_cast<DWORD>(m_filesize),
+			reinterpret_cast<const TCHAR *>(m_base),
+			static_cast<unsigned>(m_filesize),
 			CMarkdown::File::Mapping | CMarkdown::File::Octets);
 		// The file mapping may have been recreated due to transcoding.
-		m_data = m_current = m_base = reinterpret_cast<LPBYTE>(f.pImage);
+		m_data = m_current = m_base = reinterpret_cast<unsigned char *>(f.pImage);
 		m_filesize = f.cbImage;
 		// Prevent the CMarkdown::File destructor from unmapping the view.
 		f.pImage = NULL;
@@ -76,7 +67,7 @@ void UniMarkdownFile::Close()
 static void CollapseWhitespace(String &line)
 {
 	int nEatSpace = -2;
-	for (int i = line.length() ; i-- ; )
+	for (size_t i = line.length() ; i-- ; )
 	{
 		switch (line[i])
 		{
@@ -114,7 +105,7 @@ void UniMarkdownFile::Move()
 		{
 		case '?':
 			m_pMarkdown->Scan();
-			m_transparent = (LPBYTE)m_pMarkdown->upper;
+			m_transparent = (unsigned char *)m_pMarkdown->upper;
 			break;
 		case '!':
 			if (first < ahead)
@@ -124,7 +115,7 @@ void UniMarkdownFile::Move()
 				case '[':
 				case '-':
 					m_pMarkdown->Scan();
-					m_transparent = (LPBYTE)m_pMarkdown->upper;
+					m_transparent = (unsigned char *)m_pMarkdown->upper;
 					break;
 				}
 			}
@@ -133,7 +124,7 @@ void UniMarkdownFile::Move()
 	}
 }
 
-String UniMarkdownFile::maketstring(LPCSTR lpd, UINT len)
+String UniMarkdownFile::maketstring(const char *lpd, size_t len)
 {
 	bool lossy = false;
 	String s;
@@ -150,20 +141,20 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 	int nlosses = m_txtstats.nlosses;
 	int nDepth = 0;
 	bool bDone = false;
-	if (m_current < (LPBYTE)m_pMarkdown->lower)
+	if (m_current < (const unsigned char *)m_pMarkdown->lower)
 	{
 		line = maketstring((const char *)m_current, m_pMarkdown->lower - (const char *)m_current);
 		CollapseWhitespace(line);
 		bDone = !line.empty();
-		m_current = (LPBYTE)m_pMarkdown->lower;
+		m_current = (unsigned char *)m_pMarkdown->lower;
 	}
 	while (m_current < m_base + m_filesize && !bDone)
 	{
 		if (m_current < m_transparent)
 		{
 			// Leave whitespace alone when inside <? ?>, <!-- -->, or <![*[ ]]>.
-			LPBYTE current = m_current;
-			if (m_current == (LPBYTE)m_pMarkdown->first)
+			unsigned char * current = m_current;
+			if (m_current == (const unsigned char *)m_pMarkdown->first)
 			{
 				nDepth = m_depth;
 			}
@@ -175,7 +166,7 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 			if (m_current < m_transparent)
 			{
 				current = m_current;
-				BYTE eol = *m_current++;
+				unsigned char eol = *m_current++;
 				if (m_current < m_transparent && *m_current == (eol ^ ('\r'^'\n')))
 				{
 					++m_current;
@@ -192,7 +183,7 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 		{
 			while (m_current < m_base + m_filesize && isspace(*m_current))
 			{
-				BYTE eol = *m_current++;
+				unsigned char eol = *m_current++;
 				if (eol == '\r' || eol == '\n')
 				{
 					if (m_current < m_base + m_filesize && *m_current == (eol ^ ('\r'^'\n')))
@@ -226,7 +217,7 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 			{
 				line = maketstring((const char *)m_current, m_pMarkdown->first - (const char *)m_current);
 				CollapseWhitespace(line);
-				m_current = (LPBYTE)m_pMarkdown->first;
+				m_current = (unsigned char *)m_pMarkdown->first;
 			}
 			else if (m_current < m_base + m_filesize)
 			{
@@ -238,7 +229,7 @@ bool UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 			bDone = !line.empty();
 		}
 	}
-	ASSERT(line.find_first_of(_T("\r\n")) == String::npos);
+	assert(line.find_first_of(_T("\r\n")) == String::npos);
 	if (nDepth > 0)
 		line.insert(0U, nDepth, _T('\t'));
 	if (bDone)

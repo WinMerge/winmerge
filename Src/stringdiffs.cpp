@@ -7,9 +7,11 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id: stringdiffs.cpp 7149 2010-05-03 17:08:20Z kimmov $
 
+#define NOMINMAX
 #include <windows.h>
 #include <tchar.h>
-#include <assert.h>
+#include <cassert>
+#include <climits>
 #include <mbctype.h>
 #include "stringdiffs.h"
 #include "CompareOptions.h"
@@ -936,7 +938,7 @@ stringdiffs::BuildWordDiffList()
 		OutputDebugString(buf);		
 #endif
 		// Be aware, do not create more wdiffs as shortest line has chars!
-		int imaxcount = min(m_str1.length(), m_str2.length());
+		int imaxcount = std::min(m_str1.length(), m_str2.length());
 		i = 0;
 		const int iSize1 = (int)m_words1.size();
 		const int iSize2 = (int)m_words2.size();
@@ -1370,8 +1372,8 @@ stringdiffs::dp(std::vector<char> & edscript)
 	{
 		for (j = 1; j <= n; j++)
 		{
-			C[i][j] = min(
-				min(
+			C[i][j] = std::min(
+				std::min(
 					C[i-1][j] + 1,
 					C[i][j-1] + 1),
 					C[i-1][j-1] + (AreWordsSame(m_words1[i], m_words2[j]) ? 0 : 1)	
@@ -1454,26 +1456,26 @@ stringdiffs::onp(std::vector<char> &edscript)
 		p = p + 1;
 		for (k = -p; k <= DELTA-1; k++)
 		{
-			fp[k] = snake(k, max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 	
 			es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
 			es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-			es[k].resize(es[k].size() + fp[k] - max(fp[k-1] + 1, fp[k+1]), '=');
+			es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
 		}
 		for (k = DELTA + p; k >= DELTA+1; k--)
 		{
-			fp[k] = snake(k, max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 	
 			es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
 			es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-			es[k].resize(es[k].size() + fp[k] - max(fp[k-1] + 1, fp[k+1]), '=');
+			es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
 		}
 		k = DELTA;
-		fp[k] = snake(k, max(fp[k-1] + 1, fp[k+1]), exchanged);
+		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
 	
 		es[k] = fp[k-1] + 1 > fp[k+1] ? es[k-1] : es[k+1];
 		es[k].push_back(fp[k-1] + 1 > fp[k+1] ? '+' : '-');
-		es[k].resize(es[k].size() + fp[k] - max(fp[k-1] + 1, fp[k+1]), '=');
+		es[k].resize(es[k].size() + fp[k] - std::max(fp[k-1] + 1, fp[k+1]), '=');
 	} while (fp[k] != N);
 
 	std::vector<char> &ses = es[DELTA]; // Shortest edit script

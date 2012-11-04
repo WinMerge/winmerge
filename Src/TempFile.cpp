@@ -7,13 +7,10 @@
 // ID line follows -- this is updated by SVN
 // $Id: TempFile.cpp 6723 2009-05-09 09:13:26Z sdottaka $
 
+#include "TempFile.h"
 #include <windows.h>
 #include <tlhelp32.h> 
-#include <tchar.h>
 #include <shlwapi.h>
-#include <vector>
-#include "UnicodeString.h"
-#include "TempFile.h"
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
@@ -44,7 +41,7 @@ void TempFile::Create()
  */
 String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
 {
-	String temp = env_GetTempPath(NULL);
+	String temp = env_GetTempPath();
 	if (temp.empty())
 	{
 		return TEXT("");
@@ -54,7 +51,7 @@ String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
 	if (pref.empty())
 		pref = TEXT("wmtmp");
 
-	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
+	temp = env_GetTempFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
 		if (ext)
@@ -79,7 +76,7 @@ String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
  */
 String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
 {
-	String temp = env_GetTempPath(NULL);
+	String temp = env_GetTempPath();
 	if (temp.empty())
 	{
 		return TEXT("");
@@ -89,7 +86,7 @@ String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
 	if (pref.empty())
 		pref = TEXT("wmtmp");
 
-	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
+	temp = env_GetTempFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
 		// Scratchpads don't have a file to copy.
@@ -117,9 +114,9 @@ String TempFile::GetPath()
  */
 bool TempFile::Delete()
 {
-	BOOL success = true;
+	bool success = true;
 	if (!m_path.empty())
-		success = DeleteFile(m_path.c_str());
+		success = !!DeleteFile(m_path.c_str());
 	if (success)
 		m_path = TEXT("");
 	return !!success;
@@ -135,12 +132,12 @@ void CleanupWMtemp()
 
 	// Get the snapshot of the system
 	HANDLE hSnapShot;
-	hSnapShot = CreateToolhelp32Snapshot (TH32CS_SNAPALL, NULL);
+	hSnapShot = CreateToolhelp32Snapshot (TH32CS_SNAPALL, 0);
 	PROCESSENTRY32 pEntry;
 	pEntry.dwSize = sizeof(pEntry);
 
 	// Get first process
-	BOOL hRes = Process32First (hSnapShot, &pEntry);
+	bool hRes = !!Process32First (hSnapShot, &pEntry);
 
 	// Iterate through all processes to get
 	// the ProcessIDs of all running WM instances
@@ -152,7 +149,7 @@ void CleanupWMtemp()
 		{
 			processIDs.push_back(pEntry.th32ProcessID);
 		}
-		hRes = Process32Next (hSnapShot, &pEntry);
+		hRes = !!Process32Next (hSnapShot, &pEntry);
 	}
 
 	// Now remove temp folders that are not used.
@@ -164,20 +161,20 @@ void CleanupWMtemp()
  * This function removes temp folders whose name contains process ID from the
  * given list. These folders must have been earlier detected as unused.
  * @param [in] processIDs List of process IDs.
- * @return TRUE if all temp folders were deleted, FALSE otherwise.
+ * @return true if all temp folders were deleted, FALSE otherwise.
  */
-BOOL CleanupWMtempfolder(vector <int> processIDs)
+bool CleanupWMtempfolder(vector <int> processIDs)
 {
 	String foldername;
 	String tempfolderPID;
 	String filepattern(TempFolderPrefix);
 	filepattern += _T("*.*");
-	String pattern = paths_GetParentPath(env_GetTempPath(NULL));
-	pattern = paths_ConcatPath(pattern, filepattern.c_str());
+	String pattern = paths_GetParentPath(env_GetTempPath());
+	pattern = paths_ConcatPath(pattern, filepattern);
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
-	BOOL res = TRUE;
-	BOOL bok = TRUE;
+	bool res = true;
+	bool bok = true;
 
 	h = FindFirstFile (pattern.c_str(), &ff);
 	if (h == INVALID_HANDLE_VALUE)
@@ -194,17 +191,17 @@ BOOL CleanupWMtempfolder(vector <int> processIDs)
 			// Check if this instance of WM is still running
 			if (!WMrunning(processIDs, _ttoi (tempfolderPID.c_str())))
 			{
-				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern.c_str()), ff.cFileName); 
+				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
 				if (res = ClearTempfolder(tempfolderPID.c_str()))
 				{
 					if (!res)
 						break;
-					bok = FindNextFile(h, &ff) ;
+					bok = !!FindNextFile(h, &ff) ;
 				}
 				continue;
 			}
 		}
-		bok = FindNextFile(h, &ff) ;
+		bok = !!FindNextFile(h, &ff) ;
 	}
 	if (h)
 		FindClose(h);
@@ -215,15 +212,15 @@ BOOL CleanupWMtempfolder(vector <int> processIDs)
  * @brief Is WinMerge with given processID running?
  * @param [in] processIDs List of WinMerge processes.
  * @param [in] iPI ProcessID to check.
- * @return TRUE if processID was found from the list, FALSE otherwise.
+ * @return true if processID was found from the list, FALSE otherwise.
  */
-BOOL WMrunning(vector<int> processIDs, int iPI)
+bool WMrunning(vector<int> processIDs, int iPI)
 {
 	vector<int>::iterator iter = processIDs.begin();
 	while (iter != processIDs.end())
 	{
 		if (*iter == iPI)
-			return TRUE;
+			return true;
 		iter++;
 	}
 	return FALSE;
@@ -232,18 +229,18 @@ BOOL WMrunning(vector<int> processIDs, int iPI)
 /**
  * @brief Remove the temp folder.
  * @param [in] pathName Folder to remove.
- * @return TRUE if removal succeeds, FALSE if fails.
+ * @return true if removal succeeds, FALSE if fails.
  */
-BOOL ClearTempfolder(const String &pathName)
+bool ClearTempfolder(const String &pathName)
 {
 	// SHFileOperation expects a ZZ terminated list of paths!
-	const int pathSize = pathName.length() + 2;
+	const size_t pathSize = pathName.length() + 2;
 	std::vector<TCHAR> path(pathSize, 0);
-	_tcscpy(&path[0], pathName.c_str());
+	memcpy(&path[0], pathName.c_str(), pathName.length() * sizeof(TCHAR));
 
 	SHFILEOPSTRUCT fileop = {0, FO_DELETE, &path[0], 0, FOF_NOCONFIRMATION |
 			FOF_SILENT | FOF_NOERRORUI, 0, 0, 0};
 	SHFileOperation(&fileop);
 
-	return TRUE;
+	return true;
 }

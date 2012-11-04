@@ -26,7 +26,7 @@
 #include "Merge.h"
 #include "PatchTool.h"
 #include "PatchDlg.h"
-#include "DIFF.H"
+#include "diff.h"
 #include "coretools.h"
 #include "paths.h"
 #include "CompareOptions.h"
@@ -120,8 +120,8 @@ void CPatchDlg::OnOK()
 	int selectCount = m_fileList.size();
 	if (selectCount == 1)
 	{
-		BOOL file1Ok = (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE);
-		BOOL file2Ok = (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE);
+		BOOL file1Ok = (paths_DoesPathExist((const TCHAR *)m_file1) == IS_EXISTING_FILE);
+		BOOL file2Ok = (paths_DoesPathExist((const TCHAR *)m_file2) == IS_EXISTING_FILE);
 
 		if (!file1Ok || !file2Ok)
 		{
@@ -140,7 +140,7 @@ void CPatchDlg::OnOK()
 		if (m_fileResult.GetLength() == 0)
 		{
 			TCHAR szTempFile[MAX_PATH];
-			GetTempFileName(env_GetTempPath(), _T("pat"), 0, szTempFile);
+			GetTempFileName(env_GetTempPath().c_str(), _T("pat"), 0, szTempFile);
 			m_fileResult = szTempFile;
 			m_ctlResult.SetWindowText(m_fileResult);
 			DeleteFile(m_fileResult);
@@ -153,7 +153,7 @@ void CPatchDlg::OnOK()
 		}
 	}
 	
-	BOOL fileExists = (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE);
+	BOOL fileExists = (paths_DoesPathExist((const TCHAR *)m_fileResult) == IS_EXISTING_FILE);
 
 	// Result file already exists and append not selected
 	if (fileExists && !m_appendFile)
@@ -232,12 +232,10 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		CString msg;
-		CString num;
-		num.Format(_T("%d"), count);
-		LangFormatString1(msg, IDS_DIFF_SELECTEDFILES, num);
-		m_file1 = msg;
-		m_file2 = msg;
+		String num = string_format(_T("%d"), count);
+		String msg = LangFormatString1(IDS_DIFF_SELECTEDFILES, num.c_str());
+		m_file1 = msg.c_str();
+		m_file2 = msg.c_str();
 	}
 	UpdateData(FALSE);
 
@@ -271,14 +269,14 @@ BOOL CPatchDlg::OnInitDialog()
  */
 void CPatchDlg::OnDiffBrowseFile1()
 {
-	CString s;
-	CString folder;
+	String s;
+	String folder;
 
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, folder, IDS_OPEN_TITLE, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_OPEN_TITLE, NULL, TRUE))
 	{
-		ChangeFile(s, TRUE);
-		m_ctlFile1.SetWindowText(s);
+		ChangeFile(s.c_str(), TRUE);
+		m_ctlFile1.SetWindowText(s.c_str());
 	}
 }
 
@@ -287,14 +285,14 @@ void CPatchDlg::OnDiffBrowseFile1()
  */
 void CPatchDlg::OnDiffBrowseFile2()
 {
-	CString s;
-	CString folder;
+	String s;
+	String folder;
 
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, folder, IDS_OPEN_TITLE, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_OPEN_TITLE, NULL, TRUE))
 	{
-		ChangeFile(s, FALSE);
-		m_ctlFile2.SetWindowText(s);
+		ChangeFile(s.c_str(), FALSE);
+		m_ctlFile2.SetWindowText(s.c_str());
 	}
 }
 
@@ -341,14 +339,14 @@ void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
  */
 void CPatchDlg::OnDiffBrowseResult()
 {
-	CString s;
-	CString folder;
+	String s;
+	String folder;
 
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, NULL, FALSE))
+	if (SelectFile(GetSafeHwnd(), s, folder.c_str(), IDS_SAVE_AS_TITLE, NULL, FALSE))
 	{
-		m_fileResult = s;
-		m_ctlResult.SetWindowText(s);
+		m_fileResult = s.c_str();
+		m_ctlResult.SetWindowText(s.c_str());
 	}
 }
 

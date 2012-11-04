@@ -6,13 +6,14 @@
 // ID line follows -- this is updated by SVN
 // $Id: DirScan.cpp 6909 2009-07-11 13:03:42Z kimmov $
 
-#include "StdAfx.h"
-#include "UnicodeString.h"
-#include "Merge.h"
-#include "LogFile.h"
 #include "DirScan.h"
-#include "CompareStats.h"
+#include <cassert>
+#include <Poco/Semaphore.h>
 #include "DiffThread.h"
+#include "UnicodeString.h"
+#include "LogFile.h"
+#include "DiffWrapper.h"
+#include "CompareStats.h"
 #include "FolderCmp.h"
 #include "FileFilterHelper.h"
 #include "codepage.h"
@@ -21,22 +22,19 @@
 #include "DirItem.h"
 #include "DirTravel.h"
 #include "paths.h"
+#include "MergeApp.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+using Poco::UIntPtr;
 
 // Static functions (ie, functions only used locally)
 void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
-static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir, const DirItem * lent, const DirItem * rent,
-	UINT code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
-	UINT code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
+static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir, const DirItem * lent, const DirItem * rent,
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
+static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, const TCHAR * sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
+static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
 
 /**
  * @brief Help minimize memory footprint by sharing CStringData if possible.
@@ -74,7 +72,7 @@ static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
  * @param [in] bUniques If true, walk into unique folders.
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, LPCTSTR subdir[],
+int DirScan_GetItems(const PathContext &paths, const TCHAR * subdir[],
 		DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent,
 		bool bUniques)
@@ -107,7 +105,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR subdir[],
 
 	DirItemArray dirs[3], files[3];
 	for (nIndex = 0; nIndex < nDirs; nIndex++)
-		LoadAndSortFiles(sDir[nIndex].c_str(), &dirs[nIndex], &files[nIndex], casesensitive);
+		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &files[nIndex], casesensitive);
 
 	// Allow user to abort scanning
 	if (pCtxt->ShouldAbort())
@@ -123,7 +121,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR subdir[],
 		return 0;
 
 	DirItemArray::size_type i=0, j=0, k=0;
-	UINT nDiffCode;
+	unsigned nDiffCode;
 	while (1)
 	{
 		if (pCtxt->ShouldAbort())
@@ -133,12 +131,14 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR subdir[],
 			break;
 
 		// Comparing directories leftDirs[i].name to rightDirs[j].name
+#ifdef _DEBUG
 TCHAR buf[1024];
 if (nDirs == 2)
 	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].filename.c_str() : _T(""));
 else
 	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.c_str() : _T(""));
 OutputDebugString(buf);
+#endif
 
 		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
 			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
@@ -255,29 +255,29 @@ OutputDebugString(buf);
 			String middlenewsub;
 			if (nDirs < 3)
 			{
-				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.c_str() : subprefix[0] + dirs[1][j].filename.c_str();
-				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.c_str() : subprefix[1] + dirs[0][i].filename.c_str();
+				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename : subprefix[0] + dirs[1][j].filename;
+				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename : subprefix[1] + dirs[0][i].filename;
 			}
 			else
 			{
 				leftnewsub   = subprefix[0];
-				if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].filename.c_str();
-				else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].filename.c_str();
-				else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].filename.c_str();
+				if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].filename;
+				else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].filename;
 				middlenewsub = subprefix[1];
-				if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].filename.c_str();
-				else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].filename.c_str();
-				else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].filename.c_str();
+				if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].filename;
+				else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].filename;
 				rightnewsub  = subprefix[2];
-				if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename.c_str();
-				else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename.c_str();
-				else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename.c_str();
+				if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename;
+				else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename;
 			}
 			if (nDirs < 3)
 			{
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
-				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub.c_str(), rightnewsub.c_str()))
+				if (pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub))
 				{
 					nDiffCode |= DIFFCODE::SKIPPED;
 					AddToList(subdir[0], subdir[1], 
@@ -292,7 +292,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					LPCTSTR newsubdir[3];
+					const TCHAR * newsubdir[3];
 					newsubdir[0] = leftnewsub.c_str();
 					newsubdir[1] = rightnewsub.c_str();
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
@@ -317,7 +317,7 @@ OutputDebugString(buf);
 			{
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
-				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub.c_str(), middlenewsub.c_str(), rightnewsub.c_str()))
+				if (pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub))
 				{
 					nDiffCode |= DIFFCODE::SKIPPED;
 					AddToList(subdir[0], subdir[1], subdir[2], 
@@ -334,7 +334,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					LPCTSTR newsubdir[3];
+					const TCHAR * newsubdir[3];
 					newsubdir[0] = leftnewsub.c_str();
 					newsubdir[1] = middlenewsub.c_str();
 					newsubdir[2] = rightnewsub.c_str();
@@ -391,12 +391,12 @@ OutputDebugString(buf);
 		{
 			if (nDirs < 3)
 			{
-				const UINT nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], &files[0][i], 0, nDiffCode, myStruct, parent);
 			}
 			else
 			{
-				const UINT nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
+				const unsigned nDiffCode = DIFFCODE::FIRST | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], 0, 0, nDiffCode, myStruct, parent);
 			}
 			// Advance left pointer over left-only entry, and then retest with new pointers
@@ -408,7 +408,7 @@ OutputDebugString(buf);
 			&& (nDirs < 3 ||
 				(k==files[2].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive)<0) ))
 		{
-			const UINT nDiffCode = DIFFCODE::SECOND | DIFFCODE::FILE;
+			const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::FILE;
 			if (nDirs < 3)
 				AddToList(subdir[0], subdir[1], 0, &files[1][j], nDiffCode, myStruct, parent);
 			else
@@ -462,7 +462,7 @@ OutputDebugString(buf);
 		{
 			if (nDirs < 3)
 			{
-				ASSERT(j<files[1].size());
+				assert(j<files[1].size());
 				const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], &files[0][i], &files[1][j], nDiffCode, myStruct, parent);
 				++i;
@@ -471,8 +471,8 @@ OutputDebugString(buf);
 			}
 			else
 			{
-				ASSERT(j<files[1].size());
-				ASSERT(k<files[2].size());
+				assert(j<files[1].size());
+				assert(k<files[2].size());
 				const int nDiffCode = DIFFCODE::ALL | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
 				++i;
@@ -493,14 +493,14 @@ OutputDebugString(buf);
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
+int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 {
-	DWORD dwElapse = GetTickCount();
+	unsigned dwElapse = GetTickCount();
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
 	if (!parentdiffpos)
-		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-	UINT_PTR pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+		myStruct->pSemaphore->wait();
+	UIntPtr pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos)
 	{
 		if (pCtxt->ShouldAbort())
@@ -513,8 +513,8 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
 			PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, 1, myStruct->bOnlyRequested);
 			dwElapse = GetTickCount();
 		}
-		WaitForSingleObject(myStruct->hSemaphore, INFINITE);
-		UINT_PTR curpos = pos;
+		myStruct->pSemaphore->wait();
+		UIntPtr curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
@@ -550,11 +550,11 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
  * @param parentdiffpos [in] Position of parent diff item 
  * @return >= 0 number of diff items, -1 if compare was aborted
  */
-int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffpos)
+int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 {
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
-	UINT_PTR pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
+	UIntPtr pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	
 	while (pos != NULL)
 	{
@@ -564,7 +564,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffp
 			break;
 		}
 
-		UINT_PTR curpos = pos;
+		UIntPtr curpos = pos;
 		DIFFITEM &di = pCtxt->GetNextSiblingDiffRefPosition(pos);
 		bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
@@ -587,7 +587,7 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffp
 		{
 			if (di.diffcode.isScanNeeded())
 			{
-				BOOL bItemsExist = TRUE;
+				bool bItemsExist = true;
 				UpdateDiffItem(di, bItemsExist, pCtxt);
 				if (bItemsExist)
 				{
@@ -612,18 +612,18 @@ int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, UINT_PTR parentdiffp
  *
  * @param [in,out] di DiffItem to update.
  * @param [out] bExists Set to
- *  - TRUE if one of items exists so diffitem is valid
- *  - FALSE if items were deleted, so diffitem is not valid
+ *  - true if one of items exists so diffitem is valid
+ *  - false if items were deleted, so diffitem is not valid
  * @param [in] pCtxt Compare context
  */
-void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
+void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt)
 {
 	// Clear side-info and file-infos
 	di.diffFileInfo[0].ClearPartial();
 	di.diffFileInfo[1].ClearPartial();
 	di.diffcode.setSideBoth(); // FIXME: DIRTY HACK for UpdateInfoFromDiskHalf
-	BOOL bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, 0);
-	BOOL bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, 1);
+	bool bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, 0);
+	bool bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, 1);
 	bExists = bLeftExists || bRightExists;
 	if (bLeftExists)
 	{
@@ -665,9 +665,9 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	if (di.diffcode.isDirectory())
 	{
 		// 1. Test against filters
-		if (
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename.c_str(), di.diffFileInfo[1].filename.c_str())) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename.c_str(), di.diffFileInfo[1].filename.c_str(), di.diffFileInfo[2].filename.c_str()))
+		if (!pCtxt->m_piFilterGlobal ||
+			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
+			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
 			)
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 		else
@@ -679,9 +679,9 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	else
 	{
 		// 1. Test against filters
-		if (
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename.c_str(), di.diffFileInfo[1].filename.c_str())) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename.c_str(), di.diffFileInfo[1].filename.c_str(), di.diffFileInfo[2].filename.c_str()))
+		if (!pCtxt->m_piFilterGlobal ||
+			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
+			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
 			)
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
@@ -694,7 +694,7 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 					pCtxt->m_nCurrentCompMethod != CMP_SIZE)
 				{
 					FolderCmp folderCmp;
-					UINT diffCode = folderCmp.prepAndCompareFiles(pCtxt, di);
+					unsigned diffCode = folderCmp.prepAndCompareFiles(pCtxt, di);
 					
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)
@@ -757,7 +757,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.diffFileInfo[0].filename.c_str(), (LPCTSTR)_T("di.diffFileInfo[0].spath"), (LPCTSTR)_T("di.diffFileInfo[1].spath"), di.diffcode
+		di.diffFileInfo[0].filename.c_str(), (const TCHAR *)_T("di.diffFileInfo[0].spath"), (const TCHAR *)_T("di.diffFileInfo[1].spath"), di.diffcode
 	);
 	pCtxt->m_pCompareStats->AddItem(di.diffcode.diffcode);
 	//pCtxt->AddDiff(di);
@@ -772,9 +772,9 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
  * @param [in] pCtxt Compare context.
  * @param [in] parent Parent of item to be added
  */
-static DIFFITEM *AddToList(const LPCTSTR sLeftDir, const LPCTSTR sRightDir,
+static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir,
 	const DirItem * lent, const DirItem * rent,
-	UINT code, DiffFuncStruct *myStruct, DIFFITEM *parent)
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
 	return AddToList(sLeftDir, sRightDir, sLeftDir, lent, rent, 0, code, myStruct, parent);
 }
@@ -782,9 +782,9 @@ static DIFFITEM *AddToList(const LPCTSTR sLeftDir, const LPCTSTR sRightDir,
 /**
  * @brief Add one compare item to list.
  */
-static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightDir,
+static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, const TCHAR * sRightDir,
 	const DirItem * lent, const DirItem * ment, const DirItem * rent,
-	UINT code, DiffFuncStruct *myStruct, DIFFITEM *parent)
+	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
@@ -798,7 +798,7 @@ static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightD
 
 	if (lent)
 	{
-		di->diffFileInfo[0].filename = lent->filename.c_str();
+		di->diffFileInfo[0].filename = lent->filename;
 		di->diffFileInfo[0].mtime = lent->mtime;
 		di->diffFileInfo[0].ctime = lent->ctime;
 		di->diffFileInfo[0].size = lent->size;
@@ -808,17 +808,17 @@ static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightD
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
 		if (rent)
-			di->diffFileInfo[0].filename = rent->filename.c_str();
+			di->diffFileInfo[0].filename = rent->filename;
 		else
-			di->diffFileInfo[0].filename = ment->filename.c_str();
+			di->diffFileInfo[0].filename = ment->filename;
 	}
 
 	if (ment)
 	{
 		di->diffFileInfo[1].filename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			ment && di->diffFileInfo[0].filename == ment->filename.c_str() ? di->diffFileInfo[0].filename :
-		) ment->filename.c_str();
+			ment && di->diffFileInfo[0].filename == ment->filename ? di->diffFileInfo[0].filename :
+		) ment->filename;
 		di->diffFileInfo[1].mtime = ment->mtime;
 		di->diffFileInfo[1].ctime = ment->ctime;
 		di->diffFileInfo[1].size = ment->size;
@@ -828,17 +828,17 @@ static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightD
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
 		if (lent)
-			di->diffFileInfo[1].filename = lent->filename.c_str();
+			di->diffFileInfo[1].filename = lent->filename;
 		else
-			di->diffFileInfo[1].filename = rent->filename.c_str();
+			di->diffFileInfo[1].filename = rent->filename;
 	}
 
 	if (rent)
 	{
 		di->diffFileInfo[2].filename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			lent && di->diffFileInfo[0].filename == lent->filename.c_str() ? di->diffFileInfo[0].filename :
-		) rent->filename.c_str();
+			lent && di->diffFileInfo[0].filename == lent->filename ? di->diffFileInfo[0].filename :
+		) rent->filename;
 		di->diffFileInfo[2].mtime = rent->mtime;
 		di->diffFileInfo[2].ctime = rent->ctime;
 		di->diffFileInfo[2].size = rent->size;
@@ -848,9 +848,9 @@ static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightD
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
 		if (lent)
-			di->diffFileInfo[2].filename = lent->filename.c_str();
+			di->diffFileInfo[2].filename = lent->filename;
 		else
-			di->diffFileInfo[2].filename = ment->filename.c_str();
+			di->diffFileInfo[2].filename = ment->filename;
 	}
 
 	di->diffcode = code;
@@ -858,19 +858,9 @@ static DIFFITEM *AddToList(LPCTSTR sLeftDir, LPCTSTR sMiddleDir, LPCTSTR sRightD
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di->diffFileInfo[0].filename.c_str(), (LPCTSTR)_T("di->diffFileInfo[0].spath"), (LPCTSTR)_T("di->diffFileInfo[1].spath"), code
+		di->diffFileInfo[0].filename.c_str(), (const TCHAR *)_T("di->diffFileInfo[0].spath"), (const TCHAR *)_T("di->diffFileInfo[1].spath"), code
 	);
 	myStruct->context->m_pCompareStats->IncreaseTotalItems();
-	ReleaseSemaphore(myStruct->hSemaphore, 1, 0);
+	myStruct->pSemaphore->set();
 	return di;
 }
-
-void // static
-DirScan_InitializeDefaultCodepage()
-{
-	// Set thread default codepage
-	// This is application-wide initialization
-	// but neither MainFrame nor MergeApp included the needed headers
-	DiffFileData::SetDefaultCodepage(getDefaultCodepage());
-}
-

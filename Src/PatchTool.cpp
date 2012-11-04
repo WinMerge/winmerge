@@ -28,7 +28,6 @@
 #include "PathContext.h"
 #include "PatchTool.h"
 #include "PatchDlg.h"
-#include "coretools.h"
 #include "paths.h"
 
 #ifdef _DEBUG
@@ -113,8 +112,8 @@ int CPatchTool::CreatePatch()
 	if (ShowDialog(&dlgPatch))
 	{
 		String path;
-		SplitFilename(dlgPatch.m_fileResult, &path, NULL, NULL);
-		if (!paths_CreateIfNeeded(path.c_str()))
+		paths_SplitFilename((const TCHAR *)dlgPatch.m_fileResult, &path, NULL, NULL);
+		if (!paths_CreateIfNeeded(path))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;
@@ -122,12 +121,12 @@ int CPatchTool::CreatePatch()
 
 		// Select patch create -mode
 		m_diffWrapper.SetCreatePatchFile((LPCTSTR)dlgPatch.m_fileResult);
-		m_diffWrapper.SetAppendFiles(dlgPatch.m_appendFile);
+		m_diffWrapper.SetAppendFiles(!!dlgPatch.m_appendFile);
 		m_diffWrapper.SetPrediffer(NULL);
 
 		int fileCount = dlgPatch.GetItemCount();
 
-		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, dlgPatch.m_appendFile);
+		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, !!dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(TRUE);
 
 		for (int index = 0; index < fileCount; index++)
@@ -137,9 +136,9 @@ int CPatchTool::CreatePatch()
 			String filename2 = files.rfile.length() == 0 ? _T("NUL") : files.rfile;
 			
 			// Set up DiffWrapper
-			m_diffWrapper.SetPaths(PathContext(filename1.c_str(), filename2.c_str()), FALSE);
-			m_diffWrapper.SetAlternativePaths(PathContext(files.pathLeft.c_str(), files.pathRight.c_str()));
-			m_diffWrapper.SetCompareFiles(PathContext(files.lfile.c_str(), files.rfile.c_str()));
+			m_diffWrapper.SetPaths(PathContext(filename1, filename2), FALSE);
+			m_diffWrapper.SetAlternativePaths(PathContext(files.pathLeft, files.pathRight));
+			m_diffWrapper.SetCompareFiles(PathContext(files.lfile, files.rfile));
 			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
@@ -157,9 +156,8 @@ int CPatchTool::CreatePatch()
 			}
 			else if (status.bPatchFileFailed)
 			{
-				CString errMsg;
-				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, dlgPatch.m_fileResult);
-				AfxMessageBox(errMsg, MB_ICONSTOP);
+				String errMsg = LangFormatString1(IDS_FILEWRITE_ERROR, dlgPatch.m_fileResult);
+				AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
 				bResult = FALSE;
 				break;
 			}
@@ -202,13 +200,13 @@ BOOL CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		patchOptions.nContext = pDlgPatch->m_contextLines;
 
 		// Checkbox - can't be wrong
-		patchOptions.bAddCommandline = pDlgPatch->m_includeCmdLine;
+		patchOptions.bAddCommandline = !!pDlgPatch->m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong
 		diffOptions.nIgnoreWhitespace = pDlgPatch->m_whitespaceCompare;
 		diffOptions.bIgnoreBlankLines = !!pDlgPatch->m_ignoreBlanks;
-		m_diffWrapper.SetAppendFiles(pDlgPatch->m_appendFile);
+		m_diffWrapper.SetAppendFiles(!!pDlgPatch->m_appendFile);
 
 		// Use this because non-sensitive setting can't write
 		// patch file EOLs correctly

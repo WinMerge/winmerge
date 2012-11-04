@@ -8,7 +8,6 @@
 
 #include "stdafx.h"
 #include <vector>
-#include <mlang.h>
 #include <boost/scoped_ptr.hpp>
 #include "Merge.h"
 #include "MainFrm.h"
@@ -78,8 +77,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
 	m_pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
 
-	m_pOptions->InitOption(OPT_BREAK_ON_WORDS, true);
-	m_pOptions->InitOption(OPT_BREAK_TYPE, 0);
 	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
 	m_pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<>`'!\"#$%&^~\\|@+-*/"));
 
@@ -230,8 +227,6 @@ void CMergeApp::OptionsInit()
  */
 void CMergeApp::SetFontDefaults()
 {
-	USES_CONVERSION;
-
 	LOGFONT lfDefault;
 	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
@@ -244,10 +239,10 @@ void CMergeApp::SetFontDefaults()
 		pexconv->getCodePageInfo(GetACP(), &cpi);
 
 	m_pOptions->InitOption(OPT_FONT_FILECMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, W2T(cpi.fixedWidthFont));
+	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, ucr::toTString(cpi.fixedWidthFont));
 
 	m_pOptions->InitOption(OPT_FONT_DIRCMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, W2T(cpi.fixedWidthFont));
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, ucr::toTString(cpi.fixedWidthFont));
 }
 
 /**

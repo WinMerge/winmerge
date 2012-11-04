@@ -1,5 +1,5 @@
 /**
- *  @file TempFile.h
+ *  @file UniMarkdownFile.h
  *
  *  @brief Declaration of UniMarkdownFile class.
  */
@@ -22,16 +22,14 @@ public:
 	virtual void Close();
 
 protected:
-	virtual bool DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
-		DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion,
-		DWORD dwMappingProtect, DWORD dwMapViewAccess);
+	virtual bool DoOpen(const String& filename, AccessMode mode);
 
 private:
 	void Move();
-	String maketstring(LPCSTR lpd, UINT len);
+	String maketstring(const char *lpd, size_t len);
 
 	int m_depth;
 	bool m_bMove;
-	LPBYTE m_transparent;
+	unsigned char *m_transparent;
 	boost::scoped_ptr<CMarkdown> m_pMarkdown;
 };

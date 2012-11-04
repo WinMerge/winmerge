@@ -35,6 +35,7 @@
 
 #include <boost/scoped_ptr.hpp>
 #include "resource.h"       // main symbols
+#include "MergeApp.h"
 #include "MergeDoc.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -83,8 +84,8 @@ public:
 	void AddToRecentProjectsMRU(LPCTSTR sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
-	CString GetDefaultEditor();
-	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
+	String GetDefaultEditor();
+	String GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	void OptionsInit();
@@ -109,12 +110,14 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
+	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
+
 	// End MergeArgs.cpp
 
-	bool LoadProjectFile(LPCTSTR sProject, ProjectFile &project);
-	bool SaveProjectFile(LPCTSTR sProject, const ProjectFile &project);
-	bool LoadAndOpenProjectFile(LPCTSTR sFilepath);
-	bool IsProjectFile(LPCTSTR filepath) const;
+	bool LoadProjectFile(const String& sProject, ProjectFile &project);
+	bool SaveProjectFile(const String& sProject, const ProjectFile &project);
+	bool LoadAndOpenProjectFile(const String& sFilepath);
+	bool IsProjectFile(const String& filepath) const;
 
 	void ReloadMenu();
 
@@ -161,9 +164,6 @@ private:
 };
 
 extern CMergeApp theApp;
-
-COptionsMgr * GetOptionsMgr();
-CLogFile * GetLog();
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

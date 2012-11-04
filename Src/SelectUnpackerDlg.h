@@ -29,6 +29,7 @@
 #if !defined(AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_)
 #define AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_
 
+#include <vector>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectUnpackerDlgDlg dialog
@@ -73,7 +74,7 @@ public:
 protected:
 	/// arrays for string describing the available plugins
 	CPtrArray  m_UnpackerPlugins;
-	CUIntArray m_bWithFileFlags;
+	std::vector<bool> m_bWithFileFlags;
 
 	// const data "no plugin"
 	PluginInfo * noPlugin;

@@ -23,70 +23,63 @@
 // $Id$
 
 
-#include "stdafx.h"
-#include "UnicodeString.h"
+#include <windows.h>
 #include "VSSHelper.h"
-#include "coretools.h"
+#include <algorithm>
+#include <cassert>
+#include "UnicodeString.h"
 #include "paths.h"
 #include "Environment.h"
+#include "MergeApp.h"
+#include "resource.h"
 
-CString VSSHelper::GetProjectBase()
+String VSSHelper::GetProjectBase()
 {
 	return m_strVssProjectBase;
 }
 
-BOOL VSSHelper::SetProjectBase(CString strPath)
+bool VSSHelper::SetProjectBase(const String& strPath)
 {
-	if (strPath.GetLength() < 2)
-		return FALSE;
+	if (strPath.size() < 2)
+		return false;
 
 	m_strVssProjectBase = strPath;
-	m_strVssProjectBase.Replace('/', '\\');
+	string_replace(m_strVssProjectBase, _T("/"), _T("\\"));
 
 	// Check if m_strVssProjectBase has leading $\\, if not put them in:
 	if (m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\')
-		m_strVssProjectBase.Insert(0, _T("$\\"));
+		m_strVssProjectBase.insert(0, _T("$\\"));
 	
-	if (m_strVssProjectBase[m_strVssProjectBase.GetLength() - 1] == '\\')
-		m_strVssProjectBase.Delete(m_strVssProjectBase.GetLength() - 1, 1);
-	return TRUE;
+	if (m_strVssProjectBase[m_strVssProjectBase.size() - 1] == '\\')
+		m_strVssProjectBase.resize(m_strVssProjectBase.size() - 1);
+	return true;
 }
 
-BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
+bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 {
 	const UINT nBufferSize = 1024;
 	TCHAR buffer[nBufferSize] = {0};
-	CString spath;
-	BOOL bVCPROJ = FALSE;
+	bool bVCPROJ = false;
 
-	int nerr;
-	String tempPath = env_GetTempPath(&nerr);
-	if (tempPath.empty())
-	{
-		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath: %s")
-			, GetSysError(nerr).c_str()));
-		return FALSE;
-	}
-	String tempFile = env_GetTempFileName(tempPath.c_str(), _T("_LT"), &nerr);
+	String tempFile = env_GetTempFileName(env_GetTempPath(), _T("_LT"));
 	if (tempFile.empty())
 	{
-		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile: %s")
-			, GetSysError(nerr).c_str()));
-		return FALSE;
+		LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile"));
+		return false;
 	}
 
 	String ext;
-	SplitFilename(strSavePath, NULL, NULL, &ext);
-	CString strExt(ext.c_str());
-	if (strExt.CompareNoCase(_T("vcproj")) == 0 || strExt.CompareNoCase(_T("sln")) == 0)
+	paths_SplitFilename(strSavePath, NULL, NULL, &ext);
+	String strExt = string_makelower(ext);
+	if (strExt == _T("vcproj") || strExt == _T("sln"))
 	{
 		GetFullVSSPath(strSavePath, bVCPROJ);
 
 		HANDLE hfile;
 		HANDLE tfile;
-		SetFileAttributes(strSavePath, FILE_ATTRIBUTE_NORMAL);
+		SetFileAttributes(strSavePath.c_str(), FILE_ATTRIBUTE_NORMAL);
 		
-		hfile = CreateFile(strSavePath,
+		hfile = CreateFile(strSavePath.c_str(),
                 GENERIC_ALL,              // open for writing
                 FILE_SHARE_READ,           // share for reading 
                 NULL,                      // no security 
@@ -103,42 +96,39 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 		
 		if (hfile == INVALID_HANDLE_VALUE || tfile == INVALID_HANDLE_VALUE)
 		{
-			CString msg;
 			if (hfile == INVALID_HANDLE_VALUE)
 			{
-				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
-					_T("- failed to open file: %s"), strSavePath);
-				LogErrorString(msg);
+				sError = string_format(_T("CMainFrame::ReLinkVCProj() ")
+					_T("- failed to open file: %s"), strSavePath.c_str());
+				LogErrorString(sError.c_str());
 				String errMsg = GetSysError(GetLastError());
-				LangFormatString2(msg, IDS_ERROR_FILEOPEN, errMsg.c_str(), strSavePath);
-				*psError = msg;
+				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), strSavePath.c_str());
 			}
 			if (tfile == INVALID_HANDLE_VALUE)
 			{
-				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
+				sError = string_format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open temporary file: %s"), tempFile.c_str());
-				LogErrorString(msg);
+				LogErrorString(sError.c_str());
 				String errMsg = GetSysError(GetLastError());
-				LangFormatString2(msg, IDS_ERROR_FILEOPEN, errMsg.c_str(), tempFile.c_str());
-				*psError = msg;
+				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), tempFile.c_str());
 			}
-			return FALSE;
+			return false;
 		}
 
 		static TCHAR charset[] = _T(" \t\n\r=");
 		DWORD numwritten = 0;
-		BOOL succeed = TRUE;
+		bool succeed = true;
 	
 		while (succeed && GetWordFromFile(hfile, buffer, nBufferSize, charset))
 		{
 			if (!WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL))
-				succeed = FALSE;
+				succeed = false;
 			if (bVCPROJ)
 			{
 				if (_tcscmp(buffer, _T("SccProjectName")) == 0)
 				{
 					if (!GetVCProjName(hfile, tfile))
-						succeed = FALSE;
+						succeed = false;
 				}
 			}
 			else
@@ -147,12 +137,12 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 				if (_tcsstr(buffer, _T("SccProjectUniqueName")) == buffer)
 				{
 					if (!GetSLNProjUniqueName(hfile, tfile, buffer))
-						succeed = FALSE;
+						succeed = false;
 				}
 				else if (_tcsstr(buffer, _T("SccProjectName")) == buffer)
 				{
 					if (!GetSLNProjName(hfile, tfile, buffer))
-						succeed = FALSE;
+						succeed = false;
 				}
 			}
 		}
@@ -161,72 +151,70 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 
 		if (succeed)
 		{
-			if (!CopyFile(tempFile.c_str(), strSavePath, FALSE))
+			if (!CopyFile(tempFile.c_str(), strSavePath.c_str(), false))
 			{
-				*psError = GetSysError(GetLastError()).c_str();
+				sError = GetSysError(GetLastError()).c_str();
 				DeleteFile(tempFile.c_str());
-				return FALSE;
+				return false;
 			}
 			else
 				DeleteFile(tempFile.c_str());
 		}
 		else
 		{
-			CString msg;
 			String errMsg = GetSysError(GetLastError());
-			LangFormatString2(msg, IDS_ERROR_FILEOPEN, strSavePath, errMsg.c_str());
-			*psError = msg;
-			return FALSE;
+			sError = LangFormatString2(IDS_ERROR_FILEOPEN, strSavePath.c_str(), errMsg.c_str());
+			return false;
 		}
 	}
-	return TRUE;
+	return true;
 }
 
-void VSSHelper::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
+void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 {
 	String ext;
 	String path;
-	SplitFilename(strSavePath, &path, NULL, &ext);
-	CString spath(path.c_str());
-	CString strExt(ext.c_str()); 
-	if (strExt.CompareNoCase(_T("vcproj")))
-		bVCProj = TRUE;
+	paths_SplitFilename(strSavePath, &path, NULL, &ext);
+	String spath(path);
+	String strExt = string_makelower(ext); 
+	if (strExt == _T("vcproj"))
+		bVCProj = true;
 
-	strSavePath.Replace('/', '\\');
-	m_strVssProjectBase.Replace('/', '\\');
+	String savepath(strSavePath);
+	string_replace(savepath, _T("/"), _T("\\"));
+	string_replace(m_strVssProjectBase, _T("/"), _T("\\"));
 
 	//check if m_strVssProjectBase has leading $\\, if not put them in:
 	if (m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\')
-		m_strVssProjectBase.Insert(0, _T("$\\"));
+		m_strVssProjectBase.insert(0, _T("$\\"));
 
-	strSavePath.MakeLower();
-	m_strVssProjectBase.MakeLower();
+	savepath = string_makelower(savepath);
+	m_strVssProjectBase = string_makelower(m_strVssProjectBase);
 
 	//take out last '\\'
-	int nLen = m_strVssProjectBase.GetLength();
+	int nLen = m_strVssProjectBase.size();
 	if (m_strVssProjectBase[nLen - 1] == '\\')
-		m_strVssProjectBase.Delete(nLen - 1, 1);
+		m_strVssProjectBase.resize(nLen - 1);
 
-	CString strSearch = m_strVssProjectBase.Mid(2); // Don't compare first 2
-	int index = strSavePath.Find(strSearch); //Search for project base path
+	String strSearch = m_strVssProjectBase.c_str() + 2; // Don't compare first 2
+	int index = strSavePath.find(strSearch); //Search for project base path
 	if (index > -1)
 	{
 		index++;
-		m_strVssProjectFull = strSavePath.Mid(index + strSearch.GetLength());
+		m_strVssProjectFull = savepath.c_str() + index + strSearch.length();
 		if (m_strVssProjectFull[0] == ':')
-			m_strVssProjectFull.Delete(0, 2);
+			m_strVssProjectFull.erase(0, 2);
 	}
 
-	SplitFilename(m_strVssProjectFull, &path, NULL, NULL);
-	spath = path.c_str();
-	if (m_strVssProjectBase[m_strVssProjectBase.GetLength() - 1] != '\\')
-		m_strVssProjectBase += "\\";
+	paths_SplitFilename(m_strVssProjectFull, &path, NULL, NULL);
+	if (m_strVssProjectBase[m_strVssProjectBase.size() - 1] != '\\')
+		m_strVssProjectBase += _T("\\");
 
-	m_strVssProjectFull = m_strVssProjectBase + spath;
+	m_strVssProjectFull += m_strVssProjectBase + path;
 
 	//if sln file, we need to replace ' '  with _T("\\u0020")
 	if (!bVCProj)
-		m_strVssProjectFull.Replace( _T(" "), _T("\\u0020"));
+		string_replace(m_strVssProjectFull, _T(" "), _T("\\u0020"));
 }
 
 /**
@@ -241,7 +229,7 @@ void VSSHelper::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
  * @param [in] dwBufferSize size of buffer
  * @param [in] charset pointer to string containing delimiter chars
  */
-BOOL VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
+bool VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
 		DWORD dwBufferSize, TCHAR * charset)
 {
 	TCHAR buf[1024] = {0};
@@ -256,9 +244,9 @@ BOOL VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
 			SetFilePointer(pfile, -1, NULL, FILE_CURRENT);
 	}
 	else
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
 int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
@@ -268,11 +256,11 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 	TCHAR * pcharset = NULL;
 	UINT buffercount = 0;
 	DWORD numread = sizeof(ctemp);
-	BOOL delimword = FALSE;
-	BOOL firstRead = FALSE; // First char read ?
-	BOOL delimMatch = FALSE;
+	bool delimword = false;
+	bool firstRead = false; // First char read ?
+	bool delimMatch = false;
 
-	ASSERT(inBuffer != NULL && outBuffer != NULL);
+	assert(inBuffer != NULL && outBuffer != NULL);
 
 	while (buffercount < dwInBufferSize && buffercount < dwOutBufferSize)
 	{
@@ -285,8 +273,8 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 					break;
 			}
 			if (*pcharset != NULL) // Means that cbuffer[0] is a delimiter character
-				delimword = TRUE;
-			firstRead = TRUE;
+				delimword = true;
+			firstRead = true;
 		}
 
 		if (!charset)
@@ -299,7 +287,7 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 			else
 				break;
 		}
-		else if (delimword == FALSE)
+		else if (delimword == false)
 		{
 			for (pcharset = charset; *pcharset; pcharset++)
 			{
@@ -315,19 +303,19 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 			else
 				break;
 		}
-		else if (delimword == TRUE)
+		else if (delimword == true)
 		{
-			delimMatch = FALSE;
+			delimMatch = false;
 			for (pcharset = charset; *pcharset; pcharset++)
 			{						
 				//if next char is equal to a delimiter or we want delimwords stop the adding
 				if (ctemp == *pcharset)
 				{
-					delimMatch = TRUE;
+					delimMatch = true;
 					break;
 				}
 			}
-			if (delimMatch == TRUE)
+			if (delimMatch == true)
 			{
 				*outBuffer = ctemp;
 				buffercount++;
@@ -343,86 +331,86 @@ int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
 	return buffercount;
 }
 
-BOOL VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile)
+bool VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile)
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
 	
-	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+	assert(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
 		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
 
 	//nab the equals sign
-	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("=")))
-		return FALSE;
+	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("=")))
+		return false;
 	if (!WriteFile(tFile, buffer, _tcslen(buffer),
 			&dwNumWritten, NULL))
-		return FALSE;
+		return false;
 
-	CString stemp = _T("\"&quot;") + m_strVssProjectFull + 
+	String stemp = _T("\"&quot;") + m_strVssProjectFull + 
 		_T("&quot;");
-	if (!WriteFile(tFile, stemp, stemp.GetLength(),
+	if (!WriteFile(tFile, stemp.c_str(), stemp.size(),
 			&dwNumWritten, NULL))
-		return FALSE;
+		return false;
 
-	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",\n"))) //for junking
-		return FALSE;
-	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",\n"))) //get the next delimiter
-		return FALSE;
+	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(",\n"))) //for junking
+		return false;
+	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(",\n"))) //get the next delimiter
+		return false;
 
 	if (!_tcscmp(buffer, _T("\n")))
 	{
 		if (!WriteFile(tFile, _T("\""), 1, &dwNumWritten, NULL))
-			return FALSE;
+			return false;
 	}
 	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
-BOOL VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+bool VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
 
-	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+	assert(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
 		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
-	ASSERT(buf != NULL);
+	assert(buf != NULL);
 
 	//nab until next no space, and no =
-	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(" =")))
-		return FALSE;
+	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(" =")))
+		return false;
 	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
-		return FALSE;
+		return false;
 	//nab word
-	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("\\\n.")))
-		return FALSE;
+	if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("\\\n.")))
+		return false;
 	while (!_tcsstr(buffer, _T(".")))
 	{						
 		if (buffer[0] != '\\')
 			_tcsncat(buf, buffer, _tcslen(buffer));
 
 		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
-			return FALSE;
-		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("\\\n.")))
-			return FALSE;
+			return false;
+		if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T("\\\n.")))
+			return false;
 	}
 	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }
 
-BOOL VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+bool VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
 {
 	TCHAR buffer[1024] = {0};
 	DWORD dwNumWritten = 0;
 
-	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+	assert(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
 		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
-	ASSERT(buf != NULL);
+	assert(buf != NULL);
 	
-	CString capp;
+	String capp;
 	if (*buf != '\\' && !_tcsstr(buf, _T(".")))
 	{
 		//write out \\u0020s for every space in buffer2
@@ -433,21 +421,21 @@ BOOL VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
 			else
 				capp += *pc;
 		}
-		capp.MakeLower();
+		capp = string_makelower(capp);
 
 		//nab until the no space, and no =
-		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(" =")))
-			return FALSE;
+		if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(" =")))
+			return false;
 		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
-			return FALSE;
-		CString stemp = _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
-		if (!WriteFile(tFile, stemp, stemp.GetLength(),
+			return false;
+		String stemp = _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
+		if (!WriteFile(tFile, stemp.c_str(), stemp.size(),
 				&dwNumWritten, NULL))
-			return FALSE;
+			return false;
 		
 		//nab until the first backslash
-		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",")))
-			return FALSE;
+		if (!GetWordFromFile(hFile, buffer, sizeof(buffer)/sizeof(buffer[0]), _T(",")))
+			return false;
 	}
-	return TRUE;
+	return true;
 }

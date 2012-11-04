@@ -108,33 +108,33 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	BOOL SyncFileToVCS(LPCTSTR pszDest,	BOOL &bApplyToAll, CString *psError);
+	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);
 	BOOL DoFileOpen(PathContext *pFiles = NULL,
-		DWORD dwFlags[] = NULL, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
+		DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
 		const PathContext &paths, bool bRO[]);
 	void UpdateResources();
-	BOOL CreateBackup(BOOL bFolder, LPCTSTR pszPath);
-	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
+	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
+	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
 	void ApplyViewWhitespace();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
-	void ShowVSSError(CException *e, LPCTSTR strItem);
+	void ShowVSSError(CException *e, const String& strItem);
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void UpdateCodepageModule();
-	void CheckinToClearCase(CString strDestinationPath);
+	void CheckinToClearCase(const String& strDestinationPath);
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
 	bool AskCloseConfirmation();
-	BOOL DoOpenConflict(LPCTSTR conflictFile, bool checked = false);
+	BOOL DoOpenConflict(const String& conflictFile, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 
-	static void OpenFileToExternalEditor(LPCTSTR file, int nLineNumber = 1);
+	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -152,7 +152,7 @@ protected:
 	virtual ~CMainFrame();
 // Implementation in SourceControl.cpp
 	void InitializeSourceControlMembers();
-	BOOL SaveToVersionControl(CString& strSavePath);
+	BOOL SaveToVersionControl(const String& strSavePath);
 // End SourceControl.cpp
 
 

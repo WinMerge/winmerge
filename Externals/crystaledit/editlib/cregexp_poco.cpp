@@ -21,13 +21,11 @@
 #include <string.h>
 #include <ctype.h>
 #include <memory>
-#include <Poco/Exception.h>
 #include <Poco/RegularExpression.h>
 #include <Poco/UnicodeConverter.h>
 #include "cregexp.h"
 #include "unicoder.h"
 
-using Poco::Exception;
 using Poco::RegularExpression;
 using Poco::UnicodeConverter;
 
@@ -86,7 +84,9 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
 	int result = 0;
 	try {
 		result = Regexp->regexp->match(compString, startoffset, ovector);
-	} catch (Exception *) {
+	}
+	catch (...)
+	{
 	}
 	if (result >= 0)
 	{

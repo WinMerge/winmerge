@@ -26,9 +26,15 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "StdAfx.h"
-#include "eh.h"
+#ifdef _MSC_VER
 
+#include <cstdio>
+#include <windows.h>
+#include <tchar.h>
+
+#endif
+
+#include "UnicodeString.h"
 
 /**
  * @brief C exception "wrapper" class for C++ try/catch
@@ -40,16 +46,17 @@
  *     one single interface to catch SE_Exception and CException
  *   GetErrorMessage : avoid using CString during exception processing
  */
-class SE_Exception : public CException
+class SE_Exception
 {
 private:
 	unsigned long nSE;
 public:
-	SE_Exception(unsigned long n, BOOL bAutoDelete) : nSE(n), CException(bAutoDelete) {}
+	SE_Exception(unsigned long n) : nSE(n) {}
 	~SE_Exception() {};
 
 	unsigned long getSeNumber() { return nSE; }
-	LPCTSTR getSeMessage()
+#ifdef _MSC_VER
+	const TCHAR *getSeMessage()
 	{
 		// known exceptions (from WINNT.H)
 		#define EXCEPTION( x ) case EXCEPTION_##x: return _T(#x);
@@ -83,14 +90,21 @@ public:
 		// don't localize this as we do not localize the known exceptions
 		return _T("Unknown structured exception");
 	}
-	virtual BOOL GetErrorMessage( LPTSTR lpszError, UINT nMaxError, PUINT pnHelpContext = NULL )
+	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = NULL )
 	{
 		static TCHAR message[512];
-		_sntprintf(message, countof(message), _T("Exception %s (0x%.8x)"), getSeMessage(), getSeNumber());
+		_sntprintf(message, sizeof(message)/sizeof(message[0]), _T("Exception %s (0x%.8x)"), getSeMessage(), getSeNumber());
 		_tcsncpy(lpszError, message, nMaxError-1);
 		lpszError[nMaxError-1] = 0;
-		return TRUE;
+		return true;
 	}
+#else
+	virtual bool GetErrorMessage( TCHAR *lpszError, unsigned nMaxError, unsigned *pnHelpContext = NULL )
+	{
+		return true;
+	}
+
+#endif
 };
 
 
@@ -102,16 +116,21 @@ public:
  * for each thread.
  */
 class SE_Handler {
+#ifdef _MSC_VER
 private:
 	_se_translator_function fnOld;
-	static void seh_trans_func(unsigned int u, EXCEPTION_POINTERS* pExp) 
+	static void seh_trans_func(unsigned u, EXCEPTION_POINTERS* pExp) 
 	{
-		DWORD dwCode = (pExp && pExp->ExceptionRecord) ? pExp->ExceptionRecord->ExceptionCode : 0;
-		throw new SE_Exception((long)dwCode, TRUE);
+		unsigned dwCode = (pExp && pExp->ExceptionRecord) ? pExp->ExceptionRecord->ExceptionCode : 0;
+		throw SE_Exception((long)dwCode);
 	}
 public:
 	SE_Handler() { fnOld = _set_se_translator(seh_trans_func); }
 	~SE_Handler() { _set_se_translator(fnOld); }
+#else
+public:
+	SE_Handler() {}
+#endif
 };
 
 

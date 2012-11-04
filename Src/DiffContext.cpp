@@ -27,26 +27,19 @@
 // $Id: DiffContext.cpp 7063 2009-12-27 15:28:16Z kimmov $
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
-#include <shlwapi.h>
-#include "Merge.h"
+#include "DiffContext.h"
+#include <cstring>
+#include <algorithm>
 #include "CompareOptions.h"
-#include "CompareStats.h"
 #include "version.h"
 #include "FilterList.h"
-#include "DiffContext.h"
 #include "paths.h"
-#include "coretools.h"
 #include "codepage_detect.h"
 #include "DiffItemList.h"
 #include "IAbortable.h"
+#include "DiffWrapper.h"
 
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
+using Poco::UIntPtr;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -64,11 +57,10 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_piPluginInfos(NULL)
 , m_nCompMethod(compareMethod)
 , m_nCurrentCompMethod(compareMethod)
-, m_bIgnoreSmallTimeDiff(FALSE)
+, m_bIgnoreSmallTimeDiff(false)
 , m_pCompareStats(NULL)
 , m_piAbortable(NULL)
 , m_bStopAfterFirstDiff(false)
-, m_bScanUnpairedDir(FALSE)
 , m_pFilterList(NULL)
 , m_pDiffWrapper(NULL)
 , m_pCompareOptions(NULL)
@@ -79,7 +71,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)
-		m_paths.SetPath(index, paths[index].c_str());
+		m_paths.SetPath(index, paths[index]);
 }
 
 /**
@@ -97,7 +89,7 @@ CDiffContext::~CDiffContext()
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
  */
-void CDiffContext::UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight)
+void CDiffContext::UpdateStatusFromDisk(UIntPtr diffpos, bool bLeft, bool bRight)
 {
 	DIFFITEM &di = GetDiffRefAt(diffpos);
 	if (bLeft)
@@ -119,19 +111,19 @@ void CDiffContext::UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRigh
  * This function updates DIFFITEM's file information from actual file in
  * the disk. This updates info like date, size and attributes.
  * @param [in, out] di DIFFITEM to update (selected side, see bLeft param).
- * @param [in] bLeft If TRUE left side information is updated,
+ * @param [in] bLeft If true left side information is updated,
  *  right side otherwise.
- * @return TRUE if file exists
+ * @return true if file exists
  */
-BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
+bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
 {
 	String filepath = paths_ConcatPath(di.getFilepath(nIndex, GetNormalizedPath(nIndex)), di.diffFileInfo[nIndex].filename);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
-	if (!dfi.Update(filepath.c_str()))
-		return FALSE;
+	if (!dfi.Update(filepath))
+		return false;
 	UpdateVersion(di, nIndex);
-	GuessCodepageEncoding(filepath.c_str(), &dfi.encoding, m_iGuessEncodingType);
-	return TRUE;
+	dfi.encoding = GuessCodepageEncoding(filepath, m_iGuessEncodingType);
+	return true;
 }
 
 /**
@@ -142,18 +134,16 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex)
  * @param [in] ext Extension to check.
  * @return true if extension has version info, false otherwise.
  */
-static bool CheckFileForVersion(LPCTSTR ext)
+static bool CheckFileForVersion(const String& ext)
 {
-	if (!lstrcmpi(ext, _T(".EXE")) || !lstrcmpi(ext, _T(".DLL")) || !lstrcmpi(ext, _T(".SYS")) ||
-	    !lstrcmpi(ext, _T(".DRV")) || !lstrcmpi(ext, _T(".OCX")) || !lstrcmpi(ext, _T(".CPL")) ||
-	    !lstrcmpi(ext, _T(".SCR")) || !lstrcmpi(ext, _T(".LANG")))
+	String lower_ext = string_makelower(ext);
+	if (lower_ext == _T(".exe") || lower_ext == _T(".dll") || lower_ext == _T(".sys") ||
+	    lower_ext == _T(".drv") || lower_ext == _T(".ocx") || lower_ext == _T(".cpl") ||
+	    lower_ext == _T(".scr") || lower_ext == _T(".lang"))
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
 /**
@@ -162,7 +152,7 @@ static bool CheckFileForVersion(LPCTSTR ext)
  * are read from only some filetypes. See CheckFileForVersion() function
  * for list of files to check versions.
  * @param [in,out] di DIFFITEM to update.
- * @param [in] bLeft If TRUE left-side file is updated, right-side otherwise.
+ * @param [in] bLeft If true left-side file is updated, right-side otherwise.
  */
 void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 {
@@ -179,7 +169,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 	{
 		if (di.diffcode.isSideSecondOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.diffFileInfo[0].filename.c_str());
+		String ext = paths_FindExtension(di.diffFileInfo[0].filename);
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getFilepath(0, GetNormalizedLeft());
@@ -189,7 +179,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 	{
 		if (di.diffcode.isSideFirstOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.diffFileInfo[1].filename.c_str());
+		String ext = paths_FindExtension(di.diffFileInfo[1].filename);
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getFilepath(1, GetNormalizedRight());
@@ -198,8 +188,8 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 	
 	// Get version info if it exists
 	CVersionInfo ver(spath.c_str());
-	DWORD verMS = 0;
-	DWORD verLS = 0;
+	unsigned verMS = 0;
+	unsigned verLS = 0;
 	if (ver.GetFixedFileVersion(verMS, verLS))
 		dfi.version.SetFileVersion(verMS, verLS);
 }
@@ -211,15 +201,15 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
  * given set of options.
  * @param [in] compareMethod Selected compare method.
  * @param [in] options Initial set of compare options.
- * @return TRUE if creation succeeds.
+ * @return true if creation succeeds.
  */
-BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
+bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
 {
 	m_pOptions.reset(new DIFFOPTIONS);
 	if (m_pOptions != NULL)
-		CopyMemory(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
+		std::memcpy(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
 	else
-		return FALSE;
+		return false;
 
 	m_nCompMethod = compareMethod;
 	GetCompareOptions(m_nCompMethod);
@@ -230,12 +220,12 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 		if (m_nCompMethod == CMP_DATE || m_nCompMethod == CMP_DATE_SIZE ||
 			m_nCompMethod == CMP_SIZE)
 		{
-			return TRUE;
+			return true;
 		}
 		else
-			return FALSE;
+			return false;
 	}
-	return TRUE;
+	return true;
 }
 
 /**
@@ -281,10 +271,10 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */
-void CDiffContext::FetchPluginInfos(LPCTSTR filteredFilenames,
+void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
-	ASSERT(m_piPluginInfos);
+	assert(m_piPluginInfos);
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 

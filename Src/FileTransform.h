@@ -29,8 +29,11 @@
 #ifndef FileTransform_h
 #define FileTransform_h
 
+#include <vector>
+#include "UnicodeString.h"
 #include "unicoder.h"
 #include "resource.h"
+#include "MergeApp.h"
 
 class UniFile;
 
@@ -48,9 +51,6 @@ enum PLUGIN_MODE
 	PREDIFF_AUTO = PLUGIN_AUTO,
 };
 
-C_ASSERT(PLUGIN_MANUAL == FALSE);
-C_ASSERT(PLUGIN_AUTO == TRUE);
-
 extern int g_bUnpackerMode;
 extern int g_bPredifferMode;
 
@@ -60,7 +60,7 @@ extern int g_bPredifferMode;
  *
  * @note If you add some event, you have to complete this array in FileTransform.cpp
  */
-extern LPCWSTR TransformationCategories[];
+extern const wchar_t *TransformationCategories[];
 
 
 
@@ -76,7 +76,7 @@ public:
 	{
 		// TODO: Convert bMode to PLUGIN_MODE and fix compile errors
 		// init functions as a valid "do nothing" unpacker
-		bWithFile = FALSE;
+		bWithFile = false;
 		// and init bAutomatic flag and name according to global variable
 		if (bMode != PLUGIN_AUTO)
 		{
@@ -97,8 +97,8 @@ public:
 	int bToBeScanned; // TODO: Convert to PLUGIN_MODE and fix compile errors
 	/// plugin name when it is defined
 	String pluginName;
-	/// TRUE is the plugins exchange data through a file, FALSE is the data is passed as parameter (BSTR/ARRAY)
-	BOOL    bWithFile;
+	/// TRUE is the plugins exchange data through a file, false is the data is passed as parameter (BSTR/ARRAY)
+	bool    bWithFile;
 };
 
 /**
@@ -160,13 +160,13 @@ public:
  * @note Event FILE_UNPACK
  * Apply only the first correct handler
  */
-BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInfo * handler, int * handlerSubcode);
+bool FileTransform_Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for loading, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
+bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for saving, known handler
  *
@@ -177,19 +177,19 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
  * @note Event FILE_PACK
  * Never do Unicode conversion, it was done in SaveFromFile
  */
-BOOL FileTransform_Packing(String & filepath, PackingInfo handler);
+bool FileTransform_Packing(String & filepath, PackingInfo handler);
 
 /**
  * @brief Normalize Unicode files to OLECHAR
  *
- * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is FALSE
+ * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is false
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
  *
  * @return Tells if we succeed
  *
  * @note Ansi files are not changed
  */
-BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::UNICODESET unicoding = ucr::NONE);
+bool FileTransform_NormalizeUnicode(String & filepath, bool bMayOverwrite, ucr::UNICODESET unicoding = ucr::NONE);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -202,40 +202,40 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::
  * @note Event FILE_PREDIFF BUFFER_PREDIFF
  * Apply only the first correct handler
  */
-BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, PrediffingInfo * handler, BOOL bMayOverwrite);
+bool FileTransform_Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite);
 /**
  * @brief Prepare one file for diffing, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite);
+bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
 /**
  * @brief check for both are same (Ansi or UTF8)
  * otherwise convert both to UTF8
  * @param [in,out] filepath Most plugins change this filename
  */
-BOOL Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,BOOL m_bPathsAreTemp);
+bool Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,bool m_bPathsAreTemp);
 /**
  * @brief Copy a Ansi or UCS2LE to UTF8)
  */
-BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite);
+bool copyToUTF8(String & filepath, String &tempFilepath ,bool bMayOverwrite);
 
 
 /**
  * @brief Transform all files to UTF8 aslong possible
  *
- * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is FALSE
+ * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is false
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
  *
  * @return Tells if we can go on with diffutils
  * convert all Ansi or unicode-files to UTF8 
  * if other file is unicode or uses a different codepage
  */
-BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite);
-BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite);
+bool FileTransform_ToUTF8(String & filepath, bool bMayOverwrite);
+bool FileTransform_UCS2ToUTF8(String & filepath, bool bMayOverwrite);
 
 
-BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayOverwrite);
+bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
 
 
 /**
@@ -256,7 +256,7 @@ BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayO
  * last script file, ...
  * last script file, last function name
  */
-void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR TransformationEvent);
+void GetFreeFunctionsInScripts(std::vector<String> & sNamesArray, const wchar_t *TransformationEvent);
 
 /** 
  * @brief : Execute one free function from one script
@@ -267,6 +267,6 @@ void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR Transformatio
  *
  * @note Event EDITOR_SCRIPT, ?
  */
-BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int iFncChosen);
+bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen);
 
 #endif // FileTransform_h

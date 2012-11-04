@@ -17,7 +17,8 @@
 #include "OpenFrm.h"
 #include "ChildFrm.h"
 #include "DirFrame.h"
-#include "coretools.h"
+#include "paths.h"
+#include "Environment.h"
 #include <locale.h>
 #include <sstream>
 
@@ -612,12 +613,12 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 		return FALSE;
 	}
 	CVersionInfo viInstance = AfxGetInstanceHandle();
-	DWORD instanceVerMS = 0;
-	DWORD instanceVerLS = 0;
+	unsigned instanceVerMS = 0;
+	unsigned instanceVerLS = 0;
 	viInstance.GetFixedFileVersion(instanceVerMS, instanceVerLS);
 	CVersionInfo viResource = m_hCurrentDll;
-	DWORD resourceVerMS = 0;
-	DWORD resourceVerLS = 0;
+	unsigned resourceVerMS = 0;
+	unsigned resourceVerLS = 0;
 	viResource.GetFixedFileVersion(resourceVerMS, resourceVerLS);
 	if (instanceVerMS != resourceVerMS || instanceVerLS != resourceVerLS)
 	{
@@ -845,7 +846,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
 String CLanguageSelect::GetFileName(LANGID wLangId)
 {
 	String filename;
-	String path = GetModulePath().append(szRelativePath);
+	String path = env_GetProgPath().append(szRelativePath);
 	String pattern = path + _T("*.po");
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
@@ -875,7 +876,7 @@ String CLanguageSelect::GetFileName(LANGID wLangId)
 BOOL CLanguageSelect::AreLangsInstalled() const
 {
 	BOOL bFound = FALSE;
-	String path = GetModulePath().append(szRelativePath);
+	String path = env_GetProgPath().append(szRelativePath);
 	String pattern = path + _T("*.po");
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
@@ -1240,7 +1241,7 @@ BOOL CLanguageSelect::OnInitDialog()
  */
 void CLanguageSelect::LoadAndDisplayLanguages()
 {
-	String path = GetModulePath().append(szRelativePath);
+	String path = env_GetProgPath().append(szRelativePath);
 	String pattern = path + _T("*.po");
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;

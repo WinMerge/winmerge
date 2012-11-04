@@ -42,16 +42,16 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 DECL_TLS int no_discards;
 DECL_TLS int need_free_buffers=0;
 
-DECL_TLS static int *xvec, *yvec;	/* Vectors being compared. */
-DECL_TLS static int *fdiag;		/* Vector, indexed by diagonal, containing
+static DECL_TLS int *xvec, *yvec;	/* Vectors being compared. */
+static DECL_TLS int *fdiag;		/* Vector, indexed by diagonal, containing
 				   1 + the X coordinate of the point furthest
 				   along the given diagonal in the forward
 				   search of the edit matrix. */
-DECL_TLS static int *bdiag;		/* Vector, indexed by diagonal, containing
+static DECL_TLS int *bdiag;		/* Vector, indexed by diagonal, containing
 				   the X coordinate of the point furthest
 				   along the given diagonal in the backward
 				   search of the edit matrix. */
-DECL_TLS static int too_expensive;	/* Edit scripts longer than this are too
+static DECL_TLS int too_expensive;	/* Edit scripts longer than this are too
 				   expensive to compute.  */
 
 #define SNAKE_LIMIT 20	/* Snakes bigger than this are considered `big'.  */

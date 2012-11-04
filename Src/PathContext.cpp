@@ -7,8 +7,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: PathContext.cpp 4929 2008-01-18 20:03:57Z kimmov $
 
-#include <cassert>
 #include "PathContext.h"
+#include <cassert>
 #include "paths.h"
 #include "Environment.h"
 
@@ -22,13 +22,13 @@ PathInfo::PathInfo(const PathInfo &pi)
 
 /**
  * @brief Get path.
- * @param [in] sbNormalized TRUE if path is wanted in normalized format.
+ * @param [in] sbNormalized true if path is wanted in normalized format.
  */
-String PathInfo::GetPath(BOOL bNormalized /*= TRUE*/) const
+String PathInfo::GetPath(bool bNormalized /*= true*/) const
 { 
 	if (!bNormalized)
 	{
-		if (!paths_EndsWithSlash(m_sPath.c_str()))
+		if (!paths_EndsWithSlash(m_sPath))
 			return m_sPath + _T("\\");
 		else
 			return m_sPath;
@@ -46,12 +46,12 @@ String& PathInfo::GetRef()
  * @brief Set path.
  * @param [in] sPath New path for item.
  */
-void PathInfo::SetPath(LPCTSTR sPath)
+void PathInfo::SetPath(const TCHAR *sPath)
 {
 	m_sPath = sPath;
 }
 
-void PathInfo::SetPath(String & sPath)
+void PathInfo::SetPath(const String & sPath)
 {
 	m_sPath = sPath;
 }
@@ -69,20 +69,20 @@ PathContext::PathContext()
 	m_nFiles = 0;
 }
 
-PathContext::PathContext(LPCTSTR sLeft)
+PathContext::PathContext(const String& sLeft)
 {
 	m_nFiles = 1;
 	m_path[0].SetPath(sLeft);
 }
 
-PathContext::PathContext(LPCTSTR sLeft, LPCTSTR sRight)
+PathContext::PathContext(const String& sLeft, const String& sRight)
 {
 	m_nFiles = 2;
 	m_path[0].SetPath(sLeft);
 	m_path[1].SetPath(sRight);
 }
 
-PathContext::PathContext(LPCTSTR sLeft, LPCTSTR sMiddle, LPCTSTR sRight)
+PathContext::PathContext(const String& sLeft, const String& sMiddle, const String& sRight)
 {
 	m_nFiles = 3;
 	m_path[0].SetPath(sLeft);
@@ -112,7 +112,7 @@ String& PathContext::GetElement(int nIndex)
 void PathContext::SetAt(int nIndex, const String& newElement)
 {
 	assert(nIndex < m_nFiles);
-	m_path[nIndex].SetPath(newElement.c_str());
+	m_path[nIndex].SetPath(newElement);
 }
 
 String PathContext::operator[](int nIndex) const
@@ -154,9 +154,9 @@ void PathContext::RemoveAll()
 
 /**
  * @brief Return left path.
- * @param [in] sNormalized If TRUE normalized path is returned.
+ * @param [in] sNormalized If true normalized path is returned.
  */
-String PathContext::GetLeft(BOOL bNormalized) const
+String PathContext::GetLeft(bool bNormalized) const
 {
 	if (m_nFiles == 0)
 		return _T("");
@@ -165,9 +165,9 @@ String PathContext::GetLeft(BOOL bNormalized) const
 
 /**
  * @brief Return right path.
- * @param [in] sNormalized If TRUE normalized path is returned.
+ * @param [in] sNormalized If true normalized path is returned.
  */
-String PathContext::GetRight(BOOL bNormalized) const
+String PathContext::GetRight(bool bNormalized) const
 {
 	if (m_nFiles < 2)
 		return _T("");
@@ -176,9 +176,9 @@ String PathContext::GetRight(BOOL bNormalized) const
 
 /**
  * @brief Return middle path.
- * @param [in] sNormalized If TRUE normalized path is returned.
+ * @param [in] sNormalized If true normalized path is returned.
  */
-String PathContext::GetMiddle(BOOL bNormalized) const
+String PathContext::GetMiddle(bool bNormalized) const
 {
 	if (m_nFiles < 3)
 		return _T("");
@@ -188,9 +188,9 @@ String PathContext::GetMiddle(BOOL bNormalized) const
 /**
  * @brief Return path
  * @param [in] index index of path to return
- * @param [in] sNormalized If TRUE normalized path is returned.
+ * @param [in] sNormalized If true normalized path is returned.
  */
-String PathContext::GetPath(int index, BOOL bNormalized) const
+String PathContext::GetPath(int index, bool bNormalized) const
 {
 	return m_path[index].GetPath(bNormalized);
 }
@@ -199,7 +199,7 @@ String PathContext::GetPath(int index, BOOL bNormalized) const
  * @brief Set left path.
  * @param [in] path New path for item.
  */
-void PathContext::SetLeft(LPCTSTR path, bool bNormalized)
+void PathContext::SetLeft(const String& path, bool bNormalized)
 {
 	if (m_nFiles == 0)
 		m_nFiles = 1;
@@ -212,7 +212,7 @@ void PathContext::SetLeft(LPCTSTR path, bool bNormalized)
  * @brief Set right path.
  * @param [in] path New path for item.
  */
-void PathContext::SetRight(LPCTSTR path, bool bNormalized)
+void PathContext::SetRight(const String& path, bool bNormalized)
 {
 	if (m_nFiles < 2)
 		m_nFiles = 2;
@@ -225,7 +225,7 @@ void PathContext::SetRight(LPCTSTR path, bool bNormalized)
  * @brief Set middle path.
  * @param [in] path New path for item.
  */
-void PathContext::SetMiddle(LPCTSTR path, bool bNormalized)
+void PathContext::SetMiddle(const String& path, bool bNormalized)
 {
 	if (m_nFiles < 3)
 	{
@@ -242,7 +242,7 @@ void PathContext::SetMiddle(LPCTSTR path, bool bNormalized)
  * @param [in] index index of path to set
  * @param [in] path New path for item.
  */
-void PathContext::SetPath(int index, LPCTSTR path, bool bNormalized)
+void PathContext::SetPath(int index, const String& path, bool bNormalized)
 {
 	if (index >= sizeof(m_path)/sizeof(m_path[0]))
 		return;

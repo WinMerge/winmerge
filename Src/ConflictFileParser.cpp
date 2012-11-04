@@ -27,7 +27,6 @@
 // Copyright (C) 2000 - Francis Irving
 // <francis@flourish.org> - January 2001
 
-#include <windows.h>
 #include "ConflictFileParser.h"
 #include "UnicodeString.h"
 #include "UniFile.h"
@@ -50,7 +49,7 @@ static const TCHAR MineBegin[] = _T("<<<<<<< ");
  * @param [in] conflictFileName Full path to file to check.
  * @return true if given file is a conflict file, false otherwise.
  */
-bool IsConflictFile(LPCTSTR conflictFileName)
+bool IsConflictFile(const String& conflictFileName)
 {
 	UniMemFile conflictFile;
 	bool startFound = false;
@@ -89,8 +88,8 @@ bool IsConflictFile(LPCTSTR conflictFileName)
  * @param [out] bNestedConflicts returned as true if nested conflicts found.
  * @return true if conflict file was successfully parsed, false otherwise.
  */
-bool ParseConflictFile(LPCTSTR conflictFileName,
-		LPCTSTR workingCopyFileName, LPCTSTR newRevisionFileName,
+bool ParseConflictFile(const String& conflictFileName,
+		const String& workingCopyFileName, const String& newRevisionFileName,
 		int iGuessEncodingType, bool &bNestedConflicts)
 {
 	UniMemFile conflictFile;
@@ -112,9 +111,7 @@ bool ParseConflictFile(LPCTSTR conflictFileName,
 	bool success3 = newRevision.Open(newRevisionFileName, _T("wb"));
 
 	// detect codepage of conflict file
-	FileTextEncoding encoding;
-	GuessCodepageEncoding(conflictFileName, &encoding,
-		iGuessEncodingType);
+	FileTextEncoding encoding = GuessCodepageEncoding(conflictFileName, iGuessEncodingType);
 
 	conflictFile.SetUnicoding(encoding.m_unicoding);
 	conflictFile.SetBom(encoding.m_bom);

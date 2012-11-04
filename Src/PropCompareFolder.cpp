@@ -126,7 +126,7 @@ BOOL PropCompareFolder::OnInitDialog()
  */
 void PropCompareFolder::OnDefaults()
 {
-	DWORD tmp;
+	unsigned tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_METHOD, tmp);
 	m_compareMethod = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);

@@ -91,28 +91,22 @@ void PropRegistry::ReadOptions()
 void PropRegistry::WriteOptions()
 {
 	CMergeApp *app = static_cast<CMergeApp*>(AfxGetApp());
-	CString sDefaultEditor = app->GetDefaultEditor();
+	String sDefaultEditor = app->GetDefaultEditor();
 
 	GetOptionsMgr()->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 
-	CString sExtEditor = m_strEditorPath;
-	sExtEditor.TrimLeft();
-	sExtEditor.TrimRight();
-	if (sExtEditor.IsEmpty())
+	String sExtEditor = string_trim_ws((LPCTSTR)m_strEditorPath);
+	if (sExtEditor.empty())
 		sExtEditor = sDefaultEditor;
 	GetOptionsMgr()->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
-	CString sFilterPath = m_strUserFilterPath;
-	sFilterPath.TrimLeft();
-	sFilterPath.TrimRight();
+	String sFilterPath = string_trim_ws((LPCTSTR)m_strUserFilterPath);
 	GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
 
 	bool useSysTemp = m_tempFolderType == 0;
 	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
 
-	CString tempFolder = m_tempFolder;
-	tempFolder.TrimLeft();
-	tempFolder.TrimRight();
+	String tempFolder = string_trim_ws((LPCTSTR)m_tempFolder);
 	GetOptionsMgr()->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 
@@ -130,29 +124,29 @@ BOOL PropRegistry::OnInitDialog()
 /// Open file browse dialog to locate editor
 void PropRegistry::OnBrowseEditor()
 {
-	CString path;
+	String path;
 	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
 	{
-		SetDlgItemText(IDC_EXT_EDITOR_PATH, path);
+		SetDlgItemText(IDC_EXT_EDITOR_PATH, path.c_str());
 	}
 }
 
 /// Open Folder selection dialog for user to select filter folder.
 void PropRegistry::OnBrowseFilterPath()
 {
-	CString path;
+	String path;
 	if (SelectFolder(path, m_strUserFilterPath, IDS_OPEN_TITLE, GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_FILTER_USER_PATH, path);
+		SetDlgItemText(IDC_FILTER_USER_PATH, path.c_str());
 	}
 }
 
 /// Select temporary files folder.
 void PropRegistry::OnBrowseTmpFolder()
 {
-	CString path;
+	String path;
 	if (SelectFolder(path, m_tempFolder, NULL, GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_TMPFOLDER_NAME, path);
+		SetDlgItemText(IDC_TMPFOLDER_NAME, path.c_str());
 	}
 }

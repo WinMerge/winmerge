@@ -294,23 +294,22 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Warn user in case file has been changed by someone else
 	if (IsFileChangedOnDisk(path))
 	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_ONDISK, path);
-		if (AfxMessageBox(msg, MB_ICONWARNING | MB_YESNO) == IDNO)
+		String msg = LangFormatString1(IDS_FILECHANGED_ONDISK, path);
+		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
 			return S_OK;
 	}
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
-	CString strPath = path;
+	String strPath = path;
 	BOOL bApplyToAll = FALSE;
 	if (GetMainFrame()->HandleReadonlySave(strPath, FALSE, bApplyToAll) == IDCANCEL)
 		return S_OK;
-	path = strPath;
+	path = strPath.c_str();
 	// Take a chance to create a backup
 	if (!GetMainFrame()->CreateBackup(FALSE, path))
 		return S_OK;
 	// Write data to an intermediate file
-	String tempPath = env_GetTempPath(0);
-	String sIntermediateFilename = env_GetTempFileName(tempPath.c_str(), _T("MRG_"), 0);
+	String tempPath = env_GetTempPath();
+	String sIntermediateFilename = env_GetTempFileName(tempPath, _T("MRG_"), 0);
 	if (sIntermediateFilename.empty())
 		return E_FAIL; //Nothing to do if even tempfile name fails
 	HANDLE h = CreateFile(sIntermediateFilename.c_str(), GENERIC_WRITE, FILE_SHARE_READ,
@@ -336,7 +335,7 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));
 	if (hr != S_OK)
 	{
-		LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+		LogErrorString(string_format(_T("DeleteFile(%s) failed: %s"),
 			sIntermediateFilename.c_str(), GetSysError(hr).c_str()));
 	}
 	return S_OK;

@@ -37,7 +37,6 @@
 #include "Environment.h"
 #include "DiffContext.h"	// FILE_SAME
 #include "MovedLines.h"
-#include "coretools.h"
 #include "MergeEditView.h"
 #include "ChildFrm.h"
 #include "DirDoc.h"
@@ -61,6 +60,8 @@
 #include "SelectUnpackerDlg.h"
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
+#include "TFile.h"
+#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -363,7 +364,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath, bool bForce
 	{
 	// we subvert the buffer's memory of the original file encoding
 		buf.setUnicoding(ucr::UCS2LE);  // write as UCS-2LE (for preprocessing)
-		buf.setCodepage(1200); // should not matter
+		buf.setCodepage(CP_UCS2LE); // should not matter
 		buf.setHasBom(true);
 	}
 
@@ -441,9 +442,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	{
 		if (FileChanged[nBuffer] == FileRemoved)
 		{
-			CString msg;
-			LangFormatString1(msg, IDS_FILE_DISAPPEARED, m_filePaths[nBuffer].c_str());
-			AfxMessageBox(msg, MB_ICONWARNING);
+			String msg = LangFormatString1(IDS_FILE_DISAPPEARED, m_filePaths[nBuffer].c_str());
+			AfxMessageBox(msg.c_str(), MB_ICONWARNING);
 			bool bSaveResult = false;
 			bool ok = DoSaveAs(m_filePaths[nBuffer].c_str(), bSaveResult, nBuffer);
 			if (!ok || !bSaveResult)
@@ -470,7 +470,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	
 	// Save text buffer to file
 	bool bForceUTF8 = diffOptions.bIgnoreCase;
-	String tempPath = env_GetTempPath(NULL);
+	String tempPath = env_GetTempPath();
 	IF_IS_TRUE_ALL (m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage(), nBuffer, m_nBuffers) {}
 	else
 		bForceUTF8 = true;
@@ -493,9 +493,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// Set paths for diffing and run diff
 	m_diffWrapper.EnablePlugins(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 	if (m_nBuffers < 3)
-		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath().c_str(), m_tempFiles[1].GetPath().c_str()), true);
+		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath()), true);
 	else
-		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath().c_str(), m_tempFiles[1].GetPath().c_str(), m_tempFiles[2].GetPath().c_str()), true);
+		m_diffWrapper.SetPaths(PathContext(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), m_tempFiles[2].GetPath()), true);
 	m_diffWrapper.SetCompareFiles(m_filePaths);
 	m_diffWrapper.SetCodepage(bForceUTF8 ? CP_UTF8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
@@ -612,9 +612,8 @@ void CMergeDoc::CheckFileChanged(void)
 	{
 		if (FileChange[nBuffer] == FileChanged)
 		{
-			CString msg;
-			LangFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths[nBuffer].c_str());
-			if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDYES)
+			String msg = LangFormatString1(IDS_FILECHANGED_RESCAN, m_filePaths[nBuffer].c_str());
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING) == IDYES)
 			{
 				OnFileReload();
 			}
@@ -1091,11 +1090,12 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
  * @sa CMergeDoc::DoSaveAs()
  * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
-bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
+bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 	int nBuffer, PackingInfo * pInfoTempUnpacker)
 {
-	CString s;
-	CString strSavePath; // New path for next saving try
+	String s;
+	String str;
+	String strSavePath; // New path for next saving try
 	UINT titleid = 0;
 	bool result = true;
 	int answer = IDOK; // Set default we use for scratchpads
@@ -1121,26 +1121,26 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 	{
 		if (m_nBuffers == 3)
 		{
-			LangFormatString2(s, IDS_FILEPACK_FAILED_LEFT + nBuffer,
-				strPath, pInfoTempUnpacker->pluginName.c_str());
+			str = LangFormatString2(IDS_FILEPACK_FAILED_LEFT + nBuffer,
+				strPath.c_str(), pInfoTempUnpacker->pluginName.c_str());
 		}
 		else
 		{
-			LangFormatString2(s, nBuffer == 0 ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT,
-				strPath, pInfoTempUnpacker->pluginName.c_str());
+			str = LangFormatString2(nBuffer == 0 ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT,
+				strPath.c_str(), pInfoTempUnpacker->pluginName.c_str());
 		}
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
 	}
 	else
 	{
-		LangFormatString2(s, IDS_FILESAVE_FAILED, strPath, sError.c_str());
+		str = LangFormatString2(IDS_FILESAVE_FAILED, strPath.c_str(), sError.c_str());
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
 	// So don't ask about saving in that case.
 	if (nSaveResult != SAVE_NO_FILENAME)
-		answer = AfxMessageBox(s, MB_OKCANCEL | MB_ICONWARNING);
+		answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 
 	switch (answer)
 	{
@@ -1152,7 +1152,7 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 		else
 			titleid = IDS_SAVE_MIDDLE_AS;
 
-		if (SelectFile(parent, s, strPath, titleid, NULL, false))
+		if (SelectFile(parent, s, strPath.c_str(), titleid, NULL, false))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
 			strSavePath = s;
@@ -1162,7 +1162,7 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 			if (nSaveResult == SAVE_DONE)
 			{
 				// We are saving scratchpad (unnamed file)
-				if (strPath.IsEmpty())
+				if (strPath.empty())
 				{
 					m_nBufferType[nBuffer] = BUFFER_UNNAMED_SAVED;
 					m_strDesc[nBuffer].erase();
@@ -1209,7 +1209,7 @@ bool CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 {
 	DiffFileInfo fileInfo;
-	CString strSavePath(szPath);
+	String strSavePath(szPath);
 	FileChange fileChanged;
 	BOOL bApplyToAll = false;	
 	int nRetVal = -1;
@@ -1217,9 +1217,8 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	fileChanged = IsFileChangedOnDisk(szPath, fileInfo, true, nBuffer);
 	if (fileChanged == FileChanged)
 	{
-		CString msg;
-		LangFormatString1(msg, IDS_FILECHANGED_ONDISK, szPath);
-		if (AfxMessageBox(msg, MB_ICONWARNING | MB_YESNO) == IDNO)
+		String msg = LangFormatString1(IDS_FILECHANGED_ONDISK, szPath);
+		if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
 		{
 			bSaveSuccess = true;
 			return true;
@@ -1236,15 +1235,15 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	// Check third arg possibly given from command-line
 	if (!GetMainFrame()->m_strSaveAsPath.IsEmpty())
 	{
-		if (paths_DoesPathExist(GetMainFrame()->m_strSaveAsPath) == IS_EXISTING_DIR)
+		if (paths_DoesPathExist((const TCHAR *)GetMainFrame()->m_strSaveAsPath) == IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
 			String sname;
-			SplitFilename(szPath, 0, &sname, 0);
+			paths_SplitFilename(szPath, 0, &sname, 0);
 			strSavePath = GetMainFrame()->m_strSaveAsPath;
 			if (GetMainFrame()->m_strSaveAsPath.Right(1) != _T('\\'))
 				strSavePath += _T('\\');
-			strSavePath += sname.c_str();
+			strSavePath += sname;
 		}
 		else
 			strSavePath = GetMainFrame()->m_strSaveAsPath;	
@@ -1268,7 +1267,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 
 	// Assume empty filename means Scratchpad (unnamed file)
 	// Todo: This is not needed? - buffer type check should be enough
-	if (strSavePath.IsEmpty())
+	if (strSavePath.empty())
 		nSaveErrorCode = SAVE_NO_FILENAME;
 
 	// Handle unnamed buffers
@@ -1294,13 +1293,20 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 		// Preserve file times if user wants to
 		if (GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES))
 		{
-			fileInfo.SetFile((LPCTSTR)strSavePath);
-			files_UpdateFileTime(fileInfo.GetFile(), fileInfo.mtime);
+			fileInfo.SetFile(strSavePath);
+			try
+			{
+				TFile file(strSavePath);
+				file.setLastModified(fileInfo.mtime);
+			}
+			catch (...)
+			{
+			}
 		}
 
 		m_ptBuf[nBuffer]->SetModified(false);
-		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
+		m_pSaveFileInfo[nBuffer]->Update(strSavePath.c_str());
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
 		m_filePaths[nBuffer] = strSavePath;
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
@@ -1333,7 +1339,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
  */
 bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 {
-	CString strSavePath(szPath);
+	String strSavePath(szPath);
 
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -1361,8 +1367,8 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	// Saving succeeded with given/selected filename
 	if (nSaveErrorCode == SAVE_DONE)
 	{
-		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths[nBuffer].c_str());
+		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		m_filePaths[nBuffer] = strSavePath;
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
@@ -2248,7 +2254,7 @@ bool CMergeDoc::CloseNow()
  **/
 int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding)
 {
-	CString sError;
+	String sError;
 	DWORD retVal = FileLoadResult::FRESULT_ERROR;
 
 	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer].get();
@@ -2278,15 +2284,15 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 	{
 		// Error from Unifile/system
 		if (!sOpenError.IsEmpty())
-			LangFormatString2(sError, IDS_ERROR_FILEOPEN, sFileName, sOpenError);
+			sError = LangFormatString2(IDS_ERROR_FILEOPEN, sFileName, sOpenError);
 		else
-			LangFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
-		AfxMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
+			sError = LangFormatString1(IDS_ERROR_FILE_NOT_FOUND, sFileName);
+		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	else if (FileLoadResult::IsErrorUnpack(retVal))
 	{
-		LangFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
-		AfxMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
+		sError = LangFormatString1(IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
+		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	return retVal;
 }
@@ -2317,7 +2323,7 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
 	if (fileinfo.encoding.m_unicoding == ucr::NONE
 		&& !IsValidCodepageForMergeEditor(fileinfo.encoding.m_codepage))
 	{
-		int cp = getDefaultCodepage();
+		int cp = ucr::getDefaultCodepage();
 		if (!IsValidCodepageForMergeEditor(cp))
 			cp = CP_ACP;
 		fileinfo.encoding.SetCodepage(cp);
@@ -2515,7 +2521,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	PrediffingInfo * infoPrediffer = 0;
 	if (bFiltersEnabled)
 	{
-		m_pDirDoc->FetchPluginInfos(m_strBothFilenames.c_str(), &infoUnpacker, &infoPrediffer);
+		m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
@@ -2743,7 +2749,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	PrediffingInfo * infoPrediffer = 0;
 	if (bFiltersEnabled)
 	{
-		m_pDirDoc->FetchPluginInfos(m_strBothFilenames.c_str(), &infoUnpacker, &infoPrediffer);
+		m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
@@ -2965,12 +2971,12 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 			{
 				String file;
 				String ext;
-				SplitFilename(m_filePaths[nBuffer].c_str(), NULL, &file, &ext);
-				sFileName[nBuffer] += file.c_str();
+				paths_SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
+				sFileName[nBuffer] += file;
 				if (!ext.empty())
 				{
 					sFileName[nBuffer] += _T(".");
-					sFileName[nBuffer] += ext.c_str();
+					sFileName[nBuffer] += ext;
 				}
 			}
 		}
@@ -3136,7 +3142,7 @@ void CMergeDoc::OnFileReload()
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
 		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
-		fileloc[pane].setPath(m_filePaths[pane].c_str());
+		fileloc[pane].setPath(m_filePaths[pane]);
 		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
@@ -3203,19 +3209,19 @@ void CMergeDoc::OnOK()
 String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
 {
 	String sExt;
-	SplitFilename(sFileName, NULL, NULL, &sExt);
+	paths_SplitFilename(sFileName, NULL, NULL, &sExt);
 
 	if (GetMainFrame()->m_bClearCaseTool)
 	{
 		// If no extension found in real file name.
 		if (sExt.empty())
 		{
-			SplitViewName(sFileName, NULL, NULL, &sExt);
+			paths_SplitViewName(sFileName, NULL, NULL, &sExt);
 		}
 		// If no extension found in repository file name.
 		if (true == sExt.empty())
 		{
-			SplitViewName(sDescription, NULL, NULL, &sExt);
+			paths_SplitViewName(sDescription, NULL, NULL, &sExt);
 		}
 	}
 	return sExt;
@@ -3245,7 +3251,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	file.SetCodepage(CP_UTF8);
 
 	String header = 
-		Fmt(
+		string_format(
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n")
@@ -3291,10 +3297,10 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		int nLineNumberColumnWidth = m_pView[nBuffer]->GetViewLineNumbers() ? 1 : 0;
-		String data = Fmt(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
+		String data = string_format(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
 			nLineNumberColumnWidth);
 		file.WriteString(data);
-		data = Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
+		data = string_format(_T("<th class=\"title\" style=\"width:%f%%\">"),
 			(double)(100 - nLineNumberColumnWidth * m_nBuffers) / m_nBuffers);
 		file.WriteString(data);
 		file.WriteString(paths[nBuffer].c_str());
@@ -3328,7 +3334,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
 				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
 				{
-					String data = Fmt(_T("<td class=\"ln\">%d</td>"),
+					String data = string_format(_T("<td class=\"ln\">%d</td>"),
 							m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
 					file.WriteString(data);
 				}
@@ -3383,12 +3389,13 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
  */
 void CMergeDoc::OnToolsGenerateReport()
 {
-	CString s, folder;
+	String s;
+	CString folder;
 
 	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
 		return;
 
-	GenerateReport(s);
+	GenerateReport(s.c_str());
 
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }

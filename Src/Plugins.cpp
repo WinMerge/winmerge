@@ -26,43 +26,46 @@
 // ID line follows -- this is updated by SVN
 // $Id: Plugins.cpp 7052 2009-12-22 17:45:22Z kimmov $
 
-#include "StdAfx.h"
-#include <afxmt.h>
-#include <stdarg.h>
+#define POCO_NO_UNWINDOWS 1
 #include <vector>
-#include <Poco/Exception.h>
-#include <Poco/UnicodeConverter.h>
+#include <list>
+#include <algorithm>
+#include <cstdarg>
+#include <cassert>
+#include <Poco/Mutex.h>
+#include <Poco/ScopedLock.h>
 #include <Poco/RegularExpression.h>
+#include <windows.h>
+#include "Plugins.h"
 #include "LogFile.h"
-#include "Merge.h"
+#include "MergeApp.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"
-#include "Plugins.h"
 #include "lwdisp.h"
-#include "coretools.h"
 #include "resource.h"
 #include "Exceptions.h"
 #include "RegKey.h"
 #include "paths.h"
+#include "Environment.h"
 #include "FileFilter.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
 using std::vector;
-using Poco::Exception;
 using Poco::RegularExpression;
-using Poco::UnicodeConverter;
+using Poco::Mutex;
+using Poco::ScopedLock;
 
-static CStringArray theScriptletList;
+static vector<String> theScriptletList;
 /// Need to lock the *.sct so the user can't delete them
-static CPtrArray theScriptletHandleList;
+static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
-static CSemaphore scriptletsSem;
+static Mutex scriptletsSem;
 
+template<class T> struct AutoReleaser
+{
+	AutoReleaser(T *ptr) : p(ptr) {}
+	~AutoReleaser() { if (p) p->Release(); }
+	T *p;
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -70,25 +73,25 @@ static CSemaphore scriptletsSem;
  *
  * .sct plugins require this optional component
  */
-BOOL IsWindowsScriptThere()
+bool IsWindowsScriptThere()
 {
 	CRegKeyEx keyExtension;
 	if (!keyExtension.QueryRegMachine(_T("SOFTWARE\\Classes\\.sct")))
-		return FALSE;
+		return false;
 
-	CString content = keyExtension.ReadString(_T(""), _T("")).c_str();
+	String content = keyExtension.ReadString(_T(""), _T("")).c_str();
 	keyExtension.Close();
-	if (content.CompareNoCase(_T("scriptletfile")) != 0)
-		return FALSE;
+	if (string_compare_nocase(content, _T("scriptletfile")) != 0)
+		return false;
 
 	CRegKeyEx keyFile;
 	if (!keyFile.QueryRegMachine(_T("SOFTWARE\\Classes\\scriptletfile\\AutoRegister")))
-		return FALSE;
+		return false;
 
-	CString filename = keyFile.ReadString(_T(""), _T("")).c_str();
+	String filename = keyFile.ReadString(_T(""), _T("")).c_str();
 	keyFile.Close();
-	if (filename.IsEmpty())
-		return FALSE;
+	if (filename.empty())
+		return false;
 
 	return (paths_DoesPathExist(filename) == IS_EXISTING_FILE);
 }
@@ -97,14 +100,14 @@ BOOL IsWindowsScriptThere()
 // scriptlet/activeX support for function names
 
 // list the function IDs and names in a script or activeX dll
-int GetFunctionsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int>& IdArray, INVOKEKIND wantedKind)
+int GetFunctionsFromScript(IDispatch *piDispatch, vector<String>& namesArray, vector<int>& IdArray, INVOKEKIND wantedKind)
 {
 	HRESULT hr;
 	UINT iValidFunc = 0;
 	if (piDispatch)
 	{
 		ITypeInfo *piTypeInfo=0;
-		unsigned int  iTInfo = 0; // 0 for type information of IDispatch itself
+		unsigned  iTInfo = 0; // 0 for type information of IDispatch itself
 		LCID  lcid=0; // locale for localized method names (ignore if no localized names)
 		if SUCCEEDED(hr = piDispatch->GetTypeInfo(iTInfo, lcid, &piTypeInfo))
 		{
@@ -133,9 +136,10 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, v
 								&bstrName, 1, &cNames))
 							{
 								IdArray[iValidFunc] = pFuncDesc->memid;
-								namesArray[iValidFunc].Attach(bstrName);
+								namesArray[iValidFunc] = ucr::toTString(bstrName);
 								iValidFunc ++;
 							}
+							SysFreeString(bstrName);
 						}
 						piTypeInfo->ReleaseFuncDesc(pFuncDesc);
 					}
@@ -148,48 +152,50 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, v
 	return iValidFunc;
 }
 
-int GetMethodsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int> &IdArray)
+int GetMethodsFromScript(IDispatch *piDispatch, vector<String>& namesArray, vector<int> &IdArray)
 {
 	return GetFunctionsFromScript(piDispatch, namesArray, IdArray, INVOKE_FUNC);
 }
-int GetPropertyGetsFromScript(LPDISPATCH piDispatch, vector<_bstr_t>& namesArray, vector<int> &IdArray)
+int GetPropertyGetsFromScript(IDispatch *piDispatch, vector<String>& namesArray, vector<int> &IdArray)
 {
 	return GetFunctionsFromScript(piDispatch, namesArray, IdArray, INVOKE_PROPERTYGET);
 }
 
 
 // search a function name in a scriptlet or activeX dll
-BOOL SearchScriptForMethodName(LPDISPATCH piDispatch, WCHAR * functionName)
+bool SearchScriptForMethodName(LPDISPATCH piDispatch, const wchar_t *functionName)
 {
-	BOOL bFound = FALSE;
+	bool bFound = false;
 
-	vector<_bstr_t> namesArray;
+	vector<String> namesArray;
 	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 
+	String tfuncname = ucr::toTString(functionName);
 	int iFnc;
 	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
-		if (wcscmp(namesArray[iFnc], functionName) == 0)
-			bFound = TRUE;
+		if (namesArray[iFnc] == tfuncname)
+			bFound = true;
 	}
 	return bFound;
 }
 
 // search a property name (with get interface) in a scriptlet or activeX dll
-BOOL SearchScriptForDefinedProperties(LPDISPATCH piDispatch, WCHAR * functionName)
+bool SearchScriptForDefinedProperties(IDispatch *piDispatch, const wchar_t *functionName)
 {
-	BOOL bFound = FALSE;
+	bool bFound = false;
 
-	vector<_bstr_t> namesArray;
+	vector<String> namesArray;
 	vector<int> IdArray;
 	int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
 
+	String tfuncname = ucr::toTString(functionName);
 	int iFnc;
 	for (iFnc = 0 ; iFnc < nFnc ; iFnc++)
 	{
-		if (wcscmp(namesArray[iFnc], functionName) == 0)
-			bFound = TRUE;
+		if (namesArray[iFnc] == tfuncname)
+			bFound = true;
 	}
 	return bFound;
 }
@@ -197,7 +203,7 @@ BOOL SearchScriptForDefinedProperties(LPDISPATCH piDispatch, WCHAR * functionNam
 
 int CountMethodsInScript(LPDISPATCH piDispatch)
 {
-	vector<_bstr_t> namesArray;
+	vector<String> namesArray;
 	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 
@@ -211,7 +217,7 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
 {
 	int fncID;
 
-	vector<_bstr_t> namesArray;
+	vector<String> namesArray;
 	vector<int> IdArray;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 
@@ -236,13 +242,11 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
  *
  * @return Returns an array of LPSTR
  */
-static void GetScriptletsAt(LPCTSTR szSearchPath, LPCTSTR extension, CStringArray& scriptlets )
+static void GetScriptletsAt(const TCHAR *szSearchPath, const TCHAR *extension, vector<String>& scriptlets )
 {
 	WIN32_FIND_DATA ffi;
-	CString strFileSpec;
-	
-	strFileSpec.Format(_T("%s*%s"), szSearchPath, extension);
-	HANDLE hff = FindFirstFile(strFileSpec, &ffi);
+	String strFileSpec = string_format(_T("%s*%s"), szSearchPath, extension);
+	HANDLE hff = FindFirstFile(strFileSpec.c_str(), &ffi);
 	
 	if (  hff != INVALID_HANDLE_VALUE )
 	{
@@ -250,8 +254,8 @@ static void GetScriptletsAt(LPCTSTR szSearchPath, LPCTSTR extension, CStringArra
 		{
 			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-				strFileSpec.Format(_T("%s%s"), szSearchPath, ffi.cFileName);
-				scriptlets.Add(strFileSpec);  
+				strFileSpec = string_format(_T("%s%s"), szSearchPath, ffi.cFileName);
+				scriptlets.push_back(strFileSpec);  
 			}
 		}
 		while (FindNextFile(hff, &ffi));
@@ -263,33 +267,30 @@ void PluginInfo::LoadFilterString()
 {
 	m_filters = new vector<FileFilterElement*>;
 
-	CString sLine(m_filtersText.c_str());
-	CString sPiece;
+	String sLine(m_filtersText);
+	String sPiece;
 
 	while(1)
 	{
-		sPiece = sLine.Mid(sLine.ReverseFind(';')+1);
-		sLine = sLine.Left(sLine.ReverseFind(';'));
-		if (sPiece.IsEmpty())
+		String::size_type pos = sLine.rfind(';');
+		sPiece = sLine.substr(pos+1);
+		if (pos == String::npos)
+			pos = 0;
+		sLine = sLine.substr(0, pos);
+		if (sPiece.empty())
 			break;
 
-		sPiece.TrimLeft();
-		sPiece.MakeUpper();
+		sPiece = string_makeupper(string_trim_ws_begin(sPiece));
 
 		int re_opts = 0;
-		std::string regexString;
-#ifdef UNICODE
-		UnicodeConverter::toUTF8(sPiece, regexString);
+		std::string regexString = ucr::toUTF8(sPiece);
 		re_opts |= RegularExpression::RE_UTF8;
-#else
-		regexString = sPiece;
-#endif
 		try
 		{
 			FileFilterElement *elem = new FileFilterElement(regexString, re_opts);
 			m_filters->push_back(elem);
 		}
-		catch (Exception *)
+		catch (...)
 		{
 			// TODO:
 		}
@@ -297,40 +298,42 @@ void PluginInfo::LoadFilterString()
 }
 
 
-BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
+bool PluginInfo::TestAgainstRegList(const String& szTest)
 {
-	if (m_filters == NULL || szTest == NULL || szTest[0] == 0)
-		return FALSE;
+	if (m_filters == NULL || szTest.empty())
+		return false;
 
-	CString sLine = szTest;
-	CString sPiece;
+	String sLine = szTest;
+	String sPiece;
 
-	while(!sLine.IsEmpty())
+	while(!sLine.empty())
 	{
-		sPiece = sLine.Mid(sLine.ReverseFind('|')+1);
-		sLine = sLine.Left(sLine.ReverseFind('|'));
-		if (sPiece.IsEmpty())
+		String::size_type pos = sLine.rfind('|');
+		sPiece = sLine.substr(pos+1);
+		if (pos == String::npos)
+			pos = 0;
+		sLine = sLine.substr(0, pos);
+		if (sPiece.empty())
 			continue;
-		sPiece.TrimLeft();
-		sPiece.MakeUpper();
+		sPiece = string_makeupper(string_trim_ws_begin(sPiece));
 
 		if (::TestAgainstRegList(m_filters, sPiece))
-			return TRUE;
+			return true;
 	};
 
-	return FALSE;
+	return false;
 }
 
 /**
  * @brief Log technical explanation, in English, of script error
  */
 static void
-ScriptletError(const CString & scriptletFilepath, LPCWSTR transformationEvent, LPCTSTR szError)
+ScriptletError(const String & scriptletFilepath, const wchar_t *transformationEvent, const TCHAR *szError)
 {
-	CString msg = (CString)_T("Plugin scriptlet error <")
+	String msg = _T("Plugin scriptlet error <")
 		+ scriptletFilepath
 		+ _T("> [")
-		+ transformationEvent
+		+ ucr::toTString(transformationEvent)
 		+ _T("] ")
 		+ szError;
     LogErrorString(msg);
@@ -341,17 +344,17 @@ ScriptletError(const CString & scriptletFilepath, LPCWSTR transformationEvent, L
  */
 struct ScriptInfo
 {
-	ScriptInfo(const CString & scriptletFilepath, LPCWSTR transformationEvent)
+	ScriptInfo(const String & scriptletFilepath, const wchar_t *transformationEvent)
 		: m_scriptletFilepath(scriptletFilepath)
 		, m_transformationEvent(transformationEvent)
 	{
 	}
-	void Log(LPCTSTR szError)
+	void Log(const TCHAR *szError)
 	{
 		ScriptletError(m_scriptletFilepath, m_transformationEvent, szError);
 	}
-	const CString & m_scriptletFilepath;
-	LPCWSTR m_transformationEvent;
+	const String & m_scriptletFilepath;
+	const wchar_t *m_transformationEvent;
 };
 
 /**
@@ -359,15 +362,13 @@ struct ScriptInfo
  *
  * @return 1 if plugin handles this event, 0 if not, negatives for errors
  */
-static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, const wchar_t *transformationEvent)
 {
-	USES_CONVERSION;
-
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath, transformationEvent);
 
 	// Search for the class "WinMergeScript"
-	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath, L"WinMergeScript");
+	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
 	if (lpDispatch == 0)
 	{
 		scinfo.Log(_T("WinMergeScript entry point not found"));
@@ -375,7 +376,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	}
 
 	// Ensure that interface is released if any bad exit or exception
-	COleDispatchDriver drv(lpDispatch);
+	AutoReleaser<IDispatch> drv(lpDispatch);
 
 	// Is this plugin for this transformationEvent ?
 	VARIANT ret;
@@ -401,12 +402,10 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	// plugins PREDIFF or PACK_UNPACK : functions names are mandatory
 	// Check that the plugin offers the requested functions
 	// set the mode for the events which uses it
-	BOOL bUnicodeMode = SCRIPT_A | SCRIPT_W;
-	BOOL bFound = TRUE;
+	bool bFound = true;
 	if (wcscmp(transformationEvent, L"BUFFER_PREDIFF") == 0)
 	{
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
-		bUnicodeMode &= ~SCRIPT_A;
 	}
 	else if (wcscmp(transformationEvent, L"FILE_PREDIFF") == 0)
 	{
@@ -416,15 +415,13 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	{
 		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PackBufferA");
-		bUnicodeMode &= ~SCRIPT_W;
 	}
 	else if (wcscmp(transformationEvent, L"FILE_PACK_UNPACK") == 0)
 	{
 		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
-		bUnicodeMode &= ~SCRIPT_W;
 	}
-	if (bFound == FALSE)
+	if (!bFound)
 	{
 		// error (Plugin doesn't support the method as it claimed)
 		scinfo.Log(_T("Plugin doesn't support the method as it claimed"));
@@ -451,12 +448,12 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			scinfo.Log(_T("Plugin had PluginDescription property, but error getting its value"));
 			return -60; // error (Plugin had PluginDescription property, but error getting its value)
 		}
-		plugin.m_description = OLE2T(ret.bstrVal);
+		plugin.m_description = ucr::toTString(ret.bstrVal);
 	}
 	else
 	{
 		// no description, use filename
-		plugin.m_description = scriptletFilepath.Mid(scriptletFilepath.ReverseFind('\\') + 1);
+		plugin.m_description = paths_FindFileName(scriptletFilepath);
 	}
 	VariantClear(&ret);
 
@@ -470,12 +467,12 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but error getting its value"));
 			return -70; // error (Plugin had PluginFileFilters property, but error getting its value)
 		}
-		plugin.m_filtersText = OLE2T(ret.bstrVal);
+		plugin.m_filtersText = ucr::toTString(ret.bstrVal);
 		hasPluginFileFilters = true;
 	}
 	else
 	{
-		plugin.m_bAutomatic = FALSE;
+		plugin.m_bAutomatic = false;
 		plugin.m_filtersText = _T(".");
 	}
 	VariantClear(&ret);
@@ -489,7 +486,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			scinfo.Log(_T("Plugin had PluginIsAutomatic property, but error getting its value"));
 			return -80; // error (Plugin had PluginIsAutomatic property, but error getting its value)
 		}
-		plugin.m_bAutomatic = ret.boolVal;
+		plugin.m_bAutomatic = !!ret.boolVal;
 	}
 	else
 	{
@@ -499,20 +496,18 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			// PluginIsAutomatic property is mandatory for Plugins with PluginFileFilters property
 			return -90;
 		}
-		// default to FALSE when Plugin doesn't have property
-		plugin.m_bAutomatic = FALSE;
+		// default to false when Plugin doesn't have property
+		plugin.m_bAutomatic = false;
 	}
 	VariantClear(&ret);
 
 	plugin.LoadFilterString();
 
 	// keep the filename
-	plugin.m_name	= scriptletFilepath.Mid(scriptletFilepath.ReverseFind('\\')+1);
-
-	plugin.m_bUnicodeMode = bUnicodeMode;
+	plugin.m_name = paths_FindFileName(scriptletFilepath);
 
 	// Clear the autorelease holder
-	drv.m_lpDispatch = NULL;
+	drv.p = NULL;
 
 	plugin.m_lpDispatch = lpDispatch;
 
@@ -521,13 +516,10 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	return 1;
 }
 
-static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR transformationEvent)
+static void ReportPluginLoadFailure(const String & scriptletFilepath, const wchar_t *transformationEvent)
 {
-	USES_CONVERSION;
-	CString sEvent = OLE2CT(transformationEvent);
-	CString msg;
-	msg.Format(_T("Exception loading plugin for event: %s\r\n%s"), sEvent, scriptletFilepath);
-	AfxMessageBox(msg);
+	String sEvent = ucr::toTString(transformationEvent);
+	AppErrorMessageBox(string_format(_T("Exception loading plugin for event: %s\r\n%s"), sEvent.c_str(), scriptletFilepath.c_str()));
 }
 
 /**
@@ -535,11 +527,15 @@ static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR t
  *
  * @return same as LoadPlugin (1=has event, 0=doesn't have event, errors are negative)
  */
-static int LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+static int LoadPluginWrapper(PluginInfo & plugin, const String & scriptletFilepath, const wchar_t *transformationEvent)
 {
-	__try {
+	SE_Handler seh;
+	try
+	{
 		return LoadPlugin(plugin, scriptletFilepath, transformationEvent);
-	} __except(EXCEPTION_EXECUTE_HANDLER) {
+	}
+	catch (SE_Exception&)
+	{
 		ReportPluginLoadFailure(scriptletFilepath, transformationEvent);
 	}
 	return false;
@@ -551,12 +547,12 @@ static int LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilep
  * Computes list only the first time, and caches it.
  * Lock the plugins *.sct (.ocx and .dll are locked when the interface is created)
  */
-static CStringArray & LoadTheScriptletList()
+static vector<String>& LoadTheScriptletList()
 {
 	if (!scriptletsLoaded)
 	{
-		CSingleLock lock(&scriptletsSem);
-		String path = GetModulePath() + _T("\\MergePlugins\\");
+		ScopedLock<Mutex> lock(scriptletsSem);
+		String path = env_GetProgPath() + _T("\\MergePlugins\\");
 
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path.c_str(), _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
@@ -568,26 +564,27 @@ static CStringArray & LoadTheScriptletList()
 
 		// lock the *.sct to avoid them being deleted/moved away
 		int i;
-		for (i = 0 ; i < theScriptletList.GetSize() ; i++)
+		for (i = 0 ; i < theScriptletList.size() ; i++)
 		{
-			if (theScriptletList.GetAt(i).Right(4).CompareNoCase(_T(".sct")) != 0)
+			String scriptlet = theScriptletList.at(i);
+			if (scriptlet.length() > 4 && string_compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0)
 			{
 				// don't need to lock this file
-				theScriptletHandleList.Add((void*) 0);
+				theScriptletHandleList.push_back(NULL);
 				continue;
 			}
 
 			HANDLE hFile;
-			hFile=CreateFile(theScriptletList.GetAt(i), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
-				NULL, NULL);
+			hFile=CreateFile(scriptlet.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
+				0, NULL);
 			if (hFile == INVALID_HANDLE_VALUE)
 			{
-				theScriptletList.RemoveAt(i);
+				theScriptletList.erase(theScriptletList.begin() + i);
 				i --;
 			}
 			else
 			{
-				theScriptletHandleList.Add((void*) hFile);
+				theScriptletHandleList.push_back(hFile);
 			}
 		}
 	}
@@ -603,15 +600,15 @@ static void UnloadTheScriptletList()
 	if (scriptletsLoaded)
 	{
 		int i;
-		for (i = 0 ; i < theScriptletHandleList.GetSize() ; i++)
+		for (i = 0 ; i < theScriptletHandleList.size() ; i++)
 		{
-			HANDLE hFile = theScriptletHandleList.GetAt(i);
+			HANDLE hFile = theScriptletHandleList.at(i);
 			if (hFile != 0)
 				CloseHandle(hFile);
 		}
 
-		theScriptletHandleList.RemoveAll();
-		theScriptletList.RemoveAll();
+		theScriptletHandleList.clear();
+		theScriptletList.clear();
 		scriptletsLoaded = false;
 	}
 }
@@ -619,18 +616,18 @@ static void UnloadTheScriptletList()
 /**
  * @brief Remove a candidate plugin from the cache
  */
-static void RemoveScriptletCandidate(const CString &scriptletFilepath)
+static void RemoveScriptletCandidate(const String &scriptletFilepath)
 {
-	for (int i=0; i<theScriptletList.GetSize(); ++i)
+	for (int i=0; i<theScriptletList.size(); ++i)
 	{
 		if (scriptletFilepath == theScriptletList[i])
 		{
-			HANDLE hFile = (HANDLE) theScriptletHandleList.GetAt(i);
+			HANDLE hFile = theScriptletHandleList.at(i);
 			if (hFile != 0)
 				CloseHandle(hFile);
 
-			theScriptletHandleList.RemoveAt(i);
-			theScriptletList.RemoveAt(i);
+			theScriptletHandleList.erase(theScriptletHandleList.begin() + i);
+			theScriptletList.erase(theScriptletList.begin() + i);
 			return;
 		}
 	}
@@ -641,38 +638,39 @@ static void RemoveScriptletCandidate(const CString &scriptletFilepath)
  *
  * @return Returns an array of valid LPDISPATCH
  */
-static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getScriptletsToo ) 
+static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent, bool getScriptletsToo ) 
 {
-	CStringArray & scriptlets = LoadTheScriptletList();
+	vector<String>& scriptlets = LoadTheScriptletList();
 
 	PluginArray * pPlugins = new PluginArray;
 
 	int i;
-	CStringList badScriptlets;
-	for (i = 0 ; i < scriptlets.GetSize() ; i++)
+	std::list<String> badScriptlets;
+	for (i = 0 ; i < scriptlets.size() ; i++)
 	{
 		// Note all the info about the plugin
 		PluginInfo plugin;
 
-		CString scriptletFilepath = scriptlets.GetAt(i);
+		String scriptletFilepath = scriptlets.at(i);
 		int rtn = LoadPluginWrapper(plugin, scriptletFilepath, transformationEvent);
 		if (rtn == 1)
 		{
 			// Plugin has this event
-			pPlugins->Add(plugin);
+			pPlugins->push_back(plugin);
 		}
 		else if (rtn < 0)
 		{
 			// Plugin is bad
-			badScriptlets.AddTail(scriptletFilepath);
+			badScriptlets.push_back(scriptletFilepath);
 		}
 	}
 
 	// Remove any bad plugins from the cache
 	// This might be a good time to see if the user wants to abort or continue
-	while (!badScriptlets.IsEmpty())
+	while (!badScriptlets.empty())
 	{
-		RemoveScriptletCandidate(badScriptlets.RemoveHead());
+		RemoveScriptletCandidate(badScriptlets.front());
+		badScriptlets.pop_front();
 	}
 
 	return pPlugins;
@@ -681,15 +679,15 @@ static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getS
 static void FreeAllScripts(PluginArray *& pArray) 
 {
 	int i;
-	for (i = 0 ; i < pArray->GetSize() ; i++)
+	for (i = 0 ; i < pArray->size() ; i++)
 	{
-		pArray->GetAt(i).m_lpDispatch->Release();
-		if (pArray->GetAt(i).m_filters)
-			FileFilter::EmptyFilterList(pArray->GetAt(i).m_filters);
-		delete pArray->GetAt(i).m_filters;
+		pArray->at(i).m_lpDispatch->Release();
+		if (pArray->at(i).m_filters)
+			FileFilter::EmptyFilterList(pArray->at(i).m_filters);
+		delete pArray->at(i).m_filters;
 	}
 
-	pArray->RemoveAll();
+	pArray->clear();
 	delete pArray;
 	pArray = NULL;
 }
@@ -714,7 +712,7 @@ CScriptsOfThread::CScriptsOfThread()
 	m_aPluginsByEvent.resize(nTransformationEvents, NULL);
 	// CoInitialize the thread, keep the returned value for the destructor 
 	hrInitialize = CoInitialize(NULL);
-	ASSERT(hrInitialize == S_OK || hrInitialize == S_FALSE);
+	assert(hrInitialize == S_OK || hrInitialize == S_FALSE);
 }
 
 CScriptsOfThread::~CScriptsOfThread()
@@ -725,12 +723,12 @@ CScriptsOfThread::~CScriptsOfThread()
 	FreeAllScripts();
 }
 
-BOOL CScriptsOfThread::bInMainThread()
+bool CScriptsOfThread::bInMainThread()
 {
 	return (CAllThreadsScripts::bInMainThread(this));
 }
 
-PluginArray * CScriptsOfThread::GetAvailableScripts(LPCWSTR transformationEvent)
+PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformationEvent)
 {
 	int i;
 	for (i = 0 ; i < nTransformationEvents ; i ++)
@@ -759,7 +757,7 @@ void CScriptsOfThread::FreeAllScripts()
 	UnloadTheScriptletList();
 }
 
-void CScriptsOfThread::FreeScriptsForEvent(LPCWSTR transformationEvent)
+void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 {
 	int i;
 	for (i = 0 ; i < nTransformationEvents ; i ++)
@@ -772,7 +770,7 @@ void CScriptsOfThread::FreeScriptsForEvent(LPCWSTR transformationEvent)
 }
 
 
-PluginInfo * CScriptsOfThread::GetPluginByName(LPCWSTR transformationEvent, LPCTSTR name)
+PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
 {
 	int i;
 	for (i = 0 ; i < nTransformationEvents ; i ++)
@@ -781,9 +779,9 @@ PluginInfo * CScriptsOfThread::GetPluginByName(LPCWSTR transformationEvent, LPCT
 			if (m_aPluginsByEvent[i] == NULL)
 				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
 
-			for (int j = 0 ; j <  m_aPluginsByEvent[i]->GetSize() ; j++)
-				if (_tcscmp(m_aPluginsByEvent[i]->GetAt(j).m_name.c_str(), name) == 0)
-					return &(m_aPluginsByEvent[i]->ElementAt(j));
+			for (int j = 0 ; j <  m_aPluginsByEvent[i]->size() ; j++)
+				if (m_aPluginsByEvent[i]->at(j).m_name == name)
+					return &(m_aPluginsByEvent[i]->at(j));
 		}
 	return NULL;
 }
@@ -796,7 +794,7 @@ PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 		if (m_aPluginsByEvent[i] == NULL)
 			continue;
 		PluginArray * pArray = m_aPluginsByEvent[i];
-		for (j = 0 ; j < pArray->GetSize() ; j++)
+		for (j = 0 ; j < pArray->size() ; j++)
 			if ((*pArray)[j].m_lpDispatch == piScript)
 				return & (*pArray)[j];
 	}
@@ -819,7 +817,7 @@ void CAllThreadsScripts::Add(CScriptsOfThread * scripts)
 	if (i == NMAXTHREADS)
 	{
 		// no free place, don't register
-		ASSERT(0);
+		assert(0);
 	}
 	else
 	{
@@ -837,7 +835,7 @@ void CAllThreadsScripts::Remove(CScriptsOfThread * scripts)
 			break;
 	if (i == NMAXTHREADS)
 		// not in the list ?
-		ASSERT(0);
+		assert(0);
 	else
 		m_aAvailableThreads[i] = NULL;
 }
@@ -849,7 +847,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 	for (i = 0 ; i < NMAXTHREADS ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
-	ASSERT(0);
+	assert(0);
 	return NULL;
 }
 CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
@@ -862,7 +860,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 	return NULL;
 }
 
-BOOL CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
+bool CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
 {
 	return (scripts == m_aAvailableThreads[0]);
 }
@@ -886,7 +884,7 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 	CScriptsOfThread * scripts = CAllThreadsScripts::GetActiveSetNoAssert();
 	if (scripts == NULL)
 		return;
-	if (scripts->Unlock() == TRUE)
+	if (scripts->Unlock() == true)
 	{
 		CAllThreadsScripts::Remove(scripts);
 		delete scripts;
@@ -896,7 +894,7 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 ////////////////////////////////////////////////////////////////////////////////
 // reallocation, take care of flag bWriteable
 
-static void reallocBuffer(LPSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWriteable)
+static void reallocBuffer(LPSTR & pszBuf, UINT & nOldSize, UINT nSize, bool bWriteable)
 {
 	if (!bWriteable)
 		// alloc a new buffer
@@ -912,7 +910,7 @@ static void reallocBuffer(LPSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWri
 		pszBuf = (LPSTR) realloc(pszBuf, nSize);
 	nOldSize = nSize;
 }
-static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWriteable)
+static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, bool bWriteable)
 {
 	if (!bWriteable)
 		// alloc a new buffer
@@ -940,12 +938,12 @@ static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWr
  * VB/VBS plugins has an internal error handler, and a message box with caption,
  * and we try to reproduce it for other plugins.
  */
-static void ShowPluginErrorMessage(LPDISPATCH piScript, LPTSTR description)
+static void ShowPluginErrorMessage(IDispatch *piScript, LPTSTR description)
 {
 	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
-	ASSERT(pInfo != NULL);
-	ASSERT (description != NULL);	
-	MessageBox(AfxGetMainWnd()->GetSafeHwnd(), description, pInfo->m_name.c_str(), MB_ICONSTOP);
+	assert(pInfo != NULL);
+	assert(description != NULL);	
+	AppErrorMessageBox(string_format(_T("%s: %s"), pInfo->m_name.c_str(), description));
 }
 
 /**
@@ -958,7 +956,7 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 	HRESULT h;
 	SE_Handler seh;
 	TCHAR errorText[500];
-	BOOL bExceptionCatched = FALSE;	
+	bool bExceptionCatched = false;	
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
 	vector<VARIANT> args(nargs);
@@ -977,20 +975,19 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 		h = invokeA(pi, ret, id, op, (VARIANT *)(&op + 1));
 #endif
 	}
-	catch(CException * e) 
+	catch(SE_Exception& e) 
 	{
 		// structured exception are catched here thanks to class SE_Exception
-		if (!(e->GetErrorMessage(errorText, 500, NULL)))
+		if (!(e.GetErrorMessage(errorText, 500, NULL)))
 			// don't localize this as we do not localize the known exceptions
 			_tcscpy(errorText, _T("Unknown CException"));
-		e->Delete();
-		bExceptionCatched = TRUE;
+		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
 		_tcscpy(errorText, _T("Unknown C++ exception"));
-		bExceptionCatched = TRUE;
+		bExceptionCatched = true;
 	}
 
 	if (bExceptionCatched)
@@ -1007,12 +1004,12 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
  *
  * @note Free all variants passed to it (except ByRef ones) 
  */
-static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
+static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, ...)
 {
 	HRESULT h;
 	SE_Handler seh;
 	TCHAR errorText[500];
-	BOOL bExceptionCatched = FALSE;
+	bool bExceptionCatched = false;
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
 	vector<VARIANT> args(nargs);
@@ -1031,20 +1028,19 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, .
 		h = invokeW(pi, ret, silent, op, (VARIANT *)(&op + 1));
 #endif
 	}
-	catch(CException * e) 
+	catch(SE_Exception& e) 
 	{
 		// structured exception are catched here thanks to class SE_Exception
-		if (!(e->GetErrorMessage(errorText, 500, NULL)))
+		if (!(e.GetErrorMessage(errorText, 500, NULL)))
 			// don't localize this as we do not localize the known exceptions
 			_tcscpy(errorText, _T("Unknown CException"));
-		e->Delete();
-		bExceptionCatched = TRUE;
+		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
 		_tcscpy(errorText, _T("Unknown C++ exception"));
-		bExceptionCatched = TRUE;
+		bExceptionCatched = true;
 	}
 
 	if (bExceptionCatched)
@@ -1074,7 +1070,7 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, .
  *   ...
  */
 
-BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript)
+bool InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, IDispatch *piScript)
 {
 	UINT nBufSize = SysStringLen(bstrBuf);
 
@@ -1095,7 +1091,7 @@ BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript)
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// for VC, if the invoked function changes the buffer address, 
@@ -1104,7 +1100,7 @@ BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript)
 	// VARIANT_BOOL DiffingPreprocessW(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PrediffBufferW", opFxn[3], 
                             vpboolChanged, vpiSize, vpbstrBuf);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 	{
 		// remove trailing charracters in the rare case that bstrBuf was not resized 
@@ -1120,15 +1116,17 @@ BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript)
 	return 	(bSuccess);
 }
 
-BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int & subcode)
+bool InvokeUnpackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int & subcode)
 {
-	UINT nArraySize = array.GetOneDimSize();
+	LONG nArraySize;
+	SafeArrayGetUBound(array.parray, 0, &nArraySize);
+	++nArraySize;
 
 	// prepare the arguments
 	// argument file buffer
 	VARIANT vparrayBuf;
 	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.pparray = &(LPVARIANT(array)->parray);
+	vparrayBuf.pparray = &(array.parray);
 	// argument buffer size by reference
 	VARIANT vpiSize;
 	vpiSize.vt = VT_BYREF | VT_I4;
@@ -1145,18 +1143,25 @@ BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScri
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL UnpackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT * subcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackBufferA", opFxn[4], 
                             viSubcode, vpboolChanged, vpiSize, vparrayBuf);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 	{
 		// remove trailing charracters if the array was not resized
-		if (array.GetOneDimSize() != nArraySize)
-			array.ResizeOneDim(nArraySize);
+		LONG nNewArraySize;
+		SafeArrayGetUBound(array.parray, 0, &nNewArraySize);
+		++nNewArraySize;
+
+		if (nNewArraySize != nArraySize)
+		{
+			SAFEARRAYBOUND sab = {nArraySize, 0};
+			SafeArrayRedim(array.parray, &sab);
+		}
 		nChanged ++;
 	}
 
@@ -1166,15 +1171,17 @@ BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScri
 	return 	(bSuccess);
 }
 
-BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int subcode)
+bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int subcode)
 {
-	UINT nArraySize = array.GetOneDimSize();
+	LONG nArraySize;
+	SafeArrayGetUBound(array.parray, 0, &nArraySize);
+	++nArraySize;
 
 	// prepare the arguments
 	// argument file buffer
 	VARIANT vparrayBuf;
 	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.pparray = &(LPVARIANT(array)->parray);
+	vparrayBuf.pparray = &(array.parray);
 	// argument buffer size by reference
 	VARIANT vpiSize;
 	vpiSize.vt = VT_BYREF | VT_I4;
@@ -1191,19 +1198,25 @@ BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT subcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackBufferA", opFxn[4], 
                             viSubcode, vpboolChanged, vpiSize, vparrayBuf);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 	{
 		// remove trailing charracters if the array was not resized
-		if (array.GetOneDimSize() != nArraySize)
-			array.ResizeOneDim(nArraySize);
-		nChanged ++;
+		LONG nNewArraySize;
+		SafeArrayGetUBound(array.parray, 0, &nNewArraySize);
+		++nNewArraySize;
+
+		if (nNewArraySize != nArraySize)
+		{
+			SAFEARRAYBOUND sab = {nArraySize, 0};
+			SafeArrayRedim(array.parray, &sab);
+		}
 	}
 
 	// clear the returned variant
@@ -1213,17 +1226,16 @@ BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript
 }
 
 
-BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int & subCode)
+bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int & subCode)
 {
-	USES_CONVERSION;
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = T2BSTR(fileSource);
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
-	vbstrDst.bstrVal = T2BSTR(fileDest);
+	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
 	// argument subcode by reference
 	VARIANT vpiSubcode;
 	vpiSubcode.vt = VT_BYREF | VT_I4;
@@ -1236,13 +1248,13 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT * bSubcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackFile", opFxn[4], 
                             vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 		nChanged ++;
 
@@ -1252,17 +1264,16 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
 	return 	(bSuccess);
 }
 
-BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int subCode)
+bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode)
 {
-	USES_CONVERSION;
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = T2BSTR(fileSource);
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
-	vbstrDst.bstrVal = T2BSTR(fileDest);
+	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
 	// argument subcode
 	VARIANT viSubcode;
 	viSubcode.vt = VT_I4;
@@ -1275,13 +1286,13 @@ BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISP
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT bSubcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackFile", opFxn[4], 
                             viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 		nChanged ++;
 
@@ -1291,17 +1302,16 @@ BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISP
 	return 	(bSuccess);
 }
 
-BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript)
+bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript)
 {
-	USES_CONVERSION;
 	// argument text  
 	VARIANT vbstrSrc;
 	vbstrSrc.vt = VT_BSTR;
-	vbstrSrc.bstrVal = T2BSTR(fileSource);
+	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
 	// argument transformed text 
 	VARIANT vbstrDst;
 	vbstrDst.vt = VT_BSTR;
-	vbstrDst.bstrVal = T2BSTR(fileDest);
+	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
 	VARIANT vpboolChanged;
@@ -1310,13 +1320,13 @@ BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPD
 	// argument return value (VT_BOOL is short)
 	VARIANT vboolHandled;
 	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
+	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PrediffFile", opFxn[3], 
                             vpboolChanged, vbstrDst, vbstrSrc);
-	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 		nChanged ++;
 
@@ -1327,14 +1337,12 @@ BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPD
 }
 
 
-BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int fncId)
+bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int fncId)
 {
-	USES_CONVERSION;
-
 	// argument text  
 	VARIANT pvPszBuf;
 	pvPszBuf.vt = VT_BSTR;
-	pvPszBuf.bstrVal = T2BSTR(text);
+	pvPszBuf.bstrVal = SysAllocString(ucr::toUTF16(text).c_str());
 	// argument transformed text 
 	VARIANT vTransformed;
 	vTransformed.vt = VT_BSTR;
@@ -1346,12 +1354,11 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
 
 	if (! FAILED(h))
 	{
-		// when UNICODE is not defined, the CString = operator performs the conversion LPWSTR to LPSTR
-		text = vTransformed.bstrVal;
-		changed = TRUE;
+		text = ucr::toTString(vTransformed.bstrVal);
+		changed = true;
 	}
 	else
-		changed = FALSE;
+		changed = false;
 
 	// clear the returned variant
 	VariantClear(&vTransformed);

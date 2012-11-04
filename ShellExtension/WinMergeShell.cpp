@@ -44,7 +44,6 @@
 #include "WinMergeShell.h"
 #include "UnicodeString.h"
 #include "RegKey.h"
-#include "coretools.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -340,8 +339,8 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (!GetWinMergeDir(strWinMergePath))
 		return S_FALSE;
 
-	// Check that file we are trying to execute exists and is executable
-	if (!CheckExecutable(strWinMergePath))
+	// Check that file we are trying to execute exists
+	if (!PathFileExists(strWinMergePath.c_str()))
 		return S_FALSE;
 
 	if (LOWORD(pCmdInfo->lpVerb) == 0)
@@ -443,26 +442,6 @@ BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
 	}
 
 	return TRUE;
-}
-
-/// Checks if given file exists and is executable
-BOOL CWinMergeShell::CheckExecutable(String path)
-{
-	String sExt;
-	SplitFilename(path.c_str(), NULL, NULL, &sExt);
-
-	// Check extension
-	if (_tcsicmp(sExt.c_str(), _T("exe")) == 0 ||
-			_tcsicmp(sExt.c_str(), _T("cmd")) == 0 ||
-			_tcsicmp(sExt.c_str(), _T("bat")) == 0)
-	{
-		// Check if file exists
-		struct _stati64 statBuffer;
-		int nRetVal = _tstati64(path.c_str(), &statBuffer);
-		if (nRetVal > -1)
-			return TRUE;
-	}
-	return FALSE;
 }
 
 /// Create menu for simple mode

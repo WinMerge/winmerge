@@ -32,10 +32,10 @@
 
 #include "UnicodeString.h"
 
-bool IsConflictFile(LPCTSTR conflictFileName);
+bool IsConflictFile(const String& conflictFileName);
 
-bool ParseConflictFile(LPCTSTR conflictFileName,
-		LPCTSTR workingCopyFileName, LPCTSTR newRevisionFileName,
+bool ParseConflictFile(const String& conflictFileName,
+		const String& workingCopyFileName, const String& newRevisionFileName,
 		int iGuessEncodingType, bool &nestedConflicts);
 
 #endif // _CONFLICT_FILE_PARSER_H_

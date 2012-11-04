@@ -5,6 +5,7 @@
  */
 // IDD line follows -- this is updated by SVN
 // $Idd: DiffItem.h 6095 2008-11-18 20:05:27Z kimmov $
+// UTF-8テスト 
 
 #ifndef _DIFF_ITEM_H_
 #define _DIFF_ITEM_H_
@@ -26,7 +27,7 @@ enum BINFILE_SIDE
 };
 
 /**
- * @brief Status of one item comparison, stored as bitfields - kääk
+ * @brief Status of one item comparison, stored as bitfields - kaak
  *
  * Bitmask can be seen as a 4 dimensional space; that is, there are four
  *

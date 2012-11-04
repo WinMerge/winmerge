@@ -28,6 +28,7 @@
 #include <vector>
 #include <boost/scoped_ptr.hpp>
 #include "UnicodeString.h"
+#include "DirItem.h"
 
 class FileFilterMgr;
 class FilterList;
@@ -58,24 +59,40 @@ struct FileFilterInfo
 class IDiffFilter
 {
 public:
-	virtual BOOL includeFile(LPCTSTR szFileName) = 0;
-	virtual BOOL includeDir(LPCTSTR szDirName) = 0;
-	BOOL includeFile(LPCTSTR szFileName1, LPCTSTR szFileName2, LPCTSTR szFileName3 = NULL)
+	virtual bool includeFile(const String& szFileName) = 0;
+	virtual bool includeDir(const String& szDirName) = 0;
+	bool includeFile(const String& szFileName1, const String& szFileName2)
 	{
 		return
 		(
-			(szFileName1[0] == '\0' || includeFile(szFileName1))
-		&&	(szFileName2[0] == '\0' || includeFile(szFileName2))
-		&&	(szFileName3 == NULL || szFileName3[0] == '\0' || includeFile(szFileName3))
+			(szFileName1.empty() || includeFile(szFileName1))
+		&&	(szFileName2.empty() || includeFile(szFileName2))
 		);
 	}
-	BOOL includeDir(LPCTSTR szDirName1, LPCTSTR szDirName2, LPCTSTR szDirName3 = NULL)
+	bool includeFile(const String& szFileName1, const String& szFileName2, const String& szFileName3)
 	{
 		return
 		(
-			(szDirName1[0] == '\0' || includeDir(szDirName1))
-		&&	(szDirName2[0] == '\0' || includeDir(szDirName2))
-		&&	(szDirName3 == NULL || szDirName3[0] == '\0' || includeDir(szDirName3))
+			(szFileName1.empty() || includeFile(szFileName1))
+		&&	(szFileName2.empty() || includeFile(szFileName2))
+		&&	(szFileName3.empty() || includeFile(szFileName3))
+		);
+	}
+	bool includeDir(const String& szDirName1, const String& szDirName2)
+	{
+		return
+		(
+			(szDirName1.empty() || includeDir(szDirName1))
+		&&	(szDirName2.empty() || includeDir(szDirName2))
+		);
+	}
+	bool includeDir(const String& szDirName1, const String& szDirName2, const String& szDirName3)
+	{
+		return
+		(
+			(szDirName1.empty() || includeDir(szDirName1))
+		&&	(szDirName2.empty() || includeDir(szDirName2))
+		&&	(szDirName3.empty() || includeDir(szDirName3))
 		);
 	}
 };
@@ -106,26 +123,26 @@ public:
 	String GetUserFilterPathWithCreate() const;
 
 	FileFilterMgr * GetManager() const;
-	void SetFileFilterPath(LPCTSTR szFileFilterPath);
+	void SetFileFilterPath(const String& szFileFilterPath);
 	void GetFileFilters(std::vector<FileFilterInfo> * filters, String & selected) const;
-	String GetFileFilterName(LPCTSTR filterPath) const;
-	String GetFileFilterPath(LPCTSTR filterName) const;
+	String GetFileFilterName(const String& filterPath) const;
+	String GetFileFilterPath(const String& filterName) const;
 	void SetUserFilterPath(const String & filterPath);
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
-	void LoadFileFilterDirPattern(LPCTSTR dir, LPCTSTR szPattern);
+	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
-	void UseMask(BOOL bUseMask);
-	void SetMask(LPCTSTR strMask);
+	void UseMask(bool bUseMask);
+	void SetMask(const String& strMask);
 
-	BOOL IsUsingMask() const;
+	bool IsUsingMask() const;
 	String GetFilterNameOrMask() const;
-	BOOL SetFilter(const String &filter);
+	bool SetFilter(const String &filter);
 
-	BOOL includeFile(LPCTSTR szFileName);
-	BOOL includeDir(LPCTSTR szDirName);
+	bool includeFile(const String& szFileName);
+	bool includeDir(const String& szDirName);
 
 protected:
 	String ParseExtensions(const String &extensions) const;
@@ -136,7 +153,7 @@ private:
 	boost::scoped_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
-	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
+	bool m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };

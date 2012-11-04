@@ -183,7 +183,7 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 		nDiffLenSum += worddiffs[i].end[0] - worddiffs[i].begin[0] + 1;
 	}
 
-	return -(sLine0.length() - nDiffLenSum);
+	return -static_cast<int>(sLine0.length() - nDiffLenSum);
 }
 
 /**

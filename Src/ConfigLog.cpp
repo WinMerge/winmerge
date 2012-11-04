@@ -22,23 +22,27 @@
 // ID line follows -- this is updated by SVN
 // $Id: ConfigLog.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
-#include "StdAfx.h"
+#include "ConfigLog.h"
+#include <cassert>
 #include <boost/scoped_array.hpp>
+#include <windows.h>
+#include <mbctype.h>
 #include "Constants.h"
 #include "version.h"
 #include "UniFile.h"
 #include "DiffWrapper.h"
-#include "ConfigLog.h"
 #include "Plugins.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "codepage.h"
-#include "7zCommon.h"
 #include "CompareOptions.h"
 #include "Environment.h"
 
+BOOL NTAPI IsMerge7zEnabled();
+DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
+
 // Static function declarations
-static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag);
+static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, const String& name, bool * pbflag);
 
 
 
@@ -78,13 +82,13 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(transformationEvent);
 
 	int iPlugin;
-	for (iPlugin = 0 ; iPlugin < piPluginArray->GetSize() ; iPlugin++)
+	for (iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
-		PluginInfo & plugin = piPluginArray->ElementAt(iPlugin);
+		PluginInfo & plugin = piPluginArray->at(iPlugin);
 		m_pfile->WriteString(_T("\r\n  "));
-		m_pfile->WriteString(plugin.m_name.c_str());
+		m_pfile->WriteString(plugin.m_name);
 		m_pfile->WriteString(_T(" ["));
-		m_pfile->WriteString(plugin.m_filepath.c_str());
+		m_pfile->WriteString(plugin.m_filepath);
 		m_pfile->WriteString(_T("]"));
 	}
 }
@@ -95,7 +99,7 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 static String GetLocaleString(LCID locid, LCTYPE lctype)
 {
 	TCHAR buffer[512];
-	if (!GetLocaleInfo(locid, lctype, buffer, countof(buffer)))
+	if (!GetLocaleInfo(locid, lctype, buffer, sizeof(buffer)/sizeof(buffer[0])))
 		buffer[0] = 0;
 	return buffer;
 }
@@ -133,20 +137,20 @@ static String FontCharsetName(BYTE charset)
 /**
  * @brief Write string item
  */
-void CConfigLog::WriteItem(int indent, LPCTSTR key, LPCTSTR value)
+void CConfigLog::WriteItem(int indent, const String& key, LPCTSTR value)
 {
 	// do nothing if actually reading config file
 	if (!m_writing)
 		return;
 
-	String text = string_format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key, key, value);
+	String text = string_format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
 
 /**
  * @brief Write string item
  */
-void CConfigLog::WriteItem(int indent, LPCTSTR key, const String &str)
+void CConfigLog::WriteItem(int indent, const String& key, const String &str)
 {
 	WriteItem(indent, key, str.c_str());
 }
@@ -154,24 +158,24 @@ void CConfigLog::WriteItem(int indent, LPCTSTR key, const String &str)
 /**
  * @brief Write int item
  */
-void CConfigLog::WriteItem(int indent, LPCTSTR key, long value)
+void CConfigLog::WriteItem(int indent, const String& key, long value)
 {
 	// do nothing if actually reading config file
 	if (!m_writing)
 		return;
 
-	String text = string_format(_T("%*.0s%s: %ld\r\n"), indent, key, key, value);
+	String text = string_format(_T("%*.0s%s: %ld\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
 
 /**
  * @brief Write boolean item using keywords (Yes|No)
  */
-void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
+void CConfigLog::WriteItemYesNo(int indent, const String& key, bool *pvalue)
 {
 	if (m_writing)
 	{
-		String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
+		String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key.c_str(), key.c_str(), *pvalue ? _T("Yes") : _T("No"));
 		m_pfile->WriteString(text);
 	}
 	else
@@ -183,7 +187,7 @@ void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue)
 /**
  * @brief Same as WriteItemYesNo, except store Yes/No in reverse
  */
-void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue)
+void CConfigLog::WriteItemYesNoInverted(int indent, const String& key, bool *pvalue)
 {
 	bool tempval = !(*pvalue);
 	WriteItemYesNo(indent, key, &tempval);
@@ -193,7 +197,7 @@ void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue)
 /**
  * @brief Same as WriteItemYesNo, except store Yes/No in reverse
  */
-void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue)
+void CConfigLog::WriteItemYesNoInverted(int indent, const String& key, int *pvalue)
 {
 	bool tempval = !(*pvalue);
 	WriteItemYesNo(indent, key, &tempval);
@@ -203,7 +207,7 @@ void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue)
 /**
  * @brief Write out various possibly relevant windows locale information
  */
-void CConfigLog::WriteLocaleSettings(LCID locid, LPCTSTR title)
+void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
 {
 	// do nothing if actually reading config file
 	if (!m_writing)
@@ -221,14 +225,14 @@ void CConfigLog::WriteLocaleSettings(LCID locid, LPCTSTR title)
 /**
  * @brief Write version of a single executable file
  */
-void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
+void CConfigLog::WriteVersionOf1(int indent, const String& path)
 {
 	// Do nothing if actually reading config file
 	if (!m_writing)
 		return;
 
-	LPTSTR name = PathFindFileName(path);
-	CVersionInfo vi(path, TRUE);
+	String name = paths_FindFileName(path);
+	CVersionInfo vi(path.c_str(), TRUE);
 	String text = string_format
 	(
 		name == path
@@ -236,8 +240,8 @@ void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\r\n"),
 		indent,
 		// Tilde prefix for modules currently mapped into WinMerge
-		GetModuleHandle(path) ? _T("~") : _T("")/*name*/,
-		name,
+		GetModuleHandle(path.c_str()) ? _T("~") : _T("")/*name*/,
+		name.c_str(),
 		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwMajorVersion)
 	?	_T("dllversion")
 	:	_T("version"),
@@ -247,7 +251,7 @@ void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 	?	_T("dllbuild")
 	:	_T("build"),
 		vi.m_dvi.dwBuildNumber,
-		path
+		path.c_str()
 	);
 	m_pfile->WriteString(text);
 }
@@ -255,17 +259,15 @@ void CConfigLog::WriteVersionOf1(int indent, LPTSTR path)
 /**
  * @brief Write version of a set of executable files
  */
-void CConfigLog::WriteVersionOf(int indent, LPTSTR path)
+void CConfigLog::WriteVersionOf(int indent, const String& path)
 {
-	LPTSTR name = PathFindFileName(path);
 	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(path, &ff);
+	HANDLE h = FindFirstFile(path.c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do
 		{
-			lstrcpy(name, ff.cFileName);
-			WriteVersionOf1(indent, path);
+			WriteVersionOf1(indent, path + ff.cFileName);
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}
@@ -274,17 +276,13 @@ void CConfigLog::WriteVersionOf(int indent, LPTSTR path)
 /**
  * @brief Write version of 7-Zip plugins and shell context menu handler
  */
-void CConfigLog::WriteVersionOf7z(LPTSTR path)
+void CConfigLog::WriteVersionOf7z(const String& dir)
 {
-	lstrcat(path, _T("\\7-zip*.dll"));
-	LPTSTR pattern = PathFindFileName(path);
-	WriteVersionOf(2, path);
+	WriteVersionOf(2, dir + _T("\\7-zip*.dll"));
 	WriteItem(2, _T("Codecs"));
-	lstrcpy(pattern, _T("codecs\\*.dll"));
-	WriteVersionOf(3, path);
+	WriteVersionOf(3, dir + _T("codecs\\*.dll"));
 	WriteItem(2, _T("Formats"));
-	lstrcpy(pattern, _T("formats\\*.dll"));
-	WriteVersionOf(3, path);
+	WriteVersionOf(3, dir + _T("formats\\*.dll"));
 }
 
 /**
@@ -299,8 +297,7 @@ void CConfigLog::WriteArchiveSupport()
 	DWORD size = sizeof path;
 
 	WriteItem(0, _T("Archive support"));
-	WriteItem(1, _T("Enable"),
-		AfxGetApp()->GetProfileInt(_T("Merge7z"), _T("Enable"), 0));
+	WriteItem(1, _T("Enable"), IsMerge7zEnabled());
 
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(registered), UINT LOWORD(registered));
 	WriteItem(1, _T("7-Zip software installed on your computer"), path);
@@ -311,7 +308,7 @@ void CConfigLog::WriteArchiveSupport()
 
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(standalone), UINT LOWORD(standalone));
 	WriteItem(1, _T("7-Zip components for standalone operation"), path);
-	GetModuleFileName(0, path, countof(path));
+	GetModuleFileName(0, path, sizeof(path)/sizeof(path[0]));
 	LPTSTR pattern = PathFindFileName(path);
 	PathRemoveFileSpec(path);
 	WriteVersionOf7z(path);
@@ -344,7 +341,7 @@ struct NameMap { int ival; LPCTSTR sval; };
 /**
  * @brief Write boolean item using keywords (Yes|No)
  */
-void CConfigLog::WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
+void CConfigLog::WriteItemWhitespace(int indent, const String& key, int *pvalue)
 {
 	static NameMap namemap[] = {
 		{ WHITESPACE_COMPARE_ALL, _T("Compare all") }
@@ -354,7 +351,7 @@ void CConfigLog::WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 
 	if (m_writing)
 	{
-		CString text = _T("Unknown");
+		String text = _T("Unknown");
 		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
 		{
 			if (*pvalue == namemap[i].ival)
@@ -365,7 +362,7 @@ void CConfigLog::WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
 	else
 	{
 		*pvalue = namemap[0].ival;
-		CString svalue = GetValueFromConfig(key);
+		String svalue = GetValueFromConfig(key);
 		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
 		{
 			if (svalue == namemap[i].sval)
@@ -387,14 +384,14 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 
 	if (writing)
 	{
-		String sFileName = paths_ConcatPath(env_GetMyDocuments(NULL), WinMergeDocumentsFolder);
-		paths_CreateIfNeeded(sFileName.c_str());
+		String sFileName = paths_ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
+		paths_CreateIfNeeded(sFileName);
 		m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 
 #ifdef _UNICODE
-		if (!m_pfile->OpenCreateUtf8(m_sFileName.c_str()))
+		if (!m_pfile->OpenCreateUtf8(m_sFileName))
 #else
-		if (!m_pfile->OpenCreate(m_sFileName.c_str()))
+		if (!m_pfile->OpenCreate(m_sFileName))
 #endif
 		{
 			const UniFile::UniError &err = m_pfile->GetLastUniError();
@@ -411,7 +408,7 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	FileWriteString(_T("WinMerge configuration log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
 	FileWriteString(_T("Saved to: "));
-	FileWriteString(m_sFileName.c_str());
+	FileWriteString(m_sFileName);
 	FileWriteString(_T("\r\n* Please add this information (or attach this file)\r\n"));
 	FileWriteString(_T("* when reporting bugs.\r\n"));
 	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\r\n"));
@@ -419,21 +416,21 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 // Platform stuff
 	FileWriteString(_T("\r\n\r\nVersion information:\r\n"));
 	FileWriteString(_T(" WinMerge.exe: "));
-	FileWriteString(version.GetFixedProductVersion().c_str());
+	FileWriteString(version.GetFixedProductVersion());
 
 	String privBuild = version.GetPrivateBuild();
 	if (!privBuild.empty())
 	{
 		FileWriteString(_T(" - Private build: "));
-		FileWriteString(privBuild.c_str());
+		FileWriteString(privBuild);
 	}
 
 	text = GetBuildFlags();
 	FileWriteString(_T("\r\n Build config: "));
-	FileWriteString(text.c_str());
+	FileWriteString(text);
 
 	LPCTSTR szCmdLine = ::GetCommandLine();
-	ASSERT(szCmdLine != NULL);
+	assert(szCmdLine != NULL);
 
 	// Skip the quoted executable file name.
 	if (szCmdLine != NULL)
@@ -516,8 +513,8 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	
 // Font settings
 	FileWriteString(_T("\r\n Font:\r\n"));
-	FileWriteString(Fmt(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename.c_str()));
-	FileWriteString(Fmt(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
+	FileWriteString(string_format(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename.c_str()));
+	FileWriteString(string_format(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
 		FontCharsetName(m_fontSettings.nCharset).c_str()));
 
 // System settings
@@ -535,7 +532,7 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 // Codepage settings
 	bool bValue = m_cpSettings.iDetectCodepageType & 1 ? true : false;
 	WriteItemYesNo(1, _T("Detect codepage automatically for RC and HTML files"), &bValue);
-	WriteItem(1, _T("unicoder codepage"), getDefaultCodepage());
+	WriteItem(1, _T("unicoder codepage"), ucr::getDefaultCodepage());
 
 // Plugins
 	FileWriteString(_T("\r\nPlugins:\r\n"));
@@ -644,7 +641,7 @@ static String GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
 
 	HKEY hKey;
 	TCHAR szProductType[REGBUFSIZE];
-	DWORD dwBufLen = countof(szProductType);
+	DWORD dwBufLen = sizeof(szProductType)/sizeof(szProductType[0]);
 	LONG lRet;
 
 	lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
@@ -851,20 +848,25 @@ String CConfigLog::GetBuildFlags() const
 class CfgSettings
 {
 public:
-	CfgSettings() { m_settings.InitHashTable(411); }
-	void Add(LPCTSTR name, LPCTSTR value) { m_settings.SetAt(name, value); }
-	bool Lookup(LPCTSTR name, CString & value) { return !!m_settings.Lookup(name, value); }
+	void Add(const String& name, const String& value) { m_settings[name] = value; }
+	bool Lookup(const String& name, String & value) {
+		std::map<String, String>::iterator it = m_settings.find(name);
+		if (it == m_settings.end())
+			return false;
+		value = it->second;
+		return true;
+	}
 private:
-	CMapStringToString m_settings;
+	std::map<String, String> m_settings;
 };
 
 /**
  * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
  */
 static bool
-LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, bool * pbflag)
+LoadYesNoFromConfig(CfgSettings * cfgSettings, const String& name, bool * pbflag)
 {
-	CString value;
+	String value;
 	if (cfgSettings->Lookup(name, value))
 	{
 		if (value == _T("Yes"))
@@ -903,7 +905,7 @@ void CConfigLog::ReadLogFile(const String & Filepath)
 
 /// Write line to file (if writing configuration log)
 void
-CConfigLog::FileWriteString(LPCTSTR lpsz)
+CConfigLog::FileWriteString(const String& lpsz)
 {
 	if (m_writing)
 		m_pfile->WriteString(lpsz);
@@ -925,7 +927,7 @@ CConfigLog::CloseFile()
 bool CConfigLog::ParseSettings(const String & Filepath)
 {
 	UniMemFile file;
-	if (!file.Open(Filepath.c_str()))
+	if (!file.Open(Filepath))
 		return false;
 
 	String strline;
@@ -939,16 +941,16 @@ bool CConfigLog::ParseSettings(const String & Filepath)
 			String value = strline.substr(colon + 1);
 			name = string_trim_ws(name);
 			value = string_trim_ws(value);
-			m_pCfgSettings->Add(name.c_str(), value.c_str());
+			m_pCfgSettings->Add(name, value);
 		}
 	}
 	file.Close();
 	return true;
 }
 
-CString CConfigLog::GetValueFromConfig(const CString & key)
+String CConfigLog::GetValueFromConfig(const String & key)
 {
-	CString value;
+	String value;
 	if (m_pCfgSettings->Lookup(key, value))
 	{
 		return value;

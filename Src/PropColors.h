@@ -104,8 +104,6 @@ protected:
 
 	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
 
-	void LoadCustomColors();
-	void SaveCustomColors();
 	void BrowseColor(CColorButton & colorButton, COLORREF & currentColor);
 	void SerializeColors(OPERATION op);
 	void SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName, COLORREF & color);

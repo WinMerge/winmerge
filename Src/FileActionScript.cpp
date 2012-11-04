@@ -102,18 +102,18 @@ int FileActionScript::GetActionItemCount() const
  */
 int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
 {
-	CString strErr;
+	String strErr;
 	int retVal = SCRIPT_SUCCESS;
 
 	if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) == VCS_NONE)
 		return retVal;
 
 	// TODO: First param is not used!
-	int nRetVal = GetMainFrame()->SyncFileToVCS(path.c_str(), bApplyToAll, &strErr);
+	int nRetVal = GetMainFrame()->SyncFileToVCS(path.c_str(), bApplyToAll, strErr);
 	if (nRetVal == -1)
 	{
 		retVal = SCRIPT_FAIL; // So we exit without file operations done
-		AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
+		AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
 	}
 	else if (nRetVal == IDCANCEL)
 	{
@@ -282,7 +282,7 @@ BOOL FileActionScript::Run()
 		while (iter != m_actions.end())
 		{
 			if ((*iter).dirflag)
-				paths_CreateIfNeeded((*iter).dest.c_str());
+				paths_CreateIfNeeded((*iter).dest);
 			iter++;
 		}
 		bFileOpSucceed = RunOp(m_pCopyOperations.get(), bUserCancelled);

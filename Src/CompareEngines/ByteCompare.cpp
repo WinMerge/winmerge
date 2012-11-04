@@ -6,16 +6,24 @@
 // ID line follows -- this is updated by SVN
 // $Id: ByteCompare.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
-#include "StdAfx.h"
+#include "ByteCompare.h"
+#include <cassert>
+#include <Poco/Types.h>
+#ifdef _WIN32
 #include <io.h>
+#else
+#include <sys/types.h>
+#include <unistd.h>
+#endif
 #include "FileLocation.h"
 #include "UnicodeString.h"
 #include "IAbortable.h"
 #include "CompareOptions.h"
 #include "DiffContext.h"
-#include "DIFF.H"
+#include "diff.h"
 #include "ByteComparator.h"
-#include "ByteCompare.h"
+
+using Poco::Int64;
 
 namespace CompareEngines
 {
@@ -84,7 +92,7 @@ void ByteCompare::SetAbortable(const IAbortable * piAbortable)
 void ByteCompare::SetFileData(int items, file_data *data)
 {
 	// We support only two files currently!
-	ASSERT(items == 2);
+	assert(items == 2);
 	m_inf = data;
 }
 
@@ -104,11 +112,11 @@ int ByteCompare::CompareFiles(FileLocation *location)
 	char buff[2][WMCMPBUFF]; // buffered access to files
 	int i;
 	int result;
-	UINT diffcode = 0;
+	unsigned diffcode = 0;
 
 	// area of buffer currently holding data
-	INT64 bfstart[2]; // offset into buff[i] where current data resides
-	INT64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
+	Int64 bfstart[2]; // offset into buff[i] where current data resides
+	Int64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
 	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
 
 	bool eof[2]; // if we've finished file
@@ -135,15 +143,15 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		// load or update buffers as appropriate
 		for (i = 0; i < 2; ++i)
 		{
-			if (!eof[i] && bfstart[i] == countof(buff[i]))
+			if (!eof[i] && bfstart[i] == sizeof(buff[i])/sizeof(buff[i][0]))
 			{
 				bfstart[i] = bfend[i] = 0;
 			}
-			if (!eof[i] && bfend[i] < countof(buff[i]) - 1)
+			if (!eof[i] && bfend[i] < sizeof(buff[i])/sizeof(buff[i][0]) - 1)
 			{
 				// Assume our blocks are in range of int
-				int space = RTL_NUMBER_OF(buff[i]) - (int) bfend[i];
-				int rtn = read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned int)space);
+				int space = sizeof(buff[i])/sizeof(buff[i][0]) - (int) bfend[i];
+				int rtn = read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned)space);
 				if (rtn == -1)
 					return DIFFCODE::CMPERR;
 				if (rtn < space)
@@ -172,8 +180,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		const char* end0 = &buff[0][bfend[0]];
 		const char* end1 = &buff[1][bfend[1]];
 
-		INT64 offset0 = (ptr0 - &buff[0][0]);
-		INT64 offset1 = (ptr1 - &buff[1][0]);
+		Int64 offset0 = (ptr0 - &buff[0][0]);
+		Int64 offset1 = (ptr1 - &buff[1][0]);
 
 		// are these two buffers the same?
 		result = comparator.CompareBuffers(m_textStats[0], m_textStats[1],
@@ -192,8 +200,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				ptr0 = end0;
 				ptr1 = end1;
 				// move our current pointers over what we just compared
-				ASSERT(ptr0 >= orig0);
-				ASSERT(ptr1 >= orig1);
+				assert(ptr0 >= orig0);
+				assert(ptr1 >= orig1);
 				bfstart[0] += ptr0 - orig0;
 				bfstart[1] += ptr1 - orig1;
 			}
@@ -255,8 +263,8 @@ int ByteCompare::CompareFiles(FileLocation *location)
 		// then the result is reliable.
 		if (eof[0] && eof[1])
 		{
-			BOOL bBin0 = (m_textStats[0].nzeros > 0);
-			BOOL bBin1 = (m_textStats[1].nzeros > 0);
+			bool bBin0 = (m_textStats[0].nzeros > 0);
+			bool bBin1 = (m_textStats[1].nzeros > 0);
 
 			if (bBin0 && bBin1)
 				diffcode |= DIFFCODE::BIN;

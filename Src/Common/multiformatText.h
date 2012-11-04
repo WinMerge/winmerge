@@ -11,11 +11,10 @@
 #ifndef __MULTIFORMATTEXT_H__
 #define __MULTIFORMATTEXT_H__
 
-// CComBSTR wraps BSTR initialize/copy
-// but function arguments/return value is BSTR as &CComBSTR is a pointer to the internal BSTR
-#include <atlbase.h>    // for CComBSTR
+#include "UnicodeString.h"
 #include "unicoder.h"
-
+#include <windows.h>
+#include <oleauto.h>
 
 /**
  * @brief Storage for data to be processed by plugins. May return data
@@ -29,41 +28,47 @@
 class storageForPlugins
 {
 public:
+	storageForPlugins() : m_bstr(NULL)
+	{
+		VariantInit(&m_array);
+	}
+
 	~storageForPlugins()
 	{
 		if (!m_tempFilenameDst.empty()) // "!m_tempFilenameDst" means "never"
 			::DeleteFile(m_tempFilenameDst.c_str());
-		m_bstr.Empty();
-		m_array.Clear();
+		if (m_bstr)
+			SysFreeString(m_bstr);
+		VariantClear(&m_array);
 	}
 
 	/// Get data as unicode buffer (BSTR)
 	BSTR * GetDataBufferUnicode();
 	/// Get data as ansi buffer (safearray of unsigned char)
-	COleSafeArray * GetDataBufferAnsi();
+	VARIANT * GetDataBufferAnsi();
 	/// Get data as file (saved as UCS-2 with BOM)
-	LPCTSTR GetDataFileUnicode();
+	const TCHAR *GetDataFileUnicode();
 	/// Get data as file (saved as Ansi)
-	LPCTSTR GetDataFileAnsi();
+	const TCHAR *GetDataFileAnsi();
 	/// Get a temporary filename, to be used to save the transformed data 
-	LPCTSTR GetDestFileName();
+	const TCHAR *GetDestFileName();
 	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
 	void ValidateNewFile();
 	/// validation for data retrieved by GetDataBufferAnsi/GetDataBufferUnicode
 	void ValidateNewBuffer();
 
 	/// Initial load
-	void SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite = FALSE);
+	void SetDataFileUnknown(const String& filename, bool bOverwrite = false);
 	/// Set codepage to use for ANSI<->UNICODE conversions
 	void SetCodepage(int code) { m_codepage = code; };
 	/// Initial load
-	void SetDataFileAnsi(LPCTSTR filename, BOOL bOverwrite = FALSE);
+	void SetDataFileAnsi(const String& filename, bool bOverwrite = false);
 	/// Initial load
-	void SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite = FALSE);
+	void SetDataFileUnicode(const String& filename, bool bOverwrite = false);
 	/// Final save, same format as the original file
-	BOOL SaveAsFile(String & filename)
+	bool SaveAsFile(String & filename)
 	{
-		LPCTSTR newFilename;
+		const TCHAR *newFilename;
 		if (m_bOriginalIsUnicode)
 			newFilename = GetDataFileUnicode();
 		else
@@ -71,10 +76,10 @@ public:
 		if (newFilename == NULL)
 		{
 			GetLastValidFile(filename);
-			return FALSE;
+			return false;
 		}
 		filename = newFilename;
-		return TRUE;
+		return true;
 	}
 	/// Get the last valid file after an error
 	/// Warning : the format may be different from the original one
@@ -95,7 +100,7 @@ public:
 
 private:
 	void Initialize();
-	void ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode);
+	void ValidateInternal(bool bNewIsFile, bool bNewIsUnicode);
 
 // Implementation data
 private:
@@ -103,20 +108,20 @@ private:
 	int m_bOriginalIsUnicode;
 
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
-	int m_bCurrentIsUnicode;
-	int m_bCurrentIsFile;
+	bool m_bCurrentIsUnicode;
+	bool m_bCurrentIsFile;
 	// can we overwrite the current file (different from original file when nChangedValid>=1)
-	BOOL m_bOverwriteSourceFile;	
+	bool m_bOverwriteSourceFile;	
 	// number of valid transformation since load
 	int m_nChangedValid;
 	// data storage when mode is BUFFER UNICODE
-	CComBSTR m_bstr;
+	BSTR m_bstr;
 	// data storage when mode is BUFFER ANSI
-	COleSafeArray m_array;
+	VARIANT m_array;
 	// data storage when mode is FILE
 	String m_filename;
 	// error during conversion ?
-	BOOL m_bError;
+	bool m_bError;
 	// codepage for ANSI mode
 	int m_codepage;
 
@@ -130,15 +135,15 @@ private:
 // other conversion functions
 
 /// Convert any unicode file to UCS-2LE
-BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, ucr::UNICODESET unicoding = ucr::NONE);
+bool UnicodeFileToOlechar(const String& filepath, const String& filepathDst, int & nFileChanged, ucr::UNICODESET unicoding = ucr::NONE);
 /// Convert UCS-2LE file to UTF-8 (for diffutils)
-BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
-BOOL AnyCodepageToUTF8(int codepage, LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+bool UCS2LEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
+bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 
 /// Convert UCS-2BE file to UTF-8 (for diffutils)
-BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+bool UCS2BEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 
 /// Convert Ansi file to UTF-8 (for diffutils)
-BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+bool AnsiToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 
 #endif //__MULTIFORMATTEXT_H__

@@ -760,7 +760,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		}
 	}
 
-	CString strItem;
+	String strItem;
 	CString strNum;
 	int nLine = -1;
 	int bar = IsInsideBar(rc, pt);
@@ -776,8 +776,8 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
-	LangFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
-	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem, MF_BYCOMMAND);
+	strItem = LangFormatString1(ID_LOCBAR_GOTOLINE_FMT, strNum);
+	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem.c_str(), MF_BYCOMMAND);
 
 	// invoke context menu
 	// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD

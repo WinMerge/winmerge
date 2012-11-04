@@ -6,10 +6,16 @@
 // ID line follows -- this is updated by SVN
 // $Id: TimeSizeCompare.cpp 7153 2010-05-04 18:11:48Z kimmov $
 
-#include "stdafx.h"
-#include "DiffItem.h"
 #include "TimeSizeCompare.h"
+#include <cstdlib>
+#include <vector>
+#include <Poco/Types.h>
+#include <Poco/Timestamp.h>
+#include "DiffItem.h"
 #include "DiffWrapper.h"
+
+using Poco::Int64;
+using Poco::Timestamp;
 
 namespace CompareEngines
 {
@@ -40,19 +46,20 @@ void TimeSizeCompare::SetAdditionalOptions(bool ignoreSmallDiff)
  */
 int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di)
 {
-	UINT code = DIFFCODE::SAME;
+	unsigned code = DIFFCODE::SAME;
 	if ((compMethod == CMP_DATE) || (compMethod == CMP_DATE_SIZE))
 	{
 		// Compare by modified date
 		// Check that we have both filetimes
 		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0)
 		{
-			INT64 nTimeDiff =_abs64(di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime);
+			Int64 nTimeDiff = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
+			if (nTimeDiff < 0) nTimeDiff *= -1;
 			if (m_ignoreSmallDiff)
 			{
 				// If option to ignore small timediffs (couple of seconds)
 				// is set, decrease absolute difference by allowed diff
-				nTimeDiff -= SmallTimeDiff;
+				nTimeDiff -= SmallTimeDiff * Timestamp::resolution();
 			}
 			if (nTimeDiff <= 0)
 				code = DIFFCODE::SAME;

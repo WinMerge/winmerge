@@ -89,23 +89,23 @@ public:
 
 // Implementation
 public:
-	void InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *);
+	void InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *);
 	void Rescan();
-	BOOL GetRecursive() const { return m_bRecursive; }
-	BOOL GetReadOnly(int nIndex) const;
-	void SetReadOnly(int nIndex, BOOL bReadOnly);
-	BOOL HasDirView() { return m_pDirView != NULL; }
+	bool GetRecursive() const { return m_bRecursive; }
+	bool GetReadOnly(int nIndex) const;
+	void SetReadOnly(int nIndex, bool bReadOnly);
+	bool HasDirView() { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
-	UINT_PTR FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
+	Poco::UIntPtr FindItemFromPaths(const String& pathLeft, const String& pathRight);
 	void SetDiffSide(UINT diffcode, int idx);
 	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
-	void UpdateStatusFromDisk(UINT_PTR diffPos, BOOL bLeft, BOOL bRight);
-	void ReloadItemStatus(UINT_PTR diffPos, BOOL bLeft, BOOL bRight);
+	void UpdateStatusFromDisk(Poco::UIntPtr diffPos, bool bLeft, bool bRight);
+	void ReloadItemStatus(Poco::UIntPtr diffPos, bool bLeft, bool bRight);
 	void Redisplay();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
@@ -115,27 +115,27 @@ public:
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
-	void UpdateDiffAfterOperation(const FileActionItem & act, UINT_PTR pos);
+	void UpdateDiffAfterOperation(const FileActionItem & act, Poco::UIntPtr pos);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const String strDesc[]);
 	void ApplyDisplayRoot(int nIndex, String &);
 
-	void SetPluginPrediffSetting(LPCTSTR filteredFilenames, int newsetting);
-	void SetPluginPrediffer(LPCTSTR filteredFilenames, const CString & prediffer);
-	void FetchPluginInfos(LPCTSTR filteredFilenames, 
+	void SetPluginPrediffSetting(const String& filteredFilenames, int newsetting);
+	void SetPluginPrediffer(const String& filteredFilenames, const String & prediffer);
+	void FetchPluginInfos(const String& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
-	BOOL IsShowable(const DIFFITEM & di);
+	bool IsShowable(const DIFFITEM & di);
 
-	BOOL HasDiffs() const { return m_pCtxt != NULL; }
+	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
-	const DIFFITEM & GetDiffByKey(UINT_PTR key) const { return m_pCtxt->GetDiffAt(key); }
-	DIFFITEM & GetDiffRefByKey(UINT_PTR key) { return m_pCtxt->GetDiffRefAt(key); }
+	const DIFFITEM & GetDiffByKey(Poco::UIntPtr key) const { return m_pCtxt->GetDiffAt(key); }
+	DIFFITEM & GetDiffRefByKey(Poco::UIntPtr key) { return m_pCtxt->GetDiffRefAt(key); }
 	String GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
 	String GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
 	String GetBasePath(int nIndex) const { return m_pCtxt->GetNormalizedPath(nIndex); }
-	void RemoveDiffByKey(UINT_PTR key) { m_pCtxt->RemoveDiff(key); }
+	void RemoveDiffByKey(Poco::UIntPtr key) { m_pCtxt->RemoveDiff(key); }
 	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
 	struct AllowUpwardDirectory
 	{
@@ -148,7 +148,7 @@ public:
 		};
 	};
 	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(PathContext &paths);
-	void SetItemViewFlag(UINT_PTR key, UINT flag, UINT mask);
+	void SetItemViewFlag(Poco::UIntPtr key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats.get(); };
 	bool IsArchiveFolders();
@@ -169,13 +169,13 @@ private:
 	boost::scoped_ptr<CompareStats> m_pCompareStats; /**< Compare statistics */
 	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
-	BOOL m_bRO[3]; /**< Is left/middle/right side read-only */
-	BOOL m_bRecursive; /**< Is current compare recursive? */
+	bool m_bRO[3]; /**< Is left/middle/right side read-only */
+	bool m_bRecursive; /**< Is current compare recursive? */
 	CustomStatusCursor * m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
-	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
-	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
+	bool m_bReuseCloses; /**< Are we closing because of reuse? */
+	bool m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 };
 
 //{{AFX_INSERT_LOCATION}}

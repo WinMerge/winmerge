@@ -107,7 +107,7 @@ public:
 protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
-	BOOL LoadProjectFile(const CString &path);
+	BOOL LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
 	void OnButton(int index);

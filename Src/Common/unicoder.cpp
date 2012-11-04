@@ -17,18 +17,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 #include <windows.h>
+#include "unicoder.h"
 #include <tchar.h>
 #include <mlang.h>
 #include <cassert>
 #include <boost/scoped_array.hpp>
 #include <Poco/UnicodeConverter.h>
-#include "unicoder.h"
-#include "Utf8FileDetect.h"
 #include "UnicodeString.h"
-#ifndef __IMultiLanguage2_INTERFACE_DEFINED__
+#if !defined(__IMultiLanguage2_INTERFACE_DEFINED__) && !defined(__GNUC__)
 #error "IMultiLanguage2 is not defined in mlang.h. Please install latest Platform SDK."
 #endif
 
+#if defined(__GNUC__)
+const IID IID_IMultiLanguage2 = {0xDCCFC164, 0x2B38, 0x11d2, {0xB7, 0xEC, 0x00, 0xC0, 0x4F, 0x8F, 0x5D, 0x9A}};
+#endif 
 
 // This is not in older platform sdk versions
 #ifndef WC_NO_BEST_FIT_CHARS
@@ -36,6 +38,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #endif
 
 using Poco::UnicodeConverter;
+using Poco::UInt64;
 
 namespace ucr
 {
@@ -110,10 +113,10 @@ public:
 		return false;
 	}
 
-	bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, int * srcbytes, unsigned char * dest, int * destbytes)
+	bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, size_t * srcbytes, unsigned char * dest, size_t * destbytes)
 	{
 		bool bsucceeded;
-		int wsize = *srcbytes * 2 + 6;
+		size_t wsize = *srcbytes * 2 + 6;
 		wchar_t *pbuf = new wchar_t[wsize];
 		bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
 		if (!bsucceeded)
@@ -127,19 +130,25 @@ public:
 		return bsucceeded;
 	}
 
-	bool convertFromUnicode(int dstCodepage, const wchar_t * src, int * srcchars, char * dest, int *destbytes)
+	bool convertFromUnicode(int dstCodepage, const wchar_t * src, size_t * srcchars, char * dest, size_t *destbytes)
 	{
-		HRESULT hr = m_pmlang->ConvertStringFromUnicode(&m_mlangcookie, dstCodepage, (wchar_t *)src, (UINT *)srcchars, (char *)dest, (UINT *)destbytes);
+		UINT uisrcchars = static_cast<UINT>(*srcchars), uidestbytes = static_cast<UINT>(*destbytes);
+		HRESULT hr = m_pmlang->ConvertStringFromUnicode(&m_mlangcookie, dstCodepage, (wchar_t *)src, &uisrcchars, (char *)dest, &uidestbytes);
+		*srcchars = uisrcchars;
+		*destbytes = uidestbytes;
 		return SUCCEEDED(hr) ? true : false;
 	}
 
-	bool convertToUnicode(int srcCodepage, const char * src, int * srcbytes, wchar_t * dest, int *destchars)
+	bool convertToUnicode(int srcCodepage, const char * src, size_t * srcbytes, wchar_t * dest, size_t *destchars)
 	{
-		HRESULT hr = m_pmlang->ConvertStringToUnicode(&m_mlangcookie, srcCodepage, (char *)src, (UINT *)srcbytes, dest, (UINT *)destchars);
+		UINT uisrcbytes = static_cast<UINT>(*srcbytes), uidestchars = static_cast<UINT>(*destchars);
+		HRESULT hr = m_pmlang->ConvertStringToUnicode(&m_mlangcookie, srcCodepage, (char *)src, &uisrcbytes, dest, &uidestchars);
+		*srcbytes = uisrcbytes;
+		*destchars = uidestchars;
 		return SUCCEEDED(hr) ? true : false;
 	}
 
-	int detectInputCodepage(int autodetectType, int defcodepage, const char *data, int size)
+	int detectInputCodepage(int autodetectType, int defcodepage, const char *data, size_t size)
 	{
 		int codepage;
 		IMLangConvertCharset *pcc;
@@ -147,15 +156,15 @@ public:
 		UINT srcsize;
 		HRESULT hr;
 
-		hr = m_pmlang->CreateConvertCharset(autodetectType, 1200, MLCONVCHARF_AUTODETECT, &pcc);
+		hr = m_pmlang->CreateConvertCharset(autodetectType, CP_UCS2LE, MLCONVCHARF_AUTODETECT, &pcc);
 		if (FAILED(hr))
 			return defcodepage;
-		srcsize = size;
-		dstsize = size * sizeof(wchar_t);
+		srcsize = static_cast<UINT>(size);
+		dstsize = static_cast<UINT>(size * sizeof(wchar_t));
 		boost::scoped_array<unsigned char> pdst(new unsigned char[size * sizeof(wchar_t)]);
 		SetLastError(0);
 		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
-		pcc->GetSourceCodePage((unsigned int *)&codepage);
+		pcc->GetSourceCodePage((unsigned *)&codepage);
 		if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION || codepage == autodetectType)
 		{
 			int codepagestotry[3] = {0};
@@ -164,22 +173,22 @@ public:
 				if (size < 2 || (data[0] != 0 && data[1] != 0))
 				{
 					codepagestotry[0] = defcodepage;
-					codepagestotry[1] = 65001/*UTF-8*/;
+					codepagestotry[1] = CP_UTF8;
 				}
 			}
 			else
 			{
 				if (size < 2 || (data[0] != 0 && data[1] != 0))
-					codepagestotry[0] = 65001/*UTF-8*/;
+					codepagestotry[0] = CP_UTF8;
 			}
 			codepage = defcodepage;
 			int i;
 			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]); i++)
 			{
 				if (codepagestotry[i] == 0) break;
-				hr = pcc->Initialize(codepagestotry[i], 1200, 0);
-				srcsize = size;
-				dstsize = size * sizeof(wchar_t);
+				hr = pcc->Initialize(codepagestotry[i], CP_UCS2LE, 0);
+				srcsize = static_cast<UINT>(size);
+				dstsize = static_cast<UINT>(size * sizeof(wchar_t));
 				SetLastError(0);
 				hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
 				if (FAILED(hr) || GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
@@ -212,9 +221,9 @@ public:
 				if (lezerocount > 0 || bezerocount > 0)
 				{
 					if ((lecrorlf == 0 && size < 512 || (lecrorlf > 0 && (size / lecrorlf > 1024))) && lezerocount > bezerocount)
-						codepage = 1200;
+						codepage = CP_UCS2LE;
 					else if ((becrorlf == 0 && size < 512 || (becrorlf > 0 && (size / becrorlf > 1024))) && lezerocount < bezerocount)
-						codepage = 1201;
+						codepage = CP_UCS2BE;
 				}
 			}
 		}
@@ -244,43 +253,33 @@ public:
 		return ccpInfo;
 	}
 
-	bool getCodepageFromCharsetName(LPCTSTR pszCharsetName, int *pCodepage)
+	bool getCodepageFromCharsetName(const String& sCharsetName, int& codepage)
 	{
 		MIMECSETINFO charsetInfo;
-#ifdef _UNICODE
-		BSTR bstrCharsetName = SysAllocString(pszCharsetName);
-#else
-		wchar_t szCharsetNameW[256];
-		MultiByteToWideChar(CP_ACP, 0, pszCharsetName, -1, szCharsetNameW, sizeof(szCharsetNameW)/sizeof(wchar_t));
-		BSTR bstrCharsetName = SysAllocString(szCharsetNameW);
-#endif
+		BSTR bstrCharsetName = SysAllocString(toUTF16(sCharsetName).c_str());
 		HRESULT hr = m_pmlang->GetCharsetInfo(bstrCharsetName, &charsetInfo);
 		SysFreeString(bstrCharsetName);
 		if (FAILED(hr))
 			return false;
-		*pCodepage = charsetInfo.uiInternetEncoding;
+		codepage = charsetInfo.uiInternetEncoding;
 		return true;
 	}
 
-	bool getCodepageDescription(int codepage, LPTSTR pszDescription)
+	bool getCodepageDescription(int codepage, String& sDescription)
 	{
 		wchar_t szDescription[256];
 		HRESULT hr = m_pmlang->GetCodePageDescription(codepage, GetSystemDefaultLangID(), szDescription, sizeof(szDescription)/sizeof(wchar_t));
 		if (FAILED(hr))
 			return false;
 
-#ifdef _UNICODE
-		lstrcpy(pszDescription, szDescription);
-#else
-		wsprintf(pszDescription, "%S", szDescription);
-#endif
+		sDescription = toTString(szDescription);
 		return true;
 	}
 
 	bool isValidCodepage(int codepage)
 	{
-		TCHAR szDesc[256];
-		return getCodepageDescription(codepage, szDesc);
+		String sDesc;
+		return getCodepageDescription(codepage, sDesc);
 	}
 
 	bool getCodePageInfo(int codepage, CodePageInfo *pCodePageInfo)
@@ -296,7 +295,11 @@ public:
 
 };
 
+#ifdef _MSC_VER
 __declspec(thread) static IExconverter *m_pexconv = NULL;
+#else
+static __thread IExconverter *m_pexconv = NULL;
+#endif
 
 IExconverter *createConverterMLang()
 {
@@ -327,7 +330,7 @@ static void fetch_verinfo()
  * returns length of byte string written
  * Does not zero-terminate!
  */
-int Ucs4_to_Utf8(unsigned int unich, unsigned char * utf8)
+int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8)
 {
 #pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (unich <= 0x7f)
@@ -405,7 +408,7 @@ int Utf8len_fromLeadByte(unsigned char ch)
 /**
  * @brief return #bytes required to represent Unicode codepoint as UTF-8
  */
-int Utf8len_fromCodepoint(unsigned int ch)
+int Utf8len_fromCodepoint(unsigned ch)
 {
 	if (ch <= 0x7F) return 1;
 	if (ch <= 0x7FF) return 2;
@@ -417,34 +420,16 @@ int Utf8len_fromCodepoint(unsigned int ch)
 }
 
 /**
- * @brief How many bytes will it take to write string as UTF-8 ?
- *
- * @param size size argument as filemapping are not 0 terminated
- *
- * @bug Fails for files larger than 2gigs
- */
-unsigned int Utf8len_of_string(const wchar_t* text, int size)
-{
-	unsigned int len = 0;
-	for (int i = 0; i < size; ++i)
-	{
-		int chlen = Utf8len_fromCodepoint(text[i]);
-		if (chlen < 1) chlen = 1;
-		len += chlen;
-	}
-	return len;
-}
-/**
  * @brief How many chars in this UTF-8 string ?
  *
  * @param size size argument as filemapping are not 0 terminated
  *
  * @bug Fails for files larger than 2gigs
  */
-unsigned int stringlen_of_utf8(const char* text, int size)
+size_t stringlen_of_utf8(const char* text, size_t size)
 {
-	unsigned int len = 0;
-	for (int i = 0; i < size;)
+	unsigned len = 0;
+	for (size_t i = 0; i < size;)
 	{
 		int chlen = Utf8len_fromLeadByte(text[i]);
 		if (chlen < 1) chlen = 1;
@@ -457,7 +442,7 @@ unsigned int stringlen_of_utf8(const char* text, int size)
 /**
  * @brief Read UTF-8 character and return as Unicode
  */
-unsigned int GetUtf8Char(unsigned char * str)
+unsigned GetUtf8Char(unsigned char * str)
 {
 	/* test short cases first, as probably much more common */
 	if (!(*str & 0x80 && *str & 0x40))
@@ -466,20 +451,20 @@ unsigned int GetUtf8Char(unsigned char * str)
 	}
 	if (!(*str & 0x20))
 	{
-		unsigned int ch = ((str[0] & 0x1F) << 6)
+		unsigned ch = ((str[0] & 0x1F) << 6)
 				+ (str[1] & 0x3F);
 		return ch;
 	}
 	if (!(*str & 0x10))
 	{
-		unsigned int ch = ((str[0] & 0x0f) << 12)
+		unsigned ch = ((str[0] & 0x0f) << 12)
 				+ ((str[1] & 0x3F) << 6)
 				+ (str[2] & 0x3F);
 		return ch;
 	}
 	if (!(*str & 0x08))
 	{
-		unsigned int ch = ((str[0] & 0x0F) << 18)
+		unsigned ch = ((str[0] & 0x0F) << 18)
 				+ ((str[1] & 0x3F) << 12)
 				+ ((str[2] & 0x3F) << 6)
 				+ (str[3] & 0x3F);
@@ -487,7 +472,7 @@ unsigned int GetUtf8Char(unsigned char * str)
 	}
 	if (!(*str & 0x04))
 	{
-		unsigned int ch = ((str[0] & 0x0F) << 24)
+		unsigned ch = ((str[0] & 0x0F) << 24)
 				+ ((str[1] & 0x3F) << 18)
 				+ ((str[2] & 0x3F) << 12)
 				+ ((str[3] & 0x3F) << 6)
@@ -496,7 +481,7 @@ unsigned int GetUtf8Char(unsigned char * str)
 	}
 	else
 	{
-		unsigned int ch = ((str[0] & 0x0F) << 30)
+		unsigned ch = ((str[0] & 0x0F) << 30)
 				+ ((str[1] & 0x3F) << 24)
 				+ ((str[2] & 0x3F) << 18)
 				+ ((str[3] & 0x3F) << 12)
@@ -511,7 +496,7 @@ unsigned int GetUtf8Char(unsigned char * str)
  *
  * Returns number of bytes written (or -1 for error, in which case it writes '?')
  */
-int to_utf8_advance(unsigned int u, unsigned char * &lpd)
+int to_utf8_advance(unsigned u, unsigned char * &lpd)
 {
 #pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (u < 0x80)
@@ -570,9 +555,9 @@ int to_utf8_advance(unsigned int u, unsigned char * &lpd)
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-void maketchar(String & ch, unsigned int unich, bool & lossy)
+void maketchar(String & ch, unsigned unich, bool & lossy)
 {
-	static unsigned int codepage = CP_ACP;
+	static unsigned codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
 	maketchar(ch, unich, lossy, codepage);
@@ -581,7 +566,7 @@ void maketchar(String & ch, unsigned int unich, bool & lossy)
 /**
  * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
  */
-void maketchar(String & ch, unsigned int unich, bool & lossy, unsigned int codepage)
+void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 {
 #ifdef _UNICODE
 	if (unich < 0x10000)
@@ -645,9 +630,9 @@ void maketchar(String & ch, unsigned int unich, bool & lossy, unsigned int codep
 /**
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
-unsigned int byteToUnicode(unsigned char ch)
+unsigned byteToUnicode(unsigned char ch)
 {
-	static unsigned int codepage = CP_ACP;
+	static unsigned codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
 	return byteToUnicode(ch, codepage);
@@ -656,7 +641,7 @@ unsigned int byteToUnicode(unsigned char ch)
 /**
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
-unsigned int byteToUnicode(unsigned char ch, unsigned int codepage)
+unsigned byteToUnicode(unsigned char ch, unsigned codepage)
 {
 
 	if (ch < 0x80)
@@ -721,9 +706,9 @@ int writeBom(void* dest, UNICODESET unicoding)
  *  This does not handle MBCS or UTF-8 codepages correctly!
  *  Client should not use this except for Unicode or SBCS codepages.
  */
-unsigned int get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
+unsigned get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
 {
-	unsigned int ch;
+	unsigned ch;
 	switch (codeset)
 	{
 	case UCS2LE:
@@ -753,7 +738,7 @@ unsigned int get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codep
  *  In fact, this doesn't even know. Probably going to have to make
  *  two passes, the first with MB_ERR_INVALID_CHARS. Ugh. :(
  */
-bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, bool * lossy)
+bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool * lossy)
 {
 	int defcodepage = getDefaultCodepage();
 
@@ -771,7 +756,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 	// Convert input to Unicode, using specified codepage
 	// TCHAR is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
-	int wlen = len * 2 + 6;
+	size_t wlen = len * 2 + 6;
 
 	try
 	{
@@ -874,8 +859,8 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 			m_pexconv = createConverterMLang();
 		if (m_pexconv)
 		{
-			int n = wlen;
-			if (m_pexconv->convertToUnicode(codepage, lpd, (int *)&len, wbuff, (int *)&n))
+			size_t n = wlen;
+			if (m_pexconv->convertToUnicode(codepage, lpd, &len, wbuff, &n))
 			{
 				try
 				{
@@ -927,7 +912,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 			m_pexconv = createConverterMLang();
 		if (m_pexconv)
 		{		
-			int n = len * 6 + 6;
+			size_t n = len * 6 + 6;
 			try
 			{
 				str.resize(n);
@@ -937,8 +922,8 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
 				// Not enough memory - exit
 				return false;
 			}
-			LPSTR buff = &*str.begin();
-			m_pexconv->convert(codepage, dstcodepage, (const unsigned char *)lpd, (int *)&len, (unsigned char *)buff, (int *)&n);
+			char *buff = &*str.begin();
+			m_pexconv->convert(codepage, dstcodepage, (const unsigned char *)lpd, &len, (unsigned char *)buff, &n);
 			if (n)
 			{
 				try
@@ -965,7 +950,7 @@ bool maketstring(String & str, const char* lpd, unsigned int len, int codepage, 
  * @brief (ANSI build only) Convert from one 8 bit codepage to another
  */
 #ifndef UNICODE
-String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy)
+String CrossConvertToStringA(const char* src, unsigned srclen, int cpin, int cpout, bool * lossy)
 {
 	int wlen = srclen * 2 + 6;
 	int clen = wlen * 2 + 6;
@@ -983,7 +968,7 @@ String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int
  *
  * destsize must be at least 2
  */
-int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy)
+int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize, int cpin, int cpout, bool * lossy)
 {
 	assert(destsize > 1);
 
@@ -1034,7 +1019,7 @@ int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int 
  * The constructor creates buffer with given size.
  * @param [in] initialSize Buffer's size.
  */
-buffer::buffer(unsigned int initialSize)
+buffer::buffer(size_t initialSize)
 {
 	size = 0;
 	capacity = initialSize;
@@ -1054,7 +1039,7 @@ buffer::~buffer()
  * @brief Resize the buffer.
  * @param [in] newSize New size of the buffer.
  */
-void buffer::resize(unsigned int newSize)
+void buffer::resize(size_t newSize)
 {
 	if (capacity < newSize)
 	{
@@ -1067,7 +1052,7 @@ unsigned char *convertTtoUTF8(buffer * buf, LPCTSTR src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
-	bSucceeded = convert(1200, 
+	bSucceeded = convert(CP_UCS2LE, 
 		(unsigned char *)src, (int)((srcbytes < 0) ? wcslen((const wchar_t *)src) * sizeof(wchar_t) : srcbytes),
 		CP_UTF8, buf);
 #else
@@ -1093,7 +1078,7 @@ TCHAR *convertUTF8toT(buffer * buf, LPCSTR src, int srcbytes/* = -1*/)
 #ifdef _UNICODE
 	bSucceeded = convert(CP_UTF8,
 		(const unsigned char *)src, (int)((srcbytes < 0) ? strlen((const char *)src) : srcbytes),
-		1200/*UCS2LE*/, buf);
+		CP_UCS2LE, buf);
 #else
 	bSucceeded = convert(CP_UTF8,
 		(const unsigned char *)src, (int)((srcbytes < 0) ? strlen((const char *)src) : srcbytes),
@@ -1116,31 +1101,60 @@ void dealloc(void *ptr)
 	free(ptr);
 }
 
-String UTF82T(const std::string& str)
+String toTString(const std::wstring& str)
+{
+#ifdef UNICODE
+	return str;
+#else
+	return toThreadCP(str);
+#endif
+}
+
+String toTString(const std::string& str)
 {
 #ifdef UNICODE
 	std::wstring wstr;
 	UnicodeConverter::toUTF16(str, wstr);
 	return wstr;
 #else
-	const char *p = ucr::convertUTF8toT(str.c_str(), str.length());
+	const char *p = convertUTF8toT(str.c_str(), str.length());
 	std::string astr = p;
-	ucr::dealloc((void *)p);
+	dealloc((void *)p);
 	return astr;
 #endif
 }
 
-std::string T2UTF8(const String& tstr)
+std::wstring toUTF16(const String& tstr)
+{
+	std::wstring wstr;
+	toUTF16(tstr, wstr);
+	return wstr;
+}
+
+void toUTF16(const String& tstr, std::wstring& wstr)
 {
 #ifdef UNICODE
-	std::string str;
-	UnicodeConverter::toUTF8(tstr, str);
-	return str;
+	wstr = tstr;
 #else
-	const char *p = (const char *)ucr::convertTtoUTF8(tstr.c_str(), tstr.length());
-	std::string astr = p;
-	ucr::dealloc((void *)p);
-	return astr;
+	UnicodeConverter::toUTF16(tstr, wstr);
+#endif
+}
+
+std::string toUTF8(const String& tstr)
+{
+	std::string u8str;
+	toUTF8(tstr, u8str);
+	return u8str;
+}
+
+void toUTF8(const String& tstr, std::string& u8str)
+{
+#ifdef UNICODE
+	UnicodeConverter::toUTF8(tstr, u8str);
+#else
+	const char *p = (const char *)convertTtoUTF8(tstr.c_str(), tstr.length());
+	u8str = p;
+	dealloc((void *)p);
 #endif
 }
 
@@ -1154,11 +1168,11 @@ bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepag
 	{
 		switch (codepage[i])
 		{
-		case 1200:
+		case CP_UCS2LE:
 			unicoding[i] = UCS2LE; break;
-		case 1201:
+		case CP_UCS2BE:
 			unicoding[i] = UCS2BE; break;
-		case 65001:
+		case CP_UTF8:
 			unicoding[i] = UTF8; break;
 		default:
 			unicoding[i] = NONE; break;
@@ -1171,7 +1185,7 @@ bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepag
 /**
  * @brief Convert from one text encoding to another; return false if any lossing conversions
  */
-bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest)
+bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, size_t srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest)
 {
 	if (unicoding1 == unicoding2 && (unicoding1 || EqualCodepages(codepage1, codepage2)))
 	{
@@ -1228,8 +1242,8 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		}
 		else
 		{
-			int srcsize = srcbytes / 2;
-			int dstsize = srcbytes * 6; 
+			size_t srcsize = srcbytes / 2;
+			size_t dstsize = srcbytes * 6; 
 			dest->resize(dstsize + 2);
 			if (!m_pexconv)
 				m_pexconv = createConverterMLang();
@@ -1262,8 +1276,8 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		}
 		else
 		{
-			int srcsize = srcbytes;
-			int dstsize = srcbytes; 
+			size_t srcsize = srcbytes;
+			size_t dstsize = srcbytes; 
 			dest->resize((srcbytes + 1) * sizeof(wchar_t));
 			if (!m_pexconv)
 				m_pexconv = createConverterMLang();
@@ -1282,6 +1296,136 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 }
 
 /**
+ * @brief Convert from Unicode to Ansi using given codepage.
+ * @param [in] from String to convert.
+ * @param [in] codepage Codepage to use in conversion.
+ * @param [out] to Ansi string.
+ */
+static void convert(const std::wstring& from, unsigned codepage, std::string& to)
+{
+	int len = WideCharToMultiByte(codepage, 0, from.c_str(), from.length(), 0, 0, 0, 0);
+	if (len)
+	{
+		to.resize(len);
+		WideCharToMultiByte(codepage, 0, from.c_str(), from.length(), &to[0], len, NULL, NULL);
+	}
+	else
+	{
+		to.clear();
+	}
+}
+
+/**
+ * @brief Convert from Unicode to Ansi using system codepage.
+ * This function converts Unicode string to ansi string using system codepage.
+ * This conversion function should be used when converting strings containing
+ * paths. As paths are handled by the system and are not file content.
+ * @param [in] str String to convert.
+ * @return Ansi string.
+ */
+std::string toSystemCP(const std::string& str)
+{
+	return str;
+}
+
+std::string toSystemCP(const std::wstring& str)
+{
+	std::string to;
+	convert(str, CP_ACP, to);
+	return to;
+}
+
+/**
+ * @brief Convert from Unicode to Ansi using thread codepage.
+ * This function converts Unicode string to ansi string using thread codepage.
+ * Thread codepage is practically the codepage WinMerge is using internally.
+ * @param [in] str String to convert.
+ * @return Ansi string.
+ */
+std::string toThreadCP(const std::string& str)
+{
+	return str;
+}
+
+std::string toThreadCP(const std::wstring& str)
+{
+	std::string to;
+	convert(str, CP_THREAD_ACP, to);
+	return to;
+}
+
+// Algorithm originally from:
+// TortoiseMerge - a Diff/Patch program
+// Copyright (C) 2007 - TortoiseSVN
+/**
+ * @brief Check for invalid UTF-8 bytes in buffer.
+ * This function checks if there are invalid UTF-8 bytes in the given buffer.
+ * If such bytes are found, caller knows this buffer is not valid UTF-8 file.
+ * @param [in] pBuffer Pointer to begin of the buffer.
+ * @param [in] size Size of the buffer in bytes.
+ * @return true if invalid bytes found, false otherwise.
+ */
+bool CheckForInvalidUtf8(const char *pBuffer, int size)
+{
+	unsigned char * pVal2 = (unsigned char *)pBuffer;
+	for (int j = 0; j < size; ++j)
+	{
+		if ((*pVal2 == 0xC0) || (*pVal2 == 0xC1) || (*pVal2 >= 0xF5))
+			return true;
+		pVal2++;
+	}
+	pVal2 = (unsigned char *)pBuffer;
+	bool bUTF8 = false;
+	for (int i = 0; i < (size - 3); ++i)
+	{
+		if ((*pVal2 & 0x80) == 0x00)
+			;
+		else if ((*pVal2 & 0xE0) == 0xC0)
+		{
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			bUTF8 = true;
+		}
+		else if ((*pVal2 & 0xF0) == 0xE0)
+		{
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			bUTF8 = true;
+		}
+		else if ((*pVal2 & 0xF8) == 0xF0)
+		{
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			bUTF8 = true;
+		}
+		else
+			return true;
+		pVal2++;
+	}
+	if (bUTF8)
+		return false;
+	return true;
+}
+
+/**
  * @brief Determine encoding from byte buffer.
  * @param [in] pBuffer Pointer to the begin of the buffer.
  * @param [in] size Size of the buffer.
@@ -1293,21 +1437,21 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
  * FF FE 00 00 UTF-32, little endian
  * 00 00 FE FF UTF-32, big-endian
  */
-UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom)
+UNICODESET DetermineEncoding(const unsigned char *pBuffer, UInt64 size, bool * pBom)
 {
-	UNICODESET unicoding = ucr::NONE;
+	UNICODESET unicoding = NONE;
 	*pBom = false;
 
 	if (size >= 2)
 	{
 		if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE)
 		{
-			unicoding = ucr::UCS2LE; //UNI little endian
+			unicoding = UCS2LE; //UNI little endian
 			*pBom = true;
 		}
 		else if (pBuffer[0] == 0xFE && pBuffer[1] == 0xFF)
 		{
-			unicoding = ucr::UCS2BE; //UNI big endian
+			unicoding = UCS2BE; //UNI big endian
 			*pBom = true;
 		}
 	}
@@ -1315,7 +1459,7 @@ UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom)
 	{
 		if (pBuffer[0] == 0xEF && pBuffer[1] == 0xBB && pBuffer[2] == 0xBF)
 		{
-			unicoding = ucr::UTF8;
+			unicoding = UTF8;
 			*pBom = true;
 		}
 	}
@@ -1324,13 +1468,13 @@ UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom)
 		if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE &&
 				pBuffer[2] == 0x00 && pBuffer[3] == 0x00)
 		{
-			unicoding = ucr::UCS4LE; //UTF-32, little endian
+			unicoding = UCS4LE; //UTF-32, little endian
 			*pBom = true;
 		}
 		else if (pBuffer[0] == 0x00 && pBuffer[1] == 0x00 &&
 				pBuffer[2] == 0xFE && pBuffer[3] == 0xFF)
 		{
-			unicoding = ucr::UCS4BE; //UTF-32, big endian
+			unicoding = UCS4BE; //UTF-32, big endian
 			*pBom = true;
 		}
 	}

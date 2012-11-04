@@ -997,7 +997,7 @@ static int SortCompareByCodePage(const void *elem1, const void *elem2)
 {
 	const struct _charsetInfo *p = *(const struct _charsetInfo **)elem1;
 	const struct _charsetInfo *q = *(const struct _charsetInfo **)elem2;
-	return p->codepage != q->codepage ? p->codepage - q->codepage : p - q;
+	return (int)(p->codepage != q->codepage ? p->codepage - q->codepage : p - q);
 }
 
 static struct _charsetInfo const *FindByName(const char *name)

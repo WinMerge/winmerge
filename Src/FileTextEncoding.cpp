@@ -8,6 +8,7 @@
 
 #include "FileTextEncoding.h"
 #include "unicoder.h"
+#include "codepage.h"
 
 FileTextEncoding::FileTextEncoding()
 {
@@ -37,10 +38,10 @@ void FileTextEncoding::SetCodepage(int codepage)
 	case CP_UTF8:
 		m_unicoding = ucr::UTF8;
 		break;
-	case 1200:
+	case CP_UCS2LE:
 		m_unicoding = ucr::UCS2LE;
 		break;
-	case 1201:
+	case CP_UCS2BE:
 		m_unicoding = ucr::UCS2BE;
 		break;
 	}
@@ -55,9 +56,9 @@ void FileTextEncoding::SetUnicoding(ucr::UNICODESET unicoding)
 		switch (m_codepage)
 		{
 		case CP_UTF8:
-		case 1200:
-		case 1201:
-			m_codepage = CP_ACP; // not sure what to do here
+		case CP_UCS2LE:
+		case CP_UCS2BE:
+			m_codepage = 0; // not sure what to do here
 			break;
 		}
 		break;
@@ -65,10 +66,10 @@ void FileTextEncoding::SetUnicoding(ucr::UNICODESET unicoding)
 		m_codepage = CP_UTF8;
 		break;
 	case ucr::UCS2LE:
-		m_codepage = 1200;
+		m_codepage = CP_UCS2LE;
 		break;
 	case ucr::UCS2BE:
-		m_codepage = 1201;
+		m_codepage = CP_UCS2BE;
 		break;
 	}
 }
@@ -92,23 +93,16 @@ String FileTextEncoding::GetName() const
 	if (m_unicoding == ucr::UCS2BE)
 		return _T("UCS-2 BE");
 
-	String str;
-	if (m_codepage > -1)
+	if (m_codepage <= 0)
+		return _T("");
+
+	if (m_codepage == CP_UTF8)
 	{
-		if (m_codepage == CP_UTF8)
-		{
-			// We detected codepage to be UTF-8, but unicoding was not set
-			str = _T("UTF-8");
-		}
-		else
-		{
-			str.resize(32);
-			LPTSTR s = &*str.begin(); //GetBuffer(32);
-			int len = _sntprintf(s, 32, _T("%d"), m_codepage);
-			str.resize(len);
-		}
+		// We detected codepage to be UTF-8, but unicoding was not set
+		return _T("UTF-8");
 	}
-	return str;
+
+	return string_format(_T("%d"), m_codepage);
 }
 
 int FileTextEncoding::Collate(const FileTextEncoding & fte1, const FileTextEncoding & fte2)

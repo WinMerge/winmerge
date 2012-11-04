@@ -7,16 +7,17 @@
 // $Id: paths.cpp 6514 2009-03-01 16:55:11Z kimmov $
 
 #include <windows.h>
-#include <tchar.h>
-#include <assert.h>
 #include "paths.h"
-#include "PathContext.h"
+#include <cassert>
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
 #include <shlobj.h>
+#include <shlwapi.h>
+#include "PathContext.h"
+#include "unicoder.h"
 
-static bool IsSlash(LPCTSTR pszStart, size_t nPos);
-static bool GetDirName(LPCTSTR sDir, String& sName);
+static bool IsSlash(const String& pszStart, size_t nPos);
+static bool GetDirName(const String& sDir, String& sName);
 
 /** 
  * @brief Checks if char in string is slash.
@@ -24,14 +25,14 @@ static bool GetDirName(LPCTSTR sDir, String& sName);
  * @param [in] nPos of char in string to check (0-based index).
  * @return true if char is slash.
  */
-static bool IsSlash(LPCTSTR pszStart, size_t nPos)
+static bool IsSlash(const String& pszStart, size_t nPos)
 {
 	return pszStart[nPos]=='/' || 
 #ifdef _UNICODE
 	       pszStart[nPos]=='\\';
 #else
 		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-	       (pszStart[nPos]=='\\' && !_ismbstrail((unsigned char *)pszStart, (unsigned char *)pszStart + nPos));
+	       (pszStart[nPos]=='\\' && !_ismbstrail((unsigned char *)pszStart.c_str(), (unsigned char *)pszStart.c_str() + nPos));
 #endif
 }
 
@@ -42,9 +43,9 @@ static bool IsSlash(LPCTSTR pszStart, size_t nPos)
  * @param [in] s String to check.
  * @return true if last char in string is slash.
  */
-bool paths_EndsWithSlash(LPCTSTR s)
+bool paths_EndsWithSlash(const String& s)
 {
-	if (size_t len = _tcslen(s))
+	if (size_t len = s.length())
 		return IsSlash(s, (int)len - 1);
 	return false;
 }
@@ -59,23 +60,23 @@ bool paths_EndsWithSlash(LPCTSTR s)
  * - IS_EXISTING_DIR : path points to existing folder
  * - IS_EXISTING_FILE : path points to existing file
  */
-PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
+PATH_EXISTENCE paths_DoesPathExist(const String& szPath)
 {
-	if (!szPath || !szPath[0])
+	if (szPath.empty())
 		return DOES_NOT_EXIST;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	LPCTSTR lpcszPath;
+	const TCHAR *lpcszPath;
 	TCHAR expandedPath[_MAX_PATH] = {0};
 
-	if (_tcschr(szPath, '%') &&
-		ExpandEnvironmentStrings(szPath, expandedPath, _MAX_PATH))
+	if (_tcschr(szPath.c_str(), '%') &&
+		ExpandEnvironmentStrings(szPath.c_str(), expandedPath, _MAX_PATH))
 	{
 		lpcszPath = expandedPath;
 	}
 	else
-		lpcszPath = szPath;
+		lpcszPath = szPath.c_str();
 
 	DWORD attr = GetFileAttributes(lpcszPath);
 
@@ -92,11 +93,22 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
  * @param [in] Path
  * @return Filename
  */
-LPCTSTR paths_FindFileName(LPCTSTR path)
+String paths_FindFileName(const String& path)
 {
-	while (LPCTSTR slash = _tcspbrk(path, _T("\\/")))
-		path = slash + 1;
-	return path;
+	const TCHAR *filename = path.c_str();
+	while (const TCHAR *slash = _tcspbrk(filename, _T("\\/")))
+		filename = slash + 1;
+	return filename;
+}
+
+/**
+ * @brief Like shlwapi's PathFindFileName(), but works with both \ and /.
+ * @param [in] Path
+ * @return Filename
+ */
+String paths_FindExtension(const String& path)
+{
+	return ::PathFindExtension(path.c_str());
 }
 
 /** 
@@ -112,14 +124,14 @@ void paths_normalize(String & sPath)
 		return;
 
 	// prefix root with current drive
-	sPath = paths_GetLongPath(sPath.c_str());
+	sPath = paths_GetLongPath(sPath);
 
 	// Do not remove trailing slash from root directories
 	if (len == 3 && sPath[1] == ':')
 		return;
 
 	// remove any trailing slash
-	if (paths_EndsWithSlash(sPath.c_str()))
+	if (paths_EndsWithSlash(sPath))
 		sPath.resize(sPath.length() - 1);
 }
 
@@ -130,7 +142,7 @@ void paths_normalize(String & sPath)
  * @return true if canonical name exists.
  * @todo Should we return empty string as sName when returning false?
  */
-static bool GetDirName(LPCTSTR sDir, String& sName)
+static bool GetDirName(const String& sDir, String& sName)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
@@ -141,7 +153,7 @@ static bool GetDirName(LPCTSTR sDir, String& sName)
 		// because my first return value is not a dot directory, as I would have expected
 		WIN32_FIND_DATA ffd;
 		TCHAR sPath[8];
-		wsprintf(sPath, _T("%s\\*"), sDir);
+		wsprintf(sPath, _T("%s\\*"), sDir.c_str());
 		HANDLE h = FindFirstFile(sPath, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 			return false;
@@ -151,7 +163,7 @@ static bool GetDirName(LPCTSTR sDir, String& sName)
 	}
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
-	HANDLE h = FindFirstFile(sDir, &ffd);
+	HANDLE h = FindFirstFile(sDir.c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
 	sName = ffd.cFileName;
@@ -163,14 +175,14 @@ static bool GetDirName(LPCTSTR sDir, String& sName)
  * Convert path to canonical long path.
  * This function converts given path to canonical long form. For example
  * foldenames with ~ short names are expanded. Also environment strings are
- * expanded if @p bExpandEnvs is TRUE. If path does not exist, make canonical
+ * expanded if @p bExpandEnvs is true. If path does not exist, make canonical
  * the part that does exist, and leave the rest as is. Result, if a directory,
  * usually does not have a trailing backslash.
  * @param [in] sPath Path to convert.
- * @param [in] bExpandEnvs If TRUE environment variables are expanded.
+ * @param [in] bExpandEnvs If true environment variables are expanded.
  * @return Converted path.
  */
-String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
+String paths_GetLongPath(const String& szPath, bool bExpandEnvs)
 {
 	String sPath = szPath;
 	size_t len = sPath.length();
@@ -193,7 +205,7 @@ String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR expandedPath[_MAX_PATH] = {0};
-	LPCTSTR lpcszPath = NULL;
+	const TCHAR *lpcszPath = NULL;
 
 	if (bExpandEnvs && _tcschr(sPath.c_str(), '%'))
 	{
@@ -280,24 +292,24 @@ String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
  * @param [in] sPath Path to check/create.
  * @return true if path exists or if we successfully created it.
  */
-bool paths_CreateIfNeeded(LPCTSTR szPath)
+bool paths_CreateIfNeeded(const String& szPath)
 {
-	if (*szPath == '\0')
+	if (szPath.empty())
 		return false;
 
 	String sTemp;
 	if (GetDirName(szPath, sTemp))
 		return true;
 
-	if (lstrlen(szPath) >= _MAX_PATH)
+	if (szPath.length() >= _MAX_PATH)
 		return false;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR fullPath[_MAX_PATH] = _T("");
-	if (!_tcschr(szPath, '%') || !ExpandEnvironmentStrings(szPath, fullPath, _MAX_PATH))
+	if (!_tcschr(szPath.c_str(), '%') || !ExpandEnvironmentStrings(szPath.c_str(), fullPath, _MAX_PATH))
 	{
-		_tcscpy(fullPath, szPath);
+		_tcscpy(fullPath, szPath.c_str());
 	}
 	// Now fullPath holds our desired path
 
@@ -360,25 +372,25 @@ bool paths_CreateIfNeeded(LPCTSTR szPath)
  *  - IS_EXISTING_FILE : both are files & exist
  *  - DOES_NOT_EXIST : in all other cases
 */
-PATH_EXISTENCE GetPairComparability(const PathContext & paths, BOOL (*IsArchiveFile)(LPCTSTR))
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&))
 {
 	// fail if not both specified
 	if (paths.GetSize() < 2 || paths[0].empty() || paths[1].empty())
 		return DOES_NOT_EXIST;
-	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0].c_str());
+	PATH_EXISTENCE p1 = paths_DoesPathExist(paths[0]);
 	// short circuit testing right if left doesn't exist
 	if (p1 == DOES_NOT_EXIST)
 		return DOES_NOT_EXIST;
-	if (IsArchiveFile && IsArchiveFile(paths[0].c_str()))
+	if (IsArchiveFile && IsArchiveFile(paths[0]))
 		p1 = IS_EXISTING_DIR;
-	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1].c_str());
-	if (IsArchiveFile && IsArchiveFile(paths[1].c_str()))
+	PATH_EXISTENCE p2 = paths_DoesPathExist(paths[1]);
+	if (IsArchiveFile && IsArchiveFile(paths[1]))
 		p2 = IS_EXISTING_DIR;
 	if (p1 != p2)
 		return DOES_NOT_EXIST;
 	if (paths.GetSize() < 3) return p1; 
-	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2].c_str());
-	if (IsArchiveFile && IsArchiveFile(paths[2].c_str()))
+	PATH_EXISTENCE p3 = paths_DoesPathExist(paths[2]);
+	if (IsArchiveFile && IsArchiveFile(paths[2]))
 		p3 = IS_EXISTING_DIR;
 	if (p2 != p3) return DOES_NOT_EXIST;
 	return p1;
@@ -390,17 +402,22 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, BOOL (*IsArchiveF
  * shortcuts. This function checks if the given path is shortcut.
  * We usually want to expand shortcuts with ExpandShortcut().
  * @param [in] inPath Path to check;
- * @return TRUE if the path points to shortcut, FALSE otherwise.
+ * @return true if the path points to shortcut, false otherwise.
  */
-BOOL paths_IsShortcut(LPCTSTR inPath)
+bool paths_IsShortcut(const String& inPath)
 {
 	const TCHAR ShortcutExt[] = _T(".lnk");
 	TCHAR ext[_MAX_EXT] = {0};
-	_tsplitpath(inPath, NULL, NULL, NULL, ext);
+	_tsplitpath(inPath.c_str(), NULL, NULL, NULL, ext);
 	if (_tcsicmp(ext, ShortcutExt) == 0)
-		return TRUE;
+		return true;
 	else
-		return FALSE;
+		return false;
+}
+
+bool paths_IsDirectory(const String &path)
+{
+	return !!PathIsDirectory(path.c_str());
 }
 
 //////////////////////////////////////////////////////////////////
@@ -483,13 +500,13 @@ String paths_ConcatPath(const String & path, const String & subpath)
 		return subpath;
 	if (subpath.empty())
 		return path;
-	if (paths_EndsWithSlash(path.c_str()))
+	if (paths_EndsWithSlash(path))
 	{
 		return String(path).append(subpath.c_str() + (IsSlash(subpath.c_str(), 0) ? 1 : 0));
 	}
 	else
 	{
-		if (IsSlash(subpath.c_str(), 0))
+		if (IsSlash(subpath, 0))
 		{
 			return path + subpath;
 		}
@@ -507,7 +524,7 @@ String paths_ConcatPath(const String & path, const String & subpath)
  * @param [in] path Path to get parent path for.
  * @return Parent path.
  */
-String paths_GetParentPath(LPCTSTR path)
+String paths_GetParentPath(const String& path)
 {
 	String parentPath(path);
 	size_t len = parentPath.length();
@@ -561,29 +578,29 @@ String paths_GetLastSubdir(const String & path)
 /** 
  * @brief Checks if path is an absolute path.
  * @param [in] path Path to check.
- * @return TRUE if given path is absolute path.
+ * @return true if given path is absolute path.
  */
-BOOL paths_IsPathAbsolute(const String &path)
+bool paths_IsPathAbsolute(const String &path)
 {
 	if (path.length() < 3)
-		return FALSE;
+		return false;
 	
 	size_t pos = path.find_last_of('\\');
 
 	// Absolute path must have "\" and cannot start with it.
 	// Also "\\blahblah" is invalid.
 	if (pos < 2 || pos == String::npos)
-		return FALSE;
+		return false;
 
 	// Maybe "X:\blahblah"?
 	if (path[1] == ':' && path[2] == '\\')
-		return TRUE;
+		return true;
 
 	// So "\\blahblah\"?
 	if (path[0] == '\\' && path[1] == '\\' && pos > 2)
-		return TRUE;
+		return true;
 	else
-		return FALSE;
+		return false;
 }
 
 /**
@@ -596,16 +613,127 @@ BOOL paths_IsPathAbsolute(const String &path)
  */
 String paths_EnsurePathExist(const String & sPath)
 {
-	int rtn = paths_DoesPathExist(sPath.c_str());
+	int rtn = paths_DoesPathExist(sPath);
 	if (rtn == IS_EXISTING_DIR)
 		return sPath;
 	if (rtn == IS_EXISTING_FILE)
 		return _T("");
-	if (!paths_CreateIfNeeded(sPath.c_str()))
+	if (!paths_CreateIfNeeded(sPath))
 		return _T("");
 	// Check creating folder succeeded
-	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_DIR)
+	if (paths_DoesPathExist(sPath) == IS_EXISTING_DIR)
 		return sPath;
 	else
 		return _T("");
+}
+
+/**
+ * @brief Return true if *pszChar is a slash (either direction) or a colon
+ *
+ * begin points to start of string, in case multibyte trail test is needed
+ */
+bool IsSlashOrColon(const TCHAR *pszChar, const TCHAR *begin)
+{
+#ifdef _UNICODE
+		return (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\');
+#else
+		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
+		return (*pszChar == '/' || *pszChar == ':' 
+			|| (*pszChar == '\\' && !_ismbstrail((unsigned char *)begin, (unsigned char *)pszChar)));
+#endif
+}
+
+/**
+ * @brief Extract path name components from given full path.
+ * @param [in] pathLeft Original path.
+ * @param [out] pPath Folder name component of full path, excluding
+   trailing slash.
+ * @param [out] pFile File name part, excluding extension.
+ * @param [out] pExt Filename extension part, excluding leading dot.
+ */
+void paths_SplitFilename(const String& pathLeft, String* pPath, String* pFile, String* pExt)
+{
+	const TCHAR *pszChar = pathLeft.c_str() + pathLeft.length();
+	const TCHAR *pend = pszChar;
+	const TCHAR *extptr = 0;
+	bool ext = false;
+
+	while (pathLeft.c_str() < --pszChar)
+	{
+		if (*pszChar == '.')
+		{
+			if (!ext)
+			{
+				if (pExt)
+				{
+					(*pExt) = pszChar + 1;
+				}
+				ext = true; // extension is only after last period
+				extptr = pszChar;
+			}
+		}
+		else if (IsSlashOrColon(pszChar, pathLeft.c_str()))
+		{
+			// Ok, found last slash, so we collect any info desired
+			// and we're done
+
+			if (pPath)
+			{
+				// Grab directory (omit trailing slash)
+				size_t len = pszChar - pathLeft.c_str();
+				if (*pszChar == ':')
+					++len; // Keep trailing colon ( eg, C:filename.txt)
+				*pPath = pathLeft;
+				pPath->erase(len); // Cut rest of path
+			}
+
+			if (pFile)
+			{
+				// Grab file
+				*pFile = pszChar + 1;
+			}
+
+			goto endSplit;
+		}
+	}
+
+	// Never found a delimiter
+	if (pFile)
+	{
+		*pFile = pathLeft;
+	}
+
+endSplit:
+	// if both filename & extension requested, remove extension from filename
+
+	if (pFile && pExt && extptr)
+	{
+		size_t extlen = pend - extptr;
+		pFile->erase(pFile->length() - extlen);
+	}
+}
+
+// Split Rational ClearCase view name (file_name@@file_version).
+void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext)
+{
+	String sViewName(s);
+	size_t nOffset = sViewName.find(_T("@@"));
+	if (nOffset != String::npos)
+	{
+		sViewName.erase(nOffset);
+		paths_SplitFilename(sViewName, path, name, ext);
+	}
+}
+
+/**
+ * @brief Return path component from full path.
+ * @param [in] fullpath Full path to split.
+ * @return Path without filename.
+ */
+String paths_GetPathOnly(const String& fullpath)
+{
+	if (fullpath.empty()) return _T("");
+	String spath;
+	paths_SplitFilename(fullpath, &spath, 0, 0);
+	return spath;
 }

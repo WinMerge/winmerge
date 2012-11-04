@@ -40,9 +40,7 @@
 #include "MainFrm.h"
 #include "Environment.h"
 #include "diffcontext.h"	// FILE_SAME
-#include "coretools.h"
 #include "dirdoc.h"
-#include "files.h"
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
@@ -182,7 +180,7 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 		const String &pathLeft = m_filePaths.GetLeft();
 		const String &pathRight = m_filePaths.GetRight();
 		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
-		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft.c_str(), pathRight.c_str()))
+		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
 		{
 			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
 			::UpdateDiffItem(m_nBuffers, di, &ctxt);
@@ -372,7 +370,7 @@ void CHexMergeDoc::DoFileSave(int nBuffer)
 void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 {
 	const String &path = m_filePaths.GetPath(nBuffer);
-	CString strPath;
+	String strPath;
 	int id;
 	if (nBuffer == 0)
 		id = IDS_SAVE_LEFT_AS;
@@ -380,9 +378,9 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		id = IDS_SAVE_RIGHT_AS;
 	else
 		id = IDS_SAVE_MIDDLE_AS;
-	if (SelectFile(0, strPath, path.c_str(), id, NULL, FALSE))
+	if (SelectFile(GetMainFrame()->GetSafeHwnd(), strPath, path.c_str(), id, NULL, FALSE))
 	{
-		if (Try(m_pView[nBuffer]->SaveFile(strPath)) == IDCANCEL)
+		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
 			return;
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateDiffItem(m_pDirDoc);
@@ -586,7 +584,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 			{
 				String file;
 				String ext;
-				SplitFilename(m_filePaths[nBuffer].c_str(), NULL, &file, &ext);
+				paths_SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
 				sFileName[nBuffer] += file.c_str();
 				if (!ext.empty())
 				{

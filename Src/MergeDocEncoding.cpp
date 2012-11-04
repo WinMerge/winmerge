@@ -76,7 +76,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 			fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
 			fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		}
-		fileloc[pane].setPath(m_filePaths[pane].c_str());
+		fileloc[pane].setPath(m_filePaths[pane]);
 		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	OpenDocs(fileloc, bRO);

@@ -11,6 +11,9 @@
 #ifndef _DIFFFILEDATA_H_
 #define _DIFFFILEDATA_H_
 
+#include "FileLocation.h"
+#include "FileTextStats.h"
+
 // forward declarations needed by DiffFileData
 struct file_data;
 class PrediffingInfo;
@@ -31,13 +34,13 @@ struct DiffFileData
 	DiffFileData();
 	~DiffFileData();
 
-	bool OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2);
+	bool OpenFiles(const String& szFilepath1, const String& szFilepath2);
 	void Reset();
 	void Close() { Reset(); }
-	void SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2);
+	void SetDisplayFilepaths(const String& szTrueFilepath1, const String& szTrueFilepath2);
 
-	bool Filepath_Transform(BOOL bForceUTF8, const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
-		LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer);
+	bool Filepath_Transform(bool bForceUTF8, const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
+		const String& filteredFilenames, PrediffingInfo * infoPrediffer);
 
 // Data (public)
 	file_data * m_inf;
@@ -45,7 +48,7 @@ struct DiffFileData
 	FileLocation m_FileLocation[2];
 	FileTextStats m_textStats[3];
 
-	CString m_sDisplayFilepath[2];
+	String m_sDisplayFilepath[2];
 	struct UniFileBom // detect unicode file and quess encoding
 	{
 		UniFileBom(int); // initialize from file descriptor

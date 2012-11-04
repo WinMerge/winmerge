@@ -30,7 +30,6 @@
 #ifndef _MERGE_CMD_LINE_INFO_INCLUDED_
 #define _MERGE_CMD_LINE_INFO_INCLUDED_
 
-#include <vector>
 #include "UnicodeString.h"
 #include "PathContext.h"
 
@@ -42,7 +41,7 @@
 class MergeCmdLineInfo
 {
 public:
-	MergeCmdLineInfo(LPCTSTR);
+	MergeCmdLineInfo(const TCHAR *);
 
 public:
 
@@ -53,7 +52,14 @@ public:
 		ExitQuiet, /**< Exit and don't show message. */
 	};
 
-	int m_nCmdShow; /**< Initial state of the application's window. */
+	enum ShowWindowType
+	{
+		SHOWNORMAL = 1,
+		MAXIMIZE = 3,
+		MINIMIZE = 6,
+	};
+
+	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 
 	bool m_bClearCaseTool; /**< Running as Rational ClearCase external tool. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
@@ -64,9 +70,9 @@ public:
 	bool m_bShowUsage; /**< Show a brief reminder to command line arguments. */
 	int  m_nCodepage;  /**< Codepage. */
 
-	DWORD m_dwLeftFlags; /**< Left side file's behavior options. */
-	DWORD m_dwMiddleFlags; /**< Middle side file's behavior options. */
-	DWORD m_dwRightFlags; /**< Right side file's behavior options. */
+	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
+	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */
+	unsigned m_dwRightFlags; /**< Right side file's behavior options. */
 
 	String m_sLeftDesc; /**< Left side file's description. */
 	String m_sMiddleDesc; /**< Middle side file's description. */
@@ -81,10 +87,10 @@ public:
 
 private:
 
-	static LPCTSTR EatParam(LPCTSTR, String &, bool *flag = 0);
-	static LPCTSTR SetOption(LPCTSTR, LPCTSTR key, LPCTSTR value = _T("1"));
-	void ParseClearCaseCmdLine(LPCTSTR, LPCTSTR basedesc);
-	void ParseWinMergeCmdLine(LPCTSTR);
+	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = 0);
+	static const TCHAR *SetOption(const TCHAR *, const TCHAR *key, const TCHAR *value = _T("1"));
+	void ParseClearCaseCmdLine(const TCHAR *, const TCHAR *basedesc);
+	void ParseWinMergeCmdLine(const TCHAR *);
 	void AddPath(const String &path);
 
 	/** Operator= is not implemented. */

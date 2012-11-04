@@ -22,14 +22,13 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <tchar.h>
 #include "DirItem.h"
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include "UnicodeString.h"
-#include "coretools.h"
 #include "paths.h"
+#include "TFile.h"
 
 /**
  * @brief Set filename and path for the item.
@@ -38,7 +37,7 @@
 void DirItem::SetFile(const String &fullPath)
 {
 	String ext;
-	SplitFilename(fullPath.c_str(), &path, &filename, &ext);
+	paths_SplitFilename(fullPath, &path, &filename, &ext);
 	filename += _T(".");
 	filename += ext;
 }
@@ -57,37 +56,43 @@ String DirItem::GetFile() const
  * This function updates file's information from given item. Function
  * does not set filename and path.
  * @param [in] sFilePath Full path to file/directory to update
- * @return TRUE if information was updated (item was found).
+ * @return true if information was updated (item was found).
  */
-BOOL DirItem::Update(const String &sFilePath)
+bool DirItem::Update(const String &sFilePath)
 {
-	struct _stati64 fstats;
-	__int64 mtime64 = 0;
-	BOOL retVal = FALSE;
+	bool retVal = false;
 
 	size = -1;
 	flags.reset();
 	mtime = 0;
 
-	if (_tstati64(sFilePath.c_str(), &fstats) == 0)
+	if (!sFilePath.empty())
 	{
-		// There can be files without modification date.
-		// Then we must use creation date. Of course we assume
-		// creation date then exists...
-		if (fstats.st_mtime == 0)
-			mtime64 = fstats.st_ctime;
-		else
-			mtime64 = fstats.st_mtime;
+		try
+		{
+			TFile file(sFilePath);
 
-		// No size for directory ( size remains as -1)
-		if ((fstats.st_mode & _S_IFDIR) == 0)
-			size = fstats.st_size;
+			mtime = file.getLastModified();
+			// There can be files without modification date.
+			// Then we must use creation date. Of course we assume
+			// creation date then exists...
+			if (mtime == 0)
+				mtime = file.created();
 
-		flags.attributes = GetFileAttributes(sFilePath.c_str());
+			// No size for directory ( size remains as -1)
+			if (!file.isDirectory())
+				size = file.getSize();
 
-		retVal = TRUE;
+#ifdef _WIN32
+			flags.attributes = GetFileAttributes(sFilePath.c_str());
+#endif
+
+			retVal = true;
+		}
+		catch (...)
+		{
+		}
 	}
-	mtime = mtime64;
 	return retVal;
 }
 

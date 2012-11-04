@@ -25,6 +25,8 @@
 #ifndef _CONFIGLOG_H_
 #define _CONFIGLOG_H_
 
+#include "UnicodeString.h"
+#include "CompareOptions.h"
 #include <boost/scoped_ptr.hpp>
 
 class CfgSettings;
@@ -73,7 +75,7 @@ struct MISCSETTINGS
 	int  nTabSize;
 	bool bPluginsEnabled;
 	bool bPreserveFiletimes;
-	INT  nDiffContext;
+	int  nDiffContext;
 	bool bMatchSimilarLines;
 };
 
@@ -92,7 +94,7 @@ struct CPSETTINGS
  */
 struct FONTSETTINGS
 {
-	BYTE nCharset;
+	unsigned char nCharset;
 	String sFacename;
 };
 
@@ -118,28 +120,28 @@ public:
 
 	// Implementation methods
 protected:
-	void WriteItem(int indent, LPCTSTR key, LPCTSTR value = 0);
-	void WriteItem(int indent, LPCTSTR key, const String &str);
-	void WriteItem(int indent, LPCTSTR key, long value);
-	void WriteVersionOf1(int indent, LPTSTR path);
-	void WriteVersionOf(int indent, LPTSTR path);
-	void WriteLocaleSettings(LCID locid, LPCTSTR title);
+	void WriteItem(int indent, const String& key, const TCHAR *value = 0);
+	void WriteItem(int indent, const String& key, const String &str);
+	void WriteItem(int indent, const String& key, long value);
+	void WriteVersionOf1(int indent, const String& path);
+	void WriteVersionOf(int indent, const String& path);
+	void WriteLocaleSettings(unsigned locid, const String& title);
 	void WriteArchiveSupport();
-	void WriteVersionOf7z(LPTSTR path);
+	void WriteVersionOf7z(const String& path);
 
 private:
 	bool DoFile(bool writing, String &sError);
-	void WritePluginsInLogFile(LPCWSTR transformationEvent);
+	void WritePluginsInLogFile(const wchar_t *transformationEvent);
 	String GetWindowsVer();
 	String GetBuildFlags() const;
-	void FileWriteString(LPCTSTR lpsz);
+	void FileWriteString(const String& lpsz);
 	void CloseFile();
-    void WriteItemYesNo(int indent, LPCTSTR key, bool *pvalue);
-	void WriteItemYesNoInverted(int indent, LPCTSTR key, bool *pvalue);
-    void WriteItemYesNoInverted(int indent, LPCTSTR key, int *pvalue);
-	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
+    void WriteItemYesNo(int indent, const String& key, bool *pvalue);
+	void WriteItemYesNoInverted(int indent, const String& key, bool *pvalue);
+    void WriteItemYesNoInverted(int indent, const String& key, int *pvalue);
+	void WriteItemWhitespace(int indent, const String& key, int *pvalue);
 	bool ParseSettings(const String & Filepath);
-	CString GetValueFromConfig(const CString & key);
+	String GetValueFromConfig(const String & key);
 
 	// Implementation data
 private:

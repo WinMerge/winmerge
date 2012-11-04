@@ -129,25 +129,4 @@ public:
 	};
 };
 
-/**
- * @brief Memory-mapped file information
- * When memory-mapped file is created, related information is
- * stored to this structure.
- */
-struct MAPPEDFILEDATA
-{
-	TCHAR fileName[_MAX_PATH];
-	BOOL bWritable;
-	DWORD dwOpenFlags;		// CreateFile()'s dwCreationDisposition
-	DWORD dwSize;
-	HANDLE hFile;
-	HANDLE hMapping;
-	LPVOID pMapBase;
-};
-
-BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
-BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-BOOL files_isFileReadOnly(const String &file, BOOL *fileExists = NULL);
-void files_UpdateFileTime(const String &file, __int64 mtime);
-
 #endif // _FILES_H

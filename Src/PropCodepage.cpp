@@ -86,7 +86,7 @@ void PropCodepage::ReadOptions()
 	m_cCustomCodepageValue.Format(_T("%d"),m_nCustomCodepageValue);
 	m_bDetectCodepage = GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 1;
 	m_bDetectCodepage2 = (GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 2) != 0;
-	m_nAutodetectType = ((unsigned int)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
+	m_nAutodetectType = ((unsigned)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
 	if (m_nAutodetectType == 0)
 		m_nAutodetectType = 50001;
 }
@@ -146,9 +146,9 @@ BOOL PropCodepage::OnInitDialog()
 		static int autodetectTypeList[] = {50001, 50936, 50950, 50932, 50949};
 		for (i = 0; i < sizeof(autodetectTypeList)/sizeof(int); i++)
 		{
-			TCHAR desc[256];
+			String desc;
 			pexconv->getCodepageDescription(autodetectTypeList[i], desc);
-			m_comboAutodetectType.AddString(desc);
+			m_comboAutodetectType.AddString(desc.c_str());
 			m_comboAutodetectType.SetItemData(i, autodetectTypeList[i]);
 			if (m_nAutodetectType == autodetectTypeList[i])
 				m_comboAutodetectType.SetCurSel(i);

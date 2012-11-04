@@ -23,8 +23,9 @@
 // $Id$
 
 #include <vector>
-#include <Poco/RegularExpression.h>
 #include "UnicodeString.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/RegularExpression.h>
 
 /**
  * @brief FileFilter rule.

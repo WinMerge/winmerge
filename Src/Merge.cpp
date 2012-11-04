@@ -28,6 +28,9 @@
 // $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Process.h>
+#include <Poco/Format.h>
 #include <Poco/Exception.h>
 #include "Constants.h"
 #include "UnicodeString.h"
@@ -50,11 +53,9 @@
 #include "DirView.h"
 #include "Splash.h"
 #include "logfile.h"
-#include "coretools.h"
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
-#include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 #include "ProjectFile.h"
 #include "MergeEditView.h"
 #include "LanguageSelect.h"
@@ -78,7 +79,7 @@ static char THIS_FILE[] = __FILE__;
 static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 
 // registry dir to WinMerge
-static CString f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
+static String f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 #ifndef WIN64
 /**
@@ -87,6 +88,7 @@ static CString f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
  * by Eugene Gershnik, published at http://www.drdobbs.com/184416600.
  * Rethrow fix inspired by http://www.spinics.net/lists/wine/msg05996.html.
  */
+/*
 namespace Turn_STL_exceptions_into_MFC_exceptions
 {
 #	ifndef _STATIC_CPPLIB
@@ -137,6 +139,7 @@ namespace Turn_STL_exceptions_into_MFC_exceptions
 		RaiseException(CPP_EXCEPTION, EXCEPTION_NONCONTINUABLE, sizeof(args)/sizeof(args[0]), args);
 	}
 }
+*/
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,26 +177,6 @@ struct ArgSetting
 	LPCTSTR CmdArgName;
 	LPCTSTR WinMergeOptionName;
 };
-
-/**
- * @brief Get Options Manager.
- * @return Pointer to OptionsMgr.
- */
-COptionsMgr * GetOptionsMgr()
-{
-	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
-	return pApp->GetMergeOptionsMgr();
-}
-
-/**
- * @brief Get Log.
- * @return Pointer to Log.
- */
-CLogFile * GetLog()
-{
-	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
-	return pApp->GetMergeLog();
-}
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -288,19 +271,30 @@ BOOL CMergeApp::InitInstance()
 #endif
 
 	// Load registry file if existing
-	CString sRegPath = CString(GetModulePath(m_hInstance).c_str()) + _T("\\WinMerge.reg");
+	String sRegPath = env_GetProgPath() + _T("\\WinMerge.reg");
 	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
 	{
-		CString sCmdArg;
+		std::string sCmd, sa;
+		std::vector<std::string> sArgs;
 		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
-			sCmdArg = _T("regedit /s \"") + sRegPath + _T("\"");
-		else
-			sCmdArg = _T("reg import \"") + sRegPath + _T("\"");
-		HANDLE hProcess = RunIt(NULL, sCmdArg, TRUE, FALSE);
-		if (hProcess)
 		{
-			WaitForSingleObject(hProcess, INFINITE);
-			CloseHandle(hProcess);
+			sCmd = "reg.exe";
+			sArgs.push_back("/s");
+		}
+		else
+		{
+			sCmd = "regedit.exe";
+			sArgs.push_back("import");
+		}
+		Poco::format(sa, "\"%s\"", ucr::toUTF8(sRegPath));
+		sArgs.push_back(sa);
+		try
+		{
+			Poco::ProcessHandle handle(Poco::Process::launch(sCmd, sArgs));
+			Poco::Process::wait(handle);
+		}
+		catch (Poco::SystemException)
+		{
 		}
 	}
 
@@ -308,7 +302,10 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize temp folder
 	String instTemp = env_GetPerInstanceString(_T("WM_"));
-	env_SetInstanceFolder(instTemp.c_str());
+	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
+		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
+	else
+		env_SetTempPath(paths_ConcatPath(GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH), instTemp));
 
 	// Cleanup left over tempfiles from previous instances.
 	// Normally this should not neet to do anything - but if for some reason
@@ -319,7 +316,7 @@ BOOL CMergeApp::InitInstance()
 	if (logging > 0)
 	{
 		m_pLog->EnableLogging(TRUE);
-		String logfile = env_GetMyDocuments(NULL);
+		String logfile = env_GetMyDocuments();
 		logfile = paths_ConcatPath(logfile, _T("WinMerge\\WinMerge.log"));
 		m_pLog->SetFile(logfile);
 
@@ -335,9 +332,6 @@ BOOL CMergeApp::InitInstance()
 	// If paths were given to commandline we consider this being an invoke from
 	// commandline (from other application, shellextension etc).
 	BOOL bCommandLineInvoke = cmdInfo.m_Files.GetSize() > 0;
-
-	// Set default codepage
-	DirScan_InitializeDefaultCodepage();
 
 	// WinMerge registry settings are stored under HKEY_CURRENT_USER/Software/Thingamahoochie
 	// This is the name of the company of the original author (Dean Grimm)
@@ -391,7 +385,7 @@ BOOL CMergeApp::InitInstance()
 	if (!bFilterSet)
 	{
 		String filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter.c_str());
+		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
 	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);
@@ -545,22 +539,43 @@ void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 int CMergeApp::ExitInstance() 
 {
 	charsets_cleanup();
-	CString sRegPath = CString(GetModulePath(m_hInstance).c_str()) + _T("\\WinMerge.reg");
+	String sRegPath = env_GetProgPath() + _T("\\WinMerge.reg");
 	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
 	{
-		DeleteFile(sRegPath);
-		CString sCmdArg;
+		DeleteFile(sRegPath.c_str());
+		std::string sCmd, spath, sdir;
+		std::vector<std::string> sArgs;
 		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
-			sCmdArg = _T("regedit /s /e \"") + sRegPath + _T("\" ") + _T("HKEY_CURRENT_USER\\") + f_RegDir;
+		{
+			sCmd = "reg.exe";
+			sArgs.push_back("/s");
+			sArgs.push_back("/e");
+			Poco::format(spath, "\"%s\"", ucr::toUTF8(sRegPath));
+			sArgs.push_back(spath);
+			Poco::format(sdir, "HKEY_CURRENT_USER\\%s", ucr::toUTF8(f_RegDir));
+			sArgs.push_back(sdir);
+		}
 		else
-			sCmdArg = _T("reg export HKCU\\") + f_RegDir + _T(" \"") + sRegPath + _T("\"");
-		HANDLE hProcess = RunIt(NULL, sCmdArg, TRUE, FALSE);
-		if (hProcess)
-			CloseHandle(hProcess);
+		{
+			sCmd = "reg.exe";
+			sArgs.push_back("export");
+			Poco::format(sdir, "HKCU\\%s", ucr::toUTF8(f_RegDir));
+			sArgs.push_back(sdir);
+			Poco::format(spath, "\"%s\"", ucr::toUTF8(sRegPath));
+			sArgs.push_back(spath);
+		}
+		try
+		{
+			Poco::ProcessHandle handle(Poco::Process::launch(sCmd, sArgs));
+			Poco::Process::wait(handle);
+		}
+		catch (Poco::SystemException)
+		{
+		}
 	}
 
 	// Remove tempfolder
-	const String temp = env_GetTempPath(NULL);
+	const String temp = env_GetTempPath();
 	ClearTempfolder(temp);
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
@@ -690,7 +705,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set codepage.
 	if (cmdInfo.m_nCodepage)
 	{
-		updateDefaultCodepage(2,cmdInfo.m_nCodepage);
+		UpdateDefaultCodepage(2,cmdInfo.m_nCodepage);
 	}
 
 	// Unless the user has requested to see WinMerge's usage open files for
@@ -766,6 +781,34 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	return bCompared;
 }
 
+void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
+{
+	int wLangId;
+
+	switch (cpDefaultMode)
+	{
+		case 0:
+			ucr::setDefaultCodepage(GetACP());
+			break;
+		case 1:
+			TCHAR buff[32];
+			wLangId = theApp.GetLangId();
+			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
+				ucr::setDefaultCodepage(_ttol(buff));
+			else
+				ucr::setDefaultCodepage(GetACP());
+			break;
+		case 2:
+			ucr::setDefaultCodepage(cpCustomCodepage);
+			break;
+		default:
+			// no other valid option
+			assert (0);
+			ucr::setDefaultCodepage(GetACP());
+	}
+}
+
+
 /** @brief Open help from mainframe when user presses F1*/
 void CMergeApp::OnHelp()
 {
@@ -777,52 +820,49 @@ void CMergeApp::OnHelp()
  * @param [in] filepath Full path to file to check.
  * @return true if file is a projectfile.
  */
-bool CMergeApp::IsProjectFile(LPCTSTR filepath) const
+bool CMergeApp::IsProjectFile(const String& filepath) const
 {
 	String ext;
-	SplitFilename(filepath, NULL, NULL, &ext);
-	CString sExt(ext.c_str());
-	if (sExt.CompareNoCase(ProjectFile::PROJECTFILE_EXT.c_str()) == 0)
+	paths_SplitFilename(filepath, NULL, NULL, &ext);
+	if (string_compare_nocase(ext, ProjectFile::PROJECTFILE_EXT) == 0)
 		return true;
 	else
 		return false;
 }
 
-bool CMergeApp::LoadProjectFile(LPCTSTR sProject, ProjectFile &project)
+bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 {
-	if (*sProject == '\0')
+	if (sProject.empty())
 		return false;
 
 	try
 	{
         project.Read(sProject);
 	}
-	catch (Poco::Exception *e)
+	catch (Poco::Exception& e)
 	{
 		String sErr = theApp.LoadString(IDS_UNK_ERROR_READING_PROJECT);
-		sErr += ucr::UTF82T(e->displayText());
-		CString msg;
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
-		AfxMessageBox(msg, MB_ICONSTOP);
+		sErr += ucr::toTString(e.displayText());
+		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
 
 	return true;
 }
 
-bool CMergeApp::SaveProjectFile(LPCTSTR sProject, const ProjectFile &project)
+bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &project)
 {
 	try
 	{
 		project.Save(sProject);
 	}
-	catch (Poco::Exception *e)
+	catch (Poco::Exception& e)
 	{
 		String sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
-		sErr += ucr::UTF82T(e->displayText());
-		CString msg;
-		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
-		AfxMessageBox(msg, MB_ICONSTOP);
+		sErr += ucr::toTString(e.displayText());
+		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
 
@@ -834,7 +874,7 @@ bool CMergeApp::SaveProjectFile(LPCTSTR sProject, const ProjectFile &project)
  * @param [in] sProject Full path to project file.
  * @return TRUE if loading project file and starting compare succeeded.
  */
-bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
+bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 {
 	ProjectFile project;
 	if (!LoadProjectFile(sProject, project))
@@ -882,7 +922,7 @@ bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 	
 	BOOL rtn = GetMainFrame()->DoFileOpen(&files, dwFlags, bRecursive);
 
-	AddToRecentProjectsMRU(sProject);
+	AddToRecentProjectsMRU(sProject.c_str());
 	return !!rtn;
 }
 
@@ -953,9 +993,9 @@ static String CmdlineOption(int idres)
  * @brief Get default editor path.
  * @return full path to the editor program executable.
  */
-CString CMergeApp::GetDefaultEditor()
+String CMergeApp::GetDefaultEditor()
 {
-	CString path = env_GetWindowsDirectory().c_str();
+	String path = env_GetWindowsDirectory();
 	path += _T("\\NOTEPAD.EXE");
 	return path;
 }
@@ -970,13 +1010,13 @@ CString CMergeApp::GetDefaultEditor()
  *  not exist.
  * @return Default folder for user filters.
  */
-CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
+String CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 {
-	String pathMyFolders = env_GetMyDocuments(NULL);
+	String pathMyFolders = env_GetMyDocuments();
 	String pathFilters(pathMyFolders);
 	pathFilters = paths_ConcatPath(pathFilters, DefaultRelativeFilterPath);
 
-	if (bCreate && !paths_CreateIfNeeded(pathFilters.c_str()))
+	if (bCreate && !paths_CreateIfNeeded(pathFilters))
 	{
 		// Failed to create a folder, check it didn't already
 		// exist.
@@ -989,7 +1029,7 @@ CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 			pathFilters = pathMyFolders;
 		}
 	}
-	return pathFilters.c_str();
+	return pathFilters;
 }
 
 
@@ -1013,5 +1053,5 @@ void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
  */
 BOOL CMergeApp::OnOpenRecentFile(UINT nID)
 {
-	return LoadAndOpenProjectFile(m_pRecentFileList->m_arrNames[nID-ID_FILE_MRU_FILE1]);
+	return LoadAndOpenProjectFile((const TCHAR *)m_pRecentFileList->m_arrNames[nID-ID_FILE_MRU_FILE1]);
 }

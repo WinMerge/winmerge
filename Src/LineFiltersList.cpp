@@ -6,17 +6,13 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-// Disable VC6's "identifier was truncated..." warning. It is meaningless.
-#if _MSC_VER == 1200
-	#pragma warning(disable: 4786)
-#endif
-#include <windows.h>
-#include <vector>
-#include <assert.h>
-#include "UnicodeString.h"
 #include "LineFiltersList.h"
+#include <vector>
+#include <cassert>
+#include <cstring>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "UnicodeString.h"
 
 using std::vector;
 
@@ -44,7 +40,7 @@ LineFiltersList::~LineFiltersList()
  * @param [in] filter Filter string to add.
  * @param [in] enabled Is filter enabled?
  */
-void LineFiltersList::AddFilter(LPCTSTR filter, BOOL enabled)
+void LineFiltersList::AddFilter(const String& filter, bool enabled)
 {
 	LineFilterItem *item = new LineFilterItem();
 	item->enabled = enabled;
@@ -56,7 +52,7 @@ void LineFiltersList::AddFilter(LPCTSTR filter, BOOL enabled)
  * @brief Returns count of items in the list.
  * @return Count of filters in the list.
  */
-int LineFiltersList::GetCount() const
+size_t LineFiltersList::GetCount() const
 {
 	return m_items.size();
 }
@@ -122,9 +118,9 @@ const LineFilterItem & LineFiltersList::GetAt(size_t ind) const
 void LineFiltersList::CloneFrom(const LineFiltersList *list)
 {
 	Empty();
-	int count = list->GetCount();
+	size_t count = list->GetCount();
 
-	for (int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		const LineFilterItem &item = list->GetAt(i);
 		AddFilter(item.filterStr.c_str(), item.enabled);
@@ -168,22 +164,21 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	size_t count = m_items.size();
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename.c_str(), static_cast<int>(count));
-	count = m_pOptionsMgr->GetInt(valuename.c_str());
+	m_pOptionsMgr->InitOption(valuename, static_cast<int>(count));
+	count = m_pOptionsMgr->GetInt(valuename);
 
-	for (unsigned int i = 0; i < count; i++)
+	for (unsigned i = 0; i < count; i++)
 	{
-		TCHAR name[100] = {0};
-		_sntprintf(name, 99, _T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = string_format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
 		String filter = m_pOptionsMgr->GetString(name);
 
-		_sntprintf(name, 99, _T("%s/Enabled%02u"), FiltersRegPath, i);
-		m_pOptionsMgr->InitOption(name, (int)TRUE);
+		name = string_format(_T("%s/Enabled%02u"), FiltersRegPath, i);
+		m_pOptionsMgr->InitOption(name, (int)true);
 		int enabled = m_pOptionsMgr->GetInt(name);
-		BOOL bEnabled = enabled ? TRUE : FALSE;
+		bool bEnabled = enabled ? true : false;
 
-		AddFilter(filter.c_str(), bEnabled);
+		AddFilter(filter, bEnabled);
 	}
 }
 
@@ -195,39 +190,37 @@ void LineFiltersList::SaveFilters()
 	assert(m_pOptionsMgr);
 	String valuename(FiltersRegPath);
 
-	unsigned int count = m_items.size();
+	size_t count = m_items.size();
 	valuename += _T("/Values");
-	m_pOptionsMgr->SaveOption(valuename.c_str(), count);
+	m_pOptionsMgr->SaveOption(valuename, static_cast<int>(count));
 
-	for (unsigned int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		LineFilterItem *item = m_items[i];
 
-		TCHAR name[100] = {0};
-		_sntprintf(name, 99, _T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = string_format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
-		m_pOptionsMgr->SaveOption(name, item->filterStr.c_str());
+		m_pOptionsMgr->SaveOption(name, item->filterStr);
 
-		_sntprintf(name, 99, _T("%s/Enabled%02u"), FiltersRegPath, i);
+		name = string_format(_T("%s/Enabled%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, 0);
 		m_pOptionsMgr->SaveOption(name, (int)item->enabled);
 	}
 
 	// Remove options we don't need anymore
 	// We could have earlier 10 pcs but now we only need 5
-	TCHAR filter[100] = {0};
-	_sntprintf(filter, 99, _T("%s/Filter%02u"), FiltersRegPath, count);
+	String filter = string_format(_T("%s/Filter%02u"), FiltersRegPath, count);
 	int retval1 = m_pOptionsMgr->RemoveOption(filter);
 
-	_sntprintf(filter, 99, _T("%s/Enabled%02u"), FiltersRegPath, count);
+	filter = string_format(_T("%s/Enabled%02u"), FiltersRegPath, count);
 	int retval2 = m_pOptionsMgr->RemoveOption(filter);
 	
-	while (retval1 == OPT_OK || retval2 == OPT_OK)
+	while (retval1 == COption::OPT_OK || retval2 == COption::OPT_OK)
 	{
 		++count;
-		_sntprintf(filter, 99, _T("%s/Filter%02u"), FiltersRegPath, count);
+		filter = string_format(_T("%s/Filter%02u"), FiltersRegPath, count);
 		retval1 = m_pOptionsMgr->RemoveOption(filter);
-		_sntprintf(filter, 99, _T("%s/Enabled%02u"), FiltersRegPath, count);
+		filter = string_format(_T("%s/Enabled%02u"), FiltersRegPath, count);
 		retval2 = m_pOptionsMgr->RemoveOption(filter);
 	}
 }
@@ -239,19 +232,19 @@ void LineFiltersList::SaveFilters()
  * string to registry.
  * @param [in] filters String containing line filters in old-style.
  */
-void LineFiltersList::Import(LPCTSTR filters)
+void LineFiltersList::Import(const String& filters)
 {
 	const TCHAR sep[] = _T("\r\n");
 	TCHAR *p_filters = (TCHAR *)&filters[0];
 	TCHAR *token;
 	
-	if (filters != NULL && _tcslen(filters) > 0)
+	if (!filters.empty())
 	{
 		// find each regular expression and add to list
 		token = _tcstok(p_filters, sep);
 		while (token)
 		{
-			AddFilter(token, TRUE);
+			AddFilter(token, true);
 			token = _tcstok(NULL, sep);
 		}
 		SaveFilters();

@@ -22,27 +22,20 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"
+#include <map>
+#include <cassert>
 #include "diff.h"
-
 
 class IntSet
 {
 public:
-	void Add(int val) { m_map.SetAt(val, 1); }
-	void Remove(int val) { m_map.RemoveKey(val); }
-	int count() const { return (int) m_map.GetCount(); }
-	bool isPresent(int val) const { int parm; return !!m_map.Lookup(val, parm); }
-	int getSingle() const 
-	{
-		int val, parm;
-		POSITION pos = m_map.GetStartPosition();
-		m_map.GetNextAssoc(pos, val, parm); 
-		return val; 
-	}
-
+	void Add(int val) { m_map[val] = 1; }
+	void Remove(int val) { m_map.erase(val); }
+	size_t count() const { return m_map.size(); }
+	bool isPresent(int val) const { m_map.find(val) != m_map.end(); }
+	int getSingle() const { return m_map.begin()->second; }
 private:
-	CMap<int, int, int, int> m_map;
+	std::map<int, int> m_map;
 };
 
 /** 
@@ -59,17 +52,18 @@ struct EqGroup
 
 
 /** @brief  Maps equivalency code to equivalency group */
-class CodeToGroupMap : public CTypedPtrMap<CMapPtrToPtr, void*, EqGroup *>
+class CodeToGroupMap
 {
 public:
+	std::map<int, EqGroup *> m_map;
 	/** @brief Add a line to the appropriate equivalency group */
 	void Add(int lineno, int eqcode, int nside)
 	{
-		EqGroup * pgroup = 0;
-		if (!Lookup((void *)eqcode, pgroup))
+		EqGroup *pgroup = find(eqcode);
+		if (pgroup == NULL)
 		{
 			pgroup = new EqGroup;
-			SetAt((void *)eqcode, pgroup);
+			m_map[eqcode] = pgroup;
 		}
 		if (nside)
 			pgroup->m_lines1.Add(lineno);
@@ -80,20 +74,15 @@ public:
 	/** @brief Return the appropriate equivalency group */
 	EqGroup * find(int eqcode)
 	{
-		EqGroup * pgroup=0;
-		Lookup((void *)eqcode, pgroup);
-		return pgroup;
+		std::map<int, EqGroup *>::const_iterator it = m_map.find(eqcode);
+		return it != m_map.end() ? it->second : NULL;
 	}
 
 	~CodeToGroupMap()
 	{
-		for (POSITION pos = GetStartPosition(); pos; )
-		{
-			void * v=0;
-			EqGroup * pgroup=0;
-			GetNextAssoc(pos, v, pgroup);
-			delete pgroup;
-		}
+		std::map<int, EqGroup *>::const_iterator pos = m_map.begin();
+		while (pos != m_map.end())
+			delete pos++->second;
 	}
 };
 
@@ -184,8 +173,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		--j2;
 		// Ok, now our moved block is i1->i2,j1->j2
 
-		ASSERT(i2-i1 >= 0);
-		ASSERT(i2-i1 == j2-j1);
+		assert(i2-i1 >= 0);
+		assert(i2-i1 == j2-j1);
 
 		int prefix = i1 - (e->line0);
 		if (prefix)
@@ -302,8 +291,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		--j2;
 		// Ok, now our moved block is i1->i2,j1->j2
 
-		ASSERT(i2-i1 >= 0);
-		ASSERT(i2-i1 == j2-j1);
+		assert(i2-i1 >= 0);
+		assert(i2-i1 == j2-j1);
 
 		int prefix = j1 - (e->line1);
 		if (prefix)

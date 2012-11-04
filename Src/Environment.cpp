@@ -6,61 +6,55 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
-#include "paths.h"
+#define POCO_NO_UNWINDOWS 1
 #include "Environment.h"
-#include "OptionsDef.h"
-#include "Merge.h"
+#include <windows.h>
+#include <shlobj.h>
+#include <cassert>
+#include <sstream>
+#include <Poco/Path.h>
+#include <Poco/Process.h>
+#include "paths.h"
+#include "unicoder.h"
+
+using Poco::Path;
+using Poco::Process;
 
 /**
  * @brief Temp path.
- * Static string used by paths_GetTempPath() for storing temp path.
+ * Static string used by env_GetTempPath() for storing temp path.
  */
 static String strTempPath;
+static String strProgPath;
 
-/** @brief Per-instance part of the temp path. */
-static String strTempPathInstance;
+void env_SetTempPath(const String& path)
+{
+	strTempPath = path;
+	if (!paths_EndsWithSlash(strTempPath))
+		strTempPath += '\\';
+	paths_CreateIfNeeded(strTempPath);
+}
 
 /** 
  * @brief Get folder for temporary files.
  * This function returns system temp folder.
- * @param [out] pnerr Error code if erorr happened.
  * @return Temp path, or empty string if error happened.
  * @note Temp path is cached after first call.
  * @todo Should we return NULL for error case?
  */
-LPCTSTR env_GetTempPath(int * pnerr)
+String env_GetTempPath()
 {
 	if (strTempPath.empty())
 	{
-		if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
-		{
-			int cchTempPath = GetTempPath(0, 0);
-			strTempPath.resize(cchTempPath - 1);
-			if (!GetTempPath(cchTempPath, &*strTempPath.begin()))
-			{
-				int err = GetLastError();
-				if (pnerr)
-					*pnerr = err;
-#ifdef _DEBUG
-				String sysErr = GetSysError(err); // for debugging
-#endif
-				return strTempPath.c_str(); // empty
-			}
-		}
-		else
-		{
-			strTempPath = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH);
-			if (!paths_EndsWithSlash(strTempPath.c_str()))
-				strTempPath += '\\';
-		}
+		strTempPath = env_GetSystemTempPath();
+		if (strTempPath.empty())
+			return strTempPath;
 
-		if (!strTempPathInstance.empty())
-			strTempPath = paths_ConcatPath(strTempPath, strTempPathInstance);
-		strTempPath = paths_GetLongPath(strTempPath.c_str());
-		paths_CreateIfNeeded(strTempPath.c_str());
+		strTempPath = paths_ConcatPath(strTempPath, env_GetPerInstanceString(_T("WM_")));
+
+		paths_CreateIfNeeded(strTempPath);
 	}
-	return strTempPath.c_str();
+	return strTempPath;
 }
 
 /**
@@ -70,23 +64,38 @@ LPCTSTR env_GetTempPath(int * pnerr)
  * @param [out] pnerr Error code if error happened.
  * @return Full path for temporary file or empty string if error happened.
  */
-String env_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
+String env_GetTempFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr)
 {
 	TCHAR buffer[MAX_PATH] = {0};
-	if (_tcslen(lpPathName) > MAX_PATH-14)
+	if (lpPathName.length() > MAX_PATH-14)
 		return _T(""); // failure
-	int rtn = GetTempFileName(lpPathName, lpPrefixString, 0, buffer);
+	int rtn = GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
 	if (!rtn)
 	{
 		int err = GetLastError();
 		if (pnerr)
 			*pnerr = err;
-#ifdef _DEBUG
-		String sysErr = GetSysError(err); // for debugging
-#endif
 		return _T("");
 	}
 	return buffer;
+}
+
+void env_SetProgPath(const String& path)
+{
+	strProgPath = path;
+	if (!paths_EndsWithSlash(strProgPath))
+		strProgPath += '\\';
+}
+
+String env_GetProgPath()
+{
+	if (strProgPath.empty())
+	{
+		TCHAR temp[MAX_PATH] = {0};
+		GetModuleFileName(NULL, temp, MAX_PATH);
+		strProgPath = paths_GetPathOnly(temp);
+	}
+	return strProgPath;
 }
 
 /**
@@ -103,16 +112,15 @@ String env_GetWindowsDirectory()
 /**
  * @brief Return User's My Documents Folder.
  * This function returns full path to User's My Documents -folder.
- * @param [in] hWindow Parent window.
  * @return Full path to My Documents -folder.
  */
-String env_GetMyDocuments(HWND hWindow)
+String env_GetMyDocuments()
 {
 	LPITEMIDLIST pidl;
 	LPMALLOC pMalloc;
 	String path;
 
-	HRESULT rv = SHGetSpecialFolderLocation(hWindow, CSIDL_PERSONAL, &pidl);
+	HRESULT rv = SHGetSpecialFolderLocation(NULL, CSIDL_PERSONAL, &pidl);
 	if (rv == S_OK)
 	{
 		TCHAR szPath[MAX_PATH] = {0};
@@ -135,25 +143,25 @@ String env_GetMyDocuments(HWND hWindow)
  * @param [in] name Additional name used as part of the string.
  * @return Unique string for the instance.
  */
-String env_GetPerInstanceString(LPCTSTR name)
+String env_GetPerInstanceString(const String& name)
 {
-	// Get processId as string
-	TCHAR buffer[65] = {0};
-	_itot(GetCurrentProcessId(), buffer, 10);
-
-	String cPId(buffer);
-	String folder(name);
-	folder += cPId;
-	return folder;
+	std::basic_stringstream<TCHAR> stream;
+	stream << name << Process::id();
+	return stream.str();
 }
 
 /**
- * @brief Set per-instance part of the temp folder.
- * @param [in] lpPathname Per-instance part of the folder name.
+ * @brief Get system temporary directory.
+ * @return System temporary director.
  */
-void env_SetInstanceFolder(LPCTSTR lpPathName)
+String env_GetSystemTempPath()
 {
-	// Instance folder must not be changed once set.
-	ASSERT(strTempPathInstance.empty());
-	strTempPathInstance = lpPathName;
+	try
+	{
+		return ucr::toTString(Path::temp());
+	}
+	catch (...)
+	{
+		return _T("");
+	}
 }

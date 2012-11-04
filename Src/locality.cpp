@@ -6,22 +6,23 @@
 // ID line follows -- this is updated by SVN
 // $Id: locality.cpp 5918 2008-09-07 16:05:46Z sdottaka $
 
-#include "StdAfx.h"
 #include "locality.h"
-#include "Merge.h"
+#include <windows.h>
+#include <Poco/Format.h>
+#include <Poco/Debugger.h>
+#include <Poco/Timestamp.h>
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+using Poco::format;
+using Poco::Debugger;
+using Poco::Timestamp;
+using Poco::Int64;
 
 namespace locality {
 
 /**
  * @brief Get numeric value from an LC_ entry in windows locale (NLS) database
  */
-static UINT getLocaleUint(int lctype, int defval)
+static unsigned getLocaleUint(int lctype, int defval)
 {
 	TCHAR buff[64];
 	if (!GetLocaleInfo(LOCALE_USER_DEFAULT, lctype, buff, sizeof(buff)/sizeof(buff[0])))
@@ -33,7 +34,7 @@ static UINT getLocaleUint(int lctype, int defval)
 /**
  * @brief Get numeric value for LOCALE_SGROUPING
  */
-static UINT GetLocaleGrouping(int defval)
+static unsigned GetLocaleGrouping(int defval)
 {
 	TCHAR buff[64];
 	if (!GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, buff, sizeof(buff)/sizeof(buff[0])))
@@ -69,7 +70,7 @@ String NumToLocaleStr(int n)
  * @param [in] n Number to convert.
  * @return Converted string.
  */
-String NumToLocaleStr(__int64 n)
+String NumToLocaleStr(Int64 n)
 {
 	TCHAR numbuff[34];
 	_i64tot(n, numbuff, 10);
@@ -82,19 +83,20 @@ String NumToLocaleStr(__int64 n)
  * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
  *   So we always use ASCII digits, instead of, eg, the Chinese digits
  */
-String GetLocaleStr(LPCTSTR str, int decimalDigits)
+String GetLocaleStr(const TCHAR *str, int decimalDigits)
 {
 	// Fill in currency format with locale info
 	// except we hardcode for no decimal
 	TCHAR DecimalSep[8];
+	TCHAR SepDefault[] = _T(".");
 	TCHAR ThousandSep[8];
 	NUMBERFMT NumFormat;
 	memset(&NumFormat, 0, sizeof(NumFormat));
 	NumFormat.NumDigits = decimalDigits; // LOCALE_IDIGITS
 	NumFormat.LeadingZero = getLocaleUint(LOCALE_ILZERO, 0);
 	NumFormat.Grouping = GetLocaleGrouping(3);
-	NumFormat.lpDecimalSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SDECIMAL, DecimalSep, 8) ? DecimalSep : _T(".");
-	NumFormat.lpThousandSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_STHOUSAND, ThousandSep, 8) ? ThousandSep : _T(",");
+	NumFormat.lpDecimalSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SDECIMAL, DecimalSep, 8) ? DecimalSep : SepDefault;
+	NumFormat.lpThousandSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_STHOUSAND, ThousandSep, 8) ? ThousandSep : SepDefault;
 	NumFormat.NegativeOrder = getLocaleUint(LOCALE_INEGNUMBER , 0);
 	String out;
 	out.resize(48);
@@ -113,8 +115,7 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 	}
 	else
 	{
-		int nerr = GetLastError();
-		TRACE(_T("Error %d in NumToStr(): %s\n"), nerr, GetSysError(nerr).c_str());
+		Debugger::message(format("Error %d in NumToStr()\n", GetLastError()));
 		out = str;
 	}
 	return out;
@@ -125,30 +126,24 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
  * @param [in] tim Time in seconds since 1.1.1970.
  * @return Time as a string, proper to show in the GUI.
  */
-String TimeString(const __int64 * tim)
+String TimeString(const Int64 * tim)
 {
-	USES_CONVERSION;
 	if (!tim) return _T("---");
-	// _tcsftime does not respect user date customizations from
-	// Regional Options/Configuration Regional; COleDateTime::Format does so.
-#if _MSC_VER < 1300
-		// MSVC6
-	COleDateTime odt = (time_t)*tim;
-#else
-		// MSVC7 (VC.NET)
-	COleDateTime odt = *tim;
-#endif
-	// If invalid, return DateTime resource string
-	if (odt.GetStatus() == COleDateTime::null)
-		return String();
-	if (odt.GetStatus() == COleDateTime::invalid)
-		return theApp.LoadString(AFX_IDS_INVALID_DATETIME);
+	
 	SYSTEMTIME sysTime;
-	odt.GetAsSystemTime(sysTime);
+	FILETIME ft;
+	Timestamp t(*tim * Timestamp::resolution());
+
+	if (t == 0)
+		return String();
+	t.toFileTimeNP((unsigned int&)ft.dwLowDateTime, (unsigned int&)ft.dwHighDateTime);
+	if (!FileTimeToSystemTime(&ft, &sysTime))
+		return _T("---");
+
 	TCHAR buff[128];
-	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff, countof(buff));
+	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff, sizeof(buff)/sizeof(buff[0]));
 	buff[len - 1] = ' ';
-	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff + len, countof(buff) - len - 1);
+	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, NULL, buff + len, sizeof(buff)/sizeof(buff[0]) - len - 1);
 	return buff;
 }
 

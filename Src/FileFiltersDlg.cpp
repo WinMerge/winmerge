@@ -28,7 +28,6 @@
 #include "merge.h"
 #include "MainFrm.h"
 #include "FileFiltersDlg.h"
-#include "coretools.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "SharedFilterDlg.h"
@@ -106,7 +105,7 @@ void FileFiltersDlg::SetFilterArray(vector<FileFilterInfo> * fileFilters)
  * @brief Returns path (cont. filename) of selected filter
  * @return Full path to selected filter file.
  */
-CString FileFiltersDlg::GetSelected()
+String FileFiltersDlg::GetSelected()
 {
 	return m_sFileFilterPath;
 }
@@ -116,7 +115,7 @@ CString FileFiltersDlg::GetSelected()
  * @param [in] Path for selected filter.
  * @note Call this before actually showing the dialog.
  */
-void FileFiltersDlg::SetSelected(const CString & selected)
+void FileFiltersDlg::SetSelected(const String & selected)
 {
 	m_sFileFilterPath = selected;
 }
@@ -172,7 +171,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	InitList();
 
-	if (m_sFileFilterPath.IsEmpty())
+	if (m_sFileFilterPath.empty())
 	{
 		SelectFilterByIndex(0);
 		return TRUE;
@@ -181,8 +180,8 @@ BOOL FileFiltersDlg::OnInitDialog()
 	int count = m_listFilters.GetItemCount();
 	for (int i = 0; i < count; i++)
 	{
-		CString desc = m_listFilters.GetItemText(i, 2);
-		if (desc.CompareNoCase(m_sFileFilterPath) == 0)
+		String desc = m_listFilters.GetItemText(i, 2);
+		if (string_compare_nocase(desc, m_sFileFilterPath) == 0)
 		{
 			SelectFilterByIndex(i);
 		}
@@ -413,12 +412,11 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		templatePath += '\\';
 	templatePath += FILE_FILTER_TEMPLATE;
 
-	if (paths_DoesPathExist(templatePath.c_str()) != IS_EXISTING_FILE)
+	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
 	{
-		CString msg;
-		LangFormatString2(msg, IDS_FILEFILTER_TMPL_MISSING,
+		String msg = LangFormatString2(IDS_FILEFILTER_TMPL_MISSING,
 			FILE_FILTER_TEMPLATE, templatePath.c_str());
-		AfxMessageBox(msg, MB_ICONERROR);
+		AfxMessageBox(msg.c_str(), MB_ICONERROR);
 		return;
 	}
 
@@ -433,7 +431,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	if (path.length() && path[path.length() - 1] != '\\')
 		path += '\\';
 	
-	CString s;
+	String s;
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
 		FALSE))
 	{
@@ -442,7 +440,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		TCHAR ext[_MAX_EXT] = {0};
 		TCHAR dir[_MAX_DIR] = {0};
 		TCHAR drive[_MAX_DRIVE] = {0};
-		_tsplitpath(s, drive, dir, file, ext);
+		_tsplitpath(s.c_str(), drive, dir, file, ext);
 		if (_tcslen(ext) == 0)
 		{
 			s += FileFilterExt;
@@ -457,14 +455,14 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 		// Open-dialog asks about overwriting, so we can overwrite filter file
 		// user has already allowed it.
-		if (!CopyFile(templatePath.c_str(), s, FALSE))
+		if (!CopyFile(templatePath.c_str(), s.c_str(), FALSE))
 		{
 			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath.c_str(), MB_ICONERROR);
 			return;
 		}
-		EditFileFilter(s);
+		EditFileFilter(s.c_str());
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
-		int retval = pMgr->AddFilter(s);
+		int retval = pMgr->AddFilter(s.c_str());
 		if (retval == FILTER_OK)
 		{
 			// Remove all from filterslist and re-add so we can update UI
@@ -494,15 +492,14 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
 		path.ReleaseBuffer();
 
-		CString sConfirm;
-		LangFormatString1(sConfirm, IDS_CONFIRM_DELETE_SINGLE, path);
-		int res = AfxMessageBox(sConfirm, MB_ICONWARNING | MB_YESNO);
+		String sConfirm = LangFormatString1(IDS_CONFIRM_DELETE_SINGLE, path);
+		int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
 			if (DeleteFile(path))
 			{
 				FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
-				pMgr->RemoveFilter(path);
+				pMgr->RemoveFilter((LPCTSTR)path);
 				
 				// Remove all from filterslist and re-add so we can update UI
 				String selected;
@@ -557,7 +554,7 @@ void FileFiltersDlg::OnHelp()
  */
 void FileFiltersDlg::OnBnClickedFilterfileInstall()
 {
-	CString s;
+	String s;
 	String path;
 	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
@@ -565,22 +562,22 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		TRUE))
 	{
 		String sfile, sext;
-		SplitFilename(s, NULL, &sfile, &sext);
+		paths_SplitFilename(s, NULL, &sfile, &sext);
 		String filename = sfile;
 		filename += _T(".");
 		filename += sext;
 		userPath = paths_ConcatPath(userPath, filename);
-		if (!CopyFile(s, userPath.c_str(), TRUE))
+		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))
 		{
 			// If file already exists, ask from user
 			// If user wants to, overwrite existing filter
-			if (paths_DoesPathExist(userPath.c_str()) == IS_EXISTING_FILE)
+			if (paths_DoesPathExist(userPath) == IS_EXISTING_FILE)
 			{
 				int res = LangMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
 				if (res == IDYES)
 				{
-					if (!CopyFile(s, userPath.c_str(), FALSE))
+					if (!CopyFile(s.c_str(), userPath.c_str(), FALSE))
 					{
 						LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 					}

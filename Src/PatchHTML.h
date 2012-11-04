@@ -1,3 +1,5 @@
+#include "diff.h"
+
 #define OUTPUT_HTML (OUTPUT_SDIFF + 1)
 
 void print_html_header ();

@@ -6,19 +6,14 @@
 // ID line follows -- this is updated by SVN
 // $Id: ByteComparator.cpp 7090 2010-01-11 19:48:26Z kimmov $
 
-//#include "StdAfx.h"
-#include <windows.h>
-#include <tchar.h>
-#include <assert.h>
 #include "ByteComparator.h"
+#include <cassert>
+#include <Poco/Types.h>
+#include "UnicodeString.h"
 #include "FileTextStats.h"
 #include "CompareOptions.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+using Poco::Int64;
 
 /**
  * @brief Returns if given char is EOL byte.
@@ -52,10 +47,10 @@ static inline bool iswsch(TCHAR ch)
  * @param [in] crflag Did previous scan end to CR?
  * @param [in] offset Byte offset in whole file (among several buffers).
  */
-static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
-		bool crflag, __int64 offset)
+static void TextScan(FileTextStats & stats, const char *ptr, const char *end, bool eof,
+		bool crflag, Int64 offset)
 {
-	LPCSTR start = ptr; // remember for recording zero-byte offsets
+	const char *start = ptr; // remember for recording zero-byte offsets
 
 	// Handle any crs left from last buffer
 	if (crflag)
@@ -76,7 +71,7 @@ static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
 		if (ch == 0)
 		{
 			++stats.nzeros;
-			__int64 index = offset + (ptr - start);
+			Int64 index = offset + (ptr - start);
 			if (stats.first_zero == -1)
 				stats.first_zero = index;
 			stats.last_zero = index;
@@ -168,7 +163,7 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
  */
 ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	FileTextStats & stats0, FileTextStats & stats1, const char* &ptr0, const char* &ptr1,
-	const char* end0, const char* end1, bool eof0, bool eof1, __int64 offset0, __int64 offset1)
+	const char* end0, const char* end1, bool eof0, bool eof1, Int64 offset0, Int64 offset1)
 {
 	ByteComparator::COMP_RESULT result = RESULT_SAME;
 

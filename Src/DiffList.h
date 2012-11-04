@@ -27,6 +27,7 @@
 
 #include <map>
 #include <vector>
+#include <cstring>
 
 /**
  * @brief Operations in diffranges.
@@ -138,22 +139,22 @@ public:
 	int GetSignificantIndex(int nDiff) const;
 	bool GetDiff(int nDiff, DIFFRANGE & di) const;
 	bool SetDiff(int nDiff, const DIFFRANGE & di);
-	int LineRelDiff(unsigned int nLine, unsigned int nDiff) const;
-	bool LineInDiff(unsigned int nLine, unsigned int nDiff) const;
-	int LineToDiff(unsigned int nLine) const;
+	int LineRelDiff(unsigned nLine, unsigned nDiff) const;
+	bool LineInDiff(unsigned nLine, unsigned nDiff) const;
+	int LineToDiff(unsigned nLine) const;
 	bool GetPrevDiff(int nLine, int & nDiff) const;
 	bool GetNextDiff(int nLine, int & nDiff) const;
 	bool HasSignificantDiffs() const;
-	int PrevSignificantDiffFromLine(unsigned int nLine) const;
-	int NextSignificantDiffFromLine(unsigned int nLine) const;
+	int PrevSignificantDiffFromLine(unsigned nLine) const;
+	int NextSignificantDiffFromLine(unsigned nLine) const;
 	int FirstSignificantDiff() const;
 	int NextSignificantDiff(int nDiff) const;
 	int PrevSignificantDiff(int nDiff) const;
 	int LastSignificantDiff() const;
 	const DIFFRANGE * FirstSignificantDiffRange() const;
 	const DIFFRANGE * LastSignificantDiffRange() const;
-	int PrevSignificant3wayDiffFromLine(unsigned int nLine, int nDiffType) const;
-	int NextSignificant3wayDiffFromLine(unsigned int nLine, int nDiffType) const;
+	int PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) const;
+	int NextSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) const;
 	int FirstSignificant3wayDiff(int nDiffType) const;
 	int NextSignificant3wayDiff(int nDiff, int nDiffType) const;
 	int PrevSignificant3wayDiff(int nDiff, int nDiffType) const;

@@ -25,29 +25,31 @@
 #ifndef _VSSHELPER_H_
 #define _VSSHELPER_H_
 
+#include "UnicodeString.h"
+
 /**
  * @brief Helper class for using VSS integration.
  */
 class VSSHelper
 {
 public:
-	CString GetProjectBase();
-	BOOL SetProjectBase(CString strPath);
+	String GetProjectBase();
+	bool SetProjectBase(const String& strPath);
 
-	BOOL ReLinkVCProj(CString strSavePath,CString * psError);
-	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
+	bool ReLinkVCProj(const String& strSavePath, String& sError);
+	void GetFullVSSPath(const String& strSavePath, bool & bVCProj);
 
 protected:
-	BOOL GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL);
+	bool GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL);
 	int GetWordFromBuffer(TCHAR * inBuffer, DWORD dwInBufferSize,
 		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset = NULL);
-	BOOL GetVCProjName(HANDLE hFile, HANDLE tFile);
-	BOOL GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
-	BOOL GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
+	bool GetVCProjName(HANDLE hFile, HANDLE tFile);
+	bool GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
+	bool GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
 
 private:
-	CString m_strVssProjectBase;
-	CString m_strVssProjectFull;
+	String m_strVssProjectBase;
+	String m_strVssProjectFull;
 
 };
 

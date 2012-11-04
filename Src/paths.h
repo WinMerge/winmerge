@@ -23,20 +23,25 @@ typedef enum
 	IS_EXISTING_DIR_ARCHIVE, /**< It is existing folder */
 } PATH_EXISTENCE;
 
-bool paths_EndsWithSlash(LPCTSTR s);
+bool paths_EndsWithSlash(const String& s);
 
-PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
-LPCTSTR paths_FindFileName(LPCTSTR path);
+PATH_EXISTENCE paths_DoesPathExist(const String& szPath);
+String paths_FindFileName(const String& path);
+String paths_FindExtension(const String& path);
 void paths_normalize(String & sPath);
-String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
-bool paths_CreateIfNeeded(LPCTSTR szPath);
-PATH_EXISTENCE GetPairComparability(const PathContext & paths, BOOL (*IsArchiveFile)(LPCTSTR) = NULL);
-BOOL paths_IsShortcut(LPCTSTR inPath);
+String paths_GetLongPath(const String& szPath, bool bExpandEnvs = true);
+bool paths_CreateIfNeeded(const String& szPath);
+PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) = NULL);
+bool paths_IsDirectory(const String& path);
+bool paths_IsShortcut(const String& inPath);
 String ExpandShortcut(const String &inFile);
 String paths_ConcatPath(const String & path, const String & subpath);
-String paths_GetParentPath(LPCTSTR path);
+String paths_GetParentPath(const String& path);
 String paths_GetLastSubdir(const String & path);
-BOOL paths_IsPathAbsolute(const String & path);
+bool paths_IsPathAbsolute(const String & path);
 String paths_EnsurePathExist(const String & sPath);
+void paths_SplitFilename(const String& s, String * path, String * name, String * ext);
+void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
+String paths_GetPathOnly(const String& fullpath);
 
 #endif // paths_h_included

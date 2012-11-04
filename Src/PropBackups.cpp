@@ -80,7 +80,7 @@ void PropBackups::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_LOCATION, m_nBackupFolder);
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, String(m_sGlobalFolder));
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime == TRUE);
 }
@@ -102,9 +102,9 @@ BOOL PropBackups::OnInitDialog()
  */
 void PropBackups::OnBnClickedBackupBrowse()
 {
-	CString path;
+	String path;
 	if (SelectFolder(path, m_sGlobalFolder, 0, GetSafeHwnd()))
 	{
-		SetDlgItemText(IDC_BACKUP_FOLDER, path);
+		SetDlgItemText(IDC_BACKUP_FOLDER, path.c_str());
 	}
 }

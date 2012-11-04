@@ -121,16 +121,64 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
+				RelativePath="..\..\..\Src\charsets.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\codepage.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\codepage_detect.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\coretools.cpp">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\DirItem.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\Common\dllproxy.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Environment.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilter.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilterHelper.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilterMgr.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileTextEncoding.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileTransform.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\FileVersion.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\FilterList.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\LogFile.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\lwdisp.c">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\markdown.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\MergeCmdLineInfo.cpp">
+			</File>
+			<File
+				RelativePath=".\misc.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\multiformatText.cpp">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Common\OptionsMgr.cpp">
@@ -142,7 +190,16 @@
 				RelativePath="..\..\..\Src\paths.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\PluginManager.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Plugins.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\ProjectFile.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\RegKey.cpp">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Common\RegOptionsMgr.cpp">
@@ -157,6 +214,12 @@
 				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\Common\UniFile.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\UniMarkdownFile.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\varprop.cpp">
 			</File>
 		</Filter>
@@ -165,16 +228,61 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
+				RelativePath="..\..\..\Src\charsets.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\codepage.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\codepage_detect.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\coretools.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\DirItem.h">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\Common\dllproxy.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Environment.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilter.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilterHelper.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileFilterMgr.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileTextEncoding.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\FileTransform.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\FileVersion.h">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\FilterList.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\LogFile.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\lwdisp.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\markdown.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\MergeCmdLineInfo.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\multiformatText.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Common\OptionsMgr.h">
@@ -186,7 +294,16 @@
 				RelativePath="..\..\..\Src\paths.h">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\PluginManager.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Plugins.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\ProjectFile.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\RegKey.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Common\RegOptionsMgr.h">
@@ -204,6 +321,9 @@
 				RelativePath="..\..\..\Src\Common\UnicodeString.h">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\UniMarkdownFile.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\varprop.h">
 			</File>
 		</Filter>
@@ -216,16 +336,31 @@
 			Name="Tests"
 			Filter="">
 			<File
+				RelativePath="..\Encoding\charsets_test.cpp">
+			</File>
+			<File
+				RelativePath="..\Encoding\codepage_detect_test.cpp">
+			</File>
+			<File
+				RelativePath="..\Encoding\codepage_test.cpp">
+			</File>
+			<File
 				RelativePath=".\..\DirItem\DirItem_test.cpp">
 			</File>
 			<File
 				RelativePath=".\..\FileVersion\FileVersion_test.cpp">
 			</File>
 			<File
+				RelativePath="..\markdown\markdown_test.cpp">
+			</File>
+			<File
 				RelativePath=".\..\CmdLine\MergeCmdLine_test.cpp">
 			</File>
 			<File
 				RelativePath=".\..\Paths\paths_test.cpp">
+			</File>
+			<File
+				RelativePath="..\Plugins\Plugins_test.cpp">
 			</File>
 			<File
 				RelativePath=".\..\ProjectFile\ProjectFile_test_LeftAndRight.cpp">

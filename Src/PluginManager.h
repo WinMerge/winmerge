@@ -1,7 +1,7 @@
 #ifndef PluginManager_h_included
 #define PluginManager_h_included
 
-
+#include <map>
 // defines IPluginInfos
 #include "DiffContext.h"
 // defines PackingInfo and PrediffingInfo
@@ -22,18 +22,20 @@ struct PluginFileInfo
 class PluginManager : public IPluginInfos
 {
 public:
+	typedef std::map<String, PluginFileInfo*> PluginFileInfoMap;
+
 	~PluginManager();
-	void SetPrediffSetting(LPCTSTR filteredFilenames, int newsetting);
-	void SetPrediffer(LPCTSTR filteredFilenames, const CString & prediffer);
+	void SetPrediffSetting(const String& filteredFilenames, int newsetting);
+	void SetPrediffer(const String& filteredFilenames, const String& prediffer);
 
 private:
 	// Implement IPluginInfos
-	virtual void FetchPluginInfos(LPCTSTR filteredFilenames, 
+	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
                                       PrediffingInfo ** infoPrediffer);
 private:
 	// Data
-	CTypedPtrMap<CMapStringToPtr, CString, PluginFileInfo*> m_pluginSettings;
+	PluginFileInfoMap m_pluginSettings;
 };
 
 #endif // PluginManager_h_included

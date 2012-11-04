@@ -223,7 +223,7 @@ void CSplashWnd::OnPaint()
 	m_pPicture->Render(&dc);
 
 	CVersionInfo version(TRUE);
-	CString s;
+	String s;
 	CFont versionFont;
 	CFont textFont;
 	CFont copyrightFont;
@@ -237,11 +237,11 @@ void CSplashWnd::OnPaint()
 		oldfont = dc.SelectObject(&versionFont);
 
 	CString sVersion = version.GetFixedProductVersion().c_str();
-	LangFormatString1(s, IDS_VERSION_FMT, sVersion);
+	s = LangFormatString1(IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
 	
 	RECT area = VersionTextArea;
-	dc.DrawText(s, &area, VersionTextStyle);
+	dc.DrawText(s.c_str(), &area, VersionTextStyle);
 
 	fontHeight = -MulDiv(DevelopersTextSize, dc.GetDeviceCaps(LOGPIXELSY), 72);
 	fontSuccess = textFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,

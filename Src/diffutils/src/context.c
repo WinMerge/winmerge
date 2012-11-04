@@ -35,10 +35,10 @@ static void print_context_number_range PARAMS((struct file_data const *, int, in
 static void print_unidiff_number_range PARAMS((struct file_data const *, int, int));
 
 /* Last place find_function started searching from.  */
-DECL_TLS static int find_function_last_search;
+static DECL_TLS int find_function_last_search;
 
 /* The value find_function returned when it started searching there.  */
-DECL_TLS static int find_function_last_match;
+static DECL_TLS int find_function_last_match;
 
 /* Print a label for a context diff, with a file name and date or a label.  */
 

@@ -9,10 +9,9 @@
 #ifndef codepage_detect_h_included
 #define codepage_detect_h_included
 
-struct FileTextEncoding;
+#include "UnicodeString.h"
+#include "FileTextEncoding.h"
 
-void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int guessEncodingType);
-
-unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len);
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType);
 
 #endif // codepage_detect_h_included

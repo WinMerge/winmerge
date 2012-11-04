@@ -6,7 +6,6 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffItem.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
-#include <windows.h>
 #include "DiffItem.h"
 #include "paths.h"
 
@@ -15,7 +14,7 @@ DIFFITEM DIFFITEM::emptyitem;
 /** @brief DIFFITEM's destructor */
 DIFFITEM::~DIFFITEM()
 {
-	while (children.IsSibling(children.Flink))
+	while (HasChildren())
 	{
 		DIFFITEM *p = (DIFFITEM *)children.Flink;
 		p->RemoveSelf();
@@ -26,12 +25,11 @@ DIFFITEM::~DIFFITEM()
 /** @brief Return path to left/right file, including all but file name */
 String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
-	String sPath;
 	if (diffcode.isExists(nIndex))
 	{
-		sPath = paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
+		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}
-	return sPath;
+	return _T("");
 }
 
 /** @brief Return depth of path */

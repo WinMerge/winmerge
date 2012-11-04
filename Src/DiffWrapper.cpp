@@ -24,22 +24,25 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffWrapper.cpp 7091 2010-01-11 20:27:43Z kimmov $
 
-#include "StdAfx.h"
+#include "DiffWrapper.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <algorithm>
 #include <string>
 #include <map>
-#include <shlwapi.h>
+#include <cassert>
+#include <exception>
+#include <vector>
+#include <Poco/Format.h>
+#include <Poco/Debugger.h>
 #include <Poco/StringTokenizer.h>
-#include <Poco/UnicodeConverter.h>
-#include "coretools.h"
+#include <Poco/Exception.h>
 #include "DiffContext.h"
+#include "coretools.h"
 #include "DiffList.h"
 #include "MovedLines.h"
 #include "FilterList.h"
-#include "DiffWrapper.h"
-#include "DIFF.H"
+#include "diff.h"
 #include "FileTransform.h"
 #include "LogFile.h"
 #include "paths.h"
@@ -49,17 +52,16 @@
 #include "FilterCommentsManager.h"
 #include "Environment.h"
 #include "PatchHTML.h"
-#include "AnsiConvert.h"
 #include "UnicodeString.h"
+#include "unicoder.h"
+#include "TFile.h"
+#include "Exceptions.h"
+#include "MergeApp.h"
 
+using Poco::Debugger;
+using Poco::format;
 using Poco::StringTokenizer;
-using Poco::UnicodeConverter;
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+using Poco::Exception;
 
 extern int recursive;
 
@@ -74,19 +76,19 @@ static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
  */
 CDiffWrapper::CDiffWrapper()
 : m_FilterCommentsManager(new FilterCommentsManager)
-, m_bCreatePatchFile(FALSE)
-, m_bUseDiffList(FALSE)
-, m_bAddCmdLine(TRUE)
-, m_bAppendFiles(FALSE)
+, m_bCreatePatchFile(false)
+, m_bUseDiffList(false)
+, m_bAddCmdLine(true)
+, m_bAppendFiles(false)
 , m_nDiffs(0)
 , m_codepage(GetACP())
 , m_infoPrediffer(NULL)
 , m_pDiffList(NULL)
-, m_bPathsAreTemp(FALSE)
+, m_bPathsAreTemp(false)
 , m_pFilterList(NULL)
 , m_bPluginsEnabled(false)
 {
-	ZeroMemory(&m_status, sizeof(DIFFSTATUS));
+	memset(&m_status, 0, sizeof(DIFFSTATUS));
 
 	m_pMovedLines[0] = NULL;
 	m_pMovedLines[1] = NULL;
@@ -128,12 +130,12 @@ void CDiffWrapper::SetCreatePatchFile(const String &filename)
 {
 	if (filename.empty())
 	{
-		m_bCreatePatchFile = FALSE;
+		m_bCreatePatchFile = false;
 		m_sPatchFile.clear();
 	}
 	else
 	{
-		m_bCreatePatchFile = TRUE;
+		m_bCreatePatchFile = true;
 		m_sPatchFile = filename;
 		string_replace(m_sPatchFile, _T("/"), _T("\\"));
 	}
@@ -150,12 +152,12 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
 {
 	if (diffList == NULL)
 	{
-		m_bUseDiffList = FALSE;
+		m_bUseDiffList = false;
 		m_pDiffList = NULL;
 	}
 	else
 	{
-		m_bUseDiffList = TRUE;
+		m_bUseDiffList = true;
 		m_pDiffList = diffList;
 	}
 }
@@ -168,7 +170,7 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
  */
 void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
 {
-	ASSERT(options);
+	assert(options);
 	DIFFOPTIONS tmpOptions = {0};
 	m_options.GetAsDiffOptions(tmpOptions);
 	*options = tmpOptions;
@@ -182,7 +184,7 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
  */
 void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
-	ASSERT(options);
+	assert(options);
 	m_options.SetFromDiffOptions(*options);
 }
 
@@ -216,7 +218,7 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
  */
 void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 {
-	ASSERT(options);
+	assert(options);
 	m_options.m_contextLines = options->nContext;
 
 	switch (options->outputStyle)
@@ -234,7 +236,7 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 		m_options.m_outputStyle = DIFF_OUTPUT_HTML;
 		break;
 	default:
-		_RPTF0(_CRT_ERROR, "Unknown output style!");
+		throw "Unknown output style!";
 		break;
 	}
 
@@ -243,7 +245,7 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 
 /**
  * @brief Enables/disables moved block detection.
- * @param [in] bDetectMovedBlocks If TRUE moved blocks are detected.
+ * @param [in] bDetectMovedBlocks If true moved blocks are detected.
  */
 void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 {
@@ -514,7 +516,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
-	const TCHAR *FileNameExt)
+	const String& FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
 		return;
@@ -580,7 +582,7 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 				const char * CommentStrRightStart;
 				const char * CommentStrRightEnd;
 
-				BOOL bFirstLoop = TRUE;
+				bool bFirstLoop = true;
 				do {
 					//Lets remove block comments, and see if lines are equal
 					CommentStrLeftStart = FindCommentMarker(LineDataLeft.c_str(), filtercommentsset.StartMarker.c_str());
@@ -606,7 +608,7 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
 					else if(RightOp == OP_TRIVIAL && bFirstLoop)
 						LineDataRight.erase(0);  //This line is all in block comments
 
-					bFirstLoop = FALSE;
+					bFirstLoop = false;
 
 				} while (CommentStrLeftStart != NULL || CommentStrLeftEnd != NULL
 					|| CommentStrRightStart != NULL || CommentStrRightEnd != NULL); //Loops until all blockcomments are lost
@@ -663,7 +665,7 @@ void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumb
  * @param [in] tempPaths Are given paths temporary (can be deleted)?.
  */
 void CDiffWrapper::SetPaths(const PathContext &files,
-		BOOL tempPaths)
+		bool tempPaths)
 {
 	m_files = files;
 	m_bPathsAreTemp = tempPaths;
@@ -695,14 +697,14 @@ void CDiffWrapper::SetAlternativePaths(const PathContext &altPaths)
 /**
  * @brief Runs diff-engine.
  */
-BOOL CDiffWrapper::RunFileDiff()
+bool CDiffWrapper::RunFileDiff()
 {
 	PathContext files = m_files;
 	int file;
 	for (file = 0; file < m_files.GetSize(); file++)
 		replace_char(&*files[file].begin(), '/', '\\');
 
-	BOOL bRet = TRUE;
+	bool bRet = true;
 	String strFileTemp[3];
 	for (file = 0; file < m_files.GetSize(); file++)
 		strFileTemp[file] = files[file];
@@ -725,22 +727,23 @@ BOOL CDiffWrapper::RunFileDiff()
 			{
 				// this can only fail if the data can not be saved back (no more
 				// place on disk ???) What to do then ??
-				FileTransform_Prediffing(strFileTemp[file], m_sToFindPrediffer.c_str(), m_infoPrediffer,
+				FileTransform_Prediffing(strFileTemp[file], m_sToFindPrediffer, m_infoPrediffer,
 					m_bPathsAreTemp);
 			}
 			else
 			{
 				// This can fail if the prediffer has a problem
 				if (FileTransform_Prediffing(strFileTemp[file], *m_infoPrediffer,
-					m_bPathsAreTemp) == FALSE)
+					m_bPathsAreTemp) == false)
 				{
 					// display a message box
-					CString sError;
-					LangFormatString2(sError, IDS_PREDIFFER_ERROR, strFileTemp[file].c_str(),
+					String sError = string_format(
+						_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
+						strFileTemp[file].c_str(),
 						m_infoPrediffer->pluginName.c_str());
-					AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+					AppErrorMessageBox(sError);
 					// don't use any more this prediffer
-					m_infoPrediffer->bToBeScanned = FALSE;
+					m_infoPrediffer->bToBeScanned = false;
 					m_infoPrediffer->pluginName.erase();
 				}
 			}
@@ -749,7 +752,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		FileTransform_UCS2ToUTF8(strFileTemp[file], m_bPathsAreTemp);
 		// We use the same plugin for both files, so it must be defined before
 		// second file
-		ASSERT(m_infoPrediffer->bToBeScanned == FALSE);
+		assert(m_infoPrediffer->bToBeScanned == false);
 	}
 
 	struct change *script = NULL;
@@ -761,11 +764,11 @@ BOOL CDiffWrapper::RunFileDiff()
 
 	if (files.GetSize() == 2)
 	{
-		diffdata.SetDisplayFilepaths(files[0].c_str(), files[1].c_str()); // store true names for diff utils patch file
+		diffdata.SetDisplayFilepaths(files[0], files[1]); // store true names for diff utils patch file
 		// This opens & fstats both files (if it succeeds)
-		if (!diffdata.OpenFiles(strFileTemp[0].c_str(), strFileTemp[1].c_str()))
+		if (!diffdata.OpenFiles(strFileTemp[0], strFileTemp[1]))
 		{
-			return FALSE;
+			return false;
 		}
 
 		// Compare the files, if no error was found.
@@ -794,27 +797,27 @@ BOOL CDiffWrapper::RunFileDiff()
 	}
 	else
 	{
-		diffdata10.SetDisplayFilepaths(files[1].c_str(), files[0].c_str()); // store true names for diff utils patch file
-		diffdata02.SetDisplayFilepaths(files[0].c_str(), files[2].c_str()); // store true names for diff utils patch file
-		diffdata12.SetDisplayFilepaths(files[1].c_str(), files[2].c_str()); // store true names for diff utils patch file
+		diffdata10.SetDisplayFilepaths(files[1], files[0]); // store true names for diff utils patch file
+		diffdata02.SetDisplayFilepaths(files[0], files[2]); // store true names for diff utils patch file
+		diffdata12.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
 
-		if (!diffdata10.OpenFiles(strFileTemp[1].c_str(), strFileTemp[0].c_str()))
+		if (!diffdata10.OpenFiles(strFileTemp[1], strFileTemp[0]))
 		{
-			return FALSE;
+			return false;
 		}
 
 		bRet = Diff2Files(&script10, &diffdata10, &bin_flag10, NULL);
 
-		if (!diffdata12.OpenFiles(strFileTemp[1].c_str(), strFileTemp[2].c_str()))
+		if (!diffdata12.OpenFiles(strFileTemp[1], strFileTemp[2]))
 		{
-			return FALSE;
+			return false;
 		}
 
 		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, NULL);
 
-		if (!diffdata02.OpenFiles(strFileTemp[0].c_str(), strFileTemp[2].c_str()))
+		if (!diffdata02.OpenFiles(strFileTemp[0], strFileTemp[2]))
 		{
-			return FALSE;
+			return false;
 		}
 
 		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, NULL);
@@ -836,7 +839,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		if (bin_flag != 0)
 		{
-			m_status.bBinaries = TRUE;
+			m_status.bBinaries = true;
 			if (bin_flag != -1)
 				m_status.Identical = IDENTLEVEL_ALL;
 			else
@@ -845,17 +848,17 @@ BOOL CDiffWrapper::RunFileDiff()
 		else
 		{ // text files according to diffutils, so change script exists
 			m_status.Identical = (script == 0) ? IDENTLEVEL_ALL : IDENTLEVEL_NONE;
-			m_status.bBinaries = FALSE;
+			m_status.bBinaries = false;
 		}
-		m_status.bMissingNL[0] = inf[0].missing_newline;
-		m_status.bMissingNL[1] = inf[1].missing_newline;
+		m_status.bMissingNL[0] = !!inf[0].missing_newline;
+		m_status.bMissingNL[1] = !!inf[1].missing_newline;
 	}
 	else
 	{
 		m_status.Identical = IDENTLEVEL_NONE;
 		if (bin_flag10 != 0 || bin_flag12 != 0 || bin_flag02 != 0)
 		{
-			m_status.bBinaries = TRUE;
+			m_status.bBinaries = true;
 			if (bin_flag10 != -1 && bin_flag12 != -1)
 				m_status.Identical = IDENTLEVEL_ALL;
 			else if (bin_flag10 != -1)
@@ -867,7 +870,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		}
 		else
 		{ // text files according to diffutils, so change script exists
-			m_status.bBinaries = FALSE;
+			m_status.bBinaries = false;
 			if (script10 == 0 && script12 == 0)
 				m_status.Identical = IDENTLEVEL_ALL;
 			else if (script10 == 0)
@@ -877,9 +880,9 @@ BOOL CDiffWrapper::RunFileDiff()
 			else if (script02 == 0)
 				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
 		}
-		m_status.bMissingNL[0] = inf02[0].missing_newline;
-		m_status.bMissingNL[1] = inf12[0].missing_newline;
-		m_status.bMissingNL[2] = inf12[1].missing_newline;
+		m_status.bMissingNL[0] = !!inf02[0].missing_newline;
+		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
+		m_status.bMissingNL[2] = !!inf12[1].missing_newline;
 	}
 
 
@@ -924,12 +927,15 @@ BOOL CDiffWrapper::RunFileDiff()
 		// Delete temp files transformation functions possibly created
 		for (file = 0; file < files.GetSize(); file++)
 		{
-			if (lstrcmpi(files[file].c_str(), strFileTemp[file].c_str()) != 0)
+			if (string_compare_nocase(files[file], strFileTemp[file]) != 0)
 			{
-				if (!::DeleteFile(strFileTemp[file].c_str()))
+				try
 				{
-					LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-						strFileTemp[file], GetSysError(GetLastError()).c_str()));
+					TFile(strFileTemp[file]).remove();
+				}
+				catch (Exception& e)
+				{
+					LogErrorStringUTF8(e.displayText());
 				}
 				strFileTemp[file].erase();
 			}
@@ -941,9 +947,10 @@ BOOL CDiffWrapper::RunFileDiff()
 /**
  * @brief Add diff to external diff-list
  */
-void CDiffWrapper::AddDiffRange(DiffList *pDiffList, UINT begin0, UINT end0, UINT begin1, UINT end1, OP_TYPE op)
+void CDiffWrapper::AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned end0, unsigned begin1, unsigned end1, OP_TYPE op)
 {
-	TRY {
+	try
+	{
 		DIFFRANGE dr;
 		dr.begin[0] = begin0;
 		dr.end[0] = end0;
@@ -955,27 +962,22 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, UINT begin0, UINT end0, UIN
 		dr.blank[0] = dr.blank[1] = dr.blank[2] = -1;
 		pDiffList->AddDiff(dr);
 	}
-	CATCH_ALL(e)
+	catch (std::exception& e)
 	{
-		TCHAR msg[1024] = {0};
-		e->GetErrorMessage(msg, 1024);
-		AfxMessageBox(msg, MB_ICONSTOP);
+		AppErrorMessageBox(ucr::toTString(e.what()));
 	}
-	END_CATCH_ALL;
 }
 
 void CDiffWrapper::AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr)
 {
-	TRY {
+	try
+	{
 		pDiffList->AddDiff(dr);
 	}
-	CATCH_ALL(e)
+	catch (std::exception& e)
 	{
-		TCHAR msg[1024] = {0};
-		e->GetErrorMessage(msg, 1024);
-		AfxMessageBox(msg, MB_ICONSTOP);
+		AppErrorMessageBox(ucr::toTString(e.what()));
 	}
-	END_CATCH_ALL;
 }
 
 /**
@@ -985,7 +987,7 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr)
  * @param [in] left on whitch side we have to insert
  * @param [in] bIgnoreBlankLines, if true we allways add a new diff and make as trivial
  */
-void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], int bMissingNL[], bool bIgnoreBlankLines)
+void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines)
 {
 	DIFFRANGE dr;
 	const int count = m_pDiffList->GetSize();
@@ -1012,7 +1014,7 @@ void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], int bMissingN
 			else
 				dr.begin[file] = dr.end[file] + 1;
 			dr.op = OP_DIFF;
-			ASSERT(dr.begin[0] == dr.begin[file]);
+			assert(dr.begin[0] == dr.begin[file]);
 		}
 		if (bIgnoreBlankLines)
 			dr.op = OP_TRIVIAL;
@@ -1026,7 +1028,7 @@ void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], int bMissingN
  */
 void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status)
 {
-	CopyMemory(status, &m_status, sizeof(DIFFSTATUS));
+	std::memcpy(status, &m_status, sizeof(DIFFSTATUS));
 }
 
 /**
@@ -1090,9 +1092,9 @@ String CDiffWrapper::FormatSwitchString()
  * @brief Enables/disables patch-file appending.
  * If the file for patch already exists then the patch will be appended to
  * existing file.
- * @param [in] bAppendFiles If TRUE patch will be appended to existing file.
+ * @param [in] bAppendFiles If true patch will be appended to existing file.
  */
-void CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
+void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
 {
 	m_bAppendFiles = bAppendFiles;
 }
@@ -1110,25 +1112,26 @@ void CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
     So if first file is binary, first bit is set etc. Can be NULL if binary file
     info is not needed (faster compare since diffutils don't bother checking
     second file if first is binary).
- * @return TRUE when compare succeeds, FALSE if error happened during compare.
+ * @return true when compare succeeds, false if error happened during compare.
  * @note This function is used in file compare, not folder compare. Similar
  * folder compare function is in DiffFileData.cpp.
  */
-BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
+bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	int * bin_status, int * bin_file)
 {
-	BOOL bRet = TRUE;
-	__try
+	bool bRet = true;
+	SE_Handler seh;
+	try
 	{
 		// Diff files. depth is zero because we are not 6comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
 				(m_pMovedLines[0] != NULL), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
+	catch (SE_Exception&)
 	{
 		*diffs = NULL;
-		bRet = FALSE;
+		bRet = false;
 	}
 	return bRet;
 }
@@ -1194,8 +1197,8 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 {
 	if (m_pFilterList == NULL)
 	{	
-		_RPTF0(_CRT_ERROR, "CDiffWrapper::RegExpFilter() called when "
-			"filterlist doesn't exist (=NULL)");
+		throw "CDiffWrapper::RegExpFilter() called when "
+			"filterlist doesn't exist (=NULL)";
 		return false;
 	}
 
@@ -1230,11 +1233,11 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	if (options.bFilterCommentsLines)
 	{
 		String LowerCaseExt = m_originalFile.GetLeft();
-		int PosOfDot = LowerCaseExt.rfind('.');
-		if (PosOfDot != -1)
+		String::size_type PosOfDot = LowerCaseExt.rfind('.');
+		if (PosOfDot != String::npos)
 		{
 			LowerCaseExt.erase(0, PosOfDot + 1);
-			CharLower(&*LowerCaseExt.begin());
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::tolower);
 			asLwrCaseExt = LowerCaseExt;
 		}
 	}
@@ -1282,7 +1285,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					if (thisob->match0>=0)
 					{
-						ASSERT(thisob->inserted);
+						assert(thisob->inserted);
 						for (int i=0; i<thisob->inserted; ++i)
 						{
 							int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1292,7 +1295,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					}
 					if (thisob->match1>=0)
 					{
-						ASSERT(thisob->deleted);
+						assert(thisob->deleted);
 						for (int i=0; i<thisob->deleted; ++i)
 						{
 							int line0 = i+thisob->line0 + (trans_a0-first0-1);
@@ -1306,7 +1309,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt.c_str());
+					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt);
 				}
 
 				if (m_pFilterList && m_pFilterList->HasRegExps())
@@ -1327,8 +1330,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				}
 
 				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-				TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
-					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+#ifdef _DEBUG
+				Debugger::message(format("left=%d,%d   right=%d,%d   op=%d\n",
+					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op));
+#endif
 			}
 		}
 		
@@ -1427,7 +1432,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						{
 							if (thisob->match0>=0)
 							{
-								ASSERT(thisob->inserted);
+								assert(thisob->inserted);
 								for (int i=0; i<thisob->inserted; ++i)
 								{
 									int line0 = i+thisob->match0 + (trans_a0-first0-1);
@@ -1437,7 +1442,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 							}
 							if (thisob->match1>=0)
 							{
-								ASSERT(thisob->deleted);
+								assert(thisob->deleted);
 								for (int i=0; i<thisob->deleted; ++i)
 								{
 									int line0 = i+thisob->line0 + (trans_a0-first0-1);
@@ -1449,8 +1454,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					}
 
 					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-					TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
-						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+#ifdef _DEBUG
+					Debugger::message(format("left=%d,%d   right=%d,%d   op=%d\n",
+						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op));
+#endif
 				}
 			}
 			
@@ -1462,18 +1469,18 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	Make3wayDiff(*m_pDiffList, diff10, diff12, diff02);
 }
 
-void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, BOOL bAppendFiles)
+void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)
 {
 	outfile = NULL;
 	if (!m_sPatchFile.empty())
 	{
-		LPCTSTR mode = (bAppendFiles ? _T("a+") : _T("w+"));
+		const TCHAR *mode = (bAppendFiles ? _T("a+") : _T("w+"));
 		outfile = _tfopen(m_sPatchFile.c_str(), mode);
 	}
 
 	if (!outfile)
 	{
-		m_status.bPatchFileFailed = TRUE;
+		m_status.bPatchFileFailed = true;
 		return;
 	}
 
@@ -1508,7 +1515,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 
 	if (!outfile)
 	{
-		m_status.bPatchFileFailed = TRUE;
+		m_status.bPatchFileFailed = true;
 		return;
 	}
 
@@ -1543,7 +1550,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style output_style)
 void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 {
 	file_data inf_patch[2] = {0};
-	CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
+	std::memcpy(&inf_patch, inf, sizeof(file_data) * 2);
 	
 	// Get paths, primarily use alternative paths, only if they are empty
 	// use full filepaths
@@ -1555,13 +1562,13 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	replace_char(&*path1.begin(), '\\', '/');
 	replace_char(&*path2.begin(), '\\', '/');
-	inf_patch[0].name = ansiconvert_SystemCP(path1.c_str());
-	inf_patch[1].name = ansiconvert_SystemCP(path2.c_str());
+	inf_patch[0].name = strdup(ucr::toSystemCP(path1).c_str());
+	inf_patch[1].name = strdup(ucr::toSystemCP(path2).c_str());
 
 	// If paths in m_s1File and m_s2File point to original files, then we can use
 	// them to fix potentially meaningless stats from potentially temporary files,
 	// resulting from whatever transforms may have taken place.
-	// If not, then we can't help it, and hence ASSERT that this won't happen.
+	// If not, then we can't help it, and hence assert that this won't happen.
 	if (!m_bPathsAreTemp)
 	{
 		_tstat(m_files[0].c_str(), &inf_patch[0].stat);
@@ -1569,19 +1576,19 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	}
 	else
 	{
-		ASSERT(FALSE);
+		assert(false);
 	}
 
 	outfile = NULL;
 	if (!m_sPatchFile.empty())
 	{
-		LPCTSTR mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
+		const TCHAR *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
 		outfile = _tfopen(m_sPatchFile.c_str(), mode);
 	}
 
 	if (!outfile)
 	{
-		m_status.bPatchFileFailed = TRUE;
+		m_status.bPatchFileFailed = true;
 		return;
 	}
 
@@ -1670,20 +1677,12 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 
 	m_pFilterList->RemoveAllFilters();
 
-	FilterList::EncodingType type;
-	std::string regexp_str;	
-#ifdef UNICODE
-	UnicodeConverter::toUTF8(filterStr, regexp_str);
-	type = FilterList::ENC_UTF8;
-#else
-	regexp_str = filterStr;
-	type = FilterList::ENC_ANSI;
-#endif
+	std::string regexp_str = ucr::toUTF8(filterStr);
 
 	// Add every "line" of regexps to regexp list
 	StringTokenizer tokens(regexp_str, "\r\n");
 	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); it++)
-		m_pFilterList->AddRegExp(*it, type);
+		m_pFilterList->AddRegExp(*it);
 }
 
 /**
@@ -1922,8 +1921,11 @@ int CDiffWrapper::Make3wayDiff(DiffList& diff3, DiffList& diff10, DiffList& diff
 
 		diff3.AddDiff(dr3);
 
-		TRACE(_T("left=%d,%d middle=%d,%d right=%d,%d   op=%d\n"),
-			dr3.begin[0], dr3.end[0], dr3.begin[1], dr3.end[1], dr3.begin[2], dr3.end[2], dr3.op);
+#ifdef _DEBUG
+		Debugger::message(format("left=%d,%d middle=%d,%d right=%d,%d",
+			dr3.begin[0], dr3.end[0], dr3.begin[1], dr3.end[1], dr3.begin[2], dr3.end[2]));
+		Debugger::message(format("op=%d\n",dr3.op));
+#endif
 
 		diff3i++;
 		diff10i = diff10itmp;

@@ -72,22 +72,22 @@ void CSelectUnpackerDlg::Initialize()
 
 	// add the default unpackers to the unpackers list
 	m_UnpackerPlugins.Add(noPlugin);
-	m_bWithFileFlags.Add(0);
+	m_bWithFileFlags.push_back(false);
 	m_UnpackerPlugins.Add(automaticPlugin);
-	m_bWithFileFlags.Add(0);
+	m_bWithFileFlags.push_back(true);
 	// add the real unpackers to the unpackers list
 	int i;
-	for (i = 0 ; i < piFileScriptArray->GetSize() ; i++)
+	for (i = 0 ; i < piFileScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
-		m_UnpackerPlugins.Add(&piFileScriptArray->ElementAt(i));
-		m_bWithFileFlags.Add(1);
+		m_UnpackerPlugins.Add(&piFileScriptArray->at(i));
+		m_bWithFileFlags.push_back(true);
 	}
-	for (i = 0 ; i < piBufferScriptArray->GetSize() ; i++)
+	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
-		m_UnpackerPlugins.Add(&piBufferScriptArray->ElementAt(i));
-		m_bWithFileFlags.Add(0);
+		m_UnpackerPlugins.Add(&piBufferScriptArray->at(i));
+		m_bWithFileFlags.push_back(false);
 	}
 }
 
@@ -156,7 +156,7 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 			if (m_pPlugin == pPlugin)
 				break;
 		}
-		infoHandler.bWithFile = m_bWithFileFlags.GetAt(i);
+		infoHandler.bWithFile = m_bWithFileFlags.at(i);
 		return infoHandler;
 	}
 }
@@ -216,7 +216,7 @@ void CSelectUnpackerDlg::prepareListbox()
 		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
 		if (pPlugin == noPlugin || pPlugin == automaticPlugin 
 				|| m_bNoExtensionCheck 
-			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
+			  || pPlugin->TestAgainstRegList((LPCTSTR)m_filteredFilenames))
 		{
 			m_cboUnpackerName.AddString(pPlugin->m_name.c_str());
 			if (pPlugin == m_pPlugin)

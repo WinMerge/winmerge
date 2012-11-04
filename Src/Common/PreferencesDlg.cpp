@@ -19,7 +19,7 @@
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
 #include "Merge.h"
-#include "coretools.h" //SplitFilename()
+#include "paths.h" //paths_SplitFilename()
 #include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
@@ -215,9 +215,8 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		m_pphost.SetActivePage(pPage, FALSE);
 
 		// update caption
-		CString sCaption;
-		LangFormatString1(sCaption, IDS_OPTIONS_TITLE, GetItemPath(htiSel));
-		SetWindowText(sCaption);
+		String sCaption = LangFormatString1(IDS_OPTIONS_TITLE, GetItemPath(htiSel));
+		SetWindowText(sCaption.c_str());
 	}
 
 	m_tcPages.SetFocus();
@@ -315,10 +314,10 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
  */
 void CPreferencesDlg::OnImportButton()
 {
-	CString s;
+	String s;
 	if (SelectFile(GetSafeHwnd(), s, NULL, IDS_OPT_IMPORT_CAPTION, IDS_INIFILES, TRUE))
 	{
-		if (m_pOptionsMgr->ImportOptions(s) == OPT_OK)
+		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
 			ReadOptions(TRUE);
 			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
@@ -333,14 +332,14 @@ void CPreferencesDlg::OnImportButton()
  */
 void CPreferencesDlg::OnExportButton()
 {
-	CString settingsFile;
+	String settingsFile;
 	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, IDS_OPT_EXPORT_CAPTION, IDS_INIFILES,
 		FALSE))
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
 		String extension;
-		SplitFilename(settingsFile, NULL, NULL, &extension);
+		paths_SplitFilename(settingsFile, NULL, NULL, &extension);
 		if (extension.empty())
 			settingsFile += _T(".ini");
 
@@ -348,7 +347,7 @@ void CPreferencesDlg::OnExportButton()
 		m_pphost.UpdatePagesData();
 		SaveOptions();
 
-		if (m_pOptionsMgr->ExportOptions(settingsFile) == OPT_OK)
+		if (m_pOptionsMgr->ExportOptions(settingsFile) == COption::OPT_OK)
 			LangMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
 			LangMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);

@@ -23,29 +23,34 @@ class CRegOptionsMgr: public COptionsMgr
 public:
 	CRegOptionsMgr() : m_serializing(true) { }
 
-	int LoadOption(LPCTSTR name);
-	int SetRegRootKey(LPCTSTR path);
+	int LoadOption(const String& name);
+	int SetRegRootKey(const String& path);
 
-	virtual int InitOption(LPCTSTR name, varprop::VariantValue defaultValue);
-	virtual int InitOption(LPCTSTR name, LPCTSTR defaultValue);
-	virtual int InitOption(LPCTSTR name, int defaultValue, bool serializable=true);
-	virtual int InitOption(LPCTSTR name, bool defaultValue);
+	virtual int InitOption(const String& name, varprop::VariantValue defaultValue);
+	virtual int InitOption(const String& name, const String& defaultValue);
+	virtual int InitOption(const String& name, const TCHAR *defaultValue);
+	virtual int InitOption(const String& name, int defaultValue, bool serializable=true);
+	virtual int InitOption(const String& name, bool defaultValue);
 
-	virtual int SaveOption(LPCTSTR name);
-	virtual int SaveOption(LPCTSTR name, varprop::VariantValue value);
-	virtual int SaveOption(LPCTSTR name, LPCTSTR value);
-	virtual int SaveOption(LPCTSTR name, int value);
-	virtual int SaveOption(LPCTSTR name, bool value);
+	virtual int SaveOption(const String& name);
+	virtual int SaveOption(const String& name, varprop::VariantValue value);
+	virtual int SaveOption(const String& name, const String& value);
+	virtual int SaveOption(const String& name, const TCHAR *value);
+	virtual int SaveOption(const String& name, int value);
+	virtual int SaveOption(const String& name, bool value);
 
-	virtual int RemoveOption(LPCTSTR name);
+	virtual int RemoveOption(const String& name);
 
 	virtual void SetSerializing(bool serializing=true) { m_serializing = serializing; }
 
+	virtual int ExportOptions(const String& filename) const;
+	virtual int ImportOptions(const String& filename);
+
 protected:
-	void SplitName(String strName, String &strPath, String &strValue);
-	int LoadValueFromReg(HKEY hKey, LPCTSTR strName,
+	void SplitName(const String &strName, String &strPath, String &strValue);
+	int LoadValueFromReg(HKEY hKey, const String& strName,
 		varprop::VariantValue &value);
-	int SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
+	int SaveValueToReg(HKEY hKey, const String& strValueName,
 		varprop::VariantValue value);
 
 private:

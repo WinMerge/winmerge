@@ -56,7 +56,7 @@ public :
 	int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
 		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
-	int SaveToFile (LPCTSTR pszFileName, bool bTempFile, String & sError,
+	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 		bool bClearModifiedFlag = TRUE, bool bForceUTF8 = FALSE);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }

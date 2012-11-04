@@ -26,22 +26,17 @@
 // ID line follows -- this is updated by SVN
 // $Id: FileTransform.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
-#include "StdAfx.h"
-#include <vector>
 #include "FileTransform.h"
+#include <vector>
+#include <Poco/Exception.h>
 #include "Plugins.h"
-#include "files.h"
 #include "paths.h"
 #include "multiformatText.h"
 #include "UniMarkdownFile.h"
 #include "Environment.h"
+#include "TFile.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
+using Poco::Exception;
 
 int g_bUnpackerMode = PLUGIN_MANUAL;
 int g_bPredifferMode = PLUGIN_MANUAL;
@@ -53,7 +48,7 @@ int g_bPredifferMode = PLUGIN_MANUAL;
  * Use text definition : if you add one, nothing to do ; 
  * if you change one, you just have change the dll/scripts for that event
  */
-extern LPCWSTR TransformationCategories[] = 
+const wchar_t *TransformationCategories[] = 
 {
 	L"BUFFER_PREDIFF",
 	L"FILE_PREDIFF",
@@ -70,21 +65,21 @@ extern LPCWSTR TransformationCategories[] =
 // transformations : packing unpacking
 
 // known handler
-BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
+bool FileTransform_Packing(String & filepath, PackingInfo handler)
 {
 	// no handler : return true
 	if (handler.pluginName.empty())
-		return TRUE;
+		return true;
 
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath.c_str());
+	bufferData.SetDataFileAnsi(filepath);
 
 	// control value
-	BOOL bHandled = FALSE;
+	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName.c_str());
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
 	if (plugin == NULL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName.c_str());
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
 	{
@@ -106,11 +101,11 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 	}
 
 	// if this packer does not work, that is an error
-	if (bHandled == FALSE)
-		return FALSE;
+	if (bHandled == false)
+		return false;
 
 	// if the buffer changed, write it before leaving
-	BOOL bSuccess = TRUE;
+	bool bSuccess = true;
 	if (bufferData.GetNChangedValid() > 0)
 	{
 		bSuccess = bufferData.SaveAsFile(filepath);
@@ -120,31 +115,31 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 }
 
 // known handler
-BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
+bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
-	if (handler->pluginName.empty())
-		return TRUE;
+	if (!handler || handler->pluginName.empty())
+		return true;
 
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath.c_str());
+	bufferData.SetDataFileAnsi(filepath);
 
 	// temporary subcode 
 	int subcode;
 
 	// control value
-	BOOL bHandled = FALSE;
+	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName.c_str());
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
 	if (plugin == NULL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName.c_str());
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
 	if (plugin == NULL)
-		return FALSE;
+		return false;
 
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler->bWithFile)
 	{
-		CString destFileName = bufferData.GetDestFileName();
+		String destFileName = bufferData.GetDestFileName();
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
 			destFileName,
@@ -163,14 +158,14 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	}
 
 	// if this unpacker does not work, that is an error
-	if (bHandled == FALSE)
-		return FALSE;
+	if (bHandled == false)
+		return false;
 
 	// valid the subcode
 	*handlerSubcode = subcode;
 
 	// if the buffer changed, write it before leaving
-	BOOL bSuccess = TRUE;
+	bool bSuccess = true;
 	if (bufferData.GetNChangedValid() > 0)
 	{
 		bSuccess = bufferData.SaveAsFile(filepath);
@@ -181,7 +176,7 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 
 
 // scan plugins for the first handler
-BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInfo * handler, int * handlerSubcode)
+bool FileTransform_Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
 {
 	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
 	if (handler->bToBeScanned == PLUGIN_BUILTIN_XML)
@@ -192,17 +187,14 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 		handler->pluginName.erase(); // Make FileTransform_Packing() a NOP
 		// Leave bToBeScanned alone so above lines will continue to execute on
 		// subsequent calls to this function
-		return TRUE;
+		return true;
 	}
 
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath.c_str());
-
-	// filename, to test the extension
-	CString filename = PathFindFileName(filepath.c_str());
+	bufferData.SetDataFileAnsi(filepath);
 
 	// control value
-	BOOL bHandled = FALSE;
+	bool bHandled = false;
 
 	// get the scriptlet files
 	PluginArray * piFileScriptArray = 
@@ -211,16 +203,16 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
 	int step;
-	for (step = 0 ; bHandled == FALSE && step < piFileScriptArray->GetSize() ; step ++)
+	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piFileScriptArray->ElementAt(step);
-		if (plugin.m_bAutomatic == FALSE)
+		PluginInfo & plugin = piFileScriptArray->at(step);
+		if (plugin.m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == FALSE)
+		if (plugin.TestAgainstRegList(filteredText) == false)
 			continue;
 
 		handler->pluginName = plugin.m_name;
-		handler->bWithFile = TRUE;
+		handler->bWithFile = true;
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
@@ -239,16 +231,16 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
-	for (step = 0 ; bHandled == FALSE && step < piBufferScriptArray->GetSize() ; step ++)
+	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piBufferScriptArray->ElementAt(step);
-		if (plugin.m_bAutomatic == FALSE)
+		PluginInfo & plugin = piBufferScriptArray->at(step);
+		if (plugin.m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == FALSE)
+		if (plugin.TestAgainstRegList(filteredText) == false)
 			continue;
 
 		handler->pluginName = plugin.m_name;
-		handler->bWithFile = FALSE;
+		handler->bWithFile = false;
 		bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
 			plugin.m_lpDispatch, handler->subcode);
@@ -256,22 +248,22 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 			bufferData.ValidateNewBuffer();
 	}
 
-	if (bHandled == FALSE)
+	if (bHandled == false)
 	{
 		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
 		handler->pluginName = _T("");
 		handler->subcode = 0;
-		bHandled = TRUE;
+		bHandled = true;
 	}
 
 	// the handler is now defined
-	handler->bToBeScanned = FALSE;
+	handler->bToBeScanned = false;
 
 	// assign the sucode
 	*handlerSubcode = handler->subcode;
 
 	// if the buffer changed, write it before leaving
-	BOOL bSuccess = TRUE;
+	bool bSuccess = true;
 	if (bufferData.GetNChangedValid() > 0)
 	{
 		bSuccess = bufferData.SaveAsFile(filepath);
@@ -284,27 +276,27 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 // transformation prediffing
     
 // known handler
-BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite)
+bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
 {
 	// no handler : return true
 	if (handler.pluginName.empty())
-		return TRUE;
+		return true;
 
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath.c_str(), bMayOverwrite);
+	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
 	// TODO : set the codepage
 	// bufferData.SetCodepage();
 
 	// control value
-	BOOL bHandled = FALSE;
+	bool bHandled = false;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName.c_str());
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
 	if (!plugin)
 	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName.c_str());
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
 		if (!plugin)
-			return FALSE;
+			return false;
 	}
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
@@ -328,11 +320,11 @@ BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bM
 	}
 
 	// if this unpacker does not work, that is an error
-	if (bHandled == FALSE)
-		return FALSE;
+	if (bHandled == false)
+		return false;
 
 	// if the buffer changed, write it before leaving
-	BOOL bSuccess = TRUE;
+	bool bSuccess = true;
 	if (bufferData.GetNChangedValid() > 0)
 	{
 		// bufferData changes filepath here to temp filepath
@@ -344,19 +336,16 @@ BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bM
 
 
 // scan plugins for the first handler
-BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, PrediffingInfo * handler, BOOL bMayOverwrite)
+bool FileTransform_Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite)
 {
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath.c_str(), bMayOverwrite);
+	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
 	// TODO : set the codepage
 	// bufferData.SetCodepage();
 
-	// filename, to test the extension
-	CString filename = PathFindFileName(filepath.c_str());
-
 	// control value
-	BOOL bHandled = FALSE;
+	bool bHandled = false;
 
 	// get the scriptlet files
 	PluginArray * piFileScriptArray = 
@@ -365,16 +354,16 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
 	int step;
-	for (step = 0 ; bHandled == FALSE && step < piFileScriptArray->GetSize() ; step ++)
+	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piFileScriptArray->ElementAt(step);
-		if (plugin.m_bAutomatic == FALSE)
+		PluginInfo & plugin = piFileScriptArray->at(step);
+		if (plugin.m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == FALSE)
+		if (plugin.TestAgainstRegList(filteredText) == false)
 			continue;
 
 		handler->pluginName = plugin.m_name;
-		handler->bWithFile = TRUE;
+		handler->bWithFile = true;
 		// use a temporary dest name
 		bHandled = InvokePrediffFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
@@ -390,16 +379,16 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
-	for (step = 0 ; bHandled == FALSE && step < piBufferScriptArray->GetSize() ; step ++)
+	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piBufferScriptArray->ElementAt(step);
-		if (plugin.m_bAutomatic == FALSE)
+		PluginInfo & plugin = piBufferScriptArray->at(step);
+		if (plugin.m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == FALSE)
+		if (plugin.TestAgainstRegList(filteredText) == false)
 			continue;
 
 		handler->pluginName = plugin.m_name;
-		handler->bWithFile = FALSE;
+		handler->bWithFile = false;
 		// probably it is for VB/VBscript so use a BSTR as argument
 		bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 			bufferData.GetNChanged(),
@@ -408,18 +397,18 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 			bufferData.ValidateNewBuffer();
 	}
 
-	if (bHandled == FALSE)
+	if (bHandled == false)
 	{
 		// we didn't find any prediffer, that is OK anyway
 		handler->pluginName = _T("");
-		bHandled = TRUE;
+		bHandled = true;
 	}
 
 	// the handler is now defined
-	handler->bToBeScanned = FALSE;
+	handler->bToBeScanned = false;
 
 	// if the buffer changed, write it before leaving
-	BOOL bSuccess = TRUE;
+	bool bSuccess = true;
 	if (bufferData.GetNChangedValid() > 0)
 	{
 		bSuccess = bufferData.SaveAsFile(filepath);
@@ -431,26 +420,29 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::UNICODESET unicoding)
+bool FileTransform_NormalizeUnicode(String & filepath, bool bMayOverwrite, ucr::UNICODESET unicoding)
 {
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
-		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W1"));
+		return false;
+	String tempFilepath = env_GetTempFileName(tempDir, _T("_W1"));
 	if (tempFilepath.empty())
-		return FALSE;
+		return false;
 
 	int nFileChanged = 0;
-	BOOL bSuccess = UnicodeFileToOlechar(filepath.c_str(), tempFilepath.c_str(), nFileChanged, unicoding); 
+	bool bSuccess = UnicodeFileToOlechar(filepath, tempFilepath, nFileChanged, unicoding); 
 	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(filepath).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 		}
 		// and change the filepath if everything works
@@ -458,13 +450,15 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath.c_str()))
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
+			TFile(tempFilepath).remove();
+		}
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
 		}
 	}
-
 
 	return bSuccess;
 }
@@ -473,27 +467,30 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite, ucr::
 
 // for OLECHAR files, transform to UTF8 for diffutils
 // TODO : convert Ansi to UTF8 if other file is unicode or uses a different codepage
-BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
+bool FileTransform_UCS2ToUTF8(String & filepath, bool bMayOverwrite)
 {
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
-		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W2"));
+		return false;
+	String tempFilepath = env_GetTempFileName(tempDir, _T("_W2"));
 	if (tempFilepath.empty())
-		return FALSE;
+		return false;
 
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	BOOL bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
+	bool bSuccess = UCS2LEToUTF8(filepath, tempFilepath, nFileChanged, false); 
 	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(filepath).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 		}
 		// and change the filepath if everything works
@@ -501,10 +498,13 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath.c_str()))
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
+			TFile(tempFilepath).remove();
+		}
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
 		}
 	}
 
@@ -513,26 +513,29 @@ BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayOverwrite)
+bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 {
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
-		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_W3"));
+		return false;
+	String tempFilepath = env_GetTempFileName(tempDir, _T("_W3"));
 	if (tempFilepath.empty())
-		return FALSE;
+		return false;
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	BOOL bSuccess = AnyCodepageToUTF8(codepage, filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
+	bool bSuccess = AnyCodepageToUTF8(codepage, filepath, tempFilepath, nFileChanged, false); 
 	if (bSuccess && nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(filepath).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 		}
 		// and change the filepath if everything works
@@ -540,10 +543,13 @@ BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayO
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath.c_str()))
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
+			TFile(tempFilepath).remove();
+		}
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
 		}
 	}
 
@@ -554,7 +560,7 @@ BOOL FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, BOOL bMayO
 ////////////////////////////////////////////////////////////////////////////////
 // transformation : TextTransform_Interactive (editor scripts)
 
-void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR TransformationEvent)
+void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *TransformationEvent)
 {
 	// get an array with the available scripts
 	PluginArray * piScriptArray = 
@@ -563,75 +569,74 @@ void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR Transformatio
 	// fill in these structures
 	int nFnc = 0;	
 	int iScript;
-	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++)
+	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
-		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
+		PluginInfo & plugin = piScriptArray->at(iScript);
 		LPDISPATCH piScript = plugin.m_lpDispatch;
-		std::vector<_bstr_t> scriptNamesArray;
+		std::vector<String> scriptNamesArray;
 		std::vector<int> scriptIdsArray;
 		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
-		sNamesArray.SetSize(nFnc+nScriptFnc);
+		sNamesArray.resize(nFnc+nScriptFnc);
 
 		int iFnc;
 		for (iFnc = 0 ; iFnc < nScriptFnc ; iFnc++)
-			// the CString = operator provides the conversion if UNICODE is not defined
-			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc].GetBSTR();
+			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc];
 
 		nFnc += nScriptFnc;
 	}
 }
 
-BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int iFncChosen)
+bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)
 {
 	if (iFncChosen < 0)
-		return FALSE;
+		return false;
 
 	// get an array with the available scripts
 	PluginArray * piScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
 
 	int iScript;
-	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++)
+	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
-		if (iFncChosen < piScriptArray->GetAt(iScript).m_nFreeFunctions)
+		if (iFncChosen < piScriptArray->at(iScript).m_nFreeFunctions)
 			// we have found the script file
 			break;
-		iFncChosen -= piScriptArray->GetAt(iScript).m_nFreeFunctions;
+		iFncChosen -= piScriptArray->at(iScript).m_nFreeFunctions;
 	}
 
-	if (iScript >= piScriptArray->GetSize())
-		return FALSE;
+	if (iScript >= piScriptArray->size())
+		return false;
 
 	// iFncChosen is the index of the function in the script file
 	// we must convert it to the function ID
-	int fncID = GetMethodIDInScript(piScriptArray->GetAt(iScript).m_lpDispatch, iFncChosen);
+	int fncID = GetMethodIDInScript(piScriptArray->at(iScript).m_lpDispatch, iFncChosen);
 
 	// execute the transform operation
-	BOOL bChanged = FALSE;
-	InvokeTransformText(text, bChanged, piScriptArray->GetAt(iScript).m_lpDispatch, fncID);
+	int nChanged = 0;
+	InvokeTransformText(text, nChanged, piScriptArray->at(iScript).m_lpDispatch, fncID);
 
-	return bChanged;
+	return (nChanged != 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
 
 // for OLECHAR files, transform to UTF8 for diffutils
 // convert all Ansi or unicode-files to UTF8 
 // if other file is unicode or uses a different codepage
-BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
+bool FileTransform_ToUTF8(String & filepath, bool bMayOverwrite)
 {
-	BOOL bSuccess = false;
+	bool bSuccess = false;
 	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
-		return FALSE;
-	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
+		return false;
+	String tempFilepath = env_GetTempFileName(tempDir, _T("_WM"));
 	if (tempFilepath.empty())
-		return FALSE;
+		return false;
 
 	int nFileChanged = 0;
 
 	UniMemFile ufile;
-	if (!ufile.OpenReadOnly(filepath.c_str()))
-		return FALSE; // error
+	if (!ufile.OpenReadOnly(filepath))
+		return false; // error
 	ufile.IsUnicode();
 	ucr::UNICODESET unicoding = ufile.GetUnicoding();
 	// Finished with examing file contents
@@ -643,35 +648,38 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
 	{
 	// AnsiToUTF16 only converts Ascii files to UTF-16
 	case ( ucr::NONE):
-		bSuccess = AnsiToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false); 
+		bSuccess = AnsiToUTF8(filepath, tempFilepath, nFileChanged, false); 
 		break;
 	case (ucr::UCS2LE):
-		bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		bSuccess = UCS2LEToUTF8(filepath, tempFilepath, nFileChanged, false);
 		break;
 	case (ucr::UCS2BE):
-		bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		bSuccess = UCS2BEToUTF8(filepath, tempFilepath, nFileChanged, false);
 		break;
 	case (ucr::UCS4LE):
-		bSuccess = FALSE;
+		bSuccess = false;
 		break;
 	case (ucr::UCS4BE):
-		bSuccess = FALSE;
+		bSuccess = false;
 		break;
 		
 	}
 
 	if (!bSuccess)
-		return FALSE;
+		return false;
 
 	if (nFileChanged)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(filepath).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 		}
 		// and change the filepath if everything works
@@ -679,13 +687,16 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath.c_str()))
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath.c_str(), GetSysError(GetLastError()).c_str()));
+			TFile(tempFilepath).remove();
+		}
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
 		}
 	}
-	return TRUE;
+	return true;
 }
 
 /**
@@ -693,48 +704,48 @@ BOOL FileTransform_ToUTF8(String & filepath, BOOL bMayOverwrite)
  * otherwise convert both to UTF8
  * @param [in,out] filepath Most plugins change this filename
  */
-BOOL Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,BOOL m_bPathsAreTemp)
+bool Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,bool m_bPathsAreTemp)
 {
 	//check first file for unicodeing
 	UniMemFile ufile;
-	if (!ufile.OpenReadOnly(strFile1Temp.c_str()))
-		return FALSE; // error
+	if (!ufile.OpenReadOnly(strFile1Temp))
+		return false; // error
 	ufile.IsUnicode();
 	ucr::UNICODESET unicoding1 = ufile.GetUnicoding();
 	// Finished with examing file contents
 	ufile.Close();
 
 	//check second file for unicodeing
-	if (!ufile.OpenReadOnly(strFile2Temp.c_str()))
-		return FALSE; // error
+	if (!ufile.OpenReadOnly(strFile2Temp))
+		return false; // error
 	ufile.IsUnicode();
 
 	ucr::UNICODESET unicoding2 = ufile.GetUnicoding();
 	ufile.Close();
 
 	if ((unicoding1==ucr::NONE)&&(unicoding2==ucr::NONE))
-		return TRUE; //OK do nothing both are ansi
+		return true; //OK do nothing both are ansi
 	if ((unicoding1==ucr::UTF8)&&(unicoding2==ucr::UTF8))
-		return TRUE; //OK do nothing both are UTF16
+		return true; //OK do nothing both are UTF16
 	// now both are different, convert to UTF8
 	if (unicoding1!=ucr::UTF8)
 		FileTransform_ToUTF8(strFile1Temp, m_bPathsAreTemp);
 	if (unicoding2!=ucr::UTF8)
 		FileTransform_ToUTF8(strFile2Temp, m_bPathsAreTemp);
-	return TRUE;
+	return true;
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // for OLECHAR files, transform to UTF8 for diffutils
 // TODO : convert Ansi to UTF8 if other file is unicode or uses a different codepage
-BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite)
+bool copyToUTF8(String & filepath, String &tempFilepath ,bool bMayOverwrite)
 {
-	BOOL bSuccess = false;
+	bool bSuccess = false;
 
 	UniMemFile ufile;
-	if (!ufile.OpenReadOnly(filepath.c_str()))
-		return FALSE; // error
+	if (!ufile.OpenReadOnly(filepath))
+		return false; // error
 	ufile.IsUnicode();
 	ucr::UNICODESET unicoding = ufile.GetUnicoding();
 	// Finished with examing file contents
@@ -748,25 +759,25 @@ BOOL copyToUTF8(String & filepath, String &tempFilepath ,BOOL bMayOverwrite)
 	{
 	// AnsiToUTF16 only converts Ascii files to UTF-16
 	case ( ucr::NONE):
-		bSuccess = AnsiToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false); 
+		bSuccess = AnsiToUTF8(filepath, tempFilepath, nFileChanged, false); 
 		break;
 	case (ucr::UCS2LE):
-		bSuccess = UCS2LEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		bSuccess = UCS2LEToUTF8(filepath, tempFilepath, nFileChanged, false);
 		break;
 	case (ucr::UCS2BE):
-		bSuccess = UCS2BEToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, false);
+		bSuccess = UCS2BEToUTF8(filepath, tempFilepath, nFileChanged, false);
 		break;
 	case (ucr::UCS4LE):
-		bSuccess = FALSE;
+		bSuccess = false;
 		break;
 	case (ucr::UCS4BE):
-		bSuccess = FALSE;
+		bSuccess = false;
 		break;
 		
 	}
 
 	if (!bSuccess)
-		return FALSE;
+		return false;
 
-	return TRUE;
+	return true;
 }

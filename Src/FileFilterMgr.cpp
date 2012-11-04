@@ -20,24 +20,23 @@
 // ID line follows -- this is updated by SVN
 // $Id: FileFilterMgr.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
-#include <windows.h>
-#include <string.h>
+#include "FileFilterMgr.h"
 #include <vector>
-#include <tchar.h>
-#include <Poco/Exception.h>
-#include <Poco/UnicodeConverter.h>
+#include <cstring>
+#include <Poco/String.h>
+#include <Poco/Glob.h>
+#include <Poco/DirectoryIterator.h>
 #include <Poco/RegularExpression.h>
 #include "UnicodeString.h"
 #include "FileFilter.h"
-#include "FileFilterMgr.h"
 #include "UniFile.h"
-#include "coretools.h"
 #include "paths.h"
 
 using std::vector;
-using Poco::Exception;
+using Poco::DirectoryIterator;
+using Poco::Glob;
+using Poco::icompare;
 using Poco::RegularExpression;
-using Poco::UnicodeConverter;
 
 static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str);
 
@@ -54,7 +53,7 @@ FileFilterMgr::~FileFilterMgr()
  * @param [in] szFilterFile Filter file to load.
  * @return FILTER_OK if succeeded or one of FILTER_RETVALUE values on error.
  */
-int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
+int FileFilterMgr::AddFilter(const String& szFilterFile)
 {
 	int errorcode = FILTER_OK;
 	FileFilter * pFilter = LoadFilterFile(szFilterFile, errorcode);
@@ -69,33 +68,40 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
  * @param [in] szPattern Pattern for filters to load filters, for example "*.flt".
  * @param [in] szExt File-extension of filter files.
  */
-void FileFilterMgr::LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR szExt)
+void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern, const String& szExt)
 {
-	const int extlen = szExt ? (int)_tcslen(szExt) : 0;
-	const String pattern = paths_ConcatPath(dir, szPattern);
-	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(pattern.c_str(), &ff);
-	if (h != INVALID_HANDLE_VALUE)
+	const std::string u8ext = ucr::toUTF8(szExt);
+	const size_t extlen = u8ext.length();
+
+	try
 	{
-		do
+		DirectoryIterator it(ucr::toUTF8(dir));
+		DirectoryIterator end;
+		Glob glb(ucr::toUTF8(szPattern));
+	
+		for (; it != end; ++it)
 		{
-			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			if (it->isDirectory())
 				continue;
-			String filename = ff.cFileName;
-			if (szExt)
+			std::string filename = it.name();
+			if (!glb.match(filename))
+				continue;
+			if (extlen)
 			{
 				// caller specified a specific extension
 				// (This is really a workaround for brokenness in windows, which
 				//  doesn't screen correctly on extension in pattern)
-				String ext = filename.substr(filename.length() - extlen);
-				if (string_compare_nocase(szExt, ext) != 0)
+				std::string ext = filename.substr(filename.length() - extlen);
+				if (icompare(u8ext, ext) != 0)
 					return;
 			}
 
-			String filterpath = paths_ConcatPath(dir, ff.cFileName);
-			AddFilter(filterpath.c_str());
-		} while (FindNextFile(h, &ff));
-		FindClose(h);
+			String filterpath = paths_ConcatPath(dir, ucr::toTString(filename));
+			AddFilter(filterpath);
+		}
+	}
+	catch (...)
+	{
 	}
 }
 
@@ -104,7 +110,7 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR dir, LPCTSTR szPattern, LPCTSTR sz
  *
  * @param [in] szFilterFile Filename of filter to remove.
  */
-void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
+void FileFilterMgr::RemoveFilter(const String& szFilterFile)
 {
 	// Note that m_filters.GetSize can change during loop
 	vector<FileFilter*>::iterator iter = m_filters.begin();
@@ -141,7 +147,7 @@ void FileFilterMgr::DeleteAllFilters()
  */
 static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str)
 {
-	LPCTSTR commentLeader = _T("##"); // Starts comment
+	const String& commentLeader = _T("##"); // Starts comment
 	str = string_trim_ws_begin(str);
 
 	// Ignore lines beginning with '##'
@@ -150,7 +156,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 		return;
 
 	// Find possible comment-separator '<whitespace>##'
-	while (pos != std::string::npos && !_istspace(str[pos - 1]))
+	while (pos != std::string::npos && !(str[pos - 1] == ' ' || str[pos - 1] == '\t'))
 		pos = str.find(commentLeader, pos + 1);
 
 	// Remove comment and whitespaces before it
@@ -160,19 +166,14 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 	if (str.empty())
 		return;
 
-	std::string regexString;
 	int re_opts = RegularExpression::RE_CASELESS;
-#ifdef UNICODE
-	UnicodeConverter::toUTF8(str.c_str(), regexString);
+	std::string regexString = ucr::toUTF8(str);
 	re_opts |= RegularExpression::RE_UTF8;
-#else
-	regexString = str;
-#endif
 	try
 	{
 		filterList->push_back(new FileFilterElement(regexString, re_opts));
 	}
-	catch (Exception *)
+	catch (...)
 	{
 		// TODO:
 	}
@@ -185,7 +186,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
  * @param [out] error Error-code if loading failed (returned NULL).
  * @return Pointer to new filter, or NULL if error (check error code too).
  */
-FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
+FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(szFilepath))
@@ -197,10 +198,10 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
 
 	String fileName;
-	SplitFilename(szFilepath, NULL, &fileName, NULL);
+	paths_SplitFilename(szFilepath, NULL, &fileName, NULL);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
-	pfilter->name = fileName.c_str(); // Filename is the default name
+	pfilter->name = fileName; // Filename is the default name
 
 	String sLine;
 	bool lossy = false;
@@ -213,7 +214,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 		sLine = tmpLine;
 		sLine = string_trim_ws(sLine);
 
-		if (0 == _tcsncmp(sLine.c_str(), _T("name:"), 5))
+		if (0 == sLine.compare(0, 5, _T("name:"), 5))
 		{
 			// specifies display name
 			String str = sLine.substr(5);
@@ -221,7 +222,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 			if (!str.empty())
 				pfilter->name = str;
 		}
-		else if (0 == _tcsncmp(sLine.c_str(), _T("desc:"), 5))
+		else if (0 == sLine.compare(0, 5, _T("desc:"), 5))
 		{
 			// specifies display name
 			String str = sLine.substr(5);
@@ -229,7 +230,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 			if (!str.empty())
 				pfilter->description = str;
 		}
-		else if (0 == _tcsncmp(sLine.c_str(), _T("def:"), 4))
+		else if (0 == sLine.compare(0, 4, _T("def:"), 4))
 		{
 			// specifies default
 			String str = sLine.substr(4);
@@ -239,13 +240,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 			else if (str == _T("1") || str == _T("yes") || str == _T("include"))
 				pfilter->default_include = true;
 		}
-		else if (0 == _tcsncmp(sLine.c_str(), _T("f:"), 2))
+		else if (0 == sLine.compare(0, 2, _T("f:"), 2))
 		{
 			// file filter
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->filefilters, str);
 		}
-		else if (0 == _tcsncmp(sLine.c_str(), _T("d:"), 2))
+		else if (0 == sLine.compare(0, 2, _T("d:"), 2))
 		{
 			// directory filter
 			String str = sLine.substr(2);
@@ -263,7 +264,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
  * @return Pointer to found filefilter or NULL;
  * @note We just do a linear search, because this is seldom called
  */
-FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
+FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
 {
 	vector<FileFilter*>::const_iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
@@ -280,20 +281,16 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  *
  * @param [in] filterList List of regexps to test against.
  * @param [in] szTest String to test against regexps.
- * @return TRUE if string passes
+ * @return true if string passes
  * @note Matching stops when first match is found.
  */
-BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
+bool TestAgainstRegList(const vector<FileFilterElement*> *filterList, const String& szTest)
 {
 	if (filterList->size() == 0)
-		return FALSE;
+		return false;
 
 	std::string compString;
-#ifdef UNICODE
-	UnicodeConverter::toUTF8(szTest, compString);
-#else
-	compString = szTest;
-#endif
+	ucr::toUTF8(szTest, compString);
 	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
@@ -301,34 +298,34 @@ BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR sz
 		try
 		{
 			if ((*iter)->regexp.match(compString, 0, match) > 0)
-				return TRUE;
+				return true;
 		}
-		catch (Exception *)
+		catch (...)
 		{
 			// TODO:
 		}
 		
 		++iter;
 	}
-	return FALSE;
+	return false;
 }
 
 /**
  * @brief Test given filename against filefilter.
  *
  * Test filename against active filefilter. If matching rule is found
- * we must first determine type of rule that matched. If we return FALSE
+ * we must first determine type of rule that matched. If we return false
  * from this function directory scan marks file as skipped.
  *
  * @param [in] pFilter Pointer to filefilter
  * @param [in] szFileName Filename to test
- * @return TRUE if file passes the filter
+ * @return true if file passes the filter
  */
-BOOL FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
-	LPCTSTR szFileName) const
+bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
+	const String& szFileName) const
 {
 	if (!pFilter)
-		return TRUE;
+		return true;
 	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
 		return !pFilter->default_include;
 	return pFilter->default_include;
@@ -338,18 +335,18 @@ BOOL FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
  * @brief Test given directory name against filefilter.
  *
  * Test directory name against active filefilter. If matching rule is found
- * we must first determine type of rule that matched. If we return FALSE
+ * we must first determine type of rule that matched. If we return false
  * from this function directory scan marks file as skipped.
  *
  * @param [in] pFilter Pointer to filefilter
  * @param [in] szDirName Directory name to test
- * @return TRUE if directory name passes the filter
+ * @return true if directory name passes the filter
  */
-BOOL FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
-	LPCTSTR szDirName) const
+bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
+	const String& szDirName) const
 {
 	if (!pFilter)
-		return TRUE;
+		return true;
 	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
 		return !pFilter->default_include;
 	return pFilter->default_include;
@@ -432,7 +429,7 @@ String FileFilterMgr::GetFullpath(FileFilter * pfilter) const
 int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 {
 	int errorcode = FILTER_OK;
-	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath.c_str(), errorcode);
+	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, errorcode);
 
 	if (newfilter == NULL)
 	{
@@ -461,7 +458,7 @@ int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
  * @param [in] szFullPath Full path to filter file to reload.
  * @return FILTER_OK when succeeds or one of FILTER_RETVALUE values when fails.
  */
-int FileFilterMgr::ReloadFilterFromDisk(LPCTSTR szFullPath)
+int FileFilterMgr::ReloadFilterFromDisk(const String& szFullPath)
 {
 	int errorcode = FILTER_OK;
 	FileFilter * filter = GetFilterByPath(szFullPath);

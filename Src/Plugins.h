@@ -29,19 +29,15 @@
 #ifndef __PLUGINS_H__
 #define __PLUGINS_H__
 
+#include <string>
 #include <vector>
-#include <comutil.h>
-#include "FileFilterMgr.h"
+#include <windows.h>
+#include <oleauto.h>
+#include "UnicodeString.h"
 
-extern enum TRANSFORMATION_CATEGORY;
+struct FileFilterElement;
 
 const int NMAXTHREADS = 10;
-
-/**
- * @brief Constant : Unicode/ANSI supported mode 
- */
-#define SCRIPT_A		1
-#define SCRIPT_W		2
 
 /** 
  * @brief Information structure for a plugin
@@ -60,7 +56,7 @@ public:
 	 *
 	 * @param szTest String of filenames, delimited with '|'
 	 */
-	BOOL TestAgainstRegList(LPCTSTR szTest);
+	bool TestAgainstRegList(const String& szTest);
 
 public:
 	String      m_filepath;
@@ -68,8 +64,7 @@ public:
 	String      m_name; // usually filename, except for special cases (like auto or no)
 	String      m_filtersText;
 	String      m_description;
-	BOOL        m_bUnicodeMode;
-	BOOL        m_bAutomatic;
+	bool        m_bAutomatic;
 	std::vector<FileFilterElement*> *m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -77,7 +72,7 @@ public:
 
 
 
-typedef CArray<PluginInfo, PluginInfo&>PluginArray;
+typedef std::vector<PluginInfo> PluginArray;
 
 /**
  * @brief Cache for the scriptlets' interfaces during the life of a thread. 
@@ -91,23 +86,23 @@ class CScriptsOfThread
 friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
-	PluginArray * GetAvailableScripts(LPCWSTR transformationEvent);
-	PluginInfo * GetPluginByName(LPCWSTR transformationEvent, LPCTSTR name);
+	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
+	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 
 	void FreeAllScripts();
-	void FreeScriptsForEvent(LPCWSTR transformationEvent);
+	void FreeScriptsForEvent(const wchar_t *transformationEvent);
 
 protected:
 	CScriptsOfThread();
 	~CScriptsOfThread();
 	void Lock()	  { m_nLocks ++; };
-	BOOL Unlock()	{ m_nLocks --; return (m_nLocks == 0); };
+	bool Unlock()	{ m_nLocks --; return (m_nLocks == 0); };
 	/// Tell if this scripts is the one for main thread (by convention, the first in the repository)
-	BOOL bInMainThread();
+	bool bInMainThread();
 
 private:
-	unsigned int m_nLocks;
+	unsigned m_nLocks;
 	unsigned long m_nThreadId;
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
@@ -130,7 +125,7 @@ public:
 	/// main public function : get the plugins array for the current thread
 	static CScriptsOfThread * GetActiveSet();
 	/// by convention, the scripts for main thread must be created before all others
-	static BOOL bInMainThread(CScriptsOfThread * scripts);
+	static bool bInMainThread(CScriptsOfThread * scripts);
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static CScriptsOfThread * m_aAvailableThreads[NMAXTHREADS];
@@ -156,20 +151,20 @@ public:
  *
  * .sct plugins require this optional component
  */
-BOOL IsWindowsScriptThere();
+bool IsWindowsScriptThere();
 /**
  * @brief Get a list of the function IDs and names in a script or activeX/COM DLL
  *
  * @return Returns the number of functions
  *
  */
-int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<_bstr_t>& namesArray, std::vector<int>& IdArray);
+int GetMethodsFromScript(LPDISPATCH piDispatch, std::vector<String>& namesArray, std::vector<int>& IdArray);
 /**
  * @brief Is a function available in this scriptlet or activeX/COM DLL ?
  *
- * @param functionName name of the function in WCHAR
+ * @param functionName name of the function in wchar_t
  */
-BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
+bool SearchScriptForFunctionName(LPDISPATCH piDispatch, wchar_t *functionName);
 
 
 /**
@@ -193,12 +188,12 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex);
  *
  * @param bstrBuf Overwrite/realloc this buffer
  */
-BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript);
+bool InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript);
 
 /** 
  * @brief Call custom plugin functions : text transformation
  */
-BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int fncId);
+bool InvokeTransformText(String & text, int & changed, LPDISPATCH piScript, int fncId);
 
 /**
  * @brief Call the plugin "UnpackBufferA" method, event BUFFER_PACK_UNPACK
@@ -206,26 +201,26 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
  * @param pszBuf has unknown format, so a simple char*
  * never owervrites this source buffer
  */
-BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int & subcode);
+bool InvokeUnpackBuffer(VARIANT & array, int & nChanged, LPDISPATCH piScript, int & subcode);
 /**
  * @brief Call the plugin "PackBufferA" method, event BUFFER_PACK_UNPACK
  *
  * @param pszBuf has unknown format, so a simple char*
  * never owervrites this source buffer
  */
-BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int subcode);
+bool InvokePackBuffer(VARIANT & array, int & nChanged, LPDISPATCH piScript, int subcode);
 /**
  * @brief Call the plugin "UnpackFile" method, event FILE_PACK_UNPACK
  */
-BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int & subCode);
+bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript, int & subCode);
 /**
  * @brief Call the plugin "PackFile" method, event FILE_PACK_UNPACK
  */
-BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int subCode);
+bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript, int subCode);
 /**
  * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF
  */
-BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript);
+bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript);
 
 
 #endif //__PLUGINS_H__

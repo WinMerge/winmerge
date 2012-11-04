@@ -7,22 +7,30 @@
 // $Id$
 
 #include "StdAfx.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Process.h>
+#include <Poco/Format.h>
 #include <direct.h>
 #include "UnicodeString.h"
+#include "unicoder.h"
 #include "MainFrm.h"
 #include "Merge.h"
 #include "OptionsDef.h"
 #include "RegKey.h"
-#include "coretools.h"
+#include "paths.h"
 #include "VssPrompt.h"
 #include "WaitStatusCursor.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "CCPrompt.h"
 
+using Poco::format;
+using Poco::Process;
+using Poco::ProcessHandle;
+
 void
 CMainFrame::InitializeSourceControlMembers()
 {
-	m_vssHelper.SetProjectBase(theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
+	m_vssHelper.SetProjectBase((const TCHAR *)theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
 //	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
@@ -38,9 +46,9 @@ CMainFrame::InitializeSourceControlMembers()
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
-			String spath = GetPathOnly(temp);
+			String spath = paths_GetPathOnly(temp);
 			vssPath = spath + _T("\\Ss.exe");
-			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath.c_str());
+			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}
 }
@@ -51,7 +59,7 @@ CMainFrame::InitializeSourceControlMembers()
 * @return Tells if caller can continue (no errors happened)
 * @sa CheckSavePath()
 */
-BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
+BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 {
 	CFileStatus status;
 	UINT userChoice = 0;
@@ -68,8 +76,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	{
 		// Prompt for user choice
 		CVssPrompt dlg;
-		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-		dlg.m_strProject = m_vssHelper.GetProjectBase();
+		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath.c_str());
+		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 
@@ -87,34 +95,34 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		if (userChoice == IDOK)
 		{
 			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
-			m_vssHelper.SetProjectBase(dlg.m_strProject);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase());
+			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
 			String path, name;
-			SplitFilename(strSavePath, &path, &name, NULL);
-			CString spath(path.c_str());
-			CString sname(path.c_str());
-			if (!spath.IsEmpty())
+			paths_SplitFilename(strSavePath, &path, &name, NULL);
+			String spath(path);
+			String sname(path);
+			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0]) - 'A' + 1);
-				_tchdir(spath);
+				_tchdir(spath.c_str());
 			}
-			CString args;
-			args.Format(_T("checkout \"%s/%s\""), m_vssHelper.GetProjectBase(), sname);
-			String vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
-			HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, FALSE);
-			if (hVss != INVALID_HANDLE_VALUE)
+			try
 			{
-				WaitForSingleObject(hVss, INFINITE);
-				DWORD code;
-				GetExitCodeProcess(hVss, &code);
-				CloseHandle(hVss);
+				std::string vssPath = ucr::toUTF8(GetOptionsMgr()->GetString(OPT_VSS_PATH));
+				std::string sn;
+				std::vector<std::string> args;
+				args.push_back("checkout");
+				format(sn, "\"%s/%s\"", ucr::toUTF8(m_vssHelper.GetProjectBase()), ucr::toUTF8(sname));
+				args.push_back(sn);
+				ProcessHandle hVss(Process::launch(vssPath, args));
+				int code = Process::wait(hVss);
 				if (code != 0)
 				{
 					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
 					return FALSE;
 				}
 			}
-			else
+			catch (...)
 			{
 				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 				return FALSE;
@@ -132,7 +140,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		CString spath, sname;
 
 		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-		dlg.m_strProject = m_vssHelper.GetProjectBase();
+		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 		dlg.m_strSelectedDatabase = m_strVssDatabase;
@@ -153,14 +161,14 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		{
 			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
 			BOOL bOpened = FALSE;
-			m_vssHelper.SetProjectBase(dlg.m_strProject);
+			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
 			m_strVssUser = dlg.m_strUser;
 			m_strVssPassword = dlg.m_strPassword;
 			m_strVssDatabase = dlg.m_strSelectedDatabase;
 			m_bVCProjSync = dlg.m_bVCProjSync;					
 
 			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase());
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
 			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
 //			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
@@ -216,7 +224,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 
 			String path, name;
-			SplitFilename(strSavePath, &path, &name, 0);
+			paths_SplitFilename(strSavePath, &path, &name, 0);
 			spath = path.c_str();
 			sname = name.c_str();
 
@@ -226,8 +234,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			static TCHAR buffer1[nBufferSize];
 			static TCHAR buffer2[nBufferSize];
 
-			_tcscpy(buffer1, strSavePath);
-			_tcscpy(buffer2, m_vssHelper.GetProjectBase());
+			_tcscpy(buffer1, strSavePath.c_str());
+			_tcscpy(buffer2, m_vssHelper.GetProjectBase().c_str());
 			_tcslwr(buffer1);
 			_tcslwr(buffer2);
 
@@ -256,12 +264,12 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 					sname = buffer;
 				}
 			}
-			CString strItem = m_vssHelper.GetProjectBase() + '\\' + sname;
+			String strItem = m_vssHelper.GetProjectBase().c_str() + '\\' + sname;
 
 			TRY
 			{
 				//  BSP - ...to get the specific source safe item to be checked out
-				vssi = vssdb.GetVSSItem( strItem, 0 );
+				vssi = vssdb.GetVSSItem( strItem.c_str(), 0 );
 			}
 			CATCH_ALL(e)
 			{
@@ -273,10 +281,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (!m_bVssSuppressPathCheck)
 			{
 				// BSP - Get the working directory where VSS will put the file...
-				CString strLocalSpec = vssi.GetLocalSpec();
+				String strLocalSpec = vssi.GetLocalSpec();
 
 				// BSP - ...and compare it to the directory WinMerge is using.
-				if (strLocalSpec.CompareNoCase(strSavePath))
+				if (string_compare_nocase(strLocalSpec, strSavePath))
 				{
 					// BSP - if the directories are different, let the user confirm the CheckOut
 					int iRes = LangMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
@@ -296,7 +304,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			TRY
 			{
 				// BSP - Finally! Check out the file!
-				vssi.Checkout(_T(""), strSavePath, 0);
+				vssi.Checkout(_T(""), strSavePath.c_str(), 0);
 			}
 			CATCH_ALL(e)
 			{
@@ -331,35 +339,36 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		{
 			WaitStatusCursor waitstatus(_T(""));
 			String path, name;
-			SplitFilename(strSavePath, &path, &name, 0);
-			CString spath(path.c_str());
-			CString sname(name.c_str());
-			if (!spath.IsEmpty())
+			paths_SplitFilename(strSavePath, &path, &name, 0);
+			String spath(path);
+			String sname(name);
+			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0])-'A'+1);
-				_tchdir(spath);
+				_tchdir(spath.c_str());
 			}
-			DWORD code;
-			CString args;
 
 			// checkout operation
-			m_strCCComment.Replace(_T("\""), _T("\\\""));
-			args.Format(_T("checkout -c \"%s\" \"%s\""), m_strCCComment, sname);
-			String vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
-			HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, FALSE);
-			if (hVss!=INVALID_HANDLE_VALUE)
+			std::string vssPath = ucr::toUTF8(GetOptionsMgr()->GetString(OPT_VSS_PATH));
+			std::string sn, sn2;
+			std::vector<std::string> args;
+			args.push_back("checkout");
+			args.push_back("-c");
+			format(sn, "\"%s\"", ucr::toUTF8((LPCTSTR)m_strCCComment));
+			args.push_back(sn);
+			format(sn2, "\"%s\"", ucr::toUTF8(sname));
+			args.push_back(sn2);
+			try
 			{
-				WaitForSingleObject(hVss, INFINITE);
-				GetExitCodeProcess(hVss, &code);
-				CloseHandle(hVss);
-				
+				ProcessHandle hVss(Process::launch(vssPath, args));
+				int code = Process::wait(hVss);
 				if (code != 0)
 				{
 					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
 					return FALSE;
 				}
 			}
-			else
+			catch (...)
 			{
 				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 				return FALSE;
@@ -370,4 +379,52 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	}	//switch(m_nVerSys)
 
 	return TRUE;
+}
+
+/**
+ * @brief Checkin in file into ClearCase.
+ */ 
+void CMainFrame::CheckinToClearCase(const String &strDestinationPath)
+{
+	String spath, sname;
+	paths_SplitFilename(strDestinationPath, &spath, &sname, 0);
+	int code;
+	std::vector<std::string> args;
+	std::string sname_utf8;
+	
+	// checkin operation
+	args.push_back("checkin");
+	args.push_back("-nc");
+	format(sname_utf8, "\"%s\"", ucr::toUTF8(sname));
+	args.push_back(sname_utf8);
+	std::string vssPath = ucr::toUTF8(GetOptionsMgr()->GetString(OPT_VSS_PATH));
+	try
+	{
+		ProcessHandle hVss(Process::launch(vssPath, args));
+		code = Process::wait(hVss);
+		if (code != 0)
+		{
+			if (LangMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
+			{
+				// undo checkout operation
+				args.push_back("uncheckout");
+				args.push_back("-rm");
+				format(sname_utf8, "\"%s\"", ucr::toUTF8(sname));
+				args.push_back(sname_utf8);
+				ProcessHandle hVss(Process::launch(vssPath, args));
+				code = Process::wait(hVss);
+				if (code != 0)
+				{
+					LangMessageBox(IDS_VSS_UNCOERROR, MB_ICONSTOP);
+					return;
+				}
+			}
+			return;
+		}
+	}
+	catch (...)
+	{
+		LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+		return;
+	}
 }

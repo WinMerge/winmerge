@@ -7,10 +7,10 @@
 // $Id: ByteComparator.h 3397 2006-07-27 10:41:24Z kimmov $
 
 #include "CompareOptions.h"
-#include "DIFF.H"
+#include "diff.h"
 
 // Global defined in diffutils code
-extern int recursive;
+extern DECL_TLS int recursive;
 
 /**
  * @brief Default constructor.

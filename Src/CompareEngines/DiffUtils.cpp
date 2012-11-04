@@ -6,18 +6,22 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffUtils.cpp 6932 2009-07-26 14:04:31Z kimmov $
 
-
-#include "StdAfx.h"
-#include <map>
-#include "CompareOptions.h"
-#include "FilterList.h"
-#include "DiffContext.h"
-#include "DIFF.H"
+#include "diff.h"
 #include "DiffUtils.h"
+#include <map>
+#include <algorithm>
+#include <cassert>
+#include <sstream>
+#include <vector>
+#include "Exceptions.h"
+#include "FilterList.h"
+#include "CompareOptions.h"
+#include "DiffContext.h"
 #include "coretools.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
 #include "FilterCommentsManager.h"
+#include "unicoder.h"
 
 namespace CompareEngines
 {
@@ -84,7 +88,7 @@ void DiffUtils::SetFilterList(FilterList * list)
 void DiffUtils::SetFileData(int items, file_data *data)
 {
 	// We support only two files currently!
-	ASSERT(items == 2);
+	assert(items == 2);
 	m_inf = data;
 }
 
@@ -104,7 +108,7 @@ int DiffUtils::diffutils_compare_files()
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
 	}
-	UINT code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
+	unsigned code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
 	// make sure to start counting diffs at 0
 	// (usually it is -1 at this point, for unknown)
@@ -117,12 +121,12 @@ int DiffUtils::diffutils_compare_files()
 		struct change *thisob = 0, *end = 0;
 
 		String asLwrCaseExt;
-		String LowerCaseExt = CA2T(m_inf[0].name);
-		int PosOfDot = LowerCaseExt.rfind('.');
-		if (PosOfDot != -1)
+		String LowerCaseExt = ucr::toTString(m_inf[0].name);
+		size_t PosOfDot = LowerCaseExt.rfind('.');
+		if (PosOfDot != String::npos)
 		{
 			LowerCaseExt.erase(0, PosOfDot + 1);
-			CharLower(&*LowerCaseExt.begin());
+			std::transform(LowerCaseExt.begin(), LowerCaseExt.end(), LowerCaseExt.begin(), ::tolower);
 			asLwrCaseExt = LowerCaseExt;
 		}
 
@@ -170,7 +174,7 @@ int DiffUtils::diffutils_compare_files()
 						options.bIgnoreCase = m_pOptions->m_bIgnoreCase;
 						options.bIgnoreEol = m_pOptions->m_bIgnoreEOLDifference;
 						m_pDiffWrapper->SetOptions(&options);
-  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, *m_FilterCommentsManager, asLwrCaseExt.c_str());
+  						m_pDiffWrapper->PostFilter(thisob->line0, QtyLinesLeft+1, thisob->line1, QtyLinesRight+1, op, *m_FilterCommentsManager, asLwrCaseExt);
 						if(op == OP_TRIVIAL)
 						{
 							thisob->trivial = 1;
@@ -235,7 +239,9 @@ int DiffUtils::diffutils_compare_files()
 			code |= DIFFCODE::BIN;
 			break;
 		default:
-			_RPTF1(_CRT_ERROR, "Invalid bin_file value: %d", bin_file);
+			std::ostringstream ss;
+			ss << "Invalid bin_file value: " << bin_file;
+			throw ss.str();
 			break;
 		}
 		m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
@@ -264,8 +270,8 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
 {
 	if (m_pFilterList == NULL)
 	{
-		_RPTF0(_CRT_ERROR, "DiffUtils::RegExpFilter() called when "
-				"filterlist doesn't exist (=NULL)");
+		throw "DiffUtils::RegExpFilter() called when "
+				"filterlist doesn't exist (=NULL)";
 		return false;
 	}
 
@@ -306,11 +312,12 @@ bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, bool bMovedBlocks, int * bin_file)
 {
 	bool bRet = true;
-	__try
+	SE_Handler seh;
+	try
 	{
 		*diffs = diff_2_files(m_inf, depth, bin_status, bMovedBlocks, bin_file);
 	}
-	__except(EXCEPTION_EXECUTE_HANDLER)
+	catch (SE_Exception&)
 	{
 		*diffs = NULL;
 		bRet = false;

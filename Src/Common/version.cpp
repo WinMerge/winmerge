@@ -6,12 +6,13 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#include "version.h"
 #include <windows.h>
+#include <cstdio>
 #include <tchar.h>
 #include <assert.h>
 #include "coretypes.h"
 #include "UnicodeString.h"
-#include "version.h"
 
 /** 
  * @brief Structure used to store language and codepage.
@@ -246,7 +247,7 @@ String CVersionInfo::GetFixedFileVersion()
  * @param [out] versionLS Low DWORD for version number.
  * @return TRUE if version info was found, FALSE otherwise.
  */
-BOOL CVersionInfo::GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS)
+BOOL CVersionInfo::GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS)
 {
 	if (m_bVersionFound)
 	{

@@ -34,6 +34,7 @@
 #include <afxcview.h>
 #include <map>
 #include <boost/scoped_ptr.hpp>
+#include <Poco/Types.h>
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
 
@@ -54,6 +55,7 @@ class CompareStats;
 struct DirColInfo;
 class CLoadSaveCodepageDlg;
 class CShellContextMenu;
+class CDiffContext;
 
 struct ViewCustomFlags
 {
@@ -73,7 +75,7 @@ typedef std::map<String, bool> DirViewTreeState;
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const UINT_PTR SPECIAL_ITEM_POS = (UINT_PTR) - 1L;
+const Poco::UIntPtr SPECIAL_ITEM_POS = (Poco::UIntPtr) - 1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -123,11 +125,11 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(UINT_PTR diffpos, int level, UINT &index, int &alldiffs);
+	void RedisplayChildren(Poco::UIntPtr diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
-	UINT_PTR GetItemKey(int idx) const;
-	int GetItemIndex(UINT_PTR key);
+	Poco::UIntPtr GetItemKey(int idx) const;
+	int GetItemIndex(Poco::UIntPtr key);
 	// for populating list
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();
@@ -139,7 +141,7 @@ public:
 	int GetFirstSelectedInd();
 	DIFFITEM & GetNextSelectedInd(int &ind);
 	DIFFITEM & GetItemAt(int ind);
-	void AddParentFolderItem(BOOL bEnable);
+	void AddParentFolderItem(bool bEnable);
 	void RefreshOptions();
 
 	LRESULT HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lParam);
@@ -150,28 +152,28 @@ private:
 
 // Implementation in DirActions.cpp
 private:
-	BOOL GetSelectedDirNames(String& strLeft, String& strRight) const;
-	BOOL GetSelectedFileNames(String& strLeft, String& strRight) const;
+	bool GetSelectedDirNames(String& strLeft, String& strRight) const;
+	bool GetSelectedFileNames(String& strLeft, String& strRight) const;
 	String GetSelectedFileName(SIDE_TYPE stype) const;
 	void GetItemFileNames(int sel, String& strLeft, String& strRight) const;
 	void GetItemFileNames(int sel, PathContext * paths) const;
 	void FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg);
-	BOOL IsItemLeftOnly(int code);
-	BOOL IsItemRightOnly(int code);
-	BOOL IsItemCopyableToLeft(const DIFFITEM & di) const;
-	BOOL IsItemCopyableToRight(const DIFFITEM & di) const;
-	BOOL IsItemDeletableOnLeft(const DIFFITEM & di) const;
-	BOOL IsItemDeletableOnRight(const DIFFITEM & di) const;
-	BOOL IsItemDeletableOnBoth(const DIFFITEM & di) const;
-	BOOL IsItemOpenable(const DIFFITEM & di) const;
-	BOOL AreItemsOpenable(SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2) const;
-	BOOL AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, const DIFFITEM & di3) const;
-	BOOL IsItemOpenableOnLeft(const DIFFITEM & di) const;
-	BOOL IsItemOpenableOnRight(const DIFFITEM & di) const;
-	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di) const;
-	BOOL IsItemOpenableOnRightWith(const DIFFITEM & di) const;
-	BOOL IsItemCopyableToOnLeft(const DIFFITEM & di) const;
-	BOOL IsItemCopyableToOnRight(const DIFFITEM & di) const;
+	bool IsItemLeftOnly(int code);
+	bool IsItemRightOnly(int code);
+	bool IsItemCopyableToLeft(const DIFFITEM & di) const;
+	bool IsItemCopyableToRight(const DIFFITEM & di) const;
+	bool IsItemDeletableOnLeft(const DIFFITEM & di) const;
+	bool IsItemDeletableOnRight(const DIFFITEM & di) const;
+	bool IsItemDeletableOnBoth(const DIFFITEM & di) const;
+	bool IsItemOpenable(const DIFFITEM & di) const;
+	bool AreItemsOpenable(SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2) const;
+	bool AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, const DIFFITEM & di3) const;
+	bool IsItemOpenableOnLeft(const DIFFITEM & di) const;
+	bool IsItemOpenableOnRight(const DIFFITEM & di) const;
+	bool IsItemOpenableOnLeftWith(const DIFFITEM & di) const;
+	bool IsItemOpenableOnRightWith(const DIFFITEM & di) const;
+	bool IsItemCopyableToOnLeft(const DIFFITEM & di) const;
+	bool IsItemCopyableToOnRight(const DIFFITEM & di) const;
 	void DoCopyLeftToRight();
 	void DoCopyRightToLeft();
 	void DoDelLeft();
@@ -187,15 +189,15 @@ private:
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void ApplyPluginPrediffSetting(int newsetting);
 	void ConfirmAndPerformActions(FileActionScript & actions, int selCount);
-	BOOL ConfirmActionList(const FileActionScript & actions, int selCount);
+	bool ConfirmActionList(const FileActionScript & actions, int selCount);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
 	UINT MarkSelectedForRescan();
 	void DoFileEncodingDialog();
 	void DoUpdateFileEncodingDialog(CCmdUI* pCmdUI);
-	BOOL DoItemRename(LPCTSTR szNewItemName);
+	bool DoItemRename(const String& szNewItemName);
 	void DoCopyItemsToClipboard(int nIndex);
-	BOOL RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName);
+	bool RenameOnSameDir(const String& szOldFileName, const String& szNewFileName);
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
 
@@ -219,7 +221,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(int id, int subitem);
-	int AddNewItem(int i, UINT_PTR diffpos, int iImage, int iIndent);
+	int AddNewItem(int i, Poco::UIntPtr diffpos, int iImage, int iIndent);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
@@ -231,7 +233,7 @@ private:
 	void ClearColumnOrders();
 	void ResetColumnOrdering();
 	void MoveColumn(int psrc, int pdest);
-	CString GetColRegValueNameBase(int col) const;
+	String GetColRegValueNameBase(int col) const;
 	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
 	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const;
 // End DirViewCols.cpp
@@ -270,14 +272,14 @@ protected:
 	int GetColImage(const DIFFITEM & di) const;
 	int GetDefaultColImage() const;
 	int AddSpecialItems();
-	void GetCurrentColRegKeys(CStringArray & colKeys);
-	void WarnContentsChanged(const CString & failedPath);
-	void OpenSpecialItems(UINT_PTR pos1, UINT_PTR pos2, UINT_PTR pos3);
-	bool OpenOneItem(UINT_PTR pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+	void GetCurrentColRegKeys(std::vector<String>& colKeys);
+	void WarnContentsChanged(const String & failedPath);
+	void OpenSpecialItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3);
+	bool OpenOneItem(Poco::UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, bool & isDir);
-	bool OpenTwoItems(SELECTIONTYPE selectionType, UINT_PTR pos1, UINT_PTR pos2, DIFFITEM **di1, DIFFITEM **di2,
+	bool OpenTwoItems(SELECTIONTYPE selectionType, Poco::UIntPtr pos1, Poco::UIntPtr pos2, DIFFITEM **di1, DIFFITEM **di2,
 			PathContext &paths, int & sel1, int & sel2, bool & isDir);
-	bool OpenThreeItems(UINT_PTR pos1, UINT_PTR pos2, UINT_PTR pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
+	bool OpenThreeItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir);
 	bool CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder);
 
@@ -292,14 +294,14 @@ protected:
 	int m_dispcols;
 	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
 	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
-	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
-	BOOL m_bExpandSubdirs;
+	bool m_bEscCloses; /**< Cached value for option for ESC closing window */
+	bool m_bExpandSubdirs;
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
-	BOOL m_bTreeMode; /**< TRUE if tree mode is on*/
+	bool m_bTreeMode; /**< TRUE if tree mode is on*/
 	DirCompProgressDlg * m_pCmpProgressDlg;
 	clock_t m_compareStart; /**< Starting process time of the compare */
-	BOOL m_bUserCancelEdit; /**< TRUE if the user cancels rename */
+	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
 	int m_firstDiffItem;
@@ -489,8 +491,8 @@ private:
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	void ResetColumnWidths();
-	BOOL IsLabelEdit();
-	BOOL IsItemSelectedSpecial();
+	bool IsLabelEdit();
+	bool IsItemSelectedSpecial();
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
 	void GetColors(int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText);

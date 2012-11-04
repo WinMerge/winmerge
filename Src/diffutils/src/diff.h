@@ -17,6 +17,9 @@ You should have received a copy of the GNU General Public License
 along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
+#ifndef __DIFF_H__
+#define __DIFF_H__
+
 #include "system.h"
 #include <ctype.h>
 #include <stdio.h>
@@ -30,14 +33,18 @@ extern "C" {
 #define PR_FILE_NAME "/bin/pr"
 #endif
 
+#ifdef _MSC_VER
 #define DECL_TLS __declspec(thread)
+#else
+#define DECL_TLS __thread
+#endif
 
 #define TAB_WIDTH 8
 
 /* Variables for command line options */
 
 #ifndef GDIFF_MAIN
-#define EXTERN DECL_TLS extern 
+#define EXTERN extern DECL_TLS 
 #else
 #define EXTERN DECL_TLS
 #endif
@@ -231,7 +238,11 @@ struct change
 struct file_data {
     int             desc;	/* File descriptor  */
     char const      *name;	/* File name  */
+#ifdef _WIN32
     struct _stat    stat;	/* File status from fstat()  */
+#else
+    struct stat     stat;	/* File status from fstat()  */
+#endif
     int             dir_p;	/* nonzero if file is a directory  */
 
     /* Buffer in which text of file is read.  */
@@ -339,8 +350,8 @@ void print_rcs_script PARAMS((struct change *));
 void print_sdiff_script PARAMS((struct change *));
 
 /* util.c */
-VOID *xmalloc PARAMS((size_t));
-VOID *xrealloc PARAMS((VOID *, size_t));
+void *xmalloc PARAMS((size_t));
+void *xrealloc PARAMS((void *, size_t));
 char *concat PARAMS((char const *, char const *, char const *));
 char *dir_file_pathname PARAMS((char const *, char const *));
 int change_letter PARAMS((int, int));
@@ -373,4 +384,6 @@ extern char const version_string[];
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

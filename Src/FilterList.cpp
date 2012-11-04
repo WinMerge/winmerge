@@ -6,16 +6,12 @@
 // ID line follows -- this is updated by SVN
 // $Id: FilterList.cpp 7164 2010-05-15 13:57:32Z jtuc $
 
-#include <windows.h>
-#include <vector>
-#include <crtdbg.h>
-#include <Poco/Exception.h>
-#include <Poco/RegularExpression.h>
 #include "FilterList.h"
+#include <vector>
+#include <Poco/RegularExpression.h>
 #include "unicoder.h"
 
 using Poco::RegularExpression;
-using Poco::Exception;
 
 /** 
  * @brief Constructor.
@@ -40,22 +36,13 @@ FilterList::~FilterList()
  * @param [in] regularExpression Regular expression string.
  * @param [in] encoding Expression encoding.
  */
-void FilterList::AddRegExp(const std::string& regularExpression, EncodingType encoding)
+void FilterList::AddRegExp(const std::string& regularExpression)
 {
-	int re_opts = 0;
-
-	if (encoding == ENC_UTF8)
-		re_opts |= RegularExpression::RE_UTF8;
-	else if (encoding != ENC_ANSI)
-	{
-		_RPTF0(_CRT_ERROR, "Unregognized regexp encoding!");
-	}
-
 	try
 	{
-		m_list.push_back(new filter_item(regularExpression, re_opts));
+		m_list.push_back(new filter_item(regularExpression, RegularExpression::RE_UTF8));
 	}
-	catch (Exception *)
+	catch (...)
 	{
 		// TODO:
 	}
@@ -100,22 +87,16 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 	// convert string into UTF-8
 	ucr::buffer buf(string.length() * 2);
 
-#ifdef _UNICODE
 	if (codepage != CP_UTF8)
 			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
 					string.length(), ucr::UTF8, CP_UTF8, &buf);
-#else
-	if (codepage != GetACP())
-			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
-					string.length(), ucr::NONE, GetACP(), &buf);
-#endif
 
-	unsigned int i = 0;
+	unsigned i = 0;
 	while (i < count && retval == false)
 	{
 		const filter_item* item = m_list[i];
 		int result = 0;
-		Poco::RegularExpression::Match match;
+		RegularExpression::Match match;
 		try
 		{
 			if (buf.size > 0)
@@ -123,7 +104,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 			else
 				result = item->regexp.match(string, 0, match);
 		}
-		catch (Exception *)
+		catch (...)
 		{
 			// TODO:
 		}

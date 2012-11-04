@@ -35,20 +35,10 @@ extern "C"{
 #ifdef _MSC_VER
 #pragma warning(disable: 4100 4189 4512)
 #define UNUSED_ARG(ARG) ARG
+#elif defined(__GNUC__)
+#define UNUSED_ARG(ARG) ARG
 #else
 #define UNUSED_ARG(ARG)
-#endif
-
-#ifdef __MINGW_H
-#ifndef _WIN32_IE
-#define _WIN32_IE	0x0400
-#endif
-#define V_I1(X)		V_UNION(X, cVal)
-#define V_I1REF(X)	V_UNION(X, pcVal)
-#define V_UI2(X)	V_UNION(X, uiVal)
-#define V_UI2REF(X)	V_UNION(X, puiVal)
-#define V_UI4(X)	V_UNION(X, ulVal)
-#define V_UI4REF(X)	V_UNION(X, pulVal)
 #endif
 
 // macros for use with ValidateArgs()
@@ -136,7 +126,7 @@ STDAPIV invokeA(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
  *
  * @note Free all variants passed to it (except ByRef ones) 
  */
-STDAPIV invokeW(LPDISPATCH, VARIANT *, BSTR, LPCCH, VARIANT *);
+STDAPIV invokeW(LPDISPATCH, VARIANT *, LPCOLESTR, LPCCH, VARIANT *);
 
 // macros for use with invoke*()
 #define opFxn &((PCH)(DISPATCH_METHOD<<8))
