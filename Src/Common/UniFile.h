@@ -13,6 +13,10 @@
 #define UniFile_h_included
 
 #include "unicoder.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Types.h>
+
+namespace Poco { class SharedMemory; }
 
 /**
  * @brief Interface to file classes in this module
@@ -26,8 +30,6 @@ public:
 	 */
 	struct UniError
 	{
-		String apiname;
-		int syserrnum; // valid if apiname nonempty
 		String desc; // valid if apiname empty
 
 		UniError();
@@ -37,7 +39,7 @@ public:
 	};
 
 	virtual ~UniFile() { }
-	virtual bool OpenReadOnly(LPCTSTR filename) = 0;
+	virtual bool OpenReadOnly(const String& filename) = 0;
 	virtual void Close() = 0;
 	virtual bool IsOpen() const = 0;
 
@@ -58,7 +60,7 @@ public:
 	virtual bool ReadString(String & line, bool * lossy) = 0;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
 	virtual int GetLineNumber() const = 0;
-	virtual __int64 GetPosition() const = 0;
+	virtual Poco::Int64 GetPosition() const = 0;
 	virtual bool WriteString(const String & line) = 0;
 
 	struct txtstats
@@ -67,8 +69,8 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
-		INT64 first_zero; // byte offset, initially -1
-		INT64 last_zero; // byte offset, initially -1
+		Poco::Int64 first_zero; // byte offset, initially -1
+		Poco::Int64 last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
 		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
@@ -97,15 +99,15 @@ public:
 		m_codepage = codepage;
 		switch (m_codepage)
 		{
-		case 1200:
+		case CP_UCS2LE:
 			m_unicoding = ucr::UCS2LE;
 			m_charsize = 2;
 			break;
-		case 1201:
+		case CP_UCS2BE:
 			m_unicoding = ucr::UCS2BE;
 			m_charsize = 2;
 			break;
-		case 65001:
+		case CP_UTF8:
 			m_charsize = 1;
 			m_unicoding = ucr::UTF8;
 			break;
@@ -123,12 +125,11 @@ public:
 
 protected:
 	virtual bool DoGetFileStatus();
-	virtual void LastError(LPCTSTR apiname, int syserrnum);
-	virtual void LastErrorCustom(LPCTSTR desc);
+	virtual void LastErrorCustom(const String& desc);
 
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
-	__int64 m_filesize;
+	Poco::Int64 m_filesize;
 	String m_filepath;
 	String m_filename;
 	int m_lineno; // current 0-based line of m_current
@@ -149,14 +150,20 @@ class UniMemFile : public UniLocalFile
 {
 	friend class UniMarkdownFile;
 public:
+	enum AccessMode
+	{
+		AM_READ = 0,
+		AM_WRITE
+	};
+
 	UniMemFile();
 	virtual ~UniMemFile() { Close(); }
 
 	virtual bool GetFileStatus();
 
-	virtual bool OpenReadOnly(LPCTSTR filename);
-	virtual bool Open(LPCTSTR filename);
-	virtual bool Open(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
+	virtual bool OpenReadOnly(const String& filename);
+	virtual bool Open(const String& filename);
+	virtual bool Open(const String& filename, AccessMode mode);
 	void Close();
 	virtual bool IsOpen() const;
 
@@ -167,20 +174,19 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy);
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
-	virtual __int64 GetPosition() const { return m_current - m_base; }
+	virtual Poco::Int64 GetPosition() const { return m_current - m_base; }
 	virtual bool WriteString(const String & line);
 
 // Implementation methods
 protected:
-	virtual bool DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
+	virtual bool DoOpen(const String& filename, AccessMode mode);
 
 // Implementation data
 private:
-	HANDLE m_handle;
-	HANDLE m_hMapping;
-	LPBYTE m_base; // points to base of mapping
-	LPBYTE m_data; // similar to m_base, but after BOM if any
-	LPBYTE m_current; // current location in file
+	Poco::SharedMemory *m_hMapping;
+	unsigned char *m_base; // points to base of mapping
+	unsigned char *m_data; // similar to m_base, but after BOM if any
+	unsigned char *m_current; // current location in file
 };
 
 /**
@@ -196,10 +202,10 @@ public:
 
 	virtual bool GetFileStatus();
 
-	virtual bool OpenReadOnly(LPCTSTR filename);
-	virtual bool OpenCreate(LPCTSTR filename);
-	virtual bool OpenCreateUtf8(LPCTSTR filename);
-	virtual bool Open(LPCTSTR filename, LPCTSTR mode);
+	virtual bool OpenReadOnly(const String& filename);
+	virtual bool OpenCreate(const String& filename);
+	virtual bool OpenCreateUtf8(const String& filename);
+	virtual bool Open(const String& filename, const String& mode);
 	void Close();
 
 	virtual bool IsOpen() const;
@@ -213,21 +219,20 @@ protected:
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
 
 public:
-	virtual __int64 GetPosition() const;
+	virtual Poco::Int64 GetPosition() const;
 
 	virtual int WriteBom();
 	virtual bool WriteString(const String & line);
 
 // Implementation methods
 protected:
-	virtual bool DoOpen(LPCTSTR filename, LPCTSTR mode);
-	virtual void LastError(LPCTSTR apiname, int syserrnum);
-	virtual void LastErrorCustom(LPCTSTR desc);
+	virtual bool DoOpen(const String& filename, const String& mode);
+	virtual void LastErrorCustom(const String& desc);
 
 // Implementation data
 private:
 	FILE * m_fp;
-	__int64 m_data; // offset after any initial BOM
+	Poco::Int64 m_data; // offset after any initial BOM
 	void * m_pucrbuff;
 };
 

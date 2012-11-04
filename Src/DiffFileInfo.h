@@ -46,7 +46,7 @@ struct DiffFileFlags : public FileFlags
 		coding_mask = 0x7000,
 	};
 
-	DWORD coding; /**< Coding info for item */
+	unsigned coding; /**< Coding info for item */
 	DiffFileFlags() : coding(0) { }
 	String ToString() const;
 };

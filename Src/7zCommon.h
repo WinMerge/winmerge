@@ -7,13 +7,16 @@
 
 #include "DiffContext.h"
 #include "DirView.h"
+#include <list>
+
+class DirView;
 
 extern __declspec(thread) Merge7z::Proxy Merge7z;
 
-BOOL IsArchiveFile(LPCTSTR);
-Merge7z::Format *ArchiveGuessFormat(LPCTSTR);
+bool IsArchiveFile(const String&);
+Merge7z::Format *ArchiveGuessFormat(const String&);
 
-CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt);
+String NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt);
 
 /**
  * @brief temp path context
@@ -59,12 +62,12 @@ private:
 			delete this;
 		}
 	};
-	CStringList m_rgFolderPrefix;
-	POSITION m_curFolderPrefix;
-	CString m_strFolderPrefix;
+	std::list<String> m_rgFolderPrefix;
+	std::list<String>::iterator m_curFolderPrefix;
+	String m_strFolderPrefix;
 	BOOL m_bRight;
-	CMapStringToPtr m_rgImpliedFoldersLeft;
-	CMapStringToPtr m_rgImpliedFoldersRight;
+	std::map<String, void *> m_rgImpliedFoldersLeft;
+	std::map<String, void *> m_rgImpliedFoldersRight;
 //	helper methods
 	const DIFFITEM &Next();
 	bool MultiStepCompressArchive(LPCTSTR);
@@ -82,16 +85,17 @@ public:
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
 	void CompressArchive(LPCTSTR = 0);
-	void CollectFiles(CString &);
+	void CollectFiles(String &);
 };
 
 int NTAPI HasZipSupport();
 void NTAPI Recall7ZipMismatchError();
 
+BOOL NTAPI IsMerge7zEnabled();
 DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
 
 /**
- * @brief assign BSTR to CString, and return BSTR for optional SysFreeString()
+ * @brief assign BSTR to String, and return BSTR for optional SysFreeString()
  */
 inline BSTR Assign(CString &dst, BSTR src)
 {

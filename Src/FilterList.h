@@ -11,6 +11,8 @@
 
 #include <vector>
 #include <string>
+#include "codepage.h"
+#define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
 
 /**
@@ -35,16 +37,10 @@ struct filter_item
 class FilterList
 {
 public:
-	enum EncodingType
-	{
-		ENC_ANSI,
-		ENC_UTF8,
-	};
-	
 	FilterList();
 	~FilterList();
 	
-	void AddRegExp(const std::string& regularExpression, EncodingType encoding);
+	void AddRegExp(const std::string& regularExpression);
 	void RemoveAllFilters();
 	bool HasRegExps();
 	bool Match(const std::string& string, int codepage = CP_UTF8);

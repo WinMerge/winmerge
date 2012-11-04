@@ -6,11 +6,11 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#define NOMINMAX
 #include <windows.h>
-#include <assert.h>
-#include <tchar.h>
-#include "UnicodeString.h"
 #include "RegKey.h"
+#include <cassert>
+#include "UnicodeString.h"
 #include "coretypes.h"
 
 /**
@@ -146,10 +146,9 @@ LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
 {
 	assert(m_hKey);
 	assert(pszKey);
-	TCHAR pszData[100];
-	_sntprintf(pszData, countof(pszData), _T("%f"), fVal);
+	String s = string_format(_T("%f"), fVal);
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(const LPBYTE) pszData, (_tcslen(pszData)+ 1)*sizeof(TCHAR) );
+		(const LPBYTE) s.c_str(), (s.length() + 1)*sizeof(TCHAR) );
 }
 
 /**
@@ -346,7 +345,7 @@ void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR de
 		&dwType, (LPBYTE)pData, &len);
 	if (ret != ERROR_SUCCESS)
 	{
-		_tcsncpy(pData, defval, min(_tcslen(defval), dwLen));
-		pData[min(_tcslen(defval), dwLen-1)] = _T('\0');
+		_tcsncpy(pData, defval, std::min((DWORD)_tcslen(defval), dwLen));
+		pData[std::min((DWORD)_tcslen(defval), dwLen-1)] = _T('\0');
 	}
 }

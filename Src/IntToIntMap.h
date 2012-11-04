@@ -12,14 +12,14 @@
 /**
  * @brief An int->int map with helper methods for finding largest bin
  */
-class IntToIntMap : public CMap<int, int, int, int>
+class IntToIntMap
 {
+private:
+	std::map<int, int> m_map;
 public:
 	void Increment(int key)
 	{
-		int n=0;
-		this->Lookup(key, n);
-		this->SetAt(key, ++n);
+		++m_map[key];
 	}
 	int FindMaxKey() const
 	{
@@ -27,14 +27,15 @@ public:
 		int maxKey=0;
 		int key=0;
 		int n=0;
-		for (POSITION pos = this->GetStartPosition(); pos; )
+		std::map<int, int>::const_iterator pos = m_map.begin();
+		while (pos != m_map.end())
 		{
-			this->GetNextAssoc(pos, key, n);
-			if (n>max)
+			if (pos->second > max)
 			{
-				max=n;
-				maxKey = key;
+				max = pos->second;
+				maxKey = pos->first;
 			}
+			++pos;
 		}
 		return maxKey;
 	}

@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "PropColors.h"
+#include "CustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -18,8 +19,6 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-static const TCHAR Section[] = _T("Custom Colors");
 
 /** 
  * @brief Default constructor.
@@ -130,7 +129,7 @@ void PropMergeColors::WriteOptions()
 void PropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & currentColor)
 {
 	CColorDialog dialog(currentColor);
-	LoadCustomColors();
+	CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -138,7 +137,7 @@ void PropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & current
 		currentColor = dialog.GetColor();
 		colorButton.SetColor(currentColor);
 	}
-	SaveCustomColors();
+	CustomColors::Save(m_cCustColors);
 }
 
 /** 
@@ -361,12 +360,14 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR o
 	switch (op)
 	{
 	case SET_DEFAULTS:
-		GetOptionsMgr()->GetDefault(optionName, color);
+		unsigned uicolor;
+		GetOptionsMgr()->GetDefault(optionName, uicolor);
+		color = uicolor;
 		btn.SetColor(color);
 		return;
 
 	case WRITE_OPTIONS:
-		GetOptionsMgr()->SaveOption(optionName, (int)color);
+		GetOptionsMgr()->SaveOption(optionName, (unsigned)color);
 		return;
 
 	case READ_OPTIONS:
@@ -383,34 +384,4 @@ void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR o
 void PropMergeColors::OnDefaults()
 {
 	SerializeColors(SET_DEFAULTS);
-}
-
-/** 
- * @brief Loads color selection dialog's custom colors from registry
- */
-void PropMergeColors::LoadCustomColors()
-{
-	for (int i = 0; i < CustomColorsAmount; i++)
-	{
-		CString sEntry;
-		sEntry.Format(_T("%d"), i);
-		m_cCustColors[i] = ::AfxGetApp()->GetProfileInt(Section,
-			sEntry, RGB(255, 255, 255));
-	}
-}
-
-/** 
- * @brief Saves color selection dialog's custom colors to registry
- */
-void PropMergeColors::SaveCustomColors()
-{
-	for (int i = 0; i < CustomColorsAmount; i++)
-	{
-		CString sEntry;
-		sEntry.Format(_T("%d"), i);
-		if (m_cCustColors[i] == RGB(255, 255, 255))
-			::AfxGetApp()->WriteProfileString(Section, sEntry, NULL);
-		else 
-			::AfxGetApp()->WriteProfileInt(Section, sEntry, m_cCustColors[i]);
-	}
 }

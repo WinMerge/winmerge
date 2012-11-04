@@ -9,6 +9,9 @@
 #ifndef _TEMP_FILE_
 #define _TEMP_FILE_
 
+#include <vector>
+#include "UnicodeString.h"
+
 /**
  * @brief A simple temporary file holder class.
  * This class creates and holds temporary file names. When instance
@@ -20,8 +23,8 @@ public:
 	TempFile() {}
 	~TempFile();
 	void Create();
-	String Create(LPCTSTR prefix = NULL, LPCTSTR ext = NULL);
-	String CreateFromFile(LPCTSTR filepath, LPCTSTR prefix);
+	String Create(const TCHAR *prefix = NULL, const TCHAR *ext = NULL);
+	String CreateFromFile(const TCHAR *filepath, const TCHAR *prefix);
 	String GetPath();
 	bool Delete();
 
@@ -30,8 +33,8 @@ private:
 };
 
 void CleanupWMtemp();
-BOOL CleanupWMtempfolder(std::vector <int> processIDs);
-BOOL WMrunning(std::vector <int> processIDs, int iPI);
-BOOL ClearTempfolder(const String &pathName);
+bool CleanupWMtempfolder(std::vector <int> processIDs);
+bool WMrunning(std::vector <int> processIDs, int iPI);
+bool ClearTempfolder(const String &pathName);
 
 #endif // _TEMP_FILE_

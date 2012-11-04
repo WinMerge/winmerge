@@ -20,11 +20,12 @@
  * @brief FilterCommentsManager class declaration.
  */
 
-//#include <string>
-//#include <map>
-
 #ifndef _FILTERCOMMENTSMANAGER_H_
 #define _FILTERCOMMENTSMANAGER_H_
+
+#include <string>
+#include <map>
+#include "UnicodeString.h"
 
 //IngnoreComment logic developed by David Maisonave AKA (Axter)
 /**
@@ -34,7 +35,7 @@
 @note
 		The ignore-comment logic can only use ANSI strings, because the search buffer is
 		char* type.
-		Therefore, the data members should not be replaced with CString type, and should
+		Therefore, the data members should not be replaced with String type, and should
 		remain std::string, or other non-unicode type string.
 */
 struct FilterCommentsSet
@@ -62,8 +63,8 @@ created with default values that are assoicated with most commen languages.
 class FilterCommentsManager
 {
 public:
-	FilterCommentsManager(const TCHAR* IniFileName = _T(""));
-	FilterCommentsSet GetSetForFileType(const CString& FileTypeName) const;
+	FilterCommentsManager(const String &IniFileName = _T(""));
+	FilterCommentsSet GetSetForFileType(const String& FileTypeName) const;
 
 private:
 	FilterCommentsManager(const FilterCommentsManager&); //Don't allow copy
@@ -71,7 +72,7 @@ private:
 	void CreateDefaultMarkers();
 
 	//Use CString instead of std::string, so as to allow UNICODE file extensions
-	std::map<CString, FilterCommentsSet> m_FilterCommentsSetByFileType;
+	std::map<String, FilterCommentsSet> m_FilterCommentsSetByFileType;
 	String m_IniFileName;
 };
 

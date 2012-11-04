@@ -105,7 +105,7 @@ BOOL PropCompare::OnInitDialog()
  */
 void PropCompare::OnDefaults()
 {
-	DWORD tmp;
+	unsigned tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
 	m_nIgnoreWhite = tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_EOL, tmp);

@@ -104,9 +104,9 @@ void PluginsListDlg::AddPluginsToList(LPCWSTR pluginEvent, LPCTSTR pluginType)
 	PluginArray * piPluginArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(pluginEvent);
 
-	for (int iPlugin = 0 ; iPlugin < piPluginArray->GetSize() ; iPlugin++)
+	for (int iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
-		PluginInfo & plugin = piPluginArray->ElementAt(iPlugin);
+		PluginInfo & plugin = piPluginArray->at(iPlugin);
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin.m_name.c_str());
 		m_list.SetItemText(ind, 1, pluginType);
 		m_list.SetItemText(ind, 2, plugin.m_description.c_str());

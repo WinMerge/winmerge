@@ -22,27 +22,23 @@
 // ID line follows -- this is updated by SVN
 // $Id: FileFilterHelper.cpp 7024 2009-10-22 18:26:45Z kimmov $
 
-#include <windows.h>
-#include <tchar.h>
-#include <crtdbg.h>
-#include <Poco/UnicodeConverter.h>
+#include "FileFilterHelper.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
 #include "DirItem.h"
 #include "FileFilterMgr.h"
-#include "FileFilterHelper.h"
-#include "Coretools.h"
 #include "paths.h"
+#include "Environment.h"
+#include "unicoder.h"
 
 using std::vector;
-using Poco::UnicodeConverter;
 
 /** 
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
 : m_pMaskFilter(NULL)
-, m_bUseMask(TRUE)
+, m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 {
 }
@@ -69,7 +65,7 @@ FileFilterMgr * FileFilterHelper::GetManager() const
  * is found select it. Otherwise set path to empty (default).
  * @param [in] szFileFilterPath Full path to filter to select.
  */
-void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
+void FileFilterHelper::SetFileFilterPath(const String& szFileFilterPath)
 {
 	// Use none as default path
 	m_sFileFilterPath.clear();
@@ -78,7 +74,7 @@ void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
 		return;
 
 	// Don't bother to lookup empty path
-	if (_tcslen(szFileFilterPath) > 0)
+	if (!szFileFilterPath.empty())
 	{
 		m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
 		if (m_currentFilter)
@@ -116,7 +112,7 @@ void FileFilterHelper::GetFileFilters(std::vector<FileFilterInfo> * filters, Str
  * @param [in] filterPath Path to filterfile.
  * @sa FileFilterHelper::GetFileFilterPath()
  */
-String FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
+String FileFilterHelper::GetFileFilterName(const String& filterPath) const
 {
 	vector<FileFilterInfo> filters;
 	String selected;
@@ -141,7 +137,7 @@ String FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
  * @param [in] filterName Name of filter.
  * @sa FileFilterHelper::GetFileFilterName()
  */
-String FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
+String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 {
 	vector<FileFilterInfo> filters;
 	String selected;
@@ -173,9 +169,9 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 
 /** 
  * @brief Select between mask and filterfile.
- * @param [in] bUseMask If TRUE we use mask instead of filter files.
+ * @param [in] bUseMask If true we use mask instead of filter files.
  */
-void FileFilterHelper::UseMask(BOOL bUseMask)
+void FileFilterHelper::UseMask(bool bUseMask)
 {
 	m_bUseMask = bUseMask;
 	if (m_bUseMask)
@@ -195,69 +191,50 @@ void FileFilterHelper::UseMask(BOOL bUseMask)
  * @brief Set filemask for filtering.
  * @param [in] strMask Mask to set (e.g. *.cpp;*.h).
  */
-void FileFilterHelper::SetMask(LPCTSTR strMask)
+void FileFilterHelper::SetMask(const String& strMask)
 {
 	if (!m_bUseMask)
 	{
-		_RPTF0(_CRT_ERROR, "Filter mask tried to set when masks disabled!");
-		return;
+		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
 	String regExp = ParseExtensions(strMask);
 
-	FilterList::EncodingType type;
-
-	std::string regexp_str;
-#ifdef UNICODE
-	UnicodeConverter::toUTF8(regExp, regexp_str);
-	type = FilterList::ENC_UTF8;
-#else
-	regexp_str = regExp;
-	type = FilterList::ENC_ANSI;
-#endif
+	std::string regexp_str = ucr::toUTF8(regExp);
 
 	m_pMaskFilter->RemoveAllFilters();
-	m_pMaskFilter->AddRegExp(regexp_str, type);
+	m_pMaskFilter->AddRegExp(regexp_str);
 }
 
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
  * @param [in] szFileName Filename to test.
- * @return TRUE unless we're suppressing this file by filter
+ * @return true unless we're suppressing this file by filter
  */
-BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
+bool FileFilterHelper::includeFile(const String& szFileName)
 {
 	if (m_bUseMask)
 	{
 		if (m_pMaskFilter == NULL)
 		{
-			_RPTF0(_CRT_ERROR, "Use mask set, but no filter rules for mask!");
-			return TRUE;
+			throw "Use mask set, but no filter rules for mask!";
 		}
 
 		// preprend a backslash if there is none
-		String strFileName = szFileName;
-		strFileName = string_makelower(strFileName);
+		String strFileName = string_makelower(szFileName);
 		if (strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
 		if (strFileName.find('.') == -1)
 			strFileName = strFileName + _T(".");
 
-		std::string name_utf;
-#ifdef UNICODE
-		UnicodeConverter::toUTF8(strFileName, name_utf);
-		bool match = m_pMaskFilter->Match(name_utf);
-#else
-		bool match = m_pMaskFilter->Match(strFileName, GetACP());
-#endif
-		return match;
+		return m_pMaskFilter->Match(ucr::toUTF8(strFileName));
 	}
 	else
 	{
 		if (!m_fileFilterMgr || !m_currentFilter)
-			return TRUE;
+			return true;
 		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
 	}
 }
@@ -266,25 +243,25 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
  * @brief Check if any of filefilter rules match to directoryname.
  *
  * @param [in] szFileName Directoryname to test.
- * @return TRUE unless we're suppressing this directory by filter
+ * @return true unless we're suppressing this directory by filter
  */
-BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
+bool FileFilterHelper::includeDir(const String& szDirName)
 {
 	if (m_bUseMask)
 	{
 		// directories have no extension
-		return TRUE; 
+		return true; 
 	}
 	else
 	{
 		if (!m_fileFilterMgr || !m_currentFilter)
-			return TRUE;
+			return true;
 
 		// Add a backslash
 		String strDirName(_T("\\"));
 		strDirName += szDirName;
 
-		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName.c_str());
+		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
 	}
 }
 
@@ -294,7 +271,7 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
  * @param [in] sPattern Wildcard defining files to add to map as filter files.
  *   It is filemask, for example, "*.flt"
  */
-void FileFilterHelper::LoadFileFilterDirPattern(LPCTSTR dir, LPCTSTR szPattern)
+void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String& szPattern)
 {
 	m_fileFilterMgr->LoadFromDirectory(dir, szPattern, FileFilterExt);
 }
@@ -309,7 +286,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 	String strParsed;
 	String strPattern;
 	String ext(extensions);
-	BOOL bFilterAdded = FALSE;
+	bool bFilterAdded = false;
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
 	ext += _T(";"); // Add one separator char to end
@@ -323,7 +300,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 1)
 		{
-			bFilterAdded = TRUE;
+			bFilterAdded = true;
 			String strRegex = token;
 			string_replace(strRegex, _T("."), _T("\\."));
 			string_replace(strRegex, _T("?"), _T("."));
@@ -337,7 +314,7 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 			strPattern += _T("(^|\\\\)") + strRegex;
 		}
 		else
-			bFilterAdded = FALSE;
+			bFilterAdded = false;
 
 		pos = ext.find_first_of(pszSeps); 
 		if (bFilterAdded && pos != String::npos && extensions.length() > 1)
@@ -356,9 +333,9 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 }
 
 /** 
- * @brief Returns TRUE if active filter is a mask.
+ * @brief Returns true if active filter is a mask.
  */
-BOOL FileFilterHelper::IsUsingMask() const
+bool FileFilterHelper::IsUsingMask() const
 {
 	return m_bUseMask;
 }
@@ -372,7 +349,7 @@ String FileFilterHelper::GetFilterNameOrMask() const
 	String sFilter;
 
 	if (!IsUsingMask())
-		sFilter = GetFileFilterName(m_sFileFilterPath.c_str());
+		sFilter = GetFileFilterName(m_sFileFilterPath);
 	else
 		sFilter = m_sMask;
 
@@ -386,19 +363,19 @@ String FileFilterHelper::GetFilterNameOrMask() const
  * filter type so caller doesn't need to care about it.
  *
  * @param [in] filter File mask or filter name.
- * @return TRUE if given filter was set, FALSE if default filter was set.
- * @note If function returns FALSE, you should ask filter set with
+ * @return true if given filter was set, false if default filter was set.
+ * @note If function returns false, you should ask filter set with
  * GetFilterNameOrMask().
  */
-BOOL FileFilterHelper::SetFilter(const String &filter)
+bool FileFilterHelper::SetFilter(const String &filter)
 {
 	// If filter is empty string set default filter
 	if (filter.empty())
 	{
-		UseMask(TRUE);
+		UseMask(true);
 		SetMask(_T("*.*"));
 		SetFileFilterPath(_T(""));
-		return FALSE;
+		return false;
 	}
 
 	// Remove leading and trailing whitespace characters from the string.
@@ -407,28 +384,28 @@ BOOL FileFilterHelper::SetFilter(const String &filter)
 	// Star means we have a file extension mask
 	if (filter.find_first_of(_T("*?")) != -1)
 	{
-		UseMask(TRUE);
-		SetMask(flt.c_str());
+		UseMask(true);
+		SetMask(flt);
 		SetFileFilterPath(_T(""));
 	}
 	else
 	{
-		String path = GetFileFilterPath(flt.c_str());
+		String path = GetFileFilterPath(flt);
 		if (!path.empty())
 		{
-			UseMask(FALSE);
-			SetFileFilterPath(path.c_str());
+			UseMask(false);
+			SetFileFilterPath(path);
 		}
 		// If filter not found with given name, use default filter
 		else
 		{
-			UseMask(TRUE);
+			UseMask(true);
 			SetMask(_T("*.*"));
 			SetFileFilterPath(_T(""));
-			return FALSE;
+			return false;
 		}
 	}
-	return TRUE;
+	return true;
 }
 
 /** 
@@ -455,13 +432,13 @@ void FileFilterHelper::ReloadUpdatedFilters()
 			fileInfo.size != (*iter).fileinfo.size)
 		{
 			// Reload filter after changing it
-			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path.c_str());
+			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path);
 			
 			if (retval == FILTER_OK)
 			{
 				// If it was active filter we have to re-set it
 				if (path == selected)
-					SetFileFilterPath(path.c_str());
+					SetFileFilterPath(path);
 			}
 		}
 		iter++;
@@ -478,13 +455,13 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Program application directory
-	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
+	m_sGlobalFilterPath = env_GetProgPath() + _T("\\Filters");
 	paths_normalize(m_sGlobalFilterPath);
 	String pattern(_T("*"));
 	pattern += FileFilterExt;
-	LoadFileFilterDirPattern(m_sGlobalFilterPath.c_str(), pattern.c_str());
-	if (_tcsicmp(m_sGlobalFilterPath.c_str(), m_sUserSelFilterPath.c_str()) != 0)
-		LoadFileFilterDirPattern(m_sUserSelFilterPath.c_str(), pattern.c_str());
+	LoadFileFilterDirPattern(m_sGlobalFilterPath, pattern);
+	if (string_compare_nocase(m_sGlobalFilterPath, m_sUserSelFilterPath) != 0)
+		LoadFileFilterDirPattern(m_sUserSelFilterPath, pattern);
 }
 
 /**

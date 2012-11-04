@@ -102,7 +102,7 @@ void PropEditor::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
-	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, m_breakChars);
+	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, String(m_breakChars));
 }
 
 /** 
@@ -180,10 +180,8 @@ void PropEditor::OnEnKillfocusTabEdit()
 	
 	if (value < 1 || value > MAX_TABSIZE)
 	{
-		CString msg;
-		CString num;
-		num.Format(_T("%d"), MAX_TABSIZE);
-		LangFormatString1(msg, IDS_OPTIONS_INVALID_TABSIZE, num);
-		AfxMessageBox(msg, MB_ICONWARNING);
+		String num = string_format(_T("%d"), MAX_TABSIZE);
+		String msg = LangFormatString1(IDS_OPTIONS_INVALID_TABSIZE, num.c_str());
+		AfxMessageBox(msg.c_str(), MB_ICONWARNING);
 	}
 }

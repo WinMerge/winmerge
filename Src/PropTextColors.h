@@ -33,7 +33,7 @@ public:
 private:
 
 	SyntaxColors *m_pTempColors;
-	COLORREF m_cCustColors[COLORINDEX_COUNT];
+	COLORREF m_cCustColors[16];
 
 	//{{AFX_DATA(PropTextColors)
 	enum { IDD = IDD_PROPPAGE_COLORS_TEXT };
@@ -65,8 +65,6 @@ protected:
 	typedef enum { SET_DEFAULTS, READ_OPTIONS, LOAD_COLORS } OPERATION;
 
 	virtual BOOL OnInitDialog();
-	void LoadCustomColors();
-	void SaveCustomColors();
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	void SerializeColorsToFromScreen(OPERATION op);
 	void SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex);

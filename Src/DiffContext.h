@@ -30,7 +30,7 @@ struct DIFFOPTIONS;
 class IPluginInfos
 {
 public:
-	virtual void FetchPluginInfos(LPCTSTR filteredFilenames, 
+	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
                                       PrediffingInfo ** infoPrediffer) = 0;
 };
@@ -58,7 +58,7 @@ public:
 	CDiffContext(const PathContext & paths, int compareMethod);
 	~CDiffContext();
 
-	void UpdateVersion(DIFFITEM & di, BOOL bLeft) const;
+	void UpdateVersion(DIFFITEM & di, int nIndex) const;
 
 	/**
 	 * Get the main compare method used in this compare.
@@ -79,14 +79,14 @@ public:
 	 * Get left-side compare path.
 	 * @return full path in left-side.
 	 */
-	String GetLeftPath() const { return m_paths.GetLeft(FALSE); }
-	String GetMiddlePath() const { return m_paths.GetMiddle(FALSE); }
+	String GetLeftPath() const { return m_paths.GetLeft(false); }
+	String GetMiddlePath() const { return m_paths.GetMiddle(false); }
 	/**
 	 * Get right-side compare path.
 	 * @return full path in right-side.
 	 */
-	String GetRightPath() const { return m_paths.GetRight(FALSE); }
-	String GetPath(int nIndex) const { return m_paths.GetPath(nIndex, FALSE); }
+	String GetRightPath() const { return m_paths.GetRight(false); }
+	String GetPath(int nIndex) const { return m_paths.GetPath(nIndex, false); }
 	/**
 	 * Get left-side compare path in normalized form.
 	 * @return full path in left-side.
@@ -98,26 +98,26 @@ public:
 	 * @return full path in left-side.
 	 */
 	String GetNormalizedRight() const { return m_paths.GetRight(); }
-	String GetNormalizedPath(int nIndex) const { return m_paths.GetPath(nIndex, TRUE); }
+	String GetNormalizedPath(int nIndex) const { return m_paths.GetPath(nIndex, true); }
 	PathContext GetNormalizedPaths() const
 	{
 		PathContext paths;
 		for (int nIndex = 0; nIndex < m_paths.GetSize(); nIndex++)
-			paths.SetPath(nIndex, m_paths.GetPath(nIndex, TRUE).c_str());
+			paths.SetPath(nIndex, m_paths.GetPath(nIndex, true));
 		return paths;
 	}
 	//@}
 
 	// change an existing difference
-	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(UINT_PTR diffpos, BOOL bLeft, BOOL bRight);
-	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bMiddle, BOOL bRight);
+	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
+	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bRight);
+	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bMiddle, bool bRight);
 
-	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
+	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
 
 	// retrieve or manufacture plugin info for specified file comparison
-	void FetchPluginInfos(LPCTSTR filteredFilenames,
+	void FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
 	//@{
@@ -157,7 +157,7 @@ public:
 	 */
 	int m_nCurrentCompMethod;
 
-	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
+	bool m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
 
 	/**
@@ -190,7 +190,6 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	boost::scoped_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
-	BOOL m_bScanUnpairedDir; /** Scan into unpaired directories **/
 	CDiffWrapper *m_pDiffWrapper;
 
 private:

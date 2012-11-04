@@ -8,22 +8,20 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffFileData.cpp 7162 2010-05-15 13:14:27Z jtuc $
 
-#include "stdafx.h"
+#include "DiffFileData.h"
+#include <vector>
+#ifdef _WIN32
 #include <io.h>
-#include <tchar.h>
-#include <shlwapi.h>
+#else
+#include <sys/types.h>
+#include <unistd.h>
+#endif
 #include <boost/scoped_array.hpp>
-#include "coretypes.h"
 #include "DiffItem.h"
 #include "FileLocation.h"
-#include "Diff.h"
+#include "diff.h"
 #include "FileTransform.h"
-#include "common/unicoder.h"
-#include "AnsiConvert.h"
-#include "DiffFileData.h"
-
-
-static int f_defcp = 0; // default codepage
+#include "unicoder.h"
 
 /**
  * @brief Simple initialization of DiffFileData
@@ -46,14 +44,8 @@ DiffFileData::~DiffFileData()
 	delete [] m_inf;
 }
 
-/** @brief Allow caller to specify codepage to assume for all unknown files */
-void DiffFileData::SetDefaultCodepage(int defcp)
-{
-	f_defcp = defcp;
-}
-
 /** @brief Open file descriptors in the inf structure (return false if failure) */
-bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
+bool DiffFileData::OpenFiles(const String& szFilepath1, const String& szFilepath2)
 {
 	m_FileLocation[0].setPath(szFilepath1);
 	m_FileLocation[1].setPath(szFilepath2);
@@ -64,7 +56,7 @@ bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 }
 
 /** @brief stash away true names for display, before opening files */
-void DiffFileData::SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2)
+void DiffFileData::SetDisplayFilepaths(const String& szTrueFilepath1, const String& szTrueFilepath2)
 {
 	m_sDisplayFilepath[0] = szTrueFilepath1;
 	m_sDisplayFilepath[1] = szTrueFilepath2;
@@ -82,7 +74,7 @@ bool DiffFileData::DoOpenFiles()
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = ansiconvert_SystemCP(m_sDisplayFilepath[i]);
+		m_inf[i].name = strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
 		if (m_inf[i].name == NULL)
 			return false;
 
@@ -91,14 +83,22 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
+#ifdef _WIN32
 			m_inf[i].desc = _topen(m_FileLocation[i].filepath.c_str(),
 					O_RDONLY | O_BINARY, _S_IREAD);
+#else
+			m_inf[i].desc = open(m_FileLocation[i].filepath.c_str(), O_RDONLY);
+#endif
 		}
 		if (m_inf[i].desc < 0)
 			return false;
 
 		// Get file stats (diffutils uses these)
+#ifdef _WIN32
 		if (_fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+#else
+		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+#endif
 		{
 			return false;
 		}
@@ -117,7 +117,7 @@ bool DiffFileData::DoOpenFiles()
 /** @brief Clear inf structure to pristine */
 void DiffFileData::Reset()
 {
-	ASSERT(m_inf);
+	assert(m_inf);
 	// If diffutils put data in, have it cleanup
 	if (m_used)
 	{
@@ -137,7 +137,7 @@ void DiffFileData::Reset()
 
 		if (m_inf[i].desc > 0)
 		{
-			_close(m_inf[i].desc);
+			close(m_inf[i].desc);
 		}
 		m_inf[i].desc = 0;
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
@@ -151,12 +151,12 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 	unicoding = ucr::NONE;
 	if (fd == -1) 
 		return;
-	long tmp = _lseek(fd, 0, SEEK_SET);
+	long tmp = lseek(fd, 0, SEEK_SET);
 
 	const int max_size = 8 * 1024;
 	boost::scoped_array<unsigned char> buffer(new unsigned char[max_size]);
 
-	int bytes = _read(fd, buffer.get(), max_size);
+	int bytes = read(fd, buffer.get(), max_size);
 	bom = false;
 	unicoding = ucr::DetermineEncoding(buffer.get(), bytes, &bom);
 	switch (unicoding)
@@ -175,7 +175,7 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 			break;
 	}
 
-	_lseek(fd, tmp, SEEK_SET);
+	lseek(fd, tmp, SEEK_SET);
 }
 
 /**
@@ -183,11 +183,11 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath_Transform(BOOL bForceUTF8,
+bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
-	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer)
+	const String& filteredFilenames, PrediffingInfo * infoPrediffer)
 {
-	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
+	bool bMayOverwrite = false; // temp variable set each time it is used
 
 	if (encoding.m_unicoding && (!encoding.m_bom || encoding.m_unicoding != ucr::UCS2LE))
 	{
@@ -210,14 +210,14 @@ bool DiffFileData::Filepath_Transform(BOOL bForceUTF8,
 		// FileTransform_Prediffing returns FALSE only if the prediffer works, 
 		// but the data can not be saved to disk (no more place ??)
 		if (FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite) 
-				== FALSE)
+				== false)
 			return false;
 	}
 	else
 	{
 		// this can failed if the pointed out prediffer has a problem
 		if (FileTransform_Prediffing(filepathTransformed, *infoPrediffer, bMayOverwrite) 
-				== FALSE)
+				== false)
 			return false;
 	}
 
@@ -225,7 +225,7 @@ bool DiffFileData::Filepath_Transform(BOOL bForceUTF8,
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
-		BOOL bMayOverwrite = 0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str());
+		bool bMayOverwrite = 0 != string_compare_nocase(filepathTransformed, filepath);
 		if (!FileTransform_ToUTF8(filepathTransformed, bMayOverwrite))
 			return false;
 	}
@@ -233,7 +233,7 @@ bool DiffFileData::Filepath_Transform(BOOL bForceUTF8,
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
-		BOOL bMayOverwrite = (0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str()));
+		bool bMayOverwrite = (0 != string_compare_nocase(filepathTransformed, filepath));
 		if (!FileTransform_AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite))
 			return false;		
 	}

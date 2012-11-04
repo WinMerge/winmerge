@@ -74,7 +74,7 @@ void CTestFilterDlg::OnTestBtn()
 	CString text;
 	GetDlgItemText(IDC_TEST_TEXT, text);
 
-	BOOL passed = CheckText(text);
+	bool passed = CheckText((LPCTSTR)text);
 
 	CString result = (passed ? _T("passed") : _T("failed"));
 	text += _T(": ") + result;
@@ -100,9 +100,9 @@ void CTestFilterDlg::OnOK()
 /**
  * @brief Test text against filter.
  * @param [in] text Text to test.
- * @return TRUE if text passes the filter, FALSE otherwise.
+ * @return true if text passes the filter, FALSE otherwise.
  */
-BOOL CTestFilterDlg::CheckText(CString text) const
+bool CTestFilterDlg::CheckText(CString text) const
 {
 	CButton * IsDirButton = (CButton *)GetDlgItem(IDC_IS_DIRECTORY);
 	bool isDir = (IsDirButton->GetCheck() == BST_CHECKED);
@@ -110,11 +110,11 @@ BOOL CTestFilterDlg::CheckText(CString text) const
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
 		text.Replace('/', '\\');
-		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, (LPCTSTR)text);
 	}
 	else
 	{
-		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, (LPCTSTR)text);
 	}
 }
 

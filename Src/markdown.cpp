@@ -82,161 +82,69 @@ DATE:		BY:					DESCRIPTION:
 2008-08-27	Jochen Neubeck		Replace MFC CMap by STL std::map
 */
 
-#include "stdafx.h"
-#include <shlwapi.h> // StrToIntExW
 #include "markdown.h"
+#include "unicoder.h"
+#include <cstring>
+#include <Poco/ByteOrder.h>
+#include <Poco/NumberParser.h>
+#include <Poco/SharedMemory.h>
+#include "TFile.h"
 
-ICONV::Proxy ICONV =
-{
-	{ 0, 0, 0 },
-	"ICONV.DLL",
-	"libiconv_open",
-	"libiconv",
-	"libiconv_close",
-	"libiconvctl",
-	"libiconvlist",
-	"_libiconv_version",
-	(HMODULE)0
-};
+#define MAKEWORD(a, b)      ((unsigned short)(((unsigned char)((unsigned)(a) & 0xff)) | ((unsigned short)((unsigned char)((unsigned)(b) & 0xff))) << 8))
+#define MAKELONG(a, b)      ((unsigned)(((unsigned short)((unsigned)(a) & 0xffff)) | ((unsigned)((unsigned short)((unsigned)(b) & 0xffff))) << 16))
+#define LOWORD(l)           ((unsigned short)((unsigned)(l) & 0xffff))
+#define HIWORD(l)           ((unsigned short)((unsigned)(l) >> 16))
+#define LOBYTE(w)           ((unsigned char)((unsigned)(w) & 0xff))
+#define HIBYTE(w)           ((unsigned char)((unsigned)(w) >> 8))
 
-CMarkdown::Converter::Converter(const char *tocode, const char *fromcode)
-{
-	handle = INVALID_HANDLE_VALUE;
-	if (tocode && fromcode) // && strcmp(tocode, fromcode))
-	{
-		handle = ICONV->iconv_open(tocode, fromcode);
-	}
-}
+using Poco::ByteOrder;
+using Poco::NumberParser;
+using Poco::SharedMemory;
+using Poco::File;
+using Poco::UInt16;
 
-CMarkdown::Converter::~Converter()
-{
-	if (handle != INVALID_HANDLE_VALUE)
-	{
-		ICONV->iconv_close(handle);
-	}
-}
-
-size_t CMarkdown::Converter::iconv(const char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft) const
-{
-	return handle != INVALID_HANDLE_VALUE ? ICONV->iconv(handle, inbuf, inbytesleft, outbuf, outbytesleft) : -1;
-}
-
-size_t CMarkdown::Converter::Convert(const char *S, size_t s, char *D, size_t d) const
-{
-	// reset iconv internal state and tell if converter is valid
-	if (iconv(0, 0, 0, 0) != -1)
-	{
-		if (D == NULL)
-		{
-			while (s)
-			{
-				char buffer[100];
-				char *C = buffer;
-				size_t c = sizeof buffer;
-				if (iconv(&S, &s, &C, &c) == -1 && c == sizeof buffer)
-				{
-					// some error other than 'outbuf exhausted': stop here
-					break;
-				}
-				d += sizeof buffer - c;
-			}
-		}
-		else
-		{
-			iconv(&S, &s, &D, &d); // convert entire string
-		}
-	}
-	else
-	{
-		d = 0;
-	}
-	return d;
-}
-
-template<> UINT AFXAPI HashKey(BSTR B)
-{
-	return MAKELONG(B[0], lstrlenW(B));
-}
+#ifndef _WIN32
+#  include <strings.h>
+#  define _memicmp strcasecmp
+#endif
 
 void CMarkdown::Load(EntityMap &entityMap)
 {
-	entityMap[L"amp"] = L"&";
-	entityMap[L"quot"] = L"\"";
-	entityMap[L"apos"] = L"'";
-	entityMap[L"lt"] = L"<";
-	entityMap[L"gt"] = L">";
+	entityMap["amp"] = "&";
+	entityMap["quot"] = "\"";
+	entityMap["apos"] = "'";
+	entityMap["lt"] = "<";
+	entityMap["gt"] = ">";
 }
 
-void CMarkdown::Load(EntityMap &entityMap, const Converter &converter)
+void CMarkdown::Load(EntityMap &entityMap, int dummy)
 {
 	while (Move("!ENTITY"))
 	{
-		HSTR hstrValue = 0;
-		if (HSTR hstrKey = GetAttribute(0, &hstrValue))
+		std::string hstrValue;
+		std::string hstrKey = GetAttribute(0, &hstrValue);
+		if (!hstrKey.empty())
 		{
-			String strKey = hstrKey->Convert(converter);
-			String strValue = hstrValue->Convert(converter);
-			entityMap[strKey.B] = strValue.B;
+			entityMap[hstrKey] = hstrValue;
 		}
 	}
 }
 
-CMarkdown::HSTR CMarkdown::_HSTR::Unicode(UINT codepage)
+std::string CMarkdown::Resolve(const EntityMap &map, const std::string& v)
 {
-	HSTR H = this;
-	if (codepage != 1200) // 1200 means 'no conversion'
-	{
-		int a = SysStringByteLen(B);
-		int w = MultiByteToWideChar(codepage, 0, A, a, 0, 0);
-		H = (HSTR)SysAllocStringLen(0, w);
-		MultiByteToWideChar(codepage, 0, A, a, H->W, w);
-		SysFreeString(B);
-	}
-	return H;
-}
-
-CMarkdown::HSTR CMarkdown::_HSTR::Octets(UINT codepage)
-{
-	HSTR H = this;
-	if (codepage != 1200) // 1200 means 'no conversion'
-	{
-		int w = SysStringLen(B);
-		int a = WideCharToMultiByte(codepage, 0, W, w, 0, 0, 0, 0);
-		H = (HSTR)SysAllocStringByteLen(0, a);
-		WideCharToMultiByte(codepage, 0, W, w, H->A, a, 0, 0);
-		SysFreeString(B);
-	}
-	return H;
-}
-
-CMarkdown::HSTR CMarkdown::_HSTR::Convert(const Converter &converter)
-{
-	HSTR H = this;
-	size_t s = SysStringByteLen(B);
-	if (size_t d = converter.Convert(A, s, 0, 0))
-	{
-		H = (HSTR)SysAllocStringByteLen(0, d);
-		converter.Convert(A, s, H->A, d);
-		SysFreeString(B);
-	}
-	return H;
-}
-
-CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const EntityMap &map)
-{
-	HSTR H = this;
-	BSTR p, q = H->B;
-	while ((p = StrChrW(q, '&')) != NULL && (q = StrChrW(p, ';')) != NULL)
+	std::string ret(v);
+	char *p, *q = &ret[0];
+	while ((p = strchr(q, '&')) != NULL && (q = strchr(p, ';')) != NULL)
 	{
 		*q = '\0';
-		OLECHAR *key = p + 1;
-		std::wstring value;
+		char *key = p + 1;
+		std::string value;
 		if (*key == '#')
 		{
-			int ordinal = '?';
+			unsigned ordinal = '?';
 			*key = '0';
-			if (StrToIntExW(key, STIF_SUPPORT_HEX, &ordinal))
-				value.assign(1, (OLECHAR)ordinal);
+			if (NumberParser::tryParseHex(key, ordinal))
+				value.assign(1, ordinal);
 			*key = '#';
 		}
 		else
@@ -249,95 +157,74 @@ CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const EntityMap &map)
 		++q;
 		if (int cchValue = value.length())
 		{
-			int i = p - H->B;
-			int j = q - H->B;
+			int i = p - &ret[0];
+			int j = q - &ret[0];
 			int cchKey = q - p;
 			if (int cchGrow = cchValue - cchKey)
 			{
-				BSTR B = H->B;
-				int b = SysStringLen(B);
-				size_t cbMove = (b - j) * sizeof(OLECHAR);
+				int b = ret.length();
+				size_t cbMove = (b - j) * sizeof(char);
 				if (cchGrow < 0)
 				{
 					memmove(q + cchGrow, q, cbMove);
 				}
-				if (!SysReAllocStringLen(&B, B, b + cchGrow))
-				{
-					continue;
-				}
-				H = (HSTR)B;
-				p = H->B + i;
-				q = H->B + j;
+				ret.resize(b + cchGrow);
+				p = &ret[0] + i;
+				q = &ret[0] + j;
 				if (cchGrow > 0)
 				{
 					memmove(q + cchGrow, q, cbMove);
 				}
 			}
-			memcpy(p, value.c_str(), cchValue * sizeof(OLECHAR));
+			memcpy(p, value.c_str(), cchValue * sizeof(char));
 			q = p + cchValue;
 		}
 	}
-	return H;
+	return ret;
 }
 
-CMarkdown::HSTR CMarkdown::_HSTR::Entities()
+std::string CMarkdown::Entities(const std::string& v)
 {
-	HSTR H = this;
-	BSTR p, q = H->B;
+	std::string ret(v);
+	char *p, *q = &ret[0];
 	while (*(p = q))
 	{
-		OLECHAR *value = 0;
+		char *value = 0;
 		switch (*p)
 		{
-		case '&': value = L"&amp;"; break;
-		case '"': value = L"&quot;"; break;
-		case '\'': value = L"&apos;"; break;
-		case '<' : value = L"&lt;"; break;
-		case '>' : value = L"&gt;"; break;
+		case '&': value = "&amp;"; break;
+		case '"': value = "&quot;"; break;
+		case '\'': value = "&apos;"; break;
+		case '<' : value = "&lt;"; break;
+		case '>' : value = "&gt;"; break;
 		}
 		++q;
 		if (value)
 		{
-			int i = p - H->B;
-			int j = q - H->B;
-			int cchValue = lstrlenW(value);
+			int i = p - &ret[0];
+			int j = q - &ret[0];
+			int cchValue = strlen(value);
 			if (int cchGrow = cchValue - 1)
 			{
-				BSTR B = H->B;
-				int b = SysStringLen(B);
-				size_t cbMove = (b - j) * sizeof(OLECHAR);
+				int b = v.length();
+				size_t cbMove = (b - j) * sizeof(char);
 				if (cchGrow < 0)
 				{
 					memmove(q + cchGrow, q, cbMove);
 				}
-				if (!SysReAllocStringLen(&B, B, b + cchGrow))
-				{
-					continue;
-				}
-				H = (HSTR)B;
-				p = H->B + i;
-				q = H->B + j;
+				ret.resize(b + cchGrow);
+				p = &ret[0] + i;
+				q = &ret[0] + j;
 				if (cchGrow > 0)
 				{
 					memmove(q + cchGrow, q, cbMove);
 				}
 			}
-			memcpy(p, value, cchValue * sizeof(OLECHAR));
+			memcpy(p, value, cchValue * sizeof(char));
 			q = p + cchValue;
 		}
 	}
-	return H;
-}
-
-CMarkdown::HSTR CMarkdown::_HSTR::Trim(const OLECHAR *pszTrimChars)
-{
-	HSTR H = this;
-	BSTR B = H->B;
-	if (StrTrimW(B, pszTrimChars) && SysReAllocStringLen(&B, B, lstrlenW(B))) // 1200 means 'no conversion'
-	{
-		H = (HSTR)B;
-	}
-	return H;
+	return ret;
 }
 
 //This is a hopefully complete list of the 36 (?) (potentially) unbalanced HTML
@@ -346,7 +233,7 @@ CMarkdown::HSTR CMarkdown::_HSTR::Trim(const OLECHAR *pszTrimChars)
 //It should include all tags from tag_defs[] array which are flagged either
 //CM_EMPTY (no closing tag) or CM_OPT (optional closing tag).
 
-static const char htmlUTags[]
+static const char htmlUTags[] = 
 (
 	"area\0"
 	"base\0"
@@ -409,7 +296,7 @@ CMarkdown::operator bool()
 
 int CMarkdown::FindTag(const char *tags, const char *markup)
 {
-	while (int len = lstrlenA(tags))
+	while (int len = strlen(tags))
 	{
 		unsigned char c;
 		if
@@ -620,7 +507,7 @@ bool CMarkdown::Push()
 	return false;
 }
 
-CMarkdown::HSTR CMarkdown::GetTagName()
+std::string CMarkdown::GetTagName()
 {
 	const char *p = first;
 	const char *q = first;
@@ -639,10 +526,10 @@ CMarkdown::HSTR CMarkdown::GetTagName()
 			}
 		}
 	}
-	return (HSTR)SysAllocStringByteLen(p, q - p);
+	return std::string(p, q - p);
 }
 
-CMarkdown::HSTR CMarkdown::GetTagText()
+std::string CMarkdown::GetTagText()
 {
 	const char *p = first, *q = first;
 	if (q < ahead && (p = ++q) < ahead && (*q != '!' || ++q < ahead))
@@ -671,10 +558,10 @@ CMarkdown::HSTR CMarkdown::GetTagText()
 			}
 		}
 	}
-	return (HSTR)SysAllocStringByteLen(p, q - p);
+	return std::string(p, q - p);
 }
 
-CMarkdown::HSTR CMarkdown::GetInnerText()
+std::string CMarkdown::GetInnerText()
 {
 	Scan();
 	const char *p = first;
@@ -709,10 +596,10 @@ CMarkdown::HSTR CMarkdown::GetInnerText()
 	{
 		++p;
 	}
-	return (HSTR)SysAllocStringByteLen(p, q - p);
+	return std::string(p, q - p);
 }
 
-CMarkdown::HSTR CMarkdown::GetOuterText()
+std::string CMarkdown::GetOuterText()
 {
 	Scan();
 	const char *q = upper;
@@ -723,7 +610,7 @@ CMarkdown::HSTR CMarkdown::GetOuterText()
 			++q;
 		}
 	}
-	return (HSTR)SysAllocStringByteLen(lower, q - first);
+	return std::string(lower, q - first);
 }
 
 class CMarkdown::Token
@@ -772,9 +659,8 @@ int CMarkdown::Token::IsSpecial(const char *p, const char *ahead)
 	return special;
 }
 
-CMarkdown::HSTR CMarkdown::GetAttribute(const char *key, const void *pv)
+std::string CMarkdown::GetAttribute(const char *key, std::string *pv)
 {
-	typedef HSTR *strName;
 	const char *name = 0;
 	int cname = 0;
 	const char *value = 0;
@@ -825,12 +711,12 @@ CMarkdown::HSTR CMarkdown::GetAttribute(const char *key, const void *pv)
 			if (key == 0)
 			{
 				lower = p;
-				*strName(pv) = (HSTR)SysAllocStringByteLen(value, cvalue);
-				return (HSTR)SysAllocStringByteLen(name, cname);
+				*pv = std::string(value, cvalue);
+				return std::string(name, cname);
 			}
 			if (memcmp(name, key, cname) == 0 && key[cname] == '\0')
 			{
-				return (HSTR)SysAllocStringByteLen(value, cvalue);
+				return std::string(value, cvalue);
 			}
 			name = value = 0;
 		}
@@ -838,37 +724,18 @@ CMarkdown::HSTR CMarkdown::GetAttribute(const char *key, const void *pv)
 	if (key == 0)
 	{
 		lower = p;
-		return 0;
+		return "";
 	}
-	return pv ? (HSTR)SysAllocStringByteLen((const char *)pv, lstrlenA((const char *)pv)) : 0;
+	return pv ? *pv : "";
 }
 
-LPVOID NTAPI CMarkdown::FileImage::MapFile(HANDLE hFile, DWORD dwSize)
-{
-	DWORD flProtect = PAGE_READONLY;
-	DWORD dwDesiredAccess = FILE_MAP_READ;
-	if (hFile == INVALID_HANDLE_VALUE)
-	{
-		flProtect = PAGE_READWRITE;
-		dwDesiredAccess = FILE_MAP_READ | FILE_MAP_WRITE;
-	}
-	LPVOID pMapping = 0;
-	HANDLE hMapping = CreateFileMapping(hFile, NULL, flProtect, 0, dwSize, NULL);
-	if (hMapping)
-	{
-		pMapping = MapViewOfFile(hMapping, dwDesiredAccess, 0, 0, dwSize);
-		CloseHandle(hMapping);
-	}
-	return pMapping;
-}
-
-int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
+int CMarkdown::FileImage::GuessByteOrder(unsigned dwBOM)
 {
 	int nByteOrder = 0;
 	if (dwBOM)
 	{
-		WORD wBOM = LOWORD(dwBOM);
-		WORD wBOMhigh = HIWORD(dwBOM);
+		unsigned short wBOM = LOWORD(dwBOM);
+		unsigned short wBOMhigh = HIWORD(dwBOM);
 		nByteOrder = 2;
 		if (wBOM == 0 || wBOMhigh == 0)
 		{
@@ -881,7 +748,7 @@ int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
 		}
 		else if (LOBYTE(wBOM) == 0 || HIBYTE(wBOM) == 0)
 		{
-			BYTE cBOM = LOBYTE(wBOM) | HIBYTE(wBOM);
+			unsigned char cBOM = LOBYTE(wBOM) | HIBYTE(wBOM);
 			nByteOrder += ((char *)memchr(&dwBOM, cBOM, 4) - (char *)&dwBOM);
 		}
 		else if ((dwBOM & 0xFFFFFF) == 0xBFBBEF)
@@ -896,55 +763,53 @@ int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
 	return nByteOrder;
 }
 
-CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
-: pImage(NULL), cbImage(0), nByteOrder(0)
+CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
+: pImage(NULL), cbImage(0), nByteOrder(0), m_pSharedMemory(NULL), pCopy(NULL)
 {
-	HANDLE hFile = 0;
 	if (flags & Mapping)
 	{
-		pImage = LPVOID(path);
+		pImage = (void *)(path);
 		cbImage = trunc;
 	}
 	else
 	{
-		hFile = flags & Handle ? HANDLE(path) :
-			CreateFile(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
-		if (hFile != INVALID_HANDLE_VALUE)
+		try
 		{
-			cbImage = GetFileSize(hFile, 0);
-			if (cbImage != INVALID_FILE_SIZE)
+			TFile file(path);
+
+			cbImage = (size_t)file.getSize();
+
+			if (trunc && cbImage > trunc)
 			{
-				if (trunc && cbImage > trunc)
-				{
-					cbImage = trunc;
-				}
-				pImage = MapFile(hFile, cbImage);
-				if (!(flags & Handle))
-				{
-					CloseHandle(hFile);
-				}
+				cbImage = trunc;
 			}
+			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_WRITE);
+			pImage = m_pSharedMemory->begin();
+		}
+		catch (...)
+		{
 		}
 	}
 	if (pImage == NULL)
 	{
 		cbImage = 0;
 	}
-	else if (cbImage >= 4 && (flags & Octets & (nByteOrder = GuessByteOrder(*(LPDWORD)pImage))))
+	else if (cbImage >= 4 && (flags & Octets & (nByteOrder = GuessByteOrder(*(unsigned *)pImage))))
 	{
-		LPVOID pCopy;
 		switch (nByteOrder)
 		{
 		case 2 + 1:
 		case 2 + 1 + 8:
 			// big endian: swab first
 			cbImage &= ~1UL;
-			pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				_swab((char *)pImage, (char *)pCopy, cbImage);
+				for (int i = 0; i < cbImage / 2; ++i)
+					*((UInt16 *)pImage + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pCopy + i));
 			}
-			UnmapViewOfFile(pImage);
+
+			delete m_pSharedMemory;
 			pImage = pCopy;
 			if (pImage)
 			{
@@ -952,19 +817,23 @@ CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
 			case 2 + 0 + 8:
 				// little endian
 				int cchImage = cbImage / 2;
-				LPWCH pchImage = (LPWCH)pImage;
+				UInt16 *pchImage = (UInt16 *)pImage;
 				if (nByteOrder & 8)
 				{
 					++pchImage;
 					--cchImage;
 				}
-				cbImage = WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, 0, 0, 0, 0);
-				pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+				cbImage = ucr::Utf8len_of_string(pchImage, cchImage);
+				pCopy = new unsigned char[cbImage];
 				if (pCopy)
 				{
-					WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, (LPCH)pCopy, cbImage, 0, 0);
+					UInt16 *pu16;
+					unsigned char *pu8;
+					for (pu16 = (UInt16 *)pchImage, pu8 = (unsigned char *)pCopy; pu16 < pchImage + cchImage; ++pu16)
+						pu8 += ucr::Ucs4_to_Utf8(*pu16, pu8);
 				}
-				UnmapViewOfFile(pImage);
+				delete m_pSharedMemory;
+				m_pSharedMemory = NULL;
 				pImage = pCopy;
 			}
 			break;
@@ -974,12 +843,14 @@ CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
 		case 4 + 2 + 8:
 			// odd word endianness: swab first
 			cbImage &= ~3UL;
-			pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+			pCopy = new unsigned char[cbImage];
 			if (pCopy)
 			{
-				_swab((char *)pImage, (char *)pCopy, cbImage);
+				for (int i = 0; i < cbImage / 2; ++i)
+					*((UInt16 *)pImage + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pCopy + i));
 			}
-			UnmapViewOfFile(pImage);
+			delete m_pSharedMemory;
+			m_pSharedMemory = NULL;
 			pImage = pCopy;
 			if (pImage)
 			{
@@ -988,21 +859,42 @@ CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
 			case 4 + 3:
 			case 4 + 3 + 8:
 				int cchImage = cbImage;
-				LPCH pchImage = (LPCH)pImage;
+				char *pchImage = (char *)pImage;
 				if (nByteOrder & 8)
 				{
 					pchImage += 4;
 					cchImage -= 4;
 				}
-				Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
-				cbImage = converter.Convert(pchImage, cchImage, 0, 0);
-				pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-				if (pCopy)
+				unsigned uch;
+				cbImage = 0;
+				for (int i = 0; i < cchImage; i += 4)
 				{
-					converter.Convert(pchImage, cchImage, (LPCH)pCopy, cbImage);
+					memcpy(&uch, pchImage + i, 4);
+					if (nByteOrder & 2)
+						uch = ByteOrder::fromBigEndian(uch);
+					else
+						uch = ByteOrder::fromLittleEndian(uch);
+					cbImage += ucr::Utf8len_fromCodepoint(uch);
 				}
-				UnmapViewOfFile(pImage);
-				pImage = pCopy;
+				void *pCopy2 = new unsigned char[cbImage];
+				if (pCopy2)
+				{
+					cbImage = 0;
+					for (int i = 0; i < cchImage; i += 4)
+					{
+						memcpy(&uch, pchImage + i, 4);
+						if (nByteOrder & 2)
+							uch = ByteOrder::fromBigEndian(uch);
+						else
+							uch = ByteOrder::fromLittleEndian(uch);
+						cbImage += ucr::Ucs4_to_Utf8(uch, (unsigned char *)pCopy2 + cbImage);
+					}
+				}
+				delete m_pSharedMemory;
+				m_pSharedMemory = NULL;
+				pImage = pCopy2;
+				delete pCopy;
+				pCopy = pCopy2;
 			}
 			break;
 		}
@@ -1011,8 +903,6 @@ CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
 
 CMarkdown::FileImage::~FileImage()
 {
-	if (pImage)
-	{
-		UnmapViewOfFile(pImage);
-	}
+	delete m_pSharedMemory;
+	delete pCopy;
 }

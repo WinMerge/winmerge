@@ -26,14 +26,15 @@
 // ID line follows -- this is updated by SVN
 // $Id: FileOrFolderSelect.cpp 6569 2009-03-15 14:33:03Z kimmov $
 
-#include "stdafx.h"
+#include <windows.h>
+#include <shlobj.h>
 #include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Environment.h"
 #include "FileOrFolderSelect.h"
-#include "coretools.h"
 #include "paths.h"
-#include "Merge.h"
+#include "MergeApp.h"
+#include "resource.h"
 
 // VC 6 headers don't define these constants for folder browse dialog
 // so define them here. Copied from shlobj.h
@@ -73,15 +74,15 @@ static String LastSelectedFolder;
  * modality problems with this. Dialog can be lost behind other windows!
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
-BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
-		UINT titleid /*=0*/, UINT filterid /*=0*/,
+BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
+		UINT titleid /*=-1*/, UINT filterid /*=0*/,
 		BOOL is_open /*=TRUE*/, LPCTSTR defaultExtension /*=NULL*/)
 {
-	path.Empty(); // Clear output param
+	path.clear(); // Clear output param
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	CString sSelectedFile;
+	TCHAR sSelectedFile[MAX_PATH];
 
 	// check if specified path is a file
 	if (initialPath && initialPath[0])
@@ -92,18 +93,17 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
 		{
 			String temp;
-			SplitFilename(initialPath, 0, &temp, 0);
-			sSelectedFile = temp.c_str();
+			paths_SplitFilename(initialPath, 0, &temp, 0);
+			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
 
-	if (parent == NULL)
-		parent = AfxGetMainWnd()->GetSafeHwnd();
-	
 	if (!filterid)
 		filterid = IDS_ALLFILES;
-	String title = theApp.LoadString(titleid);
-	String filters = theApp.LoadString(filterid);
+	if (!titleid)
+		titleid = IDS_OPEN_TITLE;
+	String title = LoadResString(titleid);
+	String filters = LoadResString(filterid);
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
@@ -117,7 +117,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
-	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
+	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
@@ -132,7 +132,6 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 	else
 		bRetVal = GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
-	sSelectedFile.ReleaseBuffer();
 
 	if (bRetVal)
 		path = sSelectedFile;
@@ -148,7 +147,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
  * @param [in] hwndOwner Handle to owner window or NULL
  * @return TRUE if valid folder selected (not cancelled)
  */
-BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/, 
+BOOL SelectFolder(String& path, LPCTSTR root_path /*=NULL*/, 
 			UINT titleid /*=0*/, 
 			HWND hwndOwner /*=NULL*/) 
 {
@@ -157,7 +156,7 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 	LPITEMIDLIST pidl;
 	TCHAR szPath[MAX_PATH] = {0};
 	BOOL bRet = FALSE;
-	String title = theApp.LoadString(titleid);
+	String title = LoadResString(titleid);
 	if (root_path == NULL)
 		LastSelectedFolder.clear();
 	else
@@ -204,12 +203,12 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	}
 	else if (uMsg == BFFM_VALIDATEFAILED)
 	{
-		CString strMessage = (TCHAR *)lParam;
+		String strMessage = (TCHAR *)lParam;
 		strMessage += _T("フォルダは存在しません。作成しますか?");
-		int answer = MessageBox(hwnd, strMessage, _T("フォルダの作成"), MB_YESNO);
+		int answer = MessageBox(hwnd, strMessage.c_str(), _T("フォルダの作成"), MB_YESNO);
 		if (answer == IDYES)
 		{
-			if (!paths_CreateIfNeeded(CString((TCHAR*)lParam)))
+			if (!paths_CreateIfNeeded((TCHAR*)lParam))
 			{
 				MessageBox(hwnd, _T("フォルダの作成に失敗しました"), _T("フォルダの作成"), MB_OK | MB_ICONWARNING);
 			}
@@ -233,13 +232,13 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
  * @param [in] initialPath Initial file or folder shown/selected.
  * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
  */
-BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/)
+BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/)
 {
-	String title = theApp.LoadString(IDS_OPEN_TITLE);
+	String title = LoadResString(IDS_OPEN_TITLE);
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	CString sSelectedFile;
+	TCHAR sSelectedFile[MAX_PATH];
 
 	// check if specified path is a file
 	if (initialPath && initialPath[0])
@@ -250,31 +249,28 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
 		{
 			String temp;
-			SplitFilename(initialPath, 0, &temp, 0);
-			sSelectedFile = temp.c_str();
+			paths_SplitFilename(initialPath, 0, &temp, 0);
+			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
-
-	if (parent == NULL)
-		parent = AfxGetMainWnd()->GetSafeHwnd();
 
 	int filterid = IDS_ALLFILES;
 
 	if (!filterid)
 		filterid = IDS_ALLFILES;
 
-	String filters = theApp.LoadString(filterid);
+	String filters = LoadResString(filterid);
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
 	LPTSTR filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
-	String dirSelTag = theApp.LoadString(IDS_DIRSEL_TAG);
+	String dirSelTag = LoadResString(IDS_DIRSEL_TAG);
 
 	// Set initial filename to folder selection tag
 	dirSelTag += _T("."); // Treat it as filename
-	sSelectedFile = dirSelTag.c_str(); // What is assignment above good for?
+	lstrcpy(sSelectedFile, dirSelTag.c_str()); // What is assignment above good for?
 
 	OPENFILENAME_NT4 ofn;
 	memset(&ofn, 0, sizeof(ofn));
@@ -283,7 +279,7 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
-	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
+	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title.c_str();
@@ -291,20 +287,18 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
 
 	BOOL bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
-	// common file dialog populated sSelectedFile variable's buffer
-	sSelectedFile.ReleaseBuffer();
 
 	if (bRetVal)
 	{
 		path = sSelectedFile;
 		struct _stati64 statBuffer;
-		int nRetVal = _tstati64(path, &statBuffer);
+		int nRetVal = _tstati64(path.c_str(), &statBuffer);
 		if (nRetVal == -1)
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
-			String folder = GetPathOnly(sSelectedFile);
-			path.Format(_T("%s\\"), folder.c_str());
+			String folder = paths_GetPathOnly(sSelectedFile);
+			path = folder + _T("\\");
 		}
 	}
 	return bRetVal;

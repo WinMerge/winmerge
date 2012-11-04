@@ -7,9 +7,8 @@
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
-#include "windows.h"
 #include "varprop.h"
-#include "assert.h"
+#include <cassert>
 
 namespace varprop
 {
@@ -92,7 +91,7 @@ void VariantValue::SetFloat(double v)
  * @brief Set string value.
  * @param [in] sz String value to set. Can be a NULL.
  */
-void VariantValue::SetString(LPCTSTR sz)
+void VariantValue::SetString(const TCHAR *sz)
 {
 	Clear();
 	m_vtype = VT_STRING;
@@ -104,7 +103,7 @@ void VariantValue::SetString(LPCTSTR sz)
  * @brief Set string value.
  * @param [in] sz String value to set.
  */
-void VariantValue::SetString(String sz)
+void VariantValue::SetString(const String& sz)
 {
 	m_svalue = sz;
 	m_vtype = VT_STRING;

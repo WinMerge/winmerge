@@ -29,7 +29,7 @@
 #include "AboutDlg.h"
 #include "version.h"
 #include "paths.h"
-#include "coretools.h"
+#include "Environment.h"
 
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
@@ -70,7 +70,7 @@ BOOL CAboutDlg::OnInitDialog()
 
 	CVersionInfo version(AfxGetResourceHandle());
 	String sVersion = version.GetProductVersion();
-	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion.c_str());
+	m_strVersion = LangFormatString1(IDS_VERSION_FMT, sVersion.c_str()).c_str();
 
 #ifdef _UNICODE
 	m_strVersion += _T(" ");
@@ -89,8 +89,8 @@ BOOL CAboutDlg::OnInitDialog()
 	String sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.empty())
 	{
-		LangFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT,
-				sPrivateBuild.c_str());
+		m_strPrivateBuild = LangFormatString1(IDS_PRIVATEBUILD_FMT,
+			sPrivateBuild.c_str()).c_str();
 	}
 
 	String copyright = version.GetLegalCopyright();
@@ -109,12 +109,12 @@ BOOL CAboutDlg::OnInitDialog()
  */
 void CAboutDlg::OnBnClickedOpenContributors()
 {
-	String defPath = GetModulePath();
+	String defPath = env_GetProgPath();
 	// Don't add quotation marks yet, CFile doesn't like them
 	String docPath = defPath + ContributorsPath;
 	HINSTANCE ret = 0;
 	
-	if (paths_DoesPathExist(docPath.c_str()) == IS_EXISTING_FILE)
+	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
 	{
 		// Now, add quotation marks so ShellExecute() doesn't fail if path
 		// includes spaces

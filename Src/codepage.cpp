@@ -24,69 +24,19 @@
 // RCS ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
-#include "Merge.h" // for theApp
+#include <windows.h>
 #include "codepage.h"
-#include "DirScan.h" // for DirScan_InitializeDefaultCodepage
-#include "unicoder.h"
 #include <map>
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+#include <cassert>
+#include <tchar.h>
 
 using std::map;
 
 static void initialize();
 
-static int f_bInitialized = false;
-
 // map number to bit code
 enum { CP_SUPPORTED_FLAG=0x01, CP_INSTALLED_FLAG=0x10 };
 static map<int, int> f_codepage_status;
-
-/**
- * @brief Update the appropriate default codepage
- */
-void updateDefaultCodepage(int cpDefaultMode, int customCodepage)
-{
-	int wLangId;
-	switch (cpDefaultMode)
-	{
-		case 0:
-			ucr::setDefaultCodepage(GetACP());
-			break;
-		case 1:
-			TCHAR buff[32];
-			wLangId = theApp.GetLangId();
-			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
-				ucr::setDefaultCodepage(_ttol(buff));
-			else
-				ucr::setDefaultCodepage(GetACP());
-			break;
-		case 2:
-			ucr::setDefaultCodepage(customCodepage);
-			break;
-		default:
-			// no other valid option
-			ASSERT (0);
-			ucr::setDefaultCodepage(GetACP());
-	}
-
-	// Set default codepage
-	DirScan_InitializeDefaultCodepage();
-}
-
-
-/**
- * @brief Get appropriate default codepage 
- */
-int getDefaultCodepage()
-{
-	return ucr::getDefaultCodepage();
-}
 
 /**
  * @brief Callback used by initializeCodepages
@@ -117,9 +67,9 @@ static BOOL CALLBACK EnumSupportedCodePagesProc(LPTSTR lpCodePageString)
 /**
  * @brief Load information about codepages into local cache
  */
-static void initializeCodepageStatuses()
+static void initialize()
 {
-	EnumSystemCodePages(EnumInstalledCodePagesProc,  CP_INSTALLED);
+	EnumSystemCodePages(EnumInstalledCodePagesProc, CP_INSTALLED);
 	EnumSystemCodePages(EnumSupportedCodePagesProc, CP_SUPPORTED);
 }
 
@@ -128,19 +78,14 @@ static void initializeCodepageStatuses()
  */
 bool isCodepageInstalled(int codepage)
 {
-	initialize();
-    // the following line will insert an extra element in the map if not already present
+	static int f_bInitialized = false;
+	if (!f_bInitialized)
+	{
+		initialize();
+		f_bInitialized = true;
+	}
+
+	// the following line will insert an extra element in the map if not already present
     // but its value will be 0 which means not installed nor supported
 	return (f_codepage_status[codepage] & CP_INSTALLED_FLAG) == CP_INSTALLED_FLAG;
 }
-
-/**
- * @brief Initialize all local information stores (ie, maps)
- */
-static void initialize()
-{
-	if (f_bInitialized) return;
-	initializeCodepageStatuses();
-	f_bInitialized = true;
-}
-

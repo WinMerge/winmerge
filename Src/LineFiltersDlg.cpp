@@ -172,8 +172,8 @@ void LineFiltersDlg::OnOK()
 
 	for (int i = 0; i < m_filtersList.GetItemCount(); i++)
 	{
-		CString text = m_filtersList.GetItemText(i, 0);
-		BOOL enabled = m_filtersList.GetCheck(i);
+		String text = m_filtersList.GetItemText(i, 0);
+		bool enabled = !!m_filtersList.GetCheck(i);
 
 		m_pList->AddFilter(text, enabled);
 	}

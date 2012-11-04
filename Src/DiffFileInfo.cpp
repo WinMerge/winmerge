@@ -22,8 +22,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
 #include "DiffFileInfo.h"
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include "DirItem.h"
 #include "UnicodeString.h"
 
@@ -36,6 +38,7 @@
 String DiffFileFlags::ToString() const
 {
 	String sflags;
+#ifdef _WIN32
 	if (attributes & FILE_ATTRIBUTE_READONLY)
 		sflags += _T("R");
 	if (attributes & FILE_ATTRIBUTE_HIDDEN)
@@ -44,7 +47,7 @@ String DiffFileFlags::ToString() const
 		sflags += _T("S");
 	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
 		sflags += _T("A");
-
+#endif
 	if ((coding & coding_mask) == UTF_8)
 		sflags += _T("8");
 	if ((coding & coding_mask) == UCS_2BE)

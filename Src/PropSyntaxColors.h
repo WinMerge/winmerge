@@ -58,8 +58,6 @@ protected:
 	afx_msg void OnBnClickedEcolorUser1Bold();
 	afx_msg void OnBnClickedEcolorUser2Bold();
 
-	void LoadCustomColors();
-	void SaveCustomColors();
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	int GetCheckVal(UINT nColorIndex);
 	void UpdateBoldStatus(CButton &btn, UINT colorIndex);
@@ -96,6 +94,6 @@ private:
 	CButton m_btnUser2Bold;
 
 	SyntaxColors *m_pTempColors;
-	COLORREF m_cCustColors[COLORINDEX_COUNT];
+	COLORREF m_cCustColors[16];
 };
 #endif // _PROP_SYNTAX_COLORS_H_

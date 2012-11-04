@@ -7,21 +7,21 @@
 // ID line follows -- this is updated by SVN
 // $Id: codepage_detect.cpp 7172 2010-05-19 12:57:18Z jtuc $
 
-#include "StdAfx.h"
-#include <shlwapi.h>
-#include <boost/scoped_ptr.hpp>
 #include "codepage_detect.h"
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#include <boost/scoped_ptr.hpp>
 #include "unicoder.h"
 #include "codepage.h"
 #include "charsets.h"
-#include "markdown.h"
 #include "FileTextEncoding.h"
-#include "Utf8FileDetect.h"
+#include "paths.h"
+#include "markdown.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+#ifdef _WIN32
+#  define strcasecmp(a, b) stricmp((a), (b))
+#  define strncasecmp(a, b, n) strnicmp((a), (b), (n))
 #endif
 
 /** @brief Buffer size used in this file. */
@@ -44,9 +44,9 @@ static const char *f_wincp_prefixes[] =
  */
 static const char *EatPrefix(const char *text, const char *prefix)
 {
-	int len = strlen(prefix);
+	size_t len = strlen(prefix);
 	if (len)
-		if (_memicmp(text, prefix, len) == 0)
+		if (strncasecmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -65,7 +65,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 		char *ahead = 0;
 		unsigned codepage = strtol(encodingName, &ahead, 10);
 		int i = 0;
-		while (*ahead != '\0' && i < countof(f_wincp_prefixes))
+		while (*ahead != '\0' && i < sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]))
 		{
 			if (const char *remainder = EatPrefix(encodingName, f_wincp_prefixes[i]))
 			{
@@ -91,17 +91,18 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 	//markdown.Move("html").Pop().Move("head").Pop();
 	while (markdown.Move("meta"))
 	{
-		CMarkdown::String http_equiv = markdown.GetAttribute("http-equiv");
-		if (http_equiv.A && lstrcmpiA(http_equiv.A, "content-type") == 0)
+		std::string http_equiv(markdown.GetAttribute("http-equiv"));
+		if (!http_equiv.empty() && strcasecmp(http_equiv.c_str(), "content-type") == 0)
 		{
-			CMarkdown::String content = markdown.GetAttribute("content");
-			if (char *pchKey = content.A)
+			std::string content(markdown.GetAttribute("content"));
+			char *pchKey = &content[0];
+			if (!content.empty())
 			{
 				while (int cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
 				{
 					char *pchValue = pchKey + cchKey;
 					int cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-					if (cchKey >= 7 && _memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					if (cchKey >= 7 && strncasecmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 					{
 						pchValue[cchValue] = '\0';
 						// Is it an encoding name known to charsets module ?
@@ -144,11 +145,11 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepa
 	CMarkdown xml(psrc, psrc + len);
 	if (xml.Move("?xml"))
 	{
-		CMarkdown::String encoding = xml.GetAttribute("encoding");
-		if (encoding.A)
+		std::string encoding(xml.GetAttribute("encoding"));
+		if (!encoding.empty())
 		{
 			// Is it an encoding name we can find in charsets module ?
-			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.A);
+			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.c_str());
 			if (encodingId)
 			{
 				if (psrc != src) delete psrc;
@@ -183,7 +184,9 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 			++src;
 			--len;
 		}
-		lstrcpynA(line, base, len < sizeof line ? len + 1 : sizeof line);
+		size_t n = len < sizeof line - 1 ? len : sizeof line - 1;
+		memcpy(line, base, n);
+		line[n] = 0;
 	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
 	return cp;
 }
@@ -195,36 +198,37 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
  * @param [in] len Size of the file contents string.
  * @return Codepage number.
  */
-static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len, int guessEncodingType)
+static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, size_t len, int guessEncodingType)
 {
-	unsigned cp = getDefaultCodepage();
+	unsigned cp = ucr::getDefaultCodepage();
 	if (guessEncodingType & 2)
 	{
 		boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 		if (pexconv && src != NULL)
 		{
-			int autodetectType = (unsigned int)guessEncodingType >> 16;
+			int autodetectType = (unsigned)guessEncodingType >> 16;
 			cp = pexconv->detectInputCodepage(autodetectType, cp, src, len);
 		}
 	}
 	else
 	{
-		if (!CheckForInvalidUtf8(src, len))
+		if (!ucr::CheckForInvalidUtf8(src, len))
 			cp = CP_UTF8;
 	}
 	if (guessEncodingType & 1)
 	{
 		if (len > BufSize)
 			len = BufSize;
-		if (lstrcmpi(ext, _T(".rc")) ==  0)
+		String lower_ext = string_makelower(ext);
+		if (lower_ext == _T(".rc"))
 		{
 			cp = demoGuessEncoding_rc(src, len, cp);
 		}
-		else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
+		else if (lower_ext == _T(".htm") || lower_ext == _T(".html"))
 		{
 			cp = demoGuessEncoding_html(src, len, cp);
 		}
-		else if (lstrcmpi(ext, _T(".xml")) == 0 || lstrcmpi(ext, _T(".xsl")) == 0)
+		else if (lower_ext == _T(".xml") || lower_ext == _T(".xsl"))
 		{
 			cp = demoGuessEncoding_xml(src, len, cp);
 		}
@@ -235,43 +239,44 @@ static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t le
 /**
  * @brief Try to deduce encoding for this file.
  * @param [in] filepath Full path to the file.
- * @param [in,out] encoding Structure getting the encoding info.
  * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
+ * @return Structure getting the encoding info.
  */
-void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int guessEncodingType)
+FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncodingType)
 {
+	FileTextEncoding encoding;
 	const int mapmaxlen = BufSize;
-	CMarkdown::FileImage fi(filepath, mapmaxlen);
-	encoding->SetCodepage(getDefaultCodepage());
-	encoding->m_bom = false;
-	encoding->m_guessed = false;
-	encoding->m_binary = false;
+	CMarkdown::FileImage fi(filepath.c_str(), mapmaxlen);
+	encoding.SetCodepage(ucr::getDefaultCodepage());
+	encoding.m_bom = false;
+	encoding.m_guessed = false;
+	encoding.m_binary = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
-		encoding->SetUnicoding(ucr::UCS2LE);
-		encoding->SetCodepage(1200);
-		encoding->m_bom = true;
+		encoding.SetUnicoding(ucr::UCS2LE);
+		encoding.SetCodepage(CP_UCS2LE);
+		encoding.m_bom = true;
 		break;
 	case 8 + 2 + 1:
-		encoding->SetUnicoding(ucr::UCS2BE);
-		encoding->SetCodepage(1201);
-		encoding->m_bom = true;
+		encoding.SetUnicoding(ucr::UCS2BE);
+		encoding.SetCodepage(CP_UCS2BE);
+		encoding.m_bom = true;
 		break;
 	case 8 + 1:
-		encoding->SetUnicoding(ucr::UTF8);
-		encoding->SetCodepage(CP_UTF8);
-		encoding->m_bom = true;
+		encoding.SetUnicoding(ucr::UTF8);
+		encoding.SetCodepage(CP_UTF8);
+		encoding.m_bom = true;
 		break;
 	default:
-		encoding->m_bom = false;
+		encoding.m_bom = false;
 		if (memchr(fi.pImage, 0, fi.cbImage))
-			encoding->m_binary = true;
+			encoding.m_binary = true;
 		break;
 	}
 	if (fi.nByteOrder < 4 && guessEncodingType != 0)
 	{
-		LPCTSTR ext = PathFindExtension(filepath);
+		String ext = paths_FindExtension(filepath);
 		const char *src = (char *)fi.pImage;
 		size_t len = fi.cbImage;
 		if (len == mapmaxlen)
@@ -292,10 +297,11 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, int gu
 		}
 		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len, guessEncodingType))
 		{
-			encoding->SetCodepage(cp);
-			encoding->m_guessed = true;
+			encoding.SetCodepage(cp);
+			encoding.m_guessed = true;
 		}
 		else
-			encoding->SetCodepage(getDefaultCodepage());
+			encoding.SetCodepage(ucr::getDefaultCodepage());
 	}
+	return encoding;
 }

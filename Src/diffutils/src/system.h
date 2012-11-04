@@ -31,10 +31,9 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32) || defined(WIN64)
 #define PARAMS(args) args
-#define VOID void
 #else
 #define PARAMS(args) ()
-#define VOID char
+#define void char
 #endif
 
 #if STAT_MACROS_BROKEN
@@ -147,8 +146,8 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #if HAVE_STDLIB_H
 #include <stdlib.h>
 #else
-VOID *malloc ();
-VOID *realloc ();
+void *malloc ();
+void *realloc ();
 #endif
 //#ifndef getenv
 //extern char *getenv ();

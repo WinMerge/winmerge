@@ -43,12 +43,12 @@ class FileFiltersDlg : public CPropertyPage
 public:
 	FileFiltersDlg();   // standard constructor
 	void SetFilterArray(std::vector<FileFilterInfo> * fileFilters);
-	CString GetSelected();
-	void SetSelected(const CString & selected);
+	String GetSelected();
+	void SetSelected(const String & selected);
 
 // Implementation data
 private:
-	CString m_sFileFilterPath;
+	String m_sFileFilterPath;
 	CPoint m_ptLastMousePos;
 	std::vector<FileFilterInfo> * m_Filters;
 

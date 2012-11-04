@@ -26,10 +26,17 @@
 #define _DIFFTHREAD_H
 
 #include <boost/scoped_ptr.hpp>
-#include "diffcontext.h"
+#include <Poco/Thread.h>
+#include "DiffContext.h"
+#include <windows.h>
 
+namespace Poco
+{
+class Semaphore;
+}
 struct DiffFuncStruct;
 class DiffThreadAbortable;
+class CWinThread;
 
 /**
  * @brief Class for threaded folder compare.
@@ -53,13 +60,13 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(const String & dir1, const String & dir2);
+	unsigned CompareDirectories();
 	void SetHwnd(HWND hWnd);
-	void SetMessageIDs(UINT updateMsg);
+	void SetMessageIDs(unsigned updateMsg);
 	void SetCompareSelected(bool bSelected = false);
 
 // runtime interface for main thread, called on main thread
-	UINT GetThreadState() const;
+	unsigned GetThreadState() const;
 	void Abort() { m_bAborting = true; }
 	bool IsAborting() const { return m_bAborting; }
 
@@ -68,10 +75,10 @@ public:
 
 private:
 	CDiffContext * m_pDiffContext; /**< Compare context storing results. */
-	CWinThread * m_threads[2]; /**< Compare threads. */
+	Poco::Thread m_threads[2]; /**< Compare threads. */
 	boost::scoped_ptr<DiffFuncStruct> m_pDiffParm; /**< Structure for sending data to threads. */
 	boost::scoped_ptr<DiffThreadAbortable> m_pAbortgate;
-	UINT m_msgUpdateUI; /**< UI-update message number */
+	unsigned m_msgUpdateUI; /**< UI-update message number */
 	HWND m_hWnd; /**< Handle to folder compare GUI window */
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
@@ -85,12 +92,12 @@ private:
 struct DiffFuncStruct
 {
 	CDiffContext * context; /**< Compare context. */
-	UINT msgUIUpdate; /**< Windows message for updating GUI. */
+	unsigned msgUIUpdate; /**< Windows message for updating GUI. */
 	HWND hWindow; /**< Window getting status updates. */
 	CDiffThread::ThreadState nThreadState; /**< Thread state. */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
 	bool bOnlyRequested; /**< Compare only requested items? */
-	HANDLE hSemaphore; /**< Semaphore for synchronizing threads. */
+	Poco::Semaphore *pSemaphore; /**< Semaphore for synchronizing threads. */
 
 	DiffFuncStruct()
 		: context(NULL)
@@ -99,12 +106,8 @@ struct DiffFuncStruct
 		, nThreadState(CDiffThread::THREAD_NOTSTARTED)
 		, m_pAbortgate(NULL)
 		, bOnlyRequested(false)
-		, hSemaphore(NULL)
+		, pSemaphore(NULL)
 		{}
 };
-
-// Thread functions
-UINT DiffThreadCollect(LPVOID lpParam);
-UINT DiffThreadCompare(LPVOID lpParam);
 
 #endif /* _DIFFTHREAD_H */

@@ -13,7 +13,6 @@
 #include "paths.h"
 #include "OptionsDef.h"
 #include "ProjectFile.h"
-#include "coretools.h"
 #include "ProjectFilePathsDlg.h"
 #include "FileOrFolderSelect.h"
 
@@ -79,8 +78,12 @@ BOOL ProjectFilePathsDlg::OnInitDialog()
 void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFileOrFolder(GetSafeHwnd(), m_sLeftFile, m_sLeftFile))
+	String s;
+	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sLeftFile))
+	{
+		m_sLeftFile = s.c_str();
 		UpdateData(FALSE);
+	}
 }
 
 /** 
@@ -89,8 +92,12 @@ void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFileOrFolder(GetSafeHwnd(), m_sRightFile, m_sRightFile))
+	String s;
+	if (::SelectFileOrFolder(GetSafeHwnd(), s, m_sRightFile))
+	{
+		m_sRightFile = s.c_str();
 		UpdateData(FALSE);
+	}
 }
 
 /** 
@@ -129,8 +136,8 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
  */
 void ProjectFilePathsDlg::OnBnClickedProjOpen()
 {
-	CString fileName = AskProjectFileName(TRUE);
-	if (fileName.IsEmpty())
+	String fileName = AskProjectFileName(TRUE);
+	if (fileName.empty())
 		return;
 
 	ProjectFile project;
@@ -163,8 +170,8 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	m_sFilter.TrimLeft();
 	m_sFilter.TrimRight();
 
-	CString fileName = AskProjectFileName(FALSE);
-	if (fileName.IsEmpty())
+	String fileName = AskProjectFileName(FALSE);
+	if (fileName.empty())
 		return;
 
 	ProjectFile project;
@@ -228,20 +235,20 @@ void ProjectFilePathsDlg::SetPaths(LPCTSTR left, LPCTSTR right)
 CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 {
 	// get the default projects path
-	CString strProjectFileName;
+	String strProjectFileName;
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
 	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath.c_str(),
 			NULL, IDS_PROJECTFILES, bOpen))
 		return _T("");
 
-	if (strProjectFileName.IsEmpty())
+	if (strProjectFileName.empty())
 		return _T("");
 
 	// Add projectfile extension if it is missing
 	// So we allow 'filename.otherext' but add extension for 'filename'
 	String extension;
-	SplitFilename(strProjectFileName, NULL, NULL, &extension);
+	paths_SplitFilename(strProjectFileName, NULL, NULL, &extension);
 	if (extension.empty())
 	{
 		strProjectFileName += _T(".");
@@ -251,7 +258,7 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
-	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath.c_str());
-	return strProjectFileName;
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
+	return strProjectFileName.c_str();
 }
 

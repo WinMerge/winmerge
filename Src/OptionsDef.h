@@ -9,7 +9,7 @@
 #ifndef _OPTIONS_DEF_H_
 #define _OPTIONS_DEF_H_
 
-#include <tchar.h>
+#include "UnicodeString.h"
 
 // User's language
 const TCHAR OPT_SELECTED_LANGUAGE[] = _T("Locale/LanguageId");

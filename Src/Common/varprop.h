@@ -10,6 +10,7 @@
 #ifndef varprop_h_included
 #define varprop_h_included
 
+#include <ctime>
 #include "UnicodeString.h"
 
 namespace varprop
@@ -51,8 +52,8 @@ public:
 	void SetBool(bool v);
 	void SetInt(int v);
 	void SetFloat(double v);
-	void SetString(LPCTSTR sz);
-	void SetString(String sz);
+	void SetString(const TCHAR *sz);
+	void SetString(const String& sz);
 	void SetTime(time_t v);
 
 	void Clear();

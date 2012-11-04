@@ -20,19 +20,21 @@
  * @brief FilterCommentsManager class implementation.
  */
 
-#include "stdafx.h"
+#include "FilterCommentsManager.h"
 #include <string>
 #include <map>
-
-#include "coretools.h"
-#include "FilterCommentsManager.h"
+#include <cstdio>
+#include <windows.h>
+#include "paths.h"
+#include "Environment.h"
+#include "unicoder.h"
 
 /**
 @brief FilterCommentsManager constructor, which reads the INI file data
 		and populates the mapped member variable m_FilterCommentsSetByFileType.
 @param[in]  Optional full INI file name, to include path.
 */
-FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")*/)
+FilterCommentsManager::FilterCommentsManager(const String& IniFileName /*= _T("")*/)
  : m_IniFileName(IniFileName)
 {
 	int SectionNo = 0;
@@ -40,18 +42,18 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 	TCHAR buffer[1024];
 	if (m_IniFileName.empty())
 	{
-		m_IniFileName = GetModulePath() + _T("\\IgnoreSectionMarkers.ini");
+		m_IniFileName = env_GetProgPath() + _T("\\IgnoreSectionMarkers.ini");
 	}
 	for(SectionNo = 0;;++SectionNo) 
 	{//Get each set of markers
 		FilterCommentsSet filtercommentsset;
-		_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
+		_stprintf(SectionName, _T("set%i"), SectionNo);
 		GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.StartMarker = CStringA(buffer);
+		filtercommentsset.StartMarker = ucr::toThreadCP(buffer);
 		GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.EndMarker = CStringA(buffer);
+		filtercommentsset.EndMarker = ucr::toThreadCP(buffer);
 		GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-		filtercommentsset.InlineMarker = CStringA(buffer);
+		filtercommentsset.InlineMarker = ucr::toThreadCP(buffer);
 		if (filtercommentsset.StartMarker.empty() && 
 			filtercommentsset.EndMarker.empty() &&
 			filtercommentsset.InlineMarker.empty())
@@ -62,10 +64,10 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 		TCHAR FileTypeFieldName[99];
 		for(FileTypeNo = 0;;++FileTypeNo) 
 		{//Get each file type associated with current set of markers
-			_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
+			_stprintf(FileTypeFieldName, _T("FileType%i"), FileTypeNo);
 			GetPrivateProfileString(SectionName, FileTypeFieldName, _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
-			CString FileTypeExtensionName = buffer;
-			if (FileTypeExtensionName.IsEmpty())
+			String FileTypeExtensionName = buffer;
+			if (FileTypeExtensionName.empty())
 				break;
 			m_FilterCommentsSetByFileType[FileTypeExtensionName] = filtercommentsset;
 		}
@@ -84,9 +86,9 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 	@param[in]  The file name extension. Example:("cpp", "java", "c", "h")
 				Must be lower case.
 */
-FilterCommentsSet FilterCommentsManager::GetSetForFileType(const CString& FileTypeName) const
+FilterCommentsSet FilterCommentsManager::GetSetForFileType(const String& FileTypeName) const
 {
-	std::map <CString, FilterCommentsSet> :: const_iterator pSet =
+	std::map <String, FilterCommentsSet> :: const_iterator pSet =
 		m_FilterCommentsSetByFileType.find(FileTypeName);
 	if (pSet == m_FilterCommentsSetByFileType.end())
 		return FilterCommentsSet();
@@ -95,7 +97,6 @@ FilterCommentsSet FilterCommentsManager::GetSetForFileType(const CString& FileTy
 
 void FilterCommentsManager::CreateDefaultMarkers()
 {
-	USES_CONVERSION;
 	int SectionNo = 0;
 	TCHAR SectionName[99];
 	FilterCommentsSet filtercommentsset;
@@ -103,17 +104,17 @@ void FilterCommentsManager::CreateDefaultMarkers()
 	filtercommentsset.EndMarker = "*/";
 	filtercommentsset.InlineMarker = "//";
 	TCHAR CommonFileTypes1[][9] = {_T("java"), _T("cs"), _T("cpp"), _T("c"), _T("h"), _T("cxx"), _T("cc"), _T("js"), _T("jsl"), _T("tli"), _T("tlh"), _T("rc")};
-	_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
+	_stprintf(SectionName, _T("set%i"), SectionNo);
 	++SectionNo;
-	WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(filtercommentsset.StartMarker.c_str()), m_IniFileName.c_str());
-	WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(filtercommentsset.EndMarker.c_str()), m_IniFileName.c_str());
-	WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(filtercommentsset.InlineMarker.c_str()), m_IniFileName.c_str());
+	WritePrivateProfileString(SectionName, _T("StartMarker"), ucr::toTString(filtercommentsset.StartMarker).c_str(), m_IniFileName.c_str());
+	WritePrivateProfileString(SectionName, _T("EndMarker"), ucr::toTString(filtercommentsset.EndMarker).c_str(), m_IniFileName.c_str());
+	WritePrivateProfileString(SectionName, _T("InlineMarker"), ucr::toTString(filtercommentsset.InlineMarker).c_str(), m_IniFileName.c_str());
 	int FileTypeNo = 0;
 	for(int i = 0;i < sizeof(CommonFileTypes1)/sizeof(CommonFileTypes1[0]);++i)
 	{
 		m_FilterCommentsSetByFileType[CommonFileTypes1[i]] = filtercommentsset;
 		TCHAR FileTypeFieldName[99];
-		_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
+		_stprintf(FileTypeFieldName, _T("FileType%i"), FileTypeNo);
 		++FileTypeNo;
 		WritePrivateProfileString(SectionName, FileTypeFieldName, CommonFileTypes1[i], m_IniFileName.c_str());
 	}

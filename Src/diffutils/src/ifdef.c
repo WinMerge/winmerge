@@ -41,7 +41,7 @@ static void format_ifdef PARAMS((char *, int, int, int, int));
 static void print_ifdef_hunk PARAMS((struct change *));
 static void print_ifdef_lines PARAMS((FILE *, char *, struct group const *));
 
-DECL_TLS static int next_line;
+static DECL_TLS int next_line;
 
 /* Print the edit-script SCRIPT as a merged #ifdef file.  */
 

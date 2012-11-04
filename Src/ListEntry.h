@@ -11,14 +11,14 @@
 /**
  * @brief Simple LIST_ENTRY wrapper
  */
-class ListEntry : public LIST_ENTRY
+class ListEntry
 {
 public:
 	ListEntry()
 	{
 		Flink = Blink = this;
 	}
-	void Append(LIST_ENTRY *p)
+	void Append(ListEntry *p)
 	{
 		p->Flink = Blink->Flink;
 		p->Blink = Blink;
@@ -31,10 +31,12 @@ public:
 		Flink->Blink = Blink;
 		Flink = Blink = this;
 	}
-	LIST_ENTRY *IsSibling(LIST_ENTRY *p) const
+	ListEntry *IsSibling(ListEntry *p) const
 	{
-		return p != static_cast<const LIST_ENTRY *>(this) ? p : 0;
+		return p != this ? p : 0;
 	}
+	ListEntry *Flink;
+	ListEntry *Blink;
 private:
 	ListEntry(const ListEntry &); // disallow copy construction
 	void operator=(const ListEntry &); // disallow assignment

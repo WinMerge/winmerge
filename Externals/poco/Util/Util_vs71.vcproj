@@ -13,15 +13,15 @@
 	<Configurations>
 		<Configuration
 			Name="debug_shared|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;Util_EXPORTS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;Util_EXPORTS;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -43,14 +43,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies=""
-				OutputFile="..\bin\PocoUtild.dll"
+				OutputFile="..\bin_vc71\PocoUtild.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="..\bin\PocoUtild.pdb"
+				ProgramDatabaseFile="..\bin_vc71\PocoUtild.pdb"
 				AdditionalLibraryDirectories="..\lib"
 				SubSystem="1"
-				ImportLibrary="..\lib\PocoUtild.lib"
+				ImportLibrary="..\lib_vc71\PocoUtild.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -75,8 +75,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_shared|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
@@ -87,7 +87,7 @@
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="TRUE"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;Util_EXPORTS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;Util_EXPORTS;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
@@ -108,7 +108,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies=""
-				OutputFile="..\bin\PocoUtil.dll"
+				OutputFile="..\bin_vc71\PocoUtil.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				GenerateDebugInformation="FALSE"
@@ -116,7 +116,7 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="..\lib\PocoUtil.lib"
+				ImportLibrary="..\lib_vc71\PocoUtil.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -141,15 +141,15 @@
 		</Configuration>
 		<Configuration
 			Name="debug_static_mt|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -160,7 +160,7 @@
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="..\lib\PocoUtilmtd.pdb"
+				ProgramDataBaseFileName="..\lib_vc71\PocoUtilmtd.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="4"
@@ -170,7 +170,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoUtilmtd.lib"/>
+				OutputFile="..\lib_vc71\PocoUtilmtd.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -194,8 +194,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_static_mt|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -206,7 +206,7 @@
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="TRUE"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="0"
@@ -224,7 +224,7 @@
 				DisableSpecificWarnings="4800;"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoUtilmt.lib"/>
+				OutputFile="..\lib_vc71\PocoUtilmt.lib"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -250,15 +250,15 @@
 		</Configuration>
 		<Configuration
 			Name="debug_static_md|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;POCO_STATIC;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -269,7 +269,7 @@
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="..\lib\PocoUtilmdd.pdb"
+				ProgramDataBaseFileName="..\lib_vc71\PocoUtilmdd.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="4"
@@ -279,7 +279,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoUtilmdd.lib"/>
+				OutputFile="..\lib_vc71\PocoUtilmdd.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -303,8 +303,8 @@
 		</Configuration>
 		<Configuration
 			Name="release_static_md|Win32"
-			OutputDirectory="obj\$(ConfigurationName)"
-			IntermediateDirectory="obj\$(ConfigurationName)"
+			OutputDirectory="obj_vc71\$(ConfigurationName)"
+			IntermediateDirectory="obj_vc71\$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="2">
 			<Tool
@@ -315,7 +315,7 @@
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="TRUE"
 				AdditionalIncludeDirectories=".\include;..\Foundation\include;..\XML\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;POCO_STATIC;_STATIC_CPPLIB"
 				StringPooling="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
@@ -333,7 +333,7 @@
 				DisableSpecificWarnings="4800;"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="..\lib\PocoUtilmd.lib"/>
+				OutputFile="..\lib_vc71\PocoUtilmd.lib"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool

@@ -25,16 +25,17 @@ public:
 	};
 
 	void Clear();
-	void Add(ML_SIDE side1, unsigned int line1, unsigned int line2);
-	int LineInBlock(unsigned int line, ML_SIDE side);
+	void Add(ML_SIDE side1, unsigned line1, unsigned line2);
+	int LineInBlock(unsigned line, ML_SIDE side);
 
 protected:
-	int FirstSideInMovedBlock(unsigned int secondSideLine);
-	int SecondSideInMovedBlock(unsigned int firstSideLine);
+	int FirstSideInMovedBlock(unsigned secondSideLine);
+	int SecondSideInMovedBlock(unsigned firstSideLine);
 
 private:
-	std::map<int, int> m_moved0; /**< Moved lines map for first side */
-	std::map<int, int> m_moved1; /**< Moved lines map for second side */
+	typedef std::map<int, int> MovedLinesMap;
+	MovedLinesMap m_moved0; /**< Moved lines map for first side */
+	MovedLinesMap m_moved1; /**< Moved lines map for second side */
 };
 
 #endif // _MOVEDLINES_H_

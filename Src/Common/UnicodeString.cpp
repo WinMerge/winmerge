@@ -26,13 +26,10 @@
 // String formatting code originally from Paul Senzee:
 // http://www.senzee5.com/2006/05/c-formatting-stdstring.html
 
-#include <windows.h>
-#include <tchar.h>
-#include <stdarg.h>
-#include <vector>
 #include "UnicodeString.h"
-
-static String format_arg_list(const TCHAR *fmt, va_list args);
+#include <cstdarg>
+#include <cstdio>
+#include <vector>
 
 /**
  * @brief Convert a string to lower case string.
@@ -45,6 +42,20 @@ String string_makelower(const String &str)
 	String::size_type i = 0;
 	for (i = 0; i < ret.length(); i++)
 		ret[i] = _totlower(ret[i]);
+	return ret;
+}
+
+/**
+ * @brief Convert a string to upper case string.
+ * @param [in] str String to convert to upper case.
+ * @return upper case string.
+ */
+String string_makeupper(const String &str)
+{
+	String ret(str);
+	String::size_type i = 0;
+	for (i = 0; i < ret.length(); i++)
+		ret[i] = _totupper(ret[i]);
 	return ret;
 }
 
@@ -158,7 +169,7 @@ String string_trim_ws_end(const String & str)
 	return result;
 }
 
-static String format_arg_list(const TCHAR *fmt, va_list args)
+String string_format_arg_list(const TCHAR *fmt, va_list args)
 {
 	if (!fmt)
 		return _T("");
@@ -183,7 +194,7 @@ String string_format(const TCHAR *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);
-	String s = format_arg_list(fmt, args);
+	String s = string_format_arg_list(fmt, args);
 	va_end(args);
 	return s;
 }

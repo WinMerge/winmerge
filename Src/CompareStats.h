@@ -10,6 +10,9 @@
 #ifndef _COMPARESTATS_H_
 #define _COMPARESTATS_H_
 
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Mutex.h>
+
 /**
  * @brief Class holding directory compare stats.
  *
@@ -75,17 +78,17 @@ public:
 	void Reset();
 	void SetCompareState(CompareStats::CMP_STATE state);
 	CompareStats::CMP_STATE GetCompareState() const;
-	BOOL IsCompareDone() const { return m_bCompareDone; }
+	bool IsCompareDone() const { return m_bCompareDone; }
 
-	CompareStats::RESULT GetResultFromCode(UINT diffcode);
+	CompareStats::RESULT GetResultFromCode(unsigned diffcode);
 
 private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
-	CRITICAL_SECTION m_csProtect; /**< For synchronizing read/write of counts */
+	mutable Poco::FastMutex m_csProtect; /**< For synchronizing read/write of counts */
 	long m_nTotalItems; /**< Total items found to compare */
 	long m_nComparedItems; /**< Compared items so far */
 	CMP_STATE m_state; /**< State for compare (idle, collect, compare,..) */
-	BOOL m_bCompareDone; /**< Have we finished last compare? */
+	bool m_bCompareDone; /**< Have we finished last compare? */
 	int m_nDirs; /**< number of directories to compare */
 };
 

@@ -9,8 +9,9 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "Merge.h"
-#include "SyntaxColorsUtil.h"
 #include "PropTextColors.h"
+#include "SyntaxColors.h"
+#include "CustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -115,7 +116,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	LoadCustomColors();
+	CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -124,7 +125,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	SaveCustomColors();
+	CustomColors::Save(m_cCustColors);
 }
 
 /** 
@@ -234,22 +235,6 @@ void PropTextColors::OnDefaultsStandardColors()
 	{
 		EnableColorButtons(TRUE);
 	}
-}
-
-/** 
- * @brief Loads color selection dialog's custom colors from registry
- */
-void PropTextColors::LoadCustomColors()
-{
-	SyntaxColors_LoadCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
-}
-
-/** 
- * @brief Saves color selection dialog's custom colors to registry
- */
-void PropTextColors::SaveCustomColors()
-{
-	SyntaxColors_SaveCustomColors(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 /** 

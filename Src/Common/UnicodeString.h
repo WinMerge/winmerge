@@ -28,6 +28,7 @@
 #define _UNICODE_STRING_
 
 #include <string>
+#include <cstdarg>
 
 #ifdef _WIN32
 #  include <tchar.h>
@@ -58,6 +59,7 @@ typedef char    TCHAR;
 typedef std_tchar(string) String;
 
 String string_makelower(const String &str);
+String string_makeupper(const String &str);
 
 void string_replace(String &target, const String &find, const String &replace);
 
@@ -70,6 +72,7 @@ String string_trim_ws_begin(const String & str);
 String string_trim_ws_end(const String & str);
 
 // Formatting
+String string_format_arg_list(const TCHAR *fmt, va_list args);
 String string_format(const TCHAR *fmt, ...);
 
 #endif // _UNICODE_STRING_

@@ -9,21 +9,21 @@
 //
 
 #include "stdafx.h"
-#include <time.h>
+#include <ctime>
+#include <cassert>
 #include "locality.h"
 #include "DirCmpReport.h"
 #include "DirCmpReportDlg.h"
-#include "coretools.h"
 #include "WaitStatusCursor.h"
 #include "paths.h"
-#include "AnsiConvert.h"
-#include <afxadv.h>
+#include "unicoder.h"
+#include "IListCtrl.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
 /**
  * @brief Return current time as string.
- * @return Current time as CString.
+ * @return Current time as String.
  */
 static String GetCurrentTimeString()
 {
@@ -39,11 +39,9 @@ static String GetCurrentTimeString()
  * @param [in] elName String to format as beginning tag.
  * @return String formatted as beginning tag.
  */
-static CString BeginEl(LPCTSTR elName)
+static String BeginEl(const String& elName)
 {
-	CString tag;
-	tag.Format(_T("<%s>"), elName);
-	return tag;
+	return string_format(_T("<%s>"), elName.c_str());
 }
 
 /**
@@ -51,17 +49,15 @@ static CString BeginEl(LPCTSTR elName)
  * @param [in] elName String to format as ending tag.
  * @return String formatted as ending tag.
  */
-static CString EndEl(LPCTSTR elName)
+static String EndEl(const String& elName)
 {
-	CString tag;
-	tag.Format(_T("</%s>"), elName);
-	return tag;
+	return string_format(_T("</%s>"), elName.c_str());
 }
 
 /**
  * @brief Constructor.
  */
-DirCmpReport::DirCmpReport(const CStringArray & colRegKeys)
+DirCmpReport::DirCmpReport(const std::vector<String> & colRegKeys)
 : m_pList(NULL)
 , m_pFile(NULL)
 , m_nColumns(0)
@@ -75,7 +71,7 @@ DirCmpReport::DirCmpReport(const CStringArray & colRegKeys)
 /**
  * @brief Set UI-list pointer.
  */
-void DirCmpReport::SetList(CListCtrl *pList)
+void DirCmpReport::SetList(IListCtrl *pList)
 {
 	m_pList = pList;
 }
@@ -85,10 +81,10 @@ void DirCmpReport::SetList(CListCtrl *pList)
  */
 void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
-	m_rootPaths.SetLeft(paths.GetLeft().c_str());
-	m_rootPaths.SetRight(paths.GetRight().c_str());
-	LangFormatString2(m_sTitle, IDS_DIRECTORY_REPORT_TITLE,
-			m_rootPaths.GetLeft().c_str(), m_rootPaths.GetRight().c_str());
+	m_rootPaths.SetLeft(paths.GetLeft());
+	m_rootPaths.SetRight(paths.GetRight());
+	m_sTitle = LangFormatString2(IDS_DIRECTORY_REPORT_TITLE,
+		m_rootPaths.GetLeft().c_str(), m_rootPaths.GetRight().c_str()).c_str();
 }
 
 /**
@@ -119,11 +115,11 @@ static ULONG GetLength32(CFile const &f)
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
  * @return TRUE if report was created, FALSE if user canceled report.
  */
-BOOL DirCmpReport::GenerateReport(String &errStr)
+bool DirCmpReport::GenerateReport(String &errStr)
 {
-	ASSERT(m_pList != NULL);
-	ASSERT(m_pFile == NULL);
-	BOOL bRet = FALSE;
+	assert(m_pList != NULL);
+	assert(m_pFile == NULL);
+	bool bRet = false;
 
 	DirCmpReportDlg dlg;
 	if (dlg.DoModal() == IDOK) try
@@ -174,8 +170,8 @@ BOOL DirCmpReport::GenerateReport(String &errStr)
 		if (!dlg.m_sReportFile.IsEmpty())
 		{
 			String path;
-			SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
-			if (!paths_CreateIfNeeded(path.c_str()))
+			paths_SplitFilename((const TCHAR *)dlg.m_sReportFile, &path, NULL, NULL);
+			if (!paths_CreateIfNeeded(path))
 			{
 				errStr = LoadResString(IDS_FOLDER_NOTEXIST);
 				return FALSE;
@@ -232,14 +228,15 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
  * @brief Write text to report file.
  * @param [in] pszText Text to write to report file.
  */
-void DirCmpReport::WriteString(LPCTSTR pszText)
+void DirCmpReport::WriteString(const String& sText)
 {
-	LPCSTR pchOctets = ansiconvert_ThreadCP(pszText);
+	std::string sOctets = ucr::toThreadCP(sText);
+	const char *pchOctets = sOctets.c_str();
 	void *pvOctets = const_cast<char *>(pchOctets);
-	size_t cchAhead = strlen(pchOctets);
-	while (LPCSTR pchAhead = (LPCSTR)memchr(pchOctets, '\n', cchAhead))
+	size_t cchAhead = sOctets.length();
+	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
 	{
-		int cchLine = pchAhead - pchOctets;
+		size_t cchLine = pchAhead - pchOctets;
 		m_pFile->Write(pchOctets, cchLine);
 		static const char eol[] = { '\r', '\n' };
 		m_pFile->Write(eol, sizeof eol);
@@ -248,7 +245,7 @@ void DirCmpReport::WriteString(LPCTSTR pszText)
 		cchAhead -= cchLine;
 	}
 	m_pFile->Write(pchOctets, cchAhead);
-	free(pvOctets);
+
 }
 
 /**
@@ -258,17 +255,11 @@ void DirCmpReport::GenerateHeader()
 {
 	WriteString(m_sTitle);
 	WriteString(_T("\n"));
-	WriteString(GetCurrentTimeString().c_str());
+	WriteString(GetCurrentTimeString());
 	WriteString(_T("\n"));
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
-		TCHAR columnName[160]; // Assuming max col header will never be > 160
-		LVCOLUMN lvc;
-		lvc.mask = LVCF_TEXT;
-		lvc.pszText = &columnName[0];
-		lvc.cchTextMax = countof(columnName);
-		if (m_pList->GetColumn(currCol, &lvc))
-			WriteString(lvc.pszText);
+		WriteString(m_pList->GetColumnName(currCol));
 		// Add col-separator, but not after last column
 		if (currCol < m_nColumns - 1)
 			WriteString(m_sSeparator);
@@ -280,7 +271,7 @@ void DirCmpReport::GenerateHeader()
  */
 void DirCmpReport::GenerateContent()
 {
-	int nRows = m_pList->GetItemCount();
+	int nRows = m_pList->GetRowCount();
 
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
@@ -288,8 +279,8 @@ void DirCmpReport::GenerateContent()
 		WriteString(_T("\n"));
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
-			CString value = m_pList->GetItemText(currRow, currCol);
-			if (value.Find(m_sSeparator) > 0) {
+			String value = m_pList->GetItemText(currRow, currCol);
+			if (value.find(m_sSeparator) != String::npos) {
 				WriteString(_T("\""));
 				WriteString(value);
 				WriteString(_T("\""));
@@ -347,23 +338,15 @@ void DirCmpReport::GenerateHTMLHeaderBodyPortion()
 	WriteString(_T("<h2>"));
 	WriteString(m_sTitle);
 	WriteString(_T("</h2>\n<p>"));
-	WriteString(GetCurrentTimeString().c_str());
+	WriteString(GetCurrentTimeString());
 	WriteString(_T("</p>\n"));
 	WriteString(_T("<table border=\"1\">\n<tr>\n"));
 
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
-		TCHAR columnName[160]; // Assuming max col header will never be > 160
-		LVCOLUMN lvc;
-		lvc.mask = LVCF_TEXT;
-		lvc.pszText = &columnName[0];
-		lvc.cchTextMax = countof(columnName);
-		if (m_pList->GetColumn(currCol, &lvc))
-		{
-			WriteString(_T("<th>"));
-			WriteString(lvc.pszText);
-			WriteString(_T("</th>"));
-		}
+		WriteString(_T("<th>"));
+		WriteString(m_pList->GetColumnName(currCol));
+		WriteString(_T("</th>"));
 	}
 	WriteString(_T("</tr>\n"));
 }
@@ -375,28 +358,19 @@ void DirCmpReport::GenerateXmlHeader()
 {
 	WriteString(_T("")); // @todo xml declaration
 	WriteString(_T("<WinMergeDiffReport version=\"1\">\n"));
-	WriteString(Fmt(_T("<left>%s</left>\n"), m_rootPaths.GetLeft().c_str()));
-	WriteString(Fmt(_T("<right>%s</right>\n"), m_rootPaths.GetRight().c_str()));
-	WriteString(Fmt(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
+	WriteString(string_format(_T("<left>%s</left>\n"), m_rootPaths.GetLeft().c_str()));
+	WriteString(string_format(_T("<right>%s</right>\n"), m_rootPaths.GetRight().c_str()));
+	WriteString(string_format(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
 
 	// Add column headers
-	const CString rowEl = _T("column_name");
+	const String rowEl = _T("column_name");
 	WriteString(BeginEl(rowEl));
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
-		TCHAR columnName[160]; // Assuming max col header will never be > 160
-		LVCOLUMN lvc;
-		lvc.mask = LVCF_TEXT;
-		lvc.pszText = &columnName[0];
-		lvc.cchTextMax = countof(columnName);
-		
-		const CString colEl = m_colRegKeys[currCol];
-		if (m_pList->GetColumn(currCol, &lvc))
-		{
-			WriteString(BeginEl(colEl));
-			WriteString(lvc.pszText);
-			WriteString(EndEl(colEl));
-		}
+		const String colEl = m_colRegKeys[currCol];
+		WriteString(BeginEl(colEl));
+		WriteString(m_pList->GetColumnName(currCol));
+		WriteString(EndEl(colEl));
 	}
 	WriteString(EndEl(rowEl) + _T("\n"));
 }
@@ -407,13 +381,13 @@ void DirCmpReport::GenerateXmlHeader()
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
-	SplitFilename(m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
+	paths_SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, NULL);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
 	String sDestDir = paths_ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
-		paths_CreateIfNeeded(sDestDir.c_str());
+		paths_CreateIfNeeded(sDestDir);
 
-	int nRows = m_pList->GetItemCount();
+	int nRows = m_pList->GetRowCount();
 
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
@@ -422,22 +396,22 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport)
 			(*m_pFileCmpReport)(REPORT_TYPE_SIMPLEHTML, m_pList, currRow, sDestDir, sLinkPath);
 
-		CString rowEl = _T("tr");
+		String rowEl = _T("tr");
 		if (xml)
 			rowEl = _T("filediff");
 		WriteString(BeginEl(rowEl));
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
-			CString colEl = _T("td");
+			String colEl = _T("td");
 			if (xml)
 				colEl = m_colRegKeys[currCol];
 			WriteString(BeginEl(colEl));
 			if (currCol == 0 && !sLinkPath.empty())
 			{
 				WriteString(_T("<a href=\""));
-				WriteString(sRelDestDir.c_str());
+				WriteString(sRelDestDir);
 				WriteString(_T("/"));
-				WriteString(sLinkPath.c_str());
+				WriteString(sLinkPath);
 				WriteString(_T("\">"));
 				WriteString(m_pList->GetItemText(currRow, currCol));
 				WriteString(_T("</a>"));

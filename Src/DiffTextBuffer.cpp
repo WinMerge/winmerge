@@ -8,11 +8,13 @@
 // $Id: DiffTextBuffer.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
 #include "StdAfx.h"
+#include "DiffTextBuffer.h"
+#include <Poco/Exception.h>
 #include "UniFile.h"
 #include "files.h"
 #include "cs2cs.h"
 #include "locality.h"
-#include "coretools.h"
+#include "paths.h"
 #include "Merge.h"
 #include "OptionsDef.h"
 #include "Environment.h"
@@ -20,8 +22,10 @@
 #include "MergeDoc.h"
 #include "FileTransform.h"
 #include "FileTextEncoding.h"
-#include "DiffTextBuffer.h"
 #include "codepage_detect.h"
+#include "TFile.h"
+
+using Poco::Exception;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -342,7 +346,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
-	SplitFilename(pszFileName, NULL, NULL, &sExt);
+	paths_SplitFilename(pszFileName, NULL, NULL, &sExt);
 	CCrystalTextView::TextDefinition *def = 
 		CCrystalTextView::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
@@ -371,10 +375,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (infoUnpacker->pluginName.length() > 0)
 		{
 			// re-detect codepage
-			FileTextEncoding encoding2;
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-			GuessCodepageEncoding(pszFileName, &encoding2,
-				iGuessEncodingType);
+			FileTextEncoding encoding2 = GuessCodepageEncoding(pszFileName, iGuessEncodingType);
 			pufile->SetUnicoding(encoding2.m_unicoding);
 			pufile->SetCodepage(encoding2.m_codepage);
 			pufile->SetBom(encoding2.m_bom);
@@ -520,12 +522,16 @@ LoadFromFileExit:
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
-		if (!::DeleteFile(pszFileName))
+	{
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				pszFileName, GetSysError(GetLastError()).c_str()));
+			TFile(pszFileName).remove();
 		}
-
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
+		}
+	}
 	return nRetVal;
 }
 
@@ -537,7 +543,7 @@ LoadFromFileExit:
  *
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
-int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
+int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
@@ -547,7 +553,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
 
-	if (!pszFileName || _tcslen(pszFileName) == 0)
+	if (pszFileName.empty())
 		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
@@ -575,11 +581,11 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 	else
 	{
-		sIntermediateFilename = env_GetTempFileName(m_strTempPath.c_str(),
+		sIntermediateFilename = env_GetTempFileName(m_strTempPath,
 			_T("MRG_"), NULL);
 		if (sIntermediateFilename.empty())
 			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
-		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename.c_str());
+		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename);
 	}
 
 	if (!bOpenSuccess)
@@ -589,10 +595,10 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		{
 			sError = uniErr.GetError().c_str();
 			if (bTempFile)
-				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
-					pszFileName, sError.c_str()));
+				LogErrorString(string_format(_T("Opening file %s failed: %s"),
+					pszFileName.c_str(), sError.c_str()));
 			else
-				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
+				LogErrorString(string_format(_T("Opening file %s failed: %s"),
 					sIntermediateFilename.c_str(), sError.c_str()));
 		}
 		return SAVE_FAILED;
@@ -662,10 +668,13 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		infoUnpacker->subcode = m_unpackerSubcode;
 		if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
 		{
-			if (!::DeleteFile(sIntermediateFilename.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(sIntermediateFilename).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 			// returns now, don't overwrite the original file
 			return SAVE_PACK_FAILED;
@@ -673,22 +682,23 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		// the temp filename may have changed during packing
 		if (csTempFileName != sIntermediateFilename)
 		{
-			if (!::DeleteFile(sIntermediateFilename.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(sIntermediateFilename).remove();
+			}
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
 			}
 			sIntermediateFilename = csTempFileName;
 		}
 
 		// Write tempfile over original file
-		if (::CopyFile(sIntermediateFilename.c_str(), pszFileName, false))
+		try
 		{
-			if (!::DeleteFile(sIntermediateFilename.c_str()))
-			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename.c_str(), GetSysError(GetLastError()).c_str()));
-			}
+			TFile file(sIntermediateFilename);
+			file.copyTo(pszFileName);
+			file.remove();
 			if (bClearModifiedFlag)
 			{
 				SetModified(false);
@@ -702,11 +712,9 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			// redraw line revision marks
 			UpdateViews (NULL, NULL, UPDATE_FLAGSONLY);	
 		}
-		else
+		catch (Exception& e)
 		{
-			sError = GetSysError(GetLastError());
-			LogErrorString(Fmt(_T("CopyFile(%s, %s) failed: %s"),
-				sIntermediateFilename.c_str(), pszFileName, sError.c_str()));
+			LogErrorStringUTF8(e.displayText());
 		}
 	}
 	else

@@ -14,6 +14,7 @@
 #include "DiffUtils.h"
 #include "ByteCompare.h"
 #include "TimeSizeCompare.h"
+#include "PathContext.h"
 
 class CDiffContext;
 class PackingInfo;

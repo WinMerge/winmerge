@@ -10,6 +10,7 @@
 #define _LINEFILTERS_LIST_H_
 
 #include <vector>
+#include "UnicodeString.h"
 
 class COptionsMgr;
 
@@ -18,9 +19,9 @@ class COptionsMgr;
  */
 struct LineFilterItem
 {
-	BOOL enabled; /**< Is filter enabled? */
+	bool enabled; /**< Is filter enabled? */
 	String filterStr; /**< Filter string */
-	LineFilterItem() : enabled(FALSE) { }
+	LineFilterItem() : enabled(false) { }
 };
 
 /**
@@ -32,8 +33,8 @@ public:
 	LineFiltersList();
 	~LineFiltersList();
 
-	void AddFilter(LPCTSTR filter, BOOL enabled);
-	int GetCount() const;
+	void AddFilter(const String& filter, bool enabled);
+	size_t GetCount() const;
 	void Empty();
 	String GetAsString() const;
 	const LineFilterItem & GetAt(size_t ind) const;
@@ -43,7 +44,7 @@ public:
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
 
-	void Import(LPCTSTR filters);
+	void Import(const String& filters);
 
 private:
 	std::vector<LineFilterItem*> m_items; /**< List for linefilter items */

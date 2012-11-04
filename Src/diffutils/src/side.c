@@ -34,7 +34,7 @@ static void print_sdiff_common_lines PARAMS((int, int));
 static void print_sdiff_hunk PARAMS((struct change *));
 
 /* Next line number to be printed in the two input files.  */
-DECL_TLS static int next0, next1;
+static DECL_TLS int next0, next1;
 
 /* Print the edit-script SCRIPT as a sdiff style output.  */
 

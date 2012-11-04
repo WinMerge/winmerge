@@ -27,13 +27,17 @@
 
 #include "UnicodeString.h"
 #include "FileVersion.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Types.h>
+#include <Poco/File.h>
+#include <Poco/Timestamp.h>
 
 /**
  * @brief Class for fileflags.
  */
 struct FileFlags
 {
-	DWORD attributes; /**< Fileattributes for item */
+	unsigned attributes; /**< Fileattributes for item */
 	FileFlags() : attributes(0) { }
 	void reset() { attributes = 0; } /// Reset fileattributes
 };
@@ -49,9 +53,9 @@ struct FileFlags
  */
 struct DirItem
 {
-	__int64 ctime; /**< time of creation */
-	__int64 mtime; /**< time of last modify */
-	__int64 size; /**< file size in bytes, -1 means file does not exist*/
+	Poco::Timestamp ctime; /**< time of creation */
+	Poco::Timestamp mtime; /**< time of last modify */
+	Poco::File::FileSize size; /**< file size in bytes, -1 means file does not exist*/
 	String filename; /**< filename for this item */
 	String path; /**< full path (excluding filename) for the item */
 	bool bIsDir; /**< is this a directory item or file item? */
@@ -61,7 +65,7 @@ struct DirItem
 	DirItem() : ctime(0), mtime(0), size(-1), bIsDir(false) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
-	BOOL Update(const String &sFilePath);
+	bool Update(const String &sFilePath);
 	void ClearPartial();
 };
 

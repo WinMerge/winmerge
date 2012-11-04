@@ -7,41 +7,32 @@
 // ID line follows -- this is updated by SVN
 // $Id: DirTravel.cpp 5761 2008-08-08 04:54:52Z marcelgosselin $
 
+#include "DirTravel.h"
 #include <algorithm>
+#include <Poco/DirectoryIterator.h>
+#include <Poco/Timestamp.h>
 #include <windows.h>
 #include <tchar.h>
 #include <mbstring.h>
 #include "UnicodeString.h"
 #include "DirItem.h"
-#include "DirTravel.h"
+#include "unicoder.h"
 
-static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files);
+using Poco::DirectoryIterator;
+using Poco::Timestamp;
+using Poco::Int64;
+
+static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files);
 static void Sort(DirItemArray * dirs, bool casesensitive);
 
 /**
  * @brief Load arrays with all directories & files in specified dir
  */
-void LoadAndSortFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files, bool casesensitive)
+void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files, bool casesensitive)
 {
 	LoadFiles(sDir, dirs, files);
 	Sort(dirs, casesensitive);
 	Sort(files, casesensitive);
-}
-
-/**
- * @brief Convert time in type FILETIME to type int (time_t compatible).
- * @param [in] time Time in FILETIME type.
- * @return Time in time_t compiliant integer.
- */
-static __int64 FiletimeToTimeT(FILETIME time)
-{
-	const __int64 SecsTo100ns = 10000000;
-	const __int64 SecsBetweenEpochs = 11644473600;
-	__int64 converted_time;
-	converted_time = ((__int64)time.dwHighDateTime << 32) + time.dwLowDateTime;
-	converted_time -= (SecsBetweenEpochs * SecsTo100ns);
-	converted_time /= SecsTo100ns;
-	return converted_time;
 }
 
 /**
@@ -56,8 +47,43 @@ static __int64 FiletimeToTimeT(FILETIME time)
  * @param [in, out] dirs Array where subfolders are stored.
  * @param [in, out] files Array where files are stored.
  */
-static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files)
+static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
 {
+#if 0
+	DirectoryIterator it(ucr::toUTF8(sDir));
+	DirectoryIterator end;
+
+	for (; it != end; ++it)
+	{
+		bool bIsDirectory = it->isDirectory();
+		if (bIsDirectory)
+			continue;
+
+		DirItem ent;
+		ent.bIsDir = bIsDirectory;
+		ent.ctime = it->created();
+		if (ent.ctime < 0)
+			ent.ctime = 0;
+		ent.mtime = it->getLastModified();
+		if (ent.mtime < 0)
+			ent.mtime = 0;
+
+		if (ent.bIsDir)
+			ent.size = -1;  // No size for directories
+		else
+			ent.size = it->getSize();
+
+		ent.path = sDir;
+		ent.filename = ucr::toTString(it.name());
+#ifdef _WIN32
+		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());;
+#else
+#endif
+		
+		(bIsDirectory ? dirs : files)->push_back(ent);
+	}
+
+#else
 	String sPattern(sDir);
 	size_t len = sPattern.length();
 	if (sPattern[len - 1] != '\\')
@@ -71,7 +97,7 @@ static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files)
 	{
 		do
 		{
-			BOOL bIsDirectory = (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0;
+			bool bIsDirectory = (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0;
 			if (bIsDirectory && _tcsstr(_T(".."), ff.cFileName))
 				continue;
 
@@ -82,10 +108,10 @@ static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files)
 			// Note that times can be < 0 if they are around that 1970..
 			// Anyway that is not sensible case for normal files so we can
 			// just use zero for their time.
-			ent.ctime = FiletimeToTimeT(ff.ftCreationTime);
+			ent.ctime = Timestamp::fromFileTimeNP(ff.ftCreationTime.dwLowDateTime, ff.ftCreationTime.dwHighDateTime);
 			if (ent.ctime < 0)
 				ent.ctime = 0;
-			ent.mtime = FiletimeToTimeT(ff.ftLastWriteTime);
+			ent.mtime = Timestamp::fromFileTimeNP(ff.ftLastWriteTime.dwLowDateTime, ff.ftLastWriteTime.dwHighDateTime);
 			if (ent.mtime < 0)
 				ent.mtime = 0;
 
@@ -93,7 +119,7 @@ static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files)
 				ent.size = -1;  // No size for directories
 			else
 			{
-				ent.size = ((__int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
+				ent.size = ((Int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
 
 			ent.path = sDir;
@@ -104,6 +130,8 @@ static void LoadFiles(LPCTSTR sDir, DirItemArray * dirs, DirItemArray * files)
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}
+
+#endif
 }
 
 static int collate(const String &str1, const String &str2)

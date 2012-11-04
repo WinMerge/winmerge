@@ -86,7 +86,7 @@ void PropVss::ReadOptions()
 void PropVss::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_VCS_SYSTEM, (int)m_nVerSys);
-	GetOptionsMgr()->SaveOption(OPT_VSS_PATH, m_strPath);
+	GetOptionsMgr()->SaveOption(OPT_VSS_PATH, String(m_strPath));
 }
 
 /**
@@ -94,11 +94,11 @@ void PropVss::WriteOptions()
  */
 void PropVss::OnBrowseButton()
 {
-	CString s;
+	String s;
 	if (SelectFile(GetSafeHwnd(), s))
 	{
-		m_strPath = s;
-		m_ctlPath.SetWindowText(s);
+		m_strPath = s.c_str();
+		m_ctlPath.SetWindowText(s.c_str());
 	}
 }
 

@@ -11,6 +11,7 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
+#include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "DirView.h"
@@ -21,6 +22,9 @@
 #include "locality.h"
 #include "unicoder.h"
 #include "coretools.h"
+#include "paths.h"
+
+using Poco::Timestamp;
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
 #ifdef UNICODE
@@ -210,8 +214,8 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 	if (di.diffcode.isDirectory())
 		return _T("");
 	const String &r = di.diffFileInfo[0].filename;
-	LPCTSTR s = PathFindExtension(r.c_str());
-	return s + _tcsspn(s, _T("."));
+	String s = paths_FindExtension(r);
+	return s.c_str() + _tcsspn(s.c_str(), _T("."));
 }
 
 /**
@@ -356,7 +360,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
  */
 static String ColTimeGet(const CDiffContext *, const void *p)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
+	const __int64 r = *static_cast<const __int64*>(p) / Timestamp::resolution();
 	if (r)
 		return locality::TimeString(&r);
 	else
@@ -437,7 +441,7 @@ static String ColNewerGet(const CDiffContext *pCtxt, const void *p)
 		{
 			return _T(">*>");
 		}
-		if (di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime)
+		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0)
 		{
 			if (di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime)
 			{
@@ -455,7 +459,7 @@ static String ColNewerGet(const CDiffContext *pCtxt, const void *p)
 	{
 		String res;
 		int sortno[3] = {0, 1, 2};
-		__int64 sorttime[3] = {di.diffFileInfo[0].mtime, di.diffFileInfo[1].mtime, di.diffFileInfo[2].mtime};
+		Timestamp sorttime[3] = {di.diffFileInfo[0].mtime, di.diffFileInfo[1].mtime, di.diffFileInfo[2].mtime};
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = i; j < 3; j++)
@@ -660,11 +664,9 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	}
 	else
 	{
-		String s = theApp.LoadString(IDS_EOL_MIXED);
-		TCHAR strstats[40];
-		_sntprintf(strstats, countof(strstats), _T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
-		s += strstats;
-		return s;
+		return string_format(_T("%s:%d/%d/%d"),
+			theApp.LoadString(IDS_EOL_MIXED).c_str(),
+			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	
 	return theApp.LoadString(id);
@@ -729,7 +731,7 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return lstrcmpi(ColFileNameGet(pCtxt, p).c_str(), ColFileNameGet(pCtxt, q).c_str());
+	return string_compare_nocase(ColFileNameGet(pCtxt, p), ColFileNameGet(pCtxt, q));
 }
 
 /**
@@ -747,7 +749,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return lstrcmpi(ColExtGet(pCtxt, p).c_str(), ColExtGet(pCtxt, q).c_str());
+	return string_compare_nocase(ColExtGet(pCtxt, p), ColExtGet(pCtxt, q));
 }
 
 /**
@@ -759,7 +761,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
  */
 static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return lstrcmpi(ColPathGet(pCtxt, p).c_str(), ColPathGet(pCtxt, q).c_str());
+	return string_compare_nocase(ColPathGet(pCtxt, p), ColPathGet(pCtxt, q));
 }
 
 /**
@@ -823,7 +825,7 @@ static int ColDiffsSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColNewerGet(pCtxt, p).compare(ColNewerGet(pCtxt, q));
+	return ColNewerGet(pCtxt, p) == ColNewerGet(pCtxt, q);
 }
 
 /**
@@ -835,7 +837,7 @@ static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
  */
 static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColLversionGet(pCtxt, p).compare(ColLversionGet(pCtxt, q));
+	return ColLversionGet(pCtxt, p) == ColLversionGet(pCtxt, q);
 }
 
 /**
@@ -847,7 +849,7 @@ static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void 
  */
 static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColRversionGet(pCtxt, p).compare(ColRversionGet(pCtxt, q));
+	return ColRversionGet(pCtxt, p) == ColRversionGet(pCtxt, q);
 }
 
 /**
@@ -887,7 +889,7 @@ static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
 	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
-	return r.ToString().compare(s.ToString());
+	return r.ToString() == s.ToString();
 }
 
 /**
@@ -993,22 +995,18 @@ const int g_ncols3 = countof(f_cols3);
 /**
  * @brief Registry base value name for saving/loading info for this column
  */
-CString
+String
 CDirView::GetColRegValueNameBase(int col) const
 {
 	if (GetDocument()->m_nDirs < 3)
 	{
 		ASSERT(col>=0 && col<countof(f_cols));
-		CString regName;
-		regName.Format(_T("WDirHdr_%s"), f_cols[col].regName);
-		return regName;
+		return string_format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
 		ASSERT(col>=0 && col<countof(f_cols3));
-		CString regName;
-		regName.Format(_T("WDirHdr_%s"), f_cols3[col].regName);
-		return regName;
+		return string_format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
 

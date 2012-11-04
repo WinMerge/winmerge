@@ -6,20 +6,22 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
-#include <tchar.h>
-#include "coretypes.h"
-#include "UnicodeString.h"
 #include "FileVersion.h"
+#include "UnicodeString.h"
+
+#ifndef HIWORD
+#define LOWORD(l) ((unsigned short)((l) & 0xffff))
+#define HIWORD(l) ((unsigned short)((l) >> 16))
+#endif
 
 /**
  * @brief Default constructor.
  */
 FileVersion::FileVersion()
-: m_bFileVersionSet(FALSE)
+: m_bFileVersionSet(false)
 , m_fileVersionMS(0)
 , m_fileVersionLS(0)
-, m_bProductVersionSet(FALSE)
+, m_bProductVersionSet(false)
 , m_productVersionMS(0)
 , m_productVersionLS(0)
 {
@@ -30,10 +32,10 @@ FileVersion::FileVersion()
  */
 void FileVersion::Clear()
 {
-	m_bFileVersionSet = FALSE;
+	m_bFileVersionSet = false;
 	m_fileVersionMS = 0;
 	m_fileVersionLS = 0;
-	m_bProductVersionSet = FALSE;
+	m_bProductVersionSet = false;
 	m_productVersionMS = 0;
 	m_productVersionLS = 0;
 }
@@ -43,9 +45,9 @@ void FileVersion::Clear()
  * @param [in] versionMS Most significant dword for version.
  * @param [in] versionLS Least significant dword for version.
  */
-void FileVersion::SetFileVersion(DWORD versionMS, DWORD versionLS)
+void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
 {
-	m_bFileVersionSet = TRUE;
+	m_bFileVersionSet = true;
 	m_fileVersionMS = versionMS;
 	m_fileVersionLS = versionLS;
 }
@@ -55,9 +57,9 @@ void FileVersion::SetFileVersion(DWORD versionMS, DWORD versionLS)
  * @param [in] versionMS Most significant dword for version.
  * @param [in] versionLS Least significant dword for version.
  */
-void FileVersion::SetProductVersion(DWORD versionMS, DWORD versionLS)
+void FileVersion::SetProductVersion(unsigned versionMS, unsigned versionLS)
 {
-	m_bProductVersionSet = TRUE;
+	m_bProductVersionSet = true;
 	m_productVersionMS = versionMS;
 	m_productVersionLS = versionLS;
 }
@@ -72,11 +74,9 @@ String FileVersion::GetFileVersionString()
 	if (!m_bFileVersionSet)
 		return _T("");
 
-	TCHAR ver[30] = {0};
-	_sntprintf(ver, countof(ver), _T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
+	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
 		LOWORD(m_fileVersionMS), HIWORD(m_fileVersionLS),
 		LOWORD(m_fileVersionLS));
-	return ver;
 }
 
 /**
@@ -88,9 +88,7 @@ String FileVersion::GetProductVersionString()
 	if (!m_bProductVersionSet)
 		return _T("0.0.0.0");
 
-	TCHAR ver[30] = {0};	
-	_sntprintf(ver, countof(ver), _T("%u.%u.%u.%u"), HIWORD(m_productVersionMS),
+	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_productVersionMS),
 		LOWORD(m_productVersionMS), HIWORD(m_productVersionLS),
 		LOWORD(m_productVersionLS));
-	return ver;
 }

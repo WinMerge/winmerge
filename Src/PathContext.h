@@ -10,7 +10,6 @@
 #ifndef _PATH_CONTEXT_H_
 #define _PATH_CONTEXT_H_
 
-#include <windows.h>
 #include "UnicodeString.h"
 
 class PathContext;
@@ -27,10 +26,10 @@ public:
 	PathInfo() {}
 	PathInfo(const PathInfo &pi);
 
-	String GetPath(BOOL bNormalized = TRUE) const;
+	String GetPath(bool bNormalized = true) const;
 	String& GetRef();
-	void SetPath(LPCTSTR path);
-	void SetPath(String & path);
+	void SetPath(const TCHAR *path);
+	void SetPath(const String & path);
 	void NormalizePath();
 
 private:
@@ -44,9 +43,9 @@ class PathContext
 {
 public:
 	PathContext();
-	PathContext(LPCTSTR sLeft);
-	PathContext(LPCTSTR sLeft, LPCTSTR sRight);
-	PathContext(LPCTSTR sLeft, LPCTSTR sMiddle, LPCTSTR sRight);
+	PathContext(const String& sLeft);
+	PathContext(const String& sLeft, const String& sRight);
+	PathContext(const String& sLeft, const String& sMiddle, const String& sRight);
 	PathContext(const PathContext &paths);
 
 	String GetAt(int nIndex) const;
@@ -55,14 +54,14 @@ public:
 	String operator[](int nIndex) const;
 	String& operator[](int nIndex);
 
-	String GetLeft(BOOL bNormalized = TRUE) const;
-	String GetRight(BOOL bNormalized = TRUE) const;
-	String GetMiddle(BOOL bNormalized = TRUE) const;
-	String GetPath(int index, BOOL bNormalized = TRUE) const;
-	void SetLeft(LPCTSTR path, bool bNormalized = true);
-	void SetRight(LPCTSTR path, bool bNormalized = true);
-	void SetMiddle(LPCTSTR path, bool bNormalized = true);
-	void SetPath(int index, LPCTSTR path, bool bNormalized = true);
+	String GetLeft(bool bNormalized = true) const;
+	String GetRight(bool bNormalized = true) const;
+	String GetMiddle(bool bNormalized = true) const;
+	String GetPath(int index, bool bNormalized = true) const;
+	void SetLeft(const String& path, bool bNormalized = true);
+	void SetRight(const String& path, bool bNormalized = true);
+	void SetMiddle(const String& path, bool bNormalized = true);
+	void SetPath(int index, const String& path, bool bNormalized = true);
 	void SetSize(int nFiles);
 	int GetSize() const;
 	void RemoveAll();

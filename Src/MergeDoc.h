@@ -210,7 +210,7 @@ public:
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
 	bool SanityCheckDiff(DIFFRANGE dr) const;
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
-	bool TrySaveAs(CString &strPath, int &nLastErrorCode, String & sError,
+	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
 	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
 	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);

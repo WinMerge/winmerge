@@ -9,7 +9,6 @@
 #ifndef _SYNTAX_COLORS_H_
 #define _SYNTAX_COLORS_H_
 
-#include "stdafx.h"
 #include <Windows.h>
 #include <vector>
 

@@ -67,7 +67,7 @@ public:
 	String GetFixedProductVersion();
 	String GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
-	BOOL GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS);
+	BOOL GetFixedFileVersion(unsigned& versionMS, unsigned& versionLS);
 
 protected:
 	void GetVersionInfo();

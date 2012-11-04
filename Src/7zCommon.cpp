@@ -128,7 +128,7 @@ static __declspec(thread) Merge7z::Proxy m_Merge7z =
 	NULL
 };
 
-BOOL IsArchiveFile(LPCTSTR pszFile)
+bool IsArchiveFile(const String& pszFile)
 {
 	try {
 		Merge7z::Format *piHandler = ArchiveGuessFormat(pszFile);
@@ -150,16 +150,17 @@ BOOL IsArchiveFile(LPCTSTR pszFile)
  * - Check if 7-Zip integration is enabled.
  * - Check for filename extension mappings.
  */
-Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
+Merge7z::Format *ArchiveGuessFormat(const String& path)
 {
 	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
 		return NULL;
-	if (PathIsDirectory(path))
+	if (paths_IsDirectory(path))
 		return NULL;
+	String path2(path);
 	// Map extensions through ExternalArchiveFormat.ini
 	static TCHAR null[] = _T("");
 	static const TCHAR section[] = _T("extensions");
-	LPCTSTR entry = PathFindExtension(path);
+	String entry = paths_FindExtension(path);
 	TCHAR value[20];
 	static LPCTSTR filename = NULL;
 	if (filename == NULL)
@@ -170,7 +171,7 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? StrDup(cPath) : null;
 	}
 	if (*filename &&
-		GetPrivateProfileString(section, entry, null, value, 20, filename) &&
+		GetPrivateProfileString(section, entry.c_str(), null, value, 20, filename) &&
 		*value == '.')
 	{
 		// Remove end-of-line comments (in string returned from GetPrivateProfileString)
@@ -180,7 +181,7 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 			*p = '\0';
 			StrTrim(value, _T(" \t"));
 		}
-		path = value;
+		path2 = value;
 	}
 
 	// PATCH [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues
@@ -194,7 +195,7 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 	}*/
 	// Default to Merge7z*.dll
 
-	return m_Merge7z->GuessFormat(path);
+	return m_Merge7z->GuessFormat(path2.c_str());
 }
 
 /**
@@ -532,7 +533,7 @@ INT_PTR CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wP
 				case IDOK:
 				case IDCANCEL:
 				{
-					int nDontShowAgain = SendDlgItemMessage(hWnd, 106, BM_GETCHECK, 0, 0);
+					LRESULT nDontShowAgain = SendDlgItemMessage(hWnd, 106, BM_GETCHECK, 0, 0);
 					EndDialog(hWnd, MAKEWORD(IDOK, nDontShowAgain));
 				} break;
 				case 108:
@@ -630,20 +631,24 @@ void NTAPI Recall7ZipMismatchError()
 /**
  * @brief Construct path to a temporary folder for pOwner, and clear the folder.
  */
-CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
+String NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
 {
-	CString strPath;
-	strPath.Format
+	String strPath = string_format
 	(
 		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
 		env_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
 	);
 	// SHFileOperation expects a ZZ terminated list of paths!
-	int cchPath = strPath.GetLength();
-	LPTSTR pchPath = strPath.GetBufferSetLength(cchPath + 1);
-	SHFILEOPSTRUCT fileop = {0, FO_DELETE, pchPath, 0, FOF_NOCONFIRMATION|FOF_SILENT|FOF_NOERRORUI, 0, 0, 0};
+	String::size_type len = strPath.size();
+	strPath.resize(len + 1);
+	SHFILEOPSTRUCT fileop =
+	{
+		0, FO_DELETE, &strPath[0], 0,
+		FOF_NOCONFIRMATION | FOF_SILENT | FOF_NOERRORUI,
+		0, 0, 0
+	};
 	SHFileOperation(&fileop);
-	strPath.ReleaseBuffer(cchPath);
+	strPath.resize(len);
 	return strPath;
 }
 
@@ -656,6 +661,11 @@ CTempPathContext *CTempPathContext::DeleteHead()
 	GetClearTempPath(this, _T("*"));
 	delete this;
 	return pParent;
+}
+
+BOOL NTAPI IsMerge7zEnabled()
+{
+	return AfxGetApp()->GetProfileInt(_T("Merge7z"), _T("Enable"), 0);
 }
 
 /**
@@ -678,8 +688,8 @@ DWORD NTAPI VersionOf7z(BOOL bLocal)
 		SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
 	}
 	PathAppend(path, _T("7z.dll"));
-	DWORD versionMS = 0;
-	DWORD versionLS = 0;
+	unsigned versionMS = 0;
+	unsigned versionLS = 0;
 	CVersionInfo(path).GetFixedFileVersion(versionMS, versionLS);
 	return versionMS;
 }
@@ -807,11 +817,11 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 {
 	if (m_nFlags & Original)
 	{
-		m_rgFolderPrefix.AddTail(_T("original"));
+		m_rgFolderPrefix.push_back(_T("original"));
 	}
 	if (m_nFlags & Altered)
 	{
-		m_rgFolderPrefix.AddTail(_T("altered"));
+		m_rgFolderPrefix.push_back(_T("altered"));
 	}
 	if (m_nFlags & BalanceFolders)
 	{
@@ -829,7 +839,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideFirstOnly())
 				{
 					// Item is present on right side, i.e. folder is implied
-					m_rgImpliedFoldersRight[di.diffFileInfo[1].path.c_str()] = PVOID(1);
+					m_rgImpliedFoldersRight[di.diffFileInfo[1].path] = PVOID(1);
 				}
 			}
 			else
@@ -838,7 +848,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideSecondOnly())
 				{
 					// Item is present on left side, i.e. folder is implied
-					m_rgImpliedFoldersLeft[di.diffFileInfo[0].path.c_str()] = PVOID(1);
+					m_rgImpliedFoldersLeft[di.diffFileInfo[0].path] = PVOID(1);
 				}
 			}
 		}
@@ -851,12 +861,12 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 UINT CDirView::DirItemEnumerator::Open()
 {
 	m_nIndex = -1;
-	m_curFolderPrefix = m_rgFolderPrefix.GetHeadPosition();
+	m_curFolderPrefix = m_rgFolderPrefix.begin();
 	m_bRight = (m_nFlags & Right) != 0;
-	int nrgFolderPrefix = m_rgFolderPrefix.GetCount();
+	size_t nrgFolderPrefix = m_rgFolderPrefix.size();
 	if (nrgFolderPrefix)
 	{
-		m_strFolderPrefix = m_rgFolderPrefix.GetNext(m_curFolderPrefix);
+		m_strFolderPrefix = *m_curFolderPrefix++;
 	}
 	else
 	{
@@ -878,7 +888,7 @@ const DIFFITEM &CDirView::DirItemEnumerator::Next()
 	enum {nMask = LVNI_FOCUSED|LVNI_SELECTED|LVNI_CUT|LVNI_DROPHILITED};
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
 	{
-		m_strFolderPrefix = m_rgFolderPrefix.GetNext(m_curFolderPrefix);
+		m_strFolderPrefix = *m_curFolderPrefix++;
 		m_bRight = TRUE;
 	}
 	return m_pView->GetDiffItem(m_nIndex);
@@ -976,7 +986,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		return envelope;
 	}
 
-	if (m_strFolderPrefix.GetLength())
+	if (m_strFolderPrefix.length())
 	{
 		if (envelope->Name.length())
 			envelope->Name.insert(0, _T("\\"));
@@ -1001,9 +1011,9 @@ bool CDirView::DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
 		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
 		CString pathIntermediate;
 		SysFreeString(Assign(pathIntermediate, piHandler->GetDefaultName(hwndOwner, path)));
-		CString pathPrepend = path;
-		pathPrepend.ReleaseBuffer(pathPrepend.ReverseFind('\\') + 1);
-		pathIntermediate.Insert(0, pathPrepend);
+		String pathPrepend = path;
+		pathPrepend.resize(pathPrepend.rfind('\\') + 1);
+		pathIntermediate.Insert(0, pathPrepend.c_str());
 		bool bDone = MultiStepCompressArchive(pathIntermediate);
 		if (bDone)
 		{
@@ -1025,7 +1035,7 @@ bool CDirView::DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
  */
 void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 {
-	CString strPath;
+	String strPath;
 	if (path == 0)
 	{
 		// No path given, so prompt for path!
@@ -1058,8 +1068,8 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			//_T("cpio|*.cpio|")
 			//_T("|")
 		);
-		CString strFilter; // = CExternalArchiveFormat::GetOpenFileFilterString();
-		strFilter.Insert(0, _T_Filter);
+		String strFilter; // = CExternalArchiveFormat::GetOpenFileFilterString();
+		strFilter.insert(0, _T_Filter);
 		strFilter += _T("|");
 		// Make CFileDialog static to preserve settings across invocations:
  		static CFileDialog dlg
@@ -1068,7 +1078,7 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			0,
 			0,
 			OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
-			strFilter
+			strFilter.c_str()
 		);
 		dlg.m_ofn.nFilterIndex = AfxGetApp()->GetProfileInt(_T_Merge7z, _T_FilterIndex, 1);
 		// Use extension from current filter as default extension:
@@ -1087,7 +1097,8 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 		}
 		if (dlg.DoModal() == IDOK)
 		{
-			path = strPath = dlg.GetPathName();
+			strPath = dlg.GetPathName();
+			path = strPath.c_str();
 			AfxGetApp()->WriteProfileInt(_T_Merge7z, _T_FilterIndex, dlg.m_ofn.nFilterIndex);
 		}
 	}
@@ -1095,16 +1106,12 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 	{
 		LangMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
 	}
-#ifdef _DEBUG
-	afxDump << m_rgImpliedFoldersLeft;
-	afxDump << m_rgImpliedFoldersRight;
-#endif
 }
 
 /**
  * @brief Collect files for SHFileOperation
  */
-void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
+void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 {
 	CDirDoc *pDoc = m_pView->GetDocument();
 	const String sLeftRootPath = pDoc->GetBasePath(0);
@@ -1122,7 +1129,8 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			).length() + (m_bRight ? di.diffFileInfo[1].filename : di.diffFileInfo[0].filename).length() + 2;
 		}
 	}
-	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
+	strBuffer.resize(cchBuffer + 1);
+	LPTSTR pchBuffer = &strBuffer[0];
 	for (i = Open() ; i-- ; )
 	{
 		const DIFFITEM &di = Next();
@@ -1137,5 +1145,5 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			) + 1;
 		}
 	}
-	ASSERT(pchBuffer - strBuffer == cchBuffer);
+	ASSERT(pchBuffer - &strBuffer[0] == cchBuffer);
 }

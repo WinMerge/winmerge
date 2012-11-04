@@ -28,58 +28,73 @@
 // ID line follows -- this is updated by SVN
 // $Id: multiformatText.cpp 7082 2010-01-03 22:15:50Z sdottaka $
 
-#include "StdAfx.h"
-#include <vector>
-#include <boost/scoped_ptr.hpp>
-#include "unicoder.h"
+#define NOMINMAX
 #include "multiformatText.h"
-#include "files.h"
+#include <vector>
+#include <algorithm>
+#include <cstring>
+#include <cassert>
+#include <boost/scoped_array.hpp>
+#include <boost/scoped_ptr.hpp>
+#include <Poco/SharedMemory.h>
+#include <Poco/Exception.h>
+#include "unicoder.h"
 #include "paths.h"
 #include "UniFile.h"
 #include "codepage.h"
 #include "Environment.h"
+#include "TFile.h"
+#include "MergeApp.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
-
+using Poco::SharedMemory;
+using Poco::Exception;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+static void *GetVariantArrayData(VARIANT& array, unsigned& size)
+{
+	char * parrayData;
+	SafeArrayAccessData(array.parray, (void**)&parrayData);
+	LONG ubound, lbound;
+	SafeArrayGetLBound(array.parray, 1, &lbound);
+	SafeArrayGetUBound(array.parray, 1, &ubound);
+	size = ubound - lbound;
+	return parrayData;
+}
+
 void storageForPlugins::Initialize()
 {
-	m_bstr.Empty();
-	m_array.Clear();
+	SysFreeString(m_bstr);
+	m_bstr = NULL;
+	VariantClear(&m_array);
 	m_tempFilenameDst = _T("");
 }
 
-void storageForPlugins::SetDataFileAnsi(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
+void storageForPlugins::SetDataFileAnsi(const String& filename, bool bOverwrite /*= false*/) 
 {
 	m_filename = filename;
 	m_nChangedValid = 0;
 	m_nChanged = 0;
-	m_bOriginalIsUnicode = FALSE;
-	m_bCurrentIsUnicode = FALSE;
-	m_bCurrentIsFile = TRUE;
+	m_bOriginalIsUnicode = false;
+	m_bCurrentIsUnicode = false;
+	m_bCurrentIsFile = true;
 	m_bOverwriteSourceFile = bOverwrite;
-	m_codepage = getDefaultCodepage();
+	m_codepage = ucr::getDefaultCodepage();
 	Initialize();
 }
-void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/)
+void storageForPlugins::SetDataFileUnicode(const String& filename, bool bOverwrite /*= false*/)
 {
 	m_filename = filename;
 	m_nChangedValid = 0;
 	m_nChanged = 0;
-	m_bOriginalIsUnicode = TRUE;
-	m_bCurrentIsUnicode = TRUE;
-	m_bCurrentIsFile = TRUE;
+	m_bOriginalIsUnicode = true;
+	m_bCurrentIsUnicode = true;
+	m_bCurrentIsFile = true;
 	m_bOverwriteSourceFile = bOverwrite;
-	m_codepage = getDefaultCodepage();
+	m_codepage = ucr::getDefaultCodepage();
 	Initialize();
 }
-void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
+void storageForPlugins::SetDataFileUnknown(const String& filename, bool bOverwrite /*= false*/) 
 {
 	bool bIsUnicode = false;
 	UniMemFile ufile;
@@ -94,7 +109,7 @@ void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*=
 		SetDataFileAnsi(filename, bOverwrite);
 }
 
-LPCTSTR storageForPlugins::GetDestFileName()
+const TCHAR *storageForPlugins::GetDestFileName()
 {
 	if (m_tempFilenameDst.empty())
 	{
@@ -112,10 +127,13 @@ void storageForPlugins::ValidateNewFile()
 	if (m_nChangedValid == m_nChanged)
 	{
 		// plugin succeeded, but nothing changed, just delete the new file
-		if (!::DeleteFile(m_tempFilenameDst.c_str()))
+		try
 		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, m_tempFilenameDst.c_str(), GetSysError(GetLastError()).c_str()));
+			TFile(m_tempFilenameDst).remove();
+		}
+		catch (Exception& e)
+		{
+			LogErrorStringUTF8(e.displayText());
 		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
@@ -125,19 +143,22 @@ void storageForPlugins::ValidateNewFile()
 		m_nChangedValid = m_nChanged;
 		if (m_bOverwriteSourceFile)
 		{
-			if (!::DeleteFile(m_filename.c_str()))
+			try
 			{
-				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-					, m_filename.c_str(), GetSysError(GetLastError()).c_str()));
+				TFile(m_filename).remove();
+				TFile(m_tempFilenameDst).renameTo(m_filename);
 			}
-			::MoveFile(m_tempFilenameDst.c_str(), m_filename.c_str());
+			catch (Exception& e)
+			{
+				LogErrorStringUTF8(e.displayText());
+			}
 		}
 		else
 		{
 			// do not delete the original file name
 			m_filename = m_tempFilenameDst;
 			// for next transformation, we may overwrite/delete the source file
-			m_bOverwriteSourceFile = TRUE;
+			m_bOverwriteSourceFile = true;
 		}
 		m_tempFilenameDst.erase();
 	}
@@ -151,24 +172,30 @@ void storageForPlugins::ValidateNewBuffer()
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
+void storageForPlugins::ValidateInternal(bool bNewIsFile, bool bNewIsUnicode)
 {
-	ASSERT (m_bCurrentIsFile != bNewIsFile || m_bCurrentIsUnicode != bNewIsUnicode);
+	assert (m_bCurrentIsFile != bNewIsFile || m_bCurrentIsUnicode != bNewIsUnicode);
 
 	// if we create a file, we remove the remaining previous file 
 	if (bNewIsFile)
 	{
 		if (m_bOverwriteSourceFile)
 		{
-			::DeleteFile(m_filename.c_str());
-			::MoveFile(m_tempFilenameDst.c_str(), m_filename.c_str());
+			try
+			{
+				TFile(m_filename).remove();
+				TFile(m_tempFilenameDst).renameTo(m_filename);
+			}
+			catch (...)
+			{
+			}
 		}
 		else
 		{
 			// do not delete the original file name
 			m_filename = m_tempFilenameDst;
 			// for next transformation, we may overwrite/delete the source file
-			m_bOverwriteSourceFile = TRUE;
+			m_bOverwriteSourceFile = true;
 		}
 		m_tempFilenameDst.erase();
 	}
@@ -179,103 +206,101 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 		if (bNewIsFile || m_bCurrentIsUnicode != bNewIsUnicode)
 		{
 			if (m_bCurrentIsUnicode)
-				m_bstr.Empty();
+			{
+				SysFreeString(m_bstr);
+				m_bstr = NULL;
+			}
 			else
-				m_array.Clear();
+				VariantClear(&m_array);
 		}
 
 	m_bCurrentIsUnicode = bNewIsUnicode;
 	m_bCurrentIsFile = bNewIsFile;
 }
 
-LPCTSTR storageForPlugins::GetDataFileUnicode()
+const TCHAR *storageForPlugins::GetDataFileUnicode()
 {
 	if (m_bCurrentIsFile && m_bCurrentIsUnicode)
 		return m_filename.c_str();
 
-	MAPPEDFILEDATA fileDataIn = {0};
-	UINT nchars;
-	CHAR * pchar = NULL;
-	WCHAR * pwchar = NULL;
+	unsigned nchars;
+	char * pchar = NULL;
+	wchar_t * pwchar = NULL;
 
-	// Get source data
-	if (m_bCurrentIsFile)
+	SharedMemory *pshmIn = NULL;
+	try
 	{
-		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
-		fileDataIn.bWritable = FALSE;
-		fileDataIn.dwOpenFlags = OPEN_EXISTING;
-		BOOL bSuccess = files_openFileMapped(&fileDataIn);
-		if (!bSuccess)
-			return NULL;
-
-		pchar = (char *)fileDataIn.pMapBase;
-		nchars = fileDataIn.dwSize;
-	}
-	else
-	{
-		if (m_bCurrentIsUnicode)
+		// Get source data
+		if (m_bCurrentIsFile)
 		{
-			pwchar = BSTR(m_bstr);
-			nchars = m_bstr.Length();
+			// Init filedata struct and open file as memory mapped (in file)
+			TFile fileIn(m_filename);
+			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+			pchar = pshmIn->begin();
+			nchars = pshmIn->end() - pshmIn->begin();
 		}
 		else
 		{
-			m_array.AccessData((void**)&pchar);
-			nchars = m_array.GetOneDimSize();
+			if (m_bCurrentIsUnicode)
+			{
+				pwchar = m_bstr;
+				nchars = SysStringLen(m_bstr);
+			}
+			else
+			{
+				pchar = (char *)GetVariantArrayData(m_array, nchars);
+			}
 		}
-	}
 
-	// Compute the dest size (in bytes)
-	int textForeseenSize = nchars * sizeof(WCHAR) + 6; // from unicoder.cpp maketstring
-	int textRealSize = textForeseenSize;
+		// Compute the dest size (in bytes)
+		int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
+		int textRealSize = textForeseenSize;
 
-	// Init filedata struct and open file as memory mapped (out file)
-	GetDestFileName();
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, m_tempFilenameDst.c_str(), MAX_PATH);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = textForeseenSize + 2;  
-	BOOL bOpenSuccess = files_openFileMapped(&fileDataOut);
-	if (bOpenSuccess)
-	{
-		int bom_bytes = ucr::writeBom(fileDataOut.pMapBase, ucr::UCS2LE);
-		if (m_bCurrentIsUnicode)
+		// Init filedata struct and open file as memory mapped (out file)
+		GetDestFileName();
+
+		TFile fileOut(m_tempFilenameDst);
+		fileOut.setSize(textForeseenSize + 2);
 		{
-			CopyMemory((char*)fileDataOut.pMapBase+bom_bytes, pwchar, nchars * sizeof(WCHAR));
-			textRealSize = nchars * sizeof(WCHAR);
-		}
-		else
-		{
-			// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
-			DWORD flags = 0;
-			textRealSize = MultiByteToWideChar(m_codepage, flags, pchar, nchars, 
-				(WCHAR*)((char*)fileDataOut.pMapBase+bom_bytes), textForeseenSize-1)
-				             * sizeof(WCHAR);
+			SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+			int bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
+			if (m_bCurrentIsUnicode)
+			{
+				std::memcpy(shmOut.begin()+bom_bytes, pwchar, nchars * sizeof(wchar_t));
+				textRealSize = nchars * sizeof(wchar_t);
+			}
+			else
+			{
+				// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
+				DWORD flags = 0;
+				textRealSize = MultiByteToWideChar(m_codepage, flags, pchar, nchars, 
+					(wchar_t*)(shmOut.begin()+bom_bytes), textForeseenSize-1)
+								* sizeof(wchar_t);
+			}
 		}
 		// size may have changed
-		files_closeFileMapped(&fileDataOut, textRealSize + 2, FALSE);
+		fileOut.setSize(textRealSize + 2);
+
+		// Release pointers to source data
+		delete pshmIn;
+		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+			SafeArrayUnaccessData(m_array.parray);
+
+		if ((textRealSize == 0) && (textForeseenSize > 0))
+		{
+			// conversion error
+			try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
+			return NULL;
+		}
+
+		ValidateInternal(true, true);
+		return m_filename.c_str();
 	}
-
-	// Release pointers to source data
-	if (m_bCurrentIsFile)
-		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		m_array.UnaccessData();
-
-	if (!bOpenSuccess)
-		return NULL;
-
-	if ((textRealSize == 0) && (textForeseenSize > 0))
+	catch (...)
 	{
-		// conversion error
-		::DeleteFile(m_tempFilenameDst.c_str());
+		delete pshmIn;
 		return NULL;
 	}
-
-	ValidateInternal(TRUE, TRUE);
-	return m_filename.c_str();
 }
 
 
@@ -284,242 +309,246 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	if (!m_bCurrentIsFile && m_bCurrentIsUnicode)
 		return &m_bstr;
 
-	MAPPEDFILEDATA fileDataIn = {0};
-	UINT nchars;
-	CHAR * pchar;
-	WCHAR * pwchar;
+	unsigned nchars;
+	char * pchar;
+	wchar_t * pwchar;
+	SharedMemory *pshmIn = NULL;
 
-	// Get source data
-	if (m_bCurrentIsFile) 
+	try
 	{
-		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
-		fileDataIn.bWritable = FALSE;
-		fileDataIn.dwOpenFlags = OPEN_EXISTING;
-		BOOL bSuccess = files_openFileMapped(&fileDataIn);
-		if (!bSuccess)
+		// Get source data
+		if (m_bCurrentIsFile) 
+		{
+			// Init filedata struct and open file as memory mapped (in file)
+			TFile fileIn(m_filename);
+			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+
+			if (m_bCurrentIsUnicode)
+			{
+				pwchar = (wchar_t*) (pshmIn->begin()+2); // pass the BOM
+				nchars = (pshmIn->end()-pshmIn->begin()-2) / 2;
+			}
+			else
+			{
+				pchar = pshmIn->begin();
+				nchars = pshmIn->end()-pshmIn->begin();
+			}
+		}
+		else
+		{
+			pchar = (char *)GetVariantArrayData(m_array, nchars);
+		}
+
+		// Compute the dest size (in bytes)
+		int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
+		int textRealSize = textForeseenSize;
+
+		// allocate the memory
+		boost::scoped_array<wchar_t> tempBSTR(new wchar_t[textForeseenSize]);
+
+		// fill in the data
+		wchar_t * pbstrBuffer = tempBSTR.get();
+		bool bAllocSuccess = (pbstrBuffer != NULL);
+		if (bAllocSuccess)
+		{
+			if (m_bCurrentIsUnicode)
+			{
+				std::memcpy(pbstrBuffer, pwchar, nchars * sizeof(wchar_t));
+				textRealSize = nchars * sizeof(wchar_t);
+			}
+			else
+			{
+				// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
+				DWORD flags = 0;
+				textRealSize = MultiByteToWideChar(m_codepage, flags, pchar,
+					nchars, pbstrBuffer, textForeseenSize-1) * sizeof(wchar_t);
+			}
+			SysFreeString(m_bstr);
+			m_bstr = SysAllocStringLen(tempBSTR.get(), textRealSize);
+			if (!m_bstr)
+				bAllocSuccess = false;
+		}
+
+		// Release pointers to source data
+		delete pshmIn;
+		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+			SafeArrayUnaccessData(m_array.parray);
+
+		if (!bAllocSuccess)
 			return NULL;
 
-		if (m_bCurrentIsUnicode)
-		{
-			pwchar = (WCHAR*) ((char*)fileDataIn.pMapBase+2); // pass the BOM
-			nchars = (fileDataIn.dwSize-2) / 2;
-		}
-		else
-		{
-			pchar = (char *)fileDataIn.pMapBase;
-			nchars = fileDataIn.dwSize;
-		}
+		ValidateInternal(false, true);
+		return &m_bstr;
 	}
-	else
+	catch (...)
 	{
-		m_array.AccessData((void**)&pchar);
-		nchars = m_array.GetOneDimSize();
-	}
-
-	// Compute the dest size (in bytes)
-	int textForeseenSize = nchars * sizeof(WCHAR) + 6; // from unicoder.cpp maketstring
-	int textRealSize = textForeseenSize;
-
-	// allocate the memory
-	CComBSTR tempBSTR(textForeseenSize/sizeof(WCHAR));
-
-	// fill in the data
-	WCHAR * pbstrBuffer = (WCHAR*) BSTR(tempBSTR);
-	BOOL bAllocSuccess = (pbstrBuffer != NULL);
-	if (bAllocSuccess)
-	{
-		if (m_bCurrentIsUnicode)
-		{
-			CopyMemory(pbstrBuffer, pwchar, nchars * sizeof(WCHAR));
-			textRealSize = nchars * sizeof(WCHAR);
-		}
-		else
-		{
-			// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
-			DWORD flags = 0;
-			textRealSize = MultiByteToWideChar(m_codepage, flags, pchar,
-				nchars, pbstrBuffer, textForeseenSize-1) * sizeof(WCHAR);
-		}
-		// size may have changed, and we can not reallocate a CComBSTR
-		// with append, at least we can force the size
-		if (FAILED(m_bstr.Append(BSTR(tempBSTR), textRealSize/sizeof(WCHAR))))
-			bAllocSuccess = FALSE;
-	}
-
-	// Release pointers to source data
-	if (m_bCurrentIsFile)
-		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		m_array.UnaccessData();
-
-	if (!bAllocSuccess)
+		delete pshmIn;
 		return NULL;
-
-	ValidateInternal(FALSE, TRUE);
-	return &m_bstr;
+	}
 }
 
-LPCTSTR storageForPlugins::GetDataFileAnsi()
+const TCHAR *storageForPlugins::GetDataFileAnsi()
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
 		return m_filename.c_str();
 
-	MAPPEDFILEDATA fileDataIn = {0};
-	UINT nchars;
-	CHAR * pchar;
-	WCHAR * pwchar;
+	unsigned nchars;
+	char * pchar;
+	wchar_t * pwchar;
+	SharedMemory *pshmIn = NULL;
 
-	// Get source data
-	if (m_bCurrentIsFile)
+	try
 	{
-		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
-		fileDataIn.bWritable = FALSE;
-		fileDataIn.dwOpenFlags = OPEN_EXISTING;
-		BOOL bSuccess = files_openFileMapped(&fileDataIn);
-		if (!bSuccess)
-			return NULL;
+		// Get source data
+		if (m_bCurrentIsFile)
+		{
+			// Init filedata struct and open file as memory mapped (in file)
+			TFile fileIn(m_filename);
+			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
 
-		pwchar = (WCHAR*) ((char*)fileDataIn.pMapBase+2); // pass the BOM
-		nchars = (fileDataIn.dwSize-2) / 2;
-	}
-	else 
-	{
+			pwchar = (wchar_t*) (pshmIn->begin()+2); // pass the BOM
+			nchars = (pshmIn->end()-pshmIn->begin()-2) / 2;
+		}
+		else 
+		{
+			if (m_bCurrentIsUnicode)
+			{
+				pwchar = m_bstr;
+				nchars = SysStringLen(m_bstr);
+			}
+			else
+			{
+				pchar = (char *)GetVariantArrayData(m_array, nchars);
+			}
+		}
+
+		// Compute the dest size (in bytes)
+		int textForeseenSize = nchars; 
 		if (m_bCurrentIsUnicode)
-		{
-			pwchar = BSTR(m_bstr);
-			nchars = m_bstr.Length();
-		}
-		else
-		{
-			m_array.AccessData((void**)&pchar);
-			nchars = m_array.GetOneDimSize();
-		}
-	}
+			textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
+		int textRealSize = textForeseenSize;
 
-	// Compute the dest size (in bytes)
-	int textForeseenSize = nchars; 
-	if (m_bCurrentIsUnicode)
-		textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
-	int textRealSize = textForeseenSize;
+		// Init filedata struct and open file as memory mapped (out file)
+		GetDestFileName();
+		TFile fileOut(m_tempFilenameDst);
+		fileOut.setSize(textForeseenSize);
+		{
+			SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 
-	// Init filedata struct and open file as memory mapped (out file)
-	GetDestFileName();
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, m_tempFilenameDst.c_str(), MAX_PATH);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = textForeseenSize;  
-	BOOL bOpenSuccess = files_openFileMapped(&fileDataOut);
-	if (bOpenSuccess)
-	{
-		if (m_bCurrentIsUnicode)
-		{
-			// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
-			DWORD flags = 0;
-			textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars,
-				(char*)fileDataOut.pMapBase, textForeseenSize, NULL, NULL);
-		}
-		else
-		{
-			CopyMemory((char*)fileDataOut.pMapBase, pchar, nchars);
+			if (m_bCurrentIsUnicode)
+			{
+				// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
+				DWORD flags = 0;
+				textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars,
+					shmOut.begin(), textForeseenSize, NULL, NULL);
+			}
+			else
+			{
+				std::memcpy(shmOut.begin(), pchar, nchars);
+			}
 		}
 		// size may have changed
-		files_closeFileMapped(&fileDataOut, textRealSize, FALSE);
+		fileOut.setSize(textRealSize);
+
+		// Release pointers to source data
+		delete pshmIn;
+		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+			SafeArrayUnaccessData(m_array.parray);
+
+		if ((textRealSize == 0) && (textForeseenSize > 0))
+		{
+			// conversion error
+			try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
+			return NULL;
+		}
+
+		ValidateInternal(true, false);
+		return m_filename.c_str();
 	}
-
-	// Release pointers to source data
-	if (m_bCurrentIsFile)
-		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		m_array.UnaccessData();
-
-	if (!bOpenSuccess)
-		return NULL;
-
-	if ((textRealSize == 0) && (textForeseenSize > 0))
+	catch (...)
 	{
-		// conversion error
-		::DeleteFile(m_tempFilenameDst.c_str());
+		delete pshmIn;
 		return NULL;
 	}
-
-	ValidateInternal(TRUE, FALSE);
-	return m_filename.c_str();
 }
 
 
-COleSafeArray * storageForPlugins::GetDataBufferAnsi()
+VARIANT * storageForPlugins::GetDataBufferAnsi()
 {
 	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
 		return &m_array;
 
-	MAPPEDFILEDATA fileDataIn = {0};
-	UINT nchars;
-	CHAR * pchar;
-	WCHAR * pwchar;
+	unsigned nchars;
+	char * pchar;
+	wchar_t * pwchar;
+	SharedMemory *pshmIn = NULL;
 
-	// Get source data
-	if (m_bCurrentIsFile) 
+	try
 	{
-		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
-		fileDataIn.bWritable = FALSE;
-		fileDataIn.dwOpenFlags = OPEN_EXISTING;
-		BOOL bSuccess = files_openFileMapped(&fileDataIn);
-		if (!bSuccess)
-			return NULL;
-
-		if (m_bCurrentIsUnicode)
+		// Get source data
+		if (m_bCurrentIsFile) 
 		{
-			pwchar = (WCHAR*) ((char*)fileDataIn.pMapBase+2); // pass the BOM
-			nchars = (fileDataIn.dwSize-2) / 2;
+			// Init filedata struct and open file as memory mapped (in file)
+			TFile fileIn(m_filename);
+			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+
+			if (m_bCurrentIsUnicode)
+			{
+				pwchar = (wchar_t*) (pshmIn->begin()+2); // pass the BOM
+				nchars = (pshmIn->end()-pshmIn->begin()-2) / 2;
+			}
+			else
+			{
+				pchar = pshmIn->begin();
+				nchars = pshmIn->end()-pshmIn->begin();
+			}
 		}
 		else
 		{
-			pchar = (char *)fileDataIn.pMapBase;
-			nchars = fileDataIn.dwSize;
+			pwchar = m_bstr;
+			nchars = SysStringLen(m_bstr);
 		}
+
+		// Compute the dest size (in bytes)
+		int textForeseenSize = nchars; 
+		if (m_bCurrentIsUnicode)
+			textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
+		int textRealSize = textForeseenSize;
+
+		// allocate the memory
+		SAFEARRAYBOUND rgsabound = {textForeseenSize, 0};
+		m_array.vt = VT_UI1 | VT_ARRAY;
+		m_array.parray = SafeArrayCreate(VT_UI1, 1, &rgsabound);
+		char * parrayData;
+		SafeArrayAccessData(m_array.parray, (void**)&parrayData);
+
+		// fill in the data
+		if (m_bCurrentIsUnicode)
+		{
+			// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
+			DWORD flags = 0;
+			textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars, parrayData, textForeseenSize, NULL, NULL);
+		}
+		else
+		{
+			std::memcpy(parrayData, pchar, nchars);
+		}
+		// size may have changed
+		SafeArrayUnaccessData(m_array.parray);
+		SAFEARRAYBOUND rgsaboundnew = {textRealSize, 0};
+		SafeArrayRedim(m_array.parray, &rgsaboundnew);
+
+		// Release pointers to source data
+		delete pshmIn;
+
+		ValidateInternal(false, false);
+		return &m_array;
 	}
-	else
+	catch (...)
 	{
-		pwchar = BSTR(m_bstr);
-		nchars = m_bstr.Length();
+		delete pshmIn;
+		return NULL;
 	}
-
-	// Compute the dest size (in bytes)
-	int textForeseenSize = nchars; 
-	if (m_bCurrentIsUnicode)
-		textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
-	int textRealSize = textForeseenSize;
-
-	// allocate the memory
-	m_array.CreateOneDim(VT_UI1, textForeseenSize);
-	char * parrayData;
-	m_array.AccessData((void**)&parrayData);
-
-	// fill in the data
-	if (m_bCurrentIsUnicode)
-	{
-		// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
-		DWORD flags = 0;
-		textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars, parrayData, textForeseenSize, NULL, NULL);
-	}
-	else
-	{
-		CopyMemory(parrayData, pchar, nchars);
-	}
-	// size may have changed
-	m_array.UnaccessData();
-	m_array.ResizeOneDim(textRealSize);
-
-	// Release pointers to source data
-	if (m_bCurrentIsFile)
-		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-
-	ValidateInternal(FALSE, FALSE);
-	return &m_array;
 }
 
 
@@ -539,7 +568,7 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
  *
  * @return if nUtf = 0, return the size required for the translation buffer
  */
-static UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUtf)
+static size_t TransformUcs2ToUtf8(const wchar_t *psUcs, size_t nUcs, char *pcsUtf, size_t nUtf)
 {
 	if (nUtf == 0)
 		// just tell required length
@@ -547,23 +576,23 @@ static UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUt
 
 	// the buffer is allocated, output in it directly
 	unsigned char * pc = (unsigned char *) pcsUtf;
-	int nremains = nUtf;
+	size_t nremains = nUtf;
 
 	// quick way 
-	UINT i=0;
+	size_t i=0;
 	for (i = 0 ; i < nUcs && nremains > 10; ++i)
 		nremains -= ucr::to_utf8_advance(psUcs[i], pc);
 
 	// be careful for the end of the buffer, risk of overflow because
 	// of the variable length of the UTF-8 character
 	unsigned char smallTempBuffer[20];
-	int nremainsend = nremains;
+	size_t nremainsend = nremains;
 	unsigned char * pcTemp = (unsigned char *) smallTempBuffer;
 	for ( ; i < nUcs && nremainsend > 0; ++i)
 		nremainsend -= ucr::to_utf8_advance(psUcs[i], pcTemp);
 
-	int ncomplement = min(nremains, pcTemp-smallTempBuffer);
-	CopyMemory(pc, smallTempBuffer, ncomplement);
+	size_t ncomplement = std::min((size_t)nremains, (size_t)(pcTemp-smallTempBuffer));
+	std::memcpy(pc, smallTempBuffer, ncomplement);
 	nremains -= ncomplement;
 
 	// return number of written bytes
@@ -575,7 +604,7 @@ static UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUt
  *
  * @return if nUcs = 0, return the size required for the translation buffer
  */
-static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUcs)
+static size_t TransformUtf8ToUcs2(const char * pcsUtf, size_t nUtf, wchar_t * psUcs, size_t nUcs)
 {
 	if (nUcs == 0)
 		// just tell required length
@@ -583,10 +612,10 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 
 	// the buffer is allocated, output in it directly
 	unsigned char * pUtf = (unsigned char * ) pcsUtf;
-	LPWSTR pwc = psUcs;
-	int nremains = nUcs;
+	wchar_t * pwc = psUcs;
+	size_t nremains = nUcs;
 
-	for (UINT i = 0 ; i < nUtf && nremains > 0; )
+	for (unsigned i = 0 ; i < nUtf && nremains > 0; )
 	{
 		int chlen = ucr::Utf8len_fromLeadByte(pUtf[i]);
 		if (chlen < 1 || i + chlen > nUtf)
@@ -603,99 +632,89 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 }
 
 
-BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, ucr::UNICODESET unicoding)
+bool UnicodeFileToOlechar(const String& filepath, const String& filepathDst, int & nFileChanged, ucr::UNICODESET unicoding)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.IsUnicode())
 	{
 		if (unicoding == 0)
-			return TRUE; // not unicode file, nothing to do
+			return true; // not unicode file, nothing to do
 	}
 
 	if (unicoding)
 		ufile.SetUnicoding(unicoding);
 	ucr::UNICODESET codeOldBOM = ufile.GetUnicoding();
-	UINT nSizeOldBOM = ufile.GetPosition();
+	size_t nSizeOldBOM = static_cast<size_t>(ufile.GetPosition());
 	if (nSizeOldBOM > 0 && codeOldBOM == ucr::UCS2LE)
-		return TRUE; // unicode UCS-2LE, nothing to do
+		return true; // unicode UCS-2LE, nothing to do
 	bool bBom = ufile.HasBom();
 	// Finished with examing file contents
 	ufile.Close();
 
 	// Init filedataIn struct and open file as memory mapped (input)
-	BOOL bSuccess;
-	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
-	fileDataIn.bWritable = FALSE;
-	fileDataIn.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileDataIn);
-	if (!bSuccess)
-		return FALSE;
-
-	char * pszBuf = (char *)fileDataIn.pMapBase;
-	UINT nBufSize = fileDataIn.dwSize;
-
-	// first pass : get the size of the destination file
-	UINT nchars = 0;
-	switch (codeOldBOM)
+	try
 	{
-	case ucr::UTF8:
-		nSizeOldBOM = bBom ? 3 : 0;
-		nchars = TransformUtf8ToUcs2(pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, NULL, 0);
-		break;
-	case ucr::UCS2BE:
-	case ucr::UCS2LE:
-		// same number of characters
-		nchars = (nBufSize - nSizeOldBOM)/sizeof(WCHAR);
-	}
+		TFile fileIn(filepath);
+		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
 
-	UINT nSizeBOM = 2;
-	UINT nDstSize = nchars * sizeof(WCHAR); // data size in bytes
+		char * pszBuf = shmIn.begin();
+		size_t nBufSize = shmIn.end() - shmIn.begin();
 
-	// create the destination file
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst)+1);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = nDstSize + nSizeBOM;
-	bSuccess = files_openFileMapped(&fileDataOut);
+		// first pass : get the size of the destination file
+		size_t nchars = 0;
+		switch (codeOldBOM)
+		{
+		case ucr::UTF8:
+			nSizeOldBOM = bBom ? 3 : 0;
+			nchars = TransformUtf8ToUcs2(pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, NULL, 0);
+			break;
+		case ucr::UCS2BE:
+		case ucr::UCS2LE:
+			// same number of characters
+			nchars = (nBufSize - nSizeOldBOM)/sizeof(wchar_t);
+		}
 
-	// second pass : write the file
-	if (bSuccess)
-	{
+		size_t nSizeBOM = 2;
+		size_t nDstSize = nchars * sizeof(wchar_t); // data size in bytes
+
+		// create the destination file
+		TFile fileOut(filepathDst);
+		fileOut.setSize(nDstSize + nSizeBOM);
+		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
 		// write BOM
-		ucr::writeBom(fileDataOut.pMapBase, ucr::UCS2LE);
+		ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
 
 		// write data
-		LPWSTR pszWideDst = (LPWSTR) ((char *)fileDataOut.pMapBase+nSizeBOM);
+		wchar_t * pszWideDst = (wchar_t *) ((char *)shmOut.begin()+nSizeBOM);
 		switch (codeOldBOM)
 		{
 		case ucr::UTF8:
 			TransformUtf8ToUcs2( pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, pszWideDst, nchars);
 			break;
 		case ucr::UCS2LE:
-			memcpy(pszWideDst, pszBuf + nSizeOldBOM, nchars * sizeof(WCHAR));
+			memcpy(pszWideDst, pszBuf + nSizeOldBOM, nchars * sizeof(wchar_t));
 			break;
 		case ucr::UCS2BE:
-			LPWSTR pszWideBuf = (LPWSTR) (pszBuf + nSizeOldBOM);
+			wchar_t * pszWideBuf = (wchar_t *) (pszBuf + nSizeOldBOM);
 			// swap all characters
-			UINT i;
+			size_t i;
 			for (i = 0 ; i < nchars ; i++)
 			{
-				WCHAR wc = pszWideBuf[i];
+				wchar_t wc = pszWideBuf[i];
 				wc = ((wc & 0xFF) << 8) + (wc >> 8);
 				pszWideDst[i] = wc;
 			}
 			break;
 		}
 
-		files_closeFileMapped(&fileDataOut, nDstSize + nSizeBOM, FALSE);
+		nFileChanged ++;
+		return true;
 	}
-
-	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-
-	nFileChanged ++;
-	return bSuccess;
+	catch (...)
+	{
+		return false;
+	}
 }
 
 /**
@@ -705,20 +724,20 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
  * (No other file conversions are done here; 
  * (UCS-2LE is the Windows standard Unicode encoding)
  *
- * Returns FALSE if file is Unicode but opening it fails.
- * Returns FALSE if file has Unicode BOM but is not Ansi.
- * Returns TRUE if file is not Unicode, or if converted file successfully.
+ * Returns false if file is Unicode but opening it fails.
+ * Returns false if file has Unicode BOM but is not Ansi.
+ * Returns true if file is not Unicode, or if converted file successfully.
  */
-BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+bool AnsiToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath))
-		return FALSE; // error
+		return false; // error
 	if (ufile.IsUnicode())
 	{
 		// Finished with examing file contents
 		ufile.Close();
-		return FALSE; // no ansi file
+		return false; // no ansi file
 	}
 
 	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
@@ -727,60 +746,52 @@ BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL 
 
 	// AnsiToUTF16 only converts Ascii files to UTF-16
 	if (unicoding != ucr::NONE)
-		return FALSE;
+		return false;
 
-	// Init filedataIn struct and open file as memory mapped (input)
-	BOOL bSuccess;
-	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
-	fileDataIn.bWritable = FALSE;
-	fileDataIn.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileDataIn);
-	if (!bSuccess)
-		return FALSE;
-
-	char * pszBuf = (char *)fileDataIn.pMapBase;
-	UINT nBufSize = fileDataIn.dwSize;
-
-	// first pass : get the size of the destination file
-	UINT nSizeOldBOM = 0;
-	UINT nchars = (nBufSize - nSizeOldBOM)/sizeof(CHAR);
-
-	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
-	DWORD flags =0;
-	UINT nDstSize;
-	//First convert to unicode UCS16
-	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
-	std::vector<wchar_t> szTemp(nDstSize);
-	nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,&szTemp[0],nDstSize);
-
-	//now convert to unicode UTF8
-	nDstSize = WideCharToMultiByte(CP_UTF8, flags, &szTemp[0], nDstSize, NULL, 0, NULL, NULL);
-
-	// create the destination file
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst)+1);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = nDstSize + nSizeBOM;
-	bSuccess = files_openFileMapped(&fileDataOut);
-
-	// second pass : write the file
-	if (bSuccess)
+	try
 	{
+		// Init filedataIn struct and open file as memory mapped (input)
+		TFile fileIn(filepath);
+		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
+
+		char * pszBuf = shmIn.begin();
+		size_t nBufSize = shmIn.end() - shmIn.begin();
+
+		// first pass : get the size of the destination file
+		size_t nSizeOldBOM = 0;
+		size_t nchars = (nBufSize - nSizeOldBOM)/sizeof(char);
+
+		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
+		DWORD flags =0;
+		int nDstSize;
+		//First convert to unicode UCS16
+		nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,0,0);
+		std::vector<wchar_t> szTemp(nDstSize);
+		nDstSize = MultiByteToWideChar(ufile.GetCodepage(), flags, (const char*)(pszBuf + nSizeOldBOM),nchars,&szTemp[0],nDstSize);
+
+		//now convert to unicode UTF8
+		nDstSize = WideCharToMultiByte(CP_UTF8, flags, &szTemp[0], nDstSize, NULL, 0, NULL, NULL);
+
+		// create the destination file
+		TFile fileOut(filepathDst);
+		fileOut.setSize(nDstSize + nSizeBOM);
+		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
 		// write BOM
 		if (bWriteBOM)
-			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+			ucr::writeBom(shmOut.begin(), ucr::UTF8);
 
 		// write data
 		WideCharToMultiByte(CP_UTF8, flags, &szTemp[0], nDstSize,
-			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
-		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
-	}
-	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+			(shmOut.begin()+nSizeBOM), nDstSize, NULL, NULL);
 
-	nFileChanged ++;
-	return bSuccess;
+		nFileChanged ++;
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
 }
 /**
  * @brief From UCS-2LE to 8-bit (or UTF-8)
@@ -788,20 +799,20 @@ BOOL AnsiToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL 
  * (No other file conversions are done here; 
  * (UCS-2LE is the Windows standard Unicode encoding)
  *
- * Returns FALSE if file is Unicode but opening it fails.
- * Returns FALSE if file has Unicode BOM but is not Ansi.
- * Returns TRUE if file is not Unicode, or if converted file successfully.
+ * Returns false if file is Unicode but opening it fails.
+ * Returns false if file has Unicode BOM but is not Ansi.
+ * Returns true if file is not Unicode, or if converted file successfully.
  */
-BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+bool UCS2LEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath))
-		return FALSE; // error
+		return false; // error
 	if (!ufile.IsUnicode())
 	{
 		// Finished with examing file contents
 		ufile.Close();
-		return FALSE; // no ansi file
+		return false; // no ansi file
 	}
 
 	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
@@ -810,56 +821,48 @@ BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 
 	// UCS-2LE to 8-bit (or UTF-8)
 	if (unicoding != ucr::UCS2LE)
-		return FALSE;
+		return false;
 
-	// Init filedataIn struct and open file as memory mapped (input)
-	BOOL bSuccess;
-	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
-	fileDataIn.bWritable = FALSE;
-	fileDataIn.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileDataIn);
-	if (!bSuccess)
-		return FALSE;
-
-	wchar_t * pszBuf = (wchar_t *)fileDataIn.pMapBase;
-	UINT nBufSize = fileDataIn.dwSize;
-
-	// first pass : get the size of the destination file
-	UINT nSizeOldBOM = 1;
-	UINT nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
-
-	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
-	DWORD flags =0;
-	UINT nDstSize;
-
-	//now convert to unicode UTF8
-	nDstSize = WideCharToMultiByte(CP_UTF8, flags, (pszBuf + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
-
-	// create the destination file
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst) + 1);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = nDstSize + nSizeBOM;
-	bSuccess = files_openFileMapped(&fileDataOut);
-
-	// second pass : write the file
-	if (bSuccess)
+	try
 	{
+		// Init filedataIn struct and open file as memory mapped (input)
+		TFile fileIn(filepath);
+		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
+
+		wchar_t * pszBuf = (wchar_t *)shmIn.begin();
+		size_t nBufSize = shmIn.end() - shmIn.begin();
+
+		// first pass : get the size of the destination file
+		size_t nSizeOldBOM = 1;
+		size_t nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
+
+		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
+		DWORD flags =0;
+		size_t nDstSize;
+
+		//now convert to unicode UTF8
+		nDstSize = WideCharToMultiByte(CP_UTF8, flags, (pszBuf + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+
+		// create the destination file
+		TFile fileOut(filepathDst);
+		fileOut.setSize(nDstSize + nSizeBOM);
+		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
 		// write BOM
 		if (bWriteBOM)
-			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+			ucr::writeBom(shmOut.begin(), ucr::UTF8);
 
 		// write data 
 		WideCharToMultiByte(CP_UTF8, flags, (pszBuf + nSizeOldBOM), nchars,
-			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
-		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
-	}
-	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+			(shmOut.begin()+nSizeBOM), nDstSize, NULL, NULL);
 
-	nFileChanged ++;
-	return bSuccess;
+		nFileChanged ++;
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
 }
 /**
  * @brief  From UCS-2BE to 8-bit (or UTF-8)
@@ -867,20 +870,20 @@ BOOL UCS2LEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
  * (No other file conversions are done here; 
  * (UCS-2LE is the Windows standard Unicode encoding)
  *
- * Returns FALSE if file is Unicode but opening it fails.
- * Returns FALSE if file has Unicode BOM but is not Ansi.
- * Returns TRUE if file is not Unicode, or if converted file successfully.
+ * Returns false if file is Unicode but opening it fails.
+ * Returns false if file has Unicode BOM but is not Ansi.
+ * Returns true if file is not Unicode, or if converted file successfully.
  */
-BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+bool UCS2BEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath))
-		return FALSE; // error
+		return false; // error
 	if (!ufile.IsUnicode())
 	{
 		// Finished with examing file contents
 		ufile.Close();
-		return FALSE; // no ansi file
+		return false; // no ansi file
 	}
 
 	ucr::UNICODESET unicoding = ufile.GetUnicoding(); //ucr::UCS2LE
@@ -889,138 +892,120 @@ BOOL UCS2BEToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOO
 
 	// UCS-2BE to 8-bit (or UTF-8)
 	if (unicoding != ucr::UCS2BE)
-		return FALSE;
+		return false;
 
-	// Init filedataIn struct and open file as memory mapped (input)
-	BOOL bSuccess;
-	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
-	fileDataIn.bWritable = FALSE;
-	fileDataIn.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileDataIn);
-	if (!bSuccess)
-		return FALSE;
-
-	char * pszBuf = (char *)fileDataIn.pMapBase;
-	UINT nBufSize = fileDataIn.dwSize;
-
-	// first pass : get the size of the destination file
-	UINT nSizeOldBOM = 2;
-	UINT nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
-
-	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
-	DWORD flags =0;
-	std::vector<char> szTemp(nBufSize);
-
-	// simple byte swap BE->LE
-	for (int i = 0; i < nBufSize; i += 2)
+	try
 	{
-		// Byte-swap into destination
-		szTemp[i] = pszBuf[i + 1];
-		szTemp[i + 1] = pszBuf[i];
-	}
+		// Init filedataIn struct and open file as memory mapped (input)
+		TFile fileIn(filepath);
+		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
 
-	//now convert to unicode UTF8
-	UINT nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(&szTemp[0] + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+		char * pszBuf = shmIn.begin();
+		size_t nBufSize = shmIn.end() - shmIn.begin();
 
-	// create the destination file
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst) + 1);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = nDstSize + nSizeBOM;
-	bSuccess = files_openFileMapped(&fileDataOut);
+		// first pass : get the size of the destination file
+		size_t nSizeOldBOM = 2;
+		size_t nchars = (nBufSize - nSizeOldBOM) / sizeof(wchar_t);
 
-	// second pass : write the file
-	if (bSuccess)
-	{
+		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
+		DWORD flags =0;
+		std::vector<char> szTemp(nBufSize);
+
+		// simple byte swap BE->LE
+		for (size_t i = 0; i < nBufSize; i += 2)
+		{
+			// Byte-swap into destination
+			szTemp[i] = pszBuf[i + 1];
+			szTemp[i + 1] = pszBuf[i];
+		}
+
+		//now convert to unicode UTF8
+		size_t nDstSize = WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(&szTemp[0] + nSizeOldBOM), nchars, NULL, 0, NULL, NULL);
+
+		// create the destination file
+		TFile fileOut(filepathDst);
+		fileOut.setSize(nDstSize + nSizeBOM);
+		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
 		// write BOM
 		if (bWriteBOM)
-			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+			ucr::writeBom(shmOut.begin(), ucr::UTF8);
 
 		// write data 
 		WideCharToMultiByte(CP_UTF8, flags,(wchar_t *)(&szTemp[0] + nSizeOldBOM), nchars,
-			((char*)fileDataOut.pMapBase+nSizeBOM), fileDataOut.dwSize-nSizeBOM, NULL, NULL);
-		files_closeFileMapped(&fileDataOut, fileDataOut.dwSize, FALSE);
-	}
-	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
+			(shmOut.begin()+nSizeBOM), nDstSize, NULL, NULL);
 
-	nFileChanged++;
-	return bSuccess;
+		nFileChanged++;
+		return true;
+	}
+	catch (...)
+	{
+		return false;
+	}
 }
 
-BOOL AnyCodepageToUTF8(int codepage, LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath))
-		return TRUE;
+		return true;
 	ufile.ReadBom();
 	ucr::UNICODESET unicoding = ufile.GetUnicoding();
 	// Finished with examing file contents
 	ufile.Close();
 
-	// Init filedataIn struct and open file as memory mapped (input)
-	BOOL bSuccess;
-	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, lstrlen(filepath)+1);
-	fileDataIn.bWritable = FALSE;
-	fileDataIn.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileDataIn);
-	if (!bSuccess)
-		return FALSE;
-
-	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
-
-	char * pszBuf = (char *)fileDataIn.pMapBase;
-	UINT nBufSize = fileDataIn.dwSize;
-	UINT nSizeOldBOM = 0;
-	switch (unicoding)
+	try
 	{
-	case ucr::UTF8:
-		nSizeOldBOM = 3;
-		break;
-	case ucr::UCS2LE:
-	case ucr::UCS2BE:
-		nSizeOldBOM = 2;
-		break;
-	}
+		// Init filedataIn struct and open file as memory mapped (input)
+		TFile fileIn(filepath);
+		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
 
-	// first pass : get the size of the destination file
-	UINT nSizeBOM = (bWriteBOM) ? 3 : 0;
-	UINT nDstSize = nBufSize * 2;
+		boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
 
-	// create the destination file
-	MAPPEDFILEDATA fileDataOut = {0};
-	_tcsncpy(fileDataOut.fileName, filepathDst, lstrlen(filepathDst)+1);
-	fileDataOut.bWritable = TRUE;
-	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
-	fileDataOut.dwSize = nDstSize + nSizeBOM;
-	bSuccess = files_openFileMapped(&fileDataOut);
+		char * pszBuf = shmIn.begin();
+		size_t nBufSize = shmIn.end() - shmIn.begin();
+		size_t nSizeOldBOM = 0;
+		switch (unicoding)
+		{
+		case ucr::UTF8:
+			nSizeOldBOM = 3;
+			break;
+		case ucr::UCS2LE:
+		case ucr::UCS2BE:
+			nSizeOldBOM = 2;
+			break;
+		}
 
-	// second pass : write the file
-	if (bSuccess)
-	{
+		// first pass : get the size of the destination file
+		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
+		size_t nDstSize = nBufSize * 2;
+
+		// create the destination file
+		TFile fileOut(filepathDst);
+		fileOut.setSize(nDstSize + nSizeBOM);
+		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
 		// write BOM
 		if (bWriteBOM)
-			ucr::writeBom(fileDataOut.pMapBase, ucr::UTF8);
+			ucr::writeBom(shmOut.begin(), ucr::UTF8);
 
 		// write data
-		int srcbytes = nBufSize;
-		int destbytes = nDstSize;
+		size_t srcbytes = nBufSize;
+		size_t destbytes = nDstSize;
 		if (pexconv)
-			pexconv->convert(codepage, 65001, (const unsigned char *)pszBuf+nSizeOldBOM, &srcbytes, (unsigned char *)fileDataOut.pMapBase+nSizeBOM, &destbytes);
+			pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+nSizeOldBOM, &srcbytes, (unsigned char *)shmOut.begin()+nSizeBOM, &destbytes);
 		else
 		{
 			bool lossy = false;
-			ucr::CrossConvert((const char *)pszBuf+nSizeOldBOM, srcbytes, (char *)fileDataOut.pMapBase+nSizeBOM, destbytes, codepage, CP_UTF8, &lossy);
+			ucr::CrossConvert((const char *)pszBuf+nSizeOldBOM, srcbytes, shmOut.begin()+nSizeBOM, destbytes, codepage, CP_UTF8, &lossy);
 		}
 
-		files_closeFileMapped(&fileDataOut, destbytes + nSizeBOM, FALSE);
+		nFileChanged ++;
+		return true;
 	}
-
-	files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
-
-	nFileChanged ++;
-	return bSuccess;
+	catch (...)
+	{
+		return false;
+	}
 }
 

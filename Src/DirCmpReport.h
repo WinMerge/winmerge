@@ -10,8 +10,12 @@
 #ifndef _DIRCMPREPORT_H_
 #define _DIRCMPREPORT_H_
 
+#include <vector>
+#include "UnicodeString.h"
 #include "PathContext.h"
 #include "DirReportTypes.h"
+
+struct IListCtrl;
 
 /**
  * @brief This class creates directory compare reports.
@@ -28,23 +32,23 @@
 
 struct IFileCmpReport
 {
-	virtual bool operator()(REPORT_TYPE nReportType, CListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) = 0;
+	virtual bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath) = 0;
 };
 
 class DirCmpReport
 {
 public:
 
-	DirCmpReport(const CStringArray & colRegKeys);
-	void SetList(CListCtrl *pList);
+	DirCmpReport(const std::vector<String>& colRegKeys);
+	void SetList(IListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
-	BOOL GenerateReport(String &errStr);
+	bool GenerateReport(String &errStr);
 
 protected:
 	void GenerateReport(REPORT_TYPE nReportType);
-	void WriteString(LPCTSTR);
+	void WriteString(const String&);
 	void GenerateHeader();
 	void GenerateContent();
 	void GenerateHTMLHeader();
@@ -55,13 +59,13 @@ protected:
 	void GenerateXmlFooter();
 
 private:
-	CListCtrl * m_pList; /**< Pointer to UI-list */
+	IListCtrl * m_pList; /**< Pointer to UI-list */
 	PathContext m_rootPaths; /**< Root paths, printed to report */
-	CString m_sTitle; /**< Report title, built from root paths */
+	String m_sTitle; /**< Report title, built from root paths */
 	int m_nColumns; /**< Columns in UI */
-	CString m_sSeparator; /**< Column separator for report */
+	String m_sSeparator; /**< Column separator for report */
 	CFile *m_pFile; /**< File to write report to */
-	const CStringArray & m_colRegKeys; /**< Key names for currently displayed columns */
+	const std::vector<String>& m_colRegKeys; /**< Key names for currently displayed columns */
 	IFileCmpReport *m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport;
 };

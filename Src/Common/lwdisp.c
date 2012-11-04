@@ -420,10 +420,10 @@ HRESULT invokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 {
 	return invokeV(pi, ret, id, op, argv);
 }
-HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, VARIANT *argv)
+HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, VARIANT *argv)
 {
 	DISPID id = DISPID_UNKNOWN;
-	BSTR name = (BSTR)((UINT_PTR)silent & ~1);
+	LPOLESTR  name = (LPOLESTR )((UINT_PTR)silent & ~1);
 	if (pi)
 	{
 		HRESULT sc = pi->lpVtbl->GetIDsOfNames(pi, &IID_NULL, &name, 1, 0, &id);

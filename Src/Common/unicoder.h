@@ -12,8 +12,10 @@
 #ifndef unicoder_h_included
 #define unicoder_h_included
 
-#include <windows.h>
 #include "UnicodeString.h"
+#include "codepage.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Types.h>
 
 namespace ucr
 {
@@ -24,12 +26,12 @@ namespace ucr
 struct buffer
 {
 	unsigned char * ptr; /**< Pointer to a buffer. */
-	unsigned int capacity; /**< Buffer's size in bytes. */
-	unsigned int size; /**< Size of the data in the buffer, <= capacity. */
+	size_t capacity; /**< Buffer's size in bytes. */
+	size_t size; /**< Size of the data in the buffer, <= capacity. */
 
-	buffer(unsigned int initialSize);
+	buffer(size_t initialSize);
 	~buffer();
-	void resize(unsigned int newSize);
+	void resize(size_t newSize);
 };
 
 struct CodePageInfo
@@ -43,13 +45,13 @@ struct CodePageInfo
 struct IExconverter
 {
 	virtual bool initialize() = 0;
-	virtual bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, int * srcbytes, unsigned char * dest, int * destbytes) = 0;
-	virtual bool convertFromUnicode(int dstCodepage, const wchar_t * src, int * srcchars, char * dest, int *destbytes) = 0;
-	virtual bool convertToUnicode(int srcCodepage, const char * src, int * srcbytes, wchar_t * dest, int *destchars) = 0;
-	virtual int detectInputCodepage(int autodetectType, int defcodepage, const char *data, int size) = 0;
+	virtual bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, size_t * srcbytes, unsigned char * dest, size_t * destbytes) = 0;
+	virtual bool convertFromUnicode(int dstCodepage, const wchar_t * src, size_t * srcchars, char * dest, size_t *destbytes) = 0;
+	virtual bool convertToUnicode(int srcCodepage, const char * src, size_t * srcbytes, wchar_t * dest, size_t *destchars) = 0;
+	virtual int detectInputCodepage(int autodetectType, int defcodepage, const char *data, size_t size) = 0;
 	virtual int enumCodePages(CodePageInfo *cpinfo, int count) = 0;
-	virtual bool getCodepageFromCharsetName(LPCTSTR pszCharsetName, int *pCodepage) = 0;
-	virtual bool getCodepageDescription(int codepage, LPTSTR pszCharsetName) = 0;
+	virtual bool getCodepageFromCharsetName(const String& sCharsetName, int& codepage) = 0;
+	virtual bool getCodepageDescription(int codepage, String& sCharsetName) = 0;
 	virtual bool isValidCodepage(int codepage) = 0;
 	virtual bool getCodePageInfo(int codePage, CodePageInfo *pCodePageInfo) = 0;
 };
@@ -68,40 +70,69 @@ enum UNICODESET
 };
 String GetUnicodesetName(UNICODESET codeset);
 
-int Ucs4_to_Utf8(unsigned int unich, unsigned char * utf8);
+int Ucs4_to_Utf8(unsigned unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);
-int Utf8len_fromCodepoint(unsigned int ch);
-unsigned int Utf8len_of_string(const wchar_t* text, int size);
-unsigned int stringlen_of_utf8(const char* text, int size);
-unsigned int GetUtf8Char(unsigned char * str);
-int to_utf8_advance(unsigned int u, unsigned char * &lpd);
-void maketchar(String & ch, unsigned int unich, bool & lossy);
+int Utf8len_fromCodepoint(unsigned ch);
+/**
+ * @brief How many bytes will it take to write string as UTF-8 ?
+ *
+ * @param size size argument as filemapping are not 0 terminated
+ *
+ * @bug Fails for files larger than 2gigs
+ */
+template <typename C>
+size_t Utf8len_of_string(const C* text, size_t size)
+{
+	size_t len = 0;
+	for (size_t i = 0; i < size; ++i)
+	{
+		int chlen = Utf8len_fromCodepoint(text[i]);
+		if (chlen < 1) chlen = 1;
+		len += chlen;
+	}
+	return len;
+}
+size_t stringlen_of_utf8(const char* text, size_t size);
+unsigned GetUtf8Char(unsigned char * str);
+int to_utf8_advance(unsigned u, unsigned char * &lpd);
+void maketchar(String & ch, unsigned unich, bool & lossy);
 int writeBom(void* dest, UNICODESET unicoding);
-unsigned int get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
-bool maketstring(String & line, const char* lpd, unsigned int len, int codepage, bool * lossy);
-void maketchar(String & ch, unsigned int unich, bool & lossy, unsigned int codepage);
-unsigned int byteToUnicode(unsigned char ch);
-unsigned int byteToUnicode(unsigned char ch, unsigned int codepage);
+unsigned get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
+bool maketstring(String & line, const char* lpd, size_t len, int codepage, bool * lossy);
+void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage);
+unsigned byteToUnicode(unsigned char ch);
+unsigned byteToUnicode(unsigned char ch, unsigned codepage);
 void getInternalEncoding(UNICODESET * unicoding, int * codepage);
 
 // generic function to do all conversions
-bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
+bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, size_t srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
 bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepage2, buffer * dest);
 
-unsigned char *convertTtoUTF8(buffer * dest, LPCTSTR src, int srcbytes = -1);
-unsigned char *convertTtoUTF8(LPCTSTR src, int srcbytes = -1);
+unsigned char *convertTtoUTF8(buffer * dest, const TCHAR *src, int srcbytes = -1);
+unsigned char *convertTtoUTF8(const TCHAR *src, int srcbytes = -1);
 TCHAR *convertUTF8toT(buffer * dest, const char* src, int srcbytes = -1);
 TCHAR *convertUTF8toT(const char* src, int srcbytes = -1);
 void dealloc(void *ptr);
-String UTF82T(const std::string& str);
-std::string T2UTF8(const String& tstr);
 
-int CrossConvert(const char* src, unsigned int srclen, char* dest, unsigned int destsize, int cpin, int cpout, bool * lossy);
+String toTString(const std::wstring& str);
+String toTString(const std::string& str);
+void toUTF16(const String& tstr, std::wstring& wstr);
+std::wstring toUTF16(const String& tstr);
+void toUTF8(const String& tstr, std::string& u8str);
+std::string toUTF8(const String& tstr);
+std::string toSystemCP(const std::string& str);
+std::string toSystemCP(const std::wstring& str);
+std::string toThreadCP(const std::string& str);
+std::string toThreadCP(const std::wstring& str);
+
+int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize, int cpin, int cpout, bool * lossy);
 #ifndef UNICODE
-String CrossConvertToStringA(const char* src, unsigned int srclen, int cpin, int cpout, bool * lossy);
+String CrossConvertToStringA(const char* src, unsigned srclen, int cpin, int cpout, bool * lossy);
 #endif
 
-UNICODESET DetermineEncoding(PBYTE pBuffer, INT64 size, bool * pBom);
+bool CheckForInvalidUtf8(const char *pBuffer, int size);
+
+UNICODESET DetermineEncoding(const unsigned char *pBuffer, Poco::UInt64 size, bool * pBom);
 
 int getDefaultCodepage();
 void setDefaultCodepage(int cp);

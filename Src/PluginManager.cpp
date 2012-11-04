@@ -5,44 +5,35 @@
  */ 
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
 #include "PluginManager.h"
-
-#ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
-#endif
-
-
 
 PluginManager::~PluginManager()
 {
 	// Manually free all items in cache
 	// This could also be done with a DestructElements helper
-	CString filteredFilenames;
-	PluginFileInfo * fi=0;
-	for (POSITION pos = m_pluginSettings.GetStartPosition(); pos; )
-	{
-		m_pluginSettings.GetNextAssoc(pos, filteredFilenames, fi);
-		delete fi;
-	}
-	m_pluginSettings.RemoveAll();
+	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
+		delete it->second;
+	m_pluginSettings.clear();
 }
 
 /**
  * @brief retrieve relevant plugin settings for specified comparison
  */
-void PluginManager::FetchPluginInfos(LPCTSTR filteredFilenames, 
+void PluginManager::FetchPluginInfos(const String& filteredFilenames, 
                                      PackingInfo ** infoUnpacker, 
                                      PrediffingInfo ** infoPrediffer)
 {
-	PluginFileInfo * fi=0;
-	if (!m_pluginSettings.Lookup(filteredFilenames, fi))
+	PluginFileInfo *fi;
+	PluginFileInfoMap::iterator it = m_pluginSettings.find(filteredFilenames);
+	if (it == m_pluginSettings.end())
 	{
-		fi = new PluginFileInfo;
 		// This might be a good place to set any user-specified default values
-		m_pluginSettings.SetAt(filteredFilenames, fi);
+		fi = new PluginFileInfo;
+		m_pluginSettings[filteredFilenames] = fi;
+	}
+	else
+	{
+		fi = it->second;
 	}
 	*infoUnpacker = &fi->m_infoUnpacker;
 	*infoPrediffer = &fi->m_infoPrediffer;
@@ -51,7 +42,7 @@ void PluginManager::FetchPluginInfos(LPCTSTR filteredFilenames,
 /**
  * @brief Store specified prediff choice for specified comparison
  */
-void PluginManager::SetPrediffSetting(LPCTSTR filteredFilenames, int newsetting)
+void PluginManager::SetPrediffSetting(const String& filteredFilenames, int newsetting)
 {
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;
@@ -59,7 +50,7 @@ void PluginManager::SetPrediffSetting(LPCTSTR filteredFilenames, int newsetting)
 	infoPrediffer->Initialize(newsetting);
 }
 
-void PluginManager::SetPrediffer(LPCTSTR filteredFilenames, const CString & prediffer)
+void PluginManager::SetPrediffer(const String& filteredFilenames, const String & prediffer)
 {
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;

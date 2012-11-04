@@ -31,7 +31,7 @@ struct FileLocation
 	 * The constructor taking a path as a parameter.
 	 * @param [in] path Full path for the file.
 	 */
-	FileLocation(LPCTSTR path) : filepath(path)
+	FileLocation(const String& path) : filepath(path)
 	{
 	}
 

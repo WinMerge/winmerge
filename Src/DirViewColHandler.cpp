@@ -26,6 +26,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using Poco::UIntPtr;
+
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -112,7 +114,7 @@ int CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
 	{
 		String p = (*fnc)(pCtxt, arg1);
 		String q = (*fnc)(pCtxt, arg2);
-		return lstrcmpi(p.c_str(), q.c_str());
+		return string_compare_nocase(p, q);
 	}
 	return 0;
 }
@@ -190,8 +192,8 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	if (lParam2 == -1)
 		return 1;
 
-	UINT_PTR diffposl = (UINT_PTR)lParam1;
-	UINT_PTR diffposr = (UINT_PTR)lParam2;
+	UIntPtr diffposl = (UIntPtr)lParam1;
+	UIntPtr diffposr = (UIntPtr)lParam2;
 	const DIFFITEM &ldi = pThis->pCtxt->GetDiffAt(diffposl);
 	const DIFFITEM &rdi = pThis->pCtxt->GetDiffAt(diffposr);
 	// compare 'left' and 'right' parameters as appropriate
@@ -201,7 +203,7 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i, UINT_PTR diffpos, int iImage, int iIndent)
+int CDirView::AddNewItem(int i, UIntPtr diffpos, int iImage, int iIndent)
 {
 	LV_ITEM lvItem;
 	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
@@ -249,7 +251,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 {
 	int nIdx = pParam->item.iItem;
 	int i = ColPhysToLog(pParam->item.iSubItem);
-	UINT_PTR key = GetItemKey(nIdx);
+	UIntPtr key = GetItemKey(nIdx);
 	if (key == SPECIAL_ITEM_POS)
 	{
 		if (IsColName(i))
@@ -313,9 +315,9 @@ void CDirView::SaveColumnOrders()
 	ASSERT(m_invcolorder.size() == m_numcols);
 	for (int i=0; i < m_numcols; i++)
 	{
-		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
+		String RegName = GetColRegValueNameBase(i) + _T("_Order");
 		int ord = m_colorder[i];
-		theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName, ord);
+		theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName.c_str(), ord);
 	}
 }
 
@@ -335,8 +337,8 @@ void CDirView::LoadColumnOrders()
 	int i=0;
 	for (i=0; i<m_numcols; ++i)
 	{
-		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
-		int ord = theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName, -2);
+		String RegName = GetColRegValueNameBase(i) + _T("_Order");
+		int ord = theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName.c_str(), -2);
 		if (ord<-1 || ord >= m_numcols)
 			break;
 		m_colorder[i] = ord;

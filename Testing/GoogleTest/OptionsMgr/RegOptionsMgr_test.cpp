@@ -63,7 +63,7 @@ namespace
 	{
 		CRegOptionsMgr mgr;
 		mgr.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\UnitTesting"));
-		EXPECT_EQ(OPT_OK, mgr.InitOption(_T("BoolOpt1"), false));
+		EXPECT_EQ(COption::OPT_OK, mgr.InitOption(_T("BoolOpt1"), false));
 		EXPECT_EQ(false, mgr.GetBool(_T("BoolOpt1")));
 	}
 
@@ -72,7 +72,7 @@ namespace
 	{
 		CRegOptionsMgr mgr;
 		mgr.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\UnitTesting"));
-		EXPECT_EQ(OPT_OK, mgr.InitOption(_T("BoolOpt2"), true));
+		EXPECT_EQ(COption::OPT_OK, mgr.InitOption(_T("BoolOpt2"), true));
 		EXPECT_EQ(true, mgr.GetBool(_T("BoolOpt2")));
 	}
 }

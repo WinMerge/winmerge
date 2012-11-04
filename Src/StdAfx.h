@@ -101,36 +101,16 @@ const UINT MSG_STORE_PANESIZES = WM_USER + 2;
 static const UINT SmallTimeDiff = 2;
 
 #include "UnicodeString.h"
-
-	/** @brief Load string from string resources; shortcut for CString::LoadString */
-String LoadResString(UINT id);
+#include "MergeApp.h"
 
 	/** @brief Wrapper around CMergeApp::TranslateDialog() */
 void NTAPI LangTranslateDialog(HWND);
-
-	/** @brief Lang aware version of AfxFormatStrings() */
-void NTAPI LangFormatStrings(CString &, UINT, LPCTSTR const *, int);
-
-	/** @brief Lang aware version of AfxFormatString1() */
-void NTAPI LangFormatString1(CString &, UINT, LPCTSTR);
-
-	/** @brief Lang aware version of AfxFormatString2() */
-void NTAPI LangFormatString2(CString &, UINT, LPCTSTR, LPCTSTR);
 
 	/** @brief Lang aware version of AfxMessageBox() */
 int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 
 	/** @brief Format single-argument resource string and display via AfxMessageBox */
 int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
-
-	/** @brief Retrieve error description from Windows; uses FormatMessage */
-String GetSysError(int nerr);
-
-	/** @brief Send message to log file (in theory; actually doesn't yet) */
-void LogErrorString(LPCTSTR sz);
-
-	/** @brief Inline sprintf-style format; shortcut for CString::Format */
-CString Fmt(LPCTSTR fmt, ...);
 
 	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
 int GetClipTcharTextFormat();

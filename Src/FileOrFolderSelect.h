@@ -29,14 +29,15 @@
 #ifndef _FILE_OR_FOLDER_SELECTION_H_
 #define _FILE_OR_FOLDER_SELECTION_H_
 
-BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath = NULL, 
-			 UINT titleid = IDS_OPEN_TITLE, UINT filterid = 0,
+
+BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath = NULL, 
+			 UINT titleid = 0, UINT filterid = 0,
 			 BOOL is_open =TRUE, LPCTSTR defaultExtension = NULL);
 
-BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL, 
+BOOL SelectFolder(String& path, LPCTSTR root_path = NULL, 
 			 UINT titleid = 0,
 			 HWND hwndOwner = NULL);
 
-BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR root_path = NULL);
+BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR root_path = NULL);
 
 #endif

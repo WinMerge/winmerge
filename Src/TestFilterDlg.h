@@ -31,7 +31,7 @@ private:
 
 // Implementation methods
 private:
-	BOOL CheckText(CString text) const;
+	bool CheckText(CString text) const;
 	void AppendResult(CString result);
 
 // Dialog Data

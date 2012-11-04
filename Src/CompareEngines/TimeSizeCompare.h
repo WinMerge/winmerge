@@ -9,6 +9,8 @@
 #ifndef _TIMESIZE_COMPARE_H_
 #define _TIMESIZE_COMPARE_H_
 
+struct DIFFITEM;
+
 namespace CompareEngines
 {
 
@@ -19,6 +21,11 @@ namespace CompareEngines
 class TimeSizeCompare
 {
 public:
+	/// Seconds ignored in filetime differences if option enabled
+	enum {
+		SmallTimeDiff = 2
+	};
+
 	TimeSizeCompare();
 	~TimeSizeCompare();
 	void SetAdditionalOptions(bool ignoreSmallDiff);

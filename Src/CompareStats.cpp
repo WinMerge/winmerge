@@ -6,11 +6,13 @@
 // ID line follows -- this is updated by SVN
 // $Id: CompareStats.cpp 6945 2009-08-05 03:34:52Z marcelgosselin $
 
-#include <windows.h>
-#include <assert.h>
-#include <crtdbg.h>
-#include "DiffItem.h"
 #include "CompareStats.h"
+#include <cassert>
+#include <cstring>
+#include <Poco/ScopedLock.h>
+#include "DiffItem.h"
+
+using Poco::FastMutex;
 
 /** 
  * @brief Constructor, initializes critical section.
@@ -19,11 +21,10 @@ CompareStats::CompareStats(int nDirs)
 : m_nTotalItems(0)
 , m_nComparedItems(0)
 , m_state(STATE_IDLE)
-, m_bCompareDone(FALSE)
+, m_bCompareDone(false)
 , m_nDirs(nDirs)
 {
-	InitializeCriticalSection(&m_csProtect);
-	ZeroMemory(&m_counts[0], sizeof(m_counts));
+	memset(&m_counts[0], 0, sizeof(m_counts));
 }
 
 /** 
@@ -31,7 +32,6 @@ CompareStats::CompareStats(int nDirs)
  */
 CompareStats::~CompareStats()
 {
-	DeleteCriticalSection(&m_csProtect);
 }
 
 /** 
@@ -40,9 +40,8 @@ CompareStats::~CompareStats()
  */
 void CompareStats::IncreaseTotalItems(int count /*= 1*/)
 {
-	EnterCriticalSection(&m_csProtect);
+	FastMutex::ScopedLock lock(m_csProtect);
 	m_nTotalItems += count;
-	LeaveCriticalSection(&m_csProtect);
 }
 
 /** 
@@ -51,13 +50,12 @@ void CompareStats::IncreaseTotalItems(int count /*= 1*/)
  */
 void CompareStats::AddItem(int code)
 {
-	EnterCriticalSection(&m_csProtect);
+	FastMutex::ScopedLock lock(m_csProtect);
 	RESULT res = GetResultFromCode(code);
 	int index = static_cast<int>(res);
 	m_counts[index] += 1;
 	++m_nComparedItems;
 	assert(m_nComparedItems <= m_nTotalItems);
-	LeaveCriticalSection(&m_csProtect);
 }
 
 /** 
@@ -84,11 +82,11 @@ int CompareStats::GetTotalItems() const
  */
 void CompareStats::Reset()
 {
-	ZeroMemory(&m_counts[0], sizeof(m_counts));
+	memset(&m_counts[0], 0, sizeof(m_counts));
 	SetCompareState(STATE_IDLE);
 	m_nTotalItems = 0;
 	m_nComparedItems = 0;
-	m_bCompareDone = FALSE;
+	m_bCompareDone = false;
 }
 
 /** 
@@ -97,17 +95,12 @@ void CompareStats::Reset()
  */
 void CompareStats::SetCompareState(CompareStats::CMP_STATE state)
 {
-#ifdef _DEBUG
-	if (state == STATE_START && m_state != STATE_IDLE)
-		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
-#endif //_DEBUG
-
 	// New compare starting so reset ready status
 	if (state == STATE_START)
-		m_bCompareDone = FALSE;
+		m_bCompareDone = false;
 	// Compare ready
 	if (state == STATE_IDLE && m_state == STATE_COMPARE)
-		m_bCompareDone = TRUE;
+		m_bCompareDone = true;
 
 	m_state = state;
 }
@@ -125,7 +118,7 @@ CompareStats::CMP_STATE CompareStats::GetCompareState() const
  * @param [in] diffcode DIFFITEM.diffcode to convert.
  * @return Compare result.
  */
-CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode)
+CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode)
 {
 	DIFFCODE di = diffcode;
 	

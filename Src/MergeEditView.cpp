@@ -2647,7 +2647,7 @@ static bool DoAppendMenu(HMENU hMenu, UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR 
 HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
-	CStringArray functionNamesList;
+	std::vector<String> functionNamesList;
 	GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
 
 	// empty the menu
@@ -2655,7 +2655,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	while (i --)
 		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
-	if (functionNamesList.GetSize() == 0)
+	if (functionNamesList.size() == 0)
 	{
 		// no script : create a <empty> entry
 		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
@@ -2664,10 +2664,10 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	{
 		// or fill in the submenu with the scripts names
 		int ID = ID_SCRIPT_FIRST;	// first ID in menu
-		for (i = 0 ; i < functionNamesList.GetSize() ; i++, ID++)
-			DoAppendMenu(hMenu, MF_STRING, ID, functionNamesList[i]);
+		for (i = 0 ; i < functionNamesList.size() ; i++, ID++)
+			DoAppendMenu(hMenu, MF_STRING, ID, functionNamesList[i].c_str());
 
-		functionNamesList.RemoveAll();
+		functionNamesList.clear();
 	}
 
 	if (!IsWindowsScriptThere())
@@ -2715,18 +2715,18 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	int iScript;
-	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
-		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-		if (!plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()))
+		PluginInfo & plugin = piScriptArray->at(iScript);
+		if (!plugin.TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
-	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
-		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
-		if (!plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()))
+		PluginInfo & plugin = piScriptArray2->at(iScript);
+		if (!plugin.TestAgainstRegList(pd->m_strBothFilenames))
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
@@ -2738,18 +2738,18 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, theApp.LoadString(ID_NOT_SUGGESTED_PLUGINS).c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 	{
-		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) != false)
+		PluginInfo & plugin = piScriptArray->at(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
-	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+	for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 	{
-		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) != false)
+		PluginInfo & plugin = piScriptArray2->at(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) != false)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
@@ -2766,16 +2766,16 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	else
 	{
 		ID = ID_PREDIFFERS_FIRST;	// first ID in menu
-		for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+		for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)
 		{
-			PluginInfo & plugin = piScriptArray->ElementAt(iScript);
+			PluginInfo & plugin = piScriptArray->at(iScript);
 			if (prediffer.pluginName == plugin.m_name)
 				m_CurrentPredifferID = ID;
 
 		}
-		for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+		for (iScript = 0 ; iScript < piScriptArray2->size() ; iScript++, ID ++)
 		{
-			PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
+			PluginInfo & plugin = piScriptArray2->at(iScript);
 			if (prediffer.pluginName == plugin.m_name)
 				m_CurrentPredifferID = ID;
 		}
@@ -3086,13 +3086,13 @@ void CMergeEditView::OnUpdateScripts(CCmdUI* pCmdUI)
 void CMergeEditView::OnScripts(UINT nID )
 {
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
-	CString text = GetSelectedText();
+	String text = GetSelectedText();
 
 	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
-	bool bChanged = !!TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
+	bool bChanged = TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text, text.GetLength(), 0);
+		ReplaceSelection(text.c_str(), text.length(), 0);
 }
 
 /**
@@ -3192,19 +3192,19 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	prediffer.bToBeScanned = false;
 
 	int pluginNumber = nID - ID_PREDIFFERS_FIRST;
-	if (pluginNumber < piScriptArray->GetSize())
+	if (pluginNumber < piScriptArray->size())
 	{
 		prediffer.bWithFile = true;
-		PluginInfo & plugin = piScriptArray->ElementAt(pluginNumber);
+		PluginInfo & plugin = piScriptArray->at(pluginNumber);
 		prediffer.pluginName = plugin.m_name;
 	}
 	else
 	{
-		pluginNumber -= piScriptArray->GetSize();
-		if (pluginNumber >= piScriptArray2->GetSize())
+		pluginNumber -= piScriptArray->size();
+		if (pluginNumber >= piScriptArray2->size())
 			return;
 		prediffer.bWithFile = false;
-		PluginInfo & plugin = piScriptArray2->ElementAt(pluginNumber);
+		PluginInfo & plugin = piScriptArray2->at(pluginNumber);
 		prediffer.pluginName = plugin.m_name;
 	}
 
@@ -3226,9 +3226,9 @@ int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 	// Search file prediffers
 	PluginArray * piScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
-	for (i=0; i<piScriptArray->GetSize(); ++i, ++ID)
+	for (i=0; i<piScriptArray->size(); ++i, ++ID)
 	{
-		PluginInfo & plugin = piScriptArray->ElementAt(i);
+		PluginInfo & plugin = piScriptArray->at(i);
 		if (plugin.m_name == prediffer)
 			return ID;
 	}
@@ -3236,9 +3236,9 @@ int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 	// Search buffer prediffers
 	PluginArray * piScriptArray2 = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
-	for (i=0; i<piScriptArray2->GetSize(); ++i, ++ID)
+	for (i=0; i<piScriptArray2->size(); ++i, ++ID)
 	{
-		PluginInfo & plugin = piScriptArray2->ElementAt(i);
+		PluginInfo & plugin = piScriptArray2->at(i);
 		if (plugin.m_name == prediffer)
 			return ID;
 	}

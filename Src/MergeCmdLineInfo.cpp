@@ -29,12 +29,11 @@
 // ID line follows -- this is updated by SVN
 // $Id: MergeCmdLineInfo.cpp 6940 2009-08-01 17:29:01Z kimmov $
 
-#include <windows.h>
-#include <tchar.h>
-#include <shlwapi.h> // StrSpn, StrRChr
+#include "MergeCmdLineInfo.h"
+#include <cstring>
+#include <algorithm>
 #include "Constants.h"
 #include "Paths.h"
-#include "MergeCmdLineInfo.h"
 #include "OptionsDef.h"
 
 // MergeCmdLineInfo
@@ -46,11 +45,11 @@
  * @param [out] flag Tells whether param is the name of a flag.
  * @return Points to the remaining portion of the command line.
  */
-LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
+const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *flag)
 {
-	if (p && *(p += StrSpn(p, _T(" \t\r\n"))) == _T('\0'))
+	if (p && *(p += _tcsspn(p, _T(" \t\r\n"))) == _T('\0'))
 		p = 0;
-	LPCTSTR q = p;
+	const TCHAR *q = p;
 	if (q)
 	{
 		TCHAR c = *q;
@@ -69,8 +68,12 @@ LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 		{
 			*flag = true;
 			++p;
-			if (LPCTSTR colon = StrRChr(p, q, _T(':')))
-				q = colon;
+			for (const TCHAR *i = q; i >= p; --i)
+				if (*i == ':')
+				{
+					q = i;
+					break;
+				}
 		}
 		else
 		{
@@ -81,7 +84,7 @@ LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
 	param.assign(p ? p : _T(""), q - p);
 	if (q > p && flag)
 	{
-		CharLower(&*param.begin());
+		param = string_makelower(param);
 	}
 	// Strip any leading or trailing whitespace or quotes
 	param.erase(0, param.find_first_not_of(_T(" \t\r\n\"")));
@@ -96,7 +99,7 @@ LPCTSTR MergeCmdLineInfo::EatParam(LPCTSTR p, String &param, bool *flag)
  * @param [in] value Default value in case none is specified.
  * @return Points to the remaining portion of the command line.
  */
-LPCTSTR MergeCmdLineInfo::SetOption(LPCTSTR q, LPCTSTR key, LPCTSTR value)
+const TCHAR *MergeCmdLineInfo::SetOption(const TCHAR *q, const TCHAR *key, const TCHAR *value)
 {
 	String s;
 	if (*q == _T(':'))
@@ -112,8 +115,8 @@ LPCTSTR MergeCmdLineInfo::SetOption(LPCTSTR q, LPCTSTR key, LPCTSTR value)
  * @brief ClearCaseCmdLineParser's constructor.
  * @param [in] q Points to the beginning of the command line.
  */
-MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
-	m_nCmdShow(SW_SHOWNORMAL),
+MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *q):
+	m_nCmdShow(SHOWNORMAL),
 	m_bClearCaseTool(false),
 	m_bEscShutdown(false),
 	m_bExitIfNoDiff(Disabled),
@@ -155,7 +158,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(LPCTSTR q):
  * @brief Parse a command line passed in from ClearCase.
  * @param [in] p Points into the command line.
  */
-void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q, LPCTSTR basedesc)
+void MergeCmdLineInfo::ParseClearCaseCmdLine(const TCHAR *q, const TCHAR *basedesc)
 {
 	String sBaseFile;  /**< Base file path. */
 	String sBaseDesc = basedesc;  /**< Base file description. */
@@ -168,8 +171,8 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q, LPCTSTR basedesc)
 		if (!flag)
 		{
 			// Not a flag
-			param = paths_GetLongPath(param.c_str());
-			m_Files.SetPath(m_Files.GetSize(), param.c_str());
+			param = paths_GetLongPath(param);
+			m_Files.SetPath(m_Files.GetSize(), param);
 			if (param == m_sLeftDesc)
 				m_dwLeftFlags &= ~FFILEOPEN_READONLY;
 			if (param == m_sRightDesc)
@@ -206,7 +209,7 @@ void MergeCmdLineInfo::ParseClearCaseCmdLine(LPCTSTR q, LPCTSTR basedesc)
 	}
 	if (!sOutFile.empty())
 	{
-		String path = paths_GetLongPath(sOutFile.c_str());
+		String path = paths_GetLongPath(sOutFile);
 		m_sOutputpath = path;
 	}
 }
@@ -226,9 +229,9 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	string_replace(param, _T("/"), _T("\\"));
 
 	// If shortcut, expand it first
-	if (paths_IsShortcut(param.c_str()))
-		param = ExpandShortcut(param.c_str());
-	param = paths_GetLongPath(param.c_str());
+	if (paths_IsShortcut(param))
+		param = ExpandShortcut(param);
+	param = paths_GetLongPath(param);
 
 	// Set flag indicating path is from command line
 	const size_t ord = m_Files.GetSize();
@@ -237,14 +240,14 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	else if (ord == 1)
 		m_dwRightFlags |= FFILEOPEN_CMDLINE;
 
-	m_Files.SetPath(m_Files.GetSize(), param.c_str());
+	m_Files.SetPath(m_Files.GetSize(), param);
 }
 
 /**
  * @brief Parse native WinMerge command line.
  * @param [in] p Points into the command line.
  */
-void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
+void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 {
 	String param;
 	bool flag;
@@ -317,12 +320,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 		else if (param == _T("minimize"))
 		{
 			// -minimize means minimize the main window.
-			m_nCmdShow = SW_MINIMIZE;
+			m_nCmdShow = MINIMIZE;
 		}
 		else if (param == _T("maximize"))
 		{
 			// -maximize means maximize the main window.
-			m_nCmdShow = SW_MAXIMIZE;
+			m_nCmdShow = MAXIMIZE;
 		}
 		else if (param == _T("prediffer"))
 		{
@@ -403,12 +406,12 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(LPCTSTR q)
 	// If "compare file dir" make it "compare file dir\file".
 	if (m_Files.GetSize() >= 2)
 	{
-		PATH_EXISTENCE p1 = paths_DoesPathExist(m_Files[0].c_str());
-		PATH_EXISTENCE p2 = paths_DoesPathExist(m_Files[1].c_str());
+		PATH_EXISTENCE p1 = paths_DoesPathExist(m_Files[0]);
+		PATH_EXISTENCE p2 = paths_DoesPathExist(m_Files[1]);
 
 		if ((p1 == IS_EXISTING_FILE) && (p2 == IS_EXISTING_DIR))
 		{
-			m_Files[1] = paths_ConcatPath(m_Files[1], paths_FindFileName(m_Files[0].c_str()));
+			m_Files[1] = paths_ConcatPath(m_Files[1], paths_FindFileName(m_Files[0]));
 		}
 	}
 	if (m_bShowUsage)

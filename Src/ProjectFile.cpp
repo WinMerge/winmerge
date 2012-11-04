@@ -43,8 +43,8 @@ using Poco::XML::XMLChar;
 using Poco::XML::XMLString;
 using Poco::XML::Attributes;
 using Poco::Exception;
-using ucr::UTF82T;
-using ucr::T2UTF8;
+using ucr::toTString;
+using ucr::toUTF8;
 
 // Constants for xml element names
 const char Root_element_name[] = "project";
@@ -63,7 +63,7 @@ namespace
 
 String xmlch2tstr(const XMLChar *ch, int length)
 {
-	return UTF82T(std::string(ch, length));
+	return toTString(std::string(ch, length));
 }
 
 void writeElement(XMLWriter& writer, const std::string& tagname, const std::string& characters)
@@ -99,17 +99,17 @@ public:
 		const std::string& nodename = m_stack.top();
 		if (nodename == Left_element_name)
 		{
-			m_pProject->m_paths.SetLeft(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_paths.SetLeft(xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasLeft = true;
 		}
 		else if (nodename == Middle_element_name)
 		{
-			m_pProject->m_paths.SetMiddle(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_paths.SetMiddle(xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasMiddle = true;
 		}
 		else if (nodename == Right_element_name)
 		{
-			m_pProject->m_paths.SetRight(xmlch2tstr(ch + start, length).c_str());
+			m_pProject->m_paths.SetRight(xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasRight = true;
 		}
 		else if (nodename == Filter_element_name)
@@ -147,7 +147,7 @@ private:
 };
 
 /** @brief File extension for path files */
-const String ProjectFile::PROJECTFILE_EXT = UTF82T("WinMerge");
+const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 
 /** 
  * @brief Standard constructor.
@@ -176,7 +176,7 @@ bool ProjectFile::Read(const String& path)
 	ProjectFileHandler handler(this);
 	SAXParser parser;
 	parser.setContentHandler(&handler);
-	parser.parse(T2UTF8(path));
+	parser.parse(toUTF8(path));
 	return true;
 }
 
@@ -188,7 +188,7 @@ bool ProjectFile::Read(const String& path)
  */
 bool ProjectFile::Save(const String& path) const
 {
-	FileStream out(T2UTF8(path));
+	FileStream out(toUTF8(path));
 	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
 	writer.startDocument();
 	writer.startElement("", "", Root_element_name);
@@ -196,13 +196,13 @@ bool ProjectFile::Save(const String& path) const
 		writer.startElement("", "", Paths_element_name);
 		{
 			if (!m_paths.GetLeft().empty())
-				writeElement(writer, Left_element_name, T2UTF8(m_paths.GetLeft()));
+				writeElement(writer, Left_element_name, toUTF8(m_paths.GetLeft()));
 			if (!m_paths.GetMiddle().empty())
-				writeElement(writer, Middle_element_name, T2UTF8(m_paths.GetMiddle()));
+				writeElement(writer, Middle_element_name, toUTF8(m_paths.GetMiddle()));
 			if (!m_paths.GetRight().empty())
-				writeElement(writer, Right_element_name, T2UTF8(m_paths.GetRight()));
+				writeElement(writer, Right_element_name, toUTF8(m_paths.GetRight()));
 			if (!m_filter.empty())
-				writeElement(writer, Filter_element_name, T2UTF8(m_filter));
+				writeElement(writer, Filter_element_name, toUTF8(m_filter));
 			writeElement(writer, Subfolders_element_name, m_subfolders != 0 ? "1" : "0");
 			writeElement(writer, Left_ro_element_name, m_bLeftReadOnly ? "1" : "0");
 			if (!m_paths.GetMiddle().empty())
@@ -288,7 +288,7 @@ bool ProjectFile::GetLeftReadOnly() const
  */
 void ProjectFile::SetLeft(const String& sLeft, const bool * pReadOnly /*=NULL*/)
 {
-	m_paths.SetLeft(sLeft.c_str(), false);
+	m_paths.SetLeft(sLeft, false);
 	if (pReadOnly)
 		m_bLeftReadOnly = *pReadOnly;
 }
@@ -319,7 +319,7 @@ bool ProjectFile::GetMiddleReadOnly() const
  */
 void ProjectFile::SetMiddle(const String& sMiddle, const bool * pReadOnly /*=NULL*/)
 {
-	m_paths.SetMiddle(sMiddle.c_str(), false);
+	m_paths.SetMiddle(sMiddle, false);
 	if (pReadOnly)
 		m_bMiddleReadOnly = *pReadOnly;
 
@@ -354,7 +354,7 @@ bool ProjectFile::GetRightReadOnly() const
  */
 void ProjectFile::SetRight(const String& sRight, const bool * pReadOnly /*=NULL*/)
 {
-	m_paths.SetRight(sRight.c_str(), false);
+	m_paths.SetRight(sRight, false);
 	if (pReadOnly)
 		m_bRightReadOnly = *pReadOnly;
 }

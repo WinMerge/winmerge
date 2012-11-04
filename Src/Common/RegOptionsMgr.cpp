@@ -7,16 +7,12 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-// Disable VC6's "identifier was truncated..." warning. It is meaningless.
-#if _MSC_VER == 1200
-	#pragma warning(disable: 4786)
-#endif
 #include <windows.h>
+#include "RegOptionsMgr.h"
 #include <tchar.h>
 #include <vector>
 #include "varprop.h"
 #include "OptionsMgr.h"
-#include "RegOptionsMgr.h"
 
 /**
  * @brief Split option name to path (in registry) and
@@ -29,13 +25,13 @@
  * @param [out] srPath Path (key) in registry
  * @param [out] strValue Value in registry
  */
-void CRegOptionsMgr::SplitName(String strName, String &strPath,
+void CRegOptionsMgr::SplitName(const String &strName, String &strPath,
 	String &strValue)
 {
-	int pos = strName.rfind('/');
-	if (pos > 0)
+	size_t pos = strName.rfind('/');
+	if (pos != String::npos)
 	{
-		int len = strName.length();
+		size_t len = strName.length();
 		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
 		strPath = strName.substr(0, pos);  //Left(pos);
 	}
@@ -60,7 +56,7 @@ void CRegOptionsMgr::SplitName(String strName, String &strPath,
  * @note This function must handle ANSI and UNICODE data!
  * @todo Handles only string and integer types
  */
-int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
+int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	varprop::VariantValue &value)
 {
 	String strPath;
@@ -70,7 +66,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	DWORD type = 0;
 	DWORD size = 0;
 	int valType = value.GetType();
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	SplitName(strName, strPath, strValueName);
 
@@ -91,7 +87,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	{
 		if (type == REG_SZ && valType == varprop::VT_STRING )
 		{
-			value.SetString((LPCTSTR)&data[0]);
+			value.SetString((TCHAR *)&data[0]);
 			retVal = Set(strName, value);
 		}
 		else if (type == REG_DWORD)
@@ -111,13 +107,13 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 				retVal = Set(strName, value);
 			}
 			else
-				retVal = OPT_WRONG_TYPE;
+				retVal = COption::OPT_WRONG_TYPE;
 		}
 		else
-			retVal = OPT_WRONG_TYPE;
+			retVal = COption::OPT_WRONG_TYPE;
 	}
 	else
-		retVal = OPT_ERR;
+		retVal = COption::OPT_ERR;
 
 	return retVal;
 }
@@ -132,48 +128,48 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
  * @param [in] value value to write to registry value
  * @todo Handles only string and integer types
  */
-int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
+int CRegOptionsMgr::SaveValueToReg(HKEY hKey, const String& strValueName,
 	varprop::VariantValue value)
 {
 	LONG retValReg = 0;
 	int valType = value.GetType();
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	if (valType == varprop::VT_STRING)
 	{
 		String strVal = value.GetString();
 		if (strVal.length() > 0)
 		{
-			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
-					(LPBYTE)strVal.c_str(), (strVal.length() + 1) * sizeof(TCHAR));
+			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
+					(LPBYTE)strVal.c_str(), (DWORD)(strVal.length() + 1) * sizeof(TCHAR));
 		}
 		else
 		{
 			TCHAR str[1] = {0};
-			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
+			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
 					(LPBYTE)&str, 1 * sizeof(TCHAR));
 		}
 	}
 	else if (valType == varprop::VT_INT)
 	{
 		DWORD dwordVal = value.GetInt();
-		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
+		retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_DWORD,
 				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
 	else if (valType == varprop::VT_BOOL)
 	{
 		DWORD dwordVal = value.GetBool() ? 1 : 0;
-		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
+		retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_DWORD,
 				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
 	else
 	{
-		retVal = OPT_UNKNOWN_TYPE;
+		retVal = COption::OPT_UNKNOWN_TYPE;
 	}
 		
 	if (retValReg != ERROR_SUCCESS)
 	{
-		retVal = OPT_ERR;
+		retVal = COption::OPT_ERR;
 	}
 	return retVal;
 }
@@ -184,12 +180,12 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, varprop::VariantValue defaultValue)
 {
 	// Check type & bail if null
 	int valType = defaultValue.GetType();
 	if (valType == varprop::VT_NULL)
-		return OPT_ERR;
+		return COption::OPT_ERR;
 
 	// If we're not loading & saving options, bail
 	if (!m_serializing)
@@ -206,11 +202,11 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 	HKEY hKey = NULL;
 	DWORD action = 0;
 	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-		NULL, _T(""), REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL,
+		0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL,
 		&hKey, &action);
 
 	if (retValReg != ERROR_SUCCESS)
-		return OPT_ERR;
+		return COption::OPT_ERR;
 
 	// Check previous value
 	// This just checks if the value exists, LoadValueFromReg() below actually
@@ -225,7 +221,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 	int retVal = AddOption(name, defaultValue);
 	
 	// Update registry if successfully saved to in-memory table
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 	{
 		// Value didn't exist. Save default value to registry
 		if (retValReg == ERROR_FILE_NOT_FOUND)
@@ -236,7 +232,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
 		{
 			retVal = LoadValueFromReg(hKey, name, defaultValue);
-			if (retVal == OPT_OK)
+			if (retVal == COption::OPT_OK)
 				retVal = Set(name, defaultValue);
 		}
 	}
@@ -250,14 +246,19 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(LPCTSTR name, LPCTSTR defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, const String& defaultValue)
 {
 	varprop::VariantValue defValue;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	
 	defValue.SetString(defaultValue);
 	retVal = InitOption(name, defValue);
 	return retVal;
+}
+
+int CRegOptionsMgr::InitOption(const String& name, const TCHAR *defaultValue)
+{
+	return InitOption(name, String(defaultValue));
 }
 
 /**
@@ -266,10 +267,10 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, LPCTSTR defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(LPCTSTR name, int defaultValue, bool serializable)
+int CRegOptionsMgr::InitOption(const String& name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	
 	defValue.SetInt(defaultValue);
 	if (serializable)
@@ -285,10 +286,10 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, int defaultValue, bool serializable
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(LPCTSTR name, bool defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	
 	defValue.SetBool(defaultValue);
 	retVal = InitOption(name, defValue);
@@ -299,7 +300,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, bool defaultValue)
  * @brief Load option from registry.
  * @note Currently handles only integer and string options!
  */
-int CRegOptionsMgr::LoadOption(LPCTSTR name)
+int CRegOptionsMgr::LoadOption(const String& name)
 {
 	varprop::VariantValue value;
 	String strPath;
@@ -308,7 +309,7 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
@@ -316,12 +317,12 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
 	value = Get(name);
 	valType = value.GetType();
 	if (valType == varprop::VT_NULL)
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 	{
 		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			NULL, KEY_READ, &hKey);
+			0, KEY_READ, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
 		{
@@ -329,7 +330,7 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
 			RegCloseKey(hKey);
 		}
 		else
-			retVal = OPT_ERR;
+			retVal = COption::OPT_ERR;
 	}
 	return retVal;
 }
@@ -338,9 +339,9 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
  * @brief Save option to registry
  * @note Currently handles only integer and string options!
  */
-int CRegOptionsMgr::SaveOption(LPCTSTR name)
+int CRegOptionsMgr::SaveOption(const String& name)
 {
-	if (!m_serializing) return OPT_OK;
+	if (!m_serializing) return COption::OPT_OK;
 
 	varprop::VariantValue value;
 	String strPath;
@@ -349,7 +350,7 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
@@ -357,12 +358,12 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	value = Get(name);
 	valType = value.GetType();
 	if (valType == varprop::VT_NULL)
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 	{
 		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
-			NULL, KEY_WRITE, &hKey);
+			0, KEY_WRITE, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
 		{
@@ -370,7 +371,7 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 			RegCloseKey(hKey);
 		}
 		else
-			retVal = OPT_ERR;
+			retVal = COption::OPT_ERR;
 	}
 	return retVal;
 }
@@ -378,11 +379,11 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 /**
  * @brief Set new value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(LPCTSTR name, varprop::VariantValue value)
+int CRegOptionsMgr::SaveOption(const String& name, varprop::VariantValue value)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	retVal = Set(name, value);
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
 }
@@ -390,29 +391,37 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name, varprop::VariantValue value)
 /**
  * @brief Set new string value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(LPCTSTR name, LPCTSTR value)
+int CRegOptionsMgr::SaveOption(const String& name, const String& value)
 {
 	varprop::VariantValue val;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	val.SetString(value);
 	retVal = Set(name, val);
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
 }
 
 /**
+ * @brief Set new string value for option and save option to registry
+ */
+int CRegOptionsMgr::SaveOption(const String& name, const TCHAR *value)
+{
+	return SaveOption(name, String(value));
+}
+
+/**
  * @brief Set new integer value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(LPCTSTR name, int value)
+int CRegOptionsMgr::SaveOption(const String& name, int value)
 {
 	varprop::VariantValue val;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	val.SetInt(value);
 	retVal = Set(name, val);
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
 }
@@ -420,23 +429,23 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name, int value)
 /**
  * @brief Set new boolean value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(LPCTSTR name, bool value)
+int CRegOptionsMgr::SaveOption(const String& name, bool value)
 {
 	varprop::VariantValue val;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	val.SetBool(value);
 	retVal = Set(name, val);
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
 }
 
-int CRegOptionsMgr::RemoveOption(LPCTSTR name)
+int CRegOptionsMgr::RemoveOption(const String& name)
 {
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	String strRegPath(m_registryRoot);
 	String strPath;
 	String strValueName;
@@ -450,12 +459,12 @@ int CRegOptionsMgr::RemoveOption(LPCTSTR name)
 		retValReg = RegDeleteValue(hKey, strValueName.c_str());
 		if (retValReg != ERROR_SUCCESS)
 		{
-			retVal = OPT_ERR;
+			retVal = COption::OPT_ERR;
 		}
 		RegCloseKey(hKey);
 	}
 	else
-		retVal = OPT_ERR;
+		retVal = COption::OPT_ERR;
 
 	return retVal;
 
@@ -467,14 +476,14 @@ int CRegOptionsMgr::RemoveOption(LPCTSTR name)
  * Sets path used as root path when loading/saving options. Paths
  * given to other functions are relative to this path.
  */
-int CRegOptionsMgr::SetRegRootKey(LPCTSTR key)
+int CRegOptionsMgr::SetRegRootKey(const String& key)
 {
 	String keyname(key);
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	DWORD action = 0;
-	int retVal = OPT_OK;
-	int ind = 0;
+	int retVal = COption::OPT_OK;
+	size_t ind = 0;
 
 	ind = keyname.find(_T("Software"));
 	if (ind != 0)
@@ -482,7 +491,7 @@ int CRegOptionsMgr::SetRegRootKey(LPCTSTR key)
 	
 	m_registryRoot = keyname;
 
-	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), NULL, _T(""),
+	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
 
 	if (retValReg == ERROR_SUCCESS)
@@ -495,8 +504,110 @@ int CRegOptionsMgr::SetRegRootKey(LPCTSTR key)
 	}
 	else
 	{
-		retVal = OPT_ERR;
+		retVal = COption::OPT_ERR;
 	}
 
+	return retVal;
+}
+
+/**
+ * @brief Export options to file.
+ *
+ * This function enumerates through our options storage and saves
+ * every option name and value to file.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return
+ * - COption::OPT_OK when succeeds
+ * - COption::OPT_ERR when writing to the file fails
+ */
+int CRegOptionsMgr::ExportOptions(const String& filename) const
+{
+	int retVal = COption::OPT_OK;
+	OptionsMap::const_iterator optIter = m_optionsMap.begin();
+	while (optIter != m_optionsMap.end() && retVal == COption::OPT_OK)
+	{
+		const String name(optIter->first);
+		String strVal;
+		varprop::VariantValue value = optIter->second.Get();
+		if (value.GetType() == varprop::VT_BOOL)
+		{
+			if (value.GetBool())
+				strVal = _T("1");
+			else
+				strVal = _T("0");
+		}
+		else if (value.GetType() == varprop::VT_INT)
+		{
+			TCHAR num[12] = {0};
+			_itot(value.GetInt(), num, 10);
+			strVal = num;
+		}
+		else if (value.GetType() == varprop::VT_STRING)
+		{
+			strVal = value.GetString();
+		}
+
+		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+				strVal.c_str(), filename.c_str());
+		if (!bRet)
+			retVal = COption::OPT_ERR;
+		optIter++;
+	}
+	return retVal;
+}
+
+/**
+ * @brief Import options from file.
+ *
+ * This function reads options values and names from given file and
+ * updates values to our options storage. If valuename does not exist
+ * already in options storage its is not created.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return 
+ * - COption::OPT_OK when succeeds
+ * - COption::OPT_NOTFOUND if file wasn't found or didn't contain values
+ */
+int CRegOptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = COption::OPT_OK;
+	const int BufSize = 10240; // This should be enough for a long time..
+	TCHAR buf[BufSize] = {0};
+
+	// Query keys - returns NULL separated strings
+	DWORD len = GetPrivateProfileString(_T("WinMerge"), NULL, _T(""),buf, BufSize, filename.c_str());
+	if (len == 0)
+		return COption::OPT_NOTFOUND;
+
+	TCHAR *pKey = buf;
+	while (*pKey != '\0')
+	{
+		varprop::VariantValue value = Get(pKey);
+		if (value.GetType() == varprop::VT_BOOL)
+		{
+			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
+			value.SetBool(boolVal == 1);
+		}
+		else if (value.GetType() == varprop::VT_INT)
+		{
+			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
+			value.SetInt(intVal);
+		}
+		else if (value.GetType() == varprop::VT_STRING)
+		{
+			TCHAR strVal[MAX_PATH] = {0};
+			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename.c_str());
+			value.SetString(strVal);
+		}
+		Set(pKey, value);
+
+		pKey += _tcslen(pKey);
+
+		// Check: pointer is not past string end, and next char is not null
+		// double NULL char ends the keynames string
+		if ((pKey < buf + len) && (*(pKey + 1) != '\0'))
+			pKey++;
+	}
 	return retVal;
 }

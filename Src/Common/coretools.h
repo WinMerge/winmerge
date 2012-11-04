@@ -11,15 +11,8 @@
 
 #include "UnicodeString.h"
 
-void replace_char(LPTSTR s, int target, int repl);
-void SplitFilename(LPCTSTR s, String * path, String * name, String * ext);
-void SplitViewName(LPCTSTR s, String * path, String * name, String * ext);
-String GetModulePath(HMODULE hModule = NULL);
-String GetPathOnly(LPCTSTR fullpath);
+void replace_char(TCHAR *s, int target, int repl);
 
 size_t linelen(const char *string, size_t maxlen);
-
-HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNewConsole = FALSE);
-BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
 
 #endif

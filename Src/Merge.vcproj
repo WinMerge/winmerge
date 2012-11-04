@@ -324,51 +324,6 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
-				RelativePath=".\AnsiConvert.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
-						UsePrecompiledHeader="0"
-						PrecompiledHeaderThrough=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="charsets.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -417,7 +372,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -426,6 +382,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -435,6 +392,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -443,7 +401,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -454,7 +413,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -463,6 +423,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -472,6 +433,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -480,7 +442,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -589,7 +552,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -598,6 +562,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -607,6 +572,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -615,7 +581,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -708,7 +675,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -717,6 +685,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -726,6 +695,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -734,7 +704,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -746,7 +717,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"/>
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -755,7 +726,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -765,7 +736,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -775,7 +746,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"/>
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -966,7 +937,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -975,6 +947,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -984,6 +957,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -992,7 +966,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1003,7 +978,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1012,6 +988,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1021,6 +998,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1029,7 +1007,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1126,7 +1105,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1135,6 +1115,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1144,6 +1125,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1152,7 +1134,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1245,7 +1228,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1254,6 +1238,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1263,6 +1248,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1271,7 +1257,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1282,7 +1269,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1291,6 +1279,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1300,6 +1289,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1308,7 +1298,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1459,47 +1450,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="files.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="FileTextEncoding.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -1548,7 +1498,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1557,6 +1508,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1566,6 +1518,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1574,7 +1527,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1634,7 +1588,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1643,6 +1598,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1652,6 +1608,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1660,7 +1617,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1720,7 +1678,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1729,6 +1688,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1738,6 +1698,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1746,7 +1707,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1802,7 +1764,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1811,6 +1774,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1820,6 +1784,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1828,7 +1793,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1839,7 +1805,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -1848,6 +1815,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1857,6 +1825,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1865,7 +1834,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -1951,6 +1921,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\MergeApp.cpp">
+			</File>
+			<File
 				RelativePath="MergeCmdLineInfo.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -2007,7 +1980,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2016,6 +1990,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2025,6 +2000,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2033,7 +2009,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -2089,7 +2066,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2098,6 +2076,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2107,6 +2086,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2115,7 +2095,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -2126,7 +2107,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2135,6 +2117,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2144,6 +2127,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2152,7 +2136,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="3"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -2202,6 +2187,30 @@
 			</File>
 			<File
 				RelativePath=".\PatchHTML.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="PathContext.cpp">
@@ -2291,6 +2300,30 @@
 			</File>
 			<File
 				RelativePath="Common\PidlContainer.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="PluginManager.cpp">
@@ -2300,7 +2333,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2309,6 +2343,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2318,6 +2353,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2326,7 +2362,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -2337,7 +2374,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2346,6 +2384,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2355,6 +2394,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2363,7 +2403,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -2566,47 +2607,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="StdAfx.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="stringdiffs.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -2657,6 +2657,30 @@
 			</File>
 			<File
 				RelativePath=".\SyntaxColorsUtil.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="TempFile.cpp">
@@ -2789,7 +2813,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -2798,6 +2823,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2807,6 +2833,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2815,48 +2842,12 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="UniMarkdownFile.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="Common\Utf8FileDetect.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3002,7 +2993,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3011,6 +3003,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3020,6 +3013,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3028,16 +3022,14 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
-			<File
-				RelativePath=".\AnsiConvert.h">
-			</File>
 			<File
 				RelativePath="charsets.h">
 			</File>
@@ -3138,9 +3130,6 @@
 				RelativePath="FileLocation.h">
 			</File>
 			<File
-				RelativePath="files.h">
-			</File>
-			<File
 				RelativePath="FileTextEncoding.h">
 			</File>
 			<File
@@ -3165,6 +3154,9 @@
 				RelativePath="IAbortable.h">
 			</File>
 			<File
+				RelativePath=".\IListCtrl.h">
+			</File>
+			<File
 				RelativePath="IntToIntMap.h">
 			</File>
 			<File
@@ -3181,6 +3173,9 @@
 			</File>
 			<File
 				RelativePath="markdown.h">
+			</File>
+			<File
+				RelativePath=".\MergeApp.h">
 			</File>
 			<File
 				RelativePath="MergeCmdLineInfo.h">
@@ -3222,16 +3217,10 @@
 				RelativePath="Common\RegOptionsMgr.h">
 			</File>
 			<File
-				RelativePath="resource.h">
-			</File>
-			<File
 				RelativePath=".\Common\ShellFileOperations.h">
 			</File>
 			<File
 				RelativePath="ssapi.h">
-			</File>
-			<File
-				RelativePath="StdAfx.h">
 			</File>
 			<File
 				RelativePath="stringdiffs.h">
@@ -3246,6 +3235,9 @@
 				RelativePath="TempFile.h">
 			</File>
 			<File
+				RelativePath=".\TFile.h">
+			</File>
+			<File
 				RelativePath="Common\unicoder.h">
 			</File>
 			<File
@@ -3256,9 +3248,6 @@
 			</File>
 			<File
 				RelativePath="UniMarkdownFile.h">
-			</File>
-			<File
-				RelativePath="Common\Utf8FileDetect.h">
 			</File>
 			<File
 				RelativePath="Common\varprop.h">
@@ -3735,7 +3724,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\lib\CMPBUF.C">
+				RelativePath="diffutils\lib\cmpbuf.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3776,13 +3765,13 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\lib\CMPBUF.H">
+				RelativePath="diffutils\lib\cmpbuf.h">
 			</File>
 			<File
-				RelativePath="diffutils\CONFIG.H">
+				RelativePath="diffutils\config.h">
 			</File>
 			<File
-				RelativePath="diffutils\src\CONTEXT.C">
+				RelativePath="diffutils\src\context.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3823,51 +3812,37 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\Diff.cpp">
+				RelativePath=".\diffutils\src\Diff.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="0"
-						BrowseInformation="1"/>
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						Optimization="2"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\DIFF.H">
+				RelativePath="diffutils\src\diff.h">
 			</File>
 			<File
-				RelativePath="diffutils\src\ED.C">
+				RelativePath="diffutils\src\ed.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3949,7 +3924,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\IFDEF.C">
+				RelativePath="diffutils\src\ifdef.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3990,7 +3965,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\IO.C">
+				RelativePath="diffutils\src\io.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -4031,7 +4006,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\NORMAL.C">
+				RelativePath="diffutils\src\normal.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -4072,7 +4047,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\lib\REGEX.C">
+				RelativePath="diffutils\lib\regex.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -4113,10 +4088,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\lib\REGEX.H">
+				RelativePath="diffutils\lib\regex.h">
 			</File>
 			<File
-				RelativePath="diffutils\src\SIDE.C">
+				RelativePath="diffutils\src\side.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -4157,10 +4132,10 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="diffutils\src\SYSTEM.H">
+				RelativePath="diffutils\src\system.h">
 			</File>
 			<File
-				RelativePath="diffutils\src\UTIL.C">
+				RelativePath="diffutils\src\util.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -4274,7 +4249,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4283,6 +4259,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4292,6 +4269,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4300,7 +4278,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4314,7 +4293,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4323,6 +4303,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4332,6 +4313,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4340,7 +4322,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4354,7 +4337,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -4363,6 +4347,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4372,6 +4357,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -4380,7 +4366,8 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -4818,6 +4805,9 @@
 							AdditionalIncludeDirectories=""
 							PreprocessorDefinitions=""/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\CustomColors.cpp">
 				</File>
 				<File
 					RelativePath="DiffTextBuffer.cpp">
@@ -5348,7 +5338,8 @@
 							Name="VCCLCompilerTool"
 							Optimization="1"
 							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
+							PreprocessorDefinitions=""
+							UsePrecompiledHeader="0"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="UnicodeDebug|Win32">
@@ -5357,6 +5348,7 @@
 							Optimization="0"
 							AdditionalIncludeDirectories=""
 							PreprocessorDefinitions=""
+							UsePrecompiledHeader="0"
 							BrowseInformation="1"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -5366,6 +5358,7 @@
 							Optimization="0"
 							AdditionalIncludeDirectories=""
 							PreprocessorDefinitions=""
+							UsePrecompiledHeader="0"
 							BrowseInformation="1"/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -5374,7 +5367,8 @@
 							Name="VCCLCompilerTool"
 							Optimization="1"
 							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
+							PreprocessorDefinitions=""
+							UsePrecompiledHeader="0"/>
 					</FileConfiguration>
 				</File>
 				<File
@@ -7204,6 +7198,47 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath="StdAfx.cpp">
+					<FileConfiguration
+						Name="UnicodeRelease|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="1"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE;$(NoInherit)"
+							UsePrecompiledHeader="1"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="UnicodeDebug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+							UsePrecompiledHeader="1"
+							BrowseInformation="1"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="0"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+							UsePrecompiledHeader="1"
+							BrowseInformation="1"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							Optimization="1"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions="WIN32;_WINDOWS;_STATIC_CPPLIB;POCO_STATIC;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"
+							UsePrecompiledHeader="1"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath="Common\SuperComboBox.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -7466,6 +7501,9 @@
 					RelativePath="Common\CSubclass.h">
 				</File>
 				<File
+					RelativePath=".\CustomColors.h">
+				</File>
+				<File
 					RelativePath="DiffTextBuffer.h">
 				</File>
 				<File
@@ -7527,6 +7565,9 @@
 				</File>
 				<File
 					RelativePath=".\HexMergeView.h">
+				</File>
+				<File
+					RelativePath=".\IListCtrlImpl.h">
 				</File>
 				<File
 					RelativePath="IOptionsPanel.h">
@@ -7652,6 +7693,9 @@
 					RelativePath="PropVss.h">
 				</File>
 				<File
+					RelativePath="resource.h">
+				</File>
+				<File
 					RelativePath="SaveClosingDlg.h">
 				</File>
 				<File
@@ -7683,6 +7727,9 @@
 				</File>
 				<File
 					RelativePath="Common\StatLink.h">
+				</File>
+				<File
+					RelativePath="StdAfx.h">
 				</File>
 				<File
 					RelativePath="Common\SuperComboBox.h">

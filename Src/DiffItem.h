@@ -61,24 +61,24 @@ struct DIFFCODE
 		SCANFLAGS=0x100000, NEEDSCAN=0x100000,
 	};
 
-	UINT diffcode;
+	unsigned diffcode;
 
-	DIFFCODE(UINT diffcode = 0) : diffcode(diffcode) { }
+	DIFFCODE(unsigned diffcode = 0) : diffcode(diffcode) { }
 
 protected:
 	/// Worker function, to check one area (mask) of code for a particular value (result)
-	static bool Check(UINT code, int mask, int result) { return ((code & mask) == result); }
+	static bool Check(unsigned code, int mask, int result) { return ((code & mask) == result); }
 	/// Convenience function to check the part of the code for comparison results
-	static bool CheckCompare(UINT code, int result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
+	static bool CheckCompare(unsigned code, int result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
 	/// Convenience function to check the part of the code for filter status
-	static bool CheckFilter(UINT code, int result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
+	static bool CheckFilter(unsigned code, int result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
 	/// Convenience function to check the part of the code for side status (eg, left-only)
-	static bool CheckSide(UINT code, int result) { return Check(code, DIFFCODE::SIDEFLAGS, result); }
+	static bool CheckSide(unsigned code, int result) { return Check(code, DIFFCODE::SIDEFLAGS, result); }
 
 	/// Worker function to set the area indicated by mask to specified result
-	void Set(int mask, UINT result) { diffcode &= (~mask); diffcode |= result; }
+	void Set(int mask, unsigned result) { diffcode &= (~mask); diffcode |= result; }
 	/// Convenience function to set the side status, eg, SetSide(DIFFCODE::LEFT)
-	void SetSide(UINT result) { Set(DIFFCODE::SIDEFLAGS, result); }
+	void SetSide(unsigned result) { Set(DIFFCODE::SIDEFLAGS, result); }
 public:
 
 	// file/directory
@@ -125,9 +125,9 @@ public:
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
 	bool isResultDiff() const { return (CheckCompare(diffcode, DIFFCODE::DIFF) && !isResultFiltered() &&
 			isExistsFirst() && isExistsSecond()); } /* FIXME: 3-pane */
-	static bool isResultError(UINT code) { return CheckCompare(code, DIFFCODE::CMPERR); }
+	static bool isResultError(unsigned code) { return CheckCompare(code, DIFFCODE::CMPERR); }
 	bool isResultError() const { return isResultError(diffcode); }
-	static bool isResultAbort(UINT code) { return CheckCompare(code, DIFFCODE::CMPABORT); }
+	static bool isResultAbort(unsigned code) { return CheckCompare(code, DIFFCODE::CMPABORT); }
 	bool isResultAbort() const { return isResultAbort(diffcode); }
 	// filter status
 	bool isResultFiltered() const { return CheckFilter(diffcode, DIFFCODE::SKIPPED); }
@@ -163,7 +163,7 @@ struct DIFFITEM : ListEntry
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int nidiffs; /**< Amount of ignored differences */
 	String errorDesc; /**< technical note about error */
-	UINT customFlags1; /**< Custom flags set 1 */
+	unsigned customFlags1; /**< Custom flags set 1 */
 	DIFFCODE diffcode; /**< Compare result */
 
 	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */

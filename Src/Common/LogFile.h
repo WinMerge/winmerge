@@ -11,6 +11,8 @@
 #define _LOGFILE_H_
 
 #include "UnicodeString.h"
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/NamedMutex.h>
 
 /**
  * @brief Class for writing log files.
@@ -29,7 +31,7 @@
  * See MSDN documentation about printf() function for more information.
  *
  * @note User can easily define more levels, just add new constant to
- * struct LOGLEVEL above, and possibly prefix to GetPrefix(UINT level).
+ * struct LOGLEVEL above, and possibly prefix to GetPrefix(unsigned level).
  */
 class CLogFile  
 {
@@ -51,40 +53,38 @@ public:
 		LDEBUG = 0x4000,  /**< Append message to debug window as well */
 	};
 
-	CLogFile(LPCTSTR szLogName = NULL, BOOL bDeleteExisting = FALSE);
+	CLogFile(const TCHAR * szLogName = NULL, bool bDeleteExisting = false);
 	virtual ~CLogFile();
 
-	void SetFile(const String & strFile, BOOL bDelExisting = FALSE);
-	void EnableLogging(BOOL bEnable);
-	UINT GetDefaultLevel() const;
-	void SetDefaultLevel(UINT logLevel);
-	UINT GetMaskLevel() const;
-	void SetMaskLevel(UINT maskLevel);
+	void SetFile(const String & strFile, bool bDelExisting = false);
+	void EnableLogging(bool bEnable);
+	unsigned GetDefaultLevel() const;
+	void SetDefaultLevel(unsigned logLevel);
+	unsigned GetMaskLevel() const;
+	void SetMaskLevel(unsigned maskLevel);
 
-	UINT Write(LPCTSTR pszFormat, ...);
-	UINT Write(DWORD idFormatString, ...);
-	UINT Write(UINT level, LPCTSTR pszFormat, ...);
-	UINT Write(UINT level, DWORD idFormatString, ...);
+	unsigned Write(const TCHAR * pszFormat, ...);
+	unsigned Write(unsigned level, const TCHAR * pszFormat, ...);
 
-	UINT DeleteFileFailed(LPCTSTR path);
+	unsigned DeleteFileFailed(const TCHAR * path);
 
-	void SetMaxLogSize(DWORD dwMax) { m_nMaxSize = dwMax; }
+	void SetMaxLogSize(size_t dwMax) { m_nMaxSize = dwMax; }
 	String GetPath() const { return m_strLogPath; }
 
 
 protected:
 	void Prune(FILE *f);
-	LPCTSTR GetPrefix(UINT level) const;
-	void WriteV(UINT level, LPCTSTR pszFormat, va_list);
-	void WriteRaw(LPCTSTR msg);
+	const TCHAR * GetPrefix(unsigned level) const;
+	void WriteV(unsigned level, const TCHAR * pszFormat, va_list);
+	void WriteRaw(const TCHAR * msg);
 
 private:
-	HANDLE    m_hLogMutex; /**< Mutex protecting log writing */
-	DWORD     m_nMaxSize; /**< Max size of the log file */
-	BOOL      m_bEnabled; /**< Is logging enabled? */
+	Poco::NamedMutex m_hLogMutex; /**< Mutex protecting log writing */
+	size_t    m_nMaxSize; /**< Max size of the log file */
+	bool      m_bEnabled; /**< Is logging enabled? */
 	String    m_strLogPath; /**< Full path to log file */
-	UINT      m_nDefaultLevel; /**< Default level for log messages */
-	UINT      m_nMaskLevel; /**< Level to mask messages written to log */
+	unsigned      m_nDefaultLevel; /**< Default level for log messages */
+	unsigned      m_nMaskLevel; /**< Level to mask messages written to log */
 };
 
 

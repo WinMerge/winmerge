@@ -28,29 +28,11 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// Disable VC6's "identifier was truncated..." warning. It is meaningless.
-#if _MSC_VER == 1200
-	#pragma warning(disable: 4786)
-#endif
-#include <windows.h>
-#include <tchar.h>
-#include <algorithm>
-#include <crtdbg.h>
-#include "UnicodeString.h"
-#include "varprop.h"
 #include "OptionsMgr.h"
+#include <algorithm>
+#include <cassert>
 
-#ifdef _DEBUG
-#  ifdef _UNICODE
-#    define _TRPTF1
-#  else
-#    define _TRPTF1 _RPTF1
-#  endif
-#else
-#  define _TRPTF1
-#endif
-
-static bool GetAsInt(LPCTSTR str, int & val);
+static bool GetAsInt(const String& str, int & val);
 
 /**
  * @brief Default constructor.
@@ -93,9 +75,9 @@ COption& COption::operator=(const COption& option)
  * is restored for otion when Reset() is run.
  * @sa COption::Reset()
  */
-int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
+int COption::Init(const String& name, varprop::VariantValue defaultValue)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	m_strName = name;
 	if (m_strName.empty())
@@ -161,20 +143,23 @@ varprop::VariantValue COption::GetDefault() const
  * @param [out] val Converted integer.
  * @return true if conversion succeeded, false otherwise.
  */
-static bool GetAsInt(LPCTSTR str, int & val)
+static bool GetAsInt(const String& str, int & val)
 {
-	if (str == NULL)
+	if (str.empty())
 		return false;
-	const size_t len = _tcslen(str);
+	const size_t len = str.length();
 	if (len == 0)
 		return false;
 
-	for (int i = 0; i < len; ++i)
+	val = 0;
+	for (int i = 0; i < (int)len; ++i)
 	{
-		if (!_istascii(str[i]) || !_istdigit(str[i]))
+		int ch = (int)str[i];
+		if (ch < '0' || ch > '9')
 			return false;
+		val *= 10;
+		val += ch - '0';
 	}
-	val = _ttoi(str);
 	return true;
 }
 
@@ -227,7 +212,7 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 		// Convert string to integer
 		{
 			int val=0;
-			if (!GetAsInt(svalue.c_str(), val))
+			if (!GetAsInt(svalue, val))
 				return false;
 			value.SetInt(val);
 			return true;
@@ -236,14 +221,14 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 		// Convert string to boolean
 		{
 			std::transform(svalue.begin(), svalue.end(), svalue.begin(), ::tolower);
-			if (svalue == _T("1") || !svalue.compare(_T("yes"))
-				|| !svalue.compare(_T("true")))
+			if (svalue == _T("1") || svalue == _T("yes")
+				|| svalue == _T("true"))
 			{
 				value.SetBool(true);
 				return true;
 			}
-			if (svalue == _T("0") || !svalue.compare(_T("no"))
-				|| !svalue.compare(_T("false")))
+			if (svalue == _T("0") || svalue == _T("no")
+				|| svalue == _T("false"))
 			{
 				value.SetBool(false);
 				return true;
@@ -282,7 +267,7 @@ bool COption::ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType)
  */
 int COption::Set(varprop::VariantValue value, bool allowConversion)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	// Check that type matches
 	varprop::VT_TYPE inType = value.GetType();
@@ -293,8 +278,7 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 			if (ConvertType(value, m_value.GetType()))
 				return Set(value);
 		}
-		_TRPTF1(_CRT_ERROR, _T("Wrong type for option: %s"), m_strName.c_str());
-		return OPT_WRONG_TYPE;
+		return COption::OPT_WRONG_TYPE;
 	}
 
 	switch (inType)
@@ -333,14 +317,13 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
  */
 int COption::SetDefault(varprop::VariantValue defaultValue)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	// Check that type matches
 	varprop::VT_TYPE inType = defaultValue.GetType();
 	if (inType != m_valueDef.GetType())
 	{
-		_TRPTF1(_CRT_ERROR, _T("Wrong type for option: %s!"), m_strName.c_str());
-		return OPT_WRONG_TYPE;
+		return COption::OPT_WRONG_TYPE;
 	}
 
 	switch (inType)
@@ -399,22 +382,14 @@ void COption::Reset()
  * @param [in] name Option's name.
  * @param [in] defaultValue Option's initial and default value.
  */
-int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
+int COptionsMgr::AddOption(const String& name, varprop::VariantValue defaultValue)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 	COption tmpOption;
 
-#ifdef _DEBUG
-	OptionsMap::const_iterator found = m_optionsMap.find(name);
-	if (found != m_optionsMap.end())
-		_TRPTF1(_CRT_WARN, _T("Re-adding option: %s !"), name);
-#endif
-
 	retVal = tmpOption.Init(name, defaultValue);
-	if (retVal == OPT_OK)
+	if (retVal == COption::OPT_OK)
 		m_optionsMap[name] = tmpOption;
-	else
-		_TRPTF1(_CRT_ERROR, _T("Could not add option: %s!"), name);
 
 	return retVal;
 }
@@ -424,7 +399,7 @@ int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
  * @param [in] name Name of the option to get.
  * @return Option's value as variant type.
  */
-varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
+varprop::VariantValue COptionsMgr::Get(const String& name) const
 {
 	varprop::VariantValue value;
 
@@ -433,10 +408,6 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 	{
 		value = found->second.Get();
 	}
-	else
-	{
-		_TRPTF1(_CRT_ERROR, _T("Could not find option: %s!"), name);
-	}
 	return value;
 }
 
@@ -444,7 +415,7 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
  * @brief Return string option value.
  * @param [in] name Option's name.
  */
-String COptionsMgr::GetString(LPCTSTR name) const
+String COptionsMgr::GetString(const String& name) const
 {
 	varprop::VariantValue val = Get(name);
 	return val.GetString();
@@ -454,7 +425,7 @@ String COptionsMgr::GetString(LPCTSTR name) const
  * @brief Return integer option value.
  * @param [in] name Option's name.
  */
-int COptionsMgr::GetInt(LPCTSTR name) const
+int COptionsMgr::GetInt(const String& name) const
 {
 	varprop::VariantValue val = Get(name);
 	return val.GetInt();
@@ -464,7 +435,7 @@ int COptionsMgr::GetInt(LPCTSTR name) const
  * @brief Return boolean option value
  * @param [in] name Option's name.
  */
-bool COptionsMgr::GetBool(LPCTSTR name) const
+bool COptionsMgr::GetBool(const String& name) const
 {
 	varprop::VariantValue val = Get(name);
 	return val.GetBool();
@@ -475,9 +446,9 @@ bool COptionsMgr::GetBool(LPCTSTR name) const
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
+int COptionsMgr::Set(const String& name, varprop::VariantValue value)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
@@ -485,13 +456,12 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 		// Allow automatic conversion so we don't bother callsites about this!
 		COption tmpOption = found->second;
 		retVal = tmpOption.Set(value, true);
-		if (retVal == OPT_OK)
+		if (retVal == COption::OPT_OK)
 			m_optionsMap[name] = tmpOption;
 	}
 	else
 	{
-		_TRPTF1(_CRT_ERROR, _T("Could not set option: %s"), name);
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
 }
@@ -501,7 +471,7 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(LPCTSTR name, bool value)
+int COptionsMgr::Set(const String& name, bool value)
 {
 	varprop::VariantValue valx;
 	valx.SetBool(value);
@@ -513,7 +483,7 @@ int COptionsMgr::Set(LPCTSTR name, bool value)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(LPCTSTR name, int value)
+int COptionsMgr::Set(const String& name, int value)
 {
 	varprop::VariantValue valx;
 	valx.SetInt(value);
@@ -525,7 +495,7 @@ int COptionsMgr::Set(LPCTSTR name, int value)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(LPCTSTR name, LPCTSTR value)
+int COptionsMgr::Set(const String& name, const String& value)
 {
 	varprop::VariantValue valx;
 	valx.SetString(value);
@@ -533,14 +503,13 @@ int COptionsMgr::Set(LPCTSTR name, LPCTSTR value)
 }
 
 /**
- * @brief Type-convert and forward to SaveOption(String, int)
+ * @brief Set new value for string option.
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
+int COptionsMgr::Set(const String& name, const TCHAR *value)
 {
-	int xvalue = value;
-	return SaveOption(name, xvalue);
+	return Set(name, String(value));
 }
 
 /**
@@ -548,7 +517,7 @@ int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
+int COptionsMgr::SaveOption(const String& name, unsigned value)
 {
 	int xvalue = value;
 	return SaveOption(name, xvalue);
@@ -558,19 +527,19 @@ int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
  * @brief Remove option from options list.
  * @param [in] name Name of the option to remove.
  */
-int COptionsMgr::RemoveOption(LPCTSTR name)
+int COptionsMgr::RemoveOption(const String& name)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
 		size_t nr_removed = m_optionsMap.erase(name);
 		if (nr_removed == 0)
-			retVal = OPT_NOTFOUND;
+			retVal = COption::OPT_NOTFOUND;
 	}
 	else
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 
 	return retVal;
 }
@@ -579,9 +548,9 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
  * @brief Reset option value to default.
  * @param [in] name Name of the option to reset.
  */
-int COptionsMgr::Reset(LPCTSTR name)
+int COptionsMgr::Reset(const String& name)
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
@@ -592,7 +561,7 @@ int COptionsMgr::Reset(LPCTSTR name)
 	}
 	else
 	{
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
 }
@@ -602,9 +571,9 @@ int COptionsMgr::Reset(LPCTSTR name)
  * @param [in] name Option's name.
  * @param [out] value Option's default value.
  */
-int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
+int COptionsMgr::GetDefault(const String& name, String & value) const
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
@@ -613,11 +582,11 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 		if (val.IsString())
 			value = val.GetString();
 		else
-			retVal = OPT_WRONG_TYPE;
+			retVal = COption::OPT_WRONG_TYPE;
 	}
 	else
 	{
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
 }
@@ -627,9 +596,9 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
  * @param [in] name Option's name.
  * @param [out] value Option's default value.
  */
-int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
+int COptionsMgr::GetDefault(const String& name, unsigned & value) const
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
@@ -638,11 +607,11 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 		if (val.IsInt())
 			value = val.GetInt();
 		else
-			retVal = OPT_WRONG_TYPE;
+			retVal = COption::OPT_WRONG_TYPE;
 	}
 	else
 	{
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
 }
@@ -652,9 +621,9 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
  * @param [in] name Option's name.
  * @param [out] value Option's default value.
  */
-int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
+int COptionsMgr::GetDefault(const String& name, bool & value) const
 {
-	int retVal = OPT_OK;
+	int retVal = COption::OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
@@ -663,113 +632,12 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 		if (val.IsBool())
 			value = val.GetBool();
 		else
-			retVal = OPT_WRONG_TYPE;
+			retVal = COption::OPT_WRONG_TYPE;
 	}
 	else
 	{
-		retVal = OPT_NOTFOUND;
+		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
 }
 
-/**
- * @brief Export options to file.
- *
- * This function enumerates through our options storage and saves
- * every option name and value to file.
- *
- * @param [in] filename Filename where optios are written.
- * @return
- * - OPT_OK when succeeds
- * - OPT_ERR when writing to the file fails
- */
-int COptionsMgr::ExportOptions(LPCTSTR filename)
-{
-	int retVal = OPT_OK;
-	OptionsMap::iterator optIter = m_optionsMap.begin();
-	while (optIter != m_optionsMap.end() && retVal == OPT_OK)
-	{
-		const String name(optIter->first);
-		String strVal;
-		varprop::VariantValue value = optIter->second.Get();
-		if (value.GetType() == varprop::VT_BOOL)
-		{
-			if (value.GetBool())
-				strVal = _T("1");
-			else
-				strVal = _T("0");
-		}
-		else if (value.GetType() == varprop::VT_INT)
-		{
-			TCHAR num[12] = {0};
-			_itot(value.GetInt(), num, 10);
-			strVal = num;
-		}
-		else if (value.GetType() == varprop::VT_STRING)
-		{
-			strVal = value.GetString();
-		}
-
-		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
-				strVal.c_str(), filename);
-		if (!bRet)
-			retVal = OPT_ERR;
-		optIter++;
-	}
-	return retVal;
-}
-
-/**
- * @brief Import options from file.
- *
- * This function reads options values and names from given file and
- * updates values to our options storage. If valuename does not exist
- * already in options storage its is not created.
- *
- * @param [in] filename Filename where optios are written.
- * @return 
- * - OPT_OK when succeeds
- * - OPT_NOTFOUND if file wasn't found or didn't contain values
- */
-int COptionsMgr::ImportOptions(LPCTSTR filename)
-{
-	int retVal = OPT_OK;
-	const int BufSize = 10240; // This should be enough for a long time..
-	TCHAR buf[BufSize] = {0};
-
-	// Query keys - returns NULL separated strings
-	DWORD len = GetPrivateProfileString(_T("WinMerge"), NULL, _T(""),buf, BufSize, filename);
-	if (len == 0)
-		return OPT_NOTFOUND;
-
-	TCHAR *pKey = buf;
-	while (*pKey != NULL)
-	{
-		varprop::VariantValue value = Get(pKey);
-		if (value.GetType() == varprop::VT_BOOL)
-		{
-			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
-			value.SetBool(boolVal == 1);
-		}
-		else if (value.GetType() == varprop::VT_INT)
-		{
-			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
-			value.SetInt(intVal);
-		}
-		else if (value.GetType() == varprop::VT_STRING)
-		{
-			TCHAR strVal[MAX_PATH] = {0};
-			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename);
-			value.SetString(strVal);
-		}
-		Set(pKey, value);
-
-		pKey += _tcslen(pKey);
-
-		// Check: pointer is not past string end, and next char is not null
-		// double NULL char ends the keynames string
-		if ((pKey < buf + len) && (*(pKey + 1) != NULL))
-			pKey++;
-	}
-	return retVal;
-}
