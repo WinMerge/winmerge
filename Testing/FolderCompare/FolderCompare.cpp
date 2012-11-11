@@ -1,8 +1,8 @@
 #include "DiffContext.h"
 #include "CompareStats.h"
+#include "DiffThread.h"
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
-#include "DiffThread.h"
 #include <Poco/Thread.h>
 
 int main()
@@ -39,8 +39,6 @@ int main()
 	// Folder names to compare are in the compare context
 	CDiffThread diffThread;
 	diffThread.SetContext(&ctx);
-	diffThread.SetHwnd(NULL);
-	diffThread.SetMessageIDs(1);
 	diffThread.SetCompareSelected(false);
 	diffThread.CompareDirectories();
 

@@ -510,7 +510,8 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 		}
 		if (GetTickCount() - dwElapse > 2000)
 		{
-			PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, 1, myStruct->bOnlyRequested);
+			int event = CDiffThread::EVENT_COMPARE_PROGRESSED;
+			myStruct->m_listeners.notify(myStruct, event);
 			dwElapse = GetTickCount();
 		}
 		myStruct->pSemaphore->wait();

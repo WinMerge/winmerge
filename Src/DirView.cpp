@@ -2889,7 +2889,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc);
 
-	if (wParam == 0)
+	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
 		m_pCmpProgressDlg->CloseDialog();
@@ -2916,11 +2916,11 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
 	}
-	else if (wParam == 1)
+	else if (wParam == CDiffThread::EVENT_COMPARE_PROGRESSED)
 	{
 		InvalidateRect(NULL, FALSE);
 	}
-	else if (wParam == 2)
+	else if (wParam == CDiffThread::EVENT_COLLECT_COMPLETED)
 	{
 		if (m_pSavedTreeState)
 		{
