@@ -90,6 +90,7 @@ public:
 // Implementation
 public:
 	void InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *);
+	void DiffThreadCallback(int& state);
 	void Rescan();
 	bool GetRecursive() const { return m_bRecursive; }
 	bool GetReadOnly(int nIndex) const;

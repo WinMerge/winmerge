@@ -313,6 +313,11 @@ void CDirDoc::LoadLineFilterList()
 		m_pCtxt->m_pFilterList->AddRegExp(*it);
 }
 
+void CDirDoc::DiffThreadCallback(int& state)
+{
+	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, m_bMarkedRescan);
+}
+
 /**
  * @brief Perform directory comparison again from scratch
  */
@@ -386,8 +391,7 @@ void CDirDoc::Rescan()
 
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt.get());
-	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
-	m_diffThread.SetMessageIDs(MSG_UI_UPDATE);
+	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
 	m_diffThread.CompareDirectories();
 	m_bMarkedRescan = FALSE;

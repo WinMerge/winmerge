@@ -61,8 +61,6 @@ public:
  */
 CDiffThread::CDiffThread()
 : m_pDiffContext(NULL)
-, m_msgUpdateUI(0)
-, m_hWnd(0)
 , m_bAborting(false)
 , m_pDiffParm(new DiffFuncStruct)
 {
@@ -103,8 +101,6 @@ unsigned CDiffThread::CompareDirectories()
 	assert(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
 	m_pDiffParm->context = m_pDiffContext;
-	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
-	m_pDiffParm->hWindow = m_hWnd;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate.get();
 	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
 	m_bAborting = false;
@@ -120,24 +116,6 @@ unsigned CDiffThread::CompareDirectories()
 	m_threads[1].start(DiffThreadCompare, m_pDiffParm.get());
 
 	return 1;
-}
-
-/**
- * @brief Set window receiving messages thread sends.
- * @param [in] hWnd Hand to window to receive messages.
- */
-void CDiffThread::SetHwnd(HWND hWnd)
-{
-	m_hWnd = hWnd;
-}
-
-/**
- * @brief Set message-id for update message.
- * @param [in] updateMsg Message-id for update message.
- */
-void CDiffThread::SetMessageIDs(unsigned updateMsg)
-{
-	m_msgUpdateUI = updateMsg;
 }
 
 /**
@@ -190,7 +168,8 @@ static void DiffThreadCollect(void *pParam)
 	myStruct->pSemaphore->set();
 
 	// Send message to UI to update
-	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, 2, myStruct->bOnlyRequested);
+	int event = CDiffThread::EVENT_COLLECT_COMPLETED;
+	myStruct->m_listeners.notify(myStruct, event);
 };
 
 /**
@@ -224,6 +203,6 @@ static void DiffThreadCompare(void *pParam)
 
 	// Send message to UI to update
 	myStruct->nThreadState = CDiffThread::THREAD_COMPLETED;
-	// msgID=MSG_UI_UPDATE=1025 (2005-11-29, Perry)
-	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, 0, myStruct->bOnlyRequested);
+	int event = CDiffThread::EVENT_COMPARE_COMPLETED;
+	myStruct->m_listeners.notify(myStruct, event);
 }
