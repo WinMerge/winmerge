@@ -189,9 +189,9 @@ public:
 	   const FilterCommentsSet& filtercommentsset);
 	bool PostFilter(int StartPos, int EndPos, int Direction,
 		int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-		const FilterCommentsSet& filtercommentsset);
+		FilterCommentsSet& filtercommentsset);
 	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
+		int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
 		const String& FileNameExt);
 
 protected:

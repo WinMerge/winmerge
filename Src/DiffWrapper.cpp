@@ -394,7 +394,7 @@ static void ReplaceSpaces(std::string & str, const char *rep)
 */
 bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 	int QtyLinesInBlock, OP_TYPE &Op, int FileNo,
-	const FilterCommentsSet& filtercommentsset)
+	FilterCommentsSet& filtercommentsset)
 {
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
 		return true;
@@ -515,7 +515,7 @@ bool CDiffWrapper::PostFilter(int StartPos, int EndPos, int Direction,
 @param [in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
 void CDiffWrapper::PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, const FilterCommentsManager &filtercommentsmanager,
+	int QtyLinesRight, OP_TYPE &Op, FilterCommentsManager &filtercommentsmanager,
 	const String& FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
@@ -1332,7 +1332,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 #ifdef _DEBUG
 				Debugger::message(format("left=%d,%d   right=%d,%d   op=%d\n",
-					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op));
+					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (int)op));
 #endif
 			}
 		}
