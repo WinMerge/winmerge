@@ -58,6 +58,7 @@ protected:
 	void swapImpl(FileImpl& file);
 	void setPathImpl(const std::string& path);
 	const std::string& getPathImpl() const;
+	const std::wstring& getPathWImpl() const;
 	bool existsImpl() const;
 	bool canReadImpl() const;
 	bool canWriteImpl() const;
@@ -98,6 +99,10 @@ inline const std::string& FileImpl::getPathImpl() const
 	return _path;
 }
 
+inline const std::wstring& FileImpl::getPathWImpl() const
+{
+	return _upath;
+}
 
 } // namespace Poco
 
