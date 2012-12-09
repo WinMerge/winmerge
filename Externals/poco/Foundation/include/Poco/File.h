@@ -110,6 +110,11 @@ public:
 	const std::string& path() const;
 		/// Returns the path.
 	
+#if defined(POCO_OS_FAMILY_WINDOWS) && defined(POCO_WIN32_UTF8)
+	const std::wstring& wpath() const;
+		/// Returns the path.
+#endif
+
 	bool exists() const;
 		/// Returns true iff the file exists.
 		
@@ -253,6 +258,12 @@ inline const std::string& File::path() const
 	return getPathImpl();
 }
 
+#if defined(POCO_OS_FAMILY_WINDOWS) && defined(POCO_WIN32_UTF8)
+inline const std::wstring& File::wpath() const
+{
+	return getPathWImpl();
+}
+#endif
 
 inline bool File::operator == (const File& file) const
 {
