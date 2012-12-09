@@ -29,6 +29,7 @@
 
 #include "stdafx.h"
 #include "common/unicoder.h"
+#include "common/ExConverter.h"
 #include "merge.h"
 #include "PropCodepage.h"
 #include "OptionsDef.h"
@@ -124,11 +125,11 @@ BOOL PropCodepage::OnInitDialog()
 	str.Format(_T("%d"), m_nCustomCodepageValue);
 	m_comboCustomCodepageValue.SetWindowText(str);
 
-	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
+	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
 	{
-		ucr::CodePageInfo cpi[256];
-		int count = pexconv->enumCodePages(cpi, sizeof(cpi)/sizeof(ucr::CodePageInfo));
+		CodePageInfo cpi[256];
+		int count = pexconv->enumCodePages(cpi, sizeof(cpi)/sizeof(CodePageInfo));
 		int i, j;
 		for (i = 0, j = 0; i < count; i++)
 		{

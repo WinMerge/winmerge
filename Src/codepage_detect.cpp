@@ -11,8 +11,9 @@
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
-#include <boost/scoped_ptr.hpp>
+#include <windows.h>
 #include "unicoder.h"
+#include "ExConverter.h"
 #include "codepage.h"
 #include "charsets.h"
 #include "FileTextEncoding.h"
@@ -203,7 +204,7 @@ static unsigned GuessEncoding_from_bytes(const String& ext, const char *src, siz
 	unsigned cp = ucr::getDefaultCodepage();
 	if (guessEncodingType & 2)
 	{
-		boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
+		IExconverter *pexconv = Exconverter::getInstance();
 		if (pexconv && src != NULL)
 		{
 			int autodetectType = (unsigned)guessEncodingType >> 16;

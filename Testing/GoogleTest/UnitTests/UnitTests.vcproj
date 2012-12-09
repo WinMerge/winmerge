@@ -142,6 +142,9 @@
 				RelativePath="..\..\..\Src\Environment.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\Common\ExConverter.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\FileFilter.cpp">
 			</File>
 			<File
@@ -247,6 +250,9 @@
 			</File>
 			<File
 				RelativePath="..\..\..\Src\Environment.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\Common\ExConverter.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\FileFilter.h">
