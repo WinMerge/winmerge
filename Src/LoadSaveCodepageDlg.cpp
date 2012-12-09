@@ -7,12 +7,12 @@
 // $Id: LoadSaveCodepageDlg.cpp 5394 2008-05-29 09:47:36Z kimmov $
 
 #include "stdafx.h"
-#include <boost/scoped_ptr.hpp>
 #include "Merge.h"
 #include "MainFrm.h"
 #include "resource.h"
 #include "LoadSaveCodepageDlg.h"
 #include "unicoder.h"
+#include "ExConverter.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,13 +107,13 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LoadSaveCodepageDlg"), false); // persist size via registry
 
-	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
+	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
 	{
 		CComboBox combo;
 		combo.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
-		ucr::CodePageInfo cpi[256];
-		int count = pexconv->enumCodePages(cpi, sizeof(cpi)/sizeof(ucr::CodePageInfo));
+		CodePageInfo cpi[256];
+		int count = pexconv->enumCodePages(cpi, sizeof(cpi)/sizeof(CodePageInfo));
 		int i, j;
 		for (i = 0, j = 0; i < count; i++)
 		{

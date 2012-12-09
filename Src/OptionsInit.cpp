@@ -8,13 +8,13 @@
 
 #include "stdafx.h"
 #include <vector>
-#include <boost/scoped_ptr.hpp>
 #include "Merge.h"
 #include "MainFrm.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "unicoder.h"
+#include "ExConverter.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
 static void CopyHKLMValues();
@@ -230,11 +230,11 @@ void CMergeApp::SetFontDefaults()
 	LOGFONT lfDefault;
 	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
-	ucr::CodePageInfo cpi = {0};
+	CodePageInfo cpi = {0};
 	cpi.bGDICharset = ANSI_CHARSET;
 	wcscpy(cpi.fixedWidthFont, L"Courier New");
 
-	boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
+	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv)
 		pexconv->getCodePageInfo(GetACP(), &cpi);
 

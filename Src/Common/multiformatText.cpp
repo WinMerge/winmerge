@@ -39,6 +39,7 @@
 #include <Poco/SharedMemory.h>
 #include <Poco/Exception.h>
 #include "unicoder.h"
+#include "ExConverter.h"
 #include "paths.h"
 #include "UniFile.h"
 #include "codepage.h"
@@ -960,7 +961,7 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 		TFile fileIn(filepath);
 		SharedMemory shmIn(fileIn, SharedMemory::AM_READ);
 
-		boost::scoped_ptr<ucr::IExconverter> pexconv(ucr::createConverterMLang());
+		IExconverter *pexconv = Exconverter::getInstance();
 
 		char * pszBuf = shmIn.begin();
 		size_t nBufSize = shmIn.end() - shmIn.begin();

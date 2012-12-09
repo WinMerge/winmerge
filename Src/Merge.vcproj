@@ -1303,6 +1303,33 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Common\ExConverter.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="FileFilter.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3116,6 +3143,9 @@
 			</File>
 			<File
 				RelativePath="Exceptions.h">
+			</File>
+			<File
+				RelativePath=".\Common\ExConverter.h">
 			</File>
 			<File
 				RelativePath="FileFilter.h">
