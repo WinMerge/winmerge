@@ -37,8 +37,6 @@
 
 struct FileFilterElement;
 
-const int NMAXTHREADS = 10;
-
 /** 
  * @brief Information structure for a plugin
  */
@@ -128,7 +126,7 @@ public:
 	static bool bInMainThread(CScriptsOfThread * scripts);
 private:
 	// fixed size array, advantage : no mutex to allocate/free
-	static CScriptsOfThread * m_aAvailableThreads[NMAXTHREADS];
+	static std::vector<CScriptsOfThread *> m_aAvailableThreads;
 };
 
 /**

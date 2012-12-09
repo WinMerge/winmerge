@@ -805,46 +805,33 @@ PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 ////////////////////////////////////////////////////////////////////////////////////
 // class CAllThreadsScripts : array of CScriptsOfThread, one per active thread
 
-CScriptsOfThread * CAllThreadsScripts::m_aAvailableThreads[NMAXTHREADS] = {0};
+std::vector<CScriptsOfThread *> CAllThreadsScripts::m_aAvailableThreads;
 
 void CAllThreadsScripts::Add(CScriptsOfThread * scripts)
 {
 	// add the thread in the array
-	int i;
-	for (i = 0 ; i < NMAXTHREADS ; i++)
-		if (m_aAvailableThreads[i] == 0)
-			break;
-	if (i == NMAXTHREADS)
-	{
-		// no free place, don't register
-		assert(0);
-	}
-	else
-	{
-		// register in the array
-		m_aAvailableThreads[i] = scripts;
-	}
+
+	// register in the array
+	m_aAvailableThreads.push_back(scripts);
 }
 
 void CAllThreadsScripts::Remove(CScriptsOfThread * scripts)
 {
 	// unregister from the list
-	int i;
-	for (i = 0 ; i < NMAXTHREADS ; i++)
-		if (m_aAvailableThreads[i] == scripts)
+	std::vector<CScriptsOfThread *>::iterator it;
+	for (it =  m_aAvailableThreads.begin(); it != m_aAvailableThreads.end(); ++it)
+		if ((*it) == scripts)
+		{
+			m_aAvailableThreads.erase(it);
 			break;
-	if (i == NMAXTHREADS)
-		// not in the list ?
-		assert(0);
-	else
-		m_aAvailableThreads[i] = NULL;
+		}
 }
 
 CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 {
 	unsigned long nThreadId = GetCurrentThreadId();
 	int i;
-	for (i = 0 ; i < NMAXTHREADS ; i++)
+	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
 	assert(0);
@@ -854,7 +841,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 {
 	unsigned long nThreadId = GetCurrentThreadId();
 	int i;
-	for (i = 0 ; i < NMAXTHREADS ; i++)
+	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
 		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
 			return m_aAvailableThreads[i];
 	return NULL;
