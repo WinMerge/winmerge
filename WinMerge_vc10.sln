@@ -14,6 +14,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML_vs100.vcxproj", "{9E211743-85FE-4977-82F3-4F04B40C912D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Util", "Externals\poco\Util\Util_vs100.vcxproj", "{6FF56CDB-787A-4714-A28C-919003F9FA6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Unicode|Win32 = Debug Unicode|Win32
@@ -208,6 +210,40 @@ Global
 		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|Win32.Build.0 = release_static_md|Win32
 		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x64.ActiveCfg = release_static_md|x64
 		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x64.Build.0 = release_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug Unicode|Win32.ActiveCfg = debug_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug Unicode|Win32.Build.0 = debug_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug Unicode|x64.ActiveCfg = debug_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug Unicode|x64.Build.0 = debug_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_shared|Win32.ActiveCfg = debug_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_shared|Win32.Build.0 = debug_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_shared|x64.ActiveCfg = debug_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_md|Win32.ActiveCfg = debug_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_md|Win32.Build.0 = debug_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_md|x64.ActiveCfg = debug_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_mt|Win32.ActiveCfg = debug_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_mt|Win32.Build.0 = debug_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.debug_static_mt|x64.ActiveCfg = debug_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug|Win32.ActiveCfg = debug_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug|Win32.Build.0 = debug_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug|x64.ActiveCfg = debug_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Debug|x64.Build.0 = debug_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release Unicode|Win32.ActiveCfg = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release Unicode|Win32.Build.0 = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release Unicode|x64.ActiveCfg = release_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release Unicode|x64.Build.0 = release_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_shared|Win32.ActiveCfg = release_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_shared|Win32.Build.0 = release_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_shared|x64.ActiveCfg = release_shared|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_md|Win32.ActiveCfg = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_md|Win32.Build.0 = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_md|x64.ActiveCfg = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_mt|Win32.ActiveCfg = release_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_mt|Win32.Build.0 = release_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.release_static_mt|x64.ActiveCfg = release_static_mt|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release|Win32.ActiveCfg = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release|Win32.Build.0 = release_static_md|Win32
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release|x64.ActiveCfg = release_static_md|x64
+		{6FF56CDB-787A-4714-A28C-919003F9FA6C}.Release|x64.Build.0 = release_static_md|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

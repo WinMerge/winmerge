@@ -64,16 +64,18 @@ class FilterCommentsManager
 {
 public:
 	FilterCommentsManager(const String &IniFileName = _T(""));
-	FilterCommentsSet GetSetForFileType(const String& FileTypeName) const;
+	FilterCommentsSet GetSetForFileType(const String& FileTypeName);
 
 private:
 	FilterCommentsManager(const FilterCommentsManager&); //Don't allow copy
 	FilterCommentsManager& operator=(const FilterCommentsManager&);//Don't allow assignment
 	void CreateDefaultMarkers();
+	void Load();
 
 	//Use CString instead of std::string, so as to allow UNICODE file extensions
 	std::map<String, FilterCommentsSet> m_FilterCommentsSetByFileType;
 	String m_IniFileName;
+	bool m_loaded;
 };
 
 #endif // _FILTERCOMMENTSMANAGER_H_
