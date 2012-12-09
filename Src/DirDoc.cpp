@@ -391,6 +391,7 @@ void CDirDoc::Rescan()
 
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt.get());
+	m_diffThread.RemoveListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.AddListener(this, &CDirDoc::DiffThreadCallback);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
 	m_diffThread.CompareDirectories();
