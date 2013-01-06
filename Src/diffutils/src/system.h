@@ -212,7 +212,9 @@ int pclose(FILE *);
 #endif
 
 #ifdef __NT__
+#ifndef _PID_T_
 typedef int pid_t;
+#endif
 #define popen	_popen
 #define pclose	_pclose
 #endif
