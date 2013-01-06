@@ -3,10 +3,17 @@
 #include "DiffThread.h"
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
+#include <iostream>
 #include <Poco/Thread.h>
+#ifdef _MSC_VER
+#include <crtdbg.h>
+#endif
 
 int main()
 {
+#ifdef _MSC_VER
+	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
 	CompareStats cmpstats(2);
 
 	FileFilterHelper filter;
