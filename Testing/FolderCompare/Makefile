@@ -1,4 +1,4 @@
-INCLUDES=-I../../Src -I../../Src/Common -I../../Src/diffutils -I../../Src/diffutils/lib -I../../Src/diffutils/src -I../../Src/CompareEngines -I../../Externals/boost -I../../Externals/Poco/Foundation/include -I../../Externals/Poco/XML/include
+INCLUDES=-I../../Src -I../../Src/Common -I../../Src/diffutils -I../../Src/diffutils/lib -I../../Src/diffutils/src -I../../Src/CompareEngines -I../../Externals/boost -I../../Externals/Poco/Foundation/include -I../../Externals/Poco/XML/include -I../../Externals/Poco/Util/include
 
 CFLAGS=-g -pg -DHAVE_CONFIG_H -DREGEX_MALLOC -D__NT__ $(INCLUDES)
 CXXFLAGS=-g -pg $(INCLUDES)

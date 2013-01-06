@@ -20,12 +20,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost;..\..\Externals\poco\Foundation\include;..\..\Externals\poco\XML\include;..\..\Src\diffutils\src;..\..\Src\diffutils\lib;..\..\Src\diffutils\;..\..\Src\CompareEngines"
+				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost;..\..\Externals\poco\Foundation\include;..\..\Externals\poco\XML\include;..\..\Externals\poco\Util\include;..\..\Src\diffutils\src;..\..\Src\diffutils\lib;..\..\Src\diffutils\;..\..\Src\CompareEngines"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB;HAVE_CONFIG_H;REGEX_MALLOC;__NT__"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				TreatWChar_tAsBuiltInType="TRUE"
+				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -71,10 +72,11 @@
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost;..\..\Externals\poco\Foundation\include;..\..\Externals\poco\XML\include;..\..\Src\diffutils\src;..\..\Src\diffutils\lib;..\..\Src\diffutils\;..\..\Src\CompareEngines"
+				AdditionalIncludeDirectories="..\..\Src;..\..\Src\Common;..\..\Externals\boost;..\..\Externals\poco\Foundation\include;..\..\Externals\poco\XML\include;..\..\Externals\poco\Util\include;..\..\Src\diffutils\src;..\..\Src\diffutils\lib;..\..\Src\diffutils\;..\..\Src\CompareEngines"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;HAVE_CONFIG_H;_STATIC_CPPLIB;REGEX_MALLOC;__NT__"
 				RuntimeLibrary="2"
 				TreatWChar_tAsBuiltInType="TRUE"
+				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -174,6 +176,9 @@
 			</File>
 			<File
 				RelativePath="..\..\Src\Environment.cpp">
+			</File>
+			<File
+				RelativePath="..\..\Src\Common\ExConverter.cpp">
 			</File>
 			<File
 				RelativePath="..\..\Src\FileFilter.cpp">
@@ -311,6 +316,9 @@
 			</File>
 			<File
 				RelativePath="..\..\Src\Environment.h">
+			</File>
+			<File
+				RelativePath="..\..\Src\Common\ExConverter.h">
 			</File>
 			<File
 				RelativePath="..\..\Src\FileFilter.h">
