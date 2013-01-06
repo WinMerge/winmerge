@@ -502,7 +502,7 @@ InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction
   if (bFlushUndoGroup)
     m_pTextBuffer->FlushUndoGroup (this);
 
-  delete pszBuf;
+  delete [] pszBuf;
 
   return true;
 }

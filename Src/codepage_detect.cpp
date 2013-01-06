@@ -153,12 +153,12 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepa
 			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.c_str());
 			if (encodingId)
 			{
-				if (psrc != src) delete psrc;
+				if (psrc != src) delete [] psrc;
 				return GetEncodingCodePageFromId(encodingId);
 			}
 		}
 	}
-	if (psrc != src) delete psrc;
+	if (psrc != src) delete [] psrc;
 	return defcodepage;
 }
 
