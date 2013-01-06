@@ -1,0 +1,4 @@
+name: simple include file
+desc: simple file filter long description
+def: include
+f: \.ext$

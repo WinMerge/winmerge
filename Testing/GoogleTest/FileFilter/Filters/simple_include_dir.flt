@@ -1,0 +1,4 @@
+name: simple include dir
+desc: simple directory filter long description
+def: include
+d: \\svn$
