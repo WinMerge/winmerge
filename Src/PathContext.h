@@ -21,7 +21,7 @@ class PathContext;
  */
 class PathInfo
 {
-	friend PathContext;
+	friend class PathContext;
 public:
 	PathInfo() {}
 	PathInfo(const PathInfo &pi);
