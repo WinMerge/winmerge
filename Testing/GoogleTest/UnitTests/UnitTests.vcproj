@@ -354,6 +354,9 @@
 				RelativePath=".\..\DirItem\DirItem_test.cpp">
 			</File>
 			<File
+				RelativePath="..\FileFilter\FileFilterHelper_test.cpp">
+			</File>
+			<File
 				RelativePath=".\..\FileVersion\FileVersion_test.cpp">
 			</File>
 			<File
@@ -403,6 +406,9 @@
 			</File>
 			<File
 				RelativePath=".\test_main.cpp">
+			</File>
+			<File
+				RelativePath="..\unicoder\unicoder_test.cpp">
 			</File>
 			<File
 				RelativePath=".\..\UnicodeString\UnicodeString_test.cpp">
