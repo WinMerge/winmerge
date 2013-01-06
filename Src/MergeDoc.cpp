@@ -184,6 +184,7 @@ CMergeDoc::~CMergeDoc()
 		m_pDirDoc->MergeDocClosing(this);
 		m_pDirDoc = NULL;
 	}
+	delete m_pInfoUnpacker;
 }
 
 /**

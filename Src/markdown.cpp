@@ -893,7 +893,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 				delete m_pSharedMemory;
 				m_pSharedMemory = NULL;
 				pImage = pCopy2;
-				delete pCopy;
+				delete [] pCopy;
 				pCopy = pCopy2;
 			}
 			break;
@@ -904,5 +904,5 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 CMarkdown::FileImage::~FileImage()
 {
 	delete m_pSharedMemory;
-	delete pCopy;
+	delete [] pCopy;
 }

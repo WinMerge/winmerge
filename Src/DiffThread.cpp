@@ -107,6 +107,7 @@ unsigned CDiffThread::CompareDirectories()
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
 
+	delete m_pDiffParm->pSemaphore;
 	m_pDiffParm->pSemaphore = new Semaphore(0, LONG_MAX);
 
 	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);

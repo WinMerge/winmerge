@@ -92,12 +92,12 @@ public:
 		bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
 		if (!bsucceeded)
 		{
-			delete pbuf;
+			delete [] pbuf;
 			destbytes = 0;
 			return false;
 		}
 		bsucceeded = convertFromUnicode(dstCodepage, pbuf, &wsize, (char *)dest, destbytes);
-		delete pbuf;
+		delete [] pbuf;
 		return bsucceeded;
 	}
 
