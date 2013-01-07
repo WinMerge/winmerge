@@ -8,7 +8,6 @@ WinMerge 2.15.1
   Drag and drop items from the folder compare (#3186717)
   Installer: Remove Uninstall shortcut from start menu folder (#3076909)
   Installer: Don't install quick launch icon for Windows 7 (#3079966)
-  Installer: Add OpenCandy to the InnoSetup installer (#3088720)
   Bugfix: No menu icons was shown on Windows x64 (#3070151)
   Bugfix: Crash when pasting from clipboard (#3109525)
   Bugfix: Keeps verifing path even turned off in options (#3111581)
@@ -19,10 +18,14 @@ WinMerge 2.15.1
     "Swap" button led to an error.  (#3043635, #3066200)
   Bugfix: WinMerge contained a vulnerability in handling project files (#3185386)
     (http://www.zeroscience.mk/mk/vulnerabilities/ZSL-2011-4997.php)
-  New translation: Basque (#3387142)
+  New translations: 
+  - Basque (#3387142)
+  - Turkish (#2967)
   Translation updates:
   - Bulgarian (#3082392)
+  - French (#3412030)
   - Hungarian (#3164982)
+  - Spanish (#3412937)
 
 WinMerge 2.13.14 - 2010-09-15 (r7263)
   Update release compiler and runtimes to VS2008

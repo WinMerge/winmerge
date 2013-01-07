@@ -10,7 +10,7 @@
 # * Dominique Saussereau <redguff at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
-# $Id: French.po 6987 2009-09-15 12:28:52Z gerundt $
+# $Id: French.po 7565 2011-10-23 08:45:43Z sdottaka $
 #
 msgid ""
 msgstr ""
@@ -1072,7 +1072,7 @@ msgstr ""
 #: Merge.rc:563
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Co&mparer comme"
 
 #: Merge.rc:565
 #, c-format
@@ -1082,7 +1082,7 @@ msgstr "&XML"
 #: Merge.rc:566
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Binaire"
 
 #: Merge.rc:571
 #, c-format
@@ -2940,7 +2940,7 @@ msgstr ""
 #: Merge.rc:1833
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr "&limite de comparaison rapide (MO):"
+msgstr "&Limite de comparaison rapide (MO):"
 
 #: Merge.rc:1846
 #, c-format

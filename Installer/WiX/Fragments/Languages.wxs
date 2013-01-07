@@ -3,6 +3,13 @@
   <?include ..\Config.wxi ?>
   <Fragment>
     <DirectoryRef Id="LANGDIR">
+      <Component Id="Basque" Guid="*" Win64="$(var.Win64)">
+        <File Id="BasquePO" 
+          Name="Basque.po" 
+          Source="..\..\Translations\WinMerge\Basque.po" 
+          Vital="no" />
+      </Component>
+      
       <Component Id="Brazilian" Guid="*" Win64="$(var.Win64)">
         <File Id="BrazilianPO" 
           Name="Brazilian.po" 

@@ -50,6 +50,7 @@
         <ComponentRef Id="XML_html" />
       </Feature>
       <Feature Id="Languages" AllowAdvertise="no" Level="1" Title="Languages">
+        <ComponentRef Id="Basque" />
         <ComponentRef Id="Brazilian" />
         <ComponentRef Id="Bulgarian" />
         <ComponentRef Id="Catalan" />
