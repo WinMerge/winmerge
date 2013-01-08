@@ -943,7 +943,7 @@ int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		TFile file(strSavePath);
 		bFileExists = file.exists();
 		if (bFileExists)
-			bFileRO = file.canWrite();
+			bFileRO = !file.canWrite();
 	}
 	catch (...)
 	{
