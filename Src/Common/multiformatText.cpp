@@ -37,6 +37,9 @@
 #include <boost/scoped_array.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <Poco/SharedMemory.h>
+#include <Poco/FileStream.h>
+#include <Poco/ByteOrder.h>
+#include <Poco/Buffer.h>
 #include <Poco/Exception.h>
 #include "unicoder.h"
 #include "ExConverter.h"
@@ -48,7 +51,11 @@
 #include "MergeApp.h"
 
 using Poco::SharedMemory;
+using Poco::FileOutputStream;
+using Poco::ByteOrder;
 using Poco::Exception;
+using Poco::Buffer;
+using Poco::Int64;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -584,6 +591,39 @@ static size_t TransformUtf8ToUcs2(const char * pcsUtf, size_t nUtf, wchar_t * ps
 	return (nUcs - nremains);
 }
 
+template<typename T, bool flipbytes>
+inline const T *findNextLine(const T *pstart, const T *pend)
+{
+	for (const T *p = pstart; p < pend; ++p)
+	{
+		int ch = flipbytes ? ByteOrder::flipBytes(*p) : *p;
+		if (ch == '\n')
+			return p + 1;
+		else if (ch == '\r')
+		{
+			if (p + 1 < pend && *(p + 1) == (flipbytes ? ByteOrder::flipBytes('\n') : '\n'))
+				return p + 2;
+			else
+				return p + 1;
+		}
+	}
+	return pend;
+}
+
+static const char *findNextLine(ucr::UNICODESET unicoding, const char *pstart, const char *pend)
+{
+	switch (unicoding)
+	{
+	case ucr::UCS2LE:
+		return (const char *)findNextLine<unsigned short, false>((const unsigned short *)pstart, (const unsigned short *)pend);
+	case ucr::UCS2BE:
+		return (const char *)findNextLine<unsigned short, true>((const unsigned short *)pstart, (const unsigned short *)pend);
+	default:
+		return findNextLine<char, false>(pstart, pend);
+	}
+	return pend;
+}
+
 bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM)
 {
 	UniMemFile ufile;
@@ -620,24 +660,38 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
 		size_t nDstSize = nBufSize * 2;
 
+		const size_t minbufsize = 128 * 1024;
+
 		// create the destination file
-		TFile fileOut(filepathDst);
-		fileOut.setSize(nDstSize + nSizeBOM);
-		SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+		FileOutputStream fout(ucr::toUTF8(filepathDst), std::ios::out|std::ios::binary|std::ios::trunc);
+		Buffer<char> obuf(minbufsize);
+		Int64 pos = nSizeOldBOM;
 
 		// write BOM
 		if (bWriteBOM)
-			ucr::writeBom(shmOut.begin(), ucr::UTF8);
+		{
+			char bom[4];
+			fout.write(bom, ucr::writeBom(bom, ucr::UTF8));
+		}
 
 		// write data
-		size_t srcbytes = nBufSize;
-		size_t destbytes = nDstSize;
-		if (pexconv)
-			pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+nSizeOldBOM, &srcbytes, (unsigned char *)shmOut.begin()+nSizeBOM, &destbytes);
-		else
+		for (;;)
 		{
-			bool lossy = false;
-			ucr::CrossConvert((const char *)pszBuf+nSizeOldBOM, srcbytes, shmOut.begin()+nSizeBOM, destbytes, codepage, CP_UTF8, &lossy);
+			size_t srcbytes = findNextLine(unicoding, pszBuf + pos + minbufsize, pszBuf + nBufSize) - (pszBuf + pos);
+			if (srcbytes == 0)
+				break;
+			if (srcbytes > obuf.size())
+				obuf.resize(srcbytes * 2, false);
+			size_t destbytes = obuf.size();
+			if (pexconv)
+				pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes, (unsigned char *)obuf.begin(), &destbytes);
+			else
+			{
+				bool lossy = false;
+				destbytes = ucr::CrossConvert((const char *)pszBuf+pos, srcbytes, obuf.begin(), destbytes, codepage, CP_UTF8, &lossy);
+			}
+			fout.write(obuf.begin(), destbytes);
+			pos += srcbytes;
 		}
 
 		nFileChanged ++;

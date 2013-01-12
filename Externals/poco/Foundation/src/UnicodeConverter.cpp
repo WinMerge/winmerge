@@ -51,6 +51,9 @@ namespace Poco {
 
 void UnicodeConverter::toUTF16(const std::string& utf8String, std::wstring& utf16String)
 {
+#if 1
+	toUTF16(utf8String.c_str(), utf8String.length(), utf16String);
+#else
 	utf16String.clear();
 	UTF8Encoding utf8Encoding;
 	TextIterator it(utf8String, utf8Encoding);
@@ -69,6 +72,7 @@ void UnicodeConverter::toUTF16(const std::string& utf8String, std::wstring& utf1
 			utf16String += (wchar_t) (cc & 0x3ff) | 0xdc00;
 		}
 	}
+#endif
 }
 
 

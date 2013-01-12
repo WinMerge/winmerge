@@ -87,17 +87,30 @@ public:
 	bool convert(int srcCodepage, int dstCodepage, const unsigned char * src, size_t * srcbytes, unsigned char * dest, size_t * destbytes)
 	{
 		bool bsucceeded;
-		size_t wsize = *srcbytes * 2 + 6;
-		wchar_t *pbuf = new wchar_t[wsize];
-		bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
-		if (!bsucceeded)
+#ifdef POCO_ARCH_BIG_ENDIAN
+		if (srcCodepage == CP_UCS2BE)
+#else
+		if (srcCodepage == CP_UCS2LE)
+#endif
 		{
-			delete [] pbuf;
-			destbytes = 0;
-			return false;
+			size_t srcwchars = *srcbytes / sizeof(wchar_t);
+			bsucceeded = convertFromUnicode(dstCodepage, (const wchar_t *)src, &srcwchars, (char *)dest, destbytes);
+			*srcbytes = srcwchars * sizeof(wchar_t);
 		}
-		bsucceeded = convertFromUnicode(dstCodepage, pbuf, &wsize, (char *)dest, destbytes);
-		delete [] pbuf;
+		else
+		{
+			size_t wsize = *srcbytes * 2 + 6;
+			wchar_t *pbuf = new wchar_t[wsize];
+			bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
+			if (!bsucceeded)
+			{
+				delete [] pbuf;
+				*destbytes = 0;
+				return false;
+			}
+			bsucceeded = convertFromUnicode(dstCodepage, pbuf, &wsize, (char *)dest, destbytes);
+			delete [] pbuf;
+		}
 		return bsucceeded;
 	}
 
