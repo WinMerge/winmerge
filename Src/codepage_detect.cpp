@@ -251,7 +251,6 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 	encoding.SetCodepage(ucr::getDefaultCodepage());
 	encoding.m_bom = false;
 	encoding.m_guessed = false;
-	encoding.m_binary = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
@@ -271,8 +270,6 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 		break;
 	default:
 		encoding.m_bom = false;
-		if (memchr(fi.pImage, 0, fi.cbImage))
-			encoding.m_binary = true;
 		break;
 	}
 	if (fi.nByteOrder < 4 && guessEncodingType != 0)
