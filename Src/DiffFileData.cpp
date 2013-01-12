@@ -189,18 +189,6 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 {
 	bool bMayOverwrite = false; // temp variable set each time it is used
 
-	if (encoding.m_unicoding && (!encoding.m_bom || encoding.m_unicoding != ucr::UCS2LE))
-	{
-		// second step : normalize Unicode to OLECHAR (most of time, do nothing)
-		// (OLECHAR = UCS-2LE in Windows)
-		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite, encoding.m_unicoding))
-			return false;
-	}
-
-	// Note: filepathTransformed may be in UCS-2 (if toUtf8), or it may be raw encoding (if !Utf8)
-	// prediff plugins must handle both
-
 	// third step : prediff (plugins)
 	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
 	if (infoPrediffer->bToBeScanned)

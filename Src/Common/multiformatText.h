@@ -134,9 +134,7 @@ private:
 
 // other conversion functions
 
-/// Convert any unicode file to UCS-2LE
-bool UnicodeFileToOlechar(const String& filepath, const String& filepathDst, int & nFileChanged, ucr::UNICODESET unicoding = ucr::NONE);
-/// Convert UCS-2LE file to UTF-8 (for diffutils)
+/// Convert file to UTF-8 (for diffutils)
 bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 
 #endif //__MULTIFORMATTEXT_H__
