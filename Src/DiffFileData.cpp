@@ -221,21 +221,13 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 			return false;
 	}
 
-	if (encoding.m_unicoding)
+	if (encoding.m_unicoding || bForceUTF8)
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
 		bool bMayOverwrite = 0 != string_compare_nocase(filepathTransformed, filepath);
-		if (!FileTransform_ToUTF8(filepathTransformed, bMayOverwrite))
-			return false;
-	}
-	else if (bForceUTF8)
-	{
-		// fourth step : prepare for diffing
-		// may overwrite if we've already copied to temp file
-		bool bMayOverwrite = (0 != string_compare_nocase(filepathTransformed, filepath));
 		if (!FileTransform_AnyCodepageToUTF8(encoding.m_codepage, filepathTransformed, bMayOverwrite))
-			return false;		
+			return false;
 	}
 	return true;
 }

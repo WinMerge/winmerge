@@ -209,21 +209,12 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
  * @param filepath : [in, out] Most plugins change this filename
  */
 bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite);
-/**
- * @brief check for both are same (Ansi or UTF8)
- * otherwise convert both to UTF8
- * @param [in,out] filepath Most plugins change this filename
- */
-bool Transform2FilesToUTF8(String &strFile1Temp, String &strFile2Temp,bool m_bPathsAreTemp);
-/**
- * @brief Copy a Ansi or UCS2LE to UTF8)
- */
-bool copyToUTF8(String & filepath, String &tempFilepath ,bool bMayOverwrite);
 
 
 /**
  * @brief Transform all files to UTF8 aslong possible
  *
+ * @param codepage : [in] codepage of source file
  * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is false
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
  *
@@ -231,10 +222,6 @@ bool copyToUTF8(String & filepath, String &tempFilepath ,bool bMayOverwrite);
  * convert all Ansi or unicode-files to UTF8 
  * if other file is unicode or uses a different codepage
  */
-bool FileTransform_ToUTF8(String & filepath, bool bMayOverwrite);
-bool FileTransform_UCS2ToUTF8(String & filepath, bool bMayOverwrite);
-
-
 bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite);
 
 

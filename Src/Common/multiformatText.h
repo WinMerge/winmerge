@@ -137,13 +137,6 @@ private:
 /// Convert any unicode file to UCS-2LE
 bool UnicodeFileToOlechar(const String& filepath, const String& filepathDst, int & nFileChanged, ucr::UNICODESET unicoding = ucr::NONE);
 /// Convert UCS-2LE file to UTF-8 (for diffutils)
-bool UCS2LEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
-
-/// Convert UCS-2BE file to UTF-8 (for diffutils)
-bool UCS2BEToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
-
-/// Convert Ansi file to UTF-8 (for diffutils)
-bool AnsiToUTF8(const String& filepath, const String& filepathDst, int & nFileChanged, bool bWriteBOM);
 
 #endif //__MULTIFORMATTEXT_H__
