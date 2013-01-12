@@ -137,7 +137,7 @@ bool LineFiltersList::Compare(const LineFiltersList *list) const
 	if (list->GetCount() != GetCount())
 		return false;
 
-	for (int i = 0; i < GetCount(); i++)
+	for (size_t i = 0; i < GetCount(); i++)
 	{
 		const LineFilterItem &item1 = list->GetAt(i);
 		const LineFilterItem &item2 = GetAt(i);
