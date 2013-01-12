@@ -749,7 +749,7 @@ bool CDiffWrapper::RunFileDiff()
 			}
 		}
 
-		FileTransform_UCS2ToUTF8(strFileTemp[file], m_bPathsAreTemp);
+		FileTransform_AnyCodepageToUTF8(CP_UCS2LE, strFileTemp[file], m_bPathsAreTemp);
 		// We use the same plugin for both files, so it must be defined before
 		// second file
 		assert(m_infoPrediffer->bToBeScanned == false);
