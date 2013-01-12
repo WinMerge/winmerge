@@ -30,7 +30,6 @@
 #include "UnicodeString.h"
 #include "DiffContext.h"
 #include "DirScan.h"
-#include "Plugins.h"
 #include "DiffItemList.h"
 #include "PathContext.h"
 #include "CompareStats.h"
@@ -187,10 +186,6 @@ static void DiffThreadCompare(void *pParam)
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
-
-	// keep the scripts alive during the Rescan
-	// when we exit the thread, we delete this and release the scripts
-	CAssureScriptsForThread scriptsForRescan;
 
 	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 

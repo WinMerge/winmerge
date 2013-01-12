@@ -28,6 +28,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "DiffContext.h"
+#include <Poco/ScopedLock.h>
 #include <cstring>
 #include <algorithm>
 #include "CompareOptions.h"
@@ -40,6 +41,7 @@
 #include "DiffWrapper.h"
 
 using Poco::UIntPtr;
+using Poco::FastMutex;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -56,14 +58,14 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 : m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
 , m_nCompMethod(compareMethod)
-, m_nCurrentCompMethod(compareMethod)
 , m_bIgnoreSmallTimeDiff(false)
 , m_pCompareStats(NULL)
 , m_piAbortable(NULL)
 , m_bStopAfterFirstDiff(false)
 , m_pFilterList(NULL)
 , m_pDiffWrapper(NULL)
-, m_pCompareOptions(NULL)
+, m_pContentCompareOptions(NULL)
+, m_pQuickCompareOptions(NULL)
 , m_pOptions(NULL)
 , m_bPluginsEnabled(false)
 , m_bRecursive(false)
@@ -212,8 +214,7 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 		return false;
 
 	m_nCompMethod = compareMethod;
-	GetCompareOptions(m_nCompMethod);
-	if (m_pCompareOptions == NULL)
+	if (GetCompareOptions(m_nCompMethod) == NULL)
 	{
 		// For Date and Date+Size compare NULL is ok since they don't have actual
 		// compare options.
@@ -239,35 +240,32 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
  */
 CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 {
-	//If compare method is same than in previous time, return cached value
-	if (compareMethod == m_nCurrentCompMethod && m_pCompareOptions != NULL)
-		return m_pCompareOptions.get();
+	FastMutex::ScopedLock lock(m_mutex);
+	CompareOptions *pCompareOptions = NULL;
+
+	m_nCurrentCompMethod.get() = compareMethod;
 
 	// Otherwise we have to create new options
 	switch (compareMethod)
 	{
 	case CMP_CONTENT:
-		m_pCompareOptions.reset(new DiffutilsOptions());
+		if (m_pContentCompareOptions)
+			return m_pContentCompareOptions.get();
+		m_pContentCompareOptions.reset(pCompareOptions = new DiffutilsOptions());
 		break;
 
 	case CMP_QUICK_CONTENT:
-		m_pCompareOptions.reset(new QuickCompareOptions());
-		break;
-
-	default:
-		// No really options to set..
-		m_pCompareOptions.reset();
+		if (m_pQuickCompareOptions)
+			return m_pQuickCompareOptions.get();
+		m_pQuickCompareOptions.reset(pCompareOptions = new QuickCompareOptions());
 		break;
 	}
 
-	m_nCurrentCompMethod = compareMethod;
 
-	if (m_pCompareOptions == NULL)
-		return NULL;
+	if (pCompareOptions)
+		pCompareOptions->SetFromDiffOptions(*m_pOptions);
 
-	m_pCompareOptions->SetFromDiffOptions(*m_pOptions);
-
-	return m_pCompareOptions.get();
+	return pCompareOptions;
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */

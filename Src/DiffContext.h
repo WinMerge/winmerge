@@ -9,7 +9,9 @@
 #if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
-
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Mutex.h>
+#include <Poco/ThreadLocal.h>
 #include <boost/scoped_ptr.hpp>
 #include "PathContext.h"
 #include "DiffFileInfo.h"
@@ -155,7 +157,7 @@ public:
 	 * happen for various reasons. But the change is always temporarily and
 	 * we must return to the main method indicated by m_nCompMethod.
 	 */
-	int m_nCurrentCompMethod;
+	Poco::ThreadLocal<int> m_nCurrentCompMethod;
 
 	bool m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
@@ -202,9 +204,11 @@ private:
 	int m_nCompMethod;
 
 	boost::scoped_ptr<DIFFOPTIONS> m_pOptions; /**< Generalized compare options. */
-	boost::scoped_ptr<CompareOptions> m_pCompareOptions; /**< Per compare method compare options. */
+	boost::scoped_ptr<CompareOptions> m_pContentCompareOptions; /**< Per compare method compare options. */
+	boost::scoped_ptr<CompareOptions> m_pQuickCompareOptions;   /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
 	IAbortable *m_piAbortable; /**< Interface for aborting the compare. */
+	Poco::FastMutex m_mutex;
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
