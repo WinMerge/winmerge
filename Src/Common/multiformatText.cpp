@@ -559,38 +559,6 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 	}
 }
 
-/**
- * @brief Copy UTF-8 string to UCS-2LE string
- *
- * @return if nUcs = 0, return the size required for the translation buffer
- */
-static size_t TransformUtf8ToUcs2(const char * pcsUtf, size_t nUtf, wchar_t * psUcs, size_t nUcs)
-{
-	if (nUcs == 0)
-		// just tell required length
-		return ucr::stringlen_of_utf8(pcsUtf, nUtf);
-
-	// the buffer is allocated, output in it directly
-	unsigned char * pUtf = (unsigned char * ) pcsUtf;
-	wchar_t * pwc = psUcs;
-	size_t nremains = nUcs;
-
-	for (unsigned i = 0 ; i < nUtf && nremains > 0; )
-	{
-		int chlen = ucr::Utf8len_fromLeadByte(pUtf[i]);
-		if (chlen < 1 || i + chlen > nUtf)
-			*pwc++ = '?';
-		else
-			*pwc++ = ucr::GetUtf8Char(pUtf+i);
-		nremains --;
-		if (chlen < 1) chlen = 1;
-		i += chlen;
-	}
-
-	// return number of written wchars
-	return (nUcs - nremains);
-}
-
 template<typename T, bool flipbytes>
 inline const T *findNextLine(const T *pstart, const T *pend)
 {
