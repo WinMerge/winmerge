@@ -180,18 +180,6 @@ bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 bool FileTransform_Packing(String & filepath, PackingInfo handler);
 
 /**
- * @brief Normalize Unicode files to OLECHAR
- *
- * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is false
- * @param bMayOverwrite : [in] True only if the filepath points out a temp file
- *
- * @return Tells if we succeed
- *
- * @note Ansi files are not changed
- */
-bool FileTransform_NormalizeUnicode(String & filepath, bool bMayOverwrite, ucr::UNICODESET unicoding = ucr::NONE);
-
-/**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
  *
  * @param filepath : [in, out] Most plugins change this filename

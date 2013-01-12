@@ -420,51 +420,6 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool FileTransform_NormalizeUnicode(String & filepath, bool bMayOverwrite, ucr::UNICODESET unicoding)
-{
-	String tempDir = env_GetTempPath();
-	if (tempDir.empty())
-		return false;
-	String tempFilepath = env_GetTempFileName(tempDir, _T("_W1"));
-	if (tempFilepath.empty())
-		return false;
-
-	int nFileChanged = 0;
-	bool bSuccess = UnicodeFileToOlechar(filepath, tempFilepath, nFileChanged, unicoding); 
-	if (bSuccess && nFileChanged)
-	{
-		// we do not overwrite so we delete the old file
-		if (bMayOverwrite)
-		{
-			try
-			{
-				TFile(filepath).remove();
-			}
-			catch (Exception& e)
-			{
-				LogErrorStringUTF8(e.displayText());
-			}
-		}
-		// and change the filepath if everything works
-		filepath = tempFilepath;
-	}
-	else
-	{
-		try
-		{
-			TFile(tempFilepath).remove();
-		}
-		catch (Exception& e)
-		{
-			LogErrorStringUTF8(e.displayText());
-		}
-	}
-
-	return bSuccess;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
 bool FileTransform_AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 {
 	String tempDir = env_GetTempPath();
