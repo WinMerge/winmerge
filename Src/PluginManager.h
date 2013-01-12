@@ -1,6 +1,8 @@
 #ifndef PluginManager_h_included
 #define PluginManager_h_included
 
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Mutex.h>
 #include <map>
 // defines IPluginInfos
 #include "DiffContext.h"
@@ -36,6 +38,7 @@ private:
 private:
 	// Data
 	PluginFileInfoMap m_pluginSettings;
+	Poco::FastMutex m_mutex;
 };
 
 #endif // PluginManager_h_included

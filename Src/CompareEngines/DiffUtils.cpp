@@ -13,10 +13,10 @@
 #include <cassert>
 #include <sstream>
 #include <vector>
+#include "DiffContext.h"
 #include "Exceptions.h"
 #include "FilterList.h"
 #include "CompareOptions.h"
-#include "DiffContext.h"
 #include "coretools.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"

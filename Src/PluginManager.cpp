@@ -6,6 +6,9 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "PluginManager.h"
+#include <Poco/ScopedLock.h>
+
+using Poco::FastMutex;
 
 PluginManager::~PluginManager()
 {
@@ -23,6 +26,7 @@ void PluginManager::FetchPluginInfos(const String& filteredFilenames,
                                      PackingInfo ** infoUnpacker, 
                                      PrediffingInfo ** infoPrediffer)
 {
+	FastMutex::ScopedLock lock(m_mutex);
 	PluginFileInfo *fi;
 	PluginFileInfoMap::iterator it = m_pluginSettings.find(filteredFilenames);
 	if (it == m_pluginSettings.end())

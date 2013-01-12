@@ -8,7 +8,18 @@
 
 #include "DirScan.h"
 #include <cassert>
+#define POCO_NO_UNWINDOWS 1
 #include <Poco/Semaphore.h>
+#include <Poco/Notification.h>
+#include <Poco/NotificationQueue.h>
+#include <Poco/Environment.h>
+#include <Poco/ThreadPool.h>
+#include <Poco/Thread.h>
+#include <Poco/Runnable.h>
+#include <Poco/Mutex.h>
+#include <Poco/AutoPtr.h>
+#include <Poco/Stopwatch.h>
+#include <Poco/Format.h>
 #include "DiffThread.h"
 #include "UnicodeString.h"
 #include "LogFile.h"
@@ -22,9 +33,18 @@
 #include "DirItem.h"
 #include "DirTravel.h"
 #include "paths.h"
+#include "Plugins.h"
 #include "MergeApp.h"
 
 using Poco::UIntPtr;
+using Poco::NotificationQueue;
+using Poco::Notification;
+using Poco::AutoPtr;
+using Poco::Thread;
+using Poco::ThreadPool;
+using Poco::Runnable;
+using Poco::Environment;
+using Poco::Stopwatch;
 
 // Static functions (ie, functions only used locally)
 void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
@@ -35,6 +55,57 @@ static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir, cons
 static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, const TCHAR * sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
 static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
+static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos);
+
+class WorkNotification: public Poco::Notification
+{
+public:
+	WorkNotification(DIFFITEM& di, NotificationQueue& queueResult): m_di(di), m_queueResult(queueResult) {}
+	DIFFITEM& data() const { return m_di; }
+	NotificationQueue& queueResult() const { return m_queueResult; }
+private:
+	DIFFITEM& m_di;
+	NotificationQueue& m_queueResult;
+};
+
+class WorkCompletedNotification: public Poco::Notification
+{
+public:
+	WorkCompletedNotification(DIFFITEM& di): m_di(di) {}
+	DIFFITEM& data() const { return m_di; }
+private:
+	DIFFITEM& m_di;
+};
+
+class DiffWorker: public Runnable
+{
+public:
+	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt):
+	  m_queue(queue), m_pCtxt(pCtxt) {}
+
+	void run()
+	{
+		// keep the scripts alive during the Rescan
+		// when we exit the thread, we delete this and release the scripts
+		CAssureScriptsForThread scriptsForRescan;
+
+		AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
+		while (pNf)
+		{
+			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
+			if (pWorkNf) {
+				if (!m_pCtxt->ShouldAbort())
+					CompareDiffItem(pWorkNf->data(), m_pCtxt);
+				pWorkNf->queueResult().enqueueNotification(new WorkCompletedNotification(pWorkNf->data()));
+			}
+			pNf = m_queue.waitDequeueNotification();
+		}
+	}
+
+private:
+	NotificationQueue& m_queue;
+	CDiffContext *m_pCtxt;
+};
 
 /**
  * @brief Help minimize memory footprint by sharing CStringData if possible.
@@ -495,24 +566,52 @@ OutputDebugString(buf);
  */
 int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 {
-	unsigned dwElapse = GetTickCount();
+	ThreadPool threadPool;
+	std::vector<DiffWorker *> workers(Environment::processorCount());
+	NotificationQueue queue;
+
+	for (size_t i = 0; i < workers.size(); ++i)
+	{
+		workers[i] = new DiffWorker(queue, myStruct->context);
+		threadPool.start(*workers[i]);
+	}
+
+	int res = CompareItems(queue, myStruct, parentdiffpos);
+
+	Thread::sleep(100);
+	queue.wakeUpAll();
+	threadPool.joinAll();
+
+	while (!workers.empty())
+	{
+		delete workers.back();
+		workers.pop_back();
+	}
+
+	return res;
+}
+
+static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
+{
+	NotificationQueue queueResult;
+	Stopwatch stopwatch;
 	CDiffContext *pCtxt = myStruct->context;
 	int res = 0;
+	int count = 0;
 	if (!parentdiffpos)
 		myStruct->pSemaphore->wait();
+	stopwatch.start();
 	UIntPtr pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos)
 	{
 		if (pCtxt->ShouldAbort())
-		{
-			res = -1;
 			break;
-		}
-		if (GetTickCount() - dwElapse > 2000)
+
+		if (stopwatch.elapsed() > 2000)
 		{
 			int event = CDiffThread::EVENT_COMPARE_PROGRESSED;
 			myStruct->m_listeners.notify(myStruct, event);
-			dwElapse = GetTickCount();
+			stopwatch.restart();
 		}
 		myStruct->pSemaphore->wait();
 		UIntPtr curpos = pos;
@@ -521,7 +620,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 		if (di.diffcode.isDirectory() && pCtxt->m_bRecursive)
 		{
 			di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
-			int ndiff = DirScan_CompareItems(myStruct, curpos);
+			int ndiff = CompareItems(queue, myStruct, curpos);
 			if (ndiff > 0)
 			{
 				if (existsalldirs)
@@ -534,14 +633,29 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 					di.diffcode.diffcode |= DIFFCODE::SAME;
 			}
 		}
-		CompareDiffItem(di, pCtxt);
-		if (di.diffcode.isResultDiff() ||
-			(!existsalldirs && !di.diffcode.isResultFiltered()))
-			res++;
+		queue.enqueueNotification(new WorkNotification(di, queueResult));
+		++count;
 		pos = curpos;
 		pCtxt->GetNextSiblingDiffRefPosition(pos);
 	}
-	return res;
+
+	while (count > 0)
+	{
+		AutoPtr<Notification> pNf(queueResult.waitDequeueNotification());
+		if (!pNf)
+			break;
+		WorkCompletedNotification* pWorkCompletedNf = dynamic_cast<WorkCompletedNotification*>(pNf.get());
+		if (pWorkCompletedNf) {
+			DIFFITEM &di = pWorkCompletedNf->data();
+			bool existsalldirs = ((pCtxt->GetCompareDirs() == 2 && di.diffcode.isSideBoth()) || (pCtxt->GetCompareDirs() == 3 && di.diffcode.isSideAll()));
+			if (di.diffcode.isResultDiff() ||
+				(!existsalldirs && !di.diffcode.isResultFiltered()))
+				res++;
+		}
+		--count;
+	}
+
+	return pCtxt->ShouldAbort() ? -1 : res;
 }
 
 /**
@@ -690,9 +804,10 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 			// We must compare unique files to itself to detect encoding
 			if (di.diffcode.isSideFirstOnly() || di.diffcode.isSideSecondOnly() || (nDirs > 2 && di.diffcode.isSideThirdOnly()))
 			{
-				if (pCtxt->m_nCurrentCompMethod != CMP_DATE &&
-					pCtxt->m_nCurrentCompMethod != CMP_DATE_SIZE &&
-					pCtxt->m_nCurrentCompMethod != CMP_SIZE)
+				int nCurrentCompMethod = pCtxt->m_nCurrentCompMethod.get();
+				if (nCurrentCompMethod != CMP_DATE &&
+					nCurrentCompMethod != CMP_DATE_SIZE &&
+					nCurrentCompMethod != CMP_SIZE)
 				{
 					FolderCmp folderCmp;
 					unsigned diffCode = folderCmp.prepAndCompareFiles(pCtxt, di);
