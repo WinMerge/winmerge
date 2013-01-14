@@ -472,7 +472,9 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	// Save text buffer to file
 	bool bForceUTF8 = diffOptions.bIgnoreCase;
 	String tempPath = env_GetTempPath();
-	IF_IS_TRUE_ALL (m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage(), nBuffer, m_nBuffers) {}
+	IF_IS_TRUE_ALL (
+		m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage() && m_ptBuf[nBuffer]->getUnicoding() == ucr::NONE,
+		nBuffer, m_nBuffers) {}
 	else
 		bForceUTF8 = true;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)

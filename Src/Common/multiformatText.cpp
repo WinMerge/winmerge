@@ -652,7 +652,10 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 				obuf.resize(srcbytes * 2, false);
 			size_t destbytes = obuf.size();
 			if (pexconv)
-				pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes, (unsigned char *)obuf.begin(), &destbytes);
+			{
+				size_t srcbytes2 = srcbytes;
+				pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes);
+			}
 			else
 			{
 				bool lossy = false;
