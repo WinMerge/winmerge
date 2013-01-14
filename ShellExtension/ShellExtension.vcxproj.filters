@@ -41,6 +41,12 @@
     <None Include="WinMergeShell.rgs">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="WinMergeDir.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="WinMergeParent.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="ShellExtension.idl">

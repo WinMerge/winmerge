@@ -146,11 +146,17 @@ CWinMergeShell::CWinMergeShell()
 	// compress or stretch icon bitmap according to menu item height
 	m_MergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP,
 			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
+	m_MergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEDIR), IMAGE_BITMAP,
+			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
+	m_MergeParentBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEPARENT), IMAGE_BITMAP,
+			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
 }
 
 /// Default destructor, unloads bitmap
 CWinMergeShell::~CWinMergeShell()
 {
+	DeleteObject(m_MergeParentBmp);
+	DeleteObject(m_MergeDirBmp);
 	DeleteObject(m_MergeBmp);
 }
 
@@ -160,6 +166,8 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 {
 	USES_WINMERGELOCALE;
 	HRESULT hr = E_INVALIDARG;
+	
+	m_bParentFolder = false;
 
 	// Files/folders selected normally from the explorer
 	if (pDataObj)
@@ -218,20 +226,22 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		GlobalUnlock(stg.hGlobal);
 		ReleaseStgMedium(&stg);
 	}
-
-	// No item selected - selection is the folder background
-	if (pidlFolder)
+	else if (pidlFolder)
 	{
+		// No item selected - selection is the folder background
 		TCHAR szPath[MAX_PATH] = {0};
 
 		if (SHGetPathFromIDList(pidlFolder, szPath))
 		{
 			m_strPaths[0] = szPath;
 			m_nSelectedItems = 1;
+			m_bParentFolder = true;
 			hr = S_OK;
 		}
 		else
+		{
 			hr = E_INVALIDARG;
+		}
 	}
 	return hr;
 }
@@ -452,8 +462,9 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 
 	// Add bitmap
-	if (m_MergeBmp != NULL)
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
+	HBITMAP hBitmap = m_bParentFolder ? m_MergeParentBmp : (PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp);
+	if (hBitmap != NULL)
+		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, hBitmap, NULL);
 
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
@@ -515,11 +526,12 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	}
 
 	// Add bitmap
-	if (m_MergeBmp != NULL)
+	HBITMAP hBitmap = m_bParentFolder ? m_MergeParentBmp : (PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp);
+	if (hBitmap != NULL)
 	{
 		if (nItemsAdded == 2)
-			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, m_MergeBmp, NULL);
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
+			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, hBitmap, NULL);
+		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, hBitmap, NULL);
 	}
 
 	// Show menu item as grayed if more than two items selected

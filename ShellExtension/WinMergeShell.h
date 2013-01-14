@@ -63,10 +63,11 @@ public:
 protected:
 	String m_strPaths[3]; /**< Paths for selected items */
 	String m_strPreviousPath; /**< Previously selected path */
-	HBITMAP m_MergeBmp; /**< Icon */
+	HBITMAP m_MergeBmp, m_MergeDirBmp, m_MergeParentBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
+	bool m_bParentFolder;
 
 	BOOL GetWinMergeDir(String &strDir);
 	BOOL CheckExecutable(String path);
