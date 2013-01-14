@@ -636,7 +636,7 @@ String NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
 	String strPath = string_format
 	(
 		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
-		env_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
+		env_GetTempPath().c_str(), GetCurrentProcessId(), pOwner, pchExt
 	);
 	// SHFileOperation expects a ZZ terminated list of paths!
 	String::size_type len = strPath.size();
