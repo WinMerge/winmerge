@@ -2,19 +2,20 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * Valerij Romanovskij <valerik-roma at mail.ru>
 # * Dmitriy S. Aleshkowskiy <wwarlock at mail.ru>
 # * geek2k <geek2k at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Russian.po 6851 2009-06-14 13:59:11Z gerundt $
+# $Id: Russian.po 7582 2013-01-13 04:54:26Z christianlist $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-08-22 17:56+0300\n"
-"Last-Translator: Dmitriy S. Aleshkowskiy <wwarlock at mail.ru>\n"
+"PO-Revision-Date: 2012-09-13 20:55+0200\n"
+"Last-Translator: Valerij Romanovskij <valerik-roma at mail.ru>\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1251\n"
@@ -91,9 +92,9 @@ msgid "&Goto..."
 msgstr "Перейти к строке..."
 
 #: Merge.rc:86
-#, fuzzy, c-format
+#, c-format
 msgid "Op&en"
-msgstr "Открыть"
+msgstr "От&крыть"
 
 #: Merge.rc:88
 #: Merge.rc:592
@@ -182,7 +183,7 @@ msgstr "В&ыход"
 #: Merge.rc:370
 #, c-format
 msgid "&Edit"
-msgstr "&Редактировать"
+msgstr "&Правка"
 
 #: Merge.rc:126
 #: Merge.rc:220
@@ -535,17 +536,17 @@ msgstr "Скрытые"
 #: Merge.rc:233
 #, c-format
 msgid "Tree &Mode"
-msgstr ""
+msgstr "Режим &дерева"
 
 #: Merge.rc:234
 #, c-format
 msgid "E&xpand All Subfolders"
-msgstr ""
+msgstr "Р&азвернуть все подпапки"
 
 #: Merge.rc:235
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr ""
+msgstr "С&вернуть все подпапки"
 
 #: Merge.rc:248
 #, c-format
@@ -1522,7 +1523,7 @@ msgstr "Сохранять время файла при сравнении"
 #: Merge.rc:846
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr ""
+msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
 #: Merge.rc:848
 #, c-format
@@ -2271,8 +2272,12 @@ msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
 
 #: Merge.rc:1386
 #, c-format
-msgid "Detect codepage info for these files: .html, .rc, .xml \nneed to restart session"
+msgid ""
+"Detect codepage info for these files: .html, .rc, .xml \n"
+"need to restart session"
 msgstr ""
+"Определять кодировку для этих файлов: .html, .rc, .xml \n"
+"Необходим перезапуск сессии"
 
 #: Merge.rc:1389
 #, c-format
@@ -2292,7 +2297,7 @@ msgstr "В зависимости от интерфейса пользователя WinMerge"
 #: Merge.rc:1398
 #, c-format
 msgid "Custom codepage:"
-msgstr ""
+msgstr "Кодировка пользователя:"
 
 #: Merge.rc:1407
 #, c-format
@@ -2862,12 +2867,12 @@ msgstr "&Включить дополнения"
 #: Merge.rc:2117
 #, c-format
 msgid "Shell Integration"
-msgstr ""
+msgstr "Интеграция в оболочку"
 
 #: Merge.rc:1805
 #, c-format
 msgid "Explorer"
-msgstr ""
+msgstr "Проводник"
 
 #: Merge.rc:1806
 #, c-format
@@ -2882,17 +2887,17 @@ msgstr "Обрабатывать подпапки по умолчанию"
 #: Merge.rc:1810
 #, c-format
 msgid "&Add to context menu"
-msgstr ""
+msgstr "&Добавить в контекстное меню"
 
 #: Merge.rc:1812
 #, c-format
 msgid "Folder compare"
-msgstr ""
+msgstr "Сравнение папок"
 
 #: Merge.rc:1813
 #, c-format
 msgid "Add &Shell menu to context menu"
-msgstr ""
+msgstr "Добавить &меню оболочки в контекстное меню"
 
 #: Merge.rc:1820
 #: Merge.rc:2120
@@ -3077,17 +3082,17 @@ msgstr "Показать все скрытые"
 #: Merge.rc:1934
 #, c-format
 msgid "Toggle tree mode"
-msgstr ""
+msgstr "Переключить в режим дерева"
 
 #: Merge.rc:1935
 #, c-format
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Развернуть все подпапки"
 
 #: Merge.rc:1936
 #, c-format
 msgid "Collapse all subfolders"
-msgstr ""
+msgstr "Свернуть все подпапки"
 
 #: Merge.rc:1942
 #, c-format
@@ -3198,22 +3203,22 @@ msgstr ""
 "Cascade Windows"
 
 #: Merge.rc:1988
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
 msgstr ""
 "Расположить окна неперекрывающейся горизонтальной черепицей\n"
-"Tile Windows"
+"Окна черепицей горизонтально"
 
 #: Merge.rc:1989
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
 msgstr ""
 "Расположить окна неперекрывающейся вертикальной черепицей\n"
-"Tile Windows"
+"Окна черепицей вертикально"
 
 #: Merge.rc:1995
 #, c-format
@@ -3579,7 +3584,7 @@ msgstr "Юникод"
 #: Merge.rc:2139
 #, c-format
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #: Merge.rc:2145
 #, c-format
@@ -3814,7 +3819,7 @@ msgstr ""
 #: Merge.rc:2225
 #, c-format
 msgid "&Path to SS.EXE:"
-msgstr ""
+msgstr "&Путь к SS.EXE:"
 
 #: Merge.rc:2231
 #, c-format
@@ -4185,8 +4190,18 @@ msgstr "%1 помечен как только для чтения. Согласны ли вы заменить этот файл?"
 
 #: Merge.rc:2322
 #, c-format
-msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"Do you want to reload the file?"
 msgstr ""
+"Другое приложение обновило файл\n"
+"%1\n"
+"так как WinMerge сканировал его в последний раз.\n"
+"\n"
+"Вы хотите перезагрузить файл?"
 
 #: Merge.rc:2323
 #, c-format
@@ -4205,8 +4220,14 @@ msgstr "Сохранить файл справа как..."
 
 #: Merge.rc:2326
 #, c-format
-msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgid ""
+"The file\n"
+"%1\n"
+"has disappeared. Please save a copy of the file to continue."
 msgstr ""
+"Файл\n"
+"%1\n"
+"утрачен. Пожалуйста, сохраните копию файла, чтобы продолжить."
 
 #: Merge.rc:2332
 #, c-format
@@ -4564,7 +4585,7 @@ msgstr ""
 #: Merge.rc:2437
 #, c-format
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Левое меню оболочки"
 
 #: Merge.rc:2438
 #, c-format
@@ -4574,7 +4595,7 @@ msgstr ""
 #: Merge.rc:2439
 #, c-format
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Правое меню оболочки"
 
 #: Merge.rc:2445
 #, c-format
@@ -4825,7 +4846,7 @@ msgstr "Файлы отличаются"
 #: Merge.rc:2519
 #, c-format
 msgid "Folders are different"
-msgstr ""
+msgstr "Папки различны"
 
 #: Merge.rc:2520
 #, c-format
@@ -4865,12 +4886,12 @@ msgstr "Ошибка"
 #: Merge.rc:2528
 #, c-format
 msgid "Text files are identical"
-msgstr ""
+msgstr "Текстовые файлы идентичны"
 
 #: Merge.rc:2533
 #, c-format
 msgid "Text files are different"
-msgstr ""
+msgstr "Текстовые файлы различны"
 
 #: Merge.rc:2539
 #, c-format
@@ -6431,7 +6452,7 @@ msgstr "Маленькие значки"
 #: Merge.rc:2980
 #, c-format
 msgid "Show big toolbar"
-msgstr "Большие значки"
+msgstr ""
 
 #: Merge.rc:2985
 #, c-format
