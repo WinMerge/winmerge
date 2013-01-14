@@ -394,7 +394,7 @@ void getInternalEncoding(UNICODESET * unicoding, int * codepage)
 {
 #ifdef _UNICODE
 	*unicoding = UCS2LE;
-	*codepage = 0;
+	*codepage = CP_UCS2LE;
 #else
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 	*unicoding = NONE;
