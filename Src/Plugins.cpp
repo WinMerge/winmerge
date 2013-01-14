@@ -51,14 +51,14 @@
 
 using std::vector;
 using Poco::RegularExpression;
-using Poco::Mutex;
+using Poco::FastMutex;
 using Poco::ScopedLock;
 
 static vector<String> theScriptletList;
 /// Need to lock the *.sct so the user can't delete them
 static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
-static Mutex scriptletsSem;
+static FastMutex scriptletsSem;
 
 template<class T> struct AutoReleaser
 {
@@ -549,9 +549,9 @@ static int LoadPluginWrapper(PluginInfo & plugin, const String & scriptletFilepa
  */
 static vector<String>& LoadTheScriptletList()
 {
+	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		ScopedLock<Mutex> lock(scriptletsSem);
 		String path = env_GetProgPath() + _T("\\MergePlugins\\");
 
 		if (IsWindowsScriptThere())
@@ -597,6 +597,7 @@ static vector<String>& LoadTheScriptletList()
  */
 static void UnloadTheScriptletList()
 {
+	FastMutex::ScopedLock lock(scriptletsSem);
 	if (scriptletsLoaded)
 	{
 		int i;
@@ -806,9 +807,11 @@ PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 // class CAllThreadsScripts : array of CScriptsOfThread, one per active thread
 
 std::vector<CScriptsOfThread *> CAllThreadsScripts::m_aAvailableThreads;
+FastMutex m_aAvailableThreadsLock;
 
 void CAllThreadsScripts::Add(CScriptsOfThread * scripts)
 {
+	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	// add the thread in the array
 
 	// register in the array
@@ -817,6 +820,7 @@ void CAllThreadsScripts::Add(CScriptsOfThread * scripts)
 
 void CAllThreadsScripts::Remove(CScriptsOfThread * scripts)
 {
+	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	// unregister from the list
 	std::vector<CScriptsOfThread *>::iterator it;
 	for (it =  m_aAvailableThreads.begin(); it != m_aAvailableThreads.end(); ++it)
@@ -829,6 +833,7 @@ void CAllThreadsScripts::Remove(CScriptsOfThread * scripts)
 
 CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 {
+	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	unsigned long nThreadId = GetCurrentThreadId();
 	int i;
 	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
@@ -839,6 +844,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
 }
 CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 {
+	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	unsigned long nThreadId = GetCurrentThreadId();
 	int i;
 	for (i = 0 ; i < m_aAvailableThreads.size() ; i++)
@@ -849,6 +855,7 @@ CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
 
 bool CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
 {
+	FastMutex::ScopedLock lock(m_aAvailableThreadsLock);
 	return (scripts == m_aAvailableThreads[0]);
 }
 
