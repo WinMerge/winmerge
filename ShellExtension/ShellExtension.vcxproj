@@ -376,6 +376,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
     </CustomBuildStep>
     <CustomBuildStep Include="ShellExtensionU.def" />
     <None Include="WinMerge.bmp" />
+    <None Include="WinMergeDir.bmp" />
+    <None Include="WinMergeParent.bmp" />
     <None Include="WinMergeShell.rgs" />
   </ItemGroup>
   <ItemGroup>
