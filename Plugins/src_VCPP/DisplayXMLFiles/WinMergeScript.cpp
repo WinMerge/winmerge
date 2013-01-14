@@ -293,11 +293,15 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	oData.iDepth = 0;
 	oData.bInElement = false;
 	oData.bNeedsEnding = false;
+	// Get file size
+	fseek(pInput, 0L, SEEK_END);
+	size_t size = ftell(pInput);
+	fseek(pInput, 0L, SEEK_SET);
 	// Open output file for write binary
 	oData.pOutput = _wfopen(fileDst, L"wb");
 
 	// Set all handlers
-	char buf[BUFSIZ];
+	char *buf = new char[size];
 	XML_Parser parser = XML_ParserCreate(NULL);
 	XML_SetUserData(parser, &oData);
 	XML_SetElementHandler(parser, StartElementHandler, EndElementHandler);
@@ -306,30 +310,28 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	XML_SetCommentHandler(parser, CommentHandler);
 	XML_SetXmlDeclHandler(parser, XmlDeclHandler);
 	XML_SetUnknownEncodingHandler(parser, WinMerge_Plug_UnknownEncodingHandler, this);
-	int done;
-	do
+	size_t len = fread(buf, 1, size, pInput);
+	// Parse
+	if (XML_Parse(parser, buf, len, true) == XML_STATUS_ERROR)
 	{
-		size_t len = fread(buf, 1, sizeof(buf), pInput);
-		done = len < sizeof(buf);
-		// Parse
-		if (XML_Parse(parser, buf, len, done) == XML_STATUS_ERROR)
-		{
-			// There was an error
-			// Give a warning and return without converting anything
-			char sError[1024];
-			sprintf(sError, "%s at line %d\n",
-				XML_ErrorString(XML_GetErrorCode(parser)),
-				XML_GetCurrentLineNumber(parser));
-			
-			::MessageBox(NULL, sError, "The xml has an error", MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST);
-			
-			*pbChanged = VARIANT_FALSE;
-			*pbSuccess = VARIANT_FALSE;
-			return S_FALSE;
-		}
+		// There was an error
+		// Give a warning and return without converting anything
+		char sError[1024];
+		sprintf(sError, "%s at line %d\n",
+			XML_ErrorString(XML_GetErrorCode(parser)),
+			XML_GetCurrentLineNumber(parser));
+		
+		::MessageBox(NULL, sError, "The xml has an error", MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST);
+		XML_ParserFree(parser);
+		delete [] buf;
+		fclose(pInput);
+		fclose(oData.pOutput);
+		*pbChanged = VARIANT_FALSE;
+		*pbSuccess = VARIANT_FALSE;
+		return S_FALSE;
 	}
-	while (!done);
 	XML_ParserFree(parser);
+	delete [] buf;
 
 	// Close all files
 	fclose(pInput);
