@@ -26,6 +26,9 @@ WinMerge 2.15.1
   - French (#3412030)
   - Hungarian (#3164982)
   - Spanish (#3412937)
+  - Russian (#3017)
+  - Norwegian (#3018)
+  - Danish (#3019)
 
 WinMerge 2.13.14 - 2010-09-15 (r7263)
   Update release compiler and runtimes to VS2008

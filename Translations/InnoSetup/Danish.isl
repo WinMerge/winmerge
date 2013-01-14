@@ -310,7 +310,7 @@ StatusUninstalling=Afinstallerer %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 version %2
 AdditionalIcons=Ekstra ikoner:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Valgfrie komponenter:
 CreateDesktopIcon=Lav ikon på &skrivebordet
 CreateQuickLaunchIcon=Lav &hurtigstart-ikon
 ProgramOnTheWeb=%1 på internettet
@@ -323,64 +323,64 @@ AssocingFileExtension=Sammenkæder %1 med filtypen %2...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Typisk installation
+FullInstallation=Fuld installation
+CompactInstallation=Kompakt installation
+CustomInstallation=Tilpasset installation
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-Filters=Filters
+AppCoreFiles=WinMerge basis filer
+Filters=Filtre
 Plugins=Plugins
 
 ;Localization Components
-Languages=Languages
-BasqueLanguage=Basque menus and dialogs
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GalicianLanguage=Galician menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PersianLanguage=Persian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SerbianLanguage=Serbian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SlovenianLanguage=Slovenian menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
-UkrainianLanguage=Ukrainian menus and dialogs
+Languages=Sprog
+BasqueLanguage=Baskiske menuer og dialoger
+BulgarianLanguage=Bulgarske menuer og dialoger
+CatalanLanguage=Katalanske menuer og dialoger
+ChineseSimplifiedLanguage=Kinesiske (simpel) menuer og dialoger
+ChineseTraditionalLanguage=Kinesiske (traditionel) menuer og dialoger
+CroatianLanguage=Kroatiske menuer og dialoger
+CzechLanguage=Tjekkiske menuer og dialoger
+DanishLanguage=Danske menuer og dialoger
+DutchLanguage=Hollandske menuer og dialoger
+FrenchLanguage=Franske menuer og dialoger
+GalicianLanguage=Galisiske menuer og dialoger
+GermanLanguage=Tyske menuer og dialoger
+GreekLanguage=Græske menuer og dialoger
+HungarianLanguage=Ungarske menuer og dialoger
+ItalianLanguage=Italienske menuer og dialoger
+JapaneseLanguage=Japanske menuer og dialoger
+KoreanLanguage=Koreanske menuer og dialoger
+NorwegianLanguage=Norske menuer og dialoger
+PersianLanguage=Persiske menuer og dialoger
+PolishLanguage=Polske menuer og dialoger
+PortugueseBrazilLanguage=Portugisiske (Brasilien) menuer og dialoger
+PortugueseLanguage=Portugisiske menuer og dialoger
+RomanianLanguage=Rumanske menuer og dialoger
+RussianLanguage=Russiske menuer og dialoger
+SerbianLanguage=Serbiske menuer og dialoger
+SlovakLanguage=Slovakiske menuer og dialoger
+SlovenianLanguage=Slovenske menuer og dialoger
+SpanishLanguage=Spanske menuer og dialoger
+SwedishLanguage=Svenske menuer og dialoger
+TurkishLanguage=Tyrkiske menuer og dialoger
+UkrainianLanguage=Ukrainske menuer og dialoger
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-AddToPath=&Add WinMerge folder to your system path
+ExplorerContextMenu=&Installer Explorer kontekst menu integrationen
+IntegrateTortoiseCVS=Integrer med &TortoiseCVS
+IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
+IntegrateClearCase=Integrer med Rational &ClearCase
+AddToPath=&Tilføj WinMerge folderen til din system path
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Læs mig
+UsersGuide=Brugermanualen
+ViewStartMenuFolder=&Se WinMerge Start Menu folderen
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=Installationsprogrammet har detekteret at du har ændret folderen for din start menu fra "%s" til "%s". Vil du slette den tidligere start menu folder?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge projektfil
