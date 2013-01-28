@@ -72,19 +72,14 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 }
 
 
-SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void*):
+SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void*, std::size_t size):
 	_name(file.path()),
 	_memHandle(INVALID_HANDLE_VALUE),
 	_fileHandle(INVALID_HANDLE_VALUE),
-	_size(0),
+	_size(size),
 	_mode(PAGE_READONLY),
 	_address(0)
 {
-	if (!file.exists() || !file.isFile())
-		throw FileNotFoundException(_name);
-
-	_size = static_cast<DWORD>(file.getSize());
-
 	DWORD shareMode = FILE_SHARE_READ;
 	DWORD fileMode  = GENERIC_READ;
 
@@ -101,9 +96,20 @@ SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessM
 #endif
 
 	if (_fileHandle == INVALID_HANDLE_VALUE)
+	{
+		DWORD dwError = GetLastError();
+		if (dwError == ERROR_FILE_NOT_FOUND || dwError == ERROR_PATH_NOT_FOUND)
+			throw FileNotFoundException(_name);
 		throw OpenFileException("Cannot open memory mapped file", _name);
+	}
 
-	_memHandle = CreateFileMapping(_fileHandle, NULL, _mode, 0, 0, NULL);
+	LARGE_INTEGER liFileSize = {0};
+	GetFileSizeEx(_fileHandle, &liFileSize);
+	if (_size == 0 || _size > liFileSize.QuadPart)
+		_size = liFileSize.QuadPart;
+	else
+		liFileSize.QuadPart = _size;
+	_memHandle = CreateFileMapping(_fileHandle, NULL, _mode, liFileSize.HighPart, liFileSize.LowPart, NULL);
 	if (!_memHandle)
 	{
 		CloseHandle(_fileHandle);
