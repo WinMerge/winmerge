@@ -607,7 +607,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UInt
 		if (pCtxt->ShouldAbort())
 			break;
 
-		if (stopwatch.elapsed() > 2000)
+		if (stopwatch.elapsed() > 2000000)
 		{
 			int event = CDiffThread::EVENT_COMPARE_PROGRESSED;
 			myStruct->m_listeners.notify(myStruct, event);
