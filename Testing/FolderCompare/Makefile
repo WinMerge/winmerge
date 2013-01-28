@@ -19,6 +19,7 @@ OBJS=\
 ../../Src/Common/unicoder.o \
 ../../Src/Common/varprop.o \
 ../../Src/Common/version.o \
+../../Src/Common/ExConverter.o \
 ../../Src/CompareEngines/ByteComparator.o \
 ../../Src/CompareEngines/ByteCompare.o \
 ../../Src/CompareEngines/DiffUtils.o \
@@ -80,8 +81,8 @@ OBJS=\
 misc.o \
 FolderCompare.o
 
-$(TARGET): $(OBJS)
-	$(CXX) -pg $(OBJS) -L../../Externals/poco/lib/MinGW/ia32 -lPocoXML -lPocoFoundation -lversion -lshlwapi -luuid -lole32 -loleaut32 -lIphlpapi -o $(TARGET)	
+$(TARGET): $(OBJS) $(POCOLIBS)
+	$(CXX) -pg $(OBJS) -L../../Externals/poco/lib/MinGW/ia32 -lPocoUtil -lPocoXML -lPocoFoundation -lversion -lshlwapi -luuid -lole32 -loleaut32 -lIphlpapi -o $(TARGET)	
 
 clean:
 	$(RM) $(OBJS) $(TARGET)
