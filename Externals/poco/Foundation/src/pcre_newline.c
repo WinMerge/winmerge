@@ -6,7 +6,7 @@
 and semantics are as close as possible to those of the Perl 5 language.
 
                        Written by Philip Hazel
-           Copyright (c) 1997-2008 University of Cambridge
+           Copyright (c) 1997-2009 University of Cambridge
 
 -----------------------------------------------------------------------------
 Redistribution and use in source and binary forms, with or without
@@ -70,8 +70,7 @@ Returns:       TRUE or FALSE
 */
 
 BOOL
-_pcre_is_newline(const uschar *ptr, int type, const uschar *endptr,
-  int *lenptr, BOOL utf8)
+_pcre_is_newline(USPTR ptr, int type, USPTR endptr, int *lenptr, BOOL utf8)
 {
 int c;
 if (utf8) { GETCHAR(c, ptr); } else c = *ptr;
@@ -120,8 +119,7 @@ Returns:       TRUE or FALSE
 */
 
 BOOL
-_pcre_was_newline(const uschar *ptr, int type, const uschar *startptr,
-  int *lenptr, BOOL utf8)
+_pcre_was_newline(USPTR ptr, int type, USPTR startptr, int *lenptr, BOOL utf8)
 {
 int c;
 ptr--;
