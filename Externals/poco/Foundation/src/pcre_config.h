@@ -9,22 +9,44 @@ it to run on SunOS4 and other "close to standard" systems.
 
 If you are going to build PCRE "by hand" on a system without "configure" you
 should copy the distributed config.h.generic to config.h, and then set up the
-macros the way you need them. Alternatively, you can avoid editing by using -D
-on the compiler command line to set the macro values.
+macro definitions the way you need them. You must then add -DHAVE_CONFIG_H to
+all of your compile commands, so that config.h is included at the start of
+every source.
+
+Alternatively, you can avoid editing by using -D on the compiler command line
+to set the macro values. In this case, you do not have to set -DHAVE_CONFIG_H.
 
 PCRE uses memmove() if HAVE_MEMMOVE is set to 1; otherwise it uses bcopy() if
 HAVE_BCOPY is set to 1. If your system has neither bcopy() nor memmove(), set
 them both to 0; an emulation function will be used. */
 
+/* By default, the \R escape sequence matches any Unicode line ending
+   character or sequence of characters. If BSR_ANYCRLF is defined, this is
+   changed so that backslash-R matches only CR, LF, or CRLF. The build- time
+   default can be overridden by the user of PCRE at runtime. On systems that
+   support it, "configure" can be used to override the default. */
+/* #undef BSR_ANYCRLF */
+
 /* If you are compiling for a system that uses EBCDIC instead of ASCII
    character codes, define this macro as 1. On systems that can use
-   "configure", this can be done via --enable-ebcdic. */
+   "configure", this can be done via --enable-ebcdic. PCRE will then assume
+   that all input strings are in EBCDIC. If you do not define this macro, PCRE
+   will assume input strings are ASCII or UTF-8 Unicode. It is not possible to
+   build a version of PCRE that supports both EBCDIC and UTF-8. */
 /* #undef EBCDIC */
 
 /* Define to 1 if you have the `bcopy' function. */
+#ifndef HAVE_BCOPY
+#define HAVE_BCOPY 0
+#endif
 
 /* Define to 1 if you have the <bits/type_traits.h> header file. */
 /* #undef HAVE_BITS_TYPE_TRAITS_H */
+
+/* Define to 1 if you have the <bzlib.h> header file. */
+#ifndef HAVE_BZLIB_H
+#define HAVE_BZLIB_H 0
+#endif
 
 /* Define to 1 if you have the <dirent.h> header file. */
 #ifndef HAVE_DIRENT_H
@@ -52,10 +74,23 @@ them both to 0; an emulation function will be used. */
 #endif
 
 /* Define to 1 if you have the `memmove' function. */
+#ifndef HAVE_MEMMOVE
+#define HAVE_MEMMOVE 1
+#endif
 
 /* Define to 1 if you have the <memory.h> header file. */
 #ifndef HAVE_MEMORY_H
 #define HAVE_MEMORY_H 1
+#endif
+
+/* Define to 1 if you have the <readline/history.h> header file. */
+#ifndef HAVE_READLINE_HISTORY_H
+#define HAVE_READLINE_HISTORY_H 0
+#endif
+
+/* Define to 1 if you have the <readline/readline.h> header file. */
+#ifndef HAVE_READLINE_READLINE_H
+#define HAVE_READLINE_READLINE_H 0
 #endif
 
 /* Define to 1 if you have the <stdint.h> header file. */
@@ -88,12 +123,15 @@ them both to 0; an emulation function will be used. */
 #define HAVE_STRING_H 1
 #endif
 
-/* Define to 1 if you have the `strtoll' function. */
+/* Define to 1 if you have `strtoimax'. */
+/* #undef HAVE_STRTOIMAX */
+
+/* Define to 1 if you have `strtoll'. */
 #ifndef HAVE_STRTOLL
 #define HAVE_STRTOLL 0
 #endif
 
-/* Define to 1 if you have the `strtoq' function. */
+/* Define to 1 if you have `strtoq'. */
 #ifndef HAVE_STRTOQ
 #define HAVE_STRTOQ 0
 #endif
@@ -124,6 +162,14 @@ them both to 0; an emulation function will be used. */
 /* Define to 1 if you have the "Poco/UnWindows.h" header file. */
 /* #undef HAVE_WINDOWS_H */
 
+/* Define to 1 if you have the <zlib.h> header file. */
+#ifndef HAVE_ZLIB_H
+#define HAVE_ZLIB_H 1
+#endif
+
+/* Define to 1 if you have `_strtoi64'. */
+/* #undef HAVE__STRTOI64 */
+
 /* The value of LINK_SIZE determines the number of bytes used to store links
    as offsets within the compiled regex. The default is 2, which allows for
    compiled patterns up to 64K long. This covers the vast majority of cases.
@@ -132,6 +178,12 @@ them both to 0; an emulation function will be used. */
    "configure" can be used to override this default. */
 #ifndef LINK_SIZE
 #define LINK_SIZE 2
+#endif
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#ifndef LT_OBJDIR
+#define LT_OBJDIR ".libs/"
 #endif
 
 /* The value of MATCH_LIMIT determines the default number of times the
@@ -161,13 +213,6 @@ them both to 0; an emulation function will be used. */
 /* This limit is parameterized just in case anybody ever wants to change it.
    Care must be taken if it is increased, because it guards against integer
    overflow caused by enormously large patterns. */
-#ifndef MAX_DUPLENGTH
-#define MAX_DUPLENGTH 30000
-#endif
-
-/* This limit is parameterized just in case anybody ever wants to change it.
-   Care must be taken if it is increased, because it guards against integer
-   overflow caused by enormously large patterns. */
 #ifndef MAX_NAME_COUNT
 #define MAX_NAME_COUNT 10000
 #endif
@@ -179,10 +224,10 @@ them both to 0; an emulation function will be used. */
 #define MAX_NAME_SIZE 32
 #endif
 
-/* The value of NEWLINE determines the newline character sequence. On
-   Unix-like systems, "configure" can be used to override the default, which
-   is 10. The possible values are 10 (LF), 13 (CR), 3338 (CRLF), -1 (ANY), or
-   -2 (ANYCRLF). */
+/* The value of NEWLINE determines the newline character sequence. On systems
+   that support it, "configure" can be used to override the default, which is
+   10. The possible values are 10 (LF), 13 (CR), 3338 (CRLF), -1 (ANY), or -2
+   (ANYCRLF). */
 #ifndef NEWLINE
 #define NEWLINE 10
 #endif
@@ -207,13 +252,16 @@ them both to 0; an emulation function will be used. */
 #define PACKAGE_NAME "PCRE"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "PCRE 7.1"
+#define PACKAGE_STRING "PCRE 8.10"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "pcre"
 
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
+
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "7.1"
+#define PACKAGE_VERSION "8.10"
 
 
 /* If you are compiling for a system other than a Unix-like system or
@@ -249,23 +297,41 @@ them both to 0; an emulation function will be used. */
 #define STDC_HEADERS 1
 #endif
 
+/* Define to allow pcregrep to be linked with libbz2, so that it is able to
+   handle .bz2 files. */
+/* #undef SUPPORT_LIBBZ2 */
+
+/* Define to allow pcretest to be linked with libreadline. */
+/* #undef SUPPORT_LIBREADLINE */
+
+/* Define to allow pcregrep to be linked with libz, so that it is able to
+   handle .gz files. */
+/* #undef SUPPORT_LIBZ */
+
 /* Define to enable support for Unicode properties */
 #ifndef SUPPORT_UCP
 #define SUPPORT_UCP
 #endif
 
-/* Define to enable support for the UTF-8 Unicode encoding. */
+/* Define to enable support for the UTF-8 Unicode encoding. This will work
+   even in an EBCDIC environment, but it is incompatible with the EBCDIC
+   macro. That is, PCRE can support *either* EBCDIC code *or* ASCII/UTF-8, but
+   not both at once. */
 #ifndef SUPPORT_UTF8
 #define SUPPORT_UTF8
 #endif
 
 /* Version number of package */
 #ifndef VERSION
-#define VERSION "7.1"
+#define VERSION "8.10"
 #endif
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
+
+/* Define to the type of a signed integer type of width exactly 64 bits if
+   such a type exists and the standard includes do not define it. */
+/* #undef int64_t */
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
