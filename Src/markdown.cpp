@@ -776,15 +776,9 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		try
 		{
 			TFile file(path);
-
-			cbImage = (size_t)file.getSize();
-
-			if (trunc && cbImage > trunc)
-			{
-				cbImage = trunc;
-			}
-			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_WRITE);
+			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ, 0, trunc);
 			pImage = m_pSharedMemory->begin();
+			cbImage = m_pSharedMemory->end() - m_pSharedMemory->begin();
 		}
 		catch (...)
 		{
@@ -806,7 +800,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			if (pCopy)
 			{
 				for (int i = 0; i < cbImage / 2; ++i)
-					*((UInt16 *)pImage + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pCopy + i));
+					*((UInt16 *)pCopy + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pImage + i));
 			}
 
 			delete m_pSharedMemory;
@@ -847,7 +841,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			if (pCopy)
 			{
 				for (int i = 0; i < cbImage / 2; ++i)
-					*((UInt16 *)pImage + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pCopy + i));
+					*((UInt16 *)pCopy + i) = Poco::ByteOrder::flipBytes(*((UInt16 *)pImage + i));
 			}
 			delete m_pSharedMemory;
 			m_pSharedMemory = NULL;

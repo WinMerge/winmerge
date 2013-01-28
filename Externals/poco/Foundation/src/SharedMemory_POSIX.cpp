@@ -85,8 +85,8 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 }
 
 
-SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint):
-	_size(0),
+SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint, std::size_t size):
+	_size(size),
 	_fd(-1),
 	_address(0),
 	_access(mode),
@@ -97,7 +97,9 @@ SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessM
 	if (!file.exists() || !file.isFile())
 		throw FileNotFoundException(file.path());
 
-	_size = file.getSize();
+	size_t filesize = file.getSize();
+	if (_size == 0 || filesize < _size)
+		_size = filesize;
 	int flag = O_RDONLY;
 	if (mode == SharedMemory::AM_WRITE)
 		flag = O_RDWR;
