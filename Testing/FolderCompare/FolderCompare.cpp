@@ -3,6 +3,7 @@
 #include "DiffThread.h"
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
+#include "FolderCmp.h"
 #include <iostream>
 #include <Poco/Thread.h>
 #ifdef _MSC_VER
@@ -18,10 +19,10 @@ int main()
 
 	FileFilterHelper filter;
 	filter.UseMask(true);
-	filter.SetMask(_T("*.cpp;*.c;*.h"));
+	filter.SetMask(_T("*.cpp;*.c;*.h;*.vcproj;*.vcxproj"));
 
 	CDiffContext ctx(
-		PathContext(_T("d:/dev/winmerge/winmerge-3pane/winmerge-v2/Src"), _T("d:/dev/winmerge/winmerge-3pane/trunk/Src")),
+		PathContext(_T("c:/dev/winmerge/winmerge-3pane/winmerge-v2/"), _T("c:/dev/winmerge/winmerge.org/trunk/")),
 		CMP_CONTENT);
 
 	DIFFOPTIONS options = {0};
@@ -33,7 +34,7 @@ int main()
 
 	ctx.CreateCompareOptions(CMP_CONTENT, options);
 
-	ctx.m_iGuessEncodingType = (50001 << 16) + 2;
+	ctx.m_iGuessEncodingType = 0;//(50001 << 16) + 2;
 	ctx.m_bIgnoreSmallTimeDiff = true;
 	ctx.m_bStopAfterFirstDiff = false;
 	ctx.m_nQuickCompareLimit = 4 * 1024 * 1024;
@@ -58,12 +59,18 @@ int main()
 	Poco::UIntPtr pos = ctx.GetFirstDiffPosition();
 	while (pos)
 	{
-		const DIFFITEM& di = ctx.GetNextDiffPosition(pos);
+		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
+		if (ctx.m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename))
+		{
+			FolderCmp folderCmp;
+			folderCmp.prepAndCompareFiles(&ctx, di);
 #ifdef _UNICODE
-		std::wcout << di.diffFileInfo[0].filename << ":" << di.diffcode.isResultDiff() << std::endl;
+//		std::wcout << di.diffFileInfo[0].filename << ":" << di.diffcode.isResultDiff() << std::endl;
 #else
-		std::cout << di.diffFileInfo[0].filename << ":" << di.diffcode.isResultDiff() << std::endl;
+//		std::cout << di.diffFileInfo[0].filename << ":" << di.diffcode.isResultDiff() << std::endl;
 #endif
+		}
+
 	}
 
 	return 0;
