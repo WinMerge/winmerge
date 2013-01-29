@@ -41,10 +41,10 @@ BINEXT          = .exe
 #
 # Compiler and Linker Flags
 #
-CFLAGS          =
+CFLAGS          = -pg
 CFLAGS32        =
 CFLAGS64        =
-CXXFLAGS        =
+CXXFLAGS        = -pg
 CXXFLAGS32      =
 CXXFLAGS64      =
 LINKFLAGS       = -Wl,--allow-multiple-definition
