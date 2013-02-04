@@ -165,7 +165,7 @@ BOOL CSuperComboBox::AttachSystemImageList()
 	if (!m_himlSystem)
 	{
 		SHFILEINFO sfi = {0};
-		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T("C:\\"), 0, 
+		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T(""), 0, 
 			&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
 		if (!m_himlSystem)
 			return FALSE;
@@ -519,7 +519,7 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		SHFILEINFO sfi = {0};
 		TCHAR szDrive[5] = {0};
 		CString sText;
-		GetLBText(pDispInfo->ceItem.iItem, sText);
+		GetLBText(static_cast<int>(pDispInfo->ceItem.iItem), sText);
 		lstrcpyn(szDrive, sText, 4);
 		if (sText[1] != '\\' && GetDriveType(szDrive) != DRIVE_REMOTE)
 		{
