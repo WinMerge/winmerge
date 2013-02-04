@@ -1817,7 +1817,7 @@ void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
 	const String s = theApp.LoadString(nID);
 
 	// avoid dereference of empty strings
-	if (s.length() <= 0 || !AfxExtractSubString(rMessage, &*s.begin(), 0))
+	if (s.length() <= 0 || !AfxExtractSubString(rMessage, s.c_str(), 0))
 	{
 		// not found
 		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);

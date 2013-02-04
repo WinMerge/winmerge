@@ -440,7 +440,7 @@ void CChildFrame::GetMessageString(UINT nID, CString& rMessage) const
 {
 	// load appropriate string
 	const String s = theApp.LoadString(nID);
-	if (!AfxExtractSubString(rMessage, &*s.begin(), 0))
+	if (!AfxExtractSubString(rMessage, s.c_str(), 0))
 	{
 		// not found
 		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
