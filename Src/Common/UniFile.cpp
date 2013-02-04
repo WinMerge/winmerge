@@ -258,7 +258,19 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 	try
 	{
 		TFile file(filename);
-		m_hMapping = new SharedMemory(file, static_cast<SharedMemory::AccessMode>(mode));
+		try
+		{
+			m_hMapping = new SharedMemory(file, static_cast<SharedMemory::AccessMode>(mode));
+		}
+		catch (Exception&)
+		{
+			if (file.getSize() == 0)
+			{
+				m_lineno = 0;
+				return true;
+			}
+			throw;
+		}
 	}
 	catch (Exception& e)
 	{
