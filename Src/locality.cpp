@@ -131,13 +131,13 @@ String TimeString(const Int64 * tim)
 	if (!tim) return _T("---");
 	
 	SYSTEMTIME sysTime;
-	FILETIME ft;
+	FILETIME ft, ftlocal;
 	Timestamp t(*tim * Timestamp::resolution());
 
 	if (t == 0)
 		return String();
 	t.toFileTimeNP((unsigned int&)ft.dwLowDateTime, (unsigned int&)ft.dwHighDateTime);
-	if (!FileTimeToSystemTime(&ft, &sysTime))
+	if (!FileTimeToLocalFileTime(&ft, &ftlocal) || !FileTimeToSystemTime(&ftlocal, &sysTime))
 		return _T("---");
 
 	TCHAR buff[128];
