@@ -31,8 +31,8 @@ MSBuild WinMerge_vc10.sln /t:Rebuild /p:Configuration="Release Unicode" /p:Platf
 endlocal
 
 
-"\progra~1\inno setup 5\iscc" "Installer\innosetup\WinMerge_vc71.iss"
-"\progra~1\inno setup 5\iscc" "Installer\innosetup\WinMerge.iss"
-"\progra~1\inno setup 5\iscc" "Installer\innosetup\WinMergeX64.iss"
+"c:\Program Files (x86)\Inno Setup 5\iscc" "Installer\innosetup\WinMerge_vc71.iss"
+"c:\Program Files (x86)\Inno Setup 5\iscc" "Installer\innosetup\WinMerge.iss"
+"c:\Program Files (x86)\Inno Setup 5\iscc" "Installer\innosetup\WinMergeX64.iss"
 
 pause
