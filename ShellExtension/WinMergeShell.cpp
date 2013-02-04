@@ -135,6 +135,47 @@ static String GetResourceString(UINT resourceID)
 	return strResource;
 }
 
+static HBITMAP MakeBitmapBackColorTransparent(HBITMAP hbmSrc)
+{
+	HDC hdcSrc = CreateCompatibleDC(NULL);
+	BITMAP bm;
+	GetObject(hbmSrc, sizeof(bm), &bm);
+	HBITMAP hbmSrcOld = (HBITMAP)SelectObject(hdcSrc, hbmSrc);
+	BITMAPINFO bi = {0};
+	bi.bmiHeader.biSize = sizeof BITMAPINFOHEADER;
+	bi.bmiHeader.biPlanes = 1;
+	bi.bmiHeader.biBitCount = 32;
+	bi.bmiHeader.biCompression = BI_RGB;
+	bi.bmiHeader.biWidth = bm.bmWidth;
+	bi.bmiHeader.biHeight = -bm.bmHeight;
+	DWORD *pBits = NULL;
+	HBITMAP hbmNew = CreateDIBSection(NULL, &bi, DIB_RGB_COLORS, (void **)&pBits, NULL, 0);
+	if (pBits)
+	{
+		COLORREF clrTP = GetPixel(hdcSrc, 0, 0);
+		int bR = GetRValue(clrTP), bG = GetGValue(clrTP), bB = GetBValue(clrTP);
+	
+		for (int y = 0; y < bm.bmHeight; ++y)
+		{
+			for (int x = 0; x < bm.bmWidth; ++x)
+			{
+				COLORREF clrCur = GetPixel(hdcSrc, x, y);
+				int cR = GetRValue(clrCur), cG = GetGValue(clrCur), cB = GetBValue(clrCur);
+				if (!(abs(cR - bR) <= 1 && abs(cG - bG) <= 1 && abs(cB - bB) <= 1))
+				{
+					pBits[y * bm.bmWidth + x] = cB | (cG << 8) | (cR << 16) | 0xFF000000;
+				}
+			}
+		}
+	}
+
+	SelectObject(hdcSrc, hbmSrcOld);
+	DeleteDC(hdcSrc);
+
+	return hbmNew;
+}
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeShell
 
@@ -144,18 +185,32 @@ CWinMergeShell::CWinMergeShell()
 	m_dwMenuState = 0;
 
 	// compress or stretch icon bitmap according to menu item height
-	m_MergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP,
+	HBITMAP hMergeBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE), IMAGE_BITMAP,
 			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
-	m_MergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEDIR), IMAGE_BITMAP,
+	HBITMAP hMergeDirBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEDIR), IMAGE_BITMAP,
 			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
-	m_MergeParentBmp = (HBITMAP)LoadImage(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGEPARENT), IMAGE_BITMAP,
-			GetSystemMetrics(SM_CXMENUCHECK), GetSystemMetrics(SM_CYMENUCHECK), LR_DEFAULTCOLOR);
+
+	OSVERSIONINFO osvi;
+	osvi.dwOSVersionInfoSize = sizeof OSVERSIONINFO;
+	GetVersionEx(&osvi);
+	if (osvi.dwMajorVersion >= 6)
+	{
+		m_MergeBmp = MakeBitmapBackColorTransparent(hMergeBmp);
+		DeleteObject(hMergeBmp);
+
+		m_MergeDirBmp = MakeBitmapBackColorTransparent(hMergeDirBmp);
+		DeleteObject(hMergeDirBmp);
+	}
+	else
+	{
+		m_MergeBmp = hMergeBmp;
+		m_MergeDirBmp = hMergeDirBmp;
+	}
 }
 
 /// Default destructor, unloads bitmap
 CWinMergeShell::~CWinMergeShell()
 {
-	DeleteObject(m_MergeParentBmp);
 	DeleteObject(m_MergeDirBmp);
 	DeleteObject(m_MergeBmp);
 }
@@ -167,8 +222,6 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 	USES_WINMERGELOCALE;
 	HRESULT hr = E_INVALIDARG;
 	
-	m_bParentFolder = false;
-
 	// Files/folders selected normally from the explorer
 	if (pDataObj)
 	{
@@ -235,7 +288,6 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		{
 			m_strPaths[0] = szPath;
 			m_nSelectedItems = 1;
-			m_bParentFolder = true;
 			hr = S_OK;
 		}
 		else
@@ -462,7 +514,7 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 
 	// Add bitmap
-	HBITMAP hBitmap = m_bParentFolder ? m_MergeParentBmp : (PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp);
+	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
 	if (hBitmap != NULL)
 		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, hBitmap, NULL);
 
@@ -526,7 +578,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	}
 
 	// Add bitmap
-	HBITMAP hBitmap = m_bParentFolder ? m_MergeParentBmp : (PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp);
+	HBITMAP hBitmap = PathIsDirectory(m_strPaths[0].c_str()) ? m_MergeDirBmp : m_MergeBmp;
 	if (hBitmap != NULL)
 	{
 		if (nItemsAdded == 2)
