@@ -1092,10 +1092,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 	DWORD dwFlags[] /*=0*/, bool bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
 	String prediffer /*=_T("")*/, PackingInfo *infoUnpacker/*=NULL*/)
 {
-	// If the dirdoc we are supposed to use is busy doing a diff, bail out
-	if (IsComparing())
-		return FALSE;
-
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
 		return FALSE;
 
@@ -1754,20 +1750,6 @@ void CMainFrame::UpdateResources()
 		CMergeDoc * pDoc = mergedocs.GetNext(pos);
 		pDoc->UpdateResources();
 	}
-}
-
-BOOL CMainFrame::IsComparing()
-{
-	const DirDocList &dirdocs = GetAllDirDocs();
-	POSITION pos = dirdocs.GetHeadPosition();
-	while (pos)
-	{
-		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
-		UINT threadState = pDirDoc->m_diffThread.GetThreadState();
-		if (threadState == CDiffThread::THREAD_COMPARING)
-			return TRUE;
-	}
-	return FALSE;
 }
 
 /**
@@ -2636,13 +2618,7 @@ void CMainFrame::OnSaveConfigData()
  */
 void CMainFrame::FileNew(int nPanes) 
 {
-	CDirDoc *pDirDoc;
-
-	// If the dirdoc we are supposed to use is busy doing a diff, bail out
-	if (IsComparing())
-		return;
-
-	pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
+	CDirDoc *pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage

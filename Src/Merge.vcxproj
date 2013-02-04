@@ -2209,7 +2209,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="DirCompProgressDlg.cpp">
+    <ClCompile Include="DirCompProgressBar.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -8648,7 +8648,7 @@
     <ClInclude Include="DirCmpReport.h" />
     <ClInclude Include="DirCmpReportDlg.h" />
     <ClInclude Include="DirColsDlg.h" />
-    <ClInclude Include="DirCompProgressDlg.h" />
+    <ClInclude Include="DirCompProgressBar.h" />
     <ClInclude Include="DirDoc.h" />
     <ClInclude Include="DirFrame.h" />
     <ClInclude Include="DirItem.h" />
@@ -8835,4 +8835,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Merge.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

@@ -5025,41 +5025,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="DirCompProgressDlg.cpp">
-					<FileConfiguration
-						Name="UnicodeRelease|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="UnicodeDebug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
+					RelativePath=".\DirCompProgressBar.cpp">
 				</File>
 				<File
 					RelativePath="DirDoc.cpp">
@@ -7540,10 +7506,10 @@
 					RelativePath="DiffViewBar.h">
 				</File>
 				<File
-					RelativePath="DirCmpReportDlg.h">
+					RelativePath="DirColsDlg.h">
 				</File>
 				<File
-					RelativePath="DirColsDlg.h">
+					RelativePath=".\DirCompProgressBar.h">
 				</File>
 				<File
 					RelativePath="DirCompProgressDlg.h">

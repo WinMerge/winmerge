@@ -50,7 +50,7 @@ class CDirFrame;
 
 class PackingInfo;
 class PathContext;
-class DirCompProgressDlg;
+class DirCompProgressBar;
 class CompareStats;
 struct DirColInfo;
 class CLoadSaveCodepageDlg;
@@ -299,7 +299,7 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< TRUE if tree mode is on*/
-	DirCompProgressDlg * m_pCmpProgressDlg;
+	DirCompProgressBar * m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
@@ -450,6 +450,7 @@ protected:
 	afx_msg void OnExpandFolder();
 	afx_msg void OnCollapseFolder();
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBnClickedComparisonStop();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

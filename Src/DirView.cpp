@@ -47,7 +47,7 @@
 #include "OptionsDef.h"
 #include "BCMenu.h"
 #include "DirCmpReport.h"
-#include "DirCompProgressDlg.h"
+#include "DirCompProgressBar.h"
 #include "CompareStatisticsDlg.h"
 #include "PluginsListDlg.h"
 #include "UniFile.h"
@@ -140,7 +140,7 @@ CDirView::CDirView()
 		, m_bNeedSearchLastDiffItem(true)
 		, m_firstDiffItem(-1)
 		, m_lastDiffItem(-1)
-		, m_pCmpProgressDlg(NULL)
+		, m_pCmpProgressBar(NULL)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
 		, m_pShellContextMenuLeft(NULL)
@@ -303,6 +303,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
 	ON_NOTIFY_REFLECT(LVN_BEGINDRAG, OnBeginDrag)
  	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
+	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -465,16 +466,16 @@ int CDirView::GetDefaultColImage() const
  */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
-	if (m_pCmpProgressDlg == NULL)
-		m_pCmpProgressDlg = new DirCompProgressDlg();
+	if (m_pCmpProgressBar == NULL)
+		m_pCmpProgressBar = new DirCompProgressBar();
 
-	if (!::IsWindow(m_pCmpProgressDlg->GetSafeHwnd()))
-		m_pCmpProgressDlg->Create(IDD_DIRCOMP_PROGRESS, this);
+	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
+		m_pCmpProgressBar->Create(GetParentFrame());
 
-	m_pCmpProgressDlg->ShowWindow(SW_SHOW);
-	m_pCmpProgressDlg->SetCompareStat(pCompareStats);
-	m_pCmpProgressDlg->SetDirDoc(GetDocument());
-	m_pCmpProgressDlg->StartUpdating();
+	m_pCmpProgressBar->SetCompareStat(pCompareStats);
+	m_pCmpProgressBar->StartUpdating();
+
+	GetParentFrame()->ShowControlBar(m_pCmpProgressBar, TRUE, FALSE);
 
 	m_compareStart = clock();
 }
@@ -2782,6 +2783,12 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
 			{
+				if (m_pCmpProgressBar)
+				{
+					OnBnClickedComparisonStop();
+					return TRUE;
+				}
+
 				if (m_bEscCloses && !GetMainFrame()->m_bEscShutdown)
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
@@ -2892,9 +2899,9 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
-		m_pCmpProgressDlg->CloseDialog();
-		delete m_pCmpProgressDlg;
-		m_pCmpProgressDlg = NULL;
+		GetParentFrame()->ShowControlBar(m_pCmpProgressBar, FALSE, FALSE);
+		delete m_pCmpProgressBar;
+		m_pCmpProgressBar = NULL;
 
 		pDoc->CompareReady();
 		// Don't Redisplay() if triggered by OnMarkedRescan()
@@ -4378,6 +4385,13 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 			lpC->clrTextBk = clrBk;
 		}
 	}
+}
+
+void CDirView::OnBnClickedComparisonStop()
+{
+	if (m_pCmpProgressBar)
+		m_pCmpProgressBar->EndUpdating();
+	GetDocument()->AbortCurrentScan();
 }
 
 /**

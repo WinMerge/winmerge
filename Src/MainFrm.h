@@ -347,7 +347,6 @@ private:
 	const MergeDocList &GetAllMergeDocs();
 	const DirDocList &GetAllDirDocs();
 	const HexMergeDocList &GetAllHexMergeDocs();
-	BOOL IsComparing();
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew);
 	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
