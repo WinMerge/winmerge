@@ -100,6 +100,7 @@ END_MESSAGE_MAP()
 COpenView::COpenView()
 	: CFormView(COpenView::IDD)
 	, m_pUpdateButtonStatusThread(NULL)
+	, m_bRecurse(FALSE)
 {
 	// TODO: add construction code here
 }
