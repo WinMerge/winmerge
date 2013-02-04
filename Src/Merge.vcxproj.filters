@@ -514,9 +514,6 @@
     <ClCompile Include="DirColsDlg.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirCompProgressDlg.cpp">
-      <Filter>GUI\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DirDoc.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
@@ -735,6 +732,9 @@
     </ClCompile>
     <ClCompile Include="Common\ExConverter.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCompProgressBar.cpp">
+      <Filter>GUI\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1302,9 +1302,6 @@
     <ClInclude Include="DirCmpReportDlg.h">
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirCompProgressDlg.h">
-      <Filter>GUI\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DirDoc.h">
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
@@ -1361,6 +1358,9 @@
     </ClInclude>
     <ClInclude Include="Common\ExConverter.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCompProgressBar.h">
+      <Filter>GUI\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -257,7 +257,6 @@
 #define IDC_COUNT_LFILE                 1104
 #define IDC_COUNT_RFILE                 1105
 #define IDC_COMPARISON_STOP             1106
-#define IDC_COMPARISON_CLOSE            1107
 #define IDC_DIFF_INCLCMDLINE            1108
 #define IDC_WMGOTO_FILELEFT             1109
 #define IDC_WMGOTO_FILEMIDDLE           2109

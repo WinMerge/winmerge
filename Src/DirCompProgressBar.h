@@ -1,21 +1,20 @@
 /** 
- * @file  DirCompProgressDlg.h
+ * @file  DirCompProgressBar.h
  *
  * @brief Declaration file for Directory compare statusdialog class
  */
 // ID line follows -- this is updated by SVN
-// $Id: DirCompProgressDlg.h 5444 2008-06-07 06:48:49Z kimmov $
+// $Id: DirCompProgressBar.h 5444 2008-06-07 06:48:49Z kimmov $
 
-#if !defined(AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
-#define AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
+#if !defined(AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
+#define AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
 
 #include "CompareStats.h"
 
-class CDirFrame;
-class CDirDoc;
+class ITaskBarList3;
 
 /////////////////////////////////////////////////////////////////////////////
-// DirCompProgressDlg dialog
+// DirCompProgressBar dialog
 
 /**
  * @brief Class for directory compare statusdialog.
@@ -35,41 +34,31 @@ class CDirDoc;
  * compared items count. Maybe we should use different timer and bigger
  * interval for total count updates?
  */
-class DirCompProgressDlg : public CDialog
+class DirCompProgressBar : public CDialogBar
 {
-	DECLARE_DYNAMIC(DirCompProgressDlg)
-
 // Construction
 public:
-	DirCompProgressDlg(CWnd* pParent = NULL);   // standard constructor
+	DirCompProgressBar();   // standard constructor
+	~DirCompProgressBar();
+	BOOL Create(CWnd* pParentWnd);
 	void SetCompareStat(CompareStats * pCompareStats);
 	void StartUpdating();
 	void EndUpdating();
-	void CloseDialog();
-	void SetDirDoc(CDirDoc *pDirDoc);
 
 // Dialog Data
-	//{{AFX_DATA(DirCompProgressDlg)
+	//{{AFX_DATA(DirCompProgressBar)
 	enum { IDD = IDD_DIRCOMP_PROGRESS };
 	//}}AFX_DATA
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(DirCompProgressDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
 // Implementation
 protected:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void ClearStat();
+	void SetProgressState(int comparedItems, int totalItems);
 
 	// Generated message map functions
-	//{{AFX_MSG(DirCompProgressDlg)
-	afx_msg BOOL OnInitDialog();
+	//{{AFX_MSG(DirCompProgressBar)
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnBnClickedComparisonStop();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -77,12 +66,13 @@ private:
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 	BOOL m_bCompareReady; /**< Compare ready, waiting for closing? */
-	CDirDoc * m_pDirDoc; /**< Pointer to dirdoc we are comparing */
-    //IProgressDialog* m_pIDlg;
+#if _MSC_VER >= 1600
+	ITaskbarList3 *m_pTaskbarList;
+#endif
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
+#endif // !defined(AFX_DIRCOMPPROGRESSBAR_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
 

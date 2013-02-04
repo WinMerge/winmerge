@@ -111,8 +111,8 @@ Global
 		{4B011DDA-2279-437D-903C-8028913AF31B}.Release|x64.Build.0 = Release|x64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|Win32.ActiveCfg = Unicode Debug|Win32
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|Win32.Build.0 = Unicode Debug|Win32
-		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|x64.ActiveCfg = Unicode Release MinDependency|x64
-		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|x64.Build.0 = Unicode Release MinDependency|x64
+		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|x64.ActiveCfg = Unicode Debug|x64
+		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.Debug Unicode|x64.Build.0 = Unicode Debug|x64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.debug_shared|Win32.ActiveCfg = Unicode Release MinDependency|x64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.debug_shared|x64.ActiveCfg = Unicode Release MinDependency|x64
 		{76A538A1-9D2C-49CB-AE9F-72548CE37F88}.debug_shared|x64.Build.0 = Unicode Release MinDependency|x64
