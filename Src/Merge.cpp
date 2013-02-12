@@ -301,7 +301,7 @@ BOOL CMergeApp::InitInstance()
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
 	// Initialize temp folder
-	String instTemp = env_GetPerInstanceString(_T("WM_"));
+	String instTemp = env_GetPerInstanceString(TempFolderPrefix);
 	if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
 		env_SetTempPath(paths_ConcatPath(env_GetSystemTempPath(), instTemp));
 	else
