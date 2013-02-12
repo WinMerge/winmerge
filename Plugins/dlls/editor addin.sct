@@ -9,6 +9,9 @@
         </property>
       	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
+	<method name="SortAscending"/>
+	<method name="SortDescending"/>
+	<method name="ExecFilterCommand"/>
 </implements>
 
 <script language="VBS">
@@ -32,5 +35,63 @@ Function MakeLower(Text)
 	MakeLower = LCase(Text)
 End Function
 
+Function ExecFilterCommand(Text)
+	Dim cmd
+	cmd = InputBox("現在の選択範囲の文字列をフィルタコマンドで処理した結果で置換します。コマンドを入力してください。")
+	If cmd = "" Then
+		Err.Raise 30001, "キャンセルされました"
+		Exit Function
+	End If
+
+	On Error Resume Next
+
+	Dim wsh
+	Dim path
+	Set wsh = CreateObject("WScript.Shell")
+	path = wsh.ExpandEnvironmentStrings("%TEMP%\_winmerge_addin_temp_.txt")
+
+	Dim fso
+	Dim ts
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set ts = fso.CreateTextFile(path)
+	If ts Is Nothing Then
+		Exit Function
+	End If
+	ts.Write Text
+	ts.Close
+
+	Dim exe
+	Set exe = wsh.Exec("cmd /c type """ & path & """  | " & cmd & " 2>&1")
+	If exe Is Nothing Then
+		MsgBox "コマンド " & cmd & " の実行に失敗しました:" & Err.Description 
+		fso.DeleteFile path
+		Exit Function
+	End If
+
+	ExecFilterCommand = ""
+	Do Until exe.StdOut.AtEndOfStream
+		ExecFilterCommand = ExecFilterCommand & exe.StdOut.ReadLine & vbCrLf
+	Loop
+
+	fso.DeleteFile path
+
+End Function
+
+
 </script>
+
+<script language="JScript">
+
+function SortAscending(Text) {
+	return Text.split("\n").sort().join("\n");
+}
+
+function SortDescending(Text) {
+	var lines = Text.split("\n");
+	lines.sort(function(a, b) { return a < b ? 1 : -1; });
+	return lines.join("\n");
+}
+
+</script>
+
 </scriptlet>
