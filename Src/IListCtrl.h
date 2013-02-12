@@ -9,6 +9,7 @@ struct IListCtrl
 	virtual int GetRowCount() const = 0;
 	virtual String GetColumnName(int col) const = 0;
 	virtual String GetItemText(int row, int col) const = 0;
+	virtual int GetBackColor(int row) const = 0;
 };
 
 #endif
