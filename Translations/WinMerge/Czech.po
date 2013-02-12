@@ -6,7 +6,7 @@
 # * Jan Hryz <janhryz at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Czech.po 6851 2009-06-14 13:59:11Z gerundt $
+# $Id: Czech.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""
@@ -1758,7 +1758,7 @@ msgstr "Chybìjící"
 #: Merge.rc:2106
 #, c-format
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: Merge.rc:1021
 #, c-format
@@ -2891,12 +2891,12 @@ msgstr "Pøidat systémovou &místní nabídku"
 #: Merge.rc:2456
 #, c-format
 msgid "Folder"
-msgstr "Složka"
+msgstr "Složky"
 
 #: Merge.rc:1820
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "&Zpùsob porovnání:"
 
 #: Merge.rc:1822
 #, c-format
@@ -2911,7 +2911,7 @@ msgstr "&Ignorovat èasové rozdíly menší než 3 sekundy"
 #: Merge.rc:1826
 #, c-format
 msgid "&Include unique subfolders contents"
-msgstr ""
+msgstr "Zahrnout obsah jedineèných podsložek"
 
 #: Merge.rc:1828
 #, c-format
@@ -2921,7 +2921,7 @@ msgstr ""
 #: Merge.rc:1830
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&Omezení pro rychlé porovnání (MB):"
 
 #: Merge.rc:1843
 #, c-format
@@ -3479,7 +3479,7 @@ msgstr "Na t&uto otázku se již pøíštì nedotazovat."
 #: Merge.rc:2107
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Syntaxe"
 
 #: Merge.rc:2109
 #, c-format
@@ -3490,7 +3490,7 @@ msgstr "Kontrola verzí"
 #: Merge.rc:2496
 #, c-format
 msgid "Differences"
-msgstr "Rozdílù"
+msgstr "Rozdíly"
 
 #: Merge.rc:2123
 #, c-format

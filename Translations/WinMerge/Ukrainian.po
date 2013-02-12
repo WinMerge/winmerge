@@ -6,7 +6,7 @@
 # * Vitaliy Stopchans'kyy <stopcha at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Ukrainian.po 6901 2009-07-07 07:47:48Z kimmov $
+# $Id: Ukrainian.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

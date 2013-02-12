@@ -6,7 +6,7 @@
 # * Hans Eriksson <hans.ericson at bredband.net>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Swedish.po 6975 2009-08-29 12:15:49Z gerundt $
+# $Id: Swedish.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

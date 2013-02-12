@@ -710,7 +710,7 @@ Pekka Himanen</screen></para>
 
         <para>CVS Id lines look like this:</para>
 
-        <screen>// $Id: Filters.xml 6806 2009-05-29 20:33:13Z denisbradford $</screen>
+        <screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen>
 
         <para>... and can be filtered with this rule:</para>
 
@@ -1169,20 +1169,11 @@ Pekka Himanen</screen></para>
       </varlistentry>
 
       <varlistentry>
-        <term>Good HOWTO for regexps:</term>
-
-        <listitem>
-          <simpara><ulink
-          url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></simpara>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>Tutorial:</term>
 
         <listitem>
           <simpara><ulink
-          url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></simpara>
+          url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
         </listitem>
       </varlistentry>
 

@@ -361,6 +361,7 @@ UkrainianLanguage=Ukrainian menus and dialogs
 ;Tasks
 ExplorerContextMenu=集成到资源管理器右键菜单(&E)
 IntegrateTortoiseCVS=集成到 &TortoiseCVS
+IntegrateTortoiseGIT=集成到 To&rtoiseGIT
 IntegrateTortoiseSVN=集成到 T&ortoiseSVN
 IntegrateClearCase=集成到 Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path

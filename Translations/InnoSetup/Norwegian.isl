@@ -367,6 +367,7 @@ UkrainianLanguage=Ukrainian menus and dialogs
 ;Tasks
 ExplorerContextMenu=&Aktiver integrasjon i Windows utforsker sin kontekstmeny
 IntegrateTortoiseCVS=Integrer med &TortoiseCVS
+IntegrateTortoiseGIT=Integrer med To&rtoiseGIT
 IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
 IntegrateClearCase=Integrer med Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path

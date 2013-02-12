@@ -526,6 +526,11 @@
         </listitem>
       </itemizedlist>
     </section>
+  </section>
+	
+  <section id="Configuration_compare_folder">
+    <title>Compare Folder page</title>
+
     <section id="Configuration_compmethod">
       <title>ファイル比較方法
       <indexterm>
@@ -630,7 +635,41 @@
         </listitem>
       </itemizedlist>
     </section>
+
+    <section>
+      <title>Quick compare limit (MB)<indexterm>
+          <primary>Quick compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: Is not active unless the Compare method 
+		  is set to Quick Contents.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Is active when the Compare method 
+		  is set to Quick Contents.</para>
+
+          <para>This option sets the limit when WinMerge should stop comparing.
+		  If the limit is set to for instance 4 MB, then WinMerge will only read 
+		  the first 4 MB of a file. If no differences are founf before the 
+		  Quick Compare limit is reached, then the files will be marked as identical.
+		  </para>
+
+          <warning>
+            <para>This option should be enabled only when you are sure any differences 
+			are in the first part of the file.
+            Otherwise, it can cause incorrect compare results.</para>
+          </warning>
+        </listitem>
+      </itemizedlist>
+    </section>
+
   </section>
+
   <section id="Configuration_editor">
     <title>エディタページ
     <indexterm>

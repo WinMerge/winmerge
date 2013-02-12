@@ -387,7 +387,7 @@
   </section>
 
   <section id="Configuration_compare">
-    <title>Compare page</title>
+    <title>Compare General page</title>
 
     <para>The options in this page enable you to change some of the ways that
     WinMerge detects differences, such as comparing only file size, or ignoring
@@ -635,37 +635,35 @@
     </section>
 
     <section>
-      <title>Ignore time differences less than 3 seconds<indexterm>
-          <primary>timestamps</primary>
+      <title>Filter Comments<indexterm>
+          <primary>filters</primary>
 
-          <secondary>detecting and ignoring differences</secondary>
+          <secondary>comments</secondary>
         </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): Files with different
-          timestamps are detected as different.</para>
+          <para><option>Disabled</option> (default): WinMerge compares comments
+          in code, along with other content.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Sometimes (for example, when you use
-          network shares) small differences in timestamps are not significant.
-          To get more meaningful results in such situations, this option enables
-          you to ignore time differences smaller than three seconds.</para>
+          <para><option>Enabled</option>: This option optimizes comparisons by
+          detecting comments in certain programming language file types (such as
+          C++ and Java), and ignoring them.</para>
 
-          <para>This option works only with the <guimenuitem>Modified
-          Date</guimenuitem> and <guimenuitem>Modified Date and
-          Size</guimenuitem> compare methods (described in <xref
-          linkend="Configuration_compmethod" />). It has no effect with other
-          methods.</para>
-
-          <warning>
-            <para>This option should be enabled only when the time difference is
-            detected. Otherwise, it can cause incorrect compare results.</para>
-          </warning>
+          <para>The recognized file types and their comment markers are defined
+          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
+          of the WinMerge installation directory.</para>
         </listitem>
       </itemizedlist>
     </section>
+  </section>
+	
+  <section id="Configuration_compare_folder">
+    <title>Compare Folder page</title>
 
     <section id="Configuration_compmethod">
       <title>File Compare method<indexterm>
@@ -778,31 +776,70 @@
     </section>
 
     <section>
-      <title>Filter Comments<indexterm>
-          <primary>filters</primary>
+      <title>Ignore time differences less than 3 seconds<indexterm>
+          <primary>timestamps</primary>
 
-          <secondary>comments</secondary>
+          <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
-
-      <!--Just guessing what this does - ask a developer.-->
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge compares comments
-          in code, along with other content.</para>
+          <para><option>Disabled</option> (default): Files with different
+          timestamps are detected as different.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: This option optimizes comparisons by
-          detecting comments in certain programming language file types (such as
-          C++ and Java), and ignoring them.</para>
+          <para><option>Enabled</option>: Sometimes (for example, when you use
+          network shares) small differences in timestamps are not significant.
+          To get more meaningful results in such situations, this option enables
+          you to ignore time differences smaller than three seconds.</para>
 
-          <para>The recognized file types and their comment markers are defined
-          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
-          of the WinMerge installation directory.</para>
+          <para>This option works only with the <guimenuitem>Modified
+          Date</guimenuitem> and <guimenuitem>Modified Date and
+          Size</guimenuitem> compare methods (described in <xref
+          linkend="Configuration_compmethod" />). It has no effect with other
+          methods.</para>
+
+          <warning>
+            <para>This option should be enabled only when the time difference is
+            detected. Otherwise, it can cause incorrect compare results.</para>
+          </warning>
         </listitem>
       </itemizedlist>
     </section>
+	
+    <section>
+      <title>Quick compare limit (MB)<indexterm>
+          <primary>Quick compare</primary>
+
+          <secondary>limit</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option>: Is not active unless the Compare method 
+		  is set to Quick Contents.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Is active when the Compare method 
+		  is set to Quick Contents.</para>
+
+          <para>This option sets the limit when WinMerge should stop comparing.
+		  If the limit is set to for instance 4 MB, then WinMerge will only read 
+		  the first 4 MB of a file. If no differences are founf before the 
+		  Quick Compare limit is reached, then the files will be marked as identical.
+		  </para>
+
+          <warning>
+            <para>This option should be enabled only when you are sure any differences 
+			are in the first part of the file.
+            Otherwise, it can cause incorrect compare results.</para>
+          </warning>
+        </listitem>
+      </itemizedlist>
+    </section>
+
   </section>
 
   <section id="Configuration_editor">

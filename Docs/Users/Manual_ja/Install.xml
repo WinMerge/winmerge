@@ -9,7 +9,7 @@
 
   <note>
   <para>現在、WinMergeインストーラは、32ビット Windowsのためだけに動作します。
-    64ビット Windows(WinXP/2003/Vista)用の個別のバージョンはありません。
+    64ビット Windows(WinXP/2003/Vista/2008/7/8/2012)用の個別のバージョンはありません。
     64ビット Windowsバージョンは、インストーラとWinMergeを、32ビットアプリケーションとして動作させる
     ことができます。
     シェル統合のため、インストーラは、64ビット版の拡張を含んでいます。</para>
@@ -19,12 +19,30 @@
     <title>ファイルのダウンロード</title>
     <para>最新のリリースは、<ulink url="http://winmerge.org/">WinMergeのホームページ</ulink>より、いつでもダウンロード可能です。
       最新リリースのためのホームページ更新に、遅れが生じることに注意してください。
-      しかし、<ulink url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>の、プロジェクトステータスページは、
+      しかし、<ulink url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>の、プロジェクトステータスページは、
       最新のファイルを表示します。
       メーリングリストにも、リリースのお知らせがあります。
       安定リリースは、いくつかのファイルダウンロードサイトより入手可能です。</para>
   </section>
 
+  <section>
+	<title>Compatibility</title>
+	
+	<itemizedlist>
+	  <listitem>
+	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge version 2.14.0</ulink> 
+		supports Windows XP/2003/Vista/2008/7/8/2012 and later. It runs 32 bit on both 32 bit and 64 bit Windows.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge version 2.12.4</ulink> 
+		was the last version to support Windows 9x, NT, 2000, and ME.</para>
+	  </listitem>
+	  <listitem>
+	    <para>WinMerge is not supported on Windows RT.</para>
+	  </listitem>
+	</itemizedlist>
+  </section>
+  
   <section id="Installing_usinginstaller">
     <title>インストーラを使用する (推奨)</title>
 
@@ -244,11 +262,11 @@
     <title>圧縮ファイルからのインストール<indexterm>
         <primary>archive, installing WinMerge from</primary>
       </indexterm><indexterm>
-        <primary>mfc71[u].dll runtime file</primary>
+        <primary>mfc90[u].dll runtime file</primary>
       </indexterm><indexterm>
-        <primary>msvcr71.dll runtime file</primary>
+        <primary>msvcr90.dll runtime file</primary>
       </indexterm><indexterm>
-        <primary>msvcp71.dll runtime file</primary>
+        <primary>msvcp90.dll runtime file</primary>
       </indexterm></title>
 
       <para>WinMergeは、他のシステムコンポーネントから、ほとんど独立しています。
@@ -258,8 +276,8 @@
       </para>
 
       <para><filename>WinMerge[U].exe</filename>は、いくつかのシステムDLLに加え、
-        <filename>MFC71[U].dll</filename>、 <filename>MSVCR71.dllと
-          MSVCP71.dll</filename>に依存しています。
+        <filename>MFC90[U].dll</filename>、 <filename>MSVCR90.dllと
+          MSVCP90.dll</filename>に依存しています。
         もし、いくつかのDLLがシステムにインストールされているなら、WinMergeの実行には、
         <filename>WinMerge[U].exe</filename>だけが必要です。
         さらに、上にあげられたDLLファイルは、ダウンロード可能なランタイムパッケージとしても有効です。     

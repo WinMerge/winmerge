@@ -360,6 +360,7 @@ UkrainianLanguage=Ukraiñski interfejs
 ;Tasks
 ExplorerContextMenu=&W³¹cz integracjê z menu Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
+IntegrateTortoiseGIT=Integracja z To&rtoiseGIT
 IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
 IntegrateClearCase=Integracja z Rational &ClearCase
 AddToPath=&Dodaj folder WinMerge do sciezki systemowej

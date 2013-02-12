@@ -367,6 +367,7 @@
    ;Tasks
    ExplorerContextMenu=&Інтегруватися в контекстне меню оболонки ОС
    IntegrateTortoiseCVS=Інтегруватися в &TortoiseCVS
+   IntegrateTortoiseGIT=Інтегруватися в To&rtoiseGIT
    IntegrateTortoiseSVN=Інтегруватися в T&ortoiseSVN
    IntegrateClearCase=Інтегруватися в Rational &ClearCase
    AddToPath=&Add WinMerge folder to your system path

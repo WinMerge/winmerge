@@ -5,7 +5,7 @@
 # * Nelson Simão
 #
 # ID line follows -- this is updated by SVN
-# $Id: Portuguese.po 6851 2009-06-14 13:59:11Z gerundt $
+# $Id: Portuguese.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

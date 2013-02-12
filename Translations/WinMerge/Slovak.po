@@ -6,7 +6,7 @@
 # * Ivan Masár <helix84 at centrum.sk>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Slovak.po 6851 2009-06-14 13:59:11Z gerundt $
+# $Id: Slovak.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

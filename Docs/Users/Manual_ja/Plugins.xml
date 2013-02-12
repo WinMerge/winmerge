@@ -6,10 +6,12 @@
 
   <para>WinMerge plugins are custom dlls or scriptlets, written in the COM API,
   that preprocess data before a comparison. For example, you can use a plugin to
-  extract text data from MS Word files for WinMerge to compare. Plugins are not
-  included when you install WinMerge, either because the functions that they
-  provide are of interest to only a few users, or because they do not fit into
-  the WinMerge architecture.</para>
+  extract text data from MS Word files for WinMerge to compare.</para>
+  
+  <para>Plugins are not included by default when you install WinMerge, you have to
+  select them during installation to get them installed. This is because some plugins
+  can give unexpected behaviour if you forget that you have the plugins turned on.
+  These few plugins may only be of interest to a few users.</para>
 
   <para>Each plugin is:<indexterm>
       <primary>installing plugins</primary>
@@ -23,14 +25,15 @@
 
     <listitem>
       <para>Installed in the <filename class="directory">MergePlugins</filename>
-      subfolder. A number of plugins are installed for you by WinMerge.</para>
+      subfolder. A number of plugins can be installed for you by WinMerge.</para>
     </listitem>
 
     <listitem>
       <para>Easy to install: To install a plugin that is not included in the
       WinMerge installation, just copy the plugin file to <filename
       class="directory">MergePlugins</filename>. The plugin is available the
-      next time you open WinMerge.</para>
+      next time you open WinMerge. You can find more plugins on the web, written
+	  by other developers.</para>
     </listitem>
   </itemizedlist>
 
@@ -747,12 +750,8 @@
       <para>Some editor complement plugins require this optional component from
       <trademark class="registered">Microsoft</trademark>.</para>
 
-      <para>If the list of editor complements does not include all editor
-      plugins, this component is probably missing. To help you verify, WinMerge
-      displays a comment at the bottom of the list. You can install WSH on any
-      version of Windows Download it from <ulink
-      url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN
-      Library</ulink>, using IE 4.0 or later.</para>
+      <para>It should already be included in your version of Windows, 
+	  unless you use some really old pre Windows XP version.</para>
     </section>
 
     <section id="MSVBVM60">

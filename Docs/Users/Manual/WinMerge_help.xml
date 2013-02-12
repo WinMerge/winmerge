@@ -27,10 +27,10 @@
 
     <productname>WinMerge</productname>
 
-    <releaseinfo><emphasis>Revision 1.5.6</emphasis></releaseinfo>
+    <releaseinfo><emphasis>Revision 1.7.1</emphasis></releaseinfo>
 
     <copyright>
-      <year>2004-2009</year>
+      <year>2004-2013</year>
 
       <holder>Thingamahoochie Software.</holder>
     </copyright>
@@ -80,6 +80,12 @@
       </author>
 
       <author>
+        <surname>List</surname>
+
+        <firstname>Christian</firstname>
+      </author>
+	  
+      <author>
         <contrib>and all others who helped with this.</contrib>
       </author>
     </authorgroup>
@@ -118,9 +124,9 @@
 
   &Filters;
 
-  &Version_control;
-
   &Command_line;
+  
+  &Version_control;
 
   &Faq;
 

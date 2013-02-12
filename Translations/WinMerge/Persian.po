@@ -5,7 +5,7 @@
 # * Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Persian.po 7032 2009-11-03 19:00:08Z gerundt $
+# $Id: Persian.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

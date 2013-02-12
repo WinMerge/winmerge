@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
   "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- $Id$ -->
+<!-- $Id: ReleaseNotes.html 7596 2013-02-02 22:26:27Z christianlist $ -->
 
 <html>
 <head>
@@ -51,21 +51,19 @@
 </head>
 <body>
 
-<h2>WinMerge 2.12.4 Release Notes</h2>
+<h2>WinMerge 2.14.0 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
-  <li><a href="#new2124">What Is New in 2.12.4?</a></li>
-  <li><a href="#new2122">What Is New in 2.12.2?</a></li>
-  <li><a href="#new2120">What Is New in 2.12.0?</a></li>
-  <li><a href="#new2112">What Is New in 2.11.2 beta?</a></li>
+  <li><a href="#new2140">What Is New in 2.14.0?</a></li>
+  <li><a href="#new21320">What Is New in 2.13.20 beta?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>June 2009</p>
+<p>June 2011</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p>
-This is a WinMerge 2.12.4 stable release. This release replaces earlier WinMerge
+This is a WinMerge 2.14.0 stable release. This release replaces earlier WinMerge
 stable releases as a recommended release.
 </p>
 
@@ -73,146 +71,126 @@ stable releases as a recommended release.
 Please submit bug reports to our <a href="http://bugs.winmerge.org">bug-tracker</a>.
 </p>
 
-<h3><a name="#new2124">What Is New in 2.12.4?</a></h3>
+<h3><a name="#new2140">What Is New in 2.14.0?</a></h3>
 <p>
-WinMerge 2.12.4 is an bug-fix release fixing few important bugs found
-from the 2.12.2 release. For a complete changelog history, see the
-<code><a href="ChangeLog.txt">ChangeLog.txt</a></code> file located in the
-<code>Docs</code> folder under the WinMerge program folder.</p>
-
-<h4>Bugs fixed</h4>
-<ul>
-  <li>When folder compare method changed during the compare it was not reset
-    back to original. This caused some surprising behavior and missing info.</li>
-  <li>Reports had same left/right description</li>
-  <li>When conflict file was saved trailing line-ending was lost</li>
-  <li>Opening mixed-EOL file one side forced both files to be handled as
-    mixed-eol files</li>
-  <li>Generated patch had wrong file time for UTF-16 files</li>
-  <li>"##" in file filter pattern caused an infinite loop</li>
-</ul>
-
-<h3><a name="#new2122">What Is New in 2.12.2?</a></h3>
-<p>
-WinMerge 2.12.2 is an bug-fix release fixing couple of important bugs found
-from the 2.12.0 release. For a complete changelog history, see the
-<code><a href="ChangeLog.txt">ChangeLog.txt</a></code> file located in the
-<code>Docs</code> folder under the WinMerge program folder.</p>
-
-<h4>Bugs fixed</h4>
-<ul>
-  <li>Disable folder compare tree-view by default</li>
-  <li>Filename extension column was empty for files (in folder compare)</li>
-  <li>Crash when selecting backup folder</li>
-  <li>Swapping panes did not update statusbar (in file compare)</li>
-  <li>Says files are identical after making files different in another
-    application and re-loading them</li>
-  <li>Files with missing last EOL (End Of Line) bytes were not merged correctly</li>
-</ul>
-
-<h4>Translation updates</h4>
-<ul>
-  <li>Polish</li>
-</ul>
-
-<h3><a name="#new2120">What Is New in 2.12.0?</a></h3>
-<p>
-WinMerge 2.12 is an important update to WinMerge. There are lots of 
-improvements and bug fixes since 2.10.4 stable release. 
+WinMerge 2.14 is an important update to WinMerge. There are lots of 
+improvements and bug fixes since 2.12.4 stable release. 
 </p>
 
-<p>2.12.0 stable release has only couple of changes after beta release. See the
-2.12 beta release changes below for more complete change list in this release.
+<p>It's important to note that this is the first stable release that no 
+longer ships with the ANSI version of WinMerge, and as a consequence it drops
+support for Windows 9x, ME and NT4.
+</p>
+
+<p>2.14.0 stable release has many changes after beta release. But see also the
+2.13 beta release changes below for other important changes in this release.
 </p>
 
 <h4>Improvements</h4>
 <ul>
-  <li>Remember last target folder for Copy/Move to in folder compare</li>
+  <li>Improve startup time</li>
+  <li>Improve editing of linefilter regular expressions</li>
+  <li>Improve color options organization</li>
+</ul>
+
+<h4>Other changes</h4>
+<ul>
+  <li>Update PCRE to version 8.10</li>
+  <li>Update SCEW to version 1.1.2</li>
+  <li>Add menuitems for selecting automatic or manual prediffing</li>
+  <li>Add accelerator keys for Shell context menu</li>
+  <li>Allow editing context line count in patch creator</li>
+  <li>Add <code>/xq</code> command line switch for closing WinMerge after identical files and not showing message</li>
+  <li>Allow setting codepage from command line</li>
+  <li>Allow giving encoding name as custom codepage</li>
+  <li>Add new options dialog panel for folder compare options</li>
+  <li>Add options GUI for quick compare limit</li>
+  <li>Write config log as UTF-8 file</li>
 </ul>
 
 <h4>Bugs fixed</h4>
 <ul>
-  <li>Help window opened from WinMerge was modal</li>
-  <li>Files without extension get backed up to name..bak</li>
+  <li>Untranslated string ("Merge.rc:nnnn") was displayed in status bar</li>
+  <li>Pane headers not updated after language change</li>
+  <li>Quick contents compare didn't ignore EOL byte differences</li>
+  <li>Compare by size always checked file times too</li>
+  <li>Crash when pasting from clipboard</li>
+  <li>Keeps verifing path even turned off in options</li>
+  <li>Crash after deleting text</li>
+  <li>Added EOL chars between copied file/path names</li>
+  <li>Created new matching folder to wrong folder</li>
+  <li>Strange scrolling effect in location pane</li>
+  <li>Plugin error after interrupting folder compare</li>
+  <li>"+" and "-" from the number block don't work in the editor</li>
+  <li>Date format did not respect Regional Settings</li>
+  <li>Shell extension used unquoted program path</li>
+</ul>
+
+<h4>New Translation</h4>
+<ul>
+  <li>Basque</li>
 </ul>
 
 <h4>Translation updates</h4>
 <ul>
-  <li>Chinese Traditional</li>
-  <li>Croatian</li>
-  <li>Czech</li>
+  <li>Hungarian</li>
+  <li>Turkish</li>
+  <li>Russian</li>
+  <li>Norwegian</li>
   <li>Danish</li>
   <li>Dutch</li>
-  <li>French</li>
-  <li>Galician</li>
-  <li>German</li>
-  <li>Greek</li>
-  <li>Japanese</li>
-  <li>Swedish</li>
-  <li>Ukrainian</li>
+  <li>Slovenian</li>
 </ul>
 
-
-<h3><a name="new2112">What Is New in 2.11.2 beta?</a></h3>
+<h3><a name="new21320">What Is New in 2.13.20 beta?</a></h3>
 <p>
-WinMerge 2.11.x adds couple of long awaited features. Overall WinMerge 2.11.x
-will be important improvement for some use cases.
+WinMerge before version 2.13.20 was vulnerable to DLL hijacking as described in
+Microsoft Security Advisory (<a href="http://www.microsoft.com/technet/security/advisory/2269637.mspx">2269637</a>).
+To fix this problem, we must also drop support for Windows 9x, ME and NT4.
 </p>
 
-<h4>Tree-view for folder compare</h4>
-<p>
-WinMerge can now show folder compare results in a tree-style view. This is
-much improved way to show result compared to old flat result view. Subfolders
-in tree-view can be made visible and hidden like in Windows Explorer. The
-tree-style is only available when subfolders are included to the comparison. 
-</p>
-
-<h4>Include items in unique folders in compare results</h4>
-<p>
-If subfolders are included to the compare all unique subfolders and files in
-them are now visible in compare results. In earlier versions WinMerge only shows
-the top-level unique folder. This means one can copy subfolders and files
-inside unique folders to another side and proper folder structure is created in
-the target side.
-</p>
-
-<h4>General compare result statuses</h4>
-<p>
-When WinMerge cannot determine if file is text- or binary-file it now shows the
-compare status with general statuses. Earlier WinMerge versions showed such
-files as text files. This is important since e.g. file size/time -based compare
-methods cannot know if file is binary- or text-file.
-</p>
-
-<h4>More accurate location pane</h4>
-<p>
-Location pane now shows missing lines more accurately. Also the visible area
-indicator positioning matches better reality.
-</p>
-
-<h4>Re-load files changed in disk behind WinMerge</h4>
-<p>
-WinMerge now finally can re-load files that have been changed in the disk after
-WinMerge loaded them. This is remarkable usability improvement since earlier
-versions required user to close current files and open them again.
-</p>
+<h4>Installer</h4>
+<ul>
+  <li>Drop Windows 9x/ME/NT4 support and use Microsoft runtime libraries installer</li>
+  <li>Remove Uninstall shortcut from start menu folder</li>
+  <li>Don't install quick launch icon for Windows 7</li>
+</ul>
 
 <h4>Other changes</h4>
 <ul>
-  <li>Refresh compare results after changing line filter</li>
-  <li>Add option to show Open-dialog on WinMerge startup</li>
-  <li>PCRE updated to version 7.8</li>
-  <li>Installer can add WinMerge to system path</li>
-  <li>New options page for Shell Integration options</li>
-  <li>Better Unicode file detection for full contents compare</li>
+  <li>Add missing keywords to Pascal highlighter</li>
+  <li>Recognize .ascx files as ASP files</li>
+  <li>Fix help locations</li>
+  <li>Show only "Copy to other side" item in file compare context menu</li>
+  <li>Expand/collapse folders from keyboard</li>
+  <li>Improve detecting XML files in file compare</li>
+  <li>Initialize folder selection dialog to currently selected folder in options dialog</li>
 </ul>
 
-<h4>Important bug fixes</h4>
+<h4>Bugs fixed</h4>
 <ul>
-  <li>Quick compare didn't ignore EOL differences</li>
-  <li>Remove invalid characters from command line</li>
-  <li>Crash when compared file disappeared during file compare</li>
-  <li>Don't show file name extension for folders</li>
+  <li>WinMerge was vulnerable to DLL hijacking as described in Microsoft Security
+      Advisory (<a href="http://www.microsoft.com/technet/security/advisory/2269637.mspx">2269637</a>)</li>
+  <li>Location pane focus enabled "Save"</li>
+  <li>"Copy and advance" toolbar icons not automatically enabled</li>
+</ul>
+
+<h4>New Translations</h4>
+<ul>
+  <li>Persian</li>
+  <li>Serbian</li>
+</ul>
+
+<h4>Translation updates</h4>
+<ul>
+  <li>Bulgarian</li>
+  <li>Chinese</li>
+  <li>Dutch</li>
+  <li>French</li>
+  <li>Slovenian</li>
+  <li>Spanish</li>
+  <li>Turkish</li>
+  <li>Ukrainian</li>
 </ul>
 
 <h3><a name="issues">Known Issues</a></h3>
@@ -237,7 +215,7 @@ versions required user to close current files and open them again.
         process doesn't stop itself</li>
       <li><a href="http://winmerge.org/bug/1602313">#1602313</a> WinMerge stays
         in tasklist after closing</li>
-    </ul></p>
+    </ul>
     <p><i>Workaround</i>: Disable the Supercopier when using WinMerge.</p>
   </li>
   <li>

@@ -93,6 +93,10 @@
     <para>これまでの寄贈により、WinMergeは以下の言語のローカライズが可能となっています。</para>
     <itemizedlist>
       <listitem>
+        <simpara>バスク語</simpara>
+      </listitem>
+
+      <listitem>
         <simpara>ブルガリア語</simpara>
       </listitem>
 
@@ -157,6 +161,10 @@
       </listitem>
 
       <listitem>
+        <simpara>ペルシア語</simpara>
+      </listitem>
+	  
+      <listitem>
         <simpara>ポーランド語</simpara>
       </listitem>
 
@@ -176,6 +184,10 @@
         <simpara>ロシア語 </simpara>
       </listitem>
 
+      <listitem>
+        <simpara>セルビア語</simpara>
+      </listitem>
+	  
       <listitem>
         <simpara>スロバキア語</simpara>
       </listitem>
@@ -207,7 +219,7 @@
         <primary>>翻訳ミスの報</primary>
       </indexterm></title>
 
-    <para>あながたが翻訳ミスを見つけた場合は、バグとして<ulink url=" http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216 ">バグリスト</ulink>に投稿してください。
+    <para>あながたが翻訳ミスを見つけた場合は、バグとして<ulink url="http://sourceforge.net/p/winmerge/bugs/">バグリスト</ulink>に投稿してください。
           また、翻訳された文章の訂正版を提供してくだされば幸いです。</para>
   </section>
 
@@ -216,8 +228,8 @@
         <primary>翻訳の提出</primary>
       </indexterm></title>
 
-    <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url=" http://winmerge.org/translations/ ">翻訳</ulink>
-   ドキュメントを読み、方法を学んでください。すべての翻訳が完全にできていないため、ぜひご協力をお願いいたします。翻訳する（または翻訳を改善する）に
+    <para>新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink url=" http://winmerge.org/translations/ ">翻訳ドキュメント</ulink>
+   を読み、方法を学んでください。ほとんどの翻訳が完全にできていないため、ぜひご協力をお願いいたします。翻訳する（または翻訳を改善する）に
     あたって、コンパイルツールや、WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれば、
    <ulink url=" http://forums.winmerge.org/ ">WinMergeフォーラム</ulink>より、私たちに支援を求めてください。</para>
   </section>
