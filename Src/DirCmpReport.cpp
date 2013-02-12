@@ -39,9 +39,12 @@ static String GetCurrentTimeString()
  * @param [in] elName String to format as beginning tag.
  * @return String formatted as beginning tag.
  */
-static String BeginEl(const String& elName)
+static String BeginEl(const String& elName, const String& attr = _T(""))
 {
-	return string_format(_T("<%s>"), elName.c_str());
+	if (attr.empty())
+		return string_format(_T("<%s>"), elName.c_str());
+	else
+		return string_format(_T("<%s %s>"), elName.c_str(), attr.c_str());
 }
 
 /**
@@ -398,8 +401,17 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 
 		String rowEl = _T("tr");
 		if (xml)
+		{
 			rowEl = _T("filediff");
-		WriteString(BeginEl(rowEl));
+			WriteString(BeginEl(rowEl));
+		}
+		else
+		{
+			COLORREF color = m_pList->GetBackColor(currRow);
+			String attr = string_format(_T("style='background-color: #%02x%02x%02x'"),
+				GetRValue(color), GetGValue(color), GetBValue(color));
+			WriteString(BeginEl(rowEl, attr));
+		}
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
 			String colEl = _T("td");
