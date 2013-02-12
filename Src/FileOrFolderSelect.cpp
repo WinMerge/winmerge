@@ -82,7 +82,7 @@ BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/,
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	TCHAR sSelectedFile[MAX_PATH];
+	TCHAR sSelectedFile[MAX_PATH] = {0};
 
 	// check if specified path is a file
 	if (initialPath && initialPath[0])
