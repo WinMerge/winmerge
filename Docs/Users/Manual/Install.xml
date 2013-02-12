@@ -10,7 +10,7 @@
   <note>
     <para>Currently the WinMerge installer works natively only for 32-bit
     Windows. There is no separate version of WinMerge for 64-bit Windows
-    (WinXP/2003/Vista). 64-bit Windows versions can run the installer and
+    (WinXP/2003/Vista/2008/7/8/2012). 64-bit Windows versions can run the installer and
     WinMerge as 32-bit applications. For the shell Integration, the installer
     includes the 64-bit version of the extension.</para>
   </note>
@@ -22,12 +22,30 @@
     page: <ulink url="http://winmerge.org/">WinMerge.org</ulink>. Note that
     delays can occur in updating home pages for the latest releases, but the
     project status page at <ulink
-    url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
+    url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
     shows the latest files. There is also a mailing list for release
     announcements. Stable releases are also available in several file download
     sites.</para>
   </section>
 
+  <section>
+	<title>Compatibility</title>
+	
+	<itemizedlist>
+	  <listitem>
+	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge version 2.14.0</ulink> 
+		supports Windows XP/2003/Vista/2008/7/8/2012 and later. It runs 32 bit on both 32 bit and 64 bit Windows.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink url="http://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge version 2.12.4</ulink> 
+		was the last version to support Windows 9x, NT, 2000, and ME.</para>
+	  </listitem>
+	  <listitem>
+	    <para>WinMerge is not supported on Windows RT.</para>
+	  </listitem>
+	</itemizedlist>
+  </section>
+  
   <section id="Installing_usinginstaller">
     <title>Using the installer (recommended)</title>
 
@@ -264,19 +282,19 @@
     <title>Installing from an archive<indexterm>
         <primary>archive, installing WinMerge from</primary>
       </indexterm><indexterm>
-        <primary>mfc71u.dll runtime file</primary>
+        <primary>mfc90u.dll runtime file</primary>
       </indexterm><indexterm>
-        <primary>msvcr71.dll runtime file</primary>
+        <primary>msvcr90.dll runtime file</primary>
       </indexterm><indexterm>
-        <primary>msvcp71.dll runtime file</primary>
+        <primary>msvcp90.dll runtime file</primary>
       </indexterm></title>
 
     <para>WinMerge is pretty much independent of other system components. It is
     not tightly integrated with Windows, and does not use many DLLs.</para>
 
     <para><filename>WinMergeU.exe</filename> itself depends on
-    <filename>MFC71U.dll</filename> , <filename>MSVCR71.dll and
-    MSVCP71.dll</filename>, in addition to some system DLLs. So if these DLLs
+    <filename>MFC90U.dll</filename> , <filename>MSVCR90.dll and
+    MSVCP90.dll</filename>, in addition to some system DLLs. So if these DLLs 
     are already installed on a system, only <filename>WinMergeU.exe</filename>
     is needed to run WinMerge. The DLL files listed above are also available as
     a downloadable runtime package.</para>

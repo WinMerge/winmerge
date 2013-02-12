@@ -360,6 +360,7 @@ UkrainianLanguage=Ukraynaca menü ve pencereler
 ;Tasks
 ExplorerContextMenu=&Windows gezgini sað týk menü bütünleþmesini etkinleþtir
 IntegrateTortoiseCVS=&TortoiseCVS ile bütünleþ
+IntegrateTortoiseGIT=To&rtoiseGIT ile bütünleþ
 IntegrateTortoiseSVN=T&ortoiseSVN ile bütünleþ
 IntegrateClearCase=Rational &ClearCase ile bütünleþ
 AddToPath=Win&Merge klasörünü sistem yoluna ekle

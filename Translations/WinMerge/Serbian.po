@@ -5,7 +5,7 @@
 # * Ozzii <ivanstar61 at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id$
+# $Id: Serbian.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

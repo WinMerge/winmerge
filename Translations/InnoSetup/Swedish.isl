@@ -361,6 +361,7 @@ UkrainianLanguage=Ukrainska menyer och dialoger
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
+IntegrateTortoiseGIT=Integrera med To&rtoiseGIT
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
 IntegrateClearCase=Integrera med Rational &ClearCase
 AddToPath=&Lägg till WinMerge-katalogen till din systemsökväg

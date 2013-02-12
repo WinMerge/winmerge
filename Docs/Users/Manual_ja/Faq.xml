@@ -129,11 +129,10 @@
         </question>
 
         <answer>
-          <para>
-            現在はありません。
-            誰かクロスプラットフォームサポート(<ulink url="http://www.wxwidgets.org/">wxWidgets</ulink>を使用)を手伝いたい人がいるなら、
-            私たちは、もちろん、それに興味があります。
-          </para>
+          <para>Cross-platform support is being considered for WinMerge 3.x, 
+          which is being discussed in our <ulink
+          url="http://forums.winmerge.org/viewforum.php?f=9">WinMerge 3</ulink> forum.
+          Please join in, if you are interested.</para>
         </answer>
       </qandaentry>
 
@@ -288,9 +287,9 @@
       <qandaentry>
         <question>
           <para>WinMergeがDLL
-            (<filename>mfc71.dll</filename>, <filename>mfc71u.dll</filename>,
-            <filename>msvcr71.dll</filename>, 
-            <filename>msvcp71.dll</filename>)がないって言って動かないよ</para>
+            (<filename>mfc90.dll</filename>, <filename>mfc90u.dll</filename>,
+            <filename>msvcr90.dll</filename>, 
+            <filename>msvcp90.dll</filename>)がないって言って動かないよ</para>
         </question>
 
         <answer>
@@ -489,11 +488,11 @@
 
           <itemizedlist>
             <listitem>
-              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /ub %1 %2</screen>
+              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /e /u %1 %2</screen>
             </listitem>
 
             <listitem>
-              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /ub %1 %2</screen>
+              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /e /u %1 %2</screen>
             </listitem>
           </itemizedlist>
 

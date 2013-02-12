@@ -7,7 +7,7 @@
 # * Micha³ Trzebiatowski <hippie_1968@hotmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Polish.po 7124 2010-02-19 19:25:08Z gerundt $
+# $Id: Polish.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

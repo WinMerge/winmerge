@@ -626,7 +626,6 @@ Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
  * @brief Access archiver dll functions through proxy.
  */
 
-
 #define CLS_ARC_ID_ITEM(cls) ((cls).Data4[5])
 
 Format7zDLL::Proxy::Handle Format7zDLL::Proxy::handle =

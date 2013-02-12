@@ -354,6 +354,7 @@ UkrainianLanguage=Ukrainian menus and dialogs
 ;Tasks
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
 IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
+IntegrateTortoiseGIT=Integra amb el To&rtoiseGIT
 IntegrateTortoiseSVN=Integra amb el T&ortoiseSVN
 IntegrateClearCase=Integra amb el Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path

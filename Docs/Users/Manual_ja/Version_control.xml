@@ -27,7 +27,7 @@
         <para>バッチファイルは、WinMergeを起動することができ、
           パラメータを対話的に指定することができます。</para>
 
-        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /ub /dl %3 /dr %5 %6 %7</literallayout>
+        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
 
       <listitem>
@@ -265,6 +265,73 @@
         </orderedlist>
       </example>
 
+      <example>
+        <title>Visual Studio Team Foundation Server integration</title>
+
+        <para>You can manually set up WinMerge as the default tool to use for
+		in Visual Studio to show differences in Team Foundation Server (TFS)
+        Other version control systems can be set up in very similar ways.</para>
+
+        <orderedlist>
+          <listitem>
+            <para>In Visual Studio, navigate to the 
+			  <menuchoice>
+                <guimenu>Tools</guimenu>
+
+                <guimenuitem>Options...</guimenuitem>
+              </menuchoice> menu.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>Under <menuchoice>
+                <guimenu>Source Control</guimenu>
+              </menuchoice>, find the<menuchoice>
+                <guimenu> Visual Studio Team Foundation Server</guimenu>
+              </menuchoice> options.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>Click the <guimenuitem>Configure User Tools...</guimenuitem> button.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click the <guimenuitem>Add...</guimenuitem> button.</para>
+          </listitem>
+		  
+		  <listitem>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="screenshots/tfs_configure.png" format="PNG" />
+              </imageobject>
+            </mediaobject>
+			<para>Type in the following options in the Configure Tool.</para>
+			<itemizedlist>
+              <listitem>
+                <para>Extension: .*</para>
+              </listitem>
+
+              <listitem>
+                <para>Operation: Compare</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Command: {Path to WinMerge}\WinMergeU.exe</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>Arguments: /e /u /dl %6 /dr %7 %1 %2</para>
+              </listitem>
+            </itemizedlist>
+			<para> Where {Path to WinMerge} is the path were WinMerge is installed.
+			In the above screenshot it is installed to the default installation path 
+			C:\Program Files (x86)\WinMerge\WinMergeU.exe</para>
+			<para> The arguments are described under <xref linkend="Command_line" />.</para>
+          </listitem>
+        </orderedlist>
+		
+		<para>Every time you tell TFS to compare two files, it will now use WinMerge.</para>
+      </example>
+	  
       <section id="VersionControl_cc">
         <title>ClearCaseとの統合について</title>
 

@@ -370,6 +370,7 @@ UkrainianLanguage=Ukrainiera menuak eta elkarrizketak
 ;Tasks
 ExplorerContextMenu=&Gaitu Explorer hitzinguru menu baterapena
 IntegrateTortoiseCVS=Bateratu &TortoiseCVS-rekin
+IntegrateTortoiseGIT=Bateratu To&rtoiseGIT-rekin
 IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
 IntegrateClearCase=Bateratu Rational &ClearCase-rekin
 AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura

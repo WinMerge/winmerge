@@ -667,12 +667,17 @@ Pekka Himanen</screen>
       </example>
       <example>
         <title>CVS の Id 行にマッチする行フィルタルール</title>
+
         <para>CVS の Id 行は、次の様なものです:</para>
-        <screen>// $Id: Filters.xml 6815 2009-06-04 11:57:09Z denisbradford $</screen>
+
+        <screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen>
+
         <para>
           そしてこれは、次のルールでフィルタできます:</para>
+
         <screen>^// \WId: .*\$</screen>
       </example>
+
       <example>
         <title>poファイルの行コメントフィルタ</title>
         <para>poファイルの行コメントは、次の様なものです:</para>
@@ -1102,22 +1107,12 @@ Pekka Himanen</screen>
           </simpara>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>Good HOWTO for regexps:</term>
-        <listitem>
-          <simpara>
-            <ulink url="http://www.amk.ca/python/howto/regex/">
-            http://www.amk.ca/python/howto/regex/</ulink>
-          </simpara>
-        </listitem>
-      </varlistentry>
+
       <varlistentry>
         <term>Tutorial:</term>
         <listitem>
-          <simpara>
-            <ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">
-            http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink>
-          </simpara>
+          <simpara><ulink
+          url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
         </listitem>
       </varlistentry>
       <varlistentry>

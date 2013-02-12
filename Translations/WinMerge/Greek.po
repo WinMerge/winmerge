@@ -5,7 +5,7 @@
 # * Polyvios J. Simopoulos <polyvios.j.simopoulos at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Greek.po 7020 2009-10-21 18:39:19Z kimmov $
+# $Id: Greek.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

@@ -5,7 +5,7 @@
 # * Hasan Osmanagiæ <hasan.osmanagic at public.carnet.hr>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Croatian.po 6994 2009-09-21 08:25:38Z gerundt $
+# $Id: Croatian.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

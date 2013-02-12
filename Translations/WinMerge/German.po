@@ -9,7 +9,7 @@
 # * Jörg Schneider <tonda at users.sourceforge.net>
 #
 # ID line follows -- this is updated by SVN
-# $Id: German.po 7044 2009-12-08 19:54:34Z gerundt $
+# $Id: German.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

@@ -119,6 +119,10 @@
 
     <itemizedlist>
       <listitem>
+        <simpara>Basque</simpara>
+      </listitem>
+
+      <listitem>
         <simpara>Bulgarian</simpara>
       </listitem>
 
@@ -183,6 +187,10 @@
       </listitem>
 
       <listitem>
+        <simpara>Persian</simpara>
+      </listitem>
+	  
+      <listitem>
         <simpara>Polish</simpara>
       </listitem>
 
@@ -202,6 +210,10 @@
         <simpara>Russian</simpara>
       </listitem>
 
+      <listitem>
+        <simpara>Serbian</simpara>
+      </listitem>
+	  
       <listitem>
         <simpara>Slovak</simpara>
       </listitem>
@@ -235,7 +247,7 @@
 
     <para>Please submit any errors you find in translations as bugs to our
     <ulink
-    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
+    url="http://sourceforge.net/p/winmerge/bugs/">bug-list</ulink>.
     It would be great if you also provide a corrected version of the translated
     text.</para>
   </section>
@@ -245,12 +257,12 @@
         <primary>submitting translations</primary>
       </indexterm></title>
 
-    <para>If you would like to add your language to the list, read the <ulink
-    url="http://winmerge.org/translations/">Translations</ulink> documentation
-    in the WinMerge Web site to learn how. All the translations are incomplete,
+    <para>If you would like to add your language to the list, then please read the <ulink
+    url="http://winmerge.org/translations/">translation documentation</ulink>
+    on the WinMerge Web site to learn how. Most of the translations are incomplete,
     so your help improving them would be appreciated. Translating (or improving
     translation) does not require you to have all the compile tools or to know
-    about WinMerge internals, just to follow the instructions in the preceding
+    about WinMerge internals. You just need to follow the instructions in the preceding
     link. And if you have problems, ask for help from us in one of the <ulink
     url="http://forums.winmerge.org/">WinMerge forums</ulink>.</para>
   </section>

@@ -5,7 +5,7 @@
 # * Cristian Arghiroiu <cristi.arghiroiu at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Romanian.po 6851 2009-06-14 13:59:11Z gerundt $
+# $Id: Romanian.po 7556 2011-08-19 15:07:03Z sdottaka $
 #
 msgid ""
 msgstr ""

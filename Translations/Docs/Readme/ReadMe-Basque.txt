@@ -1,6 +1,6 @@
 WINMERGE
 
-WinMerge Windowserako Iturri Irekiko alderaketa eta batuketa tresna bat da. 
+WinMerge Windowserako Iturburu Irekiko alderaketa eta batuketa tresna bat da. 
 WinMergek bi agiritegi eta bi agiri alderatu ditzake, ezberdintasunak  ulertzeko 
 eta kudeatzeko erraza den ikus idazki heuskarrian aurkeztuz.
 WinMergek kanpoko ezberdintze/batze tresna bezala erabili daiteke edo aplikazio aske bezala.
@@ -28,7 +28,7 @@ http://manual.winmerge.org/.
 
 Agiri Sostengua
 ===============
-WinMergek 7-Zip (http://www.7-zip.org) Iturri Irekiko agiri tresna erabiltzen du
+WinMergek 7-Zip (http://www.7-zip.org) Iturburu Irekiko agiri tresna erabiltzen du
 agiri sostengua agiritegiratzeko. 7-Zip aplikazioa ezartzea gomendatzen dugu
 jeitsiz eta abiaraziz 7-Zip plugin ezartzailea hemendik:
 http://winmerge.org/downloads/.

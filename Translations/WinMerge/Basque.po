@@ -2,18 +2,18 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * Xabier Aramendi <azpidatziak@gmail.com>
+# * Xabier Aramendi <azpidatziak at gmail.com>
 #
 # ID line follows -- this is updated by SVN
-# $Id: Basque.po 7571 2012-11-05 16:24:21Z sdottaka $
+# $Id: Basque.po 7598 2013-02-03 20:17:44Z christianlist $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-02-10 22:14+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Xabier Aramendi (Azpidatziak) <azpidatziak@gmail.com>\n"
+"PO-Revision-Date: 2013-02-03 22:14+0000\n"
+"Last-Translator: Xabier Aramendi (Azpidatziak) <azpidatziak at gmail.com>\n"
 "Language-Team: (EUS_Xabier Aramendi) <azpidatziak@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1252\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SourceCharset: CP1252\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Country: Basque Country (Navarre)\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ../../Src/\n"
 "X-Poedit-Bookmarks: 0,439,-1,-1,-1,-1,-1,-1,-1,-1\n"
 "X-Generator: Poedit 1.5.3\n"
 
@@ -301,26 +301,26 @@ msgstr "&Zerrenda"
 #: Merge.rc:153
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr ""
+msgstr "&Eskuzko Aurrezberd"
 
 #: Merge.rc:154
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr ""
+msgstr "&Berezgaitasunezko Aurrezberd"
 
 #: Merge.rc:156
 #: Merge.rc:282
 #: Merge.rc:504
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "&Eskuzko Despaketatzea"
+msgstr "E&skuzko Despaketatzea"
 
 #: Merge.rc:157
 #: Merge.rc:283
 #: Merge.rc:505
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "&Berezgaitasunezko Despaketatzea"
+msgstr "Be&rezgaitasunezko Despaketatzea"
 
 #: Merge.rc:159
 #: Merge.rc:285
@@ -363,7 +363,7 @@ msgstr "&Birrezarri Aukerak"
 #: Merge.rc:526
 #, c-format
 msgid "&Window"
-msgstr "&Leihoa"
+msgstr "Lei&hoa"
 
 #: Merge.rc:170
 #: Merge.rc:296
@@ -413,7 +413,7 @@ msgstr "&Urjauzia"
 #: Merge.rc:2094
 #, c-format
 msgid "&Help"
-msgstr "La&guntza"
+msgstr "&Laguntza"
 
 #: Merge.rc:181
 #: Merge.rc:307
@@ -434,14 +434,14 @@ msgstr "Argitalpen &Oharrak"
 #: Merge.rc:542
 #, c-format
 msgid "&Translations"
-msgstr "It&zulpenak"
+msgstr "&Itzulpenak"
 
 #: Merge.rc:185
 #: Merge.rc:311
 #: Merge.rc:543
 #, c-format
 msgid "C&onfiguration"
-msgstr "I&txurapena"
+msgstr "It&xurapena"
 
 #: Merge.rc:186
 #: Merge.rc:312
@@ -1071,7 +1071,7 @@ msgstr ""
 #: Merge.rc:563
 #, c-format
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Alderatu &Honela"
 
 #: Merge.rc:565
 #, c-format
@@ -1081,7 +1081,7 @@ msgstr "&XML"
 #: Merge.rc:566
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Binarioa"
 
 #: Merge.rc:571
 #, c-format
@@ -2909,7 +2909,7 @@ msgstr "Agiritegia"
 #: Merge.rc:1820
 #, c-format
 msgid "&Compare method:"
-msgstr ""
+msgstr "Alderaketa &metodoa:"
 
 #: Merge.rc:1822
 #, c-format
@@ -2934,7 +2934,7 @@ msgstr ""
 #: Merge.rc:1830
 #, c-format
 msgid "&Quick compare limit (MB):"
-msgstr ""
+msgstr "&Alderaketa azkar muga (MB):"
 
 #: Merge.rc:1843
 #, c-format
@@ -3528,7 +3528,7 @@ msgstr "Ez egin ga&ldera hau berriro."
 #: Merge.rc:2107
 #, c-format
 msgid "Syntax"
-msgstr ""
+msgstr "Joskera"
 
 #: Merge.rc:2109
 #, c-format
