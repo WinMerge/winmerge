@@ -103,6 +103,7 @@ public:
 	HMENU NewDirViewMenu();
 	HMENU NewMergeViewMenu();
 	HMENU NewHexMergeViewMenu();
+	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
 	HMENU GetScriptsSubmenu(HMENU mainMenu);
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
@@ -228,6 +229,7 @@ protected:
 		MENU_MERGEVIEW,
 		MENU_DIRVIEW,
 		MENU_HEXMERGEVIEW,
+		MENU_OPENVIEW,
 		MENU_COUNT, // Add new items before this item
 	};
 	/**

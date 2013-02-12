@@ -454,8 +454,8 @@ BOOL CMergeApp::InitInstance()
 	m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMergeViewMenu();
 	m_pHexMergeTemplate->m_hMenuShared = pMainFrame->NewHexMergeViewMenu();
 	m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
+	m_pOpenTemplate->m_hMenuShared = pMainFrame->NewOpenViewMenu();
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
-	m_pOpenTemplate->m_hMenuShared = pMainFrame->m_hMenuDefault;
 
 	// Set the menu
 	// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach

@@ -614,6 +614,14 @@ HMENU CMainFrame::NewHexMergeViewMenu()
 }
 
 /**
+ * @brief Create new File compare (COpenView) menu.
+ */
+HMENU CMainFrame::NewOpenViewMenu()
+{
+	return NewMenu( MENU_OPENVIEW, IDR_MAINFRAME);
+}
+
+/**
  * @brief This handler ensures that the popup menu items are drawn correctly.
  */
 void CMainFrame::OnMeasureItem(int nIDCtl,
