@@ -50,8 +50,6 @@ String env_GetTempPath()
 		if (strTempPath.empty())
 			return strTempPath;
 
-		strTempPath = paths_ConcatPath(strTempPath, env_GetPerInstanceString(_T("WM_")));
-
 		paths_CreateIfNeeded(strTempPath);
 	}
 	return strTempPath;
