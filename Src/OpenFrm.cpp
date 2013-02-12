@@ -149,7 +149,7 @@ void COpenFrame::GetMessageString(UINT nID, CString& rMessage) const
 
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
-	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE))
+	if (!GetMDIFrame()->MDIGetActive() && theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), TRUE))
 	{
 		nCmdShow = SW_SHOWMAXIMIZED;
 	}
