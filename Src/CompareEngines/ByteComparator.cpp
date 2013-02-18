@@ -172,6 +172,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	TextScan(stats0, ptr0, end0, eof0, m_cr0, offset0);
 	TextScan(stats1, ptr1, end1, eof1, m_cr1, offset1);
 
+	const char *orig0 = ptr0;
+	const char *orig1 = ptr1;
+
 	// cycle through buffer data performing actual comparison
 	while (true)
 	{
@@ -390,7 +393,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			else
 			{
 				// we are at the end on one side?
-				if (!eof0 && !eof1)
+				if ((!eof0 || !eof1) && (orig0 != end0 && orig1 != end1))
 				{
 					goto need_more;
 				}
