@@ -412,7 +412,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	if (unemptyLineCount < 2)
 		return 0;
 
-	pDoc->GetWordDiffArray(nDiff, &worddiffs);
+	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
 	int nWordDiffs = worddiffs.size();
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);

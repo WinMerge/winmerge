@@ -320,7 +320,11 @@ stringdiffs::BuildWordDiffList()
 	BuildWordsArray(m_str1, m_words1);
 	BuildWordsArray(m_str2, m_words2);
 
+#ifdef _WIN64
+	if (m_words1.size() > 20480 || m_words2.size() > 20480)
+#else
 	if (m_words1.size() > 2048 || m_words2.size() > 2048)
+#endif
 	{
 		int s1 = m_words1[0].start;
 		int e1 = m_words1[m_words1.size() - 1].end;

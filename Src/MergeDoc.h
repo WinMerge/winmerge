@@ -250,7 +250,7 @@ public:
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView *pView);
-	void GetWordDiffArray(int nDiff, std::vector<WordDiff> *pWordDiffs);
+	void GetWordDiffArray(int nLineIndex, std::vector<WordDiff> *pWordDiffs);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
 	void Computelinediff(CMergeEditView *pView, CRect rc[]);

@@ -84,9 +84,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
 	pView->GetSelection(ptStart, ptEnd);
 
 	vector<WordDiff> worddiffs;
-	int nDiff = m_diffList.LineToDiff(ptStart.y);
-
-	GetWordDiffArray(nDiff, &worddiffs);
+	GetWordDiffArray(ptStart.y, &worddiffs);
 
 	if (worddiffs.empty())
 		return;
@@ -139,10 +137,13 @@ void CMergeDoc::ClearWordDiffCache(int nDiff/* = -1 */)
  * This is used by algorithm for line diff coloring
  * (Line diff coloring is distinct from the selection highlight code)
  */
-void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
+void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 {
 	int file;
 	DIFFRANGE cd;
+	int nDiff = m_diffList.LineToDiff(nLineIndex);
+	if (nDiff == -1)
+		return;
 	std::map<int, std::vector<WordDiff> >::iterator itmap = m_cacheWordDiffs.find(nDiff);
 	if (itmap != m_cacheWordDiffs.end())
 	{
@@ -151,19 +152,43 @@ void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 		return;
 	}
 
-	if (nDiff != -1)
-		m_diffList.GetDiff(nDiff, cd);
+	m_diffList.GetDiff(nDiff, cd);
 
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
 	int *nOffsets[3];
+	const int LineLimit = 20;
+	bool diffPerLine = false;
+	
 	for (file = 0; file < m_nBuffers; file++)
 	{
-		nOffsets[file] = new int[cd.dend[file] - cd.dbegin[file] + 1];
+		if (cd.dend[file] - cd.dbegin[file] > LineLimit)
+		{
+			diffPerLine = true;
+			break;
+		}
+	}
+
+	int nLineBegins[3], nLineEnds[3];
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		if (!diffPerLine)
+		{
+			nLineBegins[file] = cd.dbegin[file];
+			nLineEnds[file] = cd.dend[file];
+		}
+		else
+		{
+			nLineBegins[file] = nLineEnds[file] = nLineIndex;
+		}
+	}
+
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		int nLineBegin = nLineBegins[file], nLineEnd = nLineEnds[file];
+		nOffsets[file] = new int[nLineEnd - nLineBegin + 1];
 		CString strText;
-		int nLineBegin = cd.dbegin[file];
-		int nLineEnd = cd.dend[file];
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
 			m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
 		strText += m_ptBuf[file]->GetLineEol(nLineEnd);
@@ -184,43 +209,46 @@ void CMergeDoc::GetWordDiffArray(int nDiff, vector<WordDiff> *pWordDiffs)
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	sd_ComputeWordDiffs(m_nBuffers, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
-	pWordDiffs->resize(worddiffs.size());
-
 	int i;
 	std::vector<wdiff>::iterator it;
 	for (i = 0, it = worddiffs.begin(); it != worddiffs.end(); i++, it++)
 	{
+		WordDiff wd;
 		for (file = 0; file < m_nBuffers; file++)
 		{
 			int nLine;
-			int nLineBegin = cd.dbegin[file];
-			int nLineEnd = cd.dend[file];
-			int begin, end;
+			int nLineBegin = nLineBegins[file], nLineEnd = nLineEnds[file];
 			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			{
 				if (it->begin[file] == nOffsets[file][nLine-nLineBegin] || it->begin[file] < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
-			(*pWordDiffs)[i].beginline[file] = nLine;
-			(*pWordDiffs)[i].begin[file] = begin = it->begin[file] - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].begin[file])
-				(*pWordDiffs)[i].begin[file] = m_ptBuf[file]->GetLineLength(nLine);
-			for (nLine = nLineBegin; nLine < nLineEnd; nLine++)
+			wd.beginline[file] = nLine;
+			wd.begin[file] = it->begin[file] - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < wd.begin[file])
+				wd.begin[file] = m_ptBuf[file]->GetLineLength(nLine);
+
+			for (; nLine < nLineEnd; nLine++)
 			{
 				if (it->end[file] + 1 == nOffsets[file][nLine-nLineBegin] || it->end[file] + 1 < nOffsets[file][nLine-nLineBegin+1])
 					break;
 			}
-			(*pWordDiffs)[i].endline[file] = nLine;
-			(*pWordDiffs)[i].end[file] = end = it->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < (*pWordDiffs)[i].end[file])
-				(*pWordDiffs)[i].end[file] = m_ptBuf[file]->GetLineLength(nLine);
+			wd.endline[file] = nLine;
+			wd.end[file] = it->end[file]  + 1 - nOffsets[file][nLine-nLineBegin];
+			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[file])
+				wd.end[file] = m_ptBuf[file]->GetLineLength(nLine);
 		}
+
+		pWordDiffs->push_back(wd);
 	}
 
 	delete nOffsets[0], nOffsets[1], nOffsets[2];
-
-	m_cacheWordDiffs[nDiff].resize(pWordDiffs->size());
-	std::copy(pWordDiffs->begin(), pWordDiffs->end(), m_cacheWordDiffs[nDiff].begin());
+	
+	if (!diffPerLine)
+	{
+		m_cacheWordDiffs[nDiff].resize(pWordDiffs->size());
+		std::copy(pWordDiffs->begin(), pWordDiffs->end(), m_cacheWordDiffs[nDiff].begin());
+	}
 
 	return;
 }
