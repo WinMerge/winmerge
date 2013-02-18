@@ -61,12 +61,12 @@ AppName=WinMerge
 AppVersion={#AppVersion}
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://WinMerge.org/
-AppSupportURL=http://WinMerge.org/
-AppUpdatesURL=http://WinMerge.org/
+AppPublisherURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+AppSupportURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
+AppUpdatesURL=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
 
 ; Installer executable's version resource info
-VersionInfoCompany=http://winmerge.org
+VersionInfoCompany=http://www.geocities.co.jp/SiliconValley-SanJose/8165/
 VersionInfoDescription=WinMerge Installer
 VersionInfoVersion={#AppVersion}
 
@@ -513,7 +513,7 @@ Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://winmerge.org/
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: http://www.geocities.co.jp/SiliconValley-SanJose/8165/
 
 ;Link to translated ReadMe in Start Menu
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Basque.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Basque
