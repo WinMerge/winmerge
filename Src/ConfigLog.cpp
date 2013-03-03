@@ -721,6 +721,13 @@ String CConfigLog::GetWindowsVer()
 			else
 				sVersion = _T("Microsoft Windows Server 2008 R2 ");
 		}
+		else if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 2 )
+		{
+			if (osvi.wProductType == VER_NT_WORKSTATION)
+				sVersion = _T("Microsoft Windows 8 ");
+			else
+				sVersion = _T("Microsoft Windows Server 2012 ");
+		}
 		else
 			sVersion = string_format(_T("[? WindowsNT %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
