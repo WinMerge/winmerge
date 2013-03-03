@@ -581,8 +581,8 @@ UIntPtr CDirDoc::FindItemFromPaths(const String& pathLeft, const String& pathRig
 	if (string_compare_nocase(file1, file2) != 0)
 		return NULL;
 
-	String path1(pathLeft, pathLeft.length() - file1.length()); // include trailing backslash
-	String path2(pathRight, pathRight.length() - file2.length()); // include trailing backslash
+	String path1(pathLeft, 0, pathLeft.length() - file1.length()); // include trailing backslash
+	String path2(pathRight, 0, pathRight.length() - file2.length()); // include trailing backslash
 
 	// Path can contain (because of difftools?) '/' and '\'
 	// so for comparing purposes, convert whole path to use '\\'
