@@ -43,6 +43,9 @@ void FileTextEncoding::SetCodepage(int codepage)
 	case CP_UCS2BE:
 		m_unicoding = ucr::UCS2BE;
 		break;
+	default:
+		m_unicoding = ucr::NONE;
+		break;
 	}
 }
 
