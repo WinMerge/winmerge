@@ -173,8 +173,7 @@ static bool ConfirmDialog(const String &caption, const String &question,
 	dlg.m_fromPath = strSrc.c_str();
 	dlg.m_toPath = strDest.c_str();
 
-	int rtn = dlg.DoModal();
-	return (rtn==IDYES);
+	return (dlg.DoModal()==IDYES);
 }
 
 /**
@@ -1605,8 +1604,7 @@ void CDirView::DoFileEncodingDialog()
 	dlg.EnableSaveCodepage(false); // disallow setting a separate codepage for saving
 
 	// Invoke dialog
-	int rtn = dlg.DoModal();
-	if (rtn != IDOK)
+	if (dlg.DoModal() != IDOK)
 		return;
 
 	int nCodepage = dlg.GetLoadCodepage();
@@ -1746,30 +1744,45 @@ bool CDirView::DoItemRename(const String& szNewItemName)
 
 /**
  * @brief Copy selected item left side to clipboard.
+ * @param[in] flags 0:left, 1:right, 2:both
  */
-void CDirView::DoCopyItemsToClipboard(int nIndex)
+void CDirView::DoCopyItemsToClipboard(int flags)
 {
-	CString strPaths;
+	CString strPaths, strPathsSepSpc;
 	int sel = -1;
 
 	strPaths.GetBufferSetLength(GetSelectedCount() * MAX_PATH);
 	strPaths = _T("");
+	strPathsSepSpc.GetBufferSetLength(GetSelectedCount() * MAX_PATH);
+	strPathsSepSpc = _T("");
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (di.diffcode.isExists(nIndex))
+		String path;
+		for (int nIndex = 0; nIndex < 3; nIndex++)
 		{
-			strPaths += di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex)).c_str();
-			strPaths += '\\';
-			// If item is a folder then subfolder (relative to base folder)
-			// is in filename member.
-			strPaths += di.diffFileInfo[nIndex].filename.c_str();
-			strPaths += '\0';
+			if (di.diffcode.isExists(nIndex) && ((flags >> nIndex) & 0x1))
+			{
+				path = di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex));
+				path += '\\';
+				// If item is a folder then subfolder (relative to base folder)
+				// is in filename member.
+				path += di.diffFileInfo[nIndex].filename;
+
+				strPaths += path.c_str();
+				strPaths += '\0';
+
+				strPathsSepSpc += _T("\"");
+				strPathsSepSpc += path.c_str();
+				strPathsSepSpc += _T("\" ");
+			}
 		}
 	}
 	strPaths += '\0';
+	strPathsSepSpc.TrimRight();
 
+	// CF_HDROP
 	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.GetLength());
 	if (!hDrop)
 		return;
@@ -1781,6 +1794,7 @@ void CDirView::DoCopyItemsToClipboard(int nIndex)
 	memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths, sizeof(TCHAR) * strPaths.GetLength());
 	GlobalUnlock(hDrop);
 
+	// CF_DROPEFFECT
 	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
 	if (!hDropEffect)
 	{
@@ -1790,12 +1804,26 @@ void CDirView::DoCopyItemsToClipboard(int nIndex)
 	*((DWORD *)(GlobalLock(hDropEffect))) = DROPEFFECT_COPY;
 	GlobalUnlock(hDropEffect);
 
+	// CF_UNICODETEXT
+	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(TCHAR) * (strPathsSepSpc.GetLength() + 1));
+	if (!hPathnames)
+	{
+		GlobalFree(hDrop);
+		GlobalFree(hDropEffect);
+		return;
+	}
+	void *pPathnames = GlobalLock(hPathnames);
+	memcpy((BYTE *)pPathnames, (LPCTSTR)strPathsSepSpc, sizeof(TCHAR) * strPathsSepSpc.GetLength());
+	((TCHAR *)pPathnames)[strPathsSepSpc.GetLength()] = 0;
+	GlobalUnlock(hPathnames);
+
 	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
 	if (::OpenClipboard(AfxGetMainWnd()->GetSafeHwnd()))
 	{
 		EmptyClipboard();
 		SetClipboardData(CF_HDROP, hDrop);
 		SetClipboardData(CF_DROPEFFECT, hDropEffect);
+		SetClipboardData(GetClipTcharTextFormat(), hPathnames);
 		CloseClipboard();
 	}
 }
