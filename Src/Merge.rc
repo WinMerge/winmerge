@@ -611,6 +611,7 @@ BEGIN
         BEGIN
             MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_LEFT_TO_CLIPBOARD
             MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_RIGHT_TO_CLIPBOARD
+            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_BOTH_TO_CLIPBOARD
         END
         MENUITEM SEPARATOR
         POPUP "&Zip"

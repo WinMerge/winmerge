@@ -399,6 +399,7 @@ protected:
 	afx_msg void OnUpdateCopyFilenames(CCmdUI* pCmdUI);
 	afx_msg void OnCopyLeftToClipboard();
 	afx_msg void OnCopyRightToClipboard();
+	afx_msg void OnCopyBothToClipboard();
 	afx_msg void OnItemRename();
 	afx_msg void OnUpdateItemRename(CCmdUI* pCmdUI);
 	afx_msg void OnHideFilenames();

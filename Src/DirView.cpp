@@ -248,6 +248,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
 	ON_COMMAND(ID_DIR_COPY_LEFT_TO_CLIPBOARD, OnCopyLeftToClipboard)
 	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnCopyRightToClipboard)
+	ON_COMMAND(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnCopyBothToClipboard)
 	ON_COMMAND(ID_DIR_ITEM_RENAME, OnItemRename)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ITEM_RENAME, OnUpdateItemRename)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
@@ -814,6 +815,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	FormatContextMenu(pPopup, ID_DIR_COPY_LEFT_TO_CLIPBOARD, nOpenableOnLeft, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_COPY_RIGHT_TO_CLIPBOARD, nOpenableOnRight, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_COPY_BOTH_TO_CLIPBOARD, nOpenableOnBoth, nTotal);
 
 	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeft, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRight, nTotal);
@@ -3623,12 +3625,9 @@ void CDirView::OnCopyLeftPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].filename);
-			// Append space between (and end) of paths. Space is better than
-			// EOL since it allows copying to console/command line.
-			strPaths += _T(" ");
+			strPaths += _T("\r\n");
 		}
 	}
-	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3650,12 +3649,9 @@ void CDirView::OnCopyRightPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].filename);
-			// Append space between (and end) of paths. Space is better than
-			// EOL since it allows copying to console/command line.
-			strPaths += _T(" ");
+			strPaths += _T("\r\n");
 		}
 	}
-	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3677,9 +3673,7 @@ void CDirView::OnCopyBothPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].filename);
-			// Append space between (and end) of paths. Space is better than
-			// EOL since it allows copying to console/command line.
-			strPaths += _T(" ");
+			strPaths += _T("\r\n");
 		}
 
 		if (!di.diffcode.isSideFirstOnly())
@@ -3688,12 +3682,9 @@ void CDirView::OnCopyBothPathnames()
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
 			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].filename);
-			// Append space between (and end) of paths. Space is better than
-			// EOL since it allows copying to console/command line.
-			strPaths += _T(" ");
+			strPaths += _T("\r\n");
 		}
 	}
-	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3711,12 +3702,9 @@ void CDirView::OnCopyFilenames()
 		if (!di.diffcode.isDirectory())
 		{
 			strPaths += di.diffFileInfo[0].filename;
-			// Append space between (and end) of paths. Space is better than
-			// EOL since it allows copying to console/command line.
-			strPaths += _T(" ");
+			strPaths += _T("\r\n");
 		}
 	}
-	strPaths = string_trim_ws_end(strPaths);
 	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
@@ -3733,7 +3721,7 @@ void CDirView::OnUpdateCopyFilenames(CCmdUI* pCmdUI)
  */
 void CDirView::OnCopyLeftToClipboard()
 {
-	DoCopyItemsToClipboard(0);
+	DoCopyItemsToClipboard(1);
 }
 
 /**
@@ -3741,7 +3729,15 @@ void CDirView::OnCopyLeftToClipboard()
  */
 void CDirView::OnCopyRightToClipboard()
 {
-	DoCopyItemsToClipboard(1);
+	DoCopyItemsToClipboard(2);
+}
+
+/**
+ * @brief Copy selected item both side to clipboard.
+ */
+void CDirView::OnCopyBothToClipboard()
+{
+	DoCopyItemsToClipboard(3);
 }
 
 /**
