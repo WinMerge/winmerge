@@ -432,6 +432,17 @@ int writeBom(void* dest, UNICODESET unicoding)
 	return 0;
 }
 
+int getBomSize(UNICODESET unicoding)
+{
+	if (unicoding == UCS2LE)
+		return 2;
+	else if (unicoding == UCS2BE)
+		return 2;
+	else if (unicoding == UTF8)
+		return 3;
+	return 0;
+}
+
 /**
  * @brief Extract character from pointer, handling UCS-2 codesets
  *  This does not handle MBCS or UTF-8 codepages correctly!
@@ -705,12 +716,30 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 	DWORD flags = 0;
 	int wlen = srclen * 2 + 6;
 	boost::scoped_array<wchar_t> wbuff(new wchar_t[wlen]);
-	int n = MultiByteToWideChar(cpin, flags, (const char*)src, srclen, wbuff.get(), wlen - 1);
-	if (!n)
+	int n;
+	if (cpin == CP_UCS2LE)
 	{
-		int nsyserr = ::GetLastError();
-		dest[0] = '?';
-		return 1;
+		if (srclen == -1)
+			srclen = wcslen((wchar_t *)src) * sizeof(wchar_t);
+		memcpy(wbuff.get(), src, srclen);
+		n = srclen / sizeof(wchar_t);
+	}
+	else if (cpin == CP_UCS2BE)
+	{
+		if (srclen == -1)
+			srclen = wcslen((wchar_t *)src) * sizeof(wchar_t);
+		_swab((char *)src, (char *)wbuff.get(), srclen);
+		n = srclen / sizeof(wchar_t);
+	}
+	else
+	{
+		n = MultiByteToWideChar(cpin, flags, (const char*)src, srclen, wbuff.get(), wlen - 1);
+		if (!n)
+		{
+			int nsyserr = ::GetLastError();
+			dest[0] = '?';
+			return 1;
+		}
 	}
 	/*
 	NB: MultiByteToWideChar is documented as only zero-terminating
@@ -732,12 +761,29 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 		flags = 0;
 		pdefaulted = NULL;
 	}
-	n = WideCharToMultiByte(cpout, flags, wbuff.get(), n, dest, destsize - 1, NULL, pdefaulted);
-	if (!n)
+	if (cpout == CP_UCS2LE)
 	{
-		int nsyserr = ::GetLastError();
+		memcpy(dest, wbuff.get(), n * sizeof(wchar_t));
+		n = n * sizeof(wchar_t);
+		dest[n] = 0;
+		dest[n + 1] = 0;
 	}
-	dest[n] = 0;
+	else if (cpout == CP_UCS2BE)
+	{
+		_swab((char *)wbuff.get(), dest, n * sizeof(wchar_t));
+		n = n * sizeof(wchar_t);
+		dest[n] = 0;
+		dest[n + 1] = 0;
+	}
+	else
+	{
+		n = WideCharToMultiByte(cpout, flags, wbuff.get(), n, dest, destsize - 1, NULL, pdefaulted);
+		if (!n)
+		{
+			int nsyserr = ::GetLastError();
+		}
+		dest[n] = 0;
+	}
 	if (lossy)
 		*lossy = !!defaulted;
 	return n;
