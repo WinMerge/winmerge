@@ -13,6 +13,7 @@
 
 #include "UnicodeString.h"
 #include "unicoder.h"
+#include "FileTextEncoding.h"
 #include <windows.h>
 #include <oleauto.h>
 
@@ -64,7 +65,7 @@ public:
 	/// Initial load
 	void SetDataFileAnsi(const String& filename, bool bOverwrite = false);
 	/// Initial load
-	void SetDataFileUnicode(const String& filename, bool bOverwrite = false);
+	void SetDataFileEncoding(const String& filename, FileTextEncoding encoding, bool bOverwrite = false);
 	/// Final save, same format as the original file
 	bool SaveAsFile(String & filename)
 	{
@@ -124,6 +125,8 @@ private:
 	bool m_bError;
 	// codepage for ANSI mode
 	int m_codepage;
+	// BOM size
+	int m_nBomSize;
 
 	// temporary number of transformations, transformed by caller
 	int m_nChanged;

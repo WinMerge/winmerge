@@ -1,5 +1,5 @@
 /**
- * UTF-8 BOMなし テスト 
+ * CP50220$B%F%9%H(B 
  *  @file DiffItem.h
  *
  *  @brief Declaration of DIFFITEM

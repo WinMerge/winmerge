@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include"
+				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -70,7 +70,7 @@
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include"
+				AdditionalIncludeDirectories="..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB"
 				RuntimeLibrary="2"
 				TreatWChar_tAsBuiltInType="TRUE"
@@ -121,6 +121,12 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
+				RelativePath="..\..\..\Src\CompareEngines\ByteComparator.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\CompareEngines\ByteCompare.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\charsets.c">
 			</File>
 			<File
@@ -130,7 +136,13 @@
 				RelativePath="..\..\..\Src\codepage_detect.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\CompareOptions.cpp">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\coretools.cpp">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\diffutils\src\Diff.cpp">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\DirItem.cpp">
@@ -214,6 +226,9 @@
 				RelativePath="..\..\..\Src\Common\unicoder.cpp">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\Common\unicoder.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\UnicodeString.cpp">
 			</File>
 			<File
@@ -231,6 +246,12 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
+				RelativePath="..\..\..\Src\CompareEngines\ByteComparator.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\CompareEngines\ByteCompare.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\charsets.h">
 			</File>
 			<File
@@ -240,7 +261,13 @@
 				RelativePath="..\..\..\Src\codepage_detect.h">
 			</File>
 			<File
+				RelativePath="..\..\..\Src\CompareOptions.h">
+			</File>
+			<File
 				RelativePath="..\..\..\Src\Common\coretools.h">
+			</File>
+			<File
+				RelativePath="..\..\..\Src\CompareEngines\DiffUtils.h">
 			</File>
 			<File
 				RelativePath="..\..\..\Src\DirItem.h">
@@ -321,9 +348,6 @@
 				RelativePath="..\..\..\Src\stringdiffsi.h">
 			</File>
 			<File
-				RelativePath="..\..\..\Src\Common\unicoder.h">
-			</File>
-			<File
 				RelativePath="..\..\..\Src\Common\UnicodeString.h">
 			</File>
 			<File
@@ -341,6 +365,9 @@
 		<Filter
 			Name="Tests"
 			Filter="">
+			<File
+				RelativePath="..\ByteCompare\ByteCompare_test.cpp">
+			</File>
 			<File
 				RelativePath="..\Encoding\charsets_test.cpp">
 			</File>
@@ -364,6 +391,9 @@
 			</File>
 			<File
 				RelativePath=".\..\CmdLine\MergeCmdLine_test.cpp">
+			</File>
+			<File
+				RelativePath="..\multiformatText\multiformatText_test.cpp">
 			</File>
 			<File
 				RelativePath=".\..\Paths\paths_test.cpp">
