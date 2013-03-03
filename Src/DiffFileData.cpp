@@ -209,7 +209,7 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 			return false;
 	}
 
-	if (encoding.m_unicoding || bForceUTF8)
+	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file

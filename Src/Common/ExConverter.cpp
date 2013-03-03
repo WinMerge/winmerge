@@ -132,6 +132,11 @@ public:
 		return SUCCEEDED(hr) ? true : false;
 	}
 
+	void clearCookie()
+	{
+		m_mlangcookie = 0;
+	}
+
 	int detectInputCodepage(int autodetectType, int defcodepage, const char *data, size_t size)
 	{
 		int codepage;
@@ -288,7 +293,10 @@ static __thread IExconverter *m_pexconv = NULL;
 IExconverter *Exconverter::getInstance()
 {
 	if (m_pexconv)
+	{
+		m_pexconv->clearCookie();
 		return m_pexconv;
+	}
 	CExconverterMLang *pexconv = new CExconverterMLang();
 	if (!pexconv->initialize())
 	{
