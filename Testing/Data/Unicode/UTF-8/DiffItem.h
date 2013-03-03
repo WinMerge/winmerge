@@ -1,4 +1,5 @@
 ﻿/**
+ * UTF-8テスト
  *  @file DiffItem.h
  *
  *  @brief Declaration of DIFFITEM

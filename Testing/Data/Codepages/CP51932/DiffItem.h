@@ -1,5 +1,5 @@
 /**
- * UTF-8 BOMใชใ— ใในใ 
+ * CP51932ฅฦฅนฅศ 
  *  @file DiffItem.h
  *
  *  @brief Declaration of DIFFITEM
