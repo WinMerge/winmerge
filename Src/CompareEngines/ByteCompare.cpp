@@ -213,7 +213,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			//move uncompared data to begin of buff0
 			memcpy(&buff[0][0], &buff[0][m], l);
 			bfstart[0] = 0;
-			bfstart[1] = ptr1 - orig1;
+			bfstart[1] += ptr1 - orig1;
 			bfend[0] = l;
 		}
 		else if (result == ByteComparator::NEED_MORE_1)
@@ -223,16 +223,16 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			//move uncompared data to begin of buff1
 			memcpy(&buff[1][0], &buff[1][m], l);
 			bfstart[1] = 0;
-			bfstart[0] = ptr0 - orig0;
+			bfstart[0] += ptr0 - orig0;
 			bfend[1] = l;
 		}
 		else if (result == ByteComparator::NEED_MORE_BOTH)
 		{
 			if ((end0 == ptr0) && (end1 == ptr1))
 			{
-				bfstart[0] = ptr0 - orig0;
+				bfstart[0] += ptr0 - orig0;
 				bfend[0] = 0;
-				bfstart[1] = ptr1 - orig1;
+				bfstart[1] += ptr1 - orig1;
 				bfend[1] = 0;
 			}
 			else
@@ -244,7 +244,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 					//move uncompared data to begin of buff0
 					memcpy(&buff[0][0], &buff[0][m], l);
 					bfstart[0] = 0;
-					bfend[0] = l;
+					bfend[0] += l;
 				}
 				if (ptr1 < end1)
 				{
@@ -253,7 +253,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 					//move uncompared data to begin of buff1
 					memcpy(&buff[1][0], &buff[1][ m], l);
 					bfstart[1] = 0;
-					bfend[1] = l;
+					bfend[1] += l;
 				}
 			}
 		}

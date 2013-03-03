@@ -345,7 +345,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 				}
 				if (m_eol0 || m_eol1)
 				{
-					if (!m_eol0 || !m_eol1)
+					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
 						return RESULT_DIFF;
@@ -445,7 +445,7 @@ need_more:
  * @param [in] end Pointer to the buffer end.
  * @param [in] eof Are we at end of the buffer?
  */
-void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof)
+inline void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof)
 {
 	char * pbuf = *ptr;
 	if (m_cr0)
@@ -497,7 +497,7 @@ void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof)
  * @param [in] end Pointer to the buffer end.
  * @param [in] eof Are we at end of the buffer?
  */
-void ByteComparator::HandleSide1Eol(char **ptr, const char *end, bool eof)
+inline void ByteComparator::HandleSide1Eol(char **ptr, const char *end, bool eof)
 {
 	char * pbuf = *ptr;
 
