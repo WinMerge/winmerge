@@ -73,6 +73,7 @@ unsigned GetUtf8Char(unsigned char * str);
 int to_utf8_advance(unsigned u, unsigned char * &lpd);
 void maketchar(String & ch, unsigned unich, bool & lossy);
 int writeBom(void* dest, UNICODESET unicoding);
+int getBomSize(UNICODESET unicoding);
 unsigned get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
 bool maketstring(String & line, const char* lpd, size_t len, int codepage, bool * lossy);
 void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage);

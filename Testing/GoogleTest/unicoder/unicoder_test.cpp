@@ -47,5 +47,42 @@ namespace
 		EXPECT_EQ(false, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
 	}
 
+	TEST_F(UnicoderTest, CrossConvert)
+	{
+		wchar_t wbuf[256];
+		char buf[256];
+		wchar_t str_ucs2[] = {'A','B','C', 0xd867, 0xde3d, 0};
+		wchar_t str_ucs2be[256];
+		const char *str_utf8 = "ABC\xf0\xa9\xb8\xbd";
+		bool lossy;
+		int n;
+
+		// UTF8->UCS2LE
+		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), CP_UTF8, 1200, &lossy);
+		EXPECT_STREQ(str_ucs2, wbuf);
+		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
+
+		// UCS2BE->UCS2LE
+		_swab((char *)str_ucs2, (char *)str_ucs2be, (wcslen(str_ucs2) + 1) * sizeof(wchar_t));
+		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2) * sizeof(wchar_t), (char *)wbuf, sizeof(wbuf), 1201, 1200, &lossy);
+		EXPECT_STREQ(str_ucs2, wbuf);
+		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
+
+		// UCS2LE->UCS2LE
+		n = ucr::CrossConvert((char *)str_ucs2, wcslen(str_ucs2) * sizeof(wchar_t), (char *)wbuf, sizeof(wbuf), 1200, 1200, &lossy);
+		EXPECT_STREQ(str_ucs2, wbuf);
+		EXPECT_EQ(wcslen(str_ucs2) * sizeof(wchar_t), n);
+
+		// UTF8->UCS2BE
+		n = ucr::CrossConvert(str_utf8, strlen(str_utf8), (char *)wbuf, sizeof(wbuf), CP_UTF8, 1201, &lossy);
+		EXPECT_STREQ(str_ucs2be, wbuf);
+		EXPECT_EQ(wcslen(str_ucs2be) * sizeof(wchar_t), n);
+
+		// UCS2BE->UTF8
+		n = ucr::CrossConvert((char *)str_ucs2be, wcslen(str_ucs2be) * sizeof(wchar_t), buf, sizeof(buf), 1201, CP_UTF8, &lossy);
+		EXPECT_STREQ(str_utf8, buf);
+		EXPECT_EQ(strlen(str_utf8), n);
+
+	}
 
 }  // namespace
