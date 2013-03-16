@@ -28,10 +28,6 @@
 // $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Process.h>
-#include <Poco/Format.h>
-#include <Poco/Exception.h>
 #include "Constants.h"
 #include "UnicodeString.h"
 #include "unicoder.h"
@@ -270,33 +266,8 @@ BOOL CMergeApp::InitInstance()
 #endif
 #endif
 
-	// Load registry file if existing
-	String sRegPath = env_GetProgPath() + _T("\\WinMerge.reg");
-	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
-	{
-		std::string sCmd, sa;
-		std::vector<std::string> sArgs;
-		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
-		{
-			sCmd = "reg.exe";
-			sArgs.push_back("/s");
-		}
-		else
-		{
-			sCmd = "regedit.exe";
-			sArgs.push_back("import");
-		}
-		Poco::format(sa, "\"%s\"", ucr::toUTF8(sRegPath));
-		sArgs.push_back(sa);
-		try
-		{
-			Poco::ProcessHandle handle(Poco::Process::launch(sCmd, sArgs));
-			Poco::Process::wait(handle);
-		}
-		catch (Poco::SystemException)
-		{
-		}
-	}
+	// Load registry keys from WinMerge.reg if existing WinMerge.reg
+	env_LoadRegistryFromFile(env_GetProgPath() + _T("\\WinMerge.reg"));
 
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
@@ -539,40 +510,9 @@ void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 int CMergeApp::ExitInstance() 
 {
 	charsets_cleanup();
-	String sRegPath = env_GetProgPath() + _T("\\WinMerge.reg");
-	if (paths_DoesPathExist(sRegPath) == IS_EXISTING_FILE)
-	{
-		DeleteFile(sRegPath.c_str());
-		std::string sCmd, spath, sdir;
-		std::vector<std::string> sArgs;
-		if (SearchPath(NULL, _T("reg.exe"), NULL, 0, NULL, NULL) == 0)
-		{
-			sCmd = "reg.exe";
-			sArgs.push_back("/s");
-			sArgs.push_back("/e");
-			Poco::format(spath, "\"%s\"", ucr::toUTF8(sRegPath));
-			sArgs.push_back(spath);
-			Poco::format(sdir, "HKEY_CURRENT_USER\\%s", ucr::toUTF8(f_RegDir));
-			sArgs.push_back(sdir);
-		}
-		else
-		{
-			sCmd = "reg.exe";
-			sArgs.push_back("export");
-			Poco::format(sdir, "HKCU\\%s", ucr::toUTF8(f_RegDir));
-			sArgs.push_back(sdir);
-			Poco::format(spath, "\"%s\"", ucr::toUTF8(sRegPath));
-			sArgs.push_back(spath);
-		}
-		try
-		{
-			Poco::ProcessHandle handle(Poco::Process::launch(sCmd, sArgs));
-			Poco::Process::wait(handle);
-		}
-		catch (Poco::SystemException)
-		{
-		}
-	}
+
+	//  Save registry keys if existing WinMerge.reg
+	env_SaveRegistryToFile(env_GetProgPath() + _T("\\WinMerge.reg"), f_RegDir);
 
 	// Remove tempfolder
 	const String temp = env_GetTempPath();

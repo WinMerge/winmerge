@@ -24,4 +24,7 @@ String env_GetSystemTempPath();
 
 String env_GetPerInstanceString(const String& name);
 
+bool env_LoadRegistryFromFile(const String& sRegFilePath);
+bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir);
+
 #endif // _ENVIRONMENT_H_

@@ -163,3 +163,41 @@ String env_GetSystemTempPath()
 		return _T("");
 	}
 }
+
+static bool launchProgram(const String& sCmd, WORD wShowWindow)
+{
+	STARTUPINFO stInfo = {0};
+	stInfo.cb = sizeof(STARTUPINFO);
+	stInfo.dwFlags = STARTF_USESHOWWINDOW;
+	stInfo.wShowWindow = wShowWindow;
+	PROCESS_INFORMATION processInfo;
+	BOOL retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
+		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+		&stInfo, &processInfo);
+	if (!retVal)
+		return false;
+	CloseHandle(processInfo.hThread);
+	CloseHandle(processInfo.hProcess);
+	return true;
+}
+
+/**
+ * @brief Load registry keys from .reg file if existing .reg file
+ */
+bool env_LoadRegistryFromFile(const String& sRegFilePath)
+{
+	if (paths_DoesPathExist(sRegFilePath) != IS_EXISTING_FILE)
+		return false;
+	return launchProgram(_T("reg.exe import \"") + sRegFilePath + _T("\""), SW_HIDE);
+}
+
+/** 
+ * @brief Save registry keys to .reg file if existing .reg file
+ */
+bool env_SaveRegistryToFile(const String& sRegFilePath, const String& sRegDir)
+{
+	if (paths_DoesPathExist(sRegFilePath) != IS_EXISTING_FILE)
+		return false;
+	DeleteFile(sRegFilePath.c_str());
+	return launchProgram(_T("reg.exe export HKCU\\") + sRegDir + _T(" \"") + sRegFilePath + _T("\""), SW_HIDE);
+}

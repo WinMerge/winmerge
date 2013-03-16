@@ -381,6 +381,9 @@
 				RelativePath=".\..\DirItem\DirItem_test.cpp">
 			</File>
 			<File
+				RelativePath="..\Environment\Environemt_test.cpp">
+			</File>
+			<File
 				RelativePath="..\FileFilter\FileFilterHelper_test.cpp">
 			</File>
 			<File
