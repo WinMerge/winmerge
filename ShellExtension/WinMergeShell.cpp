@@ -279,15 +279,20 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		GlobalUnlock(stg.hGlobal);
 		ReleaseStgMedium(&stg);
 	}
-	else if (pidlFolder)
+	else
 	{
+		m_nSelectedItems = 0;
+	}
+
 		// No item selected - selection is the folder background
+	if (pidlFolder)
+	{
 		TCHAR szPath[MAX_PATH] = {0};
 
 		if (SHGetPathFromIDList(pidlFolder, szPath))
 		{
-			m_strPaths[0] = szPath;
-			m_nSelectedItems = 1;
+			if (m_nSelectedItems < MaxFileCount)
+				m_strPaths[m_nSelectedItems++] = szPath;
 			hr = S_OK;
 		}
 		else
