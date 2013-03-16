@@ -2254,7 +2254,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	// assume it is an archive and set filenames to same
 	if (::GetAsyncKeyState(VK_SHIFT) < 0 && fileCount == 1)
 	{
-		files[1] = files[0];
+		files.SetRight(files[0]);
 	}
 
 	if (fileCount < 2)
