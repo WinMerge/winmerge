@@ -16,8 +16,6 @@ extern __declspec(thread) Merge7z::Proxy Merge7z;
 bool IsArchiveFile(const String&);
 Merge7z::Format *ArchiveGuessFormat(const String&);
 
-String NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt);
-
 /**
  * @brief temp path context
  */

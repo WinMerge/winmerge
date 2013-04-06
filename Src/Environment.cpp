@@ -78,6 +78,16 @@ String env_GetTempFileName(const String& lpPathName, const String& lpPrefixStrin
 	return buffer;
 }
 
+String env_GetTempChildPath()
+{
+	String path;
+	do
+	{
+		path = paths_ConcatPath(env_GetTempPath(), string_format(_T("%08x"), rand()));
+	} while (paths_IsDirectory(path) || !paths_CreateIfNeeded(path));
+	return path;
+}
+
 void env_SetProgPath(const String& path)
 {
 	strProgPath = path;

@@ -629,36 +629,11 @@ void NTAPI Recall7ZipMismatchError()
 }
 
 /**
- * @brief Construct path to a temporary folder for pOwner, and clear the folder.
- */
-String NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
-{
-	String strPath = string_format
-	(
-		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
-		env_GetTempPath().c_str(), GetCurrentProcessId(), pOwner, pchExt
-	);
-	// SHFileOperation expects a ZZ terminated list of paths!
-	String::size_type len = strPath.size();
-	strPath.resize(len + 1);
-	SHFILEOPSTRUCT fileop =
-	{
-		0, FO_DELETE, &strPath[0], 0,
-		FOF_NOCONFIRMATION | FOF_SILENT | FOF_NOERRORUI,
-		0, 0, 0
-	};
-	SHFileOperation(&fileop);
-	strPath.resize(len);
-	return strPath;
-}
-
-/**
  * @brief Delete head of temp path context list, and return its parent context.
  */
 CTempPathContext *CTempPathContext::DeleteHead()
 {
 	CTempPathContext *pParent = m_pParent;
-	GetClearTempPath(this, _T("*"));
 	delete this;
 	return pParent;
 }

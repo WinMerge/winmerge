@@ -15,6 +15,7 @@ void env_SetTempPath(const String& path);
 String env_GetTempPath();
 String env_GetTempFileName(const String& lpPathName, const String& lpPrefixString,
 		int * pnerr = NULL);
+String env_GetTempChildPath();
 void env_SetProgPath(const String& path);
 String env_GetProgPath();
 

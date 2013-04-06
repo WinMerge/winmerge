@@ -341,9 +341,6 @@ CMainFrame::~CMainFrame()
 {
 	GetLog()->EnableLogging(FALSE);
 
-	// Delete all temporary folders belonging to this process
-	GetClearTempPath(NULL, NULL);
-
 	// Remove files from temp file list.
 	while (!m_tempFiles.empty())
 	{
@@ -1190,7 +1187,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0].c_str()))
 		{
 			pTempPathContext = new CTempPathContext;
-			path = GetClearTempPath(pTempPathContext, _T("0"));
+			path = env_GetTempChildPath();
 			for (int index = 0; index < files.GetSize(); index++)
 				pTempPathContext->m_strDisplayRoot[index] = files[index];
 			pathsType = IS_EXISTING_DIR;
@@ -1226,7 +1223,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 				for (int index = 0; index < files.GetSize(); index++)
 					pTempPathContext->m_strDisplayRoot[index] = files[index];
 			}
-			path = GetClearTempPath(pTempPathContext, _T("1"));
+			path = env_GetTempChildPath();
 			do
 			{
 				if FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path.c_str()))
@@ -1253,7 +1250,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					for (int index = 0; index < files.GetSize(); index++)
 						pTempPathContext->m_strDisplayRoot[index] = files[index];
 				}
-				path = GetClearTempPath(pTempPathContext, _T("2"));
+				path = env_GetTempChildPath();
 				do
 				{
 					if FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path.c_str()))
