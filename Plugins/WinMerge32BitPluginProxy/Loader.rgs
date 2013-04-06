@@ -1,0 +1,26 @@
+HKCR
+{
+	WinMerge32BitPluginProxy.Loader.1 = s 'Loader Class'
+	{
+		CLSID = s '{AA6F8426-159F-418E-9FE3-EFB0C46C3DBF}'
+	}
+	WinMerge32BitPluginProxy.Loader = s 'Loader Class'
+	{		
+		CurVer = s 'WinMerge32BitPluginProxy.Loader.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {AA6F8426-159F-418E-9FE3-EFB0C46C3DBF} = s 'Loader Class'
+		{
+			ProgID = s 'WinMerge32BitPluginProxy.Loader.1'
+			VersionIndependentProgID = s 'WinMerge32BitPluginProxy.Loader'
+			ForceRemove Programmable
+			LocalServer32 = s '%MODULE%'
+			{
+				val ServerExecutable = s '%MODULE_RAW%'
+			}
+			TypeLib = s '{B8AA7CCC-2D80-4FCB-BF92-145831C091F6}'
+			Version = s '1.0'
+		}
+	}
+}

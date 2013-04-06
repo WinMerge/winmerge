@@ -118,27 +118,91 @@ static LPTSTR FormatMessageFromString(LPCTSTR format, ...)
 	return pc;
 }
 
-static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, int limit)
+static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, size_t limit)
 {
 #ifdef _UNICODE
 	wcsncpy(wdest, tsz, limit);
 #else
-	MultiByteToWideChar(CP_ACP, 0, tsz, -1, wdest, limit);
+	MultiByteToWideChar(CP_ACP, 0, tsz, -1, wdest, (int)limit);
 #endif
 	// always terminate the string
 	wdest[limit-1] = 0;
 }
 
-static void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
+static void mycpyt2a(LPCTSTR tsz, char * adest, size_t limit)
 {
 #ifdef _UNICODE
-	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, limit, 0, 0);
+	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, (int)limit, 0, 0);
 #else
 	strncpy(adest, tsz, limit);
 #endif
 	// always terminate the string
 	adest[limit-1] = 0;
 }
+
+#ifdef _WIN64
+LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
+{
+	CLSID clsid;
+	VARIANT v[2], ret;
+	void *pv = 0;
+	SCODE sc;
+	wchar_t wpath[512];
+
+	sc = CLSIDFromProgID(L"WinMerge32BitPluginProxy.Loader", &clsid);
+	if SUCCEEDED(sc)
+		sc = CoCreateInstance(&clsid, 0, CLSCTX_LOCAL_SERVER|CLSCTX_ACTIVATE_32_BIT_SERVER, &IID_IDispatch, &pv);
+	if FAILED(sc)
+	{
+		LPTSTR errorText = ReportError(sc, 0);
+		LPTSTR tmp;
+		tmp = FormatMessageFromString(_T("32bitプラグイン(%1)のロードに失敗しました。:%2\n")
+			_T("WinMerge32BitPluginProxy.exeが登録されていないかもしれません。\n")
+			_T("管理者権限のコマンドプロンプトで以下を実行してみてください。\n\n")
+			_T("\"{WinMergeインストールパス}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
+		LocalFree(errorText);
+		errorText = tmp;
+		MessageBox(NULL, errorText, NULL, MB_ICONSTOP|MB_TASKMODAL);
+		LocalFree(errorText);
+		return NULL;
+	}
+	VariantInit(&v[0]);
+	VariantInit(&v[1]);
+	VariantInit(&ret);
+	V_VT(&v[1]) = VT_BSTR;
+	mycpyt2w(source, wpath, DIMOF(wpath));
+	V_BSTR(&v[1]) = SysAllocString(wpath);
+	V_VT(&v[0]) = VT_BSTR;
+	V_BSTR(&v[0]) = SysAllocString(progid);
+	sc = invokeW(pv, &ret, L"Load", opFxn[2], v);
+	if SUCCEEDED(sc)
+		pv = V_DISPATCH(&ret);
+	VariantClear(&v[0]);
+	VariantClear(&v[1]);
+	return pv;
+}
+#endif
+
+LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
+{
+	SCODE sc;
+	LPDISPATCH pv = NULL;
+	IClassFactory *piClassFactory;
+	EXPORT_DLLPROXY
+	(
+		Dll, "",
+		HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
+	);
+	mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
+	if ((FARPROC)DLLPROXY(Dll)->DllGetClassObject != DllProxy_ModuleState.Unresolved)
+		if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory))
+		{
+			sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+		}
+
+	return pv;
+}
+
 
 /**
  * 
@@ -203,18 +267,23 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		{
 			// we have found the CLSID, so this is really a COM dll for WinMerge
 			// now try to load the dll and to create an instance of the object
-			IClassFactory *piClassFactory;
-			EXPORT_DLLPROXY
-			(
-				Dll, "",
-				HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
-			);
-			mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
-			if ((FARPROC)DLLPROXY(Dll)->DllGetClassObject != DllProxy_ModuleState.Unresolved)
-				if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(&objectGUID, &IID_IClassFactory, &piClassFactory))
-				{
-					sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
-				}
+#ifdef _WIN64
+			{
+			HMODULE hLibrary = LoadLibrary(source);
+			if (hLibrary == NULL)
+			{
+				// assume 32bit DLL if failed to load DLL
+				pv = CreatDispatchBy32BitProxy(source, progid);
+			}
+			else
+			{
+				pv = CreateDispatchBySourceAndCLSID(source, &objectGUID);
+				FreeLibrary(hLibrary);
+			}
+			}
+#else
+			pv = CreateDispatchBySourceAndCLSID(source, &objectGUID);
+#endif
 		}
 		// don't display an error message if no interface (normal dll)
 		if (PathMatchSpec(source, _T("*.dll")) && sc == TYPE_E_CANTLOADLIBRARY)

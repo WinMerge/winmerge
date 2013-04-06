@@ -39,6 +39,7 @@ copy Build\Manual\htmlhelp\WinMerge_ja.chm "%DISTDIR%\2.14-x64-zip-version\WinMe
 rem Excecutables
 copy Build\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy Build\X64\MergeUnicodeRelease\WinMergeU.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+copy Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\
 
 rem ShellExtension
 copy "Build\ShellExtensionUnicode Release mindependency\ShellExtensionU.dll" "%DISTDIR%\2.14-zip-version\WinMerge\"

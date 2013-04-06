@@ -1,0 +1,35 @@
+// WinMerge32BitPluginProxy.idl : WinMerge32BitPluginProxy の IDL ソース
+//
+
+// このファイルは、タイプ ライブラリ (WinMerge32BitPluginProxy.tlb) およびマーシャリング コードを
+// 作成するために MIDL ツールによって処理されます。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(46C062C2-0497-4004-9FAC-06E4021DA550),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ILoader : IDispatch{
+	[id(1)] HRESULT Load([in] BSTR bstrPath, [in] BSTR bstrProgId, [out,retval] IDispatch** ppDispatch);
+};
+[
+	uuid(B8AA7CCC-2D80-4FCB-BF92-145831C091F6),
+	version(1.0),
+]
+library WinMerge32BitPluginProxyLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(AA6F8426-159F-418E-9FE3-EFB0C46C3DBF)		
+	]
+	coclass Loader
+	{
+		[default] interface ILoader;
+	};
+};
+
