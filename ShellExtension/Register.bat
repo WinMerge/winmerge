@@ -21,26 +21,28 @@ IF "%1" == "/U" Goto Uninstall
 Echo Registering ShellExtension.dll...
 IF "%OS%" == "" %WINDIR%\System\RegSvr32 "%DLLPATH%"
 IF "%OS%" == "" Goto End
-Call :ExecuteRegSvr32 "%DLLPATH%"
+Call :Execute regsvr32 "%DLLPATH%"
+IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" Call :Execute "%~dp0\WinMerge32BitPluginProxy.exe" /RegServer
 Goto End
 
 :Uninstall
 Echo UnRegistering ShellExtension.dll...
 IF "%OS%" == "" %WINDIR%\System\RegSvr32 /u "%DLLPATH%"
 IF "%OS%" == "" Goto End
-Call :ExecuteRegSvr32 /u "%DLLPATH%"
+Call :Execute regsvr32 /u "%DLLPATH%"
+IF EXIST "%~dp0\WinMerge32BitPluginProxy.exe" Call :Execute "%~dp0\WinMerge32BitPluginProxy.exe" /UnregServer
 Goto End
 
-:ExecuteRegSvr32
+:Execute
 Ver | %WINDIR%\System32\Find "Version 6." > NUL
 IF NOT ERRORLEVEL 1 (
   rem Windows Vista, Server 2008?
-  Echo args="": For Each a in WScript.Arguments: args = args ^& """" ^& a ^& """ ": Next: CreateObject^("Shell.Application"^).ShellExecute "RegSvr32", args, "", "runas" > "%TEMP%\RegSvr32Elevated.vbs"
-  Wscript //nologo "%TEMP%\RegSvr32Elevated.vbs" %*
-  Del "%TEMP%\RegSvr32Elevated.vbs" 2> NUL
+  Echo args="": For Each a in WScript.Arguments: If InStr^(a, " "^) ^> 0 Then args = args ^& """" ^& a ^& """ " Else args = args ^& a ^& " " End If: Next: CreateObject^("Shell.Application"^).ShellExecute "%~1", args, "", "runas" > "%TEMP%\Elevated.vbs"
+  Wscript //nologo "%TEMP%\Elevated.vbs" %2 %3
+  Del "%TEMP%\Elevated.vbs" 2> NUL
 ) Else (
   rem Windows NT4.0, 2000, XP, Sever 2003
-  RegSvr32 %*
+  %1 %2 %3
 )
 Goto :EOF
 

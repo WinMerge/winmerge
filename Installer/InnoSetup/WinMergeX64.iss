@@ -385,6 +385,8 @@ Name: {app}; Flags: uninsalwaysuninstall
 [Files]
 ; WinMerge itself
 Source: ..\..\Build\X64\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+; 32Bit Plugin Proxy
+Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -623,6 +625,11 @@ Root: HKLM; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent unchecked; Check: GroupCreated
 
 Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
+
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle
+
+[UninstallRun]
+Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/UnregServer"; Flags: waituntilidle
 
 
 [UninstallDelete]
