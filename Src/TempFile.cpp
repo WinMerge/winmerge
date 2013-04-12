@@ -234,9 +234,11 @@ bool WMrunning(vector<int> processIDs, int iPI)
 bool ClearTempfolder(const String &pathName)
 {
 	// SHFileOperation expects a ZZ terminated list of paths!
-	const size_t pathSize = pathName.length() + 2;
+	String normalizedPathName = pathName;
+	paths_normalize(normalizedPathName); // remove trailing slash
+	const size_t pathSize = normalizedPathName.length() + 2;
 	std::vector<TCHAR> path(pathSize, 0);
-	memcpy(&path[0], pathName.c_str(), pathName.length() * sizeof(TCHAR));
+	memcpy(&path[0], normalizedPathName.c_str(), normalizedPathName.length() * sizeof(TCHAR));
 
 	SHFILEOPSTRUCT fileop = {0, FO_DELETE, &path[0], 0, FOF_NOCONFIRMATION |
 			FOF_SILENT | FOF_NOERRORUI, 0, 0, 0};
