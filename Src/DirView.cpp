@@ -2791,7 +2791,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 					return TRUE;
 				}
 
-				if (m_bEscCloses && !GetMainFrame()->m_bEscShutdown)
+				if (m_bEscCloses)
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 					return FALSE;
