@@ -2802,20 +2802,23 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
+		const OpenDocList &openDocs = GetAllOpenDocs();
+		const MergeDocList &docs = GetAllMergeDocs();
+		const HexMergeDocList &hexDocs = GetAllHexMergeDocs();
+		const DirDocList &dirDocs = GetAllDirDocs();
+
 		if (m_bEscShutdown)
 		{
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
-			return TRUE;
+			if (openDocs.GetCount() + hexDocs.GetCount() + dirDocs.GetCount() <= 1)
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+				return TRUE;
+			}
 		}
 		else
 		{
 			if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
 			{
-				const OpenDocList &openDocs = GetAllOpenDocs();
-				const MergeDocList &docs = GetAllMergeDocs();
-				const HexMergeDocList &hexDocs = GetAllHexMergeDocs();
-				const DirDocList &dirDocs = GetAllDirDocs();
-
 				if (openDocs.IsEmpty() && docs.IsEmpty() && hexDocs.IsEmpty() && dirDocs.IsEmpty())
 				{
 					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);

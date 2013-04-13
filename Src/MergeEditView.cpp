@@ -2371,7 +2371,7 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		if (pMsg->wParam == VK_ESCAPE)
 		{
 			bool bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
-			if (bCloseWithEsc && !GetMainFrame()->m_bEscShutdown)
+			if (bCloseWithEsc)
 				GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 			return false;
 		}
