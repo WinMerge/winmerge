@@ -3106,7 +3106,7 @@ bool CMergeDoc::OpenWithUnpackerDialog()
 	// let the user choose a handler
 	CSelectUnpackerDlg dlg(m_filePaths[0].c_str(), NULL);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
-	PackingInfo infoUnpacker;
+	PackingInfo infoUnpacker(PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);
 
 	if (dlg.DoModal() == IDOK)
