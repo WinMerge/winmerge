@@ -99,22 +99,22 @@ public:
 		const std::string& nodename = m_stack.top();
 		if (nodename == Left_element_name)
 		{
-			m_pProject->m_paths.SetLeft(xmlch2tstr(ch + start, length));
+			m_pProject->m_paths.SetLeft(m_pProject->m_paths.GetLeft() + xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasLeft = true;
 		}
 		else if (nodename == Middle_element_name)
 		{
-			m_pProject->m_paths.SetMiddle(xmlch2tstr(ch + start, length));
+			m_pProject->m_paths.SetMiddle(m_pProject->m_paths.GetMiddle() + xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasMiddle = true;
 		}
 		else if (nodename == Right_element_name)
 		{
-			m_pProject->m_paths.SetRight(xmlch2tstr(ch + start, length));
+			m_pProject->m_paths.SetRight(m_pProject->m_paths.GetRight() + xmlch2tstr(ch + start, length));
 			m_pProject->m_bHasRight = true;
 		}
 		else if (nodename == Filter_element_name)
 		{
-			m_pProject->m_filter = xmlch2tstr(ch + start, length);
+			m_pProject->m_filter += xmlch2tstr(ch + start, length);
 			m_pProject->m_bHasFilter = true;
 		}
 		else if (nodename == Subfolders_element_name)
