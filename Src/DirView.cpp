@@ -3228,7 +3228,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 		// let the user choose a handler
 		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename.c_str(), this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
-		PackingInfo infoUnpacker;
+		PackingInfo infoUnpacker(PLUGIN_AUTO);
 		dlg.SetInitialInfoHandler(&infoUnpacker);
 
 		if (dlg.DoModal() == IDOK)
