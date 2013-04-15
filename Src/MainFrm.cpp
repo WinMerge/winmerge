@@ -79,6 +79,7 @@
 #include "MergeCmdLineInfo.h"
 #include "SyntaxColorsUtil.h"
 #include "TFile.h"
+#include "JumpList.h"
 #include <Poco/Exception.h>
 
 using std::vector;
@@ -1083,6 +1084,35 @@ void CMainFrame::OnOptions()
 	}
 }
 
+static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bool recurse, const String& filter)
+{
+	String params, title;
+	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
+	{
+		if (flags[nIndex] & FFILEOPEN_READONLY)
+		{
+			switch (nIndex)
+			{
+			case 0: params += _T("/wl "); break;
+			case 1: params += paths.GetSize() == 2 ? _T("/wr ") : _T("/wm "); break;
+			case 2:	params += _T("/wr "); break;
+			}
+		}
+		params += _T("\"") + paths[nIndex] + _T("\" ");
+
+		String path = paths[nIndex];
+		paths_normalize(path);
+		title += paths_FindFileName(path);
+		if (nIndex < paths.GetSize() - 1)
+			title += _T(" - ");
+	}
+	if (recurse)
+		params += _T("/r ");
+	if (!filter.empty())
+		params += _T("/f \"") + filter + _T("\" ");
+	return JumpList::AddToRecentDocs(_T(""), params, title, params, 0);
+}
+
 /**
  * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing.
  * @param [in] pszLeft Left-side path.
@@ -1369,6 +1399,13 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		ShowMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
 			infoUnpacker);
 	}
+
+	if (!((dwFlags[0] & FFILEOPEN_NOMRU) && (dwFlags[0] & FFILEOPEN_CMDLINE)))
+	{
+		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
+		AddToRecentDocs(files, (unsigned *)dwFlags, bRecurse, filter);
+	}
+
 	return TRUE;
 }
 

@@ -736,6 +736,9 @@
     <ClCompile Include="DirCompProgressBar.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JumpList.cpp">
+      <Filter>GUI\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1360,6 +1363,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirCompProgressBar.h">
+      <Filter>GUI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpList.h">
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

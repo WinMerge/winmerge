@@ -5488,6 +5488,33 @@
 					RelativePath=".\HexMergeView.cpp">
 				</File>
 				<File
+					RelativePath=".\JumpList.cpp">
+					<FileConfiguration
+						Name="UnicodeRelease|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="UnicodeDebug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath="Common\LanguageSelect.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -7567,6 +7594,9 @@
 				</File>
 				<File
 					RelativePath="IOptionsPanel.h">
+				</File>
+				<File
+					RelativePath=".\JumpList.h">
 				</File>
 				<File
 					RelativePath="Common\LanguageSelect.h">

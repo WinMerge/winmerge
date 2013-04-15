@@ -59,6 +59,7 @@
 #include "MergeCmdLineInfo.h"
 #include "ConflictFileParser.h"
 #include "codepage.h"
+#include "JumpList.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -223,6 +224,8 @@ BOOL CMergeApp::InitInstance()
 	BOOL (WINAPI *pfnSetDllDirectoryA)(LPCSTR) = (BOOL (WINAPI *)(LPCSTR))GetProcAddress(hLibrary, "SetDllDirectoryA");
 	if (pfnSetDllDirectoryA)
 		pfnSetDllDirectoryA("");
+
+	JumpList::SetCurrentProcessExplicitAppUserModelID(L"Thingamahoochie.WinMerge");
 
 	InitCommonControls();    // initialize common control library
 	CWinApp::InitInstance(); // call parent class method
