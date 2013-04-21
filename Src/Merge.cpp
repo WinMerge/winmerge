@@ -698,11 +698,11 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		else if (cmdInfo.m_Files.GetSize() == 1)
 		{
 			String sFilepath = cmdInfo.m_Files[0];
-			if (IsProjectFile(sFilepath.c_str()))
+			if (IsProjectFile(sFilepath))
 			{
-				bCompared = LoadAndOpenProjectFile(sFilepath.c_str());
+				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}
-			else if (IsConflictFile(sFilepath.c_str()))
+			else if (IsConflictFile(sFilepath))
 			{
 				bCompared = pMainFrame->DoOpenConflict(sFilepath.c_str());
 			}

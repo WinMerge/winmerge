@@ -100,7 +100,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 			{
 				sError = string_format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open file: %s"), strSavePath.c_str());
-				LogErrorString(sError.c_str());
+				LogErrorString(sError);
 				String errMsg = GetSysError(GetLastError());
 				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), strSavePath.c_str());
 			}
@@ -108,7 +108,7 @@ bool VSSHelper::ReLinkVCProj(const String& strSavePath, String& sError)
 			{
 				sError = string_format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open temporary file: %s"), tempFile.c_str());
-				LogErrorString(sError.c_str());
+				LogErrorString(sError);
 				String errMsg = GetSysError(GetLastError());
 				sError = LangFormatString2(IDS_ERROR_FILEOPEN, errMsg.c_str(), tempFile.c_str());
 			}

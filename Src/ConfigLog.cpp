@@ -459,7 +459,7 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 
 	FileWriteString(_T("\r\n Windows: "));
 	text = GetWindowsVer();
-	FileWriteString(text.c_str());
+	FileWriteString(text);
 
 	FileWriteString(_T("\r\n"));
 	WriteVersionOf1(1, _T("COMCTL32.dll"));

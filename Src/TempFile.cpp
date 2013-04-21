@@ -192,7 +192,7 @@ bool CleanupWMtempfolder(vector <int> processIDs)
 			if (!WMrunning(processIDs, _ttoi (tempfolderPID.c_str())))
 			{
 				tempfolderPID = paths_ConcatPath(paths_GetParentPath(pattern), ff.cFileName); 
-				if (res = ClearTempfolder(tempfolderPID.c_str()))
+				if (res = ClearTempfolder(tempfolderPID))
 				{
 					if (!res)
 						break;

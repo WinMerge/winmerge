@@ -123,7 +123,7 @@ void LineFiltersList::CloneFrom(const LineFiltersList *list)
 	for (size_t i = 0; i < count; i++)
 	{
 		const LineFilterItem &item = list->GetAt(i);
-		AddFilter(item.filterStr.c_str(), item.enabled);
+		AddFilter(item.filterStr, item.enabled);
 	}
 }
 
