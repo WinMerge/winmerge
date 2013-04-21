@@ -1680,7 +1680,7 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 
 	// Add every "line" of regexps to regexp list
 	StringTokenizer tokens(regexp_str, "\r\n");
-	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); it++)
+	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
 		m_pFilterList->AddRegExp(*it);
 }
 

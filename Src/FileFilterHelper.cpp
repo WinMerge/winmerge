@@ -127,7 +127,7 @@ String FileFilterHelper::GetFileFilterName(const String& filterPath) const
 			name = (*iter).name;
 			break;
 		}
-		iter++;
+		++iter;
 	}
 	return name;
 }
@@ -152,7 +152,7 @@ String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 			path = (*iter).fullpath;
 			break;
 		}
-		iter++;
+		++iter;
 	}
 	return path;
 }
@@ -441,7 +441,7 @@ void FileFilterHelper::ReloadUpdatedFilters()
 					SetFileFilterPath(path);
 			}
 		}
-		iter++;
+		++iter;
 	}
 }
 

@@ -92,7 +92,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
 	int nActivePane = pView->m_nThisPane;
 
 	std::vector<WordDiff>::iterator it;
-	for (it = worddiffs.begin(); it != worddiffs.end(); it++)
+	for (it = worddiffs.begin(); it != worddiffs.end(); ++it)
 	{
 		if ((*it).beginline[nActivePane] <= ptStart.y && ptStart.y <= (*it).endline[nActivePane])
 		{
@@ -104,7 +104,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
 	}
 
 	if (it != worddiffs.end())
-		it++;
+		++it;
 	
 	if (it == worddiffs.end())
 		it = worddiffs.begin();

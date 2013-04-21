@@ -221,7 +221,7 @@ bool WMrunning(vector<int> processIDs, int iPI)
 	{
 		if (*iter == iPI)
 			return true;
-		iter++;
+		++iter;
 	}
 	return FALSE;
 }

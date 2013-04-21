@@ -187,7 +187,7 @@ int FileActionScript::CreateOperationsScripts()
 			m_pCopyOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
 			m_bHasCopyOperations = TRUE;
 		}
-		iter++;
+		++iter;
 	}
 	if (bContinue == FALSE)
 	{
@@ -213,7 +213,7 @@ int FileActionScript::CreateOperationsScripts()
 			m_pMoveOperations->AddSourceAndDestination((*iter).src, (*iter).dest);
 			m_bHasMoveOperations = TRUE;
 		}
-		iter++;
+		++iter;
 	}
 	if (m_bHasMoveOperations)
 		m_pMoveOperations->SetOperation(operation, operFlags,  m_hParentWindow);
@@ -234,7 +234,7 @@ int FileActionScript::CreateOperationsScripts()
 				m_pDelOperations->AddSource((*iter).dest);
 			m_bHasDelOperations = TRUE;
 		}
-		iter++;
+		++iter;
 	}
 	if (m_bHasDelOperations)
 		m_pDelOperations->SetOperation(operation, operFlags, m_hParentWindow);
@@ -283,7 +283,7 @@ BOOL FileActionScript::Run()
 		{
 			if ((*iter).dirflag)
 				paths_CreateIfNeeded((*iter).dest);
-			iter++;
+			++iter;
 		}
 		bFileOpSucceed = RunOp(m_pCopyOperations.get(), bUserCancelled);
 	}
