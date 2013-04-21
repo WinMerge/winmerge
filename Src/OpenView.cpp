@@ -934,7 +934,7 @@ void COpenView::OnDropFiles(HDROP dropInfo)
 {
 	// Get the number of pathnames that have been dropped
 	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-	CString files[2];
+	CString files[3];
 	UINT fileCount = 0;
 
 	// get all file names. but we'll only need the first one.
@@ -950,7 +950,7 @@ void COpenView::OnDropFiles(HDROP dropInfo)
 		// Copy the pathname into the buffer
 		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
 
-		if (x < 2)
+		if (x < 3)
 		{
 			files[x] = npszFile.get();
 			fileCount++;
