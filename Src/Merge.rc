@@ -1870,7 +1870,7 @@ BEGIN
         BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "http://winmerge.org\0"
-            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileDescription", "WinMerge\0"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "(c) 1996-2013 Dean P. Grimm / Thingamahoochie Software\0"
