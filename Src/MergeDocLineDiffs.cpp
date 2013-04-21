@@ -9,6 +9,7 @@
 
 #include "StdAfx.h"
 #include <vector>
+#include <boost/scoped_array.hpp>
 #include "Merge.h"
 #include "MainFrm.h"
 
@@ -157,7 +158,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	String str[3];
-	int *nOffsets[3];
+	boost::scoped_array<int> nOffsets[3];
 	const int LineLimit = 20;
 	bool diffPerLine = false;
 	
@@ -187,7 +188,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 	for (file = 0; file < m_nBuffers; file++)
 	{
 		int nLineBegin = nLineBegins[file], nLineEnd = nLineEnds[file];
-		nOffsets[file] = new int[nLineEnd - nLineBegin + 1];
+		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
 		CString strText;
 		if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
 			m_ptBuf[file]->GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, m_ptBuf[file]->GetLineLength(nLineEnd), strText);
@@ -242,8 +243,6 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 		pWordDiffs->push_back(wd);
 	}
 
-	delete nOffsets[0], nOffsets[1], nOffsets[2];
-	
 	if (!diffPerLine)
 	{
 		m_cacheWordDiffs[nDiff].resize(pWordDiffs->size());
