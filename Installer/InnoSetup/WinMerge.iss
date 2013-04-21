@@ -509,7 +509,7 @@ Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlu
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
+Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; AppUserModelID: "Thingamahoochie.WinMerge"
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
