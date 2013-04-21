@@ -152,7 +152,7 @@ sd_ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else
 		{
-			std::vector<wdiff> diffs10, diffs12, diffs02;
+			std::vector<wdiff> diffs10, diffs12;
 			stringdiffs sdiffs10(str[1], str[0], case_sensitive, whitespace, breakType, &diffs10);
 			stringdiffs sdiffs12(str[1], str[2], case_sensitive, whitespace, breakType, &diffs12);
 			// Hash all words in both lines and then compare them word by word
@@ -240,8 +240,6 @@ stringdiffs::BuildWordDiffList_DP()
 	//	return false;
 	onp(edscript);
 
-	const int iSize1 = (int)m_words1.size();
-	const int iSize2 = (int)m_words2.size();
 	int i = 1, j = 1;
 	for (size_t k = 0; k < edscript.size(); k++)
 	{

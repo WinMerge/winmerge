@@ -1022,9 +1022,6 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		int limit = cd_dend;
 
 		// curView is the view which is changed, so the opposite of the source view
-		CCrystalTextView* srcView = m_pView[srcPane];
-		CCrystalTextView* dstView = m_pView[dstPane];
-
 		dbuf.BeginUndoGroup(bGroupWithPrevious);
 		if (cd_blank>=0)
 		{

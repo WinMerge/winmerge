@@ -313,7 +313,6 @@ bool paths_CreateIfNeeded(const String& szPath)
 	}
 	// Now fullPath holds our desired path
 
-	String sLong;
 	TCHAR *ptr = fullPath;
 	TCHAR *end = NULL;
 

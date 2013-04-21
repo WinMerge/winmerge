@@ -25,8 +25,6 @@ public:
 	{
 		int max=0;
 		int maxKey=0;
-		int key=0;
-		int n=0;
 		std::map<int, int>::const_iterator pos = m_map.begin();
 		while (pos != m_map.end())
 		{

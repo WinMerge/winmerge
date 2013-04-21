@@ -583,10 +583,6 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 			break;
 		}
 
-		// first pass : get the size of the destination file
-		size_t nSizeBOM = (bWriteBOM) ? 3 : 0;
-		size_t nDstSize = nBufSize * 2;
-
 		const size_t minbufsize = 128 * 1024;
 
 		// create the destination file

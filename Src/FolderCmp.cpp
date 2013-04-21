@@ -464,7 +464,6 @@ exitPrepAndCompare:
  */
 void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files)
 {
-	static const TCHAR backslash[] = _T("\\");
 	int nDirs = pCtxt->GetCompareDirs();
 
 	files.SetSize(nDirs);

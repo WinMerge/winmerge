@@ -272,7 +272,6 @@ BOOL FileActionScript::Run()
 	bool bFileOpSucceed = true;
 	bool bUserCancelled = false;
 	BOOL bRetVal = TRUE;
-	int apiRetVal = 0;
 
 	CreateOperationsScripts();
 

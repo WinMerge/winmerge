@@ -889,7 +889,6 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE side)
 	shellContextMenu->Initialize();
 
 	CDirDoc *pDoc = GetDocument();
-	String parentDir; // use it to track that all selected files are in the same parent directory
 
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
@@ -4590,8 +4589,6 @@ void CDirView::PrepareDragData(String& filesForDroping)
  */
 void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
-
 	COleDataSource *DropData = new COleDataSource();
 	String filesForDroping;
 

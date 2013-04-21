@@ -395,8 +395,10 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		String eol, preveol;
 		String sline;
 		bool done = false;
+#ifdef _DEBUG
 		UINT next_line_report = 100; // for trace messages
 		UINT next_line_multiple = 5; // for trace messages
+#endif
 		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
