@@ -670,7 +670,7 @@ void CHexMergeDoc::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	BOOL bModified;
+	BOOL bModified = FALSE;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		bModified |= m_pView[nBuffer]->GetModified();
 	pCmdUI->Enable(bModified);
