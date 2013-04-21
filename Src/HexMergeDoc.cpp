@@ -281,7 +281,7 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 				switch (Try(m_pView[1]->SaveFile(pathMiddle.c_str())))
 				{
 				case 0:
-					bRSaveSuccess = TRUE;
+					bMSaveSuccess = TRUE;
 					break;
 				case IDCANCEL:
 					result = FALSE;
@@ -320,7 +320,7 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 
 	// If file were modified and saving was successfull,
 	// update status on dir view
-	if (bLSaveSuccess || bRSaveSuccess)
+	if (bLSaveSuccess || bMSaveSuccess || bRSaveSuccess)
 	{
 		UpdateDiffItem(m_pDirDoc);
 	}

@@ -801,7 +801,6 @@ void COpenView::OnSelectFilter()
 BOOL COpenView::LoadProjectFile(const String &path)
 {
 	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
-	String err;
 	ProjectFile prj;
 
 	if (!theApp.LoadProjectFile(path, prj))

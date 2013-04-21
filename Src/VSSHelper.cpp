@@ -175,7 +175,6 @@ void VSSHelper::GetFullVSSPath(const String& strSavePath, bool & bVCProj)
 	String ext;
 	String path;
 	paths_SplitFilename(strSavePath, &path, NULL, &ext);
-	String spath(path);
 	String strExt = string_makelower(ext); 
 	if (strExt == _T("vcproj"))
 		bVCProj = true;

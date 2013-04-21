@@ -442,7 +442,6 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 	line.erase();
 	eol.erase();
 	const TCHAR * pchLine = (const TCHAR *)m_current;
-	String localLine;
 	
 	// shortcut methods in case file is in the same encoding as our Strings
 

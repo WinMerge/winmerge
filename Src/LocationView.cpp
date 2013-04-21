@@ -954,7 +954,6 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
 	if (m_bDrawn)
 	{
-		static int prevsublinecount[3] = {0};
 		CMergeDoc *pDoc = GetDocument();
 		int pane;
 		IF_IS_TRUE_ALL(m_nSubLineCount[pane] == m_view[pane]->GetSubLineCount(), pane, pDoc->m_nBuffers)

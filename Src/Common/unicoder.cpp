@@ -753,7 +753,6 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 
 	// Now convert to TCHAR (which means defcodepage)
 	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
-	wlen = n;
 	BOOL defaulted = FALSE;
 	BOOL * pdefaulted = &defaulted;
 	if (cpout == CP_UTF8)

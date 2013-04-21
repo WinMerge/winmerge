@@ -830,7 +830,6 @@ bool CDiffWrapper::RunFileDiff()
 	// diff_2_files set bin_flag to +1 if same binary
 
 	file_data * inf = diffdata.m_inf;
-	file_data * inf10 = diffdata10.m_inf;
 	file_data * inf12 = diffdata12.m_inf;
 	file_data * inf02 = diffdata02.m_inf;
 
