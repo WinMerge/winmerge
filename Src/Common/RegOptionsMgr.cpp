@@ -552,7 +552,7 @@ int CRegOptionsMgr::ExportOptions(const String& filename) const
 				strVal.c_str(), filename.c_str());
 		if (!bRet)
 			retVal = COption::OPT_ERR;
-		optIter++;
+		++optIter;
 	}
 	return retVal;
 }

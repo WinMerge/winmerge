@@ -109,7 +109,7 @@ void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
 		memcpy(&paths[ind], (*iter).c_str(), slen * sizeof(TCHAR));
 		ind += slen;
 		ind++; // NULL between strings
-		iter++;
+		++iter;
 	}
 }
 
@@ -139,7 +139,7 @@ int ShellFileOperations::CountStringSize(bool source) const
 	{
 		size += (*iter).length() * sizeof(TCHAR);
 		size += sizeof(TCHAR); // NULL between strings
-		iter++;
+		++iter;
 	}
 	size += 2; // Two zeros at end of the string
 	return size;

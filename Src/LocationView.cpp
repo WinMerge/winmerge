@@ -428,7 +428,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	const int nCurDiff = pDoc->GetCurrentDiff();
 
 	vector<DiffBlock>::const_iterator iter = m_diffBlocks.begin();
-	for (; iter != m_diffBlocks.end(); iter++)
+	for (; iter != m_diffBlocks.end(); ++iter)
 	{
 		if (nPaneNotModified == -1)
 			continue;
