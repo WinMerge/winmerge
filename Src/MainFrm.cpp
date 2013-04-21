@@ -2639,7 +2639,7 @@ void CMainFrame::OnSaveConfigData()
 	if (configLog.WriteLogFile(sError))
 	{
 		String sFileName = configLog.GetFileName();
-		OpenFileToExternalEditor(sFileName.c_str());
+		OpenFileToExternalEditor(sFileName);
 	}
 	else
 	{
@@ -2888,7 +2888,7 @@ void CMainFrame::ShowVSSError(CException *e, const String& strItem)
 			logMsg += _T(": ");
 			logMsg += strItem;
 		}
-		LogErrorString(logMsg.c_str());
+		LogErrorString(logMsg);
 		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
 	}
 	else
@@ -3634,7 +3634,7 @@ void CMainFrame::OnFileOpenConflict()
 	String conflictFile;
 	if (SelectFile(GetSafeHwnd(), conflictFile))
 	{
-		DoOpenConflict(conflictFile.c_str());
+		DoOpenConflict(conflictFile);
 	}
 }
 
@@ -3680,7 +3680,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	// Parse conflict file into two files.
 	bool inners;
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-	bool success = ParseConflictFile(conflictFile, workFile.c_str(), revFile.c_str(), iGuessEncodingType, inners);
+	bool success = ParseConflictFile(conflictFile, workFile, revFile, iGuessEncodingType, inners);
 
 	if (success)
 	{
