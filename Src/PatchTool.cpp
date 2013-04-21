@@ -39,7 +39,7 @@ static char THIS_FILE[] = __FILE__;
 /**
  * @brief Default constructor.
  */
-CPatchTool::CPatchTool()
+CPatchTool::CPatchTool() : m_bOpenToEditor(FALSE)
 {
 }
 

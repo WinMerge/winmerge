@@ -30,6 +30,7 @@ IMPLEMENT_DYNCREATE(ProjectFilePathsDlg, CPropertyPage)
 ProjectFilePathsDlg::ProjectFilePathsDlg() : CPropertyPage(ProjectFilePathsDlg::IDD)
 , m_bLeftPathReadOnly(FALSE)
 , m_bRightPathReadOnly(FALSE)
+, m_bIncludeSubfolders(FALSE)
 {
 	//{{AFX_DATA_INIT(ProjectFilePathsDlg)
 	//}}AFX_DATA_INIT

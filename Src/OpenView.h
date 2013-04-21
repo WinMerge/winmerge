@@ -73,7 +73,6 @@ public:
 	/// unpacker info
 	DWORD m_dwFlags[3];
 	PackingInfo m_infoHandler;
-	BOOL m_bOverwriteRecursive;  /**< If TRUE overwrite last used value of recursive */
 
 // Attributes
 public:
