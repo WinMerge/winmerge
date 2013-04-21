@@ -36,6 +36,9 @@ DiffUtils::DiffUtils()
 		, m_inf(NULL)
 		, m_FilterCommentsManager(new ::FilterCommentsManager)
 		, m_pDiffWrapper(new ::CDiffWrapper)
+		, m_ndiffs(0)
+		, m_ntrivialdiffs(0)
+		, m_codepage(0)
 {
 }
 

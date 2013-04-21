@@ -44,7 +44,7 @@ class PluginInfo
 {
 public:
 	PluginInfo()
-		: m_lpDispatch(NULL), m_filters(NULL)
+		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(FALSE), m_nFreeFunctions(0)
 	{	
 	};
 	/// Parse the filter string (only for files), and create the filters

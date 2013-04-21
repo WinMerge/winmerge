@@ -102,7 +102,7 @@ COpenView::COpenView()
 	, m_pUpdateButtonStatusThread(NULL)
 	, m_bRecurse(FALSE)
 {
-	// TODO: add construction code here
+	memset(m_dwFlags, 0, sizeof(m_dwFlags));
 }
 
 COpenView::~COpenView()

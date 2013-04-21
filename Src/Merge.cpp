@@ -181,6 +181,7 @@ struct ArgSetting
 
 CMergeApp::CMergeApp() :
   m_bNeedIdleTimer(FALSE)
+, m_pOpenTemplate(0)
 , m_pDiffTemplate(0)
 , m_pHexMergeTemplate(0)
 , m_pDirTemplate(0)

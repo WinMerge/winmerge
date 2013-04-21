@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 // CPicture implementation
 //
 
-CPicture::CPicture()
+CPicture::CPicture() : m_hr(S_OK)
 {
 }
 
