@@ -64,7 +64,7 @@ public:
 	 * @return Pointer to array of LPCITEMIDLIST items.
 	 *		   May be invalidated by Add()
 	 */
-	LPCITEMIDLIST* CPidlContainer::GetList() const;
+	LPCITEMIDLIST* GetList() const;
 
 	/**
 	 * @brief Returns number of items in container
