@@ -310,7 +310,7 @@ void CVersionInfo::GetVersionInfo()
 			if (DllGetVersion)
 			{
 				m_dvi.cbSize = sizeof(m_dvi);
-				if FAILED(DllGetVersion(&m_dvi))
+				if (FAILED(DllGetVersion(&m_dvi)))
 				{
 					m_dvi.cbSize = 0;
 				}

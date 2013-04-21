@@ -152,7 +152,7 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	sc = CLSIDFromProgID(L"WinMerge32BitPluginProxy.Loader", &clsid);
 	if SUCCEEDED(sc)
 		sc = CoCreateInstance(&clsid, 0, CLSCTX_LOCAL_SERVER|CLSCTX_ACTIVATE_32_BIT_SERVER, &IID_IDispatch, &pv);
-	if FAILED(sc)
+	if (FAILED(sc))
 	{
 		LPTSTR errorText = ReportError(sc, 0);
 		LPTSTR tmp;
@@ -175,7 +175,7 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	V_VT(&v[0]) = VT_BSTR;
 	V_BSTR(&v[0]) = SysAllocString(progid);
 	sc = invokeW(pv, &ret, L"Load", opFxn[2], v);
-	if SUCCEEDED(sc)
+	if (SUCCEEDED(sc))
 		pv = V_DISPATCH(&ret);
 	VariantClear(&v[0]);
 	VariantClear(&v[1]);
@@ -195,7 +195,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 	);
 	mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
 	if ((FARPROC)DLLPROXY(Dll)->DllGetClassObject != DllProxy_ModuleState.Unresolved)
-		if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory))
+		if (SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
 		{
 			sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
 		}
@@ -221,7 +221,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 	if (source == 0)
 	{
 		CLSID clsid;
-		if SUCCEEDED(sc=CLSIDFromProgID(progid, &clsid))
+		if (SUCCEEDED(sc=CLSIDFromProgID(progid, &clsid)))
 		{
 			sc=CoCreateInstance(&clsid, 0, CLSCTX_ALL, &IID_IDispatch, &pv);
 		}
@@ -234,19 +234,19 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		// search in the interface of the dll for the CLSID of progid
 		ITypeLib *piTypeLib;
 		mycpyt2w(source, wc, DIMOF(wc));
-		if SUCCEEDED(sc=LoadTypeLib(wc, &piTypeLib))
+		if (SUCCEEDED(sc=LoadTypeLib(wc, &piTypeLib)))
 		{
 			UINT count = piTypeLib->lpVtbl->GetTypeInfoCount(piTypeLib);
 			while (SUCCEEDED(sc) && !bGUIDFound && count--)
 			{
 				ITypeInfo *piTypeInfo;
-				if SUCCEEDED(sc=piTypeLib->lpVtbl->GetTypeInfo(piTypeLib, count, &piTypeInfo))
+				if (SUCCEEDED(sc=piTypeLib->lpVtbl->GetTypeInfo(piTypeLib, count, &piTypeInfo)))
 				{
 					TYPEATTR *pTypeAttr;
-					if SUCCEEDED(sc=piTypeInfo->lpVtbl->GetTypeAttr(piTypeInfo, &pTypeAttr))
+					if (SUCCEEDED(sc=piTypeInfo->lpVtbl->GetTypeAttr(piTypeInfo, &pTypeAttr)))
 					{
 						BSTR bstrName = 0;
-						if SUCCEEDED(sc=piTypeInfo->lpVtbl->GetDocumentation(piTypeInfo, MEMBERID_NIL, &bstrName, 0, 0, 0))
+						if (SUCCEEDED(sc=piTypeInfo->lpVtbl->GetDocumentation(piTypeInfo, MEMBERID_NIL, &bstrName, 0, 0, 0)))
 						{
 							if (pTypeAttr->typekind == TKIND_COCLASS && StrCmpIW(bstrName, progid) == 0)
 							{
@@ -332,7 +332,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		if (sc == MK_E_INTERMEDIATEINTERFACENOTSUPPORTED || sc == E_UNEXPECTED)
 			sc = 0;
 	}
-	if FAILED(sc)
+	if (FAILED(sc))
 	{
 		// get the error description
 		LPTSTR errorText = ReportError(sc, 0);
@@ -431,7 +431,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 
 		sc = pi->lpVtbl->Invoke(pi, id, &IID_NULL, 0, wFlags, &dispparams,
 			ret, &excepInfo, &nArgErr);
-		if FAILED(sc)
+		if (FAILED(sc))
 		{
 			if (excepInfo.pfnDeferredFillIn)
 			{
@@ -496,7 +496,7 @@ HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH op, VARIANT
 	if (pi)
 	{
 		HRESULT sc = pi->lpVtbl->GetIDsOfNames(pi, &IID_NULL, &name, 1, 0, &id);
-		if FAILED(sc)
+		if (FAILED(sc))
 		{
 			if (!((UINT_PTR)silent & 1))
 			{
@@ -529,7 +529,7 @@ STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt)
 			if (V_VT(argv) != vt)
 			{
 				HRESULT sc = VariantChangeType(argv, argv, 0, vt);
-				if FAILED(sc)
+				if (FAILED(sc))
 					return sc;
 			}
 			else if (vt == VT_BSTR)
