@@ -64,7 +64,7 @@ void sd_SetBreakChars(const TCHAR *breakChars)
 }
 
 void
-sd_ComputeWordDiffs(const String str1, const String str2,
+sd_ComputeWordDiffs(const String& str1, const String& str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	std::vector<wdiff> * pDiffs)
 {
