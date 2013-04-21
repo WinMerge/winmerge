@@ -226,7 +226,7 @@ int CRegOptionsMgr::InitOption(const String& name, varprop::VariantValue default
 		// Value didn't exist. Save default value to registry
 		if (retValReg == ERROR_FILE_NOT_FOUND)
 		{
-			retVal = SaveValueToReg(hKey, strValueName.c_str(), defaultValue);
+			retVal = SaveValueToReg(hKey, strValueName, defaultValue);
 		}
 		// Value already exists so read it.
 		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
@@ -367,7 +367,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
 
 		if (retValReg == ERROR_SUCCESS)
 		{
-			retVal = SaveValueToReg(hKey, strValueName.c_str(), value);
+			retVal = SaveValueToReg(hKey, strValueName, value);
 			RegCloseKey(hKey);
 		}
 		else

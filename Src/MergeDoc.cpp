@@ -724,7 +724,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_FILE_ERR)
 	{
 		s = theApp.LoadString(IDS_FILEERROR);
-		LogErrorString(s.c_str());
+		LogErrorString(s);
 		AfxMessageBox(s.c_str(), MB_ICONSTOP);
 		return;
 	}
@@ -732,7 +732,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_TEMP_ERR)
 	{
 		s = theApp.LoadString(IDS_TEMP_FILEERROR);
-		LogErrorString(s.c_str());
+		LogErrorString(s);
 		AfxMessageBox(s.c_str(), MB_ICONSTOP);
 		return;
 	}
@@ -2681,7 +2681,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	m_ptBuf[index]->FreeAll();
 
 	// Load files
-	DWORD nLoadSuccess = LoadOneFile(index, path.c_str(), readOnly,
+	DWORD nLoadSuccess = LoadOneFile(index, path, readOnly,
 		m_ptBuf[index]->getEncoding());
 	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
 

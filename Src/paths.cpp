@@ -501,7 +501,7 @@ String paths_ConcatPath(const String & path, const String & subpath)
 		return path;
 	if (paths_EndsWithSlash(path))
 	{
-		return String(path).append(subpath.c_str() + (IsSlash(subpath.c_str(), 0) ? 1 : 0));
+		return String(path).append(subpath.c_str() + (IsSlash(subpath, 0) ? 1 : 0));
 	}
 	else
 	{
