@@ -1400,10 +1400,10 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			infoUnpacker);
 	}
 
-	if (!((dwFlags[0] & FFILEOPEN_NOMRU) && (dwFlags[0] & FFILEOPEN_CMDLINE)))
+	if (pFiles && !((dwFlags[0] & FFILEOPEN_NOMRU) && (dwFlags[0] & FFILEOPEN_CMDLINE)))
 	{
 		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
-		AddToRecentDocs(files, (unsigned *)dwFlags, bRecurse, filter);
+		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
 	}
 
 	return TRUE;
