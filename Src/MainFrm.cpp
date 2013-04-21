@@ -1231,7 +1231,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			}
 			do
 			{
-				if FAILED(piHandler->DeCompressArchive(m_hWnd, files[0].c_str(), path.c_str()))
+				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[0].c_str(), path.c_str())))
 					break;
 				if (files[0].find(path) == 0)
 				{
@@ -1256,7 +1256,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			path = env_GetTempChildPath();
 			do
 			{
-				if FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path.c_str()))
+				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path.c_str())))
 					break;;
 				if (files[1].find(path) == 0)
 				{
@@ -1283,7 +1283,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 				path = env_GetTempChildPath();
 				do
 				{
-					if FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path.c_str()))
+					if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path.c_str())))
 						break;;
 					if (files[2].find(path) == 0)
 					{
