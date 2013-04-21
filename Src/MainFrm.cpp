@@ -3407,6 +3407,8 @@ void CMainFrame::LoadToolbarImages()
 	BarCtrl.SetButtonSize(sizeButton);
 	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
 	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].Detach();
+	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].Detach();
 
 	// resize the rebar.
 	REBARBANDINFO rbbi;
