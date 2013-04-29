@@ -66,7 +66,7 @@ private:
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 	BOOL m_bCompareReady; /**< Compare ready, waiting for closing? */
-#if _MSC_VER >= 1600
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	ITaskbarList3 *m_pTaskbarList;
 #endif
 };

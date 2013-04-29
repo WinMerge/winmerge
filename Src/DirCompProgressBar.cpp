@@ -46,7 +46,7 @@ DirCompProgressBar::DirCompProgressBar()
 : m_bCompareReady(FALSE)
 , m_prevState(CompareStats::STATE_IDLE)
 , m_pCompareStats(NULL)
-#if _MSC_VER >= 1600
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
 , m_pTaskbarList(NULL)
 #endif
 {
@@ -54,10 +54,10 @@ DirCompProgressBar::DirCompProgressBar()
 
 DirCompProgressBar::~DirCompProgressBar()
 {
-#if _MSC_VER >= 1600
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList)
 	{
-		m_pTaskbarList->SetProgressValue(theApp.GetMainWnd()->m_hWnd, 0, 0);
+		m_pTaskbarList->SetProgressState(theApp.GetMainWnd()->m_hWnd, TBPF_NOPROGRESS);
 		m_pTaskbarList->Release();
 	}
 #endif
@@ -84,8 +84,10 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 			CBRS_BOTTOM | CBRS_TOOLTIPS | CBRS_FLYBY, DirCompProgressBar::IDD))
 		return FALSE; 
 
-#if _MSC_VER >= 1600
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	CoCreateInstance(CLSID_TaskbarList, NULL, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
+	if (m_pTaskbarList)
+		m_pTaskbarList->SetProgressState(theApp.GetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
 	theApp.TranslateDialog(m_hWnd);
 
@@ -117,7 +119,7 @@ void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 	pCompared->SetWindowText(num);
 	pProg->SetPos(comparedItems);
 
-#if _MSC_VER >= 1600
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList)
 		m_pTaskbarList->SetProgressValue(theApp.GetMainWnd()->m_hWnd, comparedItems, totalItems);
 #endif
