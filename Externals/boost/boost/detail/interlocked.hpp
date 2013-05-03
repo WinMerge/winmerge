@@ -33,6 +33,21 @@
 
 #elif defined(_WIN32_WCE)
 
+#if _WIN32_WCE >= 0x600
+
+extern "C" long __cdecl _InterlockedIncrement( long volatile * );
+extern "C" long __cdecl _InterlockedDecrement( long volatile * );
+extern "C" long __cdecl _InterlockedCompareExchange( long volatile *, long, long );
+extern "C" long __cdecl _InterlockedExchange( long volatile *, long );
+extern "C" long __cdecl _InterlockedExchangeAdd( long volatile *, long );
+
+# define BOOST_INTERLOCKED_INCREMENT _InterlockedIncrement
+# define BOOST_INTERLOCKED_DECREMENT _InterlockedDecrement
+# define BOOST_INTERLOCKED_COMPARE_EXCHANGE _InterlockedCompareExchange
+# define BOOST_INTERLOCKED_EXCHANGE _InterlockedExchange
+# define BOOST_INTERLOCKED_EXCHANGE_ADD _InterlockedExchangeAdd
+
+#else
 // under Windows CE we still have old-style Interlocked* functions
 
 extern "C" long __cdecl InterlockedIncrement( long* );
@@ -47,6 +62,8 @@ extern "C" long __cdecl InterlockedExchangeAdd( long*, long );
 # define BOOST_INTERLOCKED_EXCHANGE InterlockedExchange
 # define BOOST_INTERLOCKED_EXCHANGE_ADD InterlockedExchangeAdd
 
+#endif
+
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest,exchange,compare) \
     ((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((long*)(dest),(long)(exchange),(long)(compare)))
 # define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest,exchange) \
@@ -54,7 +71,11 @@ extern "C" long __cdecl InterlockedExchangeAdd( long*, long );
 
 #elif defined( BOOST_MSVC ) || defined( BOOST_INTEL_WIN )
 
-#if defined( __CLRCALL_PURE_OR_CDECL )
+#if defined( BOOST_MSVC ) && BOOST_MSVC >= 1600
+
+#include <intrin.h>
+
+#elif defined( __CLRCALL_PURE_OR_CDECL )
 
 extern "C" long __CLRCALL_PURE_OR_CDECL _InterlockedIncrement( long volatile * );
 extern "C" long __CLRCALL_PURE_OR_CDECL _InterlockedDecrement( long volatile * );
@@ -119,15 +140,15 @@ namespace boost
 namespace detail
 {
 
-extern "C"BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedIncrement( long volatile * );
-extern "C"BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedDecrement( long volatile * );
-extern "C"BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedCompareExchange( long volatile *, long, long );
-extern "C"BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedExchange( long volatile *, long );
-extern "C"BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedExchangeAdd( long volatile *, long );
+extern "C" BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedIncrement( long volatile * );
+extern "C" BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedDecrement( long volatile * );
+extern "C" BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedCompareExchange( long volatile *, long, long );
+extern "C" BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedExchange( long volatile *, long );
+extern "C" BOOST_INTERLOCKED_IMPORT long __stdcall InterlockedExchangeAdd( long volatile *, long );
 
 # if defined(_M_IA64) || defined(_M_AMD64)
-extern "C"BOOST_INTERLOCKED_IMPORT void* __stdcall InterlockedCompareExchangePointer( void* volatile *, void*, void* );
-extern "C"BOOST_INTERLOCKED_IMPORT void* __stdcall InterlockedExchangePointer( void* volatile *, void* );
+extern "C" BOOST_INTERLOCKED_IMPORT void* __stdcall InterlockedCompareExchangePointer( void* volatile *, void*, void* );
+extern "C" BOOST_INTERLOCKED_IMPORT void* __stdcall InterlockedExchangePointer( void* volatile *, void* );
 # endif
 
 } // namespace detail
