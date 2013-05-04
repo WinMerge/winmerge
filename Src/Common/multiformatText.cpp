@@ -240,9 +240,19 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
-			pchar = pshmIn->begin() + m_nBomSize;
-			nchars = pshmIn->end() - pchar;
+			try
+			{
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+				pchar = pshmIn->begin() + m_nBomSize;
+				nchars = pshmIn->end() - pchar;
+			}
+			catch (...)
+			{
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return NULL;
+				pchar = "";
+				nchars = 0;
+			}			
 		}
 		else
 		{
@@ -314,10 +324,20 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+			try
+			{
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-			pchar = pshmIn->begin() + m_nBomSize;
-			nchars = pshmIn->end() - pchar;
+				pchar = pshmIn->begin() + m_nBomSize;
+				nchars = pshmIn->end() - pchar;
+			}
+			catch (...)
+			{
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return NULL;
+				pchar = "";
+				nchars = 0;
+			}			
 		}
 		else
 		{
@@ -377,10 +397,20 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+			try
+			{
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-			pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
-			nchars = pshmIn->end()-pchar;
+				pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
+				nchars = pshmIn->end()-pchar;
+			}
+			catch (...)
+			{
+				if (!fileIn.isDevice() && fileIn.getSize() > 0)
+					return NULL;
+				pchar = "";
+				nchars = 0;
+			}
 		}
 		else 
 		{
