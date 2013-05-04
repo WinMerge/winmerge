@@ -12,11 +12,6 @@ using Poco::FastMutex;
 
 PluginManager::~PluginManager()
 {
-	// Manually free all items in cache
-	// This could also be done with a DestructElements helper
-	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
-		delete it->second;
-	m_pluginSettings.clear();
 }
 
 /**
@@ -27,12 +22,12 @@ void PluginManager::FetchPluginInfos(const String& filteredFilenames,
                                      PrediffingInfo ** infoPrediffer)
 {
 	FastMutex::ScopedLock lock(m_mutex);
-	PluginFileInfo *fi;
+	PluginFileInfoPtr fi;
 	PluginFileInfoMap::iterator it = m_pluginSettings.find(filteredFilenames);
 	if (it == m_pluginSettings.end())
 	{
 		// This might be a good place to set any user-specified default values
-		fi = new PluginFileInfo;
+		fi.reset(new PluginFileInfo);
 		m_pluginSettings[filteredFilenames] = fi;
 	}
 	else

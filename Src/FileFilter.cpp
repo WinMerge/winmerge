@@ -39,12 +39,7 @@ FileFilter::~FileFilter()
  *
  * @param [in] filterList List to empty.
  */
-void FileFilter::EmptyFilterList(vector<FileFilterElement*> *filterList)
+void FileFilter::EmptyFilterList(vector<FileFilterElementPtr> *filterList)
 {
-	while (!filterList->empty())
-	{
-		FileFilterElement *elem = filterList->back();
-		delete elem;
-		filterList->pop_back();
-	}
+	filterList->clear();
 }

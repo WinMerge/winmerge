@@ -184,7 +184,6 @@ CMergeDoc::~CMergeDoc()
 		m_pDirDoc->MergeDocClosing(this);
 		m_pDirDoc = NULL;
 	}
-	delete m_pInfoUnpacker;
 }
 
 /**
@@ -2262,7 +2261,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 
 	CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	CString sOpenError;
-	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker,
+	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker.get(),
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,

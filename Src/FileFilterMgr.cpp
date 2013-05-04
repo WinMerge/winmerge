@@ -38,7 +38,7 @@ using Poco::Glob;
 using Poco::icompare;
 using Poco::RegularExpression;
 
-static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str);
+static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str);
 
 /**
  * @brief Destructor, frees all filters.
@@ -58,7 +58,7 @@ int FileFilterMgr::AddFilter(const String& szFilterFile)
 	int errorcode = FILTER_OK;
 	FileFilter * pFilter = LoadFilterFile(szFilterFile, errorcode);
 	if (pFilter)
-		m_filters.push_back(pFilter);
+		m_filters.push_back(FileFilterPtr(pFilter));
 	return errorcode;
 }
 
@@ -113,12 +113,11 @@ void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern
 void FileFilterMgr::RemoveFilter(const String& szFilterFile)
 {
 	// Note that m_filters.GetSize can change during loop
-	vector<FileFilter*>::iterator iter = m_filters.begin();
+	vector<FileFilterPtr>::iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
 		if (string_compare_nocase((*iter)->fullpath, szFilterFile) == 0)
 		{
-			delete (*iter);
 			m_filters.erase(iter);
 			break;
 		}
@@ -131,12 +130,7 @@ void FileFilterMgr::RemoveFilter(const String& szFilterFile)
  */
 void FileFilterMgr::DeleteAllFilters()
 {
-	while (!m_filters.empty())
-	{
-		FileFilter* filter = m_filters.back();
-		delete filter;
-		m_filters.pop_back();
-	}
+	m_filters.clear();
 }
 
 /**
@@ -145,7 +139,7 @@ void FileFilterMgr::DeleteAllFilters()
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
  */
-static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & str)
+static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str)
 {
 	const String& commentLeader = _T("##"); // Starts comment
 	str = string_trim_ws_begin(str);
@@ -171,7 +165,7 @@ static void AddFilterPattern(vector<FileFilterElement*> *filterList, String & st
 	re_opts |= RegularExpression::RE_UTF8;
 	try
 	{
-		filterList->push_back(new FileFilterElement(regexString, re_opts));
+		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts)));
 	}
 	catch (...)
 	{
@@ -266,11 +260,11 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
  */
 FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
 {
-	vector<FileFilter*>::const_iterator iter = m_filters.begin();
+	vector<FileFilterPtr>::const_iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
 		if (string_compare_nocase((*iter)->fullpath, szFilterPath) == 0)
-			return (*iter);
+			return (*iter).get();
 		++iter;
 	}
 	return 0;
@@ -284,14 +278,14 @@ FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
  * @return true if string passes
  * @note Matching stops when first match is found.
  */
-bool TestAgainstRegList(const vector<FileFilterElement*> *filterList, const String& szTest)
+bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const String& szTest)
 {
 	if (filterList->size() == 0)
 		return false;
 
 	std::string compString;
 	ucr::toUTF8(szTest, compString);
-	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
+	vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
 	{
 		RegularExpression::Match match;
@@ -436,17 +430,16 @@ int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 		return errorcode;
 	}
 
-	vector<FileFilter*>::iterator iter = m_filters.begin();
+	vector<FileFilterPtr>::iterator iter = m_filters.begin();
 	while (iter != m_filters.end())
 	{
-		if (pfilter == (*iter))
+		if (pfilter == (*iter).get())
 		{
-			delete (*iter);
 			m_filters.erase(iter);
 			break;
 		}
 	}
-	m_filters.push_back(newfilter);
+	m_filters.push_back(FileFilterPtr(newfilter));
 	return errorcode;
 }
 

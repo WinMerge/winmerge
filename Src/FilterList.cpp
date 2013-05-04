@@ -40,7 +40,7 @@ void FilterList::AddRegExp(const std::string& regularExpression)
 {
 	try
 	{
-		m_list.push_back(new filter_item(regularExpression, RegularExpression::RE_UTF8));
+		m_list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
 	}
 	catch (...)
 	{
@@ -53,12 +53,7 @@ void FilterList::AddRegExp(const std::string& regularExpression)
  */
 void FilterList::RemoveAllFilters()
 {
-	while (!m_list.empty())
-	{
-		filter_item *item = m_list.back();
-		delete item;
-		m_list.pop_back();
-	}
+	m_list.clear();
 }
 
 /** 
@@ -94,7 +89,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 	unsigned i = 0;
 	while (i < count && retval == false)
 	{
-		const filter_item* item = m_list[i];
+		const filter_item_ptr& item = m_list[i];
 		int result = 0;
 		RegularExpression::Match match;
 		try

@@ -711,15 +711,13 @@ bool UniMemFile::WriteString(const String & line)
 UniStdioFile::UniStdioFile()
 		: m_fp(0)
 		, m_data(0)
+		, m_ucrbuff(128)
 {
-	m_pucrbuff = new ucr::buffer(128);
 }
 
 UniStdioFile::~UniStdioFile()
 {
 	Close();
-	delete(ucr::buffer *)m_pucrbuff;
-	m_pucrbuff = 0;
 }
 
 void UniStdioFile::Close()
@@ -953,16 +951,15 @@ bool UniStdioFile::WriteString(const String & line)
 		return true;
 	}
 
-	ucr::buffer * buff = (ucr::buffer *)m_pucrbuff;
 	ucr::UNICODESET unicoding1 = ucr::NONE;
 	int codepage1 = 0;
 	ucr::getInternalEncoding(&unicoding1, &codepage1); // What String & TCHARs represent
 	const unsigned char * src = (const unsigned char *)line.c_str();
 	size_t srcbytes = line.length() * sizeof(TCHAR);
-	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, buff);
+	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, &m_ucrbuff);
 	// TODO: What to do about lossy conversion ?
-	size_t wbytes = fwrite(buff->ptr, 1, buff->size, m_fp);
-	if (wbytes != buff->size)
+	size_t wbytes = fwrite(m_ucrbuff.ptr, 1, m_ucrbuff.size, m_fp);
+	if (wbytes != m_ucrbuff.size)
 		return false;
 	return true;
 }

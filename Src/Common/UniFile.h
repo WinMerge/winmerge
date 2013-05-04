@@ -233,7 +233,7 @@ protected:
 private:
 	FILE * m_fp;
 	Poco::Int64 m_data; // offset after any initial BOM
-	void * m_pucrbuff;
+	ucr::buffer m_ucrbuff;
 };
 
 

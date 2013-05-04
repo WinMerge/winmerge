@@ -34,6 +34,7 @@
 #include "CompareOptions.h"
 #include "DiffList.h"
 #include "UnicodeString.h"
+#include <boost/scoped_ptr.hpp>
 
 class CDiffContext;
 class PrediffingInfo;
@@ -175,7 +176,7 @@ public:
 	void AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned end0, unsigned begin1, unsigned end1, OP_TYPE op);
 	void AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr);
 	void FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines);
-	MovedLines * GetMovedLines(int index) { return m_pMovedLines[index]; }
+	MovedLines * GetMovedLines(int index) { return m_pMovedLines[index].get(); }
 	void SetCompareFiles(const PathContext &originalFile);
 	int Make3wayDiff(DiffList& diff3, DiffList& diff02, DiffList& diff10, DiffList& diff21);
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
@@ -210,7 +211,7 @@ public:
 private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
-	FilterList * m_pFilterList; /**< List of linefilters. */
+	boost::scoped_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	PathContext m_files; /**< Full path to diff'ed file. */
 	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */
 	PathContext m_originalFile; /**< file's original (NON-TEMP) path. */
@@ -218,7 +219,7 @@ private:
 	String m_sPatchFile; /**< Full path to created patch file. */
 	bool m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
-	PrediffingInfo * m_infoPrediffer;
+	boost::scoped_ptr<PrediffingInfo> m_infoPrediffer;
 	/// prediffer info are stored only for MergeDoc
 	String m_sToFindPrediffer;
 	bool m_bUseDiffList; /**< Are results returned in difflist? */
@@ -228,8 +229,8 @@ private:
 	int m_nDiffs; /**< Difference count */
 	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
-	MovedLines * m_pMovedLines[3];
-	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
+	boost::scoped_ptr<MovedLines> m_pMovedLines[3];
+	boost::scoped_ptr<FilterCommentsManager> m_FilterCommentsManager; /**< Comments filtering manager */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
 

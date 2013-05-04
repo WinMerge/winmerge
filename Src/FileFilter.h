@@ -21,11 +21,14 @@
  */
 // ID line follows -- this is updated by SVN
 // $Id$
+#ifndef __FILEFILTER_H__
+#define __FILEFILTER_H__
 
 #include <vector>
 #include "UnicodeString.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
+#include <boost/shared_ptr.hpp>
 
 /**
  * @brief FileFilter rule.
@@ -47,6 +50,8 @@ struct FileFilterElement
 	}
 };
 
+typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
+
 /**
  * @brief One actual filter.
  *
@@ -62,10 +67,14 @@ struct FileFilter
 	String name;			/**< Filter name (shown in UI) */
 	String description;	/**< Filter description text */
 	String fullpath;		/**< Full path to filter file */
-	std::vector<FileFilterElement*> filefilters; /**< List of rules for files */
-	std::vector<FileFilterElement*> dirfilters;  /**< List of rules for directories */
+	std::vector<FileFilterElementPtr> filefilters; /**< List of rules for files */
+	std::vector<FileFilterElementPtr> dirfilters;  /**< List of rules for directories */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	
-	static void EmptyFilterList(std::vector<FileFilterElement*> *filterList);
+	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 };
+
+typedef boost::shared_ptr<FileFilter> FileFilterPtr;
+
+#endif

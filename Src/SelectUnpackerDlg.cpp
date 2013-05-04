@@ -53,17 +53,15 @@ void CSelectUnpackerDlg::Initialize()
 	//}}AFX_DATA_INIT
 
 	// texts for the default unpackers
-	noPlugin = new PluginInfo;
+	noPlugin.reset(new PluginInfo);
 	noPlugin->m_lpDispatch = NULL;
-	noPlugin->m_filters = NULL;
 	noPlugin->m_name = theApp.LoadString(IDS_USERCHOICE_NONE);
-	automaticPlugin = new PluginInfo;
+	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = NULL;
-	automaticPlugin->m_filters = NULL;
 	automaticPlugin->m_name = LoadResString(IDS_USERCHOICE_AUTOMATIC);
 	automaticPlugin->m_description = LoadResString(ID_UNPACK_AUTO);
 
-	m_pPlugin = noPlugin;
+	m_pPlugin = noPlugin.get();
 
 	PluginArray * piFileScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
@@ -71,9 +69,9 @@ void CSelectUnpackerDlg::Initialize()
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
 
 	// add the default unpackers to the unpackers list
-	m_UnpackerPlugins.Add(noPlugin);
+	m_UnpackerPlugins.Add(noPlugin.get());
 	m_bWithFileFlags.push_back(false);
-	m_UnpackerPlugins.Add(automaticPlugin);
+	m_UnpackerPlugins.Add(automaticPlugin.get());
 	m_bWithFileFlags.push_back(true);
 	// add the real unpackers to the unpackers list
 	int i;
@@ -111,19 +109,17 @@ CSelectUnpackerDlg::CSelectUnpackerDlg(LPCTSTR filename1, LPCTSTR filename2, CWn
 
 CSelectUnpackerDlg::~CSelectUnpackerDlg()
 {
-	delete noPlugin;
-	delete automaticPlugin;
 }
 
 
 void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 {
 	// default value
-	m_pPlugin = noPlugin;
+	m_pPlugin = noPlugin.get();
 
 	if (infoHandler && infoHandler->bToBeScanned)
 		// automatic unpacker
-		m_pPlugin = automaticPlugin;
+		m_pPlugin = automaticPlugin.get();
 	else if (infoHandler)
 	{
 		// find the initial unpacker
@@ -139,9 +135,9 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 
 const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 {
-	if (m_pPlugin == noPlugin)
+	if (m_pPlugin == noPlugin.get())
 		return PackingInfo(PLUGIN_MANUAL);
-	else if (m_pPlugin == automaticPlugin)
+	else if (m_pPlugin == automaticPlugin.get())
 		return PackingInfo(PLUGIN_AUTO);
 	else
 	{
@@ -214,7 +210,7 @@ void CSelectUnpackerDlg::prepareListbox()
 	for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
 	{
 		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
-		if (pPlugin == noPlugin || pPlugin == automaticPlugin 
+		if (pPlugin == noPlugin.get() || pPlugin == automaticPlugin.get() 
 				|| m_bNoExtensionCheck 
 			  || pPlugin->TestAgainstRegList((LPCTSTR)m_filteredFilenames))
 		{
@@ -248,7 +244,7 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 	int i = m_cboUnpackerName.GetCurSel();
 	if (i == -1)
 	{
-		m_pPlugin = noPlugin;
+		m_pPlugin = noPlugin.get();
 	}
 	else
 	{

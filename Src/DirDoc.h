@@ -172,7 +172,7 @@ private:
 	HexMergeDocPtrList m_HexMergeDocs; /**< List of hex file compares opened from this compare */
 	bool m_bRO[3]; /**< Is left/middle/right side read-only */
 	bool m_bRecursive; /**< Is current compare recursive? */
-	CustomStatusCursor * m_statusCursor;
+	boost::scoped_ptr<CustomStatusCursor> m_statusCursor;
 	String m_strDesc[3]; /**< Left/middle/right side desription text */
 	PluginManager m_pluginman;
 	bool m_bReuseCloses; /**< Are we closing because of reuse? */

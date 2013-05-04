@@ -299,7 +299,7 @@ protected:
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
-	PackingInfo * m_pInfoUnpacker;
+	boost::scoped_ptr<PackingInfo> m_pInfoUnpacker;
 	String m_strDesc[3]; /**< Left/Middle/Right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bMergingMode; /**< Merging or Edit mode */

@@ -12,6 +12,7 @@
 #include <cstring>
 #include <algorithm>
 #include <windows.h>
+#include <boost/scoped_array.hpp>
 #include "unicoder.h"
 #include "ExConverter.h"
 #include "codepage.h"
@@ -19,6 +20,7 @@
 #include "FileTextEncoding.h"
 #include "paths.h"
 #include "markdown.h"
+
 
 #ifdef _WIN32
 #  define strcasecmp(a, b) stricmp((a), (b))
@@ -127,21 +129,19 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
  */
 static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepage)
 {
-	char *psrc;
+	const char *psrc = src;
+	boost::scoped_array<char> buf;
 	if (len >= 2 && (src[0] == 0 || src[1] == 0))
 	{
-		psrc = new char[len];
+		buf.reset(new char[len]);
 		int i, j;
 		for (i = 0, j = 0; i < (int)len; i++)
 		{
 			if (src[i])
-				psrc[j++] = src[i];
+				buf[j++] = src[i];
 		}
 		len = j;
-	}
-	else
-	{
-		psrc = (char *)src;
+		psrc = buf.get();
 	}
 	CMarkdown xml(psrc, psrc + len);
 	if (xml.Move("?xml"))
@@ -153,12 +153,10 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len, int defcodepa
 			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.c_str());
 			if (encodingId)
 			{
-				if (psrc != src) delete [] psrc;
 				return GetEncodingCodePageFromId(encodingId);
 			}
 		}
 	}
-	if (psrc != src) delete [] psrc;
 	return defcodepage;
 }
 

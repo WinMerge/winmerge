@@ -84,11 +84,11 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 	int iPlugin;
 	for (iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
-		PluginInfo & plugin = piPluginArray->at(iPlugin);
+		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		m_pfile->WriteString(_T("\r\n  "));
-		m_pfile->WriteString(plugin.m_name);
+		m_pfile->WriteString(plugin->m_name);
 		m_pfile->WriteString(_T(" ["));
-		m_pfile->WriteString(plugin.m_filepath);
+		m_pfile->WriteString(plugin->m_filepath);
 		m_pfile->WriteString(_T("]"));
 	}
 }

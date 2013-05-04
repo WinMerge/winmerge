@@ -468,7 +468,7 @@ int CDirView::GetDefaultColImage() const
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
 	if (m_pCmpProgressBar == NULL)
-		m_pCmpProgressBar = new DirCompProgressBar();
+		m_pCmpProgressBar.reset(new DirCompProgressBar());
 
 	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
 		m_pCmpProgressBar->Create(GetParentFrame());
@@ -476,7 +476,7 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
 	m_pCmpProgressBar->SetCompareStat(pCompareStats);
 	m_pCmpProgressBar->StartUpdating();
 
-	GetParentFrame()->ShowControlBar(m_pCmpProgressBar, TRUE, FALSE);
+	GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), TRUE, FALSE);
 
 	m_compareStart = clock();
 }
@@ -2900,9 +2900,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
-		GetParentFrame()->ShowControlBar(m_pCmpProgressBar, FALSE, FALSE);
-		delete m_pCmpProgressBar;
-		m_pCmpProgressBar = NULL;
+		GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
+		m_pCmpProgressBar.reset();
 
 		pDoc->CompareReady();
 		// Don't Redisplay() if triggered by OnMarkedRescan()

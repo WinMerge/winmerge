@@ -90,10 +90,6 @@ CDiffWrapper::CDiffWrapper()
 {
 	memset(&m_status, 0, sizeof(DIFFSTATUS));
 
-	m_pMovedLines[0] = NULL;
-	m_pMovedLines[1] = NULL;
-	m_pMovedLines[2] = NULL;
-
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
 }
@@ -103,12 +99,6 @@ CDiffWrapper::CDiffWrapper()
  */
 CDiffWrapper::~CDiffWrapper()
 {
-	delete m_pFilterList;
-	delete m_infoPrediffer;
-	delete m_FilterCommentsManager;
-	delete m_pMovedLines[0];
-	delete m_pMovedLines[1];
-	delete m_pMovedLines[2];
 }
 
 /**
@@ -198,11 +188,8 @@ void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
 }
 void CDiffWrapper::SetPrediffer(PrediffingInfo * prediffer /*=NULL*/)
 {
-	if (m_infoPrediffer)
-		delete m_infoPrediffer;
-
 	// all flags are set correctly during the construction
-	m_infoPrediffer = new PrediffingInfo;
+	m_infoPrediffer.reset(new PrediffingInfo);
 
 	if (prediffer)
 		*m_infoPrediffer = *prediffer;
@@ -253,19 +240,16 @@ void CDiffWrapper::SetDetectMovedBlocks(bool bDetectMovedBlocks)
 	{
 		if (m_pMovedLines[0] == NULL)
 		{
-			m_pMovedLines[0] = new MovedLines;
-			m_pMovedLines[1] = new MovedLines;
-			m_pMovedLines[2] = new MovedLines;
+			m_pMovedLines[0].reset(new MovedLines);
+			m_pMovedLines[1].reset(new MovedLines);
+			m_pMovedLines[2].reset(new MovedLines);
 		}
 	}
 	else
 	{
-		delete m_pMovedLines[0];
-		delete m_pMovedLines[1];
-		delete m_pMovedLines[2];
-		m_pMovedLines[0] = NULL;
-		m_pMovedLines[1] = NULL;
-		m_pMovedLines[2] = NULL;
+		m_pMovedLines[0].reset();
+		m_pMovedLines[1].reset();
+		m_pMovedLines[2].reset();
 	}
 }
 
@@ -727,7 +711,7 @@ bool CDiffWrapper::RunFileDiff()
 			{
 				// this can only fail if the data can not be saved back (no more
 				// place on disk ???) What to do then ??
-				FileTransform_Prediffing(strFileTemp[file], m_sToFindPrediffer, m_infoPrediffer,
+				FileTransform_Prediffing(strFileTemp[file], m_sToFindPrediffer, m_infoPrediffer.get(),
 					m_bPathsAreTemp);
 			}
 			else
@@ -1662,15 +1646,14 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 	// Remove filterlist if new filter is empty
 	if (filterStr.empty())
 	{
-		delete m_pFilterList;
-		m_pFilterList = NULL;
+		m_pFilterList.reset();
 		return;
 	}
 
 	// Adding new filter without previous filter
 	if (m_pFilterList == NULL)
 	{
-		m_pFilterList = new FilterList;
+		m_pFilterList.reset(new FilterList);
 	}
 
 	m_pFilterList->RemoveAllFilters();
