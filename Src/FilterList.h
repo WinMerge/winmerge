@@ -14,6 +14,7 @@
 #include "codepage.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
+#include <boost/shared_ptr.hpp>
 
 /**
  * @brief Container for one filtering rule / compiled expression.
@@ -27,6 +28,8 @@ struct filter_item
 	Poco::RegularExpression regexp; /**< Compiled regular expression */
 	filter_item(const std::string &filter, int reOpts) : filterAsString(filter), regexp(filter, reOpts) {}
 };
+
+typedef boost::shared_ptr<filter_item> filter_item_ptr;
 
 /**
  * @brief Regular expression list.
@@ -47,7 +50,7 @@ public:
 	const char * GetLastMatchExpression();
 
 private:
-	std::vector <filter_item *> m_list;
+	std::vector <filter_item_ptr> m_list;
 	const std::string *m_lastMatchExpression;
 
 };

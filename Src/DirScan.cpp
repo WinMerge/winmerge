@@ -20,6 +20,7 @@
 #include <Poco/AutoPtr.h>
 #include <Poco/Stopwatch.h>
 #include <Poco/Format.h>
+#include <boost/shared_ptr.hpp>
 #include "DiffThread.h"
 #include "UnicodeString.h"
 #include "LogFile.h"
@@ -106,6 +107,8 @@ private:
 	NotificationQueue& m_queue;
 	CDiffContext *m_pCtxt;
 };
+
+typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
 
 /**
  * @brief Help minimize memory footprint by sharing CStringData if possible.
@@ -568,12 +571,13 @@ OutputDebugString(buf);
 int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 {
 	ThreadPool threadPool;
-	std::vector<DiffWorker *> workers(Environment::processorCount());
+	std::vector<DiffWorkerPtr> workers;
+	size_t nworkers = Environment::processorCount();
 	NotificationQueue queue;
 
-	for (size_t i = 0; i < workers.size(); ++i)
+	for (size_t i = 0; i < nworkers; ++i)
 	{
-		workers[i] = new DiffWorker(queue, myStruct->context);
+		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context)));
 		threadPool.start(*workers[i]);
 	}
 
@@ -582,12 +586,6 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, UIntPtr parentdiffpos)
 	Thread::sleep(100);
 	queue.wakeUpAll();
 	threadPool.joinAll();
-
-	while (!workers.empty())
-	{
-		delete workers.back();
-		workers.pop_back();
-	}
 
 	return res;
 }

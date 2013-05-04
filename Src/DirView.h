@@ -299,7 +299,7 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< TRUE if tree mode is on*/
-	DirCompProgressBar * m_pCmpProgressBar;
+	boost::scoped_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	bool m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */

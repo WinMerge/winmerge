@@ -25,9 +25,7 @@
 
 #include <vector>
 #include "UnicodeString.h"
-
-struct FileFilterElement;
-struct FileFilter;
+#include "FileFilter.h"
 
 /**
  * @brief Return values for many filter functions.
@@ -91,12 +89,12 @@ protected:
 
 // Implementation data
 private:
-	std::vector<FileFilter*> m_filters; /*< List of filters loaded */
+	std::vector<FileFilterPtr> m_filters; /*< List of filters loaded */
 };
 
 
-bool TestAgainstRegList(const std::vector<FileFilterElement*> *filterList, const String& szTest);
-void EmptyFilterList(std::vector<FileFilterElement*> *filterList);
+bool TestAgainstRegList(const std::vector<FileFilterElementPtr> *filterList, const String& szTest);
+void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 
 
 #endif // FileFilterMgr_h_included

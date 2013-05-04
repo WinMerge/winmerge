@@ -274,7 +274,6 @@ String CVersionInfo::GetComments() const
  */
 void CVersionInfo::GetVersionInfo()
 {
-	m_pVffInfo = NULL;
 	ZeroMemory(&m_FixedFileInfo, sizeof(m_FixedFileInfo));
 	ZeroMemory(&m_dvi, sizeof(m_dvi));
 
@@ -290,15 +289,13 @@ void CVersionInfo::GetVersionInfo()
 	if (dwVerInfoSize)
 	{
 		m_bVersionFound = TRUE;
-		m_pVffInfo = new BYTE[dwVerInfoSize];
-		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_pVffInfo))
+		m_pVffInfo.reset(new BYTE[dwVerInfoSize]);
+		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_pVffInfo.get()))
 		{
 			GetFixedVersionInfo();
 			if (m_bVersionOnly == FALSE)
 				QueryStrings();
 		}
-		delete [] m_pVffInfo;
-		m_pVffInfo = NULL;
 	}
 
 	if (m_bDllVersion)
@@ -340,7 +337,7 @@ void CVersionInfo::QueryStrings()
 	{
 		LANGUAGEANDCODEPAGE *lpTranslate;
 		DWORD langLen;
-		if (VerQueryValue((LPVOID)m_pVffInfo,
+		if (VerQueryValue((LPVOID)m_pVffInfo.get(),
 				_T("\\VarFileInfo\\Translation"),
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
@@ -382,7 +379,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
 	_sntprintf(szSelector, countof(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);
-	bRetCode = VerQueryValue((LPVOID)m_pVffInfo,
+	bRetCode = VerQueryValue((LPVOID)m_pVffInfo.get(),
 		szSelector,
 		(LPVOID *)&lpVersion,
 		&uVersionLen);
@@ -405,7 +402,7 @@ void CVersionInfo::GetFixedVersionInfo()
 	VS_FIXEDFILEINFO * pffi;
 	UINT len = sizeof(*pffi);
 	BOOL bRetCode = VerQueryValue(
-		(LPVOID)m_pVffInfo, _T("\\"), (LPVOID *)&pffi, &len);
+		(LPVOID)m_pVffInfo.get(), _T("\\"), (LPVOID *)&pffi, &len);
 	memcpy(&m_FixedFileInfo, pffi, sizeof(m_FixedFileInfo));
 	m_dvi.dwMajorVersion = HIWORD(m_FixedFileInfo.dwFileVersionMS);
 	m_dvi.dwMinorVersion = LOWORD(m_FixedFileInfo.dwFileVersionMS);
@@ -428,7 +425,7 @@ BOOL CVersionInfo::GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage)
 	UINT cbTranslate;
 	// Read the list of languages and code pages.
 
-	VerQueryValue((LPVOID)m_pVffInfo, 
+	VerQueryValue((LPVOID)m_pVffInfo.get(), 
 				_T("\\VarFileInfo\\Translation"),
 				(LPVOID*)&lpTranslate,
 				&cbTranslate);

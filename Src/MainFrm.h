@@ -30,6 +30,8 @@
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include <vector>
+#include <boost/scoped_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 #include "ToolBarXPThemes.h"
 #include "MDITabBar.h"
 #include "OptionsMgr.h"
@@ -72,6 +74,8 @@ class SyntaxColors;
 class LineFiltersList;
 class TempFile;
 struct FileLocation;
+
+typedef boost::shared_ptr<TempFile> TempFilePtr;
 
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, COpenDoc *> OpenDocList;
@@ -163,11 +167,11 @@ public:
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	VSSHelper m_vssHelper; /**< Helper class for VSS integration */
-	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
+	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	BOOL m_bFlashing; /**< Window is flashing. */
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
-	LineFiltersList *m_pLineFilters; /**< List of linefilters */
+	boost::scoped_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 
 	/**
 	 * @name Version Control System (VCS) integration.
@@ -255,9 +259,9 @@ protected:
 
 	static const MENUITEM_ICON m_MenuIcons[];
 
-	BCMenu * m_pMenus[MENU_COUNT]; /**< Menus for different views */
-	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
-	std::vector<TempFile*> m_tempFiles; /**< List of possibly needed temp files. */
+	boost::scoped_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
+	boost::scoped_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
+	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 
 // Generated message map functions
 protected:

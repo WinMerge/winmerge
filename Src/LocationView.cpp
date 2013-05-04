@@ -937,11 +937,9 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 	m_visibleBottom = nBottomCoord;
 
 	CRect rcVisibleArea(2, m_visibleTop, rc.right - 2, m_visibleBottom);
-	CBitmap *pBitmap = CopyRectToBitmap(pClientDC, rcVisibleArea);
-	CBitmap *pDarkenedBitmap = GetDarkenedBitmap(pClientDC, pBitmap);
-	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap);
-	delete pDarkenedBitmap;
-	delete pBitmap;
+	boost::scoped_ptr<CBitmap> pBitmap(CopyRectToBitmap(pClientDC, rcVisibleArea));
+	boost::scoped_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get()));
+	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap.get());
 }
 
 /**

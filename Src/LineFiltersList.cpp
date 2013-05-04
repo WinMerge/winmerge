@@ -32,7 +32,6 @@ LineFiltersList::LineFiltersList()
  */
 LineFiltersList::~LineFiltersList()
 {
-	Empty();
 }
 
 /**
@@ -42,7 +41,7 @@ LineFiltersList::~LineFiltersList()
  */
 void LineFiltersList::AddFilter(const String& filter, bool enabled)
 {
-	LineFilterItem *item = new LineFilterItem();
+	LineFilterItemPtr item(new LineFilterItem());
 	item->enabled = enabled;
 	item->filterStr = filter;
 	m_items.push_back(item);
@@ -62,12 +61,7 @@ size_t LineFiltersList::GetCount() const
  */
 void LineFiltersList::Empty()
 {
-	while (!m_items.empty())
-	{
-		LineFilterItem * item = m_items.back();
-		delete item;
-		m_items.pop_back();
-	}
+	m_items.clear();
 }
 
 /**
@@ -80,7 +74,7 @@ void LineFiltersList::Empty()
 String LineFiltersList::GetAsString() const
 {
 	String filter;
-	vector<LineFilterItem*>::const_iterator iter = m_items.begin();
+	vector<LineFilterItemPtr>::const_iterator iter = m_items.begin();
 
 	while (iter != m_items.end())
 	{
@@ -196,7 +190,7 @@ void LineFiltersList::SaveFilters()
 
 	for (size_t i = 0; i < count; i++)
 	{
-		LineFilterItem *item = m_items[i];
+		const LineFilterItemPtr& item = m_items[i];
 
 		String name = string_format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));

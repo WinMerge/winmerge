@@ -3,6 +3,7 @@
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Mutex.h>
+#include <boost/shared_ptr.hpp>
 #include <map>
 // defines IPluginInfos
 #include "DiffContext.h"
@@ -18,13 +19,15 @@ struct PluginFileInfo
 	PrediffingInfo m_infoPrediffer;
 };
 
+typedef boost::shared_ptr<PluginFileInfo> PluginFileInfoPtr;
+
 /**
  * @brief Cache of known plugin infos
  */
 class PluginManager : public IPluginInfos
 {
 public:
-	typedef std::map<String, PluginFileInfo*> PluginFileInfoMap;
+	typedef std::map<String, PluginFileInfoPtr> PluginFileInfoMap;
 
 	~PluginManager();
 	void SetPrediffSetting(const String& filteredFilenames, int newsetting);

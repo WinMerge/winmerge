@@ -10,6 +10,7 @@
 #define VERSIONTOOLS_H
 
 #include <shlwapi.h>
+#include <boost/scoped_array.hpp>
 #include "UnicodeString.h"
 
 /**
@@ -24,7 +25,7 @@ class CVersionInfo
 {
 private:
 	VS_FIXEDFILEINFO m_FixedFileInfo; /**< Fixed file information */
-	BYTE * m_pVffInfo; /**< Pointer to version information block */
+	boost::scoped_array<BYTE> m_pVffInfo; /**< Pointer to version information block */
 	BOOL m_bVersionOnly; /**< Ask version numbers only */
 	BOOL m_bDllVersion; /**< Dll file version is being queried */
 	WORD m_wLanguage; /**< Language-ID to use (if given) */

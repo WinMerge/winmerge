@@ -77,9 +77,9 @@ protected:
 	std::vector<bool> m_bWithFileFlags;
 
 	// const data "no plugin"
-	PluginInfo * noPlugin;
+	boost::scoped_ptr<PluginInfo> noPlugin;
 	// const data "automatic plugin"
-	PluginInfo * automaticPlugin;
+	boost::scoped_ptr<PluginInfo> automaticPlugin;
 
 	// input value
 	CString m_filteredFilenames;

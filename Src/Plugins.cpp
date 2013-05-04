@@ -265,7 +265,7 @@ static void GetScriptletsAt(const TCHAR *szSearchPath, const TCHAR *extension, v
 
 void PluginInfo::LoadFilterString()
 {
-	m_filters = new vector<FileFilterElement*>;
+	m_filters.clear();
 
 	String sLine(m_filtersText);
 	String sPiece;
@@ -287,8 +287,7 @@ void PluginInfo::LoadFilterString()
 		re_opts |= RegularExpression::RE_UTF8;
 		try
 		{
-			FileFilterElement *elem = new FileFilterElement(regexString, re_opts);
-			m_filters->push_back(elem);
+			m_filters.push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts)));
 		}
 		catch (...)
 		{
@@ -300,7 +299,7 @@ void PluginInfo::LoadFilterString()
 
 bool PluginInfo::TestAgainstRegList(const String& szTest)
 {
-	if (m_filters == NULL || szTest.empty())
+	if (m_filters.empty() || szTest.empty())
 		return false;
 
 	String sLine = szTest;
@@ -317,7 +316,7 @@ bool PluginInfo::TestAgainstRegList(const String& szTest)
 			continue;
 		sPiece = string_makeupper(string_trim_ws_begin(sPiece));
 
-		if (::TestAgainstRegList(m_filters, sPiece))
+		if (::TestAgainstRegList(&m_filters, sPiece))
 			return true;
 	};
 
@@ -362,7 +361,7 @@ struct ScriptInfo
  *
  * @return 1 if plugin handles this event, 0 if not, negatives for errors
  */
-static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, const wchar_t *transformationEvent)
+int PluginInfo::LoadPlugin(const String & scriptletFilepath, const wchar_t *transformationEvent)
 {
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath, transformationEvent);
@@ -432,8 +431,8 @@ static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, con
 	// there may be several functions inside one script, count the number of functions
 	if (wcscmp(transformationEvent, L"EDITOR_SCRIPT") == 0)
 	{
-		plugin.m_nFreeFunctions = CountMethodsInScript(lpDispatch);
-		if (plugin.m_nFreeFunctions == 0)
+		m_nFreeFunctions = CountMethodsInScript(lpDispatch);
+		if (m_nFreeFunctions == 0)
 			// error (Plugin doesn't offer any method, what is this ?)
 			return -50;
 	}
@@ -448,12 +447,12 @@ static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, con
 			scinfo.Log(_T("Plugin had PluginDescription property, but error getting its value"));
 			return -60; // error (Plugin had PluginDescription property, but error getting its value)
 		}
-		plugin.m_description = ucr::toTString(ret.bstrVal);
+		m_description = ucr::toTString(ret.bstrVal);
 	}
 	else
 	{
 		// no description, use filename
-		plugin.m_description = paths_FindFileName(scriptletFilepath);
+		m_description = paths_FindFileName(scriptletFilepath);
 	}
 	VariantClear(&ret);
 
@@ -467,13 +466,13 @@ static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, con
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but error getting its value"));
 			return -70; // error (Plugin had PluginFileFilters property, but error getting its value)
 		}
-		plugin.m_filtersText = ucr::toTString(ret.bstrVal);
+		m_filtersText = ucr::toTString(ret.bstrVal);
 		hasPluginFileFilters = true;
 	}
 	else
 	{
-		plugin.m_bAutomatic = false;
-		plugin.m_filtersText = _T(".");
+		m_bAutomatic = false;
+		m_filtersText = _T(".");
 	}
 	VariantClear(&ret);
 
@@ -486,7 +485,7 @@ static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, con
 			scinfo.Log(_T("Plugin had PluginIsAutomatic property, but error getting its value"));
 			return -80; // error (Plugin had PluginIsAutomatic property, but error getting its value)
 		}
-		plugin.m_bAutomatic = !!ret.boolVal;
+		m_bAutomatic = !!ret.boolVal;
 	}
 	else
 	{
@@ -497,21 +496,21 @@ static int LoadPlugin(PluginInfo & plugin, const String & scriptletFilepath, con
 			return -90;
 		}
 		// default to false when Plugin doesn't have property
-		plugin.m_bAutomatic = false;
+		m_bAutomatic = false;
 	}
 	VariantClear(&ret);
 
-	plugin.LoadFilterString();
+	LoadFilterString();
 
 	// keep the filename
-	plugin.m_name = paths_FindFileName(scriptletFilepath);
+	m_name = paths_FindFileName(scriptletFilepath);
 
 	// Clear the autorelease holder
 	drv.p = NULL;
 
-	plugin.m_lpDispatch = lpDispatch;
+	m_lpDispatch = lpDispatch;
 
-	plugin.m_filepath = scriptletFilepath;
+	m_filepath = scriptletFilepath;
 
 	return 1;
 }
@@ -532,7 +531,7 @@ static int LoadPluginWrapper(PluginInfo & plugin, const String & scriptletFilepa
 	SE_Handler seh;
 	try
 	{
-		return LoadPlugin(plugin, scriptletFilepath, transformationEvent);
+		return plugin.LoadPlugin(scriptletFilepath, transformationEvent);
 	}
 	catch (SE_Exception&)
 	{
@@ -650,10 +649,10 @@ static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent, bo
 	for (i = 0 ; i < scriptlets.size() ; i++)
 	{
 		// Note all the info about the plugin
-		PluginInfo plugin;
+		PluginInfoPtr plugin(new PluginInfo);
 
 		String scriptletFilepath = scriptlets.at(i);
-		int rtn = LoadPluginWrapper(plugin, scriptletFilepath, transformationEvent);
+		int rtn = LoadPluginWrapper(*plugin.get(), scriptletFilepath, transformationEvent);
 		if (rtn == 1)
 		{
 			// Plugin has this event
@@ -677,20 +676,10 @@ static PluginArray * GetAvailableScripts( const wchar_t *transformationEvent, bo
 	return pPlugins;
 }
 
-static void FreeAllScripts(PluginArray *& pArray) 
+static void FreeAllScripts(PluginArrayPtr& pArray) 
 {
-	int i;
-	for (i = 0 ; i < pArray->size() ; i++)
-	{
-		pArray->at(i).m_lpDispatch->Release();
-		if (pArray->at(i).m_filters)
-			FileFilter::EmptyFilterList(pArray->at(i).m_filters);
-		delete pArray->at(i).m_filters;
-	}
-
 	pArray->clear();
-	delete pArray;
-	pArray = NULL;
+	pArray.reset();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -710,7 +699,7 @@ CScriptsOfThread::CScriptsOfThread()
 	m_nLocks = 0;
 	// initialize the plugins pointers
 	typedef PluginArray * LPPluginArray;
-	m_aPluginsByEvent.resize(nTransformationEvents, NULL);
+	m_aPluginsByEvent.resize(nTransformationEvents);
 	// CoInitialize the thread, keep the returned value for the destructor 
 	hrInitialize = CoInitialize(NULL);
 	assert(hrInitialize == S_OK || hrInitialize == S_FALSE);
@@ -736,8 +725,8 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatio
 		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
-			return m_aPluginsByEvent[i];
+				m_aPluginsByEvent[i].reset(::GetAvailableScripts(transformationEvent, bInMainThread()));
+			return m_aPluginsByEvent[i].get();
 		}
 	// return a pointer to an empty list
 	static PluginArray noPlugin;
@@ -765,7 +754,7 @@ void CScriptsOfThread::FreeScriptsForEvent(const wchar_t *transformationEvent)
 		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i])
-			::FreeAllScripts(m_aPluginsByEvent[i]);
+				::FreeAllScripts(m_aPluginsByEvent[i]);
 			return;
 		}
 }
@@ -778,11 +767,11 @@ PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEven
 		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
 		{
 			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
+				m_aPluginsByEvent[i].reset(::GetAvailableScripts(transformationEvent, bInMainThread()));
 
 			for (int j = 0 ; j <  m_aPluginsByEvent[i]->size() ; j++)
-				if (m_aPluginsByEvent[i]->at(j).m_name == name)
-					return &(m_aPluginsByEvent[i]->at(j));
+				if (m_aPluginsByEvent[i]->at(j)->m_name == name)
+					return m_aPluginsByEvent[i]->at(j).get();
 		}
 	return NULL;
 }
@@ -794,10 +783,10 @@ PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 	{
 		if (m_aPluginsByEvent[i] == NULL)
 			continue;
-		PluginArray * pArray = m_aPluginsByEvent[i];
+		const PluginArrayPtr& pArray = m_aPluginsByEvent[i];
 		for (j = 0 ; j < pArray->size() ; j++)
-			if ((*pArray)[j].m_lpDispatch == piScript)
-				return & (*pArray)[j];
+			if ((*pArray)[j]->m_lpDispatch == piScript)
+				return (*pArray)[j].get();
 	}
 
 	return NULL;

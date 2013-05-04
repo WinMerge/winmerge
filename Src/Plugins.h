@@ -33,9 +33,11 @@
 #include <vector>
 #include <windows.h>
 #include <oleauto.h>
+#include <boost/shared_ptr.hpp>
 #include "UnicodeString.h"
 
 struct FileFilterElement;
+typedef boost::shared_ptr<FileFilterElement> FileFilterElementPtr;
 
 /** 
  * @brief Information structure for a plugin
@@ -46,7 +48,16 @@ public:
 	PluginInfo()
 		: m_lpDispatch(NULL), m_filters(NULL), m_bAutomatic(FALSE), m_nFreeFunctions(0)
 	{	
-	};
+	}
+
+	~PluginInfo()
+	{
+		if (m_lpDispatch)
+			m_lpDispatch->Release();
+	}
+
+	int LoadPlugin(const String & scriptletFilepath, const wchar_t *transformationEvent);
+
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
 	/**
@@ -63,14 +74,19 @@ public:
 	String      m_filtersText;
 	String      m_description;
 	bool        m_bAutomatic;
-	std::vector<FileFilterElement*> *m_filters;
+	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
+
+private:
+	PluginInfo( const PluginInfo& other ); // non construction-copyable
+	PluginInfo& operator=( const PluginInfo& ); // non copyable
 };
 
+typedef boost::shared_ptr<PluginInfo> PluginInfoPtr;
 
-
-typedef std::vector<PluginInfo> PluginArray;
+typedef std::vector<PluginInfoPtr> PluginArray;
+typedef boost::shared_ptr<PluginArray> PluginArrayPtr;
 
 /**
  * @brief Cache for the scriptlets' interfaces during the life of a thread. 
@@ -105,7 +121,7 @@ private:
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
 	int nTransformationEvents;
-	std::vector<PluginArray* > m_aPluginsByEvent;
+	std::vector<PluginArrayPtr> m_aPluginsByEvent;
 };
 
 

@@ -100,16 +100,14 @@ public:
 		else
 		{
 			size_t wsize = *srcbytes * 2 + 6;
-			wchar_t *pbuf = new wchar_t[wsize];
-			bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf, &wsize);
+			boost::scoped_array<wchar_t> pbuf(new wchar_t[wsize]);
+			bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf.get(), &wsize);
 			if (!bsucceeded)
 			{
-				delete [] pbuf;
 				*destbytes = 0;
 				return false;
 			}
-			bsucceeded = convertFromUnicode(dstCodepage, pbuf, &wsize, (char *)dest, destbytes);
-			delete [] pbuf;
+			bsucceeded = convertFromUnicode(dstCodepage, pbuf.get(), &wsize, (char *)dest, destbytes);
 		}
 		return bsucceeded;
 	}

@@ -333,7 +333,7 @@ void CDirDoc::Rescan()
 	if (threadState == CDiffThread::THREAD_COMPARING)
 		return;
 
-	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, IDS_STATUS_RESCANNING);
+	m_statusCursor.reset(new CustomStatusCursor(0, IDC_APPSTARTING, IDS_STATUS_RESCANNING));
 
 	GetLog()->Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tMiddle: %s\n\tRight: %s\n"),
 		m_pCtxt->GetLeftPath().c_str(), m_nDirs == 3 ? m_pCtxt->GetMiddlePath().c_str() : _T("none"), m_pCtxt->GetRightPath().c_str());
@@ -831,9 +831,7 @@ void CDirDoc::CompareReady()
 	GetLog()->Write(CLogFile::LNOTICE, _T("Directory scan complete\n"));
 
 	// finish the cursor (the hourglass/pointer combo) we had open during display
-	delete m_statusCursor;
-	m_statusCursor = NULL;
-
+	m_statusCursor.reset();
 }
 
 /**

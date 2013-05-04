@@ -205,19 +205,19 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	int step;
 	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piFileScriptArray->at(step);
-		if (plugin.m_bAutomatic == false)
+		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == false)
+		if (plugin->TestAgainstRegList(filteredText) == false)
 			continue;
 
-		handler->pluginName = plugin.m_name;
+		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
 			bufferData.GetNChanged(),
-			plugin.m_lpDispatch, handler->subcode);
+			plugin->m_lpDispatch, handler->subcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -233,17 +233,17 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 	// stop as soon as we have a success
 	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piBufferScriptArray->at(step);
-		if (plugin.m_bAutomatic == false)
+		const PluginInfoPtr & plugin = piBufferScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == false)
+		if (plugin->TestAgainstRegList(filteredText) == false)
 			continue;
 
-		handler->pluginName = plugin.m_name;
+		handler->pluginName = plugin->m_name;
 		handler->bWithFile = false;
 		bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
-			plugin.m_lpDispatch, handler->subcode);
+			plugin->m_lpDispatch, handler->subcode);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -356,19 +356,19 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 	int step;
 	for (step = 0 ; bHandled == false && step < piFileScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piFileScriptArray->at(step);
-		if (plugin.m_bAutomatic == false)
+		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == false)
+		if (plugin->TestAgainstRegList(filteredText) == false)
 			continue;
 
-		handler->pluginName = plugin.m_name;
+		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
 		bHandled = InvokePrediffFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
 			bufferData.GetNChanged(),
-			plugin.m_lpDispatch);
+			plugin->m_lpDispatch);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -381,18 +381,18 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 	// stop as soon as we have a success
 	for (step = 0 ; bHandled == false && step < piBufferScriptArray->size() ; step ++)
 	{
-		PluginInfo & plugin = piBufferScriptArray->at(step);
-		if (plugin.m_bAutomatic == false)
+		const PluginInfoPtr & plugin = piBufferScriptArray->at(step);
+		if (plugin->m_bAutomatic == false)
 			continue;
-		if (plugin.TestAgainstRegList(filteredText) == false)
+		if (plugin->TestAgainstRegList(filteredText) == false)
 			continue;
 
-		handler->pluginName = plugin.m_name;
+		handler->pluginName = plugin->m_name;
 		handler->bWithFile = false;
 		// probably it is for VB/VBscript so use a BSTR as argument
 		bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 			bufferData.GetNChanged(),
-			plugin.m_lpDispatch);
+			plugin->m_lpDispatch);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -478,8 +478,8 @@ void GetFreeFunctionsInScripts(std::vector<String>& sNamesArray, const wchar_t *
 	int iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
-		PluginInfo & plugin = piScriptArray->at(iScript);
-		LPDISPATCH piScript = plugin.m_lpDispatch;
+		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
+		LPDISPATCH piScript = plugin->m_lpDispatch;
 		std::vector<String> scriptNamesArray;
 		std::vector<int> scriptIdsArray;
 		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
@@ -505,10 +505,10 @@ bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent
 	int iScript;
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
 	{
-		if (iFncChosen < piScriptArray->at(iScript).m_nFreeFunctions)
+		if (iFncChosen < piScriptArray->at(iScript)->m_nFreeFunctions)
 			// we have found the script file
 			break;
-		iFncChosen -= piScriptArray->at(iScript).m_nFreeFunctions;
+		iFncChosen -= piScriptArray->at(iScript)->m_nFreeFunctions;
 	}
 
 	if (iScript >= piScriptArray->size())
@@ -516,11 +516,11 @@ bool TextTransform_Interactive(String & text, const wchar_t *TransformationEvent
 
 	// iFncChosen is the index of the function in the script file
 	// we must convert it to the function ID
-	int fncID = GetMethodIDInScript(piScriptArray->at(iScript).m_lpDispatch, iFncChosen);
+	int fncID = GetMethodIDInScript(piScriptArray->at(iScript)->m_lpDispatch, iFncChosen);
 
 	// execute the transform operation
 	int nChanged = 0;
-	InvokeTransformText(text, nChanged, piScriptArray->at(iScript).m_lpDispatch, fncID);
+	InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
 
 	return (nChanged != 0);
 }

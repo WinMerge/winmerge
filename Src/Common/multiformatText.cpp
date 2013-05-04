@@ -232,7 +232,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 	unsigned nchars;
 	char * pchar = NULL;
 
-	SharedMemory *pshmIn = NULL;
+	boost::scoped_ptr<SharedMemory> pshmIn;
 	try
 	{
 		// Get source data
@@ -240,7 +240,7 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 			pchar = pshmIn->begin() + m_nBomSize;
 			nchars = pshmIn->end() - pchar;
 		}
@@ -278,7 +278,6 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 		fileOut.setSize(textRealSize + bom_bytes);
 
 		// Release pointers to source data
-		delete pshmIn;
 		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
 			SafeArrayUnaccessData(m_array.parray);
 
@@ -294,7 +293,6 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 	}
 	catch (...)
 	{
-		delete pshmIn;
 		return NULL;
 	}
 }
@@ -307,7 +305,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 
 	unsigned nchars;
 	char * pchar;
-	SharedMemory *pshmIn = NULL;
+	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
@@ -316,7 +314,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 			pchar = pshmIn->begin() + m_nBomSize;
 			nchars = pshmIn->end() - pchar;
@@ -348,7 +346,6 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 		}
 
 		// Release pointers to source data
-		delete pshmIn;
 		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
 			SafeArrayUnaccessData(m_array.parray);
 
@@ -360,7 +357,6 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 	catch (...)
 	{
-		delete pshmIn;
 		return NULL;
 	}
 }
@@ -372,7 +368,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 
 	unsigned nchars;
 	char * pchar = NULL;
-	SharedMemory *pshmIn = NULL;
+	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
@@ -381,7 +377,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 			pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
 			nchars = pshmIn->end()-pchar;
@@ -427,7 +423,6 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 		fileOut.setSize(textRealSize);
 
 		// Release pointers to source data
-		delete pshmIn;
 		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
 			SafeArrayUnaccessData(m_array.parray);
 
@@ -443,7 +438,6 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 	}
 	catch (...)
 	{
-		delete pshmIn;
 		return NULL;
 	}
 }
@@ -456,7 +450,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 
 	unsigned nchars;
 	char * pchar;
-	SharedMemory *pshmIn = NULL;
+	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
@@ -465,7 +459,7 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 		{
 			// Init filedata struct and open file as memory mapped (in file)
 			TFile fileIn(m_filename);
-			pshmIn = new SharedMemory(fileIn, SharedMemory::AM_READ);
+			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
 			pchar = pshmIn->begin() + m_nBomSize;
 			nchars = pshmIn->end()-pchar;
@@ -505,15 +499,11 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 		SAFEARRAYBOUND rgsaboundnew = {textRealSize, 0};
 		SafeArrayRedim(m_array.parray, &rgsaboundnew);
 
-		// Release pointers to source data
-		delete pshmIn;
-
 		ValidateInternal(false, false);
 		return &m_array;
 	}
 	catch (...)
 	{
-		delete pshmIn;
 		return NULL;
 	}
 }

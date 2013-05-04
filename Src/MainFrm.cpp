@@ -298,7 +298,8 @@ CMainFrame::CMainFrame()
 , m_CheckOutMulti(FALSE)
 , m_bVCProjSync(FALSE)
 , m_bVssSuppressPathCheck(FALSE)
-, m_pLineFilters(NULL)
+, m_pLineFilters(new LineFiltersList())
+, m_pSyntaxColors(new SyntaxColors())
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	UpdateCodepageModule();
@@ -307,11 +308,9 @@ CMainFrame::CMainFrame()
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
-	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
-		SyntaxColors_LoadFromRegistry(m_pSyntaxColors);
+		SyntaxColors_LoadFromRegistry(m_pSyntaxColors.get());
 
-	m_pLineFilters = new LineFiltersList();
 	if (m_pLineFilters)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 
@@ -341,20 +340,6 @@ CMainFrame::CMainFrame()
 CMainFrame::~CMainFrame()
 {
 	GetLog()->EnableLogging(FALSE);
-
-	// Remove files from temp file list.
-	while (!m_tempFiles.empty())
-	{
-		TempFile *temp = m_tempFiles.back();
-		temp->Delete();
-		delete temp;
-		m_tempFiles.pop_back();
-	}
-
-	delete m_pLineFilters;
-	int i = MENU_COUNT;
-	do { delete m_pMenus[--i]; } while (i);
-	delete m_pSyntaxColors;
 
 	sd_Close();
 }
@@ -537,7 +522,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	int menu_view, index;
 	if (m_pMenus[view] == NULL)
 	{
-		m_pMenus[view] = new BCMenu();
+		m_pMenus[view].reset(new BCMenu());
 		if (m_pMenus[view] == NULL)
 			return NULL;
 	}
@@ -573,7 +558,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME);
 
-	FixupDebugMenu(m_pMenus[view]);
+	FixupDebugMenu(m_pMenus[view].get());
 
 	return (m_pMenus[view]->Detach());
 
@@ -1045,7 +1030,7 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	// Using singleton shared syntax colors
-	CPreferencesDlg dlg(GetOptionsMgr(), m_pSyntaxColors);
+	CPreferencesDlg dlg(GetOptionsMgr(), m_pSyntaxColors.get());
 	int rv = dlg.DoModal();
 
 	if (rv == IDOK)
@@ -2722,7 +2707,7 @@ void CMainFrame::OnToolsFilters()
 	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
 	vector<FileFilterInfo> fileFilters;
-	LineFiltersList * lineFilters = new LineFiltersList();
+	boost::scoped_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	String selectedFilter;
 	const String origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
@@ -2738,8 +2723,8 @@ void CMainFrame::OnToolsFilters()
 	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
-	lineFilters->CloneFrom(m_pLineFilters);
-	lineFiltersDlg.SetList(lineFilters);
+	lineFilters->CloneFrom(m_pLineFilters.get());
+	lineFiltersDlg.SetList(lineFilters.get());
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -2773,7 +2758,7 @@ void CMainFrame::OnToolsFilters()
 		if (frame == FRAME_FILE)
 		{
 			if (lineFiltersEnabledOrig != linefiltersEnabled ||
-					!m_pLineFilters->Compare(lineFilters))
+					!m_pLineFilters->Compare(lineFilters.get()))
 			{
 				bFileCompareRescan = TRUE;
 			}
@@ -2782,7 +2767,7 @@ void CMainFrame::OnToolsFilters()
 		{
 			const String newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
-					!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
+					!m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
 				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
 				if (res == IDYES)
@@ -2791,7 +2776,7 @@ void CMainFrame::OnToolsFilters()
 		}
 
 		// Save new filters before (possibly) rescanning
-		m_pLineFilters->CloneFrom(lineFilters);
+		m_pLineFilters->CloneFrom(lineFilters.get());
 		m_pLineFilters->SaveFilters();
 
 		if (bFileCompareRescan)
@@ -2815,7 +2800,6 @@ void CMainFrame::OnToolsFilters()
 			}
 		}
 	}
-	delete lineFilters;
 }
 
 /**
@@ -3670,10 +3654,10 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	// Create temp files and put them into the list,
 	// from where they get deleted when MainFrame is deleted.
 	String ext = paths_FindExtension(conflictFile);
-	TempFile *wTemp = new TempFile();
+	TempFilePtr wTemp(new TempFile());
 	String workFile = wTemp->Create(_T("confw_"), ext.c_str());
 	m_tempFiles.push_back(wTemp);
-	TempFile *vTemp = new TempFile();
+	TempFilePtr vTemp(new TempFile());
 	String revFile = vTemp->Create(_T("confv_"), ext.c_str());
 	m_tempFiles.push_back(vTemp);
 

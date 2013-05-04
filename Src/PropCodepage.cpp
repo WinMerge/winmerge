@@ -193,7 +193,7 @@ void PropCodepage::GetEncodingCodePageFromNameString()
 	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue);
 	if (nCustomCodepageValue == 0)
 	{
-		char *result= new char[80]; 
+		char result[80]; 
 #ifdef _UNICODE
 		long len = wcslen(m_cCustomCodepageValue); 
 		_wcstombsz(result, m_cCustomCodepageValue, len); //conversion to char * 
@@ -203,7 +203,6 @@ void PropCodepage::GetEncodingCodePageFromNameString()
 #endif
 		result[len] = '\0'; //don't forget to put the caracter of terminated string 
 		nCustomCodepageValue = GetEncodingCodePageFromName(result);
-		delete [] result;
 	}
 	//if found a new codepage valid
 	if (nCustomCodepageValue)
