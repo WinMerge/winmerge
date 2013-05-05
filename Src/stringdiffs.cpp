@@ -16,6 +16,7 @@
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
+#include "Diff3.h"
 
 using std::vector;
 
@@ -32,8 +33,6 @@ sd_findsyn(wdiff* pDiff, const String & str1, const String & str2,
             bool casitive, int xwhite, 
             int &begin1, int &begin2, int &end1, int &end2, bool equal, int func,
             int &s1,int &e1,int &s2,int &e2);
-
-static int make3wayDiff(std::vector<wdiff> &diff3, std::vector<wdiff> &diff10, std::vector<wdiff> &diff12);
 
 void sd_Init()
 {
@@ -152,23 +151,27 @@ sd_ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else
 		{
-			std::vector<wdiff> diffs10, diffs12;
+			std::vector<wdiff> diffs10, diffs12, diffs02;
 			stringdiffs sdiffs10(str[1], str[0], case_sensitive, whitespace, breakType, &diffs10);
 			stringdiffs sdiffs12(str[1], str[2], case_sensitive, whitespace, breakType, &diffs12);
+			stringdiffs sdiffs02(str[0], str[2], case_sensitive, whitespace, breakType, &diffs02);
 			// Hash all words in both lines and then compare them word by word
 			// storing differences into m_wdiffs
 			sdiffs10.BuildWordDiffList();
 			sdiffs12.BuildWordDiffList();
+			sdiffs02.BuildWordDiffList();
 			if (byte_level)
 			{
 				sdiffs10.wordLevelToByteLevel();
 				sdiffs12.wordLevelToByteLevel();
+				sdiffs02.wordLevelToByteLevel();
 			}
 			// Now copy m_wdiffs into caller-supplied m_pDiffs (coalescing adjacents if possible)
 			sdiffs10.PopulateDiffs();
 			sdiffs12.PopulateDiffs();
+			sdiffs02.PopulateDiffs();
 
-			make3wayDiff(*pDiffs, diffs10, diffs12);
+			Make3wayDiff(*pDiffs, diffs10, diffs12, diffs02, false);
 		}
 	}
 }
@@ -2093,196 +2096,4 @@ bool IsSide1Empty(std::vector<wdiff> worddiffs, int nLineLength)
 {
 	return (worddiffs[0].end[1] == -1  && worddiffs[0].begin[0] == 0 &&
 			worddiffs[0].end[0] + 1 == nLineLength);
-}
-
-
-/* diff3 algorithm. It is almost the same as GNU diff3's algorithm */
-static int make3wayDiff(std::vector<wdiff> &diff3, std::vector<wdiff> &diff10, std::vector<wdiff> &diff12)
-{
-	int diff10count = diff10.size();
-	int diff12count = diff12.size();
-
-	int diff10i = 0;
-	int diff12i = 0;
-	int diff3i = 0;
-
-	int diff10itmp;
-	int diff12itmp;
-
-	bool lastDiffBlockIsDiff12;
-	bool firstDiffBlockIsDiff12;
-
-	wdiff dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
-	std::vector<wdiff> diff3tmp;
-
-	int linelast0 = 0;
-	int linelast1 = 0;
-	int linelast2 = 0;
-
-	for (;;)
-	{
-		if (diff10i >= diff10count && diff12i >= diff12count)
-			break;
-
-		/* 
-		 * merge overlapped diff blocks
-		 * diff10 is diff blocks between file1 and file0.
-		 * diff12 is diff blocks between file1 and file2.
-		 *
-		 *                      diff12
-		 *                 diff10            diff3
-		 *                 |~~~|             |~~~|
-		 * firstDiffBlock  |   |             |   |
-		 *                 |   | |~~~|       |   |
-		 *                 |___| |   |       |   |
-		 *                       |   |   ->  |   |
-		 *                 |~~~| |___|       |   |
-		 * lastDiffBlock   |   |             |   |
-		 *                 |___|             |___|
-		 */
-
-		if (diff10i >= diff10count && diff12i < diff12count)
-		{
-			dr12first = diff12.at(diff12i);
-			dr12last = dr12first;
-			firstDiffBlockIsDiff12 = true;
-		}
-		else if (diff10i < diff10count && diff12i >= diff12count)
-		{
-			dr10first = diff10.at(diff10i);
-			dr10last = dr10first;
-			firstDiffBlockIsDiff12 = false;
-		}
-		else
-		{
-			dr10first = diff10.at(diff10i);	
-			dr12first = diff12.at(diff12i);	
-			dr10last = dr10first;
-			dr12last = dr12first;
-
-			if (dr12first.begin[0] <= dr10first.begin[0])
-				firstDiffBlockIsDiff12 = true;
-			else
-				firstDiffBlockIsDiff12 = false;
-		}
-		lastDiffBlockIsDiff12 = firstDiffBlockIsDiff12;
-
-		diff10itmp = diff10i;
-		diff12itmp = diff12i;
-		for (;;)
-		{
-			if (diff10itmp >= diff10count || diff12itmp >= diff12count)
-				break;
-
-			dr10 = diff10.at(diff10itmp);
-			dr12 = diff12.at(diff12itmp);
-
-			if (dr10.end[0] == dr12.end[0])
-			{
-				diff10itmp++;
-				lastDiffBlockIsDiff12 = true;
-
-				dr10last = dr10;
-				dr12last = dr12;
-				break;
-			}
-
-			if (lastDiffBlockIsDiff12)
-			{
-				if (dr12.end[0] + 1 < dr10.begin[0])
-					break;
-			}
-			else
-			{
-				if (dr10.end[0] + 1 < dr12.begin[0])
-					break;
-			}
-
-			if (dr12.end[0] > dr10.end[0])
-			{
-				diff10itmp++;
-				lastDiffBlockIsDiff12 = true;
-			}
-			else
-			{
-				diff12itmp++;
-				lastDiffBlockIsDiff12 = false;
-			}
-
-			dr10last = dr10;
-			dr12last = dr12;
-		}
-
-		if (lastDiffBlockIsDiff12)
-			diff12itmp++;
-		else
-			diff10itmp++;
-
-		if (firstDiffBlockIsDiff12)
-		{
-			dr3.begin[1] = dr12first.begin[0];
-			dr3.begin[2] = dr12first.begin[1];
-			if (diff10itmp == diff10i)
-				dr3.begin[0] = dr3.begin[1] - linelast1 + linelast0;
-			else
-				dr3.begin[0] = dr3.begin[1] - dr10first.begin[0] + dr10first.begin[1];
-		}
-		else
-		{
-			dr3.begin[0] = dr10first.begin[1];
-			dr3.begin[1] = dr10first.begin[0];
-			if (diff12itmp == diff12i)
-				dr3.begin[2] = dr3.begin[1] - linelast1 + linelast2;
-			else
-				dr3.begin[2] = dr3.begin[1] - dr12first.begin[0] + dr12first.begin[1];
-		}
-
-		if (lastDiffBlockIsDiff12)
-		{
-			dr3.end[1] = dr12last.end[0];
-			dr3.end[2] = dr12last.end[1];
-			if (diff10itmp == diff10i)
-				dr3.end[0] = dr3.end[1] - linelast1 + linelast0;
-			else
-				dr3.end[0] = dr3.end[1] - dr10last.end[0] + dr10last.end[1];
-		}
-		else
-		{
-			dr3.end[0] = dr10last.end[1];
-			dr3.end[1] = dr10last.end[0];
-			if (diff12itmp == diff12i)
-				dr3.end[2] = dr3.end[1] - linelast1 + linelast2;
-			else
-				dr3.end[2] = dr3.end[1] - dr12last.end[0] + dr12last.end[1];
-		}
-
-		linelast0 = dr3.end[0] + 1;
-		linelast1 = dr3.end[1] + 1;
-		linelast2 = dr3.end[2] + 1;
-
-		diff3tmp.push_back(dr3);
-
-//		TRACE(_T("left=%d,%d middle=%d,%d right=%d,%d\n"),
-//			dr3.begin[0], dr3.end[0], dr3.begin[1], dr3.end[1], dr3.begin[2], dr3.end[2]);
-
-		diff3i++;
-		diff10i = diff10itmp;
-		diff12i = diff12itmp;
-	}
-
-	for (int i = 0; i < diff3i; i++)
-	{
-		dr3 = diff3tmp.at(i);
-		if (i < diff3i - 1)
-		{
-			wdiff dr3next = diff3tmp.at(i + 1);
-			for (int j = 0; j < 3; j++)
-			{
-				if (dr3.end[j] >= dr3next.begin[j])
-					dr3.end[j] = dr3next.begin[j] - 1;
-			}
-		}
-		diff3.push_back(dr3);
-	}
-	return diff3i;
 }

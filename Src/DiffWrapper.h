@@ -178,7 +178,6 @@ public:
 	void FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines);
 	MovedLines * GetMovedLines(int index) { return m_pMovedLines[index].get(); }
 	void SetCompareFiles(const PathContext &originalFile);
-	int Make3wayDiff(DiffList& diff3, DiffList& diff02, DiffList& diff10, DiffList& diff21);
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);

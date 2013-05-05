@@ -8645,6 +8645,7 @@
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
     <ClInclude Include="CustomColors.h" />
+    <ClInclude Include="Diff3.h" />
     <ClInclude Include="DiffContext.h" />
     <ClInclude Include="DiffFileData.h" />
     <ClInclude Include="DiffFileInfo.h" />
