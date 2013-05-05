@@ -72,7 +72,11 @@ struct DIFFRANGE
 	int dend[3];	/**< Synchronised (ghost lines added) last diff line in file1,2,3 */
 	int blank[3];		/**< Number of blank lines in file1,2,3 */
 	OP_TYPE op;		/**< Operation done with this diff */
-	DIFFRANGE() { memset(this, 0, sizeof(*this)); }
+	DIFFRANGE()
+	{
+		memset(this, 0, sizeof(*this));
+		blank[0] = blank[1] = blank[2] = -1;
+	}
 	void swap_sides(int index1, int index2);
 };
 
@@ -103,14 +107,13 @@ public:
  *
  * Next and prev are array indices used by the owner (DiffList)
  */
-struct DiffRangeInfo
+struct DiffRangeInfo: public DIFFRANGE
 {
-	DIFFRANGE diffrange;
 	size_t next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
 	size_t prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
 
 	DiffRangeInfo() { InitLinks(); }
-	DiffRangeInfo(const DIFFRANGE & di) : diffrange(di) { InitLinks(); }
+	DiffRangeInfo(const DIFFRANGE & di) : DIFFRANGE(di) { InitLinks(); }
 	void InitLinks() { next = prev = -1; }
 };
 
@@ -167,6 +170,8 @@ public:
 	void ConstructSignificantChain(); // must be called after diff list is entirely populated
 	void Swap(int index1, int index2);
 	void GetExtraLinesCounts(int nFiles, int extras[]);
+
+	std::vector<DiffRangeInfo>& GetDiffRangeInfoVector() { return m_diffs; }
 
 private:
 	std::vector<DiffRangeInfo> m_diffs; /**< Difference list. */

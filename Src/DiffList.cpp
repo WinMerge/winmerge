@@ -210,7 +210,7 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 {
 	if (nDiff >= 0 && nDiff < (int) m_diffs.size())
 	{
-		return &m_diffs[nDiff].diffrange;
+		return &m_diffs[nDiff];
 	}
 	else
 	{
@@ -229,7 +229,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < (int) m_diffs.size())
 	{
-		m_diffs[nDiff].diffrange = di;
+		m_diffs[nDiff] = di;
 		return true;
 	}
 	else
@@ -453,7 +453,7 @@ void DiffList::ConstructSignificantChain()
 	// must be called after diff list is entirely populated
     for (int i = 0; i < size; ++i)
 	{
-		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
+		if (m_diffs[i].op == OP_TRIVIAL)
 		{
 			m_diffs[i].prev = -1;
 			m_diffs[i].next = -1;
@@ -467,37 +467,37 @@ void DiffList::ConstructSignificantChain()
 			if (m_firstSignificant == -1)
 				m_firstSignificant = i;
 			m_lastSignificant = i;
-			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_3RDONLY)
+			if (m_diffs[i].op != OP_TRIVIAL && m_diffs[i].op != OP_3RDONLY)
 			{
 				if (m_firstSignificantLeftMiddle == -1)
 					m_firstSignificantLeftMiddle = i;
 				m_lastSignificantLeftMiddle = i;
 			}
-			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_2NDONLY)
+			if (m_diffs[i].op != OP_TRIVIAL && m_diffs[i].op != OP_2NDONLY)
 			{
 				if (m_firstSignificantLeftRight == -1)
 					m_firstSignificantLeftRight = i;
 				m_lastSignificantLeftRight = i;
 			}
-			if (m_diffs[i].diffrange.op != OP_TRIVIAL && m_diffs[i].diffrange.op != OP_1STONLY)
+			if (m_diffs[i].op != OP_TRIVIAL && m_diffs[i].op != OP_1STONLY)
 			{
 				if (m_firstSignificantMiddleRight == -1)
 					m_firstSignificantMiddleRight = i;
 				m_lastSignificantMiddleRight = i;
 			}
-			if (m_diffs[i].diffrange.op == OP_1STONLY)
+			if (m_diffs[i].op == OP_1STONLY)
 			{
 				if (m_firstSignificantLeftOnly == -1)
 					m_firstSignificantLeftOnly = i;
 				m_lastSignificantLeftOnly = i;
 			}
-			if (m_diffs[i].diffrange.op == OP_2NDONLY)
+			if (m_diffs[i].op == OP_2NDONLY)
 			{
 				if (m_firstSignificantMiddleOnly == -1)
 					m_firstSignificantMiddleOnly = i;
 				m_lastSignificantMiddleOnly = i;
 			}
-			if (m_diffs[i].diffrange.op == OP_3RDONLY)
+			if (m_diffs[i].op == OP_3RDONLY)
 			{
 				if (m_firstSignificantRightOnly == -1)
 					m_firstSignificantRightOnly = i;
@@ -689,27 +689,27 @@ int DiffList::NextSignificant3wayDiff(int nDiff, int nDiffType) const
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (m_diffs[nDiff].diffrange.op != OP_3RDONLY)
+			if (m_diffs[nDiff].op != OP_3RDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (m_diffs[nDiff].diffrange.op != OP_2NDONLY)
+			if (m_diffs[nDiff].op != OP_2NDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (m_diffs[nDiff].diffrange.op != OP_1STONLY)
+			if (m_diffs[nDiff].op != OP_1STONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_1STONLY)
+			if (m_diffs[nDiff].op == OP_1STONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_2NDONLY)
+			if (m_diffs[nDiff].op == OP_2NDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_3RDONLY)
+			if (m_diffs[nDiff].op == OP_3RDONLY)
 				return nDiff;
 			break;
 		}
@@ -730,27 +730,27 @@ int DiffList::PrevSignificant3wayDiff(int nDiff, int nDiffType) const
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (m_diffs[nDiff].diffrange.op != OP_3RDONLY)
+			if (m_diffs[nDiff].op != OP_3RDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (m_diffs[nDiff].diffrange.op != OP_2NDONLY)
+			if (m_diffs[nDiff].op != OP_2NDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (m_diffs[nDiff].diffrange.op != OP_1STONLY)
+			if (m_diffs[nDiff].op != OP_1STONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_1STONLY)
+			if (m_diffs[nDiff].op == OP_1STONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_2NDONLY)
+			if (m_diffs[nDiff].op == OP_2NDONLY)
 				return nDiff;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (m_diffs[nDiff].diffrange.op == OP_3RDONLY)
+			if (m_diffs[nDiff].op == OP_3RDONLY)
 				return nDiff;
 			break;
 		}
@@ -851,7 +851,7 @@ void DiffList::Swap(int index1, int index2)
 	vector<DiffRangeInfo>::const_iterator iterEnd = m_diffs.end();
 	while (iter != iterEnd)
 	{
-		(*iter).diffrange.swap_sides(index1, index2);
+		(*iter).swap_sides(index1, index2);
 		++iter;
 	}
 }
