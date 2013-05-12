@@ -1,12 +1,12 @@
 /** 
- * @file  SyntaxColors.cpp
+ * @file  OptionsSyntaxColors.cpp
  *
- * @brief Implementation for SyntaxColors class.
+ * @brief Implementation for OptionsSyntaxColors class.
  */
 // ID line follows -- this is updated by SVN
-// $Id: SyntaxColors.cpp 6727 2009-05-10 08:25:18Z kimmov $
+// $Id: OptionsSyntaxColors.cpp 6727 2009-05-10 08:25:18Z kimmov $
 
-#include "SyntaxColorsUtil.h"
+#include "OptionsSyntaxColors.h"
 #include <vector>
 #include "SyntaxColors.h"
 #include "MergeApp.h"
@@ -19,11 +19,13 @@ using std::vector;
 /** @brief Setting name for default colors. */
 static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
 
+namespace Options { namespace SyntaxColors {
+
 /**
  * @brief Load color values from storage
  * @param [out] pSyntaxColors pointer to SyntaxColors
  */
-void SyntaxColors_LoadFromRegistry(SyntaxColors *pSyntaxColors)
+void Load(::SyntaxColors *pSyntaxColors)
 {
 	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	String valuename(DefColorsPath);
@@ -76,7 +78,7 @@ void SyntaxColors_LoadFromRegistry(SyntaxColors *pSyntaxColors)
  * @brief Save color values to storage
  * @param [in] pSyntaxColors pointer to SyntaxColors
  */
-void SyntaxColors_SaveToRegistry(const SyntaxColors *pSyntaxColors)
+void Save(const ::SyntaxColors *pSyntaxColors)
 {
 	COptionsMgr *pOptionsMgr = GetOptionsMgr();
 	String valuename(DefColorsPath);
@@ -99,3 +101,5 @@ void SyntaxColors_SaveToRegistry(const SyntaxColors *pSyntaxColors)
 		pOptionsMgr->SaveOption(valuename, bold);
 	}
 }
+
+}}

@@ -2240,6 +2240,33 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\OptionsSyntaxColors.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\PatchHTML.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -2707,33 +2734,6 @@
 						UsePrecompiledHeader="0"
 						PrecompiledHeaderThrough=""
 						PrecompiledHeaderFile=""/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\SyntaxColorsUtil.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="0"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -3250,6 +3250,9 @@
 				RelativePath="OptionsPanel.h">
 			</File>
 			<File
+				RelativePath=".\OptionsSyntaxColors.h">
+			</File>
+			<File
 				RelativePath=".\PatchHTML.h">
 			</File>
 			<File
@@ -3287,9 +3290,6 @@
 			</File>
 			<File
 				RelativePath="stringdiffsi.h">
-			</File>
-			<File
-				RelativePath=".\SyntaxColorsUtil.h">
 			</File>
 			<File
 				RelativePath="TempFile.h">
