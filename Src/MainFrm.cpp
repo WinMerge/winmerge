@@ -78,6 +78,7 @@
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
 #include "SyntaxColorsUtil.h"
+#include "OptionsFont.h"
 #include "TFile.h"
 #include "JumpList.h"
 #include <Poco/Exception.h>
@@ -395,7 +396,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	GetFontProperties();
+	m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
+	m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
 	
 	if (!CreateToobar())
 	{
@@ -1531,6 +1533,39 @@ int CMainFrame::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
 	return nRetVal;
 }
 
+void CMainFrame::UpdateFont(FRAMETYPE frame)
+{
+	if (frame == FRAME_FOLDER)
+	{
+		const DirDocList &dirdocs = GetAllDirDocs();
+		POSITION pos = dirdocs.GetHeadPosition();
+		while (pos)
+		{
+			CDirDoc * pDoc = dirdocs.GetNext(pos);
+			if (pDoc)
+				pDoc->GetMainView()->SetFont(m_lfDir);
+		}
+	}
+	else
+	{
+		const MergeDocList &mergedocs = GetAllMergeDocs();
+		POSITION pos = mergedocs.GetHeadPosition();
+		while (pos)
+		{
+			CMergeDoc * pDoc = mergedocs.GetNext(pos);
+			for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
+			{
+				CMergeEditView * pView = pDoc->GetView(pane);
+				CMergeEditView * pDetailView = pDoc->GetDetailView(pane);
+				if (pView)
+					pView->SetFont(m_lfDiff);
+				if (pDetailView)
+					pDetailView->SetFont(m_lfDiff);
+			}
+		}
+	}
+}
+
 /**
  * @brief Select font for Merge/Dir view
  * 
@@ -1562,76 +1597,8 @@ void CMainFrame::OnViewSelectfont()
 
 	if (ChooseFont(&cf))
 	{
-		if (frame == FRAME_FOLDER)
-		{
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_HEIGHT, lf->lfHeight);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_WIDTH, lf->lfWidth);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ESCAPEMENT, lf->lfEscapement);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ORIENTATION, lf->lfOrientation);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_WEIGHT, lf->lfWeight);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ITALIC, lf->lfItalic);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_UNDERLINE, lf->lfUnderline);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_STRIKEOUT, lf->lfStrikeOut);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_CHARSET, lf->lfCharSet);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_OUTPRECISION, lf->lfOutPrecision);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_CLIPPRECISION, lf->lfClipPrecision);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_QUALITY, lf->lfQuality);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_PITCHANDFAMILY, (int)lf->lfPitchAndFamily);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_FACENAME, (int)lf->lfFaceName);
-		}
-		else
-		{
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_HEIGHT, lf->lfHeight);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_WIDTH, lf->lfWidth);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ESCAPEMENT, lf->lfEscapement);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ORIENTATION, lf->lfOrientation);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_WEIGHT, lf->lfWeight);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ITALIC, lf->lfItalic);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_UNDERLINE, lf->lfUnderline);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_STRIKEOUT, lf->lfStrikeOut);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_CHARSET, lf->lfCharSet);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_OUTPRECISION, lf->lfOutPrecision);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_CLIPPRECISION, lf->lfClipPrecision);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_QUALITY, lf->lfQuality);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_PITCHANDFAMILY, (int)lf->lfPitchAndFamily);
-			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_FACENAME, (int)lf->lfFaceName);
-		}
-
-		if (frame == FRAME_FOLDER)
-		{
-			m_lfDir = *lf;
-
-			const DirDocList &dirdocs = GetAllDirDocs();
-			POSITION pos = dirdocs.GetHeadPosition();
-			while (pos)
-			{
-				CDirDoc * pDoc = dirdocs.GetNext(pos);
-				if (pDoc)
-					pDoc->GetMainView()->SetFont(m_lfDir);
-			}
-		}
-		else
-		{
-			m_lfDiff = *lf;
-
-			const MergeDocList &mergedocs = GetAllMergeDocs();
-			POSITION pos = mergedocs.GetHeadPosition();
-			while (pos)
-			{
-				CMergeDoc * pDoc = mergedocs.GetNext(pos);
-				for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
-				{
-					CMergeEditView * pView = pDoc->GetView(pane);
-					CMergeEditView * pDetailView = pDoc->GetDetailView(pane);
-					if (pView)
-						pView->SetFont(m_lfDiff);
-					if (pDetailView)
-						pDetailView->SetFont(m_lfDiff);
-				}
-			}
-		}
+		Options::Font::Save(frame == FRAME_FOLDER ? OPT_FONT_DIRCMP : OPT_FONT_FILECMP, lf, true);
+		UpdateFont(frame);
 	}
 }
 
@@ -1641,58 +1608,6 @@ void CMainFrame::OnViewSelectfont()
 void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
-}
-
-/**
- * @brief Selects font for Merge view.
- *
- * Cheks if default font or user-selected font should be used in
- * Merge or dir -view and sets correct font properties. Loads user-selected
- * font properties from registry if needed.
- */
-void CMainFrame::GetFontProperties()
-{
-	LOGFONT lfnew;
-	ZeroMemory(&lfnew, sizeof(LOGFONT));
-
-	lfnew.lfHeight = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_HEIGHT);
-	lfnew.lfWidth = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_WIDTH);
-	lfnew.lfEscapement = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_ESCAPEMENT);
-	lfnew.lfOrientation = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_ORIENTATION);
-	lfnew.lfWeight = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_WEIGHT);
-	lfnew.lfItalic = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_ITALIC);
-	lfnew.lfUnderline = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_UNDERLINE);
-	lfnew.lfStrikeOut = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_STRIKEOUT);
-	lfnew.lfCharSet = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_CHARSET);
-	lfnew.lfOutPrecision = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_OUTPRECISION);
-	lfnew.lfClipPrecision = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_CLIPPRECISION);
-	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_QUALITY);
-	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_PITCHANDFAMILY);
-
-	lstrcpyn(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME).c_str(), countof(lfnew.lfFaceName));
-	m_lfDiff = lfnew;
-
-	// Get DirView font
-	ZeroMemory(&lfnew, sizeof(LOGFONT));
-
-	lfnew.lfHeight = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_HEIGHT);
-	lfnew.lfWidth = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_WIDTH);
-	lfnew.lfEscapement = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_ESCAPEMENT);
-	lfnew.lfOrientation = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_ORIENTATION);
-	lfnew.lfWeight = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_WEIGHT);
-	lfnew.lfItalic = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_ITALIC);
-	lfnew.lfUnderline = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_UNDERLINE);
-	lfnew.lfStrikeOut = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_STRIKEOUT);
-	lfnew.lfCharSet = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_CHARSET);
-	lfnew.lfOutPrecision = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_OUTPRECISION);
-	lfnew.lfClipPrecision = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_CLIPPRECISION);
-	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_QUALITY);
-	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_PITCHANDFAMILY);
-
-	lstrcpyn(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME).c_str(), countof(lfnew.lfFaceName));
-    m_lfDir = lfnew;
 }
 
 /**
@@ -1707,45 +1622,18 @@ void CMainFrame::OnViewUsedefaultfont()
 
 	if (frame == FRAME_FOLDER)
 	{
-		GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
-
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_HEIGHT);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_WIDTH);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ESCAPEMENT);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ORIENTATION);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_WEIGHT);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ITALIC);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_UNDERLINE);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_STRIKEOUT);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_OUTPRECISION);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_CLIPPRECISION);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_QUALITY);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_PITCHANDFAMILY);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_CHARSET);
-		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_FACENAME);
+		Options::Font::Reset(OPT_FONT_DIRCMP);
+		m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
+		Options::Font::Save(OPT_FONT_DIRCMP, &m_lfDir, false);
 	}
 	else
 	{
-		GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
-
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_HEIGHT);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_WIDTH);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ESCAPEMENT);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ORIENTATION);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_WEIGHT);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ITALIC);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_UNDERLINE);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_STRIKEOUT);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_OUTPRECISION);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_CLIPPRECISION);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_QUALITY);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_PITCHANDFAMILY);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_CHARSET);
-		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_FACENAME);
+		Options::Font::Reset(OPT_FONT_FILECMP);
+		m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
+		Options::Font::Save(OPT_FONT_FILECMP, &m_lfDiff, false);
 	}
 
-	GetFontProperties();
-	ShowFontChangeMessage();
+	UpdateFont(frame);
 }
 
 /**
@@ -3040,18 +2928,6 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 			pMergeDoc->CheckFileChanged();
 	}
 	return 0;
-}
-
-/**
- * @brief When font is changed open views must be closed.
- */
-void CMainFrame::ShowFontChangeMessage()
-{
-	const DirDocList &dirdocs = GetAllDirDocs();
-	const MergeDocList &mergedocs = GetAllMergeDocs();
-
-	if (dirdocs.GetCount() > 0 || mergedocs.GetCount() > 0)
-		LangMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
 }
 
 /**

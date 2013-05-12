@@ -2127,6 +2127,33 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\OptionsFont.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="OptionsInit.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3215,6 +3242,9 @@
 			</File>
 			<File
 				RelativePath="Common\multiformatText.h">
+			</File>
+			<File
+				RelativePath=".\OptionsFont.h">
 			</File>
 			<File
 				RelativePath="OptionsPanel.h">

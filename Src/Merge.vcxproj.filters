@@ -739,6 +739,9 @@
     <ClCompile Include="JumpList.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1369,6 +1372,9 @@
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Diff3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsFont.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
