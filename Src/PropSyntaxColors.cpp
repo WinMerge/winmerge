@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "SyntaxColors.h"
-#include "SyntaxColorsUtil.h"
+#include "OptionsSyntaxColors.h"
 #include "PropSyntaxColors.h"
 #include "CustomColors.h"
 #include "Merge.h"
@@ -141,7 +141,7 @@ void PropSyntaxColors::WriteOptions()
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
 	// (we don't have to read them from screen)
-	SyntaxColors_SaveToRegistry(m_pTempColors);
+	Options::SyntaxColors::Save(m_pTempColors);
 }
 
 /** 

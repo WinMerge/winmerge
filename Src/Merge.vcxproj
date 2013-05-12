@@ -4957,6 +4957,16 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="OptionsPanel.cpp" />
+    <ClCompile Include="OptionsSyntaxColors.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="OutputDlg.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -6889,16 +6899,6 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="SyntaxColorsUtil.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="TempFile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -8740,6 +8740,7 @@
     <ClInclude Include="common\OptionsMgr.h" />
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsPanel.h" />
+    <ClInclude Include="OptionsSyntaxColors.h" />
     <ClInclude Include="OutputDlg.h" />
     <ClInclude Include="PatchDlg.h" />
     <ClInclude Include="PatchHTML.h" />
@@ -8789,7 +8790,6 @@
     <ClInclude Include="stringdiffs.h" />
     <ClInclude Include="stringdiffsi.h" />
     <ClInclude Include="Common\SuperComboBox.h" />
-    <ClInclude Include="SyntaxColorsUtil.h" />
     <ClInclude Include="TempFile.h" />
     <ClInclude Include="TestFilterDlg.h" />
     <ClInclude Include="Common\ToolbarXPThemes.h" />

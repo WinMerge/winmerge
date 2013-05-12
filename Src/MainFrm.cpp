@@ -77,7 +77,7 @@
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
-#include "SyntaxColorsUtil.h"
+#include "OptionsSyntaxColors.h"
 #include "OptionsFont.h"
 #include "TFile.h"
 #include "JumpList.h"
@@ -310,7 +310,7 @@ CMainFrame::CMainFrame()
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 	if (m_pSyntaxColors)
-		SyntaxColors_LoadFromRegistry(m_pSyntaxColors.get());
+		Options::SyntaxColors::Load(m_pSyntaxColors.get());
 
 	if (m_pLineFilters)
 		m_pLineFilters->Initialize(GetOptionsMgr());

@@ -280,9 +280,6 @@
     <ClCompile Include="CompareEngines\TimeSizeCompare.cpp">
       <Filter>Compare Engines</Filter>
     </ClCompile>
-    <ClCompile Include="SyntaxColorsUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\ccrystaleditview.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
@@ -742,6 +739,9 @@
     <ClCompile Include="OptionsFont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsSyntaxColors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1007,9 +1007,6 @@
     </ClInclude>
     <ClInclude Include="CompareEngines\TimeSizeCompare.h">
       <Filter>Compare Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="SyntaxColorsUtil.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\ccrystaleditview.h">
       <Filter>EditLib</Filter>
@@ -1375,6 +1372,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsFont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsSyntaxColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
