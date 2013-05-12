@@ -185,37 +185,23 @@ const TCHAR OPT_PLUGINS_ENABLED[] = _T("Settings/PluginsEnabled");
 const TCHAR OPT_SHOW_SELECT_FILES_AT_STARTUP[] = _T("Settings/ShowFileDialog");
 
 // Font options
-const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
-const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");
+const TCHAR OPT_FONT_FILECMP[] = _T("Font/");
+const TCHAR OPT_FONT_DIRCMP[] = _T("FontDirCompare/");
 
-const TCHAR OPT_FONT_FILECMP_HEIGHT[] = _T("Font/Height");
-const TCHAR OPT_FONT_FILECMP_WIDTH[] = _T("Font/Width");
-const TCHAR OPT_FONT_FILECMP_ESCAPEMENT[] = _T("Font/Escapement");
-const TCHAR OPT_FONT_FILECMP_ORIENTATION[] = _T("Font/Orientation");
-const TCHAR OPT_FONT_FILECMP_WEIGHT[] = _T("Font/Weight");
-const TCHAR OPT_FONT_FILECMP_ITALIC[] = _T("Font/Italic");
-const TCHAR OPT_FONT_FILECMP_UNDERLINE[] = _T("Font/Underline");
-const TCHAR OPT_FONT_FILECMP_STRIKEOUT[] = _T("Font/StrikeOut");
-const TCHAR OPT_FONT_FILECMP_CHARSET[] = _T("Font/CharSet");
-const TCHAR OPT_FONT_FILECMP_OUTPRECISION[] = _T("Font/OutPrecision");
-const TCHAR OPT_FONT_FILECMP_CLIPPRECISION[] = _T("Font/ClipPrecision");
-const TCHAR OPT_FONT_FILECMP_QUALITY[] = _T("Font/Quality");
-const TCHAR OPT_FONT_FILECMP_PITCHANDFAMILY[] = _T("Font/PitchAndFamily");
-const TCHAR OPT_FONT_FILECMP_FACENAME[] = _T("Font/FaceName");
-
-const TCHAR OPT_FONT_DIRCMP_HEIGHT[] = _T("FontDirCompare/Height");
-const TCHAR OPT_FONT_DIRCMP_WIDTH[] = _T("FontDirCompare/Width");
-const TCHAR OPT_FONT_DIRCMP_ESCAPEMENT[] = _T("FontDirCompare/Escapement");
-const TCHAR OPT_FONT_DIRCMP_ORIENTATION[] = _T("FontDirCompare/Orientation");
-const TCHAR OPT_FONT_DIRCMP_WEIGHT[] = _T("FontDirCompare/Weight");
-const TCHAR OPT_FONT_DIRCMP_ITALIC[] = _T("FontDirCompare/Italic");
-const TCHAR OPT_FONT_DIRCMP_UNDERLINE[] = _T("FontDirCompare/Underline");
-const TCHAR OPT_FONT_DIRCMP_STRIKEOUT[] = _T("FontDirCompare/StrikeOut");
-const TCHAR OPT_FONT_DIRCMP_CHARSET[] = _T("FontDirCompare/CharSet");
-const TCHAR OPT_FONT_DIRCMP_OUTPRECISION[] = _T("FontDirCompare/OutPrecision");
-const TCHAR OPT_FONT_DIRCMP_CLIPPRECISION[] = _T("FontDirCompare/ClipPrecision");
-const TCHAR OPT_FONT_DIRCMP_QUALITY[] = _T("FontDirCompare/Quality");
-const TCHAR OPT_FONT_DIRCMP_PITCHANDFAMILY[] = _T("FontDirCompare/PitchAndFamily");
-const TCHAR OPT_FONT_DIRCMP_FACENAME[] = _T("FontDirCompare/FaceName");
+const TCHAR OPT_FONT_USECUSTOM[] = _T("Specified");
+const TCHAR OPT_FONT_HEIGHT[] = _T("Height");
+const TCHAR OPT_FONT_WIDTH[] = _T("Width");
+const TCHAR OPT_FONT_ESCAPEMENT[] = _T("Escapement");
+const TCHAR OPT_FONT_ORIENTATION[] = _T("Orientation");
+const TCHAR OPT_FONT_WEIGHT[] = _T("Weight");
+const TCHAR OPT_FONT_ITALIC[] = _T("Italic");
+const TCHAR OPT_FONT_UNDERLINE[] = _T("Underline");
+const TCHAR OPT_FONT_STRIKEOUT[] = _T("StrikeOut");
+const TCHAR OPT_FONT_CHARSET[] = _T("CharSet");
+const TCHAR OPT_FONT_OUTPRECISION[] = _T("OutPrecision");
+const TCHAR OPT_FONT_CLIPPRECISION[] = _T("ClipPrecision");
+const TCHAR OPT_FONT_QUALITY[] = _T("Quality");
+const TCHAR OPT_FONT_PITCHANDFAMILY[] = _T("PitchAndFamily");
+const TCHAR OPT_FONT_FACENAME[] = _T("FaceName");
 
 #endif // _OPTIONS_DEF_H_

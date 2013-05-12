@@ -266,7 +266,6 @@ protected:
 // Generated message map functions
 protected:
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
-	void GetFontProperties();
 	//{{AFX_MSG(CMainFrame)
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
@@ -357,7 +356,7 @@ private:
 	CMergeDoc * GetMergeDocToShow(int nFiles, CDirDoc * pDirDoc, BOOL * pNew);
 	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(int nDirs, BOOL * pNew);
-	void ShowFontChangeMessage();
+	void UpdateFont(FRAMETYPE frame);
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();

@@ -12,9 +12,9 @@
 #include "MainFrm.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "unicoder.h"
-#include "ExConverter.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.
 static void CopyHKLMValues();
@@ -190,59 +190,7 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 
-	m_pOptions->InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
-
-	m_pOptions->InitOption(OPT_FONT_FILECMP_HEIGHT, -16);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_WIDTH, 0);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_ESCAPEMENT, 0);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_ORIENTATION, 0);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_WEIGHT, FW_NORMAL);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_ITALIC, false);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_UNDERLINE, false);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_STRIKEOUT, false);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_OUTPRECISION, OUT_STRING_PRECIS);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_CLIPPRECISION, CLIP_STROKE_PRECIS);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_QUALITY, DRAFT_QUALITY);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_PITCHANDFAMILY, FF_MODERN | FIXED_PITCH);
-
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_HEIGHT, -16);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_WIDTH, 0);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_ESCAPEMENT, 0);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_ORIENTATION, 0);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_WEIGHT, FW_NORMAL);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_ITALIC, false);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_UNDERLINE, false);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_STRIKEOUT, false);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_OUTPRECISION, OUT_STRING_PRECIS);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_CLIPPRECISION, CLIP_STROKE_PRECIS);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_QUALITY, DRAFT_QUALITY);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_PITCHANDFAMILY, FF_MODERN | FIXED_PITCH);
-
-	SetFontDefaults();
-}
-
-/**
- * @brief Set default font values.
- */
-void CMergeApp::SetFontDefaults()
-{
-	LOGFONT lfDefault;
-	ZeroMemory(&lfDefault, sizeof(LOGFONT));
-
-	CodePageInfo cpi = {0};
-	cpi.bGDICharset = ANSI_CHARSET;
-	wcscpy(cpi.fixedWidthFont, L"Courier New");
-
-	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv)
-		pexconv->getCodePageInfo(GetACP(), &cpi);
-
-	m_pOptions->InitOption(OPT_FONT_FILECMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, ucr::toTString(cpi.fixedWidthFont));
-
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_CHARSET, (int) cpi.bGDICharset);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, ucr::toTString(cpi.fixedWidthFont));
+	Options::Font::SetDefaults();
 }
 
 /**

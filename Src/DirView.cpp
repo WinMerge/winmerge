@@ -331,7 +331,7 @@ void CDirView::OnInitialUpdate()
 	GetDocument()->SetDirView(this);
 
 	// Load user-selected font
-	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_USECUSTOM))
+	if (GetOptionsMgr()->GetBool(String(OPT_FONT_DIRCMP) + OPT_FONT_USECUSTOM))
 	{
 		m_font.CreateFontIndirect(&GetMainFrame()->m_lfDir);
 		CWnd::SetFont(&m_font, TRUE);
