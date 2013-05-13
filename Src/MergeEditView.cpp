@@ -35,6 +35,7 @@
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
+#include "OptionsDiffColors.h"
 #include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "Plugins.h"
@@ -77,34 +78,8 @@ CMergeEditView::CMergeEditView()
 , fTimerWaitingForIdle(0)
 {
 	SetParser(&m_xParser);
-
-	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
-	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
-	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
-	m_cachedColors.clrSelDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_cachedColors.clrDiffText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_TEXT);
-	m_cachedColors.clrSelDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_cachedColors.clrTrivial = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_cachedColors.clrTrivialDeleted = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_cachedColors.clrTrivialText = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_cachedColors.clrMoved = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
-	m_cachedColors.clrMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrMovedText = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSelMoved = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSNP = GetOptionsMgr()->GetInt(OPT_CLR_SNP);
-	m_cachedColors.clrSNPDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SNP_DELETED);
-	m_cachedColors.clrSNPText = GetOptionsMgr()->GetInt(OPT_CLR_SNP_TEXT);
-	m_cachedColors.clrSelSNP = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP);
-	m_cachedColors.clrSelSNPDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP_DELETED);
-	m_cachedColors.clrSelSNPText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP_TEXT);
-	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
-	m_cachedColors.clrWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
-	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_cachedColors.clrSelWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_DELETED);
-	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+	
+	Options::DiffColors::Load(m_cachedColors);
 }
 
 CMergeEditView::~CMergeEditView()
@@ -3046,33 +3021,8 @@ void CMergeEditView::RefreshOptions()
 
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
-	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
-	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
-	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
-	m_cachedColors.clrSelDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_cachedColors.clrDiffText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_TEXT);
-	m_cachedColors.clrSelDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_cachedColors.clrTrivial = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_cachedColors.clrTrivialDeleted = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_cachedColors.clrTrivialText = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_cachedColors.clrMoved = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
-	m_cachedColors.clrMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrMovedText = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSelMoved = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSNP = GetOptionsMgr()->GetInt(OPT_CLR_SNP);
-	m_cachedColors.clrSNPDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SNP_DELETED);
-	m_cachedColors.clrSNPText = GetOptionsMgr()->GetInt(OPT_CLR_SNP_TEXT);
-	m_cachedColors.clrSelSNP = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP);
-	m_cachedColors.clrSelSNPDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP_DELETED);
-	m_cachedColors.clrSelSNPText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_SNP_TEXT);
-	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
-	m_cachedColors.clrWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_DELETED);
-	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_cachedColors.clrSelWordDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_DELETED);
-	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+
+	Options::DiffColors::Load(m_cachedColors);
 }
 
 /**

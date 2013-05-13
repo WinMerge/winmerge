@@ -4834,6 +4834,16 @@
     <ClCompile Include="OpenDoc.cpp" />
     <ClCompile Include="OpenFrm.cpp" />
     <ClCompile Include="OpenView.cpp" />
+    <ClCompile Include="OptionsDiffColors.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeRelease|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="OptionsFont.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -8738,6 +8748,7 @@
     <ClInclude Include="OpenView.h" />
     <ClInclude Include="OptionsDef.h" />
     <ClInclude Include="common\OptionsMgr.h" />
+    <ClInclude Include="OptionsDiffColors.h" />
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsPanel.h" />
     <ClInclude Include="OptionsSyntaxColors.h" />
