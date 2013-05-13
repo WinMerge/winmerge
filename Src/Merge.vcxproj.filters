@@ -742,6 +742,9 @@
     <ClCompile Include="OptionsSyntaxColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsDiffColors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1375,6 +1378,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsSyntaxColors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDiffColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

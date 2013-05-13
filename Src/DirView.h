@@ -35,6 +35,7 @@
 #include <map>
 #include <boost/scoped_ptr.hpp>
 #include <Poco/Types.h>
+#include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
 
@@ -94,18 +95,6 @@ const UINT DefColumnWidth = 150;
 class CDirView : public CListView
 {
 	friend struct FileCmpReport;
-	/** 
-	* @brief Color settings.
-	*/
-	struct COLORSETTINGS
-	{
-		COLORREF	clrDiff;			/**< Difference color */
-		COLORREF	clrDiffDeleted;		/**< Difference deleted color */
-		COLORREF	clrDiffText;		/**< Difference text color */
-		COLORREF	clrTrivial;			/**< Ignored difference color */
-		COLORREF	clrTrivialText;		/**< Ignored difference text color */
-	};
-
 	class DirItemEnumerator;
 	friend DirItemEnumerator;
 protected:
