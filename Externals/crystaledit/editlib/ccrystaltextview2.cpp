@@ -1190,7 +1190,7 @@ GetFromClipboard (CString & text, bool & bColumnSelection)
             {
               UINT cbData = (UINT) GlobalSize (hData);
               // in case we get an odd length for unicodes
-              int cchText = ((cbData + 1) / sizeof(TCHAR)) - 1;
+              int cchText = ((cbData + sizeof(TCHAR)/sizeof(wchar_t)) / sizeof(TCHAR)) - 1;
               if (cchText >= 0)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);
