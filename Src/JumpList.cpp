@@ -17,21 +17,21 @@ namespace
 {
 
 std::wstring g_appid;
-TCHAR g_exe_path[260];
+wchar_t g_exe_path[260];
 
-IShellLink *CreateShellLink(const String& app_path, const String& params, const String& title, const String& desc, int icon_index)
+IShellLinkW *CreateShellLink(const std::wstring& app_path, const std::wstring& params, const std::wstring& title, const std::wstring& desc, int icon_index)
 {
 #if _MSC_VER >= 1600
-	IShellLink *pShellLink = NULL;
+	IShellLinkW *pShellLink = NULL;
 	if (FAILED(CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
-	                            IID_IShellLink, (void **)&pShellLink)))
+	                            IID_IShellLinkW, (void **)&pShellLink)))
 		return NULL;
 
-	String app_path2(app_path);
+	std::wstring app_path2(app_path);
 	if (app_path.empty())
 	{
 		if (g_exe_path[0] == '\0')
-			GetModuleFileName(NULL, g_exe_path, sizeof(g_exe_path));
+			GetModuleFileNameW(NULL, g_exe_path, sizeof(g_exe_path));
 		app_path2 = g_exe_path;
 	}
 	pShellLink->SetPath(app_path2.c_str());
@@ -42,9 +42,8 @@ IShellLink *CreateShellLink(const String& app_path, const String& params, const 
 	IPropertyStore *pPS = NULL;
 	if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 	{
-		std::wstring title2 = ucr::toUTF16((title.empty()) ? params : title);
 		PROPVARIANT pv;
-		InitPropVariantFromString(title2.c_str(), &pv);
+		InitPropVariantFromString(title.c_str(), &pv);
 		pPS->SetValue(PKEY_Title, pv);
 		PropVariantClear(&pv);
 		pPS->Commit();
@@ -80,7 +79,11 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 #if _MSC_VER >= 1600
 	SHARDAPPIDINFOLINK saiil;
 	saiil.pszAppID = g_appid.c_str();
+#ifdef _UNICODE
 	saiil.psl = CreateShellLink(app_path, params, title, desc, icon_index);
+#else
+	saiil.psl = (IShellLink *)CreateShellLink(ucr::toUTF16(app_path), ucr::toUTF16(params), ucr::toUTF16(title), ucr::toUTF16(desc), icon_index);
+#endif
 	if (!saiil.psl)
 		return false;
 	SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
