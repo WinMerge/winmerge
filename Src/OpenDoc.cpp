@@ -13,9 +13,7 @@ IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 COpenDoc::COpenDoc() :
 	m_bRecurse(FALSE)
 {
-	m_dwFlags[0] = FFILEOPEN_NOMRU;
-	m_dwFlags[1] = FFILEOPEN_NOMRU;
-	m_dwFlags[2] = FFILEOPEN_NOMRU;
+	memset(m_dwFlags, 0, sizeof(m_dwFlags));
 }
 
 BOOL COpenDoc::OnNewDocument()
