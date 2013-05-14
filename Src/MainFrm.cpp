@@ -1387,7 +1387,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			infoUnpacker);
 	}
 
-	if (pFiles && !((dwFlags[0] & FFILEOPEN_NOMRU) && (dwFlags[0] & FFILEOPEN_CMDLINE)))
+	if (pFiles && !(dwFlags[0] & FFILEOPEN_NOMRU))
 	{
 		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
@@ -1823,23 +1823,23 @@ void CMainFrame::OnClose()
  */
 void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 {
+	std::vector<CString> list;
 	CString s,s2;
 	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
-	++cnt;	// add new string
-	if(cnt>nMaxItems)
+	list.push_back(szItem);
+	for (UINT i=0 ; i<cnt; ++i)
 	{
-		cnt=nMaxItems;
-	}
-	// move items down a step
-	for (UINT i=cnt ; i!=0; --i)
-	{
-		s2.Format(_T("Item_%d"), i-1);
-		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
 		s2.Format(_T("Item_%d"), i);
-		AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
+		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
+		if (s != szItem)
+			list.push_back(s);
 	}
-	// add most recent item
-	AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), szItem);
+	cnt = list.size() > nMaxItems ? nMaxItems : list.size();
+	for (UINT i=0 ; i<cnt; ++i)
+	{
+		s2.Format(_T("Item_%d"), i);
+		AfxGetApp()->WriteProfileString(szRegSubKey, s2, list[i]);
+	}
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
