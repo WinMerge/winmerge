@@ -52,8 +52,6 @@ void sd_ComputeWordDiffs(const String& str1, const String& str2,
 void sd_ComputeWordDiffs(int nStrings, const String str[3], 
                    bool case_sensitive, int whitespace, int breakType, bool byte_level,
 				   std::vector<wdiff> * pDiffs);
-bool IsSide0Empty(std::vector<wdiff> worddiffs, int nLineLengt);
-bool IsSide1Empty(std::vector<wdiff> worddiffs, int nLineLengt);
 
 void sd_ComputeByteDiff(const String& str1, const String& str2,
 			bool casitive, int xwhite, 
