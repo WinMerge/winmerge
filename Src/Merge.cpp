@@ -926,13 +926,6 @@ void CMergeApp::ReloadMenu()
 	m_pLangDlg->ReloadMenu();
 }
 
-/** @brief Wrap one line of cmdline help in appropriate whitespace */
-static String CmdlineOption(int idres)
-{
-	String str = theApp.LoadString(idres) + _T(" \n");
-	return str;
-}
-
 /**
  * @brief Get default editor path.
  * @return full path to the editor program executable.
