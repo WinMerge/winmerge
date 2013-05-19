@@ -30,6 +30,7 @@
 #include "Merge.h"
 #include "BCMenu.h"
 #include "FilepathEdit.h"
+#include "ClipBoard.h"
 #include "Shlwapi.h"
 
 #ifdef _DEBUG
@@ -226,27 +227,7 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	if (iEnd == -1)
 		iEnd = m_sOriginalText.GetLength();
 
-	// get the clipboard
-	if (! OpenClipboard())
-		return;
-	if (! EmptyClipboard())
-		return;		
-		
-	// insert text into clipboard
-	HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE,
-			(iEnd - iBegin + 1) * sizeof(TCHAR));
-	if (hData == NULL)
-		return;
-	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	// Copy selected data from m_sOriginalText into the alloc'd data area
-	_tcscpy (pszData, (LPTSTR) m_sOriginalText.Mid(iBegin, iEnd - iBegin).GetBuffer(0));
-	GlobalUnlock (hData);
-	UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
-	// Using alloc'd data, set the clipboard
-	SetClipboardData (fmt, hData);
-
-	// release the clipboard
-	CloseClipboard ();
+	PutToClipboard((LPTSTR) m_sOriginalText.Mid(iBegin, iEnd - iBegin).GetBuffer(0), m_hWnd);
 }
 
 /**
