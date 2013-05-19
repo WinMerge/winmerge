@@ -188,6 +188,7 @@ public:
 	 * This value is true by default.
 	 */
 	bool m_bWalkUniques;
+	bool m_bIgnoreReparsePoints;
 
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */

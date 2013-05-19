@@ -158,6 +158,7 @@ const TCHAR OPT_CMP_MATCH_SIMILAR_LINES[] = _T("Settings/MatchSimilarLines");
 const TCHAR OPT_CMP_STOP_AFTER_FIRST[] = _T("Settings/StopAfterFirst");
 const TCHAR OPT_CMP_QUICK_LIMIT[] = _T("Settings/QuickMethodLimit");
 const TCHAR OPT_CMP_WALK_UNIQUE_DIRS[] = _T("Settings/ScanUnpairedDir");
+const TCHAR OPT_CMP_IGNORE_REPARSE_POINTS[] = _T("Settings/IgnoreReparsePoints");
 
 // Multidoc enable/disable per document type
 const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");

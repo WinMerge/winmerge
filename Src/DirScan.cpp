@@ -351,7 +351,12 @@ OutputDebugString(buf);
 			{
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
-				if (pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub))
+				if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
+					(pCtxt->m_bIgnoreReparsePoints && (
+					  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+					  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+					)
+				   )
 				{
 					nDiffCode |= DIFFCODE::SKIPPED;
 					AddToList(subdir[0], subdir[1], 
@@ -391,7 +396,13 @@ OutputDebugString(buf);
 			{
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
-				if (pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub))
+				if ((pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
+					(pCtxt->m_bIgnoreReparsePoints && (
+					  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+					  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+					  (nDiffCode & DIFFCODE::THIRD)  && (dirs[2][k].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+					)
+				   )
 				{
 					nDiffCode |= DIFFCODE::SKIPPED;
 					AddToList(subdir[0], subdir[1], subdir[2], 
