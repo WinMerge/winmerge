@@ -3595,11 +3595,7 @@ void CDirView::RefreshOptions()
 {
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
-	m_cachedColors.clrTrivialText = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_cachedColors.clrTrivial     = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_cachedColors.clrDiffText    = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_TEXT);
-	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
-	m_cachedColors.clrDiff        = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
+	Options::DiffColors::Load(m_cachedColors);
 }
 
 /**
