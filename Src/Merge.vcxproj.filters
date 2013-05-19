@@ -610,9 +610,6 @@
     <ClCompile Include="OptionsPanel.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OutputDlg.cpp">
-      <Filter>GUI\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PatchDlg.cpp">
       <Filter>GUI\Source Files</Filter>
     </ClCompile>
@@ -1204,9 +1201,6 @@
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PatchDlg.h">
-      <Filter>GUI\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OutputDlg.h">
       <Filter>GUI\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsPanel.h">

@@ -26,7 +26,6 @@
 #define IDD_PROPPAGE_GENERAL            205
 #define IDD_CLEARCASE                   206
 #define IDD_PROPPAGE_FILTER             207
-#define IDD_OUTPUT                      208
 #define IDD_PROPPAGE_SYSTEM             209
 #define IDD_EDITOR_HEADERBAR            210
 #define IDD_GENERATE_PATCH              211
