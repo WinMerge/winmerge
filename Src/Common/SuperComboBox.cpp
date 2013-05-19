@@ -3,10 +3,10 @@
 
 #include "StdAfx.h"
 #include "SuperComboBox.h"
+#include "DragDrop.h"
 
 #include <shlwapi.h>
 #include <vector>
-#include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -456,42 +456,14 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //
 void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 {
-	// Get the number of pathnames that have been dropped
-	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-
-	CString firstFile;
-
-	// get all file names. but we'll only need the first one.
-	for (WORD x = 0 ; x < wNumFilesDropped; x++) {
-
-		// Get the number of characters required by the file's full pathname
-		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
-
-		// Allocate memory to contain full pathname & zero byte
-		wPathnameSize += 1;
-		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
-
-		// Copy the pathname into the buffer
-		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
-
-		// we only care about the first
-		if (firstFile==_T(""))
-			firstFile=npszFile.get();
-	}
-
-	// Free the memory block containing the dropped-file information
-	DragFinish(dropInfo);
-
-	// if this was a shortcut, we need to expand it to the target path
-	CString expandedFile = ExpandShortcut(firstFile);
-
-	// if that worked, we should have a real file name
-	if (!expandedFile.IsEmpty()) 
-		firstFile=expandedFile;
+	std::vector<String> files;
+	GetDroppedFiles(dropInfo, files);
+	if (files.size() == 0)
+		return;
 
 	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
 		(CBN_EDITUPDATE << 16), (LPARAM)m_hWnd);
-	SetWindowText(firstFile);
+	SetWindowText(files[0].c_str());
 	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
 		(CBN_EDITCHANGE << 16), (LPARAM)m_hWnd);
 }
@@ -552,64 +524,4 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		}
 	}
 	*pResult = 0;
-}
-
-//////////////////////////////////////////////////////////////////
-//	use IShellLink to expand the shortcut
-//	returns the expanded file, or "" on error
-//
-//	original code was part of CShortcut 
-//	1996 by Rob Warner
-//	rhwarner@southeast.net
-//	http://users.southeast.net/~rhwarner
-
-CString CSuperComboBox::ExpandShortcut(CString &inFile)
-{
-	CString outFile;
-
-    // Make sure we have a path
-    ASSERT(!inFile.IsEmpty());
-
-    IShellLink* psl;
-    HRESULT hres;
-    LPTSTR lpsz = inFile.GetBuffer(MAX_PATH);
-
-    // Create instance for shell link
-    hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
-        IID_IShellLink, (LPVOID*) &psl);
-    if (SUCCEEDED(hres))
-    {
-        // Get a pointer to the persist file interface
-        IPersistFile* ppf;
-        hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
-        if (SUCCEEDED(hres))
-        {
-            WCHAR wsz[MAX_PATH];
-#ifdef _UNICODE
-	     wcsncpy((wchar_t *)wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
-#else
-            ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
-#endif
-
-            // Load shortcut
-            hres = ppf->Load((LPCOLESTR)wsz, STGM_READ);
-            if (SUCCEEDED(hres)) {
-				WIN32_FIND_DATA wfd;
-				// find the path from that
-				HRESULT hres = psl->GetPath(outFile.GetBuffer(MAX_PATH), 
-								MAX_PATH,
-								&wfd, 
-								SLGP_UNCPRIORITY);
-
-				outFile.ReleaseBuffer();
-            }
-            ppf->Release();
-        }
-        psl->Release();
-    }
-
-	inFile.ReleaseBuffer();
-
-	// if this fails, outFile == ""
-    return outFile;
 }

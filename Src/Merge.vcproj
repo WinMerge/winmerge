@@ -5273,6 +5273,33 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\Common\DragDrop.cpp">
+					<FileConfiguration
+						Name="UnicodeRelease|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="UnicodeDebug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="0"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath="EditorFilepathBar.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -7612,6 +7639,9 @@
 				</File>
 				<File
 					RelativePath="DirViewColItems.h">
+				</File>
+				<File
+					RelativePath=".\Common\DragDrop.h">
 				</File>
 				<File
 					RelativePath="EditorFilepathBar.h">

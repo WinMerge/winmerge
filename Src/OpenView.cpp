@@ -30,7 +30,6 @@
 #include <vector>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <boost/scoped_array.hpp>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OpenDoc.h"
@@ -45,6 +44,7 @@
 #include "7zCommon.h"
 #include "Constants.h"
 #include "Picture.h"
+#include "DragDrop.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -932,74 +932,37 @@ void COpenView::OnHelp()
  */
 void COpenView::OnDropFiles(HDROP dropInfo)
 {
-	// Get the number of pathnames that have been dropped
-	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-	CString files[3];
-	UINT fileCount = 0;
-
-	// get all file names. but we'll only need the first one.
-	for (WORD x = 0 ; x < wNumFilesDropped; x++)
-	{
-		// Get the number of bytes required by the file's full pathname
-		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
-
-		// Allocate memory to contain full pathname & zero byte
-		wPathnameSize += 1;
-		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
-
-		// Copy the pathname into the buffer
-		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
-
-		if (x < 3)
-		{
-			files[x] = npszFile.get();
-			fileCount++;
-		}
-	}
-
-	// Free the memory block containing the dropped-file information
-	DragFinish(dropInfo);
-
-	for (UINT i = 0; i < fileCount; i++)
-	{
-		if (paths_IsShortcut((LPCTSTR)files[i]))
-		{
-			// if this was a shortcut, we need to expand it to the target path
-			CString expandedFile = ExpandShortcut((LPCTSTR)files[i]).c_str();
-
-			// if that worked, we should have a real file name
-			if (!expandedFile.IsEmpty())
-				files[i] = expandedFile;
-		}
-	}
+	std::vector<String> files;
+	GetDroppedFiles(dropInfo, files);
+	const size_t fileCount = files.size();
 
 	// Add dropped paths to the dialog
 	UpdateData(TRUE);
 	if (fileCount == 3)
 	{
-		m_strPath[0] = files[0];
-		m_strPath[1] = files[1];
-		m_strPath[2] = files[2];
+		m_strPath[0] = files[0].c_str();
+		m_strPath[1] = files[1].c_str();
+		m_strPath[2] = files[2].c_str();
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
 	else if (fileCount == 2)
 	{
-		m_strPath[0] = files[0];
-		m_strPath[1] = files[1];
+		m_strPath[0] = files[0].c_str();
+		m_strPath[1] = files[1].c_str();
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
 	else if (fileCount == 1)
 	{
 		if (m_strPath[0].IsEmpty())
-			m_strPath[0] = files[0];
+			m_strPath[0] = files[0].c_str();
 		else if (m_strPath[1].IsEmpty())
-			m_strPath[1] = files[0];
+			m_strPath[1] = files[0].c_str();
 		else if (m_strPath[2].IsEmpty())
-			m_strPath[2] = files[0];
+			m_strPath[2] = files[0].c_str();
 		else
-			m_strPath[0] = files[0];
+			m_strPath[0] = files[0].c_str();
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}
