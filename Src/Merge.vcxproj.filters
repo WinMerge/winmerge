@@ -745,6 +745,9 @@
     <ClCompile Include="OptionsDiffColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\DragDrop.cpp">
+      <Filter>GUI\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1382,6 +1385,9 @@
     </ClInclude>
     <ClInclude Include="OptionsDiffColors.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\DragDrop.h">
+      <Filter>GUI\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

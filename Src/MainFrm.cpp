@@ -30,7 +30,6 @@
 #include <vector>
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
-#include <boost/scoped_array.hpp>
 #include "Constants.h"
 #include "Merge.h"
 #include "UnicodeString.h"
@@ -81,6 +80,7 @@
 #include "OptionsFont.h"
 #include "TFile.h"
 #include "JumpList.h"
+#include "DragDrop.h"
 #include <Poco/Exception.h>
 
 using std::vector;
@@ -2102,57 +2102,12 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////////
-//
-//	OnDropFiles code from CDropEdit
-//	Copyright 1997 Chris Losinger
-//
-//	shortcut expansion code modified from :
-//	CShortcut, 1996 Rob Warner
-//
 void CMainFrame::OnDropFiles(HDROP dropInfo)
 {
-	// Get the number of pathnames that have been dropped
-	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
-	PathContext files;
-	UINT fileCount = 0;
-
-	// get all file names. but we'll only need the first one.
-	for (WORD x = 0 ; x < wNumFilesDropped; x++)
-	{
-		// Get the number of bytes required by the file's full pathname
-		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
-
-		// Allocate memory to contain full pathname & zero byte
-		wPathnameSize += 1;
-		boost::scoped_array<TCHAR> npszFile(new TCHAR[wPathnameSize]);
-
-		// Copy the pathname into the buffer
-		DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
-
-		if (x < 3)
-		{
-			files.SetSize(x + 1);
-			files[x] = npszFile.get();
-			fileCount++;
-		}
-	}
-
-	// Free the memory block containing the dropped-file information
-	DragFinish(dropInfo);
-
-	for (UINT i = 0; i < fileCount; i++)
-	{
-		if (paths_IsShortcut(files[i]))
-		{
-			// if this was a shortcut, we need to expand it to the target path
-			CString expandedFile = ExpandShortcut(files[i]).c_str();
-
-			// if that worked, we should have a real file name
-			if (!expandedFile.IsEmpty())
-				files[i] = expandedFile;
-		}
-	}
+	std::vector<String> dropped_files;
+	GetDroppedFiles(dropInfo, dropped_files);
+	PathContext files(dropped_files);
+	const size_t fileCount = files.GetSize();
 
 	// If Ctrl pressed, do recursive compare
 	bool ctrlKey = !!::GetAsyncKeyState(VK_CONTROL);
@@ -2176,7 +2131,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 	// Check if they dropped a project file
 	DWORD dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};
-	if (wNumFilesDropped == 1)
+	if (fileCount == 1)
 	{
 		if (theApp.IsProjectFile(files[0].c_str()))
 		{

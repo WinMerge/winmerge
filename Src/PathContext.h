@@ -11,6 +11,7 @@
 #define _PATH_CONTEXT_H_
 
 #include "UnicodeString.h"
+#include <vector>
 
 class PathContext;
 
@@ -47,6 +48,7 @@ public:
 	PathContext(const String& sLeft, const String& sRight);
 	PathContext(const String& sLeft, const String& sMiddle, const String& sRight);
 	PathContext(const PathContext &paths);
+	PathContext(const std::vector<String>& paths);
 
 	String GetAt(int nIndex) const;
 	String& GetElement(int nIndex);

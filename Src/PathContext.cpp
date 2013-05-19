@@ -97,6 +97,13 @@ PathContext::PathContext(const PathContext &paths)
 		m_path[i].SetPath(paths[i]);
 }
 
+PathContext::PathContext(const std::vector<String> &paths)
+{
+	m_nFiles = paths.size();
+	for (int i = 0; i < paths.size(); i++)
+		m_path[i].SetPath(paths[i]);
+}
+
 String PathContext::GetAt(int nIndex) const
 {
 	assert(nIndex < m_nFiles);

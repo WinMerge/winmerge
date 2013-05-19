@@ -64,7 +64,6 @@ public:
 	// Generated message map functions
 protected:
 	CString m_strCurSel;
-	CString ExpandShortcut(CString &inFile);
 	virtual BOOL OnAddTemplate();
 	CString m_strAutoAdd;
 	BOOL m_bMustUninitOLE;
