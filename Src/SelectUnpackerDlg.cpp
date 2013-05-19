@@ -78,13 +78,15 @@ void CSelectUnpackerDlg::Initialize()
 	for (i = 0 ; i < piFileScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
-		m_UnpackerPlugins.Add(&piFileScriptArray->at(i));
+		const PluginInfoPtr& plugin = piFileScriptArray->at(i);
+		m_UnpackerPlugins.Add(plugin.get());
 		m_bWithFileFlags.push_back(true);
 	}
 	for (i = 0 ; i < piBufferScriptArray->size() ; i++)
 	{
 		// during the dialog, we use a pointer to the scriptsOfThreads array
-		m_UnpackerPlugins.Add(&piBufferScriptArray->at(i));
+		const PluginInfoPtr& plugin = piBufferScriptArray->at(i);
+		m_UnpackerPlugins.Add(plugin.get());
 		m_bWithFileFlags.push_back(false);
 	}
 }
