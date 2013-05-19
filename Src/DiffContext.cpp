@@ -70,6 +70,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_bPluginsEnabled(false)
 , m_bRecursive(false)
 , m_bWalkUniques(true)
+, m_bIgnoreReparsePoints(false)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)

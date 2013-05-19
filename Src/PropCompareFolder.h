@@ -44,6 +44,7 @@ public:
 	BOOL    m_bIgnoreSmallTimeDiff;
 	BOOL    m_bIncludeUniqFolders;
 	BOOL    m_bExpandSubdirs;
+	BOOL    m_bIgnoreReparsePoints;
 	UINT    m_nQuickCompareLimit;
 	//}}AFX_DATA
 

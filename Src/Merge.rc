@@ -1825,8 +1825,10 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,50,202,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,202,10
-    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,70,200,8
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,80,50,14,ES_AUTOHSCROLL,ES_NUMBER
+    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,70,202,10
+    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,7,80,200,8
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,7,90,50,14,ES_AUTOHSCROLL,ES_NUMBER
     PUSHBUTTON      "Defaults",IDC_COMPAREFOLDER_DEFAULTS,7,184,70,14
 END
 

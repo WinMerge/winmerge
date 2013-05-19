@@ -126,6 +126,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	m_pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 	m_pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, false);
+	m_pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 
 	m_pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	m_pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);
