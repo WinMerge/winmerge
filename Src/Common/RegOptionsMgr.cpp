@@ -588,17 +588,20 @@ int CRegOptionsMgr::ImportOptions(const String& filename)
 		{
 			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
 			value.SetBool(boolVal == 1);
+			SaveOption(pKey, boolVal == 1);
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
 			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
 			value.SetInt(intVal);
+			SaveOption(pKey, intVal);
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
 			TCHAR strVal[MAX_PATH] = {0};
 			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename.c_str());
 			value.SetString(strVal);
+			SaveOption(pKey, strVal);
 		}
 		Set(pKey, value);
 
