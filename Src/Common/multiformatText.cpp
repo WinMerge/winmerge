@@ -623,13 +623,14 @@ bool AnyCodepageToUTF8(int codepage, const String& filepath, const String& filep
 			size_t srcbytes = findNextLine(unicoding, pszBuf + pos + minbufsize, pszBuf + nBufSize) - (pszBuf + pos);
 			if (srcbytes == 0)
 				break;
-			if (srcbytes > obuf.size())
-				obuf.resize(srcbytes * 2, false);
+			if (srcbytes * 3 > obuf.size())
+				obuf.resize(srcbytes * 3 * 2, false);
 			size_t destbytes = obuf.size();
 			if (pexconv)
 			{
 				size_t srcbytes2 = srcbytes;
-				pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes);
+				if (!pexconv->convert(codepage, CP_UTF8, (const unsigned char *)pszBuf+pos, &srcbytes2, (unsigned char *)obuf.begin(), &destbytes))
+					throw "failed to convert file contents to utf-8";
 			}
 			else
 			{
