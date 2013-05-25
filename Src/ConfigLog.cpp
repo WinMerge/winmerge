@@ -30,24 +30,21 @@
 #include "Constants.h"
 #include "version.h"
 #include "UniFile.h"
-#include "DiffWrapper.h"
 #include "Plugins.h"
 #include "paths.h"
 #include "unicoder.h"
 #include "codepage.h"
-#include "CompareOptions.h"
 #include "Environment.h"
+#include "MergeApp.h"
+#include "OptionsMgr.h"
+#include "TempFile.h"
+#include "UniFile.h"
 
 BOOL NTAPI IsMerge7zEnabled();
 DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
 
-// Static function declarations
-static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, const String& name, bool * pbflag);
-
-
-
 CConfigLog::CConfigLog()
-: m_pCfgSettings(NULL), m_pfile(new UniStdioFile())
+: m_pfile(new UniStdioFile())
 {
 }
 
@@ -71,10 +68,6 @@ String CConfigLog::GetFileName() const
  */
 void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent)
 {
-	// do nothing if actually reading config file
-	if (!m_writing)
-		return;
-
 	// get an array with the available scripts
 	PluginArray * piPluginArray; 
 
@@ -105,44 +98,10 @@ static String GetLocaleString(LCID locid, LCTYPE lctype)
 }
 
 /**
- * @brief Return Windows font charset constant name from constant value, eg, FontCharsetName() => "Hebrew"
- */
-static String FontCharsetName(BYTE charset)
-{
-	switch(charset)
-	{
-	case ANSI_CHARSET: return _T("Ansi");
-	case BALTIC_CHARSET: return _T("Baltic");
-	case CHINESEBIG5_CHARSET: return _T("Chinese Big5");
-	case DEFAULT_CHARSET: return _T("Default");
-	case EASTEUROPE_CHARSET: return _T("East Europe");
-	case GB2312_CHARSET: return _T("Chinese GB2312");
-	case GREEK_CHARSET: return _T("Greek");
-	case HANGUL_CHARSET: return _T("Korean Hangul");
-	case MAC_CHARSET: return _T("Mac");
-	case OEM_CHARSET: return _T("OEM");
-	case RUSSIAN_CHARSET: return _T("Russian");
-	case SHIFTJIS_CHARSET: return _T("Japanese Shift-JIS");
-	case SYMBOL_CHARSET: return _T("Symbol");
-	case TURKISH_CHARSET: return _T("Turkish");
-	case VIETNAMESE_CHARSET: return _T("Vietnamese");
-	case JOHAB_CHARSET: return _T("Korean Johab");
-	case ARABIC_CHARSET: return _T("Arabic");
-	case HEBREW_CHARSET: return _T("Hebrew");
-	case THAI_CHARSET: return _T("Thai");
-	default: return _T("Unknown");
-	}
-}
-
-/**
  * @brief Write string item
  */
 void CConfigLog::WriteItem(int indent, const String& key, LPCTSTR value)
 {
-	// do nothing if actually reading config file
-	if (!m_writing)
-		return;
-
 	String text = string_format(value ? _T("%*.0s%s: %s\r\n") : _T("%*.0s%s:\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
@@ -160,10 +119,6 @@ void CConfigLog::WriteItem(int indent, const String& key, const String &str)
  */
 void CConfigLog::WriteItem(int indent, const String& key, long value)
 {
-	// do nothing if actually reading config file
-	if (!m_writing)
-		return;
-
 	String text = string_format(_T("%*.0s%s: %ld\r\n"), indent, key.c_str(), key.c_str(), value);
 	m_pfile->WriteString(text);
 }
@@ -173,35 +128,8 @@ void CConfigLog::WriteItem(int indent, const String& key, long value)
  */
 void CConfigLog::WriteItemYesNo(int indent, const String& key, bool *pvalue)
 {
-	if (m_writing)
-	{
-		String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key.c_str(), key.c_str(), *pvalue ? _T("Yes") : _T("No"));
-		m_pfile->WriteString(text);
-	}
-	else
-	{
-		LoadYesNoFromConfig(m_pCfgSettings.get(), key, pvalue);
-	}
-}
-
-/**
- * @brief Same as WriteItemYesNo, except store Yes/No in reverse
- */
-void CConfigLog::WriteItemYesNoInverted(int indent, const String& key, bool *pvalue)
-{
-	bool tempval = !(*pvalue);
-	WriteItemYesNo(indent, key, &tempval);
-	*pvalue = !(tempval);
-}
-
-/**
- * @brief Same as WriteItemYesNo, except store Yes/No in reverse
- */
-void CConfigLog::WriteItemYesNoInverted(int indent, const String& key, int *pvalue)
-{
-	bool tempval = !(*pvalue);
-	WriteItemYesNo(indent, key, &tempval);
-	*pvalue = !(tempval);
+	String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key.c_str(), key.c_str(), *pvalue ? _T("Yes") : _T("No"));
+	m_pfile->WriteString(text);
 }
 
 /**
@@ -209,10 +137,6 @@ void CConfigLog::WriteItemYesNoInverted(int indent, const String& key, int *pval
  */
 void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
 {
-	// do nothing if actually reading config file
-	if (!m_writing)
-		return;
-
 	WriteItem(1, title);
 	WriteItem(2, _T("Def ANSI codepage"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE));
 	WriteItem(2, _T("Def OEM codepage"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE));
@@ -227,10 +151,6 @@ void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
  */
 void CConfigLog::WriteVersionOf1(int indent, const String& path)
 {
-	// Do nothing if actually reading config file
-	if (!m_writing)
-		return;
-
 	String name = paths_FindFileName(path);
 	CVersionInfo vi(path.c_str(), TRUE);
 	String text = string_format
@@ -337,72 +257,51 @@ void CConfigLog::WriteArchiveSupport()
 	}
 }
 
-struct NameMap { int ival; LPCTSTR sval; };
 /**
- * @brief Write boolean item using keywords (Yes|No)
+ * @brief Write winmerge configuration
  */
-void CConfigLog::WriteItemWhitespace(int indent, const String& key, int *pvalue)
+void CConfigLog::WriteWinMergeConfig(void)
 {
-	static NameMap namemap[] = {
-		{ WHITESPACE_COMPARE_ALL, _T("Compare all") }
-		, { WHITESPACE_IGNORE_CHANGE, _T("Ignore change") }
-		, { WHITESPACE_IGNORE_ALL, _T("Ignore all") }
-	};
-
-	if (m_writing)
+	TempFile tmpfile;
+	tmpfile.Create();
+	GetOptionsMgr()->ExportOptions(tmpfile.GetPath());
+	UniMemFile ufile;
+	if (!ufile.OpenReadOnly(tmpfile.GetPath()))
+		return;
+	String line;
+	bool lossy;
+	while (ufile.ReadString(line, &lossy)) 
 	{
-		String text = _T("Unknown");
-		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
-		{
-			if (*pvalue == namemap[i].ival)
-				text = namemap[i].sval;
-		}
-		WriteItem(indent, key, text);
-	}
-	else
-	{
-		*pvalue = namemap[0].ival;
-		String svalue = GetValueFromConfig(key);
-		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
-		{
-			if (svalue == namemap[i].sval)
-				*pvalue = namemap[i].ival;
-		}
+		FileWriteString(line + _T("\r\n"));
 	}
 }
-
 
 /** 
  * @brief Write logfile
  */
-bool CConfigLog::DoFile(bool writing, String &sError)
+bool CConfigLog::DoFile(String &sError)
 {
 	CVersionInfo version;
 	String text;
 
-	m_writing = writing;
-
-	if (writing)
-	{
-		String sFileName = paths_ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
-		paths_CreateIfNeeded(sFileName);
-		m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
+	String sFileName = paths_ConcatPath(env_GetMyDocuments(), WinMergeDocumentsFolder);
+	paths_CreateIfNeeded(sFileName);
+	m_sFileName = paths_ConcatPath(sFileName, _T("WinMerge.txt"));
 
 #ifdef _UNICODE
-		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+	if (!m_pfile->OpenCreateUtf8(m_sFileName))
 #else
-		if (!m_pfile->OpenCreate(m_sFileName))
+	if (!m_pfile->OpenCreate(m_sFileName))
 #endif
-		{
-			const UniFile::UniError &err = m_pfile->GetLastUniError();
-			sError = err.GetError();
-			return false;
-		}
-#ifdef _UNICODE
-		m_pfile->SetBom(true);
-		m_pfile->WriteBom();
-#endif
+	{
+		const UniFile::UniError &err = m_pfile->GetLastUniError();
+		sError = err.GetError();
+		return false;
 	}
+#ifdef _UNICODE
+	m_pfile->SetBom(true);
+	m_pfile->WriteBom();
+#endif
 
 // Begin log
 	FileWriteString(_T("WinMerge configuration log\r\n"));
@@ -469,54 +368,6 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	WriteVersionOf1(1, _T("ShellExtensionU.dll"));
 	WriteVersionOf1(1, _T("ShellExtensionX64.dll"));
 
-// WinMerge settings
-	FileWriteString(_T("\r\nWinMerge configuration:\r\n"));
-	FileWriteString(_T(" Compare settings:\r\n"));
-
-	WriteItemYesNo(2, _T("Ignore blank lines"), &m_diffOptions.bIgnoreBlankLines);
-	WriteItemYesNo(2, _T("Ignore case"), &m_diffOptions.bIgnoreCase);
-	WriteItemYesNo(2, _T("Ignore carriage return differences"), &m_diffOptions.bIgnoreEol);
-
-	WriteItemWhitespace(2, _T("Whitespace compare"), &m_diffOptions.nIgnoreWhitespace);
-
-	WriteItemYesNo(2, _T("Detect moved blocks"), &m_miscSettings.bMovedBlocks);
-	WriteItem(2, _T("Compare method"), m_compareSettings.nCompareMethod);
-	WriteItemYesNo(2, _T("Stop after first diff"), &m_compareSettings.bStopAfterFirst);
-
-	FileWriteString(_T("\r\n Other settings:\r\n"));
-	WriteItemYesNo(2, _T("Automatic rescan"), &m_miscSettings.bAutomaticRescan);
-	WriteItemYesNoInverted(2, _T("Simple EOL"), &m_miscSettings.bAllowMixedEol);
-	WriteItemYesNo(2, _T("Automatic scroll to 1st difference"), &m_miscSettings.bScrollToFirst);
-	WriteItemYesNo(2, _T("Backup original file"), &m_miscSettings.bBackup);
-
-	FileWriteString(_T("\r\n Folder compare:\r\n"));
-	WriteItemYesNo(2, _T("Identical files"), &m_viewSettings.bShowIdent);
-	WriteItemYesNo(2, _T("Different files"), &m_viewSettings.bShowDiff);
-	WriteItemYesNo(2, _T("Left Unique files"), &m_viewSettings.bShowUniqueLeft);
-	WriteItemYesNo(2, _T("Right Unique files"), &m_viewSettings.bShowUniqueRight);
-	WriteItemYesNo(2, _T("Binary files"), &m_viewSettings.bShowBinaries);
-	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
-	WriteItemYesNo(2, _T("Tree-mode enabled"), &m_viewSettings.bTreeView);
-
-	FileWriteString(_T("\r\n File compare:\r\n"));
-	WriteItemYesNo(2, _T("Preserve filetimes"), &m_miscSettings.bPreserveFiletimes);
-	WriteItemYesNo(2, _T("Match similar lines"), &m_miscSettings.bMatchSimilarLines);
-
-	FileWriteString(_T("\r\n Editor settings:\r\n"));
-	WriteItemYesNo(2, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
-	WriteItemYesNo(2, _T("Merge Mode enabled"), &m_miscSettings.bMergeMode);
-	WriteItemYesNo(2, _T("Show linenumbers"), &m_miscSettings.bShowLinenumbers);
-	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
-	WriteItemYesNo(2, _T("Syntax Highlight"), &m_miscSettings.bSyntaxHighlight);
-	WriteItem(2, _T("Tab size"), m_miscSettings.nTabSize);
-	WriteItemYesNoInverted(2, _T("Insert tabs"), &m_miscSettings.nInsertTabs);
-	
-// Font settings
-	FileWriteString(_T("\r\n Font:\r\n"));
-	FileWriteString(string_format(_T("  Font facename: %s\r\n"), m_fontSettings.sFacename.c_str()));
-	FileWriteString(string_format(_T("  Font charset: %d (%s)\r\n"), m_fontSettings.nCharset, 
-		FontCharsetName(m_fontSettings.nCharset).c_str()));
-
 // System settings
 	FileWriteString(_T("\r\nSystem settings:\r\n"));
 	FileWriteString(_T(" codepage settings:\r\n"));
@@ -529,14 +380,8 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 	WriteLocaleSettings(LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
-// Codepage settings
-	bool bValue = m_cpSettings.iDetectCodepageType & 1 ? true : false;
-	WriteItemYesNo(1, _T("Detect codepage automatically for RC and HTML files"), &bValue);
-	WriteItem(1, _T("unicoder codepage"), ucr::getDefaultCodepage());
-
 // Plugins
 	FileWriteString(_T("\r\nPlugins:\r\n"));
-	WriteItemYesNo(1, _T("Plugins enabled"), &m_miscSettings.bPluginsEnabled);
 	FileWriteString(_T(" Unpackers: "));
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
@@ -550,6 +395,10 @@ bool CConfigLog::DoFile(bool writing, String &sError)
 
 	FileWriteString(_T("\r\n\r\n"));
 	WriteArchiveSupport();
+
+// WinMerge settings
+	FileWriteString(_T("\r\nWinMerge configuration:\r\n"));
+	WriteWinMergeConfig();
 
 	CloseFile();
 
@@ -849,73 +698,18 @@ String CConfigLog::GetBuildFlags() const
 	return flags;
 }
 
-/** 
- * @brief  Collection of configuration settings found in config log (name/value map)
- */
-class CfgSettings
-{
-public:
-	void Add(const String& name, const String& value) { m_settings[name] = value; }
-	bool Lookup(const String& name, String & value) {
-		std::map<String, String>::iterator it = m_settings.find(name);
-		if (it == m_settings.end())
-			return false;
-		value = it->second;
-		return true;
-	}
-private:
-	std::map<String, String> m_settings;
-};
-
-/**
- * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
- */
-static bool
-LoadYesNoFromConfig(CfgSettings * cfgSettings, const String& name, bool * pbflag)
-{
-	String value;
-	if (cfgSettings->Lookup(name, value))
-	{
-		if (value == _T("Yes"))
-		{
-			*pbflag = true;
-			return true;
-		}
-		else if (value == _T("No"))
-		{
-			*pbflag = false;
-			return true;
-		}
-	}
-	return false;
-}
-
 bool CConfigLog::WriteLogFile(String &sError)
 {
 	CloseFile();
 
-	bool writing = true;
-	return DoFile(writing, sError);
-}
-
-void CConfigLog::ReadLogFile(const String & Filepath)
-{
-	CloseFile();
-
-	bool writing = false;
-	String sError;
-	m_pCfgSettings.reset(new CfgSettings);
-	if (!ParseSettings(Filepath))
-		return;
-	DoFile(writing, sError);
+	return DoFile(sError);
 }
 
 /// Write line to file (if writing configuration log)
 void
 CConfigLog::FileWriteString(const String& lpsz)
 {
-	if (m_writing)
-		m_pfile->WriteString(lpsz);
+	m_pfile->WriteString(lpsz);
 }
 
 /**
@@ -928,39 +722,3 @@ CConfigLog::CloseFile()
 		m_pfile->Close();
 }
 
-/**
- * @brief  Store all name:value strings from file into m_pCfgSettings
- */
-bool CConfigLog::ParseSettings(const String & Filepath)
-{
-	UniMemFile file;
-	if (!file.Open(Filepath))
-		return false;
-
-	String strline;
-	bool lossy;
-	while (file.ReadString(strline, &lossy))
-	{
-		String::size_type colon = strline.find(_T(":"));
-		if (colon > 0)
-		{
-			String name = strline.substr(0, colon);
-			String value = strline.substr(colon + 1);
-			name = string_trim_ws(name);
-			value = string_trim_ws(value);
-			m_pCfgSettings->Add(name, value);
-		}
-	}
-	file.Close();
-	return true;
-}
-
-String CConfigLog::GetValueFromConfig(const String & key)
-{
-	String value;
-	if (m_pCfgSettings->Lookup(key, value))
-	{
-		return value;
-	}
-	return _T("");
-}

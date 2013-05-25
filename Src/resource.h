@@ -551,7 +551,6 @@
 #define IDS_MESSAGE_BOX_ARE_RESET       16401
 #define IDS_DIFF_OPEN_NO_SET_PROPS      16402
 #define IDS_OPTIONS_INVALID_TABSIZE     16404
-#define IDS_RESET_OPTIONS_WARNING       16405
 #define IDS_OPEN_TITLE                  16416
 #define IDS_PROGRAMFILES                16417
 #define IDS_ALLFILES                    16418
@@ -983,7 +982,6 @@
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
-#define ID_DEBUG_LOADCONFIG             32867
 #define ID_TOOLS_GENERATEREPORT         32868
 #define ID_MERGE_COMPARE                32869
 #define ID_MERGE_COMPARE_XML            32870
@@ -1065,7 +1063,6 @@
 #define ID_EDIT_GOTO_NEXT_BOOKMARK      33116
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33117
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33118
-#define ID_DEBUG_RESETOPTIONS           33119
 #define ID_VIEW_FILEMARGIN              33120
 #define ID_VIEW_CHANGESCHEME            33121
 #define ID_COLORSCHEME_FIRST            33122
