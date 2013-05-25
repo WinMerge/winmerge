@@ -11,11 +11,15 @@
 #include <windows.h>
 #include <tlhelp32.h> 
 #include <shlwapi.h>
+#include <algorithm>
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
 
 using std::vector;
+
+static bool CleanupWMtempfolder(const vector <int>& processIDs);
+static bool WMrunning(const vector<int>& processIDs, int iPI);
 
 /**
  * @brief Delete the temp file when instance is deleted.
@@ -25,13 +29,6 @@ TempFile::~TempFile()
 	Delete();
 }
 
-/**
- * @brief Create a temporary file name with default prefix.
- */
-void TempFile::Create()
-{
-	Create(NULL);
-}
 
 /**
  * @brief Create a temporary file with given prefix.
@@ -39,22 +36,22 @@ void TempFile::Create()
  * @param [in] ext extension for temp file name.
  * @return Created temp file path.
  */
-String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
+String TempFile::Create(const String& prefix, const String& ext)
 {
 	String temp = env_GetTempPath();
 	if (temp.empty())
 	{
-		return TEXT("");
+		return _T("");
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = TEXT("wmtmp");
+		pref = _T("wmtmp");
 
 	temp = env_GetTempFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
-		if (ext)
+		if (!ext.empty())
 		{
 			String tempext = temp + ext;
 			if (MoveFile(temp.c_str(), tempext.c_str()))
@@ -74,38 +71,29 @@ String TempFile::Create(LPCTSTR prefix, LPCTSTR ext)
  * @param [in] prefix Prefix for the temporary filename.
  * @return Full path to the temporary file.
  */
-String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
+String TempFile::CreateFromFile(const String& filepath, const String& prefix)
 {
 	String temp = env_GetTempPath();
 	if (temp.empty())
 	{
-		return TEXT("");
+		return _T("");
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = TEXT("wmtmp");
+		pref = _T("wmtmp");
 
 	temp = env_GetTempFileName(temp, pref, NULL);
 	if (!temp.empty())
 	{
 		// Scratchpads don't have a file to copy.
 		m_path = temp;
-		if (::CopyFile(filepath, temp.c_str(), FALSE))
+		if (::CopyFile(filepath.c_str(), temp.c_str(), FALSE))
 		{
 			::SetFileAttributes(temp.c_str(), FILE_ATTRIBUTE_NORMAL);
 		}
 	}
 	return temp;
-}
-
-/**
- * @brief Get temp file path (including filename).
- * @return Full path to temp file.
- */
-String TempFile::GetPath()
-{
-	return m_path;
 }
 
 /**
@@ -118,7 +106,7 @@ bool TempFile::Delete()
 	if (!m_path.empty())
 		success = !!DeleteFile(m_path.c_str());
 	if (success)
-		m_path = TEXT("");
+		m_path = _T("");
 	return !!success;
 }
 /** 
@@ -163,7 +151,7 @@ void CleanupWMtemp()
  * @param [in] processIDs List of process IDs.
  * @return true if all temp folders were deleted, FALSE otherwise.
  */
-bool CleanupWMtempfolder(vector <int> processIDs)
+static bool CleanupWMtempfolder(const vector <int>& processIDs)
 {
 	String foldername;
 	String tempfolderPID;
@@ -214,16 +202,9 @@ bool CleanupWMtempfolder(vector <int> processIDs)
  * @param [in] iPI ProcessID to check.
  * @return true if processID was found from the list, FALSE otherwise.
  */
-bool WMrunning(vector<int> processIDs, int iPI)
+static bool WMrunning(const vector<int>& processIDs, int iPI)
 {
-	vector<int>::iterator iter = processIDs.begin();
-	while (iter != processIDs.end())
-	{
-		if (*iter == iPI)
-			return true;
-		++iter;
-	}
-	return FALSE;
+	return std::find(processIDs.begin(), processIDs.end(), iPI) != processIDs.end();
 }
 
 /**

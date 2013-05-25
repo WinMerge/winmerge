@@ -22,10 +22,13 @@ class TempFile
 public:
 	TempFile() {}
 	~TempFile();
-	void Create();
-	String Create(const TCHAR *prefix = NULL, const TCHAR *ext = NULL);
-	String CreateFromFile(const TCHAR *filepath, const TCHAR *prefix);
-	String GetPath();
+	String Create(const String& prefix = _T(""), const String& ext = _T(""));
+	String CreateFromFile(const String& filepath, const String& prefix);
+	/**
+	 * @brief Get temp file path (including filename).
+	 * @return Full path to temp file.
+	 */
+	const String& GetPath() const { return m_path; }
 	bool Delete();
 
 private:
@@ -33,8 +36,6 @@ private:
 };
 
 void CleanupWMtemp();
-bool CleanupWMtempfolder(std::vector <int> processIDs);
-bool WMrunning(std::vector <int> processIDs, int iPI);
 bool ClearTempfolder(const String &pathName);
 
 #endif // _TEMP_FILE_
