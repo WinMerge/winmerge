@@ -145,7 +145,7 @@ public:
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
-	public:
+public:
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
@@ -308,7 +308,6 @@ protected:
 	afx_msg void OnFileNew();
 	afx_msg void OnFileNew3();
 	afx_msg void OnToolsFilters();
-	afx_msg void OnDebugLoadConfig();
 	afx_msg void OnHelpMerge7zmismatch();
 	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	afx_msg void OnViewStatusBar();
@@ -330,7 +329,6 @@ protected:
 #else
 	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
 #endif
-	afx_msg void OnDebugResetOptions();
 	afx_msg void OnToolbarNone();
 	afx_msg void OnUpdateToolbarNone(CCmdUI* pCmdUI);
 	afx_msg void OnToolbarSmall();

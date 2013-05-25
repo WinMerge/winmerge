@@ -157,11 +157,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
-    BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
-    END
     POPUP "&Window"
     BEGIN
         MENUITEM "Cl&ose",                      ID_FILE_CLOSE
@@ -282,11 +277,6 @@ BEGIN
         MENUITEM "&Edit with Unpacker...",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
-    END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
-    BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Window"
     BEGIN
@@ -514,11 +504,6 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
-    END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
-    BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Window"
     BEGIN
@@ -2132,8 +2117,6 @@ BEGIN
     IDS_DIFF_OPEN_NO_SET_PROPS "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
-    IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

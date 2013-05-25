@@ -214,7 +214,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_COMMAND(ID_FILE_NEW3, OnFileNew3)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
-	ON_COMMAND(ID_DEBUG_LOADCONFIG, OnDebugLoadConfig)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
@@ -231,7 +230,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_TIMER()
 	ON_WM_ACTIVATE()
 	ON_WM_ACTIVATEAPP()
-	ON_COMMAND(ID_DEBUG_RESETOPTIONS, OnDebugResetOptions)
 	ON_COMMAND(ID_TOOLBAR_NONE, OnToolbarNone)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_NONE, OnUpdateToolbarNone)
 	ON_COMMAND(ID_TOOLBAR_SMALL, OnToolbarSmall)
@@ -485,35 +483,6 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 }
 
 /**
- * @brief Remove debug menu if this is not a debug build
- * @param [in] menu Pointer to main menu.
- */
-static void FixupDebugMenu(BCMenu * menu)
-{
-	theApp.TranslateMenu(menu->m_hMenu);
-	bool DebugMenu = false;
-#ifdef _DEBUG
-	DebugMenu = true;
-#endif
-
-	if (DebugMenu)
-		return;
-
-	// Remove debug menu
-	// Finds debug menu by looking for a submenu which
-	//  starts with item ID_DEBUG_LOADCONFIG
-
-	for (UINT i = 0; i < menu->GetMenuItemCount(); ++i)
-	{
-		if (menu->GetSubMenu(i)->GetMenuItemID(0) == ID_DEBUG_LOADCONFIG)
-		{
-			menu->RemoveMenu(i, MF_BYPOSITION);
-			return;
-		}
-	}
-}
-
-/**
  * @brief Create a new menu for the view..
  * @param [in] view Menu view either MENU_DEFAULT, MENU_MERGEVIEW or MENU_DIRVIEW.
  * @param [in] ID Menu's resource ID.
@@ -560,7 +529,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME);
 
-	FixupDebugMenu(m_pMenus[view].get());
+	theApp.TranslateMenu(m_pMenus[view]->m_hMenu);
 
 	return (m_pMenus[view]->Detach());
 
@@ -2336,124 +2305,6 @@ void CMainFrame::OpenFileToExternalEditor(const String& file, int nLineNumber/* 
 	}
 }
 
-typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;
-
-/**
- * @brief Copy one piece of data from options object to config log, or vice-versa
- */
-static void
-LoadConfigIntSetting(int * cfgval, COptionsMgr * options, const String & name, ConfigLogDirection cfgdir)
-{
-	if (options == NULL)
-		return;
-
-	if (cfgdir == ToConfigLog)
-	{
-			*cfgval = options->GetInt(name);
-	}
-	else
-	{
-		options->Set(name, *cfgval);
-	}
-}
-
-/**
- * @brief Copy one piece of data from options object to config log, or vice-versa
- */
-static void
-LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr * options, const String & name, ConfigLogDirection cfgdir)
-{
-	if (options == NULL)
-		return;
-
-	if (cfgdir == ToConfigLog)
-	{
-			*cfgval = options->GetBool(name);
-	}
-	else
-	{
-		options->Set(name, !!(*cfgval));
-	}
-}
-
-/**
- * @brief Copy one piece of data from options object to config log, or vice-versa
- */
-static void
-LoadConfigBoolSetting(bool * cfgval, COptionsMgr * options, const String & name, ConfigLogDirection cfgdir)
-{
-	if (options == NULL)
-		return;
-
-	if (cfgdir == ToConfigLog)
-	{
-			*cfgval = options->GetBool(name);
-	}
-	else
-	{
-		options->Set(name, !!(*cfgval));
-	}
-}
-
-/**
- * @brief Pass options settings from options manager object to config log, or vice-versa
- */
-static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
-	LOGFONT & lfDiff, ConfigLogDirection cfgdir)
-{
-	if (options == NULL)
-		return;
-
-	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_diffOptions.bFilterCommentsLines, options, OPT_CMP_FILTER_COMMENTLINES, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreCase, options, OPT_CMP_IGNORE_CASE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreEol, options, OPT_CMP_IGNORE_EOL, cfgdir);
-	LoadConfigIntSetting(&configLog.m_compareSettings.nCompareMethod, options, OPT_CMP_METHOD, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_compareSettings.bStopAfterFirst, options, OPT_CMP_STOP_AFTER_FIRST, cfgdir);
-
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowIdent, options, OPT_SHOW_IDENTICAL, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowDiff, options, OPT_SHOW_DIFFERENT, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueLeft, options, OPT_SHOW_UNIQUE_LEFT, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueRight, options, OPT_SHOW_UNIQUE_RIGHT, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowBinaries, options, OPT_SHOW_BINARIES, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowSkipped, options, OPT_SHOW_SKIPPED, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_viewSettings.bTreeView, options, OPT_TREE_MODE, cfgdir);
-
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bPreserveFiletimes, options, OPT_PRESERVE_FILETIMES, cfgdir);
-
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bScrollToFirst, options, OPT_SCROLL_TO_FIRST, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bViewWhitespace, options, OPT_VIEW_WHITESPACE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bMovedBlocks, options, OPT_CMP_MOVED_BLOCKS, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bShowLinenumbers, options, OPT_VIEW_LINENUMBERS, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bWrapLines, options, OPT_WORDWRAP, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bMergeMode, options, OPT_MERGE_MODE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bSyntaxHighlight, options, OPT_SYNTAX_HIGHLIGHT, cfgdir);
-	LoadConfigIntSetting(&configLog.m_miscSettings.nInsertTabs, options, OPT_TAB_TYPE, cfgdir);
-	LoadConfigIntSetting(&configLog.m_miscSettings.nTabSize, options, OPT_TAB_SIZE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bPluginsEnabled, options, OPT_PLUGINS_ENABLED, cfgdir);
-	LoadConfigIntSetting(&configLog.m_miscSettings.nDiffContext, options, OPT_DIFF_CONTEXT, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bMatchSimilarLines, options, OPT_CMP_MATCH_SIMILAR_LINES, cfgdir);	
-
-	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultMode, options, OPT_CP_DEFAULT_MODE, cfgdir);
-	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultCustomValue, options, OPT_CP_DEFAULT_CUSTOM, cfgdir);
-	LoadConfigIntSetting(&configLog.m_cpSettings.iDetectCodepageType, options, OPT_CP_DETECT, cfgdir);
-
-	if (cfgdir == ToConfigLog)
-	{
-		configLog.m_fontSettings.nCharset = lfDiff.lfCharSet;
-		configLog.m_fontSettings.sFacename = lfDiff.lfFaceName;
-	}
-	else
-	{
-		lfDiff.lfCharSet = configLog.m_fontSettings.nCharset;
-		_tcsncpy(lfDiff.lfFaceName, configLog.m_fontSettings.sFacename.c_str(), countof(lfDiff.lfFaceName));
-	}
-}
-
-
 /**
  * @brief Save WinMerge configuration and info to file
  */
@@ -2461,8 +2312,6 @@ void CMainFrame::OnSaveConfigData()
 {
 	CConfigLog configLog;
 	String sError;
-
-	LoadConfigLog(configLog, GetOptionsMgr(), m_lfDiff, ToConfigLog);
 
 	if (configLog.WriteLogFile(sError))
 	{
@@ -2886,30 +2735,6 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 }
 
 /**
- * @brief Prompt user to select configuration file, and then load settings from it
- */
-void CMainFrame::OnDebugLoadConfig()
-{
-	const TCHAR filetypes[] = _T("WinMerge Config files (*.txt)|*.txt|All files (*.*)|*.*||");
-	CFileDialog dlg(true, _T(".log"),0,0, filetypes);
-	if (dlg.DoModal() != IDOK)
-		return;
-
-	String filepath = (LPCTSTR) dlg.GetPathName();
-
-	CConfigLog configLog;
-
-	// set configLog settings to current
-	LoadConfigLog(configLog, GetOptionsMgr(), m_lfDiff, ToConfigLog);
-
-	// update any settings found in actual config file
-	configLog.ReadLogFile(filepath);
-
-	// set our current settings from configLog settings
-	LoadConfigLog(configLog,GetOptionsMgr(), m_lfDiff, FromConfigLog);
-}
-
-/**
  * @brief Send current option settings into codepage module
  */
 void CMainFrame::UpdateCodepageModule()
@@ -3269,19 +3094,6 @@ static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource
 	}
 
 	LoadHiColImageList(nIDResource, imageWidth, imageHeight, ImageCount, ImgList);
-}
-
-/**
- * @brief Reset all WinMerge options to default values.
- */
-void CMainFrame::OnDebugResetOptions()
-{
-	String msg = theApp.LoadString(IDS_RESET_OPTIONS_WARNING);
-	int res = AfxMessageBox(msg.c_str(), MB_YESNO | MB_DEFBUTTON2 | MB_ICONWARNING);
-	if (res == IDYES)
-	{
-		theApp.ResetOptions();
-	}
 }
 
 /**
