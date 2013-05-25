@@ -46,6 +46,7 @@
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "OptionsDiffOptions.h"
 #include "FileActionScript.h"
 #include "LineFiltersList.h"
 #include "unicoder.h"
@@ -350,11 +351,7 @@ void CDirDoc::Rescan()
 	LoadLineFilterList();
 
 	DIFFOPTIONS options = {0};
-	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
-	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+	Options::DiffOptions::Load(options);
 
 	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
 

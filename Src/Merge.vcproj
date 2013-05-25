@@ -2154,6 +2154,33 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\OptionsDiffOptions.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\OptionsFont.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3272,6 +3299,9 @@
 			</File>
 			<File
 				RelativePath=".\OptionsDiffColors.h">
+			</File>
+			<File
+				RelativePath=".\OptionsDiffOptions.h">
 			</File>
 			<File
 				RelativePath=".\OptionsFont.h">
