@@ -12,6 +12,7 @@
 #include "MainFrm.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
 #include "OptionsFont.h"
 #include "DiffWrapper.h" // CMP_CONTENT
@@ -115,11 +116,6 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
 	m_pOptions->InitOption(OPT_TREE_MODE, false);
 
-	m_pOptions->InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0);
-	m_pOptions->InitOption(OPT_CMP_IGNORE_BLANKLINES, false);
-	m_pOptions->InitOption(OPT_CMP_FILTER_COMMENTLINES, false);
-	m_pOptions->InitOption(OPT_CMP_IGNORE_CASE, false);
-	m_pOptions->InitOption(OPT_CMP_IGNORE_EOL, false);
 	m_pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	m_pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	m_pOptions->InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
@@ -163,6 +159,7 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 
+	Options::DiffOptions::SetDefaults();
 	Options::DiffColors::SetDefaults();
 	Options::Font::SetDefaults();
 }
