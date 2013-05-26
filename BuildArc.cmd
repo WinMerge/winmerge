@@ -69,14 +69,6 @@ del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\CompareMS*.sct"
 del "%DISTDIR%\2.14-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 del "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 
-rem Runtimes
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.CRT\*.*" "%DISTDIR%\2.14-zip-version\WinMerge\
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFC\*u.*" "%DISTDIR%\2.14-zip-version\WinMerge\
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFCLOC\mfc100jpn.dll" "%DISTDIR%\2.14-zip-version\WinMerge\
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.CRT\*.*" "%DISTDIR%\2.14-x64-zip-version\WinMerge\
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.MFC\*u.*" "%DISTDIR%\2.14-x64-zip-version\WinMerge\
-copy "c:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x64\Microsoft.VC100.MFCLOC\mfc100jpn.dll" "%DISTDIR%\2.14-zip-version\WinMerge\
-
 rem 7zPlugins
 copy Build\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
@@ -87,7 +79,7 @@ copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\
 
 del "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z"
 
-7z.exe a -t7z -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn -xr!ipch -xr!*.tlb -xr!*.tlog -xr!Brazilian.po -xr!Bulgarian.po -xr!Catalan.po -xr!Croatian.po -xr!ChineseSimplified.po -xr!ChineseTraditional.po -xr!CVS -xr!Czech.po -xr!Danish.po -xr!Dutch.po -xr!French.po -xr!German.po -xr!Hungarian.po -xr!Italian.po -xr!Korean.po -xr!Norwegian.po -xr!Polish.po -xr!Portuguese.po -xr!Russian.po -xr!Slovak.po -xr!Spanish.po -xr!Swedish.po -xr!Turkish.po "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln
+7z.exe a -t7z -xr!*.o -xr!*.a -xr!.dep -xr!*.out -xr!debug_static* -xr!debug_shared* -xr!release_static* -xr!release_shared* -xr!*.bak -xr!*.lang -xr!*.ncb  -xr!*.sdf -xr!*.bsc -xr!*.opt -xr!*.plg -xr!*.suo -xr!*.obj -xr!*.ilk -xr!*.pdb -xr!*.pch -xr!*.res -xr!*.exe -xr!*.sbr -xr!*.zip -xr!WinMergeSplash.psd -xr!*.lib -xr!*.idb -xr!*.%COMPUTERNAME%.%USERNAME%.user -xr!BuildLog.htm -xr!CVS -xr!.svn -xr!ipch -xr!*.tlb -xr!*.tlog -xr!CVS "%DISTDIR%\winmerge-%SAFEAPPVER%-full-src.7z" ArchiveSupport Docs Externals Filters Installer Plugins ShellExtension Src Testing Tools Translations Web readme.txt Version.h *.cmd *.bat *.inf *.sln
 
 explorer "%DISTDIR%"
 pause
