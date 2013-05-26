@@ -388,7 +388,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	CRect rc;
 	GetClientRect(&rc);
 
-	CMemDC dc(pDC, &rc);
+	CMyMemDC dc(pDC, &rc);
 
 	COLORREF cr[3] = {CLR_NONE, CLR_NONE, CLR_NONE};
 	COLORREF crt = CLR_NONE; // Text color
@@ -966,7 +966,7 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 				CDC *pDC = GetDC();
 				if (m_pSavedBackgroundBitmap)
 				{
-					CMemDC dc(pDC);
+					CMyMemDC dc(pDC);
 					// Clear previous visible rect
 					DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap.get());
 
