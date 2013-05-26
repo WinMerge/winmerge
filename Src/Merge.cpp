@@ -48,7 +48,6 @@
 #include "DirDoc.h"
 #include "DirView.h"
 #include "Splash.h"
-#include "logfile.h"
 #include "paths.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
@@ -189,7 +188,6 @@ CMergeApp::CMergeApp() :
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
 , m_pOptions(new CRegOptionsMgr())
-, m_pLog(new CLogFile())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME))
 {
@@ -287,20 +285,6 @@ BOOL CMergeApp::InitInstance()
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
 
-	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
-	if (logging > 0)
-	{
-		m_pLog->EnableLogging(TRUE);
-		String logfile = env_GetMyDocuments();
-		logfile = paths_ConcatPath(logfile, _T("WinMerge\\WinMerge.log"));
-		m_pLog->SetFile(logfile);
-
-		if (logging == 1)
-			m_pLog->SetMaskLevel(CLogFile::LALL);
-		else if (logging == 2)
-			m_pLog->SetMaskLevel(CLogFile::LERROR | CLogFile::LWARNING);
-	}
-
 	// Parse command-line arguments.
 	MergeCmdLineInfo cmdInfo = GetCommandLine();
 
@@ -367,7 +351,6 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize i18n (multiple language) support
 
-	m_pLangDlg->SetLogFile(GetLog());
 	m_pLangDlg->InitializeLanguage();
 
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing

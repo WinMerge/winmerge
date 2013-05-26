@@ -9,7 +9,6 @@
 #if !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)
 #define AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_
 
-#include "LogFile.h"
 #include "CMoveConstraint.h"
 
 #include <vector>
@@ -35,8 +34,6 @@ public:
 	void InitializeLanguage();
 	void UpdateDocTitle();
 	void ReloadMenu();
-	CLogFile *m_pLog;
-	void SetLogFile(CLogFile* pLog) { m_pLog = pLog; }
 
 	bool TranslateString(size_t line, std::string &) const;
 	bool TranslateString(size_t line, std::wstring &) const;

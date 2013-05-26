@@ -23,7 +23,6 @@
 #include <boost/shared_ptr.hpp>
 #include "DiffThread.h"
 #include "UnicodeString.h"
-#include "LogFile.h"
 #include "DiffWrapper.h"
 #include "CompareStats.h"
 #include "FolderCmp.h"
@@ -880,11 +879,6 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		}
 	}
 
-	GetLog()->Write
-	(
-		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.diffFileInfo[0].filename.c_str(), (const TCHAR *)_T("di.diffFileInfo[0].spath"), (const TCHAR *)_T("di.diffFileInfo[1].spath"), di.diffcode
-	);
 	pCtxt->m_pCompareStats->AddItem(di.diffcode.diffcode);
 	//pCtxt->AddDiff(di);
 }
@@ -981,11 +975,6 @@ static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, con
 
 	di->diffcode = code;
 
-	GetLog()->Write
-	(
-		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di->diffFileInfo[0].filename.c_str(), (const TCHAR *)_T("di->diffFileInfo[0].spath"), (const TCHAR *)_T("di->diffFileInfo[1].spath"), code
-	);
 	myStruct->context->m_pCompareStats->IncreaseTotalItems();
 	myStruct->pSemaphore->set();
 	return di;

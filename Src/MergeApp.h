@@ -4,13 +4,11 @@
 #include "UnicodeString.h"
 
 class COptionsMgr;
-class CLogFile;
 
 /** @brief Retrieve error description from Windows; uses FormatMessage */
 String GetSysError(int nerr = -1);
 
 COptionsMgr * GetOptionsMgr();
-CLogFile * GetLog();
 void LogErrorString(const String& sz);
 void LogErrorStringUTF8(const std::string& sz);
 void AppErrorMessageBox(const String& msg);

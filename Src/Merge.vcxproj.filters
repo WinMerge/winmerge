@@ -142,9 +142,6 @@
     <ClCompile Include="locality.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\LogFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\lwdisp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -753,12 +750,6 @@
     <ClInclude Include="charsets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClearCaseCmdLineParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CmdLineParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="codepage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -886,9 +877,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="locality.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\LogFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\lwdisp.h">

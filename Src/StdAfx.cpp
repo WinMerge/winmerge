@@ -26,7 +26,6 @@
 // $Id: StdAfx.cpp 6457 2009-02-15 14:08:50Z kimmov $
 
 #include "stdafx.h"
-#include "LogFile.h"
 #include "Merge.h"
 
 /**

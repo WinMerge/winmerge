@@ -46,7 +46,6 @@ class CAssureScriptsForThread;
 class CMainFrame;
 class CLanguageSelect;
 class MergeCmdLineInfo;
-class CLogFile;
 class ProjectFile;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -91,8 +90,6 @@ public:
 	void OptionsInit();
 	void ResetOptions() { OptionsInit(); }
 	void SetFontDefaults();
-
-	CLogFile * GetMergeLog() { return m_pLog.get(); }
 
 // Implementation
 protected:
@@ -157,7 +154,6 @@ protected:
 private:
 	boost::scoped_ptr<CRegOptionsMgr> m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
-	boost::scoped_ptr<CLogFile> m_pLog;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
