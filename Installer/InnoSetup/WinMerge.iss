@@ -412,14 +412,6 @@ Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: pr
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
-; Microsoft runtime libraries (C-runtime, MFC)
-Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.CRT\msvcr100.dll"; DestDir: "{app}"; Components: Core
-Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.CRT\msvcp100.dll"; DestDir: "{app}"; Components: Core
-
-Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFC\mfc100u.dll"; DestDir: "{app}"; Components: Core
-Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFC\mfcm100u.dll"; DestDir: "{app}"; Components: Core
-Source: "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vc\redist\x86\Microsoft.VC100.MFCLOC\mfc100jpn.dll"; DestDir: "{app}"; Components: Core
-
 ; Shell extension
 Source: ..\..\Build\ShellExtensionUnicode Release MinDependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension

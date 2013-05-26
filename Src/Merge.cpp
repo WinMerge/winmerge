@@ -511,6 +511,7 @@ int CMergeApp::ExitInstance()
 
 static void AddEnglishResourceHook()
 {
+#ifdef _AFXDLL
 	// After calling AfxSetResourceHandle to point to a language
 	// resource DLL, then the application is no longer on the
 	// resource lookup (defined by AfxFindResourceHandle).
@@ -535,6 +536,7 @@ static void AddEnglishResourceHook()
 	FakeEnglishDLL.hResource = FakeEnglishDLL.hModule;
 	FakeEnglishDLL.bInitialized = TRUE;
 	new CDynLinkLibrary(FakeEnglishDLL); // hook into MFC extension DLL chain
+#endif
 }
 
 

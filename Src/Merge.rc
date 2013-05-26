@@ -51,9 +51,11 @@ BEGIN
     "LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US\r\n"
     "#pragma code_page(1252)\r\n"
     "#endif\r\n"
+    "#ifdef _AFXDLL\r\n"
     "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""afxres.rc""         // Standard components\r\n"
     "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
     "#endif\0"
 END
 
@@ -2952,6 +2954,12 @@ BEGIN
     IDS_FRHED_NOTINSTALLED   "frhed(http://frhed.sourceforge.net/) not installed"
 END
 
+#ifndef _AFXDLL
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
 // END STRINGS SYNCHRO
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
@@ -2972,9 +2980,11 @@ END
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
 #endif
+#ifdef _AFXDLL
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
 #include "afxprint.rc"       // printing/print preview resources
+#endif
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
