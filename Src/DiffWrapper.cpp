@@ -45,7 +45,6 @@
 #include "diff.h"
 #include "Diff3.h"
 #include "FileTransform.h"
-#include "LogFile.h"
 #include "paths.h"
 #include "CompareOptions.h"
 #include "FileTextStats.h"

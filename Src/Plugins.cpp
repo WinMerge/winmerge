@@ -37,7 +37,6 @@
 #include <Poco/RegularExpression.h>
 #include <windows.h>
 #include "Plugins.h"
-#include "LogFile.h"
 #include "MergeApp.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"
@@ -556,7 +555,7 @@ static vector<String>& LoadTheScriptletList()
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path.c_str(), _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
-			GetLog()->Write(CLogFile::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
+			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
 		GetScriptletsAt(path.c_str(), _T(".ocx"), theScriptletList );		// VB COM object
 		GetScriptletsAt(path.c_str(), _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;

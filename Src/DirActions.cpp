@@ -27,7 +27,6 @@
 #include "ShellFileOperations.h"
 #include "OptionsDef.h"
 #include "WaitStatusCursor.h"
-#include "LogFile.h"
 #include "DiffItem.h"
 #include "FileActionScript.h"
 #include "LoadSaveCodepageDlg.h"

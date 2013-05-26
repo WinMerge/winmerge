@@ -11,7 +11,6 @@
 #include <cassert>
 #include "DiffUtils.h"
 #include "ByteCompare.h"
-#include "LogFile.h"
 #include "paths.h"
 #include "FilterList.h"
 #include "DiffContext.h"
@@ -439,17 +438,17 @@ exitPrepAndCompare:
 		
 		// delete the temp files after comparison
 		if (filepathTransformed[0] != filepathUnpacked[0])
-			try { TFile(filepathTransformed[0]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathTransformed[0].c_str()); }
+			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[0].c_str())); }
 		if (filepathTransformed[1] != filepathUnpacked[1])
-			try { TFile(filepathTransformed[1]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathTransformed[1].c_str()); }
+			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[1].c_str())); }
 		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2])
-			try { TFile(filepathTransformed[2]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathTransformed[2].c_str()); }
+			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathTransformed[2].c_str())); }
 		if (filepathUnpacked[0] != files[0])
-			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathUnpacked[0].c_str()); }
+			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[0].c_str())); }
 		if (filepathUnpacked[1] != files[1])
-			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathUnpacked[1].c_str()); }
+			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[1].c_str())); }
 		if (nDirs > 2 && filepathUnpacked[2] != files[2])
-			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { GetLog()->DeleteFileFailed(filepathUnpacked[2].c_str()); }
+			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(string_format(_T("DeleteFile(%s) failed"), filepathUnpacked[2].c_str())); }
 	}
 	return code;
 }

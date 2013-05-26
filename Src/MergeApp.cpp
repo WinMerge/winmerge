@@ -1,8 +1,6 @@
 #include "StdAfx.h"
 #include "MergeApp.h"
 #include "Merge.h"
-#include "LogFile.h"
-
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)
@@ -40,26 +38,12 @@ COptionsMgr * GetOptionsMgr()
 	return pApp->GetMergeOptionsMgr();
 }
 
-/**
- * @brief Get Log.
- * @return Pointer to Log.
- */
-CLogFile * GetLog()
-{
-	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
-	return pApp->GetMergeLog();
-}
-
 // Send message to log and debug window
 void LogErrorString(const String& sz)
 {
 	if (sz.empty()) return;
 	CString now = COleDateTime::GetCurrentTime().Format();
 	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz.c_str());
-
-#if defined (_DEBUG) || defined (ENABLE_LOG)
-	GetLog()->Write(CLogFile::LERROR, sz.c_str());
-#endif
 }
 
 // Send message to log and debug window
@@ -69,10 +53,6 @@ void LogErrorStringUTF8(const std::string& sz)
 	String str = ucr::toTString(sz);
 	CString now = COleDateTime::GetCurrentTime().Format();
 	TRACE(_T("%s: %s\n"), (LPCTSTR)now, str.c_str());
-
-#if defined (_DEBUG) || defined (ENABLE_LOG)
-	GetLog()->Write(CLogFile::LERROR, str.c_str());
-#endif
 }
 
 /**

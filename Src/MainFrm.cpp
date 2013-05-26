@@ -51,7 +51,6 @@
 #include "ConflictFileParser.h"
 #include "Splash.h"
 #include "LineFiltersDlg.h"
-#include "LogFile.h"
 #include "paths.h"
 #include "Environment.h"
 #include "WaitStatusCursor.h"
@@ -338,8 +337,6 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
-	GetLog()->EnableLogging(FALSE);
-
 	sd_Close();
 }
 
@@ -1151,19 +1148,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 	}
 
-
-	if (1)
-	{
-		GetLog()->Write(_T("### Begin Comparison Parameters #############################\r\n")
-				  _T("\tLeft: %s\r\n")
-				  _T("\tRight: %s\r\n")
-				  _T("\tRecurse: %d\r\n")
-				  _T("### End Comparison Parameters #############################\r\n"),
-				  files[0],
-				  files[1],
-				  bRecurse);
-	}
-
 	CTempPathContext *pTempPathContext = NULL;
 	try
 	{
@@ -1191,7 +1175,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					break;
 				if (files[0].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(files[0].c_str()) || GetLog()->DeleteFileFailed(files[0].c_str()));
+					VERIFY(::DeleteFile(files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[0].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[0].c_str());
 				files[0] = OLE2T(pTmp);
@@ -1216,7 +1200,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					break;;
 				if (files[1].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(files[1].c_str()) || GetLog()->DeleteFileFailed(files[1].c_str()));
+					VERIFY(::DeleteFile(files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[1].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
 				files[1] = OLE2T(pTmp);
@@ -1243,7 +1227,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 						break;;
 					if (files[2].find(path) == 0)
 					{
-						VERIFY(::DeleteFile(files[2].c_str()) || GetLog()->DeleteFileFailed(files[2].c_str()));
+						VERIFY(::DeleteFile(files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[2].c_str())), false));
 					}
 					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
 					files[2] = OLE2T(pTmp);
@@ -1315,8 +1299,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
-			GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tMiddle: %s\n\tRight: %s."),
-				files[0], files.GetSize() == 3 ? files[1] : _T("none"), files[files.GetSize() - 1]);
 
 			pDirDoc->SetDescriptions(m_strDescriptions);
 			pDirDoc->SetTitle(NULL);
@@ -1330,10 +1312,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 	}
 	else
-	{
-		GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tMiddle: %s\n\tRight: %s."),
-			files[0], files.GetSize() == 3 ? files[1] : _T("none"), files[files.GetSize() - 1]);
-		
+	{		
 		FileLocation fileloc[3];
 
 		for (int nPane = 0; nPane < files.GetSize(); nPane++)
@@ -2087,16 +2066,6 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	{
 		files.SetRight(files[0]);
 	}
-
-	if (fileCount < 2)
-		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s."),
-			files[0]);
-	else if (fileCount < 3)
-		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
-			files[0], files[1]);
-	else
-		GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tMiddle: %s\n\tRight: %s."),
-			files[0], files[1], files[2]);
 
 	// Check if they dropped a project file
 	DWORD dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};

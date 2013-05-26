@@ -41,7 +41,6 @@
 #include "DirFrame.h"
 #include "MainFrm.h"
 #include "coretools.h"
-#include "LogFile.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
@@ -336,8 +335,6 @@ void CDirDoc::Rescan()
 
 	m_statusCursor.reset(new CustomStatusCursor(0, IDC_APPSTARTING, IDS_STATUS_RESCANNING));
 
-	GetLog()->Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tMiddle: %s\n\tRight: %s\n"),
-		m_pCtxt->GetLeftPath().c_str(), m_nDirs == 3 ? m_pCtxt->GetMiddlePath().c_str() : _T("none"), m_pCtxt->GetRightPath().c_str());
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
 
@@ -826,8 +823,6 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
  */
 void CDirDoc::CompareReady()
 {
-	GetLog()->Write(CLogFile::LNOTICE, _T("Directory scan complete\n"));
-
 	// finish the cursor (the hourglass/pointer combo) we had open during display
 	m_statusCursor.reset();
 }
@@ -944,7 +939,6 @@ BOOL CDirDoc::SaveModified()
  */
 void CDirDoc::AbortCurrentScan()
 {
-	GetLog()->Write(CLogFile::LNOTICE, _T("Dircompare aborted!"));
 	m_diffThread.Abort();
 }
 
