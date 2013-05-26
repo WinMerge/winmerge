@@ -26,7 +26,7 @@
 // This class implements a memory Device Context which allows
 // flicker free drawing.
 
-class CMemDC : public CDC {
+class CMyMemDC : public CDC {
 private:	
 	CBitmap		m_bitmap;		// Offscreen bitmap
 	CBitmap*	m_oldBitmap;	// bitmap originally found in CMemDC
@@ -35,7 +35,7 @@ private:
 	BOOL		m_bMemDC;		// TRUE if CDC really is a Memory DC.
 public:
 	
-	CMemDC(CDC* pDC, const CRect* pRect = NULL) : CDC()
+	CMyMemDC(CDC* pDC, const CRect* pRect = NULL) : CDC()
 	{
 		ASSERT(pDC != NULL); 
 
@@ -77,7 +77,7 @@ public:
 		FillSolidRect(m_rect, pDC->GetBkColor());
 	}
 	
-	~CMemDC()	
+	~CMyMemDC()	
 	{		
 		if (m_bMemDC) {
 			// Copy the offscreen bitmap onto the screen.
@@ -95,13 +95,13 @@ public:
 	}
 	
 	// Allow usage as a pointer	
-	CMemDC* operator->() 
+	CMyMemDC* operator->() 
 	{
 		return this;
 	}	
 
 	// Allow usage as a pointer	
-	operator CMemDC*() 
+	operator CMyMemDC*() 
 	{
 		return this;
 	}
