@@ -1,4 +1,4 @@
-// CrystalEditViewEx.h: Schnittstelle für die Klasse CCrystalEditViewEx.
+// CrystalEditViewEx.h: Declaration for CCrystalEditViewEx class.
 //
 //////////////////////////////////////////////////////////////////////
 
