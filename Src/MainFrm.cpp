@@ -703,29 +703,28 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		// Should we do any unification if unicodings are different?
 
 
-		if (!IsUnicodeBuild())
+#ifndef _UNICODE
+		// In ANSI (8-bit) build, character loss can occur in merging
+		// if the two buffers use different encodings
+		if (pane > 0 && fileloc[pane - 1].encoding.m_codepage != fileloc[pane].encoding.m_codepage)
 		{
-			// In ANSI (8-bit) build, character loss can occur in merging
-			// if the two buffers use different encodings
-			if (pane > 0 && fileloc[pane - 1].encoding.m_codepage != fileloc[pane].encoding.m_codepage)
+			CString msg;
+			msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), fileloc[pane - 1].encoding.m_codepage,fileloc[pane].encoding.m_codepage);
+			int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
+			// Two files with different codepages
+			// Warn and propose to use the default codepage for both
+			int userChoice = AfxMessageBox(msg, msgflags);
+			if (userChoice == IDYES)
 			{
-				CString msg;
-				msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), fileloc[pane - 1].encoding.m_codepage,fileloc[pane].encoding.m_codepage);
-				int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
-				// Two files with different codepages
-				// Warn and propose to use the default codepage for both
-				int userChoice = AfxMessageBox(msg, msgflags);
-				if (userChoice == IDYES)
-				{
-					fileloc[pane - 1].encoding.SetCodepage(ucr::getDefaultCodepage());
-					fileloc[pane - 1].encoding.m_bom = false;
-					fileloc[pane - 1].encoding.m_guessed = false;
-					fileloc[pane].encoding.SetCodepage(ucr::getDefaultCodepage());
-					fileloc[pane].encoding.m_bom = false;
-					fileloc[pane].encoding.m_guessed = false;
-				}
+				fileloc[pane - 1].encoding.SetCodepage(ucr::getDefaultCodepage());
+				fileloc[pane - 1].encoding.m_bom = false;
+				fileloc[pane - 1].encoding.m_guessed = false;
+				fileloc[pane].encoding.SetCodepage(ucr::getDefaultCodepage());
+				fileloc[pane].encoding.m_bom = false;
+				fileloc[pane].encoding.m_guessed = false;
 			}
 		}
+#endif
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.

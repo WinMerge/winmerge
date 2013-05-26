@@ -54,18 +54,6 @@
 	#pragma warning(disable: 4786)
 #endif
  
-// Declare this function for VC6 and VS2002
-// We dont' know if the function exists in VS2002 so we'd better be safe here!
-#if _MSC_VER <= 1300
-	__int64 _abs64_patch(__int64 n);
-#endif
-
-// A patch to solve a VC 7.1 bug. It seems that it doesn't export _abs64
-// function.
-#if _MSC_VER <= 1310
-#define _abs64	_abs64_patch
-#endif
-
 // Common MFC headers
 
 #include <afxwin.h>         // MFC core and standard components
@@ -114,8 +102,6 @@ int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
 
 	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
 int GetClipTcharTextFormat();
-
-bool IsUnicodeBuild();
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"
