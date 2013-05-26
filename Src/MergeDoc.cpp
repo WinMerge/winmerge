@@ -30,6 +30,7 @@
 #include "StdAfx.h"
 #include <shlwapi.h>		// PathCompactPathEx()
 #include <io.h>
+#include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
@@ -1974,9 +1975,9 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 
 	dfi.Update(szPath);
 
-	__int64 timeDiff = dfi.mtime - fileInfo->mtime;
-	timeDiff = _abs64(timeDiff);
-	if ((timeDiff > tolerance) || (dfi.size != fileInfo->size))
+	Poco::Int64 timeDiff = dfi.mtime - fileInfo->mtime;
+	if (timeDiff < 0) timeDiff = -timeDiff;
+	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != fileInfo->size))
 	{
 		bFileChanged = true;
 	}
