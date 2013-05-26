@@ -364,7 +364,7 @@
       <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Lib>
-      <OutputFile>..\lib\PocoUtilmtd.lib</OutputFile>
+      <OutputFile>..\lib64\PocoUtilmtd.lib</OutputFile>
       <TargetMachine>MachineX64</TargetMachine>
     </Lib>
   </ItemDefinitionGroup>
