@@ -326,6 +326,12 @@ void CDirView::OnInitialUpdate()
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
 
+#ifdef _UNICODE
+	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
+#else
+	m_pList->SendMessage(CCM_SETUNICODEFORMAT, FALSE, 0);
+#endif
+
 	// Load user-selected font
 	if (GetOptionsMgr()->GetBool(String(OPT_FONT_DIRCMP) + OPT_FONT_USECUSTOM))
 	{
