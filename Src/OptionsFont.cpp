@@ -91,7 +91,7 @@ void Save(const String& name, const LOGFONT* lf, bool bUseCustom)
 	pOptionsMgr->SaveOption(name + OPT_FONT_CLIPPRECISION, lf->lfClipPrecision);
 	pOptionsMgr->SaveOption(name + OPT_FONT_QUALITY, lf->lfQuality);
 	pOptionsMgr->SaveOption(name + OPT_FONT_PITCHANDFAMILY, (int)lf->lfPitchAndFamily);
-	pOptionsMgr->SaveOption(name + OPT_FONT_FACENAME, (int)lf->lfFaceName);
+	pOptionsMgr->SaveOption(name + OPT_FONT_FACENAME, lf->lfFaceName);
 }
 
 void Reset(const String& name)
