@@ -65,6 +65,13 @@ String LoadResString(unsigned id)
 	return theApp.LoadString(id);
 }
 
+String tr(const std::string &str)
+{
+	String translated_str;
+	theApp.TranslateString(str, translated_str);
+	return translated_str;
+}
+
 /**
  * @brief Lang aware version of AfxFormatStrings()
  */
