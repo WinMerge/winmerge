@@ -688,6 +688,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 						if (m_strarray.size() <= line)
 							m_strarray.resize(line + 1);
 						m_strarray[line] = msgid;
+						m_map_lineno.insert(std::make_pair(msgid, line));
 					}
 				}
 				lines.clear();
@@ -790,6 +791,7 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 		FreeLibrary(m_hCurrentDll);
 		m_hCurrentDll = 0;
 		m_strarray.clear();
+		m_map_lineno.clear();
 		m_codepage = 0;
 		if (m_hWnd)
 		{
@@ -823,6 +825,7 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
 		m_hCurrentDll = NULL;
 	}
 	m_strarray.clear();
+	m_map_lineno.clear();
 	m_codepage = 0;
 	if (wLangId != wSourceLangId)
 	{
@@ -935,6 +938,17 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 			return true;
 		}
 	}
+	return false;
+}
+
+bool CLanguageSelect::TranslateString(const std::string& str, String &translated_str) const
+{
+	EngLinenoMap::const_iterator it = m_map_lineno.find(str);
+	if (it != m_map_lineno.end())
+	{
+		return TranslateString(it->second, translated_str);
+	}
+	translated_str = ucr::toTString(str);
 	return false;
 }
 

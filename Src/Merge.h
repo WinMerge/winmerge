@@ -74,6 +74,7 @@ public:
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
+	bool TranslateString(const std::string&, String&) const; 
 	std::wstring LoadDialogCaption(LPCTSTR) const;
 
 	CMergeApp();

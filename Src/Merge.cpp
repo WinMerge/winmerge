@@ -895,6 +895,11 @@ String CMergeApp::LoadString(UINT id) const
 	return m_pLangDlg->LoadString(id);
 }
 
+bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
+{
+	return m_pLangDlg->TranslateString(str, translated_str);
+}
+
 /**
  * @brief Load dialog caption and translate to current WinMerge GUI language
  */
