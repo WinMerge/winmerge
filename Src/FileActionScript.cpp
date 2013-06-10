@@ -174,7 +174,7 @@ int FileActionScript::CreateOperationsScripts()
 			{
 				if (!GetMainFrame()->CreateBackup(TRUE, (*iter).dest.c_str()))
 				{
-					String strErr = theApp.LoadString(IDS_ERROR_BACKUP);
+					String strErr = _("Error backing up file");
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
 					bContinue = FALSE;
 				}

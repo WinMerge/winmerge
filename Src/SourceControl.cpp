@@ -94,7 +94,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
+			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
 			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
 			String path, name;
@@ -159,7 +159,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
+			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
 			BOOL bOpened = FALSE;
 			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
 			m_strVssUser = dlg.m_strUser;

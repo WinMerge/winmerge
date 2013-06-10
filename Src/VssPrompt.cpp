@@ -103,7 +103,7 @@ BOOL CVssPrompt::OnInitDialog()
 	// Open key containing VSS databases
 	if (!reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe\\Databases")))
 	{
-		String msg = theApp.LoadString(IDS_VSS_NODATABASES);
+		String msg = _("No VSS database(s) found!");
 		AfxMessageBox(msg.c_str(), MB_ICONERROR);
 		return FALSE;
 	}

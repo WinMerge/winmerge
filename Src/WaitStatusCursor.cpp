@@ -273,6 +273,16 @@ BOOL CustomStatusCursor::TryEnterStackCriticalSection()
 }
 */
 
+WaitStatusCursor::WaitStatusCursor(const String& fmt, ...)
+{
+	va_list argp;
+	va_start(argp, fmt);
+	CString msg;
+	msg.FormatV(fmt.c_str(), argp);
+	Create(NULL, IDC_WAIT, fmt.c_str());
+	va_end(argp);
+}
+
 WaitStatusCursor::WaitStatusCursor(LPCTSTR fmt, ...)
 {
 	va_list argp;

@@ -209,7 +209,7 @@ public:
 	void UpdateDiffItemStatus(UINT nIdx);
 private:
 	void InitiateSort();
-	void NameColumn(int id, int subitem);
+	void NameColumn(const char* idname, int subitem);
 	int AddNewItem(int i, Poco::UIntPtr diffpos, int iImage, int iIndent);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
@@ -230,7 +230,7 @@ private:
 // Implementation in DirViewColItems.cpp
 	int GetColDefaultOrder(int col) const;
 	const DirColInfo * DirViewColItems_GetDirColInfo(int col) const;
-	bool IsColById(int col, int id) const;
+	bool IsColById(int col, const char *idname) const;
 	bool IsColName(int col) const;
 	bool IsColLmTime(int col) const;
 	bool IsColMmTime(int col) const;
@@ -453,7 +453,6 @@ private:
 	void OpenParentDirectory();
 	void DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType);
 	void DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType);
-	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
 	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);

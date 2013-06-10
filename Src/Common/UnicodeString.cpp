@@ -198,3 +198,41 @@ String string_format(const TCHAR *fmt, ...)
 	va_end(args);
 	return s;
 }
+
+String string_format_strings(const String& fmt, const String *args[], size_t nargs)
+{
+	String str;
+	str.reserve(fmt.length() * 2);
+	String::const_iterator it;
+	for (it = fmt.begin(); it != fmt.end(); ++it)
+	{
+		if (*it == '%')
+		{
+			++it;
+			if (it == fmt.end())
+				break;
+			int n = *it - '0';
+			if (n > 0 && n <= nargs)
+				str += *args[n - 1];
+			else
+				str += *it;
+		}
+		else
+		{
+			str += *it;
+		}
+	}
+	return str;
+}
+
+String string_format_string1(const String& fmt, const String& arg1)
+{
+	const String* args[] = {&arg1};
+	return string_format_strings(fmt, args, 1);
+}
+
+String string_format_string2(const String& fmt, const String& arg1, const String& arg2)
+{
+	const String* args[] = {&arg1, &arg2};
+	return string_format_strings(fmt, args, 2);
+}

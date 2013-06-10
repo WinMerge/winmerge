@@ -103,7 +103,7 @@ BOOL PropBackups::OnInitDialog()
 void PropBackups::OnBnClickedBackupBrowse()
 {
 	String path;
-	if (SelectFolder(path, m_sGlobalFolder, 0, GetSafeHwnd()))
+	if (SelectFolder(path, m_sGlobalFolder, _T(""), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_BACKUP_FOLDER, path.c_str());
 	}

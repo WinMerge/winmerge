@@ -25,8 +25,8 @@ struct DirColInfo
 {
 	LPCTSTR regName; /**< Internal name used for registry entries etc */
 	// localized string resources
-	int idName; /**< Displayed name, ID of string resource */
-	int idDesc; /**< Description, ID of string resource */
+	const char *idName; /**< Displayed name, ID of string resource */
+	const char *idDesc; /**< Description, ID of string resource */
 	ColGetFncPtrType getfnc; /**< Handler giving display string */
 	ColSortFncPtrType sortfnc; /**< Handler for sorting this column */
 	SIZE_T offset;

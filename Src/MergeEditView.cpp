@@ -966,7 +966,7 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnEditUndo()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_UNDO);
+	WaitStatusCursor waitstatus(_("Undoing the last operation..."));
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
@@ -1628,7 +1628,7 @@ void CMergeEditView::OnL2r()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2R);
+		WaitStatusCursor waitstatus(_("Copying Left to Right"));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1636,7 +1636,7 @@ void CMergeEditView::OnL2r()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2R);
+		WaitStatusCursor waitstatus(_("Copying Left to Right"));
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
@@ -1709,7 +1709,7 @@ void CMergeEditView::OnR2l()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2L);
+		WaitStatusCursor waitstatus(_("Copying Right to Left"));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1717,7 +1717,7 @@ void CMergeEditView::OnR2l()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2L);
+		WaitStatusCursor waitstatus(_("Copying Right to Left"));
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
@@ -1791,7 +1791,7 @@ void CMergeEditView::OnL2m()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2M);
+		WaitStatusCursor waitstatus(_("Copying Left to Middle"));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1799,7 +1799,7 @@ void CMergeEditView::OnL2m()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2M);
+		WaitStatusCursor waitstatus(_("Copying Left to Middle"));
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
@@ -1875,7 +1875,7 @@ void CMergeEditView::OnR2m()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2M);
+		WaitStatusCursor waitstatus(_("Copying Right to Middle"));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1883,7 +1883,7 @@ void CMergeEditView::OnR2m()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2M);
+		WaitStatusCursor waitstatus(_("Copying Right to Middle"));
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
@@ -1929,7 +1929,7 @@ void CMergeEditView::OnAllLeft()
 	int dstPane = m_nThisPane > 0 ? m_nThisPane - 1 : 0;
 	if (IsReadOnly(dstPane))
 		return;
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2L);
+	WaitStatusCursor waitstatus(_("Copying All to Left"));
 
 	GetDocument()->CopyAllList(srcPane, dstPane);
 }
@@ -1958,7 +1958,7 @@ void CMergeEditView::OnAllRight()
 	if (IsReadOnly(dstPane))
 		return;
 
-	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2R);
+	WaitStatusCursor waitstatus(_("Copying All to Right"));
 
 	GetDocument()->CopyAllList(srcPane, dstPane);
 }
@@ -2056,7 +2056,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
  */
 void CMergeEditView::OnEditRedo()
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_REDO);
+	WaitStatusCursor waitstatus(_("Redoing the previous operation..."));
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
@@ -3235,7 +3235,7 @@ void CMergeEditView::OnUpdateMergingMode(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 {
-	String text = theApp.LoadString(IDS_MERGEMODE_MERGING);
+	String text = _("Merge");
 	pCmdUI->SetText(text.c_str());
 	pCmdUI->Enable(GetDocument()->GetMergingMode());
 }

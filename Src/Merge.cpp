@@ -770,9 +770,9 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = theApp.LoadString(IDS_UNK_ERROR_READING_PROJECT);
+		String sErr = _("Unknown error attempting to open project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}
@@ -788,9 +788,9 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
+		String sErr = _("Unknown error attempting to save project file");
 		sErr += ucr::toTString(e.displayText());
-		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sProject.c_str(), sErr.c_str());
+		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		return false;
 	}

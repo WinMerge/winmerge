@@ -55,11 +55,11 @@ void CSelectUnpackerDlg::Initialize()
 	// texts for the default unpackers
 	noPlugin.reset(new PluginInfo);
 	noPlugin->m_lpDispatch = NULL;
-	noPlugin->m_name = theApp.LoadString(IDS_USERCHOICE_NONE);
+	noPlugin->m_name = _("<None>");
 	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = NULL;
-	automaticPlugin->m_name = LoadResString(IDS_USERCHOICE_AUTOMATIC);
-	automaticPlugin->m_description = LoadResString(ID_UNPACK_AUTO);
+	automaticPlugin->m_name = _("<Automatic>");
+	automaticPlugin->m_description = _("The adapted unpacker is applied to both files (one file only needs the extension)");
 
 	m_pPlugin = noPlugin.get();
 

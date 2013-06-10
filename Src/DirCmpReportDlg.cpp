@@ -59,8 +59,8 @@ END_MESSAGE_MAP()
 struct ReportTypeInfo
 {
 	REPORT_TYPE reportType; /**< Report-type ID */
-	int idDisplay; /**< Resource-string ID (shown in file-selection dialog) */
-	int browseFilter; /**< File-extension filter (resource-string ID) */
+	const char *idDisplay; /**< Resource-string ID (shown in file-selection dialog) */
+	const char *browseFilter; /**< File-extension filter (resource-string ID) */
 };
 
 /**
@@ -69,20 +69,20 @@ struct ReportTypeInfo
  */
 static ReportTypeInfo f_types[] = {
 	{ REPORT_TYPE_COMMALIST,
-		IDS_REPORT_COMMALIST,
-		IDS_TEXT_REPORT_FILES
+		"Comma-separated list",
+		"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 	},
 	{ REPORT_TYPE_TABLIST,
-		IDS_REPORT_TABLIST,
-		IDS_TEXT_REPORT_FILES
+		"Tab-separated list",
+		"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 	},
 	{ REPORT_TYPE_SIMPLEHTML,
-		IDS_REPORT_SIMPLEHTML,
-		IDS_HTML_REPORT_FILES
+		"Simple HTML",
+		"HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 	},
 	{ REPORT_TYPE_SIMPLEXML,
-		IDS_REPORT_SIMPLEXML,
-		IDS_XML_REPORT_FILES
+		"Simple XML",
+		"XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 	},
 };
 
@@ -102,7 +102,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
 		const ReportTypeInfo & info = f_types[i];
-		int ind = m_ctlStyle.InsertString(i, theApp.LoadString(info.idDisplay).c_str());
+		int ind = m_ctlStyle.InsertString(i, tr(info.idDisplay).c_str());
 		m_ctlStyle.SetItemData(ind, info.reportType);
 		if (info.reportType == m_nReportType)
 			m_ctlStyle.SetCurSel(m_nReportType);
@@ -130,11 +130,11 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 	UpdateData(TRUE);
 
 	CString folder = m_sReportFile;
-	int filterid = f_types[m_ctlStyle.GetCurSel()].browseFilter;
+	String filter = tr(f_types[m_ctlStyle.GetCurSel()].browseFilter);
 
 	String chosenFilepath;
-	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, IDS_SAVE_AS_TITLE,
-			filterid, FALSE))
+	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, _("Save As"),
+			filter, FALSE))
 	{
 		m_sReportFile = chosenFilepath.c_str();
 		m_ctlReportFile.SetWindowText(chosenFilepath.c_str());

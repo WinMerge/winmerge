@@ -86,8 +86,8 @@ void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
 	m_rootPaths.SetLeft(paths.GetLeft());
 	m_rootPaths.SetRight(paths.GetRight());
-	m_sTitle = LangFormatString2(IDS_DIRECTORY_REPORT_TITLE,
-		m_rootPaths.GetLeft().c_str(), m_rootPaths.GetRight().c_str()).c_str();
+	m_sTitle = string_format_string2(_("Compare %1 with %2"),
+		m_rootPaths.GetLeft(), m_rootPaths.GetRight());
 }
 
 /**
@@ -127,7 +127,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 	DirCmpReportDlg dlg;
 	if (dlg.DoModal() == IDOK) try
 	{
-		WaitStatusCursor waitstatus(IDS_STATUS_CREATEREPORT);
+		WaitStatusCursor waitstatus(_("Creating the report..."));
 		if (dlg.m_bCopyToClipboard)
 		{
 			if (!CWnd::GetSafeOwner()->OpenClipboard())
@@ -176,7 +176,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			paths_SplitFilename((const TCHAR *)dlg.m_sReportFile, &path, NULL, NULL);
 			if (!paths_CreateIfNeeded(path))
 			{
-				errStr = LoadResString(IDS_FOLDER_NOTEXIST);
+				errStr = _("Folder does not exist.");
 				return FALSE;
 			}
 			CFile file(dlg.m_sReportFile,

@@ -47,21 +47,6 @@ int NTAPI LangMessageBox(UINT nIDPrompt, UINT nType, UINT nIDHelp)
 	return AfxMessageBox(string.c_str(), nType, nIDHelp);
 }
 
-/**
- * @brief Show messagebox with resource string having parameter.
- * @param [in] msgid Resource string ID.
- * @param [in] arg Argument string.
- * @param [in] nType Messagebox type flags (e.g. MB_OK).
- * @param [in] nIDHelp Help string ID.
- * @return User choice from the messagebox (see MessageBox()).
- */
-int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
-{
-	String msg = LangFormatString1(msgid, arg);
-	if (!nIDHelp)
-		nIDHelp = msgid;
-	return AfxMessageBox(msg.c_str(), nType, nIDHelp);
-}
 
 // Get appropriate clipboard format for TCHAR text
 int GetClipTcharTextFormat()
