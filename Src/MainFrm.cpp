@@ -932,7 +932,7 @@ int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			if (bMultiFile)
 			{
 				// Multiple files or folder
-				str = LangFormatString1(IDS_SAVEREADONLY_MULTI, strSavePath.c_str());
+				str = string_format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
@@ -940,7 +940,7 @@ int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 			else
 			{
 				// Single file
-				str = LangFormatString1(IDS_SAVEREADONLY_FMT, strSavePath.c_str());
+				str = string_format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -963,7 +963,7 @@ int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		case IDNO:
 			if (!bMultiFile)
 			{
-				if (SelectFile(GetSafeHwnd(), s, strSavePath.c_str(), IDS_SAVE_AS_TITLE, NULL, FALSE))
+				if (SelectFile(GetSafeHwnd(), s, strSavePath.c_str(), _("Save As"), _T(""), FALSE))
 				{
 					strSavePath = s;
 					nRetVal = IDNO;
@@ -1437,9 +1437,10 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, const String& pszPath)
 		
 		if (!success)
 		{
-			if (ResMsgBox1(IDS_BACKUP_FAILED_PROMPT, pszPath.c_str(),
-					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, 
-					IDS_BACKUP_FAILED_PROMPT) != IDYES)
+			String msg = string_format_string1(
+				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
+				pszPath);
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
 				return FALSE;
 		}
 		return TRUE;
@@ -2264,7 +2265,8 @@ void CMainFrame::OpenFileToExternalEditor(const String& file, int nLineNumber/* 
 	if (!retVal)
 	{
 		// Error invoking external editor
-		ResMsgBox1(IDS_ERROR_EXECUTE_FILE, sCmd.c_str(), MB_ICONSTOP);
+		String msg = string_format_string1(_("Failed to execute external editor: %1"), sCmd);
+		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 	}
 	else
 	{
@@ -2289,7 +2291,7 @@ void CMainFrame::OnSaveConfigData()
 	else
 	{
 		String sFileName = configLog.GetFileName();
-		String msg = LangFormatString2(IDS_ERROR_FILEOPEN, sFileName.c_str(), sError.c_str());
+		String msg = string_format_string2(_("Cannot open file\n%1\n\n%2"), sFileName, sError);
 		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
 	}
 }
@@ -2658,8 +2660,8 @@ void CMainFrame::OnFileOpenproject()
 	
 	// get the default projects path
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
-	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath.c_str(), IDS_OPEN_TITLE,
-			IDS_PROJECTFILES, TRUE))
+	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath.c_str(), _("Open"),
+			_("WinMerge Project Files (*.WinMerge)|*.WinMerge||"), TRUE))
 		return;
 	
 	strProjectPath = paths_GetParentPath(sFilepath);
@@ -3256,7 +3258,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 		bool confFile = IsConflictFile(conflictFile);
 		if (!confFile)
 		{
-			String message = LangFormatString1(IDS_NOT_CONFLICT_FILE, conflictFile.c_str());
+			String message = string_format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
 			AfxMessageBox(message.c_str(), MB_ICONSTOP);
 			return FALSE;
 		}
@@ -3282,8 +3284,8 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
 		m_strSaveAsPath = conflictFile.c_str();
-		String theirs = LoadResString(IDS_CONFLICT_THEIRS_FILE);
-		String my = LoadResString(IDS_CONFLICT_MINE_FILE);
+		String theirs = _("Theirs File");
+		String my = _("Mine File");
 		m_strDescriptions[0] = theirs;
 		m_strDescriptions[1] = my;
 

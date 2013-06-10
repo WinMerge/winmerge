@@ -71,11 +71,11 @@ void PluginsListDlg::InitList()
 	// Also enable infotips.
 	m_list.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	String title = LoadResString(IDS_PLUGINSLIST_NAME);
+	String title = _("Name");
 	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);
-	title = LoadResString(IDS_PLUGINSLIST_TYPE);
+	title = _("Type");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 100);
-	title = LoadResString(IDS_PLUGINSLIST_DESC);
+	title = _("Description");
 	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, 300);
 }
 
@@ -84,13 +84,13 @@ void PluginsListDlg::InitList()
  */
 void PluginsListDlg::AddPlugins()
 {
-	String type = LoadResString(IDS_PLUGINS_TYPE_UNPACKER);
+	String type = _("Unpacker");
 	AddPluginsToList(L"FILE_PACK_UNPACK", type.c_str());
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type.c_str());
-	type = LoadResString(IDS_PLUGINS_TYPE_PREDIFFER);
+	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type.c_str());
 	AddPluginsToList(L"BUFFER_PREDIFF", type.c_str());
-	type = LoadResString(IDS_PLUGINS_TYPE_EDITSCRIPT);
+	type = _("Editor script");
 	AddPluginsToList(L"EDITOR_SCRIPT", type.c_str());
 }
 

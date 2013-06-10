@@ -145,8 +145,8 @@ void PropVss::LoadVssOptionStrings()
 	VCS_CLEARCASE,
 	*/
 
-	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_NONE).c_str());
-	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_VSS4).c_str());
-	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_VSS5).c_str());
-	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_CLEARCASE).c_str());
+	m_ctlVerSys.AddString(_("None").c_str());
+	m_ctlVerSys.AddString(_("Visual SourceSafe (less than 5.0)").c_str());
+	m_ctlVerSys.AddString(_("Visual SourceSafe (5.0 and above)").c_str());
+	m_ctlVerSys.AddString(_("Rational ClearCase").c_str());
 }

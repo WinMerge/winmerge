@@ -4,6 +4,7 @@
 #include "UnicodeString.h"
 
 #define _(x) tr(x)
+#define N_(x) (x)
 
 class COptionsMgr;
 
@@ -19,15 +20,5 @@ void AppErrorMessageBox(const String& msg);
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
-
-/** @brief Lang aware version of AfxFormatStrings() */
-String LangFormatStrings(unsigned, const TCHAR * const *, int);
-
-	/** @brief Lang aware version of AfxFormatString1() */
-String LangFormatString1(unsigned, const TCHAR *);
-
-	/** @brief Lang aware version of AfxFormatString2() */
-String LangFormatString2(unsigned, const TCHAR *, const TCHAR *);
-
 
 #endif /* __MERGEAPP_H__ */

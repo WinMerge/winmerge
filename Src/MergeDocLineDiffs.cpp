@@ -60,8 +60,8 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView)
 
 	IF_IS_TRUE_ALL ((rc[pane].top == -1), pane, m_nBuffers)
 	{
-		String caption = theApp.LoadString(IDS_LINEDIFF_NODIFF_CAPTION);
-		String msg = theApp.LoadString(IDS_LINEDIFF_NODIFF);
+		String caption = _("Line difference");
+		String msg = _("No difference");
 		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}

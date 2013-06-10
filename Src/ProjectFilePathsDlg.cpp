@@ -240,7 +240,7 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
 	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath.c_str(),
-			NULL, IDS_PROJECTFILES, bOpen))
+			_T(""), _("WinMerge Project Files (*.WinMerge)|*.WinMerge||"), bOpen))
 		return _T("");
 
 	if (strProjectFileName.empty())
@@ -253,7 +253,7 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	if (extension.empty())
 	{
 		strProjectFileName += _T(".");
-		strProjectFileName += theApp.LoadString(IDS_PROJECTFILES_EXT).c_str();
+		strProjectFileName += _("WinMerge");
 	}
 
 	// get the path part from the filename

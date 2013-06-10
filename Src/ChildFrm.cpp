@@ -794,19 +794,19 @@ static String EolString(const String & sEol)
 {
 	if (sEol == _T("\r\n"))
 	{
-		return LoadResString(IDS_EOL_CRLF);
+		return _("CRLF");
 	}
 	if (sEol == _T("\n"))
 	{
-		return LoadResString(IDS_EOL_LF);
+		return _("LF");
 	}
 	if (sEol == _T("\r"))
 	{
-		return LoadResString(IDS_EOL_CR);
+		return _("CR");
 	}
 	if (sEol.empty())
 	{
-		return LoadResString(IDS_EOL_NONE);
+		return _("None");
 	}
 	if (sEol == _T("hidden"))
 		return _T("");

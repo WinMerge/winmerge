@@ -125,7 +125,7 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnBrowseEditor()
 {
 	String path;
-	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), path, m_strEditorPath, _("Open"), _("Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"), TRUE))
 	{
 		SetDlgItemText(IDC_EXT_EDITOR_PATH, path.c_str());
 	}
@@ -135,7 +135,7 @@ void PropRegistry::OnBrowseEditor()
 void PropRegistry::OnBrowseFilterPath()
 {
 	String path;
-	if (SelectFolder(path, m_strUserFilterPath, IDS_OPEN_TITLE, GetSafeHwnd()))
+	if (SelectFolder(path, m_strUserFilterPath, _("Open"), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_FILTER_USER_PATH, path.c_str());
 	}
@@ -145,7 +145,7 @@ void PropRegistry::OnBrowseFilterPath()
 void PropRegistry::OnBrowseTmpFolder()
 {
 	String path;
-	if (SelectFolder(path, m_tempFolder, NULL, GetSafeHwnd()))
+	if (SelectFolder(path, m_tempFolder, _T(""), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_TMPFOLDER_NAME, path.c_str());
 	}

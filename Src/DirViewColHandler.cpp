@@ -134,12 +134,12 @@ bool CDirView::IsDefaultSortAscending(int col) const
 }
 
 /// Assign column name, using string resource & current column ordering
-void CDirView::NameColumn(int id, int subitem)
+void CDirView::NameColumn(const char *idname, int subitem)
 {
 	int phys = ColLogToPhys(subitem);
 	if (phys>=0)
 	{
-		String s = theApp.LoadString(id);
+		String s = tr(idname);
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = const_cast<LPTSTR>(s.c_str());
@@ -440,7 +440,7 @@ void CDirView::ClearColumnOrders()
 String CDirView::GetColDisplayName(int col) const
 {
 	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
-	return theApp.LoadString(colinfo->idName);
+	return tr(colinfo->idName);
 }
 
 /**
@@ -449,7 +449,7 @@ String CDirView::GetColDisplayName(int col) const
 String CDirView::GetColDescription(int col) const
 {
 	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
-	return theApp.LoadString(colinfo->idDesc);
+	return tr(colinfo->idDesc);
 }
 
 /**

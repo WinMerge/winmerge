@@ -215,7 +215,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		m_pphost.SetActivePage(pPage, FALSE);
 
 		// update caption
-		String sCaption = LangFormatString1(IDS_OPTIONS_TITLE, GetItemPath(htiSel));
+		String sCaption = string_format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
 		SetWindowText(sCaption.c_str());
 	}
 
@@ -315,7 +315,7 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, NULL, IDS_OPT_IMPORT_CAPTION, IDS_INIFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, NULL, _("Select file for import"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"), TRUE))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
@@ -333,7 +333,7 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	String settingsFile;
-	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, IDS_OPT_EXPORT_CAPTION, IDS_INIFILES,
+	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, _("Select file for export"), _("Options files (*.ini)|*.ini|All Files (*.*)|*.*||"),
 		FALSE))
 	{
 		// Add settings file extension if it is missing

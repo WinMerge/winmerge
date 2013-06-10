@@ -414,8 +414,9 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
 	{
-		String msg = LangFormatString2(IDS_FILEFILTER_TMPL_MISSING,
-			FILE_FILTER_TEMPLATE, templatePath.c_str());
+		String msg = string_format_string2(
+			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."),
+			FILE_FILTER_TEMPLATE, templatePath);
 		AfxMessageBox(msg.c_str(), MB_ICONERROR);
 		return;
 	}
@@ -432,7 +433,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path += '\\';
 	
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Select filename for new filter"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
 		FALSE))
 	{
 		// Fix file extension
@@ -457,7 +458,10 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		// user has already allowed it.
 		if (!CopyFile(templatePath.c_str(), s.c_str(), FALSE))
 		{
-			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath.c_str(), MB_ICONERROR);
+			String msg = string_format_string1(
+				_( "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."),
+				templatePath);
+			AfxMessageBox(msg.c_str(), MB_ICONERROR);
 			return;
 		}
 		EditFileFilter(s.c_str());
@@ -492,7 +496,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
 		path.ReleaseBuffer();
 
-		String sConfirm = LangFormatString1(IDS_CONFIRM_DELETE_SINGLE, path);
+		String sConfirm = string_format_string1(_("Are you sure you want to delete\n\n%1 ?"), (LPCTSTR)path);
 		int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
@@ -510,7 +514,10 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 			}
 			else
 			{
-				ResMsgBox1(IDS_FILEFILTER_DELETE_FAIL, path, MB_ICONSTOP);
+				String msg = string_format_string1(
+					_("Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"),
+					(LPCTSTR)path);
+				AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			}
 		}
 	}
@@ -558,7 +565,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	String path;
 	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
-	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_INSTALL, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Locate filter file to install"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
 		TRUE))
 	{
 		String sfile, sext;

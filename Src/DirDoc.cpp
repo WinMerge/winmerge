@@ -1092,7 +1092,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 		m_pCtxt->GetRightPath().empty() || 
 		(m_nDirs > 2 && m_pCtxt->GetMiddlePath().empty()))
 	{
-		String title = theApp.LoadString(IDS_DIRECTORY_WINDOW_TITLE);
+		String title = _("Folder Comparison Results");
 		CDocument::SetTitle(title.c_str());
 	}
 	else

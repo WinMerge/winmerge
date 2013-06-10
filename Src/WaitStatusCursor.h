@@ -100,6 +100,7 @@ class WaitStatusCursor : public CustomStatusCursor
 {
 // public interface
 public:
+	WaitStatusCursor(const String& fmt, ...);
 	WaitStatusCursor(LPCTSTR fmt, ...);
 	WaitStatusCursor(UINT fmtid, ...);
 };
