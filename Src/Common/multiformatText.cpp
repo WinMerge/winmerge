@@ -232,72 +232,73 @@ const TCHAR *storageForPlugins::GetDataFileUnicode()
 	unsigned nchars;
 	char * pchar = NULL;
 
-	boost::scoped_ptr<SharedMemory> pshmIn;
 	try
 	{
-		// Get source data
-		if (m_bCurrentIsFile)
 		{
-			// Init filedata struct and open file as memory mapped (in file)
-			TFile fileIn(m_filename);
-			try
+			boost::scoped_ptr<SharedMemory> pshmIn;
+			// Get source data
+			if (m_bCurrentIsFile)
 			{
-				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
-				pchar = pshmIn->begin() + m_nBomSize;
-				nchars = pshmIn->end() - pchar;
-			}
-			catch (...)
-			{
-				if (!fileIn.isDevice() && fileIn.getSize() > 0)
-					return NULL;
-				pchar = "";
-				nchars = 0;
-			}			
-		}
-		else
-		{
-			if (m_bCurrentIsUnicode)
-			{
-				pchar = (char *)m_bstr;
-				nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+				// Init filedata struct and open file as memory mapped (in file)
+				TFile fileIn(m_filename);
+				try
+				{
+					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+					pchar = pshmIn->begin() + m_nBomSize;
+					nchars = pshmIn->end() - pchar;
+				}
+				catch (...)
+				{
+					if (!fileIn.isDevice() && fileIn.getSize() > 0)
+						return NULL;
+					pchar = "";
+					nchars = 0;
+				}			
 			}
 			else
 			{
-				pchar = (char *)GetVariantArrayData(m_array, nchars);
+				if (m_bCurrentIsUnicode)
+				{
+					pchar = (char *)m_bstr;
+					nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+				}
+				else
+				{
+					pchar = (char *)GetVariantArrayData(m_array, nchars);
+				}
+			}
+
+			// Compute the dest size (in bytes)
+			int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
+			int textRealSize = textForeseenSize;
+
+			// Init filedata struct and open file as memory mapped (out file)
+			GetDestFileName();
+
+			TFile fileOut(m_tempFilenameDst);
+			fileOut.setSize(textForeseenSize + 2);
+			int bom_bytes = 0;
+			{
+				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+				int bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
+				// to UCS-2 conversion, from unicoder.cpp maketstring
+				bool lossy;
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin()+bom_bytes, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
+			}
+			// size may have changed
+			fileOut.setSize(textRealSize + bom_bytes);
+
+			// Release pointers to source data
+			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+				SafeArrayUnaccessData(m_array.parray);
+
+			if ((textRealSize == 0) && (textForeseenSize > 0))
+			{
+				// conversion error
+				try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
+				return NULL;
 			}
 		}
-
-		// Compute the dest size (in bytes)
-		int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
-		int textRealSize = textForeseenSize;
-
-		// Init filedata struct and open file as memory mapped (out file)
-		GetDestFileName();
-
-		TFile fileOut(m_tempFilenameDst);
-		fileOut.setSize(textForeseenSize + 2);
-		int bom_bytes = 0;
-		{
-			SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
-			int bom_bytes = ucr::writeBom(shmOut.begin(), ucr::UCS2LE);
-			// to UCS-2 conversion, from unicoder.cpp maketstring
-			bool lossy;
-			textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin()+bom_bytes, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
-		}
-		// size may have changed
-		fileOut.setSize(textRealSize + bom_bytes);
-
-		// Release pointers to source data
-		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-			SafeArrayUnaccessData(m_array.parray);
-
-		if ((textRealSize == 0) && (textForeseenSize > 0))
-		{
-			// conversion error
-			try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
-			return NULL;
-		}
-
 		ValidateInternal(true, true);
 		return m_filename.c_str();
 	}
@@ -315,63 +316,64 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 
 	unsigned nchars;
 	char * pchar;
-	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
-		// Get source data
-		if (m_bCurrentIsFile) 
 		{
-			// Init filedata struct and open file as memory mapped (in file)
-			TFile fileIn(m_filename);
-			try
+			boost::scoped_ptr<SharedMemory> pshmIn;
+			// Get source data
+			if (m_bCurrentIsFile) 
 			{
-				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+				// Init filedata struct and open file as memory mapped (in file)
+				TFile fileIn(m_filename);
+				try
+				{
+					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-				pchar = pshmIn->begin() + m_nBomSize;
-				nchars = pshmIn->end() - pchar;
+					pchar = pshmIn->begin() + m_nBomSize;
+					nchars = pshmIn->end() - pchar;
+				}
+				catch (...)
+				{
+					if (!fileIn.isDevice() && fileIn.getSize() > 0)
+						return NULL;
+					pchar = "";
+					nchars = 0;
+				}			
 			}
-			catch (...)
+			else
 			{
-				if (!fileIn.isDevice() && fileIn.getSize() > 0)
-					return NULL;
-				pchar = "";
-				nchars = 0;
-			}			
+				pchar = (char *)GetVariantArrayData(m_array, nchars);
+			}
+
+			// Compute the dest size (in bytes)
+			int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
+			int textRealSize = textForeseenSize;
+
+			// allocate the memory
+			boost::scoped_array<wchar_t> tempBSTR(new wchar_t[textForeseenSize]);
+
+			// fill in the data
+			wchar_t * pbstrBuffer = tempBSTR.get();
+			bool bAllocSuccess = (pbstrBuffer != NULL);
+			if (bAllocSuccess)
+			{
+				// to UCS-2 conversion, from unicoder.cpp maketstring
+				bool lossy;
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)pbstrBuffer, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
+				SysFreeString(m_bstr);
+				m_bstr = SysAllocStringLen(tempBSTR.get(), textRealSize / sizeof(wchar_t));
+				if (!m_bstr)
+					bAllocSuccess = false;
+			}
+
+			// Release pointers to source data
+			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+				SafeArrayUnaccessData(m_array.parray);
+
+			if (!bAllocSuccess)
+				return NULL;
 		}
-		else
-		{
-			pchar = (char *)GetVariantArrayData(m_array, nchars);
-		}
-
-		// Compute the dest size (in bytes)
-		int textForeseenSize = nchars * sizeof(wchar_t) + 6; // from unicoder.cpp maketstring
-		int textRealSize = textForeseenSize;
-
-		// allocate the memory
-		boost::scoped_array<wchar_t> tempBSTR(new wchar_t[textForeseenSize]);
-
-		// fill in the data
-		wchar_t * pbstrBuffer = tempBSTR.get();
-		bool bAllocSuccess = (pbstrBuffer != NULL);
-		if (bAllocSuccess)
-		{
-			// to UCS-2 conversion, from unicoder.cpp maketstring
-			bool lossy;
-			textRealSize = ucr::CrossConvert(pchar, nchars, (char *)pbstrBuffer, textForeseenSize-1, m_codepage, CP_UCS2LE, &lossy);
-			SysFreeString(m_bstr);
-			m_bstr = SysAllocStringLen(tempBSTR.get(), textRealSize / sizeof(wchar_t));
-			if (!m_bstr)
-				bAllocSuccess = false;
-		}
-
-		// Release pointers to source data
-		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-			SafeArrayUnaccessData(m_array.parray);
-
-		if (!bAllocSuccess)
-			return NULL;
-
 		ValidateInternal(false, true);
 		return &m_bstr;
 	}
@@ -388,81 +390,82 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 
 	unsigned nchars;
 	char * pchar = NULL;
-	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
-		// Get source data
-		if (m_bCurrentIsFile)
 		{
-			// Init filedata struct and open file as memory mapped (in file)
-			TFile fileIn(m_filename);
-			try
+			boost::scoped_ptr<SharedMemory> pshmIn;
+			// Get source data
+			if (m_bCurrentIsFile)
 			{
-				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+				// Init filedata struct and open file as memory mapped (in file)
+				TFile fileIn(m_filename);
+				try
+				{
+					pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-				pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
-				nchars = pshmIn->end()-pchar;
+					pchar = pshmIn->begin()+m_nBomSize; // pass the BOM
+					nchars = pshmIn->end()-pchar;
+				}
+				catch (...)
+				{
+					if (!fileIn.isDevice() && fileIn.getSize() > 0)
+						return NULL;
+					pchar = "";
+					nchars = 0;
+				}
 			}
-			catch (...)
+			else 
 			{
-				if (!fileIn.isDevice() && fileIn.getSize() > 0)
-					return NULL;
-				pchar = "";
-				nchars = 0;
+				if (m_bCurrentIsUnicode)
+				{
+					pchar  = (char *)m_bstr;
+					nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+				}
+				else
+				{
+					pchar = (char *)GetVariantArrayData(m_array, nchars);
+				}
 			}
-		}
-		else 
-		{
+
+			// Compute the dest size (in bytes)
+			int textForeseenSize = nchars; 
 			if (m_bCurrentIsUnicode)
+				textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
+			int textRealSize = textForeseenSize;
+
+			// Init filedata struct and open file as memory mapped (out file)
+			GetDestFileName();
+			TFile fileOut(m_tempFilenameDst);
+			fileOut.setSize(textForeseenSize);
 			{
-				pchar  = (char *)m_bstr;
-				nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
+
+				if (m_bCurrentIsUnicode)
+				{
+					// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
+					bool lossy;
+					textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin(), textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
+				}
+				else
+				{
+					std::memcpy(shmOut.begin(), pchar, nchars);
+				}
 			}
-			else
+			// size may have changed
+			fileOut.setSize(textRealSize);
+
+			// Release pointers to source data
+			if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
+				SafeArrayUnaccessData(m_array.parray);
+
+			if ((textRealSize == 0) && (textForeseenSize > 0))
 			{
-				pchar = (char *)GetVariantArrayData(m_array, nchars);
+				// conversion error
+				try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
+				return NULL;
 			}
 		}
-
-		// Compute the dest size (in bytes)
-		int textForeseenSize = nchars; 
-		if (m_bCurrentIsUnicode)
-			textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
-		int textRealSize = textForeseenSize;
-
-		// Init filedata struct and open file as memory mapped (out file)
-		GetDestFileName();
-		TFile fileOut(m_tempFilenameDst);
-		fileOut.setSize(textForeseenSize);
-		{
-			SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
-
-			if (m_bCurrentIsUnicode)
-			{
-				// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
-				bool lossy;
-				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)shmOut.begin(), textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
-			}
-			else
-			{
-				std::memcpy(shmOut.begin(), pchar, nchars);
-			}
-		}
-		// size may have changed
-		fileOut.setSize(textRealSize);
-
-		// Release pointers to source data
-		if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-			SafeArrayUnaccessData(m_array.parray);
-
-		if ((textRealSize == 0) && (textForeseenSize > 0))
-		{
-			// conversion error
-			try { TFile(m_tempFilenameDst).remove(); } catch (...) {}
-			return NULL;
-		}
-
 		ValidateInternal(true, false);
 		return m_filename.c_str();
 	}
@@ -480,55 +483,56 @@ VARIANT * storageForPlugins::GetDataBufferAnsi()
 
 	unsigned nchars;
 	char * pchar;
-	boost::scoped_ptr<SharedMemory> pshmIn;
 
 	try
 	{
-		// Get source data
-		if (m_bCurrentIsFile) 
 		{
-			// Init filedata struct and open file as memory mapped (in file)
-			TFile fileIn(m_filename);
-			pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
+			boost::scoped_ptr<SharedMemory> pshmIn;
+			// Get source data
+			if (m_bCurrentIsFile) 
+			{
+				// Init filedata struct and open file as memory mapped (in file)
+				TFile fileIn(m_filename);
+				pshmIn.reset(new SharedMemory(fileIn, SharedMemory::AM_READ));
 
-			pchar = pshmIn->begin() + m_nBomSize;
-			nchars = pshmIn->end()-pchar;
+				pchar = pshmIn->begin() + m_nBomSize;
+				nchars = pshmIn->end()-pchar;
+			}
+			else
+			{
+				pchar  = (char *)m_bstr;
+				nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
+			}
+
+			// Compute the dest size (in bytes)
+			int textForeseenSize = nchars; 
+			if (m_bCurrentIsUnicode)
+				textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
+			int textRealSize = textForeseenSize;
+
+			// allocate the memory
+			SAFEARRAYBOUND rgsabound = {textForeseenSize, 0};
+			m_array.vt = VT_UI1 | VT_ARRAY;
+			m_array.parray = SafeArrayCreate(VT_UI1, 1, &rgsabound);
+			char * parrayData;
+			SafeArrayAccessData(m_array.parray, (void**)&parrayData);
+
+			// fill in the data
+			if (m_bCurrentIsUnicode)
+			{
+				// to Ansi conversion, from unicoder.cpp convertToBuffer
+				bool lossy;
+				textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData, textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
+			}
+			else
+			{
+				std::memcpy(parrayData, pchar, nchars);
+			}
+			// size may have changed
+			SafeArrayUnaccessData(m_array.parray);
+			SAFEARRAYBOUND rgsaboundnew = {textRealSize, 0};
+			SafeArrayRedim(m_array.parray, &rgsaboundnew);
 		}
-		else
-		{
-			pchar  = (char *)m_bstr;
-			nchars = SysStringLen(m_bstr) * sizeof(wchar_t);
-		}
-
-		// Compute the dest size (in bytes)
-		int textForeseenSize = nchars; 
-		if (m_bCurrentIsUnicode)
-			textForeseenSize = nchars * 3; // from unicoder.cpp convertToBuffer
-		int textRealSize = textForeseenSize;
-
-		// allocate the memory
-		SAFEARRAYBOUND rgsabound = {textForeseenSize, 0};
-		m_array.vt = VT_UI1 | VT_ARRAY;
-		m_array.parray = SafeArrayCreate(VT_UI1, 1, &rgsabound);
-		char * parrayData;
-		SafeArrayAccessData(m_array.parray, (void**)&parrayData);
-
-		// fill in the data
-		if (m_bCurrentIsUnicode)
-		{
-			// to Ansi conversion, from unicoder.cpp convertToBuffer
-			bool lossy;
-			textRealSize = ucr::CrossConvert(pchar, nchars, (char *)parrayData, textForeseenSize, m_codepage, ucr::getDefaultCodepage(), &lossy);
-		}
-		else
-		{
-			std::memcpy(parrayData, pchar, nchars);
-		}
-		// size may have changed
-		SafeArrayUnaccessData(m_array.parray);
-		SAFEARRAYBOUND rgsaboundnew = {textRealSize, 0};
-		SafeArrayRedim(m_array.parray, &rgsaboundnew);
-
 		ValidateInternal(false, false);
 		return &m_array;
 	}
