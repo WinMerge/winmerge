@@ -84,8 +84,10 @@ bool FileTransform_Packing(String & filepath, PackingInfo handler)
 	if (handler.bWithFile)
 	{
 		// use a temporary dest name
-		bHandled = InvokePackFile(bufferData.GetDataFileAnsi(),
-			bufferData.GetDestFileName(),
+		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+		bHandled = InvokePackFile(srcFileName,
+			dstFileName,
 			bufferData.GetNChanged(),
 			piScript, handler.subcode);
 		if (bHandled)
@@ -139,10 +141,11 @@ bool FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler->bWithFile)
 	{
-		String destFileName = bufferData.GetDestFileName();
 		// use a temporary dest name
-		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
-			destFileName,
+		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+		bHandled = InvokeUnpackFile(srcFileName,
+			dstFileName,
 			bufferData.GetNChanged(),
 			piScript, subcode);
 		if (bHandled)
@@ -214,8 +217,10 @@ bool FileTransform_Unpacking(String & filepath, const String& filteredText, Pack
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
-		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
-			bufferData.GetDestFileName(),
+		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+		bHandled = InvokeUnpackFile(srcFileName,
+			dstFileName,
 			bufferData.GetNChanged(),
 			plugin->m_lpDispatch, handler->subcode);
 		if (bHandled)
@@ -302,8 +307,10 @@ bool FileTransform_Prediffing(String & filepath, PrediffingInfo handler, bool bM
 	if (handler.bWithFile)
 	{
 		// use a temporary dest name
-		bHandled = InvokePrediffFile(bufferData.GetDataFileAnsi(),
-			bufferData.GetDestFileName(),
+		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+		bHandled = InvokePrediffFile(srcFileName,
+			dstFileName,
 			bufferData.GetNChanged(),
 			piScript);
 		if (bHandled)
@@ -365,8 +372,10 @@ bool FileTransform_Prediffing(String & filepath, const String& filteredText, Pre
 		handler->pluginName = plugin->m_name;
 		handler->bWithFile = true;
 		// use a temporary dest name
-		bHandled = InvokePrediffFile(bufferData.GetDataFileAnsi(),
-			bufferData.GetDestFileName(),
+		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+		bHandled = InvokePrediffFile(srcFileName,
+			dstFileName,
 			bufferData.GetNChanged(),
 			plugin->m_lpDispatch);
 		if (bHandled)
