@@ -2316,17 +2316,17 @@ void CMainFrame::FileNew(int nPanes)
 	FileLocation fileloc[3];
 	if (nPanes == 2)
 	{
-		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		m_strDescriptions[0] = _("Untitled left");
+		m_strDescriptions[1] = _("Untitled right");
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
 		ShowMergeDoc(pDirDoc, 2, fileloc, dwFlags);
 	}
 	else
 	{
-		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
-		m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		m_strDescriptions[0] = _("Untitled left");
+		m_strDescriptions[1] = _("Untitled middle");
+		m_strDescriptions[2] = _("Untitled right");
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[2].encoding.SetCodepage(ucr::getDefaultCodepage());
@@ -2364,7 +2364,7 @@ void CMainFrame::OnFileNew3()
  */
 void CMainFrame::OnToolsFilters()
 {
-	String title = theApp.LoadString(IDS_FILTER_TITLE);
+	String title = _("Filters");
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
@@ -2390,7 +2390,7 @@ void CMainFrame::OnToolsFilters()
 
 	if (sht.DoModal() == IDOK)
 	{
-		String strNone = theApp.LoadString(IDS_USERCHOICE_NONE);
+		String strNone = _("<None>");
 		String path = fileFiltersDlg.GetSelected();
 		if (path.find(strNone) != String::npos)
 		{
@@ -2521,7 +2521,7 @@ void CMainFrame::ShowVSSError(CException *e, const String& strItem)
 	TCHAR errStr[1024] = {0};
 	if (e->GetErrorMessage(errStr, 1024))
 	{
-		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
+		String errMsg = _("Error from VSS:");
 		String logMsg = errMsg;
 		errMsg += _T("\n");
 		errMsg += errStr;
@@ -2854,7 +2854,7 @@ void CMainFrame::SetMainIcon(CDialog * dlg)
  */
 void CMainFrame::OnSaveProject()
 {
-	String title = theApp.LoadString(IDS_PROJFILEDLG_CAPTION);
+	String title = _("Project File");
 	CPropertySheet sht(title.c_str());
 	ProjectFilePathsDlg pathsDlg;
 	sht.AddPage(&pathsDlg);

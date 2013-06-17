@@ -130,6 +130,6 @@ void CLocationBar::SetFrameHwnd(HWND hwndFrame)
  */
 void CLocationBar::UpdateResources()
 {
-	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	String sCaption = _("Location Pane");
 	SetWindowText(sCaption.c_str());
 }

@@ -93,7 +93,7 @@ void LineFiltersDlg::InitList()
 	// Also enable infotips.
 	m_filtersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	String title = theApp.LoadString(IDS_FILTERLINE_REGEXP);
+	String title = _("Regular expression");
 	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 500);
 
 	int count = m_pList->GetCount();

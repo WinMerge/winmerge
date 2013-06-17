@@ -106,7 +106,7 @@ void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
  */
 void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 {
-	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	String filterPrefix = _("[F] ");
 	CString curFilter;
 
 	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
@@ -185,7 +185,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	if (!m_sFilter.IsEmpty())
 	{
 		// Remove possbile prefix from the filter name
-		String prefix = theApp.LoadString(IDS_FILTER_PREFIX);
+		String prefix = _("[F] ");
 		int ind = m_sFilter.Find(prefix.c_str(), 0);
 		if (ind == 0)
 		{

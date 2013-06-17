@@ -158,6 +158,6 @@ void CDiffViewBar::SetFrameHwnd(HWND hwndFrame)
  */
 void CDiffViewBar::UpdateResources()
 {
-	String sCaption = theApp.LoadString(IDS_DIFFBAR_CAPTION);
+	String sCaption = _("Diff Pane");
 	SetWindowText(sCaption.c_str());
 }
