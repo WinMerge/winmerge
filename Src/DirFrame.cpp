@@ -126,7 +126,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 	
-	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
+	String sText = _("RO");
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, RO_PANEL_WIDTH);

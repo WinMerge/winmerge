@@ -2633,7 +2633,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	if (functionNamesList.size() == 0)
 	{
 		// no script : create a <empty> entry
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, _("< Empty >").c_str());
 	}
 	else
 	{
@@ -2646,7 +2646,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	}
 
 	if (!IsWindowsScriptThere())
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, theApp.LoadString(ID_NO_SCT_SCRIPTS).c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, _("WSH not found - .sct scripts disabled").c_str());
 
 	return hMenu;
 }
@@ -2675,7 +2675,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	ASSERT(pd);
 
 	// title
-	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, theApp.LoadString(ID_NO_PREDIFFER).c_str());
+	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, _("No prediffer (normal)").c_str());
 
 	// get the scriptlet files
 	PluginArray * piScriptArray = 
@@ -2686,7 +2686,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : first part, suggested plugins
 	// title
 	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, theApp.LoadString(ID_SUGGESTED_PLUGINS).c_str());
+	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	int iScript;
@@ -2710,7 +2710,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : second part, others plugins
 	// title
 	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, theApp.LoadString(ID_NOT_SUGGESTED_PLUGINS).c_str());
+	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++, ID ++)

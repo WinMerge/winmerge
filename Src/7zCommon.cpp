@@ -428,10 +428,10 @@ INT_PTR CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wP
 				switch (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
 				{
 				case 0:
-					lstrcat(cText.Data, theApp.LoadString(IDS_MERGE7Z_ENABLE_0).c_str());
+					lstrcat(cText.Data, _("\nNote: 7-Zip integration is disabled in WinMerge settings.").c_str());
 					break;
 				case 2:
-					lstrcat(cText.Data, theApp.LoadString(IDS_MERGE7Z_ENABLE_2).c_str());
+					lstrcat(cText.Data, _("\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings.").c_str());
 					break;
 				}
 				SetDlgItemText(hWnd, 107, cText.Data);

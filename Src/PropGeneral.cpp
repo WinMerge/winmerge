@@ -71,9 +71,9 @@ BOOL PropGeneral::OnInitDialog()
 	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
 	ASSERT(NULL != pWnd);
 
-	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_DISABLED).c_str());
-	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_FILE_SYS).c_str());
-	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_MRU).c_str());
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("From file system").c_str());
+	pWnd->AddString(_("From MRU list").c_str());
 
 	pWnd->SetCurSel(m_nAutoCompleteSource);
 

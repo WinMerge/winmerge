@@ -242,10 +242,10 @@ BOOL CPatchDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_NORMAL).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
-	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_HTML).c_str());
+	m_comboStyle.AddString(_("Normal").c_str());
+	m_comboStyle.AddString(_("Context").c_str());
+	m_comboStyle.AddString(_("Unified").c_str());
+	m_comboStyle.AddString(_("HTML").c_str());
 
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
@@ -492,16 +492,16 @@ void CPatchDlg::UpdateSettings()
 	switch (m_outputStyle)
 	{
 	case DIFF_OUTPUT_NORMAL:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_NORMAL).c_str());
+		m_comboStyle.SelectString(-1, _("Normal").c_str());
 		break;
 	case DIFF_OUTPUT_CONTEXT:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
+		m_comboStyle.SelectString(-1, _("Context").c_str());
 		break;
 	case DIFF_OUTPUT_UNIFIED:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
+		m_comboStyle.SelectString(-1, _("Unified").c_str());
 		break;
 	case DIFF_OUTPUT_HTML:
-		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_HTML).c_str());
+		m_comboStyle.SelectString(-1, _("HTML").c_str());
 		break;
 	}
 

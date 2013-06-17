@@ -197,7 +197,7 @@ void COpenView::OnInitialUpdate()
 
 	if (!bMask)
 	{
-		String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+		String filterPrefix = _("[F] ");
 		filterNameOrMask = filterPrefix + filterNameOrMask;
 	}
 
@@ -335,7 +335,7 @@ void COpenView::OnPath2Button()
 void COpenView::OnOK() 
 {
 	int pathsType; // enum from PATH_EXISTENCE in paths.h
-	const String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	const String filterPrefix = _("[F] ");
 
 	UpdateData(TRUE);
 	TrimPaths();
@@ -762,7 +762,7 @@ void COpenView::SetUnpackerStatus(UINT msgID)
  */
 void COpenView::OnSelectFilter()
 {
-	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	String filterPrefix = _("[F] ");
 	CString curFilter;
 
 	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
@@ -800,7 +800,7 @@ void COpenView::OnSelectFilter()
  */
 BOOL COpenView::LoadProjectFile(const String &path)
 {
-	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	String filterPrefix = _("[F] ");
 	ProjectFile prj;
 
 	if (!theApp.LoadProjectFile(path, prj))

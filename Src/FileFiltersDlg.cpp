@@ -129,14 +129,14 @@ void FileFiltersDlg::InitList()
 	// Also enable infotips.
 	m_listFilters.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
-	String title = theApp.LoadString(IDS_FILTERFILE_NAMETITLE);
+	String title = _("Name");
 	m_listFilters.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);
-	title = theApp.LoadString(IDS_FILTERFILE_DESCTITLE);
+	title = _("Description");
 	m_listFilters.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 350);
-	title = theApp.LoadString(IDS_FILTERFILE_PATHTITLE);
+	title = _("Location");
 	m_listFilters.InsertColumn(2, title.c_str(), LVCFMT_LEFT, 350);
 
-	title = theApp.LoadString(IDS_USERCHOICE_NONE);
+	title = _("<None>");
 	m_listFilters.InsertItem(1, title.c_str());
 	m_listFilters.SetItemText(0, 1, title.c_str());
 	m_listFilters.SetItemText(0, 2, title.c_str());
@@ -282,7 +282,7 @@ static void EnableDlgItem(CWnd * parent, int item, bool enable)
  */
 bool FileFiltersDlg::IsFilterItemNone(int item) const
 {
-	String txtNone = theApp.LoadString(IDS_USERCHOICE_NONE);
+	String txtNone = _("<None>");
 	CString txt = m_listFilters.GetItemText(item, 0);
 
 	return (txt.CompareNoCase(txtNone.c_str()) == 0);
@@ -302,7 +302,7 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	// If item got selected
 	if (pNMLV->uNewState & LVIS_SELECTED)
 	{
-		String txtNone = theApp.LoadString(IDS_USERCHOICE_NONE);
+		String txtNone = _("<None>");
 		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
 		bool isNone = txt.CompareNoCase(txtNone.c_str()) == 0;
@@ -532,7 +532,7 @@ void FileFiltersDlg::UpdateFiltersList()
 
 	m_listFilters.DeleteAllItems();
 
-	String title = theApp.LoadString(IDS_USERCHOICE_NONE);
+	String title = _("<None>");
 	m_listFilters.InsertItem(1, title.c_str());
 	m_listFilters.SetItemText(0, 1, title.c_str());
 	m_listFilters.SetItemText(0, 2, title.c_str());

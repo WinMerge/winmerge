@@ -260,7 +260,7 @@ BOOL CMergeDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return false;
 
-	SetTitle(theApp.LoadString(IDS_FILE_COMPARISON_TITLE).c_str());
+	SetTitle(_("File Comparison").c_str());
 	
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		m_ptBuf[nBuffer]->InitNew ();
@@ -720,7 +720,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 
 	if (nRescanResult == RESCAN_FILE_ERR)
 	{
-		s = theApp.LoadString(IDS_FILEERROR);
+		s = _("An error occurred while comparing the files.");
 		LogErrorString(s);
 		AfxMessageBox(s.c_str(), MB_ICONSTOP);
 		return;
@@ -728,7 +728,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 
 	if (nRescanResult == RESCAN_TEMP_ERR)
 	{
-		s = theApp.LoadString(IDS_TEMP_FILEERROR);
+		s = _("Temporary files could not be created. Check your temporary path settings.");
 		LogErrorString(s);
 		AfxMessageBox(s.c_str(), MB_ICONSTOP);
 		return;
@@ -741,7 +741,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 			m_filePaths.GetLeft() == m_filePaths.GetRight() && m_filePaths.GetMiddle() == m_filePaths.GetRight())
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
-			s = theApp.LoadString(IDS_FILE_TO_ITSELF);
+			s = _("The same file is opened in both panels.");
 			AfxMessageBox(s.c_str(), MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
 		}
 		else if (identical == IDENTLEVEL_ALL)
@@ -1725,13 +1725,13 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	
 	// Files are identical - show text "Identical"
 	if (nDiffs <= 0)
-		s = theApp.LoadString(IDS_IDENTICAL);
+		s = _("Identical");
 	
 	// There are differences, but no selected diff
 	// - show amount of diffs
 	else if (GetCurrentDiff() < 0)
 	{
-		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
+		s = nDiffs == 1 ? _("1 Difference Found") : _("%1 Differences Found");
 		string_replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
 	}
 	
@@ -1739,7 +1739,7 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show diff number and amount of diffs
 	else
 	{
-		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+		s = _("Difference %1 of %2");
 		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
 		string_replace(s, _T("%1"), _itot(signInd + 1, sIdx, 10));
 		string_replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
@@ -3022,10 +3022,10 @@ void CMergeDoc::UpdateResources()
 	CString str;
 	int nBuffer;
 
-	m_strDesc[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-	m_strDesc[m_nBuffers - 1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+	m_strDesc[0] = _("Untitled left");
+	m_strDesc[m_nBuffers - 1] = _("Untitled right");
 	if (m_nBuffers == 3)
-		m_strDesc[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
+		m_strDesc[1] = _("Untitled middle");
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		UpdateHeaderPath(nBuffer);
 

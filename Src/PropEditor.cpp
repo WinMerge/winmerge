@@ -133,8 +133,8 @@ BOOL PropEditor::OnInitDialog()
 void PropEditor::LoadBreakTypeStrings()
 {
 	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
-	cbo->AddString(theApp.LoadString(IDS_BREAK_ON_WHITESPACE).c_str());
-	cbo->AddString(theApp.LoadString(IDS_BREAK_ON_PUNCTUATION).c_str());
+	cbo->AddString(_("Break at whitespace").c_str());
+	cbo->AddString(_("Break at whitespace or punctuation").c_str());
 }
 
 /**

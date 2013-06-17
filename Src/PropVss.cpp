@@ -125,7 +125,7 @@ BOOL PropVss::OnInitDialog()
 void PropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
-	String tempStr = theApp.LoadString(m_nVerSys == VCS_CLEARCASE ? IDS_CC_CMD : IDS_VSS_CMD);
+	String tempStr = m_nVerSys == VCS_CLEARCASE ? _("&Path to cleartool.exe:") : _("&Path to SS.EXE:");
 	m_ctlVssL1.SetWindowText(tempStr.c_str());
 	m_ctlPath.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 	m_ctlVssL1.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);

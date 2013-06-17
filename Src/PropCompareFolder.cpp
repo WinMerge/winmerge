@@ -103,15 +103,15 @@ BOOL PropCompareFolder::OnInitDialog()
 	CPropertyPage::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
-	String item = theApp.LoadString(IDS_COMPMETHOD_FULL_CONTENTS);
+	String item = _("Full Contents");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS);
+	item = _("Quick Contents");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_MODDATE);
+	item = _("Modified Date");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_DATESIZE);
+	item = _("Modified Date and Size");
 	combo->AddString(item.c_str());
-	item = theApp.LoadString(IDS_COMPMETHOD_SIZE);
+	item = _("Size");
 	combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 

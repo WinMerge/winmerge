@@ -260,7 +260,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 	LPTSTR filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
-	String dirSelTag = LoadResString(IDS_DIRSEL_TAG);
+	String dirSelTag = _("Folder Selection");
 
 	// Set initial filename to folder selection tag
 	dirSelTag += _T("."); // Treat it as filename
