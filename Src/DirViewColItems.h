@@ -11,6 +11,8 @@
 #ifndef DirViewColItems_h
 #define DirViewColItems_h
 
+#include "UnicodeString.h"
+
 class CDiffContext;
 
 // DirViewColItems typedefs
@@ -23,13 +25,19 @@ typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void 
  */
 struct DirColInfo
 {
-	LPCTSTR regName; /**< Internal name used for registry entries etc */
+	enum ColAlign
+	{
+		ALIGN_LEFT = 0,   // LVCFMT_LEFT
+		ALIGN_RIGHT = 1,  // LVCFMT_RIGHT
+		ALIGN_CENTER = 2  // LVCFMT_CENTER
+	};
+	const TCHAR *regName; /**< Internal name used for registry entries etc */
 	// localized string resources
 	const char *idName; /**< Displayed name, ID of string resource */
 	const char *idDesc; /**< Description, ID of string resource */
 	ColGetFncPtrType getfnc; /**< Handler giving display string */
 	ColSortFncPtrType sortfnc; /**< Handler for sorting this column */
-	SIZE_T offset;
+	size_t offset;
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 	int alignment; /**< Column alignment */
@@ -38,5 +46,22 @@ struct DirColInfo
 extern const int g_ncols;
 extern const int g_ncols3;
 
+class DirViewColItems
+{
+public:
+	DirViewColItems(int nDirs): m_nDirs(nDirs) {}
+	String GetColRegValueNameBase(int col) const;
+	int GetColDefaultOrder(int col) const;
+	const DirColInfo * GetDirColInfo(int col) const;
+	bool IsColById(int col, const char *idname) const;
+	bool IsColName(int col) const;
+	bool IsColLmTime(int col) const;
+	bool IsColMmTime(int col) const;
+	bool IsColRmTime(int col) const;
+	bool IsColStatus(int col) const;
+	bool IsColStatusAbbr(int col) const;
+private:
+	int m_nDirs;
+};
 
 #endif // DirViewColItems_h

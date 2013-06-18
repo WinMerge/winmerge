@@ -31,6 +31,7 @@
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirView.h"
+#include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
 #include "HexMergeFrm.h"
@@ -148,6 +149,7 @@ CDirView::CDirView()
 		, m_pShellContextMenuRight(NULL)
 		, m_hCurrentMenu(NULL)
 		, m_pSavedTreeState(NULL)
+		, m_pColItems(NULL)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -325,6 +327,7 @@ void CDirView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
+	m_pColItems.reset(new DirViewColItems(GetDocument()->m_nDirs));
 
 #ifdef _UNICODE
 	m_pList->SendMessage(CCM_SETUNICODEFORMAT, TRUE, 0);
@@ -3057,7 +3060,7 @@ void CDirView::SetColumnWidths()
 		int phy = ColLogToPhys(i);
 		if (phy >= 0)
 		{
-			String sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
 			int w = max(10, theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), DefColumnWidth));
 			GetListCtrl().SetColumnWidth(m_colorder[i], w);
 		}
@@ -3079,7 +3082,7 @@ void CDirView::SaveColumnWidths()
 		int phy = ColLogToPhys(i);
 		if (phy >= 0)
 		{
-			String sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
 			int w = GetListCtrl().GetColumnWidth(phy);
 			theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), w);
 		}
@@ -3268,7 +3271,7 @@ void CDirView::GetCurrentColRegKeys(std::vector<String>& colKeys)
 	for (int col = 0; col < nphyscols; ++col)
 	{
 		int logcol = ColPhysToLog(col);
-		colKeys.push_back(GetColRegValueNameBase(logcol));
+		colKeys.push_back(m_pColItems->GetColRegValueNameBase(logcol));
 	}
 }
 
@@ -3589,7 +3592,7 @@ void CDirView::ResetColumnWidths()
 		int phy = ColLogToPhys(i);
 		if (phy >= 0)
 		{
-			String sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
 			theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), DefColumnWidth);
 		}
 	}

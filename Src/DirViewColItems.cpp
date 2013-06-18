@@ -7,48 +7,32 @@
  */
 // ID line follows -- this is updated by SVN
 // $Id: DirViewColItems.cpp 7063 2009-12-27 15:28:16Z kimmov $
-
-
-#include "stdafx.h"
-#include <shlwapi.h>
+#include "DirViewColItems.h"
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
-#include "Merge.h"
-#include "DirView.h"
-#include "DirDoc.h"
-#include "MainFrm.h"
-#include "resource.h"
-#include "DirViewColItems.h"
+#include "DiffItem.h"
+#include "DiffContext.h"
 #include "locality.h"
-#include "unicoder.h"
-#include "coretools.h"
 #include "paths.h"
+#include "MergeApp.h"
 
 using Poco::Timestamp;
 
-// shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
-#ifdef UNICODE
-#define StrIsIntlEqual StrIsIntlEqualW
-#else
-#define StrIsIntlEqual StrIsIntlEqualA
-#endif
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+#ifndef countof
+#define countof(x) sizeof(x)/sizeof((x)[0])
 #endif
 
 using std::swap;
+using Poco::Int64;
 
 /**
  * @name Constants for short sizes.
  */
 /* @{ */
-static const UINT KILO = 1024;
-static const UINT MEGA = 1024 * KILO;
-static const UINT GIGA = 1024 * MEGA;
-static const __int64 TERA = 1024 * (__int64) GIGA;
+static const unsigned KILO = 1024;
+static const unsigned MEGA = 1024 * KILO;
+static const unsigned GIGA = 1024 * MEGA;
+static const Int64 TERA = 1024 * (Int64) GIGA;
 /**
  * @}
  */
@@ -125,17 +109,17 @@ const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binar
 }
 
 /**
- * @brief Function to compare two __int64s for a sort
+ * @brief Function to compare two Int64s for a sort
  */
-static int cmp64(__int64 i1, __int64 i2)
+static int cmp64(Int64 i1, Int64 i2)
 {
 	if (i1==i2) return 0;
 	return i1>i2 ? 1 : -1;
 }
 /**
- * @brief Convert __int64 to int sign
+ * @brief Convert Int64 to int sign
  */
-static int sign64(__int64 val)
+static int sign64(Int64 val)
 {
   if (val>0) return 1;
   if (val<0) return -1;
@@ -145,7 +129,7 @@ static int sign64(__int64 val)
  * @brief Function to compare two diffcodes for a sort
  * @todo How shall we order diff statuses?
  */
-static UINT cmpdiffcode(UINT diffcode1, UINT diffcode2)
+static unsigned cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
 	// Lower priority of the same items (FIXME:)
 	if (((diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME) && ((diffcode2 & DIFFCODE::COMPAREFLAGS) != DIFFCODE::SAME))
@@ -181,11 +165,11 @@ static int cmpfloat(double v1, double v2)
  * @note Localized suffix strings are read from resource.
  * @todo Can't handle > terabyte filesizes.
  */
-static String MakeShortSize(__int64 size)
+static String MakeShortSize(Int64 size)
 {
-#pragma warning(disable:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+#pragma warning(disable:4244) // warning C4244: '=' : conversion from 'Int64' to 'double', possible loss of data
 	double fsize = size;
-#pragma warning(default:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+#pragma warning(default:4244) // warning C4244: '=' : conversion from 'Int64' to 'double', possible loss of data
 	double number = 0;
 	int ndigits = 0;
 	String suffix;
@@ -221,15 +205,15 @@ static String MakeShortSize(__int64 size)
 			ndigits = 1;
 		}
 	}
-	else if (size < (__int64)TERA)
+	else if (size < (Int64)TERA)
 	{
-		number = fsize / ((__int64)GIGA);
+		number = fsize / ((Int64)GIGA);
 		suffix = _(" GB");
-		if (size < (__int64)GIGA * 10)
+		if (size < (Int64)GIGA * 10)
 		{
 			ndigits = 2;
 		}
-		else if (size < (__int64)GIGA * 100)
+		else if (size < (Int64)GIGA * 100)
 		{
 			ndigits = 1;
 		}
@@ -243,9 +227,7 @@ static String MakeShortSize(__int64 size)
 		return s;
 	}
 
-	TCHAR buffer[48];
-	_sntprintf(buffer, countof(buffer), _T("%lf"), number);
-	return locality::GetLocaleStr(buffer, ndigits) + suffix;
+	return locality::GetLocaleStr(string_format(_T("%lf"), number).c_str(), ndigits) + suffix;
 }
 
 /**
@@ -319,7 +301,7 @@ static String ColPathGet(const CDiffContext *, const void *p)
 		int length_s = (i_ahead != std::string::npos ? i_ahead : s.length()) - i;
 		int length_t = (j_ahead != std::string::npos ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
-			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
+			memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
 		{
 			String u(t.c_str() + j, length_t + 1);
 			u[length_t] = '|';
@@ -431,7 +413,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
  */
 static String ColTimeGet(const CDiffContext *, const void *p)
 {
-	const __int64 r = *static_cast<const __int64*>(p) / Timestamp::resolution();
+	const Int64 r = *static_cast<const Int64*>(p) / Timestamp::resolution();
 	if (r)
 		return locality::TimeString(&r);
 	else
@@ -445,7 +427,7 @@ static String ColTimeGet(const CDiffContext *, const void *p)
  */
 static String ColSizeGet(const CDiffContext *, const void *p)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
+	const Int64 &r = *static_cast<const Int64*>(p);
 	String s;
 	if (r != -1)
 	{
@@ -461,7 +443,7 @@ static String ColSizeGet(const CDiffContext *, const void *p)
  */
 static String ColSizeShortGet(const CDiffContext *, const void *p)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
+	const Int64 &r = *static_cast<const Int64*>(p);
 	String s;
 	if (r != -1)
 	{
@@ -855,8 +837,8 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
-	const __int64 &s = *static_cast<const __int64*>(q);
+	const Int64 &r = *static_cast<const Int64*>(p);
+	const Int64 &s = *static_cast<const Int64*>(q);
 	return cmp64(r, s);
 }
 
@@ -868,8 +850,8 @@ static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColSizeSort(const CDiffContext *, const void *p, const void *q)
 {
-	const __int64 &r = *static_cast<const __int64*>(p);
-	const __int64 &s = *static_cast<const __int64*>(q);
+	const Int64 &r = *static_cast<const Int64*>(p);
+	const Int64 &s = *static_cast<const Int64*>(q);
 	return cmp64(r, s);
 }
 
@@ -993,67 +975,67 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  */
 static DirColInfo f_cols[] =
 {
-	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
-	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
-	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, LVCFMT_LEFT },
-	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, LVCFMT_LEFT },
-	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, LVCFMT_LEFT },
-	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 5, true, LVCFMT_LEFT },
-	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, LVCFMT_LEFT },
-	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, LVCFMT_LEFT },
-	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 5, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 static DirColInfo f_cols3[] =
 {
-	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
-	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
-	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, LVCFMT_LEFT },
-	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, LVCFMT_LEFT },
-	{ _T("Mmtime"), COLHDR_MTIMEM, COLDESC_MTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, LVCFMT_LEFT },
-	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].mtime), 5, false, LVCFMT_LEFT },
-	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Mctime"), COLHDR_MTIMEC, COLDESC_MTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 6, true, LVCFMT_LEFT },
-	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Msize"), COLHDR_MSIZE, COLDESC_MSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, LVCFMT_RIGHT },
-	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, LVCFMT_RIGHT },
-	{ _T("MsizeShort"), COLHDR_MSIZE_SHORT, COLDESC_MSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, LVCFMT_RIGHT },
-	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, LVCFMT_RIGHT },
-	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Mversion"), COLHDR_MVERSION, COLDESC_MVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Mattr"), COLHDR_MATTRIBUTES, COLDESC_MATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].flags), -1, true, LVCFMT_LEFT },
-	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, LVCFMT_LEFT },
-	{ _T("Mencoding"), COLHDR_MENCODING, COLDESC_MENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, LVCFMT_LEFT },
-	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2]), -1, true, LVCFMT_LEFT },
-	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Meoltype"), COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Mmtime"), COLHDR_MTIMEM, COLDESC_MTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].mtime), 4, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rmtime"), COLHDR_RTIMEM, COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].mtime), 5, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Lctime"), COLHDR_LTIMEC, COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Mctime"), COLHDR_MTIMEC, COLDESC_MTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Rctime"), COLHDR_RTIMEC, COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].ctime), -1, false, DirColInfo::ALIGN_LEFT },
+	{ _T("Ext"), COLHDR_EXTENSION, COLDESC_EXTENSION, &ColExtGet, &ColExtSort, 0, 6, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lsize"), COLHDR_LSIZE, COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Msize"), COLHDR_MSIZE, COLDESC_MSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Rsize"), COLHDR_RSIZE, COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("LsizeShort"), COLHDR_LSIZE_SHORT, COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("MsizeShort"), COLHDR_MSIZE_SHORT, COLDESC_MSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("RsizeShort"), COLHDR_RSIZE_SHORT, COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].size), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Newer"), COLHDR_NEWER, COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lversion"), COLHDR_LVERSION, COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mversion"), COLHDR_MVERSION, COLDESC_MVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rversion"), COLHDR_RVERSION, COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("StatusAbbr"), COLHDR_RESULT_ABBR, COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Binary"), COLHDR_BINARY, COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lattr"), COLHDR_LATTRIBUTES, COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mattr"), COLHDR_MATTRIBUTES, COLDESC_MATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rattr"), COLHDR_RATTRIBUTES, COLDESC_RATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2].flags), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Lencoding"), COLHDR_LENCODING, COLDESC_LENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Mencoding"), COLHDR_MENCODING, COLDESC_MENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[1]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Rencoding"), COLHDR_RENCODING, COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[2]), -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Snsdiffs"), COLHDR_NSDIFFS, COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Snidiffs"), COLHDR_NIDIFFS, COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, DirColInfo::ALIGN_RIGHT },
+	{ _T("Leoltype"), COLHDR_LEOL_TYPE, COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Meoltype"), COLHDR_MEOL_TYPE, COLDESC_MEOL_TYPE, &ColMEOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Reoltype"), COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColAttrSort, 0, -1, true, DirColInfo::ALIGN_LEFT },
 };
 
 /**
@@ -1066,16 +1048,16 @@ const int g_ncols3 = countof(f_cols3);
  * @brief Registry base value name for saving/loading info for this column
  */
 String
-CDirView::GetColRegValueNameBase(int col) const
+DirViewColItems::GetColRegValueNameBase(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
-		ASSERT(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<countof(f_cols));
 		return string_format(_T("WDirHdr_%s"), f_cols[col].regName);
 	}
 	else
 	{
-		ASSERT(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<countof(f_cols3));
 		return string_format(_T("WDirHdr_%s"), f_cols3[col].regName);
 	}
 }
@@ -1084,16 +1066,16 @@ CDirView::GetColRegValueNameBase(int col) const
  * @brief Get default physical order for specified logical column
  */
 int
-CDirView::GetColDefaultOrder(int col) const
+DirViewColItems::GetColDefaultOrder(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
-		ASSERT(col>=0 && col<countof(f_cols));
+		assert(col>=0 && col<countof(f_cols));
 		return f_cols[col].physicalIndex;
 	}
 	else
 	{
-		ASSERT(col>=0 && col<countof(f_cols3));
+		assert(col>=0 && col<countof(f_cols3));
 		return f_cols3[col].physicalIndex;
 	}
 }
@@ -1102,13 +1084,13 @@ CDirView::GetColDefaultOrder(int col) const
  * @brief Return the info about the specified physical column
  */
 const DirColInfo *
-CDirView::DirViewColItems_GetDirColInfo(int col) const
+DirViewColItems::GetDirColInfo(int col) const
 {
-	if (GetDocument()->m_nDirs < 3)
+	if (m_nDirs < 3)
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return 0;
 		}
 		return &f_cols[col];
@@ -1117,7 +1099,7 @@ CDirView::DirViewColItems_GetDirColInfo(int col) const
 	{
 		if (col < 0 || col >= countof(f_cols3))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return 0;
 		}
 		return &f_cols3[col];
@@ -1128,14 +1110,14 @@ CDirView::DirViewColItems_GetDirColInfo(int col) const
  * @brief Check if specified physical column has specified resource id name
  */
 bool
-CDirView::IsColById(int col, const char *idname) const
+DirViewColItems::IsColById(int col, const char *idname) const
 {
-	int nDirs = GetDocument()->m_nDirs;
+	int nDirs = m_nDirs;
 	if (nDirs < 3)
 	{
 		if (col < 0 || col >= countof(f_cols))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
 		return f_cols[col].idName == idname;
@@ -1144,7 +1126,7 @@ CDirView::IsColById(int col, const char *idname) const
 	{
 		if (col < 0 || col >= sizeof(f_cols3)/sizeof(f_cols3[0]))
 		{
-			ASSERT(0); // fix caller, should not ask for nonexistent columns
+			assert(0); // fix caller, should not ask for nonexistent columns
 			return false;
 		}
 		return f_cols3[col].idName == idname;
@@ -1155,7 +1137,7 @@ CDirView::IsColById(int col, const char *idname) const
  * @brief Is specified physical column the name column?
  */
 bool
-CDirView::IsColName(int col) const
+DirViewColItems::IsColName(int col) const
 {
 	return IsColById(col, COLHDR_FILENAME);
 }
@@ -1163,7 +1145,7 @@ CDirView::IsColName(int col) const
  * @brief Is specified physical column the left modification time column?
  */
 bool
-CDirView::IsColLmTime(int col) const
+DirViewColItems::IsColLmTime(int col) const
 {
 	return IsColById(col, COLHDR_LTIMEM);
 }
@@ -1171,7 +1153,7 @@ CDirView::IsColLmTime(int col) const
  * @brief Is specified physical column the middle modification time column?
  */
 bool
-CDirView::IsColMmTime(int col) const
+DirViewColItems::IsColMmTime(int col) const
 {
 	return IsColById(col, COLHDR_MTIMEM);
 }
@@ -1179,7 +1161,7 @@ CDirView::IsColMmTime(int col) const
  * @brief Is specified physical column the right modification time column?
  */
 bool
-CDirView::IsColRmTime(int col) const
+DirViewColItems::IsColRmTime(int col) const
 {
 	return IsColById(col, COLHDR_RTIMEM);
 }
@@ -1187,7 +1169,7 @@ CDirView::IsColRmTime(int col) const
  * @brief Is specified physical column the full status (result) column?
  */
 bool
-CDirView::IsColStatus(int col) const
+DirViewColItems::IsColStatus(int col) const
 {
 	return IsColById(col, COLHDR_RESULT);
 }
@@ -1195,7 +1177,7 @@ CDirView::IsColStatus(int col) const
  * @brief Is specified physical column the full status (result) column?
  */
 bool
-CDirView::IsColStatusAbbr(int col) const
+DirViewColItems::IsColStatusAbbr(int col) const
 {
 	return IsColById(col, COLHDR_RESULT_ABBR);
 }

@@ -44,7 +44,7 @@ String CDirView::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
 		const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
-	const DirColInfo * pColInfo = DirViewColItems_GetDirColInfo(col);
+	const DirColInfo * pColInfo = m_pColItems->GetDirColInfo(col);
 	if (!pColInfo)
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
@@ -69,7 +69,7 @@ int CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
 		const DIFFITEM & rdi) const
 {
 	// Custom properties have custom sort functions
-	const DirColInfo * pColInfo = DirViewColItems_GetDirColInfo(col);
+	const DirColInfo * pColInfo = m_pColItems->GetDirColInfo(col);
 	if (!pColInfo)
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
@@ -124,7 +124,7 @@ int CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
  */
 bool CDirView::IsDefaultSortAscending(int col) const
 {
-	const DirColInfo * pColInfo = DirViewColItems_GetDirColInfo(col);
+	const DirColInfo * pColInfo = m_pColItems->GetDirColInfo(col);
 	if (!pColInfo)
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
@@ -153,7 +153,7 @@ void CDirView::UpdateColumnNames()
 	int ncols = GetColLogCount();
 	for (int i=0; i<ncols; ++i)
 	{
-		const DirColInfo * col = DirViewColItems_GetDirColInfo(i);
+		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
 		NameColumn(col->idName, i);
 	}
 }
@@ -166,7 +166,7 @@ void CDirView::SetColAlignments()
 	int ncols = GetColLogCount();
 	for (int i=0; i<ncols; ++i)
 	{
-		const DirColInfo * col = DirViewColItems_GetDirColInfo(i);
+		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
 		LVCOLUMN lvc;
 		lvc.mask = LVCF_FMT;
 		lvc.fmt = col->alignment;
@@ -254,7 +254,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	UIntPtr key = GetItemKey(nIdx);
 	if (key == SPECIAL_ITEM_POS)
 	{
-		if (IsColName(i))
+		if (m_pColItems->IsColName(i))
 		{
 			pParam->item.pszText = _T("..");
 		}
@@ -274,8 +274,8 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 			{
 				if
 				(
-					IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
-				||	IsColRmTime(i) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
+					m_pColItems->IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
+				||	m_pColItems->IsColRmTime(i) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
 				)
 				{
 					s.insert(0, _T("* "));
@@ -288,9 +288,9 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 			{
 				if
 				(
-					IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
-				||	IsColMmTime(i) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
-				||	IsColRmTime(i) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
+					m_pColItems->IsColLmTime(i) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
+				||	m_pColItems->IsColMmTime(i) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
+				||	m_pColItems->IsColRmTime(i) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
 				)
 				{
 					s.insert(0, _T("* "));
@@ -315,7 +315,7 @@ void CDirView::SaveColumnOrders()
 	ASSERT(m_invcolorder.size() == m_numcols);
 	for (int i=0; i < m_numcols; i++)
 	{
-		String RegName = GetColRegValueNameBase(i) + _T("_Order");
+		String RegName = m_pColItems->GetColRegValueNameBase(i) + _T("_Order");
 		int ord = m_colorder[i];
 		theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName.c_str(), ord);
 	}
@@ -337,7 +337,7 @@ void CDirView::LoadColumnOrders()
 	int i=0;
 	for (i=0; i<m_numcols; ++i)
 	{
-		String RegName = GetColRegValueNameBase(i) + _T("_Order");
+		String RegName = m_pColItems->GetColRegValueNameBase(i) + _T("_Order");
 		int ord = theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), RegName.c_str(), -2);
 		if (ord<-1 || ord >= m_numcols)
 			break;
@@ -409,7 +409,7 @@ void CDirView::ResetColumnOrdering()
 	m_dispcols = 0;
 	for (int i=0; i<m_numcols; ++i)
 	{
-		int phy = GetColDefaultOrder(i);
+		int phy = m_pColItems->GetColDefaultOrder(i);
 		m_colorder[i] = phy;
 		if (phy>=0)
 		{
@@ -439,7 +439,7 @@ void CDirView::ClearColumnOrders()
  */
 String CDirView::GetColDisplayName(int col) const
 {
-	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
+	const DirColInfo * colinfo = m_pColItems->GetDirColInfo(col);
 	return tr(colinfo->idName);
 }
 
@@ -448,7 +448,7 @@ String CDirView::GetColDisplayName(int col) const
  */
 String CDirView::GetColDescription(int col) const
 {
-	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
+	const DirColInfo * colinfo = m_pColItems->GetDirColInfo(col);
 	return tr(colinfo->idDesc);
 }
 
@@ -513,7 +513,7 @@ void CDirView::OnEditColumns()
 	// Add default order of columns for resetting to defaults
 	for (l = 0; l < m_numcols; ++l)
 	{
-		int phy = GetColDefaultOrder(l);
+		int phy = m_pColItems->GetColDefaultOrder(l);
 		dlg.AddDefColumn(GetColDisplayName(l), l, phy);
 	}
 

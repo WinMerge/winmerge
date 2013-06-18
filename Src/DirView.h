@@ -57,6 +57,7 @@ struct DirColInfo;
 class CLoadSaveCodepageDlg;
 class CShellContextMenu;
 class CDiffContext;
+class DirViewColItems;
 
 struct ViewCustomFlags
 {
@@ -222,22 +223,9 @@ private:
 	void ClearColumnOrders();
 	void ResetColumnOrdering();
 	void MoveColumn(int psrc, int pdest);
-	String GetColRegValueNameBase(int col) const;
 	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
 	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const;
 // End DirViewCols.cpp
-
-// Implementation in DirViewColItems.cpp
-	int GetColDefaultOrder(int col) const;
-	const DirColInfo * DirViewColItems_GetDirColInfo(int col) const;
-	bool IsColById(int col, const char *idname) const;
-	bool IsColName(int col) const;
-	bool IsColLmTime(int col) const;
-	bool IsColMmTime(int col) const;
-	bool IsColRmTime(int col) const;
-	bool IsColStatus(int col) const;
-	bool IsColStatusAbbr(int col) const;
-// End DirViewColItems.cpp
 
 private:
 
@@ -304,6 +292,7 @@ protected:
 	boost::scoped_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	boost::scoped_ptr<DirViewTreeState> m_pSavedTreeState;
+	boost::scoped_ptr<DirViewColItems> m_pColItems;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
