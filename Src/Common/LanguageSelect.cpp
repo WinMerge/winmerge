@@ -682,13 +682,14 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 				// avoid dereference of empty vector or last vector
 				if (lines.size() > 0)
 				{
+					unslash(0, msgid);
+					m_map_lineno.insert(std::make_pair(msgid, lines[0]));
 					for (unsigned *pline = &*lines.begin() ; pline <= &*(lines.end() - 1) ; ++pline)
 					{
 						unsigned line = *pline;
 						if (m_strarray.size() <= line)
 							m_strarray.resize(line + 1);
 						m_strarray[line] = msgid;
-						m_map_lineno.insert(std::make_pair(msgid, line));
 					}
 				}
 				lines.clear();
@@ -757,6 +758,8 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 			else
 			{
 				ps = 0;
+				if (!msgid.empty())
+					unslash(0, msgid);
 				if (msgstr.empty())
 					msgstr = msgid;
 				unslash(m_codepage, msgstr);
