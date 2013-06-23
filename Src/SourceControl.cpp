@@ -76,7 +76,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 	{
 		// Prompt for user choice
 		CVssPrompt dlg;
-		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath.c_str());
+		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
 		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
@@ -139,7 +139,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		CRegKeyEx reg;
 		CString spath, sname;
 
-		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
+		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
 		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
@@ -179,7 +179,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			COleException *eOleException = new COleException;
 				
 			// BSP - Create the COM interface pointer to VSS
-			if (FAILED(vssdb.CreateDispatch(_T("SourceSafe"), eOleException)))
+			if (!vssdb.CreateDispatch(_T("SourceSafe"), eOleException))
 			{
 				throw eOleException;	// catch block deletes.
 			}
@@ -264,7 +264,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 					sname = buffer;
 				}
 			}
-			String strItem = m_vssHelper.GetProjectBase().c_str() + '\\' + sname;
+			String strItem = m_vssHelper.GetProjectBase() + _T("\\") + static_cast<const TCHAR *>(sname);
 
 			TRY
 			{
