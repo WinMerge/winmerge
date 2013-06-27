@@ -185,9 +185,10 @@ void CConfigLog::WriteVersionOf(int indent, const String& path)
 	HANDLE h = FindFirstFile(path.c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
+		String dir = paths_GetPathOnly(path);
 		do
 		{
-			WriteVersionOf1(indent, path + ff.cFileName);
+			WriteVersionOf1(indent, paths_ConcatPath(dir, ff.cFileName));
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}
@@ -198,11 +199,11 @@ void CConfigLog::WriteVersionOf(int indent, const String& path)
  */
 void CConfigLog::WriteVersionOf7z(const String& dir)
 {
-	WriteVersionOf(2, dir + _T("\\7-zip*.dll"));
+	WriteVersionOf(2, paths_ConcatPath(dir, _T("7-zip*.dll")));
 	WriteItem(2, _T("Codecs"));
-	WriteVersionOf(3, dir + _T("codecs\\*.dll"));
+	WriteVersionOf(3, paths_ConcatPath(dir, _T("codecs\\*.dll")));
 	WriteItem(2, _T("Formats"));
-	WriteVersionOf(3, dir + _T("formats\\*.dll"));
+	WriteVersionOf(3, paths_ConcatPath(dir, _T("formats\\*.dll")));
 }
 
 /**
@@ -229,13 +230,11 @@ void CConfigLog::WriteArchiveSupport()
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(standalone), UINT LOWORD(standalone));
 	WriteItem(1, _T("7-Zip components for standalone operation"), path);
 	GetModuleFileName(0, path, sizeof(path)/sizeof(path[0]));
-	LPTSTR pattern = PathFindFileName(path);
-	PathRemoveFileSpec(path);
-	WriteVersionOf7z(path);
+	WriteVersionOf7z(paths_GetPathOnly(path));
 
 	WriteItem(1, _T("Merge7z plugins on path"));
-	lstrcpy(pattern, _T("Merge7z*.dll"));
-	WriteVersionOf(2, path);
+
+	WriteVersionOf(2, paths_ConcatPath(paths_GetPathOnly(path), _T("Merge7z*.dll")));
 	// now see what's on the path:
 	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
 	{
