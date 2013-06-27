@@ -8,11 +8,6 @@ void LogErrorString(const String& sz)
 {
 }
 
-CLogFile * GetLog()
-{
-	return NULL;
-}
-
 void AppErrorMessageBox(const String& msg)
 {
 }
