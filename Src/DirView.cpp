@@ -457,14 +457,6 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 }
 
 /**
- * @brief Get default folder compare status image.
- */
-int CDirView::GetDefaultColImage() const
-{
-	return DIFFIMG_ERROR;
-}
-
-/**
  * @brief Called before compare is started.
  * CDirDoc calls this function before new compare is started, so this
  * is good place to setup GUI for compare.
@@ -1315,19 +1307,6 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2, int * sel3)
 }
 
 /**
- * @brief Return true if this unpacker handles binary files
- */
-static bool
-IsBinaryUnpacker(PackingInfo * infoUnpacker)
-{
-	if (!infoUnpacker)
-		return false;
-	if (!_tcsstr(infoUnpacker->pluginName.c_str(), _T("BinaryFile")))
-		return false;
-	return true;
-}
-
-/**
  * @brief Open special items (parent folders etc).
  * @param [in] pos1 First item position.
  * @param [in] pos2 Second item position.
@@ -1347,51 +1326,6 @@ void CDirView::OpenSpecialItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3)
 		// Parent directory & something else selected
 		// Not valid action
 	}
-}
-
-/**
- * @brief Creates a pairing folder for unique folder item.
- * This function creates a pairing folder for unique folder item in
- * folder compare. This way user can browse into unique folder's
- * contents and don't necessarily need to copy whole folder structure.
- * @param [in] di DIFFITEM for folder compare item.
- * @param [in] side1 true if our unique folder item is side1 item.
- * @param [out] newFolder New created folder (full folder path).
- * @return true if user agreed and folder was created.
- */
-bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
-{
-	String subdir;
-	String basedir;
-	if (side1)
-	{
-		// Get left side (side1) folder name (existing) and
-		// right side base path (where to create)
-		subdir = di.diffFileInfo[0].filename;
-		basedir = GetDocument()->GetBasePath(1);
-		basedir = di.getFilepath(0, basedir);
-	}
-	else
-	{
-		// Get right side (side2) folder name (existing) and
-		// left side base path (where to create)
-		subdir = di.diffFileInfo[1].filename;
-		basedir = GetDocument()->GetBasePath(0);
-		basedir = di.getFilepath(1, basedir);
-	}
-	String createpath = paths_ConcatPath(basedir, subdir);
-	newFolder = createpath;
-
-	String message = string_format_string1(
-		_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
-		createpath);
-	int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING);
-	if (res == IDYES)
-	{
-		bool ret = paths_CreateIfNeeded(createpath);
-		return ret;
-	}
-	return false;
 }
 
 /**
@@ -1436,39 +1370,6 @@ bool CDirView::OpenOneItem(UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITE
 			return false;
 		}
 	}
-//	else if ((*di1)->diffcode.isSideLeftOnly())
-//	{
-//		// Open left-only item to editor if its not a folder or binary
-//		if (isDir)
-//		{
-//			if (CreateFoldersPair(**di1, true, path2))
-//			{
-//				return true;
-//			}
-//		}
-//		else if ((*di1)->diffcode.isBin())
-//			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
-//		else
-//			DoOpenWithEditor(SIDE_LEFT);
-//		return false;
-//	}
-//	else if ((*di1)->diffcode.isSideRightOnly())
-//	{
-//		// Open right-only item to editor if its not a folder or binary
-//		if (isDir)
-//		{
-//			if (CreateFoldersPair(**di1, false, path1))
-//			{
-//				return true;
-//			}
-//		}
-//		else if ((*di1)->diffcode.isBin())
-//			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
-//		else
-//			DoOpenWithEditor(SIDE_RIGHT);
-//		return false;
-//	}
-	// Fall through and compare files (which may be archives)
 
 	return true;
 }

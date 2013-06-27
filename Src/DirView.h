@@ -247,7 +247,6 @@ protected:
 	int GetFirstDifferentItem();
 	int GetLastDifferentItem();
 	int GetColImage(const DIFFITEM & di) const;
-	int GetDefaultColImage() const;
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
 	void WarnContentsChanged(const String & failedPath);
@@ -258,7 +257,6 @@ protected:
 			PathContext &paths, int & sel1, int & sel2, bool & isDir);
 	bool OpenThreeItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, int & sel2, int & sel3, bool & isDir);
-	bool CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder);
 
 // Implementation data
 protected:
