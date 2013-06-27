@@ -2664,43 +2664,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ssapi.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="stringdiffs.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3248,6 +3211,9 @@
 				RelativePath="Common\multiformatText.h">
 			</File>
 			<File
+				RelativePath=".\Common\MyCom.h">
+			</File>
+			<File
 				RelativePath=".\OptionsDiffColors.h">
 			</File>
 			<File
@@ -3294,6 +3260,9 @@
 			</File>
 			<File
 				RelativePath="ssapi.h">
+			</File>
+			<File
+				RelativePath=".\ssauto.h">
 			</File>
 			<File
 				RelativePath="stringdiffs.h">

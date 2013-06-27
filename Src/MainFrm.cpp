@@ -2514,37 +2514,6 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 }
 
 /**
- * @brief Shows VSS error from exception and writes log.
- */
-void CMainFrame::ShowVSSError(CException *e, const String& strItem)
-{
-	TCHAR errStr[1024] = {0};
-	if (e->GetErrorMessage(errStr, 1024))
-	{
-		String errMsg = _("Error from VSS:");
-		String logMsg = errMsg;
-		errMsg += _T("\n");
-		errMsg += errStr;
-		logMsg += _T(" ");
-		logMsg += errStr;
-		if (!strItem.empty())
-		{
-			errMsg += _T("\n\n");
-			errMsg += strItem;
-			logMsg += _T(": ");
-			logMsg += strItem;
-		}
-		LogErrorString(logMsg);
-		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
-	}
-	else
-	{
-		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
-		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
-	}
-}
-
-/**
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if NULL main help is opened.
  */

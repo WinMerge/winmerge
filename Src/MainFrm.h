@@ -128,7 +128,6 @@ public:
 	void ApplyViewWhitespace();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
-	void ShowVSSError(CException *e, const String& strItem);
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void UpdateCodepageModule();
 	void CheckinToClearCase(const String& strDestinationPath);
@@ -178,10 +177,10 @@ public:
 	 */
 	/*@{*/ 
 protected:
-	CString m_strVssUser; /**< Visual Source Safe User ID */
-	CString m_strVssPassword; /**< Visual Source Safe Password */
-	CString m_strVssDatabase; /**< Visual Source Safe database */
-	CString m_strCCComment; /**< ClearCase comment */
+	String m_strVssUser; /**< Visual Source Safe User ID */
+	String m_strVssPassword; /**< Visual Source Safe Password */
+	String m_strVssDatabase; /**< Visual Source Safe database */
+	String m_strCCComment; /**< ClearCase comment */
 public:
 	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
 	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */

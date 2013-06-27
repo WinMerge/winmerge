@@ -11,21 +11,68 @@
 #include <Poco/Process.h>
 #include <Poco/Format.h>
 #include <direct.h>
+#include <Shlwapi.h>
+#include <initguid.h>
+#include "ssauto.h"
+#include "MyCom.h"
 #include "UnicodeString.h"
 #include "unicoder.h"
 #include "MainFrm.h"
 #include "Merge.h"
+#include "MergeApp.h"
 #include "OptionsDef.h"
 #include "RegKey.h"
 #include "paths.h"
 #include "VssPrompt.h"
 #include "WaitStatusCursor.h"
-#include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "CCPrompt.h"
 
 using Poco::format;
 using Poco::Process;
 using Poco::ProcessHandle;
+
+/**
+ * @brief Shows VSS error from exception and writes log.
+ */
+static void ShowVSSError(HRESULT hr, const String& strItem)
+{
+	String errStr = GetSysError(hr);
+	if (errStr == _T("?"))
+	{
+		CMyComPtr<IErrorInfo> perrinfo;
+		if (SUCCEEDED(GetErrorInfo(0, &perrinfo)) && perrinfo)
+		{
+			CMyComBSTR bstrSource, bstrDesc;
+			if (SUCCEEDED(perrinfo->GetSource(&bstrSource)) && bstrSource.m_str)
+				errStr = _("\n") + ucr::toTString(bstrSource.m_str) + _T(" - ");
+			if (SUCCEEDED(perrinfo->GetDescription(&bstrDesc)) && bstrDesc.m_str)
+				errStr += ucr::toTString(bstrDesc.m_str);
+		}
+	}
+	if (!errStr.empty())
+	{
+		String errMsg = _("Error from VSS:");
+		String logMsg = errMsg;
+		errMsg += _T("\n");
+		errMsg += errStr;
+		logMsg += _T(" ");
+		logMsg += errStr;
+		if (!strItem.empty())
+		{
+			errMsg += _T("\n\n");
+			errMsg += strItem;
+			logMsg += _T(": ");
+			logMsg += strItem;
+		}
+		LogErrorString(logMsg);
+		AppErrorMessageBox(errMsg);
+	}
+	else
+	{
+		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
+		AppErrorMessageBox(_("Error executing versioning system command."));
+	}
+}
 
 void
 CMainFrame::InitializeSourceControlMembers()
@@ -61,6 +108,8 @@ CMainFrame::InitializeSourceControlMembers()
 */
 BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 {
+	String spath, sname;
+	paths_SplitFilename(strSavePath, &spath, &sname, NULL);
 	CFileStatus status;
 	UINT userChoice = 0;
 	int nVerSys = 0;
@@ -78,8 +127,8 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		CVssPrompt dlg;
 		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
 		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
-		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
-		dlg.m_strPassword = m_strVssPassword;
+		dlg.m_strUser = m_strVssUser.c_str();          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword.c_str();
 
 		// Dialog not suppressed - show it and allow user to select "checkout all"
 		if (!m_CheckOutMulti)
@@ -97,10 +146,6 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
 			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
-			String path, name;
-			paths_SplitFilename(strSavePath, &path, &name, NULL);
-			String spath(path);
-			String sname(path);
 			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0]) - 'A' + 1);
@@ -137,13 +182,12 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		// prompt for user choice
 		CVssPrompt dlg;
 		CRegKeyEx reg;
-		CString spath, sname;
 
 		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
 		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
-		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
-		dlg.m_strPassword = m_strVssPassword;
-		dlg.m_strSelectedDatabase = m_strVssDatabase;
+		dlg.m_strUser = m_strVssUser.c_str();          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword.c_str();
+		dlg.m_strSelectedDatabase = m_strVssDatabase.c_str();
 		dlg.m_bVCProjSync = TRUE;
 
 		// Dialog not suppressed - show it and allow user to select "checkout all"
@@ -152,169 +196,119 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			dlg.m_bMultiCheckouts = FALSE;
 			userChoice = dlg.DoModal();
 			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			if (userChoice != IDOK)
+				return FALSE; // User selected cancel
 		}
-		else // Dialog already shown and user selected to "checkout all"
-			userChoice = IDOK;
-
 		// process versioning system specific action
-		if (userChoice == IDOK)
+		WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
+		BOOL bOpened = FALSE;
+		m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
+		m_strVssUser = dlg.m_strUser;
+		m_strVssPassword = dlg.m_strPassword;
+		m_strVssDatabase = dlg.m_strSelectedDatabase;
+		m_bVCProjSync = dlg.m_bVCProjSync;					
+
+		theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase.c_str());
+		theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
+		theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser.c_str());
+//		theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword.c_str());
+
+		HRESULT hr;
+		CMyComPtr<IVSSDatabase> vssdb;
+		CMyComPtr<IVSSItems> vssis;
+		CMyComPtr<IVSSItem> vssi;
+			
+		// BSP - Create the COM interface pointer to VSS
+		if (FAILED(hr = vssdb.CoCreateInstance(CLSID_VSSDatabase, IID_IVSSDatabase)))
 		{
-			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
-			BOOL bOpened = FALSE;
-			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
-			m_strVssUser = dlg.m_strUser;
-			m_strVssPassword = dlg.m_strPassword;
-			m_strVssDatabase = dlg.m_strSelectedDatabase;
-			m_bVCProjSync = dlg.m_bVCProjSync;					
-
-			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
-			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
-//			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
-
-			IVSSDatabase vssdb;
-			IVSSItems vssis;
-			IVSSItem vssi;
-
-			COleException *eOleException = new COleException;
-				
-			// BSP - Create the COM interface pointer to VSS
-			if (!vssdb.CreateDispatch(_T("SourceSafe"), eOleException))
-			{
-				throw eOleException;	// catch block deletes.
-			}
-			else
-			{
-				eOleException->Delete();
-			}
-
-			//check if m_strVSSDatabase is specified:
-			if (!m_strVssDatabase.IsEmpty())
-			{
-				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
-				TRY
-				{
-					// BSP - Open the specific VSS data file  using info from VSS dialog box
-					vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);
-				}
-				CATCH_ALL(e)
-				{
-					ShowVSSError(e, _T(""));
-				}
-				END_CATCH_ALL
-
-				bOpened = TRUE;
-			}
-			
-			if (bOpened == FALSE)
-			{
-				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
-				TRY
-				{
-					// BSP - Open the specific VSS data file  using info from VSS dialog box
-					//let vss try to find one if not specified
-					vssdb.Open(NULL, m_strVssUser, m_strVssPassword);
-				}
-				CATCH_ALL(e)
-				{
-					ShowVSSError(e, _T(""));
-					return FALSE;
-				}
-				END_CATCH_ALL
-			}
-
-			String path, name;
-			paths_SplitFilename(strSavePath, &path, &name, 0);
-			spath = path.c_str();
-			sname = name.c_str();
-
-			// BSP - Combine the project entered on the dialog box with the file name...
-			const UINT nBufferSize = 1024;
-			static TCHAR buffer[nBufferSize];
-			static TCHAR buffer1[nBufferSize];
-			static TCHAR buffer2[nBufferSize];
-
-			_tcscpy(buffer1, strSavePath.c_str());
-			_tcscpy(buffer2, m_vssHelper.GetProjectBase().c_str());
-			_tcslwr(buffer1);
-			_tcslwr(buffer2);
-
-			//make sure they both have \\ instead of /
-			for (int k = 0; k < nBufferSize; k++)
-			{
-				if (buffer1[k] == '/')
-					buffer1[k] = '\\';
-			}
-
-			m_vssHelper.SetProjectBase(buffer2);
-			TCHAR * pbuf2 = &buffer2[2];//skip the $/
-			TCHAR * pdest =  _tcsstr(buffer1, pbuf2);
-			if (pdest)
-			{
-				int index  = (int)(pdest - buffer1 + 1);
-			
-				_tcscpy(buffer, buffer1);
-				TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
-				sname = fp;
-
-				if (sname[0] == ':')
-				{
-					_tcscpy(buffer2, sname);
-					_tcscpy(buffer, (TCHAR*)&buffer2[2]);
-					sname = buffer;
-				}
-			}
-			String strItem = m_vssHelper.GetProjectBase() + _T("\\") + static_cast<const TCHAR *>(sname);
-
-			TRY
-			{
-				//  BSP - ...to get the specific source safe item to be checked out
-				vssi = vssdb.GetVSSItem( strItem.c_str(), 0 );
-			}
-			CATCH_ALL(e)
-			{
-				ShowVSSError(e, strItem);
-				return FALSE;
-			}
-			END_CATCH_ALL
-
-			if (!m_bVssSuppressPathCheck)
-			{
-				// BSP - Get the working directory where VSS will put the file...
-				String strLocalSpec = vssi.GetLocalSpec();
-
-				// BSP - ...and compare it to the directory WinMerge is using.
-				if (string_compare_nocase(strLocalSpec, strSavePath))
-				{
-					// BSP - if the directories are different, let the user confirm the CheckOut
-					int iRes = LangMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
-							MB_YESNO | MB_YES_TO_ALL | MB_ICONWARNING);
-
-					if (iRes == IDNO)
-					{
-						m_bVssSuppressPathCheck = FALSE;
-						m_CheckOutMulti = FALSE; // Reset, we don't want 100 of the same errors
-						return FALSE;   // No means user has to start from begin
-					}
-					else if (iRes == IDYESTOALL)
-						m_bVssSuppressPathCheck = TRUE; // Don't ask again with selected files
-				}
-			}
-
-			TRY
-			{
-				// BSP - Finally! Check out the file!
-				vssi.Checkout(_T(""), strSavePath.c_str(), 0);
-			}
-			CATCH_ALL(e)
-			{
-				ShowVSSError(e, strSavePath);
-				return FALSE;
-			}
-			END_CATCH_ALL
+			ShowVSSError(hr, _T(""));
+			return FALSE;
 		}
-		else
-			return FALSE; // User selected cancel
+				// BSP - Open the specific VSS data file  using info from VSS dialog box
+		// let vss try to find one if not specified
+		if (FAILED(hr = vssdb->Open(
+			CMyComBSTR(!m_strVssDatabase.empty() ?
+				(ucr::toUTF16(m_strVssDatabase) + L"\\srcsafe.ini").c_str() : NULL),
+			CMyComBSTR(ucr::toUTF16(m_strVssUser).c_str()),
+			CMyComBSTR(ucr::toUTF16(m_strVssPassword).c_str()))))
+		{
+			ShowVSSError(hr, _T(""));
+		}
+
+		// BSP - Combine the project entered on the dialog box with the file name...
+		const UINT nBufferSize = 1024;
+		static TCHAR buffer[nBufferSize];
+		static TCHAR buffer1[nBufferSize];
+		static TCHAR buffer2[nBufferSize];
+
+		_tcscpy(buffer1, strSavePath.c_str());
+		_tcscpy(buffer2, m_vssHelper.GetProjectBase().c_str());
+		_tcslwr(buffer1);
+		_tcslwr(buffer2);
+
+		//make sure they both have \\ instead of /
+		for (int k = 0; k < nBufferSize; k++)
+		{
+			if (buffer1[k] == '/')
+				buffer1[k] = '\\';
+		}
+
+		m_vssHelper.SetProjectBase(buffer2);
+		TCHAR * pbuf2 = &buffer2[2];//skip the $/
+		TCHAR * pdest =  _tcsstr(buffer1, pbuf2);
+		if (pdest)
+		{
+			size_t index  = pdest - buffer1 + 1;
+			_tcscpy(buffer, buffer1);
+			TCHAR * fp = &buffer[index + _tcslen(pbuf2)];
+			sname = fp;
+
+			if (sname[0] == ':')
+			{
+				_tcscpy(buffer2, sname.c_str());
+				_tcscpy(buffer, (TCHAR*)&buffer2[2]);
+				sname = buffer;
+			}
+		}
+		String strItem = m_vssHelper.GetProjectBase() + _T("\\") + sname;
+			//  BSP - ...to get the specific source safe item to be checked out
+		if (FAILED(hr = vssdb->get_VSSItem(
+			CMyComBSTR(ucr::toUTF16(strItem).c_str()), VARIANT_FALSE, &vssi)))
+		{
+			ShowVSSError(hr, strItem);
+			return FALSE;
+		}
+
+		if (!m_bVssSuppressPathCheck)
+		{
+			// BSP - Get the working directory where VSS will put the file...
+			CMyComBSTR bstrLocalSpec;
+			vssi->get_LocalSpec(&bstrLocalSpec);
+			// BSP - ...and compare it to the directory WinMerge is using.
+			if (string_compare_nocase(ucr::toTString(bstrLocalSpec.m_str), strSavePath))
+			{
+				// BSP - if the directories are different, let the user confirm the CheckOut
+				int iRes = LangMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
+						MB_YESNO | MB_YES_TO_ALL | MB_ICONWARNING);
+
+				if (iRes == IDNO)
+				{
+					m_bVssSuppressPathCheck = FALSE;
+					m_CheckOutMulti = FALSE; // Reset, we don't want 100 of the same errors
+					return FALSE;   // No means user has to start from begin
+				}
+				else if (iRes == IDYESTOALL)
+					m_bVssSuppressPathCheck = TRUE; // Don't ask again with selected files
+			}
+		}
+			// BSP - Finally! Check out the file!
+		if (FAILED(hr = vssi->Checkout(
+			CMyComBSTR(L""),
+			CMyComBSTR(ucr::toUTF16(strSavePath).c_str()), 0)))
+		{
+			ShowVSSError(hr, strSavePath);
+			return FALSE;
+		}
 	}
 	break;
 	case VCS_CLEARCASE:
@@ -328,7 +322,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			dlg.m_bCheckin = FALSE;
 			userChoice = dlg.DoModal();
 			m_CheckOutMulti = dlg.m_bMultiCheckouts;
-			m_strCCComment = dlg.m_comments;
+			m_strCCComment = static_cast<const TCHAR *>(dlg.m_comments);
 			m_bCheckinVCS = dlg.m_bCheckin;
 		}
 		else // Dialog already shown and user selected to "checkout all"
@@ -338,10 +332,6 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		if (userChoice == IDOK)
 		{
 			WaitStatusCursor waitstatus(_T(""));
-			String path, name;
-			paths_SplitFilename(strSavePath, &path, &name, 0);
-			String spath(path);
-			String sname(name);
 			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0])-'A'+1);
@@ -354,7 +344,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			std::vector<std::string> args;
 			args.push_back("checkout");
 			args.push_back("-c");
-			format(sn, "\"%s\"", ucr::toUTF8((LPCTSTR)m_strCCComment));
+			format(sn, "\"%s\"", ucr::toUTF8(m_strCCComment));
 			args.push_back(sn);
 			format(sn2, "\"%s\"", ucr::toUTF8(sname));
 			args.push_back(sn2);
