@@ -178,9 +178,6 @@
 				RelativePath="..\..\..\Src\FilterList.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\Src\Common\LogFile.cpp">
-			</File>
-			<File
 				RelativePath="..\..\..\Src\Common\lwdisp.c">
 			</File>
 			<File
