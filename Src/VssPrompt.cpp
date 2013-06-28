@@ -103,9 +103,12 @@ BOOL CVssPrompt::OnInitDialog()
 	// Open key containing VSS databases
 	if (!reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe\\Databases")))
 	{
-		String msg = theApp.LoadString(IDS_VSS_NODATABASES);
-		AfxMessageBox(msg.c_str(), MB_ICONERROR);
-		return FALSE;
+		if (!reg.QueryRegUser(_T("SOFTWARE\\Microsoft\\SourceSafe\\Databases")))
+		{
+			String msg = theApp.LoadString(IDS_VSS_NODATABASES);
+			AfxMessageBox(msg.c_str(), MB_ICONERROR);
+			return FALSE;
+		}
 	}
 
 	HKEY hreg = reg.GetKey();
