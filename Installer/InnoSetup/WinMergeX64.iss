@@ -173,6 +173,7 @@ Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 [Components]
 ; Executable, libraries, documentation
 Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
+Name: ShellExtension32bit; Description: {cm:ShellExtension32bit}; Types: full typical
 
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
@@ -392,6 +393,7 @@ Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
+Source: ..\..\Build\ShellExtensionUnicode Release MinDependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\X64\ShellExtensionUnicode Release MinDependency\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
