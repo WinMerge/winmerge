@@ -30,6 +30,7 @@
 #include <cstdio>
 #include "Environment.h"
 #include "unicoder.h"
+#include "paths.h"
 
 using Poco::format;
 using Poco::FileOutputStream;
@@ -52,7 +53,7 @@ void FilterCommentsManager::Load()
 	int SectionNo = 0;
 	if (m_IniFileName.empty())
 	{
-		m_IniFileName = env_GetProgPath() + _T("\\IgnoreSectionMarkers.ini");
+		m_IniFileName = paths_ConcatPath(env_GetProgPath(), _T("IgnoreSectionMarkers.ini"));
 	}
 
 	try
