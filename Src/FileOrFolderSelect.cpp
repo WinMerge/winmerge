@@ -282,7 +282,7 @@ BOOL SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*=NULL*/
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
 			String folder = paths_GetPathOnly(sSelectedFile);
-			path = folder + _T("\\");
+			path = paths_AddTrailingSlash(folder);
 		}
 	}
 	return bRetVal;

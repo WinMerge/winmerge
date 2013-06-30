@@ -10,6 +10,7 @@
 #include "version.h"
 #include "BCMenu.h"
 #include "Environment.h"
+#include "paths.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -22,7 +23,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /** @brief Relative path to WinMerge executable for lang files. */
-static const TCHAR szRelativePath[] = _T("\\Languages\\");
+static const TCHAR szRelativePath[] = _T("Languages");
 
 static char *EatPrefix(char *text, const char *prefix);
 static void unslash(unsigned codepage, std::string &s);
@@ -813,13 +814,13 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId, BOOL bShowError)
 String CLanguageSelect::GetFileName(LANGID wLangId) const
 {
 	String filename;
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
+	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths_ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
 	{
-		filename = path + ff.cFileName;
+		filename = paths_ConcatPath(path, ff.cFileName);
 		LangFileInfo lfi = filename.c_str();
 		if (lfi.id == wLangId)
 			ff.dwFileAttributes = INVALID_FILE_ATTRIBUTES; // terminate loop
@@ -1027,8 +1028,8 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages() const
 {
 	std::vector<std::pair<LANGID, String> > list;
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
+	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths_ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	do
@@ -1036,7 +1037,7 @@ std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages()
 		LangFileInfo &lfi =
 			h == INVALID_HANDLE_VALUE
 		?	LangFileInfo(wSourceLangId)
-		:	LangFileInfo((path + ff.cFileName).c_str());
+		:	LangFileInfo(paths_ConcatPath(path, ff.cFileName).c_str());
 		String str;
 		str += lfi.GetString(LOCALE_SLANGUAGE);
 		str += _T(" - ");

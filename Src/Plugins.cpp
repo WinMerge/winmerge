@@ -248,10 +248,10 @@ int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
  *
  * @return Returns an array of LPSTR
  */
-static void GetScriptletsAt(const TCHAR *szSearchPath, const TCHAR *extension, vector<String>& scriptlets )
+static void GetScriptletsAt(const String& sSearchPath, const String& extension, vector<String>& scriptlets )
 {
 	WIN32_FIND_DATA ffi;
-	String strFileSpec = string_format(_T("%s*%s"), szSearchPath, extension);
+	String strFileSpec = paths_ConcatPath(sSearchPath, _T("*") + extension);
 	HANDLE hff = FindFirstFile(strFileSpec.c_str(), &ffi);
 	
 	if (  hff != INVALID_HANDLE_VALUE )
@@ -260,7 +260,7 @@ static void GetScriptletsAt(const TCHAR *szSearchPath, const TCHAR *extension, v
 		{
 			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-				strFileSpec = string_format(_T("%s%s"), szSearchPath, ffi.cFileName);
+				strFileSpec = paths_ConcatPath(sSearchPath, ffi.cFileName);
 				scriptlets.push_back(strFileSpec);  
 			}
 		}
@@ -565,14 +565,14 @@ static vector<String>& LoadTheScriptletList()
 	FastMutex::ScopedLock lock(scriptletsSem);
 	if (!scriptletsLoaded)
 	{
-		String path = env_GetProgPath() + _T("\\MergePlugins\\");
+		String path = paths_ConcatPath(env_GetProgPath(), _T("MergePlugins"));
 
 		if (IsWindowsScriptThere())
-			GetScriptletsAt(path.c_str(), _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
+			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
 			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
-		GetScriptletsAt(path.c_str(), _T(".ocx"), theScriptletList );		// VB COM object
-		GetScriptletsAt(path.c_str(), _T(".dll"), theScriptletList );		// VC++ COM object
+		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
+		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;
 
 		// lock the *.sct to avoid them being deleted/moved away

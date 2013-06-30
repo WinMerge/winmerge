@@ -150,7 +150,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 {
 	String defPath = env_GetProgPath();
 	// Don't add quotation marks yet, CFile doesn't like them
-	String docPath = defPath + ContributorsPath;
+	String docPath = paths_ConcatPath(defPath, ContributorsPath);
 	HINSTANCE ret = 0;
 	
 	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)

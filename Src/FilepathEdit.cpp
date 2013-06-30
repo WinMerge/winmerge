@@ -30,6 +30,7 @@
 #include "BCMenu.h"
 #include "ClipBoard.h"
 #include "Shlwapi.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -254,7 +255,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		DWORD sel = GetSel();
 		if (HIWORD(sel) == LOWORD(sel))
 			pPopup->EnableMenuItem(ID_EDITOR_COPY, MF_GRAYED);
-		if (m_sOriginalText.Right(1) == '\\')
+		if (paths_EndsWithSlash(static_cast<LPCTSTR>(m_sOriginalText)))
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 

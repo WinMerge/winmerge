@@ -44,8 +44,7 @@ CMergeApp::InitializeSourceControlMembers()
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
-			String spath = paths_GetPathOnly(temp);
-			vssPath = spath + _T("\\Ss.exe");
+			vssPath = paths_ConcatPath(paths_GetPathOnly(temp), _T("Ss.exe"));
 			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}

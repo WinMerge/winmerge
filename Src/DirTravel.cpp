@@ -16,6 +16,7 @@
 #include "UnicodeString.h"
 #include "DirItem.h"
 #include "unicoder.h"
+#include "paths.h"
 
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
@@ -77,12 +78,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 	}
 
 #else
-	String sPattern(sDir);
-	size_t len = sPattern.length();
-	if (len && sPattern[len - 1] != '\\')
-		sPattern += _T("\\*.*");
-	else
-        sPattern += _T("*.*");
+	String sPattern = paths_ConcatPath(sDir, _T("*.*"));
 
 	WIN32_FIND_DATA ff;
 	HANDLE h;

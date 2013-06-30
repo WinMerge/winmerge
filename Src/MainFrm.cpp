@@ -956,11 +956,11 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 		if (pathsType == IS_EXISTING_DIR)
 		{
 			if (!paths_EndsWithSlash(files[0]) && !IsArchiveFile(files[0]))
-				files[0] += '\\';
+				files[0] = paths_AddTrailingSlash(files[0]);
 			if (!paths_EndsWithSlash(files[1]) && !IsArchiveFile(files[1]))
-				files[1] += '\\';
+				files[1] = paths_AddTrailingSlash(files[1]);
 			if (files.GetSize() == 3 && !paths_EndsWithSlash(files[2]) && !IsArchiveFile(files[1]))
-				files[2] += '\\';
+				files[2] = paths_AddTrailingSlash(files[2]);
 		}
 
 		//save the MRU left and right files.
@@ -2109,12 +2109,8 @@ void CMainFrame::OnSaveProject()
 	{
 		// Get paths currently in compare
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
-		left = pDoc->GetLeftBasePath();
-		right = pDoc->GetRightBasePath();
-		if (!paths_EndsWithSlash(left))
-			left += _T("\\");
-		if (!paths_EndsWithSlash(right))
-			right += _T("\\");
+		left = paths_AddTrailingSlash(pDoc->GetLeftBasePath());
+		right = paths_AddTrailingSlash(pDoc->GetRightBasePath());
 		
 		// Set-up the dialog
 		pathsDlg.SetPaths(left.c_str(), right.c_str());

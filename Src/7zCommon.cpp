@@ -99,7 +99,7 @@ DATE:		BY:					DESCRIPTION:
 #include "7zCommon.h"
 #include <afxinet.h>
 #include <shlwapi.h>
-#include <paths.h>
+#include "paths.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Merge.h"		// DirDocFilter theApp GetOptionsMgr()
@@ -455,17 +455,13 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	const String &sFilename = m_bRight ? di.diffFileInfo[1].filename : di.diffFileInfo[0].filename;
 	const String &sSubdir = m_bRight ? di.diffFileInfo[1].path : di.diffFileInfo[0].path;
-	envelope->Name = sFilename;
 	if (sSubdir.length())
-	{
-		envelope->Name.insert(0, _T("\\"));
-		envelope->Name.insert(0, sSubdir);
-	}
-	envelope->FullPath = sFilename;
-	envelope->FullPath.insert(0, _T("\\"));
-	envelope->FullPath.insert(0, m_bRight ?
-	di.getFilepath(1, pDoc->GetBasePath(1)) :
-	di.getFilepath(0, pDoc->GetBasePath(0)));
+		envelope->Name = paths_ConcatPath(sSubdir, sFilename);
+	else
+		envelope->Name = sFilename;
+	envelope->FullPath = paths_ConcatPath(m_bRight ?
+			di.getFilepath(1, pDoc->GetBasePath(1)) : di.getFilepath(0, pDoc->GetBasePath(0)),
+			sFilename);
 
 	UINT32 Recurse = item.Mask.Recurse;
 

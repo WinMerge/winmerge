@@ -405,10 +405,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	}
 
 	// Format path to template file
-	String templatePath(globalPath);
-	if (templatePath[templatePath.length() - 1] != '\\')
-		templatePath += '\\';
-	templatePath += FILE_FILTER_TEMPLATE;
+	String templatePath = paths_ConcatPath(globalPath, FILE_FILTER_TEMPLATE);
 
 	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
 	{
@@ -426,8 +423,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		if (path.empty()) return;
 	}
 
-	if (path.length() && path[path.length() - 1] != '\\')
-		path += '\\';
+	if (path.length())
+		path = paths_AddTrailingSlash(path);
 	
 	String s;
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
