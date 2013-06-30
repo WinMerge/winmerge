@@ -80,6 +80,7 @@
 #include "TFile.h"
 #include "JumpList.h"
 #include "DragDrop.h"
+#include "SourceControl.h"
 #include <Poco/Exception.h>
 
 using std::vector;
@@ -293,16 +294,16 @@ CMainFrame::CMainFrame()
 , m_bClearCaseTool(FALSE)
 , m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
 , m_bShowErrors(TRUE)
-, m_CheckOutMulti(FALSE)
-, m_bVCProjSync(FALSE)
-, m_bVssSuppressPathCheck(FALSE)
 , m_pLineFilters(new LineFiltersList())
+, m_pSourceControl(new SourceControl())
 , m_pSyntaxColors(new SyntaxColors())
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	UpdateCodepageModule();
 
-	InitializeSourceControlMembers();
+	if (m_pSourceControl)
+		m_pSourceControl->InitializeSourceControlMembers();
+
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
@@ -914,9 +915,9 @@ int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
 		// Version control system used?
 		// Checkout file from VCS and modify, don't ask about overwriting
 		// RO files etc.
-		if (nVerSys != VCS_NONE)
+		if (nVerSys != SourceControl::VCS_NONE)
 		{
-			BOOL bRetVal = SaveToVersionControl(strSavePath);
+			bool bRetVal = m_pSourceControl->SaveToVersionControl(strSavePath);
 			if (bRetVal)
 				return IDYES;
 			else
@@ -1464,9 +1465,9 @@ int CMainFrame::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
 		return nRetVal;
 	
 	// If VC project opened from VSS sync and version control used
-	if ((nVerSys == VCS_VSS4 || nVerSys == VCS_VSS5) && m_bVCProjSync)
+	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_pSourceControl->m_bVCProjSync)
 	{
-		if (!m_vssHelper.ReLinkVCProj(strSavePath, sError))
+		if (!m_pSourceControl->m_vssHelper.ReLinkVCProj(strSavePath, sError))
 			nRetVal = -1;
 	}
 	return nRetVal;

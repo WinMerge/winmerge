@@ -8676,6 +8676,7 @@
     <ClInclude Include="Common\ShellFileOperations.h" />
     <ClInclude Include="Common\sizecbar.h" />
     <ClInclude Include="Common\SortHeaderCtrl.h" />
+    <ClInclude Include="SourceControl.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Common\SplitterWndEx.h" />
     <ClInclude Include="Common\StatLink.h" />

@@ -6543,6 +6543,9 @@
 					RelativePath="Common\SortHeaderCtrl.h">
 				</File>
 				<File
+					RelativePath=".\SourceControl.h">
+				</File>
+				<File
 					RelativePath="Splash.h">
 				</File>
 				<File
