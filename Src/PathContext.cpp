@@ -27,12 +27,7 @@ PathInfo::PathInfo(const PathInfo &pi)
 String PathInfo::GetPath(bool bNormalized /*= true*/) const
 { 
 	if (!bNormalized)
-	{
-		if (!paths_EndsWithSlash(m_sPath))
-			return m_sPath + _T("\\");
-		else
-			return m_sPath;
-	}
+		return paths_AddTrailingSlash(m_sPath);
 	else
 		return m_sPath;
 }

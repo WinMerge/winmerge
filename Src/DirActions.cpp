@@ -155,16 +155,10 @@ static bool ConfirmDialog(const String &caption, const String &question,
 
 	String strSrc(src);
 	if (paths_DoesPathExist(src) == IS_EXISTING_DIR)
-	{
-		if (!paths_EndsWithSlash(src))
-			strSrc += _T("\\");
-	}
+		strSrc = paths_AddTrailingSlash(src);
 	String strDest(dest);
 	if (paths_DoesPathExist(dest) == IS_EXISTING_DIR)
-	{
-		if (!paths_EndsWithSlash(dest))
-			strDest += _T("\\");
-	}
+		strDest = paths_AddTrailingSlash(dest);
 
 	dlg.m_question = question.c_str();
 	dlg.m_fromText = sOrig.c_str();
@@ -617,8 +611,7 @@ void CDirView::DoCopyLeftTo()
 			}
 
 			FileActionItem act;
-			String sFullDest(destPath);
-			sFullDest += _T("\\");
+			String sFullDest = paths_AddTrailingSlash(destPath);
 
 			actionScript.m_destBase = sFullDest;
 
@@ -627,7 +620,7 @@ void CDirView::DoCopyLeftTo()
 				if (!di.diffFileInfo[0].path.empty())
 				{
 					sFullDest += di.diffFileInfo[0].path;
-					sFullDest += _T("\\");
+					sFullDest = paths_AddTrailingSlash(sFullDest);
 				}
 			}
 			sFullDest += di.diffFileInfo[0].filename;
@@ -688,8 +681,7 @@ void CDirView::DoCopyRightTo()
 			}
 
 			FileActionItem act;
-			String sFullDest(destPath);
-			sFullDest += _T("\\");
+			String sFullDest = paths_AddTrailingSlash(destPath);
 
 			actionScript.m_destBase = sFullDest;
 
@@ -698,7 +690,7 @@ void CDirView::DoCopyRightTo()
 				if (!di.diffFileInfo[1].path.empty())
 				{
 					sFullDest += di.diffFileInfo[1].path;
-					sFullDest += _T("\\");
+					sFullDest = paths_AddTrailingSlash(sFullDest);
 				}
 			}
 			sFullDest += di.diffFileInfo[1].filename;
@@ -759,15 +751,14 @@ void CDirView::DoMoveLeftTo()
 			}
 
 			FileActionItem act;
-			String sFullDest(destPath);
-			sFullDest += _T("\\");
+			String sFullDest = paths_AddTrailingSlash(destPath);
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.diffFileInfo[0].path.empty())
 				{
 					sFullDest += di.diffFileInfo[0].path;
-					sFullDest += _T("\\");
+					sFullDest = paths_AddTrailingSlash(sFullDest);
 				}
 			}
 			sFullDest += di.diffFileInfo[0].filename;
@@ -828,15 +819,14 @@ void CDirView::DoMoveRightTo()
 			}
 
 			FileActionItem act;
-			String sFullDest(destPath);
-			sFullDest += _T("\\");
+			String sFullDest = paths_AddTrailingSlash(destPath);
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.diffFileInfo[1].path.empty())
 				{
 					sFullDest += di.diffFileInfo[1].path;
-					sFullDest += _T("\\");
+					sFullDest = paths_AddTrailingSlash(sFullDest);
 				}
 			}
 			sFullDest += di.diffFileInfo[1].filename;
@@ -1766,11 +1756,9 @@ void CDirView::DoCopyItemsToClipboard(int flags)
 		{
 			if (di.diffcode.isExists(nIndex) && ((flags >> nIndex) & 0x1))
 			{
-				path = di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex));
-				path += '\\';
 				// If item is a folder then subfolder (relative to base folder)
 				// is in filename member.
-				path += di.diffFileInfo[nIndex].filename;
+				path = paths_ConcatPath(di.getFilepath(nIndex, GetDocument()->GetBasePath(nIndex)), di.diffFileInfo[nIndex].filename);
 
 				strPaths += path.c_str();
 				strPaths += '\0';

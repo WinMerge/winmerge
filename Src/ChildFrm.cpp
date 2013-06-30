@@ -291,9 +291,9 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	// Set filename bars inactive so colors get initialized
-	m_wndFilePathBar.SetActive(0, FALSE);
-	m_wndFilePathBar.SetActive(1, FALSE);
-	m_wndFilePathBar.SetActive(2, FALSE);
+	m_wndFilePathBar.SetActive(0, false);
+	m_wndFilePathBar.SetActive(1, false);
+	m_wndFilePathBar.SetActive(2, false);
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 

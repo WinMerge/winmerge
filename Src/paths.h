@@ -44,4 +44,6 @@ void paths_SplitFilename(const String& s, String * path, String * name, String *
 void paths_SplitViewName(const TCHAR *s, String * path, String * name, String * ext);
 String paths_GetPathOnly(const String& fullpath);
 
+inline String paths_AddTrailingSlash(const String& path) { return paths_ConcatPath(path, _T("")); }
+
 #endif // paths_h_included

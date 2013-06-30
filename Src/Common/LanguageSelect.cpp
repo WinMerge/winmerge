@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /** @brief Relative path to WinMerge executable for lang files. */
-static const TCHAR szRelativePath[] = _T("\\Languages\\");
+static const TCHAR szRelativePath[] = _T("Languages");
 
 static char *EatPrefix(char *text, const char *prefix);
 static void unslash(unsigned codepage, std::string &s);
@@ -852,13 +852,13 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
 String CLanguageSelect::GetFileName(LANGID wLangId)
 {
 	String filename;
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
+	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths_ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
 	{
-		filename = path + ff.cFileName;
+		filename = paths_ConcatPath(path, ff.cFileName);
 		LangFileInfo lfi = filename.c_str();
 		if (lfi.id == wLangId)
 			ff.dwFileAttributes = INVALID_FILE_ATTRIBUTES; // terminate loop
@@ -882,8 +882,8 @@ String CLanguageSelect::GetFileName(LANGID wLangId)
 BOOL CLanguageSelect::AreLangsInstalled() const
 {
 	BOOL bFound = FALSE;
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
+	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths_ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	while ((h = FindFile(h, pattern.c_str(), &ff)) != INVALID_HANDLE_VALUE)
@@ -1258,8 +1258,8 @@ BOOL CLanguageSelect::OnInitDialog()
  */
 void CLanguageSelect::LoadAndDisplayLanguages()
 {
-	String path = env_GetProgPath().append(szRelativePath);
-	String pattern = path + _T("*.po");
+	String path = paths_ConcatPath(env_GetProgPath(), szRelativePath);
+	String pattern = paths_ConcatPath(path, _T("*.po"));
 	WIN32_FIND_DATA ff;
 	HANDLE h = INVALID_HANDLE_VALUE;
 	do
@@ -1267,7 +1267,7 @@ void CLanguageSelect::LoadAndDisplayLanguages()
 		LangFileInfo &lfi =
 			h == INVALID_HANDLE_VALUE
 		?	LangFileInfo(wSourceLangId)
-		:	LangFileInfo((path + ff.cFileName).c_str());
+		:	LangFileInfo(paths_ConcatPath(path, ff.cFileName).c_str());
 		std_tchar(ostringstream) stm;
 		stm << lfi.GetString(LOCALE_SLANGUAGE).c_str();
 		stm << _T(" - ");

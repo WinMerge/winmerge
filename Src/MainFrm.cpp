@@ -866,7 +866,7 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHelpGnulicense() 
 {
-	const String spath = env_GetProgPath() + LicenseFile;
+	const String spath = paths_ConcatPath(env_GetProgPath(), LicenseFile);
 	OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
@@ -1128,11 +1128,11 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		if (pathsType == IS_EXISTING_DIR)
 		{
 			if (!paths_EndsWithSlash(files[0]) && !IsArchiveFile(files[0]))
-				files[0] += '\\';
+				files[0] = paths_AddTrailingSlash(files[0]);
 			if (!paths_EndsWithSlash(files[1]) && !IsArchiveFile(files[1]))
-				files[1] += '\\';
+				files[1] = paths_AddTrailingSlash(files[1]);
 			if (files.GetSize() == 3 && !paths_EndsWithSlash(files[2]) && !IsArchiveFile(files[1]))
-				files[2] += '\\';
+				files[2] = paths_AddTrailingSlash(files[2]);
 		}
 
 		//save the MRU left and right files.
@@ -1177,10 +1177,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					VERIFY(::DeleteFile(files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[0].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[0].c_str());
-				files[0] = OLE2T(pTmp);
+				files[0] = paths_ConcatPath(path, OLE2T(pTmp));
 				SysFreeString(pTmp);
-				files[0].insert(0, _T("\\"));
-				files[0].insert(0, path);
 			} while (piHandler = ArchiveGuessFormat(files[0].c_str()));
 			files[0] = path;
 		}
@@ -1202,10 +1200,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					VERIFY(::DeleteFile(files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[1].c_str())), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-				files[1] = OLE2T(pTmp);
+				files[1] = paths_ConcatPath(path, OLE2T(pTmp));
 				SysFreeString(pTmp);
-				files[1].insert(0, _T("\\"));
-				files[1].insert(0, path);
 			} while (piHandler = ArchiveGuessFormat(files[1].c_str()));
 			files[1] = path;
 		}
@@ -1229,10 +1225,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 						VERIFY(::DeleteFile(files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[2].c_str())), false));
 					}
 					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-					files[2] = OLE2T(pTmp);
+					files[2] = paths_ConcatPath(path, OLE2T(pTmp));
 					SysFreeString(pTmp);
-					files[2].insert(0, _T("\\"));
-					files[2].insert(0, path);
 				} while (piHandler = ArchiveGuessFormat(files[2].c_str()));
 				files[2] = path;
 			}
@@ -1240,10 +1234,9 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		if (files[1].empty())
 		{
 			// assume Perry style patch
-			files[1] = path;
-			files[0] += _T("\\ORIGINAL");
-			files[1] += _T("\\ALTERED");
-			if (!PathFileExists(files[0].c_str()) || !PathFileExists(files[1].c_str()))
+			files[0] = paths_ConcatPath(files[0], _T("ORIGINAL"));
+			files[1] = paths_ConcatPath(path,     _T("ALTERED"));
+			if (paths_DoesPathExist(files[0]) == DOES_NOT_EXIST || paths_DoesPathExist(files[1]) == DOES_NOT_EXIST)
 			{
 				// not a Perry style patch: diff with itself...
 				files[0] = files[1] = path;
@@ -1252,8 +1245,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			}
 			else
 			{
-				pTempPathContext->m_strDisplayRoot[0] += _T("\\ORIGINAL");
-				pTempPathContext->m_strDisplayRoot[1] += _T("\\ALTERED");
+				pTempPathContext->m_strDisplayRoot[0] = paths_ConcatPath(pTempPathContext->m_strDisplayRoot[0], _T("ORIGINAL"));
+				pTempPathContext->m_strDisplayRoot[1] = paths_ConcatPath(pTempPathContext->m_strDisplayRoot[1], _T("ALTERED"));
 			}
 		}
 	}
@@ -1425,8 +1418,6 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, const String& pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			if (!paths_EndsWithSlash(bakPath))
-				bakPath += _T("\\");
 			bakPath = paths_ConcatPath(bakPath, filename);
 			bakPath += _T(".");
 			bakPath += ext;
@@ -1637,9 +1628,9 @@ void CMainFrame::OnHelpContents()
 	String sPath = env_GetProgPath();
 	LANGID LangId = theApp.GetLangId();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		sPath += DocsPath_ja;
+		sPath = paths_ConcatPath(sPath, DocsPath_ja);
 	else
-		sPath += DocsPath;
+		sPath = paths_ConcatPath(sPath, DocsPath);
 	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
 		::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
 	else
@@ -2528,9 +2519,9 @@ void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 		String sPath = env_GetProgPath();
 		LANGID LangId = GetUserDefaultLangID();
 		if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-			sPath += DocsPath_ja;
+			sPath = paths_ConcatPath(sPath, DocsPath_ja);
 		else
-			sPath += DocsPath;
+			sPath = paths_ConcatPath(sPath, DocsPath);
 		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
@@ -2847,12 +2838,8 @@ void CMainFrame::OnSaveProject()
 	{
 		// Get paths currently in compare
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
-		left = pDoc->GetLeftBasePath();
-		right = pDoc->GetRightBasePath();
-		if (!paths_EndsWithSlash(left))
-			left += _T("\\");
-		if (!paths_EndsWithSlash(right))
-			right += _T("\\");
+		left = paths_AddTrailingSlash(pDoc->GetLeftBasePath());
+		right = paths_AddTrailingSlash(pDoc->GetRightBasePath());
 		
 		// Set-up the dialog
 		pathsDlg.SetPaths(left.c_str(), right.c_str());
@@ -3179,7 +3166,7 @@ bool CMainFrame::AskCloseConfirmation()
  */
 void CMainFrame::OnHelpReleasenotes()
 {
-	String sPath = env_GetProgPath() + RelNotes;
+	String sPath = paths_ConcatPath(env_GetProgPath(), RelNotes);
 	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
 }
 
