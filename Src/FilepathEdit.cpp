@@ -33,6 +33,7 @@
 #include "ClipBoard.h"
 #include "Shlwapi.h"
 #include "paths.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
