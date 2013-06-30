@@ -34,6 +34,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "SourceControl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -125,11 +126,11 @@ BOOL PropVss::OnInitDialog()
 void PropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
-	String tempStr = m_nVerSys == VCS_CLEARCASE ? _("&Path to cleartool.exe:") : _("&Path to SS.EXE:");
+	String tempStr = m_nVerSys == SourceControl::VCS_CLEARCASE ? _("&Path to cleartool.exe:") : _("&Path to SS.EXE:");
 	m_ctlVssL1.SetWindowText(tempStr.c_str());
-	m_ctlPath.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
-	m_ctlVssL1.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
-	m_ctlBrowse.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
+	m_ctlPath.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
+	m_ctlVssL1.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
+	m_ctlBrowse.EnableWindow(m_nVerSys == SourceControl::VCS_VSS4 || m_nVerSys == SourceControl::VCS_CLEARCASE);
 }
 
 /**

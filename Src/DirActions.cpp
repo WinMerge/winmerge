@@ -33,6 +33,7 @@
 #include "IntToIntMap.h"
 #include "FileOrFolderSelect.h"
 #include "ConfirmFolderCopyDlg.h"
+#include "SourceControl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -975,15 +976,15 @@ bool CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 /**
  * @brief Perform an array of actions
  * @note There can be only COPY or DELETE actions, not both!
- * @sa CMainFrame::SaveToVersionControl()
- * @sa CMainFrame::SyncFilesToVCS()
+ * @sa SourceControl::SaveToVersionControl()
+ * @sa SourceControl::SyncFilesToVCS()
  */
 void CDirView::PerformActionList(FileActionScript & actionScript)
 {
 	// Reset suppressing VSS dialog for multiple files.
-	// Set in CMainFrame::SaveToVersionControl().
-	GetMainFrame()->m_CheckOutMulti = false;
-	GetMainFrame()->m_bVssSuppressPathCheck = false;
+	// Set in SourceControl::SaveToVersionControl().
+	GetMainFrame()->m_pSourceControl->m_CheckOutMulti = false;
+	GetMainFrame()->m_pSourceControl->m_bVssSuppressPathCheck = false;
 
 	// Check option and enable putting deleted items to Recycle Bin
 	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
@@ -1023,8 +1024,8 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Synchronized items may need VCS operations
 		if (act.UIResult == FileActionItem::UI_SYNC)
 		{
-			if (GetMainFrame()->m_bCheckinVCS)
-				GetMainFrame()->CheckinToClearCase(act.dest);
+			if (GetMainFrame()->m_pSourceControl->m_bCheckinVCS)
+				GetMainFrame()->m_pSourceControl->CheckinToClearCase(act.dest);
 		}
 
 		// Update UI

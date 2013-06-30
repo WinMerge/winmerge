@@ -7,6 +7,7 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "SourceControl.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Process.h>
 #include <Poco/Format.h>
@@ -75,8 +76,15 @@ static void ShowVSSError(HRESULT hr, const String& strItem)
 	}
 }
 
+SourceControl::SourceControl() : 
+  m_CheckOutMulti(false)
+, m_bVCProjSync(false)
+, m_bVssSuppressPathCheck(false)
+{
+}
+
 void
-CMainFrame::InitializeSourceControlMembers()
+SourceControl::InitializeSourceControlMembers()
 {
 	m_vssHelper.SetProjectBase((const TCHAR *)theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
@@ -106,12 +114,12 @@ CMainFrame::InitializeSourceControlMembers()
 * @return Tells if caller can continue (no errors happened)
 * @sa CheckSavePath()
 */
-BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
+bool SourceControl::SaveToVersionControl(const String& strSavePath)
 {
 	String spath, sname;
 	paths_SplitFilename(strSavePath, &spath, &sname, NULL);
 	CFileStatus status;
-	UINT userChoice = 0;
+	UINT_PTR userChoice = 0;
 	int nVerSys = 0;
 
 	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
@@ -135,7 +143,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
 		}
 		else // Dialog already shown and user selected to "checkout all"
 			userChoice = IDOK;
@@ -195,7 +203,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
 			if (userChoice != IDOK)
 				return FALSE; // User selected cancel
 		}
@@ -206,7 +214,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		m_strVssUser = dlg.m_strUser;
 		m_strVssPassword = dlg.m_strPassword;
 		m_strVssDatabase = dlg.m_strSelectedDatabase;
-		m_bVCProjSync = dlg.m_bVCProjSync;					
+		m_bVCProjSync = !!dlg.m_bVCProjSync;					
 
 		theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase.c_str());
 		theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
@@ -272,7 +280,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			CMyComBSTR(ucr::toUTF16(strItem).c_str()), VARIANT_FALSE, &vssi)))
 		{
 			ShowVSSError(hr, strItem);
-			return FALSE;
+			return false;
 		}
 
 		if (!m_bVssSuppressPathCheck)
@@ -289,12 +297,12 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 
 				if (iRes == IDNO)
 				{
-					m_bVssSuppressPathCheck = FALSE;
-					m_CheckOutMulti = FALSE; // Reset, we don't want 100 of the same errors
-					return FALSE;   // No means user has to start from begin
+					m_bVssSuppressPathCheck = false;
+					m_CheckOutMulti = false; // Reset, we don't want 100 of the same errors
+					return false;   // No means user has to start from begin
 				}
 				else if (iRes == IDYESTOALL)
-					m_bVssSuppressPathCheck = TRUE; // Don't ask again with selected files
+					m_bVssSuppressPathCheck = true; // Don't ask again with selected files
 			}
 		}
 			// BSP - Finally! Check out the file!
@@ -303,7 +311,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			CMyComBSTR(ucr::toUTF16(strSavePath).c_str()), 0)))
 		{
 			ShowVSSError(hr, strSavePath);
-			return FALSE;
+			return false;
 		}
 	}
 	break;
@@ -317,9 +325,9 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			dlg.m_comments = _T("");
 			dlg.m_bCheckin = FALSE;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
 			m_strCCComment = static_cast<const TCHAR *>(dlg.m_comments);
-			m_bCheckinVCS = dlg.m_bCheckin;
+			m_bCheckinVCS = !!dlg.m_bCheckin;
 		}
 		else // Dialog already shown and user selected to "checkout all"
 			userChoice = IDOK;
@@ -351,26 +359,26 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 				if (code != 0)
 				{
 					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
-					return FALSE;
+					return false;
 				}
 			}
 			catch (...)
 			{
 				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
-				return FALSE;
+				return false;
 			}
 		}
 	}
 	break;
 	}	//switch(m_nVerSys)
 
-	return TRUE;
+	return true;
 }
 
 /**
  * @brief Checkin in file into ClearCase.
  */ 
-void CMainFrame::CheckinToClearCase(const String &strDestinationPath)
+void SourceControl::CheckinToClearCase(const String &strDestinationPath)
 {
 	String spath, sname;
 	paths_SplitFilename(strDestinationPath, &spath, &sname, 0);
