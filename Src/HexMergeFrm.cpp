@@ -174,7 +174,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-		m_wndFilePathBar.SetActive(nPane, FALSE);
+		m_wndFilePathBar.SetActive(nPane, false);
 
 	CHexMergeView *pView[3];
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)

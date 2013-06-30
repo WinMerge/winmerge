@@ -203,7 +203,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 			// fill in the returned structure
 			CFilepathEdit * pItem = (CFilepathEdit*) GetDlgItem(nID);
-			pTTT->lpszText = (TCHAR*) pItem->GetUpdatedTipText(&tempDC, maxWidth);
+			pTTT->lpszText = const_cast<TCHAR *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
 
 			// set old font back
 			if (hOldFont)
@@ -225,7 +225,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
  * @param [in] pane Index (0-based) of pane to update.
  * @param [in] lpszString New text for pane.
  */
-void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
+void CEditorFilePathBar::SetText(int pane, const String& sString)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 
@@ -233,7 +233,7 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 	if (m_hWnd == NULL)
 		return;
 
-	m_Edit[pane].SetOriginalText(lpszString);
+	m_Edit[pane].SetOriginalText(sString);
 }
 
 /** 
@@ -242,7 +242,7 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
  * @param [in] pane Index (0-based) of pane to update.
  * @param [in] bActive If TRUE activates pane, FALSE deactivates.
  */
-void CEditorFilePathBar::SetActive(int pane, BOOL bActive)
+void CEditorFilePathBar::SetActive(int pane, bool bActive)
 {
 	ASSERT (pane >= 0 && pane < countof(m_Edit));
 

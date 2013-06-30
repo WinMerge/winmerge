@@ -558,7 +558,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	}
 	if (m_pView[pane]->GetModified())
 		sText.insert(0, _T("* "));
-	pf->GetHeaderInterface()->SetText(pane, sText.c_str());
+	pf->GetHeaderInterface()->SetText(pane, sText);
 
 	SetTitle(NULL);
 }

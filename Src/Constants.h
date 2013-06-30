@@ -29,17 +29,17 @@ const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 const TCHAR DownloadUrl[] = _T("http://winmerge.org/downloads/");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
-const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
-const TCHAR DocsPath_ja[] = _T("\\Docs\\WinMerge_ja.chm");
+const TCHAR DocsPath[] = _T("Docs/WinMerge.chm");
+const TCHAR DocsPath_ja[] = _T("Docs/WinMerge_ja.chm");
 
 /** @brief Contributors list. */
-const TCHAR ContributorsPath[] = _T("\\contributors.txt");
+const TCHAR ContributorsPath[] = _T("contributors.txt");
 
 /** @brief Release notes in HTML format. */
-const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
+const TCHAR RelNotes[] = _T("Docs/ReleaseNotes.html");
 
 /** @brief GPL Licence local file name. */
-const TCHAR LicenseFile[] = _T("\\Copying");
+const TCHAR LicenseFile[] = _T("Copying");
 
 /** @brief WinMerge folder in My Folders-folder. */
 const TCHAR WinMergeDocumentsFolder[] = _T("WinMerge");
@@ -49,7 +49,7 @@ const TCHAR WinMergeDocumentsFolder[] = _T("WinMerge");
  * We want to use WinMerge folder as general user-file folder in future.
  * So it makes sense to have own subfolder for filters.
  */
-const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
+const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
 
 /** @brief Executable Filename for ANSI build. */
 const TCHAR ExecutableFilename[] = _T("WinMerge.exe");

@@ -29,9 +29,7 @@ static String strProgPath;
 
 void env_SetTempPath(const String& path)
 {
-	strTempPath = path;
-	if (!paths_EndsWithSlash(strTempPath))
-		strTempPath += '\\';
+	strTempPath = paths_AddTrailingSlash(path);
 	paths_CreateIfNeeded(strTempPath);
 }
 
@@ -90,9 +88,7 @@ String env_GetTempChildPath()
 
 void env_SetProgPath(const String& path)
 {
-	strProgPath = path;
-	if (!paths_EndsWithSlash(strProgPath))
-		strProgPath += '\\';
+	strProgPath = paths_AddTrailingSlash(path);
 }
 
 String env_GetProgPath()

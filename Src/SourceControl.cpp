@@ -26,6 +26,7 @@
 #include "VssPrompt.h"
 #include "WaitStatusCursor.h"
 #include "CCPrompt.h"
+#include "coretools.h"
 
 using Poco::format;
 using Poco::Process;
@@ -93,8 +94,7 @@ CMainFrame::InitializeSourceControlMembers()
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
-			String spath = paths_GetPathOnly(temp);
-			vssPath = spath + _T("\\Ss.exe");
+			vssPath = paths_ConcatPath(paths_GetPathOnly(temp), _T("Ss.exe"));
 			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}
@@ -247,11 +247,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		_tcslwr(buffer2);
 
 		//make sure they both have \\ instead of /
-		for (int k = 0; k < nBufferSize; k++)
-		{
-			if (buffer1[k] == '/')
-				buffer1[k] = '\\';
-		}
+		replace_char(buffer1, '/', '\\');
 
 		m_vssHelper.SetProjectBase(buffer2);
 		TCHAR * pbuf2 = &buffer2[2];//skip the $/

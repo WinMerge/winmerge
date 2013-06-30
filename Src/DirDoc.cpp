@@ -372,7 +372,7 @@ void CDirDoc::Rescan()
 	{
 		UpdateHeaderPath(nIndex);
 		// draw the headers as active ones
-		pf->GetHeaderInterface()->SetActive(nIndex, TRUE);
+		pf->GetHeaderInterface()->SetActive(nIndex, true);
 	}
 	pf->GetHeaderInterface()->Resize();
 
@@ -916,7 +916,7 @@ void CDirDoc::UpdateHeaderPath(int nIndex)
 		ApplyDisplayRoot(nIndex, sText);
 	}
 
-	pf->GetHeaderInterface()->SetText(nIndex, sText.c_str());
+	pf->GetHeaderInterface()->SetText(nIndex, sText);
 }
 
 /**

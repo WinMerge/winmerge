@@ -1244,9 +1244,7 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 			String sname;
 			paths_SplitFilename(szPath, 0, &sname, 0);
 			strSavePath = GetMainFrame()->m_strSaveAsPath;
-			if (GetMainFrame()->m_strSaveAsPath.Right(1) != _T('\\'))
-				strSavePath += _T('\\');
-			strSavePath += sname;
+			strSavePath = paths_ConcatPath(strSavePath, sname);
 		}
 		else
 			strSavePath = GetMainFrame()->m_strSaveAsPath;	

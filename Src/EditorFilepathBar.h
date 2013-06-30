@@ -38,8 +38,8 @@
 class IHeaderBar
 {
 public:
-	virtual void SetText(int pane, LPCTSTR lpszString) = 0;
-	virtual void SetActive(int pane, BOOL bActive) = 0;
+	virtual void SetText(int pane, const String& sString) = 0;
+	virtual void SetActive(int pane, bool bActive) = 0;
 	virtual void SetPaneCount(int nPanes) = 0;
 	virtual void Resize() = 0;
 };
@@ -67,8 +67,8 @@ public :
 	void Resize(int widths[]);
 
 	// Implement IFilepathHeaders
-	void SetText(int pane, LPCTSTR lpszString);
-	void SetActive(int pane, BOOL bActive);
+	void SetText(int pane, const String& sString);
+	void SetActive(int pane, bool bActive);
 	void SetPaneCount(int nPanes);
 
 protected:

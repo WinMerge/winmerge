@@ -13,6 +13,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "FileOrFolderSelect.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,11 +72,8 @@ void PropBackups::WriteOptions()
 {
 	m_sGlobalFolder.TrimLeft();
 	m_sGlobalFolder.TrimRight();
-	if (m_sGlobalFolder.GetLength() > 3&&
-		m_sGlobalFolder[m_sGlobalFolder.GetLength() - 1] != '\\')
-	{
-		m_sGlobalFolder += "\\";
-	}
+	if (m_sGlobalFolder.GetLength() > 3)
+		m_sGlobalFolder = paths_AddTrailingSlash(static_cast<const TCHAR *>(m_sGlobalFolder)).c_str();
 
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);

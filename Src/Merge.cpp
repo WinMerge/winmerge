@@ -59,6 +59,7 @@
 #include "ConflictFileParser.h"
 #include "codepage.h"
 #include "JumpList.h"
+#include "paths.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -269,7 +270,7 @@ BOOL CMergeApp::InitInstance()
 #endif
 
 	// Load registry keys from WinMerge.reg if existing WinMerge.reg
-	env_LoadRegistryFromFile(env_GetProgPath() + _T("\\WinMerge.reg"));
+	env_LoadRegistryFromFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")));
 
 	OptionsInit(); // Implementation in OptionsInit.cpp
 
@@ -499,7 +500,7 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
-	env_SaveRegistryToFile(env_GetProgPath() + _T("\\WinMerge.reg"), f_RegDir);
+	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), f_RegDir);
 
 	// Remove tempfolder
 	const String temp = env_GetTempPath();
@@ -922,9 +923,7 @@ void CMergeApp::ReloadMenu()
  */
 String CMergeApp::GetDefaultEditor()
 {
-	String path = env_GetWindowsDirectory();
-	path += _T("\\NOTEPAD.EXE");
-	return path;
+	return paths_ConcatPath(env_GetWindowsDirectory(), _T("NOTEPAD.EXE"));
 }
 
 /**
