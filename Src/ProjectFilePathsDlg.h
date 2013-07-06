@@ -9,6 +9,8 @@
 #ifndef _PROJECTFILEPATHSDLG_H_
 #define _PROJECTFILEPATHSDLG_H_
 
+#include "UnicodeString.h"
+
 /**
  * @brief Dialog allowing user to load, edit and save project files.
  */
@@ -18,17 +20,17 @@ class ProjectFilePathsDlg : public CPropertyPage
 
 public:
 	ProjectFilePathsDlg();   // standard constructor
-	CString GetFilePath();
+	String GetFilePath();
 
 // Dialog Data
 	//{{AFX_DATA(SaveClosingDlg)
 	enum { IDD = IDD_PROJFILES_PATHS };
-	CString m_sLeftFile;
-	CString m_sRightFile;
-	CString m_sFilter;
-	BOOL m_bIncludeSubfolders;
-	BOOL m_bLeftPathReadOnly;
-	BOOL m_bRightPathReadOnly;
+	String m_sLeftFile;
+	String m_sRightFile;
+	String m_sFilter;
+	bool m_bIncludeSubfolders;
+	bool m_bLeftPathReadOnly;
+	bool m_bRightPathReadOnly;
 	//}}AFX_DATA
 
 protected:
@@ -40,14 +42,14 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
-	CString AskProjectFileName(BOOL bOpen);
+	String AskProjectFileName(bool bOpen);
 
 // Implementation data
 private:
-	CString m_sProjFilePath; /**< (Last/current) Path for project file */
+	String m_sProjFilePath; /**< (Last/current) Path for project file */
 
 public:
-	void SetPaths(LPCTSTR left, LPCTSTR right);
+	void SetPaths(const String& left, const String& right);
 	
 	afx_msg void OnBnClickedProjLfileBrowse();
 	afx_msg void OnBnClickedProjRfileBrowse();

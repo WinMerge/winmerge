@@ -13,6 +13,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "unicoder.h"
 #include "ExConverter.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -26,12 +27,12 @@ static char THIS_FILE[] = __FILE__;
 
 CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*=NULL*/)
 : CDialog(CLoadSaveCodepageDlg::IDD, pParent)
-, m_bAffectsLeft(TRUE)
-, m_bAffectsMiddle(TRUE)
-, m_bAffectsRight(TRUE)
-, m_bLoadSaveSameCodepage(TRUE)
-// CString m_sAffectsLeftString
-// CString m_sAffectsRightString
+, m_bAffectsLeft(true)
+, m_bAffectsMiddle(true)
+, m_bAffectsRight(true)
+, m_bLoadSaveSameCodepage(true)
+// String m_sAffectsLeftString
+// String m_sAffectsRightString
 , m_nLoadCodepage(-1)
 , m_nSaveCodepage(-1)
 , m_bEnableSaveCodepage(false)
@@ -42,7 +43,7 @@ CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*=NULL*/)
 	//}}AFX_DATA_INIT
 }
 
-void CLoadSaveCodepageDlg::SetLeftRightAffectStrings(const CString & sAffectsLeft, const CString & sAffectsMiddle, const CString & sAffectsRight)
+void CLoadSaveCodepageDlg::SetLeftRightAffectStrings(const String & sAffectsLeft, const String & sAffectsMiddle, const String & sAffectsRight)
 {
 	m_sAffectsLeftString = sAffectsLeft;
 	m_sAffectsMiddleString = sAffectsMiddle;
@@ -132,9 +133,9 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 
 	CMainFrame::CenterToMainFrame(this);
 
-	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
-	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString);
-	SetDlgItemText(IDC_RIGHT_FILES_LABEL, m_sAffectsRightString);
+	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString.c_str());
+	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString.c_str());
+	SetDlgItemText(IDC_RIGHT_FILES_LABEL, m_sAffectsRightString.c_str());
 
 	UpdateSaveGroup();
 

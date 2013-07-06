@@ -33,6 +33,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,17 +46,17 @@ static char THIS_FILE[] = __FILE__;
  */
 PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropGeneral::IDD)
-, m_bScroll(FALSE)
-, m_bDisableSplash(FALSE)
-, m_bSingleInstance(FALSE)
-, m_bVerifyPaths(FALSE)
+, m_bScroll(false)
+, m_bDisableSplash(false)
+, m_bSingleInstance(false)
+, m_bVerifyPaths(false)
 , m_bCloseWindowWithEsc(TRUE)
-, m_bAskMultiWindowClose(FALSE)
-, m_bMultipleFileCmp(FALSE)
-, m_bMultipleDirCmp(FALSE)
+, m_bAskMultiWindowClose(false)
+, m_bMultipleFileCmp(false)
+, m_bMultipleDirCmp(false)
 , m_nAutoCompleteSource(0)
-, m_bPreserveFiletime(FALSE)
-, m_bShowSelectFolderOnStartup(FALSE)
+, m_bPreserveFiletime(false)
+, m_bShowSelectFolderOnStartup(false)
 {
 }
 
@@ -128,14 +129,14 @@ void PropGeneral::ReadOptions()
  */
 void PropGeneral::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll);
+	GetOptionsMgr()->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash);
+	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance);
+	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths);
+	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc);
+	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
+	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp);
+	GetOptionsMgr()->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp);
 	GetOptionsMgr()->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);

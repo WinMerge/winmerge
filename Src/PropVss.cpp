@@ -35,6 +35,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "SourceControl.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

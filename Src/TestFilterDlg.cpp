@@ -12,6 +12,7 @@
 #include "UnicodeString.h"
 #include "TestFilterDlg.h"
 #include "FileFilterMgr.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,12 +72,12 @@ BOOL CTestFilterDlg::OnInitDialog()
 /** @brief User pressed Text button. */
 void CTestFilterDlg::OnTestBtn() 
 {
-	CString text;
-	GetDlgItemText(IDC_TEST_TEXT, text);
+	String text;
+	GetDlgItemText(IDC_TEST_TEXT, PopString(text));
 
-	bool passed = CheckText((LPCTSTR)text);
+	bool passed = CheckText(text);
 
-	CString result = (passed ? _T("passed") : _T("failed"));
+	String result = (passed ? _T("passed") : _T("failed"));
 	text += _T(": ") + result;
 
 	AppendResult(text);
@@ -102,19 +103,19 @@ void CTestFilterDlg::OnOK()
  * @param [in] text Text to test.
  * @return true if text passes the filter, FALSE otherwise.
  */
-bool CTestFilterDlg::CheckText(CString text) const
+bool CTestFilterDlg::CheckText(String text) const
 {
 	CButton * IsDirButton = (CButton *)GetDlgItem(IDC_IS_DIRECTORY);
 	bool isDir = (IsDirButton->GetCheck() == BST_CHECKED);
 	if (isDir)
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
-		text.Replace('/', '\\');
-		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, (LPCTSTR)text);
+		string_replace(text, _T("/"), _T("\\"));
+		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
 	}
 	else
 	{
-		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, (LPCTSTR)text);
+		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, text);
 	}
 }
 
@@ -123,21 +124,21 @@ bool CTestFilterDlg::CheckText(CString text) const
  * @param [in] edit Edit contror into which the text is added.
  * @param [in] text Text to add to edit control.
  */
-void AppendToEditBox(CEdit & edit, LPCTSTR text)
+void AppendToEditBox(CEdit & edit, const String& text)
 {
 	int len = edit.GetWindowTextLength();
 	edit.SetSel(len, len);
-	edit.ReplaceSel(text);
+	edit.ReplaceSel(text.c_str());
 }
 
 /**
  * @brief Add new result to end of result edit box.
  * @param [in] result Result text to add.
  */
-void CTestFilterDlg::AppendResult(CString result)
+void CTestFilterDlg::AppendResult(String result)
 {
 	CEdit * edit = (CEdit *)GetDlgItem(IDC_RESULTS);
 	if (edit->GetWindowTextLength()>0)
-		result = (CString)_T("\r\n") + result;
+		result = _T("\r\n") + result;
 	AppendToEditBox(*edit, result);
 }

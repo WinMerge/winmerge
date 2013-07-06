@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
  */
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CDirColsDlg::IDD, pParent)
-	, m_bReset(FALSE)
+	, m_bReset(false)
 {
 }
 
@@ -153,7 +153,7 @@ bool CDirColsDlg::CompareColumnsByLogicalOrder( const column & el1, const column
 void CDirColsDlg::MoveItem(int index, int newIndex)
 {
 	// Get current column data
-	CString text = m_listColumns.GetItemText(index, 0);
+	String text =  m_listColumns.GetItemText(index, 0);
 	BOOL checked = m_listColumns.GetCheck(index);
 	UINT state = m_listColumns.GetItemState(index, LVIS_SELECTED);
 	DWORD_PTR data = m_listColumns.GetItemData(index);
@@ -162,7 +162,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
 	m_listColumns.DeleteItem(index);
 	
 	// Insert column in new index
-	m_listColumns.InsertItem(newIndex, text);
+	m_listColumns.InsertItem(newIndex, text.c_str());
 	m_listColumns.SetItemState(newIndex, state, LVIS_SELECTED);
 	m_listColumns.SetItemData(newIndex, data);
 	if (checked)
@@ -174,7 +174,7 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
  * @param [in] bUp If TRUE items are moved up,
  *  if FALSE items are moved down.
  */
-void CDirColsDlg::MoveSelectedItems(BOOL bUp)
+void CDirColsDlg::MoveSelectedItems(bool bUp)
 {
 	int firstInd = -1;
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
@@ -259,7 +259,7 @@ void CDirColsDlg::OnOK()
 void CDirColsDlg::OnDefaults()
 {
 	m_listColumns.DeleteAllItems();
-	m_bReset = TRUE;
+	m_bReset = true;
 	LoadDefLists();
 }
 

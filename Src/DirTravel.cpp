@@ -98,7 +98,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				continue;
 
 			DirItem ent;
-			ent.bIsDir = !!bIsDirectory;
+			ent.bIsDir = bIsDirectory;
 
 			// Save filetimes as seconds since January 1, 1970
 			// Note that times can be < 0 if they are around that 1970..

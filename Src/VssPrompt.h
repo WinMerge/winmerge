@@ -27,6 +27,7 @@
 
 #include "SuperComboBox.h"
 #include "afxwin.h"
+#include "UnicodeString.h"
 
 /**
  * @brief Class for VSS dialog
@@ -41,10 +42,13 @@ public:
 	//{{AFX_DATA(CVssPrompt)
 	enum { IDD = IDD_VSS };
 	CSuperComboBox	m_ctlProject;
-	CString	m_strProject;
-	CString	m_strUser;
-	CString	m_strPassword;
-	CString	m_strMessage;
+	String	m_strProject;
+	String	m_strUser;
+	String	m_strPassword;
+	String	m_strMessage;
+	String m_strSelectedDatabase;
+	bool m_bMultiCheckouts;
+	bool m_bVCProjSync;
 	//}}AFX_DATA
 
 
@@ -66,11 +70,8 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	CString m_strSelectedDatabase;
 	CComboBox m_ctlDBCombo;
-	BOOL m_bMultiCheckouts;
 	CButton m_ctlMultiCheckouts;
-	BOOL m_bVCProjSync;
 };
 
 //{{AFX_INSERT_LOCATION}}

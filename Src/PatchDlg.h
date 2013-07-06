@@ -27,6 +27,7 @@
 
 #include "resource.h"
 #include "SuperComboBox.h"
+#include "UnicodeString.h"
 
 struct PATCHFILES;
 
@@ -46,7 +47,7 @@ public:
 
 	// Functions to add and get selected files (as PATCHFILEs)
 	void AddItem(const PATCHFILES& pf);
-	int GetItemCount();
+	size_t GetItemCount();
 	const PATCHFILES& GetItemAt(int position);
 	void ClearItems();
 
@@ -55,19 +56,19 @@ public:
 	enum { IDD = IDD_GENERATE_PATCH };
 	CComboBox m_comboStyle;
 	CSuperComboBox m_comboContext;
-	BOOL m_caseSensitive;
+	bool m_caseSensitive;
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
 	CSuperComboBox m_ctlResult;
-	CString	m_file1;
-	CString	m_file2;
-	CString	m_fileResult;
-	BOOL m_ignoreBlanks;
-	BOOL m_ignoreEOLDifference;
+	String	m_file1;
+	String	m_file2;
+	String	m_fileResult;
+	bool m_ignoreBlanks;
+	bool m_ignoreEOLDifference;
 	int m_whitespaceCompare;
-	BOOL m_appendFile;
-	BOOL m_openToEditor;
-	BOOL m_includeCmdLine;
+	bool m_appendFile;
+	bool m_openToEditor;
+	bool m_includeCmdLine;
 	//}}AFX_DATA
 
 	enum output_style m_outputStyle; /**< Patch style (context, unified etc.) */
@@ -85,7 +86,7 @@ protected:
 
 	std::vector<PATCHFILES> m_fileList; /**< Source files to create patch from */
 
-	void ChangeFile(const CString &sFile, BOOL bLeft);
+	void ChangeFile(const String &sFile, bool bLeft);
 	void UpdateSettings();
 	void LoadSettings();
 	void SaveSettings();

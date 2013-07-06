@@ -250,7 +250,7 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
  * @brief Read options from storage to UI controls.
  * @param [in] bUpdate If TRUE UpdateData() is called
  */
-void CPreferencesDlg::ReadOptions(BOOL bUpdate)
+void CPreferencesDlg::ReadOptions(bool bUpdate)
 {
 	m_pageGeneral.ReadOptions();
 	m_pageMergeColors.ReadOptions();
@@ -362,7 +362,7 @@ void CPreferencesDlg::OnExportButton()
  * @param [in] pPage Propertypage to update.
  * @param bSaveAndValidate UpdateData direction parameter.
  */
-void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, BOOL bSaveAndValidate)
+void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, bool bSaveAndValidate)
 {
 	if (pPage->GetSafeHwnd() != NULL)
 		pPage->UpdateData(bSaveAndValidate);

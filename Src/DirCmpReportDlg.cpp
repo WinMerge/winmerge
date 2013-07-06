@@ -16,6 +16,7 @@
 #include "FileOrFolderSelect.h"
 #include "Merge.h"
 #include "DirCmpReportDlg.h"
+#include "DDXHelper.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
 
@@ -24,8 +25,8 @@ IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
  */
 DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(DirCmpReportDlg::IDD, pParent)
-	, m_bCopyToClipboard(FALSE)
-	, m_bIncludeFileCmpReport(FALSE)
+	, m_bCopyToClipboard(false)
+	, m_bIncludeFileCmpReport(false)
 {
 }
 
@@ -96,8 +97,8 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 	m_nReportType = static_cast<REPORT_TYPE>(theApp.GetProfileInt(_T("ReportFiles"), _T("ReportType"), 0));
-	m_bCopyToClipboard = theApp.GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), FALSE);
-	m_bIncludeFileCmpReport = theApp.GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), FALSE);
+	m_bCopyToClipboard = !!theApp.GetProfileInt(_T("ReportFiles"), _T("CopoyToClipboard"), false);
+	m_bIncludeFileCmpReport = !!theApp.GetProfileInt(_T("ReportFiles"), _T("IncludeFileCmpReport"), false);
 
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
@@ -114,7 +115,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	// Set selected path to variable so file selection dialog shows
 	// correct filename and path.
-	m_ctlReportFile.GetWindowText(m_sReportFile);
+	m_ctlReportFile.GetWindowText(PopString(m_sReportFile));
 
 	UpdateData(FALSE);
 
@@ -129,14 +130,14 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 {
 	UpdateData(TRUE);
 
-	CString folder = m_sReportFile;
+	String folder = m_sReportFile;
 	String filter = tr(f_types[m_ctlStyle.GetCurSel()].browseFilter);
 
 	String chosenFilepath;
-	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, _("Save As"),
+	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder.c_str(), _("Save As"),
 			filter, FALSE))
 	{
-		m_sReportFile = chosenFilepath.c_str();
+		m_sReportFile = chosenFilepath;
 		m_ctlReportFile.SetWindowText(chosenFilepath.c_str());
 	}
 }
@@ -165,16 +166,16 @@ void DirCmpReportDlg::OnOK()
 	int sel = m_ctlStyle.GetCurSel();
 	m_nReportType = (REPORT_TYPE)m_ctlStyle.GetItemData(sel);
 
-	if (m_sReportFile.IsEmpty() && !m_bCopyToClipboard)
+	if (m_sReportFile.empty() && !m_bCopyToClipboard)
 	{
 		LangMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
 		m_ctlReportFile.SetFocus();
 		return;
 	}
 
-	if (!m_sReportFile.IsEmpty())
+	if (!m_sReportFile.empty())
 	{
-		if (paths_DoesPathExist((const TCHAR *)m_sReportFile) == IS_EXISTING_FILE)
+		if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
 		{
 			int overWrite = LangMessageBox(IDS_REPORT_FILEOVERWRITE,
 					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,

@@ -12,6 +12,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -25,13 +26,13 @@ static char THIS_FILE[] = __FILE__;
  */
 PropCompare::PropCompare(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompare::IDD)
- , m_bIgnoreCase(FALSE)
- , m_bIgnoreBlankLines(FALSE)
- , m_bIgnoreEol(TRUE)
+ , m_bIgnoreCase(false)
+ , m_bIgnoreBlankLines(false)
+ , m_bIgnoreEol(true)
  , m_nIgnoreWhite(-1)
- , m_bMovedBlocks(FALSE)
- , m_bMatchSimilarLines(FALSE)
- , m_bFilterCommentsLines(FALSE)
+ , m_bMovedBlocks(false)
+ , m_bMatchSimilarLines(false)
+ , m_bFilterCommentsLines(false)
 {
 }
 
@@ -80,12 +81,12 @@ void PropCompare::ReadOptions()
 void PropCompare::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
+	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
+	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
+	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 }
 
 /** 
@@ -108,17 +109,11 @@ void PropCompare::OnDefaults()
 	unsigned tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
 	m_nIgnoreWhite = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_EOL, tmp);
-	m_bIgnoreEol = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
-	m_bIgnoreBlankLines = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_FILTER_COMMENTLINES, tmp);
-	m_bFilterCommentsLines = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
-	m_bIgnoreCase = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
-	m_bMovedBlocks = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, tmp);
-	m_bMatchSimilarLines = tmp;
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
+	GetOptionsMgr()->GetDefault(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
+	GetOptionsMgr()->GetDefault(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
+	GetOptionsMgr()->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	UpdateData(FALSE);
 }

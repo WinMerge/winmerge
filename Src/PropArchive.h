@@ -40,8 +40,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CStaticLink m_wwwLink;
-	BOOL m_bEnableSupport;
+	bool m_bEnableSupport;
 	int m_nInstallType;
-	BOOL m_bProbeType;
+	bool m_bProbeType;
 };
 #endif // _PROP_ARCHIVE_H_

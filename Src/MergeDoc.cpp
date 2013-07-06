@@ -500,7 +500,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetCodepage(bForceUTF8 ? CP_UTF8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
-	diffSuccess = !!m_diffWrapper.RunFileDiff();
+	diffSuccess = m_diffWrapper.RunFileDiff();
 
 	// Read diff-status
 	DIFFSTATUS status;
@@ -2094,33 +2094,33 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!m_filePaths.GetLeft().empty())
 	{
 		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
+			dlg.m_sLeftFile = m_filePaths.GetLeft();
 		else
 			dlg.m_sLeftFile = GetMainFrame()->m_strSaveAsPath;
 	}
 	else
-		dlg.m_sLeftFile = m_strDesc[0].c_str();
+		dlg.m_sLeftFile = m_strDesc[0];
 	if (m_nBuffers == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
 		{
 			if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle().c_str();
+				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
 			else
 				dlg.m_sMiddleFile = GetMainFrame()->m_strSaveAsPath;
 		}
 		else
-			dlg.m_sMiddleFile = m_strDesc[1].c_str();
+			dlg.m_sMiddleFile = m_strDesc[1];
 	}
 	if (!m_filePaths.GetRight().empty())
 	{
 		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
-			dlg.m_sRightFile = m_filePaths.GetRight().c_str();
+			dlg.m_sRightFile = m_filePaths.GetRight();
 		else
 			dlg.m_sRightFile = GetMainFrame()->m_strSaveAsPath;
 	}
 	else
-		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1].c_str();
+		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1];
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -3098,7 +3098,7 @@ void CMergeDoc::SwapFiles()
 bool CMergeDoc::OpenWithUnpackerDialog()
 {
 	// let the user choose a handler
-	CSelectUnpackerDlg dlg(m_filePaths[0].c_str(), NULL);
+	CSelectUnpackerDlg dlg(m_filePaths[0], NULL);
 	// create now a new infoUnpacker to initialize the manual/automatic flag
 	PackingInfo infoUnpacker(PLUGIN_AUTO);
 	dlg.SetInitialInfoHandler(&infoUnpacker);

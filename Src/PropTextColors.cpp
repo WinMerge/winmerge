@@ -15,6 +15,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,7 +31,7 @@ static const TCHAR Section[] = _T("Custom Colors");
  */
 PropTextColors::PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
  : OptionsPanel(optionsMgr, PropTextColors::IDD)
-, m_bCustomColors(FALSE)
+, m_bCustomColors(false)
 , m_pTempColors(pColors)
 {
 }
@@ -83,7 +84,7 @@ BOOL PropTextColors::OnInitDialog()
  */
 void PropTextColors::ReadOptions()
 {
-	m_bCustomColors = GetOptionsMgr()->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING) ? FALSE : TRUE;
+	m_bCustomColors = GetOptionsMgr()->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING) ? false : true;
 	SerializeColorsToFromScreen(LOAD_COLORS);
 }
 
@@ -93,7 +94,7 @@ void PropTextColors::ReadOptions()
  */
 void PropTextColors::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
+	GetOptionsMgr()->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == false);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors

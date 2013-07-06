@@ -156,7 +156,7 @@ void FileFiltersDlg::InitList()
 void FileFiltersDlg::SelectFilterByIndex(int index)
 {
 	m_listFilters.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
-	BOOL bPartialOk = FALSE;
+	bool bPartialOk = false;
 	m_listFilters.EnsureVisible(index, bPartialOk);
 }
 
@@ -237,7 +237,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	// Can't edit first "None"
 	if (sel > 0)
 	{
-		CString path = m_listFilters.GetItemText(sel, 2);
+		String path = m_listFilters.GetItemText(sel, 2);
 		EditFileFilter(path);
 	}
 }
@@ -246,7 +246,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
  * @brief Edit file filter in external editor.
  * @param [in] path Full path to file filter to edit.
  */
-void FileFiltersDlg::EditFileFilter(LPCTSTR path)
+void FileFiltersDlg::EditFileFilter(const String& path)
 {
 	CMainFrame::OpenFileToExternalEditor(path);
 }
@@ -283,9 +283,9 @@ static void EnableDlgItem(CWnd * parent, int item, bool enable)
 bool FileFiltersDlg::IsFilterItemNone(int item) const
 {
 	String txtNone = _("<None>");
-	CString txt = m_listFilters.GetItemText(item, 0);
+	String txt = m_listFilters.GetItemText(item, 0);
 
-	return (txt.CompareNoCase(txtNone.c_str()) == 0);
+	return (string_compare_nocase(txt, txtNone) == 0);
 }
 
 /**
@@ -303,9 +303,9 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	if (pNMLV->uNewState & LVIS_SELECTED)
 	{
 		String txtNone = _("<None>");
-		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
+		String txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
-		bool isNone = txt.CompareNoCase(txtNone.c_str()) == 0;
+		bool isNone = string_compare_nocase(txt, txtNone) == 0;
 
 		EnableDlgItem(this, IDC_FILTERFILE_TEST_BTN, !isNone);
 		EnableDlgItem(this, IDC_FILTERFILE_EDITBTN, !isNone);
@@ -335,8 +335,8 @@ void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
 		{
 			// Set item text to tooltip
-			CString strText = m_listFilters.GetItemText(lvhti.iItem, lvhti.iSubItem);
-			_tcscpy(pInfoTip->pszText, strText);
+			String strText = m_listFilters.GetItemText(lvhti.iItem, lvhti.iSubItem);
+			_tcscpy(pInfoTip->pszText, strText.c_str());
 		}
 	}
 }
@@ -461,7 +461,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			AfxMessageBox(msg.c_str(), MB_ICONERROR);
 			return;
 		}
-		EditFileFilter(s.c_str());
+		EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
 		int retval = pMgr->AddFilter(s.c_str());
 		if (retval == FILTER_OK)
@@ -482,7 +482,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileDelete()
 {
-	CString path;
+	String path;
 	int sel =- 1;
 
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
@@ -490,17 +490,16 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 	// Can't delete first "None"
 	if (sel > 0)
 	{
-		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
-		path.ReleaseBuffer();
+		path = m_listFilters.GetItemText(sel, 2);
 
-		String sConfirm = string_format_string1(_("Are you sure you want to delete\n\n%1 ?"), (LPCTSTR)path);
+		String sConfirm = string_format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
 		int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
-			if (DeleteFile(path))
+			if (DeleteFile(path.c_str()))
 			{
 				FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
-				pMgr->RemoveFilter((LPCTSTR)path);
+				pMgr->RemoveFilter(path);
 				
 				// Remove all from filterslist and re-add so we can update UI
 				String selected;
@@ -513,7 +512,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 			{
 				String msg = string_format_string1(
 					_("Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"),
-					(LPCTSTR)path);
+					path);
 				AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			}
 		}

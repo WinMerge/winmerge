@@ -14,6 +14,7 @@
 #include "OptionsPanel.h"
 #include "FileOrFolderSelect.h"
 #include "paths.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,10 +28,10 @@ static char THIS_FILE[] = __FILE__;
  */
 PropBackups::PropBackups(COptionsMgr *optionsMgr)
 	: OptionsPanel(optionsMgr, PropBackups::IDD)
-	, m_bCreateForFolderCmp(FALSE)
-	, m_bCreateForFileCmp(FALSE)
-	, m_bAppendBak(FALSE)
-	, m_bAppendTime(FALSE)
+	, m_bCreateForFolderCmp(false)
+	, m_bCreateForFileCmp(false)
+	, m_bAppendBak(false)
+	, m_bAppendTime(false)
 	, m_nBackupFolder(0)
 {
 }
@@ -70,13 +71,12 @@ void PropBackups::ReadOptions()
  */
 void PropBackups::WriteOptions()
 {
-	m_sGlobalFolder.TrimLeft();
-	m_sGlobalFolder.TrimRight();
-	if (m_sGlobalFolder.GetLength() > 3)
-		m_sGlobalFolder = paths_AddTrailingSlash(static_cast<const TCHAR *>(m_sGlobalFolder)).c_str();
+	string_trim_ws(m_sGlobalFolder);
+	if (m_sGlobalFolder.length() > 3)
+		m_sGlobalFolder = paths_AddTrailingSlash(m_sGlobalFolder);
 
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp);
+	GetOptionsMgr()->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_LOCATION, m_nBackupFolder);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, String(m_sGlobalFolder));
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak == TRUE);
@@ -101,7 +101,7 @@ BOOL PropBackups::OnInitDialog()
 void PropBackups::OnBnClickedBackupBrowse()
 {
 	String path;
-	if (SelectFolder(path, m_sGlobalFolder, _T(""), GetSafeHwnd()))
+	if (SelectFolder(path, m_sGlobalFolder.c_str(), _T(""), GetSafeHwnd()))
 	{
 		SetDlgItemText(IDC_BACKUP_FOLDER, path.c_str());
 	}

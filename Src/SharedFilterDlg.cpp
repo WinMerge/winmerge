@@ -71,7 +71,7 @@ BOOL CSharedFilterDlg::OnInitDialog()
  */
 void CSharedFilterDlg::OnOK()
 {
-	BOOL bShared = (m_SharedButton.GetCheck() == BST_CHECKED);
+	bool bShared = (m_SharedButton.GetCheck() == BST_CHECKED);
 	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_SHARED, bShared);
 	if (bShared)
 		m_ChosenFolder = m_SharedFolder;

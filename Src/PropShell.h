@@ -11,6 +11,7 @@
 
 #include "OptionsPanel.h"
 
+
 /**
  * @brief Class for Shell options -propertypage.
  */
@@ -26,10 +27,10 @@ public:
 
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_SHELL };
-	BOOL m_bContextAdded;
-	BOOL m_bContextAdvanced;
-	BOOL m_bContextSubfolders;
-	BOOL m_bEnableShellContextMenu;
+	bool m_bContextAdded;
+	bool m_bContextAdvanced;
+	bool m_bContextSubfolders;
+	bool m_bEnableShellContextMenu;
 
 // Overrides
 	protected:

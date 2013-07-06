@@ -161,11 +161,11 @@ static bool ConfirmDialog(const String &caption, const String &question,
 	if (paths_DoesPathExist(dest) == IS_EXISTING_DIR)
 		strDest = paths_AddTrailingSlash(dest);
 
-	dlg.m_question = question.c_str();
-	dlg.m_fromText = sOrig.c_str();
-	dlg.m_toText = sDest.c_str();
-	dlg.m_fromPath = strSrc.c_str();
-	dlg.m_toPath = strDest.c_str();
+	dlg.m_question = question;
+	dlg.m_fromText = sOrig;
+	dlg.m_toText = sDest;
+	dlg.m_fromPath = strSrc;
+	dlg.m_toPath = strDest;
 
 	return (dlg.DoModal()==IDYES);
 }
@@ -1577,9 +1577,9 @@ void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
 	String sSecondAffected = FormatFilesAffectedString(nSecondAffected, nSecond);
 	String sThirdAffected = FormatFilesAffectedString(nThirdAffected, nThird);
 	if (GetDocument()->m_nDirs < 3)
-		dlg->SetLeftRightAffectStrings(sFirstAffected.c_str(), _T(""), sSecondAffected.c_str());
+		dlg->SetLeftRightAffectStrings(sFirstAffected, _T(""), sSecondAffected);
 	else
-		dlg->SetLeftRightAffectStrings(sFirstAffected.c_str(), sSecondAffected.c_str(), sThirdAffected.c_str());
+		dlg->SetLeftRightAffectStrings(sFirstAffected, sSecondAffected, sThirdAffected);
 	int codepage = currentCodepages.FindMaxKey();
 	dlg->SetCodepages(codepage);
 }

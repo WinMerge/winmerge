@@ -170,16 +170,16 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			}
 			CloseClipboard();
 		}
-		if (!dlg.m_sReportFile.IsEmpty())
+		if (!dlg.m_sReportFile.empty())
 		{
 			String path;
-			paths_SplitFilename((const TCHAR *)dlg.m_sReportFile, &path, NULL, NULL);
+			paths_SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
 			if (!paths_CreateIfNeeded(path))
 			{
 				errStr = _("Folder does not exist.");
 				return FALSE;
 			}
-			CFile file(dlg.m_sReportFile,
+			CFile file(dlg.m_sReportFile.c_str(),
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
 			m_pFile = &file;
 			m_bIncludeFileCmpReport = !!dlg.m_bIncludeFileCmpReport;

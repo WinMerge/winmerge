@@ -30,7 +30,7 @@
 #include "version.h"
 #include "paths.h"
 #include "Environment.h"
-
+#include "DDXHelper.h"
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
@@ -70,11 +70,11 @@ BOOL CAboutDlg::OnInitDialog()
 
 	CVersionInfo version(AfxGetResourceHandle());
 	String sVersion = version.GetProductVersion();
-	m_strVersion = string_format_string1(_("Version %1"), sVersion).c_str();
+	m_strVersion = string_format_string1(_("Version %1"), sVersion);
 
 #ifdef _UNICODE
 	m_strVersion += _T(" ");
-	m_strVersion += _("Unicode").c_str();
+	m_strVersion += _("Unicode");
 #endif
 
 #if defined _M_IX86
@@ -89,8 +89,7 @@ BOOL CAboutDlg::OnInitDialog()
 	String sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.empty())
 	{
-		m_strPrivateBuild = string_format_string1(_("Private Build: %1"),
-			sPrivateBuild).c_str();
+		m_strPrivateBuild = string_format_string1(_("Private Build: %1"), sPrivateBuild);
 	}
 
 	String copyright = version.GetLegalCopyright();

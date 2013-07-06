@@ -26,6 +26,7 @@
 #define PropRegistry_h_included
 
 #include "OptionsPanel.h"
+#include "UnicodeString.h"
 
 class COptionsMgr;
 
@@ -49,11 +50,11 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropRegistry)
 	enum { IDD = IDD_PROPPAGE_SYSTEM };
-	CString	m_strEditorPath;
-	BOOL	m_bUseRecycleBin;
-	CString m_strUserFilterPath;
-	int		m_tempFolderType;
-	CString m_tempFolder;
+	String  m_strEditorPath;
+	bool    m_bUseRecycleBin;
+	String  m_strUserFilterPath;
+	int     m_tempFolderType;
+	String  m_tempFolder;
 	//}}AFX_DATA
 
 	// Overrides
