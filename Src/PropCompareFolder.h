@@ -40,12 +40,12 @@ public:
 	//{{AFX_DATA(PropCompareFolder)
 	enum { IDD = IDD_PROPPAGE_COMPARE_FOLDER };
 	int     m_compareMethod;
-	BOOL    m_bStopAfterFirst;
-	BOOL    m_bIgnoreSmallTimeDiff;
-	BOOL    m_bIncludeUniqFolders;
-	BOOL    m_bExpandSubdirs;
-	BOOL    m_bIgnoreReparsePoints;
-	UINT    m_nQuickCompareLimit;
+	bool    m_bStopAfterFirst;
+	bool    m_bIgnoreSmallTimeDiff;
+	bool    m_bIncludeUniqFolders;
+	bool    m_bExpandSubdirs;
+	bool    m_bIgnoreReparsePoints;
+	unsigned m_nQuickCompareLimit;
 	//}}AFX_DATA
 
 

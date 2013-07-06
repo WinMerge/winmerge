@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 #include "ConfirmFolderCopyDlg.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -81,8 +82,8 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 	CStatic * pIcon = (CStatic *) GetDlgItem(IDC_FLDCONFIRM_ICON);
 	pIcon->SetIcon(icon);
 
-	if (!m_caption.IsEmpty())
-		SetWindowText(m_caption);
+	if (!m_caption.empty())
+		SetWindowText(m_caption.c_str());
 
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);

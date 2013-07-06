@@ -231,27 +231,27 @@ BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 	const String &pathRight = m_filePaths.GetRight();
 
 	BOOL result = TRUE;
-	BOOL bLSaveSuccess = FALSE, bMSaveSuccess = FALSE, bRSaveSuccess = FALSE;
+	bool bLSaveSuccess = false, bMSaveSuccess = false, bRSaveSuccess = false;
 
 	SaveClosingDlg dlg;
 	dlg.DoAskFor(bLModified, bMModified, bRModified);
 	if (!bAllowCancel)
-		dlg.m_bDisableCancel = TRUE;
+		dlg.m_bDisableCancel = true;
 	if (!pathLeft.empty())
-		dlg.m_sLeftFile = pathLeft.c_str();
+		dlg.m_sLeftFile = pathLeft;
 	else
-		dlg.m_sLeftFile = m_strDesc[0].c_str();
+		dlg.m_sLeftFile = m_strDesc[0];
 	if (m_nBuffers == 3)
 	{
 		if (!pathMiddle.empty())
-			dlg.m_sMiddleFile = pathMiddle.c_str();
+			dlg.m_sMiddleFile = pathMiddle;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1].c_str();
+			dlg.m_sMiddleFile = m_strDesc[1];
 	}
 	if (!pathRight.empty())
-		dlg.m_sRightFile = pathRight.c_str();
+		dlg.m_sRightFile = pathRight;
 	else
-		dlg.m_sRightFile = m_strDesc[1].c_str();
+		dlg.m_sRightFile = m_strDesc[1];
 
 	if (dlg.DoModal() == IDOK)
 	{

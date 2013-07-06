@@ -1811,7 +1811,7 @@ void CDirView::OpenSelectionHex()
 	// Open identical and different files
 	bool bRO[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-		bRO[nIndex] = !!pDoc->GetReadOnly(true);
+		bRO[nIndex] = pDoc->GetReadOnly(true);
 
 	GetMainFrame()->ShowHexMergeDoc(pDoc, paths, bRO);
 }
@@ -3126,7 +3126,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename.c_str(), this);
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename, this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker(PLUGIN_AUTO);
 		dlg.SetInitialInfoHandler(&infoUnpacker);

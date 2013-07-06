@@ -43,7 +43,7 @@ private:
 	CColorButton    m_btnRegularText;
 	CColorButton    m_btnSelectionBackground;
 	CColorButton    m_btnSelectionText;
-	BOOL            m_bCustomColors;
+	bool            m_bCustomColors;
 	//}}AFX_DATA
 
 	COLORREF	m_clrWhitespaceBackground;

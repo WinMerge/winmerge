@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "WMGotoDlg.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

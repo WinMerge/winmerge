@@ -26,6 +26,8 @@
 #if !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
 #define AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
 
+#include "UnicodeString.h"
+
 /**
  * @brief A dialog for ClearCase checkout/checkin.
  */
@@ -38,7 +40,9 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CCCPrompt)
 	enum { IDD = IDD_CLEARCASE };
-	CString	m_comments;
+	String	m_comments;
+	bool m_bMultiCheckouts;
+	bool m_bCheckin;
 	//}}AFX_DATA
 
 
@@ -58,10 +62,6 @@ protected:
 	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-public:
-	BOOL m_bMultiCheckouts;
-	BOOL m_bCheckin;
 };
 
 //{{AFX_INSERT_LOCATION}}

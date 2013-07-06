@@ -12,6 +12,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -83,11 +84,11 @@ void PropCompareFolder::ReadOptions()
 void PropCompareFolder::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
-	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst);
+	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff);
+	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
 
 	if (m_nQuickCompareLimit > 2000)
 		m_nQuickCompareLimit = 2000;
@@ -133,14 +134,10 @@ void PropCompareFolder::OnDefaults()
 	unsigned tmp;
 	GetOptionsMgr()->GetDefault(OPT_CMP_METHOD, tmp);
 	m_compareMethod = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
-	m_bStopAfterFirst = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, tmp);
-	m_bIncludeUniqFolders = tmp;
-	GetOptionsMgr()->GetDefault(OPT_DIRVIEW_EXPAND_SUBDIRS, tmp);
-	m_bExpandSubdirs = tmp;
-	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_REPARSE_POINTS, tmp);
-	m_bIgnoreReparsePoints = tmp;
+	GetOptionsMgr()->GetDefault(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst);
+	GetOptionsMgr()->GetDefault(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
+	GetOptionsMgr()->GetDefault(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
+	GetOptionsMgr()->GetDefault(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
 	GetOptionsMgr()->GetDefault(OPT_CMP_QUICK_LIMIT, tmp);
 	m_nQuickCompareLimit = tmp / Mega;
 	UpdateData(FALSE);

@@ -15,6 +15,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,10 +38,10 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 
 PropShell::PropShell(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropShell::IDD)
-, m_bEnableShellContextMenu(FALSE)
-, m_bContextAdded(FALSE)
-, m_bContextAdvanced(FALSE)
-, m_bContextSubfolders(FALSE)
+, m_bEnableShellContextMenu(false)
+, m_bContextAdded(false)
+, m_bContextAdvanced(false)
+, m_bContextSubfolders(false)
 {
 }
 
@@ -111,13 +112,13 @@ void PropShell::GetContextRegValues()
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 
 	if (dwContextEnabled & CONTEXT_F_ENABLED)
-		m_bContextAdded = TRUE;
+		m_bContextAdded = true;
 
 	if (dwContextEnabled & CONTEXT_F_ADVANCED)
-		m_bContextAdvanced = TRUE;
+		m_bContextAdvanced = true;
 
 	if (dwContextEnabled & CONTEXT_F_SUBFOLDERS)
-		m_bContextSubfolders = TRUE;
+		m_bContextSubfolders = true;
 }
 
 /// Set registry values for ShellExtension
@@ -188,7 +189,7 @@ void PropShell::AdvancedContextMenuCheck()
 	{
 		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
-		m_bContextAdvanced = FALSE;
+		m_bContextAdvanced = false;
 	}
 }
 
@@ -201,6 +202,6 @@ void PropShell::SubfolderOptionCheck()
 	{
 		GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_SUBFOLDERS, FALSE);
-		m_bContextSubfolders = FALSE;
+		m_bContextSubfolders = false;
 	}
 }

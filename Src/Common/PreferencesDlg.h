@@ -104,9 +104,9 @@ protected:
 	void AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubHeading);
 	void SetActivePage(int nPage);
 	CString GetItemPath(HTREEITEM hti);
-	void ReadOptions(BOOL bUpdate = FALSE);
+	void ReadOptions(bool bUpdate = false);
 	void SaveOptions();
-	void SafeUpdatePage(CPropertyPage* pPage, BOOL bSaveAndValidate);
+	void SafeUpdatePage(CPropertyPage* pPage, bool bSaveAndValidate);
 
 private:
 	COptionsMgr *m_pOptionsMgr;

@@ -28,6 +28,7 @@
 
 #include "statlink.h"
 #include "resource.h" // IDD_ABOUTBOX
+#include "UnicodeString.h"
 
 /** 
  * @brief About-dialog class.
@@ -45,8 +46,8 @@ public:
 	enum { IDD = IDD_ABOUTBOX };
 	CStatic	m_ctlCompany;
 	CStaticLink	m_ctlWWW;
-	CString	m_strVersion;
-	CString m_strPrivateBuild;
+	String m_strVersion;
+	String m_strPrivateBuild;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides

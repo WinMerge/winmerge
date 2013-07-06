@@ -26,6 +26,7 @@
 #if !defined(AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_)
 #define AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_
 
+#include "UnicodeString.h"
 
 /**
  * @brief Class for Goto-dialog.
@@ -43,7 +44,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(WMGotoDlg)
 	enum { IDD = IDD_WMGOTO };
-	CString m_strParam;  /**< Line/difference number. */
+	String m_strParam;   /**< Line/difference number. */
 	int m_nFile;         /**< Target file number. */
 	int m_nGotoWhat;     /**< Goto line or difference? */
 	//}}AFX_DATA

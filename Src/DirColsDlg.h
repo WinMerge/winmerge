@@ -60,7 +60,7 @@ public:
 	//{{AFX_DATA(CDirColsDlg)
 	enum { IDD = IDD_DIRCOLS };
 	CListCtrl m_listColumns;
-	BOOL m_bReset;
+	bool m_bReset;
 	//}}AFX_DATA
 
 
@@ -79,7 +79,7 @@ protected:
 	void LoadDefLists();
 	void SortArrayToLogicalOrder();
 	void MoveItem(int index, int newIndex);
-	void MoveSelectedItems(BOOL bUp);
+	void MoveSelectedItems(bool bUp);
 	void SanitizeOrder();
 
 // Implementation data

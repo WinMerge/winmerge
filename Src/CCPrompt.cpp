@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "CCPrompt.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -34,8 +35,8 @@ static char THIS_FILE[] = __FILE__;
 
 CCCPrompt::CCCPrompt(CWnd* pParent /*=NULL*/)
 	: CDialog(CCCPrompt::IDD, pParent)
-	, m_bMultiCheckouts(FALSE)
-	, m_bCheckin(FALSE)
+	, m_bMultiCheckouts(false)
+	, m_bCheckin(false)
 {
 }
 

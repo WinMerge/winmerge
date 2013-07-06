@@ -30,6 +30,7 @@
 #include "Merge.h"
 #include "VssPrompt.h"
 #include "RegKey.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,8 +49,8 @@ static char THIS_FILE[] = __FILE__;
 CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
 	: CDialog(CVssPrompt::IDD, pParent)
 	, m_strSelectedDatabase(_T(""))
-	, m_bMultiCheckouts(FALSE)
-	, m_bVCProjSync(FALSE)
+	, m_bMultiCheckouts(false)
+	, m_bVCProjSync(false)
 {
 }
 
@@ -135,7 +136,7 @@ BOOL CVssPrompt::OnInitDialog()
 void CVssPrompt::OnOK()
 {
 	UpdateData(TRUE);
-	if (m_strProject.IsEmpty())
+	if (m_strProject.empty())
 	{
 		LangMessageBox(IDS_NOPROJECT,MB_ICONSTOP);
 		m_ctlProject.SetFocus();

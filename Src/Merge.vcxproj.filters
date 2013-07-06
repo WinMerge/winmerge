@@ -1374,6 +1374,9 @@
     <ClInclude Include="SourceControl.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DDXHelper.h">
+      <Filter>MFCGui\Dialogs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

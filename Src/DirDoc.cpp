@@ -188,7 +188,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 
 	m_pCtxt.reset(new CDiffContext(paths,
 			GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
-	m_pCtxt->m_bRecursive = !!bRecursive;
+	m_pCtxt->m_bRecursive = bRecursive;
 
 	if (pTempPathContext)
 	{
@@ -361,7 +361,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
 	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
-	m_pCtxt->m_bRecursive = !!m_bRecursive;
+	m_pCtxt->m_bRecursive = m_bRecursive;
 
 	// Set total items count since we don't collect items
 	if (m_bMarkedRescan)

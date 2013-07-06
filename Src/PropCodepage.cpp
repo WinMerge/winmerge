@@ -36,6 +36,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "charsets.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -47,8 +48,8 @@ PropCodepage::PropCodepage(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropCodepage::IDD)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)
-, m_bDetectCodepage(FALSE)
-, m_bDetectCodepage2(FALSE)
+, m_bDetectCodepage(false)
+, m_bDetectCodepage2(false)
 , m_nAutodetectType(50001)
 {
 }
@@ -84,7 +85,7 @@ void PropCodepage::ReadOptions()
 {
 	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
 	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_cCustomCodepageValue.Format(_T("%d"),m_nCustomCodepageValue);
+	m_cCustomCodepageValue = string_format(_T("%d"),m_nCustomCodepageValue);
 	m_bDetectCodepage = GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 1;
 	m_bDetectCodepage2 = (GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 2) != 0;
 	m_nAutodetectType = ((unsigned)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
@@ -100,7 +101,7 @@ void PropCodepage::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
 	GetEncodingCodePageFromNameString();
 	GetOptionsMgr()->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
-	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, m_bDetectCodepage | (m_bDetectCodepage2 << 1) | (m_nAutodetectType << 16));
+	GetOptionsMgr()->SaveOption(OPT_CP_DETECT, (m_bDetectCodepage ? 1 : 0) | (m_bDetectCodepage2 << 1) | (m_nAutodetectType << 16));
 }
 
 BOOL PropCodepage::OnInitDialog() 
@@ -121,9 +122,8 @@ BOOL PropCodepage::OnInitDialog()
 	else
 		m_comboAutodetectType.EnableWindow(FALSE);
 
-	CString str;
-	str.Format(_T("%d"), m_nCustomCodepageValue);
-	m_comboCustomCodepageValue.SetWindowText(str);
+	String str = string_format(_T("%d"), m_nCustomCodepageValue);
+	m_comboCustomCodepageValue.SetWindowText(str.c_str());
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
@@ -180,7 +180,7 @@ void PropCodepage::OnDetectCodepage2()
 
 void PropCodepage::OnDetectAutodetecttype()
 {
-	m_nAutodetectType = m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel());	
+	m_nAutodetectType = static_cast<int>(m_comboAutodetectType.GetItemData(m_comboAutodetectType.GetCurSel()));	
 }
 
 void PropCodepage::OnCpUi() 
@@ -190,20 +190,9 @@ void PropCodepage::OnCpUi()
 
 void PropCodepage::GetEncodingCodePageFromNameString()
 {
-	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue);
+	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue.c_str());
 	if (nCustomCodepageValue == 0)
-	{
-		char result[80]; 
-#ifdef _UNICODE
-		long len = wcslen(m_cCustomCodepageValue); 
-		_wcstombsz(result, m_cCustomCodepageValue, len); //conversion to char * 
-#else
-		long len = m_cCustomCodepageValue.GetLength(); 
-		strncpy(result, m_cCustomCodepageValue.GetBuffer(0), len);
-#endif
-		result[len] = '\0'; //don't forget to put the caracter of terminated string 
-		nCustomCodepageValue = GetEncodingCodePageFromName(result);
-	}
+		nCustomCodepageValue = GetEncodingCodePageFromName(ucr::toSystemCP(m_cCustomCodepageValue).c_str());
 	//if found a new codepage valid
 	if (nCustomCodepageValue)
 		m_nCustomCodepageValue = nCustomCodepageValue;

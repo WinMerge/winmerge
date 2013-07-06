@@ -32,6 +32,7 @@
 #include "SelectUnpackerDlg.h"
 #include "Plugins.h"
 #include "FileTransform.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -47,7 +48,7 @@ static char THIS_FILE[] = __FILE__;
 void CSelectUnpackerDlg::Initialize()
 {
 	//{{AFX_DATA_INIT(CSelectUnpackerDlg)
-	m_bNoExtensionCheck = FALSE;
+	m_bNoExtensionCheck = false;
 	m_strDescription = _T("");
 	m_strExtensions = _T("");
 	//}}AFX_DATA_INIT
@@ -92,18 +93,18 @@ void CSelectUnpackerDlg::Initialize()
 }
 
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(LPCTSTR filename, CWnd* pParent /*=NULL*/)
+CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename, CWnd* pParent /*=NULL*/)
 	: CDialog(CSelectUnpackerDlg::IDD, pParent)
 {
 	m_filteredFilenames = filename;
 	Initialize();
 }
 
-CSelectUnpackerDlg::CSelectUnpackerDlg(LPCTSTR filename1, LPCTSTR filename2, CWnd* pParent /*=NULL*/)
+CSelectUnpackerDlg::CSelectUnpackerDlg(const String& filename1, const String& filename2, CWnd* pParent /*=NULL*/)
 	: CDialog(CSelectUnpackerDlg::IDD, pParent)
 {
 	m_filteredFilenames = filename1;
-	m_filteredFilenames += "|";
+	m_filteredFilenames += _T("|");
 	m_filteredFilenames += filename2;
 	Initialize();
 }
@@ -197,7 +198,7 @@ BOOL CSelectUnpackerDlg::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	m_bNoExtensionCheck = AfxGetApp()->GetProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), FALSE);
+	m_bNoExtensionCheck = !!AfxGetApp()->GetProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), false);
 
 	prepareListbox();
 
@@ -214,7 +215,7 @@ void CSelectUnpackerDlg::prepareListbox()
 		PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
 		if (pPlugin == noPlugin.get() || pPlugin == automaticPlugin.get() 
 				|| m_bNoExtensionCheck 
-			  || pPlugin->TestAgainstRegList((LPCTSTR)m_filteredFilenames))
+			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
 		{
 			m_cboUnpackerName.AddString(pPlugin->m_name.c_str());
 			if (pPlugin == m_pPlugin)
@@ -253,11 +254,11 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 		// initialize with the default unpacker
 		m_pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(0));
 		PluginInfo * pPlugin;
-		m_cboUnpackerName.GetWindowText(m_strPluginName);
+		m_cboUnpackerName.GetWindowText(PopString(m_strPluginName));
 		for (int j = 0 ; j < m_UnpackerPlugins.GetSize() ; j++)
 		{
 			pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
-			if (m_strPluginName == pPlugin->m_name.c_str())
+			if (m_strPluginName == pPlugin->m_name)
 			{
 				m_pPlugin = pPlugin;
 				break;
@@ -265,9 +266,9 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 		}
 	}
 
-	m_strPluginName = m_pPlugin->m_name.c_str();
-	m_strDescription = m_pPlugin->m_description.c_str();
-	m_strExtensions = m_pPlugin->m_filtersText.c_str();
+	m_strPluginName = m_pPlugin->m_name;
+	m_strDescription = m_pPlugin->m_description;
+	m_strExtensions = m_pPlugin->m_filtersText;
 
 	UpdateData (FALSE);
 }

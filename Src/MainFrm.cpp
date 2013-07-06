@@ -2831,7 +2831,7 @@ void CMainFrame::OnSaveProject()
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		left = pMergeDoc->m_filePaths.GetLeft();
 		right = pMergeDoc->m_filePaths.GetRight();
-		pathsDlg.SetPaths(left.c_str(), right.c_str());
+		pathsDlg.SetPaths(left, right);
 		pathsDlg.m_bLeftPathReadOnly = pMergeDoc->m_ptBuf[0]->GetReadOnly();
 		pathsDlg.m_bRightPathReadOnly = pMergeDoc->m_ptBuf[1]->GetReadOnly();
 	}
@@ -2843,14 +2843,13 @@ void CMainFrame::OnSaveProject()
 		right = paths_AddTrailingSlash(pDoc->GetRightBasePath());
 		
 		// Set-up the dialog
-		pathsDlg.SetPaths(left.c_str(), right.c_str());
+		pathsDlg.SetPaths(left, right);
 		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
 		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(0);
 		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(pDoc->m_nDirs - 1);
 	}
 
-	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	pathsDlg.m_sFilter = filterNameOrMask.c_str();
+	pathsDlg.m_sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	sht.DoModal();
 }
 

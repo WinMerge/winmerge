@@ -30,9 +30,9 @@ public:
 	CComboBox m_comboAutodetectType;
 	int		m_nCodepageSystem;
 	int		m_nCustomCodepageValue;
-	CString	m_cCustomCodepageValue;
-	BOOL	m_bDetectCodepage;
-	BOOL	m_bDetectCodepage2;
+	String	m_cCustomCodepageValue;
+	bool	m_bDetectCodepage;
+	bool	m_bDetectCodepage2;
 	int		m_nAutodetectType;
 	//}}AFX_DATA
 

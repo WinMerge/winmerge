@@ -2959,7 +2959,7 @@ void CMergeEditView::OnWMGoto()
 	nLastLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(nLineCount - 1);
 
 	// Set active file and current line selected in dialog
-	dlg.m_strParam.Format(_T("%d"), nRealLine + 1);
+	dlg.m_strParam = string_format(_T("%d"), nRealLine + 1);
 	dlg.m_nFile = (pDoc->m_nBuffers < 3) ? (m_nThisPane == 1 ? 2 : 0) : m_nThisPane;
 	dlg.m_nGotoWhat = 0;
 
@@ -2973,7 +2973,7 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
-			int nRealLine = _ttoi(dlg.m_strParam) - 1;
+			int nRealLine = _ttoi(dlg.m_strParam.c_str()) - 1;
 			if (nRealLine < 0)
 				nRealLine = 0;
 			if (nRealLine > nLastLine)
@@ -2983,7 +2983,7 @@ void CMergeEditView::OnWMGoto()
 		}
 		else
 		{
-			int diff = _ttoi(dlg.m_strParam) - 1;
+			int diff = _ttoi(dlg.m_strParam.c_str()) - 1;
 			if (diff < 0)
 				diff = 0;
 			if (diff >= pDoc->m_diffList.GetSize())

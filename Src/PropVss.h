@@ -10,6 +10,7 @@
 #define AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
 #include "OptionsPanel.h"
+#include "UnicodeString.h"
 
 class COptionsMgr;
 
@@ -31,7 +32,7 @@ public:
 	CStatic	m_ctlVssL1;
 	CEdit	m_ctlPath;
 	CButton	m_ctlBrowse;
-	CString	m_strPath;
+	String	m_strPath;
 	int		m_nVerSys;
 	CComboBox  m_ctlVerSys;
 	//}}AFX_DATA

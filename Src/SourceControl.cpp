@@ -133,17 +133,17 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 	{
 		// Prompt for user choice
 		CVssPrompt dlg;
-		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
-		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
-		dlg.m_strUser = m_strVssUser.c_str();          // BSP - Add VSS user name to dialog box
-		dlg.m_strPassword = m_strVssPassword.c_str();
+		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
+		dlg.m_strProject = m_vssHelper.GetProjectBase();
+		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword;
 
 		// Dialog not suppressed - show it and allow user to select "checkout all"
 		if (!m_CheckOutMulti)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
 		}
 		else // Dialog already shown and user selected to "checkout all"
 			userChoice = IDOK;
@@ -152,7 +152,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		if (userChoice == IDOK)
 		{
 			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
-			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
+			m_vssHelper.SetProjectBase(dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
 			if (!spath.empty())
 			{
@@ -191,11 +191,11 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		CVssPrompt dlg;
 		CRegKeyEx reg;
 
-		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath).c_str();
-		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
-		dlg.m_strUser = m_strVssUser.c_str();          // BSP - Add VSS user name to dialog box
-		dlg.m_strPassword = m_strVssPassword.c_str();
-		dlg.m_strSelectedDatabase = m_strVssDatabase.c_str();
+		dlg.m_strMessage = string_format_string1(_("Save changes to %1?"), strSavePath);
+		dlg.m_strProject = m_vssHelper.GetProjectBase();
+		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword;
+		dlg.m_strSelectedDatabase = m_strVssDatabase;
 		dlg.m_bVCProjSync = TRUE;
 
 		// Dialog not suppressed - show it and allow user to select "checkout all"
@@ -203,18 +203,18 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
 			if (userChoice != IDOK)
 				return FALSE; // User selected cancel
 		}
 		// process versioning system specific action
 		WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
 		BOOL bOpened = FALSE;
-		m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
+		m_vssHelper.SetProjectBase(dlg.m_strProject);
 		m_strVssUser = dlg.m_strUser;
 		m_strVssPassword = dlg.m_strPassword;
 		m_strVssDatabase = dlg.m_strSelectedDatabase;
-		m_bVCProjSync = !!dlg.m_bVCProjSync;					
+		m_bVCProjSync = dlg.m_bVCProjSync;					
 
 		theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase.c_str());
 		theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
@@ -321,13 +321,13 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		CCCPrompt dlg;
 		if (!m_CheckOutMulti)
 		{
-			dlg.m_bMultiCheckouts = FALSE;
+			dlg.m_bMultiCheckouts = false;
 			dlg.m_comments = _T("");
-			dlg.m_bCheckin = FALSE;
+			dlg.m_bCheckin = false;
 			userChoice = dlg.DoModal();
-			m_CheckOutMulti = !!dlg.m_bMultiCheckouts;
-			m_strCCComment = static_cast<const TCHAR *>(dlg.m_comments);
-			m_bCheckinVCS = !!dlg.m_bCheckin;
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			m_strCCComment = dlg.m_comments;
+			m_bCheckinVCS = dlg.m_bCheckin;
 		}
 		else // Dialog already shown and user selected to "checkout all"
 			userChoice = IDOK;

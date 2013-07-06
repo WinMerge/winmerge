@@ -12,6 +12,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "DDXHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,13 +29,13 @@ static const int MAX_TABSIZE = 64;
  */
 PropEditor::PropEditor(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropEditor::IDD)
-, m_bHiliteSyntax(FALSE)
+, m_bHiliteSyntax(false)
 , m_nTabType(-1)
 , m_nTabSize(0)
-, m_bAutomaticRescan(FALSE)
-, m_bAllowMixedEol(FALSE)
-, m_bViewLineDifferences(FALSE)
-, m_bBreakOnWords(FALSE)
+, m_bAutomaticRescan(false)
+, m_bAllowMixedEol(false)
+, m_bViewLineDifferences(false)
+, m_bBreakOnWords(false)
 , m_nBreakType(0)
 {
 }
@@ -96,9 +97,9 @@ void PropEditor::WriteOptions()
 		m_nTabSize = MAX_TABSIZE;
 	GetOptionsMgr()->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
 	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
-	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol == TRUE);
-	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan);
+	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
+	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
 	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
@@ -174,9 +175,9 @@ void PropEditor::UpdateLineDiffControls()
 void PropEditor::OnEnKillfocusTabEdit()
 {
 	CEdit * pEdit = (CEdit *)GetDlgItem(IDC_TAB_EDIT);
-	CString valueAsText;
-	pEdit->GetWindowText(valueAsText);
-	int value = _ttoi(valueAsText);
+	String valueAsText;
+	pEdit->GetWindowText(PopString(valueAsText));
+	int value = _ttoi(valueAsText.c_str());
 	
 	if (value < 1 || value > MAX_TABSIZE)
 	{

@@ -30,17 +30,17 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PropGeneral)
 	enum { IDD = IDD_PROPPAGE_GENERAL };
-	BOOL  m_bScroll;
-	BOOL  m_bDisableSplash;
-	BOOL  m_bSingleInstance;
-	BOOL  m_bVerifyPaths;
-	BOOL  m_bCloseWindowWithEsc;
-	BOOL  m_bAskMultiWindowClose;
-	BOOL	m_bMultipleFileCmp;
-	BOOL	m_bMultipleDirCmp;
-	int		m_nAutoCompleteSource;
-	BOOL	m_bPreserveFiletime;
-	BOOL	m_bShowSelectFolderOnStartup;
+	bool  m_bScroll;
+	bool  m_bDisableSplash;
+	bool  m_bSingleInstance;
+	bool  m_bVerifyPaths;
+	bool  m_bCloseWindowWithEsc;
+	bool  m_bAskMultiWindowClose;
+	bool  m_bMultipleFileCmp;
+	bool  m_bMultipleDirCmp;
+	int   m_nAutoCompleteSource;
+	bool  m_bPreserveFiletime;
+	bool  m_bShowSelectFolderOnStartup;
 	//}}AFX_DATA
 
 
