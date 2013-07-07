@@ -176,7 +176,8 @@ void PropEditor::OnEnKillfocusTabEdit()
 	CEdit * pEdit = (CEdit *)GetDlgItem(IDC_TAB_EDIT);
 	CString valueAsText;
 	pEdit->GetWindowText(valueAsText);
-	int value = _ttoi(valueAsText);
+	int value = 0;
+	try { value = string_stoi(static_cast<const TCHAR *>(valueAsText)); } catch (...) {};
 	
 	if (value < 1 || value > MAX_TABSIZE)
 	{

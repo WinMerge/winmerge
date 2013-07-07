@@ -182,7 +182,7 @@ void CPatchDlg::OnOK()
 	{
 		CString contextText;
 		m_comboContext.GetLBText(contextSel, contextText);
-		m_contextLines = _ttoi(contextText);
+		m_contextLines = string_stoi(static_cast<const TCHAR *>(contextText));
 	}
 	else
 		m_contextLines = 0;
