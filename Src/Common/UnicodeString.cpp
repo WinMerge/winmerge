@@ -29,6 +29,8 @@
 #include "UnicodeString.h"
 #include <cstdarg>
 #include <cstdio>
+#include <cstdlib>
+#include <cerrno>
 #include <vector>
 
 /**
@@ -236,3 +238,23 @@ String string_format_string2(const String& fmt, const String& arg1, const String
 	const String* args[] = {&arg1, &arg2};
 	return string_format_strings(fmt, args, 2);
 }
+
+int string_stoi(const String& str, size_t *idx/* = 0*/, int base/* = 10*/)
+{
+	int val;
+	const TCHAR *begin = str.c_str();
+	TCHAR *endptr = NULL;
+#ifdef _UNICODE
+	val = wcstol(begin, &endptr, base);
+#else
+	val = strtol(begin, &endptr, base);
+#endif
+	if (endptr == begin)
+		throw std::invalid_argument("string_stoi");
+	else if (errno == ERANGE)
+		throw std::out_of_range("string_stoi");
+	if (idx)
+		*idx = endptr - begin;
+	return val;
+}
+

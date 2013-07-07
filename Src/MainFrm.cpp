@@ -664,6 +664,8 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	DWORD dwFlags[] /*=0*/, PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
+	if (!m_pMenus[MENU_MERGEVIEW])
+		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(nFiles, pDirDoc, &docNull);
 
 	// Make local copies, so we can change encoding if we guess it below
@@ -757,6 +759,8 @@ void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc,
 	const PathContext &paths, bool bRO[])
 {
 	BOOL docNull;
+	if (!m_pMenus[MENU_HEXMERGEVIEW])
+		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
 	if (CHexMergeDoc *pHexMergeDoc = GetHexMergeDocToShow(paths.GetSize(), pDirDoc, &docNull))
 		pHexMergeDoc->OpenDocs(paths, bRO);
 }
@@ -1109,6 +1113,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 	PATH_EXISTENCE pathsType = GetPairComparability(files, IsArchiveFile);
 	if (pathsType == DOES_NOT_EXIST)
 	{
+		if (!m_pMenus[MENU_OPENVIEW])
+			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
 		COpenDoc *pOpenDoc = (COpenDoc *)theApp.m_pOpenTemplate->CreateNewDocument();
 		if (dwFlags)
 		{
@@ -1906,6 +1912,8 @@ CHexMergeDoc * CMainFrame::GetHexMergeDocToShow(int nFiles, CDirDoc * pDirDoc, B
 /// Get pointer to a dir doc for displaying a scan
 CDirDoc * CMainFrame::GetDirDocToShow(int nDirs, BOOL * pNew)
 {
+	if (!m_pMenus[MENU_DIRVIEW])
+		theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
 	CDirDoc * pDirDoc = 0;
 	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
 	{

@@ -78,4 +78,6 @@ String string_format_strings(const String& fmt, const String *args[], size_t nar
 String string_format_string1(const String& fmt, const String& arg1);
 String string_format_string2(const String& fmt, const String& arg1, const String& arg2);
 
+int string_stoi(const String& str, size_t *idx = 0, int base = 10);
+
 #endif // _UNICODE_STRING_

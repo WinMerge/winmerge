@@ -2971,9 +2971,12 @@ void CMergeEditView::OnWMGoto()
 		// Get views
 		pCurrentView = GetGroupView(m_nThisPane);
 
+		int num = 0;
+		try { num = string_stoi(dlg.m_strParam) - 1; } catch(...) {}
+
 		if (dlg.m_nGotoWhat == 0)
 		{
-			int nRealLine = _ttoi(dlg.m_strParam.c_str()) - 1;
+			int nRealLine = num;
 			if (nRealLine < 0)
 				nRealLine = 0;
 			if (nRealLine > nLastLine)
@@ -2983,7 +2986,7 @@ void CMergeEditView::OnWMGoto()
 		}
 		else
 		{
-			int diff = _ttoi(dlg.m_strParam.c_str()) - 1;
+			int diff = num;
 			if (diff < 0)
 				diff = 0;
 			if (diff >= pDoc->m_diffList.GetSize())
