@@ -26,14 +26,14 @@ public:
 	int LoadOption(const String& name);
 	int SetRegRootKey(const String& path);
 
-	virtual int InitOption(const String& name, varprop::VariantValue defaultValue);
+	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue);
 	virtual int InitOption(const String& name, const String& defaultValue);
 	virtual int InitOption(const String& name, const TCHAR *defaultValue);
 	virtual int InitOption(const String& name, int defaultValue, bool serializable=true);
 	virtual int InitOption(const String& name, bool defaultValue);
 
 	virtual int SaveOption(const String& name);
-	virtual int SaveOption(const String& name, varprop::VariantValue value);
+	virtual int SaveOption(const String& name, const varprop::VariantValue& value);
 	virtual int SaveOption(const String& name, const String& value);
 	virtual int SaveOption(const String& name, const TCHAR *value);
 	virtual int SaveOption(const String& name, int value);
@@ -51,7 +51,7 @@ protected:
 	int LoadValueFromReg(HKEY hKey, const String& strName,
 		varprop::VariantValue &value);
 	int SaveValueToReg(HKEY hKey, const String& strValueName,
-		varprop::VariantValue value);
+		const varprop::VariantValue& value);
 
 private:
 	String m_registryRoot; /**< Registry path where to store options. */
