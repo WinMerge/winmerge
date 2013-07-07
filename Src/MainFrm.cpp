@@ -53,7 +53,7 @@
 #include "LineFiltersDlg.h"
 #include "paths.h"
 #include "Environment.h"
-#include "WaitStatusCursor.h"
+#include "CustomStatusCursor.h"
 #include "PatchTool.h"
 #include "Plugins.h"
 #include "SelectUnpackerDlg.h"

@@ -4701,6 +4701,9 @@
 					RelativePath=".\CustomColors.cpp">
 				</File>
 				<File
+					RelativePath=".\CustomStatusCursor.cpp">
+				</File>
+				<File
 					RelativePath="DiffTextBuffer.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -6400,6 +6403,9 @@
 				</File>
 				<File
 					RelativePath=".\CustomColors.h">
+				</File>
+				<File
+					RelativePath=".\CustomStatusCursor.h">
 				</File>
 				<File
 					RelativePath="DiffTextBuffer.h">
