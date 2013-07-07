@@ -23,48 +23,27 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#if !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
-#define AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
+#pragma once
 
+#include <boost/scoped_ptr.hpp>
 #include "UnicodeString.h"
 
-/**
- * @brief A dialog for ClearCase checkout/checkin.
- */
-class CCCPrompt : public CDialog
+class CCCPrompt
 {
 // Construction
 public:
-	CCCPrompt(CWnd* pParent = NULL);   // standard constructor
+	CCCPrompt();
+	~CCCPrompt();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(CCCPrompt)
-	enum { IDD = IDD_CLEARCASE };
 	String	m_comments;
 	bool m_bMultiCheckouts;
 	bool m_bCheckin;
-	//}}AFX_DATA
 
+private:
+	CCCPrompt(const CCCPrompt &);
+	CCCPrompt & operator=(const CCCPrompt &);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CCCPrompt)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-	virtual BOOL OnInitDialog();
-
-	// Generated message map functions
-	//{{AFX_MSG(CCCPrompt)
-	afx_msg void OnSaveas();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	class Impl;
+	boost::scoped_ptr<Impl> m_pimpl;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)

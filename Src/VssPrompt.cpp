@@ -21,14 +21,15 @@
 /** 
  * @file  VssPrompt.cpp
  *
- * @brief Code for CVssPrompt class
+ * @brief Code for CVssPrompt::Impl class
  */
 // ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "VssPrompt.h"
+#include "SuperComboBox.h"
+#include "Merge.h"
 #include "RegKey.h"
 #include "DDXHelper.h"
 
@@ -38,55 +39,95 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Class for VSS dialog
+ */
+class CVssPrompt::Impl : public CDialog
+{
+// Construction
+public:
+	CVssPrompt::Impl(CVssPrompt *p, CWnd* pParent = NULL);   // standard constructor
+
+// Dialog Data
+	//{{AFX_DATA(CVssPrompt::Impl)
+	enum { IDD = IDD_VSS };
+	CSuperComboBox	m_ctlProject;
+	//}}AFX_DATA
+
+
+// Overrides
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CVssPrompt::Impl)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+
+	// Generated message map functions
+	//{{AFX_MSG(CVssPrompt::Impl)
+	virtual BOOL OnInitDialog();
+	virtual void OnOK();
+	afx_msg void OnSaveas();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+public:
+	CComboBox m_ctlDBCombo;
+	CButton m_ctlMultiCheckouts;
+
+private:
+	CVssPrompt *m_p;
+};
+
 /////////////////////////////////////////////////////////////////////////////
-// CVssPrompt dialog
+// CVssPrompt::Impl dialog
 
 
 /**
  * @brief Default constructor.
  * @param [in] pParent Pointer to parent component.
  */
-CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
-	: CDialog(CVssPrompt::IDD, pParent)
-	, m_strSelectedDatabase(_T(""))
-	, m_bMultiCheckouts(false)
-	, m_bVCProjSync(false)
+CVssPrompt::Impl::Impl(CVssPrompt *p, CWnd* pParent /*=NULL*/)
+	: CDialog(CVssPrompt::Impl::IDD, pParent)
+	, m_p(p)
+
 {
 }
 
 
-void CVssPrompt::DoDataExchange(CDataExchange* pDX)
+void CVssPrompt::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CVssPrompt)
+	//{{AFX_DATA_MAP(CVssPrompt::Impl)
 	DDX_Control(pDX, IDC_PROJECT_COMBO, m_ctlProject);
-	DDX_CBString(pDX, IDC_PROJECT_COMBO, m_strProject);
-	DDX_Text(pDX, IDC_USER, m_strUser);
-	DDX_Text(pDX, IDC_PASSWORD, m_strPassword);
-	DDX_Text(pDX, IDC_MESSAGE, m_strMessage);
+	DDX_CBString(pDX, IDC_PROJECT_COMBO, m_p->m_strProject);
+	DDX_Text(pDX, IDC_USER, m_p->m_strUser);
+	DDX_Text(pDX, IDC_PASSWORD, m_p->m_strPassword);
+	DDX_Text(pDX, IDC_MESSAGE, m_p->m_strMessage);
 	//}}AFX_DATA_MAP
-	DDX_CBString(pDX, IDC_DATABASE_LIST, m_strSelectedDatabase);
+	DDX_CBString(pDX, IDC_DATABASE_LIST, m_p->m_strSelectedDatabase);
 	DDX_Control(pDX, IDC_DATABASE_LIST, m_ctlDBCombo);
-	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_bMultiCheckouts);
+	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_p->m_bMultiCheckouts);
 	DDX_Control(pDX, IDC_MULTI_CHECKOUT, m_ctlMultiCheckouts);
-	DDX_Check(pDX, IDC_VCPROJ_SYNC, m_bVCProjSync);
+	DDX_Check(pDX, IDC_VCPROJ_SYNC, m_p->m_bVCProjSync);
 }
 
 
-BEGIN_MESSAGE_MAP(CVssPrompt, CDialog)
-	//{{AFX_MSG_MAP(CVssPrompt)
+BEGIN_MESSAGE_MAP(CVssPrompt::Impl, CDialog)
+	//{{AFX_MSG_MAP(CVssPrompt::Impl)
 	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CVssPrompt message handlers
+// CVssPrompt::Impl message handlers
 
 /**
  * @brief Initialize the dialog.
  * @return TRUE, unless focus is modified.
  */
-BOOL CVssPrompt::OnInitDialog()
+BOOL CVssPrompt::Impl::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -133,10 +174,10 @@ BOOL CVssPrompt::OnInitDialog()
 /**
  * @brief Close dialog with OK-button.
  */
-void CVssPrompt::OnOK()
+void CVssPrompt::Impl::OnOK()
 {
 	UpdateData(TRUE);
-	if (m_strProject.empty())
+	if (m_p->m_strProject.empty())
 	{
 		LangMessageBox(IDS_NOPROJECT,MB_ICONSTOP);
 		m_ctlProject.SetFocus();
@@ -150,7 +191,17 @@ void CVssPrompt::OnOK()
 /**
  * @brief Close dialog with Save As -button.
  */
-void CVssPrompt::OnSaveas()
+void CVssPrompt::Impl::OnSaveas()
 {
 	EndDialog(IDC_SAVE_AS);
 }
+
+
+CVssPrompt::CVssPrompt()
+	: m_pimpl(new CVssPrompt::Impl(this))
+	, m_strSelectedDatabase(_T(""))
+	, m_bMultiCheckouts(false)
+	, m_bVCProjSync(false)
+{}
+CVssPrompt::~CVssPrompt() {}
+int CVssPrompt::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }

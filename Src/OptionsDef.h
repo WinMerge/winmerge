@@ -173,6 +173,9 @@ const TCHAR OPT_FILEFILTER_SHARED[] = _T("Settings/Filters/Shared");
 // Version control
 const TCHAR OPT_VCS_SYSTEM[] = _T("Settings/VersionSystem");
 const TCHAR OPT_VSS_PATH[] = _T("Settings/VssPath");
+const TCHAR OPT_VSS_DATABASE[] = _T("Settings/VssDatabase");
+const TCHAR OPT_VSS_PROJECT[] = _T("Settings/VssProject");
+const TCHAR OPT_VSS_USER[] = _T("Settings/VssUser");
 
 // Archive support
 const TCHAR OPT_ARCHIVE_ENABLE[] = _T("Merge7z/Enable");
