@@ -74,5 +74,62 @@ String tr(const std::string &str)
 
 void AppErrorMessageBox(const String& msg)
 {
-	AfxMessageBox(msg.c_str(), MB_ICONSTOP);
+	AppMsgBox::error(msg);
+}
+
+namespace AppMsgBox
+{
+
+namespace detail
+{
+	int convert_to_winflags(int flags)
+	{
+		int newflags = 0;
+
+		if ((flags & (YES | NO | CANCEL)) == (YES | NO | CANCEL)) newflags |= MB_YESNOCANCEL;
+		else if ((flags & (YES | NO)) == (YES | NO)) newflags |= MB_YESNO;
+		else if ((flags & (OK | CANCEL)) == (OK | CANCEL)) newflags |= MB_OKCANCEL;
+		else if ((flags & OK) == OK) newflags |= MB_OK;
+	
+		if (flags & YES_TO_ALL) newflags |= MB_YES_TO_ALL;
+		if (flags & DONT_DISPLAY_AGAIN) newflags |= MB_DONT_DISPLAY_AGAIN;
+
+		return newflags;
+	}
+
+	int convert_resp(int resp)
+	{
+		switch (resp)
+		{
+		case IDOK:
+			return OK;
+		case IDCANCEL:
+			return CANCEL;
+		case IDNO:
+			return NO;
+		case IDYES:
+			return YES;
+		case IDYESTOALL:
+			return YES_TO_ALL;
+		default:
+			return OK;
+		}
+	}
+}
+
+int error(const String& msg, int type)
+{
+	return detail::convert_resp(AfxMessageBox(msg.c_str(), detail::convert_to_winflags(type) | MB_ICONSTOP));
+}
+
+int warning(const String& msg, int type)
+{
+	return detail::convert_resp(AfxMessageBox(msg.c_str(), detail::convert_to_winflags(type) | MB_ICONWARNING));
+}
+
+int information(const String& msg, int type)
+{
+	return detail::convert_resp(AfxMessageBox(msg.c_str(), detail::convert_to_winflags(type) | MB_ICONINFORMATION));
+}
+
 }

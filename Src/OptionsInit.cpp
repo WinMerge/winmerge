@@ -153,6 +153,9 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_VCS_SYSTEM, SourceControl::VCS_NONE);
 	m_pOptions->InitOption(OPT_VSS_PATH, _T(""));
+	m_pOptions->InitOption(OPT_VSS_DATABASE, _T(""));
+	m_pOptions->InitOption(OPT_VSS_PROJECT, _T(""));
+	m_pOptions->InitOption(OPT_VSS_USER, _T(""));
 
 	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);

@@ -6,7 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
+#include <Windows.h>
 #include "SourceControl.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Process.h>
@@ -18,15 +18,14 @@
 #include "MyCom.h"
 #include "UnicodeString.h"
 #include "unicoder.h"
-#include "MainFrm.h"
-#include "Merge.h"
 #include "MergeApp.h"
+#include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "RegKey.h"
 #include "paths.h"
 #include "VssPrompt.h"
-#include "WaitStatusCursor.h"
 #include "CCPrompt.h"
+#include "WaitStatusCursor.h"
 #include "coretools.h"
 
 using Poco::format;
@@ -86,13 +85,11 @@ SourceControl::SourceControl() :
 void
 SourceControl::InitializeSourceControlMembers()
 {
-	m_vssHelper.SetProjectBase((const TCHAR *)theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
-	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
-//	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
-	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
-	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
+	m_vssHelper.SetProjectBase(GetOptionsMgr()->GetString(OPT_VSS_PROJECT));
+	m_strVssUser = GetOptionsMgr()->GetString(OPT_VSS_USER);
+	m_strVssDatabase = GetOptionsMgr()->GetString(OPT_VSS_DATABASE);
 	m_strCCComment = _T("");
-	m_bCheckinVCS = FALSE;
+	m_bCheckinVCS = false;
 
 	String vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 	if (vssPath.empty())
@@ -118,8 +115,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 {
 	String spath, sname;
 	paths_SplitFilename(strSavePath, &spath, &sname, NULL);
-	CFileStatus status;
-	UINT_PTR userChoice = 0;
+	int userChoice = 0;
 	int nVerSys = 0;
 
 	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
@@ -141,7 +137,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		// Dialog not suppressed - show it and allow user to select "checkout all"
 		if (!m_CheckOutMulti)
 		{
-			dlg.m_bMultiCheckouts = FALSE;
+			dlg.m_bMultiCheckouts = false;
 			userChoice = dlg.DoModal();
 			m_CheckOutMulti = dlg.m_bMultiCheckouts;
 		}
@@ -153,7 +149,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		{
 			WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
 			m_vssHelper.SetProjectBase(dlg.m_strProject);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
+			GetOptionsMgr()->SaveOption(OPT_VSS_PROJECT, m_vssHelper.GetProjectBase());
 			if (!spath.empty())
 			{
 				_chdrive(_totupper(spath[0]) - 'A' + 1);
@@ -171,18 +167,18 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 				int code = Process::wait(hVss);
 				if (code != 0)
 				{
-					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
-					return FALSE;
+					AppErrorMessageBox(_("Versioning System returned an error while attempting to check out the file.  Unable to continue..."));
+					return false;
 				}
 			}
 			catch (...)
 			{
-				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
-				return FALSE;
+				AppErrorMessageBox(_("Error executing versioning system command."));
+				return false;
 			}
 		}
 		else
-			return FALSE; // User selected cancel
+			return false; // User selected cancel
 	}
 	break;
 	case VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
@@ -196,30 +192,28 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 		dlg.m_strSelectedDatabase = m_strVssDatabase;
-		dlg.m_bVCProjSync = TRUE;
+		dlg.m_bVCProjSync = true;
 
 		// Dialog not suppressed - show it and allow user to select "checkout all"
 		if (!m_CheckOutMulti)
 		{
-			dlg.m_bMultiCheckouts = FALSE;
+			dlg.m_bMultiCheckouts = false;
 			userChoice = dlg.DoModal();
 			m_CheckOutMulti = dlg.m_bMultiCheckouts;
 			if (userChoice != IDOK)
-				return FALSE; // User selected cancel
+				return false; // User selected cancel
 		}
 		// process versioning system specific action
 		WaitStatusCursor waitstatus(_("Checkout files from VSS..."));
-		BOOL bOpened = FALSE;
 		m_vssHelper.SetProjectBase(dlg.m_strProject);
 		m_strVssUser = dlg.m_strUser;
 		m_strVssPassword = dlg.m_strPassword;
 		m_strVssDatabase = dlg.m_strSelectedDatabase;
 		m_bVCProjSync = dlg.m_bVCProjSync;					
 
-		theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase.c_str());
-		theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
-		theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser.c_str());
-//		theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword.c_str());
+		GetOptionsMgr()->SaveOption(OPT_VSS_DATABASE, m_strVssDatabase);
+		GetOptionsMgr()->SaveOption(OPT_VSS_PROJECT, m_vssHelper.GetProjectBase());
+		GetOptionsMgr()->SaveOption(OPT_VSS_USER, m_strVssUser);
 
 		HRESULT hr;
 		CMyComPtr<IVSSDatabase> vssdb;
@@ -230,7 +224,7 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 		if (FAILED(hr = vssdb.CoCreateInstance(CLSID_VSSDatabase, IID_IVSSDatabase)))
 		{
 			ShowVSSError(hr, _T(""));
-			return FALSE;
+			return false;
 		}
 				// BSP - Open the specific VSS data file  using info from VSS dialog box
 		// let vss try to find one if not specified
@@ -292,16 +286,16 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 			if (string_compare_nocase(ucr::toTString(bstrLocalSpec.m_str), strSavePath))
 			{
 				// BSP - if the directories are different, let the user confirm the CheckOut
-				int iRes = LangMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
-						MB_YESNO | MB_YES_TO_ALL | MB_ICONWARNING);
+				int iRes = AppMsgBox::warning(_("The VSS Working Folder and the location of the current file do not match. Continue?"), 
+						AppMsgBox::YES | AppMsgBox::NO | AppMsgBox::YES_TO_ALL);
 
-				if (iRes == IDNO)
+				if (iRes == AppMsgBox::NO)
 				{
 					m_bVssSuppressPathCheck = false;
 					m_CheckOutMulti = false; // Reset, we don't want 100 of the same errors
 					return false;   // No means user has to start from begin
 				}
-				else if (iRes == IDYESTOALL)
+				else if (iRes == AppMsgBox::YES_TO_ALL)
 					m_bVssSuppressPathCheck = true; // Don't ask again with selected files
 			}
 		}
@@ -358,13 +352,13 @@ bool SourceControl::SaveToVersionControl(const String& strSavePath)
 				int code = Process::wait(hVss);
 				if (code != 0)
 				{
-					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+					AppErrorMessageBox(_("Versioning System returned an error while attempting to check out the file.  Unable to continue..."));
 					return false;
 				}
 			}
 			catch (...)
 			{
-				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+				AppErrorMessageBox(_("Error executing versioning system command."));
 				return false;
 			}
 		}
@@ -398,7 +392,8 @@ void SourceControl::CheckinToClearCase(const String &strDestinationPath)
 		code = Process::wait(hVss);
 		if (code != 0)
 		{
-			if (LangMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
+			if (AppMsgBox::warning(_("Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"),
+				    AppMsgBox::YES | AppMsgBox::NO) == AppMsgBox::YES)
 			{
 				// undo checkout operation
 				args.push_back("uncheckout");
@@ -409,7 +404,7 @@ void SourceControl::CheckinToClearCase(const String &strDestinationPath)
 				code = Process::wait(hVss);
 				if (code != 0)
 				{
-					LangMessageBox(IDS_VSS_UNCOERROR, MB_ICONSTOP);
+					AppErrorMessageBox(_("Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "));
 					return;
 				}
 			}
@@ -418,7 +413,7 @@ void SourceControl::CheckinToClearCase(const String &strDestinationPath)
 	}
 	catch (...)
 	{
-		LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+		AppErrorMessageBox(_("Error executing versioning system command."));
 		return;
 	}
 }
