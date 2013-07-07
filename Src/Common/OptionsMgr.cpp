@@ -34,6 +34,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 static bool GetAsInt(const String& str, int & val);
 
+varprop::VariantValue COptionsMgr::m_emptyValue;
+
 /**
  * @brief Default constructor.
  */
@@ -75,7 +77,7 @@ COption& COption::operator=(const COption& option)
  * is restored for otion when Reset() is run.
  * @sa COption::Reset()
  */
-int COption::Init(const String& name, varprop::VariantValue defaultValue)
+int COption::Init(const String& name, const varprop::VariantValue& defaultValue)
 {
 	int retVal = COption::OPT_OK;
 
@@ -121,20 +123,18 @@ int COption::Init(const String& name, varprop::VariantValue defaultValue)
  * @brief Return option value.
  * @return Value as Variant type.
  */
-varprop::VariantValue COption::Get() const
+const varprop::VariantValue& COption::Get() const
 {
-	varprop::VariantValue retval = m_value;
-	return retval;
+	return m_value;
 }
 
 /**
  * @brief Return option default value.
  * @return Default value as varian type.
  */
-varprop::VariantValue COption::GetDefault() const
+const varprop::VariantValue& COption::GetDefault() const
 {
-	varprop::VariantValue retval = m_valueDef;
-	return retval;
+	return m_valueDef;
 }
 
 /**
@@ -265,7 +265,7 @@ bool COption::ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType)
  * @param [in] allowConversion Is automatic type conversion allowed?
  * @sa COption::Init()
  */
-int COption::Set(varprop::VariantValue value, bool allowConversion)
+int COption::Set(const varprop::VariantValue& value, bool allowConversion)
 {
 	int retVal = COption::OPT_OK;
 
@@ -275,8 +275,9 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 	{
 		if (allowConversion)
 		{
-			if (ConvertType(value, m_value.GetType()))
-				return Set(value);
+			varprop::VariantValue val(value);
+			if (ConvertType(val, m_value.GetType()))
+				return Set(val);
 		}
 		return COption::OPT_WRONG_TYPE;
 	}
@@ -315,7 +316,7 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
  * @param [in] defaultValue New default value.
  * @sa COption::Init()
  */
-int COption::SetDefault(varprop::VariantValue defaultValue)
+int COption::SetDefault(const varprop::VariantValue& defaultValue)
 {
 	int retVal = COption::OPT_OK;
 
@@ -382,7 +383,7 @@ void COption::Reset()
  * @param [in] name Option's name.
  * @param [in] defaultValue Option's initial and default value.
  */
-int COptionsMgr::AddOption(const String& name, varprop::VariantValue defaultValue)
+int COptionsMgr::AddOption(const String& name, const varprop::VariantValue& defaultValue)
 {
 	int retVal = COption::OPT_OK;
 	COption tmpOption;
@@ -399,26 +400,23 @@ int COptionsMgr::AddOption(const String& name, varprop::VariantValue defaultValu
  * @param [in] name Name of the option to get.
  * @return Option's value as variant type.
  */
-varprop::VariantValue COptionsMgr::Get(const String& name) const
+const varprop::VariantValue& COptionsMgr::Get(const String& name) const
 {
-	varprop::VariantValue value;
-
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		value = found->second.Get();
+		return found->second.Get();
 	}
-	return value;
+	return m_emptyValue;
 }
 
 /**
  * @brief Return string option value.
  * @param [in] name Option's name.
  */
-String COptionsMgr::GetString(const String& name) const
+const String& COptionsMgr::GetString(const String& name) const
 {
-	varprop::VariantValue val = Get(name);
-	return val.GetString();
+	return Get(name).GetString();
 }
 
 /**
@@ -427,8 +425,7 @@ String COptionsMgr::GetString(const String& name) const
  */
 int COptionsMgr::GetInt(const String& name) const
 {
-	varprop::VariantValue val = Get(name);
-	return val.GetInt();
+	return Get(name).GetInt();
 }
 
 /**
@@ -437,8 +434,7 @@ int COptionsMgr::GetInt(const String& name) const
  */
 bool COptionsMgr::GetBool(const String& name) const
 {
-	varprop::VariantValue val = Get(name);
-	return val.GetBool();
+	return Get(name).GetBool();
 }
 
 /**
@@ -446,7 +442,7 @@ bool COptionsMgr::GetBool(const String& name) const
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(const String& name, varprop::VariantValue value)
+int COptionsMgr::Set(const String& name, const varprop::VariantValue& value)
 {
 	int retVal = COption::OPT_OK;
 
