@@ -129,7 +129,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
  * @todo Handles only string and integer types
  */
 int CRegOptionsMgr::SaveValueToReg(HKEY hKey, const String& strValueName,
-	varprop::VariantValue value)
+	const varprop::VariantValue& value)
 {
 	LONG retValReg = 0;
 	int valType = value.GetType();
@@ -180,7 +180,7 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, const String& strValueName,
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(const String& name, varprop::VariantValue defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, const varprop::VariantValue& defaultValue)
 {
 	// Check type & bail if null
 	int valType = defaultValue.GetType();
@@ -231,9 +231,10 @@ int CRegOptionsMgr::InitOption(const String& name, varprop::VariantValue default
 		// Value already exists so read it.
 		else if (retValReg == ERROR_SUCCESS || retValReg == ERROR_MORE_DATA)
 		{
-			retVal = LoadValueFromReg(hKey, name, defaultValue);
+			varprop::VariantValue value(defaultValue);
+			retVal = LoadValueFromReg(hKey, name, value);
 			if (retVal == COption::OPT_OK)
-				retVal = Set(name, defaultValue);
+				retVal = Set(name, value);
 		}
 	}
 	RegCloseKey(hKey);
@@ -379,7 +380,7 @@ int CRegOptionsMgr::SaveOption(const String& name)
 /**
  * @brief Set new value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(const String& name, varprop::VariantValue value)
+int CRegOptionsMgr::SaveOption(const String& name, const varprop::VariantValue& value)
 {
 	int retVal = COption::OPT_OK;
 	retVal = Set(name, value);
