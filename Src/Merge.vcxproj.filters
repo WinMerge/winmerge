@@ -745,6 +745,9 @@
     <ClCompile Include="Common\DragDrop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustomStatusCursor.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1376,6 +1379,9 @@
     </ClInclude>
     <ClInclude Include="DDXHelper.h">
       <Filter>MFCGui\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomStatusCursor.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

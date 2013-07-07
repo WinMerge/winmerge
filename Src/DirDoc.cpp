@@ -41,7 +41,7 @@
 #include "MainFrm.h"
 #include "coretools.h"
 #include "paths.h"
-#include "WaitStatusCursor.h"
+#include "CustomStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "OptionsDiffOptions.h"

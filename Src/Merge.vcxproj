@@ -1499,6 +1499,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="CustomColors.cpp" />
+    <ClCompile Include="CustomStatusCursor.cpp" />
     <ClCompile Include="DiffContext.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -8550,6 +8551,7 @@
     <ClInclude Include="Common\coretypes.h" />
     <ClInclude Include="Common\CSubclass.h" />
     <ClInclude Include="CustomColors.h" />
+    <ClInclude Include="CustomStatusCursor.h" />
     <ClInclude Include="DDXHelper.h" />
     <ClInclude Include="Diff3.h" />
     <ClInclude Include="DiffContext.h" />
