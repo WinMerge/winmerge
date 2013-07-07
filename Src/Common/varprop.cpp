@@ -166,7 +166,7 @@ double VariantValue::GetFloat() const
  * @brief Get string value.
  * @return String value.
  */
-String VariantValue::GetString() const
+const String& VariantValue::GetString() const
 {
 	assert(m_vtype == VT_STRING);
 	return m_svalue;

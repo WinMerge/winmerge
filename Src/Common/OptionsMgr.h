@@ -58,11 +58,11 @@ public:
 
 	COption& operator=(const COption& option);
 
-	int Init(const String& name, varprop::VariantValue defaultVal);
-	varprop::VariantValue Get() const;
-	varprop::VariantValue GetDefault() const;
-	int Set(varprop::VariantValue value, bool allowConversion = false);
-	int SetDefault(varprop::VariantValue defaultValue); 
+	int Init(const String& name, const varprop::VariantValue& defaultVal);
+	const varprop::VariantValue& Get() const;
+	const varprop::VariantValue& GetDefault() const;
+	int Set(const varprop::VariantValue& value, bool allowConversion = false);
+	int SetDefault(const varprop::VariantValue& defaultValue); 
 	void Reset();
 
 protected:
@@ -89,12 +89,12 @@ typedef std::map<String, COption> OptionsMap;
 class COptionsMgr
 {
 public:
-	int AddOption(const String& name, varprop::VariantValue defaultValue);
-	varprop::VariantValue Get(const String& name) const;
-	String GetString(const String& name) const;
+	int AddOption(const String& name, const varprop::VariantValue& defaultValue);
+	const varprop::VariantValue& Get(const String& name) const;
+	const String& GetString(const String& name) const;
 	int GetInt(const String& name) const;
 	bool GetBool(const String& name) const;
-	int Set(const String& name, varprop::VariantValue value);
+	int Set(const String& name, const varprop::VariantValue& value);
 	int Set(const String& name, const String& value);
 	int Set(const String& name, const TCHAR *value);
 	int Set(const String& name, bool value);
@@ -104,15 +104,14 @@ public:
 	int GetDefault(const String& name, unsigned & value) const;
 	int GetDefault(const String& name, bool & value) const;
 
-	virtual int InitOption(const String& name,
-		varprop::VariantValue defaultValue) = 0;
+	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) = 0;
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;
 	virtual int InitOption(const String& name, const TCHAR *defaultValue) = 0;
 	virtual int InitOption(const String& name, int defaultValue, bool serializable = true) = 0;
 	virtual int InitOption(const String& name, bool defaultValue) = 0;
 
 	virtual int SaveOption(const String& name) = 0;
-	virtual int SaveOption(const String& name, varprop::VariantValue value) = 0;
+	virtual int SaveOption(const String& name, const varprop::VariantValue& value) = 0;
 	virtual int SaveOption(const String& name, const String& value) = 0;
 	virtual int SaveOption(const String& name, const TCHAR *value) = 0;
 	virtual int SaveOption(const String& name, int value) = 0;
@@ -128,6 +127,9 @@ public:
 
 protected:
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
+
+private:
+	static varprop::VariantValue m_emptyValue;
 };
 
 #endif // _OPTIONS_MGR_

@@ -61,7 +61,7 @@ public:
 	bool GetBool() const;
 	int GetInt() const;
 	double GetFloat() const;
-	String GetString() const;
+	const String& GetString() const;
 	time_t GetTime() const;
 
 private:
