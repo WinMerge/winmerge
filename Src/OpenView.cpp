@@ -507,7 +507,11 @@ void COpenView::OnOK()
 	pDoc->m_dwFlags[1] = m_dwFlags[1];
 	pDoc->m_dwFlags[2] = m_dwFlags[2];
 
-	GetMainFrame()->DoFileOpen(&pDoc->m_files, pDoc->m_dwFlags, !!pDoc->m_bRecurse, NULL, _T(""), &m_infoHandler);
+	if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK))
+		GetParentFrame()->PostMessage(WM_CLOSE);
+
+	GetMainFrame()->DoFileOpen(
+		&PathContext(pDoc->m_files), std::vector<DWORD>(pDoc->m_dwFlags, pDoc->m_dwFlags + 3).data(), !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
 }
 
 /** 
