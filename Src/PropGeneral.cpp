@@ -56,6 +56,7 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 , m_nAutoCompleteSource(0)
 , m_bPreserveFiletime(FALSE)
 , m_bShowSelectFolderOnStartup(FALSE)
+, m_bCloseWithOK(TRUE)
 {
 }
 
@@ -95,6 +96,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
 	DDX_Check(pDX, IDC_STARTUP_FOLDER_SELECT, m_bShowSelectFolderOnStartup);
+	DDX_Check(pDX, IDC_CLOSE_WITH_OK, m_bCloseWithOK);
 	//}}AFX_DATA_MAP
 }
 
@@ -121,6 +123,7 @@ void PropGeneral::ReadOptions()
 	m_nAutoCompleteSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	m_bPreserveFiletime = GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES);
 	m_bShowSelectFolderOnStartup = GetOptionsMgr()->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+	m_bCloseWithOK = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK);
 }
 
 /** 
@@ -139,6 +142,7 @@ void PropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
+	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_OK, m_bCloseWithOK);
 }
 
 /** 
