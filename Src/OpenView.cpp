@@ -92,6 +92,10 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_WM_DROPFILES()
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_WINDOWPOSCHANGED()
+	ON_WM_SETCURSOR()
+	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -142,6 +146,8 @@ BOOL COpenView::PreCreateWindow(CREATESTRUCT& cs)
 
 void COpenView::OnInitialUpdate()
 {
+	m_sizeOrig = GetTotalSize();
+
 	theApp.TranslateDialog(m_hWnd);
 
 	if (!m_picture.Load(IDR_LOGO))
@@ -149,6 +155,33 @@ void COpenView::OnInitialUpdate()
 
 	CFormView::OnInitialUpdate();
 	ResizeParentToFit();
+
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.InitializeSpecificSize(this, m_sizeOrig.cx, m_sizeOrig.cy);
+	m_constraint.SetMaxSizePixels(-1, m_sizeOrig.cy);
+	m_constraint.SetScrollScale(this, 1.0, 1.0);
+	m_constraint.SetSizeGrip(prdlg::CMoveConstraint::SG_NONE);
+	// configure how individual controls adjust when dialog resizes
+	m_constraint.ConstrainItem(IDC_PATH0_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH1_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH2_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
+	m_constraint.DisallowHeightGrowth();
+	//m_constraint.SubclassWnd(); // install subclassing
+
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenView"), false); // persist size via registry
+	m_constraint.UpdateSizes();
 
 	COpenDoc *pDoc = GetDocument();
 
@@ -268,7 +301,56 @@ void COpenView::OnPaint()
 	CRect rc;
 	GetClientRect(&rc);
     dc.PatBlt(size.cx, 0, rc.Width() - size.cx, size.cy, PATCOPY);
+
+	rc.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
+	rc.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
+	dc.DrawFrameControl(&rc, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+
 	CFormView::OnPaint();
+}
+
+void COpenView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+
+	if (m_rectTracker.Track(this, point, FALSE, GetParentFrame()))
+	{
+		CRect rc = m_rectTracker.m_rect;
+		MapWindowPoints(GetParentFrame(), &rc);
+		CRect rcFrame;
+		GetParentFrame()->GetClientRect(&rcFrame);
+		int width = rc.Width() > rcFrame.Width() ? rcFrame.Width() : rc.Width();
+		if (width < m_sizeOrig.cx)
+			width = m_sizeOrig.cx;
+		rc.right = rc.left + width;
+		rc.bottom = rc.top + m_sizeOrig.cy;
+		m_rectTracker.m_rect.right = m_rectTracker.m_rect.left + width;
+		m_rectTracker.m_rect.bottom = m_rectTracker.m_rect.top + m_sizeOrig.cy;
+		SetWindowPos(NULL, rc.left, rc.top, rc.Width(), rc.Height(), SWP_NOZORDER);
+		m_constraint.UpdateSizes();
+	}
+}
+
+void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+	CRect rc;
+	GetClientRect(&rc);
+	m_rectTracker.m_rect = rc;
+	CFormView::OnWindowPosChanged(lpwndpos);
+}
+
+void COpenView::OnDestroy()
+{
+	m_constraint.Persist(true, false);
+
+	CFormView::OnDestroy();
+}
+
+BOOL COpenView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+	if (pWnd == this && m_rectTracker.SetCursor(this, nHitTest))
+		return TRUE;
+
+	return CView::OnSetCursor(pWnd, nHitTest, message);
 }
 
 void COpenView::OnButton(int index)
@@ -412,6 +494,8 @@ void COpenView::OnOK()
 	SaveComboboxStates();
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
 	LoadComboboxStates();
+
+	m_constraint.Persist(true, false);
 
 	COpenDoc *pDoc = GetDocument();
 	pDoc->m_files = m_files;
