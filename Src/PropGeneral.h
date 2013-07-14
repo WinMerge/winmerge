@@ -41,6 +41,7 @@ public:
 	int   m_nAutoCompleteSource;
 	bool  m_bPreserveFiletime;
 	bool  m_bShowSelectFolderOnStartup;
+	bool  m_bCloseWithOK;
 	//}}AFX_DATA
 
 

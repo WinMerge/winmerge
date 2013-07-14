@@ -73,7 +73,9 @@ namespace prdlg {
 
 class CMoveConstraint
 {
+public:
 	enum EGRIP { SG_NONE, SG_NORMAL, SG_PARENTSTATE };
+private:
 	static EGRIP c_defGrip; // class-wide default sizing grip setting
 
 public:
@@ -149,6 +151,7 @@ public:
 	// always loads size, may also set position
 	void LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool position);
 	void LoadPosition(LPCTSTR szValueName, bool position);
+	void Persist(bool saving, bool position);
 
 	// for use when children hadn't been created yet at initialization time
 	// so their constraints had to be buffered to be initialized later
@@ -173,7 +176,6 @@ protected:
 	void GrabCurrentDimensionsAsOriginal(HWND hwndParent);
 	bool DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double fAboveY, double fExpandY);
 	void InitializeChildConstraintData(HWND hwndParent, Constraint & constraint);
-	void Persist(bool saving, bool position);
 	BOOL CheckConstraint(HWND hwndChild);
 	// handle WM_SIZE
 	void Resize(HWND hWnd, UINT nType);
