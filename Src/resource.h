@@ -506,6 +506,7 @@
 #define IDC_PLUGIN                      8802
 #define IDC_HEXVIEW                     8803
 #define IDC_IGNORE_REPARSEPOINTS        8804
+#define IDC_CLOSE_WITH_OK               8805
 #define IDS_SPLASH_DEVELOPERS           8976
 #define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001

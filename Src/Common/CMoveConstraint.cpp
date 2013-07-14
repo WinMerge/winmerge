@@ -474,10 +474,10 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	if (m_pFormView)
 	{
 		// ignore growth
-		if (nDeltaWidth > 0)
-			nDeltaWidth = 0;
-		if (nDeltaHeight > 0)
-			nDeltaHeight = 0;
+		//if (nDeltaWidth > 0)
+		//	nDeltaWidth = 0;
+		//if (nDeltaHeight > 0)
+		//	nDeltaHeight = 0;
 		CSize size;
 		size.cx = (int)(m_nOrigScrollX + nDeltaWidth * m_fShrinkWidth);
 		size.cy = (int)(m_nOrigScrollY + nDeltaHeight * m_fShrinkHeight);
@@ -732,6 +732,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 		RECT wprc;
 		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
 		GetWindowRect(m_hwndDlg, &wprc);
+		CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
 		CRect rc;
 		int ct=_stscanf(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
 		if (ct==4)
@@ -741,8 +742,14 @@ CMoveConstraint::Persist(bool saving, bool position)
 				wprc.left = rc.left;
 				wprc.top = rc.top;
 			}
-			wprc.right = wprc.left + rc.Width();
-			wprc.bottom = wprc.top + rc.Height();
+			int width = rc.Width();
+			int height = rc.Height();
+			if (m_nMinX && m_nMinX > width)  width = m_nMinX;
+			if (m_nMaxX && m_nMaxX < width)  width = m_nMaxX;
+			if (m_nMinY && m_nMinY > height) height = m_nMinY;
+			if (m_nMaxY && m_nMaxY < height) height = m_nMaxY;
+			wprc.right = wprc.left + width;
+			wprc.bottom = wprc.top + height;
 			SetWindowPos(m_hwndDlg, NULL, 
 				wprc.left, wprc.top, wprc.right - wprc.left, wprc.bottom - wprc.top,
 				SWP_NOZORDER | SWP_NOACTIVATE);
