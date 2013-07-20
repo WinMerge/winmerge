@@ -1,4 +1,5 @@
 #include "MergeApp.h"
+#include "unicoder.h"
 
 void LogErrorStringUTF8(const std::string& sz)
 {
@@ -20,4 +21,9 @@ String LoadResString(unsigned id)
 String GetSysError(int nerr)
 {
 	return _T("");
+}
+
+String tr(const std::string& str)
+{
+	return ucr::toTString(str);
 }
