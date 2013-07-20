@@ -508,7 +508,7 @@ void COpenView::OnOK()
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	GetMainFrame()->DoFileOpen(
-		&PathContext(pDoc->m_files), std::vector<DWORD>(pDoc->m_dwFlags, pDoc->m_dwFlags + 3).data(), !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
+		&PathContext(pDoc->m_files), &std::vector<DWORD>(pDoc->m_dwFlags, pDoc->m_dwFlags + 3)[0], !!pDoc->m_bRecurse, NULL, _T(""), &PackingInfo(pDoc->m_infoHandler));
 }
 
 /** 
