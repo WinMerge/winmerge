@@ -90,7 +90,7 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
  * @brief Return amount of actions (copy, move, etc) in script.
  * @return Amount of actions.
  */
-int FileActionScript::GetActionItemCount() const
+size_t FileActionScript::GetActionItemCount() const
 {
 	return m_actions.size();
 }

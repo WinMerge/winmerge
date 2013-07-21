@@ -56,7 +56,7 @@ static bool ConfirmCopy(int origin, int destination, int count,
 static bool ConfirmMove(int origin, int destination, int count,
 		const String& src, const String& dest, bool destIsSide);
 static bool ConfirmDialog(const String &caption, const String &question,
-		int origin, int destination, int count,
+		int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide);
 
 static bool CheckPathsExist(const String &orig, const String& dest, int allowOrig,
@@ -76,7 +76,7 @@ static bool CheckPathsExist(const String &orig, const String& dest, int allowOri
  * @param [in] destIsSide Is destination path either of compare sides?
  * @return true if copy should proceed, false if aborted.
  */
-static bool ConfirmCopy(int origin, int destination, int count,
+static bool ConfirmCopy(int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Copy");
@@ -101,7 +101,7 @@ static bool ConfirmCopy(int origin, int destination, int count,
  * @param [in] destIsSide Is destination path either of compare sides?
  * @return true if copy should proceed, false if aborted.
  */
-static bool ConfirmMove(int origin, int destination, int count,
+static bool ConfirmMove(int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide)
 {
 	String caption = _("Confirm Move");
@@ -126,7 +126,7 @@ static bool ConfirmMove(int origin, int destination, int count,
  * @return true if copy should proceed, false if aborted.
  */
 static bool ConfirmDialog(const String &caption, const String &question,
-		int origin, int destination, int count,
+		int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide)
 {
 	ConfirmFolderCopyDlg dlg;

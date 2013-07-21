@@ -214,7 +214,7 @@ String string_format_strings(const String& fmt, const String *args[], size_t nar
 			if (it == fmt.end())
 				break;
 			int n = *it - '0';
-			if (n > 0 && n <= nargs)
+			if (n > 0 && static_cast<unsigned int>(n) <= nargs)
 				str += *args[n - 1];
 			else
 				str += *it;

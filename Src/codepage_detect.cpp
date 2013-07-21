@@ -101,10 +101,10 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 			char *pchKey = &content[0];
 			if (!content.empty())
 			{
-				while (int cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
+				while (size_t cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
 				{
 					char *pchValue = pchKey + cchKey;
-					int cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
+					size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
 					if (cchKey >= 7 && strncasecmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 					{
 						pchValue[cchValue] = '\0';
@@ -278,7 +278,7 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 		if (len == mapmaxlen)
 		{
 			int i;
-			for (i = len - 1; i >= 0; i--)
+			for (i = static_cast<int>(len) - 1; i >= 0; i--)
 			{
 				if (isspace((unsigned char)src[i]))
 				{

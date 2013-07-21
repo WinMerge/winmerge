@@ -210,18 +210,18 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
  */
 BOOL CHexMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 {
-	BOOL bLModified = FALSE, bMModified = FALSE, bRModified = FALSE;
+	bool bLModified = false, bMModified = false, bRModified = false;
 
 	if (m_nBuffers == 3)
 	{
-		bLModified = m_pView[0]->GetModified();
-		bMModified = m_pView[1]->GetModified();
-		bRModified = m_pView[2]->GetModified();
+		bLModified = !!m_pView[0]->GetModified();
+		bMModified = !!m_pView[1]->GetModified();
+		bRModified = !!m_pView[2]->GetModified();
 	}
 	else
 	{
-		bLModified = m_pView[0]->GetModified();
-		bRModified = m_pView[1]->GetModified();
+		bLModified = !!m_pView[0]->GetModified();
+		bRModified = !!m_pView[1]->GetModified();
 	}
 	if (!bLModified && !bMModified && !bRModified)
 		 return TRUE;

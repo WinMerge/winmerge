@@ -246,9 +246,9 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 int DiffList::LineRelDiff(unsigned nLine, unsigned nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (nLine < dfi->dbegin[0])
+	if (static_cast<int>(nLine) < dfi->dbegin[0])
 		return -1;
-	else if (nLine > dfi->dend[0])
+	else if (static_cast<int>(nLine) > dfi->dend[0])
 		return 1;
 	else
 		return 0;
@@ -263,7 +263,7 @@ int DiffList::LineRelDiff(unsigned nLine, unsigned nDiff) const
 bool DiffList::LineInDiff(unsigned nLine, unsigned nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
-	if (nLine >= dfi->dbegin[0] && nLine <= dfi->dend[0])
+	if (static_cast<int>(nLine) >= dfi->dbegin[0] && static_cast<int>(nLine) <= dfi->dend[0])
 		return true;
 	else
 		return false;
@@ -276,14 +276,14 @@ bool DiffList::LineInDiff(unsigned nLine, unsigned nDiff) const
  */
 int DiffList::LineToDiff(unsigned nLine) const
 {
-	const int nDiffCount = (int) m_diffs.size();
+	const size_t nDiffCount = m_diffs.size();
 	if (nDiffCount == 0)
 		return -1;
 
 	// First check line is not before first or after last diff
-	if (nLine < DiffRangeAt(0)->dbegin[0])
+	if (static_cast<int>(nLine) < DiffRangeAt(0)->dbegin[0])
 		return -1;
-	if (nLine > DiffRangeAt(nDiffCount-1)->dend[0])
+	if (static_cast<int>(nLine) > DiffRangeAt(nDiffCount-1)->dend[0])
 		return -1;
 
 	// Use binary search to search for a diff.
@@ -403,7 +403,7 @@ int DiffList::PrevSignificantDiffFromLine(unsigned nLine) const
 	for (int i = size - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dend[0] <= nLine)
+		if (dfi->op != OP_TRIVIAL && dfi->dend[0] <= static_cast<int>(nLine))
 		{
 			nDiff = i;
 			break;
@@ -420,12 +420,12 @@ int DiffList::PrevSignificantDiffFromLine(unsigned nLine) const
 int DiffList::NextSignificantDiffFromLine(unsigned nLine) const
 {
 	int nDiff = -1;
-	const int nDiffCount = (int) m_diffs.size();
+	const size_t nDiffCount = m_diffs.size();
 
-	for (int i = 0; i < nDiffCount; i++)
+	for (size_t i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
-		if (dfi->op != OP_TRIVIAL && dfi->dbegin[0] >= nLine)
+		if (dfi->op != OP_TRIVIAL && dfi->dbegin[0] >= static_cast<int>(nLine))
 		{
 			nDiff = i;
 			break;
@@ -581,27 +581,27 @@ int DiffList::PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) con
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dend[0] <= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dend[0] <= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dend[0] <= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (dfi->op == OP_1STONLY && dfi->dend[0] <= nLine)
+			if (dfi->op == OP_1STONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (dfi->op == OP_2NDONLY && dfi->dend[0] <= nLine)
+			if (dfi->op == OP_2NDONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (dfi->op == OP_3RDONLY && dfi->dend[0] <= nLine)
+			if (dfi->op == OP_3RDONLY && dfi->dend[0] <= static_cast<int>(nLine))
 				return i;
 			break;
 		}
@@ -616,35 +616,35 @@ int DiffList::PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) con
  */
 int DiffList::NextSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) const
 {
-	const int nDiffCount = m_diffs.size();
+	const size_t nDiffCount = m_diffs.size();
 
-	for (int i = 0; i < nDiffCount; i++)
+	for (size_t i = 0; i < nDiffCount; i++)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		switch (nDiffType)
 		{
 		case THREEWAYDIFFTYPE_LEFTMIDDLE:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_3RDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTRIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_2NDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLERIGHT:
-			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op != OP_TRIVIAL && dfi->op != OP_1STONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_LEFTONLY:
-			if (dfi->op == OP_1STONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op == OP_1STONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_MIDDLEONLY:
-			if (dfi->op == OP_2NDONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op == OP_2NDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
-			if (dfi->op == OP_3RDONLY && dfi->dbegin[0] >= nLine)
+			if (dfi->op == OP_3RDONLY && dfi->dbegin[0] >= static_cast<int>(nLine))
 				return i;
 			break;
 		}

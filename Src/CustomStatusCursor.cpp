@@ -140,7 +140,7 @@ void CustomStatusCursor::End()
 	if (posInStack == cursorStack.GetUpperBound())
 	{
 		// find the last valid cursor
-		int posValid = posInStack-1;
+		INT_PTR posValid = posInStack-1;
 		while (validStack.GetAt(posValid) == 0)
 			posValid --;
 		ASSERT (posValid >= 0);
