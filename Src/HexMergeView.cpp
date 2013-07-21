@@ -211,7 +211,7 @@ void CHexMergeView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* 
 {
 	CView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 	CHexMergeFrame *pFrameWnd = static_cast<CHexMergeFrame *>(GetParentFrame());
-	pFrameWnd->GetHeaderInterface()->SetActive(m_nThisPane, bActivate);
+	pFrameWnd->GetHeaderInterface()->SetActive(m_nThisPane, !!bActivate);
 }
 
 /**

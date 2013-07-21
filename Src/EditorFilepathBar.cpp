@@ -180,7 +180,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 		return FALSE;
 
 	TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pTTTStruct;
-	UINT nID =pTTTStruct->idFrom;
+	int nID = static_cast<int>(pTTTStruct->idFrom);
 	if (pTTT->uFlags & TTF_IDISHWND)
 	{
 		// idFrom is actually the HWND of the CEdit 

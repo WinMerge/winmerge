@@ -2382,7 +2382,7 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
 	lineFilters->CloneFrom(m_pLineFilters.get());
@@ -2409,8 +2409,8 @@ void CMainFrame::OnToolsFilters()
 			String sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		BOOL linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
-		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled == TRUE);
+		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
 		// Check if compare documents need rescanning
 		BOOL bFileCompareRescan = FALSE;

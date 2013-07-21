@@ -526,7 +526,7 @@ END_MESSAGE_MAP()
  */
 static char *EatPrefix(char *text, const char *prefix)
 {
-	if (int len = strlen(prefix))
+	if (size_t len = strlen(prefix))
 		if (_memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
@@ -906,11 +906,11 @@ bool CLanguageSelect::TranslateString(size_t line, std::string &s) const
 		if (m_codepage != codepage)
 		{
 			// Attempt to convert to UI codepage
-			if (int len = s.length())
+			if (size_t len = s.length())
 			{
 				std::wstring ws;
 				ws.resize(len);
-				len = MultiByteToWideChar(m_codepage, 0, s.c_str(), -1, &*ws.begin(), len + 1);
+				len = MultiByteToWideChar(m_codepage, 0, s.c_str(), -1, &*ws.begin(), static_cast<int>(len) + 1);
 				if (len)
 				{
 					ws.resize(len - 1);
@@ -918,7 +918,7 @@ bool CLanguageSelect::TranslateString(size_t line, std::string &s) const
 					if (len)
 					{
 						s.resize(len - 1);
-						WideCharToMultiByte(codepage, 0, ws.c_str(), -1, &*s.begin(), len, 0, 0);
+						WideCharToMultiByte(codepage, 0, ws.c_str(), -1, &*s.begin(), static_cast<int>(len), 0, 0);
 					}
 				}
 			}
@@ -932,11 +932,11 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 {
 	if (line > 0 && line < m_strarray.size())
 	{
-		if (int len = m_strarray[line].length())
+		if (size_t len = m_strarray[line].length())
 		{
 			ws.resize(len);
 			const char *msgstr = m_strarray[line].c_str();
-			len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, &*ws.begin(), len + 1);
+			len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, &*ws.begin(), static_cast<int>(len) + 1);
 			ws.resize(len - 1);
 			return true;
 		}
@@ -973,8 +973,8 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
-			int cx = dc.GetTextExtent(text.c_str(), text.length()).cx;
-			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
+			size_t cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
+			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, static_cast<int>(cx));
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}
 		else if (rgid)

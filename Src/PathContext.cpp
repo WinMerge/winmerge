@@ -95,7 +95,7 @@ PathContext::PathContext(const PathContext &paths)
 PathContext::PathContext(const std::vector<String> &paths)
 {
 	m_nFiles = paths.size();
-	for (int i = 0; i < paths.size(); i++)
+	for (size_t i = 0; i < paths.size(); i++)
 		m_path[i].SetPath(paths[i]);
 }
 

@@ -128,7 +128,7 @@ public:
 	BOOL Run();
 
 	// Manipulate the FileActionList
-	int GetActionItemCount() const;
+	size_t GetActionItemCount() const;
 
 	/**
 	 * Add new item to the action list.
