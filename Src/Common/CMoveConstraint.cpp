@@ -732,7 +732,8 @@ CMoveConstraint::Persist(bool saving, bool position)
 		RECT wprc;
 		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
 		GetWindowRect(m_hwndDlg, &wprc);
-		CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
+		if (m_pFormView)
+			CWnd::FromHandle(m_hwndDlg)->GetParent()->ScreenToClient(&wprc);
 		CRect rc;
 		int ct=_stscanf(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
 		if (ct==4)
