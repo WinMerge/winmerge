@@ -87,7 +87,7 @@ namespace
 
 		m_fileFilterHelper.SetFileFilterPath(m_fileFilterHelper.GetFileFilterPath(_T("simple include file")).c_str());
 		m_fileFilterHelper.GetFileFilters(&filters, selected);
-		EXPECT_TRUE(selected.find_first_of(_T("Filters\\simple_include_file.flt")) == 0);
+		EXPECT_TRUE(selected.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
 	}
 
 	TEST_F(FileFilterHelperTest, GetFileFilters)
@@ -100,12 +100,12 @@ namespace
 		{
 			if ((*it).name.compare(_T("simple include file")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_file.flt")) == 0);
+				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple file filter long description")) == 0);
 			}
 			else if ((*it).name.compare(_T("simple include dir")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt")) == 0);
+				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple directory filter long description")) == 0);
 			}
 			else
@@ -118,67 +118,67 @@ namespace
 	TEST_F(FileFilterHelperTest, SetFilter)
 	{
 		m_fileFilterHelper.SetFilter(_T("simple include file"));
-		EXPECT_EQ(m_fileFilterHelper.IsUsingMask(), FALSE);
+		EXPECT_EQ(false, m_fileFilterHelper.IsUsingMask());
 
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.c")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.ext")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("svn")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.ext")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b.c")), TRUE);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetFilter(_T("simple include dir"));
 
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.c")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.ext")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("svn")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.ext")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b.c")), TRUE);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 	}
 
 	TEST_F(FileFilterHelperTest, SetMask)
 	{
-		m_fileFilterHelper.UseMask(TRUE);
-		EXPECT_EQ(m_fileFilterHelper.IsUsingMask(), TRUE);
+		m_fileFilterHelper.UseMask(true);
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 
 		m_fileFilterHelper.SetMask(_T(""));
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.c")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("svn")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b.c")), TRUE);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetMask(_T("*.c"));
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.c")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.ext")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b.c")), TRUE);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetMask(_T("*.c;*.cpp;*.cxx"));
-		EXPECT_EQ(m_fileFilterHelper.IsUsingMask(), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.c")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cxx")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T(".cpp")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("cpp")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cx")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeFile(_T("a.cpp.h")), FALSE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("svn")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b")), TRUE);
-		EXPECT_EQ(m_fileFilterHelper.includeDir(_T("a.b.c")), TRUE);
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cxx")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cx")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cpp.h")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 	}
 
 

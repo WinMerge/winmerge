@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="vc71\Debug"
-			IntermediateDirectory="vc71\Debug"
+			OutputDirectory="vc71Debug"
+			IntermediateDirectory="vc71Debug"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool
@@ -64,8 +64,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="vc71\Release"
-			IntermediateDirectory="vc71\Release"
+			OutputDirectory="vc71Release"
+			IntermediateDirectory="vc71Release"
 			ConfigurationType="1"
 			CharacterSet="1">
 			<Tool
