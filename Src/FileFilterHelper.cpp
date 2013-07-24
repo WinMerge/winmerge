@@ -223,7 +223,7 @@ bool FileFilterHelper::includeFile(const String& szFileName)
 
 		// preprend a backslash if there is none
 		String strFileName = string_makelower(szFileName);
-		if (strFileName[0] != '\\')
+		if (strFileName.empty() || strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
 		if (strFileName.find('.') == -1)
