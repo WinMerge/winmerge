@@ -243,7 +243,9 @@ namespace
 	{
 		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
-		sd_ComputeWordDiffs(_T("N1960 IF(R2941==2) OR (R2941==203))"),
+		sd_ComputeWordDiffs(
+			//  0123456789012345678901234567890123456789
+			_T("N1960 IF(R2941==2) OR (R2941==203))"),
 			_T("N1830 IF((R2941==2)   OR (R2941==3)    "),
 				false, 1, 1, true, &diffs);
 		EXPECT_EQ(4, diffs.size());
@@ -255,10 +257,10 @@ namespace
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
 			pDiff = &diffs[1];
-			EXPECT_EQ(8, pDiff->begin[0]);
-			EXPECT_EQ(8, pDiff->begin[1]);
-			EXPECT_EQ(7, pDiff->end[0]);
-			EXPECT_EQ(8, pDiff->end[1]);
+			EXPECT_EQ(9, pDiff->begin[0]);
+			EXPECT_EQ(9, pDiff->begin[1]);
+			EXPECT_EQ(8, pDiff->end[0]);
+			EXPECT_EQ(9, pDiff->end[1]);
 			pDiff = &diffs[2];
 			EXPECT_EQ(30, pDiff->begin[0]);
 			EXPECT_EQ(33, pDiff->begin[1]);
@@ -276,7 +278,9 @@ namespace
 	{
 		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
-		sd_ComputeWordDiffs(_T("N1830 IF((R2941==2)   OR (R2941==3)    "),
+		sd_ComputeWordDiffs(
+			//  0123456789012345678901234567890123456789
+			_T("N1830 IF((R2941==2)   OR (R2941==3)    "),
 			_T("N1960 IF(R2941==2) OR (R2941==203))"),
 				false, 1, 1, true, &diffs);
 		EXPECT_EQ(4, diffs.size());
@@ -288,10 +292,10 @@ namespace
 			EXPECT_EQ(3, pDiff->end[0]);
 			EXPECT_EQ(3, pDiff->end[1]);
 			pDiff = &diffs[1];
-			EXPECT_EQ(8, pDiff->begin[0]);
-			EXPECT_EQ(8, pDiff->begin[1]);
-			EXPECT_EQ(8, pDiff->end[0]);
-			EXPECT_EQ(7, pDiff->end[1]);
+			EXPECT_EQ(9, pDiff->begin[0]);
+			EXPECT_EQ(9, pDiff->begin[1]);
+			EXPECT_EQ(9, pDiff->end[0]);
+			EXPECT_EQ(8, pDiff->end[1]);
 			pDiff = &diffs[2];
 			EXPECT_EQ(33, pDiff->begin[0]);
 			EXPECT_EQ(30, pDiff->begin[1]);
@@ -309,34 +313,20 @@ namespace
 	{
 		std::vector<wdiff> diffs;
 		sd_SetBreakChars(_T(".,;:()[]{}!@#\"$%^&*~+-=<>\'/\\|"));
-		sd_ComputeWordDiffs(_T("(sizeof *new);"),
+		sd_ComputeWordDiffs(
+			//  0123456789012345678901234567890123456789
+			_T("(sizeof *new);"),
 			_T("sizeof(*newob));"),
 				false, 1, 0, true, &diffs);
-		EXPECT_EQ(3, diffs.size());
+		EXPECT_EQ(1, diffs.size());
 		wdiff *pDiff;
-		if (diffs.size() >= 1)
+		if (diffs.size() == 1)
 		{
 			pDiff = &diffs[0];
 			EXPECT_EQ(0, pDiff->begin[0]);
 			EXPECT_EQ(0, pDiff->begin[1]);
-			EXPECT_EQ(0, pDiff->end[0]);
-			EXPECT_EQ(-1, pDiff->end[1]);
-		}
-		if (diffs.size() >= 2)
-		{
-			pDiff = &diffs[1];
-			EXPECT_EQ(7, pDiff->begin[0]);
-			EXPECT_EQ(6, pDiff->begin[1]);
-			EXPECT_EQ(6, pDiff->end[0]);
-			EXPECT_EQ(15, pDiff->end[1]);
-		}
-		if (diffs.size() >= 3)
-		{
-			pDiff = &diffs[2];
-			EXPECT_EQ(7, pDiff->begin[0]);
-			EXPECT_EQ(16, pDiff->begin[1]);
-			EXPECT_EQ(13, pDiff->end[0]);
-			EXPECT_EQ(15, pDiff->end[1]);
+			EXPECT_EQ(11, pDiff->end[0]);
+			EXPECT_EQ(13, pDiff->end[1]);
 		}
 	}
 }  // namespace
