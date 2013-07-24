@@ -141,7 +141,7 @@ String string_trim_ws_begin(const String & str)
 
 	String result(str);
 	String::iterator it = result.begin();
-	while (_istspace(*it))
+	while (it != result.end() && _istspace(*it))
 		++it;
 	
 	if (it != result.begin())
@@ -160,12 +160,12 @@ String string_trim_ws_end(const String & str)
 		return str;
 
 	String result(str);
-	String::iterator it = result.end() - 1;
-	while (_istspace(*it))
-		--it;
+	String::reverse_iterator it = result.rbegin();
+	while (it != result.rend() && _istspace(*it))
+		++it;
 
-	if (it != result.end() - 1)
-		result.erase(it + 1, result.end());
+	if (it != result.rbegin())
+		result.erase(it.base(), result.end());
 	return result;
 }
 
