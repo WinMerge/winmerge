@@ -16,6 +16,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "DDXHelper.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,9 +28,6 @@ static char THIS_FILE[] = __FILE__;
 #define CONTEXT_F_ENABLED 0x01
 #define CONTEXT_F_ADVANCED 0x02
 #define CONTEXT_F_SUBFOLDERS 0x04
-
- // registry dir to WinMerge
-static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 // registry values
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
@@ -99,11 +97,11 @@ void PropShell::GetContextRegValues()
 {
 	CRegKeyEx reg;
 	LONG retVal = 0;
-	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
@@ -136,11 +134,11 @@ void PropShell::SaveMergePath()
 	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
 
 	CRegKeyEx reg;
-	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	retVal = reg.Open(HKEY_CURRENT_USER, RegDir);
 	if (retVal != ERROR_SUCCESS)
 	{
 		String msg = string_format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
-			f_RegDir, retVal, GetSysError(retVal).c_str());
+			RegDir, retVal, GetSysError(retVal).c_str());
 		LogErrorString(msg);
 		return;
 	}
