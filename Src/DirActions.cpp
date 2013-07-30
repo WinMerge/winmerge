@@ -1633,12 +1633,6 @@ void CDirView::DoFileEncodingDialog()
 	// but, if they've been edited, we cannot throw away the user's work?
 }
 
-void CDirView::DoUpdateFileEncodingDialog(CCmdUI* pCmdUI)
-{
-	bool haveSelectedItems = (m_pList->GetNextItem(-1, LVNI_SELECTED) != -1);
-	pCmdUI->Enable(haveSelectedItems);
-}
-
 /**
  * @brief Rename a file without moving it to different directory.
  *
