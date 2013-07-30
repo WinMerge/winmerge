@@ -184,7 +184,6 @@ private:
 	void UpdateAfterFileScript(FileActionScript & actionList);
 	UINT MarkSelectedForRescan();
 	void DoFileEncodingDialog();
-	void DoUpdateFileEncodingDialog(CCmdUI* pCmdUI);
 	bool DoItemRename(const String& szNewItemName);
 	void DoCopyItemsToClipboard(int nIndex);
 	bool RenameOnSameDir(const String& szOldFileName, const String& szNewFileName);
