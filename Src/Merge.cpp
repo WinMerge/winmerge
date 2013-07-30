@@ -60,6 +60,7 @@
 #include "codepage.h"
 #include "JumpList.h"
 #include "paths.h"
+#include "Constants.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -74,9 +75,6 @@ static char THIS_FILE[] = __FILE__;
 
 /** @brief Location for command line help to open. */
 static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
-
-// registry dir to WinMerge
-static String f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
 #ifndef WIN64
 /**
@@ -495,7 +493,7 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
-	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), f_RegDir);
+	env_SaveRegistryToFile(paths_ConcatPath(env_GetProgPath(), _T("WinMerge.reg")), RegDir);
 
 	// Remove tempfolder
 	const String temp = env_GetTempPath();

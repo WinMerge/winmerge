@@ -40,9 +40,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// registry dir to WinMerge
-static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
-
 // registry values
 static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
 static LPCTSTR f_RegValuePath = _T("Executable");
