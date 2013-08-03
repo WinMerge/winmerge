@@ -441,11 +441,18 @@ BOOL CMergeApp::InitInstance()
 	return bContinue;
 }
 
+static void OpenContributersFile(int&)
+{
+	GetMainFrame()->OpenFileToExternalEditor(paths_ConcatPath(env_GetProgPath(), ContributorsPath));
+}
+
 // App command to run the dialog
 void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
+	aboutDlg.m_onclick_contributers += Poco::delegate(OpenContributersFile);
 	aboutDlg.DoModal();
+	aboutDlg.m_onclick_contributers.clear();
 }
 
 /////////////////////////////////////////////////////////////////////////////

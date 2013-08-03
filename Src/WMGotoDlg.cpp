@@ -23,8 +23,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "WMGotoDlg.h"
+#include "merge.h"
 #include "DDXHelper.h"
 
 #ifdef _DEBUG
@@ -33,23 +33,60 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Class for Goto-dialog.
+ * This dialog allows user to go to certain line or or difference in the file
+ * compare. As there are two panels with different line numbers, there is a
+ * choice for target panel. When dialog is opened, its values are initialized
+ * for active file's line number.
+ */
+class WMGotoDlg::Impl : public CDialog
+{
+// Construction
+public:
+	WMGotoDlg::Impl(WMGotoDlg *p, CWnd* pParent = NULL);   // standard constructor
+
+// Dialog Data
+	//{{AFX_DATA(WMGotoDlg)
+	enum { IDD = IDD_WMGOTO };
+	//}}AFX_DATA
+
+// Overrides
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(WMGotoDlg)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+
+	// Generated message map functions
+	//{{AFX_MSG(WMGotoDlg)
+    virtual BOOL OnInitDialog();
+		// NOTE: the ClassWizard will add member functions here
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+
+private:
+	WMGotoDlg *m_p;
+};
+
 /////////////////////////////////////////////////////////////////////////////
 // CGotoDlg dialog
 
 /**
  * @brief Constructor.
  */
-WMGotoDlg::WMGotoDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(WMGotoDlg::IDD, pParent)
-	, m_nFile(-1)
-	, m_nGotoWhat(-1)
+WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*=NULL*/)
+	: CDialog(WMGotoDlg::Impl::IDD, pParent), m_p(p)
 {
 }
 
 /**
  * @brief Initialize dialog.
  */
-BOOL WMGotoDlg::OnInitDialog()
+BOOL WMGotoDlg::Impl::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -57,22 +94,30 @@ BOOL WMGotoDlg::OnInitDialog()
 }
 
 
-void WMGotoDlg::DoDataExchange(CDataExchange* pDX)
+void WMGotoDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(WMGotoDlg)
-	DDX_Text(pDX, IDC_WMGOTO_PARAM, m_strParam);
-	DDX_Radio(pDX, IDC_WMGOTO_FILELEFT, m_nFile);
-	DDX_Radio(pDX, IDC_WMGOTO_TOLINE, m_nGotoWhat);
+	DDX_Text(pDX, IDC_WMGOTO_PARAM, m_p->m_strParam);
+	DDX_Radio(pDX, IDC_WMGOTO_FILELEFT, m_p->m_nFile);
+	DDX_Radio(pDX, IDC_WMGOTO_TOLINE, m_p->m_nGotoWhat);
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(WMGotoDlg, CDialog)
-	//{{AFX_MSG_MAP(WMGotoDlg)
+BEGIN_MESSAGE_MAP(WMGotoDlg::Impl, CDialog)
+	//{{AFX_MSG_MAP(WMGotoDlg::Impl)
 		// NOTE: the ClassWizard will add message map macros here
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // WMGotoDlg message handlers
+
+
+
+WMGotoDlg::WMGotoDlg()
+	: m_pimpl(new WMGotoDlg::Impl(this)), m_nFile(-1), m_nGotoWhat(-1) {}
+WMGotoDlg::~WMGotoDlg() {}
+int WMGotoDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }
+
