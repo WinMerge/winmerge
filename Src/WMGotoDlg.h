@@ -23,52 +23,26 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#if !defined(AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_)
-#define AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_
+#pragma once
 
+#include <boost/scoped_ptr.hpp>
 #include "UnicodeString.h"
 
-/**
- * @brief Class for Goto-dialog.
- * This dialog allows user to go to certain line or or difference in the file
- * compare. As there are two panels with different line numbers, there is a
- * choice for target panel. When dialog is opened, its values are initialized
- * for active file's line number.
- */
-class WMGotoDlg : public CDialog
+class WMGotoDlg
 {
 // Construction
 public:
-	WMGotoDlg(CWnd* pParent = NULL);   // standard constructor
+	WMGotoDlg();
+	~WMGotoDlg();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(WMGotoDlg)
-	enum { IDD = IDD_WMGOTO };
 	String m_strParam;   /**< Line/difference number. */
 	int m_nFile;         /**< Target file number. */
 	int m_nGotoWhat;     /**< Goto line or difference? */
-	//}}AFX_DATA
+private:
+	WMGotoDlg(const WMGotoDlg &);
+	WMGotoDlg & operator=(const WMGotoDlg &);
 
-
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(WMGotoDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-
-	// Generated message map functions
-	//{{AFX_MSG(WMGotoDlg)
-    virtual BOOL OnInitDialog();
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	class Impl;
+	boost::scoped_ptr<Impl> m_pimpl;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_WMGOTODLG_H__A9D2366D_6358_4A74_9A45_6681D22EC786__INCLUDED_)

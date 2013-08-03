@@ -24,39 +24,75 @@
 // $Id: AboutDlg.cpp 6380 2009-01-25 22:13:36Z kimmov $
 
 #include "stdafx.h"
-#include "Constants.h"
-#include "Merge.h"
 #include "AboutDlg.h"
-#include "version.h"
-#include "paths.h"
-#include "Environment.h"
+#include "statlink.h"
+#include "Merge.h"
 #include "DDXHelper.h"
+#include "resource.h" // IDD_ABOUTBOX
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-	//{{AFX_MSG_MAP(CAboutDlg)
+/** 
+ * @brief About-dialog class.
+ * 
+ * Shows About-dialog bitmap and draws version number and other
+ * texts into it.
+ */
+class CAboutDlg::Impl : public CDialog
+{
+public:
+	CAboutDlg::Impl(CAboutDlg *p, CWnd* pParent = NULL);
+
+// Dialog Data
+	//{{AFX_DATA(CAboutDlg::Impl)
+	enum { IDD = IDD_ABOUTBOX };
+	CStaticLink	m_ctlWWW;
+	//}}AFX_DATA
+
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CAboutDlg::Impl)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+	//{{AFX_MSG(CAboutDlg::Impl)
+	virtual BOOL OnInitDialog();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOpenContributors();
+
+private:
+	CAboutDlg *m_p;
+};
+
+BEGIN_MESSAGE_MAP(CAboutDlg::Impl, CDialog)
+	//{{AFX_MSG_MAP(CAboutDlg::Impl)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
 END_MESSAGE_MAP()
 
-CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*=NULL*/)
+	: CDialog(CAboutDlg::Impl::IDD)
+	, m_p(p)
 {
 }
 
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+void CAboutDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CAboutDlg)
-	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
+	//{{AFX_DATA_MAP(CAboutDlg::Impl)
+	DDX_Text(pDX, IDC_COMPANY, m_p->m_info.copyright);
 	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
-	DDX_Text(pDX, IDC_VERSION, m_strVersion);
-	DDX_Text(pDX, IDC_PRIVATEBUILD, m_strPrivateBuild);
+	DDX_Text(pDX, IDC_VERSION, m_p->m_info.version);
+	DDX_Text(pDX, IDC_PRIVATEBUILD, m_p->m_info.private_build);
 	//}}AFX_DATA_MAP
 }
 
 /** 
  * @brief Read version info from resource to dialog.
  */
-BOOL CAboutDlg::OnInitDialog() 
+BOOL CAboutDlg::Impl::OnInitDialog() 
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -68,33 +104,7 @@ BOOL CAboutDlg::OnInitDialog()
 		pIcon->SetIcon(icon);
 	}
 
-	CVersionInfo version(AfxGetResourceHandle());
-	String sVersion = version.GetProductVersion();
-	m_strVersion = string_format_string1(_("Version %1"), sVersion);
-
-#ifdef _UNICODE
-	m_strVersion += _T(" ");
-	m_strVersion += _("Unicode");
-#endif
-
-#if defined _M_IX86
-	m_strVersion += _T(" x86");
-#elif defined _M_IA64
-	m_strVersion += _T(" IA64");
-#elif defined _M_X64
-	m_strVersion += _T(" ");
-	m_strVersion += _("X64").c_str();
-#endif
-
-	String sPrivateBuild = version.GetPrivateBuild();
-	if (!sPrivateBuild.empty())
-	{
-		m_strPrivateBuild = string_format_string1(_("Private Build: %1"), sPrivateBuild);
-	}
-
-	String copyright = version.GetLegalCopyright();
-	m_ctlCompany.SetWindowText(copyright.c_str());
-	m_ctlWWW.m_link = WinMergeURL;
+	m_ctlWWW.m_link = m_p->m_info.website.c_str();
 
 	UpdateData(FALSE);
 	
@@ -106,38 +116,12 @@ BOOL CAboutDlg::OnInitDialog()
  * @brief Show contributors list.
  * Opens Contributors.txt into notepad.
  */
-void CAboutDlg::OnBnClickedOpenContributors()
+void CAboutDlg::Impl::OnBnClickedOpenContributors()
 {
-	String defPath = env_GetProgPath();
-	// Don't add quotation marks yet, CFile doesn't like them
-	String docPath = paths_ConcatPath(defPath, ContributorsPath);
-	HINSTANCE ret = 0;
-	
-	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
-	{
-		// Now, add quotation marks so ShellExecute() doesn't fail if path
-		// includes spaces
-		docPath.insert(0, _T("\""));
-		docPath.insert(docPath.length(), _T("\""));
-		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath.c_str(), defPath.c_str(), SW_SHOWNORMAL);
-
-		// values < 32 are errors (ref to MSDN)
-		if ((int)ret < 32)
-		{
-			// Try to open with associated application (.txt)
-			ret = ShellExecute(m_hWnd, _T("open"), docPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
-			if ((int)ret < 32)
-			{
-				String msg = string_format_string1(_("Failed to execute external editor: %1"), _T("Notepad.exe"));
-				AfxMessageBox(msg.c_str(), MB_ICONSTOP);
-			}
-		}
-	}
-	else
-	{
-		String msg = string_format_string1(_("File not found: %1"), docPath);
-		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
-	}
+	int tmp = 0;
+	m_p->m_onclick_contributers.notify(m_p, tmp);
 }
 
-
+CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}
+CAboutDlg::~CAboutDlg() {}
+int CAboutDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }

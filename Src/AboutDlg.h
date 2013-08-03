@@ -23,47 +23,28 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#ifndef _ABOUTDLG_H_
-#define _ABOUTDLG_H_
+#pragma once
 
-#include "statlink.h"
-#include "resource.h" // IDD_ABOUTBOX
+#include <boost/scoped_ptr.hpp>
+#include <Poco/BasicEvent.h>
 #include "UnicodeString.h"
+#include "MergeApp.h"
 
-/** 
- * @brief About-dialog class.
- * 
- * Shows About-dialog bitmap and draws version number and other
- * texts into it.
- */
-class CAboutDlg : public CDialog
+class CAboutDlg
 {
+// Construction
 public:
 	CAboutDlg();
+	~CAboutDlg();
+	int DoModal();
 
-// Dialog Data
-	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-	CStatic	m_ctlCompany;
-	CStaticLink	m_ctlWWW;
-	String m_strVersion;
-	String m_strPrivateBuild;
-	//}}AFX_DATA
+	AboutInfo m_info;
+	Poco::BasicEvent<int> m_onclick_contributers;
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+private:
+	CAboutDlg(const CAboutDlg &);
+	CAboutDlg & operator=(const CAboutDlg &);
 
-// Implementation
-protected:
-	//{{AFX_MSG(CAboutDlg)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClickedOpenContributors();
+	class Impl;
+	boost::scoped_ptr<Impl> m_pimpl;
 };
-
-#endif // _ABOUTDLG_H_

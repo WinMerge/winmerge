@@ -8,6 +8,15 @@
 
 class COptionsMgr;
 
+struct AboutInfo
+{
+	AboutInfo();
+	String copyright;
+	String version;
+	String private_build;
+	String website;
+};
+
 /** @brief Retrieve error description from Windows; uses FormatMessage */
 String GetSysError(int nerr = -1);
 
