@@ -178,8 +178,8 @@ private:
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void ApplyPluginPrediffSetting(int newsetting);
-	void ConfirmAndPerformActions(FileActionScript & actions, int selCount);
-	bool ConfirmActionList(const FileActionScript & actions, int selCount);
+	void ConfirmAndPerformActions(FileActionScript & actions);
+	bool ConfirmActionList(const FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
 	UINT MarkSelectedForRescan();
