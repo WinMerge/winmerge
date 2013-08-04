@@ -36,6 +36,11 @@ public:
 		return text;
 	}
 
+	void *GetItemData(int row) const
+	{
+		return (void *)SendMessage(m_hwndListCtrl, CB_GETITEMDATA, row, 0);
+	}
+
 	int GetBackColor(int row) const
 	{
 		NMLVCUSTOMDRAW nmlvcd = {0};
@@ -46,6 +51,11 @@ public:
 		nmlvcd.nmcd.dwItemSpec = row;
 		SendMessage(GetParent(m_hwndListCtrl), WM_NOTIFY, (WPARAM)m_hwndListCtrl, (LPARAM)&nmlvcd);
 		return nmlvcd.clrTextBk;
+	}
+
+	int GetNextSelectedItem(int sel) const
+	{
+		return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_SELECTED);		
 	}
 
 protected:

@@ -8564,6 +8564,7 @@
     <ClInclude Include="DiffThread.h" />
     <ClInclude Include="DiffViewBar.h" />
     <ClInclude Include="DiffWrapper.h" />
+    <ClInclude Include="DirActions.h" />
     <ClInclude Include="DirCmpReport.h" />
     <ClInclude Include="DirCmpReportDlg.h" />
     <ClInclude Include="DirColsDlg.h" />
@@ -8571,6 +8572,7 @@
     <ClInclude Include="DirDoc.h" />
     <ClInclude Include="DirFrame.h" />
     <ClInclude Include="DirItem.h" />
+    <ClInclude Include="DirItemIterator.h" />
     <ClInclude Include="DirReportTypes.h" />
     <ClInclude Include="DirScan.h" />
     <ClInclude Include="DirTravel.h" />

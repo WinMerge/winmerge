@@ -104,6 +104,7 @@ DATE:		BY:					DESCRIPTION:
 #include "DirDoc.h"
 #include "MainFrm.h"
 #include "7zCommon.h"
+#include "DirActions.h"
 //#include "ExternalArchiveFormat.h"
 #include "version.h"
 #include <afxinet.h>
@@ -1092,7 +1093,7 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 	for (i = Open() ; i-- ; )
 	{
 		const DIFFITEM &di = Next();
-		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
+		if (m_bRight ? IsItemOpenableOnRightWith(di) : IsItemOpenableOnLeftWith(di))
 		{
 			cchBuffer +=
 			(
@@ -1105,7 +1106,7 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 	for (i = Open() ; i-- ; )
 	{
 		const DIFFITEM &di = Next();
-		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
+		if (m_bRight ? IsItemOpenableOnRightWith(di) : IsItemOpenableOnLeftWith(di))
 		{
 			pchBuffer += wsprintf
 			(

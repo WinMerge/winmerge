@@ -30,6 +30,7 @@
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
+#include "DirActions.h"
 #include "DirView.h"
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
@@ -1483,7 +1484,8 @@ bool CDirView::OpenThreeItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3, DIFFITEM
 		*di2 = &pDoc->GetDiffRefByKey(pos2);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!AreItemsOpenable(**di1, **di2, **di2) && !AreItemsOpenable(**di1, **di1, **di2))
+		if (!::AreItemsOpenable(&GetDocument()->GetDiffContext(), **di1, **di2, **di2) && 
+			!::AreItemsOpenable(&GetDocument()->GetDiffContext(), **di1, **di1, **di2))
 		{
 			return false;
 		}
@@ -1537,7 +1539,7 @@ bool CDirView::OpenThreeItems(UIntPtr pos1, UIntPtr pos2, UIntPtr pos3, DIFFITEM
 		*di3 = &pDoc->GetDiffRefByKey(pos3);
 
 		// Check for binary & side compatibility & file/dir compatibility
-		if (!AreItemsOpenable(**di1, **di2, **di3))
+		if (!::AreItemsOpenable(&GetDocument()->GetDiffContext(), **di1, **di2, **di3))
 		{
 			return false;
 		}
@@ -2202,7 +2204,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 	{
 		// One item selected
 		const DIFFITEM& di = GetDiffItem(sel1);
-		if (selectionType != SELECTIONTYPE_NORMAL || !IsItemOpenable(di))
+		if (selectionType != SELECTIONTYPE_NORMAL || !::IsItemOpenable(&GetDocument()->GetDiffContext(), di, m_bTreeMode))
 		{
 			pCmdUI->Enable(FALSE);
 			return;
@@ -2225,7 +2227,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI)
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		const DIFFITEM& di3 = GetDiffItem(sel3);
-		if (!AreItemsOpenable(di1, di2, di3))
+		if (!::AreItemsOpenable(&GetDocument()->GetDiffContext(), di1, di2, di3))
 		{
 			pCmdUI->Enable(FALSE);
 			return;

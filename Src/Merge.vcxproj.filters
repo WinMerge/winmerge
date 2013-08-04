@@ -1383,6 +1383,12 @@
     <ClInclude Include="CustomStatusCursor.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DirActions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirItemIterator.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

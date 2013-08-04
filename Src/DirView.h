@@ -150,20 +150,9 @@ private:
 	void FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg);
 	bool IsItemLeftOnly(int code);
 	bool IsItemRightOnly(int code);
-	bool IsItemCopyableToLeft(const DIFFITEM & di) const;
-	bool IsItemCopyableToRight(const DIFFITEM & di) const;
-	bool IsItemDeletableOnLeft(const DIFFITEM & di) const;
-	bool IsItemDeletableOnRight(const DIFFITEM & di) const;
-	bool IsItemDeletableOnBoth(const DIFFITEM & di) const;
-	bool IsItemOpenable(const DIFFITEM & di) const;
 	bool AreItemsOpenable(SELECTIONTYPE selectionType, const DIFFITEM & di1, const DIFFITEM & di2) const;
-	bool AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, const DIFFITEM & di3) const;
-	bool IsItemOpenableOnLeft(const DIFFITEM & di) const;
-	bool IsItemOpenableOnRight(const DIFFITEM & di) const;
-	bool IsItemOpenableOnLeftWith(const DIFFITEM & di) const;
-	bool IsItemOpenableOnRightWith(const DIFFITEM & di) const;
-	bool IsItemCopyableToOnLeft(const DIFFITEM & di) const;
-	bool IsItemCopyableToOnRight(const DIFFITEM & di) const;
+	template<class Functor>	void DoDirAction(const String& status_message);
+	template<class Functor>	void DoDirActionTo(const String& status_message, const String& selectfolder_title);
 	void DoCopyLeftToRight();
 	void DoCopyRightToLeft();
 	void DoDelLeft();
@@ -248,7 +237,6 @@ protected:
 	int GetColImage(const DIFFITEM & di) const;
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(std::vector<String>& colKeys);
-	void WarnContentsChanged(const String & failedPath);
 	void OpenSpecialItems(Poco::UIntPtr pos1, Poco::UIntPtr pos2, Poco::UIntPtr pos3);
 	bool OpenOneItem(Poco::UIntPtr pos1, DIFFITEM **di1, DIFFITEM **di2, DIFFITEM **di3,
 			PathContext &paths, int & sel1, bool & isDir);
