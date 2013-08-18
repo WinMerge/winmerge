@@ -3,13 +3,14 @@
 // We include dllpstub.h for Merge7z.h
 // Merge7z::Proxy embeds a DLLPSTUB
 #include "dllpstub.h"
+#include <PropIdl.h>
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
 
 #include "DiffContext.h"
-#include "DirView.h"
 #include <list>
 
-class DirView;
+class CDirView;
+class CListCtrl;
 
 extern __declspec(thread) Merge7z::Proxy Merge7z;
 
@@ -44,7 +45,7 @@ public:
 /**
  * @brief Merge7z::DirItemEnumerator to compress items from DirView.
  */
-class CDirView::DirItemEnumerator : public Merge7z::DirItemEnumerator
+class DirItemEnumerator : public Merge7z::DirItemEnumerator
 {
 private:
 	CDirView *m_pView;
@@ -63,9 +64,8 @@ private:
 	std::list<String> m_rgFolderPrefix;
 	std::list<String>::iterator m_curFolderPrefix;
 	String m_strFolderPrefix;
-	BOOL m_bRight;
-	std::map<String, void *> m_rgImpliedFoldersLeft;
-	std::map<String, void *> m_rgImpliedFoldersRight;
+	int m_index;
+	std::map<String, void *> m_rgImpliedFolders[3];
 //	helper methods
 	const DIFFITEM &Next();
 	bool MultiStepCompressArchive(LPCTSTR);
@@ -83,7 +83,6 @@ public:
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
 	void CompressArchive(LPCTSTR = 0);
-	void CollectFiles(String &);
 };
 
 int NTAPI HasZipSupport();
@@ -92,11 +91,3 @@ void NTAPI Recall7ZipMismatchError();
 BOOL NTAPI IsMerge7zEnabled();
 DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
 
-/**
- * @brief assign BSTR to String, and return BSTR for optional SysFreeString()
- */
-inline BSTR Assign(CString &dst, BSTR src)
-{
-	dst = src;
-	return src;
-}

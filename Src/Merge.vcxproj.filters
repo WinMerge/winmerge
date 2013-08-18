@@ -478,9 +478,6 @@
     <ClCompile Include="DiffViewBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirActions.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DirDoc.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -747,6 +744,9 @@
     </ClCompile>
     <ClCompile Include="CustomStatusCursor.cpp">
       <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirActions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

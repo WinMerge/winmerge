@@ -179,10 +179,10 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 	{
 		const String &pathLeft = m_filePaths.GetLeft();
 		const String &pathRight = m_filePaths.GetRight();
-		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
+		CDiffContext &ctxt = pDirDoc->GetDiffContext();
 		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
 		{
-			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
+			DIFFITEM &di = ctxt.GetDiffRefAt(pos);
 			::UpdateDiffItem(m_nBuffers, di, &ctxt);
 		}
 	}
@@ -507,7 +507,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 /**
  * @brief Load files and initialize frame's compare result icon
  */
-HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, bool bRO[])
+HRESULT CHexMergeDoc::OpenDocs(const PathContext &paths, const bool bRO[])
 {
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf);

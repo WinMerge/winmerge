@@ -38,7 +38,11 @@ public:
 
 	void *GetItemData(int row) const
 	{
-		return (void *)SendMessage(m_hwndListCtrl, CB_GETITEMDATA, row, 0);
+		LVITEM lvi = {0};
+		lvi.iItem = row;
+		lvi.mask = LVIF_PARAM;
+		::SendMessage(m_hwndListCtrl, LVM_GETITEM, 0, (LPARAM)&lvi);
+		return (void *)lvi.lParam;
 	}
 
 	int GetBackColor(int row) const
@@ -53,9 +57,24 @@ public:
 		return nmlvcd.clrTextBk;
 	}
 
-	int GetNextSelectedItem(int sel) const
+	bool IsSelectedItem(int sel) const
 	{
-		return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_SELECTED);		
+		return !!ListView_GetItemState(m_hwndListCtrl, sel, LVIS_SELECTED);
+	}
+
+	int GetNextItem(int sel, bool selected = false, bool reverse = false) const
+	{
+		return ListView_GetNextItem(m_hwndListCtrl, sel, (selected ? LVNI_SELECTED : 0) | (reverse ? LVNI_ABOVE : 0));		
+	}
+
+	int GetNextSelectedItem(int sel, bool reverse = false) const
+	{
+		return ListView_GetNextItem(m_hwndListCtrl, sel, LVNI_SELECTED | (reverse ? LVNI_ABOVE : 0));		
+	}
+
+	unsigned GetSelectedCount() const
+	{
+		return ListView_GetSelectedCount(m_hwndListCtrl);
 	}
 
 protected:

@@ -176,7 +176,7 @@ void CDirView::SetColAlignments()
 
 CDirView::CompareState::CompareState(const CDirView *pView, int sortCol, bool bSortAscending)
 : pView(pView)
-, pCtxt(&pView->GetDocument()->GetDiffContext())
+, pCtxt(&pView->GetDiffContext())
 , sortCol(sortCol)
 , bSortAscending(bSortAscending)
 {
@@ -262,8 +262,8 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	}
 	if (!GetDocument()->HasDiffs())
 		return;
-	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
-	const DIFFITEM &di = GetDocument()->GetDiffRefByKey(key);
+	const CDiffContext &ctxt = GetDiffContext();
+	const DIFFITEM &di = ctxt.GetDiffAt(key);
 	if (pParam->item.mask & LVIF_TEXT)
 	{
 		String s = ColGetTextToDisplay(&ctxt, i, di);
@@ -301,7 +301,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	}
 	if (pParam->item.mask & LVIF_IMAGE)
 	{
-		pParam->item.iImage = GetColImage(di);
+		pParam->item.iImage = GetColImage(ctxt, di);
 	}
 
 	m_bNeedSearchLastDiffItem = true;
