@@ -334,7 +334,6 @@ protected:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
-	afx_msg void OnPluginsList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

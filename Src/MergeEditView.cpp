@@ -46,7 +46,6 @@
 #include "ChildFrm.h"
 #include "unicoder.h"
 #include "MergeLineFlags.h"
-#include "PluginsListDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -217,7 +216,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
-	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -4088,11 +4086,3 @@ void CMergeEditView::OnViewZoomNormal()
 	ZoomText(0);
 }
 
-/**
- * @brief Show the plugins list dialog.
- */
-void CMergeEditView::OnPluginsList()
-{
-	PluginsListDlg dlg;
-	dlg.DoModal();
-}
