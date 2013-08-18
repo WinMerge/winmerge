@@ -265,3 +265,19 @@ void PathContext::Swap()
 	else
 		m_path[0].m_sPath.swap(m_path[2].m_sPath);
 }
+
+PathContextIterator PathContext::begin() const
+{
+	return PathContextIterator(this);
+}
+
+PathContextIterator PathContext::end() const
+{
+	return PathContextIterator();
+}
+
+size_t PathContext::size() const
+{
+	return m_nFiles;
+}
+

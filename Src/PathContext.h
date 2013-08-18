@@ -14,6 +14,7 @@
 #include <vector>
 
 class PathContext;
+class PathContextIterator;
 
 /**
  * @brief Information for one path.
@@ -43,6 +44,8 @@ private:
 class PathContext
 {
 public:
+	typedef PathContextIterator const_iterator;
+
 	PathContext();
 	PathContext(const String& sLeft);
 	PathContext(const String& sLeft, const String& sRight);
@@ -68,9 +71,62 @@ public:
 	int GetSize() const;
 	void RemoveAll();
 	void Swap();
+
+	const_iterator begin() const;
+	const_iterator end() const;
+	size_t size() const;
 private:
 	int m_nFiles;
 	PathInfo m_path[3]; /**< First, second, third path (left path at start) */
+};
+
+class PathContextIterator : public std::iterator<std::forward_iterator_tag, String>
+{
+public:
+	PathContextIterator(const PathContext *pPathContext) : m_pPathContext(pPathContext)
+	{
+		m_sel =  (pPathContext->GetSize() == 0) ? -1 : 0;
+	}
+
+	PathContextIterator() : m_pPathContext(NULL), m_sel(-1)
+	{
+	}
+
+	~PathContextIterator() {}
+
+	PathContextIterator& operator=(const PathContextIterator& it)
+	{
+		m_sel = it.m_sel;
+		m_pPathContext = it.m_pPathContext;
+		return *this;
+	}
+
+	PathContextIterator& operator++()
+	{
+		m_sel++;
+		if (m_sel >= m_pPathContext->GetSize())
+			m_sel = -1;
+		return *this;
+	}
+
+	String operator*()
+	{
+		return m_pPathContext->GetAt(m_sel);
+	}
+
+	bool operator==(const PathContextIterator& it) const
+	{
+		return m_sel == it.m_sel;
+	}
+
+	bool operator!=(const PathContextIterator& it) const
+	{
+		return m_sel != it.m_sel;
+	}
+
+public:
+	const PathContext *m_pPathContext;
+	int m_sel;
 };
 
 #endif  // _PATH_CONTEXT_H_
