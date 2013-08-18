@@ -97,7 +97,25 @@ public:
 	bool isSideAll() const { return CheckSide(diffcode, DIFFCODE::ALL); }
 	void setSideAll() { SetSide(DIFFCODE::ALL); }
 	void setSideNone() { SetSide(0); }
-	bool isSide(int nIndex) const
+	void setSideFlag(int nIndex)
+	{
+		switch (nIndex)
+		{
+		case 0: SetSide(diffcode | DIFFCODE::FIRST); return;
+		case 1: SetSide(diffcode | DIFFCODE::SECOND); return;
+		case 2: SetSide(diffcode | DIFFCODE::THIRD); return;
+		}
+	}
+	void unsetSideFlag(int nIndex)
+	{
+		switch (nIndex)
+		{
+		case 0: SetSide(diffcode & ~DIFFCODE::FIRST); return;
+		case 1: SetSide(diffcode & ~DIFFCODE::SECOND); return;
+		case 2: SetSide(diffcode & ~DIFFCODE::THIRD); return;
+		}
+	}
+	bool isSideOnly(int nIndex) const
 	{
 		switch (nIndex)
 		{
