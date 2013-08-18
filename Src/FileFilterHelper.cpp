@@ -212,7 +212,7 @@ void FileFilterHelper::SetMask(const String& strMask)
  * @param [in] szFileName Filename to test.
  * @return true unless we're suppressing this file by filter
  */
-bool FileFilterHelper::includeFile(const String& szFileName)
+bool FileFilterHelper::includeFile(const String& szFileName) const
 {
 	if (m_bUseMask)
 	{
@@ -245,7 +245,7 @@ bool FileFilterHelper::includeFile(const String& szFileName)
  * @param [in] szFileName Directoryname to test.
  * @return true unless we're suppressing this directory by filter
  */
-bool FileFilterHelper::includeDir(const String& szDirName)
+bool FileFilterHelper::includeDir(const String& szDirName) const
 {
 	if (m_bUseMask)
 	{
