@@ -96,12 +96,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		// Transformation happens here
 		// text used for automatic mode : plugin filter must match it
-		String filteredFilenames = files[0] + _T("|") + files[1];
-		if (nDirs == 3)
-		{
-			filteredFilenames += _T("|");
-			filteredFilenames += files[2];
-		}
+		String filteredFilenames = String_join(files.begin(), files.end(), _T("|"));
 
 		PackingInfo * infoUnpacker=0;
 		PrediffingInfo * infoPrediffer=0;
