@@ -2522,7 +2522,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	PrediffingInfo * infoPrediffer = 0;
 	if (bFiltersEnabled)
 	{
-		m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
+		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
@@ -2750,7 +2750,7 @@ OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
 	PrediffingInfo * infoPrediffer = 0;
 	if (bFiltersEnabled)
 	{
-		m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
+		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}

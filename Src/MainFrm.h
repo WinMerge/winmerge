@@ -108,7 +108,7 @@ public:
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		DWORD dwFlags[], PackingInfo * infoUnpacker = NULL);
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
-		const PathContext &paths, bool bRO[]);
+		const PathContext &paths, const bool bRO[]);
 	void UpdateResources();
 	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
 	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);

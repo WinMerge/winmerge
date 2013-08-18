@@ -48,6 +48,7 @@
 #include "FileActionScript.h"
 #include "LineFiltersList.h"
 #include "unicoder.h"
+#include "DirActions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,7 +73,6 @@ CDirDoc::CDirDoc()
 : m_pCtxt(NULL)
 , m_pDirView(NULL)
 , m_pCompareStats(NULL)
-, m_bRecursive(FALSE)
 , m_statusCursor(NULL)
 , m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
@@ -201,87 +201,10 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 			m_pTempPathContext->m_strRoot[nIndex] = m_pCtxt->GetNormalizedPath(nIndex);
 	}
 	
-	m_bRecursive = bRecursive;
 	// All plugin management is done by our plugin manager
 	m_pCtxt->m_piPluginInfos = &m_pluginman;
 }
 
-/**
- * @brief Tell if user may use ".." and move to parents directory.
- * This function checks if current compare's parent folders should
- * be allowed to open. I.e. if current compare folders are:
- * - C:\Work\Project1 and
- * - C:\Work\Project2
- * we check if C:\Work and C:\Work should be allowed to opened.
- * For regular folders we allow opening if both folders exist.
- * @param [out] leftParent Left parent folder to open.
- * @param [out] rightParent Right parent folder to open.
- * @return Info if opening parent folders should be enabled:
- * - No : upward RESTRICTED
- * - ParentIsRegularPath : upward ENABLED
- * - ParentIsTempPath : upward ENABLED
- */
-CDirDoc::AllowUpwardDirectory::ReturnCode
-CDirDoc::AllowUpwardDirectory(PathContext &pathsParent)
-{
-	const String & path0 = GetBasePath(0);
-	const String & path1 = GetBasePath(1);
-	const String & path2 = m_nDirs > 2 ? GetBasePath(2) : _T("");
-
-	// If we have temp context it means we are comparing archives
-	if (IsArchiveFolders())
-	{
-		String name0 = paths_FindFileName(path0);
-		String name1 = paths_FindFileName(path1);
-		String name2 = (m_nDirs > 2) ? paths_FindFileName(path2) : _T("");
-
-		/* FIXME: for 3way diff*/
-		String::size_type cchLeftRoot = m_pTempPathContext->m_strRoot[0].length();
-		if (path0.length() <= cchLeftRoot)
-		{
-			pathsParent.SetSize(m_nDirs);
-			if (m_pTempPathContext->m_pParent)
-			{
-				pathsParent[0] = m_pTempPathContext->m_pParent->m_strRoot[0];
-				pathsParent[1] = m_pTempPathContext->m_pParent->m_strRoot[1];
-				if (GetPairComparability(PathContext(pathsParent[0], pathsParent[1])) != IS_EXISTING_DIR)
-					return AllowUpwardDirectory::Never;
-				return AllowUpwardDirectory::ParentIsTempPath;
-			}
-			pathsParent[0] = m_pTempPathContext->m_strDisplayRoot[0];
-			pathsParent[1] = m_pTempPathContext->m_strDisplayRoot[1];
-			if (!m_pCtxt->m_piFilterGlobal->includeFile(pathsParent[0].c_str(), pathsParent[1].c_str()))
-				return AllowUpwardDirectory::Never;
-			if (string_compare_nocase(name0, _T("ORIGINAL")) == 0 && string_compare_nocase(name1, _T("ALTERED")) == 0)
-			{
-				pathsParent[0] = paths_GetParentPath(pathsParent[0]);
-				pathsParent[1] = paths_GetParentPath(pathsParent[1]);
-			}
-			name0 = paths_FindFileName(pathsParent[0]);
-			name1 = paths_FindFileName(pathsParent[1]);
-			if (string_compare_nocase(name0, name1) == 0)
-			{
-				pathsParent[0] = paths_GetParentPath(pathsParent[0]);
-				pathsParent[1] = paths_GetParentPath(pathsParent[1]);
-				if (GetPairComparability(PathContext(pathsParent[0], pathsParent[1])) != IS_EXISTING_DIR)
-					return AllowUpwardDirectory::Never;
-				return AllowUpwardDirectory::ParentIsTempPath;
-			}
-			return AllowUpwardDirectory::No;
-		}
-		name1 = name0;
-	}
-
-	// If regular parent folders exist, allow opening them
-	pathsParent.SetSize(m_nDirs);
-	pathsParent[0] = paths_GetParentPath(path0);
-	pathsParent[1] = paths_GetParentPath(path1);
-	if (m_nDirs > 2)
-		pathsParent[2] = paths_GetParentPath(path2);
-	if (GetPairComparability(pathsParent) != IS_EXISTING_DIR)
-		return AllowUpwardDirectory::Never;
-	return AllowUpwardDirectory::ParentIsRegularPath;
-}
 
 /**
  * @brief Load line filters to the compare context.
@@ -361,7 +284,6 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
 	m_pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_pCtxt->m_pCompareStats = m_pCompareStats.get();
-	m_pCtxt->m_bRecursive = m_bRecursive;
 
 	// Set total items count since we don't collect items
 	if (m_bMarkedRescan)
@@ -404,7 +326,7 @@ void CDirDoc::Rescan()
  * @return TRUE if item should be shown, FALSE if not.
  * @sa CDirDoc::Redisplay()
  */
-bool CDirDoc::IsShowable(const DIFFITEM & di)
+bool CDirDoc::IsShowable(const DIFFITEM & di) const
 {
 	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
 		return FALSE;
@@ -419,7 +341,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di)
 	if (di.diffcode.isDirectory())
 	{
 		// Subfolders in non-recursive compare can only be skipped or unique
-		if (!m_bRecursive)
+		if (!m_pCtxt->m_bRecursive)
 		{
 			// left/right filters
 			if (di.diffcode.isSideFirstOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
@@ -511,17 +433,6 @@ CDirView * CDirDoc::GetMainView()
 }
 
 /**
- * @brief Update in-memory diffitem status from disk.
- * @param [in] diffPos POSITION of item in UI list.
- * @param [in] bLeft If TRUE left-side item is updated.
- * @param [in] bRight If TRUE right-side item is updated.
- */
-void CDirDoc::UpdateStatusFromDisk(UIntPtr diffPos, bool bLeft, bool bRight)
-{
-	m_pCtxt->UpdateStatusFromDisk(diffPos, bLeft, bRight);
-}
-
-/**
  * @brief Update in-memory diffitem status from disk and update view.
  * @param [in] diffPos POSITION of item in UI list.
  * @param [in] bLeft If TRUE left-side item is updated.
@@ -530,10 +441,10 @@ void CDirDoc::UpdateStatusFromDisk(UIntPtr diffPos, bool bLeft, bool bRight)
  * calls slow DirView functions to get item position and to update GUI.
  * Use UpdateStatusFromDisk() function instead.
  */
-void CDirDoc::ReloadItemStatus(UIntPtr diffPos, bool bLeft, bool bRight)
+void CDirDoc::ReloadItemStatus(UIntPtr diffPos, int index)
 {
 	// in case just copied (into existence) or modified
-	UpdateStatusFromDisk(diffPos, bLeft, bRight);
+	m_pCtxt->UpdateStatusFromDisk(diffPos, index);
 
 	int nIdx = m_pDirView->GetItemIndex(diffPos);
 	if (nIdx != -1)
@@ -813,7 +724,8 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 
 		if (nDiffs != -1 && nTrivialDiffs != -1)
 			m_pCtxt->SetDiffCounts(pos, nDiffs, nTrivialDiffs);
-		ReloadItemStatus(pos, TRUE, TRUE);
+		for (int i = 0; i < m_pCtxt->GetCompareDirs(); ++i)
+			ReloadItemStatus(pos, i);
 	}
 }
 
@@ -858,44 +770,9 @@ bool CDirDoc::GetReadOnly(int nIndex) const
 	return m_bRO[nIndex];
 }
 
-/**
- * @brief Set side status of diffitem
- * @note This does not update UI - ReloadItemStatus() does
- * @sa CDirDoc::ReloadItemStatus()
- */
-void CDirDoc::SetDiffSide(UINT diffcode, int idx)
+const bool *CDirDoc::GetReadOnly(void) const
 {
-	SetDiffStatus(diffcode, DIFFCODE::SIDEFLAGS, idx);
-}
-
-/**
- * @brief Set compare status of diffitem
- * @note This does not update UI - ReloadItemStatus() does
- * @sa CDirDoc::ReloadItemStatus()
- */
-void CDirDoc::SetDiffCompare(UINT diffcode, int idx)
-{
-	SetDiffStatus(diffcode, DIFFCODE::COMPAREFLAGS, idx);
-}
-
-/**
- * @brief Set status for diffitem
- * @param diffcode New code
- * @param mask Defines allowed set of flags to change
- * @param idx Item's index to list in UI
- */
-void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
-{
-	// Get position of item in DiffContext 
-	UIntPtr diffpos = m_pDirView->GetItemKey(idx);
-
-	// TODO: Why is the update broken into these pieces ?
-	// Someone could figure out these pieces and probably simplify this.
-
-	// Update DIFFITEM code (comparison result) to DiffContext
-	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
-
-	// update DIFFITEM time (and other disk info), and tell views
+	return m_bRO;
 }
 
 /**
@@ -977,98 +854,6 @@ void CDirDoc::ApplyDisplayRoot(int nIndex, String &sText)
 }
 
 /**
- * @brief Store a plugin setting for specified file comparison
- */
-void CDirDoc::SetPluginPrediffSetting(const String& filteredFilenames, int newsetting)
-{
-	m_pluginman.SetPrediffSetting(filteredFilenames, newsetting);
-}
-
-/**
- * @brief Store a plugin setting for specified file comparison
- */
-void CDirDoc::SetPluginPrediffer(const String& filteredFilenames, const String & prediffer)
-{
-	m_pluginman.SetPrediffer(filteredFilenames, prediffer);
-}
-
-/**
- * @brief Retrieve any cached plugin info for specified comparison
- */
-void CDirDoc::FetchPluginInfos(const String& filteredFilenames, 
-                               PackingInfo ** infoUnpacker, 
-                               PrediffingInfo ** infoPrediffer)
-{
-	// This will manufacture the needed objects if not already cached
-	IPluginInfos * piPluginInfos = &m_pluginman;
-	piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
-}
-
-void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
-{
-	// Get position of item in DiffContext 
-	UIntPtr diffpos = m_pDirView->GetItemKey(idx);
-
-	// Update diff counts
-	m_pCtxt->SetDiffCounts(diffpos, diffs, ignored);
-}
-
-/**
- * @brief Update results for FileActionItem.
- * This functions is called to update DIFFITEM after FileActionItem.
- * @param [in] act Action that was done.
- * @param [in] pos List position for DIFFITEM affected.
- */
-void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, UIntPtr pos)
-{
-	ASSERT(pos != NULL);
-	const DIFFITEM &di = GetDiffByKey(pos);
-
-	// Use FileActionItem types for simplicity for now.
-	// Better would be to use FileAction contained, since it is not
-	// UI dependent.
-	switch (act.UIResult)
-	{
-	case FileActionItem::UI_SYNC:
-		SetDiffSide(DIFFCODE::BOTH, act.context);
-		if (act.dirflag)
-			SetDiffCompare(DIFFCODE::NOCMP, act.context);
-		else
-			SetDiffCompare(DIFFCODE::SAME, act.context);
-		SetDiffCounts(0, 0, act.context);
-		break;
-
-	case FileActionItem::UI_DEL_LEFT:
-		if (di.diffcode.isSideFirstOnly())
-		{
-			RemoveDiffByKey(pos);
-		}
-		else
-		{
-			SetDiffSide(DIFFCODE::SECOND, act.context);
-			SetDiffCompare(DIFFCODE::NOCMP, act.context);
-		}
-		break;
-
-	case FileActionItem::UI_DEL_RIGHT:
-		if (di.diffcode.isSideSecondOnly())
-		{
-			RemoveDiffByKey(pos);
-		}
-		else
-		{
-			SetDiffSide(DIFFCODE::FIRST, act.context);
-			SetDiffCompare(DIFFCODE::NOCMP, act.context);
-		}
-		break;
-
-	case FileActionItem::UI_DEL_BOTH:
-		RemoveDiffByKey(pos);
-		break;
-	}
-}
-
-/**
  * @brief Set document title to given string or items compared.
  * 
  * Formats and sets caption for directory compare window. Caption
@@ -1139,44 +924,12 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	}	
 }
 
-/**
- * @brief Set item's view-flag.
- * @param [in] key Item fow which flag is set.
- * @param [in] flag Flag value to set.
- * @param [in] mask Mask for possible flag values.
- */
-void CDirDoc::SetItemViewFlag(UIntPtr key, UINT flag, UINT mask)
-{
-	UINT curFlags = m_pCtxt->GetCustomFlags1(key);
-	curFlags &= ~mask; // Zero bits masked
-	curFlags |= flag;
-	m_pCtxt->SetCustomFlags1(key, curFlags);
-}
-
-/**
- * @brief Set all item's view-flag.
- * @param [in] flag Flag value to set.
- * @param [in] mask Mask for possible flag values.
- */
-void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
-{
-	UIntPtr pos = m_pCtxt->GetFirstDiffPosition();
-
-	while (pos != NULL)
-	{
-		UINT curFlags = m_pCtxt->GetCustomFlags1(pos);
-		curFlags &= ~mask; // Zero bits masked
-		curFlags |= flag;
-		m_pCtxt->SetCustomFlags1(pos, curFlags);
-		m_pCtxt->GetNextDiffPosition(pos);
-	}
-}
 
 /**
  * @brief Checks if current folders are opened from archive file.
  * @return true if we are inside archive, false otherwise.
  */
-bool CDirDoc::IsArchiveFolders()
+bool CDirDoc::IsArchiveFolders() const
 {
 	if (m_pTempPathContext)
 		return true;

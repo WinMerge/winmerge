@@ -112,8 +112,7 @@ public:
 
 	// change an existing difference
 	bool UpdateInfoFromDiskHalf(DIFFITEM & di, int nIndex);
-	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bRight);
-	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, bool bLeft, bool bMiddle, bool bRight);
+	void UpdateStatusFromDisk(Poco::UIntPtr diffpos, int index);
 
 	bool CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
 	CompareOptions * GetCompareOptions(int compareMethod);
