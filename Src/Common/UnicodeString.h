@@ -80,4 +80,23 @@ String string_format_string2(const String& fmt, const String& arg1, const String
 
 int string_stoi(const String& str, size_t *idx = 0, int base = 10);
 
+template <class InputIterator>
+String String_join(const InputIterator& begin, const InputIterator& end, const String& delim)
+{
+	size_t sum = 0;
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (sum != 0) ++sum;
+		sum += (*it).length();
+	}
+	String result;
+	result.reserve(sum);
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (!result.empty()) result.append(delim);
+		result += *it;
+	}
+	return result;
+}
+
 #endif // _UNICODE_STRING_
