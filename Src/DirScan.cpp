@@ -157,8 +157,7 @@ int DirScan_GetItems(const PathContext &paths, const TCHAR * subdir[],
 	String subprefix[3];
 
 	int nIndex;
-	for (nIndex = 0; nIndex < nDirs; nIndex++)
-		sDir[nIndex] = paths.GetPath(nIndex);
+	std::copy(paths.begin(), paths.end(), sDir);
 
 	if (subdir[0][0])
 	{

@@ -690,9 +690,7 @@ bool CDiffWrapper::RunFileDiff()
 
 	bool bRet = true;
 	String strFileTemp[3];
-	for (file = 0; file < m_files.GetSize(); file++)
-		strFileTemp[file] = files[file];
-
+	std::copy(m_files.begin(), m_files.end(), strFileTemp);
 	
 	m_options.SetToDiffUtils();
 
