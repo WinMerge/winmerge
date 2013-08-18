@@ -26,6 +26,7 @@
 #define _SHELL_FILE_OPERATIONS_H_
 
 #include <vector>
+#include <ShellAPI.h>
 
 /**
  * @brief A wrapper class for SHFileOperation().

@@ -756,7 +756,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 }
 
 void CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, 
-	const PathContext &paths, bool bRO[])
+	const PathContext &paths, const bool bRO[])
 {
 	BOOL docNull;
 	if (!m_pMenus[MENU_HEXMERGEVIEW])
@@ -1160,12 +1160,11 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		String path;
 		USES_CONVERSION;
 		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0].c_str()))
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0]))
 		{
 			pTempPathContext = new CTempPathContext;
 			path = env_GetTempChildPath();
-			for (int index = 0; index < files.GetSize(); index++)
-				pTempPathContext->m_strDisplayRoot[index] = files[index];
+			std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
 			pathsType = IS_EXISTING_DIR;
 			if (files[0] == files[1])
 			{
@@ -1189,13 +1188,12 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			} while (piHandler = ArchiveGuessFormat(files[0].c_str()));
 			files[0] = path;
 		}
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[1].c_str()))
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[1]))
 		{
 			if (!pTempPathContext)
 			{
 				pTempPathContext = new CTempPathContext;
-				for (int index = 0; index < files.GetSize(); index++)
-					pTempPathContext->m_strDisplayRoot[index] = files[index];
+				std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
 			}
 			path = env_GetTempChildPath();
 			do
@@ -1214,13 +1212,12 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 		if (files.GetSize() > 2)
 		{
-			if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[2].c_str()))
+			if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[2]))
 			{
 				if (!pTempPathContext)
 				{
 					pTempPathContext = new CTempPathContext;
-					for (int index = 0; index < files.GetSize(); index++)
-						pTempPathContext->m_strDisplayRoot[index] = files[index];
+					std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
 				}
 				path = env_GetTempChildPath();
 				do
@@ -1234,7 +1231,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
 					files[2] = paths_ConcatPath(path, OLE2T(pTmp));
 					SysFreeString(pTmp);
-				} while (piHandler = ArchiveGuessFormat(files[2].c_str()));
+				} while (piHandler = ArchiveGuessFormat(files[2]));
 				files[2] = path;
 			}
 		}
@@ -1319,15 +1316,8 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 
 		if (!prediffer.empty())
 		{
-			String strBothFilenames;
-			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
-			{
-				strBothFilenames += files[nIndex];
-				strBothFilenames += _T("|");
-			}
-			strBothFilenames.resize(strBothFilenames.length() - 1);
-
-			pDirDoc->SetPluginPrediffer(strBothFilenames, prediffer);
+			String strBothFilenames = String_join(files.begin(), files.end(), _T("|"));
+			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
 		}
 
 		ShowMergeDoc(pDirDoc, files.GetSize(), fileloc, dwFlags,
@@ -1992,14 +1982,14 @@ void CMainFrame::OnToolsGeneratePatch()
 	else if (frame == FRAME_FOLDER)
 	{
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
+		const CDiffContext& ctxt = pDoc->GetDiffContext();
 		CDirView *pView = pDoc->GetMainView();
 
 		// Get selected items from folder compare
 		BOOL bValidFiles = TRUE;
-		int ind = pView->GetFirstSelectedInd();
-		while (ind != -1 && bValidFiles)
+		for (DirItemIterator it = pView->SelBegin(); bValidFiles && it != pView->SelEnd(); ++it)
 		{
-			const DIFFITEM &item = pView->GetItemAt(ind);
+			const DIFFITEM &item = *it;
 			if (item.diffcode.isBin())
 			{
 				LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
@@ -2016,10 +2006,10 @@ void CMainFrame::OnToolsGeneratePatch()
 			if (bValidFiles)
 			{
 				// Format full paths to files (leftFile/rightFile)
-				String leftFile = item.getFilepath(0, pDoc->GetBasePath(0));
+				String leftFile = item.getFilepath(0, ctxt.GetNormalizedPath(0));
 				if (!leftFile.empty())
 					leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].filename);
-				String rightFile = item.getFilepath(1, pDoc->GetBasePath(1));
+				String rightFile = item.getFilepath(1, ctxt.GetNormalizedPath(1));
 				if (!rightFile.empty())
 					rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].filename);
 
@@ -2033,7 +2023,6 @@ void CMainFrame::OnToolsGeneratePatch()
 					rightpatch += _T("/");
 				rightpatch += item.diffFileInfo[1].filename;
 				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
-				pView->GetNextSelectedInd(ind);
 			}
 		}
 	}
@@ -2846,13 +2835,14 @@ void CMainFrame::OnSaveProject()
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
-		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
-		left = paths_AddTrailingSlash(pDoc->GetLeftBasePath());
-		right = paths_AddTrailingSlash(pDoc->GetRightBasePath());
+		const CDirDoc * pDoc = (const CDirDoc*)pFrame->GetActiveDocument();
+		const CDiffContext& ctxt = pDoc->GetDiffContext();
+		left = paths_AddTrailingSlash(ctxt.GetNormalizedLeft());
+		right = paths_AddTrailingSlash(ctxt.GetNormalizedRight());
 		
 		// Set-up the dialog
 		pathsDlg.SetPaths(left, right);
-		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
+		pathsDlg.m_bIncludeSubfolders = ctxt.m_bRecursive;
 		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(0);
 		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(pDoc->m_nDirs - 1);
 	}
