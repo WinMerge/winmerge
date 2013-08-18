@@ -75,4 +75,23 @@ String string_trim_ws_end(const String & str);
 String string_format_arg_list(const TCHAR *fmt, va_list args);
 String string_format(const TCHAR *fmt, ...);
 
+template <class InputIterator>
+String String_join(const InputIterator& begin, const InputIterator& end, const String& delim)
+{
+	size_t sum = 0;
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (sum != 0) ++sum;
+		sum += (*it).length();
+	}
+	String result;
+	result.reserve(sum);
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (!result.empty()) result.append(delim);
+		result += *it;
+	}
+	return result;
+}
+
 #endif // _UNICODE_STRING_
