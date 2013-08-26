@@ -2907,7 +2907,6 @@ void CMergeDoc::SetEditedAfterRescan(int nBuffer)
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	const TCHAR pszSeparator[] = _T(" - ");
 	String sTitle;
 	String sFileName[3];
 
@@ -2932,37 +2931,10 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 				}
 			}
 		}
-		if (m_nBuffers < 3)
-		{
-			if (sFileName[0] == sFileName[1])
-			{
-				sTitle = sFileName[0];
-				sTitle += _T(" x 2");
-			}
-			else
-			{
-				sTitle = sFileName[0];
-				sTitle += pszSeparator;
-				sTitle += sFileName[1];
-			}
-		}
+		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
+			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
 		else
-		{
-			if (sFileName[0] == sFileName[1] && sFileName[0] == sFileName[2])
-			{
-				sTitle = sFileName[0];
-				sTitle += _T(" x 3");
-			}
-			else
-			{
-				sTitle = sFileName[0];
-				sTitle += pszSeparator;
-				sTitle += sFileName[1];
-				sTitle += pszSeparator;
-				sTitle += sFileName[2];
-			}
-		}
-
+			sTitle = String_join(&sFileName[0], &sFileName[0] + m_nBuffers, _T(" - "));
 	}
 	CDocument::SetTitle(sTitle.c_str());
 }
