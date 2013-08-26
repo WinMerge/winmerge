@@ -995,8 +995,6 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, UIntPtr pos)
  */
 void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	const TCHAR pszSeparator[] = _T(" - ");
-
 	if (!m_pDirView)
 		return;
 
@@ -1020,37 +1018,11 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 			ApplyDisplayRoot(index, strPath);
 			sDirName[index] = PathFindFileName(strPath.c_str());
 		}
-		if (m_nDirs < 3)
-		{
-			if (sDirName[0] == sDirName[1])
-			{
-				sTitle = sDirName[0];
-				sTitle += _T(" x 2");
-			}
-			else
-			{
-				sTitle = sDirName[0];
-				sTitle += pszSeparator;
-				sTitle += sDirName[1];
-			}
-		}
-		else
-		{
-			if (sDirName[0] == sDirName[1] && sDirName[0] == sDirName[2])
-			{
-				sTitle = sDirName[0];
-				sTitle += _T(" x 3");
-			}
-			else
-			{
-				sTitle = sDirName[0];
-				sTitle += pszSeparator;
-				sTitle += sDirName[1];
-				sTitle += pszSeparator;
-				sTitle += sDirName[2];
-			}
-		}
-		CDocument::SetTitle(sTitle.c_str());
+		if (std::count(&sDirName[0], &sDirName[0] + m_nDirs, sDirName[0]) == m_nDirs)
+			sTitle = sDirName[0] + string_format(_T(" x %d"), m_nDirs);
+ 		else
+			sTitle = String_join(&sDirName[0], &sDirName[0] + m_nDirs, _T(" - "));
+ 		CDocument::SetTitle(sTitle.c_str());
 	}	
 }
 
