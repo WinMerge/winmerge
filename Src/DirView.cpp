@@ -53,6 +53,7 @@
 #include "CompareStatisticsDlg.h"
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
+#include "DirColsDlg.h"
 #include "UniFile.h"
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
@@ -60,6 +61,7 @@
 #include "FileOrFolderSelect.h"
 #include "IntToIntMap.h"
 #include <numeric>
+#include <boost/bind.hpp>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -101,9 +103,7 @@ enum {
 IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
-		: m_numcols(-1)
-		, m_dispcols(-1)
-		, m_pList(NULL)
+		: m_pList(NULL)
 		, m_nHiddenItems(0)
 		, m_bNeedSearchFirstDiffItem(true)
 		, m_bNeedSearchLastDiffItem(true)
@@ -351,12 +351,13 @@ void CDirView::OnInitialUpdate()
 	VERIFY(m_imageState.Create(IDB_TREE_STATE, 16, 1, RGB(255, 0, 255)));
 
 	// Restore column orders as they had them last time they ran
-	LoadColumnOrders();
+	m_pColItems->LoadColumnOrders(
+		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnOrders")));
 
 	// Display column headers (in appropriate order)
 	ReloadColumns();
 
-	// Show selection across entire row.
+	// Show selection across entire row.u
 	// Also allow user to rearrange columns via drag&drop of headers.
 	// Also enable infotips.
 	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP;
@@ -421,7 +422,9 @@ void CDirView::ReloadColumns()
 	LoadColumnHeaderItems();
 
 	UpdateColumnNames();
-	SetColumnWidths();
+	m_pColItems->LoadColumnWidths(
+		(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
+		boost::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 	SetColAlignments();
 }
 
@@ -432,7 +435,7 @@ void CDirView::ReloadColumns()
  * @param [in,out] index Index of the item to be inserted.
  * @param [in,out] alldiffs Number of different items
  */
-void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &alldiffs)
+void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter)
 {
 	CDirDoc *pDoc = GetDocument();
 	const CDiffContext &ctxt = GetDiffContext();
@@ -444,7 +447,7 @@ void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &a
 		if (!di.diffcode.isResultSame())
 			++alldiffs;
 
-		bool bShowable = pDoc->IsShowable(di);
+		bool bShowable = IsShowable(ctxt, di, dirfilter);
 		if (bShowable)
 		{
 			if (m_bTreeMode)
@@ -455,7 +458,7 @@ void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &a
 				{
 					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::EXPANDED) ? 2 : 1), LVIS_STATEIMAGEMASK);
 					if (di.customFlags1 & ViewCustomFlags::EXPANDED)
-						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs, dirfilter);
 				}
 			}
 			else
@@ -467,7 +470,7 @@ void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &a
 				}
 				if (di.HasChildren())
 				{
-					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs, dirfilter);
 				}
 			}
 		}
@@ -502,7 +505,8 @@ void CDirView::Redisplay()
 
 	int alldiffs = 0;
 	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
-	RedisplayChildren(diffpos, 0, cnt, alldiffs);
+	DirViewFilterSettings dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1));
+	RedisplayChildren(diffpos, 0, cnt, alldiffs, dirfilter);
 	theApp.SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
@@ -544,7 +548,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 		if (col >= 0)
 		{
 			// Presumably hhti.flags & HHT_ONHEADER is true
-			HeaderContextMenu(point, ColPhysToLog(col));
+			HeaderContextMenu(point, m_pColItems->ColPhysToLog(col));
 			return;
 		}
 		// bail out if point is not in any row
@@ -741,7 +745,8 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
 		shellContextMenu = m_pShellContextMenuRight.get(); break;
 	}
 	shellContextMenu->Initialize();
-	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(), *shellContextMenu, &CShellContextMenu::AddItem);
+	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(), 
+		boost::bind(&CShellContextMenu::AddItem, shellContextMenu, _1, _2));
 	return shellContextMenu->RequeryShellContextMenu();
 }
 
@@ -903,11 +908,6 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Start handling from tail of list, so removing items
 		// doesn't invalidate our item indexes.
 		FileActionItem act = actionList.RemoveTailActionItem();
-		UIntPtr diffpos = GetItemKey(act.context);
-		DIFFITEM &di = ctxt.GetDiffRefAt(diffpos);
-		DIFFCODE diffcode = di.diffcode;
-		bool bUpdateSrc  = false;
-		bool bUpdateDest = false;
 
 		// Synchronized items may need VCS operations
 		if (act.UIResult == FileActionItem::UI_SYNC)
@@ -916,42 +916,15 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 				GetMainFrame()->m_pSourceControl->CheckinToClearCase(act.dest);
 		}
 
-		// Update UI
-		switch (act.UIResult)
-		{
-		case FileActionItem::UI_SYNC:
-			bUpdateSrc = true;
-			bUpdateSrc = true;
-			break;
-		
-		case FileActionItem::UI_DESYNC:
-			// Cannot happen yet since we have only "simple" operations
-			break;
-
-		case FileActionItem::UI_DEL:
-			if (diffcode.isSideOnly(act.UIOrigin))
-			{
-				DeleteItem(act.context);
-				bItemsRemoved = true;
-			}
-			else
-			{
-				bUpdateSrc = true;
-			}
-			break;
-		}
-
 		// Update doc (difflist)
-		UpdateDiffAfterOperation(act, ctxt, di);
-
-		if (bUpdateSrc || bUpdateDest)
+		UPDATEITEM_TYPE updatetype = UpdateDiffAfterOperation(act, ctxt, GetDiffItem(act.context));
+		if (updatetype == UPDATEITEM_REMOVE)
 		{
-			if (bUpdateSrc)
-				ctxt.UpdateStatusFromDisk(diffpos, act.UIOrigin);
-			if (bUpdateDest)
-				ctxt.UpdateStatusFromDisk(diffpos, act.UIDestination);
-			UpdateDiffItemStatus(act.context);
+			DeleteItem(act.context);
+			bItemsRemoved = true;
 		}
+		else if (updatetype == UPDATEITEM_UPDATE)
+			UpdateDiffItemStatus(act.context);
 	}
 	
 	// Make sure selection is at sensible place if all selected items
@@ -1000,7 +973,7 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	// set sort parameters and handle ascending/descending
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*) pNMHDR;
 	int oldSortColumn = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
-	int sortcol = m_invcolorder[pNMListView->iSubItem];
+	int sortcol = m_pColItems->ColPhysToLog(pNMListView->iSubItem);
 	if (sortcol == oldSortColumn)
 	{
 		// Swap direction
@@ -1011,7 +984,7 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	{
 		GetOptionsMgr()->SaveOption((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3, sortcol);
 		// most columns start off ascending, but not dates
-		bool bSortAscending = IsDefaultSortAscending(sortcol);
+		bool bSortAscending = m_pColItems->IsDefaultSortAscending(sortcol);
 		GetOptionsMgr()->SaveOption(OPT_DIRVIEW_SORT_ASCENDING, bSortAscending);
 	}
 
@@ -1022,13 +995,13 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 void CDirView::SortColumnsAppropriately()
 {
 	int sortCol = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
-	if (sortCol == -1 || sortCol >= GetColLogCount())
+	if (sortCol == -1 || sortCol >= m_pColItems->GetColCount())
 		return;
 
 	bool bSortAscending = GetOptionsMgr()->GetBool(OPT_DIRVIEW_SORT_ASCENDING);
-	m_ctlSortHeader.SetSortImage(ColLogToPhys(sortCol), bSortAscending);
+	m_ctlSortHeader.SetSortImage(m_pColItems->ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
-	CompareState cs(this, sortCol, bSortAscending);
+	CompareState cs(&GetDiffContext(), m_pColItems.get(), sortCol, bSortAscending, m_bTreeMode);
 	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD_PTR>(&cs));
 
 	m_bNeedSearchLastDiffItem = true;
@@ -1040,9 +1013,11 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
-	ValidateColumnOrdering();
-	SaveColumnOrders();
-	SaveColumnWidths();
+	m_pColItems->ValidateColumnOrdering();
+	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
+	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
+	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+		m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 
 	CListView::OnDestroy();
 
@@ -1175,7 +1150,8 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	UIntPtr diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
 	UINT indext = sel + 1;
 	int alldiffs;
-	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
+	DirViewFilterSettings dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1));
+	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs, dirfilter);
 
 	SortColumnsAppropriately();
 
@@ -2171,7 +2147,9 @@ BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
 	// so we can reload them on the end drag
-	SaveColumnWidths();
+	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
+	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+		m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1)).c_str());
 	return TRUE;
 }
 
@@ -2186,7 +2164,8 @@ BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 	*pResult = !allowDrop;
 	if (allowDrop && src != dest && dest != -1)
 	{
-		MoveColumn(src, dest);
+		m_pColItems->MoveColumn(src, dest);
+		InitiateSort();
 	}
 	return TRUE;
 }
@@ -2202,7 +2181,7 @@ void CDirView::FixReordering()
 	lvcol.cx = 0;
 	lvcol.pszText = 0;
 	lvcol.iSubItem = 0;
-	for (int i = 0; i < m_numcols; ++i)
+	for (int i = 0; i < m_pColItems->GetColCount(); ++i)
 	{
 		lvcol.iOrder = i;
 		GetListCtrl().SetColumn(i, &lvcol);
@@ -2222,7 +2201,7 @@ void CDirView::LoadColumnHeaderItems()
 			m_pList->DeleteColumn(1);
 	}
 
-	for (int i = 0; i < m_dispcols; ++i)
+	for (int i = 0; i < m_pColItems->GetDispColCount(); ++i)
 	{
 		LVCOLUMN lvc;
 		lvc.mask = LVCF_FMT + LVCF_SUBITEM + LVCF_TEXT;
@@ -2237,42 +2216,11 @@ void CDirView::LoadColumnHeaderItems()
 
 }
 
-/// Update all column widths (from registry to screen)
-// Necessary when user reorders columns
-void CDirView::SetColumnWidths()
-{
-	for (int i = 0; i < m_numcols; ++i)
-	{
-		int phy = ColLogToPhys(i);
-		if (phy >= 0)
-		{
-			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
-			int w = max(10, theApp.GetProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), DefColumnWidth));
-			GetListCtrl().SetColumnWidth(m_colorder[i], w);
-		}
-	}
-}
-
 void CDirView::SetFont(const LOGFONT & lf)
 {
 	m_font.DeleteObject();
 	m_font.CreateFontIndirect(&lf);
 	CWnd::SetFont(&m_font);
-}
-
-/** @brief store current column widths into registry */
-void CDirView::SaveColumnWidths()
-{
-	for (int i = 0; i < m_numcols; i++)
-	{
-		int phy = ColLogToPhys(i);
-		if (phy >= 0)
-		{
-			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
-			int w = GetListCtrl().GetColumnWidth(phy);
-			theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), w);
-		}
-	}
 }
 
 /** @brief Fire off a resort of the data, to take place when things stabilize. */
@@ -2289,7 +2237,9 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		FixReordering();
 		// Now redraw screen
 		UpdateColumnNames();
-		SetColumnWidths();
+		m_pColItems->LoadColumnWidths(
+			(const TCHAR *)theApp.GetProfileString(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), _T("ColumnWidths")),
+			boost::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), DefColumnWidth);
 		Redisplay();
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
@@ -2375,7 +2325,8 @@ void CDirView::OnCustomizeColumns()
 {
 	// Located in DirViewColHandler.cpp
 	OnEditColumns();
-	SaveColumnOrders();
+	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
+	theApp.WriteProfileString(secname.c_str(), _T("ColumnOrders"), m_pColItems->SaveColumnOrders().c_str());
 }
 
 void CDirView::OnCtxtOpenWithUnpacker()
@@ -2430,7 +2381,7 @@ void CDirView::GetCurrentColRegKeys(std::vector<String>& colKeys)
 	int nphyscols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
 	for (int col = 0; col < nphyscols; ++col)
 	{
-		int logcol = ColPhysToLog(col);
+		int logcol = m_pColItems->ColPhysToLog(col);
 		colKeys.push_back(m_pColItems->GetColRegValueNameBase(logcol));
 	}
 }
@@ -2503,7 +2454,7 @@ void CDirView::OnToolsGenerateReport()
 	}
 
 	report.SetRootPaths(paths);
-	report.SetColumns(m_dispcols);
+	report.SetColumns(m_pColItems->GetDispColCount());
 	report.SetFileCmpReport(&freport);
 	String errStr;
 	if (report.GenerateReport(errStr))
@@ -2703,22 +2654,6 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Resets column widths to defaults.
- */
-void CDirView::ResetColumnWidths()
-{
-	for (int i = 0; i < m_numcols; i++)
-	{
-		int phy = ColLogToPhys(i);
-		if (phy >= 0)
-		{
-			String sWidthKey = m_pColItems->GetColRegValueNameBase(i) + _T("_Width");
-			theApp.WriteProfileInt(GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3"), sWidthKey.c_str(), DefColumnWidth);
-		}
-	}
-}
-
-/**
  * @brief Refresh cached options.
  */
 void CDirView::RefreshOptions()
@@ -2913,7 +2848,7 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 
 		// Locate the edit box on the right column in case the user changed the
 		// column order.
-		const int nColPos = ColLogToPhys(0);
+		const int nColPos = m_pColItems->ColLogToPhys(0);
 
 		// Get text from the "File Name" column.
 		CString sText = m_pList->GetItemText(pdi->item.iItem, nColPos);
@@ -3511,6 +3446,224 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	*pResult = 0;
+}
+
+/// Assign column name, using string resource & current column ordering
+void CDirView::NameColumn(const char *idname, int subitem)
+{
+	int phys = m_pColItems->ColLogToPhys(subitem);
+	if (phys>=0)
+	{
+		String s = tr(idname);
+		LV_COLUMN lvc;
+		lvc.mask = LVCF_TEXT;
+		lvc.pszText = const_cast<LPTSTR>(s.c_str());
+		m_pList->SetColumn(phys, &lvc);
+	}
+}
+
+/// Load column names from string table
+void CDirView::UpdateColumnNames()
+{
+	int ncols = m_pColItems->GetColCount();
+	for (int i=0; i<ncols; ++i)
+	{
+		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
+		NameColumn(col->idName, i);
+	}
+}
+
+/**
+ * @brief Set alignment of columns.
+ */
+void CDirView::SetColAlignments()
+{
+	int ncols = m_pColItems->GetColCount();
+	for (int i=0; i<ncols; ++i)
+	{
+		const DirColInfo * col = m_pColItems->GetDirColInfo(i);
+		LVCOLUMN lvc;
+		lvc.mask = LVCF_FMT;
+		lvc.fmt = col->alignment;
+		m_pList->SetColumn(m_pColItems->ColLogToPhys(i), &lvc);
+	}
+}
+
+CDirView::CompareState::CompareState(const CDiffContext *pCtxt, const DirViewColItems *pColItems, int sortCol, bool bSortAscending, bool bTreeMode)
+: pCtxt(pCtxt)
+, pColItems(pColItems)
+, sortCol(sortCol)
+, bSortAscending(bSortAscending)
+, bTreeMode(bTreeMode)
+{
+}
+
+/// Compare two specified rows during a sort operation (windows callback)
+int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
+{
+	CompareState *pThis = reinterpret_cast<CompareState*>(lParamSort);
+	// Sort special items always first in dir view
+	if (lParam1 == -1)
+		return -1;
+	if (lParam2 == -1)
+		return 1;
+
+	UIntPtr diffposl = (UIntPtr)lParam1;
+	UIntPtr diffposr = (UIntPtr)lParam2;
+	const DIFFITEM &ldi = pThis->pCtxt->GetDiffAt(diffposl);
+	const DIFFITEM &rdi = pThis->pCtxt->GetDiffAt(diffposr);
+	// compare 'left' and 'right' parameters as appropriate
+	int retVal = pThis->pColItems->ColSort(pThis->pCtxt, pThis->sortCol, ldi, rdi, pThis->bTreeMode);
+	// return compare result, considering sort direction
+	return pThis->bSortAscending ? retVal : -retVal;
+}
+
+/// Add new item to list view
+int CDirView::AddNewItem(int i, UIntPtr diffpos, int iImage, int iIndent)
+{
+	LV_ITEM lvItem;
+	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
+	lvItem.iItem = i;
+	lvItem.iIndent = iIndent;
+	lvItem.iSubItem = 0;
+	lvItem.pszText = LPSTR_TEXTCALLBACK;
+	lvItem.lParam = (LPARAM)diffpos;
+	lvItem.iImage = iImage;
+	return GetListCtrl().InsertItem(&lvItem);
+}
+
+/**
+ * @brief Update listview display of details for specified row
+ * @note Customising shownd data should be done here
+ */
+void CDirView::UpdateDiffItemStatus(UINT nIdx)
+{
+	GetListCtrl().RedrawItems(nIdx, nIdx);
+}
+
+static String rgDispinfoText[2]; // used in function below
+
+/**
+ * @brief Allocate a text buffer to assign to NMLVDISPINFO::item::pszText
+ * Quoting from SDK Docs:
+ *	If the LVITEM structure is receiving item text, the pszText and cchTextMax
+ *	members specify the address and size of a buffer. You can either copy text to
+ *	the buffer or assign the address of a string to the pszText member. In the
+ *	latter case, you must not change or delete the string until the corresponding
+ *	item text is deleted or two additional LVN_GETDISPINFO messages have been sent.
+ */
+static LPTSTR NTAPI AllocDispinfoText(const String &s)
+{
+	static int i = 0;
+	LPCTSTR pszText = (rgDispinfoText[i] = s).c_str();
+	i ^= 1;
+	return (LPTSTR)pszText;
+}
+
+/**
+ * @brief Respond to LVN_GETDISPINFO message
+ */
+void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
+{
+	int nIdx = pParam->item.iItem;
+	int i = m_pColItems->ColPhysToLog(pParam->item.iSubItem);
+	UIntPtr key = GetItemKey(nIdx);
+	if (key == SPECIAL_ITEM_POS)
+	{
+		if (m_pColItems->IsColName(i))
+		{
+			pParam->item.pszText = _T("..");
+		}
+		return;
+	}
+	if (!GetDocument()->HasDiffs())
+		return;
+	const CDiffContext &ctxt = GetDiffContext();
+	const DIFFITEM &di = ctxt.GetDiffAt(key);
+	if (pParam->item.mask & LVIF_TEXT)
+	{
+		String s = m_pColItems->ColGetTextToDisplay(&ctxt, i, di);
+		pParam->item.pszText = AllocDispinfoText(s);
+	}
+	if (pParam->item.mask & LVIF_IMAGE)
+	{
+		pParam->item.iImage = GetColImage(ctxt, di);
+	}
+
+	m_bNeedSearchLastDiffItem = true;
+	m_bNeedSearchFirstDiffItem = true;
+}
+
+/**
+ * @brief User examines & edits which columns are displayed in dirview, and in which order
+ */
+void CDirView::OnEditColumns()
+{
+	CDirColsDlg dlg;
+	// List all the currently displayed columns
+	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
+	{
+		int l = m_pColItems->ColPhysToLog(col);
+		dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l, col);
+	}
+	// Now add all the columns not currently displayed
+	int l=0;
+	for (l=0; l<m_pColItems->GetColCount(); ++l)
+	{
+		if (m_pColItems->ColLogToPhys(l)==-1)
+		{
+			dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
+		}
+	}
+
+	// Add default order of columns for resetting to defaults
+	for (l = 0; l < m_pColItems->GetColCount(); ++l)
+	{
+		int phy = m_pColItems->GetColDefaultOrder(l);
+		dlg.AddDefColumn(m_pColItems->GetColDisplayName(l), l, phy);
+	}
+
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	String secname = GetDocument()->m_nDirs < 3 ? _T("DirView") : _T("DirView3");
+	theApp.WriteProfileString(secname.c_str(), _T("ColumnWidths"),
+		(dlg.m_bReset ? m_pColItems->ResetColumnWidths(DefColumnWidth) :
+		                m_pColItems->SaveColumnWidths(boost::bind(&CListCtrl::GetColumnWidth, m_pList, _1))).c_str());
+
+	// Reset our data to reflect the new data from the dialog
+	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
+	m_pColItems->ClearColumnOrders();
+	const int sortColumn = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
+	std::vector<int> colorder(m_pColItems->GetColCount(), -1);
+	for (CDirColsDlg::ColumnArray::const_iterator iter = cols.begin();
+		iter != cols.end(); ++iter)
+	{
+		int log = iter->log_col; 
+		int phy = iter->phy_col;
+		colorder[log] = phy;
+
+		// If sorted column was hidden, reset sorting
+		if (log == sortColumn && phy < 0)
+		{
+			GetOptionsMgr()->Reset((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
+			GetOptionsMgr()->Reset(OPT_DIRVIEW_SORT_ASCENDING);
+		}
+	}
+
+	m_pColItems->SetColumnOrdering(&colorder[0]);
+
+	if (m_pColItems->GetDispColCount() < 1)
+	{
+		// Ignore them if they didn't leave a column showing
+		m_pColItems->ResetColumnOrdering();
+	}
+	else
+	{
+		ReloadColumns();
+		Redisplay();
+	}
+	m_pColItems->ValidateColumnOrdering();
 }
 
 DirActions CDirView::MakeDirActions(DirActions::method_type func) const

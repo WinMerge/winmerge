@@ -315,95 +315,6 @@ void CDirDoc::Rescan()
 }
 
 /**
- * @brief Determines if the user wants to see given item.
- * This function determines what items to show and what items to hide. There
- * are lots of combinations, but basically we check if menuitem is enabled or
- * disabled and show/hide matching items. For non-recursive compare we never
- * hide folders as that would disable user browsing into them. And we even
- * don't really know if folders are identical or different as we haven't
- * compared them.
- * @param [in] di Item to check.
- * @return TRUE if item should be shown, FALSE if not.
- * @sa CDirDoc::Redisplay()
- */
-bool CDirDoc::IsShowable(const DIFFITEM & di) const
-{
-	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
-		return FALSE;
-
-	if (di.diffcode.isResultFiltered())
-	{
-		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
-		// wants to see skipped items show item regardless of other flags
-		return GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
-	}
-
-	if (di.diffcode.isDirectory())
-	{
-		// Subfolders in non-recursive compare can only be skipped or unique
-		if (!m_pCtxt->m_bRecursive)
-		{
-			// left/right filters
-			if (di.diffcode.isSideFirstOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-				return FALSE;
-			if (di.diffcode.isSideSecondOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-				return FALSE;
-
-			// result filters
-			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-				return FALSE;
-		}
-		else // recursive mode (including tree-mode)
-		{
-			// left/right filters
-			if (di.diffcode.isSideFirstOnly() &&	!GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-				return FALSE;
-			if (di.diffcode.isSideSecondOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-				return FALSE;
-
-			// ONLY filter folders by result (identical/different) for tree-view.
-			// In the tree-view we show subfolders with identical/different
-			// status. The flat view only shows files inside folders. So if we
-			// filter by status the files inside folder are filtered too and
-			// users see files appearing/disappearing without clear logic.		
-			if (GetOptionsMgr()->GetBool(OPT_TREE_MODE))
-			{
-				// result filters
-				if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-					return FALSE;
-
-				// result filters
-				if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
-					return FALSE;
-				if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-					return FALSE;
-			}
-		}
-	}
-	else
-	{
-		// left/right filters
-		if (di.diffcode.isSideFirstOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
-			return FALSE;
-		if (di.diffcode.isSideSecondOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
-			return FALSE;
-
-		// file type filters
-		if (di.diffcode.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
-			return FALSE;
-
-		// result filters
-		if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
-			return FALSE;
-		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
-			return FALSE;
-		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
-			return FALSE;
-	}
-	return TRUE;
-}
-
-/**
  * @brief Empty & reload listview (of files & columns) with comparison results
  * @todo Better solution for special items ("..")?
  */
@@ -470,57 +381,6 @@ void CDirDoc::UpdateResources()
 	SetTitle(0);
 
 	Redisplay();
-}
-
-/**
- * @brief Find the CDiffContext diffpos of an item from its left & right paths
- * @return POSITION to item, NULL if not found.
- * @note Filenames must be same, if they differ NULL is returned.
- */
-UIntPtr CDirDoc::FindItemFromPaths(const String& pathLeft, const String& pathRight)
-{
-	String file1 = paths_FindFileName(pathLeft);
-	String file2 = paths_FindFileName(pathRight);
-
-	// Filenames must be identical
-	if (string_compare_nocase(file1, file2) != 0)
-		return NULL;
-
-	String path1(pathLeft, 0, pathLeft.length() - file1.length()); // include trailing backslash
-	String path2(pathRight, 0, pathRight.length() - file2.length()); // include trailing backslash
-
-	// Path can contain (because of difftools?) '/' and '\'
-	// so for comparing purposes, convert whole path to use '\\'
-	replace_char(&*path1.begin(), '/', '\\');
-	replace_char(&*path2.begin(), '/', '\\');
-
-	String base1 = m_pCtxt->GetLeftPath(); // include trailing backslash
-	if (path1.compare(0, base1.length(), base1.c_str()) != 0)
-		return NULL;
-	path1.erase(0, base1.length()); // turn into relative path
-	if (String::size_type length = path1.length())
-		path1.resize(length - 1); // remove trailing backslash
-
-	String base2 = m_pCtxt->GetRightPath(); // include trailing backslash
-	if (path2.compare(0, base2.length(), base2.c_str()) != 0)
-		return NULL;
-	path2.erase(0, base2.length()); // turn into relative path
-	if (String::size_type length = path2.length())
-		path2.resize(length - 1); // remove trailing backslash
-
-	UIntPtr pos = m_pCtxt->GetFirstDiffPosition();
-	while (UIntPtr currentPos = pos) // Save our current pos before getting next
-	{
-		const DIFFITEM &di = m_pCtxt->GetNextDiffPosition(pos);
-		if (di.diffFileInfo[0].path == path1 &&
-			di.diffFileInfo[1].path == path2 &&
-			di.diffFileInfo[0].filename == file1 &&
-			di.diffFileInfo[1].filename == file2)
-		{
-			return currentPos;
-		}
-	}
-	return 0;
 }
 
 /**
@@ -706,10 +566,10 @@ CHexMergeDoc * CDirDoc::GetHexMergeDocForDiff(int nFiles, BOOL * pNew)
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	UIntPtr pos = FindItemFromPaths(paths.GetLeft(), paths.GetRight());
+	UIntPtr pos = FindItemFromPaths(*m_pCtxt, paths.GetLeft(), paths.GetRight());
 	// If we failed files could have been swapped so lets try again
 	if (!pos)
-		pos = FindItemFromPaths(paths.GetRight(), paths.GetLeft());
+		pos = FindItemFromPaths(*m_pCtxt, paths.GetRight(), paths.GetLeft());
 	
 	// Update status if paths were found for items.
 	// Fail means we had unique items compared as 'renamed' items
@@ -881,8 +741,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	{
 		String sTitle;
 		String sDirName[3];
-		int index;
-		for (index = 0; index < m_nDirs; index++)
+		for (int index = 0; index < m_nDirs; index++)
 		{
 			String strPath = m_pCtxt->GetPath(index);
 			ApplyDisplayRoot(index, strPath);

@@ -12,7 +12,11 @@
 #define DirViewColItems_h
 
 #include "UnicodeString.h"
+#include <vector>
+#include <sstream>
+#include <cassert>
 
+struct DIFFITEM;
 class CDiffContext;
 
 // DirViewColItems typedefs
@@ -49,7 +53,8 @@ extern const int g_ncols3;
 class DirViewColItems
 {
 public:
-	DirViewColItems(int nDirs): m_nDirs(nDirs) {}
+	DirViewColItems(int nDirs):
+	  m_nDirs(nDirs), m_numcols(-1), m_dispcols(-1) {}
 	String GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
 	const DirColInfo * GetDirColInfo(int col) const;
@@ -60,8 +65,67 @@ public:
 	bool IsColRmTime(int col) const;
 	bool IsColStatus(int col) const;
 	bool IsColStatusAbbr(int col) const;
+	bool IsDefaultSortAscending(int col) const;
+	String GetColDisplayName(int col) const;
+	String GetColDescription(int col) const;
+	int	GetColCount() const;
+	int GetDispColCount() const { return m_dispcols; }
+	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di) const;
+	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi, bool bTreeMode) const;
+
+	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
+	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
+	void ClearColumnOrders();
+	void MoveColumn(int psrc, int pdest);
+	void ResetColumnOrdering();
+	void SetColumnOrdering(const int colorder[]);
+	void ValidateColumnOrdering();
+	String ResetColumnWidths(int defcolwidth);
+	void LoadColumnOrders(String colorders);
+	String SaveColumnOrders();
+
+	/// Update all column widths (from registry to screen)
+	// Necessary when user reorders columns
+	template<class SetColumnWidthFunc>
+	void LoadColumnWidths(String colwidths, SetColumnWidthFunc setcolwidth, int defcolwidth)
+	{
+		std::basic_istringstream<TCHAR> ss(colwidths);
+		for (int i = 0; i < m_numcols; ++i)
+		{
+			int phy = ColLogToPhys(i);
+			if (phy >= 0)
+			{
+				int w = defcolwidth;
+				ss >> w;
+				setcolwidth(phy, max(w, 10));
+			}
+		}
+	}
+
+	/** @brief store current column widths into registry */
+	template<class GetColumnWidthFunc>
+	String SaveColumnWidths(GetColumnWidthFunc getcolwidth)
+	{
+		String result;
+		for (int i = 0; i < m_numcols; i++)
+		{
+			int phy = ColLogToPhys(i);
+			if (phy >= 0)
+			{
+				if (!result.empty()) result += ' ';
+				result += string_format(_T("%d"), getcolwidth(phy));
+			}
+		}
+		return result;
+	}
+
+
 private:
 	int m_nDirs;
+	int m_numcols;
+	int m_dispcols;
+	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
+	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 };
 
 #endif // DirViewColItems_h

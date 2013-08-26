@@ -24,6 +24,7 @@
 #include "FileActionScript.h"
 #include "locality.h"
 #include "FileFilterHelper.h"
+#include "coretools.h"
 
 using Poco::UIntPtr;
 
@@ -239,14 +240,20 @@ void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & action
  * @param [in] act Action that was done.
  * @param [in] pos List position for DIFFITEM affected.
  */
-void UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di)
+UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di)
 {
+	bool bUpdateSrc  = false;
+	bool bUpdateDest = false;
+	bool bRemoveItem = false;
+
 	// Use FileActionItem types for simplicity for now.
 	// Better would be to use FileAction contained, since it is not
 	// UI dependent.
 	switch (act.UIResult)
 	{
 	case FileActionItem::UI_SYNC:
+		bUpdateSrc = true;
+		bUpdateDest = true;
 		di.diffcode.setSideFlag(act.UIDestination);
 		if (act.dirflag)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
@@ -259,14 +266,78 @@ void UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DI
 		if (di.diffcode.isSideOnly(act.UIOrigin))
 		{
 			ctxt.RemoveDiff(reinterpret_cast<UIntPtr>(&di));
+			bRemoveItem = true;
 		}
 		else
 		{
 			di.diffcode.unsetSideFlag(act.UIOrigin);
 			SetDiffCompare(di, DIFFCODE::NOCMP);
+			bUpdateSrc = true;
 		}
 		break;
 	}
+
+	if (bUpdateSrc)
+		ctxt.UpdateStatusFromDisk(reinterpret_cast<UIntPtr>(&di), act.UIOrigin);
+	if (bUpdateDest)
+		ctxt.UpdateStatusFromDisk(reinterpret_cast<UIntPtr>(&di), act.UIDestination);
+
+	if (bRemoveItem)
+		return UPDATEITEM_REMOVE;
+	if (bUpdateSrc | bUpdateDest)
+		return UPDATEITEM_UPDATE;
+	return UPDATEITEM_NONE;
+}
+
+/**
+ * @brief Find the CDiffContext diffpos of an item from its left & right paths
+ * @return POSITION to item, NULL if not found.
+ * @note Filenames must be same, if they differ NULL is returned.
+ */
+UIntPtr FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight)
+{
+	String file1 = paths_FindFileName(pathLeft);
+	String file2 = paths_FindFileName(pathRight);
+
+	// Filenames must be identical
+	if (string_compare_nocase(file1, file2) != 0)
+		return NULL;
+
+	String path1(pathLeft, 0, pathLeft.length() - file1.length()); // include trailing backslash
+	String path2(pathRight, 0, pathRight.length() - file2.length()); // include trailing backslash
+
+	// Path can contain (because of difftools?) '/' and '\'
+	// so for comparing purposes, convert whole path to use '\\'
+	replace_char(&*path1.begin(), '/', '\\');
+	replace_char(&*path2.begin(), '/', '\\');
+
+	String base1 = ctxt.GetLeftPath(); // include trailing backslash
+	if (path1.compare(0, base1.length(), base1.c_str()) != 0)
+		return NULL;
+	path1.erase(0, base1.length()); // turn into relative path
+	if (String::size_type length = path1.length())
+		path1.resize(length - 1); // remove trailing backslash
+
+	String base2 = ctxt.GetRightPath(); // include trailing backslash
+	if (path2.compare(0, base2.length(), base2.c_str()) != 0)
+		return NULL;
+	path2.erase(0, base2.length()); // turn into relative path
+	if (String::size_type length = path2.length())
+		path2.resize(length - 1); // remove trailing backslash
+
+	UIntPtr pos = ctxt.GetFirstDiffPosition();
+	while (UIntPtr currentPos = pos) // Save our current pos before getting next
+	{
+		const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
+		if (di.diffFileInfo[0].path == path1 &&
+			di.diffFileInfo[1].path == path2 &&
+			di.diffFileInfo[0].filename == file1 &&
+			di.diffFileInfo[1].filename == file2)
+		{
+			return currentPos;
+		}
+	}
+	return 0;
 }
 
 /// is it possible to copy item to left ?
@@ -482,6 +553,96 @@ bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM & di)
 		return di.diffcode.isSideBoth();
 	else
 		return di.diffcode.isSideAll();
+}
+
+
+/**
+ * @brief Determines if the user wants to see given item.
+ * This function determines what items to show and what items to hide. There
+ * are lots of combinations, but basically we check if menuitem is enabled or
+ * disabled and show/hide matching items. For non-recursive compare we never
+ * hide folders as that would disable user browsing into them. And we even
+ * don't really know if folders are identical or different as we haven't
+ * compared them.
+ * @param [in] di Item to check.
+ * @return true if item should be shown, false if not.
+ * @sa CDirDoc::Redisplay()
+ */
+bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilterSettings& filter)
+{
+	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
+		return false;
+
+	if (di.diffcode.isResultFiltered())
+	{
+		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
+		// wants to see skipped items show item regardless of other flags
+		return filter.show_skipped;
+	}
+
+	if (di.diffcode.isDirectory())
+	{
+		// Subfolders in non-recursive compare can only be skipped or unique
+		if (!ctxt.m_bRecursive)
+		{
+			// left/right filters
+			if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
+				return false;
+			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+				return false;
+
+			// result filters
+			if (di.diffcode.isResultError() /*&& !GetMainFrame()->m_bShowErrors FIXME:*/)
+				return false;
+		}
+		else // recursive mode (including tree-mode)
+		{
+			// left/right filters
+			if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
+				return false;
+			if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+				return false;
+
+			// ONLY filter folders by result (identical/different) for tree-view.
+			// In the tree-view we show subfolders with identical/different
+			// status. The flat view only shows files inside folders. So if we
+			// filter by status the files inside folder are filtered too and
+			// users see files appearing/disappearing without clear logic.		
+			if (filter.tree_mode)
+			{
+				// result filters
+				if (di.diffcode.isResultError()/* && !GetMainFrame()->m_bShowErrors FIXME:*/)
+					return false;
+
+				// result filters
+				if (di.diffcode.isResultSame() && !filter.show_identical)
+					return false;
+				if (di.diffcode.isResultDiff() && !filter.show_different)
+					return false;
+			}
+		}
+	}
+	else
+	{
+		// left/right filters
+		if (di.diffcode.isSideFirstOnly() && !filter.show_unique_left)
+			return false;
+		if (di.diffcode.isSideSecondOnly() && !filter.show_unique_right)
+			return false;
+
+		// file type filters
+		if (di.diffcode.isBin() && !filter.show_binaries)
+			return false;
+
+		// result filters
+		if (di.diffcode.isResultSame() && !filter.show_identical)
+			return false;
+		if (di.diffcode.isResultError() /* && !GetMainFrame()->m_bShowErrors FIXME:*/)
+			return false;
+		if (di.diffcode.isResultDiff() && !filter.show_different)
+			return false;
+	}
+	return true;
 }
 
 /**
