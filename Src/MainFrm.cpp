@@ -1147,14 +1147,7 @@ BOOL CMainFrame::DoFileOpen(const PathContext * pFiles /*=NULL*/,
 
 		if (!prediffer.empty())
 		{
-			String strBothFilenames;
-			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
-			{
-				strBothFilenames += files[nIndex];
-				strBothFilenames += _T("|");
-			}
-			strBothFilenames.resize(strBothFilenames.length() - 1);
-
+			String strBothFilenames = string_join(files.begin(), files.end(), _T("|"));
 			pDirDoc->SetPluginPrediffer(strBothFilenames, prediffer);
 		}
 

@@ -76,12 +76,12 @@ String string_format_arg_list(const TCHAR *fmt, va_list args);
 String string_format(const TCHAR *fmt, ...);
 
 template <class InputIterator>
-String String_join(const InputIterator& begin, const InputIterator& end, const String& delim)
+String string_join(const InputIterator& begin, const InputIterator& end, const String& delim)
 {
-	size_t sum = 0;
+	size_t sum = 0, delim_len = delim.length();
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (sum != 0) ++sum;
+		if (sum != 0) sum += delim_len;
 		sum += (*it).length();
 	}
 	String result;
