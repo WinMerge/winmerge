@@ -100,7 +100,6 @@ public:
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
-	Poco::UIntPtr FindItemFromPaths(const String& pathLeft, const String& pathRight);
 	void UpdateResources();
 	void InitStatusStrings();
 	void ReloadItemStatus(Poco::UIntPtr diffPos, int index);
@@ -116,8 +115,6 @@ public:
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const String strDesc[]);
 	void ApplyDisplayRoot(int nIndex, String &);
-
-	bool IsShowable(const DIFFITEM & di) const;
 
 	bool HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }

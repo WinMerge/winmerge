@@ -103,7 +103,7 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(Poco::UIntPtr diffpos, int level, UINT &index, int &alldiffs);
+	void RedisplayChildren(Poco::UIntPtr diffpos, int level, UINT &index, int &alldiffs, const DirViewFilterSettings& dirfilter);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	Poco::UIntPtr GetItemKey(int idx) const;
@@ -111,7 +111,6 @@ public:
 	// for populating list
 	void DeleteItem(int sel);
 	void DeleteAllDisplayItems();
-	void SetColumnWidths();
 	void SetFont(const LOGFONT & lf);
 
 	void SortColumnsAppropriately();
@@ -158,12 +157,13 @@ public:
 	class CompareState
 	{
 	private:
-		const CDirView *const pView;
+		const DirViewColItems *const pColItems;
 		const CDiffContext *const pCtxt;
 		const int sortCol;
 		const bool bSortAscending;
+		const bool bTreeMode;
 	public:
-		CompareState(const CDirView *, int sortCol, bool bSortAscending);
+		CompareState(const CDiffContext *pCtxt, const DirViewColItems *pColItems, int sortCol, bool bSortAscending, bool bTreeMode);
 		static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	} friend;
 	void UpdateDiffItemStatus(UINT nIdx);
@@ -171,19 +171,6 @@ private:
 	void InitiateSort();
 	void NameColumn(const char* idname, int subitem);
 	int AddNewItem(int i, Poco::UIntPtr diffpos, int iImage, int iIndent);
-	bool IsDefaultSortAscending(int col) const;
-	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
-	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
-	String GetColDisplayName(int col) const;
-	String GetColDescription(int col) const;
-	int GetColLogCount() const;
-	void LoadColumnOrders();
-	void ValidateColumnOrdering();
-	void ClearColumnOrders();
-	void ResetColumnOrdering();
-	void MoveColumn(int psrc, int pdest);
-	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
-	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const;
 // End DirViewCols.cpp
 
 private:
@@ -217,10 +204,6 @@ protected:
 	CImageList m_imageState;
 	CListCtrl *m_pList;
 	boost::scoped_ptr<IListCtrl> m_pIList;
-	int m_numcols;
-	int m_dispcols;
-	std::vector<int> m_colorder; /**< colorder[logical#]=physical# */
-	std::vector<int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	bool m_bEscCloses; /**< Cached value for option for ESC closing window */
 	bool m_bExpandSubdirs;
 	CFont m_font; /**< User-selected font */
@@ -389,15 +372,13 @@ private:
 	DIFFITEM & GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	void MoveFocus(int currentInd, int i, int selCount);
-	void SaveColumnWidths();
-	void SaveColumnOrders();
+
 	void FixReordering();
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
 	bool ListShellContextMenu(SIDE_TYPE side);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
-	void ResetColumnWidths();
 	bool IsLabelEdit();
 	void CollapseSubdir(int sel);
 	void ExpandSubdir(int sel, bool bRecursive = false);
@@ -412,7 +393,6 @@ public:
 	DirItemIterator SelRevBegin() const { return DirItemIterator(m_pIList.get(), -1, true, true); }
 	DirItemIterator SelRevEnd() const { return DirItemIterator(); }
 };
-
 
 #ifndef _DEBUG  // debug version in DirView.cpp
 inline CDirDoc* CDirView::GetDocument()

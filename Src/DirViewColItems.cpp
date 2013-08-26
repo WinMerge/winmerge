@@ -1181,3 +1181,353 @@ DirViewColItems::IsColStatusAbbr(int col) const
 {
 	return IsColById(col, COLHDR_RESULT_ABBR);
 }
+
+/**
+ * @brief return whether column normally sorts ascending (dates do not)
+ */
+bool
+DirViewColItems::IsDefaultSortAscending(int col) const
+{
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return 0;
+	}
+	return pColInfo->defSortUp;
+}
+
+/**
+ * @brief Return display name of column
+ */
+String
+DirViewColItems::GetColDisplayName(int col) const
+{
+	const DirColInfo * colinfo = GetDirColInfo(col);
+	return tr(colinfo->idName);
+}
+
+/**
+ * @brief Return description of column
+ */
+String
+DirViewColItems::GetColDescription(int col) const
+{
+	const DirColInfo * colinfo = GetDirColInfo(col);
+	return tr(colinfo->idDesc);
+}
+
+/**
+ * @brief Return total number of known columns
+ */
+int
+DirViewColItems::GetColCount() const
+{
+	if (m_nDirs < 3)
+		return g_ncols;
+	else
+		return g_ncols3;
+}
+
+/**
+ * @brief Get text for specified column.
+ * This function retrieves the text for the specified colum. Text is
+ * retrieved by using column-specific handler functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number.
+ * @param [in] di Difference data.
+ * @return Text for the specified column.
+ */
+String
+DirViewColItems::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
+		const DIFFITEM & di) const
+{
+	// Custom properties have custom get functions
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return _T("???");
+	}
+	ColGetFncPtrType fnc = pColInfo->getfnc;
+	size_t offset = pColInfo->offset;
+	String s = (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + offset);
+
+	// Add '*' to newer time field
+	if (m_nDirs < 3)
+	{
+		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0)
+		{
+			if
+			(
+				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime // Left modification time
+			||	IsColRmTime(col) && di.diffFileInfo[0].mtime < di.diffFileInfo[1].mtime // Right modification time
+			)
+			{
+				s.insert(0, _T("* "));
+			}
+		}
+	}
+	else
+	{
+		if (di.diffFileInfo[0].mtime != 0 || di.diffFileInfo[1].mtime != 0 ||  di.diffFileInfo[2].mtime != 0)
+		{
+			if
+			(
+				IsColLmTime(col) && di.diffFileInfo[0].mtime > di.diffFileInfo[1].mtime && di.diffFileInfo[0].mtime > di.diffFileInfo[2].mtime // Left modification time
+			||	IsColMmTime(col) && di.diffFileInfo[1].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[1].mtime > di.diffFileInfo[2].mtime // Middle modification time
+			||	IsColRmTime(col) && di.diffFileInfo[2].mtime > di.diffFileInfo[0].mtime && di.diffFileInfo[2].mtime > di.diffFileInfo[1].mtime // Right modification time
+			)
+			{
+				s.insert(0, _T("* "));
+			}
+		}
+	}
+
+	return s;
+}
+
+
+/**
+ * @brief Sort two items on specified column.
+ * This function determines order of two items in specified column. Order
+ * is determined by column-specific functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number to sort.
+ * @param [in] ldi Left difference item data.
+ * @param [in] rdi Right difference item data.
+ * @return Order of items.
+ */
+int
+DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
+		const DIFFITEM & rdi, bool bTreeMode) const
+{
+	// Custom properties have custom sort functions
+	const DirColInfo * pColInfo = GetDirColInfo(col);
+	if (!pColInfo)
+	{
+		assert(0); // fix caller, should not ask for nonexistent columns
+		return 0;
+	}
+	size_t offset = pColInfo->offset;
+	const void * arg1;
+	const void * arg2;
+	if (bTreeMode)
+	{
+		int lLevel = ldi.GetDepth();
+		int rLevel = rdi.GetDepth();
+		const DIFFITEM *lcur = &ldi, *rcur = &rdi;
+		if (lLevel < rLevel)
+		{
+			for (; lLevel != rLevel; rLevel--)
+				rcur = rcur->parent;
+		}
+		else if (rLevel < lLevel)
+		{
+			for (; lLevel != rLevel; lLevel--)
+				lcur = lcur->parent;
+		}
+		while (lcur->parent != rcur->parent)
+		{
+			lcur = lcur->parent;
+			rcur = rcur->parent;
+		}
+		arg1 = reinterpret_cast<const char *>(lcur) + offset;
+		arg2 = reinterpret_cast<const char *>(rcur) + offset;
+	}
+	else
+	{
+		arg1 = reinterpret_cast<const char *>(&ldi) + offset;
+		arg2 = reinterpret_cast<const char *>(&rdi) + offset;
+	}
+	if (ColSortFncPtrType fnc = pColInfo->sortfnc)
+	{
+		return (*fnc)(pCtxt, arg1, arg2);
+	}
+	if (ColGetFncPtrType fnc = pColInfo->getfnc)
+	{
+		String p = (*fnc)(pCtxt, arg1);
+		String q = (*fnc)(pCtxt, arg2);
+		return string_compare_nocase(p, q);
+	}
+	return 0;
+}
+
+void DirViewColItems::SetColumnOrdering(const int colorder[])
+{
+	m_dispcols = 0;
+	for (int i = 0; i < m_numcols; ++i)
+	{
+		m_colorder[i] = colorder[i];
+		int phy = m_colorder[i];
+		if (phy>=0)
+		{
+			++m_dispcols;
+			m_invcolorder[phy] = i;
+		}
+	}
+}
+/**
+ * @brief Sanity check column ordering
+ */
+void DirViewColItems::ValidateColumnOrdering()
+{
+
+#ifdef _DEBUG
+	assert(m_invcolorder[0]>=0);
+	assert(m_numcols == GetColCount());
+	// Check that any logical->physical mapping is reversible
+	for (int i=0; i<m_numcols; ++i)
+	{
+		int phy = m_colorder[i];
+		if (phy >= 0)
+		{
+			int log = m_invcolorder[phy];
+			assert(i == log);
+		}
+	}
+	// Bail out if header doesn't exist yet
+//	int hdrcnt = GetListCtrl().GetHeaderCtrl()->GetItemCount();
+//	if (hdrcnt)
+//	{
+//		ASSERT(hdrcnt == m_dispcols);
+//	}
+	return;
+#endif
+}
+
+/**
+ * @brief Set column ordering to default initial order
+ */
+void DirViewColItems::ResetColumnOrdering()
+{
+	ClearColumnOrders();
+	m_dispcols = 0;
+	for (int i=0; i<m_numcols; ++i)
+	{
+		int phy = GetColDefaultOrder(i);
+		m_colorder[i] = phy;
+		if (phy>=0)
+		{
+			m_invcolorder[phy] = i;
+			++m_dispcols;
+		}
+	}
+	ValidateColumnOrdering();
+}
+
+/**
+ * @brief Reset all current column ordering information
+ */
+void DirViewColItems::ClearColumnOrders()
+{
+	m_colorder.resize(m_numcols);
+	m_invcolorder.resize(m_numcols);
+	for (int i=0; i<m_numcols; ++i)
+	{
+		m_colorder[i] = -1;
+		m_invcolorder[i] = -1;
+	}
+}
+
+/**
+ * @brief Remove any windows reordering of columns (params are physical columns)
+ */
+void DirViewColItems::MoveColumn(int psrc, int pdest)
+{
+	// actually moved column
+	m_colorder[m_invcolorder[psrc]] = pdest;
+	// shift all other affected columns
+	int dir = psrc > pdest ? +1 : -1;
+	int i=0;
+	for (i=pdest; i!=psrc; i += dir)
+	{
+		m_colorder[m_invcolorder[i]] = i+dir;
+	}
+	// fix inverse mapping
+	for (i=0; i<m_numcols; ++i)
+	{
+		if (m_colorder[i] >= 0)
+			m_invcolorder[m_colorder[i]] = i;
+	}
+	ValidateColumnOrdering();
+}
+
+/**
+ * @brief Resets column widths to defaults.
+ */
+String DirViewColItems::ResetColumnWidths(int defcolwidth)
+{
+	String result;
+	for (int i = 0; i < m_numcols; i++)
+	{
+		if (!result.empty()) result += ' ';
+		result += string_format(_T("%d"), defcolwidth);
+	}
+	return result;
+}
+
+/**
+ * @brief Load column orders from registry
+ */
+void DirViewColItems::LoadColumnOrders(String colorders)
+{
+	assert(m_numcols == -1);
+	m_numcols = GetColCount();
+	ClearColumnOrders();
+	m_dispcols = 0;
+	std::basic_istringstream<TCHAR> ss(colorders);
+
+	// Load column orders
+	// Break out if one is missing
+	// Break out & mark failure (m_dispcols == -1) if one is invalid
+	int i=0;
+	for (i=0; i<m_numcols; ++i)
+	{
+		int ord = -1;
+		ss >> ord;
+		if (ord<-1 || ord >= m_numcols)
+			break;
+		m_colorder[i] = ord;
+		if (ord>=0)
+		{
+			++m_dispcols;
+			if (m_invcolorder[ord] != -1)
+			{
+				m_dispcols = -1;
+				break;
+			}
+			m_invcolorder[ord] = i;
+		}
+	}
+	// Check that a contiguous range was set
+	for (i=0; i<m_dispcols; ++i)
+	{
+		if (m_invcolorder[i] < 0)
+		{
+			m_dispcols = -1;
+			break;
+		}
+	}
+	// Must have at least one column
+	if (m_dispcols<=1)
+	{
+		ResetColumnOrdering();
+	}
+
+	ValidateColumnOrdering();
+}
+
+/// store current column orders into registry
+String DirViewColItems::SaveColumnOrders()
+{
+	assert(m_colorder.size() == m_numcols);
+	assert(m_invcolorder.size() == m_numcols);
+	String result;
+	for (int i=0; i < m_numcols; i++)
+	{
+		if (i > 0) result += ' ';
+		result += string_format(_T("%d"), m_colorder[i]);
+	}
+	return result;
+}

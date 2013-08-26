@@ -39,8 +39,9 @@
 #include "FolderCmp.h"
 #include "MainFrm.h"
 #include "Environment.h"
-#include "diffcontext.h"	// FILE_SAME
-#include "dirdoc.h"
+#include "DiffContext.h"	// FILE_SAME
+#include "DirDoc.h"
+#include "DirActions.h"
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
@@ -180,7 +181,7 @@ void CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 		const String &pathLeft = m_filePaths.GetLeft();
 		const String &pathRight = m_filePaths.GetRight();
 		CDiffContext &ctxt = pDirDoc->GetDiffContext();
-		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
+		if (UINT_PTR pos = FindItemFromPaths(ctxt, pathLeft, pathRight))
 		{
 			DIFFITEM &di = ctxt.GetDiffRefAt(pos);
 			::UpdateDiffItem(m_nBuffers, di, &ctxt);

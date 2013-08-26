@@ -487,12 +487,6 @@
     <ClCompile Include="DirView.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirViewColHandler.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirViewColItems.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EditorFilepathBar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -746,6 +740,9 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DirActions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirViewColItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1200,9 +1197,6 @@
     <ClInclude Include="DirView.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirViewColItems.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EditorFilepathBar.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1388,6 +1382,9 @@
     </ClInclude>
     <ClInclude Include="DirItemIterator.h">
       <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirViewColItems.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

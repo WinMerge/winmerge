@@ -65,6 +65,12 @@ typedef enum {
 	SELECTIONTYPE_LEFT2RIGHT1
 } SELECTIONTYPE;
 
+typedef enum {
+	UPDATEITEM_NONE,
+	UPDATEITEM_UPDATE,
+	UPDATEITEM_REMOVE
+} UPDATEITEM_TYPE;
+
 struct ViewCustomFlags
 {
 	enum
@@ -89,6 +95,29 @@ struct AllowUpwardDirectory
 	};
 };
 
+
+struct DirViewFilterSettings
+{
+	template<class GetOptionBool>
+	DirViewFilterSettings(GetOptionBool getoptbool)
+	{
+		show_skipped = getoptbool(OPT_SHOW_SKIPPED);
+		show_unique_left = getoptbool(OPT_SHOW_UNIQUE_LEFT);
+		show_unique_right = getoptbool(OPT_SHOW_UNIQUE_RIGHT);
+		show_binaries = getoptbool(OPT_SHOW_BINARIES);
+		show_identical = getoptbool(OPT_SHOW_IDENTICAL);
+		show_different = getoptbool(OPT_SHOW_DIFFERENT);
+		tree_mode = getoptbool(OPT_TREE_MODE);
+	};
+	bool show_skipped;
+	bool show_unique_left;
+	bool show_unique_right;
+	bool show_binaries;
+	bool show_identical;
+	bool show_different;
+	bool tree_mode;
+};
+
 typedef std::map<String, bool> DirViewTreeState;
 
 String NumToStr(int n);
@@ -100,7 +129,9 @@ String FormatMenuItemString(const String& fmt1, const String& fmt2, int count, i
 String FormatMenuItemStringTo(SIDE_TYPE src, int count, int total);
 
 void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & actionList);
-void UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
+UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di);
+
+Poco::UIntPtr FindItemFromPaths(const CDiffContext& ctxt, const String& pathLeft, const String& pathRight);
 
 bool IsItemCopyable(const DIFFITEM & di, int index);
 bool IsItemDeletable(const DIFFITEM & di, int index);
@@ -113,6 +144,7 @@ bool IsItemOpenableOnWith(const DIFFITEM & di, int index);
 bool IsItemCopyableToOn(const DIFFITEM & di, int index);
 bool IsItemNavigableDiff(const CDiffContext& ctxt, const DIFFITEM & di);
 bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM & di);
+bool IsShowable(const CDiffContext& ctxt, const DIFFITEM & di, const DirViewFilterSettings& filter);
 
 bool GetOpenOneItem(const CDiffContext& ctxt, Poco::UIntPtr pos1, const DIFFITEM **di1, const DIFFITEM **di2, const DIFFITEM **di3,
 		PathContext &paths, int & sel1, bool & isDir, String& errmsg);
@@ -633,9 +665,9 @@ OutputIterator CopyPathnamesForDragAndDrop(const InputIterator& begin, const Inp
 	return result;
 }
 
-template<class InputIterator, class T>
+template<class InputIterator, class BinaryFunction>
 void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator& end, SIDE_TYPE stype,
-	const CDiffContext& ctxt, T& obj, void (T::*func)(const String&, const String&))
+	const CDiffContext& ctxt, BinaryFunction func)
 {
 	int index = SideToIndex(ctxt, stype);
 	for (InputIterator it = begin; it != end; ++it)
@@ -645,7 +677,7 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
 			continue;
 		String filename = di.diffFileInfo[index].filename;
 		String currentDir = di.getFilepath(index, ctxt.GetNormalizedPath(index));
-		(obj.*func)(currentDir, filename);
+		func(currentDir, filename);
 	}
 }
 

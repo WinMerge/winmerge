@@ -1221,6 +1221,47 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="DirViewColItems.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Common\dllproxy.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3171,6 +3212,9 @@
 				RelativePath="DirTravel.h">
 			</File>
 			<File
+				RelativePath="DirViewColItems.h">
+			</File>
+			<File
 				RelativePath="Common\dllproxy.h">
 			</File>
 			<File
@@ -4933,84 +4977,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="DirViewColHandler.cpp">
-					<FileConfiguration
-						Name="UnicodeRelease|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="UnicodeDebug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="DirViewColItems.cpp">
-					<FileConfiguration
-						Name="UnicodeRelease|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							UsePrecompiledHeader="0"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="UnicodeDebug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							UsePrecompiledHeader="0"
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							UsePrecompiledHeader="0"
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							UsePrecompiledHeader="0"/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\Common\DragDrop.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -6429,9 +6395,6 @@
 				</File>
 				<File
 					RelativePath="DirView.h">
-				</File>
-				<File
-					RelativePath="DirViewColItems.h">
 				</File>
 				<File
 					RelativePath=".\Common\DragDrop.h">
