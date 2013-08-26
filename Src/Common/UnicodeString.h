@@ -81,12 +81,12 @@ String string_format_string2(const String& fmt, const String& arg1, const String
 int string_stoi(const String& str, size_t *idx = 0, int base = 10);
 
 template <class InputIterator>
-String String_join(const InputIterator& begin, const InputIterator& end, const String& delim)
+String string_join(const InputIterator& begin, const InputIterator& end, const String& delim)
 {
-	size_t sum = 0;
+	size_t sum = 0, delim_len = delim.length();
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (sum != 0) ++sum;
+		if (sum != 0) sum += delim_len;
 		sum += (*it).length();
 	}
 	String result;

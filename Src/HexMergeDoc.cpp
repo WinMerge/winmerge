@@ -596,7 +596,7 @@ void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
 			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
 		else
-			sTitle = String_join(&sFileName[0], &sFileName[0] + m_nBuffers, _T(" - "));
+			sTitle = string_join(&sFileName[0], &sFileName[0] + m_nBuffers, _T(" - "));
 	}
 	CDocument::SetTitle(sTitle.c_str());
 }

@@ -2671,14 +2671,14 @@ void CDirView::OnCopyPathnames()
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
-	PutToClipboard(String_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 void CDirView::OnCopyBothPathnames()
 {
 	std::list<String> list;
 	CopyBothPathnames(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	PutToClipboard(String_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -2688,7 +2688,7 @@ void CDirView::OnCopyFilenames()
 {
 	std::list<String> list;
 	CopyFilenames(SelBegin(), SelEnd(), std::back_inserter(list));
-	PutToClipboard(String_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
+	PutToClipboard(string_join(list.begin(), list.end(), _T("\r\n")), GetMainFrame()->GetSafeHwnd());
 }
 
 /**
@@ -3428,7 +3428,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 
 	std::list<String> list;
 	CopyPathnamesForDragAndDrop(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
-	String filesForDroping = String_join(list.begin(), list.end(), _T("\n"));
+	String filesForDroping = string_join(list.begin(), list.end(), _T("\n"));
 
 	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
 	file.Write(filesForDroping.data(), static_cast<unsigned>(filesForDroping.length() * sizeof(TCHAR)));
