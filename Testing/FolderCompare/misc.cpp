@@ -1,9 +1,7 @@
 #include <iostream>
 #include "UnicodeString.h"
-#include "LogFile.h"
 #include "unicoder.h"
-
-CLogFile g_log;
+#include <Windows.h>
 
 String GetSysError(int nerr /* =-1 */)
 {
@@ -35,11 +33,6 @@ String LoadResString(unsigned id)
 	return _T("Nothing");
 }
 
-CLogFile * GetLog()
-{
-	return &g_log;
-}
-
 void LogErrorStringUTF8(const std::string& sz)
 {
 	std::cout << sz;
@@ -53,4 +46,9 @@ void LogErrorString(const String& sz)
 void AppErrorMessageBox(const String& msg)
 {
 	MessageBox(NULL, msg.c_str(), NULL, MB_ICONSTOP);
+}
+
+String tr(const std::string& str)
+{
+	return ucr::toTString(str);
 }
