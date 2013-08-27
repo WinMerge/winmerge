@@ -180,6 +180,13 @@ void CDirDoc::Serialize(CArchive& ar)
  */
 void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *pTempPathContext)
 {
+	// Abort previous comparing
+	while (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
+	{
+		m_diffThread.Abort();
+		Sleep(50);
+	}
+
 	m_pDirView->DeleteAllDisplayItems();
 	// Anything that can go wrong here will yield an exception.
 	// Default implementation of operator new() never returns NULL.
