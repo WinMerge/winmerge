@@ -102,9 +102,6 @@
     <ClCompile Include="..\..\Src\FolderCmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\Common\LogFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\Common\lwdisp.c">
       <Filter>Source Files</Filter>
     </ClCompile>

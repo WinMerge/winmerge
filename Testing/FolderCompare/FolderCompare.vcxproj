@@ -195,7 +195,6 @@
     <ClCompile Include="..\..\Src\FilterCommentsManager.cpp" />
     <ClCompile Include="..\..\Src\FilterList.cpp" />
     <ClCompile Include="..\..\Src\FolderCmp.cpp" />
-    <ClCompile Include="..\..\Src\Common\LogFile.cpp" />
     <ClCompile Include="..\..\Src\Common\lwdisp.c" />
     <ClCompile Include="..\..\Src\markdown.cpp" />
     <ClCompile Include="..\..\Src\MovedBlocks.cpp" />
