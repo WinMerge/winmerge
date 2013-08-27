@@ -2063,7 +2063,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
 		// Close and destroy the dialog after compare
-		GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
+		if (m_pCmpProgressBar)
+			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
 		m_pCmpProgressBar.reset();
 
 		pDoc->CompareReady();
