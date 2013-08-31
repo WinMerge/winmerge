@@ -146,7 +146,7 @@ LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
 {
 	assert(m_hKey);
 	assert(pszKey);
-	String s = string_format(_T("%f"), fVal);
+	String s = string_to_str(fVal);
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
 		(const LPBYTE) s.c_str(), (s.length() + 1)*sizeof(TCHAR) );
 }

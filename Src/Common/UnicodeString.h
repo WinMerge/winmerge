@@ -99,4 +99,23 @@ String string_join(const InputIterator& begin, const InputIterator& end, const S
 	return result;
 }
 
+template <class Formatter, class InputIterator>
+String string_join(const InputIterator& begin, const InputIterator& end, const String& delim, Formatter func)
+{
+	String result;
+	for (InputIterator it = begin; it != end; ++it)
+	{
+		if (!result.empty()) result.append(delim);
+		result += func(*it);
+	}
+	return result;
+}
+
+inline String string_to_str(int val) { return string_format(_T("%d"), val); }
+inline String string_to_str(unsigned val) { return string_format(_T("%u"), val); }
+inline String string_to_str(long val) { return string_format(_T("%ld"), val); }
+inline String string_to_str(unsigned long val) { return string_format(_T("%lu"), val); }
+inline String string_to_str(float val) { return string_format(_T("%f"), val); }
+inline String string_to_str(double val) { return string_format(_T("%f"), val); }
+
 #endif // _UNICODE_STRING_

@@ -181,9 +181,9 @@ void PropEditor::OnEnKillfocusTabEdit()
 	try { value = string_stoi(valueAsText); } catch (...) {};	
 	if (value < 1 || value > MAX_TABSIZE)
 	{
-		String num = string_format(_T("%d"), MAX_TABSIZE);
 		String msg = string_format_string1(
-			_("Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."), num);
+			_("Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."),
+			string_to_str(MAX_TABSIZE));
 		AfxMessageBox(msg.c_str(), MB_ICONWARNING);
 	}
 }
