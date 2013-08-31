@@ -235,10 +235,7 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		String num = string_format(_T("%d"), count);
-		String msg = string_format_string1(_("[%1 files selected]"), num);
-		m_file1 = msg.c_str();
-		m_file2 = msg.c_str();
+		m_file1 = m_file2 = string_format_string1(_("[%1 files selected]"), string_to_str(count)).c_str();
 	}
 	UpdateData(FALSE);
 
@@ -498,8 +495,7 @@ void CPatchDlg::UpdateSettings()
 		break;
 	}
 
-	String str = string_format(_T("%d"), m_contextLines);
-	m_comboContext.SelectString(-1, str.c_str());
+	m_comboContext.SelectString(-1, string_to_str(m_contextLines).c_str());
 
 	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML)
 		m_comboContext.EnableWindow(TRUE);

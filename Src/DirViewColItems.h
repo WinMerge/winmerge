@@ -113,7 +113,7 @@ public:
 			if (phy >= 0)
 			{
 				if (!result.empty()) result += ' ';
-				result += string_format(_T("%d"), getcolwidth(phy));
+				result += string_to_str(getcolwidth(phy));
 			}
 		}
 		return result;

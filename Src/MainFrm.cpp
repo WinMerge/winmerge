@@ -1760,22 +1760,18 @@ void CMainFrame::OnClose()
 void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 {
 	std::vector<CString> list;
-	CString s,s2;
+	CString s;
 	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
 	list.push_back(szItem);
 	for (UINT i=0 ; i<cnt; ++i)
 	{
-		s2.Format(_T("Item_%d"), i);
-		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
+		s = AfxGetApp()->GetProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str());
 		if (s != szItem)
 			list.push_back(s);
 	}
 	cnt = list.size() > nMaxItems ? nMaxItems : list.size();
 	for (UINT i=0 ; i<cnt; ++i)
-	{
-		s2.Format(_T("Item_%d"), i);
-		AfxGetApp()->WriteProfileString(szRegSubKey, s2, list[i]);
-	}
+		AfxGetApp()->WriteProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str(), list[i]);
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
@@ -2222,7 +2218,7 @@ void CMainFrame::OpenFileToExternalEditor(const String& file, int nLineNumber/* 
 {
 	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	String sFile(file);
-	string_replace(sCmd, _T("$linenum"), string_format(_T("%d"), nLineNumber));
+	string_replace(sCmd, _T("$linenum"), string_to_str(nLineNumber));
 
 	int nIndex = sCmd.find(_T("$file"));
 	if (nIndex > -1)

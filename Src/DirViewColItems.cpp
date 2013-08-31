@@ -227,7 +227,7 @@ static String MakeShortSize(Int64 size)
 		return s;
 	}
 
-	return locality::GetLocaleStr(string_format(_T("%lf"), number).c_str(), ndigits) + suffix;
+	return locality::GetLocaleStr(string_to_str(number).c_str(), ndigits) + suffix;
 }
 
 /**
@@ -1462,7 +1462,7 @@ String DirViewColItems::ResetColumnWidths(int defcolwidth)
 	for (int i = 0; i < m_numcols; i++)
 	{
 		if (!result.empty()) result += ' ';
-		result += string_format(_T("%d"), defcolwidth);
+		result += string_to_str(defcolwidth);
 	}
 	return result;
 }
@@ -1523,11 +1523,5 @@ String DirViewColItems::SaveColumnOrders()
 {
 	assert(m_colorder.size() == m_numcols);
 	assert(m_invcolorder.size() == m_numcols);
-	String result;
-	for (int i=0; i < m_numcols; i++)
-	{
-		if (i > 0) result += ' ';
-		result += string_format(_T("%d"), m_colorder[i]);
-	}
-	return result;
+	return string_join<String (*)(int)>(m_colorder.begin(), m_colorder.end(), _T(" "), string_to_str);
 }

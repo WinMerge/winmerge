@@ -85,7 +85,7 @@ void PropCodepage::ReadOptions()
 {
 	m_nCodepageSystem = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE);
 	m_nCustomCodepageValue = GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_cCustomCodepageValue = string_format(_T("%d"),m_nCustomCodepageValue);
+	m_cCustomCodepageValue = string_to_str(m_nCustomCodepageValue);
 	m_bDetectCodepage = GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 1;
 	m_bDetectCodepage2 = (GetOptionsMgr()->GetInt(OPT_CP_DETECT) & 2) != 0;
 	m_nAutodetectType = ((unsigned)GetOptionsMgr()->GetInt(OPT_CP_DETECT) >> 16);
@@ -122,8 +122,7 @@ BOOL PropCodepage::OnInitDialog()
 	else
 		m_comboAutodetectType.EnableWindow(FALSE);
 
-	String str = string_format(_T("%d"), m_nCustomCodepageValue);
-	m_comboCustomCodepageValue.SetWindowText(str.c_str());
+	m_comboCustomCodepageValue.SetWindowText(string_to_str(m_nCustomCodepageValue).c_str());
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)

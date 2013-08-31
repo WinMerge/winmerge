@@ -2957,7 +2957,7 @@ void CMergeEditView::OnWMGoto()
 	nLastLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(nLineCount - 1);
 
 	// Set active file and current line selected in dialog
-	dlg.m_strParam = string_format(_T("%d"), nRealLine + 1);
+	dlg.m_strParam = string_to_str(nRealLine + 1);
 	dlg.m_nFile = (pDoc->m_nBuffers < 3) ? (m_nThisPane == 1 ? 2 : 0) : m_nThisPane;
 	dlg.m_nGotoWhat = 0;
 
@@ -3376,7 +3376,6 @@ void CMergeEditView::OnEditCopyLineNumbers()
 	CPoint ptEnd;
 	CString strText;
 	CString strLine;
-	CString strNum;
 	CString strNumLine;
 	UINT line = 0;
 	int nNumWidth = 0;
@@ -3386,8 +3385,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 
 	// Get last selected line (having widest linenumber)
 	line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(ptEnd.y);
-	strNum.Format(_T("%d"), line + 1);
-	nNumWidth = strNum.GetLength();
+	nNumWidth = string_to_str(line + 1).length();
 	
 	for (int i = ptStart.y; i <= ptEnd.y; i++)
 	{
@@ -3399,8 +3397,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 
 		// Insert spaces to align different width linenumbers (99, 100)
 		strLine = GetLineText(i);
-		strNum.Format(_T("%d"), line + 1);
-		CString sSpaces(' ', nNumWidth - strNum.GetLength());
+		CString sSpaces(' ', nNumWidth - string_to_str(line + 1).length());
 		
 		strText += sSpaces;
 		strNumLine.Format(_T("%d: %s"), line + 1, strLine);

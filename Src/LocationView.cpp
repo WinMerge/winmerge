@@ -772,7 +772,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (bar == BAR_YAREA)
 			bar = BAR_0;
 		nLine = GetLineFromYPos(pt.y, bar);
-		strNum = string_format(_T("%d"), nLine + 1); // Show linenumber not lineindex
+		strNum = string_to_str(nLine + 1); // Show linenumber not lineindex
 	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);

@@ -2245,16 +2245,8 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	}
 	else if (nIDEvent == STATUSBAR_UPDATE)
 	{
-		String msg;
 		int items = GetSelectedCount();
-
-		if (items == 1)
-			msg = _("1 item selected");
-		else
-		{
-			String num = string_format(_T("%d"), items);
-			msg = string_format_string1(_("%1 items selected"), num);
-		}
+		String msg = (items == 1) ? _("1 item selected") : string_format_string1(_("%1 items selected"), string_to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	
@@ -2825,8 +2817,7 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
 		int items = GetSelectedCount();
-		String num = string_format(_T("%d"), items);
-		String msg = string_format_string1(items == 1 ? _("1 item selected") : _("%1 items selected"), num);
+		String msg = (items == 1) ? _("1 item selected") : string_format_string1(_("%1 items selected"), string_to_str(items));
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	*pResult = 0;
@@ -2931,9 +2922,8 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	if (focusItem == -1)
 	{
 		// No item has focus
-		String sCnt = string_format(_T("%ld"), count);
 		// "Items: %1"
-		s = string_format_string1(_("Items: %1"), sCnt);
+		s = string_format_string1(_("Items: %1"), string_to_str(count));
 	}
 	else
 	{
@@ -2948,10 +2938,9 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 				--focusItem;
 				--count;
 			}
-			String sIdx = string_format(_T("%ld"), focusItem + 1);
-			String sCnt = string_format(_T("%ld"), count);
 			// "Item %1 of %2"
-			s = string_format_string2(_("Item %1 of %2"), sIdx, sCnt);
+			s = string_format_string2(_("Item %1 of %2"), 
+					string_to_str(focusItem + 1), string_to_str(count));
 		}
 	}
 	pCmdUI->SetText(s.c_str());
