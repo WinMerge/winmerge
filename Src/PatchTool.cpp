@@ -111,9 +111,7 @@ int CPatchTool::CreatePatch()
 
 	if (ShowDialog(&dlgPatch))
 	{
-		String path;
-		paths_SplitFilename(dlgPatch.m_fileResult, &path, NULL, NULL);
-		if (!paths_CreateIfNeeded(path))
+		if (!paths_CreateIfNeeded(paths_GetPathOnly(dlgPatch.m_fileResult)))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;

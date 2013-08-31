@@ -36,10 +36,7 @@
  */
 void DirItem::SetFile(const String &fullPath)
 {
-	String ext;
-	paths_SplitFilename(fullPath, &path, &filename, &ext);
-	filename += _T(".");
-	filename += ext;
+	filename = paths_FindFileName(fullPath);
 }
 
 /**

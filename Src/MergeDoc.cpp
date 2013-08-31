@@ -2960,22 +2960,7 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 	else
 	{
 		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		{
-			if (!m_strDesc[nBuffer].empty())
-				sFileName[nBuffer] = m_strDesc[nBuffer];
-			else
-			{
-				String file;
-				String ext;
-				paths_SplitFilename(m_filePaths[nBuffer], NULL, &file, &ext);
-				sFileName[nBuffer] += file;
-				if (!ext.empty())
-				{
-					sFileName[nBuffer] += _T(".");
-					sFileName[nBuffer] += ext;
-				}
-			}
-		}
+			sFileName[nBuffer] = !m_strDesc[nBuffer].empty() ? m_strDesc[nBuffer] : paths_FindFileName(m_filePaths[nBuffer]);
 		if (std::count(&sFileName[0], &sFileName[0] + m_nBuffers, sFileName[0]) == m_nBuffers)
 			sTitle = sFileName[0] + string_format(_T(" x %d"), m_nBuffers);
 		else
