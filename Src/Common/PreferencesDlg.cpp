@@ -19,7 +19,7 @@
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
 #include "Merge.h"
-#include "paths.h" //paths_SplitFilename()
+#include "paths.h"
 #include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
@@ -338,9 +338,7 @@ void CPreferencesDlg::OnExportButton()
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
-		String extension;
-		paths_SplitFilename(settingsFile, NULL, NULL, &extension);
-		if (extension.empty())
+		if (paths_FindExtension(settingsFile).empty())
 			settingsFile += _T(".ini");
 
 		// Save all new settings before exporting

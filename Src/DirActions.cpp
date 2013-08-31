@@ -1209,10 +1209,7 @@ bool RenameOnSameDir(const String& szOldFileName, const String& szNewFileName)
 
 	if (DOES_NOT_EXIST != paths_DoesPathExist(szOldFileName))
 	{
-		String sFullName;
-
-		paths_SplitFilename(szOldFileName, &sFullName, NULL, NULL);
-		sFullName = paths_ConcatPath(sFullName, szNewFileName);
+		String sFullName = paths_ConcatPath(paths_GetPathOnly(szOldFileName), szNewFileName);
 
 		// No need to rename if new file already exist.
 		if ((sFullName != szOldFileName) ||

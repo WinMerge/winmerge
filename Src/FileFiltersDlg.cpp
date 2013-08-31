@@ -564,12 +564,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), _("Locate filter file to install"), _("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"),
 		TRUE))
 	{
-		String sfile, sext;
-		paths_SplitFilename(s, NULL, &sfile, &sext);
-		String filename = sfile;
-		filename += _T(".");
-		filename += sext;
-		userPath = paths_ConcatPath(userPath, filename);
+		userPath = paths_ConcatPath(userPath, paths_FindFileName(s));
 		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))
 		{
 			// If file already exists, ask from user

@@ -234,13 +234,8 @@ String ProjectFilePathsDlg::AskProjectFileName(bool bOpen)
 
 	// Add projectfile extension if it is missing
 	// So we allow 'filename.otherext' but add extension for 'filename'
-	String extension;
-	paths_SplitFilename(strProjectFileName, NULL, NULL, &extension);
-	if (extension.empty())
-	{
-		strProjectFileName += _T(".");
-		strProjectFileName += _("WinMerge");
-	}
+	if (paths_FindExtension(strProjectFileName).empty())
+		strProjectFileName += _T(".WinMerge");
 
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
