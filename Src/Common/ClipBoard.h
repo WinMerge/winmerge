@@ -27,14 +27,14 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 		String path = *it;
 
 		strPaths += path;
-		strPaths += L'\0';
+		strPaths += _T('\0');
 
 		strPathsSepSpc += _T("\"");
 		strPathsSepSpc += path;
 		strPathsSepSpc += _T("\" ");
 	}
 
-	strPaths += L'\0';
+	strPaths += _T('\0');
 	strPathsSepSpc = string_trim_ws_end(strPathsSepSpc);
 
 	// CF_HDROP
