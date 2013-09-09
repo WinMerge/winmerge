@@ -44,7 +44,7 @@ THE SOFTWARE.
 #include <windows.h>
 #endif
 
-using Poco::Int64;
+using boost::int64_t;
 using Poco::SharedMemory;
 using Poco::Exception;
 
@@ -141,7 +141,7 @@ bool UniLocalFile::DoGetFileStatus()
 			DWORD dwFileSizeLow, dwFileSizeHigh;
 			dwFileSizeLow = GetCompressedFileSize(m_filepath.c_str(), &dwFileSizeHigh);
 			if (GetLastError() == 0)
-				m_filesize = ((Int64)dwFileSizeHigh << 32) + dwFileSizeLow;
+				m_filesize = ((int64_t)dwFileSizeHigh << 32) + dwFileSizeLow;
 		}
 #endif
 		m_statusFetched = 1;
@@ -422,7 +422,7 @@ static void Append(String &strBuffer, const TCHAR *pchTail,
 /**
  * @brief Record occurrence of binary zero to stats
  */
-static void RecordZero(UniFile::txtstats & txstats, Int64 offset)
+static void RecordZero(UniFile::txtstats & txstats, int64_t offset)
 {
 	++txstats.nzeros;
 	if (txstats.first_zero == -1)
@@ -456,7 +456,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		while (m_current - m_base + 1 < m_filesize)
 		{
 			wchar_t wch = *(wchar_t *)m_current;
-			Int64 wch_offset = (m_current - m_base);
+			int64_t wch_offset = (m_current - m_base);
 			m_current += 2;
 			if (wch == '\n' || wch == '\r')
 			{
@@ -556,7 +556,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			}
 			if (*eolptr == 0)
 			{
-				Int64 offset = (eolptr - m_base);
+				int64_t offset = (eolptr - m_base);
 				RecordZero(m_txtstats, offset);
 			}
 		}
@@ -672,7 +672,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		}
 		else if (!ch)
 		{
-			Int64 offset = (m_current - m_base);
+			int64_t offset = (m_current - m_base);
 			RecordZero(m_txtstats, offset);
 		}
 		// always advance to next character
@@ -964,7 +964,7 @@ bool UniStdioFile::WriteString(const String & line)
 	return true;
 }
 
-Int64 UniStdioFile::GetPosition() const
+int64_t UniStdioFile::GetPosition() const
 {
 	if (!IsOpen()) return 0;
 	return ftell(m_fp);

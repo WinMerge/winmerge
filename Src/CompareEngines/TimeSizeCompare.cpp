@@ -9,12 +9,12 @@
 #include "TimeSizeCompare.h"
 #include <cstdlib>
 #include <vector>
-#include <Poco/Types.h>
+#include <boost/cstdint.hpp>
 #include <Poco/Timestamp.h>
 #include "DiffItem.h"
 #include "DiffWrapper.h"
 
-using Poco::Int64;
+using boost::int64_t;
 using Poco::Timestamp;
 
 namespace CompareEngines
@@ -53,7 +53,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, const DIFFITEM &di)
 		// Check that we have both filetimes
 		if (di.diffFileInfo[0].mtime != 0 && di.diffFileInfo[1].mtime != 0)
 		{
-			Int64 nTimeDiff = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
+			int64_t nTimeDiff = di.diffFileInfo[0].mtime - di.diffFileInfo[1].mtime;
 			if (nTimeDiff < 0) nTimeDiff *= -1;
 			if (m_ignoreSmallDiff)
 			{

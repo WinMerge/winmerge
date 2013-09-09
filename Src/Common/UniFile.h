@@ -13,8 +13,7 @@
 #define UniFile_h_included
 
 #include "unicoder.h"
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
+#include <boost/cstdint.hpp>
 
 namespace Poco { class SharedMemory; }
 
@@ -60,7 +59,7 @@ public:
 	virtual bool ReadString(String & line, bool * lossy) = 0;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
 	virtual int GetLineNumber() const = 0;
-	virtual Poco::Int64 GetPosition() const = 0;
+	virtual boost::int64_t GetPosition() const = 0;
 	virtual bool WriteString(const String & line) = 0;
 
 	struct txtstats
@@ -69,8 +68,8 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
-		Poco::Int64 first_zero; // byte offset, initially -1
-		Poco::Int64 last_zero; // byte offset, initially -1
+		boost::int64_t first_zero; // byte offset, initially -1
+		boost::int64_t last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
 		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
@@ -129,7 +128,7 @@ protected:
 
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
-	Poco::Int64 m_filesize;
+	boost::int64_t m_filesize;
 	String m_filepath;
 	String m_filename;
 	int m_lineno; // current 0-based line of m_current
@@ -174,7 +173,7 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy);
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
-	virtual Poco::Int64 GetPosition() const { return m_current - m_base; }
+	virtual boost::int64_t GetPosition() const { return m_current - m_base; }
 	virtual bool WriteString(const String & line);
 
 // Implementation methods
@@ -219,7 +218,7 @@ protected:
 	virtual bool ReadString(String & line, String & eol, bool * lossy);
 
 public:
-	virtual Poco::Int64 GetPosition() const;
+	virtual boost::int64_t GetPosition() const;
 
 	virtual int WriteBom();
 	virtual bool WriteString(const String & line);
@@ -232,7 +231,7 @@ protected:
 // Implementation data
 private:
 	FILE * m_fp;
-	Poco::Int64 m_data; // offset after any initial BOM
+	boost::int64_t m_data; // offset after any initial BOM
 	ucr::buffer m_ucrbuff;
 };
 

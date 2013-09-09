@@ -31,7 +31,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #endif
 
 using Poco::UnicodeConverter;
-using Poco::UInt64;
+using boost::uint64_t;
 
 namespace ucr
 {
@@ -1231,7 +1231,7 @@ bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
  * FF FE 00 00 UTF-32, little endian
  * 00 00 FE FF UTF-32, big-endian
  */
-UNICODESET DetermineEncoding(const unsigned char *pBuffer, UInt64 size, bool * pBom)
+UNICODESET DetermineEncoding(const unsigned char *pBuffer, uint64_t size, bool * pBom)
 {
 	UNICODESET unicoding = NONE;
 	*pBom = false;
