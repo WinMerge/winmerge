@@ -333,6 +333,7 @@ CustomInstallation=Custom Installation
 AppCoreFiles=WinMerge Core Files
 Filters=Filters
 Plugins=Plugins
+Frhed=Frhed(Free hex editor)
 ShellExtension32bit=32-bit WinMerge ShellExtension
 
 ;Localization Components

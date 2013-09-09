@@ -24,6 +24,15 @@ mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins" 2> NUL
 mkdir "%DISTDIR%\2.14-zip-version\WinMerge\Docs" 2> NUL
 mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\Docs" 2> NUL
 
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\frhed" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed" 2> NUL
+
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Docs" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs" 2> NUL
+
+mkdir "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages" 2> NUL
+mkdir "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages" 2> NUL
+
 rem Readme
 for %%i in (Build\Docs\*.*) do (
   copy "%%i" "%DISTDIR%\2.14-zip-version\WinMerge\%%~nxi"
@@ -72,6 +81,22 @@ del "%DISTDIR%\2.14-x64-zip-version\WinMerge\MergePlugins\Watch*OfLog.dll"
 rem 7zPlugins
 copy Build\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-zip-version\WinMerge\"
 copy Build\X64\MergeUnicodeRelease\Merge7z*.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\"
+
+rem Frhed
+copy Externals\Frhed\GPL.txt "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\hekseditU.dll "%DISTDIR%\2.14-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\Docs\*.txt "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Docs"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\Docs\Sample.tpl "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Docs"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\Languages\*.po "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages"
+copy Externals\Frhed\Build\FRHED\Win32\UnicodeRelease\Languages\heksedit.lng "%DISTDIR%\2.14-zip-version\WinMerge\frhed\Languages"
+copy Externals\Frhed\GPL.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\frhed.exe "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\hekseditU.dll "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Docs\*.txt "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Docs\Sample.tpl "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Docs"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Languages\*.po "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages"
+copy Externals\Frhed\Build\FRHED\x64\UnicodeRelease\Languages\heksedit.lng "%DISTDIR%\2.14-x64-zip-version\WinMerge\frhed\Languages"
 
 
 7z.exe a -tzip "%DISTDIR%\winmerge-%SAFEAPPVER%-exe.zip" "%DISTDIR%\2.14-zip-version\WinMerge\"

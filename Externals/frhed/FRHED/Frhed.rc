@@ -1,0 +1,18 @@
+// Frhed resource script (for English only).
+
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// Englisch (USA) resources
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_FRHED               ICON "res/Frhed.ico"
+
+#include "version.rc"

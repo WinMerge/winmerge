@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{1b9ed5b9-89e2-4629-8a3e-afa83f1df5e9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{438f4006-2f8a-4584-a538-d53edbb304d0}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b4373550-fb63-4e1c-8c08-52f0469dff62}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{484132ef-b979-4d54-8af6-fc496b748f35}</UniqueIdentifier>
+      <Extensions>po</Extensions>
+    </Filter>
+    <Filter Include="Setup Files">
+      <UniqueIdentifier>{03ac60df-abd1-4f0e-b772-944d23bf0e58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="precomp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="heksedit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hexwnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="precomp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Frhed.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Frhed.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <po Include="..\Translations\Frhed\de.po">
+      <Filter>Translation Files</Filter>
+    </po>
+    <po Include="..\Translations\Frhed\fr.po">
+      <Filter>Translation Files</Filter>
+    </po>
+    <po Include="..\Translations\Frhed\nl.po">
+      <Filter>Translation Files</Filter>
+    </po>
+  </ItemGroup>
+  <ItemGroup>
+    <docs Include="..\Docs\Users\ChangeLog.txt">
+      <Filter>Setup Files</Filter>
+    </docs>
+    <docs Include="..\Docs\Users\Contributors.txt">
+      <Filter>Setup Files</Filter>
+    </docs>
+    <docs Include="..\Docs\Users\History.txt">
+      <Filter>Setup Files</Filter>
+    </docs>
+    <docs Include="..\Docs\Users\Links.txt">
+      <Filter>Setup Files</Filter>
+    </docs>
+    <docs Include="..\Docs\Users\Sample.tpl">
+      <Filter>Setup Files</Filter>
+    </docs>
+  </ItemGroup>
+</Project>

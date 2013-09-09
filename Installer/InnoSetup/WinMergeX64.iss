@@ -177,6 +177,7 @@ Name: ShellExtension32bit; Description: {cm:ShellExtension32bit}; Types: full ty
 
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
+Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -478,6 +479,18 @@ Source: ..\..\Plugins\dlls\X64\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins;
 Source: ..\..\Plugins\dlls\X64\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 Source: ..\..\Plugins\dlls\X64\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
+;Frhed
+Source: ..\..\Externals\frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\hekseditU.dll; DestDir: {app}\Frhed; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Externals\frhed\Build\FRHED\x64\UnicodeRelease\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
 
 [Icons]
 ;Start Menu Icons
