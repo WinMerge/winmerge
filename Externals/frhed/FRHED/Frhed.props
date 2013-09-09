@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(impBeforeTargets)' == '' and '$(impAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <impBeforeTargets>Midl</impBeforeTargets>
+    <impAfterTargets>CustomBuild</impAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <impDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(impDependsOn)</impDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <imp>
+      <CommandLineTemplate>lib /MACHINE:$(TargetMachine) /DEF:"%(FullPath)" /OUT:"$(IntDir)%(Filename).lib"</CommandLineTemplate>
+      <Outputs>$(IntDir)%(Filename).lib</Outputs>
+    </imp>
+  </ItemDefinitionGroup>
+  <PropertyGroup
+    Condition="'$(poBeforeTargets)' == '' and '$(poAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <poBeforeTargets>Midl</poBeforeTargets>
+    <poAfterTargets>CustomBuild</poAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <poDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(poDependsOn)</poDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <po>
+      <CommandLineTemplate>copy "%(FullPath)" "$(OutDir)Languages\%(Filename)%(Extension)"</CommandLineTemplate>
+      <Outputs>$(OutDir)Languages\%(Filename)%(Extension)</Outputs>
+    </po>
+  </ItemDefinitionGroup>
+  <PropertyGroup
+    Condition="'$(docsBeforeTargets)' == '' and '$(docsAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <docsBeforeTargets>Midl</docsBeforeTargets>
+    <docsAfterTargets>CustomBuild</docsAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <docsDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(docsDependsOn)</docsDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <docs>
+      <CommandLineTemplate>copy "%(FullPath)" "$(OutDir)Docs\%(Filename)%(Extension)"</CommandLineTemplate>
+      <Outputs>$(OutDir)Docs\%(Filename)%(Extension)</Outputs>
+    </docs>
+  </ItemDefinitionGroup>
+</Project>

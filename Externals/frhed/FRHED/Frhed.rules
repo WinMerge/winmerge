@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Custom Build Rules"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="imp"
+			CommandLine="lib /MACHINE:$(TargetMachine) /DEF:&quot;$(InputPath)&quot; /OUT:&quot;$(IntDir)\$(InputName).lib&quot;"
+			Outputs="&quot;$(IntDir)\$(InputName).lib&quot;"
+			FileExtensions="*.imp"
+			>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="po"
+			CommandLine="copy &quot;$(InputPath)&quot; &quot;$(OutDir)\Languages\$(InputFileName)&quot;"
+			Outputs="&quot;$(OutDir)\Languages\$(InputFileName)&quot;"
+			FileExtensions="*.po"
+			>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="docs"
+			CommandLine="copy &quot;$(InputPath)&quot; &quot;$(OutDir)\Docs\$(InputFileName)&quot;"
+			Outputs="&quot;$(OutDir)\Docs\$(InputFileName)&quot;"
+			FileExtensions="*.chm"
+			>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>
