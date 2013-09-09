@@ -1,0 +1,24 @@
+Known bugs
+
+June 9th, 2001
+- Copying & pasting large amounts of data is unbelievably slow
+  when compared with other hex editors.
+
+November 19th, 2000
+- Pasting data of CF_UNICODETEXT format doesn't work with translation off
+  - this will be fixed sometime.
+- Pasting data of formats other than CF_DSPTEXT, CF_OEMTEXT, CF_TEXT or
+  CF_UNICODETEXT will append null bytes or garbage to the end of the data.
+  This will probably never be fixed because of Windows, GlobalAlloc & GlobalSize
+  unless the source to Windows is released (heah right) or someone sends me a kludge
+
+November 17th, 2000
+- Cannot insert files of >~2Gb in size
+  - probably couldn't anyway because of mem issues .'. this may never be fixed
+   (until 64bit processors become standard. IMHO AMD's strategy is much better)
+
+August 31st, 2000
+- When replacing a very large number of occurances with data smaller
+  or larger in size than the original, the execution time rises
+  rapidly into untolerable ranges (due to an inefficient algorithm).
+  Possible fix may be to resize the DataArray only once since allocs take so long.

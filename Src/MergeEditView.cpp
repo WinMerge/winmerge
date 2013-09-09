@@ -3574,8 +3574,6 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 	
 	RecalcVertScrollBar (false, false);
 	RecalcHorzScrollBar (false, false);
-	
-	((CChildFrame *)GetParentFrame())->PostMessage(WM_TIMER);
 }
 
 /**
