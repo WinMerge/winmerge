@@ -73,6 +73,7 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -508,9 +509,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 
 		CMDIChildWnd::ActivateFrame(nCmdShow);
 	}
-
-	if (oldActiveFrame)
-		((CChildFrame *)oldActiveFrame)->PostMessage(WM_TIMER);
 }
 
 BOOL CChildFrame::DestroyWindow() 
@@ -860,4 +858,11 @@ LRESULT CChildFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 	KillTimer(IDT_SAVEPOSITION);
 	SetTimer(IDT_SAVEPOSITION, 300, NULL);
 	return 0;
+}
+
+void CChildFrame::OnSize(UINT nType, int cx, int cy) 
+{
+	CMDIChildWnd::OnSize(nType, cx, cy);
+	
+	UpdateHeaderSizes();
 }

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="imp">
+      <Targets>_imp</Targets>
+    </AvailableItemName>
+    <AvailableItemName
+      Include="po">
+      <Targets>_po</Targets>
+    </AvailableItemName>
+    <AvailableItemName
+      Include="docs">
+      <Targets>_docs</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="imp"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <UsingTask
+    TaskName="po"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <UsingTask
+    TaskName="docs"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_imp"
+    BeforeTargets="$(impBeforeTargets)"
+    AfterTargets="$(impAfterTargets)"
+    Condition="'@(imp)' != ''"
+    DependsOnTargets="$(impDependsOn);ComputeimpOutput"
+    Outputs="%(imp.Outputs)"
+    Inputs="%(imp.Identity);%(imp.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <imp
+        Remove="@(imp)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <imp_tlog
+        Include="%(imp.Outputs)"
+        Condition="'%(imp.Outputs)' != '' and '%(imp.ExcludedFromBuild)' != 'true'">
+        <Source>@(imp, '|')</Source>
+      </imp_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(imp.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(imp_tlog)' != '' and '%(imp_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(imp_tlog.Source);@(imp_tlog-&gt;'%(Fullpath)')" />
+    <imp
+      Condition="'@(imp)' != '' and '%(imp.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(imp.CommandLineTemplate)"
+      AdditionalOptions="%(imp.AdditionalOptions)"
+      Inputs="%(imp.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            ComputeimpOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            ComputeimpOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="ComputeimpOutput"
+    Condition="'@(imp)' != ''">
+    <ItemGroup>
+      <impDirsToMake
+        Condition="'@(imp)' != '' and '%(imp.ExcludedFromBuild)' != 'true'"
+        Include="%(imp.Outputs)" />
+      <Link
+        Include="%(impDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(impDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(impDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(impDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+  <Target
+    Name="_po"
+    BeforeTargets="$(poBeforeTargets)"
+    AfterTargets="$(poAfterTargets)"
+    Condition="'@(po)' != ''"
+    DependsOnTargets="$(poDependsOn);ComputepoOutput"
+    Outputs="%(po.Outputs)"
+    Inputs="%(po.Identity);%(po.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <po
+        Remove="@(po)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <po_tlog
+        Include="%(po.Outputs)"
+        Condition="'%(po.Outputs)' != '' and '%(po.ExcludedFromBuild)' != 'true'">
+        <Source>@(po, '|')</Source>
+      </po_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(po.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(po_tlog)' != '' and '%(po_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(po_tlog.Source);@(po_tlog-&gt;'%(Fullpath)')" />
+    <po
+      Condition="'@(po)' != '' and '%(po.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(po.CommandLineTemplate)"
+      AdditionalOptions="%(po.AdditionalOptions)"
+      Inputs="%(po.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            ComputepoOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            ComputepoOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="ComputepoOutput"
+    Condition="'@(po)' != ''">
+    <ItemGroup>
+      <poDirsToMake
+        Condition="'@(po)' != '' and '%(po.ExcludedFromBuild)' != 'true'"
+        Include="%(po.Outputs)" />
+      <Link
+        Include="%(poDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(poDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(poDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(poDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+  <Target
+    Name="_docs"
+    BeforeTargets="$(docsBeforeTargets)"
+    AfterTargets="$(docsAfterTargets)"
+    Condition="'@(docs)' != ''"
+    DependsOnTargets="$(docsDependsOn);ComputedocsOutput"
+    Outputs="%(docs.Outputs)"
+    Inputs="%(docs.Identity);%(docs.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <docs
+        Remove="@(docs)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <docs_tlog
+        Include="%(docs.Outputs)"
+        Condition="'%(docs.Outputs)' != '' and '%(docs.ExcludedFromBuild)' != 'true'">
+        <Source>@(docs, '|')</Source>
+      </docs_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(docs.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(docs_tlog)' != '' and '%(docs_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(docs_tlog.Source);@(docs_tlog-&gt;'%(Fullpath)')" />
+    <docs
+      Condition="'@(docs)' != '' and '%(docs.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(docs.CommandLineTemplate)"
+      AdditionalOptions="%(docs.AdditionalOptions)"
+      Inputs="%(docs.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            ComputedocsOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            ComputedocsOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="ComputedocsOutput"
+    Condition="'@(docs)' != ''">
+    <ItemGroup>
+      <docsDirsToMake
+        Condition="'@(docs)' != '' and '%(docs.ExcludedFromBuild)' != 'true'"
+        Include="%(docs.Outputs)" />
+      <Link
+        Include="%(docsDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(docsDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(docsDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(docsDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

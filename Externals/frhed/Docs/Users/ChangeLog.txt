@@ -1,0 +1,195 @@
+This file summarizes changes in Frhed releases.
+Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
+to Subversion revision numbers (rXXXXX).
+
+For changes in version 1.1 beta 1 and earlier, see the History.txt file.
+
+Frhed 0.10902.2013 experimental
+  Auto-elevate the application for CMD_OpenDrive()
+
+Frhed 0.10901.2013 experimental
+  Try to revert all the malicious changes that have piled up in mainline trunk
+    due to misconceptions on how to set up a proper Unicode build configuration
+  Fix broken offset_parse()
+  Add x64 build configurations
+  Adopt String classes from MoSync SDK (This imposes a restriction to GPLv2!)
+  Adopt H2O.h from WinMerge 2011
+
+Frhed 1.7.1 2009-07-30 (r787)
+  Improve Export HexDump -dialog layout (r677)
+  Improve Binary Mode -dialog layout (r684)
+  Prefix hex offsets with 'x' in HexDump-dialog (r682)
+  Add ReadMe.txt (r704)
+  Install ReadMe.txt and show it after installing (r705)
+  Add link to ReadMe.txt to start-menu (r705)
+  Drop VC6 compiler support (r735, r736)
+  Recognize 0x as hex offset prefix (r757)
+  Recognize X and 0X (capital X) as hex offset prefix (r760)
+  Load custom encoder dlls from Encoders-subfolder (r776)
+  Add example encoder plugin "AddOne" (r778)
+  Manual: Document need for runtime files (r784)
+  Bugfix: Zero-size files were opened as link files (r671)
+  Bugfix: Don't allow de-selecting program files in installer (r675)
+  Bugfix: Crash when going to DLL import names (#2800045)
+  Bugfix: Could not change language when installed from zip (#2808491)
+  Bugfix: Command line and shell context menu failed if command line
+    contained many space characters (#2814846)
+  Bugfix: Replace-dialog didn't wrap long selection properly (r758)
+  Bugfix: Some dialogs did show hex numbers prefixed with 'x'
+   instead of '0x' (r761)
+  Bugfix: tried to import hex dump file twice (r766)
+  Bugfix: Garbage was shown in hex dump loading message box (r767)
+  Bugfix: Didn't add space after offset in display type hex dump (r770)
+  New translation:
+  - Dutch (#2805592)
+  - French (#2806325)
+
+Frhed 1.6.x (R1_6) branch created (r698)
+
+Frhed 1.5.4 - 2009-05-26 (r667)
+  Improve Drag&Drop-dialog layout (r638)
+  Improve Move/Copy bytes-dialog layout (r640)
+  Show disk/partition sizes of over terabyte in terabytes (r654)
+  Increase max find text size to 32K (r655)
+  Add vertical scrollbar to Find-dialog for find text (r656)
+  Improve Find-dialog layout (r657)
+  Improve Ented Decimal Value-dialog layout (r659)
+  Improve Manipulate Bits-dialog layout (r661)
+  Improve Reverse Bytes-dialog layout (r662)
+  Improve Fill Selection-dialog layout (r663)
+  Bugfix: Edit decimal number-dialog always had numbers as signed (r641)
+  Bugfix: Use 1024 (instead of 1000) as multiplier when calculating disk and
+    partition sizes (r653)
+
+Frhed 1.5.3 - 2009-05-05 (r629)
+  Make bookmark indicator frame a bit wider in hex view (r596)
+  Make bookmark indicator couple of pixels taller (r606)
+  Format bookmark in remove dialog similarly than in menu (r597)
+  Improve Goto-dialog layout (r599)
+  Use current offset as default offset in Goto-dialog (r600)
+  Add vertical space between editor lines for indicators (r605)
+  Improve Add Bookmark-dialog layout (r608)
+  Improve Remove Bookmark-dialog layout (r609)
+  Improve Select Block-dialog layout (r613)
+  Limit edit field lengths in Select Block-dialog (r615)
+  Enable zooming with mouse wheel + CTRL-key (r616)
+  Bugfix: Could not handle offsets for positions larger than 2GB (r594)
+  Bugfix: Fix Explorer context menu items when executable path contains
+    spaces (r603)
+  Bugfix: Crash when pasting more bytes than in current selection (#2782788)
+
+Frhed 1.5.2 - 2009-04-15 (r525)
+  Remove warning message about trying to edit in read-only mode (r420)
+  Not finding more strings is not an error, show info icon (r428)
+  Don't ask twice about file deletion (r446)
+  Simpler Read-only mode -menutext (#2480587)
+  Add Find and Replace sub menu (#2750555)
+  Make Cut- and Delete-dialogs separate dialogs (#2750573)
+  Remove "Cut to clipboard" from Cut/Delete dialogs (#2750573)
+  hexedit.dll Revised hosting interface (official version 1) (r492)
+  Installer: register heksedit.dll (r519)
+  Enable translations:
+  - Simplify translating / loading translated strings in code
+  - Install translation files (r443, r460)
+  - Make lots of messages/strings translatable
+  - Change language subfolder name to "Languages" (r441)
+  New translation:
+  - French (#2727207)
+
+Frhed 1.5.1 - 2009-03-18 (r414)
+  Improve Cut-dialog layout (r331)
+  Improve Append-dialog layout (r335)
+  Remove "for 32-bit Windows" from About-dialog (#2570092)
+  Add example template file (#2582381)
+  Open help when F1 pressed in dialogs (#2480571)
+  Show only languages that are available in View Settings (r411)
+  Bugfix: Crash when trying to partially load large file (#2552896)
+  Bugfix: Hang when loading big file (#2555546)
+  Bugfix: Incorrect shortcut to help file (#2556084)
+  Bugfix: Sometimes crashed when opening View Settings (#2504837)
+  Bugfix: Help window opened from Frhed was modal (#2590341)
+  Bugfix: Fix dialog text styling (#2534010)
+  Bugfix: Fix dialog style for About-dialog (r390)
+  Bugfix: Layout fixes for Hexdump export-, Copy bytes-,
+    Add bookmark- and Open partially -dialogs (r392)
+  Bugfix: Layout fix for Reverse bytes-dialog (r394)
+  Bugfix: Layout fix for Enter decimal value-dialog (r395)
+  Bugfix: Offset length was reset after opening View Settings
+    -dialog (r402)
+
+Frhed 1.4.x (R1_4) branch created (r327)
+
+Frhed 1.3.10 - 2009-01-22 (r325)
+  Limit edit field lengths in Add Bookmark -dialog (r279)
+  Remove "Frhed is being started for the first time" -message (#2489863)
+  Remove "Remove Frhed" -feature from the menu (#2489878)
+  Improve formatting of Bookmarks labels in Bookmark-menu (#2492298)
+  Add Browse-button for selecting text editor in View-settings (#2480604)
+  New icon for the "Replace" button in the toolbar (#2515944)
+  Limit edit field lengths in Copy bytes -dialog (r307)
+  Limit edit field lengths in Paste With -dialog (r313)
+  Limit edit field lengths in Paste -dialog (r314)
+  Improve layout of the Paste -dialog (r315)
+  Show 3-digit version number in About -dialog (r324)
+  Bugfix: Byte count edit field was not enabled in Cut/Delete dialog (r284)
+
+Frhed 1.3.4 - 2009-01-06 (r270)
+  Does not use separate registry key for each version (#2236297)
+  Standardize the program name to Frhed (#2480501)
+  Show caret with selection (#2480579)
+  Disable editing when disk is opened (#2481367)
+  Add note text to Open Drive dialog telling modifying or
+    saving drive data is not possible (#2481367)
+  Goto begin/end of file if out of bounds offset is given (r264)
+  Limit offset length in GoTo-dialog (r267)
+  Bugfix: Replacing data with longer data jammed Frhed (#2431267)
+  Bugfix: Crash in Encode/Decode dialog (r220)
+  Bugfix: View settings dialog didn't read current
+    settings values (r226)
+  Bugfix: First text in View settings dialog was not
+    fully visible (r228)
+  Bugfix: Selecting to begin (Ctrl+Shift+Home) or to end of
+    file (Ctrl+Shift+End) did not work (r235)
+  Bugfix: Another text visibility problem in View Settings (r255)
+  Bugfix: Remove "BOO" message from statusbar click (#2487952)
+  Bugfix: Opening drives needs Administrator privileges (#2480516)
+  Bugfix: Two confirmation dialogs when file was dropped
+   over edited file (#2488780)
+  Bugfix: Multiple selection dialogs were shown when multiple
+   files were dropped to Frhed (#2484640)
+
+Frhed 1.3.3 - 2008-12-04 (r188)
+  Update homepage URL in About-dialog to Sf.net (r137)
+  Update About-dialog layout
+  Open contributors list from About-dialog
+  Update copyright info in About-dialog
+  Allow translating menus
+  "Exit" is now the last item in the "File menu (#2231019)
+  Load Help file from Docs subfolder
+  Show error message if help file is not found
+  Installer: Install help file to Docs-subfolder
+  Add some initial support for 64-bit file sizes (for partial loading)
+  Convert user manual to DocBook (#2074373)
+  Bugfix: Crash when exiting in Vista (r123)
+
+Frhed 1.3.2 - 2008-11-07 (r116)
+  Add more separators to "File" menu (#2231098)
+  Installer: Install VS2003.Net runtime files
+  Installer: Remove checkbox for accepting the license
+  Installer: Add documents GPL.txt, ChangeLog.txt, Contributors.txt and
+    History.txt
+  Bugfix: File/Exit didnt' work (#2175624)
+
+Frhed 1.3.1 - 2008-10-16 (r73)
+  Revise the installer (#2068059)
+  Change resource file to English (U.S.) (was German)
+  Big refactoring merge from WinMerge, including:
+   - move most of the editor code to heksedit.dll which can be embedded in
+     other programs
+   - refactor dialog code to own files and classes
+   - make frhed translatable, translations use gettext PO files
+  Add heksedit.dll to the installer
+  Add 48x48 icon
+  New icon (#2144924)
+  Include the manifest so that Win XP themes work
+  Rename project and target names to Frhed (with capital letter)

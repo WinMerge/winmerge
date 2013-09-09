@@ -5,3 +5,4 @@ This file lists versions of the external components we are using.
 
 POCO: 1.4.3p1
 boost: 1.53.0
+frhed: 0.10902.2013

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="Win32.vsprops">
+	<Tool
+		Name="VCLinkerTool"
+		TargetMachine="1"
+	/>
+	<UserMacro
+		Name="TargetMachine"
+		Value="X86"
+	/>
+</VisualStudioPropertySheet>
