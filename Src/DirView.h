@@ -34,7 +34,6 @@
 #include <afxcview.h>
 #include <map>
 #include <boost/scoped_ptr.hpp>
-#include <Poco/Types.h>
 #include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"

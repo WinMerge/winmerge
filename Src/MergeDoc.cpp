@@ -64,6 +64,7 @@
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
 #include <Poco/Exception.h>
+#include <boost/cstdint.hpp>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,6 +73,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 using std::swap;
+using boost::int64_t;
 
 /** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
@@ -1979,7 +1981,7 @@ CMergeDoc::FileChange CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInf
 
 	dfi.Update(szPath);
 
-	Poco::Int64 timeDiff = dfi.mtime - fileInfo->mtime;
+	int64_t timeDiff = dfi.mtime - fileInfo->mtime;
 	if (timeDiff < 0) timeDiff = -timeDiff;
 	if ((timeDiff > tolerance * Poco::Timestamp::resolution()) || (dfi.size != fileInfo->size))
 	{

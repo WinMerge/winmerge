@@ -28,7 +28,6 @@
 #include "UnicodeString.h"
 #include "FileVersion.h"
 #define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 

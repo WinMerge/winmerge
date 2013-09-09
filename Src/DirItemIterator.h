@@ -10,7 +10,6 @@
 
 #include <iterator>
 #include <utility>
-#include <Poco/Types.h>
 #include "IListCtrl.h"
 
 struct DIFFITEM;

@@ -14,8 +14,7 @@
 
 #include "UnicodeString.h"
 #include "codepage.h"
-#define POCO_NO_UNWINDOWS 1
-#include <Poco/Types.h>
+#include <boost/cstdint.hpp>
 
 namespace ucr
 {
@@ -109,7 +108,7 @@ String CrossConvertToStringA(const char* src, unsigned srclen, int cpin, int cpo
 
 bool CheckForInvalidUtf8(const char *pBuffer, size_t size);
 
-UNICODESET DetermineEncoding(const unsigned char *pBuffer, Poco::UInt64 size, bool * pBom);
+UNICODESET DetermineEncoding(const unsigned char *pBuffer, boost::uint64_t size, bool * pBom);
 
 int getDefaultCodepage();
 void setDefaultCodepage(int cp);
