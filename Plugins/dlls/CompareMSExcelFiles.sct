@@ -74,9 +74,10 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Set fo = fso.CreateTextFile(fileDst, True)
 
 	Set xl = CreateObject("Excel.Application")
-	Set wbk = xl.Workbooks.Open(fileSrc)
-
+	xl.EnableEvents = False
 	xl.DisplayAlerts = False
+
+	Set wbk = xl.Workbooks.Open(fileSrc)
 
 	On Error Resume Next
 
