@@ -66,6 +66,8 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim Codes
 
 	Set wd = CreateObject("Word.Application")
+	wd.DisplayAlerts = False
+
 	Set doc = wd.Documents.Open(fileSrc)
 
 	On Error Resume Next

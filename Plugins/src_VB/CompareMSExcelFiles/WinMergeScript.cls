@@ -174,6 +174,9 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     ' Start MS Excel
     Dim objWD As Object
     Set objWD = CreateObject("Excel.Application")
+
+    objWD.EnableEvents = False
+    objWD.DisplayAlerts = False
     
     ' Load the workbook into MS Excel
     Dim objDoc As Object

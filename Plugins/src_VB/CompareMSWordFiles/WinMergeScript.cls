@@ -174,6 +174,8 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     ' Start MS Word
     Dim objWD As Object
     Set objWD = CreateObject("Word.Application")
+
+    objWD.DisplayAlerts = False
     
     ' Load the document into MS Word
     Dim objDoc As Object
