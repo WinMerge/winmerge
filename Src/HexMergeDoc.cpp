@@ -341,28 +341,22 @@ BOOL CHexMergeDoc::SaveModified()
  */
 void CHexMergeDoc::OnFileSave() 
 {
-	BOOL bUpdate = FALSE;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (m_pView[nBuffer]->GetModified())
-		{
-			const String &path = m_filePaths.GetPath(nBuffer);
-			if (Try(m_pView[nBuffer]->SaveFile(path.c_str())) == IDCANCEL)
-				return;
-			bUpdate = TRUE;
-		}
-	}
-	if (bUpdate)
-		UpdateDiffItem(m_pDirDoc);
+		DoFileSave(nBuffer);
 }
 
 void CHexMergeDoc::DoFileSave(int nBuffer)
 {
 	if (m_pView[nBuffer]->GetModified())
 	{
-		const String &path = m_filePaths.GetPath(nBuffer);
-		if (Try(m_pView[nBuffer]->SaveFile(path.c_str())) == IDCANCEL)
-			return;
+		if (m_nBufferType[nBuffer] == BUFFER_UNNAMED)
+			DoFileSaveAs(nBuffer);
+		else
+		{
+			const String &path = m_filePaths.GetPath(nBuffer);
+			if (Try(m_pView[nBuffer]->SaveFile(path.c_str())) == IDCANCEL)
+				return;
+		}
 		UpdateDiffItem(m_pDirDoc);
 	}
 }
@@ -382,8 +376,16 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 	{
 		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
 			return;
+		if (path.empty())
+		{
+			// We are saving scratchpad (unnamed file)
+			m_nBufferType[nBuffer] = BUFFER_UNNAMED_SAVED;
+			m_strDesc[nBuffer].erase();
+		}
+
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateDiffItem(m_pDirDoc);
+		UpdateHeaderPath(nBuffer);
 	}
 }
 
@@ -488,16 +490,25 @@ BOOL CHexMergeDoc::CloseNow()
 */
 HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 {
-	if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
-		return E_FAIL;
-	m_pView[index]->SetReadOnly(readOnly);
-	m_filePaths.SetPath(index, filename);
-	ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
-	String strDesc = GetMainFrame()->m_strDescriptions[index];
-	if (!strDesc.empty())
+	if (filename[0])
 	{
-		m_strDesc[index] = strDesc;
-		m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+		if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
+			return E_FAIL;
+		m_pView[index]->SetReadOnly(readOnly);
+		m_filePaths.SetPath(index, filename);
+		ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
+		String strDesc = GetMainFrame()->m_strDescriptions[index];
+		if (!strDesc.empty())
+		{
+			m_strDesc[index] = strDesc;
+			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+		}
+	}
+	else
+	{
+		m_nBufferType[index] = BUFFER_UNNAMED;
+		m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+
 	}
 	UpdateHeaderPath(index);
 	m_pView[index]->ResizeWindow();
