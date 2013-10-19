@@ -87,7 +87,6 @@ static LPCTSTR crlfs[] =
 };
 
 static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath);
-static void UnescapeControlChars(CString &s);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -1457,35 +1456,6 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
 		m_nCurDiff = nDiff;
 	else
 		m_nCurDiff = -1;
-}
-
-/*
- * @brief Unescape control characters.
- * @param [in,out] s Line of text excluding eol chars.
- */
-static void UnescapeControlChars(CString &s)
-{
-	LPTSTR p = s.LockBuffer();
-	LPTSTR q = p;
-	while ((*p = *q) != _T('\0'))
-	{
-		++q;
-		// Is it the leadin character?
-		if (*p == _T('\x0F'))
-		{
-			LPTSTR r = q;
-			// Expect a hexadecimal number...
-			long ordinal = (TCHAR)_tcstol(q, &r, 16);
-			// ...followed by the leadout character.
-			if (*r == _T('\\'))
-			{
-				*p = (TCHAR)ordinal;
-				q = r + 1;
-			}
-		}
-		++p;
-	}
-	s.ReleaseBuffer(p - s);
 }
 
 /**
