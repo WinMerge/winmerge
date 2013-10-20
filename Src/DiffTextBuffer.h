@@ -58,7 +58,7 @@ public :
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
-		bool bClearModifiedFlag = TRUE, bool bForceUTF8 = FALSE);
+		bool bClearModifiedFlag = TRUE, bool bForceUTF8 = FALSE, int nStartLine = 0, int nLines = -1);
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }

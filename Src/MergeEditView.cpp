@@ -144,6 +144,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2M, OnUpdateL2m)
 	ON_COMMAND(ID_R2M, OnR2m)
 	ON_UPDATE_COMMAND_UI(ID_R2M, OnUpdateR2m)
+	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
+	ON_UPDATE_COMMAND_UI(ID_ADD_SYNCPOINT, OnUpdateAddSyncPoint)
+	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
+	ON_UPDATE_COMMAND_UI(ID_CLEAR_SYNCPOINTS, OnUpdateClearSyncPoints)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
@@ -1974,6 +1978,38 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(false);
+}
+
+/**
+ * @brief Add synchronization point
+ */
+void CMergeEditView::OnAddSyncPoint()
+{
+	GetDocument()->AddSyncPoint();
+}
+
+/**
+ * @brief Called when "Add Synchronization Point" item is updated
+ */
+void CMergeEditView::OnUpdateAddSyncPoint(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Clear synchronization points
+ */
+void CMergeEditView::OnClearSyncPoints()
+{
+	GetDocument()->ClearSyncPoints();
+}
+
+/**
+ * @brief Called when "Clear Synchronization Points" item is updated
+ */
+void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->HasSyncPoints());
 }
 
 /**
