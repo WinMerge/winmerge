@@ -173,6 +173,8 @@ public:
 
 	std::vector<DiffRangeInfo>& GetDiffRangeInfoVector() { return m_diffs; }
 
+	void AppendDiffList(const DiffList& list, int offset[] = NULL, int doffset[] = NULL);
+
 private:
 	std::vector<DiffRangeInfo> m_diffs; /**< Difference list. */
 	int m_firstSignificant; /**< Index of first significant diff in m_diffs */

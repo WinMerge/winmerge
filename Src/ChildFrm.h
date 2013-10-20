@@ -136,6 +136,7 @@ private:
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnIdleUpdateCmdUI();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

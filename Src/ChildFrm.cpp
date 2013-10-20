@@ -74,6 +74,7 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	ON_WM_SIZE()
+	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -129,7 +130,7 @@ CChildFrame::CChildFrame()
 		m_status[pane].m_base = PANE_PANE0_INFO + pane * 3;
 	}
 	m_bActivated = FALSE;
-//	m_nLastSplitPos = 0;
+	m_nLastSplitPos = 0;
 	m_pMergeDoc = 0;
 }
 
@@ -687,6 +688,24 @@ void CChildFrame::UpdateSplitter()
 {
 	m_wndSplitter.RecalcLayout();
 	m_wndDetailBar.UpdateBarHeight(0);
+}
+
+/**
+ * @brief Synchronize control with splitter position,
+ */
+void CChildFrame::OnIdleUpdateCmdUI()
+{
+	if (IsWindowVisible())
+	{
+		int w,wmin;
+		m_wndSplitter.GetColumnInfo(0, w, wmin);
+		if (w != m_nLastSplitPos && w > 0)
+		{
+			UpdateHeaderSizes();
+			m_nLastSplitPos = w;
+		}
+	}
+	CMDIChildWnd::OnIdleUpdateCmdUI();
 }
 
 void CChildFrame::OnTimer(UINT_PTR nIDEvent) 

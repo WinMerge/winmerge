@@ -267,6 +267,10 @@ protected:
 	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
 	afx_msg void OnR2m();
 	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
+	afx_msg void OnAddSyncPoint();
+	afx_msg void OnUpdateAddSyncPoint(CCmdUI* pCmdUI);
+	afx_msg void OnClearSyncPoints();
+	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
