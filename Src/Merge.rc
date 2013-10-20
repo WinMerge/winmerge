@@ -479,6 +479,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Add &Synchronization Point",  ID_ADD_SYNCPOINT
+        MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
     END
     POPUP "&Tools"
     BEGIN
@@ -2825,6 +2828,8 @@ BEGIN
     ID_ALL_LEFT             "Copy all differences to the left file\nAll Left"
     ID_MERGE_DELETE         "Delete selected items from both directories"
     ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
+    ID_ADD_SYNCPOINT        "Add a manual point for synchronization of changes between files"
+    ID_CLEAR_SYNCPOINTS     "Clear manual change synchronization points "
 END
 
 // TOOLS MENU
