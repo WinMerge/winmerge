@@ -235,6 +235,11 @@ public:
 	const FileTextEncoding & GetEncoding(int file) const
 			{ return m_ptBuf[file]->getEncoding(); }
 
+	void AddSyncPoint();
+	void ClearSyncPoints();
+	bool HasSyncPoints();
+	std::vector<std::vector<int> > CMergeDoc::GetSyncPointList();
+
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeDoc)
@@ -308,6 +313,7 @@ protected:
 	int m_nDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 	CEncodingErrorBar *m_pEncodingErrorBar;
+	bool m_bHasSyncPoints;
 // friend access
 	friend class RescanSuppress;
 

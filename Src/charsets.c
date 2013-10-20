@@ -16,6 +16,9 @@
 #include <stdlib.h>
 #ifndef _WIN32
 #include <strings.h>
+#define InterlockedCompareExchangePointer(addr, newv, oldv) __sync_val_compare_and_swap(addr, oldv, newv)
+#else
+#include <Windows.h>
 #endif
 #include "charsets.h"
 
@@ -1006,12 +1009,14 @@ static struct _charsetInfo const *FindByName(const char *name)
 	if (index1 == NULL)
 	{
 		size_t i;
-		index1 = (struct _charsetInfo **)calloc(numCharsetInfo, sizeof(void *));
+		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numCharsetInfo, sizeof(void *));
 		for (i = numCharsetInfo ; i-- ; )
 		{
-			index1[i] = charsetInfo + i;
+			index[i] = charsetInfo + i;
 		}
-		qsort((void*)index1, numCharsetInfo, sizeof(void *), CompareByName);
+		qsort((void*)index, numCharsetInfo, sizeof(void *), CompareByName);
+		if (InterlockedCompareExchangePointer((void **)&index1, (void *)index, NULL) != NULL)
+			free((void *)index);
 	}
 	if (index1 && name)
 	{
@@ -1032,11 +1037,13 @@ static struct _charsetInfo const *FindById(unsigned id)
 	if (index2 == NULL)
 	{
 		size_t i;
-		index2 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
 		for (i = numCharsetInfo ; i-- ; )
 		{
-			index2[charsetInfo[i].id] = charsetInfo + i;
+			index[charsetInfo[i].id] = charsetInfo + i;
 		}
+		if (InterlockedCompareExchangePointer((void **)&index2, (void *)index, NULL) != NULL)
+			free((void *)index);
 	}
 	return index2 && id < numIndex ? index2[id] : NULL;
 }
@@ -1048,12 +1055,14 @@ static struct _charsetInfo const *FindByCodePage(unsigned codepage)
 	if (index3 == NULL)
 	{
 		size_t i;
-		index3 = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
+		const struct _charsetInfo **index = (struct _charsetInfo **)calloc(numIndex, sizeof(void *));
 		for (i = numCharsetInfo + 1 ; i-- ; )
 		{
-			index3[charsetInfo[i].id] = charsetInfo + i;
+			index[charsetInfo[i].id] = charsetInfo + i;
 		}
-		qsort((void*)index3, numIndex, sizeof(void *), SortCompareByCodePage);
+		qsort((void*)index, numIndex, sizeof(void *), SortCompareByCodePage);
+		if (InterlockedCompareExchangePointer((void **)&index3, (void *)index, NULL) != NULL)
+			free((void *)index);
 	}
 	if (index3 && codepage)
 	{

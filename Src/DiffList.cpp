@@ -887,3 +887,25 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[])
 			extras[file] += nmaxline - nline[file];
 	}
 }
+
+void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset[])
+{
+	for (std::vector<DiffRangeInfo>::const_iterator it = list.m_diffs.begin(); it != list.m_diffs.end(); ++it)
+	{
+		DIFFRANGE dr = *it;
+		for (int file = 0; file < 3; ++file)
+		{
+			if (offset)
+			{
+				dr.begin[file] += offset[file];
+				dr.end[file] += offset[file];
+			}
+			if (doffset)
+			{
+				dr.dbegin[file] += doffset[file];
+				dr.dend[file] += offset[file];
+			}
+		}
+		AddDiff(dr);
+	}
+}

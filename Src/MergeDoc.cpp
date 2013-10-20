@@ -88,8 +88,7 @@ static LPCTSTR crlfs[] =
 	_T ("\x0d")      //  Macintosh style
 };
 
-static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath);
-static void UnescapeControlChars(CString &s);
+static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool bForceUTF8, int nStartLine = 0, int nLines = -1);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -139,6 +138,7 @@ CMergeDoc::CMergeDoc()
 , m_bMixedEol(false)
 , m_pInfoUnpacker(new PackingInfo)
 , m_pEncodingErrorBar(NULL)
+, m_bHasSyncPoints(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -352,7 +352,7 @@ void CMergeDoc::Serialize(CArchive& ar)
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
-static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath, bool bForceUTF8)
+static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, bool bForceUTF8, int nStartLine, int nLines)
 {
 	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
 	int orig_codepage = buf.getCodepage();
@@ -374,7 +374,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath, bool bForce
 	// write buffer out to temporary file
 	String sError;
 	int retVal = buf.SaveToFile(filepath, true, sError, tempPacker,
-		CRLF_STYLE_AUTOMATIC, false, bForceUTF8);
+		CRLF_STYLE_AUTOMATIC, false, bForceUTF8, nStartLine, nLines);
 
 	// restore memory of encoding of original file
 	buf.setUnicoding(orig_unicoding);
@@ -464,23 +464,17 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	CheckFileChanged();
 
-	// Set up DiffWrapper
-	m_diffWrapper.SetCreateDiffList(&m_diffList);
-	m_diffWrapper.GetOptions(&diffOptions);
-	
-	// Save text buffer to file
-	bool bForceUTF8 = diffOptions.bIgnoreCase;
 	String tempPath = env_GetTempPath();
+
+	bool bForceUTF8 = diffOptions.bIgnoreCase;
 	IF_IS_TRUE_ALL (
 		m_ptBuf[0]->getCodepage() == m_ptBuf[nBuffer]->getCodepage() && m_ptBuf[nBuffer]->getUnicoding() == ucr::NONE,
 		nBuffer, m_nBuffers) {}
 	else
 		bForceUTF8 = true;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_ptBuf[nBuffer]->SetTempPath(tempPath);
-		SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath().c_str(), bForceUTF8);
-	}
+
+	// Set up DiffWrapper
+	m_diffWrapper.GetOptions(&diffOptions);
 
 	// Clear diff list
 	m_diffList.Clear();
@@ -502,7 +496,45 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetCodepage(bForceUTF8 ? CP_UTF8 : (m_ptBuf[0]->m_encoding.m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage));
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
-	diffSuccess = m_diffWrapper.RunFileDiff();
+
+	std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
+	if (syncpoints.size() == 0)
+	{
+		// Save text buffer to file
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			m_ptBuf[nBuffer]->SetTempPath(tempPath);
+			SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath(), bForceUTF8);
+		}
+
+		m_diffWrapper.SetCreateDiffList(&m_diffList);
+		diffSuccess = !!m_diffWrapper.RunFileDiff();
+	}
+	else
+	{
+		int nStartLine[3] = {0};
+		int nLines[3], nRealLine[3];
+		for (int i = 0; i <= syncpoints.size(); ++i)
+		{
+			// Save text buffer to file
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				nLines[nBuffer] = (i >= syncpoints.size()) ? -1 : syncpoints[i][nBuffer] - nStartLine[nBuffer];
+				m_ptBuf[nBuffer]->SetTempPath(tempPath);
+				SaveBuffForDiff(*m_ptBuf[nBuffer], m_tempFiles[nBuffer].GetPath(), bForceUTF8,
+					nStartLine[nBuffer], nLines[nBuffer]);
+			}
+			DiffList templist;
+			templist.Clear();
+			m_diffWrapper.SetCreateDiffList(&templist);
+			diffSuccess = !!m_diffWrapper.RunFileDiff();
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				nRealLine[nBuffer] = m_ptBuf[nBuffer]->ComputeRealLine(nStartLine[nBuffer]);
+			m_diffList.AppendDiffList(templist, nRealLine);
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				nStartLine[nBuffer] += nLines[nBuffer];
+		}
+	}
 
 	// Read diff-status
 	DIFFSTATUS status;
@@ -1463,35 +1495,6 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
 		m_nCurDiff = nDiff;
 	else
 		m_nCurDiff = -1;
-}
-
-/*
- * @brief Unescape control characters.
- * @param [in,out] s Line of text excluding eol chars.
- */
-static void UnescapeControlChars(CString &s)
-{
-	LPTSTR p = s.LockBuffer();
-	LPTSTR q = p;
-	while ((*p = *q) != _T('\0'))
-	{
-		++q;
-		// Is it the leadin character?
-		if (*p == _T('\x0F'))
-		{
-			LPTSTR r = q;
-			// Expect a hexadecimal number...
-			long ordinal = (TCHAR)_tcstol(q, &r, 16);
-			// ...followed by the leadout character.
-			if (*r == _T('\\'))
-			{
-				*p = (TCHAR)ordinal;
-				q = r + 1;
-			}
-		}
-		++p;
-	}
-	s.ReleaseBuffer(p - s);
 }
 
 /**
@@ -3356,4 +3359,86 @@ void CMergeDoc::OnToolsGenerateReport()
 	GenerateReport(s.c_str());
 
 	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+}
+
+/**
+ * @brief Add synchronization point
+ */
+void CMergeDoc::AddSyncPoint()
+{
+	int nLine[3];
+	bool bRemovePreviousFromLine = false;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		 int tmp = m_pView[nBuffer]->GetCursorPos().y;
+		 nLine[nBuffer] = m_ptBuf[nBuffer]->ComputeApparentLine(m_ptBuf[nBuffer]->ComputeRealLine(tmp));
+
+		if (m_ptBuf[nBuffer]->GetLineFlags(nLine[nBuffer]) & LF_INVALID_BREAKPOINT)
+			bRemovePreviousFromLine = true;
+	}
+	
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		m_ptBuf[nBuffer]->SetLineFlag(nLine[nBuffer], LF_INVALID_BREAKPOINT, true, bRemovePreviousFromLine);
+
+	m_bHasSyncPoints = true;
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		m_pView[nBuffer]->SetSelectionMargin(true);
+
+	FlushAndRescan(true);
+}
+
+/**
+ * @brief Clear Synchronization points
+ */
+void CMergeDoc::ClearSyncPoints()
+{
+	if (!m_bHasSyncPoints)
+		return;
+
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		int nLineCount = m_ptBuf[nBuffer]->GetLineCount();
+		for (int nLine = 0; nLine < nLineCount; ++nLine)
+		{
+			if (m_ptBuf[nBuffer]->GetLineFlags(nLine) & LF_INVALID_BREAKPOINT)
+				m_ptBuf[nBuffer]->SetLineFlag(nLine, LF_INVALID_BREAKPOINT, false, false);
+		}
+	}
+	
+	m_bHasSyncPoints = false;
+
+	FlushAndRescan(true);
+}
+
+/**
+ * @brief return true if there are synchronization points
+ */
+bool CMergeDoc::HasSyncPoints()
+{
+	return m_bHasSyncPoints;
+}
+
+std::vector<std::vector<int> > CMergeDoc::GetSyncPointList()
+{
+	std::vector<std::vector<int> > list;
+	int idx[3] = {-1, -1, -1};
+	std::vector<int> points(m_nBuffers);
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		points[nBuffer]	= m_ptBuf[nBuffer]->GetLineCount() - 1;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+	{
+		int nLineCount = m_ptBuf[nBuffer]->GetLineCount();
+		for (int nLine = 0; nLine < nLineCount; ++nLine)
+		{
+			if (m_ptBuf[nBuffer]->GetLineFlags(nLine) & LF_INVALID_BREAKPOINT)
+			{
+				idx[nBuffer]++;
+				if (list.size() <= idx[nBuffer])
+					list.push_back(points);
+				list[idx[nBuffer]][nBuffer] = nLine;
+			}
+		}
+	}
+	return list;
 }

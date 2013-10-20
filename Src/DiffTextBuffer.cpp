@@ -549,11 +549,15 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		bool bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		bool bClearModifiedFlag /*= true*/,
-		bool bForceUTF8 /*= false*/)
+		bool bForceUTF8 /*= false*/,
+		int nStartLine /*= 0*/, int nLines /*= -1*/)
 {
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
+
+	if (nLines == -1)
+		nLines = m_aLines.size() - nStartLine;
 
 	if (pszFileName.empty())
 		return SAVE_FAILED;	// No filename, cannot save...
@@ -611,8 +615,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	// line loop : get each real line and write it in the file
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
-	const size_t nLineCount = m_aLines.size();
-	for (size_t line = 0; line < nLineCount; ++line)
+	for (size_t line = nStartLine; line < nStartLine + nLines; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
 			continue;

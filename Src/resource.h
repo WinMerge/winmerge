@@ -1129,6 +1129,8 @@
 #define ID_EDIT_UPPERCASE               33186
 #define ID_VIEW_SPLITVERTICALLY         33187
 #define IDS_FRHED_NOTINSTALLED          33188
+#define ID_ADD_SYNCPOINT                33189
+#define ID_CLEAR_SYNCPOINTS             33190
 
 // Next default values for new objects
 //
@@ -1136,7 +1138,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33189
+#define _APS_NEXT_COMMAND_VALUE         33191
 #define _APS_NEXT_CONTROL_VALUE         1352
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
