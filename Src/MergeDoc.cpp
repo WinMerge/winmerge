@@ -532,6 +532,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				nStartLine[nBuffer] += nLines[nBuffer];
 		}
+		m_diffWrapper.SetCreateDiffList(&m_diffList);
 	}
 
 	// Read diff-status
