@@ -10,7 +10,7 @@ PrivateResource=
 ResourceIncludes=
 MakeIncludes=
 Compiler=-DHAVE_CONFIG_H -DREGEX_MALLOC -D__NT__ _@@_
-CppCompiler=
+CppCompiler=-DNOMINMAX_@@_
 Linker=-lPocoXML_@@_-lPocoUtil_@@_-lPocoFoundation_@@_-lversion_@@_-lshlwapi_@@_-luuid_@@_-lole32_@@_-loleaut32_@@_-lIphlpapi_@@_
 IsCpp=1
 Icon=
@@ -27,9 +27,9 @@ UseCustomMakefile=0
 CustomMakefile=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=2
+CompilerSet=0
 CompilerSettings=0000000000000000101000000
-UnitCount=136
+UnitCount=134
 
 [VersionInfo]
 Major=1
@@ -918,7 +918,7 @@ Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CPP) -c PatchHTML.cpp -o PatchHTML.o $(CXXFLAGS) 
 
 [Unit88]
 FileName=..\..\Src\PatchHTML.h
@@ -1131,26 +1131,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit109]
-FileName=..\..\Src\Common\LogFile.cpp
-CompileCpp=1
-Folder=Source Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit110]
-FileName=..\..\Src\Common\LogFile.h
-CompileCpp=1
-Folder=Header Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit111]
 FileName=..\..\Src\Common\multiformatText.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1160,7 +1140,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit112]
+[Unit110]
 FileName=..\..\Src\Common\multiformatText.h
 CompileCpp=1
 Folder=Header Files
@@ -1170,7 +1150,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit113]
+[Unit111]
 FileName=..\..\Src\Common\OptionsMgr.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1178,9 +1158,9 @@ Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CPP) -c OptionsMgr.cpp -o OptionsMgr.o $(CXXFLAGS)
 
-[Unit114]
+[Unit112]
 FileName=..\..\Src\Common\OptionsMgr.h
 CompileCpp=1
 Folder=Header Files
@@ -1190,7 +1170,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit115]
+[Unit113]
 FileName=..\..\Src\Common\RegOptionsMgr.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1200,7 +1180,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit116]
+[Unit114]
 FileName=..\..\Src\Common\RegOptionsMgr.h
 CompileCpp=1
 Folder=Header Files
@@ -1210,7 +1190,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit117]
+[Unit115]
 FileName=..\..\Src\Common\unicoder.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1220,7 +1200,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit118]
+[Unit116]
 FileName=..\..\Src\Common\unicoder.h
 CompileCpp=1
 Folder=Header Files
@@ -1230,7 +1210,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit119]
+[Unit117]
 FileName=..\..\Src\Common\UnicodeString.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1240,7 +1220,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit120]
+[Unit118]
 FileName=..\..\Src\Common\UnicodeString.h
 CompileCpp=1
 Folder=Header Files
@@ -1250,7 +1230,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit121]
+[Unit119]
 FileName=..\..\Src\Common\UniFile.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1260,7 +1240,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit122]
+[Unit120]
 FileName=..\..\Src\Common\UniFile.h
 CompileCpp=1
 Folder=Header Files
@@ -1270,7 +1250,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit123]
+[Unit121]
 FileName=..\..\Src\Common\varprop.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1280,7 +1260,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit124]
+[Unit122]
 FileName=..\..\Src\Common\varprop.h
 CompileCpp=1
 Folder=Header Files
@@ -1290,7 +1270,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit125]
+[Unit123]
 FileName=..\..\Src\Common\version.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1300,7 +1280,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit126]
+[Unit124]
 FileName=..\..\Src\Common\version.h
 CompileCpp=1
 Folder=Header Files
@@ -1310,7 +1290,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit127]
+[Unit125]
 FileName=..\..\Src\FilterCommentsManager.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1320,7 +1300,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit128]
+[Unit126]
 FileName=..\..\Src\FilterCommentsManager.h
 CompileCpp=1
 Folder=Header Files
@@ -1330,7 +1310,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit129]
+[Unit127]
 FileName=..\..\Src\Common\RegKey.cpp
 CompileCpp=1
 Folder=Source Files
@@ -1340,7 +1320,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit130]
+[Unit128]
 FileName=..\..\Src\Common\RegKey.h
 CompileCpp=1
 Folder=Header Files
@@ -1350,7 +1330,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit131]
+[Unit129]
 FileName=..\..\Src\Common\dllproxy.c
 CompileCpp=0
 Folder=Source Files
@@ -1360,7 +1340,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c dllproxy.c -o dllproxy.o $(CFLAGS)
 
-[Unit132]
+[Unit130]
 FileName=..\..\Src\Common\dllproxy.h
 CompileCpp=1
 Folder=Header Files
@@ -1370,7 +1350,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit133]
+[Unit131]
 FileName=..\..\Src\diffutils\lib\cmpbuf.c
 CompileCpp=0
 Folder=DiffEngine
@@ -1380,10 +1360,30 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c cmpbuf.c -o cmpbuf.o $(CFLAGS)
 
-[Unit134]
+[Unit132]
 FileName=..\..\Src\diffutils\lib\cmpbuf.h
 CompileCpp=1
 Folder=DiffEngine
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit133]
+FileName=..\..\Src\Common\lwdisp.c
+CompileCpp=0
+Folder=Source Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CC) -c lwdisp.c -o lwdisp.o $(CFLAGS)
+
+[Unit134]
+FileName=..\..\Src\Common\lwdisp.h
+CompileCpp=1
+Folder=Header Files
 Compile=1
 Link=1
 Priority=1000
