@@ -216,6 +216,12 @@
     <ClCompile Include="..\OptionsMgr\VariantValue_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
@@ -330,6 +336,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\Common\varprop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
