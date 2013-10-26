@@ -47,11 +47,11 @@ namespace
 	{
 		//TCHAR curFolder[MAX_PATH] = {0};
 		//_tgetcwd(curFolder, MAX_PATH);
-		_tmkdir(_T("..\\..\\..\\Data\\ShellFileOpTest"));
+		_tmkdir(_T("..\\..\\Data\\ShellFileOpTest"));
 
 		ShellFileOperations ops;
-		ops.AddSourceAndDestination(_T("..\\..\\..\\Data\\File1.txt"),
-				_T("..\\..\\..\\Data\\ShellFileOpTest\\File1.txt"));
+		ops.AddSourceAndDestination(_T("..\\..\\Data\\File1.txt"),
+				_T("..\\..\\Data\\ShellFileOpTest\\File1.txt"));
 		ops.SetOperation(FO_COPY, FOF_NOCONFIRMMKDIR | FOF_NOCONFIRMATION);
 		EXPECT_TRUE(ops.Run());
 		EXPECT_FALSE(ops.IsCanceled());
