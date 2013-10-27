@@ -26,3 +26,10 @@ glob:*Summary.csv
 glob:*.a
 glob:*.po.bak
 glob:*.po.orig
+syntax: glob
+*.gcda
+*.gcno
+*.tlog
+*.orig
+*.gcov
+*.res
