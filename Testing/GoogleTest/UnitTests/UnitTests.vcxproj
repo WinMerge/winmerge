@@ -57,14 +57,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
@@ -168,6 +168,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp" />
     <ClCompile Include="..\..\..\Src\CompareEngines\ByteCompare.cpp" />
     <ClCompile Include="..\..\..\Src\charsets.c" />
@@ -190,6 +191,7 @@
     <ClCompile Include="..\..\..\Src\Common\lwdisp.c" />
     <ClCompile Include="..\..\..\Src\markdown.cpp" />
     <ClCompile Include="..\..\..\Src\MergeCmdLineInfo.cpp" />
+    <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="..\..\..\Src\Common\multiformatText.cpp" />
     <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp" />
@@ -236,6 +238,7 @@
     <ClCompile Include="..\OptionsMgr\VariantValue_test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteCompare.h" />
     <ClInclude Include="..\..\..\Src\charsets.h" />

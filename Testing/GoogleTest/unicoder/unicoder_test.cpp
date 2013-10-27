@@ -40,11 +40,13 @@ namespace
 
 	TEST_F(UnicoderTest, toUTF8)
 	{
+#ifdef _UNICODE
 		wchar_t str[] = {'A','B','C', 0xd867, 0xde3d, 0};
 		std::string utf8 = ucr::toUTF8(str);
 		EXPECT_STREQ("ABC\xf0\xa9\xb8\xbd", utf8.c_str());
 
 		EXPECT_EQ(false, ucr::CheckForInvalidUtf8(utf8.c_str(), utf8.length()));
+#endif
 	}
 
 	TEST_F(UnicoderTest, CrossConvert)

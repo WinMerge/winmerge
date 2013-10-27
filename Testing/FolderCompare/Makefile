@@ -7,7 +7,6 @@ TARGET=FolderCompare.exe
 OBJS=\
 ../../Src/Common/coretools.o \
 ../../Src/Common/dllproxy.o \
-../../Src/Common/LogFile.o \
 ../../Src/Common/lwdisp.o \
 ../../Src/Common/multiformatText.o \
 ../../Src/Common/OptionsMgr.o \

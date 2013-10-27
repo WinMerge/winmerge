@@ -78,7 +78,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_STATIC_CPPLIB;HAVE_CONFIG_H;REGEX_MALLOC;__NT__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -125,7 +125,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\Src;..\..\Src\Common;..\..\Externals\boost;..\..\Externals\poco\Foundation\include;..\..\Externals\poco\XML\include;..\..\Externals\poco\Util\include;..\..\Src\diffutils\src;..\..\Src\diffutils\lib;..\..\Src\diffutils\;..\..\Src\CompareEngines;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;HAVE_CONFIG_H;_STATIC_CPPLIB;REGEX_MALLOC;__NT__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
       </PrecompiledHeader>

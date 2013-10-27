@@ -1,17 +1,17 @@
 [Project]
-FileName=FolderCompare.dev
-Name=FolderCompare
+FileName=UnitTests.dev
+Name=UnitTests
 Type=1
 Ver=2
 ObjFiles=
-Includes=../../Src;../../Src/Common;../../Src/diffutils;../../Src/diffutils/lib;../../Src/diffutils/src;../../Src/CompareEngines;../../Externals/boost;../../Externals/Poco/Foundation/include;../../Externals/Poco/XML/include;../../Externals/Poco/Util/include
-Libs=../../Externals/poco/lib/MinGW/ia32
+Includes=C:\dev\gtest-1.6.0\include;../../../Src;../../../Src/Common;../../../Src/diffutils;../../../Src/diffutils/lib;../../../Src/diffutils/src;../../../Src/CompareEngines;../../../Externals/boost;../../../Externals/Poco/Foundation/include;../../../Externals/Poco/XML/include;../../../Externals/Poco/Util/include
+Libs=../../../Externals/poco/lib/MinGW/ia32;C:\dev\gtest-1.6.0\
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
 Compiler=-DHAVE_CONFIG_H -DREGEX_MALLOC -D__NT__ _@@_
-CppCompiler=-DNOMINMAX_@@_
-Linker=-lPocoXML_@@_-lPocoUtil_@@_-lPocoFoundation_@@_-lversion_@@_-lshlwapi_@@_-luuid_@@_-lole32_@@_-loleaut32_@@_-lIphlpapi_@@_
+CppCompiler=-DNOMINMAX -coverage_@@_
+Linker=-lgtest_@@_-lPocoXML_@@_-lPocoUtil_@@_-lPocoFoundation_@@_-lversion_@@_-lshlwapi_@@_-luuid_@@_-lole32_@@_-loleaut32_@@_-lIphlpapi_@@_-coverage_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -19,9 +19,9 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=FolderCompare.exe
+OverrideOutputName=UnitTests.exe
 HostApplication=
-Folders=CompareEngines,DiffEngine,"Header Files","Source Files"
+Folders=CompareEngines,DiffEngine,"Header Files","Source Files",Tests
 CommandLine=
 UseCustomMakefile=0
 CustomMakefile=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000101000000
-UnitCount=134
+UnitCount=166
 
 [VersionInfo]
 Major=1
@@ -51,9 +51,9 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=misc.cpp
+FileName=..\..\..\Src\CompareEngines\DiffUtils.h
 CompileCpp=1
-Folder=
+Folder=CompareEngines
 Compile=1
 Link=1
 Priority=1000
@@ -61,9 +61,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=FolderCompare.cpp
+FileName=..\..\..\Src\CompareEngines\ByteCompare.h
 CompileCpp=1
-Folder=
+Folder=CompareEngines
 Compile=1
 Link=1
 Priority=1000
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=..\..\Src\CompareEngines\DiffUtils.h
+FileName=..\..\..\Src\CompareEngines\ByteCompare.cpp
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=..\..\Src\CompareEngines\ByteCompare.h
+FileName=..\..\..\Src\CompareEngines\TimeSizeCompare.cpp
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=..\..\Src\CompareEngines\ByteCompare.cpp
+FileName=..\..\..\Src\CompareEngines\ByteComparator.h
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -101,7 +101,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=..\..\Src\CompareEngines\TimeSizeCompare.cpp
+FileName=..\..\..\Src\CompareEngines\TimeSizeCompare.h
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=..\..\Src\CompareEngines\ByteComparator.h
+FileName=..\..\..\Src\CompareEngines\DiffUtils.cpp
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -121,7 +121,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=..\..\Src\CompareEngines\TimeSizeCompare.h
+FileName=..\..\..\Src\CompareEngines\ByteComparator.cpp
 CompileCpp=1
 Folder=CompareEngines
 Compile=1
@@ -131,27 +131,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=..\..\Src\CompareEngines\DiffUtils.cpp
-CompileCpp=1
-Folder=CompareEngines
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit10]
-FileName=..\..\Src\CompareEngines\ByteComparator.cpp
-CompileCpp=1
-Folder=CompareEngines
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit11]
-FileName=..\..\Src\diffutils\lib\regex.c
+FileName=..\..\..\Src\diffutils\lib\regex.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -160,8 +140,28 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit10]
+FileName=..\..\..\Src\diffutils\lib\regex.h
+CompileCpp=1
+Folder=DiffEngine
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=..\..\..\Src\diffutils\GnuVersion.c
+CompileCpp=0
+Folder=DiffEngine
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=$(CC) -c GnuVersion.c -o GnuVersion.o $(CFLAGS)
+
 [Unit12]
-FileName=..\..\Src\diffutils\lib\regex.h
+FileName=..\..\..\Src\diffutils\config.h
 CompileCpp=1
 Folder=DiffEngine
 Compile=1
@@ -171,27 +171,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=..\..\Src\diffutils\GnuVersion.c
-CompileCpp=0
-Folder=DiffEngine
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CC) -c GnuVersion.c -o GnuVersion.o $(CFLAGS)
-
-[Unit14]
-FileName=..\..\Src\diffutils\config.h
-CompileCpp=1
-Folder=DiffEngine
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit15]
-FileName=..\..\Src\diffutils\src\analyze.c
+FileName=..\..\..\Src\diffutils\src\analyze.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -200,8 +180,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c analyze.c -o analyze.o $(CFLAGS)
 
-[Unit16]
-FileName=..\..\Src\diffutils\src\context.c
+[Unit14]
+FileName=..\..\..\Src\diffutils\src\context.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -210,9 +190,29 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit17]
-FileName=..\..\Src\diffutils\src\Diff.cpp
+[Unit15]
+FileName=..\..\..\Src\diffutils\src\Diff.cpp
 CompileCpp=1
+Folder=DiffEngine
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit16]
+FileName=..\..\..\Src\diffutils\src\diff.h
+CompileCpp=1
+Folder=DiffEngine
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit17]
+FileName=..\..\..\Src\diffutils\src\ed.c
+CompileCpp=0
 Folder=DiffEngine
 Compile=1
 Link=1
@@ -221,8 +221,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit18]
-FileName=..\..\Src\diffutils\src\diff.h
-CompileCpp=1
+FileName=..\..\..\Src\diffutils\src\ifdef.c
+CompileCpp=0
 Folder=DiffEngine
 Compile=1
 Link=1
@@ -231,7 +231,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit19]
-FileName=..\..\Src\diffutils\src\ed.c
+FileName=..\..\..\Src\diffutils\src\io.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -241,7 +241,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit20]
-FileName=..\..\Src\diffutils\src\ifdef.c
+FileName=..\..\..\Src\diffutils\src\normal.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -251,7 +251,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit21]
-FileName=..\..\Src\diffutils\src\io.c
+FileName=..\..\..\Src\diffutils\src\side.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -261,8 +261,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit22]
-FileName=..\..\Src\diffutils\src\normal.c
-CompileCpp=0
+FileName=..\..\..\Src\diffutils\src\system.h
+CompileCpp=1
 Folder=DiffEngine
 Compile=1
 Link=1
@@ -271,7 +271,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit23]
-FileName=..\..\Src\diffutils\src\side.c
+FileName=..\..\..\Src\diffutils\src\util.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -281,27 +281,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit24]
-FileName=..\..\Src\diffutils\src\system.h
-CompileCpp=1
-Folder=DiffEngine
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit25]
-FileName=..\..\Src\diffutils\src\util.c
-CompileCpp=0
-Folder=DiffEngine
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit26]
-FileName=..\..\Src\charsets.c
+FileName=..\..\..\Src\charsets.c
 CompileCpp=0
 Folder=Source Files
 Compile=1
@@ -310,8 +290,28 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c charsets.c -o charsets.o $(CFLAGS)
 
+[Unit25]
+FileName=..\..\..\Src\charsets.h
+CompileCpp=1
+Folder=Header Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit26]
+FileName=..\..\..\Src\codepage_detect.cpp
+CompileCpp=1
+Folder=Source Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit27]
-FileName=..\..\Src\charsets.h
+FileName=..\..\..\Src\codepage_detect.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -321,7 +321,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit28]
-FileName=..\..\Src\codepage_detect.cpp
+FileName=..\..\..\Src\CompareOptions.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -331,7 +331,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit29]
-FileName=..\..\Src\codepage_detect.h
+FileName=..\..\..\Src\CompareOptions.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -341,7 +341,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit30]
-FileName=..\..\Src\CompareOptions.cpp
+FileName=..\..\..\Src\CompareStats.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -351,7 +351,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit31]
-FileName=..\..\Src\CompareOptions.h
+FileName=..\..\..\Src\CompareStats.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -361,7 +361,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit32]
-FileName=..\..\Src\CompareStats.cpp
+FileName=..\..\..\Src\ConflictFileParser.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -371,7 +371,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit33]
-FileName=..\..\Src\CompareStats.h
+FileName=..\..\..\Src\ConflictFileParser.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -381,7 +381,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit34]
-FileName=..\..\Src\ConflictFileParser.cpp
+FileName=..\..\..\Src\DiffContext.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -391,7 +391,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit35]
-FileName=..\..\Src\ConflictFileParser.h
+FileName=..\..\..\Src\DiffContext.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -401,7 +401,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit36]
-FileName=..\..\Src\DiffContext.cpp
+FileName=..\..\..\Src\DiffFileData.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -411,7 +411,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit37]
-FileName=..\..\Src\DiffContext.h
+FileName=..\..\..\Src\DiffFileData.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -421,7 +421,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit38]
-FileName=..\..\Src\DiffFileData.cpp
+FileName=..\..\..\Src\DiffFileInfo.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -431,7 +431,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit39]
-FileName=..\..\Src\DiffFileData.h
+FileName=..\..\..\Src\DiffFileInfo.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -441,7 +441,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit40]
-FileName=..\..\Src\DiffFileInfo.cpp
+FileName=..\..\..\Src\DiffItem.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -451,7 +451,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit41]
-FileName=..\..\Src\DiffFileInfo.h
+FileName=..\..\..\Src\DiffItem.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -461,7 +461,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit42]
-FileName=..\..\Src\DiffItem.cpp
+FileName=..\..\..\Src\DiffItemList.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -471,7 +471,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit43]
-FileName=..\..\Src\DiffItem.h
+FileName=..\..\..\Src\DiffItemList.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -481,7 +481,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit44]
-FileName=..\..\Src\DiffItemList.cpp
+FileName=..\..\..\Src\DiffList.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -491,7 +491,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit45]
-FileName=..\..\Src\DiffItemList.h
+FileName=..\..\..\Src\DiffList.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -501,7 +501,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit46]
-FileName=..\..\Src\DiffList.cpp
+FileName=..\..\..\Src\DiffThread.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -511,7 +511,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit47]
-FileName=..\..\Src\DiffList.h
+FileName=..\..\..\Src\DiffThread.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -521,7 +521,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit48]
-FileName=..\..\Src\DiffThread.cpp
+FileName=..\..\..\Src\DiffWrapper.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -531,7 +531,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit49]
-FileName=..\..\Src\DiffThread.h
+FileName=..\..\..\Src\DiffWrapper.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -541,7 +541,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit50]
-FileName=..\..\Src\DiffWrapper.cpp
+FileName=..\..\..\Src\DirItem.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -551,7 +551,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit51]
-FileName=..\..\Src\DiffWrapper.h
+FileName=..\..\..\Src\DirItem.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -561,7 +561,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit52]
-FileName=..\..\Src\DirItem.cpp
+FileName=..\..\..\Src\DirScan.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -571,7 +571,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit53]
-FileName=..\..\Src\DirItem.h
+FileName=..\..\..\Src\DirScan.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -581,7 +581,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit54]
-FileName=..\..\Src\DirScan.cpp
+FileName=..\..\..\Src\DirTravel.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -591,7 +591,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit55]
-FileName=..\..\Src\DirScan.h
+FileName=..\..\..\Src\DirTravel.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -601,7 +601,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit56]
-FileName=..\..\Src\DirTravel.cpp
+FileName=..\..\..\Src\Environment.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -611,7 +611,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit57]
-FileName=..\..\Src\DirTravel.h
+FileName=..\..\..\Src\Environment.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -621,7 +621,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit58]
-FileName=..\..\Src\Environment.cpp
+FileName=..\..\..\Src\FileFilter.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -631,7 +631,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit59]
-FileName=..\..\Src\Environment.h
+FileName=..\..\..\Src\FileFilter.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -641,7 +641,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit60]
-FileName=..\..\Src\FileFilter.cpp
+FileName=..\..\..\Src\FileFilterHelper.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -651,7 +651,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit61]
-FileName=..\..\Src\FileFilter.h
+FileName=..\..\..\Src\FileFilterHelper.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -661,7 +661,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit62]
-FileName=..\..\Src\FileFilterHelper.cpp
+FileName=..\..\..\Src\FileFilterMgr.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -671,7 +671,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit63]
-FileName=..\..\Src\FileFilterHelper.h
+FileName=..\..\..\Src\FileFilterMgr.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -681,7 +681,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit64]
-FileName=..\..\Src\FileFilterMgr.cpp
+FileName=..\..\..\Src\FileTextEncoding.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -691,7 +691,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit65]
-FileName=..\..\Src\FileFilterMgr.h
+FileName=..\..\..\Src\FileTextEncoding.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -701,7 +701,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit66]
-FileName=..\..\Src\FileTextEncoding.cpp
+FileName=..\..\..\Src\FileTransform.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -711,7 +711,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit67]
-FileName=..\..\Src\FileTextEncoding.h
+FileName=..\..\..\Src\FileTransform.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -721,7 +721,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit68]
-FileName=..\..\Src\FileTransform.cpp
+FileName=..\..\..\Src\FileVersion.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -731,7 +731,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit69]
-FileName=..\..\Src\FileTransform.h
+FileName=..\..\..\Src\FileVersion.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -741,7 +741,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit70]
-FileName=..\..\Src\FileVersion.cpp
+FileName=..\..\..\Src\FilterList.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -751,7 +751,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit71]
-FileName=..\..\Src\FileVersion.h
+FileName=..\..\..\Src\FilterList.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -761,7 +761,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit72]
-FileName=..\..\Src\FilterList.cpp
+FileName=..\..\..\Src\FolderCmp.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -771,7 +771,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit73]
-FileName=..\..\Src\FilterList.h
+FileName=..\..\..\Src\FolderCmp.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -781,7 +781,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit74]
-FileName=..\..\Src\FolderCmp.cpp
+FileName=..\..\..\Src\LineFiltersList.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -791,7 +791,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit75]
-FileName=..\..\Src\FolderCmp.h
+FileName=..\..\..\Src\LineFiltersList.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -801,7 +801,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit76]
-FileName=..\..\Src\LineFiltersList.cpp
+FileName=..\..\..\Src\locality.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -811,7 +811,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit77]
-FileName=..\..\Src\LineFiltersList.h
+FileName=..\..\..\Src\locality.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -821,7 +821,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit78]
-FileName=..\..\Src\locality.cpp
+FileName=..\..\..\Src\markdown.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -831,7 +831,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit79]
-FileName=..\..\Src\locality.h
+FileName=..\..\..\Src\markdown.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -841,7 +841,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit80]
-FileName=..\..\Src\markdown.cpp
+FileName=..\..\..\Src\MergeCmdLineInfo.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -851,7 +851,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit81]
-FileName=..\..\Src\markdown.h
+FileName=..\..\..\Src\MergeCmdLineInfo.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -861,7 +861,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit82]
-FileName=..\..\Src\MergeCmdLineInfo.cpp
+FileName=..\..\..\Src\MovedBlocks.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -871,7 +871,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit83]
-FileName=..\..\Src\MergeCmdLineInfo.h
+FileName=..\..\..\Src\MovedLines.cpp
+CompileCpp=1
+Folder=Source Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit84]
+FileName=..\..\..\Src\MovedLines.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -880,28 +890,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit84]
-FileName=..\..\Src\MovedBlocks.cpp
-CompileCpp=1
-Folder=Source Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit85]
-FileName=..\..\Src\MovedLines.cpp
+FileName=..\..\..\Src\PatchHTML.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CPP) -c PatchHTML.cpp -o PatchHTML.o $(CXXFLAGS)
 
 [Unit86]
-FileName=..\..\Src\MovedLines.h
+FileName=..\..\..\Src\PatchHTML.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -911,17 +911,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit87]
-FileName=..\..\Src\PatchHTML.cpp
+FileName=..\..\..\Src\PathContext.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=$(CPP) -c PatchHTML.cpp -o PatchHTML.o $(CXXFLAGS) 
+BuildCmd=
 
 [Unit88]
-FileName=..\..\Src\PatchHTML.h
+FileName=..\..\..\Src\PathContext.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -931,7 +931,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit89]
-FileName=..\..\Src\PathContext.cpp
+FileName=..\..\..\Src\paths.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -941,7 +941,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit90]
-FileName=..\..\Src\PathContext.h
+FileName=..\..\..\Src\paths.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -951,7 +951,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit91]
-FileName=..\..\Src\paths.cpp
+FileName=..\..\..\Src\PluginManager.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -961,7 +961,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit92]
-FileName=..\..\Src\paths.h
+FileName=..\..\..\Src\PluginManager.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -971,7 +971,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit93]
-FileName=..\..\Src\PluginManager.cpp
+FileName=..\..\..\Src\Plugins.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -981,7 +981,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit94]
-FileName=..\..\Src\PluginManager.h
+FileName=..\..\..\Src\Plugins.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -991,7 +991,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit95]
-FileName=..\..\Src\Plugins.cpp
+FileName=..\..\..\Src\ProjectFile.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1001,7 +1001,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit96]
-FileName=..\..\Src\Plugins.h
+FileName=..\..\..\Src\ProjectFile.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1011,7 +1011,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit97]
-FileName=..\..\Src\ProjectFile.cpp
+FileName=..\..\..\Src\stringdiffs.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1021,7 +1021,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit98]
-FileName=..\..\Src\ProjectFile.h
+FileName=..\..\..\Src\stringdiffs.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1031,7 +1031,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit99]
-FileName=..\..\Src\stringdiffs.cpp
+FileName=..\..\..\Src\TempFile.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1041,7 +1041,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit100]
-FileName=..\..\Src\stringdiffs.h
+FileName=..\..\..\Src\TempFile.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1051,7 +1051,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit101]
-FileName=..\..\Src\TempFile.cpp
+FileName=..\..\..\Src\UniMarkdownFile.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1061,7 +1061,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit102]
-FileName=..\..\Src\TempFile.h
+FileName=..\..\..\Src\UniMarkdownFile.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1071,7 +1071,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit103]
-FileName=..\..\Src\UniMarkdownFile.cpp
+FileName=..\..\..\Src\Common\coretools.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1081,7 +1081,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit104]
-FileName=..\..\Src\UniMarkdownFile.h
+FileName=..\..\..\Src\Common\coretools.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1091,7 +1091,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit105]
-FileName=..\..\Src\Common\coretools.cpp
+FileName=..\..\..\Src\Common\ExConverter.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1101,9 +1101,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit106]
-FileName=..\..\Src\Common\coretools.h
+FileName=..\..\..\Src\Common\ExConverter.h
 CompileCpp=1
-Folder=Header Files
+Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
@@ -1111,7 +1111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit107]
-FileName=..\..\Src\Common\ExConverter.cpp
+FileName=..\..\..\Src\Common\multiformatText.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1121,9 +1121,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit108]
-FileName=..\..\Src\Common\ExConverter.h
+FileName=..\..\..\Src\Common\multiformatText.h
 CompileCpp=1
-Folder=Source Files
+Folder=Header Files
 Compile=1
 Link=1
 Priority=1000
@@ -1131,17 +1131,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit109]
-FileName=..\..\Src\Common\multiformatText.cpp
+FileName=..\..\..\Src\Common\OptionsMgr.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CPP) -c OptionsMgr.cpp -o OptionsMgr.o $(CXXFLAGS)
 
 [Unit110]
-FileName=..\..\Src\Common\multiformatText.h
+FileName=..\..\..\Src\Common\OptionsMgr.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1151,17 +1151,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit111]
-FileName=..\..\Src\Common\OptionsMgr.cpp
+FileName=..\..\..\Src\Common\RegOptionsMgr.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=$(CPP) -c OptionsMgr.cpp -o OptionsMgr.o $(CXXFLAGS)
+BuildCmd=
 
 [Unit112]
-FileName=..\..\Src\Common\OptionsMgr.h
+FileName=..\..\..\Src\Common\RegOptionsMgr.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1171,7 +1171,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit113]
-FileName=..\..\Src\Common\RegOptionsMgr.cpp
+FileName=..\..\..\Src\Common\unicoder.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1181,7 +1181,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit114]
-FileName=..\..\Src\Common\RegOptionsMgr.h
+FileName=..\..\..\Src\Common\unicoder.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1191,7 +1191,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit115]
-FileName=..\..\Src\Common\unicoder.cpp
+FileName=..\..\..\Src\Common\UnicodeString.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1201,7 +1201,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit116]
-FileName=..\..\Src\Common\unicoder.h
+FileName=..\..\..\Src\Common\UnicodeString.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1211,7 +1211,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit117]
-FileName=..\..\Src\Common\UnicodeString.cpp
+FileName=..\..\..\Src\Common\UniFile.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1221,7 +1221,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit118]
-FileName=..\..\Src\Common\UnicodeString.h
+FileName=..\..\..\Src\Common\UniFile.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1231,7 +1231,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit119]
-FileName=..\..\Src\Common\UniFile.cpp
+FileName=..\..\..\Src\Common\varprop.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1241,7 +1241,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit120]
-FileName=..\..\Src\Common\UniFile.h
+FileName=..\..\..\Src\Common\varprop.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1251,7 +1251,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit121]
-FileName=..\..\Src\Common\varprop.cpp
+FileName=..\..\..\Src\Common\version.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1261,7 +1261,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit122]
-FileName=..\..\Src\Common\varprop.h
+FileName=..\..\..\Src\Common\version.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1271,7 +1271,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit123]
-FileName=..\..\Src\Common\version.cpp
+FileName=..\..\..\Src\FilterCommentsManager.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1281,7 +1281,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit124]
-FileName=..\..\Src\Common\version.h
+FileName=..\..\..\Src\FilterCommentsManager.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1291,7 +1291,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit125]
-FileName=..\..\Src\FilterCommentsManager.cpp
+FileName=..\..\..\Src\Common\RegKey.cpp
 CompileCpp=1
 Folder=Source Files
 Compile=1
@@ -1301,7 +1301,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit126]
-FileName=..\..\Src\FilterCommentsManager.h
+FileName=..\..\..\Src\Common\RegKey.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1311,17 +1311,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit127]
-FileName=..\..\Src\Common\RegKey.cpp
-CompileCpp=1
+FileName=..\..\..\Src\Common\dllproxy.c
+CompileCpp=0
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CC) -c dllproxy.c -o dllproxy.o $(CFLAGS)
 
 [Unit128]
-FileName=..\..\Src\Common\RegKey.h
+FileName=..\..\..\Src\Common\dllproxy.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1331,27 +1331,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit129]
-FileName=..\..\Src\Common\dllproxy.c
-CompileCpp=0
-Folder=Source Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=$(CC) -c dllproxy.c -o dllproxy.o $(CFLAGS)
-
-[Unit130]
-FileName=..\..\Src\Common\dllproxy.h
-CompileCpp=1
-Folder=Header Files
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit131]
-FileName=..\..\Src\diffutils\lib\cmpbuf.c
+FileName=..\..\..\Src\diffutils\lib\cmpbuf.c
 CompileCpp=0
 Folder=DiffEngine
 Compile=1
@@ -1360,8 +1340,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c cmpbuf.c -o cmpbuf.o $(CFLAGS)
 
-[Unit132]
-FileName=..\..\Src\diffutils\lib\cmpbuf.h
+[Unit130]
+FileName=..\..\..\Src\diffutils\lib\cmpbuf.h
 CompileCpp=1
 Folder=DiffEngine
 Compile=1
@@ -1370,8 +1350,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit133]
-FileName=..\..\Src\Common\lwdisp.c
+[Unit131]
+FileName=..\..\..\Src\Common\lwdisp.c
 CompileCpp=0
 Folder=Source Files
 Compile=1
@@ -1380,8 +1360,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=$(CC) -c lwdisp.c -o lwdisp.o $(CFLAGS)
 
-[Unit134]
-FileName=..\..\Src\Common\lwdisp.h
+[Unit132]
+FileName=..\..\..\Src\Common\lwdisp.h
 CompileCpp=1
 Folder=Header Files
 Compile=1
@@ -1390,20 +1370,340 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit133]
+FileName=misc.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit134]
+FileName=test_main.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit135]
-FileName=..\..\Src\Common\lwdisp.c
-CompileCpp=0
+FileName=..\ByteCompare\ByteCompare_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit136]
+FileName=..\CmdLine\MergeCmdLine_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit137]
+FileName=..\DirItem\DirItem_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit138]
+FileName=..\Encoding\charsets_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit139]
+FileName=..\Encoding\codepage_detect_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit140]
+FileName=..\Encoding\codepage_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit141]
+FileName=..\..\..\Src\codepage.cpp
+CompileCpp=1
 Folder=Source Files
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=$(CC) -c lwdisp.c -o lwdisp.o $(CFLAGS)
+BuildCmd=
 
-[Unit136]
-FileName=..\..\Src\Common\lwdisp.h
+[Unit142]
+FileName=..\..\..\Src\codepage.h
 CompileCpp=1
 Folder=Header Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit143]
+FileName=..\Environment\Environemt_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit144]
+FileName=..\FileFilter\FileFilterHelper_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit145]
+FileName=..\FileVersion\FileVersion_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit146]
+FileName=..\markdown\markdown_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit147]
+FileName=..\multiformatText\multiformatText_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit148]
+FileName=..\OptionsMgr\RegOptionsMgr_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit149]
+FileName=..\OptionsMgr\VariantValue_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit150]
+FileName=..\Paths\paths_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit151]
+FileName=..\Plugins\Plugins_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit152]
+FileName=..\ProjectFile\ProjectFile_test_LeftAndRight.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit153]
+FileName=..\ProjectFile\ProjectFile_test_LeftAndRightNonRecursive.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit154]
+FileName=..\ProjectFile\ProjectFile_test_LeftAndRightRecursive.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit155]
+FileName=..\ProjectFile\ProjectFile_test_PathsAndFilter.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit156]
+FileName=..\ProjectFile\ProjectFile_test_SimpleLeft.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit157]
+FileName=..\ProjectFile\ProjectFile_test_SimpleRight.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit158]
+FileName=..\ShellFileOperations\ShellFileOperations_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit159]
+FileName=..\StringDiffs\stringdiffs_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit160]
+FileName=..\StringDiffs\stringdiffs_test_adds.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit161]
+FileName=..\StringDiffs\stringdiffs_test_bugs.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit162]
+FileName=..\StringDiffs\stringdiffs_test_bytelevel.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit164]
+FileName=..\..\..\Src\Common\ShellFileOperations.cpp
+CompileCpp=1
+Folder=Source Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit163]
+FileName=..\UnicodeString\UnicodeString_test.cpp
+CompileCpp=1
+Folder=Tests
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit165]
+FileName=..\..\..\Src\Common\ShellFileOperations.h
+CompileCpp=1
+Folder=Header Files
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit166]
+FileName=..\unicoder\unicoder_test.cpp
+CompileCpp=1
+Folder=Tests
 Compile=1
 Link=1
 Priority=1000
