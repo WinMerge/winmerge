@@ -393,7 +393,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			else
 			{
 				// we are at the end on one side?
-				if ((!eof0 || !eof1) && (orig0 != end0 && orig1 != end1))
+				if ((!(ptr0 == end0 && eof0) && !(ptr1 == end1 && eof1)) && (orig0 != end0 && orig1 != end1))
 				{
 					goto need_more;
 				}
@@ -422,6 +422,14 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	}
 
 need_more:
+	if (ptr0 - 1 >= orig0 && *(ptr0 - 1) == '\r')
+		m_cr0 = true;
+	else
+		m_cr0 = false;
+	if (ptr1 - 1 >= orig1 && *(ptr1 - 1) == '\r')
+		m_cr1 = true;
+	else
+		m_cr1 = false;
 	if (ptr0 == end0 && !eof0)
 	{
 		if (ptr1 == end1 && !eof1)
