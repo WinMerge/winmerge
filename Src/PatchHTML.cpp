@@ -18,6 +18,7 @@ along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "PatchHTML.h"
+#include <algorithm>
 
 // reduce some noise produced with the MSVC compiler
 #if defined (_AFXDLL)
@@ -215,10 +216,10 @@ pr_unidiff_hunk (struct change *hunk)
   /* Include a context's width before and after.  */
 
   i = - files[0].prefix_lines;
-  first0 = max (first0 - context, i);
-  first1 = max (first1 - context, i);
-  last0 = min (last0 + context, files[0].valid_lines - 1);
-  last1 = min (last1 + context, files[1].valid_lines - 1);
+  first0 = (std::max) (first0 - context, i);
+  first1 = (std::max) (first1 - context, i);
+  last0 = (std::min) (last0 + context, files[0].valid_lines - 1);
+  last1 = (std::min) (last1 + context, files[1].valid_lines - 1);
 
   out = outfile;
 

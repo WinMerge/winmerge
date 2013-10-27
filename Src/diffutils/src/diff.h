@@ -25,6 +25,11 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include <stdio.h>
 #include "regex.h"
 
+#ifdef NOMINMAX
+#undef min
+#undef max
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
