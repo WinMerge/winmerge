@@ -103,7 +103,7 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	m_pMainFrame->MDIActivate(pMDIChild);
 	CMenu* pPopup = pMDIChild->GetSystemMenu(FALSE);
 	if (!pPopup) return;
-	MENUITEMINFO mii;
+	MENUITEMINFO mii = {0};
 	mii.cbSize = sizeof(MENUITEMINFO);
 	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
 	{
