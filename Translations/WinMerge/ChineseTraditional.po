@@ -6470,6 +6470,21 @@ msgstr "顯示大工具列"
 
 #: Merge.rc:2961
 #, c-format
+msgid "Close &Left Tabs"
+msgstr ""
+
+#: Merge.rc:2962
+#, c-format
+msgid "Close R&ight Tabs"
+msgstr ""
+
+#: Merge.rc:2963
+#, c-format
+msgid "Close &Other Tabs"
+msgstr ""
+
+#: Merge.rc:2968
+#, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
 
