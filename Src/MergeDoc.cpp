@@ -495,8 +495,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
-	std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
-	if (syncpoints.size() == 0)
+	if (!HasSyncPoints())
 	{
 		// Save text buffer to file
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -510,6 +509,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	}
 	else
 	{
+		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
 		int nStartLine[3] = {0};
 		int nLines[3], nRealLine[3];
 		for (int i = 0; i <= syncpoints.size(); ++i)
