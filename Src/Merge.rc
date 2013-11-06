@@ -2958,6 +2958,13 @@ END
 
 STRINGTABLE 
 BEGIN
+    IDS_CLOSE_LEFT_TABS    "Close &Left Tabs"
+    IDS_CLOSE_RIGHT_TABS   "Close R&ight Tabs"
+    IDS_CLOSE_OTHER_TABS   "Close &Other Tabs"
+END
+
+STRINGTABLE 
+BEGIN
     IDS_FRHED_NOTINSTALLED   "frhed(http://frhed.sourceforge.net/) not installed"
 END
 
