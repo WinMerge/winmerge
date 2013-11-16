@@ -74,7 +74,6 @@ public:
 	CMergeDoc * GetMergeDocForDiff(int nFiles, BOOL * pNew);
 	CHexMergeDoc * GetHexMergeDocForDiff(int nFiles, BOOL * pNew);
 	BOOL ReusingDirDoc();
-	bool CanFrameClose();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
