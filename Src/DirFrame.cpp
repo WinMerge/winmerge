@@ -78,8 +78,6 @@ static UINT RO_PANEL_WIDTH = 40;
 IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
 
 CDirFrame::CDirFrame()
-: m_picanclose(0)
-, m_param(0)
 {
 }
 
@@ -205,24 +203,8 @@ void CDirFrame::UpdateResources()
 {
 }
 
-/**
- * @brief Store callback which we check to see if we're allowed to close
- * This keeps us decoupled from the doc
- */
-void CDirFrame::SetClosableCallback(bool (*canclose)(void *), void * param)
-{
-	m_picanclose = canclose;
-	m_param = param; 
-}
-
 void CDirFrame::OnClose() 
-{
-	if (m_picanclose && !(*m_picanclose)(m_param))
-	{
-		ShowWindow(SW_MINIMIZE);
-		return;
-	}
-	
+{	
 	CMDIChildWnd::OnClose();
 }
 

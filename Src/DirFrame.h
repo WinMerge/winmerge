@@ -51,7 +51,6 @@ public:
 	void SetStatus(LPCTSTR szStatus);
 	void SetFilterStatusDisplay(LPCTSTR szFilter);
 	CStatusBar  m_wndStatusBar;
-	void SetClosableCallback(bool (*canclose)(void *), void * param);
 	IHeaderBar * GetHeaderInterface();
 	void UpdateResources();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
@@ -76,11 +75,6 @@ protected:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	bool (*m_picanclose)(void *);
-	void * m_param;
-
 };
 
 /////////////////////////////////////////////////////////////////////////////

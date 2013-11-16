@@ -2520,7 +2520,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	// Define the prediffer
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;
-	if (bFiltersEnabled)
+	if (bFiltersEnabled && m_pDirDoc)
 	{
 		m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
@@ -3275,7 +3275,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
 	PathContext paths = m_filePaths;
-	if (m_pDirDoc->IsArchiveFolders())
+	if (m_pDirDoc && m_pDirDoc->IsArchiveFolders())
 	{
 		for (int i = 0; i < paths.GetSize(); i++)
 			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
