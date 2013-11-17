@@ -731,11 +731,11 @@ bool CDiffWrapper::RunFileDiff()
 					m_infoPrediffer->pluginName.erase();
 				}
 			}
-		}
 
-		// We use the same plugin for both files, so it must be defined before
-		// second file
-		assert(m_infoPrediffer->bToBeScanned == false);
+			// We use the same plugin for both files, so it must be defined before
+			// second file
+			assert(m_infoPrediffer->bToBeScanned == false);
+		}
 	}
 
 	struct change *script = NULL;
