@@ -191,7 +191,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 	
 	m_bRecursive = bRecursive;
 	// All plugin management is done by our plugin manager
-	m_pCtxt->m_piPluginInfos = &m_pluginman;
+	m_pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : NULL;
 }
 
 /**
