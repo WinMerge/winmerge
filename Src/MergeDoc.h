@@ -199,7 +199,6 @@ public:
 	OPENRESULTS_TYPE OpenDocs(FileLocation fileloc[],
 		bool bRO[], int nPane = -1, int nLineIndex = -1);
 	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
-	OPENRESULTS_TYPE ReloadDoc(int index);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(bool &bBinary, IDENTLEVEL &identical, bool bForced = false);
 	void CheckFileChanged(void);

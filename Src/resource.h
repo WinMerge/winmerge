@@ -1131,6 +1131,12 @@
 #define IDS_FRHED_NOTINSTALLED          33188
 #define ID_ADD_SYNCPOINT                33189
 #define ID_CLEAR_SYNCPOINTS             33190
+#define ID_CLOSE_OTHER_TABS             33191
+#define ID_CLOSE_RIGHT_TABS             33192
+#define ID_CLOSE_LEFT_TABS              33193
+#define IDS_CLOSE_OTHER_TABS            33194
+#define IDS_CLOSE_RIGHT_TABS            33195
+#define IDS_CLOSE_LEFT_TABS             33196
 
 // Next default values for new objects
 //
@@ -1138,7 +1144,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33191
+#define _APS_NEXT_COMMAND_VALUE         33197
 #define _APS_NEXT_CONTROL_VALUE         1352
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2013-10-20 11:25+0000\n"
+"POT-Creation-Date: 2013-11-18 22:39+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -5893,6 +5893,21 @@ msgid "Show big toolbar"
 msgstr ""
 
 #: Merge.rc:2961
+#, c-format
+msgid "Close &Left Tabs"
+msgstr ""
+
+#: Merge.rc:2962
+#, c-format
+msgid "Close R&ight Tabs"
+msgstr ""
+
+#: Merge.rc:2963
+#, c-format
+msgid "Close &Other Tabs"
+msgstr ""
+
+#: Merge.rc:2968
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""

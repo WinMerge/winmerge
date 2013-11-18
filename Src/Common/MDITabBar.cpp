@@ -103,11 +103,42 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	m_pMainFrame->MDIActivate(pMDIChild);
 	CMenu* pPopup = pMDIChild->GetSystemMenu(FALSE);
 	if (!pPopup) return;
-
+	MENUITEMINFO mii = {0};
+	mii.cbSize = sizeof(MENUITEMINFO);
+	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
+	{
+		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_OTHER_TABS, _("Close &Other Tabs").c_str());
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_RIGHT_TABS, _("Close R&ight Tabs").c_str());
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_LEFT_TABS, _("Close &Left Tabs").c_str());
+	}
 	// invoke context menu
 	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y,
-		AfxGetMainWnd());
-	pMDIChild->SendMessage(WM_SYSCOMMAND, command);
+		this);
+	switch (command)
+	{
+	case ID_CLOSE_OTHER_TABS:
+	case ID_CLOSE_RIGHT_TABS:
+	case ID_CLOSE_LEFT_TABS: {
+		int curcel = GetCurSel();
+		int n = GetItemCount();
+		TCITEM tci;
+		tci.mask = TCIF_PARAM;
+		for (int i = n - 1; i >= 0; --i)
+		{
+			if ((command == ID_CLOSE_OTHER_TABS && i == curcel) ||
+				(command == ID_CLOSE_RIGHT_TABS && i <= curcel) ||
+				(command == ID_CLOSE_LEFT_TABS  && i >= curcel))
+				continue;
+			GetItem(i, &tci);
+			CWnd* pMDIChild = FromHandle((HWND)tci.lParam);
+			pMDIChild->SendMessage(WM_SYSCOMMAND, SC_CLOSE);
+		}
+		break;
+	}
+	default:
+		pMDIChild->SendMessage(WM_SYSCOMMAND, command);
+	}
 }
 
 /**
