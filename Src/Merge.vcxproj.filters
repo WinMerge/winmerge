@@ -1062,9 +1062,6 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\wispelld.h">
       <Filter>EditLib</Filter>
     </ClInclude>
-    <ClInclude Include="WaitStatusCursor.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\ToolbarXPThemes.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1385,6 +1382,9 @@
     </ClInclude>
     <ClInclude Include="DirViewColItems.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitStatusCursor.h">
+      <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

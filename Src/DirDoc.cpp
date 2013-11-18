@@ -113,32 +113,12 @@ CDirDoc::~CDirDoc()
 }
 
 /**
- * @brief Callback we give our frame which allows us to control whether
- * or not it closes.
- */
-static bool DocClosableCallback(void * param)
-{
-	CDirDoc * pDoc = reinterpret_cast<CDirDoc *>(param);
-	return pDoc->CanFrameClose();
-}
-
-/**
- * @brief Checks if there are mergedocs associated with this dirdoc.
- */
-bool CDirDoc::CanFrameClose()
-{
-	return m_MergeDocs.IsEmpty() && m_HexMergeDocs.IsEmpty();
-}
-
-/**
  * @brief Called when new dirdoc is created.
  */
 BOOL CDirDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-
-	GetMainView()->GetParentFrame()->SetClosableCallback(&DocClosableCallback, this);
 
 	return TRUE;
 }
@@ -209,7 +189,7 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 	}
 	
 	// All plugin management is done by our plugin manager
-	m_pCtxt->m_piPluginInfos = &m_pluginman;
+	m_pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : NULL;
 }
 
 

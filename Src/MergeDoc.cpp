@@ -497,8 +497,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
 			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 
-	std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
-	if (syncpoints.size() == 0)
+	if (!HasSyncPoints())
 	{
 		// Save text buffer to file
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -512,6 +511,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	}
 	else
 	{
+		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
 		int nStartLine[3] = {0};
 		int nLines[3], nRealLine[3];
 		for (int i = 0; i <= syncpoints.size(); ++i)
@@ -2526,7 +2526,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 	// Define the prediffer
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;
-	if (bFiltersEnabled)
+	if (bFiltersEnabled && m_pDirDoc)
 	{
 		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
 		m_diffWrapper.SetPrediffer(infoPrediffer);
@@ -2664,187 +2664,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
  * one side of the file compare.
  * @param [in] index The document to re-load.
  * @return Open result code.
- */
-OPENRESULTS_TYPE CMergeDoc::ReloadDoc(int index)
-{
-	IDENTLEVEL identical = IDENTLEVEL_NONE;
-	int nRescanResult = RESCAN_OK;
-
-	// clear undo stack
-	undoTgt.clear();
-	curUndo = undoTgt.begin();
-
-	const String path = m_filePaths.GetPath(index);
-	const bool readOnly = m_ptBuf[index]->GetReadOnly();
-
-
-	// Prevent displaying views during LoadFile
-	// Note : attach buffer again only if both loads succeed
-	// clear undo buffers
-	// free the buffers
-	m_pView[index]->DetachFromBuffer();
-	m_pDetailView[index]->DetachFromBuffer();
-	m_ptBuf[index]->m_aUndoBuf.clear();
-	m_ptBuf[index]->FreeAll();
-
-	// Load files
-	DWORD nLoadSuccess = LoadOneFile(index, path, readOnly,
-		m_ptBuf[index]->getEncoding());
-	const bool bFiltersEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-
-	// Bail out if either side failed
-	if (!FileLoadResult::IsOk(nLoadSuccess))
-	{
-		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
-		CChildFrame *pFrame = GetParentFrame();
-		if (pFrame)
-		{
-			// Use verify macro to trap possible error in debug.
-			VERIFY(pFrame->DestroyWindow());
-		}
-		return retVal;
-	}
-
-	// Warn user if file load was lossy (bad encoding)
-	if (FileLoadResult::IsLossy(nLoadSuccess))
-	{
-		// TODO: It would be nice to report how many lines were lossy
-		// we did calculate those numbers when we loaded the files, in the text stats
-		LangMessageBox(IDS_LOSSY_TRANSCODING_FIRST, MB_ICONSTOP);
-	}
-
-	// Now buffers data are valid
-	m_pView[index]->AttachToBuffer();
-	m_pDetailView[index]->AttachToBuffer();
-
-	// Currently there is only one set of syntax colors, which all documents & views share
-	int nNormalBuffer = 0;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		m_pView[nBuffer]->SetColorContext(GetMainSyntaxColors());
-		m_pDetailView[nBuffer]->SetColorContext(GetMainSyntaxColors());
-		if ((m_nBufferType[nBuffer] == BUFFER_NORMAL) ||
-		    (m_nBufferType[nBuffer] == BUFFER_NORMAL_NAMED))
-		{
-			nNormalBuffer++;
-		}
-	}
-
-	// Set read-only status
-	m_ptBuf[index]->SetReadOnly(readOnly);
-
-	// Check the EOL sensitivity option (do it before Rescan)
-	DIFFOPTIONS diffOptions = {0};
-	m_diffWrapper.GetOptions(&diffOptions);
-	if (m_ptBuf[0]->GetCRLFMode() != m_ptBuf[1]->GetCRLFMode() &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && !diffOptions.bIgnoreEol)
-	{
-		// Options and files not are not compatible :
-		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
-		// All lines will differ, that is not very interesting and probably not wanted.
-		// Propose to turn off the option 'sensitive to EOL'
-		String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
-		if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN | MB_IGNORE_IF_SILENCED, IDS_SUGGEST_IGNOREEOL) == IDYES)
-		{
-			diffOptions.bIgnoreEol = true;
-			m_diffWrapper.SetOptions(&diffOptions);
-		}
-	}
-
-	// Define the prediffer
-	PackingInfo * infoUnpacker = 0;
-	PrediffingInfo * infoPrediffer = 0;
-	if (bFiltersEnabled)
-	{
-		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
-		m_diffWrapper.SetPrediffer(infoPrediffer);
-		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
-	}
-
-	bool bBinary = false;
-	nRescanResult = Rescan(bBinary, identical, true);
-
-	// Open filed if rescan succeed and files are not binaries
-	if (nRescanResult == RESCAN_OK)
-	{
-		// prepare the four views
-		CMergeEditView * pView = GetView(index);
-		CMergeEditView * pDetail = GetDetailView(index);
-		
-		// set the document types
-		// Warning : it is the first thing to do (must be done before UpdateView,
-		// or any function that calls UpdateView, like SelectDiff)
-		// Note: If option enabled, and another side type is not recognized,
-		// we use recognized type for unrecognized side too.
-		String sext;
-		if (bFiltersEnabled && m_pInfoUnpacker->textType.length())
-		{
-			sext = m_pInfoUnpacker->textType;
-		}
-		else
-		{
-			sext = GetFileExt(path.c_str(), m_strDesc[index].c_str());
-		}
-		
-		bool syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-		bool bTyped = false;
-		
-		if (syntaxHLEnabled)
-		{
-			bTyped = pView->SetTextType(sext.c_str());
-			pDetail->SetTextType(sext.c_str());
-		}
-
-		// set the frame window header
-		UpdateHeaderPath(index);
-
-		pView->DocumentsLoaded();
-		pDetail->DocumentsLoaded();
-
-		// Inform user that files are identical
-		// Don't show message if new buffers created
-		if (identical == IDENTLEVEL_ALL && nNormalBuffer > 0)
-		{
-			ShowRescanError(nRescanResult, identical);
-		}
-
-		// scroll to first diff
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
-			m_diffList.HasSignificantDiffs())
-		{
-			int nDiff = m_diffList.FirstSignificantDiff();
-			pView->SelectDiff(nDiff, true, false);
-		}
-
-		// Exit if files are identical should only work for the first
-		// comparison and must be disabled afterward.
-		GetMainFrame()->m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
-	}
-	else
-	{
-		// CMergeDoc::Rescan fails if files do not exist on both sides 
-		// or the really arcane case that the temp files couldn't be created, 
-		// which is too obscure to bother reporting if you can't write to 
-		// your temp directory, doing nothing is graceful enough for that).
-		ShowRescanError(nRescanResult, identical);
-		GetParentFrame()->DestroyWindow();
-		return OPENRESULTS_FAILED_MISC;
-	}
-
-	// Force repaint of location pane to update it in case we had some warning
-	// dialog visible and it got painted before files were loaded
-	if (m_pView[0])
-		m_pView[0]->RepaintLocationPane();
-
-	return OPENRESULTS_SUCCESS;
-}
-
-/**
- * @brief Refresh cached options.
- *
- * For compare speed, we have to cache some frequently needed options,
- * instead of getting option value every time from OptionsMgr. This
- * function must be called every time options are changed to OptionsMgr.
  */
 void CMergeDoc::RefreshOptions()
 {
@@ -3240,7 +3059,7 @@ bool CMergeDoc::GenerateReport(LPCTSTR szFileName)
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
 	PathContext paths = m_filePaths;
-	if (m_pDirDoc->IsArchiveFolders())
+	if (m_pDirDoc && m_pDirDoc->IsArchiveFolders())
 	{
 		for (int i = 0; i < paths.GetSize(); i++)
 			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
