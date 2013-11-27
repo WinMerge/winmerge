@@ -2384,6 +2384,7 @@ BEGIN
     IDS_CONFIRM_MULTIPLE_MOVE "Are you sure you want to move %d items:"
     IDS_CONFIRM_COPY_CAPTION "Confirm Copy"
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
+    IDS_CONFIRM_CLOSE_WINDOW "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -1019,8 +1019,7 @@ void DirItemEnumerator::CompressArchive(LPCTSTR path)
 		String strFilter; // = CExternalArchiveFormat::GetOpenFileFilterString();
 		strFilter.insert(0, _T_Filter);
 		strFilter += _T("|");
-		// Make CFileDialog static to preserve settings across invocations:
- 		static CFileDialog dlg
+ 		CFileDialog dlg
 		(
 			FALSE,
 			0,
