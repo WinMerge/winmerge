@@ -650,7 +650,14 @@ BOOL CDirDoc::SaveModified()
 {
 	// Do not allow closing if there is a thread running
 	if (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
-		return FALSE;
+	{
+		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW, MB_YESNO | MB_ICONWARNING);
+		if (ans == IDNO)
+			return FALSE;
+		m_diffThread.Abort();
+		while (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
+			Sleep(50);
+	}
 	
 	return CDocument::SaveModified();
 }

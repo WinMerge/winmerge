@@ -1137,6 +1137,7 @@
 #define IDS_CLOSE_OTHER_TABS            33194
 #define IDS_CLOSE_RIGHT_TABS            33195
 #define IDS_CLOSE_LEFT_TABS             33196
+#define IDS_CONFIRM_CLOSE_WINDOW        33197
 
 // Next default values for new objects
 //
@@ -1144,7 +1145,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33197
+#define _APS_NEXT_COMMAND_VALUE         33198
 #define _APS_NEXT_CONTROL_VALUE         1352
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
