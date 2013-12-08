@@ -480,7 +480,7 @@ BEGIN
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "Add &Synchronization Point",  ID_ADD_SYNCPOINT
+        MENUITEM "Add &Synchronization Point\tAlt+S",  ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
     END
     POPUP "&Tools"
@@ -667,6 +667,7 @@ BEGIN
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_ADD_SYNCPOINT,       VIRTKEY, ALT, NOINVERT
     "U",            ID_EDIT_LOWERCASE,      VIRTKEY, CONTROL, NOINVERT
     "U",            ID_EDIT_UPPERCASE,      VIRTKEY, SHIFT, CONTROL, NOINVERT
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
