@@ -301,7 +301,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		bind_opts.grfMode = STGM_READWRITE;
 		bind_opts.dwTickCountDeadline = 0;
 		// prepend appropriate moniker:
-		if (PathIsContentType(source, _T("text/scriptlet")))
+		if (PathIsContentType(source, _T("text/scriptlet")) || PathMatchSpec(source, _T("*.sct")))
 			mycpyt2w(_T("script:"), wc, DIMOF(wc));
 		else
 			mycpyt2w(_T(""), wc, DIMOF(wc));
