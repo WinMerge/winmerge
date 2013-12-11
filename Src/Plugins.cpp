@@ -74,15 +74,6 @@ template<class T> struct AutoReleaser
  */
 bool IsWindowsScriptThere()
 {
-	CRegKeyEx keyExtension;
-	if (!keyExtension.QueryRegMachine(_T("SOFTWARE\\Classes\\.sct")))
-		return false;
-
-	String content = keyExtension.ReadString(_T(""), _T("")).c_str();
-	keyExtension.Close();
-	if (string_compare_nocase(content, _T("scriptletfile")) != 0)
-		return false;
-
 	CRegKeyEx keyFile;
 	if (!keyFile.QueryRegMachine(_T("SOFTWARE\\Classes\\scriptletfile\\AutoRegister")))
 		return false;
