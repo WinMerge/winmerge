@@ -31,6 +31,7 @@ public:
 
 	~PluginManager();
 	void SetPrediffSetting(const String& filteredFilenames, int newsetting);
+	void SetPrediffSettingAll(int newsetting);
 	void SetPrediffer(const String& filteredFilenames, const String& prediffer);
 	// Implement IPluginInfos
 	virtual void FetchPluginInfos(const String& filteredFilenames, 

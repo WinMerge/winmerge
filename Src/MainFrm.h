@@ -307,6 +307,7 @@ protected:
 	afx_msg void OnHelpTranslations();
 	afx_msg void OnFileOpenConflict();
 	afx_msg void OnPluginsList();
+	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
