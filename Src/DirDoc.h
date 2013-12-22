@@ -123,6 +123,7 @@ public:
 	void ApplyDisplayRoot(int nIndex, String &);
 
 	void SetPluginPrediffSetting(const String& filteredFilenames, int newsetting);
+	void SetPluginPrediffSettingAll(int newsetting) { m_pluginman.SetPrediffSettingAll(newsetting); }
 	void SetPluginPrediffer(const String& filteredFilenames, const String & prediffer);
 	void FetchPluginInfos(const String& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);

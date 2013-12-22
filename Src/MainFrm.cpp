@@ -241,6 +241,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -249,6 +250,7 @@ END_MESSAGE_MAP()
  */
 static UINT StatusbarIndicators[] =
 {
+	ID_SEPARATOR,           // Plugin name
 	ID_SEPARATOR,           // status line indicator
 	ID_SEPARATOR,           // Merge mode
 	ID_SEPARATOR,           // Diff number
@@ -416,8 +418,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
 			countof(StatusbarIndicators));
 
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_PLUGIN, 0, 300);
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_MERGINGMODE, 0, 100); 
+	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, 150); 
+
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
 
@@ -2140,6 +2144,15 @@ void CMainFrame::OnPluginPrediffMode(UINT nID )
 		g_bPredifferMode = PLUGIN_AUTO;
 		break;
 	}
+	PrediffingInfo infoPrediffer;
+	const MergeDocList &mergedocs = GetAllMergeDocs();
+	POSITION pos = mergedocs.GetHeadPosition();
+	while (pos)
+		mergedocs.GetNext(pos)->SetPrediffer(&infoPrediffer);
+	const DirDocList &dirdocs = GetAllDirDocs();
+	pos = dirdocs.GetHeadPosition();
+	while (pos)
+		dirdocs.GetNext(pos)->SetPluginPrediffSettingAll(g_bPredifferMode);
 	theApp.WriteProfileInt(_T("Settings"), _T("PredifferMode"), g_bPredifferMode);
 }
 
@@ -3331,6 +3344,15 @@ void CMainFrame::OnPluginsList()
 {
 	PluginsListDlg dlg;
 	dlg.DoModal();
+}
+
+/**
+ * @brief Update plugin name
+ * @param [in] pCmdUI UI component to update.
+ */
+void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetText(_T(""));
 }
 
 LRESULT CMainFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)

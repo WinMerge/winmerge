@@ -49,6 +49,18 @@ void PluginManager::SetPrediffSetting(const String& filteredFilenames, int newse
 	infoPrediffer->Initialize(newsetting);
 }
 
+void PluginManager::SetPrediffSettingAll(int newsetting)
+{
+	FastMutex::ScopedLock lock(m_mutex);
+	for (PluginFileInfoMap::iterator it = m_pluginSettings.begin(); it != m_pluginSettings.end(); ++it)
+	{
+		PluginFileInfoPtr fi;
+		fi.reset(new PluginFileInfo);
+		fi->m_infoPrediffer.Initialize(newsetting);
+		(*it).second = fi;
+	}
+}
+
 void PluginManager::SetPrediffer(const String& filteredFilenames, const String & prediffer)
 {
 	PackingInfo * infoUnpacker = 0;
