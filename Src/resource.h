@@ -1030,6 +1030,7 @@
 #define ID_STATUS_PANE1FILE_EOL         44975
 #define ID_STATUS_PANE2FILE_EOL         44976
 #define ID_STATUS_FILTER                32970
+#define ID_STATUS_PLUGIN                32971
 #define ID_DIR_ZIP_LEFT                 32976
 #define ID_DIR_ZIP_RIGHT                32977
 #define ID_DIR_ZIP_BOTH                 32978
