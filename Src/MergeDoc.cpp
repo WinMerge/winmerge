@@ -106,6 +106,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_MIDDLE, OnFileSaveAsMiddle)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
 	ON_UPDATE_COMMAND_UI(ID_RESCAN, OnUpdateFileReload)
@@ -1749,6 +1750,22 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		string_replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
 	}
 	pCmdUI->SetText(s.c_str());
+}
+
+/**
+ * @brief Update plugin name
+ * @param [in] pCmdUI UI component to update.
+ */
+void CMergeDoc::OnUpdatePluginName(CCmdUI* pCmdUI)
+{
+	String pluginNames;
+	if (m_pInfoUnpacker && !m_pInfoUnpacker->pluginName.empty())
+		pluginNames += m_pInfoUnpacker->pluginName + _T("&");
+	PrediffingInfo prediffer;
+	GetPrediffer(&prediffer);
+	if (!prediffer.pluginName.empty())
+		pluginNames += prediffer.pluginName + _T("&");
+	pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 }
 
 /**

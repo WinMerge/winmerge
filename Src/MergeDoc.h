@@ -329,6 +329,7 @@ protected:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
+	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnUpdateFileReload(CCmdUI* pCmdUI);
 	afx_msg void OnFileEncoding();
