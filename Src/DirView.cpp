@@ -3283,13 +3283,16 @@ struct FileCmpReport: public IFileCmpReport
 	bool operator()(REPORT_TYPE nReportType, IListCtrl *pList, int nIndex, const String &sDestDir, String &sLinkPath)
 	{
 		const DIFFITEM &di = m_pDirView->GetDiffItem(nIndex);
-		if (di.diffcode.isDirectory() || !m_pDirView->IsItemNavigableDiff(di))
+		
+		sLinkPath = paths_ConcatPath(m_pDirView->GetDocument()->GetLeftBasePath(),
+			paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename));
+
+		if (di.diffcode.isDirectory() || !m_pDirView->IsItemNavigableDiff(di) || IsArchiveFile(sLinkPath))
 		{
 			sLinkPath.clear();
 			return false;
 		}
 
-		sLinkPath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
 		string_replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
 
@@ -3303,6 +3306,12 @@ struct FileCmpReport: public IFileCmpReport
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
 			pMergeDoc->CloseNow();
 		}
+
+		MSG msg;
+		while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+			if (!AfxGetApp()->PumpMessage())
+				break;
+		GetMainFrame()->OnUpdateFrameTitle(FALSE);
 
 		return true;
 	}
