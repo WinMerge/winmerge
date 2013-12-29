@@ -3284,14 +3284,16 @@ struct FileCmpReport: public IFileCmpReport
 	{
 		const DIFFITEM &di = m_pDirView->GetDiffItem(nIndex);
 		
-		sLinkPath = paths_ConcatPath(m_pDirView->GetDocument()->GetLeftBasePath(),
+		String sLinkFullPath = paths_ConcatPath(m_pDirView->GetDocument()->GetLeftBasePath(),
 			paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename));
 
-		if (di.diffcode.isDirectory() || !m_pDirView->IsItemNavigableDiff(di) || IsArchiveFile(sLinkPath))
+		if (di.diffcode.isDirectory() || !m_pDirView->IsItemNavigableDiff(di) || IsArchiveFile(sLinkFullPath))
 		{
 			sLinkPath.clear();
 			return false;
 		}
+
+		sLinkPath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
 
 		string_replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
