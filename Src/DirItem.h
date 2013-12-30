@@ -40,6 +40,7 @@ struct FileFlags
 	unsigned attributes; /**< Fileattributes for item */
 	FileFlags() : attributes(0) { }
 	void reset() { attributes = 0; } /// Reset fileattributes
+	String ToString() const;
 };
 
 /**
@@ -58,11 +59,10 @@ struct DirItem
 	Poco::File::FileSize size; /**< file size in bytes, -1 means file does not exist*/
 	String filename; /**< filename for this item */
 	String path; /**< full path (excluding filename) for the item */
-	bool bIsDir; /**< is this a directory item or file item? */
 	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 
-	DirItem() : ctime(0), mtime(0), size(-1), bIsDir(false) { }
+	DirItem() : ctime(0), mtime(0), size(-1) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
 	bool Update(const String &sFilePath);

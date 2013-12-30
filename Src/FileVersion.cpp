@@ -18,12 +18,8 @@
  * @brief Default constructor.
  */
 FileVersion::FileVersion()
-: m_bFileVersionSet(false)
-, m_fileVersionMS(0)
-, m_fileVersionLS(0)
-, m_bProductVersionSet(false)
-, m_productVersionMS(0)
-, m_productVersionLS(0)
+: m_fileVersionMS(0xffffffff)
+, m_fileVersionLS(0xffffffff)
 {
 }
 
@@ -32,12 +28,7 @@ FileVersion::FileVersion()
  */
 void FileVersion::Clear()
 {
-	m_bFileVersionSet = false;
-	m_fileVersionMS = 0;
-	m_fileVersionLS = 0;
-	m_bProductVersionSet = false;
-	m_productVersionMS = 0;
-	m_productVersionLS = 0;
+	m_fileVersionMS = m_fileVersionLS = 0xffffffff;
 }
 
 /**
@@ -47,21 +38,8 @@ void FileVersion::Clear()
  */
 void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
 {
-	m_bFileVersionSet = true;
 	m_fileVersionMS = versionMS;
 	m_fileVersionLS = versionLS;
-}
-
-/**
- * @brief Set product version number.
- * @param [in] versionMS Most significant dword for version.
- * @param [in] versionLS Least significant dword for version.
- */
-void FileVersion::SetProductVersion(unsigned versionMS, unsigned versionLS)
-{
-	m_bProductVersionSet = true;
-	m_productVersionMS = versionMS;
-	m_productVersionLS = versionLS;
 }
 
 /**
@@ -71,7 +49,7 @@ void FileVersion::SetProductVersion(unsigned versionMS, unsigned versionLS)
  */
 String FileVersion::GetFileVersionString()
 {
-	if (!m_bFileVersionSet)
+	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS == 0xffffffff)
 		return _T("");
 
 	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
@@ -79,16 +57,3 @@ String FileVersion::GetFileVersionString()
 		LOWORD(m_fileVersionLS));
 }
 
-/**
- * @brief Get product version as a string.
- * @return Product version number as a string.
- */
-String FileVersion::GetProductVersionString()
-{
-	if (!m_bProductVersionSet)
-		return _T("0.0.0.0");
-
-	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_productVersionMS),
-		LOWORD(m_productVersionMS), HIWORD(m_productVersionLS),
-		LOWORD(m_productVersionLS));
-}
