@@ -69,11 +69,9 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
-		Poco::Int64 first_zero; // byte offset, initially -1
-		Poco::Int64 last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
-		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
+		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; }
 	};
 	virtual const txtstats & GetTxtStats() const = 0;
 };

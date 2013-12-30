@@ -612,7 +612,7 @@ static String ColBinGet(const CDiffContext *, const void *p)
  */
 static String ColAttrGet(const CDiffContext *, const void *p)
 {
-	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
 	return r.ToString();
 }
 
@@ -887,8 +887,8 @@ static int ColBinSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
-	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
-	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
+	const FileFlags &s = *static_cast<const FileFlags *>(q);
 	return r.ToString() == s.ToString();
 }
 

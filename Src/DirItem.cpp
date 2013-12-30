@@ -31,6 +31,28 @@
 #include "TFile.h"
 
 /**
+	* @brief Convert file flags to string presentation.
+	* This function converts file flags to a string presentation that can be
+	* shown in the GUI.
+	* @return File flags as a string.
+	*/
+String FileFlags::ToString() const
+{
+	String sflags;
+#ifdef _WIN32
+	if (attributes & FILE_ATTRIBUTE_READONLY)
+		sflags += _T("R");
+	if (attributes & FILE_ATTRIBUTE_HIDDEN)
+		sflags += _T("H");
+	if (attributes & FILE_ATTRIBUTE_SYSTEM)
+		sflags += _T("S");
+	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
+		sflags += _T("A");
+#endif
+	return sflags;
+}
+
+/**
  * @brief Set filename and path for the item.
  * @param [in] fullpath Full path to file to set to item.
  */
@@ -114,7 +136,6 @@ void DirItem::ClearPartial()
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	bIsDir = false;
 	version.Clear();
 	flags.reset();
 }

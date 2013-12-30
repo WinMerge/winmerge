@@ -60,19 +60,13 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 			continue;
 
 		DirItem ent;
-		ent.bIsDir = bIsDirectory;
 		ent.ctime = it->created();
 		if (ent.ctime < 0)
 			ent.ctime = 0;
 		ent.mtime = it->getLastModified();
 		if (ent.mtime < 0)
 			ent.mtime = 0;
-
-		if (ent.bIsDir)
-			ent.size = -1;  // No size for directories
-		else
-			ent.size = it->getSize();
-
+		ent.size = it->getSize();
 		ent.path = sDir;
 		ent.filename = ucr::toTString(it.name());
 #ifdef _WIN32
@@ -102,7 +96,6 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				continue;
 
 			DirItem ent;
-			ent.bIsDir = !!bIsDirectory;
 
 			// Save filetimes as seconds since January 1, 1970
 			// Note that times can be < 0 if they are around that 1970..

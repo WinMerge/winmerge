@@ -51,11 +51,6 @@ namespace
 		FileVersion version;
 		EXPECT_EQ(_T(""), version.GetFileVersionString());
 	}
-	TEST_F(FileVersionTest, getprodver_notset)
-	{
-		FileVersion version;
-		EXPECT_EQ(_T("0.0.0.0"), version.GetProductVersionString());
-	}
 
 	TEST_F(FileVersionTest, getfilever_zeros)
 	{
@@ -79,26 +74,4 @@ namespace
 		EXPECT_EQ(_T("1.2.3.4"), version.GetFileVersionString());
 	}
 	
-	TEST_F(FileVersionTest, getprodver_zeros)
-	{
-		FileVersion version;
-		version.SetProductVersion(0, 0);
-		EXPECT_EQ(_T("0.0.0.0"), version.GetProductVersionString());
-	}
-
-	TEST_F(FileVersionTest, getprodver_simple1)
-	{
-		FileVersion version;
-		version.SetProductVersion(1, 2);
-		EXPECT_EQ(_T("0.1.0.2"), version.GetProductVersionString());
-	}
-	TEST_F(FileVersionTest, getprodver_real)
-	{
-		FileVersion version;
-		DWORD hi = (1 << 16) | 2;
-		DWORD lo = (3 << 16) | 4;
-		version.SetProductVersion(hi, lo);
-		EXPECT_EQ(_T("1.2.3.4"), version.GetProductVersionString());
-	}
-
 }  // namespace
