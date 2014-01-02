@@ -274,11 +274,10 @@ void CDirView::DoCopyRightToLeft()
 				// If destination sides's relative path is empty it means we
 				// are copying unique items and need to get the real relative
 				// path from original side.
-				if (di.diffFileInfo[0].path.empty())
+				if (di.diffFileInfo[0].GetPath().empty())
 				{
 					sDest = GetDocument()->GetLeftBasePath();
-					sDest = paths_ConcatPath(sDest, di.diffFileInfo[1].path);
-					sDest = paths_ConcatPath(sDest, di.diffFileInfo[1].filename);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[1].GetFile());
 				}
 			}
 
@@ -335,11 +334,10 @@ void CDirView::DoCopyLeftToRight()
 				// If destination sides's relative path is empty it means we
 				// are copying unique items and need to get the real relative
 				// path from original side.
-				if (di.diffFileInfo[1].path.empty())
+				if (di.diffFileInfo[1].GetPath().empty())
 				{
 					sDest = GetDocument()->GetRightBasePath();
-					sDest = paths_ConcatPath(sDest, di.diffFileInfo[0].path);
-					sDest = paths_ConcatPath(sDest, di.diffFileInfo[0].filename);
+					sDest = paths_ConcatPath(sDest, di.diffFileInfo[0].GetFile());
 				}
 			}
 
@@ -621,13 +619,13 @@ void CDirView::DoCopyLeftTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.diffFileInfo[0].path.empty())
+				if (!di.diffFileInfo[0].GetPath().empty())
 				{
-					sFullDest += di.diffFileInfo[0].path;
+					sFullDest += di.diffFileInfo[0].GetPath();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.diffFileInfo[0].filename;
+			sFullDest += di.diffFileInfo[0].GetFileName();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -692,13 +690,13 @@ void CDirView::DoCopyRightTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.diffFileInfo[1].path.empty())
+				if (!di.diffFileInfo[1].GetPath().empty())
 				{
-					sFullDest += di.diffFileInfo[1].path;
+					sFullDest += di.diffFileInfo[1].GetPath();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.diffFileInfo[1].filename;
+			sFullDest += di.diffFileInfo[1].GetFileName();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -761,13 +759,13 @@ void CDirView::DoMoveLeftTo()
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.diffFileInfo[0].path.empty())
+				if (!di.diffFileInfo[0].GetPath().empty())
 				{
-					sFullDest += di.diffFileInfo[0].path;
+					sFullDest += di.diffFileInfo[0].GetPath();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.diffFileInfo[0].filename;
+			sFullDest += di.diffFileInfo[0].GetFileName();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -830,13 +828,13 @@ void CDirView::DoMoveRightTo()
 			actionScript.m_destBase = sFullDest;
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.diffFileInfo[1].path.empty())
+				if (!di.diffFileInfo[1].GetPath().empty())
 				{
-					sFullDest += di.diffFileInfo[1].path;
+					sFullDest += di.diffFileInfo[1].GetPath();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.diffFileInfo[1].filename;
+			sFullDest += di.diffFileInfo[1].GetFileName();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -1261,15 +1259,15 @@ bool CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2, cons
 	String sLeftBasePath = GetDocument()->GetBasePath(0);
 	String sMiddleBasePath = GetDocument()->GetBasePath(1);
 	String sRightBasePath = GetDocument()->GetBasePath(2);
-	String sLeftPath1 = paths_ConcatPath(di1.getFilepath(0, sLeftBasePath), di1.diffFileInfo[0].filename);
-	String sLeftPath2 = paths_ConcatPath(di2.getFilepath(0, sLeftBasePath), di2.diffFileInfo[0].filename);
-	String sLeftPath3 = paths_ConcatPath(di3.getFilepath(0, sLeftBasePath), di3.diffFileInfo[0].filename);
-	String sMiddlePath1 = paths_ConcatPath(di1.getFilepath(1, sMiddleBasePath), di1.diffFileInfo[1].filename);
-	String sMiddlePath2 = paths_ConcatPath(di2.getFilepath(1, sMiddleBasePath), di2.diffFileInfo[1].filename);
-	String sMiddlePath3 = paths_ConcatPath(di3.getFilepath(1, sMiddleBasePath), di3.diffFileInfo[1].filename);
-	String sRightPath1 = paths_ConcatPath(di1.getFilepath(2, sRightBasePath), di1.diffFileInfo[2].filename);
-	String sRightPath2 = paths_ConcatPath(di2.getFilepath(2, sRightBasePath), di2.diffFileInfo[2].filename);
-	String sRightPath3 = paths_ConcatPath(di3.getFilepath(2, sRightBasePath), di3.diffFileInfo[2].filename);
+	String sLeftPath1 = paths_ConcatPath(di1.getFilepath(0, sLeftBasePath), di1.diffFileInfo[0].GetFileName());
+	String sLeftPath2 = paths_ConcatPath(di2.getFilepath(0, sLeftBasePath), di2.diffFileInfo[0].GetFileName());
+	String sLeftPath3 = paths_ConcatPath(di3.getFilepath(0, sLeftBasePath), di3.diffFileInfo[0].GetFileName());
+	String sMiddlePath1 = paths_ConcatPath(di1.getFilepath(1, sMiddleBasePath), di1.diffFileInfo[1].GetFileName());
+	String sMiddlePath2 = paths_ConcatPath(di2.getFilepath(1, sMiddleBasePath), di2.diffFileInfo[1].GetFileName());
+	String sMiddlePath3 = paths_ConcatPath(di3.getFilepath(1, sMiddleBasePath), di3.diffFileInfo[1].GetFileName());
+	String sRightPath1 = paths_ConcatPath(di1.getFilepath(2, sRightBasePath), di1.diffFileInfo[2].GetFileName());
+	String sRightPath2 = paths_ConcatPath(di2.getFilepath(2, sRightBasePath), di2.diffFileInfo[2].GetFileName());
+	String sRightPath3 = paths_ConcatPath(di3.getFilepath(2, sRightBasePath), di3.diffFileInfo[2].GetFileName());
 	// Must not be binary (unless archive)
 	if
 	(
@@ -1391,8 +1389,8 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
 	else
 	{
 		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
-		const String leftrelpath = paths_ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename);
-		const String rightrelpath = paths_ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename);
+		const String leftrelpath = di.diffFileInfo[0].GetFile();
+		const String rightrelpath = di.diffFileInfo[1].GetFile();
 		const String & leftpath = GetDocument()->GetBasePath(0);
 		const String & rightpath = GetDocument()->GetBasePath(1);
 		strLeft = paths_ConcatPath(leftpath, leftrelpath);
@@ -1418,7 +1416,7 @@ void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
 		for (int nIndex = 0; nIndex < GetDocument()->m_nDirs; nIndex++)
 		{
-			const String relpath = paths_ConcatPath(di.diffFileInfo[nIndex].path, di.diffFileInfo[nIndex].filename);
+			const String relpath = di.diffFileInfo[nIndex].GetFile();
 			const String & path = GetDocument()->GetBasePath(nIndex);
 			paths->SetPath(nIndex, paths_ConcatPath(path, relpath));
 		}
@@ -1732,9 +1730,9 @@ bool CDirView::DoItemRename(const String& szNewItemName)
 		for (index = 0; index < nDirs; index++)
 		{
 			if (bRename[index])
-				di.diffFileInfo[index].filename = szNewItemName;
+				di.diffFileInfo[index].SetFileName(szNewItemName);
 			else
-				di.diffFileInfo[index].filename.erase();
+				di.diffFileInfo[index].SetFileName(_T(""));
 		}
 	}
 
@@ -1767,7 +1765,7 @@ void CDirView::DoCopyItemsToClipboard(int flags)
 				path += '\\';
 				// If item is a folder then subfolder (relative to base folder)
 				// is in filename member.
-				path += di.diffFileInfo[nIndex].filename;
+				path += di.diffFileInfo[nIndex].GetFileName();
 
 				strPaths += path.c_str();
 				strPaths += '\0';

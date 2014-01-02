@@ -814,7 +814,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideFirstOnly())
 				{
 					// Item is present on right side, i.e. folder is implied
-					m_rgImpliedFoldersRight[di.diffFileInfo[1].path] = PVOID(1);
+					m_rgImpliedFoldersRight[di.diffFileInfo[1].GetPath()] = PVOID(1);
 				}
 			}
 			else
@@ -823,7 +823,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideSecondOnly())
 				{
 					// Item is present on left side, i.e. folder is implied
-					m_rgImpliedFoldersLeft[di.diffFileInfo[0].path] = PVOID(1);
+					m_rgImpliedFoldersLeft[di.diffFileInfo[0].GetPath()] = PVOID(1);
 				}
 			}
 		}
@@ -898,8 +898,8 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	Envelope *envelope = new Envelope;
 
-	const String &sFilename = m_bRight ? di.diffFileInfo[1].filename : di.diffFileInfo[0].filename;
-	const String &sSubdir = m_bRight ? di.diffFileInfo[1].path : di.diffFileInfo[0].path;
+	const String &sFilename = m_bRight ? di.diffFileInfo[1].GetFileName() : di.diffFileInfo[0].GetFileName();
+	const String &sSubdir = m_bRight ? di.diffFileInfo[1].GetPath() : di.diffFileInfo[0].GetPath();
 	envelope->Name = sFilename;
 	if (sSubdir.length())
 	{
@@ -922,12 +922,12 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideFirst)
 			{
 				// Item is missing on right side
-				PVOID &implied = m_rgImpliedFoldersRight[di.diffFileInfo[0].path.c_str()];
+				PVOID &implied = m_rgImpliedFoldersRight[di.diffFileInfo[0].GetPath()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.diffFileInfo[0].path;
+					envelope->Name = di.diffFileInfo[0].GetPath();
 					envelope->FullPath = di.getFilepath(0, pDoc->GetBasePath(0));
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideFirst = false;
@@ -941,12 +941,12 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideSecond)
 			{
 				// Item is missing on left side
-				PVOID &implied = m_rgImpliedFoldersLeft[di.diffFileInfo[1].path.c_str()];
+				PVOID &implied = m_rgImpliedFoldersLeft[di.diffFileInfo[1].GetPath()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.diffFileInfo[1].path;
+					envelope->Name = di.diffFileInfo[1].GetPath();
 					envelope->FullPath = di.getFilepath(1, pDoc->GetBasePath(1));
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideSecond = false;
@@ -1100,7 +1100,7 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 			cchBuffer +=
 			(
 				m_bRight ? di.getFilepath(1, sLeftRootPath) : di.getFilepath(0, sRightRootPath)
-			).length() + (m_bRight ? di.diffFileInfo[1].filename : di.diffFileInfo[0].filename).length() + 2;
+			).length() + (m_bRight ? di.diffFileInfo[1].GetFileName() : di.diffFileInfo[0].GetFileName()).length() + 2;
 		}
 	}
 	strBuffer.resize(cchBuffer + 1);
@@ -1115,7 +1115,7 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 				pchBuffer,
 				_T("%s\\%s"),
 				m_bRight ? di.getFilepath(1, sLeftRootPath).c_str() : di.getFilepath(0, sRightRootPath).c_str(),
-				m_bRight ? di.diffFileInfo[1].filename.c_str() : di.diffFileInfo[0].filename.c_str()
+				m_bRight ? di.diffFileInfo[1].GetFileName().c_str() : di.diffFileInfo[0].GetFileName().c_str()
 			) + 1;
 		}
 	}

@@ -21,6 +21,7 @@
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
 using Poco::Int64;
+using boost::shared_ptr;
 
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files);
 static void Sort(DirItemArray * dirs, bool casesensitive);
@@ -49,6 +50,7 @@ void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
  */
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
 {
+	shared_ptr<const String> pdir(new String(sDir));
 #if 0
 	DirectoryIterator it(ucr::toUTF8(sDir));
 	DirectoryIterator end;
@@ -67,8 +69,8 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 		if (ent.mtime < 0)
 			ent.mtime = 0;
 		ent.size = it->getSize();
-		ent.path = sDir;
-		ent.filename = ucr::toTString(it.name());
+		ent.path = pdir;
+		ent.filename.reset(new String(ucr::toTString(it.name()));
 #ifdef _WIN32
 		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());;
 #else
@@ -115,8 +117,8 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				ent.size = ((Int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
 
-			ent.path = sDir;
-			ent.filename = ff.cFileName;
+			ent.path = pdir;
+			ent.filename.reset(new String(ff.cFileName));
 			ent.flags.attributes = ff.dwFileAttributes;
 			
 			(bIsDirectory ? dirs : files)->push_back(ent);
@@ -137,7 +139,7 @@ static int collate(const String &str1, const String &str2)
  */
 static bool __cdecl cmpstring(const DirItem &elem1, const DirItem &elem2)
 {
-	return collate(elem1.filename, elem2.filename) < 0;
+	return collate(elem1.GetFileName(), elem2.GetFileName()) < 0;
 }
 
 static int collate_ignore_case(const String &str1, const String &str2)
@@ -174,7 +176,7 @@ static int collate_ignore_case(const String &str1, const String &str2)
  */
 static bool __cdecl cmpistring(const DirItem &elem1, const DirItem &elem2)
 {
-	return collate_ignore_case(elem1.filename, elem2.filename) < 0;
+	return collate_ignore_case(elem1.GetFileName(), elem2.GetFileName()) < 0;
 }
 
 /**
