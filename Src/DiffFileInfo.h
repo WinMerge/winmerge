@@ -38,7 +38,6 @@
 struct DiffFileInfo : public DirItem
 {
 // data
-	bool bVersionChecked; /**< true if version string is up-to-date */
 	FileTextEncoding encoding; /**< unicode or codepage info */
 	FileTextStats m_textStats; /**< EOL, zero-byte etc counts */
 
@@ -47,7 +46,7 @@ struct DiffFileInfo : public DirItem
 
 // methods
 
-	DiffFileInfo(): bVersionChecked(false) { }
+	DiffFileInfo() { }
 	//void Clear();
 	void ClearPartial();
 	bool IsEditableEncoding() const;

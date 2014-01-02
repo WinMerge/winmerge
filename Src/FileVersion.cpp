@@ -49,7 +49,7 @@ void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
  */
 String FileVersion::GetFileVersionString()
 {
-	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS == 0xffffffff)
+	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS >= 0xfffffffe)
 		return _T("");
 
 	return string_format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
