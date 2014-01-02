@@ -27,6 +27,7 @@
 #include <climits>
 #include <Poco/Thread.h>
 #include <Poco/Semaphore.h>
+#include <boost/shared_ptr.hpp>
 #include "UnicodeString.h"
 #include "DiffContext.h"
 #include "DirScan.h"
@@ -37,6 +38,7 @@
 
 using Poco::Thread;
 using Poco::Semaphore;
+using boost::shared_ptr;
 
 // Thread functions
 static void DiffThreadCollect(void *lpParam);
@@ -158,7 +160,9 @@ static void DiffThreadCollect(void *pParam)
 
 	paths = myStruct->context->GetNormalizedPaths();
 
-	const TCHAR *subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
+	shared_ptr<String> subdir[3]; // blank to start at roots specified in diff context
+	subdir[0].reset(new String(_T("")));
+	subdir[1] = subdir[2] = subdir[0];
 
 	// Build results list (except delaying file comparisons until below)
 	DirScan_GetItems(paths, subdir, myStruct,

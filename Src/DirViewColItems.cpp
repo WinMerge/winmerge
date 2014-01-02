@@ -195,10 +195,10 @@ static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return
 	(
-		di.diffFileInfo[0].filename.empty() ? di.diffFileInfo[1].filename :
-		di.diffFileInfo[1].filename.empty() ? di.diffFileInfo[0].filename :
-		di.diffFileInfo[0].filename == di.diffFileInfo[1].filename ? di.diffFileInfo[0].filename :
-		di.diffFileInfo[0].filename + _T("|") + di.diffFileInfo[1].filename
+		di.diffFileInfo[0].GetFileName().empty() ? di.diffFileInfo[1].GetFileName() :
+		di.diffFileInfo[1].GetFileName().empty() ? di.diffFileInfo[0].GetFileName() :
+		di.diffFileInfo[0].GetFileName() == di.diffFileInfo[1].GetFileName() ? di.diffFileInfo[0].GetFileName() :
+		di.diffFileInfo[0].GetFileName() + _T("|") + di.diffFileInfo[1].GetFileName()
 	);
 }
 
@@ -213,7 +213,7 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 	// We don't show extension for folder names
 	if (di.diffcode.isDirectory())
 		return _T("");
-	const String &r = di.diffFileInfo[0].filename;
+	const String &r = di.diffFileInfo[0].GetFileName();
 	String s = paths_FindExtension(r);
 	return s.c_str() + _tcsspn(s.c_str(), _T("."));
 }
@@ -226,8 +226,8 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 static String ColPathGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	String s = di.diffFileInfo[1].path;
-	const String &t = di.diffFileInfo[0].path;
+	String s = di.diffFileInfo[1].GetPath();
+	const String &t = di.diffFileInfo[0].GetPath();
 
 	// If we have unique path, just print the existing path name
 	if (s.length() == 0 || t.length() == 0)
@@ -491,7 +491,7 @@ static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, int n
 {
 	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
-	if (!dfi.bVersionChecked)
+	if (dfi.version.IsCleared())
 	{
 		pCtxt->UpdateVersion(di, nIndex);
 	}

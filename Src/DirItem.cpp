@@ -30,6 +30,8 @@
 #include "paths.h"
 #include "TFile.h"
 
+using boost::shared_ptr;
+
 /**
 	* @brief Convert file flags to string presentation.
 	* This function converts file flags to a string presentation that can be
@@ -58,10 +60,12 @@ String FileFlags::ToString() const
  */
 void DirItem::SetFile(const String &fullPath)
 {
-	String ext;
-	paths_SplitFilename(fullPath, &path, &filename, &ext);
-	filename += _T(".");
-	filename += ext;
+	String ext, filename2, path2;
+	paths_SplitFilename(fullPath, &path2, &filename2, &ext);
+	filename2 += _T(".");
+	filename2 += ext;
+	SetFileName(filename2);
+	SetPath(path2);
 }
 
 /**
@@ -70,7 +74,7 @@ void DirItem::SetFile(const String &fullPath)
  */
 String DirItem::GetFile() const
 {
-	return paths_ConcatPath(path, filename);
+	return paths_ConcatPath(*path, *filename);
 }
 
 /**
