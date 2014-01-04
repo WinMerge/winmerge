@@ -50,7 +50,7 @@ void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
  */
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
 {
-	shared_ptr<const String> pdir(new String(sDir));
+	boost::flyweight<String> dir(sDir);
 #if 0
 	DirectoryIterator it(ucr::toUTF8(sDir));
 	DirectoryIterator end;
@@ -69,8 +69,8 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 		if (ent.mtime < 0)
 			ent.mtime = 0;
 		ent.size = it->getSize();
-		ent.path = pdir;
-		ent.filename.reset(new String(ucr::toTString(it.name()));
+		ent.path = dir;
+		ent.filename = ucr::toTString(it.name());
 #ifdef _WIN32
 		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());;
 #else
@@ -117,8 +117,8 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				ent.size = ((Int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
 
-			ent.path = pdir;
-			ent.filename.reset(new String(ff.cFileName));
+			ent.path = dir;
+			ent.filename = ff.cFileName;
 			ent.flags.attributes = ff.dwFileAttributes;
 			
 			(bIsDirectory ? dirs : files)->push_back(ent);

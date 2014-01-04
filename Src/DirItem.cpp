@@ -74,7 +74,7 @@ void DirItem::SetFile(const String &fullPath)
  */
 String DirItem::GetFile() const
 {
-	return paths_ConcatPath(*path, *filename);
+	return paths_ConcatPath(path.get(), filename.get());
 }
 
 /**

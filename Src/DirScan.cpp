@@ -51,9 +51,9 @@ using boost::shared_ptr;
 void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
-static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<String> sRightDir, const DirItem * lent, const DirItem * rent,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir, const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<String> sMiddleDir, const shared_ptr<String> sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
 static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
 static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos);
@@ -133,7 +133,7 @@ typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
  * @param [in] bUniques If true, walk into unique folders.
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, const shared_ptr<String> subdir[],
+int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent,
 		bool bUniques)
@@ -148,12 +148,12 @@ int DirScan_GetItems(const PathContext &paths, const shared_ptr<String> subdir[]
 	for (nIndex = 0; nIndex < nDirs; nIndex++)
 		sDir[nIndex] = paths.GetPath(nIndex);
 
-	if (!subdir[0]->empty())
+	if (!subdir[0].empty())
 	{
 		for (nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		{
-			sDir[nIndex] = paths_ConcatPath(sDir[nIndex], *subdir[nIndex]);
-			subprefix[nIndex] = *subdir[nIndex] + backslash;
+			sDir[nIndex] = paths_ConcatPath(sDir[nIndex], subdir[nIndex]);
+			subprefix[nIndex] = subdir[nIndex] + backslash;
 		}
 	}
 
@@ -351,12 +351,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					shared_ptr<String> newsubdir[3];
-					newsubdir[0].reset(new String(leftnewsub));
-					if (leftnewsub == rightnewsub)
-						newsubdir[1] = newsubdir[0];
-					else
-						newsubdir[1].reset(new String(rightnewsub));
+					String newsubdir[3] = {leftnewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
 							depth - 1, me, bUniques);
 					if (result == -1)
@@ -402,16 +397,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					shared_ptr<String> newsubdir[3];
-					newsubdir[0].reset(new String(leftnewsub));
-					if (leftnewsub == middlenewsub)
-						newsubdir[1] = newsubdir[0];
-					else
-						newsubdir[1].reset(new String(middlenewsub));
-					if (leftnewsub == rightnewsub)
-						newsubdir[2] = newsubdir[0];
-					else
-						newsubdir[2].reset(new String(rightnewsub));
+					String newsubdir[3] = {leftnewsub, middlenewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
 							depth - 1, me, bUniques);
 					if (result == -1)
@@ -882,7 +868,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
  * @param [in] pCtxt Compare context.
  * @param [in] parent Parent of item to be added
  */
-static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<String> sRightDir,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
@@ -892,7 +878,7 @@ static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<S
 /**
  * @brief Add one compare item to list.
  */
-static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<String> sMiddleDir, const shared_ptr<String> sRightDir,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
@@ -925,8 +911,7 @@ static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<S
 
 	if (ment)
 	{
-		di->diffFileInfo[1].filename = 
-			(*di->diffFileInfo[0].filename == *ment->filename) ? di->diffFileInfo[0].filename : ment->filename;
+		di->diffFileInfo[1].filename = ment->filename;
 		di->diffFileInfo[1].mtime = ment->mtime;
 		di->diffFileInfo[1].ctime = ment->ctime;
 		di->diffFileInfo[1].size = ment->size;
@@ -943,8 +928,7 @@ static DIFFITEM *AddToList(const shared_ptr<String> sLeftDir, const shared_ptr<S
 
 	if (rent)
 	{
-		di->diffFileInfo[2].filename = 
-			(*di->diffFileInfo[0].filename == *rent->filename) ? di->diffFileInfo[0].filename : rent->filename;
+		di->diffFileInfo[2].filename = rent->filename;
 		di->diffFileInfo[2].mtime = rent->mtime;
 		di->diffFileInfo[2].ctime = rent->ctime;
 		di->diffFileInfo[2].size = rent->size;
