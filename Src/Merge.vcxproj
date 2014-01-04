@@ -601,7 +601,6 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\sgml.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sh.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\siod.cpp" />
-    <ClCompile Include="..\Externals\crystaledit\editlib\splash.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\sql.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp" />
     <ClCompile Include="..\Externals\crystaledit\editlib\string_util.cpp">
@@ -6519,6 +6518,7 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">MinSpace</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">WIN64;_WINDOWS;_STATIC_CPPLIB;_CRT_SECURE_NO_WARNINGS;POCO_STATIC;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;UNICODE;_UNICODE</PreprocessorDefinitions>
+      <DeploymentContent>false</DeploymentContent>
     </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -8546,7 +8546,6 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\LineInfo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\memcombo.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\registry.h" />
-    <ClInclude Include="..\Externals\crystaledit\editlib\splash.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\string_util.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\SyntaxColors.h" />
