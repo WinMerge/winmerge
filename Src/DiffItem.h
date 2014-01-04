@@ -180,7 +180,6 @@ struct DIFFITEM : ListEntry
 	DiffFileInfo diffFileInfo[3]; /**< Fileinfo for left/middle/right file */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int nidiffs; /**< Amount of ignored differences */
-	String errorDesc; /**< technical note about error */
 	unsigned customFlags1; /**< Custom flags set 1 */
 	DIFFCODE diffcode; /**< Compare result */
 

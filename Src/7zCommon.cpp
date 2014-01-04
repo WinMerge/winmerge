@@ -824,7 +824,7 @@ DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 			if (di.diffcode.isExists(m_index))
 			{
 				// Item is present on right side, i.e. folder is implied
-				m_rgImpliedFolders[m_index][di.diffFileInfo[m_index].path] = PVOID(1);
+				m_rgImpliedFolders[m_index][di.diffFileInfo[m_index].path.get()] = PVOID(1);
 			}
 		}
 	}
@@ -915,7 +915,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 		if (isSideOnly)
 		{
 			// Item is missing on right side
-			PVOID &implied = m_rgImpliedFolders[m_index][di.diffFileInfo[1-m_index].path.c_str()];
+			PVOID &implied = m_rgImpliedFolders[m_index][di.diffFileInfo[1-m_index].path.get()];
 			if (!implied)
 			{
 				// Folder is not implied by some other file, and has

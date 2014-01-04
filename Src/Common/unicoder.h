@@ -35,6 +35,9 @@ struct buffer
 
 /** @brief Known Unicode encodings. */
 enum UNICODESET
+#if __cplusplus >= 201103L || _MSC_VER >= 1600
+	: char
+#endif
 {
 	NONE = 0,  /**< No unicode. */
 	UCS2LE,    /**< UCS-2 / UTF-16 little endian. */

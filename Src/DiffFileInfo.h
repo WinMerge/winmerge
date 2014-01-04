@@ -30,29 +30,6 @@
 #include "FileTextStats.h"
 
 /**
- * @brief Class for fileflags and coding info.
- */
-struct DiffFileFlags : public FileFlags
-{
-	/**
-	* @brief Encodings supported.
-	*/
-	enum
-	{ 
-		UTF_8 = 0x1000,
-		UCS_4 = 0x2000,
-		UCS_2BE = 0x3000,
-		UCS_2LE = 0x4000,
-		coding_mask = 0x7000,
-	};
-
-	unsigned coding; /**< Coding info for item */
-	DiffFileFlags() : coding(0) { }
-	String ToString() const;
-};
-
-
-/**
  * @brief Information for file.
  * This class expands DirItem class with encoding information and
  * text stats information.
@@ -61,8 +38,6 @@ struct DiffFileFlags : public FileFlags
 struct DiffFileInfo : public DirItem
 {
 // data
-	bool bVersionChecked; /**< true if version string is up-to-date */
-	DiffFileFlags flags; /**< file attributes */
 	FileTextEncoding encoding; /**< unicode or codepage info */
 	FileTextStats m_textStats; /**< EOL, zero-byte etc counts */
 
@@ -71,7 +46,7 @@ struct DiffFileInfo : public DirItem
 
 // methods
 
-	DiffFileInfo(): bVersionChecked(false) { }
+	DiffFileInfo() { }
 	//void Clear();
 	void ClearPartial();
 	bool IsEditableEncoding() const;

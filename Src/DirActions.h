@@ -578,7 +578,7 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 			if (bRename[index])
 				di.diffFileInfo[index].filename = szNewItemName;
 			else
-				di.diffFileInfo[index].filename.erase();
+				di.diffFileInfo[index].filename = _T("");
 		}
 	}
 

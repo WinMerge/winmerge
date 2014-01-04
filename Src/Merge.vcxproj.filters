@@ -334,9 +334,6 @@
     <ClCompile Include="..\Externals\crystaledit\editlib\registry.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\crystaledit\editlib\splash.cpp">
-      <Filter>EditLib</Filter>
-    </ClCompile>
     <ClCompile Include="..\Externals\crystaledit\editlib\statbar.cpp">
       <Filter>EditLib</Filter>
     </ClCompile>
@@ -577,9 +574,6 @@
     <ClCompile Include="Common\sizecbar.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Splash.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\SplitterWndEx.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -735,6 +729,9 @@
     </ClCompile>
     <ClCompile Include="Common\DragDrop.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Splash.cpp">
+      <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomStatusCursor.cpp">
       <Filter>MFCGui\Source Files</Filter>
@@ -1048,9 +1045,6 @@
       <Filter>EditLib</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\registry.h">
-      <Filter>EditLib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\splash.h">
       <Filter>EditLib</Filter>
     </ClInclude>
     <ClInclude Include="..\Externals\crystaledit\editlib\statbar.h">

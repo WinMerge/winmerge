@@ -158,7 +158,7 @@ static void DiffThreadCollect(void *pParam)
 
 	paths = myStruct->context->GetNormalizedPaths();
 
-	const TCHAR *subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
+	String subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
 
 	// Build results list (except delaying file comparisons until below)
 	DirScan_GetItems(paths, subdir, myStruct,

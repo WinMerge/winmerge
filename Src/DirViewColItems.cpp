@@ -248,10 +248,10 @@ static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return
 	(
-		di.diffFileInfo[0].filename.empty() ? di.diffFileInfo[1].filename :
-		di.diffFileInfo[1].filename.empty() ? di.diffFileInfo[0].filename :
+		di.diffFileInfo[0].filename.get().empty() ? di.diffFileInfo[1].filename :
+		di.diffFileInfo[1].filename.get().empty() ? di.diffFileInfo[0].filename :
 		di.diffFileInfo[0].filename == di.diffFileInfo[1].filename ? di.diffFileInfo[0].filename :
-		di.diffFileInfo[0].filename + _T("|") + di.diffFileInfo[1].filename
+		di.diffFileInfo[0].filename.get() + _T("|") + di.diffFileInfo[1].filename.get()
 	);
 }
 
@@ -544,7 +544,7 @@ static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, int n
 {
 	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
-	if (!dfi.bVersionChecked)
+	if (dfi.version.IsCleared())
 	{
 		pCtxt->UpdateVersion(di, nIndex);
 	}
@@ -665,7 +665,7 @@ static String ColBinGet(const CDiffContext *, const void *p)
  */
 static String ColAttrGet(const CDiffContext *, const void *p)
 {
-	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
 	return r.ToString();
 }
 
@@ -939,8 +939,8 @@ static int ColBinSort(const CDiffContext *, const void *p, const void *q)
  */
 static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
-	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
-	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
+	const FileFlags &s = *static_cast<const FileFlags *>(q);
 	return r.ToString() == s.ToString();
 }
 

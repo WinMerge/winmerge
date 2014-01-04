@@ -71,10 +71,6 @@ static void TextScan(FileTextStats & stats, const char *ptr, const char *end, bo
 		if (ch == 0)
 		{
 			++stats.nzeros;
-			int64_t index = offset + (ptr - start);
-			if (stats.first_zero == -1)
-				stats.first_zero = index;
-			stats.last_zero = index;
 		}
 		else if (ch == '\r')
 		{

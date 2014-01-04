@@ -50,9 +50,9 @@ using Poco::Stopwatch;
 void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
-static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir, const DirItem * lent, const DirItem * rent,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir, const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
-static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, const TCHAR * sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir, const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent);
 static void UpdateDiffItem(DIFFITEM & di, bool & bExists, CDiffContext *pCtxt);
 static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UIntPtr parentdiffpos);
@@ -110,19 +110,6 @@ private:
 typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
 
 /**
- * @brief Help minimize memory footprint by sharing CStringData if possible.
- * 
- * Use OPTIMIZE_SHARE_CSTRINGDATA to conditionally include code that is merely
- * intended to minimize memory footprint by having two CStrings share one
- * CStringData if possible. The rule is that semantics must be identical
- * regardless of whether OPTIMIZE_SHARE_CSTRINGDATA(X) expands to X or to
- * nothing. If you suspect some bug to be related to this kind of optimization,
- * then you can simply change OPTIMIZE_SHARE_CSTRINGDATA to expand to nothing,
- * recompile, and see if bug disappears.
- */
-#define OPTIMIZE_SHARE_CSTRINGDATA(X) X
-
-/**
  * @brief Collect file- and folder-names to list.
  * This function walks given folders and adds found subfolders and files into
  * lists. There are two modes, determined by the @p depth:
@@ -145,7 +132,7 @@ typedef boost::shared_ptr<DiffWorker> DiffWorkerPtr;
  * @param [in] bUniques If true, walk into unique folders.
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, const TCHAR * subdir[],
+int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent,
 		bool bUniques)
@@ -159,19 +146,12 @@ int DirScan_GetItems(const PathContext &paths, const TCHAR * subdir[],
 	int nIndex;
 	std::copy(paths.begin(), paths.end(), sDir);
 
-	if (subdir[0][0])
+	if (!subdir[0].empty())
 	{
 		for (nIndex = 0; nIndex < paths.GetSize(); nIndex++)
-			sDir[nIndex] = paths_ConcatPath(sDir[nIndex], subdir[nIndex]);
-		subprefix[0] = subdir[0];
-		subprefix[0] += backslash;
-		for (nIndex = 1; nIndex < paths.GetSize(); nIndex++)
 		{
-			// minimize memory footprint by having left/rightsubprefix share CStringData if possible
-			subprefix[nIndex] = OPTIMIZE_SHARE_CSTRINGDATA
-			(
-				_tcsicmp(subdir[0], subdir[nIndex]) == 0 ? subprefix[0] : 
-			) String(subdir[nIndex]) + backslash;
+			sDir[nIndex] = paths_ConcatPath(sDir[nIndex], subdir[nIndex]);
+			subprefix[nIndex] = subdir[nIndex] + backslash;
 		}
 	}
 
@@ -327,8 +307,8 @@ OutputDebugString(buf);
 			String middlenewsub;
 			if (nDirs < 3)
 			{
-				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename : subprefix[0] + dirs[1][j].filename;
-				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename : subprefix[1] + dirs[0][i].filename;
+				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
+				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
 			}
 			else
 			{
@@ -369,9 +349,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::SECOND ? &dirs[1][j] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					const TCHAR * newsubdir[3];
-					newsubdir[0] = leftnewsub.c_str();
-					newsubdir[1] = rightnewsub.c_str();
+					String newsubdir[3] = {leftnewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
 							depth - 1, me, bUniques);
 					if (result == -1)
@@ -417,10 +395,7 @@ OutputDebugString(buf);
 						nDiffCode & DIFFCODE::THIRD  ? &dirs[2][k] : NULL,
 						nDiffCode, myStruct, parent);
 					// Scan recursively all subdirectories too, we are not adding folders
-					const TCHAR * newsubdir[3];
-					newsubdir[0] = leftnewsub.c_str();
-					newsubdir[1] = middlenewsub.c_str();
-					newsubdir[2] = rightnewsub.c_str();
+					String newsubdir[3] = {leftnewsub, middlenewsub, rightnewsub};
 					int result = DirScan_GetItems(paths, newsubdir, myStruct, casesensitive,
 							depth - 1, me, bUniques);
 					if (result == -1)
@@ -891,7 +866,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
  * @param [in] pCtxt Compare context.
  * @param [in] parent Parent of item to be added
  */
-static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
@@ -901,7 +876,7 @@ static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sRightDir,
 /**
  * @brief Add one compare item to list.
  */
-static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, const TCHAR * sRightDir,
+static DIFFITEM *AddToList(const String& sLeftDir, const String& sMiddleDir, const String& sRightDir,
 	const DirItem * lent, const DirItem * ment, const DirItem * rent,
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent)
 {
@@ -934,10 +909,7 @@ static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, con
 
 	if (ment)
 	{
-		di->diffFileInfo[1].filename = OPTIMIZE_SHARE_CSTRINGDATA
-		(
-			ment && di->diffFileInfo[0].filename == ment->filename ? di->diffFileInfo[0].filename :
-		) ment->filename;
+		di->diffFileInfo[1].filename = ment->filename;
 		di->diffFileInfo[1].mtime = ment->mtime;
 		di->diffFileInfo[1].ctime = ment->ctime;
 		di->diffFileInfo[1].size = ment->size;
@@ -954,10 +926,7 @@ static DIFFITEM *AddToList(const TCHAR * sLeftDir, const TCHAR * sMiddleDir, con
 
 	if (rent)
 	{
-		di->diffFileInfo[2].filename = OPTIMIZE_SHARE_CSTRINGDATA
-		(
-			lent && di->diffFileInfo[0].filename == lent->filename ? di->diffFileInfo[0].filename :
-		) rent->filename;
+		di->diffFileInfo[2].filename = rent->filename;
 		di->diffFileInfo[2].mtime = rent->mtime;
 		di->diffFileInfo[2].ctime = rent->ctime;
 		di->diffFileInfo[2].size = rent->size;

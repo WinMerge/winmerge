@@ -152,8 +152,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
 {
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
 	// Check only binary files
-	dfi.version.Clear();
-	dfi.bVersionChecked = true;
+	dfi.version.SetFileVersionNone();
 
 	if (di.diffcode.isDirectory())
 		return;
