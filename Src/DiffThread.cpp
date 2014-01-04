@@ -160,9 +160,7 @@ static void DiffThreadCollect(void *pParam)
 
 	paths = myStruct->context->GetNormalizedPaths();
 
-	shared_ptr<String> subdir[3]; // blank to start at roots specified in diff context
-	subdir[0].reset(new String(_T("")));
-	subdir[1] = subdir[2] = subdir[0];
+	String subdir[3] = {_T(""), _T(""), _T("")}; // blank to start at roots specified in diff context
 
 	// Build results list (except delaying file comparisons until below)
 	DirScan_GetItems(paths, subdir, myStruct,

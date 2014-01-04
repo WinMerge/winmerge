@@ -32,6 +32,7 @@
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
 #include <boost/shared_ptr.hpp>
+#include <boost/flyweight.hpp>
 
 /**
  * @brief Class for fileflags.
@@ -58,18 +59,18 @@ struct DirItem
 	Poco::Timestamp ctime; /**< time of creation */
 	Poco::Timestamp mtime; /**< time of last modify */
 	Poco::File::FileSize size; /**< file size in bytes, -1 means file does not exist*/
-	boost::shared_ptr<const String> filename; /**< filename for this item */
-	boost::shared_ptr<const String> path; /**< full path (excluding filename) for the item */
+	boost::flyweight<String> filename; /**< filename for this item */
+	boost::flyweight<String> path; /**< full path (excluding filename) for the item */
 	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 
 	DirItem() : ctime(0), mtime(0), size(-1) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
-	const String& GetPath() const { return *path; };
-	void SetPath(const String& newpath) { path.reset(new String(newpath)); }
-	const String& GetFileName() const { return *filename; };
-	void SetFileName(const String& newfilename) { filename.reset(new String(newfilename)); }
+	const String& GetPath() const { return path.get(); };
+	void SetPath(const String& newpath) { path = newpath; }
+	const String& GetFileName() const { return filename.get(); };
+	void SetFileName(const String& newfilename) { filename = newfilename; }
 	bool Update(const String &sFilePath);
 	void ClearPartial();
 };

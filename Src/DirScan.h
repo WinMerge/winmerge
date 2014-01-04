@@ -12,7 +12,6 @@
 #include "UnicodeString.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/Types.h>
-#include <boost/shared_ptr.hpp>
 
 class CDiffContext;
 class DiffItemList;
@@ -21,7 +20,7 @@ class IAbortable;
 struct DIFFITEM;
 struct DiffFuncStruct;
 
-int DirScan_GetItems(const PathContext &paths, const boost::shared_ptr<String> subdir[], DiffFuncStruct *myStruct,
+int DirScan_GetItems(const PathContext &paths, const String subdir[], DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent, bool bUniques);
 
 int DirScan_CompareItems(DiffFuncStruct *, Poco::UIntPtr parentdiffpos);
