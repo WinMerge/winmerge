@@ -3376,7 +3376,7 @@ void CDirView::OnSearch()
 		PathContext paths;
 		for (int i = 0; i < pDoc->m_nDirs; i++)
 		{
-			if (di.diffcode.isExists(i) && !di.diffFileInfo[i].bIsDir)
+			if (di.diffcode.isExists(i) && !di.diffcode.isDirectory())
 			{
 				GetItemFileNames(currRow, &paths);
 				UniMemFile ufile;

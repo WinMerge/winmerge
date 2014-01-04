@@ -20,7 +20,7 @@ class IAbortable;
 struct DIFFITEM;
 struct DiffFuncStruct;
 
-int DirScan_GetItems(const PathContext &paths, const TCHAR *subdir[], DiffFuncStruct *myStruct,
+int DirScan_GetItems(const PathContext &paths, const String subdir[], DiffFuncStruct *myStruct,
 		bool casesensitive, int depth, DIFFITEM *parent, bool bUniques);
 
 int DirScan_CompareItems(DiffFuncStruct *, Poco::UIntPtr parentdiffpos);

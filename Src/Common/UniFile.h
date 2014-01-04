@@ -68,11 +68,9 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
-		boost::int64_t first_zero; // byte offset, initially -1
-		boost::int64_t last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
-		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
+		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; }
 	};
 	virtual const txtstats & GetTxtStats() const = 0;
 };

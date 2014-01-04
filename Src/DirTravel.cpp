@@ -50,6 +50,7 @@ void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
  */
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
 {
+	boost::flyweight<String> dir(sDir);
 #if 0
 	DirectoryIterator it(ucr::toUTF8(sDir));
 	DirectoryIterator end;
@@ -61,20 +62,14 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 			continue;
 
 		DirItem ent;
-		ent.bIsDir = bIsDirectory;
 		ent.ctime = it->created();
 		if (ent.ctime < 0)
 			ent.ctime = 0;
 		ent.mtime = it->getLastModified();
 		if (ent.mtime < 0)
 			ent.mtime = 0;
-
-		if (ent.bIsDir)
-			ent.size = -1;  // No size for directories
-		else
-			ent.size = it->getSize();
-
-		ent.path = sDir;
+		ent.size = it->getSize();
+		ent.path = dir;
 		ent.filename = ucr::toTString(it.name());
 #ifdef _WIN32
 		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());;
@@ -98,7 +93,6 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				continue;
 
 			DirItem ent;
-			ent.bIsDir = bIsDirectory;
 
 			// Save filetimes as seconds since January 1, 1970
 			// Note that times can be < 0 if they are around that 1970..
@@ -118,7 +112,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 				ent.size = ((int64_t)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
 
-			ent.path = sDir;
+			ent.path = dir;
 			ent.filename = ff.cFileName;
 			ent.flags.attributes = ff.dwFileAttributes;
 			

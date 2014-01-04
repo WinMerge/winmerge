@@ -425,9 +425,6 @@ static void Append(String &strBuffer, const TCHAR *pchTail,
 static void RecordZero(UniFile::txtstats & txstats, int64_t offset)
 {
 	++txstats.nzeros;
-	if (txstats.first_zero == -1)
-		txstats.first_zero = offset;
-	txstats.last_zero = offset;
 }
 
 /**

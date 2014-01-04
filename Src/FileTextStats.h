@@ -23,11 +23,8 @@ struct FileTextStats
 	unsigned nlfs; /**< Count of Unix (LF-byte) EOLs. */
 	unsigned ncrlfs; /**< Count of DOS (CR+LF-bytes) EOLs. */
 	unsigned nzeros; /**< Count of zero-bytes. */
-	boost::int64_t first_zero; /**< Byte offset to first zero-byte, initially -1 */
-	boost::int64_t last_zero; /**< Byte offset to last zero-byte, initially -1 */
-	unsigned nlosses;
 	FileTextStats() { clear(); }
-	void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
+	void clear() { ncrs = nlfs = ncrlfs = nzeros = 0; }
 };
 
 

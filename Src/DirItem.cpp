@@ -31,12 +31,39 @@
 #include "TFile.h"
 
 /**
+	* @brief Convert file flags to string presentation.
+	* This function converts file flags to a string presentation that can be
+	* shown in the GUI.
+	* @return File flags as a string.
+	*/
+String FileFlags::ToString() const
+{
+	String sflags;
+#ifdef _WIN32
+	if (attributes & FILE_ATTRIBUTE_READONLY)
+		sflags += _T("R");
+	if (attributes & FILE_ATTRIBUTE_HIDDEN)
+		sflags += _T("H");
+	if (attributes & FILE_ATTRIBUTE_SYSTEM)
+		sflags += _T("S");
+	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
+		sflags += _T("A");
+#endif
+	return sflags;
+}
+
+/**
  * @brief Set filename and path for the item.
  * @param [in] fullpath Full path to file to set to item.
  */
 void DirItem::SetFile(const String &fullPath)
 {
-	filename = paths_FindFileName(fullPath);
+	String ext, filename2, path2;
+	paths_SplitFilename(fullPath, &path2, &filename2, &ext);
+	filename2 += _T(".");
+	filename2 += ext;
+	filename = filename2;
+	path = path2;
 }
 
 /**
@@ -45,7 +72,7 @@ void DirItem::SetFile(const String &fullPath)
  */
 String DirItem::GetFile() const
 {
-	return paths_ConcatPath(path, filename);
+	return paths_ConcatPath(path.get(), filename.get());
 }
 
 /**
@@ -111,7 +138,6 @@ void DirItem::ClearPartial()
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	bIsDir = false;
 	version.Clear();
 	flags.reset();
 }

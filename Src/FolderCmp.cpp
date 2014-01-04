@@ -119,11 +119,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			if (infoUnpacker && string_compare_nocase(filepathUnpacked[nIndex], _T("\\\\.\\NUL")) != 0)
 			{
 				if (!Unpack(filepathUnpacked[nIndex], filteredFilenames, infoUnpacker))
-				{
-					const TCHAR *pszErrorDesc[] = {_T("Unpack Error Side 1"), _T("Unpack Error Side 2"), _T("Unpack Error Side 3")};
-					di.errorDesc = pszErrorDesc[nIndex];
 					goto exitPrepAndCompare;
-				}
 
 				// we use the same plugins for both files, so they must be defined before second file
 				assert(infoUnpacker->bToBeScanned == false);
@@ -147,11 +143,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		{
 		// Invoke prediff'ing plugins
 			if (infoPrediffer && !m_diffFileData.Filepath_Transform(bForceUTF8, encoding[nIndex], filepathUnpacked[nIndex], filepathTransformed[nIndex], filteredFilenames, infoPrediffer))
-			{
-				const TCHAR *pszErrorDesc[] = {_T("Transform Error Side 1"), _T("Unpack Error Side 2"), _T("Unpack Error Side 3")};
-				di.errorDesc = pszErrorDesc[nIndex];
 				goto exitPrepAndCompare;
-			}
 		}
 
 		// If options are binary equivalent, we could check for filesize
@@ -167,10 +159,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_diffFileData.SetDisplayFilepaths(files[0], files[1]); // store true names for diff utils patch file
 			// This opens & fstats both files (if it succeeds)
 			if (!m_diffFileData.OpenFiles(filepathTransformed[0], filepathTransformed[1]))
-			{
-				di.errorDesc = _T("OpenFiles error");
 				goto exitPrepAndCompare;
-			}
 		}
 		else
 		{
@@ -179,23 +168,14 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			diffdata12.m_diffFileData.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
 
 			if (!diffdata10.m_diffFileData.OpenFiles(filepathTransformed[1], filepathTransformed[0]))
-			{
-				di.errorDesc = _T("OpenFiles(10) error");
 				goto exitPrepAndCompare;
-			}
 
 
 			if (!diffdata12.m_diffFileData.OpenFiles(filepathTransformed[1], filepathTransformed[2]))
-			{
-				di.errorDesc = _T("OpenFiles(12) error");
 				goto exitPrepAndCompare;
-			}
 
 			if (!diffdata02.m_diffFileData.OpenFiles(filepathTransformed[0], filepathTransformed[2]))
-			{
-				di.errorDesc = _T("OpenFiles(02) error");
 				goto exitPrepAndCompare;
-			}
 
 		}
 	}
@@ -240,8 +220,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 				m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
 				m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
 			}
-			if (DIFFCODE::isResultError(code))
-				di.errorDesc = _T("DiffUtils Error");
 		}
 		else
 		{
@@ -296,8 +274,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 					m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
 					m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
 				}
-				if (DIFFCODE::isResultError(code))
-					di.errorDesc = _T("DiffUtils Error");
 
 				dw.FreeDiffUtilsScript3(script10, script12, script02);
 			}
@@ -418,7 +394,6 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		// Print error since we should have handled by date compare earlier
 		throw "Invalid compare type, DiffFileData can't handle it";
-		di.errorDesc = _T("Bad compare type");
 		goto exitPrepAndCompare;
 	}
 
@@ -468,9 +443,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & fil
 		{
 			// Compare file to itself to detect encoding
 			String path = pCtxt->GetNormalizedPath(nIndex);
-			if (!di.diffFileInfo[nIndex].path.empty())
-				path = paths_ConcatPath(path, di.diffFileInfo[nIndex].path);
-			path = paths_ConcatPath(path, di.diffFileInfo[nIndex].filename);
+			path = paths_ConcatPath(path, di.diffFileInfo[nIndex].GetFile());
 			files.SetPath(nIndex, path);
 		}
 		else
