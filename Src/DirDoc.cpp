@@ -589,10 +589,10 @@ UIntPtr CDirDoc::FindItemFromPaths(const String& pathLeft, const String& pathRig
 	while (UIntPtr currentPos = pos) // Save our current pos before getting next
 	{
 		const DIFFITEM &di = m_pCtxt->GetNextDiffPosition(pos);
-		if (di.diffFileInfo[0].GetPath() == path1 &&
-			di.diffFileInfo[1].GetPath() == path2 &&
-			di.diffFileInfo[0].GetFileName() == file1 &&
-			di.diffFileInfo[1].GetFileName() == file2)
+		if (di.diffFileInfo[0].path == path1 &&
+			di.diffFileInfo[1].path == path2 &&
+			di.diffFileInfo[0].filename == file1 &&
+			di.diffFileInfo[1].filename == file2)
 		{
 			return currentPos;
 		}

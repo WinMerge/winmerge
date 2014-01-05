@@ -902,15 +902,15 @@ bool CDirView::ListShellContextMenu(SIDE_TYPE side)
 		String filename, currentDir;
 		switch (side) {
 		case SIDE_LEFT: 
-			filename = di.diffFileInfo[0].GetFileName();
+			filename = di.diffFileInfo[0].filename;
 			currentDir = di.getFilepath(0, pDoc->GetBasePath(0));
 			break;
 		case SIDE_MIDDLE:
-			filename = di.diffFileInfo[1].GetFileName();
+			filename = di.diffFileInfo[1].filename;
 			currentDir = di.getFilepath(1, pDoc->GetBasePath(1));
 			break;
 		case SIDE_RIGHT:
-			filename = di.diffFileInfo[pDoc->m_nDirs - 1].GetFileName();
+			filename = di.diffFileInfo[pDoc->m_nDirs - 1].filename;
 			currentDir = di.getFilepath(pDoc->m_nDirs - 1, pDoc->GetBasePath(pDoc->m_nDirs - 1));
 			break;
 		}
@@ -1373,7 +1373,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
 	{
 		// Get left side (side1) folder name (existing) and
 		// right side base path (where to create)
-		subdir = di.diffFileInfo[0].GetFileName();
+		subdir = di.diffFileInfo[0].filename;
 		basedir = GetDocument()->GetBasePath(1);
 		basedir = di.getFilepath(0, basedir);
 	}
@@ -1381,7 +1381,7 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1, String &newFolder)
 	{
 		// Get right side (side2) folder name (existing) and
 		// left side base path (where to create)
-		subdir = di.diffFileInfo[1].GetFileName();
+		subdir = di.diffFileInfo[1].filename;
 		basedir = GetDocument()->GetBasePath(0);
 		basedir = di.getFilepath(1, basedir);
 	}
@@ -3227,7 +3227,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].GetFileName().c_str(), this);
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).diffFileInfo[0].filename.get().c_str(), this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker(PLUGIN_AUTO);
 		dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -3571,9 +3571,9 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 			!di.diffcode.isResultFiltered())
 		{
 			String leftPath = paths_ConcatPath(di.getFilepath(0, pDoc->GetBasePath(0)),
-					di.diffFileInfo[0].GetFileName());
+					di.diffFileInfo[0].filename);
 			String rightPath = paths_ConcatPath(di.getFilepath(1, pDoc->GetBasePath(1)),
-					di.diffFileInfo[1].GetFileName());
+					di.diffFileInfo[1].filename);
 			String filteredFilenames = string_format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
@@ -3631,7 +3631,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += di.getFilepath(0, GetDocument()->GetBasePath(0));
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].GetFileName());
+			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].filename);
 			strPaths += _T("\r\n");
 		}
 	}
@@ -3655,7 +3655,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += di.getFilepath(1, pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].GetFileName());
+			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].filename);
 			strPaths += _T("\r\n");
 		}
 	}
@@ -3679,7 +3679,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += di.getFilepath(0, pDoc->GetBasePath(0));
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].GetFileName());
+			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[0].filename);
 			strPaths += _T("\r\n");
 		}
 
@@ -3688,7 +3688,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += di.getFilepath(1, pDoc->GetRightBasePath());
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].GetFileName());
+			strPaths = paths_ConcatPath(strPaths, di.diffFileInfo[1].filename);
 			strPaths += _T("\r\n");
 		}
 	}
@@ -3708,7 +3708,7 @@ void CDirView::OnCopyFilenames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isDirectory())
 		{
-			strPaths += di.diffFileInfo[0].GetFileName();
+			strPaths += di.diffFileInfo[0].filename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -4557,13 +4557,13 @@ void CDirView::PrepareDragData(String& filesForDroping)
 		if (diffitem.diffcode.isSideFirstOnly())
 		{
 			String spath = diffitem.getFilepath(0, GetDocument()->GetDiffContext().GetNormalizedLeft());
-			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].GetFileName());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].filename);
 			filesForDroping += spath;
 		}
 		else if (diffitem.diffcode.isSideSecondOnly())
 		{
 			String spath = diffitem.getFilepath(1, GetDocument()->GetDiffContext().GetNormalizedRight());
-			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].GetFileName());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].filename);
 			filesForDroping += spath;
 		}
 		else if (diffitem.diffcode.isSideBoth()) 
@@ -4571,7 +4571,7 @@ void CDirView::PrepareDragData(String& filesForDroping)
 			// when both files equal, there is no difference between what file to drag
 			// so we put file from the left panel
 			String spath = diffitem.getFilepath(0, GetDocument()->GetDiffContext().GetNormalizedLeft());
-			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].GetFileName());
+			spath = paths_ConcatPath(spath, diffitem.diffFileInfo[0].filename);
 			filesForDroping += spath;
 			
 			// if both files are different then we also put file from the right panel
@@ -4579,7 +4579,7 @@ void CDirView::PrepareDragData(String& filesForDroping)
 			{
 				filesForDroping += _T('\n'); // end of left file path
 				String spath = diffitem.getFilepath(1, GetDocument()->GetDiffContext().GetNormalizedRight());
-				spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].GetFileName());
+				spath = paths_ConcatPath(spath, diffitem.diffFileInfo[1].filename);
 				filesForDroping += spath;
 			}
 		}

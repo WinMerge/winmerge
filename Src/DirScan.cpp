@@ -45,7 +45,6 @@ using Poco::ThreadPool;
 using Poco::Runnable;
 using Poco::Environment;
 using Poco::Stopwatch;
-using boost::shared_ptr;
 
 // Static functions (ie, functions only used locally)
 void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt);
@@ -188,14 +187,14 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 #ifdef _DEBUG
 TCHAR buf[1024];
 if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].GetFileName().c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].GetFileName().c_str() : _T(""));
+	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].filename.c_str() : _T(""));
 else
-	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].GetFileName().c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].GetFileName().c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].GetFileName().c_str() : _T(""));
+	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.c_str() : _T(""));
 OutputDebugString(buf);
 #endif
 
-		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].GetFileName(), dirs[1][j].GetFileName(), casesensitive)<0)
-			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].GetFileName(), dirs[2][k].GetFileName(), casesensitive)<0) ))
+		if (i<dirs[0].size() && (j==dirs[1].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive)<0)
+			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
 			nDiffCode = DIFFCODE::FIRST | DIFFCODE::DIR;
 			if (!bUniques)
@@ -209,8 +208,8 @@ OutputDebugString(buf);
 				continue;
 			}
 		}
-		else if (j<dirs[1].size() && (i==dirs[0].size() || collstr(dirs[1][j].GetFileName(), dirs[0][i].GetFileName(), casesensitive)<0)
-			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[1][j].GetFileName(), dirs[2][k].GetFileName(), casesensitive)<0) ))
+		else if (j<dirs[1].size() && (i==dirs[0].size() || collstr(dirs[1][j].filename, dirs[0][i].filename, casesensitive)<0)
+			&& (nDirs < 3 ||      (k==dirs[2].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive)<0) ))
 		{
 			nDiffCode = DIFFCODE::SECOND | DIFFCODE::DIR;
 			if (!bUniques)
@@ -230,8 +229,8 @@ OutputDebugString(buf);
 		}
 		else
 		{
-			if (k<dirs[2].size() && (i==dirs[0].size() || collstr(dirs[2][k].GetFileName(), dirs[0][i].GetFileName(), casesensitive)<0)
-				&&                     (j==dirs[1].size() || collstr(dirs[2][k].GetFileName(), dirs[1][j].GetFileName(), casesensitive)<0) )
+			if (k<dirs[2].size() && (i==dirs[0].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive)<0)
+				&&                     (j==dirs[1].size() || collstr(dirs[2][k].filename, dirs[1][j].filename, casesensitive)<0) )
 			{
 				nDiffCode = DIFFCODE::THIRD | DIFFCODE::DIR;
 				if (!bUniques)
@@ -244,8 +243,8 @@ OutputDebugString(buf);
 				}	
 
 			}
-			else if ((i<dirs[0].size() && j<dirs[1].size() && collstr(dirs[0][i].GetFileName(), dirs[1][j].GetFileName(), casesensitive) == 0)
-				&& (k==dirs[2].size() || collstr(dirs[2][k].GetFileName(), dirs[0][i].GetFileName(), casesensitive) != 0))
+			else if ((i<dirs[0].size() && j<dirs[1].size() && collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) == 0)
+				&& (k==dirs[2].size() || collstr(dirs[2][k].filename, dirs[0][i].filename, casesensitive) != 0))
 			{
 				nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::DIR;
 				if (!bUniques)
@@ -256,8 +255,8 @@ OutputDebugString(buf);
 					continue;	
 				}
 			}
-			else if ((i<dirs[0].size() && k<dirs[2].size() && collstr(dirs[0][i].GetFileName(), dirs[2][k].GetFileName(), casesensitive) == 0)
-				&& (j==dirs[1].size() || collstr(dirs[1][j].GetFileName(), dirs[2][k].GetFileName(), casesensitive) != 0))
+			else if ((i<dirs[0].size() && k<dirs[2].size() && collstr(dirs[0][i].filename, dirs[2][k].filename, casesensitive) == 0)
+				&& (j==dirs[1].size() || collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) != 0))
 			{
 				nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::DIR;
 				if (!bUniques)
@@ -268,8 +267,8 @@ OutputDebugString(buf);
 					continue;
 				}
 			}
-			else if ((j<dirs[1].size() && k<dirs[2].size() && collstr(dirs[1][j].GetFileName(), dirs[2][k].GetFileName(), casesensitive) == 0)
-				&& (i==dirs[0].size() || collstr(dirs[0][i].GetFileName(), dirs[1][j].GetFileName(), casesensitive) != 0))
+			else if ((j<dirs[1].size() && k<dirs[2].size() && collstr(dirs[1][j].filename, dirs[2][k].filename, casesensitive) == 0)
+				&& (i==dirs[0].size() || collstr(dirs[0][i].filename, dirs[1][j].filename, casesensitive) != 0))
 			{
 				nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::DIR;
 				if (!bUniques)
@@ -309,23 +308,23 @@ OutputDebugString(buf);
 			String middlenewsub;
 			if (nDirs < 3)
 			{
-				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].GetFileName() : subprefix[0] + dirs[1][j].GetFileName();
-				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].GetFileName() : subprefix[1] + dirs[0][i].GetFileName();
+				leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
+				rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
 			}
 			else
 			{
 				leftnewsub   = subprefix[0];
-				if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].GetFileName();
-				else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].GetFileName();
-				else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].GetFileName();
+				if (nDiffCode & DIFFCODE::FIRST)       leftnewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::SECOND) leftnewsub += dirs[1][j].filename;
+				else if (nDiffCode & DIFFCODE::THIRD)  leftnewsub += dirs[2][k].filename;
 				middlenewsub = subprefix[1];
-				if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].GetFileName();
-				else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].GetFileName();
-				else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].GetFileName();
+				if (nDiffCode & DIFFCODE::SECOND)      middlenewsub += dirs[1][j].filename;
+				else if (nDiffCode & DIFFCODE::FIRST)  middlenewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::THIRD)  middlenewsub += dirs[2][k].filename;
 				rightnewsub  = subprefix[2];
-				if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].GetFileName();
-				else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].GetFileName();
-				else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].GetFileName();
+				if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename;
+				else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename;
+				else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename;
 			}
 			if (nDirs < 3)
 			{
@@ -439,16 +438,16 @@ OutputDebugString(buf);
 #ifdef _DEBUG
 TCHAR buf[1024];
 if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < files[0].size()) ? files[0][i].GetFileName().c_str() : _T(""), (j < files[1].size()) ? files[1][j].GetFileName().c_str() : _T(""));
+	wsprintf(buf, _T("%s %s\n"), (i < files[0].size()) ? files[0][i].filename.c_str() : _T(""), (j < files[1].size()) ? files[1][j].filename.c_str() : _T(""));
 else
-	wsprintf(buf, _T("%s %s %s\n"), (i < files[0].size()) ? files[0][i].GetFileName().c_str() : _T(""), (j < files[1].size()) ?  files[1][j].GetFileName().c_str() : _T(""), 
-(k < files[2].size()) ? files[2][k].GetFileName().c_str() : _T(""));
+	wsprintf(buf, _T("%s %s %s\n"), (i < files[0].size()) ? files[0][i].filename.c_str() : _T(""), (j < files[1].size()) ?  files[1][j].filename.c_str() : _T(""), 
+(k < files[2].size()) ? files[2][k].filename.c_str() : _T(""));
 OutputDebugString(buf);
 #endif
 		if (i<files[0].size() && (j==files[1].size() ||
-				collstr(files[0][i].GetFileName(), files[1][j].GetFileName(), casesensitive) < 0)
+				collstr(files[0][i].filename, files[1][j].filename, casesensitive) < 0)
 			&& (nDirs < 3 || 
-				(k==files[2].size() || collstr(files[0][i].GetFileName(), files[2][k].GetFileName(), casesensitive)<0) ))
+				(k==files[2].size() || collstr(files[0][i].filename, files[2][k].filename, casesensitive)<0) ))
 		{
 			if (nDirs < 3)
 			{
@@ -465,9 +464,9 @@ OutputDebugString(buf);
 			continue;
 		}
 		if (j<files[1].size() && (i==files[0].size() ||
-				collstr(files[0][i].GetFileName(), files[1][j].GetFileName(), casesensitive) > 0)
+				collstr(files[0][i].filename, files[1][j].filename, casesensitive) > 0)
 			&& (nDirs < 3 ||
-				(k==files[2].size() || collstr(files[1][j].GetFileName(), files[2][k].GetFileName(), casesensitive)<0) ))
+				(k==files[2].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive)<0) ))
 		{
 			const unsigned nDiffCode = DIFFCODE::SECOND | DIFFCODE::FILE;
 			if (nDirs < 3)
@@ -481,8 +480,8 @@ OutputDebugString(buf);
 		if (nDirs == 3)
 		{
 			if (k<files[2].size() && (i==files[0].size() ||
-					collstr(files[2][k].GetFileName(), files[0][i].GetFileName(), casesensitive)<0)
-				&& (j==files[1].size() || collstr(files[2][k].GetFileName(), files[1][j].GetFileName(), casesensitive)<0) )
+					collstr(files[2][k].filename, files[0][i].filename, casesensitive)<0)
+				&& (j==files[1].size() || collstr(files[2][k].filename, files[1][j].filename, casesensitive)<0) )
 			{
 				int nDiffCode = DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], 0, 0, &files[2][k], nDiffCode, myStruct, parent);
@@ -491,8 +490,8 @@ OutputDebugString(buf);
 				continue;
 			}
 
-			if ((i<files[0].size() && j<files[1].size() && collstr(files[0][i].GetFileName(), files[1][j].GetFileName(), casesensitive) == 0)
-			    && (k==files[2].size() || collstr(files[0][i].GetFileName(), files[2][k].GetFileName(), casesensitive) != 0))
+			if ((i<files[0].size() && j<files[1].size() && collstr(files[0][i].filename, files[1][j].filename, casesensitive) == 0)
+			    && (k==files[2].size() || collstr(files[0][i].filename, files[2][k].filename, casesensitive) != 0))
 			{
 				int nDiffCode = DIFFCODE::FIRST | DIFFCODE::SECOND | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], &files[1][j], 0, nDiffCode, myStruct, parent);
@@ -500,8 +499,8 @@ OutputDebugString(buf);
 				++j;
 				continue;
 			}
-			else if ((i<files[0].size() && k<files[2].size() && collstr(files[0][i].GetFileName(), files[2][k].GetFileName(), casesensitive) == 0)
-			    && (j==files[1].size() || collstr(files[1][j].GetFileName(), files[2][k].GetFileName(), casesensitive) != 0))
+			else if ((i<files[0].size() && k<files[2].size() && collstr(files[0][i].filename, files[2][k].filename, casesensitive) == 0)
+			    && (j==files[1].size() || collstr(files[1][j].filename, files[2][k].filename, casesensitive) != 0))
 			{
 				int nDiffCode = DIFFCODE::FIRST | DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], &files[0][i], 0, &files[2][k], nDiffCode, myStruct, parent);
@@ -509,8 +508,8 @@ OutputDebugString(buf);
 				++k;
 				continue;
 			}
-			else if ((j<files[1].size() && k<files[2].size() && collstr(files[1][j].GetFileName(), files[2][k].GetFileName(), casesensitive) == 0)
-			    && (i==files[0].size() || collstr(files[0][i].GetFileName(), files[1][j].GetFileName(), casesensitive) != 0))
+			else if ((j<files[1].size() && k<files[2].size() && collstr(files[1][j].filename, files[2][k].filename, casesensitive) == 0)
+			    && (i==files[0].size() || collstr(files[0][i].filename, files[1][j].filename, casesensitive) != 0))
 			{
 				int nDiffCode = DIFFCODE::SECOND | DIFFCODE::THIRD | DIFFCODE::FILE;
 				AddToList(subdir[0], subdir[1], subdir[2], 0, &files[1][j], &files[2][k], nDiffCode, myStruct, parent);
@@ -766,8 +765,8 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	{
 		// 1. Test against filters
 		if (!pCtxt->m_piFilterGlobal ||
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].GetFileName(), di.diffFileInfo[1].GetFileName())) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].GetFileName(), di.diffFileInfo[1].GetFileName(), di.diffFileInfo[2].GetFileName()))
+			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
+			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeDir(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
 			)
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 		else
@@ -780,8 +779,8 @@ void CompareDiffItem(DIFFITEM &di, CDiffContext * pCtxt)
 	{
 		// 1. Test against filters
 		if (!pCtxt->m_piFilterGlobal ||
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].GetFileName(), di.diffFileInfo[1].GetFileName())) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].GetFileName(), di.diffFileInfo[1].GetFileName(), di.diffFileInfo[2].GetFileName()))
+			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
+			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
 			)
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;

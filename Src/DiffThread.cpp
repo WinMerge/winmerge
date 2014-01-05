@@ -27,7 +27,6 @@
 #include <climits>
 #include <Poco/Thread.h>
 #include <Poco/Semaphore.h>
-#include <boost/shared_ptr.hpp>
 #include "UnicodeString.h"
 #include "DiffContext.h"
 #include "DirScan.h"
@@ -38,7 +37,6 @@
 
 using Poco::Thread;
 using Poco::Semaphore;
-using boost::shared_ptr;
 
 // Thread functions
 static void DiffThreadCollect(void *lpParam);
