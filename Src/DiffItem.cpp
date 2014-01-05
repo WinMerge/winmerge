@@ -27,7 +27,7 @@ String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 {
 	if (diffcode.isExists(nIndex))
 	{
-		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].GetPath());
+		return paths_ConcatPath(sRoot, diffFileInfo[nIndex].path);
 	}
 	return _T("");
 }

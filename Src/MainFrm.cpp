@@ -2029,20 +2029,20 @@ void CMainFrame::OnToolsGeneratePatch()
 				// Format full paths to files (leftFile/rightFile)
 				String leftFile = item.getFilepath(0, pDoc->GetBasePath(0));
 				if (!leftFile.empty())
-					leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].GetFileName());
+					leftFile = paths_ConcatPath(leftFile, item.diffFileInfo[0].filename);
 				String rightFile = item.getFilepath(1, pDoc->GetBasePath(1));
 				if (!rightFile.empty())
-					rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].GetFileName());
+					rightFile = paths_ConcatPath(rightFile, item.diffFileInfo[1].filename);
 
 				// Format relative paths to files in folder compare
-				String leftpatch = item.diffFileInfo[0].GetPath();
+				String leftpatch = item.diffFileInfo[0].path;
 				if (!leftpatch.empty())
 					leftpatch += _T("/");
-				leftpatch += item.diffFileInfo[0].GetFileName();
-				String rightpatch = item.diffFileInfo[1].GetPath();
+				leftpatch += item.diffFileInfo[0].filename;
+				String rightpatch = item.diffFileInfo[1].path;
 				if (!rightpatch.empty())
 					rightpatch += _T("/");
-				rightpatch += item.diffFileInfo[1].GetFileName();
+				rightpatch += item.diffFileInfo[1].filename;
 				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
 				pView->GetNextSelectedInd(ind);
 			}

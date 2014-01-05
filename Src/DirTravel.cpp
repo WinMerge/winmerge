@@ -21,7 +21,6 @@
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
 using Poco::Int64;
-using boost::shared_ptr;
 
 static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files);
 static void Sort(DirItemArray * dirs, bool casesensitive);
@@ -139,7 +138,7 @@ static int collate(const String &str1, const String &str2)
  */
 static bool __cdecl cmpstring(const DirItem &elem1, const DirItem &elem2)
 {
-	return collate(elem1.GetFileName(), elem2.GetFileName()) < 0;
+	return collate(elem1.filename, elem2.filename) < 0;
 }
 
 static int collate_ignore_case(const String &str1, const String &str2)
@@ -176,7 +175,7 @@ static int collate_ignore_case(const String &str1, const String &str2)
  */
 static bool __cdecl cmpistring(const DirItem &elem1, const DirItem &elem2)
 {
-	return collate_ignore_case(elem1.GetFileName(), elem2.GetFileName()) < 0;
+	return collate_ignore_case(elem1.filename, elem2.filename) < 0;
 }
 
 /**

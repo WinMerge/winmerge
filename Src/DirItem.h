@@ -31,7 +31,6 @@
 #include <Poco/Types.h>
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
-#include <boost/shared_ptr.hpp>
 #include <boost/flyweight.hpp>
 
 /**
@@ -67,10 +66,6 @@ struct DirItem
 	DirItem() : ctime(0), mtime(0), size(-1) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
-	const String& GetPath() const { return path.get(); };
-	void SetPath(const String& newpath) { path = newpath; }
-	const String& GetFileName() const { return filename.get(); };
-	void SetFileName(const String& newfilename) { filename = newfilename; }
 	bool Update(const String &sFilePath);
 	void ClearPartial();
 };

@@ -64,8 +64,8 @@ void DirItem::SetFile(const String &fullPath)
 	paths_SplitFilename(fullPath, &path2, &filename2, &ext);
 	filename2 += _T(".");
 	filename2 += ext;
-	SetFileName(filename2);
-	SetPath(path2);
+	filename = filename2;
+	path = path2;
 }
 
 /**

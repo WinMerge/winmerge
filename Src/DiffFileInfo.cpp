@@ -23,11 +23,6 @@
 // $Id$
 
 #include "DiffFileInfo.h"
-#ifdef _WIN32
-#include <windows.h>
-#endif
-#include "DirItem.h"
-#include "UnicodeString.h"
 
 /**
  * @brief Clears FileInfo data.
