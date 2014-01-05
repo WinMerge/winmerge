@@ -17,19 +17,6 @@ int main()
 #endif
 	CompareStats cmpstats(2);
 
-	std::wcout << _T("DIFFITEM size = ") << sizeof(DIFFITEM) << std::endl;
-	std::wcout << _T("FileVersion size = ") << sizeof(FileVersion) << std::endl;
-	std::wcout << _T("String size = ") << sizeof(String) << std::endl;
-	std::wcout << _T("Poco::Timestamp size = ") << sizeof(Poco::Timestamp) << std::endl;
-	std::wcout << _T("Poco::File::FileSize size = ") << sizeof(Poco::File::FileSize) << std::endl;
-	std::wcout << _T("DirItem size = ") << sizeof(DirItem) << std::endl;
-	std::wcout << _T("FileTextEncoding size = ") << sizeof(FileTextEncoding) << std::endl;
-	std::wcout << _T("FileFlags size = ") << sizeof(FileFlags) << std::endl;
-	std::wcout << _T("FileTextStats size = ") << sizeof(FileTextStats) << std::endl;
-	std::wcout << _T("DiffFileInfo size = ") << sizeof(DiffFileInfo) << std::endl;
-	std::wcout << _T("shared_ptr size = ") << sizeof(boost::shared_ptr<String>) << std::endl;
-	std::wcout << _T("scoped_ptr size = ") << sizeof(boost::scoped_ptr<String>) << std::endl;
-
 	FileFilterHelper filter;
 	filter.UseMask(true);
 //	filter.SetMask(_T("*.cpp;*.c;*.h;*.vcproj;*.vcxproj"));
@@ -75,7 +62,7 @@ int main()
 	while (pos)
 	{
 		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
-		if (ctx.m_piFilterGlobal->includeFile(di.diffFileInfo[0].GetFileName(), di.diffFileInfo[1].GetFileName()))
+		if (ctx.m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename))
 		{
 			FolderCmp folderCmp;
 			folderCmp.prepAndCompareFiles(&ctx, di);
