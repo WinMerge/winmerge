@@ -105,6 +105,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NEXTDIFF, OnUpdateNextdiff)
 	ON_COMMAND(ID_PREVDIFF, OnPrevdiff)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
+	ON_COMMAND(ID_NEXTCONFLICT, OnNextConflict)
+	ON_UPDATE_COMMAND_UI(ID_NEXTCONFLICT, OnUpdateNextConflict)
+	ON_COMMAND(ID_PREVCONFLICT, OnPrevConflict)
+	ON_UPDATE_COMMAND_UI(ID_PREVCONFLICT, OnUpdatePrevConflict)
 	ON_COMMAND(ID_NEXTDIFFLM, OnNextdiffLM)
 	ON_UPDATE_COMMAND_UI(ID_NEXTDIFFLM, OnUpdateNextdiffLM)
 	ON_COMMAND(ID_PREVDIFFLM, OnPrevdiffLM)
@@ -135,6 +139,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
 	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
+	ON_COMMAND(ID_AUTO_MERGE, OnAutoMerge)
+	ON_UPDATE_COMMAND_UI(ID_AUTO_MERGE, OnUpdateAutoMerge)
 	ON_COMMAND(ID_L2R, OnL2r)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
@@ -994,6 +1000,8 @@ void CMergeEditView::OnEditUndo()
 	{
 		tgt->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
 	}
+	if (!pDoc->CanUndo())
+		pDoc->SetAutoMerged(false);
 }
 
 /**
@@ -1222,6 +1230,32 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 		CPoint pos = GetCursorPos();
 		pCmdUI->Enable(pos.y > (long)dfi->dend[0]);
 	}
+}
+
+void CMergeEditView::OnNextConflict()
+{
+	OnNext3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
+}
+
+/**
+ * @brief Update "Next Conflict" UI items
+ */
+void CMergeEditView::OnUpdateNextConflict(CCmdUI* pCmdUI)
+{
+	OnUpdateNext3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
+}
+
+void CMergeEditView::OnPrevConflict()
+{
+	OnPrev3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
+}
+
+/**
+ * @brief Update "Prev Conflict" UI items
+ */
+void CMergeEditView::OnUpdatePrevConflict(CCmdUI* pCmdUI)
+{
+	OnUpdatePrev3wayDiff(pCmdUI, THREEWAYDIFFTYPE_CONFLICT);
 }
 
 /**
@@ -1979,6 +2013,31 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Do Auto merge
+ */
+void CMergeEditView::OnAutoMerge()
+{
+	// Check current pane is not readonly
+	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || IsReadOnly(m_nThisPane))
+		return;
+
+	WaitStatusCursor waitstatus("Doing Auto Merge...");
+
+	GetDocument()->DoAutoMerge(m_nThisPane);
+}
+
+/**
+ * @brief Called when "Auto Merge" item is updated
+ */
+void CMergeEditView::OnUpdateAutoMerge(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 3 && 
+		!GetDocument()->IsModified() && 
+		!GetDocument()->GetAutoMerged() && 
+		!IsReadOnly(m_nThisPane));
+}
+
+/**
  * @brief Add synchronization point
  */
 void CMergeEditView::OnAddSyncPoint()
@@ -2050,7 +2109,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, int cchText)
 	// If automatic rescan enabled, rescan after edit events
 	if (m_bAutomaticRescan)
 	{
-		// keep document up to date
+		// keep document up to date	
 		// (Re)start timer to rescan only when user edits text
 		// If timer starting fails, rescan immediately
 		if (nAction == CE_ACTION_TYPING ||

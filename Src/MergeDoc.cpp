@@ -140,6 +140,7 @@ CMergeDoc::CMergeDoc()
 , m_pInfoUnpacker(new PackingInfo)
 , m_pEncodingErrorBar(NULL)
 , m_bHasSyncPoints(false)
+, m_bAutoMerged(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -924,6 +925,77 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
+}
+
+/**
+ * @brief Do auto-merge.
+ * @param [in] dstPane Destination side
+ */
+void CMergeDoc::DoAutoMerge(int dstPane)
+{
+	const int lastDiff = m_diffList.GetSize() - 1;
+	const int firstDiff = 0;
+	bool bGroupWithPrevious = false;
+	int autoMergedCount = 0;
+	int unresolvedConflictCount = 0;
+
+	RescanSuppress suppressRescan(*this);
+
+	// Note we don't care about m_nDiffs count to become zero,
+	// because we don't rescan() so it does not change
+
+	SetCurrentDiff(lastDiff);
+
+	SetEditedAfterRescan(dstPane);
+
+	CPoint currentPosDst = m_pView[dstPane]->GetCursorPos();
+	currentPosDst.x = 0;
+
+	// copy from bottom up is more efficient
+	for (int i = lastDiff; i >= firstDiff; --i)
+	{
+		const DIFFRANGE *pdi = m_diffList.DiffRangeAt(i);
+		const int srcPane = m_diffList.GetMergeableSrcIndex(i, dstPane);
+		if (srcPane != -1)
+		{
+			SetCurrentDiff(i);
+			if (currentPosDst.y > pdi->dend[dstPane])
+			{
+				if (pdi->blank[dstPane] >= 0)
+					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[dstPane] + 1;
+				else if (pdi->blank[srcPane] >= 0)
+					currentPosDst.y -= pdi->dend[dstPane] - pdi->blank[srcPane] + 1;
+			}			
+			// Group merge with previous (merge undo data to one action)
+			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious, false))
+				break; // sync failure
+			if (!bGroupWithPrevious)
+				bGroupWithPrevious = true;
+			++autoMergedCount;
+		}
+		if (pdi->op == OP_DIFF)
+			++unresolvedConflictCount;
+	}
+
+	m_pView[dstPane]->SetCursorPos(currentPosDst);
+	m_pView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
+	m_pView[dstPane]->SetNewAnchor(currentPosDst);
+	m_pDetailView[dstPane]->SetCursorPos(currentPosDst);
+	m_pDetailView[dstPane]->SetNewSelection(currentPosDst, currentPosDst, false);
+	m_pDetailView[dstPane]->SetNewAnchor(currentPosDst);
+
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
+
+	if (autoMergedCount > 0)
+		m_bAutoMerged = true;
+
+	AfxMessageBox(
+		string_format_string2(
+			"The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2", 
+			string_format("%d", autoMergedCount),
+			string_format("%d", unresolvedConflictCount)).c_str(),
+		MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN);
 }
 
 /**

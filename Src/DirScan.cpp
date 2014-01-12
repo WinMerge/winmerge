@@ -186,9 +186,9 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 #ifdef _DEBUG
 TCHAR buf[1024];
 if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].filename.c_str() : _T(""));
+	wsprintf(buf, _T("%s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.get().c_str() : _T(""), (j < dirs[1].size()) ? dirs[1][j].filename.get().c_str() : _T(""));
 else
-	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.c_str() : _T(""));
+	wsprintf(buf, _T("%s %s %s\n"), (i < dirs[0].size()) ? dirs[0][i].filename.get().c_str() : _T(""), (j < dirs[1].size()) ?  dirs[1][j].filename.get().c_str() : _T(""), (k < dirs[2].size()) ? dirs[2][k].filename.get().c_str() : _T(""));
 OutputDebugString(buf);
 #endif
 
@@ -437,10 +437,10 @@ OutputDebugString(buf);
 #ifdef _DEBUG
 TCHAR buf[1024];
 if (nDirs == 2)
-	wsprintf(buf, _T("%s %s\n"), (i < files[0].size()) ? files[0][i].filename.c_str() : _T(""), (j < files[1].size()) ? files[1][j].filename.c_str() : _T(""));
+	wsprintf(buf, _T("%s %s\n"), (i < files[0].size()) ? files[0][i].filename.get().c_str() : _T(""), (j < files[1].size()) ? files[1][j].filename.get().c_str() : _T(""));
 else
-	wsprintf(buf, _T("%s %s %s\n"), (i < files[0].size()) ? files[0][i].filename.c_str() : _T(""), (j < files[1].size()) ?  files[1][j].filename.c_str() : _T(""), 
-(k < files[2].size()) ? files[2][k].filename.c_str() : _T(""));
+	wsprintf(buf, _T("%s %s %s\n"), (i < files[0].size()) ? files[0][i].filename.get().c_str() : _T(""), (j < files[1].size()) ?  files[1][j].filename.get().c_str() : _T(""), 
+(k < files[2].size()) ? files[2][k].filename.get().c_str() : _T(""));
 OutputDebugString(buf);
 #endif
 		if (i<files[0].size() && (j==files[1].size() ||

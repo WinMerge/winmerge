@@ -207,6 +207,7 @@ public:
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
+	void DoAutoMerge(int dstPane);
 	bool SanityCheckDiff(DIFFRANGE dr) const;
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
@@ -284,6 +285,22 @@ public:
 	bool IsMixedEOL(int nBuffer) const;
 	bool OpenWithUnpackerDialog();
 	bool GenerateReport(LPCTSTR szFileName);
+	void SetAutoMerged(bool bAutoMerged) { m_bAutoMerged = bAutoMerged; }
+	bool GetAutoMerged() const { return m_bAutoMerged; };
+	bool IsModified() const
+	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+			if (m_ptBuf[nBuffer]->IsModified())
+				return true;
+		return false;
+	}
+	bool CanUndo() const
+	{
+		for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+			if (m_ptBuf[nBuffer]->CanUndo())
+				return true;
+		return false;
+	}
 
 // implementation methods
 private:
@@ -313,6 +330,7 @@ protected:
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */
 	CEncodingErrorBar *m_pEncodingErrorBar;
 	bool m_bHasSyncPoints;
+	bool m_bAutoMerged;
 // friend access
 	friend class RescanSuppress;
 
