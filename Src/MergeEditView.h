@@ -229,6 +229,10 @@ protected:
 	afx_msg void OnUpdateNextdiff(CCmdUI* pCmdUI);
 	afx_msg void OnPrevdiff();
 	afx_msg void OnUpdatePrevdiff(CCmdUI* pCmdUI);
+	afx_msg void OnNextConflict();
+	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
+	afx_msg void OnPrevConflict();
+	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
 	afx_msg void OnNextdiffLM();
 	afx_msg void OnUpdateNextdiffLM(CCmdUI* pCmdUI);
 	afx_msg void OnPrevdiffLM();
@@ -259,6 +263,8 @@ protected:
 	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
 	afx_msg void OnAllRight();
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
+	afx_msg void OnAutoMerge();
+	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();

@@ -446,6 +446,9 @@ BEGIN
         MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
         MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
+        MENUITEM "Ne&xt Conflict\tAlt+Shift+Down",   ID_NEXTCONFLICT
+        MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
+        MENUITEM SEPARATOR
 	POPUP "A&dvanced"
 	BEGIN
         MENUITEM "Copy &Left to Middle\tAlt+4",              ID_L2M
@@ -482,6 +485,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "A&uto Merge\tAlt+Ctrl+M",     ID_AUTO_MERGE
         MENUITEM SEPARATOR
         MENUITEM "Add &Synchronization Point\tAlt+S",  ID_ADD_SYNCPOINT
         MENUITEM "Clear Sync&hronization Points", ID_CLEAR_SYNCPOINTS
@@ -669,6 +674,7 @@ BEGIN
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_AUTO_MERGE,          VIRTKEY, ALT, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -685,8 +691,11 @@ BEGIN
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DOWN,        ID_NEXTCONFLICT,        VIRTKEY, ALT, SHIFT, NOINVERT
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_F8,          ID_NEXTCONFLICT,        VIRTKEY, SHIFT, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
+    VK_F7,          ID_PREVCONFLICT,        VIRTKEY, SHIFT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
@@ -708,6 +717,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_PREVCONFLICT,        VIRTKEY, ALT, SHIFT, NOINVERT
     VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
     VK_SUBTRACT,    ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
     VK_MULTIPLY,    ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
@@ -2235,6 +2245,7 @@ BEGIN
     IDS_STATUS_CREATEREPORT "Creating the report..."
     IDS_STATUS_UNDO         "Undoing the last operation..."
     IDS_STATUS_REDO         "Redoing the previous operation..."
+    IDS_STATUS_AUTOMERGE    "Doing Auto Merge..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -2637,6 +2648,13 @@ BEGIN
     IDS_MERGE_MODE          "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key"
 END
 
+
+// EDITOR : AUTO MERGE
+STRINGTABLE
+BEGIN
+    IDS_AUTO_MERGE          "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+END
+
 // FILE COMPARE: PANE CAPTIONS
 STRINGTABLE
 BEGIN
@@ -2813,6 +2831,8 @@ STRINGTABLE
 BEGIN
     ID_PREVDIFF             "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
     ID_NEXTDIFF             "Scroll to the next difference\nNext Difference (Alt+Down)"
+    ID_PREVCONFLICT         "Scroll to the previous conflict\nPrevious Conflict (Alt+Shift+Up)"
+    ID_NEXTCONFLICT         "Scroll to the next conflict\nNext Conflict (Alt+Shift+Down)"
     ID_PREVDIFFLM           "Scroll to the previous difference between left and middle\nPrevious Difference Between Left And Middle(Alt+Shift+1)"
     ID_NEXTDIFFLM           "Scroll to the next difference between left and middle\nNext Difference Between Left And Middle(Alt+1)"
     ID_PREVDIFFLR           "Scroll to the previous difference between left and right\nPrevious Difference Between Left And Middle(Alt+Shift+2)"
@@ -2838,6 +2858,7 @@ BEGIN
     ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
     ID_ADD_SYNCPOINT        "Add a manual point for synchronization of changes between files"
     ID_CLEAR_SYNCPOINTS     "Clear manual change synchronization points "
+    ID_AUTO_MERGE           "Automatically merge changes\nAuto Merge (Ctrl+Alt+M)"
 END
 
 // TOOLS MENU
