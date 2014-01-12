@@ -65,12 +65,14 @@ DiffList::DiffList()
 , m_firstSignificantLeftOnly(-1)
 , m_firstSignificantMiddleOnly(-1)
 , m_firstSignificantRightOnly(-1)
+, m_firstSignificantConflict(-1)
 , m_lastSignificantLeftMiddle(-1)
 , m_lastSignificantLeftRight(-1)
 , m_lastSignificantMiddleRight(-1)
 , m_lastSignificantLeftOnly(-1)
 , m_lastSignificantMiddleOnly(-1)
 , m_lastSignificantRightOnly(-1)
+, m_lastSignificantConflict(-1)
 {
 	m_diffs.reserve(64); // Reserve some initial space to avoid allocations.
 }
@@ -89,12 +91,14 @@ void DiffList::Clear()
 	m_firstSignificantLeftOnly = -1;
 	m_firstSignificantMiddleOnly = -1;
 	m_firstSignificantRightOnly = -1;
+	m_firstSignificantConflict = -1;
 	m_lastSignificantLeftMiddle = -1;
 	m_lastSignificantLeftRight = -1;
 	m_lastSignificantMiddleRight = -1;
 	m_lastSignificantLeftOnly = -1;
 	m_lastSignificantMiddleOnly = -1;
 	m_lastSignificantRightOnly = -1;
+	m_lastSignificantConflict = -1;
 }
 
 /**
@@ -444,9 +448,11 @@ void DiffList::ConstructSignificantChain()
 	m_firstSignificantLeftMiddle = -1;
 	m_firstSignificantLeftRight = -1;
 	m_firstSignificantMiddleRight = -1;
+	m_firstSignificantConflict = -1;
 	m_lastSignificantLeftMiddle = -1;
 	m_lastSignificantLeftRight = -1;
 	m_lastSignificantMiddleRight = -1;
+	m_lastSignificantConflict = -1;
 	int prev = -1;
 	const int size = (int) m_diffs.size();
 
@@ -502,6 +508,12 @@ void DiffList::ConstructSignificantChain()
 				if (m_firstSignificantRightOnly == -1)
 					m_firstSignificantRightOnly = i;
 				m_lastSignificantRightOnly = i;
+			}
+			if (m_diffs[i].op == OP_DIFF)
+			{
+				if (m_firstSignificantConflict == -1)
+					m_firstSignificantConflict = i;
+				m_lastSignificantConflict = i;
 			}
 		}
 	}
@@ -604,6 +616,10 @@ int DiffList::PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) con
 			if (dfi->op == OP_3RDONLY && dfi->dend[0] <= nLine)
 				return i;
 			break;
+		case THREEWAYDIFFTYPE_CONFLICT:
+			if (dfi->op == OP_DIFF && dfi->dend[0] <= nLine)
+				return i;
+			break;
 		}
 	}
 	return -1;
@@ -647,6 +663,10 @@ int DiffList::NextSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) con
 			if (dfi->op == OP_3RDONLY && dfi->dbegin[0] >= nLine)
 				return i;
 			break;
+		case THREEWAYDIFFTYPE_CONFLICT:
+			if (dfi->op == OP_DIFF && dfi->dbegin[0] >= nLine)
+				return i;
+			break;
 		}
 	}
 	return -1;
@@ -672,6 +692,8 @@ int DiffList::FirstSignificant3wayDiff(int nDiffType) const
 		return m_firstSignificantLeftOnly;
 	case THREEWAYDIFFTYPE_RIGHTONLY:
 		return m_firstSignificantRightOnly;
+	case THREEWAYDIFFTYPE_CONFLICT:
+		return m_firstSignificantConflict;
 	}
 	return -1;
 }
@@ -710,6 +732,10 @@ int DiffList::NextSignificant3wayDiff(int nDiff, int nDiffType) const
 			break;
 		case THREEWAYDIFFTYPE_RIGHTONLY:
 			if (m_diffs[nDiff].op == OP_3RDONLY)
+				return nDiff;
+			break;
+		case THREEWAYDIFFTYPE_CONFLICT:
+			if (m_diffs[nDiff].op == OP_DIFF)
 				return nDiff;
 			break;
 		}
@@ -753,6 +779,10 @@ int DiffList::PrevSignificant3wayDiff(int nDiff, int nDiffType) const
 			if (m_diffs[nDiff].op == OP_3RDONLY)
 				return nDiff;
 			break;
+		case THREEWAYDIFFTYPE_CONFLICT:
+			if (m_diffs[nDiff].op == OP_DIFF)
+				return nDiff;
+			break;
 		}
 	}
 	return -1;
@@ -777,6 +807,8 @@ int DiffList::LastSignificant3wayDiff(int nDiffType) const
 	case THREEWAYDIFFTYPE_MIDDLEONLY:
 		return m_lastSignificantLeftOnly;
 	case THREEWAYDIFFTYPE_RIGHTONLY:
+		return m_lastSignificantRightOnly;
+	case THREEWAYDIFFTYPE_CONFLICT:
 		return m_lastSignificantRightOnly;
 	}
 	return -1;
@@ -808,6 +840,9 @@ const DIFFRANGE * DiffList::FirstSignificant3wayDiffRange(int nDiffType) const
 	case THREEWAYDIFFTYPE_RIGHTONLY:
 		if (m_firstSignificantRightOnly == -1) return NULL;
 		return DiffRangeAt(m_firstSignificantRightOnly);
+	case THREEWAYDIFFTYPE_CONFLICT:
+		if (m_firstSignificantConflict == -1) return NULL;
+		return DiffRangeAt(m_firstSignificantConflict);
 	}
 	return NULL;
 }
@@ -838,6 +873,9 @@ const DIFFRANGE * DiffList::LastSignificant3wayDiffRange(int nDiffType) const
 	case THREEWAYDIFFTYPE_RIGHTONLY:
 		if (m_lastSignificantRightOnly == -1) return NULL;
 		return DiffRangeAt(m_lastSignificantRightOnly);
+	case THREEWAYDIFFTYPE_CONFLICT:
+		if (m_lastSignificantConflict == -1) return NULL;
+		return DiffRangeAt(m_lastSignificantConflict);
 	}
 	return NULL;
 }
@@ -907,5 +945,24 @@ void DiffList::AppendDiffList(const DiffList& list, int offset[], int doffset[])
 			}
 		}
 		AddDiff(dr);
+	}
+}
+
+int DiffList::GetMergeableSrcIndex(int nDiff, int nDestIndex) const
+{
+	const DIFFRANGE *pdr = DiffRangeAt(nDiff);
+	switch (nDestIndex)
+	{
+	case 0:
+	case 2:
+		if (pdr->op == OP_2NDONLY)
+			return 1;
+		return -1;
+	case 1:
+		if (pdr->op == OP_1STONLY)
+			return 0;
+		else if (pdr->op == OP_3RDONLY)
+			return 2;
+		return -1;
 	}
 }
