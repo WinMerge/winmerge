@@ -51,6 +51,7 @@ enum
 	THREEWAYDIFFTYPE_LEFTONLY,
 	THREEWAYDIFFTYPE_MIDDLEONLY,
 	THREEWAYDIFFTYPE_RIGHTONLY,
+	THREEWAYDIFFTYPE_CONFLICT,
 };
 
 /**
@@ -164,6 +165,7 @@ public:
 	int LastSignificant3wayDiff(int nDiffType) const;
 	const DIFFRANGE * FirstSignificant3wayDiffRange(int nDiffType) const;
 	const DIFFRANGE * LastSignificant3wayDiffRange(int nDiffType) const;
+	int GetMergeableSrcIndex(int nDiff, int nDestIndex) const;
 
 	const DIFFRANGE * DiffRangeAt(int nDiff) const;
 
@@ -185,12 +187,14 @@ private:
 	int m_firstSignificantLeftOnly;
 	int m_firstSignificantMiddleOnly;
 	int m_firstSignificantRightOnly;
+	int m_firstSignificantConflict;
 	int m_lastSignificantLeftMiddle;
 	int m_lastSignificantLeftRight;
 	int m_lastSignificantMiddleRight;
 	int m_lastSignificantLeftOnly;
 	int m_lastSignificantMiddleOnly;
 	int m_lastSignificantRightOnly;
+	int m_lastSignificantConflict;
 };
 
 #endif // _DIFFLIST_H_

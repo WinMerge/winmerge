@@ -3010,7 +3010,7 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nC
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource,
 		CImageList& ImgList)
 {
-	const int ImageCount = 19;
+	const int ImageCount = 22;
 	int imageWidth = 0;
 	int imageHeight = 0;
 

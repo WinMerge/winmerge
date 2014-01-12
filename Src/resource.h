@@ -602,6 +602,7 @@
 #define IDS_STATUS_CREATEREPORT         16825
 #define IDS_STATUS_UNDO                 16826
 #define IDS_STATUS_REDO                 16827
+#define IDS_STATUS_AUTOMERGE            16828
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833
 #define IDS_LINE_STATUS_INFO            16834
@@ -1139,6 +1140,10 @@
 #define IDS_CLOSE_RIGHT_TABS            33195
 #define IDS_CLOSE_LEFT_TABS             33196
 #define IDS_CONFIRM_CLOSE_WINDOW        33197
+#define ID_AUTO_MERGE                   33198
+#define ID_NEXTCONFLICT                 33199
+#define ID_PREVCONFLICT                 33200
+#define IDS_AUTO_MERGE                  33201
 
 // Next default values for new objects
 //
@@ -1146,7 +1151,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33198
+#define _APS_NEXT_COMMAND_VALUE         33202
 #define _APS_NEXT_CONTROL_VALUE         1352
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
