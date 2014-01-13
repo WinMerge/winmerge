@@ -327,11 +327,6 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_PANE0_RO, sText.c_str(), TRUE);
 	m_wndStatusBar.SetPaneText(PANE_PANE1_RO, sText.c_str(), TRUE);
 	m_wndStatusBar.SetPaneText(PANE_PANE2_RO, sText.c_str(), TRUE);
-	// load active pane column
-	int iPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
-	if (iPane < 0 || iPane >= GetMergeDoc()->m_nBuffers) iPane = 0;
-	m_wndSplitter.SetActivePane(
-		SWAPPARAMS_IF((m_wndSplitter.GetColumnCount() > 1), 0, iPane), NULL);
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALTEXTFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALTEXTFILE);
