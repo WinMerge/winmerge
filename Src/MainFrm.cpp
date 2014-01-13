@@ -733,18 +733,32 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 #endif
 	}
 
+	int nActivePane = -1;
+	for (pane = 0; pane < nFiles; pane++)
+	{
+		if (dwFlags && (dwFlags[pane] & FFILEOPEN_SETFOCUS))
+			nActivePane = pane;
+	}
+
 	// Note that OpenDocs() takes care of closing compare window when needed.
-	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(fileloc, bRO);
+	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(fileloc, bRO, nActivePane);
 
 	if (openResults == OPENRESULTS_SUCCESS)
 	{
 		for (pane = 0; pane < nFiles; pane++)
 		{
-			BOOL bModified = dwFlags && (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
-			if (bModified)
+			if (dwFlags)
 			{
-				pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
-				pMergeDoc->UpdateHeaderPath(pane);
+				BOOL bModified = (dwFlags[pane] & FFILEOPEN_MODIFIED) > 0;
+				if (bModified)
+				{
+					pMergeDoc->m_ptBuf[pane]->SetModified(TRUE);
+					pMergeDoc->UpdateHeaderPath(pane);
+				}
+				if (dwFlags[pane] & FFILEOPEN_AUTOMERGE)
+				{
+					pMergeDoc->DoAutoMerge(pane);
+				}
 			}
 		}
 		if (docNull)

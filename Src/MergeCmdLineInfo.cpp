@@ -369,6 +369,36 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			m_dwMiddleFlags |= FFILEOPEN_NOMRU;
 			m_dwRightFlags |= FFILEOPEN_NOMRU;
 		}
+		else if (param == _T("fl"))
+		{
+			// -fl to set focus to the left panbe
+			m_dwLeftFlags |= FFILEOPEN_SETFOCUS;
+		}
+		else if (param == _T("fm"))
+		{
+			// -fm to set focus to the middle pane
+			m_dwMiddleFlags |= FFILEOPEN_SETFOCUS;
+		}
+		else if (param == _T("fr"))
+		{
+			// -fr to set focus to the right pane
+			m_dwRightFlags |= FFILEOPEN_SETFOCUS;
+		}
+		else if (param == _T("al"))
+		{
+			// -al to auto-merge at the left pane
+			m_dwLeftFlags |= FFILEOPEN_AUTOMERGE;
+		}
+		else if (param == _T("am"))
+		{
+			// -am to auto-merge at the middle pane
+			m_dwMiddleFlags |= FFILEOPEN_AUTOMERGE;
+		}
+		else if (param == _T("ar"))
+		{
+			// -ar to auto-merge at the right pane
+			m_dwRightFlags |= FFILEOPEN_AUTOMERGE;
+		}
 		else if (param == _T("x"))
 		{
 			// -x to close application if files are identical.
