@@ -265,6 +265,8 @@ protected:
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
+	afx_msg void OnX2Y(int srcPane, int dstPane, const String& message);
+	afx_msg void OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
@@ -273,6 +275,10 @@ protected:
 	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
 	afx_msg void OnR2m();
 	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
+	afx_msg void OnCopyFromLeft();
+	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
+	afx_msg void OnCopyFromRight();
+	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
 	afx_msg void OnUpdateAddSyncPoint(CCmdUI* pCmdUI);
 	afx_msg void OnClearSyncPoints();

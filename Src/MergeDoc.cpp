@@ -986,16 +986,22 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
+	UpdateHeaderPath(dstPane);
 
 	if (autoMergedCount > 0)
 		m_bAutoMerged = true;
 
+	// move to first conflict 
+	const int nDiff = m_diffList.FirstSignificant3wayDiff(THREEWAYDIFFTYPE_CONFLICT);
+	if (nDiff != -1)
+		m_pView[dstPane]->SelectDiff(nDiff, true, false);
+
 	AfxMessageBox(
 		string_format_string2(
-			"The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2", 
-			string_format("%d", autoMergedCount),
-			string_format("%d", unresolvedConflictCount)).c_str(),
-		MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN);
+			_T("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			string_format(_T("%d"), autoMergedCount),
+			string_format(_T("%d"), unresolvedConflictCount)).c_str(),
+		MB_ICONINFORMATION);
 }
 
 /**
@@ -2708,7 +2714,11 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		}
 
 		if (nPane < 0)
+		{
+			nPane = theApp.GetProfileInt(_T("Settings"), _T("ActivePane"), 0);
+			if (nPane < 0 || nPane >= m_nBuffers)
 			nPane = 0;
+		}
 		if (nLineIndex == -1)
 		{
 			// scroll to first diff
@@ -2717,6 +2727,10 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			{
 				int nDiff = m_diffList.FirstSignificantDiff();
 				m_pView[nPane]->SelectDiff(nDiff, true, false);
+			}
+			else
+			{
+				m_pView[nPane]->GotoLine(0, false, nPane);
 			}
 		}
 		else

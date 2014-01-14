@@ -73,6 +73,8 @@ BEGIN
     BEGIN
         MENUITEM "C&opy to Right",              ID_L2R
         MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
+        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
         MENUITEM SEPARATOR
         MENUITEM "&Select Line Difference",     ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
@@ -91,19 +93,6 @@ BEGIN
             MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&with...",                    ID_FILE_OPEN_WITH
         END
-    END
-END
-
-IDR_POPUP_MERGEDETAILVIEW MENU
-BEGIN
-    POPUP "_POPUP_"
-    BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
     END
 END
 
@@ -480,6 +469,9 @@ BEGIN
         MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
         MENUITEM "Copy to L&eft\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
+        MENUITEM "Copy from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT
+        MENUITEM "Copy from Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT
+        MENUITEM SEPARATOR
         MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
         MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
@@ -713,9 +705,11 @@ BEGIN
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
     VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
     VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_LEFT,        ID_COPY_FROM_RIGHT,     VIRTKEY, SHIFT, ALT, NOINVERT
     VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_RIGHT,       ID_COPY_FROM_LEFT,      VIRTKEY, SHIFT, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
     VK_UP,          ID_PREVCONFLICT,        VIRTKEY, ALT, SHIFT, NOINVERT
     VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
@@ -2237,6 +2231,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copying Right to Left"
     IDS_STATUS_COPYL2M      "Copying Left to Middle"
     IDS_STATUS_COPYR2M      "Copying Right to Middle"
+    IDS_STATUS_COPY_FROM_LEFT "Copying From Left"
+    IDS_STATUS_COPY_FROM_RIGHT "Copying From Right"
     IDS_STATUS_COPYALL2L    "Copying All to Left"
     IDS_STATUS_COPYALL2R    "Copying All to Right"
     IDS_STATUS_COPYFILES    "Copying files..."

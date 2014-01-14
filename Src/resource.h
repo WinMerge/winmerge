@@ -17,7 +17,6 @@
 #define IDR_DIRDOCTYPE                  110
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
-#define IDR_POPUP_MERGEDETAILVIEW       113
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -112,6 +111,8 @@
 #define IDB_MERGE_COMPARE_RIGHT1_RIGHT2 365
 #define IDB_MERGE_COMPARE_LEFT1_RIGHT2  366
 #define IDB_MERGE_COMPARE_LEFT2_RIGHT1  367
+#define IDB_COPY_FROM_LEFT              368
+#define IDB_COPY_FROM_RIGHT             369
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_MFOLDER                     601
@@ -594,6 +595,8 @@
 #define IDS_STATUS_COPYR2L              16819
 #define IDS_STATUS_COPYL2M              26818
 #define IDS_STATUS_COPYR2M              26819
+#define IDS_STATUS_COPY_FROM_LEFT       26820
+#define IDS_STATUS_COPY_FROM_RIGHT      26821
 #define IDS_STATUS_COPYALL2L            16820
 #define IDS_STATUS_COPYALL2R            16821
 #define IDS_STATUS_COPYFILES            16822
@@ -1144,6 +1147,8 @@
 #define ID_NEXTCONFLICT                 33199
 #define ID_PREVCONFLICT                 33200
 #define IDS_AUTO_MERGE                  33201
+#define ID_COPY_FROM_LEFT               33202
+#define ID_COPY_FROM_RIGHT              33203
 
 // Next default values for new objects
 //
@@ -1151,7 +1156,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33202
+#define _APS_NEXT_COMMAND_VALUE         33204
 #define _APS_NEXT_CONTROL_VALUE         1352
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

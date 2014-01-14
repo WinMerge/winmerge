@@ -247,7 +247,7 @@ bool DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
  * @return -1 if line is before diff, 0 if line is in diff and
  * 1 if line is after diff.
  */
-int DiffList::LineRelDiff(unsigned nLine, unsigned nDiff) const
+int DiffList::LineRelDiff(int nLine, int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (static_cast<int>(nLine) < dfi->dbegin[0])
@@ -264,7 +264,7 @@ int DiffList::LineRelDiff(unsigned nLine, unsigned nDiff) const
  * @param [in] nDiff Index to diff table
  * @return true if line is inside given difference.
  */
-bool DiffList::LineInDiff(unsigned nLine, unsigned nDiff) const
+bool DiffList::LineInDiff(int nLine, int nDiff) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (static_cast<int>(nLine) >= dfi->dbegin[0] && static_cast<int>(nLine) <= dfi->dend[0])
@@ -278,7 +278,7 @@ bool DiffList::LineInDiff(unsigned nLine, unsigned nDiff) const
  * @param [in] nLine Linenumber, 0-based.
  * @return Index to diff table, -1 if line is not inside any diff.
  */
-int DiffList::LineToDiff(unsigned nLine) const
+int DiffList::LineToDiff(int nLine) const
 {
 	const size_t nDiffCount = m_diffs.size();
 	if (nDiffCount == 0)
@@ -399,7 +399,7 @@ bool DiffList::HasSignificantDiffs() const
  * @param [in] nLine First line searched.
  * @return Index for next difference or -1 if no difference is found.
  */
-int DiffList::PrevSignificantDiffFromLine(unsigned nLine) const
+int DiffList::PrevSignificantDiffFromLine(int nLine) const
 {
 	int nDiff = -1;
 	const int size = (int) m_diffs.size();
@@ -421,7 +421,7 @@ int DiffList::PrevSignificantDiffFromLine(unsigned nLine) const
  * @param [in] nLine First line searched.
  * @return Index for previous difference or -1 if no difference is found.
  */
-int DiffList::NextSignificantDiffFromLine(unsigned nLine) const
+int DiffList::NextSignificantDiffFromLine(int nLine) const
 {
 	int nDiff = -1;
 	const size_t nDiffCount = m_diffs.size();
@@ -585,7 +585,7 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
  * @param [in] nLine First line searched.
  * @return Index for next difference or -1 if no difference is found.
  */
-int DiffList::PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) const
+int DiffList::PrevSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 {
 	for (int i = m_diffs.size() - 1; i >= 0 ; i--)
 	{
@@ -630,7 +630,7 @@ int DiffList::PrevSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) con
  * @param [in] nLine First line searched.
  * @return Index for previous difference or -1 if no difference is found.
  */
-int DiffList::NextSignificant3wayDiffFromLine(unsigned nLine, int nDiffType) const
+int DiffList::NextSignificant3wayDiffFromLine(int nLine, int nDiffType) const
 {
 	const size_t nDiffCount = m_diffs.size();
 
@@ -963,6 +963,8 @@ int DiffList::GetMergeableSrcIndex(int nDiff, int nDestIndex) const
 			return 0;
 		else if (pdr->op == OP_3RDONLY)
 			return 2;
+		return -1;
+	default:
 		return -1;
 	}
 }

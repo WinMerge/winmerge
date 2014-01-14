@@ -149,6 +149,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2M, OnUpdateL2m)
 	ON_COMMAND(ID_R2M, OnR2m)
 	ON_UPDATE_COMMAND_UI(ID_R2M, OnUpdateR2m)
+	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
+	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
+	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_RIGHT, OnUpdateCopyFromRight)
 	ON_COMMAND(ID_ADD_SYNCPOINT, OnAddSyncPoint)
 	ON_UPDATE_COMMAND_UI(ID_ADD_SYNCPOINT, OnUpdateAddSyncPoint)
 	ON_COMMAND(ID_CLEAR_SYNCPOINTS, OnClearSyncPoints)
@@ -1625,22 +1629,8 @@ void CMergeEditView::UpdateLineLengths()
 	GetMaxLineLength();
 }
 
-/**
- * @brief Copy diff from left pane to right pane
- *
- * Difference is copied from left to right when
- * - difference is selected
- * - difference is inside selection (allows merging multiple differences).
- * - cursor is inside diff
- *
- * If there is selected diff outside selection, we copy selected
- * difference only.
- */
-void CMergeEditView::OnL2r()
+void CMergeEditView::OnX2Y(int srcPane, int dstPane, const String& message)
 {
-	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
-	int srcPane = dstPane - 1;
-
 	// Check that right side is not readonly
 	if (IsReadOnly(dstPane))
 		return;
@@ -1664,7 +1654,7 @@ void CMergeEditView::OnL2r()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(_("Copying Left to Right"));
+		WaitStatusCursor waitstatus(message);
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
 			pDoc->ListCopy(srcPane, dstPane, currentDiff);
 		else
@@ -1672,18 +1662,15 @@ void CMergeEditView::OnL2r()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(_("Copying Left to Right"));
+		WaitStatusCursor waitstatus(message);
 		pDoc->ListCopy(srcPane, dstPane, currentDiff);
 	}
 }
 
-/**
- * @brief Called when "Copy to left" item is updated
- */
-void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateX2Y(int dstPane, CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
-	if (!IsReadOnly(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1))
+	if (!IsReadOnly(dstPane))
 	{
 		int firstDiff, lastDiff;
 		GetFullySelectedDiffs(firstDiff, lastDiff);
@@ -1705,6 +1692,32 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 	else
 		pCmdUI->Enable(false);
 }
+
+/**
+ * @brief Copy diff from left pane to right pane
+ *
+ * Difference is copied from left to right when
+ * - difference is selected
+ * - difference is inside selection (allows merging multiple differences).
+ * - cursor is inside diff
+ *
+ * If there is selected diff outside selection, we copy selected
+ * difference only.
+ */
+void CMergeEditView::OnL2r()
+{
+	int dstPane = (m_nThisPane < GetDocument()->m_nBuffers - 1) ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1;
+	int srcPane = dstPane - 1;
+	OnX2Y(srcPane, dstPane, _("Copying Left to Right"));
+}
+
+/**
+ * @brief Called when "Copy to left" item is updated
+ */
+void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
+	{
+	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
+	}
 
 /**
  * @brief Copy diff from right pane to left pane
@@ -1718,44 +1731,10 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
  * difference only.
  */
 void CMergeEditView::OnR2l()
-{
+	{
 	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
 	int srcPane = dstPane + 1;
-
-	// Check that left side is not readonly
-	if (IsReadOnly(dstPane))
-		return;
-
-	CMergeDoc *pDoc = GetDocument();
-	int currentDiff = pDoc->GetCurrentDiff();
-	if (currentDiff == -1)
-	{
-		// No selected diff
-		// If cursor is inside diff get number of that diff
-		if (m_bCurrentLineIsDiff)
-		{
-			CPoint pt;
-			pt = GetCursorPos();
-			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
-		}
-	}
-
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-
-	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Right to Left"));
-		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
-			pDoc->ListCopy(srcPane, dstPane, currentDiff);
-		else
-			pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
-	}
-	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Right to Left"));
-		pDoc->ListCopy(srcPane, dstPane, currentDiff);
-	}
+	OnX2Y(srcPane, dstPane, _("Copying Right to Left"));
 }
 
 /**
@@ -1763,28 +1742,7 @@ void CMergeEditView::OnR2l()
  */
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
-	// Check that left side is not readonly
-	if (!IsReadOnly(m_nThisPane > 0 ? m_nThisPane - 1 : 0))
-	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-
-		// If one or more diffs inside selection OR
-		// there is an active diff OR
-		// cursor is inside diff
-		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-			pCmdUI->Enable(true);
-		else
-		{
-			const int currDiff = GetDocument()->GetCurrentDiff();
-			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
-				pCmdUI->Enable(true);
-			else
-				pCmdUI->Enable(m_bCurrentLineIsDiff);
-		}
-	}
-	else
-		pCmdUI->Enable(false);
+	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
 }
 
 /**
@@ -1802,42 +1760,9 @@ void CMergeEditView::OnL2m()
 {
 	int dstPane = 1;
 	int srcPane = 0;
-
-	CMergeDoc *pDoc = GetDocument();
-
-	// Check that middle side is not readonly
-	if (pDoc->m_nBuffers < 3 || IsReadOnly(dstPane))
+	if (GetDocument()->m_nBuffers < 3)
 		return;
-
-	int currentDiff = pDoc->GetCurrentDiff();
-
-	if (currentDiff == -1)
-	{
-		// No selected diff
-		// If cursor is inside diff get number of that diff
-		if (m_bCurrentLineIsDiff)
-		{
-			CPoint pt = GetCursorPos();
-			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
-		}
-	}
-
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-
-	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Left to Middle"));
-		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
-			pDoc->ListCopy(srcPane, dstPane, currentDiff);
-		else
-			pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
-	}
-	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Left to Middle"));
-		pDoc->ListCopy(srcPane, dstPane, currentDiff);
-	}
+	OnX2Y(srcPane, dstPane, _("Copying Left to Middle"));
 }
 
 /**
@@ -1845,30 +1770,10 @@ void CMergeEditView::OnL2m()
  */
 void CMergeEditView::OnUpdateL2m(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pDoc = GetDocument();
-
-	// Check that middle side is not readonly
-	if (pDoc->m_nBuffers == 3 && !IsReadOnly(1))
-	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-
-		// If one or more diffs inside selection OR
-		// there is an active diff OR
-		// cursor is inside diff
-		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-			pCmdUI->Enable(true);
-		else
-		{
-			const int currDiff = GetDocument()->GetCurrentDiff();
-			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
-				pCmdUI->Enable(true);
-			else
-				pCmdUI->Enable(m_bCurrentLineIsDiff);
-		}
-	}
-	else
+	if (GetDocument()->m_nBuffers != 3)
 		pCmdUI->Enable(false);
+	else
+		OnUpdateX2Y(1, pCmdUI);
 }
 
 /**
@@ -1886,42 +1791,9 @@ void CMergeEditView::OnR2m()
 {
 	int dstPane = 1;
 	int srcPane = 2;
-
-	CMergeDoc *pDoc = GetDocument();
-
-	// Check that left side is not readonly
-	if (pDoc->m_nBuffers < 3 || IsReadOnly(dstPane))
+	if (GetDocument()->m_nBuffers < 3)
 		return;
-
-	int currentDiff = pDoc->GetCurrentDiff();
-	if (currentDiff == -1)
-	{
-		// No selected diff
-		// If cursor is inside diff get number of that diff
-		if (m_bCurrentLineIsDiff)
-		{
-			CPoint pt;
-			pt = GetCursorPos();
-			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
-		}
-	}
-
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-
-	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Right to Middle"));
-		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff) && !IsSelection())
-			pDoc->ListCopy(srcPane, dstPane, currentDiff);
-		else
-			pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
-	}
-	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
-	{
-		WaitStatusCursor waitstatus(_("Copying Right to Middle"));
-		pDoc->ListCopy(srcPane, dstPane, currentDiff);
-	}
+	OnX2Y(srcPane, dstPane, _("Copying Right to Middle"));
 }
 
 /**
@@ -1929,30 +1801,48 @@ void CMergeEditView::OnR2m()
  */
 void CMergeEditView::OnUpdateR2m(CCmdUI* pCmdUI)
 {
-	CMergeDoc *pDoc = GetDocument();
-
-	// Check that middle side is not readonly
-	if (pDoc->m_nBuffers == 3 && !IsReadOnly(1))
-	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-
-		// If one or more diffs inside selection OR
-		// there is an active diff OR
-		// cursor is inside diff
-		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
-			pCmdUI->Enable(true);
-		else
-		{
-			const int currDiff = GetDocument()->GetCurrentDiff();
-			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
-				pCmdUI->Enable(true);
-			else
-				pCmdUI->Enable(m_bCurrentLineIsDiff);
-		}
-	}
-	else
+	if (GetDocument()->m_nBuffers != 3)
 		pCmdUI->Enable(false);
+	else
+		OnUpdateX2Y(1, pCmdUI);
+}
+
+void CMergeEditView::OnCopyFromLeft()
+	{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane - 1;
+	if (srcPane < 0)
+		return;
+	OnX2Y(srcPane, dstPane, _("Copying From Left"));
+}
+
+void CMergeEditView::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
+		{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane - 1;
+	if (srcPane < 0)
+		pCmdUI->Enable(false);
+			else
+		OnUpdateX2Y(dstPane, pCmdUI);
+		}
+
+void CMergeEditView::OnCopyFromRight()
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane + 1;
+	if (srcPane >= GetDocument()->m_nBuffers)
+		return;
+	OnX2Y(srcPane, dstPane, _("Copying From Right"));
+	}
+
+void CMergeEditView::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
+{
+	int dstPane = m_nThisPane;
+	int srcPane = dstPane + 1;
+	if (srcPane >= GetDocument()->m_nBuffers)
+		pCmdUI->Enable(false);
+	else
+		OnUpdateX2Y(dstPane, pCmdUI);
 }
 
 /**
@@ -2021,7 +1911,7 @@ void CMergeEditView::OnAutoMerge()
 	if (GetDocument()->IsModified() || GetDocument()->GetAutoMerged() || IsReadOnly(m_nThisPane))
 		return;
 
-	WaitStatusCursor waitstatus("Doing Auto Merge...");
+	WaitStatusCursor waitstatus(_("Doing Auto Merge..."));
 
 	GetDocument()->DoAutoMerge(m_nThisPane);
 }
@@ -2863,9 +2753,15 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
+	{
 		menu.RemoveMenu(ID_R2L, MF_BYCOMMAND);
-	else
+		menu.RemoveMenu(ID_COPY_FROM_LEFT, MF_BYCOMMAND);
+	}
+	if (m_nThisPane == GetDocument()->m_nBuffers - 1)
+	{
 		menu.RemoveMenu(ID_L2R, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_COPY_FROM_RIGHT, MF_BYCOMMAND);
+	}
 
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 	theApp.TranslateMenu(menu.m_hMenu);
