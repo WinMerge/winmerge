@@ -73,6 +73,8 @@ enum
 	FFILEOPEN_MODIFIED  = 0x0004, /**< Mark file modified after opening. */
 	FFILEOPEN_CMDLINE	= 0x0010, /**< Path is read from commandline */
 	FFILEOPEN_PROJECT	= 0x0020, /**< Path is read from project-file */
+	FFILEOPEN_SETFOCUS  = 0x0040, /**< Set focus to this pane */
+	FFILEOPEN_AUTOMERGE = 0x0080, /**< auto-merge at this pane */
 };
 
 #endif // _CONSTANTS_H_
