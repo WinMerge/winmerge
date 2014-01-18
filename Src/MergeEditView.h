@@ -128,6 +128,7 @@ public:
 	CString GetSelectedText();
 	CString GetLineText(int idx);
 	CMergeDoc* GetDocument();
+	const CMergeDoc *GetDocument() const { return const_cast<CMergeEditView *>(this)->GetDocument(); }
 	void UpdateResources();
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }
 	void PrimeListWithFile();
@@ -166,10 +167,8 @@ public:
 	virtual void PrintFooter(CDC * pdc, int nPageNum);
 	virtual void SetWordWrapping( bool bWordWrap );
 	void UpdateStatusbar();
-	CMergeEditView *GetGroupView(int nPane) {
-		return (this == GetDocument()->GetView(this->m_nThisPane)) ? GetDocument()->GetView(nPane) : GetDocument()->GetDetailView(nPane);
-	}
-	bool IsDetailViewPane() { return (GetDocument()->GetView(m_nThisPane) != this); };
+	CMergeEditView *GetGroupView(int nPane) const;
+	bool IsDetailViewPane() const;
 
 	virtual void OnDisplayDiff(int nDiff=0);
 

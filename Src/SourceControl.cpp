@@ -13,24 +13,25 @@
 #include <direct.h>
 #include "UnicodeString.h"
 #include "unicoder.h"
-#include "MainFrm.h"
 #include "Merge.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "RegKey.h"
 #include "paths.h"
 #include "VssPrompt.h"
 #include "WaitStatusCursor.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "CCPrompt.h"
+#include "VSSHelper.h"
 
 using Poco::format;
 using Poco::Process;
 using Poco::ProcessHandle;
 
 void
-CMainFrame::InitializeSourceControlMembers()
+CMergeApp::InitializeSourceControlMembers()
 {
-	m_vssHelper.SetProjectBase((const TCHAR *)theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
+	m_pVssHelper->SetProjectBase((const TCHAR *)theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
 //	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
@@ -59,7 +60,7 @@ CMainFrame::InitializeSourceControlMembers()
 * @return Tells if caller can continue (no errors happened)
 * @sa CheckSavePath()
 */
-BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
+BOOL CMergeApp::SaveToVersionControl(const String& strSavePath)
 {
 	CFileStatus status;
 	UINT userChoice = 0;
@@ -77,7 +78,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		// Prompt for user choice
 		CVssPrompt dlg;
 		dlg.m_strMessage = LangFormatString1(IDS_SAVE_FMT, strSavePath.c_str()).c_str();
-		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
+		dlg.m_strProject = m_pVssHelper->GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 
@@ -95,8 +96,8 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		if (userChoice == IDOK)
 		{
 			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
-			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
+			m_pVssHelper->SetProjectBase((const TCHAR *)dlg.m_strProject);
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_pVssHelper->GetProjectBase().c_str());
 			String path, name;
 			paths_SplitFilename(strSavePath, &path, &name, NULL);
 			String spath(path);
@@ -112,7 +113,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 				std::string sn;
 				std::vector<std::string> args;
 				args.push_back("checkout");
-				format(sn, "\"%s/%s\"", ucr::toUTF8(m_vssHelper.GetProjectBase()), ucr::toUTF8(sname));
+				format(sn, "\"%s/%s\"", ucr::toUTF8(m_pVssHelper->GetProjectBase()), ucr::toUTF8(sname));
 				args.push_back(sn);
 				ProcessHandle hVss(Process::launch(vssPath, args));
 				int code = Process::wait(hVss);
@@ -140,7 +141,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		CString spath, sname;
 
 		dlg.m_strMessage = LangFormatString1(IDS_SAVE_FMT, strSavePath.c_str()).c_str();
-		dlg.m_strProject = m_vssHelper.GetProjectBase().c_str();
+		dlg.m_strProject = m_pVssHelper->GetProjectBase().c_str();
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 		dlg.m_strSelectedDatabase = m_strVssDatabase;
@@ -161,14 +162,14 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 		{
 			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
 			BOOL bOpened = FALSE;
-			m_vssHelper.SetProjectBase((const TCHAR *)dlg.m_strProject);
+			m_pVssHelper->SetProjectBase((const TCHAR *)dlg.m_strProject);
 			m_strVssUser = dlg.m_strUser;
 			m_strVssPassword = dlg.m_strPassword;
 			m_strVssDatabase = dlg.m_strSelectedDatabase;
 			m_bVCProjSync = dlg.m_bVCProjSync;					
 
 			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase().c_str());
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_pVssHelper->GetProjectBase().c_str());
 			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
 //			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
@@ -235,7 +236,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 			static TCHAR buffer2[nBufferSize];
 
 			_tcscpy(buffer1, strSavePath.c_str());
-			_tcscpy(buffer2, m_vssHelper.GetProjectBase().c_str());
+			_tcscpy(buffer2, m_pVssHelper->GetProjectBase().c_str());
 			_tcslwr(buffer1);
 			_tcslwr(buffer2);
 
@@ -246,7 +247,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 					buffer1[k] = '\\';
 			}
 
-			m_vssHelper.SetProjectBase(buffer2);
+			m_pVssHelper->SetProjectBase(buffer2);
 			TCHAR * pbuf2 = &buffer2[2];//skip the $/
 			TCHAR * pdest =  _tcsstr(buffer1, pbuf2);
 			if (pdest)
@@ -264,7 +265,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 					sname = buffer;
 				}
 			}
-			String strItem = m_vssHelper.GetProjectBase() + _T("\\") + static_cast<const TCHAR *>(sname);
+			String strItem = m_pVssHelper->GetProjectBase() + _T("\\") + static_cast<const TCHAR *>(sname);
 
 			TRY
 			{
@@ -384,7 +385,7 @@ BOOL CMainFrame::SaveToVersionControl(const String& strSavePath)
 /**
  * @brief Checkin in file into ClearCase.
  */ 
-void CMainFrame::CheckinToClearCase(const String &strDestinationPath)
+void CMergeApp::CheckinToClearCase(const String &strDestinationPath)
 {
 	String spath, sname;
 	paths_SplitFilename(strDestinationPath, &spath, &sname, 0);

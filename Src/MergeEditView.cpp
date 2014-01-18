@@ -27,11 +27,11 @@
 // $Id: MergeEditView.cpp 7142 2010-04-28 17:05:50Z kimmov $
 
 #include "StdAfx.h"
+#include "MergeEditView.h"
 #include <vector>
 #include "BCMenu.h"
 #include "Merge.h"
 #include "LocationView.h"
-#include "MergeEditView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
@@ -39,7 +39,6 @@
 #include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "Plugins.h"
-#include "lwdisp.h"
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
@@ -245,6 +244,7 @@ CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMergeDoc)));
 	return (CMergeDoc*)m_pDocument;
 }
+
 #endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
@@ -264,6 +264,17 @@ CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 void CMergeEditView::UpdateResources()
 {
 }
+
+CMergeEditView *CMergeEditView::GetGroupView(int nPane) const
+{
+	return (this == GetDocument()->GetView(this->m_nThisPane)) ? GetDocument()->GetView(nPane) : GetDocument()->GetDetailView(nPane);
+}
+
+bool CMergeEditView::IsDetailViewPane() const
+{
+	return (GetDocument()->GetView(m_nThisPane) != this);
+};
+
 
 void CMergeEditView::PrimeListWithFile()
 {
@@ -3462,7 +3473,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 		return;
 
 	int nRealLine = ComputeRealLine(GetCursorPos().y) + 1;
-	GetMainFrame()->OpenFileToExternalEditor(sFileName.c_str(), nRealLine);
+	theApp.OpenFileToExternalEditor(sFileName.c_str(), nRealLine);
 }
 
 /**
@@ -3801,7 +3812,7 @@ bool CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/
 /** @brief Open help from mainframe when user presses F1*/
 void CMergeEditView::OnHelp()
 {
-	GetMainFrame()->ShowHelp(MergeViewHelpLocation);
+	theApp.ShowHelp(MergeViewHelpLocation);
 }
 
 /**

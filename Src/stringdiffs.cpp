@@ -7,13 +7,13 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id: stringdiffs.cpp 7149 2010-05-03 17:08:20Z kimmov $
 
+#include "stringdiffs.h"
 #define NOMINMAX
 #include <windows.h>
 #include <tchar.h>
 #include <cassert>
 #include <climits>
 #include <mbctype.h>
-#include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
 #include "Diff3.h"

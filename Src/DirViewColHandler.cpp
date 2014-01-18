@@ -10,8 +10,8 @@
 
 
 #include "StdAfx.h"
-#include "Merge.h"
 #include "DirView.h"
+#include "Merge.h"
 #include "DirDoc.h"
 #include "resource.h"
 #include "coretools.h"

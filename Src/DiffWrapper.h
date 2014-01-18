@@ -27,6 +27,7 @@
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
+#include <boost/scoped_ptr.hpp>
 #include "diff.h"
 #include "FileLocation.h"
 #include "PathContext.h"
@@ -34,7 +35,6 @@
 #include "CompareOptions.h"
 #include "DiffList.h"
 #include "UnicodeString.h"
-#include <boost/scoped_ptr.hpp>
 
 class CDiffContext;
 class PrediffingInfo;

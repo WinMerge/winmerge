@@ -15,7 +15,8 @@
 
 #include "sizecbar.h"
 #include "scbarcf.h"
-#include "SplitterWndEx.h"
+
+class CSplitterWndEx;
 
 // You must #define this for viewbar to compile properly
 #define TViewBarBase CSizingControlBarCF

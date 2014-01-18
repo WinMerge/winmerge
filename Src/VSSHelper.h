@@ -25,6 +25,7 @@
 #ifndef _VSSHELPER_H_
 #define _VSSHELPER_H_
 
+#include <Windows.h>
 #include "UnicodeString.h"
 
 /**

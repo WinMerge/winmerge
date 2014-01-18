@@ -7,8 +7,8 @@
 // $Id: PropColors.cpp 6908 2009-07-11 08:29:49Z kimmov $
 
 #include "stdafx.h"
-#include "merge.h"
 #include "PropColors.h"
+#include "Merge.h"
 #include "CustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

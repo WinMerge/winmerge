@@ -7,11 +7,14 @@
 // $Id: LanguageSelect.cpp 6499 2009-02-25 13:31:52Z kimmov $
 
 #include "StdAfx.h"
+#include "LanguageSelect.h"
+#include <locale.h>
+#include <sstream>
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "Merge.h"
 #include "version.h"
 #include "resource.h"
-#include "LanguageSelect.h"
 #include "BCMenu.h"
 #include "MainFrm.h"
 #include "OpenFrm.h"
@@ -19,8 +22,6 @@
 #include "DirFrame.h"
 #include "paths.h"
 #include "Environment.h"
-#include <locale.h>
-#include <sstream>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -1195,11 +1196,10 @@ void CLanguageSelect::OnOK()
 		if (SetLanguage(lang))
 			GetOptionsMgr()->SaveOption(OPT_SELECTED_LANGUAGE, (int)lang);
 
-		CMainFrame *pMainFrame = static_cast<CMainFrame *>(AfxGetApp()->m_pMainWnd);
-		pMainFrame->UpdateCodepageModule();
+		theApp.UpdateCodepageModule();
 
 		// Update status bar inicator texts
-		SetIndicators(pMainFrame->m_wndStatusBar, 0, 0);
+		SetIndicators(GetMainFrame()->m_wndStatusBar, 0, 0);
 
 		// Update the current menu
 		if (m_bReloadMenu)
@@ -1217,8 +1217,6 @@ BOOL CLanguageSelect::OnInitDialog()
 {
 	TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
-	
-	CMainFrame::SetMainIcon(this);
 
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
@@ -1229,7 +1227,7 @@ BOOL CLanguageSelect::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LanguageSelectDlg"), false); // persist size via registry
 
-	GetMainFrame()->CenterToMainFrame(this);
+	AfxGetMainWnd()->CenterWindow(this);
 
 	LoadAndDisplayLanguages();
 

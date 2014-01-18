@@ -29,25 +29,27 @@
 //
 
 #include "StdAfx.h"
+#include "DirDoc.h"
 #include <shlwapi.h>		// PathFindFileName()
 #include <Poco/StringTokenizer.h>
 #include "Merge.h"
+#include "MergeDoc.h"
 #include "HexMergeDoc.h"
 #include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
 #include "DirView.h"
-#include "DirDoc.h"
 #include "DirFrame.h"
-#include "MainFrm.h"
 #include "coretools.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "OptionsDiffOptions.h"
 #include "FileActionScript.h"
 #include "LineFiltersList.h"
+#include "FileFilterHelper.h"
 #include "unicoder.h"
 
 #ifdef _DEBUG
@@ -280,7 +282,7 @@ void CDirDoc::LoadLineFilterList()
 	ASSERT(m_pCtxt);
 	
 	BOOL bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	String filters = GetMainFrame()->m_pLineFilters->GetAsString();
+	String filters = theApp.m_pLineFilters->GetAsString();
 	if (!bFilters || filters.empty())
 	{
 		m_pCtxt->m_pFilterList.reset();
@@ -365,11 +367,11 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->Resize();
 
 	// Make sure filters are up-to-date
-	theApp.m_globalFileFilter.ReloadUpdatedFilters();
-	m_pCtxt->m_piFilterGlobal = &theApp.m_globalFileFilter;
+	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
+	m_pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
 
 	// Show active filter name in statusbar
-	pf->SetFilterStatusDisplay(theApp.m_globalFileFilter.GetFilterNameOrMask().c_str());
+	pf->SetFilterStatusDisplay(theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str());
 
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt.get());
@@ -416,7 +418,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di)
 				return FALSE;
 
 			// result filters
-			if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+			if (di.diffcode.isResultError())
 				return FALSE;
 		}
 		else // recursive mode (including tree-mode)
@@ -435,7 +437,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di)
 			if (GetOptionsMgr()->GetBool(OPT_TREE_MODE))
 			{
 				// result filters
-				if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+				if (di.diffcode.isResultError())
 					return FALSE;
 
 				// result filters
@@ -461,7 +463,7 @@ bool CDirDoc::IsShowable(const DIFFITEM & di)
 		// result filters
 		if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
 			return FALSE;
-		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
+		if (di.diffcode.isResultError())
 			return FALSE;
 		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 			return FALSE;

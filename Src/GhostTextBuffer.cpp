@@ -32,7 +32,6 @@
 // $Id: GhostTextBuffer.cpp 6878 2009-06-29 09:28:13Z kimmov $
 
 #include "StdAfx.h"
-#include <vector>
 #include "GhostTextBuffer.h"
 
 #ifdef _DEBUG

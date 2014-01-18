@@ -30,15 +30,14 @@
 // $Id: LocationView.cpp 7127 2010-03-10 21:03:58Z kimmov $
 
 #include "StdAfx.h"
+#include "LocationView.h"
 #include <vector>
 #include "Merge.h"
 #include "OptionsMgr.h"
 #include "MergeEditView.h"
-#include "LocationView.h"
 #include "MergeDoc.h"
 #include "BCMenu.h"
 #include "OptionsDef.h"
-#include "MergeLineFlags.h"
 #include "Bitmap.h"
 #include "memdc.h"
 #include "SyntaxColors.h"

@@ -27,10 +27,9 @@
 // $Id$
 
 #include "stdafx.h"
-#include "FileOrFolderSelect.h"
-#include "MainFrm.h" // VCS_* constants
-#include "Merge.h"
 #include "PropVss.h"
+#include "FileOrFolderSelect.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"

@@ -28,9 +28,11 @@
 // $Id: MergeDoc.cpp 7107 2010-01-14 21:43:14Z kimmov $
 
 #include "StdAfx.h"
+#include "MergeDoc.h"
 #include <shlwapi.h>		// PathCompactPathEx()
 #include <io.h>
 #include <Poco/Timestamp.h>
+#include <Poco/Exception.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
@@ -63,7 +65,6 @@
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
-#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -418,7 +419,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
-		m_diffWrapper.SetFilterList(GetMainFrame()->m_pLineFilters->GetAsString());
+		m_diffWrapper.SetFilterList(theApp.m_pLineFilters->GetAsString());
 	}
 	else
 	{
@@ -783,7 +784,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 		{
 			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
 
-			if (GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::Exit)
+			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit)
 			{
 				// Show the "files are identical" for basic "exit no diff" flag
 				// If user don't want to see the message one uses the quiet version
@@ -791,14 +792,14 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
 			}
 
-			if (GetMainFrame()->m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
+			if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
 				LangMessageBox(IDS_FILESSAME, nFlags);
 
 			// Exit application if files are identical.
-			if (GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
-				GetMainFrame()->m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
+			if (theApp.m_bExitIfNoDiff == MergeCmdLineInfo::Exit ||
+				theApp.m_bExitIfNoDiff == MergeCmdLineInfo::ExitQuiet)
 			{
-				GetMainFrame()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			}
 		}
 	}
@@ -1341,27 +1342,27 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	bSaveSuccess = false;
 	
 	// Check third arg possibly given from command-line
-	if (!GetMainFrame()->m_strSaveAsPath.IsEmpty())
+	if (!theApp.m_strSaveAsPath.IsEmpty())
 	{
-		if (paths_DoesPathExist((const TCHAR *)GetMainFrame()->m_strSaveAsPath) == IS_EXISTING_DIR)
+		if (paths_DoesPathExist((const TCHAR *)theApp.m_strSaveAsPath) == IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
 			String sname;
 			paths_SplitFilename(szPath, 0, &sname, 0);
-			strSavePath = GetMainFrame()->m_strSaveAsPath;
-			if (GetMainFrame()->m_strSaveAsPath.Right(1) != _T('\\'))
+			strSavePath = theApp.m_strSaveAsPath;
+			if (theApp.m_strSaveAsPath.Right(1) != _T('\\'))
 				strSavePath += _T('\\');
 			strSavePath += sname;
 		}
 		else
-			strSavePath = GetMainFrame()->m_strSaveAsPath;	
+			strSavePath = theApp.m_strSaveAsPath;	
 	}
 
-	nRetVal = GetMainFrame()->HandleReadonlySave(strSavePath, false, bApplyToAll);
+	nRetVal = theApp.HandleReadonlySave(strSavePath, false, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return false;
 
-	if (!GetMainFrame()->CreateBackup(false, strSavePath))
+	if (!theApp.CreateBackup(false, strSavePath))
 		return false;
 
 	// false as long as the user is not satisfied
@@ -2187,10 +2188,10 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
 	{
-		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+		if (theApp.m_strSaveAsPath.IsEmpty())
 			dlg.m_sLeftFile = m_filePaths.GetLeft().c_str();
 		else
-			dlg.m_sLeftFile = GetMainFrame()->m_strSaveAsPath;
+			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
 	}
 	else
 		dlg.m_sLeftFile = m_strDesc[0].c_str();
@@ -2198,20 +2199,20 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	{
 		if (!m_filePaths.GetMiddle().empty())
 		{
-			if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+			if (theApp.m_strSaveAsPath.IsEmpty())
 				dlg.m_sMiddleFile = m_filePaths.GetMiddle().c_str();
 			else
-				dlg.m_sMiddleFile = GetMainFrame()->m_strSaveAsPath;
+				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
 		}
 		else
 			dlg.m_sMiddleFile = m_strDesc[1].c_str();
 	}
 	if (!m_filePaths.GetRight().empty())
 	{
-		if (GetMainFrame()->m_strSaveAsPath.IsEmpty())
+		if (theApp.m_strSaveAsPath.IsEmpty())
 			dlg.m_sRightFile = m_filePaths.GetRight().c_str();
 		else
-			dlg.m_sRightFile = GetMainFrame()->m_strSaveAsPath;
+			dlg.m_sRightFile = theApp.m_strSaveAsPath;
 	}
 	else
 		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1].c_str();
@@ -2440,13 +2441,13 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly,
 	
 	if (!filename.empty())
 	{
-		if (GetMainFrame()->m_strDescriptions[index].empty())
+		if (theApp.m_strDescriptions[index].empty())
 			m_nBufferType[index] = BUFFER_NORMAL;
 		else
 		{
 			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
-			m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
-			GetMainFrame()->m_strDescriptions[index].erase();
+			m_strDesc[index] = theApp.m_strDescriptions[index];
+			theApp.m_strDescriptions[index].erase();
 		}
 		m_pSaveFileInfo[index]->Update(filename);
 		m_pRescanFileInfo[index]->Update(filename);
@@ -2457,7 +2458,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly,
 	{
 		m_nBufferType[index] = BUFFER_UNNAMED;
 		m_ptBuf[index]->InitNew();
-		m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+		m_strDesc[index] = theApp.m_strDescriptions[index];
 		m_ptBuf[index]->m_encoding = encoding;
 		loadSuccess = FileLoadResult::FRESULT_OK;
 	}
@@ -2580,8 +2581,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 		m_pDetailView[nBuffer]->AttachToBuffer();
 
 		// Currently there is only one set of syntax colors, which all documents & views share
-		m_pView[nBuffer]->SetColorContext(GetMainSyntaxColors());
-		m_pDetailView[nBuffer]->SetColorContext(GetMainSyntaxColors());
+		m_pView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
+		m_pDetailView[nBuffer]->SetColorContext(theApp.GetMainSyntaxColors());
 
 		// Set read-only statuses
 		m_ptBuf[nBuffer]->SetReadOnly(bRO[nBuffer]);
@@ -2733,7 +2734,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
-		GetMainFrame()->m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
+		theApp.m_bExitIfNoDiff = MergeCmdLineInfo::Disabled;
 	}
 	else
 	{
@@ -3061,7 +3062,7 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
-		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
+		theApp.m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	CPoint pt = m_pView[nActivePane]->GetCursorPos();
@@ -3129,7 +3130,7 @@ String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
 	String sExt;
 	paths_SplitFilename(sFileName, NULL, NULL, &sExt);
 
-	if (GetMainFrame()->m_bClearCaseTool)
+	if (theApp.m_bClearCaseTool)
 	{
 		// If no extension found in real file name.
 		if (sExt.empty())
@@ -3310,7 +3311,7 @@ void CMergeDoc::OnToolsGenerateReport()
 	String s;
 	CString folder;
 
-	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, false, _T("htm")))
 		return;
 
 	GenerateReport(s.c_str());

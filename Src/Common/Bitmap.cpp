@@ -8,9 +8,9 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "Bitmap.h"
 #include <math.h>
 #include <boost/scoped_array.hpp>
-#include "Bitmap.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

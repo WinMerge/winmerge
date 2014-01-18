@@ -27,9 +27,9 @@
 // $Id: FilepathEdit.cpp 6500 2009-02-25 13:36:26Z kimmov $
 
 #include "stdafx.h"
+#include "FilepathEdit.h"
 #include "Merge.h"
 #include "BCMenu.h"
-#include "FilepathEdit.h"
 #include "ClipBoard.h"
 #include "Shlwapi.h"
 

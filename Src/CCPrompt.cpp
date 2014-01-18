@@ -23,8 +23,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "CCPrompt.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

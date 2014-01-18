@@ -28,10 +28,9 @@
 // $Id$
 
 #include "stdafx.h"
-#include "resource.h"
+#include "Splash.h"
 #include "UnicodeString.h"
 #include "Picture.h"
-#include "Splash.h"
 #include "version.h"
 
 #ifdef _DEBUG

@@ -24,9 +24,9 @@
 // $Id: AboutDlg.cpp 6380 2009-01-25 22:13:36Z kimmov $
 
 #include "stdafx.h"
+#include "AboutDlg.h"
 #include "Constants.h"
 #include "Merge.h"
-#include "AboutDlg.h"
 #include "version.h"
 #include "paths.h"
 #include "Environment.h"

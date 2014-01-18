@@ -23,12 +23,12 @@
 // $Id$
 
 #include "stdafx.h"
+#include "FileFiltersDlg.h"
 #include <vector>
 #include "UnicodeString.h"
-#include "merge.h"
-#include "MainFrm.h"
-#include "FileFiltersDlg.h"
+#include "Merge.h"
 #include "FileFilterMgr.h"
+#include "FileFilterHelper.h"
 #include "paths.h"
 #include "SharedFilterDlg.h"
 #include "TestFilterDlg.h"
@@ -248,7 +248,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
  */
 void FileFiltersDlg::EditFileFilter(LPCTSTR path)
 {
-	CMainFrame::OpenFileToExternalEditor(path);
+	theApp.OpenFileToExternalEditor(path);
 }
 
 /**
@@ -374,9 +374,9 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
 
 	// Ensure filter is up-to-date (user probably just edited it)
-	theApp.m_globalFileFilter.ReloadUpdatedFilters();
+	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 
-	FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+	FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
 	FileFilter * pFileFilter = pMgr->GetFilterByPath(m_sFileFilterPath);
 	if (!pFileFilter)
 		return;
@@ -397,8 +397,8 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
-	String globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
-	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+	String globalPath = theApp.m_pGlobalFileFilter->GetGlobalFilterPathWithCreate();
+	String userPath = theApp.m_pGlobalFileFilter->GetUserFilterPathWithCreate();
 
 	if (globalPath.empty() && userPath.empty())
 	{
@@ -461,15 +461,15 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			return;
 		}
 		EditFileFilter(s.c_str());
-		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+		FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
 		int retval = pMgr->AddFilter(s.c_str());
 		if (retval == FILTER_OK)
 		{
 			// Remove all from filterslist and re-add so we can update UI
 			String selected;
 			m_Filters->clear();
-			theApp.m_globalFileFilter.LoadAllFileFilters();
-			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+			theApp.m_pGlobalFileFilter->LoadAllFileFilters();
+			theApp.m_pGlobalFileFilter->GetFileFilters(m_Filters, selected);
 
 			UpdateFiltersList();
 		}
@@ -498,13 +498,13 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 		{
 			if (DeleteFile(path))
 			{
-				FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+				FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
 				pMgr->RemoveFilter((LPCTSTR)path);
 				
 				// Remove all from filterslist and re-add so we can update UI
 				String selected;
 				m_Filters->clear();
-				theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+				theApp.m_pGlobalFileFilter->GetFileFilters(m_Filters, selected);
 
 				UpdateFiltersList();
 			}
@@ -541,7 +541,7 @@ void FileFiltersDlg::UpdateFiltersList()
  */
 void FileFiltersDlg::OnHelp()
 {
-	GetMainFrame()->ShowHelp(FilterHelpLocation);
+	theApp.ShowHelp(FilterHelpLocation);
 }
 
 /**
@@ -556,7 +556,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 {
 	String s;
 	String path;
-	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+	String userPath = theApp.m_pGlobalFileFilter->GetUserFilterPathWithCreate();
 
 	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_INSTALL, IDS_FILEFILTER_FILEMASK,
 		TRUE))
@@ -590,13 +590,13 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		}
 		else
 		{
-			FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+			FileFilterMgr *pMgr = theApp.m_pGlobalFileFilter->GetManager();
 			pMgr->AddFilter(userPath.c_str());
 
 			// Remove all from filterslist and re-add so we can update UI
 			String selected;
 			m_Filters->clear();
-			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+			theApp.m_pGlobalFileFilter->GetFileFilters(m_Filters, selected);
 
 			UpdateFiltersList();
 		}

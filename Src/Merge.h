@@ -34,19 +34,20 @@
 #endif
 
 #include <boost/scoped_ptr.hpp>
+#include "MergeCmdLineInfo.h"
 #include "resource.h"       // main symbols
-#include "MergeApp.h"
-#include "MergeDoc.h"
-#include "OptionsMgr.h"
-#include "RegOptionsMgr.h"
-#include "FileFilterHelper.h"
 
 struct FileFilter;
+class FileFilterHelper;
 class CAssureScriptsForThread;
 class CMainFrame;
 class CLanguageSelect;
 class MergeCmdLineInfo;
 class ProjectFile;
+class COptionsMgr;
+class LineFiltersList;
+class SyntaxColors;
+class VSSHelper;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -54,6 +55,17 @@ class ProjectFile;
 //
 
 enum { IDLE_TIMER = 9754 };
+
+/**
+ * @brief Supported versioncontrol systems.
+ */
+enum
+{
+	VCS_NONE = 0,
+	VCS_VSS4,
+	VCS_VSS5,
+	VCS_CLEARCASE,
+};
 
 /** 
  * @brief WinMerge application class
@@ -67,7 +79,42 @@ public:
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	boost::scoped_ptr<CLanguageSelect> m_pLangDlg;
-	FileFilterHelper m_globalFileFilter;
+	boost::scoped_ptr<FileFilterHelper> m_pGlobalFileFilter;
+	boost::scoped_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
+	boost::scoped_ptr<VSSHelper> m_pVssHelper; /**< Helper class for VSS integration */
+	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
+	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
+	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
+	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
+	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
+	boost::scoped_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
+
+	/**
+	 * @name Version Control System (VCS) integration.
+	 */
+	/*@{*/ 
+protected:
+	CString m_strVssUser; /**< Visual Source Safe User ID */
+	CString m_strVssPassword; /**< Visual Source Safe Password */
+	CString m_strVssDatabase; /**< Visual Source Safe database */
+	CString m_strCCComment; /**< ClearCase comment */
+public:
+	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
+	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
+	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
+	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
+	/*@}*/
+
+	/**
+	 * @name Textual labels/descriptors
+	 * These descriptors overwrite dir/filename usually shown in headerbar
+	 * and can be given from command-line. For example version control
+	 * system can set these to "WinMerge v2.1.2.0" and "WinMerge 2.1.4.0"
+	 * which is more pleasant and informative than temporary paths.
+	 */
+	/*@{*/ 
+	String m_strDescriptions[3];
+	/*@}*/
 
 	WORD GetLangId() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
@@ -87,9 +134,22 @@ public:
 	String GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
+	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
 	void OptionsInit();
 	void ResetOptions() { OptionsInit(); }
 	void SetFontDefaults();
+	void ShowHelp(LPCTSTR helpLocation = NULL);
+	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
+	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
+	void ShowVSSError(CException *e, const String& strItem);
+	void CheckinToClearCase(const String& strDestinationPath);
+// Implementation in SourceControl.cpp
+	void InitializeSourceControlMembers();
+	BOOL SaveToVersionControl(const String& strSavePath);
+// End SourceControl.cpp
+	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
+	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
+	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);
 
 // Implementation
 protected:
@@ -108,6 +168,7 @@ protected:
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
+	void UpdateCodepageModule();
 
 	// End MergeArgs.cpp
 
@@ -152,7 +213,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	boost::scoped_ptr<CRegOptionsMgr> m_pOptions;
+	boost::scoped_ptr<COptionsMgr> m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;

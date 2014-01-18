@@ -27,7 +27,6 @@
 // $Id: EditorFilepathBar.cpp 5401 2008-05-30 12:09:27Z kimmov $
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "EditorFilepathBar.h"
 
 #ifdef _DEBUG

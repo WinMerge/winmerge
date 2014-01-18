@@ -27,14 +27,15 @@
 // $Id: MainFrm.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
+#include "MainFrm.h"
 #include <vector>
-#include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
+#include <Poco/Exception.h>
 #include "Constants.h"
 #include "Merge.h"
+#include "FileFilterHelper.h"
 #include "UnicodeString.h"
 #include "BCMenu.h"
-#include "MainFrm.h"
 #include "OpenFrm.h"
 #include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
@@ -43,10 +44,9 @@
 #include "DirDoc.h"
 #include "OpenDoc.h"
 #include "OpenView.h"
+#include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "HexMergeDoc.h"
-#include "LocationView.h"
-#include "SyntaxColors.h"
 #include "LineFiltersList.h"
 #include "ConflictFileParser.h"
 #include "Splash.h"
@@ -64,23 +64,18 @@
 #include "OptionsDef.h"
 #include "codepage_detect.h"
 #include "unicoder.h"
-#include "VSSHelper.h"
 #include "codepage.h"
 #include "PreferencesDlg.h"
 #include "ProjectFilePathsDlg.h"
-#include "MergeCmdLineInfo.h"
 #include "FileOrFolderSelect.h"
-#include "PropBackups.h"
 #include "unicoder.h"
 #include "PluginsListDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
-#include "OptionsSyntaxColors.h"
 #include "OptionsFont.h"
 #include "TFile.h"
 #include "JumpList.h"
 #include "DragDrop.h"
-#include <Poco/Exception.h>
 
 using std::vector;
 
@@ -267,9 +262,6 @@ static const UINT ID_TIMER_FLASH = 1;
 /** @brief Timeout for window flashing timer, in milliseconds. */
 static const UINT WINDOW_FLASH_TIMEOUT = 500;
 
-/** @brief Backup file extension. */
-static const TCHAR BACKUP_FILE_EXT[] = _T("bak");
-
 /**
   * @brief Return a const reference to a CMultiDocTemplate's list of documents.
   */
@@ -293,50 +285,8 @@ static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate)
 CMainFrame::CMainFrame()
 : m_bFlashing(FALSE)
 , m_bFirstTime(TRUE)
-, m_bEscShutdown(FALSE)
-, m_bClearCaseTool(FALSE)
-, m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
-, m_bShowErrors(TRUE)
-, m_CheckOutMulti(FALSE)
-, m_bVCProjSync(FALSE)
-, m_bVssSuppressPathCheck(FALSE)
-, m_pLineFilters(new LineFiltersList())
-, m_pSyntaxColors(new SyntaxColors())
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
-	UpdateCodepageModule();
-
-	InitializeSourceControlMembers();
-	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
-	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
-
-	if (m_pSyntaxColors)
-		Options::SyntaxColors::Load(m_pSyntaxColors.get());
-
-	if (m_pLineFilters)
-		m_pLineFilters->Initialize(GetOptionsMgr());
-
-	// If there are no filters loaded, and there is filter string in previous
-	// option string, import old filters to new place.
-	if (m_pLineFilters->GetCount() == 0)
-	{
-		String oldFilter = theApp.GetProfileString(_T("Settings"), _T("RegExps"));
-		if (!oldFilter.empty())
-			m_pLineFilters->Import(oldFilter);
-	}
-
-	// Check if filter folder is set, and create it if not
-	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-	if (pathMyFolders.empty())
-	{
-		// No filter path, set it to default and make sure it exists.
-		String pathFilters = theApp.GetDefaultFilterUserPath(TRUE);
-		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
-		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters.c_str());
-	}
-
-	sd_Init(); // String diff init
-	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 }
 
 CMainFrame::~CMainFrame()
@@ -891,121 +841,7 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 void CMainFrame::OnHelpGnulicense() 
 {
 	const String spath = env_GetProgPath() + LicenseFile;
-	OpenFileOrUrl(spath.c_str(), LicenceUrl);
-}
-
-/**
- * @brief Checks if path (file/folder) is read-only and asks overwriting it.
- *
- * @param strSavePath [in,out] Path where to save (file or folder)
- * @param bMultiFile [in] Single file or multiple files/folder
- * @param bApplyToAll [in,out] Apply last user selection for all items?
- * @return Users selection:
- * - IDOK: Item was not readonly, no actions
- * - IDYES/IDYESTOALL: Overwrite readonly item
- * - IDNO: User selected new filename (single file) or user wants to skip
- * - IDCANCEL: Cancel operation
- * @sa CMainFrame::SyncFileToVCS()
- * @sa CMergeDoc::DoSave()
- */
-int CMainFrame::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
-		BOOL &bApplyToAll)
-{
-	CFileStatus status;
-	UINT userChoice = 0;
-	int nRetVal = IDOK;
-	BOOL bFileRO = FALSE;
-	BOOL bFileExists = FALSE;
-	String s;
-	String str;
-	CString title;
-	int nVerSys = 0;
-
-	try
-	{
-		TFile file(strSavePath);
-		bFileExists = file.exists();
-		if (bFileExists)
-			bFileRO = !file.canWrite();
-	}
-	catch (...)
-	{
-	}
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
-	if (bFileExists && bFileRO)
-	{
-		// Version control system used?
-		// Checkout file from VCS and modify, don't ask about overwriting
-		// RO files etc.
-		if (nVerSys != VCS_NONE)
-		{
-			BOOL bRetVal = SaveToVersionControl(strSavePath);
-			if (bRetVal)
-				return IDYES;
-			else
-				return IDCANCEL;
-		}
-		
-		// Don't ask again if its already asked
-		if (bApplyToAll)
-			userChoice = IDYES;
-		else
-		{
-			// Prompt for user choice
-			if (bMultiFile)
-			{
-				// Multiple files or folder
-				str = LangFormatString1(IDS_SAVEREADONLY_MULTI, strSavePath.c_str());
-				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
-						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
-						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
-			}
-			else
-			{
-				// Single file
-				str = LangFormatString1(IDS_SAVEREADONLY_FMT, strSavePath.c_str());
-				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
-						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
-						IDS_SAVEREADONLY_FMT);
-			}
-		}
-		switch (userChoice)
-		{
-		// Overwrite read-only file
-		case IDYESTOALL:
-			bApplyToAll = TRUE;  // Don't ask again (no break here)
-		case IDYES:
-			CFile::GetStatus(strSavePath.c_str(), status);
-			status.m_mtime = 0;		// Avoid unwanted changes
-			status.m_attribute &= ~CFile::readOnly;
-			CFile::SetStatus(strSavePath.c_str(), status);
-			nRetVal = IDYES;
-			break;
-		
-		// Save to new filename (single) /skip this item (multiple)
-		case IDNO:
-			if (!bMultiFile)
-			{
-				if (SelectFile(GetSafeHwnd(), s, strSavePath.c_str(), IDS_SAVE_AS_TITLE, NULL, FALSE))
-				{
-					strSavePath = s;
-					nRetVal = IDNO;
-				}
-				else
-					nRetVal = IDCANCEL;
-			}
-			else
-				nRetVal = IDNO;
-			break;
-
-		// Cancel saving
-		case IDCANCEL:
-			nRetVal = IDCANCEL;
-			break;
-		}
-	}
-	return nRetVal;
+	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
 /// Wrapper to set the global option 'm_bAllowMixedEol'
@@ -1021,16 +857,16 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	// Using singleton shared syntax colors
-	CPreferencesDlg dlg(GetOptionsMgr(), m_pSyntaxColors.get());
+	CPreferencesDlg dlg(GetOptionsMgr(), theApp.GetMainSyntaxColors());
 	int rv = dlg.DoModal();
 
 	if (rv == IDOK)
 	{
 		// Set new filterpath
 		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_globalFileFilter.SetUserFilterPath(filterPath);
+		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
 
-		UpdateCodepageModule();
+		theApp.UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 
@@ -1325,12 +1161,12 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
 
-			pDirDoc->SetDescriptions(m_strDescriptions);
+			pDirDoc->SetDescriptions(theApp.m_strDescriptions);
 			pDirDoc->SetTitle(NULL);
 			for (int nIndex = 0; nIndex < files.GetSize(); nIndex++)
 			{
 				pDirDoc->SetReadOnly(nIndex, bRO[nIndex]);
-				m_strDescriptions[nIndex].erase();
+				theApp.m_strDescriptions[nIndex].erase();
 			}
 
 			pDirDoc->Rescan();
@@ -1367,143 +1203,6 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 	}
 
 	return TRUE;
-}
-
-/**
- * @brief Creates backup before file is saved or copied over.
- * This function handles formatting correct path and filename for
- * backup file. Formatting is done based on several options available
- * for users in Options/Backups dialog. After path is formatted, file
- * is simply just copied. Not much error checking, just if copying
- * succeeded or failed.
- * @param [in] bFolder Are we creating backup in folder compare?
- * @param [in] pszPath Full path to file to backup.
- * @return TRUE if backup succeeds, or isn't just done.
- */
-BOOL CMainFrame::CreateBackup(BOOL bFolder, const String& pszPath)
-{
-	// If user doesn't want to backups in folder compare, return
-	// success so operations don't abort.
-	if (bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP)))
-		return TRUE;
-	// Likewise if user doesn't want backups in file compare
-	else if (!bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP)))
-		return TRUE;
-
-	// create backup copy of file if destination file exists
-	if (paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
-	{
-		String bakPath;
-		String path;
-		String filename;
-		String ext;
-	
-		paths_SplitFilename(pszPath, &path, &filename, &ext);
-
-		// Determine backup folder
-		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			PropBackups::FOLDER_ORIGINAL)
-		{
-			// Put backups to same folder than original file
-			bakPath = path;
-		}
-		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			PropBackups::FOLDER_GLOBAL)
-		{
-			// Put backups to global folder defined in options
-			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
-			if (bakPath.empty())
-				bakPath = path;
-			else
-				bakPath = paths_GetLongPath(bakPath);
-		}
-		else
-		{
-			_RPTF0(_CRT_ERROR, "Unknown backup location!");
-		}
-
-		BOOL success = FALSE;
-		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
-		{
-			// Don't add dot if there is no existing extension
-			if (ext.size() > 0)
-				ext += _T(".");
-			ext += BACKUP_FILE_EXT;
-		}
-
-		// Append time to filename if wanted so
-		// NOTE just adds timestamp at the moment as I couldn't figure out
-		// nice way to add a real time (invalid chars etc).
-		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME))
-		{
-			struct tm *tm;
-			time_t curtime = 0;
-			time(&curtime);
-			tm = localtime(&curtime);
-			CString timestr;
-			timestr.Format(_T("%04d%02d%02d%02d%02d%02d"), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
-			filename += _T("-");
-			filename += timestr;
-		}
-
-		// Append filename and extension (+ optional .bak) to path
-		if ((bakPath.length() + filename.length() + ext.length())
-			< MAX_PATH)
-		{
-			success = TRUE;
-			if (!paths_EndsWithSlash(bakPath))
-				bakPath += _T("\\");
-			bakPath = paths_ConcatPath(bakPath, filename);
-			bakPath += _T(".");
-			bakPath += ext;
-		}
-
-		if (success)
-			success = CopyFile(pszPath.c_str(), bakPath.c_str(), FALSE);
-		
-		if (!success)
-		{
-			if (ResMsgBox1(IDS_BACKUP_FAILED_PROMPT, pszPath.c_str(),
-					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, 
-					IDS_BACKUP_FAILED_PROMPT) != IDYES)
-				return FALSE;
-		}
-		return TRUE;
-	}
-
-	// we got here because we're either not backing up of there was nothing to backup
-	return TRUE;
-}
-
-/**
- * @brief Sync file to Version Control System
- * @param pszDest [in] Where to copy (incl. filename)
- * @param bApplyToAll [in,out] Apply user selection to all items
- * @param psError [out] Error string that can be shown to user in caller func
- * @return User selection or -1 if error happened
- * @sa CMainFrame::HandleReadonlySave()
- * @sa CDirView::PerformActionList()
- */
-int CMainFrame::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
-	String& sError)
-{
-	String sActionError;
-	String strSavePath(pszDest);
-	int nVerSys = 0;
-
-	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
-	
-	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
-	if (nRetVal == IDCANCEL || nRetVal == IDNO)
-		return nRetVal;
-	
-	// If VC project opened from VSS sync and version control used
-	if ((nVerSys == VCS_VSS4 || nVerSys == VCS_VSS5) && m_bVCProjSync)
-	{
-		if (!m_vssHelper.ReLinkVCProj(strSavePath, sError))
-			nRetVal = -1;
-	}
-	return nRetVal;
 }
 
 void CMainFrame::UpdateFont(FRAMETYPE frame)
@@ -1642,33 +1341,13 @@ void CMainFrame::UpdateResources()
 }
 
 /**
- * @brief Open file, if it exists, else open url
- */
-void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
-{
-	if (paths_DoesPathExist(szFile) == IS_EXISTING_FILE)
-		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"), szFile, NULL, SW_SHOWNORMAL);
-	else
-		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
  * @brief Open WinMerge help.
  *
  * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
  */
 void CMainFrame::OnHelpContents()
 {
-	String sPath = env_GetProgPath();
-	LANGID LangId = theApp.GetLangId();
-	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-		sPath += DocsPath_ja;
-	else
-		sPath += DocsPath;
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
-	else
-		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+	theApp.ShowHelp();
 }
 
 /**
@@ -1759,7 +1438,7 @@ void CMainFrame::OnClose()
 	}
 
 	// Save last selected filter
-	String filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String filter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	// save main window position
@@ -2071,7 +1750,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		{
 			if (patcher.GetOpenToEditor())
 			{
-				OpenFileToExternalEditor(patcher.GetPatchFile().c_str());
+				theApp.OpenFileToExternalEditor(patcher.GetPatchFile().c_str());
 			}
 		}
 	}
@@ -2255,62 +1934,6 @@ void CMainFrame::UpdatePrediffersMenu()
 }
 
 /**
- * @brief Open given file to external editor specified in options.
- * @param [in] file Full path to file to open.
- *
- * Opens file to defined (in Options/system), Notepad by default,
- * external editor. Path is decorated with quotation marks if needed
- * (contains spaces). Also '$file' in editor path is replaced by
- * filename to open.
- * @param [in] file Full path to file to open.
- * @param [in] nLineNumber Line number to go to.
- */
-void CMainFrame::OpenFileToExternalEditor(const String& file, int nLineNumber/* = 1*/)
-{
-	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
-	String sFile(file);
-	string_replace(sCmd, _T("$linenum"), string_format(_T("%d"), nLineNumber));
-
-	int nIndex = sCmd.find(_T("$file"));
-	if (nIndex > -1)
-	{
-		sFile.insert(0, _T("\""));
-		string_replace(sCmd, _T("$file"), sFile);
-		nIndex = sCmd.find(' ', nIndex + sFile.length());
-		if (nIndex > -1)
-			sCmd.insert(nIndex, _T("\""));
-		else
-			sCmd += '"';
-	}
-	else
-	{
-		sCmd += _T(" \"");
-		sCmd += sFile;
-		sCmd += _T("\"");
-	}
-
-	BOOL retVal = FALSE;
-	STARTUPINFO stInfo = {0};
-	stInfo.cb = sizeof(STARTUPINFO);
-	PROCESS_INFORMATION processInfo;
-
-	retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
-		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-		&stInfo, &processInfo);
-
-	if (!retVal)
-	{
-		// Error invoking external editor
-		ResMsgBox1(IDS_ERROR_EXECUTE_FILE, sCmd.c_str(), MB_ICONSTOP);
-	}
-	else
-	{
-		CloseHandle(processInfo.hThread);
-		CloseHandle(processInfo.hProcess);
-	}
-}
-
-/**
  * @brief Save WinMerge configuration and info to file
  */
 void CMainFrame::OnSaveConfigData()
@@ -2321,7 +1944,7 @@ void CMainFrame::OnSaveConfigData()
 	if (configLog.WriteLogFile(sError))
 	{
 		String sFileName = configLog.GetFileName();
-		OpenFileToExternalEditor(sFileName);
+		theApp.OpenFileToExternalEditor(sFileName);
 	}
 	else
 	{
@@ -2351,17 +1974,17 @@ void CMainFrame::FileNew(int nPanes)
 	FileLocation fileloc[3];
 	if (nPanes == 2)
 	{
-		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+		theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
 		ShowMergeDoc(pDirDoc, 2, fileloc, dwFlags);
 	}
 	else
 	{
-		m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-		m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
-		m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+		theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+		theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
+		theApp.m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
 		fileloc[2].encoding.SetCodepage(ucr::getDefaultCodepage());
@@ -2369,9 +1992,9 @@ void CMainFrame::FileNew(int nPanes)
 	}
 
 	// Empty descriptors now that docs are open
-	m_strDescriptions[0].erase();
-	m_strDescriptions[1].erase();
-	m_strDescriptions[2].erase();
+	theApp.m_strDescriptions[0].erase();
+	theApp.m_strDescriptions[1].erase();
+	theApp.m_strDescriptions[2].erase();
 }
 
 /**
@@ -2406,21 +2029,21 @@ void CMainFrame::OnToolsFilters()
 	vector<FileFilterInfo> fileFilters;
 	boost::scoped_ptr<LineFiltersList> lineFilters(new LineFiltersList());
 	String selectedFilter;
-	const String origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
-	theApp.m_globalFileFilter.ReloadUpdatedFilters();
+	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 
-	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
+	theApp.m_pGlobalFileFilter->GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
 	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
-	lineFilters->CloneFrom(m_pLineFilters.get());
+	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
 
 	if (sht.DoModal() == IDOK)
@@ -2430,18 +2053,18 @@ void CMainFrame::OnToolsFilters()
 		if (path.find(strNone) != String::npos)
 		{
 			// Don't overwrite mask we already have
-			if (!theApp.m_globalFileFilter.IsUsingMask())
+			if (!theApp.m_pGlobalFileFilter->IsUsingMask())
 			{
 				String sFilter(_T("*.*"));
-				theApp.m_globalFileFilter.SetFilter(sFilter);
+				theApp.m_pGlobalFileFilter->SetFilter(sFilter);
 				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
 		}
 		else
 		{
-			theApp.m_globalFileFilter.SetFileFilterPath(path);
-			theApp.m_globalFileFilter.UseMask(FALSE);
-			String sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			theApp.m_pGlobalFileFilter->SetFileFilterPath(path);
+			theApp.m_pGlobalFileFilter->UseMask(FALSE);
+			String sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		BOOL linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
@@ -2455,16 +2078,16 @@ void CMainFrame::OnToolsFilters()
 		if (frame == FRAME_FILE)
 		{
 			if (lineFiltersEnabledOrig != linefiltersEnabled ||
-					!m_pLineFilters->Compare(lineFilters.get()))
+					!theApp.m_pLineFilters->Compare(lineFilters.get()))
 			{
 				bFileCompareRescan = TRUE;
 			}
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const String newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			const String newFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
-					!m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
+					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
 				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
 				if (res == IDYES)
@@ -2473,8 +2096,8 @@ void CMainFrame::OnToolsFilters()
 		}
 
 		// Save new filters before (possibly) rescanning
-		m_pLineFilters->CloneFrom(lineFilters.get());
-		m_pLineFilters->SaveFilters();
+		theApp.m_pLineFilters->CloneFrom(lineFilters.get());
+		theApp.m_pLineFilters->SaveFilters();
 
 		if (bFileCompareRescan)
 		{
@@ -2525,7 +2148,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		const HexMergeDocList &hexDocs = GetAllHexMergeDocs();
 		const DirDocList &dirDocs = GetAllDirDocs();
 
-		if (m_bEscShutdown)
+		if (theApp.m_bEscShutdown)
 		{
 			if (openDocs.GetCount() + hexDocs.GetCount() + dirDocs.GetCount() <= 1)
 			{
@@ -2546,63 +2169,6 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 	return CMDIFrameWnd::PreTranslateMessage(pMsg);
-}
-
-/**
- * @brief Shows VSS error from exception and writes log.
- */
-void CMainFrame::ShowVSSError(CException *e, const String& strItem)
-{
-	TCHAR errStr[1024] = {0};
-	if (e->GetErrorMessage(errStr, 1024))
-	{
-		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
-		String logMsg = errMsg;
-		errMsg += _T("\n");
-		errMsg += errStr;
-		logMsg += _T(" ");
-		logMsg += errStr;
-		if (!strItem.empty())
-		{
-			errMsg += _T("\n\n");
-			errMsg += strItem;
-			logMsg += _T(": ");
-			logMsg += strItem;
-		}
-		LogErrorString(logMsg);
-		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
-	}
-	else
-	{
-		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
-		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
-	}
-}
-
-/**
- * @brief Show Help - this is for opening help from outside mainframe.
- * @param [in] helpLocation Location inside help, if NULL main help is opened.
- */
-void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
-{
-	if (helpLocation == NULL)
-	{
-		OnHelpContents();
-	}
-	else
-	{
-		String sPath = env_GetProgPath();
-		LANGID LangId = GetUserDefaultLangID();
-		if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
-			sPath += DocsPath_ja;
-		else
-			sPath += DocsPath;
-		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		{
-			sPath += helpLocation;
-			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
-		}
-	}
 }
 
 /**
@@ -2740,16 +2306,6 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 }
 
 /**
- * @brief Send current option settings into codepage module
- */
-void CMainFrame::UpdateCodepageModule()
-{
-	// Get current codepage settings from the options module
-	// and push them into the codepage module
-	theApp.UpdateDefaultCodepage(GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE), GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM));
-}
-
-/**
  * @brief Handle timer events.
  * @param [in] nIDEvent Timer that timed out.
  */
@@ -2824,64 +2380,6 @@ CMainFrame * GetMainFrame()
 	return pMainframe;
 }
 
-/**
- * @brief Access to the singleton set of syntax colors
- */
-SyntaxColors * GetMainSyntaxColors()
-{
-	return GetMainFrame()->GetMainSyntaxColors();
-}
-
-/** 
- * @brief Move dialog to center of MainFrame
- */
-void CMainFrame::CenterToMainFrame(CDialog * dlg)
-{
-	CRect rectFrame;
-	CRect rectBar;
-	AfxGetMainWnd()->GetWindowRect(&rectFrame);
-	dlg->GetClientRect(&rectBar);
-	// Middlepoint of MainFrame
-	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
-	int y = rectFrame.top + (rectFrame.bottom - rectFrame.top) / 2;
-	// Reduce by half of dialog's size
-	x -= rectBar.right / 2;
-	y -= rectBar.bottom / 2;
-
-	// This refreshes dialog size after m_constraint rezizing dialog so we get
-	// correct dialog positioning
-	dlg->CenterWindow();
-
-	// Calculate real desktop coordinates (if we have multiple monitors or
-	// virtual desktops
-	CRect dsk_rc;
-	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
-	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
-	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
-	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-
-	// Only move Open-dialog if its fully visible in new position
-	CPoint ptLeftTop(x, y);
-	CPoint ptRightBottom(x + rectBar.right, y + rectBar.bottom);
-	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
-	{
-		dlg->SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
-			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
-	}
-}
-
-/**
- * @brief Assign the main WinMerge 16x16 icon to dialog
- */
-void CMainFrame::SetMainIcon(CDialog * dlg)
-{
-	// Note: LoadImage gets shared icon, don't need to destroy
-	HICON hMergeIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-			MAKEINTRESOURCE(IDR_MAINFRAME), IMAGE_ICON, 16, 16,
-			LR_DEFAULTSIZE | LR_SHARED);
-	dlg->SetIcon(hMergeIcon, TRUE);
-}
-
 /** 
  * @brief Opens dialog for user to Load, edit and save project files.
  * This dialog gets current compare paths and filter (+other properties
@@ -2927,7 +2425,7 @@ void CMainFrame::OnSaveProject()
 		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(pDoc->m_nDirs - 1);
 	}
 
-	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	pathsDlg.m_sFilter = filterNameOrMask.c_str();
 	sht.DoModal();
 }
@@ -3318,11 +2816,11 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
 	{
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
-		m_strSaveAsPath = conflictFile.c_str();
+		theApp.m_strSaveAsPath = conflictFile.c_str();
 		String theirs = LoadResString(IDS_CONFLICT_THEIRS_FILE);
 		String my = LoadResString(IDS_CONFLICT_MINE_FILE);
-		m_strDescriptions[0] = theirs;
-		m_strDescriptions[1] = my;
+		theApp.m_strDescriptions[0] = theirs;
+		theApp.m_strDescriptions[1] = my;
 
 		DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 		conflictCompared = DoFileOpen(&PathContext(revFile, workFile), 
@@ -3340,7 +2838,7 @@ BOOL CMainFrame::DoOpenConflict(const String& conflictFile, bool checked)
  * @param [in] pFrame Pointer to frame to check.
  * @return FRAMETYPE of the given frame.
 */
-FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
+CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 {
 	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));

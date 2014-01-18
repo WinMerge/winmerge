@@ -34,33 +34,7 @@
 #include <boost/shared_ptr.hpp>
 #include "ToolBarXPThemes.h"
 #include "MDITabBar.h"
-#include "OptionsMgr.h"
-#include "VSSHelper.h"
 #include "PathContext.h"
-#include "MergeCmdLineInfo.h"
-
-/**
- * @brief Supported versioncontrol systems.
- */
-enum
-{
-	VCS_NONE = 0,
-	VCS_VSS4,
-	VCS_VSS5,
-	VCS_CLEARCASE,
-};
-
-/**
- * @brief Frame/View/Document types.
- */
-enum FRAMETYPE
-{
-	FRAME_FOLDER, /**< Folder compare frame. */
-	FRAME_FILE, /**< File compare frame. */
-	FRAME_OTHER, /**< No frame? */
-};
-
-enum { WM_NONINTERACTIVE = 888 }; // timer value
 
 class BCMenu;
 class CDiffView;
@@ -94,6 +68,18 @@ class CMainFrame : public CMDIFrameWnd
 	friend CLanguageSelect;
 	DECLARE_DYNAMIC(CMainFrame)
 public:
+	/**
+	 * @brief Frame/View/Document types.
+	 */
+	enum FRAMETYPE
+	{
+		FRAME_FOLDER, /**< Folder compare frame. */
+		FRAME_FILE, /**< File compare frame. */
+		FRAME_OTHER, /**< No frame? */
+	};
+
+	enum { WM_NONINTERACTIVE = 888 }; // timer value
+
 	CMainFrame();
 
 // Attributes
@@ -113,7 +99,6 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	BOOL SyncFileToVCS(const String& pszDest,	BOOL &bApplyToAll, String& psError);
 	BOOL DoFileOpen(PathContext *pFiles = NULL,
 		DWORD dwFlags[] = NULL, bool bRecurse = false, CDirDoc *pDirDoc = NULL, String prediffer = _T(""), PackingInfo * infoUnpacker = NULL);
 	int ShowMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
@@ -121,25 +106,15 @@ public:
 	void ShowHexMergeDoc(CDirDoc * pDirDoc,
 		const PathContext &paths, bool bRO[]);
 	void UpdateResources();
-	BOOL CreateBackup(BOOL bFolder, const String& pszPath);
-	int HandleReadonlySave(String& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
 	void ApplyViewWhitespace();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
-	void ShowVSSError(CException *e, const String& strItem);
-	void ShowHelp(LPCTSTR helpLocation = NULL);
-	void UpdateCodepageModule();
-	void CheckinToClearCase(const String& strDestinationPath);
-	static void CenterToMainFrame(CDialog * dlg);
-	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	BOOL DoOpenConflict(const String& conflictFile, bool checked = false);
 	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
-
-	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -155,50 +130,11 @@ public:
 // Implementation methods
 protected:
 	virtual ~CMainFrame();
-// Implementation in SourceControl.cpp
-	void InitializeSourceControlMembers();
-	BOOL SaveToVersionControl(const String& strSavePath);
-// End SourceControl.cpp
-
 
 // Public implementation data
 public:
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
-	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
-	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
-	VSSHelper m_vssHelper; /**< Helper class for VSS integration */
-	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
-	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	BOOL m_bFlashing; /**< Window is flashing. */
-	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
-	boost::scoped_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-
-	/**
-	 * @name Version Control System (VCS) integration.
-	 */
-	/*@{*/ 
-protected:
-	CString m_strVssUser; /**< Visual Source Safe User ID */
-	CString m_strVssPassword; /**< Visual Source Safe Password */
-	CString m_strVssDatabase; /**< Visual Source Safe database */
-	CString m_strCCComment; /**< ClearCase comment */
-public:
-	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
-	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
-	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
-	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
-	/*@}*/
-
-	/**
-	 * @name Textual labels/descriptors
-	 * These descriptors overwrite dir/filename usually shown in headerbar
-	 * and can be given from command-line. For example version control
-	 * system can set these to "WinMerge v2.1.2.0" and "WinMerge 2.1.4.0"
-	 * which is more pleasant and informative than temporary paths.
-	 */
-	/*@{*/ 
-	String m_strDescriptions[3];
-	/*@}*/
 
 	/** @brief Possible toolbar image sizes. */
 	enum TOOLBAR_SIZE
@@ -260,7 +196,6 @@ protected:
 	static const MENUITEM_ICON m_MenuIcons[];
 
 	boost::scoped_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
-	boost::scoped_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 
 // Generated message map functions
@@ -356,7 +291,6 @@ private:
 	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(int nDirs, BOOL * pNew);
 	void UpdateFont(FRAMETYPE frame);
-	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
@@ -364,7 +298,6 @@ private:
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
-SyntaxColors * GetMainSyntaxColors(); // access to the singleton set of syntax colors
 
 /////////////////////////////////////////////////////////////////////////////
 

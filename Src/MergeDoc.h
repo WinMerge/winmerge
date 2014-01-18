@@ -29,12 +29,11 @@
 #define AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include "DiffTextBuffer.h"
-#include <boost/scoped_ptr.hpp>
 #include <vector>
 #include <map>
+#include <boost/scoped_ptr.hpp>
 #include "DiffWrapper.h"
 #include "DiffList.h"
-#include "stringdiffs.h"
 #include "TempFile.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
@@ -232,8 +231,6 @@ public:
 	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
 	CMergeEditView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
 	CChildFrame * GetParentFrame();
-	const FileTextEncoding & GetEncoding(int file) const
-			{ return m_ptBuf[file]->getEncoding(); }
 
 	void AddSyncPoint();
 	void ClearSyncPoints();

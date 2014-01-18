@@ -25,10 +25,10 @@
 #define __FILEFILTER_H__
 
 #include <vector>
-#include "UnicodeString.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
 #include <boost/shared_ptr.hpp>
+#include "UnicodeString.h"
 
 /**
  * @brief FileFilter rule.

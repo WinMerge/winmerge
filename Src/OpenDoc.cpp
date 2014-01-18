@@ -2,9 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "OpenDoc.h"
-#include "Constants.h"
 
 // COpenDoc
 

@@ -9,9 +9,9 @@
 #include "stdafx.h"
 #include <vector>
 #include "Merge.h"
-#include "MainFrm.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "RegOptionsMgr.h"
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
 #include "OptionsFont.h"
@@ -38,7 +38,7 @@ void CMergeApp::OptionsInit()
 	// Copy some values from HKLM to HKCU
 	CopyHKLMValues();
 
-	m_pOptions->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+	static_cast<CRegOptionsMgr *>(m_pOptions.get())->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	LANGID LangId = GetUserDefaultLangID();
 	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)

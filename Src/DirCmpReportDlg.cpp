@@ -9,13 +9,12 @@
 //
 
 #include "stdafx.h"
-#include "Coretools.h"
 #include "DirCmpReportDlg.h"
+#include "Coretools.h"
 #include "DirReportTypes.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
 #include "Merge.h"
-#include "DirCmpReportDlg.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
 

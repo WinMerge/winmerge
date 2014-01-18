@@ -25,6 +25,8 @@
 #ifndef _PATCHTOOL_H_
 #define _PATCHTOOL_H_
 
+#include "DiffWrapper.h"
+
 class CPatchDlg;
 
 /** 

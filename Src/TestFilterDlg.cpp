@@ -7,10 +7,10 @@
 // $Id$
 
 #include "stdafx.h"
+#include "TestFilterDlg.h"
 #include "Merge.h"
 #include "resource.h"
 #include "UnicodeString.h"
-#include "TestFilterDlg.h"
 #include "FileFilterMgr.h"
 
 #ifdef _DEBUG

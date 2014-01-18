@@ -30,6 +30,7 @@
 #define AFX_SELECTUNPACKERDLG_H__C8FD4C3A_5ED5_43D3_ADAE_A2378369705C__INCLUDED_
 
 #include <vector>
+#include <boost/scoped_ptr.hpp>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectUnpackerDlgDlg dialog

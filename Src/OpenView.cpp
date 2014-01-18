@@ -27,13 +27,13 @@
 // $Id: OpenDlg.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
+#include "OpenView.h"
 #include <vector>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OpenDoc.h"
-#include "OpenView.h"
 #include "ProjectFile.h"
 #include "paths.h"
 #include "SelectUnpackerDlg.h"
@@ -45,6 +45,7 @@
 #include "Constants.h"
 #include "Picture.h"
 #include "DragDrop.h"
+#include "FileFilterHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -225,8 +226,8 @@ void COpenView::OnInitialUpdate()
 		m_ctlPath[2].SetAutoComplete(nSource);
 	}
 
-	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
+	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	BOOL bMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 
 	if (!bMask)
 	{
@@ -475,19 +476,19 @@ void COpenView::OnOK()
 	{
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
-		if (!theApp.m_globalFileFilter.SetFilter(filter))
+		if (!theApp.m_pGlobalFileFilter->SetFilter(filter))
 		{
 			// If filtername is not found use default *.* mask
-			theApp.m_globalFileFilter.SetFilter(_T("*.*"));
+			theApp.m_pGlobalFileFilter->SetFilter(_T("*.*"));
 			filter = _T("*.*");
 		}
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 	else
 	{
-		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filter);
+		BOOL bFilterSet = theApp.m_pGlobalFileFilter->SetFilter(filter);
 		if (!bFilterSet)
-			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask().c_str();
+			m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str();
 		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
 
@@ -853,15 +854,15 @@ void COpenView::OnSelectFilter()
 	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	CString curFilter;
 
-	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
+	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter.TrimLeft();
 	curFilter.TrimRight();
 
 	GetMainFrame()->SelectFilter();
 	
-	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	if (theApp.m_globalFileFilter.IsUsingMask())
+	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	if (theApp.m_pGlobalFileFilter->IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
@@ -996,7 +997,7 @@ void COpenView::OnEditUndo()
  */
 void COpenView::OnHelp()
 {
-	GetMainFrame()->ShowHelp(OpenDlgHelpLocation);
+	theApp.ShowHelp(OpenDlgHelpLocation);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -28,8 +28,8 @@
 //
 
 #include "stdafx.h"
-#include "merge.h"
 #include "SelectUnpackerDlg.h"
+#include "Merge.h"
 #include "Plugins.h"
 #include "FileTransform.h"
 

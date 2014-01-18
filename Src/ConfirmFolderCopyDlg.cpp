@@ -23,8 +23,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "ConfirmFolderCopyDlg.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

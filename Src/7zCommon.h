@@ -5,7 +5,6 @@
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
 
-#include "DiffContext.h"
 #include "DirView.h"
 #include <list>
 

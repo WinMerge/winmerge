@@ -7,11 +7,12 @@
 // $Id$
 
 #include "stdafx.h"
+#include "PluginsListDlg.h"
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "Plugins.h"
-#include "PluginsListDlg.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CDialog)
 
