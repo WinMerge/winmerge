@@ -27,15 +27,16 @@
 // $Id: DirView.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
+#include "DirView.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
 #include "DirActions.h"
 #include "SourceControl.h"
-#include "DirView.h"
 #include "DirViewColItems.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
+#include "MergeDoc.h"
 #include "HexMergeFrm.h"
 #include "HexMergeDoc.h"
 #include "MainFrm.h"
@@ -47,6 +48,7 @@
 #include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "BCMenu.h"
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
@@ -875,8 +877,8 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 {
 	// Reset suppressing VSS dialog for multiple files.
 	// Set in SourceControl::SaveToVersionControl().
-	GetMainFrame()->m_pSourceControl->m_CheckOutMulti = false;
-	GetMainFrame()->m_pSourceControl->m_bVssSuppressPathCheck = false;
+	theApp.m_pSourceControl->m_CheckOutMulti = false;
+	theApp.m_pSourceControl->m_bVssSuppressPathCheck = false;
 
 	// Check option and enable putting deleted items to Recycle Bin
 	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
@@ -912,8 +914,8 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		// Synchronized items may need VCS operations
 		if (act.UIResult == FileActionItem::UI_SYNC)
 		{
-			if (GetMainFrame()->m_pSourceControl->m_bCheckinVCS)
-				GetMainFrame()->m_pSourceControl->CheckinToClearCase(act.dest);
+			if (theApp.m_pSourceControl->m_bCheckinVCS)
+				theApp.m_pSourceControl->CheckinToClearCase(act.dest);
 		}
 
 		// Update doc (difflist)
@@ -1330,38 +1332,38 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		FileLocation fileloc[3];
 		if (pDoc->m_nDirs < 3)
 		{
-			GetMainFrame()->m_strDescriptions[0].erase();
-			GetMainFrame()->m_strDescriptions[1].erase();
+			theApp.m_strDescriptions[0].erase();
+			theApp.m_strDescriptions[1].erase();
 			if (di1 == di2 && !di1->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
-				GetMainFrame()->m_strDescriptions[0] = _("Untitled left");
+				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
 			if (di1 == di2 && !di1->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
-				GetMainFrame()->m_strDescriptions[1] = _("Untitled right");
+				theApp.m_strDescriptions[1] = _("Untitled right");
 			}
 		}
 		else
 		{
-			GetMainFrame()->m_strDescriptions[0].erase();
-			GetMainFrame()->m_strDescriptions[1].erase();
-			GetMainFrame()->m_strDescriptions[2].erase();
+			theApp.m_strDescriptions[0].erase();
+			theApp.m_strDescriptions[1].erase();
+			theApp.m_strDescriptions[2].erase();
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
-				GetMainFrame()->m_strDescriptions[0] = _("Untitled left");
+				theApp.m_strDescriptions[0] = _("Untitled left");
 			}
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
-				GetMainFrame()->m_strDescriptions[1] = _("Untitled middle");
+				theApp.m_strDescriptions[1] = _("Untitled middle");
 			}
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(2))
 			{
 				paths[2] = _T("");
-				GetMainFrame()->m_strDescriptions[2] = _("Untitled right");
+				theApp.m_strDescriptions[2] = _("Untitled right");
 			}
 		}
 
@@ -1631,7 +1633,7 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 	String file = GetSelectedFileName(SelBegin(), stype, GetDiffContext());
 	if (file.empty()) return;
 
-	GetMainFrame()->OpenFileToExternalEditor(file);
+	theApp.OpenFileToExternalEditor(file);
 }
 
 /// User chose (context menu) open left
@@ -2403,7 +2405,7 @@ struct FileCmpReport: public IFileCmpReport
 		
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		if (GetMainFrame()->GetFrameType(pFrame) == FRAME_FILE)
+		if (GetMainFrame()->GetFrameType(pFrame) == CMainFrame::FRAME_FILE)
 		{
 			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
@@ -3148,7 +3150,7 @@ void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI)
 /** @brief Open help from mainframe when user presses F1*/
 void CDirView::OnHelp()
 {
-	GetMainFrame()->ShowHelp(DirViewHelpLocation);
+	theApp.ShowHelp(DirViewHelpLocation);
 }
 
 /**

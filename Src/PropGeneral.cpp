@@ -28,8 +28,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "PropGeneral.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"

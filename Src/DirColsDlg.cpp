@@ -10,9 +10,9 @@
 
 
 #include "stdafx.h"
-#include "merge.h"
 #include "DirColsDlg.h"
 #include <algorithm>
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

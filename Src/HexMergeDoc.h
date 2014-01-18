@@ -37,6 +37,15 @@ class CHexMergeView;
  */
 class CHexMergeDoc : public CDocument
 {
+public:
+	enum BUFFERTYPE
+	{
+		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
+		BUFFER_NORMAL_NAMED, /**< Normal, description given */
+		BUFFER_UNNAMED, /**< Empty, created buffer */
+		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+	};
+
 // Attributes
 public:
 	static int m_nBuffersTemp;

@@ -11,6 +11,7 @@
 #ifndef _REG_OPTIONSMGR_H_
 #define _REG_OPTIONSMGR_H_
 
+#include <Windows.h>
 #include "OptionsMgr.h"
 
 class COptionsMgr;

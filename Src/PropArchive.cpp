@@ -7,9 +7,9 @@
 // $Id$
 
 #include "stdafx.h"
+#include "PropArchive.h"
 #include "Constants.h"
 #include "Merge.h"
-#include "PropArchive.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"

@@ -17,6 +17,7 @@
 #include "paths.h"
 #include "Merge.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "Environment.h"
 #include "MergeLineFlags.h"
 #include "MergeDoc.h"

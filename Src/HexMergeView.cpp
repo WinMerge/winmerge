@@ -28,11 +28,12 @@
 // $Id: HexMergeView.cpp 7165 2010-05-15 14:04:43Z jtuc $
 
 #include "stdafx.h"
+#include "HexMergeFrm.h"
 #include "Merge.h"
 #include "MainFrm.h"
-#include "HexMergeFrm.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "Environment.h"
 
 #ifdef _DEBUG
@@ -304,11 +305,11 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path)
 	// Ask user what to do about FILE_ATTRIBUTE_READONLY
 	String strPath = path;
 	BOOL bApplyToAll = FALSE;
-	if (GetMainFrame()->HandleReadonlySave(strPath, FALSE, bApplyToAll) == IDCANCEL)
+	if (theApp.HandleReadonlySave(strPath, FALSE, bApplyToAll) == IDCANCEL)
 		return S_OK;
 	path = strPath.c_str();
 	// Take a chance to create a backup
-	if (!GetMainFrame()->CreateBackup(FALSE, path))
+	if (!theApp.CreateBackup(FALSE, path))
 		return S_OK;
 	// Write data to an intermediate file
 	String tempPath = env_GetTempPath();

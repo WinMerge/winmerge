@@ -23,8 +23,8 @@
 // $Id: SaveClosingDlg.cpp 4704 2007-11-03 12:10:48Z jtuc $
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "SaveClosingDlg.h"
+#include "Merge.h"
 #include "DDXHelper.h"
 
 #ifdef _DEBUG

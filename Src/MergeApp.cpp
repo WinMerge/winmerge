@@ -5,6 +5,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
+#include "unicoder.h"
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)

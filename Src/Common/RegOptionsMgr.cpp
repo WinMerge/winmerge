@@ -7,8 +7,8 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
 #include "RegOptionsMgr.h"
+#include <windows.h>
 #include <tchar.h>
 #include <vector>
 #include "varprop.h"

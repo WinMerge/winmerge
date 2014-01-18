@@ -98,19 +98,19 @@ DATE:		BY:					DESCRIPTION:
 // $Id: 7zCommon.cpp 7169 2010-05-16 14:44:19Z jtuc $
 
 #include "stdafx.h"
+#include "7zCommon.h"
+#include <afxinet.h>
+#include <shlwapi.h>
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "Merge.h"		// DirDocFilter theApp GetOptionsMgr()
 #include "resource.h"
-#include "DirDoc.h"
-#include "MainFrm.h"
 #include "DirView.h"
-#include "7zCommon.h"
+#include "DirDoc.h"
 #include "DirActions.h"
 //#include "ExternalArchiveFormat.h"
 #include "version.h"
-#include <afxinet.h>
-#include <shlwapi.h>
-#include <paths.h>
+#include "paths.h"
 #include "Environment.h"
 
 #ifdef _DEBUG

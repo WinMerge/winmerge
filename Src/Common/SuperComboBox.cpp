@@ -3,10 +3,9 @@
 
 #include "StdAfx.h"
 #include "SuperComboBox.h"
-#include "DragDrop.h"
-
 #include <shlwapi.h>
 #include <vector>
+#include "DragDrop.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

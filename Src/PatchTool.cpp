@@ -23,10 +23,10 @@
 // $Id: PatchTool.cpp 6858 2009-06-25 07:48:26Z kimmov $
 
 #include "StdAfx.h"
+#include "PatchTool.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
 #include "PathContext.h"
-#include "PatchTool.h"
 #include "PatchDlg.h"
 #include "paths.h"
 

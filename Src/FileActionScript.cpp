@@ -23,12 +23,13 @@
 // $Id$
 
 #include "stdafx.h"
+#include "FileActionScript.h"
 #include <vector>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "MainFrm.h"
-#include "FileActionScript.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
 #include "SourceControl.h"
@@ -112,7 +113,7 @@ int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
 		return retVal;
 
 	// TODO: First param is not used!
-	int nRetVal = GetMainFrame()->SyncFileToVCS(path.c_str(), bApplyToAll, strErr);
+	int nRetVal = theApp.SyncFileToVCS(path.c_str(), bApplyToAll, strErr);
 	if (nRetVal == -1)
 	{
 		retVal = SCRIPT_FAIL; // So we exit without file operations done
@@ -175,7 +176,7 @@ int FileActionScript::CreateOperationsScripts()
 
 			if (bContinue)
 			{
-				if (!GetMainFrame()->CreateBackup(TRUE, (*iter).dest.c_str()))
+				if (!theApp.CreateBackup(TRUE, (*iter).dest.c_str()))
 				{
 					String strErr = _("Error backing up file");
 					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);

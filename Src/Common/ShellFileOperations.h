@@ -26,7 +26,9 @@
 #define _SHELL_FILE_OPERATIONS_H_
 
 #include <vector>
+#include <Windows.h>
 #include <ShellAPI.h>
+#include "UnicodeString.h"
 
 /**
  * @brief A wrapper class for SHFileOperation().

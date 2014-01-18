@@ -6,8 +6,8 @@
 // ID line follows -- this is updated by SVN
 // $Id: paths.cpp 6514 2009-03-01 16:55:11Z kimmov $
 
-#include <windows.h>
 #include "paths.h"
+#include <windows.h>
 #include <cassert>
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)

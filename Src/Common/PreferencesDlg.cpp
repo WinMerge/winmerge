@@ -11,13 +11,12 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "PreferencesDlg.h"
 #include "resource.h"
 #include "UnicodeString.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "SyntaxColors.h"
-#include "PreferencesDlg.h"
-#include "MainFrm.h"
 #include "Merge.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
@@ -141,7 +140,7 @@ void CPreferencesDlg::OnDestroy()
 
 void CPreferencesDlg::OnHelpButton() 
 {
-	GetMainFrame()->ShowHelp(OptionsHelpLocation);
+	theApp.ShowHelp(OptionsHelpLocation);
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)

@@ -28,10 +28,8 @@
 // $Id: DirFrame.cpp 4739 2007-11-12 20:41:16Z jtuc $
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "DirFrame.h"
-#include "FilepathEdit.h"
-#include "DirDoc.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

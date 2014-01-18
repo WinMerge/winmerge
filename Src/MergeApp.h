@@ -7,6 +7,7 @@
 #define N_(x) (x)
 
 class COptionsMgr;
+class FileFilterHelper;
 
 struct AboutInfo
 {

@@ -20,8 +20,8 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <vector>
 #include "FileFilter.h"
+#include <vector>
 
 using std::vector;
 

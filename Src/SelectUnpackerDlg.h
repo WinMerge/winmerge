@@ -31,6 +31,7 @@
 
 #include <vector>
 #include "UnicodeString.h"
+#include <boost/scoped_ptr.hpp>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectUnpackerDlgDlg dialog

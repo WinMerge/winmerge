@@ -25,6 +25,7 @@
 #include "locality.h"
 #include "FileFilterHelper.h"
 #include "coretools.h"
+#include "OptionsMgr.h"
 
 using Poco::UIntPtr;
 

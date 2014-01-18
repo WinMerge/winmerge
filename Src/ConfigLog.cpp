@@ -24,9 +24,9 @@
 
 #include "ConfigLog.h"
 #include <cassert>
-#include <boost/scoped_array.hpp>
 #include <windows.h>
 #include <mbctype.h>
+#include <boost/scoped_array.hpp>
 #include "Constants.h"
 #include "version.h"
 #include "UniFile.h"

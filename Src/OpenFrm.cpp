@@ -1,9 +1,8 @@
 // ChildFrm.cpp : implementation of the COpenFrame class
 //
 #include "stdafx.h"
-#include "Merge.h"
-
 #include "OpenFrm.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

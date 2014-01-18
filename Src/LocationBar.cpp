@@ -11,10 +11,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "Merge.h"
-
-#include "ChildFrm.h"
 #include "LocationBar.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
