@@ -440,9 +440,6 @@ BEGIN
         MENUITEM SEPARATOR
 	POPUP "A&dvanced"
 	BEGIN
-        MENUITEM "Copy &Left to Middle\tAlt+4",              ID_L2M
-        MENUITEM "Copy &Right to Middle\tAlt+6",             ID_R2M
-        MENUITEM SEPARATOR
         MENUITEM "Next Difference Between Left and Middle\tAlt+1",  ID_NEXTDIFFLM
         MENUITEM "Previous Difference Between Left And Middle\tAlt+Shift+1", ID_PREVDIFFLM
         MENUITEM SEPARATOR
@@ -659,6 +656,18 @@ END
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
+    "1",            ID_NEXTDIFFLM,          VIRTKEY, ALT, NOINVERT
+    "1",            ID_PREVDIFFLM,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "2",            ID_NEXTDIFFLR,          VIRTKEY, ALT, NOINVERT
+    "2",            ID_PREVDIFFLR,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "3",            ID_NEXTDIFFMR,          VIRTKEY, ALT, NOINVERT
+    "3",            ID_PREVDIFFMR,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "7",            ID_NEXTDIFFLO,          VIRTKEY, ALT, NOINVERT
+    "7",            ID_PREVDIFFLO,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "8",            ID_NEXTDIFFMO,          VIRTKEY, ALT, NOINVERT
+    "8",            ID_PREVDIFFMO,          VIRTKEY, ALT, SHIFT, NOINVERT
+    "9",            ID_NEXTDIFFRO,          VIRTKEY, ALT, NOINVERT
+    "9",            ID_PREVDIFFRO,          VIRTKEY, ALT, SHIFT, NOINVERT
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT

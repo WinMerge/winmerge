@@ -270,10 +270,6 @@ protected:
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
-	afx_msg void OnL2m();
-	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
-	afx_msg void OnR2m();
-	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
