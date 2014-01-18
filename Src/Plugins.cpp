@@ -26,6 +26,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: Plugins.cpp 7052 2009-12-22 17:45:22Z kimmov $
 
+#include "Plugins.h"
 #define POCO_NO_UNWINDOWS 1
 #include <vector>
 #include <list>
@@ -36,7 +37,6 @@
 #include <Poco/ScopedLock.h>
 #include <Poco/RegularExpression.h>
 #include <windows.h>
-#include "Plugins.h"
 #include "MergeApp.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"

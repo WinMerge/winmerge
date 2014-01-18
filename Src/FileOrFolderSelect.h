@@ -29,6 +29,7 @@
 #ifndef _FILE_OR_FOLDER_SELECTION_H_
 #define _FILE_OR_FOLDER_SELECTION_H_
 
+#include "UnicodeString.h"
 
 BOOL SelectFile(HWND parent, String& path, LPCTSTR initialPath = NULL, 
 			 UINT titleid = 0, UINT filterid = 0,

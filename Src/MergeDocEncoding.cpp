@@ -29,9 +29,8 @@
 // $Id: MergeDocEncoding.cpp 4921 2008-01-16 20:20:54Z kimmov $
 
 #include "stdafx.h"
-
-#include "MainFrm.h"
 #include "MergeDoc.h"
+#include "Merge.h"
 #include "LoadSaveCodepageDlg.h"
 #include "unicoder.h"
 
@@ -77,7 +76,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 			fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		}
 		fileloc[pane].setPath(m_filePaths[pane]);
-		GetMainFrame()->m_strDescriptions[pane] = m_strDesc[pane];
+		theApp.m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	OpenDocs(fileloc, bRO);
 

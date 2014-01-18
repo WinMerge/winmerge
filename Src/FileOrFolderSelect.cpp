@@ -27,11 +27,10 @@
 // $Id: FileOrFolderSelect.cpp 6569 2009-03-15 14:33:03Z kimmov $
 
 #include <windows.h>
+#include "FileOrFolderSelect.h"
 #include <shlobj.h>
 #include <sys/stat.h>
-#include "UnicodeString.h"
 #include "Environment.h"
-#include "FileOrFolderSelect.h"
 #include "paths.h"
 #include "MergeApp.h"
 #include "resource.h"

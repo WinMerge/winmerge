@@ -10,15 +10,14 @@
 
 
 #include "stdafx.h"
+#include "DirViewColItems.h"
 #include <shlwapi.h>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "DirView.h"
 #include "DirDoc.h"
-#include "MainFrm.h"
 #include "resource.h"
-#include "DirViewColItems.h"
 #include "locality.h"
 #include "unicoder.h"
 #include "coretools.h"

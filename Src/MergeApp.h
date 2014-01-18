@@ -4,6 +4,7 @@
 #include "UnicodeString.h"
 
 class COptionsMgr;
+class FileFilterHelper;
 
 /** @brief Retrieve error description from Windows; uses FormatMessage */
 String GetSysError(int nerr = -1);

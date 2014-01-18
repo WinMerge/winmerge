@@ -27,12 +27,13 @@
 // $Id: DirView.cpp 7063 2009-12-27 15:28:16Z kimmov $
 
 #include "StdAfx.h"
+#include "DirView.h"
 #include "Constants.h"
 #include "Merge.h"
 #include "ClipBoard.h"
-#include "DirView.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
+#include "MergeDoc.h"
 #include "HexMergeFrm.h"
 #include "HexMergeDoc.h"
 #include "MainFrm.h"
@@ -45,6 +46,7 @@
 #include "paths.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "BCMenu.h"
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
@@ -1806,38 +1808,38 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 		FileLocation fileloc[3];
 		if (pDoc->m_nDirs < 3)
 		{
-			GetMainFrame()->m_strDescriptions[0].erase();
-			GetMainFrame()->m_strDescriptions[1].erase();
+			theApp.m_strDescriptions[0].erase();
+			theApp.m_strDescriptions[1].erase();
 			if (di1 == di2 && !di1->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
-				GetMainFrame()->m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
 			if (di1 == di2 && !di1->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
-				GetMainFrame()->m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 			}
 		}
 		else
 		{
-			GetMainFrame()->m_strDescriptions[0].erase();
-			GetMainFrame()->m_strDescriptions[1].erase();
-			GetMainFrame()->m_strDescriptions[2].erase();
+			theApp.m_strDescriptions[0].erase();
+			theApp.m_strDescriptions[1].erase();
+			theApp.m_strDescriptions[2].erase();
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(0))
 			{
 				paths[0] = _T("");
-				GetMainFrame()->m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+				theApp.m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
 			}
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(1))
 			{
 				paths[1] = _T("");
-				GetMainFrame()->m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
+				theApp.m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_MIDDLE_FILE);
 			}
 			if (di1 == di2 && di1 == di3 && !di1->diffcode.isExists(2))
 			{
 				paths[2] = _T("");
-				GetMainFrame()->m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+				theApp.m_strDescriptions[2] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 			}
 		}
 
@@ -3301,7 +3303,7 @@ struct FileCmpReport: public IFileCmpReport
 		
 		m_pDirView->OpenSelection();
 		CFrameWnd * pFrame = GetMainFrame()->GetActiveFrame();
-		if (GetMainFrame()->GetFrameType(pFrame) == FRAME_FILE)
+		if (GetMainFrame()->GetFrameType(pFrame) == CMainFrame::FRAME_FILE)
 		{
 			CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 			pMergeDoc->GenerateReport(paths_ConcatPath(sDestDir, sLinkPath).c_str());
@@ -4195,7 +4197,7 @@ void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI)
 /** @brief Open help from mainframe when user presses F1*/
 void CDirView::OnHelp()
 {
-	GetMainFrame()->ShowHelp(DirViewHelpLocation);
+	theApp.ShowHelp(DirViewHelpLocation);
 }
 
 /**

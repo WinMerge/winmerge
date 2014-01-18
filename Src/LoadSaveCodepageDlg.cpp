@@ -7,10 +7,9 @@
 // $Id: LoadSaveCodepageDlg.cpp 5394 2008-05-29 09:47:36Z kimmov $
 
 #include "stdafx.h"
-#include "Merge.h"
-#include "MainFrm.h"
-#include "resource.h"
 #include "LoadSaveCodepageDlg.h"
+#include "Merge.h"
+#include "resource.h"
 #include "unicoder.h"
 #include "ExConverter.h"
 
@@ -87,8 +86,6 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	CMainFrame::SetMainIcon(this);
-	
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
 	// configure how individual controls adjust when dialog resizes
@@ -130,7 +127,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		combo.Detach();
 	}
 
-	CMainFrame::CenterToMainFrame(this);
+	AfxGetMainWnd()->CenterWindow(this);
 
 	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
 	SetDlgItemText(IDC_MIDDLE_FILES_LABEL, m_sAffectsMiddleString);

@@ -83,11 +83,11 @@ DATE:		BY:					DESCRIPTION:
 */
 
 #include "markdown.h"
-#include "unicoder.h"
 #include <cstring>
 #include <Poco/ByteOrder.h>
 #include <Poco/NumberParser.h>
 #include <Poco/SharedMemory.h>
+#include "unicoder.h"
 #include "TFile.h"
 
 #define MAKEWORD(a, b)      ((unsigned short)(((unsigned char)((unsigned)(a) & 0xff)) | ((unsigned short)((unsigned char)((unsigned)(b) & 0xff))) << 8))

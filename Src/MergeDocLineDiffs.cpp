@@ -8,12 +8,12 @@
 // $Id: MergeDocLineDiffs.cpp 7067 2009-12-29 14:22:46Z kimmov $
 
 #include "StdAfx.h"
+#include "MergeDoc.h"
 #include <vector>
 #include <boost/scoped_array.hpp>
 #include "Merge.h"
-#include "MainFrm.h"
-
 #include "MergeEditView.h"
+#include "DiffTextBuffer.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
 

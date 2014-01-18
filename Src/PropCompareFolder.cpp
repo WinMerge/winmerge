@@ -7,8 +7,8 @@
 // $Id: PropCompareFolder.cpp 6921 2009-07-23 15:20:41Z kimmov $
 
 #include "stdafx.h"
-#include "merge.h"
 #include "PropCompareFolder.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"

@@ -28,12 +28,12 @@
 // $Id: HexMergeFrm.cpp 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "stdafx.h"
-#include "Merge.h"
-#include "MainFrm.h"
 #include "HexMergeFrm.h"
+#include "Merge.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

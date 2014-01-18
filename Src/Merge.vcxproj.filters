@@ -142,9 +142,6 @@
     <ClCompile Include="FolderCmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LineFiltersList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="locality.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -745,6 +742,9 @@
     <ClCompile Include="Splash.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LineFiltersList.cpp">
+      <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1164,9 +1164,6 @@
     <ClInclude Include="FileOrFolderSelect.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="7zCommon.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BCMenu.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1364,6 +1361,9 @@
     </ClInclude>
     <ClInclude Include="Common\DragDrop.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="7zCommon.h">
+      <Filter>MFCGui\Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

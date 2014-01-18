@@ -31,6 +31,8 @@
 
 #include <vector>
 
+struct FileFilterInfo;
+
 /**
  * @brief Class for dialog allowing user to select
  * and edit used file filters

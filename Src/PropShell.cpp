@@ -8,9 +8,8 @@
 // $Id: PropShell.cpp 6725 2009-05-09 14:31:24Z kimmov $
 
 #include "stdafx.h"
-#include "resource.h"
-#include "merge.h"
 #include "PropShell.h"
+#include "Merge.h"
 #include "RegKey.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

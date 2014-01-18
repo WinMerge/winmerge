@@ -23,9 +23,9 @@
 // $Id: PatchDlg.cpp 6783 2009-05-25 06:47:22Z kimmov $
 
 #include "StdAfx.h"
+#include "PatchDlg.h"
 #include "Merge.h"
 #include "PatchTool.h"
-#include "PatchDlg.h"
 #include "diff.h"
 #include "coretools.h"
 #include "paths.h"

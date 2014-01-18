@@ -7,10 +7,9 @@
 // $Id$
 
 #include "stdafx.h"
-#include "resource.h"
+#include "PropSyntaxColors.h"
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
-#include "PropSyntaxColors.h"
 #include "CustomColors.h"
 #include "Merge.h"
 #include "OptionsPanel.h"

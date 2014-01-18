@@ -23,8 +23,8 @@
 // $Id$
 
 
-#include <windows.h>
 #include "VSSHelper.h"
+#include <windows.h>
 #include <algorithm>
 #include <cassert>
 #include "UnicodeString.h"

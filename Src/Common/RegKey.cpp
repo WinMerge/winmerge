@@ -7,8 +7,8 @@
 // $Id$
 
 #define NOMINMAX
-#include <windows.h>
 #include "RegKey.h"
+#include <windows.h>
 #include <cassert>
 #include "UnicodeString.h"
 #include "coretypes.h"

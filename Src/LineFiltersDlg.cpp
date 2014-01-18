@@ -7,9 +7,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "LineFiltersList.h"
-#include "MainFrm.h"
+#include "Merge.h"
 #include "LineFiltersDlg.h"
 
 #ifdef _DEBUG
@@ -111,7 +110,7 @@ void LineFiltersDlg::InitList()
  */
 void LineFiltersDlg::OnHelp()
 {
-	GetMainFrame()->ShowHelp(FilterHelpLocation);
+	theApp.ShowHelp(FilterHelpLocation);
 }
 
 /**

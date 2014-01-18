@@ -7,8 +7,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "SharedFilterDlg.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 

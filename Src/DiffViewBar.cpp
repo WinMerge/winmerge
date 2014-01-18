@@ -11,10 +11,9 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "Merge.h"
-
-#include "ChildFrm.h"
 #include "DiffViewBar.h"
+#include "Merge.h"
+#include "SplitterWndEx.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

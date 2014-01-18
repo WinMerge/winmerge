@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "MergeApp.h"
 #include "Merge.h"
+#include "unicoder.h"
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)
