@@ -6,8 +6,8 @@
 // Set tabsize = 3 in your editor.
 //
 #include "StdAfx.h"
-#include <afxpriv2.h>
 #include "Picture.h"
+#include <afxpriv2.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

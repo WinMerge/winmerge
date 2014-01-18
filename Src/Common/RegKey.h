@@ -6,6 +6,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#include <Windows.h>
 #include "UnicodeString.h"
 
 /**

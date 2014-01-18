@@ -28,16 +28,15 @@
 // $Id: HexMergeDoc.cpp 7166 2010-05-16 12:05:13Z jtuc $
 
 #include "stdafx.h"
+#include "HexMergeDoc.h"
 #include <afxinet.h>
 #include "UnicodeString.h"
 #include "FileTextEncoding.h"
 #include "Merge.h"
-#include "HexMergeDoc.h"
 #include "HexMergeFrm.h"
 #include "HexMergeView.h"
 #include "DiffItem.h"
 #include "FolderCmp.h"
-#include "MainFrm.h"
 #include "Environment.h"
 #include "DiffContext.h"	// FILE_SAME
 #include "DirDoc.h"
@@ -49,6 +48,7 @@
 #include "paths.h"
 #include "OptionsMgr.h"
 #include "FileOrFolderSelect.h"
+#include "DiffWrapper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -373,7 +373,7 @@ void CHexMergeDoc::DoFileSaveAs(int nBuffer)
 		title = _("Save Right File As");
 	else
 		title = _("Save Middle File As");
-	if (SelectFile(GetMainFrame()->GetSafeHwnd(), strPath, path.c_str(), title, _T(""), FALSE))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, path.c_str(), title, _T(""), FALSE))
 	{
 		if (Try(m_pView[nBuffer]->SaveFile(strPath.c_str())) == IDCANCEL)
 			return;
@@ -498,7 +498,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 		m_pView[index]->SetReadOnly(readOnly);
 		m_filePaths.SetPath(index, filename);
 		ASSERT(m_nBufferType[index] == BUFFER_NORMAL); // should have been initialized to BUFFER_NORMAL in constructor
-		String strDesc = GetMainFrame()->m_strDescriptions[index];
+		String strDesc = theApp.m_strDescriptions[index];
 		if (!strDesc.empty())
 		{
 			m_strDesc[index] = strDesc;
@@ -508,7 +508,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, BOOL readOnly)
 	else
 	{
 		m_nBufferType[index] = BUFFER_UNNAMED;
-		m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+		m_strDesc[index] = theApp.m_strDescriptions[index];
 
 	}
 	UpdateHeaderPath(index);

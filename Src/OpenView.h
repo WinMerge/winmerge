@@ -37,6 +37,7 @@
 #include "CMoveConstraint.h"
 
 class ProjectFile;
+class COpenDoc;
 
 /**
  * @brief The Open-View class.

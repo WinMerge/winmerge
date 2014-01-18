@@ -23,8 +23,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "ConfirmFolderCopyDlg.h"
+#include "Merge.h"
 #include "DDXHelper.h"
 
 #ifdef _DEBUG

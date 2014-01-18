@@ -6,10 +6,10 @@
 // ID line follows -- this is updated by SVN
 // $Id: $
 
+#include "ExConverter.h"
 #include <windows.h>
 #include <mlang.h>
 #include <boost/scoped_array.hpp>
-#include "ExConverter.h"
 #include "unicoder.h"
 #include "codepage.h"
 

@@ -2,9 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "Merge.h"
-#include "resource.h"
 #include "EncodingErrorBar.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

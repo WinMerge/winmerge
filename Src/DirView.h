@@ -34,6 +34,8 @@
 #include <afxcview.h>
 #include <map>
 #include <boost/scoped_ptr.hpp>
+#define POCO_NO_UNWINDOWS 1
+#include <Poco/Types.h>
 #include "OptionsDiffColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"

@@ -1,6 +1,6 @@
 #include "DragDrop.h"
-#include "paths.h"
 #include <boost/scoped_array.hpp>
+#include "paths.h"
 
 //
 //	OnDropFiles code from CDropEdit

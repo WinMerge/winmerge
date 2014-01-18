@@ -11,10 +11,10 @@
 
 #include <vector>
 #include <string>
-#include "codepage.h"
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/RegularExpression.h>
 #include <boost/shared_ptr.hpp>
+#include "codepage.h"
 
 /**
  * @brief Container for one filtering rule / compiled expression.

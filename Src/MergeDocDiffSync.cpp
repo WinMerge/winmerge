@@ -13,7 +13,7 @@
 
 #include "Merge.h"
 #include "DiffList.h"
-#include "MergeLineFlags.h"
+#include "stringdiffs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

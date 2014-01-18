@@ -28,10 +28,10 @@
 // $Id: PropCodepage.cpp 6908 2009-07-11 08:29:49Z kimmov $
 
 #include "stdafx.h"
+#include "PropCodepage.h"
 #include "common/unicoder.h"
 #include "common/ExConverter.h"
-#include "merge.h"
-#include "PropCodepage.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"

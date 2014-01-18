@@ -9,7 +9,6 @@
 #include "stdafx.h"
 #include "DirCompProgressBar.h"
 #include "Merge.h"
-#include "DirDoc.h"
 #include "CompareStats.h"
 
 #ifdef _DEBUG

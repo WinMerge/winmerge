@@ -24,8 +24,8 @@
 // RCS ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
 #include "codepage.h"
+#include <windows.h>
 #include <map>
 #include <cassert>
 #include <tchar.h>

@@ -28,12 +28,13 @@
 // $Id: Merge.cpp 6861 2009-06-25 12:11:07Z kimmov $
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "Constants.h"
 #include "UnicodeString.h"
 #include "unicoder.h"
 #include "Environment.h"
 #include "OptionsMgr.h"
-#include "Merge.h"
+#include "RegOptionsMgr.h"
 #include "OpenDoc.h"
 #include "OpenFrm.h"
 #include "OpenView.h"
@@ -48,8 +49,13 @@
 #include "DirDoc.h"
 #include "DirView.h"
 #include "Splash.h"
+#include "PropBackups.h"
+#include "FileOrFolderSelect.h"
 #include "paths.h"
 #include "FileFilterHelper.h"
+#include "LineFiltersList.h"
+#include "SyntaxColors.h"
+#include "OptionsSyntaxColors.h"
 #include "Plugins.h"
 #include "ProjectFile.h"
 #include "MergeEditView.h"
@@ -59,6 +65,9 @@
 #include "ConflictFileParser.h"
 #include "codepage.h"
 #include "JumpList.h"
+#include "stringdiffs.h"
+#include "TFile.h"
+#include "SourceControl.h"
 #include "paths.h"
 #include "Constants.h"
 
@@ -75,6 +84,12 @@ static char THIS_FILE[] = __FILE__;
 
 /** @brief Location for command line help to open. */
 static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
+
+// registry dir to WinMerge
+static String f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
+
+/** @brief Backup file extension. */
+static const TCHAR BACKUP_FILE_EXT[] = _T("bak");
 
 #ifndef WIN64
 /**
@@ -187,8 +202,15 @@ CMergeApp::CMergeApp() :
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
 , m_pOptions(new CRegOptionsMgr())
+, m_pGlobalFileFilter(new FileFilterHelper())
 , m_nActiveOperations(0)
 , m_pLangDlg(new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME))
+, m_bEscShutdown(FALSE)
+, m_bClearCaseTool(FALSE)
+, m_bExitIfNoDiff(MergeCmdLineInfo::Disabled)
+, m_pLineFilters(new LineFiltersList())
+, m_pSyntaxColors(new SyntaxColors())
+, m_pSourceControl(new SourceControl())
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -196,6 +218,7 @@ CMergeApp::CMergeApp() :
 
 CMergeApp::~CMergeApp()
 {
+	sd_Close();
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -339,12 +362,48 @@ BOOL CMergeApp::InitInstance()
 	// Read last used filter from registry
 	// If filter fails to set, reset to default
 	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filterString.c_str());
+	BOOL bFilterSet = m_pGlobalFileFilter->SetFilter(filterString.c_str());
 	if (!bFilterSet)
 	{
-		String filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+		String filter = m_pGlobalFileFilter->GetFilterNameOrMask();
 		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
+
+	UpdateCodepageModule();
+
+	if (m_pSourceControl)
+		m_pSourceControl->InitializeSourceControlMembers();
+
+	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
+	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+
+	if (m_pSyntaxColors)
+		Options::SyntaxColors::Load(m_pSyntaxColors.get());
+
+	if (m_pLineFilters)
+		m_pLineFilters->Initialize(GetOptionsMgr());
+
+	// If there are no filters loaded, and there is filter string in previous
+	// option string, import old filters to new place.
+	if (m_pLineFilters->GetCount() == 0)
+	{
+		String oldFilter = theApp.GetProfileString(_T("Settings"), _T("RegExps"));
+		if (!oldFilter.empty())
+			m_pLineFilters->Import(oldFilter);
+	}
+
+	// Check if filter folder is set, and create it if not
+	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+	if (pathMyFolders.empty())
+	{
+		// No filter path, set it to default and make sure it exists.
+		String pathFilters = GetDefaultFilterUserPath(TRUE);
+		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
+		theApp.m_pGlobalFileFilter->SetFileFilterPath(pathFilters.c_str());
+	}
+
+	sd_Init(); // String diff init
+	sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 	CSplashWnd::EnableSplashScreen(!bDisableSplash && !bCommandLineInvoke);
 
@@ -443,7 +502,7 @@ BOOL CMergeApp::InitInstance()
 
 static void OpenContributersFile(int&)
 {
-	GetMainFrame()->OpenFileToExternalEditor(paths_ConcatPath(env_GetProgPath(), ContributorsPath));
+	theApp.OpenFileToExternalEditor(paths_ConcatPath(env_GetProgPath(), ContributorsPath));
 }
 
 // App command to run the dialog
@@ -607,9 +666,9 @@ void CMergeApp::InitializeFileFilters()
 
 	if (!filterPath.IsEmpty())
 	{
-		m_globalFileFilter.SetUserFilterPath((LPCTSTR)filterPath);
+		m_pGlobalFileFilter->SetUserFilterPath((LPCTSTR)filterPath);
 	}
-	m_globalFileFilter.LoadAllFileFilters();
+	m_pGlobalFileFilter->LoadAllFileFilters();
 }
 
 /** @brief Read command line arguments and open files for comparison.
@@ -629,7 +688,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		m_globalFileFilter.SetFilter(cmdInfo.m_sFileFilter.c_str());
+		m_pGlobalFileFilter->SetFilter(cmdInfo.m_sFileFilter.c_str());
 	}
 
 	// Set codepage.
@@ -642,27 +701,27 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// comparison.
 	if (cmdInfo.m_bShowUsage)
 	{
-		pMainFrame->ShowHelp(CommandLineHelpLocation);
+		ShowHelp(CommandLineHelpLocation);
 	}
 	else
 	{
 		// Set the required information we need from the command line:
 
-		pMainFrame->m_bClearCaseTool = cmdInfo.m_bClearCaseTool;
-		pMainFrame->m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
-		pMainFrame->m_bEscShutdown = cmdInfo.m_bEscShutdown;
+		m_bClearCaseTool = cmdInfo.m_bClearCaseTool;
+		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
+		m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
-		pMainFrame->m_strSaveAsPath = cmdInfo.m_sOutputpath.c_str();
+		m_strSaveAsPath = cmdInfo.m_sOutputpath.c_str();
 
-		pMainFrame->m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
+		m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
 		if (cmdInfo.m_Files.GetSize() < 3)
 		{
-			pMainFrame->m_strDescriptions[1] = cmdInfo.m_sRightDesc;
+			m_strDescriptions[1] = cmdInfo.m_sRightDesc;
 		}
 		else
 		{
-			pMainFrame->m_strDescriptions[1] = cmdInfo.m_sMiddleDesc;
-			pMainFrame->m_strDescriptions[2] = cmdInfo.m_sRightDesc;
+			m_strDescriptions[1] = cmdInfo.m_sMiddleDesc;
+			m_strDescriptions[2] = cmdInfo.m_sRightDesc;
 		}
 
 		if (cmdInfo.m_Files.GetSize() > 2)
@@ -722,7 +781,7 @@ void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
 			break;
 		case 1:
 			TCHAR buff[32];
-			wLangId = theApp.GetLangId();
+			wLangId = GetLangId();
 			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
 				ucr::setDefaultCodepage(_ttol(buff));
 			else
@@ -738,11 +797,398 @@ void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
 	}
 }
 
+/**
+ * @brief Send current option settings into codepage module
+ */
+void CMergeApp::UpdateCodepageModule()
+{
+	// Get current codepage settings from the options module
+	// and push them into the codepage module
+	UpdateDefaultCodepage(GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE), GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM));
+}
 
 /** @brief Open help from mainframe when user presses F1*/
 void CMergeApp::OnHelp()
 {
-	GetMainFrame()->ShowHelp();
+	ShowHelp();
+}
+
+/**
+ * @brief Open given file to external editor specified in options.
+ * @param [in] file Full path to file to open.
+ *
+ * Opens file to defined (in Options/system), Notepad by default,
+ * external editor. Path is decorated with quotation marks if needed
+ * (contains spaces). Also '$file' in editor path is replaced by
+ * filename to open.
+ * @param [in] file Full path to file to open.
+ * @param [in] nLineNumber Line number to go to.
+ */
+void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* = 1*/)
+{
+	String sCmd = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
+	String sFile(file);
+	string_replace(sCmd, _T("$linenum"), string_to_str(nLineNumber));
+
+	int nIndex = sCmd.find(_T("$file"));
+	if (nIndex > -1)
+	{
+		sFile.insert(0, _T("\""));
+		string_replace(sCmd, _T("$file"), sFile);
+		nIndex = sCmd.find(' ', nIndex + sFile.length());
+		if (nIndex > -1)
+			sCmd.insert(nIndex, _T("\""));
+		else
+			sCmd += '"';
+	}
+	else
+	{
+		sCmd += _T(" \"");
+		sCmd += sFile;
+		sCmd += _T("\"");
+	}
+
+	BOOL retVal = FALSE;
+	STARTUPINFO stInfo = {0};
+	stInfo.cb = sizeof(STARTUPINFO);
+	PROCESS_INFORMATION processInfo;
+
+	retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
+		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+		&stInfo, &processInfo);
+
+	if (!retVal)
+	{
+		// Error invoking external editor
+		String msg = string_format_string1(_("Failed to execute external editor: %1"), sCmd);
+		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
+	}
+	else
+	{
+		CloseHandle(processInfo.hThread);
+		CloseHandle(processInfo.hProcess);
+	}
+}
+
+/**
+ * @brief Open file, if it exists, else open url
+ */
+void CMergeApp::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
+{
+	if (paths_DoesPathExist(szFile) == IS_EXISTING_FILE)
+		ShellExecute(NULL, _T("open"), _T("notepad.exe"), szFile, NULL, SW_SHOWNORMAL);
+	else
+		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Show Help - this is for opening help from outside mainframe.
+ * @param [in] helpLocation Location inside help, if NULL main help is opened.
+ */
+void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
+{
+	String sPath = env_GetProgPath();
+	LANGID LangId = GetLangId();
+	if (PRIMARYLANGID(LangId) == LANG_JAPANESE)
+		sPath = paths_ConcatPath(sPath, DocsPath_ja);
+	else
+		sPath = paths_ConcatPath(sPath, DocsPath);
+	if (helpLocation == NULL)
+	{
+		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOC, NULL);
+		else
+			ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+	}
+	else
+	{
+		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		{
+			sPath += helpLocation;
+			::HtmlHelp(NULL, sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
+		}
+	}
+}
+
+/**
+ * @brief Creates backup before file is saved or copied over.
+ * This function handles formatting correct path and filename for
+ * backup file. Formatting is done based on several options available
+ * for users in Options/Backups dialog. After path is formatted, file
+ * is simply just copied. Not much error checking, just if copying
+ * succeeded or failed.
+ * @param [in] bFolder Are we creating backup in folder compare?
+ * @param [in] pszPath Full path to file to backup.
+ * @return TRUE if backup succeeds, or isn't just done.
+ */
+BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
+{
+	// If user doesn't want to backups in folder compare, return
+	// success so operations don't abort.
+	if (bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP)))
+		return TRUE;
+	// Likewise if user doesn't want backups in file compare
+	else if (!bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP)))
+		return TRUE;
+
+	// create backup copy of file if destination file exists
+	if (paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
+	{
+		String bakPath;
+		String path;
+		String filename;
+		String ext;
+	
+		paths_SplitFilename(pszPath, &path, &filename, &ext);
+
+		// Determine backup folder
+		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
+			PropBackups::FOLDER_ORIGINAL)
+		{
+			// Put backups to same folder than original file
+			bakPath = path;
+		}
+		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
+			PropBackups::FOLDER_GLOBAL)
+		{
+			// Put backups to global folder defined in options
+			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
+			if (bakPath.empty())
+				bakPath = path;
+			else
+				bakPath = paths_GetLongPath(bakPath);
+		}
+		else
+		{
+			_RPTF0(_CRT_ERROR, "Unknown backup location!");
+		}
+
+		BOOL success = FALSE;
+		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
+		{
+			// Don't add dot if there is no existing extension
+			if (ext.size() > 0)
+				ext += _T(".");
+			ext += BACKUP_FILE_EXT;
+		}
+
+		// Append time to filename if wanted so
+		// NOTE just adds timestamp at the moment as I couldn't figure out
+		// nice way to add a real time (invalid chars etc).
+		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME))
+		{
+			struct tm *tm;
+			time_t curtime = 0;
+			time(&curtime);
+			tm = localtime(&curtime);
+			CString timestr;
+			timestr.Format(_T("%04d%02d%02d%02d%02d%02d"), tm->tm_year+1900, tm->tm_mon+1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+			filename += _T("-");
+			filename += timestr;
+		}
+
+		// Append filename and extension (+ optional .bak) to path
+		if ((bakPath.length() + filename.length() + ext.length())
+			< MAX_PATH)
+		{
+			success = TRUE;
+			bakPath = paths_ConcatPath(bakPath, filename);
+			bakPath += _T(".");
+			bakPath += ext;
+		}
+
+		if (success)
+			success = CopyFile(pszPath.c_str(), bakPath.c_str(), FALSE);
+		
+		if (!success)
+		{
+			String msg = string_format_string1(
+				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
+				pszPath);
+			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN) != IDYES)
+				return FALSE;
+		}
+		return TRUE;
+	}
+
+	// we got here because we're either not backing up of there was nothing to backup
+	return TRUE;
+}
+
+/**
+ * @brief Sync file to Version Control System
+ * @param pszDest [in] Where to copy (incl. filename)
+ * @param bApplyToAll [in,out] Apply user selection to all items
+ * @param psError [out] Error string that can be shown to user in caller func
+ * @return User selection or -1 if error happened
+ * @sa CMainFrame::HandleReadonlySave()
+ * @sa CDirView::PerformActionList()
+ */
+int CMergeApp::SyncFileToVCS(const String& pszDest, BOOL &bApplyToAll,
+	String& sError)
+{
+	String sActionError;
+	String strSavePath(pszDest);
+	int nVerSys = 0;
+
+	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
+	
+	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
+	if (nRetVal == IDCANCEL || nRetVal == IDNO)
+		return nRetVal;
+	
+	// If VC project opened from VSS sync and version control used
+	if ((nVerSys == SourceControl::VCS_VSS4 || nVerSys == SourceControl::VCS_VSS5) && m_pSourceControl->m_bVCProjSync)
+	{
+		if (!m_pSourceControl->m_vssHelper.ReLinkVCProj(strSavePath, sError))
+			nRetVal = -1;
+	}
+	return nRetVal;
+}
+
+/**
+ * @brief Checks if path (file/folder) is read-only and asks overwriting it.
+ *
+ * @param strSavePath [in,out] Path where to save (file or folder)
+ * @param bMultiFile [in] Single file or multiple files/folder
+ * @param bApplyToAll [in,out] Apply last user selection for all items?
+ * @return Users selection:
+ * - IDOK: Item was not readonly, no actions
+ * - IDYES/IDYESTOALL: Overwrite readonly item
+ * - IDNO: User selected new filename (single file) or user wants to skip
+ * - IDCANCEL: Cancel operation
+ * @sa CMainFrame::SyncFileToVCS()
+ * @sa CMergeDoc::DoSave()
+ */
+int CMergeApp::HandleReadonlySave(String& strSavePath, BOOL bMultiFile,
+		BOOL &bApplyToAll)
+{
+	CFileStatus status;
+	UINT userChoice = 0;
+	int nRetVal = IDOK;
+	BOOL bFileRO = FALSE;
+	BOOL bFileExists = FALSE;
+	String s;
+	String str;
+	CString title;
+	int nVerSys = 0;
+
+	try
+	{
+		TFile file(strSavePath);
+		bFileExists = file.exists();
+		if (bFileExists)
+			bFileRO = !file.canWrite();
+	}
+	catch (...)
+	{
+	}
+	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
+	
+	if (bFileExists && bFileRO)
+	{
+		// Version control system used?
+		// Checkout file from VCS and modify, don't ask about overwriting
+		// RO files etc.
+		if (nVerSys != SourceControl::VCS_NONE)
+		{
+			bool bRetVal = m_pSourceControl->SaveToVersionControl(strSavePath);
+			if (bRetVal)
+				return IDYES;
+			else
+				return IDCANCEL;
+		}
+		
+		// Don't ask again if its already asked
+		if (bApplyToAll)
+			userChoice = IDYES;
+		else
+		{
+			// Prompt for user choice
+			if (bMultiFile)
+			{
+				// Multiple files or folder
+				str = string_format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
+				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
+						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
+						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
+			}
+			else
+			{
+				// Single file
+				str = string_format_string1(_("%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"), strSavePath);
+				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
+						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
+						IDS_SAVEREADONLY_FMT);
+			}
+		}
+		switch (userChoice)
+		{
+		// Overwrite read-only file
+		case IDYESTOALL:
+			bApplyToAll = TRUE;  // Don't ask again (no break here)
+		case IDYES:
+			CFile::GetStatus(strSavePath.c_str(), status);
+			status.m_mtime = 0;		// Avoid unwanted changes
+			status.m_attribute &= ~CFile::readOnly;
+			CFile::SetStatus(strSavePath.c_str(), status);
+			nRetVal = IDYES;
+			break;
+		
+		// Save to new filename (single) /skip this item (multiple)
+		case IDNO:
+			if (!bMultiFile)
+			{
+				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, strSavePath.c_str(), _("Save As"), _T(""), FALSE))
+				{
+					strSavePath = s;
+					nRetVal = IDNO;
+				}
+				else
+					nRetVal = IDCANCEL;
+			}
+			else
+				nRetVal = IDNO;
+			break;
+
+		// Cancel saving
+		case IDCANCEL:
+			nRetVal = IDCANCEL;
+			break;
+		}
+	}
+	return nRetVal;
+}
+
+/**
+ * @brief Shows VSS error from exception and writes log.
+ */
+void CMergeApp::ShowVSSError(CException *e, const String& strItem)
+{
+	TCHAR errStr[1024] = {0};
+	if (e->GetErrorMessage(errStr, 1024))
+	{
+		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
+		String logMsg = errMsg;
+		errMsg += _T("\n");
+		errMsg += errStr;
+		logMsg += _T(" ");
+		logMsg += errStr;
+		if (!strItem.empty())
+		{
+			errMsg += _T("\n\n");
+			errMsg += strItem;
+			logMsg += _T(": ");
+			logMsg += strItem;
+		}
+		LogErrorString(logMsg);
+		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
+	}
+	else
+	{
+		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
+		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
+	}
 }
 
 /**
@@ -823,7 +1269,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject)
 	{
 		String filter = project.GetFilter();
 		filter = string_trim_ws(filter);
-		m_globalFileFilter.SetFilter(filter);
+		m_pGlobalFileFilter->SetFilter(filter);
 	}
 	if (project.HasSubfolders())
 		bRecursive = project.GetSubfolders() > 0;

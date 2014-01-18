@@ -28,15 +28,16 @@
 // $Id: ChildFrm.cpp 7075 2009-12-30 22:57:20Z kimmov $
 
 #include "stdafx.h"
-#include "Merge.h"
-
 #include "ChildFrm.h"
+#include "Merge.h"
 #include "MainFrm.h"
+#include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
 #include "DiffViewBar.h"
 #include "charsets.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

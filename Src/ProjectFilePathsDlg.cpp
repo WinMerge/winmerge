@@ -7,14 +7,16 @@
 // $Id$
 
 #include "stdafx.h"
+#include "ProjectFilePathsDlg.h"
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "paths.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 #include "ProjectFile.h"
-#include "ProjectFilePathsDlg.h"
 #include "FileOrFolderSelect.h"
+#include "FileFilterHelper.h"
 #include "DDXHelper.h"
 
 #ifdef _DEBUG
@@ -110,15 +112,15 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 	String filterPrefix = _("[F] ");
 	CString curFilter;
 
-	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
+	const BOOL bUseMask = theApp.m_pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_PROJ_FILTER_EDIT, curFilter);
 	curFilter.TrimLeft();
 	curFilter.TrimRight();
 
 	GetMainFrame()->SelectFilter();
 	
-	String filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	if (theApp.m_globalFileFilter.IsUsingMask())
+	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	if (theApp.m_pGlobalFileFilter->IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')

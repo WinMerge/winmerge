@@ -9,10 +9,10 @@
 #if !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)
 #define AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_
 
-#include "CMoveConstraint.h"
-
 #include <vector>
 #include <string>
+#include <map>
+#include "CMoveConstraint.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog

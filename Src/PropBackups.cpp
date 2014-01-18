@@ -7,8 +7,8 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "PropBackups.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
