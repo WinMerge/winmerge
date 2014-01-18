@@ -977,8 +977,6 @@
 #define ID_LASTDIFF                     32836
 #define ID_L2R                          32837
 #define ID_R2L                          32838
-#define ID_L2M                          42837
-#define ID_R2M                          42838
 #define ID_L2RNEXT                      32839
 #define ID_R2LNEXT                      32840
 #define ID_ALL_RIGHT                    32841
