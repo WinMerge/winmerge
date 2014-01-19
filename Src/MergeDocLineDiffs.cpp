@@ -51,12 +51,12 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 /**
  * @brief Highlight difference in current line (left & right panes)
  */
-void CMergeDoc::Showlinediff(CMergeEditView *pView)
+void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 {
 	CRect rc[3];
 	int pane;
 
-	Computelinediff(pView, rc);
+	Computelinediff(pView, rc, bReversed);
 
 	IF_IS_TRUE_ALL ((rc[pane].top == -1), pane, m_nBuffers)
 	{
@@ -75,7 +75,7 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView)
 /**
  * @brief Returns rectangles to highlight in both views (to show differences in line specified)
  */
-void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
+void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed)
 {
 	int file;
 	for (file = 0; file < m_nBuffers; file++)
@@ -104,11 +104,21 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[])
 		}
 	}
 
-	if (it != worddiffs.end())
-		++it;
+	if (!bReversed)
+	{
+		if (it != worddiffs.end())
+			++it;
 	
-	if (it == worddiffs.end())
-		it = worddiffs.begin();
+		if (it == worddiffs.end())
+			it = worddiffs.begin();
+	}
+	else
+	{
+		if (it == worddiffs.begin() || it == worddiffs.end())
+			it = worddiffs.end() - 1;
+		else
+			--it;
+	}
 
 	for (file = 0; file < m_nBuffers; file++)
 	{

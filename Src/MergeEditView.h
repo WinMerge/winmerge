@@ -287,6 +287,7 @@ protected:
 	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+	template<bool reversed>
 	afx_msg void OnSelectLineDiff();
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
