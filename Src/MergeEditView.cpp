@@ -162,8 +162,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff)
-	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -2456,10 +2458,11 @@ void CMergeEditView::OnUpdateCaret()
  * Select line difference in current line. Selection type
  * is choosed by highlight type.
  */
+template<bool reversed>
 void CMergeEditView::OnSelectLineDiff()
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this);
+	GetDocument()->Showlinediff(this, reversed);
 }
 
 /// Enable select difference menuitem if current line is inside difference.
