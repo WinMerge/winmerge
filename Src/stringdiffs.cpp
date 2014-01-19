@@ -65,6 +65,34 @@ sd_ComputeWordDiffs(const String& str1, const String& str2,
 	sd_ComputeWordDiffs(2, strs, case_sensitive, whitespace, breakType, byte_level, pDiffs);
 }
 
+struct Comp02Functor
+{
+	Comp02Functor(const String *strs, bool case_sensitive) : 
+		strs_(strs), case_sensitive_(case_sensitive)
+	{
+	}
+	bool operator()(const wdiff &wd10, const wdiff &wd12)
+	{
+		size_t wlen0 = wd10.end[1] - wd10.begin[1] + 1;
+		size_t wlen2 = wd12.end[1] - wd12.begin[1] + 1;
+		if (wlen0 != wlen2)
+			return false;
+		if (case_sensitive_)
+		{
+			if (memcmp(&strs_[0][wd10.begin[1]], &strs_[2][wd12.begin[1]], wlen0 * sizeof(TCHAR)) != 0)
+				return false;
+		}
+		else
+		{
+			if (_tcsnicmp(&strs_[0][wd10.begin[1]], &strs_[2][wd12.begin[1]], wlen0) != 0)
+				return false;
+		}
+		return true;
+	}
+	const String *strs_;
+	bool case_sensitive_;
+};
+
 /**
  * @brief Construct our worker object and tell it to do the work
  */
@@ -145,27 +173,24 @@ sd_ComputeWordDiffs(int nFiles, const String str[3],
 		}
 		else
 		{
-			std::vector<wdiff> diffs10, diffs12, diffs02;
+			std::vector<wdiff> diffs10, diffs12;
 			stringdiffs sdiffs10(str[1], str[0], case_sensitive, whitespace, breakType, &diffs10);
 			stringdiffs sdiffs12(str[1], str[2], case_sensitive, whitespace, breakType, &diffs12);
-			stringdiffs sdiffs02(str[0], str[2], case_sensitive, whitespace, breakType, &diffs02);
 			// Hash all words in both lines and then compare them word by word
 			// storing differences into m_wdiffs
 			sdiffs10.BuildWordDiffList();
 			sdiffs12.BuildWordDiffList();
-			sdiffs02.BuildWordDiffList();
 			if (byte_level)
 			{
 				sdiffs10.wordLevelToByteLevel();
 				sdiffs12.wordLevelToByteLevel();
-				sdiffs02.wordLevelToByteLevel();
 			}
 			// Now copy m_wdiffs into caller-supplied m_pDiffs (coalescing adjacents if possible)
 			sdiffs10.PopulateDiffs();
 			sdiffs12.PopulateDiffs();
-			sdiffs02.PopulateDiffs();
 
-			Make3wayDiff(*pDiffs, diffs10, diffs12, diffs02, false);
+			Make3wayDiff(*pDiffs, diffs10, diffs12, 
+				Comp02Functor(str, case_sensitive), false);
 		}
 	}
 }

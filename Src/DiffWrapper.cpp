@@ -24,6 +24,7 @@
 // ID line follows -- this is updated by SVN
 // $Id: DiffWrapper.cpp 7091 2010-01-11 20:27:43Z kimmov $
 
+#define NOMINMAX
 #include "DiffWrapper.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -66,7 +67,7 @@ using Poco::Exception;
 extern int recursive;
 
 static void FreeDiffUtilsScript(struct change * & script);
-static void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, struct change * & script02);
+static void FreeDiffUtilsScript3(struct change * & script10, struct change * & script12);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
@@ -741,9 +742,8 @@ bool CDiffWrapper::RunFileDiff()
 	struct change *script = NULL;
 	struct change *script10 = NULL;
 	struct change *script12 = NULL;
-	struct change *script02 = NULL;
-	DiffFileData diffdata, diffdata10, diffdata12, diffdata02;
-	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
+	DiffFileData diffdata, diffdata10, diffdata12;
+	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
 
 	if (files.GetSize() == 2)
 	{
@@ -781,7 +781,6 @@ bool CDiffWrapper::RunFileDiff()
 	else
 	{
 		diffdata10.SetDisplayFilepaths(files[1], files[0]); // store true names for diff utils patch file
-		diffdata02.SetDisplayFilepaths(files[0], files[2]); // store true names for diff utils patch file
 		diffdata12.SetDisplayFilepaths(files[1], files[2]); // store true names for diff utils patch file
 
 		if (!diffdata10.OpenFiles(strFileTemp[1], strFileTemp[0]))
@@ -797,13 +796,6 @@ bool CDiffWrapper::RunFileDiff()
 		}
 
 		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, NULL);
-
-		if (!diffdata02.OpenFiles(strFileTemp[0], strFileTemp[2]))
-		{
-			return false;
-		}
-
-		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, NULL);
 	}
 
 	// First determine what happened during comparison
@@ -814,8 +806,8 @@ bool CDiffWrapper::RunFileDiff()
 	// diff_2_files set bin_flag to +1 if same binary
 
 	file_data * inf = diffdata.m_inf;
+	file_data * inf10 = diffdata10.m_inf;
 	file_data * inf12 = diffdata12.m_inf;
-	file_data * inf02 = diffdata02.m_inf;
 
 	if (files.GetSize() == 2)
 	{
@@ -838,7 +830,7 @@ bool CDiffWrapper::RunFileDiff()
 	else
 	{
 		m_status.Identical = IDENTLEVEL_NONE;
-		if (bin_flag10 != 0 || bin_flag12 != 0 || bin_flag02 != 0)
+		if (bin_flag10 != 0 || bin_flag12 != 0)
 		{
 			m_status.bBinaries = true;
 			if (bin_flag10 != -1 && bin_flag12 != -1)
@@ -847,7 +839,7 @@ bool CDiffWrapper::RunFileDiff()
 				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
 			else if (bin_flag12 != -1)
 				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
-			else if (bin_flag02 != -1)
+			else
 				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
 		}
 		else
@@ -859,10 +851,10 @@ bool CDiffWrapper::RunFileDiff()
 				m_status.Identical = IDENTLEVEL_EXCEPTRIGHT;
 			else if (script12 == 0)
 				m_status.Identical = IDENTLEVEL_EXCEPTLEFT;
-			else if (script02 == 0)
+			else
 				m_status.Identical = IDENTLEVEL_EXCEPTMIDDLE;
 		}
-		m_status.bMissingNL[0] = !!inf02[0].missing_newline;
+		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
 		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
 		m_status.bMissingNL[2] = !!inf12[1].missing_newline;
 	}
@@ -882,15 +874,15 @@ bool CDiffWrapper::RunFileDiff()
 			LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
 		else
 			LoadWinMergeDiffsFromDiffUtilsScript3(
-				script10, script12, script02,
-				diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
+				script10, script12,
+				diffdata10.m_inf, diffdata12.m_inf);
 	}			
 
 	// cleanup the script
 	if (files.GetSize() == 2)
 		FreeDiffUtilsScript(script);
 	else
-		FreeDiffUtilsScript3(script10, script12, script02);
+		FreeDiffUtilsScript3(script10, script12);
 
 	// Done with diffutils filedata
 	if (files.GetSize() == 2)
@@ -901,7 +893,6 @@ bool CDiffWrapper::RunFileDiff()
 	{
 		diffdata10.Close();
 		diffdata12.Close();
-		diffdata02.Close();
 	}
 
 	if (m_bPluginsEnabled)
@@ -1139,7 +1130,7 @@ FreeDiffUtilsScript(struct change * & script)
  * @brief Free script (the diffutils linked list of differences)
  */
 static void
-FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, struct change * & script02)
+FreeDiffUtilsScript3(struct change * & script10, struct change * & script12)
 {
 	struct change *e=0, *p=0;
 	for (e = script10; e; e = p)
@@ -1152,17 +1143,12 @@ FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, str
 		p = e->link;
 		free (e);
 	}
-	for (e = script02; e; e = p)
-	{
-		p = e->link;
-		free (e);
-	}
 }
 
 void
-CDiffWrapper::FreeDiffUtilsScript3(struct change * & script10, struct change * & script12, struct change * & script02)
+CDiffWrapper::FreeDiffUtilsScript3(struct change * & script10, struct change * & script12)
 {
-	::FreeDiffUtilsScript3(script10, script12, script02);
+	::FreeDiffUtilsScript3(script10, script12);
 }
 
 /**
@@ -1324,24 +1310,50 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	}
 }
 
+struct Comp02Functor
+{
+	Comp02Functor(const file_data * inf10, const file_data * inf12) :
+		inf10_(inf10), inf12_(inf12)
+	{
+	}
+	bool operator()(const DiffRangeInfo &dr10, const DiffRangeInfo &dr12)
+	{
+		int line0 = dr10.begin[1];
+		int line2 = dr12.begin[1];
+		int line0end = dr10.end[1];
+		int line2end = dr12.end[1];
+		if (line0end - line0 != line2end - line2)
+			return false;
+		const char **linbuf0 = inf10_[1].linbuf + inf10_[1].linbuf_base;
+		const char **linbuf2 = inf12_[1].linbuf + inf12_[1].linbuf_base;
+		for (int i = 0; i < line0end - line0 + 1; ++i)
+		{
+			const size_t line0len = linbuf0[line0 + i + 1] - linbuf0[line0 + i];
+			const size_t line2len = linbuf2[line2 + i + 1] - linbuf2[line2 + i];
+			if (line_cmp(linbuf0[line0 + i], line0len, linbuf2[line2 + i], line2len) != 0)
+				return false;
+		}
+		return true;
+	}
+	const file_data *inf10_;
+	const file_data *inf12_;
+};
+
 /**
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
 void
 CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	struct change * script10, 
-	struct change * script12, 
-	struct change * script02, 
+	struct change * script12,  
 	const file_data * inf10, 
-	const file_data * inf12, 
-	const file_data * inf02)
+	const file_data * inf12)
 {
-	DiffList diff10, diff12, diff02, *pdiff;
+	DiffList diff10, diff12, *pdiff;
 	diff10.Clear();
 	diff12.Clear();
-	diff02.Clear();
 
-	for (int file = 0; file < 3; file++)
+	for (int file = 0; file < 2; file++)
 	{
 		struct change *next;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
@@ -1354,7 +1366,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		{
 		case 0: next = script10; pdiff = &diff10; pinf = inf10; break;
 		case 1: next = script12; pdiff = &diff12; pinf = inf12; break;
-		case 2: next = script02; pdiff = &diff02; pinf = inf02; break;
 		}
 
 		while (next)
@@ -1448,7 +1459,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		}
 	}
 
-	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), diff02.GetDiffRangeInfoVector(), ignore_regexp_list ? true : false);
+	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
+		Comp02Functor(inf10, inf12), ignore_regexp_list ? true : false);
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style output_style, bool bAppendFiles)
