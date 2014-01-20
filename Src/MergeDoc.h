@@ -251,11 +251,11 @@ public:
 // Implementation in MergeDocLineDiffs.cpp
 public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
-	void Showlinediff(CMergeEditView *pView);
+	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
 	void GetWordDiffArray(int nLineIndex, std::vector<WordDiff> *pWordDiffs);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
-	void Computelinediff(CMergeEditView *pView, CRect rc[]);
+	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
 	std::map<int, std::vector<WordDiff> > m_cacheWordDiffs;
 // End MergeDocLineDiffs.cpp
 

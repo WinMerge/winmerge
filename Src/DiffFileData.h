@@ -45,7 +45,7 @@ struct DiffFileData
 // Data (public)
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
-	FileLocation m_FileLocation[2];
+	FileLocation m_FileLocation[3];
 	FileTextStats m_textStats[3];
 
 	String m_sDisplayFilepath[2];

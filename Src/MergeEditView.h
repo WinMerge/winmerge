@@ -270,10 +270,6 @@ protected:
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
-	afx_msg void OnL2m();
-	afx_msg void OnUpdateL2m(CCmdUI* pCmdUI);
-	afx_msg void OnR2m();
-	afx_msg void OnUpdateR2m(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
@@ -291,6 +287,7 @@ protected:
 	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+	template<bool reversed>
 	afx_msg void OnSelectLineDiff();
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);

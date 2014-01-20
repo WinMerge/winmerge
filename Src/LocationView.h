@@ -53,6 +53,7 @@ struct DiffBlock
 	unsigned top_coord; /**< X-coord of diff block begin. */
 	unsigned bottom_coord; /**< X-coord of diff block end. */
 	unsigned diff_index; /**< Index of difference in the original diff list. */
+	int op;
 };
 
 /** 
