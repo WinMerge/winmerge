@@ -959,7 +959,7 @@ int DiffList::GetMergeableSrcIndex(int nDiff, int nDestIndex) const
 			return 1;
 		return -1;
 	case 1:
-		if (pdr->op == OP_1STONLY)
+		if (pdr->op == OP_1STONLY || pdr->op == OP_2NDONLY)
 			return 0;
 		else if (pdr->op == OP_3RDONLY)
 			return 2;
