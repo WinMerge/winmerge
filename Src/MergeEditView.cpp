@@ -144,10 +144,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
-	ON_COMMAND(ID_L2M, OnL2m)
-	ON_UPDATE_COMMAND_UI(ID_L2M, OnUpdateL2m)
-	ON_COMMAND(ID_R2M, OnR2m)
-	ON_UPDATE_COMMAND_UI(ID_R2M, OnUpdateR2m)
 	ON_COMMAND(ID_COPY_FROM_LEFT, OnCopyFromLeft)
 	ON_UPDATE_COMMAND_UI(ID_COPY_FROM_LEFT, OnUpdateCopyFromLeft)
 	ON_COMMAND(ID_COPY_FROM_RIGHT, OnCopyFromRight)
@@ -165,8 +161,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff)
-	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff<false>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
+	ON_COMMAND(ID_SELECTPREVLINEDIFF, OnSelectLineDiff<true>)
+	ON_UPDATE_COMMAND_UI(ID_SELECTPREVLINEDIFF, OnUpdateSelectLineDiff)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -1726,9 +1724,9 @@ void CMergeEditView::OnL2r()
  * @brief Called when "Copy to left" item is updated
  */
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
-	{
+{
 	OnUpdateX2Y(m_nThisPane < GetDocument()->m_nBuffers - 1 ? m_nThisPane + 1 : GetDocument()->m_nBuffers - 1, pCmdUI);
-	}
+}
 
 /**
  * @brief Copy diff from right pane to left pane
@@ -1742,7 +1740,7 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
  * difference only.
  */
 void CMergeEditView::OnR2l()
-	{
+{
 	int dstPane = (m_nThisPane > 0) ? m_nThisPane - 1 : 0;
 	int srcPane = dstPane + 1;
 	OnX2Y(srcPane, dstPane, _("Copying Right to Left"));
@@ -1756,70 +1754,8 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 	OnUpdateX2Y(m_nThisPane > 0 ? m_nThisPane - 1 : 0, pCmdUI);
 }
 
-/**
- * @brief Copy diff from left pane to middle pane
- *
- * Difference is copied from left to middle when
- * - difference is selected
- * - difference is inside selection (allows merging multiple differences).
- * - cursor is inside diff
- *
- * If there is selected diff outside selection, we copy selected
- * difference only.
- */
-void CMergeEditView::OnL2m()
-{
-	int dstPane = 1;
-	int srcPane = 0;
-	if (GetDocument()->m_nBuffers < 3)
-		return;
-	OnX2Y(srcPane, dstPane, _("Copying Left to Middle"));
-}
-
-/**
- * @brief Called when "Copy to middle" item is updated
- */
-void CMergeEditView::OnUpdateL2m(CCmdUI* pCmdUI)
-{
-	if (GetDocument()->m_nBuffers != 3)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(1, pCmdUI);
-}
-
-/**
- * @brief Copy diff from right pane to middle pane
- *
- * Difference is copied from right to middle when
- * - difference is selected
- * - difference is inside selection (allows merging multiple differences).
- * - cursor is inside diff
- *
- * If there is selected diff outside selection, we copy selected
- * difference only.
- */
-void CMergeEditView::OnR2m()
-{
-	int dstPane = 1;
-	int srcPane = 2;
-	if (GetDocument()->m_nBuffers < 3)
-		return;
-	OnX2Y(srcPane, dstPane, _("Copying Right to Middle"));
-}
-
-/**
- * @brief Called when "Copy to middle" item is updated
- */
-void CMergeEditView::OnUpdateR2m(CCmdUI* pCmdUI)
-{
-	if (GetDocument()->m_nBuffers != 3)
-		pCmdUI->Enable(false);
-	else
-		OnUpdateX2Y(1, pCmdUI);
-}
-
 void CMergeEditView::OnCopyFromLeft()
-	{
+{
 	int dstPane = m_nThisPane;
 	int srcPane = dstPane - 1;
 	if (srcPane < 0)
@@ -1828,14 +1764,14 @@ void CMergeEditView::OnCopyFromLeft()
 }
 
 void CMergeEditView::OnUpdateCopyFromLeft(CCmdUI* pCmdUI)
-		{
+{
 	int dstPane = m_nThisPane;
 	int srcPane = dstPane - 1;
 	if (srcPane < 0)
 		pCmdUI->Enable(false);
-			else
+	else
 		OnUpdateX2Y(dstPane, pCmdUI);
-		}
+}
 
 void CMergeEditView::OnCopyFromRight()
 {
@@ -1844,7 +1780,7 @@ void CMergeEditView::OnCopyFromRight()
 	if (srcPane >= GetDocument()->m_nBuffers)
 		return;
 	OnX2Y(srcPane, dstPane, _("Copying From Right"));
-	}
+}
 
 void CMergeEditView::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 {
@@ -2345,44 +2281,6 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 			return false;
 		}
 	}
-	else if (pMsg->message == WM_SYSKEYDOWN)
-	{
-		if (::GetAsyncKeyState(VK_MENU))
-		{
-			UINT id = 0;
-			if (::GetAsyncKeyState(VK_SHIFT))
-			{
-				switch (pMsg->wParam)
-				{
-				case '1': id = ID_PREVDIFFLM; break;
-				case '2': id = ID_PREVDIFFLR; break;
-				case '3': id = ID_PREVDIFFMR; break;
-				case '7': id = ID_PREVDIFFLO; break;
-				case '8': id = ID_PREVDIFFMO; break;
-				case '9': id = ID_PREVDIFFRO; break;
-				}
-			}
-			else
-			{
-				switch (pMsg->wParam)
-				{
-				case '1': id = ID_NEXTDIFFLM; break;
-				case '2': id = ID_NEXTDIFFLR; break;
-				case '3': id = ID_NEXTDIFFMR; break;
-				case '4': id = ID_L2M; break;
-				case '6': id = ID_R2M; break;
-				case '7': id = ID_NEXTDIFFLO; break;
-				case '8': id = ID_NEXTDIFFMO; break;
-				case '9': id = ID_NEXTDIFFRO; break;
-				}
-			}
-			if (id)
-			{
-				PostMessage(WM_COMMAND, id);
-				return false;
-			}
-		}
-	}
 
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }
@@ -2558,10 +2456,11 @@ void CMergeEditView::OnUpdateCaret()
  * Select line difference in current line. Selection type
  * is choosed by highlight type.
  */
+template<bool reversed>
 void CMergeEditView::OnSelectLineDiff()
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this);
+	GetDocument()->Showlinediff(this, reversed);
 }
 
 /// Enable select difference menuitem if current line is inside difference.

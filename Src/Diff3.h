@@ -2,6 +2,7 @@
 #define __DIFF3_H__
 
 #include <vector>
+#include <algorithm>
 #ifdef _DEBUG
 #  include <Poco/Debugger.h>
 #  include <Poco/Format.h>
@@ -9,26 +10,24 @@
 #include "DiffList.h"
 
 /* diff3 algorithm. It is almost the same as GNU diff3's algorithm */
-template<typename Element>
-size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& diff10, const std::vector<Element>& diff12, const std::vector<Element>& diff02, bool ignore_regexp_list)
+template<typename Element, typename Comp02Func>
+size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& diff10, const std::vector<Element>& diff12,
+	Comp02Func cmpfunc, bool ignore_regexp_list)
 {
 	size_t diff10count = diff10.size();
 	size_t diff12count = diff12.size();
-	size_t diff02count = diff02.size();
 
 	size_t diff10i = 0;
 	size_t diff12i = 0;
-	size_t diff02i = 0;
 	size_t diff3i = 0;
 
 	size_t diff10itmp;
 	size_t diff12itmp;
-	size_t diff02itmp = 0;
 
 	bool lastDiffBlockIsDiff12;
 	bool firstDiffBlockIsDiff12;
 
-	Element dr3, dr10, dr12, dr02, dr10first, dr10last, dr12first, dr12last;
+	Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
 
 	int linelast0 = 0;
 	int linelast1 = 0;
@@ -103,12 +102,12 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 
 			if (lastDiffBlockIsDiff12)
 			{
-				if (dr12.end[0] + 1 < dr10.begin[0])
+				if (std::max(dr12.begin[0], dr12.end[0]) < dr10.begin[0])
 					break;
 			}
 			else
 			{
-				if (dr10.end[0] + 1 < dr12.begin[0])
+				if (std::max(dr10.begin[0], dr10.end[0]) < dr12.begin[0])
 					break;
 			}
 
@@ -180,16 +179,23 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 			dr3.op = OP_1STONLY;
 		else 
 		{
-			dr3.op = OP_2NDONLY;
-			for (diff02itmp = diff02i; diff02itmp < diff02count; diff02itmp++)
+			if (diff10itmp - diff10i == diff12itmp - diff12i)
 			{
-				dr02 = diff02.at(diff02itmp);
-				if (dr02.end[1] < dr3.begin[2])
-					continue;
-				
-				if (dr02.begin[1] <= dr3.end[2])
-					dr3.op = OP_DIFF;
-				break;
+				dr3.op = OP_2NDONLY;
+				for (size_t i = 0; i < diff10itmp - diff10i; ++i)
+				{
+					dr10 = diff10.at(diff10i + i);
+					dr12 = diff12.at(diff12i + i);
+					if (!cmpfunc(dr10, dr12))
+					{
+						dr3.op = OP_DIFF;
+						break;
+					}
+				}
+			}
+			else
+			{
+				dr3.op = OP_DIFF;
 			}
 		}
 
@@ -234,7 +240,6 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 		diff3i++;
 		diff10i = diff10itmp;
 		diff12i = diff12itmp;
-		diff02i = diff02itmp;
 	}
 	
 	for (size_t i = 0; i < diff3i; i++)

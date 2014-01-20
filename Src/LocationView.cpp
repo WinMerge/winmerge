@@ -326,6 +326,7 @@ void CLocationView::CalculateBlocks()
 			block.top_coord = nBeginY;
 			block.bottom_coord = nEndY;
 			block.diff_index = nDiff;
+			block.op = diff.op;
 			m_diffBlocks.push_back(block);
 		}
 
@@ -440,6 +441,17 @@ void CLocationView::OnDraw(CDC* pDC)
 			{
 				if (pDoc->IsEditedAfterRescan(pane))
 					continue;
+				// Draw 3way-diff state
+				if (pDoc->m_nBuffers == 3 && pane < 2)
+				{
+					CRect r(m_bar[pane].right - 1, (*iter).top_coord, m_bar[pane + 1].left + 1, (*iter).bottom_coord);
+					if ((pane == 0 && (*iter).op == OP_3RDONLY) || (pane == 1 && (*iter).op == OP_1STONLY))
+						DrawRect(&dc, r, RGB(255, 255, 127), false);
+					else if ((*iter).op == OP_2NDONLY)
+						DrawRect(&dc, r, RGB(127, 255, 255), false);
+					else if ((*iter).op == OP_DIFF)
+						DrawRect(&dc, r, RGB(255, 0, 0), false);
+				}
 				// Draw block
 				m_view[pane]->GetLineColors2((*iter).top_line, 0, cr[pane], crt, bwh);
 				CRect r(m_bar[pane].left, (*iter).top_coord, m_bar[pane].right, (*iter).bottom_coord);
