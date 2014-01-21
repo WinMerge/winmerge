@@ -179,24 +179,10 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 			dr3.op = OP_1STONLY;
 		else 
 		{
-			if (diff10itmp - diff10i == diff12itmp - diff12i)
-			{
-				dr3.op = OP_2NDONLY;
-				for (size_t i = 0; i < diff10itmp - diff10i; ++i)
-				{
-					dr10 = diff10.at(diff10i + i);
-					dr12 = diff12.at(diff12i + i);
-					if (!cmpfunc(dr10, dr12))
-					{
-						dr3.op = OP_DIFF;
-						break;
-					}
-				}
-			}
-			else
-			{
+			if (!cmpfunc(dr3))
 				dr3.op = OP_DIFF;
-			}
+			else
+				dr3.op = OP_2NDONLY;
 		}
 
 		if (ignore_regexp_list)
