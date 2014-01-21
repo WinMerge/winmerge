@@ -2721,16 +2721,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			{
 				int nDiff = m_diffList.FirstSignificantDiff();
 				m_pView[nPane]->SelectDiff(nDiff, true, false);
+				nLineIndex = m_pView[nPane]->GetCursorPos().y;
 			}
 			else
 			{
-				m_pView[nPane]->GotoLine(0, false, nPane);
+				nLineIndex = 0;
 			}
 		}
-		else
-		{
-			m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
-		}
+		m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.
