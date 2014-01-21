@@ -1316,12 +1316,12 @@ struct Comp02Functor
 		inf10_(inf10), inf12_(inf12)
 	{
 	}
-	bool operator()(const DiffRangeInfo &dr10, const DiffRangeInfo &dr12)
+	bool operator()(const DiffRangeInfo &dr3)
 	{
-		int line0 = dr10.begin[1];
-		int line2 = dr12.begin[1];
-		int line0end = dr10.end[1];
-		int line2end = dr12.end[1];
+		int line0 = dr3.begin[0];
+		int line2 = dr3.begin[2];
+		int line0end = dr3.end[0];
+		int line2end = dr3.end[2];
 		if (line0end - line0 != line2end - line2)
 			return false;
 		const char **linbuf0 = inf10_[1].linbuf + inf10_[1].linbuf_base;
