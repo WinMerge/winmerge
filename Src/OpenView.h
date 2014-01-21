@@ -99,6 +99,7 @@ virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	virtual void OnInitialUpdate(); // called first time after construct
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 // Implementation
 public:
