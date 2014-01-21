@@ -1415,8 +1415,8 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 
 		m_ptBuf[nBuffer]->SetModified(false);
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath.c_str());
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
 		m_filePaths[nBuffer] = strSavePath;
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
@@ -1477,8 +1477,8 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		m_filePaths[nBuffer] = strSavePath;
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
