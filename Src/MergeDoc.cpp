@@ -1422,8 +1422,8 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 
 		m_ptBuf[nBuffer]->SetModified(false);
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath.c_str());
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
 		m_filePaths[nBuffer] = strSavePath;
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
@@ -1484,8 +1484,8 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		m_filePaths[nBuffer] = strSavePath;
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
@@ -2728,16 +2728,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation fileloc[],
 			{
 				int nDiff = m_diffList.FirstSignificantDiff();
 				m_pView[nPane]->SelectDiff(nDiff, true, false);
+				nLineIndex = m_pView[nPane]->GetCursorPos().y;
 			}
 			else
 			{
-				m_pView[nPane]->GotoLine(0, false, nPane);
+				nLineIndex = 0;
 			}
 		}
-		else
-		{
-			m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
-		}
+		m_pView[nPane]->GotoLine(nLineIndex, false, nPane);
 
 		// Exit if files are identical should only work for the first
 		// comparison and must be disabled afterward.

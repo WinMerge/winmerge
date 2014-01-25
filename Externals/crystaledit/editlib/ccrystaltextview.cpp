@@ -3809,7 +3809,12 @@ ClientToText (const CPoint & point)
       WrapLineCached( pt.y, GetScreenChars(), &anBreaks[0], nBreaks );
 
       if (nSubLineOffset > 0)
-        nOffsetChar = anBreaks[nSubLineOffset - 1];
+        {
+          if (nSubLineOffset < nBreaks)
+            nOffsetChar = anBreaks[nSubLineOffset - 1];
+          else if (nBreaks > 0)
+            nOffsetChar = anBreaks[nBreaks - 1];
+        }
       if (nBreaks > nSubLineOffset)
         nLength = anBreaks[nSubLineOffset] - 1;
     }

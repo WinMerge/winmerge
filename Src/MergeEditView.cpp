@@ -422,6 +422,13 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	{
 		if (worddiffs[i].beginline[m_nThisPane] > nLineIndex || worddiffs[i].endline[m_nThisPane] < nLineIndex )
 			continue;
+		if (pDoc->m_nBuffers > 2)
+		{
+			if (m_nThisPane == 0 && worddiffs[i].op == OP_3RDONLY)
+				continue;
+			else if (m_nThisPane == 2 && worddiffs[i].op == OP_1STONLY)
+				continue;
+		}
 		int begin[3], end[3];
 		bool deleted = false;
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)

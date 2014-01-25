@@ -71,20 +71,20 @@ struct Comp02Functor
 		strs_(strs), case_sensitive_(case_sensitive)
 	{
 	}
-	bool operator()(const wdiff &wd10, const wdiff &wd12)
+	bool operator()(const wdiff &wd3)
 	{
-		size_t wlen0 = wd10.end[1] - wd10.begin[1] + 1;
-		size_t wlen2 = wd12.end[1] - wd12.begin[1] + 1;
+		size_t wlen0 = wd3.end[0] - wd3.begin[0] + 1;
+		size_t wlen2 = wd3.end[2] - wd3.begin[2] + 1;
 		if (wlen0 != wlen2)
 			return false;
 		if (case_sensitive_)
 		{
-			if (memcmp(&strs_[0][wd10.begin[1]], &strs_[2][wd12.begin[1]], wlen0 * sizeof(TCHAR)) != 0)
+			if (memcmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0 * sizeof(TCHAR)) != 0)
 				return false;
 		}
 		else
 		{
-			if (_tcsnicmp(&strs_[0][wd10.begin[1]], &strs_[2][wd12.begin[1]], wlen0) != 0)
+			if (_tcsnicmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0) != 0)
 				return false;
 		}
 		return true;
