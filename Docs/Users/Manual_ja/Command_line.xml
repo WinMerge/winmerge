@@ -39,24 +39,33 @@
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
-
       <arg choice="opt" rep="norepeat"><option>/um</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/u</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
-
       <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
       <arg><option>/minimize</option></arg>
 
       <arg><option>/maximize</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/fl</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fm</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/dm</option>
+      <replaceable>middledesc</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
@@ -73,38 +82,21 @@
       <arg choice="opt"
       rep="norepeat"><option>/o</option>
       <replaceable>outputpath</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
     </cmdsynopsis></para>
 
   <cmdsynopsis sepchar=" ">
-    <command>WinMerge<optional>U</optional></command>
+    <command>WinMergeU</command>
 
     <arg choice="plain"
     rep="norepeat"><replaceable>conflictfile</replaceable></arg>
   </cmdsynopsis>
-
-  <para>コマンドには2つの形式があります:</para>
-
-  <variablelist>
-    <varlistentry>
-      <term>WinMergeU</term>
-
-      <listitem>
-        <para>もし、Unicode版のWinMergeを実行しているならば、<command>WinMergeU</command>
-        を使用してください。Unicode版のWinMergeは最近のWindowsにインストールされます。
-        </para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term>WinMerge</term>
-
-      <listitem>
-        <para>もし、ANSI版のWinMergeを実行しているならば、<command>WinMerge</command>
-        を使用してください。ANSI版のWinMergeはWindows 9<replaceable>x</replaceable>や
-        WMEにインストールされます。</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
 
   <para>パラメータなしかパス名を入力すると単にWinMergeウインドウを開きます。
   パラメータは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</literal> ) 文字が
@@ -164,8 +156,7 @@
     </listitem>
 
     <listitem>
-      <para><option>/xq</option> is similar to <option>/x</option> but does not
-      show the message about identical files. </para>
+      <para><option>/xq</option> オプション <option>/x</option> に似ていますが、同一ファイルであってもメッセージボックスを表示しません。 </para>
     </listitem>
 
     <listitem>
@@ -193,13 +184,13 @@
     </listitem>
 
     <listitem>
-      <para><option>/ur</option> 右側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
+      <para><option>/um</option> 中央のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
       外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
       追加するべきではありません。</para>
     </listitem>
 
     <listitem>
-      <para><option>/um</option> 中央のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
+      <para><option>/ur</option> 右側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
       外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
       追加するべきではありません。</para>
     </listitem>
@@ -220,13 +211,13 @@
     </listitem>
 
     <listitem>
-      <para><option>/wr</option> 読み取り専用として右側を開きます。
-      比較時、右側を変更したくない場合に使用してください。</para>
+      <para><option>/wm</option> 読み取り専用として中央を開きます。
+      比較時、中央を変更したくない場合に使用してください。</para>
     </listitem>
 
     <listitem>
-      <para><option>/wm</option> 読み取り専用として中央を開きます。
-      比較時、中央を変更したくない場合に使用してください。</para>
+      <para><option>/wr</option> 読み取り専用として右側を開きます。
+      比較時、右側を変更したくない場合に使用してください。</para>
     </listitem>
 
     <listitem>
@@ -245,6 +236,18 @@
     </listitem>
 
     <listitem>
+      <para><option>/fl</option> 起動時、左側にフォーカスを当てます</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/fm</option> 起動時、中央にフォーカスを当てます</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/fr</option> 起動時、右側にフォーカスを当てます</para>
+    </listitem>
+
+    <listitem>
       <para><option>/dl</option> 左側タイトルバーの説明を指定します。
       デフォルトのフォルダやファイル名テキストに上書きされます。例:
       <userinput>/dl "Version 1.0</userinput>" や <userinput>/dl
@@ -252,12 +255,12 @@
     </listitem>
 
     <listitem>
-     <para><option>/dr</option> <option>/dl</option>と同様に右側タイトルバーの説明を指定します。
+     <para><option>/dm</option> <option>/dl</option>と同様に中央タイトルバーの説明を指定します。
      </para>
     </listitem>
 
     <listitem>
-     <para><option>/dm</option> <option>/dl</option>と同様に中央タイトルバーの説明を指定します。
+     <para><option>/dr</option> <option>/dl</option>と同様に右側タイトルバーの説明を指定します。
      </para>
     </listitem>
 
@@ -308,16 +311,15 @@
         <secondary>結果ファイル</secondary>
       </indexterm>
 
-      <para><option><replaceable>outputpath</replaceable></option> 
+      <para><option>/o <replaceable>outputpath</replaceable></option> 
       マージした結果のファイルを保存するオプションの出力フォルダを指定します。
       </para>
 
       <para>出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。
       それはバージョンコントロールツールとともに使用されることになります。
       結果ファイルとして出力パスを指定する必要があるかもしれません。
-      もし、出力パスを指定したら、WinMergeはファイル比較ウインドウで2つのファイルのみ
-      を表示します。しかしながら、もしそれらのファイルのいずれかを保存したならば、
-      それは出力パスに書かれ、2つの元ファイルは前の状態のままになります。
+      もし、出力パスを指定した場合、あるペインを変更後保存すると、変更は出力パスのファイルに保存され、
+      元ファイルは前の状態のままになります。
       </para>
 
       <para>バージョンコントロールシステムは一般的に<glossterm>theirs</glossterm>や
@@ -325,6 +327,18 @@
       のような用語を使用し元と結果ファイルを参照します。
       もし、WinMergeコマンドラインに出力パスを指定し、バージョンコントロールシステムと連携するならば、
       この順番でファイルを並べるべきです。</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/al</option> 起動時、左側で自動マージします。</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/am</option> 起動時、中央で自動マージします。</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/ar</option> 起動時、右側で自動マージします。</para>
     </listitem>
 
     <listitem>

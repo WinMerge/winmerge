@@ -38,6 +38,7 @@ struct wdiff {
 			begin[i] = src.begin[i];
 			end[i] = src.end[i];
 		}
+		op = src.op;
 	}
 };
 

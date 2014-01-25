@@ -249,6 +249,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<WordDiff> *pWordDiffs)
 			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[file])
 				wd.end[file] = m_ptBuf[file]->GetLineLength(nLine);
 		}
+		wd.op = it->op;
 
 		pWordDiffs->push_back(wd);
 	}

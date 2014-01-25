@@ -115,7 +115,9 @@ struct WordDiff {
 	int end[3]; // 0-based, eg, end[1] is from str2
 	int beginline[3];
 	int endline[3];
-	WordDiff(int s1=0, int e1=0, int bl1=0, int el1=0, int s2=0, int e2=0, int bl2=0, int el2=0, int s3=0, int e3=0, int bl3=0, int el3=0)
+	int op;
+	WordDiff(int s1=0, int e1=0, int bl1=0, int el1=0, int s2=0, int e2=0, int bl2=0, int el2=0, int s3=0, int e3=0, int bl3=0, int el3=0, int op=0)
+		: op(op)
 	{
 		if (s1>e1) e1=s1;
 		if (s2>e2) e2=s2;
@@ -142,6 +144,7 @@ struct WordDiff {
 			beginline[i] = src.beginline[i];
 			endline[i] = src.endline[i];
 		}
+		op = src.op;
 	}
 };
 
