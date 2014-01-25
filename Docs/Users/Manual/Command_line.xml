@@ -39,11 +39,15 @@
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/um</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/u</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/wm</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
@@ -51,8 +55,17 @@
 
       <arg><option>/maximize</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/fl</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fm</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/dm</option>
+      <replaceable>middledesc</replaceable></arg>
 
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
@@ -60,11 +73,22 @@
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
 
+      <arg cchoice="opt"
+      rep="norepeat"><replaceable>middlepath</replaceable></arg>
+
       <arg choice="plain"
       rep="norepeat"><replaceable>rightpath</replaceable></arg>
 
       <arg choice="opt"
-      rep="norepeat"><replaceable>outputpath</replaceable></arg>
+      rep="norepeat"><option>/o</option>
+      <replaceable>outputpath</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
     </cmdsynopsis></para>
 
   <cmdsynopsis sepchar=" ">
@@ -165,6 +189,12 @@
     </listitem>
 
     <listitem>
+      <para><option>/um</option> prevents WinMerge from adding the middle path to
+      the Most Recently Used (MRU) list. External applications should not add
+      paths to the MRU list in the Select Files or Folders dialog.</para>
+    </listitem>
+
+    <listitem>
       <para><option>/ur</option> prevents WinMerge from adding the right path to
       the Most Recently Used (MRU) list. External applications should not add
       paths to the MRU list in the Select Files or Folders dialog.</para>
@@ -184,6 +214,11 @@
 
       <para><option>/wl</option> opens the left side as read-only. Use this when
       you don't want to change left side items in the compare.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/wm</option> opens the middle side as read-only. Use this
+      when you don't want to change right side items in the compare.</para>
     </listitem>
 
     <listitem>
@@ -208,11 +243,28 @@
     </listitem>
 
     <listitem>
+      <para><option>/fl</option> sets focus to the left side at startup</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/fm</option> sets focus to the middle side at startup</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/fr</option> sets focus to the right side at startup</para>
+    </listitem>
+
+    <listitem>
       <para><option>/dl</option> specifies a description in the left side title
       bar, overriding the default folder or filename text. For example:
       <userinput>/dl "Version 1.0</userinput>" or <userinput>/dl
       WorkingCopy</userinput>. Use quotation marks around descriptions that
       contain spaces.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/dm</option> specifies a description in the middle side title
+      bar, just like <option>/dl</option>.</para>
     </listitem>
 
     <listitem>
@@ -226,6 +278,11 @@
     </listitem>
 
     <listitem>
+      <para><option><replaceable>middlepath</replaceable></option> specifies the
+      folder, file, or project file to open on the middle side.</para>
+   </listitem>
+
+   <listitem>
       <para><option><replaceable>rightpath</replaceable></option> specifies the
       folder, file, or project file to open on the right side.</para>
 
@@ -262,7 +319,7 @@
         <secondary>result file</secondary>
       </indexterm>
 
-      <para><option><replaceable>outputpath</replaceable></option> Specifies an
+      <para><option>/o <replaceable>outputpath</replaceable></option> Specifies an
       optional output folder where you want merged result files to be
       saved.</para>
 
@@ -280,6 +337,18 @@
       <glossterm>resolved</glossterm>. If you specify a third path on the
       WinMerge command line, and are working with a version control system, you
       should list the files in that order.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/al</option> auto-merges at the left side at startup.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/am</option> auto-merges at the middle side at startup.</para>
+    </listitem>
+
+    <listitem>
+      <para><option>/ar</option> auto-merges at the right side at startup.</para>
     </listitem>
 
     <listitem>
