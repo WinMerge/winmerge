@@ -930,7 +930,7 @@ BOOL CMergeApp::CreateBackup(BOOL bFolder, const String& pszPath)
 		String filename;
 		String ext;
 	
-		paths_SplitFilename(pszPath, &path, &filename, &ext);
+		paths_SplitFilename(paths_GetLongPath(pszPath), &path, &filename, &ext);
 
 		// Determine backup folder
 		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
