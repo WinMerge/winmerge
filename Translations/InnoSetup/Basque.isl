@@ -375,6 +375,15 @@ IntegrateTortoiseSVN=Bateratu T&ortoiseSVN-rekin
 IntegrateClearCase=Bateratu Rational &ClearCase-rekin
 AddToPath=&Gehitu WinMerge agiritegia zure sistema helburura
 
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3-Way Merge
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+MergeAtRightPane=Merge at right pane
+MergeAtCenterPane=Merge at center pane
+MergeAtLeftPane=Merge at left pane
+AutoMergeAtStartup=Auto-merge at startup time
+
 ;Icon Labels
 ReadMe=Irakurri nazazu
 UsersGuide=Erabiltzaile Gida
