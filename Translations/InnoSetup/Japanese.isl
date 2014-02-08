@@ -378,6 +378,15 @@ IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
 IntegrateClearCase=Rational ClearCaseとの連携(&C)
 AddToPath=システム環境変数PATHへWinMergeのフォルダを追加する(&A)
 
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3方向マージ
+ThreeWayMergeWizardPageDescription=TortoiseSVN/GITで WinMerge を3方向マージツールとして使用しますか?
+RegisterWinMergeAs3WayMergeTool=WinMerge を3方向マージツールとして登録する
+MergeAtRightPane=右側ペインでマージ
+MergeAtCenterPane=中央ペインでマージ
+MergeAtLeftPane=左側ペインでマージ
+AutoMergeAtStartup=起動時に自動マージする
+
 ;Icon Labels
 ReadMe=Read Me
 UsersGuide=ユーザーガイド

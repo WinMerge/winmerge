@@ -304,6 +304,15 @@ IntegrateTortoiseSVN=Integrácia s T&ortoiseSVN
 IntegrateClearCase=Integrácia s Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3-Way Merge
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/GIT?
+RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+MergeAtRightPane=Merge at right pane
+MergeAtCenterPane=Merge at center pane
+MergeAtLeftPane=Merge at left pane
+AutoMergeAtStartup=Auto-merge at startup time
+
 ;Icon Labels
 ReadMe=súbor Èítaj ma!
 UsersGuide=Príruèka používate¾a
