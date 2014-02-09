@@ -28,6 +28,8 @@ struct FileTextEncoding
 	String GetName() const;
 
 	static int Collate(const FileTextEncoding & fte1, const FileTextEncoding & fte2);
+	bool operator==(const FileTextEncoding & fte2) const { return Collate(*this, fte2) == 0; }
+	bool operator!=(const FileTextEncoding & fte2) const { return Collate(*this, fte2) != 0; }
 };
 
 

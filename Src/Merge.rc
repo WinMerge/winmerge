@@ -2659,6 +2659,10 @@ END
 STRINGTABLE
 BEGIN
     IDS_AUTO_MERGE          "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+    IDS_CODEPAGE_MERGED     "The change of codepage has been merged"
+    IDS_CODEPAGE_CONFLICT   "The changes of codepage are conflicting"
+    IDS_EOL_MERGED          "The change of EOL has been merged"
+    IDS_EOL_CONFLICT        "The changes of EOL are conflicting"
 END
 
 // FILE COMPARE: PANE CAPTIONS

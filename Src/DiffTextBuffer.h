@@ -66,6 +66,7 @@ public :
 	bool getHasBom() const { return m_encoding.m_bom; }
 	void setHasBom(bool value) { m_encoding.m_bom = value; }
 	const FileTextEncoding & getEncoding() const { return m_encoding; }
+	void setEncoding(const FileTextEncoding &encoding) { m_encoding = encoding; }
 	bool IsMixedEOL() const { return m_bMixedEOL; }
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
