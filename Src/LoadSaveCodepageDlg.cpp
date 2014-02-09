@@ -107,8 +107,9 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != NULL)
 	{
-		CComboBox combo;
-		combo.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
+		CComboBox combol, combos;
+		combol.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
+		combos.Attach(::GetDlgItem(m_hWnd, IDC_SAVE_CODEPAGE_TEXTBOX));
 		CodePageInfo cpi[256];
 		int count = pexconv->enumCodePages(cpi, sizeof(cpi)/sizeof(CodePageInfo));
 		int i, j;
@@ -118,13 +119,19 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 				continue;
 			TCHAR desc[256];
 			wsprintf(desc, _T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
-			combo.AddString(desc);
-			combo.SetItemData(j, cpi[i].codepage);
+			combol.AddString(desc);
+			combol.SetItemData(j, cpi[i].codepage);
+			combos.AddString(desc);
+			combos.SetItemData(j, cpi[i].codepage);
 			if (cpi[i].codepage == m_nLoadCodepage)
-				combo.SetCurSel(j);
+			{
+				combol.SetCurSel(j);
+				combos.SetCurSel(j);
+			}
 			j++;
 		}
-		combo.Detach();
+		combol.Detach();
+		combos.Detach();
 	}
 
 	AfxGetMainWnd()->CenterWindow(this);
