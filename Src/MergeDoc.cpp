@@ -926,6 +926,37 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	FlushAndRescan();
 }
 
+enum MergeResult { NoMergeNeeded, Merged, Conflict };
+
+template<class Type>
+static std::pair<MergeResult, Type> DoMergeValue(Type left, Type middle, Type right, int dstPane)
+{
+	bool equal_all = middle == left && middle == right && left == right;
+	if (equal_all)
+		return std::pair<MergeResult, Type>(NoMergeNeeded, left);
+	bool conflict = middle != left && middle != right && left != right;
+	if (conflict)
+		return std::pair<MergeResult, Type>(Conflict, left);
+	switch (dstPane)
+	{
+	case 0:
+		if (left == right)
+			return std::pair<MergeResult, Type>(Merged, middle);
+		break;
+	case 1:
+		if (left == middle)
+			return std::pair<MergeResult, Type>(Merged, right);
+		else
+			return std::pair<MergeResult, Type>(Merged, left);
+		break;
+	case 2:
+		if (left == right)
+			return std::pair<MergeResult, Type>(Merged, middle);
+		break;
+	}
+	return std::pair<MergeResult, Type>(NoMergeNeeded, left);
+}
+
 /**
  * @brief Do auto-merge.
  * @param [in] dstPane Destination side
@@ -937,6 +968,26 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 	bool bGroupWithPrevious = false;
 	int autoMergedCount = 0;
 	int unresolvedConflictCount = 0;
+
+	std::pair<MergeResult, FileTextEncoding> mergedEncoding = 
+		DoMergeValue(m_ptBuf[0]->getEncoding(), m_ptBuf[1]->getEncoding(), m_ptBuf[2]->getEncoding(), dstPane);
+	if (mergedEncoding.first == Merged)
+	{
+		LangMessageBox(IDS_CODEPAGE_MERGED, MB_ICONINFORMATION);
+		m_ptBuf[dstPane]->setEncoding(mergedEncoding.second);
+	}
+	else if (mergedEncoding.first == Conflict)
+		LangMessageBox(IDS_CODEPAGE_CONFLICT, MB_ICONINFORMATION);
+
+	std::pair<MergeResult, CRLFSTYLE> mergedEOLStyle = 
+		DoMergeValue(m_ptBuf[0]->GetCRLFMode(), m_ptBuf[1]->GetCRLFMode(), m_ptBuf[2]->GetCRLFMode(), dstPane);
+	if (mergedEOLStyle.first == Merged)
+	{
+		LangMessageBox(IDS_EOL_MERGED, MB_ICONINFORMATION);
+		m_ptBuf[dstPane]->SetCRLFMode(mergedEOLStyle.second);
+	}
+	else if (mergedEOLStyle.first == Conflict)
+		LangMessageBox(IDS_EOL_CONFLICT, MB_ICONINFORMATION);
 
 	RescanSuppress suppressRescan(*this);
 
