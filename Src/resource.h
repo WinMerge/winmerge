@@ -1148,6 +1148,10 @@
 #define IDS_AUTO_MERGE                  33201
 #define ID_COPY_FROM_LEFT               33202
 #define ID_COPY_FROM_RIGHT              33203
+#define IDS_CODEPAGE_MERGED             33204
+#define IDS_CODEPAGE_CONFLICT           33205
+#define IDS_EOL_MERGED                  33206
+#define IDS_EOL_CONFLICT                33207
 
 // Next default values for new objects
 //

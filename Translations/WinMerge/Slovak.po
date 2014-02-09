@@ -1041,7 +1041,7 @@ msgid "&Scripts"
 msgstr "&Skripty"
 
 #: Merge.rc:508
-#: Merge.rc:2916
+#: Merge.rc:2920
 #, c-format
 msgid "< Empty >"
 msgstr "< Pr·zdne >"
@@ -3664,7 +3664,7 @@ msgid "Size"
 msgstr "Veækosù"
 
 #: Merge.rc:2182
-#: Merge.rc:2760
+#: Merge.rc:2764
 #, c-format
 msgid "Name"
 msgstr "N·zov"
@@ -3685,7 +3685,7 @@ msgid "[F] "
 msgstr "[F] "
 
 #: Merge.rc:2186
-#: Merge.rc:2762
+#: Merge.rc:2766
 #, c-format
 msgid "Description"
 msgstr "Popis"
@@ -4262,7 +4262,7 @@ msgstr ""
 " ProsÌm, skontrolujte konfigur·ciu zvolenÈho pohæadu. "
 
 #: Merge.rc:2350
-#: Merge.rc:2744
+#: Merge.rc:2748
 #, c-format
 msgid "None"
 msgstr "éiadny"
@@ -4754,7 +4754,7 @@ msgid "Ignored Diff."
 msgstr "Ignorovan˝ rozdiel"
 
 #: Merge.rc:2500
-#: Merge.rc:2740
+#: Merge.rc:2744
 #, c-format
 msgid "Binary"
 msgstr "Bin·rny"
@@ -5229,88 +5229,108 @@ msgstr ""
 msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
 msgstr ""
 
-#: Merge.rc:2667
+#: Merge.rc:2662
+#, c-format
+msgid "The change of codepage has been merged"
+msgstr ""
+
+#: Merge.rc:2663
+#, c-format
+msgid "The changes of codepage are conflicting"
+msgstr ""
+
+#: Merge.rc:2664
+#, c-format
+msgid "The change of EOL has been merged"
+msgstr ""
+
+#: Merge.rc:2665
+#, c-format
+msgid "The changes of EOL are conflicting"
+msgstr ""
+
+#: Merge.rc:2671
 #, c-format
 msgid "Location Pane"
 msgstr "LokaËn˝ panel"
 
-#: Merge.rc:2668
+#: Merge.rc:2672
 #, c-format
 msgid "Diff Pane"
 msgstr "Panel rozdielu"
 
-#: Merge.rc:2674
+#: Merge.rc:2678
 #, c-format
 msgid "Patch file successfully written."
 msgstr "S˙bor so z·platou bol ˙speöne zapÌsan˝."
 
-#: Merge.rc:2675
+#: Merge.rc:2679
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. poloûka nen·jden· alebo je to adres·r!"
 
-#: Merge.rc:2676
+#: Merge.rc:2680
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. poloûka nen·jden· alebo je to adres·r!"
 
-#: Merge.rc:2677
+#: Merge.rc:2681
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "S˙bor so z·platou uû existuje. Chcete ho prepÌsaù?"
 
-#: Merge.rc:2678
+#: Merge.rc:2682
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 s˙bor zvolen˝]"
 
-#: Merge.rc:2679
+#: Merge.rc:2683
 #, c-format
 msgid "Normal"
 msgstr "Norm·lny"
 
-#: Merge.rc:2680
+#: Merge.rc:2684
 #, c-format
 msgid "Context"
 msgstr "Kontextov˝"
 
-#: Merge.rc:2681
+#: Merge.rc:2685
 #, c-format
 msgid "Unified"
 msgstr "Zjednoten˝"
 
-#: Merge.rc:2682
-#: Merge.rc:2961
+#: Merge.rc:2686
+#: Merge.rc:2965
 #, c-format
 msgid "HTML"
 msgstr "HTML"
 
-#: Merge.rc:2683
+#: Merge.rc:2687
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Nedalo sa zapisovaù do s˙boru %1."
 
-#: Merge.rc:2684
+#: Merge.rc:2688
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "Uveden· v˝stupn· cesta nie je absol˙tna cesta: %1"
 
-#: Merge.rc:2685
+#: Merge.rc:2689
 #, c-format
 msgid "Specify an output file"
 msgstr "uveÔte v˝stupn˝ s˙bor"
 
-#: Merge.rc:2686
+#: Merge.rc:2690
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Nemohol som vytvoriù s˙bor so z·platou z bin·rnych s˙borov."
 
-#: Merge.rc:2687
+#: Merge.rc:2691
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Nemohol som vytvoriù s˙bor so z·platou z adres·rov."
 
-#: Merge.rc:2688
+#: Merge.rc:2692
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -5321,17 +5341,17 @@ msgstr ""
 "\n"
 "vytvorenie z·platy vyûaduje, aby v s˙boroch neboli neuloûenÈ zmeny."
 
-#: Merge.rc:2689
+#: Merge.rc:2693
 #, c-format
 msgid "Folder does not exist."
 msgstr "Adres·r neexistuje."
 
-#: Merge.rc:2694
+#: Merge.rc:2698
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "Aktu·lne v˝sledky porovnania adres·rov bud˙ zmazanÈ."
 
-#: Merge.rc:2695
+#: Merge.rc:2699
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -5342,7 +5362,7 @@ msgstr ""
 "NiektorÈ z komponentov (7-zip a/alebo Merge7z*.dll) potrebn˝ch pre podporu archÌvov neboli n·jdenÈ.\n"
 "Pozri viac inform·ciÌ o podpore arch·vov a ako ju zapn˙ù v PrÌruËke."
 
-#: Merge.rc:2696
+#: Merge.rc:2700
 #, c-format
 msgid ""
 "\n"
@@ -5351,7 +5371,7 @@ msgstr ""
 "\n"
 "Pozn.: integr·cia 7-Zip je vyonut· v Nastaveniach WinMerge."
 
-#: Merge.rc:2697
+#: Merge.rc:2701
 #, c-format
 msgid ""
 "\n"
@@ -5360,37 +5380,37 @@ msgstr ""
 "\n"
 "Pozn.: integr·cia 7-Zip je obmedzen· na samostatn˙ (standalone) prev·dzku v Nastaveniach WinMerge."
 
-#: Merge.rc:2698
+#: Merge.rc:2702
 #, c-format
 msgid "Select file for export"
 msgstr "Vyberte s˙bor pre export"
 
-#: Merge.rc:2699
+#: Merge.rc:2703
 #, c-format
 msgid "Select file for import"
 msgstr "Vyberte s˙bor pre import"
 
-#: Merge.rc:2700
+#: Merge.rc:2704
 #, c-format
 msgid "Options imported from the file."
 msgstr "Nastavenia importovanÈ zo s˙boru."
 
-#: Merge.rc:2701
+#: Merge.rc:2705
 #, c-format
 msgid "Options exported to the file."
 msgstr "Options exportovanÈ do s˙boru."
 
-#: Merge.rc:2702
+#: Merge.rc:2706
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "Nepodarilo sa importovaù nastavenia zo s˙boru."
 
-#: Merge.rc:2703
+#: Merge.rc:2707
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "Nepodarilo sa zapÌsaù nastavenia do s˙boru."
 
-#: Merge.rc:2704
+#: Merge.rc:2708
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -5401,242 +5421,242 @@ msgstr ""
 "\n"
 "Chcete pokraËovaù?"
 
-#: Merge.rc:2710
+#: Merge.rc:2714
 #, c-format
 msgid "Regular expression error"
 msgstr "Chyba regul·rneho v˝razu"
 
-#: Merge.rc:2711
+#: Merge.rc:2715
 #, c-format
 msgid "No match"
 msgstr "Bez zhody"
 
-#: Merge.rc:2712
+#: Merge.rc:2716
 #, c-format
 msgid "Invalid regular expression"
 msgstr "Neplatn˝ regul·rny v˝raz"
 
-#: Merge.rc:2713
+#: Merge.rc:2717
 #, c-format
 msgid "Invalid collation character"
 msgstr "Neplatn˝ znak porovn·vania"
 
-#: Merge.rc:2714
+#: Merge.rc:2718
 #, c-format
 msgid "Invalid character class name"
 msgstr "Neplatn˝ n·zov triedy znakov"
 
-#: Merge.rc:2715
+#: Merge.rc:2719
 #, c-format
 msgid "Trailing backslash"
 msgstr "Sp‰tn· lomka na konci"
 
-#: Merge.rc:2716
+#: Merge.rc:2720
 #, c-format
 msgid "Invalid back reference"
 msgstr "Neplatn˝ sp‰tn˝ odkaz"
 
-#: Merge.rc:2717
+#: Merge.rc:2721
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "[ alebo [^ bez n·protivku"
 
-#: Merge.rc:2718
+#: Merge.rc:2722
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "( alebo \\( bez n·protivku"
 
-#: Merge.rc:2719
+#: Merge.rc:2723
 #, c-format
 msgid "Unmatched \\{"
 msgstr "\\{ bez n·protivku"
 
-#: Merge.rc:2720
+#: Merge.rc:2724
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "Neplatn˝ obsah \\{\\}"
 
-#: Merge.rc:2721
+#: Merge.rc:2725
 #, c-format
 msgid "Invalid range end"
 msgstr "neplatn˝ koniec rozsahu"
 
-#: Merge.rc:2722
+#: Merge.rc:2726
 #, c-format
 msgid "Out of memory"
 msgstr "nedostatok pam‰te"
 
-#: Merge.rc:2723
+#: Merge.rc:2727
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "Neplatn˝ predch·dzaj˙ci regul·rny v˝raz"
 
-#: Merge.rc:2724
+#: Merge.rc:2728
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "PredËasn˝ koniec regul·rneho v˝razu"
 
-#: Merge.rc:2725
+#: Merge.rc:2729
 #, c-format
 msgid "Regular expression too big"
 msgstr "Regul·rny v˝raz je prÌliö veæk˝"
 
-#: Merge.rc:2730
+#: Merge.rc:2734
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr ") alebo \\) bez n·protivku"
 
-#: Merge.rc:2736
+#: Merge.rc:2740
 #, c-format
 msgid "Win"
 msgstr "Win"
 
-#: Merge.rc:2737
+#: Merge.rc:2741
 #, c-format
 msgid "Mac"
 msgstr "Mac"
 
-#: Merge.rc:2738
+#: Merge.rc:2742
 #, c-format
 msgid "Unix"
 msgstr "Unix"
 
-#: Merge.rc:2739
+#: Merge.rc:2743
 #, c-format
 msgid "Mixed"
 msgstr "Zmieöan˝"
 
-#: Merge.rc:2741
+#: Merge.rc:2745
 #, c-format
 msgid "LF"
 msgstr ""
 
-#: Merge.rc:2742
+#: Merge.rc:2746
 #, c-format
 msgid "CR"
 msgstr ""
 
-#: Merge.rc:2743
+#: Merge.rc:2747
 #, c-format
 msgid "CRLF"
 msgstr ""
 
-#: Merge.rc:2750
+#: Merge.rc:2754
 #, c-format
 msgid " B"
 msgstr " B"
 
-#: Merge.rc:2751
+#: Merge.rc:2755
 #, c-format
 msgid " KB"
 msgstr " KB"
 
-#: Merge.rc:2752
+#: Merge.rc:2756
 #, c-format
 msgid " MB"
 msgstr " MB"
 
-#: Merge.rc:2753
+#: Merge.rc:2757
 #, c-format
 msgid " GB"
 msgstr " GB"
 
-#: Merge.rc:2754
+#: Merge.rc:2758
 #, c-format
 msgid " TB"
 msgstr " TB"
 
-#: Merge.rc:2755
+#: Merge.rc:2759
 #, c-format
 msgid " PB"
 msgstr " PB"
 
-#: Merge.rc:2761
+#: Merge.rc:2765
 #, c-format
 msgid "Type"
 msgstr ""
 
-#: Merge.rc:2763
+#: Merge.rc:2767
 #, c-format
 msgid "Unpacker"
 msgstr ""
 
-#: Merge.rc:2764
+#: Merge.rc:2768
 #, c-format
 msgid "Prediffer"
 msgstr ""
 
-#: Merge.rc:2765
+#: Merge.rc:2769
 #, c-format
 msgid "Editor script"
 msgstr ""
 
-#: Merge.rc:2772
+#: Merge.rc:2776
 #, c-format
 msgid "Save the left file"
 msgstr "UloûÌ s˙bor væavo"
 
-#: Merge.rc:2773
+#: Merge.rc:2777
 #, c-format
 msgid "Save the middle file"
 msgstr ""
 
-#: Merge.rc:2774
+#: Merge.rc:2778
 #, c-format
 msgid "Save the right file"
 msgstr "UloûÌ s˙bor vpravo"
 
-#: Merge.rc:2775
+#: Merge.rc:2779
 #, c-format
 msgid "Save the left file with name..."
 msgstr "UloûÌ æav˝ s˙bor pod n·zvom..."
 
-#: Merge.rc:2776
+#: Merge.rc:2780
 #, c-format
 msgid "Save the middle file with name..."
 msgstr ""
 
-#: Merge.rc:2777
+#: Merge.rc:2781
 #, c-format
 msgid "Save the right file with name..."
 msgstr "UloûÌ prav˝ s˙bor pod n·zvom..."
 
-#: Merge.rc:2778
+#: Merge.rc:2782
 #, c-format
 msgid "Change left file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2779
+#: Merge.rc:2783
 #, c-format
 msgid "Change middle file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2780
+#: Merge.rc:2784
 #, c-format
 msgid "Change right file/folder read-only status"
 msgstr ""
 
-#: Merge.rc:2781
+#: Merge.rc:2785
 #, c-format
 msgid "Convert EOL to Windows mode"
 msgstr ""
 
-#: Merge.rc:2782
+#: Merge.rc:2786
 #, c-format
 msgid "Convert EOL to Unix mode"
 msgstr ""
 
-#: Merge.rc:2783
+#: Merge.rc:2787
 #, c-format
 msgid "Convert EOL to Mac mode"
 msgstr ""
 
-#: Merge.rc:2784
+#: Merge.rc:2788
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Prepne medzi reûimami upravovania a sp·jania"
 
-#: Merge.rc:2785
+#: Merge.rc:2789
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5645,12 +5665,12 @@ msgstr ""
 "ZobrazÌ a nastavÌ vlastnosti kÛdovania s˙borov\n"
 "Vlastnosti kÛdovania s˙borov"
 
-#: Merge.rc:2786
+#: Merge.rc:2790
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr "Otvoriù a vyrieöiù s˙bor konfliktov"
 
-#: Merge.rc:2792
+#: Merge.rc:2796
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5659,7 +5679,7 @@ msgstr ""
 "Vyberie oblasù rozdielu na aktu·lnom riadku\n"
 "Rozdiel na aktu·lnom riadku"
 
-#: Merge.rc:2793
+#: Merge.rc:2797
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5668,7 +5688,7 @@ msgstr ""
 "Prejde na riadok alebo rozdiel\n"
 "Prejsù na (Ctrl+G)"
 
-#: Merge.rc:2794
+#: Merge.rc:2798
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5677,7 +5697,7 @@ msgstr ""
 "NastavÌ moûnosti programu\n"
 "Moûnosti"
 
-#: Merge.rc:2795
+#: Merge.rc:2799
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5686,37 +5706,37 @@ msgstr ""
 "ObnovÌ zobrazenie\n"
 "Obnoviù (F5)"
 
-#: Merge.rc:2796
+#: Merge.rc:2800
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "SkopÌruje vybranÈ riadky do schr·nky s pridan˝m ËÌslom riadka na zaËiatok"
 
-#: Merge.rc:2797
+#: Merge.rc:2801
 #, c-format
 msgid "Refresh/Reload selected items"
 msgstr ""
 
-#: Merge.rc:2798
+#: Merge.rc:2802
 #, c-format
 msgid "Toggle bookmark"
 msgstr "Prepne z·loûku"
 
-#: Merge.rc:2799
+#: Merge.rc:2803
 #, c-format
 msgid "Go to next bookmark"
 msgstr "Ide na Ôalöiu z·loûku"
 
-#: Merge.rc:2800
+#: Merge.rc:2804
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "Ide na predoöl˙ z·loûku"
 
-#: Merge.rc:2801
+#: Merge.rc:2805
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "Vymaûe vöetky z·loûky"
 
-#: Merge.rc:2807
+#: Merge.rc:2811
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5725,7 +5745,7 @@ msgstr ""
 "ZobrazÌ poloûky, ktorÈ s˙ presne rovnakÈ\n"
 "Zobraziù identickÈ poloûky"
 
-#: Merge.rc:2808
+#: Merge.rc:2812
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5734,7 +5754,7 @@ msgstr ""
 "ZobrazÌ poloûky, ktorÈ maj˙ rozdiely\n"
 "Zobraziù rozdielne poloûky"
 
-#: Merge.rc:2809
+#: Merge.rc:2813
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5743,7 +5763,7 @@ msgstr ""
 "ZobrazÌ poloûky, ktorÈ existuj˙ iba na æavej strane\n"
 "Zobraziù poloûky jedineËnÈ væavo"
 
-#: Merge.rc:2810
+#: Merge.rc:2814
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5752,7 +5772,7 @@ msgstr ""
 "ZobrazÌ poloûky, ktorÈ existuj˙ iba na pravej strane\n"
 "Zobraziù poloûky jedineËnÈ vpravo"
 
-#: Merge.rc:2811
+#: Merge.rc:2815
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5761,7 +5781,7 @@ msgstr ""
 "ZobrazÌ bin·rne s˙bory\n"
 "Zobraziù bin·rne s˙bory"
 
-#: Merge.rc:2812
+#: Merge.rc:2816
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5770,7 +5790,7 @@ msgstr ""
 "ZobrazÌ preskoËenÈ poloûky\n"
 "Zobraziù preskoËenÈ poloûky"
 
-#: Merge.rc:2818
+#: Merge.rc:2822
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5779,7 +5799,7 @@ msgstr ""
 "Vyberie font pre zobrazenie\n"
 "Font pre zobrazenie"
 
-#: Merge.rc:2819
+#: Merge.rc:2823
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5788,42 +5808,42 @@ msgstr ""
 "Vr·ti sa k pouûÌvaniu predvolenÈho systÈmovÈho fontu pre zobrazenie\n"
 "Predvolen˝ font"
 
-#: Merge.rc:2820
+#: Merge.rc:2824
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "ZobrazÌ pr·zdne znaky"
 
-#: Merge.rc:2821
+#: Merge.rc:2825
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Prepne panel rozdielov"
 
-#: Merge.rc:2822
+#: Merge.rc:2826
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "LokaËn˝ panel zobrazÌ celkov˝ obraz s˙borov"
 
-#: Merge.rc:2823
+#: Merge.rc:2827
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "ZobrazÌ dialÛg ötatistika porovnania adres·rov"
 
-#: Merge.rc:2824
+#: Merge.rc:2828
 #, c-format
 msgid "Select the current user interface language\nLanguage"
 msgstr ""
 
-#: Merge.rc:2825
+#: Merge.rc:2829
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
 
-#: Merge.rc:2826
+#: Merge.rc:2830
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "VymenÌ polohu dvoch panelov"
 
-#: Merge.rc:2827
+#: Merge.rc:2831
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5832,7 +5852,7 @@ msgstr ""
 "ZobrazÌ ËÌsla riadkov\n"
 "Zobraziù ËÌsla riadkov"
 
-#: Merge.rc:2828
+#: Merge.rc:2832
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5841,7 +5861,7 @@ msgstr ""
 "Zapne zalamovanie riadkov na hranici slov\n"
 "Zalamovaù riadky"
 
-#: Merge.rc:2829
+#: Merge.rc:2833
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -5850,117 +5870,117 @@ msgstr ""
 "ZobrazÌ okraje v˝beru v oboch paneloch\n"
 "Zobraziù okraje v˝beru"
 
-#: Merge.rc:2830
+#: Merge.rc:2834
 #, c-format
 msgid "Increase text size"
 msgstr "Zv‰Ëöiù veækosù pÌsma"
 
-#: Merge.rc:2831
+#: Merge.rc:2835
 #, c-format
 msgid "Decrease text size"
 msgstr "Zmenöiù veækosù pÌsma"
 
-#: Merge.rc:2832
+#: Merge.rc:2836
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr "Nastaviù pÌsmo na ötandardn˙ veækosù"
 
-#: Merge.rc:2838
+#: Merge.rc:2842
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
 
-#: Merge.rc:2839
+#: Merge.rc:2843
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
 
-#: Merge.rc:2840
+#: Merge.rc:2844
 #, c-format
 msgid "Scroll to the previous conflict\nPrevious Conflict (Alt+Shift+Up)"
 msgstr ""
 
-#: Merge.rc:2841
+#: Merge.rc:2845
 #, c-format
 msgid "Scroll to the next conflict\nNext Conflict (Alt+Shift+Down)"
 msgstr ""
 
-#: Merge.rc:2842
+#: Merge.rc:2846
 #, c-format
 msgid "Scroll to the previous difference between left and middle\nPrevious Difference Between Left And Middle(Alt+Shift+1)"
 msgstr ""
 
-#: Merge.rc:2843
+#: Merge.rc:2847
 #, c-format
 msgid "Scroll to the next difference between left and middle\nNext Difference Between Left And Middle(Alt+1)"
 msgstr ""
 
-#: Merge.rc:2844
+#: Merge.rc:2848
 #, c-format
 msgid "Scroll to the previous difference between left and right\nPrevious Difference Between Left And Middle(Alt+Shift+2)"
 msgstr ""
 
-#: Merge.rc:2845
+#: Merge.rc:2849
 #, c-format
 msgid "Scroll to the next difference between left and right\nNext Difference Between Left And Middle (Alt+2)"
 msgstr ""
 
-#: Merge.rc:2846
+#: Merge.rc:2850
 #, c-format
 msgid "Scroll to the previous difference between middle and right\nPrevious Difference Between Middle And Right (Alt+Shift+3)"
 msgstr ""
 
-#: Merge.rc:2847
+#: Merge.rc:2851
 #, c-format
 msgid "Scroll to the next difference between middle and Difference\nNext Difference Between Middle And Right (Alt+3)"
 msgstr ""
 
-#: Merge.rc:2848
+#: Merge.rc:2852
 #, c-format
 msgid "Scroll to the previous left only difference\nPrevious Left Only Difference (Alt+Shift+7)"
 msgstr ""
 
-#: Merge.rc:2849
+#: Merge.rc:2853
 #, c-format
 msgid "Scroll to the next left only difference\nNext Left Only Difference (Alt+7)"
 msgstr ""
 
-#: Merge.rc:2850
+#: Merge.rc:2854
 #, c-format
 msgid "Scroll to the previous middle only difference\nPrevious Middle Only Difference (Alt+Shift+8)"
 msgstr ""
 
-#: Merge.rc:2851
+#: Merge.rc:2855
 #, c-format
 msgid "Scroll to the next middle only difference\nNext Middle Only Difference (Alt+8)"
 msgstr ""
 
-#: Merge.rc:2852
+#: Merge.rc:2856
 #, c-format
 msgid "Scroll to the previous right only difference\nPrevious  Right Difference (Alt+Shift+9)"
 msgstr ""
 
-#: Merge.rc:2853
+#: Merge.rc:2857
 #, c-format
 msgid "Scroll to the next right only difference\nNext Right Only Difference (Alt+9)"
 msgstr ""
 
-#: Merge.rc:2854
+#: Merge.rc:2858
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
 
-#: Merge.rc:2855
+#: Merge.rc:2859
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
 
-#: Merge.rc:2856
+#: Merge.rc:2860
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
 
-#: Merge.rc:2857
+#: Merge.rc:2861
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5969,7 +5989,7 @@ msgstr ""
 "SkopÌruje vybran˝ text do s˙boru vpravo\n"
 "KopÌrovaù vpravo (->)"
 
-#: Merge.rc:2858
+#: Merge.rc:2862
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5978,7 +5998,7 @@ msgstr ""
 "SkopÌruje vybran˝ text do s˙boru væavo\n"
 "KopÌrovaù væavo (<-)"
 
-#: Merge.rc:2859
+#: Merge.rc:2863
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5987,7 +6007,7 @@ msgstr ""
 "SkopÌruje rozdiel napravo a prejde na ÔalöÌ\n"
 "SkopÌrovaù doprava a na ÔalöÌ (Ctrl+Alt+vpravo)"
 
-#: Merge.rc:2860
+#: Merge.rc:2864
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5996,7 +6016,7 @@ msgstr ""
 "SkopÌruje rozdiel naæavo a prejde na ÔalöÌ\n"
 "SkopÌrovaù doæava a na ÔalöÌ (Ctrl+Alt+væavo)"
 
-#: Merge.rc:2861
+#: Merge.rc:2865
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -6005,7 +6025,7 @@ msgstr ""
 "SkopÌruje vöetky rozdiely do s˙boru vpravo\n"
 "Vöetko vpravo"
 
-#: Merge.rc:2862
+#: Merge.rc:2866
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -6014,122 +6034,122 @@ msgstr ""
 "SkopÌrujde vöetky rozdiely do s˙boru væavo\n"
 "Vöetko væavo"
 
-#: Merge.rc:2863
+#: Merge.rc:2867
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "Zmaûe vybranÈ poloûky z oboch adres·rov"
 
-#: Merge.rc:2864
+#: Merge.rc:2868
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Porovn· vybranÈ poloûky (ak s˙ zvolenÈ viacerÈ poloûky, porovn· prv˙ poloûku)"
 
-#: Merge.rc:2865
+#: Merge.rc:2869
 #, c-format
 msgid "Add a manual point for synchronization of changes between files"
 msgstr ""
 
-#: Merge.rc:2866
+#: Merge.rc:2870
 #, c-format
 msgid "Clear manual change synchronization points "
 msgstr ""
 
-#: Merge.rc:2867
+#: Merge.rc:2871
 #, c-format
 msgid "Automatically merge changes\nAuto Merge (Ctrl+Alt+M)"
 msgstr ""
 
-#: Merge.rc:2873
+#: Merge.rc:2877
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Vyberie a zmenÌ poradie stÂpcov pre porovnanie adres·rov"
 
-#: Merge.rc:2874
+#: Merge.rc:2878
 #, c-format
 msgid "Generate a patch-file"
 msgstr "VytvorÌ s˙bor so z·platou"
 
-#: Merge.rc:2875
+#: Merge.rc:2879
 #, c-format
 msgid "Select and modify filters"
 msgstr "Vyberie a modifikuje filtre"
 
-#: Merge.rc:2876
+#: Merge.rc:2880
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "VytvorÌ spr·vu z v˝sledkov porovnania"
 
-#: Merge.rc:2882
+#: Merge.rc:2886
 #, c-format
 msgid "Shows a list of available plugins"
 msgstr ""
 
-#: Merge.rc:2883
+#: Merge.rc:2887
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "PouûÌvateæ zvolÌ rozbaæovacÌ program (bez rozbaæovania, keÔ sa otv·ra adres·r)"
 
-#: Merge.rc:2884
+#: Merge.rc:2888
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "RozbaæovacÌ program sa pouûije na oba s˙bory (pri jednom s˙bore staËÌ prÌpona)"
 
-#: Merge.rc:2885
+#: Merge.rc:2889
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Zvoæte rozbaæovacÌ program, ktor˝m sa bude upravovaù tento s˙bor"
 
-#: Merge.rc:2886
+#: Merge.rc:2890
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "Bez predspracovania (beûnÈ)"
 
-#: Merge.rc:2887
+#: Merge.rc:2891
 #, c-format
 msgid "Suggested plugins"
 msgstr "Odpor˙ËanÈ z·suvnÈ moduly"
 
-#: Merge.rc:2888
+#: Merge.rc:2892
 #, c-format
 msgid "Other plugins"
 msgstr "InÈ z·suvnÈ moduly"
 
-#: Merge.rc:2889
+#: Merge.rc:2893
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Odoberie z pam‰te vöetky z·suvnÈ moduly a znovu ich naËÌta (pre v˝voj·rov)"
 
-#: Merge.rc:2895
+#: Merge.rc:2899
 #, c-format
 msgid "Activates next visible file\nActivate next File"
 msgstr ""
 
-#: Merge.rc:2896
+#: Merge.rc:2900
 #, c-format
 msgid "Closes all open windows"
 msgstr "ZatvorÌ vöetky otvorenÈ okn·"
 
-#: Merge.rc:2902
+#: Merge.rc:2906
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
 msgstr ""
 
-#: Merge.rc:2903
+#: Merge.rc:2907
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "VypÌöe aktu·lne inform·cie o verzii a konfigur·cii WinMerge do textovÈho s˙boru"
 
-#: Merge.rc:2904
+#: Merge.rc:2908
 #, c-format
 msgid "Display the GNU General Public License"
 msgstr ""
 
-#: Merge.rc:2905
+#: Merge.rc:2909
 #, c-format
 msgid "Private Build: %1"
 msgstr "S˙kromnÈ zostavenie: %1"
 
-#: Merge.rc:2906
+#: Merge.rc:2910
 #, c-format
 msgid ""
 "Opens the release notes document\n"
@@ -6138,7 +6158,7 @@ msgstr ""
 "OtvorÌ dokument Pozn·mky k vydaniu\n"
 "Pozn·mky k vydaniu"
 
-#: Merge.rc:2907
+#: Merge.rc:2911
 #, c-format
 msgid ""
 "Opens the translations website\n"
@@ -6147,287 +6167,287 @@ msgstr ""
 "OtvorÌ webstr·nku prekladov\n"
 "Preklady"
 
-#: Merge.rc:2913
+#: Merge.rc:2917
 #, c-format
 msgid "Plugin Settings"
 msgstr "Nastavenia z·suvn˝ch modulov"
 
-#: Merge.rc:2914
+#: Merge.rc:2918
 #, c-format
 msgid "No prediffer"
 msgstr "Bez preprocesora"
 
-#: Merge.rc:2915
+#: Merge.rc:2919
 #, c-format
 msgid "Prediff if possible"
 msgstr "Preprocessing, ak sa d·"
 
-#: Merge.rc:2917
+#: Merge.rc:2921
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH nen·jdenÈ - .sct skripty vypnutÈ"
 
-#: Merge.rc:2918
+#: Merge.rc:2922
 #, c-format
 msgid "<None>"
 msgstr "<éiadny>"
 
-#: Merge.rc:2919
+#: Merge.rc:2923
 #, c-format
 msgid "<Automatic>"
 msgstr "<AutomatickÈ>"
 
-#: Merge.rc:2925
+#: Merge.rc:2929
 #, c-format
 msgid "Open the file with registered application"
 msgstr "OtvorÌ s˙bor registrovanou aplik·ciou"
 
-#: Merge.rc:2926
+#: Merge.rc:2930
 #, c-format
 msgid "Open the file with external editor"
 msgstr "OtvorÌ s˙bor extern˝m editorom"
 
-#: Merge.rc:2927
+#: Merge.rc:2931
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "OtvorÌ s˙bor konkrÈtnym programom"
 
-#: Merge.rc:2933
+#: Merge.rc:2937
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "Nezobrazuje presunutÈ bloky"
 
-#: Merge.rc:2934
+#: Merge.rc:2938
 #, c-format
 msgid "Display all moved blocks"
 msgstr "ZobrazÌ vöetky posunutÈ bloky"
 
-#: Merge.rc:2935
+#: Merge.rc:2939
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Zobrazuje presunutÈ bloky iba z aktu·lneho rozdielu"
 
-#: Merge.rc:2936
+#: Merge.rc:2940
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Ide na rozdiel, ktor˝ je pod kurzorom"
 
-#: Merge.rc:2937
+#: Merge.rc:2941
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "Ch&oÔ na rozdiel %1 z %2"
 
-#: Merge.rc:2938
+#: Merge.rc:2942
 #, c-format
 msgid "G&oto Line %1"
 msgstr "Ch&oÔ na riadok %1"
 
-#: Merge.rc:2944
+#: Merge.rc:2948
 #, c-format
 msgid "Disabled"
 msgstr "VypnutÈ"
 
-#: Merge.rc:2945
+#: Merge.rc:2949
 #, c-format
 msgid "From file system"
 msgstr "Zo s˙borovÈho systÈmu"
 
-#: Merge.rc:2946
+#: Merge.rc:2950
 #, c-format
 msgid "From MRU list"
 msgstr "Zo zoznamu ned·vno pouûit˝ch"
 
-#: Merge.rc:2952
+#: Merge.rc:2956
 #, c-format
 msgid "No Highlighting"
 msgstr ""
 
-#: Merge.rc:2953
+#: Merge.rc:2957
 #, c-format
 msgid "ASP"
 msgstr "ASP"
 
-#: Merge.rc:2954
+#: Merge.rc:2958
 #, c-format
 msgid "Basic"
 msgstr "Basic"
 
-#: Merge.rc:2955
+#: Merge.rc:2959
 #, c-format
 msgid "Batch"
 msgstr "D·vkov˝"
 
-#: Merge.rc:2956
+#: Merge.rc:2960
 #, c-format
 msgid "C/C++"
 msgstr "C/C++"
 
-#: Merge.rc:2957
+#: Merge.rc:2961
 #, c-format
 msgid "C#"
 msgstr "C#"
 
-#: Merge.rc:2958
+#: Merge.rc:2962
 #, c-format
 msgid "CSS"
 msgstr "CSS"
 
-#: Merge.rc:2959
+#: Merge.rc:2963
 #, c-format
 msgid "DCL"
 msgstr "DCL"
 
-#: Merge.rc:2960
+#: Merge.rc:2964
 #, c-format
 msgid "Fortran"
 msgstr "Fortran"
 
-#: Merge.rc:2962
+#: Merge.rc:2966
 #, c-format
 msgid "INI"
 msgstr "INI"
 
-#: Merge.rc:2963
+#: Merge.rc:2967
 #, c-format
 msgid "InnoSetup"
 msgstr "InnoSetup"
 
-#: Merge.rc:2964
+#: Merge.rc:2968
 #, c-format
 msgid "InstallShield"
 msgstr "InstallShield"
 
-#: Merge.rc:2965
+#: Merge.rc:2969
 #, c-format
 msgid "Java"
 msgstr "Java"
 
-#: Merge.rc:2966
+#: Merge.rc:2970
 #, c-format
 msgid "AutoLISP"
 msgstr "AutoLISP"
 
-#: Merge.rc:2967
+#: Merge.rc:2971
 #, c-format
 msgid "NSIS"
 msgstr "NSIS"
 
-#: Merge.rc:2968
+#: Merge.rc:2972
 #, c-format
 msgid "Pascal"
 msgstr "Pascal"
 
-#: Merge.rc:2969
+#: Merge.rc:2973
 #, c-format
 msgid "Perl"
 msgstr "Perl"
 
-#: Merge.rc:2970
+#: Merge.rc:2974
 #, c-format
 msgid "PHP"
 msgstr "PHP"
 
-#: Merge.rc:2971
+#: Merge.rc:2975
 #, c-format
 msgid "Portable Object"
 msgstr "Portable Object"
 
-#: Merge.rc:2972
+#: Merge.rc:2976
 #, c-format
 msgid "PowerShell"
 msgstr "PowerShell"
 
-#: Merge.rc:2973
+#: Merge.rc:2977
 #, c-format
 msgid "Python"
 msgstr "Python"
 
-#: Merge.rc:2974
+#: Merge.rc:2978
 #, c-format
 msgid "REXX"
 msgstr "REXX"
 
-#: Merge.rc:2975
+#: Merge.rc:2979
 #, c-format
 msgid "Resources"
 msgstr "Zdroje"
 
-#: Merge.rc:2976
+#: Merge.rc:2980
 #, c-format
 msgid "Ruby"
 msgstr "Ruby"
 
-#: Merge.rc:2977
+#: Merge.rc:2981
 #, c-format
 msgid "SGML"
 msgstr "SGML"
 
-#: Merge.rc:2978
+#: Merge.rc:2982
 #, c-format
 msgid "Shell"
 msgstr "Shell"
 
-#: Merge.rc:2979
+#: Merge.rc:2983
 #, c-format
 msgid "SIOD"
 msgstr "SIOD"
 
-#: Merge.rc:2980
+#: Merge.rc:2984
 #, c-format
 msgid "SQL"
 msgstr "SQL"
 
-#: Merge.rc:2981
+#: Merge.rc:2985
 #, c-format
 msgid "TCL"
 msgstr "TCL"
 
-#: Merge.rc:2982
+#: Merge.rc:2986
 #, c-format
 msgid "TEX"
 msgstr "TEX"
 
-#: Merge.rc:2983
+#: Merge.rc:2987
 #, c-format
 msgid "Verilog"
 msgstr ""
 
-#: Merge.rc:2984
+#: Merge.rc:2988
 #, c-format
 msgid "XML"
 msgstr "XML"
 
-#: Merge.rc:2989
+#: Merge.rc:2993
 #, c-format
 msgid "Hide the toolbar"
 msgstr "Skryù panel n·strojov"
 
-#: Merge.rc:2990
+#: Merge.rc:2994
 #, c-format
 msgid "Show small toolbar"
 msgstr "Zobraziù mal˝ panel n·strojov"
 
-#: Merge.rc:2991
+#: Merge.rc:2995
 #, c-format
 msgid "Show big toolbar"
 msgstr "Zobraziù veæk˝ panel n·strojov"
 
-#: Merge.rc:2996
+#: Merge.rc:3000
 #, c-format
 msgid "Close &Left Tabs"
 msgstr ""
 
-#: Merge.rc:2997
+#: Merge.rc:3001
 #, c-format
 msgid "Close R&ight Tabs"
 msgstr ""
 
-#: Merge.rc:2998
+#: Merge.rc:3002
 #, c-format
 msgid "Close &Other Tabs"
 msgstr ""
 
-#: Merge.rc:3003
+#: Merge.rc:3007
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
