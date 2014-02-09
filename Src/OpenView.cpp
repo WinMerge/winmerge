@@ -1063,14 +1063,18 @@ BOOL COpenView::PreTranslateMessage(MSG* pMsg)
 			UINT id = 0;
 			switch (pMsg->wParam)
 			{
-			case '1': id = IDC_PATH0_COMBO; break;
-			case '2': id = IDC_PATH1_COMBO; break;
-			case '3': id = IDC_PATH2_COMBO; break;
-			}
-			if (id)
+			case '1': id = IDC_PATH0_COMBO; goto LABEL_NUM_KEY;
+			case '2': id = IDC_PATH1_COMBO; goto LABEL_NUM_KEY;
+			case '3': id = IDC_PATH2_COMBO;
+			LABEL_NUM_KEY:
 				GetDlgItem(id)->SetFocus();
+				return TRUE;
+			case 's':
+			case 'S': id = IDC_SELECT_UNPACKER;
+				PostMessage(WM_COMMAND, id, 0);
+				return TRUE;
+			}
 		}
-		return TRUE;
 	}
 	return CFormView::PreTranslateMessage(pMsg);
 }

@@ -608,9 +608,11 @@ Root: HKCU; SubKey: Software\TortoiseCVS\Prefs\External Merge2 Params; ValueType
 
 ;Set WinMerge as TortoiseGit diff tool
 Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseGit
+Root: HKCU; SubKey: Software\TortoiseGit; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
 
 ;Set WinMerge as TortoiseSVN diff tool
 Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Diff; ValueData: {app}\{code:ExeName} -e -ub -dl %bname -dr %yname %base %mine; Flags: uninsdeletevalue; Tasks: TortoiseSVN
+Root: HKCU; SubKey: Software\TortoiseSVN; ValueType: string; ValueName: Merge; ValueData: {code:TortoiseSVNGITMergeToolCommandLine}; Flags: uninsdeletevalue; Check: UseAs3WayMergeTool
 
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
 ;(unless the user already has a startup language specified)
@@ -669,11 +671,7 @@ Name: {app}; Type: dirifempty
 
 [Code]
 Var
-    {Stores the version of 7-Zip Installed}
-    int7Zip_Version: Integer;
-
-    {Determines two things whether or not ComCtrl is needed and whether or not we've already checked}
-    intComCtlNeeded: Integer;
+    g_CheckListBox: TNewCheckListBox;
 
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
@@ -1116,6 +1114,37 @@ begin
 	Result := Dir;
 end;
 
+function UseAs3WayMergeTool(): Boolean;
+begin
+    Result := g_CheckListBox.Checked[0];
+end;
+
+function TortoiseSVNGITMergeToolCommandLine(Unused: string): string;
+var
+    lmr: string;
+    Args: string;
+begin
+    if g_CheckListBox.Checked[1] then begin
+        lmr := 'r';
+        Args := '/e /ub /fr /wl /wm /dl %bname /dm %tname /dr %yname  %base %theirs %mine /o %merged';
+    end else if g_CheckListBox.Checked[2] then begin
+        lmr := 'm';
+        Args := '/e /ub /fm /wl /wr /dl %tname /dm %bname /dr %yname  %theirs %base %mine /o %merged';
+    end else begin
+        lmr := 'l';
+        Args := '/e /ub /fl /wm /wr /dl %yname /dm %tname /dr %bname  %mine %theirs %base /o %merged';
+    end;
+    if g_CheckListBox.Checked[4] then begin
+        Args := Args + ' /a' + lmr;
+    end;
+    Result := WinMergeExeName() + ' ' + Args;
+end;
+
+function ThreeWayMergePage_ShouldSkipPage(Page: TWizardPage): Boolean;
+begin
+    Result := not (IsTaskSelected('TortoiseSVN') or IsTaskSelected('TortoiseGIT'));
+end;
+
 #include "modpath.iss"
 
 procedure CurStepChanged(CurStep: TSetupStep);
@@ -1150,3 +1179,52 @@ Begin
         IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
     end;
 End;
+
+function BooleanToString(Value : Boolean) : String; 
+begin
+  if Value then
+    Result := 'true'
+  else
+    Result := 'false';
+end;
+
+function StringToBoolean(Value : String) : Boolean; 
+begin
+  if Value = 'true' then
+    Result := true
+  else
+    Result := false;
+end;
+
+procedure RegisterPreviousData(PreviousDataKey: Integer);
+begin
+  SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
+  SetPreviousData(PreviousDataKey, 'MergeAtRightPane', BooleanToString(g_CheckListBox.Checked[1]));
+  SetPreviousData(PreviousDataKey, 'MergeAtCenterPane', BooleanToString(g_CheckListBox.Checked[2]));
+  SetPreviousData(PreviousDataKey, 'MergeAtLeftPane', BooleanToString(g_CheckListBox.Checked[3]));
+  SetPreviousData(PreviousDataKey, 'AutoMergeAtStartup', BooleanToString(g_CheckListBox.Checked[4]));
+end;
+
+function GetSysColor(ColorType: Integer): Integer;
+external 'GetSysColor@user32.dll';
+
+procedure InitializeWizard();
+var
+  Page: TWizardPage;
+begin
+  Page := CreateCustomPage(wpSelectTasks, ExpandConstant('{cm:ThreeWayMergeWizardPageCaption}'), ExpandConstant('{cm:ThreeWayMergeWizardPageDescription}'));
+  Page.OnShouldSkipPage := @ThreeWayMergePage_ShouldSkipPage;
+
+  g_CheckListBox := TNewCheckListBox.Create(Page);
+  g_CheckListBox.Width := Page.SurfaceWidth;
+  g_CheckListBox.Height := ScaleY(128);
+  g_CheckListBox.Flat := True;
+  g_CheckListBox.BorderStyle := bsNone;
+  g_CheckListBox.Color := GetSysColor(15);
+  g_CheckListBox.Parent := Page.Surface;
+  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:RegisterWinMergeAs3WayMergeTool}'), '', 0, StringToBoolean(GetPreviousData('UseAs3WayMergeTool', 'true')), True, False, True, nil);
+  g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtRightPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtRightPane', 'true')), True, nil);
+  g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
+  g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
+  g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+end;
