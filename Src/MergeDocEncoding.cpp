@@ -50,6 +50,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 		return false;
 	
 	CLoadSaveCodepageDlg dlg(m_nBuffers);
+	dlg.EnableSaveCodepage(true);
 	dlg.SetCodepages(m_ptBuf[0]->getCodepage());
 	if (IDOK != dlg.DoModal())
 		return false;
@@ -79,7 +80,24 @@ bool CMergeDoc::DoFileEncodingDialog()
 		theApp.m_strDescriptions[pane] = m_strDesc[pane];
 	}
 	OpenDocs(fileloc, bRO);
-
+	
+	if (dlg.GetSaveCodepage() != dlg.GetLoadCodepage())
+	{
+		int nSaveCodepage = dlg.GetSaveCodepage();
+		for (int pane = 0; pane < m_nBuffers; pane++)
+		{
+			bRO[pane] = m_ptBuf[pane]->GetReadOnly();
+			if ((pane == 0 && doLeft) ||
+				(pane == 1 && doRight  && m_nBuffers <  3) ||
+				(pane == 1 && doMiddle && m_nBuffers == 3) ||
+				(pane == 2 && doRight  && m_nBuffers == 3))
+			{
+				m_ptBuf[pane]->setCodepage(nSaveCodepage);
+				m_ptBuf[pane]->SetModified();
+				UpdateHeaderPath(pane);
+			}
+		}
+	}
 	return true;
 }
 

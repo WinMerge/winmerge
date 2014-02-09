@@ -62,7 +62,7 @@ public :
 	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }
-	void setCodepage(int value) { m_encoding.m_codepage = value; }
+	void setCodepage(int value) { m_encoding.SetCodepage(value); }
 	bool getHasBom() const { return m_encoding.m_bom; }
 	void setHasBom(bool value) { m_encoding.m_bom = value; }
 	const FileTextEncoding & getEncoding() const { return m_encoding; }
