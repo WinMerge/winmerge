@@ -1905,6 +1905,9 @@ IsMBSTrail (int nLine, int nCol) const
   //  You must call InitNew() or LoadFromFile() first!
 
 #ifdef _UNICODE
+  const wchar_t *current = GetLineChars (nLine) + nCol;
+  if (*current >= 0xDC00 && *current <= 0xDFFF) // surrogate pair 
+    return true;
   return false;
 #else // _UNICODE
   const unsigned char *string = (const unsigned char *) GetLineChars (nLine);
