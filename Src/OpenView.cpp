@@ -544,7 +544,7 @@ void COpenView::LoadComboboxStates()
 	
 	BOOL bIsEmptyThirdItem = theApp.GetProfileInt(_T("Files\\Option"), _T("Empty"), TRUE);
 	if (bIsEmptyThirdItem)
-		m_ctlPath[2].SetWindowText(_T(""));	
+		m_ctlPath[2].SetCurSel(-1);
 }
 
 /** 
