@@ -83,6 +83,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_CBN_SELENDCANCEL(IDC_PATH0_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH1_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_PATH2_COMBO, UpdateButtonStates)
+	ON_NOTIFY_RANGE(CBEN_BEGINEDIT, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSetfocusPathCombo)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_WM_ACTIVATE()
@@ -110,6 +111,9 @@ COpenView::COpenView()
 	, m_pUpdateButtonStatusThread(NULL)
 	, m_bRecurse(FALSE)
 {
+	m_bAutoCompleteReady[0] = false;
+	m_bAutoCompleteReady[1] = false;
+	m_bAutoCompleteReady[2] = false;
 	memset(m_dwFlags, 0, sizeof(m_dwFlags));
 }
 
@@ -236,14 +240,6 @@ void COpenView::OnInitialUpdate()
 			bDoUpdateData = FALSE;
 	}
 	UpdateData(bDoUpdateData);
-	
-	int nSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
-	if (nSource > 0)
-	{
-		m_ctlPath[0].SetAutoComplete(nSource);
-		m_ctlPath[1].SetAutoComplete(nSource);
-		m_ctlPath[2].SetAutoComplete(nSource);
-	}
 
 	String filterNameOrMask = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
 	BOOL bMask = theApp.m_pGlobalFileFilter->IsUsingMask();
@@ -774,6 +770,18 @@ void COpenView::OnSelchangePath1Combo()
 void COpenView::OnSelchangePath2Combo() 
 {
 	OnSelchangeCombo(2);
+}
+
+void COpenView::OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult) 
+{
+	if (!m_bAutoCompleteReady[id - IDC_PATH0_COMBO])
+	{
+		int nSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
+		if (nSource > 0)
+			m_ctlPath[id - IDC_PATH0_COMBO].SetAutoComplete(nSource);
+		m_bAutoCompleteReady[id - IDC_PATH0_COMBO] = true;
+	}
+	*pResult = 0;
 }
 
 /** 
