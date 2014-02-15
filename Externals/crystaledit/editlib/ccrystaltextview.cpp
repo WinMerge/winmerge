@@ -2175,6 +2175,22 @@ DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y)
   pdc->SelectObject (pOldPen);
 }
 
+void CCrystalTextView::
+DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight)
+{
+  CDC  dcMem;
+  dcMem.CreateCompatibleDC (pdc);
+  CBitmap bitmap;
+  bitmap.CreateCompatibleBitmap (pdc, nRight - nLeft, nHeight);
+  CBitmap *pOldBitmap = dcMem.SelectObject (&bitmap);
+  dcMem.SetBkColor(RGB(0, 255, 0));
+  BLENDFUNCTION blend = {0};
+  blend.BlendOp = AC_SRC_OVER;
+  blend.SourceConstantAlpha = 24;
+  pdc->AlphaBlend (nLeft, y, nRight - nLeft, nHeight, &dcMem, 0, 0, nRight - nLeft, nHeight, blend);
+  dcMem.SelectObject (pOldBitmap);
+}
+
 bool CCrystalTextView::
 IsInsideSelBlock (CPoint ptTextPos)
 {
@@ -2277,6 +2293,8 @@ OnDraw (CDC * pdc)
     rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
   }
 
+  int nCursorY = TextToClient (m_ptCursorPos).y;
+
   //END SW
 
   int nCurrentLine = m_nTopLine;
@@ -2302,6 +2320,9 @@ OnDraw (CDC * pdc)
               DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
                 DrawBoundaryLine (&cacheDC, rcCacheMargin.left, rcCacheLine.right, rcCacheMargin.bottom-1);
+			  if (nCurrentLine == m_ptCursorPos.y)
+                DrawLineCursor (&cacheDC, rcCacheMargin.left, rcCacheLine.right, 
+                  nCursorY - rcLine.top + nLineHeight - 1, 1);
             }
           else
             {
