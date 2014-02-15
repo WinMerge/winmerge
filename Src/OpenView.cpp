@@ -70,6 +70,9 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_BN_CLICKED(IDC_PATH0_BUTTON, OnPath0Button)
 	ON_BN_CLICKED(IDC_PATH1_BUTTON, OnPath1Button)
 	ON_BN_CLICKED(IDC_PATH2_BUTTON, OnPath2Button)
+	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
+	ON_BN_CLICKED(IDC_SWAP12_BUTTON, (OnSwapButton<IDC_PATH1_COMBO, IDC_PATH2_COMBO>))
+	ON_BN_CLICKED(IDC_SWAP02_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH2_COMBO>))
 	ON_CBN_SELCHANGE(IDC_PATH0_COMBO, OnSelchangePath0Combo)
 	ON_CBN_SELCHANGE(IDC_PATH1_COMBO, OnSelchangePath1Combo)
 	ON_CBN_SELCHANGE(IDC_PATH2_COMBO, OnSelchangePath2Combo)
@@ -157,6 +160,19 @@ void COpenView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	ResizeParentToFit();
 
+	// set caption to "swap paths" button
+	LOGFONT lf;
+	GetDlgItem(IDC_SWAP01_BUTTON)->GetFont()->GetObject(sizeof(lf), &lf);
+	lf.lfCharSet = SYMBOL_CHARSET;
+	lstrcpy(lf.lfFaceName, _T("Wingdings"));
+	m_fontSwapButton.CreateFontIndirect(&lf);
+	const int ids[] = {IDC_SWAP01_BUTTON, IDC_SWAP12_BUTTON, IDC_SWAP02_BUTTON};
+	for (int i = 0; i < sizeof(ids)/sizeof(ids[0]); ++i)
+	{
+		GetDlgItem(ids[i])->SetFont(&m_fontSwapButton);
+		SetDlgItemText(ids[i], _T("\xf4"));
+	}
+
 	m_constraint.InitializeCurrentSize(this);
 	m_constraint.InitializeSpecificSize(this, m_sizeOrig.cx, m_sizeOrig.cy);
 	m_constraint.SetMaxSizePixels(-1, m_sizeOrig.cy);
@@ -172,6 +188,9 @@ void COpenView::OnInitialUpdate()
 	m_constraint.ConstrainItem(IDC_PATH0_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH1_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_PATH2_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SWAP01_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SWAP12_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SWAP02_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
@@ -408,6 +427,17 @@ void COpenView::OnPath1Button()
 void COpenView::OnPath2Button() 
 {
 	OnButton(2);
+}
+
+template<int id1, int id2>
+void COpenView::OnSwapButton() 
+{
+	CString s1, s2;
+	GetDlgItem(id1)->GetWindowText(s1);
+	GetDlgItem(id2)->GetWindowText(s2);
+	std::swap(s1, s2);
+	GetDlgItem(id1)->SetWindowText(s1);
+	GetDlgItem(id2)->SetWindowText(s2);
 }
 
 /** 
