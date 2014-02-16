@@ -182,12 +182,12 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	{
 		s2.Format(_T("Item_%d"), i);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
-		if (i==0)
-			SetWindowText(s);
 		if (FindStringExact(-1, s) == -1
 			&& !s.IsEmpty())
 			AddString(s);
 	}
+	if (cnt > 0)
+		SetCurSel(0);
 }
 
 void CSuperComboBox::GetLBText(int nIndex, CString &rString) const

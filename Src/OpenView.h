@@ -92,7 +92,8 @@ private:
 	CRectTracker m_rectTracker;
 	CSize m_sizeOrig;
 	prdlg::CMoveConstraint m_constraint;
-
+	CFont m_fontSwapButton;
+	bool m_bAutoCompleteReady[3];
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -131,6 +132,9 @@ protected:
 	afx_msg void OnSelchangePath0Combo();
 	afx_msg void OnSelchangePath1Combo();
 	afx_msg void OnSelchangePath2Combo();
+	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
+	template<int id1, int id2>
+	afx_msg void OnSwapButton();
 	afx_msg void OnEditEvent();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
