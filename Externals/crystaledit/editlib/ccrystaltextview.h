@@ -465,6 +465,7 @@ protected:
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
     virtual void DrawBoundaryLine (CDC * pdc, int nLeft, int nRight, int y);
+    virtual void DrawLineCursor (CDC * pdc, int nLeft, int nRight, int y, int nHeight);
     int GetCharWidthFromChar(TCHAR ch);
     int GetCharWidthFromString(LPCTSTR lpsz);
     int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
