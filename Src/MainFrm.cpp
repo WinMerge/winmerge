@@ -1764,7 +1764,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	const size_t fileCount = files.GetSize();
 
 	// If Ctrl pressed, do recursive compare
-	bool ctrlKey = !!::GetAsyncKeyState(VK_CONTROL);
+	bool recurse = !!::GetAsyncKeyState(VK_CONTROL) || !!theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0);
 
 	// If user has <Shift> pressed with one file selected,
 	// assume it is an archive and set filenames to same
@@ -1789,7 +1789,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		}
 	}
 
-	DoFileOpen(&files, dwFlags, ctrlKey);
+	DoFileOpen(&files, dwFlags, recurse);
 }
 
 BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
