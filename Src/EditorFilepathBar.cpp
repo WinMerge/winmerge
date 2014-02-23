@@ -179,11 +179,10 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 		return FALSE;
 
 	TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pTTTStruct;
-	int nID = static_cast<int>(pTTTStruct->idFrom);
 	if (pTTT->uFlags & TTF_IDISHWND)
 	{
 		// idFrom is actually the HWND of the CEdit 
-		nID = ::GetDlgCtrlID((HWND)nID);
+		int nID = ::GetDlgCtrlID((HWND)pTTTStruct->idFrom);
 		if(nID == IDC_STATIC_TITLE_PANE0 || nID == IDC_STATIC_TITLE_PANE1 || nID == IDC_STATIC_TITLE_PANE2)
 		{
 			// compute max width : 97% of application width or 80% or full screen width

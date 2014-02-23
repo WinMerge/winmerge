@@ -25,6 +25,7 @@ public:
 	CColorButton(COLORREF clrFill);
 
 	void SetColor(COLORREF clrFill, BOOL bInvalidate = TRUE);
+	COLORREF GetColor() const { return m_clrFill; };
 	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 };
 

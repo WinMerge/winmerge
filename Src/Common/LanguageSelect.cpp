@@ -975,8 +975,8 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
-			size_t cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
-			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, static_cast<int>(cx));
+			int cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
+			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}
 		else if (rgid)
