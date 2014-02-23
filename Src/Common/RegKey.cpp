@@ -148,7 +148,7 @@ LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
 	assert(pszKey);
 	String s = string_to_str(fVal);
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(const LPBYTE) s.c_str(), (s.length() + 1)*sizeof(TCHAR) );
+		(const LPBYTE) s.c_str(), static_cast<DWORD>((s.length() + 1))*sizeof(TCHAR) );
 }
 
 /**
@@ -164,7 +164,7 @@ LONG CRegKeyEx::WriteString(LPCTSTR pszKey, LPCTSTR pszData)
 	assert(pszData);
 
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(const LPBYTE) pszData, (_tcslen(pszData)+ 1)*sizeof(TCHAR));
+		(const LPBYTE) pszData, static_cast<DWORD>(_tcslen(pszData)+ 1)*sizeof(TCHAR));
 }
 
 /**
