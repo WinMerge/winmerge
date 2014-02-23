@@ -527,7 +527,7 @@ END_MESSAGE_MAP()
  */
 static char *EatPrefix(char *text, const char *prefix)
 {
-	if (int len = strlen(prefix))
+	if (size_t len = strlen(prefix))
 		if (_memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
@@ -901,7 +901,7 @@ bool CLanguageSelect::TranslateString(size_t line, std::string &s) const
 		if (m_codepage != codepage)
 		{
 			// Attempt to convert to UI codepage
-			if (int len = s.length())
+			if (int len = static_cast<int>(s.length()))
 			{
 				std::wstring ws;
 				ws.resize(len);
@@ -927,7 +927,7 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 {
 	if (line > 0 && line < m_strarray.size())
 	{
-		if (int len = m_strarray[line].length())
+		if (int len = static_cast<int>(m_strarray[line].length()))
 		{
 			ws.resize(len);
 			const char *msgstr = m_strarray[line].c_str();
@@ -957,7 +957,7 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
-			int cx = dc.GetTextExtent(text.c_str(), text.length()).cx;
+			int cx = dc.GetTextExtent(text.c_str(), static_cast<int>(text.length())).cx;
 			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}

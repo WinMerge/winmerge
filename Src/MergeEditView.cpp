@@ -411,7 +411,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 		return 0;
 
 	pDoc->GetWordDiffArray(nLineIndex, &worddiffs);
-	int nWordDiffs = worddiffs.size();
+	size_t nWordDiffs = worddiffs.size();
 
 	bool lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
@@ -419,7 +419,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 	pBuf[0].m_nCharPos = 0;
 	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
 	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
-	int i, j;
+	size_t i, j;
 	for (i = 0, j = 1; i < nWordDiffs; i++)
 	{
 		if (worddiffs[i].beginline[m_nThisPane] > nLineIndex || worddiffs[i].endline[m_nThisPane] < nLineIndex )
@@ -3049,7 +3049,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	PrediffingInfo prediffer;
 	prediffer.bToBeScanned = false;
 
-	int pluginNumber = nID - ID_PREDIFFERS_FIRST;
+	size_t pluginNumber = nID - ID_PREDIFFERS_FIRST;
 	if (pluginNumber < piScriptArray->size())
 	{
 		prediffer.bWithFile = true;
