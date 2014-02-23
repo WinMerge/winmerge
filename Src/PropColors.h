@@ -62,35 +62,6 @@ private:
 	CColorButton	m_cSelWordDiffText;
 	//}}AFX_DATA
 
-
-	COLORREF	m_clrDiff;
-	COLORREF	m_clrSelDiff;
-	COLORREF	m_clrDiffDeleted;
-	COLORREF	m_clrSelDiffDeleted;
-	COLORREF	m_clrDiffText;
-	COLORREF	m_clrSelDiffText;
-	COLORREF	m_clrTrivial;
-	COLORREF	m_clrTrivialDeleted;
-	COLORREF	m_clrTrivialText;
-	COLORREF	m_clrMoved;
-	COLORREF	m_clrMovedDeleted;
-	COLORREF	m_clrMovedText;
-	COLORREF	m_clrSelMoved;
-	COLORREF	m_clrSelMovedDeleted;
-	COLORREF	m_clrSelMovedText;
-	COLORREF	m_clrSNP;
-	COLORREF	m_clrSNPDeleted;
-	COLORREF	m_clrSNPText;
-	COLORREF	m_clrSelSNP;
-	COLORREF	m_clrSelSNPDeleted;
-	COLORREF	m_clrSelSNPText;
-	COLORREF	m_clrWordDiff;
-	COLORREF	m_clrWordDiffDeleted;
-	COLORREF	m_clrWordDiffText;
-	COLORREF	m_clrSelWordDiff;
-	COLORREF	m_clrSelWordDiffDeleted;
-	COLORREF	m_clrSelWordDiffText;
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(PropMergeColors)
@@ -102,11 +73,16 @@ private:
 // Implementation
 protected:
 
+	enum { COLOR_NONE = 0xffffffff };
 	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
+	typedef enum { COLORSCHEME_GITHUBBITBUCKET} COLORSCHEME;
 
-	void BrowseColor(CColorButton & colorButton, COLORREF & currentColor);
+	void BrowseColor(CColorButton & colorButton);
 	void SerializeColors(OPERATION op);
-	void SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName, COLORREF & color);
+	void SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName);
+	void UpdateTextColorButtonState(int checkboxId, CColorButton &btn);
+	void UpdateTextColorButtonsState();
+	void SetColorScheme(int scheme);
 
 	COLORREF m_cCustColors[CustomColorsAmount];
 
@@ -139,6 +115,10 @@ protected:
 	afx_msg void OnSelWordDiffColor();
 	afx_msg void OnSelWordDiffDeletedColor();
 	afx_msg void OnSelWordDiffTextColor();
+	template<int checkbox_id, int colorbutton_id>
+	afx_msg void OnUseTextColor();
+	template<int scheme>
+	afx_msg void OnColorSchemeButton();
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
