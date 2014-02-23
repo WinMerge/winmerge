@@ -822,13 +822,13 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	String sFile(file);
 	string_replace(sCmd, _T("$linenum"), string_format(_T("%d"), nLineNumber));
 
-	int nIndex = sCmd.find(_T("$file"));
-	if (nIndex > -1)
+	size_t nIndex = sCmd.find(_T("$file"));
+	if (nIndex != String::npos)
 	{
 		sFile.insert(0, _T("\""));
 		string_replace(sCmd, _T("$file"), sFile);
 		nIndex = sCmd.find(' ', nIndex + sFile.length());
-		if (nIndex > -1)
+		if (nIndex != String::npos)
 			sCmd.insert(nIndex, _T("\""));
 		else
 			sCmd += '"';

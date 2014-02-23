@@ -95,8 +95,8 @@ void LineFiltersDlg::InitList()
 	String title = theApp.LoadString(IDS_FILTERLINE_REGEXP);
 	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 500);
 
-	int count = m_pList->GetCount();
-	for (int i = 0; i < count; i++)
+	size_t count = m_pList->GetCount();
+	for (size_t i = 0; i < count; i++)
 	{
 		const LineFilterItem &item = m_pList->GetAt(i);
 		AddRow(item.filterStr.c_str(), item.enabled);

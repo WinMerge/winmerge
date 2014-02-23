@@ -176,11 +176,9 @@ int CMergeDoc::GetMatchCost(const String &sLine0, const String &sLine1)
 	sd_ComputeWordDiffs(2, str, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	int nDiffLenSum = 0;
-	int i;
-	int nCount = worddiffs.size();
-	for (i = 0; i < nCount; i++)
+	for (std::vector<wdiff>::const_iterator it = worddiffs.begin(); it != worddiffs.end(); ++it)
 	{
-		nDiffLenSum += worddiffs[i].end[0] - worddiffs[i].begin[0] + 1;
+		nDiffLenSum += it->end[0] - it->begin[0] + 1;
 	}
 
 	return -static_cast<int>(sLine0.length() - nDiffLenSum);

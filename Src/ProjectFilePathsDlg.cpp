@@ -191,7 +191,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 		int ind = m_sFilter.Find(prefix.c_str(), 0);
 		if (ind == 0)
 		{
-			m_sFilter.Delete(0, prefix.length());
+			m_sFilter.Delete(0, static_cast<int>(prefix.length()));
 		}
 		m_sFilter.TrimLeft();
 		project.SetFilter((LPCTSTR)m_sFilter);
