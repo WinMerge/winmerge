@@ -1810,7 +1810,7 @@ msgstr "Одабери различите речи:"
 
 #: Merge.rc:1116
 #, c-format
-msgid "GitHub/BitBucket"
+msgid "GitHub/Bitbucket"
 msgstr ""
 
 #: Merge.rc:1117
