@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2014-02-23 11:57+0000\n"
+"POT-Creation-Date: 2014-02-27 23:16+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1807,7 +1807,7 @@ msgstr ""
 
 #: Merge.rc:1116
 #, c-format
-msgid "GitHub/BitBucket"
+msgid "GitHub/Bitbucket"
 msgstr ""
 
 #: Merge.rc:1117
