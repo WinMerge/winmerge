@@ -76,6 +76,8 @@ static UINT RO_PANEL_WIDTH = 40;
 IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
 
 CDirFrame::CDirFrame()
+: m_hIdentical(NULL)
+, m_hDifferent(NULL)
 {
 }
 
@@ -130,6 +132,10 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
+
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFOLDER);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFOLDER);
+
 	return 0;
 }
 
@@ -201,6 +207,33 @@ void CDirFrame::UpdateResources()
 {
 }
 
+/**
+* @brief Reflect comparison result in window's icon.
+* @param nResult [in] Last comparison result which the application returns.
+*/
+void CDirFrame::SetLastCompareResult(int nResult)
+{
+	HICON hCurrent = GetIcon(FALSE);
+	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
+
+	if (hCurrent != hReplace)
+	{
+		SetIcon(hReplace, TRUE);
+
+		BOOL bMaximized;
+		GetMDIFrame()->MDIGetActive(&bMaximized);
+
+		// When MDI maximized the window icon is drawn on the menu bar, so we
+		// need to notify it that our icon has changed.
+		if (bMaximized)
+		{
+			GetMDIFrame()->DrawMenuBar();
+		}
+	}
+
+	theApp.SetLastCompareResult(nResult);
+}
+
 void CDirFrame::OnClose() 
 {	
 	CMDIChildWnd::OnClose();
@@ -220,6 +253,19 @@ BOOL CDirFrame::DestroyWindow()
 		GetWindowPlacement(&wp);
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
 	}
+
+	if (m_hIdentical != NULL)
+	{
+		DestroyIcon(m_hIdentical);
+		m_hIdentical = NULL;
+	}
+
+	if (m_hDifferent != NULL)
+	{
+		DestroyIcon(m_hDifferent);
+		m_hDifferent = NULL;
+	}
+
 	return CMDIChildWnd::DestroyWindow();
 }
 
