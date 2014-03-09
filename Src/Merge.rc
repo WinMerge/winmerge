@@ -648,6 +648,21 @@ BEGIN
     END
 END
 
+IDR_POPUP_DIFF_OPTIONS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "W&hitespaces"
+        BEGIN
+            MENUITEM "Com&pare",            IDC_DIFF_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",     IDC_DIFF_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",         IDC_DIFF_WHITESPACE_IGNOREALL
+        END
+	MENUITEM "Case sensi&tive", IDC_DIFF_CASESENSITIVE
+	MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
