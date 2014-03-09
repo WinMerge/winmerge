@@ -108,6 +108,7 @@ public:
 	void UpdateResources();
 	CString SetStatus(LPCTSTR status);
 	void ClearStatusbarItemCount();
+	void ApplyDiffOptions();
 	void ApplyViewWhitespace();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
@@ -151,6 +152,7 @@ protected:
 	CStatusBar  m_wndStatusBar;
 	CReBar m_wndReBar;
 	ToolBarXPThemes m_wndToolBar;
+	CComboBox m_ctlCompareMethod;
 	CMDITabBar m_wndTabBar;
 
 	/** @brief Toolbar image table indexes. */
@@ -276,6 +278,15 @@ protected:
 	afx_msg void OnFileOpenConflict();
 	afx_msg void OnPluginsList();
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
+	afx_msg void OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnUpdateDiffOptions(CCmdUI* pCmdUI);
+	afx_msg void OnDiffWhitespace(UINT nID);
+	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnDiffCaseSensitive();
+	afx_msg void OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreEOL();
+	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
+	afx_msg void OnSelectCompareMethod();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -291,7 +302,8 @@ private:
 	CHexMergeDoc * GetHexMergeDocToShow(int nDirs, CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(int nDirs, BOOL * pNew);
 	void UpdateFont(FRAMETYPE frame);
-	BOOL CreateToobar();
+	BOOL CreateToolbar();
+	BOOL CreateComboBoxOnToolbar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
 	HMENU NewMenu( int view, int ID );

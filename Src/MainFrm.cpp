@@ -239,6 +239,14 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
+	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
+	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
+	ON_COMMAND(IDC_DIFF_CASESENSITIVE, OnDiffCaseSensitive)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
+	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
+	ON_CBN_SELENDOK(IDC_COMPAREMETHODCOMBO, OnSelectCompareMethod)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -348,7 +356,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
 	m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
 	
-	if (!CreateToobar())
+	if (!CreateToolbar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
@@ -873,21 +881,11 @@ void CMainFrame::OnOptions()
 		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 		// make an attempt at rescanning any open diff sessions
-		const MergeDocList &docs = GetAllMergeDocs();
-		POSITION pos = docs.GetHeadPosition();
-		while (pos)
-		{
-			CMergeDoc * pMergeDoc = docs.GetNext(pos);
-
-			// Re-read MergeDoc settings (also updates view settings)
-			// and rescan using new options
-			pMergeDoc->RefreshOptions();
-			pMergeDoc->FlushAndRescan(TRUE);
-		}
+		ApplyDiffOptions();
 
 		// Update all dirdoc settings
 		const DirDocList &dirDocs = GetAllDirDocs();
-		pos = dirDocs.GetHeadPosition();
+		POSITION pos = dirDocs.GetHeadPosition();
 		while (pos)
 		{
 			CDirDoc * pDirDoc = dirDocs.GetNext(pos);
@@ -1494,6 +1492,20 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 	}
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
+}
+
+void CMainFrame::ApplyDiffOptions() 
+{
+	const MergeDocList &docs = GetAllMergeDocs();
+	POSITION pos = docs.GetHeadPosition();
+	while (pos)
+	{
+		CMergeDoc * pMergeDoc = docs.GetNext(pos);
+		// Re-read MergeDoc settings (also updates view settings)
+		// and rescan using new options
+		pMergeDoc->RefreshOptions();
+		pMergeDoc->FlushAndRescan(TRUE);
+	}
 }
 
 /**
@@ -2489,7 +2501,32 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	}
 }
 
-BOOL CMainFrame::CreateToobar()
+BOOL CMainFrame::CreateComboBoxOnToolbar()
+{
+	const int methods[] =
+		{IDS_COMPMETHOD_FULL_CONTENTS, IDS_COMPMETHOD_QUICK_CONTENTS, IDS_COMPMETHOD_MODDATE, IDS_COMPMETHOD_DATESIZE, IDS_COMPMETHOD_SIZE};
+	CRect rcComboBox;
+	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
+	m_wndToolBar.SetButtonInfo(index, IDC_COMPAREMETHODCOMBO, TBBS_SEPARATOR, 128);
+	m_wndToolBar.GetItemRect(index, &rcComboBox);
+	rcComboBox.left += 6;
+	if (rcComboBox.Height() > 24)
+		rcComboBox.top += rcComboBox.Height() / 4;
+	rcComboBox.bottom = rcComboBox.top + 128;
+	if (!m_ctlCompareMethod.Create(
+				CBS_DROPDOWNLIST | WS_VSCROLL | WS_VISIBLE,
+				rcComboBox, &m_wndToolBar, IDC_COMPAREMETHODCOMBO ) )
+	{
+		return FALSE;
+	}
+	m_ctlCompareMethod.SetFont(CFont::FromHandle((HFONT)GetStockObject(DEFAULT_GUI_FONT)));
+	for (int i = 0; i < sizeof(methods)/sizeof(methods[0]); ++i)
+		m_ctlCompareMethod.AddString(theApp.LoadString(methods[i]).c_str());
+	m_ctlCompareMethod.SetCurSel(GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	return TRUE;
+}
+
+BOOL CMainFrame::CreateToolbar()
 {
 	if (!m_wndToolBar.CreateEx(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
@@ -2507,10 +2544,22 @@ BOOL CMainFrame::CreateToobar()
 	// Remove this if you don't want tool tips or a resizable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
 	m_wndReBar.AddBar(&m_wndToolBar);
 
 	LoadToolbarImages();
+
+	UINT nID, nStyle;
+	int iImage;
+	int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(ID_OPTIONS);
+	m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
+	nStyle |= TBSTYLE_DROPDOWN;
+	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
+
+	// Create "Folder Compare Method" ComboBox on toolbar
+	if (!CreateComboBoxOnToolbar())
+		return FALSE;
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
 	{
@@ -2631,6 +2680,14 @@ void CMainFrame::OnToolbarSmall()
 
 	LoadToolbarImages();
 
+	CRect rcComboBox;
+	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
+	m_wndToolBar.GetItemRect(index, &rcComboBox);
+	rcComboBox.left += 6;
+	if (rcComboBox.Height() > 24)
+		rcComboBox.top += rcComboBox.Height() / 4;
+	m_ctlCompareMethod.MoveWindow(&rcComboBox);
+
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
 
@@ -2649,6 +2706,14 @@ void CMainFrame::OnToolbarBig()
 	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 1);
 
 	LoadToolbarImages();
+
+	CRect rcComboBox;
+	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
+	m_wndToolBar.GetItemRect(index, &rcComboBox);
+	rcComboBox.left += 6;
+	if (rcComboBox.Height() > 24)
+		rcComboBox.top += rcComboBox.Height() / 4;
+	m_ctlCompareMethod.MoveWindow(&rcComboBox);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
@@ -2858,6 +2923,62 @@ void CMainFrame::OnPluginsList()
 {
 	PluginsListDlg dlg;
 	dlg.DoModal();
+}
+
+void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
+	ClientToScreen(&(pToolBar->rcButton));
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	if (NULL != pPopup)
+	{
+		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
+			pToolBar->rcButton.left, pToolBar->rcButton.bottom, this);
+	}
+	*pResult = 0;
+}
+void CMainFrame::OnDiffWhitespace(UINT nID)
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nID - IDC_DIFF_WHITESPACE_COMPARE);
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio(pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffCaseSensitive()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreEOL()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnSelectCompareMethod()
+{ 
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, m_ctlCompareMethod.GetCurSel());
 }
 
 /**

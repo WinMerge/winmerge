@@ -17,6 +17,7 @@
 #define IDR_DIRDOCTYPE                  110
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
+#define IDR_POPUP_DIFF_OPTIONS          113
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -1170,8 +1171,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33204
+#define _APS_NEXT_COMMAND_VALUE         33208
 #define _APS_NEXT_CONTROL_VALUE         1356
-#define _APS_NEXT_SYMED_VALUE           113
+#define _APS_NEXT_SYMED_VALUE           114
 #endif
 #endif
