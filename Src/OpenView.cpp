@@ -562,6 +562,7 @@ void COpenView::LoadComboboxStates()
 	m_ctlPath[0].CComboBox::ResetContent();
 	m_ctlPath[1].CComboBox::ResetContent();
 	m_ctlPath[2].CComboBox::ResetContent();
+	m_ctlExt.CComboBox::ResetContent();
 
 	m_ctlPath[0].LoadState(_T("Files\\Left"));
 	m_ctlPath[1].LoadState(_T("Files\\Right"));
