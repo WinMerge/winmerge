@@ -109,7 +109,7 @@ BEGIN
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
-        POPUP "Recent Files Or Folders"
+        POPUP "Recent F&iles Or Folders"
         BEGIN
             MENUITEM "< Empty >",               ID_NO_MRU
         END
@@ -197,6 +197,11 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "File En&coding...",           ID_FILE_ENCODING
+        MENUITEM SEPARATOR
+        POPUP "Recent F&iles Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -349,6 +354,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
+        MENUITEM SEPARATOR
+        POPUP "Recent F&iles Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END

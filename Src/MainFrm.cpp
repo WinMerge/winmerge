@@ -248,6 +248,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
 	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnUpdateCompareMethod)
+	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
+	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
+	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -396,6 +399,33 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
+{
+	int i;
+	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
+			break;
+	HMENU menu = ::GetSubMenu(mainMenu, i);
+
+	if (!bFirstSubmenu)
+	{
+		// look for last submenu
+		for (i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
+			if (::GetSubMenu(menu, i) != NULL)
+				return ::GetSubMenu(menu, i);
+	}
+	else
+	{
+		// look for first submenu
+		for (i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
+			if (::GetSubMenu(menu, i) != NULL)
+				return ::GetSubMenu(menu, i);
+	}
+
+	// error, submenu not found
+	return NULL;
+}
+
 /** 
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Edit" menu
@@ -404,20 +434,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  */
 HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 {
-	// look for "Plugin" menu
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
-			break;
-	HMENU pluginMenu = ::GetSubMenu(mainMenu, i);
-
-	// look for "script" submenu (last submenu)
-	for (i = ::GetMenuItemCount(pluginMenu) ; i >= 0  ; i--)
-		if (::GetSubMenu(pluginMenu, i) != NULL)
-			return ::GetSubMenu(pluginMenu, i);
-
-	// error, submenu not found
-	return NULL;
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, false);
 }
 
 /**
@@ -428,20 +445,7 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
  */
 HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 {
-	// look for "Plugins" menu
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
-			break;
-	HMENU editMenu = ::GetSubMenu(mainMenu, i);
-
-	// look for "script" submenu (first submenu)
-	for (i = 0 ; i < ::GetMenuItemCount(editMenu) ; i++)
-		if (::GetSubMenu(editMenu, i) != NULL)
-			return ::GetSubMenu(editMenu, i);
-
-	// error, submenu not found
-	return NULL;
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, true);
 }
 
 /**
@@ -2957,6 +2961,47 @@ void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
 	pCmdUI->Enable();
+}
+
+void CMainFrame::OnMRUs(UINT nID)
+{
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+	const int idx = nID - ID_MRU_FIRST;
+	if (idx < mrus.size())
+	{
+		MergeCmdLineInfo cmdInfo((mrus[idx].path + _T(" ") + mrus[idx].params).c_str());
+		theApp.ParseArgsAndDoOpen(cmdInfo, this);
+	}
+}
+
+void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
+{
+	// append the MRU submenu
+	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu, ID_FILE_NEW, false);
+	if (hMenu == NULL)
+		return;
+	
+	// empty the menu
+	int i = ::GetMenuItemCount(hMenu);
+	while (i --)
+		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
+
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+
+	if (mrus.size() == 0)
+	{
+		// no script : create a <empty> entry
+		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
+	}
+	else
+	{
+		// or fill in the submenu with the scripts names
+		int ID = ID_MRU_FIRST;	// first ID in menu
+		for (i = 0 ; i < mrus.size() ; i++, ID++)
+			::AppendMenu(hMenu, MF_STRING, ID, (string_format(_T("&%d "), i+1) + mrus[i].title).c_str());
+	}
+
+	pCmdUI->Enable(true);
 }
 
 /**
