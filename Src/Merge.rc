@@ -109,6 +109,10 @@ BEGIN
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        POPUP "Recent Files Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -658,8 +662,16 @@ BEGIN
             MENUITEM "I&gnore changes",     IDC_DIFF_WHITESPACE_IGNORE
             MENUITEM "Ig&nore all",         IDC_DIFF_WHITESPACE_IGNOREALL
         END
-	MENUITEM "Case sensi&tive", IDC_DIFF_CASESENSITIVE
-	MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+        MENUITEM "Case sensi&tive", IDC_DIFF_CASESENSITIVE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+        POPUP "&Compare method:"
+        BEGIN
+            MENUITEM "Full Contents",          ID_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",         ID_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Modified Date",          ID_COMPMETHOD_MODDATE
+			MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
+			MENUITEM "Size",                   ID_COMPMETHOD_SIZE
+        END
     END
 END
 
@@ -2202,11 +2214,11 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
-    IDS_COMPMETHOD_MODDATE  "Modified Date"
-    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
-    IDS_COMPMETHOD_SIZE     "Size"
+    ID_COMPMETHOD_FULL_CONTENTS "Full Contents"
+    ID_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    ID_COMPMETHOD_MODDATE  "Modified Date"
+    ID_COMPMETHOD_DATESIZE "Modified Date and Size"
+    ID_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS
