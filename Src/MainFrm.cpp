@@ -246,7 +246,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
 	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
 	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
-	ON_CBN_SELENDOK(IDC_COMPAREMETHODCOMBO, OnSelectCompareMethod)
+	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2501,31 +2502,6 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	}
 }
 
-BOOL CMainFrame::CreateComboBoxOnToolbar()
-{
-	const int methods[] =
-		{IDS_COMPMETHOD_FULL_CONTENTS, IDS_COMPMETHOD_QUICK_CONTENTS, IDS_COMPMETHOD_MODDATE, IDS_COMPMETHOD_DATESIZE, IDS_COMPMETHOD_SIZE};
-	CRect rcComboBox;
-	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
-	m_wndToolBar.SetButtonInfo(index, IDC_COMPAREMETHODCOMBO, TBBS_SEPARATOR, 128);
-	m_wndToolBar.GetItemRect(index, &rcComboBox);
-	rcComboBox.left += 6;
-	if (rcComboBox.Height() > 24)
-		rcComboBox.top += rcComboBox.Height() / 4;
-	rcComboBox.bottom = rcComboBox.top + 128;
-	if (!m_ctlCompareMethod.Create(
-				CBS_DROPDOWNLIST | WS_VSCROLL | WS_VISIBLE,
-				rcComboBox, &m_wndToolBar, IDC_COMPAREMETHODCOMBO ) )
-	{
-		return FALSE;
-	}
-	m_ctlCompareMethod.SetFont(CFont::FromHandle((HFONT)GetStockObject(DEFAULT_GUI_FONT)));
-	for (int i = 0; i < sizeof(methods)/sizeof(methods[0]); ++i)
-		m_ctlCompareMethod.AddString(theApp.LoadString(methods[i]).c_str());
-	m_ctlCompareMethod.SetCurSel(GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
-	return TRUE;
-}
-
 BOOL CMainFrame::CreateToolbar()
 {
 	if (!m_wndToolBar.CreateEx(this) ||
@@ -2556,10 +2532,6 @@ BOOL CMainFrame::CreateToolbar()
 	m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
 	nStyle |= TBSTYLE_DROPDOWN;
 	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
-
-	// Create "Folder Compare Method" ComboBox on toolbar
-	if (!CreateComboBoxOnToolbar())
-		return FALSE;
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
 	{
@@ -2948,7 +2920,7 @@ void CMainFrame::OnDiffWhitespace(UINT nID)
 
 void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio(pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
+	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
 	pCmdUI->Enable();
 }
 
@@ -2976,9 +2948,15 @@ void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
 	pCmdUI->Enable();
 }
 
-void CMainFrame::OnSelectCompareMethod()
+void CMainFrame::OnCompareMethod(UINT nID)
 { 
-	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, m_ctlCompareMethod.GetCurSel());
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_COMPMETHOD_FULL_CONTENTS);
+}
+
+void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	pCmdUI->Enable();
 }
 
 /**
