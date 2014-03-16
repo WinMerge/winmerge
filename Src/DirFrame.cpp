@@ -229,6 +229,7 @@ void CDirFrame::SetLastCompareResult(int nResult)
 		{
 			GetMDIFrame()->DrawMenuBar();
 		}
+		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
 	}
 
 	theApp.SetLastCompareResult(nResult);
