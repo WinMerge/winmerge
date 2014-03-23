@@ -53,6 +53,7 @@ private:
 // Operations
 public:
 	void SetStatus(LPCTSTR szStatus);
+	void SetCompareMethodStatusDisplay(int nCompMethod);
 	void SetFilterStatusDisplay(LPCTSTR szFilter);
 	CStatusBar  m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface();

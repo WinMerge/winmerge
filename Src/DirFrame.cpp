@@ -42,12 +42,17 @@ static char THIS_FILE[] = __FILE__;
  */
 enum
 {
-	PANE_FILTER = 1,
+	PANE_COMPMETHOD = 1,
+	PANE_FILTER,
 	PANE_LEFT_RO,
 	PANE_MIDDLE_RO,
 	PANE_RIGHT_RO,
 };
 
+/**
+ * @brief Width of compare method name pane in statusbar
+ */
+const int COMPMETHOD_PANEL_WIDTH = 140;
 /**
  * @brief Width of filter name pane in statusbar
  */
@@ -59,6 +64,7 @@ const int FILTER_PANEL_WIDTH = 180;
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -125,6 +131,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}	
 	
 	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
+	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, 0, COMPMETHOD_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, RO_PANEL_WIDTH);
@@ -145,6 +152,15 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CDirFrame::SetStatus(LPCTSTR szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
+}
+
+/**
+ * @brief Set current compare method name to statusbar
+ * @param [in] nCompMethod compare method to show
+ */
+void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
+{
+	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(ID_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
 }
 
 /**
