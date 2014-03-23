@@ -56,6 +56,7 @@ struct LastSearchInfos
     CString m_sText;
     BOOL m_bWholeWord;
     BOOL m_bRegExp;
+    bool m_bNoClose;
   };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,6 +89,7 @@ public :
     BOOL m_bWholeWord;
     BOOL m_bRegExp;
     BOOL m_bNoWrap;
+    BOOL m_bNoClose; 
     //}}AFX_DATA
 
     // Overrides
@@ -102,7 +104,7 @@ protected :
 
     void UpdateRegExp ();
     void UpdateLastSearch ();
-
+    void FindText (int nDirection);
 
     // Generated message map functions
     //{{AFX_MSG(CFindTextDlg)
@@ -112,6 +114,8 @@ protected :
     virtual BOOL OnInitDialog ();
     virtual void OnCancel ();
     afx_msg void OnRegExp ();
+    afx_msg void OnFindPrev ();
+    virtual void PostNcDestroy ();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()
   };

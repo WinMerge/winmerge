@@ -497,6 +497,7 @@
 #define IDC_SWAP12_BUTTON               1353
 #define IDC_SWAP02_BUTTON               1354
 #define IDC_COLORSCHEME_GITHUBBITBUCKET 1355
+#define IDC_FINDDLG_DONTCLOSE           1356
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -505,11 +506,10 @@
 #define IDC_EDIT_REPLACE_ALL            8608
 #define IDC_EDIT_REPLACE_WITH           8609
 #define IDC_EDIT_SKIP                   8610
-#define IDC_EDIT_DIRECTION_UP           8611
-#define IDC_EDIT_DIRECTION_DOWN         8612
 #define IDC_EDIT_SCOPE_SELECTION        8613
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
+#define IDC_EDIT_FINDPREV               8616
 #define IDC_SCRIPT_FIRST                8700
 #define IDC_SCRIPT_LAST                 8749
 #define IDC_PREDIFFERS_FIRST            8750
@@ -1175,7 +1175,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
 #define _APS_NEXT_COMMAND_VALUE         33218
-#define _APS_NEXT_CONTROL_VALUE         1356
+#define _APS_NEXT_CONTROL_VALUE         1357
 #define _APS_NEXT_SYMED_VALUE           114
 #endif
 #endif
