@@ -2969,7 +2969,7 @@ void CMainFrame::OnMRUs(UINT nID)
 	const int idx = nID - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
-		MergeCmdLineInfo cmdInfo((mrus[idx].path + _T(" ") + mrus[idx].params).c_str());
+		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
 		theApp.ParseArgsAndDoOpen(cmdInfo, this);
 	}
 }
