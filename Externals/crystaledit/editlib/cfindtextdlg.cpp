@@ -46,9 +46,9 @@ CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy)
 , m_bWholeWord(false)
 , m_bRegExp(false)
 , m_bNoWrap(false)
-, m_ptCurrentPos(CPoint (0, 0))
 {
   ASSERT (pBuddy != NULL);
+  Create(CFindTextDlg::IDD,pBuddy);
 }
 
 void CFindTextDlg::
@@ -58,12 +58,18 @@ DoDataExchange (CDataExchange * pDX)
   //{{AFX_DATA_MAP(CFindTextDlg)
   DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
-  DDX_Radio (pDX, IDC_EDIT_DIRECTION_UP, m_nDirection);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
   DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
   DDX_Check (pDX, IDC_EDIT_WHOLE_WORD, m_bWholeWord);
   DDX_Check (pDX, IDC_EDIT_REGEXP, m_bRegExp);
   DDX_Check (pDX, IDC_FINDDLG_DONTWRAP, m_bNoWrap);
+  DDX_Check (pDX, IDC_FINDDLG_DONTCLOSE, m_bNoClose);
+  if (!pDX->m_bSaveAndValidate)
+    {
+      m_ctlFindText.m_sGroup = _T ("FindText");
+      m_ctlFindText.SetFocus ();
+      UpdateControls();
+    }
   //}}AFX_DATA_MAP
 }
 
@@ -81,11 +87,42 @@ UpdateRegExp ()
     }
 }
 
+void CFindTextDlg::
+FindText (int nDirection)
+{
+  if (UpdateData ())
+    {
+      m_ctlFindText.FillCurrent();
+      m_nDirection = nDirection;
+      UpdateLastSearch ();
+
+      ASSERT (m_pBuddy != NULL);
+
+      if (!m_pBuddy->FindText(GetLastSearchInfos()))
+        {
+          CString prompt;
+          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), m_sText);
+          AfxMessageBox (prompt, MB_ICONINFORMATION);
+        }
+      else
+        {
+          CMemComboBox::SaveSettings();
+          if (!m_bNoClose)
+            {
+              CDialog::OnOK ();
+              m_pBuddy->SetFocus ();
+            }
+        }
+    }
+}
+
+
 BEGIN_MESSAGE_MAP (CFindTextDlg, CDialog)
 //{{AFX_MSG_MAP(CFindTextDlg)
 ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
+ON_BN_CLICKED (IDC_EDIT_FINDPREV, OnFindPrev)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
 
@@ -94,45 +131,12 @@ END_MESSAGE_MAP ()
 
 void CFindTextDlg::OnOK ()
 {
-  if (UpdateData ())
-    {
-      m_ctlFindText.FillCurrent();
-      UpdateLastSearch ();
+  FindText (1);
+}
 
-      ASSERT (m_pBuddy != NULL);
-      bool bCursorToLeft = false;
-      DWORD dwSearchFlags = 0;
-      if (m_bMatchCase)
-        dwSearchFlags |= FIND_MATCH_CASE;
-      if (m_bWholeWord)
-        dwSearchFlags |= FIND_WHOLE_WORD;
-      if (m_bRegExp)
-        dwSearchFlags |= FIND_REGEXP;
-      if (m_nDirection == 0)
-        {
-          dwSearchFlags |= FIND_DIRECTION_UP;
-          // When finding upwards put cursor to begin of selection
-          bCursorToLeft = true;
-         }
-
-      CMemComboBox::SaveSettings();
-
-      CPoint ptTextPos;
-      if (!m_pBuddy->FindText (m_sText, m_ptCurrentPos, dwSearchFlags, !m_bNoWrap,
-          &ptTextPos))
-        {
-          CString prompt;
-          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), m_sText);
-          AfxMessageBox (prompt, MB_ICONINFORMATION);
-          m_ptCurrentPos = CPoint (0, 0);
-          return;
-        }
-
-      m_pBuddy->HighlightText (ptTextPos, m_pBuddy->m_nLastFindWhatLen,
-          bCursorToLeft);
-
-      CDialog::OnOK ();
-    }
+void CFindTextDlg::OnFindPrev ()
+{
+  FindText (0);
 }
 
 void CFindTextDlg::
@@ -164,12 +168,7 @@ OnInitDialog ()
   CDialog::OnInitDialog ();
 
   CMemComboBox::LoadSettings();
-  UpdateData (false);
-  m_ctlFindText.m_sGroup = _T ("FindText");
-  m_ctlFindText.OnSetfocus ();
   
-  UpdateControls();
-
   return true;
 }
 
@@ -184,6 +183,7 @@ OnCancel ()
 {
   VERIFY (UpdateData ());
   CDialog::OnCancel ();
+  m_pBuddy->SetFocus ();
 }
 
 void CFindTextDlg::
@@ -202,6 +202,7 @@ void CFindTextDlg::
 UpdateControls()
 {
   GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
+  GetDlgItem(IDC_EDIT_FINDPREV)->EnableWindow( !m_sText.IsEmpty() );
   
   UpdateRegExp();
 }
@@ -218,6 +219,7 @@ SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, in
   lastSearch.m_nDirection = nDirection;
   lastSearch.m_sText = sText;
   lastSearch.m_bNoWrap = !!m_bNoWrap;
+  lastSearch.m_bNoClose = !!m_bNoClose;
 }
 
 
@@ -236,4 +238,10 @@ UseLastSearch ()
   m_nDirection = lastSearch.m_nDirection;
   m_sText = lastSearch.m_sText;
   m_bNoWrap = lastSearch.m_bNoWrap;
+  m_bNoClose = lastSearch.m_bNoClose;
+}
+
+void CFindTextDlg::PostNcDestroy()
+{
+  delete this;
 }
