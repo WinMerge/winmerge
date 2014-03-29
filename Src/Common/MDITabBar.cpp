@@ -267,14 +267,14 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		RECT rc = lpDraw->rcItem;
 		if (lpDraw->itemState & ODS_SELECTED)
 		{
-			rc.left += 7;
+			rc.left += 9;
 			rc.top += 2;
 			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetStockObject(WHITE_BRUSH));
 		}
 		else
 		{
+			rc.left += 5;
 			rc.top += 3;
-			rc.left += 3;
 		}
 		rc.left += 16;
 		SetTextColor(lpDraw->hDC, RGB(0, 0, 0));
