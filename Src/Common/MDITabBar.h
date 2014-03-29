@@ -18,6 +18,8 @@ class CMDITabBar : public CControlBar
 	DECLARE_DYNAMIC(CMDITabBar)
 
 private:
+	enum {MDITABBAR_MINTITLELENGTH = 8, MDITABBAR_MAXTITLELENGTH = 64};
+
 	BOOL m_bInSelchange;
 	CMDIFrameWnd *m_pMainFrame;
 
@@ -53,6 +55,7 @@ protected:
 	afx_msg BOOL OnSelchange(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
+	afx_msg void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -109,6 +109,10 @@ BEGIN
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        POPUP "Recent F&iles Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -193,6 +197,11 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "File En&coding...",           ID_FILE_ENCODING
+        MENUITEM SEPARATOR
+        POPUP "Recent F&iles Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -345,6 +354,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
+        MENUITEM SEPARATOR
+        POPUP "Recent F&iles Or Folders"
+        BEGIN
+            MENUITEM "< Empty >",               ID_NO_MRU
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -648,6 +662,29 @@ BEGIN
     END
 END
 
+IDR_POPUP_DIFF_OPTIONS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "W&hitespaces"
+        BEGIN
+            MENUITEM "Com&pare",            IDC_DIFF_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",     IDC_DIFF_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",         IDC_DIFF_WHITESPACE_IGNOREALL
+        END
+        MENUITEM "Case sensi&tive", IDC_DIFF_CASESENSITIVE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
+        POPUP "&Compare method:"
+        BEGIN
+            MENUITEM "Full Contents",          ID_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",         ID_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Modified Date",          ID_COMPMETHOD_MODDATE
+			MENUITEM "Modified Date and Size", ID_COMPMETHOD_DATESIZE
+			MENUITEM "Size",                   ID_COMPMETHOD_SIZE
+        END
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -887,7 +924,7 @@ BEGIN
     LTEXT           "Available languages:",IDC_STATIC,7,7,140,8
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 293, 74
+IDD_EDIT_FIND DIALOGEX 30, 73, 293, 84
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Find"
@@ -904,14 +941,13 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,140,10
     CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
                     BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
-                    WS_TABSTOP,7,57,140,16
-    GROUPBOX        "Direction",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,154,34,57,10
-    CONTROL         "&Down",IDC_EDIT_DIRECTION_DOWN,"Button",
-                    BS_AUTORADIOBUTTON,154,44,57,10
-    DEFPUSHBUTTON   "&Find Next",IDOK,226,7,60,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,226,24,60,14
+                    WS_TABSTOP,7,57,140,10
+    CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
+                    WS_TABSTOP,7,67,140,10
+    DEFPUSHBUTTON   "Find &Prev",IDC_EDIT_FINDPREV,226,7,60,14,WS_GROUP
+    DEFPUSHBUTTON   "&Find Next",IDOK,226,24,60,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,226,41,60,14
 END
 
 IDD_DIR_FILTER DIALOGEX 30, 73, 293, 74
@@ -2187,11 +2223,11 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
-    IDS_COMPMETHOD_MODDATE  "Modified Date"
-    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
-    IDS_COMPMETHOD_SIZE     "Size"
+    ID_COMPMETHOD_FULL_CONTENTS "Full Contents"
+    ID_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    ID_COMPMETHOD_MODDATE  "Modified Date"
+    ID_COMPMETHOD_DATESIZE "Modified Date and Size"
+    ID_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS

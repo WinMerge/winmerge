@@ -389,7 +389,7 @@ line_cmp (s1, len1, s2, len2)
 		  /* Any whitespace sequence counts as one space */
 		  c1 = ' ';
 		  /* Skip to end of whitespace sequence */
-		  while (t1-(unsigned char)s1<(int)len1 && ISWSPACE(*t1))
+		  while (t1-(unsigned char *)s1<(int)len1 && ISWSPACE(*t1))
 		    ++t1;
 		  /* if c1 is whitespace and c2 is end of line
 		  we must advance c1 to next char, because c1

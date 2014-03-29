@@ -17,6 +17,7 @@
 #define IDR_DIRDOCTYPE                  110
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
+#define IDR_POPUP_DIFF_OPTIONS          113
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -496,6 +497,7 @@
 #define IDC_SWAP12_BUTTON               1353
 #define IDC_SWAP02_BUTTON               1354
 #define IDC_COLORSCHEME_GITHUBBITBUCKET 1355
+#define IDC_FINDDLG_DONTCLOSE           1356
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -504,11 +506,10 @@
 #define IDC_EDIT_REPLACE_ALL            8608
 #define IDC_EDIT_REPLACE_WITH           8609
 #define IDC_EDIT_SKIP                   8610
-#define IDC_EDIT_DIRECTION_UP           8611
-#define IDC_EDIT_DIRECTION_DOWN         8612
 #define IDC_EDIT_SCOPE_SELECTION        8613
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
+#define IDC_EDIT_FINDPREV               8616
 #define IDC_SCRIPT_FIRST                8700
 #define IDC_SCRIPT_LAST                 8749
 #define IDC_PREDIFFERS_FIRST            8750
@@ -570,11 +571,11 @@
 #define IDS_PROJECTFILES                16419
 #define IDS_PROJECTFILES_EXT            16420
 #define IDS_INIFILES                    16421
-#define IDS_COMPMETHOD_FULL_CONTENTS    16432
-#define IDS_COMPMETHOD_QUICK_CONTENTS   16433
-#define IDS_COMPMETHOD_MODDATE          16434
-#define IDS_COMPMETHOD_DATESIZE         16435
-#define IDS_COMPMETHOD_SIZE             16436
+#define ID_COMPMETHOD_FULL_CONTENTS     16432
+#define ID_COMPMETHOD_QUICK_CONTENTS    16433
+#define ID_COMPMETHOD_MODDATE           16434
+#define ID_COMPMETHOD_DATESIZE          16435
+#define ID_COMPMETHOD_SIZE              16436
 #define IDS_FILTERFILE_NAMETITLE        16448
 #define IDS_FILTERFILE_PATHTITLE        16449
 #define IDS_FILTER_TITLE                16450
@@ -1163,6 +1164,9 @@
 #define IDS_CODEPAGE_CONFLICT           33205
 #define IDS_EOL_MERGED                  33206
 #define IDS_EOL_CONFLICT                33207
+#define ID_NO_MRU                       33208
+#define ID_MRU_FIRST                    33209
+#define ID_MRU_LAST                     33217
 
 // Next default values for new objects
 //
@@ -1170,8 +1174,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33204
-#define _APS_NEXT_CONTROL_VALUE         1356
-#define _APS_NEXT_SYMED_VALUE           113
+#define _APS_NEXT_COMMAND_VALUE         33218
+#define _APS_NEXT_CONTROL_VALUE         1357
+#define _APS_NEXT_SYMED_VALUE           114
 #endif
 #endif

@@ -5,6 +5,7 @@
  *
  */
 #include "JumpList.h"
+#include <vector>
 #include <ObjBase.h>
 #include <ShlObj.h>
 #if _MSC_VER >= 1600
@@ -92,6 +93,52 @@ bool AddToRecentDocs(const String& app_path, const String& params, const String&
 #else
 	return false;
 #endif
+}
+
+std::vector<Item> GetRecentDocs(size_t nMaxItems)
+{
+	std::vector<Item> list;
+#if _MSC_VER >= 1600
+	IApplicationDocumentLists *pDocumentLists = NULL;
+	if (FAILED(CoCreateInstance(CLSID_ApplicationDocumentLists, NULL, CLSCTX_INPROC_SERVER,
+	                            IID_IApplicationDocumentLists, (void **)&pDocumentLists)))
+		return list;
+	pDocumentLists->SetAppID(g_appid.c_str());
+
+	IObjectArray *pObjectArray;
+	if (SUCCEEDED(pDocumentLists->GetList(ADLT_RECENT, static_cast<UINT>(nMaxItems), IID_IObjectArray, (void **)&pObjectArray)))
+	{
+		UINT nObjects;
+		pObjectArray->GetCount(&nObjects);
+		for (UINT i = 0; i < nObjects; ++i)
+		{
+			IShellLinkW *pShellLink;
+			if (SUCCEEDED(pObjectArray->GetAt(i, IID_IShellLinkW, (void **)&pShellLink)))
+			{
+				wchar_t szPath[MAX_PATH];
+				wchar_t szDescription[MAX_PATH];
+				wchar_t szArguments[MAX_PATH * 6];
+				pShellLink->GetPath(szPath, sizeof(szPath), NULL, SLGP_RAWPATH);
+				pShellLink->GetDescription(szDescription, sizeof(szDescription));
+				pShellLink->GetArguments(szArguments, sizeof(szArguments));
+				IPropertyStore *pPS = NULL;
+				PROPVARIANT pv;
+				InitPropVariantFromString(_T(""), &pv);
+				if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
+				{
+					pPS->GetValue(PKEY_Title, &pv);
+					pPS->Release();
+				}
+				list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
+				PropVariantClear(&pv);
+				pShellLink->Release();
+			}		
+		}
+		pObjectArray->Release();
+	}
+	pDocumentLists->Release();
+#endif
+	return list;
 }
 
 }

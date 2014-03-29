@@ -19,8 +19,6 @@
 #define IDC_EDIT_REPLACE_ALL            8608
 #define IDC_EDIT_REPLACE_WITH           8609
 #define IDC_EDIT_SKIP                   8610
-#define IDC_EDIT_DIRECTION_UP           8611
-#define IDC_EDIT_DIRECTION_DOWN         8612
 #define IDC_EDIT_SCOPE_SELECTION        8613
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
@@ -29,6 +27,8 @@
 #define ID_EDIT_GOTO_PREV_BOOKMARK      8618
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     8619
 #define IDC_FINDDLG_DONTWRAP            8620
+#define IDC_EDIT_FINDPREV               8621
+#define IDC_FINDDLG_DONTCLOSE           8622
 #define IDS_MESSAGEBOX_OK               9001
 #define IDS_MESSAGEBOX_CANCEL           9002
 #define IDS_MESSAGEBOX_ABORT            9003

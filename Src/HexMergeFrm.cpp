@@ -109,7 +109,11 @@ static void Customize(IHexEditorWindow::Colors *colors)
 	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
 	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
 	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
+		colors->iDiffTextColorValue = 0;
 	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
+		colors->iSelDiffTextColorValue = 0;
 }
 
 /**
@@ -348,6 +352,7 @@ void CHexMergeFrame::SetLastCompareResult(int nResult)
 		{
 			GetMDIFrame()->DrawMenuBar();
 		}
+		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
 	}
 
 	theApp.SetLastCompareResult(nResult);

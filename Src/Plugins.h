@@ -29,6 +29,7 @@
 #ifndef __PLUGINS_H__
 #define __PLUGINS_H__
 
+#include <Poco/Foundation.h>
 #include <string>
 #include <vector>
 #include <windows.h>

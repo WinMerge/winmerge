@@ -504,6 +504,7 @@ SaveSettings ()
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_nMaxLineLength(-1)
+, m_pFindTextDlg(NULL)
 {
   memset(((CView*)this)+1, 0, sizeof(*this) - sizeof(class CView)); // AFX_ZERO_INIT_OBJECT (CView)
   m_rxnode = NULL;
@@ -5164,23 +5165,76 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
   return false;
 }
 
+static DWORD ConvertSearchInfosToSearchFlags(const LastSearchInfos *lastSearch)
+{
+  DWORD dwSearchFlags = 0;
+  if (lastSearch->m_bMatchCase)
+    dwSearchFlags |= FIND_MATCH_CASE;
+  if (lastSearch->m_bWholeWord)
+    dwSearchFlags |= FIND_WHOLE_WORD;
+  if (lastSearch->m_bRegExp)
+    dwSearchFlags |= FIND_REGEXP;
+  if (lastSearch->m_nDirection == 0)
+    dwSearchFlags |= FIND_DIRECTION_UP;
+  if (lastSearch->m_bNoWrap)
+    dwSearchFlags |= FIND_NO_WRAP;
+  if (lastSearch->m_bNoClose)
+    dwSearchFlags |= FIND_NO_CLOSE;
+  return dwSearchFlags;
+}
+
+static void ConvertSearchFlagsToLastSearchInfos(LastSearchInfos *lastSearch, DWORD dwFlags)
+{
+  lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
+  lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
+  lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
+  lastSearch->m_nDirection = (dwFlags & FIND_DIRECTION_UP) == 0;
+  lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
+  lastSearch->m_bNoClose = (dwFlags & FIND_NO_CLOSE) != 0;
+}
+
+bool CCrystalTextView::
+FindText (const LastSearchInfos * lastSearch)
+{
+  CPoint ptTextPos;
+  DWORD dwSearchFlags = ConvertSearchInfosToSearchFlags(lastSearch);
+  if (!FindText (lastSearch->m_sText, m_ptCursorPos, dwSearchFlags, !lastSearch->m_bNoWrap,
+      &ptTextPos))
+    {
+      return false;
+    }
+
+  bool bCursorToLeft = (lastSearch->m_nDirection == 0);
+  HighlightText (ptTextPos, m_nLastFindWhatLen, bCursorToLeft);
+
+  //  Save search parameters for 'F3' command
+  m_bLastSearch = true;
+  if (m_pszLastFindWhat != NULL)
+    free (m_pszLastFindWhat);
+  m_pszLastFindWhat = _tcsdup (lastSearch->m_sText);
+  m_dwLastSearchFlags = dwSearchFlags;
+
+  //  Save search parameters to registry
+  VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), m_dwLastSearchFlags));
+
+  return true;
+}
+
 void CCrystalTextView::
 OnEditFind ()
 {
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != NULL);
 
-  CFindTextDlg dlg (this);
-  LastSearchInfos * lastSearch = dlg.GetLastSearchInfos();
+  if (!m_pFindTextDlg)
+    m_pFindTextDlg = new CFindTextDlg (this);
+
+  LastSearchInfos * lastSearch = m_pFindTextDlg->GetLastSearchInfos();
 
   if (m_bLastSearch)
     {
       //  Get the latest search parameters
-      lastSearch->m_bMatchCase = (m_dwLastSearchFlags & FIND_MATCH_CASE) != 0;
-      lastSearch->m_bWholeWord = (m_dwLastSearchFlags & FIND_WHOLE_WORD) != 0;
-      lastSearch->m_bRegExp = (m_dwLastSearchFlags & FIND_REGEXP) != 0;
-      lastSearch->m_nDirection = (m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0 ? 0 : 1;
-      lastSearch->m_bNoWrap = (m_dwLastSearchFlags & FIND_NO_WRAP) != 0;
+      ConvertSearchFlagsToLastSearchInfos(lastSearch, m_dwLastSearchFlags);
       if (m_pszLastFindWhat != NULL)
         lastSearch->m_sText = m_pszLastFindWhat;
     }
@@ -5189,13 +5243,9 @@ OnEditFind ()
       DWORD dwFlags;
       if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), &dwFlags))
         dwFlags = 0;
-      lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
-      lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
-      lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
-      lastSearch->m_nDirection = (dwFlags & FIND_DIRECTION_UP) == 0;
-      lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
+      ConvertSearchFlagsToLastSearchInfos(lastSearch, dwFlags);
     }
-  dlg.UseLastSearch ();
+  m_pFindTextDlg->UseLastSearch ();
 
   //  Take the current selection, if any
   if (IsSelection ())
@@ -5206,8 +5256,8 @@ OnEditFind ()
         {
           LPCTSTR pszChars = GetLineChars (ptSelStart.y);
           int nChars = ptSelEnd.x - ptSelStart.x;
-          _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
-          dlg.m_sText.ReleaseBuffer (nChars);
+          _tcsncpy (m_pFindTextDlg->m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
+          m_pFindTextDlg->m_sText.ReleaseBuffer (nChars);
         }
     }
   else
@@ -5216,38 +5266,16 @@ OnEditFind ()
       CPoint ptStart = WordToLeft (ptCursorPos);
       CPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
-        GetText (ptStart, ptEnd, dlg.m_sText);
+        GetText (ptStart, ptEnd, m_pFindTextDlg->m_sText);
     }
 
   //  Execute Find dialog
-  dlg.m_ptCurrentPos = m_ptCursorPos;   //  Search from cursor position
 
   // m_bShowInactiveSelection = true; // FP: removed because I like it
-  dlg.DoModal ();
+  m_pFindTextDlg->UpdateData(FALSE);
+  m_pFindTextDlg->ShowWindow(SW_SHOW);
   // m_bShowInactiveSelection = false; // FP: removed because I like it
 
-  // actually this value doesn't change during doModal, but it may in the future
-  lastSearch = dlg.GetLastSearchInfos();
-
-  //  Save search parameters for 'F3' command
-  m_bLastSearch = true;
-  if (m_pszLastFindWhat != NULL)
-    free (m_pszLastFindWhat);
-  m_pszLastFindWhat = _tcsdup (lastSearch->m_sText);
-  m_dwLastSearchFlags = 0;
-  if (lastSearch->m_bMatchCase)
-    m_dwLastSearchFlags |= FIND_MATCH_CASE;
-  if (lastSearch->m_bWholeWord)
-    m_dwLastSearchFlags |= FIND_WHOLE_WORD;
-  if (lastSearch->m_bRegExp)
-    m_dwLastSearchFlags |= FIND_REGEXP;
-  if (lastSearch->m_nDirection == 0)
-    m_dwLastSearchFlags |= FIND_DIRECTION_UP;
-  if (lastSearch->m_bNoWrap)
-    m_dwLastSearchFlags |= FIND_NO_WRAP;
-
-  //  Save search parameters to registry
-  VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), m_dwLastSearchFlags));
 }
 
 void CCrystalTextView::
