@@ -509,7 +509,8 @@ void CDirView::Redisplay()
 	UIntPtr diffpos = ctxt.GetFirstDiffPosition();
 	DirViewFilterSettings dirfilter(boost::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1));
 	RedisplayChildren(diffpos, 0, cnt, alldiffs, dirfilter);
-	theApp.SetLastCompareResult(alldiffs);
+	if (pDoc->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED)
+		theApp.SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
 }

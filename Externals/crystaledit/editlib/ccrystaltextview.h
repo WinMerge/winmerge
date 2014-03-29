@@ -49,6 +49,8 @@ class CCrystalTextBuffer;
 class CUpdateContext;
 struct ViewableWhitespaceChars;
 class SyntaxColors;
+class CFindTextDlg;
+struct LastSearchInfos;
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -62,7 +64,8 @@ enum
   FIND_REGEXP = 0x0004,
   FIND_DIRECTION_UP = 0x0010,
   REPLACE_SELECTION = 0x0100, 
-  FIND_NO_WRAP = 0x200
+  FIND_NO_WRAP = 0x200,
+  FIND_NO_CLOSE = 0x400
 };
 
 //  CCrystalTextView::UpdateView() flags
@@ -95,6 +98,7 @@ protected:
     DWORD m_dwLastSearchFlags;
     LPTSTR m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
+	CFindTextDlg *m_pFindTextDlg;
 
 private :
     bool m_bCursorHidden;
@@ -832,6 +836,7 @@ public :
     bool FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
+	bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CPoint & ptStartPos, int nLength,
       bool bCursorToLeft = false);
 

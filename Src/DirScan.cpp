@@ -616,7 +616,10 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, UInt
 					di.diffcode.diffcode |= DIFFCODE::SAME;
 			}
 		}
-		queue.enqueueNotification(new WorkNotification(di, queueResult));
+		if (existsalldirs)
+			queue.enqueueUrgentNotification(new WorkNotification(di, queueResult));
+		else
+			queue.enqueueNotification(new WorkNotification(di, queueResult));
 		++count;
 		pos = curpos;
 		pCtxt->GetNextSiblingDiffRefPosition(pos);

@@ -292,8 +292,9 @@ void CDirDoc::Rescan()
 	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
 	m_pCtxt->m_piFilterGlobal = theApp.m_pGlobalFileFilter.get();
 
-	// Show active filter name in statusbar
+	// Show current compare method name and active filter name in statusbar
 	pf->SetFilterStatusDisplay(theApp.m_pGlobalFileFilter->GetFilterNameOrMask().c_str());
+	pf->SetCompareMethodStatusDisplay(m_pCtxt->GetCompareMethod());
 
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt.get());

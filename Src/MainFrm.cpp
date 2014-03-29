@@ -240,6 +240,18 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
+	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
+	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
+	ON_COMMAND(IDC_DIFF_CASESENSITIVE, OnDiffCaseSensitive)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
+	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnUpdateCompareMethod)
+	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
+	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
+	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -349,7 +361,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_lfDiff = Options::Font::Load(OPT_FONT_FILECMP);
 	m_lfDir = Options::Font::Load(OPT_FONT_DIRCMP);
 	
-	if (!CreateToobar())
+	if (!CreateToolbar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
@@ -388,6 +400,33 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
+{
+	int i;
+	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
+			break;
+	HMENU menu = ::GetSubMenu(mainMenu, i);
+
+	if (!bFirstSubmenu)
+	{
+		// look for last submenu
+		for (i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
+			if (::GetSubMenu(menu, i) != NULL)
+				return ::GetSubMenu(menu, i);
+	}
+	else
+	{
+		// look for first submenu
+		for (i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
+			if (::GetSubMenu(menu, i) != NULL)
+				return ::GetSubMenu(menu, i);
+	}
+
+	// error, submenu not found
+	return NULL;
+}
+
 /** 
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Edit" menu
@@ -396,20 +435,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
  */
 HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 {
-	// look for "Plugin" menu
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
-			break;
-	HMENU pluginMenu = ::GetSubMenu(mainMenu, i);
-
-	// look for "script" submenu (last submenu)
-	for (i = ::GetMenuItemCount(pluginMenu) ; i >= 0  ; i--)
-		if (::GetSubMenu(pluginMenu, i) != NULL)
-			return ::GetSubMenu(pluginMenu, i);
-
-	// error, submenu not found
-	return NULL;
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, false);
 }
 
 /**
@@ -420,20 +446,7 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
  */
 HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 {
-	// look for "Plugins" menu
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
-			break;
-	HMENU editMenu = ::GetSubMenu(mainMenu, i);
-
-	// look for "script" submenu (first submenu)
-	for (i = 0 ; i < ::GetMenuItemCount(editMenu) ; i++)
-		if (::GetSubMenu(editMenu, i) != NULL)
-			return ::GetSubMenu(editMenu, i);
-
-	// error, submenu not found
-	return NULL;
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, true);
 }
 
 /**
@@ -874,21 +887,11 @@ void CMainFrame::OnOptions()
 		sd_SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 		// make an attempt at rescanning any open diff sessions
-		const MergeDocList &docs = GetAllMergeDocs();
-		POSITION pos = docs.GetHeadPosition();
-		while (pos)
-		{
-			CMergeDoc * pMergeDoc = docs.GetNext(pos);
-
-			// Re-read MergeDoc settings (also updates view settings)
-			// and rescan using new options
-			pMergeDoc->RefreshOptions();
-			pMergeDoc->FlushAndRescan(TRUE);
-		}
+		ApplyDiffOptions();
 
 		// Update all dirdoc settings
 		const DirDocList &dirDocs = GetAllDirDocs();
-		pos = dirDocs.GetHeadPosition();
+		POSITION pos = dirDocs.GetHeadPosition();
 		while (pos)
 		{
 			CDirDoc * pDirDoc = dirDocs.GetNext(pos);
@@ -1474,6 +1477,20 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 		AfxGetApp()->WriteProfileString(szRegSubKey, string_format(_T("Item_%d"), i).c_str(), list[i]);
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
+}
+
+void CMainFrame::ApplyDiffOptions() 
+{
+	const MergeDocList &docs = GetAllMergeDocs();
+	POSITION pos = docs.GetHeadPosition();
+	while (pos)
+	{
+		CMergeDoc * pMergeDoc = docs.GetNext(pos);
+		// Re-read MergeDoc settings (also updates view settings)
+		// and rescan using new options
+		pMergeDoc->RefreshOptions();
+		pMergeDoc->FlushAndRescan(TRUE);
+	}
 }
 
 /**
@@ -2464,7 +2481,7 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	}
 }
 
-BOOL CMainFrame::CreateToobar()
+BOOL CMainFrame::CreateToolbar()
 {
 	if (!m_wndToolBar.CreateEx(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
@@ -2482,10 +2499,18 @@ BOOL CMainFrame::CreateToobar()
 	// Remove this if you don't want tool tips or a resizable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
 	m_wndReBar.AddBar(&m_wndToolBar);
 
 	LoadToolbarImages();
+
+	UINT nID, nStyle;
+	int iImage;
+	int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(ID_OPTIONS);
+	m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
+	nStyle |= TBSTYLE_DROPDOWN;
+	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
 	{
@@ -2606,6 +2631,14 @@ void CMainFrame::OnToolbarSmall()
 
 	LoadToolbarImages();
 
+	CRect rcComboBox;
+	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
+	m_wndToolBar.GetItemRect(index, &rcComboBox);
+	rcComboBox.left += 6;
+	if (rcComboBox.Height() > 24)
+		rcComboBox.top += rcComboBox.Height() / 4;
+	m_ctlCompareMethod.MoveWindow(&rcComboBox);
+
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
 
@@ -2624,6 +2657,14 @@ void CMainFrame::OnToolbarBig()
 	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 1);
 
 	LoadToolbarImages();
+
+	CRect rcComboBox;
+	int index = m_wndToolBar.CommandToIndex(IDC_COMPAREMETHODCOMBO);
+	m_wndToolBar.GetItemRect(index, &rcComboBox);
+	rcComboBox.left += 6;
+	if (rcComboBox.Height() > 24)
+		rcComboBox.top += rcComboBox.Height() / 4;
+	m_ctlCompareMethod.MoveWindow(&rcComboBox);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
 }
@@ -2833,6 +2874,109 @@ void CMainFrame::OnPluginsList()
 {
 	PluginsListDlg dlg;
 	dlg.DoModal();
+}
+
+void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
+	ClientToScreen(&(pToolBar->rcButton));
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	if (NULL != pPopup)
+	{
+		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
+			pToolBar->rcButton.left, pToolBar->rcButton.bottom, this);
+	}
+	*pResult = 0;
+}
+void CMainFrame::OnDiffWhitespace(UINT nID)
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nID - IDC_DIFF_WHITESPACE_COMPARE);
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffCaseSensitive()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreEOL()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnCompareMethod(UINT nID)
+{ 
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_COMPMETHOD_FULL_CONTENTS);
+}
+
+void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == GetOptionsMgr()->GetInt(OPT_CMP_METHOD));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnMRUs(UINT nID)
+{
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+	const int idx = nID - ID_MRU_FIRST;
+	if (idx < mrus.size())
+	{
+		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
+		theApp.ParseArgsAndDoOpen(cmdInfo, this);
+	}
+}
+
+void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
+{
+	// append the MRU submenu
+	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu, ID_FILE_NEW, false);
+	if (hMenu == NULL)
+		return;
+	
+	// empty the menu
+	int i = ::GetMenuItemCount(hMenu);
+	while (i --)
+		::DeleteMenu(hMenu, 0, MF_BYPOSITION);
+
+	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(9);
+
+	if (mrus.size() == 0)
+	{
+		// no script : create a <empty> entry
+		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
+	}
+	else
+	{
+		// or fill in the submenu with the scripts names
+		int ID = ID_MRU_FIRST;	// first ID in menu
+		for (i = 0 ; i < mrus.size() ; i++, ID++)
+			::AppendMenu(hMenu, MF_STRING, ID, (string_format(_T("&%d "), i+1) + mrus[i].title).c_str());
+	}
+
+	pCmdUI->Enable(true);
 }
 
 /**

@@ -42,12 +42,17 @@ static char THIS_FILE[] = __FILE__;
  */
 enum
 {
-	PANE_FILTER = 1,
+	PANE_COMPMETHOD = 1,
+	PANE_FILTER,
 	PANE_LEFT_RO,
 	PANE_MIDDLE_RO,
 	PANE_RIGHT_RO,
 };
 
+/**
+ * @brief Width of compare method name pane in statusbar
+ */
+const int COMPMETHOD_PANEL_WIDTH = 140;
 /**
  * @brief Width of filter name pane in statusbar
  */
@@ -59,6 +64,7 @@ const int FILTER_PANEL_WIDTH = 180;
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -76,6 +82,8 @@ static UINT RO_PANEL_WIDTH = 40;
 IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
 
 CDirFrame::CDirFrame()
+: m_hIdentical(NULL)
+, m_hDifferent(NULL)
 {
 }
 
@@ -123,6 +131,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}	
 	
 	String sText = _("RO");
+	m_wndStatusBar.SetPaneInfo(PANE_COMPMETHOD, ID_STATUS_FILTER, 0, COMPMETHOD_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
 	m_wndStatusBar.SetPaneInfo(PANE_MIDDLE_RO, ID_STATUS_MIDDLEDIR_RO, 0, RO_PANEL_WIDTH);
@@ -130,6 +139,10 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_MIDDLE_RO, sText.c_str(), TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
+
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFOLDER);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFOLDER);
+
 	return 0;
 }
 
@@ -139,6 +152,15 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CDirFrame::SetStatus(LPCTSTR szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
+}
+
+/**
+ * @brief Set current compare method name to statusbar
+ * @param [in] nCompMethod compare method to show
+ */
+void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
+{
+	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(ID_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
 }
 
 /**
@@ -201,6 +223,34 @@ void CDirFrame::UpdateResources()
 {
 }
 
+/**
+* @brief Reflect comparison result in window's icon.
+* @param nResult [in] Last comparison result which the application returns.
+*/
+void CDirFrame::SetLastCompareResult(int nResult)
+{
+	HICON hCurrent = GetIcon(FALSE);
+	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
+
+	if (hCurrent != hReplace)
+	{
+		SetIcon(hReplace, TRUE);
+
+		BOOL bMaximized;
+		GetMDIFrame()->MDIGetActive(&bMaximized);
+
+		// When MDI maximized the window icon is drawn on the menu bar, so we
+		// need to notify it that our icon has changed.
+		if (bMaximized)
+		{
+			GetMDIFrame()->DrawMenuBar();
+		}
+		GetMDIFrame()->OnUpdateFrameTitle(FALSE);
+	}
+
+	theApp.SetLastCompareResult(nResult);
+}
+
 void CDirFrame::OnClose() 
 {	
 	CMDIChildWnd::OnClose();
@@ -220,6 +270,19 @@ BOOL CDirFrame::DestroyWindow()
 		GetWindowPlacement(&wp);
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
 	}
+
+	if (m_hIdentical != NULL)
+	{
+		DestroyIcon(m_hIdentical);
+		m_hIdentical = NULL;
+	}
+
+	if (m_hDifferent != NULL)
+	{
+		DestroyIcon(m_hDifferent);
+		m_hDifferent = NULL;
+	}
+
 	return CMDIChildWnd::DestroyWindow();
 }
 

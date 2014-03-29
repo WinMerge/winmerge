@@ -46,14 +46,20 @@ protected:
 // Attributes
 public:
 
+private:
+	HICON m_hIdentical;
+	HICON m_hDifferent;
+
 // Operations
 public:
 	void SetStatus(LPCTSTR szStatus);
+	void SetCompareMethodStatusDisplay(int nCompMethod);
 	void SetFilterStatusDisplay(LPCTSTR szFilter);
 	CStatusBar  m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface();
 	void UpdateResources();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
+	void SetLastCompareResult(int nResult);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
