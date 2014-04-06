@@ -87,7 +87,16 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
         sPattern += _T("*.*");
 
 	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(sPattern.c_str(), &ff);
+	HANDLE h;
+#if _MSC_VER >= 1600
+	OSVERSIONINFO vi;
+	vi.dwOSVersionInfoSize = sizeof(vi);
+	GetVersionEx(&vi);
+	if (vi.dwMajorVersion * 10 + vi.dwMinorVersion >= 61)
+		h = FindFirstFileEx(sPattern.c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
+	else
+#endif
+		h = FindFirstFile(sPattern.c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do
