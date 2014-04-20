@@ -49,13 +49,6 @@ struct DiffFileData
 	FileTextStats m_textStats[3];
 
 	String m_sDisplayFilepath[2];
-	struct UniFileBom // detect unicode file and quess encoding
-	{
-		UniFileBom(int); // initialize from file descriptor
-		int size;
-		int unicoding;
-		bool bom; /**< Are BOM bytes present in file? */
-	};
 
 private:
 	bool DoOpenFiles();
