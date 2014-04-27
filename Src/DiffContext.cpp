@@ -243,8 +243,6 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 	FastMutex::ScopedLock lock(m_mutex);
 	CompareOptions *pCompareOptions = NULL;
 
-	m_nCurrentCompMethod.get() = compareMethod;
-
 	// Otherwise we have to create new options
 	switch (compareMethod)
 	{
