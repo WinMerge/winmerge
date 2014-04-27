@@ -88,15 +88,7 @@ void string_replace(String &target, const String &find, const String &replace)
  */
 int string_compare_nocase(const String &str1, const String &str2)
 {
-	String s1(str1);
-	String s2(str2);
-	String::size_type i = 0;
-	for (i = 0; i < s1.length(); i++)
-		s1[i] = _totlower(s1[i]);
-	for (i = 0; i < s2.length(); i++)
-		s2[i] = _totlower(s2[i]);
-
-	return s1.compare(s2);
+	return _tcsicoll(str1.c_str(), str2.c_str());
 }
 
 /**

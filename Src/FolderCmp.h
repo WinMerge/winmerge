@@ -46,14 +46,11 @@ public:
 	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, String &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
 	int prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di);
-	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
-	int m_codepage;
 
 	DiffFileData m_diffFileData;
-	CDiffContext * m_pCtx;
 
 private:
 	boost::scoped_ptr<CompareEngines::DiffUtils> m_pDiffUtilsEngine;
