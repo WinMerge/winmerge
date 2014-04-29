@@ -207,6 +207,8 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, int nIndex) const
  */
 bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
 {
+	m_pContentCompareOptions.reset();
+	m_pQuickCompareOptions.reset();
 	m_pOptions.reset(new DIFFOPTIONS);
 	if (m_pOptions != NULL)
 		std::memcpy(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
