@@ -8601,7 +8601,6 @@
     <ClInclude Include="DirViewColItems.h" />
     <ClInclude Include="Common\dllproxy.h" />
     <ClInclude Include="dllpstub.h" />
-    <ClInclude Include="dllver.h" />
     <ClInclude Include="EditorFilepathBar.h" />
     <ClInclude Include="EncodingErrorBar.h" />
     <ClInclude Include="Environment.h" />
