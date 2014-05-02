@@ -19,7 +19,6 @@ struct FileTextEncoding
 	int m_codepage; /**< 8bit codepage, if applicable, -1 is unknown or N/A */
 	ucr::UNICODESET m_unicoding; /**< Unicode encoding. */
 	bool m_bom; /**< Unicode byte marker */
-	bool m_guessed; /**< Whether encoding was guessed from content */
 
 	FileTextEncoding();
 	void Clear();

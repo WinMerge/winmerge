@@ -71,25 +71,21 @@ namespace
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
-		EXPECT_EQ(true, enc.m_guessed);
 
 		enc = GuessCodepageEncoding(_T("../../../Docs/Users/Manual/About_Doc.xml"), 1);
 		EXPECT_EQ(65001, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::UTF8, enc.m_unicoding);
-		EXPECT_EQ(true, enc.m_guessed);
 
 		enc = GuessCodepageEncoding(_T("../../../Docs/Developers/readme-developers.html"), 1);
 		EXPECT_EQ(28591, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
-		EXPECT_EQ(true, enc.m_guessed);
 
 		enc = GuessCodepageEncoding(_T("../../../ShellExtension/Languages/ShellExtensionRussian.rc"), 1);
 		EXPECT_EQ(1251, enc.m_codepage);
 		EXPECT_EQ(false, enc.m_bom);
 		EXPECT_EQ(ucr::NONE, enc.m_unicoding);
-		EXPECT_EQ(true, enc.m_guessed);
 	}
 
 

@@ -816,9 +816,6 @@
     <ClInclude Include="dllpstub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dllver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
