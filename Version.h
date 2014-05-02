@@ -1,4 +1,4 @@
-#define FILEVER        2,14,0,38
-#define PRODUCTVER     2,14,0,38
-#define STRFILEVER     "2.14.0.38+-jp-38"
-#define STRPRODUCTVER  "2.14.0.38+-jp-38"
+#define FILEVER        2,14,0,39
+#define PRODUCTVER     2,14,0,39
+#define STRFILEVER     "2.14.0.39+-jp-39"
+#define STRPRODUCTVER  "2.14.0.39+-jp-39"
