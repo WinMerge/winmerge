@@ -42,9 +42,6 @@ void Load(::SyntaxColors *pSyntaxColors)
 		// from storage we must set that valu1Ge to array we use.
 		int color = 0;
 		COLORREF ref;
-		valuename.resize(30);
-		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
-			DefColorsPath, i);
 		color = pSyntaxColors->GetColor(i);
 
 		// Special handling for themable colors
@@ -56,6 +53,7 @@ void Load(::SyntaxColors *pSyntaxColors)
 			if (pOptionsMgr->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING))
 				serializable = false;
 		}
+		valuename = string_format(_T("%s/Color%02u"), DefColorsPath, i);
 		pOptionsMgr->InitOption(valuename, color, serializable);
 		color = pOptionsMgr->GetInt(valuename);
 		ref = color;
@@ -63,12 +61,10 @@ void Load(::SyntaxColors *pSyntaxColors)
 	
 		int nBold = 0;
 		bool bBold = false;
-		valuename.resize(30);
-		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
-			DefColorsPath, i);
+		valuename = string_format(_T("%s/Bold%02u"), DefColorsPath, i);
 		bBold = pSyntaxColors->GetBold(i);
-		pOptionsMgr->InitOption(valuename, (int) bBold);
-		nBold = pOptionsMgr->GetInt(valuename);
+		pOptionsMgr->InitOption(valuename, bBold);
+		nBold = pOptionsMgr->GetBool(valuename);
 		bBold = nBold ? true : false;
 		pSyntaxColors->SetBold(i, bBold);
 	}
@@ -89,16 +85,10 @@ void Save(const ::SyntaxColors *pSyntaxColors)
 
 	for (unsigned i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
-		valuename.resize(30);
-		_sntprintf(&*valuename.begin(), 30, _T("%s/Color%02u"),
-			DefColorsPath, i);
 		int color = pSyntaxColors->GetColor(i);
-		pOptionsMgr->SaveOption(valuename, color);
-		valuename.resize(30);
-		_sntprintf(&*valuename.begin(), 30, _T("%s/Bold%02u"),
-			DefColorsPath, i);
+		pOptionsMgr->SaveOption(string_format(_T("%s/Color%02u"), DefColorsPath, i), color);
 		bool bold = pSyntaxColors->GetBold(i);
-		pOptionsMgr->SaveOption(valuename, bold);
+		pOptionsMgr->SaveOption(string_format(_T("%s/Bold%02u"), DefColorsPath, i), bold);
 	}
 }
 

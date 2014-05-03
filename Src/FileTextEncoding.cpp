@@ -23,7 +23,6 @@ void FileTextEncoding::Clear()
 	m_codepage = -1;
 	m_unicoding = ucr::NONE;
 	m_bom = false;
-	m_guessed = false;
 }
 
 /**

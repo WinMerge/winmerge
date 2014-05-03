@@ -690,10 +690,8 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 			{
 				fileloc[pane - 1].encoding.SetCodepage(ucr::getDefaultCodepage());
 				fileloc[pane - 1].encoding.m_bom = false;
-				fileloc[pane - 1].encoding.m_guessed = false;
 				fileloc[pane].encoding.SetCodepage(ucr::getDefaultCodepage());
 				fileloc[pane].encoding.m_bom = false;
-				fileloc[pane].encoding.m_guessed = false;
 			}
 		}
 #endif
