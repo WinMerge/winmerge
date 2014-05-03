@@ -243,16 +243,17 @@ static String MakeShortSize(int64_t size)
  * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
  */
-static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
+template<class Type>
+static Type ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 {
-	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	return
-	(
-		di.diffFileInfo[0].filename.get().empty() ? di.diffFileInfo[1].filename :
-		di.diffFileInfo[1].filename.get().empty() ? di.diffFileInfo[0].filename :
-		di.diffFileInfo[0].filename == di.diffFileInfo[1].filename ? di.diffFileInfo[0].filename :
-		di.diffFileInfo[0].filename.get() + _T("|") + di.diffFileInfo[1].filename.get()
-	);
+	const boost::flyweight<String> &lfilename = static_cast<const DIFFITEM*>(p)->diffFileInfo[0].filename;
+	const boost::flyweight<String> &rfilename = static_cast<const DIFFITEM*>(p)->diffFileInfo[1].filename;
+	if (lfilename.get().empty())
+		return rfilename;
+	else if (rfilename.get().empty() || lfilename == rfilename)
+		return lfilename;
+	else
+		return static_cast<Type>(lfilename.get() + _T("|") + rfilename.get());
 }
 
 /**
@@ -783,7 +784,7 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return string_compare_nocase(ColFileNameGet(pCtxt, p), ColFileNameGet(pCtxt, q));
+	return string_compare_nocase(ColFileNameGet<boost::flyweight<String> >(pCtxt, p), ColFileNameGet<boost::flyweight<String> >(pCtxt, q));
 }
 
 /**
@@ -975,7 +976,7 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  */
 static DirColInfo f_cols[] =
 {
-	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },
@@ -1003,7 +1004,7 @@ static DirColInfo f_cols[] =
 };
 static DirColInfo f_cols3[] =
 {
-	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
+	{ _T("Name"), COLHDR_FILENAME, COLDESC_FILENAME, &ColFileNameGet<String>, &ColFileNameSort, 0, 0, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Path"), COLHDR_DIR, COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Status"), COLHDR_RESULT, COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, DirColInfo::ALIGN_LEFT },
 	{ _T("Lmtime"), COLHDR_LTIMEM, COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, diffFileInfo[0].mtime), 3, false, DirColInfo::ALIGN_LEFT },

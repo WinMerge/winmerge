@@ -248,7 +248,6 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 	CMarkdown::FileImage fi(filepath.c_str(), mapmaxlen);
 	encoding.SetCodepage(ucr::getDefaultCodepage());
 	encoding.m_bom = false;
-	encoding.m_guessed = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
@@ -292,10 +291,7 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 			}
 		}
 		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len, guessEncodingType))
-		{
 			encoding.SetCodepage(cp);
-			encoding.m_guessed = true;
-		}
 		else
 			encoding.SetCodepage(ucr::getDefaultCodepage());
 	}

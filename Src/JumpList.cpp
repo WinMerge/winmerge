@@ -123,7 +123,7 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 				pShellLink->GetArguments(szArguments, sizeof(szArguments));
 				IPropertyStore *pPS = NULL;
 				PROPVARIANT pv;
-				InitPropVariantFromString(_T(""), &pv);
+				InitPropVariantFromString(L"", &pv);
 				if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 				{
 					pPS->GetValue(PKEY_Title, &pv);

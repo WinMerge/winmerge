@@ -150,14 +150,6 @@ public:
 	IPluginInfos * m_piPluginInfos;
 	int m_iGuessEncodingType;
 
-	/**
-	 * The current and effective compare method.
-	 * During the compare we may change compare method per file. This may
-	 * happen for various reasons. But the change is always temporarily and
-	 * we must return to the main method indicated by m_nCompMethod.
-	 */
-	Poco::ThreadLocal<int> m_nCurrentCompMethod;
-
 	bool m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
 

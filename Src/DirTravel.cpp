@@ -83,7 +83,16 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 	String sPattern = paths_ConcatPath(sDir, _T("*.*"));
 
 	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(sPattern.c_str(), &ff);
+	HANDLE h;
+#if _MSC_VER >= 1600
+	OSVERSIONINFO vi;
+	vi.dwOSVersionInfoSize = sizeof(vi);
+	GetVersionEx(&vi);
+	if (vi.dwMajorVersion * 10 + vi.dwMinorVersion >= 61)
+		h = FindFirstFileEx(sPattern.c_str(), FindExInfoBasic, &ff, FindExSearchNameMatch, NULL, FIND_FIRST_EX_LARGE_FETCH);
+	else
+#endif
+		h = FindFirstFile(sPattern.c_str(), &ff);
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		do
@@ -124,55 +133,25 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 #endif
 }
 
-static int collate(const String &str1, const String &str2)
+static inline int collate(const String &str1, const String &str2)
 {
 	return _tcscoll(str1.c_str(), str2.c_str());
 }
 
-/**
- * @brief case-sensitive collate function for qsorting an array
- */
-static bool __cdecl cmpstring(const DirItem &elem1, const DirItem &elem2)
+static inline int collate_ignore_case(const String &str1, const String &str2)
 {
-	return collate(elem1.filename, elem2.filename) < 0;
+	return _tcsicoll(str1.c_str(), str2.c_str());
 }
 
-static int collate_ignore_case(const String &str1, const String &str2)
-{
-	String s1(str1);
-	String s2(str2);
-    String::size_type i = 0;
-#ifdef _UNICODE
-	for (i = 0; i < s1.length(); i++)
-		s1[i] = _totlower(s1[i]);
-	for (i = 0; i < s2.length(); i++)
-		s2[i] = _totlower(s2[i]);
-#else
-	for (i = 0; i < s1.length(); i++)
-	{
-		if (_ismbblead(s1[i]))
-			i++;
-		else
-			s1[i] = _totlower(s1[i]);
-	}
-	for (i = 0; i < s2.length(); i++)
-	{
-		if (_ismbblead(s2[i]))
-			i++;
-		else
-			s2[i] = _totlower(s2[i]);
-	}
-#endif
-	return _tcscoll(s1.c_str(), s2.c_str());
-}
 
-/**
- * @brief case-insensitive collate function for qsorting an array
- */
-static bool __cdecl cmpistring(const DirItem &elem1, const DirItem &elem2)
+template<int (*compfunc)(const TCHAR *, const TCHAR *)>
+struct StringComparer
 {
-	return collate_ignore_case(elem1.filename, elem2.filename) < 0;
-}
+	bool operator()(const DirItem &elem1, const DirItem &elem2)
+	{
+		return compfunc(elem1.filename.get().c_str(), elem2.filename.get().c_str()) < 0;
+	}
+};
 
 /**
  * @brief sort specified array
@@ -180,9 +159,9 @@ static bool __cdecl cmpistring(const DirItem &elem1, const DirItem &elem2)
 static void Sort(DirItemArray * dirs, bool casesensitive)
 {
 	if (casesensitive)
-        std::sort(dirs->begin(), dirs->end(), cmpstring);
+        std::sort(dirs->begin(), dirs->end(), StringComparer<_tcscoll>());
 	else
-		std::sort(dirs->begin(), dirs->end(), cmpistring);
+		std::sort(dirs->begin(), dirs->end(), StringComparer<_tcsicoll>());
 }
 
 /**

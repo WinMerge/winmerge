@@ -144,40 +144,6 @@ void DiffFileData::Reset()
 	}
 }
 
-/** @brief detect unicode file and quess encoding */
-DiffFileData::UniFileBom::UniFileBom(int fd)
-{
-	size = 0;
-	unicoding = ucr::NONE;
-	if (fd == -1) 
-		return;
-	long tmp = lseek(fd, 0, SEEK_SET);
-
-	const int max_size = 8 * 1024;
-	boost::scoped_array<unsigned char> buffer(new unsigned char[max_size]);
-
-	int bytes = read(fd, buffer.get(), max_size);
-	bom = false;
-	unicoding = ucr::DetermineEncoding(buffer.get(), bytes, &bom);
-	switch (unicoding)
-	{
-		case ucr::UCS2LE:
-		case ucr::UCS2BE:
-			size = 2;
-			break;
-		case ucr::UTF8:
-			if (bom)
-				size = 3;
-			else
-				size = 0;
-			break;
-		default:
-			break;
-	}
-
-	lseek(fd, tmp, SEEK_SET);
-}
-
 /**
  * @brief Invoke appropriate plugins for prediffing
  * return false if anything fails

@@ -63,37 +63,43 @@ public:
 	virtual bool includeDir(const String& szDirName) const = 0;
 	bool includeFile(const String& szFileName1, const String& szFileName2) const
 	{
-		return
-		(
-			(szFileName1.empty() || includeFile(szFileName1))
-		&&	(szFileName2.empty() || includeFile(szFileName2))
-		);
+		if (!szFileName1.empty())
+			return includeFile(szFileName1);
+		else if (!szFileName2.empty())
+			return includeFile(szFileName2);
+		else
+			return false;
 	}
 	bool includeFile(const String& szFileName1, const String& szFileName2, const String& szFileName3) const
 	{
-		return
-		(
-			(szFileName1.empty() || includeFile(szFileName1))
-		&&	(szFileName2.empty() || includeFile(szFileName2))
-		&&	(szFileName3.empty() || includeFile(szFileName3))
-		);
+		if (!szFileName1.empty())
+			return includeFile(szFileName1);
+		else if (!szFileName2.empty())
+			return includeFile(szFileName2);
+		else if (!szFileName3.empty())
+			return includeFile(szFileName3);
+		else
+			return false;
 	}
 	bool includeDir(const String& szDirName1, const String& szDirName2) const
 	{
-		return
-		(
-			(szDirName1.empty() || includeDir(szDirName1))
-		&&	(szDirName2.empty() || includeDir(szDirName2))
-		);
+		if (!szDirName1.empty())
+			return includeDir(szDirName1);
+		else if (!szDirName2.empty())
+			return includeDir(szDirName2);
+		else
+			return false;
 	}
 	bool includeDir(const String& szDirName1, const String& szDirName2, const String& szDirName3) const
 	{
-		return
-		(
-			(szDirName1.empty() || includeDir(szDirName1))
-		&&	(szDirName2.empty() || includeDir(szDirName2))
-		&&	(szDirName3.empty() || includeDir(szDirName3))
-		);
+		if (!szDirName1.empty())
+			return includeDir(szDirName1);
+		else if (!szDirName2.empty())
+			return includeDir(szDirName2);
+		else if (!szDirName3.empty())
+			return includeDir(szDirName3);
+		else
+			return false;
 	}
 };
 
