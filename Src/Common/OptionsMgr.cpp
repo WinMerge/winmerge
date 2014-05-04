@@ -46,10 +46,10 @@ COption::COption()
  * @param [in] option Object to copy.
  */
 COption::COption(const COption& option)
+: m_strName(option.m_strName)
+, m_value(option.m_value)
+, m_valueDef(option.m_valueDef)
 {
-	m_strName = option.m_strName;
-	m_value = option.m_value;
-	m_valueDef = option.m_valueDef;
 }
 
 /**
