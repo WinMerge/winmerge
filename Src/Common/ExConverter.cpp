@@ -173,7 +173,7 @@ public:
 			for (i = 0; i < sizeof(codepagestotry)/sizeof(codepagestotry[0]); i++)
 			{
 				if (codepagestotry[i] == 0) break;
-				hr = pcc->Initialize(codepagestotry[i], CP_UCS2LE, 0);
+				pcc->Initialize(codepagestotry[i], CP_UCS2LE, 0);
 				srcsize = static_cast<UINT>(size);
 				dstsize = static_cast<UINT>(size * sizeof(wchar_t));
 				SetLastError(0);

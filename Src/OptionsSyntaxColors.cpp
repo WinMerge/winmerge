@@ -59,12 +59,10 @@ void Load(::SyntaxColors *pSyntaxColors)
 		ref = color;
 		pSyntaxColors->SetColor(i, ref);
 	
-		int nBold = 0;
-		bool bBold = false;
 		valuename = string_format(_T("%s/Bold%02u"), DefColorsPath, i);
-		bBold = pSyntaxColors->GetBold(i);
+		bool bBold = pSyntaxColors->GetBold(i);
 		pOptionsMgr->InitOption(valuename, bBold);
-		nBold = pOptionsMgr->GetBool(valuename);
+		int nBold = pOptionsMgr->GetBool(valuename);
 		bBold = nBold ? true : false;
 		pSyntaxColors->SetBold(i, bBold);
 	}
