@@ -457,9 +457,6 @@
     <ClCompile Include="ChildFrm.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\ClipBoard.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\CMoveConstraint.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -744,6 +741,9 @@
     </ClCompile>
     <ClCompile Include="LineFiltersList.cpp">
       <Filter>MFCGui\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ClipBoard.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1170,9 +1170,6 @@
     <ClInclude Include="ChildFrm.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ClipBoard.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ColorButton.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1361,6 +1358,9 @@
     </ClInclude>
     <ClInclude Include="7zCommon.h">
       <Filter>MFCGui\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ClipBoard.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
