@@ -66,13 +66,3 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
 	}
 	return bSuccess;
 }
-
-/**
- * @brief Checks if the clipboard allows Unicode format.
- * @return TRUE if Unicode is supported, FALSE otherwise.
- */
-bool TextInClipboard()
-{
-	UINT fmt = GetClipTcharTextFormat();
-	return IsClipboardFormatAvailable(fmt) != FALSE;
-}

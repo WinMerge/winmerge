@@ -61,7 +61,6 @@ private:
 	String GetBuildFlags() const;
 	void FileWriteString(const String& lpsz);
 	void CloseFile();
-    void WriteItemYesNo(int indent, const String& key, bool *pvalue);
 
 	// Implementation data
 private:

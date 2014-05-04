@@ -13,6 +13,5 @@
 
 bool PutToClipboard(const String & text, HWND currentWindowHandle);
 bool GetFromClipboard(String & text, HWND currentWindowHandle);
-bool TextInClipboard();
 
 #endif // _CLIPBOARD_H_

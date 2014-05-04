@@ -124,15 +124,6 @@ void CConfigLog::WriteItem(int indent, const String& key, long value)
 }
 
 /**
- * @brief Write boolean item using keywords (Yes|No)
- */
-void CConfigLog::WriteItemYesNo(int indent, const String& key, bool *pvalue)
-{
-	String text = string_format(_T("%*.0s%s: %s\r\n"), indent, key.c_str(), key.c_str(), *pvalue ? _T("Yes") : _T("No"));
-	m_pfile->WriteString(text);
-}
-
-/**
  * @brief Write out various possibly relevant windows locale information
  */
 void CConfigLog::WriteLocaleSettings(unsigned locid, const String& title)
