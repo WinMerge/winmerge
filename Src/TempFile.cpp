@@ -160,7 +160,7 @@ static bool CleanupWMtempfolder(const vector <int>& processIDs)
 	String pattern = paths_GetParentPath(env_GetTempPath());
 	pattern = paths_ConcatPath(pattern, filepattern);
 	WIN32_FIND_DATA ff;
-	HANDLE h = INVALID_HANDLE_VALUE;
+	HANDLE h;
 	bool res = true;
 	bool bok = true;
 
