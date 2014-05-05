@@ -52,7 +52,7 @@ private:
 	 * @note valid values : 0 (no wait cursor), 
 	 * >= 2 (stack[0] is the default cursor, and stack[1..n] are wait cursors)
 	 */
-	static int stackSize;
+	static INT_PTR stackSize;
 	/**
 	 * @brief Stack of messages, the currently displayed is the one on top of stack
 	 *

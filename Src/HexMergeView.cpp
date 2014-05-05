@@ -106,6 +106,7 @@ CHexMergeView::CHexMergeView()
 : m_pif(0)
 , m_nThisPane(0)
 , m_mtime(0)
+, m_size(0)
 {
 }
 

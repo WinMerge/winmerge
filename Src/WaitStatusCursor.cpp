@@ -44,15 +44,17 @@ void CustomStatusCursor::SetStatusDisplay(IStatusDisplay * piStatusDisplay)
 CStringArray CustomStatusCursor::msgStack;
 CPtrArray CustomStatusCursor::cursorStack;
 CDWordArray CustomStatusCursor::validStack;
-int CustomStatusCursor::stackSize = 0;
+INT_PTR CustomStatusCursor::stackSize = 0;
 
 CustomStatusCursor::CustomStatusCursor()
 : m_ended(false)
+, posInStack(0)
 {
 }
 
 CustomStatusCursor::CustomStatusCursor(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR fmt, ...)
 : m_ended(false)
+, posInStack(0)
 {
 	va_list argp;
 	va_start(argp, fmt);
@@ -140,7 +142,7 @@ void CustomStatusCursor::End()
 	if (posInStack == cursorStack.GetUpperBound())
 	{
 		// find the last valid cursor
-		int posValid = posInStack-1;
+		INT_PTR posValid = posInStack-1;
 		while (validStack.GetAt(posValid) == 0)
 			posValid --;
 		ASSERT (posValid >= 0);
