@@ -180,7 +180,7 @@ void CHexMergeView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 		{
 			pScrollBar->SetScrollInfo(&si);
 		}
-		CSplitterWndEx *pSplitter = (CSplitterWndEx *)GetParentSplitter(this, TRUE);
+		CSplitterWndEx *pSplitter = static_cast<CSplitterWndEx *>(GetParentSplitter(this, TRUE));
 		int nID = GetDlgCtrlID();
 		nID ^= pSplitter->IdFromRowCol(0, 0) ^ pSplitter->IdFromRowCol(0, 1);
 		CWnd *pWnd = pSplitter->GetDlgItem(nID);
