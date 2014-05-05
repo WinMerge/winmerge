@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "PropColors.h"
 #include "Merge.h"
-#include "CustomColors.h"
+#include "OptionsCustomColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
@@ -140,12 +140,12 @@ void PropMergeColors::WriteOptions()
 void PropMergeColors::BrowseColor(CColorButton & colorButton)
 {
 	CColorDialog dialog(colorButton.GetColor());
-	CustomColors::Load(m_cCustColors);
+	Options::CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 		colorButton.SetColor(dialog.GetColor());
-	CustomColors::Save(m_cCustColors);
+	Options::CustomColors::Save(m_cCustColors);
 }
 
 void PropMergeColors::UpdateTextColorButtonState(int checkboxId, CColorButton &btn)

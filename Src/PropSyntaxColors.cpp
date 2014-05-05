@@ -10,7 +10,7 @@
 #include "PropSyntaxColors.h"
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
-#include "CustomColors.h"
+#include "OptionsCustomColors.h"
 #include "Merge.h"
 #include "OptionsPanel.h"
 
@@ -152,7 +152,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	CustomColors::Load(m_cCustColors);
+	Options::CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -161,7 +161,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	CustomColors::Save(m_cCustColors);
+	Options::CustomColors::Save(m_cCustColors);
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywords()
