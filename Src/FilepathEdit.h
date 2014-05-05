@@ -45,7 +45,7 @@ public :
 	LPCTSTR GetUpdatedTipText(CDC * pDC, int maxWidth);
 
 	void SetActive(BOOL bActive);
-	void SetOriginalText(LPCTSTR lpszString );
+	void SetOriginalText(const CString& szString );
 	void SetBackColor(COLORREF rgb);
 	void SetTextColor(COLORREF rgb);
 
