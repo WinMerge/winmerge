@@ -26,6 +26,7 @@ static char THIS_FILE[] = __FILE__;
 PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropMergeColors::IDD)
 {
+	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropMergeColors::DoDataExchange(CDataExchange* pDX)

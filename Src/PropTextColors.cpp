@@ -32,6 +32,7 @@ PropTextColors::PropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
 , m_bCustomColors(FALSE)
 , m_pTempColors(pColors)
 {
+	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropTextColors::DoDataExchange(CDataExchange* pDX)

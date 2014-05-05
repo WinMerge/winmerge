@@ -56,6 +56,8 @@ PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColor
 	m_nPreProcessorBold = GetCheckVal(COLORINDEX_PREPROCESSOR);
 	m_nUser1Bold = GetCheckVal(COLORINDEX_USER1);
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
+
+	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
