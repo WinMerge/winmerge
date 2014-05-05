@@ -143,13 +143,12 @@ void CFilepathEdit::GetOriginalText(CString& rString) const
  * This function sets the text (original text) to show in the control.
  * The control may modify the text for displaying in the GUI.
  */
-void CFilepathEdit::SetOriginalText(LPCTSTR lpszString)
+void CFilepathEdit::SetOriginalText(const CString& szString)
 {
-	if (_tcscmp(m_sOriginalText, lpszString) == 0)
+	if (m_sOriginalText == szString)
 		return;
 
-	if (lpszString != 0)
-		m_sOriginalText = lpszString;
+	m_sOriginalText = szString;
 
 	RefreshDisplayText();
 }
