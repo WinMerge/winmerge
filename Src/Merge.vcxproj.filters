@@ -598,9 +598,6 @@
     <ClCompile Include="WaitStatusCursor.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CustomColors.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\LanguageSelect.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -743,6 +740,9 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\ClipBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1218,9 +1218,6 @@
     <ClInclude Include="MergeLineFlags.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CustomColors.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MergeApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1360,6 +1357,9 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\ClipBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsCustomColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
