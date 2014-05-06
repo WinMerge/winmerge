@@ -110,7 +110,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 String CrossConvertToStringA(const char* src, unsigned srclen, int cpin, int cpout, bool * lossy);
 #endif
 
-bool CheckForInvalidUtf8(const char *pBuffer, int size);
+bool CheckForInvalidUtf8(const char *pBuffer, size_t size);
 
 UNICODESET DetermineEncoding(const unsigned char *pBuffer, Poco::UInt64 size, bool * pBom);
 

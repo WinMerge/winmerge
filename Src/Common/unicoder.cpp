@@ -1159,7 +1159,7 @@ std::string toThreadCP(const std::wstring& str)
  * @param [in] size Size of the buffer in bytes.
  * @return true if invalid bytes found, false otherwise.
  */
-bool CheckForInvalidUtf8(const char *pBuffer, int size)
+bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
 {
 	unsigned char * pVal2 = (unsigned char *)pBuffer;
 	for (int j = 0; j < size; ++j)

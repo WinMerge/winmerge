@@ -46,8 +46,8 @@ public:
 
 	// Functions to add and get selected files (as PATCHFILEs)
 	void AddItem(const PATCHFILES& pf);
-	int GetItemCount();
-	const PATCHFILES& GetItemAt(int position);
+	size_t GetItemCount();
+	const PATCHFILES& GetItemAt(size_t position);
 	void ClearItems();
 
 // Dialog Data
