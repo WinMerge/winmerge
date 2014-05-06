@@ -9,11 +9,11 @@
 #ifndef _CLIPBOARD_H_
 #define _CLIPBOARD_H_
 
+#include <windows.h>
 #include "UnicodeString.h"
 
 bool PutToClipboard(const String & text, HWND currentWindowHandle);
 bool GetFromClipboard(String & text, HWND currentWindowHandle);
-bool TextInClipboard();
 
 template<class Container>
 void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)

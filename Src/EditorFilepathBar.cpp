@@ -200,7 +200,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			HANDLE hOldFont = ::SelectObject(tempDC.GetSafeHdc(),hFont);
 
 			// fill in the returned structure
-			CFilepathEdit * pItem = (CFilepathEdit*) GetDlgItem(nID);
+			CFilepathEdit * pItem = static_cast<CFilepathEdit*>(GetDlgItem(nID));
 			pTTT->lpszText = const_cast<TCHAR *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
 
 			// set old font back

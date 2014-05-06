@@ -26,6 +26,7 @@ DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(DirCmpReportDlg::IDD, pParent)
 	, m_bCopyToClipboard(false)
 	, m_bIncludeFileCmpReport(false)
+	, m_nReportType(REPORT_TYPE_COMMALIST)
 {
 }
 

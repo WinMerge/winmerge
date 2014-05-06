@@ -82,18 +82,6 @@ int CDiffViewBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-
-int CDiffViewBar::GetPanelHeight()
-{
-	if (IsWindowVisible() == FALSE)
-		return 0;
-
-	int hDetailLeft,hmin;
-	m_pwndDetailSplitter->GetRowInfo(0, hDetailLeft, hmin);
-	return hDetailLeft;
-}
-
-
 /// update height for both panels
 void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
 {

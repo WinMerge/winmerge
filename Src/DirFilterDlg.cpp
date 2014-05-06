@@ -24,6 +24,7 @@ IMPLEMENT_DYNAMIC(DirFilterDlg, CDialog)
 DirFilterDlg::DirFilterDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(DirFilterDlg::IDD, pParent)
 	, m_bCopyToClipboard(FALSE)
+	, m_nReportType(REPORT_TYPE_COMMALIST)
 {
 }
 

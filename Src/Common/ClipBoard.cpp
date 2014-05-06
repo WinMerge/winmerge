@@ -6,8 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "StdAfx.h"
 #include "ClipBoard.h"
+
+inline UINT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
 
 /**
  * @brief Copies string to clipboard.
@@ -20,7 +21,6 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
 	if (text.empty())
 		return false;
 
-	CWaitCursor wc;
 	bool bOK = false;
 	if (OpenClipboard(currentWindowHandle))
 	{
@@ -65,14 +65,4 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
 		CloseClipboard();
 	}
 	return bSuccess;
-}
-
-/**
- * @brief Checks if the clipboard allows Unicode format.
- * @return TRUE if Unicode is supported, FALSE otherwise.
- */
-bool TextInClipboard()
-{
-	UINT fmt = GetClipTcharTextFormat();
-	return IsClipboardFormatAvailable(fmt) != FALSE;
 }

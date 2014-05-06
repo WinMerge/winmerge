@@ -252,7 +252,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
 		theApp.TranslateMenu(menu.m_hMenu);
 
-		BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
+		BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
 		ASSERT(pPopup != NULL);
 
 		if (paths_EndsWithSlash(m_sOriginalText))

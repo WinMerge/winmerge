@@ -574,13 +574,6 @@ void CChildFrame::OnClose()
 	GetMainFrame()->ClearStatusbarItemCount();
 }
 
-
-/// update height for panels 3/4
-void CChildFrame::UpdateDiffDockbarHeight(int DiffPanelHeight)
-{
-	m_wndDetailBar.UpdateBarHeight(DiffPanelHeight);
-}
-
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CChildFrame::UpdateHeaderSizes()
 {

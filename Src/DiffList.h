@@ -99,7 +99,7 @@ public:
 
 	// boilerplate ctr, copy ctr
 	DiffMap() { }
-	DiffMap(const DiffMap & src) { m_map = src.m_map; }
+	DiffMap(const DiffMap & src) : m_map(src.m_map) {}
 	void InitDiffMap(int nlines);
 };
 

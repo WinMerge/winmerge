@@ -172,7 +172,7 @@ void CMDITabBar::UpdateTabs()
 		}
 	}
 
-	int nMaxTitleLength = MDITABBAR_MAXTITLELENGTH - (MDIFrameList.GetCount() - 1) * 6;
+	int nMaxTitleLength = static_cast<int>(MDITABBAR_MAXTITLELENGTH - (MDIFrameList.GetCount() - 1) * 6);
 	if (nMaxTitleLength < MDITABBAR_MINTITLELENGTH)
 		nMaxTitleLength = MDITABBAR_MINTITLELENGTH;
 

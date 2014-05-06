@@ -114,7 +114,6 @@ public:
 // Implementation
 private:
 	BOOL EnsureValidDockState(CDockState& state);
-	void UpdateDiffDockbarHeight(int DiffPanelHeight);
 	void SavePosition();
 	virtual ~CChildFrame();
 

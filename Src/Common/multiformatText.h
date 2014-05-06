@@ -29,7 +29,17 @@
 class storageForPlugins
 {
 public:
-	storageForPlugins() : m_bstr(NULL)
+	storageForPlugins()
+	: m_bstr(NULL)
+	, m_bOriginalIsUnicode(false)
+	, m_bCurrentIsUnicode(false)
+	, m_bCurrentIsFile(false)
+	, m_bOverwriteSourceFile(false)
+	, m_nChangedValid(0)
+	, m_bError(false)
+	, m_codepage(0)
+	, m_nBomSize(0)
+	, m_nChanged(0)
 	{
 		VariantInit(&m_array);
 	}

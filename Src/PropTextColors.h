@@ -46,12 +46,6 @@ private:
 	bool            m_bCustomColors;
 	//}}AFX_DATA
 
-	COLORREF	m_clrWhitespaceBackground;
-	COLORREF	m_clrRegularBackground;
-	COLORREF	m_clrRegularText;
-	COLORREF	m_clrSelectionBackground;
-	COLORREF	m_clrSelectionText;
-
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(PropTextColors)

@@ -400,9 +400,7 @@ void CPatchDlg::OnSelchangeResultCombo()
  */
 void CPatchDlg::OnSelchangeDiffStyle()
 {
-	int selection = -1;
-
-	selection = m_comboStyle.GetCurSel();
+	int selection = m_comboStyle.GetCurSel();
 
 	// Only context and unified formats allow context lines
 	if (selection != OUTPUT_NORMAL)
@@ -459,7 +457,7 @@ size_t CPatchDlg::GetItemCount()
  * @param [in] position Zero-based index of item to get
  * @return PATCHFILES from given position.
  */
-const PATCHFILES& CPatchDlg::GetItemAt(int position)
+const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
 {
 	return m_fileList.at(position);
 }
