@@ -225,7 +225,7 @@ void CustomStatusCursor::RestoreWaitCursor()
 	ASSERT (stackSize == validStack.GetSize());
 
 	// the top of stack is always valid
-	int posValid = stackSize-1;
+	INT_PTR posValid = stackSize-1;
 	ASSERT(validStack.GetAt(posValid));
 
 	// restore text and cursor

@@ -117,7 +117,7 @@ void CPatchDlg::OnOK()
 	// multiple files.  Multiple files are selected from DirView.
 	// Only if single files selected, filenames are checked here.
 	// Filenames read from Dirview must be valid ones.
-	int selectCount = m_fileList.size();
+	size_t selectCount = m_fileList.size();
 	if (selectCount == 1)
 	{
 		BOOL file1Ok = (paths_DoesPathExist((const TCHAR *)m_file1) == IS_EXISTING_FILE);
@@ -219,7 +219,7 @@ BOOL CPatchDlg::OnInitDialog()
 	m_comboContext.LoadState(_T("PatchCreator\\DiffContext"));
 	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
 
-	int count = m_fileList.size();
+	size_t count = m_fileList.size();
 
 	// If one file added, show filenames on dialog
 	if (count == 1)
@@ -232,7 +232,7 @@ BOOL CPatchDlg::OnInitDialog()
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
-		String num = string_format(_T("%d"), count);
+		String num = string_format(_T("%d"), static_cast<int>(count));
 		String msg = LangFormatString1(IDS_DIFF_SELECTEDFILES, num.c_str());
 		m_file1 = msg.c_str();
 		m_file2 = msg.c_str();
@@ -305,7 +305,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
 {
 	PATCHFILES pf;
-	int count = GetItemCount();
+	size_t count = GetItemCount();
 
 	if (count == 1)
 	{
@@ -455,7 +455,7 @@ void CPatchDlg::AddItem(const PATCHFILES& pf)
  * @brief Returns amount of patch items in the internal list.
  * @return Count of patch items in the list.
  */
-int CPatchDlg::GetItemCount()
+size_t CPatchDlg::GetItemCount()
 {
 	return m_fileList.size();
 }
@@ -465,7 +465,7 @@ int CPatchDlg::GetItemCount()
  * @param [in] position Zero-based index of item to get
  * @return PATCHFILES from given position.
  */
-const PATCHFILES& CPatchDlg::GetItemAt(int position)
+const PATCHFILES& CPatchDlg::GetItemAt(size_t position)
 {
 	return m_fileList.at(position);
 }

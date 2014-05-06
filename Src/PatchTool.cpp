@@ -124,12 +124,12 @@ int CPatchTool::CreatePatch()
 		m_diffWrapper.SetAppendFiles(!!dlgPatch.m_appendFile);
 		m_diffWrapper.SetPrediffer(NULL);
 
-		int fileCount = dlgPatch.GetItemCount();
+		size_t fileCount = dlgPatch.GetItemCount();
 
 		m_diffWrapper.WritePatchFileHeader(dlgPatch.m_outputStyle, !!dlgPatch.m_appendFile);
 		m_diffWrapper.SetAppendFiles(TRUE);
 
-		for (int index = 0; index < fileCount; index++)
+		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& files = dlgPatch.GetItemAt(index);
 			String filename1 = files.lfile.length() == 0 ? _T("NUL") : files.lfile;

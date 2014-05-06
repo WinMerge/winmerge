@@ -86,7 +86,7 @@ void ShellFileOperations::SetDestination(const String &destination)
  */
 void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
 {
-	const int len = CountStringSize(source);
+	const size_t len = CountStringSize(source);
 	paths.resize(len, 0);
 
 	vector<String>::const_iterator iter;
@@ -102,10 +102,10 @@ void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
 		end = m_destinations.end();
 	}
 
-	int ind = 0;
+	size_t ind = 0;
 	while (iter != end)
 	{
-		const int slen = (*iter).length();
+		const size_t slen = (*iter).length();
 		memcpy(&paths[ind], (*iter).c_str(), slen * sizeof(TCHAR));
 		ind += slen;
 		ind++; // NULL between strings
@@ -119,7 +119,7 @@ void ShellFileOperations::GetPathList(bool source, vector<TCHAR>& paths) const
  *   destination paths.
  * @return Lenght of the string.
  */
-int ShellFileOperations::CountStringSize(bool source) const
+size_t ShellFileOperations::CountStringSize(bool source) const
 {
 	vector<String>::const_iterator iter;
 	vector<String>::const_iterator end;
@@ -134,7 +134,7 @@ int ShellFileOperations::CountStringSize(bool source) const
 		end = m_destinations.end();
 	}
 
-	int size = 0;
+	size_t size = 0;
 	while (iter != end)
 	{
 		size += (*iter).length() * sizeof(TCHAR);

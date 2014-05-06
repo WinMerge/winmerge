@@ -9,7 +9,7 @@
 
 #include "StdAfx.h"
 #include "Bitmap.h"
-#include <math.h>
+#include <cmath>
 #include <boost/scoped_array.hpp>
 
 #ifdef _DEBUG
