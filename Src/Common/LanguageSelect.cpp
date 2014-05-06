@@ -1121,11 +1121,11 @@ void CLanguageSelect::ReloadMenu()
 			while (pFrame)
 			{
 				if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
-					((CChildFrame *)pFrame)->SetSharedMenu(hNewMergeMenu);
+					static_cast<CChildFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 				else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
-					((COpenFrame *)pFrame)->SetSharedMenu(hNewDefaultMenu);
+					static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
 				else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
-					((CDirFrame *)pFrame)->SetSharedMenu(hNewDirMenu);
+					static_cast<CDirFrame *>(pFrame)->SetSharedMenu(hNewDirMenu);
 				pFrame = pFrame->GetNextWindow();
 			}
 

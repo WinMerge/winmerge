@@ -244,8 +244,7 @@ bool CShellContextMenu::InvokeCommand(UINT nCmd, HWND hWnd)
 		ici.lpVerb = MAKEINTRESOURCEA(nCmd);
 		ici.nShow = SW_SHOWNORMAL;
 
-		HRESULT hr = E_FAIL;
-		hr = m_pPreferredMenu->InvokeCommand(&ici);
+		HRESULT hr = m_pPreferredMenu->InvokeCommand(&ici);
 		ASSERT(SUCCEEDED(hr));
 		return SUCCEEDED(hr);
 	}

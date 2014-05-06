@@ -365,6 +365,47 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="Common\ClipBoard.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="codepage.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -2168,6 +2209,47 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\OptionsCustomColors.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="0"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\OptionsDiffColors.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -3146,6 +3228,9 @@
 				RelativePath="charsets.h">
 			</File>
 			<File
+				RelativePath="Common\ClipBoard.h">
+			</File>
+			<File
 				RelativePath="codepage.h">
 			</File>
 			<File
@@ -3297,6 +3382,9 @@
 			</File>
 			<File
 				RelativePath=".\Common\MyCom.h">
+			</File>
+			<File
+				RelativePath=".\OptionsCustomColors.h">
 			</File>
 			<File
 				RelativePath=".\OptionsDiffColors.h">
@@ -4605,43 +4693,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="Common\ClipBoard.cpp">
-					<FileConfiguration
-						Name="UnicodeRelease|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="UnicodeDebug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Debug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="0"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-							BrowseInformation="1"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							Optimization="1"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath="Common\CMoveConstraint.cpp">
 					<FileConfiguration
 						Name="UnicodeRelease|Win32">
@@ -4751,9 +4802,6 @@
 							AdditionalIncludeDirectories=""
 							PreprocessorDefinitions=""/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\CustomColors.cpp">
 				</File>
 				<File
 					RelativePath=".\CustomStatusCursor.cpp">
@@ -6334,9 +6382,6 @@
 					RelativePath="ChildFrm.h">
 				</File>
 				<File
-					RelativePath="Common\ClipBoard.h">
-				</File>
-				<File
 					RelativePath="Common\CMoveConstraint.h">
 				</File>
 				<File
@@ -6344,9 +6389,6 @@
 				</File>
 				<File
 					RelativePath="Common\CSubclass.h">
-				</File>
-				<File
-					RelativePath=".\CustomColors.h">
 				</File>
 				<File
 					RelativePath=".\CustomStatusCursor.h">

@@ -50,7 +50,7 @@ public:
 
 protected:
 	void GetPathList(bool source, std::vector<TCHAR>& paths) const;
-	int CountStringSize(bool source) const;
+	size_t CountStringSize(bool source) const;
 
 private:
 	std::vector<String> m_sources; /**< Source paths. */

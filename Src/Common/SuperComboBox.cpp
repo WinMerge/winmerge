@@ -180,7 +180,7 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
 	for (UINT i=0; i < cnt && i < nMaxItems; i++)
 	{
-		s2.Format(_T("Item_%d"), i);
+		s2.Format(_T("Item_%u"), i);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
 		if (FindStringExact(-1, s) == -1
 			&& !s.IsEmpty())

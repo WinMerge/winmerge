@@ -186,7 +186,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len, int defcodepag
 		size_t n = len < sizeof line - 1 ? len : sizeof line - 1;
 		memcpy(line, base, n);
 		line[n] = 0;
-	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
+	} while (len && sscanf(line, "#pragma code_page(%u)", &cp) != 1);
 	return cp;
 }
 
@@ -276,8 +276,7 @@ FileTextEncoding GuessCodepageEncoding(const String& filepath, int guessEncoding
 		size_t len = fi.cbImage;
 		if (len == mapmaxlen)
 		{
-			int i;
-			for (i = static_cast<int>(len) - 1; i >= 0; i--)
+			for (size_t i = len; i--; )
 			{
 				if (isspace((unsigned char)src[i]))
 				{

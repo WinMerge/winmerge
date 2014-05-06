@@ -16,8 +16,8 @@
  * @brief Copy constructor.
  */
 PathInfo::PathInfo(const PathInfo &pi)
+: m_sPath(pi.m_sPath)
 {
-	m_sPath = pi.m_sPath;
 }
 
 /**

@@ -457,9 +457,6 @@
     <ClCompile Include="ChildFrm.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Common\ClipBoard.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\CMoveConstraint.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
@@ -590,9 +587,6 @@
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WaitStatusCursor.cpp">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomColors.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\LanguageSelect.cpp">
@@ -736,13 +730,18 @@
     <ClCompile Include="CustomStatusCursor.cpp">
       <Filter>MFCGui\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\ClipBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DirActions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DirViewColItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
+    <ClCompile Include="OptionsCustomColors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
       <Filter>Header Files</Filter>
@@ -1164,9 +1163,6 @@
     <ClInclude Include="ChildFrm.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common\ClipBoard.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ColorButton.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
@@ -1210,9 +1206,6 @@
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeLineFlags.h">
-      <Filter>MFCGui\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomColors.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeApp.h">
@@ -1377,6 +1370,11 @@
     <ClInclude Include="WaitStatusCursor.h">
       <Filter>MFCGui\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common\ClipBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsCustomColors.h">
+      <Filter>Header Files</Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

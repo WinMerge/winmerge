@@ -43,6 +43,7 @@ IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
  */
 CGhostTextView::CGhostTextView()
 : m_pGhostTextBuffer(NULL)
+, m_nTopSubLinePushed(0)
 {
 }
 

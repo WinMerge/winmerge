@@ -240,14 +240,14 @@ void DirCmpReport::WriteString(const String& sText)
 	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
 	{
 		size_t cchLine = pchAhead - pchOctets;
-		m_pFile->Write(pchOctets, cchLine);
+		m_pFile->Write(pchOctets, static_cast<unsigned>(cchLine));
 		static const char eol[] = { '\r', '\n' };
 		m_pFile->Write(eol, sizeof eol);
 		++cchLine;
 		pchOctets += cchLine;
 		cchAhead -= cchLine;
 	}
-	m_pFile->Write(pchOctets, cchAhead);
+	m_pFile->Write(pchOctets, static_cast<unsigned>(cchAhead));
 
 }
 

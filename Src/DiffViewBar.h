@@ -36,7 +36,6 @@ public:
 	void setSplitter (CSplitterWndEx * pwndDetailSplitter)
 		{	m_pwndDetailSplitter = pwndDetailSplitter; }
 
-	int  GetPanelHeight();
 	void UpdateBarHeight(int DiffPanelHeight);
 	void SetFrameHwnd(HWND hwndFrame);
 	void UpdateResources();

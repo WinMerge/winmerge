@@ -10,7 +10,7 @@
 #include "PropSyntaxColors.h"
 #include "SyntaxColors.h"
 #include "OptionsSyntaxColors.h"
-#include "CustomColors.h"
+#include "OptionsCustomColors.h"
 #include "Merge.h"
 #include "OptionsPanel.h"
 
@@ -56,6 +56,8 @@ PropSyntaxColors::PropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColor
 	m_nPreProcessorBold = GetCheckVal(COLORINDEX_PREPROCESSOR);
 	m_nUser1Bold = GetCheckVal(COLORINDEX_USER1);
 	m_nUser2Bold = GetCheckVal(COLORINDEX_USER2);
+
+	memset(m_cCustColors, 0, sizeof(m_cCustColors));
 }
 
 void PropSyntaxColors::DoDataExchange(CDataExchange* pDX)
@@ -150,7 +152,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-	CustomColors::Load(m_cCustColors);
+	Options::CustomColors::Load(m_cCustColors);
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
@@ -159,7 +161,7 @@ void PropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 		colorButton.SetColor(currentColor);
 		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
-	CustomColors::Save(m_cCustColors);
+	Options::CustomColors::Save(m_cCustColors);
 }
 
 void PropSyntaxColors::OnBnClickedEcolorKeywords()

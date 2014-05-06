@@ -17,6 +17,9 @@ static void CollapseWhitespace(String &line);
  */
 UniMarkdownFile::UniMarkdownFile()
 : m_pMarkdown(NULL)
+, m_depth(0)
+, m_bMove(false)
+, m_transparent(NULL)
 {
 }
 

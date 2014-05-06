@@ -147,7 +147,7 @@ NCHITTEST_RESULT CSizingControlBarG::OnNcHitTest(CPoint point)
     CRect rcBar;
     GetWindowRect(rcBar);
 
-    UINT nRet = baseCSizingControlBarG::OnNcHitTest(point);
+    LRESULT nRet = baseCSizingControlBarG::OnNcHitTest(point);
     if (nRet != HTCLIENT)
         return nRet;
 
