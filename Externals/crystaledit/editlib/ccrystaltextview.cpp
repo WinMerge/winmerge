@@ -2633,18 +2633,13 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
           nYPos++;
         }
 
+      int nOffset;
       if (szLine[nIndex] == _T('\t'))
-        {
-          const int nOffset = nTabSize - nCurPos % nTabSize;
-          nXPos += nOffset;
-          nCurPos += nOffset;
-        }
+        nOffset = nTabSize - nCurPos % nTabSize;
       else
-        {
-          int delta = GetCharWidthFromDisplayableChar(lpspc, szLine[nIndex]) / GetCharWidth();
-          nXPos += delta;
-          nCurPos += delta;
-        }
+        nOffset = GetCharWidthFromDisplayableChar(lpspc, szLine[nIndex]) / GetCharWidth();
+      nXPos += nOffset;
+      nCurPos += nOffset;
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
         {
@@ -3863,17 +3858,13 @@ ClientToText (const CPoint & point)
           i++;
         }
 
+      int nOffset;
       if (pszLine[nIndex] == '\t')
-        {
-          const int nOffset = nTabSize - nCurPos % nTabSize;
-          n += nOffset;
-          nCurPos += nOffset;
-        }
+        nOffset = nTabSize - nCurPos % nTabSize;
       else
-        {
-          n += GetCharWidthFromDisplayableChar(lpspc, pszLine[nIndex]) / GetCharWidth();
-          nCurPos ++;
-        }
+        nOffset = GetCharWidthFromDisplayableChar(lpspc, pszLine[nIndex]) / GetCharWidth();
+      n += nOffset;
+      nCurPos += nOffset;
 
       if (n > nPos && i == nSubLineOffset)
         {
