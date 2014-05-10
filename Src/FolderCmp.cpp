@@ -118,7 +118,7 @@ int FolderCmp::prepAndCompareFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 			//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 			// Invoke unpacking plugins
-			if (infoUnpacker && string_compare_nocase(filepathUnpacked[nIndex], _T("\\\\.\\NUL")) != 0)
+			if (infoUnpacker && string_compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
 				if (!Unpack(filepathUnpacked[nIndex], filteredFilenames, infoUnpacker))
 					goto exitPrepAndCompare;
