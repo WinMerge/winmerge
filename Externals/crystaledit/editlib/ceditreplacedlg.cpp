@@ -381,22 +381,7 @@ OnEditReplace ()
           m_ptBlockEnd.x += m_pBuddy->m_nLastReplaceLen;
         }
     }
-  if (!m_pBuddy->m_nLastFindWhatLen)
-    if (m_ptFoundAt.y + 1 < m_pBuddy->GetLineCount ())
-      {
-        m_ptFoundAt.x = 0;
-        m_ptFoundAt.y++;
-      }
-    else
-      {
-        m_bFound = false;
-        return;
-      }
-  else
-    {
-      m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
-      m_ptFoundAt = m_pBuddy->GetCursorPos ();
-    }
+  m_ptFoundAt = m_pBuddy->GetCursorPos ();
   m_bFound = DoHighlightText ( true );
 }
 
@@ -459,30 +444,13 @@ OnEditReplaceAll ()
         }
 
       // calculate the end of the current replacement
-      CPoint m_ptCurrentReplacedEnd;
-      m_ptCurrentReplacedEnd.y = m_ptFoundAt.y;
-      m_ptCurrentReplacedEnd.x = m_ptFoundAt.x + m_pBuddy->m_nLastReplaceLen;
+      CPoint m_ptCurrentReplacedEnd = m_pBuddy->GetCursorPos ();
 
       // m_ptFoundAt.x has two meanings:
       // (1) One is the position of the word that was found.
       // (2) The other is next position to search.
       // The code below calculates the latter.
-      if (!m_pBuddy->m_nLastFindWhatLen)
-        if (m_ptFoundAt.y + 1 < m_pBuddy->GetLineCount ())
-          {
-            m_ptFoundAt.x = 0;
-            m_ptFoundAt.y++;
-          }
-        else
-          {
-            m_bFound = false;
-            break;
-          }
-      else
-        {
-          m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
-          m_ptFoundAt = m_pBuddy->GetCursorPos ();
-        }
+      m_ptFoundAt = m_pBuddy->GetCursorPos ();
       nNumReplaced++;
 
       // find the next instance
