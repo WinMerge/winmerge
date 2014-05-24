@@ -444,13 +444,19 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *&pBuf)
 		pBuf[j].m_nCharPos = begin[m_nThisPane];
 		if (lineInCurrentDiff)
 		{
-			pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+			if (m_cachedColors.clrSelDiffText != CLR_NONE)
+				pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+			else
+				pBuf[j].m_nColorIndex = COLORINDEX_NONE;
 			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE | 
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND4 : COLORINDEX_HIGHLIGHTBKGND1);
 		}
 		else
 		{
-			pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
+			if (m_cachedColors.clrDiffText != CLR_NONE)
+				pBuf[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
+			else
+				pBuf[j].m_nColorIndex = COLORINDEX_NONE;
 			pBuf[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE |
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND3 : COLORINDEX_HIGHLIGHTBKGND2);
 		}
