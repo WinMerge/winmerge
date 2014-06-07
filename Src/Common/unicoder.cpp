@@ -1168,6 +1168,8 @@ bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
 			return true;
 		pVal2++;
 	}
+	if (size <= 3)
+		return false;
 	pVal2 = (unsigned char *)pBuffer;
 	bool bUTF8 = false;
 	if (size < 3)
