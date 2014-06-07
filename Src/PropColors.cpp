@@ -100,9 +100,11 @@ BEGIN_MESSAGE_MAP(PropMergeColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_SNP_TEXT_COLOR, OnSelSNPTextColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_COLOR, OnWordDiffColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_DELETED_COLOR, OnWordDiffDeletedColor)
+	ON_BN_CLICKED(IDC_WORDDIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_WORDDIFF_USE_TEXT_COLOR, IDC_WORDDIFF_TEXT_COLOR>))
 	ON_BN_CLICKED(IDC_WORDDIFF_TEXT_COLOR, OnWordDiffTextColor)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFF_COLOR, OnSelWordDiffColor)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFF_DELETED_COLOR, OnSelWordDiffDeletedColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_SEL_WORDDIFF_USE_TEXT_COLOR, IDC_SEL_WORDDIFF_TEXT_COLOR>))
 	ON_BN_CLICKED(IDC_SEL_WORDDIFF_TEXT_COLOR, OnSelWordDiffTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -164,6 +166,8 @@ void PropMergeColors::UpdateTextColorButtonsState()
 	UpdateTextColorButtonState(IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR, m_cSelMovedText);
 	UpdateTextColorButtonState(IDC_SNP_USE_TEXT_COLOR, m_cSNPText);
 	UpdateTextColorButtonState(IDC_SEL_SNP_USE_TEXT_COLOR, m_cSelSNPText);
+	UpdateTextColorButtonState(IDC_WORDDIFF_USE_TEXT_COLOR, m_cWordDiffText);
+	UpdateTextColorButtonState(IDC_SEL_WORDDIFF_USE_TEXT_COLOR, m_cSelWordDiffText);
 }
 
 /** 
@@ -449,10 +453,10 @@ void PropMergeColors::SetColorScheme(int scheme)
 		{&m_cSelSNPText,         COLOR_NONE},
 		{&m_cWordDiff,           RGB(170,255,170)},
 		{&m_cWordDiffDeleted,    RGB(160,230,160)},
-		{&m_cWordDiffText,       RGB(0,0,0)},
+		{&m_cWordDiffText,       COLOR_NONE},
 		{&m_cSelWordDiff,        RGB(255,170,170)},
 		{&m_cSelWordDiffDeleted, RGB(230,150,140)},
-		{&m_cSelWordDiffText,    RGB(0,0,0)},
+		{&m_cSelWordDiffText,    COLOR_NONE},
 	};
 
 	if (scheme == COLORSCHEME_GITHUBBITBUCKET)
