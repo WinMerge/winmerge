@@ -80,19 +80,19 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 		Codes = Codes & vbCrLf
 	Next
 
-	doc.SaveAs fileDst, 2
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set fo = fso.OpenTextFile(fileDst, 2, 2)
+	fo.Write doc.Content.Text
+	fo.Write vbCrLf
+	fo.Write Codes
+	fo.Close
+	Set fo = Nothing
+	Set fso = Nothing
 
 	doc.Close
 	Set doc = Nothing
 	wd.Quit
 	Set wd = Nothing
-
-	Set fso = CreateObject("Scripting.FileSystemObject")
-	Set fo = fso.OpenTextFile(fileDst, 8, 2)
-	fo.Write Codes
-	fo.Close
-	Set fo = Nothing
-	Set fso = Nothing
 
 	pbChanged = True
 	pSubcode = 0

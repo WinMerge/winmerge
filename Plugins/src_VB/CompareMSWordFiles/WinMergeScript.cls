@@ -183,31 +183,31 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
 
     Dim oTextToSave As String
     
-    On Error Resume Next
-    
-    oTextToSave = oTextToSave & "Document Properties" & vbCrLf
-    oTextToSave = oTextToSave & GetMacrosHead(objDoc)
-    
-    On Error GoTo 0
-    
+'    On Error Resume Next
+'
+'    oTextToSave = oTextToSave & "Document Properties" & vbCrLf
+'    oTextToSave = oTextToSave & GetMacrosHead(objDoc)
+'
+'    On Error GoTo 0
+'
     Dim itemValue As String
     Dim hFile As Long
-    
-    ' Get the document properties
-    On Error Resume Next
-    Dim p As Object
-    For Each p In objDoc.BuiltinDocumentProperties
-        oTextToSave = oTextToSave & p.Name
-        oTextToSave = oTextToSave & " = "
-        itemValue = GetDocProperty(objDoc, p.Name)
-        If itemValue <> "" Then
-            oTextToSave = oTextToSave & itemValue
-        End If
-        oTextToSave = oTextToSave & vbCrLf
-    Next
-    On Error GoTo CleanUp
-    
-    oTextToSave = oTextToSave & vbCrLf
+'
+'    ' Get the document properties
+'    On Error Resume Next
+'    Dim p As Object
+'    For Each p In objDoc.BuiltinDocumentProperties
+'        oTextToSave = oTextToSave & p.Name
+'        oTextToSave = oTextToSave & " = "
+'        itemValue = GetDocProperty(objDoc, p.Name)
+'        If itemValue <> "" Then
+'            oTextToSave = oTextToSave & itemValue
+'        End If
+'        oTextToSave = oTextToSave & vbCrLf
+'    Next
+'    On Error GoTo CleanUp
+'
+'    oTextToSave = oTextToSave & vbCrLf
     
     ' Get the Macros
     oTextToSave = oTextToSave & GetMacros(objDoc)
