@@ -541,7 +541,7 @@ void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &a
 		UIntPtr curdiffpos = diffpos;
 		const DIFFITEM &di = ctxt.GetNextSiblingDiffPosition(diffpos);
 
-		if (!di.diffcode.isResultSame())
+		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll(pDoc->m_nDirs) && !di.diffcode.isResultFiltered()))
 			++alldiffs;
 
 		bool bShowable = pDoc->IsShowable(di);
