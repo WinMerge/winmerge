@@ -1188,16 +1188,14 @@ bool CDirView::IsItemOpenable(const DIFFITEM & di) const
 {
 	if (m_bTreeMode && GetDocument()->GetRecursive())
 	{
-		if (di.diffcode.isDirectory() ||
-			(!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond())) /* FIXME: 3-pane */
+		if (di.diffcode.isDirectory() || !di.diffcode.existAll(GetDocument()->m_nDirs))
 		{
 			return false;
 		}
 	}
 	else 
 	{
-		if (!di.diffcode.isDirectory() &&
-			(!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond())) /* FIXME: 3-pane */
+		if (!di.diffcode.isDirectory() && !di.diffcode.existAll(GetDocument()->m_nDirs))
 		{
 			return false;
 		}

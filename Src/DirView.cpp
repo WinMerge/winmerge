@@ -560,7 +560,7 @@ void CDirView::RedisplayChildren(UIntPtr diffpos, int level, UINT &index, int &a
 			}
 			else
 			{
-				if (!pDoc->GetRecursive() || !di.diffcode.isDirectory() || (!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond() || (pDoc->m_nDirs == 3 && !di.diffcode.isExistsThird())))
+				if (!pDoc->GetRecursive() || !di.diffcode.isDirectory() || !di.diffcode.existAll(pDoc->m_nDirs))
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
@@ -4382,13 +4382,7 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 		if (lpC->nmcd.dwDrawStage == (CDDS_ITEMPREPAINT | CDDS_SUBITEM ))
 		{
-			COLORREF clrBk;
-			COLORREF clrTxt;
-
-			GetColors (lpC->nmcd.dwItemSpec, lpC->iSubItem, clrBk, clrTxt);
-
-			lpC->clrText = clrTxt;
-			lpC->clrTextBk = clrBk;
+			GetColors (lpC->nmcd.dwItemSpec, lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
 		}
 	}
 }
@@ -4417,7 +4411,7 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 		clrText = m_cachedColors.clrTrivialText;
 		clrBk = m_cachedColors.clrTrivial;
 	}
-	else if (!di.diffcode.isExists(0) || !di.diffcode.isExists(1) || (GetDocument()->m_nDirs > 2 && !di.diffcode.isExists(2)))
+	else if (!di.diffcode.isExists(0) || !di.diffcode.existAll(GetDocument()->m_nDirs))
 	{
 		clrText = m_cachedColors.clrDiffText;
 		clrBk = m_cachedColors.clrDiffDeleted;
