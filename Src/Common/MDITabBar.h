@@ -22,9 +22,12 @@ private:
 
 	BOOL m_bInSelchange;
 	CMDIFrameWnd *m_pMainFrame;
+	bool m_bMouseTracking;
+	bool m_bCloseButtonDown;
+	CRect m_rcCurrentCloseButtom;
 
 public:
-	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL) {}
+	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
@@ -48,6 +51,8 @@ public:
 	{ ASSERT(::IsWindow(m_hWnd)); return (int)::SendMessage(m_hWnd, TCM_SETCURSEL, nItem, 0L); }
 	int HitTest(TCHITTESTINFO* pHitTestInfo) const
 	{ ASSERT(::IsWindow(m_hWnd)); return (int)::SendMessage(m_hWnd, TCM_HITTEST, 0, (LPARAM) pHitTestInfo); }
+	BOOL GetItemRect(int nItem, LPRECT lpRect) const
+	{ ASSERT(::IsWindow(m_hWnd)); return (BOOL)::SendMessage(m_hWnd, TCM_GETITEMRECT, (WPARAM)nItem, (LPARAM)lpRect); }
 
 protected:
 	//{{AFX_MSG(CMDITabBar)
@@ -56,8 +61,16 @@ protected:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	afx_msg void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	CRect GetCloseButtonRect(int nItem);
+	int GetItemIndexFromPoint(CPoint pt);
 };
 
 #endif // MDITABBAR_H

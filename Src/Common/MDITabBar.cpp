@@ -15,6 +15,13 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifndef ON_WM_MOUSELEAVE
+#define ON_WM_MOUSELEAVE() \
+	{ WM_MOUSELEAVE, 0, 0, 0, AfxSig_vv, \
+		(AFX_PMSG)(AFX_PMSGW) \
+		(static_cast< void (AFX_MSG_CALL CWnd::*)(void) > (OnMouseLeave)) },
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CMDITabBar
 
@@ -27,6 +34,10 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_PAINT()
 	ON_NOTIFY_REFLECT_EX(TCN_SELCHANGE, OnSelchange)
 	ON_WM_DRAWITEM_REFLECT()
+	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSELEAVE()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -90,10 +101,9 @@ BOOL CMDITabBar::OnSelchange(NMHDR* pNMHDR, LRESULT* pResult)
  */
 void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 {
-	TCHITTESTINFO hit;
-	hit.pt = point;
-	ScreenToClient(&hit.pt);
-	int index = HitTest(&hit);
+	CPoint ptClient = point;
+	ScreenToClient(&ptClient);
+	int index = GetItemIndexFromPoint(ptClient);
 	if (index < 0) return;
 
 	TCITEM tci;
@@ -240,9 +250,7 @@ void CMDITabBar::UpdateTabs()
  */
 void CMDITabBar::OnMButtonDown(UINT nFlags, CPoint point)
 {
-	TCHITTESTINFO hit;
-	hit.pt = point;
-	int index = HitTest(&hit);
+	int index = GetItemIndexFromPoint(point);
 	if (index < 0)
 		return;
 
@@ -255,34 +263,113 @@ void CMDITabBar::OnMButtonDown(UINT nFlags, CPoint point)
 
 void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-		TCHAR            szBuf[256];
-		TCITEM           item;
-		LPDRAWITEMSTRUCT lpDraw = (LPDRAWITEMSTRUCT)lpDrawItemStruct;
+	TCHAR            szBuf[256];
+	TCITEM           item;
+	LPDRAWITEMSTRUCT lpDraw = (LPDRAWITEMSTRUCT)lpDrawItemStruct;
 
-		item.mask       = TCIF_TEXT | TCIF_PARAM;
-		item.pszText    = szBuf;
-		item.cchTextMax = sizeof(szBuf) / sizeof(TCHAR);
-		TabCtrl_GetItem(this->m_hWnd, lpDraw->itemID, &item);
+	item.mask       = TCIF_TEXT | TCIF_PARAM;
+	item.pszText    = szBuf;
+	item.cchTextMax = sizeof(szBuf) / sizeof(TCHAR);
+	TabCtrl_GetItem(this->m_hWnd, lpDraw->itemID, &item);
 
-		RECT rc = lpDraw->rcItem;
-		if (lpDraw->itemState & ODS_SELECTED)
-		{
-			rc.left += 9;
-			rc.top += 2;
-			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetStockObject(WHITE_BRUSH));
-		}
-		else
-		{
-			rc.left += 5;
-			rc.top += 3;
-		}
-		rc.left += 16;
-		SetTextColor(lpDraw->hDC, RGB(0, 0, 0));
-		SetBkMode(lpDraw->hDC, TRANSPARENT);
-		HICON hIcon = CWnd::FromHandle((HWND)item.lParam)->GetIcon(TRUE);
-		if (!hIcon)
-			hIcon = (HICON)GetClassLongPtr((HWND)item.lParam, GCLP_HICONSM);
-		if (hIcon)
-			DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, 5, hIcon, 16, 16, 0, NULL, DI_NORMAL);
-		DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+	RECT rc = lpDraw->rcItem;
+	if (lpDraw->itemState & ODS_SELECTED)
+	{
+		rc.left += 9;
+		rc.top += 2;
+		FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetStockObject(WHITE_BRUSH));
+	}
+	else
+	{
+		rc.left += 5;
+		rc.top += 3;
+	}
+	rc.left += 16;
+	SetTextColor(lpDraw->hDC, RGB(0, 0, 0));
+	SetBkMode(lpDraw->hDC, TRANSPARENT);
+	HICON hIcon = CWnd::FromHandle((HWND)item.lParam)->GetIcon(TRUE);
+	if (!hIcon)
+		hIcon = (HICON)GetClassLongPtr((HWND)item.lParam, GCLP_HICONSM);
+	if (hIcon)
+		DrawIconEx(lpDraw->hDC, rc.left - 16 - 2, 5, hIcon, 16, 16, 0, NULL, DI_NORMAL);
+	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+
+	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
+	if (nItem == lpDraw->itemID)
+	{
+		CPoint pt;
+		GetCursorPos(&pt);
+		ScreenToClient(&pt);
+		CRect rc = GetCloseButtonRect(nItem);
+		DrawFrameControl(lpDraw->hDC, &rc, DFC_CAPTION, 
+			DFCS_CAPTIONCLOSE | DFCS_FLAT | (rc.PtInRect(pt) ? DFCS_HOT : 0) |
+			((m_bCloseButtonDown && rc.PtInRect(pt)) ? DFCS_PUSHED : 0));
+	}
+}
+
+void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
+{
+	CRect rc = GetCloseButtonRect(GetItemIndexFromPoint(point));
+	InvalidateRect(&rc);
+	if (rc != m_rcCurrentCloseButtom)
+		InvalidateRect(&m_rcCurrentCloseButtom);
+	m_rcCurrentCloseButtom = rc;
+	if (!m_bMouseTracking)
+	{
+		TRACKMOUSEEVENT tme = {0};
+		tme.cbSize = sizeof(TRACKMOUSEEVENT);
+		tme.dwFlags = TME_LEAVE;
+		tme.hwndTrack = m_hWnd;
+		TrackMouseEvent(&tme);
+		m_bMouseTracking = true;
+	}
+}
+
+void CMDITabBar::OnMouseLeave()
+{
+	TRACKMOUSEEVENT tme = {0};
+	tme.cbSize = sizeof(TRACKMOUSEEVENT);
+	tme.dwFlags = TME_LEAVE | TME_CANCEL;
+	tme.hwndTrack = m_hWnd;
+	TrackMouseEvent(&tme);
+	m_bMouseTracking = false;
+	InvalidateRect(&m_rcCurrentCloseButtom);
+	m_rcCurrentCloseButtom = CRect();
+	m_bCloseButtonDown = false;
+}
+
+void CMDITabBar::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	m_bCloseButtonDown = !!m_rcCurrentCloseButtom.PtInRect(point);
+	InvalidateRect(m_rcCurrentCloseButtom);
+	if (!m_bCloseButtonDown)
+		CWnd::OnLButtonDown(nFlags, point);
+}
+
+void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	if (m_bCloseButtonDown && m_rcCurrentCloseButtom.PtInRect(point))
+		OnMButtonDown(nFlags, point);
+	InvalidateRect(m_rcCurrentCloseButtom);
+	m_bCloseButtonDown = false;
+	CWnd::OnLButtonUp(nFlags, point);
+}
+
+CRect CMDITabBar::GetCloseButtonRect(int nItem)
+{
+	CRect rc;
+	GetItemRect(nItem, &rc);
+	rc.left = rc.right - 20;
+	rc.right = rc.left + 16;
+	int y = (rc.top + rc.bottom) / 2;
+	rc.top = y - 16 / 2 + 1;
+	rc.bottom = rc.top + 16;
+	return rc;
+}
+
+int CMDITabBar::GetItemIndexFromPoint(CPoint point)
+{
+	TCHITTESTINFO hit;
+	hit.pt = point;
+	return HitTest(&hit);
 }

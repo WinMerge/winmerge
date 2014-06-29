@@ -85,7 +85,7 @@ static void UpdateDiffItem(int nBuffers, DIFFITEM &di, CDiffContext *pCtxt)
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS);
 	// 2. Process unique files
 	// We must compare unique files to itself to detect encoding
-	if (!di.diffcode.isExistsFirst() || !di.diffcode.isExistsSecond() || (nBuffers == 3 && di.diffcode.isExistsThird()))
+	if (!di.diffcode.existAll(nBuffers))
 	{
 		int compareMethod = pCtxt->GetCompareMethod();
 		if (compareMethod != CMP_DATE && compareMethod != CMP_DATE_SIZE &&
