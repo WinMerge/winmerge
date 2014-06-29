@@ -741,7 +741,8 @@
     </ClCompile>
     <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>  </ItemGroup>
+    </ClCompile>
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
       <Filter>Header Files</Filter>
@@ -1375,6 +1376,7 @@
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

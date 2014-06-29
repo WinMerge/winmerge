@@ -138,6 +138,13 @@ public:
 		default: return 0;
 		}
 	}
+	bool existAll(int nDirs) const
+	{
+		if (nDirs == 2)
+			return (isExistsFirst() && isExistsSecond());
+		else
+			return (isExistsFirst() && isExistsSecond() && isExistsThird());
+	}
 
 	// compare result
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
