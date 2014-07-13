@@ -354,6 +354,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
+	POPUP "Recompare As"
+	BEGIN
+            MENUITEM "&XML",                    ID_MERGE_COMPARE_XML
+            MENUITEM "&Binary",                 ID_MERGE_COMPARE_HEX
+	END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN

@@ -361,6 +361,8 @@ protected:
 	afx_msg void OnBnClickedPlugin();
 	afx_msg void OnBnClickedHexView();
 	afx_msg void OnOK();
+	afx_msg void OnFileRecompareAsXML();
+	afx_msg void OnFileRecompareAsBinary();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
