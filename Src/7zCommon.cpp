@@ -1121,3 +1121,123 @@ void CDirView::DirItemEnumerator::CollectFiles(String &strBuffer)
 	}
 	ASSERT(pchBuffer - &strBuffer[0] == cchBuffer);
 }
+
+DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
+{
+	DecompressResult res(files, NULL, IS_EXISTING_DIR);
+	try
+	{
+		String path;
+		USES_CONVERSION;
+		// Handle archives using 7-zip
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[0].c_str()))
+		{
+			res.pTempPathContext = new CTempPathContext;
+			path = env_GetTempChildPath();
+			for (int index = 0; index < res.files.GetSize(); index++)
+				res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
+			if (res.files[0] == res.files[1])
+			{
+				res.files[1].erase();
+				if (res.files.GetSize() > 2)
+				{
+					res.files[2].erase();
+				}
+			}
+			do
+			{
+				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str())))
+					break;
+				if (res.files[0].find(path) == 0)
+				{
+					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[0].c_str())), false));
+				}
+				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[0].c_str());
+				res.files[0] = OLE2T(pTmp);
+				SysFreeString(pTmp);
+				res.files[0].insert(0, _T("\\"));
+				res.files[0].insert(0, path);
+			} while (piHandler = ArchiveGuessFormat(res.files[0].c_str()));
+			res.files[0] = path;
+		}
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[1].c_str()))
+		{
+			if (!res.pTempPathContext)
+			{
+				res.pTempPathContext = new CTempPathContext;
+				for (int index = 0; index < res.files.GetSize(); index++)
+					res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
+			}
+			path = env_GetTempChildPath();
+			do
+			{
+				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str())))
+					break;;
+				if (res.files[1].find(path) == 0)
+				{
+					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[1].c_str())), false));
+				}
+				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
+				res.files[1] = OLE2T(pTmp);
+				SysFreeString(pTmp);
+				res.files[1].insert(0, _T("\\"));
+				res.files[1].insert(0, path);
+			} while (piHandler = ArchiveGuessFormat(res.files[1].c_str()));
+			res.files[1] = path;
+		}
+		if (res.files.GetSize() > 2)
+		{
+			if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[2].c_str()))
+			{
+				if (!res.pTempPathContext)
+				{
+					res.pTempPathContext = new CTempPathContext;
+					for (int index = 0; index < res.files.GetSize(); index++)
+						res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
+				}
+				path = env_GetTempChildPath();
+				do
+				{
+					if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))
+						break;;
+					if (res.files[2].find(path) == 0)
+					{
+						VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[2].c_str())), false));
+					}
+					BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
+					res.files[2] = OLE2T(pTmp);
+					SysFreeString(pTmp);
+					res.files[2].insert(0, _T("\\"));
+					res.files[2].insert(0, path);
+				} while (piHandler = ArchiveGuessFormat(res.files[2].c_str()));
+				res.files[2] = path;
+			}
+		}
+		if (res.files[1].empty())
+		{
+			// assume Perry style patch
+			res.files[1] = path;
+			res.files[0] += _T("\\ORIGINAL");
+			res.files[1] += _T("\\ALTERED");
+			if (!PathFileExists(res.files[0].c_str()) || !PathFileExists(res.files[1].c_str()))
+			{
+				// not a Perry style patch: diff with itself...
+				res.files[0] = res.files[1] = path;
+				if (res.files.GetSize() > 2)
+					res.files[2] = path;
+			}
+			else
+			{
+				res.pTempPathContext->m_strDisplayRoot[0] += _T("\\ORIGINAL");
+				res.pTempPathContext->m_strDisplayRoot[1] += _T("\\ALTERED");
+			}
+		}
+	}
+	catch (CException *e)
+	{
+		e->ReportError(MB_ICONSTOP);
+		e->Delete();
+	}
+	return res;
+}
+
