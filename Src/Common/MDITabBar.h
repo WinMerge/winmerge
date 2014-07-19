@@ -25,12 +25,15 @@ private:
 	bool m_bMouseTracking;
 	bool m_bCloseButtonDown;
 	CRect m_rcCurrentCloseButtom;
+	bool  m_bAutoMaxWidth;
 
 public:
-	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false) {}
+	CMDITabBar() : m_bInSelchange(FALSE), m_pMainFrame(NULL), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
+	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
+	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_bAutoMaxWidth = bAutoMaxWidth; }
 
 	virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler) {}
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);

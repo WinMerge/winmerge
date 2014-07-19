@@ -1169,6 +1169,8 @@
 #define ID_NO_MRU                       33208
 #define ID_MRU_FIRST                    33209
 #define ID_MRU_LAST                     33217
+#define ID_TABBAR_AUTO_MAXWIDTH         33218
+#define IDS_TABBAR_AUTO_MAXWIDTH        33219
 
 // Next default values for new objects
 //
@@ -1176,7 +1178,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        239
-#define _APS_NEXT_COMMAND_VALUE         33218
+#define _APS_NEXT_COMMAND_VALUE         33220
 #define _APS_NEXT_CONTROL_VALUE         1357
 #define _APS_NEXT_SYMED_VALUE           114
 #endif
