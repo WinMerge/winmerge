@@ -1013,120 +1013,11 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 	}
 
-	CTempPathContext *pTempPathContext = NULL;
-	try
+	DecompressResult res = DecompressArchive(m_hWnd, files);
+	if (res.pTempPathContext)
 	{
-		String path;
-		USES_CONVERSION;
-		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0].c_str()))
-		{
-			pTempPathContext = new CTempPathContext;
-			path = env_GetTempChildPath();
-			for (int index = 0; index < files.GetSize(); index++)
-				pTempPathContext->m_strDisplayRoot[index] = files[index];
-			pathsType = IS_EXISTING_DIR;
-			if (files[0] == files[1])
-			{
-				files[1].erase();
-				if (files.GetSize() > 2)
-				{
-					files[2].erase();
-				}
-			}
-			do
-			{
-				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[0].c_str(), path.c_str())))
-					break;
-				if (files[0].find(path) == 0)
-				{
-					VERIFY(::DeleteFile(files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[0].c_str())), false));
-				}
-				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[0].c_str());
-				files[0] = OLE2T(pTmp);
-				SysFreeString(pTmp);
-				files[0].insert(0, _T("\\"));
-				files[0].insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(files[0].c_str()));
-			files[0] = path;
-		}
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[1].c_str()))
-		{
-			if (!pTempPathContext)
-			{
-				pTempPathContext = new CTempPathContext;
-				for (int index = 0; index < files.GetSize(); index++)
-					pTempPathContext->m_strDisplayRoot[index] = files[index];
-			}
-			path = env_GetTempChildPath();
-			do
-			{
-				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path.c_str())))
-					break;;
-				if (files[1].find(path) == 0)
-				{
-					VERIFY(::DeleteFile(files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[1].c_str())), false));
-				}
-				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-				files[1] = OLE2T(pTmp);
-				SysFreeString(pTmp);
-				files[1].insert(0, _T("\\"));
-				files[1].insert(0, path);
-			} while (piHandler = ArchiveGuessFormat(files[1].c_str()));
-			files[1] = path;
-		}
-		if (files.GetSize() > 2)
-		{
-			if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[2].c_str()))
-			{
-				if (!pTempPathContext)
-				{
-					pTempPathContext = new CTempPathContext;
-					for (int index = 0; index < files.GetSize(); index++)
-						pTempPathContext->m_strDisplayRoot[index] = files[index];
-				}
-				path = env_GetTempChildPath();
-				do
-				{
-					if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path.c_str())))
-						break;;
-					if (files[2].find(path) == 0)
-					{
-						VERIFY(::DeleteFile(files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[2].c_str())), false));
-					}
-					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-					files[2] = OLE2T(pTmp);
-					SysFreeString(pTmp);
-					files[2].insert(0, _T("\\"));
-					files[2].insert(0, path);
-				} while (piHandler = ArchiveGuessFormat(files[2].c_str()));
-				files[2] = path;
-			}
-		}
-		if (files[1].empty())
-		{
-			// assume Perry style patch
-			files[1] = path;
-			files[0] += _T("\\ORIGINAL");
-			files[1] += _T("\\ALTERED");
-			if (!PathFileExists(files[0].c_str()) || !PathFileExists(files[1].c_str()))
-			{
-				// not a Perry style patch: diff with itself...
-				files[0] = files[1] = path;
-				if (files.GetSize() > 2)
-					files[2] = path;
-			}
-			else
-			{
-				pTempPathContext->m_strDisplayRoot[0] += _T("\\ORIGINAL");
-				pTempPathContext->m_strDisplayRoot[1] += _T("\\ALTERED");
-			}
-		}
-	}
-	catch (CException *e)
-	{
-		e->ReportError(MB_ICONSTOP);
-		e->Delete();
+		pathsType = res.pathsType;
+		files = res.files;
 	}
 
 	// Determine if we want new a dirview open now that we know if it was
@@ -1163,7 +1054,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
+			pDirDoc->InitCompare(files, bRecurse, res.pTempPathContext);
 
 			pDirDoc->SetDescriptions(theApp.m_strDescriptions);
 			pDirDoc->SetTitle(NULL);
