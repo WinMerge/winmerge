@@ -247,6 +247,7 @@ public:
 	BYTE *STDMETHODCALLTYPE get_buffer(int);
 	int STDMETHODCALLTYPE get_length();
 	void STDMETHODCALLTYPE set_sibling(IHexEditorWindow *);
+	void STDMETHODCALLTYPE set_sibling2(IHexEditorWindow *, IHexEditorWindow *);
 	Colors *STDMETHODCALLTYPE get_colors();
 	Settings *STDMETHODCALLTYPE get_settings();
 	Status *STDMETHODCALLTYPE get_status();
@@ -330,7 +331,7 @@ protected:
 	TCHAR filename[_MAX_PATH];
 	HWindow *pwnd;
 	HINSTANCE hInstance;
-	IHexEditorWindow *sibling;
+	IHexEditorWindow *sibling, *sibling2, *ary_sibling[2];
 
 	IPhysicalDrive *Drive;
 	PartitionInfo *SelectedPartitionInfo;
