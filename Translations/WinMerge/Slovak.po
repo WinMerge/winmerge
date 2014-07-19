@@ -6476,7 +6476,12 @@ msgstr ""
 msgid "Close &Other Tabs"
 msgstr ""
 
-#: Merge.rc:3070
+#: Merge.rc:3066
+#, c-format
+msgid "Enable &Auto Max Width"
+msgstr ""
+
+#: Merge.rc:3071
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""

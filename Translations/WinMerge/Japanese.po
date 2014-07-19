@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-06-29 11:24+0900\n"
+"PO-Revision-Date: 2014-07-19 16:13+0900\n"
 "Last-Tranuslator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -6735,7 +6735,12 @@ msgstr "右側のタブを全て閉じる(&I)"
 msgid "Close &Other Tabs"
 msgstr "他の全てのタブを閉じる(&O)"
 
-#: Merge.rc:3070
+#: Merge.rc:3066
+#, c-format
+msgid "Enable &Auto Max Width"
+msgstr "タブ幅の自動調整を有効にする(&A)"
+
+#: Merge.rc:3071
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
