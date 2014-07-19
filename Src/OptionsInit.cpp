@@ -159,6 +159,8 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, true);
 
+	m_pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
+
 	Options::DiffOptions::SetDefaults();
 	Options::DiffColors::SetDefaults();
 	Options::Font::SetDefaults();

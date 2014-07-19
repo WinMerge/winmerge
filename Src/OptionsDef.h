@@ -185,6 +185,9 @@ const TCHAR OPT_PLUGINS_ENABLED[] = _T("Settings/PluginsEnabled");
 // Startup options
 const TCHAR OPT_SHOW_SELECT_FILES_AT_STARTUP[] = _T("Settings/ShowFileDialog");
 
+// MDI Tab Bar
+const TCHAR OPT_TABBAR_AUTO_MAXWIDTH[] = _T("Settings/TabBarAutoMaxWidth");
+
 // Font options
 const TCHAR OPT_FONT_FILECMP[] = _T("Font/");
 const TCHAR OPT_FONT_DIRCMP[] = _T("FontDirCompare/");

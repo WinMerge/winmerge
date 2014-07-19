@@ -303,6 +303,7 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
+	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
 	sd_Close();
 }
 
@@ -371,6 +372,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create tab bar\n");
 		return -1;      // fail to create
 	}
+	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
+
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
 
