@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2014-07-14 01:02+0000\n"
+"POT-Creation-Date: 2014-07-19 16:19+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -6020,7 +6020,12 @@ msgstr ""
 msgid "Close &Other Tabs"
 msgstr ""
 
-#: Merge.rc:3070
+#: Merge.rc:3066
+#, c-format
+msgid "Enable &Auto Max Width"
+msgstr ""
+
+#: Merge.rc:3071
 #, c-format
 msgid "frhed(http://frhed.sourceforge.net/) not installed"
 msgstr ""
