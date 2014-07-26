@@ -115,8 +115,6 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 		int i, j;
 		for (i = 0, j = 0; i < count; i++)
 		{
-			if (cpi[i].codepage == CP_UCS2LE)
-				continue;
 			TCHAR desc[256];
 			wsprintf(desc, _T("%05d - %ls"), cpi[i].codepage, cpi[i].desc);
 			combol.AddString(desc);
