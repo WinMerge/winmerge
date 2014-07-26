@@ -81,7 +81,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 #else
 	String sPattern(sDir);
 	size_t len = sPattern.length();
-	if (sPattern[len - 1] != '\\')
+	if (len && sPattern[len - 1] != '\\')
 		sPattern += _T("\\*.*");
 	else
         sPattern += _T("*.*");
