@@ -745,6 +745,9 @@
     <ClCompile Include="OptionsCustomColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Merge7zFormatShellImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1353,13 +1356,16 @@
     <ClInclude Include="Common\DragDrop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="7zCommon.h">
-      <Filter>MFCGui\Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\ClipBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsCustomColors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="7zCommon.h">
+      <Filter>MFCGui\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Merge7zFormatShellImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

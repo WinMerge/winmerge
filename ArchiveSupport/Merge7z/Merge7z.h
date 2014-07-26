@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DllBuild_Merge7z
 #define DllBuild_Merge7z 0	// traditional interfaces only
 #endif
