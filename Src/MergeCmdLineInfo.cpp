@@ -224,15 +224,6 @@ void MergeCmdLineInfo::AddPath(const String &path)
 {
 	String param(path);
 
-	// Convert paths given in Linux-style ('/' as separator) given from
-	// Cygwin to Windows style ('\' as separator)
-	string_replace(param, _T("/"), _T("\\"));
-
-	// If shortcut, expand it first
-	if (paths_IsShortcut(param))
-		param = ExpandShortcut(param);
-	param = paths_GetLongPath(param);
-
 	// Set flag indicating path is from command line
 	const size_t ord = m_Files.GetSize();
 	if (ord == 0)
@@ -240,7 +231,22 @@ void MergeCmdLineInfo::AddPath(const String &path)
 	else if (ord == 1)
 		m_dwRightFlags |= FFILEOPEN_CMDLINE;
 
-	m_Files.SetPath(m_Files.GetSize(), param);
+	if (!paths_IsURLorCLSID(path))
+	{
+		// Convert paths given in Linux-style ('/' as separator) given from
+		// Cygwin to Windows style ('\' as separator)
+		string_replace(param, _T("/"), _T("\\"));
+
+		// If shortcut, expand it first
+		if (paths_IsShortcut(param))
+			param = ExpandShortcut(param);
+		param = paths_GetLongPath(param);
+		m_Files.SetPath(m_Files.GetSize(), param);
+	}
+	else
+	{
+		m_Files.SetPath(m_Files.GetSize(), param, false);
+	}
 }
 
 /**

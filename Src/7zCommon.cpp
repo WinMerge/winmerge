@@ -110,6 +110,7 @@ DATE:		BY:					DESCRIPTION:
 //#include "ExternalArchiveFormat.h"
 #include "version.h"
 #include "Environment.h"
+#include "Merge7zFormatShellImpl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -195,7 +196,22 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 	}*/
 	// Default to Merge7z*.dll
 
-	return m_Merge7z->GuessFormat(path2.c_str());
+	try
+	{
+		Merge7z::Format *pFormat = m_Merge7z->GuessFormat(path2.c_str());
+		if (!pFormat)
+		{
+			if (Merge7zFormatShellImpl::IsShellFolder(path2))
+				return Merge7zFormatShellImpl::GetInstance();
+		}
+		return pFormat;
+	}
+	catch (...)
+	{
+		if (Merge7zFormatShellImpl::IsShellFolder(path2))
+			return Merge7zFormatShellImpl::GetInstance();
+		throw;
+	}
 }
 
 /**
@@ -569,7 +585,7 @@ int C7ZipMismatchException::ReportError(UINT nType, UINT nMessageID)
 		response =
 		(
 			m_dwVer7zInstalled || m_dwVer7zLocal
-		?	theApp.GetProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, -1)
+		?	(INT_PTR)(int)theApp.GetProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, -1)
 		:	IDOK
 		);
 	}
@@ -1130,20 +1146,15 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 		String path;
 		USES_CONVERSION;
 		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[0].c_str()))
+		Merge7z::Format *piHandler;
+		if (piHandler = ArchiveGuessFormat(res.files[0].c_str()))
 		{
 			res.pTempPathContext = new CTempPathContext;
 			path = env_GetTempChildPath();
 			for (int index = 0; index < res.files.GetSize(); index++)
 				res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
-			if (res.files[0] == res.files[1])
-			{
+			if (res.files.GetSize() == 2 && res.files[0] == res.files[1])
 				res.files[1].erase();
-				if (res.files.GetSize() > 2)
-				{
-					res.files[2].erase();
-				}
-			}
 			do
 			{
 				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str())))
@@ -1160,7 +1171,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			} while (piHandler = ArchiveGuessFormat(res.files[0].c_str()));
 			res.files[0] = path;
 		}
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[1].c_str()))
+		if (!res.files[1].empty() && (piHandler = ArchiveGuessFormat(res.files[1].c_str())))
 		{
 			if (!res.pTempPathContext)
 			{
@@ -1185,33 +1196,30 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			} while (piHandler = ArchiveGuessFormat(res.files[1].c_str()));
 			res.files[1] = path;
 		}
-		if (res.files.GetSize() > 2)
+		if (res.files.GetSize() > 2 && (piHandler = ArchiveGuessFormat(res.files[2].c_str())))
 		{
-			if (Merge7z::Format *piHandler = ArchiveGuessFormat(res.files[2].c_str()))
+			if (!res.pTempPathContext)
 			{
-				if (!res.pTempPathContext)
-				{
-					res.pTempPathContext = new CTempPathContext;
-					for (int index = 0; index < res.files.GetSize(); index++)
-						res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
-				}
-				path = env_GetTempChildPath();
-				do
-				{
-					if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))
-						break;;
-					if (res.files[2].find(path) == 0)
-					{
-						VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[2].c_str())), false));
-					}
-					BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
-					res.files[2] = OLE2T(pTmp);
-					SysFreeString(pTmp);
-					res.files[2].insert(0, _T("\\"));
-					res.files[2].insert(0, path);
-				} while (piHandler = ArchiveGuessFormat(res.files[2].c_str()));
-				res.files[2] = path;
+				res.pTempPathContext = new CTempPathContext;
+				for (int index = 0; index < res.files.GetSize(); index++)
+					res.pTempPathContext->m_strDisplayRoot[index] = res.files[index];
 			}
+			path = env_GetTempChildPath();
+			do
+			{
+				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))
+					break;;
+				if (res.files[2].find(path) == 0)
+				{
+					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), res.files[2].c_str())), false));
+				}
+				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
+				res.files[2] = OLE2T(pTmp);
+				SysFreeString(pTmp);
+				res.files[2].insert(0, _T("\\"));
+				res.files[2].insert(0, path);
+			} while (piHandler = ArchiveGuessFormat(res.files[2].c_str()));
+			res.files[2] = path;
 		}
 		if (res.files[1].empty())
 		{
@@ -1223,8 +1231,6 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			{
 				// not a Perry style patch: diff with itself...
 				res.files[0] = res.files[1] = path;
-				if (res.files.GetSize() > 2)
-					res.files[2] = path;
 			}
 			else
 			{
