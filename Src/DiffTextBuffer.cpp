@@ -37,8 +37,7 @@ static char THIS_FILE[] = __FILE__;
 static bool IsTextFileStylePure(const UniMemFile::txtstats & stats);
 static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
 	const COleDateTime & start);
-static void EscapeControlChars(CString &s);
-static LPCTSTR GetEol(const CString &str);
+static void EscapeControlChars(String &s);
 static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
 
 /**
@@ -88,11 +87,11 @@ static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
  * (leadin character, high nibble, low nibble, leadout character).
  * The leadin character is '\x0F'. The leadout character is a backslash.
  */
-static void EscapeControlChars(CString &s)
+static void EscapeControlChars(String &s)
 {
 	// Compute buffer length required for escaping
-	int n = s.GetLength();
-	LPCTSTR q = s;
+	int n = s.length();
+	LPCTSTR q = s.c_str();
 	int i = n;
 	while (i)
 	{
@@ -104,8 +103,10 @@ static void EscapeControlChars(CString &s)
 		}
 	}
 	// Reallocate accordingly
-	i = s.GetLength();
-	LPTSTR p = s.GetBufferSetLength(n);
+	i = s.length();
+	s.reserve(n + 1);
+	s.resize(n + 1);
+	LPTSTR p = &s[0];
 	// Copy/translate characters starting at end of string
 	while (i)
 	{
@@ -123,6 +124,7 @@ static void EscapeControlChars(CString &s)
 		}
 		p[--n] = c;
 	}
+	s.resize(s.length() - 1);
 }
 
 /**
@@ -614,8 +616,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 	file.WriteBom();
 
 	// line loop : get each real line and write it in the file
-	CString sLine;
-	CString sEol = GetStringEol(nCrlfStyle);
+	String sLine;
+	String sEol = GetStringEol(nCrlfStyle);
 	for (size_t line = nStartLine; line < nStartLine + nLines; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
@@ -625,9 +627,9 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		if (GetLineLength(line) > 0)
 		{
 			int nLineLength = GetLineLength(line);
-			void *pszBuf = sLine.GetBuffer(nLineLength);
-			memcpy(pszBuf, GetLineChars(line), nLineLength * sizeof(TCHAR));
-			sLine.ReleaseBuffer(nLineLength);
+			sLine.resize(0);
+			sLine.reserve(nLineLength + 4);
+			sLine.append(GetLineChars(line), nLineLength);
 		}
 		else
 			sLine = _T("");
@@ -641,8 +643,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			// last real line is never EOL terminated
 			ASSERT (_tcslen(GetLineEol(line)) == 0);
 			// write the line and exit loop
-			String tmpLine(sLine);
-			file.WriteString(tmpLine);
+			file.WriteString(sLine);
 			break;
 		}
 
@@ -658,9 +659,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			sLine += sEol;
 		}
 
-		// write this line to the file (codeset or unicode conversions are done there)
-		String tmpLine(sLine);
-		file.WriteString(tmpLine);
+		// write this line to the file (codeset or unicode conversions are done there
+		file.WriteString(sLine);
 	}
 	file.Close();
 
