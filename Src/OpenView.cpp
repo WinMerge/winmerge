@@ -375,7 +375,7 @@ void COpenView::OnButton(int index)
 	String sfolder;
 	UpdateData(TRUE); 
 
-	PATH_EXISTENCE existence = paths_DoesPathExist((const TCHAR *)m_strPath[index]);
+	PATH_EXISTENCE existence = paths_DoesPathExist((const TCHAR *)m_strPath[index], IsArchiveFile);
 	switch (existence)
 	{
 	case IS_EXISTING_DIR:
@@ -481,11 +481,14 @@ void COpenView::OnOK()
 		if (m_strBrowsePath[index].CompareNoCase(m_files[index].c_str()) != 0)
 			bExpand = true;
 
-		m_files[index] = paths_GetLongPath(m_files[index], bExpand);
+		if (!paths_IsURLorCLSID(m_files[index]))
+		{
+			m_files[index] = paths_GetLongPath(m_files[index], bExpand);
 	
-		// Add trailing '\' for directories if its missing
-		if (paths_DoesPathExist(m_files[index]) == IS_EXISTING_DIR)
-			m_files[index] = paths_AddTrailingSlash(m_files[index]);
+			// Add trailing '\' for directories if its missing
+			if (paths_DoesPathExist(m_files[index]) == IS_EXISTING_DIR)
+				m_files[index] = paths_AddTrailingSlash(m_files[index]);
+		}
 	}
 
 	UpdateData(FALSE);
@@ -596,6 +599,9 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 {
 	MSG msg;
 	BOOL bRet;
+
+	CoInitialize(NULL);
+
 	while( (bRet = GetMessage( &msg, NULL, 0, 0 )) != 0)
 	{ 
 		if (bRet == -1)
@@ -623,11 +629,11 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		if (!bProject)
 		{
-			if (paths_DoesPathExist(paths[0]) == DOES_NOT_EXIST)
+			if (paths_DoesPathExist(paths[0], IsArchiveFile) == DOES_NOT_EXIST)
 				bInvalid[0] = TRUE;
-			if (paths_DoesPathExist(paths[1]) == DOES_NOT_EXIST)
+			if (paths_DoesPathExist(paths[1], IsArchiveFile) == DOES_NOT_EXIST)
 				bInvalid[1] = TRUE;
-			if (paths.GetSize() > 2 && paths_DoesPathExist(paths[2]) == DOES_NOT_EXIST)
+			if (paths.GetSize() > 2 && paths_DoesPathExist(paths[2], IsArchiveFile) == DOES_NOT_EXIST)
 				bInvalid[2] = TRUE;
 		}
 
@@ -691,6 +697,8 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		PostMessage(hWnd, WM_USER + 1, bButtonEnabled, MAKELPARAM(iStatusMsgId, iUnpackerStatusMsgId)); 
 	}
+
+	CoUninitialize();
 
 	return 0;
 }

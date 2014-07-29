@@ -304,6 +304,7 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
+	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
 	sd_Close();
 }
 
@@ -372,6 +373,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create tab bar\n");
 		return -1;      // fail to create
 	}
+	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
+
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
 
@@ -1011,110 +1014,13 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 		}
 	}
 
-	CTempPathContext *pTempPathContext = NULL;
-	try
+	DecompressResult res = DecompressArchive(m_hWnd, files);
+	if (res.pTempPathContext)
+	DecompressResult res = DecompressArchive(m_hWnd, files);
+	if (res.pTempPathContext)
 	{
-		String path;
-		USES_CONVERSION;
-		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[0]))
-		{
-			pTempPathContext = new CTempPathContext;
-			path = env_GetTempChildPath();
-			std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
-			pathsType = IS_EXISTING_DIR;
-			if (files[0] == files[1])
-			{
-				files[1].erase();
-				if (files.GetSize() > 2)
-				{
-					files[2].erase();
-				}
-			}
-			do
-			{
-				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[0].c_str(), path.c_str())))
-					break;
-				if (files[0].find(path) == 0)
-				{
-					VERIFY(::DeleteFile(files[0].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[0].c_str())), false));
-				}
-				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[0].c_str());
-				files[0] = paths_ConcatPath(path, OLE2T(pTmp));
-				SysFreeString(pTmp);
-			} while (piHandler = ArchiveGuessFormat(files[0].c_str()));
-			files[0] = path;
-		}
-		if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[1]))
-		{
-			if (!pTempPathContext)
-			{
-				pTempPathContext = new CTempPathContext;
-				std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
-			}
-			path = env_GetTempChildPath();
-			do
-			{
-				if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[1].c_str(), path.c_str())))
-					break;;
-				if (files[1].find(path) == 0)
-				{
-					VERIFY(::DeleteFile(files[1].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[1].c_str())), false));
-				}
-				BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-				files[1] = paths_ConcatPath(path, OLE2T(pTmp));
-				SysFreeString(pTmp);
-			} while (piHandler = ArchiveGuessFormat(files[1].c_str()));
-			files[1] = path;
-		}
-		if (files.GetSize() > 2)
-		{
-			if (Merge7z::Format *piHandler = ArchiveGuessFormat(files[2]))
-			{
-				if (!pTempPathContext)
-				{
-					pTempPathContext = new CTempPathContext;
-					std::copy(files.begin(), files.end(), pTempPathContext->m_strDisplayRoot);
-				}
-				path = env_GetTempChildPath();
-				do
-				{
-					if (FAILED(piHandler->DeCompressArchive(m_hWnd, files[2].c_str(), path.c_str())))
-						break;;
-					if (files[2].find(path) == 0)
-					{
-						VERIFY(::DeleteFile(files[2].c_str()) || (LogErrorString(string_format(_T("DeleteFile(%s) failed"), files[2].c_str())), false));
-					}
-					BSTR pTmp = piHandler->GetDefaultName(m_hWnd, files[1].c_str());
-					files[2] = paths_ConcatPath(path, OLE2T(pTmp));
-					SysFreeString(pTmp);
-				} while (piHandler = ArchiveGuessFormat(files[2]));
-				files[2] = path;
-			}
-		}
-		if (files[1].empty())
-		{
-			// assume Perry style patch
-			files[0] = paths_ConcatPath(files[0], _T("ORIGINAL"));
-			files[1] = paths_ConcatPath(path,     _T("ALTERED"));
-			if (paths_DoesPathExist(files[0]) == DOES_NOT_EXIST || paths_DoesPathExist(files[1]) == DOES_NOT_EXIST)
-			{
-				// not a Perry style patch: diff with itself...
-				files[0] = files[1] = path;
-				if (files.GetSize() > 2)
-					files[2] = path;
-			}
-			else
-			{
-				pTempPathContext->m_strDisplayRoot[0] = paths_ConcatPath(pTempPathContext->m_strDisplayRoot[0], _T("ORIGINAL"));
-				pTempPathContext->m_strDisplayRoot[1] = paths_ConcatPath(pTempPathContext->m_strDisplayRoot[1], _T("ALTERED"));
-			}
-		}
-	}
-	catch (CException *e)
-	{
-		e->ReportError(MB_ICONSTOP);
-		e->Delete();
+		pathsType = res.pathsType;
+		files = res.files;
 	}
 
 	// Determine if we want new a dirview open now that we know if it was
@@ -1151,7 +1057,7 @@ BOOL CMainFrame::DoFileOpen(PathContext * pFiles /*=NULL*/,
 			}
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(files, bRecurse, pTempPathContext);
+			pDirDoc->InitCompare(files, bRecurse, res.pTempPathContext);
 
 			pDirDoc->SetDescriptions(theApp.m_strDescriptions);
 			pDirDoc->SetTitle(NULL);

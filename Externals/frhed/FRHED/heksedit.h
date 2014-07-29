@@ -112,6 +112,7 @@ public:
 	virtual BOOL STDMETHODCALLTYPE load_lang(LANGID langid, LPCWSTR langdir = NULL) = 0;
 	virtual void STDMETHODCALLTYPE CMD_zoom(int) = 0;
 	virtual void STDMETHODCALLTYPE CMD_select_all() = 0;
+	virtual void STDMETHODCALLTYPE set_sibling2(IHexEditorWindow *, IHexEditorWindow *) = 0;
 };
 
 #endif // _HEKSEDIT_H_

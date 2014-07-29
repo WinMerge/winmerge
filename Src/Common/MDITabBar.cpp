@@ -118,10 +118,13 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
 	{
 		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
+		pPopup->AppendMenu(MF_STRING, ID_TABBAR_AUTO_MAXWIDTH, _("Enable &Auto Max Width").c_str());
+		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
 		pPopup->AppendMenu(MF_STRING, ID_CLOSE_OTHER_TABS, _("Close &Other Tabs").c_str());
 		pPopup->AppendMenu(MF_STRING, ID_CLOSE_RIGHT_TABS, _("Close R&ight Tabs").c_str());
 		pPopup->AppendMenu(MF_STRING, ID_CLOSE_LEFT_TABS, _("Close &Left Tabs").c_str());
 	}
+	pPopup->CheckMenuItem(ID_TABBAR_AUTO_MAXWIDTH, m_bAutoMaxWidth ? MF_CHECKED : MF_UNCHECKED);
 	// invoke context menu
 	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y,
 		this);
@@ -146,6 +149,10 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 		}
 		break;
 	}
+	case ID_TABBAR_AUTO_MAXWIDTH:
+		m_bAutoMaxWidth = !m_bAutoMaxWidth;
+		UpdateTabs();
+		break;
 	default:
 		pMDIChild->SendMessage(WM_SYSCOMMAND, command);
 	}
@@ -182,7 +189,11 @@ void CMDITabBar::UpdateTabs()
 		}
 	}
 
-	int nMaxTitleLength = static_cast<int>(MDITABBAR_MAXTITLELENGTH - (MDIFrameList.GetCount() - 1) * 6);
+	int nMaxTitleLength;
+	if (m_bAutoMaxWidth)
+		nMaxTitleLength = static_cast<int>(MDITABBAR_MAXTITLELENGTH - (MDIFrameList.GetCount() - 1) * 6);
+	else
+		nMaxTitleLength = MDITABBAR_MAXTITLELENGTH;
 	if (nMaxTitleLength < MDITABBAR_MINTITLELENGTH)
 		nMaxTitleLength = MDITABBAR_MINTITLELENGTH;
 
